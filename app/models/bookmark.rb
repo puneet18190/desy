@@ -1,3 +1,5 @@
 class Bookmark < ActiveRecord::Base
-  # attr_accessible :title, :body
+  
+  belongs_to :bookmarkable, :polymorphic => true
+  
 end

@@ -1,3 +1,5 @@
 class MediaElement < ActiveRecord::Base
-  # attr_accessible :title, :body
+  
+  has_many :bookmarks, :as => :bookmarkable
+  
 end
