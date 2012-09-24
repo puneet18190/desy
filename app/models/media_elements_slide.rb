@@ -1,3 +1,6 @@
 class MediaElementsSlide < ActiveRecord::Base
-  # attr_accessible :title, :body
+  
+  belongs_to :media_element
+  belongs_to :slide
+  
 end
