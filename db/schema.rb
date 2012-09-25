@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(:version => 20120924130035) do
     t.integer  "subject_id",                             :null => false
     t.string   "title",                                  :null => false
     t.text     "description",                            :null => false
-    t.boolean  "public",              :default => false
+    t.boolean  "public",              :default => false, :null => false
     t.integer  "parent_id"
-    t.boolean  "copied_not_modified"
+    t.boolean  "copied_not_modified",                    :null => false
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.index ["parent_id"], :name => "index_lessons_on_parent_id"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(:version => 20120924130035) do
     t.text     "description",                    :null => false
     t.integer  "duration"
     t.string   "sti_type",                       :null => false
-    t.boolean  "public",      :default => false
+    t.boolean  "public",      :default => false, :null => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.index ["user_id"], :name => "index_media_elements_on_user_id"
