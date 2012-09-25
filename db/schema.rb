@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(:version => 20120924130035) do
   end
 
 # Could not dump table "likes" because of following StandardError
-#   Unknown type 'teaching_object' for column 'likable_type'
+#   Unknown type 'teaching_object' for column 'likeable_type'
 
   create_table "media_elements", :force => true do |t|
     t.integer  "user_id",                        :null => false
