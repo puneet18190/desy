@@ -133,8 +133,7 @@ ALTER SEQUENCE lessons_id_seq OWNED BY lessons.id;
 
 CREATE TABLE likes (
     id integer NOT NULL,
-    likeable_id integer NOT NULL,
-    likeable_type teaching_object NOT NULL,
+    lesson_id integer NOT NULL,
     user_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -742,10 +741,10 @@ CREATE INDEX index_lessons_on_user_id ON lessons USING btree (user_id);
 
 
 --
--- Name: index_likes_on_likeable_type_and_user_id_and_likeable_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_likes_on_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE UNIQUE INDEX index_likes_on_likeable_type_and_user_id_and_likeable_id ON likes USING btree (likeable_type, user_id, likeable_id);
+CREATE INDEX index_likes_on_lesson_id ON likes USING btree (lesson_id);
 
 
 --
@@ -898,6 +897,14 @@ ALTER TABLE ONLY lessons
 
 ALTER TABLE ONLY lessons
     ADD CONSTRAINT lessons_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: likes_lesson_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY likes
+    ADD CONSTRAINT likes_lesson_id_fkey FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE;
 
 
 --
