@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924130035) do
+ActiveRecord::Schema.define(:version => 20120926160646) do
 
   create_table "locations", :force => true do |t|
     t.string   "description", :null => false
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20120924130035) do
     t.boolean  "copied_not_modified",                    :null => false
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "token"
     t.index ["parent_id"], :name => "index_lessons_on_parent_id"
     t.index ["school_level_id"], :name => "index_lessons_on_school_level_id"
     t.index ["subject_id"], :name => "index_lessons_on_subject_id"
@@ -73,18 +74,27 @@ ActiveRecord::Schema.define(:version => 20120924130035) do
     t.foreign_key ["parent_id"], "lessons", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "lessons_parent_id_fkey"
   end
 
-# Could not dump table "likes" because of following StandardError
-#   Unknown type 'teaching_object' for column 'likeable_type'
+  create_table "likes", :force => true do |t|
+    t.integer  "lesson_id",  :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.index ["lesson_id"], :name => "index_likes_on_lesson_id"
+    t.index ["user_id"], :name => "index_likes_on_user_id"
+    t.foreign_key ["lesson_id"], "lessons", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "likes_lesson_id_fkey"
+    t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "likes_user_id_fkey"
+  end
 
   create_table "media_elements", :force => true do |t|
-    t.integer  "user_id",                        :null => false
-    t.string   "title",                          :null => false
-    t.text     "description",                    :null => false
+    t.integer  "user_id",                             :null => false
+    t.string   "title",                               :null => false
+    t.text     "description",                         :null => false
     t.integer  "duration"
-    t.string   "sti_type",                       :null => false
-    t.boolean  "public",      :default => false, :null => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.string   "sti_type",                            :null => false
+    t.boolean  "public",           :default => false, :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.datetime "publication_date"
     t.index ["user_id"], :name => "index_media_elements_on_user_id"
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "media_elements_user_id_fkey"
   end
@@ -106,6 +116,15 @@ ActiveRecord::Schema.define(:version => 20120924130035) do
 
 # Could not dump table "reports" because of following StandardError
 #   Unknown type 'teaching_object' for column 'reportable_type'
+
+  create_table "tags", :force => true do |t|
+    t.string   "word",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+# Could not dump table "taggings" because of following StandardError
+#   Unknown type 'teaching_object' for column 'taggable_type'
 
   create_table "users_subjects", :force => true do |t|
     t.integer  "user_id",    :null => false

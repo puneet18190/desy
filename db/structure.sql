@@ -104,7 +104,8 @@ CREATE TABLE lessons (
     parent_id integer,
     copied_not_modified boolean NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    token character varying(255)
 );
 
 
@@ -203,7 +204,8 @@ CREATE TABLE media_elements (
     sti_type character varying(255) NOT NULL,
     public boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    publication_date timestamp without time zone
 );
 
 
@@ -1156,3 +1158,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120924130035');
 INSERT INTO schema_migrations (version) VALUES ('20120926153638');
 
 INSERT INTO schema_migrations (version) VALUES ('20120926153643');
+
+INSERT INTO schema_migrations (version) VALUES ('20120926160646');
