@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120926160646) do
+ActiveRecord::Schema.define(:version => 20120927141837) do
 
   create_table "locations", :force => true do |t|
     t.string   "description", :null => false
@@ -112,6 +112,16 @@ ActiveRecord::Schema.define(:version => 20120926160646) do
     t.index ["slide_id"], :name => "index_media_elements_slides_on_slide_id"
     t.foreign_key ["media_element_id"], "media_elements", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "media_elements_slides_media_element_id_fkey"
     t.foreign_key ["slide_id"], "slides", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "media_elements_slides_slide_id_fkey"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id",                       :null => false
+    t.text     "message",                       :null => false
+    t.boolean  "seen",       :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.index ["user_id"], :name => "index_notifications_on_user_id"
+    t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "notifications_user_id_fkey"
   end
 
 # Could not dump table "reports" because of following StandardError

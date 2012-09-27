@@ -262,6 +262,39 @@ ALTER SEQUENCE media_elements_slides_id_seq OWNED BY media_elements_slides.id;
 
 
 --
+-- Name: notifications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE notifications (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    message text NOT NULL,
+    seen boolean DEFAULT false,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: notifications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE notifications_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: notifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE notifications_id_seq OWNED BY notifications.id;
+
+
+--
 -- Name: reports; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -615,6 +648,13 @@ ALTER TABLE ONLY media_elements_slides ALTER COLUMN id SET DEFAULT nextval('medi
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY notifications ALTER COLUMN id SET DEFAULT nextval('notifications_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY reports ALTER COLUMN id SET DEFAULT nextval('reports_id_seq'::regclass);
 
 
@@ -720,6 +760,14 @@ ALTER TABLE ONLY media_elements
 
 ALTER TABLE ONLY media_elements_slides
     ADD CONSTRAINT media_elements_slides_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY notifications
+    ADD CONSTRAINT notifications_pkey PRIMARY KEY (id);
 
 
 --
@@ -869,6 +917,13 @@ CREATE INDEX index_media_elements_slides_on_media_element_id ON media_elements_s
 --
 
 CREATE INDEX index_media_elements_slides_on_slide_id ON media_elements_slides USING btree (slide_id);
+
+
+--
+-- Name: index_notifications_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_notifications_on_user_id ON notifications USING btree (user_id);
 
 
 --
@@ -1050,6 +1105,14 @@ ALTER TABLE ONLY media_elements
 
 
 --
+-- Name: notifications_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY notifications
+    ADD CONSTRAINT notifications_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
 -- Name: reports_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1160,3 +1223,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120926153638');
 INSERT INTO schema_migrations (version) VALUES ('20120926153643');
 
 INSERT INTO schema_migrations (version) VALUES ('20120926160646');
+
+INSERT INTO schema_migrations (version) VALUES ('20120927141837');
