@@ -1,5 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
+require 'yaml'
+VARIABLES = YAML.load(File.read(File.expand_path('../variables.yml', __FILE__)))
+
 require 'rails/all'
 
 if defined?(Bundler)

@@ -3,11 +3,47 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
+  
   fixtures :all
-
-  # Add more helper methods to be used by all tests here...
+  
+  def array_to_string array
+    resp = ''
+    array.each do |a|
+      resp = "#{resp}#{a.to_s}"
+    end
+    resp
+  end
+  
+  def assert_invalid obj, field, before, after, match
+    obj[field] = before
+    assert !obj.save, "#{obj.class} erroneously saved - #{obj.inspect}"
+    assert_equal 1, obj.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{obj.errors.inspect}"
+    assert_match match, array_to_string(obj.errors.messages[field])
+    obj[field] = after
+    assert obj.valid?, "#{obj.class} not valid - #{obj.inspect} - #{obj.errors.inspect}"
+  end
+  
+  def assert_obj_saved obj
+    assert obj.save, "Error saving #{obj.inspect} => #{obj.errors.inspect}"
+  end
+  
+  def assert_error_size x, obj
+    assert !obj.valid?, "#{obj.class} valid when not expected! #{obj.inspect}"
+    assert_equal x, obj.errors.size, "Expected #{x} errors, got #{obj.errors.size}"
+  end
+  
+  def assert_default x, obj, field
+    assert_equal obj[field], x, "Expected default value < #{x.inspect} > for field #{field} of object #{obj.class}, found #{obj[field].inspect}"
+  end
+  
+  def long_string length
+    x = ''
+    i = 0
+    while i < length
+      x = "#{x}a"
+      i += 1
+    end
+    x
+  end
+  
 end
