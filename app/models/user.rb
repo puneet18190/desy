@@ -17,8 +17,15 @@ class User < ActiveRecord::Base
   validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
   validates_uniqueness_of :email
   validates_length_of :name, :surname, :email, :school, :maximum => 255
-  
   validate :validate_associations, :validate_email, :validate_email_not_changed
+  
+  before_validation :init_validation
+  
+  private
+  
+  def init_validation
+    @user = User.where(:id => self.id).first
+  end
   
   def validate_associations
     errors[:location_id] << "doesn't exist" if !Location.exists?(self.location_id)
@@ -44,7 +51,7 @@ class User < ActiveRecord::Base
   
   def validate_email_not_changed
     return if self.new_record?
-    errors[:email] << "can't change after having been initialized" if User.find(self.id).email != self.email
+    errors[:email] << "can't change after having been initialized" if @user.email != self.email
   end
   
 end
