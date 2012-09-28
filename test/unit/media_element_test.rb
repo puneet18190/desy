@@ -54,7 +54,7 @@ class MediaElementTest < ActiveSupport::TestCase
   end
   
   test 'public' do
-    # faccio a mano il lavoro di assert_invalid
+    # I do manually the assertions of 'assert_invalid' - I check here that it's not possible to save directly is_public = true
     @media_element.publication_date = '2011-01-01 10:00:00'
     @media_element.is_public = true
     assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect}"
@@ -63,8 +63,9 @@ class MediaElementTest < ActiveSupport::TestCase
     @media_element.is_public = false
     @media_element.publication_date = nil
     assert @media_element.valid?, "MediaElement not valid - #{@media_element.errors.inspect}"
-    # fino a qui
+    # here ends assert_invalid
     assert_obj_saved @media_element
+    # now it's not a new_record anymore
     assert_invalid @media_element, :sti_type, 'Audio', 'Video', /is not changeable/
     assert_invalid @media_element, :user_id, 2, 1, /can't be changed/
     @media_element.title = 'Squola'
@@ -74,7 +75,7 @@ class MediaElementTest < ActiveSupport::TestCase
     @media_element.is_public = true
     assert_invalid @media_element, :publication_date, 1, '2011-11-11 10:00:00', /is not a date/
     assert_obj_saved @media_element
-    # faccio a mano il lavoro di assert_invalid
+    # again, I simulate assert_invalid - I verify that publication_date and is_public are not editable anymore after having set is_public = true
     @media_element.publication_date = nil
     @media_element.is_public = false
     assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect}"
@@ -84,6 +85,7 @@ class MediaElementTest < ActiveSupport::TestCase
     @media_element.is_public = true
     @media_element.publication_date = '2011-11-11 10:00:00'
     assert @media_element.valid?, "MediaElement not valid - #{@media_element.errors.inspect}"
+    # fino a qui
     assert_invalid @media_element, :title, 'Scuola', 'Squola', /is not changeable for a public record/
     assert_invalid @media_element, :description, 'Scuola Primaria', 'Squola Primaria', /is not changeable for a public record/
     assert_invalid @media_element, :duration, 111, 11, /is not changeable for a public record/
@@ -92,8 +94,23 @@ class MediaElementTest < ActiveSupport::TestCase
     assert_obj_saved @media_element
   end
   
+  test 'sti_types' do
+    assert_equal 2, Audio.count
+    assert_equal 2, Video.count
+    assert_equal 2, Image.count
+    assert_obj_saved @media_element
+    assert_equal 2, Audio.count
+    assert_equal 3, Video.count
+    assert_equal 2, Image.count
+  end
+  
   test 'duration' do
-    assert true
+    assert_invalid @media_element, :duration, nil, 11, /can't be blank for videos and audios/
+    @media_element.sti_type = 'Audio'
+    assert_invalid @media_element, :duration, nil, 11, /can't be blank for videos and audios/
+    @media_element.sti_type = 'Image'
+    assert_invalid @media_element, :duration, 11, nil, /must be blank for images/
+    assert_obj_saved @media_element
   end
   
 end
