@@ -1,0 +1,23 @@
+one:
+  id: 1
+  description: 'matematica'
+
+two:
+  id: 2
+  description: 'fisica'
+
+two:
+  id: 3
+  description: 'filologia'
+
+two:
+  id: 4
+  description: 'religione'
+
+two:
+  id: 5
+  description: 'archeologia'
+
+two:
+  id: 6
+  description: 'educazione civica'
