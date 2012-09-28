@@ -35,7 +35,7 @@ class MediaElement < ActiveRecord::Base
     if self.is_public
       errors[:publication_date] << "is not a date" if self.publication_date.blank? || !self.publication_date.kind_of?(Time)
     else
-      errors[:publication_date] << "must be blank if public" if !self.publication_date.blank?
+      errors[:publication_date] << "must be blank if private" if !self.publication_date.blank?
     end
   end
   

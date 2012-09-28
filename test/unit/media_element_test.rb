@@ -113,4 +113,16 @@ class MediaElementTest < ActiveSupport::TestCase
     assert_obj_saved @media_element
   end
   
+  test 'stop_destruction' do
+    assert_obj_saved @media_element
+    @media_element.is_public = true
+    @media_element.publication_date = '2011-01-01 10:00:00'
+    assert_obj_saved @media_element
+    @media_element.destroy
+    assert MediaElement.exists?(@media_element.id)
+    @media2 = MediaElement.find 1
+    @media2.destroy
+    assert !MediaElement.exists?(1)
+  end
+  
 end
