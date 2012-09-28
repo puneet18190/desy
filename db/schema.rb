@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(:version => 20120927141837) do
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "lessons_user_id_fkey"
     t.foreign_key ["school_level_id"], "school_levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "lessons_school_level_id_fkey"
     t.foreign_key ["subject_id"], "subjects", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "lessons_subject_id_fkey"
-    t.foreign_key ["parent_id"], "lessons", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "lessons_parent_id_fkey"
+    t.foreign_key ["parent_id"], "lessons", ["id"], :on_update => :no_action, :on_delete => :set_null, :name => "lessons_parent_id_fkey"
   end
 
   create_table "likes", :force => true do |t|

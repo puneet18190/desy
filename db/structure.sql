@@ -1037,7 +1037,7 @@ ALTER TABLE ONLY bookmarks
 --
 
 ALTER TABLE ONLY lessons
-    ADD CONSTRAINT lessons_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES lessons(id);
+    ADD CONSTRAINT lessons_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES lessons(id) ON DELETE SET NULL;
 
 
 --
