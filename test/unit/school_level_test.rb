@@ -10,15 +10,23 @@ class SchoolLevelTest < ActiveSupport::TestCase
     end
   end
   
-  test 'null' do
-    assert !@school_level.nil?
+  test 'empty_and_defaults' do
     @school_level = SchoolLevel.new
     assert_error_size 1, @school_level
+  end
+  
+  test 'attr_accessible' do
+    assert !@school_level.nil?
   end
   
   test 'types' do
     assert_invalid @school_level, :description, long_string(256), long_string(255), /is too long/
     assert_obj_saved @school_level
+  end
+  
+  test 'association_methods' do
+    assert_nothing_raised {@school_level.users}
+    assert_nothing_raised {@school_level.lessons}
   end
   
 end
