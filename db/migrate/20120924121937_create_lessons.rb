@@ -7,7 +7,7 @@ class CreateLessons < ActiveRecord::Migration
       t.integer :subject_id, :null => false
       t.string :title, :null => false
       t.text :description, :null => false
-      t.boolean :public, :default => false, :null => false
+      t.boolean :is_public, :default => false, :null => false
       t.integer :parent_id
       t.boolean :copied_not_modified, :null => false
       t.timestamps

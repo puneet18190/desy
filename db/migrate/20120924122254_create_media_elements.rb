@@ -7,7 +7,7 @@ class CreateMediaElements < ActiveRecord::Migration
       t.text :description, :null => false
       t.integer :duration
       t.string :sti_type, :null => false
-      t.boolean :public, :default => false, :null => false
+      t.boolean :is_public, :default => false, :null => false
       t.timestamps
     end
   end

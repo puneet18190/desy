@@ -100,7 +100,7 @@ CREATE TABLE lessons (
     subject_id integer NOT NULL,
     title character varying(255) NOT NULL,
     description text NOT NULL,
-    public boolean DEFAULT false NOT NULL,
+    is_public boolean DEFAULT false NOT NULL,
     parent_id integer,
     copied_not_modified boolean NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -202,7 +202,7 @@ CREATE TABLE media_elements (
     description text NOT NULL,
     duration integer,
     sti_type character varying(255) NOT NULL,
-    public boolean DEFAULT false NOT NULL,
+    is_public boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     publication_date timestamp without time zone
