@@ -1,7 +1,34 @@
 require 'test_helper'
 
 class UsersSubjectTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  
+  def setup
+    begin
+      @users_subject = UsersSubject.new :user_id => 2, :subject_id => 4
+    rescue ActiveModel::MassAssignmentSecurity::Error
+      @users_subject = nil
+    end
+  end
+  
+  test 'empty_and_defaults' do
+    @users_subject = UsersSubject.new
+    assert_error_size 6, @users_subject
+  end
+  
+  test 'attr_accessible' do
+    assert !@users_subject.nil?
+  end
+  
+  test 'types' do
+    assert_invalid @users_subject, :user_id, 'tr', 2, /is not a number/
+    assert_invalid @users_subject, :subject_id, 4.5, 4, /must be an integer/
+    assert_invalid @users_subject, :subject_id, 0, 4, /must be greater than 0/
+    assert_obj_saved @users_subject
+  end
+  
+  test 'association_methods' do
+    assert_nothing_raised {@users_subject.user}
+    assert_nothing_raised {@users_subject.subject}
+  end
+  
 end

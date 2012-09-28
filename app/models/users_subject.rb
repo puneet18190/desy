@@ -1,6 +1,6 @@
 class UsersSubject < ActiveRecord::Base
   
-  attr_accessible :user_id, :sbject_id
+  attr_accessible :user_id, :subject_id
   
   belongs_to :user
   belongs_to :subject

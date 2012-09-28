@@ -6,18 +6,18 @@ two:
   id: 2
   description: 'fisica'
 
-two:
+three:
   id: 3
   description: 'filologia'
 
-two:
+four:
   id: 4
   description: 'religione'
 
-two:
+five:
   id: 5
   description: 'archeologia'
 
-two:
+six:
   id: 6
   description: 'educazione civica'
