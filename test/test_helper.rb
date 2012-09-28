@@ -20,7 +20,7 @@ class ActiveSupport::TestCase
     assert_equal 1, obj.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{obj.errors.inspect}"
     assert_match match, array_to_string(obj.errors.messages[field])
     obj[field] = after
-    assert obj.valid?, "#{obj.class} not valid - #{obj.inspect} - #{obj.errors.inspect}"
+    assert obj.valid?, "#{obj.class} not valid: #{obj.errors.inspect}"
   end
   
   def assert_obj_saved obj

@@ -48,4 +48,52 @@ class MediaElementTest < ActiveSupport::TestCase
     assert_nothing_raised {@media_element.user}
   end
   
+  test 'associations' do
+    assert_invalid @media_element, :user_id, 900, 1, /doesn't exist/
+    assert_obj_saved @media_element
+  end
+  
+  test 'public' do
+    # faccio a mano il lavoro di assert_invalid
+    @media_element.publication_date = '2011-01-01 10:00:00'
+    @media_element.is_public = true
+    assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect}"
+    assert_equal 1, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
+    assert @media_element.errors.messages[:is_public].include?("must be false if new record")
+    @media_element.is_public = false
+    @media_element.publication_date = nil
+    assert @media_element.valid?, "MediaElement not valid - #{@media_element.errors.inspect}"
+    # fino a qui
+    assert_obj_saved @media_element
+    assert_invalid @media_element, :sti_type, 'Audio', 'Video', /is not changeable/
+    assert_invalid @media_element, :user_id, 2, 1, /can't be changed/
+    @media_element.title = 'Squola'
+    @media_element.description = 'Squola Primaria'
+    @media_element.duration = 11
+    assert_invalid @media_element, :publication_date, '2011-10-10 10:10:19', nil, /must be blank if private/
+    @media_element.is_public = true
+    assert_invalid @media_element, :publication_date, 1, '2011-11-11 10:00:00', /is not a date/
+    assert_obj_saved @media_element
+    # faccio a mano il lavoro di assert_invalid
+    @media_element.publication_date = nil
+    @media_element.is_public = false
+    assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect}"
+    assert_equal 2, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
+    assert @media_element.errors.messages[:is_public].include?("is not changeable for a public record")
+    assert @media_element.errors.messages[:publication_date].include?("is not changeable for a public record")
+    @media_element.is_public = true
+    @media_element.publication_date = '2011-11-11 10:00:00'
+    assert @media_element.valid?, "MediaElement not valid - #{@media_element.errors.inspect}"
+    assert_invalid @media_element, :title, 'Scuola', 'Squola', /is not changeable for a public record/
+    assert_invalid @media_element, :description, 'Scuola Primaria', 'Squola Primaria', /is not changeable for a public record/
+    assert_invalid @media_element, :duration, 111, 11, /is not changeable for a public record/
+    @media_element.user_id = 2
+    assert_equal 1, MediaElement.find(@media_element.id).user_id
+    assert_obj_saved @media_element
+  end
+  
+  test 'duration' do
+    assert true
+  end
+  
 end
