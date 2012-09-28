@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   
+  attr_accessible :name, :surname, :school_level_id, :school, :location_id
+  
   has_many :bookmarks
   has_many :notifications
   has_many :likes
@@ -16,7 +18,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_length_of :name, :surname, :email, :school, :maximum => 255
   
-  validate :validate_associations, :validate_email
+  validate :validate_associations, :validate_email, :validate_email_not_changed
   
   def validate_associations
     errors[:location_id] << "doesn't exist" if !Location.exists?(self.location_id)
@@ -24,6 +26,7 @@ class User < ActiveRecord::Base
   end
   
   def validate_email
+    return if self.email.blank?
     flag = false
     x = self.email.split('@')
     if x.length == 2
@@ -36,7 +39,12 @@ class User < ActiveRecord::Base
     else
       flag = true
     end
-    errors[:email] << 'not in the correct format' if flag
+    errors[:email] << 'is not in the correct format' if flag
+  end
+  
+  def validate_email_not_changed
+    return if self.new_record?
+    errors[:email] << "can't change after having been initialized" if User.find(self.id).email != self.email
   end
   
 end

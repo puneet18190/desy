@@ -24,12 +24,12 @@ class ActiveSupport::TestCase
   end
   
   def assert_obj_saved obj
-    assert obj.save, "Error saving #{obj.inspect} => #{obj.errors.inspect}"
+    assert obj.save, "Error saving #{obj.class}: #{obj.errors.inspect}"
   end
   
   def assert_error_size x, obj
     assert !obj.valid?, "#{obj.class} valid when not expected! #{obj.inspect}"
-    assert_equal x, obj.errors.size, "Expected #{x} errors, got #{obj.errors.size}"
+    assert_equal x, obj.errors.size, "Expected #{x} errors, got #{obj.errors.size}: #{obj.errors.inspect}"
   end
   
   def assert_default x, obj, field

@@ -1,0 +1,17 @@
+one:
+  id: 1
+  email: 'pluto@pippo.it'
+  name: 'ee'
+  surname: 'uu'
+  school_level_id: 1
+  school: '33eer'
+  location_id: 1
+
+two:
+  id: 2
+  email: 'plutos@pippo.it'
+  name: 'eef'
+  surname: 'fuu'
+  school_level_id: 2
+  school: '33eer'
+  location_id: 1
