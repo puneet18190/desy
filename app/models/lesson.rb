@@ -17,14 +17,24 @@ class Lesson < ActiveRecord::Base
   validates_numericality_of :parent_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_inclusion_of :is_public, :copied_not_modified, :in => [true, false]
   validates_length_of :title, :token, :maximum => 255
-  validates_uniqueness_of :parent_id, :scope => :user_id, :if => self.parent_id
-  validate :validate_public, :validate_copied_not_modified_and_public, :validate_impossible_changes
+  validates_uniqueness_of :parent_id, :scope => :user_id, :if => :present_parent_id
+  validate :validate_associations, :validate_public, :validate_copied_not_modified_and_public, :validate_impossible_changes
   
   after_save :create_cover
   
   before_validation :init_validation, :create_token
   
   private
+  
+  def present_parent_id
+    self.parent_id
+  end
+  
+  def validate_associations
+    errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
+    errors[:parent_id] << "doesn't exist" if self.parent_id && !Lesson.exist?(self.parent_id)
+    errors[:parent_id] << "can't be the lesson itself" if @lesson && self.parent_id == @lesson.id
+  end
   
   def init_validation
     @lesson = self.new_record? ? nil : Lesson.where(:id => self.id).first
