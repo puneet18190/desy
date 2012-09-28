@@ -11,4 +11,32 @@ class User < ActiveRecord::Base
   belongs_to :school_level
   belongs_to :location
   
+  validates_presence_of :email, :name, :surname, :school_level_id, :school, :location_id
+  validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
+  validates_uniqueness_of :email
+  validates_length_of :name, :surname, :email, :school, :maximum => 255
+  
+  validate :validate_associations, :validate_email
+  
+  def validate_associations
+    errors[:location_id] << "doesn't exist" if !Location.exists?(self.location_id)
+    errors[:school_level_id] << "doesn't exist" if !SchoolLevel.exists?(self.school_level_id)
+  end
+  
+  def validate_email
+    flag = false
+    x = self.email.split('@')
+    if x.length == 2
+      x = x[1].split('.')
+      if x.length > 1
+        flag = true if x.last.length != 2
+      else
+        flag = true
+      end
+    else
+      flag = true
+    end
+    errors[:email] << 'not in the correct format' if flag
+  end
+  
 end
