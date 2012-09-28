@@ -32,6 +32,8 @@ class Lesson < ActiveRecord::Base
   
   def validate_associations
     errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
+    errors[:subject_id] << "doesn't exist" if !Subject.exists?(self.subject_id)
+    errors[:school_level_id] << "doesn't exist" if !SchoolLevel.exists?(self.school_level_id)
     errors[:parent_id] << "doesn't exist" if self.parent_id && !Lesson.exist?(self.parent_id)
     errors[:parent_id] << "can't be the lesson itself" if @lesson && self.parent_id == @lesson.id
   end

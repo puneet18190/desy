@@ -5,15 +5,19 @@ class LessonTest < ActiveSupport::TestCase
   def setup
     begin
       @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
+      @lesson.copied_not_modified = false
+      @lesson.user_id = 1
     rescue ActiveModel::MassAssignmentSecurity::Error
       @lesson = nil
     end
   end
   
-  #test 'empty_and_defaults' do
-  #  @lesson = Lesson.new
-  #  assert_error_size 1, @lesson
-  #end
+  test 'empty_and_defaults' do
+    @lesson = Lesson.new
+    assert !@lesson.is_public
+    @lesson.is_public = nil
+    assert_error_size 13, @lesson
+  end
   
   test 'attr_accessible' do
     assert !@lesson.nil?
