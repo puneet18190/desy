@@ -2,7 +2,7 @@ class MediaElement < ActiveRecord::Base
   
   self.inheritance_column = :sti_type
   
-  attr_accessor :title, :description, :duration, :publication_date
+  attr_accessible :title, :description, :duration, :publication_date
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
