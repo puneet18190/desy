@@ -11,13 +11,8 @@ class UsersSubject < ActiveRecord::Base
   validate :validate_associations
   
   before_destroy :check_if_last
-  before_validation :init_validation
   
   private
-  
-  def init_validation
-    @users_subject = self.new_record? ? nil : UsersSubject.where(:id => self.id).first
-  end
   
   def validate_associations
     errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
@@ -25,8 +20,9 @@ class UsersSubject < ActiveRecord::Base
   end
   
   def check_if_last
+    @users_subject = self.new_record? ? nil : UsersSubject.where(:id => self.id).first
     return true if @users_subject.nil?
-    return (UsersSubject.where(:user_id => @user_subject.user_id).length > 1)
+    return (UsersSubject.where(:user_id => @users_subject.user_id).length > 1)
   end
   
 end
