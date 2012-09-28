@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   private
   
   def init_validation
-    @user = User.where(:id => self.id).first
+    @user = self.new_record? ? nil : User.where(:id => self.id).first
   end
   
   def validate_associations
@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   end
   
   def validate_email_not_changed
-    return if self.new_record?
+    return if @user.nil?
     errors[:email] << "can't change after having been initialized" if @user.email != self.email
   end
   
