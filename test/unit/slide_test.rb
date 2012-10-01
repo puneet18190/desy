@@ -74,6 +74,13 @@ class SlideTest < ActiveSupport::TestCase
     assert_obj_saved @slide
   end
   
+  test 'text2' do
+    assert_invalid @slide, :text2, 'bla bla', nil, /must be null if slide is not of kind text2/
+    @slide.kind = 'text2'
+    @slide.text2 = 'bla bla bla'
+    assert_obj_saved @slide
+  end
+  
   test 'cover' do
     assert_invalid @slide, :position, 1, 2, /if not cover can't be the first slide/
     assert_obj_saved @slide
@@ -84,7 +91,18 @@ class SlideTest < ActiveSupport::TestCase
   end
   
   test 'destruction' do
-    # nel test della callback before destroy per la copertina, anche metti un ok_destruction test che mi permette di verificare che posso cancellare la slide e nient'altro! ++ metti nei fixtures una copertina per ogni lezione già caricata!
+    @slide = Slide.find 1
+    @slide.destroy
+    assert Slide.exists?(1)
+    @lesson = Lesson.find 1
+    @lesson.destroy
+    assert !Lesson.exists?(1)
+    assert !Slide.exists?(1)
+  end
+  
+  test 'positions' do
+    assert_invalid @slide, :position, 3, 2, /there is one missing/
+    assert_obj_saved @slide
   end
   
 end

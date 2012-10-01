@@ -44,7 +44,7 @@ class Slide < ActiveRecord::Base
   end
   
   def validate_text2
-    errors[:text2] << 'must be null if slide is not of kind text2' if !self.text2.blank? && self.kind != 'text2'
+    errors[:text2] << 'must be null if slide is not of kind text2' if !self.text2.nil? && self.kind != 'text2'
   end
   
   def stop_if_cover
