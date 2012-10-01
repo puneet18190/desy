@@ -40,7 +40,7 @@ class Lesson < ActiveRecord::Base
   end
   
   def init_validation
-    @lesson = self.new_record? ? nil : Lesson.where(:id => self.id).first
+    @lesson = Valid.get_association self, :id
   end
   
   def create_cover

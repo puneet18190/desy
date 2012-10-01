@@ -23,8 +23,8 @@ class Slide < ActiveRecord::Base
   end
   
   def init_validation
-    @slide = self.new_record? ? nil : Slide.where(:id => self.id).first
-    @lesson = self.lesson_id.blank? ? nil : Lesson.where(:id => self.lesson_id).first
+    @slide = Valid.get_association self, :id
+    @lesson = Valid.get_association self, :lesson_id
   end
   
   def validate_associations

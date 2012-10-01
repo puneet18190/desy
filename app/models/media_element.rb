@@ -24,7 +24,7 @@ class MediaElement < ActiveRecord::Base
   private
   
   def init_validation
-    @media_element = self.new_record? ? nil : MediaElement.where(:id => self.id).first
+    @media_element = Valid.get_association self, :id
   end
   
   def validate_associations

@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   private
   
   def init_validation
-    @user = self.new_record? ? nil : User.where(:id => self.id).first
+    @user = Valid.get_association self, :id
   end
   
   def validate_associations
