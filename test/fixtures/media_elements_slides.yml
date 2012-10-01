@@ -1,0 +1,17 @@
+one:
+  id: 1
+  media_element_id: 6
+  slide_id: 1
+  position: 1
+
+two:
+  id: 2
+  media_element_id: 4
+  slide_id: 3
+  position: 1
+
+three:
+  id: 3
+  media_element_id: 2
+  slide_id: 4
+  position: 1

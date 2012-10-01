@@ -46,11 +46,11 @@ class SlideTest < ActiveSupport::TestCase
     assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
     assert_equal 2, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
     assert_match /has already been taken/, @slide.errors.messages[:kind].first
-    @slide.kind = 'image1'
+    @slide.kind = 'video1'
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
     # until here
     assert_obj_saved @slide
-    assert_equal 2, Slide.where(:lesson_id => 2, :kind => 'image1').count
+    assert_equal 2, Slide.where(:lesson_id => 2, :kind => 'video1').count
   end
   
   test 'associations' do
