@@ -53,6 +53,38 @@ class SlideTest < ActiveSupport::TestCase
     assert_equal 2, Slide.where(:lesson_id => 2, :kind => 'image1').count
   end
   
-# nel test della callback before destroy per la copertina, anche metti un ok_destruction test che mi permette di verificare che posso cancellare la slide e nient'altro! ++ metti nei fixtures una copertina per ogni lezione già caricata!
+  test 'associations' do
+    assert_invalid @slide, :lesson_id, 1000, 1, /doesn't exist/
+    assert_obj_saved @slide
+  end
+  
+  test 'impossible_changes' do
+    assert_obj_saved @slide
+    # I rewrite manually assert_invalid
+    @slide.position = 4
+    @slide.lesson_id = 2
+    assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
+    assert_equal 1, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
+    assert_match /can't be changed/, @slide.errors.messages[:lesson_id].first
+    @slide.lesson_id = 1
+    @slide.position = 2
+    assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
+    # until here
+    assert_invalid @slide, :kind, 'video2', 'video1', /can't be changed/
+    assert_obj_saved @slide
+  end
+  
+  test 'cover' do
+    assert_invalid @slide, :position, 1, 2, /if not cover can't be the first slide/
+    assert_obj_saved @slide
+    @slide = Slide.find 1
+    assert_equal 'cover', @slide.kind
+    assert_invalid @slide, :position, 3, 1, /cover must be the first slide/
+    assert_obj_saved @slide
+  end
+  
+  test 'destruction' do
+    # nel test della callback before destroy per la copertina, anche metti un ok_destruction test che mi permette di verificare che posso cancellare la slide e nient'altro! ++ metti nei fixtures una copertina per ogni lezione già caricata!
+  end
   
 end
