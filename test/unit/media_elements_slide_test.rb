@@ -141,4 +141,47 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert_obj_saved @media_elements_slide
   end
   
+  test 'position' do
+    get_new_slide 'image1'
+    @media_elements_slide.slide_id = @new_slide.id
+    @media_elements_slide.media_element_id = 6
+    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
+    get_new_slide 'image3'
+    @media_elements_slide.slide_id = @new_slide.id
+    @media_elements_slide.media_element_id = 6
+    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
+    get_new_slide 'audio1'
+    @media_elements_slide.slide_id = @new_slide.id
+    @media_elements_slide.media_element_id = 4
+    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
+    get_new_slide 'audio2'
+    @media_elements_slide.slide_id = @new_slide.id
+    @media_elements_slide.media_element_id = 4
+    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
+    get_new_slide 'video1'
+    @media_elements_slide.slide_id = @new_slide.id
+    @media_elements_slide.media_element_id = 2
+    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
+    get_new_slide 'video2'
+    @media_elements_slide.slide_id = @new_slide.id
+    @media_elements_slide.media_element_id = 2
+    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
+    # Here I have to create a new cover slide
+    @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
+    @lesson.copied_not_modified = false
+    @lesson.user_id = 1
+    @lesson.save
+    @new_slide = Slide.where(:lesson_id => @lesson.id).first
+    assert_equal 'cover', @new_slide.kind
+    @media_elements_slide.slide_id = @new_slide.id
+    @media_elements_slide.media_element_id = 6
+    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
+    # until here
+    get_new_slide 'image2'
+    @media_elements_slide.slide_id = @new_slide.id
+    @media_elements_slide.position = 2
+    @media_elements_slide.media_element_id = 6
+    assert_obj_saved @media_elements_slide
+  end
+  
 end
