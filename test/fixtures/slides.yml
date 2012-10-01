@@ -9,3 +9,17 @@ two:
   lesson_id: 2
   position: 1
   kind: 'cover'
+
+three:
+  id: 3
+  lesson_id: 2
+  position: 2
+  kind: 'text1'
+
+four:
+  id: 4
+  lesson_id: 2
+  position: 3
+  kind: 'image1'
+  title: 'Ciao'
+  text1: 'beh... beh beh'
