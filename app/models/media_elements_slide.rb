@@ -5,7 +5,7 @@ class MediaElementsSlide < ActiveRecord::Base
   belongs_to :media_element
   belongs_to :slide
   
-  validates_presence_of :position, :media_element_id, :slide_id
+  validates_presence_of :media_element_id, :slide_id
   validates_numericality_of :media_element_id, :slide_id, :only_integer => true, :greater_than => 0
   validates_inclusion_of :position, :in => [1, 2]
   validates_uniqueness_of :position, :scope => [:media_element_id, :slide_id]
