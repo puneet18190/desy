@@ -199,4 +199,12 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert_obj_saved @media_elements_slide
   end
   
+  test 'impossible_changes' do
+    assert_obj_saved @media_elements_slide
+    assert_invalid @media_elements_slide, :media_element_id, 1, 2, /can't be changed/
+    old_slide_id = @new_slide.id
+    get_new_slide 'video1'
+    assert_invalid @media_elements_slide, :slide_id, @new_slide.id, old_slide_id, /can't be changed/
+  end
+  
 end
