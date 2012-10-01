@@ -7,7 +7,7 @@ class CreateSlides < ActiveRecord::Migration
       t.text :text1
       t.text :text2
       t.integer :position, :null => false, :index => {:with => :lesson_id, :unique => true}
-      t.column :type, :slide_type, :null => false
+      t.column :kind, :slide_type, :null => false
       t.timestamps
     end
   end

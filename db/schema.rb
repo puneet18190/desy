@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(:version => 20120927141837) do
   end
 
 # Could not dump table "slides" because of following StandardError
-#   Unknown type 'slide_type' for column 'type'
+#   Unknown type 'slide_type' for column 'kind'
 
   create_table "media_elements_slides", :force => true do |t|
     t.integer  "media_element_id", :null => false
