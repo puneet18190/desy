@@ -7,7 +7,7 @@ class Bookmark < ActiveRecord::Base
   validates_numericality_of :user_id, :bookmarkable_id, :only_integer => true, :greater_than => 0
   validates_inclusion_of :bookmarkable_type, :in => ['Lesson', 'MediaElement']
   validates_uniqueness_of :bookmarkable_id, :scope => [:user_id, :bookmarkable_type]
-  validate :validate_associations, :validate_availability
+  validate :validate_associations, :validate_availability, :validate_impossible_changes
   
   before_validation :init_validation
   before_destroy :destroy_virtual_classroom
@@ -32,13 +32,18 @@ class Bookmark < ActiveRecord::Base
   end
   
   def destroy_virtual_classroom
-    # This model must implement also a cascade destruction for the table virtual_classroom_lessons (13), inside the ruby code.
+    return if !@lesson
+    VirtualClassroomLesson.where(:lesson_id => @lesson.id).each do |vcl|
+      vcl.destroy
+    end
   end
-
   
-#user_id: integer
-#bookmarkable_id: integer
-#bookmarkable_type:
-
+  def validate_impossible_changes
+    if @bookmark
+      errors[:user_id] << "can't be changed" if self.user_id != @bookmark.user_id
+      errors[:bookmarkable_id] << "can't be changed" if self.bookmarkable_id != @bookmark.bookmarkable_id
+      errors[:bookmarkable_type] << "can't be changed" if self.bookmarkable_type != @bookmark.bookmarkable_type
+    end
+  end
   
 end
