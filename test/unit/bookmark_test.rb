@@ -39,4 +39,18 @@ class BookmarkTest < ActiveSupport::TestCase
     assert_nothing_raised {@bookmark.bookmarkable}
   end
   
+  test 'uniqueness' do
+    assert_invalid @bookmark, :bookmarkable_id, 2, @lesson.id, /has already been taken/
+    assert_obj_saved @bookmark
+  end
+  
+  test 'associations' do
+    assert_invalid @bookmark, :user_id, 1000, 1, /doesn't exist/
+    assert_invalid @bookmark, :bookmarkable_id, 1000, @lesson.id, /lesson doesn't exist/
+    assert_obj_saved @bookmark
+    @bookmark = Bookmark.find 2
+    assert_invalid @bookmark, :bookmarkable_id, 1000, 4, /media element doesn't exist/
+    assert_obj_saved @bookmark
+  end
+  
 end
