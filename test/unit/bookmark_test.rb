@@ -53,4 +53,48 @@ class BookmarkTest < ActiveSupport::TestCase
     assert_obj_saved @bookmark
   end
   
+  test 'impossible_changes' do
+    assert_obj_saved @bookmark
+    @bookmark.user_id = 2
+    assert !@bookmark.save, "Bookmark erroneously saved - #{@bookmark.inspect}"
+    assert_equal 2, @bookmark.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@bookmark.errors.inspect}"
+    assert_match /can't be changed/, @bookmark.errors.messages[:user_id].first
+    @bookmark.user_id = 1
+    assert @bookmark.valid?, "Bookmark not valid: #{@bookmark.errors.inspect}"
+    @bookmark.bookmarkable_id = 2
+    assert !@bookmark.save, "Bookmark erroneously saved - #{@bookmark.inspect}"
+    assert_equal 1, @bookmark.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@bookmark.errors.inspect}"
+    my_errors = ''
+    @bookmark.errors.messages[:bookmarkable_id].each do |eee|
+      my_errors = "#{my_errors}#{eee}"
+    end
+    assert_match /can't be changed/, my_errors
+    @bookmark.bookmarkable_id = @lesson.id
+    assert @bookmark.valid?, "Bookmark not valid: #{@bookmark.errors.inspect}"
+    @bookmark.bookmarkable_type = 'MediaElement'
+    assert !@bookmark.save, "Bookmark erroneously saved - #{@bookmark.inspect}"
+    assert_equal 2, @bookmark.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@bookmark.errors.inspect}"
+    assert_match /can't be changed/, @bookmark.errors.messages[:bookmarkable_type].first
+    @bookmark.bookmarkable_type = 'Lesson'
+    assert @bookmark.valid?, "Bookmark not valid: #{@bookmark.errors.inspect}"
+    assert_obj_saved @bookmark
+  end
+  
+  test 'availability' do
+    assert_invalid @bookmark, :bookmarkable_id, 1, @lesson_id, /lesson not available for bookmarks/
+    @lesson.is_public = false
+    assert_obj_saved @lesson
+    assert !@bookmark.save, "Bookmark erroneously saved - #{@bookmark.inspect}"
+    assert_equal 1, @bookmark.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@bookmark.errors.inspect}"
+    assert_equal 1, @bookmark.errors.size
+    assert_match /lesson not available for bookmarks/, @bookmark.errors.messages[:bookmarkable_id].first
+    @lesson.is_public = true
+    assert_obj_saved @lesson
+    assert @bookmark.valid?, "Bookmark not valid: #{@bookmark.errors.inspect}"
+    @bookmark.bookmarkable_type = 'MediaElement'
+    assert_invalid @bookmark, :bookmarkable_id, 1, 2, /media element not available for bookmarks/
+    assert_invalid @bookmark, :bookmarkable_id, 3, 6, /media element not available for bookmarks/
+    assert_obj_saved @bookmark
+  end
+  
 end
