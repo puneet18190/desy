@@ -16,9 +16,9 @@ class MediaElementsSlide < ActiveRecord::Base
   private
   
   def init_validation
-    @media_elements_slide = self.new_record? ? nil : MediaElementsSlide.where(:id => self.id).first
-    @slide = self.slide_id.blank? ? nil : Slide.where(:id => self.slide_id).first
-    @media_element = self.media_element_id.blank? ? nil : MediaElement.where(:id => self.media_element_id).first
+    @media_elements_slide = Valid.get_association self, :id
+    @slide = Valid.get_association self, :slide_id
+    @media_element = Valid.get_association self, :media_element_id
   end
   
   def validate_associations

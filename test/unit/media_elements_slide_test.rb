@@ -2,10 +2,14 @@ require 'test_helper'
 
 class MediaElementsSlideTest < ActiveSupport::TestCase
   
-  def setup
+  def get_new_slide
     @new_slide = Slide.new :position => 2, :title => 'Titolo', :text1 => 'Testo testo testo'
     @new_slide.lesson_id = 1
     @new_slide.kind = 'video1'
+  end
+  
+  def setup
+    get_new_slide
     @new_slide.save
     begin
       @media_elements_slide = MediaElementsSlide.new :position => 1
@@ -39,6 +43,19 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
   test 'association_methods' do
     assert_nothing_raised {@media_elements_slide.media_element}
     assert_nothing_raised {@media_elements_slide.slide}
+  end
+  
+  test 'uniqueness' do
+    # I start simulating assert_invalid
+    @media_elements_slide.slide_id = 4
+    assert_equal 1, @media_elements_slide.position
+    assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
+    assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
+    assert_match /has already been taken/, @media_elements_slide.errors.messages[:position].first
+    @media_elements_slide.slide_id = @new_slide.id
+    assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
+    # until here
+    assert_obj_saved @media_elements_slide
   end
   
 end
