@@ -105,7 +105,7 @@ CREATE TABLE lessons (
     copied_not_modified boolean NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    token character varying(255)
+    token character varying(20)
 );
 
 

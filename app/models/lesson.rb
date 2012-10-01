@@ -12,7 +12,7 @@ class Lesson < ActiveRecord::Base
   has_many :slides
   has_many :virtual_classroom_lessons
   
-  validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description
+  validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description, :token
   validates_numericality_of :user_id, :school_level_id, :subject_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :parent_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_inclusion_of :is_public, :copied_not_modified, :in => [true, false]

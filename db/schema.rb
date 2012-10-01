@@ -53,17 +53,17 @@ ActiveRecord::Schema.define(:version => 20120927141837) do
   end
 
   create_table "lessons", :force => true do |t|
-    t.integer  "user_id",                                :null => false
-    t.integer  "school_level_id",                        :null => false
-    t.integer  "subject_id",                             :null => false
-    t.string   "title",                                  :null => false
-    t.text     "description",                            :null => false
-    t.boolean  "is_public",           :default => false, :null => false
+    t.integer  "user_id",                                              :null => false
+    t.integer  "school_level_id",                                      :null => false
+    t.integer  "subject_id",                                           :null => false
+    t.string   "title",                                                :null => false
+    t.text     "description",                                          :null => false
+    t.boolean  "is_public",                         :default => false, :null => false
     t.integer  "parent_id"
-    t.boolean  "copied_not_modified",                    :null => false
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "token"
+    t.boolean  "copied_not_modified",                                  :null => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
+    t.string   "token",               :limit => 20
     t.index ["parent_id"], :name => "index_lessons_on_parent_id"
     t.index ["school_level_id"], :name => "index_lessons_on_school_level_id"
     t.index ["subject_id"], :name => "index_lessons_on_subject_id"
