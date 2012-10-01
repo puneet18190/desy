@@ -1,0 +1,11 @@
+one:
+  id: 1
+  lesson_id: 1
+  position: 1
+  kind: 'cover'
+
+two:
+  id: 2
+  lesson_id: 2
+  position: 1
+  kind: 'cover'
