@@ -54,10 +54,10 @@ class Slide < ActiveRecord::Base
   end
   
   def validate_previous_positions
-    if @lesson && !self.position_id.blank?
+    if @lesson && !self.position.blank?
       flag = false
       i = 1
-      while i < my_position
+      while i < self.position
         flag = true if Slide.where(:lesson_id => self.lesson_id, :position => i).empty?
         i += 1
       end
