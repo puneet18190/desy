@@ -184,4 +184,19 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert_obj_saved @media_elements_slide
   end
   
+  test 'availability' do
+    media = MediaElement.find(1)
+    assert !media.is_public && media.user_id == 1
+    media = MediaElement.find(3)
+    assert !media.is_public && media.user_id != 1
+    assert_equal 1, @new_slide.lesson.user_id
+    @media_elements_slide.media_element_id = 1
+    assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
+    get_new_slide 'audio1'
+    assert_equal 1, @new_slide.lesson.user_id
+    @media_elements_slide.slide_id = @new_slide.id
+    assert_invalid @media_elements_slide, :media_element_id, 3, 4, /is not available/
+    assert_obj_saved @media_elements_slide
+  end
+  
 end
