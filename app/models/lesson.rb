@@ -16,7 +16,8 @@ class Lesson < ActiveRecord::Base
   validates_numericality_of :user_id, :school_level_id, :subject_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :parent_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_inclusion_of :is_public, :copied_not_modified, :in => [true, false]
-  validates_length_of :title, :token, :maximum => 255
+  validates_length_of :title, :maximum => 255
+  validates_length_of :token, :is => 20
   validates_uniqueness_of :parent_id, :scope => :user_id, :if => :present_parent_id
   validate :validate_associations, :validate_public, :validate_copied_not_modified_and_public, :validate_impossible_changes
   
@@ -34,7 +35,7 @@ class Lesson < ActiveRecord::Base
     errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
     errors[:subject_id] << "doesn't exist" if !Subject.exists?(self.subject_id)
     errors[:school_level_id] << "doesn't exist" if !SchoolLevel.exists?(self.school_level_id)
-    errors[:parent_id] << "doesn't exist" if self.parent_id && !Lesson.exist?(self.parent_id)
+    errors[:parent_id] << "doesn't exist" if self.parent_id && !Lesson.exists?(self.parent_id)
     errors[:parent_id] << "can't be the lesson itself" if @lesson && self.parent_id == @lesson.id
   end
   
@@ -44,7 +45,9 @@ class Lesson < ActiveRecord::Base
   
   def create_cover
     if @lesson.nil?
-      slide = Slide.new :type => 'cover', :lesson_id => self.id, :title => self.title, :position => 1
+      slide = Slide.new :title => self.title, :position => 1
+      slide.kind = 'cover'
+      slide.lesson_id = self.id
       slide.save
     end
   end
@@ -58,7 +61,7 @@ class Lesson < ActiveRecord::Base
   end
   
   def validate_impossible_changes
-    if !@lesson.nil?
+    if @lesson
       errors[:token] << "can't be changed" if @lesson.token != self.token
       errors[:user_id] << "can't be changed" if @lesson.user_id != self.user_id
       errors[:parent_id] << "can't be changed" if self.parent_id && @lesson.parent_id != self.parent_id
