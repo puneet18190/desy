@@ -2,12 +2,12 @@ module Valid
   
   class Validness
     
-    def get object, column
+    def get object, column, my_class
       column = column.to_s
       if column == 'id'
         return object.new_record? ? nil : object.class.where(:id => object.id).first
       else
-        my_class = get_class_from_column_name column
+        my_class = get_class_from_column_name column if my_class.nil?
         original_column = object.read_attribute_before_type_cast(column)
         return original_column.kind_of?(Integer) ? my_class.where(:id => original_column).first : nil
       end
@@ -27,9 +27,9 @@ module Valid
     
   end
   
-  def self.get_association object, column
+  def self.get_association object, column, my_class=nil
     x = Validness.new
-    x.get object, column
+    x.get object, column, my_class
   end
   
 end
