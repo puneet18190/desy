@@ -14,7 +14,7 @@ class LessonTest < ActiveSupport::TestCase
   
   test 'empty_and_defaults' do
     @lesson = Lesson.new
-    assert !@lesson.is_public
+    assert_equal false, @lesson.is_public
     @lesson.is_public = nil
     @lesson.token = 'prova'
     assert_error_size 13, @lesson
