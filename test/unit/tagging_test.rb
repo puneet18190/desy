@@ -50,4 +50,12 @@ class TaggingTest < ActiveSupport::TestCase
     assert_obj_saved @tagging
   end
   
+  test 'impossible_changes' do
+    assert_obj_saved @tagging
+    assert_invalid @tagging, :tag_id, 2, 1, /can't be changed/
+    assert_invalid @tagging, :taggable_id, 3, 2, /can't be changed/
+    assert_invalid @tagging, :taggable_type, 'Lesson', 'MediaElement', /can't be changed/
+    assert_obj_saved @tagging
+  end
+  
 end
