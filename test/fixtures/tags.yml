@@ -1,0 +1,15 @@
+one:
+  id: 1
+  word: 'gatto'
+
+two:
+  id: 2
+  word: 'cane'
+
+three:
+  id: 3
+  word: 'elefante'
+
+four:
+  id: 4
+  word: 'squalo'
