@@ -1,0 +1,17 @@
+one:
+  id: 1
+  user_id: 1
+  message: 'Sei stato cacciato'
+  seen: false
+
+two:
+  id: 2
+  user_id: 1
+  message: 'Le tue lezioni non rispecchiano le direttive del partito. Attento...'
+  seen: false
+
+three:
+  id: 3
+  user_id: 2
+  message: 'Hai caricato contenuti inappropriati, alla prossima ti cacciamo'
+  seen: false
