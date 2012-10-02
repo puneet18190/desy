@@ -42,6 +42,12 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert_nothing_raised {@virtual_classroom_lesson.lesson}
   end
   
+  test 'associations' do
+    assert_invalid @virtual_classroom_lesson, :user_id, 1000, 2, /doesn't exist/
+    assert_invalid @virtual_classroom_lesson, :lesson_id, 1000, @lesson.id, /doesn't exist/
+    assert_obj_saved @virtual_classroom_lesson
+  end
+  
   test 'uniqueness' do
     # I test uniqueness of presence in virtualclassroom
     @virtual_classroom_lesson.user_id = 1
@@ -71,6 +77,16 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert_match /has already been taken/, @virtual_classroom_lesson.errors.messages[:position].first
     @virtual_classroom_lesson.position = 2
     assert @virtual_classroom_lesson.valid?, "VirtualClassroomLesson not valid: #{@virtual_classroom_lesson.errors.inspect}"
+    assert_obj_saved @virtual_classroom_lesson
+  end
+  
+  test 'availability' do
+    assert_invalid @virtual_classroom_lesson, :lesson_id, 1, @lesson.id, /is not available/
+    lesson1 = Lesson.find(1)
+    assert !lesson1.is_public
+    lesson1.is_public = true
+    assert_obj_saved lesson1
+    assert_invalid @virtual_classroom_lesson, :lesson_id, 1, @lesson.id, /is not available/
     assert_obj_saved @virtual_classroom_lesson
   end
   
