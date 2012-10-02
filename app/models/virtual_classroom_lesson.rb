@@ -9,8 +9,8 @@ class VirtualClassroomLesson < ActiveRecord::Base
   validates_numericality_of :lesson_id, :user_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :position, :allow_nil => true, :only_integer => true, :greater_than => 0
   validates_uniqueness_of :lesson_id, :scope => :user_id
-  validates_uniqueness_of :position, :scope => [:user_id, :lesson_id], :if => :in_playlist?
-  validate :validate_associations, :validate_availability, :validate_copied_not_modified, :validate_impossible_changes
+  validates_uniqueness_of :position, :scope => :user_id, :if => :in_playlist?
+  validate :validate_associations, :validate_availability, :validate_copied_not_modified, :validate_impossible_changes, :validate_positions
   
   before_validation :init_validation
   
@@ -29,11 +29,11 @@ class VirtualClassroomLesson < ActiveRecord::Base
   
   def validate_associations
     errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
-    errors[:lesson_id] << "doesn't exist" if !Lesson.exist?(self.lesson_id)
+    errors[:lesson_id] << "doesn't exist" if !Lesson.exists?(self.lesson_id)
   end
   
   def validate_availability
-    errors[:lesson_id] << 'is not available' if @lesson && @user && (@lesson.user_id != @user.id || !@lesson.bookmarked?(@user.id))
+    errors[:lesson_id] << 'is not available' if @lesson && @user && @lesson.user_id != @user.id && !@lesson.bookmarked?(@user.id)
   end
   
   def validate_copied_not_modified
@@ -41,11 +41,13 @@ class VirtualClassroomLesson < ActiveRecord::Base
   end
   
   def validate_positions
-    if @lesson && !self.position.blank?
+    if self.new_record?
+      errors[:position] << 'must be null if new record' if self.position
+    elsif @user && self.position
       flag = false
       i = 1
       while i < self.position
-        flag = true if VirtualClassroomLesson.where(:lesson_id => @lesson.id, :position => i).empty?
+        flag = true if VirtualClassroomLesson.where(:user_id => @user.id, :position => i).empty?
         i += 1
       end
       errors[:position] << "there is one missing" if flag
