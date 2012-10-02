@@ -41,6 +41,9 @@ class BookmarkTest < ActiveSupport::TestCase
   
   test 'uniqueness' do
     assert_invalid @bookmark, :bookmarkable_id, 2, @lesson.id, /has already been taken/
+    @bookmark.bookmarkable_type = 'MediaElement'
+    @bookmark.user_id = 2
+    assert_invalid @bookmark, :bookmarkable_id, 4, 6, /has already been taken/
     assert_obj_saved @bookmark
   end
   
