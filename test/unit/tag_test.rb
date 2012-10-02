@@ -34,4 +34,11 @@ class TagTest < ActiveSupport::TestCase
     assert_nothing_raised {@tag.taggings}
   end
   
+  test 'lowercase' do
+    @tag.word = 'CaNaRiNo'
+    assert_obj_saved @tag
+    @tag = Tag.find @tag.id
+    assert_equal 'canarino', @tag.word
+  end
+  
 end
