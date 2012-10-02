@@ -19,10 +19,6 @@ class VirtualClassroomLesson < ActiveRecord::Base
     !self.position.blank?
   end
   
-  def self.get_playlist an_user_id
-    VirtualClassroomLesson.where('position IS NOT NULL').order(:position)
-  end
-  
   private
   
   def init_validation

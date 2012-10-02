@@ -21,6 +21,16 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
+  def self.get_playlist
+    return [] if self.new_record?
+    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
+  end
+  
+  def self.get_virtual_classroom
+    return [] if self.new_record?
+    VirtualClassroomLesson.where('user_id = ?', self.id).order(:created_at)
+  end
+  
   private
   
   def init_validation
