@@ -90,4 +90,36 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert_obj_saved @virtual_classroom_lesson
   end
   
+  test 'copied_not_modified' do
+    @lesson.copied_not_modified = true
+    assert_obj_saved @lesson
+    assert !@virtual_classroom_lesson.save, "VirtualClassroomLesson erroneously saved - #{@virtual_classroom_lesson.inspect}"
+    assert_equal 1, @virtual_classroom_lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@virtual_classroom_lesson.errors.inspect}"
+    assert_equal 1, @virtual_classroom_lesson.errors.size
+    assert_match /has just been copied/, @virtual_classroom_lesson.errors.messages[:lesson_id].first
+    @lesson.copied_not_modified = false
+    assert_obj_saved @lesson
+    assert @virtual_classroom_lesson.valid?, "VirtualClassroomLesson not valid: #{@virtual_classroom_lesson.errors.inspect}"
+  end
+  
+  test 'positions' do
+    assert_invalid @virtual_classroom_lesson, :position, 1, nil, /must be null if new record/
+    assert_obj_saved @virtual_classroom_lesson
+    assert_invalid @virtual_classroom_lesson, :position, 2, 1, /there is one missing/
+    assert_obj_saved @virtual_classroom_lesson
+  end
+  
+  test 'impossible_changes' do
+    assert_obj_saved @virtual_classroom_lesson
+    @virtual_classroom_lesson.user_id = 1
+    assert !@virtual_classroom_lesson.save, "VirtualClassroomLesson erroneously saved - #{@virtual_classroom_lesson.inspect}"
+    assert_equal 2, @virtual_classroom_lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@virtual_classroom_lesson.errors.inspect}"
+    assert_equal 2, @virtual_classroom_lesson.errors.size
+    assert_match /can't be changed/, @virtual_classroom_lesson.errors.messages[:user_id].first
+    @virtual_classroom_lesson.user_id = 2
+    assert @virtual_classroom_lesson.valid?, "VirtualClassroomLesson not valid: #{@virtual_classroom_lesson.errors.inspect}"
+    assert_invalid @virtual_classroom_lesson, :lesson_id, 1, @lesson.id, /can't be changed/
+    assert_obj_saved @virtual_classroom_lesson
+  end
+  
 end
