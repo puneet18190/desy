@@ -74,7 +74,7 @@ class Lesson < ActiveRecord::Base
   end
   
   def create_token
-    if self.new_record?
+    if !@lesson
       tok = ''
       i = 0
       while i < 20
