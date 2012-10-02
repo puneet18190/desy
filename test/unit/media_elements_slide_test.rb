@@ -56,6 +56,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert_equal 1, @media_elements_slide.position
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
+    assert_equal 1, @media_elements_slide.errors.size
     assert_match /has already been taken/, @media_elements_slide.errors.messages[:position].first
     @media_elements_slide.slide_id = @new_slide.id
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -112,28 +113,34 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     @media_elements_slide.media_element_id = 2
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
+    assert_equal 1, @media_elements_slide.errors.size
     assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
     @media_elements_slide.media_element_id = 4
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
+    assert_equal 1, @media_elements_slide.errors.size
     assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
     @media_elements_slide.media_element_id = 6
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
+    assert_equal 1, @media_elements_slide.errors.size
     assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
     get_new_slide 'text2'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 2
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
+    assert_equal 1, @media_elements_slide.errors.size
     assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
     @media_elements_slide.media_element_id = 4
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
+    assert_equal 1, @media_elements_slide.errors.size
     assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
     @media_elements_slide.media_element_id = 6
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
+    assert_equal 1, @media_elements_slide.errors.size
     assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
     get_new_slide 'video1'
     @media_elements_slide.slide_id = @new_slide.id

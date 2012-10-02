@@ -58,6 +58,7 @@ class BookmarkTest < ActiveSupport::TestCase
     @bookmark.user_id = 2
     assert !@bookmark.save, "Bookmark erroneously saved - #{@bookmark.inspect}"
     assert_equal 2, @bookmark.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@bookmark.errors.inspect}"
+    assert_equal 2, @bookmark.errors.size
     assert_match /can't be changed/, @bookmark.errors.messages[:user_id].first
     @bookmark.user_id = 1
     assert @bookmark.valid?, "Bookmark not valid: #{@bookmark.errors.inspect}"
@@ -74,6 +75,7 @@ class BookmarkTest < ActiveSupport::TestCase
     @bookmark.bookmarkable_type = 'MediaElement'
     assert !@bookmark.save, "Bookmark erroneously saved - #{@bookmark.inspect}"
     assert_equal 2, @bookmark.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@bookmark.errors.inspect}"
+    assert_equal 2, @bookmark.errors.size
     assert_match /can't be changed/, @bookmark.errors.messages[:bookmarkable_type].first
     @bookmark.bookmarkable_type = 'Lesson'
     assert @bookmark.valid?, "Bookmark not valid: #{@bookmark.errors.inspect}"
@@ -81,7 +83,7 @@ class BookmarkTest < ActiveSupport::TestCase
   end
   
   test 'availability' do
-    assert_invalid @bookmark, :bookmarkable_id, 1, @lesson_id, /lesson not available for bookmarks/
+    assert_invalid @bookmark, :bookmarkable_id, 1, @lesson.id, /lesson not available for bookmarks/
     @lesson.is_public = false
     assert_obj_saved @lesson
     assert !@bookmark.save, "Bookmark erroneously saved - #{@bookmark.inspect}"
