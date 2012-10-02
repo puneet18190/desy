@@ -11,3 +11,10 @@ two:
   reportable_type: 'MediaElement'
   reportable_id: 1
   comment: 'Questa foto contiene insulti a sfondo razziale'
+
+three:
+  id: 3
+  user_id: 1
+  reportable_type: 'Lesson'
+  reportable_id: 2
+  comment: 'Insulsa'
