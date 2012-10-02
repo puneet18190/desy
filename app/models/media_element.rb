@@ -21,6 +21,11 @@ class MediaElement < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_public
   
+  def bookmarked? an_user_id
+    return false if self.new_record?
+    Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => self.id).any?
+  end
+  
   private
   
   def init_validation

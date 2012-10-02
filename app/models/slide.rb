@@ -58,7 +58,7 @@ class Slide < ActiveRecord::Base
       flag = false
       i = 1
       while i < self.position
-        flag = true if Slide.where(:lesson_id => self.lesson_id, :position => i).empty?
+        flag = true if Slide.where(:lesson_id => @lesson.id, :position => i).empty?
         i += 1
       end
       errors[:position] << "there is one missing" if flag
