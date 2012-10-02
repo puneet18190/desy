@@ -25,7 +25,7 @@ class Notification < ActiveRecord::Base
   
   def validate_impossible_changes
     if @notification
-      errors[:seen] << "can't be set from true to false" if @notification.seen && !self.seen
+      errors[:seen] << "can't be switched from true to false" if @notification.seen && !self.seen
       errors[:user_id] << "can't be changed" if @notification.user_id != self.user_id
       errors[:message] << "can't be changed" if @notification.message != self.message
     end

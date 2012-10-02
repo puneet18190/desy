@@ -21,13 +21,36 @@ class NotificationTest < ActiveSupport::TestCase
     assert_raise(ActiveModel::MassAssignmentSecurity::Error) {Notification.new(:message => 'Ciao!!')}
   end
   
-  #test 'types' do
-  #  assert_invalid @notification, :description, long_string(256), long_string(255), /is too long/
-  #  assert_obj_saved @notification
-  #end
+  test 'types' do
+    assert_invalid @notification, :user_id, 'erw', 1, /is not a number/
+    assert_invalid @notification, :user_id, 11.1, 1, /must be an integer/
+    assert_invalid @notification, :user_id, 0, 1, /must be greater than 0/
+    assert_invalid @notification, :seen, nil, false, /is not included in the list/
+    assert_obj_saved @notification
+  end
+  
+  test 'associations' do
+    assert_invalid @notification, :user_id, 1000, 1, /doesn't exist/
+    assert_obj_saved @notification
+  end
   
   test 'association_methods' do
     assert_nothing_raised {@notification.user}
+  end
+  
+  test 'initial_seen' do
+    assert_invalid @notification, :seen, true, false, /must be false when new record/
+    assert_obj_saved @notification
+  end
+  
+  test 'impossible_changes' do
+    assert_obj_saved @notification
+    @notification.seen = true
+    assert_obj_saved @notification
+    assert_invalid @notification, :user_id, 2, 1, /can't be changed/
+    assert_invalid @notification, :message, 'Sei un perdente, le tue lezioni non piacciono a nessuno!', 'Sei un incompetente, le tue lezioni non piacciono a nessuno!', /can't be changed/
+    assert_invalid @notification, :seen, false, true, /can't be switched from true to false/
+    assert_obj_saved @notification
   end
   
 end
