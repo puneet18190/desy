@@ -105,8 +105,6 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
   test 'positions' do
     assert_invalid @virtual_classroom_lesson, :position, 1, nil, /must be null if new record/
     assert_obj_saved @virtual_classroom_lesson
-    assert_invalid @virtual_classroom_lesson, :position, 2, 1, /there is one missing/
-    assert_obj_saved @virtual_classroom_lesson
   end
   
   test 'impossible_changes' do

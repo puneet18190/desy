@@ -21,14 +21,17 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
-  def self.get_playlist
+  def get_playlist
     return [] if self.new_record?
     VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
   end
   
-  def self.get_virtual_classroom
+  def get_virtual_classroom
     return [] if self.new_record?
     VirtualClassroomLesson.where('user_id = ?', self.id).order(:created_at)
+  end
+  
+  def self.create_user email, name, surname, school, school_level_id, location_id, subject_ids
   end
   
   private

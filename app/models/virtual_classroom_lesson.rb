@@ -41,17 +41,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
   end
   
   def validate_positions
-    if self.new_record?
-      errors[:position] << 'must be null if new record' if self.position
-    elsif @user && self.position
-      flag = false
-      i = 1
-      while i < self.position
-        flag = true if VirtualClassroomLesson.where(:user_id => @user.id, :position => i).empty?
-        i += 1
-      end
-      errors[:position] << "there is one missing" if flag
-    end
+    errors[:position] << 'must be null if new record' if self.new_record? && self.position
   end
   
   def validate_impossible_changes

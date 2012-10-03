@@ -100,9 +100,4 @@ class SlideTest < ActiveSupport::TestCase
     assert !Slide.exists?(1)
   end
   
-  test 'positions' do
-    assert_invalid @slide, :position, 3, 2, /there is one missing/
-    assert_obj_saved @slide
-  end
-  
 end
