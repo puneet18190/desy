@@ -31,7 +31,26 @@ class User < ActiveRecord::Base
     VirtualClassroomLesson.where('user_id = ?', self.id).order(:created_at)
   end
   
-  def self.create_user email, name, surname, school, school_level_id, location_id, subject_ids
+  def self.create_user an_email, a_name, a_surname, a_school, a_school_level_id, a_location_id, subject_ids
+    return nil if subject_ids.class != Array || subject_ids.empty?
+    resp = User.new :name => a_name, :surname => a_surname, :school_level_id => a_school_level_id, :school => a_school, :location_id => a_location_id
+    resp.email = an_email
+    ActiveRecord::Base.transaction do
+      if !resp.save
+        resp = nil
+        raise ActiveRecord::Rollback
+      end
+      subject_ids.each do |s|
+        us = UsersSubject.new
+        us.user_id = resp.id
+        us.subject_id = s
+        if !us.save
+          resp = nil
+          raise ActiveRecord::Rollback
+        end
+      end
+    end
+    resp
   end
   
   private
