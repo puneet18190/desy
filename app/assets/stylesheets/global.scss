@@ -1,0 +1,82 @@
+body {
+	font: 80% Verdana, Arial, Helvetica, sans-serif;
+	background: #fff;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+ul, ol, dl { 
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0;	 
+	padding-right: 15px;
+	padding-left: 15px; 
+}
+
+a img { 
+	border: none;
+}
+
+a:link {
+	color:#414958;
+}
+a:visited {
+	color: #4E5869;
+}
+a:hover, a:active, a:focus { 
+	text-decoration: none;
+}
+p {
+	padding:0px;
+	margin:0px;
+}
+.container {
+	width: 100%;
+	/*max-width: 1260px;
+	min-width: 780px;*/
+	background: #FFF;
+	margin: 0 auto;  
+}
+.header {
+  background: #373737;
+	padding:12px 52px 44px 39px;
+	color:#fff;
+  img {
+    float:left
+  }
+}
+.logout {
+	float:right;
+	color:#a09f9f;
+	font-weight:bold;
+	font-size:75%;
+}
+.content {
+	padding: 10px 0;
+}
+.content ul, .content ol { 
+	padding: 0 15px 15px 40px; 
+}
+.footer {
+	padding: 26px 0px 34px 39px;
+	background: #373737;
+	color:#fff;
+	font-size:75%;
+}
+/* ~~ miscellaneous float/clear classes ~~ */
+.fltrt {  
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { 
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { 
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
