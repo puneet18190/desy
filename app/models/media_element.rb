@@ -70,7 +70,7 @@ class MediaElement < ActiveRecord::Base
   end
   
   def stop_if_public
-    @media_element = self.new_record? ? nil : MediaElement.where(:id => self.id).first
+    @media_element = Valid.get_association self, :id
     return true if @media_element.nil?
     return !@media_element.is_public
   end

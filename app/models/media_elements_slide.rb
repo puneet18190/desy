@@ -53,7 +53,6 @@ class MediaElementsSlide < ActiveRecord::Base
   def validate_impossible_changes
     if @media_elements_slide
       errors[:slide_id] << "can't be changed" if @media_elements_slide.slide_id != self.slide_id
-      errors[:media_element_id] << "can't be changed" if @media_elements_slide.media_element_id != self.media_element_id
     end
   end
   

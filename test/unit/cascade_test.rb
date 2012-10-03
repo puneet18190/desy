@@ -14,6 +14,7 @@ class CascadeTest < ActiveSupport::TestCase
     @tagging.tag_id = 1
     @tagging.taggable_id = 2
     assert_obj_saved @tagging
+    @lesson = Lesson.find @lesson.id
     ids = {Bookmark => [], Like => [], Slide => [], MediaElementsSlide => [], Tagging => [], Report => [], VirtualClassroomLesson => []}
     assert_equal @lesson.id, @copied_lesson.parent.id
     assert_equal 1, @lesson.bookmarks.length
@@ -48,13 +49,36 @@ class CascadeTest < ActiveSupport::TestCase
     end
     @lesson.destroy
     assert Lesson.find(@copied_lesson.id).parent_id.nil?
+    assert Lesson.where(:id => @lesson.id).empty?
     ids.each do |k, v|
       assert k.where(:id => v).empty?
     end
   end
   
   test 'media_element_cascade' do
-    
+    @media_element = MediaElement.find 1
+    @media_elements_slide = MediaElementsSlide.find 3
+    @media_elements_slide.media_element_id = 1
+    assert_obj_saved @media_elements_slide
+    @media_element = MediaElement.find @media_element.id
+    ids = {Tagging => [], Report => [], Bookmark => [], MediaElementsSlide => []}
+    assert_equal 2, @media_element.taggings.length
+    @media_element.taggings.each do |l|
+      ids[Tagging] << l.id
+    end
+    assert_equal 1, @media_element.reports.length
+    @media_element.reports.each do |l|
+      ids[Report] << l.id
+    end
+    assert_equal 1, @media_element.media_elements_slides.length
+    @media_element.media_elements_slides.each do |l|
+      ids[MediaElementsSlide] << l.id
+    end
+    @media_element.destroy
+    assert MediaElement.where(:id => @media_element.id).empty?
+    ids.each do |k, v|
+      assert k.where(:id => v).empty?
+    end
   end
   
   test 'tag_cascade' do
