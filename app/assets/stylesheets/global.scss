@@ -19,6 +19,43 @@ body {
 	font-size: 1px;
 	line-height: 0px;
 }
+form{ 
+  padding:0px;
+  margin:0px;
+}
+fieldset { 
+  border:none; 
+	padding:0px; 
+	margin:0px;
+}
+input{ 
+  border-top: 1px solid #ebebeb;
+  border-left: 1px solid #f2f2f2;
+  border-bottom: 1px solid #fff;
+  border-right: 1px solid #fff;
+  color: #e2e1e1; 
+  padding-left:10px;
+  margin:0px;
+}
+select {
+  border-top: 1px solid #d9d0ac;
+  border-left: 1px solid #c9c095;
+  border-bottom: 1px solid #c1ba97;
+  border-right: 1px solid #c5bea0;
+  color: #e2e1e1; 
+  background-color: #fff;
+  padding-left:10px;
+  margin:0px;
+}
+table {
+  border:none;
+  padding:0px;
+  margin:0px;
+	td {
+    padding:0px;
+    margin:0px;
+  }
+}
 ul, ol, dl { 
 	padding: 0;
 	margin: 0;
@@ -35,6 +72,12 @@ a {
 	  text-decoration: none; 
 	}
   img {border: none;}
+}
+hr {
+  height:1px;
+  border:none;
+  margin:0px;
+  padding:0px;
 }
 p {
 	padding:0px;
@@ -54,12 +97,12 @@ p {
   img {
     float:left
   }
-}
-.logout {
-	float:right;
-	color:#a09f9f;
-	font-weight:bold;
-	font-size:75%;
+	.logout {
+	  float:right;
+	  color:#a09f9f;
+	  font-weight:bold;
+	  font-size:75%;
+  }
 }
 .content {
 	padding: 10px 0;
