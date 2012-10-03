@@ -53,6 +53,38 @@ class User < ActiveRecord::Base
     resp
   end
   
+  def edit_fields a_name, a_surname, a_school, a_school_level_id, a_location_id, subject_ids
+    return false if subject_ids.class != Array || subject_ids.empty? || self.new_record?
+    resp = false
+    self.name = a_name
+    self.surname = a_surname
+    self.school_level_id = a_school_level_id
+    self.school = a_school
+    self.location_id = a_location_id
+    ActiveRecord::Base.transaction do
+      raise ActiveRecord::Rollback if !self.save
+      begin
+        UsersSubject.where(:user_id => self.id).each do |us|
+          if !subject_ids.include?(us.subject_id)
+            us.destroy
+            subject_ids.delete us.subject_id
+          end
+        end
+        subject_ids.each do |s|
+          us = UsersSubject.new
+          us.user_id = resp.id
+          us.subject_id = s
+          raise ActiveRecord::Rollback if !us.save
+        end
+        raise ActiveRecord::Rollback if !self.save
+      rescue ActiveRecord::InvalidForeignKey
+        raise ActiveRecord::Rollback
+      end
+      resp = true
+    end
+    resp
+  end
+  
   def destroy_with_dependencies
     return false if self.new_record?
     resp = true
@@ -88,7 +120,7 @@ class User < ActiveRecord::Base
           r.destroy
         end
         self.destroy
-      rescue ActiveRecord::InvalidForeignKey => e
+      rescue ActiveRecord::InvalidForeignKey
         resp = false
         raise ActiveRecord::Rollback
       end
