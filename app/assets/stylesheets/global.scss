@@ -28,19 +28,13 @@ h1, h2, h3, h4, h5, h6 {
 	padding-right: 15px;
 	padding-left: 15px; 
 }
-
-a img { 
-	border: none;
-}
-
-a:link {
-	color:#414958;
-}
-a:visited {
-	color: #4E5869;
-}
-a:hover, a:active, a:focus { 
-	text-decoration: none;
+a {
+  color:#414958;
+  text-decoration: none;
+  &:hover, &:active, &:focus { 
+	  text-decoration: none; 
+	}
+  img {border: none;}
 }
 p {
 	padding:0px;
@@ -79,4 +73,3 @@ p {
 	color:#fff;
 	font-size:75%;
 }
-/* ~~ miscellaneous float/clear classes ~~ */
