@@ -24,4 +24,27 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 4, resp_sub.last.subject_id
   end
   
+  test 'destroy_users_with_dependencies' do
+    resp = User.create_user(VARIABLES['admin_email'], 'oo', 'fsg', 'asf', 1, 1, [1, 2])
+    assert !resp.nil?
+    x = User.find 1
+    assert_equal 1, Lesson.where(:user_id => 1).count
+    assert_equal 2, UsersSubject.where(:user_id => 1).count
+    assert_equal 4, MediaElement.where(:user_id => 1).count
+    assert_equal 2, Notification.where(:user_id => 1).count
+    assert_equal 1, Bookmark.where(:user_id => 1).count
+    assert_equal 1, Like.where(:user_id => 1).count
+    assert_equal 2, Report.where(:user_id => 1).count
+    assert x.destroy_with_dependencies
+    assert Lesson.where(:user_id => 1).empty?
+    assert UsersSubject.where(:user_id => 1).empty?
+    assert MediaElement.where(:user_id => 1).empty?
+    assert Notification.where(:user_id => 1).empty?
+    assert Bookmark.where(:user_id => 1).empty?
+    assert Like.where(:user_id => 1).empty?
+    assert Report.where(:user_id => 1).empty?
+    assert !User.exists?(1)
+    assert_equal 2, MediaElement.where(:user_id => resp.id).length
+  end
+  
 end

@@ -53,6 +53,49 @@ class User < ActiveRecord::Base
     resp
   end
   
+  def destroy_with_dependencies
+    return false if self.new_record?
+    resp = true
+    ActiveRecord::Base.transaction do
+      begin
+        Lesson.where(:user_id => self.id).each do |l|
+          l.destroy
+        end
+        UsersSubject.where(:user_id => self.id).each do |us|
+          us.destroy
+        end
+        MediaElement.where(:user_id => self.id).each do |me|
+          if me.is_public
+            me.user_id = User.find_by_email(VARIABLES['admin_email']).id
+            if !me.save
+              resp = false
+              raise ActiveRecord::Rollback
+            end
+          else
+            me.destroy
+          end
+        end
+        Bookmark.where(:user_id => self.id).each do |b|
+          b.destroy
+        end
+        Notification.where(:user_id => self.id).each do |n|
+          n.destroy
+        end
+        Like.where(:user_id => self.id).each do |l|
+          l.destroy
+        end
+        Report.where(:user_id => self.id).each do |r|
+          r.destroy
+        end
+        self.destroy
+      rescue ActiveRecord::InvalidForeignKey => e
+        resp = false
+        raise ActiveRecord::Rollback
+      end
+    end
+    resp
+  end
+  
   private
   
   def init_validation
