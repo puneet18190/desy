@@ -14,17 +14,43 @@ class CascadeTest < ActiveSupport::TestCase
     @tagging.tag_id = 1
     @tagging.taggable_id = 2
     assert_obj_saved @tagging
+    ids = {Bookmark => [], Like => [], Slide => [], MediaElementsSlide => [], Tagging => [], Report => [], VirtualClassroomLesson => []}
     assert_equal @lesson.id, @copied_lesson.parent.id
     assert_equal 1, @lesson.bookmarks.length
+    @lesson.bookmarks.each do |b|
+      ids[Bookmark] << b.id
+    end
     assert_equal 1, @lesson.likes.length
+    @lesson.likes.each do |b|
+      ids[Like] << b.id
+    end
     assert_equal 3, @lesson.slides.length
+    @lesson.slides.each do |b|
+      ids[Slide] << b.id
+    end
     @lesson.slides.where(:id => [3, 4]).each do |s|
       assert_equal 1, s.media_elements_slides.length
+      s.media_elements_slides.each do |b|
+        ids[MediaElementsSlide] << b.id
+      end
     end
     assert_equal 1, @lesson.taggings.length
+    @lesson.taggings.each do |b|
+      ids[Tagging] << b.id
+    end
     assert_equal 2, @lesson.reports.length
+    @lesson.reports.each do |b|
+      ids[Report] << b.id
+    end
     assert_equal 1, @lesson.virtual_classroom_lessons.length
-    # CONTINUA QUI!!!
+    @lesson.virtual_classroom_lessons.each do |b|
+      ids[VirtualClassroomLesson] << b.id
+    end
+    @lesson.destroy
+    assert Lesson.find(@copied_lesson.id).parent_id.nil?
+    ids.each do |k, v|
+      assert k.where(:id => v).empty?
+    end
   end
   
   test 'media_element_cascade' do
