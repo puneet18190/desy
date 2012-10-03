@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     if x.length == 2
       x = x[1].split('.')
       if x.length > 1
-        flag = true if x.last.length != 2
+        flag = true if x.last.length < 2
       else
         flag = true
       end
