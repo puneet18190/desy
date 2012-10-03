@@ -61,7 +61,7 @@ class CascadeTest < ActiveSupport::TestCase
     @media_elements_slide.media_element_id = 1
     assert_obj_saved @media_elements_slide
     @media_element = MediaElement.find @media_element.id
-    ids = {Tagging => [], Report => [], Bookmark => [], MediaElementsSlide => []}
+    ids = {Tagging => [], Report => [], MediaElementsSlide => []}
     assert_equal 2, @media_element.taggings.length
     @media_element.taggings.each do |l|
       ids[Tagging] << l.id
@@ -82,11 +82,22 @@ class CascadeTest < ActiveSupport::TestCase
   end
   
   test 'tag_cascade' do
-    
+    x = Tag.find 3
+    assert_equal 1, x.taggings.length
+    id = x.taggings.first
+    x.destroy
+    assert Tag.where(:id => 3).empty?
+    assert Tagging.where(:id => id).empty?
   end
   
-  test 'bookmarks' do
-    
+  test 'lesson_bookmarks_cascade' do
+    @bookmark = Bookmark.find 1
+    assert_equal 'Lesson', @bookmark.bookmarkable_type
+    assert_equal 1, VirtualClassroomLesson.where(:user_id => @bookmark.user_id, :lesson_id => @bookmark.bookmarkable_id).length
+    id = VirtualClassroomLesson.where(:user_id => @bookmark.user_id, :lesson_id => @bookmark.bookmarkable_id).first.id
+    @bookmark.destroy
+    assert Bookmark.where(:id => 1).empty?
+    assert VirtualClassroomLesson.where(:id => id).empty?
   end
   
 end

@@ -36,10 +36,10 @@ class Bookmark < ActiveRecord::Base
   end
   
   def destroy_virtual_classroom
-    return if !@lesson
-    VirtualClassroomLesson.where(:lesson_id => @lesson.id).each do |vcl|
-      vcl.destroy
-    end
+    return if self.new_record?
+    bookmark_me = Bookmark.find self.id
+    return if bookmark_me.bookmarkable_type != 'Lesson'
+    VirtualClassroomLesson.where(:lesson_id => bookmark_me.bookmarkable_id, :user_id => bookmark_me.user_id).first.destroy
   end
   
   def validate_impossible_changes
