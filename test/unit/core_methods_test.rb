@@ -24,6 +24,22 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 4, resp_sub.last.subject_id
   end
   
+  test 'edit_user_fields' do
+    assert_equal 3, UsersSubject.count
+    x = User.find 1
+    assert x.name != 'oo' && x.surname != 'fsg' && x.school != 'asf'
+    assert !x.edit_fields('oo', 'fsg', 'asf', 1, 1, [])
+    assert !x.edit_fields('oo', 'fsg', 'asf', 1, 1, 'sgdds')
+    assert !User.new.edit_fields('oo', 'fsg', 'asf', 1, 1, [1, 2])
+    assert UsersSubject.where(:user_id => 1, :subject_id => 3).any?
+    assert UsersSubject.where(:user_id => 1, :subject_id => 2).empty?
+    assert x.edit_fields('oo', 'fsg', 'asf', 1, 1, [1, 2])
+    x = User.find x.id
+    assert x.name == 'oo' && x.surname == 'fsg' && x.school == 'asf'
+    assert UsersSubject.where(:user_id => 1, :subject_id => 2).any?
+    assert UsersSubject.where(:user_id => 1, :subject_id => 3).empty?
+  end
+  
   test 'destroy_users_with_dependencies' do
     resp = User.create_user(VARIABLES['admin_email'], 'oo', 'fsg', 'asf', 1, 1, [1, 2])
     assert !resp.nil?

@@ -71,10 +71,12 @@ class User < ActiveRecord::Base
           end
         end
         subject_ids.each do |s|
-          us = UsersSubject.new
-          us.user_id = resp.id
-          us.subject_id = s
-          raise ActiveRecord::Rollback if !us.save
+          if UsersSubject.where(:user_id => self.id, :subject_id => s).empty?
+            us = UsersSubject.new
+            us.user_id = self.id
+            us.subject_id = s
+            raise ActiveRecord::Rollback if !us.save
+          end
         end
         raise ActiveRecord::Rollback if !self.save
       rescue ActiveRecord::InvalidForeignKey
