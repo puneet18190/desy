@@ -166,6 +166,13 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  def self.create_lesson an_user_id, a_title, a_subject_id, a_school_level_id, a_description
+    lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
+    lesson.copied_not_modified = false
+    lesson.user_id = 2
+    lesson.save
+  end
+  
   private
   
   def present_parent_id
