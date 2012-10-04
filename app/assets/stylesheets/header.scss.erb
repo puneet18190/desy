@@ -19,7 +19,9 @@
 }
 .navcontainer {
   margin: 0 auto;
-  padding: 0;
+  padding-bottom: 20px;
+	float:left;
+	width:100%;
 	ul.navlist {
    list-style: none;
    padding: 0;
@@ -43,17 +45,13 @@
       text-decoration: none;
 			text-align:center;
     }
-		@media only screen and (min-width: 768px) and (max-width: 1024px) {  
+		
+		@media (max-width: 1024px) {
       li a  {
-        font-size: 50%;   
-      }
+        font-size: 50%;
+			}
     }
-		/* Tablet Layout: 768px */
-    @media only screen and (min-width: 768px) and (max-width: 991px) {  
-		  li a  {
-        font-size: 50%;   
-      }
-    }
+
 		.lessons a {
       background-color:#f29400;
 			&.current {color:#f5a933;}
@@ -84,7 +82,40 @@
 	  }
 }
 .notice-help {
-  padding:30px;
+  padding-right:2%;
 	margin:0px;
-	border:1px solid black;
+	float:right;
+	a {
+	  padding:0px 18px 20px 18px;
+		margin-right:10px;
+	}
+	.notice {
+	  padding:0px;
+		margin:0px;
+		float:left;
+		height:34px;
+		a {
+			background-image:url(<%= asset_path 'notice.png' %>);
+      background-repeat:no-repeat;
+			background-position:1px 0px;
+			&:hover {
+			  background-position:-32px 0px;
+			}
+		}
+  }
+	
+	.help {
+	  padding:0px;
+		margin:0px;
+		float:left;
+		height:34px;
+		a {
+			background-image:url(<%= asset_path 'help.png' %>);
+      background-repeat:no-repeat;
+			background-position:1px 0px;
+			&:hover {
+			  background-position:-32px 0px;
+			}
+		}
+	}
 }
