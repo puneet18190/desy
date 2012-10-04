@@ -87,7 +87,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !s2.nil?
     assert_equal 'audio1', s2.kind
     assert s2.title.blank?
-    assert s2.text1.blank?
+    assert s2.text.blank?
     med1 = MediaElementsSlide.where(:slide_id => s2.id).first
     assert !med1.nil?
     assert_equal 4, med1.media_element_id
@@ -95,7 +95,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !s3.nil?
     assert_equal 'video1', s3.kind
     assert_equal 'Ciao', s3.title
-    assert_equal 'beh... beh beh', s3.text1
+    assert_equal 'beh... beh beh', s3.text
     med2 = MediaElementsSlide.where(:slide_id => s3.id).first
     assert !med2.nil?
     assert_equal 2, med2.media_element_id
@@ -107,7 +107,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !x.publish
     assert_equal 'The lesson you selected has already been published', x.publish_errors
     x = Lesson.find 1
-    new_slide = Slide.new :position => 2, :title => 'Titolo', :text1 => 'Testo testo testo'
+    new_slide = Slide.new :position => 2, :title => 'Titolo', :text => 'Testo testo testo'
     new_slide.lesson_id = 1
     new_slide.kind = 'image2'
     assert_obj_saved new_slide

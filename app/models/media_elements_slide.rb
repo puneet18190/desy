@@ -37,7 +37,7 @@ class MediaElementsSlide < ActiveRecord::Base
         when 'Video'
           flag = true if !['video1', 'video2'].include?(@slide.kind)
       end
-      flag = true if ['text1', 'text2'].include?(@slide.kind)
+      flag = true if @slide.kind == 'text'
       errors[:media_element_id] << 'is not compatible with the kind of slide' if flag
     end
   end

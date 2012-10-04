@@ -4,7 +4,7 @@ class SlideTest < ActiveSupport::TestCase
   
   def setup
     begin
-      @slide = Slide.new :position => 2, :title => 'Titolo', :text1 => 'Testo testo testo'
+      @slide = Slide.new :position => 2, :title => 'Titolo', :text => 'Testo testo testo'
       @slide.lesson_id = 1
       @slide.kind = 'video1'
     rescue ActiveModel::MassAssignmentSecurity::Error
@@ -71,13 +71,6 @@ class SlideTest < ActiveSupport::TestCase
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
     # until here
     assert_invalid @slide, :kind, 'video2', 'video1', /can't be changed/
-    assert_obj_saved @slide
-  end
-  
-  test 'text2' do
-    assert_invalid @slide, :text2, 'bla bla', nil, /must be null if slide is not of kind text2/
-    @slide.kind = 'text2'
-    @slide.text2 = 'bla bla bla'
     assert_obj_saved @slide
   end
   

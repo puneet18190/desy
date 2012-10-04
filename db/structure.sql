@@ -30,8 +30,7 @@ SET search_path = public, pg_catalog;
 
 CREATE TYPE slide_type AS ENUM (
     'cover',
-    'text1',
-    'text2',
+    'text',
     'image1',
     'image2',
     'image3',
@@ -376,8 +375,7 @@ CREATE TABLE slides (
     id integer NOT NULL,
     lesson_id integer NOT NULL,
     title character varying(255),
-    text1 text,
-    text2 text,
+    text text,
     "position" integer NOT NULL,
     kind slide_type NOT NULL,
     created_at timestamp without time zone NOT NULL,
