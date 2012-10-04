@@ -150,6 +150,14 @@ class Lesson < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
         begin
+          n = Notification.new
+          n.user_id = b.user_id
+          n.message = LANGUAGE['your_bookmark_has_been_cancelled']
+          n.seen = false
+          if !n.save
+            @publish_errors = LANGUAGE['problem_unpublishing_lesson']
+            raise ActiveRecord::Rollback
+          end
           b.destroy
         rescue Exception
           @publish_errors = LANGUAGE['problem_unpublishing_lesson']
@@ -159,6 +167,27 @@ class Lesson < ActiveRecord::Base
       self.is_public = false
       if !self.save
         @publish_errors = LANGUAGE['problem_unpublishing_lesson']
+        raise ActiveRecord::Rollback
+      end
+      resp = true
+    end
+    resp
+  end
+  
+  def destroy_with_notifications
+    return false if self.new_record?
+    resp = false
+    ActiveRecord::Base.transaction do
+      Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
+        n = Notification.new
+        n.user_id = b.user_id
+        n.message = LANGUAGE['your_bookmark_has_been_cancelled']
+        n.seen = false
+        raise ActiveRecord::Rollback if !n.save
+      end
+      begin
+        self.destroy
+      rescue Exception
         raise ActiveRecord::Rollback
       end
       resp = true

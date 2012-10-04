@@ -136,6 +136,14 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert VirtualClassroomLesson.where(:lesson_id => 2).empty?
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).empty?
     assert_equal 3, MediaElement.where(:is_public => true).count
+    lesson = Lesson.find 1
+    assert lesson.publish
+    vc = VirtualClassroomLesson.new
+    vc.user_id = lesson.user_id
+    vc.lesson_id = lesson.id
+    assert_obj_saved vc
+    assert lesson.unpublish
+    assert VirtualClassroomLesson.where(:user_id => lesson.user_id, :lesson_id => lesson.id).any?
   end
   
   test 'create_tags' do
