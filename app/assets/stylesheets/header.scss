@@ -17,19 +17,74 @@
 	  float:left
 	}
 }
-ul.navlist {
-    margin-left: 0;
-    padding-left: 0;
-    white-space: nowrap;
-		width:100%;
-		border:1px solid red;
+.navcontainer {
+  margin: 0 auto;
+  padding: 0;
+	ul.navlist {
+   list-style: none;
+   padding: 0;
+   margin: 0 auto;
+   width: 100%;
+   font-size:180%;
+	 float:left;
   }
-  .navlist li {
-    display: inline;
-    list-style-type: none;
-  }
-  .navlist a {
-	  padding: 3px 10px;
-		color:#fff;
-		font-size:180%;
-	}
+    li {
+      display: block;
+      float: left;
+      width: 25%;
+      margin: 0;
+      padding: 10px 0px 10px 0px;
+    }
+    li a {
+      display: block;
+      width: 100%;
+      padding:0;
+      color: #fff;
+      text-decoration: none;
+			text-align:center;
+    }
+		@media only screen and (min-width: 768px) and (max-width: 1024px) {  
+      li a  {
+        font-size: 50%;   
+      }
+    }
+		/* Tablet Layout: 768px */
+    @media only screen and (min-width: 768px) and (max-width: 991px) {  
+		  li a  {
+        font-size: 50%;   
+      }
+    }
+		.lessons a {
+      background-color:#f29400;
+			&.current {color:#f5a933;}
+		  &:hover, &:active, &:focus { 
+	    color:#f5a933; 
+	    }
+	  }
+		.elements a {
+      background-color:#41a62a;
+			&.current {color:#67b855;}
+		  &:hover, &:active, &:focus { 
+	    color:#67b855; 
+	    }
+	  }
+		.classroom a {
+      background-color:#2eaadc;
+			&.current {color:#58bbe3;}
+		  &:hover, &:active, &:focus { 
+	    color:#58bbe3; 
+	    }
+	  }
+		.profile a {
+      background-color:#5d5c5c;
+			&.current {color:#7d7d7d;}
+		  &:hover, &:active, &:focus { 
+	    color:#7d7d7d; 
+	    }
+	  }
+}
+.notice-help {
+  padding:30px;
+	margin:0px;
+	border:1px solid black;
+}

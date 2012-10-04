@@ -11,5 +11,5 @@
  *= require_self
  *= require global
  *= require header
- *= require container
+ *= require content
  */

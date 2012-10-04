@@ -6,20 +6,7 @@ body {
 	padding: 0;
 	color: #000;
 }
-.fltrt {  
-	float: right;
-	margin-left: 8px;
-}
-.fltlft { 
-	float: left;
-	margin-right: 8px;
-}
-.clearfloat { 
-	clear:both;
-	height:0;
-	font-size: 1px;
-	line-height: 0px;
-}
+
 form{ 
   padding:0px;
   margin:0px;
@@ -91,11 +78,19 @@ p {
 	background: #FFF;
 	margin: 0 auto;  
 }
-.content {
-	padding: 10px 0;
-	ul, ol {
-	  padding: 0 15px 15px 40px; 
-	}
+.fltrt {  
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { 
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { 
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
 }
 .footer {
 	padding: 26px 0px 34px 39px;
