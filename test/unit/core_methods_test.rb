@@ -122,4 +122,20 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert MediaElementsSlide.find(mes.id).media_element.is_public
   end
   
+  test 'unpublish_lesson' do
+    assert !Lesson.new.unpublish
+    x = Lesson.find 1
+    assert !x.unpublish
+    assert_equal 'The lesson you selected has already been unpublished', x.publish_errors
+    x = Lesson.find 2
+    assert VirtualClassroomLesson.where(:lesson_id => 2).any?
+    assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).any?
+    assert_equal 3, MediaElement.where(:is_public => true).count
+    assert x.unpublish
+    assert !Lesson.find(x.id).is_public
+    assert VirtualClassroomLesson.where(:lesson_id => 2).empty?
+    assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).empty?
+    assert_equal 3, MediaElement.where(:is_public => true).count
+  end
+  
 end

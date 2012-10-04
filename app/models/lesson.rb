@@ -136,6 +136,36 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  def unpublish
+    @publish_errors = ''
+    if self.new_record?
+      @publish_errors = LANGUAGE['problem_unpublishing_lesson']
+      return false
+    end
+    if !self.is_public
+      @publish_errors = LANGUAGE['already_unpublished_lesson']
+      return false
+    end
+    resp = false
+    ActiveRecord::Base.transaction do
+      Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
+        begin
+          b.destroy
+        rescue Exception
+          @publish_errors = LANGUAGE['problem_unpublishing_lesson']
+          raise ActiveRecord::Rollback
+        end
+      end
+      self.is_public = false
+      if !self.save
+        @publish_errors = LANGUAGE['problem_unpublishing_lesson']
+        raise ActiveRecord::Rollback
+      end
+      resp = true
+    end
+    resp
+  end
+  
   private
   
   def present_parent_id
