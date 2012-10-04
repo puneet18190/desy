@@ -1,11 +1,8 @@
 .header {
-  background: #373737;
-	padding:12px 52px 44px 39px;
+  background:url(/images/logo.gif) #373737 left center no-repeat;
+  padding:12px 52px 44px 39px;
 	color:#fff;
-  img {
-    float:left
-  }
-	.logout {
+  .logout {
 	  float:right;
 	  color:#a09f9f;
 	  font-weight:bold;
@@ -22,12 +19,5 @@
   }
   .navlist a { 
 	  padding: 3px 10px;
-		&:hover {
-		}
-		&:active, &:focus {
-		  color: #fff;
-      background-color: #036;
-      text-decoration: none;
-		}
 	}
 }
