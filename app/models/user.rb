@@ -31,6 +31,15 @@ class User < ActiveRecord::Base
     VirtualClassroomLesson.where('user_id = ?', self.id).order(:created_at)
   end
   
+  def create_lesson title, description, subject_id
+    return nil if self.new_record?
+    return nil if UsersSubject.where(:user_id => self.id, :subject_id => subject_id).empty?
+    lesson = Lesson.new :subject_id => subject_id, :school_level_id => self.school_level_id, :title => title, :description => description
+    lesson.copied_not_modified = false
+    lesson.user_id = self.id
+    return lesson.save ? lesson : nil
+  end
+  
   def self.create_user an_email, a_name, a_surname, a_school, a_school_level_id, a_location_id, subject_ids
     return nil if subject_ids.class != Array || subject_ids.empty?
     resp = User.new :name => a_name, :surname => a_surname, :school_level_id => a_school_level_id, :school => a_school, :location_id => a_location_id

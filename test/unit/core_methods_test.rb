@@ -158,4 +158,20 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 5, Tag.count
   end
   
+  test 'create_lesson' do
+    assert !User.new.create_lesson('te', 'dsf', 1)
+    @user = User.find 1
+    assert UsersSubject.where(:user_id => 1, :subject_id => 2).empty?
+    assert !@user.create_lesson('te', 'dsf', 2)
+    resp = @user.create_lesson('gs', 'gshsf', 3)
+    assert !resp.nil?
+    assert_equal 'gs', resp.title
+    assert_equal 'gshsf', resp.description
+    assert_equal 3, resp.subject_id
+    assert_equal 1, resp.school_level_id
+    assert_equal 1, resp.user_id
+    assert_equal false, resp.copied_not_modified
+    assert_equal false, resp.is_public
+  end
+  
 end
