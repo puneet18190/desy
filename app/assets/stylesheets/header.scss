@@ -1,23 +1,35 @@
 .header {
-  background:url(/images/logo.gif) #373737 left center no-repeat;
-  padding:12px 52px 44px 39px;
-	color:#fff;
-  .logout {
+  background-color:#373737;
+  padding:12px 52px 64px 39px;
+	.logout {
 	  float:right;
 	  color:#a09f9f;
 	  font-weight:bold;
 	  font-size:75%;
   }
-	ul.navlist {
+	a {
+	  color:#bfbaba
+	}
+	span {
+	  color:#fff;
+	}
+	img {
+	  float:left
+	}
+}
+ul.navlist {
     margin-left: 0;
     padding-left: 0;
     white-space: nowrap;
+		width:100%;
+		border:1px solid red;
   }
   .navlist li {
     display: inline;
     list-style-type: none;
   }
-  .navlist a { 
+  .navlist a {
 	  padding: 3px 10px;
+		color:#fff;
+		font-size:180%;
 	}
-}
