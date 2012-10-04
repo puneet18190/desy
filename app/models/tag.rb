@@ -22,9 +22,9 @@ class Tag < ActiveRecord::Base
     already_tagged = []
     ActiveRecord::Base.transaction do
       tags.each do |t|
-        if t.class == Integer
+        if t.class == Fixnum
           raise ActiveRecord::Rollback if !Tag.exists?(t)
-          old_tagging = Tagging.where(:taggable_type => type, :taggable_id => tagged_id, :tag_id => t)
+          old_tagging = Tagging.where(:taggable_type => type, :taggable_id => tagged_id, :tag_id => t).first
           if old_tagging.nil?
             tagging = Tagging.new
             tagging.tag_id = t

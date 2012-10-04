@@ -138,4 +138,24 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 3, MediaElement.where(:is_public => true).count
   end
   
+  test 'create_tags' do
+    assert !Tag.create_tag_set('MidaElement', 1, [1, 2, 3])
+    assert !Tag.create_tag_set('MediaElement', 7, [1, 2, 3])
+    assert !Tag.create_tag_set('MediaElement', 1, [1, nil, 3])
+    assert !Tag.create_tag_set('MediaElement', 1, [])
+    assert !Tag.create_tag_set('MediaElement', 1, 'dsgd')
+    assert !Tag.create_tag_set('MediaElement', 1, [1, 2, 'petrolio', 3, 100])
+    assert !Tag.create_tag_set('MediaElement', 1, [1, 2, 'gatto', 3])
+    taggings = Tagging.where :taggable_type => 'MediaElement', :taggable_id => 1
+    assert_equal 2, taggings.length
+    my_id = taggings.first.id
+    assert Tagging.exists?(my_id)
+    assert_equal 4, Tag.count
+    assert Tag.create_tag_set('MediaElement', 1, [4, 'orso', 1])
+    taggings = Tagging.where :taggable_type => 'MediaElement', :taggable_id => 1
+    assert_equal 3, taggings.length
+    assert !Tagging.exists?(my_id)
+    assert_equal 5, Tag.count
+  end
+  
 end
