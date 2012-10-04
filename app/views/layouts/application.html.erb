@@ -7,10 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-Prova per merge
-
-<%= yield %>
-
+<div class="container">
+  <%= render :partial => "home/header" %>
+  <div class="content">
+  <%= yield %>
+	</div>
+  <%= render :partial => "home/footer" %>
+</div>
 </body>
 </html>
