@@ -1,7 +1,7 @@
 class Lesson < ActiveRecord::Base
   
   attr_accessible :subject_id, :school_level_id, :title, :description
-  attr_reader :copy_errors
+  attr_reader :copy_errors, :publish_errors
   
   belongs_to :user
   belongs_to :subject
@@ -91,6 +91,47 @@ class Lesson < ActiveRecord::Base
         end
       end
       resp = lesson
+    end
+    resp
+  end
+  
+  def modify
+    self.copied_not_modified = false
+    self.save
+  end
+  
+  def publish
+    pub_date = Time.zone.now
+    @publish_errors = ''
+    if self.new_record?
+      @publish_errors = LANGUAGE['problem_publishing_lesson']
+      return false
+    end
+    if self.is_public
+      @publish_errors = LANGUAGE['already_published_lesson']
+      return false
+    end
+    resp = false
+    ActiveRecord::Base.transaction do
+      self.is_public = true
+      if !self.save
+        @publish_errors = LANGUAGE['problem_publishing_lesson']
+        raise ActiveRecord::Rollback
+      end
+      Slide.where(:lesson_id => self.id).each do |s|
+        MediaElementsSlide.where(:slide_id => s.id).each do |mes|
+          me = mes.media_element
+          if !me.is_public
+            me.is_public = true
+            me.publication_date = pub_date
+            if !me.save
+              @publish_errors = LANGUAGE['problem_publishing_lesson']
+              raise ActiveRecord::Rollback
+            end
+          end
+        end
+      end
+      resp = true
     end
     resp
   end

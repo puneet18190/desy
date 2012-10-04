@@ -101,4 +101,25 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 2, med2.media_element_id
   end
   
+  test 'publish_lesson' do
+    assert !Lesson.new.publish
+    x = Lesson.find 2
+    assert !x.publish
+    assert_equal 'The lesson you selected has already been published', x.publish_errors
+    x = Lesson.find 1
+    new_slide = Slide.new :position => 2, :title => 'Titolo', :text1 => 'Testo testo testo'
+    new_slide.lesson_id = 1
+    new_slide.kind = 'image2'
+    assert_obj_saved new_slide
+    mes = MediaElementsSlide.new
+    mes.slide_id = new_slide.id
+    mes.media_element_id = 5
+    mes.position = 2
+    assert_obj_saved mes
+    assert !MediaElementsSlide.find(mes.id).media_element.is_public
+    assert x.publish
+    assert Lesson.find(x.id).is_public?
+    assert MediaElementsSlide.find(mes.id).media_element.is_public
+  end
+  
 end
