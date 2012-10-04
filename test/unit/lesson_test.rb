@@ -69,6 +69,8 @@ class LessonTest < ActiveSupport::TestCase
     assert_nothing_raised {@lesson.taggings}
     assert_nothing_raised {@lesson.slides}
     assert_nothing_raised {@lesson.virtual_classroom_lessons}
+    assert_nothing_raised {@lesson.parent}
+    assert_nothing_raised {@lesson.copies}
   end
   
   test 'associations' do
@@ -107,6 +109,30 @@ class LessonTest < ActiveSupport::TestCase
     assert_invalid @lesson, :token, different_token, old_token, /can't be changed/
     assert_invalid @lesson, :parent_id, 2, 1, /can't be changed/
     assert_obj_saved @lesson
+  end
+  
+  test 'fathers_and_sons' do
+    lesson3 = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
+    lesson3.copied_not_modified = false
+    lesson3.user_id = 1
+    lesson3.parent_id = 1
+    assert_obj_saved lesson3
+    lesson4 = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
+    lesson4.copied_not_modified = false
+    lesson4.user_id = 2
+    lesson4.parent_id = 1
+    assert_obj_saved lesson4
+    @lesson = Lesson.find 1
+    lesson4 = Lesson.find lesson4.id
+    lesson3 = Lesson.find lesson3.id
+    copies = @lesson.copies
+    parent4 = lesson4.parent
+    parent3 = lesson3.parent
+    assert_equal 2, copies.length
+    assert_equal lesson4.id, copies.first.id
+    assert_equal lesson3.id, copies.last.id
+    assert_equal 1, parent4.id
+    assert_equal 1, parent3.id
   end
   
 end

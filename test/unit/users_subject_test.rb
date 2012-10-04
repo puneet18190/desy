@@ -42,10 +42,4 @@ class UsersSubjectTest < ActiveSupport::TestCase
     assert_nothing_raised {@users_subject.subject}
   end
   
-  test 'before_destroy' do
-    @users_subject = UsersSubject.find(3)
-    @users_subject.destroy
-    assert UsersSubject.exists?(3)
-  end
-  
 end

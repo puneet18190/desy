@@ -2,7 +2,6 @@ location = Location.create :description => 'admin' # qui va sostituito dalle cit
 
 school_level = SchoolLevel.create :description => 'admin' # idem
 
-user = User.new :name => 'DESY', :surname => 'Admin User', :school_level_id => school_level.id, :school => 'School', :location_id => location.id
-user.email = VARIABLES['admin_email']
+subject = Subject.create :description => 'admin' # idem
 
-user.save
+User.create_user VARIABLES['admin_email'], 'DESY', 'Admin User', 'School', school_level.id, location.id, [subject.id]

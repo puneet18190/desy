@@ -11,7 +11,7 @@ class Slide < ActiveRecord::Base
   validates_inclusion_of :kind, :in => ['cover', 'text1', 'text2', 'image1', 'image2', 'image3', 'audio1', 'audio2', 'video1', 'video2']
   validates_uniqueness_of :position, :scope => :lesson_id
   validates_uniqueness_of :kind, :scope => :lesson_id, :if => :is_cover
-  validate :validate_associations, :validate_impossible_changes, :validate_text2, :validate_cover, :validate_previous_positions
+  validate :validate_associations, :validate_impossible_changes, :validate_text2, :validate_cover
   
   before_validation :init_validation
   before_destroy :stop_if_cover
@@ -24,7 +24,6 @@ class Slide < ActiveRecord::Base
   
   def init_validation
     @slide = Valid.get_association self, :id
-    @lesson = Valid.get_association self, :lesson_id
   end
   
   def validate_associations
@@ -51,18 +50,6 @@ class Slide < ActiveRecord::Base
     @slide = self.new_record? ? nil : Slide.where(:id => self.id).first
     return true if @slide.nil?
     return @slide.kind != 'cover'
-  end
-  
-  def validate_previous_positions
-    if @lesson && !self.position.blank?
-      flag = false
-      i = 1
-      while i < self.position
-        flag = true if Slide.where(:lesson_id => @lesson.id, :position => i).empty?
-        i += 1
-      end
-      errors[:position] << "there is one missing" if flag
-    end
   end
   
 end

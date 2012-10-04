@@ -31,8 +31,8 @@ class UserTest < ActiveSupport::TestCase
     assert_invalid @user, :location_id, -2, 1, /must be greater than 0/
     assert_invalid @user, :location_id, 2.8, 1, /must be an integer/
     assert_invalid @user, :email, 'bebebe', 'a@ciao.it', /is not in the correct format/
-    assert_invalid @user, :email, 'be@bebe', 'a@ciao.it', /is not in the correct format/
-    assert_invalid @user, :email, 'beb@e.b.e', 'a@ciao.it.it.it', /is not in the correct format/
+    assert_invalid @user, :email, 'be@bebe', 'a@ciao.ita', /is not in the correct format/
+    assert_invalid @user, :email, 'beb@e.b.e', 'a.fdf.fds-saf.s@ciao.it.it.itazz', /is not in the correct format/
     assert_obj_saved @user
   end
   
