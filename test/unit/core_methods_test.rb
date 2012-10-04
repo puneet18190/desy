@@ -41,7 +41,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'destroy_users_with_dependencies' do
-    resp = User.create_user(VARIABLES['admin_email'], 'oo', 'fsg', 'asf', 1, 1, [1, 2])
+    resp = User.create_user(CONFIG['admin_email'], 'oo', 'fsg', 'asf', 1, 1, [1, 2])
     assert !resp.nil?
     x = User.find 1
     assert_equal 1, Lesson.where(:user_id => 1).count
@@ -61,6 +61,81 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert Report.where(:user_id => 1).empty?
     assert !User.exists?(1)
     assert_equal 2, MediaElement.where(:user_id => resp.id).length
+  end
+  
+  test 'copy_lesson' do
+    assert Lesson.new.copy(1).nil?
+    x = Lesson.find(1)
+    assert x.copy(100).nil?
+    assert x.copy(2).nil?
+    resp = x.copy(1)
+    assert !resp.nil?
+    assert x.copy(1).nil?
+    assert_equal 'You already have a copy of this lesson', x.copy_errors
+    x = Lesson.find(2)
+    resp = x.copy(1)
+    assert !resp.nil?
+    assert_equal 1, resp.school_level_id
+    assert_equal 3, resp.subject_id
+    assert_equal 'string', resp.title
+    assert_equal 'text', resp.description
+    assert !resp.is_public
+    assert resp.copied_not_modified
+    s1 = Slide.where(:lesson_id => resp.id, :position => 1).first
+    assert !s1.nil?
+    s2 = Slide.where(:lesson_id => resp.id, :position => 2).first
+    assert !s2.nil?
+    assert_equal 'audio1', s2.kind
+    assert s2.title.blank?
+    assert s2.text1.blank?
+    med1 = MediaElementsSlide.where(:slide_id => s2.id).first
+    assert !med1.nil?
+    assert_equal 4, med1.media_element_id
+    s3 = Slide.where(:lesson_id => resp.id, :position => 3).first
+    assert !s3.nil?
+    assert_equal 'video1', s3.kind
+    assert_equal 'Ciao', s3.title
+    assert_equal 'beh... beh beh', s3.text1
+    med2 = MediaElementsSlide.where(:slide_id => s3.id).first
+    assert !med2.nil?
+    assert_equal 2, med2.media_element_id
+  end
+  
+  test 'publish_lesson' do
+    assert !Lesson.new.publish
+    x = Lesson.find 2
+    assert !x.publish
+    assert_equal 'The lesson you selected has already been published', x.publish_errors
+    x = Lesson.find 1
+    new_slide = Slide.new :position => 2, :title => 'Titolo', :text1 => 'Testo testo testo'
+    new_slide.lesson_id = 1
+    new_slide.kind = 'image2'
+    assert_obj_saved new_slide
+    mes = MediaElementsSlide.new
+    mes.slide_id = new_slide.id
+    mes.media_element_id = 5
+    mes.position = 2
+    assert_obj_saved mes
+    assert !MediaElementsSlide.find(mes.id).media_element.is_public
+    assert x.publish
+    assert Lesson.find(x.id).is_public?
+    assert MediaElementsSlide.find(mes.id).media_element.is_public
+  end
+  
+  test 'unpublish_lesson' do
+    assert !Lesson.new.unpublish
+    x = Lesson.find 1
+    assert !x.unpublish
+    assert_equal 'The lesson you selected has already been unpublished', x.publish_errors
+    x = Lesson.find 2
+    assert VirtualClassroomLesson.where(:lesson_id => 2).any?
+    assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).any?
+    assert_equal 3, MediaElement.where(:is_public => true).count
+    assert x.unpublish
+    assert !Lesson.find(x.id).is_public
+    assert VirtualClassroomLesson.where(:lesson_id => 2).empty?
+    assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).empty?
+    assert_equal 3, MediaElement.where(:is_public => true).count
   end
   
 end

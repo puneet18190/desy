@@ -1,7 +1,7 @@
 class Tag < ActiveRecord::Base
   
-  MIN_LENGTH = VARIABLES['min_tag_length']
-  MAX_LENGTH = (VARIABLES['max_tag_length'] > 255 ? 255 : VARIABLES['max_tag_length'])
+  MIN_LENGTH = CONFIG['min_tag_length']
+  MAX_LENGTH = (CONFIG['max_tag_length'] > 255 ? 255 : CONFIG['max_tag_length'])
   
   attr_accessible :word
   

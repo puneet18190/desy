@@ -1,3 +1,4 @@
 min_tag_length: 3 # warning: changing this value you might have to update tag_test.rb
 max_tag_length: 20 # warning: changing this value you might have to update tag_test.rb
 admin_email: 'nanjing@china.gov'
+application_language: 'english'

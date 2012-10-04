@@ -4,4 +4,4 @@ school_level = SchoolLevel.create :description => 'admin' # idem
 
 subject = Subject.create :description => 'admin' # idem
 
-User.create_user VARIABLES['admin_email'], 'DESY', 'Admin User', 'School', school_level.id, location.id, [subject.id]
+User.create_user CONFIG['admin_email'], 'DESY', 'Admin User', 'School', school_level.id, location.id, [subject.id]
