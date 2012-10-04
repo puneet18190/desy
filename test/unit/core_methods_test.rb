@@ -41,7 +41,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'destroy_users_with_dependencies' do
-    resp = User.create_user(VARIABLES['admin_email'], 'oo', 'fsg', 'asf', 1, 1, [1, 2])
+    resp = User.create_user(CONFIG['admin_email'], 'oo', 'fsg', 'asf', 1, 1, [1, 2])
     assert !resp.nil?
     x = User.find 1
     assert_equal 1, Lesson.where(:user_id => 1).count
@@ -61,6 +61,44 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert Report.where(:user_id => 1).empty?
     assert !User.exists?(1)
     assert_equal 2, MediaElement.where(:user_id => resp.id).length
+  end
+  
+  test 'copy_lesson' do
+    assert Lesson.new.copy(1).nil?
+    x = Lesson.find(1)
+    assert x.copy(100).nil?
+    assert x.copy(2).nil?
+    resp = x.copy(1)
+    assert !resp.nil?
+    assert x.copy(1).nil?
+    assert_equal 'You already have a copy of this lesson', x.copy_errors
+    x = Lesson.find(2)
+    resp = x.copy(1)
+    assert !resp.nil?
+    assert_equal 1, resp.school_level_id
+    assert_equal 3, resp.subject_id
+    assert_equal 'string', resp.title
+    assert_equal 'text', resp.description
+    assert !resp.is_public
+    assert resp.copied_not_modified
+    s1 = Slide.where(:lesson_id => resp.id, :position => 1).first
+    assert !s1.nil?
+    s2 = Slide.where(:lesson_id => resp.id, :position => 2).first
+    assert !s2.nil?
+    assert_equal 'audio1', s2.kind
+    assert s2.title.blank?
+    assert s2.text1.blank?
+    med1 = MediaElementsSlide.where(:slide_id => s2.id).first
+    assert !med1.nil?
+    assert_equal 4, med1.media_element_id
+    s3 = Slide.where(:lesson_id => resp.id, :position => 3).first
+    assert !s3.nil?
+    assert_equal 'video1', s3.kind
+    assert_equal 'Ciao', s3.title
+    assert_equal 'beh... beh beh', s3.text1
+    med2 = MediaElementsSlide.where(:slide_id => s3.id).first
+    assert !med2.nil?
+    assert_equal 2, med2.media_element_id
   end
   
 end

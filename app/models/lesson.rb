@@ -1,6 +1,7 @@
 class Lesson < ActiveRecord::Base
   
   attr_accessible :subject_id, :school_level_id, :title, :description
+  attr_reader :copy_errors
   
   belongs_to :user
   belongs_to :subject
@@ -30,6 +31,68 @@ class Lesson < ActiveRecord::Base
   def bookmarked? an_user_id
     return false if self.new_record?
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).any?
+  end
+  
+  def copy an_user_id
+    @copy_errors = ''
+    my_user = User.where(:id => an_user_id).first
+    if self.new_record? || my_user.nil? || (!self.is_public && self.user_id != my_user.id) || (self.is_public && self.user_id != my_user.id && Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id, :user_id => my_user.id).empty?)
+      @copy_errors = LANGUAGE['problem_copying_the_lesson']
+      return nil
+    end
+    if Lesson.where(:parent_id => self.id, :user_id => my_user.id).any?
+      @copy_errors = LANGUAGE['lesson_already_copied']
+      return nil
+    end
+    resp = nil
+    ActiveRecord::Base.transaction do
+      lesson = Lesson.new :subject_id => self.subject_id, :school_level_id => self.school_level_id, :title => self.title, :description => self.description
+      lesson.copied_not_modified = true
+      lesson.user_id = an_user_id
+      lesson.parent_id = self.id
+      if !lesson.save
+        @copy_errors = LANGUAGE['problem_copying_the_lesson']
+        raise ActiveRecord::Rollback
+      end
+      new_cover = Slide.where(:lesson_id => lesson.id, :position => 1).first
+      if new_cover.nil?
+        @copy_errors = LANGUAGE['problem_copying_the_lesson']
+        raise ActiveRecord::Rollback
+      end
+      cover = Slide.where(:lesson_id => self.id, :position => 1).first
+      cover_image = MediaElementsSlide.where(:slide_id => cover.id).first
+      if cover_image
+        new_cover_image = MediaElementsSlide.new
+        new_cover_image.media_element_id = cover_image.media_element_id
+        new_cover_image.slide_id = new_cover.id
+        new_cover_image.position = 1
+        if !new_cover_image.save
+          @copy_errors = LANGUAGE['problem_copying_the_lesson']
+          raise ActiveRecord::Rollback
+        end
+      end
+      Slide.where('lesson_id = ? AND position > 1', self.id).order(:position).each do |s|
+        new_slide = Slide.new :position => s.position, :title => s.title, :text1 => s.text1, :text2 => s.text2
+        new_slide.lesson_id = lesson.id
+        new_slide.kind = s.kind
+        if !new_slide.save
+          @copy_errors = LANGUAGE['problem_copying_the_lesson']
+          raise ActiveRecord::Rollback
+        end
+        MediaElementsSlide.where(:slide_id => s.id).each do |mes|
+          new_content = MediaElementsSlide.new
+          new_content.media_element_id = mes.media_element_id
+          new_content.slide_id = new_slide.id
+          new_content.position = mes.position
+          if !new_content.save
+            @copy_errors = LANGUAGE['problem_copying_the_lesson']
+            raise ActiveRecord::Rollback
+          end
+        end
+      end
+      resp = lesson
+    end
+    resp
   end
   
   private

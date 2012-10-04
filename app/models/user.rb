@@ -100,7 +100,7 @@ class User < ActiveRecord::Base
         end
         MediaElement.where(:user_id => self.id).each do |me|
           if me.is_public
-            me.user_id = User.find_by_email(VARIABLES['admin_email']).id
+            me.user_id = User.find_by_email(CONFIG['admin_email']).id
             if !me.save
               resp = false
               raise ActiveRecord::Rollback

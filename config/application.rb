@@ -1,7 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'yaml'
-VARIABLES = YAML.load(File.read(File.expand_path('../variables.yml', __FILE__)))
+CONFIG = YAML.load(File.read(File.expand_path('../config.yml', __FILE__)))
+LANGUAGE = YAML.load(File.read(File.expand_path("../languages/#{CONFIG['application_language']}.yml", __FILE__)))
 
 require 'rails/all'
 
