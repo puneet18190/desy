@@ -3,3 +3,10 @@
 
 en:
   hello: "Hello world"
+  header:
+     welcome: 'welcome'
+     logout: 'Logout'
+     greybar:
+       selected: 'selected for you'
+  footer:
+     copyright: '©2012 DESY'   

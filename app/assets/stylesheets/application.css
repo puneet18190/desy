@@ -11,5 +11,6 @@
  *= require_self
  *= require global
  *= require header
+ *= require layouts/notice
  *= require content
  */

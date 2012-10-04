@@ -1,0 +1,42 @@
+
+.notice-help {
+  padding-right:2%;
+	margin:0px;
+	float:right;
+	
+	a {
+	  padding:0px 18px 20px 18px;
+		margin-right:10px;
+	}
+	
+	.notice {
+	  padding:0px;
+		margin:0px;
+		float:left;
+		height:34px;
+		a {
+			background-image:url(<%= asset_path 'notice.png' %>);
+      background-repeat:no-repeat;
+			background-position:1px 0px;
+			&:hover {
+			  background-position:-32px 0px;
+			}
+			
+		}
+  }
+	
+	.help {
+	  padding:0px;
+		margin:0px;
+		float:left;
+		height:34px;
+		a {
+			background-image:url(<%= asset_path 'help.png' %>);
+      background-repeat:no-repeat;
+			background-position:1px 0px;
+			&:hover {
+			  background-position:-32px 0px;
+			}
+		}
+	}
+}
