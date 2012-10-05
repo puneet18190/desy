@@ -240,6 +240,20 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !x.change_position(-4)
     assert_equal 1, x.errors.messages[:base].length
     assert_match /The position of the slide is invalid/, x.errors.messages[:base].first
+    s1 = Slide.where(:lesson_id => 2, :position => 1).first.id
+    s2 = Slide.where(:lesson_id => 2, :position => 2).first.id
+    s3 = Slide.where(:lesson_id => 2, :position => 3).first.id
+    s4 = Slide.where(:lesson_id => 2, :position => 4).first.id
+    assert Slide.find(s2).change_position(4)
+    assert_equal 1, Slide.find(s1).position
+    assert_equal 2, Slide.find(s3).position
+    assert_equal 3, Slide.find(s4).position
+    assert_equal 4, Slide.find(s2).position
+    assert Slide.find(s2).change_position(3)
+    assert_equal 1, Slide.find(s1).position
+    assert_equal 2, Slide.find(s3).position
+    assert_equal 3, Slide.find(s2).position
+    assert_equal 4, Slide.find(s4).position
   end
   
 end
