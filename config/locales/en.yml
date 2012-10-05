@@ -11,7 +11,7 @@ en:
           already_unpublished: 'The lesson you selected has already been unpublished'
           problem_destroying: 'The lesson could not be destroyed correctly'
           problem_adding_slide: 'There was a problem adding the slide'
-        media_elements_slide:
+        media_element:
           problem_destroying: 'There was a problem removing this element'
           cant_destroy_public: 'You cannot remove a public element'
         notification:

@@ -313,4 +313,31 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 2, Slide.where(:lesson_id => our_lesson_id).count
   end
   
+  test 'remove_media_element' do
+    x = MediaElement.new
+    assert !x.check_and_destroy
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem removing this element/, x.errors.messages[:base].first
+    x = MediaElement.where(:is_public => true).first
+    assert !x.check_and_destroy
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /You cannot remove a public element/, x.errors.messages[:base].first
+    x = MediaElement.find(3)
+    assert_equal 2, x.user_id
+    assert_equal false, x.is_public
+    ss = Slide.find(3)
+    assert_equal 2, ss.position
+    assert_equal 2, ss.lesson.user_id
+    assert_equal 'audio1', ss.kind
+    mm = MediaElementsSlide.new
+    mm.media_element_id = 3
+    mm.slide_id = 3
+    mm.position = 1
+    assert_obj_saved mm
+    my_new_id = mm.id
+    assert x.check_and_destroy
+    assert !MediaElement.exists?(3)
+    assert !MediaElementsSlide.exists?(my_new_id)
+  end
+  
 end
