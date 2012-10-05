@@ -1,0 +1,31 @@
+@mixin lessons-color {
+  background-color:#f29400;
+}
+.lessons {
+  @include lessons-color;
+}
+@mixin elements-color {
+  background-color:#41a62a;
+}
+.elements {
+  @include elements-color;
+}
+@mixin classroom-color {
+  background-color:#2eaadc;
+}
+.classroom {
+  @include classroom-color;
+}
+@mixin profile-color {
+  background-color:#5d5c5c;
+}
+.profile {
+  @include profile-color;
+}
+.content {
+	padding: 20px 38px 43px 21px;
+	border:1px dotted black;
+	ul, ol {
+	  padding: 0 15px 15px 40px; 
+	}
+}
