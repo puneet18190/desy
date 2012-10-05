@@ -6,7 +6,7 @@
   padding-right:2%;
 	margin:0px;
 	float:right;
-	
+	position:relative;
 	a {
 	  padding:0px 18px 20px 18px;
 		margin-right:10px;
@@ -24,6 +24,10 @@
 			  background-position:-33px 0px;
 			}
 		}
+		a.current {
+      background-position:-33px 0px;
+			@include background-mix;
+		}
   }
 	
 	.help {
@@ -37,6 +41,10 @@
 			&:hover {
 			  background-position:-103px 0px;
 			}
+		}
+		.help a.current {
+      background-position:-103px 0px;
+			@include background-mix;
 		}
 	}
 }

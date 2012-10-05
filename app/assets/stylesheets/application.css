@@ -14,5 +14,6 @@
  *= require layouts/menu
  *= require layouts/notice
  *= require layouts/greybar
+ *= require layouts/tooltips
  *= require content
  */
