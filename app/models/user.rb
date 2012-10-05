@@ -21,14 +21,9 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
-  def get_playlist
+  def playlist
     return [] if self.new_record?
     VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
-  end
-  
-  def get_virtual_classroom
-    return [] if self.new_record?
-    VirtualClassroomLesson.where('user_id = ?', self.id).order(:created_at)
   end
   
   def create_lesson title, description, subject_id
