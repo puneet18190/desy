@@ -10,8 +10,7 @@
    width: 100%;
    font-size:180%;
 	 float:left;
-	 
-  }
+  
     li {
       display: block;
       float: left;
@@ -28,33 +27,41 @@
 			text-align:center;
 			text-transform:lowercase;
     }
-		
-		.lessons a {
-      background-color:#f29400;
-			&.current {color:#f5a933;}
-		  &:hover, &:active, &:focus { 
-	    color:#f5a933; 
-	    }
-	  }
-		.elements a {
-      background-color:#41a62a;
-			&.current {color:#67b855;}
-		  &:hover, &:active, &:focus { 
-	    color:#67b855; 
-	    }
-	  }
-		.classroom a {
-      background-color:#2eaadc;
-			&.current {color:#58bbe3;}
-		  &:hover, &:active, &:focus { 
-	    color:#58bbe3; 
-	    }
-	  }
-		.profile a {
-      background-color:#5d5c5c;
-			&.current {color:#7d7d7d;}
-		  &:hover, &:active, &:focus { 
-	    color:#7d7d7d; 
-	    }
-	  }
+}		
+.lessons a {
+  background-color:#f29400;
+  &.current {
+	  color:#f5a933;
+	}
+  &:hover, &:active, &:focus { 
+    color:#f5a933; 
+  }
+}
+.elements a {
+  background-color:#41a62a;
+  &.current {
+	  color:#67b855;
+	}
+  &:hover, &:active, &:focus { 
+    color:#67b855; 
+  }
+}
+.classroom a {
+  background-color:#2eaadc;
+  &.current {
+	  color:#58bbe3;
+	}
+  &:hover, &:active, &:focus { 
+    color:#58bbe3; 
+  }
+}
+.profile a {
+  background-color:#5d5c5c;
+  &.current {
+	  color:#7d7d7d;
+	}
+  &:hover, &:active, &:focus { 
+    color:#7d7d7d; 
+  }
+}
 }
