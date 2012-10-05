@@ -19,3 +19,5 @@
 
 # Roba relativa a unicorn
 /shared/*
+
+/.rvmrc
