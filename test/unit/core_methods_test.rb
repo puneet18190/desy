@@ -188,7 +188,16 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'destroy_lesson_with_notifications' do
-    x = Lesson.find 1
+    x = Lesson.new
+    assert !x.destroy_with_notifications
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The lesson could not be destroyed correctly/, x.errors.messages[:base].first
+    x = Lesson.find 2
+    assert Notification.where(:message => 'Your bookmark has been cancelled').empty?
+    assert x.destroy_with_notifications
+    x = Notification.where(:message => 'Your bookmark has been cancelled').first
+    assert_equal 1, x.user_id
+    assert !Lesson.exists?(2)
   end
   
 end

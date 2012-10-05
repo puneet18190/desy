@@ -175,7 +175,10 @@ class Lesson < ActiveRecord::Base
   
   def destroy_with_notifications
     errors.clear
-    return false if self.new_record?
+    if self.new_record?
+      errors.add(:base, :problem_destroying)
+      return false
+    end
     resp = false
     ActiveRecord::Base.transaction do
       Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
@@ -183,11 +186,15 @@ class Lesson < ActiveRecord::Base
         n.user_id = b.user_id
         n.message = I18n.t("#{Notification.errors_path}.bookmark_cancelled")
         n.seen = false
-        raise ActiveRecord::Rollback if !n.save
+        if !n.save
+          errors.add(:base, :problem_destroying)
+          raise ActiveRecord::Rollback
+        end
       end
       begin
         self.destroy
       rescue Exception
+        errors.add(:base, :problem_destroying)
         raise ActiveRecord::Rollback
       end
       resp = true
