@@ -22,6 +22,10 @@ class Slide < ActiveRecord::Base
       errors.add(:base, :problems_changing_position)
       return false
     end
+    if x.class != Fixnum || x < 0
+      errors.add(:base, :invalid_position)
+      return false
+    end
     y = self.position
     return true if y == x
     desc = (y > x)

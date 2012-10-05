@@ -210,4 +210,36 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !Lesson.exists?(2)
   end
   
+  test 'change_slide_position' do
+    s = Slide.new :position => 4, :title => 'Titolo', :text => 'Testo testo testo'
+    s.lesson_id = 2
+    s.kind = 'text'
+    assert_obj_saved s
+    assert_equal 4, Slide.where(:lesson_id => 2).count
+    assert !Slide.new.change_position(1)
+    x = Slide.find 3
+    assert_equal 2, x.position
+    assert x.change_position 2
+    x = Slide.find 3
+    assert_equal 2, x.position
+    x = Slide.find 1
+    assert_equal 'cover', x.kind
+    assert !x.change_position(2)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /You cannot change the position of the cover/, x.errors.messages[:base].first
+    x = Slide.find 3
+    assert !x.change_position(1)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The position of the slide is invalid/, x.errors.messages[:base].first
+    assert !x.change_position(20)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The position of the slide is invalid/, x.errors.messages[:base].first
+    assert !x.change_position('sdgsg')
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The position of the slide is invalid/, x.errors.messages[:base].first
+    assert !x.change_position(-4)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The position of the slide is invalid/, x.errors.messages[:base].first
+  end
+  
 end

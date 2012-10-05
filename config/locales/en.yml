@@ -12,6 +12,10 @@ en:
           problem_destroying: 'The lesson could not be destroyed correctly'
         notification:
           bookmark_cancelled: 'Your bookmark has been cancelled'
+        slide:
+          problems_changing_position: 'There was a problem changing the position of the slide'
+          invalid_position: 'The position of the slide is invalid'
+          cant_change_position_of_cover: 'You cannot change the position of the cover'
         user:
           problems_updating: 'Could not update your personal data'
           problems_destroying: 'Could not destroy the selected user'
