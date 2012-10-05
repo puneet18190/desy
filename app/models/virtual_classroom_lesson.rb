@@ -14,6 +14,14 @@ class VirtualClassroomLesson < ActiveRecord::Base
   
   before_validation :init_validation
   
+  def next_in_playlist
+    self.new_record? ? nil : (self.in_playlist? ? VirtualClassroomLesson.where(:user_id => self.user_id, :position => (self.position + 1)).first : nil)
+  end
+  
+  def prev_in_playlist
+    self.new_record? ? nil : (self.in_playlist? ? VirtualClassroomLesson.where(:user_id => self.user_id, :position => (self.position - 1)).first : nil)
+  end
+  
   def in_playlist?
     return false if self.new_record?
     !self.position.blank?
