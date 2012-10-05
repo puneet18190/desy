@@ -36,7 +36,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
     end
     return true if y == x
     desc = (y > x)
-    tot_playlists = VirtualClassroomLesson.where('lesson_id = ? AND position IS NOT NULL', self.lesson_id).count
+    tot_playlists = VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.user_id).count
     if x > tot_playlists
       errors.add(:base, :invalid_position_in_playlist)
       return false
@@ -51,7 +51,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
       empty_pos = y
       while empty_pos != x
         curr_pos = (desc ? (empty_pos - 1) : (empty_pos + 1))
-        curr_playlist = VirtualClassroomLesson.where(:lesson_id => self.lesson_id, :position => curr_pos).first
+        curr_playlist = VirtualClassroomLesson.where(:user_id => self.user_id, :position => curr_pos).first
         curr_playlist.position = empty_pos
         if !curr_playlist.save
           errors.add(:base, :problems_changing_position_in_playlist)

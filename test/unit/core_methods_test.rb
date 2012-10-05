@@ -351,6 +351,24 @@ class CoreMethodsTest < ActiveSupport::TestCase
     lesson4 = user.create_lesson 'lesson4', 'lesson4', 1
     lesson5 = user.create_lesson 'lesson5', 'lesson5', 1
     assert !lesson1.nil? && !lesson2.nil? && !lesson3.nil? && !lesson4.nil? && !lesson5.nil?
+    cont = 2
+    [lesson1, lesson2, lesson3, lesson4, lesson5].each do |l|
+      l.is_public = true
+      assert_obj_saved l
+      b = Bookmark.new
+      b.bookmarkable_type = 'Lesson'
+      b.bookmarkable_id = l.id
+      b.user_id = 1
+      assert_obj_saved b
+      vvv = VirtualClassroomLesson.new
+      vvv.user_id = 1
+      vvv.lesson_id = l.id
+      assert_obj_saved vvv
+      vvv.position = cont
+      assert_obj_saved vvv
+      cont += 1
+    end
+    assert_equal 6, VirtualClassroomLesson.where(:user_id => 1).count
     vc1 = VirtualClassroomLesson.new
     vc1.lesson_id = lesson1.id
     vc1.user_id = 2
@@ -394,12 +412,33 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !vc1.change_position(0)
     assert_equal 1, vc1.errors.messages[:base].length
     assert_match /The position you chose is not valid for your playlist/, vc1.errors.messages[:base].first
+    assert !vc1.change_position(5)
+    assert_equal 1, vc1.errors.messages[:base].length
+    assert_match /The position you chose is not valid for your playlist/, vc1.errors.messages[:base].first
     assert !vc1.change_position('dvsdds')
     assert_equal 1, vc1.errors.messages[:base].length
     assert_match /The position you chose is not valid for your playlist/, vc1.errors.messages[:base].first
     assert !vc5.change_position(1)
     assert_equal 1, vc5.errors.messages[:base].length
     assert_match /You cannot change the position of a lesson which is not in the playlist/, vc5.errors.messages[:base].first
+    assert vc2.change_position(2)
+    assert_equal 1, VirtualClassroomLesson.find(vc1.id).position
+    assert_equal 2, VirtualClassroomLesson.find(vc2.id).position
+    assert_equal 3, VirtualClassroomLesson.find(vc3.id).position
+    assert_equal 4, VirtualClassroomLesson.find(vc4.id).position
+    assert VirtualClassroomLesson.find(vc5.id).position.nil?
+    assert vc2.change_position(4)
+    assert_equal 1, VirtualClassroomLesson.find(vc1.id).position
+    assert_equal 4, VirtualClassroomLesson.find(vc2.id).position
+    assert_equal 2, VirtualClassroomLesson.find(vc3.id).position
+    assert_equal 3, VirtualClassroomLesson.find(vc4.id).position
+    assert VirtualClassroomLesson.find(vc5.id).position.nil?
+    assert vc2.change_position(1)
+    assert_equal 2, VirtualClassroomLesson.find(vc1.id).position
+    assert_equal 1, VirtualClassroomLesson.find(vc2.id).position
+    assert_equal 3, VirtualClassroomLesson.find(vc3.id).position
+    assert_equal 4, VirtualClassroomLesson.find(vc4.id).position
+    assert VirtualClassroomLesson.find(vc5.id).position.nil?
   end
   
 end
