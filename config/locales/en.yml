@@ -39,5 +39,7 @@ en:
      search: 'search in desy'
      greybar:
        selected: 'selected for you'
+       upload: 'upload a new element'
+       create: 'create a new element'
   footer:
      copyright: '©2012 DESY'   
