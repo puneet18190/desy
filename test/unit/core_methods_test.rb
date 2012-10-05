@@ -278,4 +278,17 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 4, Slide.find(s4).position
   end
   
+  test 'add_slide_to_lesson' do
+    assert !Lesson.new.add_slide('text')
+    x = Lesson.find 1
+    assert_equal 1, x.slides.count
+    assert Slide.where(:lesson_id => 1, :kind => 'image1').empty?
+    assert !x.add_slide('video4')
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem adding the slide/, x.errors.messages[:base].first
+    assert x.add_slide('image1')
+    assert_equal 2, Slide.where(:lesson_id => 1).count
+    assert Slide.where(:lesson_id => 1, :kind => 'image1').any?
+  end
+  
 end

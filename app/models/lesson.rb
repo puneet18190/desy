@@ -211,7 +211,7 @@ class Lesson < ActiveRecord::Base
     slide = Slide.new
     slide.kind = kind
     slide.lesson_id = self.id
-    slide.position = Slide.order('position DESC').where(:lesson_id => self.id).limit(1).position + 1
+    slide.position = Slide.order('position DESC').where(:lesson_id => self.id).limit(1).first.position + 1
     if slide.save
       return slide
     else
