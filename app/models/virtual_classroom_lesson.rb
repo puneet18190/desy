@@ -19,6 +19,22 @@ class VirtualClassroomLesson < ActiveRecord::Base
     !self.position.blank?
   end
   
+  def add_to_playlist
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problems_adding_to_playlist)
+      return false
+    end
+    return true if !self.position.nil?
+    tot_playlists = VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.user_id).count
+    self.position = tot_playlists
+    if !self.save
+      errors.add(:base, :problems_adding_to_playlist)
+      return false
+    end
+    true
+  end
+  
   def change_position x
     errors.clear
     if self.new_record?
