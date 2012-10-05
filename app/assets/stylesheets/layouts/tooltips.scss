@@ -6,6 +6,11 @@
 	border-radius:3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
+	h1 {
+	  color:#f29400;
+	  font-size:95%;
+		padding-bottom:0px;
+	}
 }
 @mixin call {
   z-index:20;
