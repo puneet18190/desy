@@ -291,4 +291,26 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert Slide.where(:lesson_id => 1, :kind => 'image1').any?
   end
   
+  test 'remove_slide_from_lesson' do
+    x = Slide.new
+    assert !x.destroy_with_positions
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem destroying the slide/, x.errors.messages[:base].first
+    x = Slide.where(:kind => 'cover').first
+    assert !x.destroy_with_positions
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /You cannot remove the cover of a lesson/, x.errors.messages[:base].first
+    x = Slide.find 3
+    assert x.kind != 'cover'
+    assert_equal 3, Slide.where(:lesson_id => x.lesson_id).count
+    assert_equal 2, x.position
+    destroyed_id = x.id
+    our_lesson_id = x.lesson_id
+    third_id = Slide.where(:position => 3, :lesson_id => x.lesson_id).first.id
+    assert x.destroy_with_positions
+    assert !Slide.exists?(destroyed_id)
+    assert_equal 2, Slide.find(third_id).position
+    assert_equal 2, Slide.where(:lesson_id => our_lesson_id).count
+  end
+  
 end

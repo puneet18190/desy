@@ -24,7 +24,7 @@ class Slide < ActiveRecord::Base
     end
     if self.kind == 'cover'
       errors.add(:base, :dont_destroy_cover)
-      raise ActiveRecord::Rollback
+      return false
     end
     resp = false
     my_position = self.position
