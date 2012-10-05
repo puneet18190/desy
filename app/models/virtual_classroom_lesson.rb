@@ -19,6 +19,56 @@ class VirtualClassroomLesson < ActiveRecord::Base
     !self.position.blank?
   end
   
+  def change_position x
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problems_changing_position_in_playlist)
+      return false
+    end
+    if x.class != Fixnum || x < 0
+      errors.add(:base, :invalid_position_in_playlist)
+      return false
+    end
+    y = self.position
+    if y.nil?
+      errors.add(:base, :cant_change_position_if_not_in_playlist)
+      return false
+    end
+    return true if y == x
+    desc = (y > x)
+    tot_playlists = VirtualClassroomLesson.where('lesson_id = ? AND position IS NOT NULL', self.lesson_id).count
+    if x > tot_playlists
+      errors.add(:base, :invalid_position_in_playlist)
+      return false
+    end
+    resp = false
+    ActiveRecord::Base.transaction do
+      self.position = tot_playlists + 2
+      if !self.save
+        errors.add(:base, :problems_changing_position_in_playlist)
+        raise ActiveRecord::Rollback
+      end
+      empty_pos = y
+      while empty_pos != x
+        curr_pos = (desc ? (empty_pos - 1) : (empty_pos + 1))
+        curr_playlist = VirtualClassroomLesson.where(:lesson_id => self.lesson_id, :position => curr_pos).first
+        curr_playlist.position = empty_pos
+        if !curr_playlist.save
+          errors.add(:base, :problems_changing_position_in_playlist)
+          raise ActiveRecord::Rollback
+        end
+        empty_pos = curr_pos
+      end
+      self.position = x
+      if !self.save
+        errors.add(:base, :problems_changing_position_in_playlist)
+        raise ActiveRecord::Rollback
+      end
+      resp = true
+    end
+    resp
+  end
+  
   private
   
   def init_validation
