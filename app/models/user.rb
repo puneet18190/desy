@@ -21,6 +21,15 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
+  def bookmark type, target_id
+    return nil if self.new_record?
+    b = Bookmark.new
+    b.bookmarkable_type = type
+    b.user_id = self.id
+    b.bookmarkable_id = target_id
+    return b.save ? b : nil
+  end
+  
   def playlist
     return [] if self.new_record?
     VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
