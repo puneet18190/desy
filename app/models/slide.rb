@@ -63,7 +63,7 @@ class Slide < ActiveRecord::Base
       errors.add(:base, :problems_changing_position)
       return false
     end
-    if x.class != Fixnum || x < 0
+    if x.class != Fixnum || x < 1
       errors.add(:base, :invalid_position)
       return false
     end

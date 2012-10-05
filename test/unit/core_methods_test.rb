@@ -262,6 +262,9 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !x.change_position(-4)
     assert_equal 1, x.errors.messages[:base].length
     assert_match /The position of the slide is invalid/, x.errors.messages[:base].first
+    assert !x.change_position(0)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The position of the slide is invalid/, x.errors.messages[:base].first
     s1 = Slide.where(:lesson_id => 2, :position => 1).first.id
     s2 = Slide.where(:lesson_id => 2, :position => 2).first.id
     s3 = Slide.where(:lesson_id => 2, :position => 3).first.id
@@ -338,6 +341,65 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert x.check_and_destroy
     assert !MediaElement.exists?(3)
     assert !MediaElementsSlide.exists?(my_new_id)
+  end
+  
+  test 'change_position_in_virtual_classroom_playlist' do
+    user = User.find 2
+    lesson1 = user.create_lesson 'lesson1', 'lesson1', 1
+    lesson2 = user.create_lesson 'lesson2', 'lesson2', 1
+    lesson3 = user.create_lesson 'lesson3', 'lesson3', 1
+    lesson4 = user.create_lesson 'lesson4', 'lesson4', 1
+    lesson5 = user.create_lesson 'lesson5', 'lesson5', 1
+    assert !lesson1.nil? && !lesson2.nil? && !lesson3.nil? && !lesson4.nil? && !lesson5.nil?
+    vc1 = VirtualClassroomLesson.new
+    vc1.lesson_id = lesson1.id
+    vc1.user_id = 2
+    assert_obj_saved vc1
+    vc1.position = 1
+    assert_obj_saved vc1
+    vc2 = VirtualClassroomLesson.new
+    vc2.lesson_id = lesson2.id
+    vc2.user_id = 2
+    assert_obj_saved vc2
+    vc2.position = 2
+    assert_obj_saved vc2
+    vc3 = VirtualClassroomLesson.new
+    vc3.lesson_id = lesson3.id
+    vc3.user_id = 2
+    assert_obj_saved vc3
+    vc3.position = 3
+    assert_obj_saved vc3
+    vc4 = VirtualClassroomLesson.new
+    vc4.lesson_id = lesson4.id
+    vc4.user_id = 2
+    assert_obj_saved vc4
+    vc4.position = 4
+    assert_obj_saved vc4
+    vc5 = VirtualClassroomLesson.new
+    vc5.lesson_id = lesson5.id
+    vc5.user_id = 2
+    assert_obj_saved vc5
+    assert_equal 1, vc1.position
+    assert_equal 2, vc2.position
+    assert_equal 3, vc3.position
+    assert_equal 4, vc4.position
+    assert vc5.position.nil?
+    x = VirtualClassroomLesson.new
+    assert !x.change_position(10)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem changing the position of the lesson in your playlist/, x.errors.messages[:base].first
+    assert !vc1.change_position(-9)
+    assert_equal 1, vc1.errors.messages[:base].length
+    assert_match /The position you chose is not valid for your playlist/, vc1.errors.messages[:base].first
+    assert !vc1.change_position(0)
+    assert_equal 1, vc1.errors.messages[:base].length
+    assert_match /The position you chose is not valid for your playlist/, vc1.errors.messages[:base].first
+    assert !vc1.change_position('dvsdds')
+    assert_equal 1, vc1.errors.messages[:base].length
+    assert_match /The position you chose is not valid for your playlist/, vc1.errors.messages[:base].first
+    assert !vc5.change_position(1)
+    assert_equal 1, vc5.errors.messages[:base].length
+    assert_match /You cannot change the position of a lesson which is not in the playlist/, vc5.errors.messages[:base].first
   end
   
 end

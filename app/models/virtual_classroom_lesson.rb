@@ -25,7 +25,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
       errors.add(:base, :problems_changing_position_in_playlist)
       return false
     end
-    if x.class != Fixnum || x < 0
+    if x.class != Fixnum || x <= 0
       errors.add(:base, :invalid_position_in_playlist)
       return false
     end
