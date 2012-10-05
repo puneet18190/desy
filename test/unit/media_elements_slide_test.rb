@@ -8,7 +8,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     else
       @position += 1
     end
-    @new_slide = Slide.new :position => @position, :title => 'Titolo', :text => 'Testo testo testo'
+    @new_slide = Slide.new :position => @position, :title => 'Titolo'
     @new_slide.lesson_id = 1
     @new_slide.kind = kind
     @new_slide.save

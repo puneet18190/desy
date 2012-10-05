@@ -11,7 +11,7 @@ class Slide < ActiveRecord::Base
   validates_inclusion_of :kind, :in => ['cover', 'text', 'image1', 'image2', 'image3', 'audio1', 'audio2', 'video1', 'video2']
   validates_uniqueness_of :position, :scope => :lesson_id
   validates_uniqueness_of :kind, :scope => :lesson_id, :if => :is_cover
-  validate :validate_associations, :validate_impossible_changes, :validate_cover
+  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text
   
   before_validation :init_validation
   before_destroy :stop_if_cover
@@ -63,6 +63,10 @@ class Slide < ActiveRecord::Base
   end
   
   private
+  
+  def validate_text
+    errors[:text] << 'must be null for in this kind of slide' if ['image3', 'audio2', 'video2'].include?(self.kind) && !self.text.nil?
+  end
   
   def is_cover
     self.kind == 'cover'
