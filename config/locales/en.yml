@@ -40,6 +40,8 @@ en:
      greybar:
        selected: 'selected for you'
        upload: 'upload a new element'
-       create: 'create a new element'
+       create: 
+          elements: 'create a new element'
+          lesson: 'create a new lesson'
   footer:
      copyright: '©2012 DESY'   
