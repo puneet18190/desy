@@ -6,6 +6,7 @@ en:
   header:
      welcome: 'welcome'
      logout: 'Logout'
+     search: 'search in desy'
      greybar:
        selected: 'selected for you'
   footer:

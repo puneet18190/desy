@@ -1,9 +1,9 @@
 .gray-bar {
-  padding:10px 0px 10px 22px; 
+  padding:10px 22px 10px 22px; 
 	background-color:#f5f5f5;
 	color:#727377;
 	float:left;
-	width:100%;
+	width:98%;
 	  font: {
 	    size:120%;
 	  }
@@ -11,6 +11,7 @@
     margin: 10px 0 10px 0;
     padding: 0;
     white-space: nowrap;
+		float:left;
   }
   .navlist li {
     display: inline;
@@ -33,4 +34,10 @@
     text-decoration: none;
   }
 	p {padding-top:10px}
+	.boxCerca {
+    padding:0px;
+		margin:0px;
+    float: right;
+    
+  }
 }
