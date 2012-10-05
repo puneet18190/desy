@@ -220,6 +220,31 @@ class Lesson < ActiveRecord::Base
     end
   end
   
+  def add_to_virtual_classroom an_user_id
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problem_adding_to_virtual_classroom)
+      return false
+    end
+    my_user = User.where(:id => an_user_id).first
+    if my_user.nil?
+      errors.add(:base, :problem_adding_to_virtual_classroom)
+      return false
+    end
+    if VirtualClassroomLesson.where(:lesson_id => self.id, :user_id => an_user_id).any?
+      errors.add(:base, :lesson_already_in_virtual_classroom)
+      return false
+    end
+    vc = VirtualClassroomLesson.new
+    vc.user_id = an_user_id
+    vc.lesson_id = self.id
+    if !vc.save
+      errors.add(:base, :lesson_not_available_for_virtual_classroom)
+      return false
+    end
+    true
+  end
+  
   private
   
   def present_parent_id
