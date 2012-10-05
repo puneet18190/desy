@@ -5,13 +5,6 @@
     <li><a href="#" class="current"><%= t('header.lessons') %></a></li>
     <li><a href="#"><%= t('header.elements') %></a></li>
   </ul>
-	<div class="boxCerca">
-  <form action="" method="get" id="search-form" class="search-form">
-  <table summary="" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><input type="text" name="q" value="<%= t('header.search') %>" style="width:227px; height:12px; padding-top:3px; padding-bottom:3px; background-repeat:no-repeat; font-size:9px;" onFocus="this.value=''"></td>
-    <td><input type="hidden" name="redirect_to" value=""/><input type="image"  name="submit" value="Cerca" class="button" style="padding:0px; margin-left:1px; margin-top:2px"></td>
-  </tr></table>
-    </form>
-  </div>
+	<%= render :partial => "layouts/header_elements/search" %>
+	
 </div>

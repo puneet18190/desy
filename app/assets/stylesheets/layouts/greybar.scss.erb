@@ -4,9 +4,9 @@
 	color:#727377;
 	float:left;
 	width:98%;
-	  font: {
-	    size:120%;
-	  }
+	font: {
+	  size:120%;
+	}
 	ul.navlist {
     margin: 10px 0 10px 0;
     padding: 0;
@@ -33,11 +33,24 @@
     background-color: #fafafa;
     text-decoration: none;
   }
-	p {padding-top:10px}
+	p {
+	  padding-top:10px
+	}
 	.boxCerca {
     padding:0px;
 		margin:0px;
     float: right;
-    
+  }
+	.text {
+	  border:none;
+	  width:168px; 
+		height:29px; 
+		-moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+	}
+	.styled-select {
+	  width: 126px;
+    height: 30px;
+    background: url(<%= asset_path 'bg_select_greybar.png' %>) no-repeat left;
   }
 }
