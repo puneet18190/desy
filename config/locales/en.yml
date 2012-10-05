@@ -14,6 +14,7 @@ en:
           problem_adding_to_virtual_classroom: 'There was a problem adding the selected lesson to your virtual classroom'
           lesson_already_in_virtual_classroom: 'The selected lesson is already in your virtual classroom'
           lesson_not_available_for_virtual_classroom: 'The lesson you selected cannot be added directly to your virtual classroom'
+          problem_removing_from_virtual_classroom: 'There was a problem removing the lesson from your virtual classroom'
         media_element:
           problem_destroying: 'There was a problem removing this element'
           cant_destroy_public: 'You cannot remove a public element'
