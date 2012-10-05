@@ -2,4 +2,15 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        lesson:
+          problem_copying: 'There was a problem copying the lesson'
+          already_copied: 'You already have a copy of this lesson'
+          already_published: 'The lesson you selected has already been published'
+          problem_publishing: 'There was a problem publishing the lesson'
+          problem_unpublishing: 'There was a problem unpublishing the lesson'
+          already_unpublished: 'The lesson you selected has already been unpublished'
+        notification:
+          bookmark_cancelled: 'Your bookmark has been cancelled'
