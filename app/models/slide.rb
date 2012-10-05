@@ -1,6 +1,6 @@
 class Slide < ActiveRecord::Base
   
-  attr_accessible :position, :title, :text1, :text2
+  attr_accessible :position, :title, :text
   
   has_many :media_elements_slides
   belongs_to :lesson
@@ -8,15 +8,109 @@ class Slide < ActiveRecord::Base
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => 255, :allow_nil => true
-  validates_inclusion_of :kind, :in => ['cover', 'text1', 'text2', 'image1', 'image2', 'image3', 'audio1', 'audio2', 'video1', 'video2']
+  validates_inclusion_of :kind, :in => ['cover', 'text', 'image1', 'image2', 'image3', 'audio1', 'audio2', 'video1', 'video2']
   validates_uniqueness_of :position, :scope => :lesson_id
   validates_uniqueness_of :kind, :scope => :lesson_id, :if => :is_cover
-  validate :validate_associations, :validate_impossible_changes, :validate_text2, :validate_cover
+  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text
   
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  def previous
+    self.new_record ? nil : Slide.where(:lesson_id => self.lesson_id, :position => (self.position - 1)).first
+  end
+  
+  def following
+    self.new_record ? nil : Slide.where(:lesson_id => self.lesson_id, :position => (self.position + 1)).first
+  end
+  
+  def destroy_with_positions
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problems_destroying)
+      return false
+    end
+    if self.kind == 'cover'
+      errors.add(:base, :dont_destroy_cover)
+      return false
+    end
+    resp = false
+    my_position = self.position
+    my_lesson_id = self.lesson_id
+    ActiveRecord::Base.transaction do
+      begin
+        self.destroy
+      rescue Exception
+        errors.add(:base, :problems_destroying)
+        raise ActiveRecord::Rollback
+      end
+      Slide.where('lesson_id = ? AND position > ?', my_lesson_id, my_position).order(:position).each do |s|
+        s.position -= 1
+        if !s.save
+          errors.add(:base, :problems_destroying)
+          raise ActiveRecord::Rollback
+        end
+      end
+      resp = true
+    end
+    resp
+  end
+  
+  def change_position x
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problems_changing_position)
+      return false
+    end
+    if x.class != Fixnum || x < 1
+      errors.add(:base, :invalid_position)
+      return false
+    end
+    y = self.position
+    return true if y == x
+    desc = (y > x)
+    if self.kind == 'cover'
+      errors.add(:base, :cant_change_position_of_cover)
+      return false
+    end
+    tot_slides = Slide.where(:lesson_id => self.lesson_id).count
+    if x > tot_slides || x == 1
+      errors.add(:base, :invalid_position)
+      return false
+    end
+    resp = false
+    ActiveRecord::Base.transaction do
+      self.position = tot_slides + 2
+      if !self.save
+        errors.add(:base, :problems_changing_position)
+        raise ActiveRecord::Rollback
+      end
+      empty_pos = y
+      while empty_pos != x
+        curr_pos = (desc ? (empty_pos - 1) : (empty_pos + 1))
+        curr_slide = Slide.where(:lesson_id => self.lesson_id, :position => curr_pos).first
+        curr_slide.position = empty_pos
+        if !curr_slide.save
+          errors.add(:base, :problems_changing_position)
+          raise ActiveRecord::Rollback
+        end
+        empty_pos = curr_pos
+      end
+      self.position = x
+      if !self.save
+        errors.add(:base, :problems_changing_position)
+        raise ActiveRecord::Rollback
+      end
+      resp = true
+    end
+    resp
+  end
+  
   private
+  
+  def validate_text
+    errors[:text] << 'must be null for this kind of slide' if ['image3', 'audio2', 'video2'].include?(self.kind) && !self.text.nil?
+  end
   
   def is_cover
     self.kind == 'cover'
@@ -40,10 +134,6 @@ class Slide < ActiveRecord::Base
   def validate_cover
     errors[:position] << "cover must be the first slide" if self.kind == 'cover' && self.position != 1
     errors[:position] << "if not cover can't be the first slide" if self.kind != 'cover' && self.position == 1
-  end
-  
-  def validate_text2
-    errors[:text2] << 'must be null if slide is not of kind text2' if !self.text2.nil? && self.kind != 'text2'
   end
   
   def stop_if_cover

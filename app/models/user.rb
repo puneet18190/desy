@@ -31,6 +31,15 @@ class User < ActiveRecord::Base
     VirtualClassroomLesson.where('user_id = ?', self.id).order(:created_at)
   end
   
+  def create_lesson title, description, subject_id
+    return nil if self.new_record?
+    return nil if UsersSubject.where(:user_id => self.id, :subject_id => subject_id).empty?
+    lesson = Lesson.new :subject_id => subject_id, :school_level_id => self.school_level_id, :title => title, :description => description
+    lesson.copied_not_modified = false
+    lesson.user_id = self.id
+    return lesson.save ? lesson : nil
+  end
+  
   def self.create_user an_email, a_name, a_surname, a_school, a_school_level_id, a_location_id, subject_ids
     return nil if subject_ids.class != Array || subject_ids.empty?
     resp = User.new :name => a_name, :surname => a_surname, :school_level_id => a_school_level_id, :school => a_school, :location_id => a_location_id
@@ -54,7 +63,15 @@ class User < ActiveRecord::Base
   end
   
   def edit_fields a_name, a_surname, a_school, a_school_level_id, a_location_id, subject_ids
-    return false if subject_ids.class != Array || subject_ids.empty? || self.new_record?
+    errors.clear
+    if subject_ids.class != Array || subject_ids.empty?
+      errors.add(:base, :missing_subjects)
+      return false
+    end
+    if self.new_record?
+      errors.add(:base, :problems_updating)
+      return false
+    end
     resp = false
     self.name = a_name
     self.surname = a_surname
@@ -62,7 +79,10 @@ class User < ActiveRecord::Base
     self.school = a_school
     self.location_id = a_location_id
     ActiveRecord::Base.transaction do
-      raise ActiveRecord::Rollback if !self.save
+      if !self.save
+        errors.add(:base, :problems_updating)
+        raise ActiveRecord::Rollback
+      end
       begin
         UsersSubject.where(:user_id => self.id).each do |us|
           if !subject_ids.include?(us.subject_id)
@@ -75,11 +95,18 @@ class User < ActiveRecord::Base
             us = UsersSubject.new
             us.user_id = self.id
             us.subject_id = s
-            raise ActiveRecord::Rollback if !us.save
+            if !us.save
+              raise ActiveRecord::Rollback
+              errors.add(:base, :problems_updating)
+            end
           end
         end
-        raise ActiveRecord::Rollback if !self.save
+        if !self.save
+          raise ActiveRecord::Rollback
+          errors.add(:base, :problems_updating)
+        end
       rescue ActiveRecord::InvalidForeignKey
+        errors.add(:base, :problems_updating)
         raise ActiveRecord::Rollback
       end
       resp = true
@@ -88,12 +115,18 @@ class User < ActiveRecord::Base
   end
   
   def destroy_with_dependencies
-    return false if self.new_record?
-    resp = true
+    if self.new_record?
+      errors.add(:base, :problems_destroying)
+      return false
+    end
+    resp = false
     ActiveRecord::Base.transaction do
       begin
         Lesson.where(:user_id => self.id).each do |l|
-          l.destroy
+          if !l.destroy_with_notifications
+            errors.add(:base, :problems_destroying)
+            raise ActiveRecord::Rollback
+          end
         end
         UsersSubject.where(:user_id => self.id).each do |us|
           us.destroy
@@ -102,7 +135,7 @@ class User < ActiveRecord::Base
           if me.is_public
             me.user_id = User.find_by_email(CONFIG['admin_email']).id
             if !me.save
-              resp = false
+              errors.add(:base, :problems_destroying)
               raise ActiveRecord::Rollback
             end
           else
@@ -123,9 +156,10 @@ class User < ActiveRecord::Base
         end
         self.destroy
       rescue ActiveRecord::InvalidForeignKey
-        resp = false
+        errors.add(:base, :problems_destroying)
         raise ActiveRecord::Rollback
       end
+      resp = true
     end
     resp
   end

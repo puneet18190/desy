@@ -13,6 +13,49 @@ class Tag < ActiveRecord::Base
   
   before_validation :convert_downcase_word
   
+  def self.create_tag_set(type, tagged_id, tags)
+    return false if !['Lesson', 'MediaElement'].include? type
+    return false if !type.constantize.exists?(tagged_id)
+    return false if tags.class != Array || tags.empty?
+    return false if CONFIG['force_min_tags_for_item'] && tags.length < CONFIG['min_tags_for_item']
+    resp = false
+    already_tagged = []
+    ActiveRecord::Base.transaction do
+      tags.each do |t|
+        if t.class == Fixnum
+          raise ActiveRecord::Rollback if !Tag.exists?(t)
+          old_tagging = Tagging.where(:taggable_type => type, :taggable_id => tagged_id, :tag_id => t).first
+          if old_tagging.nil?
+            tagging = Tagging.new
+            tagging.tag_id = t
+            tagging.taggable_type = type
+            tagging.taggable_id = tagged_id
+            raise ActiveRecord::Rollback if !tagging.save
+            already_tagged << tagging.id
+          else
+            already_tagged << old_tagging.id
+          end
+        elsif t.class == String
+          tag = Tag.new :word => t
+          raise ActiveRecord::Rollback if !tag.save
+          tagging = Tagging.new
+          tagging.tag_id = tag.id
+          tagging.taggable_type = type
+          tagging.taggable_id = tagged_id
+          raise ActiveRecord::Rollback if !tagging.save
+          already_tagged << tagging.id
+        else
+          raise ActiveRecord::Rollback
+        end
+      end
+      Tagging.where('taggable_type = ? AND taggable_id = ? AND id NOT IN (?)', type, tagged_id, already_tagged).each do |tt|
+        tt.destroy
+      end
+      resp = true
+    end
+    resp
+  end
+  
   private
   
   def convert_downcase_word

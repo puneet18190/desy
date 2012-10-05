@@ -25,10 +25,16 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'edit_user_fields' do
+    uu = User.new
+    assert !uu.edit_fields('oo', 'fsg', 'asf', 1, 1, [1, 2])
+    assert_equal 1, uu.errors.messages[:base].length
+    assert_match /Could not update your personal data/, uu.errors.messages[:base].first
     assert_equal 3, UsersSubject.count
     x = User.find 1
     assert x.name != 'oo' && x.surname != 'fsg' && x.school != 'asf'
     assert !x.edit_fields('oo', 'fsg', 'asf', 1, 1, [])
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /You need to select at least one subject/, x.errors.messages[:base].first
     assert !x.edit_fields('oo', 'fsg', 'asf', 1, 1, 'sgdds')
     assert !User.new.edit_fields('oo', 'fsg', 'asf', 1, 1, [1, 2])
     assert UsersSubject.where(:user_id => 1, :subject_id => 3).any?
@@ -41,10 +47,23 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'destroy_users_with_dependencies' do
+    uu = User.new
+    assert !uu.destroy_with_dependencies
+    assert_equal 1, uu.errors.messages[:base].length
+    assert_match /Could not destroy the selected user/, uu.errors.messages[:base].first
     resp = User.create_user(CONFIG['admin_email'], 'oo', 'fsg', 'asf', 1, 1, [1, 2])
     assert !resp.nil?
     x = User.find 1
-    assert_equal 1, Lesson.where(:user_id => 1).count
+    lessons = Lesson.where(:user_id => 1)
+    assert_equal 1, lessons.length
+    assert_equal 1, lessons[0].id
+    assert lessons[0].publish
+    b = Bookmark.new
+    b.user_id = 2
+    b.bookmarkable_id = 1
+    b.bookmarkable_type = 'Lesson'
+    assert_obj_saved b
+    assert_equal 1, Notification.where(:user_id => 2).count
     assert_equal 2, UsersSubject.where(:user_id => 1).count
     assert_equal 4, MediaElement.where(:user_id => 1).count
     assert_equal 2, Notification.where(:user_id => 1).count
@@ -61,17 +80,21 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert Report.where(:user_id => 1).empty?
     assert !User.exists?(1)
     assert_equal 2, MediaElement.where(:user_id => resp.id).length
+    assert_equal 2, Notification.where(:user_id => 2).count
   end
   
   test 'copy_lesson' do
     assert Lesson.new.copy(1).nil?
     x = Lesson.find(1)
     assert x.copy(100).nil?
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem copying the lesson/, x.errors.messages[:base].first
     assert x.copy(2).nil?
     resp = x.copy(1)
     assert !resp.nil?
     assert x.copy(1).nil?
-    assert_equal 'You already have a copy of this lesson', x.copy_errors
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /You already have a copy of this lesson/, x.errors.messages[:base].first
     x = Lesson.find(2)
     resp = x.copy(1)
     assert !resp.nil?
@@ -87,7 +110,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !s2.nil?
     assert_equal 'audio1', s2.kind
     assert s2.title.blank?
-    assert s2.text1.blank?
+    assert s2.text.blank?
     med1 = MediaElementsSlide.where(:slide_id => s2.id).first
     assert !med1.nil?
     assert_equal 4, med1.media_element_id
@@ -95,19 +118,23 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !s3.nil?
     assert_equal 'video1', s3.kind
     assert_equal 'Ciao', s3.title
-    assert_equal 'beh... beh beh', s3.text1
+    assert_equal 'beh... beh beh', s3.text
     med2 = MediaElementsSlide.where(:slide_id => s3.id).first
     assert !med2.nil?
     assert_equal 2, med2.media_element_id
   end
   
   test 'publish_lesson' do
-    assert !Lesson.new.publish
+    x = Lesson.new
+    assert !x.publish
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem publishing the lesson/, x.errors.messages[:base].first
     x = Lesson.find 2
     assert !x.publish
-    assert_equal 'The lesson you selected has already been published', x.publish_errors
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The lesson you selected has already been published/, x.errors.messages[:base].first
     x = Lesson.find 1
-    new_slide = Slide.new :position => 2, :title => 'Titolo', :text1 => 'Testo testo testo'
+    new_slide = Slide.new :position => 2, :title => 'Titolo', :text => 'Testo testo testo'
     new_slide.lesson_id = 1
     new_slide.kind = 'image2'
     assert_obj_saved new_slide
@@ -123,19 +150,343 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'unpublish_lesson' do
-    assert !Lesson.new.unpublish
+    x = Lesson.new
+    assert !x.unpublish
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem unpublishing the lesson/, x.errors.messages[:base].first
     x = Lesson.find 1
     assert !x.unpublish
-    assert_equal 'The lesson you selected has already been unpublished', x.publish_errors
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The lesson you selected has already been unpublished/, x.errors.messages[:base].first
     x = Lesson.find 2
     assert VirtualClassroomLesson.where(:lesson_id => 2).any?
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).any?
     assert_equal 3, MediaElement.where(:is_public => true).count
+    assert Notification.where(:user_id => 2, :message => 'Your bookmark has been cancelled').empty?
     assert x.unpublish
     assert !Lesson.find(x.id).is_public
     assert VirtualClassroomLesson.where(:lesson_id => 2).empty?
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).empty?
+    assert Notification.where(:user_id => 1, :message => 'Your bookmark has been cancelled').any?
     assert_equal 3, MediaElement.where(:is_public => true).count
+    lesson = Lesson.find 1
+    assert lesson.publish
+    vc = VirtualClassroomLesson.new
+    vc.user_id = lesson.user_id
+    vc.lesson_id = lesson.id
+    assert_obj_saved vc
+    assert lesson.unpublish
+    assert VirtualClassroomLesson.where(:user_id => lesson.user_id, :lesson_id => lesson.id).any?
+  end
+  
+  test 'create_tags' do
+    assert !Tag.create_tag_set('MidaElement', 1, [1, 2, 3])
+    assert !Tag.create_tag_set('MediaElement', 7, [1, 2, 3])
+    assert !Tag.create_tag_set('MediaElement', 1, [1, nil, 3])
+    assert !Tag.create_tag_set('MediaElement', 1, [])
+    assert !Tag.create_tag_set('MediaElement', 1, 'dsgd')
+    assert !Tag.create_tag_set('MediaElement', 1, [1, 2, 'petrolio', 3, 100])
+    assert !Tag.create_tag_set('MediaElement', 1, [1, 2, 'gatto', 3])
+    taggings = Tagging.where :taggable_type => 'MediaElement', :taggable_id => 1
+    assert_equal 2, taggings.length
+    my_id = taggings.first.id
+    assert Tagging.exists?(my_id)
+    assert_equal 4, Tag.count
+    assert Tag.create_tag_set('MediaElement', 1, [4, 'orso', 1])
+    taggings = Tagging.where :taggable_type => 'MediaElement', :taggable_id => 1
+    assert_equal 3, taggings.length
+    assert !Tagging.exists?(my_id)
+    assert_equal 5, Tag.count
+  end
+  
+  test 'create_lesson' do
+    assert !User.new.create_lesson('te', 'dsf', 1)
+    @user = User.find 1
+    assert UsersSubject.where(:user_id => 1, :subject_id => 2).empty?
+    assert !@user.create_lesson('te', 'dsf', 2)
+    resp = @user.create_lesson('gs', 'gshsf', 3)
+    assert !resp.nil?
+    assert_equal 'gs', resp.title
+    assert_equal 'gshsf', resp.description
+    assert_equal 3, resp.subject_id
+    assert_equal 1, resp.school_level_id
+    assert_equal 1, resp.user_id
+    assert_equal false, resp.copied_not_modified
+    assert_equal false, resp.is_public
+  end
+  
+  test 'destroy_lesson_with_notifications' do
+    x = Lesson.new
+    assert !x.destroy_with_notifications
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The lesson could not be destroyed correctly/, x.errors.messages[:base].first
+    x = Lesson.find 2
+    assert Notification.where(:message => 'Your bookmark has been cancelled').empty?
+    assert x.destroy_with_notifications
+    x = Notification.where(:message => 'Your bookmark has been cancelled').first
+    assert_equal 1, x.user_id
+    assert !Lesson.exists?(2)
+  end
+  
+  test 'change_slide_position' do
+    uu = Slide.new
+    assert !uu.change_position(1)
+    assert_equal 1, uu.errors.messages[:base].length
+    assert_match /There was a problem changing the position of the slide/, uu.errors.messages[:base].first
+    s = Slide.new :position => 4, :title => 'Titolo', :text => 'Testo testo testo'
+    s.lesson_id = 2
+    s.kind = 'text'
+    assert_obj_saved s
+    assert_equal 4, Slide.where(:lesson_id => 2).count
+    assert !Slide.new.change_position(1)
+    x = Slide.find 3
+    assert_equal 2, x.position
+    assert x.change_position 2
+    x = Slide.find 3
+    assert_equal 2, x.position
+    x = Slide.find 1
+    assert_equal 'cover', x.kind
+    assert !x.change_position(2)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /You cannot change the position of the cover/, x.errors.messages[:base].first
+    x = Slide.find 3
+    assert !x.change_position(1)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The position of the slide is invalid/, x.errors.messages[:base].first
+    assert !x.change_position(20)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The position of the slide is invalid/, x.errors.messages[:base].first
+    assert !x.change_position('sdgsg')
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The position of the slide is invalid/, x.errors.messages[:base].first
+    assert !x.change_position(-4)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The position of the slide is invalid/, x.errors.messages[:base].first
+    assert !x.change_position(0)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The position of the slide is invalid/, x.errors.messages[:base].first
+    s1 = Slide.where(:lesson_id => 2, :position => 1).first.id
+    s2 = Slide.where(:lesson_id => 2, :position => 2).first.id
+    s3 = Slide.where(:lesson_id => 2, :position => 3).first.id
+    s4 = Slide.where(:lesson_id => 2, :position => 4).first.id
+    assert Slide.find(s2).change_position(4)
+    assert_equal 1, Slide.find(s1).position
+    assert_equal 2, Slide.find(s3).position
+    assert_equal 3, Slide.find(s4).position
+    assert_equal 4, Slide.find(s2).position
+    assert Slide.find(s2).change_position(3)
+    assert_equal 1, Slide.find(s1).position
+    assert_equal 2, Slide.find(s3).position
+    assert_equal 3, Slide.find(s2).position
+    assert_equal 4, Slide.find(s4).position
+  end
+  
+  test 'add_slide_to_lesson' do
+    assert !Lesson.new.add_slide('text')
+    x = Lesson.find 1
+    assert_equal 1, x.slides.count
+    assert Slide.where(:lesson_id => 1, :kind => 'image1').empty?
+    assert !x.add_slide('video4')
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem adding the slide/, x.errors.messages[:base].first
+    assert x.add_slide('image1')
+    assert_equal 2, Slide.where(:lesson_id => 1).count
+    assert Slide.where(:lesson_id => 1, :kind => 'image1').any?
+  end
+  
+  test 'remove_slide_from_lesson' do
+    x = Slide.new
+    assert !x.destroy_with_positions
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem destroying the slide/, x.errors.messages[:base].first
+    x = Slide.where(:kind => 'cover').first
+    assert !x.destroy_with_positions
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /You cannot remove the cover of a lesson/, x.errors.messages[:base].first
+    x = Slide.find 3
+    assert x.kind != 'cover'
+    assert_equal 3, Slide.where(:lesson_id => x.lesson_id).count
+    assert_equal 2, x.position
+    destroyed_id = x.id
+    our_lesson_id = x.lesson_id
+    third_id = Slide.where(:position => 3, :lesson_id => x.lesson_id).first.id
+    assert x.destroy_with_positions
+    assert !Slide.exists?(destroyed_id)
+    assert_equal 2, Slide.find(third_id).position
+    assert_equal 2, Slide.where(:lesson_id => our_lesson_id).count
+  end
+  
+  test 'remove_media_element' do
+    x = MediaElement.new
+    assert !x.check_and_destroy
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem removing this element/, x.errors.messages[:base].first
+    x = MediaElement.where(:is_public => true).first
+    assert !x.check_and_destroy
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /You cannot remove a public element/, x.errors.messages[:base].first
+    x = MediaElement.find(3)
+    assert_equal 2, x.user_id
+    assert_equal false, x.is_public
+    ss = Slide.find(3)
+    assert_equal 2, ss.position
+    assert_equal 2, ss.lesson.user_id
+    assert_equal 'audio1', ss.kind
+    mm = MediaElementsSlide.new
+    mm.media_element_id = 3
+    mm.slide_id = 3
+    mm.position = 1
+    assert_obj_saved mm
+    my_new_id = mm.id
+    assert x.check_and_destroy
+    assert !MediaElement.exists?(3)
+    assert !MediaElementsSlide.exists?(my_new_id)
+  end
+  
+  test 'change_position_in_virtual_classroom_playlist' do
+    user = User.find 2
+    lesson1 = user.create_lesson 'lesson1', 'lesson1', 1
+    lesson2 = user.create_lesson 'lesson2', 'lesson2', 1
+    lesson3 = user.create_lesson 'lesson3', 'lesson3', 1
+    lesson4 = user.create_lesson 'lesson4', 'lesson4', 1
+    lesson5 = user.create_lesson 'lesson5', 'lesson5', 1
+    assert !lesson1.nil? && !lesson2.nil? && !lesson3.nil? && !lesson4.nil? && !lesson5.nil?
+    cont = 2
+    [lesson1, lesson2, lesson3, lesson4, lesson5].each do |l|
+      l.is_public = true
+      assert_obj_saved l
+      b = Bookmark.new
+      b.bookmarkable_type = 'Lesson'
+      b.bookmarkable_id = l.id
+      b.user_id = 1
+      assert_obj_saved b
+      vvv = VirtualClassroomLesson.new
+      vvv.user_id = 1
+      vvv.lesson_id = l.id
+      assert_obj_saved vvv
+      vvv.position = cont
+      assert_obj_saved vvv
+      cont += 1
+    end
+    assert_equal 6, VirtualClassroomLesson.where(:user_id => 1).count
+    vc1 = VirtualClassroomLesson.new
+    vc1.lesson_id = lesson1.id
+    vc1.user_id = 2
+    assert_obj_saved vc1
+    vc1.position = 1
+    assert_obj_saved vc1
+    vc2 = VirtualClassroomLesson.new
+    vc2.lesson_id = lesson2.id
+    vc2.user_id = 2
+    assert_obj_saved vc2
+    vc2.position = 2
+    assert_obj_saved vc2
+    vc3 = VirtualClassroomLesson.new
+    vc3.lesson_id = lesson3.id
+    vc3.user_id = 2
+    assert_obj_saved vc3
+    vc3.position = 3
+    assert_obj_saved vc3
+    vc4 = VirtualClassroomLesson.new
+    vc4.lesson_id = lesson4.id
+    vc4.user_id = 2
+    assert_obj_saved vc4
+    vc4.position = 4
+    assert_obj_saved vc4
+    vc5 = VirtualClassroomLesson.new
+    vc5.lesson_id = lesson5.id
+    vc5.user_id = 2
+    assert_obj_saved vc5
+    assert_equal 1, vc1.position
+    assert_equal 2, vc2.position
+    assert_equal 3, vc3.position
+    assert_equal 4, vc4.position
+    assert vc5.position.nil?
+    x = VirtualClassroomLesson.new
+    assert !x.change_position(10)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem changing the position of the lesson in your playlist/, x.errors.messages[:base].first
+    assert !vc1.change_position(-9)
+    assert_equal 1, vc1.errors.messages[:base].length
+    assert_match /The position you chose is not valid for your playlist/, vc1.errors.messages[:base].first
+    assert !vc1.change_position(0)
+    assert_equal 1, vc1.errors.messages[:base].length
+    assert_match /The position you chose is not valid for your playlist/, vc1.errors.messages[:base].first
+    assert !vc1.change_position(5)
+    assert_equal 1, vc1.errors.messages[:base].length
+    assert_match /The position you chose is not valid for your playlist/, vc1.errors.messages[:base].first
+    assert !vc1.change_position('dvsdds')
+    assert_equal 1, vc1.errors.messages[:base].length
+    assert_match /The position you chose is not valid for your playlist/, vc1.errors.messages[:base].first
+    assert !vc5.change_position(1)
+    assert_equal 1, vc5.errors.messages[:base].length
+    assert_match /You cannot change the position of a lesson which is not in the playlist/, vc5.errors.messages[:base].first
+    assert vc2.change_position(2)
+    assert_equal 1, VirtualClassroomLesson.find(vc1.id).position
+    assert_equal 2, VirtualClassroomLesson.find(vc2.id).position
+    assert_equal 3, VirtualClassroomLesson.find(vc3.id).position
+    assert_equal 4, VirtualClassroomLesson.find(vc4.id).position
+    assert VirtualClassroomLesson.find(vc5.id).position.nil?
+    assert vc2.change_position(4)
+    assert_equal 1, VirtualClassroomLesson.find(vc1.id).position
+    assert_equal 4, VirtualClassroomLesson.find(vc2.id).position
+    assert_equal 2, VirtualClassroomLesson.find(vc3.id).position
+    assert_equal 3, VirtualClassroomLesson.find(vc4.id).position
+    assert VirtualClassroomLesson.find(vc5.id).position.nil?
+    assert vc2.change_position(1)
+    assert_equal 2, VirtualClassroomLesson.find(vc1.id).position
+    assert_equal 1, VirtualClassroomLesson.find(vc2.id).position
+    assert_equal 3, VirtualClassroomLesson.find(vc3.id).position
+    assert_equal 4, VirtualClassroomLesson.find(vc4.id).position
+    assert VirtualClassroomLesson.find(vc5.id).position.nil?
+  end
+  
+  test 'add_to_playlist' do
+    x = VirtualClassroomLesson.new
+    assert !x.add_to_playlist
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem adding your lesson to the playlist/, x.errors.messages[:base].first
+    x = VirtualClassroomLesson.last
+    assert x.in_playlist?
+    assert_equal 1, VirtualClassroomLesson.count
+    assert x.add_to_playlist
+    assert VirtualClassroomLesson.find(x.id).in_playlist?
+    assert_equal 1, VirtualClassroomLesson.count
+    lesson1 = User.find(1).create_lesson 'lesson1', 'lesson1', 1
+    xx = VirtualClassroomLesson.new
+    xx.lesson_id = lesson1.id
+    xx.user_id = 1
+    assert_obj_saved xx
+    xx = VirtualClassroomLesson.find(xx.id)
+    assert xx.position.nil?
+    assert_equal 2, VirtualClassroomLesson.count
+    assert xx.add_to_playlist
+    assert_equal 2, VirtualClassroomLesson.count
+    assert_equal 2, VirtualClassroomLesson.find(xx.id).position
+  end
+  
+  test 'remove_from_playlist' do
+    x = VirtualClassroomLesson.new
+    assert !x.remove_from_playlist
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem removing your lesson from the playlist/, x.errors.messages[:base].first
+    lesson1 = User.find(1).create_lesson 'lesson1', 'lesson1', 1
+    xx = VirtualClassroomLesson.new
+    xx.lesson_id = lesson1.id
+    xx.user_id = 1
+    assert_obj_saved xx
+    xx = VirtualClassroomLesson.find(xx.id)
+    assert xx.add_to_playlist
+    assert_equal 2, VirtualClassroomLesson.where(:user_id => 1).count
+    assert_equal 2, VirtualClassroomLesson.find(xx.id).position
+    assert VirtualClassroomLesson.find(1).remove_from_playlist
+    assert VirtualClassroomLesson.find(1).position.nil?
+    assert_equal 1, VirtualClassroomLesson.find(xx.id).position
+    assert_equal 2, VirtualClassroomLesson.where(:user_id => 1).count
+    assert VirtualClassroomLesson.find(1).remove_from_playlist
+    assert VirtualClassroomLesson.find(1).position.nil?
+    assert_equal 1, VirtualClassroomLesson.find(xx.id).position
+    assert_equal 2, VirtualClassroomLesson.where(:user_id => 1).count
   end
   
 end

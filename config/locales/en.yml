@@ -1,7 +1,37 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
+  activerecord:
+    errors:
+      models:
+        lesson:
+          problem_copying: 'There was a problem copying the lesson'
+          already_copied: 'You already have a copy of this lesson'
+          already_published: 'The lesson you selected has already been published'
+          problem_publishing: 'There was a problem publishing the lesson'
+          problem_unpublishing: 'There was a problem unpublishing the lesson'
+          already_unpublished: 'The lesson you selected has already been unpublished'
+          problem_destroying: 'The lesson could not be destroyed correctly'
+          problem_adding_slide: 'There was a problem adding the slide'
+        media_element:
+          problem_destroying: 'There was a problem removing this element'
+          cant_destroy_public: 'You cannot remove a public element'
+        notification:
+          bookmark_cancelled: 'Your bookmark has been cancelled'
+        slide:
+          problems_changing_position: 'There was a problem changing the position of the slide'
+          invalid_position: 'The position of the slide is invalid'
+          cant_change_position_of_cover: 'You cannot change the position of the cover'
+          problems_destroying: 'There was a problem destroying the slide'
+          dont_destroy_cover: 'You cannot remove the cover of a lesson'
+        user:
+          problems_updating: 'Could not update your personal data'
+          problems_destroying: 'Could not destroy the selected user'
+          missing_subjects: 'You need to select at least one subject'
+        virtual_classroom_lesson:
+          cant_change_position_if_not_in_playlist: 'You cannot change the position of a lesson which is not in the playlist'
+          invalid_position_in_playlist: 'The position you chose is not valid for your playlist'
+          problems_changing_position_in_playlist: 'There was a problem changing the position of the lesson in your playlist'
+          problems_adding_to_playlist: 'There was a problem adding your lesson to the playlist'
+          problems_removing_from_playlist: 'There was a problem removing your lesson from the playlist'
   hello: "Hello world"
   header:
      welcome: 'welcome'

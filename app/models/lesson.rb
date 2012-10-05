@@ -1,7 +1,6 @@
 class Lesson < ActiveRecord::Base
   
   attr_accessible :subject_id, :school_level_id, :title, :description
-  attr_reader :copy_errors, :publish_errors
   
   belongs_to :user
   belongs_to :subject
@@ -34,14 +33,14 @@ class Lesson < ActiveRecord::Base
   end
   
   def copy an_user_id
-    @copy_errors = ''
+    errors.clear
     my_user = User.where(:id => an_user_id).first
     if self.new_record? || my_user.nil? || (!self.is_public && self.user_id != my_user.id) || (self.is_public && self.user_id != my_user.id && Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id, :user_id => my_user.id).empty?)
-      @copy_errors = LANGUAGE['problem_copying_the_lesson']
+      errors.add(:base, :problem_copying)
       return nil
     end
     if Lesson.where(:parent_id => self.id, :user_id => my_user.id).any?
-      @copy_errors = LANGUAGE['lesson_already_copied']
+      errors.add(:base, :already_copied)
       return nil
     end
     resp = nil
@@ -51,12 +50,12 @@ class Lesson < ActiveRecord::Base
       lesson.user_id = an_user_id
       lesson.parent_id = self.id
       if !lesson.save
-        @copy_errors = LANGUAGE['problem_copying_the_lesson']
+        errors.add(:base, :problem_copying)
         raise ActiveRecord::Rollback
       end
       new_cover = Slide.where(:lesson_id => lesson.id, :position => 1).first
       if new_cover.nil?
-        @copy_errors = LANGUAGE['problem_copying_the_lesson']
+        errors.add(:base, :problem_copying)
         raise ActiveRecord::Rollback
       end
       cover = Slide.where(:lesson_id => self.id, :position => 1).first
@@ -67,16 +66,16 @@ class Lesson < ActiveRecord::Base
         new_cover_image.slide_id = new_cover.id
         new_cover_image.position = 1
         if !new_cover_image.save
-          @copy_errors = LANGUAGE['problem_copying_the_lesson']
+          errors.add(:base, :problem_copying)
           raise ActiveRecord::Rollback
         end
       end
       Slide.where('lesson_id = ? AND position > 1', self.id).order(:position).each do |s|
-        new_slide = Slide.new :position => s.position, :title => s.title, :text1 => s.text1, :text2 => s.text2
+        new_slide = Slide.new :position => s.position, :title => s.title, :text => s.text
         new_slide.lesson_id = lesson.id
         new_slide.kind = s.kind
         if !new_slide.save
-          @copy_errors = LANGUAGE['problem_copying_the_lesson']
+          errors.add(:base, :problem_copying)
           raise ActiveRecord::Rollback
         end
         MediaElementsSlide.where(:slide_id => s.id).each do |mes|
@@ -85,7 +84,7 @@ class Lesson < ActiveRecord::Base
           new_content.slide_id = new_slide.id
           new_content.position = mes.position
           if !new_content.save
-            @copy_errors = LANGUAGE['problem_copying_the_lesson']
+            errors.add(:base, :problem_copying)
             raise ActiveRecord::Rollback
           end
         end
@@ -101,21 +100,21 @@ class Lesson < ActiveRecord::Base
   end
   
   def publish
+    errors.clear
     pub_date = Time.zone.now
-    @publish_errors = ''
     if self.new_record?
-      @publish_errors = LANGUAGE['problem_publishing_lesson']
+      errors.add(:base, :problem_publishing)
       return false
     end
     if self.is_public
-      @publish_errors = LANGUAGE['already_published_lesson']
+      errors.add(:base, :already_published)
       return false
     end
     resp = false
     ActiveRecord::Base.transaction do
       self.is_public = true
       if !self.save
-        @publish_errors = LANGUAGE['problem_publishing_lesson']
+        errors.add(:base, :problem_publishing)
         raise ActiveRecord::Rollback
       end
       Slide.where(:lesson_id => self.id).each do |s|
@@ -125,7 +124,7 @@ class Lesson < ActiveRecord::Base
             me.is_public = true
             me.publication_date = pub_date
             if !me.save
-              @publish_errors = LANGUAGE['problem_publishing_lesson']
+              errors.add(:base, :problem_publishing)
               raise ActiveRecord::Rollback
             end
           end
@@ -137,28 +136,36 @@ class Lesson < ActiveRecord::Base
   end
   
   def unpublish
-    @publish_errors = ''
+    errors.clear
     if self.new_record?
-      @publish_errors = LANGUAGE['problem_unpublishing_lesson']
+      errors.add(:base, :problem_unpublishing)
       return false
     end
     if !self.is_public
-      @publish_errors = LANGUAGE['already_unpublished_lesson']
+      errors.add(:base, :already_unpublished)
       return false
     end
     resp = false
     ActiveRecord::Base.transaction do
       Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
         begin
+          n = Notification.new
+          n.user_id = b.user_id
+          n.message = I18n.t("#{Notification.errors_path}.bookmark_cancelled")
+          n.seen = false
+          if !n.save
+            errors.add(:base, :problem_unpublishing)
+            raise ActiveRecord::Rollback
+          end
           b.destroy
         rescue Exception
-          @publish_errors = LANGUAGE['problem_unpublishing_lesson']
+          errors.add(:base, :problem_unpublishing)
           raise ActiveRecord::Rollback
         end
       end
       self.is_public = false
       if !self.save
-        @publish_errors = LANGUAGE['problem_unpublishing_lesson']
+        errors.add(:base, :problem_unpublishing)
         raise ActiveRecord::Rollback
       end
       resp = true
@@ -166,11 +173,51 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
-  def self.create_lesson an_user_id, a_title, a_subject_id, a_school_level_id, a_description
-    lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
-    lesson.copied_not_modified = false
-    lesson.user_id = 2
-    lesson.save
+  def destroy_with_notifications
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problem_destroying)
+      return false
+    end
+    resp = false
+    ActiveRecord::Base.transaction do
+      Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
+        n = Notification.new
+        n.user_id = b.user_id
+        n.message = I18n.t("#{Notification.errors_path}.bookmark_cancelled")
+        n.seen = false
+        if !n.save
+          errors.add(:base, :problem_destroying)
+          raise ActiveRecord::Rollback
+        end
+      end
+      begin
+        self.destroy
+      rescue Exception
+        errors.add(:base, :problem_destroying)
+        raise ActiveRecord::Rollback
+      end
+      resp = true
+    end
+    resp
+  end
+  
+  def add_slide kind
+    if self.new_record? || !['text', 'image1', 'image2', 'image3', 'audio1', 'audio2', 'video1', 'video2'].include?(kind)
+      errors.add(:base, :problem_adding_slide)
+      return nil
+    end
+    resp = nil
+    slide = Slide.new
+    slide.kind = kind
+    slide.lesson_id = self.id
+    slide.position = Slide.order('position DESC').where(:lesson_id => self.id).limit(1).first.position + 1
+    if slide.save
+      return slide
+    else
+      errors.add(:base, :problem_adding_slide)
+      return nil
+    end
   end
   
   private
