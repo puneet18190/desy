@@ -16,6 +16,39 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  def destroy_with_positions
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problems_destroying)
+      return false
+    end
+    if self.kind == 'cover'
+      errors.add(:base, :dont_destroy_cover)
+      raise ActiveRecord::Rollback
+    end
+    resp = false
+    my_position = self.position
+    my_lesson_id = self.lesson_id
+    my_id = self.id
+    ActiveRecord::Base.transaction do
+      begin
+        self.destroy
+      rescue Exception
+        errors.add(:base, :problems_destroying)
+        raise ActiveRecord::Rollback
+      end
+      Slide.where('lesson_id = ? AND position > ?', my_lesson_id, my_position).order(:position).each do |s|
+        s.position -= 1
+        if !s.save
+          errors.add(:base, :problems_destroying)
+          raise ActiveRecord::Rollback
+        end
+      end
+      resp = true
+    end
+    resp
+  end
+  
   def change_position x
     errors.clear
     if self.new_record?

@@ -17,6 +17,8 @@ en:
           problems_changing_position: 'There was a problem changing the position of the slide'
           invalid_position: 'The position of the slide is invalid'
           cant_change_position_of_cover: 'You cannot change the position of the cover'
+          problems_destroying: 'There was a problem destroying the slide'
+          dont_destroy_cover: 'You cannot remove the cover of a lesson'
         user:
           problems_updating: 'Could not update your personal data'
           problems_destroying: 'Could not destroy the selected user'
