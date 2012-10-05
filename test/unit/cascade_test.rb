@@ -100,4 +100,15 @@ class CascadeTest < ActiveSupport::TestCase
     assert VirtualClassroomLesson.where(:id => id).empty?
   end
   
+  test 'lesson_bookmarks_cascade_without_virtual_classroom' do
+    @bookmark = Bookmark.find 1
+    assert_equal 'Lesson', @bookmark.bookmarkable_type
+    vc = VirtualClassroomLesson.where(:user_id => @bookmark.user_id, :lesson_id => @bookmark.bookmarkable_id).first
+    assert !vc.nil?
+    vc.destroy
+    assert VirtualClassroomLesson.where(:user_id => @bookmark.user_id, :lesson_id => @bookmark.bookmarkable_id).empty?
+    @bookmark.destroy
+    assert Bookmark.where(:id => 1).empty?
+  end
+  
 end

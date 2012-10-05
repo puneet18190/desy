@@ -44,7 +44,16 @@ class CoreMethodsTest < ActiveSupport::TestCase
     resp = User.create_user(CONFIG['admin_email'], 'oo', 'fsg', 'asf', 1, 1, [1, 2])
     assert !resp.nil?
     x = User.find 1
-    assert_equal 1, Lesson.where(:user_id => 1).count
+    lessons = Lesson.where(:user_id => 1)
+    assert_equal 1, lessons.length
+    assert_equal 1, lessons[0].id
+    assert lessons[0].publish
+    b = Bookmark.new
+    b.user_id = 2
+    b.bookmarkable_id = 1
+    b.bookmarkable_type = 'Lesson'
+    assert_obj_saved b
+    assert_equal 1, Notification.where(:user_id => 2).count
     assert_equal 2, UsersSubject.where(:user_id => 1).count
     assert_equal 4, MediaElement.where(:user_id => 1).count
     assert_equal 2, Notification.where(:user_id => 1).count
@@ -61,6 +70,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert Report.where(:user_id => 1).empty?
     assert !User.exists?(1)
     assert_equal 2, MediaElement.where(:user_id => resp.id).length
+    assert_equal 2, Notification.where(:user_id => 2).count
   end
   
   test 'copy_lesson' do

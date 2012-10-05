@@ -39,7 +39,10 @@ class Bookmark < ActiveRecord::Base
     return if self.new_record?
     bookmark_me = Bookmark.find self.id
     return if bookmark_me.bookmarkable_type != 'Lesson'
-    VirtualClassroomLesson.where(:lesson_id => bookmark_me.bookmarkable_id, :user_id => bookmark_me.user_id).first.destroy
+    vc = VirtualClassroomLesson.where(:lesson_id => bookmark_me.bookmarkable_id, :user_id => bookmark_me.user_id).first
+    return if vc.nil?
+    vc.destroy
+    return false if VirtualClassroomLesson.where(:lesson_id => bookmark_me.bookmarkable_id, :user_id => bookmark_me.user_id).any?
   end
   
   def validate_impossible_changes

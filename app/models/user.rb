@@ -123,7 +123,10 @@ class User < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       begin
         Lesson.where(:user_id => self.id).each do |l|
-          l.destroy
+          if !l.destroy_with_notifications
+            errors.add(:base, :problems_destroying)
+            raise ActiveRecord::Rollback
+          end
         end
         UsersSubject.where(:user_id => self.id).each do |us|
           us.destroy
