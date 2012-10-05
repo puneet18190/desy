@@ -465,4 +465,28 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 2, VirtualClassroomLesson.find(xx.id).position
   end
   
+  test 'remove_from_playlist' do
+    x = VirtualClassroomLesson.new
+    assert !x.remove_from_playlist
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem removing your lesson from the playlist/, x.errors.messages[:base].first
+    lesson1 = User.find(1).create_lesson 'lesson1', 'lesson1', 1
+    xx = VirtualClassroomLesson.new
+    xx.lesson_id = lesson1.id
+    xx.user_id = 1
+    assert_obj_saved xx
+    xx = VirtualClassroomLesson.find(xx.id)
+    assert xx.add_to_playlist
+    assert_equal 2, VirtualClassroomLesson.where(:user_id => 1).count
+    assert_equal 2, VirtualClassroomLesson.find(xx.id).position
+    assert VirtualClassroomLesson.find(1).remove_from_playlist
+    assert VirtualClassroomLesson.find(1).position.nil?
+    assert_equal 1, VirtualClassroomLesson.find(xx.id).position
+    assert_equal 2, VirtualClassroomLesson.where(:user_id => 1).count
+    assert VirtualClassroomLesson.find(1).remove_from_playlist
+    assert VirtualClassroomLesson.find(1).position.nil?
+    assert_equal 1, VirtualClassroomLesson.find(xx.id).position
+    assert_equal 2, VirtualClassroomLesson.where(:user_id => 1).count
+  end
+  
 end
