@@ -95,7 +95,7 @@ class SlideTest < ActiveSupport::TestCase
   
   test 'blank_text' do
     @slide.kind = 'video2'
-    assert_invalid @slide, :text, 'ciao ciao ciao', nil, /must be null for in this kind of slide/
+    assert_invalid @slide, :text, 'ciao ciao ciao', nil, /must be null for this kind of slide/
     assert_obj_saved @slide
   end
   

@@ -202,6 +202,24 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  def add_slide kind
+    if self.new_record? || !['text', 'image1', 'image2', 'image3', 'audio1', 'audio2', 'video1', 'video2'].include?(kind)
+      errors.add(:base, :problem_adding_slide)
+      return nil
+    end
+    resp = nil
+    slide = Slide.new
+    slide.kind = kind
+    slide.lesson_id = self.id
+    slide.position = Slide.order('position DESC').where(:lesson_id => self.id).limit(1).position + 1
+    if slide.save
+      return slide
+    else
+      errors.add(:base, :problem_adding_slide)
+      return nil
+    end
+  end
+  
   private
   
   def present_parent_id

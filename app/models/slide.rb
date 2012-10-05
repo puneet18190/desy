@@ -69,7 +69,7 @@ class Slide < ActiveRecord::Base
   private
   
   def validate_text
-    errors[:text] << 'must be null for in this kind of slide' if ['image3', 'audio2', 'video2'].include?(self.kind) && !self.text.nil?
+    errors[:text] << 'must be null for this kind of slide' if ['image3', 'audio2', 'video2'].include?(self.kind) && !self.text.nil?
   end
   
   def is_cover

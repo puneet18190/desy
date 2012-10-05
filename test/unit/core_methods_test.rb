@@ -25,10 +25,16 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'edit_user_fields' do
+    uu = User.new
+    assert !uu.edit_fields('oo', 'fsg', 'asf', 1, 1, [1, 2])
+    assert_equal 1, uu.errors.messages[:base].length
+    assert_match /Could not update your personal data/, uu.errors.messages[:base].first
     assert_equal 3, UsersSubject.count
     x = User.find 1
     assert x.name != 'oo' && x.surname != 'fsg' && x.school != 'asf'
     assert !x.edit_fields('oo', 'fsg', 'asf', 1, 1, [])
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /You need to select at least one subject/, x.errors.messages[:base].first
     assert !x.edit_fields('oo', 'fsg', 'asf', 1, 1, 'sgdds')
     assert !User.new.edit_fields('oo', 'fsg', 'asf', 1, 1, [1, 2])
     assert UsersSubject.where(:user_id => 1, :subject_id => 3).any?
@@ -41,6 +47,10 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'destroy_users_with_dependencies' do
+    uu = User.new
+    assert !uu.destroy_with_dependencies
+    assert_equal 1, uu.errors.messages[:base].length
+    assert_match /Could not destroy the selected user/, uu.errors.messages[:base].first
     resp = User.create_user(CONFIG['admin_email'], 'oo', 'fsg', 'asf', 1, 1, [1, 2])
     assert !resp.nil?
     x = User.find 1
@@ -77,6 +87,8 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert Lesson.new.copy(1).nil?
     x = Lesson.find(1)
     assert x.copy(100).nil?
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem copying the lesson/, x.errors.messages[:base].first
     assert x.copy(2).nil?
     resp = x.copy(1)
     assert !resp.nil?
@@ -113,7 +125,10 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'publish_lesson' do
-    assert !Lesson.new.publish
+    x = Lesson.new
+    assert !x.publish
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem publishing the lesson/, x.errors.messages[:base].first
     x = Lesson.find 2
     assert !x.publish
     assert_equal 1, x.errors.messages[:base].length
@@ -135,7 +150,10 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'unpublish_lesson' do
-    assert !Lesson.new.unpublish
+    x = Lesson.new
+    assert !x.unpublish
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem unpublishing the lesson/, x.errors.messages[:base].first
     x = Lesson.find 1
     assert !x.unpublish
     assert_equal 1, x.errors.messages[:base].length
@@ -211,6 +229,10 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'change_slide_position' do
+    uu = Slide.new
+    assert !uu.change_position(1)
+    assert_equal 1, uu.errors.messages[:base].length
+    assert_match /There was a problem changing the position of the slide/, uu.errors.messages[:base].first
     s = Slide.new :position => 4, :title => 'Titolo', :text => 'Testo testo testo'
     s.lesson_id = 2
     s.kind = 'text'
