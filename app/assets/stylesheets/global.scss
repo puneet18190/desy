@@ -5,6 +5,7 @@ body {
 	margin: 0;
 	padding: 0;
 	color: #000;
+	direction:ltr;
 	@media (max-width: 1024px) {
     font-size: 50%;
 	}
@@ -96,7 +97,7 @@ p {
 	line-height: 0px;
 }
 .footer {
-	padding: 26px 0px 34px 39px;
+	padding: 26px 55px 34px 30px;
 	background: #373737;
 	color:#fff;
 	font-size:75%;
