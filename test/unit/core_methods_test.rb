@@ -516,4 +516,18 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert vc.position.nil?
   end
   
+  test 'remove_from_virtual_classroom' do
+    assert_equal 1, VirtualClassroomLesson.count
+    x = Lesson.new
+    assert !x.remove_from_virtual_classroom(1)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem removing the lesson from your virtual classroom/, x.errors.messages[:base].first
+    x = Lesson.find 2
+    assert !x.remove_from_virtual_classroom(100)
+    assert !x.remove_from_virtual_classroom('sbsg')
+    assert x.remove_from_virtual_classroom(1)
+    assert_equal 0, VirtualClassroomLesson.count
+    assert x.remove_from_virtual_classroom(1)
+  end
+  
 end
