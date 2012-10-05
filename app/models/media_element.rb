@@ -26,6 +26,30 @@ class MediaElement < ActiveRecord::Base
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => self.id).any?
   end
   
+  def check_and_destroy
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problem_destroying)
+      return false
+    end
+    if self.is_public
+      errors.add(:base, :cant_destroy_public)
+      return false
+    end
+    old_id = self.id
+    begin
+      self.destroy
+    rescue Exception
+      errors.add(:base, :problem_destroying)
+      return false
+    end
+    if MediaElement.exists?(old_id)
+      errors.add(:base, :problem_destroying)
+      return false
+    end
+    true
+  end
+  
   private
   
   def init_validation
