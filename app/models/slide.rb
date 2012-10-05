@@ -37,7 +37,6 @@ class Slide < ActiveRecord::Base
     resp = false
     my_position = self.position
     my_lesson_id = self.lesson_id
-    my_id = self.id
     ActiveRecord::Base.transaction do
       begin
         self.destroy

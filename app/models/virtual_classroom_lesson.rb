@@ -19,6 +19,33 @@ class VirtualClassroomLesson < ActiveRecord::Base
     !self.position.blank?
   end
   
+  def remove_from_playlist
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problems_removing_from_playlist)
+      return false
+    end
+    return true if !self.in_playlist?
+    resp = false
+    my_position = self.position
+    ActiveRecord::Base.transaction do
+      self.position = nil
+      if !self.save
+        errors.add(:base, :problems_removing_from_playlist)
+        raise ActiveRecord::Rollback
+      end
+      VirtualClassroomLesson.where('user_id = ? AND position > ?', self.user_id, my_position).order(:position).each do |vcl|
+        vcl.position -= 1
+        if !vcl.save
+          errors.add(:base, :problems_removing_from_playlist)
+          raise ActiveRecord::Rollback
+        end
+      end
+      resp = true
+    end
+    resp
+  end
+  
   def add_to_playlist
     errors.clear
     if self.new_record?
