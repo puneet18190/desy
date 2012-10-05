@@ -16,6 +16,52 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  def change_position x
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problems_changing_position)
+      return false
+    end
+    y = self.position
+    return true if y == x
+    desc = (y > x)
+    if self.kind == 'cover'
+      errors.add(:base, :cant_change_position_of_cover)
+      return false
+    end
+    tot_slides = Slide.where(:lesson_id => self.lesson_id).count
+    if x > tot_slides || x == 1
+      errors.add(:base, :invalid_position)
+      return false
+    end
+    resp = false
+    ActiveRecord::Base.transaction do
+      self.position = tot_slides + 2
+      if !self.save
+        errors.add(:base, :problems_changing_position)
+        raise ActiveRecord::Rollback
+      end
+      empty_pos = y
+      while empty_pos != x
+        curr_pos = (desc ? (empty_pos - 1) : (empty_pos + 1))
+        curr_slide = Slide.where(:lesson_id => self.lesson_id, :position => curr_pos).first
+        curr_slide.position = empty_pos
+        if !curr_slide.save
+          errors.add(:base, :problems_changing_position)
+          raise ActiveRecord::Rollback
+        end
+        empty_pos = curr_pos
+      end
+      self.position = x
+      if !self.save
+        errors.add(:base, :problems_changing_position)
+        raise ActiveRecord::Rollback
+      end
+      resp = true
+    end
+    resp
+  end
+  
   private
   
   def is_cover
