@@ -71,7 +71,8 @@ class CoreMethodsTest < ActiveSupport::TestCase
     resp = x.copy(1)
     assert !resp.nil?
     assert x.copy(1).nil?
-    assert_equal 'You already have a copy of this lesson', x.copy_errors
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /You already have a copy of this lesson/, x.errors.messages[:base].first
     x = Lesson.find(2)
     resp = x.copy(1)
     assert !resp.nil?
@@ -105,7 +106,8 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !Lesson.new.publish
     x = Lesson.find 2
     assert !x.publish
-    assert_equal 'The lesson you selected has already been published', x.publish_errors
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The lesson you selected has already been published/, x.errors.messages[:base].first
     x = Lesson.find 1
     new_slide = Slide.new :position => 2, :title => 'Titolo', :text => 'Testo testo testo'
     new_slide.lesson_id = 1
@@ -126,15 +128,18 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !Lesson.new.unpublish
     x = Lesson.find 1
     assert !x.unpublish
-    assert_equal 'The lesson you selected has already been unpublished', x.publish_errors
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The lesson you selected has already been unpublished/, x.errors.messages[:base].first
     x = Lesson.find 2
     assert VirtualClassroomLesson.where(:lesson_id => 2).any?
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).any?
     assert_equal 3, MediaElement.where(:is_public => true).count
+    assert Notification.where(:user_id => 2, :message => 'Your bookmark has been cancelled').empty?
     assert x.unpublish
     assert !Lesson.find(x.id).is_public
     assert VirtualClassroomLesson.where(:lesson_id => 2).empty?
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).empty?
+    assert Notification.where(:user_id => 1, :message => 'Your bookmark has been cancelled').any?
     assert_equal 3, MediaElement.where(:is_public => true).count
     lesson = Lesson.find 1
     assert lesson.publish
@@ -180,6 +185,10 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 1, resp.user_id
     assert_equal false, resp.copied_not_modified
     assert_equal false, resp.is_public
+  end
+  
+  test 'destroy_lesson_with_notifications' do
+    x = Lesson.find 1
   end
   
 end
