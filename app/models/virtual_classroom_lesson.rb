@@ -27,7 +27,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
     end
     return true if !self.position.nil?
     tot_playlists = VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.user_id).count
-    self.position = tot_playlists
+    self.position = tot_playlists + 1
     if !self.save
       errors.add(:base, :problems_adding_to_playlist)
       return false

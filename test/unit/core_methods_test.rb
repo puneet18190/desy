@@ -441,4 +441,28 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert VirtualClassroomLesson.find(vc5.id).position.nil?
   end
   
+  test 'add_to_playlist' do
+    x = VirtualClassroomLesson.new
+    assert !x.add_to_playlist
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem adding your lesson to the playlist/, x.errors.messages[:base].first
+    x = VirtualClassroomLesson.last
+    assert x.in_playlist?
+    assert_equal 1, VirtualClassroomLesson.count
+    assert x.add_to_playlist
+    assert VirtualClassroomLesson.find(x.id).in_playlist?
+    assert_equal 1, VirtualClassroomLesson.count
+    lesson1 = User.find(1).create_lesson 'lesson1', 'lesson1', 1
+    xx = VirtualClassroomLesson.new
+    xx.lesson_id = lesson1.id
+    xx.user_id = 1
+    assert_obj_saved xx
+    xx = VirtualClassroomLesson.find(xx.id)
+    assert xx.position.nil?
+    assert_equal 2, VirtualClassroomLesson.count
+    assert xx.add_to_playlist
+    assert_equal 2, VirtualClassroomLesson.count
+    assert_equal 2, VirtualClassroomLesson.find(xx.id).position
+  end
+  
 end
