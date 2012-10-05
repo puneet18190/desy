@@ -34,12 +34,11 @@ class Lesson < ActiveRecord::Base
   
   def copy an_user_id
     errors.clear
-    my_user = User.where(:id => an_user_id).first
-    if self.new_record? || my_user.nil? || (!self.is_public && self.user_id != my_user.id) || (self.is_public && self.user_id != my_user.id && Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id, :user_id => my_user.id).empty?)
+    if self.new_record? || User.where(:id => an_user_id).empty? || (!self.is_public && self.user_id != an_user_id) || (self.is_public && self.user_id != an_user_id && Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id, :user_id => an_user_id).empty?)
       errors.add(:base, :problem_copying)
       return nil
     end
-    if Lesson.where(:parent_id => self.id, :user_id => my_user.id).any?
+    if Lesson.where(:parent_id => self.id, :user_id => an_user_id).any?
       errors.add(:base, :already_copied)
       return nil
     end
@@ -226,8 +225,7 @@ class Lesson < ActiveRecord::Base
       errors.add(:base, :problem_adding_to_virtual_classroom)
       return false
     end
-    my_user = User.where(:id => an_user_id).first
-    if my_user.nil?
+    if User.where(:id => an_user_id).empty?
       errors.add(:base, :problem_adding_to_virtual_classroom)
       return false
     end
@@ -240,6 +238,31 @@ class Lesson < ActiveRecord::Base
     vc.lesson_id = self.id
     if !vc.save
       errors.add(:base, :lesson_not_available_for_virtual_classroom)
+      return false
+    end
+    true
+  end
+  
+  def remove_from_virtual_classroom an_user_id
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problem_removing_from_virtual_classroom)
+      return false
+    end
+    if User.where(:id => an_user_id).empty?
+      errors.add(:base, :problem_removing_from_virtual_classroom)
+      return false
+    end
+    vc = VirtualClassroomLesson.where(:lesson_id => self.id, :user_id => an_user_id).first
+    return true if vc.nil?
+    if !vc.remove_from_playlist
+      errors.add(:base, :problem_removing_from_virtual_classroom)
+      return false
+    end
+    begin
+      VirtualClassroomLesson.find(vc.id).destroy
+    rescue
+      errors.add(:base, :problem_removing_from_virtual_classroom)
       return false
     end
     true
