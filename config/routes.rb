@@ -1,6 +1,9 @@
 Desy::Application.routes.draw do
 
-  resources :layouts, :only => :show
+  resources :layouts, :only => :show do
+    get ':controller_id(/:action_id)' => 'views#show'
+    # resources :views, :only => :show
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
