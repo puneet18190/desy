@@ -11,6 +11,10 @@ en:
           already_unpublished: 'The lesson you selected has already been unpublished'
           problem_destroying: 'The lesson could not be destroyed correctly'
           problem_adding_slide: 'There was a problem adding the slide'
+          problem_adding_to_virtual_classroom: 'There was a problem adding the selected lesson to your virtual classroom'
+          lesson_already_in_virtual_classroom: 'The selected lesson is already in your virtual classroom'
+          lesson_not_available_for_virtual_classroom: 'The lesson you selected cannot be added directly to your virtual classroom'
+          problem_removing_from_virtual_classroom: 'There was a problem removing the lesson from your virtual classroom'
         media_element:
           problem_destroying: 'There was a problem removing this element'
           cant_destroy_public: 'You cannot remove a public element'
@@ -32,7 +36,7 @@ en:
           problems_changing_position_in_playlist: 'There was a problem changing the position of the lesson in your playlist'
           problems_adding_to_playlist: 'There was a problem adding your lesson to the playlist'
           problems_removing_from_playlist: 'There was a problem removing your lesson from the playlist'
-  hello: "Hello world"
+
   header:
      welcome: 'welcome'
      logout: 'Logout'
@@ -44,4 +48,4 @@ en:
           elements: 'create a new element'
           lesson: 'create a new lesson'
   footer:
-     copyright: '©2012 DESY'   
+    copyright: '©2012 DESY'

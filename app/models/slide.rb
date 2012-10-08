@@ -17,11 +17,11 @@ class Slide < ActiveRecord::Base
   before_destroy :stop_if_cover
   
   def previous
-    self.new_record ? nil : Slide.where(:lesson_id => self.lesson_id, :position => (self.position - 1)).first
+    self.new_record? ? nil : Slide.where(:lesson_id => self.lesson_id, :position => (self.position - 1)).first
   end
   
   def following
-    self.new_record ? nil : Slide.where(:lesson_id => self.lesson_id, :position => (self.position + 1)).first
+    self.new_record? ? nil : Slide.where(:lesson_id => self.lesson_id, :position => (self.position + 1)).first
   end
   
   def destroy_with_positions

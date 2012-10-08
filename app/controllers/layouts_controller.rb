@@ -9,11 +9,7 @@ class LayoutsController < ApplicationController
 
     layout_name = params[:id].to_s
 
-    begin
-      render layout_name
-    rescue ActionView::MissingTemplate
-      render text: "Layout '#{layout_name}' non trovato"
-    end
+    render layout_name
   end
   
 end

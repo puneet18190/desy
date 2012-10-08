@@ -144,9 +144,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     mes.position = 2
     assert_obj_saved mes
     assert !MediaElementsSlide.find(mes.id).media_element.is_public
+    assert Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => MediaElementsSlide.find(mes.id).media_element_id).empty?
     assert x.publish
     assert Lesson.find(x.id).is_public?
     assert MediaElementsSlide.find(mes.id).media_element.is_public
+    assert Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => MediaElementsSlide.find(mes.id).media_element_id).any?
   end
   
   test 'unpublish_lesson' do
@@ -487,6 +489,47 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert VirtualClassroomLesson.find(1).position.nil?
     assert_equal 1, VirtualClassroomLesson.find(xx.id).position
     assert_equal 2, VirtualClassroomLesson.where(:user_id => 1).count
+  end
+  
+  test 'add_to_virtual_classroom' do
+    assert_equal 1, VirtualClassroomLesson.count
+    assert VirtualClassroomLesson.exists?(1)
+    x = Lesson.new
+    assert !x.add_to_virtual_classroom(1)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem adding the selected lesson to your virtual classroom/, x.errors.messages[:base].first
+    x = Lesson.find 1
+    assert !x.add_to_virtual_classroom(0)
+    assert !x.add_to_virtual_classroom(100)
+    x = Lesson.find 2
+    assert !x.add_to_virtual_classroom(1)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The selected lesson is already in your virtual classroom/, x.errors.messages[:base].first
+    x = Lesson.find 1
+    assert !x.add_to_virtual_classroom(2)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /The lesson you selected cannot be added directly to your virtual classroom/, x.errors.messages[:base].first
+    assert x.add_to_virtual_classroom(1)
+    assert_equal 2, VirtualClassroomLesson.count
+    vc = VirtualClassroomLesson.where(:lesson_id => 1, :user_id => 1).first
+    assert vc.id != 1
+    assert_equal 1, vc.user_id
+    assert_equal 1, vc.lesson_id
+    assert vc.position.nil?
+  end
+  
+  test 'remove_from_virtual_classroom' do
+    assert_equal 1, VirtualClassroomLesson.count
+    x = Lesson.new
+    assert !x.remove_from_virtual_classroom(1)
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem removing the lesson from your virtual classroom/, x.errors.messages[:base].first
+    x = Lesson.find 2
+    assert !x.remove_from_virtual_classroom(100)
+    assert !x.remove_from_virtual_classroom('sbsg')
+    assert x.remove_from_virtual_classroom(1)
+    assert_equal 0, VirtualClassroomLesson.count
+    assert x.remove_from_virtual_classroom(1)
   end
   
 end

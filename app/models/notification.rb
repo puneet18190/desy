@@ -9,6 +9,20 @@ class Notification < ActiveRecord::Base
   
   before_validation :init_validation
   
+  def self.send_to an_user_id, msg
+    x = Notification.new
+    x.user_id = an_user_id
+    x.message = msg
+    x.seen = false
+    x.save
+  end
+  
+  def has_been_seen
+    return false if self.new_record?
+    self.seen = true
+    self.save
+  end
+  
   private
   
   def init_validation
