@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="application-layout <%= controller_html_class %> <%= action_html_class %>">
 <head>
   <title>Desy</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -8,13 +8,13 @@
 </head>
 <body>
 <div class="container">
-  <%= render :partial => "header" %>
+  <%= render :partial => "layouts/header" %>
   <div class="content">
 	<%= render :partial => "layouts/header_elements/graybar" %>
   <br class="clearfloat">
     <%= yield %>
 	</div>
-  <%= render :partial => "footer" %>
+  <%= render :partial => "layouts/footer" %>
 </div>
 </body>
 </html>
