@@ -126,6 +126,14 @@ class Lesson < ActiveRecord::Base
               errors.add(:base, :problem_publishing)
               raise ActiveRecord::Rollback
             end
+            boo = Bookmark.new
+            boo.user_id = self.user_id
+            boo.bookmarkable_type = 'MediaElement'
+            boo.bookmarkable_id = me.id
+            if !boo.save
+              errors.add(:base, :problem_publishing)
+              raise ActiveRecord::Rollback
+            end
           end
         end
       end
