@@ -1,0 +1,59 @@
+.content {
+	padding: 20px 38px 43px 21px;
+	color:#939393;
+}
+@mixin title-bar {
+  color:#fff;
+  h1 {
+	  font-size:200%;
+		
+	}
+	h2 {
+	  font-size:100%;
+	}
+	h3 {
+	  font-size:75%;
+	}
+}
+.lessons-content {
+  border:1px solid red; 
+	.title-bar {
+    @include title-bar;
+	  background-color:#f29400;
+  } 
+}
+.boxContentIndex {
+  float:left; 
+  padding:2%; 
+  background-color:#f7f7f7; 
+  width:45%; 
+  margin-right:2%;
+  &:last-child {
+	  margin-right: 0;
+		float:right;
+	}
+}
+.boxViewSingleLesson {
+  background-color:#fbfafb;
+	padding:1%;
+	margin-right:2%;
+	margin-bottom:1%;
+	-moz-box-shadow: 1px 5px 5px #e8e8e8;
+  -webkit-box-shadow: 1px 5px 5px #e8e8e8;
+  box-shadow: 1px 5px 5px #e8e8e8;
+	float:left;
+	width:47%;
+	&:last-child {
+	  margin-right: 0;
+		float:right;
+	}
+	h1 {
+	  font-size: 87.5%;
+		color:#f29400;
+		padding:0px;
+	}
+	h2 {
+	  font-size: 140%;
+		
+	}
+}

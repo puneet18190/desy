@@ -3,6 +3,7 @@
   padding-bottom: 20px;
 	float:left;
 	width:100%;
+	font:  80% 'Nunito', sans-serif;
 	ul.navlist {
    list-style: none;
    padding: 0;
@@ -28,7 +29,7 @@
 			text-transform:lowercase;
     }
 }		
-.lessons a {
+ul.navlist li.lessons a {
   background-color:#f29400;
 	  &.current {
 	  color:#f5a933;
@@ -37,7 +38,7 @@
     color:#f5a933; 
   }
 }
-.elements a {
+ul.navlist li.elements a {
   background-color:#41a62a;
   &.current {
 	  color:#67b855;
@@ -46,7 +47,7 @@
     color:#67b855; 
   }
 }
-.classroom a {
+ul.navlist li.classroom a {
   background-color:#2eaadc;
   &.current {
 	  color:#58bbe3;
@@ -55,7 +56,7 @@
     color:#58bbe3; 
   }
 }
-.profile a {
+ul.navlist li.profile a {
   background-color:#5d5c5c;
   &.current {
 	  color:#7d7d7d;
