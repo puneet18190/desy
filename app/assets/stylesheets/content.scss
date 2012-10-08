@@ -6,7 +6,6 @@
   color:#fff;
   h1 {
 	  font-size:200%;
-		
 	}
 	h2 {
 	  font-size:100%;
@@ -23,26 +22,22 @@
   } 
 }
 .boxContentIndex {
-  float:left; 
+  p {font:  180% 'Nunito', sans-serif;}
   padding:2%; 
   background-color:#f7f7f7; 
-  width:45%; 
-  margin-right:2%;
-  &:last-child {
-	  margin-right: 0;
-		float:right;
-	}
+  width:45%;
+	a {color:#2faadc}
 }
 .boxViewSingleLesson {
   background-color:#fbfafb;
-	padding:1%;
+	/*padding:1%;*/
 	margin-right:2%;
 	margin-bottom:1%;
 	-moz-box-shadow: 1px 5px 5px #e8e8e8;
   -webkit-box-shadow: 1px 5px 5px #e8e8e8;
   box-shadow: 1px 5px 5px #e8e8e8;
 	float:left;
-	width:47%;
+	width:49%;
 	&:last-child {
 	  margin-right: 0;
 		float:right;
@@ -56,4 +51,14 @@
 	  font-size: 140%;
 		
 	}
+	.contentInterno {
+	  padding:4%
+	}
+	.menuController {
+	  background-color:#fff; 
+    padding:10px; 
+    border-top:1px solid #f2f1f2;
+		text-align:right
+	}
+	
 }
