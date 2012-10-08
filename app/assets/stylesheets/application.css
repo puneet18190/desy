@@ -12,7 +12,7 @@
  *= require global
  *= require header
  *= require layouts/menu
- *= require layouts/notice
+ *= require layouts/notice_help
  *= require layouts/greybar
  *= require layouts/tooltips
  *= require content
