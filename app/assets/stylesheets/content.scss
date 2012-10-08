@@ -23,22 +23,29 @@
 }
 .boxContentIndex {
   p {font:  180% 'Nunito', sans-serif;}
-  padding:2%; 
+  padding:2%;
+	margin-left:1%;
+	margin-right:1%;
   background-color:#f7f7f7; 
-  width:45%;
-	a {color:#2faadc}
+  width:44%;
+	float:left;
+	a {
+	  color:#2faadc
+	}
 }
 .boxViewSingleLesson {
   background-color:#fbfafb;
-	margin-right:2%;
+	margin-right:1%;
+	margin-left:1%;
 	margin-bottom:1%;
 	-moz-box-shadow: 1px 5px 5px #e8e8e8;
   -webkit-box-shadow: 1px 5px 5px #e8e8e8;
   box-shadow: 1px 5px 5px #e8e8e8;
 	float:left;
-	width:49%;
+	width:48%;
 	&:last-child {
-	  margin-right: 0;
+	  
+		margin-left: 0;
 		float:right;
 	}
 	h1 {
