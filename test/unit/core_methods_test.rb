@@ -144,9 +144,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     mes.position = 2
     assert_obj_saved mes
     assert !MediaElementsSlide.find(mes.id).media_element.is_public
+    assert Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => MediaElementsSlide.find(mes.id).media_element_id).empty?
     assert x.publish
     assert Lesson.find(x.id).is_public?
     assert MediaElementsSlide.find(mes.id).media_element.is_public
+    assert Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => MediaElementsSlide.find(mes.id).media_element_id).any?
   end
   
   test 'unpublish_lesson' do
