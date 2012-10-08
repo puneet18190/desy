@@ -30,7 +30,6 @@
 }
 .boxViewSingleLesson {
   background-color:#fbfafb;
-	/*padding:1%;*/
 	margin-right:2%;
 	margin-bottom:1%;
 	-moz-box-shadow: 1px 5px 5px #e8e8e8;
@@ -49,16 +48,17 @@
 	}
 	h2 {
 	  font-size: 140%;
-		
 	}
 	.contentInterno {
-	  padding:4%
+	  padding:4%;
 	}
 	.menuController {
 	  background-color:#fff; 
     padding:10px; 
     border-top:1px solid #f2f1f2;
-		text-align:right
+		text-align:right;
+		color:#cbcbcb;
+		font-size:75%;
 	}
 	
 }
