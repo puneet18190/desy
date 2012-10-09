@@ -5,7 +5,8 @@ Desy::Application.routes.draw do
     # resources :views, :only => :show
   end
   
-  match 'dashboard' => 'dashboard#index'
+  match 'dashboard' => 'dashboard#index', :as => :dashboard_index
+  match 'lessons' => 'lessons#index', :as => :my_lessons
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
