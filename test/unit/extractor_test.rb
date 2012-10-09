@@ -35,4 +35,63 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal ids.sort, my_ids.sort
   end
   
+  test 'suggested_elements' do
+    el1 = MediaElement.new :description => 'desc1', :title => 'titl1'
+    el1.user_id = 1
+    el1.sti_type = 'Video'
+    el1.duration = 10
+    assert_obj_saved el1
+    el2 = MediaElement.new :description => 'desc2', :title => 'titl2'
+    el2.user_id = 1
+    el2.sti_type = 'Video'
+    el2.duration = 10
+    assert_obj_saved el2
+    el3 = MediaElement.new :description => 'desc3', :title => 'titl3'
+    el3.user_id = 1
+    el3.sti_type = 'Audio'
+    el3.duration = 10
+    assert_obj_saved el3
+    el4 = MediaElement.new :description => 'desc4', :title => 'titl4'
+    el4.user_id = 1
+    el4.sti_type = 'Audio'
+    el4.duration = 10
+    assert_obj_saved el4
+    el5 = MediaElement.new :description => 'desc5', :title => 'titl5'
+    el5.user_id = 1
+    el5.sti_type = 'Image'
+    assert_obj_saved el5
+    el6 = MediaElement.new :description => 'desc6', :title => 'titl6'
+    el6.user_id = 1
+    el6.sti_type = 'Image'
+    assert_obj_saved el6
+    el7 = MediaElement.new :description => 'desc7', :title => 'titl7'
+    el7.user_id = 1
+    el7.sti_type = 'Image'
+    assert_obj_saved el7
+    el1.is_public = true
+    el1.publication_date = '2012-01-01 10:00:00'
+    assert_obj_saved el1
+    el2.is_public = true
+    el2.publication_date = '2012-01-01 10:00:00'
+    assert_obj_saved el2
+    el3.is_public = true
+    el3.publication_date = '2012-01-01 10:00:00'
+    assert_obj_saved el3
+    el5.is_public = true
+    el5.publication_date = '2012-01-01 10:00:00'
+    assert_obj_saved el5
+    el7.is_public = true
+    el7.publication_date = '2012-01-01 10:00:00'
+    assert_obj_saved el7
+    uu = User.find 2
+    assert uu.bookmark 'MediaElement', el3.id
+    my_ids = [2, el1.id, el2.id, el5.id, el7.id]
+    resp = uu.suggested_elements 6
+    ids = []
+    resp.each do |r|
+      ids << r.id
+    end
+    assert_equal ids.sort, my_ids.sort
+  end
+  
 end

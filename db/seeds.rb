@@ -18,7 +18,7 @@ User.create_user CONFIG['admin_email'], 'DESY', 'Admin User', 'School', school_l
 
 if Rails.env.development?
   
-  u = User.find_by_email(CONFIG['admin_email'])
+  u = User.create_user 'assunzioni@pippo.it', 'Giorgio', 'Mastrota', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
   u.create_lesson('History of China: Shang Dynasty', 'Paolo Negro (Arzignano, 16 aprile 1972) è un allenatore di calcio ed ex calciatore italiano. Dal 2012 è alla guida dello Zagarolo.', 1)
   u.create_lesson('The birth of the great empire', 'Cresce calcisticamente nel Brescia dove viene trasformato da attaccante in fluidificante[2] e nel 1990 passa al Bologna, con cui debutta in serie A il 28 ottobre 1990 in Genoa-Bologna 0-0 ed esordisce nelle coppe europee in Zagłębie Lubin-Bologna 0-1', 2)
   u.create_lesson('Chain Reactions', "Per dieci stagioni consecutive segna almeno una rete in campionato; in particolare nell'annata 1994-1995, la prima sotto la guida del tecnico boemo Zdenek Zeman in cui la Lazio conclude il campionato con il migliore attacco a quota 69,[4] Negro segna 4 reti", 3)
@@ -76,6 +76,20 @@ if Rails.env.development?
   
   notifics.each do |n|
     Notification.send_to u.id, n
+  end
+  
+  Lesson.all.each do |l|
+    l.is_public = true
+    l.save
+  end
+  
+  cont = 0
+  tim = Time.zone.now
+  MediaElement.all.each do |l|
+    l.is_public = true
+    l.publication_date = tim - cont
+    l.save
+    cont += 1
   end
   
 end
