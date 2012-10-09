@@ -1,5 +1,11 @@
 class Lesson < ActiveRecord::Base
   
+  STAT_PRIVATE = I18n.t('status.lessons.private')
+  STAT_COPIED = I18n.t('status.lessons.copied')
+  STAT_LINKED = I18n.t('status.lessons.linked')
+  STAT_NOT_MINE = I18n.t('status.lessons.not_mine')
+  STAT_PUBLIC = I18n.t('status.lessons.public')
+  
   attr_accessible :subject_id, :school_level_id, :title, :description
   
   belongs_to :user
@@ -27,12 +33,39 @@ class Lesson < ActiveRecord::Base
   
   before_validation :init_validation, :create_token
   
-  def status
-    'public'
+  def status an_user_id
+    return nil if self.new_record?
+    @status = nil
+    if !self.is_public && !self.copied_not_modified && an_user_id == self.user_id
+      @status = STAT_PRIVATE
+    elsif !self.is_public && self.copied_not_modified && an_user_id == self.user_id
+      @status = STAT_COPIED
+    elsif self.is_public && an_user_id != self.user_id && self.bookmarked?(an_user_id)
+      @status = STAT_LINKED
+    elsif self.is_public && an_user_id != self.user_id && !self.bookmarked?(an_user_id)
+      @status = STAT_NOT_MINE
+    elsif  self.is_public && an_user_id == self.user_id
+      @status = STAT_PUBLIC
+    end
+    @status
   end
   
   def buttons
-    ['like', 'preview', 'add']
+    my_status = @status
+    my_status = self.status if !my_status
+    if my_status == STAT_PRIVATE
+      return [Buttons::PREVIEW, Buttons::EDIT, Buttons::EDIT, Buttons::PUBLISH, Buttons::VIRTUAL_CLASSROOM, Buttons::DESTROY, Buttons::COPY]
+    elsif my_status == STAT_COPIED
+      return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
+    elsif my_status == STAT_LINKED
+       return [Buttons::PREVIEW, Buttons::VIRTUAL_CLASSROOM, Buttons::REMOVE, Buttons::COPY, Buttons::LIKE, Buttons::REPORT]
+    elsif my_status == STAT_NOT_MINE
+       return [Buttons::PREVIEW, Buttons::LIKE, Buttons::ADD, Buttons::REPORT]
+    elsif my_status == STAT_PUBLIC
+       return [Buttons::PREVIEW, Buttons::UNPUBLISH, Buttons::VIRTUAL_CLASSROOM, Buttons::EDIT, Buttons::DESTROY, Buttons::COPY]
+    else
+      return []
+    end
   end
   
   def bookmarked? an_user_id

@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
+  def own_lessons n
+    Lesson.where('user_id = ? OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)', self.id, 'Lesson', self.id).limit(n)
+  end
+  
   def suggested_lessons n
     subject_ids = []
     UsersSubject.where(:user_id => self.id).each do |us|

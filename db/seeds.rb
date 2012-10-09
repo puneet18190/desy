@@ -79,8 +79,7 @@ if Rails.env.development?
   end
   
   Lesson.all.each do |l|
-    l.is_public = true
-    l.save
+    l.publish
   end
   
   cont = 0
@@ -90,6 +89,15 @@ if Rails.env.development?
     l.publication_date = tim - cont
     l.save
     cont += 1
+  end
+  
+  admin = User.find_by_email CONFIG['admin_email']
+  
+  Lesson.all.each do |l|
+    admin.bookmark 'Lesson', l.id
+    if l.subject_id == 3
+      l.copy admin.id
+    end
   end
   
 end

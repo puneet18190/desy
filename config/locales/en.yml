@@ -48,3 +48,14 @@ en:
         lesson: 'create a new lesson'
   footer:
     copyright: '©2012 DESY'
+  status:
+    lessons:
+      private: 'private'
+      copied: 'copied'
+      linked: 'linked'
+      not_mine: 'not mine'
+      public: 'public'
+    media_elements:
+      private: 'private'
+      public: 'public'
+      linked: 'linked'
