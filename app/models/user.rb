@@ -21,6 +21,18 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
+  def suggested_lessons n
+    subject_ids = []
+    UsersSubject.where(:user_id => self.id).each do |us|
+      subject_ids << us.subject_id
+    end
+    Lesson.where('is_public = ? AND user_id != ? AND subject_id IN (?)', true, self.id, subject_ids).order('updated_at DESC').limit(n)
+  end
+  
+  def suggested_elements n
+    MediaElement.where('is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', true, self.id, 'MediaElement', self.id).order('publication_date DESC').limit(n)
+  end
+  
   def bookmark type, target_id
     return nil if self.new_record?
     b = Bookmark.new
