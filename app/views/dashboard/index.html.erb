@@ -1,8 +1,21 @@
 <div>
+  <% cont = 0 %>
   <% @lessons.each do |l| %>
+    
+    <% if cont == 0 %>
+      <div>
+    <% end %>
+    
     <div class="boxViewSingleLesson">
       <%= render :partial => "lessons/view_single", :locals => {:lesson => l, :expanded => true} %>
     </div>
+    
+    <% if cont == 1 %>
+      </div>
+    <% end %>
+    
+    <% cont = (cont == 0) ? 1 : 0 %>
+    
   <% end %>
 </div>
 
