@@ -1,5 +1,5 @@
 	<div class="contentInterno" style="border:1px solid red;">
-		<div style="float:left; width:45%; border:1px dotted black"><h1><%= lesson.title %></h1></div>
+		<div style="float:left; width:45%; border:1px dotted black; padding:0"><h1><%= lesson.title %></h1></div>
 		<div style="float:left; width:10%; border:1px dotted black; text-align:center"><p><%= lesson.subject.description %></p></div>
 		<div style="float:left; width:10%; border:1px dotted black; text-align:center"><p><%= lesson.status(@current_user.id) %></p></div>
 	  <%= render :partial => "shared/menu_controller", :locals => {:lesson => lesson} %>
