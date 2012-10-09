@@ -3,41 +3,42 @@
   padding-bottom: 20px;
 	float:left;
 	width:100%;
+	font:  180% 'Nunito', sans-serif;
+	text-shadow: #b5b4b4 0px 2px 0px;
 	ul.navlist {
    list-style: none;
    padding: 0;
    margin: 0 auto;
    width: 100%;
-   font-size:180%;
-	 float:left;
+   float:left;
   
     li {
       display: block;
       float: left;
       width: 25%;
       margin: 0;
-      padding: 10px 0px 10px 0px;
+      padding: 0px 0px 10px 0px;
     }
     li a {
       display: block;
       width: 100%;
-      padding:0;
+      padding:15px 0px 15px 0px;
       color: #fff;
       text-decoration: none;
 			text-align:center;
 			text-transform:lowercase;
     }
 }		
-.lessons a {
+ul.navlist li.lessons a {
   background-color:#f29400;
-  &.current {
+	  &.current {
 	  color:#f5a933;
 	}
   &:hover, &:active, &:focus { 
     color:#f5a933; 
   }
 }
-.elements a {
+ul.navlist li.elements a {
   background-color:#41a62a;
   &.current {
 	  color:#67b855;
@@ -46,7 +47,7 @@
     color:#67b855; 
   }
 }
-.classroom a {
+ul.navlist li.classroom a {
   background-color:#2eaadc;
   &.current {
 	  color:#58bbe3;
@@ -55,7 +56,7 @@
     color:#58bbe3; 
   }
 }
-.profile a {
+ul.navlist li.profile a {
   background-color:#5d5c5c;
   &.current {
 	  color:#7d7d7d;
