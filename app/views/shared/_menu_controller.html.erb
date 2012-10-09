@@ -1,2 +1,31 @@
 <div class="menuController">
-inserisci icone</div>
+  <% lesson.buttons.each do |b| %>
+    <div class="<%= b %>">
+      <% if b == 'preview' %>
+        Preview
+      <% elsif b == 'edit' %>
+        Edit
+      <% elsif b == 'publish' %>
+        Publish
+      <% elsif b == 'unpublish' %>
+        Unpublish
+      <% elsif b == 'add' %>
+        Add
+      <% elsif b == 'remove' %>
+        Remove
+      <% elsif b == 'destroy' %>
+        Destroy
+      <% elsif b == 'like' %>
+        Like
+      <% elsif b == 'report' %>
+        Report
+      <% elsif b == 'virtual_classroom' %>
+        Virtual Classroom
+      <% elsif b == 'copy' %>
+        Copy
+      <% elsif b == 'change_info' %>
+        Change Info
+      <% end %>
+    </div>
+  <% end %>
+</div>

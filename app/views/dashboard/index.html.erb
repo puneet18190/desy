@@ -1,10 +1,9 @@
 <div>
-  <div class="boxViewSingleLesson">
-    <%= render :partial => "lessons/view_single" %>
-	</div>
-	<div class="boxViewSingleLesson">
-	  <%= render :partial => "lessons/view_single" %>
-	</div>
+  <% @lessons.each do |l| %>
+    <div class="boxViewSingleLesson">
+      <%= render :partial => "lessons/view_single", :locals => {:lesson => l, :expanded => true} %>
+    </div>
+  <% end %>
 </div>
 
 <div class="boxContentIndex">

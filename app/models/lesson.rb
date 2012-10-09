@@ -27,6 +27,14 @@ class Lesson < ActiveRecord::Base
   
   before_validation :init_validation, :create_token
   
+  def status
+    'public'
+  end
+  
+  def buttons
+    ['like', 'preview', 'add']
+  end
+  
   def bookmarked? an_user_id
     return false if self.new_record?
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).any?
