@@ -1,24 +1,22 @@
-<div>
-  <% cont = 0 %>
+<% cont = 0 %>
   <% @lessons.each do |l| %>
-    
     <% if cont == 0 %>
-      <div>
+    <div>
     <% end %>
-    
-    <div class="boxViewSingleLesson">
-      <%= render :partial => "lessons/view_single", :locals => {:lesson => l, :expanded => true} %>
-    </div>
-    
-    <% if cont == 1 %>
+      <div class="boxViewSingleLesson">
+        <%= render :partial => "lessons/view_single", :locals => {:lesson => l, :expanded => true} %>
       </div>
+    <% if cont == 1 %>
+    </div>
     <% end %>
-    
-    <% cont = (cont == 0) ? 1 : 0 %>
-    
+  <% cont = (cont == 0) ? 1 : 0 %>
   <% end %>
-</div>
-
+  <% if cont == 1 %>
+	  <div class="boxViewSingleLesson">
+	  </div>
+	</div>
+	<% end %>
+<br class="clearfloat">
 <div class="boxContentIndex">
   <p>Need help using Desy?</br>
 	<a href="">Download the user manual</a>
