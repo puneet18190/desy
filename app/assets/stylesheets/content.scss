@@ -11,6 +11,8 @@
 @mixin title-bar {
   padding:5px 0px 5px 16px;
 	margin-bottom:12px;
+	float:left;
+	
   h1 {
 	  color:#fff;
 		padding:0px;
@@ -24,33 +26,47 @@
 	  font-size:75%;
 	}
 }
+/*CLASSE VISTA LESSONS*/
 .lessons-content {
-  border:1px solid black;
-	float:left;
+  float:left;
 	width:100%; 
 	.title-bar {
     @include title-bar;
 	  background-color:#f29400;
-		
-  }
+	}
 	.boxViewSingleLesson {
-    background-color:#fbfafb;
+	  background-color:#fbfafb;
 	  margin-bottom:1%;
 	  -moz-box-shadow: 1px 5px 5px #e8e8e8;
     -webkit-box-shadow: 1px 5px 5px #e8e8e8;
     box-shadow: 1px 5px 5px #e8e8e8;
 	  float:left;
-	  width:50%;
-	  &:last-child {
-		  margin-left: 0;
+	  width:100%;
+	  color:#c0c0c0;
+		
+		.contentInterno {
+	    padding:1%;
+			
+	  }
+		h1 {
+	    font-size: 95%;
+		  color:#5d5c5c;
+		  padding:0px;
+	  }
+		.menuController {
+	    background-color:#fbfafb; 
+      padding:0px; 
+      border-top:none;
+			border:1px solid red;
+		  text-align:right;
 		  float:right;
 	  }
   }
 }
+/*FINE CLASSE VISTA LESSONS*/
 .boxContentIndex {
   p {font:  180% 'Nunito', sans-serif;}
   padding:2%;
-	
   background-color:#f7f7f7; 
   width:45%;
 	float:left;
