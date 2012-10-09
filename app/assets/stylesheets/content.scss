@@ -9,15 +9,16 @@
 	padding-right:0.5%;
 }
 @mixin title-bar {
-  padding:5px 0px 5px 16px;
+  padding:0 0 0 1%;
 	margin-bottom:12px;
 	float:left;
-	
+	width:99%;
+	color:#fff;
   h1 {
 	  color:#fff;
 		padding:0px;
 		font: 200% 'Nunito', sans-serif;
-		text-shadow: #b5b4b4 0px 2px 0px;
+		
 	}
 	h2 {
 	  font-size:100%;
@@ -33,6 +34,7 @@
 	.title-bar {
     @include title-bar;
 	  background-color:#f29400;
+		text-shadow: #d68300 0px 2px 0px;
 	}
 	.boxViewSingleLesson {
 	  background-color:#fbfafb;

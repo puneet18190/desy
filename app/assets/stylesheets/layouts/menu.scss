@@ -4,7 +4,6 @@
 	float:left;
 	width:100%;
 	font:  180% 'Nunito', sans-serif;
-	text-shadow: #b5b4b4 0px 2px 0px;
 	ul.navlist {
    list-style: none;
    padding: 0;
@@ -31,6 +30,7 @@
 }		
 ul.navlist li.lessons a {
   background-color:#f29400;
+	text-shadow: #d68300 0px 2px 0px;
 	  &.current {
 	  color:#f5a933;
 	}
@@ -40,6 +40,7 @@ ul.navlist li.lessons a {
 }
 ul.navlist li.elements a {
   background-color:#41a62a;
+	text-shadow: #368a23 0px 2px 0px;
   &.current {
 	  color:#67b855;
 	}
@@ -49,6 +50,7 @@ ul.navlist li.elements a {
 }
 ul.navlist li.classroom a {
   background-color:#2eaadc;
+	text-shadow: #3490b5 0px 2px 0px;
   &.current {
 	  color:#58bbe3;
 	}
@@ -58,6 +60,7 @@ ul.navlist li.classroom a {
 }
 ul.navlist li.profile a {
   background-color:#5d5c5c;
+	text-shadow: #4e4d4d 0px 2px 0px;
   &.current {
 	  color:#7d7d7d;
 	}
