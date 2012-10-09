@@ -4,6 +4,8 @@ Desy::Application.routes.draw do
     get ':controller_id(/:action_id)' => 'views#show'
     # resources :views, :only => :show
   end
+  
+  match 'dashboard' => 'dashboard#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

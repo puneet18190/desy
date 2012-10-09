@@ -65,6 +65,16 @@ if Rails.env.development?
     end
   end
   
+  notifics = []
+  notifics << 'Ma De Rossi a Roma che cosa ci sta a fare quando le cose vanno male è sempre colpa sua'
+  notifics << "a daniè t'avevo detto che dovevi annà al city"
+  notifics << "共產黨通過「鎮壓反革命」嘅運動，對私有經濟同財產進行城市工商業"
+  notifics << "Prova il brivido del Poker online Gioca su StarCasinò. Bonus 1.000€!"
+  
+  notifics.each do |n|
+    Notification.send_to u.id, n
+  end
+  
 end
 
-puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons, #{MediaElement.count} media_elements, #{Slide.count} slides"
+puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons, #{MediaElement.count} media_elements, #{Slide.count} slides, #{Notification.count} notifications"
