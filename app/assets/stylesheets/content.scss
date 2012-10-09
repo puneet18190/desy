@@ -14,11 +14,14 @@
 	float:left;
 	width:99%;
 	color:#fff;
+	
   h1 {
 	  color:#fff;
-		padding:0px;
+		padding:0;
+		margin:0;
 		font: 200% 'Nunito', sans-serif;
-		
+		float:left;
+		width:45%;
 	}
 	h2 {
 	  font-size:100%;
@@ -35,7 +38,9 @@
     @include title-bar;
 	  background-color:#f29400;
 		text-shadow: #d68300 0px 2px 0px;
+		
 	}
+	.title-bar div {float:left; width:10%; text-align:center; padding-top:0.5%}
 	.boxViewSingleLesson {
 	  background-color:#fbfafb;
 	  margin-bottom:1%;
@@ -54,6 +59,7 @@
 	    font-size: 95%;
 		  color:#5d5c5c;
 		  padding:0px;
+			
 	  }
 		.menuController {
 	    background-color:#fbfafb; 
