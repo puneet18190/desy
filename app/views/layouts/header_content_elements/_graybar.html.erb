@@ -1,6 +1,4 @@
 <div class="gray-bar">
-  <%= render :partial => "layouts/header_content_elements/selected_for_you" %>
-	<!--%= render :partial => "layouts/header_content_elements/upload_create_elements" %-->
-	<!--%= render :partial => "layouts/header_content_elements/create_new_lesson" %-->
-	<%= render :partial => "layouts/header_elements/search" %>
+  <%= render :partial => "layouts/header_content_elements/#{where}_graybar_left" %>
+  <%= render :partial => "layouts/header_elements/search" %>
 </div>

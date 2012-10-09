@@ -10,16 +10,16 @@
 <div class="container">
   <%= render :partial => "layouts/header" %>
   <div class="content">
-	<%= render :partial => "layouts/header_content_elements/graybar" %>
+  <%= render :partial => "layouts/header_content_elements/graybar", :locals => {:where => @where} %>
   <br class="clearfloat">
-	<div class="griglia-contenuti">
-	
-	
+  <div class="griglia-contenuti">
+  
+  
     <%= yield %>
     
-	</div>	
-	<br class="clearfloat">	
-	</div>
+  </div>
+  <br class="clearfloat">
+  </div>
   <%= render :partial => "layouts/footer" %>
 </div>
 </body>
