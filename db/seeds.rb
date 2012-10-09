@@ -32,6 +32,39 @@ if Rails.env.development?
   u.create_lesson('Chez Fifi', "\"Breakfast\", which was included, was supposed to start at 6:30 AM, which was fine with us because we had an early flight and did not want to spend an additional minute in this place. At 6:30 AM, Madam Fifi was sitting at the table--but no breakfast. After we asked her \"where's breakfast?\"", 2)
   u.create_lesson('跟隨羅馬', "托迪（意大利文：Francesco Totti，1976年9月27號—）係意大利足球員，打前鋒，現時效力意大利甲組足球聯賽球隊羅馬。托迪喺羅馬出世，佢早響16歲嗰陣已經代表球會上陣意甲賽事。佢好受羅馬重用，廿歲嗰陣就贏咗意甲最佳新人獎。2001年佢跟隨羅馬贏得意甲聯賽冠軍，之前又贏埋意大利聯賽最佳年青球員。由於佢生得靚仔，只係二十歲就係意大利女人心目中嘅最佳對象，地位等同英國嘅碧咸。", 3)
   
+  types = {0 => 'Video', 1 => 'Audio', 2 => 'Image'}
+  descriptions = []
+  descriptions << ['Gatto', "Non dire gatto se non l'hai nel sacco"]
+  descriptions << ["Pizza Berlusconi", "Pizza Berlusconi on tuotenimi Kotipizza-ketjun savuporopizzalle. Kotipizza on savuporopizzallaan voittanut maaliskuussa 2008 America's Plate International -pizzakilpailun New Yorkissa päihittäen muun muassa toiseksi kilpailussa tulleet italialaiset."]
+  descriptions << ["Kotipizza är Finlands största pizzakedja", "Kedjan gjorde ett försök med en Sverigelansering under 1990-talet då tre pizzarestauranger öppnades i Umeå, grannstad med Rabbe Grönbloms hemstad Vasa. Enligt Kotipizza gick lanseringen enligt förväntan men restaurangerna lades ner efter ett par år. Kotipizza har restauranger också i Ryssland, Estland och Kina."]
+  descriptions << ['歷史', '中華人民共和國建立無耐，中國大陸因連年戰爭已經接近一個廢墟。1950年代初期，共產黨通過「鎮壓反革命」嘅運動，對私有經濟同財產進行城市工商業「社會主義改造」同農村「土改」同土地集體化，抑止戰時通貨膨脹、並喺蘇聯援助下建立一個初步完整嘅工業體系，普及國民教育同建立醫療保障體系。而外交上奉行完全傾向社會主義陣營（「一邊倒」）嘅政策，援助各社會主義國家同新興獨立國家共產主義活動。軍事上，1950年基本消滅國民黨喺大陸嘅殘餘勢力；']
+  descriptions << ['هذه المقالة عن جمهورية الصين الشعبية. لتصفح عناوين مشابهة، انظر الصين (توضيح).', ' الصين على الأنظمة الملكية الوراثية (المعروفة أيضاً باسم السلالات). كان أول هذه السلالات شيا (حوالي 2000 ق.م) لكن أسرة تشين اللاحقة كانت أول من وحد البلاد في عام 221 ق.م. انتهت آخر السلالات (سلالة تشينغ) في عام 1911 مع تأسيس جمهورية الصين من قبل الكومينتانغ والحزب القومي الصيني. شهد النصف الأول من القرن العشرين سقوط البلاد في فترة من التفكك والحروب الأهلية التي قسمت البلاد إلى معسكرين سياسيين رئيسيين هما الكومينتانغ والشيوعيون. انتهت أعمال العنف الكبرى في عام 1949 عندما حسم الشيوعيون الحرب الأهلية وأسسوا جمهورية الصين الشعبية في بر الصين الرئيسي. نقل حزب الكومينتانغ عاصمة جمهوريته إلى تايبيه في تايوان حيث تقتصر سيادته حالياً على تايوان وكنمن ماتسو وجزر عدة نائية. منذ ذلك الحين، دخلت']
+  descriptions << ['William Bligh', "Bligh was born in Tinten Manor in St Tudy near Bodmin, Cornwall, to Francis Bligh and his wife Jane. Francis was Jane's second husband; she was the widow of a man whose surname was Pearce and her maiden name was Balsam."]
+  descriptions << ["Tokelauan self-determination referendum, 2006", "Despite the majority 60% who voted in favour of the proposal, the referendum failed to get the two-thirds majority required for the referendum to succeed."]
+  descriptions << ["History of Samoa", "Robert Louis Stevenson arrived in Samoa in 1889 and built a house at Vailima. He quickly became passionately interested, and involved, in the attendant political machinations."]
+  descriptions << ["Приднестровская Молдавская Республика", "С древних времён данная территория была населена тирагетами (фракийское племя)[10]. В раннем средневековье на территории современного Приднестровья жили славянские племена уличи и тиверцы, а также кочевники-тюрки — печенеги и половцы."]
+  descriptions << ["Calendario 2012", "Su questo sito ogni calendario online, annuale o mensile, sta, tra l’altro, per 2012, 2013 e 2014. Questo può essere molto utile quando si cerca una data (per esempio, quando si hanno le vacanze) "]
+  descriptions << ["De Rossi-Zeman, è gelo", "Scarso impegno? Il romanista è infuriato, tre mesi per trovare la pace o sarà addio."]
+  descriptions << ["Balotelli imita Eto'o. Si regala mega casa ", "Balotelli BalotelliBalotelli Balotelli Balotelli Balotelli Balotelli Balotelli"]
+  
+  i = 0
+  descriptions.each do |d|
+    x = MediaElement.new :description => d[1], :title => d[0]
+    x.user_id = User.find_by_email(CONFIG['admin_email']).id
+    x.sti_type = types[(i%3)]
+    x.duration = (types[(i%3)] != 'Image') ? 10 : nil
+    x.save
+    i += 1
+  end
+  
+  slides = {1 => ['image1', 'image2'], 2 => ['text', 'video1'], 3 => ['video2', 'video2'], 4 => ['image3', 'audio1'], 5 => [], 6 => ['audio2'], 7 => ['text', 'text'], 8 => [], 9 => ['video1', 'audio1'], 10 => ['image1', 'image3'], 11 => ['text', 'image2', 'image2', 'text'], 12 => ['video2', 'audio2', 'audio1']}
+  
+  Lesson.all.each do |l|
+    slides[l.id].each do |kind|
+      l.add_slide kind
+    end
+  end
+  
 end
 
-puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons"
+puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons, #{MediaElement.count} media_elements, #{Slide.count} slides"
