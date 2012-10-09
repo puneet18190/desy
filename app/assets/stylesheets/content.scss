@@ -6,7 +6,8 @@
   float:left; 
 	width:99%; 
 	padding-left:0.5%; 
-	padding-right:0.5%
+	padding-right:0.5%;
+	border:1px solid red;
 }
 @mixin title-bar {
   padding:5px 0px 5px 16px;
@@ -83,9 +84,8 @@
 	float:left;
 	width:49%;
 	&:last-child {
-		margin-left: 0;
+		margin-left: 0px;
 		float:right;
-		clear:both;
 	}
 	h1 {
 	  font-size: 87.5%;

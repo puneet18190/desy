@@ -1,4 +1,4 @@
-<div>
+
   <% cont = 0 %>
   <% @lessons.each do |l| %>
     
@@ -17,7 +17,14 @@
     <% cont = (cont == 0) ? 1 : 0 %>
     
   <% end %>
-</div>
+	
+	<% if cont == 1 %>
+			<div class="boxViewSingleLesson">
+			</div>
+		</div>
+	<% end %>
+	
+<br class="clearfloat">
 
 <div class="boxContentIndex">
   <p>Need help using Desy?</br>
