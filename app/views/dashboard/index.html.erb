@@ -1,16 +1,16 @@
 <% tot_lesson = 0 %>
 <% (0...CONFIG['lesson_pages_in_dashboard']).each do |j| %>
-  <div id="suggested_lessons_<%= j %>" <% if j != 0 %> style="display:none" <% end %>>
+  <div class="suggested_lessons_page" id="suggested_lessons_<%= j %>" <% if j != 0 %> style="display:none" <% end %>>
     <%= render :partial => 'lessons/suggested_lessons', :locals => {:lessons => @lessons[tot_lesson, CONFIG['lessons_for_page_in_dashboard']]} %>
   </div>
   <% tot_lesson += CONFIG['lessons_for_page_in_dashboard'] %>
 <% end %>
 <% tot_element = 0 %>
-<% (0...CONFIG['element_pages_in_dashboard']).each do |j| %>
-  <div id="suggested_media_elements_<%= j %>" style="display:none">
-    <%= render :partial => 'media_elements/suggested_media_elements', :locals => {:media_elements => @media_elements[tot_lesson, CONFIG['elements_for_page_in_dashboard']]} %>
+<% (0...CONFIG['media_element_pages_in_dashboard']).each do |j| %>
+  <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j %>" style="display:none">
+    <%= render :partial => 'media_elements/suggested_media_elements', :locals => {:media_elements => @media_elements[tot_lesson, CONFIG['media_elements_for_page_in_dashboard']]} %>
   </div>
-  <% tot_element += CONFIG['elements_for_page_in_dashboard'] %>
+  <% tot_element += CONFIG['media_elements_for_page_in_dashboard'] %>
 <% end %><br class="clearfloat">
 <div class="boxContentIndex">
   <p>Need help using Desy?</br>
