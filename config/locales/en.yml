@@ -59,3 +59,6 @@ en:
       private: 'private'
       not_mine: 'not mine'
       linked: 'linked'
+  language_parameters:
+    lessons:
+      length_description: 280 # for chinese it should be around 180 - 200

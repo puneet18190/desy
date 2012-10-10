@@ -40,6 +40,7 @@ class LessonTest < ActiveSupport::TestCase
     assert_invalid @lesson, :is_public, nil, false, /is not included in the list/
     assert_invalid @lesson, :copied_not_modified, nil, false, /is not included in the list/
     assert_invalid @lesson, :title, long_string(256), long_string(255), /is too long/
+    assert_invalid @lesson, :description, long_string(281), long_string(280), /is too long/
     assert_obj_saved @lesson
   end
   
