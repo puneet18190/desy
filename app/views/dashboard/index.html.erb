@@ -13,20 +13,20 @@
   </div>
   <% tot_lesson += CONFIG['lessons_for_page_in_dashboard'] %>
 <% end %>
-<% tot_element = 0 %>
+<% tot_media_element = 0 %>
 <% (0...CONFIG['media_element_pages_in_dashboard']).each do |j| %>
   <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j %>" style="display:none">
-    <%= render :partial => 'media_elements/suggested_media_elements', :locals => {:media_elements => @media_elements[tot_lesson, CONFIG['media_elements_for_page_in_dashboard']].to_a} %>
+    <%= render :partial => 'media_elements/suggested_media_elements', :locals => {:media_elements => @media_elements[tot_media_element, CONFIG['media_elements_for_page_in_dashboard']].to_a} %>
     <!-- TODO qui andrà la paginazione -->
     <% if j != 0 %>
       <div style="float:left" onclick="switchToSuggested('media_element', <%= j %>, <%= j-1 %>);">PRECEDENTE</div>
     <% end %>
     <% if j != CONFIG['media_element_pages_in_dashboard'] - 1 %>
-      <div style="float:left" onclick="switchToSuggested('media_element', <%= j %>, <%= j-1 %>);">SUCCESSIVA</div>
+      <div style="float:left" onclick="switchToSuggested('media_element', <%= j %>, <%= j+1 %>);">SUCCESSIVA</div>
     <% end %>
     <!-- fino a qui -->
   </div>
-  <% tot_element += CONFIG['media_elements_for_page_in_dashboard'] %>
+  <% tot_media_element += CONFIG['media_elements_for_page_in_dashboard'] %>
 <% end %><br class="clearfloat">
 <div class="boxContentIndex">
   <p>Need help using Desy?</br>
