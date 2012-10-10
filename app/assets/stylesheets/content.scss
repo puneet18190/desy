@@ -86,6 +86,12 @@
 			@include tag-formatting;
 			height:auto;
 			p {font-size:80%;}
+			&:hover {
+			  background-color:#e8e8e8;
+			}
+			.current {
+			  background-color:#e8e8e8;
+			}
 		}
 		
 		.menuController {
