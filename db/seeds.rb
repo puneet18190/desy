@@ -18,6 +18,8 @@ User.create_user CONFIG['admin_email'], 'DESY', 'Admin User', 'School', school_l
 
 if Rails.env.development?
   
+  admin = User.find_by_email CONFIG['admin_email']
+  
   u = User.create_user 'assunzioni@pippo.it', 'Giorgio', 'Mastrota', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
   u.create_lesson('History of China: Shang Dynasty', 'Paolo Negro (Arzignano, 16 aprile 1972) è un allenatore di calcio ed ex calciatore italiano. Dal 2012 è alla guida dello Zagarolo.', 1)
   u.create_lesson('The birth of the great empire', 'Cresce calcisticamente nel Brescia dove viene trasformato da attaccante in fluidificante[2] e nel 1990 passa al Bologna, con cui debutta in serie A il 28 ottobre 1990 in Genoa-Bologna 0-0 ed esordisce nelle coppe europee in Zagłębie Lubin-Bologna 0-1', 2)
@@ -34,6 +36,21 @@ if Rails.env.development?
   arab_title = 'لكن أسرة'
   arab_desc = 'والحزب القومي الصيني. شهد النصف الأول من القرن العشرين سقوط البلاد في فترة من التفكك والحروب الأهلية التي قسمت البلاد إلى معسكرين سياسيين رئيسيين هما الكومينتانغ والشيوعيون. انتهت أعمال العنف الكبرى في عام 1949 عندما حسم الشيوعيون الحرب الأهلية وأسسوا جمهورية الصين الشعبية في بر الصين الرئيسي. نقل حزب الكومينتانغ عاصمة جم'
   u.create_lesson(arab_title, arab_desc, 1)
+  
+  admin.create_lesson('Chimica Uno', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+  admin.create_lesson('Chimica Due', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+  admin.create_lesson('Chimica Tre', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+  admin.create_lesson('Chimica Cinque', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+  admin.create_lesson('Chimica Sei', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+  admin.create_lesson('Chimica Sette', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+  admin.create_lesson('Chimica Otto', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+  admin.create_lesson('Chimica Nove', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+  admin.create_lesson('Chimica Dieci', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+  admin.create_lesson('Chimica Undici', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+  admin.create_lesson('Chimica Dodici', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+  admin.create_lesson('Chimica Tredici', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+  admin.create_lesson('Chimica Quattordici', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
   
   types = {0 => 'Video', 1 => 'Audio', 2 => 'Image'}
   descriptions = []
@@ -60,7 +77,7 @@ if Rails.env.development?
     i += 1
   end
   
-  slides = {1 => ['image1', 'image2'], 2 => ['text', 'video1'], 3 => ['video2', 'video2'], 4 => ['image3', 'audio1'], 5 => [], 6 => ['audio2'], 7 => ['text', 'text'], 8 => [], 9 => ['video1', 'audio1'], 10 => ['image1', 'image3'], 11 => ['text', 'image2', 'image2', 'text'], 12 => ['video2', 'audio2', 'audio1'], 13 => []}
+  slides = {1 => ['image1', 'image2'], 2 => ['text', 'video1'], 3 => ['video2', 'video2'], 4 => ['image3', 'audio1'], 5 => [], 6 => ['audio2'], 7 => ['text', 'text'], 8 => [], 9 => ['video1', 'audio1'], 10 => ['image1', 'image3'], 11 => ['text', 'image2', 'image2', 'text'], 12 => ['video2', 'audio2', 'audio1'], 13 => [], 14 => [], 15 => [], 16 => [], 17 => [], 18 => [], 19 => [], 20 => [], 21 => [], 22 => [], 23 => [], 24 => [], 25 => [], 26 => [], 27 => []}
   
   Lesson.all.each do |l|
     slides[l.id].each do |kind|
@@ -90,8 +107,6 @@ if Rails.env.development?
     l.save
     cont += 1
   end
-  
-  admin = User.find_by_email CONFIG['admin_email']
   
   Lesson.all.each do |l|
     admin.bookmark 'Lesson', l.id

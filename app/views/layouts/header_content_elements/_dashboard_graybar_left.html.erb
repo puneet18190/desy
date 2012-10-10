@@ -1,8 +1,6 @@
 <p class="fltlft"><%= t('header.greybar.selected') %></p>
 
-<!-- TODO quando la paginazione dinamica sarà pronta, non passerò nessun parametro dentro il javascript! -->
-
 <ul class="navlist">
-  <li><a href="#" id="switch_to_lessons" class="current" onclick="switchToSuggested('lessons', 0);"><%= t('header.lessons') %></a></li>
-  <li><a href="#" id="switch_to_media_elements" onclick="switchToSuggested('media_elements', 0);"><%= t('header.elements') %></a></li>
+  <li><a href="#" id="switch_to_lessons" class="current" onclick="switchToSuggestedLessons();"><%= t('header.lessons') %></a></li>
+  <li><a href="#" id="switch_to_media_elements" onclick="switchToSuggestedMediaElements();"><%= t('header.elements') %></a></li>
 </ul>
