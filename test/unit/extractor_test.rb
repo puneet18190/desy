@@ -89,8 +89,8 @@ class ExtractorTest < ActiveSupport::TestCase
   
   test 'suggested_elements' do
     assert @user2.bookmark 'MediaElement', @el3.id
-    my_ids = [2, @el1.id, @el2.id, @el5.id, @el7.id]
-    resp = @user2.suggested_elements 6
+    my_ids = [2, 4, @el1.id, @el2.id, @el3.id, @el5.id, @el7.id]
+    resp = @user2.suggested_elements 80
     ids = []
     resp.each do |r|
       ids << r.id
