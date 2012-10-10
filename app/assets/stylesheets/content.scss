@@ -99,10 +99,30 @@
       border-top:none;
 	  }
 		.lessons-expanded {
-		  border:1px solid red; 
+		  display:block;
+			color:#fff;
 			background-color:#5d5c5c; 
 			padding:1%;
+			float:left;
+			width:98%;
+			.img_expanded {
+			  float:left;
+				position:relative;
+				padding:0;
+				width:auto;
+			}
+			.bg_text {
+			  position:absolute;
+				padding:4%;
+				width:92%;
+				
+				top:62%;		
+				left:0;
+				background-color:#383535;
+				
+			}
 		}
+		
   }
 }
 /*FINE CLASSE VISTA LESSONS*/
