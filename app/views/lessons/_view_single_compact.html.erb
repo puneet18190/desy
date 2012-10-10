@@ -1,8 +1,7 @@
-	<div class="contentInterno">
-		<h3><%= lesson.title %></h3>
-		<p><%= lesson.subject.description %></p>
-		<p><%= lesson.status(@current_user.id) %></p>
-	  <%= render :partial => "shared/menu_controller", :locals => {:lesson => lesson} %>
-		<br class="clearfloat">
-	</div>
-	
+<div class="contentInterno">
+	<h3><%= lesson.title %></h3>
+	<p><%= lesson.subject.description %></p>
+	<p><%= lesson.status %></p>
+  <%= render :partial => "shared/menu_controller", :locals => {:lesson => lesson} %>
+	<br class="clearfloat">
+</div>
