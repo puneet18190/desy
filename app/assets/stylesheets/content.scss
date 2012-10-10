@@ -8,13 +8,7 @@
 	padding-left:0.5%; 
 	padding-right:0.5%;
 }
-@mixin title-bar {
-  padding:0 0 0 1%;
-	margin-bottom:12px;
-	float:left;
-	width:99%;
-	color:#fff;
-	
+@mixin tag-formatting {
   h1 {
 	  color:#fff;
 		padding:0;
@@ -24,23 +18,48 @@
 		width:45%;
 	}
 	h2 {
-	  font-size:100%;
+	  font: 120% 'Nunito', sans-serif;
+		color:#fff;
+		float:left;
 	}
 	h3 {
-	  font-size:75%;
+	  font-size: 110%;
+		color:#5d5c5c;
+		padding:0px;
+		width:45%;
+		float:left;
 	}
+}
+
+@mixin title-bar {
+  padding:1%;
+	margin-bottom:12px;
+	float:left;
+	width:98%;
+	color:#fff;
+}
+
+@mixin float-content {
+  p {
+    width:10%;
+    text-align:center;
+    
+  }
+  
 }
 /*CLASSE VISTA LESSONS*/
 .lessons-content {
   float:left;
-	width:100%; 
+	width:100%;
+	 
 	.title-bar {
     @include title-bar;
+		@include float-content;
+		@include tag-formatting;
 	  background-color:#f29400;
 		text-shadow: #d68300 0px 2px 0px;
-		
 	}
-	.title-bar div {float:left; width:10%; text-align:center; padding-top:0.5%}
+	
 	.boxViewSingleLesson {
 	  background-color:#fbfafb;
 	  margin-bottom:1%;
@@ -53,14 +72,11 @@
 		
 		.contentInterno {
 	    padding:1%;
-			
-	  }
-		h1 {
-	    font-size: 95%;
-		  color:#5d5c5c;
-		  padding:0px;
-			
-	  }
+			@include float-content;
+			@include tag-formatting;
+			height:auto;
+		}
+		
 		.menuController {
 	    background-color:#fbfafb; 
       padding:0px; 
