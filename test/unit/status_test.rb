@@ -4,7 +4,6 @@ class StatusTest < ActiveSupport::TestCase
   
   test 'lesson' do
     l1 = Lesson.find 1
-    l2 = Lesson.find 2
     assert l1.status.nil?
     assert l1.buttons.empty?
     l1.set_status 1
@@ -29,6 +28,30 @@ class StatusTest < ActiveSupport::TestCase
     l3.set_status 2
     assert_equal 'copied', l3.status
     assert_equal ['preview', 'edit', 'destroy'], l3.buttons
+  end
+  
+  test 'media_element' do
+    me1 = MediaElement.find 1
+    assert me1.status.nil?
+    assert me1.buttons.empty?
+    me1.set_status 1
+    assert_equal 'private', me1.status
+    assert_equal ['preview', 'edit', 'destroy', 'change_info'], me1.buttons
+    me1.set_status 2
+    assert me1.status.nil?
+    assert me1.buttons.empty?
+    me1.is_public = true
+    me1.publication_date = '2011-01-01 00:00:01'
+    assert_obj_saved me1
+    me1.set_status 1
+    assert_equal 'not mine', me1.status
+    me1.set_status 2
+    assert_equal 'not mine', me1.status
+    assert_equal ['preview', 'add', 'report'], me1.buttons
+    assert User.find(2).bookmark('MediaElement', 1)
+    me1.set_status 2
+    assert_equal 'linked', me1.status
+    assert_equal ['preview', 'edit', 'remove', 'report'], me1.buttons
   end
   
 end
