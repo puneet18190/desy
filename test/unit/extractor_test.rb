@@ -118,4 +118,17 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal ids.sort, my_ids.sort
   end
   
+  test 'own_media_elements' do
+    assert @user2.bookmark 'MediaElement', 2
+    assert @user2.bookmark 'MediaElement', @el2.id
+    assert @user2.bookmark 'MediaElement', @el5.id
+    resp = @user2.own_media_elements(1, 20)
+    ids = []
+    resp.each do |r|
+      ids << r.id
+    end
+    my_ids = [2, 3, 4, 6, @el2.id, @el5.id]
+    assert_equal ids.sort, my_ids.sort
+  end
+  
 end

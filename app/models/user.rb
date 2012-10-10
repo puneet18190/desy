@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
+  def own_media_elements page, per_page
+    MediaElement.where('user_id = ? OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset((page - 1) * per_page)
+  end
+  
   def own_lessons page, per_page
     Lesson.where('user_id = ? OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)', self.id, 'Lesson', self.id).order('updated_at DESC').limit(per_page).offset((page - 1) * per_page)
   end
