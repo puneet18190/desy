@@ -10,6 +10,7 @@ class LessonsController < ApplicationController
     end
     @where = 'lessons'
     @new_notifications = 0
+    @notifications = []
   end
   
 end
