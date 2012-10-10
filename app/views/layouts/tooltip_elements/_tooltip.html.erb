@@ -2,11 +2,9 @@
 	<%= image_tag("freccia_tooltip.png", :class => "callout") %>
 	<div class="list">
   <ul class="navlist">
-    <li><a href="#" class="current">Item one</a></li>
-    <li><a href="#">Item two</a></li>
-    <li><a href="#">Item three</a></li>
-    <li><a href="#">Item four</a></li>
-    <li><a href="#">Item five</a></li>
+    <% @notifications.each do |n| %>
+      <li><a href="#" <%= n.seen ? "class=\"visited\"" : '' %>><%= n.message.html_safe %></a></li>
+    <% end %>
   </ul>
   </div>
 </span>
