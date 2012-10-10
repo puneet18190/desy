@@ -1,6 +1,5 @@
 @mixin misc {
   position:absolute;
-	width:auto;
 	margin:0px;
 	z-index:10;
 	border-radius:3px;
@@ -19,9 +18,30 @@
   padding:10%;
   right:137px;
   top:-9px;
+	width:170%;
   background-color:#fff;
 	border:1px solid #e8e8e8;
+	.list ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+		li { 
+		  margin: 0 0 3% 0; 
+		}
+		a {
+      display: block;
+      background-color: #c1e6f6;
+			background-image:none
+      /*background-image: url(images/l1_down.gif);*/
+    }
+		a:link, .navlist a:visited {
+      
+      text-decoration: none;
+    }
+		.current {background-image:none; background-color:#f5f5f5}
+  }
 }
+
 .callout {
   top: 15px;
 	@include call;
