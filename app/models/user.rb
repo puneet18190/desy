@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
-  def own_lessons n
-    Lesson.where('user_id = ? OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)', self.id, 'Lesson', self.id).limit(n)
+  def own_lessons page, per_page
+    Lesson.where('user_id = ? OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)', self.id, 'Lesson', self.id).order('updated_at DESC').limit(per_page).offset((page - 1) * per_page)
   end
   
   def suggested_lessons n
