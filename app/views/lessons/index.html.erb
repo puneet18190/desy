@@ -1,11 +1,17 @@
 <div class="lessons-content">
   <div class="title-bar">
-    <h1>lessons</h1>
-    <div>Matter</div>
-    <div>Status</div>
+    <p class="fltlft">lessons</p>
+    <p class="fltlft">Matter</p>
+    <p class="fltlft">Status</p>
+		<p class="fltlft"><h2>Show</h2>
+		  <select name="ricerca" class="styled-select">
+        <option value="" selected="selected">All lessons</option>
+        <option value=""></option>
+      </select>
+		</p>
   </div>
   <% @lessons.each do |l| %>
-    <div class="boxViewSingleLesson" style="width:100%; float:left">
+    <div class="boxViewSingleLesson">
       <%= render :partial => "lessons/view_single", :locals => {:lesson => l, :expanded => false} %>
     </div>
   <% end %>
