@@ -11,6 +11,9 @@ class DashboardController < ApplicationController
       l.set_status @current_user.id
     end
     @media_elements = @current_user.suggested_elements(ELEMENTS_FOR_PAGE * ELEMENT_PAGES)
+    @media_elements.each do |me|
+      me.set_status @current_user.id
+    end
     @notifications = Notification.where(:user_id => @current_user.id).order('created_at DESC')
     @alert_notifications = Notification.where(:user_id => @current_user.id, :seen => false).any?
     @where = 'dashboard'

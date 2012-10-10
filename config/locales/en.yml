@@ -57,5 +57,5 @@ en:
       public: 'public'
     media_elements:
       private: 'private'
-      public: 'public'
+      not_mine: 'not mine'
       linked: 'linked'

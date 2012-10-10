@@ -2,11 +2,12 @@ class MediaElement < ActiveRecord::Base
   
   STAT_PRIVATE = I18n.t('status.media_elements.private')
   STAT_LINKED = I18n.t('status.media_elements.linked')
-  STAT_PUBLIC = I18n.t('status.media_elements.public')
+  STAT_NOT_MINE = I18n.t('status.media_elements.not_mine')
   
   self.inheritance_column = :sti_type
   
   attr_accessible :title, :description, :duration, :publication_date
+  attr_reader :status
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
@@ -24,6 +25,32 @@ class MediaElement < ActiveRecord::Base
   
   before_validation :init_validation
   before_destroy :stop_if_public
+  
+  def set_status an_user_id
+    return if self.new_record?
+    if !self.is_public && an_user_id == self.user_id
+      @status = STAT_PRIVATE
+    elsif self.is_public && !self.bookmarked?(an_user_id)
+      @status = STAT_NOT_MINE
+    elsif self.is_public && self.bookmarked?(an_user_id)
+      @status = STAT_LINKED
+    else
+      @status = nil
+    end
+  end
+  
+  def buttons
+    return [] if !@status
+    if @status == STAT_PRIVATE
+      return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY, Buttons::CHANGE_INFO]
+    elsif @status == STAT_NOT_MINE
+       return [Buttons::PREVIEW, Buttons::ADD, Buttons::REPORT]
+    elsif @status == STAT_LINKED
+       return [Buttons::PREVIEW, Buttons::EDIT, Buttons::REMOVE, Buttons::REPORT]
+    else
+      return []
+    end
+  end
   
   def bookmarked? an_user_id
     return false if self.new_record?
