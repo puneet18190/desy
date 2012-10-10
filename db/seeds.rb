@@ -80,7 +80,37 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   i = 0
   descriptions.each do |d|
     x = MediaElement.new :description => d[1], :title => d[0]
-    x.user_id = User.find_by_email(CONFIG['admin_email']).id
+    x.user_id = admin.id
+    x.sti_type = types[(i%3)]
+    x.duration = (types[(i%3)] != 'Image') ? 10 : nil
+    x.save
+    i += 1
+  end
+  
+  descriptions = []
+  descriptions << ["Juve-Napoli, che bufera!", "Il procuratore federale Palazzi ha deferito Antonio Conte, Aurelio De Laurentiis e i due club"]
+  descriptions << ["Maggio: «Cara Juve, siamo cresciuti»", "L'esterno del Napoli: «Loro hanno qualcosina in più come qualità di giocatori, noi come qualità tattica»"]
+  descriptions << ["Italia, con Balotelli Osvaldo o Giovinco", "Prandelli prova prima Giovinco e poi Osvaldo come spalla di SuperMario, con Montolivo alle spalle delle punte, per chiudere con un 4-3-3 senza il milanista ma con tutte e tre le punte"]
+  descriptions << ["Candreva: Una super Lazio", "Il centrocampista, tornato in Nazionale dopo tre anni:"]
+  descriptions << ["Hernanes: «Vogliamo fare salto di qualit", "Il centrocampista della Lazio: «Il frutto di questo match è stato un buon risultato per affrontare la sosta con tranquillità»"]
+  descriptions << ["Stipendi, Agnelli batte Lotito", "Consiglieri di amministrazione della Lazio senza paga. Nei bianconeri 1,65 milioni a Marotta e 200 mila euro a Nedved"]
+  descriptions << ["Milan-Inter: c'è Valeri.", "Ecco le designazioni per le sfide della settima di Serie A: per Inter-Milan scelto Valeri. Pescara-Lazio a De Marco mentre Roma-Atalanta è stata affidata a Banti"]
+  descriptions << ["mazzoleni ha alzato la coppa a pechino!", "c'è tanta gente che ruba senza pagare, almeno voi in questo siete da esempio: a fine mese saldate sempre e comunque il conto e va detto che tutto ciò vi fa onore!! Ecco lo stile juve!! Lo sport e non solo prenda esempio da voi!!"]
+  descriptions << ["Due turni a Gastaldello", "Il giudice sportivo ha squalificato per due giornate Daniele Gastaldello (Sampdoria) che era stata espulso durante la partita con il Napoli. Guastaldello era stato espulso dopo essere stato ammonito per comportamento scorretto nei confronti di u"]
+  descriptions << ["Risultato Juve-Roma: il tuo pronostico", "Come finirà la sfida dello Juventus Stadium? Quale sarà il punteggio finale? Chi segnerà? Ditecelo con un semplice commento!"]
+  descriptions << ["Cagliari-Pescara aperta al pubblico", "Via libera ufficiale della Commissione provinciale di vigilanza per l'apertura al pubblico dello stadio Is Arenas di Quartu. Domenica gli abbonati del club sardo potranno assistere alla sfida di Serie A"]
+  descriptions << ["Zeman? Niente appello ai tifosi", "L'esterno del Barcellona ricorderà a lungo martedì 9 ottobre: esattamente dopo 223 giorni ha toccato un..."]
+  descriptions << ["Messi e Ronaldo, marziani al Camp Nou", "Hanno realizzato una doppietta a testa in quella che in questo momento è forse la più bella, spettacolare e avvincente partita che il mondo del calcio"]
+  descriptions << ["Aguero e la perdita dell'innocenza", "L'attaccante del City attacca gli arbitri: «Hanno un occhio di riguardo per i giocatori inglesi»"]
+  descriptions << ["Zamparini, è Lo Monaco l'ultimo teatro", "Il presidente del Palermo possiede tanta immaginazione, e sembra che aumenti proporzionalmente al numero di sconfitte che la sua squadra incamera"]
+  descriptions << ["Ronaldo parteciperà ad un reality", "Colui che per tutti era il Fenomeno è comparso in un programma di Rede Globo, la più grande e potente emittente del Paese e ha cominciato una dieta pubblica. Periodicamente ricomparirà in video per le misurazioni del caso"]
+  descriptions << ["Il momento in cui i talenti cadono", "Narciso si innamorò della sua immagine riflessa e prendendo atto dell'impossibilità del rapporto amoroso, si lasciò morire, perché mai le stesse pulsioni dovrebbero essere assenti in chi sa bene di essere, nel suo campo, il migliore?"]
+  descriptions << ["Sheva ora è un traditore venduto", "L'ex attacccante del Milan ha fondato un movimento: ma i tifosi che lo adoravano ora lo accusano di amoreggiare con il partito al potere"]
+  
+  i = 0
+  descriptions.each do |d|
+    x = MediaElement.new :description => d[1], :title => d[0]
+    x.user_id = u.id
     x.sti_type = types[(i%3)]
     x.duration = (types[(i%3)] != 'Image') ? 10 : nil
     x.save
