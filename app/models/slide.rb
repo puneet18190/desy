@@ -7,7 +7,7 @@ class Slide < ActiveRecord::Base
   
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0
-  validates_length_of :title, :maximum => 255, :allow_nil => true
+  validates_length_of :title, :maximum => I18n.t('language_parameters.slide.length_title'), :allow_nil => true
   validates_inclusion_of :kind, :in => ['cover', 'text', 'image1', 'image2', 'image3', 'audio1', 'audio2', 'video1', 'video2']
   validates_uniqueness_of :position, :scope => :lesson_id
   validates_uniqueness_of :kind, :scope => :lesson_id, :if => :is_cover

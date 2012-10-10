@@ -28,7 +28,7 @@ class SlideTest < ActiveSupport::TestCase
     assert_invalid @slide, :position, -9, 2, /must be greater than 0/
     assert_invalid @slide, :lesson_id, 1.1, 1, /must be an integer/
     assert_invalid @slide, :kind, 'image4', 'video1', /is not included in the list/
-    assert_invalid @slide, :title, long_string(256), long_string(255), /is too long/
+    assert_invalid @slide, :title, long_string(41), long_string(40), /is too long/
     @slide.title = nil
     assert_obj_saved @slide
   end

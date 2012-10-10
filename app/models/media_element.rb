@@ -20,7 +20,8 @@ class MediaElement < ActiveRecord::Base
   validates_inclusion_of :sti_type, :in => ['Video', 'Audio', 'Image']
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :duration, :allow_nil => true, :only_integer => true, :greater_than => 0
-  validates_length_of :title, :maximum => 255
+  validates_length_of :title, :maximum => I18n.t('language_parameters.media_element.length_title')
+  validates_length_of :description, :maximum => I18n.t('language_parameters.media_element.length_description')
   validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_duration
   
   before_validation :init_validation

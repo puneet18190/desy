@@ -1,4 +1,4 @@
-<div class="contentInterno">
+<div class="contentInterno <%= lesson.status == t('status.lessons.copied') ? 'current' : '' %>">
 	<h3><%= lesson.title %></h3>
 	<p><%= lesson.subject.description %></p>
 	<p><%= lesson.status %></p>

@@ -60,5 +60,13 @@ en:
       not_mine: 'not mine'
       linked: 'linked'
   language_parameters:
-    lessons:
+    lesson:
       length_description: 280 # for chinese it should be around 180 - 200
+      length_title: 40
+    notification:
+      characters_to_be_expandible: 140
+    media_element:
+      length_description: 280 # for chinese it should be around 180 - 200
+      length_title: 40
+    slide:
+      length_title: 40

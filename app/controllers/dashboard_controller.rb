@@ -14,9 +14,6 @@ class DashboardController < ApplicationController
     @media_elements.each do |me|
       me.set_status @current_user.id
     end
-    @notifications = Notification.where(:user_id => @current_user.id).order('created_at DESC')
-    @new_notifications = Notification.where(:user_id => @current_user.id, :seen => false).count
-    @where = 'dashboard'
   end
   
 end

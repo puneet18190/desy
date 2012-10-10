@@ -8,9 +8,6 @@ class LessonsController < ApplicationController
     @lessons.each do |l|
       l.set_status @current_user.id
     end
-    @where = 'lessons'
-    @new_notifications = 0
-    @notifications = []
   end
   
 end
