@@ -7,6 +7,7 @@ class Lesson < ActiveRecord::Base
   STAT_PUBLIC = I18n.t('status.lessons.public')
   
   attr_accessible :subject_id, :school_level_id, :title, :description
+  attr_reader :status
   
   belongs_to :user
   belongs_to :subject
@@ -33,9 +34,8 @@ class Lesson < ActiveRecord::Base
   
   before_validation :init_validation, :create_token
   
-  def status an_user_id
-    return nil if self.new_record?
-    @status = nil
+  def set_status an_user_id
+    return if self.new_record?
     if !self.is_public && !self.copied_not_modified && an_user_id == self.user_id
       @status = STAT_PRIVATE
     elsif !self.is_public && self.copied_not_modified && an_user_id == self.user_id
@@ -44,24 +44,24 @@ class Lesson < ActiveRecord::Base
       @status = STAT_LINKED
     elsif self.is_public && an_user_id != self.user_id && !self.bookmarked?(an_user_id)
       @status = STAT_NOT_MINE
-    elsif  self.is_public && an_user_id == self.user_id
+    elsif self.is_public && an_user_id == self.user_id
       @status = STAT_PUBLIC
+    else
+      @status = nil
     end
-    @status
   end
   
   def buttons
-    my_status = @status
-    my_status = self.status if !my_status
-    if my_status == STAT_PRIVATE
-      return [Buttons::PREVIEW, Buttons::EDIT, Buttons::EDIT, Buttons::PUBLISH, Buttons::VIRTUAL_CLASSROOM, Buttons::DESTROY, Buttons::COPY]
-    elsif my_status == STAT_COPIED
+    return [] if !@status
+    if @status == STAT_PRIVATE
+      return [Buttons::PREVIEW, Buttons::EDIT, Buttons::PUBLISH, Buttons::VIRTUAL_CLASSROOM, Buttons::DESTROY, Buttons::COPY]
+    elsif @status == STAT_COPIED
       return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
-    elsif my_status == STAT_LINKED
+    elsif @status == STAT_LINKED
        return [Buttons::PREVIEW, Buttons::VIRTUAL_CLASSROOM, Buttons::REMOVE, Buttons::COPY, Buttons::LIKE, Buttons::REPORT]
-    elsif my_status == STAT_NOT_MINE
+    elsif @status == STAT_NOT_MINE
        return [Buttons::PREVIEW, Buttons::LIKE, Buttons::ADD, Buttons::REPORT]
-    elsif my_status == STAT_PUBLIC
+    elsif @status == STAT_PUBLIC
        return [Buttons::PREVIEW, Buttons::UNPUBLISH, Buttons::VIRTUAL_CLASSROOM, Buttons::EDIT, Buttons::DESTROY, Buttons::COPY]
     else
       return []

@@ -7,6 +7,9 @@ class DashboardController < ApplicationController
   
   def index
     @lessons = @current_user.suggested_lessons(LESSONS_FOR_PAGE * LESSON_PAGES)
+    @lessons.each do |l|
+      l.set_status @current_user.id
+    end
     @media_elements = @current_user.suggested_elements(ELEMENTS_FOR_PAGE * ELEMENT_PAGES)
     @notifications = Notification.where(:user_id => @current_user.id).order('created_at DESC')
     @alert_notifications = Notification.where(:user_id => @current_user.id, :seen => false).any?
