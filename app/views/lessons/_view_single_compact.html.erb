@@ -2,7 +2,7 @@
 	<h3><%= lesson.title %></h3>
 	<p><%= lesson.subject.description %></p>
 	<p><%= lesson.status %></p>
-  <%= render :partial => "shared/menu_controller", :locals => {:lesson => lesson} %>
+  <%= render :partial => "shared/action_buttons", :locals => {:lesson => lesson} %>
 </div>
-<div style="border:1px solid red; background-color:#5d5c5c; padding1%">
+<div class="lessons-expanded">
 </div>

@@ -88,19 +88,21 @@
 			p {font-size:80%;}
 			&:hover {
 			  background-color:#e8e8e8;
+				cursor: pointer;
 			}
-			
 		}
 		.current {
 			  background-color:#e8e8e8;
 		}
 		.menuController {
-	    background-color:#fbfafb; 
-      padding:0px; 
+	    padding:0px; 
       border-top:none;
-			
-			
 	  }
+		.lessons-expanded {
+		  border:1px solid red; 
+			background-color:#5d5c5c; 
+			padding:1%;
+		}
   }
 }
 /*FINE CLASSE VISTA LESSONS*/
@@ -137,14 +139,5 @@
 	.contentInterno {
 	  padding:4%;
 		height:110px;
-	}
-	.menuController {
-	  background-color:#fff; 
-    padding:10px; 
-    border-top:1px solid #f2f1f2;
-		text-align:right;
-		color:#cbcbcb;
-		font-size:75%;
-		@include float-content;
 	}
 }

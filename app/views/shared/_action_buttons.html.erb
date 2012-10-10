@@ -1,8 +1,8 @@
 <div class="menuController">
   <% lesson.buttons.each do |b| %>
-    <div class="<%= b %>">
+    <div>
       <% if b == Buttons::PREVIEW %>
-        Preview
+        <a class="<%= b %>"></a>
       <% elsif b == Buttons::EDIT %>
         Edit
       <% elsif b == Buttons::PUBLISH %>

@@ -16,4 +16,5 @@
  *= require layouts/greybar
  *= require layouts/tooltips
  *= require content
+ *= require layouts/action_buttons
  */
