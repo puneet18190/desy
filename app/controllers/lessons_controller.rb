@@ -3,11 +3,18 @@ class LessonsController < ApplicationController
   FOR_PAGE = CONFIG['compact_lesson_pagination']
   
   def index
-    page = (params[:page].blank? || params[:page].to_i > 0) ? 1 : params[:page].to_i
-    @lessons = @current_user.own_lessons(page, FOR_PAGE)
+    initialize_paginator
+    @lessons = @current_user.own_lessons(@page, @for_page)
     @lessons.each do |l|
       l.set_status @current_user.id
     end
+  end
+  
+  private
+  
+  def initialize_paginator
+    @page = (params[:page].blank? || params[:page].to_i <= 0) ? 1 : params[:page].to_i
+    @for_page = FOR_PAGE
   end
   
 end
