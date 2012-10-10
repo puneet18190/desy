@@ -9,6 +9,7 @@ class LessonsController < ApplicationController
       l.set_status @current_user.id
     end
     @where = 'lessons'
+    @new_notifications = 0
   end
   
 end
