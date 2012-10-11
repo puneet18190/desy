@@ -12,8 +12,8 @@
 <% cont = (cont == 0) ? 1 : 0 %>
 <% end %>
 <% if cont == 1 %>
-  <!-- FIXME Aurelia: ho aggiunto la classe 'boxViewSingleLesson' e lo stile inline in questo div qui sotto per poterlo vedere meglio. By Adriano -->
-  <div class="boxViewSingleLesson createNewLesson" style="height:246px;background-color:gray">
-  </div>
+  <div class="boxViewSingleLesson createNew">
+	  <%= render :partial => "shared/create_new", :locals => {:item => "lesson"} %>
+	</div>
 </div>
 <% end %>
