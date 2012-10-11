@@ -76,6 +76,8 @@ en:
     video: 'Video'
     audio: 'Audio'
     image: 'Images'
+  time:
+    format: 'english'
   language_parameters:
     lesson:
       length_description: 280 # for chinese it should be around 180 - 200
