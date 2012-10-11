@@ -1,4 +1,4 @@
-$(document).ready(function {
+$(document).ready(function() {
   
   $('#switch_to_lessons').click(function() {
     switchToSuggestedLessons();
@@ -9,7 +9,7 @@ $(document).ready(function {
   });
   
   $('#filter_lessons').change(function() {
-    var filter = $'#filter_lessons').val();
+    var filter = $('#filter_lessons option:selected').val();
     window.location.href = '/lessons?filter=' + filter
   });
   
