@@ -47,13 +47,8 @@
   });
   
   function switchToSuggested(type, old_pos, pos) {
-  
- // var xx = '#suggested_' + type + 's_' + (old_pos-1);
- // var yy = '#suggested_' + type + 's_' + (pos-1);
- // alert('Sto per rendere invisibile <' + xx + '> e visibile <' + yy +'>');
-  
-    $('#suggested_' + type + 's_' + (old_pos-1)).css('display', 'none');
-    $('#suggested_' + type + 's_' + (pos-1)).css('display', 'block');
+    $('#suggested_' + type + 's_' + (old_pos)).css('display', 'none');
+    $('#suggested_' + type + 's_' + (pos)).css('display', 'block');
   }
   
 </script>

@@ -1,6 +1,6 @@
 <% tot_lesson = 0 %>
 <% (0...CONFIG['lesson_pages_in_dashboard']).each do |j| %>
-  <div class="suggested_lessons_page" id="suggested_lessons_<%= j %>" <% if j != 0 %> style="display:none" <% end %>>
+  <div class="suggested_lessons_page" id="suggested_lessons_<%= j + 1 %>" <% if j != 0 %> style="display:none" <% end %>>
     <%= render :partial => 'lessons/suggested_lessons', :locals => {:lessons => @lessons[tot_lesson, CONFIG['lessons_for_page_in_dashboard']].to_a} %>
     <br/>
     <%= render :partial => 'shared/pagination', :locals => {:page => (j + 1), :last_page => (j == CONFIG['lesson_pages_in_dashboard'] - 1), :first_page => (j == 0), :pagination_url => 'suggested_lessons'} %>
@@ -9,7 +9,7 @@
 <% end %>
 <% tot_media_element = 0 %>
 <% (0...CONFIG['media_element_pages_in_dashboard']).each do |j| %>
-  <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j %>" style="display:none">
+  <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:none">
     <%= render :partial => 'media_elements/suggested_media_elements', :locals => {:media_elements => @media_elements[tot_media_element, CONFIG['media_elements_for_page_in_dashboard']].to_a} %>
     <br/>
     <%= render :partial => 'shared/pagination', :locals => {:page => (j + 1), :last_page => (j == CONFIG['lesson_pages_in_dashboard'] - 1), :first_page => (j == 0), :pagination_url => 'suggested_media_elements'} %>
