@@ -182,4 +182,54 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal ids.sort, my_ids.sort
   end
   
+  test 'own_lessons_filter_only_mine' do
+    assert Lesson.find(1).publish
+    assert @user2.bookmark 'Lesson', @les2.id
+    assert @user2.bookmark 'Lesson', @les5.id
+    assert @user2.bookmark 'Lesson', @les6.id
+    assert @user2.bookmark 'Lesson', 1
+    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    assert Lesson.exists?(les10.id)
+    resp = @user2.own_lessons(1, 20, 'Your own')
+    ids = []
+    resp.each do |r|
+      ids << r.id
+    end
+    my_ids = [2, les10.id]
+    assert_equal ids.sort, my_ids.sort
+  end
+  
+  test 'own_lessons_filter_copied' do
+    assert Lesson.find(1).publish
+    assert @user2.bookmark 'Lesson', @les2.id
+    assert @user2.bookmark 'Lesson', @les5.id
+    assert @user2.bookmark 'Lesson', @les6.id
+    assert @user2.bookmark 'Lesson', 1
+    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    assert Lesson.exists?(les10.id)
+    les11 = les10.copy(@user2.id)
+    assert Lesson.exists?(les11.id)
+    les12 = Lesson.find(1).copy(@user2.id)
+    assert Lesson.exists?(les12.id)
+    les13 = @les5.copy(@user2.id)
+    assert Lesson.exists?(les13.id)
+    assert_extractor [les11.id, les12.id, les13.id], @user2.own_lessons(1, 20, 'Just copied')
+  end
+  
+  test 'offset' do
+    resp = @user1.own_lessons(1, 4)
+    assert_equal 4, resp.length
+    resptemp = @user1.own_lessons(2, 4)
+    assert_equal 4, resptemp.length
+    resptemp.each do |rt|
+      flag = true
+      resp.each do |r|
+        flag = false if r.id == rt.id
+      end
+      assert flag
+    end
+    resp += resptemp
+    
+  end
+  
 end
