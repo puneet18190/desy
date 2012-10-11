@@ -175,7 +175,9 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 4, resptemp.length
     assert_extractor_intersection resp, resptemp
     resp += resptemp
-    
+    resptemp = @user1.own_lessons(3, 4)
+    assert_equal 3, resptemp.length
+    assert_extractor_intersection resp, resptemp
   end
   
 end
