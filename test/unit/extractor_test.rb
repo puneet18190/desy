@@ -78,24 +78,12 @@ class ExtractorTest < ActiveSupport::TestCase
     l = Lesson.find 2
     assert_equal 2, l.user_id
     assert_equal true, l.is_public
-    resp = @user2.suggested_lessons(6)
-    ids = []
-    resp.each do |ll|
-      ids << ll.id
-    end
-    my_ids = [@les1.id, @les2.id, @les3.id, @les4.id]
-    assert_equal ids.sort, my_ids.sort
+    assert_extractor [@les1.id, @les2.id, @les3.id, @les4.id], @user2.suggested_lessons(6)
   end
   
   test 'suggested_elements' do
     assert @user2.bookmark 'MediaElement', @el3.id
-    my_ids = [2, 4, @el1.id, @el2.id, @el3.id, @el5.id, @el7.id]
-    resp = @user2.suggested_elements 80
-    ids = []
-    resp.each do |r|
-      ids << r.id
-    end
-    assert_equal ids.sort, my_ids.sort
+    assert_extractor [2, 4, @el1.id, @el2.id, @el3.id, @el5.id, @el7.id], @user2.suggested_elements(80)
   end
   
   test 'own_lessons' do
@@ -109,13 +97,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
     assert @user2.bookmark 'MediaElement', 1
-    resp = @user2.own_lessons(1, 20)
-    ids = []
-    resp.each do |r|
-      ids << r.id
-    end
-    my_ids = [1, 2, @les2.id, @les5.id, @les6.id]
-    assert_equal ids.sort, my_ids.sort
+    assert_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20)
   end
   
   test 'own_media_elements' do
