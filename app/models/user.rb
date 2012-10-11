@@ -25,12 +25,30 @@ class User < ActiveRecord::Base
   before_validation :init_validation
   
   def own_media_elements page, per_page, filter=nil
-    MediaElement.where(MY_MEDIA_ELEMENTS_QUERY, self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset((page - 1) * per_page)
+    offset = (page - 1) * per_page
+    MediaElement.where(MY_MEDIA_ELEMENTS_QUERY, self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset(offset)
   end
   
   def own_lessons page, per_page, filter=nil
+    offset = (page - 1) * per_page
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SET.include?(@filter)
-    Lesson.where(MY_LESSONS_QUERY, self.id, 'Lesson', self.id).order('updated_at DESC').limit(per_page).offset((page - 1) * per_page)
+    case filter
+      when Filters::ALL_LESSONS
+        return Lesson.where(MY_LESSONS_QUERY, self.id, 'Lesson', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+      when Filters::PRIVATE
+        filtered_query = "is_public =  ? AND user_id = ?"
+        return Lesson.where(filtered_query, false, self.id).order('updated_at DESC').limit(per_page).offset(offset)
+      when Filters::PUBLIC
+        filtered_query = "is_public =  ? AND (#{MY_LESSONS_QUERY})"
+        return Lesson.where(filtered_query, true, self.id, 'Lesson', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+      when Filters::LINKED
+        filtered_query = MY_LESSONS_QUERY.gsub('user_id = ? OR ', '')
+        return Lesson.where(filtered_query, 'Lesson', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+      when Filters::ONLY_MINE
+        return Lesson.where(:user_id => self.id).order('updated_at DESC').limit(per_page).offset(offset)
+      when Filters::COPIED
+        return Lesson.where(:user_id => self.id, :copied_not_modified => true).order('updated_at DESC').limit(per_page).offset(offset)
+    end
   end
   
   def suggested_lessons n
