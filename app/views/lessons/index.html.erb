@@ -6,7 +6,8 @@
     <div><h2>Show</h2>
       <select name="ricerca" class="styled-select" id="filter_lessons">
         <% Filters::LESSONS_SET.each do |f| %>
-          <option value="<%= f %>" <%= f == @filter ? "selected=\"selected" : '' %>><%= f %></option>
+          <% caption = Filters::CAPTIONS[f] %>
+          <option value="<%= f %>" <%= f == @filter ? "selected=\"selected" : '' %>><%= caption %></option>
         <% end %>
       </select>
     </div>
