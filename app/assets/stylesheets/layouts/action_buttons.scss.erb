@@ -21,3 +21,38 @@
    }
    a.preview{ background-position: 0.625em 0; border:1px solid red}
 }
+
+
+@mixin button-test {
+  $button-size: 5em;
+  & {
+    display: inline-block;
+    width: $button-size;
+    height: $button-size;
+    background-image: url(<%= asset_path 'bottoni_controller.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($button-size*2) ($button-size*10);
+  }
+  &.preview {
+    background-position: 0 0;
+  }
+  &.preview:hover {
+    background-position: (-$button-size) 0;
+  }
+  &.add {
+    background-position: 0 (-$button-size);
+  }
+  &.add:hover {
+    background-position: (-$button-size) (-$button-size);
+  }
+  &.pippo {
+    background-position: 0 (-$button-size*2);
+  }
+  &.pippo:hover {
+    background-position: (-$button-size) (-$button-size*2);
+  }
+}
+
+a.test {
+  @include button-test;
+}
