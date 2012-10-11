@@ -138,12 +138,47 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
+    assert Lesson.exists?(les10.id)
     resp = @user2.own_lessons(1, 20, 'Private')
     ids = []
     resp.each do |r|
       ids << r.id
     end
     my_ids = [les10.id]
+    assert_equal ids.sort, my_ids.sort
+  end
+  
+  test 'own_lessons_filter_public' do
+    assert Lesson.find(1).publish
+    assert @user2.bookmark 'Lesson', @les2.id
+    assert @user2.bookmark 'Lesson', @les5.id
+    assert @user2.bookmark 'Lesson', @les6.id
+    assert @user2.bookmark 'Lesson', 1
+    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    assert Lesson.exists?(les10.id)
+    resp = @user2.own_lessons(1, 20, 'Public')
+    ids = []
+    resp.each do |r|
+      ids << r.id
+    end
+    my_ids = [1, 2, @les2.id, @les5.id, @les6.id]
+    assert_equal ids.sort, my_ids.sort
+  end
+  
+  test 'own_lessons_filter_linked' do
+    assert Lesson.find(1).publish
+    assert @user2.bookmark 'Lesson', @les2.id
+    assert @user2.bookmark 'Lesson', @les5.id
+    assert @user2.bookmark 'Lesson', @les6.id
+    assert @user2.bookmark 'Lesson', 1
+    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    assert Lesson.exists?(les10.id)
+    resp = @user2.own_lessons(1, 20, 'Linked')
+    ids = []
+    resp.each do |r|
+      ids << r.id
+    end
+    my_ids = [1, @les2.id, @les5.id, @les6.id]
     assert_equal ids.sort, my_ids.sort
   end
   
