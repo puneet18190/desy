@@ -26,7 +26,17 @@ class User < ActiveRecord::Base
   
   def own_media_elements page, per_page, filter=nil
     offset = (page - 1) * per_page
-    MediaElement.where(MY_MEDIA_ELEMENTS_QUERY, self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+    filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SET.include?(@filter)
+    case filter
+      when Filters::ALL_MEDIA_ELEMENTS
+        return MediaElement.where(MY_MEDIA_ELEMENTS_QUERY, self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+      when Filters::VIDEO
+        return Video.where(MY_MEDIA_ELEMENTS_QUERY, self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+      when Filters::AUDIO
+        return Audio.where(MY_MEDIA_ELEMENTS_QUERY, self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+      when Filters::IMAGE
+        return Image.where(MY_MEDIA_ELEMENTS_QUERY, self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+    end
   end
   
   def own_lessons page, per_page, filter=nil
