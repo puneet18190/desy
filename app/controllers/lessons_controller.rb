@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
   
   def index
     initialize_paginator
-    @lessons = @current_user.own_lessons(@page, @for_page)
+    @lessons = @current_user.own_lessons(@page, @for_page, @filter)
     @lessons.each do |l|
       l.set_status @current_user.id
     end
@@ -15,6 +15,8 @@ class LessonsController < ApplicationController
   def initialize_paginator
     @page = (params[:page].blank? || params[:page].to_i <= 0) ? 1 : params[:page].to_i
     @for_page = FOR_PAGE
+    @filter = params[:filter]
+    @filter = Filters::ALL_LESSONS if !Filters::LESSONS_SET.include?(@filter)
   end
   
 end

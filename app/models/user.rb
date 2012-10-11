@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   
+  MY_LESSONS_QUERY = 'user_id = ? OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)'
+  MY_MEDIA_ELEMENTS_QUERY = 'user_id = ? OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)'
+  
   attr_accessible :name, :surname, :school_level_id, :school, :location_id
   
   has_many :bookmarks
@@ -21,12 +24,13 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
-  def own_media_elements page, per_page
-    MediaElement.where('user_id = ? OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset((page - 1) * per_page)
+  def own_media_elements page, per_page, filter=nil
+    MediaElement.where(MY_MEDIA_ELEMENTS_QUERY, self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset((page - 1) * per_page)
   end
   
-  def own_lessons page, per_page
-    Lesson.where('user_id = ? OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)', self.id, 'Lesson', self.id).order('updated_at DESC').limit(per_page).offset((page - 1) * per_page)
+  def own_lessons page, per_page, filter=nil
+    filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SET.include?(@filter)
+    Lesson.where(MY_LESSONS_QUERY, self.id, 'Lesson', self.id).order('updated_at DESC').limit(per_page).offset((page - 1) * per_page)
   end
   
   def suggested_lessons n

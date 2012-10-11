@@ -59,6 +59,17 @@ en:
       private: 'private'
       not_mine: 'not mine'
       linked: 'linked'
+  filters:
+    all_lessons: 'All lessons'
+    private: 'Private'
+    public: 'Public'
+    linked: 'Linked'
+    only_mine: 'Your own'
+    copied: 'Just copied'
+    all_media_elements: 'All elements'
+    video: 'Video'
+    audio: 'Audio'
+    image: 'Images'
   language_parameters:
     lesson:
       length_description: 280 # for chinese it should be around 180 - 200
