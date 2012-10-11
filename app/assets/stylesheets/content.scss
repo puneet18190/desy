@@ -115,15 +115,26 @@
 			  position:absolute;
 				padding:4%;
 				width:92%;
-				
 				top:62%;		
 				left:0;
 				background-color:#383535;
+			}
+			.info-text {
+			  float:left;
+				padding:0.5% 1% 0 1%;
+				width:36%;
+				p {
+				  padding-top:5%;
+				}
+			}
+			.description-text {
+			  float:left;
+				padding:0.5% 1% 0 1%;
+				width:48%;
 				
 			}
 		}
-		
-  }
+	}
 }
 /*FINE CLASSE VISTA LESSONS*/
 .boxContentIndex {
