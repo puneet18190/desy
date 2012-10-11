@@ -7,7 +7,7 @@ class MediaElementsController < ApplicationController
   
   def index
     initialize_paginator
-    @media_elements = @current_user.own_media_elements(@page, @for_page)
+    @media_elements = @current_user.own_media_elements(@page, @for_page, @filter)
     @media_elements.each do |me|
       me.set_status @current_user.id
     end
@@ -22,6 +22,8 @@ class MediaElementsController < ApplicationController
     if !params[:for_page].blank? && params[:for_page].to_i > 0
       @for_page = (@format == Formats::EXPANDED) ? (FOR_PAGE_EXPANDED_OPTIONS.include?(params[:for_page].to_i) ? params[:for_page].to_i : @for_page) : (FOR_PAGE_COMPACT_OPTIONS.include?(params[:for_page].to_i) ? params[:for_page].to_i : @for_page)
     end
+    @filter = params[:filter]
+    @filter = Filters::ALL_MEDIA_ELEMENTS if !Filters::MEDIA_ELEMENTS_SET.include?(@filter)
   end
   
 end
