@@ -107,6 +107,27 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_extractor [2, 3, 4, 6, @el2.id, @el5.id], @user2.own_media_elements(1, 20)
   end
   
+  test 'own_media_elements_filter_video' do
+    assert @user2.bookmark 'MediaElement', 2
+    assert @user2.bookmark 'MediaElement', @el2.id
+    assert @user2.bookmark 'MediaElement', @el5.id
+    assert_extractor [2, @el2.id], @user2.own_media_elements(1, 20, 'Video')
+  end
+  
+  test 'own_media_elements_filter_audio' do
+    assert @user2.bookmark 'MediaElement', 2
+    assert @user2.bookmark 'MediaElement', @el2.id
+    assert @user2.bookmark 'MediaElement', @el5.id
+    assert_extractor [3, 4], @user2.own_media_elements(1, 20, 'Audio')
+  end
+  
+  test 'own_media_elements_filter_image' do
+    assert @user2.bookmark 'MediaElement', 2
+    assert @user2.bookmark 'MediaElement', @el2.id
+    assert @user2.bookmark 'MediaElement', @el5.id
+    assert_extractor [6, @el5.id], @user2.own_media_elements(1, 20, 'Images')
+  end
+  
   test 'own_lessons_filter_private' do
     assert Lesson.find(1).publish
     assert @user2.bookmark 'Lesson', @les2.id
