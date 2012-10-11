@@ -15,7 +15,8 @@
 %>
 <% end %>
 <% if cont == 3 %>
-  <div class="loadNewElement">
-  </div>
+  <div class="boxViewSingleLesson createNew">
+	  <%= render :partial => "shared/create_new", :locals => {:item => "element"} %>
+	</div>
 </div>
 <% end %>
