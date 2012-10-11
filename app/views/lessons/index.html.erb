@@ -3,14 +3,15 @@
     <h1>lessons</h1>
     <p>Matter</p>
     <p>Status</p>
-		<div><h2>Show</h2>
-		  <select name="ricerca" class="styled-select">
-        <option value="" selected="selected">All lessons</option>
-        <option value=""></option>
+    <div><h2>Show</h2>
+      <select name="ricerca" class="styled-select" id="filter_lessons">
+        <% Filters::LESSONS_SET.each do |f| %>
+          <option value="<%= f %>" selected="<%= f == @filter ? 'selected' : '' %>"><%= f %></option>
+        <% end %>
       </select>
-		</div>
+    </div>
   </div>
-	
+  
   <% @lessons.each do |l| %>
     <div class="boxViewSingleLesson">
       <%= render :partial => "lessons/view_single", :locals => {:lesson => l, :expanded => false} %>
