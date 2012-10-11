@@ -1,10 +1,10 @@
-<div class="contentInterno <%= lesson.status == t('status.lessons.copied') ? 'current' : '' %>">
+<div id="lesson_compact_<%= lesson.id %>" class="_lesson_compact contentInterno <%= lesson.status == t('status.lessons.copied') ? 'current' : '' %>">
   <h3><%= lesson.title %></h3>
   <p><%= lesson.subject.description %></p>
   <p><%= lesson.status %></p>
   <%= render :partial => "shared/action_buttons", :locals => {:lesson => lesson} %>
 </div>
-<div class="lessons-expanded">
+<div class="lessons-expanded _lesson_expanded">
   <%= render :partial => "lessons/thumbnails/small", :locals => {:lesson => lesson} %>
   <div class="info-text">
     <h1>Created on</h1>

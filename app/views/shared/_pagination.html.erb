@@ -1,13 +1,13 @@
 <div class="pagination" id="<%= (pagination_url == 'suggested_media_elements') ? 'media_elements' : ((pagination_url == 'suggested_lessons') ? 'lessons' : @where) %>_pagination">
 
 <% if !first_page %>
-  <div class="left_paginator_<%= page %>">PRECEDENTE</div>
+  <div class="_left_paginator_<%= page %>">PRECEDENTE</div>
 <% end %>
 <% if !last_page && !first_page %>
  | 
 <% end %>
 <% if !last_page %>
-  <div class="right_paginator_<%= page %>">SUCCESSIVA</div>
+  <div class="_right_paginator_<%= page %>">SUCCESSIVA</div>
 <% end %>
 
 
@@ -22,7 +22,7 @@
   
   $(document).ready(function() {
     
-    $('#<%= (pagination_url == 'suggested_media_elements') ? 'media_elements' : ((pagination_url == 'suggested_lessons') ? 'lessons' : @where) %>_pagination .left_paginator_<%= page %>').click(function() {
+    $('#<%= (pagination_url == 'suggested_media_elements') ? 'media_elements' : ((pagination_url == 'suggested_lessons') ? 'lessons' : @where) %>_pagination ._left_paginator_<%= page %>').click(function() {
       <% if pagination_url == 'suggested_lessons' %>
         switchToSuggested('lesson', <%= page %>, <%= page - 1 %>);
       <% elsif pagination_url == 'suggested_media_elements' %>
@@ -33,7 +33,7 @@
       <% end %>
     });
     
-    $('#<%= (pagination_url == 'suggested_media_elements') ? 'media_elements' : ((pagination_url == 'suggested_lessons') ? 'lessons' : @where) %>_pagination .right_paginator_<%= page %>').click(function() {
+    $('#<%= (pagination_url == 'suggested_media_elements') ? 'media_elements' : ((pagination_url == 'suggested_lessons') ? 'lessons' : @where) %>_pagination ._right_paginator_<%= page %>').click(function() {
       <% if pagination_url == 'suggested_lessons' %>
         switchToSuggested('lesson', <%= page %>, <%= page + 1 %>);
       <% elsif pagination_url == 'suggested_media_elements' %>

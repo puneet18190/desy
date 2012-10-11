@@ -13,4 +13,14 @@ $(document).ready(function() {
     window.location.href = '/lessons?filter=' + filter;
   });
   
+  $('._lesson_compact').click(function() {
+    var my_id = this.id;
+    var my_expanded = $('#' + my_id + ' ._lesson_expanded');
+    if(my_expanded.css('display') == 'block') {
+      my_expanded.css('display', 'none');
+    } else {
+      my_expanded.css('display', 'block');
+    }
+  });
+  
 });
