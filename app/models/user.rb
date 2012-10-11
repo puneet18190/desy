@@ -27,38 +27,70 @@ class User < ActiveRecord::Base
   def own_media_elements page, per_page, filter=nil
     offset = (page - 1) * per_page
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SET.include?(filter)
+    param1 = MY_MEDIA_ELEMENTS_QUERY
+    param2 = self.id
+    param3 = 'MediaElement'
+    param4 = self.id
+    my_order = 'updated_at DESC'
+    resp = []
     case filter
       when Filters::ALL_MEDIA_ELEMENTS
-        return MediaElement.where(MY_MEDIA_ELEMENTS_QUERY, self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+        last_page = MediaElement.where(param1, param2, param3, param4).order(my_order).offset(offset + per_page).empty?
+        resp = MediaElement.where(param1, param2, param3, param4).order(my_order).limit(per_page).offset(offset)
       when Filters::VIDEO
-        return Video.where(MY_MEDIA_ELEMENTS_QUERY, self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+        last_page = Video.where(param1, param2, param3, param4).order(my_order).offset(offset + per_page).empty?
+        resp = Video.where(param1, param2, param3, param4).order(my_order).limit(per_page).offset(offset)
       when Filters::AUDIO
-        return Audio.where(MY_MEDIA_ELEMENTS_QUERY, self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+        last_page = Audio.where(param1, param2, param3, param4).order(my_order).offset(offset + per_page).empty?
+        resp = Audio.where(param1, param2, param3, param4).order(my_order).limit(per_page).offset(offset)
       when Filters::IMAGE
-        return Image.where(MY_MEDIA_ELEMENTS_QUERY, self.id, 'MediaElement', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+        last_page = Image.where(param1, param2, param3, param4).order(my_order).offset(offset + per_page).empty?
+        resp = Image.where(param1, param2, param3, param4).order(my_order).limit(per_page).offset(offset)
     end
+    return {:last_page => last_page, :content => resp}
   end
   
   def own_lessons page, per_page, filter=nil
     offset = (page - 1) * per_page
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SET.include?(filter)
+    my_order = 'updated_at DESC'
+    resp = []
     case filter
       when Filters::ALL_LESSONS
-        return Lesson.where(MY_LESSONS_QUERY, self.id, 'Lesson', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+        param1 = MY_LESSONS_QUERY
+        param2 = self.id
+        param3 = 'Lesson'
+        param4 = self.id
+        last_page = Lesson.where(param1, param2, param3, param4).order(my_order).offset(offset + per_page).empty?
+        resp = Lesson.where(param1, param2, param3, param4).order(my_order).limit(per_page).offset(offset)
       when Filters::PRIVATE
         filtered_query = "is_public =  ? AND user_id = ?"
-        return Lesson.where(filtered_query, false, self.id).order('updated_at DESC').limit(per_page).offset(offset)
+        param2 = false
+        param3 = self.id
+        last_page = Lesson.where(filtered_query, param2, param3).order(my_order).offset(offset + per_page).empty?
+        resp = Lesson.where(filtered_query, param2, param3).order(my_order).limit(per_page).offset(offset)
       when Filters::PUBLIC
         filtered_query = "is_public =  ? AND (#{MY_LESSONS_QUERY})"
-        return Lesson.where(filtered_query, true, self.id, 'Lesson', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+        param2 = true
+        param3 = self.id
+        param4 = 'Lesson'
+        param5 = self.id
+        last_page = Lesson.where(filtered_query, param2, param3, param4, param5).order(my_order).offset(offset + per_page).empty?
+        resp = Lesson.where(filtered_query, param2, param3, param4, param5).order(my_order).limit(per_page).offset(offset)
       when Filters::LINKED
         filtered_query = MY_LESSONS_QUERY.gsub('user_id = ? OR ', '')
-        return Lesson.where(filtered_query, 'Lesson', self.id).order('updated_at DESC').limit(per_page).offset(offset)
+        param2 = 'Lesson'
+        param3 = self.id
+        last_page = Lesson.where(filtered_query, param2, param3).order(my_order).offset(offset + per_page).empty?
+        resp = Lesson.where(filtered_query, param2, param3).order(my_order).limit(per_page).offset(offset)
       when Filters::ONLY_MINE
-        return Lesson.where(:user_id => self.id).order('updated_at DESC').limit(per_page).offset(offset)
+        last_page = Lesson.where(:user_id => self.id).order(my_order).offset(offset + per_page).empty?
+        resp = Lesson.where(:user_id => self.id).order(my_order).limit(per_page).offset(offset)
       when Filters::COPIED
-        return Lesson.where(:user_id => self.id, :copied_not_modified => true).order('updated_at DESC').limit(per_page).offset(offset)
+        last_page = Lesson.where(:user_id => self.id, :copied_not_modified => true).order(my_order).offset(offset + per_page).empty?
+        resp = Lesson.where(:user_id => self.id, :copied_not_modified => true).order(my_order).limit(per_page).offset(offset)
     end
+    return {:last_page => last_page, :content => resp}
   end
   
   def suggested_lessons n

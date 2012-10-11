@@ -97,35 +97,35 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
     assert @user2.bookmark 'MediaElement', 1
-    assert_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20)
+    assert_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20)[:content]
   end
   
   test 'own_media_elements' do
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_extractor [2, 3, 4, 6, @el2.id, @el5.id], @user2.own_media_elements(1, 20)
+    assert_extractor [2, 3, 4, 6, @el2.id, @el5.id], @user2.own_media_elements(1, 20)[:content]
   end
   
   test 'own_media_elements_filter_video' do
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_extractor [2, @el2.id], @user2.own_media_elements(1, 20, 'Video')
+    assert_extractor [2, @el2.id], @user2.own_media_elements(1, 20, 'Video')[:content]
   end
   
   test 'own_media_elements_filter_audio' do
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_extractor [3, 4], @user2.own_media_elements(1, 20, 'Audio')
+    assert_extractor [3, 4], @user2.own_media_elements(1, 20, 'Audio')[:content]
   end
   
   test 'own_media_elements_filter_image' do
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_extractor [6, @el5.id], @user2.own_media_elements(1, 20, 'Images')
+    assert_extractor [6, @el5.id], @user2.own_media_elements(1, 20, 'Images')[:content]
   end
   
   test 'own_lessons_filter_private' do
@@ -136,7 +136,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
-    assert_extractor [les10.id], @user2.own_lessons(1, 20, 'Private')
+    assert_extractor [les10.id], @user2.own_lessons(1, 20, 'Private')[:content]
   end
   
   test 'own_lessons_filter_public' do
@@ -147,7 +147,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
-    assert_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'Public')
+    assert_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'Public')[:content]
   end
   
   test 'own_lessons_filter_linked' do
@@ -158,7 +158,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
-    assert_extractor [1, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'Linked')
+    assert_extractor [1, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'Linked')[:content]
   end
   
   test 'own_lessons_filter_only_mine' do
@@ -169,7 +169,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
-    assert_extractor [2, les10.id], @user2.own_lessons(1, 20, 'Your own')
+    assert_extractor [2, les10.id], @user2.own_lessons(1, 20, 'Your own')[:content]
   end
   
   test 'own_lessons_filter_copied' do
@@ -186,17 +186,17 @@ class ExtractorTest < ActiveSupport::TestCase
     assert Lesson.exists?(les12.id)
     les13 = @les5.copy(@user2.id)
     assert Lesson.exists?(les13.id)
-    assert_extractor [les11.id, les12.id, les13.id], @user2.own_lessons(1, 20, 'Just copied')
+    assert_extractor [les11.id, les12.id, les13.id], @user2.own_lessons(1, 20, 'Just copied')[:content]
   end
   
   test 'offset' do
-    resp = @user1.own_lessons(1, 4)
+    resp = @user1.own_lessons(1, 4)[:content]
     assert_equal 4, resp.length
-    resptemp = @user1.own_lessons(2, 4)
+    resptemp = @user1.own_lessons(2, 4)[:content]
     assert_equal 4, resptemp.length
     assert_extractor_intersection resp, resptemp
     resp += resptemp
-    resptemp = @user1.own_lessons(3, 4)
+    resptemp = @user1.own_lessons(3, 4)[:content]
     assert_equal 3, resptemp.length
     assert_extractor_intersection resp, resptemp
   end
