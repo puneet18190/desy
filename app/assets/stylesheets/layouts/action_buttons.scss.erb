@@ -1,33 +1,5 @@
-.menuController {
-	  background-color:transparent;  
-    padding:10px; 
-    border-top:1px solid #f2f1f2;
-		text-align:right;
-		color:#cbcbcb;
-		font-size:75%;
-		display: block;
-    /*overflow: auto;*/
-		a {
-      font-size: 1em;
-   line-height: 1.25em;
-   padding: 2%;
-   margin-right: 0.3125em;
-      background: url(<%= asset_path 'bottoni_controller.svg' %>) no-repeat;
-      -webkit-background-size: 1.875em 10em;
-      -o-background-size: 1.875em 10em;
-      -moz-background-size: 1.875em 10em;
-      background-size: 1.875em 10em;
-      display: block;
-      float: left;
-      
-   }
-   a.preview{ background-position: 0.625em 0; border:1px solid red}
-	 a.virtual_classroom{ background-position: 0.625em 0; border:1px solid red}
-}
-
-
 @mixin button-test {
-  $button-size: 5em;
+  $button-size: 4em;
   & {
     display: inline-block;
     width: $button-size;
@@ -37,25 +9,92 @@
     background-size: ($button-size*2) ($button-size*10);
   }
   &.preview {
-    background-position: 0 0;
+    background-position: 0 (-$button-size*7);
   }
   &.preview:hover {
-    background-position: (-$button-size) 0;
+    background-position: (-$button-size) (-$button-size*7);
   }
-  &.add {
+  &.edit {
     background-position: 0 (-$button-size);
   }
-  &.add:hover {
+  &.edit:hover {
     background-position: (-$button-size) (-$button-size);
   }
-  &.pippo {
+  &.pubish {
     background-position: 0 (-$button-size*2);
   }
-  &.pippo:hover {
+  &.publish:hover {
+    background-position: (-$button-size) (-$button-size*2);
+  }
+	&.unpublish {
+    background-position: 0 (-$button-size*2);
+  }
+  &.unpublish:hover {
+    background-position: (-$button-size) (-$button-size*2);
+  }
+	&.add {
+    background-position: 0 (-$button-size*2);
+  }
+  &.add:hover {
+    background-position: (-$button-size) (-$button-size*2);
+  }
+	&.remove {
+    background-position: 0 (-$button-size*8);
+  }
+  &.remove:hover {
+    background-position: (-$button-size) (-$button-size*8);
+  }
+	&.destroy {
+    background-position: 0 (-$button-size*2);
+  }
+  &.destroy:hover {
+    background-position: (-$button-size) (-$button-size*2);
+  }
+	&.like {
+    background-position: 0 (-$button-size*3);
+  }
+  &.like:hover {
+    background-position: (-$button-size) (-$button-size*3);
+  }
+	&.report {
+    background-position: 0 0;
+  }
+  &.report:hover {
+    background-position: (-$button-size) 0;
+  }
+	&.virtual_classroom {
+    background-position: 0 (-$button-size*5);
+  }
+  &.virtual_classroom:hover {
+    background-position: (-$button-size) (-$button-size*5);
+  }
+	&.copy {
+    background-position: 0 (-$button-size*2);
+  }
+  &.copy:hover {
+    background-position: (-$button-size) (-$button-size*2);
+  }
+	&.change_info {
+    background-position: 0 (-$button-size*2);
+  }
+  &.change_info:hover {
     background-position: (-$button-size) (-$button-size*2);
   }
 }
 
-a.test {
-  @include button-test;
+.menuController {
+	  background-color:#fff;  
+    padding:0.5%; 
+    border-top:1px solid #f2f1f2;
+		text-align:right;
+		color:#cbcbcb;
+		font-size:75%;
+		display: block;
+    /*overflow: auto;*/
+		a {
+		  @include button-test;
+		}
 }
+
+
+

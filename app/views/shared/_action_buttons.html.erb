@@ -1,31 +1,31 @@
 <div class="menuController">
   <% lesson.buttons.each do |b| %>
-    <div>
+    
       <% if b == Buttons::PREVIEW %>
         <a class="<%= b %>"></a>
       <% elsif b == Buttons::EDIT %>
-        Edit
+        <a class="<%= b %>"></a>
       <% elsif b == Buttons::PUBLISH %>
-        Publish
+        <a class="<%= b %>"></a>
       <% elsif b == Buttons::UNPUBLISH %>
-        Unpublish
+        <a class="<%= b %>"></a>
       <% elsif b == Buttons::ADD %>
-        Add
+        <a class="<%= b %>"></a>
       <% elsif b == Buttons::REMOVE %>
-        Remove
+        <a class="<%= b %>"></a>
       <% elsif b == Buttons::DESTROY %>
-        Destroy
+        <a class="<%= b %>"></a>
       <% elsif b == Buttons::LIKE %>
-        Like
+        <a class="<%= b %>"></a>
       <% elsif b == Buttons::REPORT %>
-        Report
+        <a class="<%= b %>"></a>
       <% elsif b == Buttons::VIRTUAL_CLASSROOM %>
-        Virtual Classroom
+        <a class="<%= b %>"></a>
       <% elsif b == Buttons::COPY %>
-        Copy
+        <a class="<%= b %>"></a>
       <% elsif b == Buttons::CHANGE_INFO %>
-        Change Info
+        <a class="<%= b %>"></a>
       <% end %>
-    </div>
+    
   <% end %>
 </div>
