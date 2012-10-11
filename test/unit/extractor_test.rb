@@ -173,13 +173,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 4, resp.length
     resptemp = @user1.own_lessons(2, 4)
     assert_equal 4, resptemp.length
-    resptemp.each do |rt|
-      flag = true
-      resp.each do |r|
-        flag = false if r.id == rt.id
-      end
-      assert flag
-    end
+    assert_extractor_intersection resp, resptemp
     resp += resptemp
     
   end

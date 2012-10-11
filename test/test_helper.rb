@@ -6,6 +6,16 @@ class ActiveSupport::TestCase
   
   fixtures :all
   
+  def assert_extractor_intersection x1, x2
+    x2.each do |y|
+      flag = true
+      x1.each do |x|
+        flag = false if x.id == y.id
+      end
+      assert flag
+    end
+  end
+  
   def assert_extractor my_ids, resp
     ids = []
     resp.each do |r|
