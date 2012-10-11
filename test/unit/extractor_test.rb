@@ -176,7 +176,17 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
-    assert_extractor [les10.id], @user2.own_lessons(1, 20, 'Private')[:content]
+    les11 = @user2.create_lesson('title10', 'desc10', 3)
+    assert Lesson.exists?(les11.id)
+    assert_extractor [les10.id, les11.id], @user2.own_lessons(1, 20, 'Private')[:content]
+    # last page true
+    resp = @user2.own_lessons(1, 2, 'Private')
+    assert_equal 2, resp[:content].length
+    assert resp[:last_page]
+    # last page false
+    resp = @user2.own_lessons(1, 1, 'Private')
+    assert_equal 1, resp[:content].length
+    assert !resp[:last_page]
   end
   
   test 'own_lessons_filter_public' do
@@ -188,6 +198,14 @@ class ExtractorTest < ActiveSupport::TestCase
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
     assert_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'Public')[:content]
+    # last page true
+    resp = @user2.own_lessons(3, 2, 'Public')
+    assert_equal 1, resp[:content].length
+    assert resp[:last_page]
+    # last page false
+    resp = @user2.own_lessons(1, 4, 'Public')
+    assert_equal 4, resp[:content].length
+    assert !resp[:last_page]
   end
   
   test 'own_lessons_filter_linked' do
@@ -199,6 +217,14 @@ class ExtractorTest < ActiveSupport::TestCase
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
     assert_extractor [1, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'Linked')[:content]
+    # last page true
+    resp = @user2.own_lessons(2, 2, 'Linked')
+    assert_equal 2, resp[:content].length
+    assert resp[:last_page]
+    # last page false
+    resp = @user2.own_lessons(1, 3, 'Linked')
+    assert_equal 3, resp[:content].length
+    assert !resp[:last_page]
   end
   
   test 'own_lessons_filter_only_mine' do
@@ -210,6 +236,14 @@ class ExtractorTest < ActiveSupport::TestCase
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
     assert_extractor [2, les10.id], @user2.own_lessons(1, 20, 'Your own')[:content]
+    # last page true
+    resp = @user2.own_lessons(1, 2, 'Your own')
+    assert_equal 2, resp[:content].length
+    assert resp[:last_page]
+    # last page false
+    resp = @user2.own_lessons(1, 1, 'Your own')
+    assert_equal 1, resp[:content].length
+    assert !resp[:last_page]
   end
   
   test 'own_lessons_filter_copied' do
@@ -227,6 +261,14 @@ class ExtractorTest < ActiveSupport::TestCase
     les13 = @les5.copy(@user2.id)
     assert Lesson.exists?(les13.id)
     assert_extractor [les11.id, les12.id, les13.id], @user2.own_lessons(1, 20, 'Just copied')[:content]
+    # last page true
+    resp = @user2.own_lessons(2, 2, 'Just copied')
+    assert_equal 1, resp[:content].length
+    assert resp[:last_page]
+    # last page false
+    resp = @user2.own_lessons(1, 2, 'Just copied')
+    assert_equal 2, resp[:content].length
+    assert !resp[:last_page]
   end
   
   test 'offset' do
