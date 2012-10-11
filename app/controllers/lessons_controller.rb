@@ -4,7 +4,9 @@ class LessonsController < ApplicationController
   
   def index
     initialize_paginator
-    @lessons = @current_user.own_lessons(@page, @for_page, @filter)
+    resp = @current_user.own_lessons(@page, @for_page, @filter)
+    @lessons = resp[:content]
+    @last_page = resp[:last_page]
     @lessons.each do |l|
       l.set_status @current_user.id
     end

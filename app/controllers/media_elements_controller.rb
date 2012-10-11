@@ -7,7 +7,9 @@ class MediaElementsController < ApplicationController
   
   def index
     initialize_paginator
-    @media_elements = @current_user.own_media_elements(@page, @for_page, @filter)
+    resp = @current_user.own_media_elements(@page, @for_page, @filter)
+    @media_elements = resp[:content]
+    @last_page = resp[:last_page]
     @media_elements.each do |me|
       me.set_status @current_user.id
     end
