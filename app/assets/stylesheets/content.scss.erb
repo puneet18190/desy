@@ -78,18 +78,21 @@
     box-shadow: 1px 5px 5px #e8e8e8;
 	  float:left;
 	  width:100%;
+		padding:0%;
 	  color:#c0c0c0;
-		
+		position:relative;
 		.contentInterno {
-	    padding:1% 1% 1.7% 1%;
+	    padding:0.4% 1% 2% 1%;
 			@include float-content;
 			@include tag-formatting;
 			height:auto;
-			p {font-size:80%;}
+			h3 {padding-top:0.5%}
+			p {font-size:80%; padding-top:0.5%}
 			&:hover {
 			  background-color:#e8e8e8;
 				cursor: pointer;
 			}
+			
 		}
 		.current {
 			  background-color:#e8e8e8;
@@ -97,6 +100,9 @@
 		.menuController {
 	    padding:0px; 
       border-top:none;
+			background-color:transparent;
+			float:right;
+			
 	  }
 		.lessons-expanded {
 		  display:none;
