@@ -1,19 +1,18 @@
 <div class="contentInterno <%= lesson.status == t('status.lessons.copied') ? 'current' : '' %>">
-	<h3><%= lesson.title %></h3>
-	<p><%= lesson.subject.description %></p>
-	<p><%= lesson.status %></p>
+  <h3><%= lesson.title %></h3>
+  <p><%= lesson.subject.description %></p>
+  <p><%= lesson.status %></p>
   <%= render :partial => "shared/action_buttons", :locals => {:lesson => lesson} %>
 </div>
 <div class="lessons-expanded">
   <%= render :partial => "lessons/thumbnails/small", :locals => {:lesson => lesson} %>
-	<div class="info-text">
-	  <h1>Created on</h1>
-		21 maggio 2012
-		<p>stella 345<br>people like this lesson</p>
-	</div>
-	<div class="description-text">
-	  <h1>Description</h1>
-		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum</p>
-	</div>
+  <div class="info-text">
+    <h1>Created on</h1>
+    <%= TimeConvert.to_string(lesson.created_at) %>
+    <p>stella <%= lesson.likes.count %><br>people like this lesson</p>
+  </div>
+  <div class="description-text">
+    <h1>Description</h1>
+    <p><%= lesson.description %></p>
+  </div>
 </div>

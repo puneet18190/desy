@@ -50,6 +50,10 @@ en:
         lesson: 'create a new lesson'
   footer:
     copyright: '©2012 DESY'
+    help_using_desy: 'Need help using Desy?'
+    download_manual: 'Download the user manual'
+    talk_with_desy: 'Want to talk with Desy?'
+    contact_us: 'Contact us'
   status:
     lessons:
       private: 'private'

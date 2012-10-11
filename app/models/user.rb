@@ -24,6 +24,23 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
+  def like lesson_id
+    return false if self.new_record? || !Lesson.exists?(lesson_id)
+    return true if Like.where(:lesson_id => lesson_id, :user_id => self.id).any?
+    l = Like.new
+    l.user_id = self.id
+    l.lesson_id = lesson_id
+    return l.save
+  end
+  
+  def dislike lesson_id
+    return false if self.new_record? || !Lesson.exists?(lesson_id)
+    like = Like.where(:lesson_id => lesson_id, :user_id => self.id).first
+    return true if like.nil?
+    like.destroy
+    return Like.where(:lesson_id => lesson_id, :user_id => self.id).empty?
+  end
+  
   def own_media_elements page, per_page, filter=nil
     offset = (page - 1) * per_page
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SET.include?(filter)

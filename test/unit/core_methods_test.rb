@@ -532,4 +532,21 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert x.remove_from_virtual_classroom(1)
   end
   
+  test 'like_and_dislike' do
+    u = User.find(1)
+    le = u.create_lesson('grg', 'fsbfs', 1)
+    assert !User.new.like(le.id)
+    assert !u.like(le.id)
+    assert !u.like(1000)
+    u2 = User.find(2)
+    assert u2.like(le.id)
+    assert_equal 1, Like.where(:user_id => 2, :lesson_id => le.id).count
+    assert u2.like(le.id)
+    assert_equal 1, Like.where(:user_id => 2, :lesson_id => le.id).count
+    assert u2.dislike(le.id)
+    assert Like.where(:user_id => 2, :lesson_id => le.id).empty?
+    assert u2.dislike(le.id)
+    assert Like.where(:user_id => 2, :lesson_id => le.id).empty?
+  end
+  
 end
