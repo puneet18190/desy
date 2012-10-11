@@ -21,7 +21,7 @@
     <% end %>
   <% else %>
     <% @lessons.each do |l| %>
-      <div class="boxViewSingleLesson">
+      <div id="lesson_compact_<%= l.id %>" class="boxViewSingleLesson _lesson_compact">
         <%= render :partial => "lessons/view_single", :locals => {:lesson => l, :expanded => false} %>
       </div>
     <% end %>
