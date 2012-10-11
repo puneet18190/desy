@@ -1,0 +1,59 @@
+<div class="pagination" id="<%= (pagination_url == 'suggested_media_elements') ? 'media_elements' : ((pagination_url == 'suggested_lessons') ? 'lessons' : @where) %>_pagination">
+
+<% if !first_page %>
+  <div class="left_paginator_<%= page %>">PRECEDENTE</div>
+<% end %>
+<% if !last_page && !first_page %>
+  <br/><br/>
+<% end %>
+<% if !last_page %>
+  <div class="right_paginator_<%= page %>">SUCCESSIVA</div>
+<% end %>
+
+
+
+</div>
+
+
+<script type="text/javascript">
+  // TODO quando sarà pronta la paginazione dinamica, questa funzione andrà rifatta
+  // e spostata dentro un file apposito js, e richiamata dal file 'document_ready.js'
+  // POSSIBILMENTE, TOCCARE SOLAMENTE QUESTO FILE E I FILES DI JAVASCRIPT
+  
+  $(document).ready(function() {
+    
+    $('#<%= (pagination_url == 'suggested_media_elements') ? 'media_elements' : ((pagination_url == 'suggested_lessons') ? 'lessons' : @where) %>_pagination .left_paginator_<%= page %>').click(function() {
+      <% if pagination_url == 'suggested_lessons' %>
+        switchToSuggested('lesson', <%= page %>, <%= page - 1 %>);
+      <% elsif pagination_url == 'suggested_media_elements' %>
+        switchToSuggested('media_element', <%= page %>, <%= page - 1 %>);
+      <% else %>
+        var my_url = <%= add_page_parameter(page - 1, pagination_url) %>;
+        window.location.href = my_url;
+      <% end %>
+    });
+    
+    $('#<%= (pagination_url == 'suggested_media_elements') ? 'media_elements' : ((pagination_url == 'suggested_lessons') ? 'lessons' : @where) %>_pagination .right_paginator_<%= page %>').click(function() {
+      <% if pagination_url == 'suggested_lessons' %>
+        switchToSuggested('lesson', <%= page %>, <%= page + 1 %>);
+      <% elsif pagination_url == 'suggested_media_elements' %>
+        switchToSuggested('media_element', <%= page %>, <%= page + 1 %>);
+      <% else %>
+        var my_url = <%= add_page_parameter(page + 1, pagination_url) %>;
+        window.location.href = my_url;
+      <% end %>
+    });
+    
+  });
+  
+  function switchToSuggested(type, old_pos, pos) {
+  
+ // var xx = '#suggested_' + type + 's_' + (old_pos-1);
+ // var yy = '#suggested_' + type + 's_' + (pos-1);
+ // alert('Sto per rendere invisibile <' + xx + '> e visibile <' + yy +'>');
+  
+    $('#suggested_' + type + 's_' + (old_pos-1)).css('display', 'none');
+    $('#suggested_' + type + 's_' + (pos-1)).css('display', 'block');
+  }
+  
+</script>

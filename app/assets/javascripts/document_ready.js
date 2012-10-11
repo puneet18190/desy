@@ -10,7 +10,7 @@ $(document).ready(function() {
   
   $('#filter_lessons').change(function() {
     var filter = $('#filter_lessons option:selected').val();
-    window.location.href = '/lessons?filter=' + filter
+    window.location.href = '/lessons?filter=' + filter;
   });
   
 });
