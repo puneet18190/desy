@@ -20,6 +20,23 @@ if Rails.env.development?
   
   admin = User.find_by_email CONFIG['admin_email']
   
+  paparesta = User.create_user 'paparesta@figc.it', 'Luca', 'Paparesta', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  banti = User.create_user 'banti@figc.it', 'Giorgio', 'Banti', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  valeri = User.create_user 'valeri@figc.it', 'Marco', 'Valeri', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  giannoccaro = User.create_user 'giannoccaro@figc.it', 'Adolfo', 'Giannoccaro', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  trefoloni = User.create_user 'trefoloni@figc.it', 'Umberto', 'Trefoloni', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  de_sanctis = User.create_user 'de_sanctis@figc.it', 'Massimo', 'De Sanctis', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  mazzini = User.create_user 'mazzini@figc.it', 'Luigi', 'Mazzini', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  carraro = User.create_user 'carraro@figc.it', 'Franco', 'Carraro', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  pairetto = User.create_user 'pairetto@figc.it', 'Fabio', 'Pairetto', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  bergamo = User.create_user 'bergamo@figc.it', 'Ernesto', 'Bergamo', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  celi = User.create_user 'celi@figc.it', 'Giangiorgio', 'Celi', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  collina = User.create_user 'collina@figc.it', 'Pierluigi', 'Collina', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  lotito = User.create_user 'lotito@figc.it', 'Claudio', 'Lotito', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  della_valle = User.create_user 'della_valle@figc.it', 'Luca', 'Della Valle', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  moggi = User.create_user 'moggi@figc.it', 'Luciano', 'Moggi', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  galliani = User.create_user 'galliani@figc.it', 'Adriano', 'Galliani', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+  
   u = User.create_user 'assunzioni@pippo.it', 'Giorgio', 'Mastrota', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
   u.create_lesson('History of China: Shag Dynasty', 'Paolo Negro (Arzignano, 16 aprile 1972) è un allenatore di calcio ed ex calciatore italiano. Dal 2012 è alla guida dello Zagarolo.', 1)
   u.create_lesson('The birth of the great empire', 'Cresce calcisticamente nel Brescia dove viene trasformato da attaccante in fluidificante[2] e nel 1990 passa al Bologna, con cui debutta in serie A il 28 ottobre 1990 in Genoa-Bologna 0-0 ed esordisce nelle coppe europee in Zagłębie Lubin-Bologna 0-1', 2)
@@ -155,6 +172,129 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
     end
   end
   
+  paparesta.like(1)
+  paparesta.like(10)
+  paparesta.like(14)
+  paparesta.like(16)
+  paparesta.like(34)
+  paparesta.like(25)
+  paparesta.like(28)
+  paparesta.like(19)
+  paparesta.like(21)
+  paparesta.like(3)
+  paparesta.like(4)
+  paparesta.like(5)
+  paparesta.like(9)
+  banti.like(20)
+  banti.like(22)
+  banti.like(23)
+  banti.like(24)
+  banti.like(25)
+  banti.like(26)
+  valeri.like(30)
+  valeri.like(31)
+  valeri.like(32)
+  valeri.like(33)
+  valeri.like(34)
+  valeri.like(35)
+  giannoccaro.like(4)
+  giannoccaro.like(6)
+  giannoccaro.like(17)
+  giannoccaro.like(29)
+  giannoccaro.like(36)
+  giannoccaro.like(34)
+  giannoccaro.like(33)
+  giannoccaro.like(29)
+  giannoccaro.like(18)
+  giannoccaro.like(16)
+  giannoccaro.like(11)
+  trefoloni.like(10)
+  trefoloni.like(25)
+  trefoloni.like(15)
+  trefoloni.like(5)
+  trefoloni.like(3)
+  trefoloni.like(2)
+  trefoloni.like(1)
+  trefoloni.like(34)
+  trefoloni.like(37)
+  de_sanctis.like(6)
+  de_sanctis.like(16)
+  de_sanctis.like(26)
+  de_sanctis.like(36)
+  de_sanctis.like(33)
+  de_sanctis.like(11)
+  de_sanctis.like(22)
+  mazzini.like(14)
+  mazzini.like(13)
+  mazzini.like(12)
+  mazzini.like(11)
+  mazzini.like(7)
+  mazzini.like(17)
+  carraro.like(18)
+  carraro.like(28)
+  carraro.like(8)
+  carraro.like(37)
+  carraro.like(21)
+  carraro.like(22)
+  carraro.like(23)
+  carraro.like(24)
+  pairetto.like(1)
+  pairetto.like(2)
+  pairetto.like(3)
+  pairetto.like(6)
+  pairetto.like(7)
+  pairetto.like(8)
+  pairetto.like(9)
+  pairetto.like(12)
+  bergamo.like(16)
+  bergamo.like(21)
+  bergamo.like(22)
+  bergamo.like(23)
+  bergamo.like(25)
+  celi.like(5)
+  celi.like(6)
+  celi.like(7)
+  celi.like(11)
+  celi.like(14)
+  celi.like(15)
+  celi.like(17)
+  collina.like(4)
+  collina.like(21)
+  collina.like(20)
+  collina.like(19)
+  collina.like(18)
+  collina.like(17)
+  collina.like(36)
+  lotito.like(31)
+  lotito.like(32)
+  lotito.like(33)
+  lotito.like(13)
+  lotito.like(16)
+  lotito.like(17)
+  lotito.like(18)
+  della_valle.like(2)
+  della_valle.like(4)
+  della_valle.like(5)
+  della_valle.like(8)
+  della_valle.like(10)
+  della_valle.like(20)
+  della_valle.like(22)
+  della_valle.like(24)
+  moggi.like(1)
+  moggi.like(11)
+  moggi.like(21)
+  moggi.like(31)
+  galliani.like(10)
+  galliani.like(18)
+  galliani.like(19)
+  galliani.like(20)
+  galliani.like(21)
+  galliani.like(22)
+  galliani.like(23)
+  galliani.like(24)
+  galliani.like(34)
+  galliani.like(35)
+  
 end
 
-puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons, #{MediaElement.count} media_elements, #{Slide.count} slides, #{Notification.count} notifications"
+puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons, #{MediaElement.count} media_elements, #{Slide.count} slides, #{Notification.count} notifications, #{Like.count} likes"
