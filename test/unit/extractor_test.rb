@@ -98,6 +98,14 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     assert @user2.bookmark 'MediaElement', 1
     assert_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20)[:content]
+    # last page true
+    resp = @user2.own_lessons(3, 2)
+    assert_equal 1, resp[:content].length
+    assert resp[:last_page]
+    # last page false
+    resp = @user2.own_lessons(1, 3)
+    assert_equal 3, resp[:content].length
+    assert !resp[:last_page]
   end
   
   test 'own_media_elements' do
@@ -105,6 +113,14 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
     assert_extractor [2, 3, 4, 6, @el2.id, @el5.id], @user2.own_media_elements(1, 20)[:content]
+    # last page true
+    resp = @user2.own_media_elements(3, 2)
+    assert_equal 2, resp[:content].length
+    assert resp[:last_page]
+    # last page false
+    resp = @user2.own_media_elements(1, 5)
+    assert_equal 5, resp[:content].length
+    assert !resp[:last_page]
   end
   
   test 'own_media_elements_filter_video' do
@@ -112,6 +128,14 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
     assert_extractor [2, @el2.id], @user2.own_media_elements(1, 20, 'Video')[:content]
+    # last page true
+    resp = @user2.own_media_elements(1, 2, 'Video')
+    assert_equal 2, resp[:content].length
+    assert resp[:last_page]
+    # last page false
+    resp = @user2.own_media_elements(1, 1, 'Video')
+    assert_equal 1, resp[:content].length
+    assert !resp[:last_page]
   end
   
   test 'own_media_elements_filter_audio' do
@@ -119,6 +143,14 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
     assert_extractor [3, 4], @user2.own_media_elements(1, 20, 'Audio')[:content]
+    # last page true
+    resp = @user2.own_media_elements(1, 2, 'Audio')
+    assert_equal 2, resp[:content].length
+    assert resp[:last_page]
+    # last page false
+    resp = @user2.own_media_elements(1, 1, 'Audio')
+    assert_equal 1, resp[:content].length
+    assert !resp[:last_page]
   end
   
   test 'own_media_elements_filter_image' do
@@ -126,6 +158,14 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
     assert_extractor [6, @el5.id], @user2.own_media_elements(1, 20, 'Images')[:content]
+    # last page true
+    resp = @user2.own_media_elements(1, 2, 'Images')
+    assert_equal 2, resp[:content].length
+    assert resp[:last_page]
+    # last page false
+    resp = @user2.own_media_elements(1, 1, 'Images')
+    assert_equal 1, resp[:content].length
+    assert !resp[:last_page]
   end
   
   test 'own_lessons_filter_private' do
