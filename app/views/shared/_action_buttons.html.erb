@@ -1,31 +1,5 @@
-<div class="menuController">
+<div class="menuController _<%= item.class %>" id="<%= item.class %>_menu_buttons_<%= item.id %>">
   <% item.buttons.each do |b| %>
-    
-      <% if b == Buttons::PREVIEW %>
-        <a class="<%= b %>"></a>
-      <% elsif b == Buttons::EDIT %>
-        <a class="<%= b %>"></a>
-      <% elsif b == Buttons::PUBLISH %>
-        <a class="<%= b %>"></a>
-      <% elsif b == Buttons::UNPUBLISH %>
-        <a class="<%= b %>"></a>
-      <% elsif b == Buttons::ADD %>
-        <a class="<%= b %>"></a>
-      <% elsif b == Buttons::REMOVE %>
-        <a class="<%= b %>"></a>
-      <% elsif b == Buttons::DESTROY %>
-        <a class="<%= b %>"></a>
-      <% elsif b == Buttons::LIKE %>
-        <a class="<%= b %>"></a>
-      <% elsif b == Buttons::REPORT %>
-        <a class="<%= b %>"></a>
-      <% elsif b == Buttons::VIRTUAL_CLASSROOM %>
-        <a class="<%= b %>"></a>
-      <% elsif b == Buttons::COPY %>
-        <a class="<%= b %>"></a>
-      <% elsif b == Buttons::CHANGE_INFO %>
-        <a class="<%= b %>"></a>
-      <% end %>
-    
+    <a class="<%= b %>"></a>
   <% end %>
 </div>

@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require jquery-ui-1.9.0.custom
  *= require global
  *= require layouts/prelogin
  *= require header
