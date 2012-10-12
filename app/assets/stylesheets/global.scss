@@ -27,13 +27,23 @@ input {
   padding-left:10px;
   margin:0px;
 	border:none;
-	.text {
+	
+}
+.text {
 	  padding-top:3px; 
 		padding-bottom:3px; 
 		background-repeat:no-repeat;
 		font-size:9px;
-	}
+		border:none;
+	  width:168px; 
+		height:29px; 
+		-moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+		margin-right:10px;
 }
+	
+
+
 select {
   border:none;
 	overflow: hidden;
