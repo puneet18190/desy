@@ -56,7 +56,7 @@ class Slide < ActiveRecord::Base
     resp
   end
   
-  def change_position x
+  def change_position(x)
     errors.clear
     if self.new_record?
       errors.add(:base, :problems_changing_position)

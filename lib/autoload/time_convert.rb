@@ -2,7 +2,7 @@ module TimeConvert
   
   class TimeConverter
     
-    def to_string a_time
+    def to_string(a_time)
       return '' if !a_time.kind_of?(Time)
       case I18n.t('time.format')
         when 'english'
@@ -18,14 +18,14 @@ module TimeConvert
     
     private
     
-    def convert_in_english a_time
+    def convert_in_english(a_time)
       day = a_time.day
       month = a_time.month
       year = a_time.year
       return "#{english_month(month)} #{day}#{english_day_suffix(day)}, #{year}"
     end
     
-    def english_day_suffix x
+    def english_day_suffix(x)
       if [1, 21, 31].include? x
         return 'st'
       elsif [2, 22].include? x
@@ -37,7 +37,7 @@ module TimeConvert
       end
     end
     
-    def english_month x
+    def english_month(x)
       case x
         when 1
           return 'January'
@@ -68,17 +68,17 @@ module TimeConvert
       end
     end
     
-    def convert_in_chinese a_time
+    def convert_in_chinese(a_time)
       a_time.to_s
     end
     
-    def conver_in_italian a_time
+    def conver_in_italian(a_time)
       a_time.to_s
     end
     
   end
   
-  def self.to_string a_time
+  def self.to_string(a_time)
     x = TimeConverter.new
     x.to_string a_time
   end

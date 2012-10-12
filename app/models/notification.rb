@@ -9,7 +9,7 @@ class Notification < ActiveRecord::Base
   
   before_validation :init_validation
   
-  def self.send_to an_user_id, msg
+  def self.send_to(an_user_id, msg)
     x = Notification.new
     x.user_id = an_user_id
     x.message = msg

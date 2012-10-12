@@ -27,7 +27,7 @@ class MediaElement < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_public
   
-  def set_status an_user_id
+  def set_status(an_user_id)
     return if self.new_record?
     if !self.is_public && an_user_id == self.user_id
       @status = STAT_PRIVATE
@@ -53,7 +53,7 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
-  def bookmarked? an_user_id
+  def bookmarked?(an_user_id)
     return false if self.new_record?
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => self.id).any?
   end

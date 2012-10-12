@@ -6,7 +6,7 @@ class ActiveSupport::TestCase
   
   fixtures :all
   
-  def assert_extractor_intersection x1, x2
+  def assert_extractor_intersection(x1, x2)
     x2.each do |y|
       flag = true
       x1.each do |x|
@@ -16,7 +16,7 @@ class ActiveSupport::TestCase
     end
   end
   
-  def assert_extractor my_ids, resp
+  def assert_extractor(my_ids, resp)
     ids = []
     resp.each do |r|
       ids << r.id
@@ -24,7 +24,7 @@ class ActiveSupport::TestCase
     assert_equal ids.sort, my_ids.sort
   end
   
-  def array_to_string array
+  def array_to_string(array)
     resp = ''
     array.each do |a|
       resp = "#{resp}#{a.to_s}"
@@ -32,7 +32,7 @@ class ActiveSupport::TestCase
     resp
   end
   
-  def assert_invalid obj, field, before, after, match
+  def assert_invalid(obj, field, before, after, match)
     obj[field] = before
     assert !obj.save, "#{obj.class} erroneously saved - #{obj.inspect}"
     assert_equal 1, obj.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{obj.errors.inspect}"
@@ -41,20 +41,20 @@ class ActiveSupport::TestCase
     assert obj.valid?, "#{obj.class} not valid: #{obj.errors.inspect}"
   end
   
-  def assert_obj_saved obj
+  def assert_obj_saved(obj)
     assert obj.save, "Error saving #{obj.class}: #{obj.errors.inspect}"
   end
   
-  def assert_error_size x, obj
+  def assert_error_size(x, obj)
     assert !obj.valid?, "#{obj.class} valid when not expected! #{obj.inspect}"
     assert_equal x, obj.errors.size, "Expected #{x} errors, got #{obj.errors.size}: #{obj.errors.inspect}"
   end
   
-  def assert_default x, obj, field
+  def assert_default(x, obj, field)
     assert_equal obj[field], x, "Expected default value < #{x.inspect} > for field #{field} of object #{obj.class}, found #{obj[field].inspect}"
   end
   
-  def long_string length
+  def long_string(length)
     x = ''
     i = 0
     while i < length

@@ -8,7 +8,7 @@ module ApplicationHelper
     "#{h action_name}-action"
   end
   
-  def add_page_parameter page, an_url
+  def add_page_parameter(page, an_url)
     x = an_url.split('?')
     return "#{an_url}?page=#{page}".html_safe if x.length == 1
     x = x[1].split('&')

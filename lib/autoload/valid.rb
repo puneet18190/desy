@@ -2,7 +2,7 @@ module Valid
   
   class Validness
     
-    def get object, column, my_class
+    def get(object, column, my_class)
       column = column.to_s
       if column == 'id'
         return object.new_record? ? nil : object.class.where(:id => object.id).first
@@ -15,7 +15,7 @@ module Valid
     
     private
     
-    def get_class_from_column_name x
+    def get_class_from_column_name(x)
       resp = ''
       x.split('_').each do |my_split|
         if my_split != 'id'
@@ -27,7 +27,7 @@ module Valid
     
   end
   
-  def self.get_association object, column, my_class=nil
+  def self.get_association(object, column, my_class=nil)
     x = Validness.new
     x.get object, column, my_class
   end

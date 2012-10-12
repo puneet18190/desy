@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
-  def like lesson_id
+  def like(lesson_id)
     return false if self.new_record? || !Lesson.exists?(lesson_id)
     return true if Like.where(:lesson_id => lesson_id, :user_id => self.id).any?
     l = Like.new
@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
     return l.save
   end
   
-  def dislike lesson_id
+  def dislike(lesson_id)
     return false if self.new_record? || !Lesson.exists?(lesson_id)
     like = Like.where(:lesson_id => lesson_id, :user_id => self.id).first
     return true if like.nil?
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     return Like.where(:lesson_id => lesson_id, :user_id => self.id).empty?
   end
   
-  def own_media_elements page, per_page, filter=nil
+  def own_media_elements(page, per_page, filter=nil)
     offset = (page - 1) * per_page
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SET.include?(filter)
     param1 = MY_MEDIA_ELEMENTS_QUERY
@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
     return {:last_page => last_page, :content => resp}
   end
   
-  def own_lessons page, per_page, filter=nil
+  def own_lessons(page, per_page, filter=nil)
     offset = (page - 1) * per_page
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SET.include?(filter)
     my_order = 'updated_at DESC'
@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
     return {:last_page => last_page, :content => resp}
   end
   
-  def suggested_lessons n
+  def suggested_lessons(n)
     subject_ids = []
     UsersSubject.where(:user_id => self.id).each do |us|
       subject_ids << us.subject_id
@@ -118,11 +118,11 @@ class User < ActiveRecord::Base
     Lesson.where('is_public = ? AND user_id != ? AND subject_id IN (?)', true, self.id, subject_ids).order('updated_at DESC').limit(n)
   end
   
-  def suggested_elements n
+  def suggested_elements(n)
     MediaElement.where('is_public = ? AND user_id != ?', true, self.id).order('publication_date DESC').limit(n)
   end
   
-  def bookmark type, target_id
+  def bookmark(type, target_id)
     return nil if self.new_record?
     b = Bookmark.new
     b.bookmarkable_type = type
@@ -136,7 +136,7 @@ class User < ActiveRecord::Base
     VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
   end
   
-  def create_lesson title, description, subject_id
+  def create_lesson(title, description, subject_id)
     return nil if self.new_record?
     return nil if UsersSubject.where(:user_id => self.id, :subject_id => subject_id).empty?
     lesson = Lesson.new :subject_id => subject_id, :school_level_id => self.school_level_id, :title => title, :description => description
@@ -145,7 +145,7 @@ class User < ActiveRecord::Base
     return lesson.save ? lesson : nil
   end
   
-  def self.create_user an_email, a_name, a_surname, a_school, a_school_level_id, a_location_id, subject_ids
+  def self.create_user(an_email, a_name, a_surname, a_school, a_school_level_id, a_location_id, subject_ids)
     return nil if subject_ids.class != Array || subject_ids.empty?
     resp = User.new :name => a_name, :surname => a_surname, :school_level_id => a_school_level_id, :school => a_school, :location_id => a_location_id
     resp.email = an_email
@@ -167,7 +167,7 @@ class User < ActiveRecord::Base
     resp
   end
   
-  def edit_fields a_name, a_surname, a_school, a_school_level_id, a_location_id, subject_ids
+  def edit_fields(a_name, a_surname, a_school, a_school_level_id, a_location_id, subject_ids)
     errors.clear
     if subject_ids.class != Array || subject_ids.empty?
       errors.add(:base, :missing_subjects)

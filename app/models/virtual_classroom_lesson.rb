@@ -70,7 +70,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
     true
   end
   
-  def change_position x
+  def change_position(x)
     errors.clear
     if self.new_record?
       errors.add(:base, :problems_changing_position_in_playlist)

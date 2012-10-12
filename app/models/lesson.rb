@@ -35,7 +35,7 @@ class Lesson < ActiveRecord::Base
   
   before_validation :init_validation, :create_token
   
-  def set_status an_user_id
+  def set_status(an_user_id)
     return if self.new_record?
     if !self.is_public && !self.copied_not_modified && an_user_id == self.user_id
       @status = STAT_PRIVATE
@@ -69,12 +69,12 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  def bookmarked? an_user_id
+  def bookmarked?(an_user_id)
     return false if self.new_record?
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).any?
   end
   
-  def copy an_user_id
+  def copy(an_user_id)
     errors.clear
     if self.new_record? || User.where(:id => an_user_id).empty? || (!self.is_public && self.user_id != an_user_id) || (self.is_public && self.user_id != an_user_id && Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id, :user_id => an_user_id).empty?)
       errors.add(:base, :problem_copying)
@@ -251,7 +251,7 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
-  def add_slide kind
+  def add_slide(kind)
     if self.new_record? || !['text', 'image1', 'image2', 'image3', 'audio1', 'audio2', 'video1', 'video2'].include?(kind)
       errors.add(:base, :problem_adding_slide)
       return nil
@@ -269,7 +269,7 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  def add_to_virtual_classroom an_user_id
+  def add_to_virtual_classroom(an_user_id)
     errors.clear
     if self.new_record?
       errors.add(:base, :problem_adding_to_virtual_classroom)
@@ -293,7 +293,7 @@ class Lesson < ActiveRecord::Base
     true
   end
   
-  def remove_from_virtual_classroom an_user_id
+  def remove_from_virtual_classroom(an_user_id)
     errors.clear
     if self.new_record?
       errors.add(:base, :problem_removing_from_virtual_classroom)
