@@ -9,14 +9,14 @@
   <% if cont == 3 %>
   </div>
   <% end %>
-<%
-  cont += 1
-  cont = 0 if cont == 4
-%>
+  <%
+    cont += 1
+    cont = 0 if cont == 4
+  %>
 <% end %>
 <% if cont == 3 %>
   <div class="boxViewSingleMediaElement createNew">
-	  <%= render :partial => "shared/create_new", :locals => {:item => "element"} %>
-	</div>
+    <%= render :partial => "shared/create_new", :locals => {:item => 'media_element'} %>
+  </div>
 </div>
 <% end %>

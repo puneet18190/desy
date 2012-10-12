@@ -38,22 +38,28 @@ en:
           problems_changing_position_in_playlist: 'There was a problem changing the position of the lesson in your playlist'
           problems_adding_to_playlist: 'There was a problem adding your lesson to the playlist'
           problems_removing_from_playlist: 'There was a problem removing your lesson from the playlist'
-  header:
-    welcome: 'welcome'
-    logout: 'Logout'
-    search: 'search in desy'
-    greybar:
-      selected: 'selected for you'
-      upload: 'upload a new element'
-      create: 
-        elements: 'create a new element'
-        lesson: 'create a new lesson'
-  footer:
+  capital_letter:
+    create_new_lesson: 'Create a new lesson'
+    create_new_media_element: 'Load a new element'
+    contact_us: 'Contact us'
     copyright: '©2012 DESY'
     help_using_desy: 'Need help using Desy?'
     download_manual: 'Download the user manual'
     talk_with_desy: 'Want to talk with Desy?'
-    contact_us: 'Contact us'
+    logout: 'Logout'
+    lessons: 'Lessons'
+    media_elements: 'Elements'
+  small_letter:
+    create_new_media_element: 'create a new element'
+    upload_new_media_element: 'upload a new element'
+    create_new_lesson: 'create a new lesson'
+    lessons: 'lessons'
+    media_elements: 'elements'
+    virtual_classroom: 'virtual classroom'
+    profile: 'profile'
+    welcome: 'welcome'
+    search: 'search in desy'
+    selected_for_you: 'selected for you'
   status:
     lessons:
       private: 'private'
