@@ -5,6 +5,10 @@ Desy::Application.routes.draw do
     # resources :views, :only => :show
   end
   
+  # REGISTRATION
+  match 'prelogin' => 'registrations#prelogin', :as => :prelogin
+  
+  # MAIN SECTIONS
   match 'dashboard' => 'dashboard#index', :as => :dashboard_index
   match 'lessons' => 'lessons#index', :as => :my_lessons
   match 'media_elements' => 'media_elements#index', :as => :my_media_elements
