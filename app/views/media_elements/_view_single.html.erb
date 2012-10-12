@@ -1,5 +1,5 @@
 <% if expanded %>
-  <%= media_element.inspect %>
+  <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => media_element} %>
 <% else %>
-  <%= media_element.inspect %>
+  <%= render :partial => "media_elements/view_single_compact", :locals => {:media_element => media_element} %>
 <% end %>

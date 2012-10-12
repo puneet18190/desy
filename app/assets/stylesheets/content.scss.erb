@@ -143,6 +143,98 @@
 	}
 }
 /*FINE CLASSE VISTA LESSONS*/
+/*CLASSE VISTA ELEMENTS*/
+.elements-content {
+  float:left;
+	width:100%;
+	 
+	.title-bar {
+    @include title-bar;
+		@include float-content;
+		@include tag-formatting;
+	  background-color:#41a62a;
+		text-shadow: #d68300 0px 2px 0px;
+		p {
+			padding-top:0.5%;
+		}
+		div {
+			padding-top:0.5%;
+		}
+	}
+	
+	.boxViewSingleMediaElement {
+	  background-color:#fbfafb;
+	  margin-bottom:1%;
+	  -moz-box-shadow: 1px 5px 5px #e8e8e8;
+    -webkit-box-shadow: 1px 5px 5px #e8e8e8;
+    box-shadow: 1px 5px 5px #e8e8e8;
+	  float:left;
+	  width:100%;
+		padding:0%;
+	  color:#c0c0c0;
+		position:relative;
+		.contentInterno {
+	    padding:0.4% 1% 2% 1%;
+			@include float-content;
+			@include tag-formatting;
+			height:auto;
+			h3 {padding-top:0.5%}
+			p {font-size:80%; padding-top:0.5%}
+			&:hover {
+			  background-color:#e8e8e8;
+				cursor: pointer;
+			}
+			
+		}
+		.current {
+			  background-color:#e8e8e8;
+		}
+		.menuController {
+	    padding:0px; 
+      border-top:none;
+			background-color:transparent;
+			float:right;
+			
+	  }
+		.lessons-expanded {
+		  display:none;
+			color:#fff;
+			background-color:#5d5c5c; 
+			padding:1%;
+			float:left;
+			width:98%;
+			.img_expanded {
+			  float:left;
+				position:relative;
+				padding:0;
+				width:auto;
+			}
+			.bg_text {
+			  position:absolute;
+				padding:4%;
+				width:92%;
+				top:62%;		
+				left:0;
+				background-color:#383535;
+			}
+			.info-text {
+			  float:left;
+				padding:0.5% 1% 0 1%;
+				width:36%;
+				p {
+				  padding-top:5%;
+				}
+			}
+			.description-text {
+			  float:left;
+				padding:0.5% 1% 0 1%;
+				width:48%;
+				
+			}
+		}
+	}
+}
+/*FINE CLASSE VISTA ELEMENTS*/
 .boxContentIndex {
   p {font:  180% 'Nunito', sans-serif;}
   padding:2%;
