@@ -28,7 +28,7 @@
       <% elsif pagination_url == 'suggested_media_elements' %>
         switchToSuggested('media_element', <%= page %>, <%= page - 1 %>);
       <% else %>
-        var my_url = <%= add_page_parameter(page - 1, pagination_url) %>;
+        var my_url = '<%= add_page_parameter(page - 1, pagination_url) %>';
         window.location.href = my_url;
       <% end %>
     });
@@ -39,7 +39,7 @@
       <% elsif pagination_url == 'suggested_media_elements' %>
         switchToSuggested('media_element', <%= page %>, <%= page + 1 %>);
       <% else %>
-        var my_url = <%= add_page_parameter(page + 1, pagination_url) %>;
+        var my_url = '<%= add_page_parameter(page + 1, pagination_url) %>';
         window.location.href = my_url;
       <% end %>
     });
