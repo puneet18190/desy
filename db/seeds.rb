@@ -191,7 +191,7 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   notifics << "Prova il brivido del Poker online Gioca su StarCasinò. Bonus 1.000€!"
   
   notifics.each do |n|
-    Notification.send_to u.id, n
+    Notification.send_to admin.id, n
   end
   
   Lesson.all.each do |l|
@@ -201,10 +201,12 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   cont = 0
   tim = Time.zone.now
   MediaElement.all.each do |l|
-    l.is_public = true
-    l.publication_date = tim - cont
-    l.save
-    cont += 1
+    if ![20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40].include?(l.id)
+      l.is_public = true
+      l.publication_date = tim - cont
+      l.save
+      cont += 1
+    end
   end
   
   Lesson.all.each do |l|
@@ -212,6 +214,10 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
     if l.subject_id == 3
       l.copy admin.id
     end
+  end
+  
+  MediaElement.all.each do |me|
+    admin.bookmark 'MediaElement', me.id
   end
   
   paparesta.like(1)
@@ -339,4 +345,4 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   
 end
 
-puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons, #{MediaElement.count} media_elements, #{Slide.count} slides, #{Notification.count} notifications, #{Like.count} likes"
+puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons, #{MediaElement.count} media_elements, #{Slide.count} slides, #{Notification.count} notifications, #{Like.count} likes, #{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons, #{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements"
