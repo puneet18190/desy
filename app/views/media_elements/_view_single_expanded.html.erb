@@ -1,5 +1,5 @@
-	<div class="contentInterno">
-		
-	</div>
-	<%= render :partial => "shared/action_buttons", :locals => {:item => media_element} %>
-	
+<div class="contentInterno">
+  <%= media_element.sti_type %>
+  <%= media_element.title %>
+</div>
+<%= render :partial => "shared/action_buttons", :locals => {:item => media_element} %>
