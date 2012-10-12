@@ -13,16 +13,18 @@ html.prelogin-layout {
 	.top {
     margin-bottom: -190px;
     background: transparent;
-    width: 1%;
-    height: 50%;
+    width: 1px;
+    height: 30%;
     float: left;
   }
 	.container {
     margin: 0 auto;
     width: 1024px;
+		@media (max-width: 1024px) {
+      font-size: 50%;
+	  }
     background-color: #030303;
-		
-    clear: left;
+		clear: left;
 		position: relative;
 		text-align:left;
 		padding:0;
@@ -49,6 +51,9 @@ html.prelogin-layout {
           padding-right: 20px;
 		    }
 		   }
+			 a {
+			   color:#fff;
+			 }
 		  }
 			/*fine header menu*/
 			.login {
@@ -66,7 +71,35 @@ html.prelogin-layout {
 				  background-color:#000;
 				  text-align:center;
 				  font-weight:bold;
-			  }
+					font-size:120%;
+					
+					&:hover {
+					  background-color:#282828;
+					}
+				}
+				.tooltip {
+				  border:none;
+					top: 70px;
+					right:20px;
+					width:189px;
+					background-color:#2f2e2e;
+					padding:20px;
+					
+				
+				 .text {
+	          border:1px solid #424141;
+            width:184px; 
+            height:29px;
+						background-color:#2e2c2d;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 4px;
+            margin-right:0px;
+						color:#6f6d6e;
+						padding:0px;
+						margin-bottom:10px;
+						
+         }
+				}
 		  }
 			/*fine login*/
 		
@@ -76,13 +109,13 @@ html.prelogin-layout {
 		  padding:30px;
 			background-color: #231f20;
 			float:left;
-			border:1px solid #fff;
-			width:100%;
+			
 			h1 {
 			 font: 150% 'Nunito', sans-serif;
 			 color:#505051;
 			 padding-top:14px;
 			 padding-bottom:0px;
+			 line-height:100%;
 			}
 			p {
 			  padding-top:10px;
@@ -92,5 +125,18 @@ html.prelogin-layout {
 				font-size:90%;
 			}
 		}
+		/*fine container text*/
+		.footer {
+		  padding:10px 150px 10px 40px;
+			background: transparent;
+      color: #515151;
+      font-size: 75%;
+      text-transform: lowercase;
+			text-align:right;
+		}
   }
+	
+  
+	
+	
 }
