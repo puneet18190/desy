@@ -25,6 +25,7 @@
         <%= render :partial => "lessons/view_single", :locals => {:lesson => l, :expanded => false} %>
       </div>
     <% end %>
+    <%= render :partial => 'shared/pagination', :locals => {:page => @page, :last_page => @last_page, :first_page => (@page == 1), :pagination_url => request.url} %>
   <% end %>
   
 </div>
