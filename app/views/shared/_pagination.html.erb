@@ -1,3 +1,19 @@
+
+<!--
+
+questo div ha un ID che ho creato per avere uno scope nei due elementi paginatori sotto FIXME, forse sarebbe meglio solo in questo caso usare gli onclick
+la paginazione nella dashboard deve solo fa apparire e scomparire un div interno, che si chiama 'suggested_lessons_1' 'suggested_media_elements_1' etc
+invece la paginazione nelle eltre pagine deve fare una chiamata ajax e sostituire il contenuto (la chiamata ajax da fare è data dall'helper add_page_parameter(page + 1, pagination_url), dove pagination
+url è la url dove mi trovo)
+
+nomenclatura dei div di paginazione:
+
+ID="dashboard_lessons_pagination"
+ID="dashboard_media_elements_pagination"
+ID="<controller>_pagination" per le altre paginazioni
+
+ -->
+
 <div class="pagination" id="<%= (pagination_url == 'suggested_media_elements') ? 'dashboard_media_elements' : ((pagination_url == 'suggested_lessons') ? 'dashboard_lessons' : @where) %>_pagination">
 
 <% if !first_page %>
