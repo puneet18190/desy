@@ -1,6 +1,9 @@
 html.prelogin-layout {
   height: 100%;
-  
+  @mixin hrefColorSize {
+	  color:#f29400;
+		font-size:90%;
+  }
   body {
     font: 80% Arial, Helvetica, sans-serif;
 	  background: #0f0f0f;
@@ -72,7 +75,6 @@ html.prelogin-layout {
 				  text-align:center;
 				  font-weight:bold;
 					font-size:120%;
-					
 					&:hover {
 					  background-color:#282828;
 					}
@@ -81,11 +83,13 @@ html.prelogin-layout {
 				  border:none;
 					top: 70px;
 					right:20px;
-					width:189px;
+					width:196px;
 					background-color:#2f2e2e;
-					padding:20px;
-					
-				
+					padding:15px 20px 15px 20px;
+					a {
+					  @include hrefColorSize;
+				    font-size:120%;
+					}
 				 .text {
 	          border:1px solid #424141;
             width:184px; 
@@ -97,8 +101,15 @@ html.prelogin-layout {
 						color:#6f6d6e;
 						padding:0px;
 						margin-bottom:10px;
-						
-         }
+	          padding-left:10px
+				  }
+				 .callout {
+            top: -8px;
+	          z-index:20;
+	          position:absolute;
+	          border:0;
+	          right:30px;
+         }	
 				}
 		  }
 			/*fine login*/
@@ -109,7 +120,9 @@ html.prelogin-layout {
 		  padding:30px;
 			background-color: #231f20;
 			float:left;
-			
+			a {
+			  @include hrefColorSize;
+			}
 			h1 {
 			 font: 150% 'Nunito', sans-serif;
 			 color:#505051;
@@ -120,10 +133,7 @@ html.prelogin-layout {
 			p {
 			  padding-top:10px;
 			}
-			a {
-			  color:#f29400;
-				font-size:90%;
-			}
+			
 		}
 		/*fine container text*/
 		.footer {
@@ -135,8 +145,4 @@ html.prelogin-layout {
 			text-align:right;
 		}
   }
-	
-  
-	
-	
 }

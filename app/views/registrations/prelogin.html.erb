@@ -1,42 +1,45 @@
 <!-- HEADER -->
-  <div class="header">
-	  <div class="headerMenu">
-			<ul>
-				<li><a href="">What is DESY?</a></li>
-				<li><a href="">Learning Objectives</a></li>
-				<li><a href="">Register</a></li>
-				<li><a href="">Contact</a></li>
-			</ul>
-			<div class="login">
-			  <p>I forgot my login information</p>
-				<div class="button">
-					<a href="">Login</a>
-				</div>
-				<div class="tooltip">
-						<form action="" method="get" id="" class="">
-							<table summary="" cellpadding="0" cellspacing="0">
-							<tbody>
-							<tr>
-								<td><input type="text" name="username" value="username" class="text" onfocus="this.value=''"></td>
-							</tr>
-							<tr>
-								<td><input type="text" name="password" value="password" class="text" onfocus="this.value=''">	</td>
-							</tr>
-							</tbody></table>
-						</form>
-					  </div>
-			</div>
-		</div>
+<div class="header">
+  <div class="headerMenu">
+  <ul>
+    <li><a href="">What is DESY?</a></li>
+		<li><a href="">Learning Objectives</a></li>
+		<li><a href="">Register</a></li>
+		<li><a href="">Contact</a></li>
+	</ul>
+	<div class="login">
+	  <p>I forgot my login information</p>
+	    <div class="button">
+		    <a href="">Login</a>
+		  </div>
+		  <div class="tooltip">
+			<%= image_tag("freccia_tooltip_up.png", :class => "callout") %>
+		  <form action="" method="get" id="" class="">
+		  <table summary="" cellpadding="0" cellspacing="0">
+			  <tbody>
+				<tr>
+				  <td><input type="text" name="username" value="username" class="text" onfocus="this.value=''"></td>
+				</tr>
+				<tr>
+				  <td><input type="text" name="password" value="password" class="text" onfocus="this.value=''">	</td>
+				</tr>
+				</tbody>
+			</table>
+			<a href="">Enter</a>
+		  </form>
+		  </div>
+   </div>
+  </div>
+</div>
+<!-- FINE HEADER -->
+<!-- CONTAINERTEXT -->
+<div class="containerText">
+  <div class="fltlft" style="width:47%">
+	  <%= image_tag "logo_prelogin.png" %>
 	</div>
-	<!-- FINE HEADER -->
-	<!-- CONTAINERTEXT -->
-  <div class="containerText">
-	  <div class="fltlft" style="width:47%">
-		<%= image_tag "logo_prelogin.png" %>
-		</div>
-    <div class="fltlft" style="width:26%">
-		  <h1>Discover a new way of teaching</h1>
-		  <p>DESY has arrived, the new multimedia platform dedicated to the world of the school.
+  <div class="fltlft" style="width:26%">
+	<h1>Discover a new way of teaching</h1>
+	<p>DESY has arrived, the new multimedia platform dedicated to the world of the school.
 Thanks to DESY will be possible to create multimedia lessons, uploading their images or videos or using those in the database of DESY.
 Share your work with other users DESY to create a large network of educational content.</p>
       <p><a href="">Watch the video</a></p>
