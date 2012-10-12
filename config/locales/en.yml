@@ -49,6 +49,12 @@ en:
     logout: 'Logout'
     lessons: 'Lessons'
     media_elements: 'Elements'
+    small: 'Small'
+    large: 'Large'
+    display_mode: 'Display mode'
+    matter: 'Matter'
+    status: 'Status'
+    show: 'Show'
   small_letter:
     create_new_media_element: 'create a new element'
     upload_new_media_element: 'upload a new element'
@@ -60,6 +66,7 @@ en:
     welcome: 'welcome'
     search: 'search in desy'
     selected_for_you: 'selected for you'
+    display: 'display'
   status:
     lessons:
       private: 'private'
