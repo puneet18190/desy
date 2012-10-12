@@ -35,4 +35,12 @@ $(document).ready(function() {
     autoOpen: false,
   });
   
+  $('._Lesson_buttons').each(function() {
+    initializeLessonButtons(this.id);
+  });
+  
+  $('._MediaElement_buttons').each(function() {
+    initializeMediaElementButtons(this.id);
+  });
+  
 });
