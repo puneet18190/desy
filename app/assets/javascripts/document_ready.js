@@ -23,4 +23,16 @@ $(document).ready(function() {
     }
   });
   
+  $("#dialog-normal").dialog({
+    autoOpen: false,
+  });
+  
+  $("#dialog-shade").dialog({
+    autoOpen: false,
+  });
+  
+  $("#dialog-timed").dialog({
+    autoOpen: false,
+  });
+  
 });
