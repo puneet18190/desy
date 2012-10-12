@@ -10,8 +10,8 @@ module ApplicationHelper
   
   def add_page_parameter page, an_url
     x = an_url.split('?')
-    return "#{an_url}?page=#{page}" if x.length == 1
-    x = x.split('&')
+    return "#{an_url}?page=#{page}".html_safe if x.length == 1
+    x = x[1].split('&')
     flag = false
     old_page = 0
     x.each do |xx|
@@ -21,7 +21,7 @@ module ApplicationHelper
         old_page = yy[1]
       end
     end
-    return flag ? an_url.gsub("page=#{old_page}", "page=#{page}") : "#{an_url}&page=#{page}"
+    return flag ? an_url.gsub("page=#{old_page}", "page=#{page}").html_safe : "#{an_url}&page=#{page}".html_safe
   end
   
 end
