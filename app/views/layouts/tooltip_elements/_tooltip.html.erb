@@ -1,7 +1,8 @@
 <span class="tooltip">
 	<%= image_tag("freccia_tooltip.png", :class => "callout") %>
 	<div class="list">
-  <ul class="navlist">
+	<!-- FIXME HO MESSO TEMPORANEAMENTE DISPLAY NONE QUI SOTTO PER EVITARE CHE MI COPRA LA BARRA DEGLI ELEMENTI -->
+  <ul class="navlist" style="display:none">
     <% @notifications.each do |n| %>
       <li><a href="#" <%= n.seen ? "class=\"visited\"" : '' %>><%= n.message.html_safe %></a></li>
     <% end %>
