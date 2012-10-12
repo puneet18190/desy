@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require global
+ *= require layouts/prelogin
  *= require header
  *= require layouts/menu
  *= require layouts/notice_help
