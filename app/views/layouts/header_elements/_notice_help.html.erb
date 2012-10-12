@@ -2,7 +2,8 @@
   <div class="notice">
     <% if @new_notifications > 0 %>
       <a href="" class="current"></a>
-      <%= @new_notifications %> <!-- questo è il contenuto del fumetto -->
+			<%= render :partial => "layouts/tooltip_elements/tooltip_arancione" %>
+      
     <% else %>
       <a href=""></a>
     <% end %>
