@@ -1,1 +1,32 @@
-<%= @media_elements.inspect %>
+<!--%= @media_elements.inspect %-->
+<div class="elements-content">
+  <div class="title-bar">
+    <h1>elements</h1>
+    <p>Display mode: Large - Small</p>
+    <div>Sort by
+      <select name="sortby" class="styled-select" id="">
+        <option value=""></option>
+      </select>
+    </div>
+    <div>display
+      <select name="display" class="styled-select" id="">
+        <option value=""></option>
+      </select>
+    </div>
+  </div>
+  
+  <% if @media_elements.empty? %>
+    <% if @filter == Filters::ALL_ELEMENTS %>
+      <%= render :partial => "media_elements/empty" %>
+    <% else %>
+      <%= render :partial => "media_elements/empty_result" %>
+    <% end %>
+  <% else %>
+    <% @media_elements.each do |l| %>
+      <div id="" class="boxViewSingleMediaElement _element_compact">
+        <%= render :partial => "media_elements/view_single", :locals => {:element => l, :expanded => false} %>
+      </div>
+    <% end %>
+  <% end %>
+  
+</div>

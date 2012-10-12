@@ -2,10 +2,10 @@
   <h3><%= lesson.title %></h3>
   <p><%= lesson.subject.description %></p>
   <p><%= lesson.status %></p>
-  <%= render :partial => "shared/action_buttons", :locals => {:item => lesson} %>
+  <%= render :partial => "shared/action_buttons", :locals => {:item => media_element} %>
 </div>
 <div class="lessons-expanded _lesson_expanded">
-  <%= render :partial => "lessons/thumbnails/small", :locals => {:lesson => lesson} %>
+  <%= render :partial => "media_elements/thumbnails/small", :locals => {:media_element => media_element} %>
   <div class="info-text">
     <h1>Created on</h1>
     <%= TimeConvert.to_string(lesson.created_at) %>
