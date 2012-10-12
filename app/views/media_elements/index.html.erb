@@ -1,7 +1,7 @@
 <div class="elements-content">
   <div class="title-bar">
     <h1><%= t('small_letter.elements') %></h1>
-    <p><%= t('capital_letter.display_mode') %>: <a href="#" id="large_media_elements"><%= t('capital_letters.large') %></a> - <a href="#" id="small_media_elements"><%= t('capital_letters.small') %></a></p>
+    <p><%= t('capital_letter.display_mode') %>: <%= link_to t('capital_letters.large'), '/media_elements?format=expanded' %> - <%= link_to t('capital_letters.small'), '/media_elements?format=compact' %></p>
     <div><%= t('capital_letter.show') %>
       <select name="ricerca" class="styled-select" id="filter_media_elements">
         <% Filters::MEDIA_ELEMENTS_SET.each do |f| %>
@@ -11,8 +11,10 @@
       </select>
     </div>
     <div><%= t('small_letter.display') %>
-      <select name="display" class="styled-select" id="">
-        <option value=""></option>
+      <select name="display" class="styled-select" id="format_media_elements">
+        <% @format_options.each do |f| %>
+          <option value="<%= f %>" <%= f == @for_page ? "selected=\"selected" : '' %>><%= f %></option>
+        <% end %>
       </select>
     </div>
   </div>
@@ -25,8 +27,8 @@
     <% end %>
   <% else %>
     <% @media_elements.each do |me| %>
-      <div id="" class="boxViewSingleMediaElement _element_compact">
-        <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => true} %>
+      <div id="" class="boxViewSingleMediaElement">
+        <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => (@format == Formats::EXPANDED)} %>
       </div>
     <% end %>
   <% end %>

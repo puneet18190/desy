@@ -20,6 +20,7 @@ class MediaElementsController < ApplicationController
   def initialize_paginator
     @page = (params[:page].blank? || params[:page].to_i <= 0) ? 1 : params[:page].to_i
     @format = (params[:format].blank? || ![Formats::COMPACT, Formats::EXPANDED].include?(params[:format])) ? Formats::EXPANDED : params[:format]
+    @format_options = @format == Formats::COMPACT ? FOR_PAGE_COMPACT_OPTIONS : FOR_PAGE_EXPANDED_OPTIONS
     @for_page = (@format == Formats::EXPANDED) ? FOR_PAGE_EXPANDED : FOR_PAGE_COMPACT
     if !params[:for_page].blank? && params[:for_page].to_i > 0
       @for_page = (@format == Formats::EXPANDED) ? (FOR_PAGE_EXPANDED_OPTIONS.include?(params[:for_page].to_i) ? params[:for_page].to_i : @for_page) : (FOR_PAGE_COMPACT_OPTIONS.include?(params[:for_page].to_i) ? params[:for_page].to_i : @for_page)
