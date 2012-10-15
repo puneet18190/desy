@@ -318,6 +318,11 @@ class Lesson < ActiveRecord::Base
     true
   end
   
+  def in_virtual_classroom?
+    return false if self.new_record?
+    VirtualClassroomLesson.where(:user_id => self.user_id, :lesson_id => self.id).any?
+  end
+  
   private
   
   def present_parent_id

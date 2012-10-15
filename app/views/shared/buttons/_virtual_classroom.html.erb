@@ -1,1 +1,2 @@
-<a class="<%= Buttons::VIRTUAL_CLASSROOM %>"></a>
+<% in_virtual_classroom = item.in_virtual_classroom? %>
+<a class="<%= Buttons::VIRTUAL_CLASSROOM %>_<%= in_virtual_classroom %>" onclick="handleVirtualClassroom(<%= item.id %>, <%= in_virtual_classroom %>);"></a>

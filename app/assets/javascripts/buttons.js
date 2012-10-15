@@ -53,3 +53,20 @@ function reportMediaElement(media_element_id) {
 function unpublishLesson(lesson_id) {
   
 }
+
+function removeLessonFromVirtualClassroom(lesson_id) {
+  
+}
+
+function addLessonToVirtualClassroom(lesson_id) {
+  
+}
+
+function handleVirtualClassroom(lesson_id, in_virtual_classroom) {
+  if(in_virtual_classroom) {
+    removeLessonFromVirtualClassroom(lesson_id);
+  } else {
+    addLessonToVirtualClassroom(lesson_id);
+  }
+  return;
+}
