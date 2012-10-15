@@ -344,7 +344,7 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   galliani.like(35)
   
   Lesson.last.modify
-  Lesson.last.copy
+  Lesson.last.copy(admin.id)
   Lesson.last.modify
   
 end
