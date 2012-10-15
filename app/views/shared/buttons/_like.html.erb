@@ -1,1 +1,1 @@
-<a class="<%= Buttons::LIKE %>" onclick="likeLesson(<%= item.id %>);"></a>
+<%= render :partial => 'shared/buttons/standard_ajax_button', :locals => {:name => Buttons::LIKE, :function => "likeLesson", :id => item.id} %>

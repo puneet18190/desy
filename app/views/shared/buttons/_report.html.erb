@@ -1,1 +1,1 @@
-<a class="<%= Buttons::REPORT %>" onclick="report<%= item.class %>(<%= item.id %>);"></a>
+<%= render :partial => 'shared/buttons/standard_ajax_button', :locals => {:name => Buttons::REPORT, :function => "report#{item.class}", :id => item.id} %>

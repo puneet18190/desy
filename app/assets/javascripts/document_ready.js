@@ -1,6 +1,3 @@
-// in this file we define the totality of javascripts in the application,
-// with the only exception of the actions in the folder app/views/shared/buttons
-
 $(document).ready(function() {
   
   $('#switch_to_lessons').click(function() {
@@ -36,6 +33,12 @@ $(document).ready(function() {
   
   $("#dialog-timed").dialog({
     autoOpen: false,
+  });
+  
+  $('._action_button').click(function() {
+    var my_function = $(this).data('clickFunction');
+    var my_param = $(this).data('clickParam');
+    window[myFunction](myParam);
   });
   
 });
