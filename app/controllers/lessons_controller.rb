@@ -46,7 +46,7 @@ class LessonsController < ApplicationController
         @error = @lesson.get_base_error
       end
     else
-      @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying')
+      @error = I18n.t('activerecord.errors.models.lesson.problem_destroying')
     end
   end
   

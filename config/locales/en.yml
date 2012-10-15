@@ -7,6 +7,8 @@ en:
         bookmark:
           problem_creating_for_lesson: 'There was a problem adding the lesson'
           problem_creating_for_media_element: 'There was a problem adding the element'
+          problem_destroying_for_lesson: 'There was a problem removing the lesson'
+          problem_destroying_for_media_element: 'There was a problem removing the element'
         lesson:
           problem_copying: 'There was a problem copying the lesson'
           already_copied: 'You already have a copy of this lesson'
