@@ -154,11 +154,16 @@
 	  }
 		.lessons-expanded {
 		  display:none;
-			color:#fff;
-			background-color:#5d5c5c; 
+			color:#373737;
+			background-color:#e8e8e8; 
 			padding:1%;
 			float:left;
 			width:98%;
+			h1 {
+	       font-size: 80%;
+		     color:#a7a9ac;
+		  
+	      }
 			.img_expanded {
 			  float:left;
 				position:relative;
@@ -180,6 +185,7 @@
 				p {
 				  padding-top:5%;
 				}
+				
 			}
 			.description-text {
 			  float:left;
@@ -201,7 +207,7 @@
 		@include float-content;
 		@include tag-formatting;
 	  background-color:#41a62a;
-		text-shadow: #d68300 0px 2px 0px;
+		text-shadow: #399125 0px 2px 0px;
 		p {
 			padding-top:0.5%;
 		}
@@ -217,7 +223,7 @@
     -webkit-box-shadow: 1px 5px 5px #e8e8e8;
     box-shadow: 1px 5px 5px #e8e8e8;
 	  float:left;
-	  width:100%;
+	  width:30%;
 		padding:0%;
 	  color:#c0c0c0;
 		position:relative;
@@ -251,6 +257,7 @@
 			padding:1%;
 			float:left;
 			width:98%;
+			
 			.img_expanded {
 			  float:left;
 				position:relative;
@@ -272,6 +279,7 @@
 				p {
 				  padding-top:5%;
 				}
+				
 			}
 			.description-text {
 			  float:left;
@@ -283,6 +291,27 @@
 	}
 }
 /*FINE CLASSE VISTA ELEMENTS*/
+
+/*DASHBOARD*/
+@mixin contentLayout {
+  background-color:#fbfafb;
+	
+  margin-bottom:1%;
+	-moz-box-shadow: 1px 5px 5px #e8e8e8;
+  -webkit-box-shadow: 1px 5px 5px #e8e8e8;
+  box-shadow: 1px 5px 5px #e8e8e8;
+	
+	h1 {
+	  font-size: 110%;
+		color:#f29400;
+		padding:0px;
+	}
+	h2 {
+	  font-size: 140%;
+	}
+	
+}
+
 .boxContentIndex {
   p {font:  180% 'Nunito', sans-serif;}
   padding:2%;
@@ -294,30 +323,37 @@
 	}
 }
 .boxViewSingleLesson {
-  background-color:#fbfafb;
-	margin-bottom:1%;
-	-moz-box-shadow: 1px 5px 5px #e8e8e8;
-  -webkit-box-shadow: 1px 5px 5px #e8e8e8;
-  box-shadow: 1px 5px 5px #e8e8e8;
+  @include contentLayout;
 	float:left;
 	width:49%;
 	&:last-child {
 		margin-left: 0px;
 		float:right;
 	}
-	h1 {
-	  font-size: 87.5%;
-		color:#f29400;
-		padding:0px;
-	}
-	h2 {
-	  font-size: 140%;
-	}
 	.contentInterno {
 	  padding:4%;
 		height:110px;
+		
 	}
 }
+
+.boxViewSingleMediaElement {
+  @include contentLayout;
+	width:221px;
+	float:left;
+	margin-right:9%;
+	&:last-child {
+		margin-right: 0px;
+		float:right;
+	}
+	.contentInterno {
+	  padding:0%;
+		
+		
+	}
+}
+
+
 .createNew {
   background-color:#faf9fa;
 	color:#bbbbbb;
