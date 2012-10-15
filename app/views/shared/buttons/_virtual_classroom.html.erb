@@ -1,2 +1,2 @@
-<% in_virtual_classroom = item.in_virtual_classroom? %>
+<% in_virtual_classroom = item.in_virtual_classroom?(@current_user.id) %>
 <a class="<%= Buttons::VIRTUAL_CLASSROOM %>_<%= in_virtual_classroom %>" onclick="handleVirtualClassroom(<%= item.id %>, <%= in_virtual_classroom %>);"></a>
