@@ -42,5 +42,12 @@ $(document).ready(function() {
     window[my_function](my_param);
     return false;
   });
-  
+	
+	$('.scroll-pane').jScrollPane(
+	{
+			autoReinitialise: true
+		});
+	
+  $("#sceltaElementi").selectbox();
+	$("#filter_lessons").selectbox();
 });
