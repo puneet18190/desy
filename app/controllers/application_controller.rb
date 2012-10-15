@@ -9,6 +9,11 @@ class ApplicationController < ActionController::Base
     @lesson = Lesson.find_by_id @lesson.id if !@lesson.nil?
   end
   
+  def initialize_lesson_with_owner
+    initialize_lesson
+    @ok = (@current_user.id == @lesson.user_id) if @ok
+  end
+  
   def initialize_lesson
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @lesson = Lesson.find_by_id @lesson_id

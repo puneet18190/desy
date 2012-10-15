@@ -2,6 +2,9 @@ class LessonsController < ApplicationController
   
   FOR_PAGE = CONFIG['compact_lesson_pagination']
   
+  before_filter :initialize_lesson, :only => [:add, :copy, :like, :remove, :dislike]
+  before_filter :initialize_lesson_with_owner, :only => [:destroy, :publish, :unpublish]
+  
   def index
     initialize_paginator
     resp = @current_user.own_lessons(@page, @for_page, @filter)
@@ -13,7 +16,6 @@ class LessonsController < ApplicationController
   end
   
   def add
-    initialize_lesson
     if @ok
       if !@current_user.bookmark('Lesson', @lesson_id)
         @ok = false
@@ -26,7 +28,6 @@ class LessonsController < ApplicationController
   end
   
   def copy
-    initialize_lesson
     if @ok
       @new_lesson = @lesson.copy(@current_user.id)
       if @new_lesson.nil?
@@ -38,8 +39,7 @@ class LessonsController < ApplicationController
     end
   end
   
-  def destroy # qui ci vuole un bel filtro
-    initialize_lesson
+  def destroy
     if @ok
       if !@lesson.destroy_with_notifications
         @ok = false
@@ -50,8 +50,7 @@ class LessonsController < ApplicationController
     end
   end
   
-  def dislike # qui ci vuole un filtro
-    initialize_lesson
+  def dislike
     if @ok
       if !@current_user.dislike(@lesson_id)
         @ok = false
@@ -64,7 +63,6 @@ class LessonsController < ApplicationController
   end
   
   def like
-    initialize_lesson
     if @ok
       if !@current_user.like(@lesson_id)
         @ok = false
@@ -76,8 +74,7 @@ class LessonsController < ApplicationController
     reload_lesson
   end
   
-  def publish # filtro
-    initialize_lesson
+  def publish
     if @ok
       if !@lesson.publish
         @ok = false
@@ -89,8 +86,7 @@ class LessonsController < ApplicationController
     reload_lesson
   end
   
-  def unpublish # filtro
-    initialize_lesson
+  def unpublish
     if @ok
       if !@lesson.unpublish
         @ok = false
@@ -102,8 +98,7 @@ class LessonsController < ApplicationController
     reload_lesson
   end
   
-  def remove # filtro
-    initialize_lesson
+  def remove
     if @ok
       bookmark = Bookmark.where(:user_id => @current_user.id, :bookmarkable_type => 'Lesson', :bookmarkable_id => @lesson_id).first
       if bookmark.nil?
