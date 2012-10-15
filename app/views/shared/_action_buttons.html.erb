@@ -1,5 +1,5 @@
-<div class="menuController _<%= item.class %>_buttons" id="<%= item.class %>_menu_buttons_<%= item.id %>">
+<div class="menuController" id="<%= item.class %>_menu_buttons_<%= item.id %>">
   <% item.buttons.each do |b| %>
-    <%= render :partial => "shared/buttons/#{b}" %>
+    <%= render :partial => "shared/buttons/#{b}", :locals => {:item => item} %>
   <% end %>
 </div>
