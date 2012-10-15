@@ -3,7 +3,7 @@ class Lesson < ActiveRecord::Base
   STAT_PRIVATE = I18n.t('status.lessons.private')
   STAT_COPIED = I18n.t('status.lessons.copied')
   STAT_LINKED = I18n.t('status.lessons.linked')
-  STAT_NOT_MINE = I18n.t('status.lessons.not_mine')
+  STAT_SHARED = I18n.t('status.lessons.shared')
   STAT_PUBLIC = I18n.t('status.lessons.public')
   
   attr_accessible :subject_id, :school_level_id, :title, :description
@@ -44,9 +44,9 @@ class Lesson < ActiveRecord::Base
     elsif self.is_public && an_user_id != self.user_id && self.bookmarked?(an_user_id)
       @status = STAT_LINKED
     elsif self.is_public && an_user_id != self.user_id && !self.bookmarked?(an_user_id)
-      @status = STAT_NOT_MINE
-    elsif self.is_public && an_user_id == self.user_id
       @status = STAT_PUBLIC
+    elsif self.is_public && an_user_id == self.user_id
+      @status = STAT_SHARED
     else
       @status = nil
     end
@@ -62,9 +62,9 @@ class Lesson < ActiveRecord::Base
       return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
     elsif @status == STAT_LINKED
        return [Buttons::PREVIEW, Buttons::COPY, virtual_classroom_button, like_button, Buttons::REMOVE, Buttons::REPORT]
-    elsif @status == STAT_NOT_MINE
-       return [Buttons::PREVIEW, Buttons::ADD, like_button, Buttons::REPORT]
     elsif @status == STAT_PUBLIC
+       return [Buttons::PREVIEW, Buttons::ADD, like_button, Buttons::REPORT]
+    elsif @status == STAT_SHARED
        return [Buttons::PREVIEW, Buttons::EDIT, virtual_classroom_button, Buttons::UNPUBLISH, Buttons::COPY, Buttons::DESTROY]
     else
       return []

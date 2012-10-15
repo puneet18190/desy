@@ -2,7 +2,7 @@ class MediaElement < ActiveRecord::Base
   
   STAT_PRIVATE = I18n.t('status.media_elements.private')
   STAT_LINKED = I18n.t('status.media_elements.linked')
-  STAT_NOT_MINE = I18n.t('status.media_elements.not_mine')
+  STAT_PUBLIC = I18n.t('status.media_elements.public')
   
   self.inheritance_column = :sti_type
   
@@ -32,7 +32,7 @@ class MediaElement < ActiveRecord::Base
     if !self.is_public && an_user_id == self.user_id
       @status = STAT_PRIVATE
     elsif self.is_public && !self.bookmarked?(an_user_id)
-      @status = STAT_NOT_MINE
+      @status = STAT_PUBLIC
     elsif self.is_public && self.bookmarked?(an_user_id)
       @status = STAT_LINKED
     else
@@ -44,7 +44,7 @@ class MediaElement < ActiveRecord::Base
     return [] if !@status
     if @status == STAT_PRIVATE
       return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY, Buttons::CHANGE_INFO]
-    elsif @status == STAT_NOT_MINE
+    elsif @status == STAT_PUBLIC
        return [Buttons::PREVIEW, Buttons::ADD, Buttons::REPORT]
     elsif @status == STAT_LINKED
        return [Buttons::PREVIEW, Buttons::EDIT, Buttons::REMOVE, Buttons::REPORT]

@@ -82,11 +82,11 @@ en:
       private: 'private'
       copied: 'copied'
       linked: 'linked'
-      not_mine: 'not mine'
       public: 'public'
+      shared: 'shared'
     media_elements:
       private: 'private'
-      not_mine: 'not mine'
+      public: 'public'
       linked: 'linked'
   filters:
     all_lessons: 'All lessons'

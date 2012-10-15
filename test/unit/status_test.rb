@@ -20,15 +20,15 @@ class StatusTest < ActiveSupport::TestCase
     assert l1.buttons.empty?
     assert l1.publish
     l1.set_status 1
-    assert_equal 'public', l1.status
+    assert_equal 'shared', l1.status
     assert_equal ['preview', 'edit', 'remove_virtual_classroom', 'unpublish', 'copy', 'destroy'], l1.buttons
     l1.set_status 2
-    assert_equal 'not mine', l1.status
+    assert_equal 'public', l1.status
     assert_equal ['preview', 'add', 'like', 'report'], l1.buttons
     # I try like
     assert User.find(2).like(l1.id)
     l1.set_status 2
-    assert_equal 'not mine', l1.status
+    assert_equal 'public', l1.status
     assert_equal ['preview', 'add', 'dislike', 'report'], l1.buttons
     # until here
     assert User.find(2).bookmark('Lesson', 1)
@@ -56,9 +56,9 @@ class StatusTest < ActiveSupport::TestCase
     me1.publication_date = '2011-01-01 00:00:01'
     assert_obj_saved me1
     me1.set_status 1
-    assert_equal 'not mine', me1.status
+    assert_equal 'public', me1.status
     me1.set_status 2
-    assert_equal 'not mine', me1.status
+    assert_equal 'public', me1.status
     assert_equal ['preview', 'add', 'report'], me1.buttons
     assert User.find(2).bookmark('MediaElement', 1)
     me1.set_status 2
