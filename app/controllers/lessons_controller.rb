@@ -13,12 +13,131 @@ class LessonsController < ApplicationController
   end
   
   def add
-    @ok = correct_integer? params[:lesson_id]
-    @ok = @current_user.bookmark('Lesson', params[:lesson_id].to_i) if @ok
-    @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_lesson') if !@ok
+    initialize_lesson
+    if @ok
+      if !@current_user.bookmark('Lesson', @lesson_id)
+        @ok = false
+        @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_lesson')
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_lesson')
+    end
+    reload_lesson
   end
   
+  def copy
+    initialize_lesson
+    if @ok
+      @new_lesson = @lesson.copy(@current_user.id)
+      if @new_lesson.nil?
+        @ok = false
+        @error = @lesson.get_base_error
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.lesson.problem_copying')
+    end
+  end
+  
+  def destroy # qui ci vuole un bel filtro
+    initialize_lesson
+    if @ok
+      if !@lesson.destroy_with_notifications
+        @ok = false
+        @error = @lesson.get_base_error
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying')
+    end
+  end
+  
+  def dislike # qui ci vuole un filtro
+    initialize_lesson
+    if @ok
+      if !@current_user.dislike(@lesson_id)
+        @ok = false
+        @error = I18n.t('activerecord.errors.models.like.problem_destroying')
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.like.problem_destroying')
+    end
+    reload_lesson
+  end
+  
+  def like
+    initialize_lesson
+    if @ok
+      if !@current_user.like(@lesson_id)
+        @ok = false
+        @error = I18n.t('activerecord.errors.models.like.problem_creating')
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.like.problem_creating')
+    end
+    reload_lesson
+  end
+  
+  def publish # filtro
+    initialize_lesson
+    if @ok
+      if !@lesson.publish
+        @ok = false
+        @error = @lesson.get_base_error
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.lesson.problem_publishing')
+    end
+    reload_lesson
+  end
+  
+  def unpublish # filtro
+    initialize_lesson
+    if @ok
+      if !@lesson.unpublish
+        @ok = false
+        @error = @lesson.get_base_error
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.lesson.problem_unpublishing')
+    end
+    reload_lesson
+  end
+  
+  def remove # filtro
+    initialize_lesson
+    if @ok
+      bookmark = Bookmark.where(:user_id => @current_user.id, :bookmarkable_type => 'Lesson', :bookmarkable_id => @lesson_id).first
+      if bookmark.nil?
+        @ok = false
+        @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_lesson')
+      else
+        bookmark.destroy
+        if Bookmark.where(:user_id => @current_user.id, :bookmarkable_type => 'Lesson', :bookmarkable_id => @lesson_id).any?
+          @ok = false
+          @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_lesson')
+        end
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_lesson')
+    end
+    reload_lesson
+  end
+  
+  #match 'lessons/:lesson_id/report' => 'lessons#report', :via => :post
+  
+  #match 'virtual_classroom/:lesson_id/add_lesson' => 'virtual_classroom#add_lesson', :via => :post
+  #match 'virtual_classroom/:lesson_id/remove_lesson' => 'virtual_classroom#remove_lesson', :via => :post
+  
   private
+  
+  def reload_lesson
+    @lesson = Lesson.find_by_id @lesson.id
+  end
+  
+  def initialize_lesson
+    @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
+    @lesson = Lesson.find_by_id @lesson_id
+    @ok = !@lesson.nil?
+  end
   
   def initialize_paginator
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
