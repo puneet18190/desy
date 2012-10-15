@@ -13,7 +13,7 @@
 	right:-7px;
 }
 .tooltip {
-  display:block; 
+  display:none; 
 	@include misc;
   padding:2.5% 10% 2.5% 10%;
   right:137px;
@@ -28,12 +28,30 @@
 		li { 
 		  margin: 1.5% 0 1.5% 0;
 			padding:0%;
+			position:relative;
+			
+			.cancelTooltip {
+		    position:absolute;
+			  right:0.1em;
+			  top:0.1em;
+				
+		  }
 		}
 		a {
       display: block;
       background-color: #c1e6f6;
+			border-radius:3px;
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px;
+			margin-right: 0;
+			padding:5%;
+    }
+		a.expanded {
+      display: block;
+      background-color: #c1e6f6;
 			background-image:none;
-      /*background-image: url(images/l1_down.gif);*/
+      background-image: url(<%= asset_path 'arrow_tooltip_notice.png' %>);
+			background-position:center bottom;
 			border-radius:3px;
       -moz-border-radius: 3px;
       -webkit-border-radius: 3px;
@@ -41,7 +59,6 @@
 			padding:5%;
     }
 		a:link, .navlist a:visited {
-      
       text-decoration: none;
     }
 		.current {background-image:none; background-color:#f5f5f5}
@@ -55,7 +72,33 @@
   top:0px;
 	color:#fff;
   background-color:#f29400;
+}
+/*TOOLTIP HELP*/
+$canvasSize: 450%;
+
+
+.tooltipHelp {
+  
+  display:none; 
+	@include misc;
+  padding:2.5% 10% 2.5% 10%;
+	font-size:85%;
+  right:93px;
+  top:-9px;
+	float:left;
+	background-color:#fff;
+	border:1px solid #e8e8e8;
+	width:520%;
+	strong {
+	  color:#f29400;
 	}
+	p {
+    display:inline-block; 
+    width:200px;
+	  padding:1%;
+  }
+}
+
 .callout {
   top: 15px;
 	@include call;
