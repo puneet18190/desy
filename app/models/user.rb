@@ -24,6 +24,42 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
+  def report_lesson(lesson_id, msg)
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problem_reporting)
+      return false
+    end
+    r = Report.new
+    r.user_id = self.id
+    r.reportable_type = 'Lesson'
+    r.reportable_id = lesson_id
+    r.comment = msg
+    if !r.save
+      errors.add(:base, :problem_reporting)
+      return false
+    end
+    true
+  end
+  
+  def report_media_element(media_element_id, msg)
+    errors.clear
+    if self.new_record?
+      errors.add(:base, :problem_reporting)
+      return false
+    end
+    r = Report.new
+    r.user_id = self.id
+    r.reportable_type = 'MediaElement'
+    r.reportable_id = media_element_id
+    r.comment = msg
+    if !r.save
+      errors.add(:base, :problem_reporting)
+      return false
+    end
+    true
+  end
+  
   def like(lesson_id)
     return false if self.new_record? || !Lesson.exists?(lesson_id)
     return true if Like.where(:lesson_id => lesson_id, :user_id => self.id).any?

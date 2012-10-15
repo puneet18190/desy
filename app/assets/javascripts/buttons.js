@@ -51,13 +51,6 @@ function removeLesson(lesson_id) {
   });
 }
 
-function reportLesson(lesson_id) {
-  $.ajax({
-    type: 'post',
-    url: '/lessons/' + lesson_id + '/remove'
-  });
-}
-
 function unpublishLesson(lesson_id) {
   $.ajax({
     type: 'post',
@@ -101,12 +94,5 @@ function removeMediaElement(media_element_id) {
   $.ajax({
     type: 'post',
     url: '/media_elements/' + media_element_id + '/remove'
-  });
-}
-
-function reportMediaElement(media_element_id) {
-  $.ajax({
-    type: 'post',
-    url: '/media_elements/' + media_element_id + '/report'
   });
 }

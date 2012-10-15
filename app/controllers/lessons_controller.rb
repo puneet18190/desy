@@ -122,18 +122,6 @@ class LessonsController < ApplicationController
     reload_lesson
   end
   
-  def report
-    initialize_lesson
-    if @ok
-      if !Report.report_lesson(@lesson_id, @current_user.id)
-        @ok = false
-        @error = I18n.t('activerecord.errors.models.report.problem_creating')
-      end
-    else
-      @error = I18n.t('activerecord.errors.models.report.problem_creating')
-    end
-  end
-  
   private
   
   def initialize_paginator

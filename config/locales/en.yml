@@ -31,8 +31,6 @@ en:
           cant_destroy_public: 'You cannot remove a public element'
         notification:
           bookmark_cancelled: 'Your bookmark has been cancelled'
-        report:
-          problem_creating: 'An error occurred, your report could not be sent'
         slide:
           problems_changing_position: 'There was a problem changing the position of the slide'
           invalid_position: 'The position of the slide is invalid'
@@ -43,6 +41,7 @@ en:
           problems_updating: 'Could not update your personal data'
           problems_destroying: 'Could not destroy the selected user'
           missing_subjects: 'You need to select at least one subject'
+          problem_reporting: 'An error occurred, your report could not be sent'
         virtual_classroom_lesson:
           cant_change_position_if_not_in_playlist: 'You cannot change the position of a lesson which is not in the playlist'
           invalid_position_in_playlist: 'The position you chose is not valid for your playlist'

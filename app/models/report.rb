@@ -11,22 +11,6 @@ class Report < ActiveRecord::Base
   
   before_validation :init_validation
   
-  def self.report_lesson(lesson_id, an_user_id)
-    r = Report.new
-    r.user_id = an_user_id
-    r.reportable_type = 'Lesson'
-    r.reportable_id = lesson_id
-    r.save
-  end
-  
-  def self.report_media_element(media_element_id, an_user_id)
-    r = Report.new
-    r.user_id = an_user_id
-    r.reportable_type = 'MediaElement'
-    r.reportable_id = media_element_id
-    r.save
-  end
-  
   private
   
   def good_reportable_type

@@ -554,4 +554,27 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert Like.where(:user_id => 2, :lesson_id => le.id).empty?
   end
   
+  test 'reports' do
+    x = User.new
+    assert !x.report_lesson(1, 'ciao')
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /An error occurred, your report could not be sent/, x.errors.messages[:base].first
+    assert !x.report_media_element(1, 'ciao')
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /An error occurred, your report could not be sent/, x.errors.messages[:base].first
+    x = User.find(2)
+    assert !x.report_media_element(100, 'ciao')
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /An error occurred, your report could not be sent/, x.errors.messages[:base].first
+    assert !x.report_lesson(100, 'ciao')
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /An error occurred, your report could not be sent/, x.errors.messages[:base].first
+    assert Report.where(:reportable_id => 1, :reportable_type => 'Lesson', :user_id => 2).empty?
+    assert x.report_lesson 1, 'ciao'
+    assert Report.where(:reportable_id => 1, :reportable_type => 'Lesson', :user_id => 2).any?
+    assert Report.where(:reportable_id => 1, :reportable_type => 'MediaElement', :user_id => 2).empty?
+    assert x.report_media_element 1, 'ciao'
+    assert Report.where(:reportable_id => 1, :reportable_type => 'MediaElement', :user_id => 2).any?
+  end
+  
 end
