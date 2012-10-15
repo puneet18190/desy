@@ -17,6 +17,7 @@ Desy::Application.routes.draw do
   match 'lessons/:lesson_id/add' => 'lessons#add', :via => :post
   match 'lessons/:lesson_id/copy' => 'lessons#copy', :via => :post
   match 'lessons/:lesson_id/destroy' => 'lessons#destroy', :via => :post
+  match 'lessons/:lesson_id/dislike' => 'lessons#dislike', :via => :post
   match 'lessons/:lesson_id/like' => 'lessons#like', :via => :post
   match 'lessons/:lesson_id/publish' => 'lessons#publish', :via => :post
   match 'lessons/:lesson_id/remove' => 'lessons#remove', :via => :post

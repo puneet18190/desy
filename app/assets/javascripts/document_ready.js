@@ -35,10 +35,12 @@ $(document).ready(function() {
     autoOpen: false,
   });
   
-  $('._action_button').click(function() {
-    var my_function = $(this).data('clickFunction');
-    var my_param = $(this).data('clickParam');
-    window[myFunction](myParam);
+  $('._action_button').click(function(e) {
+    e.preventDefault();
+    var my_function = $(this).data('clickfunction');
+    var my_param = $(this).data('clickparam');
+    window[my_function](my_param);
+    return false;
   });
   
 });
