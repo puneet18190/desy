@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
   
   def reload_lesson
-    @lesson = Lesson.find_by_id @lesson.id
+    @lesson = Lesson.find_by_id @lesson.id if !@lesson.nil?
   end
   
   def initialize_lesson
