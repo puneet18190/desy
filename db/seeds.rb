@@ -343,6 +343,10 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   galliani.like(34)
   galliani.like(35)
   
+  Lesson.last.modify
+  Lesson.last.copy
+  Lesson.last.modify
+  
 end
 
 puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons, #{MediaElement.count} media_elements, #{Slide.count} slides, #{Notification.count} notifications, #{Like.count} likes, #{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons, #{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements"
