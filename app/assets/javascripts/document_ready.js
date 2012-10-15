@@ -49,4 +49,5 @@ $(document).ready(function() {
 		});
 	
   $("#sceltaElementi").selectbox();
+	$("#filter_lessons").selectbox();
 });
