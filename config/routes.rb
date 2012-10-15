@@ -12,6 +12,9 @@ Desy::Application.routes.draw do
   match 'dashboard' => 'dashboard#index', :as => :dashboard_index
   match 'lessons' => 'lessons#index', :as => :my_lessons
   match 'media_elements' => 'media_elements#index', :as => :my_media_elements
+  
+  # ACTION BUTTONS
+  match 'lessons/:lesson_id/add' => 'lessons#add', :via => :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -12,4 +12,8 @@ class ActiveRecord::Base
     "activerecord.errors.models.#{my_class_path}"
   end
   
+  def get_base_error
+    self.errors.messages.has_key?(:base) ? self.errors.messages[:base].first : ''
+  end
+  
 end

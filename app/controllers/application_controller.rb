@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
     @new_notifications = Notification.where(:user_id => @current_user.id, :seen => false).count
   end
   
+  def correct_integer?(x)
+    x.class == String && (x =~ /\A\d+\Z/) == 0
+  end
+  
 end

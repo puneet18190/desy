@@ -1,12 +1,18 @@
-function copyLesson(lesson_id) {
-  
-}
-
 function addLesson(lesson_id) {
-  
+  $.ajax({
+    type: 'post',
+    url: '/lessons/' + lesson_id + '/add'
+  });
 }
 
 function addMediaElement(media_element_id) {
+  $.ajax({
+    type: 'post',
+    url: '/media_elements/' + media_element_id + '/add'
+  });
+}
+
+function copyLesson(lesson_id) {
   
 }
 
