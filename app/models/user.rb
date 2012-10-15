@@ -123,12 +123,12 @@ class User < ActiveRecord::Base
   end
   
   def bookmark(type, target_id)
-    return nil if self.new_record?
+    return false if self.new_record?
     b = Bookmark.new
     b.bookmarkable_type = type
     b.user_id = self.id
     b.bookmarkable_id = target_id
-    return b.save ? b : nil
+    b.save
   end
   
   def playlist
