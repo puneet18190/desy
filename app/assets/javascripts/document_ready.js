@@ -1,3 +1,6 @@
+// in this file we define the totality of javascripts in the application,
+// with the only exception of the actions in the folder app/views/shared/buttons
+
 $(document).ready(function() {
   
   $('#switch_to_lessons').click(function() {
