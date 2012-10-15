@@ -347,6 +347,8 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   Lesson.last.copy(admin.id)
   Lesson.last.modify
   
+  admin.like(Bookmark.where(:user_id => admin.id, :bookmarkable_type => 'Lesson').first.id)
+  
 end
 
 puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons, #{MediaElement.count} media_elements, #{Slide.count} slides, #{Notification.count} notifications, #{Like.count} likes, #{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons, #{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements"

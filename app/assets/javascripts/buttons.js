@@ -19,6 +19,13 @@ function destroyLesson(lesson_id) {
   });
 }
 
+function dislikeLesson(lesson_id) {
+  $.ajax({
+    type: 'post',
+    url: '/lessons/' + lesson_id + '/dislike'
+  });
+}
+
 function likeLesson(lesson_id) {
   $.ajax({
     type: 'post',
@@ -102,6 +109,15 @@ function reportMediaElement(media_element_id) {
     type: 'post',
     url: '/media_elements/' + media_element_id + '/report'
   });
+}
+
+function handleLikeForLesson(lesson_id, liked) {
+  if(liked) {
+    dislikeLesson(lesson_id);
+  } else {
+    likeLesson(lesson_id);
+  }
+  return;
 }
 
 function handleVirtualClassroom(lesson_id, in_virtual_classroom) {

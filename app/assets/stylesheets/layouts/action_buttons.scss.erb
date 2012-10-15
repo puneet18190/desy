@@ -7,7 +7,7 @@
     background-image: url(<%= asset_path 'action_buttons.svg' %>);
     background-repeat: no-repeat;
     background-size: ($button-size*2) ($button-size*10);
-		padding:0;
+    padding:0;
   }
   &.preview {
     background-position: 0 (-$button-size*7);
@@ -27,57 +27,59 @@
   &.publish:hover {
     background-position: (-$button-size) (-$button-size*4);
   }
-	&.unpublish {
+  &.unpublish {
     background-position: (-$button-size) (-$button-size*4);
   }
-  
-	&.add {
+  &.add {
     background-position: 0 (-$button-size*2);
   }
   &.add:hover {
     background-position: (-$button-size) (-$button-size*2);
   }
-	&.remove {
+  &.remove {
     background-position: 0 (-$button-size*8);
   }
   &.remove:hover {
     background-position: (-$button-size) (-$button-size*8);
   }
-	&.destroy {
+  &.destroy {
     background-position: 0 (-$button-size);
   }
   &.destroy:hover {
     background-position: (-$button-size) (-$button-size);
   }
-	&.like {
-    background-position: 0 (-$button-size*3);
-  }
-  &.like:hover {
+  &.like_true {
     background-position: (-$button-size) (-$button-size*3);
   }
-	&.report {
+  &.like_false {
+    background-position: 0 (-$button-size*3);
+  }
+  &.like_false:hover {
+    background-position: (-$button-size) (-$button-size*3);
+  }
+  &.report {
     background-position: 0 0;
   }
   &.report:hover {
     background-position: (-$button-size) 0;
   }
-	&.virtual_classroom_true {
+  &.virtual_classroom_true {
     background-position: (-$button-size) (-$button-size*5);
   }
   
-	&.virtual_classroom_false {
+  &.virtual_classroom_false {
     background-position: 0 (-$button-size*5);
   }
   &.virtual_classroom_false:hover {
     background-position: (-$button-size) (-$button-size*5);
   }
-	&.copy {
+  &.copy {
     background-position: 0 (-$button-size*2);
   }
   &.copy:hover {
     background-position: (-$button-size) (-$button-size*2);
   }
-	&.change_info {
+  &.change_info {
     background-position: 0 (-$button-size*2);
   }
   &.change_info:hover {
@@ -86,18 +88,15 @@
 }
 
 .menuController {
-	  background-color:#fff;  
-    padding:0.5%; 
-    border-top:1px solid #f2f1f2;
-		text-align:right;
-		color:#cbcbcb;
-		font-size:75%;
-		display: block;
-    /*overflow: auto;*/
-		a {
-		  @include button-test;
-		}
+  background-color:#fff;
+  padding:0.5%; 
+  border-top:1px solid #f2f1f2;
+  text-align:right;
+  color:#cbcbcb;
+  font-size:75%;
+  display: block;
+  /*overflow: auto;*/
+  a {
+    @include button-test;
+  }
 }
-
-
-
