@@ -1,11 +1,31 @@
+<style>
+.scroll-pane {
+	width: 100%;
+	height: 275px;
+	overflow: auto;
+}
+</style>
+<script>
+$(function() {
+	$('.scroll-pane').jScrollPane(
+	{
+			autoReinitialise: true
+		});
+});
+</script>
 <span class="tooltip">
 	<%= image_tag("freccia_tooltip.png", :class => "callout") %>
 	<div class="list">
-	<!-- FIXME HO MESSO TEMPORANEAMENTE DISPLAY NONE QUI SOTTO PER EVITARE CHE MI COPRA LA BARRA DEGLI ELEMENTI -->
-  <ul class="navlist">
+	<ul class="navlist">
+	<div class="scroll-pane">
     <% @notifications.each do |n| %>
-      <li><a href="#" <%= n.seen ? "class=\"visited\"" : '' %>><%= n.message.html_safe %></a></li>
+      <li><a href="#" <%= n.seen ? "class=\"current\"" : '' %> class="expanded"><%= n.message.html_safe %></a>
+			<div class="cancelTooltip">
+			  <%= image_tag("cancel_tooltip_notice.png") %>
+			</div></li>
+			
     <% end %>
+		</div>
   </ul>
   </div>
 </span>
