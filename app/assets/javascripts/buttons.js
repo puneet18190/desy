@@ -110,21 +110,3 @@ function reportMediaElement(media_element_id) {
     url: '/media_elements/' + media_element_id + '/report'
   });
 }
-
-function handleLikeForLesson(lesson_id, liked) {
-  if(liked) {
-    dislikeLesson(lesson_id);
-  } else {
-    likeLesson(lesson_id);
-  }
-  return;
-}
-
-function handleVirtualClassroom(lesson_id, in_virtual_classroom) {
-  if(in_virtual_classroom) {
-    removeLessonFromVirtualClassroom(lesson_id);
-  } else {
-    addLessonToVirtualClassroom(lesson_id);
-  }
-  return;
-}
