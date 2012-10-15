@@ -1,2 +1,1 @@
-<% liked = item.liked?(@current_user.id) %>
-<a class="<%= Buttons::LIKE %>_<%= liked %>" onclick="handleLikeForLesson(<%= item.id %>, <%= liked %>);"></a>
+<a class="<%= Buttons::LIKE %>" onclick="likeLesson(<%= item.id %>);"></a>
