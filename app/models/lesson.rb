@@ -50,20 +50,22 @@ class Lesson < ActiveRecord::Base
     else
       @status = nil
     end
+    @in_vc = self.in_virtual_classroom?(an_user_id)
+    @liked = self.liked?(an_user_id)
   end
   
   def buttons
-    return [] if !@status
+    return [] if !@status || @in_vc.nil? || @liked.nil?
     if @status == STAT_PRIVATE
-      return [Buttons::PREVIEW, Buttons::EDIT, Buttons::PUBLISH, Buttons::VIRTUAL_CLASSROOM, Buttons::DESTROY, Buttons::COPY]
+      return [Buttons::PREVIEW, Buttons::EDIT, Buttons::PUBLISH, virtual_classroom_button, Buttons::DESTROY, Buttons::COPY]
     elsif @status == STAT_COPIED
       return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
     elsif @status == STAT_LINKED
-       return [Buttons::PREVIEW, Buttons::VIRTUAL_CLASSROOM, Buttons::REMOVE, Buttons::COPY, Buttons::LIKE, Buttons::REPORT]
+       return [Buttons::PREVIEW, virtual_classroom_button, Buttons::REMOVE, Buttons::COPY, like_button, Buttons::REPORT]
     elsif @status == STAT_NOT_MINE
-       return [Buttons::PREVIEW, Buttons::LIKE, Buttons::ADD, Buttons::REPORT]
+       return [Buttons::PREVIEW, like_button, Buttons::ADD, Buttons::REPORT]
     elsif @status == STAT_PUBLIC
-       return [Buttons::PREVIEW, Buttons::UNPUBLISH, Buttons::VIRTUAL_CLASSROOM, Buttons::EDIT, Buttons::DESTROY, Buttons::COPY]
+       return [Buttons::PREVIEW, Buttons::UNPUBLISH, virtual_classroom_button, Buttons::EDIT, Buttons::DESTROY, Buttons::COPY]
     else
       return []
     end
@@ -333,6 +335,14 @@ class Lesson < ActiveRecord::Base
   end
   
   private
+  
+  def virtual_classroom_button
+    @in_vc ? Buttons::REMOVE_VIRTUAL_CLASSROOM : Buttons::ADD_VIRTUAL_CLASSROOM
+  end
+  
+  def like_button
+    @liked ? Buttons::DISLIKE : Buttons::LIKE
+  end
   
   def present_parent_id
     self.parent_id
