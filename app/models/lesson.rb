@@ -57,15 +57,15 @@ class Lesson < ActiveRecord::Base
   def buttons
     return [] if !@status || @in_vc.nil? || @liked.nil?
     if @status == STAT_PRIVATE
-      return [Buttons::PREVIEW, Buttons::EDIT, Buttons::PUBLISH, virtual_classroom_button, Buttons::DESTROY, Buttons::COPY]
+      return [Buttons::PREVIEW, Buttons::EDIT, virtual_classroom_button, Buttons::PUBLISH, Buttons::COPY, Buttons::DESTROY]
     elsif @status == STAT_COPIED
       return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
     elsif @status == STAT_LINKED
-       return [Buttons::PREVIEW, virtual_classroom_button, Buttons::REMOVE, Buttons::COPY, like_button, Buttons::REPORT]
+       return [Buttons::PREVIEW, Buttons::COPY, virtual_classroom_button, like_button, Buttons::REMOVE, Buttons::REPORT]
     elsif @status == STAT_NOT_MINE
-       return [Buttons::PREVIEW, like_button, Buttons::ADD, Buttons::REPORT]
+       return [Buttons::PREVIEW, Buttons::ADD, like_button, Buttons::REPORT]
     elsif @status == STAT_PUBLIC
-       return [Buttons::PREVIEW, Buttons::UNPUBLISH, virtual_classroom_button, Buttons::EDIT, Buttons::DESTROY, Buttons::COPY]
+       return [Buttons::PREVIEW, Buttons::EDIT, virtual_classroom_button, Buttons::UNPUBLISH, Buttons::COPY, Buttons::DESTROY]
     else
       return []
     end

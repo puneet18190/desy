@@ -8,12 +8,12 @@ class StatusTest < ActiveSupport::TestCase
     assert l1.buttons.empty?
     l1.set_status 1
     assert_equal 'private', l1.status
-    assert_equal ['preview', 'edit', 'publish', 'add_virtual_classroom', 'destroy', 'copy'], l1.buttons
+    assert_equal ['preview', 'edit', 'add_virtual_classroom', 'publish', 'copy', 'destroy'], l1.buttons
     # I try add_to_virtual_classroom
     assert l1.add_to_virtual_classroom(1)
     l1.set_status 1
     assert_equal 'private', l1.status
-    assert_equal ['preview', 'edit', 'publish', 'remove_virtual_classroom', 'destroy', 'copy'], l1.buttons
+    assert_equal ['preview', 'edit', 'remove_virtual_classroom', 'publish', 'copy', 'destroy'], l1.buttons
     # until here
     l1.set_status 2
     assert l1.status.nil?
@@ -21,20 +21,20 @@ class StatusTest < ActiveSupport::TestCase
     assert l1.publish
     l1.set_status 1
     assert_equal 'public', l1.status
-    assert_equal ['preview', 'unpublish', 'remove_virtual_classroom', 'edit', 'destroy', 'copy'], l1.buttons
+    assert_equal ['preview', 'edit', 'remove_virtual_classroom', 'unpublish', 'copy', 'destroy'], l1.buttons
     l1.set_status 2
     assert_equal 'not mine', l1.status
-    assert_equal ['preview', 'like', 'add', 'report'], l1.buttons
+    assert_equal ['preview', 'add', 'like', 'report'], l1.buttons
     # I try like
     assert User.find(2).like(l1.id)
     l1.set_status 2
     assert_equal 'not mine', l1.status
-    assert_equal ['preview', 'dislike', 'add', 'report'], l1.buttons
+    assert_equal ['preview', 'add', 'dislike', 'report'], l1.buttons
     # until here
     assert User.find(2).bookmark('Lesson', 1)
     l1.set_status 2
     assert_equal 'linked', l1.status
-    assert_equal ['preview', 'add_virtual_classroom', 'remove', 'copy', 'dislike', 'report'], l1.buttons
+    assert_equal ['preview', 'copy', 'add_virtual_classroom', 'dislike', 'remove', 'report'], l1.buttons
     l3 = l1.copy(2)
     assert !l3.nil?
     l3.set_status 2
