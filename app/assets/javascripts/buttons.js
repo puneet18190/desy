@@ -5,6 +5,73 @@ function addLesson(lesson_id) {
   });
 }
 
+function copyLesson(lesson_id) {
+  $.ajax({
+    type: 'post',
+    url: '/lessons/' + lesson_id + '/copy'
+  });
+}
+
+function destroyLesson(lesson_id) {
+  $.ajax({
+    type: 'post',
+    url: '/lessons/' + lesson_id + '/destroy'
+  });
+}
+
+function likeLesson(lesson_id) {
+  $.ajax({
+    type: 'post',
+    url: '/lessons/' + lesson_id + '/like'
+  });
+}
+
+function previewLesson(lesson_id) {
+  
+}
+
+function publishLesson(lesson_id) {
+  $.ajax({
+    type: 'post',
+    url: '/lessons/' + lesson_id + '/publish'
+  });
+}
+
+function removeLesson(lesson_id) {
+  $.ajax({
+    type: 'post',
+    url: '/lessons/' + lesson_id + '/remove'
+  });
+}
+
+function reportLesson(lesson_id) {
+  $.ajax({
+    type: 'post',
+    url: '/lessons/' + lesson_id + '/remove'
+  });
+}
+
+function unpublishLesson(lesson_id) {
+  $.ajax({
+    type: 'post',
+    url: '/lessons/' + lesson_id + '/unpublish'
+  });
+}
+
+function addLessonToVirtualClassroom(lesson_id) {
+  $.ajax({
+    type: 'post',
+    url: '/virtual_classroom/' + lesson_id + '/add_lesson'
+  });
+}
+
+function removeLessonFromVirtualClassroom(lesson_id) {
+  $.ajax({
+    type: 'post',
+    url: '/virtual_classroom/' + lesson_id + '/remove_lesson'
+  });
+}
+
 function addMediaElement(media_element_id) {
   $.ajax({
     type: 'post',
@@ -12,60 +79,29 @@ function addMediaElement(media_element_id) {
   });
 }
 
-function copyLesson(lesson_id) {
-  
-}
-
-function destroyLesson(lesson_id) {
-  
-}
-
 function destroyMediaElement(media_element_id) {
-  
-}
-
-function likeLesson(lesson_id) {
-  
-}
-
-function previewLesson(lesson_id) {
-  
+  $.ajax({
+    type: 'post',
+    url: '/media_elements/' + media_element_id + '/destroy'
+  });
 }
 
 function previewMediaElement(media_element_id) {
   
 }
 
-function publishLesson(lesson_id) {
-  
-}
-
-function removeLesson(lesson_id) {
-  
-}
-
 function removeMediaElement(media_element_id) {
-  
-}
-
-function reportLesson(lesson_id) {
-  
+  $.ajax({
+    type: 'post',
+    url: '/media_elements/' + media_element_id + '/remove'
+  });
 }
 
 function reportMediaElement(media_element_id) {
-  
-}
-
-function unpublishLesson(lesson_id) {
-  
-}
-
-function removeLessonFromVirtualClassroom(lesson_id) {
-  
-}
-
-function addLessonToVirtualClassroom(lesson_id) {
-  
+  $.ajax({
+    type: 'post',
+    url: '/media_elements/' + media_element_id + '/report'
+  });
 }
 
 function handleVirtualClassroom(lesson_id, in_virtual_classroom) {

@@ -1,0 +1,2 @@
+class VirtualClassroomController < ApplicationController
+end
