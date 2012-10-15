@@ -1,12 +1,7 @@
 <div class="notice-help">
   <div class="notice">
-    <% if @new_notifications > 0 %>
-      <a href=""></a>
-			<%= render :partial => "layouts/tooltip_elements/tooltip_arancione" %>
-      
-    <% else %>
-      <a href=""></a>
-    <% end %>
+    <a href="#" id="notifications_button"></a>
+    <%= render :partial => "layouts/tooltip_elements/tooltip_arancione" %>
     <%= render :partial => "layouts/tooltip_elements/tooltip" %>
   </div>
   <div class="help">

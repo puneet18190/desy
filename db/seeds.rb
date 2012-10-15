@@ -189,9 +189,25 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   notifics << "a daniè t'avevo detto che dovevi annà al city"
   notifics << "共產黨通過「鎮壓反革命」嘅運動，對私有經濟同財產進行城市工商業"
   notifics << "Prova il brivido del Poker online Gioca su StarCasinò. Bonus 1.000€!"
+  notifics << "Io i napoletani li conosco benissimo senza la violenza sono gente morta"
+  notifics << "CMQ SE DOVESSERO ESSERE STANCHI CI PENSA IL DR.FAJARDO A TIRARLI SU."
+  notifics << "La unica cosa certa che c'e' e' che gli juventini e i napoletani sono riusciti a fare odiare la nazionale"
+  notifics << "la lazio e' l'unica squadra forte che abbiamo in italia... juventus e napoli si credono real madrid e barcellona "
+  notifics << "stai dicendo fregnacce.....taci e meglio,e non condannare prima del tempo."
+  notifics << "Uhm e chi sarebbero i giocatori della juve che non han giocato???"
+  notifics << "se la pensi cosi è meglio che cambi sport!!!!"
+  notifics << "La squadra piu ladra del pianeta rubera' l'ennesimo scudetto ,,,cavolo che soddisfazione !!! "
+  notifics << "scommettiamo che la prossima degli azzurri non gioca neanche Pirlo?"
+  notifics << "Il fatto che per eliminare l'italia quella partita dovesse finire non solo in un pareggio, ma anche esattamente 2-2, le è sfuggito per caso, mica perchè avrebbe screditato le sue teorie, giusto?"
+  notifics << "Irlanda travolta 6-1. Trap: «Non mi dimetto»"
+  notifics << "Mou: «Balotelli? Potrei scriverci un romanzo»"
   
   notifics.each do |n|
     Notification.send_to admin.id, n
+  end
+  
+  Notification.limit(10).each do |n|
+    n.has_been_seen
   end
   
   Lesson.all.each do |l|
