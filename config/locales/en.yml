@@ -29,6 +29,8 @@ en:
           cant_destroy_public: 'You cannot remove a public element'
         notification:
           bookmark_cancelled: 'Your bookmark has been cancelled'
+        report:
+          problem_creating: 'An error occurred, your report could not be sent'
         slide:
           problems_changing_position: 'There was a problem changing the position of the slide'
           invalid_position: 'The position of the slide is invalid'

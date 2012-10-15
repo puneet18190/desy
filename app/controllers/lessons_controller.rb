@@ -122,22 +122,19 @@ class LessonsController < ApplicationController
     reload_lesson
   end
   
-  #match 'lessons/:lesson_id/report' => 'lessons#report', :via => :post
-  
-  #match 'virtual_classroom/:lesson_id/add_lesson' => 'virtual_classroom#add_lesson', :via => :post
-  #match 'virtual_classroom/:lesson_id/remove_lesson' => 'virtual_classroom#remove_lesson', :via => :post
+  def report
+    initialize_lesson
+    if @ok
+      if !Report.report_lesson(@lesson_id, @current_user.id)
+        @ok = false
+        @error = I18n.t('activerecord.errors.models.report.problem_creating')
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.report.problem_creating')
+    end
+  end
   
   private
-  
-  def reload_lesson
-    @lesson = Lesson.find_by_id @lesson.id
-  end
-  
-  def initialize_lesson
-    @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
-    @lesson = Lesson.find_by_id @lesson_id
-    @ok = !@lesson.nil?
-  end
   
   def initialize_paginator
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
