@@ -84,6 +84,10 @@ class Lesson < ActiveRecord::Base
       errors.add(:base, :already_copied)
       return nil
     end
+    if self.copied_not_modified
+      errors.add(:base, :just_copied)
+      return nil
+    end
     resp = nil
     ActiveRecord::Base.transaction do
       lesson = Lesson.new :subject_id => self.subject_id, :school_level_id => self.school_level_id, :title => self.title, :description => self.description

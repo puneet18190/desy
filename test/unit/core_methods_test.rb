@@ -98,6 +98,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.find(2)
     resp = x.copy(1)
     assert !resp.nil?
+    # I try to copy the copy
+    assert resp.copy(1).nil?
+    assert_equal 1, resp.errors.messages[:base].length
+    assert_match /You just copied this lesson/, resp.errors.messages[:base].first
+    # until here
     assert_equal 1, resp.school_level_id
     assert_equal 3, resp.subject_id
     assert_equal 'string', resp.title

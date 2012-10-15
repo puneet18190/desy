@@ -7,6 +7,7 @@ en:
         lesson:
           problem_copying: 'There was a problem copying the lesson'
           already_copied: 'You already have a copy of this lesson'
+          just_copied: 'You just copied this lesson'
           already_published: 'The lesson you selected has already been published'
           problem_publishing: 'There was a problem publishing the lesson'
           problem_unpublishing: 'There was a problem unpublishing the lesson'
