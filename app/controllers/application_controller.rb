@@ -40,6 +40,7 @@ class ApplicationController < ActionController::Base
   end
   
   def respond_standard_js(path)
+    reload_lesson
     respond_to do |format|
       format.js { render :action => path}
     end
