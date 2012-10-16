@@ -83,6 +83,7 @@
    }
    .sbSelector:link, .sbSelector:visited, .sbSelector:hover{
 	   color: #f9bb5a;
+		 text-shadow:none;
    }
    .sbToggle{
 	   background: url(<%= asset_path 'select-icons-lessons.png' %>) 0 -123px no-repeat;
@@ -149,7 +150,12 @@
 	    padding:0px; 
       border-top:none;
 			background-color:transparent;
-			float:right;
+			float:left;
+			width: 25%;
+			text-align:left;
+			a {
+			  margin-right:2.5%;
+			}
 			
 	  }
 		.lessons-expanded {
@@ -211,11 +217,59 @@
 		p {
 			padding-top:0.5%;
 		}
+		a {color:#fff}
 		div {
 			padding-top:0.5%;
 		}
+		.sbHolder{
+      width: 179px;
+      height: 14px;
+      background-color:#5ab046;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+    }
+    .sbSelector{
+	   height: 18px;
+	   line-height: 20px;
+	   width: 179px;
+    }
+    .sbSelector:link, .sbSelector:visited, .sbSelector:hover{
+	   color: #9eda90;
+		 text-shadow:none;
+    }
+    .sbToggle{
+	   background: url(<%= asset_path 'select-icons-elements.png' %>) 0 -123px no-repeat;
+	  }
+    .sbToggle:hover{
+	    background: url(<%= asset_path 'select-icons-elements.png' %>) 0 -123px no-repeat;
+    }
+    .sbToggleOpen{
+	    background: url(<%= asset_path 'select-icons-elements.png' %>) 0 -22px no-repeat;
+    }
+    .sbOptions{
+	   width: 179px;
+		 left: 0px;
+		 border:none;
+	  }
+	 .sbOptions li{
+	   padding: 0 ;
+   }
+   .sbOptions a{
+	   text-shadow:none;
+		 border-bottom: solid 1px #f5f5f5;
+		 padding:7px;
+   }
+   .sbOptions a:link, .sbOptions a:visited{
+	   color: #ddd;
+	   text-decoration: none;
+   }
+   .sbOptions a:hover,
+   .sbOptions a:focus,
+   .sbOptions a.sbFocus{
+	   color: #fff;
+	   background-color:#41a62a;
+   }
 	}
-	
 	.boxViewSingleMediaElement {
 	  background-color:#fbfafb;
 	  margin-bottom:1%;
@@ -223,71 +277,24 @@
     -webkit-box-shadow: 1px 5px 5px #e8e8e8;
     box-shadow: 1px 5px 5px #e8e8e8;
 	  float:left;
-	  width:30%;
-		padding:0%;
+	  width:221px;
+		margin-right:20px;
+		margin-bottom:20px;
 	  color:#c0c0c0;
 		position:relative;
 		.contentInterno {
-	    padding:0.4% 1% 2% 1%;
-			@include float-content;
-			@include tag-formatting;
-			height:auto;
+	    padding:0;
+			height:274px;
+			
 			h3 {padding-top:0.5%}
 			p {font-size:80%; padding-top:0.5%}
-			&:hover {
-			  background-color:#e8e8e8;
-				cursor: pointer;
-			}
+			
+		 
 			
 		}
-		.current {
-			  background-color:#e8e8e8;
-		}
-		.menuController {
-	    padding:0px; 
-      border-top:none;
-			background-color:transparent;
-			float:right;
-			
-	  }
-		.lessons-expanded {
-		  display:none;
-			color:#fff;
-			background-color:#5d5c5c; 
-			padding:1%;
-			float:left;
-			width:98%;
-			
-			.img_expanded {
-			  float:left;
-				position:relative;
-				padding:0;
-				width:auto;
-			}
-			.bg_text {
-			  position:absolute;
-				padding:4%;
-				width:92%;
-				top:62%;		
-				left:0;
-				background-color:#383535;
-			}
-			.info-text {
-			  float:left;
-				padding:0.5% 1% 0 1%;
-				width:36%;
-				p {
-				  padding-top:5%;
-				}
-				
-			}
-			.description-text {
-			  float:left;
-				padding:0.5% 1% 0 1%;
-				width:48%;
-				
-			}
-		}
+		
+		
+		
 	}
 }
 /*FINE CLASSE VISTA ELEMENTS*/
@@ -315,11 +322,7 @@
 	h2 {
 	  font-size: 140%;
 	}
-	h3 {
-	  color:#41a62a;
-		font-size: 90%;
-		padding-top:1%;
-	}
+	
 }
 .boxContentIndex {
   p {font:  180% 'Nunito', sans-serif;}
@@ -345,27 +348,40 @@
 	}
 	&.createNew {
     @include contentNew;
-		height:215px;
+		height:225px;
   }
 }
+
 .boxViewSingleMediaElement {
   @include contentLayout;
 	width:221px;
 	float:left;
-	margin-right:20px;
-	
+	margin-right:2.5%;
+	margin-bottom:20px;
+	&:last-child {
+		margin-right:0px;
+		float:left;
+	}
 	.contentInterno {
 	  padding:0%;
 		height:274px;
-		.description {
-		  padding-top:1%;
-			padding-left:5%;
-		}
+		
 	}
 	&.createNew {
     @include contentNew;
 		padding-top:70px;
-		height:244px;
+		height:232px;
   }
+	.menuController {
+	  font-size: 55%;
+	}
+	.description {
+  padding-top:1%;
+	padding-left:5%;
+	h3 {
+	  color:#41a62a;
+		font-size: 90%;
+		padding-top:1%;
+	}
 }
-
+}
