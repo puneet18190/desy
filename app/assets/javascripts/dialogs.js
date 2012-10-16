@@ -1,7 +1,7 @@
-function showNormalPopUp(content, title) {
-  $("#dialog-normal").attr('title', title);
-  $("#dialog-normal").html(content);
-  $("#dialog-normal").dialog("open");
+function showErrorPopUp(content, title) {
+  $("#dialog-error").attr('title', title);
+  $("#dialog-error").html(content);
+  $("#dialog-error").dialog("open");
 }
 
 function showShadePopUp(content, title) {

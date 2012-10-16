@@ -13,7 +13,7 @@ $(document).ready(function() {
     window.location.href = '/lessons?filter=' + filter;
   });
   
-  $('._lesson_compact').click(function() {
+  $('body').on('click','._lesson_compact',function() {
     var my_id = this.id;
     var my_expanded = $('#' + my_id + ' ._lesson_expanded');
     if(my_expanded.css('display') == 'block') {
@@ -23,7 +23,7 @@ $(document).ready(function() {
     }
   });
   
-  $("#dialog-normal").dialog({
+  $("#dialog-error").dialog({
     autoOpen: false,
   });
   
@@ -35,7 +35,7 @@ $(document).ready(function() {
     autoOpen: false,
   });
   
-  $('._action_button').click(function(e) {
+  $('body').on('click', '._action_button.publish, ._action_button.unpublish', function(e) {
     e.preventDefault();
     var my_function = $(this).data('clickfunction');
     var my_param = $(this).data('clickparam');

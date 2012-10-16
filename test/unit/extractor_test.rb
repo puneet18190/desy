@@ -189,7 +189,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert !resp[:last_page]
   end
   
-  test 'own_lessons_filter_public' do
+  test 'own_lessons_filter_shared' do
     assert Lesson.find(1).publish
     assert @user2.bookmark 'Lesson', @les2.id
     assert @user2.bookmark 'Lesson', @les5.id
@@ -197,13 +197,13 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
-    assert_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'public')[:content]
+    assert_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'shared')[:content]
     # last page true
-    resp = @user2.own_lessons(3, 2, 'public')
+    resp = @user2.own_lessons(3, 2, 'shared')
     assert_equal 1, resp[:content].length
     assert resp[:last_page]
     # last page false
-    resp = @user2.own_lessons(1, 4, 'public')
+    resp = @user2.own_lessons(1, 4, 'shared')
     assert_equal 4, resp[:content].length
     assert !resp[:last_page]
   end
@@ -281,6 +281,154 @@ class ExtractorTest < ActiveSupport::TestCase
     resptemp = @user1.own_lessons(3, 4)[:content]
     assert_equal 3, resptemp.length
     assert_extractor_intersection resp, resptemp
+  end
+  
+  test 'notifications_methods' do
+    Notification.all.each do |n|
+      n.destroy
+    end
+    assert Notification.all.empty?
+    (1...21).each do |i|
+      assert Notification.send_to(1, "us1_n#{i}")
+      assert Notification.send_to(2, "us2_n#{i}")
+    end
+    assert_equal 40, Notification.count
+    us1_1 = Notification.find_by_message('us1_n1')
+    us1_2 = Notification.find_by_message('us1_n2')
+    us1_3 = Notification.find_by_message('us1_n3')
+    us1_4 = Notification.find_by_message('us1_n4')
+    us1_5 = Notification.find_by_message('us1_n5')
+    us1_6 = Notification.find_by_message('us1_n6')
+    us1_7 = Notification.find_by_message('us1_n7')
+    us1_8 = Notification.find_by_message('us1_n8')
+    us1_9 = Notification.find_by_message('us1_n9')
+    us1_10 = Notification.find_by_message('us1_n10')
+    us1_11 = Notification.find_by_message('us1_n11')
+    us1_12 = Notification.find_by_message('us1_n12')
+    us1_13 = Notification.find_by_message('us1_n13')
+    us1_14 = Notification.find_by_message('us1_n14')
+    us1_15 = Notification.find_by_message('us1_n15')
+    us1_16 = Notification.find_by_message('us1_n16')
+    us1_17 = Notification.find_by_message('us1_n17')
+    us1_18 = Notification.find_by_message('us1_n18')
+    us1_19 = Notification.find_by_message('us1_n19')
+    us1_20 = Notification.find_by_message('us1_n20')
+    us2_1 = Notification.find_by_message('us2_n1')
+    us2_2 = Notification.find_by_message('us2_n2')
+    us2_3 = Notification.find_by_message('us2_n3')
+    us2_4 = Notification.find_by_message('us2_n4')
+    us2_5 = Notification.find_by_message('us2_n5')
+    us2_6 = Notification.find_by_message('us2_n6')
+    us2_7 = Notification.find_by_message('us2_n7')
+    us2_8 = Notification.find_by_message('us2_n8')
+    us2_9 = Notification.find_by_message('us2_n9')
+    us2_10 = Notification.find_by_message('us2_n10')
+    us2_11 = Notification.find_by_message('us2_n11')
+    us2_12 = Notification.find_by_message('us2_n12')
+    us2_13 = Notification.find_by_message('us2_n13')
+    us2_14 = Notification.find_by_message('us2_n14')
+    us2_15 = Notification.find_by_message('us2_n15')
+    us2_16 = Notification.find_by_message('us2_n16')
+    us2_17 = Notification.find_by_message('us2_n17')
+    us2_18 = Notification.find_by_message('us2_n18')
+    us2_19 = Notification.find_by_message('us2_n19')
+    us2_20 = Notification.find_by_message('us2_n20')
+    Notification.record_timestamps = false
+    us1_1.created_at = '2000-01-01 00:00:40'
+    assert_obj_saved us1_1
+    us1_2.created_at = '2000-01-01 00:00:39'
+    assert_obj_saved us1_2
+    us1_3.created_at = '2000-01-01 00:00:38'
+    assert_obj_saved us1_3
+    us1_4.created_at = '2000-01-01 00:00:37'
+    assert_obj_saved us1_4
+    us1_5.created_at = '2000-01-01 00:00:36'
+    assert_obj_saved us1_5
+    us1_6.created_at = '2000-01-01 00:00:35'
+    assert_obj_saved us1_6
+    us1_7.created_at = '2000-01-01 00:00:34'
+    assert_obj_saved us1_7
+    us1_8.created_at = '2000-01-01 00:00:33'
+    assert_obj_saved us1_8
+    us1_9.created_at = '2000-01-01 00:00:32'
+    assert_obj_saved us1_9
+    us1_10.created_at = '2000-01-01 00:00:31'
+    assert_obj_saved us1_10
+    us1_11.created_at = '2000-01-01 00:00:30'
+    assert_obj_saved us1_11
+    us1_12.created_at = '2000-01-01 00:00:29'
+    assert_obj_saved us1_12
+    us1_13.created_at = '2000-01-01 00:00:28'
+    assert_obj_saved us1_13
+    us1_14.created_at = '2000-01-01 00:00:27'
+    assert_obj_saved us1_14
+    us1_15.created_at = '2000-01-01 00:00:26'
+    assert_obj_saved us1_15
+    us1_16.created_at = '2000-01-01 00:00:25'
+    assert_obj_saved us1_16
+    us1_17.created_at = '2000-01-01 00:00:24'
+    assert_obj_saved us1_17
+    us1_18.created_at = '2000-01-01 00:00:23'
+    assert_obj_saved us1_18
+    us1_19.created_at = '2000-01-01 00:00:21'
+    assert_obj_saved us1_19
+    us1_20.created_at = '2000-01-01 00:00:20'
+    assert_obj_saved us1_20
+    us2_1.created_at = '2000-01-01 00:00:19'
+    assert_obj_saved us2_1
+    us2_2.created_at = '2000-01-01 00:00:18'
+    assert_obj_saved us2_2
+    us2_3.created_at = '2000-01-01 00:00:17'
+    assert_obj_saved us2_3
+    us2_4.created_at = '2000-01-01 00:00:16'
+    assert_obj_saved us2_4
+    us2_5.created_at = '2000-01-01 00:00:15'
+    assert_obj_saved us2_5
+    us2_6.created_at = '2000-01-01 00:00:14'
+    assert_obj_saved us2_6
+    us2_7.created_at = '2000-01-01 00:00:13'
+    assert_obj_saved us2_7
+    us2_8.created_at = '2000-01-01 00:00:12'
+    assert_obj_saved us2_8
+    us2_9.created_at = '2000-01-01 00:00:11'
+    assert_obj_saved us2_9
+    us2_10.created_at = '2000-01-01 00:00:10'
+    assert_obj_saved us2_10
+    us2_11.created_at = '2000-01-01 00:00:09'
+    assert_obj_saved us2_11
+    us2_12.created_at = '2000-01-01 00:00:08'
+    assert_obj_saved us2_12
+    us2_13.created_at = '2000-01-01 00:00:07'
+    assert_obj_saved us2_13
+    us2_14.created_at = '2000-01-01 00:00:06'
+    assert_obj_saved us2_14
+    us2_15.created_at = '2000-01-01 00:00:05'
+    assert_obj_saved us2_15
+    us2_16.created_at = '2000-01-01 00:00:04'
+    assert_obj_saved us2_16
+    us2_17.created_at = '2000-01-01 00:00:03'
+    assert_obj_saved us2_17
+    us2_18.created_at = '2000-01-01 00:00:02'
+    assert_obj_saved us2_18
+    us2_19.created_at = '2000-01-01 00:00:01'
+    assert_obj_saved us2_19
+    us2_20.created_at = '1999-12-31 23:59:59'
+    assert_obj_saved us2_20
+    Notification.record_timestamps = true
+    Notification.where('id NOT IN (?)', [us2_20.id, us2_13.id, us2_8.id, us2_9.id, us1_1.id, us1_3.id, us1_15.id, us1_17.id, us1_18.id, us1_5.id]).each do |n|
+      assert n.has_been_seen
+    end
+    assert_equal 4, Notification.number_not_seen(2)
+    assert_equal 6, Notification.number_not_seen(1)
+    assert us2_9.has_been_seen
+    assert_equal 3, Notification.number_not_seen(2)
+    assert_equal 6, Notification.number_not_seen(1)
+    assert_extractor [us2_8.id], Notification.not_seen(2, 8)
+    assert_extractor [us2_8.id, us2_13.id], Notification.not_seen(2, 13)
+    assert_extractor [us1_1.id, us1_3.id, us1_5.id], Notification.not_seen(1, 8)
+    assert_extractor [us1_1.id, us1_3.id, us1_5.id, us1_15.id, us1_17.id], Notification.not_seen(1, 17)
+    assert_extractor [us2_1.id, us2_2.id, us2_3.id, us2_4.id, us2_5.id], Notification.visible_block(2, 5)
+    assert_extractor [us1_1.id, us1_2.id, us1_3.id, us1_4.id, us1_5.id], Notification.visible_block(1, 5)
   end
   
 end

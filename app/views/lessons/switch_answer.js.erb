@@ -1,0 +1,15 @@
+<% if @ok %>
+  <% expanded = false %>
+  <% if @where == 'dashboard' %>
+    <% expanded = true %>
+    var target = $('#lesson_expanded_<%= @lesson_id %> .<%= @button_class %>');
+  <% else %>
+    var target = $('#lesson_compact_<%= @lesson_id %> .<%= @button_class %>');
+  <% end %>
+  target.data('clickparam', '<%= @lesson_id %>');
+  target.data('clickfunction', '<%= @function %>');
+  target.removeClass('<%= @button_class %>');
+  target.addClass('<%= @new_button_class %>');
+<% else %>
+  showErrorPopUp(<%= @error %>, 'Error!!');
+<% end %>
