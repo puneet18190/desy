@@ -51,6 +51,9 @@ $(document).ready(function() {
   
   $("#filter_lessons").selectbox();
   
+	$("#format_media_elements").selectbox();
+	
+	$("#filter_media_elements").selectbox();
   initializeNotifications();
   
 });

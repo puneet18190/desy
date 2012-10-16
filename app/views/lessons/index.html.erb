@@ -3,7 +3,7 @@
     <h1><%= t('small_letter.lessons') %></h1>
     <p><%= t('capital_letter.matter') %></p>
     <p><%= t('capital_letter.status') %></p>
-    <div><h2 style="padding-right:10px"><%= t('capital_letter.show') %></h2>
+    <div style="float:right"><h2 style="padding-right:10px"><%= t('capital_letter.show') %></h2>
       <select name="ricerca" id="filter_lessons">
         <% Filters::LESSONS_SET.each do |f| %>
           <% caption = Filters::CAPTIONS[f] %>
