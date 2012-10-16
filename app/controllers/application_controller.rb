@@ -39,6 +39,12 @@ class ApplicationController < ActionController::Base
     initialize_notifications
   end
   
+  def respond_standard_js(path)
+    respond_to do |format|
+      format.js { render :action => path}
+    end
+  end
+  
   def correct_integer?(x)
     x.class == String && (x =~ /\A\d+\Z/) == 0
   end
