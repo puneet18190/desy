@@ -2,11 +2,11 @@
   <% expanded = false %>
   <% if @where == 'dashboard' %>
     <% expanded = true %>
-    var target = $('#lesson_expanded_<%= @lesson_id %> .<%= @button_class %>');
+    var target = $('#lesson_expanded_<%= @lesson_id %>');
   <% else %>
-    var target = $('#lesson_compact_<%= @lesson_id %> .<%= @button_class %>');
+    var target = $('#lesson_compact_<%= @lesson_id %>');
   <% end %>
-  terget.html("<%= escape_javascript(render(:partial => "lessons/view_single", :locals => {:lesson => @lesson, :expanded => expanded})) %>");
+  target.html("<%= escape_javascript(render(:partial => "lessons/view_single", :locals => {:lesson => @lesson, :expanded => expanded})) %>");
 <% else %>
   showErrorPopUp(<%= @error %>, 'Error!!');
 <% end %>
