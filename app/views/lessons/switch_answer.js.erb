@@ -6,10 +6,7 @@
   <% else %>
     var target = $('#lesson_compact_<%= @lesson_id %> .<%= @button_class %>');
   <% end %>
-  target.data('clickparam', '<%= @lesson_id %>');
-  target.data('clickfunction', '<%= @function %>');
-  target.removeClass('<%= @button_class %>');
-  target.addClass('<%= @new_button_class %>');
+  terget.html("<%= escape_javascript(render(:partial => "lessons/view_single", :locals => {:lesson => @lesson, :expanded => expanded})) %>");
 <% else %>
   showErrorPopUp(<%= @error %>, 'Error!!');
 <% end %>

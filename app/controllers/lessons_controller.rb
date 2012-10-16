@@ -24,7 +24,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_lesson')
     end
-    # respond_standard_js 'lessons/switch_answer.js.erb' FIXME qui devo aggiungerlo ed adattarlo!!!
+    respond_standard_js 'lessons/switch_answer.js.erb'
   end
   
   def copy

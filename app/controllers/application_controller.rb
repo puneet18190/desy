@@ -1,43 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  JS_SWITCH_BUTTON_FUNCTIONS = {
-    'lessons' => {
-      'like' => {
-        :function => 'dislikeLesson',
-        :button_class => Buttons::LIKE,
-        :new_button_class => Buttons::DISLIKE
-      },
-      'dislike' => {
-        :function => 'likeLesson',
-        :button_class => Buttons::DISLIKE,
-        :new_button_class => Buttons::LIKE
-      },
-      'publish' => {
-        :function => 'unpublishLesson',
-        :button_class => Buttons::PUBLISH,
-        :new_button_class => Buttons::UNPUBLISH
-      },
-      'unpublish' => {
-        :function => 'publishLesson',
-        :button_class => Buttons::UNPUBLISH,
-        :new_button_class => Buttons::PUBLISH
-      }
-    },
-    'virtual_classroom' => {
-      'add_lesson' => {
-        :function => 'removeLessonFromVirtualClassroom',
-        :button_class => Buttons::ADD_VIRTUAL_CLASSROOM,
-        :new_button_class => Buttons::REMOVE_VIRTUAL_CLASSROOM
-      },
-      'remove_lesson' => {
-        :function => 'addLessonToVirtualClassroom',
-        :button_class => Buttons::REMOVE_VIRTUAL_CLASSROOM,
-        :new_button_class => Buttons::ADD_VIRTUAL_CLASSROOM
-      }
-    }
-  }
-  
   before_filter :require_login
   
   private
@@ -46,10 +9,6 @@ class ApplicationController < ActionController::Base
     if !@lesson.nil?
       @lesson = Lesson.find_by_id @lesson.id
       @lesson.set_status @current_user.id
-      my_params = JS_SWITCH_BUTTON_FUNCTIONS[params[:controller]][params[:action]]
-      @function = my_params[:function]
-      @button_class = my_params[:button_class]
-      @new_button_class = my_params[:new_button_class]
     end
   end
   
