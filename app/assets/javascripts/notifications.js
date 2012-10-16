@@ -2,7 +2,7 @@ function initializeNotifications() {
   var fumetto = $('#tooltip_arancione');
   var button = $('#notifications_button');
   var tooltip = $('#tooltip_content');
-  if(fumetto.data('number') > 0) {
+  if(parseInt(fumetto.data('number')) > 0) {
     fumetto.css('display', 'block');
     button.addClass('current');
   }
@@ -19,7 +19,7 @@ function initializeNotifications() {
 }
 
 function setNotificationsSeen() {
-  if($('#tooltip_arancione').data('number') > 0) {
+  if($('#tooltip_arancione').data('number') != '0') {
     $.ajax({
       type: 'post',
       url: '/notifications/seen'
