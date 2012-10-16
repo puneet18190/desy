@@ -54,6 +54,7 @@ $(document).ready(function() {
 	$("#format_media_elements").selectbox();
 	
 	$("#filter_media_elements").selectbox();
+
   initializeNotifications();
   
 });

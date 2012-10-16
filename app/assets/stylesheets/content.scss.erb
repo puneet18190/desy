@@ -4,15 +4,14 @@
 }
 .griglia-contenuti {
   float:left; 
-	width:99%; 
-	padding-left:0.5%; 
-	padding-right:0.5%;
+	padding-left:10px; 
+	padding-right:5px;
 }
 @mixin title-bar {
-  padding:0 1% 0 1%;
+  padding:0px 42px 0 12px;
 	margin-bottom:12px;
 	float:left;
-	width:98%;
+	width:97%;
 	color:#fff;
 }
 
@@ -54,7 +53,7 @@
 /*CLASSE VISTA LESSONS*/
 .lessons-content {
   float:left;
-	width:100%;
+	
 	 
 	.title-bar {
     @include title-bar;
@@ -118,34 +117,35 @@
 	  background-color:#f29400;
   }
  }
-	
+.current {
+	background-color:#e8e8e8;
+}	
 	.boxViewSingleLesson {
-	  background-color:#fbfafb;
+	  
 	  margin-bottom:1%;
 	  -moz-box-shadow: 1px 5px 5px #e8e8e8;
     -webkit-box-shadow: 1px 5px 5px #e8e8e8;
     box-shadow: 1px 5px 5px #e8e8e8;
 	  float:left;
 	  width:100%;
-		padding:0%;
+		padding: 0;
 	  color:#c0c0c0;
 		position:relative;
 		.contentInterno {
-	    padding:0.4% 1% 2% 1%;
+	    padding:10px 10px 4px 10px;
 			@include float-content;
 			@include tag-formatting;
 			height:auto;
+			/*background-color:#e8e8e8;*/
 			h3 {padding-top:0.5%}
 			p {font-size:80%; padding-top:0.5%}
-			&:hover {
+		}
+		&:hover {
 			  background-color:#e8e8e8;
 				cursor: pointer;
+				
 			}
-			
-		}
-		.current {
-			  background-color:#e8e8e8;
-		}
+		
 		.menuController {
 	    padding:0px; 
       border-top:none;
@@ -202,6 +202,7 @@
 		}
 	}
 }
+
 /*FINE CLASSE VISTA LESSONS*/
 /*CLASSE VISTA ELEMENTS*/
 .elements-content {
@@ -288,14 +289,8 @@
 			
 			h3 {padding-top:0.5%}
 			p {font-size:80%; padding-top:0.5%}
-			
-		 
-			
 		}
-		
-		
-		
-	}
+  }
 }
 /*FINE CLASSE VISTA ELEMENTS*/
 
@@ -307,8 +302,6 @@
   text-align:center;
 }
 @mixin contentLayout {
-  background-color:#fbfafb;
-	
   margin-bottom:1%;
 	-moz-box-shadow: 1px 5px 5px #e8e8e8;
   -webkit-box-shadow: 1px 5px 5px #e8e8e8;
@@ -322,7 +315,6 @@
 	h2 {
 	  font-size: 140%;
 	}
-	
 }
 .boxContentIndex {
   p {font:  180% 'Nunito', sans-serif;}
@@ -336,6 +328,7 @@
 }
 .boxViewSingleLesson {
   @include contentLayout;
+	background-color:#fbfafb;
 	float:left;
 	width:49%;
 	&:last-child {
@@ -345,6 +338,7 @@
 	.contentInterno {
 	  padding:4%;
 		height:110px;
+		
 	}
 	&.createNew {
     @include contentNew;
@@ -365,7 +359,7 @@
 	.contentInterno {
 	  padding:0%;
 		height:274px;
-		
+		background-color:#fbfafb;
 	}
 	&.createNew {
     @include contentNew;
@@ -376,12 +370,12 @@
 	  font-size: 55%;
 	}
 	.description {
-  padding-top:1%;
-	padding-left:5%;
-	h3 {
-	  color:#41a62a;
-		font-size: 90%;
-		padding-top:1%;
-	}
-}
+    padding-top:1%;
+	  padding-left:5%;
+		h3 {
+	    color:#41a62a;
+		  font-size: 90%;
+		  padding-top:1%;
+	  }
+  }
 }
