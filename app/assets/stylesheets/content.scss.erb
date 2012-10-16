@@ -293,6 +293,12 @@
 /*FINE CLASSE VISTA ELEMENTS*/
 
 /*DASHBOARD*/
+@mixin contentNew {
+  background-color:#faf9fa;
+  color:#bbbbbb;
+  font-size:110%;
+  text-align:center;
+}
 @mixin contentLayout {
   background-color:#fbfafb;
 	
@@ -309,9 +315,12 @@
 	h2 {
 	  font-size: 140%;
 	}
-	
+	h3 {
+	  color:#41a62a;
+		font-size: 90%;
+		padding-top:1%;
+	}
 }
-
 .boxContentIndex {
   p {font:  180% 'Nunito', sans-serif;}
   padding:2%;
@@ -333,30 +342,30 @@
 	.contentInterno {
 	  padding:4%;
 		height:110px;
-		
 	}
+	&.createNew {
+    @include contentNew;
+		height:215px;
+  }
 }
-
 .boxViewSingleMediaElement {
   @include contentLayout;
 	width:221px;
 	float:left;
-	margin-right:9%;
-	&:last-child {
-		margin-right: 0px;
-		float:right;
-	}
+	margin-right:20px;
+	
 	.contentInterno {
 	  padding:0%;
-		
-		
+		height:274px;
+		.description {
+		  padding-top:1%;
+			padding-left:5%;
+		}
 	}
+	&.createNew {
+    @include contentNew;
+		padding-top:70px;
+		height:244px;
+  }
 }
 
-
-.createNew {
-  background-color:#faf9fa;
-	color:#bbbbbb;
-	font-size:110%;
-	text-align:center;
-}
