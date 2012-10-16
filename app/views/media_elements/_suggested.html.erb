@@ -1,22 +1,11 @@
-<% cont = 0 %>
 <% media_elements.each do |me| %>
-  <% if cont == 0 %>
-  <div>
-  <% end %>
-    <div class="boxViewSingleMediaElement">
-      <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => true} %>
-    </div>
-  <% if cont == 3 %>
+  <div class="boxViewSingleMediaElement">
+    <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => true} %>
   </div>
-  <% end %>
-  <%
-    cont += 1
-    cont = 0 if cont == 4
-  %>
 <% end %>
-<% if cont == 3 %>
+
+<% if @where == 'dashboard' %>
   <div class="boxViewSingleMediaElement createNew">
     <%= render :partial => "shared/create_new", :locals => {:item => 'media_element'} %>
   </div>
-</div>
 <% end %>
