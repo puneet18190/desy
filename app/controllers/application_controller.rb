@@ -83,7 +83,9 @@ class ApplicationController < ActionController::Base
   def respond_standard_js(path)
     prepare_lesson_for_js
     respond_to do |format|
-      format.js { render :action => path}
+      format.js do
+        render path
+      end
     end
   end
   

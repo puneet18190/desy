@@ -24,7 +24,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_lesson')
     end
-    # respond_standard_js 'switch_answer.js.erb' FIXME qui devo aggiungerlo ed adattarlo!!!
+    # respond_standard_js 'lessons/switch_answer.js.erb' FIXME qui devo aggiungerlo ed adattarlo!!!
   end
   
   def copy
@@ -59,7 +59,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.like.problem_destroying')
     end
-    respond_standard_js 'switch_answer.js.erb'
+    respond_standard_js 'lessons/switch_answer.js.erb'
   end
   
   def like
@@ -71,7 +71,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.like.problem_creating')
     end
-    respond_standard_js 'switch_answer.js.erb'
+    respond_standard_js 'lessons/switch_answer.js.erb'
   end
   
   def publish
@@ -83,7 +83,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_publishing')
     end
-    respond_standard_js 'switch_answer.js.erb'
+    respond_standard_js 'lessons/switch_answer.js.erb'
   end
   
   def unpublish
@@ -95,7 +95,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_unpublishing')
     end
-    respond_standard_js 'switch_answer.js.erb'
+    respond_standard_js 'lessons/switch_answer.js.erb'
   end
   
   def remove

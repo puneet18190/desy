@@ -11,7 +11,7 @@ class VirtualClassroomController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_adding_to_virtual_classroom')
     end
-    respond_standard_js '/lessons/switch_answer.js.erb'
+    respond_standard_js 'lessons/switch_answer.js.erb'
   end
   
   def remove_lesson
@@ -23,7 +23,7 @@ class VirtualClassroomController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_removing_from_virtual_classroom')
     end
-    respond_standard_js '/lessons/switch_answer.js.erb'
+    respond_standard_js 'lessons/switch_answer.js.erb'
   end
   
 end
