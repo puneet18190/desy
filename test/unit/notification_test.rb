@@ -53,4 +53,19 @@ class NotificationTest < ActiveSupport::TestCase
     assert_obj_saved @notification
   end
   
+  test 'methods_for_controller' do
+    Notification.all.each do |n|
+      n.destroy
+    end
+    assert Notification.all.empty?
+    (1...20).each do |i|
+      assert Notification.send_to(1, 'cia')
+      assert Notification.send_to(2, 'cia')
+    end
+    
+    #$Notification.not_seen(an_user_id, a_limit)
+    #Notification.visible_block(an_user_id, a_limit)
+    #Notification.number_not_seen(an_user_id)
+  end
+  
 end

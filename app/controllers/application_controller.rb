@@ -24,8 +24,8 @@ class ApplicationController < ActionController::Base
     @current_user = User.find_by_email(CONFIG['admin_email'])
     # TODO questa parte qui sotto andrà preservata anche quando ci sarà la autenticazione vera
     @where = params[:controller]
-    @notifications = Notification.where(:user_id => @current_user.id).order('created_at DESC')
-    @new_notifications = Notification.where(:user_id => @current_user.id, :seen => false).count
+    @notifications = Notification.visible_block(@current_user.id, CONFIG['notifications_loaded_together'])
+    @new_notifications = Notification.number_not_seen(@current_user.id)
   end
   
   def correct_integer?(x)

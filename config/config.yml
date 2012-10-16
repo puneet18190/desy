@@ -20,4 +20,4 @@ compact_media_element_pagination_options: [18, 27, 36]
 expanded_media_element_pagination: 12
 expanded_media_element_pagination_options: [12, 16, 24]
 # NOTIFICATIONS
-notifications_loaded_together: 10
+notifications_loaded_together: 8
