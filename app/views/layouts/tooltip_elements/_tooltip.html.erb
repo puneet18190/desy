@@ -1,16 +1,17 @@
-<span class="tooltip">
-	<%= image_tag("freccia_tooltip.png", :class => "callout") %>
-	<div class="list">
-	<ul class="navlist">
-	<div class="scroll-pane">
-    <% @notifications.each do |n| %>
-      <li><a href="#" <%= n.seen ? "class=\"current\"" : '' %> class="expanded"><%= n.message.html_safe %></a>
-			<div class="cancelTooltip">
-			  <%= image_tag("cancel_tooltip_notice.png") %>
-			</div></li>
-			
-    <% end %>
-		</div>
-  </ul>
+<span class="tooltip" id="tooltip_content">
+  <%= image_tag("freccia_tooltip.png", :class => "callout") %>
+  <div class="list">
+    <ul class="navlist">
+      <div class="scroll-pane">
+        <% @notifications.each do |n| %>
+          <li>
+            <a href="#" <%= n.seen ? "class=\"current\"" : '' %> class="expanded"><%= n.message.html_safe %></a>
+            <div class="cancelTooltip">
+              <%= image_tag("cancel_tooltip_notice.png") %>
+            </div>
+          </li>
+        <% end %>
+      </div>
+    </ul>
   </div>
 </span>

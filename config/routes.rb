@@ -30,4 +30,7 @@ Desy::Application.routes.draw do
   match 'media_elements/:media_element_id/destroy' => 'media_elements#destroy', :via => :post
   match 'media_elements/:media_element_id/remove' => 'media_elements#remove', :via => :post
   
+  # NOTIFICATIONS
+  match 'notifications/seen' => 'notifications#seen', :via => :post
+  
 end

@@ -23,6 +23,10 @@ class Notification < ActiveRecord::Base
     self.save
   end
   
+  def self.not_seen(an_user_id)
+    Notification.where(:user_id => an_user_id, :seen => false)
+  end
+  
   private
   
   def init_validation
