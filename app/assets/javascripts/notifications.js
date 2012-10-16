@@ -13,6 +13,7 @@ function initializeNotifications() {
       }
       tooltip.css('display', 'block');
     } else {
+      $('#tooltip_content .current').removeClass('current');
       tooltip.css('display', 'none');
     }
   });
