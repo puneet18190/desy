@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
   
+  def full_name
+    "#{self.name} #{self.surname}"
+  end
+  
   def report_lesson(lesson_id, msg)
     errors.clear
     if self.new_record?

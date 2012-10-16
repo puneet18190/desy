@@ -12,7 +12,16 @@
     <p>stella <%= lesson.likes.count %><br>people like this lesson</p>
   </div>
   <div class="description-text">
-    <h1>Description</h1>
+    <% if [t('status.lessons.public'), t('status.lessons.linked')].include?(lesson.status) %>
+      <h1><%= t('capital_letter.author') %></h1>
+      <p><%= lesson.user.full_name %></p>
+      <h1><%= t('capital_letter.institute') %></h1>
+      <p><%= lesson.user.school %></p>
+      <h1><%= t('capital_letter.level') %></h1>
+      <p><%= lesson.school_level.description %></p>
+    <% end %>
+    <h1><%= t('capital_letter.description') %></h1>
     <p><%= lesson.description %></p>
   </div>
+  
 </div>
