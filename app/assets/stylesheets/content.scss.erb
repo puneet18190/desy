@@ -8,10 +8,10 @@
 	padding-right:5px;
 }
 @mixin title-bar {
-  padding:0px 42px 0 12px;
+  padding:3px 10px 3px 10px;
 	margin-bottom:12px;
 	float:left;
-	width:97%;
+	width:99%;
 	color:#fff;
 }
 
@@ -53,8 +53,6 @@
 /*CLASSE VISTA LESSONS*/
 .lessons-content {
   float:left;
-	
-	 
 	.title-bar {
     @include title-bar;
 		@include float-content;
@@ -132,7 +130,10 @@
 	  color:#c0c0c0;
 		position:relative;
 		.contentInterno {
-	    padding:10px 10px 4px 10px;
+		float:left;
+		width:98.7%;
+		
+	    padding:4px 10px 4px 10px;
 			@include float-content;
 			@include tag-formatting;
 			height:auto;
@@ -151,7 +152,7 @@
       border-top:none;
 			background-color:transparent;
 			float:left;
-			width: 25%;
+			width: 28%;
 			text-align:left;
 			a {
 			  margin-right:2.5%;
@@ -360,6 +361,7 @@
 	  padding:0%;
 		height:274px;
 		background-color:#fbfafb;
+		
 	}
 	&.createNew {
     @include contentNew;
