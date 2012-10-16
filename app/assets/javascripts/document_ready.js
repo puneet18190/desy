@@ -23,7 +23,7 @@ $(document).ready(function() {
     }
   });
   
-  $("#dialog-normal").dialog({
+  $("#dialog-error").dialog({
     autoOpen: false,
   });
   

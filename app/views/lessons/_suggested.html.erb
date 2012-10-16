@@ -3,7 +3,7 @@
   <% if cont == 0 %>
   <div>
   <% end %>
-    <div class="boxViewSingleLesson">
+    <div id="lesson_expanded_<%= l.id %>" class="boxViewSingleLesson">
       <%= render :partial => "lessons/view_single", :locals => {:lesson => l, :expanded => true} %>
     </div>
   <% if cont == 1 %>
