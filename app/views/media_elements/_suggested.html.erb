@@ -1,3 +1,5 @@
+<div style="text-align:center;  display:inline-block; border:1px solid red">
+<div style="margin:auto; text-align:left;">
 <% media_elements.each do |me| %>
   <div class="boxViewSingleMediaElement">
     <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => true} %>
@@ -9,3 +11,5 @@
     <%= render :partial => "shared/create_new", :locals => {:item => 'media_element'} %>
   </div>
 <% end %>
+</div>
+</div>
