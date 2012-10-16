@@ -139,7 +139,7 @@
 			height:auto;
 			/*background-color:#e8e8e8;*/
 			h3 {padding-top:0.5%}
-			p {font-size:80%; padding-top:0.5%}
+			p {font-size:80%; padding-top:0.6%}
 		}
 		&:hover {
 			  background-color:#e8e8e8;
@@ -169,8 +169,7 @@
 			h1 {
 	       font-size: 80%;
 		     color:#a7a9ac;
-		  
-	      }
+		  }
 			.img_expanded {
 			  float:left;
 				position:relative;
@@ -208,8 +207,6 @@
 /*CLASSE VISTA ELEMENTS*/
 .elements-content {
   float:left;
-	width:100%;
-	 
 	.title-bar {
     @include title-bar;
 		@include float-content;
@@ -229,6 +226,19 @@
       background-color:#5ab046;
       -moz-border-radius: 2px;
       -webkit-border-radius: 2px;
+    }
+		.selectDisplay .sbHolder{
+      width: 60px;
+      height: 14px;
+      background-color:#5ab046;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+			
+    }
+		.selectDisplay .sbSelector{
+	   height: 18px;
+	   line-height: 20px;
+	   width: 50px;
     }
     .sbSelector{
 	   height: 18px;
@@ -287,9 +297,13 @@
 		.contentInterno {
 	    padding:0;
 			height:274px;
-			
-			h3 {padding-top:0.5%}
-			p {font-size:80%; padding-top:0.5%}
+			h3 {
+			  padding-top:0.5%
+			}
+			p {
+			  font-size:80%; 
+				padding-top:0.5%
+			}
 		}
   }
 }
