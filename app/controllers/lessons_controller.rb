@@ -72,7 +72,7 @@ class LessonsController < ApplicationController
       @error = I18n.t('activerecord.errors.models.like.problem_creating')
     end
     reload_lesson
-    respond_standard_js 'js_answer.js.erb'
+    respond_standard_js 'switch_answer.js.erb'
   end
   
   def publish
