@@ -91,7 +91,7 @@ en:
   filters:
     all_lessons: 'All lessons'
     private: 'Private'
-    public: 'Public'
+    shared: 'Shared'
     linked: 'Linked'
     only_mine: 'Your own'
     copied: 'Just copied'

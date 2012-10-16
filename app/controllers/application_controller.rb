@@ -20,12 +20,20 @@ class ApplicationController < ActionController::Base
     @ok = !@lesson.nil?
   end
   
+  def initialize_notifications
+    @notifications = Notification.visible_block(@current_user.id, CONFIG['notifications_loaded_together'])
+    @new_notifications = Notification.number_not_seen(@current_user.id)
+  end
+  
+  def initialize_location
+    @where = params[:controller]
+  end
+  
   def require_login
     @current_user = User.find_by_email(CONFIG['admin_email'])
     # TODO questa parte qui sotto andrà preservata anche quando ci sarà la autenticazione vera
-    @where = params[:controller]
-    @notifications = Notification.visible_block(@current_user.id, CONFIG['notifications_loaded_together'])
-    @new_notifications = Notification.number_not_seen(@current_user.id)
+    initialize_location
+    initialize_notifications
   end
   
   def correct_integer?(x)
