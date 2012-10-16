@@ -8,13 +8,19 @@ function initializeNotifications() {
   }
   button.click(function() {
     if(tooltip.css('display') == 'none') {
-      $.ajax({
-        type: 'post',
-        url: '/notifications/seen'
-      });
+      if(fumetto.data('number') > 0) {
+        setNotificationsSeen();
+      }
       tooltip.css('display', 'block');
     } else {
       tooltip.css('display', 'none');
     }
+  });
+}
+
+function setNotificationsSeen() {
+  $.ajax({
+    type: 'post',
+    url: '/notifications/seen'
   });
 }

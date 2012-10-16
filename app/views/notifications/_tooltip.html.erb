@@ -5,7 +5,7 @@
       <div class="scroll-pane">
         <% @notifications.each do |n| %>
           <li>
-            <a href="#" <%= n.seen ? "class=\"current\"" : '' %> class="expanded"><%= n.message.html_safe %></a>
+            <a href="#" class="expanded <%= n.seen ? 'current' : '' %>" id="notification_<%= n.id %>"><%= n.message.html_safe %></a>
             <div class="cancelTooltip">
               <%= image_tag("cancel_tooltip_notice.png") %>
             </div>
