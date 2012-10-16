@@ -25,7 +25,7 @@ class Notification < ActiveRecord::Base
   
   def self.not_seen(an_user_id, a_limit)
     Notification.order('created_at DESC').where(:user_id => an_user_id).limit(a_limit).reject do |n|
-      !n.seen
+      n.seen
     end
   end
   
