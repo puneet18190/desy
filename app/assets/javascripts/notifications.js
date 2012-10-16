@@ -8,20 +8,21 @@ function initializeNotifications() {
   }
   button.click(function() {
     if(tooltip.css('display') == 'none') {
-      if(fumetto.data('number') > 0) {
-        setNotificationsSeen();
-      }
+      setNotificationsSeen();
       tooltip.css('display', 'block');
     } else {
-      $('#tooltip_content .current').removeClass('current');
+      $('#tooltip_content ._to_be_set_gray').addClass('current');
       tooltip.css('display', 'none');
+      $('#notifications_button').removeClass('current');
     }
   });
 }
 
 function setNotificationsSeen() {
-  $.ajax({
-    type: 'post',
-    url: '/notifications/seen'
-  });
+  if($('#tooltip_arancione').data('number') > 0) {
+    $.ajax({
+      type: 'post',
+      url: '/notifications/seen'
+    });
+  }
 }

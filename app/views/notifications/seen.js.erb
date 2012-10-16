@@ -1,2 +1,6 @@
 $('#tooltip_arancione').css('display', 'none');
 $('#tooltip_arancione').removeAttr('data-number');
+
+<% @notifications.each do |n| %>
+  $('#notification_<%= n.id %>').addClass('_to_be_set_gray');
+<% end %>
