@@ -14,9 +14,39 @@ $(document).ready(function() {
   
   // FILTERS
   
+  function getMediaElementsFormat() {
+    var param = 'format=compact';
+    if($('#format_media_elements .current').attr('href') == '/media_elements?format=expanded') {
+      param = 'format=expanded';
+    }
+    return param
+  }
+  
+  function getCompleteMediaElementsUrlWithoutFilter() {
+    var param_format = getMediaElementsFormat();
+    var param_for_page = 'for_page=' + $('#for_page_media_elements option:selected').val();
+    return '/media_elements?' + param_format + '&' + param_for_page;
+  }
+  
+  function getCompleteMediaElementsUrlWithoutForPage() {
+    var param_format = getMediaElementsFormat();
+    var param_filter = 'filter=' + $('#filter_media_elements option:selected').val();
+    return '/media_elements?' + param_format + '&' + param_filter;
+  }
+  
   $('#filter_lessons').change(function() {
     var filter = $('#filter_lessons option:selected').val();
     window.location.href = '/lessons?filter=' + filter;
+  });
+  
+  $('#filter_media_elements').change(function() {
+    var filter = $('#filter_media_elements option:selected').val();
+    window.location.href = getCompleteMediaElementsUrlWithoutFilter() + '&filter=' + filter;
+  });
+  
+  $('#for_page_media_elements').change(function() {
+    var for_page = $('#for_page_media_elements option:selected').val();
+    window.location.href = getCompleteMediaElementsUrlWithoutForPage() + '&for_page=' + for_page;
   });
   
   
@@ -184,7 +214,7 @@ $(document).ready(function() {
   
   $("#filter_lessons").selectbox();
   
-  $("#format_media_elements").selectbox();
+  $("#for_page_media_elements").selectbox();
   
   $("#filter_media_elements").selectbox();
   
