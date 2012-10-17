@@ -16,19 +16,33 @@ $(document).ready(function() {
   
   $('body').on('click', '._report_lesson_click', function() {
     var param = $(this).data('param');
-    $('#lesson_report_form_' + param).css('display', 'block');
+    var obj = $('#lesson_report_form_' + param);
+    if(obj.css('display') == 'none') {
+      obj.css('display', 'block');
+    } else {
+      obj.css('display', 'none');
+    }
     return false;
   });
   
   $('body').on('click', '._report_media_element_click', function() {
     var param = $(this).data('param');
-    $('#media_element_report_form_' + param).css('display', 'block');
+    var obj = $('#media_element_report_form_' + param);
+    if(obj.css('display') == 'none') {
+      obj.css('display', 'block');
+    } else {
+      obj.css('display', 'none');
+    }
     return false;
   });
   
   $('body').on('click', '._report_form_content', function(e) {
     e.preventDefault();
     return false;
+  });
+  
+  $('body').on('click', '._report_form_content ._send', function(e) {
+    $(this).closest('form').submit();
   });
   
   

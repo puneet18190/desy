@@ -66,10 +66,13 @@ en:
     matter: 'Matter'
     media_elements: 'Elements'
     report_abuse: 'Report abuse'
+    send: 'Send'
     show: 'Show'
     status: 'Status'
     small: 'Small'
     talk_with_desy: 'Want to talk with Desy?'
+    write_reason_report: 'Write the reason for your report, we will review it. Thank you for your cooperation!'
+    you_believe_content_unappropriate: 'You believe this content is unappropriate?'
   small_letter:
     create_new_lesson: 'create a new lesson'
     create_new_media_element: 'create a new element'

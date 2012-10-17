@@ -1,8 +1,7 @@
 <span class="tooltipForm _report_form_content" id="<%= id_scope %>_report_form_<%= item.id %>">
   <%= image_tag("freccia_tooltip_form.png", :class => "calloutForm") %>
- <h1>You believe this content is incorrect?</h1>
- <p>Write the reason for your report, we will review it.
-Thank you for your cooperation!</p>
+ <h1><%= t('capital_letter.you_believe_content_unappropriate') %></h1>
+ <p><%= t('capital_letter.write_reason_report') %></p>
   <%= form_tag "/reports/#{id_scope}", :remote => true do %>
     <%= hidden_field_tag "#{id_scope}_id", item.id %>
     <table summary="" cellpadding="0" cellspacing="0">
@@ -11,7 +10,7 @@ Thank you for your cooperation!</p>
           <td><%= text_area_tag 'content', '', :class => 'text' %></td>
         </tr>
         <tr>
-          <td align="right"><%= submit_tag 'Send' %></td>
+          <td align="right"><%= submit_tag t('capital_letter.send'), :class => '_send' %></td>
         </tr>
       </tbody>
     </table>
