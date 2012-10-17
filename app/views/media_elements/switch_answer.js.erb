@@ -6,7 +6,7 @@
   <% elsif @destination == ButtonDestinations::COMPACT_MEDIA_ELEMENT %>
     var target = $('#media_element_compact_<%= @media_element_id %>');
   <% end %>
-  target.html("<%= escape_javascript(render(:partial => "media_element/view_single", :locals => {:media_element => @media_element, :expanded => expanded})) %>");
+  target.html("<%= escape_javascript(render(:partial => "media_elements/view_single", :locals => {:media_element => @media_element, :expanded => expanded})) %>");
 <% else %>
   showErrorPopUp('<%= @error %>', 'Error!!');
 <% end %>
