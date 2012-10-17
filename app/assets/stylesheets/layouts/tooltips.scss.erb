@@ -79,7 +79,6 @@ $canvasSize: 450%;
 
 
 .tooltipHelp {
-  
   display:none; 
   @include misc;
   padding:2.5% 10% 2.5% 10%;
@@ -100,6 +99,34 @@ $canvasSize: 450%;
   }
 }
 
+/*TOOLTIP REPORT ABUSE*/
+$canvasSize: 450%;
+
+
+.tooltipForm {
+  display:block; 
+  @include misc;
+  padding:10px;
+  
+  left:187px;
+  top:81%;
+  float:right;
+  background-color:#fbfbfb;
+	color:#c0c0c0;
+  border:1px solid #c6c5c3;
+  width:350px;
+	/*nelfile content.css trovi alcune classi per quest'oggetto*/
+  .text {
+	  margin:10px 0 10px 0;
+	  width: 336px;
+		overflow:hidden;
+    height: 67px;
+		border:1px solid #f0e5e5;
+	}
+	
+}
+
+
 .callout {
   top: 15px;
   @include call;
@@ -107,6 +134,13 @@ $canvasSize: 450%;
 .calloutTooltipArancione {
   top: 4px;
   @include call;
+}
+.calloutForm {
+  top: -9px;
+  z-index:20;
+  position:absolute;
+  border:0;
+  left:8px;
 }
 .scroll-pane {
   width: 100%;
