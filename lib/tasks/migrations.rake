@@ -12,6 +12,16 @@ namespace :migrations do
     Rake::Task["db:schema:dump"].execute
   end
   
+  desc "empties your lessons"
+  task :empty_lessons => :environment do
+    Lesson.where(:user_id => 1).each do |l|
+      l.destroy
+    end
+    Bookmark.where(:bookmarkable_type => 'Lesson', :user_id => 1).each do |b|
+      b.destroy
+    end
+  end
+  
   desc "Rebuild notifications without re-initializing the database"
   task :notifications => :environment do
     Notification.all.each do |n|
