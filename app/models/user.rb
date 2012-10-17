@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   
   MY_LESSONS_QUERY = 'user_id = ? OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)'
-  MY_MEDIA_ELEMENTS_QUERY = 'user_id = ? OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)'
+  MY_MEDIA_ELEMENTS_QUERY = '(user_id = ? AND is_public = ?) OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)'
   
   attr_accessible :name, :surname, :school_level_id, :school, :location_id
   
@@ -86,23 +86,24 @@ class User < ActiveRecord::Base
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SET.include?(filter)
     param1 = MY_MEDIA_ELEMENTS_QUERY
     param2 = self.id
+    param2b = false
     param3 = 'MediaElement'
     param4 = self.id
     my_order = 'updated_at DESC'
     resp = []
     case filter
       when Filters::ALL_MEDIA_ELEMENTS
-        last_page = MediaElement.where(param1, param2, param3, param4).order(my_order).offset(offset + per_page).empty?
-        resp = MediaElement.where(param1, param2, param3, param4).order(my_order).limit(per_page).offset(offset)
+        last_page = MediaElement.where(param1, param2, param2b, param3, param4).order(my_order).offset(offset + per_page).empty?
+        resp = MediaElement.where(param1, param2, param2b, param3, param4).order(my_order).limit(per_page).offset(offset)
       when Filters::VIDEO
-        last_page = Video.where(param1, param2, param3, param4).order(my_order).offset(offset + per_page).empty?
-        resp = Video.where(param1, param2, param3, param4).order(my_order).limit(per_page).offset(offset)
+        last_page = Video.where(param1, param2, param2b, param3, param4).order(my_order).offset(offset + per_page).empty?
+        resp = Video.where(param1, param2, param2b, param3, param4).order(my_order).limit(per_page).offset(offset)
       when Filters::AUDIO
-        last_page = Audio.where(param1, param2, param3, param4).order(my_order).offset(offset + per_page).empty?
-        resp = Audio.where(param1, param2, param3, param4).order(my_order).limit(per_page).offset(offset)
+        last_page = Audio.where(param1, param2, param2b, param3, param4).order(my_order).offset(offset + per_page).empty?
+        resp = Audio.where(param1, param2, param2b, param3, param4).order(my_order).limit(per_page).offset(offset)
       when Filters::IMAGE
-        last_page = Image.where(param1, param2, param3, param4).order(my_order).offset(offset + per_page).empty?
-        resp = Image.where(param1, param2, param3, param4).order(my_order).limit(per_page).offset(offset)
+        last_page = Image.where(param1, param2, param2b, param3, param4).order(my_order).offset(offset + per_page).empty?
+        resp = Image.where(param1, param2, param2b, param3, param4).order(my_order).limit(per_page).offset(offset)
     end
     return {:last_page => last_page, :content => resp}
   end

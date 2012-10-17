@@ -112,14 +112,14 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_extractor [2, 3, 4, 6, @el2.id, @el5.id], @user2.own_media_elements(1, 20)[:content]
+    assert_extractor [2, 3, 4, @el2.id, @el5.id], @user2.own_media_elements(1, 20)[:content]
     # last page true
     resp = @user2.own_media_elements(3, 2)
-    assert_equal 2, resp[:content].length
+    assert_equal 1, resp[:content].length
     assert resp[:last_page]
     # last page false
-    resp = @user2.own_media_elements(1, 5)
-    assert_equal 5, resp[:content].length
+    resp = @user2.own_media_elements(1, 4)
+    assert_equal 4, resp[:content].length
     assert !resp[:last_page]
   end
   
@@ -157,7 +157,13 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_extractor [6, @el5.id], @user2.own_media_elements(1, 20, 'image')[:content]
+    xxx = MediaElement.new
+    xxx.user_id = 2
+    xxx.title = 'tit1xxx'
+    xxx.description = 'quef gsdsd dfs'
+    xxx.sti_type = 'Image'
+    assert_obj_saved xxx
+    assert_extractor [xxx.id, @el5.id], @user2.own_media_elements(1, 20, 'image')[:content]
     # last page true
     resp = @user2.own_media_elements(1, 2, 'image')
     assert_equal 2, resp[:content].length
