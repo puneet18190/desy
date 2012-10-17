@@ -22,6 +22,16 @@ namespace :migrations do
     end
   end
   
+  desc "empties your media elements"
+  task :empty_media_elements => :environment do
+    MediaElement.where(:user_id => 1).each do |l|
+      l.destroy
+    end
+    Bookmark.where(:bookmarkable_type => 'MediaElement', :user_id => 1).each do |b|
+      b.destroy
+    end
+  end
+  
   desc "Rebuild notifications without re-initializing the database"
   task :notifications => :environment do
     Notification.all.each do |n|
