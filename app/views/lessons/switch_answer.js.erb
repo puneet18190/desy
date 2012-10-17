@@ -8,5 +8,5 @@
   <% end %>
   target.html("<%= escape_javascript(render(:partial => "lessons/view_single", :locals => {:lesson => @lesson, :expanded => expanded})) %>");
 <% else %>
-  showErrorPopUp(<%= @error %>, 'Error!!');
+  showErrorPopUp('<%= @error %>', 'Error!!');
 <% end %>
