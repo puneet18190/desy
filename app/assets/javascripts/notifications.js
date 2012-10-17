@@ -26,3 +26,17 @@ function setNotificationsSeen() {
     });
   }
 }
+
+function initializeHelp() {
+  var tooltip_help = $('#tooltip_help');
+  var help = $('#help');
+  help.click(function() {
+    if(tooltip_help.css('display') == 'none') {
+      tooltip_help.css('display', 'block');
+      help.addClass('current');
+    } else {
+      tooltip_help.css('display', 'none');
+      help.removeClass('current');
+    }
+  });
+}

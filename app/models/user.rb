@@ -126,7 +126,7 @@ class User < ActiveRecord::Base
         param3 = self.id
         last_page = Lesson.where(filtered_query, param2, param3).order(my_order).offset(offset + per_page).empty?
         resp = Lesson.where(filtered_query, param2, param3).order(my_order).limit(per_page).offset(offset)
-      when Filters::SHARED
+      when Filters::PUBLIC
         filtered_query = "is_public =  ? AND (#{MY_LESSONS_QUERY})"
         param2 = true
         param3 = self.id
