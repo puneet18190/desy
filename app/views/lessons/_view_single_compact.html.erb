@@ -10,19 +10,21 @@
     <h1>Created on</h1>
     <%= TimeConvert.to_string(lesson.created_at) %>
     <p>stella <%= lesson.likes.count %><br>people like this lesson</p>
+    <% if lesson.is_reportable %>
+      <%= render :partial => "shared/buttons/#{Buttons::REPORT}" %><%= t('capital_letter.report_abuse') %>
+    <% end %>
   </div>
   <div class="description-text">
     <% if [t('status.lessons.public'), t('status.lessons.linked')].include?(lesson.status) %>
-		<div class="intestazione">
-      <h1><%= t('capital_letter.author') %>:</h1>
-      <p><%= lesson.user.full_name %></p>
-      <h1><%= t('capital_letter.institute') %>:</h1>
-      <p><%= lesson.user.school %></p>
-      <h1><%= t('capital_letter.level') %>:</h1>
-			
-      <p class="fltlft"><%= lesson.school_level.description %></p>
-		</div>
-			<br class="clearfloat">
+      <div class="intestazione">
+        <h1><%= t('capital_letter.author') %>:</h1>
+        <p><%= lesson.user.full_name %></p>
+        <h1><%= t('capital_letter.institute') %>:</h1>
+        <p><%= lesson.user.school %></p>
+        <h1><%= t('capital_letter.level') %>:</h1>
+        <p class="fltlft"><%= lesson.school_level.description %></p>
+      </div>
+      <br class="clearfloat">
     <% end %>
     <h1><%= t('capital_letter.description') %></h1>
     <p><%= lesson.description %></p>
