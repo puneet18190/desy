@@ -2,5 +2,5 @@
   <h3><%= media_element.title %></h3>
   <p><%= media_element.sti_type %></p>
   <p><%= media_element.status %></p>
-  <%= render :partial => "shared/action_buttons", :locals => {:item => media_element, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT, :where => @where} %>
+  <%= render :partial => "shared/action_buttons", :locals => {:item => media_element, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT} %>
 </div>
