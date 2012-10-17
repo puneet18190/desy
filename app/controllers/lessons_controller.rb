@@ -120,6 +120,10 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_lesson')
     end
+    if @destination == ButtonDestinations::EXPANDED_LESSON
+      respond_standard_js 'lessons/switch_answer.js.erb'
+      return
+    end
   end
   
   private
