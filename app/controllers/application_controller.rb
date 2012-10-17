@@ -18,9 +18,15 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize_lesson
+    initialize_button_destination
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @lesson = Lesson.find_by_id @lesson_id
     @ok = !@lesson.nil?
+  end
+  
+  def initialize_button_destination
+    @destination = params[:destination]
+    @ok = false if !ButtonDestinations::LESSONS.include?(@destination)
   end
   
   def initialize_notifications

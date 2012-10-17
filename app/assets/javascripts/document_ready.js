@@ -53,77 +53,88 @@ $(document).ready(function() {
   $('body').on('click', '._Lesson_button_add', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    addLesson(my_param);
+    var destination = $(this).data('destination');
+    addLesson(my_param, destination);
     return false;
   });
   
   $('body').on('click', '._Lesson_button_copy', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    copyLesson(my_param);
+    var destination = $(this).data('destination');
+    copyLesson(my_param, destination);
     return false;
   });
   
   $('body').on('click', '._Lesson_button_destroy', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    destroyLesson(my_param);
+    var destination = $(this).data('destination');
+    destroyLesson(my_param, destination);
     return false;
   });
   
   $('body').on('click', '._Lesson_button_dislike', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    dislikeLesson(my_param);
+    var destination = $(this).data('destination');
+    dislikeLesson(my_param, destination);
     return false;
   });
   
   $('body').on('click', '._Lesson_button_like', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    likeLesson(my_param);
+    var destination = $(this).data('destination');
+    likeLesson(my_param, destination);
     return false;
   });
   
   $('body').on('click', '._Lesson_button_preview', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    previewLesson(my_param);
+    var destination = $(this).data('destination');
+    previewLesson(my_param, destination);
     return false;
   });
   
   $('body').on('click', '._Lesson_button_publish', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    publishLesson(my_param);
+    var destination = $(this).data('destination');
+    publishLesson(my_param, destination);
     return false;
   });
   
   $('body').on('click', '._Lesson_button_remove', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    removeLesson(my_param);
+    var destination = $(this).data('destination');
+    removeLesson(my_param, destination);
     return false;
   });
   
   $('body').on('click', '._Lesson_button_unpublish', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    unpublishLesson(my_param);
+    var destination = $(this).data('destination');
+    unpublishLesson(my_param, destination);
     return false;
   });
   
   $('body').on('click', '._Lesson_button_add_virtual_classroom', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    addLessonToVirtualClassroom(my_param);
+    var destination = $(this).data('destination');
+    addLessonToVirtualClassroom(my_param, destination);
     return false;
   });
   
   $('body').on('click', '._Lesson_button_remove_virtual_classroom', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    removeLessonFromVirtualClassroom(my_param);
+    var destination = $(this).data('destination');
+    removeLessonFromVirtualClassroom(my_param, destination);
     return false;
   });
   
@@ -133,28 +144,32 @@ $(document).ready(function() {
   $('body').on('click', '._MediaElement_button_add', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    addMediaElement(my_param);
+    var destination = $(this).data('destination');
+    addMediaElement(my_param, destination);
     return false;
   });
   
   $('body').on('click', '._MediaElement_button_destroy', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    destroyMediaElement(my_param);
+    var destination = $(this).data('destination');
+    destroyMediaElement(my_param, destination);
     return false;
   });
   
   $('body').on('click', '._MediaElement_button_preview', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    previewMediaElement(my_param);
+    var destination = $(this).data('destination');
+    previewMediaElement(my_param, destination);
     return false;
   });
   
   $('body').on('click', '._MediaElement_button_remove', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    removeMediaElement(my_param);
+    var destination = $(this).data('destination');
+    removeMediaElement(my_param, destination);
     return false;
   });
   

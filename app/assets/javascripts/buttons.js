@@ -1,98 +1,98 @@
-function addLesson(lesson_id) {
+function addLesson(lesson_id, destination) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/add'
+    url: '/lessons/' + lesson_id + '/add?destination=' + destination
   });
 }
 
-function copyLesson(lesson_id) {
+function copyLesson(lesson_id, destination) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/copy'
+    url: '/lessons/' + lesson_id + '/copy?destination=' + destination
   });
 }
 
-function destroyLesson(lesson_id) {
+function destroyLesson(lesson_id, destination) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/destroy'
+    url: '/lessons/' + lesson_id + '/destroy?destination=' + destination
   });
 }
 
-function dislikeLesson(lesson_id) {
+function dislikeLesson(lesson_id, destination) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/dislike'
+    url: '/lessons/' + lesson_id + '/dislike?destination=' + destination
   });
 }
 
-function likeLesson(lesson_id) {
+function likeLesson(lesson_id, destination) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/like'
+    url: '/lessons/' + lesson_id + '/like?destination=' + destination
   });
 }
 
-function previewLesson(lesson_id) {
+function previewLesson(lesson_id, destination) {
   
 }
 
-function publishLesson(lesson_id) {
+function publishLesson(lesson_id, destination) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/publish'
+    url: '/lessons/' + lesson_id + '/publish?destination=' + destination
   });
 }
 
-function removeLesson(lesson_id) {
+function removeLesson(lesson_id, destination) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/remove'
+    url: '/lessons/' + lesson_id + '/remove?destination=' + destination
   });
 }
 
-function unpublishLesson(lesson_id) {
+function unpublishLesson(lesson_id, destination) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/unpublish'
+    url: '/lessons/' + lesson_id + '/unpublish?destination=' + destination
   });
 }
 
-function addLessonToVirtualClassroom(lesson_id) {
+function addLessonToVirtualClassroom(lesson_id, destination) {
   $.ajax({
     type: 'post',
-    url: '/virtual_classroom/' + lesson_id + '/add_lesson'
+    url: '/virtual_classroom/' + lesson_id + '/add_lesson?destination=' + destination
   });
 }
 
-function removeLessonFromVirtualClassroom(lesson_id) {
+function removeLessonFromVirtualClassroom(lesson_id, destination) {
   $.ajax({
     type: 'post',
-    url: '/virtual_classroom/' + lesson_id + '/remove_lesson'
+    url: '/virtual_classroom/' + lesson_id + '/remove_lesson?destination=' + destination
   });
 }
 
-function addMediaElement(media_element_id) {
+function addMediaElement(media_element_id, destination) {
   $.ajax({
     type: 'post',
-    url: '/media_elements/' + media_element_id + '/add'
+    url: '/media_elements/' + media_element_id + '/add?destination=' + destination
   });
 }
 
-function destroyMediaElement(media_element_id) {
+function destroyMediaElement(media_element_id, destination) {
   $.ajax({
     type: 'post',
-    url: '/media_elements/' + media_element_id + '/destroy'
+    url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination
   });
 }
 
-function previewMediaElement(media_element_id) {
+function previewMediaElement(media_element_id, destination) {
   
 }
 
-function removeMediaElement(media_element_id) {
+function removeMediaElement(media_element_id, destination) {
   $.ajax({
     type: 'post',
-    url: '/media_elements/' + media_element_id + '/remove'
+    url: '/media_elements/' + media_element_id + '/remove?destination=' + destination
   });
 }

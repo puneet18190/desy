@@ -1,9 +1,9 @@
 <% if @ok %>
   <% expanded = false %>
-  <% if @where == 'dashboard' %>
+  <% if @destination == ButtonDestinations::EXPANDED_LESSON %>
     <% expanded = true %>
     var target = $('#lesson_expanded_<%= @lesson_id %>');
-  <% else %>
+  <% elsif @destination == ButtonDestinations::COMPACT_LESSON %>
     var target = $('#lesson_compact_<%= @lesson_id %>');
   <% end %>
   target.html("<%= escape_javascript(render(:partial => "lessons/view_single", :locals => {:lesson => @lesson, :expanded => expanded})) %>");
