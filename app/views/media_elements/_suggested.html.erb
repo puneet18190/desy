@@ -2,7 +2,7 @@
 <% media_elements.each do |me| %>
 
   <div class="boxViewSingleMediaElement" id="media_element_expanded_<%= me.id %>">
-    <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => true} %>
+    <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => true, :where => @where} %>
   </div>
 
 <% end %>

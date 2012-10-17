@@ -50,7 +50,7 @@
     <% else %>
       <% @media_elements.each do |me| %>
         <div id="" class="boxViewSingleMediaElement" id="media_element_compact_<%= me.id %>">
-          <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => false} %>
+          <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => false, :where => @where} %>
         </div>
       <% end %>
     <% end %>

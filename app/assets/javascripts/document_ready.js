@@ -63,21 +63,6 @@ $(document).ready(function() {
   });
   
   
-  // DIALOGS AND POPUPS
-  
-  $("#dialog-error").dialog({
-    autoOpen: false,
-  });
-  
-  $("#dialog-shade").dialog({
-    autoOpen: false,
-  });
-  
-  $("#dialog-timed").dialog({
-    autoOpen: false,
-  });
-  
-  
   // LESSON BUTTONS
   
   $('body').on('click', '._Lesson_button_add', function(e) {
