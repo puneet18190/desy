@@ -11,7 +11,9 @@
     <%= TimeConvert.to_string(lesson.created_at) %>
     <p>stella <%= lesson.likes.count %><br>people like this lesson</p>
     <% if lesson.is_reportable %>
-      <%= render :partial => "shared/buttons/#{Buttons::REPORT}" %><%= t('capital_letter.report_abuse') %>
+		
+      <%= render :partial => "shared/buttons/#{Buttons::REPORT}/lesson" %>
+		
     <% end %>
   </div>
   <div class="description-text">
