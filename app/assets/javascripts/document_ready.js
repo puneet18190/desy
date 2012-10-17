@@ -171,7 +171,7 @@ $(document).ready(function() {
   
   // MEDIA ELEMENT BUTTONS
   
-  $('body').on('click', '._MediaElement_button_add', function(e) {
+  $('body').on('click', '._Video_button_add, ._Audio_button_add, ._Image_button_add', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');
@@ -179,7 +179,7 @@ $(document).ready(function() {
     return false;
   });
   
-  $('body').on('click', '._MediaElement_button_destroy', function(e) {
+  $('body').on('click', '._Video_button_destroy, ._Audio_button_destroy, ._Image_button_destroy', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');
@@ -187,7 +187,7 @@ $(document).ready(function() {
     return false;
   });
   
-  $('body').on('click', '._MediaElement_button_preview', function(e) {
+  $('body').on('click', '._Video_button_preview, ._Audio_button_preview, ._Image_button_preview', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');
@@ -195,7 +195,7 @@ $(document).ready(function() {
     return false;
   });
   
-  $('body').on('click', '._MediaElement_button_remove', function(e) {
+  $('body').on('click', '._Video_button_remove, ._Audio_button_remove, ._Image_button_remove', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');

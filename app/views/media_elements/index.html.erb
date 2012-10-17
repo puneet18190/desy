@@ -49,7 +49,7 @@
       <%= render :partial => 'media_elements/suggested', :locals => {:media_elements => @media_elements} %>
     <% else %>
       <% @media_elements.each do |me| %>
-        <div id="" class="boxViewSingleMediaElement">
+        <div id="" class="boxViewSingleMediaElement" id="compact_media_element_<%= me.id %>">
           <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => false} %>
         </div>
       <% end %>
