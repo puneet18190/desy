@@ -1,17 +1,25 @@
+function showPopUp(content, title, id) {
+  var obj = $('#' + id);
+  if(obj.hasClass('ui-dialog-content')) {
+    obj.dialog('option', 'title', title);
+    obj.html(content);
+    obj.dialog('open');
+  } else {
+    obj.css('display', 'block');
+    obj.attr('title', title);
+    obj.html(content);
+    obj.dialog();
+  }
+}
+
 function showErrorPopUp(content, title) {
-  $("#dialog-error").attr('title', title);
-  $("#dialog-error").html(content);
-  $("#dialog-error").dialog();
+  showPopUp(content, title, 'dialog-error');
 }
 
 function showShadePopUp(content, title) {
-  $("#dialog-shade").attr('title', title);
-  $("#dialog-shade").html(content);
-  $("#dialog-shade").dialog();
+  showPopUp(content, title, 'dialog-shade');
 }
 
 function showTimedPopUp(content, title) {
-  $("#dialog-timed").attr('title', title);
-  $("#dialog-timed").html(content);
-  $("#dialog-timed").dialog();
+  showPopUp(content, title, 'dialog-timed');
 }
