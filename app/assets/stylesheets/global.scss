@@ -27,7 +27,11 @@ input {
   padding-left:10px;
   margin:0px;
 	border:none;
-	
+}
+input[type="submit"] {
+  font-size:90%;
+  color: #5d5c5c;
+  background-color:transparent;
 }
 .text {
 	  padding-top:3px; 
