@@ -6,7 +6,7 @@ class MediaElementsController < ApplicationController
   FOR_PAGE_EXPANDED_OPTIONS = CONFIG['expanded_media_element_pagination_options']
   
   before_filter :initialize_media_element, :only => [:add, :remove]
-  before_filter :initialize_media_element_with_owner, :only => :rdestroy
+  before_filter :initialize_media_element_with_owner, :only => :destroy
   
   def index
     initialize_paginator
