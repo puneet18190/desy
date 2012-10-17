@@ -12,6 +12,13 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def prepare_media_element_for_js
+    if !@media_element.nil?
+      @media_element = MediaElement.find_by_id @media_element.id
+      @media_element.set_status @current_user.id
+    end
+  end
+  
   def initialize_lesson_with_owner
     initialize_lesson
     @ok = (@current_user.id == @lesson.user_id) if @ok
@@ -21,12 +28,29 @@ class ApplicationController < ActionController::Base
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @lesson = Lesson.find_by_id @lesson_id
     @ok = !@lesson.nil?
-    initialize_button_destination
+    initialize_button_destination_for_lessons
   end
   
-  def initialize_button_destination
+  def initialize_button_destination_for_lessons
     @destination = params[:destination]
     @ok = false if !ButtonDestinations::LESSONS.include?(@destination)
+  end
+  
+  def initialize_media_element_with_owner
+    initialize_media_element
+    @ok = (@current_user.id == @media_element.user_id) if @ok
+  end
+  
+  def initialize_media_element
+    @media_element_id = correct_integer?(params[:media_element_id]) ? params[:media_element_id].to_i : 0
+    @media_element = MediaElement.find_by_id @media_element_id
+    @ok = !@media_element.nil?
+    initialize_button_destination_for_media_elements
+  end
+  
+  def initialize_button_destination_for_media_elements
+    @destination = params[:destination]
+    @ok = false if !ButtonDestinations::MEDIA_ELEMENTS.include?(@destination)
   end
   
   def initialize_notifications
@@ -46,7 +70,12 @@ class ApplicationController < ActionController::Base
   end
   
   def respond_standard_js(path)
-    prepare_lesson_for_js
+    case params[:controller]
+      when 'lessons'
+        prepare_lesson_for_js
+      when 'media_elements'
+        prepare_media_elements_for_js
+    end
     respond_to do |format|
       format.js do
         render path

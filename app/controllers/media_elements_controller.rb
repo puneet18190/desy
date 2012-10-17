@@ -5,6 +5,9 @@ class MediaElementsController < ApplicationController
   FOR_PAGE_EXPANDED = CONFIG['expanded_media_element_pagination']
   FOR_PAGE_EXPANDED_OPTIONS = CONFIG['expanded_media_element_pagination_options']
   
+  before_filter :initialize_media_element, :only => [:add, :remove]
+  before_filter :initialize_media_element_with_owner, :only => :rdestroy
+  
   def index
     initialize_paginator
     resp = @current_user.own_media_elements(@page, @for_page, @filter)
@@ -18,6 +21,51 @@ class MediaElementsController < ApplicationController
     end
     @media_elements.each do |me|
       me.set_status @current_user.id
+    end
+  end
+  
+  def add
+    if @ok
+      if !@current_user.bookmark('MediaElement', @media_element_id)
+        @ok = false
+        @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_media_element')
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_media_element')
+    end
+    respond_standard_js 'media_elements/switch_answer.js.erb'
+  end
+  
+  def destroy
+    if @ok
+      if !@media_element.check_and_destroy
+        @ok = false
+        @error = @media_element.get_base_error
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.media_element.problem_destroying')
+    end
+  end
+  
+  def remove
+    if @ok
+      bookmark = Bookmark.where(:user_id => @current_user.id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => @media_element_id).first
+      if bookmark.nil?
+        @ok = false
+        @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_media_element')
+      else
+        bookmark.destroy
+        if Bookmark.where(:user_id => @current_user.id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => @media_element_id).any?
+          @ok = false
+          @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_media_element')
+        end
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_media_element')
+    end
+    if [ButtonDestinations::EXPANDED_MEDIA_ELEMENT_IN_DASHBOARD, ButtonDestinations::POPUP_MEDIA_ELEMENT_IN_DASHBOARD].include?(@destination)
+      respond_standard_js 'media_elements/switch_answer.js.erb'
+      return
     end
   end
   
