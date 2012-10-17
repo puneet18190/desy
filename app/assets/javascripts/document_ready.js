@@ -26,6 +26,11 @@ $(document).ready(function() {
     return false;
   });
   
+  $('body').on('click', '._report_form_content', function(e) {
+    e.preventDefault();
+    return false;
+  });
+  
   
   // FILTERS
   

@@ -82,6 +82,9 @@ en:
     upload_new_media_element: 'upload a new element'
     virtual_classroom: 'virtual classroom'
     welcome: 'welcome'
+  popups:
+    report_ok: 'The report was sent successfully'
+    report_failed: 'The report could not be sent successfully'
   status:
     lessons:
       private: 'private'
