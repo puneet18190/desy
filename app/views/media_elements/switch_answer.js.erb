@@ -1,12 +1,12 @@
 <% if @ok %>
   <% expanded = false %>
-  <% if @destination == ButtonDestinations::EXPANDED_LESSON %>
+  <% if [ButtonDestinations::EXPANDED_MEDIA_ELEMENT, ButtonDestinations::EXPANDED_MEDIA_ELEMENT_IN_DASHBOARD].include?(@destination) %>
     <% expanded = true %>
-    var target = $('#lesson_expanded_<%= @lesson_id %>');
-  <% elsif @destination == ButtonDestinations::COMPACT_LESSON %>
-    var target = $('#lesson_compact_<%= @lesson_id %>');
+    var target = $('#media_element_expanded_<%= @media_element_id %>');
+  <% elsif @destination == ButtonDestinations::COMPACT_MEDIA_ELEMENT %>
+    var target = $('#media_element_compact_<%= @media_element_id %>');
   <% end %>
-  target.html("<%= escape_javascript(render(:partial => "lessons/view_single", :locals => {:lesson => @lesson, :expanded => expanded})) %>");
+  target.html("<%= escape_javascript(render(:partial => "media_element/view_single", :locals => {:media_element => @media_element, :expanded => expanded})) %>");
 <% else %>
   showErrorPopUp('<%= @error %>', 'Error!!');
 <% end %>
