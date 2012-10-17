@@ -10,6 +10,7 @@ class LessonsController < ApplicationController
     resp = @current_user.own_lessons(@page, @for_page, @filter)
     @lessons = resp[:content]
     @last_page = resp[:last_page]
+    @page = @last_page if @page > @last_page
     @lessons.each do |l|
       l.set_status @current_user.id
     end

@@ -10,6 +10,7 @@ class MediaElementsController < ApplicationController
     resp = @current_user.own_media_elements(@page, @for_page, @filter)
     @media_elements = resp[:content]
     @last_page = resp[:last_page]
+    @page = @last_page if @page > @last_page
     @media_elements.each do |me|
       me.set_status @current_user.id
     end
