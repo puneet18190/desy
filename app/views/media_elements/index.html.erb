@@ -1,31 +1,34 @@
 <div class="elements-content">
+  
   <div class="title-bar">
     <h1 style="width:32%"><%= t('small_letter.elements') %></h1>
     <p style="width:25%"><%= t('capital_letter.display_mode') %>: <%= link_to t('capital_letters.large'), '/media_elements?format=expanded' %> - <%= link_to t('capital_letters.small'), '/media_elements?format=compact' %></p>
     
     <div style="padding-left:20px">
-		<h2 style="padding-right:10px"><%= t('small_letter.display') %></h2>
-		<div class="selectDisplay">
-      <select name="display" id="format_media_elements">
-        <% @format_options.each do |f| %>
-          <option value="<%= f %>" <%= f == @for_page ? "selected=\"selected" : '' %>><%= f %></option>
-        <% end %>
-      </select>
+      <h2 style="padding-right:10px"><%= t('small_letter.display') %></h2>
+      <div class="selectDisplay">
+        <select name="display" id="format_media_elements">
+          <% @format_options.each do |f| %>
+            <option value="<%= f %>" <%= f == @for_page ? "selected=\"selected" : '' %>><%= f %></option>
+          <% end %>
+        </select>
+      </div>
     </div>
-		</div>
-		<div>
-		<h2 style="padding-right:10px"><%= t('capital_letter.show') %></h2>
-		
+    
+    <div>
+      <h2 style="padding-right:10px"><%= t('capital_letter.show') %></h2>
       <select name="ricerca" id="filter_media_elements">
         <% Filters::MEDIA_ELEMENTS_SET.each do |f| %>
           <% caption = Filters::CAPTIONS[f] %>
           <option value="<%= f %>" <%= f == @filter ? "selected=\"selected" : '' %>><%= caption %></option>
         <% end %>
       </select>
-		
     </div>
+    
   </div>
+  
   <br class="clearfloat">
+  
   <% if @media_elements.empty? %>
     <% if @filter == Filters::ALL_ELEMENTS %>
       <%= render :partial => "media_elements/empty" %>
@@ -43,5 +46,7 @@
       <% end %>
     <% end %>
   <% end %>
+  
+  <%= render :partial => 'shared/pagination', :locals => {:page => @page, :last_page => @last_page, :first_page => (@page == 1), :pagination_url => request.url} %>
   
 </div>
