@@ -22,24 +22,29 @@ class StatusTest < ActiveSupport::TestCase
     l1.set_status 1
     assert_equal 'shared', l1.status
     assert_equal ['preview', 'edit', 'remove_virtual_classroom', 'unpublish', 'copy', 'destroy'], l1.buttons
+    assert_equal false, l1.is_reportable
     l1.set_status 2
     assert_equal 'public', l1.status
-    assert_equal ['preview', 'add', 'like', 'report'], l1.buttons
+    assert_equal ['preview', 'add', 'like'], l1.buttons
+    assert_equal true, l1.is_reportable
     # I try like
     assert User.find(2).like(l1.id)
     l1.set_status 2
     assert_equal 'public', l1.status
-    assert_equal ['preview', 'add', 'dislike', 'report'], l1.buttons
+    assert_equal ['preview', 'add', 'dislike'], l1.buttons
+    assert_equal true, l1.is_reportable
     # until here
     assert User.find(2).bookmark('Lesson', 1)
     l1.set_status 2
     assert_equal 'linked', l1.status
-    assert_equal ['preview', 'copy', 'add_virtual_classroom', 'dislike', 'remove', 'report'], l1.buttons
+    assert_equal ['preview', 'copy', 'add_virtual_classroom', 'dislike', 'remove'], l1.buttons
+    assert_equal true, l1.is_reportable
     l3 = l1.copy(2)
     assert !l3.nil?
     l3.set_status 2
     assert_equal 'copied', l3.status
     assert_equal ['preview', 'edit', 'destroy'], l3.buttons
+    assert_equal false, l3.is_reportable
   end
   
   test 'media_element' do

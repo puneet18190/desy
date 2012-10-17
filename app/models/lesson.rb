@@ -7,7 +7,7 @@ class Lesson < ActiveRecord::Base
   STAT_PUBLIC = I18n.t('status.lessons.public')
   
   attr_accessible :subject_id, :school_level_id, :title, :description
-  attr_reader :status
+  attr_reader :status, :is_reportable
   
   belongs_to :user
   belongs_to :subject
@@ -39,31 +39,37 @@ class Lesson < ActiveRecord::Base
     return if self.new_record?
     if !self.is_public && !self.copied_not_modified && an_user_id == self.user_id
       @status = STAT_PRIVATE
+      @is_reportable = false
     elsif !self.is_public && self.copied_not_modified && an_user_id == self.user_id
       @status = STAT_COPIED
+      @is_reportable = false
     elsif self.is_public && an_user_id != self.user_id && self.bookmarked?(an_user_id)
       @status = STAT_LINKED
+      @is_reportable = true
     elsif self.is_public && an_user_id != self.user_id && !self.bookmarked?(an_user_id)
       @status = STAT_PUBLIC
+      @is_reportable = true
     elsif self.is_public && an_user_id == self.user_id
       @status = STAT_SHARED
+      @is_reportable = false
     else
       @status = nil
+      @is_reportable = nil
     end
     @in_vc = self.in_virtual_classroom?(an_user_id)
     @liked = self.liked?(an_user_id)
   end
   
   def buttons
-    return [] if !@status || @in_vc.nil? || @liked.nil?
+    return [] if [@status, @in_vc, @liked, @is_reportable].include?(nil)
     if @status == STAT_PRIVATE
       return [Buttons::PREVIEW, Buttons::EDIT, virtual_classroom_button, Buttons::PUBLISH, Buttons::COPY, Buttons::DESTROY]
     elsif @status == STAT_COPIED
       return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
     elsif @status == STAT_LINKED
-       return [Buttons::PREVIEW, Buttons::COPY, virtual_classroom_button, like_button, Buttons::REMOVE, Buttons::REPORT]
+       return [Buttons::PREVIEW, Buttons::COPY, virtual_classroom_button, like_button, Buttons::REMOVE]
     elsif @status == STAT_PUBLIC
-       return [Buttons::PREVIEW, Buttons::ADD, like_button, Buttons::REPORT]
+       return [Buttons::PREVIEW, Buttons::ADD, like_button]
     elsif @status == STAT_SHARED
        return [Buttons::PREVIEW, Buttons::EDIT, virtual_classroom_button, Buttons::UNPUBLISH, Buttons::COPY, Buttons::DESTROY]
     else
