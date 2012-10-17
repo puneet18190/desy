@@ -189,7 +189,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert !resp[:last_page]
   end
   
-  test 'own_lessons_filter_shared' do
+  test 'own_lessons_filter_public' do
     assert Lesson.find(1).publish
     assert @user2.bookmark 'Lesson', @les2.id
     assert @user2.bookmark 'Lesson', @les5.id
@@ -197,13 +197,13 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
-    assert_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'shared')[:content]
+    assert_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'public')[:content]
     # last page true
-    resp = @user2.own_lessons(3, 2, 'shared')
+    resp = @user2.own_lessons(3, 2, 'public')
     assert_equal 1, resp[:content].length
     assert resp[:last_page]
     # last page false
-    resp = @user2.own_lessons(1, 4, 'shared')
+    resp = @user2.own_lessons(1, 4, 'public')
     assert_equal 4, resp[:content].length
     assert !resp[:last_page]
   end
