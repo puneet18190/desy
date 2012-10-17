@@ -5,4 +5,5 @@
     <h4><%= media_element.title %></h4>
   </div>
 </div>
-<%= render :partial => "shared/action_buttons", :locals => {:item => media_element, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
+<% destination = (@where == 'dashboard') ? ButtonDestinations::EXPANDED_MEDIA_ELEMENT_IN_DASHBOARD : ButtonDestinations::EXPANDED_MEDIA_ELEMENT %>
+<%= render :partial => "shared/action_buttons", :locals => {:item => media_element, :destination => destination} %>
