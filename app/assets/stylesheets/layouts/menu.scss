@@ -21,11 +21,12 @@
     li a {
       display: block;
       width: 100%;
-      padding:15px 0px 15px 0px;
+      padding:0;
       color: #fff;
       text-decoration: none;
 			text-align:center;
 			text-transform:lowercase;
+			line-height:61px;
     }
 }		
 ul.navlist li.lessons a {
