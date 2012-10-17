@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
       when 'lessons'
         prepare_lesson_for_js
       when 'media_elements'
-        prepare_media_elements_for_js
+        prepare_media_element_for_js
     end
     respond_to do |format|
       format.js do
