@@ -177,5 +177,6 @@ $(document).ready(function() {
   // NOTIFICATIONS
   
   initializeNotifications();
+  initializeHelp();
   
 });

@@ -1,17 +1,15 @@
-<span class="tooltipHelp">
-	<%= image_tag("freccia_tooltip.png", :class => "callout") %>
-	
-	<p>
-	<strong>Lorem ipsum dolor</strong><br>
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie 
-	</p>
-	<p>
-	<strong>Lorem ipsum dolor</strong><br>
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie 
-	</p>
-	<p>
-	<strong>Lorem ipsum dolor</strong><br>
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie 
-	</p>
-	
+<span class="tooltipHelp" id="tooltip_help">
+  <%= image_tag("freccia_tooltip.png", :class => "callout") %>
+  <p>
+    <strong><%= t("help.#{@where}.first.title") %></strong><br>
+    <%= t("help.#{@where}.first.content") %>
+  </p>
+  <p>
+    <strong><%= t("help.#{@where}.second.title") %></strong><br>
+    <%= t("help.#{@where}.second.content") %>
+  </p>
+  <p>
+    <strong><%= t("help.#{@where}.third.title") %></strong><br>
+    <%= t("help.#{@where}.third.content") %>
+  </p>
 </span>
