@@ -12,7 +12,7 @@
     <p>stella <%= lesson.likes.count %><br>people like this lesson</p>
     <% if lesson.is_reportable %>
 		
-      <%= render :partial => "shared/buttons/#{Buttons::REPORT}/lesson" %>
+      <%= render :partial => "shared/buttons/#{Buttons::REPORT}/lesson", :locals => {:lesson => lesson} %>
 		
     <% end %>
   </div>

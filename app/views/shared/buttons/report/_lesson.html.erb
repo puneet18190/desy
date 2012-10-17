@@ -1,3 +1,3 @@
-<div class="menuController" style="padding-top:6px; width:25px"><a class="<%= Buttons::REPORT %>"></a></div>
-<span style="padding-top:10px; float:left"><%= t('capital_letter.report_abuse') %></span>
-<%= render :partial => 'reports/form', :locals => {:lesson => true} %>
+<div class="menuController" style="padding-top:6px; width:25px"><a class="<%= Buttons::REPORT %> _report_lesson_click" data-param="<%= lesson.id %>"></a></div>
+<span class="_report_lesson_click" data-param="<%= lesson.id %>" style="padding-top:10px; float:left"><%= t('capital_letter.report_abuse') %></span>
+<%= render :partial => 'reports/form', :locals => {:item => lesson, :id_scope => 'lesson'} %>

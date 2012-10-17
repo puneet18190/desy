@@ -12,6 +12,21 @@ $(document).ready(function() {
   });
   
   
+  // REPORT FORMS
+  
+  $('body').on('click', '._report_lesson_click', function() {
+    var param = $(this).data('param');
+    $('#lesson_report_form_' + param).css('display', 'block');
+    return false;
+  });
+  
+  $('body').on('click', '._report_media_element_click', function() {
+    var param = $(this).data('param');
+    $('#media_element_report_form_' + param).css('display', 'block');
+    return false;
+  });
+  
+  
   // FILTERS
   
   function getMediaElementsFormat() {
@@ -52,7 +67,7 @@ $(document).ready(function() {
   
   // EXPAND LESSON
   
-  $('body').on('click','._lesson_compact',function() {
+  $('body').on('click','._lesson_compact', function() {
     var my_id = this.id;
     var my_expanded = $('#' + my_id + ' ._lesson_expanded');
     if(my_expanded.css('display') == 'block') {

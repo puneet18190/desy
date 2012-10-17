@@ -16,6 +16,10 @@ function showErrorPopUp(content, title) {
   showPopUp(content, title, 'dialog-error');
 }
 
+function showOkPopUp(content, title) {
+  showPopUp(content, title, 'dialog-ok');
+}
+
 function showShadePopUp(content, title) {
   showPopUp(content, title, 'dialog-shade');
 }

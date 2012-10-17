@@ -33,4 +33,8 @@ Desy::Application.routes.draw do
   # NOTIFICATIONS
   match 'notifications/seen' => 'notifications#seen', :via => :post
   
+  # REPORTS
+  match 'reports/lesson' => 'reports#lesson', :via => :post
+  match 'reports/media_element' => 'reports#media_element', :via => :post
+  
 end
