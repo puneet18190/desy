@@ -5,4 +5,4 @@
     <h4><%= media_element.title %></h4>
   </div>
 </div>
-<%= render :partial => "shared/action_buttons", :locals => {:item => media_element} %>
+<%= render :partial => "shared/action_buttons", :locals => {:item => media_element, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>

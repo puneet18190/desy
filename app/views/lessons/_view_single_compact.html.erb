@@ -2,7 +2,7 @@
   <h3><%= lesson.title %></h3>
   <p><%= lesson.subject.description %></p>
   <p><%= lesson.status %></p>
-  <%= render :partial => "shared/action_buttons", :locals => {:item => lesson} %>
+  <%= render :partial => "shared/action_buttons", :locals => {:item => lesson, :destination => ButtonDestinations::COMPACT_LESSON} %>
 </div>
 <div class="lessons-expanded _lesson_expanded">
   <%= render :partial => "lessons/thumbnails/small", :locals => {:lesson => lesson} %>
