@@ -10,7 +10,12 @@ class LessonsController < ApplicationController
     resp = @current_user.own_lessons(@page, @for_page, @filter)
     @lessons = resp[:content]
     @last_page = resp[:last_page]
-    @page = @last_page if @page > @last_page
+    if @last_page && (@page != 1) && @lessons.empty?
+      @page = 1
+      resp = @current_user.own_lessons(@page, @for_page, @filter)
+      @lessons = resp[:content]
+      @last_page = resp[:last_page]
+    end
     @lessons.each do |l|
       l.set_status @current_user.id
     end
