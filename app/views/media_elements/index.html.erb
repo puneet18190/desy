@@ -30,7 +30,7 @@
   <br class="clearfloat">
   
   <% if @media_elements.empty? %>
-    <% if @filter == Filters::ALL_ELEMENTS %>
+    <% if @filter == Filters::ALL_MEDIA_ELEMENTS %>
       <%= render :partial => "media_elements/empty" %>
     <% else %>
       <%= render :partial => "media_elements/empty_result" %>
@@ -44,9 +44,8 @@
           <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => false} %>
         </div>
       <% end %>
+      <%= render :partial => 'shared/pagination', :locals => {:page => @page, :last_page => @last_page, :first_page => (@page == 1), :pagination_url => request.url} %>
     <% end %>
   <% end %>
-  
-  <%= render :partial => 'shared/pagination', :locals => {:page => @page, :last_page => @last_page, :first_page => (@page == 1), :pagination_url => request.url} %>
   
 </div>
