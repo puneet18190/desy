@@ -7,7 +7,7 @@ class MediaElement < ActiveRecord::Base
   self.inheritance_column = :sti_type
   
   attr_accessible :title, :description, :duration, :publication_date
-  attr_reader :status
+  attr_reader :status, :is_reportable, :info_changeable
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
@@ -31,23 +31,31 @@ class MediaElement < ActiveRecord::Base
     return if self.new_record?
     if !self.is_public && an_user_id == self.user_id
       @status = STAT_PRIVATE
+      @is_reportable = false
+      @info_changeable = true
     elsif self.is_public && !self.bookmarked?(an_user_id)
       @status = STAT_PUBLIC
+      @is_reportable = true
+      @info_changeable = false
     elsif self.is_public && self.bookmarked?(an_user_id)
       @status = STAT_LINKED
+      @is_reportable = true
+      @info_changeable = false
     else
       @status = nil
+      @is_reportable = nil
+      @info_changeable = nil
     end
   end
   
   def buttons
-    return [] if !@status
+    return [] if [@status, @is_reportable, @info_changeable].include?(nil)
     if @status == STAT_PRIVATE
-      return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY, Buttons::CHANGE_INFO]
+      return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
     elsif @status == STAT_PUBLIC
-       return [Buttons::PREVIEW, Buttons::ADD, Buttons::REPORT]
+       return [Buttons::PREVIEW, Buttons::ADD]
     elsif @status == STAT_LINKED
-       return [Buttons::PREVIEW, Buttons::EDIT, Buttons::REMOVE, Buttons::REPORT]
+       return [Buttons::PREVIEW, Buttons::EDIT, Buttons::REMOVE]
     else
       return []
     end

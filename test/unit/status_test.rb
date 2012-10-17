@@ -5,6 +5,7 @@ class StatusTest < ActiveSupport::TestCase
   test 'lesson' do
     l1 = Lesson.find 1
     assert l1.status.nil?
+    assert l1.is_reportable.nil?
     assert l1.buttons.empty?
     l1.set_status 1
     assert_equal 'private', l1.status
@@ -17,6 +18,7 @@ class StatusTest < ActiveSupport::TestCase
     # until here
     l1.set_status 2
     assert l1.status.nil?
+    assert l1.is_reportable.nil?
     assert l1.buttons.empty?
     assert l1.publish
     l1.set_status 1
@@ -50,12 +52,17 @@ class StatusTest < ActiveSupport::TestCase
   test 'media_element' do
     me1 = MediaElement.find 1
     assert me1.status.nil?
+    assert me1.is_reportable.nil?
+    assert me1.info_changeable.nil?
     assert me1.buttons.empty?
     me1.set_status 1
     assert_equal 'private', me1.status
-    assert_equal ['preview', 'edit', 'destroy', 'change_info'], me1.buttons
+    assert_equal ['preview', 'edit', 'destroy'], me1.buttons
+    assert_equal [false, true], [me1.is_reportable, me1.info_changeable]
     me1.set_status 2
     assert me1.status.nil?
+    assert me1.is_reportable.nil?
+    assert me1.info_changeable.nil?
     assert me1.buttons.empty?
     me1.is_public = true
     me1.publication_date = '2011-01-01 00:00:01'
@@ -64,11 +71,13 @@ class StatusTest < ActiveSupport::TestCase
     assert_equal 'public', me1.status
     me1.set_status 2
     assert_equal 'public', me1.status
-    assert_equal ['preview', 'add', 'report'], me1.buttons
+    assert_equal ['preview', 'add'], me1.buttons
+    assert_equal [true, false], [me1.is_reportable, me1.info_changeable]
     assert User.find(2).bookmark('MediaElement', 1)
     me1.set_status 2
     assert_equal 'linked', me1.status
-    assert_equal ['preview', 'edit', 'remove', 'report'], me1.buttons
+    assert_equal ['preview', 'edit', 'remove'], me1.buttons
+    assert_equal [true, false], [me1.is_reportable, me1.info_changeable]
   end
   
 end
