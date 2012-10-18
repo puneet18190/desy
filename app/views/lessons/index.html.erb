@@ -21,9 +21,7 @@
     <% end %>
   <% else %>
     <% @lessons.each do |l| %>
-      <div id="lesson_compact_<%= l.id %>" class="boxViewSingleLesson _lesson_compact <%= l.status == t('status.lessons.copied') ? 'current' : '' %>">
-        <%= render :partial => "lessons/view_single", :locals => {:lesson => l, :expanded => false} %>
-      </div>
+      <%= render :partial => "lessons/view_single", :locals => {:lesson => l, :expanded => false} %>
     <% end %>
     <%= render :partial => 'shared/pagination', :locals => {:page => @page, :last_page => @last_page, :first_page => (@page == 1), :pagination_url => request.url} %>
   <% end %>

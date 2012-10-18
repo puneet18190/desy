@@ -38,23 +38,31 @@
   
   <br class="clearfloat">
   <div style="width:90%;  margin:0 auto 0 auto;">
-  <% if @media_elements.empty? %>
-    <% if @filter == Filters::ALL_MEDIA_ELEMENTS %>
-      <%= render :partial => "media_elements/empty" %>
-    <% else %>
-      <%= render :partial => "media_elements/empty_result" %>
-    <% end %>
-  <% else %>
-    <% if @format == Formats::EXPANDED %>
-      <%= render :partial => 'media_elements/suggested', :locals => {:media_elements => @media_elements} %>
-    <% else %>
-      <% @media_elements.each do |me| %>
-        
-          <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => false, :where => @where} %>
-        
+    
+    
+    <% if @media_elements.empty? %>
+      
+      <% if @filter == Filters::ALL_MEDIA_ELEMENTS %>
+        <%= render :partial => "media_elements/empty" %>
+      <% else %>
+        <%= render :partial => "media_elements/empty_result" %>
       <% end %>
+      
+    <% else %>
+      
+      <% if @format == Formats::EXPANDED %>
+        <% @media_elements.each do |me| %>
+          <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => true, :where => @where} %>
+        <% end %>
+      <% else %>
+        <% @media_elements.each do |me| %>
+          <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => false, :where => @where} %>
+        <% end %>
+      <% end %>
+      <%= render :partial => 'shared/pagination', :locals => {:page => @page, :last_page => @last_page, :first_page => (@page == 1), :pagination_url => request.url} %>
+      
     <% end %>
-    <%= render :partial => 'shared/pagination', :locals => {:page => @page, :last_page => @last_page, :first_page => (@page == 1), :pagination_url => request.url} %>
-  <% end %>
-	</div>
+    
+    
+  </div>
 </div>

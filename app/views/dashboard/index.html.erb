@@ -1,23 +1,44 @@
 <% tot_lesson = 0 %>
 <% (0...CONFIG['lesson_pages_in_dashboard']).each do |j| %>
+  
   <div class="suggested_lessons_page" id="suggested_lessons_<%= j + 1 %>" <% if j != 0 %> style="display:none" <% end %>>
-    <%= render :partial => 'lessons/suggested', :locals => {:lessons => @lessons[tot_lesson, CONFIG['lessons_for_page_in_dashboard']].to_a} %>
+    <% cont = 0 %>
+    <% @lessons[tot_lesson, CONFIG['lessons_for_page_in_dashboard']].to_a.each do |l| %>
+      <% if cont == 0 %>
+      <div>
+      <% end %>
+      <%= render :partial => "lessons/view_single", :locals => {:lesson => l, :expanded => true} %>
+      <% if cont == 1 %>
+      </div>
+      <% end %>
+    <% cont = (cont == 0) ? 1 : 0 %>
+    <% end %>
+    <% if cont == 1 %>
+      <%= render :partial => "lessons/create_new" %>
+    </div>
+    <% end %>
     <br class="clearfloat">
     <%= render :partial => 'shared/pagination', :locals => {:page => (j + 1), :last_page => (j == CONFIG['lesson_pages_in_dashboard'] - 1), :first_page => (j == 0), :pagination_url => 'suggested_lessons'} %>
   </div>
+  
   <% tot_lesson += CONFIG['lessons_for_page_in_dashboard'] %>
 <% end %>
+
+
 <% tot_media_element = 0 %>
 <% (0...CONFIG['media_element_pages_in_dashboard']).each do |j| %>
-
   <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:none; width:90%;  margin:0 auto 0 auto;">
-    <%= render :partial => 'media_elements/suggested', :locals => {:media_elements => @media_elements[tot_media_element, CONFIG['media_elements_for_page_in_dashboard']].to_a} %>
+    <% @media_elements[tot_media_element, CONFIG['media_elements_for_page_in_dashboard']].to_a.each do |me| %>
+      <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => true, :where => @where} %>
+    <% end %>
+    <%= render :partial => "media_elements/create_new", :locals => {:item => 'media_element'} %>
     <br class="clearfloat">
     <%= render :partial => 'shared/pagination', :locals => {:page => (j + 1), :last_page => (j == CONFIG['lesson_pages_in_dashboard'] - 1), :first_page => (j == 0), :pagination_url => 'suggested_media_elements'} %>
   </div>
-	
   <% tot_media_element += CONFIG['media_elements_for_page_in_dashboard'] %>
 <% end %>
+
+
 <br class="clearfloat">
 <div class="boxContentIndex">
   <p><%= t('capital_letter.help_using_desy') %></br>
