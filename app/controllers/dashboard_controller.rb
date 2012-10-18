@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
     @lessons.each do |l|
       l.set_status @current_user.id
     end
-    @media_elements = @current_user.suggested_elements(ELEMENTS_FOR_PAGE * ELEMENT_PAGES)
+    @media_elements = @current_user.suggested_media_elements(ELEMENTS_FOR_PAGE * ELEMENT_PAGES)
     @media_elements.each do |me|
       me.set_status @current_user.id
     end
