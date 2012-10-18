@@ -1,17 +1,117 @@
 .content {
 	padding: 20px 0 43px 0;
 	color:#939393;
+	
 }
 .griglia-contenuti {
-  float:left; 
-	width:100%;
+  width:97%;
+	margin:0 auto;
+	
 }
+/*DASHBOARD*/
+@mixin contentNew {
+  background-color:#faf9fa;
+  color:#bbbbbb;
+  font-size:110%;
+  text-align:center;
+}
+@mixin contentLayout {
+  margin-bottom:1%;
+	-moz-box-shadow: 1px 5px 5px #e8e8e8;
+  -webkit-box-shadow: 1px 5px 5px #e8e8e8;
+  box-shadow: 1px 5px 5px #e8e8e8;
+	
+	h1 {
+	  font-size: 110%;
+		color:#f29400;
+		padding:0px;
+	}
+	h2 {
+	  font-size: 140%;
+	}
+}
+.boxContentIndex {
+  p {font:  180% 'Nunito', sans-serif;}
+  padding:2% 0 2% 2%;
+  background-color:#f7f7f7; 
+  width:47%;
+	float:left;
+	
+	a {
+	  color:#2faadc
+	}
+}
+.boxViewSingleLesson {
+  @include contentLayout;
+	background-color:#fbfafb;
+	float:left;
+	width:49%;
+	
+	&:last-child {
+		
+		float:right;
+	}
+	.contentInterno {
+	  padding:4%;
+		height:110px;
+		
+	}
+	&.createNew {
+    @include contentNew;
+		height:225px;
+  }
+  &.createNew:hover {
+    cursor:pointer;
+  }
+}
+
+.boxViewSingleMediaElement {
+  @include contentLayout;
+	width:220px;
+	float:left;
+	
+	margin-right:10px;
+	margin-bottom:20px;
+	
+	.contentInterno {
+	  padding:0%;
+		height:274px;
+		background-color:#fbfafb;
+		
+	}
+	&.createNew {
+    @include contentNew;
+		
+		.contentInterno {
+	  
+		padding-top:70px;
+		height:233px;
+		
+	}
+  }
+  &.createNew:hover {
+    cursor:pointer;
+  }
+	.menuController {
+	  font-size: 55%;
+	}
+	.description {
+    padding-top:1%;
+	  padding-left:5%;
+		h3 {
+	    color:#41a62a;
+		  font-size: 90%;
+		  padding-top:1%;
+	  }
+  }
+}
+
 @mixin title-bar {
-  padding:1% 2% 1% 2%;
+  padding:0.3% 2% 0.3% 2%;
 	margin-bottom:12px;
 	float:left;
-	width:92.2%;
-	margin-left:1.7%;
+	width:96%;
+	
 	color:#fff;
 }
 
@@ -53,7 +153,8 @@
 /*CLASSE VISTA LESSONS*/
 .lessons-content {
   float:left;
-	width:100%;
+	width:99.5%;
+	
 	.title-bar {
     @include title-bar;
 		@include float-content;
@@ -126,8 +227,8 @@
     -webkit-box-shadow: 1px 5px 5px #e8e8e8;
     box-shadow: 1px 5px 5px #e8e8e8;
 	  float:left;
-	  width:96.2%;
-		margin-left:1.7%;
+	  width:100%;
+		
 		padding: 0;
 	  color:#c0c0c0;
 		position:relative;
@@ -233,7 +334,7 @@
 /*CLASSE VISTA ELEMENTS*/
 .elements-content {
   float:left;
-	width:100%;
+	width:99.5%;
 	.title-bar {
     @include title-bar;
 		@include float-content;
@@ -319,10 +420,9 @@
     -webkit-box-shadow: 1px 5px 5px #e8e8e8;
     box-shadow: 1px 5px 5px #e8e8e8;
 	  float:left;
-	  width:221px;
+	  width:220px;
+		margin-right: 8px;
 		
-		margin-left:1.7%;
-	margin-right:0.8%;
 		margin-bottom:20px;
 	  color:#c0c0c0;
 		position:relative;
@@ -341,95 +441,3 @@
 }
 /*FINE CLASSE VISTA ELEMENTS*/
 
-/*DASHBOARD*/
-@mixin contentNew {
-  background-color:#faf9fa;
-  color:#bbbbbb;
-  font-size:110%;
-  text-align:center;
-}
-@mixin contentLayout {
-  margin-bottom:1%;
-	-moz-box-shadow: 1px 5px 5px #e8e8e8;
-  -webkit-box-shadow: 1px 5px 5px #e8e8e8;
-  box-shadow: 1px 5px 5px #e8e8e8;
-	
-	h1 {
-	  font-size: 110%;
-		color:#f29400;
-		padding:0px;
-	}
-	h2 {
-	  font-size: 140%;
-	}
-}
-.boxContentIndex {
-  p {font:  180% 'Nunito', sans-serif;}
-  padding:2% 0 2% 2%;
-  background-color:#f7f7f7; 
-  width:45.3%;
-	margin-left:27px;
-	float:left;
-	a {
-	  color:#2faadc
-	}
-}
-.boxViewSingleLesson {
-  @include contentLayout;
-	background-color:#fbfafb;
-	float:left;
-	width:47.3%;
-	margin-left:1.5%;
-	&:last-child {
-		
-		float:left;
-	}
-	.contentInterno {
-	  padding:4%;
-		height:110px;
-		
-	}
-	&.createNew {
-    @include contentNew;
-		height:225px;
-  }
-  &.createNew:hover {
-    cursor:pointer;
-  }
-}
-
-.boxViewSingleMediaElement {
-  @include contentLayout;
-	width:221px;
-	float:left;
-	margin-left:1.1%;
-	margin-right:0.8%;
-	margin-bottom:20px;
-	
-	.contentInterno {
-	  padding:0%;
-		height:274px;
-		background-color:#fbfafb;
-		
-	}
-	&.createNew {
-    @include contentNew;
-		padding-top:70px;
-		height:232px;
-		&.createNew:hover {
-      cursor:pointer;
-    }
-  }
-	.menuController {
-	  font-size: 55%;
-	}
-	.description {
-    padding-top:1%;
-	  padding-left:5%;
-		h3 {
-	    color:#41a62a;
-		  font-size: 90%;
-		  padding-top:1%;
-	  }
-  }
-}
