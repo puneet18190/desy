@@ -1,9 +1,11 @@
+<div id="" class="boxViewSingleMediaElement" id="media_element_compact_<%= media_element.id %>">
 <div class="contentInterno">
 <%= image_tag("testa.jpg") %>
   <div class="description">
     <h3><%= media_element.sti_type %></h3>
     <h4><%= media_element.title %></h4>
   </div>
+</div>
 </div>
 <% destination = (where == 'dashboard') ? ButtonDestinations::EXPANDED_MEDIA_ELEMENT_IN_DASHBOARD : ButtonDestinations::EXPANDED_MEDIA_ELEMENT %>
 <%= render :partial => "shared/action_buttons", :locals => {:item => media_element, :destination => destination} %>
