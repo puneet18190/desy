@@ -7,13 +7,16 @@ function initializeNotifications() {
     button.addClass('current');
   }
   button.click(function() {
+    $('#tooltip_help').css('display', 'none');
+    $('#help').removeClass('current');
     if(tooltip.css('display') == 'none') {
       setNotificationsSeen();
       tooltip.css('display', 'block');
+      button.addClass('current');
     } else {
       $('#tooltip_content ._to_be_set_gray').addClass('current');
       tooltip.css('display', 'none');
-      $('#notifications_button').removeClass('current');
+      button.removeClass('current');
     }
   });
 }
@@ -31,6 +34,8 @@ function initializeHelp() {
   var tooltip_help = $('#tooltip_help');
   var help = $('#help');
   help.click(function() {
+    $('#tooltip_content').css('display', 'none');
+    $('#notifications_button').removeClass('current');
     if(tooltip_help.css('display') == 'none') {
       tooltip_help.css('display', 'block');
       help.addClass('current');

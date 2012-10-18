@@ -91,15 +91,15 @@ en:
     report_ok: 'The report was sent successfully'
   status:
     lessons:
-      private: 'private'
-      copied: 'copied'
-      linked: 'linked'
-      public: 'public'
-      shared: 'shared'
+      private: 'Private'
+      copied: 'Copied'
+      linked: 'Linked'
+      public: 'Public'
+      shared: 'Shared'
     media_elements:
-      private: 'private'
-      public: 'public'
-      linked: 'linked'
+      private: 'Private'
+      public: 'Public'
+      linked: 'Linked'
   filters:
     all_lessons: 'All lessons'
     private: 'Private'
