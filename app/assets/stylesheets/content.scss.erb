@@ -92,11 +92,7 @@
 	.description {
     padding-top:1%;
 	  padding-left:5%;
-		h3 {
-	    color:#41a62a;
-		  font-size: 90%;
-		  padding-top:1%;
-	  }
+		
   }
 }
 
@@ -221,13 +217,11 @@
 		position:relative;
 		.contentInterno {
 		  float:left;
-		  width:98.7%;
-		
-	    padding:4px 10px 4px 10px;
+		  width:99%;
+		  padding:0.5% 0% 0.5% 1%;
 			@include float-content;
 			@include tag-formatting;
 			height:auto;
-			/*background-color:#e8e8e8;*/
 			h3 {padding-top:0.5%}
 			p {font-size:80%; padding-top:0.6%}
 		}
@@ -242,7 +236,7 @@
       border-top:none;
 			background-color:transparent;
 			float:left;
-			width: 28%;
+			width: 15%;
 			text-align:left;
 			a {
 			  margin-right:2.5%;
@@ -319,9 +313,28 @@
 
 /*FINE CLASSE VISTA LESSONS*/
 /*CLASSE VISTA ELEMENTS*/
+@mixin iconeElements {
+  float:left; 
+  border:1px solid red; 
+  width:45%;
+  background-repeat: no-repeat;
+  background-size: 4%;
+	padding-left:50px;
+	margin-right:1.8%;
+	background-image: url(<%= asset_path 'icon_elements.svg' %>);
+}
 .elements-content {
+
   float:left;
 	width:99.5%;
+	  h3 {
+	    color:#41a62a;
+		  font-size: 90%;
+		  padding-bottom:0%;
+	  }
+		h4 {
+		  padding-bottom: 0%;
+		}
 	.title-bar {
     @include title-bar;
 		@include float-content;
@@ -331,6 +344,7 @@
 		p {
 			padding-top:0.5%;
 		}
+		
 		a {
 		  color:#9EDA90;
 			&:hover {
@@ -414,25 +428,50 @@
 	  color:#c0c0c0;
 		position:relative;
 		
-		.contentInterno {
-	    
-			p {
-			  font-size:80%; 
-				padding-top:0.5%
-			
-			}
-		
 		}
-		
-  }
-	.boxViewCompactMediaElement {
-		  display:none;
-			color:#373737;
-			background-color:#e8e8e8; 
-			padding:1% 5% 2% 1%;
-			float:left;
-			width:94%;
+		.contentInterno {
+	  	p {
+			  font-size:80%; 
+				padding-top:0.6%;
+				
+			}
 	}
+	.boxViewCompactMediaElement {
+	  width:100%;
+		padding: 0;
+	  color:#c0c0c0;
+		@include contentLayout;
+    background-color: #FBFAFB;
+	  float:left;
+		
+		.contentInterno {
+		  float:left;
+		  width:99%;
+		  padding:0.3% 0% 0.3% 1%;
+			@include float-content;
+			/*audio*/
+			.audio {
+		    @include iconeElements;
+				background-position: 0 0;
+		  }
+			/*video*/
+			.video {
+		    @include iconeElements;
+				background-position: 0 10em;
+		  }
+			/*image*/
+			.image {
+		    @include iconeElements;
+		  }
+		}
+		.menuController {
+	    padding:0px; 
+      border-top:none;
+			background-color:transparent;
+			width: 8%;
+			text-align:left;
+		}
+	}
+	
 }
 /*FINE CLASSE VISTA ELEMENTS*/
-
