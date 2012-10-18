@@ -20,5 +20,7 @@
  *= require layouts/greybar
  *= require layouts/tooltips
  *= require content
+ *= require layouts/lessons
+ *= require layouts/elements
  *= require layouts/action_buttons
  */
