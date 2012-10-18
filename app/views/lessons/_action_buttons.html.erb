@@ -4,8 +4,10 @@
     <%= render :partial => "shared/buttons/#{b}", :locals => {:item => lesson, :destination => destination} %>
     <% cont += 1 %>
   <% end %>
+  <% if destination != ButtonDestinations::EXPANDED_LESSON %>
     <% while cont < 6 %>
-    <%= image_tag 'hidden.png', :style => 'margin-right:8px' %>
-    <% cont += 1 %>
+      <%= image_tag 'hidden.png', :style => 'margin-right:8px' %>
+      <% cont += 1 %>
+    <% end %>
   <% end %>
 </div>

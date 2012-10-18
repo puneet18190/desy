@@ -4,8 +4,10 @@
     <%= render :partial => "shared/buttons/#{b}", :locals => {:item => media_element, :destination => destination} %>
     <% cont += 1 %>
   <% end %>
-  <% while cont < 3 %>
-    <%= image_tag 'hidden.png', :style => 'margin-right:8px' %>
-    <% cont += 1 %>
+  <% if destination != ButtonDestinations::EXPANDED_MEDIA_ELEMENT %>
+    <% while cont < 3 %>
+      <%= image_tag 'hidden.png', :style => 'margin-right:8px' %>
+      <% cont += 1 %>
+    <% end %>
   <% end %>
 </div>
