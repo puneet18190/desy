@@ -79,11 +79,13 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 2, l.user_id
     assert_equal true, l.is_public
     assert_extractor [@les1.id, @les2.id, @les3.id, @les4.id], @user2.suggested_lessons(6)
+    assert @user2.bookmark 'Lesson', @les2.id
+    assert_extractor [@les1.id, @les3.id, @les4.id], @user2.suggested_lessons(6)
   end
   
-  test 'suggested_elements' do
+  test 'suggested_media_elements' do
     assert @user2.bookmark 'MediaElement', @el3.id
-    assert_extractor [2, 4, @el1.id, @el2.id, @el3.id, @el5.id, @el7.id], @user2.suggested_elements(80)
+    assert_extractor [2, @el1.id, @el2.id, @el5.id, @el7.id], @user2.suggested_media_elements(80)
   end
   
   test 'own_lessons' do

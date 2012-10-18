@@ -126,12 +126,12 @@ class LessonTest < ActiveSupport::TestCase
     @lesson = Lesson.find 1
     lesson4 = Lesson.find lesson4.id
     lesson3 = Lesson.find lesson3.id
-    copies = @lesson.copies
+    copies = @lesson.copies.sort
     parent4 = lesson4.parent
     parent3 = lesson3.parent
     assert_equal 2, copies.length
-    assert_equal lesson4.id, copies.first.id
-    assert_equal lesson3.id, copies.last.id
+    assert_equal lesson4.id, copies.last.id
+    assert_equal lesson3.id, copies.first.id
     assert_equal 1, parent4.id
     assert_equal 1, parent3.id
   end
