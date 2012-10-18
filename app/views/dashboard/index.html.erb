@@ -1,6 +1,9 @@
 <% tot_lesson = 0 %>
 <% (0...CONFIG['lesson_pages_in_dashboard']).each do |j| %>
-  <% lessons_block = @lessons[tot_lesson, CONFIG['lessons_for_page_in_dashboard']].to_a %>
+  <%
+    lessons_block = @lessons[tot_lesson, CONFIG['lessons_for_page_in_dashboard']].to_a
+    last_page = @lessons[tot_lesson + CONFIG['lessons_for_page_in_dashboard'], CONFIG['lessons_for_page_in_dashboard']].to_a.empty?
+  %>
   <% if lessons_block.any? %>
     <div class="suggested_lessons_page" id="suggested_lessons_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none' : 'block' %>">
       <% cont = 0 %>
@@ -19,7 +22,7 @@
         </div>
       <% end %>
       <br class="clearfloat">
-      <%= render :partial => 'shared/pagination', :locals => {:page => (j + 1), :last_page => (j == CONFIG['lesson_pages_in_dashboard'] - 1), :first_page => (j == 0), :pagination_url => 'suggested_lessons'} %>
+      <%= render :partial => 'shared/pagination', :locals => {:page => (j + 1), :last_page => last_page, :first_page => (j == 0), :pagination_url => 'suggested_lessons'} %>
     </div>
   <% end %>
   <% tot_lesson += CONFIG['lessons_for_page_in_dashboard'] %>
@@ -28,7 +31,10 @@
 
 <% tot_media_element = 0 %>
 <% (0...CONFIG['media_element_pages_in_dashboard']).each do |j| %>
-  <% media_elements_block = @media_elements[tot_media_element, CONFIG['media_elements_for_page_in_dashboard']].to_a %>
+  <%
+    media_elements_block = @media_elements[tot_media_element, CONFIG['media_elements_for_page_in_dashboard']].to_a
+    last_page = @media_elements[tot_media_element + CONFIG['media_elements_for_page_in_dashboard'], CONFIG['media_elements_for_page_in_dashboard']].to_a.empty?
+  %>
   <% if media_elements_block.any? %>
     <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:none; width:90%;  margin:0 auto 0 auto;">
       <% media_elements_block.each do |me| %>
@@ -36,7 +42,7 @@
       <% end %>
       <%= render :partial => "media_elements/create_new", :locals => {:item => 'media_element'} %>
       <br class="clearfloat">
-      <%= render :partial => 'shared/pagination', :locals => {:page => (j + 1), :last_page => (j == CONFIG['lesson_pages_in_dashboard'] - 1), :first_page => (j == 0), :pagination_url => 'suggested_media_elements'} %>
+      <%= render :partial => 'shared/pagination', :locals => {:page => (j + 1), :last_page => last_page, :first_page => (j == 0), :pagination_url => 'suggested_media_elements'} %>
     </div>
   <% end %>
   <% tot_media_element += CONFIG['media_elements_for_page_in_dashboard'] %>
