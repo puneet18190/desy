@@ -19,11 +19,63 @@ module ButtonDestinations
     else
       return {}
     end
-    if destination.split('_').first == 'expanded'
-      resp[:path] = "#{resp[:item]}s/reload_expanded.js.erb"
-    else
-      resp[:path] = "#{resp[:item]}s/reload_compact.js.erb"
+    case action
+      when 'publish'
+        resp[:path] = 'lessons/reload_compact.js.erb' if resp[:item] == 'lesson'
+      when 'unpublish'
+        resp[:path] = 'lessons/reload_compact.js.erb' if resp[:item] == 'lesson'
+      when 'like'
+        if destination.split('_').first == 'expanded'
+          resp[:path] = 'lessons/reload_expanded.js.erb' if resp[:item] == 'lesson'
+        else
+          resp[:path] = 'lessons/reload_compact.js.erb' if resp[:item] == 'lesson'
+        end
+      when 'dislike'
+        if destination.split('_').first == 'expanded'
+          resp[:path] = 'lessons/reload_expanded.js.erb' if resp[:item] == 'lesson'
+        else
+          resp[:path] = 'lessons/reload_compact.js.erb' if resp[:item] == 'lesson'
+        end
+      when 'add_lesson'
+        resp[:path] = 'lessons/reload_compact.js.erb' if resp[:item] == 'lesson'
+      when 'remove_lesson'
+        resp[:path] = 'lessons/reload_compact.js.erb' if resp[:item] == 'lesson'
+      when 'add'
+        case destination
+          when EXPANDED_LESSON
+            resp[:path] = 'lessons/extract_expanded.js.erb'
+          when EXPANDED_MEDIA_ELEMENT
+            resp[:path] = 'media_elements/extract_expanded.js.erb'
+          when FOUND_LESSON
+            resp[:path] = 'lessons/reload_compact.js.erb'
+          when FOUND_MEDIA_ELEMENT
+            resp[:path] = 'media_elements/reload_compact.js.erb'
+        end
+      when 'remove'
+        case destination
+          when COMPACT_LESSON
+            resp[:path] = 'lessons/extract_compact.js.erb'
+          when COMPACT_MEDIA_ELEMENT
+            resp[:path] = 'media_elements/extract_compact.js.erb'
+          when EXPANDED_MEDIA_ELEMENT
+            resp[:path] = 'media_elements/extract_expanded.js.erb'
+          when FOUND_LESSON
+            resp[:path] = 'lessons/reload_compact.js.erb'
+          when FOUND_MEDIA_ELEMENT
+            resp[:path] = 'media_elements/reload_compact.js.erb'
+        end
+      when 'destroy'
+        if [FOUND_LESSON, COMPACT_LESSON].include?(destination)
+          resp[:path] = 'lessons/extract_compact.js.erb'
+        elsif [FOUND_MEDIA_ELEMENT, COMPACT_MEDIA_ELEMENT].include?(destination)
+          resp[:path] = 'media_elements/extract_compact.js.erb'
+        elsif destination == EXPANDED_MEDIA_ELEMENT
+          resp[:path] = 'media_elements/extract_expanded.js.erb'
+        end
+      when 'copy'
+        resp[:path] = 'lessons/insert.js.erb' if resp[:item] == 'lesson'
     end
+    resp = {} if !resp.has_key?(:path)
     resp
   end
   
