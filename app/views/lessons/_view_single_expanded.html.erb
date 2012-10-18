@@ -4,5 +4,5 @@
     <h2><%= lesson.title %></h2>
     <p><%= lesson.description %></p>
   </div>
-  <%= render :partial => "lessons/action_buttons", :locals => {:lesson => lesson, :destination => ButtonDestinations::EXPANDED_LESSON} %>
+  <%= render :partial => "lessons/action_buttons", :locals => {:lesson => lesson, :destination => destination} %>
 </div>

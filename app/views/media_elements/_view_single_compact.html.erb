@@ -3,6 +3,6 @@
     <h3><%= media_element.title %></h3>
     <p><%= media_element.sti_type %></p>
     <p><%= media_element.status %></p>
-    <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT} %>
+    <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination} %>
   </div>
 </div>
