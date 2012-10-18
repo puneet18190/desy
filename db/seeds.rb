@@ -226,14 +226,18 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   end
   
   Lesson.all.each do |l|
-    admin.bookmark 'Lesson', l.id
+    if l.subject_id == 2
+      admin.bookmark 'Lesson', l.id
+    end
     if l.subject_id == 3
       l.copy admin.id
     end
   end
   
   MediaElement.all.each do |me|
-    admin.bookmark 'MediaElement', me.id
+    if me.id % 3 == 1
+      admin.bookmark 'MediaElement', me.id
+    end
   end
   
   paparesta.like(1)
