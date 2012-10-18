@@ -1,0 +1,12 @@
+<% if @ok %>
+  <% expanded = false %>
+  <% if @destination == ButtonDestinatons::EXPANDED_LESSON %>
+    <% expanded = true %>
+    var target = $('#lesson_expanded_<%= @lesson_id %>');
+  <% elsif @destination == ButtonDestinaions::COMPACT_LESSON %>
+    var target = $('#lesson_compact_<%= @lesson_id %>');
+  <% end %>
+  target.html("<%= escape_javascript(render(:partial => "", :locals => {:lesson => @lesson, :expanded => expanded})) %>");
+<% else %>
+  showErrorPopUp('<%= @error %>', 'Error!!');
+<% end %>

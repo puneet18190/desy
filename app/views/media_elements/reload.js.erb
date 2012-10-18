@@ -1,0 +1,18 @@
+<% if @ok %>
+  <% expanded = false %>
+  <% if [ButtonDesinations::EXPANDED_MEDIA_ELEMENT, ButtonDesinations::EXPANDED_MEDIA_ELEMENT_IN_DASHBOARD].include?(@destination) %>
+    <% expanded = true %>
+    var target = $('#media_element_expanded_<%= @media_element_id %>');
+  <% elsif @destination == ButtonDestinans::COMPACT_MEDIA_ELEMENT %>
+    var target = $('#media_element_compact_<%= @media_element_id %>');
+  <% end %>
+  
+  <%
+    where = @where
+    where = 'dashboard' if [ButtonDstinations::POPUP_MEDIA_ELEMENT_IN_DASHBOARD, ButtonDestiations::EXPANDED_MEDIA_ELEMENT_IN_DASHBOARD].include?(@destination)
+  %>
+  
+  target.html("<%= escape_javascript(render(:partial => "", :locals => {:media_element => @media_element, :expanded => expanded, :where => where})) %>");
+<% else %>
+  showErrorPopUp('<%= @error %>', 'Error!!');
+<% end %>
