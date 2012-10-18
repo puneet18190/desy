@@ -1,0 +1,5 @@
+<div class="menuController" id="media_element_menu_buttons_<%= media_element.id %>">
+  <% media_element.buttons.each do |b| %>
+    <%= render :partial => "shared/buttons/#{b}", :locals => {:item => media_element, :destination => destination} %>
+  <% end %>
+</div>

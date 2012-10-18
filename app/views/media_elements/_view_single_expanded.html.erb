@@ -7,7 +7,5 @@
     </div>
   </div>
   <% destination = (where == 'dashboard') ? ButtonDestinations::EXPANDED_MEDIA_ELEMENT_IN_DASHBOARD : ButtonDestinations::EXPANDED_MEDIA_ELEMENT %>
-  <%= render :partial => "shared/action_buttons", :locals => {:item => media_element, :destination => destination} %>
+  <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination} %>
 </div>
-
-
