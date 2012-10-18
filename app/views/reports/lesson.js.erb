@@ -3,5 +3,5 @@ $('#lesson_report_form_<%= @lesson_id %>').css('display', 'none');
 <% if @resp %>
   showOkPopUp('<%= t('popups.report_ok') %>', 'Okkkk!');
 <% else %>
-  showErrorPopUp('<%= t('popups.report_failed') %>', 'Errorr!');
+  showErrorPopUp('<%= @error %>', 'Errorr!');
 <% end %>

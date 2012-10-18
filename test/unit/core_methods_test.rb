@@ -572,9 +572,15 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert Report.where(:reportable_id => 1, :reportable_type => 'Lesson', :user_id => 2).empty?
     assert x.report_lesson 1, 'ciao'
     assert Report.where(:reportable_id => 1, :reportable_type => 'Lesson', :user_id => 2).any?
+    assert !x.report_lesson(1, 'ciao')
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /You already reported this lesson/, x.errors.messages[:base].first
     assert Report.where(:reportable_id => 1, :reportable_type => 'MediaElement', :user_id => 2).empty?
     assert x.report_media_element 1, 'ciao'
     assert Report.where(:reportable_id => 1, :reportable_type => 'MediaElement', :user_id => 2).any?
+    assert !x.report_media_element(1, 'ciao')
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /You already reported this element/, x.errors.messages[:base].first
   end
   
 end

@@ -42,6 +42,8 @@ en:
           problems_destroying: 'Could not destroy the selected user'
           missing_subjects: 'You need to select at least one subject'
           problem_reporting: 'An error occurred, your report could not be sent'
+          lesson_already_reported: 'You already reported this lesson'
+          media_element_already_reported: 'You already reported this element'
         virtual_classroom_lesson:
           cant_change_position_if_not_in_playlist: 'You cannot change the position of a lesson which is not in the playlist'
           invalid_position_in_playlist: 'The position you chose is not valid for your playlist'
@@ -87,7 +89,6 @@ en:
     welcome: 'welcome'
   popups:
     report_ok: 'The report was sent successfully'
-    report_failed: 'The report could not be sent successfully'
   status:
     lessons:
       private: 'private'
