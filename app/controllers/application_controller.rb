@@ -69,16 +69,17 @@ class ApplicationController < ActionController::Base
     initialize_notifications
   end
   
-  def respond_standard_js(path)
-    case params[:controller]
-      when 'lessons'
+  def respond_standard_js(destination)
+    resp = ButtonDestionations.get destination
+    case resp[:item]
+      when 'lesson'
         prepare_lesson_for_js
-      when 'media_elements'
+      when 'media_element'
         prepare_media_element_for_js
     end
     respond_to do |format|
       format.js do
-        render path
+        render resp[:path]
       end
     end
   end

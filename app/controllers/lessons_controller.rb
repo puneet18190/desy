@@ -30,7 +30,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_lesson')
     end
-    respond_standard_js 'lessons/switch_answer.js.erb'
+    respond_standard_js @destination
   end
   
   def copy
@@ -43,6 +43,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_copying')
     end
+    respond_standard_js @destination
   end
   
   def destroy
@@ -54,6 +55,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_destroying')
     end
+    respond_standard_js @destination
   end
   
   def dislike
@@ -65,7 +67,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.like.problem_destroying')
     end
-    respond_standard_js 'lessons/switch_answer.js.erb'
+    respond_standard_js @destination
   end
   
   def like
@@ -77,7 +79,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.like.problem_creating')
     end
-    respond_standard_js 'lessons/switch_answer.js.erb'
+    respond_standard_js @destination
   end
   
   def publish
@@ -89,7 +91,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_publishing')
     end
-    respond_standard_js 'lessons/switch_answer.js.erb'
+    respond_standard_js @destination
   end
   
   def unpublish
@@ -101,7 +103,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_unpublishing')
     end
-    respond_standard_js 'lessons/switch_answer.js.erb'
+    respond_standard_js @destination
   end
   
   def remove
@@ -120,10 +122,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_lesson')
     end
-    if @destination == ButtonDestinations::EXPANDED_LESSON
-      respond_standard_js 'lessons/switch_answer.js.erb'
-      return
-    end
+    respond_standard_js @destination
   end
   
   private

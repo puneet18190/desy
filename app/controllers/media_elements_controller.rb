@@ -33,7 +33,7 @@ class MediaElementsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_media_element')
     end
-    respond_standard_js 'media_elements/switch_answer.js.erb'
+    respond_standard_js @destination
   end
   
   def destroy
@@ -45,6 +45,7 @@ class MediaElementsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.media_element.problem_destroying')
     end
+    respond_standard_js @destination
   end
   
   def remove
@@ -63,10 +64,7 @@ class MediaElementsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_media_element')
     end
-    if [ButtonDestinations::EXPANDED_MEDIA_ELEMENT_IN_DASHBOARD, ButtonDestinations::POPUP_MEDIA_ELEMENT_IN_DASHBOARD].include?(@destination)
-      respond_standard_js 'media_elements/switch_answer.js.erb'
-      return
-    end
+    respond_standard_js @destination
   end
   
   private
