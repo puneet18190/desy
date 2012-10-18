@@ -1,7 +1,9 @@
 <div id="<%= destination %>_<%= media_element.id %>" class="boxViewCompactMediaElement">
   <div class="contentInterno">
-    <h3><%= media_element.title %></h3>
-    <p><%= media_element.sti_type %></p>
+	  <div class="<%= media_element.sti_type.downcase %>">
+	    <h3><%= media_element.sti_type %></h3>
+      <h4><%= media_element.title %></h4>
+		</div>
     <p><%= media_element.status %></p>
     <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination} %>
   </div>

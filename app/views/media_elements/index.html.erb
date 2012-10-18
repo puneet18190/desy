@@ -37,7 +37,7 @@
   </div>
   
   <br class="clearfloat">
-  <div style="width:90%;  margin:0 auto 0 auto;">
+  
     
     
     <% if @media_elements.empty? %>
@@ -51,10 +51,15 @@
     <% else %>
       
       <% if @format == Formats::EXPANDED %>
+        
         <% @media_elements.each do |me| %>
-          <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
+          <div style="width:90%;  margin:0 auto 0 auto;">
+            <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
+          </div>
         <% end %>
+        
       <% else %>
+        
         <% @media_elements.each do |me| %>
           <%= render :partial => "media_elements/view_single_compact", :locals => {:media_element => me, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT} %>
         <% end %>
@@ -64,5 +69,5 @@
     <% end %>
     
     
-  </div>
+  
 </div>
