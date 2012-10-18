@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
     r.reportable_id = lesson_id
     r.comment = msg
     if !r.save
-      if r.errors.messages[:reportable_id].first == "has already been taken"
+      if r.errors.messages.has_key?(:reportable_id) && r.errors.messages[:reportable_id].first == "has already been taken"
         errors.add(:base, :lesson_already_reported)
       else
         errors.add(:base, :problem_reporting)
@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
     r.reportable_id = media_element_id
     r.comment = msg
     if !r.save
-      if r.errors.messages[:reportable_id].first == "has already been taken"
+      if r.errors.messages.has_key?(:reportable_id) && r.errors.messages[:reportable_id].first == "has already been taken"
         errors.add(:base, :media_element_already_reported)
       else
         errors.add(:base, :problem_reporting)
