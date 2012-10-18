@@ -1,3 +1,3 @@
 <% @lessons.each do |l| %>
-  <div id=""></div>
+  <%= render :partial => 'lessons/view_single_compact', :locals => {:lesson => l, :destination => ButtonDestinations::FOUND_LESSON} %>
 <% end %>

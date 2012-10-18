@@ -1,4 +1,4 @@
-<div class="boxViewSingleMediaElement" id="media_element_expanded_<%= media_element.id %>">
+<div id="<%= destination %>_<%= media_element.id %>" class="boxViewSingleMediaElement">
   <div class="contentInterno">
     <%= image_tag("testa.jpg") %>
     <div class="description">
@@ -6,6 +6,5 @@
       <h4><%= media_element.title %></h4>
     </div>
   </div>
-  <% destination = (where == 'dashboard') ? ButtonDestinations::EXPANDED_MEDIA_ELEMENT_IN_DASHBOARD : ButtonDestinations::EXPANDED_MEDIA_ELEMENT %>
   <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination} %>
 </div>

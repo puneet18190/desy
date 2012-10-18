@@ -52,11 +52,11 @@
       
       <% if @format == Formats::EXPANDED %>
         <% @media_elements.each do |me| %>
-          <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => true, :where => @where} %>
+          <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
         <% end %>
       <% else %>
         <% @media_elements.each do |me| %>
-          <%= render :partial => "media_elements/view_single", :locals => {:media_element => me, :expanded => false, :where => @where} %>
+          <%= render :partial => "media_elements/view_single_compact", :locals => {:media_element => me, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT} %>
         <% end %>
       <% end %>
       <%= render :partial => 'shared/pagination', :locals => {:page => @page, :last_page => @last_page, :first_page => (@page == 1), :pagination_url => request.url} %>

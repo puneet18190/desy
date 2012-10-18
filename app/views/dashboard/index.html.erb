@@ -11,7 +11,7 @@
         <% if cont == 0 %>
           <div>
         <% end %>
-        <%= render :partial => "lessons/view_single", :locals => {:lesson => l, :expanded => true} %>
+        <%= render :partial => "lessons/view_single_expanded", :locals => {:lesson => l, :destination => ButtonDestinations::EXPANDED_LESSON} %>
         <% if cont == 1 %>
           </div>
         <% end %>
