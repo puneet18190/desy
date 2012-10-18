@@ -12,6 +12,40 @@ $(document).ready(function() {
   });
   
   
+  // REPORT FORMS
+  
+  $('body').on('click', '._report_lesson_click', function() {
+    var param = $(this).data('param');
+    var obj = $('#lesson_report_form_' + param);
+    if(obj.css('display') == 'none') {
+      obj.css('display', 'block');
+    } else {
+      obj.css('display', 'none');
+    }
+    return false;
+  });
+  
+  $('body').on('click', '._report_media_element_click', function() {
+    var param = $(this).data('param');
+    var obj = $('#media_element_report_form_' + param);
+    if(obj.css('display') == 'none') {
+      obj.css('display', 'block');
+    } else {
+      obj.css('display', 'none');
+    }
+    return false;
+  });
+  
+  $('body').on('click', '._report_form_content', function(e) {
+    e.preventDefault();
+    return false;
+  });
+  
+  $('body').on('click', '._report_form_content ._send', function(e) {
+    $(this).closest('form').submit();
+  });
+  
+  
   // FILTERS
   
   function getMediaElementsFormat() {
@@ -52,7 +86,7 @@ $(document).ready(function() {
   
   // EXPAND LESSON
   
-  $('body').on('click','._lesson_compact',function() {
+  $('body').on('click','._lesson_compact', function() {
     var my_id = this.id;
     var my_expanded = $('#' + my_id + ' ._lesson_expanded');
     if(my_expanded.css('display') == 'block') {
