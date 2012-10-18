@@ -10,7 +10,7 @@
 <% tot_media_element = 0 %>
 <% (0...CONFIG['media_element_pages_in_dashboard']).each do |j| %>
 
-  <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:none; width:90%;  margin:0 auto 0 auto; border:1px solid red">
+  <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:none; width:90%;  margin:0 auto 0 auto;">
     <%= render :partial => 'media_elements/suggested', :locals => {:media_elements => @media_elements[tot_media_element, CONFIG['media_elements_for_page_in_dashboard']].to_a} %>
     <br class="clearfloat">
     <%= render :partial => 'shared/pagination', :locals => {:page => (j + 1), :last_page => (j == CONFIG['lesson_pages_in_dashboard'] - 1), :first_page => (j == 0), :pagination_url => 'suggested_media_elements'} %>
@@ -23,7 +23,7 @@
   <p><%= t('capital_letter.help_using_desy') %></br>
   <a href=""><%= t('capital_letter.download_manual') %></a>
 </div>
-<div class="boxContentIndex">
+<div class="boxContentIndex" style="float:right">
   <p><%= t('capital_letter.talk_with_desy') %><br>
   <a href=""><%= t('capital_letter.contact_us') %></a></p>
 </div>

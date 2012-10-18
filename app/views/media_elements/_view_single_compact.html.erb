@@ -1,6 +1,8 @@
+<div id="" class="boxViewCompactMediaElement" id="media_element_compact_<%= media_element.id %>">
 <div class="contentInterno">
   <h3><%= media_element.title %></h3>
   <p><%= media_element.sti_type %></p>
   <p><%= media_element.status %></p>
   <%= render :partial => "shared/action_buttons", :locals => {:item => media_element, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT} %>
+</div>
 </div>
