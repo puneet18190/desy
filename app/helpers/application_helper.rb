@@ -24,8 +24,4 @@ module ApplicationHelper
     return flag ? an_url.gsub("page=#{old_page}", "page=#{page}").html_safe : "#{an_url}&page=#{page}".html_safe
   end
   
-  def replace_javascript_content(x)
-    escape_javascript x
-  end
-  
 end

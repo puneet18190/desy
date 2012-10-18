@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
   end
   
   def respond_standard_js(destination)
-    resp = ButtonDestionations.get destination
+    resp = ButtonDestinations.get destination, params[:action]
     case resp[:item]
       when 'lesson'
         prepare_lesson_for_js
