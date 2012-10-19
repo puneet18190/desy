@@ -88,6 +88,20 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_extractor [2, @el1.id, @el2.id, @el5.id, @el7.id], @user2.suggested_media_elements(80)
   end
   
+  test 'dashboard_emptied' do
+    l = Lesson.find 2
+    assert_equal 2, l.user_id
+    assert_equal true, l.is_public
+    assert !Lesson.dashboard_emptied?(2)
+    assert @user2.bookmark 'Lesson', @les2.id
+    assert Lesson.dashboard_emptied? 2
+    assert MediaElement.dashboard_emptied? 2
+    Bookmark.all.each do |b|
+      b.destroy
+    end
+    assert !MediaElement.dashboard_emptied?(2)
+  end
+  
   test 'own_lessons' do
     assert Lesson.find(1).publish
     el = MediaElement.find(1)
