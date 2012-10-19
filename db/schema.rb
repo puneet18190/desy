@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120927141837) do
+ActiveRecord::Schema.define(:version => 20121019091311) do
 
   create_table "locations", :force => true do |t|
     t.string   "description", :null => false
@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(:version => 20120927141837) do
     t.foreign_key ["slide_id"], "slides", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "media_elements_slides_slide_id_fkey"
   end
 
+  create_view "my_lessons_view", "SELECT lessons.id, lessons.user_id, lessons.school_level_id, lessons.subject_id, lessons.title, lessons.description, lessons.is_public, lessons.parent_id, lessons.copied_not_modified, lessons.created_at, lessons.updated_at, lessons.token, GREATEST(bookmarks.created_at, lessons.updated_at) AS first_order, LEAST(bookmarks.created_at, lessons.updated_at) AS second_order FROM (lessons LEFT JOIN bookmarks ON (((bookmarks.bookmarkable_id = lessons.id) AND (bookmarks.bookmarkable_type = 'Lesson'::teaching_object)))) ORDER BY GREATEST(bookmarks.created_at, lessons.updated_at) DESC, LEAST(bookmarks.created_at, lessons.updated_at) DESC", :force => true
+  create_view "my_media_elements_view", "SELECT media_elements.id, media_elements.user_id, media_elements.title, media_elements.description, media_elements.duration, media_elements.sti_type, media_elements.is_public, media_elements.created_at, media_elements.updated_at, media_elements.publication_date, GREATEST(bookmarks.created_at, media_elements.updated_at) AS first_order, LEAST(bookmarks.created_at, media_elements.updated_at) AS second_order FROM (media_elements LEFT JOIN bookmarks ON (((bookmarks.bookmarkable_id = media_elements.id) AND (bookmarks.bookmarkable_type = 'MediaElement'::teaching_object)))) ORDER BY GREATEST(bookmarks.created_at, media_elements.updated_at) DESC, LEAST(bookmarks.created_at, media_elements.updated_at) DESC", :force => true
   create_table "notifications", :force => true do |t|
     t.integer  "user_id",                       :null => false
     t.text     "message",                       :null => false
