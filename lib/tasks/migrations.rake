@@ -22,6 +22,14 @@ namespace :migrations do
     end
   end
   
+  desc "empties dashboard media elements"
+  task :empty_dashboard_media_elements => :environment do
+    admin = User.find_by_email CONFIG['admin_email']
+    MediaElement.where(:is_public => true).each do |me|
+      admin.bookmark 'MediaElement', me.id
+    end
+  end
+  
   desc "empties your media elements"
   task :empty_media_elements => :environment do
     MediaElement.where(:user_id => 1).each do |l|
