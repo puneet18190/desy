@@ -113,6 +113,19 @@ en:
     image: 'Images'
   time:
     format: 'english'
+  empty:
+    dashboard_lessons_emptied: 'You chose all the suggested lessons'
+    dashboard_lessons: 'There are no suggested lessons for you'
+    dashboard_media_elements_emptied: 'You chose all the suggested elements'
+    dashboard_media_elements: 'There are no suggested elements for you'
+    my_lessons: 'You have no lessons in your section, create one'
+    my_media_elements: 'You have no elements in your section, load one'
+    my_lessons_filter: 'The lesson filter produced no result'
+    my_media_elements_filter: 'The element filter produced no result'
+    lessons_result: 'No lessons were found with your query'
+    media_elements_result: 'No elements were found with your query'
+    virtual_classroom: 'Your virtual classroom is empty'
+    playlist: 'Your playlist is empty'
   help:
     dashboard:
       first:
