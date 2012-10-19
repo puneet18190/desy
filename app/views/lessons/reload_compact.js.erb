@@ -1,5 +1,5 @@
 <% if @ok %>
-  <% js_content = escape_javascript(render(:partial => "lessons/view_single_compact", :locals => {:lesson => @lesson, :destination => @destination})) %>
+  <% js_content = j(render(:partial => "lessons/view_single_compact", :locals => {:lesson => @lesson, :destination => @destination})) %>
   var target = $('#<%= @destination %>_<%= @lesson_id %>');
   target.replaceWith("<%= js_content %>");
 <% else %>
