@@ -3,5 +3,5 @@
   var target = $('#<%= @destination %>_<%= @lesson_id %>');
   target.replaceWith("<%= js_content %>");
 <% else %>
-  showErrorPopUp('<%= @error %>', 'Error!!');
+  showErrorPopUp('<%= @error %>');
 <% end %>
