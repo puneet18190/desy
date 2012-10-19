@@ -33,7 +33,7 @@ class MediaElementsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_media_element')
     end
-    respond_standard_js @destination
+    respond_standard_js
   end
   
   def destroy
@@ -45,7 +45,7 @@ class MediaElementsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.media_element.problem_destroying')
     end
-    respond_standard_js @destination
+    respond_standard_js
   end
   
   def remove
@@ -64,7 +64,7 @@ class MediaElementsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_media_element')
     end
-    respond_standard_js @destination
+    respond_standard_js
   end
   
   private

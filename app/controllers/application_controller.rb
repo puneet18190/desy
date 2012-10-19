@@ -5,6 +5,13 @@ class ApplicationController < ActionController::Base
   
   private
   
+  def initialize_template
+    resp = ButtonDestinations.get @destination, params[:action]
+    @ok = false if resp == {}
+    @item = resp[:item]
+    @template_path = resp[:path]
+  end
+  
   def prepare_lesson_for_js
     if !@lesson.nil?
       @lesson = Lesson.find_by_id @lesson.id
@@ -29,6 +36,7 @@ class ApplicationController < ActionController::Base
     @lesson = Lesson.find_by_id @lesson_id
     @ok = !@lesson.nil?
     initialize_button_destination_for_lessons
+    initialize_template
   end
   
   def initialize_button_destination_for_lessons
@@ -46,6 +54,7 @@ class ApplicationController < ActionController::Base
     @media_element = MediaElement.find_by_id @media_element_id
     @ok = !@media_element.nil?
     initialize_button_destination_for_media_elements
+    initialize_template
   end
   
   def initialize_button_destination_for_media_elements
@@ -70,8 +79,11 @@ class ApplicationController < ActionController::Base
   end
   
   def respond_standard_js(destination)
-    resp = ButtonDestinations.get destination, params[:action]
-    case resp[:item]
+    if @template_path.nil?
+      render :nothing => true
+      return
+    end
+    case @item
       when 'lesson'
         prepare_lesson_for_js
       when 'media_element'
@@ -79,7 +91,7 @@ class ApplicationController < ActionController::Base
     end
     respond_to do |format|
       format.js do
-        render resp[:path]
+        render @template_path
       end
     end
   end
