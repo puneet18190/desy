@@ -7,7 +7,7 @@
   <% if destination != ButtonDestinations::EXPANDED_LESSON %>
     <% while cont < 6 %>
       <% style = (cont < 5) ? 'margin-right:8px' : '' %>
-      <%= image_tag 'hidden.png', :style => style %>
+      <a style="background-image:none;"><%= image_tag 'hidden.png', :style => style %></a>
       <% cont += 1 %>
     <% end %>
   <% end %>
