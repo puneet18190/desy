@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
     initialize_notifications
   end
   
-  def respond_standard_js(destination)
+  def respond_standard_js
     if @template_path.nil?
       render :nothing => true
       return
