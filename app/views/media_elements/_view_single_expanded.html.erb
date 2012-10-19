@@ -1,6 +1,14 @@
 <div id="<%= destination %>_<%= media_element.id %>" class="boxViewSingleMediaElement">
+<!-- PER ADRIANO: il box  con l'immagine è questa scritta sotto. C'è un SVG e dovrai quindi aggiungere a quest'immagine lo style width:100% -->
   <div class="contentInterno">
-    <%= image_tag("testa.jpg") %>
+	  <!--%= image_tag ("testa.jpg") %-->
+    <!--%= image_tag 'simbolo-audio.svg', :style => "width:100%" %-->
+		<div style="position:relative;">
+		  <%= image_tag ("testa.jpg") %>
+		  <div style="position:absolute; width:100%; top:40px; text-align:center">
+		    <a href=""><%= image_tag 'bullet_video.svg', :style => "width:50%" %></a>
+		  </div>
+		</div>
     <div class="description">
       <h3><%= media_element.sti_type %></h3>
       <h4><%= media_element.title %></h4>
