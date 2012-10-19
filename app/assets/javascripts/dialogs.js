@@ -1,4 +1,4 @@
-function showPopUp(content, title, id) {
+function showTimedPopUp(content, title, id) {
   var obj = $('#' + id);
   if(obj.hasClass('ui-dialog-content')) {
     obj.dialog('option', 'title', title);
@@ -10,12 +10,13 @@ function showPopUp(content, title, id) {
     obj.html(content);
     obj.dialog({
       modal: true,
-      resizable: false
-      //open: function(event, ui) {
-       // setTimeout(closePopUp('dialog-error'), 2500);
-      //}
+      resizable: false,
+      open: function(event, ui) {
+        setTimeout(function() {
+          closePopUp('dialog-error')
+        }, window.desy.timeOutDialog);
+      }
     });
-    
   }
 }
 
@@ -24,17 +25,9 @@ function closePopUp(id) {
 }
 
 function showErrorPopUp(content, title) {
-  showPopUp(content, title, 'dialog-error');
+  showTimedPopUp(content, title, 'dialog-error');
 }
 
 function showOkPopUp(content, title) {
-  showPopUp(content, title, 'dialog-ok');
-}
-
-function showShadePopUp(content, title) {
-  showPopUp(content, title, 'dialog-shade');
-}
-
-function showTimedPopUp(content, title) {
-  showPopUp(content, title, 'dialog-timed');
+  showTimedPopUp(content, title, 'dialog-ok');
 }

@@ -21,3 +21,5 @@ expanded_media_element_pagination: 12
 expanded_media_element_pagination_options: [12, 16, 24]
 # NOTIFICATIONS
 notifications_loaded_together: 8
+# DIALOGS
+seconds_for_timeout_dialogs: 2500
