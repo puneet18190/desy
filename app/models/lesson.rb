@@ -35,6 +35,14 @@ class Lesson < ActiveRecord::Base
   
   before_validation :init_validation, :create_token
   
+  def self.dashboard_emptied?(an_user_id)
+    subject_ids = []
+    UsersSubject.where(:user_id => an_user_id).each do |us|
+      subject_ids << us.subject_id
+    end
+    Bookmark.joins("INNER JOIN lessons ON lessons.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'Lesson'").where('lessons.is_public = ? AND lessons.user_id != ? AND lessons.subject_id IN (?) AND bookmarks.user_id = ?', true, an_user_id, subject_ids, an_user_id).any?
+  end
+  
   def set_status(an_user_id)
     return if self.new_record?
     if !self.is_public && !self.copied_not_modified && an_user_id == self.user_id

@@ -27,6 +27,10 @@ class MediaElement < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_public
   
+  def self.dashboard_emptied?(an_user_id)
+    Bookmark.joins("INNER JOIN media_elements ON media_elements.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'MediaElement'").where('media_elements.is_public = ? AND media_elements.user_id != ? AND bookmarks.user_id = ?', true, an_user_id, an_user_id).any?
+  end
+  
   def set_status(an_user_id)
     return if self.new_record?
     if !self.is_public && an_user_id == self.user_id
