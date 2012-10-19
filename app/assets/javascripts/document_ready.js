@@ -244,6 +244,6 @@ $(document).ready(function() {
   initializeHelp();
   
   // FIXME FIXME FIXME prova temporanea
-  showProvaPopUp('Prova Prova Prova Prova');
+  showProvaPopUp('<h1>Prova Prova Prova Prova</h1>');
   
 });
