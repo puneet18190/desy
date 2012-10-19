@@ -379,6 +379,16 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   end
   Lesson.record_timestamps = true
   
+  MediaElement.record_timestamps = false
+  prima_data = '2012-10-10 12:00:00'.to_time
+  cont = 0
+  MediaElement.all.each do |l|
+    l.created_at = prima_data + cont
+    l.save
+    cont += 1
+  end
+  MediaElement.record_timestamps = true
+  
 end
 
 puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons, #{MediaElement.count} media_elements, #{Slide.count} slides, #{Notification.count} notifications, #{Like.count} likes, #{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons, #{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements"
