@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
   
-  MY_MEDIA_ELEMENTS_QUERY = '(user_id = ? AND is_public = ?) OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)'
-  
   attr_accessible :name, :surname, :school_level_id, :school, :location_id
   
   has_many :bookmarks
@@ -91,26 +89,25 @@ class User < ActiveRecord::Base
   def own_media_elements(page, per_page, filter=nil)
     offset = (page - 1) * per_page
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SET.include?(filter)
-    param1 = MY_MEDIA_ELEMENTS_QUERY
-    param2 = self.id
-    param2b = false
-    param3 = 'MediaElement'
-    param4 = self.id
-    my_order = 'updated_at DESC'
+    param1 = self.id
+    param2 = false
     resp = []
     case filter
       when Filters::ALL_MEDIA_ELEMENTS
-        last_page = MediaElement.where(param1, param2, param2b, param3, param4).order(my_order).offset(offset + per_page).empty?
-        resp = MediaElement.where(param1, param2, param2b, param3, param4).order(my_order).limit(per_page).offset(offset)
+        last_page = MyMediaElementsView.where('(media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?', param1, param2, param1).offset(offset + per_page).empty?
+        resp = MyMediaElementsView.where('(media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?', param1, param2, param1).limit(per_page).offset(offset)
       when Filters::VIDEO
-        last_page = Video.where(param1, param2, param2b, param3, param4).order(my_order).offset(offset + per_page).empty?
-        resp = Video.where(param1, param2, param2b, param3, param4).order(my_order).limit(per_page).offset(offset)
+        param0 = 'Video'
+        last_page = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).offset(offset + per_page).empty?
+        resp = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).limit(per_page).offset(offset)
       when Filters::AUDIO
-        last_page = Audio.where(param1, param2, param2b, param3, param4).order(my_order).offset(offset + per_page).empty?
-        resp = Audio.where(param1, param2, param2b, param3, param4).order(my_order).limit(per_page).offset(offset)
+        param0 = 'Audio'
+        last_page = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).offset(offset + per_page).empty?
+        resp = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).limit(per_page).offset(offset)
       when Filters::IMAGE
-        last_page = Image.where(param1, param2, param2b, param3, param4).order(my_order).offset(offset + per_page).empty?
-        resp = Image.where(param1, param2, param2b, param3, param4).order(my_order).limit(per_page).offset(offset)
+        param0 = 'Image'
+        last_page = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).offset(offset + per_page).empty?
+        resp = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).limit(per_page).offset(offset)
     end
     return {:last_page => last_page, :content => resp}
   end
