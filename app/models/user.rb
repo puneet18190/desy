@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   
-  MY_LESSONS_QUERY = 'user_id = ? OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)'
   MY_MEDIA_ELEMENTS_QUERY = '(user_id = ? AND is_public = ?) OR EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)'
   
   attr_accessible :name, :surname, :school_level_id, :school, :location_id
@@ -119,16 +118,13 @@ class User < ActiveRecord::Base
   def own_lessons(page, per_page, filter=nil)
     offset = (page - 1) * per_page
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SET.include?(filter)
-    my_order = 'updated_at DESC'
     resp = []
+    my_order = 'updated_at DESC'
     case filter
       when Filters::ALL_LESSONS
-        param1 = MY_LESSONS_QUERY
-        param2 = self.id
-        param3 = 'Lesson'
-        param4 = self.id
-        last_page = Lesson.where(param1, param2, param3, param4).order(my_order).offset(offset + per_page).empty?
-        resp = Lesson.where(param1, param2, param3, param4).order(my_order).limit(per_page).offset(offset)
+        param1 = self.id
+        last_page = MyLessonsView.where('lesson_user_id = ? OR bookmark_user_id = ?', param1, param1).offset(offset + per_page).empty?
+        resp = MyLessonsView.where('lesson_user_id = ? OR bookmark_user_id = ?', param1, param1).limit(per_page).offset(offset)
       when Filters::PRIVATE
         filtered_query = "is_public =  ? AND user_id = ?"
         param2 = false
@@ -136,19 +132,14 @@ class User < ActiveRecord::Base
         last_page = Lesson.where(filtered_query, param2, param3).order(my_order).offset(offset + per_page).empty?
         resp = Lesson.where(filtered_query, param2, param3).order(my_order).limit(per_page).offset(offset)
       when Filters::PUBLIC
-        filtered_query = "is_public =  ? AND (#{MY_LESSONS_QUERY})"
-        param2 = true
-        param3 = self.id
-        param4 = 'Lesson'
-        param5 = self.id
-        last_page = Lesson.where(filtered_query, param2, param3, param4, param5).order(my_order).offset(offset + per_page).empty?
-        resp = Lesson.where(filtered_query, param2, param3, param4, param5).order(my_order).limit(per_page).offset(offset)
+        param1 = true
+        param2 = self.id
+        last_page = MyLessonsView.where('is_public = ? AND (lesson_user_id = ? OR bookmark_user_id = ?)', param1, param2, param2).offset(offset + per_page).empty?
+        resp = MyLessonsView.where('is_public = ? AND (lesson_user_id = ? OR bookmark_user_id = ?)', param1, param2, param2).limit(per_page).offset(offset)
       when Filters::LINKED
-        filtered_query = MY_LESSONS_QUERY.gsub('user_id = ? OR ', '')
-        param2 = 'Lesson'
-        param3 = self.id
-        last_page = Lesson.where(filtered_query, param2, param3).order(my_order).offset(offset + per_page).empty?
-        resp = Lesson.where(filtered_query, param2, param3).order(my_order).limit(per_page).offset(offset)
+        param1 = self.id
+        last_page = MyLessonsView.where('bookmark_user_id = ?', param1).offset(offset + per_page).empty?
+        resp = MyLessonsView.where('bookmark_user_id = ?', param1).limit(per_page).offset(offset)
       when Filters::ONLY_MINE
         last_page = Lesson.where(:user_id => self.id).order(my_order).offset(offset + per_page).empty?
         resp = Lesson.where(:user_id => self.id).order(my_order).limit(per_page).offset(offset)

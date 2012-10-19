@@ -16,7 +16,7 @@ function showTimedPopUp(content, id) {
         setTimeout(function() {
           closePopUp(id)
         }, window.desy.timeOutDialog);
-      },
+      }
     });
   }
 }
