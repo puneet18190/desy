@@ -8,8 +8,19 @@ function showPopUp(content, title, id) {
     obj.css('display', 'block');
     obj.attr('title', title);
     obj.html(content);
-    obj.dialog();
+    obj.dialog({
+      modal: true,
+      resizable: false
+      //open: function(event, ui) {
+       // setTimeout(closePopUp('dialog-error'), 2500);
+      //}
+    });
+    
   }
+}
+
+function closePopUp(id) {
+  $('#' + id).dialog('close');
 }
 
 function showErrorPopUp(content, title) {
