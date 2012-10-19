@@ -8,16 +8,18 @@ class LessonsController < ApplicationController
   def index
     initialize_paginator
     resp = @current_user.own_lessons(@page, @for_page, @filter)
-    @lessons = resp[:content]
+    @lessons = []
+    resp[:content].each do |l|
+      lesson = Lesson.find_by_id l.id
+      lesson.set_status @current_user.id
+      @lessons << lesson
+    end
     @last_page = resp[:last_page]
     if @last_page && (@page != 1) && @lessons.empty?
       @page = 1
       resp = @current_user.own_lessons(@page, @for_page, @filter)
       @lessons = resp[:content]
       @last_page = resp[:last_page]
-    end
-    @lessons.each do |l|
-      l.set_status @current_user.id
     end
   end
   
