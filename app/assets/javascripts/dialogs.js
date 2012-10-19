@@ -9,12 +9,14 @@ function showTimedPopUp(content, id) {
     obj.dialog({
       modal: true,
       resizable: false,
+      width: 485,
+      show: "fade",
+      hide: "fade",
       open: function(event, ui) {
         setTimeout(function() {
           closePopUp(id)
         }, window.desy.timeOutDialog);
       },
-      dialogClass: 'alert'
     });
   }
 }
@@ -24,9 +26,11 @@ function closePopUp(id) {
 }
 
 function showErrorPopUp(content) {
-  showTimedPopUp(content, 'dialog-error');
+  var new_content = '<img src="/assets/testa.jpg"/><h1>' + content + '</h1>';
+  showTimedPopUp(new_content, 'dialog-error');
 }
 
 function showOkPopUp(content) {
-  showTimedPopUp(content, 'dialog-ok');
+  var new_content = '<img src="/assets/testa.jpg"/><h1>' + content + '</h1>';
+  showTimedPopUp(new_content, 'dialog-ok');
 }
