@@ -26,11 +26,11 @@ function closePopUp(id) {
 }
 
 function showErrorPopUp(content) {
-  var new_content = '<img src="/assets/testa.jpg"/><h1>' + content + '</h1>';
+  var new_content = '<img src="/assets/unsuccess.svg"/><h1>' + content + '</h1>';
   showTimedPopUp(new_content, 'dialog-error');
 }
 
 function showOkPopUp(content) {
-  var new_content = '<img src="/assets/testa.jpg"/><h1>' + content + '</h1>';
+  var new_content = '<img src="/assets/success.svg"/><h1>' + content + '</h1>';
   showTimedPopUp(new_content, 'dialog-ok');
 }
