@@ -53,14 +53,15 @@
 	.contentInterno {
 	  padding:4%;
 		height:110px;
+		a.createButton {
+		  background: url(<%= asset_path 'create.png' %>) top center no-repeat;
+			padding:50px;
+			&:hover {
+			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+			}
+		}
 	}
-	&.createNew {
-    @include contentNew;
-		height:225px;
-  }
-  &.createNew:hover {
-    cursor:pointer;
-  }
+	
 }
 
 .boxViewSingleMediaElement {
@@ -75,21 +76,20 @@
 		  padding-bottom:0%;
 	  }
 	.contentInterno {
-	  padding:0%;
+	  padding-top:0%;
 		height:274px;
 		background-color:#fbfafb;
+		a.createButton {
+		  background: url(<%= asset_path 'create.png' %>) top center no-repeat;
+			padding:50px;
+			&:hover {
+			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+			}
+		}
+		
 	}
-	&.createNew {
-    @include contentNew;
 	
-		.contentInterno {
-		  padding-top:70px;
-		  height:233px;
-	  }
-  }
-  &.createNew:hover {
-    cursor:pointer;
-  }
+  
 	.menuController {
 	  font-size: 55%;
 	}
