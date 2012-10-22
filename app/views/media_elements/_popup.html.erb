@@ -1,0 +1,32 @@
+<div class="_media_element_popup" style="display:none"> <!-- TODO qui andrà completato con la path dell'eventuale clip dell'allegato, img, audio o video! + le tags -->
+  <% if media_element.info_changeable %>
+    <div class="_change_info_container" style="display:none">
+      <%= form_tag change_media_element_info_path(media_element.id) do %>
+        <%= text_field_tag 'title', 'title' %>
+        <%= text_area_tag 'description', 'description' %>
+        <%= text_area_tag 'tags', 'tags' %>
+        <%= input_tag 'cambia' %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="_media_element_pop_up_container">
+    <%= render :partial => "media_elements/thumbnails/#{media_element.sti_type.downcase}" %> <!-- TODO qui dovrò passare la url dell'attached quando necessario -->
+    <%= media_element.sti_type %>
+    <%= media_element.title %>
+    <%= media_element.description %>
+  </div>
+  <div>
+    <div> <!-- TODO questo flotta a sinistra -->
+      <%= render :partial => "shared/buttons/#{Buttons::EDIT}" %>
+      <% if media_element.info_changeable %>
+        <%= render :partial => "shared/buttons/#{Buttons::CHANGE_INFO}" %>
+      <% end %>
+    </div>
+    <div> <!-- TODO questo invece a destra -->
+      <% if media_element.is_reportable %>
+        <%= render :partial => "shared/buttons/#{Buttons::REPORT}/media_element" %>
+      <% end %>
+      <a class="destroy"></a> <!-- qui ci andrà il bottone per chiudere il pop up -->
+    </div>
+  </div>
+</div>

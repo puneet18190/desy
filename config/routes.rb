@@ -29,6 +29,7 @@ Desy::Application.routes.draw do
   match 'media_elements/:media_element_id/add' => 'media_elements#add', :via => :post
   match 'media_elements/:media_element_id/destroy' => 'media_elements#destroy', :via => :post
   match 'media_elements/:media_element_id/remove' => 'media_elements#remove', :via => :post
+  match 'media_elements/:media_element_id/change_info' => 'media_elements#change_info', :via => :post, :as => :change_media_element_info
   
   # NOTIFICATIONS
   match 'notifications/seen' => 'notifications#seen', :via => :post

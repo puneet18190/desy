@@ -60,6 +60,10 @@ class MediaElementsController < ApplicationController
     respond_standard_js
   end
   
+  def change_info
+    
+  end
+  
   private
   
   def get_own_media_elements
