@@ -8,14 +8,8 @@ class DashboardController < ApplicationController
   def index
     @lessons = @current_user.suggested_lessons(LESSONS_FOR_PAGE * LESSON_PAGES)
     @lessons_emptied = Lesson.dashboard_emptied? @current_user.id
-    @lessons.each do |l|
-      l.set_status @current_user.id
-    end
     @media_elements = @current_user.suggested_media_elements(ELEMENTS_FOR_PAGE * ELEMENT_PAGES)
     @media_elements_emptied = MediaElement.dashboard_emptied? @current_user.id
-    @media_elements.each do |me|
-      me.set_status @current_user.id
-    end
   end
   
 end

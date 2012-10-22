@@ -121,28 +121,55 @@ class User < ActiveRecord::Base
       when Filters::ALL_LESSONS
         param1 = self.id
         last_page = MyLessonsView.where('lesson_user_id = ? OR bookmark_user_id = ?', param1, param1).offset(offset + per_page).empty?
-        resp = MyLessonsView.where('lesson_user_id = ? OR bookmark_user_id = ?', param1, param1).limit(per_page).offset(offset)
+        resp = []
+        MyLessonsView.where('lesson_user_id = ? OR bookmark_user_id = ?', param1, param1).limit(per_page).offset(offset).each do |l|
+          lesson = Lesson.find_by_id l.id
+          lesson.set_status self.id
+          resp << lesson
+        end
       when Filters::PRIVATE
         filtered_query = "is_public =  ? AND user_id = ?"
         param2 = false
         param3 = self.id
         last_page = Lesson.where(filtered_query, param2, param3).order(my_order).offset(offset + per_page).empty?
-        resp = Lesson.where(filtered_query, param2, param3).order(my_order).limit(per_page).offset(offset)
+        resp = []
+        Lesson.where(filtered_query, param2, param3).order(my_order).limit(per_page).offset(offset).each do |l|
+          l.set_status self.id
+          resp << l
+        end
       when Filters::PUBLIC
         param1 = true
         param2 = self.id
         last_page = MyLessonsView.where('is_public = ? AND (lesson_user_id = ? OR bookmark_user_id = ?)', param1, param2, param2).offset(offset + per_page).empty?
-        resp = MyLessonsView.where('is_public = ? AND (lesson_user_id = ? OR bookmark_user_id = ?)', param1, param2, param2).limit(per_page).offset(offset)
+        resp = []
+        MyLessonsView.where('is_public = ? AND (lesson_user_id = ? OR bookmark_user_id = ?)', param1, param2, param2).limit(per_page).offset(offset).each do |l|
+          lesson = Lesson.find_by_id l.id
+          lesson.set_status self.id
+          resp << lesson
+        end
       when Filters::LINKED
         param1 = self.id
         last_page = MyLessonsView.where('bookmark_user_id = ?', param1).offset(offset + per_page).empty?
-        resp = MyLessonsView.where('bookmark_user_id = ?', param1).limit(per_page).offset(offset)
+        resp = []
+        MyLessonsView.where('bookmark_user_id = ?', param1).limit(per_page).offset(offset).each do |l|
+          lesson = Lesson.find_by_id l.id
+          lesson.set_status self.id
+          resp << lesson
+        end
       when Filters::ONLY_MINE
         last_page = Lesson.where(:user_id => self.id).order(my_order).offset(offset + per_page).empty?
-        resp = Lesson.where(:user_id => self.id).order(my_order).limit(per_page).offset(offset)
+        resp = []
+        Lesson.where(:user_id => self.id).order(my_order).limit(per_page).offset(offset).each do |l|
+          l.set_status self.id
+          resp << l
+        end
       when Filters::COPIED
         last_page = Lesson.where(:user_id => self.id, :copied_not_modified => true).order(my_order).offset(offset + per_page).empty?
-        resp = Lesson.where(:user_id => self.id, :copied_not_modified => true).order(my_order).limit(per_page).offset(offset)
+        resp = []
+        Lesson.where(:user_id => self.id, :copied_not_modified => true).order(my_order).limit(per_page).offset(offset).each do |l|
+          l.set_status self.id
+          resp << l
+        end
     end
     return {:last_page => last_page, :content => resp}
   end
@@ -152,11 +179,19 @@ class User < ActiveRecord::Base
     UsersSubject.where(:user_id => self.id).each do |us|
       subject_ids << us.subject_id
     end
-    Lesson.where('is_public = ? AND user_id != ? AND subject_id IN (?) AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)', true, self.id, subject_ids, 'Lesson', self.id).order('updated_at DESC').limit(n)
+    resp = Lesson.where('is_public = ? AND user_id != ? AND subject_id IN (?) AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = ?)', true, self.id, subject_ids, 'Lesson', self.id).order('updated_at DESC').limit(n)
+    resp.each do |l|
+      l.set_status self.id
+    end
+    resp
   end
   
   def suggested_media_elements(n)
-    MediaElement.where('is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', true, self.id, 'MediaElement', self.id).order('publication_date DESC').limit(n)
+    resp = MediaElement.where('is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', true, self.id, 'MediaElement', self.id).order('publication_date DESC').limit(n)
+    resp.each do |me|
+      me.set_status self.id
+    end
+    resp
   end
   
   def bookmark(type, target_id)

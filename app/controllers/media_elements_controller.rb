@@ -24,7 +24,6 @@ class MediaElementsController < ApplicationController
       @media_elements = resp[:content]
       @last_page = resp[:last_page]
     end
-    @json_info = @media_elements.to_json
   end
   
   def add
