@@ -87,7 +87,7 @@ function destroyMediaElement(media_element_id, destination) {
 }
 
 function previewMediaElement(media_element_id, destination) {
-  
+  alert(window.desy.mediaElements);
 }
 
 function removeMediaElement(media_element_id, destination) {

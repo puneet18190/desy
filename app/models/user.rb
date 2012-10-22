@@ -204,11 +204,13 @@ class User < ActiveRecord::Base
   end
   
   def suggested_media_elements(n)
+    info = {}
     resp = MediaElement.where('is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', true, self.id, 'MediaElement', self.id).order('publication_date DESC').limit(n)
     resp.each do |me|
       me.set_status self.id
+      info[me.id] = me.json_info
     end
-    resp
+    {:content => resp, :json_info => info}
   end
   
   def bookmark(type, target_id)
