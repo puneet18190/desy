@@ -24,6 +24,15 @@ class ActiveSupport::TestCase
     assert_equal ids.sort, my_ids.sort
   end
   
+  def assert_item_extractor(my_ids, resp)
+    ids = []
+    resp.each do |r|
+      assert !r.status.nil?
+      ids << r.id
+    end
+    assert_equal ids.sort, my_ids.sort
+  end
+  
   def array_to_string(array)
     resp = ''
     array.each do |a|

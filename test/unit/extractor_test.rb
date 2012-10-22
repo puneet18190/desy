@@ -78,14 +78,14 @@ class ExtractorTest < ActiveSupport::TestCase
     l = Lesson.find 2
     assert_equal 2, l.user_id
     assert_equal true, l.is_public
-    assert_extractor [@les1.id, @les2.id, @les3.id, @les4.id], @user2.suggested_lessons(6)
+    assert_item_extractor [@les1.id, @les2.id, @les3.id, @les4.id], @user2.suggested_lessons(6)
     assert @user2.bookmark 'Lesson', @les2.id
-    assert_extractor [@les1.id, @les3.id, @les4.id], @user2.suggested_lessons(6)
+    assert_item_extractor [@les1.id, @les3.id, @les4.id], @user2.suggested_lessons(6)
   end
   
   test 'suggested_media_elements' do
     assert @user2.bookmark 'MediaElement', @el3.id
-    assert_extractor [2, @el1.id, @el2.id, @el5.id, @el7.id], @user2.suggested_media_elements(80)
+    assert_item_extractor [2, @el1.id, @el2.id, @el5.id, @el7.id], @user2.suggested_media_elements(80)
   end
   
   test 'dashboard_emptied' do
@@ -113,7 +113,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
     assert @user2.bookmark 'MediaElement', 1
-    assert_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20)[:content]
+    assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20)[:content]
     # last page true
     resp = @user2.own_lessons(3, 2)
     assert_equal 1, resp[:content].length
@@ -128,7 +128,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_extractor [2, 3, 4, @el2.id, @el5.id], @user2.own_media_elements(1, 20)[:content]
+    assert_item_extractor [2, 3, 4, @el2.id, @el5.id], @user2.own_media_elements(1, 20)[:content]
     # last page true
     resp = @user2.own_media_elements(3, 2)
     assert_equal 1, resp[:content].length
@@ -143,7 +143,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_extractor [2, @el2.id], @user2.own_media_elements(1, 20, 'video')[:content]
+    assert_item_extractor [2, @el2.id], @user2.own_media_elements(1, 20, 'video')[:content]
     # last page true
     resp = @user2.own_media_elements(1, 2, 'video')
     assert_equal 2, resp[:content].length
@@ -158,7 +158,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_extractor [3, 4], @user2.own_media_elements(1, 20, 'audio')[:content]
+    assert_item_extractor [3, 4], @user2.own_media_elements(1, 20, 'audio')[:content]
     # last page true
     resp = @user2.own_media_elements(1, 2, 'audio')
     assert_equal 2, resp[:content].length
@@ -179,7 +179,7 @@ class ExtractorTest < ActiveSupport::TestCase
     xxx.description = 'quef gsdsd dfs'
     xxx.sti_type = 'Image'
     assert_obj_saved xxx
-    assert_extractor [xxx.id, @el5.id], @user2.own_media_elements(1, 20, 'image')[:content]
+    assert_item_extractor [xxx.id, @el5.id], @user2.own_media_elements(1, 20, 'image')[:content]
     # last page true
     resp = @user2.own_media_elements(1, 2, 'image')
     assert_equal 2, resp[:content].length
@@ -200,7 +200,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert Lesson.exists?(les10.id)
     les11 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les11.id)
-    assert_extractor [les10.id, les11.id], @user2.own_lessons(1, 20, 'private')[:content]
+    assert_item_extractor [les10.id, les11.id], @user2.own_lessons(1, 20, 'private')[:content]
     # last page true
     resp = @user2.own_lessons(1, 2, 'private')
     assert_equal 2, resp[:content].length
@@ -219,7 +219,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
-    assert_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'public')[:content]
+    assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'public')[:content]
     # last page true
     resp = @user2.own_lessons(3, 2, 'public')
     assert_equal 1, resp[:content].length
@@ -238,7 +238,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
-    assert_extractor [1, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'linked')[:content]
+    assert_item_extractor [1, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'linked')[:content]
     # last page true
     resp = @user2.own_lessons(2, 2, 'linked')
     assert_equal 2, resp[:content].length
@@ -257,7 +257,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
-    assert_extractor [2, les10.id], @user2.own_lessons(1, 20, 'only_mine')[:content]
+    assert_item_extractor [2, les10.id], @user2.own_lessons(1, 20, 'only_mine')[:content]
     # last page true
     resp = @user2.own_lessons(1, 2, 'only_mine')
     assert_equal 2, resp[:content].length
@@ -282,7 +282,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert Lesson.exists?(les12.id)
     les13 = @les5.copy(@user2.id)
     assert Lesson.exists?(les13.id)
-    assert_extractor [les11.id, les12.id, les13.id], @user2.own_lessons(1, 20, 'copied')[:content]
+    assert_item_extractor [les11.id, les12.id, les13.id], @user2.own_lessons(1, 20, 'copied')[:content]
     # last page true
     resp = @user2.own_lessons(2, 2, 'copied')
     assert_equal 1, resp[:content].length
