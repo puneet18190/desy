@@ -15,25 +15,37 @@ $(document).ready(function() {
   // REPORT FORMS
   
   $('body').on('mouseover', '._report_lesson_click', function() {
-    var obj = $('#' + this.id + ' a.report');
-    obj.removeClass('report');
-    obj.addClass('report_light');
+    var obj = $('#' + this.id + ' a._reportable_icon');
+    if(!obj.hasClass('_report_selected')) {
+      obj.removeClass('report');
+      obj.addClass('report_light');
+    }
   });
   
   $('body').on('mouseout', '._report_lesson_click', function() {
-    var obj = $('#' + this.id + ' a.report_light');
-    obj.removeClass('report_light');
-    obj.addClass('report');
+    var obj = $('#' + this.id + ' a._reportable_icon');
+    if(!obj.hasClass('_report_selected')) {
+      obj.removeClass('report_light');
+      obj.addClass('report');
+    }
   });
   
   $('body').on('click', '._report_lesson_click', function() {
     var param = $(this).data('param');
     var obj = $('#lesson_report_form_' + param);
     if(obj.css('display') == 'none') {
+      var button = $('#' + this.id + ' a._reportable_icon');
+      button.addClass('_report_selected');
+      button.removeClass('report');
+      button.addClass('report_light');
       obj.show('fade', {}, 500, function() {
         obj.css('display', 'block');
       });
     } else {
+      var button = $('#' + this.id + ' a._reportable_icon');
+      button.removeClass('_report_selected');
+      button.removeClass('report_light');
+      button.addClass('report');
       obj.hide('fade', {}, 500, function() {
         obj.css('display', 'none');
       });
