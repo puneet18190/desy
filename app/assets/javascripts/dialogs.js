@@ -25,6 +25,10 @@ function closePopUp(id) {
   $('#' + id).dialog('close');
 }
 
+function closeMediaElementInfoPopUp(id) {
+  
+}
+
 
 // FUNCTIONS DIRECTLY USED IN THE APPLICATION
 
@@ -38,7 +42,10 @@ function showOkPopUp(content) {
   showTimedPopUp(new_content, 'dialog-ok');
 }
 
-function showMediaElementInfoPopUp(content) {
+function showMediaElementInfoPopUp(media_element_id, destination) {
+  var target = $('#' + destination + '_' + media_element_id + ' ._media_element_popup');
+  var content = target.html();
+  target.html('');
   var obj = $('#dialog-media-element');
   if(obj.hasClass('ui-dialog-content')) {
     obj.html(content);
