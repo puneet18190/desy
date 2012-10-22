@@ -87,7 +87,10 @@ function destroyMediaElement(media_element_id, destination) {
 }
 
 function previewMediaElement(media_element_id, destination) {
-  alert(window.desy.mediaElements);
+  var target = $('#' + destination + '_' + media_element_id + ' ._media_element_popup');
+  var content = target.html();
+  target.html('');
+  showMediaElementInfoPopUp(content);
 }
 
 function removeMediaElement(media_element_id, destination) {

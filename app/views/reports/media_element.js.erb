@@ -1,0 +1,7 @@
+$('#media_element_report_form_<%= @media_element_id %>').css('display', 'none');
+
+<% if @resp %>
+  showOkPopUp('<%= t('popups.report_ok') %>');
+<% else %>
+  showErrorPopUp('<%= @error %>');
+<% end %>

@@ -5,7 +5,7 @@
         <%= text_field_tag 'title', 'title' %>
         <%= text_area_tag 'description', 'description' %>
         <%= text_area_tag 'tags', 'tags' %>
-        <%= input_tag 'cambia' %>
+        <%= submit_tag 'cambia' %>
       <% end %>
     </div>
   <% end %>
@@ -24,7 +24,7 @@
     </div>
     <div> <!-- TODO questo invece a destra -->
       <% if media_element.is_reportable %>
-        <%= render :partial => "shared/buttons/#{Buttons::REPORT}/media_element" %>
+        <%= render :partial => "shared/buttons/#{Buttons::REPORT}/media_element", :locals => {:media_element => media_element} %>
       <% end %>
       <a class="destroy"></a> <!-- qui ci andrà il bottone per chiudere il pop up -->
     </div>
