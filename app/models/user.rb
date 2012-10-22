@@ -92,6 +92,8 @@ class User < ActiveRecord::Base
     param1 = self.id
     param2 = false
     resp = []
+    last_page = false
+    info = {}
     case filter
       when Filters::ALL_MEDIA_ELEMENTS
         last_page = MyMediaElementsView.where('(media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?', param1, param2, param1).offset(offset + per_page).empty?
@@ -99,6 +101,7 @@ class User < ActiveRecord::Base
           media_element = MediaElement.find_by_id me.id
           media_element.set_status self.id
           resp << media_element
+          info[media_element.id] = media_element.json_info
         end
       when Filters::VIDEO
         param0 = 'Video'
@@ -107,6 +110,7 @@ class User < ActiveRecord::Base
           media_element = MediaElement.find_by_id me.id
           media_element.set_status self.id
           resp << media_element
+          info[media_element.id] = media_element.json_info
         end
       when Filters::AUDIO
         param0 = 'Audio'
@@ -115,6 +119,7 @@ class User < ActiveRecord::Base
           media_element = MediaElement.find_by_id me.id
           media_element.set_status self.id
           resp << media_element
+          info[media_element.id] = media_element.json_info
         end
       when Filters::IMAGE
         param0 = 'Image'
@@ -123,15 +128,17 @@ class User < ActiveRecord::Base
           media_element = MediaElement.find_by_id me.id
           media_element.set_status self.id
           resp << media_element
+          info[media_element.id] = media_element.json_info
         end
     end
-    return {:last_page => last_page, :content => resp}
+    return {:last_page => last_page, :content => resp, :json_info => info}
   end
   
   def own_lessons(page, per_page, filter=nil)
     offset = (page - 1) * per_page
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SET.include?(filter)
     resp = []
+    last_page = false
     my_order = 'updated_at DESC'
     case filter
       when Filters::ALL_LESSONS

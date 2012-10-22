@@ -66,6 +66,7 @@ class MediaElementsController < ApplicationController
     resp = @current_user.own_media_elements(@page, @for_page, @filter)
     @media_elements = resp[:content]
     @last_page = resp[:last_page]
+    @json_info = resp[:json_info]
   end
   
   def initialize_paginator
