@@ -98,11 +98,26 @@
   }
 }
 .emptyFilter {
-  text-align:center; 
-	height:150px; 
-	padding-top:10em;
+  margin: 0 auto;
+	padding-top:5em;
+	padding-bottom:10em;
+	clear:both;
+	width:20%;
 	h1 {
 	  font:  180% 'Nunito', sans-serif;
 	}
+	.createButton {
+	  float:left;
+	}
+	.createButton a {
+		  background: url(<%= asset_path 'add-element-off.svg' %>) bottom right no-repeat;
+			background-size:6em;
+			padding:50px;
+			
+		}
+	.createButton	a:hover {
+			  background: url(<%= asset_path 'add-element-on.svg' %>) bottom right no-repeat;
+				background-size:6em;
+			}
 }
  

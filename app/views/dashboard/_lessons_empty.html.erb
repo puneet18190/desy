@@ -1,7 +1,11 @@
-<% if emptied %>
-  <%= t('empty.dashboard_lessons_emptied') %>
-<% else %>
-  <%= t('empty.dashboard_lessons') %>
-<% end %>
-
-<%= t('capital_letter.create_new_lesson_now') %>
+<div class="emptyFilter">
+  <div class="createButton">
+	  <a href=""></a>
+	</div>
+  <div class="fltlft"><% if emptied %>
+    <%= t('empty.dashboard_lessons_emptied') %>
+  <% else %>
+    <%= t('empty.dashboard_lessons') %>
+  <% end %>
+  <h1><%= t('capital_letter.create_new_lesson_now') %></h1></div>
+</div>
