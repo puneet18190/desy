@@ -449,8 +449,8 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_extractor [us2_8.id, us2_13.id], Notification.not_seen(2, 13)
     assert_extractor [us1_1.id, us1_3.id, us1_5.id], Notification.not_seen(1, 8)
     assert_extractor [us1_1.id, us1_3.id, us1_5.id, us1_15.id, us1_17.id], Notification.not_seen(1, 17)
-    assert_extractor [us2_1.id, us2_2.id, us2_3.id, us2_4.id, us2_5.id], Notification.visible_block(2, 5)
-    assert_extractor [us1_1.id, us1_2.id, us1_3.id, us1_4.id, us1_5.id], Notification.visible_block(1, 5)
+    assert_extractor [us2_1.id, us2_2.id, us2_3.id, us2_4.id, us2_5.id], Notification.visible_block(2, 0, 5)[:content]
+    assert_extractor [us1_1.id, us1_2.id, us1_3.id, us1_4.id, us1_5.id], Notification.visible_block(1, 0, 5)[:content]
   end
   
 end

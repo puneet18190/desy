@@ -2,5 +2,5 @@ $('#tooltip_arancione').css('display', 'none');
 $('#tooltip_arancione').data('number', '<%= Notification.number_not_seen(@current_user.id) %>');
 
 <% @notifications.each do |n| %>
-  $('#notification_<%= n.id %>').addClass('_to_be_set_gray');
+  $('#notification_<%= n.id %> a').addClass('_to_be_set_gray');
 <% end %>

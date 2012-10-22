@@ -1,0 +1,6 @@
+<li id="notification_<%= notification.id %>">
+  <a href="#" class="expanded <%= notification.seen ? 'current' : '' %>"><%= notification.message.html_safe %></a>
+  <div class="cancelTooltip _destroy_notification" data-param="<%= notification.id %>">
+    <%= image_tag("cancel_tooltip_notice.png") %>
+  </div>
+</li>
