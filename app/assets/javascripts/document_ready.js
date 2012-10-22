@@ -14,13 +14,29 @@ $(document).ready(function() {
   
   // REPORT FORMS
   
+  $('body').on('mouseover', '._report_lesson_click', function() {
+    var obj = $('#' + this.id + ' a.report');
+    obj.removeClass('report');
+    obj.addClass('report_light');
+  });
+  
+  $('body').on('mouseout', '._report_lesson_click', function() {
+    var obj = $('#' + this.id + ' a.report_light');
+    obj.removeClass('report_light');
+    obj.addClass('report');
+  });
+  
   $('body').on('click', '._report_lesson_click', function() {
     var param = $(this).data('param');
     var obj = $('#lesson_report_form_' + param);
     if(obj.css('display') == 'none') {
-      obj.css('display', 'block');
+      obj.show('fade', {}, 500, function() {
+        obj.css('display', 'block');
+      });
     } else {
-      obj.css('display', 'none');
+      obj.hide('fade', {}, 500, function() {
+        obj.css('display', 'none');
+      });
     }
     return false;
   });
