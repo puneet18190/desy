@@ -1,6 +1,6 @@
-<div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson _lesson_compact <%= lesson.status == t('status.lessons.copied') ? 'current' : '' %>">
+<div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson <%= lesson.status == t('status.lessons.copied') ? 'current' : '' %>">
   
-  <div class="contentInterno">
+  <div class="contentInterno _lesson_compact">
     <h3><%= lesson.title %></h3>
     <p><%= lesson.subject.description %></p>
     <p><%= lesson.status %></p>

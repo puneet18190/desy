@@ -34,7 +34,7 @@ function likeLesson(lesson_id, destination) {
 }
 
 function previewLesson(lesson_id, destination) {
-  
+  // TODO forse andrà rimossa e messa direttamente in dialogs.js
 }
 
 function publishLesson(lesson_id, destination) {
@@ -84,10 +84,6 @@ function destroyMediaElement(media_element_id, destination) {
     type: 'post',
     url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination
   });
-}
-
-function previewMediaElement(media_element_id, destination) {
-  showMediaElementInfoPopUp(media_element_id, destination);
 }
 
 function removeMediaElement(media_element_id, destination) {

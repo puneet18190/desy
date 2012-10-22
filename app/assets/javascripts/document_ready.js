@@ -87,12 +87,16 @@ $(document).ready(function() {
   // EXPAND LESSON
   
   $('body').on('click','._lesson_compact', function() {
-    var my_id = this.id;
+    var my_id = $(this).parent().attr('id');
     var my_expanded = $('#' + my_id + ' ._lesson_expanded');
     if(my_expanded.css('display') == 'block') {
-      my_expanded.css('display', 'none');
+      my_expanded.hide('blind', {}, 500, function() {
+        my_expanded.css('display', 'none');
+      });
     } else {
-      my_expanded.css('display', 'block');
+      my_expanded.show('blind', {}, 500, function() {
+        my_expanded.css('display', 'block');
+      });
     }
   });
   
@@ -210,7 +214,7 @@ $(document).ready(function() {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');
-    previewMediaElement(my_param, destination);
+    showMediaElementInfoPopUp(my_param, destination);
     return false;
   });
   
