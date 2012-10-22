@@ -9,6 +9,7 @@ class NotificationsController < ApplicationController
     @notifications.each do |n|
       n.has_been_seen
     end
+    @number_not_seen = Notification.number_not_seen(@current_user.id)
   end
   
   def destroy

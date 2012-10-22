@@ -275,4 +275,22 @@ $(document).ready(function() {
   initializeNotifications();
   initializeHelp();
   
+  $('#tooltip_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    if(isAtBottom) {
+      $.ajax({
+        type: 'get',
+        url: 'notifications/get_new_block'
+      });
+    }
+  });
+
+  
+  $('body').on('click', '._destroy_notification', function() {
+    var my_id = $(this).data('param');
+    $.ajax({
+      type: 'post',
+      url: 'notifications/' + my_id + '/destroy'
+    });
+  });
+  
 });

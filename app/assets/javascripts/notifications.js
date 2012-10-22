@@ -10,22 +10,28 @@ function initializeNotifications() {
     $('#tooltip_help').css('display', 'none');
     $('#help').removeClass('current');
     if(tooltip.css('display') == 'none') {
+      $('#tooltip_arancione').css('display', 'none');
       setNotificationsSeen();
       tooltip.css('display', 'block');
       button.addClass('current');
     } else {
       $('#tooltip_content ._to_be_set_gray').addClass('current');
       tooltip.css('display', 'none');
-      button.removeClass('current');
+      if(parseInt(fumetto.data('number')) > 0) {
+        fumetto.css('display', 'block');
+      } else {
+        button.removeClass('current');
+      }
     }
   });
 }
 
 function setNotificationsSeen() {
-  if($('#tooltip_arancione').data('number') != '0') {
+  if($('#tooltip_arancione').data('fired') != 'true') {
+    var offset = $('#tooltip_content').data('offset');
     $.ajax({
       type: 'post',
-      url: '/notifications/seen'
+      url: '/notifications/seen?offset=' + offset
     });
   }
 }
