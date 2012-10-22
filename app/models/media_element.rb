@@ -27,18 +27,6 @@ class MediaElement < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_public
   
-  def json_info
-    # TODO qui andrà completato con la path dell'eventuale clip dell'allegato, img, audio o video! + le tags
-    return {} if self.status.nil?
-    resp = {}
-    resp[:title] = self.title
-    resp[:description] = self.description
-    resp[:type] = self.sti_type
-    resp[:info_changeable] = self.info_changeable
-    resp[:is_reportable] = self.is_reportable
-    resp
-  end
-  
   def self.dashboard_emptied?(an_user_id)
     Bookmark.joins("INNER JOIN media_elements ON media_elements.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'MediaElement'").where('media_elements.is_public = ? AND media_elements.user_id != ? AND bookmarks.user_id = ?', true, an_user_id, an_user_id).any?
   end

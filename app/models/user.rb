@@ -93,7 +93,6 @@ class User < ActiveRecord::Base
     param2 = false
     resp = []
     last_page = false
-    info = {}
     case filter
       when Filters::ALL_MEDIA_ELEMENTS
         last_page = MyMediaElementsView.where('(media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?', param1, param2, param1).offset(offset + per_page).empty?
@@ -101,7 +100,6 @@ class User < ActiveRecord::Base
           media_element = MediaElement.find_by_id me.id
           media_element.set_status self.id
           resp << media_element
-          info[media_element.id] = media_element.json_info
         end
       when Filters::VIDEO
         param0 = 'Video'
@@ -110,7 +108,6 @@ class User < ActiveRecord::Base
           media_element = MediaElement.find_by_id me.id
           media_element.set_status self.id
           resp << media_element
-          info[media_element.id] = media_element.json_info
         end
       when Filters::AUDIO
         param0 = 'Audio'
@@ -119,7 +116,6 @@ class User < ActiveRecord::Base
           media_element = MediaElement.find_by_id me.id
           media_element.set_status self.id
           resp << media_element
-          info[media_element.id] = media_element.json_info
         end
       when Filters::IMAGE
         param0 = 'Image'
@@ -128,10 +124,9 @@ class User < ActiveRecord::Base
           media_element = MediaElement.find_by_id me.id
           media_element.set_status self.id
           resp << media_element
-          info[media_element.id] = media_element.json_info
         end
     end
-    return {:last_page => last_page, :content => resp, :json_info => info}
+    return {:last_page => last_page, :content => resp}
   end
   
   def own_lessons(page, per_page, filter=nil)
@@ -204,13 +199,11 @@ class User < ActiveRecord::Base
   end
   
   def suggested_media_elements(n)
-    info = {}
     resp = MediaElement.where('is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', true, self.id, 'MediaElement', self.id).order('publication_date DESC').limit(n)
     resp.each do |me|
       me.set_status self.id
-      info[me.id] = me.json_info
     end
-    {:content => resp, :json_info => info}
+    resp
   end
   
   def bookmark(type, target_id)
