@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :require_login
+  before_filter :require_login, :initialize_notifications
   
   private
   
@@ -86,7 +86,6 @@ class ApplicationController < ActionController::Base
     @current_user = User.find_by_email(CONFIG['admin_email'])
     # TODO questa parte qui sotto andrà preservata anche quando ci sarà la autenticazione vera
     initialize_location
-    initialize_notifications
   end
   
   def respond_standard_js

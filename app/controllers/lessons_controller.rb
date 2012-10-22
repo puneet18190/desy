@@ -4,6 +4,7 @@ class LessonsController < ApplicationController
   
   before_filter :initialize_lesson, :only => [:add, :copy, :like, :remove, :dislike]
   before_filter :initialize_lesson_with_owner, :only => [:destroy, :publish, :unpublish]
+  skip_before_filter :initialize_notifications, :only => [:add, :copy, :like, :remove, :dislike, :destroy, :publish, :unpublish]
   
   def index
     initialize_paginator
