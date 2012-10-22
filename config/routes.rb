@@ -38,4 +38,7 @@ Desy::Application.routes.draw do
   match 'reports/lesson' => 'reports#lesson', :via => :post
   match 'reports/media_element' => 'reports#media_element', :via => :post
   
+  # LESSON EDITOR
+  match 'lessons/:lesson_id/edit' => 'lesson_editor#index', :as => :lesson_editor
+  
 end
