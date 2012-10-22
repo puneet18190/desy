@@ -13,6 +13,16 @@ namespace :migrations do
   end
   
   desc "empties your lessons"
+  task :empty_dashboard_lessons => :environment do
+    Lesson.all.each do |l|
+      l.destroy
+    end
+    Bookmark.where(:bookmarkable_type => 'Lesson', :user_id => 1).each do |b|
+      b.destroy
+    end
+  end
+  
+  desc "empties your lessons"
   task :empty_lessons => :environment do
     Lesson.where(:user_id => 1).each do |l|
       l.destroy
