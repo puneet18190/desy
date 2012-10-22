@@ -97,15 +97,18 @@
 		
   }
 }
-.emptyFilter {
+@mixin emptyFormat {
+  h1 {
+	  font:  180% 'Nunito', sans-serif;
+	}
+}
+.empty {
   margin: 0 auto;
 	padding-top:5em;
 	padding-bottom:10em;
 	clear:both;
-	width:20%;
-	h1 {
-	  font:  180% 'Nunito', sans-serif;
-	}
+	width:21%;
+	@include emptyFormat;
 	.createButton {
 	  float:left;
 	}
@@ -120,4 +123,10 @@
 				background-size:6em;
 			}
 }
- 
+.emptyFilter {
+  margin: 0 auto;
+	padding-top:5em;
+	padding-bottom:5em;
+	text-align:center;
+	@include emptyFormat;
+}
