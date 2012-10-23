@@ -1,37 +1,33 @@
 function initializeNotifications() {
-  var fumetto = $('#tooltip_arancione');
-  var button = $('#notifications_button');
-  var tooltip = $('#tooltip_content');
-  if(parseInt(fumetto.data('number')) > 0) {
-    fumetto.css('display', 'block');
-    button.addClass('current');
+  if(parseInt($('#tooltip_arancione').data('number')) > 0) {
+    
   }
   $('body').on('click', '#notifications_button', function() {
-    $('#tooltip_help').css('display', 'none');
-    $('#help').removeClass('current');
-    if(tooltip.css('display') == 'none') {
-      $('#tooltip_arancione').css('display', 'none');
-      tooltip.css('display', 'block');
-      button.addClass('current');
+    if($('#tooltip_content').css('display') == 'none') {
+      hideHelpTooltip();
+      hideHelpButton();
+      showNotificationsTooltip();
+      hideNotificationsFumetto();
+      if(!$('#notifications_button').hasClass('current')) {
+        showNotificationsButton();
+      }
     } else {
-      tooltip.css('display', 'none');
-      if(parseInt(fumetto.data('number')) > 0) {
-        fumetto.css('display', 'block');
+      hideNotificationsTooltip();
+      if(parseInt($('#tooltip_arancione').data('number')) > 0) {
+        showNotificationsFumetto();
       } else {
-        button.removeClass('current');
+        hideNotificationsButton();
       }
     }
   });
   $('body').on('click', '._single_notification a', function() {
-    var my_notification = $(this);
-    var my_id = my_notification.closest('li').attr('id');
-    var my_expanded = $('#' + my_id + ' ._expanded_notification');
+    var my_expanded = $('#' + $(this).closest('li').attr('id') + ' ._expanded_notification');
     if(my_expanded.css('display') == 'none') {
       my_expanded.css('display', 'block');
-      if(!my_notification.hasClass('current')) {
+      if(!$(this).hasClass('current')) {
         $.ajax({
           type: 'post',
-          url: 'notifications/' + my_notification.data('param') + '/seen'
+          url: 'notifications/' + $(this).data('param') + '/seen'
         });
       }
     } else {
@@ -41,22 +37,61 @@ function initializeNotifications() {
 }
 
 function initializeHelp() {
-  var tooltip_help = $('#tooltip_help');
-  var help = $('#help');
-  help.click(function() {
-    if(tooltip_help.css('display') == 'none') {
-      $('#tooltip_content').css('display', 'none');
-      $('#tooltip_arancione').css('display', 'none');
-      $('#notifications_button').removeClass('current');
-      tooltip_help.css('display', 'block');
-      help.addClass('current');
+  $('#help').click(function() {
+    if($('#tooltip_help').css('display') == 'none') {
+      hideNotificationsTooltip();
+      hideNotificationsButton();
+      hideNotificationsFumetto();
+      showHelpTooltip();
+      showHelpButton();
     } else {
-      if(parseInt($('#tooltip_arancione').data('number')) > 0) {
-        $('#tooltip_arancione').css('display', 'block');
-        $('#notifications_button').addClass('current');
+      hideHelpTooltip();
+      hideHelpButton();
+      if($('#tooltip_arancione').data('number') > 0) {
+        showNotificationsButton();
+        showNotificationsFumetto();
       }
-      tooltip_help.css('display', 'none');
-      help.removeClass('current');
     }
   });
+}
+
+function hideNotificationsTooltip() {
+  $('#tooltip_content').css('display', 'none');
+  $('._expanded_notification').css('display', 'none');
+}
+
+function showNotificationsTooltip() {
+  $('#tooltip_content').css('display', 'block');
+}
+
+function hideHelpTooltip() {
+  $('#tooltip_help').css('display', 'none');
+}
+
+function showHelpTooltip() {
+  $('#tooltip_help').css('display', 'block');
+}
+
+function hideNotificationsButton() {
+  $('#notifications_button').removeClass('current');
+}
+
+function showNotificationsButton() {
+  $('#notifications_button').addClass('current');
+}
+
+function hideNotificationsFumetto() {
+  $('#tooltip_arancione').css('display', 'none');
+}
+
+function showNotificationsFumetto() {
+  $('#tooltip_arancione').css('display', 'block');
+}
+
+function hideHelpButton() {
+  $('#help').removeClass('current');
+}
+
+function showHelpButton() {
+  $('#help').addClass('current');
 }
