@@ -24,6 +24,7 @@ function initializeNotifications() {
   $('body').on('click', '._single_notification a', function() {
     var my_expanded = $('#' + $(this).closest('li').attr('id') + ' ._expanded_notification');
     if(my_expanded.css('display') == 'none') {
+      hideAllExpandedNotifications();
       my_expanded.css('display', 'block');
       if(!$(this).hasClass('current')) {
         $.ajax({
@@ -56,9 +57,13 @@ function initializeHelp() {
   });
 }
 
+function hideAllExpandedNotifications() {
+  $('._expanded_notification').css('display', 'none');
+}
+
 function hideNotificationsTooltip() {
   $('#tooltip_content').css('display', 'none');
-  $('._expanded_notification').css('display', 'none');
+  hideAllExpandedNotifications();
 }
 
 function showNotificationsTooltip() {
