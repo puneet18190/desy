@@ -21,7 +21,10 @@ class NotificationsController < ApplicationController
   end
   
   def get_new_block
-    initialize_notifications
+    if @ok
+      @notifications = Notification.visible_block(@current_user.id, @offset_notifications, CONFIG['notifications_loaded_together'])
+      @offset_notifications += @notifications.length
+    end
   end
   
   private

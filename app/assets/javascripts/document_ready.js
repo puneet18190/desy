@@ -276,14 +276,14 @@ $(document).ready(function() {
   initializeHelp();
   
   $('#tooltip_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    if(isAtBottom) {
+    if(isAtBottom && (parseInt($('#tooltip_content').data('offset')) < parseInt($('#tooltip_content').data('totnumber')))) {
+      var offset = $('#tooltip_content').data('offset');
       $.ajax({
         type: 'get',
-        url: 'notifications/get_new_block'
+        url: 'notifications/get_new_block?offset=' + offset
       });
     }
   });
-
   
   $('body').on('click', '._destroy_notification', function() {
     var my_id = $(this).data('param');
