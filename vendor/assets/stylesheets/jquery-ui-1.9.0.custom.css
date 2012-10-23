@@ -252,7 +252,7 @@ body .ui-tooltip { border-width:2px; }
   padding: 0;
   background-color:#373737;
   color:#fff;
-	-moz-box-shadow: 1px 5px 5px #e8e8e8;
-  -webkit-box-shadow: 1px 5px 5px #e8e8e8;
-  box-shadow: 1px 5px 5px #e8e8e8;
+	-moz-box-shadow: 1px 5px 5px #c7c5c5;
+  -webkit-box-shadow: 1px 5px 5px #c7c5c5;
+  box-shadow: 1px 5px 5px #c7c5c5;
 }

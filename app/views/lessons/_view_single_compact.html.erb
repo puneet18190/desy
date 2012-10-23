@@ -12,7 +12,12 @@
     <div class="info-text">
       <h1>Created on</h1>
       <%= TimeConvert.to_string(lesson.created_at) %>
-      <p>stella <%= lesson.likes.count %><br>people like this lesson</p>
+      <p>
+			  <span class="fltlft"><%= image_tag "star.png", :align => "left" %></span>
+				<span class="fltlft" style="padding-top:2px"><%= lesson.likes.count %></span>
+				<br class="clearfloat">
+				people like this lesson
+			</p>
       <% if lesson.is_reportable %>
         <%= render :partial => "shared/buttons/#{Buttons::REPORT}/lesson", :locals => {:lesson => lesson} %>
       <% end %>

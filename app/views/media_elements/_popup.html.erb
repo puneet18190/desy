@@ -19,18 +19,18 @@
       <p><%= media_element.description %></p>
 		</div>
   </div>
-  
-    <div class="menuController" style="float:left"> <!-- TODO questo flotta a sinistra -->
+  <div style="float:left; width:100%; background-color:#fff;">
+    <div class="menuIconButton" style="float:left;  padding-left:10px"> <!-- TODO questo flotta a sinistra -->
       <%= render :partial => "shared/buttons/#{Buttons::EDIT}" %>
       <% if media_element.info_changeable %>
         <%= render :partial => "shared/buttons/#{Buttons::CHANGE_INFO}" %>
       <% end %>
     </div>
-    <div class="menuController" style="float:left"> <!-- TODO questo invece a destra -->
+    <div class="menuIconButton" style="float:right"> <!-- TODO questo invece a destra -->
       <% if media_element.is_reportable %>
         <%= render :partial => "shared/buttons/#{Buttons::REPORT}/media_element", :locals => {:media_element => media_element} %>
       <% end %>
-      <a class="destroy"></a> <!-- qui ci andrà il bottone per chiudere il pop up -->
+      <a class="close"></a> <!-- qui ci andrà il bottone per chiudere il pop up -->
     </div>
-  
+  </div>
 </div>

@@ -23,4 +23,5 @@
  *= require layouts/lessons
  *= require layouts/elements
  *= require layouts/action_buttons
+ *= require layouts/icon_button_popup
  */
