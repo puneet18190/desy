@@ -12,6 +12,13 @@ namespace :migrations do
     Rake::Task["db:schema:dump"].execute
   end
   
+  desc "empties all notifications"
+  task :empty_notifications => :environment do
+    Notification.all.each do |l|
+      l.destroy
+    end
+  end
+  
   desc "empties your lessons"
   task :empty_dashboard_lessons => :environment do
     Lesson.all.each do |l|
