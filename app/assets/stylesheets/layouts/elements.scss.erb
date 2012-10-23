@@ -62,14 +62,14 @@
 /*CLASSE VISTA ELEMENTS*/
 @mixin iconeElements {
   float:left; 
-  width:35%;
-  background-repeat: no-repeat;
-  background-size: 5%;
+  width:40%;
+	height:34px;
+  /*background-size: 5%;*/
 	padding-left:50px;
 	margin-right:1.8%;
 	background-image: url(<%= asset_path 'icon_elements.svg' %>);
 	background-repeat: no-repeat;
-	
+	background-position:0 0;
 }
 .elements-content {
   float:left;
@@ -197,18 +197,23 @@
 			/*audio*/
 			.audio {
 		    @include iconeElements;
-				
-				background-position: 0 -2.7em;
+				padding-top:0.2em;
+				padding-bottom:0.2em;
+				background-position: 0 -2.6em;
 		  }
 			/*video*/
 			.video {
 		    @include iconeElements;
-				background-position: 0 0;
+				background-position: 0 .1em;
+				padding-top:0.2em;
+				padding-bottom:0.2em;
 		  }
 			/*image*/
 			.image {
 		    @include iconeElements;
-				background-position: 0 -5.4em;
+				background-position: 0 -5.1em;
+				padding-top:0.2em;
+				padding-bottom:0.2em;
 		  }
 		}
 		.menuController {
