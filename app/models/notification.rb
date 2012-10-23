@@ -23,6 +23,10 @@ class Notification < ActiveRecord::Base
     self.save
   end
   
+  def self.count_tot(an_user_id)
+    Notification.where(:user_id => an_user_id).count
+  end
+  
   def self.not_seen(an_user_id, a_limit)
     Notification.order('created_at DESC').where(:user_id => an_user_id).limit(a_limit).reject do |n|
       n.seen
@@ -30,7 +34,7 @@ class Notification < ActiveRecord::Base
   end
   
   def self.visible_block(an_user_id, an_offset, a_limit)
-    {:last_page => Notification.order('created_at DESC').where(:user_id => an_user_id).offset(an_offset + a_limit).empty?, :content => Notification.order('created_at DESC').where(:user_id => an_user_id).offset(an_offset).limit(a_limit)}
+    Notification.order('created_at DESC').where(:user_id => an_user_id).offset(an_offset).limit(a_limit)
   end
   
   def self.number_not_seen(an_user_id)

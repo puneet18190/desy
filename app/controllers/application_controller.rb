@@ -63,19 +63,10 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize_notifications
-    if @offset_notifications.nil?
-      get_current_notification_block(0, CONFIG['notifications_loaded_together'])
-    else
-      get_current_notification_block(@offset_notifications, CONFIG['notifications_loaded_together'])
-    end
+    @notifications = Notification.visible_block(@current_user.id, 0, CONFIG['notifications_loaded_together'])
     @new_notifications = Notification.number_not_seen(@current_user.id)
-    @offset_notifications = @offset_notifications.nil? ? @notifications.length : (@offset_notifications + @notifications.length)
-  end
-  
-  def get_current_notification_block(offset, limit)
-    resp = Notification.visible_block(@current_user.id, offset, limit)
-    @notifications = resp[:content]
-    @notifications_last_page = resp[:last_page]
+    @offset_notifications = @notifications.length
+    @tot_notifications = Notification.count_tot(@current_user.id)
   end
   
   def initialize_location

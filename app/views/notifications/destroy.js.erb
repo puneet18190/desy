@@ -1,6 +1,11 @@
 <% if @ok %>
   $("#notification_<%= @notification_id %> a").hide('scale', {percent: 0}, 500, function() {
     $('#notification_<%= @notification_id %>').replaceWith('');
-    $('#tooltip_content ul .jspPane').append("<%= j(render(:partial => "notifications/notification", :locals => {:notification => @next_notification})) %>")
+    $('#tooltip_content').data('offset') = '<%= @notifications.length %>';
+    $('#tooltip_content').data('totnumber') = '<%= @tot_notifications %>';
+    $('#tooltip_arancione').data('number') = '<%= @new_notifications %>';
+    <% if @load_new %>
+      $('#tooltip_content ul .jspPane').append("<%= j(render(:partial => "notifications/notification", :locals => {:notification => @next_notification})) %>")
+    <% end %>
   });
 <% end %>

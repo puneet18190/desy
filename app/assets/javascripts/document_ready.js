@@ -287,9 +287,10 @@ $(document).ready(function() {
   
   $('body').on('click', '._destroy_notification', function() {
     var my_id = $(this).data('param');
+    var offset = $('#tooltip_content').data('offset');
     $.ajax({
       type: 'post',
-      url: 'notifications/' + my_id + '/destroy'
+      url: 'notifications/' + my_id + '/destroy?offset=' + offset
     });
   });
   
