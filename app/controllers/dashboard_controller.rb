@@ -1,11 +1,11 @@
 class DashboardController < ApplicationController
   
-  before_filter :initialize_notifications
-  
   LESSONS_FOR_PAGE = CONFIG['lessons_for_page_in_dashboard']
   LESSON_PAGES = CONFIG['lesson_pages_in_dashboard']
   ELEMENTS_FOR_PAGE = CONFIG['media_elements_for_page_in_dashboard']
   ELEMENT_PAGES = CONFIG['media_element_pages_in_dashboard']
+  
+  before_filter :initialize_notifications
   
   def index
     @lessons = @current_user.suggested_lessons(LESSONS_FOR_PAGE * LESSON_PAGES)
