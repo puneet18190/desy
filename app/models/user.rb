@@ -25,6 +25,21 @@ class User < ActiveRecord::Base
     "#{self.name} #{self.surname}"
   end
   
+  def search_lessons(word, page, for_page, filter=nil, subject_id=nil, order=nil)
+    word = word.to_s
+    page = 1 if page.class != Fixnum
+    for_page = 1 if for_page.class != Fixnum
+    subject_id = nil if ![NilClass, Fixnum].include?(subject_id)
+    filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
+    order = SearchOrders::UPDATED_AT if order.nil? || !SearchOrders::LESSONS_SET.include?(order)
+    offset = (page - 1) * for_page
+    if word.blank?
+      search_lessons_without_tag(offset, for_page, filter, subject_id, order)
+    else
+      search_lessons_with_tag(word, offset, for_page, filter, subject_id, order)
+    end
+  end
+  
   def report_lesson(lesson_id, msg)
     errors.clear
     if self.new_record?
@@ -87,6 +102,8 @@ class User < ActiveRecord::Base
   end
   
   def own_media_elements(page, per_page, filter=nil)
+    page = 1 if page.class != Fixnum
+    for_page = 1 if for_page.class != Fixnum
     offset = (page - 1) * per_page
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SET.include?(filter)
     param1 = self.id
@@ -130,6 +147,8 @@ class User < ActiveRecord::Base
   end
   
   def own_lessons(page, per_page, filter=nil)
+    page = 1 if page.class != Fixnum
+    for_page = 1 if for_page.class != Fixnum
     offset = (page - 1) * per_page
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SET.include?(filter)
     resp = []
@@ -187,6 +206,7 @@ class User < ActiveRecord::Base
   end
   
   def suggested_lessons(n)
+    n = 1 if n.class != Fixnum
     subject_ids = []
     UsersSubject.where(:user_id => self.id).each do |us|
       subject_ids << us.subject_id
@@ -199,6 +219,7 @@ class User < ActiveRecord::Base
   end
   
   def suggested_media_elements(n)
+    n = 1 if n.class != Fixnum
     resp = MediaElement.where('is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', true, self.id, 'MediaElement', self.id).order('publication_date DESC').limit(n)
     resp.each do |me|
       me.set_status self.id
@@ -354,6 +375,70 @@ class User < ActiveRecord::Base
   end
   
   private
+  
+  def search_lessons_with_tag(word, offset, limit, filter, subject_id, order)
+    resp = {}
+    params = ["%#{word}"]
+    select = 'lessons.id AS lesson_id'
+    joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
+    where = 'tags.word LIKE ?'
+    order = ''
+    case order
+      when SearchOrders::UPDATED_AT
+        order = 'lessons.updated_at DESC'
+      when SearchOrders::LIKES
+        select = "#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
+        order = 'likes_count DESC'
+      when SearchOrders::TITLE
+        order = 'lessons.title DESC'
+    end
+    if !subject_id.nil?
+      where = "#{where} AND lessons.subject_id = ?"
+      params << subject_id
+    end
+    case filter
+      when Filters::ALL_LESSONS
+        where = "#{where} AND (lessons.is_public = ? OR lessons.user_id = ?)"
+        params << true
+        params << self.id
+      when Filters::PUBLIC
+        where = "#{where} AND lessons.is_public = ?"
+        params << true
+      when Filters::ONLY_MINE
+        where = "#{where} AND lessons.user_id = ?"
+        params << self.id
+      when Filters::NOT_MINE
+        where = "#{where} AND lessons.is_public = ? AND lessons.user_id != ?"
+        params << true
+        params << self.id
+    end
+    query = []
+    last_page = nil
+    case params.length
+      when 2
+        query = Tagging.select(select).joins(joins).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
+        last_page = Tagging.select(select).joins(joins).where(where, params[0], params[1]).order(order).offset(offset + limit).empty?
+      when 3
+        query = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
+        last_page = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset + limit).empty?
+      when 4
+        query = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order(order).offset(offset).limit(limit)
+        last_page = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order(order).offset(offset + limit).empty?
+    end
+    content = []
+    query.each do |q|
+      lesson = Lesson.find_by_id q.lesson_id
+      lesson.set_state self.id
+      content << lesson
+    end
+    resp[:last_page] = last_page
+    resp[:content] = content
+    return resp
+  end
+  
+  def search_lessons_without_tag
+    
+  end
   
   def init_validation
     @user = Valid.get_association self, :id

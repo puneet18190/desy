@@ -114,6 +114,7 @@ en:
     video: 'Video'
     audio: 'Audio'
     image: 'Images'
+    not_mine: 'Not created by you'
   time:
     format: 'english'
   empty:

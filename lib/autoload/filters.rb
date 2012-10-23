@@ -5,6 +5,7 @@ module Filters
   PUBLIC = 'public'
   LINKED = 'linked'
   ONLY_MINE = 'only_mine'
+  NOT_MINE = 'not_mine'
   COPIED = 'copied'
   ALL_MEDIA_ELEMENTS = 'all_media_elements'
   VIDEO = 'video'
@@ -13,6 +14,8 @@ module Filters
   
   LESSONS_SET = [ALL_LESSONS, PRIVATE, PUBLIC, LINKED, ONLY_MINE, COPIED]
   MEDIA_ELEMENTS_SET = [ALL_MEDIA_ELEMENTS, VIDEO, AUDIO, IMAGE]
+  LESSONS_SEARCH_SET = [ALL_LESSONS, NOT_MINE, PUBLIC, ONLY_MINE]
+  MEDIA_ELEMENTS_SEARCH_SET = [ALL_MEDIA_ELEMENTS, VIDEO, AUDIO, IMAGE]
   
   CAPTIONS = {
     ALL_LESSONS => I18n.t('filters.all_lessons'),
@@ -24,7 +27,8 @@ module Filters
     ALL_MEDIA_ELEMENTS => I18n.t('filters.all_media_elements'),
     VIDEO => I18n.t('filters.video'),
     AUDIO => I18n.t('filters.audio'),
-    IMAGE => I18n.t('filters.image')
+    IMAGE => I18n.t('filters.image'),
+    NOT_MINE => I18n.t('filters.not_mine')
   }
   
 end
