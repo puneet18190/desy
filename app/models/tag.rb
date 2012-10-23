@@ -60,11 +60,28 @@ class Tag < ActiveRecord::Base
   
   def convert_downcase_word
     return if self.word.blank?
-    self.word = downcase_international_tag self.word
+    self.word = to_downcase_without_spaces self.word
   end
   
-  def downcase_international_tag x
-    x.downcase # qui sostituirò il metodo a seconda del linguaggio, da configurare!
+  def to_downcase_without_spaces(x)
+    x = x.mb_chars.downcase.to_s
+    x = cut_first_spaces(x)
+    x.reverse!
+    x = cut_first_spaces(x)
+    return x.reverse
+  end
+  
+  def cut_first_spaces(x)
+    cont = 0
+    status = true
+    x.each_byte do |byte|
+      if byte == 32 && status
+        cont += 1
+      else
+        status = false
+      end
+    end
+    x = x[cont, x.length]
   end
   
 end

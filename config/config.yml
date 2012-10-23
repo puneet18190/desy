@@ -1,6 +1,6 @@
 # TAGS
-min_tag_length: 3
-max_tag_length: 20
+min_tag_length: 1
+max_tag_length: 25
 min_tags_for_item: 4
 force_min_tags_for_item: false
 # ADMIN USER

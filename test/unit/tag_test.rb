@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'test_helper'
 
 class TagTest < ActiveSupport::TestCase
@@ -20,8 +22,8 @@ class TagTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @tag, :word, long_string(21), long_string(20), /is too long/
-    assert_invalid @tag, :word, 'er', 'oca', /is too short/
+    assert_invalid @tag, :word, long_string(26), long_string(25), /is too long/
+    assert_invalid @tag, :word, '', 'uu', /is too short/
     assert_obj_saved @tag
   end
   
@@ -35,10 +37,10 @@ class TagTest < ActiveSupport::TestCase
   end
   
   test 'lowercase' do
-    @tag.word = 'CaNaRiNo'
+    @tag.word = '     ÀÁÄÂCaNaRiNo  ËÏÖÜ     a '
     assert_obj_saved @tag
     @tag = Tag.find @tag.id
-    assert_equal 'canarino', @tag.word
+    assert_equal 'àáäâcanarino  ëïöü     a', @tag.word
   end
   
 end

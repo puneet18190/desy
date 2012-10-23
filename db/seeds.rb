@@ -18,6 +18,48 @@ User.create_user CONFIG['admin_email'], 'DESY', 'Admin User', 'School', school_l
 
 if Rails.env.development?
   
+  tags = []
+  tags << "cane"
+  tags << "sole"
+  tags << "gatto"
+  tags << "cincillà"
+  tags << "walter nudo"
+  tags << "luna"
+  tags << "escrementi di usignolo"
+  tags << "disabili"
+  tags << "barriere architettoniche"
+  tags << "mare"
+  tags << "petrolio"
+  tags << "sostenibilità"
+  tags << "immondizia"
+  tags << "inquinamento atmosferico"
+  tags << "inquinamento"
+  tags << "pollution"
+  tags << "tom cruise"
+  tags << "cammello"
+  tags << "cammelli"
+  tags << "acqua"
+  tags << "acquario"
+  tags << "acquatico"
+  tags << "個名"
+  tags << "拿大即"
+  tags << "河"
+  tags << "條聖"
+  tags << "係英國"
+  tags << "拿"
+  tags << "住羅倫"
+  tags << "加"
+  tags << "大湖"
+  tags << "咗做"
+  tags << "個"
+  tags << "法屬係話"
+  
+  tags.each do |t|
+    tt = Tag.new
+    tt.word = t
+    tt.save
+  end
+  
   admin = User.find_by_email CONFIG['admin_email']
   
   paparesta = User.create_user 'paparesta@figc.it', 'Luca', 'Paparesta', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
@@ -416,4 +458,4 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   
 end
 
-puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons, #{MediaElement.count} media_elements, #{Slide.count} slides, #{Notification.count} notifications, #{Like.count} likes, #{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons, #{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements"
+puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons, #{MediaElement.count} media_elements, #{Slide.count} slides, #{Notification.count} notifications, #{Like.count} likes, #{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons, #{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements, #{Tag.count} tags, #{Tagging.count} taggings"
