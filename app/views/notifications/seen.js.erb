@@ -1,7 +1,7 @@
-$('#tooltip_arancione').html('<img class="calloutTooltipArancione" src="/assets/freccia_arancione.png" alt="Freccia_arancione"><%= @number_not_seen %>');
-$('#tooltip_arancione').data('number', '<%= @number_not_seen %>');
-$('#tooltip_arancione').data('fired', 'true');
-
-<% @notifications.each do |n| %>
-  $('#notification_<%= n.id %> a').addClass('_to_be_set_gray');
+<% if @ok %>
+  
+  $('#notification_<%= @notification_id %> a').addClass('current');
+  $('#tooltip_arancione').html('<img class="calloutTooltipArancione" src="/assets/freccia_arancione.png" alt="Freccia_arancione"><%= @new_notifications %>');
+  $('#tooltip_arancione').data('number', '<%= @new_notifications %>');
+  
 <% end %>

@@ -1,6 +1,7 @@
-<li id="notification_<%= notification.id %>">
-  <a href="#" class="expanded <%= notification.seen ? 'current' : '' %>"><%= notification.message.html_safe %></a>
+<li id="notification_<%= notification.id %>" class="_single_notification">
+  <a href="#" data-param="<%= notification.id %>" class="expanded <%= notification.seen ? 'current' : '' %>"><%= notification.message.html_safe %></a>
   <div class="cancelTooltip _destroy_notification" data-param="<%= notification.id %>">
     <%= image_tag("cancel_tooltip_notice.png") %>
   </div>
+  <div class="_expanded_notification" style="display:none"><%= notification.message.html_safe %></div> <!-- TODO div da sistemare per aurelia -->
 </li>

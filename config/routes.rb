@@ -32,7 +32,7 @@ Desy::Application.routes.draw do
   match 'media_elements/:media_element_id/change_info' => 'media_elements#change_info', :via => :post, :as => :change_media_element_info
   
   # NOTIFICATIONS
-  match 'notifications/seen' => 'notifications#seen', :via => :post
+  match 'notifications/:notification_id/seen' => 'notifications#seen', :via => :post
   match 'notifications/:notification_id/destroy' => 'notifications#destroy', :via => :post
   match 'notifications/get_new_block' => 'notifications#get_new_block'
   
