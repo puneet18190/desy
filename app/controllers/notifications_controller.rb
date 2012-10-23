@@ -1,7 +1,7 @@
 class NotificationsController < ApplicationController
   
   before_filter :initialize_notification_with_owner, :only => [:seen, :destroy]
-  before_filter :initialize_notification_offset, :only => :get_new_block
+  before_filter :initialize_notification_offset, :only => [:destroy, :get_new_block]
   
   def seen
     @ok = @notification.has_been_seen if @ok
@@ -11,7 +11,10 @@ class NotificationsController < ApplicationController
   def destroy
     if @ok
       @notification.destroy
-      initialize_notifications
+      @notifications = Notification.visible_block(@current_user.id, 0, @offset_notifications)
+      @new_notifications = Notification.number_not_seen(@current_user.id)
+      @offset_notifications = @notifications.length
+      @tot_notifications = Notification.count_tot(@current_user.id)
       @next_notification = @notifications.last
       @load_new = (@offset_notifications == CONFIG['notifications_loaded_together'])
     end
