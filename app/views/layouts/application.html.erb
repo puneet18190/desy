@@ -12,14 +12,9 @@
 <div class="container">
   <%= render :partial => "shared/header" %>
   <div class="content">
-  <%= render :partial => "shared/header_content_elements/graybar", :locals => {:where => @where} %>
-  <br class="clearfloat">
-  <div class="griglia-contenuti">
-  
-  
+    
     <%= yield %>
     
-  </div>
   <br class="clearfloat">
   </div>
   <%= render :partial => "shared/footer" %>
