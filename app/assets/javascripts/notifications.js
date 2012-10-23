@@ -1,6 +1,7 @@
 function initializeNotifications() {
   if(parseInt($('#tooltip_arancione').data('number')) > 0) {
-    
+    showNotificationsFumetto();
+    showNotificationsButton();
   }
   $('body').on('click', '#notifications_button', function() {
     if($('#tooltip_content').css('display') == 'none') {
