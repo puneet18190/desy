@@ -34,30 +34,39 @@
         position:absolute;
         right:0.1em;
         top:0.1em;
-        
+				a {
+				  background-image: url(<%= asset_path 'cancel_tooltip_notice.png' %>);
+          background-position:top right;
+					height:5px;
+					background-color:transparent;
+				}
       }
     }
     a {
       display: block;
       background-color: #c1e6f6;
+			background-image: url(<%= asset_path 'arrow_tooltip_notice.png' %>);
+      background-position:left center;
       border-radius:3px;
       -moz-border-radius: 3px;
       -webkit-border-radius: 3px;
       margin-right: 0;
       padding:10px;
-			height:50px;
+			
+			
     }
     a.expanded {
       display: block;
       background-image:none;
       background-image: url(<%= asset_path 'arrow_tooltip_notice.png' %>);
-      background-position:center bottom;
+      background-position:left center;
       border-radius:3px;
       -moz-border-radius: 3px;
       -webkit-border-radius: 3px;
       margin-right: 0;
-      padding:10px;
-			height:50px;
+      padding:10px 10px 10px 20px;
+			margin-bottom:10px;
+			
     }
     a:link, .navlist a:visited {
       text-decoration: none;

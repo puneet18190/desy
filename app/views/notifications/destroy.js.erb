@@ -8,7 +8,7 @@
     <% if @load_new %>
       $('#tooltip_content ul .jspPane').append("<%= j(render(:partial => "notifications/notification", :locals => {:notification => @next_notification})) %>");
     <% elsif @notifications.empty? %>
-      $('#tooltip_content ul .jspPane').append("<%= j(t('capital_letter.no_notifications')) %>");
+      $('#tooltip_content ul .jspPane').append("<span><%= j(t('capital_letter.no_notifications')) %></span>");
     <% end %>
   });
 <% end %>
