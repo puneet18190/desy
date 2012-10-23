@@ -983,6 +983,13 @@ CREATE UNIQUE INDEX index_taggings_on_taggable_type_and_taggable_id_and_tag_id O
 
 
 --
+-- Name: index_tags_on_word; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_tags_on_word ON tags USING btree (word);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 

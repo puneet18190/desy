@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20121019091311) do
     t.string   "word",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.index ["word"], :name => "index_tags_on_word", :unique => true
   end
 
 # Could not dump table "taggings" because of following StandardError

@@ -456,6 +456,31 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   end
   MediaElement.record_timestamps = true
   
+  tag_map = {
+    0 => [1, 2, 3, 4, 5, 6, 7],
+    1 => [5, 6, 7, 8, 9, 10, 11],
+    2 => [9, 10, 11, 12, 13, 14, 15],
+    3 => [15, 16, 17, 18, 19, 20, 21],
+    4 => [19, 20, 21, 22, 23, 24, 25],
+    5 => [23, 24, 25, 26, 27, 28, 29],
+    6 => [27, 28, 29, 30, 31, 32, 33],
+    7 => [31, 32, 33, 34, 1, 2, 3],
+    8 => [3, 6, 9, 12, 15, 18, 21],
+    9 => [7, 14, 21, 28, 5, 10, 15]
+  }
+  
+  cont = 0
+  
+  MediaElement.all.each do |me|
+    Tag.create_tag_set('MediaElement', me.id, tag_map[cont%10])
+    cont += 1
+  end
+  
+  Lesson.all.each do |l|
+    Tag.create_tag_set('Lesson', l.id, tag_map[cont%10])
+    cont += 1
+  end
+  
 end
 
 puts "Created #{Subject.count} subjects, #{Location.count} locations, #{SchoolLevel.count} school_levels, #{User.count} users, #{UsersSubject.count} users_subjects, #{Lesson.count} lessons, #{MediaElement.count} media_elements, #{Slide.count} slides, #{Notification.count} notifications, #{Like.count} likes, #{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons, #{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements, #{Tag.count} tags, #{Tagging.count} taggings"
