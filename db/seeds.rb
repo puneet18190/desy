@@ -185,6 +185,30 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   end
   
   notifics = []
+  notifics << "Que tipo de homosexual sufre mucho? Un cristiano con tendencias homosexuales o un homosexual no cristiano?"
+  notifics << "I laziali staranno già avendo la loro prima erezione mattutina, ma possono stare tranquilli. Il loro incubo resta a Roma. Pronto a purgarli ancora!!"
+  notifics << "speriamo sia giunta l'ora di levarcelo di torno, ha un pò stancato....che vada a fare il turista a Mosca adesso. "
+  notifics << "Corriere dello sport, la tifoseria romanista ha capito qual è l'andazzo (il fatto che il direttore sia ex-Tuttosport vale più di mille parole) e non abbocca più a questi casi creati ad hoc dopo che la Roma vince una partita. Restate da soli con le vostre \"notizie\""
+  notifics << "La roma dovrebbe stare sul fondo della classifica ed invece grazie alle partite truccate e alle vittorie a tavolino eccola li nel gruppo di testa. Il calcio in Italia sta diventando una cosa ridicola!"
+  notifics << "Che tristezza...Preziosi ingrato! De Canio allenatore capace e molto preparato (ma poco sponsorizzato....) "
+  notifics << "E ci vogliamo meravigliare ancora? Si sa che Preziosi é della pasta di Zamparini... Per cui alla fine 1+1 ha sempre fatto due. Per la serie \"Il gatto e la volpe\""
+  notifics << "Voi parlate dei bagni... C'e' un video su youtube che dimostra che quelli non sono i bagni del settore ospiti. Che squallido tentativo di spostare l'attenzione sullo schifo che fanno gli juventini e il loro giornalista in primis... Dopo Roma, Torino. Ho scoperto sabato di avere un vicino juventino, e ' aperta la caccia..."
+  notifics << "Io Puzzo ... di lava, di tufo, di ortobotanico, di golfo e di isole, di mare e pure di cozze, di ragu' e di dolci fatti in casa, di pizza, di almeno tre castelli, di solfatara, di canzoni cantate a squarcia gola nel traffico,"
+  notifics << "non siamo una nazione perchè non è nata su un concetto di unità ma su un concetto di dualità...ed ancora oggi così viene gestita"
+  notifics << "Caro Mazzarri questo non succedera' mai perchè altrimenti non avremmo perso la partita di Pechino.Ci sara' sempre qualcuno che fara' l'occhiolino alla Juve.Saluti"
+  notifics << "Questo giornalista merita il premio 'ciuccio juventino dell'anno'. facciamogli i complimenti, ha vinto una bella concorrenza, ma se lo merita proprio!"
+  notifics << "vogliamo 1 turno di squalifica per i tifosi.. A PORTE CHIUSE!!!!"
+  notifics << "ormai il razzismo è così radicato in voi che non ci fate manco più caso ...ma chi se ne frega del risultato della partita"
+  notifics << "vergognati di vivere razzista"
+  notifics << "Alla fine, ciò che conta questo è di essere felici e sbocciato, no? In un mondo o i riferimenti che siano familiari, sociali, etici﻿ esplodono, come non volete essere perturbato?"
+  notifics << "Luca﻿ è ancora gay...probabilmente represso..."
+  notifics << "dovrebbero cambiare il titolo in: Luca è bisex -.-'''' Inoltre Freud sosteneva che l'uomo nascesse bisessuale!!!! a Povia studia un po' prima di scrivere﻿ minchiate!!!!"
+  notifics << "guarda ke non parla di se stesso ma parla di un ragazzo che si kiama davvero luca e ke ha avuto davvero questi problemi﻿"
+  notifics << "vabbe' e' una storia, Povia parla evidentemente﻿ della sua esperienza , non e' contro l'omossesualita'.."
+  notifics << "I do not understand italian language, but I know the history of this his song. You are a brave man for writing it, dude! Keep going with that! Congratulations!!!﻿"
+  notifics << "Comunque oltre al testo che fa schifo, anche il video è terribile e poco professionale. Questa canzone è una delle solite figuraccie italiane nei confronti del mondo intero."
+  notifics << "Un po' come quando la Mussolini dice \"meglio fascista che frocio\" in tv e Berlusconi dice che \"è meglio essere appassionati delle belle ragazze che gay\""
+  notifics << "é terribile questo video ed offensivo nei confronti di tutte le persone﻿ omosessuali"
   notifics << 'Ma De Rossi a Roma che cosa ci sta a fare quando le cose vanno male è sempre colpa sua'
   notifics << "a daniè t'avevo detto che dovevi annà al city"
   notifics << "共產黨通過「鎮壓反革命」嘅運動，對私有經濟同財產進行城市工商業"
@@ -196,6 +220,7 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   notifics << "stai dicendo fregnacce.....taci e meglio,e non condannare prima del tempo."
   notifics << "Uhm e chi sarebbero i giocatori della juve che non han giocato???"
   notifics << "se la pensi cosi è meglio che cambi sport!!!!"
+  notifics << "Un número apreciable de hombres y mujeres presentan tendencias homosexuales instintivas"
   notifics << "La squadra piu ladra del pianeta rubera' l'ennesimo scudetto ,,,cavolo che soddisfazione !!! "
   notifics << "scommettiamo che la prossima degli azzurri non gioca neanche Pirlo?"
   notifics << "Il fatto che per eliminare l'italia quella partita dovesse finire non solo in un pareggio, ma anche esattamente 2-2, le è sfuggito per caso, mica perchè avrebbe screditato le sue teorie, giusto?"
@@ -206,7 +231,7 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
     Notification.send_to admin.id, n
   end
   
-  Notification.limit(10).each do |n|
+  Notification.limit(32).each do |n|
     n.has_been_seen
   end
   
