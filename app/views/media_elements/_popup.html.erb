@@ -10,7 +10,7 @@
     </div>
   <% end %>
   <div class="_media_element_pop_up_container">
-    <%= render :partial => "media_elements/thumbnails/#{media_element.sti_type.downcase}" %> <!-- TODO qui dovrò passare la url dell'attached quando necessario -->
+    <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}" %> <!-- TODO qui dovrò passare la url dell'attached quando necessario -->
     <%= media_element.sti_type %>
     <%= media_element.title %>
     <%= media_element.description %>
