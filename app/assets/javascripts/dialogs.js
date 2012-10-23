@@ -56,8 +56,8 @@ function showMediaElementInfoPopUp(media_element_id, destination) {
     obj.dialog({
       modal: true,
       resizable: false,
-      width: 485,
-      show: "fade",
+      width: 874,
+			show: "fade",
       hide: "fade"
     });
   }

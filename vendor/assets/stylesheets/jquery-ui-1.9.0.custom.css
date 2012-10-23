@@ -239,7 +239,6 @@ span.ui-spinner { background: none; }
 	padding:8px;
 	position:absolute;
 	z-index:9999;
-	-o-box-shadow: 0 0 5px #aaa;
 	-moz-box-shadow: 0 0 5px #aaa;
 	-webkit-box-shadow: 0 0 5px #aaa;
 	box-shadow: 0 0 5px #aaa;
@@ -249,3 +248,11 @@ span.ui-spinner { background: none; }
 	background-image: none;
 }
 body .ui-tooltip { border-width:2px; }
+.mediaElementInfoPopUp.ui-dialog-content { 
+  padding: 0;
+  background-color:#373737;
+  color:#fff;
+	-moz-box-shadow: 1px 5px 5px #e8e8e8;
+  -webkit-box-shadow: 1px 5px 5px #e8e8e8;
+  box-shadow: 1px 5px 5px #e8e8e8;
+}
