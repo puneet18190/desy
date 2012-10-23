@@ -3,8 +3,12 @@
   <div class="list">
     <ul class="navlist">
       <div class="scroll-pane">
-        <% @notifications.each do |n| %>
-          <%= render :partial => "notifications/notification", :locals => {:notification => n} %>
+        <% if @notifications.empty? %>
+          <%= t('capital_letter.no_notifications') %>
+        <% else %>
+          <% @notifications.each do |n| %>
+            <%= render :partial => "notifications/notification", :locals => {:notification => n} %>
+          <% end %>
         <% end %>
       </div>
     </ul>

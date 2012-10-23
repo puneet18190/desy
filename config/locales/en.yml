@@ -69,6 +69,7 @@ en:
     logout: 'Logout'
     matter: 'Matter'
     media_elements: 'Elements'
+    no_notifications: "you don't have any notifications"
     report_abuse: 'Report abuse'
     send: 'Send'
     show: 'Show'

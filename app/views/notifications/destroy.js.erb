@@ -1,5 +1,5 @@
 <% if @ok %>
-  $("#notification_<%= @notification_id %> a").hide('scale', {percent: 0}, 500, function() {
+  $("#notification_<%= @notification_id %>").hide('scale', {percent: 0}, 500, function() {
     $('#notification_<%= @notification_id %>').replaceWith('');
     $('#tooltip_content').data('offset', '<%= @offset_notifications %>');
     $('#tooltip_content').data('totnumber', '<%= @tot_notifications %>');
@@ -7,6 +7,8 @@
     $('#tooltip_arancione').html('<img class="calloutTooltipArancione" src="/assets/freccia_arancione.png" alt="Freccia_arancione"><%= @new_notifications %>');
     <% if @load_new %>
       $('#tooltip_content ul .jspPane').append("<%= j(render(:partial => "notifications/notification", :locals => {:notification => @next_notification})) %>");
+    <% elsif @notifications.empty? %>
+      $('#tooltip_content ul .jspPane').append("<%= j(t('capital_letter.no_notifications')) %>");
     <% end %>
   });
 <% end %>
