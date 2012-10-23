@@ -445,10 +445,6 @@ class ExtractorTest < ActiveSupport::TestCase
     assert us2_9.has_been_seen
     assert_equal 3, Notification.number_not_seen(2)
     assert_equal 6, Notification.number_not_seen(1)
-    assert_extractor [us2_8.id], Notification.not_seen(2, 8)
-    assert_extractor [us2_8.id, us2_13.id], Notification.not_seen(2, 13)
-    assert_extractor [us1_1.id, us1_3.id, us1_5.id], Notification.not_seen(1, 8)
-    assert_extractor [us1_1.id, us1_3.id, us1_5.id, us1_15.id, us1_17.id], Notification.not_seen(1, 17)
     assert_extractor [us2_1.id, us2_2.id, us2_3.id, us2_4.id, us2_5.id], Notification.visible_block(2, 0, 5)
     assert_extractor [us1_1.id, us1_2.id, us1_3.id, us1_4.id, us1_5.id], Notification.visible_block(1, 0, 5)
   end

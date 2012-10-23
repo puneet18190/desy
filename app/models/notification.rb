@@ -27,12 +27,6 @@ class Notification < ActiveRecord::Base
     Notification.where(:user_id => an_user_id).count
   end
   
-  def self.not_seen(an_user_id, a_limit)
-    Notification.order('created_at DESC').where(:user_id => an_user_id).limit(a_limit).reject do |n|
-      n.seen
-    end
-  end
-  
   def self.visible_block(an_user_id, an_offset, a_limit)
     Notification.order('created_at DESC').where(:user_id => an_user_id).offset(an_offset).limit(a_limit)
   end
