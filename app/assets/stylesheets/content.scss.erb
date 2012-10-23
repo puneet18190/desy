@@ -71,15 +71,20 @@
 	.contentInterno {
 	  padding:4%;
 		height:110px;
-		a.createButton {
-		  background: url(<%= asset_path 'create.png' %>) top center no-repeat;
-			padding:50px;
-			&:hover {
-			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
-			}
-		}
+		
 	}
-	
+	.contentNew {
+	  p {padding-top:90px;}
+		.createButton a {
+		  background: url(<%= asset_path 'create.png' %>) top left no-repeat;
+			padding-bottom:90px;
+			padding-left:120px;
+		}
+		.createButton a:hover {
+			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+		}
+		
+	}
 }
 
 .boxViewSingleMediaElement {
