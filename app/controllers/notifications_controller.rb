@@ -2,14 +2,9 @@ class NotificationsController < ApplicationController
   
   before_filter :initialize_notification_with_owner, :only => :destroy
   before_filter :initialize_notification_offset
-  skip_before_filter :initialize_notifications
   
   def seen
-    @notifications = Notification.not_seen(@current_user.id, @offset_notifications)
-    @notifications.each do |n|
-      n.has_been_seen
-    end
-    @number_not_seen = Notification.number_not_seen(@current_user.id)
+    set_visible_as_seen
   end
   
   def destroy
@@ -18,10 +13,19 @@ class NotificationsController < ApplicationController
   end
   
   def get_new_block
-    
+    initialize_notifications
+    set_visible_as_seen
   end
   
   private
+  
+  def set_visible_as_seen
+    @notifications = Notification.not_seen(@current_user.id, @offset_notifications)
+    @notifications.each do |n|
+      n.has_been_seen
+    end
+    @number_not_seen = Notification.number_not_seen(@current_user.id)
+  end
   
   def initialize_notification_offset
     @offset_notifications = correct_integer?(params['offset']) ? params['offset'].to_i : 0

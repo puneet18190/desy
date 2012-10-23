@@ -1,7 +1,7 @@
 class VirtualClassroomController < ApplicationController
   
   before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson]
-  skip_before_filter :initialize_notifications, :only => [:add_lesson, :remove_lesson]
+  # manca il initialize_notifications??
   
   def add_lesson
     if @ok

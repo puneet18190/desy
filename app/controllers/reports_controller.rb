@@ -1,7 +1,5 @@
 class ReportsController < ApplicationController
   
-  skip_before_filter :initialize_notifications
-  
   def lesson
     if correct_integer?(params[:lesson_id])
       @lesson_id = params[:lesson_id].to_i
