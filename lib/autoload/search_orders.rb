@@ -11,8 +11,8 @@ module SearchOrders
   CAPTIONS = {
     UPDATED_AT => I18n.t('orders.updated_at'),
     LIKES => I18n.t('orders.likes'),
-    TITLE = I18n.t('orders.title'),
-    PUBLICATION_DATE = I18n.t('orders.publication_date')
+    TITLE => I18n.t('orders.title'),
+    PUBLICATION_DATE => I18n.t('orders.publication_date')
   }
   
 end

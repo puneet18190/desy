@@ -167,7 +167,7 @@ class User < ActiveRecord::Base
         filtered_query = "is_public =  ? AND user_id = ?"
         param2 = false
         param3 = self.id
-        last_page = Lesson.where(filtered_query, param2, param3).order(my_order).offset(offset + per_page).empty?
+        last_page = Lesson.where(filtered_query, param2, param3).offset(offset + per_page).empty?
         Lesson.where(filtered_query, param2, param3).order(my_order).limit(per_page).offset(offset).each do |l|
           l.set_status self.id
           resp << l
@@ -190,13 +190,13 @@ class User < ActiveRecord::Base
           resp << lesson
         end
       when Filters::ONLY_MINE
-        last_page = Lesson.where(:user_id => self.id).order(my_order).offset(offset + per_page).empty?
+        last_page = Lesson.where(:user_id => self.id).offset(offset + per_page).empty?
         Lesson.where(:user_id => self.id).order(my_order).limit(per_page).offset(offset).each do |l|
           l.set_status self.id
           resp << l
         end
       when Filters::COPIED
-        last_page = Lesson.where(:user_id => self.id, :copied_not_modified => true).order(my_order).offset(offset + per_page).empty?
+        last_page = Lesson.where(:user_id => self.id, :copied_not_modified => true).offset(offset + per_page).empty?
         Lesson.where(:user_id => self.id, :copied_not_modified => true).order(my_order).limit(per_page).offset(offset).each do |l|
           l.set_status self.id
           resp << l
@@ -417,13 +417,13 @@ class User < ActiveRecord::Base
     case params.length
       when 2
         query = Tagging.select(select).joins(joins).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
-        last_page = Tagging.select(select).joins(joins).where(where, params[0], params[1]).order(order).offset(offset + limit).empty?
+        last_page = Tagging.select(select).joins(joins).where(where, params[0], params[1]).order(order).offset(offset + limit).length == 0
       when 3
         query = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
-        last_page = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset + limit).empty?
+        last_page = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset + limit).length == 0
       when 4
         query = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order(order).offset(offset).limit(limit)
-        last_page = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order(order).offset(offset + limit).empty?
+        last_page = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order(order).offset(offset + limit).length == 0
     end
     content = []
     query.each do |q|
