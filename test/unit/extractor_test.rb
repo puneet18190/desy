@@ -4,6 +4,45 @@ require 'test_helper'
 
 class ExtractorTest < ActiveSupport::TestCase
   
+  def load_likes
+    Like.all.each do |l|
+      l.destroy
+    end
+    @liker1 = User.create_user('em1@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker2 = User.create_user('em2@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker3 = User.create_user('em3@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker4 = User.create_user('em4@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker5 = User.create_user('em5@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker6 = User.create_user('em6@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker7 = User.create_user('em7@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker8 = User.create_user('em8@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker9 = User.create_user('em9@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    assert @liker1.like @les1.id
+    assert @liker1.like @les3.id
+    assert @liker1.like @les6.id
+    assert @liker1.like @les9.id
+    assert @liker2.like @les2.id
+    assert @liker2.like @les3.id
+    assert @liker2.like @les4.id
+    assert @liker2.like @les7.id
+    assert @liker3.like @les1.id
+    assert @liker4.like @les4.id
+    assert @liker4.like @les8.id
+    assert @liker5.like @les5.id
+    assert @liker5.like @les6.id
+    assert @liker5.like @les7.id
+    assert @liker6.like @les8.id
+    assert @liker6.like @les9.id
+    assert @liker6.like @les1.id
+    assert @liker6.like @les3.id
+    assert @liker7.like @les1.id
+    assert @liker7.like @les5.id
+    assert @liker7.like @les6.id
+    assert @liker8.like @les8.id
+    assert @liker9.like @les8.id
+    assert @liker9.like @les1.id
+  end
+  
   def populate_tags
     Tag.all.each do |t|
       t.destroy
@@ -592,9 +631,21 @@ class ExtractorTest < ActiveSupport::TestCase
     lll.is_public = false
     assert_obj_saved lll
     # sixth case
-    # TODO qui mettere all lessons con ordine like -- caricarli previamente
+    old_number_users = User.count
+    load_likes
+    assert_equal (old_number_users + 9), User.count
+    assert_equal 24, Like.count
+    assert @les7.publish
+    assert @les8.publish
+    assert @les9.publish
+    p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', nil)
+    p2 = @user2.search_lessons(nil, 2, 5, 'likes', 'all_lessons', nil)
+    assert_ordered_item_extractor [@les1.id, @les8.id, @les3.id, @les6.id, @les4.id], p1[:content]
+    assert_equal false, p1[:last_page]
+    assert_ordered_item_extractor [@les5.id, @les7.id, @les9.id, @les2.id, 2], p2[:content]
+    assert_equal true, p2[:last_page]
     # seventh case
-    # TODO ANCHE QUI LO STESSO MA CON UN FILTRO PER MATERIA
+    # TODO ANCHE QUI LO STESSO, per likes, MA CON UN FILTRO PER MATERIA
     # eight case
     # TODO qui passare alla ricerca per tags -- organizzarsi
   end

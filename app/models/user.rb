@@ -401,7 +401,7 @@ class User < ActiveRecord::Base
       when SearchOrders::UPDATED_AT
         order = 'media_elements.updated_at DESC'
       when SearchOrders::TITLE
-        order = 'media_elements.title ASC'
+        order = 'media_elements.title ASC, media_elements.updated_at DESC'
     end
     case filter
       when Filters::VIDEO
@@ -429,7 +429,7 @@ class User < ActiveRecord::Base
       when SearchOrders::UPDATED_AT
         order = 'updated_at DESC'
       when SearchOrders::TITLE
-        order = 'title ASC'
+        order = 'title ASC, updated_at DESC'
     end
     last_page = nil
     query = []
@@ -470,9 +470,9 @@ class User < ActiveRecord::Base
         order = 'lessons.updated_at DESC'
       when SearchOrders::LIKES
         select = "#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
-        order = 'likes_count DESC'
+        order = 'likes_count DESC, lessons.updated_at DESC'
       when SearchOrders::TITLE
-        order = 'lessons.title ASC'
+        order = 'lessons.title ASC, lessons.updated_at DESC'
     end
     if !subject_id.nil?
       where = "#{where} AND lessons.subject_id = ?"
@@ -529,9 +529,9 @@ class User < ActiveRecord::Base
         order = 'updated_at DESC'
       when SearchOrders::LIKES
         select = "#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
-        order = 'likes_count DESC'
+        order = 'likes_count DESC, updated_at DESC'
       when SearchOrders::TITLE
-        order = 'title ASC'
+        order = 'title ASC, updated_at DESC'
     end
     case filter
       when Filters::ALL_LESSONS
