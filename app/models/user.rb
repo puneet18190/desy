@@ -25,6 +25,20 @@ class User < ActiveRecord::Base
     "#{self.name} #{self.surname}"
   end
   
+  def search_media_elements(word, page, for_page, order=nil, filter=nil)
+    word = word.to_s
+    page = 1 if page.class != Fixnum
+    for_page = 1 if for_page.class != Fixnum
+    filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
+    order = SearchOrders::UPDATED_AT if order.nil? || !SearchOrders::MEDIA_ELEMENTS_SET.include?(order)
+    offset = (page - 1) * for_page
+    if word.blank?
+      search_media_elements_without_tag(offset, for_page, filter, order)
+    else
+      search_media_elements_with_tag(word, offset, for_page, filter, order)
+    end
+  end
+  
   def search_lessons(word, page, for_page, order=nil, filter=nil, subject_id=nil)
     word = word.to_s
     page = 1 if page.class != Fixnum
@@ -375,6 +389,74 @@ class User < ActiveRecord::Base
   end
   
   private
+  
+  def search_media_elements_with_tag(word, offset, limit, filter, order_by)
+    resp = {}
+    params = ["#{word}%", true, self.id]
+    select = 'media_elements.id AS media_element_id'
+    joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
+    where = 'tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
+    order = ''
+    case order_by
+      when SearchOrders::UPDATED_AT
+        order = 'media_elements.updated_at DESC'
+      when SearchOrders::TITLE
+        order = 'media_elements.title DESC'
+    end
+    case filter
+      when Filters::VIDEO
+        where = "#{where} AND media_elements.sti_type = 'Video'"
+      when Filters::AUDIO
+        where = "#{where} AND media_elements.sti_type = 'Audio'"
+      when Filters::IMAGE
+        where = "#{where} AND media_elements.sti_type = 'Image'"
+    end
+    content = []
+    Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit).each do |q|
+      media_element = MediaElement.find_by_id q.media_element_id
+      media_element.set_status self.id
+      content << media_element
+    end
+    resp[:last_page] = Tagging.joins(joins).where(where, params[0], params[1], params[2]).offset(offset + limit).empty?
+    resp[:content] = content
+    return resp
+  end
+  
+  def search_media_elements_without_tag(offset, limit, filter, order_by)
+    resp = {}
+    order = ''
+    case order_by
+      when SearchOrders::UPDATED_AT
+        order = 'updated_at DESC'
+      when SearchOrders::TITLE
+        order = 'title DESC'
+    end
+    last_page = nil
+    query = []
+    case filter
+      when Filters::ALL_MEDIA_ELEMENTS
+        last_page = MediaElement.where('is_public = ? OR user_id = ?', true, self.id).offset(offset + limit).empty?
+        query = MediaElement.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
+      when Filters::VIDEO
+        last_page = Video.where('is_public = ? OR user_id = ?', true, self.id).offset(offset + limit).empty?
+        query = Video.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
+      when Filters::AUDIO
+        last_page = Audio.where('is_public = ? OR user_id = ?', true, self.id).offset(offset + limit).empty?
+        query = Audio.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
+      when Filters::IMAGE
+        last_page = Image.where('is_public = ? OR user_id = ?', true, self.id).offset(offset + limit).empty?
+        query = Image.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
+    end
+    content = []
+    query.each do |q|
+      media_element = MediaElement.find_by_id q.media_element_id
+      media_element.set_status self.id
+      content << media_element
+    end
+    resp[:last_page] = last_page
+    resp[:content] = content
+    return resp
+  end
   
   def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by)
     resp = {}
