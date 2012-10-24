@@ -75,6 +75,7 @@ class ApplicationController < ActionController::Base
   
   def require_login
     @current_user = User.find_by_email(CONFIG['admin_email'])
+    session[:user_id] = @current_user.id
     # TODO questa parte qui sotto andrà preservata anche quando ci sarà la autenticazione vera
     initialize_location
   end
