@@ -1,0 +1,19 @@
+<div class="gray-bar advancedSearch">
+  <div class="cols" style="width:43%">
+	  <%= image_tag("ico_advanced_search.png", :align => "left", :style => "padding-top:5px; padding-right: 10px") %>Advanced search<h1>What are you looking for?</h1>
+	</div>
+	<div class="cols">
+	  <p>Are you for a lesson or a didacting element?<br>Choose to move forward in research.</p>
+	</div>
+	<div class="cols" style="padding-top:18px; width:18%">
+	  <input type="radio" name="group1" value="lessons" checked> Lessons 
+    <input type="radio" name="group1" value="elements" style="margin-left:40px"> Elements
+	</div>
+</div>
+<br class="clearfloat">
+<div class="griglia-contenuti">
+  <div class="elements-content">
+    <%= render :partial => "search/lessons/header" %>
+    <%= render :partial => "search/media_elements/header" %>
+	</div>
+</div>
