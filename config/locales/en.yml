@@ -117,6 +117,10 @@ en:
     not_mine: 'Not created by you'
   time:
     format: 'english'
+  orders:
+    updated_at: 'Date last modification'
+    likes: 'Number of likes'
+    title: 'Alphabetical'
   empty:
     dashboard_lessons_emptied: 'You chose all the suggested lessons'
     dashboard_lessons: 'There are no suggested lessons for you'
