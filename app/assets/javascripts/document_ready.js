@@ -53,16 +53,28 @@ $(document).ready(function() {
     return false;
   });
   
-  /* FIXME da fare ancora $('body').on('click', '._report_media_element_click', function() {
+  $('body').on('click', '._report_media_element_click', function() {
     var param = $(this).data('param');
     var obj = $('#media_element_report_form_' + param);
     if(obj.css('display') == 'none') {
-      obj.css('display', 'block');
+      var button = $('#' + this.id + ' a._reportable_icon');
+      button.addClass('_report_selected');
+      button.removeClass('report');
+      button.addClass('report_light');
+      obj.show('fade', {}, 500, function() {
+        obj.css('display', 'block');
+      });
     } else {
-      obj.css('display', 'none');
+      var button = $('#' + this.id + ' a._reportable_icon');
+      button.removeClass('_report_selected');
+      button.removeClass('report_light');
+      button.addClass('report');
+      obj.hide('fade', {}, 500, function() {
+        obj.css('display', 'none');
+      });
     }
     return false;
-  });*/
+  });
   
   $('body').on('click', '._report_form_content', function(e) {
     e.preventDefault();

@@ -1,4 +1,8 @@
 $('#media_element_report_form_<%= @media_element_id %>').css('display', 'none');
+var obj = $('#report_media_element_click_<%= @media_element_id %> a._reportable_icon');
+obj.removeClass('_report_selected');
+obj.removeClass('<%= Buttons::REPORT %>_light');
+obj.addClass('<%= Buttons::REPORT %>');
 
 <% if @resp %>
   showOkPopUp('<%= t('popups.report_ok') %>');
