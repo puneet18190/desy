@@ -129,10 +129,11 @@ $(document).ready(function() {
   });
   
   
-  // EXPAND MEDIA ELEMENT
+  // EXPANDED MEDIA ELEMENT
   
-  $('body').on('click', '._media_element_popup_shown ._close_popup', function() {
-    alert('ecchime');
+  $('body').on('click', '#dialog-media-element ._close_popup', function() {
+    var param = $(this).data('param');
+    closeMediaElementInfoPopUp(param);
   });
   
   

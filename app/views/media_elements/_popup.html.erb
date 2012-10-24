@@ -28,7 +28,7 @@
       <% if media_element.is_reportable %>
         <%= render :partial => "reports/media_element", :locals => {:media_element => media_element} %>
       <% end %>
-      <a class="close _close_popup"></a>
+      <a class="close _close_popup" data-param="<%= media_element.id %>"></a>
     </div>
   </div>
 </div>

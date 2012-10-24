@@ -26,7 +26,9 @@ function closePopUp(id) {
 }
 
 function closeMediaElementInfoPopUp(id) {
-  
+  var content = $('#dialog-media-element').html();
+  $('#media_element_popup_' + id).html(content);
+  $('#dialog-media-element').dialog('close');
 }
 
 
