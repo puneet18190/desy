@@ -892,6 +892,20 @@ CREATE INDEX index_lessons_on_subject_id ON lessons USING btree (subject_id);
 
 
 --
+-- Name: index_lessons_on_title; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_lessons_on_title ON lessons USING btree (title DESC);
+
+
+--
+-- Name: index_lessons_on_updated_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_lessons_on_updated_at ON lessons USING btree (updated_at DESC);
+
+
+--
 -- Name: index_lessons_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -910,6 +924,20 @@ CREATE INDEX index_likes_on_lesson_id ON likes USING btree (lesson_id);
 --
 
 CREATE INDEX index_likes_on_user_id ON likes USING btree (user_id);
+
+
+--
+-- Name: index_media_elements_on_title; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_media_elements_on_title ON media_elements USING btree (title DESC);
+
+
+--
+-- Name: index_media_elements_on_updated_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_media_elements_on_updated_at ON media_elements USING btree (updated_at DESC);
 
 
 --
@@ -1248,3 +1276,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120926160646');
 INSERT INTO schema_migrations (version) VALUES ('20120927141837');
 
 INSERT INTO schema_migrations (version) VALUES ('20121019091311');
+
+INSERT INTO schema_migrations (version) VALUES ('20121024101844');

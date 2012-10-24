@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121019091311) do
+ActiveRecord::Schema.define(:version => 20121024101844) do
 
   create_table "locations", :force => true do |t|
     t.string   "description", :null => false
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(:version => 20121019091311) do
     t.index ["parent_id"], :name => "index_lessons_on_parent_id"
     t.index ["school_level_id"], :name => "index_lessons_on_school_level_id"
     t.index ["subject_id"], :name => "index_lessons_on_subject_id"
+    t.index ["title"], :name => "index_lessons_on_title"
+    t.index ["updated_at"], :name => "index_lessons_on_updated_at"
     t.index ["user_id"], :name => "index_lessons_on_user_id"
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "lessons_user_id_fkey"
     t.foreign_key ["school_level_id"], "school_levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "lessons_school_level_id_fkey"
@@ -95,6 +97,8 @@ ActiveRecord::Schema.define(:version => 20121019091311) do
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.datetime "publication_date"
+    t.index ["title"], :name => "index_media_elements_on_title"
+    t.index ["updated_at"], :name => "index_media_elements_on_updated_at"
     t.index ["user_id"], :name => "index_media_elements_on_user_id"
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "media_elements_user_id_fkey"
   end
