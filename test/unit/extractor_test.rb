@@ -557,13 +557,39 @@ class ExtractorTest < ActiveSupport::TestCase
       ids << i.id
     end
     assert_extractor ids, Lesson.order('updated_at DESC')
-    # I start here
+    # I start here, first case
     p1 = @user2.search_lessons('  ', 1, 5)
-    p2 = @user2.search_lessons('', 2, 5, nil, nil)
+    p2 = @user2.search_lessons('', 2, 5, nil, 'bababah')
     assert_ordered_extractor [2, @les1.id, @les2.id, @les3.id, @les4.id], p1[:content]
     assert_equal false, p1[:last_page]
     assert_ordered_extractor [@les5.id, @les6.id], p2[:content]
     assert_equal true, p2[:last_page]
+    # second case
+    p1 = @user2.search_lessons('  ', 1, 5, nil, 'only_mine', nil)
+    assert_ordered_extractor [2], p1[:content]
+    assert_equal true, p1[:last_page]
+    # third case
+    p1 = @user2.search_lessons(nil, 1, 5, nil, 'not_mine')
+    p2 = @user2.search_lessons('', 2, 5, 'beh', 'not_mine')
+    assert_ordered_extractor [@les1.id, @les2.id, @les3.id, @les4.id, @les5.id], p1[:content]
+    assert_equal false, p1[:last_page]
+    assert_ordered_extractor [@les6.id], p2[:content]
+    assert_equal true, p2[:last_page]
+    # fourth case
+    lll = Lesson.find(1)
+    lll.is_public = true
+    assert_obj_saved lll
+    p1 = @user2.search_lessons('', 1, 5, nil, 'public')
+    p2 = @user2.search_lessons('', 2, 5, nil, 'public')
+    assert_ordered_extractor [1, 2, @les1.id, @les2.id, @les3.id], p1[:content]
+    assert_equal false, p1[:last_page]
+    assert_ordered_extractor [@les4.id, @les5.id, @les6.id], p2[:content]
+    assert_equal true, p2[:last_page]
+    lll.is_public = false
+    assert_obj_saved lll
+    
+#    alla prossima cambiare l'ordine e togliere una materia
+    
   end
   
 end

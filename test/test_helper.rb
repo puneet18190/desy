@@ -7,10 +7,10 @@ class ActiveSupport::TestCase
   fixtures :all
   
   def assert_ordered_extractor(x1, x2)
-    assert_equal x1.length, x2.length
+    assert_equal x1.length, x2.length, "Error, #{x1.inspect} -- #{x2.inspect}"
     cont = 0
     while cont < x1.length
-      assert_equal x1[cont], x2[cont].id
+      assert_equal x1[cont], x2[cont].id, "Error, #{x1.inspect} -- #{x2.inspect}"
       cont += 1
     end
   end

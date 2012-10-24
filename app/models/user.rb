@@ -556,6 +556,9 @@ class User < ActiveRecord::Base
     query = []
     last_page = nil
     case params.length
+      when 1
+        query = Lesson.select(select).where(where, params[0]).order(order).offset(offset).limit(limit)
+        last_page = Lesson.where(where, params[0]).offset(offset + limit).empty?
       when 2
         query = Lesson.select(select).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
         last_page = Lesson.where(where, params[0], params[1]).offset(offset + limit).empty?
