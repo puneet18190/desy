@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     "#{self.name} #{self.surname}"
   end
   
-  def search_lessons(word, page, for_page, filter=nil, subject_id=nil, order=nil)
+  def search_lessons(word, page, for_page, order=nil, filter=nil, subject_id=nil)
     word = word.to_s
     page = 1 if page.class != Fixnum
     for_page = 1 if for_page.class != Fixnum
@@ -376,14 +376,14 @@ class User < ActiveRecord::Base
   
   private
   
-  def search_lessons_with_tag(word, offset, limit, filter, subject_id, order)
+  def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by)
     resp = {}
-    params = ["%#{word}"]
+    params = ["#{word}%"]
     select = 'lessons.id AS lesson_id'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
     where = 'tags.word LIKE ?'
     order = ''
-    case order
+    case order_by
       when SearchOrders::UPDATED_AT
         order = 'lessons.updated_at DESC'
       when SearchOrders::LIKES
@@ -436,13 +436,13 @@ class User < ActiveRecord::Base
     return resp
   end
   
-  def search_lessons_without_tag(offset, limit, filter, subject_id, order)
+  def search_lessons_without_tag(offset, limit, filter, subject_id, order_by)
     resp = {}
     params = []
     select = 'lessons.id AS lesson_id'
     where = ''
     order = ''
-    case order
+    case order_by
       when SearchOrders::UPDATED_AT
         order = 'updated_at DESC'
       when SearchOrders::LIKES
