@@ -43,6 +43,9 @@ Desy::Application.routes.draw do
   # LESSON EDITOR
   match 'lessons/:lesson_id/edit' => 'lesson_editor#index', :as => :lesson_editor
   
+  # SEARCH LESSONS OR MEDIA ELEMENTS
+  match 'search/index' => 'search#index', :as => :search_items
+  
   # APPLICATION ROOT
   root :to => 'registrations#prelogin'
   

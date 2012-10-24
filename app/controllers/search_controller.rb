@@ -5,6 +5,10 @@ class SearchController < ApplicationController
   
   before_filter :initialize_notifications
   
+  def index
+    
+  end
+  
   def lessons
     @lessons = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   end
