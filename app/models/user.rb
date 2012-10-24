@@ -436,8 +436,60 @@ class User < ActiveRecord::Base
     return resp
   end
   
-  def search_lessons_without_tag
-    
+  def search_lessons_without_tag(offset, limit, filter, subject_id, order)
+    resp = {}
+    params = []
+    select = 'lessons.id AS lesson_id'
+    where = ''
+    order = ''
+    case order
+      when SearchOrders::UPDATED_AT
+        order = 'updated_at DESC'
+      when SearchOrders::LIKES
+        select = "#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
+        order = 'likes_count DESC'
+      when SearchOrders::TITLE
+        order = 'title DESC'
+    end
+    if !subject_id.nil?
+      where = 'subject_id = ?'
+      params << subject_id
+    end
+    case filter
+      when Filters::ALL_LESSONS
+        where = "#{where} AND (is_public = ? OR user_id = ?)"
+        params << true
+        params << self.id
+      when Filters::PUBLIC
+        where = "#{where} AND is_public = ?"
+        params << true
+      when Filters::ONLY_MINE
+        where = "#{where} AND user_id = ?"
+        params << self.id
+      when Filters::NOT_MINE
+        where = "#{where} AND is_public = ? AND user_id != ?"
+        params << true
+        params << self.id
+    end
+    query = []
+    last_page = nil
+    case params.length
+      when 2
+        query = Tagging.select(select).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
+        last_page = Tagging.select(select).where(where, params[0], params[1]).order(order).offset(offset + limit).empty?
+      when 3
+        query = Tagging.select(select).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
+        last_page = Tagging.select(select).where(where, params[0], params[1], params[2]).order(order).offset(offset + limit).empty?
+    end
+    content = []
+    query.each do |q|
+      lesson = Lesson.find_by_id q.lesson_id
+      lesson.set_state self.id
+      content << lesson
+    end
+    resp[:last_page] = last_page
+    resp[:content] = content
+    return resp
   end
   
   def init_validation
