@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
     word = word.to_s
     page = 1 if page.class != Fixnum
     for_page = 1 if for_page.class != Fixnum
-    subject_id = nil if ![NilClass, Fixnum].include?(subject_id)
+    subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
     order = SearchOrders::UPDATED_AT if order.nil? || !SearchOrders::LESSONS_SET.include?(order)
     offset = (page - 1) * for_page
@@ -401,7 +401,7 @@ class User < ActiveRecord::Base
       when SearchOrders::UPDATED_AT
         order = 'media_elements.updated_at DESC'
       when SearchOrders::TITLE
-        order = 'media_elements.title DESC'
+        order = 'media_elements.title ASC'
     end
     case filter
       when Filters::VIDEO
@@ -429,7 +429,7 @@ class User < ActiveRecord::Base
       when SearchOrders::UPDATED_AT
         order = 'updated_at DESC'
       when SearchOrders::TITLE
-        order = 'title DESC'
+        order = 'title ASC'
     end
     last_page = nil
     query = []
@@ -472,7 +472,7 @@ class User < ActiveRecord::Base
         select = "#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
         order = 'likes_count DESC'
       when SearchOrders::TITLE
-        order = 'lessons.title DESC'
+        order = 'lessons.title ASC'
     end
     if !subject_id.nil?
       where = "#{where} AND lessons.subject_id = ?"
@@ -531,7 +531,7 @@ class User < ActiveRecord::Base
         select = "#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
         order = 'likes_count DESC'
       when SearchOrders::TITLE
-        order = 'title DESC'
+        order = 'title ASC'
     end
     case filter
       when Filters::ALL_LESSONS
