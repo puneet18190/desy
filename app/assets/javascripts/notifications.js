@@ -22,9 +22,11 @@ function initializeNotifications() {
     }
   });
   $('body').on('click', '._single_notification a', function() {
-    var my_expanded = $('#' + $(this).closest('li').attr('id') + ' ._expanded_notification');
+    var my_content = $('#' + $(this).closest('li').attr('id') + ' ._expanded_notification').html();
+    var my_expanded = $('#expanded_notification');
     if(my_expanded.css('display') == 'none') {
       hideAllExpandedNotifications();
+      my_expanded.html(my_content);
       my_expanded.css('display', 'block');
       if(!$(this).hasClass('current')) {
         $.ajax({
@@ -33,7 +35,7 @@ function initializeNotifications() {
         });
       }
     } else {
-      my_expanded.css('display', 'none');
+      hideAllExpandedNotifications();
     }
   });
 }
@@ -58,7 +60,8 @@ function initializeHelp() {
 }
 
 function hideAllExpandedNotifications() {
-  $('._expanded_notification').css('display', 'none');
+  $('#expanded_notification').html('');
+  $('#expanded_notification').css('display', 'none');
 }
 
 function hideNotificationsTooltip() {
