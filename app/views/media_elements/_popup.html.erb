@@ -1,5 +1,4 @@
-<div class="_media_element_popup" style="display:none"> <!-- TODO qui andrà completato con la path dell'eventuale clip dell'allegato, img, audio o video! + le tags -->
-<!-- questo è il div nascosto contenente le info-->
+<div class="_media_element_popup" style="display:none">
   <% if media_element.info_changeable %>
     <div class="_change_info_container" style="display:none">
       <%= form_tag change_media_element_info_path(media_element.id) do %>
@@ -12,25 +11,24 @@
   <% end %>
   <div class="_media_element_pop_up_container">
     <div class="contentElement"><%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}" %> </div>
-		<!-- TODO qui dovrò passare la url dell'attached quando necessario -->
     <div class="fltlft" style="width:280px;">
-		  <h1><%= media_element.sti_type %></h1>
+      <h1><%= media_element.sti_type %></h1>
       <h2><%= media_element.title %></h2>
       <p><%= media_element.description %></p>
-		</div>
+    </div>
   </div>
   <div style="float:left; width:100%; background-color:#fff;">
-    <div class="menuIconButton" style="float:left;  padding-left:10px"> <!-- TODO questo flotta a sinistra -->
+    <div class="menuIconButton" style="float:left;  padding-left:10px">
       <%= render :partial => "shared/buttons/#{Buttons::EDIT}" %>
       <% if media_element.info_changeable %>
         <%= render :partial => "shared/buttons/#{Buttons::CHANGE_INFO}" %>
       <% end %>
     </div>
-    <div class="menuIconButton" style="float:right"> <!-- TODO questo invece a destra -->
+    <div class="menuIconButton" style="float:right">
       <% if media_element.is_reportable %>
-        <%= render :partial => "shared/buttons/#{Buttons::REPORT}/media_element", :locals => {:media_element => media_element} %>
+        <%= render :partial => "reports/media_element", :locals => {:media_element => media_element} %>
       <% end %>
-      <a class="close"></a> <!-- qui ci andrà il bottone per chiudere il pop up -->
+      <a class="close"></a>
     </div>
   </div>
 </div>

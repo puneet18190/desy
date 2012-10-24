@@ -19,7 +19,7 @@
 				people like this lesson
 			</p>
       <% if lesson.is_reportable %>
-        <%= render :partial => "shared/buttons/#{Buttons::REPORT}/lesson", :locals => {:lesson => lesson} %>
+        <%= render :partial => "reports/lesson", :locals => {:lesson => lesson} %>
       <% end %>
     </div>
     <div class="description-text">
