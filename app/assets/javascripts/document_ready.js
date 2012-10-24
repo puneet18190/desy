@@ -53,7 +53,7 @@ $(document).ready(function() {
     return false;
   });
   
-  $('body').on('click', '._report_media_element_click', function() {
+  /* FIXME da fare ancora $('body').on('click', '._report_media_element_click', function() {
     var param = $(this).data('param');
     var obj = $('#media_element_report_form_' + param);
     if(obj.css('display') == 'none') {
@@ -62,7 +62,7 @@ $(document).ready(function() {
       obj.css('display', 'none');
     }
     return false;
-  });
+  });*/
   
   $('body').on('click', '._report_form_content', function(e) {
     e.preventDefault();
@@ -126,6 +126,13 @@ $(document).ready(function() {
         my_expanded.css('display', 'block');
       });
     }
+  });
+  
+  
+  // EXPAND MEDIA ELEMENT
+  
+  $('body').on('click', '._media_element_popup_shown ._close_popup', function() {
+    alert('ecchime');
   });
   
   
@@ -241,8 +248,7 @@ $(document).ready(function() {
   $('body').on('click', '._Video_button_preview, ._Audio_button_preview, ._Image_button_preview', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    showMediaElementInfoPopUp(my_param, destination);
+    showMediaElementInfoPopUp(my_param);
     return false;
   });
   

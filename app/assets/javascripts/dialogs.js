@@ -42,8 +42,8 @@ function showOkPopUp(content) {
   showTimedPopUp(new_content, 'dialog-ok');
 }
 
-function showMediaElementInfoPopUp(media_element_id, destination) {
-  var target = $('#' + destination + '_' + media_element_id + ' ._media_element_popup');
+function showMediaElementInfoPopUp(media_element_id) {
+  var target = $('#media_element_popup_' + media_element_id);
   var content = target.html();
   target.html('');
   var obj = $('#dialog-media-element');
@@ -57,7 +57,7 @@ function showMediaElementInfoPopUp(media_element_id, destination) {
       modal: true,
       resizable: false,
       width: 874,
-			show: "fade",
+      show: "fade",
       hide: "fade"
     });
   }
