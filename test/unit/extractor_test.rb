@@ -557,6 +557,13 @@ class ExtractorTest < ActiveSupport::TestCase
       ids << i.id
     end
     assert_extractor ids, Lesson.order('updated_at DESC')
+    # I start here
+    p1 = @user2.search_lessons('  ', 1, 5)
+    p2 = @user2.search_lessons('', 2, 5, nil, nil)
+    assert_ordered_extractor [2, @les1.id, @les2.id, @les3.id, @les4.id], p1[:content]
+    assert_equal false, p1[:last_page]
+    assert_ordered_extractor [@les5.id, @les6.id], p2[:content]
+    assert_equal true, p2[:last_page]
   end
   
 end

@@ -6,6 +6,15 @@ class ActiveSupport::TestCase
   
   fixtures :all
   
+  def assert_ordered_extractor(x1, x2)
+    assert_equal x1.length, x2.length
+    cont = 0
+    while cont < x1.length
+      assert_equal x1[cont], x2[cont].id
+      cont += 1
+    end
+  end
+  
   def assert_extractor_intersection(x1, x2)
     x2.each do |y|
       flag = true
