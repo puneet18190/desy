@@ -128,21 +128,40 @@ class ExtractorTest < ActiveSupport::TestCase
     @el7.user_id = 1
     @el7.sti_type = 'Image'
     assert_obj_saved @el7
+    Lesson.record_timestamps = false
+    MediaElement.record_timestamps = false
     @el1.is_public = true
     @el1.publication_date = '2012-01-01 10:00:00'
+    @el1.updated_at = '2011-10-01 20:00:00'
     assert_obj_saved @el1
     @el2.is_public = true
     @el2.publication_date = '2012-01-01 10:00:00'
+    @el2.updated_at = '2011-10-01 19:59:59'
     assert_obj_saved @el2
     @el3.is_public = true
     @el3.publication_date = '2012-01-01 10:00:00'
+    @el3.updated_at = '2011-10-01 19:59:58'
     assert_obj_saved @el3
+    @el4.updated_at = '2011-10-01 19:59:57'
+    assert_obj_saved @el4
     @el5.is_public = true
     @el5.publication_date = '2012-01-01 10:00:00'
+    @el5.updated_at = '2011-10-01 19:59:56'
     assert_obj_saved @el5
+    @el6.updated_at = '2011-10-01 19:59:55'
+    assert_obj_saved @el6
     @el7.is_public = true
     @el7.publication_date = '2012-01-01 10:00:00'
+    @el7.updated_at = '2011-10-01 19:59:54'
     assert_obj_saved @el7
+    date_now = '2011-01-01 20:00:00'.to_time
+    Lesson.all.each do |l|
+      l.updated_at = date_now
+      assert_obj_saved l
+      date_now -= 1
+    end
+    Lesson.record_timestamps = true
+    MediaElement.record_timestamps = true
   end
   
   test 'suggested_lessons' do
@@ -525,12 +544,19 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 34, Tag.count
     assert_equal 11, Lesson.count
     assert_equal 13, MediaElement.count
-    
-    Tagging.all.each do |t|
-      puts "\n\n#{t.taggable_type} ID#{t.taggable_id} tagged with #{t.tag.word}"
-    end
-    
     assert_equal 168, Tagging.count
+    x = MediaElement.order('id DESC')
+    ids = []
+    x.each do |i|
+      ids << i.id
+    end
+    assert_extractor ids, MediaElement.order('updated_at DESC')
+    x = Lesson.order('id DESC')
+    ids = []
+    x.each do |i|
+      ids << i.id
+    end
+    assert_extractor ids, Lesson.order('updated_at DESC')
   end
   
 end
