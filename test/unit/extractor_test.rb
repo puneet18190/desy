@@ -1,6 +1,77 @@
+# encoding: UTF-8
+
 require 'test_helper'
 
 class ExtractorTest < ActiveSupport::TestCase
+  
+  def populate_tags
+    Tag.all.each do |t|
+      t.destroy
+    end
+    tags = []
+    tags << "cane"
+    tags << "sole"
+    tags << "gatto"
+    tags << "cincillà"
+    tags << "walter nudo"
+    tags << "luna"
+    tags << "escrementi di usignolo"
+    tags << "disabili"
+    tags << "barriere architettoniche"
+    tags << "mare"
+    tags << "petrolio"
+    tags << "sostenibilità"
+    tags << "immondizia"
+    tags << "inquinamento atmosferico"
+    tags << "inquinamento"
+    tags << "pollution"
+    tags << "tom cruise"
+    tags << "cammello"
+    tags << "cammelli"
+    tags << "acqua"
+    tags << "acquario"
+    tags << "acquatico"
+    tags << "個名"
+    tags << "拿大即"
+    tags << "河"
+    tags << "條聖"
+    tags << "係英國"
+    tags << "拿"
+    tags << "住羅倫"
+    tags << "加"
+    tags << "大湖"
+    tags << "咗做"
+    tags << "個"
+    tags << "法屬係話"
+    tag_ids = []
+    tags.each do |t|
+      tt = Tag.new
+      tt.word = t
+      tt.save
+      tag_ids << tt.id
+    end
+    tag_map = {
+      0 => [tag_ids[0], tag_ids[1], tag_ids[2], tag_ids[3], tag_ids[4], tag_ids[5], tag_ids[6]],
+      1 => [tag_ids[4], tag_ids[5], tag_ids[6], tag_ids[7], tag_ids[8], tag_ids[9], tag_ids[10]],
+      2 => [tag_ids[8], tag_ids[9], tag_ids[10], tag_ids[11], tag_ids[12], tag_ids[13], tag_ids[14]],
+      3 => [tag_ids[14], tag_ids[15], tag_ids[16], tag_ids[17], tag_ids[18], tag_ids[19], tag_ids[20]],
+      4 => [tag_ids[18], tag_ids[19], tag_ids[20], tag_ids[21], tag_ids[22], tag_ids[23], tag_ids[24]],
+      5 => [tag_ids[22], tag_ids[23], tag_ids[24], tag_ids[25], tag_ids[26], tag_ids[27], tag_ids[28]],
+      6 => [tag_ids[26], tag_ids[27], tag_ids[28], tag_ids[29], tag_ids[30], tag_ids[31], tag_ids[32]],
+      7 => [tag_ids[30], tag_ids[31], tag_ids[32], tag_ids[33], tag_ids[0], tag_ids[1], tag_ids[2]],
+      8 => [tag_ids[2], tag_ids[5], tag_ids[8], tag_ids[11], tag_ids[14], tag_ids[17], tag_ids[20]],
+      9 => [tag_ids[6], tag_ids[13], tag_ids[20], tag_ids[27], tag_ids[4], tag_ids[9], tag_ids[14]]
+    }
+    cont = 0
+    MediaElement.all.each do |me|
+      assert Tag.create_tag_set('MediaElement', me.id, tag_map[cont%10]), "Tags not saved for MediaElement -- #{me.inspect}"
+      cont += 1
+    end
+    Lesson.all.each do |l|
+      assert Tag.create_tag_set('Lesson', l.id, tag_map[cont%10]), "Tags not saved for Lesson -- #{l.inspect}"
+      cont += 1
+    end
+  end
   
   def setup
     @user1 = User.find 1
@@ -447,6 +518,19 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 6, Notification.number_not_seen(1)
     assert_extractor [us2_1.id, us2_2.id, us2_3.id, us2_4.id, us2_5.id], Notification.visible_block(2, 0, 5)
     assert_extractor [us1_1.id, us1_2.id, us1_3.id, us1_4.id, us1_5.id], Notification.visible_block(1, 0, 5)
+  end
+  
+  test 'google' do
+    populate_tags
+    assert_equal 34, Tag.count
+    assert_equal 11, Lesson.count
+    assert_equal 13, MediaElement.count
+    
+    Tagging.all.each do |t|
+      puts "\n\n#{t.taggable_type} ID#{t.taggable_id} tagged with #{t.tag.word}"
+    end
+    
+    assert_equal 168, Tagging.count
   end
   
 end
