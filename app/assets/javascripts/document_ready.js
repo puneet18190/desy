@@ -146,18 +146,15 @@ $(document).ready(function() {
   
   $('body').on('click', '#dialog-media-element ._change_info_to_pick', function() {
     var obj1 = $('#dialog-media-element ._change_info_container');
-    
     if(obj1.css('display') == 'none') {
-      obj1.show('fade', {}, 1000, function() {
+      obj1.show('fade', {}, 500, function() {
         obj1.css('display', 'block');
-        
       });
       $('#dialog-media-element ._change_info_to_pick').removeClass('change_info');
       $('#dialog-media-element ._change_info_to_pick').addClass('change_info_light');
     } else {
-      obj1.hide('fade', {}, 1000, function() {
+      obj1.hide('fade', {}, 500, function() {
         obj1.css('display', 'none');
-        
       });
       $('#dialog-media-element .change_info_to_pick').addClass('change_info');
       $('#dialog-media-element .change_info_to_pick').removeClass('change_info_light');

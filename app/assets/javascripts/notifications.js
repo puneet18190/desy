@@ -7,13 +7,17 @@ function initializeNotifications() {
     if($('#tooltip_content').css('display') == 'none') {
       hideHelpTooltip();
       hideHelpButton();
-      showNotificationsTooltip();
+      $('#tooltip_content').show('fade', {}, 500, function() {
+        showNotificationsTooltip();
+      });
       hideNotificationsFumetto();
       if(!$('#notifications_button').hasClass('current')) {
         showNotificationsButton();
       }
     } else {
-      hideNotificationsTooltip();
+      $('#tooltip_content').hide('fade', {}, 500, function() {
+        hideNotificationsTooltip();
+      });
       if(parseInt($('#tooltip_arancione').data('number')) > 0) {
         showNotificationsFumetto();
       } else {
@@ -22,20 +26,25 @@ function initializeNotifications() {
     }
   });
   $('body').on('click', '._single_notification a', function() {
-    var my_content = $('#' + $(this).closest('li').attr('id') + ' ._expanded_notification').html();
+    var closest_li = $(this).closest('li');
+    var my_content = $('#' + closest_li.attr('id') + ' ._expanded_notification').html();
     var my_expanded = $('#expanded_notification');
     if(my_expanded.css('display') == 'none') {
       hideAllExpandedNotifications();
       my_expanded.html(my_content);
-      my_expanded.css('display', 'block');
-      if(!$(this).hasClass('current')) {
-        $.ajax({
-          type: 'post',
-          url: 'notifications/' + $(this).data('param') + '/seen'
-        });
-      }
+      $('#expanded_notification').show('fade', {}, 500, function() {
+        my_expanded.css('display', 'block');
+        if(!$(this).hasClass('current')) {
+          $.ajax({
+            type: 'post',
+            url: 'notifications/' + closest_li.data('param') + '/seen'
+          });
+        }
+      });
     } else {
-      hideAllExpandedNotifications();
+      $('#expanded_notification').hide('fade', {}, 500, function() {
+        hideAllExpandedNotifications();
+      });
     }
   });
 }
@@ -46,10 +55,14 @@ function initializeHelp() {
       hideNotificationsTooltip();
       hideNotificationsButton();
       hideNotificationsFumetto();
-      showHelpTooltip();
+      $('#tooltip_help').show('fade', {}, 500, function() {
+        showHelpTooltip();
+      });
       showHelpButton();
     } else {
-      hideHelpTooltip();
+      $('#tooltip_help').hide('fade', {}, 500, function() {
+        hideHelpTooltip();
+      });
       hideHelpButton();
       if($('#tooltip_arancione').data('number') > 0) {
         showNotificationsButton();
