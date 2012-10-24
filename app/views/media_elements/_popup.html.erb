@@ -2,7 +2,7 @@
   
   <div class="_media_element_pop_up_container">
 	 <% if media_element.info_changeable %>
-    <div class="_change_info_container" style="display:none; border:1px solid red; z-index:10; position:absolute">
+    <div class="_change_info_container" style="display:none; border:1px solid red; z-index:10; position:absolute; background-color:#fff">
       <%= form_tag change_media_element_info_path(media_element.id) do %>
         <%= text_field_tag 'title', 'title' %>
         <%= text_area_tag 'description', 'description' %>

@@ -34,12 +34,15 @@
         position:absolute;
         right:0.1em;
         top:0.1em;
-				a {
-				  background-image: url(<%= asset_path 'cancel_tooltip_notice.png' %>);
-          background-position:top right;
-					height:5px;
-					background-color:transparent;
-				}
+				background-image: url(<%= asset_path 'cancel_tooltip_notice.png' %>);
+        background-position:center center;
+				background-repeat:no-repeat;
+				padding:10px;
+				background-color:transparent;
+				cursor: pointer;
+      }
+			.cancelTooltip:hover {
+        background-image: url(<%= asset_path 'cancel_tooltip_notice.png' %>);
       }
     }
     a {
@@ -47,6 +50,7 @@
       background-color: #c1e6f6;
 			background-image: url(<%= asset_path 'arrow_tooltip_notice.png' %>);
       background-position:left center;
+			background-repeat:no-repeat;
       border-radius:3px;
       -moz-border-radius: 3px;
       -webkit-border-radius: 3px;
@@ -60,6 +64,7 @@
       background-image:none;
       background-image: url(<%= asset_path 'arrow_tooltip_notice.png' %>);
       background-position:left center;
+			background-repeat:no-repeat;
       border-radius:3px;
       -moz-border-radius: 3px;
       -webkit-border-radius: 3px;
