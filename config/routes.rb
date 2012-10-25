@@ -4,6 +4,7 @@ Desy::Application.routes.draw do
   match 'dashboard' => 'dashboard#index', :as => :dashboard_index
   match 'lessons' => 'lessons#index', :as => :my_lessons
   match 'media_elements' => 'media_elements#index', :as => :my_media_elements
+  match 'virtual_classroom' => 'virtual_classroom#index', :as => :my_virtual_classroom
   
   # ACTION BUTTONS FOR LESSONS
   match 'lessons/:lesson_id/add' => 'lessons#add', :via => :post

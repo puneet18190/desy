@@ -1,7 +1,11 @@
 class VirtualClassroomController < ApplicationController
   
   before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson]
-  # manca il initialize_notifications??
+  before_filter :initialize_notifications, :only => :index
+  layout 'virtual_classroom'
+  
+  def index
+  end
   
   def add_lesson
     if @ok
