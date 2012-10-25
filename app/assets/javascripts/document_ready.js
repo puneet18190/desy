@@ -296,16 +296,18 @@ $(document).ready(function() {
   $("#sceltaTipo").selectbox();
   
   $("#filter_lessons").selectbox();
-	
+  
   $("#filter_search_lessons").selectbox();
-	
-	$("#filter_search_lessons_subject").selectbox();
-	
+  
+  $("#filter_search_lessons_subject").selectbox();
+  
   $("#for_page_media_elements").selectbox();
-	
-	$("#filter_media_elements").selectbox();
+  
+  $("#filter_media_elements").selectbox();
   
   $("#filter_search_media_elements").selectbox();
+  
+  
   // NOTIFICATIONS
   
   initializeNotifications();
