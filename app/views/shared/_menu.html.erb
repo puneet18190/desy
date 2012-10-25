@@ -2,7 +2,7 @@
   <ul class="navlist">
     <li class="lessons"><%= link_to(t('small_letter.lessons'), my_lessons_path) %></li>
     <li class="elements"><%= link_to(t('small_letter.media_elements'), my_media_elements_path) %></li>
-    <li class="classroom"><a href="#"><%= t('small_letter.virtual_classroom') %></a></li>
+    <li class="classroom"><%= link_to(t('small_letter.virtual_classroom'), my_virtual_classroom_path) %></li>
     <li class="profile"><a href="#"><%= t('small_letter.profile') %></a></li>
   </ul>
 </div>
