@@ -578,11 +578,8 @@ class ExtractorTest < ActiveSupport::TestCase
   end
   
   test 'google_lessons_without_tags' do
-    populate_tags
-    assert_equal 34, Tag.count
     assert_equal 11, Lesson.count
     assert_equal 13, MediaElement.count
-    assert_equal 168, Tagging.count
     x = MediaElement.order('id DESC')
     ids = []
     x.each do |i|
@@ -646,6 +643,27 @@ class ExtractorTest < ActiveSupport::TestCase
     # seventh case
     p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', 3)
     assert_ordered_item_extractor [@les3.id, @les9.id, 2], p1[:content]
+    assert_equal true, p1[:last_page]
+  end
+  
+  test 'google_lessons_with_tags' do
+    populate_tags
+    assert_equal 34, Tag.count
+    assert_equal 11, Lesson.count
+    assert_equal 13, MediaElement.count
+    assert_equal 168, Tagging.count
+    assert Lesson.find(1).publish
+    # I start here, first case - no match
+    p1 = @user2.search_lessons('ciao', 1, 5, nil, nil, nil)
+    assert p1[:content].empty?
+    assert_equal true, p1[:last_page]
+    # second case - it matches three tags
+    p1 = @user2.search_lessons('di', 1, 5, nil, nil, nil)
+    assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id, @les5.id], p1[:content]
+    assert_equal true, p1[:last_page]
+    # third case - it matches more tags
+    p1 = @user2.search_lessons('to', 1, 5, nil, nil, nil)
+    assert_ordered_item_extractor [1, @les1.id, @les2.id, @les5.id, @les6.id], p1[:content]
     assert_equal true, p1[:last_page]
   end
   
