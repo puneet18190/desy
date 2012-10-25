@@ -32,7 +32,6 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @liker5.like @les6.id
     assert @liker5.like @les7.id
     assert @liker6.like @les8.id
-    assert @liker6.like @les9.id
     assert @liker6.like @les1.id
     assert @liker6.like @les3.id
     assert @liker7.like @les1.id
@@ -634,15 +633,15 @@ class ExtractorTest < ActiveSupport::TestCase
     old_number_users = User.count
     load_likes
     assert_equal (old_number_users + 9), User.count
-    assert_equal 24, Like.count
-    assert @les7.publish
-    assert @les8.publish
+    assert_equal 23, Like.count
     assert @les9.publish
+    assert @les8.publish
+    assert @les7.publish
     p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', nil)
     p2 = @user2.search_lessons(nil, 2, 5, 'likes', 'all_lessons', nil)
-    assert_ordered_item_extractor [@les1.id, @les8.id, @les3.id, @les6.id, @les4.id], p1[:content]
+    assert_ordered_item_extractor [@les1.id, @les8.id, @les3.id, @les6.id, @les7.id], p1[:content]
     assert_equal false, p1[:last_page]
-    assert_ordered_item_extractor [@les5.id, @les7.id, @les9.id, @les2.id, 2], p2[:content]
+    assert_ordered_item_extractor [@les4.id, @les5.id, @les9.id, @les2.id, 2], p2[:content]
     assert_equal true, p2[:last_page]
     # seventh case
     # TODO ANCHE QUI LO STESSO, per likes, MA CON UN FILTRO PER MATERIA
