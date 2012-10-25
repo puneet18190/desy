@@ -1,21 +1,20 @@
-<div id="media_element_popup_<%= media_element.id %>" style="display:none">
-  
-  <div class="_media_element_pop_up_container">
-	 <% if media_element.info_changeable %>
-    <div class="_change_info_container" style="display:none;">
-		<h1>Modify info element</h1>
-		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+<div class="mediaElementInfoPopUp" id="dialog-media-element-<%= media_element.id %>" style="display:none">
+  <div class="_media_element_pop_up_container" data-param="<%= media_element.id %>">
+   <% if media_element.info_changeable %>
+    <div class="_change_info_container" style="display:none;" data-param="<%= media_element.id %>">
+    <h1>Modify info element</h1>
+    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
       <%= form_tag change_media_element_info_path(media_element.id), :class => "formModifyInfo" do %>
         <div class="cols" style="float:left">
-				  <input type="text" name="title" value="Title">
-				  <br>
-				  <%= text_area_tag 'description', 'description' %>
-				</div>
-				<div class="cols" style="float:right">
-				  <%= text_area_tag 'tags', 'tags' %>
-					<br>
-					<%= submit_tag 'save modify' %> <a href="">or cancel</a>
-				</div>
+          <input type="text" name="title" value="Title">
+          <br>
+          <%= text_area_tag 'description', 'description' %>
+        </div>
+        <div class="cols" style="float:right">
+          <%= text_area_tag 'tags', 'tags' %>
+          <br>
+          <%= submit_tag 'save modify' %> <a href="">or cancel</a>
+        </div>
       <% end %>
     </div>
   <% end %>

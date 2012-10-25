@@ -25,12 +25,6 @@ function closePopUp(id) {
   $('#' + id).dialog('close');
 }
 
-function closeMediaElementInfoPopUp(id) {
-  var content = $('#dialog-media-element').html();
-  $('#media_element_popup_' + id).html(content);
-  $('#dialog-media-element').dialog('close');
-}
-
 
 // FUNCTIONS DIRECTLY USED IN THE APPLICATION
 
@@ -45,16 +39,11 @@ function showOkPopUp(content) {
 }
 
 function showMediaElementInfoPopUp(media_element_id) {
-  var target = $('#media_element_popup_' + media_element_id);
-  var content = target.html();
-  target.html('');
-  var obj = $('#dialog-media-element');
+  var obj = $('#dialog-media-element-' + media_element_id);
   if(obj.hasClass('ui-dialog-content')) {
-    obj.html(content);
     obj.dialog('open');
   } else {
     obj.css('display', 'block');
-    obj.html(content);
     obj.dialog({
       modal: true,
       resizable: false,
