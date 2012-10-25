@@ -412,7 +412,7 @@ class User < ActiveRecord::Base
         where = "#{where} AND media_elements.sti_type = 'Image'"
     end
     content = []
-    Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit).each do |q|
+    Tagging.group('media_elements.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit).each do |q|
       media_element = MediaElement.find_by_id q.media_element_id
       media_element.set_status self.id
       content << media_element
@@ -498,14 +498,14 @@ class User < ActiveRecord::Base
     last_page = nil
     case params.length
       when 2
-        query = Tagging.select(select).joins(joins).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
-        last_page = Tagging.joins(joins).where(where, params[0], params[1]).offset(offset + limit).empty?
+        query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
+        last_page = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1]).offset(offset + limit).empty?
       when 3
-        query = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
-        last_page = Tagging.joins(joins).where(where, params[0], params[1], params[2]).offset(offset + limit).empty?
+        query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
+        last_page = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2]).offset(offset + limit).empty?
       when 4
-        query = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order(order).offset(offset).limit(limit)
-        last_page = Tagging.joins(joins).where(where, params[0], params[1], params[2], params[3]).offset(offset + limit).empty?
+        query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order(order).offset(offset).limit(limit)
+        last_page = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2], params[3]).offset(offset + limit).empty?
     end
     content = []
     query.each do |q|

@@ -661,10 +661,14 @@ class ExtractorTest < ActiveSupport::TestCase
     p1 = @user2.search_lessons('di', 1, 5, nil, nil, nil)
     assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id, @les5.id], p1[:content]
     assert_equal true, p1[:last_page]
-    # third case - it matches more tags
+    # third case - it matches more tags - @les9 is not found because private
     p1 = @user2.search_lessons('to', 1, 5, nil, nil, nil)
-    assert_ordered_item_extractor [1, @les1.id, @les2.id, @les5.id, @les6.id], p1[:content]
-    assert_equal true, p1[:last_page]
+    p2 = @user2.search_lessons('to', 2, 5, nil, nil, nil)
+    assert_ordered_item_extractor [1, @les1.id, @les2.id, @les3.id, @les4.id], p1[:content]
+    assert_equal false, p1[:last_page]
+    assert_ordered_item_extractor [@les5.id, @les6.id], p2[:content]
+    assert_equal true, p2[:last_page]
+    # fourth case - filters and orders on the last search
   end
   
 end
