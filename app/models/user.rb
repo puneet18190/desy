@@ -392,7 +392,7 @@ class User < ActiveRecord::Base
   
   def search_media_elements_with_tag(word, offset, limit, filter, order_by)
     resp = {}
-    params = ["#{word}%", true, self.id]
+    params = ["%#{word}%", true, self.id]
     select = 'media_elements.id AS media_element_id'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
     where = 'tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
@@ -460,7 +460,7 @@ class User < ActiveRecord::Base
   
   def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by)
     resp = {}
-    params = ["#{word}%"]
+    params = ["%#{word}%"]
     select = 'lessons.id AS lesson_id'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
     where = 'tags.word LIKE ?'
