@@ -75,6 +75,7 @@ en:
     logout: 'Logout'
     matter: 'Matter'
     media_elements: 'Elements'
+    modify_info_element: 'Modify info element'
     no_notifications: "You don't have any notifications"
     problems_with_password: "I forgot my login information"
     register: 'Register'
@@ -101,6 +102,7 @@ en:
     virtual_classroom: 'virtual classroom'
     welcome: 'welcome'
   long_descriptions:
+    change_info_element: "You can modify the data of your element. Inserting tags you will make it available to DESY community, remember that people are more likely to find your element if you insert more tags"
     prelogin: "DESY has arrived, the new multimedia platform dedicated to the world of the school. Thanks to DESY will be possible to create multimedia lessons, uploading their images or videos or using those in the database of DESY. Share your work with other users DESY to create a large network of educational content."
 
 # (3) accessors: empty situations, popups, help, etc
