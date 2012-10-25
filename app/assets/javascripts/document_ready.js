@@ -145,20 +145,19 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._change_info_to_pick', function() {
-    var obj1 = $('#dialog-media-element-' + $(this).data('id') + ' ._change_info_container');
-    var obj2 = $('#dialog-media-element-' + $(this).data('id') + ' ._change_info_to_pick');
+    var obj1 = $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container');
     if(obj1.css('display') == 'none') {
       obj1.show('fade', {}, 500, function() {
         obj1.css('display', 'block');
       });
-      obj2.removeClass('change_info');
-      obj2.addClass('change_info_light');
+      $(this).removeClass('change_info');
+      $(this).addClass('change_info_light');
     } else {
       obj1.hide('fade', {}, 500, function() {
         obj1.css('display', 'none');
       });
-      obj2.addClass('change_info');
-      obj2.removeClass('change_info_light');
+      $(this).addClass('change_info');
+      $(this).removeClass('change_info_light');
     }
   });
   

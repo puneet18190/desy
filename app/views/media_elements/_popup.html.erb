@@ -2,8 +2,8 @@
   <div class="_media_element_pop_up_container" data-param="<%= media_element.id %>">
    <% if media_element.info_changeable %>
     <div class="_change_info_container" style="display:none;" data-param="<%= media_element.id %>">
-    <h1>Modify info element</h1>
-    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+      <h1>Modify info element</h1>
+      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
       <%= form_tag change_media_element_info_path(media_element.id), :class => "formModifyInfo" do %>
         <div class="cols" style="float:left">
           <input type="text" name="title" value="Title">
@@ -29,7 +29,7 @@
     <div class="menuIconButton" style="float:left;  padding-left:10px">
       <%= render :partial => "shared/buttons/#{Buttons::EDIT}" %>
       <% if media_element.info_changeable %>
-        <%= render :partial => "shared/buttons/#{Buttons::CHANGE_INFO}" %>
+        <a class="<%= Buttons::CHANGE_INFO %> _change_info_to_pick" data-param="<%= media_element.id %>"></a>
       <% end %>
     </div>
     <div class="menuIconButton" style="float:right">
