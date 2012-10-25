@@ -32,7 +32,6 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @liker5.like @les6.id
     assert @liker5.like @les7.id
     assert @liker6.like @les8.id
-    assert @liker6.like @les9.id
     assert @liker6.like @les1.id
     assert @liker6.like @les3.id
     assert @liker7.like @les1.id
@@ -578,12 +577,9 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_extractor [us1_1.id, us1_2.id, us1_3.id, us1_4.id, us1_5.id], Notification.visible_block(1, 0, 5)
   end
   
-  test 'google' do
-    populate_tags
-    assert_equal 34, Tag.count
+  test 'google_lessons_without_tags' do
     assert_equal 11, Lesson.count
     assert_equal 13, MediaElement.count
-    assert_equal 168, Tagging.count
     x = MediaElement.order('id DESC')
     ids = []
     x.each do |i|
@@ -634,20 +630,66 @@ class ExtractorTest < ActiveSupport::TestCase
     old_number_users = User.count
     load_likes
     assert_equal (old_number_users + 9), User.count
-    assert_equal 24, Like.count
-    assert @les7.publish
-    assert @les8.publish
+    assert_equal 23, Like.count
     assert @les9.publish
+    assert @les8.publish
+    assert @les7.publish
     p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', nil)
     p2 = @user2.search_lessons(nil, 2, 5, 'likes', 'all_lessons', nil)
-    assert_ordered_item_extractor [@les1.id, @les8.id, @les3.id, @les6.id, @les4.id], p1[:content]
+    assert_ordered_item_extractor [@les1.id, @les8.id, @les3.id, @les6.id, @les7.id], p1[:content]
     assert_equal false, p1[:last_page]
-    assert_ordered_item_extractor [@les5.id, @les7.id, @les9.id, @les2.id, 2], p2[:content]
+    assert_ordered_item_extractor [@les4.id, @les5.id, @les9.id, @les2.id, 2], p2[:content]
     assert_equal true, p2[:last_page]
     # seventh case
-    # TODO ANCHE QUI LO STESSO, per likes, MA CON UN FILTRO PER MATERIA
-    # eight case
-    # TODO qui passare alla ricerca per tags -- organizzarsi
+    p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', 3)
+    assert_ordered_item_extractor [@les3.id, @les9.id, 2], p1[:content]
+    assert_equal true, p1[:last_page]
+  end
+  
+  test 'google_lessons_with_tags' do
+    populate_tags
+    assert_equal 34, Tag.count
+    assert_equal 11, Lesson.count
+    assert_equal 13, MediaElement.count
+    assert_equal 168, Tagging.count
+    # I start here, first case - no match
+    p1 = @user2.search_lessons('ciao', 1, 5, nil, nil, nil)
+    assert p1[:content].empty?
+    assert_equal true, p1[:last_page]
+    # second case - it matches three tags
+    p1 = @user2.search_lessons('di', 1, 5, nil, nil, nil)
+    assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id, @les5.id], p1[:content]
+    assert_equal true, p1[:last_page]
+    # third case - it matches more tags - @les9 is not found because private
+    assert Lesson.find(1).publish
+    p1 = @user2.search_lessons('to', 1, 5, nil, nil, nil)
+    p2 = @user2.search_lessons('to', 2, 5, nil, nil, nil)
+    assert_ordered_item_extractor [1, @les1.id, @les2.id, @les3.id, @les4.id], p1[:content]
+    assert_equal false, p1[:last_page]
+    assert_ordered_item_extractor [@les5.id, @les6.id], p2[:content]
+    assert_equal true, p2[:last_page]
+    # fourth case - filters and orders on the last search
+    assert Tag.create_tag_set('Lesson', 2, ['Antonio de curtis', 'acquazzone', 'lunna'])
+    assert_equal 37, Tag.count
+    assert_equal 164, Tagging.count
+    p1 = @user2.search_lessons('to', 1, 5, nil, 'only_mine', nil)
+    assert_ordered_item_extractor [2], p1[:content]
+    assert_equal true, p1[:last_page]
+    # fifth case - words with similar beginning - I sort for likes and title
+    load_likes
+    assert Lesson.find(1).unpublish
+    p1 = @user2.search_lessons('acqua', 1, 5, 'likes', 'public', nil)
+    assert_ordered_item_extractor [@les1.id, @les6.id, @les2.id, 2], p1[:content]
+    assert_equal true, p1[:last_page]
+    # sixth case
+    assert Lesson.find(1).publish
+    p1 = @user2.search_lessons('acqua', 1, 5, 'likes', 'not_mine', nil)
+    assert_ordered_item_extractor [@les1.id, @les6.id, @les2.id, 1], p1[:content]
+    assert_equal true, p1[:last_page]
+    # seventh case
+    p1 = @user2.search_lessons('acqua', 1, 5, 'title', 'not_mine', nil)
+    assert_ordered_item_extractor [@les1.id, @les2.id, @les6.id, 1], p1[:content]
+    assert_equal true, p1[:last_page]
   end
   
 end

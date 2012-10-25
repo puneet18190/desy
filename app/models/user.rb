@@ -392,7 +392,7 @@ class User < ActiveRecord::Base
   
   def search_media_elements_with_tag(word, offset, limit, filter, order_by)
     resp = {}
-    params = ["#{word}%", true, self.id]
+    params = ["%#{word}%", true, self.id]
     select = 'media_elements.id AS media_element_id'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
     where = 'tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
@@ -412,7 +412,7 @@ class User < ActiveRecord::Base
         where = "#{where} AND media_elements.sti_type = 'Image'"
     end
     content = []
-    Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit).each do |q|
+    Tagging.group('media_elements.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit).each do |q|
       media_element = MediaElement.find_by_id q.media_element_id
       media_element.set_status self.id
       content << media_element
@@ -460,7 +460,7 @@ class User < ActiveRecord::Base
   
   def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by)
     resp = {}
-    params = ["#{word}%"]
+    params = ["%#{word}%"]
     select = 'lessons.id AS lesson_id'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
     where = 'tags.word LIKE ?'
@@ -498,14 +498,14 @@ class User < ActiveRecord::Base
     last_page = nil
     case params.length
       when 2
-        query = Tagging.select(select).joins(joins).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
-        last_page = Tagging.joins(joins).where(where, params[0], params[1]).offset(offset + limit).empty?
+        query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
+        last_page = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1]).offset(offset + limit).empty?
       when 3
-        query = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
-        last_page = Tagging.joins(joins).where(where, params[0], params[1], params[2]).offset(offset + limit).empty?
+        query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
+        last_page = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2]).offset(offset + limit).empty?
       when 4
-        query = Tagging.select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order(order).offset(offset).limit(limit)
-        last_page = Tagging.joins(joins).where(where, params[0], params[1], params[2], params[3]).offset(offset + limit).empty?
+        query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order(order).offset(offset).limit(limit)
+        last_page = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2], params[3]).offset(offset + limit).empty?
     end
     content = []
     query.each do |q|
