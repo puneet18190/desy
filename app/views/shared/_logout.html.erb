@@ -1,5 +1,7 @@
 <div class="logout">
-    <%= t('small_letter.welcome') %> <span class="nome">Wu</span> <span class="cognome">Ming</span>
-		<br class="clearfloat">
-		<a href=""><%= t('capital_letter.logout') %></a>
+  <%= t('small_letter.welcome') %>
+  <span class="nome"><%= @current_user.name %></span>
+  <span class="cognome"><%= @current_user.surname %></span>
+  <br class="clearfloat">
+  <a href=""><%= t('capital_letter.logout') %></a>
 </div>

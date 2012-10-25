@@ -43,7 +43,7 @@
               </div>
             <% end %>
             <br class="clearfloat">
-            <%= render :partial => 'shared/pagination', :locals => {:page => (j + 1), :last_page => last_page, :first_page => (j == 0), :pagination_url => 'suggested_lessons'} %>
+            <%= render :partial => 'dashboard/lessons_pagination', :locals => {:page => (j + 1), :last_page => last_page, :first_page => (j == 0)} %>
           </div>
         <% end %>
         <% tot_lesson += CONFIG['lessons_for_page_in_dashboard'] %>
@@ -79,7 +79,7 @@
             <% end %>
             <%= render :partial => "media_elements/create_new", :locals => {:item => 'media_element'} %>
             <br class="clearfloat">
-            <%= render :partial => 'shared/pagination', :locals => {:page => (j + 1), :last_page => last_page, :first_page => (j == 0), :pagination_url => 'suggested_media_elements'} %>
+            <%= render :partial => 'dashboard/media_elements_pagination', :locals => {:page => (j + 1), :last_page => last_page, :first_page => (j == 0)} %>
           </div>
         <% end %>
         <% tot_media_element += CONFIG['media_elements_for_page_in_dashboard'] %>

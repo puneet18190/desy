@@ -10,5 +10,13 @@
     <% elsif @notifications.empty? %>
       $('#tooltip_content ul .jspPane').append("<span><%= j(t('capital_letter.no_notifications')) %></span>");
     <% end %>
+    var my_expanded = $('#expanded_notification');
+    if(my_expanded.css('display') == 'block' && my_expanded.data('contentid') == 'notification_<%= @notification_id %>') {
+      my_expanded.hide('fade', {}, 500, function() {
+        hideExpandedNotification();
+        my_expanded.html('');
+        my_expanded.data('contentid', '0');
+      });
+    }
   });
 <% end %>

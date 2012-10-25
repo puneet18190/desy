@@ -27,12 +27,13 @@ function initializeNotifications() {
   });
   $('body').on('click', '._single_notification a', function() {
     var closest_li = $(this).closest('li');
-    var my_content = $('#' + closest_li.attr('id') + ' ._expanded_notification').html();
+    var my_own_id = closest_li.attr('id')
+    var my_content = $('#' + my_own_id + ' ._expanded_notification').html();
     var my_expanded = $('#expanded_notification');
     if(my_expanded.css('display') == 'none') {
-      hideAllExpandedNotifications();
       my_expanded.html(my_content);
-      $('#expanded_notification').show('fade', {}, 500, function() {
+      my_expanded.data('contentid', my_own_id);
+      my_expanded.show('fade', {}, 500, function() {
         my_expanded.css('display', 'block');
         if(!$(this).hasClass('current')) {
           $.ajax({
@@ -42,9 +43,20 @@ function initializeNotifications() {
         }
       });
     } else {
-      $('#expanded_notification').hide('fade', {}, 500, function() {
-        hideAllExpandedNotifications();
-      });
+      if(my_expanded.data('contentid') != my_own_id) {
+        my_expanded.html(my_content);
+        my_expanded.data('contentid', my_own_id);
+        if(!$(this).hasClass('current')) {
+          $.ajax({
+            type: 'post',
+            url: 'notifications/' + closest_li.data('param') + '/seen'
+          });
+        }
+      } else {
+        my_expanded.hide('fade', {}, 500, function() {
+          hideExpandedNotification();
+        });
+      }
     }
   });
 }
@@ -72,14 +84,14 @@ function initializeHelp() {
   });
 }
 
-function hideAllExpandedNotifications() {
+function hideExpandedNotification() {
   $('#expanded_notification').html('');
   $('#expanded_notification').css('display', 'none');
 }
 
 function hideNotificationsTooltip() {
   $('#tooltip_content').css('display', 'none');
-  hideAllExpandedNotifications();
+  hideExpandedNotification();
 }
 
 function showNotificationsTooltip() {
