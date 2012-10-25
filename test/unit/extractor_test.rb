@@ -4,6 +4,45 @@ require 'test_helper'
 
 class ExtractorTest < ActiveSupport::TestCase
   
+  def load_likes
+    Like.all.each do |l|
+      l.destroy
+    end
+    @liker1 = User.create_user('em1@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker2 = User.create_user('em2@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker3 = User.create_user('em3@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker4 = User.create_user('em4@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker5 = User.create_user('em5@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker6 = User.create_user('em6@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker7 = User.create_user('em7@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker8 = User.create_user('em8@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker9 = User.create_user('em9@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    assert @liker1.like @les1.id
+    assert @liker1.like @les3.id
+    assert @liker1.like @les6.id
+    assert @liker1.like @les9.id
+    assert @liker2.like @les2.id
+    assert @liker2.like @les3.id
+    assert @liker2.like @les4.id
+    assert @liker2.like @les7.id
+    assert @liker3.like @les1.id
+    assert @liker4.like @les4.id
+    assert @liker4.like @les8.id
+    assert @liker5.like @les5.id
+    assert @liker5.like @les6.id
+    assert @liker5.like @les7.id
+    assert @liker6.like @les8.id
+    assert @liker6.like @les9.id
+    assert @liker6.like @les1.id
+    assert @liker6.like @les3.id
+    assert @liker7.like @les1.id
+    assert @liker7.like @les5.id
+    assert @liker7.like @les6.id
+    assert @liker8.like @les8.id
+    assert @liker9.like @les8.id
+    assert @liker9.like @les1.id
+  end
+  
   def populate_tags
     Tag.all.each do |t|
       t.destroy
@@ -128,21 +167,40 @@ class ExtractorTest < ActiveSupport::TestCase
     @el7.user_id = 1
     @el7.sti_type = 'Image'
     assert_obj_saved @el7
+    Lesson.record_timestamps = false
+    MediaElement.record_timestamps = false
     @el1.is_public = true
     @el1.publication_date = '2012-01-01 10:00:00'
+    @el1.updated_at = '2011-10-01 20:00:00'
     assert_obj_saved @el1
     @el2.is_public = true
     @el2.publication_date = '2012-01-01 10:00:00'
+    @el2.updated_at = '2011-10-01 19:59:59'
     assert_obj_saved @el2
     @el3.is_public = true
     @el3.publication_date = '2012-01-01 10:00:00'
+    @el3.updated_at = '2011-10-01 19:59:58'
     assert_obj_saved @el3
+    @el4.updated_at = '2011-10-01 19:59:57'
+    assert_obj_saved @el4
     @el5.is_public = true
     @el5.publication_date = '2012-01-01 10:00:00'
+    @el5.updated_at = '2011-10-01 19:59:56'
     assert_obj_saved @el5
+    @el6.updated_at = '2011-10-01 19:59:55'
+    assert_obj_saved @el6
     @el7.is_public = true
     @el7.publication_date = '2012-01-01 10:00:00'
+    @el7.updated_at = '2011-10-01 19:59:54'
     assert_obj_saved @el7
+    date_now = '2011-01-01 20:00:00'.to_time
+    Lesson.all.each do |l|
+      l.updated_at = date_now
+      assert_obj_saved l
+      date_now -= 1
+    end
+    Lesson.record_timestamps = true
+    MediaElement.record_timestamps = true
   end
   
   test 'suggested_lessons' do
@@ -525,12 +583,71 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 34, Tag.count
     assert_equal 11, Lesson.count
     assert_equal 13, MediaElement.count
-    
-    Tagging.all.each do |t|
-      puts "\n\n#{t.taggable_type} ID#{t.taggable_id} tagged with #{t.tag.word}"
-    end
-    
     assert_equal 168, Tagging.count
+    x = MediaElement.order('id DESC')
+    ids = []
+    x.each do |i|
+      ids << i.id
+    end
+    assert_extractor ids, MediaElement.order('updated_at DESC')
+    x = Lesson.order('id DESC')
+    ids = []
+    x.each do |i|
+      ids << i.id
+    end
+    assert_extractor ids, Lesson.order('updated_at DESC')
+    # I start here, first case
+    p1 = @user2.search_lessons('  ', 1, 5)
+    p2 = @user2.search_lessons('', 2, 5, nil, 'bababah')
+    assert_ordered_item_extractor [2, @les1.id, @les2.id, @les3.id, @les4.id], p1[:content]
+    assert_equal false, p1[:last_page]
+    assert_ordered_item_extractor [@les5.id, @les6.id], p2[:content]
+    assert_equal true, p2[:last_page]
+    # second case
+    p1 = @user2.search_lessons('  ', 1, 5, nil, 'only_mine', nil)
+    assert_ordered_item_extractor [2], p1[:content]
+    assert_equal true, p1[:last_page]
+    # third case
+    p1 = @user2.search_lessons(nil, 1, 5, nil, 'not_mine')
+    p2 = @user2.search_lessons('', 2, 5, 'beh', 'not_mine')
+    assert_ordered_item_extractor [@les1.id, @les2.id, @les3.id, @les4.id, @les5.id], p1[:content]
+    assert_equal false, p1[:last_page]
+    assert_ordered_item_extractor [@les6.id], p2[:content]
+    assert_equal true, p2[:last_page]
+    # fourth case
+    lll = Lesson.find(1)
+    lll.is_public = true
+    assert_obj_saved lll
+    p1 = @user2.search_lessons('', 1, 5, nil, 'public')
+    p2 = @user2.search_lessons('', 2, 5, nil, 'public', 'feafsa')
+    assert_ordered_item_extractor [1, 2, @les1.id, @les2.id, @les3.id], p1[:content]
+    assert_equal false, p1[:last_page]
+    assert_ordered_item_extractor [@les4.id, @les5.id, @les6.id], p2[:content]
+    assert_equal true, p2[:last_page]
+    # fifth case
+    p1 = @user2.search_lessons('', 1, 5, 'title', 'public', 1)
+    assert_ordered_item_extractor [@les1.id, 1], p1[:content]
+    assert_equal true, p1[:last_page]
+    lll.is_public = false
+    assert_obj_saved lll
+    # sixth case
+    old_number_users = User.count
+    load_likes
+    assert_equal (old_number_users + 9), User.count
+    assert_equal 24, Like.count
+    assert @les7.publish
+    assert @les8.publish
+    assert @les9.publish
+    p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', nil)
+    p2 = @user2.search_lessons(nil, 2, 5, 'likes', 'all_lessons', nil)
+    assert_ordered_item_extractor [@les1.id, @les8.id, @les3.id, @les6.id, @les4.id], p1[:content]
+    assert_equal false, p1[:last_page]
+    assert_ordered_item_extractor [@les5.id, @les7.id, @les9.id, @les2.id, 2], p2[:content]
+    assert_equal true, p2[:last_page]
+    # seventh case
+    # TODO ANCHE QUI LO STESSO, per likes, MA CON UN FILTRO PER MATERIA
+    # eight case
+    # TODO qui passare alla ricerca per tags -- organizzarsi
   end
   
 end

@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
     word = word.to_s
     page = 1 if page.class != Fixnum
     for_page = 1 if for_page.class != Fixnum
-    subject_id = nil if ![NilClass, Fixnum].include?(subject_id)
+    subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
     order = SearchOrders::UPDATED_AT if order.nil? || !SearchOrders::LESSONS_SET.include?(order)
     offset = (page - 1) * for_page
@@ -401,7 +401,7 @@ class User < ActiveRecord::Base
       when SearchOrders::UPDATED_AT
         order = 'media_elements.updated_at DESC'
       when SearchOrders::TITLE
-        order = 'media_elements.title DESC'
+        order = 'media_elements.title ASC, media_elements.updated_at DESC'
     end
     case filter
       when Filters::VIDEO
@@ -429,7 +429,7 @@ class User < ActiveRecord::Base
       when SearchOrders::UPDATED_AT
         order = 'updated_at DESC'
       when SearchOrders::TITLE
-        order = 'title DESC'
+        order = 'title ASC, updated_at DESC'
     end
     last_page = nil
     query = []
@@ -470,9 +470,9 @@ class User < ActiveRecord::Base
         order = 'lessons.updated_at DESC'
       when SearchOrders::LIKES
         select = "#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
-        order = 'likes_count DESC'
+        order = 'likes_count DESC, lessons.updated_at DESC'
       when SearchOrders::TITLE
-        order = 'lessons.title DESC'
+        order = 'lessons.title ASC, lessons.updated_at DESC'
     end
     if !subject_id.nil?
       where = "#{where} AND lessons.subject_id = ?"
@@ -529,9 +529,9 @@ class User < ActiveRecord::Base
         order = 'updated_at DESC'
       when SearchOrders::LIKES
         select = "#{select}, (SELECT COUNT(*) FROM likes WHERE (likes.lesson_id = lessons.id)) AS likes_count"
-        order = 'likes_count DESC'
+        order = 'likes_count DESC, updated_at DESC'
       when SearchOrders::TITLE
-        order = 'title DESC'
+        order = 'title ASC, updated_at DESC'
     end
     case filter
       when Filters::ALL_LESSONS
@@ -556,6 +556,9 @@ class User < ActiveRecord::Base
     query = []
     last_page = nil
     case params.length
+      when 1
+        query = Lesson.select(select).where(where, params[0]).order(order).offset(offset).limit(limit)
+        last_page = Lesson.where(where, params[0]).offset(offset + limit).empty?
       when 2
         query = Lesson.select(select).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
         last_page = Lesson.where(where, params[0], params[1]).offset(offset + limit).empty?
