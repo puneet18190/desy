@@ -316,7 +316,7 @@ $(document).ready(function() {
       var offset = $('#tooltip_content').data('offset');
       $.ajax({
         type: 'get',
-        url: 'notifications/get_new_block?offset=' + offset
+        url: '/notifications/get_new_block?offset=' + offset
       });
     }
   });
@@ -326,7 +326,7 @@ $(document).ready(function() {
     var offset = $('#tooltip_content').data('offset');
     $.ajax({
       type: 'post',
-      url: 'notifications/' + my_id + '/destroy?offset=' + offset
+      url: '/notifications/' + my_id + '/destroy?offset=' + offset
     });
   });
   
