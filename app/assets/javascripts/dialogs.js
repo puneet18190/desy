@@ -49,7 +49,15 @@ function showMediaElementInfoPopUp(media_element_id) {
       resizable: false,
       width: 874,
       show: "fade",
-      hide: "fade"
+      hide: "fade",
+      close: function() {
+        $('#dialog-media-element-' + media_element_id + ' ._change_info_container').css('display', 'none');
+        var change_info_button = $('#dialog-media-element-' + media_element_id + ' ._change_info_to_pick');
+        if(change_info_button.hasClass('change_info_light')) {
+          change_info_button.addClass('change_info');
+          change_info_button.removeClass('change_info_light');
+        }
+      }
     });
   }
 }
