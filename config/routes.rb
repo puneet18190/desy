@@ -1,13 +1,5 @@
 Desy::Application.routes.draw do
   
-  # FIXME --> TEMPORANEO
-  resources :layouts, :only => :show do
-    get ':controller_id(/:action_id)' => 'views#show'
-  end
-  
-  # REGISTRATION
-  match 'prelogin' => 'registrations#prelogin', :as => :prelogin
-  
   # MAIN SECTIONS
   match 'dashboard' => 'dashboard#index', :as => :dashboard_index
   match 'lessons' => 'lessons#index', :as => :my_lessons
