@@ -577,7 +577,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_extractor [us1_1.id, us1_2.id, us1_3.id, us1_4.id, us1_5.id], Notification.visible_block(1, 0, 5)
   end
   
-  test 'google' do
+  test 'google_lessons_without_tags' do
     populate_tags
     assert_equal 34, Tag.count
     assert_equal 11, Lesson.count
@@ -644,9 +644,9 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_ordered_item_extractor [@les4.id, @les5.id, @les9.id, @les2.id, 2], p2[:content]
     assert_equal true, p2[:last_page]
     # seventh case
-    # TODO ANCHE QUI LO STESSO, per likes, MA CON UN FILTRO PER MATERIA
-    # eight case
-    # TODO qui passare alla ricerca per tags -- organizzarsi
+    p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', 3)
+    assert_ordered_item_extractor [@les3.id, @les9.id, 2], p1[:content]
+    assert_equal true, p1[:last_page]
   end
   
 end
