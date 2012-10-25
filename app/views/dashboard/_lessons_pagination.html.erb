@@ -13,7 +13,7 @@ ID="<controller>_pagination" per le altre paginazioni
 
  -->
 <br class="clearfloat">
-<div class="pagination" id="normal_pagination">
+<div class="pagination" id="dashboard_lessons_pagination">
 
 <% if !first_page %>
   <div class="_left_paginator_<%= page %>">PRECEDENTE</div>
@@ -37,16 +37,19 @@ ID="<controller>_pagination" per le altre paginazioni
   
   $(document).ready(function() {
     
-    $('#normal_pagination ._left_paginator_<%= page %>').click(function() {
-      var my_url = '<%= add_page_parameter(page - 1, pagination_url) %>';
-      window.location.href = my_url;
+    $('#dashboard_lessons_pagination ._left_paginator_<%= page %>').click(function() {
+      changePageDashboardLessons(<%= page %>, <%= page - 1 %>);
     });
     
-    $('#normal_pagination ._right_paginator_<%= page %>').click(function() {
-      var my_url = '<%= add_page_parameter(page + 1, pagination_url) %>';
-      window.location.href = my_url;
+    $('#dashboard_lessons_pagination ._right_paginator_<%= page %>').click(function() {
+      changePageDashboardLessons(<%= page %>, <%= page + 1 %>);
     });
     
   });
+  
+  function changePageDashboardLessons(old_pos, pos) {
+    $('#suggested_lessons_' + (old_pos)).css('display', 'none');
+    $('#suggested_lessons_' + (pos)).css('display', 'block');
+  }
   
 </script>
