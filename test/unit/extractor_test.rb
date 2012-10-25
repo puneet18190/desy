@@ -694,6 +694,10 @@ class ExtractorTest < ActiveSupport::TestCase
     p1 = @user2.search_lessons('acqua', 1, 5, 'title', 'not_mine', 1)
     assert_ordered_item_extractor [@les1.id, 1], p1[:content]
     assert_equal true, p1[:last_page]
+    # ninth case
+    p1 = @user2.search_lessons('r n', 1, 5, nil, nil, nil)
+    assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id], p1[:content]
+    assert_equal true, p1[:last_page]
   end
   
 end
