@@ -711,4 +711,26 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal true, p1[:last_page]
   end
   
+  test 'google_media_elements_without_tags' do
+    # I start here, first case
+    p1 = @user2.search_media_elements('  ', 1, 5)
+    p2 = @user2.search_media_elements('', 2, 5, nil, 'bababah')
+    assert_ordered_item_extractor [2, 3, 4, 6, @el1.id], p1[:content]
+    assert_equal false, p1[:last_page]
+    assert_ordered_item_extractor [@el2.id, @el3.id, @el5.id, @el7.id], p2[:content]
+    assert_equal true, p2[:last_page]
+    # second case, filter image
+    p1 = @user2.search_media_elements('', 1, 5, 'updated_at', 'image')
+    assert_ordered_item_extractor [6, @el5.id, @el7.id], p1[:content]
+    assert_equal true, p1[:last_page]
+    # third case, filter audio - order by title
+    p1 = @user2.search_media_elements('', 1, 5, 'title', 'audio')
+    assert_ordered_item_extractor [4, @el3.id, 3], p1[:content]
+    assert_equal true, p1[:last_page]
+    # fourth case, filter video -- order by title
+    p1 = @user2.search_media_elements('', 1, 5, 'title', 'video')
+    assert_ordered_item_extractor [@el1.id, @el2.id, 2], p1[:content]
+    assert_equal true, p1[:last_page]
+  end
+  
 end

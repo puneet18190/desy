@@ -449,9 +449,8 @@ class User < ActiveRecord::Base
     end
     content = []
     query.each do |q|
-      media_element = MediaElement.find_by_id q.media_element_id
-      media_element.set_status self.id
-      content << media_element
+      q.set_status self.id
+      content << q
     end
     resp[:last_page] = last_page
     resp[:content] = content
