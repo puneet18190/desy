@@ -669,6 +669,12 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_ordered_item_extractor [@les5.id, @les6.id], p2[:content]
     assert_equal true, p2[:last_page]
     # fourth case - filters and orders on the last search
+    assert Tag.create_tag_set('Lesson', 2, ['Antonio de curtis', 'gattto', 'lunna'])
+    assert_equal 37, Tag.count
+    assert_equal 164, Tagging.count
+    p1 = @user2.search_lessons('to', 1, 5, nil, 'only_mine', nil)
+    assert_ordered_item_extractor [2], p1[:content]
+    assert_equal true, p1[:last_page]
   end
   
 end
