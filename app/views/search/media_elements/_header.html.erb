@@ -11,13 +11,16 @@
         <option value=""><%= t('capital_letter.media_elements') %></option>
       </select>
       </td>
-			<td style="width:8%" valign="top">Sort results by</td>
-			<td style="width:12%"><span></span><input type="radio" name="group1" value="" checked> Date of creation<span></span><br> 
-    <span></span><input type="radio" name="group1" value=""> Date of publication<span></span><br><span></span><input type="radio" name="group1" value=""> Name<span></span></td>
-      <td align="right"><input type="hidden" name="redirect_to" value=""/><input type="image" src="<%= asset_path 'cerca.png' %>" name="submit" value="<%= t('small_letter.search') %>"></td>
+			<td style="width:8%" valign="top" rowspan="2">Sort results by</td>
+			<td style="width:12%" rowspan="2"><input type="radio" name="group1" value="" checked> Date of creation<br> 
+    <input type="radio" name="group1" value=""> Date of publication<br><input type="radio" name="group1" value=""> Name</td>
+      <td align="right" rowspan="2"><input type="hidden" name="redirect_to" value=""/><input type="image" src="<%= asset_path 'cerca.png' %>" name="submit" value="<%= t('small_letter.search') %>"></td>
     </tr>
+		<tr>
+			<td colspan="2"><p>Warning!<br>Not entering any keyword you can see all the lessons of the subject selected.</p></td>
+		</tr>
 	  </table>
   </form>
 	</div>
-	<p>Warning!<br>Not entering any keyword you can see all the lessons of the subject selected.</p>
+	
 </div>
