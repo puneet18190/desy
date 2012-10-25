@@ -6,17 +6,31 @@
     <tr>
       <td style="width:10%"><input type="text" name="q" value="<%= t('small_letter.search') %>" class="text" onFocus="this.value=''"></td>
 		  <td>
-	    <select name="ricerca" id="sceltaElementi">
-      <option value="" selected="selected"><%= t('capital_letter.lessons') %></option>
+	    <select name="ricerca" id="filter_search_lessons">
+      <option value="" selected="selected">all lessons</option>
         <option value=""><%= t('capital_letter.media_elements') %></option>
       </select>
+			
       </td>
-			<td>Sort results by</td>
-			<td></td>
-      <td><input type="hidden" name="redirect_to" value=""/><input type="image" src="<%= asset_path 'cerca.png' %>" name="submit" value="<%= t('small_letter.search') %>"></td>
+			<td>
+	    <select name="ricerca" id="filter_search_lessons_subject">
+      <option value="" selected="selected">all subject</option>
+        <option value=""><%= t('capital_letter.media_elements') %></option>
+      </select>
+			
+      </td>
+			<td style="width:8%" valign="top" rowspan="2">Sort results by</td>
+			<td style="width:12%" rowspan="2"><span></span><input type="radio" name="group1" value="" checked> Date of creation<span></span><br> 
+    <span></span><input type="radio" name="group1" value=""> Date of publication<span></span><br><span></span><input type="radio" name="group1" value=""> Name<span></span></td>
+      <td align="right" rowspan="2"><input type="hidden" name="redirect_to" value=""/><input type="image" src="<%= asset_path 'cerca.png' %>" name="submit" value="<%= t('small_letter.search') %>"></td>
     </tr>
+		<tr>
+			<td colspan="2"><p>Warning!<br>Not entering any keyword you can see all the lessons of the subject selected.</p></td>
+		</tr>
 	  </table>
+		
   </form>
+	
 	</div>
-	<p>Warning!<br>Not entering any keyword you can see all the lessons of the subject selected.</p>
+	
 </div>

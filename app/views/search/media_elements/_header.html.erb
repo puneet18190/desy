@@ -1,23 +1,23 @@
-<div style="border:1px solid red; width: 92%; margin: 0 auto 0 auto;">
-Elements
-<div class="boxCerca">
+<div class="contentSearch">
+  Elements
+  <div class="boxCerca">
   <form action="" method="get" id="search-form" class="search-form">
-  <table summary="" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><input type="text" name="q" value="keywords" class="text" onFocus="this.value=''"></td>
-		<td>
-		
-      <select name="ricerca" id="sceltaElementi">
-        <option value="" selected="selected"><%= t('capital_letter.lessons') %></option>
+    <table summary="" cellpadding="0" cellspacing="0">
+    <tr>
+      <td style="width:10%"><input type="text" name="q" value="<%= t('small_letter.search') %>" class="text" onFocus="this.value=''"></td>
+		  <td>
+	    <select name="ricerca" id="filter_search_media_elements">
+      <option value="" selected="selected"><%= t('capital_letter.lessons') %></option>
         <option value=""><%= t('capital_letter.media_elements') %></option>
       </select>
-    </td>
-    <td><input type="hidden" name="redirect_to" value=""/><input type="image" src="<%= asset_path 'cerca.png' %>" name="submit" value="<%= t('small_letter.search') %>"></td>
-  </tr>
-	
-	</table>
+      </td>
+			<td style="width:8%" valign="top">Sort results by</td>
+			<td style="width:12%"><span></span><input type="radio" name="group1" value="" checked> Date of creation<span></span><br> 
+    <span></span><input type="radio" name="group1" value=""> Date of publication<span></span><br><span></span><input type="radio" name="group1" value=""> Name<span></span></td>
+      <td align="right"><input type="hidden" name="redirect_to" value=""/><input type="image" src="<%= asset_path 'cerca.png' %>" name="submit" value="<%= t('small_letter.search') %>"></td>
+    </tr>
+	  </table>
   </form>
-	
-</div>
-
+	</div>
+	<p>Warning!<br>Not entering any keyword you can see all the lessons of the subject selected.</p>
 </div>
