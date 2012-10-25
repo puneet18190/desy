@@ -80,7 +80,7 @@ class ExtractorTest < ActiveSupport::TestCase
     tags << "大湖"
     tags << "咗做"
     tags << "個"
-    tags << "法屬係話"
+    tags << "法條聖話"
     tag_ids = []
     tags.each do |t|
       tt = Tag.new
@@ -669,8 +669,9 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_ordered_item_extractor [@les5.id, @les6.id], p2[:content]
     assert_equal true, p2[:last_page]
     # fourth case - filters and orders on the last search
-    assert Tag.create_tag_set('Lesson', 2, ['Antonio de curtis', 'acquazzone', 'lunna'])
-    assert_equal 37, Tag.count
+    my_tag_chinese = Tag.find_by_word '個名'
+    assert Tag.create_tag_set('Lesson', 2, ['Antonio de curtis', 'acquazzone', my_tag_chinese.id])
+    assert_equal 36, Tag.count
     assert_equal 164, Tagging.count
     p1 = @user2.search_lessons('to', 1, 5, nil, 'only_mine', nil)
     assert_ordered_item_extractor [2], p1[:content]
@@ -697,6 +698,16 @@ class ExtractorTest < ActiveSupport::TestCase
     # ninth case
     p1 = @user2.search_lessons('r n', 1, 5, nil, nil, nil)
     assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id], p1[:content]
+    assert_equal true, p1[:last_page]
+    # cases in chinese
+    [@les7, @les8, @les9].each do |llll|
+      assert Lesson.find(llll.id).publish
+    end
+    p1 = @user2.search_lessons('個', 1, 5, 'title', nil, nil)
+    assert_ordered_item_extractor [2, @les7.id, @les8.id, @les9.id], p1[:content]
+    assert_equal true, p1[:last_page]
+    p1 = @user2.search_lessons('條聖', 1, 5, 'title', nil, nil)
+    assert_ordered_item_extractor [@les7.id, @les9.id], p1[:content]
     assert_equal true, p1[:last_page]
   end
   
