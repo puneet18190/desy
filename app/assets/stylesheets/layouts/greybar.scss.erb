@@ -1,12 +1,12 @@
 .gray-bar {
-  padding:0.4% 1.3% 0.4% 1.3%; 
+  padding:0.4% 1.3% 0.4% 0.6%; 
 	background-color:#f5f5f5;
 	color:#727377;
 	float:left;
 	margin-bottom:20px;
 	margin-left:1%;
 	font:  80% 'Nunito', sans-serif;
-	width:95.2%;
+	width:95.9%;
 	font: {
 	  size:120%;
 	}
@@ -22,22 +22,40 @@
     margin-right:10px;
   }
   .navlist a {
-   padding: 15px 30px;
-	 background-color: #fff;
+     padding: 15px 30px;
+	   background-color: #fafafa;
+	   color:#b9b9bd;
 	}
-  /*.navlist a:link, 
-	.navlist a:visited {
-	  color: #f0f0f0;
-    background-color: #fafafa;
-    text-decoration: none;
-  }*/
-  .navlist a:hover,
+	.navlist a:hover	{
+	   background-color: #fff;
+	}
 	.navlist a.current {
-	  color: #727377;
-    background-color: #fafafa;
-	  
-    
-  }
+     padding: 15px 30px;
+	   background-color: #fff;
+	   color:#727377;
+	}
+	.navlist a.createButtonLesson {
+     padding: 15px 30px;
+	   background-color: #f29400;
+		 color:#fff;
+		 &:hover {
+		   background-color: #f5a933;
+		 }
+		 &.current {
+		   background-color: #f5a933;
+		 }
+	}
+	.navlist a.createButtonMediaElements {
+     padding: 15px 30px;
+	   background-color: #41a62a;
+		 color:#fff;
+		 &:hover {
+		   background-color: #67b855;
+		 }
+		 &.current {
+		   background-color: #67b855;
+		 }
+	}
 	p {
 	  padding-top:20px
 	}
