@@ -47,40 +47,40 @@ class ExtractorTest < ActiveSupport::TestCase
       t.destroy
     end
     tags = []
-    tags << "cane"
+    tags << "cane" # 0
     tags << "sole"
     tags << "gatto"
-    tags << "cincillà"
+    tags << "cincillà" # 3
     tags << "walter nudo"
     tags << "luna"
-    tags << "escrementi di usignolo"
+    tags << "escrementi di usignolo" # 6
     tags << "disabili"
     tags << "barriere architettoniche"
-    tags << "mare"
+    tags << "mare" # 9
     tags << "petrolio"
     tags << "sostenibilità"
-    tags << "immondizia"
+    tags << "immondizia" # 12
     tags << "inquinamento atmosferico"
     tags << "inquinamento"
-    tags << "pollution"
+    tags << "pollution" # 15
     tags << "tom cruise"
     tags << "cammello"
-    tags << "cammelli"
+    tags << "cammelli" # 18
     tags << "acqua"
     tags << "acquario"
-    tags << "acquatico"
+    tags << "acquatico" # 21
     tags << "個名"
     tags << "拿大即"
-    tags << "河"
+    tags << "河" # 24
     tags << "條聖"
     tags << "係英國"
-    tags << "拿"
+    tags << "拿" # 27
     tags << "住羅倫"
     tags << "加"
-    tags << "大湖"
+    tags << "大湖" # 30
     tags << "咗做"
     tags << "個"
-    tags << "法條聖話"
+    tags << "法條聖話" # 33
     tag_ids = []
     tags.each do |t|
       tt = Tag.new
@@ -100,15 +100,30 @@ class ExtractorTest < ActiveSupport::TestCase
       8 => [tag_ids[2], tag_ids[5], tag_ids[8], tag_ids[11], tag_ids[14], tag_ids[17], tag_ids[20]],
       9 => [tag_ids[6], tag_ids[13], tag_ids[20], tag_ids[27], tag_ids[4], tag_ids[9], tag_ids[14]]
     }
-    cont = 0
-    MediaElement.all.each do |me|
-      assert Tag.create_tag_set('MediaElement', me.id, tag_map[cont%10]), "Tags not saved for MediaElement -- #{me.inspect}"
-      cont += 1
-    end
-    Lesson.all.each do |l|
-      assert Tag.create_tag_set('Lesson', l.id, tag_map[cont%10]), "Tags not saved for Lesson -- #{l.inspect}"
-      cont += 1
-    end
+    assert Tag.create_tag_set('MediaElement', 1, tag_map[0])
+    assert Tag.create_tag_set('MediaElement', 2, tag_map[1])
+    assert Tag.create_tag_set('MediaElement', 3, tag_map[2])
+    assert Tag.create_tag_set('MediaElement', 4, tag_map[3])
+    assert Tag.create_tag_set('MediaElement', 5, tag_map[4])
+    assert Tag.create_tag_set('MediaElement', 6, tag_map[5])
+    assert Tag.create_tag_set('MediaElement', @el1.id, tag_map[8])
+    assert Tag.create_tag_set('MediaElement', @el2.id, tag_map[9])
+    assert Tag.create_tag_set('MediaElement', @el3.id, tag_map[0])
+    assert Tag.create_tag_set('MediaElement', @el4.id, tag_map[6])
+    assert Tag.create_tag_set('MediaElement', @el5.id, tag_map[1])
+    assert Tag.create_tag_set('MediaElement', @el6.id, tag_map[7])
+    assert Tag.create_tag_set('MediaElement', @el7.id, tag_map[2])
+    assert Tag.create_tag_set('Lesson', 1, tag_map[3])
+    assert Tag.create_tag_set('Lesson', 2, tag_map[4])
+    assert Tag.create_tag_set('Lesson', @les1.id, tag_map[8])
+    assert Tag.create_tag_set('Lesson', @les2.id, tag_map[9])
+    assert Tag.create_tag_set('Lesson', @les3.id, tag_map[0])
+    assert Tag.create_tag_set('Lesson', @les4.id, tag_map[1])
+    assert Tag.create_tag_set('Lesson', @les5.id, tag_map[2])
+    assert Tag.create_tag_set('Lesson', @les6.id, tag_map[3])
+    assert Tag.create_tag_set('Lesson', @les7.id, tag_map[5])
+    assert Tag.create_tag_set('Lesson', @les8.id, tag_map[6])
+    assert Tag.create_tag_set('Lesson', @les9.id, tag_map[7])
   end
   
   def setup
