@@ -1,0 +1,22 @@
+<div id="my_media_elements">
+  <% if @media_elements.empty? %>
+    <% if @filter == Filters::ALL_MEDIA_ELEMENTS %>
+      <%= render :partial => "media_elements/empty" %>
+    <% else %>
+      <%= render :partial => "media_elements/empty_filter" %>
+    <% end %>
+  <% else %>
+    <% if @format == Formats::EXPANDED %>
+      <% @media_elements.each do |me| %>
+        <div style="width:90%;  margin:0 auto 0 auto;">
+          <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
+        </div>
+      <% end %>
+    <% else %>
+      <% @media_elements.each do |me| %>
+        <%= render :partial => "media_elements/view_single_compact", :locals => {:media_element => me, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT} %>
+      <% end %>
+    <% end %>
+    <%= render :partial => 'shared/pagination', :locals => {:page => @page, :last_page => @last_page, :first_page => (@page == 1), :pagination_url => request.url} %>
+  <% end %>
+</div>

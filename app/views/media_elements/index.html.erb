@@ -1,28 +1,22 @@
+<%
+  large_class = ''
+  small_class = ''
+  large_class = 'current' if @format == Formats::EXPANDED
+  small_class = 'current' if @format == Formats::COMPACT
+%>
+
 <div class="gray-bar">
   <%= render :partial => "media_elements/graybar_left" %>
   <%= render :partial => "shared/search" %>
 </div>
 <br class="clearfloat">
-
-
 <div class="griglia-contenuti">
-  
-  
   <div class="elements-content">
-    
-    <%
-      large_class = ''
-      small_class = ''
-      large_class = 'current' if @format == Formats::EXPANDED
-      small_class = 'current' if @format == Formats::COMPACT
-    %>
-    
     <div class="title-bar">
       <h1 style="width:45%"><%= t('small_letter.elements') %></h1>
       <p id="format_media_elements">
         <%= t('capital_letter.display_mode') %>: <%= link_to t('capital_letter.large'), '/media_elements?format=expanded', :class => large_class %> - <%= link_to t('capital_letter.small'), '/media_elements?format=compact', :class => small_class %>
       </p>
-      
       <div style="padding-left:20px">
         <h2 style="padding-right:10px"><%= t('small_letter.display') %></h2>
         <div class="selectDisplay">
@@ -33,7 +27,6 @@
           </select>
         </div>
       </div>
-      
       <div>
         <h2 style="padding-right:10px"><%= t('capital_letter.show') %></h2>
         <select name="ricerca" id="filter_media_elements">
@@ -43,42 +36,8 @@
           <% end %>
         </select>
       </div>
-      
     </div>
-    
     <br class="clearfloat">
-      
-      
-      <% if @media_elements.empty? %>
-        
-        <% if @filter == Filters::ALL_MEDIA_ELEMENTS %>
-          <%= render :partial => "media_elements/empty" %>
-        <% else %>
-          <%= render :partial => "media_elements/empty_filter" %>
-        <% end %>
-        
-      <% else %>
-        
-        <% if @format == Formats::EXPANDED %>
-          
-          <% @media_elements.each do |me| %>
-            <div style="width:90%;  margin:0 auto 0 auto;">
-              <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
-            </div>
-          <% end %>
-          
-        <% else %>
-          
-          <% @media_elements.each do |me| %>
-            <%= render :partial => "media_elements/view_single_compact", :locals => {:media_element => me, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT} %>
-          <% end %>
-        <% end %>
-        <%= render :partial => 'shared/pagination', :locals => {:page => @page, :last_page => @last_page, :first_page => (@page == 1), :pagination_url => request.url} %>
-        
-      <% end %>
-      
-      
+    <%= render :partial => "media_elements/my_media_elements" %>
   </div>
-  
-  
 </div>
