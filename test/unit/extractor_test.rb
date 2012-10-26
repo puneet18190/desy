@@ -819,6 +819,16 @@ class ExtractorTest < ActiveSupport::TestCase
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'image')
     assert_ordered_item_extractor [@el6.id, 6], p1[:content]
     assert_equal true, p1[:last_page]
+    # last case
+    p1 = @user2.search_media_elements('加', 1, 5, 'title')
+    assert_ordered_item_extractor [@el2.id, @el4.id, 3], p1[:content]
+    assert_equal true, p1[:last_page]
+    p1 = @user2.search_media_elements('加', 1, 2, 'title')
+    p2 = @user2.search_media_elements('加', 2, 2, 'title')
+    assert_ordered_item_extractor [@el2.id, @el4.id], p1[:content]
+    assert_equal false, p1[:last_page]
+    assert_ordered_item_extractor [3], p2[:content]
+    assert_equal true, p2[:last_page]
   end
   
 end
