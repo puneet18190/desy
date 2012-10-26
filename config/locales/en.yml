@@ -152,6 +152,26 @@ en:
       third:
         title: "Balotelli ha insultato una città"
         content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
+    search:
+      first:
+        title: "Search, tris alla Danimarca"
+        content: "Missione compiuta. Dopo il 3-1 in Armenia, a San Siro l'Italia di Prandelli supera con lo stesso risultato l'ostacolo Danimarca e ora può guardare con grande ottimismo alla strada che manca per arrivare al Mondiale del 2014. Grazie ai gol di Montolivo, De Rossi e Balotelli, infatti, gli azzurri consolidano il primato in classifca"
+      second:
+        title: "De Rossi o Zeman?"
+        content: "La Nazionale restituisce alla Roma un De Rossi rigenerato. Dopo essersi riposato in panchina contro l’Atalanta, nell’ultima partita di campionato prima della sosta, il centrocampista ha fornito due grandi prestazioni in azzurro, realizzando due reti che hanno un grande valore in chiave mondiale."
+      third:
+        title: "Balotelli ha insultato una città"
+        content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
+    virtual_classroom:
+      first:
+        title: "Virtual Classroom, tris alla Danimarca"
+        content: "Missione compiuta. Dopo il 3-1 in Armenia, a San Siro l'Italia di Prandelli supera con lo stesso risultato l'ostacolo Danimarca e ora può guardare con grande ottimismo alla strada che manca per arrivare al Mondiale del 2014. Grazie ai gol di Montolivo, De Rossi e Balotelli, infatti, gli azzurri consolidano il primato in classifca"
+      second:
+        title: "De Rossi o Zeman?"
+        content: "La Nazionale restituisce alla Roma un De Rossi rigenerato. Dopo essersi riposato in panchina contro l’Atalanta, nell’ultima partita di campionato prima della sosta, il centrocampista ha fornito due grandi prestazioni in azzurro, realizzando due reti che hanno un grande valore in chiave mondiale."
+      third:
+        title: "Balotelli ha insultato una città"
+        content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
 
 # (4) labels for constant keywords defined in lib/autoload
   status:
