@@ -250,9 +250,19 @@ class User < ActiveRecord::Base
     b.save
   end
   
-  def playlist
+  def full_virtual_classroom(page, per_page)
+    page = 1 if page.class != Fixnum
+    for_page = 1 if for_page.class != Fixnum
+    offset = (page - 1) * for_page
+    resp = {}
+    resp[:last_page] = VirtualClassroomLesson.where('user_id = ?', self.id).offset(offset + per_page).empty?
+    resp[:content] = VirtualClassroomLesson.where('user_id = ?', self.id).order('created_at DESC').offset(offset).limit(per_page)
+    return resp
+  end
+  
+  def playlist_visible_block(an_offset, a_limit)
     return [] if self.new_record?
-    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
+    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(an_offset).limit(a_limit)
   end
   
   def create_lesson(title, description, subject_id)

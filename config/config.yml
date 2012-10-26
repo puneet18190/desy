@@ -23,3 +23,6 @@ expanded_media_element_pagination_options: [12, 16, 24]
 notifications_loaded_together: 8
 # DIALOGS
 seconds_for_timeout_dialogs: 10000
+# VIRTUAL CLASSROOM
+lessons_for_page_in_virtual_classroom: 12
+playlist_lessons_loaded_together: 10
