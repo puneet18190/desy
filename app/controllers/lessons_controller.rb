@@ -4,10 +4,9 @@ class LessonsController < ApplicationController
   
   before_filter :initialize_lesson, :only => [:add, :copy, :like, :remove, :dislike]
   before_filter :initialize_lesson_with_owner, :only => [:destroy, :publish, :unpublish]
-  before_filter :initialize_notifications, :only => :index
+  before_filter :initialize_notifications, :initialize_paginator, :only => :index
   
   def index
-    initialize_paginator
     get_own_lessons
     if @last_page && (@page != 1) && @lessons.empty?
       @page = 1

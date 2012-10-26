@@ -7,10 +7,9 @@ class MediaElementsController < ApplicationController
   
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
-  before_filter :initialize_notifications, :only => :index
+  before_filter :initialize_notifications, :initialize_paginator, :only => :index
   
   def index
-    initialize_paginator
     get_own_media_elements
     if @last_page && (@page != 1) && @media_elements.empty?
       @page = 1

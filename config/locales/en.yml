@@ -53,6 +53,7 @@ en:
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
   capital_letter:
+    advanced_search: 'Advanced search'
     author: 'Author'
     contact_us: 'Contact us'
     copyright: '©2012 DESY'

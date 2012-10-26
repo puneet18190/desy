@@ -1,19 +1,17 @@
 <div class="boxCerca">
   <form action="" method="get" id="search-form" class="search-form">
-  <table summary="" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><input type="text" name="q" value="<%= t('small_letter.search') %>" class="text" onFocus="this.value=''"></td>
-		<td>
-		
-      <select name="ricerca" id="sceltaTipo">
-        <option value="" selected="selected"><%= t('capital_letter.lessons') %></option>
-        <option value=""><%= t('capital_letter.media_elements') %></option>
-      </select>
-    </td>
-    <td><input type="hidden" name="redirect_to" value=""/><input type="image" src="<%= asset_path 'cerca.png' %>" name="submit" value="<%= t('small_letter.search') %>"></td>
-  </tr>
-	
-	</table>
+    <table summary="" cellpadding="0" cellspacing="0">
+      <tr>
+        <td><input type="text" name="q" value="<%= t('small_letter.search') %>" class="text" onFocus="this.value=''"></td>
+        <td>
+          <select name="ricerca" id="sceltaTipo">
+            <option value="" selected="selected"><%= t('capital_letter.lessons') %></option>
+            <option value=""><%= t('capital_letter.media_elements') %></option>
+          </select>
+        </td>
+        <td><input type="hidden" name="redirect_to" value=""/><input type="image" src="<%= asset_path 'cerca.png' %>" name="submit" value="<%= t('small_letter.search') %>"></td>
+      </tr>
+    </table>
   </form>
-	<a href="" class="advanced">Advanced search</a>
+  <%= link_to t('capital_letter.advanced_search'), "#{search_items_path}?item=#{@where}" %>
 </div>
