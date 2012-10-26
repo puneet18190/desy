@@ -797,12 +797,7 @@ class ExtractorTest < ActiveSupport::TestCase
       ids_tags << t.tag_id
     end
     assert Tag.create_tag_set('MediaElement', 3, (ids_tags + ['加條聖']))
-    ids_tags = []
-    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => 5).each do |t|
-      ids_tags << t.tag_id
-    end
     tag_nuova = Tag.find_by_word('加條聖').id
-    assert Tag.create_tag_set('MediaElement', 5, (ids_tags + [tag_nuova]))
     ids_tags = []
     Tagging.where(:taggable_type => 'MediaElement', :taggable_id => @el2.id).each do |t|
       ids_tags << t.tag_id
@@ -811,7 +806,19 @@ class ExtractorTest < ActiveSupport::TestCase
     assert !MediaElement.find(3).is_public
     assert_equal 2, MediaElement.find(3).user_id
     assert_equal 35, Tag.count
-    assert_equal 171, Tagging.count
+    assert_equal 170, Tagging.count
+    p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'baudio')
+    assert_ordered_item_extractor [@el6.id, 3, 6, @el2.id], p1[:content]
+    assert_equal true, p1[:last_page]
+    p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'audio')
+    assert_ordered_item_extractor [3], p1[:content]
+    assert_equal true, p1[:last_page]
+    p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'video')
+    assert_ordered_item_extractor [@el2.id], p1[:content]
+    assert_equal true, p1[:last_page]
+    p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'image')
+    assert_ordered_item_extractor [@el6.id, 6], p1[:content]
+    assert_equal true, p1[:last_page]
   end
   
 end
