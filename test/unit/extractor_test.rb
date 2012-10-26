@@ -772,47 +772,46 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal false, p1[:last_page]
     assert_ordered_item_extractor [@el7.id, 2, 3], p2[:content]
     assert_equal true, p2[:last_page]
-#    # fourth case - filters and orders on the last search
-#    my_tag_chinese = Tag.find_by_word '個名'
-#    assert Tag.create_tag_set('Lesson', 2, ['Antonio de curtis', 'acquazzone', my_tag_chinese.id])
-#    assert_equal 36, Tag.count
-#    assert_equal 164, Tagging.count
-#    p1 = @user2.search_lessons('to', 1, 5, nil, 'only_mine', nil)
-#    assert_ordered_item_extractor [2], p1[:content]
-#    assert_equal true, p1[:last_page]
-#    # fifth case - words with similar beginning - I sort for likes and title
-#    load_likes
-#    assert Lesson.find(1).unpublish
-#    p1 = @user2.search_lessons('acqua', 1, 5, 'likes', 'public', nil)
-#    assert_ordered_item_extractor [@les1.id, @les6.id, @les2.id, 2], p1[:content]
-#    assert_equal true, p1[:last_page]
-#    # sixth case
-#    assert Lesson.find(1).publish
-#    p1 = @user2.search_lessons('acqua', 1, 5, 'likes', 'not_mine', nil)
-#    assert_ordered_item_extractor [@les1.id, @les6.id, @les2.id, 1], p1[:content]
-#    assert_equal true, p1[:last_page]
-#    # seventh case
-#    p1 = @user2.search_lessons('acqua', 1, 5, 'title', 'not_mine', nil)
-#    assert_ordered_item_extractor [@les1.id, @les2.id, @les6.id, 1], p1[:content]
-#    assert_equal true, p1[:last_page]
-#    # eight case
-#    p1 = @user2.search_lessons('acqua', 1, 5, 'title', 'not_mine', 1)
-#    assert_ordered_item_extractor [@les1.id, 1], p1[:content]
-#    assert_equal true, p1[:last_page]
-#    # ninth case
-#    p1 = @user2.search_lessons('r n', 1, 5, nil, nil, nil)
-#    assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id], p1[:content]
-#    assert_equal true, p1[:last_page]
-#    # cases in chinese
-#    [@les7, @les8, @les9].each do |llll|
-#      assert Lesson.find(llll.id).publish
-#    end
-#    p1 = @user2.search_lessons('個', 1, 5, 'title', nil, nil)
-#    assert_ordered_item_extractor [2, @les7.id, @les8.id, @les9.id], p1[:content]
-#    assert_equal true, p1[:last_page]
-#    p1 = @user2.search_lessons('條聖', 1, 5, 'title', nil, nil)
-#    assert_ordered_item_extractor [@les7.id, @les9.id], p1[:content]
-#    assert_equal true, p1[:last_page]
+    # fourth case - chinese characters, and filters
+    p1 = @user2.search_media_elements('加', 1, 5)
+    assert p1[:content].empty?
+    assert_equal true, p1[:last_page]
+    @el4.is_public = true
+    @el4.publication_date = '2011-01-01 10:00:00'
+    assert_obj_saved @el4
+    p1 = @user2.search_media_elements('加', 1, 5)
+    assert_ordered_item_extractor [@el4.id], p1[:content]
+    assert_equal true, p1[:last_page]
+    p1 = @user2.search_media_elements('加', 1, 5, nil, 'image')
+    assert p1[:content].empty?, "CAZZO - #{p1.inspect}"
+    assert_equal true, p1[:last_page]
+    p1 = @user2.search_media_elements('加', 1, 5, nil, 'audio')
+    assert_ordered_item_extractor [@el4.id], p1[:content]
+    assert_equal true, p1[:last_page]
+    # fifth case - more filters
+    @el6.is_public = true
+    @el6.publication_date = '2011-01-01 10:00:00'
+    assert_obj_saved @el6
+    ids_tags = []
+    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => 3).each do |t|
+      ids_tags << t.tag_id
+    end
+    assert Tag.create_tag_set('MediaElement', 3, (ids_tags + ['加條聖']))
+    ids_tags = []
+    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => 5).each do |t|
+      ids_tags << t.tag_id
+    end
+    tag_nuova = Tag.find_by_word('加條聖').id
+    assert Tag.create_tag_set('MediaElement', 5, (ids_tags + [tag_nuova]))
+    ids_tags = []
+    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => @el2.id).each do |t|
+      ids_tags << t.tag_id
+    end
+    assert Tag.create_tag_set('MediaElement', @el2.id, (ids_tags + [tag_nuova]))
+    assert !MediaElement.find(3).is_public
+    assert_equal 2, MediaElement.find(3).user_id
+    assert_equal 35, Tag.count
+    assert_equal 171, Tagging.count
   end
   
 end
