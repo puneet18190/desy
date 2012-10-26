@@ -417,7 +417,7 @@ class User < ActiveRecord::Base
       media_element.set_status self.id
       content << media_element
     end
-    resp[:last_page] = Tagging.joins(joins).where(where, params[0], params[1], params[2]).offset(offset + limit).empty?
+    resp[:last_page] = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).offset(offset + limit).empty?
     resp[:content] = content
     return resp
   end

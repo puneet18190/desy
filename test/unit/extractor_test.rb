@@ -758,9 +758,6 @@ class ExtractorTest < ActiveSupport::TestCase
     p1 = @user2.search_media_elements('ciao', 1, 5, nil, nil)
     assert p1[:content].empty?
     assert_equal true, p1[:last_page]
-    
-    # FIXME fino a qui sopra è valido
-    
     # second case - it matches three tags
     p1 = @user2.search_media_elements('di', 1, 5, nil, nil)
     p2 = @user2.search_media_elements('di', 2, 5, nil, nil)
@@ -768,14 +765,13 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal false, p1[:last_page]
     assert_ordered_item_extractor [@el7.id], p2[:content]
     assert_equal true, p2[:last_page]
-    # third case - it matches more tags - @les9 is not found because private
-#    assert Lesson.find(1).publish
-#    p1 = @user2.search_lessons('to', 1, 5, nil, nil, nil)
-#    p2 = @user2.search_lessons('to', 2, 5, nil, nil, nil)
-#    assert_ordered_item_extractor [1, @les1.id, @les2.id, @les3.id, @les4.id], p1[:content]
-#    assert_equal false, p1[:last_page]
-#    assert_ordered_item_extractor [@les5.id, @les6.id], p2[:content]
-#    assert_equal true, p2[:last_page]
+    # third case - it matches more tags
+    p1 = @user2.search_media_elements('to', 1, 5, 'title', nil)
+    p2 = @user2.search_media_elements('to', 2, 5, 'title', nil)
+    assert_ordered_item_extractor [4, @el1.id, @el2.id, @el3.id, @el5.id], p1[:content]
+    assert_equal false, p1[:last_page]
+    assert_ordered_item_extractor [@el7.id, 2, 3], p2[:content]
+    assert_equal true, p2[:last_page]
 #    # fourth case - filters and orders on the last search
 #    my_tag_chinese = Tag.find_by_word '個名'
 #    assert Tag.create_tag_set('Lesson', 2, ['Antonio de curtis', 'acquazzone', my_tag_chinese.id])
