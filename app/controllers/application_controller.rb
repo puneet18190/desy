@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
     @ok = false if resp == {}
     @item = resp[:item]
     @template_path = resp[:path]
+    @reload_url = params[:reload_url]
   end
   
   def prepare_lesson_for_js
@@ -63,10 +64,16 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize_notifications_and_button_response
-    @notifications = Notification.visible_block(@current_user.id, 0, CONFIG['notifications_loaded_together'])
-    @new_notifications = Notification.number_not_seen(@current_user.id)
-    @offset_notifications = @notifications.length
-    @tot_notifications = Notification.count_tot(@current_user.id)
+    if params[:js_response] != 'true'
+      @js_response = false
+      @notifications = Notification.visible_block(@current_user.id, 0, CONFIG['notifications_loaded_together'])
+      @new_notifications = Notification.number_not_seen(@current_user.id)
+      @offset_notifications = @notifications.length
+      @tot_notifications = Notification.count_tot(@current_user.id)
+    else
+      @js_response = true
+      @delete_item = params[:delete_item]
+    end
   end
   
   def initialize_location
@@ -84,6 +91,14 @@ class ApplicationController < ActionController::Base
     if @template_path.nil?
       render :nothing => true
       return
+    elsif @template_path == false
+      if !@reload_url.blank?
+        redirect_to @reload_url
+        return
+      else
+        render :nothing => true
+        return
+      end
     end
     case @item
       when 'lesson'
