@@ -1,15 +1,18 @@
 <div class="boxCerca">
-  <form action="" method="get" id="search-form" class="search-form">
+  <%= form_tag search_items_path, :class => 'search-form', :id => 'search_general' do %>
     <table summary="" cellpadding="0" cellspacing="0">
       <tr>
-        <td><input type="text" name="q" value="<%= t('small_letter.search') %>" class="text" onFocus="this.value=''"></td>
+        <td>
+          <input type="text" name="tag" value="<%= t('small_letter.search') %>" class="text" id="general_tag_reader_for_search">
+          <%= hidden_field_tag 'tag_kind', '', :id => 'general_tag_kind_for_search' %>
+        </td>
         <td>
           <select name="ricerca" id="sceltaTipo">
-            <option value="" selected="selected"><%= t('capital_letter.lessons') %></option>
-            <option value=""><%= t('capital_letter.media_elements') %></option>
+            <option value="lessons" <%= @where != 'media_elements' ? "selected=\"selected\"" : '' %>><%= t('capital_letter.lessons') %></option>
+            <option value="media_elements" <%= @where == 'media_elements' ? "selected=\"selected\"" : '' %>><%= t('capital_letter.media_elements') %></option>
           </select>
         </td>
-        <td><input type="hidden" name="redirect_to" value=""/><input type="image" src="<%= asset_path 'cerca.png' %>" name="submit" value="<%= t('small_letter.search') %>"></td>
+        <td><%= image_submit_tag(asset_path('cerca.png')) %></td>
       </tr>
     </table>
   </form>

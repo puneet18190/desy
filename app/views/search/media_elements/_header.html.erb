@@ -1,26 +1,30 @@
 <div class="contentSearch">
-  Elements
+  <%= t('capital_letter.media_elements') %>
   <div class="boxCerca">
-  <form action="" method="get" id="search-form" class="search-form">
-    <table summary="" cellpadding="0" cellspacing="0">
-    <tr>
-      <td style="width:10%"><input type="text" name="q" value="<%= t('small_letter.search') %>" class="text" onFocus="this.value=''"></td>
-		  <td>
-	    <select name="ricerca" id="filter_search_media_elements">
-      <option value="" selected="selected"><%= t('capital_letter.lessons') %></option>
-        <option value=""><%= t('capital_letter.media_elements') %></option>
-      </select>
-      </td>
-			<td style="width:8%" valign="top" rowspan="2">Sort results by</td>
-			<td style="width:12%" rowspan="2"><input type="radio" name="group1" value="" class="regular-radio" checked> <label for="" class=""></label>Date of creation<br> 
-    <input type="radio" name="group1" value="" class="regular-radio"> <label for=""></label>Date of publication<br><input type="radio" name="group1" value="" class="regular-radio"> <label for=""></label>Name</td>
-      <td align="right" rowspan="2"><input type="hidden" name="redirect_to" value=""/><input type="image" src="<%= asset_path 'cerca.png' %>" name="submit" value="<%= t('small_letter.search') %>"></td>
-    </tr>
-		<tr>
-			<td colspan="2"><p>Warning!<br>Not entering any keyword you can see all the lessons of the subject selected.</p></td>
-		</tr>
-	  </table>
-  </form>
-	</div>
-	
+    <%= form_tag "#{search_items_path}?item=media_elements", :class => 'search-form', :id => 'search_media_elements' do %>
+      <table summary="" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width:10%">
+            <input type="text" name="tag" value="<%= t('small_letter.insert_tag') %>" class="text" id="media_elements_tag_reader_for_search">
+            <%= hidden_field_tag 'tag_kind', '', :id => 'media_elements_tag_kind_for_search' %>
+          <td>
+            <select name="ricerca" id="filter_search_media_elements">
+              <option value="" selected="selected"><%= t('capital_letter.lessons') %></option>
+              <option value=""><%= t('capital_letter.media_elements') %></option>
+            </select>
+          </td>
+          <td style="width:8%" valign="top" rowspan="2">Sort results by</td>
+          <td style="width:12%" rowspan="2">
+            <input type="radio" name="group1" value="" class="regular-radio" checked><label for="" class=""></label>Date of creation<br>
+            <input type="radio" name="group1" value="" class="regular-radio"><label for=""></label>Date of publication<br>
+            <input type="radio" name="group1" value="" class="regular-radio"><label for=""></label>Name
+          </td>
+          <td align="right" rowspan="2"><td><%= image_submit_tag(asset_path('cerca.png')) %></td></td>
+        </tr>
+        <tr>
+          <td colspan="2"><p>Warning!<br>Not entering any keyword you can see all the lessons of the subject selected.</p></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
 </div>

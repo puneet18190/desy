@@ -1,13 +1,13 @@
 <div class="gray-bar advancedSearch">
   <div class="cols" style="width:43%">
-    <%= image_tag("ico_advanced_search.png", :align => "left", :style => "padding-top:5px; padding-right: 10px") %><%= t('capital_letter.advanced_search') %><h1>What are you looking for?</h1>
+    <%= image_tag("ico_advanced_search.png", :align => "left", :style => "padding-top:5px; padding-right: 10px") %><%= t('capital_letter.advanced_search') %><h1><%= t('capital_letter.what_are_you_looking_for') %></h1>
   </div>
   <div class="cols">
-    <p>Are you for a lesson or a didacting element?<br>Choose to move forward in research.</p>
+    <p><%= t('capital_letter.search_lesson_or_media_element') %><br><%= t('capital_letter.choose_wich_item_and_go') %></p>
   </div>
   <div class="cols" style="padding-top:18px; width:18%">
-    <input type="radio" name="group1" value="lessons" class="regular-radio" checked> <label for=""></label>Lessons
-    <input type="radio" name="group1" value="elements" class="regular-radio" style="margin-left:40px"> <label for=""></label>Elements
+    <input type="radio" name="group1" value="lessons" class="regular-radio" checked> <label for=""></label><%= t('capital_letter.lessons') %>
+    <input type="radio" name="group1" value="elements" class="regular-radio" style="margin-left:40px"> <label for=""></label><%= t('capital_letter.media_elements') %>
   </div>
 </div>
 <br class="clearfloat">

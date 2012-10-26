@@ -324,4 +324,19 @@ $(document).ready(function() {
     });
   });
   
+  
+  // SEARCH ITEMS
+  
+  $('body').on('focus', '#general_tag_reader_for_search', function() {
+    $('#general_tag_kind_for_search').attr('value', '0');
+  });
+  
+  $('body').on('focus', '#lessons_tag_reader_for_search', function() {
+    $('#lessons_tag_kind_for_search').attr('value', '0');
+  });
+  
+  $('body').on('focus', '#media_elements_tag_reader_for_search', function() {
+    $('#media_elements_tag_kind_for_search').attr('value', '0');
+  });
+  
 });
