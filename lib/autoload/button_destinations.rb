@@ -43,9 +43,9 @@ module ButtonDestinations
       when 'add'
         case destination
           when EXPANDED_LESSON
-            resp[:path] = 'lessons/extract_expanded.js.erb'
+            resp[:path] = false
           when EXPANDED_MEDIA_ELEMENT
-            resp[:path] = 'media_elements/extract_expanded.js.erb'
+            resp[:path] = false
           when FOUND_LESSON
             resp[:path] = 'lessons/reload_compact.js.erb'
           when FOUND_MEDIA_ELEMENT
@@ -54,11 +54,11 @@ module ButtonDestinations
       when 'remove'
         case destination
           when COMPACT_LESSON
-            resp[:path] = 'lessons/extract_compact.js.erb'
+            resp[:path] = false
           when COMPACT_MEDIA_ELEMENT
-            resp[:path] = 'media_elements/extract_compact.js.erb'
+            resp[:path] = false
           when EXPANDED_MEDIA_ELEMENT
-            resp[:path] = 'media_elements/extract_expanded.js.erb'
+            resp[:path] = false
           when FOUND_LESSON
             resp[:path] = 'lessons/reload_compact.js.erb'
           when FOUND_MEDIA_ELEMENT
@@ -66,11 +66,11 @@ module ButtonDestinations
         end
       when 'destroy'
         if [FOUND_LESSON, COMPACT_LESSON].include?(destination)
-          resp[:path] = 'lessons/extract_compact.js.erb'
+          resp[:path] = false
         elsif [FOUND_MEDIA_ELEMENT, COMPACT_MEDIA_ELEMENT].include?(destination)
-          resp[:path] = 'media_elements/extract_compact.js.erb'
+          resp[:path] = false
         elsif destination == EXPANDED_MEDIA_ELEMENT
-          resp[:path] = 'media_elements/extract_expanded.js.erb'
+          resp[:path] = false
         end
       when 'copy'
         resp[:path] = 'lessons/insert.js.erb' if resp[:item] == 'lesson'
