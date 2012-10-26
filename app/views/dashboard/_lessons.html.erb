@@ -1,0 +1,37 @@
+<div id="lessons_in_dashboard">
+  <% if @lessons.empty? %>
+    <%= render :partial => 'dashboard/lessons_empty', :locals => {:emptied => @lessons_emptied} %>
+  <% else %>
+    <% tot_lesson = 0 %>
+    <% (0...CONFIG['lesson_pages_in_dashboard']).each do |j| %>
+      <%
+        lessons_block = @lessons[tot_lesson, CONFIG['lessons_for_page_in_dashboard']].to_a
+        last_page = @lessons[tot_lesson + CONFIG['lessons_for_page_in_dashboard'], CONFIG['lessons_for_page_in_dashboard']].to_a.empty?
+      %>
+      <% if lessons_block.any? %>
+        <div class="suggested_lessons_page" id="suggested_lessons_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none' : 'block' %>">
+          <% cont = 0 %>
+          <% lessons_block.each do |l| %>
+            <% if cont == 0 %>
+              <div>
+            <% end %>
+            <%= render :partial => "lessons/view_single_expanded", :locals => {:lesson => l, :destination => ButtonDestinations::EXPANDED_LESSON} %>
+            <% if cont == 1 %>
+              </div>
+            <% end %>
+            <% cont = (cont == 0) ? 1 : 0 %>
+          <% end %>
+          <% if cont == 1 %>
+            <%= render :partial => "lessons/create_new" %>
+            </div>
+          <% else %>
+            <%= render :partial => "lessons/create_new" %>
+          <% end %>
+          <br class="clearfloat">
+          <%= render :partial => 'dashboard/lessons_pagination', :locals => {:page => (j + 1), :last_page => last_page, :first_page => (j == 0)} %>
+        </div>
+      <% end %>
+      <% tot_lesson += CONFIG['lessons_for_page_in_dashboard'] %>
+    <% end %>
+  <% end %>
+</div>
