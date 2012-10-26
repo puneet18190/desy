@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
     @ok = false if !ButtonDestinations::MEDIA_ELEMENTS.include?(@destination)
   end
   
-  def initialize_notifications
+  def initialize_notifications_and_button_response
     @notifications = Notification.visible_block(@current_user.id, 0, CONFIG['notifications_loaded_together'])
     @new_notifications = Notification.number_not_seen(@current_user.id)
     @offset_notifications = @notifications.length

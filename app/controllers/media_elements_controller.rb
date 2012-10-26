@@ -7,7 +7,7 @@ class MediaElementsController < ApplicationController
   
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
-  before_filter :initialize_notifications, :initialize_paginator, :only => :index
+  before_filter :initialize_notifications_and_button_response, :initialize_paginator, :only => :index
   
   def index
     get_own_media_elements
