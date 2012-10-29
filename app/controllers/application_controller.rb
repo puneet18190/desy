@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :require_login
+  before_filter :require_login, :initialize_location
   
   private
   
@@ -72,13 +72,13 @@ class ApplicationController < ActionController::Base
   
   def initialize_location
     @where = params[:controller]
+    @html_params = get_html_button_params
   end
   
   def require_login
     @current_user = User.find_by_email(CONFIG['admin_email'])
     session[:user_id] = @current_user.id
     # TODO questa parte qui sotto andrà preservata anche quando ci sarà la autenticazione vera
-    initialize_location
   end
   
   def respond_standard_js
@@ -113,6 +113,31 @@ class ApplicationController < ActionController::Base
   
   def correct_integer?(x)
     x.class == String && (x =~ /\A\d+\Z/) == 0
+  end
+  
+  def get_html_button_params
+    resp = ""
+    if params[:page].blank?
+      resp = "N"
+    else
+      resp = "#{resp}#{params[:page]}"
+    end
+    if params[:for_page].blank?
+      resp = "#{resp}-N"
+    else
+      resp = "#{resp}-#{params[:for_page]}"
+    end
+    if params[:filter].blank?
+      resp = "#{resp}-N"
+    else
+      resp = "#{resp}-#{params[:filter]}"
+    end
+    if params[:format].blank?
+      resp = "#{resp}-N"
+    else
+      resp = "#{resp}-#{params[:format]}"
+    end
+    resp
   end
   
 end
