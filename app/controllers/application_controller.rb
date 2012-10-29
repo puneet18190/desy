@@ -1,12 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :require_login, :initialize_location, :initialize_item_container
+  before_filter :authenticate, :initialize_location, :initialize_item_container
   
   private
   
-  def initialize_template
-    @respond_instructions = ButtonDestinations.get @destination, params[:action], @container, params[:html_params]
+  def initialize_template(item_id)
+    @respond_instructions = ButtonDestinations.get @destination, params[:action], @container, params[:html_params], item_id
     @ok = false if @respond_instructions == {}
   end
   
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
     @ok = !@lesson.nil?
     initialize_button_destination
     @ok = false if !ButtonDestinations::LESSONS.include?(@destination)
-    initialize_template
+    initialize_template @lesson_id
   end
   
   def initialize_button_destination
@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
     @ok = !@media_element.nil?
     initialize_button_destination
     @ok = false if !ButtonDestinations::MEDIA_ELEMENTS.include?(@destination)
-    initialize_template
+    initialize_template @media_element_id
   end
   
   def initialize_layout
@@ -76,10 +76,10 @@ class ApplicationController < ActionController::Base
   
   def initialize_item_container
     @html_params = get_html_button_params
-    @container = params[:container].blank? ? @where : params[:container]
+    @container = params[:container].blank? ? params[:controller] : params[:container]
   end
   
-  def require_login
+  def authenticate
     @current_user = User.find_by_email(CONFIG['admin_email'])
     session[:user_id] = @current_user.id
     # TODO questa parte qui sotto andrà preservata anche quando ci sarà la autenticazione vera
