@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
   
   def initialize_template
-    @respond_instructions = ButtonDestinations.get @destination, params[:action], @container
+    @respond_instructions = ButtonDestinations.get @destination, params[:action], @container, params[:html_params]
     @ok = false if @respond_instructions == {}
   end
   
@@ -39,8 +39,8 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize_button_destination
-    @container = params[:container]
     @destination = params[:destination]
+    @container = params[:container]
   end
   
   def initialize_media_element_with_owner
@@ -73,6 +73,7 @@ class ApplicationController < ActionController::Base
   def initialize_location
     @where = params[:controller]
     @html_params = get_html_button_params
+    @container = params[:container].blank? ? @where : params[:container]
   end
   
   def require_login

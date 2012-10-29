@@ -1,21 +1,21 @@
-function addLesson(lesson_id, destination, container) {
+function addLesson(lesson_id, destination, container, html_params) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/add?destination=' + destination + '&container=' + container
+    url: '/lessons/' + lesson_id + '/add?destination=' + destination + '&container=' + container + '&html_params=' + html_params
   });
 }
 
-function copyLesson(lesson_id, destination, container) {
+function copyLesson(lesson_id, destination, container, html_params) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/copy?destination=' + destination + '&container=' + container
+    url: '/lessons/' + lesson_id + '/copy?destination=' + destination + '&container=' + container + '&html_params=' + html_params
   });
 }
 
-function destroyLesson(lesson_id, destination, container) {
+function destroyLesson(lesson_id, destination, container, html_params) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/destroy?destination=' + destination + '&container=' + container
+    url: '/lessons/' + lesson_id + '/destroy?destination=' + destination + '&container=' + container + '&html_params=' + html_params
   });
 }
 
@@ -44,10 +44,10 @@ function publishLesson(lesson_id, destination) {
   });
 }
 
-function removeLesson(lesson_id, destination, container) {
+function removeLesson(lesson_id, destination, container, html_params) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/remove?destination=' + destination + '&container=' + container
+    url: '/lessons/' + lesson_id + '/remove?destination=' + destination + '&container=' + container + '&html_params=' + html_params
   });
 }
 
@@ -58,37 +58,37 @@ function unpublishLesson(lesson_id, destination) {
   });
 }
 
-function addLessonToVirtualClassroom(lesson_id, destination, container) {
+function addLessonToVirtualClassroom(lesson_id, destination, container, html_params) {
   $.ajax({
     type: 'post',
-    url: '/virtual_classroom/' + lesson_id + '/add_lesson?destination=' + destination + '&container=' + container
+    url: '/virtual_classroom/' + lesson_id + '/add_lesson?destination=' + destination + '&container=' + container + '&html_params=' + html_params
   });
 }
 
-function removeLessonFromVirtualClassroom(lesson_id, destination, container) {
+function removeLessonFromVirtualClassroom(lesson_id, destination, container, html_params) {
   $.ajax({
     type: 'post',
-    url: '/virtual_classroom/' + lesson_id + '/remove_lesson?destination=' + destination + '&container=' + container
+    url: '/virtual_classroom/' + lesson_id + '/remove_lesson?destination=' + destination + '&container=' + container + '&html_params=' + html_params
   });
 }
 
-function addMediaElement(media_element_id, destination, container) {
+function addMediaElement(media_element_id, destination, container, html_params) {
   $.ajax({
     type: 'post',
-    url: '/media_elements/' + media_element_id + '/add?destination=' + destination + '&container=' + container
+    url: '/media_elements/' + media_element_id + '/add?destination=' + destination + '&container=' + container + '&html_params=' + html_params
   });
 }
 
-function destroyMediaElement(media_element_id, destination, container) {
+function destroyMediaElement(media_element_id, destination, container, html_params) {
   $.ajax({
     type: 'post',
-    url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination + '&container=' + container
+    url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination + '&container=' + container + '&html_params=' + html_params
   });
 }
 
-function removeMediaElement(media_element_id, destination, container) {
+function removeMediaElement(media_element_id, destination, container, html_params) {
   $.ajax({
     type: 'post',
-    url: '/media_elements/' + media_element_id + '/remove?destination=' + destination + '&container=' + container
+    url: '/media_elements/' + media_element_id + '/remove?destination=' + destination + '&container=' + container + '&html_params=' + html_params
   });
 }

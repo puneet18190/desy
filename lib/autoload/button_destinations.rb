@@ -10,7 +10,7 @@ module ButtonDestinations
   LESSONS = [EXPANDED_LESSON, COMPACT_LESSON, FOUND_LESSON]
   MEDIA_ELEMENTS = [EXPANDED_MEDIA_ELEMENT, COMPACT_MEDIA_ELEMENT, FOUND_MEDIA_ELEMENT]
   
-  def self.get(destination, action, container)
+  def self.get(destination, action, container, html_params)
     resp = {}
     if LESSONS.include?(destination)
       resp[:item] = 'lesson'
