@@ -1,1 +1,1 @@
-<%= render :partial => 'shared/buttons/standard_ajax_button', :locals => {:name => Buttons::DESTROY, :item => item, :destination => destination, :reload_url => add_js_parameters(request.url, item.id)} %>
+<%= render :partial => 'shared/buttons/standard_ajax_button', :locals => {:name => Buttons::DESTROY, :item => item, :destination => destination, :container => @where} %>

@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
   private
   
   def initialize_template
-    resp = ButtonDestinations.get @destination, params[:action]
+    resp = ButtonDestinations.get @destination, params[:action], @container
     @ok = false if resp == {}
     @item = resp[:item]
     @template_path = resp[:path]
-    @reload_url = params[:reload_url]
+    @reload_url = resp[:reload_url]
   end
   
   def prepare_lesson_for_js
@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize_button_destination_for_lessons
+    @container = params[:container]
     @destination = params[:destination]
     @ok = false if !ButtonDestinations::LESSONS.include?(@destination)
   end
@@ -59,6 +60,7 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize_button_destination_for_media_elements
+    @container = params[:container]
     @destination = params[:destination]
     @ok = false if !ButtonDestinations::MEDIA_ELEMENTS.include?(@destination)
   end

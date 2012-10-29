@@ -1,21 +1,21 @@
-function addLesson(lesson_id, destination, reload_url) {
+function addLesson(lesson_id, destination, container) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/add?destination=' + destination + '&reload_url=' + reload_url
+    url: '/lessons/' + lesson_id + '/add?destination=' + destination + '&container=' + container
   });
 }
 
-function copyLesson(lesson_id, destination, reload_url) {
+function copyLesson(lesson_id, destination, container) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/copy?destination=' + destination + '&reload_url=' + reload_url
+    url: '/lessons/' + lesson_id + '/copy?destination=' + destination + '&container=' + container
   });
 }
 
-function destroyLesson(lesson_id, destination, reload_url) {
+function destroyLesson(lesson_id, destination, container) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/destroy?destination=' + destination + '&reload_url=' + reload_url
+    url: '/lessons/' + lesson_id + '/destroy?destination=' + destination + '&container=' + container
   });
 }
 
@@ -44,10 +44,10 @@ function publishLesson(lesson_id, destination) {
   });
 }
 
-function removeLesson(lesson_id, destination, reload_url) {
+function removeLesson(lesson_id, destination, container) {
   $.ajax({
     type: 'post',
-    url: '/lessons/' + lesson_id + '/remove?destination=' + destination + '&reload_url=' + reload_url
+    url: '/lessons/' + lesson_id + '/remove?destination=' + destination + '&container=' + container
   });
 }
 
@@ -58,37 +58,37 @@ function unpublishLesson(lesson_id, destination) {
   });
 }
 
-function addLessonToVirtualClassroom(lesson_id, destination, reload_url) {
+function addLessonToVirtualClassroom(lesson_id, destination, container) {
   $.ajax({
     type: 'post',
-    url: '/virtual_classroom/' + lesson_id + '/add_lesson?destination=' + destination + '&reload_url=' + reload_url
+    url: '/virtual_classroom/' + lesson_id + '/add_lesson?destination=' + destination + '&container=' + container
   });
 }
 
-function removeLessonFromVirtualClassroom(lesson_id, destination, reload_url) {
+function removeLessonFromVirtualClassroom(lesson_id, destination, container) {
   $.ajax({
     type: 'post',
-    url: '/virtual_classroom/' + lesson_id + '/remove_lesson?destination=' + destination + '&reload_url=' + reload_url
+    url: '/virtual_classroom/' + lesson_id + '/remove_lesson?destination=' + destination + '&container=' + container
   });
 }
 
-function addMediaElement(media_element_id, destination, reload_url) {
+function addMediaElement(media_element_id, destination, container) {
   $.ajax({
     type: 'post',
-    url: '/media_elements/' + media_element_id + '/add?destination=' + destination + '&reload_url=' + reload_url
+    url: '/media_elements/' + media_element_id + '/add?destination=' + destination + '&container=' + container
   });
 }
 
-function destroyMediaElement(media_element_id, destination, reload_url) {
+function destroyMediaElement(media_element_id, destination, container) {
   $.ajax({
     type: 'post',
-    url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination + '&reload_url=' + reload_url
+    url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination + '&container=' + container
   });
 }
 
-function removeMediaElement(media_element_id, destination, reload_url) {
+function removeMediaElement(media_element_id, destination, container) {
   $.ajax({
     type: 'post',
-    url: '/media_elements/' + media_element_id + '/remove?destination=' + destination + '&reload_url=' + reload_url
+    url: '/media_elements/' + media_element_id + '/remove?destination=' + destination + '&container=' + container
   });
 }
