@@ -1,10 +1,12 @@
 <div class="griglia-contenuti">
-  <div style="float:left; width:70%">
+  <div style="float:left; width:70%; border:1px solid red">
   <% @lessons.each do |l| %>
     <%= render :partial => "virtual_classroom/view_single", :locals => {:lesson => l.lesson} %>
   <% end %>
 	</div>
-	<div style="border:1px solid red; float:right; width:20%">
-	asdfkjhsdkjfh
+	<div style="float:right; width:20%; margin-right:1%;">
+	  <div class="playlist">
+		  <h1>Playlist</h1>
+	  </div>	
 	</div>
 </div>
