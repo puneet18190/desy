@@ -16,7 +16,7 @@ html.virtual_classroom-controller {
 	  }
   }
 	.content {
-	color:#fff;
+	  color:#fff;
 	}
 	.container {
 	  width: 100%;
@@ -24,11 +24,51 @@ html.virtual_classroom-controller {
 	  margin: 0 auto;  
   }
 	.bluBar {
-    margin: 0 auto 24px auto ;
-    padding-bottom: 20px;
-    float: left;
-    width: 100%;
-    font: 180% 'Nunito', sans-serif;
+    margin: 0 auto 24px auto;
+    padding-left:2%;
+		float: left;
+    width: 98%;
+		padding-top:5px;
+		padding-bottom:10px;
+    font: 120% 'Nunito', sans-serif;
 		background-color:#2eaadc;
+		h1 {
+	    color:#fff;
+		  padding:0;
+		  margin-top:5px;
+		  font: 200% 'Nunito', sans-serif;
+		  float:left;
+		  width:39%;
+		}
+		ul.navlist {
+      margin: 1em 3.8em 0.5em 3em;
+      padding: 0;
+      white-space: nowrap;
+		  float:left;
+			
+    }
+    .navlist li {
+      display: inline;
+      list-style-type: none;
+      margin-right:10px;
+			&:last-child {
+			  margin-right:0px;
+			}
+    }
+    .navlist a {
+       padding: 5px 25px;
+	     background-color: #42b9e9;
+	     color:#fff;
+	  }
+	  .navlist a:hover	{
+	     background-color: #fff;
+	  }
+	  .navlist a.current {
+       padding: 15px 30px;
+	     background-color: #fff;
+	     color:#727377;
+	  }
+	
+		
   }
 }

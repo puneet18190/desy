@@ -3,9 +3,18 @@
   <%= render :partial => "shared/logout" %>
 </div>
 <div class="bluBar">
- 
+  
+    <h1 style="width:20%">Virtual Classroom</h1>
+    <ul class="navlist">
+     <li><a href="#">add new lesson</a></li>
+     <li><a href="#"><%= t('small_letter.create_new_media_element') %></a></li>
+	   
+		</ul>
+    <ul class="navlist" style="float:right">
+     
+	   <li><a href="javascript:history.back();" class="">back in desy</a></li>
+		</ul>
 </div>
-
 <br class="clearfloat">
 <%= render :partial => "notifications/main" %>
 <br class="clearfloat">
