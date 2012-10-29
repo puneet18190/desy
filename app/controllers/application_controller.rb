@@ -104,14 +104,17 @@ class ApplicationController < ActionController::Base
   end
   
   def render_js_or_html_index
-    if @js_reload
-      respond_to do |format|
-        format.js do
+    respond_to do |format|
+      format.js do
+        if @js_reload
           render 'index.js.erb'
         end
       end
-    else
-      render 'index.html.erb'
+      format.html do
+        if !@js_reload
+          render 'index.html.erb'
+        end
+      end
     end
   end
   
