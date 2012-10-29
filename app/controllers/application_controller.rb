@@ -83,7 +83,7 @@ class ApplicationController < ActionController::Base
   end
   
   def respond_standard_js
-    if @respond_instructions[:template_path] == false
+    if @respond_instructions[:path] == false
       redirect_to @respond_instructions[:reload_url]
       return
     end
@@ -95,7 +95,7 @@ class ApplicationController < ActionController::Base
     end
     respond_to do |format|
       format.js do
-        render @respond_instructions[:template_path]
+        render @respond_instructions[:path]
       end
     end
   end
