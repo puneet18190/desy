@@ -1,3 +1,5 @@
 <div class="griglia-contenuti">
-  <%= render :partial => "virtual_classroom/view_single" %>
+  <% @lessons.each do |l| %>
+    <%= render :partial => "virtual_classroom/view_single", :locals => {:lesson => l.lesson} %>
+  <% end %>
 </div>

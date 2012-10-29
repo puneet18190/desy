@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
   
   def search_media_elements(word, page, for_page, order=nil, filter=nil)
     word = word.to_s
-    page = 1 if page.class != Fixnum
-    for_page = 1 if for_page.class != Fixnum
+    page = 1 if page.class != Fixnum || page < 0
+    for_page = 1 if for_page.class != Fixnum || for_page < 0
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
     order = SearchOrders::UPDATED_AT if order.nil? || !SearchOrders::MEDIA_ELEMENTS_SET.include?(order)
     offset = (page - 1) * for_page
@@ -41,8 +41,8 @@ class User < ActiveRecord::Base
   
   def search_lessons(word, page, for_page, order=nil, filter=nil, subject_id=nil)
     word = word.to_s
-    page = 1 if page.class != Fixnum
-    for_page = 1 if for_page.class != Fixnum
+    page = 1 if page.class != Fixnum || page < 0
+    for_page = 1 if for_page.class != Fixnum || for_page < 0
     subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
     order = SearchOrders::UPDATED_AT if order.nil? || !SearchOrders::LESSONS_SET.include?(order)
@@ -116,8 +116,8 @@ class User < ActiveRecord::Base
   end
   
   def own_media_elements(page, per_page, filter=nil)
-    page = 1 if page.class != Fixnum
-    for_page = 1 if for_page.class != Fixnum
+    page = 1 if page.class != Fixnum || page < 0
+    for_page = 1 if for_page.class != Fixnum || for_page < 0
     offset = (page - 1) * per_page
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SET.include?(filter)
     param1 = self.id
@@ -161,8 +161,8 @@ class User < ActiveRecord::Base
   end
   
   def own_lessons(page, per_page, filter=nil)
-    page = 1 if page.class != Fixnum
-    for_page = 1 if for_page.class != Fixnum
+    page = 1 if page.class != Fixnum || page < 0
+    for_page = 1 if for_page.class != Fixnum || for_page < 0
     offset = (page - 1) * per_page
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SET.include?(filter)
     resp = []
@@ -220,7 +220,7 @@ class User < ActiveRecord::Base
   end
   
   def suggested_lessons(n)
-    n = 1 if n.class != Fixnum
+    n = 1 if n.class != Fixnum || n < 0
     subject_ids = []
     UsersSubject.where(:user_id => self.id).each do |us|
       subject_ids << us.subject_id
@@ -233,7 +233,7 @@ class User < ActiveRecord::Base
   end
   
   def suggested_media_elements(n)
-    n = 1 if n.class != Fixnum
+    n = 1 if n.class != Fixnum || n < 0
     resp = MediaElement.where('is_public = ? AND user_id != ? AND NOT EXISTS (SELECT * FROM bookmarks WHERE bookmarks.bookmarkable_type = ? AND bookmarks.bookmarkable_id = media_elements.id AND bookmarks.user_id = ?)', true, self.id, 'MediaElement', self.id).order('publication_date DESC').limit(n)
     resp.each do |me|
       me.set_status self.id
@@ -251,8 +251,8 @@ class User < ActiveRecord::Base
   end
   
   def full_virtual_classroom(page, per_page)
-    page = 1 if page.class != Fixnum
-    for_page = 1 if for_page.class != Fixnum
+    page = 1 if page.class != Fixnum || page < 0
+    for_page = 1 if for_page.class != Fixnum || for_page < 0
     offset = (page - 1) * for_page
     resp = {}
     resp[:last_page] = VirtualClassroomLesson.where('user_id = ?', self.id).offset(offset + per_page).empty?
@@ -262,6 +262,8 @@ class User < ActiveRecord::Base
   
   def playlist_visible_block(an_offset, a_limit)
     return [] if self.new_record?
+    offset = 1 if offset.class != Fixnum || offset < 0
+    limit = 1 if limit.class != Fixnum || limit < 0
     VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(an_offset).limit(a_limit)
   end
   
