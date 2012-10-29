@@ -1,11 +1,2 @@
-<div class="boxViewSingleLesson">
-  <div class="contentInterno">
-    <%= render :partial => "lessons/thumbnails/small", :locals => {:lesson => lesson} %>
-		
-      <a href="">Submit a lesson</a>
-			<br>
-			<a href="">Remove from Virtual Classroom</a>
-    
-	</div>
-	
-</div>
+<li><%= cont %><h1><%= lesson.title %></h1>
+	<h2><%= lesson.subject.description %></h2></li>
