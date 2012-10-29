@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :require_login, :initialize_location
+  before_filter :require_login, :initialize_location, :initialize_item_container
   
   private
   
@@ -72,6 +72,9 @@ class ApplicationController < ActionController::Base
   
   def initialize_location
     @where = params[:controller]
+  end
+  
+  def initialize_item_container
     @html_params = get_html_button_params
     @container = params[:container].blank? ? @where : params[:container]
   end
@@ -117,6 +120,7 @@ class ApplicationController < ActionController::Base
   end
   
   def get_html_button_params
+    return params[:html_params] if !params[:html_params].blank?
     resp = ""
     if params[:page].blank?
       resp = "N"
