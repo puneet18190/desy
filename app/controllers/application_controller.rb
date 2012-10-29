@@ -87,7 +87,7 @@ class ApplicationController < ActionController::Base
   
   def respond_standard_js
     if @respond_instructions[:path] == false
-      redirect_to @respond_instructions[:reload_url]
+      render :json => {:redirect_url => @respond_instructions[:reload_url]}
       return
     end
     case @respond_instructions[:item]
