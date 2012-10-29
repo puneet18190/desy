@@ -13,16 +13,16 @@
  *= require jquery.selectbox.css
  *= require jquery-ui-1.9.0.custom
  *= require global
- *= require layouts/prelogin
  *= require header
- *= require layouts/menu
- *= require layouts/notice_help
- *= require layouts/greybar
- *= require layouts/tooltips
+ *= require menu
+ *= require notice_help
+ *= require greybar
+ *= require tooltips
  *= require content
- *= require layouts/lessons
- *= require layouts/elements
- *= require layouts/action_buttons
- *= require layouts/icon_button_popup
+ *= require lessons
+ *= require elements
+ *= require action_buttons
+ *= require icon_button_popup
+ *= require layouts/prelogin
  *= require layouts/virtualclassroom
  */
