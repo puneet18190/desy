@@ -6,11 +6,8 @@ class ApplicationController < ActionController::Base
   private
   
   def initialize_template
-    resp = ButtonDestinations.get @destination, params[:action], @container
-    @ok = false if resp == {}
-    @item = resp[:item]
-    @template_path = resp[:path]
-    @reload_url = resp[:reload_url]
+    @respond_instructions = ButtonDestinations.get @destination, params[:action], @container
+    @ok = false if @respond_instructions == {}
   end
   
   def prepare_lesson_for_js
@@ -36,14 +33,14 @@ class ApplicationController < ActionController::Base
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @lesson = Lesson.find_by_id @lesson_id
     @ok = !@lesson.nil?
-    initialize_button_destination_for_lessons
+    initialize_button_destination
+    @ok = false if !ButtonDestinations::LESSONS.include?(@destination)
     initialize_template
   end
   
-  def initialize_button_destination_for_lessons
+  def initialize_button_destination
     @container = params[:container]
     @destination = params[:destination]
-    @ok = false if !ButtonDestinations::LESSONS.include?(@destination)
   end
   
   def initialize_media_element_with_owner
@@ -55,14 +52,9 @@ class ApplicationController < ActionController::Base
     @media_element_id = correct_integer?(params[:media_element_id]) ? params[:media_element_id].to_i : 0
     @media_element = MediaElement.find_by_id @media_element_id
     @ok = !@media_element.nil?
-    initialize_button_destination_for_media_elements
-    initialize_template
-  end
-  
-  def initialize_button_destination_for_media_elements
-    @container = params[:container]
-    @destination = params[:destination]
+    initialize_button_destination
     @ok = false if !ButtonDestinations::MEDIA_ELEMENTS.include?(@destination)
+    initialize_template
   end
   
   def initialize_layout
@@ -90,19 +82,11 @@ class ApplicationController < ActionController::Base
   end
   
   def respond_standard_js
-    if @template_path.nil?
-      render :nothing => true
+    if @respond_instructions[:template_path] == false
+      redirect_to @respond_instructions[:reload_url]
       return
-    elsif @template_path == false
-      if !@reload_url.blank?
-        redirect_to @reload_url
-        return
-      else
-        render :nothing => true
-        return
-      end
     end
-    case @item
+    case @respond_instructions[:item]
       when 'lesson'
         prepare_lesson_for_js
       when 'media_element'
@@ -110,7 +94,7 @@ class ApplicationController < ActionController::Base
     end
     respond_to do |format|
       format.js do
-        render @template_path
+        render @respond_instructions[:template_path]
       end
     end
   end
