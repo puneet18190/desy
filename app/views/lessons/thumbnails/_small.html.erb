@@ -1,10 +1,7 @@
-<div class="img_expanded" style="border:1px solid red">
-  <%= image_tag("finta2.jpg") %>
-  <div class="bg_text">
-    <p><%= lesson.title %></p>
+<div class="img_expanded">
+  <div style="height:102px"><%= image_tag("finta2.jpg") %></div>
+	<div class="bg_text">
+    <h1><%= lesson.title %></h1>
   </div>
-	<br class="clearfloat">
-	
-	<h1><%= lesson.subject.description %></h1>
-	
+	<h2><%= lesson.subject.description %></h2>
 </div>
