@@ -63,15 +63,15 @@ class ApplicationController < ActionController::Base
     @ok = false if !ButtonDestinations::MEDIA_ELEMENTS.include?(@destination)
   end
   
-  def initialize_notifications_and_button_response
-    if params[:js_response] != 'true'
-      @js_response = false
+  def initialize_layout
+    if params[:js_reload] != 'true'
+      @js_reload = false
       @notifications = Notification.visible_block(@current_user.id, 0, CONFIG['notifications_loaded_together'])
       @new_notifications = Notification.number_not_seen(@current_user.id)
       @offset_notifications = @notifications.length
       @tot_notifications = Notification.count_tot(@current_user.id)
     else
-      @js_response = true
+      @js_reload = true
       @delete_item = params[:delete_item]
     end
   end
@@ -110,6 +110,18 @@ class ApplicationController < ActionController::Base
       format.js do
         render @template_path
       end
+    end
+  end
+  
+  def render_js_or_html_index
+    if @js_reload
+      respond_to do |format|
+        format.js do
+          render 'index.js.erb'
+        end
+      end
+    else
+      render 'index.html.erb'
     end
   end
   

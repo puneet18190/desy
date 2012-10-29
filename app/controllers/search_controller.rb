@@ -3,7 +3,7 @@ class SearchController < ApplicationController
   LESSONS_FOR_PAGE = CONFIG['compact_lesson_pagination']
   MEDIA_ELEMENTS_FOR_PAGE = CONFIG['compact_media_element_pagination']
   
-  before_filter :initialize_notifications_and_button_response, :initialize_paginator_and_filters
+  before_filter :initialize_layout, :initialize_paginator_and_filters
   
   def index
     if @did_you_search

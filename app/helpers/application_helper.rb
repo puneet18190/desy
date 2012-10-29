@@ -43,7 +43,7 @@ module ApplicationHelper
       end
     end
     if flag
-      return an_url.gsub("delete_item=#{old_delete_item}", "delete_item=#{delete_idem}").gsub("js_reload=#{old_js_reload}", 'js_reload=true').html_safe
+      return an_url.gsub("delete_item=#{old_delete_item}", "delete_item=#{delete_id}").gsub("js_reload=#{old_js_reload}", 'js_reload=true').html_safe
     else
       return "#{an_url}&js_reload=true&delete_item=#{delete_id}".html_safe
     end
