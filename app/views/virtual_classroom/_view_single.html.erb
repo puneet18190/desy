@@ -1,0 +1,10 @@
+<div class="boxViewSingleLesson">
+  <div class="contentInterno">
+    <%= render :partial => "lessons/thumbnails/#{lesson.sti_type.downcase}" %> <!-- TODO qui dovrò passare la url dell'attached quando necessario -->
+    <div class="description">
+      <h3><%= lessons.sti_type %></h3>
+      <h4><%= lessons.title %></h4>
+    </div>
+  </div>
+  
+</div>
