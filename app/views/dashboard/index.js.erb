@@ -1,1 +1,15 @@
-alert('eccomi --- <%= params.inspect %>');
+var to_delete = $('#<%= @delete_item %>');
+
+<% if @delete_item_select == 'lesson' %>
+  
+  to_delete.hide('scale', {percent: 0}, 500, function() {
+    $('#lessons_in_dashboard').replaceWith("<%= j(render(:partial => "dashboard/lessons")) %>");
+  });
+  
+<% elsif @delete_item_select == 'media_element' %>
+  
+  to_delete.hide('scale', {percent: 0}, 500, function() {
+    $('#media_elements_in_dashboard').replaceWith("<%= j(render(:partial => "dashboard/media_elements")) %>");
+  });
+  
+<% end %>
