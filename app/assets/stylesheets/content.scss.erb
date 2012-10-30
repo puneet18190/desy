@@ -1,19 +1,20 @@
 #loading {
   display: none;
-  background: url(<%= asset_path 'invisibile_background.gif' %>);
-  z-index: 1000;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
+  z-index: 100;
+  position:absolute;
+  left:0%;
+  top:0;
+  width:100%;
+  height:100%; /* funziona solo se prima lo hai assegnato al parent */
+  background:#fff;
+  opacity:0.5;	
   text-align: center;
 }
-
-#loading, #loading p, #loading p img {
-  vertical-align: middle;
-  font-size: 100%;
-  line-height: 81em;
+.containerLoading {
+  position: absolute;
+  top:50%;
+	left:50%;
+	z-index: 10;
 }
 
 .content {

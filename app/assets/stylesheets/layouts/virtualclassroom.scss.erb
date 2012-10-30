@@ -183,10 +183,15 @@ html.virtual_classroom-controller {
 	  color:#727377;
 	}
 	.createButton a {
-    background: url(<%= asset_path 'add-element-off.svg' %>) bottom right no-repeat;
+    background: url(<%= asset_path 'add_vc_off.svg' %>) bottom right no-repeat;
     background-size: 6em;
     padding: 4em;
     width: 102px;
+		&:hover {
+		  background: url(<%= asset_path 'add_vc_on.svg' %>) bottom right no-repeat;
+			background-size: 6em;
+      padding: 4em;
+		}
   }
 	.emptyPlayList {
 	  color:#727377;

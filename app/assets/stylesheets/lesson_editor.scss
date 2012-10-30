@@ -1,0 +1,259 @@
+@import url(http://fonts.googleapis.com/css?family=Nunito);
+
+html.lesson-editor-layout{
+  min-height: 100%;
+
+  body {
+    font-family: Arial, Verdana, sans-serif;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: block;
+    background: #2d2d2d;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #2d2d2d 0%, #5f5f5f 100%, #7db9e8 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2d2d2d), color-stop(100%, #5f5f5f), color-stop(100%, #7db9e8));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #2d2d2d 0%, #5f5f5f 100%, #7db9e8 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #2d2d2d 0%, #5f5f5f 100%, #7db9e8 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #2d2d2d 0%, #5f5f5f 100%, #7db9e8 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #2d2d2d 0%, #5f5f5f 100%, #7db9e8 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2d2d2d', endColorstr='#7db9e8',GradientType=0 );
+    /* IE6-9 */
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+      color: #dedede;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6, h7 {
+    font-family: "Nunito", Helvetica, sans-serif;
+    color: #f29400;
+  }
+
+  h2 {
+    padding: 10px;
+    font-size: 50px;
+    text-align: left;
+    font-weight: normal;
+  }
+
+  /** Page navigation **/
+
+  #heading {
+    padding: 10px;
+    height: 20px;
+    display: block;
+  }
+
+  #slide-numbers {
+    list-style: none;
+    margin-left: 10px;
+    li {
+      float: left;
+      a {
+        float: left;
+        width: 20px;
+        height: 14px;
+        padding-top: 1px;
+        margin-right: 10px;
+        border: 1px solid #4b4b4b;
+        color: #4b4b4b;
+        text-align: center;
+        font-size: 12px;
+        &:hover {
+          background-color: white;
+          border: 1px solid white;
+        }
+        &.active {
+          background-color: #f29400;
+          border: 1px solid #f29400;
+          color: white;
+        }
+        &.add-slide {
+          border: none;
+          background-color: transparent;
+          padding-top: 0;
+          &:hover {
+            border: none;
+            background-color: transparent;
+            padding-top: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .tooltip {
+    display: none;
+    margin: 20px 0 0 -27px;
+    position: absolute;
+    padding: 20px 20px 25px 25px;
+    background: url("lesson-editor-tooltip-bg.png") top left no-repeat;
+  }
+
+  .slide-thumb {
+    width: 290px;
+    height: 200px;
+    padding: 5px;
+    background-color: white;
+  }
+
+  /** main container **/
+
+  #container {
+    height: 100%;
+    text-align: center;
+    margin: 0 auto -45px;
+  }
+
+  #main {
+    width: 100%;
+    display: block;
+  }
+
+  ul#slides {
+    display: block;
+    li {
+      &.active {
+        width: 900px;
+        height: 590px;
+        background-color: white;
+        background-color: #dedede;
+      }
+      float: left;
+      display: block;
+      background-color: #cdcdcd;
+      height: 590px;
+      width: 900px;
+      margin: 0;
+      padding: 0;
+      margin-left: 50px;
+    }
+  }
+  
+  ul#slides.new{
+    margin-top: 30px;
+    li{
+      height: 490px;
+      width: 700px;
+      padding:100px 100px 0;
+      background-color: #f29400;
+      color: #fff;
+      p,h3{
+        width: 700px;
+        color: #fff;
+        display: block;
+      }
+      p{
+        font-size: 10px;
+      }
+    }
+  }
+
+  /** footer **/
+
+  #footer {
+    padding: 12px;
+    display: block;
+    background-color: #1c1c1c;
+    color: white;
+    font-size: 10px;
+    img {
+      float: left;
+      width: auto;
+      margin-right: 5px;
+    }
+  }
+
+  /*  
+  Sticky Footer Solution
+  by Steve Hatcher 
+  http://stever.ca
+  http://www.cssstickyfooter.com
+  */
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* must declare 0 margins on everything, also for main layout components use padding, not 
+  vertical margins (top and bottom) to add spacing, else those margins get added to total height 
+  and your footer gets pushed down a bit more, creating vertical scroll bars in the browser */
+
+  /*html, body {height: 100%;}*/
+
+  #container {
+    min-height: 100%;
+  }
+
+  #content {
+    overflow: auto;
+    padding-bottom: 50px;
+  }
+
+  /* must be same height as the footer */
+
+  #footer {
+    position: fixed;
+    height: 30px;
+    width: 100%;
+    margin-top: 10px;
+    /* negative value of footer height */
+    height: 10px;
+    clear: both;
+  }
+
+  /*Opera Fix*/
+
+  body:before {
+    /* thanks to Maleika (Kohoutec)*/
+    content: "";
+    height: 100%;
+    float: left;
+    width: 0;
+    margin-top: -32767px;
+    /* thank you Erik J - negate effect of float*/
+  }
+
+  /** Generic classes **/
+
+  .pull-right {
+    float: right;
+    width: auto;
+  }
+
+  .pull-left {
+    float: left;
+    width: auto;
+  }
+
+  .show-75 {
+    -moz-opacity: .75;
+    filter: alpha(opacity = 75);
+    opacity: .75;
+  }
+
+  .show-50 {
+    -moz-opacity: .50;
+    filter: alpha(opacity = 50);
+    opacity: .50;
+  }
+
+  .show-25 {
+    -moz-opacity: .25;
+    filter: alpha(opacity = 25);
+    opacity: .25;
+  }
+}
