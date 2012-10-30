@@ -289,27 +289,28 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     get_new_slide 'image1'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 6
-    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
+    @media_elements_slide.allignment = 0
+    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
     get_new_slide 'image3'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 6
-    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
-    get_new_slide 'audio1'
+    @media_elements_slide.allignment = 0
+    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
+    get_new_slide 'audio'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 4
-    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
-    get_new_slide 'audio2'
-    @media_elements_slide.slide_id = @new_slide.id
-    @media_elements_slide.media_element_id = 4
-    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
+    @media_elements_slide.allignment = nil
+    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
     get_new_slide 'video1'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 2
-    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
+    @media_elements_slide.allignment = nil
+    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
     get_new_slide 'video2'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 2
-    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
+    @media_elements_slide.allignment = nil
+    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
     # Here I have to create a new cover slide
     @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
     @lesson.copied_not_modified = false
@@ -319,12 +320,20 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert_equal 'cover', @new_slide.kind
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 6
-    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kind 'image2'/
+    @media_elements_slide.allignment = 0
+    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
     # until here
     get_new_slide 'image2'
     @media_elements_slide.slide_id = @new_slide.id
+    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
     @media_elements_slide.position = 2
-    @media_elements_slide.media_element_id = 6
+    assert @media_elements_slide.valid?
+    get_new_slide 'image4'
+    @media_elements_slide.slide_id = @new_slide.id
+    @media_elements_slide.position = 3
+    assert @media_elements_slide.valid?
+    @media_elements_slide.position = 4
     assert_obj_saved @media_elements_slide
   end
   
