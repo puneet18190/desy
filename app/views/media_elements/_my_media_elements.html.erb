@@ -9,12 +9,12 @@
     <% if @format == Formats::EXPANDED %>
       <% @media_elements.each do |me| %>
         <div style="width:90%;  margin:0 auto 0 auto;">
-          <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT, :container => 'media_elements', :html_params => @html_params} %>
+          <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
         </div>
       <% end %>
     <% else %>
       <% @media_elements.each do |me| %>
-        <%= render :partial => "media_elements/view_single_compact", :locals => {:media_element => me, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT, :container => 'media_elements', :html_params => @html_params} %>
+        <%= render :partial => "media_elements/view_single_compact", :locals => {:media_element => me, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT} %>
       <% end %>
     <% end %>
     <%= render :partial => 'shared/pagination', :locals => {:page => @page, :last_page => @last_page, :first_page => (@page == 1), :pagination_url => request.url} %>
