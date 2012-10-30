@@ -1,7 +1,7 @@
 <div class="menuController" id="media_element_menu_buttons_<%= media_element.id %>">
   <% cont = 0 %>
   <% media_element.buttons.each do |b| %>
-    <%= render :partial => "shared/buttons/#{b}", :locals => {:item => media_element, :destination => destination} %>
+    <%= render :partial => "shared/buttons/#{b}", :locals => {:item => media_element, :destination => destination, :container => container, :html_params => html_params} %>
     <% cont += 1 %>
   <% end %>
   <% if destination != ButtonDestinations::EXPANDED_MEDIA_ELEMENT %>
