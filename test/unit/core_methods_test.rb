@@ -103,7 +103,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     mediaaa = MediaElementsSlide.new
     mediaaa.slide_id = new_slide_image2.id
     mediaaa.media_element_id = 6
-    mediaaa.allignment = 3
+    mediaaa.alignment = 3
     mediaaa.caption = 'ohlala'
     mediaaa.position = 2
     assert_obj_saved mediaaa
@@ -145,7 +145,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert s4.title.nil?
     assert_equal 1, MediaElementsSlide.where(:slide_id => s4.id).count
     meds = MediaElementsSlide.where(:slide_id => s4.id).first
-    assert_equal 3, meds.allignment
+    assert_equal 3, meds.alignment
     assert_equal 'ohlala', meds.caption
     assert_equal 6, meds.media_element_id
     assert_equal 2, meds.position
@@ -169,7 +169,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     mes.slide_id = new_slide.id
     mes.media_element_id = 5
     mes.position = 2
-    mes.allignment = -1
+    mes.alignment = -1
     mes.caption = 'sagdg'
     assert_obj_saved mes
     assert !MediaElementsSlide.find(mes.id).media_element.is_public

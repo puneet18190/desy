@@ -7,7 +7,7 @@ class MediaElementsSlide < ActiveRecord::Base
   
   validates_presence_of :media_element_id, :slide_id
   validates_numericality_of :media_element_id, :slide_id, :only_integer => true, :greater_than => 0
-  validates_numericality_of :allignment, :only_integer => true, :allow_nil => true
+  validates_numericality_of :alignment, :only_integer => true, :allow_nil => true
   validates_inclusion_of :position, :in => [1, 2, 3, 4]
   validates_uniqueness_of :position, :scope => [:media_element_id, :slide_id]
   validate :validate_associations, :validate_type_in_slide, :validate_position, :validate_media_element, :validate_impossible_changes, :validate_image_properties
@@ -23,8 +23,8 @@ class MediaElementsSlide < ActiveRecord::Base
   end
   
   def validate_image_properties
-    errors[:allignment] << 'must be null if the element is not an image' if @media_element && @media_element.sti_type != 'Image' && !self.allignment.nil?
-    errors[:allignment] << "can't be null if the element is an image" if @media_element && @media_element.sti_type == 'Image' && self.allignment.nil?
+    errors[:alignment] << 'must be null if the element is not an image' if @media_element && @media_element.sti_type != 'Image' && !self.alignment.nil?
+    errors[:alignment] << "can't be null if the element is an image" if @media_element && @media_element.sti_type == 'Image' && self.alignment.nil?
     errors[:caption] << 'must be null if the element is not an image' if @media_element && @media_element.sti_type != 'Image' && !self.caption.blank?
   end
   

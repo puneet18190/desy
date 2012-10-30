@@ -3,7 +3,7 @@ one:
   media_element_id: 6
   slide_id: 1
   position: 1
-  allignment: 0
+  alignment: 0
 
 two:
   id: 2
