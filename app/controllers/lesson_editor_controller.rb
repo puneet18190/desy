@@ -8,6 +8,10 @@ class LessonEditorController < ApplicationController
   end
   
   def new
+    @subjects = [] 
+    @current_user.users_subjects.each do |sbj|
+      @subjects << sbj.subject
+    end
   end
   
   def create

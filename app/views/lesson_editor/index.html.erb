@@ -6,8 +6,8 @@
         <li>
           <a href="#" class="<%= (index == 0) ? 'active' : ''%>"><%= index + 1 %></a>
           <div class="tooltip">
-            <div class="slide-thumb slide.kind">
-              <%= render :partial => "shared/lesson_thumbnails/small/"+slide.kind , :locals => { :slide => slide }%>
+            <div class="slide-thumb <%= slide.kind%>">
+              <%= render :partial => "shared/lesson_thumbnails/small/#{slide.kind}" , :locals => { :slide => slide }%>
             </div>
           </div>
         </li>
@@ -18,9 +18,9 @@
 <% end %>
 <ul id="slides">
   <%- @slides.each_with_index do |slide, index|%>
-    <li class='<%= (index == 0) ? "active  #{slide.kind}" : "slide.kind"%>'>
-      <div class="slide-content slide.kind">
-        <%= render :partial => "shared/lesson_thumbnails/big/"+slide.kind , :locals => { :slide => slide }%>
+    <li class='<%= (index == 0) ? "active  #{slide.kind}" : "#{slide.kind}"%>'>
+      <div class="slide-content <%= slide.kind%>">
+        <%= render :partial => "shared/lesson_thumbnails/big/#{slide.kind}" , :locals => { :slide => slide }%>
       </div>
     </li>
   <% end %>
