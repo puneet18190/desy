@@ -1,4 +1,4 @@
-<div id="<%= destination %>_<%= media_element.id %>" class="boxViewSingleMediaElement">
+<div id="<%= destination %>_<%= media_element.id %>" class="boxViewSingleMediaElement" data-htmlparams="<%= html_params %>" data-container="<%= container %>">
   <div class="contentInterno">
     <%= render :partial => "media_elements/thumbnails/#{media_element.sti_type.downcase}" %> <!-- TODO qui dovrò passare la url dell'attached quando necessario -->
     <div class="description">
@@ -6,6 +6,6 @@
       <h4><%= media_element.title %></h4>
     </div>
   </div>
-  <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination, :container => container, :html_params => html_params} %>
+  <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination} %>
   <%= render :partial => "media_elements/popup", :locals => {:media_element => media_element} %>
 </div>

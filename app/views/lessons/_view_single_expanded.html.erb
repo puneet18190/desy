@@ -1,8 +1,8 @@
-<div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson">
+<div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson" data-htmlparams="<%= html_params %>" data-container="<%= container %>">
   <div class="contentInterno">
     <h1><%= lesson.subject.description %></h1>
     <h2><%= lesson.title %></h2>
     <p><%= lesson.description %></p>
   </div>
-  <%= render :partial => "lessons/action_buttons", :locals => {:lesson => lesson, :destination => destination, :container => container, :html_params => html_params} %>
+  <%= render :partial => "lessons/action_buttons", :locals => {:lesson => lesson, :destination => destination} %>
 </div>

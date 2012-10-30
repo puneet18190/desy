@@ -1,11 +1,11 @@
-<div id="<%= destination %>_<%= media_element.id %>" class="boxViewCompactMediaElement">
+<div id="<%= destination %>_<%= media_element.id %>" class="boxViewCompactMediaElement" data-htmlparams="<%= html_params %>" data-container="<%= container %>">
   <div class="contentInterno">
     <div class="<%= media_element.sti_type.downcase %>">
       <h3><%= media_element.sti_type %></h3>
       <h4><%= media_element.title %></h4>
     </div>
     <p><%= media_element.status %></p>
-    <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination, :container => container, :html_params => html_params} %>
+    <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination} %>
   </div>
   <%= render :partial => "media_elements/popup", :locals => {:media_element => media_element} %>
 </div>

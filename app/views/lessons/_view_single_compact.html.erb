@@ -1,10 +1,12 @@
-<div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson <%= lesson.status == t('status.lessons.copied') ? 'current' : '' %>">
+<% current_class = lesson.status == t('status.lessons.copied') ? 'current' : '' %>
+
+<div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson <%= current_class %>" data-htmlparams="<%= html_params %>" data-container="<%= container %>">
   
   <div class="contentInterno _lesson_compact">
     <h3><%= lesson.title %></h3>
     <p><%= lesson.subject.description %></p>
     <p><%= lesson.status %></p>
-    <%= render :partial => "lessons/action_buttons", :locals => {:lesson => lesson, :destination => destination, :container => container, :html_params => html_params} %>
+    <%= render :partial => "lessons/action_buttons", :locals => {:lesson => lesson, :destination => destination} %>
   </div>
   
   <div class="lessons-expanded _lesson_expanded">
