@@ -35,11 +35,24 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.nil?
     assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:slide_id => 1)}
     assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:media_element_id => 1)}
+    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:allignment => 1)}
+    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MediaElementsSlide.new(:caption => 1)}
   end
   
   test 'types' do
     assert_invalid @media_elements_slide, :position, 5, 1, /is not included in the list/
-    assert_invalid @media_elements_slide, :media_element_id, 'y3', 2, /is not a number/
+    @media_elements_slide.allignment = nil
+    assert @media_elements_slide.valid?
+    get_new_slide 'image1'
+    @media_elements_slide.slide_id = @new_slide.id
+    @media_elements_slide.media_element_id = 6
+    assert_invalid @media_elements_slide, :allignment, 'r', 1, /is not a number/
+    assert_invalid @media_elements_slide, :allignment, 5.5, 1, /must be an integer/
+    @media_elements_slide.allignment = 0
+    assert @media_elements_slide.valid?
+    @media_elements_slide.allignment = -8
+    assert @media_elements_slide.valid?
+    assert_invalid @media_elements_slide, :media_element_id, 'y3', 6, /is not a number/
     assert_invalid @media_elements_slide, :slide_id, 3.4, @new_slide.id, /must be an integer/
     assert_invalid @media_elements_slide, :slide_id, -3, @new_slide.id, /must be greater than 0/
     assert_obj_saved @media_elements_slide
@@ -48,6 +61,16 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
   test 'association_methods' do
     assert_nothing_raised {@media_elements_slide.media_element}
     assert_nothing_raised {@media_elements_slide.slide}
+  end
+  
+  test 'allignment_and_caption' do
+    assert_invalid @media_elements_slide, :caption, 'dgsbkj', ' ', /must be null if the element is not an image/
+    assert_invalid @media_elements_slide, :allignment, 10, nil, /must be null if the element is not an image/
+    get_new_slide 'image3'
+    @media_elements_slide.slide_id = @new_slide.id
+    @media_elements_slide.media_element_id = 6
+    assert_invalid @media_elements_slide, :allignment, nil, -1, /can't be null if the element is an image/
+    assert_obj_saved @media_elements_slide
   end
   
   test 'uniqueness' do
@@ -291,26 +314,36 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.allignment = 0
     assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
+    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
     get_new_slide 'image3'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.allignment = 0
     assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
+    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
     get_new_slide 'audio'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 4
     @media_elements_slide.allignment = nil
     assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
+    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
     get_new_slide 'video1'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 2
     @media_elements_slide.allignment = nil
     assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
+    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
     get_new_slide 'video2'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 2
     @media_elements_slide.allignment = nil
     assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
+    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
     # Here I have to create a new cover slide
     @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
     @lesson.copied_not_modified = false
@@ -322,6 +355,8 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.allignment = 0
     assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
+    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
     # until here
     get_new_slide 'image2'
     @media_elements_slide.slide_id = @new_slide.id
@@ -331,6 +366,8 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert @media_elements_slide.valid?
     get_new_slide 'image4'
     @media_elements_slide.slide_id = @new_slide.id
+    @media_elements_slide.position = 2
+    assert @media_elements_slide.valid?
     @media_elements_slide.position = 3
     assert @media_elements_slide.valid?
     @media_elements_slide.position = 4
