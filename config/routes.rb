@@ -34,7 +34,9 @@ Desy::Application.routes.draw do
   match 'reports/media_element' => 'reports#media_element', :via => :post
   
   # LESSON EDITOR
-  match 'lessons/:lesson_id/edit' => 'lesson_editor#index', :as => :lesson_editor
+  match 'lesson_editor/new' => 'lesson_editor#new'
+  match 'lesson_editor/create' => 'lesson_editor#create', :via => :post
+  match 'lesson_editor/:lesson_id/index' => 'lesson_editor#index', :as => :lesson_editor
   
   # SEARCH LESSONS OR MEDIA ELEMENTS
   match 'search' => 'search#index', :as => :search_items
