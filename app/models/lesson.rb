@@ -35,6 +35,11 @@ class Lesson < ActiveRecord::Base
   
   before_validation :init_validation, :create_token
   
+  def cover
+    return nil if self.new_record?
+    Slide.where(:kind => 'cover', :lesson_id => self.id).first
+  end
+  
   def self.dashboard_emptied?(an_user_id)
     subject_ids = []
     UsersSubject.where(:user_id => an_user_id).each do |us|
