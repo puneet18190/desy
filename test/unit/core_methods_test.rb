@@ -161,7 +161,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 1, x.errors.messages[:base].length
     assert_match /The lesson you selected has already been published/, x.errors.messages[:base].first
     x = Lesson.find 1
-    new_slide = Slide.new :position => 2, :title => 'Titolo', :text => 'Testo testo testo'
+    new_slide = Slide.new :position => 2
     new_slide.lesson_id = 1
     new_slide.kind = 'image2'
     assert_obj_saved new_slide
@@ -169,6 +169,8 @@ class CoreMethodsTest < ActiveSupport::TestCase
     mes.slide_id = new_slide.id
     mes.media_element_id = 5
     mes.position = 2
+    mes.allignment = -1
+    mes.caption = 'sagdg'
     assert_obj_saved mes
     assert !MediaElementsSlide.find(mes.id).media_element.is_public
     assert Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => MediaElementsSlide.find(mes.id).media_element_id).empty?
