@@ -1,6 +1,6 @@
 <div class="boxViewSingleLesson">
   <div class="contentInterno">
-    <%= render :partial => "lessons/thumbnails/small", :locals => {:lesson => lesson} %>
+    <%= render :partial => "lesson_editor/thumbnails/small/cover", :locals => {:slide => lesson.cover, :subject =>lesson.subject.description} %>
 		<br class="clearfloat">
 		<p>
       <a href="">Submit a lesson</a>
