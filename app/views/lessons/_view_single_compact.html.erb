@@ -1,6 +1,6 @@
 <% current_class = lesson.status == t('status.lessons.copied') ? 'current' : '' %>
 
-<div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson <%= current_class %>" data-htmlparams="<%= html_params %>" data-container="<%= container %>">
+<div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson <%= current_class %>">
   
   <div class="contentInterno _lesson_compact">
     <h3><%= lesson.title %></h3>
