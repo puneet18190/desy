@@ -61,12 +61,12 @@ html.virtual_classroom-controller {
 	     color:#fff;
 	  }
 	  .navlist a:hover	{
-	     background-color: #fff;
+	     background-color: #59c9f6;
 	  }
 	  .navlist a.current {
-       padding: 15px 30px;
-	     background-color: #fff;
-	     color:#727377;
+       
+	     background-color: #59c9f6;
+	     
 	  }
 	}
 	.boxViewSingleLesson {
@@ -78,9 +78,14 @@ html.virtual_classroom-controller {
     -webkit-box-shadow: none;
     box-shadow: none;
     background-color: #434343;
-    .img_expanded {
+    
+		.img_expanded {
 		  padding-bottom:10px;
-			
+			&:hover {
+			  cursor:pointer;
+			  background-color:#000;
+				opacity: 0.20;
+			}	
 			&.current {
 			  background-color:#000;
 				opacity: 0.20;
@@ -113,27 +118,43 @@ html.virtual_classroom-controller {
       color:#373737;
     }
 		.lista {
-      padding-bottom: 10px;
-      margin-top: 15px;
+      padding-bottom: 15px;
+      padding-top: 15px;
       border-bottom: 1px solid #373636;
-      dt {
+			float:left;
+			width:290px;
+					
+      .contatore {
 		   float:left;
 			 padding:4px 8px;
-			 margin:0px;
+			 margin-right:15px;
 			 background-color:#434343;
-			 
 			}
-			dd {
-			  width:228px;
-				padding:10px;
-				background-color:#f29400;
+			.description {
+			  width:248px;
+				float:left;
 				
+				.title {
+				  background-color:#f29400;
+				  padding:10px;
+				}
 				
-				&:last-child {
+				.lessonType {
 			    background-color:#fff;
 				  padding:5px 10px;
 			  }
+			  &:hover {
+				  cursor:pointer;
+					background-color:#000;
+				  opacity: 0.20;
+			  }
+				&.current {
+			    background-color:#000;
+				  opacity: 0.20;
+			  }	 
+					
 			}
+			
 			h1 {
 			  font: 120% 'Nunito', sans-serif;
         color:#fff;
@@ -147,7 +168,12 @@ html.virtual_classroom-controller {
 			text-align:center;
 			color:#fff;
 			font: 180% 'Nunito', sans-serif;
-			margin-top:15px
+			margin-top:15px;
+			
+			&:hover {
+			  cursor:pointer;
+				background-color:#59c9f6;
+			}
 		}
 		a {
 		  color:#fff;

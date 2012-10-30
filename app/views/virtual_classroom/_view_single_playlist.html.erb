@@ -1,3 +1,8 @@
-<dt><%= cont %></dt> 
-<dd><h1><%= lesson.title %></h1></dd>
-<dd><h2><%= lesson.subject.description %></h2></dd>
+<!-- PER ADRIANO alla classe description aggiungi la classe current durante l'effetto drag&drop dopo aver effettuato il drag&drop di un emento all'interno della playlist, quest'ultima si deve accendere con un effetto che poi vedremo come fare-->
+<div class="lista">
+  <div class="contatore"><%= cont %></div> 
+	<div class="description">
+	  <div class="title"><h1><%= lesson.title %></h1></div>
+    <div class="lessonType"><h2><%= lesson.subject.description %></h2></div>
+	</div>
+</div>
