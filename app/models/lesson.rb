@@ -272,7 +272,7 @@ class Lesson < ActiveRecord::Base
   end
   
   def add_slide(kind)
-    if self.new_record? || !['text', 'image1', 'image2', 'image3', 'audio1', 'audio2', 'video1', 'video2'].include?(kind)
+    if self.new_record? || !['title', 'text', 'image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2'].include?(kind)
       errors.add(:base, :problem_adding_slide)
       return nil
     end

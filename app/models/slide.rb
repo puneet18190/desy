@@ -8,10 +8,10 @@ class Slide < ActiveRecord::Base
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => I18n.t('language_parameters.slide.length_title'), :allow_nil => true
-  validates_inclusion_of :kind, :in => ['cover', 'text', 'image1', 'image2', 'image3', 'audio1', 'audio2', 'video1', 'video2']
+  validates_inclusion_of :kind, :in => ['cover', 'title', 'text', 'image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2']
   validates_uniqueness_of :position, :scope => :lesson_id
   validates_uniqueness_of :kind, :scope => :lesson_id, :if => :is_cover
-  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text
+  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text, :validate_title
   
   before_validation :init_validation
   before_destroy :stop_if_cover
@@ -108,8 +108,12 @@ class Slide < ActiveRecord::Base
   
   private
   
+  def validate_title
+    errors[:title] << 'must be null for this kind of slide' if ['title', 'image2', 'image3', 'image4', 'video2'].include?(self.kind) && !self.title.nil?
+  end
+  
   def validate_text
-    errors[:text] << 'must be null for this kind of slide' if ['image3', 'audio2', 'video2'].include?(self.kind) && !self.text.nil?
+    errors[:text] << 'must be null for this kind of slide' if ['cover', 'title', 'image2', 'image3', 'image4', 'video2'].include?(self.kind) && !self.text.nil?
   end
   
   def is_cover

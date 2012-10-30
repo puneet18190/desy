@@ -218,7 +218,7 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
     i += 1
   end
   
-  slides = {1 => ['image1', 'image2'], 2 => ['text', 'video1'], 3 => ['video2', 'video2'], 4 => ['image3', 'audio1'], 5 => [], 6 => ['audio2'], 7 => ['text', 'text'], 8 => [], 9 => ['video1', 'audio1'], 10 => ['image1', 'image3'], 11 => ['text', 'image2', 'image2', 'text'], 12 => ['video2', 'audio2', 'audio1'], 13 => [], 14 => [], 15 => [], 16 => [], 17 => [], 18 => [], 19 => [], 20 => [], 21 => [], 22 => [], 23 => [], 24 => [], 25 => [], 26 => [], 27 => [], 28 => [], 29 => [], 30 => [], 31 => [], 32 => [], 33 => [], 34 => [], 35 => [], 36 => [], 37 => []}
+  slides = {1 => ['image1', 'image2'], 2 => ['text', 'video1'], 3 => ['video2', 'video2'], 4 => ['image3', 'audio'], 5 => [], 6 => ['audio'], 7 => ['text', 'text'], 8 => [], 9 => ['video1', 'title'], 10 => ['image1', 'image3'], 11 => ['text', 'image2', 'image2', 'text'], 12 => ['video2', 'audio', 'title'], 13 => [], 14 => [], 15 => [], 16 => [], 17 => [], 18 => [], 19 => [], 20 => [], 21 => [], 22 => [], 23 => [], 24 => [], 25 => [], 26 => [], 27 => [], 28 => [], 29 => [], 30 => [], 31 => [], 32 => [], 33 => [], 34 => [], 35 => [], 36 => [], 37 => []}
   
   Lesson.all.each do |l|
     slides[l.id].each do |kind|
