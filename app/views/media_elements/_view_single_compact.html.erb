@@ -5,7 +5,7 @@
       <h4><%= media_element.title %></h4>
     </div>
     <p><%= media_element.status %></p>
-    <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination} %>
+    <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination, :container => container, :html_params => html_params} %>
   </div>
   <%= render :partial => "media_elements/popup", :locals => {:media_element => media_element} %>
 </div>

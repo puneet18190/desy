@@ -4,7 +4,7 @@
     <h3><%= lesson.title %></h3>
     <p><%= lesson.subject.description %></p>
     <p><%= lesson.status %></p>
-    <%= render :partial => "lessons/action_buttons", :locals => {:lesson => lesson, :destination => destination} %>
+    <%= render :partial => "lessons/action_buttons", :locals => {:lesson => lesson, :destination => destination, :container => container, :html_params => html_params} %>
   </div>
   
   <div class="lessons-expanded _lesson_expanded">
@@ -13,11 +13,11 @@
       <h1>Created on</h1>
       <%= TimeConvert.to_string(lesson.created_at) %>
       <p>
-			  <span class="fltlft"><%= image_tag "star.png", :align => "left" %></span>
-				<span class="fltlft" style="padding-top:2px"><%= lesson.likes.count %></span>
-				<br class="clearfloat">
-				people like this lesson
-			</p>
+        <span class="fltlft"><%= image_tag "star.png", :align => "left" %></span>
+        <span class="fltlft" style="padding-top:2px"><%= lesson.likes.count %></span>
+        <br class="clearfloat">
+        people like this lesson
+      </p>
       <% if lesson.is_reportable %>
         <%= render :partial => "reports/lesson", :locals => {:lesson => lesson} %>
       <% end %>
