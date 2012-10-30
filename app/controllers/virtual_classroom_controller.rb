@@ -13,6 +13,7 @@ class VirtualClassroomController < ApplicationController
       @page = 1
       get_lessons
     end
+		@playlist = @lessons
   end
   
   def add_lesson

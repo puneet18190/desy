@@ -1,24 +1,14 @@
 <div class="griglia-contenuti">
   <div style="float:left; width:63%;">
-  <% @lessons.each do |l| %>
-    <%= render :partial => "virtual_classroom/view_single", :locals => {:lesson => l.lesson} %>
-  <% end %>
+  <% if @lessons.empty? %>
+	  <%= render :partial => "virtual_classroom/empty" %>
+	<% else %>
+	  <% @lessons.each do |l| %>
+	  <%= render :partial => "virtual_classroom/view_single", :locals => {:lesson => l.lesson} %>
+	  <% end %>
+	<% end %>
 	</div>
 	<div style="float:right; margin-right:1%;">
-	  <div class="playList">
-		  <h1>Playlist</h1>
-			<div class="scroll-pane">
-			  <% cont = 1 %>
-			  <% @lessons.each do |l| %>
-			   
-			     <%= render :partial => "virtual_classroom/view_single_playlist", :locals => {:lesson => l.lesson, :cont => cont} %>
-			   
-			  <% cont += 1 %>
-       <% end %>
-		 </div>
-		 <div  class="play">
-		   <a href="">play</a>
-		</div>
-	  </div>	
+	  <%= render :partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist} %>
 	</div>
 </div>
