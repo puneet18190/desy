@@ -240,7 +240,7 @@ CREATE TABLE media_elements_slides (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     caption text,
-    allignment integer
+    alignment integer
 );
 
 

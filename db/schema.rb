@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(:version => 20121030094116) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.text     "caption"
-    t.integer  "allignment"
+    t.integer  "alignment"
     t.index ["media_element_id"], :name => "index_media_elements_slides_on_media_element_id"
     t.index ["slide_id"], :name => "index_media_elements_slides_on_slide_id"
     t.foreign_key ["media_element_id"], "media_elements", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "media_elements_slides_media_element_id_fkey"
