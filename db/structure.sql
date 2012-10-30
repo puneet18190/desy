@@ -30,12 +30,13 @@ SET search_path = public, pg_catalog;
 
 CREATE TYPE slide_type AS ENUM (
     'cover',
+    'title',
     'text',
     'image1',
     'image2',
     'image3',
-    'audio1',
-    'audio2',
+    'image4',
+    'audio',
     'video1',
     'video2'
 );
@@ -237,7 +238,9 @@ CREATE TABLE media_elements_slides (
     slide_id integer NOT NULL,
     "position" integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    caption text,
+    allignment integer
 );
 
 
@@ -1278,3 +1281,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120927141837');
 INSERT INTO schema_migrations (version) VALUES ('20121019091311');
 
 INSERT INTO schema_migrations (version) VALUES ('20121024101844');
+
+INSERT INTO schema_migrations (version) VALUES ('20121030094116');

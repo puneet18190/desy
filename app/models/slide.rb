@@ -109,7 +109,7 @@ class Slide < ActiveRecord::Base
   private
   
   def validate_title
-    errors[:title] << 'must be null for this kind of slide' if ['title', 'image2', 'image3', 'image4', 'video2'].include?(self.kind) && !self.title.nil?
+    errors[:title] << 'must be null for this kind of slide' if ['image2', 'image3', 'image4', 'video2'].include?(self.kind) && !self.title.nil?
   end
   
   def validate_text

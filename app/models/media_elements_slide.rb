@@ -7,9 +7,10 @@ class MediaElementsSlide < ActiveRecord::Base
   
   validates_presence_of :media_element_id, :slide_id
   validates_numericality_of :media_element_id, :slide_id, :only_integer => true, :greater_than => 0
-  validates_inclusion_of :position, :in => [1, 2]
+  validates_numericality_of :allignment, :only_integer => true, :allow_nil => true
+  validates_inclusion_of :position, :in => [1, 2, 3, 4]
   validates_uniqueness_of :position, :scope => [:media_element_id, :slide_id]
-  validate :validate_associations, :validate_type_in_slide, :validate_position, :validate_media_element, :validate_impossible_changes
+  validate :validate_associations, :validate_type_in_slide, :validate_position, :validate_media_element, :validate_impossible_changes, :validate_image_properties
   
   before_validation :init_validation
   
@@ -19,6 +20,12 @@ class MediaElementsSlide < ActiveRecord::Base
     @media_elements_slide = Valid.get_association self, :id
     @slide = Valid.get_association self, :slide_id
     @media_element = Valid.get_association self, :media_element_id
+  end
+  
+  def validate_image_properties
+    errors[:allignment] << 'must be null if the element is not an image' if @media_element && @media_element.sti_type != 'Image' && !self.allignment.nil?
+    errors[:allignment] << "can't be null if the element is an image" if @media_element && @media_element.sti_type == 'Image' && self.allignment.nil?
+    errors[:caption] << 'must be null if the element is not an image' if @media_element && @media_element.sti_type != 'Image' && !self.caption.blank?
   end
   
   def validate_associations
@@ -31,9 +38,9 @@ class MediaElementsSlide < ActiveRecord::Base
       flag = false
       case @media_element.sti_type
         when 'Image'
-          flag = true if !['image1', 'image2', 'image3', 'cover'].include?(@slide.kind)
+          flag = true if !['image1', 'image2', 'image3', 'image4', 'cover'].include?(@slide.kind)
         when 'Audio'
-          flag = true if !['audio1', 'audio2'].include?(@slide.kind)
+          flag = true if @slide.kind != 'audio'
         when 'Video'
           flag = true if !['video1', 'video2'].include?(@slide.kind)
       end
@@ -43,7 +50,8 @@ class MediaElementsSlide < ActiveRecord::Base
   end
   
   def validate_position
-    errors[:position] << "can't have two media elements if slide is not of the kind 'image2'" if @media_element && @slide && self.position == 2 && @slide.kind != 'image2'
+    errors[:position] << "can't have two media elements if slide is not of the kinds 'image2', 'image4'" if @media_element && @slide && self.position == 2 && !['image2', 'image4'].include?(@slide.kind)
+    errors[:position] << "can't have more than two media elements if slide is not of the kind 'image4'" if @media_element && @slide && [3, 4].include?(self.position) && @slide.kind != 'image4'
   end
   
   def validate_media_element
