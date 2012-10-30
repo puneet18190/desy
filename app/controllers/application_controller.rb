@@ -79,10 +79,9 @@ class ApplicationController < ActionController::Base
     @container = params[:container].blank? ? params[:controller] : params[:container]
   end
   
-  def authenticate
+  def authenticate # FIXME va sistemato con la vera autenticazione
     @current_user = User.find_by_email(CONFIG['admin_email'])
     session[:user_id] = @current_user.id
-    # TODO questa parte qui sotto andrà preservata anche quando ci sarà la autenticazione vera
   end
   
   def respond_standard_js
@@ -107,12 +106,12 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.js do
         if @js_reload
-          render 'index.js.erb'
+          render 'index.js'
         end
       end
       format.html do
         if !@js_reload
-          render 'index.html.erb'
+          render 'index.html'
         end
       end
     end

@@ -21,25 +21,25 @@ module ButtonDestinations
     end
     case action
       when 'publish'
-        resp[:path] = 'lessons/reload_compact.js.erb' if [COMPACT_LESSON, FOUND_LESSON].include?(destination)
+        resp[:path] = 'lessons/reload_compact.js' if [COMPACT_LESSON, FOUND_LESSON].include?(destination)
       when 'unpublish'
-        resp[:path] = 'lessons/reload_compact.js.erb' if [COMPACT_LESSON, FOUND_LESSON].include?(destination)
+        resp[:path] = 'lessons/reload_compact.js' if [COMPACT_LESSON, FOUND_LESSON].include?(destination)
       when 'like'
         if destination.split('_').first == 'expanded'
-          resp[:path] = 'lessons/reload_expanded.js.erb' if resp[:item] == 'lesson'
+          resp[:path] = 'lessons/reload_expanded.js' if resp[:item] == 'lesson'
         else
-          resp[:path] = 'lessons/reload_compact.js.erb' if resp[:item] == 'lesson'
+          resp[:path] = 'lessons/reload_compact.js' if resp[:item] == 'lesson'
         end
       when 'dislike'
         if destination.split('_').first == 'expanded'
-          resp[:path] = 'lessons/reload_expanded.js.erb' if resp[:item] == 'lesson'
+          resp[:path] = 'lessons/reload_expanded.js' if resp[:item] == 'lesson'
         else
-          resp[:path] = 'lessons/reload_compact.js.erb' if resp[:item] == 'lesson'
+          resp[:path] = 'lessons/reload_compact.js' if resp[:item] == 'lesson'
         end
       when 'add_lesson'
-        resp[:path] = 'lessons/reload_compact.js.erb' if [COMPACT_LESSON, FOUND_LESSON].include?(destination)
+        resp[:path] = 'lessons/reload_compact.js' if [COMPACT_LESSON, FOUND_LESSON].include?(destination)
       when 'remove_lesson'
-        resp[:path] = 'lessons/reload_compact.js.erb' if [COMPACT_LESSON, FOUND_LESSON].include?(destination)
+        resp[:path] = 'lessons/reload_compact.js' if [COMPACT_LESSON, FOUND_LESSON].include?(destination)
       when 'add'
         case destination
           when EXPANDED_LESSON
@@ -49,9 +49,9 @@ module ButtonDestinations
             resp[:path] = false
             resp[:reload_url] = ButtonDestinations.construct_reload_url destination, container, html_params, item_id
           when FOUND_LESSON
-            resp[:path] = 'lessons/reload_compact.js.erb'
+            resp[:path] = 'lessons/reload_compact.js'
           when FOUND_MEDIA_ELEMENT
-            resp[:path] = 'media_elements/reload_compact.js.erb'
+            resp[:path] = 'media_elements/reload_compact.js'
         end
       when 'remove'
         case destination
@@ -65,9 +65,9 @@ module ButtonDestinations
             resp[:path] = false
             resp[:reload_url] = ButtonDestinations.construct_reload_url destination, container, html_params, item_id
           when FOUND_LESSON
-            resp[:path] = 'lessons/reload_compact.js.erb'
+            resp[:path] = 'lessons/reload_compact.js'
           when FOUND_MEDIA_ELEMENT
-            resp[:path] = 'media_elements/reload_compact.js.erb'
+            resp[:path] = 'media_elements/reload_compact.js'
         end
       when 'destroy'
         if [FOUND_LESSON, COMPACT_LESSON].include?(destination)
@@ -81,7 +81,7 @@ module ButtonDestinations
           resp[:reload_url] = ButtonDestinations.construct_reload_url destination, container, html_params, item_id
         end
       when 'copy'
-        resp[:path] = 'lessons/insert.js.erb' if resp[:item] == 'lesson'
+        resp[:path] = 'lessons/insert.js' if resp[:item] == 'lesson'
     end
     resp = {} if !resp.has_key?(:path)
     resp[:reload_url] = '' if !resp.has_key?(:reload_url)
