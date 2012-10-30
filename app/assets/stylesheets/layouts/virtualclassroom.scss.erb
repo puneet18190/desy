@@ -78,9 +78,14 @@ html.virtual_classroom-controller {
     -webkit-box-shadow: none;
     box-shadow: none;
     background-color: #434343;
-    .img_expanded {
+    
+		.img_expanded {
 		  padding-bottom:10px;
-			
+			&:hover {
+			  cursor:pointer;
+			  background-color:#000;
+				opacity: 0.20;
+			}	
 			&.current {
 			  background-color:#000;
 				opacity: 0.20;
@@ -140,6 +145,8 @@ html.virtual_classroom-controller {
 			  }
 			  &:hover {
 				  cursor:pointer;
+					background-color:#000;
+				  opacity: 0.20;
 			  }
 				&.current {
 			    background-color:#000;
