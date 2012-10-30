@@ -96,6 +96,17 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 1, x.errors.messages[:base].length
     assert_match /You already have a copy of this lesson/, x.errors.messages[:base].first
     x = Lesson.find(2)
+    cccount_slides = x.slides.count
+    assert x.add_slide('image2')
+    new_slide_image2 = Slide.where(:lesson_id => x.id, :position => (cccount_slides + 1)).first
+    assert !new_slide_image2.nil?
+    mediaaa = MediaElementsSlide.new
+    mediaaa.slide_id = new_slide_image2.id
+    mediaaa.media_element_id = 6
+    mediaaa.allignment = 3
+    mediaaa.caption = 'ohlala'
+    mediaaa.position = 2
+    assert_obj_saved mediaaa
     resp = x.copy(1)
     assert !resp.nil?
     # I try to copy the copy
@@ -127,6 +138,17 @@ class CoreMethodsTest < ActiveSupport::TestCase
     med2 = MediaElementsSlide.where(:slide_id => s3.id).first
     assert !med2.nil?
     assert_equal 2, med2.media_element_id
+    s4 = Slide.where(:lesson_id => resp.id, :position => 4).first
+    assert !s4.nil?
+    assert_equal 'image2', s4.kind
+    assert s4.text.nil?
+    assert s4.title.nil?
+    assert_equal 1, MediaElementsSlide.where(:slide_id => s4.id).count
+    meds = MediaElementsSlide.where(:slide_id => s4.id).first
+    assert_equal 3, meds.allignment
+    assert_equal 'ohlala', meds.caption
+    assert_equal 6, meds.media_element_id
+    assert_equal 2, meds.position
   end
   
   test 'publish_lesson' do
