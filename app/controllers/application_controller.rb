@@ -135,10 +135,10 @@ class ApplicationController < ActionController::Base
     else
       resp = "#{resp}-#{params[:filter]}"
     end
-    if params[:format].blank?
+    if params[:display].blank?
       resp = "#{resp}-N"
     else
-      resp = "#{resp}-#{params[:format]}"
+      resp = "#{resp}-#{params[:display]}"
     end
     resp
   end

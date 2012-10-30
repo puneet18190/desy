@@ -1,8 +1,8 @@
 <%
   large_class = ''
   small_class = ''
-  large_class = 'current' if @format == Formats::EXPANDED
-  small_class = 'current' if @format == Formats::COMPACT
+  large_class = 'current' if @display == Formats::EXPANDED
+  small_class = 'current' if @display == Formats::COMPACT
 %>
 
 <div class="gray-bar">
@@ -15,7 +15,7 @@
     <div class="title-bar">
       <h1 style="width:45%"><%= t('small_letter.elements') %></h1>
       <p id="format_media_elements">
-        <%= t('capital_letter.display_mode') %>: <%= link_to t('capital_letter.large'), '/media_elements?format=expanded', :class => large_class %> - <%= link_to t('capital_letter.small'), '/media_elements?format=compact', :class => small_class %>
+        <%= t('capital_letter.display_mode') %>: <%= link_to t('capital_letter.large'), '/media_elements?display=expanded', :class => large_class %> - <%= link_to t('capital_letter.small'), '/media_elements?display=compact', :class => small_class %>
       </p>
       <div style="padding-left:20px">
         <h2 style="padding-right:10px"><%= t('small_letter.display') %></h2>

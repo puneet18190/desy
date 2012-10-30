@@ -75,11 +75,11 @@ class MediaElementsController < ApplicationController
   
   def initialize_paginator
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
-    @format = (params[:format].blank? || ![Formats::COMPACT, Formats::EXPANDED].include?(params[:format])) ? Formats::EXPANDED : params[:format]
-    @for_page_options = @format == Formats::COMPACT ? FOR_PAGE_COMPACT_OPTIONS : FOR_PAGE_EXPANDED_OPTIONS
-    @for_page = (@format == Formats::EXPANDED) ? FOR_PAGE_EXPANDED : FOR_PAGE_COMPACT
+    @display = (params[:display].blank? || ![Formats::COMPACT, Formats::EXPANDED].include?(params[:display])) ? Formats::EXPANDED : params[:display]
+    @for_page_options = @display == Formats::COMPACT ? FOR_PAGE_COMPACT_OPTIONS : FOR_PAGE_EXPANDED_OPTIONS
+    @for_page = (@display == Formats::EXPANDED) ? FOR_PAGE_EXPANDED : FOR_PAGE_COMPACT
     if correct_integer?(params[:for_page])
-      @for_page = (@format == Formats::EXPANDED) ? (FOR_PAGE_EXPANDED_OPTIONS.include?(params[:for_page].to_i) ? params[:for_page].to_i : @for_page) : (FOR_PAGE_COMPACT_OPTIONS.include?(params[:for_page].to_i) ? params[:for_page].to_i : @for_page)
+      @for_page = (@display == Formats::EXPANDED) ? (FOR_PAGE_EXPANDED_OPTIONS.include?(params[:for_page].to_i) ? params[:for_page].to_i : @for_page) : (FOR_PAGE_COMPACT_OPTIONS.include?(params[:for_page].to_i) ? params[:for_page].to_i : @for_page)
     end
     @filter = params[:filter]
     @filter = Filters::ALL_MEDIA_ELEMENTS if !Filters::MEDIA_ELEMENTS_SET.include?(@filter)

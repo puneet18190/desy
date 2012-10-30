@@ -85,9 +85,9 @@ $(document).ready(function() {
   // FILTERS
   
   function getMediaElementsFormat() {
-    var param = 'format=compact';
-    if($('#format_media_elements .current').attr('href') == '/media_elements?format=expanded') {
-      param = 'format=expanded';
+    var param = 'display=compact';
+    if($('#format_media_elements .current').attr('href') == '/media_elements?display=expanded') {
+      param = 'display=expanded';
     }
     return param
   }
