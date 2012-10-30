@@ -1,10 +1,10 @@
 class LessonEditorController < ApplicationController
   
   before_filter :initialize_lesson_with_owner # initialize notifications??
-  
+  layout 'lesson_editor'
   def index
     @lesson = Lesson.find params[:lesson_id]
-    @slides = @lesson.slides
+    @slides = @lesson.slides.order :position
   end
   
   def new

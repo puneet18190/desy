@@ -1,1 +1,27 @@
-Sto modificando la leizone <%= @lesson_id %>
+<% content_for :nav do %>
+  <nav id="heading">
+    <!-- slides top numbered navigation -->
+    <ul id="slide-numbers">
+      <%- @slides.each_with_index do |slide, index|%>
+        <li>
+          <a href="#" class="<%= (index == 0) ? 'active' : ''%>"><%= index + 1 %></a>
+          <div class="tooltip">
+            <div class="slide-thumb slide.kind">
+              <%= render :partial => "shared/lesson_thumbnails/small/"+slide.kind , :locals => { :slide => slide }%>
+            </div>
+          </div>
+        </li>
+      <%end%><!-- end each -->
+      <li><a href="#" class="add-slide"><%= image_tag "plus-rounded.png"%></a></li>
+    </ul>
+  </nav>
+<% end %>
+<ul id="slides">
+  <%- @slides.each_with_index do |slide, index|%>
+    <li class='<%= (index == 0) ? "active  #{slide.kind}" : "slide.kind"%>'>
+      <div class="slide-content slide.kind">
+        <%= render :partial => "shared/lesson_thumbnails/big/"+slide.kind , :locals => { :slide => slide }%>
+      </div>
+    </li>
+  <% end %>
+</ul>

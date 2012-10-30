@@ -8,7 +8,7 @@
   </div>
   
   <div class="lessons-expanded _lesson_expanded">
-    <%= render :partial => "lesson_editor/thumbnails/small/cover", :locals => {:slide => lesson.cover, :subject =>lesson.subject.description} %>
+    <%= render :partial => "shared/lesson_thumbnails/small/cover", :locals => {:slide => lesson.cover} %>
     <div class="info-text">
       <h1>Created on</h1>
       <%= TimeConvert.to_string(lesson.created_at) %>

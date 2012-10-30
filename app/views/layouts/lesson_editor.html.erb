@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="lesson-editor-layout <%= controller_html_class %> <%= action_html_class %>">
+<head>
+  <title>Desy</title>
+  <%= stylesheet_link_tag "lesson_editor", :media => "all" %>
+  <!--[if !IE 7]>
+  	<style type="text/css">
+  		#container {display:table;height:100%}
+  	</style>
+  <![endif]-->
+  <%= javascript_include_tag "jquery" %>
+  <%= javascript_include_tag "lesson_editor" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+
+  <div class="content">
+    <%= yield :nav %>
+    
+    <%= yield %>
+    
+  </div>
+  <div id="footer">
+    <a href="#" class="pull-right">EXIT</a>
+    <div id="lesson-title">
+      <%= image_tag "lesson-editor-logo-footer.png" %>
+      <p><%= @lesson.title if @lesson %></p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
