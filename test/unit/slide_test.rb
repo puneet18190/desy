@@ -73,7 +73,7 @@ class SlideTest < ActiveSupport::TestCase
     @slide.position = 2
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
     # until here
-    assert_invalid @slide, :kind, 'audio1', 'video1', /can't be changed/
+    assert_invalid @slide, :kind, 'audio', 'video1', /can't be changed/
     assert_obj_saved @slide
   end
   

@@ -113,7 +113,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !s1.nil?
     s2 = Slide.where(:lesson_id => resp.id, :position => 2).first
     assert !s2.nil?
-    assert_equal 'audio1', s2.kind
+    assert_equal 'audio', s2.kind
     assert s2.title.blank?
     assert s2.text.blank?
     med1 = MediaElementsSlide.where(:slide_id => s2.id).first
@@ -338,7 +338,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     ss = Slide.find(3)
     assert_equal 2, ss.position
     assert_equal 2, ss.lesson.user_id
-    assert_equal 'audio1', ss.kind
+    assert_equal 'audio', ss.kind
     mm = MediaElementsSlide.new
     mm.media_element_id = 3
     mm.slide_id = 3

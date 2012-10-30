@@ -126,6 +126,8 @@ class Lesson < ActiveRecord::Base
         new_cover_image.media_element_id = cover_image.media_element_id
         new_cover_image.slide_id = new_cover.id
         new_cover_image.position = 1
+        new_cover_image.allignment = cover_image.allignment
+        new_cover_image.caption = cover_image.caption
         if !new_cover_image.save
           errors.add(:base, :problem_copying)
           raise ActiveRecord::Rollback
@@ -144,6 +146,8 @@ class Lesson < ActiveRecord::Base
           new_content.media_element_id = mes.media_element_id
           new_content.slide_id = new_slide.id
           new_content.position = mes.position
+          new_content.allignment = mes.allignment
+          new_content.caption = mes.caption
           if !new_content.save
             errors.add(:base, :problem_copying)
             raise ActiveRecord::Rollback
