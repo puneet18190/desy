@@ -45,8 +45,10 @@ class ActiveSupport::TestCase
   
   def array_to_string(array)
     resp = ''
-    array.each do |a|
-      resp = "#{resp}#{a.to_s}"
+    if !array.nil?
+      array.each do |a|
+        resp = "#{resp}#{a.to_s}"
+      end
     end
     resp
   end
