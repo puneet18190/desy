@@ -1,7 +1,9 @@
 <% if @ok %>
-  <% js_content = j(render(:partial => "media_elements/view_single_compact", :locals => {:media_element => @media_element, :destination => @destination})) %>
   var target = $('#<%= @destination %>_<%= @media_element_id %>');
+  var old_html_params = target.data('htmlparams');
+  <% js_content = j(render(:partial => "media_elements/view_single_compact", :locals => {:media_element => @media_element, :destination => @destination, :container => @container, :html_params => ''})) %>
   target.replaceWith("<%= js_content %>");
+  target.data('htmlparams', old_html_params);
 <% else %>
   showErrorPopUp('<%= @error %>');
 <% end %>

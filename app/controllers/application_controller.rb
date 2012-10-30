@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :authenticate, :initialize_location, :initialize_item_container
+  before_filter :authenticate, :initialize_location
   
   private
   
@@ -72,11 +72,7 @@ class ApplicationController < ActionController::Base
   
   def initialize_location
     @where = params[:controller]
-  end
-  
-  def initialize_item_container
     @html_params = get_html_button_params
-    @container = params[:container].blank? ? params[:controller] : params[:container]
   end
   
   def authenticate # FIXME va sistemato con la vera autenticazione
