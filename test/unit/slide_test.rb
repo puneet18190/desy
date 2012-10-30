@@ -27,7 +27,7 @@ class SlideTest < ActiveSupport::TestCase
     assert_invalid @slide, :position, 'ret', 2, /is not a number/
     assert_invalid @slide, :position, -9, 2, /must be greater than 0/
     assert_invalid @slide, :lesson_id, 1.1, 1, /must be an integer/
-    assert_invalid @slide, :kind, 'image4', 'video1', /is not included in the list/
+    assert_invalid @slide, :kind, 'audio3', 'video1', /is not included in the list/
     assert_invalid @slide, :title, long_string(41), long_string(40), /is too long/
     @slide.title = nil
     assert_obj_saved @slide
@@ -43,10 +43,13 @@ class SlideTest < ActiveSupport::TestCase
     assert_invalid @slide, :position, 2, 4, /has already been taken/
     # I rewrite manually assert_invalid
     @slide.kind = 'cover'
+    old_text = @slide.text
+    @slide.text = nil
     assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
     assert_equal 2, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
     assert_match /has already been taken/, @slide.errors.messages[:kind].first
     @slide.kind = 'video1'
+    @slide.text = old_text
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
     # until here
     assert_obj_saved @slide
@@ -93,9 +96,72 @@ class SlideTest < ActiveSupport::TestCase
     assert !Slide.exists?(1)
   end
   
-  test 'blank_text' do
+  test 'blank_text_and_title' do
     @slide.kind = 'video2'
-    assert_invalid @slide, :text, 'ciao ciao ciao', nil, /must be null for this kind of slide/
+    @slide.text = 'ciao ciao ciao'
+    assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
+    assert_equal 2, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
+    assert_equal 1, @slide.errors.messages[:title].length
+    assert_equal 1, @slide.errors.messages[:text].length
+    assert_match /must be null for this kind of slide/, @slide.errors.messages[:title].first
+    assert_match /must be null for this kind of slide/, @slide.errors.messages[:text].first
+    @slide.text = nil
+    @slide.title = nil
+    assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
+    @slide.kind = 'image2'
+    @slide.title = 'beh'
+    @slide.text = 'ciao ciao ciao'
+    assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
+    assert_equal 2, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
+    assert_equal 1, @slide.errors.messages[:title].length
+    assert_equal 1, @slide.errors.messages[:text].length
+    assert_match /must be null for this kind of slide/, @slide.errors.messages[:title].first
+    assert_match /must be null for this kind of slide/, @slide.errors.messages[:text].first
+    @slide.text = nil
+    @slide.title = nil
+    assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
+    @slide.kind = 'image3'
+    @slide.title = 'beh'
+    @slide.text = 'ciao ciao ciao'
+    assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
+    assert_equal 2, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
+    assert_equal 1, @slide.errors.messages[:title].length
+    assert_equal 1, @slide.errors.messages[:text].length
+    assert_match /must be null for this kind of slide/, @slide.errors.messages[:title].first
+    assert_match /must be null for this kind of slide/, @slide.errors.messages[:text].first
+    @slide.text = nil
+    @slide.title = nil
+    assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
+    @slide.kind = 'image4'
+    @slide.title = 'beh'
+    @slide.text = 'ciao ciao ciao'
+    assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
+    assert_equal 2, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
+    assert_equal 1, @slide.errors.messages[:title].length
+    assert_equal 1, @slide.errors.messages[:text].length
+    assert_match /must be null for this kind of slide/, @slide.errors.messages[:title].first
+    assert_match /must be null for this kind of slide/, @slide.errors.messages[:text].first
+    @slide.text = nil
+    @slide.title = nil
+    assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
+    @slide.kind = 'title'
+    @slide.title = 'beh'
+    @slide.text = 'ciao ciao ciao'
+    assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
+    assert_equal 1, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
+    assert_equal 1, @slide.errors.messages[:text].length
+    assert_match /must be null for this kind of slide/, @slide.errors.messages[:text].first
+    @slide.text = nil
+    assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
+    @slide = Lesson.first.slides.first
+    @slide.title = 'beh'
+    @slide.text = 'ciao ciao ciao'
+    assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
+    assert_equal 1, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
+    assert_equal 1, @slide.errors.messages[:text].length
+    assert_match /must be null for this kind of slide/, @slide.errors.messages[:text].first
+    @slide.text = nil
+    assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
     assert_obj_saved @slide
   end
   

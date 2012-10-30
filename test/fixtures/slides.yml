@@ -14,7 +14,7 @@ three:
   id: 3
   lesson_id: 2
   position: 2
-  kind: 'audio1'
+  kind: 'audio'
 
 four:
   id: 4
