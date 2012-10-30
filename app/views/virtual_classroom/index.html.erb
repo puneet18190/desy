@@ -10,9 +10,9 @@
 			<div class="scroll-pane">
 			  <% cont = 1 %>
 			  <% @lessons.each do |l| %>
-			   <dl class="lista">
+			   
 			     <%= render :partial => "virtual_classroom/view_single_playlist", :locals => {:lesson => l.lesson, :cont => cont} %>
-			   </dl>
+			   
 			  <% cont += 1 %>
        <% end %>
 		 </div>
