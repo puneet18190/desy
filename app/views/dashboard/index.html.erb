@@ -4,8 +4,8 @@
 </div>
 <br class="clearfloat">
 <div class="griglia-contenuti">
-  <%= render :partial => "dashboard/lessons" %>
-  <%= render :partial => "dashboard/media_elements" %>
+  <%= render :partial => "dashboard/lessons_and_media_elements" %>
+  <div id="info_container" style="display:none" data-container="dashboard" data-htmlparams="<%= @html_params %>"></div>
   <br class="clearfloat">
   <div class="boxContentIndex">
     <p><%= t('capital_letter.help_using_desy') %></br>

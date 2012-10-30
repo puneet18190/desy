@@ -1,4 +1,6 @@
-<div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson <%= lesson.status == t('status.lessons.copied') ? 'current' : '' %>">
+<% current_class = lesson.status == t('status.lessons.copied') ? 'current' : '' %>
+
+<div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson <%= current_class %>">
   
   <div class="contentInterno _lesson_compact">
     <h3><%= lesson.title %></h3>
@@ -13,11 +15,11 @@
       <h1>Created on</h1>
       <%= TimeConvert.to_string(lesson.created_at) %>
       <p>
-			  <span class="fltlft"><%= image_tag "star.png", :align => "left" %></span>
-				<span class="fltlft" style="padding-top:2px"><%= lesson.likes.count %></span>
-				<br class="clearfloat">
-				people like this lesson
-			</p>
+        <span class="fltlft"><%= image_tag "star.png", :align => "left" %></span>
+        <span class="fltlft" style="padding-top:2px"><%= lesson.likes.count %></span>
+        <br class="clearfloat">
+        people like this lesson
+      </p>
       <% if lesson.is_reportable %>
         <%= render :partial => "reports/lesson", :locals => {:lesson => lesson} %>
       <% end %>

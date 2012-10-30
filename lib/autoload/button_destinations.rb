@@ -83,12 +83,13 @@ module ButtonDestinations
       when 'copy'
         resp[:path] = 'lessons/insert.js' if resp[:item] == 'lesson'
     end
-    resp = {} if !resp.has_key?(:path)
     resp[:reload_url] = '' if !resp.has_key?(:reload_url)
+    resp = {} if !resp.has_key?(:path) || (resp[:path] == false && resp[:reload_url].blank?)
     resp
   end
   
   def self.construct_reload_url(destination, container, html_params, item_id)
+    return '' if container.blank? || item_id.blank? || html_params.blank?
     params = "?js_reload=true&delete_item=#{destination}_#{item_id}"
     x = html_params.split('-')
     params = "#{params}&page=#{x[0]}" if x[0] != 'N'

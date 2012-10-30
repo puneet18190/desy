@@ -1,6 +1,6 @@
 <% if @ok %>
-  <% js_content = j(render(:partial => "lessons/view_single_compact", :locals => {:lesson => @lesson, :destination => @destination})) %>
   var target = $('#<%= @destination %>_<%= @lesson_id %>');
+  <% js_content = j(render(:partial => "lessons/view_single_compact", :locals => {:lesson => @lesson, :destination => @destination})) %>
   target.replaceWith("<%= js_content %>");
 <% else %>
   showErrorPopUp('<%= @error %>');

@@ -85,9 +85,9 @@ $(document).ready(function() {
   // FILTERS
   
   function getMediaElementsFormat() {
-    var param = 'format=compact';
-    if($('#format_media_elements .current').attr('href') == '/media_elements?format=expanded') {
-      param = 'format=expanded';
+    var param = 'display=compact';
+    if($('#format_media_elements .current').attr('href') == '/media_elements?display=expanded') {
+      param = 'display=expanded';
     }
     return param
   }
@@ -168,8 +168,8 @@ $(document).ready(function() {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');
-    var container = $(this).data('container');
-    var html_params = $(this).data('htmlparams');
+    var container = $('#info_container').data('container');
+    var html_params = $('#info_container').data('htmlparams');
     addLesson(my_param, destination, container, html_params);
     return false;
   });
@@ -178,8 +178,8 @@ $(document).ready(function() {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');
-    var container = $(this).data('container');
-    var html_params = $(this).data('htmlparams');
+    var container = $('#info_container').data('container');
+    var html_params = $('#info_container').data('htmlparams');
     copyLesson(my_param, destination, container, html_params);
     return false;
   });
@@ -188,8 +188,8 @@ $(document).ready(function() {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');
-    var container = $(this).data('container');
-    var html_params = $(this).data('htmlparams');
+    var container = $('#info_container').data('container');
+    var html_params = $('#info_container').data('htmlparams');
     destroyLesson(my_param, destination, container, html_params);
     return false;
   });
@@ -230,8 +230,8 @@ $(document).ready(function() {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');
-    var container = $(this).data('container');
-    var html_params = $(this).data('htmlparams');
+    var container = $('#info_container').data('container');
+    var html_params = $('#info_container').data('htmlparams');
     removeLesson(my_param, destination, container, html_params);
     return false;
   });
@@ -248,8 +248,8 @@ $(document).ready(function() {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');
-    var container = $(this).data('container');
-    var html_params = $(this).data('htmlparams');
+    var container = $('#info_container').data('container');
+    var html_params = $('#info_container').data('htmlparams');
     addLessonToVirtualClassroom(my_param, destination, container, html_params);
     return false;
   });
@@ -258,8 +258,8 @@ $(document).ready(function() {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');
-    var container = $(this).data('container');
-    var html_params = $(this).data('htmlparams');
+    var container = $('#info_container').data('container');
+    var html_params = $('#info_container').data('htmlparams');
     removeLessonFromVirtualClassroom(my_param, destination, container, html_params);
     return false;
   });
@@ -270,16 +270,16 @@ $(document).ready(function() {
   $('body').on('click', '._Video_button_add, ._Audio_button_add, ._Image_button_add', function(e) {
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');
-    var container = $(this).data('container');
-    var html_params = $(this).data('htmlparams');
+    var container = $('#info_container').data('container');
+    var html_params = $('#info_container').data('htmlparams');
     addMediaElement(my_param, destination, container, html_params);
   });
   
   $('body').on('click', '._Video_button_destroy, ._Audio_button_destroy, ._Image_button_destroy', function(e) {
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');
-    var container = $(this).data('container');
-    var html_params = $(this).data('htmlparams');
+    var container = $('#info_container').data('container');
+    var html_params = $('#info_container').data('htmlparams');
     destroyMediaElement(my_param, destination, container, html_params);
   });
   
@@ -291,8 +291,8 @@ $(document).ready(function() {
   $('body').on('click', '._Video_button_remove, ._Audio_button_remove, ._Image_button_remove', function(e) {
     var my_param = $(this).data('clickparam');
     var destination = $(this).data('destination');
-    var container = $(this).data('container');
-    var html_params = $(this).data('htmlparams');
+    var container = $('#info_container').data('container');
+    var html_params = $('#info_container').data('htmlparams');
     removeMediaElement(my_param, destination, container, html_params);
   });
   

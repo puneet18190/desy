@@ -12,9 +12,6 @@ class DashboardController < ApplicationController
     @lessons_emptied = Lesson.dashboard_emptied? @current_user.id
     @media_elements = @current_user.suggested_media_elements(ELEMENTS_FOR_PAGE * ELEMENT_PAGES)
     @media_elements_emptied = MediaElement.dashboard_emptied? @current_user.id
-    if !@delete_item.blank?
-      @delete_item_select = @delete_item.gsub("#{@delete_item.split('_').first}_", '').gsub("_#{@delete_item.split('_').last}", '')
-    end
     render_js_or_html_index
   end
   

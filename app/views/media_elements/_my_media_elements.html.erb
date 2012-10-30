@@ -6,7 +6,7 @@
       <%= render :partial => "media_elements/empty_filter" %>
     <% end %>
   <% else %>
-    <% if @format == Formats::EXPANDED %>
+    <% if @display == Formats::EXPANDED %>
       <% @media_elements.each do |me| %>
         <div style="width:90%;  margin:0 auto 0 auto;">
           <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
