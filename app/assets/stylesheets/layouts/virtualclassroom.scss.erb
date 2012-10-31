@@ -89,7 +89,10 @@ html.virtual_classroom-controller {
 			&.current {
 			  background-color:#000;
 				opacity: 0.20;
-			}	  
+			}
+			h1 {
+			  font: 100% 'Nunito', sans-serif;
+			}  
 		}
 	  
 	  .contentInterno {
@@ -101,6 +104,9 @@ html.virtual_classroom-controller {
 			  color:#fff;
 				padding-left:10px;
 				font-size:80%;
+				&:hover {
+				   color:#F29400;
+				}
 			}			
 	  }
 		
@@ -181,18 +187,34 @@ html.virtual_classroom-controller {
   }
 	.empty {
 	  color:#727377;
+			width:370px;
+		.emptyContent {
+	    float:left;
+			padding-top:1.2em;
+	  }
+		h1 {
+		  font: 100% 'Nunito', sans-serif;
+		}
+		h2 {
+		  font: 240% 'Nunito', sans-serif;
+		}
+	}
+	.createButton {
+	  float:left;
 	}
 	.createButton a {
     background: url(<%= asset_path 'add_vc_off.svg' %>) bottom right no-repeat;
-    background-size: 6em;
-    padding: 4em;
-    width: 102px;
+    background-size: 8em;
+    padding: 6em 4em 6em 4em;
+    
 		&:hover {
 		  background: url(<%= asset_path 'add_vc_on.svg' %>) bottom right no-repeat;
-			background-size: 6em;
-      padding: 4em;
+			background-size: 8em;
+      padding: 6em 4em 6em 4em;
 		}
   }
+	
+	
 	.emptyPlayList {
 	  color:#727377;
 		padding-bottom:80px;
