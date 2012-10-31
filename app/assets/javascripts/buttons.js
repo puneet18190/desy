@@ -1,43 +1,63 @@
-function addLesson(lesson_id, destination, container, html_params) {
-  $.ajax({
-    type: 'post',
-    dataType: 'json',
-    url: '/lessons/' + lesson_id + '/add?destination=' + destination + '&container=' + container + '&html_params=' + html_params,
-    success: function(data) {
-      $.ajax({
-        type: 'get',
-        url: data.redirect_url
-      });
-    }
-  });
+function addDeleteItemToCurrentUrl(current_url, delete_item) {
+  var point_start_params = current_url.indexOf('?');
+  var resp = current_url;
+  if(point_start_params == -1) {
+    resp = resp + '?delete_item=' + delete_item;
+  } else {
+    resp = resp + '&delete_item=' + delete_item;
+  }
+  return resp;
 }
 
-function copyLesson(lesson_id, destination, container, html_params) {
+function addLesson(lesson_id, destination, current_url, reload) {
+  if(reload == 'true') {
+    $.ajax({
+      type: 'post',
+      url: '/lessons/' + lesson_id + '/add?destination=' + destination
+    });
+  } else {
+    var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      url: '/lessons/' + lesson_id + '/add?destination=' + destination
+      success: function(data) {
+        $.ajax({
+          type: 'get',
+          url: redirect_url
+        });
+      }
+    });
+  }
+}
+
+function copyLesson(lesson_id, destination) {
   $.ajax({
     type: 'post',
-    dataType: 'json',
-    url: '/lessons/' + lesson_id + '/copy?destination=' + destination + '&container=' + container + '&html_params=' + html_params,
-    success: function(data) {
-      $.ajax({
-        type: 'get',
-        url: data.redirect_url
-      });
-    }
+    url: '/lessons/' + lesson_id + '/copy?destination=' + destination
   });
 }
 
 function destroyLesson(lesson_id, destination, container, html_params) {
-  $.ajax({
-    type: 'post',
-    dataType: 'json',
-    url: '/lessons/' + lesson_id + '/destroy?destination=' + destination + '&container=' + container + '&html_params=' + html_params,
-    success: function(data) {
-      $.ajax({
-        type: 'get',
-        url: data.redirect_url
-      });
-    }
-  });
+  if(reload == 'true') {
+    $.ajax({
+      type: 'post',
+      url: '/lessons/' + lesson_id + '/destroy?destination=' + destination
+    });
+  } else {
+    var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      url: '/lessons/' + lesson_id + '/destroy?destination=' + destination
+      success: function(data) {
+        $.ajax({
+          type: 'get',
+          url: redirect_url
+        });
+      }
+    });
+  }
 }
 
 function dislikeLesson(lesson_id, destination) {
@@ -66,17 +86,25 @@ function publishLesson(lesson_id, destination) {
 }
 
 function removeLesson(lesson_id, destination, container, html_params) {
-  $.ajax({
-    type: 'post',
-    dataType: 'json',
-    url: '/lessons/' + lesson_id + '/remove?destination=' + destination + '&container=' + container + '&html_params=' + html_params,
-    success: function(data) {
-      $.ajax({
-        type: 'get',
-        url: data.redirect_url
-      });
-    }
-  });
+  if(reload == 'true') {
+    $.ajax({
+      type: 'post',
+      url: '/lessons/' + lesson_id + '/remove?destination=' + destination
+    });
+  } else {
+    var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      url: '/lessons/' + lesson_id + '/remove?destination=' + destination
+      success: function(data) {
+        $.ajax({
+          type: 'get',
+          url: redirect_url
+        });
+      }
+    });
+  }
 }
 
 function unpublishLesson(lesson_id, destination) {
@@ -86,72 +114,82 @@ function unpublishLesson(lesson_id, destination) {
   });
 }
 
-function addLessonToVirtualClassroom(lesson_id, destination, container, html_params) {
+function addLessonToVirtualClassroom(lesson_id, destination) {
   $.ajax({
     type: 'post',
-    dataType: 'json',
-    url: '/virtual_classroom/' + lesson_id + '/add_lesson?destination=' + destination + '&container=' + container + '&html_params=' + html_params,
-    success: function(data) {
-      $.ajax({
-        type: 'get',
-        url: data.redirect_url
-      });
-    }
+    url: '/virtual_classroom/' + lesson_id + '/add_lesson?destination=' + destination
   });
 }
 
-function removeLessonFromVirtualClassroom(lesson_id, destination, container, html_params) {
+function removeLessonFromVirtualClassroom(lesson_id, destination) {
   $.ajax({
     type: 'post',
-    dataType: 'json',
-    url: '/virtual_classroom/' + lesson_id + '/remove_lesson?destination=' + destination + '&container=' + container + '&html_params=' + html_params,
-    success: function(data) {
-      $.ajax({
-        type: 'get',
-        url: data.redirect_url
-      });
-    }
+    url: '/virtual_classroom/' + lesson_id + '/remove_lesson?destination=' + destination
   });
 }
 
 function addMediaElement(media_element_id, destination, container, html_params) {
-  $.ajax({
-    type: 'post',
-    dataType: 'json',
-    url: '/media_elements/' + media_element_id + '/add?destination=' + destination + '&container=' + container + '&html_params=' + html_params,
-    success: function(data) {
-      $.ajax({
-        type: 'get',
-        url: data.redirect_url
-      });
-    }
-  });
+  if(reload == 'true') {
+    $.ajax({
+      type: 'post',
+      url: '/media_elements/' + media_element_id + '/add?destination=' + destination
+    });
+  } else {
+    var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      url: '/media_elements/' + media_element_id + '/add?destination=' + destination
+      success: function(data) {
+        $.ajax({
+          type: 'get',
+          url: redirect_url
+        });
+      }
+    });
+  }
 }
 
 function destroyMediaElement(media_element_id, destination, container, html_params) {
-  $.ajax({
-    type: 'post',
-    dataType: 'json',
-    url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination + '&container=' + container + '&html_params=' + html_params,
-    success: function(data) {
-      $.ajax({
-        type: 'get',
-        url: data.redirect_url
-      });
-    }
-  });
+  if(reload == 'true') {
+    $.ajax({
+      type: 'post',
+      url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination
+    });
+  } else {
+    var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination
+      success: function(data) {
+        $.ajax({
+          type: 'get',
+          url: redirect_url
+        });
+      }
+    });
+  }
 }
 
 function removeMediaElement(media_element_id, destination, container, html_params) {
-  $.ajax({
-    type: 'post',
-    dataType: 'json',
-    url: '/media_elements/' + media_element_id + '/remove?destination=' + destination + '&container=' + container + '&html_params=' + html_params,
-    success: function(data) {
-      $.ajax({
-        type: 'get',
-        url: data.redirect_url
-      });
-    }
-  });
+  if(reload == 'true') {
+    $.ajax({
+      type: 'post',
+      url: '/media_elements/' + media_element_id + '/remove?destination=' + destination
+    });
+  } else {
+    var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      url: '/media_elements/' + media_element_id + '/remove?destination=' + destination
+      success: function(data) {
+        $.ajax({
+          type: 'get',
+          url: redirect_url
+        });
+      }
+    });
+  }
 }
