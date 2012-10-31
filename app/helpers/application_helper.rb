@@ -24,4 +24,21 @@ module ApplicationHelper
     return flag ? an_url.gsub("page=#{old_page}", "page=#{page}").html_safe : "#{an_url}&page=#{page}".html_safe
   end
   
+  def remove_param_from_url(url, param)
+    return url if (url =~ /#{param}/).nil?
+    x = url.split("#{param}=")
+    pivot = "#{param}="
+    if x[0].last == '&'
+      pivot = "&#{pivot}"
+    end
+    if (x[1] =~ /&/).nil?
+      new_url = url.gsub("#{pivot}#{x[1]}", '')
+    else
+      new_url = url.gsub("#{pivot}#{x[1].split('&')[0]}", '')
+    end
+    new_url.chop! if new_url.last == '?'
+    new_url.gsub!('?&', '?') if !(new_url =~ /\?&/).nil?
+    return new_url
+  end
+  
 end
