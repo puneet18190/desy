@@ -38,26 +38,19 @@ function copyLesson(lesson_id, destination) {
   });
 }
 
-function destroyLesson(lesson_id, destination, current_url, reload) {
-  if(reload == 'true') {
-    $.ajax({
-      type: 'post',
-      url: '/lessons/' + lesson_id + '/destroy?destination=' + destination
-    });
-  } else {
-    var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
-    $.ajax({
-      type: 'post',
-      dataType: 'json',
-      url: '/lessons/' + lesson_id + '/destroy?destination=' + destination
-      success: function(data) {
-        $.ajax({
-          type: 'get',
-          url: redirect_url
-        });
-      }
-    });
-  }
+function destroyLesson(lesson_id, destination, current_url) {
+  var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
+  $.ajax({
+    type: 'post',
+    dataType: 'json',
+    url: '/lessons/' + lesson_id + '/destroy?destination=' + destination
+    success: function(data) {
+      $.ajax({
+        type: 'get',
+        url: redirect_url
+      });
+    }
+  });
 }
 
 function dislikeLesson(lesson_id, destination) {
@@ -150,26 +143,19 @@ function addMediaElement(media_element_id, destination, current_url, reload) {
   }
 }
 
-function destroyMediaElement(media_element_id, destination, current_url, reload) {
-  if(reload == 'true') {
-    $.ajax({
-      type: 'post',
-      url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination
-    });
-  } else {
-    var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
-    $.ajax({
-      type: 'post',
-      dataType: 'json',
-      url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination
-      success: function(data) {
-        $.ajax({
-          type: 'get',
-          url: redirect_url
-        });
-      }
-    });
-  }
+function destroyMediaElement(media_element_id, destination, current_url) {
+  var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
+  $.ajax({
+    type: 'post',
+    dataType: 'json',
+    url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination
+    success: function(data) {
+      $.ajax({
+        type: 'get',
+        url: redirect_url
+      });
+    }
+  });
 }
 
 function removeMediaElement(media_element_id, destination, current_url, reload) {
