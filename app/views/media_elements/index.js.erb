@@ -10,3 +10,13 @@
 <% end %>
 
 $('#info_container').data('currenturl', '<%= remove_param_from_url(request.url, 'delete_item') %>');
+
+<% if @display == Formats::EXPANDED %>
+  $('#display_expanded_media_elements').addClass('current');
+  $('#display_compact_media_elements').removeClass('current');
+<% end %>
+
+<% if @display == Formats::COMPACT %>
+  $('#display_compact_media_elements').addClass('current');
+  $('#display_expanded_media_elements').removeClass('current');
+<% end %>
