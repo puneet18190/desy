@@ -27,19 +27,25 @@
               <% end %>
             </select>
           </td>
-          <td style="width:8%" valign="top" rowspan="2"><%= t('capital_letter.sort_by') %></td>
-          <td style="width:12%" rowspan="2">
-          <% counter = true %>
-          <% SearchOrders::LESSONS_SET.each do |so| %>
-            <% my_order_id = "#{so}_radio_input" %>
-            <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"" : '' %>><label for="<%= my_order_id %>"></label><%= SearchOrders::CAPTIONS[so] %><br>
-            <% counter = false %>
-          <% end %>
+          <td style="width:8%" valign="top" rowspan="2">
+            <%= t('capital_letter.sort_results_by') %>
           </td>
-          <td align="right" rowspan="2"><td><%= image_submit_tag(asset_path('cerca.png')) %></td></td>
+          <td style="width:12%" rowspan="2">
+            <% counter = true %>
+            <% SearchOrders::LESSONS_SET.each do |so| %>
+              <% my_order_id = "#{so}_lessons_radio_input" %>
+              <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"" : '' %>><label for="<%= my_order_id %>"></label><%= SearchOrders::CAPTIONS[so] %><br>
+              <% counter = false %>
+            <% end %>
+          </td>
+          <td align="left" rowspan="2">
+            <%= image_submit_tag(asset_path('cerca.png')) %>
+          </td>
         </tr>
         <tr>
-          <td colspan="2"><p><%= t('capital_letter.warning') %><br><%= t('capital_letter.not_entering_keywords') %></p></td>
+          <td colspan="2">
+            <p><%= t('capital_letter.warning') %><br><%= t('capital_letter.warning_search_lessons') %></p>
+          </td>
         </tr>
       </table>
     <% end %>

@@ -9,21 +9,33 @@
             <input type="text" name="tag" value="<%= t('small_letter.insert_tag') %>" class="text" id="media_elements_tag_reader_for_search">
             <%= hidden_field_tag 'tag_kind', '', :id => 'media_elements_tag_kind_for_search' %>
           <td>
-            <select name="ricerca" id="filter_search_media_elements">
-              <option value="" selected="selected"><%= t('capital_letter.lessons') %></option>
-              <option value=""><%= t('capital_letter.media_elements') %></option>
+            <select name="filter" id="filter_search_media_elements">
+              <% counter = true %>
+              <% Filters::MEDIA_ELEMENTS_SEARCH_SET.each do |f| %>
+                <option value="<%= f %>" <%= counter ? "selected=\"selected\"" : '' %>><%= Filters::CAPTIONS[f] %></option>
+                <% counter = false %>
+              <% end %>
             </select>
           </td>
-          <td style="width:8%" valign="top" rowspan="2">Sort results by</td>
-          <td style="width:12%" rowspan="2">
-            <input type="radio" name="group1" value="" class="regular-radio" checked><label for="" class=""></label>Date of creation<br>
-            <input type="radio" name="group1" value="" class="regular-radio"><label for=""></label>Date of publication<br>
-            <input type="radio" name="group1" value="" class="regular-radio"><label for=""></label>Name
+          <td style="width:8%" valign="top" rowspan="2">
+            <%= t('capital_letter.sort_results_by') %>
           </td>
-          <td align="right" rowspan="2"><td><%= image_submit_tag(asset_path('cerca.png')) %></td></td>
+          <td style="width:12%" rowspan="2">
+            <% counter = true %>
+            <% SearchOrders::MEDIA_ELEMENTS_SET.each do |so| %>
+              <% my_order_id = "#{so}_media_elements_radio_input" %>
+              <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"" : '' %>><label for="<%= my_order_id %>"></label><%= SearchOrders::CAPTIONS[so] %><br>
+              <% counter = false %>
+            <% end %>
+          </td>
+          <td align="left" rowspan="2">
+            <%= image_submit_tag(asset_path('cerca.png')) %>
+          </td>
         </tr>
         <tr>
-          <td colspan="2"><p>Warning!<br>Not entering any keyword you can see all the lessons of the subject selected.</p></td>
+          <td colspan="2">
+            <p><%= t('capital_letter.warning') %><br><%= t('capital_letter.warning_search_media_elements') %></p>
+          </td>
         </tr>
       </table>
     <% end %>
