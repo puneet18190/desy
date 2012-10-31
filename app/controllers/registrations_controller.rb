@@ -8,6 +8,13 @@ class RegistrationsController < ApplicationController
     render :layout => 'prelogin'
   end
   
+  def edit
+    render :layout => 'application'
+  end
+  
+  def update
+  end
+  
   private
   
   def redirect_to_dashboard
