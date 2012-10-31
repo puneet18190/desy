@@ -25,7 +25,12 @@ class VirtualClassroomController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_adding_to_virtual_classroom')
     end
-    respond_standard_js
+    prepare_lesson_for_js
+    if [ButtonDestinations::FOUND_LESSON, ButtonDestinations::COMPACT_LESSON].include? @destination
+      render 'lessons/reload_compact.js'
+    else
+      render 'lessons/reload_expanded.js'
+    end
   end
   
   def remove_lesson
@@ -37,7 +42,12 @@ class VirtualClassroomController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_removing_from_virtual_classroom')
     end
-    respond_standard_js
+    prepare_lesson_for_js
+    if [ButtonDestinations::FOUND_LESSON, ButtonDestinations::COMPACT_LESSON].include? @destination
+      render 'lessons/reload_compact.js'
+    else
+      render 'lessons/reload_expanded.js'
+    end
   end
   
   private

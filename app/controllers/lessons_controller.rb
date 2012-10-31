@@ -24,7 +24,12 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_lesson')
     end
-    respond_standard_js
+    if @destination == ButtonDestinations::FOUND_LESSON
+      prepare_lesson_for_js
+      render 'lessons/reload_compact.js'
+    else
+      render :nothing => true
+    end
   end
   
   def copy
@@ -37,7 +42,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_copying')
     end
-    respond_standard_js
+    render 'lessons/insert.js'
   end
   
   def destroy
@@ -49,7 +54,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_destroying')
     end
-    respond_standard_js
+    render :nothing => true
   end
   
   def dislike
@@ -61,7 +66,12 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.like.problem_destroying')
     end
-    respond_standard_js
+    prepare_lesson_for_js
+    if [ButtonDestinations::FOUND_LESSON, ButtonDestinations::COMPACT_LESSON].include? @destination
+      render 'lessons/reload_compact.js'
+    else
+      render 'lessons/reload_expanded.js'
+    end
   end
   
   def like
@@ -73,7 +83,12 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.like.problem_creating')
     end
-    respond_standard_js
+    prepare_lesson_for_js
+    if [ButtonDestinations::FOUND_LESSON, ButtonDestinations::COMPACT_LESSON].include? @destination
+      render 'lessons/reload_compact.js'
+    else
+      render 'lessons/reload_expanded.js'
+    end
   end
   
   def publish
@@ -85,7 +100,12 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_publishing')
     end
-    respond_standard_js
+    prepare_lesson_for_js
+    if [ButtonDestinations::FOUND_LESSON, ButtonDestinations::COMPACT_LESSON].include? @destination
+      render 'lessons/reload_compact.js'
+    else
+      render 'lessons/reload_expanded.js'
+    end
   end
   
   def unpublish
@@ -97,7 +117,12 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_unpublishing')
     end
-    respond_standard_js
+    prepare_lesson_for_js
+    if [ButtonDestinations::FOUND_LESSON, ButtonDestinations::COMPACT_LESSON].include? @destination
+      render 'lessons/reload_compact.js'
+    else
+      render 'lessons/reload_expanded.js'
+    end
   end
   
   def remove
@@ -116,7 +141,12 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_lesson')
     end
-    respond_standard_js
+    if @destination == ButtonDestinations::FOUND_LESSON
+      prepare_lesson_for_js
+      render 'lessons/reload_compact.js'
+    else
+      render :nothing => true
+    end
   end
   
   private

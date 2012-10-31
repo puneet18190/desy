@@ -27,7 +27,12 @@ class MediaElementsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_media_element')
     end
-    respond_standard_js
+    if @destination == ButtonDestinations::FOUND_MEDIA_ELEMENT
+      prepare_media_element_for_js
+      render 'media_elements/reload.js'
+    else
+      render :nothing => true
+    end
   end
   
   def destroy
@@ -39,7 +44,7 @@ class MediaElementsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.media_element.problem_destroying')
     end
-    respond_standard_js
+    render :nothing => true
   end
   
   def remove
@@ -58,7 +63,12 @@ class MediaElementsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_media_element')
     end
-    respond_standard_js
+    if @destination == ButtonDestinations::FOUND_MEDIA_ELEMENT
+      prepare_media_element_for_js
+      render 'media_elements/reload.js'
+    else
+      render :nothing => true
+    end
   end
   
   def change_info
