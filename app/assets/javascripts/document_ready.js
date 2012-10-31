@@ -349,12 +349,12 @@ $(document).ready(function() {
   
   // SEARCH ITEMS
   
-  $('body').on('click', '#which_item_to_search_switch_lessons', function() {
+  $('body').on('click', '#which_item_to_search_switch_media_elements', function() {
     $('#search_media_elements_main_page').css('display', 'block');
     $('#search_lessons_main_page').css('display', 'none');
   });
   
-  $('body').on('click', '#which_item_to_search_switch_media_elements', function() {
+  $('body').on('click', '#which_item_to_search_switch_lessons', function() {
     $('#search_media_elements_main_page').css('display', 'none');
     $('#search_lessons_main_page').css('display', 'block');
   });

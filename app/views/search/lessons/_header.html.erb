@@ -1,4 +1,4 @@
-<div class="contentSearch" id="search_lessons_main_page" style="display:none">
+<div class="contentSearch" id="search_lessons_main_page" style="display:<%= @search_item == 'lessons' ? 'block' : 'none' %>">
   <%= t('capital_letter.lessons') %>
   <div class="boxCerca">
     <%= form_tag search_items_path, :class => 'search-form', :id => 'search_lessons' do %>
