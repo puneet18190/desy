@@ -1,7 +1,0 @@
-<% if @ok %>
-  var target = $('#<%= @destination %>_<%= @media_element_id %>');
-  <% js_content = j(render(:partial => "media_elements/view_single_expanded", :locals => {:media_element => @media_element, :destination => @destination})) %>
-  target.replaceWith("<%= js_content %>");
-<% else %>
-  showErrorPopUp('<%= @error %>');
-<% end %>
