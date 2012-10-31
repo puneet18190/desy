@@ -1,0 +1,68 @@
+@mixin title-bar {
+  padding:0.3% 1% 0.3% 1%;
+	margin-bottom:12px;
+	float:left;
+	width:98%;
+	color:#fff;
+}
+@mixin tag-formatting {
+  h1 {
+	  color:#fff;
+		padding:0;
+		margin:0;
+		font: 200% 'Nunito', sans-serif;
+		float:left;
+		width:39%;
+	}
+	
+	
+}
+.profile-content {
+  float:left;
+	width:99.5%;
+	font-size:85%;
+	.title-bar {
+    @include title-bar;
+		@include tag-formatting;
+	  background-color:#5d5c5c;
+		text-shadow: #4d4c4c 0px 2px 0px;
+  }
+}
+.contentForm {
+  padding:20px;
+	float:left;
+	width:462px;
+}
+.contentStats {
+  background-color:#f5f5f5;
+	padding:20px 8px 8px 8px;
+	float:right;
+	width:305px;
+	h2 {
+	  font: 120% 'Nunito', sans-serif;
+		color:#5d5c5c;
+		padding:5px 10px;
+		background-color:#fff;
+	}
+	.dati {
+	  padding:10px;
+		color:#5d5c5c;
+		p {
+	    padding-bottom:10px;
+	  }
+	}
+	p {
+	  padding:10px 0 10px 0;
+	}
+	table {
+    border-collapse:collapse;
+  }
+  table,th, td {
+    border: 1px solid #e0e0e0;
+		font: 100% 'Nunito', sans-serif;
+		color:#7d7d7d;
+		h3 {
+		padding:5px 20px;
+		}
+  }
+}
