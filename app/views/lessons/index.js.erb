@@ -1,4 +1,10 @@
-var to_delete = $('#<%= @delete_item %>');
-to_delete.hide('scale', {percent: 0}, 500, function() {
-  $('#my_lessons').replaceWith("<%= j(render(:partial => "lessons/my_lessons")) %>");
-});
+<% if @delete_item.blank? %>
+  $('#my_lessons').hide('fade', {}, 500, function() {
+    $('#my_lessons').replaceWith("<%= j(render(:partial => "lessons/my_lessons")) %>");
+  });
+<% else %>
+  var to_delete = $('#<%= @delete_item %>');
+  to_delete.hide('scale', {percent: 0}, 500, function() {
+    $('#my_lessons').replaceWith("<%= j(render(:partial => "lessons/my_lessons")) %>");
+  });
+<% end %>
