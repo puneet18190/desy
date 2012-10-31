@@ -20,17 +20,9 @@
   </div>
   <% if @did_you_search %>
     <% if @search_item == 'media_elements' %>
-      <% if @media_elements.empty? %>
-        <%= render :partial => "search/media_elements/empty" %>
-      <% else %>
-        <%= render :partial => "search/media_elements/results", :locals => {:media_elements => @media_elements} %>
-      <% end %>
+      <%= render :partial => "search/media_elements/results", :locals => {:media_elements => @media_elements} %>
     <% else %>
-      <% if @lessons.empty? %>
-        <%= render :partial => "search/lessons/empty" %>
-      <% else %>
-        <%= render :partial => "search/lessons/results", :locals => {:lessons => @lessons} %>
-      <% end %>
+      <%= render :partial => "search/lessons/results", :locals => {:lessons => @lessons} %>
     <% end %>
   <% end %>
 </div>

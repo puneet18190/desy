@@ -39,7 +39,7 @@ Desy::Application.routes.draw do
   match 'lesson_editor/:lesson_id/index' => 'lesson_editor#index', :as => :lesson_editor
   
   # SEARCH LESSONS OR MEDIA ELEMENTS
-  match 'search' => 'search#index', :as => :search_items
+  match 'search' => 'search#index', :as => :search_items, :via => :get
   
   # REGISTRATIONS AND PROFILE
   match 'profile' => 'registrations#edit', :as => :my_profile
