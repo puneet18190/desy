@@ -1,1 +1,5 @@
-audio
+<h2><%= slide.title ? slide.title : "Title" %></h2>
+<audio id="audio" src="http://slides.html5rocks.com/src/rushus-modal_blues.mp3" controls></audio>
+<div class="audio-content">
+  <%= slide.text.html_safe if slide.text %>
+</div>

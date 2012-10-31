@@ -39,12 +39,12 @@ $(document).ready(function() {
     $("ul#slides li").animate({
         opacity: 0.4,
       }, 150, function() {
-        $(this).find(".buttons").hide();
+        $(this).find(".buttons").fadeOut();
       });
     $("ul#slides li:nth-child("+page+")").animate({
         opacity: 1,
       }, 500, function(){
-        $(this).find(".buttons").show();
+        $(this).find(".buttons").fadeIn();
       });
     //$("ul#slides li:nth-child("+page+")").prepend("#{escape_javascript(render :partial => 'slide_buttons')}");
     $("#slide-numbers li a.active").removeClass("active");

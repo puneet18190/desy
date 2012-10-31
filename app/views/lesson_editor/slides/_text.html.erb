@@ -1,2 +1,6 @@
-<h2><%= slide.title %></h2>
-<p><%= slide.text %></p>
+<h2 class="text">
+  <%= slide.title || "Text template slide" %>
+</h2>
+<div class="text-content">
+  <%= slide.text.html_safe if slide.text  %>
+</div>

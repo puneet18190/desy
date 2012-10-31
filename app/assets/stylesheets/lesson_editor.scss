@@ -46,6 +46,7 @@ html.lesson-editor-layout{
     font-size: 50px;
     text-align: left;
     font-weight: normal;
+    line-height: 50px;
   }
 
   /** Page navigation **/
@@ -57,6 +58,7 @@ html.lesson-editor-layout{
   }
 
   #slide-numbers {
+    position:fixed;
     list-style: none;
     margin-left: 10px;
     li {
@@ -107,6 +109,101 @@ html.lesson-editor-layout{
     height: 200px;
     padding: 5px;
     background-color: white;
+    font-size: 7px;
+    h2{
+      font-size: 16px;
+      line-height: 16px;
+      padding:5px 0;
+      margin:0;
+    }
+    &.title{
+      .only-title{
+        padding:50px 20px;
+        width: 200px;
+        text-align:center;
+        font-size: 20px;
+      }
+    }
+    &.audio{
+      audio{
+        width: 130px;
+        float:left;
+      }
+      .audio-content{
+        float: right;
+        width: 120px;
+        margin: 0 5px;
+        padding: 5px;
+      }
+    }
+    
+    &.video2{
+      video{
+        width: 290px;
+      }
+    }
+    &.video1{
+      video{
+        width: 130px;
+        float:left;
+      }
+      .video1-content{
+        float: right;
+        width: 120px;
+        margin: 0 5px;
+        padding: 5px;
+      }
+    }
+    &.image1{
+      .h2{
+        padding: 10px;
+      }
+      .image1-content{
+        float:left;
+        width: 130px;
+        margin-left: 5px;
+      }
+    }
+    &.text{
+        h2.text{
+            font-size: 20px;
+            padding: 5px 5px 0 5px;
+        }
+        .text-content{
+          margin: 0 5px;
+          padding: 2px;
+          font-size: 7px;
+        }
+    }
+    &.cover{
+      .title{
+        background-color: rgba(242,148,0,0.8);
+        height: 42px;
+        padding: 0px 5px;
+        width: 280px;
+        position: absolute;
+        top: 168px;
+        h2{
+          color: rgba(255,255,255,1);
+        }
+      }
+      .cover-slide-footer{
+        clear:both;
+        background-color: #fff;
+        color: #777;
+        height: 5px;
+        width: 280px;
+        padding: 3px 5px;
+        font-size: 4px;
+        .subject .h3{
+          font-family: Arial, sans-serif;
+          color: #777;
+        }
+        .author .name{
+          color: #f29400;
+        }
+      }
+    }
   }
 
   /** main container **/
@@ -139,14 +236,16 @@ html.lesson-editor-layout{
       padding: 0;
       margin-left: 50px;
       &.cover{
-        .title h2{
-          background-color: #f29400;
-          color: #fff;
+        .title{
+          background-color: rgba(242,148,0,0.8);
           height: 130px;
-          padding: 10px 20px;
+          padding: 0px 20px;
           width: 860px;
           position: absolute;
-          top: 410px;
+          top: 430px;
+          h2{
+            color: rgba(255,255,255,1);
+          }
         }
         .cover-slide-footer{
           clear:both;
@@ -166,11 +265,107 @@ html.lesson-editor-layout{
         }
         
       }
+      
       .slide-content{
         width: 900px;
+        height: 590px;
         margin-left:0px;
         background-color: white;
+        &.title{
+          .only-title{
+            padding:150px 100px;
+            width: 700px;
+            text-align:center;
+            font-size: 70px;
+          }
+        }
+        &.text{
+            h2.text{
+                font-size: 70px;
+                padding: 40px 20px;
+            }
+            .text-content{
+              margin: 20px;
+              padding: 10px;
+            }
+        }
+        &.audio{
+          padding: 20px;
+          height: 550px;
+          width: 860px;
+          audio{
+            width: 440px;
+            float:left;
+          }
+          h2{
+            font-size: 70px;
+            padding: 40px 0;
+          }
+          .audio-content{
+            float: right;
+            width: 380px;
+            margin: 0 10px;
+            padding: 10px;
+          }
+        }
+
+        &.video2{
+          padding: 20px;
+          height: 550px;
+          width: 860px;
+          video{
+            width:860px;
+          }
+        }
+        &.video1{
+          padding: 20px;
+          height: 550px;
+          width: 860px;
+          video{
+            width: 440px;
+            float:left;
+          }
+          h2{
+            font-size: 70px;
+            padding: 40px 0;
+          }
+          .video1-content{
+            float: right;
+            width: 380px;
+            margin: 0 10px;
+            padding: 10px;
+          }
+        }
+        &.image3{
+          padding: 20px;
+          height: 550px;
+          width: 860px;
+        }
         
+        &.image2{
+          padding: 20px;
+          height: 550px;
+          width: 860px;
+        }
+        &.image1{
+          padding: 20px;
+          height: 550px;
+          width: 860px;
+          h2{
+            font-size: 70px;
+            padding: 40px 20px;
+          }
+          img{
+            float:left;
+            width: 440px;
+          }
+          .image1-content{
+            float:right;
+            width: 380px;
+            margin: 0 10px;
+            padding: 10px;
+          }
+        }
       }
       .buttons{
         float:right;
