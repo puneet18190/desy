@@ -11,9 +11,11 @@
       <p><%= t('capital_letter.status') %></p>
       <div style="float:right"><h2 style="padding-right:10px"><%= t('capital_letter.show') %></h2>
         <select name="ricerca" id="filter_lessons">
+          <% counter = true %>
           <% Filters::LESSONS_SET.each do |f| %>
             <% caption = Filters::CAPTIONS[f] %>
-            <option value="<%= f %>" <%= f == @filter ? "selected=\"selected" : '' %>><%= caption %></option>
+            <option value="<%= f %>" <%= counter ? "selected=\"selected" : '' %>><%= caption %></option>
+            <% counter = false %>
           <% end %>
         </select>
       </div>

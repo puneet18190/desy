@@ -79,15 +79,18 @@ en:
     media_elements: 'Elements'
     modify_info_element: 'Modify info element'
     no_notifications: "You don't have any notifications"
+    not_entering_keywords: 'Not entering any keyword you can see all the lessons of the subject selected.'
     problems_with_password: "I forgot my login information"
     register: 'Register'
     report_abuse: 'Report abuse'
     search_lesson_or_media_element: 'Do you need lessons or media elements?'
     send: 'Send'
     show: 'Show'
+    sort_by: 'Sort results by'
     status: 'Status'
     small: 'Small'
     talk_with_desy: 'Want to talk with DESY?'
+    warning: 'Warning!'
     watch_the_video: 'Watch the video'
     what_are_you_looking_for: 'What are you looking for?'
     what_is_desy: 'What is DESY?'

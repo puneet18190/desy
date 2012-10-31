@@ -10,27 +10,36 @@
             <%= hidden_field_tag 'tag_kind', '', :id => 'lessons_tag_kind_for_search' %>
           </td>
           <td style="width:136px">
-            <select name="ricerca" id="filter_search_lessons">
-              <option value="" selected="selected">all lessons</option>
-              <option value=""><%= t('capital_letter.media_elements') %></option>
+            <select name="filter" id="filter_search_lessons">
+              <% counter = true %>
+              <% Filters::LESSONS_SEARCH_SET.each do |f| %>
+                <option value="<%= f %>" <%= counter ? "selected=\"selected\"" : '' %>><%= Filters::CAPTIONS[f] %></option>
+                <% counter = false %>
+              <% end %>
             </select>
           </td>
           <td>
-            <select name="ricerca" id="filter_search_lessons_subject">
-              <option value="" selected="selected">all subject</option>
-              <option value=""><%= t('capital_letter.media_elements') %></option>
+            <select name="subject_id" id="filter_search_lessons_subject">
+              <% counter = true %>
+              <% Subject.order(:description).each do |s| %>
+                <option value="<%= s.id %>" <%= counter ? "selected=\"selected\"" : '' %>><%= s.description %></option>
+                <% counter = false %>
+              <% end %>
             </select>
           </td>
-          <td style="width:8%" valign="top" rowspan="2">Sort results by</td>
+          <td style="width:8%" valign="top" rowspan="2"><%= t('capital_letter.sort_by') %></td>
           <td style="width:12%" rowspan="2">
-            <input type="radio" name="group1" value="" class="regular-radio" checked><label for=""></label>Date of creation<br>
-            <input type="radio" name="group1" class="regular-radio" value=""><label for=""></label>Date of publication<br>
-            <input type="radio" name="group1" class="regular-radio" value=""> <label for=""></label>Name
+          <% counter = true %>
+          <% SearchOrders::LESSONS_SET.each do |so| %>
+            <% my_order_id = "#{so}_radio_input" %>
+            <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"" : '' %>><label for="<%= my_order_id %>"></label><%= SearchOrders::CAPTIONS[so] %><br>
+            <% counter = false %>
+          <% end %>
           </td>
           <td align="right" rowspan="2"><td><%= image_submit_tag(asset_path('cerca.png')) %></td></td>
         </tr>
         <tr>
-          <td colspan="2"><p>Warning!<br>Not entering any keyword you can see all the lessons of the subject selected.</p></td>
+          <td colspan="2"><p><%= t('capital_letter.warning') %><br><%= t('capital_letter.not_entering_keywords') %></p></td>
         </tr>
       </table>
     <% end %>

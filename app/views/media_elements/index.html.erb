@@ -14,8 +14,10 @@
         <h2 style="padding-right:10px"><%= t('small_letter.display') %></h2>
         <div class="selectDisplay">
           <select name="display" id="for_page_media_elements">
+            <% counter = true %>
             <% @for_page_options.each do |f| %>
-              <option value="<%= f %>" <%= f == @for_page ? "selected=\"selected" : '' %>><%= f %></option>
+              <option value="<%= f %>" <%= counter ? "selected=\"selected" : '' %>><%= f %></option>
+              <% counter = false %>
             <% end %>
           </select>
         </div>
@@ -23,9 +25,11 @@
       <div>
         <h2 style="padding-right:10px"><%= t('capital_letter.show') %></h2>
         <select name="ricerca" id="filter_media_elements">
+          <% counter = true %>
           <% Filters::MEDIA_ELEMENTS_SET.each do |f| %>
             <% caption = Filters::CAPTIONS[f] %>
-            <option value="<%= f %>" <%= f == @filter ? "selected=\"selected" : '' %>><%= caption %></option>
+            <option value="<%= f %>" <%= counter ? "selected=\"selected" : '' %>><%= caption %></option>
+            <% counter = false %>
           <% end %>
         </select>
       </div>
