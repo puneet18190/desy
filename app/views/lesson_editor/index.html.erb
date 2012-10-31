@@ -19,8 +19,9 @@
 <ul id="slides">
   <%- @slides.each_with_index do |slide, index|%>
     <li class='<%= (index == 0) ? "active  #{slide.kind}" : "#{slide.kind}"%>'>
+      <%= render :partial => "slide_buttons", :locals => {:position => index + 1} %>
       <div class="slide-content <%= slide.kind%>">
-        <%= render :partial => "shared/lesson_thumbnails/big/#{slide.kind}" , :locals => { :slide => slide }%>
+        <%= render :partial => "lesson_editor/slides/#{slide.kind}" , :locals => { :slide => slide }%>
       </div>
     </li>
   <% end %>

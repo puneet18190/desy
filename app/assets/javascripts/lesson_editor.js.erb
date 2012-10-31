@@ -1,0 +1,53 @@
+$(document).ready(function() {
+  $("#lesson_subject").selectbox();
+
+  WW = parseInt($(window).outerWidth());
+  WH = parseInt($(window).outerHeight());
+  $("#main").css("width", WW);
+  $("ul#slides").css("width",$("ul#slides li").length * 1060);
+  $("ul#slides").css("top", ((WH / 2) - 295) + "px");
+  $("ul#slides.new").css("top", ((WH / 2) - 335) + "px")
+  $("#footer").css("top",(WH-40)+"px").css("width",(WW-24)+"px")
+  if(WW > 1000){
+    $("ul#slides li:first").css("margin-left", ((WW-960) / 2) + "px")
+    $("ul#slides.new li:first").css("margin-left",((WW-900) / 2) + "px");
+  }
+
+  $('#slide-numbers li').hover(function(e) {
+     tip = $(this); 
+     // Calculate the position of the image tooltip
+     x = e.pageX - tip.offset().left;
+     y = e.pageY - tip.offset().top;
+     
+     tip.children('.tooltip').animate({"opacity": "show"}, "fast");
+     
+     }, function() {
+       // Reset the z-index and hide the image tooltip 
+         $(this).children('.tooltip').animate({"opacity": "hide"}, "fast");
+     });
+  
+  $('#slide-numbers li a:not(.add-slide)').click(function(){
+    page = $(this).text();
+    if (parseInt(page) == 1){
+      marginReset = 0
+    }else{
+      marginReset = parseInt(-((page-1)*1010))+"px"
+    }
+    $("ul#slides").animate({
+        marginLeft: marginReset
+      }, 1500 );
+    $("ul#slides li").animate({
+        opacity: 0.4,
+      }, 150, function() {
+        $(this).find(".buttons").hide();
+      });
+    $("ul#slides li:nth-child("+page+")").animate({
+        opacity: 1,
+      }, 500, function(){
+        $(this).find(".buttons").show();
+      });
+    //$("ul#slides li:nth-child("+page+")").prepend("#{escape_javascript(render :partial => 'slide_buttons')}");
+    $("#slide-numbers li a.active").removeClass("active");
+    $(this).addClass("active");
+  });
+});

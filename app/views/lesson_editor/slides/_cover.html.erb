@@ -1,0 +1,16 @@
+<!-- PER ADRIANO aggiungi la classe current alla classe img_expanded per le lezioni aggiunte nella playlist-->
+<div class="box">
+  <%= image_tag("http://lorempixel.com/900/560") %>
+	<div class="title show-75">
+    <h2 clas="show-100"><%= slide.title %></h2>
+  </div>
+</div>
+<div class="cover-slide-footer">
+  <div class="subject pull-left">
+    <%= slide.lesson.subject.description %>
+  </div>
+  <div class="author pull-right">
+    Author: <span class="name"><%=  @current_user.full_name %></span>
+  </div>
+</div>
+

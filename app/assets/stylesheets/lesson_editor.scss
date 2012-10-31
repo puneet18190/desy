@@ -124,32 +124,113 @@ html.lesson-editor-layout{
 
   ul#slides {
     display: block;
+    position: absolute;
+    z-index:-9999;
+    
     li {
       &.active {
-        width: 900px;
+        width: 960px;
         height: 590px;
-        background-color: white;
-        background-color: #dedede;
       }
       float: left;
       display: block;
-      background-color: #cdcdcd;
       height: 590px;
-      width: 900px;
-      margin: 0;
+      width: 960px;
       padding: 0;
       margin-left: 50px;
+      &.cover{
+        .title h2{
+          background-color: #f29400;
+          color: #fff;
+          height: 130px;
+          padding: 10px 20px;
+          width: 860px;
+          position: absolute;
+          top: 410px;
+        }
+        .cover-slide-footer{
+          clear:both;
+          background-color: #fff;
+          color: #777;
+          height: 16px;
+          width: 870px;
+          padding: 7px 15px;
+          font-size: 13px;
+          .subject .h3{
+            font-family: Arial, sans-serif;
+            color: #777;
+          }
+          .author .name{
+            color: #f29400;
+          }
+        }
+        
+      }
+      .slide-content{
+        width: 900px;
+        margin-left:0px;
+        background-color: white;
+        
+      }
+      .buttons{
+        float:right;
+        width: 55px;
+        height: 200px;
+        margin: 185px 0 0 5px;
+        display:block;
+        a{
+          background: url("icone-editor-lezioni.svg") no-repeat top left; 
+          text-indent: -9999px;
+          width: 55px;
+          height: 56px;
+          display:block;
+        }
+        
+        a.delete{
+          background-position: top left;
+        }
+
+        a.add{
+          background-position: left -56px;
+        }
+        
+        a.info{
+          background-position: left -112px;
+        }
+        a.save{
+          background-position: left -168px;
+        }
+
+        a.delete:hover{
+          background-position: -57px 0;
+        }
+        
+        a.add:hover{
+          background-position: -57px -56px;
+        }
+        
+        a.info:hover{
+          background-position: -57px -112px;
+        }
+        a.save:hover{
+          background-position: -57px -168px;
+        }      }
     }
   }
   
   ul#slides.new{
     margin-top: 30px;
     li{
-      height: 490px;
-      width: 700px;
-      padding:100px 100px 0;
+      width: 900px;
+      margin:0;
+      padding:0;
       background-color: #f29400;
       color: #fff;
+      .box{
+        height: 460px;
+        width: 700px;
+        margin:100px 100px 0;
+      }
       p,h3{
         width: 700px;
         color: #fff;
@@ -157,6 +238,121 @@ html.lesson-editor-layout{
       }
       p{
         font-size: 10px;
+      }
+    }
+    .info{
+      input,textarea,select{
+        border: none;
+        color: #fff;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px; 
+        background-color: #e58e04;
+        margin-top: 30px;
+      }
+      input::-webkit-input-placeholder{
+         color: white;
+      }
+      input:-moz-placeholder{
+         color: white;
+      }
+      textarea::-webkit-input-placeholder{
+         color: white;
+      }
+      textarea:-moz-placeholder {
+         color: white;
+      }
+      
+      input{
+        width: 430px;
+        &.lesson-create{
+          background-color:#fff;
+          color: #777;
+          width: 100px;
+          height: 45px;
+          text-align:center;
+          font-family: "Nunito", sans-serif;
+          cursor:pointer;
+        }
+      }
+      select{
+        width: 200px;
+      }
+      textarea{
+        width: 300px;
+        height: 130px;
+        resize: none; 
+        line-height: 20px; /* Altezza di riga */
+      }
+     	.sbHolder{
+         width: 200px;
+         height: 30px;
+         margin-top: 30px;
+         float:right;
+         background-color:#e58e04;
+         -moz-border-radius: 2px;
+         -webkit-border-radius: 2px;
+ 
+       }
+      .sbSelector{
+   	   height: 30px;
+   	   line-height: 30px;
+   	   width: 200px;
+        }
+       .sbSelector:link, .sbSelector:visited, .sbSelector:hover{
+    	   color: #fff;
+    		 text-shadow:none;
+       }
+       .sbToggle{
+         margin-top:5px;
+    	   background: url('select-icons-lessons.png') 0 -123px no-repeat;
+    	 }                                           
+       .sbToggle:hover{                            
+    	   background: url('select-icons-lessons.png') 0 -123px no-repeat;
+       }                                           
+       .sbToggleOpen{                              
+    	   background: url('select-icons-lessons.png') 0 -22px no-repeat;
+       }
+      .sbOptions{
+    	  width: 200px;
+    		left: 0px;
+    		border:none;
+    	}
+    	.sbOptions li{
+    	  padding: 0 ;
+    	  margin: 0;
+    	  height: 30px;
+    	  width: 200px;
+    	  background-color: #fff;
+      }
+      .sbOptions a{
+    	  text-shadow:none;
+    		border-bottom: solid 1px #d78300;
+    		padding:8px;
+    		color: #d78300;
+    		margin-bottom: 0;
+      }
+      .sbOptions a:link, .sbOptions a:visited{
+    	  color: #ccc;
+    	  text-decoration: none;
+      }
+      .sbOptions a:hover,
+      .sbOptions a:focus,
+      .sbOptions a.sbFocus{
+    	  color: #fff;
+    	  background-color:#f29400;
+      }
+      .info-slide-footer{
+        clear:both;
+        background-color: #fff;
+        color: #777;
+        height: 16px;
+        width: 870px;
+        padding: 7px 15px;
+        font-size: 13px;
+        .author .name{
+          color: #f29400;
+        }
       }
     }
   }
@@ -237,6 +433,12 @@ html.lesson-editor-layout{
   .pull-left {
     float: left;
     width: auto;
+  }
+
+  .show-100 {
+    -moz-opacity: 1;
+    filter: alpha(opacity = 100);
+    opacity: 1;
   }
 
   .show-75 {
