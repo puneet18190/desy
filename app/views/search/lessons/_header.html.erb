@@ -1,7 +1,8 @@
-<div class="contentSearch">
+<div class="contentSearch" id="search_lessons_main_page" style="display:none">
   <%= t('capital_letter.lessons') %>
   <div class="boxCerca">
-    <%= form_tag "#{search_items_path}?item=lessons", :class => 'search-form', :id => 'search_lessons' do %>
+    <%= form_tag search_items_path, :class => 'search-form', :id => 'search_lessons' do %>
+      <%= hidden_field_tag 'item', 'lessons' %>
       <table summary="" cellpadding="0" cellspacing="0">
         <tr>
           <td style="width:178px">

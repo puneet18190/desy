@@ -42,7 +42,9 @@ class SearchController < ApplicationController
     @did_you_search = params.has_key? :tag
     @search_item = ['lessons', 'media_elements'].include?(params[:item]) ? params[:item] : 'lessons'
     if @did_you_search
-      @tag = params[:tag_kind].blank? ? '' : (params[:tag_kind] == '0' ? params[:tag] : params[:tag_kind])
+      # TODO @tag è provvisoria, al momento non prevede la ricerca con degli id di tags ma solo per parola
+      # @tag = params[:tag_kind].blank? ? '' : (params[:tag_kind] == '0' ? params[:tag] : params[:tag_kind])
+      @tag = params[:tag_kind].blank? ? '' : params[:tag]
       @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
       case @search_item
         when 'lessons'
