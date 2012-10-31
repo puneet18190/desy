@@ -1,5 +1,5 @@
 <div class="boxCerca">
-  <%= form_tag search_items_path, :class => 'search-form', :id => 'search_general', :method => :get do %>
+  <form id="search_general" class="search-form" method="get" action="/search">
     <table summary="" cellpadding="0" cellspacing="0">
       <tr>
         <td>
@@ -15,6 +15,6 @@
         <td><%= image_submit_tag(asset_path('cerca.png')) %></td>
       </tr>
     </table>
-  <% end %>
+  </form>
   <%= link_to t('capital_letter.advanced_search'), "#{search_items_path}?item=#{@where}", :class =>'advanced' %>
 </div>
