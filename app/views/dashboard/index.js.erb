@@ -1,4 +1,27 @@
+var id_of_the_page_to_reload = '';
+
+$('.suggested_lessons_page').each(function() {
+  if($(this).css('display') == 'block') {
+    id_of_the_page_to_reload = $(this).attr('id');
+  }
+});
+
+$('.suggested_media_elements_page').each(function() {
+  if($(this).css('display') == 'block') {
+    id_of_the_page_to_reload = $(this).attr('id');
+  }
+});
+
 var to_delete = $('#<%= @delete_item %>');
 to_delete.hide('scale', {percent: 0}, 500, function() {
   $('#dashboard').replaceWith("<%= j(render(:partial => "dashboard/lessons_and_media_elements")) %>");
 });
+
+$('.suggested_lessons_page').css('display', 'none');
+$('.suggested_media_elements_page').css('display', 'none');
+
+<% if ButtonDestinations::MEDIA_ELEMENTS.include?(@destination) %>
+  switchToSuggestedMediaElements();
+<% end %>
+
+$('#' + id_of_the_page_to_reload).css('display', 'block');
