@@ -39,6 +39,6 @@
     </div>
     <br class="clearfloat">
     <%= render :partial => "media_elements/my_media_elements" %>
-    <div id="info_container" style="display:none" data-container="media_elements" data-htmlparams="<%= @html_params %>"></div>
+    <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
   </div>
 </div>
