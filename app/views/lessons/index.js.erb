@@ -8,3 +8,5 @@
     $('#my_lessons').replaceWith("<%= j(render(:partial => "lessons/my_lessons")) %>");
   });
 <% end %>
+
+$('#info_container').data('currenturl', '<%= remove_param_from_url(request.url, 'delete_item') %>');

@@ -46,15 +46,13 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize_layout
-    if params.slice(:page, :for_page, :display, :filter, :delete_item).empty?
-      @js_reload = false
+    @js_reload = !params.slice(:page, :for_page, :display, :filter, :delete_item).empty?
+    @delete_item = params[:delete_item]
+    if @delete_item.blank?
       @notifications = Notification.visible_block(@current_user.id, 0, CONFIG['notifications_loaded_together'])
       @new_notifications = Notification.number_not_seen(@current_user.id)
       @offset_notifications = @notifications.length
       @tot_notifications = Notification.count_tot(@current_user.id)
-    else
-      @js_reload = true
-      @delete_item = params[:delete_item]
     end
   end
   

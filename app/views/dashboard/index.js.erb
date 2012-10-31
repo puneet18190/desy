@@ -25,3 +25,5 @@ to_delete.hide('scale', {percent: 0}, 500, function() {
   $('.suggested_media_elements_page').css('display', 'none');
   $('#' + id_of_the_page_to_reload).css('display', 'block');
 });
+
+$('#info_container').data('currenturl', '<%= remove_param_from_url(request.url, 'delete_item') %>');

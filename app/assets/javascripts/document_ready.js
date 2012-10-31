@@ -106,17 +106,29 @@ $(document).ready(function() {
   
   $('#filter_lessons').change(function() {
     var filter = $('#filter_lessons option:selected').val();
-    window.location.href = '/lessons?filter=' + filter;
+    var redirect_url = '/lessons?filter=' + filter;
+    $.ajax({
+      type: 'get',
+      url: redirect_url
+    });
   });
   
   $('#filter_media_elements').change(function() {
     var filter = $('#filter_media_elements option:selected').val();
-    window.location.href = getCompleteMediaElementsUrlWithoutFilter() + '&filter=' + filter;
+    var redirect_url = getCompleteMediaElementsUrlWithoutFilter() + '&filter=' + filter;
+    $.ajax({
+      type: 'get',
+      url: redirect_url
+    });
   });
   
   $('#for_page_media_elements').change(function() {
     var for_page = $('#for_page_media_elements option:selected').val();
-    window.location.href = getCompleteMediaElementsUrlWithoutForPage() + '&for_page=' + for_page;
+    var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + '&for_page=' + for_page;
+    $.ajax({
+      type: 'get',
+      url: redirect_url
+    });
   });
   
   

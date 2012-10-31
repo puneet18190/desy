@@ -8,3 +8,5 @@
     $('#my_media_elements').replaceWith("<%= j(render(:partial => "media_elements/my_media_elements")) %>");
   });
 <% end %>
+
+$('#info_container').data('currenturl', '<%= remove_param_from_url(request.url, 'delete_item') %>');
