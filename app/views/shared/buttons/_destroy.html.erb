@@ -1,1 +1,1 @@
-<%= render :partial => 'shared/buttons/standard_ajax_button', :locals => {:name => Buttons::DESTROY, :item => item, :destination => destination} %>
+<a class="<%= Buttons::DESTROY %> _<%= item.class %>_button_<%= Buttons::DESTROY %>" data-clickparam="<%= item.id %>" data-destination="<%= destination %>"></a>

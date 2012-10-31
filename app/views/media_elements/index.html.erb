@@ -1,10 +1,3 @@
-<%
-  large_class = ''
-  small_class = ''
-  large_class = 'current' if @display == Formats::EXPANDED
-  small_class = 'current' if @display == Formats::COMPACT
-%>
-
 <div class="gray-bar">
   <%= render :partial => "media_elements/graybar_left" %>
   <%= render :partial => "shared/search" %>
@@ -15,7 +8,7 @@
     <div class="title-bar">
       <h1 style="width:45%"><%= t('small_letter.elements') %></h1>
       <p id="format_media_elements">
-        <%= t('capital_letter.display_mode') %>: <%= link_to t('capital_letter.large'), '/media_elements?display=expanded', :class => large_class %> - <%= link_to t('capital_letter.small'), '/media_elements?display=compact', :class => small_class %>
+        <%= t('capital_letter.display_mode') %>: <%= link_to t('capital_letter.large'), '/media_elements?display=expanded', :class => 'current', :id => 'display_expanded_media_elements', :remote => true %> - <%= link_to t('capital_letter.small'), '/media_elements?display=compact', :id => 'display_compact_media_elements', :remote => true %>
       </p>
       <div style="padding-left:20px">
         <h2 style="padding-right:10px"><%= t('small_letter.display') %></h2>
@@ -39,6 +32,6 @@
     </div>
     <br class="clearfloat">
     <%= render :partial => "media_elements/my_media_elements" %>
-    <div id="info_container" style="display:none" data-container="media_elements" data-htmlparams="<%= @html_params %>"></div>
+    <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
   </div>
 </div>

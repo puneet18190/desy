@@ -21,3 +21,5 @@
 /shared/*
 
 /.rvmrc
+
+/config/database.yml

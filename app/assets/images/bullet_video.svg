@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
-	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
-]>
-<svg version="1.1"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-	 x="0px" y="0px" width="142em" height="142em" viewBox="-12.048 -12 142 142"
-	 overflow="visible" enable-background="new -12.048 -12 142 142" xml:space="preserve">
-<defs>
-</defs>
-<circle opacity="0.7" cx="59" cy="59" r="59"/>
-<polyline fill="none" stroke="#D8ECD4" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" points="49.501,32.001 
-	76.5,59 49.502,86 "/>
+<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="10em" height="10em" viewBox="0 0 142 142" enable-background="new 0 0 142 142" xml:space="preserve">
+<circle opacity="0.5" enable-background="new    " cx="59" cy="59" r="59"/>
+<polyline fill="none" stroke="#D8ECD4" stroke-width="17.6917" stroke-linecap="round" stroke-linejoin="round" points="
+	51.059,35.117 74.942,59 51.06,82.884 "/>
 </svg>
