@@ -1,7 +1,9 @@
 <div id="found_lessons">
-  <% if @lessons.empty? %>
-    <%= render :partial => "search/lessons/empty" %>
-  <% else %>
-    <!-- TODO scrivi qui -->
+  <% if @did_you_search && @search_item == 'lessons' %>
+    <% if @lessons.empty? %>
+      <%= render :partial => "search/lessons/empty" %>
+    <% else %>
+      <!-- TODO scrivi qui -->
+    <% end %>
   <% end %>
 </div>

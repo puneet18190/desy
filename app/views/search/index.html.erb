@@ -15,15 +15,8 @@
 <br class="clearfloat">
 <div class="griglia-contenuti">
   <div class="advanced-search-content">
-    <%= render :partial => "search/lessons/header" %>
-    <%= render :partial => "search/media_elements/header" %>
+    <%= render :partial => "search/lessons/main" %>
+    <%= render :partial => "search/media_elements/main" %>
   </div>
-  <% if @did_you_search %>
-    <% if @search_item == 'media_elements' %>
-      <%= render :partial => "search/media_elements/results", :locals => {:media_elements => @media_elements} %>
-    <% else %>
-      <%= render :partial => "search/lessons/results", :locals => {:lessons => @lessons} %>
-    <% end %>
-  <% end %>
 </div>
 <br class="clearfloat">
