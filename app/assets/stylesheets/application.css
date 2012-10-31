@@ -21,6 +21,7 @@
  *= require content
  *= require lessons
  *= require elements
+ *= require profile
  *= require action_buttons
  *= require icon_button_popup
  *= require layouts/prelogin
