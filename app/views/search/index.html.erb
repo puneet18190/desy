@@ -6,9 +6,9 @@
     <p><%= t('capital_letter.search_lesson_or_media_element') %><br><%= t('capital_letter.choose_wich_item_and_go') %></p>
   </div>
   <div class="cols" style="padding-top:18px; width:18%">
-    <input id="which_item_to_search_switch_lessons" type="radio" name="group1" value="lessons" class="regular-radio" <%= @search_item == 'lessons' ? "checked=\"checked\"" : '' %>>
+    <input id="which_item_to_search_switch_lessons" type="radio" class="regular-radio" <%= @search_item == 'lessons' ? "checked=\"checked\"" : '' %>>
     <label for="which_item_to_search_switch_lessons"></label><%= t('capital_letter.lessons') %>
-    <input id="which_item_to_search_switch_media_elements" type="radio" name="group1" value="elements" class="regular-radio" style="margin-left:40px" <%= @search_item == 'lessons' ? '' : "checked=\"checked\"" %>>
+    <input id="which_item_to_search_switch_media_elements" type="radio" class="regular-radio" style="margin-left:40px" <%= @search_item == 'lessons' ? '' : "checked=\"checked\"" %>>
     <label for="which_item_to_search_switch_media_elements"></label><%= t('capital_letter.media_elements') %>
   </div>
 </div>
