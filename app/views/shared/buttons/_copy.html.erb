@@ -1,1 +1,1 @@
-<%= render :partial => 'shared/buttons/standard_ajax_button', :locals => {:name => Buttons::COPY, :item => item, :destination => destination} %>
+<a class="<%= Buttons::COPY %> _<%= item.class %>_button_<%= Buttons::COPY %>" data-clickparam="<%= item.id %>" data-destination="<%= destination %>"></a>
