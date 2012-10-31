@@ -1,3 +1,5 @@
-<%= slide.title %>
-<img src="http://lorempixel.com/290/150/abstract/1" style="float:left">
-<%= slide.text %>
+<h2><%= slide.title %></h2>
+<img src="http://lorempixel.com/150/150/abstract/1" style="float:left" />
+<div class="image1-content">
+  <%= slide.text.html_safe if slide.text %>
+</div>

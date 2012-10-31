@@ -15,11 +15,11 @@ class LessonEditorController < ApplicationController
   end
   
   def create
-    # TODO sostituire parametri
-    new_lesson = @current_user.create_lesson title, description, subject_id
+    # TODO controllare redirect
+    new_lesson = @current_user.create_lesson params[:title], params[:description], params[:subject]
     tags = []
     params[:tags].split(',').each do |tag|
-      old_tag = Tag.find_by_word tag
+      existing_tag = Tag.find_by_word tag
       if existing_tag.nil?
         tags << tag
       else
@@ -27,6 +27,8 @@ class LessonEditorController < ApplicationController
       end
     end
     Tag.create_tag_set 'Lesson', new_lesson.id, tags
+    
+    redirect_to "/lesson_editor/#{new_lesson.id}/index"
   end
   
 end

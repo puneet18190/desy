@@ -1,11 +1,16 @@
 $(document).ready(function() {
+  $("#lesson_subject").selectbox();
+
   WW = parseInt($(window).outerWidth());
   WH = parseInt($(window).outerHeight());
   $("#main").css("width", WW);
-  $("ul#slides").css("width",$("ul#slides li").length * 1000);
+  $("ul#slides").css("width",$("ul#slides li").length * 1060);
+  $("ul#slides").css("top", ((WH / 2) - 295) + "px");
+  $("ul#slides.new").css("top", ((WH / 2) - 335) + "px")
   $("#footer").css("top",(WH-40)+"px").css("width",(WW-24)+"px")
   if(WW > 1000){
-    $("ul#slides li:first").css("margin-left", ((WW-900) / 2) + "px")
+    $("ul#slides li:first").css("margin-left", ((WW-960) / 2) + "px")
+    $("ul#slides.new li:first").css("margin-left",((WW-900) / 2) + "px");
   }
 
   $('#slide-numbers li').hover(function(e) {
@@ -21,25 +26,27 @@ $(document).ready(function() {
          $(this).children('.tooltip').animate({"opacity": "hide"}, "fast");
      });
   
-  $('#slide-numbers li a').click(function(){
+  $('#slide-numbers li a:not(.add-slide)').click(function(){
     page = $(this).text();
     if (parseInt(page) == 1){
-      console.log("page1");
       marginReset = 0
     }else{
-      console.log("pageNot1");
-      marginReset = parseInt(-((page-1)*950))+"px"
+      marginReset = parseInt(-((page-1)*1010))+"px"
     }
     $("ul#slides").animate({
         marginLeft: marginReset
       }, 1500 );
     $("ul#slides li").animate({
         opacity: 0.4,
-      }, 150 );
+      }, 150, function() {
+        $(this).find(".buttons").fadeOut();
+      });
     $("ul#slides li:nth-child("+page+")").animate({
         opacity: 1,
-      }, 500 );
-    //$("ul#slides").css("margin-left", parseInt(-((page-1)*900))+"px");
+      }, 500, function(){
+        $(this).find(".buttons").fadeIn();
+      });
+    //$("ul#slides li:nth-child("+page+")").prepend("#{escape_javascript(render :partial => 'slide_buttons')}");
     $("#slide-numbers li a.active").removeClass("active");
     $(this).addClass("active");
   });

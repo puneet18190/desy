@@ -1,0 +1,7 @@
+<% slide = Slide.where(:position => position, :lesson_id => @lesson.id).first %>
+<div class="buttons pull-right slide-<%= slide.id %>">
+  <a href="#detele" class="delete">delete</a>
+  <a href="#add" class="add">add</a>
+  <a href="#info" class="info">info</a>
+  <a href="#save" class="save">save</a>
+</div>
