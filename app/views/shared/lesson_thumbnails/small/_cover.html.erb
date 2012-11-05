@@ -5,6 +5,9 @@
     <div class="lessonTitle"><%= slide.title %></div>
   </div>
     <div class="lessonSubject"><%= slide.lesson.subject.description %></div>
+		<div class="author pull-right">
+      <%= t "capital_letter.author"%>: <span class="name"><%=  @current_user.full_name %></span>
+    </div>
 </div>
 <!--
 <div class="slide-thumb <%= slide.kind%>">
