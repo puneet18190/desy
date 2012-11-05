@@ -2,6 +2,7 @@
 <html class="lesson-editor-layout <%= controller_html_class %> <%= action_html_class %>">
 <head>
   <title>Desy</title>
+  <%= stylesheet_link_tag "shared", :media => "all" %>
   <%= stylesheet_link_tag "lesson_editor", :media => "all" %>
   <%= stylesheet_link_tag "jquery.selectbox", :media => "all" %>
   <!--[if !IE 7]>
@@ -11,7 +12,7 @@
   <![endif]-->
   <%= javascript_include_tag "jquery" %>
   <%= javascript_include_tag "jquery_ujs" %>
-  <%= javascript_include_tag "jquery-ui-1.9.0" %>
+  <%= javascript_include_tag "jquery-ui-1.9.0.custom" %>
   <%= javascript_include_tag "jquery.selectbox-0.2.min" %>
   <%= javascript_include_tag "lesson_editor" %>
   <%= csrf_meta_tags %>

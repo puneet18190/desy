@@ -1,7 +1,7 @@
 <% slide = Slide.where(:position => position, :lesson_id => @lesson.id).first %>
 <div class="buttons pull-right slide-<%= slide.id %>">
   <a href="#detele" class="delete">delete</a>
-  <a href="#add" class="add">add</a>
-  <a href="#info" class="info">info</a>
+  <%= link_to "add", {:action => :add_new_slide, :slide => slide.id} , :remote => true, :class => "add add-slide" %>
+  <%= link_to "info", edit_lesson_path(@lesson), :class => "info"%>
   <a href="#save" class="save">save</a>
 </div>

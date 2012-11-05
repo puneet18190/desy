@@ -37,9 +37,10 @@ Desy::Application.routes.draw do
   match 'lesson_editor/new' => 'lesson_editor#new'
   match 'lesson_editor/create' => 'lesson_editor#create', :via => :post
   match 'lesson_editor/:lesson_id/index' => 'lesson_editor#index', :as => :lesson_editor
-  match 'lesson_editor/:lesson_id/edit' => 'lesson_editor#edit'
-  match 'lesson_editor/:lesson_id/update' => 'lesson_editor#update', :via => :post
+  match 'lesson_editor/:lesson_id/edit' => 'lesson_editor#edit', :as => :edit_lesson
+  match 'lesson_editor/:lesson_id/update' => 'lesson_editor#update', :as => :lesson, :via => :put
   match 'lesson_editor/:lesson_id/add_slide/:position' => 'lesson_editor#add_slide', :via => :post
+  match 'lesson_editor/add_new_slide/:slide' => 'lesson_editor#add_new_slide', :as => :add_new_slide
   
   # SEARCH LESSONS OR MEDIA ELEMENTS
   match 'search' => 'search#index', :as => :search_items, :via => :get

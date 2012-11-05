@@ -24,12 +24,28 @@ class LessonEditorController < ApplicationController
   
   def update
     lesson = Lesson.find params[:lesson_id]
+    lesson.title = params[:lesson][:title]
+    lesson.description =  params[:lesson][:description]
+    lesson.subject_id = params[:lesson][:subject_id]
     Tag.create_tag_set 'Lesson', lesson.id, get_tags
     lesson.save
+    redirect_to lesson_editor_path(lesson.id)
   end
   
   def edit
+    @subjects = []
     @lesson = Lesson.find params[:lesson_id]
+    @current_user.users_subjects.each do |sbj|
+      @subjects << sbj.subject
+    end
+  end
+  
+  def add_new_slide
+    p "slide numero:" + params[:slide] 
+    @slide = Slide.find params[:slide]
+    respond_to do |format|
+      format.js
+    end
   end
   
   def add_slide
@@ -60,12 +76,23 @@ class LessonEditorController < ApplicationController
   
   def get_tags
     tags = []
-    params[:tags].split(',').each do |tag|
-      existing_tag = Tag.find_by_word tag
-      if existing_tag.nil?
-        tags << tag
-      else
-        tags << existing_tag.id
+    if params[:tags]
+      params[:tags].split(',').each do |tag|
+        existing_tag = Tag.find_by_word tag
+        if existing_tag.nil?
+          tags << tag
+        else
+          tags << existing_tag.id
+        end
+      end
+    else
+      params[:lesson][:tags].split(',').each do |tag|
+        existing_tag = Tag.find_by_word tag
+        if existing_tag.nil?
+          tags << tag
+        else
+          tags << existing_tag.id
+        end
       end
     end
     tags

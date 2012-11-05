@@ -6,9 +6,7 @@
         <li>
           <a href="#" class="<%= (index == 0) ? 'active' : ''%>"><%= index + 1 %></a>
           <div class="tooltip">
-            <div class="slide-thumb <%= slide.kind%>">
-              <%= render :partial => "shared/lesson_thumbnails/small/#{slide.kind}" , :locals => { :slide => slide }%>
-            </div>
+            <%= render :partial => "shared/lesson_thumbnails/small/#{slide.kind}" , :locals => { :slide => slide }%>
           </div>
         </li>
       <%end%><!-- end each -->
