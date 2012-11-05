@@ -1,0 +1,29 @@
+<ul id="slides" class="new">
+  <li class="info">
+    <div class="box">
+      <h3>Update lesson: <%= @lesson.title %></h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+       Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <%= form_for(@lesson) do |f| -%>
+        <%= f.text_field :title, :class=>"pull-left" %>
+        <%= f.select :subject, options_from_collection_for_select(@subjects, "id", "description"), :include_blank => false, :class=>"pull-right", :id => "lesson_subject" %>
+        <%= f.text_area :description, :class=>"pull-left" %>
+        <textarea id="lesson_tags" name="lesson[tags]" class="pull-right">
+          <% @lesson.taggings.each do |tag| %>
+            <%= tag.tag.word %>,
+          <%end%>
+        </textarea>
+        <br />
+        <%= f.submit 'update', :class=>"lesson-create pull-right" %>
+      <% end -%>
+    </div>
+    <div class="info-slide-footer">
+      <div class="school-level pull-left">
+        <%=  @current_user.school_level.description %>
+      </div>
+      <div class="author pull-right">
+        <%= t "capital_letter.author"%>: <span class="name"><%=  @current_user.full_name %></span>
+      </div>
+    </div>
+  </li>
+</ul>

@@ -26,10 +26,15 @@ class LessonEditorController < ApplicationController
     lesson = Lesson.find params[:lesson_id]
     Tag.create_tag_set 'Lesson', lesson.id, get_tags
     lesson.save
+    redirect_to :index
   end
   
   def edit
+    @subjects = []
     @lesson = Lesson.find params[:lesson_id]
+    @current_user.users_subjects.each do |sbj|
+      @subjects << sbj.subject
+    end
   end
   
   def add_slide
