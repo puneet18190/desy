@@ -13,6 +13,7 @@
  *= require jquery.selectbox.css
  *= require jquery-ui-1.9.0.custom
  *= require global
+ *= require shared
  *= require header
  *= require menu
  *= require notice_help
@@ -26,5 +27,5 @@
  *= require icon_button_popup
  *= require layouts/prelogin
  *= require layouts/virtualclassroom
- *= require shared
+
  */
