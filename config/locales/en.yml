@@ -183,7 +183,7 @@ en:
         content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
 
 # (4) labels for constant keywords defined in lib/autoload
-  status:
+  statuses:
     lessons:
       private: 'Private'
       copied: 'Copied'

@@ -1,13 +1,16 @@
 class MediaElement < ActiveRecord::Base
   
-  STAT_PRIVATE = I18n.t('status.media_elements.private')
-  STAT_LINKED = I18n.t('status.media_elements.linked')
-  STAT_PUBLIC = I18n.t('status.media_elements.public')
+  # STAT_PRIVATE = I18n.t('statuses.media_elements.private')
+  # STAT_LINKED = I18n.t('statuses.media_elements.linked')
+  # STAT_PUBLIC = I18n.t('statuses.media_elements.public')
   
+  statuses = ::STATUSES.media_elements.marshal_dump.keys
+  STATUSES = Struct.new(*statuses).new(*statuses)
+
   self.inheritance_column = :sti_type
   
   attr_accessible :title, :description, :duration, :publication_date
-  attr_reader :status, :is_reportable, :info_changeable, :tags
+  attr_reader :status, :is_reportable, :info_changeable
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
@@ -39,15 +42,15 @@ class MediaElement < ActiveRecord::Base
   def set_status(an_user_id)
     return if self.new_record?
     if !self.is_public && an_user_id == self.user_id
-      @status = STAT_PRIVATE
+      @status = STATUSES.private
       @is_reportable = false
       @info_changeable = true
     elsif self.is_public && !self.bookmarked?(an_user_id)
-      @status = STAT_PUBLIC
+      @status = STATUSES.public
       @is_reportable = true
       @info_changeable = false
     elsif self.is_public && self.bookmarked?(an_user_id)
-      @status = STAT_LINKED
+      @status = STATUSES.linked
       @is_reportable = true
       @info_changeable = false
     else
@@ -59,11 +62,11 @@ class MediaElement < ActiveRecord::Base
   
   def buttons
     return [] if [@status, @is_reportable, @info_changeable].include?(nil)
-    if @status == STAT_PRIVATE
+    if @status == STATUSES.private
       return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
-    elsif @status == STAT_PUBLIC
+    elsif @status == STATUSES.public
        return [Buttons::PREVIEW, Buttons::ADD]
-    elsif @status == STAT_LINKED
+    elsif @status == STATUSES.linked
        return [Buttons::PREVIEW, Buttons::EDIT, Buttons::REMOVE]
     else
       return []

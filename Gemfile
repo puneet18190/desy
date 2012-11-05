@@ -28,6 +28,7 @@ group :development do
   gem "rails-erd"
 end
 
+gem 'recursive-open-struct'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

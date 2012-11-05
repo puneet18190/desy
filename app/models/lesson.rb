@@ -1,13 +1,10 @@
 class Lesson < ActiveRecord::Base
   
-  STAT_PRIVATE = I18n.t('status.lessons.private')
-  STAT_COPIED = I18n.t('status.lessons.copied')
-  STAT_LINKED = I18n.t('status.lessons.linked')
-  STAT_SHARED = I18n.t('status.lessons.shared')
-  STAT_PUBLIC = I18n.t('status.lessons.public')
+  statuses = ::STATUSES.lessons.marshal_dump.keys
+  STATUSES = Struct.new(*statuses).new(*statuses)
   
   attr_accessible :subject_id, :school_level_id, :title, :description
-  attr_reader :status, :is_reportable, :tags
+  attr_reader :status, :is_reportable
   
   belongs_to :user
   belongs_to :subject
@@ -56,19 +53,19 @@ class Lesson < ActiveRecord::Base
   def set_status(an_user_id)
     return if self.new_record?
     if !self.is_public && !self.copied_not_modified && an_user_id == self.user_id
-      @status = STAT_PRIVATE
+      @status = STATUSES.private
       @is_reportable = false
     elsif !self.is_public && self.copied_not_modified && an_user_id == self.user_id
-      @status = STAT_COPIED
+      @status = STATUSES.copied
       @is_reportable = false
     elsif self.is_public && an_user_id != self.user_id && self.bookmarked?(an_user_id)
-      @status = STAT_LINKED
+      @status = STATUSES.linked
       @is_reportable = true
     elsif self.is_public && an_user_id != self.user_id && !self.bookmarked?(an_user_id)
-      @status = STAT_PUBLIC
+      @status = STATUSES.public
       @is_reportable = true
     elsif self.is_public && an_user_id == self.user_id
-      @status = STAT_SHARED
+      @status = STATUSES.shared
       @is_reportable = false
     else
       @status = nil
@@ -80,18 +77,19 @@ class Lesson < ActiveRecord::Base
   
   def buttons
     return [] if [@status, @in_vc, @liked, @is_reportable].include?(nil)
-    if @status == STAT_PRIVATE
-      return [Buttons::PREVIEW, Buttons::EDIT, virtual_classroom_button, Buttons::PUBLISH, Buttons::COPY, Buttons::DESTROY]
-    elsif @status == STAT_COPIED
-      return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
-    elsif @status == STAT_LINKED
-       return [Buttons::PREVIEW, Buttons::COPY, virtual_classroom_button, like_button, Buttons::REMOVE]
-    elsif @status == STAT_PUBLIC
-       return [Buttons::PREVIEW, Buttons::ADD, like_button]
-    elsif @status == STAT_SHARED
-       return [Buttons::PREVIEW, Buttons::EDIT, virtual_classroom_button, Buttons::UNPUBLISH, Buttons::COPY, Buttons::DESTROY]
+    case @status
+    when STATUSES.private
+      [Buttons::PREVIEW, Buttons::EDIT, virtual_classroom_button, Buttons::PUBLISH, Buttons::COPY, Buttons::DESTROY]
+    when STATUSES.copied
+      [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
+    when STATUSES.linked
+      [Buttons::PREVIEW, Buttons::COPY, virtual_classroom_button, like_button, Buttons::REMOVE]
+    when STATUSES.public
+      [Buttons::PREVIEW, Buttons::ADD, like_button]
+    when STATUSES.shared
+      [Buttons::PREVIEW, Buttons::EDIT, virtual_classroom_button, Buttons::UNPUBLISH, Buttons::COPY, Buttons::DESTROY]
     else
-      return []
+      []
     end
   end
   
