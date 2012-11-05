@@ -1,3 +1,43 @@
+.boxViewExpandedLesson {
+  margin-bottom:1%;
+	-moz-box-shadow: 0px 3px 4px #d3d3d3;
+  -webkit-box-shadow: 0px 3px 4px #d3d3d3;
+  box-shadow: 0px 3px 4px #d3d3d3;
+	
+	h1 {
+	  font:  110% 'Nunito', sans-serif;
+	  color:#f29400;
+		padding:0px;
+	}
+	h2 {
+	  font:  140% 'Nunito', sans-serif;
+	}
+	background-color:#fbfafb;
+	float:left;
+	width:49%;
+	
+	&:last-child {
+	  float:right;
+	}
+	.contentInterno {
+	  padding:4%;
+		height:110px;
+		
+	}
+	.contentNew {
+	  p {padding-top:90px;}
+		.createButton a {
+		  background: url(<%= asset_path 'create.png' %>) top left no-repeat;
+			padding-bottom:90px;
+			padding-left:120px;
+		}
+		.createButton a:hover {
+			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+		}
+		
+	}
+}
+
 .img_expanded {
   float:left;
   padding:0;
@@ -13,6 +53,13 @@
 		bottom:0px;
 		left:0px;
 		width:227px;
+		span {
+		  float:right
+		}
+		strong {
+		  color:#F29400;
+			font-weight:normal;
+		}
   }
 	.bg_text {
     padding:5px 10px 10px 10px;
