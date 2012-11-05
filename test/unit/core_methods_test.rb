@@ -97,7 +97,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_match /You already have a copy of this lesson/, x.errors.messages[:base].first
     x = Lesson.find(2)
     cccount_slides = x.slides.count
-    assert x.add_slide('image2')
+    assert x.add_slide('image2', cccount_slides + 1)
     new_slide_image2 = Slide.where(:lesson_id => x.id, :position => (cccount_slides + 1)).first
     assert !new_slide_image2.nil?
     mediaaa = MediaElementsSlide.new
@@ -313,16 +313,30 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'add_slide_to_lesson' do
-    assert !Lesson.new.add_slide('text')
+    assert Lesson.new.add_slide('text', 2).nil?
     x = Lesson.find 1
     assert_equal 1, x.slides.count
     assert Slide.where(:lesson_id => 1, :kind => 'image1').empty?
-    assert !x.add_slide('video4')
+    assert x.add_slide('video4', 2).nil?
     assert_equal 1, x.errors.messages[:base].length
     assert_match /There was a problem adding the slide/, x.errors.messages[:base].first
-    assert x.add_slide('image1')
+    ressp = x.add_slide('image1', 2)
+    assert !ressp.nil?
     assert_equal 2, Slide.where(:lesson_id => 1).count
     assert Slide.where(:lesson_id => 1, :kind => 'image1').any?
+    new_added_slide = Slide.where(:lesson_id => 1, :kind => 'image1').first
+    assert_equal ressp.id, new_added_slide.id
+    assert x.add_slide('image2', 1).nil?
+    assert_equal 1, x.errors.messages[:base].length
+    assert_match /There was a problem adding the slide/, x.errors.messages[:base].first
+    assert_equal 2, Slide.where(:lesson_id => 1).count
+    ressp = x.add_slide('image2', 2)
+    assert !ressp.nil?
+    assert_equal 3, Slide.where(:lesson_id => 1).count
+    added_second_slide =  Slide.where(:lesson_id => 1, :kind => 'image2').first
+    assert_equal ressp.id, added_second_slide.id
+    assert_equal 2, added_second_slide.position
+    assert_equal 3, Slide.find(new_added_slide.id).position
   end
   
   test 'remove_slide_from_lesson' do

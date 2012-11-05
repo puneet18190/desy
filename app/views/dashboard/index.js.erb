@@ -3,12 +3,20 @@ var id_of_the_page_to_reload = '';
 $('.suggested_lessons_page').each(function() {
   if($(this).css('display') == 'block') {
     id_of_the_page_to_reload = $(this).attr('id');
+    var parse_array = id_of_the_page_to_reload.split('_');
+    if((parseInt(parse_array[parse_array.length - 1]) - 1) * <%= @lessons_for_page %> >= <%= @lessons.length %>) {
+      id_of_the_page_to_reload = 'suggested_lessons_1';
+    }
   }
 });
 
 $('.suggested_media_elements_page').each(function() {
   if($(this).css('display') == 'block') {
     id_of_the_page_to_reload = $(this).attr('id');
+    var parse_array = id_of_the_page_to_reload.split('_');
+    if((parseInt(parse_array[parse_array.length - 1]) - 1) * <%= @media_elements_for_page %> >= <%= @media_elements.length %>) {
+      id_of_the_page_to_reload = 'suggested_media_elements_1';
+    }
   }
 });
 

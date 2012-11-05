@@ -280,22 +280,30 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
-  def add_slide(kind)
+  def add_slide(kind, position)
+    errors.clear
     if self.new_record? || !['title', 'text', 'image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2'].include?(kind)
       errors.add(:base, :problem_adding_slide)
       return nil
     end
     resp = nil
-    slide = Slide.new
-    slide.kind = kind
-    slide.lesson_id = self.id
-    slide.position = Slide.order('position DESC').where(:lesson_id => self.id).limit(1).first.position + 1
-    if slide.save
-      return slide
-    else
-      errors.add(:base, :problem_adding_slide)
-      return nil
+    ActiveRecord::Base.transaction do
+      slide = Slide.new
+      slide.kind = kind
+      slide.lesson_id = self.id
+      slide.position = Slide.order('position DESC').where(:lesson_id => self.id).limit(1).first.position + 1
+      if slide.save
+        if !slide.change_position(position)
+          errors.add(:base, :problem_adding_slide)
+          raise ActiveRecord::Rollback
+        end
+      else
+        errors.add(:base, :problem_adding_slide)
+        raise ActiveRecord::Rollback
+      end
+      resp = slide
     end
+    resp
   end
   
   def add_to_virtual_classroom(an_user_id)
