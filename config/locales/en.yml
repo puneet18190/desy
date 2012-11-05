@@ -60,7 +60,6 @@ en:
     copyright: '©2012 DESY'
     create_new_lesson: 'Create a new lesson'
     create_new_lesson_now: 'Create a lesson now'
-    load_new_media_element: 'Load a new element'
     create_new_media_element: 'Create a new element'
     description: 'Description'
     discover_a_new_way_of_teaching: "Discover a new way of teaching"
@@ -75,6 +74,7 @@ en:
     learning_goals: 'Learning Objectives'
     lessons: 'Lessons'
     level: 'Level'
+    load_new_media_element: 'Load a new element'
     load_new_media_element_now: 'Load an element now'
     login: 'Login'
     logout: 'Logout'
