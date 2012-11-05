@@ -222,7 +222,7 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   
   Lesson.all.each do |l|
     slides[l.id].each do |kind|
-      l.add_slide kind
+      l.add_slide kind, 2
     end
   end
   

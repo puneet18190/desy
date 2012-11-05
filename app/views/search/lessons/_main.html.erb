@@ -20,9 +20,9 @@
           </td>
           <td>
             <select name="subject_id" id="filter_search_lessons_subject">
-              <% counter = true %>
+              <option value="" selected="selected"><%= t('capital_letter.all_subjects') %></option>
               <% Subject.order(:description).each do |s| %>
-                <option value="<%= s.id %>" <%= counter ? "selected=\"selected\"" : '' %>><%= s.description %></option>
+                <option value="<%= s.id %>"><%= s.description %></option>
                 <% counter = false %>
               <% end %>
             </select>
