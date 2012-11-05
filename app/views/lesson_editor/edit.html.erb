@@ -6,13 +6,9 @@
        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <%= form_for(@lesson) do |f| -%>
         <%= f.text_field :title, :class=>"pull-left" %>
-        <%= f.select :subject, options_from_collection_for_select(@subjects, "id", "description"), :include_blank => false, :class=>"pull-right", :id => "lesson_subject" %>
+        <%= f.select :subject, options_for_select(@subjects.map{ |sbj| [sbj.description, sbj.id] }, @lesson.subject_id), :include_blank => false, :class=>"pull-right", :id => "lesson_subject" %>
         <%= f.text_area :description, :class=>"pull-left" %>
-        <textarea id="lesson_tags" name="lesson[tags]" class="pull-right">
-          <% @lesson.taggings.each do |tag| %>
-            <%= tag.tag.word %>,
-          <%end%>
-        </textarea>
+        <textarea id="lesson_tags" name="lesson[tags]" class="pull-right"><%= @lesson.tags %></textarea>
         <br />
         <%= f.submit 'update', :class=>"lesson-create pull-right" %>
       <% end -%>

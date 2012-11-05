@@ -1,14 +1,16 @@
-<div class="box">
-  <%= image_tag("http://lorempixel.com/290/185") %>
-	<div class="title">
-    <h2><%= slide.title %></h2>
+<div class="slide-thumb <%= slide.kind%>">
+  <div class="box">
+    <%= image_tag("http://lorempixel.com/290/185") %>
+  	<div class="title">
+      <h2><%= slide.title %></h2>
+    </div>
   </div>
-</div>
-<div class="cover-slide-footer">
-  <div class="subject pull-left">
-    <%= slide.lesson.subject.description %>
-  </div>
-  <div class="author pull-right">
-    <%= t "capital_letter.author"%>: <span class="name"><%=  @current_user.full_name %></span>
+  <div class="cover-slide-footer">
+    <div class="subject pull-left">
+      <%= slide.lesson.subject.description %>
+    </div>
+    <div class="author pull-right">
+      <%= t "capital_letter.author"%>: <span class="name"><%=  @current_user.full_name %></span>
+    </div>
   </div>
 </div>
