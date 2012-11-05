@@ -2,7 +2,7 @@
   <div class="_media_element_pop_up_container" data-param="<%= media_element.id %>">
    <% if media_element.info_changeable %>
     <div class="_change_info_container" style="display:none;" data-param="<%= media_element.id %>">
-      <h1><%= t('capital_letter.modify_info_element') %></h1>
+      <h1><%= t('captions.modify_info_element') %></h1>
       <p><%= t('long_descriptions.change_info_element') %></p>
       <%= form_tag change_media_element_info_path(media_element.id), :class => "formModifyInfo" do %>
         <div class="cols" style="float:left">

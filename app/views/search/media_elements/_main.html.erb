@@ -1,5 +1,5 @@
 <div class="contentSearch" id="search_media_elements_main_page" style="display:<%= @search_item == 'lessons' ? 'none' : 'block' %>">
-  <%= t('capital_letter.media_elements') %>
+  <%= t('captions.media_elements') %>
   <div class="boxCerca">
     <form id="search_media_elements" class="search-form" method="get" action="/search" data-remote="true">
       <%= hidden_field_tag 'item', 'media_elements' %>
@@ -18,7 +18,7 @@
             </select>
           </td>
           <td style="width:8%" valign="top" rowspan="2">
-            <%= t('capital_letter.sort_results_by') %>
+            <%= t('captions.sort_results_by') %>
           </td>
           <td style="width:12%" rowspan="2">
             <% counter = true %>
@@ -34,7 +34,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            <p><%= t('capital_letter.warning') %><br><%= t('capital_letter.warning_search_media_elements') %></p>
+            <p><%= t('captions.warning') %><br><%= t('captions.warning_search_media_elements') %></p>
           </td>
         </tr>
       </table>

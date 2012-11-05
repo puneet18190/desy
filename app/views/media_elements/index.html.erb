@@ -8,7 +8,7 @@
     <div class="title-bar">
       <h1 style="width:45%"><%= t('small_letter.elements') %></h1>
       <p id="format_media_elements">
-        <%= t('capital_letter.display_mode') %>: <%= link_to t('capital_letter.large'), '/media_elements?display=expanded', :class => 'current', :id => 'display_expanded_media_elements', :remote => true %> - <%= link_to t('capital_letter.small'), '/media_elements?display=compact', :id => 'display_compact_media_elements', :remote => true %>
+        <%= t('captions.display_mode') %>: <%= link_to t('captions.large'), '/media_elements?display=expanded', :class => 'current', :id => 'display_expanded_media_elements', :remote => true %> - <%= link_to t('captions.small'), '/media_elements?display=compact', :id => 'display_compact_media_elements', :remote => true %>
       </p>
       <div style="padding-left:20px">
         <h2 style="padding-right:10px"><%= t('small_letter.display') %></h2>
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div>
-        <h2 style="padding-right:10px"><%= t('capital_letter.show') %></h2>
+        <h2 style="padding-right:10px"><%= t('captions.show') %></h2>
         <select name="ricerca" id="filter_media_elements">
           <% counter = true %>
           <% Filters::MEDIA_ELEMENTS_SET.each do |f| %>
