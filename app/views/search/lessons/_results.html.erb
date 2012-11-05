@@ -3,7 +3,10 @@
     <% if @lessons.empty? %>
       <%= render :partial => "search/lessons/empty" %>
     <% else %>
-      <!-- TODO scrivi qui -->
+      <% @lessons.each do |l| %>
+        <%= render :partial => "lessons/view_single_compact", :locals => {:lesson => l, :destination => ButtonDestinations::FOUND_LESSON} %>
+      <% end %>
+      <%= render :partial => 'shared/pagination', :locals => {:page => @page, :last_page => @last_page, :first_page => (@page == 1), :pagination_url => remove_param_from_url(request.url, 'delete_item')} %>
     <% end %>
   <% end %>
 </div>

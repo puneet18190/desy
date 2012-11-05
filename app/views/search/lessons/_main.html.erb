@@ -1,7 +1,7 @@
 <div class="contentSearch" id="search_lessons_main_page" style="display:<%= @search_item == 'lessons' ? 'block' : 'none' %>">
   <%= t('capital_letter.lessons') %>
   <div class="boxCerca">
-    <form id="search_lessons" class="search-form" method="get" action="/search">
+    <form id="search_lessons" class="search-form" method="get" action="/search" data-remote="true">
       <%= hidden_field_tag 'item', 'lessons' %>
       <table summary="" cellpadding="0" cellspacing="0">
         <tr>
@@ -20,9 +20,9 @@
           </td>
           <td>
             <select name="subject_id" id="filter_search_lessons_subject">
-              <% counter = true %>
+              <option value="" selected="selected"><%= t('capital_letter.all_subjects') %></option>
               <% Subject.order(:description).each do |s| %>
-                <option value="<%= s.id %>" <%= counter ? "selected=\"selected\"" : '' %>><%= s.description %></option>
+                <option value="<%= s.id %>"><%= s.description %></option>
                 <% counter = false %>
               <% end %>
             </select>
