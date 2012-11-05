@@ -223,6 +223,7 @@ html.lesson-editor-layout{
     display: block;
     position: absolute;
     z-index:-9999;
+    height: 590px;
     
     li {
       &.active {
@@ -366,6 +367,21 @@ html.lesson-editor-layout{
             padding: 10px;
           }
         }
+        .new_slide{
+          height: 570px;
+          background-color: #f29400;
+          padding: 20px 0 0 40px;
+          a img{
+            -moz-opacity: .50;
+            filter: alpha(opacity = 50);
+            opacity: .50;
+          }
+          a:hover img{
+            -moz-opacity: 1;
+            filter: alpha(opacity = 100);
+            opacity: 1;
+          }
+        }
       }
       .buttons{
         float:right;
@@ -396,18 +412,18 @@ html.lesson-editor-layout{
           background-position: left -168px;
         }
 
-        a.delete:hover{
+        a.delete:hover,a.delete.active{
           background-position: -57px 0;
         }
         
-        a.add:hover{
+        a.add:hover,a.add.active{
           background-position: -57px -56px;
         }
         
-        a.info:hover{
+        a.info:hover,a.info.active{
           background-position: -57px -112px;
         }
-        a.save:hover{
+        a.save:hover,a.save.active{
           background-position: -57px -168px;
         }      }
     }
