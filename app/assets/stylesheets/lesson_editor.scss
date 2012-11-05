@@ -98,7 +98,8 @@ html.lesson-editor-layout{
   }
 
   .tooltip {
-    display: block;
+    width: 300px;
+    display: none;
 		z-index:1000;
     margin: 20px 0 0 -27px;
     position: absolute;
@@ -107,8 +108,8 @@ html.lesson-editor-layout{
   }
 
   .slide-thumb {
-    width: 290px;
-    height: 200px;
+    width: 237px;
+    height: 150px;
     padding: 5px;
     background-color: white;
     font-size: 7px;
@@ -128,12 +129,12 @@ html.lesson-editor-layout{
     }
     &.audio{
       audio{
-        width: 130px;
+        width: 110px;
         float:left;
       }
       .audio-content{
         float: right;
-        width: 120px;
+        width: 100px;
         margin: 0 5px;
         padding: 5px;
       }
@@ -141,17 +142,17 @@ html.lesson-editor-layout{
     
     &.video2{
       video{
-        width: 290px;
+        width: 237px;
       }
     }
     &.video1{
       video{
-        width: 130px;
+        width: 110px;
         float:left;
       }
       .video1-content{
         float: right;
-        width: 120px;
+        width: 100px;
         margin: 0 5px;
         padding: 5px;
       }
