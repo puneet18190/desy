@@ -13,6 +13,20 @@ class Tag < ActiveRecord::Base
   
   before_validation :convert_downcase_word
   
+  def self.get_tags_for_item(type, id)
+    resp = ""
+    first_tag = true
+    Tagging.where(:taggable_type => type, :taggable_id => id).each do |t|
+      if first_tag
+        resp = "#{t.tag.word}"
+      else
+        resp = "#{resp}, #{t.tag.word}"
+      end
+      first_tag = false
+    end
+    resp
+  end
+  
   def self.create_tag_set(type, tagged_id, tags)
     return false if !['Lesson', 'MediaElement'].include? type
     return false if !type.constantize.exists?(tagged_id)

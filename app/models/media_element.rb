@@ -7,7 +7,7 @@ class MediaElement < ActiveRecord::Base
   self.inheritance_column = :sti_type
   
   attr_accessible :title, :description, :duration, :publication_date
-  attr_reader :status, :is_reportable, :info_changeable
+  attr_reader :status, :is_reportable, :info_changeable, :tags
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
@@ -26,6 +26,11 @@ class MediaElement < ActiveRecord::Base
   
   before_validation :init_validation
   before_destroy :stop_if_public
+  
+  def tags
+    return [] if self.new_record?
+    Tag.get_tags_for_item 'MediaElement', self.id
+  end
   
   def self.dashboard_emptied?(an_user_id)
     Bookmark.joins("INNER JOIN media_elements ON media_elements.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'MediaElement'").where('media_elements.is_public = ? AND media_elements.user_id != ? AND bookmarks.user_id = ?', true, an_user_id, an_user_id).any?

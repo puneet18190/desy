@@ -7,7 +7,7 @@ class Lesson < ActiveRecord::Base
   STAT_PUBLIC = I18n.t('status.lessons.public')
   
   attr_accessible :subject_id, :school_level_id, :title, :description
-  attr_reader :status, :is_reportable
+  attr_reader :status, :is_reportable, :tags
   
   belongs_to :user
   belongs_to :subject
@@ -34,6 +34,11 @@ class Lesson < ActiveRecord::Base
   after_save :create_cover
   
   before_validation :init_validation, :create_token
+  
+  def tags
+    return [] if self.new_record?
+    Tag.get_tags_for_item 'Lesson', self.id
+  end
   
   def cover
     return nil if self.new_record?
