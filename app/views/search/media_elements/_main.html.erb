@@ -1,7 +1,7 @@
 <div class="contentSearch" id="search_media_elements_main_page" style="display:<%= @search_item == 'lessons' ? 'none' : 'block' %>">
   <%= t('capital_letter.media_elements') %>
   <div class="boxCerca">
-    <form id="search_media_elements" class="search-form" method="get" action="/search">
+    <form id="search_media_elements" class="search-form" method="get" action="/search" data-remote="true">
       <%= hidden_field_tag 'item', 'media_elements' %>
       <table summary="" cellpadding="0" cellspacing="0">
         <tr>
