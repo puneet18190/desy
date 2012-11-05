@@ -39,16 +39,14 @@ ID="<controller>_pagination" per le altre paginazioni
     
     $('#normal_pagination ._left_paginator_<%= page %>').click(function() {
       var my_url = '<%= add_page_parameter(page - 1, pagination_url) %>';
-      $.ajax({
-        type: 'get',
+      $.get({
         url: my_url
       });
     });
     
     $('#normal_pagination ._right_paginator_<%= page %>').click(function() {
       var my_url = '<%= add_page_parameter(page + 1, pagination_url) %>';
-      $.ajax({
-        type: 'get',
+      $.get({
         url: my_url
       });
     });
