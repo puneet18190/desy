@@ -40,6 +40,14 @@ class LessonEditorController < ApplicationController
     end
   end
   
+  def add_new_slide
+    p "slide numero:" + params[:slide] 
+    @slide = Slide.find params[:slide]
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   def add_slide
     save_current_slide
     @lesson = Lesson.find params[:lesson_id]
