@@ -16,7 +16,6 @@
 		font: 200% 'Nunito', sans-serif;
 		float:left;
 		width:39%;
-		
 	}
 	h2 {
 	  font: 120% 'Nunito', sans-serif;
@@ -33,7 +32,7 @@
 		float:left;
 	}
 }
-.boxViewExpandedLesson {
+@mixin contentLayout {
   margin-bottom:1%;
 	-moz-box-shadow: 0px 3px 4px #d3d3d3;
   -webkit-box-shadow: 0px 3px 4px #d3d3d3;
@@ -47,6 +46,20 @@
 	h2 {
 	  font:  140% 'Nunito', sans-serif;
 	}
+}
+@mixin iconeElements {
+  float:left; 
+  width:40%;
+	height:34px;
+  background-size: 2.7em;
+	padding-left:50px;
+	margin-right:1.8%;
+	background-image: url(<%= asset_path 'icon_elements.svg' %>);
+	background-repeat: no-repeat;
+	background-position:0 0;
+}
+.boxViewExpandedLesson {
+  @include contentLayout;
 	background-color:#fbfafb;
 	float:left;
 	width:49%;
@@ -69,7 +82,6 @@
 		.createButton a:hover {
 			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 		}
-		
 	}
 }
 
@@ -213,7 +225,86 @@
   }
 }
 
-
+.boxViewExpandedMediaElement {
+  @include contentLayout;
+	float:left;
+	width:200px;
+	margin-right: 2%;
+	margin-bottom:20px;
+	h3 {
+	  color:#41a62a;
+		font-size: 90%;
+		padding-bottom:0%;
+	}
+	h4 {
+	 font-family: 'Nunito', sans-serif;
+	 line-height:1em;
+	 padding-top:0.3em;
+	 }
+	.contentInterno {
+	  padding-top:0%;
+		height:274px;
+		background-color:#fbfafb;
+		a.createButton {
+		  background: url(<%= asset_path 'create.png' %>) top center no-repeat;
+			padding:50px;
+			&:hover {
+			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+			}
+		}
+		
+	}
+	.menuController {
+	  font-size: 55%;
+	}
+	.description {
+    padding-top:1%;
+	  padding-left:5%;
+		
+  }
+}
+.boxViewCompactMediaElement {
+	  width:100%;
+		padding: 0;
+	  color:#c0c0c0;
+		@include contentLayout;
+    background-color: #FBFAFB;
+	  float:left;
+		
+		.contentInterno {
+		  float:left;
+		  width:99%;
+		  padding:0.3% 0% 0.3% 1%;
+			@include float-content;
+			/*audio*/
+			.audio {
+		    @include iconeElements;
+				padding-top:0.2em;
+				padding-bottom:0.2em;
+				background-position: 0 -2.6em;
+		  }
+			/*video*/
+			.video {
+		    @include iconeElements;
+				background-position: 0 .1em;
+				padding-top:0.2em;
+				padding-bottom:0.2em;
+		  }
+			/*image*/
+			.image {
+		    @include iconeElements;
+				background-position: 0 -5.1em;
+				padding-top:0.2em;
+				padding-bottom:0.2em;
+		  }
+		}
+		.menuController {
+	    padding:0px; 
+      border-top:none;
+			background-color:transparent;
+			text-align:left;
+		}
+	}
 .lower {
   text-transform: lowercase;
 }

@@ -62,44 +62,7 @@
 }
 
 
-.boxViewSingleMediaElement {
-  @include contentLayout;
-	float:left;
-	width:200px;
-	margin-right: 2%;
-	margin-bottom:20px;
-	h3 {
-	  color:#41a62a;
-		font-size: 90%;
-		padding-bottom:0%;
-	}
-	h4 {
-	 font-family: 'Nunito', sans-serif;
-	 line-height:1em;
-	 padding-top:0.3em;
-	 }
-	.contentInterno {
-	  padding-top:0%;
-		height:274px;
-		background-color:#fbfafb;
-		a.createButton {
-		  background: url(<%= asset_path 'create.png' %>) top center no-repeat;
-			padding:50px;
-			&:hover {
-			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
-			}
-		}
-		
-	}
-	.menuController {
-	  font-size: 55%;
-	}
-	.description {
-    padding-top:1%;
-	  padding-left:5%;
-		
-  }
-}
+
 @mixin emptyFormat {
   h1 {
 	  font:  180% 'Nunito', sans-serif;
