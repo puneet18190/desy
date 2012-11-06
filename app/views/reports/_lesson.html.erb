@@ -4,4 +4,26 @@
   </div>
   <span style="padding-top:10px; float:left"><%= t('captions.report_abuse') %></span>
 </div>
-<%= render :partial => 'reports/form', :locals => {:item => lesson, :id_scope => 'lesson'} %>
+
+<span class="lesson_tooltipForm _report_form_content" id="lesson_report_form_<%= lesson.id %>">
+  <%= image_tag("freccia_tooltip_form.png", :class => "calloutForm") %>
+ <h1><%= t('captions.you_believe_content_unappropriate') %></h1>
+ <p><%= t('captions.write_reason_report') %></p>
+  <%= form_tag "/reports/lesson", :remote => true do %>
+    <input type="hidden" value="<%= lesson.id %>" name="lesson_id">
+    <table summary="" cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr>
+          <td>
+            <input type="text" class="text" name="content">
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            <input class="_send" type="submit" value="Send" name="commit">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</span>

@@ -40,6 +40,7 @@ class LessonEditorController < ApplicationController
     end
   end
   
+  ## prompt new slide choice ##
   def add_new_slide
     @slide = Slide.find params[:slide]
     respond_to do |format|
