@@ -1,11 +1,14 @@
 class RegistrationsController < ApplicationController
   
-  before_filter :redirect_to_dashboard, :only => :prelogin
   before_filter :initialize_layout, :only => :edit
-  skip_before_filter :require_login
+  skip_before_filter :authenticate, :only => [:login, :prelogin]
   layout 'registrations'
   
   def prelogin
+    if session[:user_id].class == Fixnum && User.exists?(session[:user_id])
+      redirect_to '/dashboard'
+      return
+    end
     render :layout => 'prelogin'
   end
   
@@ -16,13 +19,14 @@ class RegistrationsController < ApplicationController
   def update
   end
   
-  private
+  def logout
+    session[:user_id] = nil
+    redirect_to '/'
+  end
   
-  def redirect_to_dashboard
-    if session[:user_id]
-      redirect_to '/dashboard'
-      return
-    end
-  end 
+  def login
+    session[:user_id] = User.find_by_email(CONFIG['admin_email']).id # FIXME TEMPORANEO
+    redirect_to '/dashboard'
+  end
   
 end

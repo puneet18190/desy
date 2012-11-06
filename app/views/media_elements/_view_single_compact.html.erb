@@ -4,7 +4,7 @@
       <h3><%= media_element.sti_type %></h3>
       <h4><%= media_element.title %></h4>
     </div>
-    <p><%= media_element.status %></p>
+    <p><%= STATUSES.media_elements.send(media_element.status) %></p>
     <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination} %>
   </div>
   <%= render :partial => "media_elements/popup", :locals => {:media_element => media_element} %>
