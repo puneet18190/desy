@@ -12,6 +12,7 @@
     <% @media_elements.each do |mel| %>
       <li id="#gallery_thumb_<%=mel.id%>" class="_gallery_thumb">
         <%= link_to (image_tag "testa.jpg", :width => '111'), "##{mel.id}" %>
+        <%= render :partial => "shared/image_gallery_popup", :locals => {:media_element => mel} %>
       </li>
     <% end %>
     <ul>
