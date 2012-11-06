@@ -41,6 +41,23 @@ function closePopUp(id) {
   $('#' + id).dialog('close');
 }
 
+function showImageMediaElementPopUp(id) {
+  thumb = '._gallery_img_expanded_'+id;
+  var obj = $(thumb);
+  if(obj.hasClass('ui-dialog-content')) {
+    obj.dialog('open');
+  } else {
+    obj.css('display', 'block');
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      width: 410,
+      show: "fade",
+      hide: "fade"
+    });
+  }
+}
+
 
 // FUNCTIONS DIRECTLY USED IN THE APPLICATION
 
