@@ -1,11 +1,11 @@
-<% current_class = lesson.status == t('status.lessons.copied') ? 'current' : '' %>
+<% current_class = (lesson.status == :copied) ? 'current' : '' %>
 
 <div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson <%= current_class %>">
   
   <div class="contentInterno _lesson_compact">
     <h3><%= lesson.title %></h3>
     <p><%= lesson.subject.description %></p>
-    <p><%= lesson.status %></p>
+    <p><%= STATUSES.lessons.send(lesson.status) %></p>
     <%= render :partial => "lessons/action_buttons", :locals => {:lesson => lesson, :destination => destination} %>
   </div>
   
@@ -25,7 +25,7 @@
       <% end %>
     </div>
     <div class="description-text">
-      <% if [t('status.lessons.public'), t('status.lessons.linked')].include?(lesson.status) %>
+      <% if [:public, :linked].include?(lesson.status) %>
         <div class="intestazione">
           <h1><%= t('captions.author') %>:</h1>
           <p><%= lesson.user.full_name %></p>

@@ -65,10 +65,6 @@ class ApplicationController < ActionController::Base
       redirect_to prelogin_path
       return
     end
-    if params[:controller] == 'registrations' && params[:action] == 'prelogin'
-      redirect_to '/dashboard'
-      return
-    end
     @current_user = User.find_by_id session[:user_id]
   end
   
