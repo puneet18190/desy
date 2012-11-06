@@ -1,0 +1,51 @@
+$dots-pagination-link-width: 20px;
+$dots-pagination-link-height: $dots-pagination-link-width;
+$dots-pagination-link-lr-margin: 3px;
+$dots-pagination-link-border-radius: $dots-pagination-link-width / 2;
+
+$dots-pagination-width: ($dots-pagination-link-width * 3) + ($dots-pagination-link-lr-margin * 6);
+
+$dots-pagination-link-current-color: orange;
+$dots-pagination-link-default-color: lighten($dots-pagination-link-current-color, 30%);
+$dots-pagination-link-disabled-color: grayscale(lighten($dots-pagination-link-current-color, 40%));
+
+.dots_pagination_container {
+  text-align: center;
+
+  .dots_pagination {
+    display: inline-block;
+    position: relative;
+    width: $dots-pagination-width;
+    overflow: hidden;
+    white-space: nowrap;
+
+    [role=pages] {
+      position: relative;
+      a {
+        display: inline-block;
+        width: $dots-pagination-link-width;
+        height: $dots-pagination-link-height;
+        border-radius: $dots-pagination-link-border-radius;
+        margin: 0 $dots-pagination-link-lr-margin;
+        outline-width: 0px;
+        cursor: pointer;
+
+        &, &[role=current].default {
+          background-color: $dots-pagination-link-default-color;
+        }
+        
+        &[role=current], &.current {
+          background-color: $dots-pagination-link-current-color;
+        }
+
+        &[role=disabled] {
+          background-color: $dots-pagination-link-disabled-color;
+          cursor: default;
+        }
+      }
+
+    }
+
+  }
+
+}

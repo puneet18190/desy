@@ -1,56 +1,30 @@
-
-<!--
-
-la paginazione nella dashboard deve solo fa apparire e scomparire un div interno, che si chiama 'suggested_lessons_1' 'suggested_media_elements_1' etc
-invece la paginazione nelle eltre pagine deve fare una chiamata ajax e sostituire il contenuto (la chiamata ajax da fare è data dall'helper add_page_parameter(page + 1, pagination_url), dove pagination
-url è la url dove mi trovo)
-
-nomenclatura dei div di paginazione:
-
-ID="dashboard_lessons_pagination"
-ID="dashboard_media_elements_pagination"
-ID="<controller>_pagination" per le altre paginazioni
-
- -->
 <br class="clearfloat">
-<div class="pagination" id="normal_pagination">
-
-<% if !first_page %>
-  <div class="_left_paginator_<%= page %>">PRECEDENTE</div>
-<% end %>
-<% if !last_page && !first_page %>
- | 
-<% end %>
-<% if !last_page %>
-  <div class="_right_paginator_<%= page %>">SUCCESSIVA</div>
-<% end %>
-
-
-
+<div class="dots_pagination_container">
+  <span class="dots_pagination">
+    <span role="pages">
+      <a data-page="<%= page-1 %>" <%= 'role="disabled"'.html_safe if @page <= 1 %>></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" <%= 'role="disabled"'.html_safe if page >= pages_amount %>></a>
+    </span>
+  </span>
 </div>
 
-
 <script type="text/javascript">
-  // TODO quando sarà pronta la paginazione dinamica, questa funzione andrà rifatta
-  // e spostata dentro un file apposito js, e richiamata dal file 'document_ready.js'
-  // POSSIBILMENTE, TOCCARE SOLAMENTE QUESTO FILE E I FILES DI JAVASCRIPT
-  
-  $(document).ready(function() {
-    
-    $('#normal_pagination ._left_paginator_<%= page %>').click(function() {
-      var my_url = '<%= add_page_parameter(page - 1, pagination_url) %>';
-      $.get({
-        url: my_url
-      });
+$(document).ready(function() {
+  var prevPage = function(prevPage) {
+    var my_url = '<%= add_page_parameter(page - 1, pagination_url) %>';
+    $.ajax({
+      type: 'get',
+      url: my_url
     });
-    
-    $('#normal_pagination ._right_paginator_<%= page %>').click(function() {
-      var my_url = '<%= add_page_parameter(page + 1, pagination_url) %>';
-      $.get({
-        url: my_url
-      });
+    return true;
+  }
+  var nextPage = function(nextPage) {
+    var my_url = '<%= add_page_parameter(page + 1, pagination_url) %>';
+    $.ajax({
+      type: 'get',
+      url: my_url
     });
-    
-  });
-  
+    return true;
+  }
+  new DotsPagination($('[role=pages]'), <%= j pages_amount.to_s %>, prevPage, nextPage);
+});
 </script>
