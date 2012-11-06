@@ -167,11 +167,13 @@ class User < ActiveRecord::Base
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SET.include?(filter)
     resp = []
     last_page = false
+    item_count = 0
     my_order = 'updated_at DESC'
     case filter
       when Filters::ALL_LESSONS
         param1 = self.id
-        last_page = MyLessonsView.where('lesson_user_id = ? OR bookmark_user_id = ?', param1, param1).offset(offset + per_page).empty?
+        item_count = MyLessonsView.where('lesson_user_id = ? OR bookmark_user_id = ?', param1, param1).count
+        last_page = (item_count <= offset + per_page)
         MyLessonsView.where('lesson_user_id = ? OR bookmark_user_id = ?', param1, param1).limit(per_page).offset(offset).each do |l|
           lesson = Lesson.find_by_id l.id
           lesson.set_status self.id
@@ -181,7 +183,8 @@ class User < ActiveRecord::Base
         filtered_query = "is_public =  ? AND user_id = ?"
         param2 = false
         param3 = self.id
-        last_page = Lesson.where(filtered_query, param2, param3).offset(offset + per_page).empty?
+        item_count = Lesson.where(filtered_query, param2, param3).count
+        last_page = (item_count <= offset + per_page)
         Lesson.where(filtered_query, param2, param3).order(my_order).limit(per_page).offset(offset).each do |l|
           l.set_status self.id
           resp << l
@@ -189,7 +192,8 @@ class User < ActiveRecord::Base
       when Filters::PUBLIC
         param1 = true
         param2 = self.id
-        last_page = MyLessonsView.where('is_public = ? AND (lesson_user_id = ? OR bookmark_user_id = ?)', param1, param2, param2).offset(offset + per_page).empty?
+        item_count = MyLessonsView.where('is_public = ? AND (lesson_user_id = ? OR bookmark_user_id = ?)', param1, param2, param2).count
+        last_page = (item_count <= offset + per_page)
         MyLessonsView.where('is_public = ? AND (lesson_user_id = ? OR bookmark_user_id = ?)', param1, param2, param2).limit(per_page).offset(offset).each do |l|
           lesson = Lesson.find_by_id l.id
           lesson.set_status self.id
@@ -197,26 +201,29 @@ class User < ActiveRecord::Base
         end
       when Filters::LINKED
         param1 = self.id
-        last_page = MyLessonsView.where('bookmark_user_id = ?', param1).offset(offset + per_page).empty?
+        item_count = MyLessonsView.where('bookmark_user_id = ?', param1).count
+        last_page = (item_count <= offset + per_page)
         MyLessonsView.where('bookmark_user_id = ?', param1).limit(per_page).offset(offset).each do |l|
           lesson = Lesson.find_by_id l.id
           lesson.set_status self.id
           resp << lesson
         end
       when Filters::ONLY_MINE
-        last_page = Lesson.where(:user_id => self.id).offset(offset + per_page).empty?
+        item_count = Lesson.where(:user_id => self.id).count
+        last_page = (item_count <= offset + per_page)
         Lesson.where(:user_id => self.id).order(my_order).limit(per_page).offset(offset).each do |l|
           l.set_status self.id
           resp << l
         end
       when Filters::COPIED
-        last_page = Lesson.where(:user_id => self.id, :copied_not_modified => true).offset(offset + per_page).empty?
+        item_count = Lesson.where(:user_id => self.id, :copied_not_modified => true).count
+        last_page = (item_count <= offset + per_page)
         Lesson.where(:user_id => self.id, :copied_not_modified => true).order(my_order).limit(per_page).offset(offset).each do |l|
           l.set_status self.id
           resp << l
         end
     end
-    return {:last_page => last_page, :content => resp}
+    return {:last_page => last_page, :content => resp, :count => item_count}
   end
   
   def suggested_lessons(n)
