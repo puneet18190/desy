@@ -50,6 +50,7 @@ class LessonEditorController < ApplicationController
   
   ## prompt image gallery in slide ##
   def show_gallery
+    @media_elements = MediaElement.limit(35)
     @slide = Slide.find params[:slide]
     respond_to do |format|
       format.js

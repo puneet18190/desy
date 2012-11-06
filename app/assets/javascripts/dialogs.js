@@ -24,11 +24,9 @@ function showTimedPopUp(content, id) {
 function showLoadMediaElementPopUp() {
   var obj = $('#load-media-element');
   if(obj.hasClass('ui-dialog-content')) {
-    obj.html(content);
     obj.dialog('open');
   } else {
     obj.css('display', 'block');
-    obj.html(content);
     obj.dialog({
       modal: true,
       resizable: false,
