@@ -1,7 +1,7 @@
 <div class="box">
   <%#= image_tag("http://lorempixel.com/900/560") %>
   <div class="cover-choose-image">
-    <%= image_tag "choose-image.gif" %>
+    <%= link_to image_tag("choose-image.gif"), {:action => :show_gallery, :slide => slide.id} , :remote => true, :class => "show-gallery" %>
     <br />
     choose an image
   </div>

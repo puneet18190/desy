@@ -1,0 +1,3 @@
+var slideN = $(".slide-content.slide-<%=@slide.position %>");
+slideN.removeClass("cover title video1 video2 audio image1 image2 image3 image4 text");
+slideN.html("<%= escape_javascript(render :partial => 'shared/image_gallery') %>");

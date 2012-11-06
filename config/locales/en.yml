@@ -58,6 +58,7 @@ en:
     choose_wich_item_and_go: 'Select your option and go!'
     contact_us: 'Contact us'
     copyright: '©2012 DESY'
+    create: 'Create'
     create_new_lesson: 'Create a new lesson'
     create_new_lesson_now: 'Create a lesson now'
     create_new_media_element: 'Create a new element'
@@ -66,7 +67,11 @@ en:
     display_mode: 'Display mode'
     display: 'display'
     download_manual: 'Download the user manual'
+    edit: 'Edit'
     enter: 'Enter'
+    enter_lesson_title: 'Enter the title of the lesson'
+    enter_lesson_description: 'Describe your lesson...'
+    enter_lesson_tags: 'Enter tags'
     help_using_desy: 'Need help using Desy?'
     insert_tag: 'Insert a tag'
     institute: 'Institute'
@@ -86,15 +91,19 @@ en:
     profile: 'Profile'
     register: 'Register'
     report_abuse: 'Report abuse'
-    search: 'Search in DESY'
+    search: 'Search'
+    search_in_desy: 'Search in DESY'
     search_lesson_or_media_element: 'Do you need lessons or media elements?'
     selected_for_you: 'Selected for you'
+    select_image: "Select image"
     send: 'Send'
     show: 'Show'
     sort_results_by: 'Sort results by'
     status: 'Status'
     small: 'Small'
     talk_with_desy: 'Want to talk with DESY?'
+    update: 'Update'
+    update_lesson: 'Update lesson'
     virtual_classroom: 'Virtual classroom'
     warning: 'Warning!'
     warning_search_lessons: 'Not entering any keyword you can see all the lessons of the subject selected.'
@@ -108,6 +117,8 @@ en:
   descriptions:
     change_info_element: "You can modify the data of your element. Inserting tags you will make it available to DESY community, remember that people are more likely to find your element if you insert more tags"
     prelogin: "DESY has arrived, the new multimedia platform dedicated to the world of the school. Thanks to DESY will be possible to create multimedia lessons, uploading their images or videos or using those in the database of DESY. Share your work with other users DESY to create a large network of educational content."
+    new_lesson: "Fill in the form to create a new lesson."
+    update_lesson: "Use the form below to edit your lesson informations."
 
 # (3) accessors: empty situations, popups, help, etc
   empty:
