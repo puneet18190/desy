@@ -60,9 +60,16 @@ class ApplicationController < ActionController::Base
     @where = params[:controller]
   end
   
-  def authenticate # FIXME va sistemato con la vera autenticazione
-    @current_user = User.find_by_email(CONFIG['admin_email'])
-    session[:user_id] = @current_user.id
+  def authenticate
+    if session[:user_id].class != Fixnum || !User.exists?(session[:user_id])
+      redirect_to prelogin_path
+      return
+    end
+    if params[:controller] == 'registrations' && params[:action] == 'prelogin'
+      redirect_to '/dashboard'
+      return
+    end
+    @current_user = User.find_by_id session[:user_id]
   end
   
   def render_js_or_html_index

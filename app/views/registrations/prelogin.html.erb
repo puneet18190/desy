@@ -9,7 +9,7 @@
   <div class="login">
     <p><%= t('captions.problems_with_password') %></p>
       <div class="button">
-        <a href=""><%= t('captions.login') %></a>
+        <%= link_to(t('captions.login'), login_path) %>
       </div>
       <div class="tooltip">
       <%= image_tag("freccia_tooltip_up.png", :class => "callout") %>
