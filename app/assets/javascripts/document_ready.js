@@ -1,6 +1,13 @@
 $(document).ready(function() {
   
   
+  // OTHER BUTTONS
+  
+  $('.load_media_element').click(function() {
+		showLoadMediaElementPopUp();
+  });
+  
+  
   // DASHBOARD SWITCH
   
   $('#switch_to_lessons').click(function() {
