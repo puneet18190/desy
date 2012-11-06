@@ -4,10 +4,9 @@
   </div>
   <span style="padding-top:10px; float:left"><%= t('captions.report_abuse') %></span>
 </div>
-
 <span class="lesson_tooltipForm _report_form_content" id="lesson_report_form_<%= lesson.id %>">
   <%= image_tag("freccia_tooltip_form.png", :class => "calloutForm") %>
- <h1><%= t('captions.you_believe_content_unappropriate') %></h1>
+ <h3><%= t('captions.you_believe_content_unappropriate') %></h3>
  <p><%= t('captions.write_reason_report') %></p>
   <%= form_tag "/reports/lesson", :remote => true do %>
     <input type="hidden" value="<%= lesson.id %>" name="lesson_id">
