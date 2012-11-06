@@ -40,5 +40,11 @@ module ApplicationHelper
     new_url.gsub!('?&', '?') if !(new_url =~ /\?&/).nil?
     return new_url
   end
+
+  # Metodo per aiutare il debug nelle viste
+  def js_log(object)
+    javascript_tag "console.log(#{object.inspect.to_json})"
+  end
+  alias jsl js_log
   
 end

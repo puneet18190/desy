@@ -268,7 +268,7 @@ ALTER SEQUENCE media_elements_slides_id_seq OWNED BY media_elements_slides.id;
 --
 
 CREATE VIEW my_lessons_view AS
-    SELECT lessons.id, lessons.user_id AS lesson_user_id, lessons.is_public, bookmarks.user_id AS bookmark_user_id, GREATEST(bookmarks.created_at, lessons.updated_at) AS first_order, LEAST(bookmarks.created_at, lessons.updated_at) AS second_order FROM (lessons LEFT JOIN bookmarks ON (((bookmarks.bookmarkable_id = lessons.id) AND (bookmarks.bookmarkable_type = 'Lesson'::teaching_object)))) ORDER BY GREATEST(bookmarks.created_at, lessons.updated_at) DESC, LEAST(bookmarks.created_at, lessons.updated_at) DESC;
+    SELECT lessons.id, lessons.user_id AS lesson_user_id, lessons.is_public, lessons.copied_not_modified, lessons.updated_at, bookmarks.user_id AS bookmark_user_id, GREATEST(bookmarks.created_at, lessons.updated_at) AS first_order, LEAST(bookmarks.created_at, lessons.updated_at) AS second_order FROM (lessons LEFT JOIN bookmarks ON (((bookmarks.bookmarkable_id = lessons.id) AND (bookmarks.bookmarkable_type = 'Lesson'::teaching_object)))) ORDER BY GREATEST(bookmarks.created_at, lessons.updated_at) DESC, LEAST(bookmarks.created_at, lessons.updated_at) DESC;
 
 
 --
@@ -1279,6 +1279,8 @@ INSERT INTO schema_migrations (version) VALUES ('20120926160646');
 INSERT INTO schema_migrations (version) VALUES ('20120927141837');
 
 INSERT INTO schema_migrations (version) VALUES ('20121019091311');
+
+INSERT INTO schema_migrations (version) VALUES ('20121019091312');
 
 INSERT INTO schema_migrations (version) VALUES ('20121024101844');
 
