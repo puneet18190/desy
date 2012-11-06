@@ -118,121 +118,41 @@ class User < ActiveRecord::Base
     like.destroy
     return Like.where(:lesson_id => lesson_id, :user_id => self.id).empty?
   end
-  
-  def own_media_elements(page, per_page, filter=nil)
-    page = 1 if page.class != Fixnum || page < 0
-    for_page = 1 if for_page.class != Fixnum || for_page < 0
+
+  def own_media_elements(page, per_page, filter = nil)
+    page = 1 if !page.is_a?(Fixnum) || page < 0
+    for_page = 1 if !for_page.is_a?(Fixnum) || for_page < 0
     offset = (page - 1) * per_page
-    filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SET.include?(filter)
-    param1 = self.id
-    param2 = false
-    resp = []
-    last_page = false
-    item_count = 0
-    case filter
-      when Filters::ALL_MEDIA_ELEMENTS
-        item_count = MyMediaElementsView.where('(media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?', param1, param2, param1).count
-        last_page = (item_count <= offset + per_page)
-        MyMediaElementsView.where('(media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?', param1, param2, param1).limit(per_page).offset(offset).each do |me|
-          media_element = MediaElement.find_by_id me.id
-          media_element.set_status self.id
-          resp << media_element
-        end
-      when Filters::VIDEO
-        param0 = 'Video'
-        item_count = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).count
-        last_page = (item_count <= offset + per_page)
-        MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).limit(per_page).offset(offset).each do |me|
-          media_element = MediaElement.find_by_id me.id
-          media_element.set_status self.id
-          resp << media_element
-        end
-      when Filters::AUDIO
-        param0 = 'Audio'
-        item_count = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).count
-        last_page = (item_count <= offset + per_page)
-        MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).limit(per_page).offset(offset).each do |me|
-          media_element = MediaElement.find_by_id me.id
-          media_element.set_status self.id
-          resp << media_element
-        end
-      when Filters::IMAGE
-        param0 = 'Image'
-        item_count = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).count
-        last_page = (item_count <= offset + per_page)
-        MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).limit(per_page).offset(offset).each do |me|
-          media_element = MediaElement.find_by_id me.id
-          media_element.set_status self.id
-          resp << media_element
-        end
+    relation = MyMediaElementsView.where('(media_element_user_id = ? AND is_public = false) OR bookmark_user_id = ?', id, id).includes(:media_element)
+    if [ Filters::VIDEO, Filters::AUDIO, Filters::IMAGE ].include? filter
+      relation = relation.where('sti_type = ?', filter.capitalize)
     end
-    return {:last_page => last_page, :content => resp, :count => item_count}
+    pages_amount = Rational(relation.count, per_page).ceil
+    { records: relation.limit(per_page).offset(offset), pages_amount: pages_amount }
   end
-  
-  def own_lessons(page, per_page, filter=nil)
-    page = 1 if page.class != Fixnum || page < 0
-    for_page = 1 if for_page.class != Fixnum || for_page < 0
+
+  def own_lessons(page, per_page, filter = nil)
+    page = 1 if !page.is_a?(Fixnum) || page < 0
+    for_page = 1 if !for_page.is_a?(Fixnum) || for_page < 0
     offset = (page - 1) * per_page
-    filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SET.include?(filter)
-    resp = []
-    last_page = false
-    item_count = 0
-    my_order = 'updated_at DESC'
-    case filter
-      when Filters::ALL_LESSONS
-        param1 = self.id
-        item_count = MyLessonsView.where('lesson_user_id = ? OR bookmark_user_id = ?', param1, param1).count
-        last_page = (item_count <= offset + per_page)
-        MyLessonsView.where('lesson_user_id = ? OR bookmark_user_id = ?', param1, param1).limit(per_page).offset(offset).each do |l|
-          lesson = Lesson.find_by_id l.id
-          lesson.set_status self.id
-          resp << lesson
-        end
+    updated_at_order = 'updated_at DESC'
+    relation = 
+      case filter
       when Filters::PRIVATE
-        filtered_query = "is_public =  ? AND user_id = ?"
-        param2 = false
-        param3 = self.id
-        item_count = Lesson.where(filtered_query, param2, param3).count
-        last_page = (item_count <= offset + per_page)
-        Lesson.where(filtered_query, param2, param3).order(my_order).limit(per_page).offset(offset).each do |l|
-          l.set_status self.id
-          resp << l
-        end
+        MyLessonsView.where("is_public = false AND lesson_user_id = ?", id).order(updated_at_order)
       when Filters::PUBLIC
-        param1 = true
-        param2 = self.id
-        item_count = MyLessonsView.where('is_public = ? AND (lesson_user_id = ? OR bookmark_user_id = ?)', param1, param2, param2).count
-        last_page = (item_count <= offset + per_page)
-        MyLessonsView.where('is_public = ? AND (lesson_user_id = ? OR bookmark_user_id = ?)', param1, param2, param2).limit(per_page).offset(offset).each do |l|
-          lesson = Lesson.find_by_id l.id
-          lesson.set_status self.id
-          resp << lesson
-        end
+        MyLessonsView.where('is_public = true AND (lesson_user_id = ? OR bookmark_user_id = ?)', id, id)
       when Filters::LINKED
-        param1 = self.id
-        item_count = MyLessonsView.where('bookmark_user_id = ?', param1).count
-        last_page = (item_count <= offset + per_page)
-        MyLessonsView.where('bookmark_user_id = ?', param1).limit(per_page).offset(offset).each do |l|
-          lesson = Lesson.find_by_id l.id
-          lesson.set_status self.id
-          resp << lesson
-        end
+        MyLessonsView.where('bookmark_user_id = ?', id)
       when Filters::ONLY_MINE
-        item_count = Lesson.where(:user_id => self.id).count
-        last_page = (item_count <= offset + per_page)
-        Lesson.where(:user_id => self.id).order(my_order).limit(per_page).offset(offset).each do |l|
-          l.set_status self.id
-          resp << l
-        end
+        MyLessonsView.where(:lesson_user_id => id).order(updated_at_order)
       when Filters::COPIED
-        item_count = Lesson.where(:user_id => self.id, :copied_not_modified => true).count
-        last_page = (item_count <= offset + per_page)
-        Lesson.where(:user_id => self.id, :copied_not_modified => true).order(my_order).limit(per_page).offset(offset).each do |l|
-          l.set_status self.id
-          resp << l
-        end
-    end
-    return {:last_page => last_page, :content => resp, :count => item_count}
+        MyLessonsView.where(:lesson_user_id => id, :copied_not_modified => true).order(updated_at_order)
+      else # Filter::ALL_LESSONS
+        MyLessonsView.where('lesson_user_id = ? OR bookmark_user_id = ?', id, id)
+      end.includes(:lesson)
+    pages_amount = Rational(relation.count, per_page).ceil
+    { records: relation.limit(per_page).offset(offset), pages_amount: pages_amount }
   end
   
   def suggested_lessons(n)

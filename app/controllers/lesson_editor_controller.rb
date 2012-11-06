@@ -48,6 +48,14 @@ class LessonEditorController < ApplicationController
     end
   end
   
+  ## prompt image gallery in slide ##
+  def show_gallery
+    @slide = Slide.find params[:slide]
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   def add_slide
     save_current_slide
     @lesson = Lesson.find params[:lesson_id]

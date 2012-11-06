@@ -78,10 +78,9 @@ class MediaElementsController < ApplicationController
   private
   
   def get_own_media_elements
-    resp = @current_user.own_media_elements(@page, @for_page, @filter)
-    @media_elements = resp[:content]
-    @last_page = resp[:last_page]
-    @tot_items = resp[:count]
+    current_user_own_media_elements = @current_user.own_media_elements(@page, @for_page, @filter)
+    @my_media_elements_views = current_user_own_media_elements[:records]
+    @pages_amount = current_user_own_media_elements[:pages_amount]
   end
   
   def initialize_paginator

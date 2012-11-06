@@ -20,6 +20,7 @@
  *= require greybar
  *= require tooltips
  *= require content
+ *= require dots_pagination
  *= require lessons
  *= require elements
  *= require profile

@@ -1,16 +1,15 @@
 <ul id="slides" class="new">
   <li class="info">
     <div class="box">
-      <h3>Create a new lesson</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-       Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <h3><%= t "captions.create_new_lesson" %></h3>
+      <p><%= t "descriptions.new_lesson" %></p>
       <%= form_tag('/lesson_editor/create') do -%>
-        <%= text_field_tag "title", "", :placeholder => "Enter the title of the lesson", :class=>"pull-left" %>
+        <%= text_field_tag "title", "", :placeholder => "#{t 'captions.enter_lesson_title'}", :class=>"pull-left" %>
         <%= select_tag "subject", options_from_collection_for_select(@subjects, "id", "description"), :include_blank => false, :class=>"pull-right", :id => "lesson_subject" %>
-        <%= text_area_tag "description", "", :placeholder=>"Describe your lesson...", :class=>"pull-left" %>
-        <%= text_area_tag "tags", "", :placeholder=>"Enter tags", :class=>"pull-right" %>
+        <%= text_area_tag "description", "", :placeholder=> "#{t 'captions.enter_lesson_description'}", :class=>"pull-left" %>
+        <%= text_area_tag "tags", "", :placeholder=>"#{t 'captions.enter_lesson_tags'}", :class=>"pull-right" %>
         <br />
-        <%= submit_tag 'create', :class=>"lesson-create pull-right" %>
+        <%= submit_tag "#{t 'captions.create'}", :class=>"lesson-create pull-right" %>
       <% end -%>
     </div>
     <div class="info-slide-footer">

@@ -2,7 +2,7 @@
 
 <span class="media_element_tooltipForm _report_form_content" id="media_element_report_form_<%= media_element.id %>">
   <%= image_tag("freccia_tooltip_form.png", :class => "calloutForm") %>
- <h1><%= t('captions.you_believe_content_unappropriate') %></h1>
+ <h3><%= t('captions.you_believe_content_unappropriate') %></h3>
  <p><%= t('captions.write_reason_report') %></p>
   <%= form_tag "/reports/media_element", :remote => true do %>
     <input type="hidden" value="<%= media_element.id %>" name="media_element_id">

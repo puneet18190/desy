@@ -16,4 +16,5 @@
 //= require jquery.selectbox-0.2.min.js
 //= require jquery_ujs
 //= require jquery-ui-1.9.0.custom
+//= require dots_pagination
 //= require_tree .
