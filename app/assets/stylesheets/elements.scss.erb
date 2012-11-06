@@ -1,18 +1,3 @@
-@mixin contentLayout {
-  margin-bottom:1%;
-	-moz-box-shadow: 1px 5px 5px #e8e8e8;
-  -webkit-box-shadow: 1px 5px 5px #e8e8e8;
-  box-shadow: 1px 5px 5px #e8e8e8;
-	
-	h1 {
-	  font-size: 110%;
-		color:#f29400;
-		padding:0px;
-	}
-	h2 {
-	  font-size: 140%;
-	}
-}
 @mixin title-bar {
   padding:0.3% 1% 0.3% 1%;
 	margin-bottom:12px;
@@ -60,28 +45,10 @@
 }
 
 /*CLASSE VISTA ELEMENTS*/
-@mixin iconeElements {
-  float:left; 
-  width:40%;
-	height:34px;
-  background-size: 2.7em;
-	padding-left:50px;
-	margin-right:1.8%;
-	background-image: url(<%= asset_path 'icon_elements.svg' %>);
-	background-repeat: no-repeat;
-	background-position:0 0;
-}
 .elements-content {
   float:left;
 	width:99.5%;
-	  h3 {
-	    color:#41a62a;
-		  font-size: 90%;
-		  padding-bottom:0%;
-	  }
-		h4 {
-		  padding-bottom: 0%;
-		}
+	  
 	.title-bar {
     @include title-bar;
 		@include float-content;
