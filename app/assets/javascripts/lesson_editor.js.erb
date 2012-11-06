@@ -1,10 +1,9 @@
 $(document).ready(function() {
   $("#lesson_subject").selectbox();
-
   WW = parseInt($(window).outerWidth());
   WH = parseInt($(window).outerHeight());
   $("#main").css("width", WW);
-  $("ul#slides").css("width",$("ul#slides li").length * 1060);
+  $("ul#slides").css("width",$("ul#slides li").length * 1160);
   $("ul#slides").css("top", ((WH / 2) - 295) + "px");
   $("ul#slides.new").css("top", ((WH / 2) - 335) + "px")
   $("#footer").css("top",(WH-40)+"px").css("width",(WW-24)+"px")

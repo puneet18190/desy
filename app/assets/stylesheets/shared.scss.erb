@@ -73,6 +73,147 @@
 	}
 }
 
+.boxViewSingleLesson {
+  width:100%;
+  padding: 0;
+  color:#c0c0c0;
+  position:relative;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  float:left;
+  margin-bottom:1%;
+  box-shadow: none;
+	.contentInterno {
+    float:left;
+    width:99%;
+    padding:0.5% 0% 0.5% 1%;
+    -moz-box-shadow: 0px 3px 4px #d3d3d3;
+    -webkit-box-shadow: 0px 3px 4px #d3d3d3;
+    box-shadow: 0px 3px 4px #d3d3d3;
+    @include float-content;
+    @include tag-formatting;
+    height:auto;
+    h3 {padding-top:0.5%}
+    p {font-size:80%; padding-top:0.6%}
+		height:auto;
+	}
+  &:hover {
+	  background-color:#f2eef2;
+		cursor: pointer;
+	}
+	.menuController {
+	  padding:0px; 
+    border-top:none;
+		background-color:transparent;
+		float:left;		
+		text-align:left;
+	}
+	.lessons-expanded {
+	  display:none;
+		color:#373737;
+		background-color:#e8e8e8;
+		-moz-box-shadow: inset 0px 3px 4px #d3d3d3;
+    -webkit-box-shadow: inset 0px 3px 4px #d3d3d3;
+    box-shadow: inset 0px 3px 4px #d3d3d3;
+		padding:1% 5% 1% 1%;
+		float:left;
+		width:94%;
+		cursor:auto;
+		h1 {
+	    font-size: 100%;
+		  color:#a7a9ac;
+		}
+		.img_expanded {
+		  h1 {
+			  color:#fff;
+			}
+		}
+		.info-text {
+		  float:left;
+			padding:1px 2px 0 10px;
+			font-size:85%;
+			p {
+			  padding-top:20px;
+				padding-bottom:10px;
+			}
+			.tooltipForm h1 {
+	      font: 150% 'Nunito', sans-serif;
+		    color:#5d5c5c;
+	     }
+			.tooltipForm p {
+        display:inline-block; 
+        padding:0% 1%;
+		  }
+      ._report_lesson_click:hover {
+        cursor:pointer;
+      }
+		}
+		.description-text {
+		  float:right;
+			padding:0.5% 1.5% 0 0%;
+			width:54%;
+			margin-left:1%;
+			.intestazione {
+			  padding-bottom:20px;
+				float:left;
+				h1 {
+				  float:left;
+					padding-right:5px;
+					padding-bottom:0px;
+				}
+				p {
+				  float:left;
+					padding-right:20px;
+				}
+			}
+			h1 {
+			  padding-bottom:5px;
+			}
+		}
+		
+	}
+	
+}
+.img_expanded {
+  float:left;
+  padding:0;
+  color:#fff;
+	font-size:100%;
+	position:relative;
+  .lessonSubject {
+    background-color:#fff;
+    font-size:80%;
+    color:#373737;
+    padding:3px 10px;
+		position:absolute;
+		bottom:0px;
+		left:0px;
+		width:227px;
+		span {
+		  float:right
+		}
+		strong {
+		  color:#F29400;
+			font-weight:normal;
+		}
+  }
+	.bg_text {
+    padding:5px 10px 10px 10px;
+    background-color:#f29400;
+	  height:30px;
+	  position:absolute;
+	  bottom:10px;
+	  left:0px;
+	  width:227px;
+	 .lessonTitle {
+      font: 120% 'Nunito', sans-serif;
+      color:#fff;
+		  line-height:1em;
+    }
+  }
+}
+
+
 .lower {
   text-transform: lowercase;
 }

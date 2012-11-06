@@ -109,7 +109,7 @@ html.lesson-editor-layout{
 
   .slide-thumb {
     width: 237px;
-    height: 150px;
+    height: 152px;
     padding: 5px;
     background-color: white;
     font-size: 7px;
@@ -568,6 +568,19 @@ html.lesson-editor-layout{
           color: #f29400;
         }
       }
+    }
+  }
+
+  .cover-choose-image{
+    padding: 175px 0;
+    text-align:center;
+    display:block;
+    width: 900px;
+    height: 210px;
+    color: #999;
+    font-size: 16px;
+    img{
+      margin-bottom: 10px;
     }
   }
 
