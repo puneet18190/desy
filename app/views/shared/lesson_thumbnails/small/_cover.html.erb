@@ -4,10 +4,8 @@
     <div class="bg_text">
     <div class="lessonTitle"><%= slide.title %></div>
   </div>
-    <div class="lessonSubject"><%= slide.lesson.subject.description %></div>
-		<div class="author pull-right">
-      <%= t "capital_letter.author"%>: <span class="name"><%=  @current_user.full_name %></span>
-    </div>
+    <div class="lessonSubject"><%= slide.lesson.subject.description %> <span><%= t "captions.author"%>: <strong><%=  @current_user.full_name %></strong></span></div>
+		
 </div>
 <!--
 <div class="slide-thumb <%= slide.kind%>">
@@ -22,7 +20,7 @@
       <%= slide.lesson.subject.description %>
     </div>
     <div class="author pull-right">
-      <%= t "capital_letter.author"%>: <span class="name"><%=  @current_user.full_name %></span>
+      <%= t "captions.author"%>: <span class="name"><%=  @current_user.full_name %></span>
     </div>
   </div>
 </div>

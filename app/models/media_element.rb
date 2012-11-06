@@ -1,12 +1,8 @@
 class MediaElement < ActiveRecord::Base
   
-  # STAT_PRIVATE = I18n.t('statuses.media_elements.private')
-  # STAT_LINKED = I18n.t('statuses.media_elements.linked')
-  # STAT_PUBLIC = I18n.t('statuses.media_elements.public')
-  
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
-
+  
   self.inheritance_column = :sti_type
   
   attr_accessible :title, :description, :duration, :publication_date

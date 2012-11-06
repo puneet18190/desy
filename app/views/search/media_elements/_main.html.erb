@@ -1,12 +1,12 @@
 <div class="contentSearch" id="search_media_elements_main_page" style="display:<%= @search_item == 'lessons' ? 'none' : 'block' %>">
-  <%= t('capital_letter.media_elements') %>
+  <%= t('captions.media_elements') %>
   <div class="boxCerca">
     <form id="search_media_elements" class="search-form" method="get" action="/search" data-remote="true">
       <%= hidden_field_tag 'item', 'media_elements' %>
       <table summary="" cellpadding="0" cellspacing="0">
         <tr>
           <td style="width:10%">
-            <input type="text" name="tag" value="<%= t('small_letter.insert_tag') %>" class="text" id="media_elements_tag_reader_for_search">
+            <input type="text" name="tag" value="<%= t('captions.insert_tag') %>" class="text lower" id="media_elements_tag_reader_for_search">
             <%= hidden_field_tag 'tag_kind', '', :id => 'media_elements_tag_kind_for_search' %>
           <td>
             <select name="filter" id="filter_search_media_elements">
@@ -18,7 +18,7 @@
             </select>
           </td>
           <td style="width:8%" valign="top" rowspan="2">
-            <%= t('capital_letter.sort_results_by') %>
+            <%= t('captions.sort_results_by') %>
           </td>
           <td style="width:12%" rowspan="2">
             <% counter = true %>
@@ -34,7 +34,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            <p><%= t('capital_letter.warning') %><br><%= t('capital_letter.warning_search_media_elements') %></p>
+            <p><%= t('captions.warning') %><br><%= t('captions.warning_search_media_elements') %></p>
           </td>
         </tr>
       </table>

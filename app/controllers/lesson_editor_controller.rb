@@ -40,8 +40,16 @@ class LessonEditorController < ApplicationController
     end
   end
   
+  ## prompt new slide choice ##
   def add_new_slide
-    p "slide numero:" + params[:slide] 
+    @slide = Slide.find params[:slide]
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  ## prompt image gallery in slide ##
+  def show_gallery
     @slide = Slide.find params[:slide]
     respond_to do |format|
       format.js

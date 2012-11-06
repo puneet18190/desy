@@ -1,15 +1,15 @@
 <div class="header">
   <div class="headerMenu">
   <ul>
-    <li><a href=""><%= t('capital_letter.what_is_desy') %></a></li>
-    <li><a href=""><%= t('capital_letter.learning_goals') %></a></li>
-    <li><a href=""><%= t('capital_letter.register') %></a></li>
-    <li><a href=""><%= t('capital_letter.contact_us') %></a></li>
+    <li><a href=""><%= t('captions.what_is_desy') %></a></li>
+    <li><a href=""><%= t('captions.learning_goals') %></a></li>
+    <li><a href=""><%= t('captions.register') %></a></li>
+    <li><a href=""><%= t('captions.contact_us') %></a></li>
   </ul>
   <div class="login">
-    <p><%= t('capital_letter.problems_with_password') %></p>
+    <p><%= t('captions.problems_with_password') %></p>
       <div class="button">
-        <a href=""><%= t('capital_letter.login') %></a>
+        <%= link_to(t('captions.login'), login_path) %>
       </div>
       <div class="tooltip">
       <%= image_tag("freccia_tooltip_up.png", :class => "callout") %>
@@ -24,7 +24,7 @@
         </tr>
         </tbody>
       </table>
-      <a href=""><%= t('capital_letter.enter') %></a>
+      <a href=""><%= t('captions.enter') %></a>
       </form>
       </div>
    </div>
@@ -38,9 +38,9 @@
     <%= image_tag "logo_prelogin.png" %>
   </div>
   <div class="fltlft" style="width:26%">
-    <h1><%= t('capital_letter.discover_a_new_way_of_teaching') %></h1>
-    <p><%= t('long_descriptions.prelogin') %></p>
-    <p><a href=""><%= t('capital_letter.watch_the_video') %></a></p>
+    <h1><%= t('captions.discover_a_new_way_of_teaching') %></h1>
+    <p><%= t('descriptions.prelogin') %></p>
+    <p><a href=""><%= t('captions.watch_the_video') %></a></p>
   </div>
   <div class="fltrt">
     <%= image_tag "screenshot_elements.jpg" %>
@@ -49,5 +49,5 @@
 
 <br class="clearfloat">
 <div class="footer">
-  <%= t('capital_letter.copyright') %>
+  <%= t('captions.copyright') %>
 </div>

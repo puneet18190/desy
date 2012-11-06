@@ -1,0 +1,22 @@
+<div class="image_gallery">
+  <div class="header">
+    <h3 class="pull-left">
+      <%= image_tag("choose-image-small.png")%> <%= t "captions.select_image" %>
+    </h3>
+    <div id="image-search" class="pull-right">
+      <input type="search" placeholder="<%= t 'captions.search' %>"/>
+    </div>
+  </div>
+  <div class="scroll-pane">
+    <ul class="gallery">
+    <% (1..30).each do |index| %>
+      <li>
+        <%= link_to (image_tag "testa.jpg", :width => '113'), "#"%>
+      </li>
+    <% end %>
+    <ul>
+  </div>
+  <div class="footer">
+    <div class="pull-right"><a href="#">X</a></div>
+  </div>
+</div>
