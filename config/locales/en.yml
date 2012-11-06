@@ -53,8 +53,10 @@ en:
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
   captions:
+    add_new_lesson: 'Add new lesson'
     advanced_search: 'Advanced search'
     author: 'Author'
+    back_in_desy: 'Back in DESY'
     choose_wich_item_and_go: 'Select your option and go!'
     contact_us: 'Contact us'
     copyright: '©2012 DESY'
@@ -66,6 +68,7 @@ en:
     display_mode: 'Display mode'
     display: 'display'
     download_manual: 'Download the user manual'
+    empty_virtual_classroom: 'Empty the virtual classroom'
     enter: 'Enter'
     help_using_desy: 'Need help using Desy?'
     insert_tag: 'Insert a tag'
