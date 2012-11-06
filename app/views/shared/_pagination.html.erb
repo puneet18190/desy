@@ -10,19 +10,13 @@
 <script type="text/javascript">
 $(document).ready(function() {
   var prevPage = function(prevPage) {
-    var my_url = '<%= add_page_parameter(page - 1, pagination_url) %>';
-    $.ajax({
-      type: 'get',
-      url: my_url
-    });
+    var url = '<%= add_page_parameter(page - 1, pagination_url) %>';
+    $.get(url);
     return true;
   }
   var nextPage = function(nextPage) {
-    var my_url = '<%= add_page_parameter(page + 1, pagination_url) %>';
-    $.ajax({
-      type: 'get',
-      url: my_url
-    });
+    var url = '<%= add_page_parameter(page + 1, pagination_url) %>';
+    $.get(url);
     return true;
   }
   new DotsPagination($('[role=pages]'), <%= j pages_amount.to_s %>, prevPage, nextPage);
