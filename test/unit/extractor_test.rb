@@ -256,68 +256,60 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
     assert @user2.bookmark 'MediaElement', 1
-    assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20)[:content]
+    assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20)[:records]
     # last page true
     resp = @user2.own_lessons(3, 2)
-    assert_equal 1, resp[:content].length
-    assert resp[:last_page]
-    assert_equal 5, resp[:count]
+    assert_equal 1, resp[:records].length
+    assert_equal 3, resp[:pages_amount]
     # last page false
     resp = @user2.own_lessons(1, 3)
-    assert_equal 3, resp[:content].length
-    assert !resp[:last_page]
-    assert_equal 5, resp[:count]
+    assert_equal 3, resp[:records].length
+    assert_equal 2, resp[:pages_amount]
   end
   
   test 'own_media_elements' do
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_item_extractor [2, 3, 4, @el2.id, @el5.id], @user2.own_media_elements(1, 20)[:content]
+    assert_item_extractor [2, 3, 4, @el2.id, @el5.id], @user2.own_media_elements(1, 20)[:records]
     # last page true
     resp = @user2.own_media_elements(3, 2)
-    assert_equal 1, resp[:content].length
-    assert resp[:last_page]
-    assert_equal 5, resp[:count]
+    assert_equal 1, resp[:records].length
+    assert_equal 3, resp[:pages_amount]
     # last page false
     resp = @user2.own_media_elements(1, 4)
-    assert_equal 4, resp[:content].length
-    assert !resp[:last_page]
-    assert_equal 5, resp[:count]
+    assert_equal 4, resp[:records].length
+    assert_equal 2, resp[:pages_amount]
   end
   
   test 'own_media_elements_filter_video' do
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_item_extractor [2, @el2.id], @user2.own_media_elements(1, 20, 'video')[:content]
+    assert_item_extractor [2, @el2.id], @user2.own_media_elements(1, 20, 'video')[:records]
     # last page true
     resp = @user2.own_media_elements(1, 2, 'video')
-    assert_equal 2, resp[:content].length
-    assert resp[:last_page]
-    assert_equal 2, resp[:count]
+    assert_equal 2, resp[:records].length
+    assert_equal 1, resp[:pages_amount]
     # last page false
     resp = @user2.own_media_elements(1, 1, 'video')
-    assert_equal 1, resp[:content].length
-    assert !resp[:last_page]
-    assert_equal 2, resp[:count]
+    assert_equal 1, resp[:records].length
+    assert_equal 2, resp[:pages_amount]
   end
   
   test 'own_media_elements_filter_audio' do
     assert @user2.bookmark 'MediaElement', 2
     assert @user2.bookmark 'MediaElement', @el2.id
     assert @user2.bookmark 'MediaElement', @el5.id
-    assert_item_extractor [3, 4], @user2.own_media_elements(1, 20, 'audio')[:content]
+    assert_item_extractor [3, 4], @user2.own_media_elements(1, 20, 'audio')[:records]
     # last page true
     resp = @user2.own_media_elements(1, 2, 'audio')
-    assert_equal 2, resp[:content].length
-    assert resp[:last_page]
-    assert_equal 2, resp[:count]
+    assert_equal 2, resp[:records].length
+    assert_equal 1, resp[:pages_amount]
     # last page false
     resp = @user2.own_media_elements(1, 1, 'audio')
-    assert_equal 1, resp[:content].length
-    assert !resp[:last_page]
-    assert_equal 2, resp[:count]
+    assert_equal 1, resp[:records].length
+    assert_equal 2, resp[:pages_amount]
   end
   
   test 'own_media_elements_filter_image' do
@@ -330,17 +322,15 @@ class ExtractorTest < ActiveSupport::TestCase
     xxx.description = 'quef gsdsd dfs'
     xxx.sti_type = 'Image'
     assert_obj_saved xxx
-    assert_item_extractor [xxx.id, @el5.id], @user2.own_media_elements(1, 20, 'image')[:content]
+    assert_item_extractor [xxx.id, @el5.id], @user2.own_media_elements(1, 20, 'image')[:records]
     # last page true
     resp = @user2.own_media_elements(1, 2, 'image')
-    assert_equal 2, resp[:content].length
-    assert resp[:last_page]
-    assert_equal 2, resp[:count]
+    assert_equal 2, resp[:records].length
+    assert_equal 1, resp[:pages_amount]
     # last page false
     resp = @user2.own_media_elements(1, 1, 'image')
-    assert_equal 1, resp[:content].length
-    assert !resp[:last_page]
-    assert_equal 2, resp[:count]
+    assert_equal 1, resp[:records].length
+    assert_equal 2, resp[:pages_amount]
   end
   
   test 'own_lessons_filter_private' do
@@ -353,17 +343,15 @@ class ExtractorTest < ActiveSupport::TestCase
     assert Lesson.exists?(les10.id)
     les11 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les11.id)
-    assert_item_extractor [les10.id, les11.id], @user2.own_lessons(1, 20, 'private')[:content]
+    assert_item_extractor [les10.id, les11.id], @user2.own_lessons(1, 20, 'private')[:records]
     # last page true
     resp = @user2.own_lessons(1, 2, 'private')
-    assert_equal 2, resp[:content].length
-    assert resp[:last_page]
-    assert_equal 2, resp[:count]
+    assert_equal 2, resp[:records].length
+    assert_equal 1, resp[:pages_amount]
     # last page false
     resp = @user2.own_lessons(1, 1, 'private')
-    assert_equal 1, resp[:content].length
-    assert !resp[:last_page]
-    assert_equal 2, resp[:count]
+    assert_equal 1, resp[:records].length
+    assert_equal 2, resp[:pages_amount]
   end
   
   test 'own_lessons_filter_public' do
@@ -374,17 +362,15 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
-    assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'public')[:content]
+    assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'public')[:records]
     # last page true
     resp = @user2.own_lessons(3, 2, 'public')
-    assert_equal 1, resp[:content].length
-    assert resp[:last_page]
-    assert_equal 5, resp[:count]
+    assert_equal 1, resp[:records].length
+    assert_equal 3, resp[:pages_amount]
     # last page false
     resp = @user2.own_lessons(1, 4, 'public')
-    assert_equal 4, resp[:content].length
-    assert !resp[:last_page]
-    assert_equal 5, resp[:count]
+    assert_equal 4, resp[:records].length
+    assert_equal 2, resp[:pages_amount]
   end
   
   test 'own_lessons_filter_linked' do
@@ -395,17 +381,15 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
-    assert_item_extractor [1, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'linked')[:content]
+    assert_item_extractor [1, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'linked')[:records]
     # last page true
     resp = @user2.own_lessons(2, 2, 'linked')
-    assert_equal 2, resp[:content].length
-    assert resp[:last_page]
-    assert_equal 4, resp[:count]
+    assert_equal 2, resp[:records].length
+    assert_equal 2, resp[:pages_amount]
     # last page false
-    resp = @user2.own_lessons(1, 3, 'linked')
-    assert_equal 3, resp[:content].length
-    assert !resp[:last_page]
-    assert_equal 4, resp[:count]
+    resp = @user2.own_lessons(1, 1, 'linked')
+    assert_equal 1, resp[:records].length
+    assert_equal 4, resp[:pages_amount]
   end
   
   test 'own_lessons_filter_only_mine' do
@@ -416,17 +400,15 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', 1
     les10 = @user2.create_lesson('title10', 'desc10', 3)
     assert Lesson.exists?(les10.id)
-    assert_item_extractor [2, les10.id], @user2.own_lessons(1, 20, 'only_mine')[:content]
+    assert_item_extractor [2, les10.id], @user2.own_lessons(1, 20, 'only_mine')[:records]
     # last page true
     resp = @user2.own_lessons(1, 2, 'only_mine')
-    assert_equal 2, resp[:content].length
-    assert resp[:last_page]
-    assert_equal 2, resp[:count]
+    assert_equal 2, resp[:records].length
+    assert_equal 1, resp[:pages_amount]
     # last page false
     resp = @user2.own_lessons(1, 1, 'only_mine')
-    assert_equal 1, resp[:content].length
-    assert !resp[:last_page]
-    assert_equal 2, resp[:count]
+    assert_equal 1, resp[:records].length
+    assert_equal 2, resp[:pages_amount]
   end
   
   test 'own_lessons_filter_copied' do
@@ -443,27 +425,25 @@ class ExtractorTest < ActiveSupport::TestCase
     assert Lesson.exists?(les12.id)
     les13 = @les5.copy(@user2.id)
     assert Lesson.exists?(les13.id)
-    assert_item_extractor [les11.id, les12.id, les13.id], @user2.own_lessons(1, 20, 'copied')[:content]
+    assert_item_extractor [les11.id, les12.id, les13.id], @user2.own_lessons(1, 20, 'copied')[:records]
     # last page true
     resp = @user2.own_lessons(2, 2, 'copied')
-    assert_equal 1, resp[:content].length
-    assert resp[:last_page]
-    assert_equal 3, resp[:count]
+    assert_equal 1, resp[:records].length
+    assert_equal 2, resp[:pages_amount]
     # last page false
     resp = @user2.own_lessons(1, 2, 'copied')
-    assert_equal 2, resp[:content].length
-    assert !resp[:last_page]
-    assert_equal 3, resp[:count]
+    assert_equal 2, resp[:records].length
+    assert_equal 2, resp[:pages_amount]
   end
   
   test 'offset' do
-    resp = @user1.own_lessons(1, 4)[:content]
+    resp = @user1.own_lessons(1, 4)[:records]
     assert_equal 4, resp.length
-    resptemp = @user1.own_lessons(2, 4)[:content]
+    resptemp = @user1.own_lessons(2, 4)[:records]
     assert_equal 4, resptemp.length
     assert_extractor_intersection resp, resptemp
     resp += resptemp
-    resptemp = @user1.own_lessons(3, 4)[:content]
+    resptemp = @user1.own_lessons(3, 4)[:records]
     assert_equal 3, resptemp.length
     assert_extractor_intersection resp, resptemp
   end
@@ -630,20 +610,20 @@ class ExtractorTest < ActiveSupport::TestCase
     # I start here, first case
     p1 = @user2.search_lessons('  ', 1, 5)
     p2 = @user2.search_lessons('', 2, 5, nil, 'bababah')
-    assert_ordered_item_extractor [2, @les1.id, @les2.id, @les3.id, @les4.id], p1[:content]
+    assert_ordered_item_extractor [2, @les1.id, @les2.id, @les3.id, @les4.id], p1[:records]
     assert_equal false, p1[:last_page]
-    assert_ordered_item_extractor [@les5.id, @les6.id], p2[:content]
+    assert_ordered_item_extractor [@les5.id, @les6.id], p2[:records]
     assert_equal true, p2[:last_page]
     # second case
     p1 = @user2.search_lessons('  ', 1, 5, nil, 'only_mine', nil)
-    assert_ordered_item_extractor [2], p1[:content]
+    assert_ordered_item_extractor [2], p1[:records]
     assert_equal true, p1[:last_page]
     # third case
     p1 = @user2.search_lessons(nil, 1, 5, nil, 'not_mine')
     p2 = @user2.search_lessons('', 2, 5, 'beh', 'not_mine')
-    assert_ordered_item_extractor [@les1.id, @les2.id, @les3.id, @les4.id, @les5.id], p1[:content]
+    assert_ordered_item_extractor [@les1.id, @les2.id, @les3.id, @les4.id, @les5.id], p1[:records]
     assert_equal false, p1[:last_page]
-    assert_ordered_item_extractor [@les6.id], p2[:content]
+    assert_ordered_item_extractor [@les6.id], p2[:records]
     assert_equal true, p2[:last_page]
     # fourth case
     lll = Lesson.find(1)
@@ -651,13 +631,13 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_obj_saved lll
     p1 = @user2.search_lessons('', 1, 5, nil, 'public')
     p2 = @user2.search_lessons('', 2, 5, nil, 'public', 'feafsa')
-    assert_ordered_item_extractor [1, 2, @les1.id, @les2.id, @les3.id], p1[:content]
+    assert_ordered_item_extractor [1, 2, @les1.id, @les2.id, @les3.id], p1[:records]
     assert_equal false, p1[:last_page]
-    assert_ordered_item_extractor [@les4.id, @les5.id, @les6.id], p2[:content]
+    assert_ordered_item_extractor [@les4.id, @les5.id, @les6.id], p2[:records]
     assert_equal true, p2[:last_page]
     # fifth case
     p1 = @user2.search_lessons('', 1, 5, 'title', 'public', 1)
-    assert_ordered_item_extractor [@les1.id, 1], p1[:content]
+    assert_ordered_item_extractor [@les1.id, 1], p1[:records]
     assert_equal true, p1[:last_page]
     lll.is_public = false
     assert_obj_saved lll
@@ -671,13 +651,13 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @les7.publish
     p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', nil)
     p2 = @user2.search_lessons(nil, 2, 5, 'likes', 'all_lessons', nil)
-    assert_ordered_item_extractor [@les1.id, @les8.id, @les3.id, @les6.id, @les7.id], p1[:content]
+    assert_ordered_item_extractor [@les1.id, @les8.id, @les3.id, @les6.id, @les7.id], p1[:records]
     assert_equal false, p1[:last_page]
-    assert_ordered_item_extractor [@les4.id, @les5.id, @les9.id, @les2.id, 2], p2[:content]
+    assert_ordered_item_extractor [@les4.id, @les5.id, @les9.id, @les2.id, 2], p2[:records]
     assert_equal true, p2[:last_page]
     # seventh case
     p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', 3)
-    assert_ordered_item_extractor [@les3.id, @les9.id, 2], p1[:content]
+    assert_ordered_item_extractor [@les3.id, @les9.id, 2], p1[:records]
     assert_equal true, p1[:last_page]
   end
   
@@ -689,19 +669,19 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 168, Tagging.count
     # I start here, first case - no match
     p1 = @user2.search_lessons('ciao', 1, 5, nil, nil, nil)
-    assert p1[:content].empty?
+    assert p1[:records].empty?
     assert_equal true, p1[:last_page]
     # second case - it matches three tags
     p1 = @user2.search_lessons('di', 1, 5, nil, nil, nil)
-    assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id, @les5.id], p1[:content]
+    assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id, @les5.id], p1[:records]
     assert_equal true, p1[:last_page]
     # third case - it matches more tags - @les9 is not found because private
     assert Lesson.find(1).publish
     p1 = @user2.search_lessons('to', 1, 5, nil, nil, nil)
     p2 = @user2.search_lessons('to', 2, 5, nil, nil, nil)
-    assert_ordered_item_extractor [1, @les1.id, @les2.id, @les3.id, @les4.id], p1[:content]
+    assert_ordered_item_extractor [1, @les1.id, @les2.id, @les3.id, @les4.id], p1[:records]
     assert_equal false, p1[:last_page]
-    assert_ordered_item_extractor [@les5.id, @les6.id], p2[:content]
+    assert_ordered_item_extractor [@les5.id, @les6.id], p2[:records]
     assert_equal true, p2[:last_page]
     # fourth case - filters and orders on the last search
     my_tag_chinese = Tag.find_by_word '個名'
@@ -709,40 +689,40 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 36, Tag.count
     assert_equal 164, Tagging.count
     p1 = @user2.search_lessons('to', 1, 5, nil, 'only_mine', nil)
-    assert_ordered_item_extractor [2], p1[:content]
+    assert_ordered_item_extractor [2], p1[:records]
     assert_equal true, p1[:last_page]
     # fifth case - words with similar beginning - I sort for likes and title
     load_likes
     assert Lesson.find(1).unpublish
     p1 = @user2.search_lessons('acqua', 1, 5, 'likes', 'public', nil)
-    assert_ordered_item_extractor [@les1.id, @les6.id, @les2.id, 2], p1[:content]
+    assert_ordered_item_extractor [@les1.id, @les6.id, @les2.id, 2], p1[:records]
     assert_equal true, p1[:last_page]
     # sixth case
     assert Lesson.find(1).publish
     p1 = @user2.search_lessons('acqua', 1, 5, 'likes', 'not_mine', nil)
-    assert_ordered_item_extractor [@les1.id, @les6.id, @les2.id, 1], p1[:content]
+    assert_ordered_item_extractor [@les1.id, @les6.id, @les2.id, 1], p1[:records]
     assert_equal true, p1[:last_page]
     # seventh case
     p1 = @user2.search_lessons('acqua', 1, 5, 'title', 'not_mine', nil)
-    assert_ordered_item_extractor [@les1.id, @les2.id, @les6.id, 1], p1[:content]
+    assert_ordered_item_extractor [@les1.id, @les2.id, @les6.id, 1], p1[:records]
     assert_equal true, p1[:last_page]
     # eight case
     p1 = @user2.search_lessons('acqua', 1, 5, 'title', 'not_mine', 1)
-    assert_ordered_item_extractor [@les1.id, 1], p1[:content]
+    assert_ordered_item_extractor [@les1.id, 1], p1[:records]
     assert_equal true, p1[:last_page]
     # ninth case
     p1 = @user2.search_lessons('r n', 1, 5, nil, nil, nil)
-    assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id], p1[:content]
+    assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id], p1[:records]
     assert_equal true, p1[:last_page]
     # cases in chinese
     [@les7, @les8, @les9].each do |llll|
       assert Lesson.find(llll.id).publish
     end
     p1 = @user2.search_lessons('個', 1, 5, 'title', nil, nil)
-    assert_ordered_item_extractor [2, @les7.id, @les8.id, @les9.id], p1[:content]
+    assert_ordered_item_extractor [2, @les7.id, @les8.id, @les9.id], p1[:records]
     assert_equal true, p1[:last_page]
     p1 = @user2.search_lessons('條聖', 1, 5, 'title', nil, nil)
-    assert_ordered_item_extractor [@les7.id, @les9.id], p1[:content]
+    assert_ordered_item_extractor [@les7.id, @les9.id], p1[:records]
     assert_equal true, p1[:last_page]
   end
   
@@ -750,21 +730,21 @@ class ExtractorTest < ActiveSupport::TestCase
     # I start here, first case
     p1 = @user2.search_media_elements('  ', 1, 5)
     p2 = @user2.search_media_elements('', 2, 5, nil, 'bababah')
-    assert_ordered_item_extractor [2, 3, 4, 6, @el1.id], p1[:content]
+    assert_ordered_item_extractor [2, 3, 4, 6, @el1.id], p1[:records]
     assert_equal false, p1[:last_page]
-    assert_ordered_item_extractor [@el2.id, @el3.id, @el5.id, @el7.id], p2[:content]
+    assert_ordered_item_extractor [@el2.id, @el3.id, @el5.id, @el7.id], p2[:records]
     assert_equal true, p2[:last_page]
     # second case, filter image
     p1 = @user2.search_media_elements('', 1, 5, 'updated_at', 'image')
-    assert_ordered_item_extractor [6, @el5.id, @el7.id], p1[:content]
+    assert_ordered_item_extractor [6, @el5.id, @el7.id], p1[:records]
     assert_equal true, p1[:last_page]
     # third case, filter audio - order by title
     p1 = @user2.search_media_elements('', 1, 5, 'title', 'audio')
-    assert_ordered_item_extractor [4, @el3.id, 3], p1[:content]
+    assert_ordered_item_extractor [4, @el3.id, 3], p1[:records]
     assert_equal true, p1[:last_page]
     # fourth case, filter video -- order by title
     p1 = @user2.search_media_elements('', 1, 5, 'title', 'video')
-    assert_ordered_item_extractor [@el1.id, @el2.id, 2], p1[:content]
+    assert_ordered_item_extractor [@el1.id, @el2.id, 2], p1[:records]
     assert_equal true, p1[:last_page]
   end
   
@@ -776,37 +756,37 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 168, Tagging.count
     # I start here, first case - no match
     p1 = @user2.search_media_elements('ciao', 1, 5, nil, nil)
-    assert p1[:content].empty?
+    assert p1[:records].empty?
     assert_equal true, p1[:last_page]
     # second case - it matches three tags
     p1 = @user2.search_media_elements('di', 1, 5, nil, nil)
     p2 = @user2.search_media_elements('di', 2, 5, nil, nil)
-    assert_ordered_item_extractor [2, 3, @el2.id, @el3.id, @el5.id], p1[:content]
+    assert_ordered_item_extractor [2, 3, @el2.id, @el3.id, @el5.id], p1[:records]
     assert_equal false, p1[:last_page]
-    assert_ordered_item_extractor [@el7.id], p2[:content]
+    assert_ordered_item_extractor [@el7.id], p2[:records]
     assert_equal true, p2[:last_page]
     # third case - it matches more tags
     p1 = @user2.search_media_elements('to', 1, 5, 'title', nil)
     p2 = @user2.search_media_elements('to', 2, 5, 'title', nil)
-    assert_ordered_item_extractor [4, @el1.id, @el2.id, @el3.id, @el5.id], p1[:content]
+    assert_ordered_item_extractor [4, @el1.id, @el2.id, @el3.id, @el5.id], p1[:records]
     assert_equal false, p1[:last_page]
-    assert_ordered_item_extractor [@el7.id, 2, 3], p2[:content]
+    assert_ordered_item_extractor [@el7.id, 2, 3], p2[:records]
     assert_equal true, p2[:last_page]
     # fourth case - chinese characters, and filters
     p1 = @user2.search_media_elements('加', 1, 5)
-    assert p1[:content].empty?
+    assert p1[:records].empty?
     assert_equal true, p1[:last_page]
     @el4.is_public = true
     @el4.publication_date = '2011-01-01 10:00:00'
     assert_obj_saved @el4
     p1 = @user2.search_media_elements('加', 1, 5)
-    assert_ordered_item_extractor [@el4.id], p1[:content]
+    assert_ordered_item_extractor [@el4.id], p1[:records]
     assert_equal true, p1[:last_page]
     p1 = @user2.search_media_elements('加', 1, 5, nil, 'image')
-    assert p1[:content].empty?, "CAZZO - #{p1.inspect}"
+    assert p1[:records].empty?, "CAZZO - #{p1.inspect}"
     assert_equal true, p1[:last_page]
     p1 = @user2.search_media_elements('加', 1, 5, nil, 'audio')
-    assert_ordered_item_extractor [@el4.id], p1[:content]
+    assert_ordered_item_extractor [@el4.id], p1[:records]
     assert_equal true, p1[:last_page]
     # fifth case - more filters
     @el6.is_public = true
@@ -828,26 +808,26 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 35, Tag.count
     assert_equal 170, Tagging.count
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'baudio')
-    assert_ordered_item_extractor [@el6.id, 3, 6, @el2.id], p1[:content]
+    assert_ordered_item_extractor [@el6.id, 3, 6, @el2.id], p1[:records]
     assert_equal true, p1[:last_page]
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'audio')
-    assert_ordered_item_extractor [3], p1[:content]
+    assert_ordered_item_extractor [3], p1[:records]
     assert_equal true, p1[:last_page]
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'video')
-    assert_ordered_item_extractor [@el2.id], p1[:content]
+    assert_ordered_item_extractor [@el2.id], p1[:records]
     assert_equal true, p1[:last_page]
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'image')
-    assert_ordered_item_extractor [@el6.id, 6], p1[:content]
+    assert_ordered_item_extractor [@el6.id, 6], p1[:records]
     assert_equal true, p1[:last_page]
     # last case
     p1 = @user2.search_media_elements('加', 1, 5, 'title')
-    assert_ordered_item_extractor [@el2.id, @el4.id, 3], p1[:content]
+    assert_ordered_item_extractor [@el2.id, @el4.id, 3], p1[:records]
     assert_equal true, p1[:last_page]
     p1 = @user2.search_media_elements('加', 1, 2, 'title')
     p2 = @user2.search_media_elements('加', 2, 2, 'title')
-    assert_ordered_item_extractor [@el2.id, @el4.id], p1[:content]
+    assert_ordered_item_extractor [@el2.id, @el4.id], p1[:records]
     assert_equal false, p1[:last_page]
-    assert_ordered_item_extractor [3], p2[:content]
+    assert_ordered_item_extractor [3], p2[:records]
     assert_equal true, p2[:last_page]
   end
   

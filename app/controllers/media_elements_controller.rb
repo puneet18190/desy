@@ -11,8 +11,8 @@ class MediaElementsController < ApplicationController
   
   def index
     get_own_media_elements
-    if @last_page && (@page != 1) && @media_elements.empty?
-      @page = @tot_items / @for_page
+    if @page > @pages_amount
+      @page = @pages_amount
       get_own_media_elements
     end
     render_js_or_html_index
