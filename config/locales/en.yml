@@ -52,7 +52,7 @@ en:
           problems_removing_from_playlist: 'There was a problem removing your lesson from the playlist'
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
-  capital_letter:
+  captions:
     advanced_search: 'Advanced search'
     author: 'Author'
     choose_wich_item_and_go: 'Select your option and go!'
@@ -60,18 +60,21 @@ en:
     copyright: '©2012 DESY'
     create_new_lesson: 'Create a new lesson'
     create_new_lesson_now: 'Create a lesson now'
-    create_new_media_element: 'Load a new element'
+    create_new_media_element: 'Create a new element'
     description: 'Description'
     discover_a_new_way_of_teaching: "Discover a new way of teaching"
     display_mode: 'Display mode'
+    display: 'display'
     download_manual: 'Download the user manual'
     enter: 'Enter'
     help_using_desy: 'Need help using Desy?'
+    insert_tag: 'Insert a tag'
     institute: 'Institute'
     large: 'Large'
     learning_goals: 'Learning Objectives'
     lessons: 'Lessons'
     level: 'Level'
+    load_new_media_element: 'Load a new element'
     load_new_media_element_now: 'Load an element now'
     login: 'Login'
     logout: 'Logout'
@@ -80,37 +83,29 @@ en:
     modify_info_element: 'Modify info element'
     no_notifications: "You don't have any notifications"
     problems_with_password: "I forgot my login information"
+    profile: 'Profile'
     register: 'Register'
     report_abuse: 'Report abuse'
+    search: 'Search in DESY'
     search_lesson_or_media_element: 'Do you need lessons or media elements?'
+    selected_for_you: 'Selected for you'
     send: 'Send'
     show: 'Show'
     sort_results_by: 'Sort results by'
     status: 'Status'
     small: 'Small'
     talk_with_desy: 'Want to talk with DESY?'
+    virtual_classroom: 'Virtual classroom'
     warning: 'Warning!'
     warning_search_lessons: 'Not entering any keyword you can see all the lessons of the subject selected.'
     warning_search_media_elements: 'Not entering any keyword you can see all the elements filter selected.'
     watch_the_video: 'Watch the video'
+    welcome: 'Welcome'
     what_are_you_looking_for: 'What are you looking for?'
     what_is_desy: 'What is DESY?'
     write_reason_report: 'Write the reason for your report, we will review it. Thank you for your cooperation!'
     you_believe_content_unappropriate: 'You believe this content is unappropriate?'
-  small_letter:
-    create_new_lesson: 'create a new lesson'
-    create_new_media_element: 'create a new element'
-    display: 'display'
-    insert_tag: 'insert a tag'
-    lessons: 'lessons'
-    media_elements: 'elements'
-    profile: 'profile'
-    search: 'search in desy'
-    selected_for_you: 'selected for you'
-    upload_new_media_element: 'upload a new element'
-    virtual_classroom: 'virtual classroom'
-    welcome: 'welcome'
-  long_descriptions:
+  descriptions:
     change_info_element: "You can modify the data of your element. Inserting tags you will make it available to DESY community, remember that people are more likely to find your element if you insert more tags"
     prelogin: "DESY has arrived, the new multimedia platform dedicated to the world of the school. Thanks to DESY will be possible to create multimedia lessons, uploading their images or videos or using those in the database of DESY. Share your work with other users DESY to create a large network of educational content."
 
