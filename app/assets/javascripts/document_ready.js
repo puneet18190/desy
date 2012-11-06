@@ -4,7 +4,7 @@ $(document).ready(function() {
   // OTHER BUTTONS
   
   $('.load_media_element').click(function() {
-		showLoadMediaElementPopUp();
+    showLoadMediaElementPopUp();
   });
   
   

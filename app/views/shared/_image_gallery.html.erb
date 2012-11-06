@@ -9,9 +9,9 @@
   </div>
   <div class="scroll-pane">
     <ul class="gallery">
-    <% (1..30).each do |index| %>
-      <li>
-        <%= link_to (image_tag "testa.jpg", :width => '113'), "#"%>
+    <% @media_elements.each do |mel| %>
+      <li id="#gallery_thumb_<%=mel.id%>" class="_gallery_thumb">
+        <%= link_to (image_tag "testa.jpg", :width => '111'), "##{mel.id}" %>
       </li>
     <% end %>
     <ul>

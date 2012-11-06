@@ -261,10 +261,12 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user2.own_lessons(3, 2)
     assert_equal 1, resp[:content].length
     assert resp[:last_page]
+    assert_equal 5, resp[:count]
     # last page false
     resp = @user2.own_lessons(1, 3)
     assert_equal 3, resp[:content].length
     assert !resp[:last_page]
+    assert_equal 5, resp[:count]
   end
   
   test 'own_media_elements' do
@@ -276,10 +278,12 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user2.own_media_elements(3, 2)
     assert_equal 1, resp[:content].length
     assert resp[:last_page]
+    assert_equal 5, resp[:count]
     # last page false
     resp = @user2.own_media_elements(1, 4)
     assert_equal 4, resp[:content].length
     assert !resp[:last_page]
+    assert_equal 5, resp[:count]
   end
   
   test 'own_media_elements_filter_video' do
@@ -291,10 +295,12 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user2.own_media_elements(1, 2, 'video')
     assert_equal 2, resp[:content].length
     assert resp[:last_page]
+    assert_equal 2, resp[:count]
     # last page false
     resp = @user2.own_media_elements(1, 1, 'video')
     assert_equal 1, resp[:content].length
     assert !resp[:last_page]
+    assert_equal 2, resp[:count]
   end
   
   test 'own_media_elements_filter_audio' do
@@ -306,10 +312,12 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user2.own_media_elements(1, 2, 'audio')
     assert_equal 2, resp[:content].length
     assert resp[:last_page]
+    assert_equal 2, resp[:count]
     # last page false
     resp = @user2.own_media_elements(1, 1, 'audio')
     assert_equal 1, resp[:content].length
     assert !resp[:last_page]
+    assert_equal 2, resp[:count]
   end
   
   test 'own_media_elements_filter_image' do
@@ -327,10 +335,12 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user2.own_media_elements(1, 2, 'image')
     assert_equal 2, resp[:content].length
     assert resp[:last_page]
+    assert_equal 2, resp[:count]
     # last page false
     resp = @user2.own_media_elements(1, 1, 'image')
     assert_equal 1, resp[:content].length
     assert !resp[:last_page]
+    assert_equal 2, resp[:count]
   end
   
   test 'own_lessons_filter_private' do
@@ -348,10 +358,12 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user2.own_lessons(1, 2, 'private')
     assert_equal 2, resp[:content].length
     assert resp[:last_page]
+    assert_equal 2, resp[:count]
     # last page false
     resp = @user2.own_lessons(1, 1, 'private')
     assert_equal 1, resp[:content].length
     assert !resp[:last_page]
+    assert_equal 2, resp[:count]
   end
   
   test 'own_lessons_filter_public' do
@@ -367,10 +379,12 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user2.own_lessons(3, 2, 'public')
     assert_equal 1, resp[:content].length
     assert resp[:last_page]
+    assert_equal 5, resp[:count]
     # last page false
     resp = @user2.own_lessons(1, 4, 'public')
     assert_equal 4, resp[:content].length
     assert !resp[:last_page]
+    assert_equal 5, resp[:count]
   end
   
   test 'own_lessons_filter_linked' do
@@ -386,10 +400,12 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user2.own_lessons(2, 2, 'linked')
     assert_equal 2, resp[:content].length
     assert resp[:last_page]
+    assert_equal 4, resp[:count]
     # last page false
     resp = @user2.own_lessons(1, 3, 'linked')
     assert_equal 3, resp[:content].length
     assert !resp[:last_page]
+    assert_equal 4, resp[:count]
   end
   
   test 'own_lessons_filter_only_mine' do
@@ -405,10 +421,12 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user2.own_lessons(1, 2, 'only_mine')
     assert_equal 2, resp[:content].length
     assert resp[:last_page]
+    assert_equal 2, resp[:count]
     # last page false
     resp = @user2.own_lessons(1, 1, 'only_mine')
     assert_equal 1, resp[:content].length
     assert !resp[:last_page]
+    assert_equal 2, resp[:count]
   end
   
   test 'own_lessons_filter_copied' do
@@ -430,10 +448,12 @@ class ExtractorTest < ActiveSupport::TestCase
     resp = @user2.own_lessons(2, 2, 'copied')
     assert_equal 1, resp[:content].length
     assert resp[:last_page]
+    assert_equal 3, resp[:count]
     # last page false
     resp = @user2.own_lessons(1, 2, 'copied')
     assert_equal 2, resp[:content].length
     assert !resp[:last_page]
+    assert_equal 3, resp[:count]
   end
   
   test 'offset' do

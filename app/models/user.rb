@@ -26,7 +26,6 @@ class User < ActiveRecord::Base
   end
   
   def search_media_elements(word, page, for_page, order=nil, filter=nil)
-    word = word.to_s
     page = 1 if page.class != Fixnum || page < 0
     for_page = 1 if for_page.class != Fixnum || for_page < 0
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
@@ -34,13 +33,15 @@ class User < ActiveRecord::Base
     offset = (page - 1) * for_page
     if word.blank?
       search_media_elements_without_tag(offset, for_page, filter, order)
+    elsif word.class == Fixnum
+      search_media_elements_with_tag(word, offset, for_page, filter, order)
     else
+      word = word.to_s
       search_media_elements_with_tag(word, offset, for_page, filter, order)
     end
   end
   
   def search_lessons(word, page, for_page, order=nil, filter=nil, subject_id=nil)
-    word = word.to_s
     page = 1 if page.class != Fixnum || page < 0
     for_page = 1 if for_page.class != Fixnum || for_page < 0
     subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
@@ -49,7 +50,10 @@ class User < ActiveRecord::Base
     offset = (page - 1) * for_page
     if word.blank?
       search_lessons_without_tag(offset, for_page, filter, subject_id, order)
+    elsif word.class == Fixnum
+      search_lessons_with_chosen_tag(word, offset, for_page, filter, subject_id, order)
     else
+      word = word.to_s
       search_lessons_with_tag(word, offset, for_page, filter, subject_id, order)
     end
   end
@@ -132,7 +136,6 @@ class User < ActiveRecord::Base
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page < 0
     offset = (page - 1) * per_page
     updated_at_order = 'updated_at DESC'
-
     relation = 
       case filter
       when Filters::PRIVATE
@@ -148,7 +151,6 @@ class User < ActiveRecord::Base
       else # Filter::ALL_LESSONS
         MyLessonsView.where('lesson_user_id = ? OR bookmark_user_id = ?', id, id)
       end.includes(:lesson)
-
     pages_amount = Rational(relation.count, per_page).ceil
     { records: relation.limit(per_page).offset(offset), pages_amount: pages_amount }
   end
@@ -336,6 +338,10 @@ class User < ActiveRecord::Base
   
   private
   
+  def search_media_elements_with_chosen_tag(tag_id, offset, limit, filter, order_by)
+    
+  end
+  
   def search_media_elements_with_tag(word, offset, limit, filter, order_by)
     resp = {}
     params = ["%#{word}%", true, self.id]
@@ -401,6 +407,10 @@ class User < ActiveRecord::Base
     resp[:last_page] = last_page
     resp[:content] = content
     return resp
+  end
+  
+  def search_lessons_with_chosen_tag(tag_id, offset, limit, filter, subject_id, order)
+    
   end
   
   def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by)

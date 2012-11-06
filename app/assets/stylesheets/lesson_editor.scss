@@ -401,18 +401,18 @@ html.lesson-editor-layout{
           display:block;
         }
         
-        a.delete{
+        a.delete,a.delete.disabled:hover{
           background-position: top left;
         }
 
-        a.add{
+        a.add,a.add.disabled:hover{
           background-position: left -56px;
         }
         
-        a.info{
+        a.info,a.info.disabled:hover{
           background-position: left -112px;
         }
-        a.save{
+        a.save,a.save.disabled:hover{
           background-position: left -168px;
         }
 
@@ -429,7 +429,8 @@ html.lesson-editor-layout{
         }
         a.save:hover,a.save.active{
           background-position: -57px -168px;
-        }      }
+        }      
+      }
     }
   }
   
@@ -554,8 +555,8 @@ html.lesson-editor-layout{
       .sbOptions a:hover,
       .sbOptions a:focus,
       .sbOptions a.sbFocus{
-    	  color: #fff;
-    	  background-color:#f29400;
+    	  color: #f29400;
+    	  background-color:#fff;
       }
       .info-slide-footer{
         clear:both;
