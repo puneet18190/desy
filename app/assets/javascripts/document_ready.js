@@ -180,6 +180,14 @@ $(document).ready(function() {
     }
   });
   
+  // MEDIA ELEMENT GALLERY
+
+  $('body').on('click','._gallery_thumb', function(e) {
+    e.preventDefault();
+    num = $(this).find("a").attr('href');
+    showImageMediaElementPopUp(num);
+  });
+  
   
   // LESSON BUTTONS
   
