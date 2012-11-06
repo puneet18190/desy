@@ -17,6 +17,15 @@
   border:0;
   right:-7px;
 }
+@mixin inputSend {
+
+  input[type="submit"] {
+    font:  140% 'Nunito', sans-serif;
+    color: #5D5C5C;
+    background-color: transparent;
+		cursor:pointer;
+  }
+}
 .tooltip {
   display:none; 
   @include misc;
@@ -136,7 +145,7 @@ $canvasSize: 450%;
 	color:#c0c0c0;
   border:1px solid #c6c5c3;
   width:350px;
-	
+	@include inputSend;
 	.text {
 	  margin:10px 0 10px 0;
 	  width: 336px;
@@ -153,6 +162,7 @@ $canvasSize: 450%;
     border:0;
     left:8px;
   }
+	
 }
 
 .media_element_tooltipForm {
@@ -166,7 +176,7 @@ $canvasSize: 450%;
 	color:#c0c0c0;
   border:1px solid #c6c5c3;
   width:350px;
-	
+	@include inputSend;
 	.text {
 	  margin:10px 0 10px 0;
 	  width: 336px;
