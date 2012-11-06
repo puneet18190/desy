@@ -10,8 +10,17 @@ class ActiveSupport::TestCase
     assert_equal x1.length, x2.length, "Error, #{x1.inspect} -- #{x2.inspect}"
     cont = 0
     while cont < x1.length
-      assert_equal x1[cont], x2[cont].id, "Error, #{x1.inspect} -- #{x2.inspect}"
-      assert !x2[cont].status.nil?
+      item = nil
+      if x2[cont].class == MyMediaElementsView
+        item = x2[cont].media_element
+      elsif x2[cont].class == MyLessonsView
+        item = x2[cont].lesson
+      elsif [Lesson, Video, Audio, Image].include?(x2[cont].class)
+        item = x2[cont]
+      else
+        assert false, "Class missing! #{x2[cont].class}"
+      end
+      assert_equal x1[cont], item.id, "Error, #{x1.inspect} -- #{x2.inspect}"
       cont += 1
     end
   end
@@ -37,8 +46,17 @@ class ActiveSupport::TestCase
   def assert_item_extractor(my_ids, resp)
     ids = []
     resp.each do |r|
-      assert !r.status.nil?
-      ids << r.id
+      item = nil
+      if r.class == MyMediaElementsView
+        item = r.media_element
+      elsif r.class == MyLessonsView
+        item = r.lesson
+      elsif [Lesson, Video, Audio, Image].include?(r.class)
+        item = r
+      else
+        assert false, "Class missing! #{r.class}"
+      end
+      ids << item.id
     end
     assert_equal ids.sort, my_ids.sort
   end

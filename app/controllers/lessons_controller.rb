@@ -8,8 +8,8 @@ class LessonsController < ApplicationController
   
   def index
     get_own_lessons
-    if @last_page && (@page != 1) && @lessons.empty?
-      @page = @tot_items / @for_page
+    if @page > @pages_amount
+      @page = @pages_amount
       get_own_lessons
     end
     render_js_or_html_index
