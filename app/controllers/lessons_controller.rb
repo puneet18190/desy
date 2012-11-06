@@ -9,7 +9,7 @@ class LessonsController < ApplicationController
   def index
     get_own_lessons
     if @last_page && (@page != 1) && @lessons.empty?
-      @page = 1
+      @page = @tot_items / @for_page
       get_own_lessons
     end
     render_js_or_html_index
@@ -155,6 +155,7 @@ class LessonsController < ApplicationController
     resp = @current_user.own_lessons(@page, @for_page, @filter)
     @lessons = resp[:content]
     @last_page = resp[:last_page]
+    @tot_items = resp[:count]
   end
   
   def initialize_paginator

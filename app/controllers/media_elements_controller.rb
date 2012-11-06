@@ -12,7 +12,7 @@ class MediaElementsController < ApplicationController
   def index
     get_own_media_elements
     if @last_page && (@page != 1) && @media_elements.empty?
-      @page = 1
+      @page = @tot_items / @for_page
       get_own_media_elements
     end
     render_js_or_html_index
@@ -81,6 +81,7 @@ class MediaElementsController < ApplicationController
     resp = @current_user.own_media_elements(@page, @for_page, @filter)
     @media_elements = resp[:content]
     @last_page = resp[:last_page]
+    @tot_items = resp[:count]
   end
   
   def initialize_paginator
