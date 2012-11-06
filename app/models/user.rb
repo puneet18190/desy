@@ -124,9 +124,11 @@ class User < ActiveRecord::Base
     param2 = false
     resp = []
     last_page = false
+    item_count = 0
     case filter
       when Filters::ALL_MEDIA_ELEMENTS
-        last_page = MyMediaElementsView.where('(media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?', param1, param2, param1).offset(offset + per_page).empty?
+        item_count = MyMediaElementsView.where('(media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?', param1, param2, param1).count
+        last_page = (item_count <= offset + per_page)
         MyMediaElementsView.where('(media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?', param1, param2, param1).limit(per_page).offset(offset).each do |me|
           media_element = MediaElement.find_by_id me.id
           media_element.set_status self.id
@@ -134,7 +136,8 @@ class User < ActiveRecord::Base
         end
       when Filters::VIDEO
         param0 = 'Video'
-        last_page = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).offset(offset + per_page).empty?
+        item_count = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).count
+        last_page = (item_count <= offset + per_page)
         MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).limit(per_page).offset(offset).each do |me|
           media_element = MediaElement.find_by_id me.id
           media_element.set_status self.id
@@ -142,7 +145,8 @@ class User < ActiveRecord::Base
         end
       when Filters::AUDIO
         param0 = 'Audio'
-        last_page = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).offset(offset + per_page).empty?
+        item_count = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).count
+        last_page = (item_count <= offset + per_page)
         MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).limit(per_page).offset(offset).each do |me|
           media_element = MediaElement.find_by_id me.id
           media_element.set_status self.id
@@ -150,14 +154,15 @@ class User < ActiveRecord::Base
         end
       when Filters::IMAGE
         param0 = 'Image'
-        last_page = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).offset(offset + per_page).empty?
+        item_count = MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).count
+        last_page = (item_count <= offset + per_page)
         MyMediaElementsView.where('sti_type = ? AND ((media_element_user_id = ? AND is_public = ?) OR bookmark_user_id = ?)', param0, param1, param2, param1).limit(per_page).offset(offset).each do |me|
           media_element = MediaElement.find_by_id me.id
           media_element.set_status self.id
           resp << media_element
         end
     end
-    return {:last_page => last_page, :content => resp}
+    return {:last_page => last_page, :content => resp, :count => item_count}
   end
   
   def own_lessons(page, per_page, filter=nil)
