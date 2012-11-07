@@ -29,6 +29,21 @@ function getHtmlPagination(pos, pages_amount) {
   return substitute;
 }
 
+function reloadMediaElementsDashboardPagination(pos, pages_amount) {
+  $('#dashboard_media_elements_pagination').html(getHtmlPagination(pos, pages_amount));
+  $(document).ready(function() {
+    var prevPage = function(prevPage) {
+      changePageDashboardMediaElements(pos, (pos - 1), pages_amount);
+      return true;
+    }
+    var nextPage = function(nextPage) {
+      changePageDashboardMediaElements(pos, (pos + 1), pages_amount);
+      return true;
+    }
+    new DotsPagination($('[role=pages]'), pages_amount, prevPage, nextPage);
+  });
+}
+
 function reloadLessonsDashboardPagination(pos, pages_amount) {
   $('#dashboard_lessons_pagination').html(getHtmlPagination(pos, pages_amount));
   $(document).ready(function() {
@@ -41,6 +56,14 @@ function reloadLessonsDashboardPagination(pos, pages_amount) {
       return true;
     }
     new DotsPagination($('[role=pages]'), pages_amount, prevPage, nextPage);
+  });
+}
+
+function changePageDashboardMediaElements(old_pos, pos, pages_amount) {
+  $('#suggested_media_elements_' + (old_pos)).hide('fade', {}, 500, function() {
+    $(this).css('display', 'none');
+    $('#suggested_media_elements_' + (pos)).css('display', 'block');
+    reloadMediaElementsDashboardPagination(pos, pages_amount);
   });
 }
 
