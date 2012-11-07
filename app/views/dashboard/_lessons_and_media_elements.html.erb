@@ -6,10 +6,7 @@
     <% else %>
       <% tot_lesson = 0 %>
       <% (0...CONFIG['lesson_pages_in_dashboard']).each do |j| %>
-        <%
-          lessons_block = @lessons[tot_lesson, CONFIG['lessons_for_page_in_dashboard']].to_a
-          last_page = @lessons[tot_lesson + CONFIG['lessons_for_page_in_dashboard'], CONFIG['lessons_for_page_in_dashboard']].to_a.empty?
-        %>
+        <% lessons_block = @lessons[tot_lesson, CONFIG['lessons_for_page_in_dashboard']].to_a %>
         <% if lessons_block.any? %>
           <div class="suggested_lessons_page" id="suggested_lessons_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none' : 'block' %>">
             <% cont = 0 %>
@@ -29,12 +26,12 @@
             <% else %>
               <%= render :partial => "lessons/create_new" %>
             <% end %>
-            <br class="clearfloat">
-            <%= render :partial => 'dashboard/lessons_pagination', :locals => {:page => (j + 1), :last_page => last_page, :first_page => (j == 0)} %>
           </div>
         <% end %>
         <% tot_lesson += CONFIG['lessons_for_page_in_dashboard'] %>
       <% end %>
+      <br class="clearfloat">
+      <%= render :partial => 'dashboard/lessons_pagination', :locals => {:page => 1, :pages_amount => (@lessons.length.to_f / CONFIG['lessons_for_page_in_dashboard']).ceil} %>
     <% end %>
   </div>
   

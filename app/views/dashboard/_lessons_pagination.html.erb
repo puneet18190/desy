@@ -9,20 +9,15 @@
 </div>
 
 
-
 <script type="text/javascript">
-  
-  
- // alert('<%= pages_amount %> --- <%= page %>')
-  
   
   $(document).ready(function() {
     var prevPage = function(prevPage) {
-      changePageDashboardLessons(<%= page %>, <%= page - 1 %>);
+      changePageDashboardLessons(<%= page %>, <%= page - 1 %>, <%= pages_amount %>);
       return true;
     }
     var nextPage = function(nextPage) {
-      changePageDashboardLessons(<%= page %>, <%= page + 1 %>);
+      changePageDashboardLessons(<%= page %>, <%= page + 1 %>, <%= pages_amount %>);
       return true;
     }
     new DotsPagination($('[role=pages]'), <%= j pages_amount.to_s %>, prevPage, nextPage);
