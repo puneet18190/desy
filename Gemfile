@@ -22,13 +22,16 @@ end
 
 gem 'jquery-rails'
 
-gem "schema_plus"
+gem 'schema_plus'
 
 group :development do
-  gem "rails-erd"
+  gem 'rails-erd'
 end
 
 gem 'recursive-open-struct'
+
+gem 'mini_magick'
+gem 'carrierwave'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
