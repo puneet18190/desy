@@ -11,7 +11,7 @@ class MediaElementsController < ApplicationController
   
   def index
     get_own_media_elements
-    if @page > @pages_amount
+    if @page > @pages_amount && @pages_amount != 0
       @page = @pages_amount
       get_own_media_elements
     end

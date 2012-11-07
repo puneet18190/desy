@@ -37,5 +37,9 @@
     <br class="clearfloat">
     <%= render :partial => "media_elements/my_media_elements" %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
+    <br class="clearfloat">
+    <% if @media_elements.any? %>
+      <%= render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => remove_param_from_url(request.url, 'delete_item')} %>
+    <% end %>
   </div>
 </div>
