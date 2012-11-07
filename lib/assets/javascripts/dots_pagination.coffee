@@ -66,8 +66,6 @@ class DotsPagination
     $this = $(event.currentTarget)
     page = $this.data('page')
 
-    return false if callback and callback(page) == false
-
     @$current
       .removeAttr('role') # removing current role is useless (it is used just at the beginning), we do it just for coherence
       .removeClass('current')
@@ -98,6 +96,6 @@ class DotsPagination
       $this[insertNearLinkFunction].call($this, $nearLink)
       @$pages.css(left: -$this.outerWidth(true)) if direction == 'prev'
 
-    @$pages.animate(left: "+=#{animateLeftSign}#{$this.outerWidth(true)}")
+    @$pages.animate(left: "+=#{animateLeftSign}#{$this.outerWidth(true)}", complete: callback(page))
 
 window.DotsPagination = DotsPagination

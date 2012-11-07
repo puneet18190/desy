@@ -9,6 +9,5 @@
     <% @lessons.each do |l| %>
       <%= render :partial => "lessons/view_single_compact", :locals => {:lesson => l, :destination => ButtonDestinations::COMPACT_LESSON} %>
     <% end %>
-    <%= render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => remove_param_from_url(request.url, 'delete_item')} %>
   <% end %>
 </div>
