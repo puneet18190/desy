@@ -1,8 +1,7 @@
-<br class="clearfloat">
-<div class="dots_pagination_container">
+<div class="dots_pagination_container" id="general_pagination">
   <span class="dots_pagination">
     <span role="pages">
-      <a data-page="<%= page-1 %>" <%= 'role="disabled"'.html_safe if @page <= 1 %>></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" <%= 'role="disabled"'.html_safe if page >= pages_amount %>></a>
+      <a data-page="<%= page-1 %>" <%= 'role="disabled"'.html_safe if page <= 1 %>></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" <%= 'role="disabled"'.html_safe if page >= pages_amount %>></a>
     </span>
   </span>
 </div>

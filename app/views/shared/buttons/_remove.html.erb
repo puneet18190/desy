@@ -3,4 +3,4 @@
   reload = 'true' if [ButtonDestinations::FOUND_LESSON, ButtonDestinations::FOUND_MEDIA_ELEMENT].include? destination
 %>
 
-<a class="<%= Buttons::REMOVE %> _<%= item.class %>_button_<%= Buttons::REMOVE %>" data-clickparam="<%= item.id %>" data-destination="<%= destination %>" data-reload="<%= reload %>"></a>
+<a class="<%= Buttons::REMOVE %> _<%= item.class %>_button_<%= Buttons::REMOVE %>" data-clickparam="<%= item.id %>" data-destination="<%= destination %>" data-reload="<%= reload %>" title="<%= t('buttons.remove') %>"></a>

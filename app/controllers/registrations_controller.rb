@@ -1,11 +1,11 @@
 class RegistrationsController < ApplicationController
   
   before_filter :initialize_layout, :only => :edit
-  skip_before_filter :authenticate, :only => [:login, :prelogin]
+  skip_before_filter :authenticate, :only => [:login, :prelogin, :new, :create]
   layout 'registrations'
   
   def prelogin
-    if session[:user_id].class == Fixnum && User.exists?(session[:user_id])
+    if logged_in?
       redirect_to '/dashboard'
       return
     end
@@ -14,6 +14,16 @@ class RegistrationsController < ApplicationController
   
   def edit
     render :layout => 'application'
+  end
+  
+  def new
+    if logged_in?
+      redirect_to '/profile'
+      return
+    end
+  end
+  
+  def create
   end
   
   def update

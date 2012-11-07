@@ -21,6 +21,26 @@ function showTimedPopUp(content, id) {
   }
 }
 
+function showConfirmPopUp(content) {
+  var obj = $('#dialog-confirm');
+	content = '<img src="/assets/alert.png"/><h1>' + content + '</h1>';
+  if(obj.hasClass('ui-dialog-content')) {
+    obj.html(content);
+    obj.dialog('open');
+  } else {
+    obj.css('display', 'block');
+    obj.html(content);
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      width: 485,
+      show: "fade",
+      hide: "fade"
+    });
+  }
+}
+
+
 function showLoadMediaElementPopUp() {
   var obj = $('#load-media-element');
   if(obj.hasClass('ui-dialog-content')) {
@@ -30,7 +50,7 @@ function showLoadMediaElementPopUp() {
     obj.dialog({
       modal: true,
       resizable: false,
-      width: 485,
+      width: 874,
       show: "fade",
       hide: "fade"
     });
@@ -62,12 +82,12 @@ function showImageMediaElementPopUp(id) {
 // FUNCTIONS DIRECTLY USED IN THE APPLICATION
 
 function showErrorPopUp(content) {
-  var new_content = '<img src="/assets/unsuccess.svg"/><h1>' + content + '</h1>';
+  var new_content = '<img src="/assets/unsuccess.png"/><h1>' + content + '</h1>';
   showTimedPopUp(new_content, 'dialog-error');
 }
 
 function showOkPopUp(content) {
-  var new_content = '<img src="/assets/success.svg"/><h1>' + content + '</h1>';
+  var new_content = '<img src="/assets/success.png"/><h1>' + content + '</h1>';
   showTimedPopUp(new_content, 'dialog-ok');
 }
 

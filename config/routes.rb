@@ -53,6 +53,8 @@ Desy::Application.routes.draw do
   match 'logout' => 'registrations#logout', :as => :logout
   match 'prelogin' => 'registrations#prelogin', :as => :prelogin
   match 'login' => 'registrations#login', :as => :login
+  match 'sign_up' => 'registrations#new', :as => :sign_up
+  match 'create_user' => 'registrations#create', :as => :create_user, :via => :post
   
   # APPLICATION ROOT
   root :to => 'registrations#prelogin'

@@ -1,22 +1,43 @@
+<%
+  my_current_url = remove_param_from_url(request.url, 'delete_item')
+  my_current_url = add_page_parameter(@page, my_current_url)
+%>
+
 <% if @delete_item.blank? %>
   $('#my_media_elements').hide('fade', {}, 500, function() {
     $('#my_media_elements').replaceWith("<%= j(render(:partial => "media_elements/my_media_elements")) %>");
+    <% if @media_elements.any? %>
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+    <% else %>
+      $('#general_pagination').html('');
+    <% end %>
   });
 <% else %>
   var to_delete = $('#<%= @delete_item %>');
   to_delete.hide('scale', {percent: 0}, 500, function() {
     $('#my_media_elements').replaceWith("<%= j(render(:partial => "media_elements/my_media_elements")) %>");
+    <% if @media_elements.any? %>
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+    <% else %>
+      $('#general_pagination').html('');
+    <% end %>
   });
 <% end %>
 
-$('#info_container').data('currenturl', '<%= remove_param_from_url(request.url, 'delete_item') %>');
+$('#info_container').data('currenturl', '<%= j(my_current_url) %>');
 
 <% if @display == Formats::EXPANDED %>
-  $('#display_expanded_media_elements').addClass('current');
-  $('#display_compact_media_elements').removeClass('current');
+  if($('#display_compact_media_elements').hasClass('current')) {
+    $('#media_elements_title_bar').replaceWith('<%= j(render(:partial => 'media_elements/title_bar')) %>');
+    $("#for_page_media_elements").selectbox();
+    $("#filter_media_elements").selectbox();
+  }
 <% end %>
 
 <% if @display == Formats::COMPACT %>
-  $('#display_compact_media_elements').addClass('current');
-  $('#display_expanded_media_elements').removeClass('current');
+  if($('#display_expanded_media_elements').hasClass('current')) {
+    $('#media_elements_title_bar').replaceWith('<%= j(render(:partial => 'media_elements/title_bar')) %>');
+    $("#for_page_media_elements").selectbox();
+    $("#filter_media_elements").selectbox();
+  }
 <% end %>

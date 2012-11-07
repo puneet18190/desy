@@ -111,7 +111,7 @@ $(document).ready(function() {
     return '/media_elements?' + param_format + '&' + param_filter;
   }
   
-  $('#filter_lessons').change(function() {
+  $('body').on('change', '#filter_lessons', function() {
     var filter = $('#filter_lessons option:selected').val();
     var redirect_url = '/lessons?filter=' + filter;
     $.ajax({
@@ -120,7 +120,7 @@ $(document).ready(function() {
     });
   });
   
-  $('#filter_media_elements').change(function() {
+  $('body').on('change', '#filter_media_elements', function() {
     var filter = $('#filter_media_elements option:selected').val();
     var redirect_url = getCompleteMediaElementsUrlWithoutFilter() + '&filter=' + filter;
     $.ajax({
@@ -129,7 +129,7 @@ $(document).ready(function() {
     });
   });
   
-  $('#for_page_media_elements').change(function() {
+  $('body').on('change', '#for_page_media_elements', function() {
     var for_page = $('#for_page_media_elements option:selected').val();
     var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + '&for_page=' + for_page;
     $.ajax({

@@ -16,6 +16,10 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  def has_media_element?(position)
+    MediaElementsSlide.where(:slide_id => self.id, :position => position).any?
+  end
+  
   def previous
     self.new_record? ? nil : Slide.where(:lesson_id => self.lesson_id, :position => (self.position - 1)).first
   end

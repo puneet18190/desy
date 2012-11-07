@@ -2,25 +2,33 @@
 
 <div class="timedPopUp" id="dialog-ok" style="display:none"></div>
 
-<div class="mediaElementInfoPopUp" id="load-media-element" style="display:none">
-
-   <div class="_media_element_pop_up_container">
-				<div class="_change_info_container" style="display:block; border:1px solid red">
-					<h1><%= t('captions.modify_info_element') %></h1>
-					<p><%= t('descriptions.change_info_element') %></p>
-					<form>
-						<div class="cols" style="float:left">
-							<input type="text" name="title" value="title">
-							<br>
-							<%= text_area_tag 'description', 'beh' %>
-						</div>
-						<div class="cols" style="float:right">
-							<%= text_area_tag 'tags', 'tags' %>
-							<br>
-							<%= submit_tag 'save modify' %> <a href="">or cancel</a>
-						</div>
-					</form>
-				</div>
-
+<div class="mediaElementInfoPopUp"  id="load-media-element" style="display:none;">
+  <div class="_media_element_pop_up_container">
+    <div class="_change_info_container" style="display:block; width:794px; padding:20px 20px 0px 20px">
+			<form class="formModifyInfo">
+			<div class="cols" style="float:left">
+			 <div class="selectButton">
+         <input class="uploadFile" name="" type="file">
+         <input type="button" value="" class="uploadFileButton submitButton">
+         <input class="fk_carica_elemento_file" name="fake_file" placeholder="Nessun file selezionato" type="text">
+       </div>
+			 <br class="clearfloat">
+				 <input type="text" name="title" value="title">
+				 <br>
+				 <%= text_area_tag 'description', 'beh' %>
+			 </div>
+			 <div class="cols" style="float:right;">
+				 <h1>upload new element</h1>
+				 <p style="padding-bottom:15px">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut </p>
+				 <%= text_area_tag 'tags', 'tags' %>
+				 <br>
+				 <%= submit_tag 'upload' %> <a href="">or cancel</a>
+			 </div>
+		 </form>
+   </div>
+  </div>
+  <div class="barraLoading">
   </div>
 </div>
+
+<div class="confirmPopUp" id="dialog-confirm" style="display:none"></div>

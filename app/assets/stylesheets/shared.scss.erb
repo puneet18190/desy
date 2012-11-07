@@ -435,7 +435,7 @@
 		width:92%;
 		margin-bottom:20px;
 		font: 95% Arial, Helvetica, sans-serif;
-		
+		color: #fff;
 	}
 	input[type="submit"] {
     font: 130% 'Nunito', sans-serif;
@@ -455,8 +455,70 @@
 		margin-bottom:20px
 	}
 	a {color:#fff}
+	
+	
 }
-
+.selectButton {
+  width: 300px;
+  padding: 0px;
+  
+	input {
+	  border:none;
+		background-color:transparent;
+		cursor:pointer;
+	}
+	::-webkit-input-placeholder { 
+	  color:#fff; 
+	}
+  input:-moz-placeholder { 
+	  color:#fff; 
+	}
+	
+  .uploadFile {
+    position: relative;
+    z-index: 200;
+    width: 210px;
+    opacity: 0;
+    -moz-opacity: 0;
+	}
+	.uploadFileButton {
+    position: absolute;
+    left: 30px;
+    top: 45px;
+    z-index: 0;
+    width:54px;
+		height:54px;
+		background: url(<%= asset_path 'add_upload_element.svg' %>) 0 0 no-repeat;
+		background-size: 9em;
+		&:hover {
+		  background: url(<%= asset_path 'add_upload_element.svg' %>) 0 0 no-repeat;
+		  background-size: 9em;
+		  background-position: -4.5em 0; 
+		}
+	}
+  .submitButton {
+    margin: 0;
+    padding: 0px;
+    display: inline;
+  }
+  .fk_carica_elemento_file {
+    position: absolute;
+		width:180px;
+		padding:5px 20px;
+    left: 100px;
+    top: 60px;
+    z-index: 0;
+    background-color:#454343;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+		text-align:center;
+	}
+}
+.barraLoading {
+	  width:100%; 
+		background-color:#fff;
+		padding-top:30px;
+	}
 .lower {
   text-transform: lowercase;
 }

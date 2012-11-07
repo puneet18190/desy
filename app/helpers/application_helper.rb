@@ -9,22 +9,28 @@ module ApplicationHelper
   end
   
   def add_page_parameter(page, an_url)
+    an_url = an_url.html_safe
     x = an_url.split('?')
     return "#{an_url}?page=#{page}".html_safe if x.length == 1
     x = x[1].split('&')
     flag = false
     old_page = 0
+    cont = 1
+    pivot = '&'
     x.each do |xx|
       yy = xx.split('=')
       if yy[0] == 'page'
         flag = true
         old_page = yy[1]
+        pivot = '?' if cont == 1
       end
+      cont += 1
     end
-    return flag ? an_url.gsub("page=#{old_page}", "page=#{page}").html_safe : "#{an_url}&page=#{page}".html_safe
+    return flag ? an_url.gsub("#{pivot}page=#{old_page}", "#{pivot}page=#{page}").html_safe : "#{an_url}&page=#{page}".html_safe
   end
   
   def remove_param_from_url(url, param)
+    url = url.html_safe
     return url if (url =~ /#{param}/).nil?
     x = url.split("#{param}=")
     pivot = "#{param}="
@@ -38,9 +44,9 @@ module ApplicationHelper
     end
     new_url.chop! if new_url.last == '?'
     new_url.gsub!('?&', '?') if !(new_url =~ /\?&/).nil?
-    return new_url
+    return new_url.html_safe
   end
-
+  
   # Metodo per aiutare il debug nelle viste
   def js_log(object)
     javascript_tag "console.log(#{object.inspect.to_json})"
