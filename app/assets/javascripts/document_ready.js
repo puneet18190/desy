@@ -3,7 +3,8 @@ $(document).ready(function() {
   
   // OTHER BUTTONS
   
-  $('.load_media_element').click(function() {
+  $('._load_media_element').click(function(e) {
+    e.preventDefault();
     showLoadMediaElementPopUp();
   });
   
@@ -114,28 +115,19 @@ $(document).ready(function() {
   $('body').on('change', '#filter_lessons', function() {
     var filter = $('#filter_lessons option:selected').val();
     var redirect_url = '/lessons?filter=' + filter;
-    $.ajax({
-      type: 'get',
-      url: redirect_url
-    });
+    $.get(redirect_url);
   });
   
   $('body').on('change', '#filter_media_elements', function() {
     var filter = $('#filter_media_elements option:selected').val();
     var redirect_url = getCompleteMediaElementsUrlWithoutFilter() + '&filter=' + filter;
-    $.ajax({
-      type: 'get',
-      url: redirect_url
-    });
+    $.get(redirect_url);
   });
   
   $('body').on('change', '#for_page_media_elements', function() {
     var for_page = $('#for_page_media_elements option:selected').val();
     var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + '&for_page=' + for_page;
-    $.ajax({
-      type: 'get',
-      url: redirect_url
-    });
+    $.get(redirect_url);
   });
   
   
@@ -345,20 +337,14 @@ $(document).ready(function() {
   $('#tooltip_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
     if(isAtBottom && (parseInt($('#tooltip_content').data('offset')) < parseInt($('#tooltip_content').data('totnumber')))) {
       var offset = $('#tooltip_content').data('offset');
-      $.ajax({
-        type: 'get',
-        url: '/notifications/get_new_block?offset=' + offset
-      });
+      $.get('/notifications/get_new_block?offset=' + offset);
     }
   });
   
   $('body').on('click', '._destroy_notification', function() {
     var my_id = $(this).data('param');
     var offset = $('#tooltip_content').data('offset');
-    $.ajax({
-      type: 'post',
-      url: '/notifications/' + my_id + '/destroy?offset=' + offset
-    });
+    $.post('/notifications/' + my_id + '/destroy?offset=' + offset);
   });
   
   
