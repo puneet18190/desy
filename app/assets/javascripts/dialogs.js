@@ -21,18 +21,15 @@ function showTimedPopUp(content, id) {
   }
 }
 
-function showConfirmPopUp(content, msg_ok, msg_no) {
+function showConfirmPopUp(content, msg_ok, msg_no, callback_ok, callback_no) {
   var obj = $('#dialog-confirm');
   content = '<img src="/assets/alert.png"/><h1>' + content + '</h1>';
   var dialog_buttons = {};
-  dialog_buttons[msg_ok] = function() {
-    alert('Okkk');
-  }
-  dialog_buttons[msg_no] = function() {
-    obj.dialog('close');
-  }
+  dialog_buttons[msg_ok] = callback_ok;
+  dialog_buttons[msg_no] = callback_no;
   if(obj.hasClass('ui-dialog-content')) {
     obj.html(content);
+    obj.dialog('option', 'buttons', dialog_buttons)
     obj.dialog('open');
   } else {
     obj.css('display', 'block');
