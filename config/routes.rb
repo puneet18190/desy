@@ -53,7 +53,6 @@ Desy::Application.routes.draw do
   get  'logout' => 'users#logout', :as => :logout
   
   # NOT LOGGED USER
-<<<<<<< HEAD
   get  'home' => 'prelogin#home', :as => :home
   get  'login' => 'prelogin#login', :as => :login
   get  'sign_up' => 'prelogin#registration', :as => :sign_up
