@@ -266,3 +266,10 @@ body .ui-tooltip { border-width:2px; }
   -webkit-box-shadow: 1px 5px 5px #c7c5c5;
   box-shadow: 1px 5px 5px #c7c5c5;
 }
+
+._gallery_img_expanded.ui-dialog-content{
+  background-color:#fff;
+  color: #666;
+  height: 270px;
+  width: 420px;
+}

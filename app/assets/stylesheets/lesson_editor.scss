@@ -2,6 +2,8 @@
 
 html.lesson-editor-layout{
   min-height: 100%;
+  
+  $orange: #f29400;
 
   body {
     font-family: Arial, Verdana, sans-serif;
@@ -39,7 +41,7 @@ html.lesson-editor-layout{
 
   h1, h2, h3, h4, h5, h6, h7 {
     font-family: "Nunito", Helvetica, sans-serif;
-    color: #f29400;
+    color: $orange;
   }
 
   h2 {
@@ -79,8 +81,8 @@ html.lesson-editor-layout{
           border: 1px solid white;
         }
         &.active {
-          background-color: #f29400;
-          border: 1px solid #f29400;
+          background-color: $orange;
+          border: 1px solid $orange;
           color: white;
         }
         &.add-slide {
@@ -203,7 +205,7 @@ html.lesson-editor-layout{
           color: #777;
         }
         .author .name{
-          color: #f29400;
+          color: $orange;
         }
       }
     }
@@ -264,7 +266,7 @@ html.lesson-editor-layout{
             color: #777;
           }
           .author .name{
-            color: #f29400;
+            color: $orange;
           }
         }
         
@@ -276,21 +278,29 @@ html.lesson-editor-layout{
         margin-left:0px;
         background-color: white;
         &.title{
-          .only-title{
+          .only-title textarea{
             padding:150px 100px;
-            width: 700px;
+            width: 680px;
             text-align:center;
             font-size: 70px;
+            color: $orange;
+            font-family: "Nunito", sans-serif;
           }
         }
         &.text{
-            h2.text{
+            h2.text input{
                 font-size: 70px;
-                padding: 40px 20px;
+                padding: 20px;
+                color: $orange;
+                width: 830px;
+                font-family: "Nunito", sans-serif;
             }
-            .text-content{
-              margin: 20px;
-              padding: 10px;
+            .text-content textarea{
+              margin: 10px;
+              padding: 20px;
+              color: $orange;
+              width: 830px;
+              height: 350px;
             }
         }
         &.audio{
@@ -347,9 +357,19 @@ html.lesson-editor-layout{
         }
         
         &.image2{
-          padding: 20px;
-          height: 550px;
-          width: 860px;
+          padding: 0;
+          height: 590px;
+          width: 900px;
+          .image2-p2{
+            float:left;
+            width:400px;
+            padding:20px 0 20px 20px;
+          }
+          .image2-p1{
+            float:right;
+            width:400px;
+            padding:20px 20px 20px 0;
+          }
         }
         &.image1{
           padding: 20px;
@@ -373,7 +393,7 @@ html.lesson-editor-layout{
         
         .new_slide{
           height: 570px;
-          background-color: #f29400;
+          background-color: $orange;
           padding: 20px 0 0 40px;
           a img{
             -moz-opacity: .50;
@@ -440,7 +460,7 @@ html.lesson-editor-layout{
       width: 900px;
       margin:0;
       padding:0;
-      background-color: #f29400;
+      background-color: $orange;
       color: #fff;
       .box{
         height: 460px;
@@ -555,7 +575,7 @@ html.lesson-editor-layout{
       .sbOptions a:hover,
       .sbOptions a:focus,
       .sbOptions a.sbFocus{
-    	  color: #f29400;
+    	  color: $orange;
     	  background-color:#fff;
       }
       .info-slide-footer{
@@ -567,7 +587,7 @@ html.lesson-editor-layout{
         padding: 7px 15px;
         font-size: 13px;
         .author .name{
-          color: #f29400;
+          color: $orange;
         }
       }
     }
@@ -583,6 +603,14 @@ html.lesson-editor-layout{
     font-size: 16px;
     img{
       margin-bottom: 10px;
+    }
+    &.cover-choose-image-left{
+      width:400px;
+      float:left;
+    }
+    &.cover-choose-image-right{
+      width:400px;
+      float:right;
     }
   }
 

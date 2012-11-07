@@ -179,6 +179,11 @@ $(document).ready(function() {
     num = $(this).find("a").attr('href');
     showImageMediaElementPopUp(num);
   });
+
+  $('body').on('click', '._close_popup', function() {
+    var param = $(this).attr("data-param");
+    closePopUp('_gallery_img_expanded_'+param);
+  });
   
   
   // LESSON BUTTONS
