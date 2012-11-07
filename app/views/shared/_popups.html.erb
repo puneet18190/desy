@@ -8,7 +8,13 @@
 			<form class="formModifyInfo">
 			<div class="cols" style="float:left">
 			 <!-- PER ADRIANO una volta scelto l'elemento al posto di select the item... apparirà il path dell'elemento -->
-			 <div class="selectButton"><a href=""><span>select the item to be loaded</span></a></div>
+			 <div class="selectButton">
+            
+            <input class="uploadFile" name="" type="file">
+            <input type="button" value="" class="uploadFileButton submitButton">
+            <input class="fk_carica_elemento_file" name="fake_file" placeholder="Nessun file selezionato" type="text">
+          
+          </div>
 			 <br class="clearfloat">
 				 <input type="text" name="title" value="title">
 				 <br>
@@ -27,3 +33,5 @@
   <div class="barraLoading">
   </div>
 </div>
+
+<div class="confirmPopUp" id="dialog-confirm" style="display:none"></div>

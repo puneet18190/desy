@@ -21,6 +21,25 @@ function showTimedPopUp(content, id) {
   }
 }
 
+function showConfirmPopUp(content) {
+  var obj = $('#dialog-confirm');
+  if(obj.hasClass('ui-dialog-content')) {
+    obj.html(content);
+    obj.dialog('open');
+  } else {
+    obj.css('display', 'block');
+    obj.html(content);
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      width: 485,
+      show: "fade",
+      hide: "fade"
+    });
+  }
+}
+
+
 function showLoadMediaElementPopUp() {
   var obj = $('#load-media-element');
   if(obj.hasClass('ui-dialog-content')) {
