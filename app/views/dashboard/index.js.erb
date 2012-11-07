@@ -1,12 +1,15 @@
 var id_of_the_page_to_reload = '';
+var number_of_the_page_to_reload = 1;
 
 $('.suggested_lessons_page').each(function() {
   if($(this).css('display') == 'block') {
     id_of_the_page_to_reload = $(this).attr('id');
     var parse_array = id_of_the_page_to_reload.split('_');
     var previous_page = parseInt(parse_array[parse_array.length - 1]) - 1;
+    number_of_the_page_to_reload = previous_page + 1;
     if(previous_page * <%= @lessons_for_page %> >= <%= @lessons.length %>) {
       id_of_the_page_to_reload = 'suggested_lessons_' + previous_page;
+      number_of_the_page_to_reload = previous_page;
     }
   }
 });
@@ -16,8 +19,10 @@ $('.suggested_media_elements_page').each(function() {
     id_of_the_page_to_reload = $(this).attr('id');
     var parse_array = id_of_the_page_to_reload.split('_');
     var previous_page = parseInt(parse_array[parse_array.length - 1]) - 1;
+    number_of_the_page_to_reload = previous_page + 1;
     if(previous_page * <%= @media_elements_for_page %> >= <%= @media_elements.length %>) {
       id_of_the_page_to_reload = 'suggested_media_elements_' + previous_page;
+      number_of_the_page_to_reload = previous_page;
     }
   }
 });
@@ -34,6 +39,7 @@ to_delete.hide('scale', {percent: 0}, 500, function() {
   $('.suggested_lessons_page').css('display', 'none');
   $('.suggested_media_elements_page').css('display', 'none');
   $('#' + id_of_the_page_to_reload).css('display', 'block');
+  reloadLessonsDashboardPagination(number_of_the_page_to_reload, <%= (@lessons.length.to_f / CONFIG['lessons_for_page_in_dashboard']).ceil %>)
 });
 
 $('#info_container').data('currenturl', '<%= remove_param_from_url(request.url, 'delete_item') %>');
