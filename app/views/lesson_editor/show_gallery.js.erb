@@ -4,22 +4,24 @@ slideN.prepend("<%= escape_javascript(render :partial => 'shared/image_gallery')
 slideN.siblings(".buttons").hide();
 $("#slide-numbers").hide();
 
-$("._close_image_gallery").click(function(){
+$("._close_image_gallery").click(function(e){
+  e.preventDefault();
   $("#image-gallery").remove();
   $(".slide-content.slide-<%=@slide.position %>").children().show();
   $("#slide-numbers").show();
   $(".buttons").show();
 });
 
-$("._add-image_to_slide").click(function(){
+$("._add-image_to_slide").click(function(e){
+  e.preventDefault();
   $("#image-gallery").remove();
   var sld = $(".slide-content.slide-<%=@slide.position %>").first();
   sld.children().show();
-  sld.find("input.media-tag-cover-1").val($(this).attr("data-param"));
-  sld.find(".cover-choose-image").remove();
+  sld.find("input.media-tag-cover-<%= @img_position %>").val($(this).attr("data-param"));
+  sld.find("._cover_choose_image_<%= @img_position %>").remove();
   closePopUp('_gallery_img_expanded_'+$(this).attr("data-param"));
-  sld.find("img").remove();
-  sld.prepend("<a href='/lesson_editor/show_gallery/<%= @slide.id %>' class='show-gallery' data-remote='true'><img alt='cover-imgage' src='http://lorempixel.com/900/560' /></a>")
+  sld.find("img._slide_image").remove();
+  sld.prepend("<a href='/lesson_editor/show_gallery/<%= @slide.id %>?position=<%=@img_position%>' class='show-gallery' data-remote='true'><img src='http://lorempixel.com/900/560/abstract/3' alt='added-imgage' class='_slide_image <%=@slide.kind%>-p<%=@img_position%>' /></a>")
   $("#slide-numbers").show();
   $(".buttons").show();
 });

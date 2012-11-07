@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  $("._save_slide").click(function() {
+  $("._save_slide").click(function(e) {
+    e.preventDefault();
     $(this).parents(".buttons").siblings().find('form').submit();
   });
   $("#lesson_subject").selectbox();
@@ -28,7 +29,8 @@ $(document).ready(function() {
          $(this).children('.tooltip').animate({"opacity": "hide"}, "fast");
      });
   
-  $('#slide-numbers li a:not(.add-slide)').click(function(){
+  $('#slide-numbers li a:not(.add-slide)').click(function(e){
+    e.preventDefault();
     page = $(this).text();
     if (parseInt(page) == 1){
       marginReset = 0

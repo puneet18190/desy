@@ -4,7 +4,7 @@
     <ul id="slide-numbers">
       <%- @slides.each_with_index do |slide, index|%>
         <li>
-          <a href="#" class="<%= (index == 0) ? 'active' : ''%>"><%= index + 1 %></a>
+          <a href="#<%= slide.position %>" class="<%= (index == 0) ? 'active' : ''%>"><%= index + 1 %></a>
           <div class="tooltip">
             <%= render :partial => "shared/lesson_thumbnails/small/#{slide.kind}" , :locals => { :slide => slide }%>
           </div>

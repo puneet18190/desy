@@ -52,6 +52,7 @@ class LessonEditorController < ApplicationController
   def show_gallery
     @media_elements = Image.limit(35)
     @slide = Slide.find params[:slide]
+    @img_position = params[:position]
     respond_to do |format|
       format.js
     end

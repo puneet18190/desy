@@ -278,11 +278,13 @@ html.lesson-editor-layout{
         margin-left:0px;
         background-color: white;
         &.title{
-          .only-title{
+          .only-title textarea{
             padding:150px 100px;
-            width: 700px;
+            width: 680px;
             text-align:center;
             font-size: 70px;
+            color: $orange;
+            font-family: "Nunito", sans-serif;
           }
         }
         &.text{
@@ -291,6 +293,7 @@ html.lesson-editor-layout{
                 padding: 20px;
                 color: $orange;
                 width: 830px;
+                font-family: "Nunito", sans-serif;
             }
             .text-content textarea{
               margin: 10px;
@@ -354,9 +357,19 @@ html.lesson-editor-layout{
         }
         
         &.image2{
-          padding: 20px;
-          height: 550px;
-          width: 860px;
+          padding: 0;
+          height: 590px;
+          width: 900px;
+          .image2-p2{
+            float:left;
+            width:400px;
+            padding:20px 0 20px 20px;
+          }
+          .image2-p1{
+            float:right;
+            width:400px;
+            padding:20px 20px 20px 0;
+          }
         }
         &.image1{
           padding: 20px;
@@ -590,6 +603,14 @@ html.lesson-editor-layout{
     font-size: 16px;
     img{
       margin-bottom: 10px;
+    }
+    &.cover-choose-image-left{
+      width:400px;
+      float:left;
+    }
+    &.cover-choose-image-right{
+      width:400px;
+      float:right;
     }
   }
 
