@@ -21,9 +21,16 @@ function showTimedPopUp(content, id) {
   }
 }
 
-function showConfirmPopUp(content) {
+function showConfirmPopUp(content, msg_ok, msg_no) {
   var obj = $('#dialog-confirm');
-	content = '<img src="/assets/alert.png"/><h1>' + content + '</h1>';
+  content = '<img src="/assets/alert.png"/><h1>' + content + '</h1>';
+  var dialog_buttons = {};
+  dialog_buttons[msg_ok] = function() {
+    alert('Okkk');
+  }
+  dialog_buttons[msg_no] = function() {
+    obj.dialog('close');
+  }
   if(obj.hasClass('ui-dialog-content')) {
     obj.html(content);
     obj.dialog('open');
@@ -35,7 +42,8 @@ function showConfirmPopUp(content) {
       resizable: false,
       width: 485,
       show: "fade",
-      hide: "fade"
+      hide: "fade",
+      buttons: dialog_buttons
     });
   }
 }
