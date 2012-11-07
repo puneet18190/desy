@@ -351,9 +351,14 @@ html.lesson-editor-layout{
           }
         }
         &.image3{
-          padding: 20px;
-          height: 550px;
-          width: 860px;
+          padding: 0;
+          height: 590px;
+          width: 900px;
+          img.image3-p1{
+            padding: 20px;
+            width: 860px;
+            height: 550px;
+          }
         }
         
         &.image2{
@@ -605,11 +610,11 @@ html.lesson-editor-layout{
       margin-bottom: 10px;
     }
     &.cover-choose-image-left{
-      width:400px;
+      width:440px;
       float:left;
     }
     &.cover-choose-image-right{
-      width:400px;
+      width:440px;
       float:right;
     }
   }
