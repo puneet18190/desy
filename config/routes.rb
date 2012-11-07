@@ -42,6 +42,7 @@ Desy::Application.routes.draw do
   match 'lesson_editor/:lesson_id/add_slide/:position' => 'lesson_editor#add_slide', :via => :post
   match 'lesson_editor/add_new_slide/:slide' => 'lesson_editor#add_new_slide', :as => :add_new_slide
   match 'lesson_editor/show_gallery/:slide' => 'lesson_editor#show_gallery', :as => :show_gallery
+  match 'lesson_editor/save_slide' => 'lesson_editor#save_slide', :as => :save_slide
   
   # SEARCH LESSONS OR MEDIA ELEMENTS
   match 'search' => 'search#index', :as => :search_items, :via => :get
@@ -52,12 +53,12 @@ Desy::Application.routes.draw do
   match 'logout' => 'users#logout', :as => :logout
   
   # NOT LOGGED USER
-  match 'prelogin' => 'prelogin#index', :as => :prelogin
+  match 'home' => 'prelogin#home', :as => :home
   match 'login' => 'prelogin#login', :as => :login
   match 'sign_up' => 'prelogin#registration', :as => :sign_up
   match 'create_user' => 'prelogin#create_registration', :as => :create_user, :via => :post
   
   # APPLICATION ROOT
-  root :to => 'prelogin#index'
+  root :to => 'prelogin#home'
   
 end

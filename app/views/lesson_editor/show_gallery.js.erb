@@ -1,9 +1,27 @@
-var slideN = $(".slide-content.slide-<%=@slide.position %>");
-slideN.removeClass("cover title video1 video2 audio image1 image2 image3 image4 text");
-slideN.html("<%= escape_javascript(render :partial => 'shared/image_gallery') %>");
-slideN.siblings(".buttons").find("a").each(function(){
-  $(this).hide();
+var slideN = $(".slide-content.slide-<%=@slide.position %>").first();
+slideN.children().hide(); 
+slideN.prepend("<%= escape_javascript(render :partial => 'shared/image_gallery') %>");
+slideN.siblings(".buttons").hide();
+$("#slide-numbers").hide();
+
+$("._close_image_gallery").click(function(e){
+  e.preventDefault();
+  $("#image-gallery").remove();
+  $(".slide-content.slide-<%=@slide.position %>").children().show();
+  $("#slide-numbers").show();
+  $(".buttons").show();
 });
-$("#slide-numbers li a").each(function(){
-  $(this).hide();
+
+$("._add-image_to_slide").click(function(e){
+  e.preventDefault();
+  $("#image-gallery").remove();
+  var sld = $(".slide-content.slide-<%=@slide.position %>").first();
+  sld.children().show();
+  sld.find("input.media-tag-cover-<%= @img_position %>").val($(this).attr("data-param"));
+  sld.find("._cover_choose_image_<%= @img_position %>").remove();
+  closePopUp('_gallery_img_expanded_'+$(this).attr("data-param"));
+  sld.find("img._slide_image").remove();
+  sld.prepend("<a href='/lesson_editor/show_gallery/<%= @slide.id %>?position=<%=@img_position%>' class='show-gallery' data-remote='true'><img src='http://lorempixel.com/900/560/abstract/3' alt='added-imgage' class='_slide_image <%=@slide.kind%>-p<%=@img_position%>' /></a>")
+  $("#slide-numbers").show();
+  $(".buttons").show();
 });

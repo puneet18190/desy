@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="prelogin-layout <%= controller_html_class %> <%= action_html_class %>">
+<html class="home-layout <%= controller_html_class %> <%= action_html_class %>">
 <head>
   <title>Desy</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= render :partial => "shared/popups" %>
+<%= render :partial => "shared/loading" %>
+<div class="top"></div>
 <div class="container">
   	<%= yield %>
 </div>

@@ -1,7 +1,8 @@
-<div class="_gallery_img_expanded _gallery_img_expanded_<%= media_element.id%>">
-  <%= image_tag("http://lorempixel.com/400/266")%>
+<div class="_gallery_img_expanded _gallery_img_expanded_<%= media_element.id%>" id="_gallery_img_expanded_<%= media_element.id%>" data-param="<%= media_element.id %>">
+  <%= image_tag("http://lorempixel.com/385/266")%>
   <div class="caption">
-    <a href="add" class="pull-right">+</a>
+    <a href="#" class="close _close_popup pull-right" data-param="<%= media_element.id %>">x</a>
+    <a href="#" class="pull-right _add-image_to_slide image-<%= media_element.id %>" data-param="<%= media_element.id %>">+</a>
     <p><%= media_element.title %></p>
   </div>
 </div>
