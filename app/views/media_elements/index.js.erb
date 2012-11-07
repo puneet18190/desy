@@ -27,11 +27,17 @@
 $('#info_container').data('currenturl', '<%= j(my_current_url) %>');
 
 <% if @display == Formats::EXPANDED %>
-  $('#display_expanded_media_elements').addClass('current');
-  $('#display_compact_media_elements').removeClass('current');
+  if($('#display_compact_media_elements').hasClass('current')) {
+    $('#media_elements_title_bar').replaceWith('<%= j(render(:partial => 'media_elements/title_bar')) %>');
+    $("#for_page_media_elements").selectbox();
+    $("#filter_media_elements").selectbox();
+  }
 <% end %>
 
 <% if @display == Formats::COMPACT %>
-  $('#display_compact_media_elements').addClass('current');
-  $('#display_expanded_media_elements').removeClass('current');
+  if($('#display_expanded_media_elements').hasClass('current')) {
+    $('#media_elements_title_bar').replaceWith('<%= j(render(:partial => 'media_elements/title_bar')) %>');
+    $("#for_page_media_elements").selectbox();
+    $("#filter_media_elements").selectbox();
+  }
 <% end %>

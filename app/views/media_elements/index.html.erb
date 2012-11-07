@@ -5,35 +5,7 @@
 <br class="clearfloat">
 <div class="griglia-contenuti">
   <div class="elements-content">
-    <div class="title-bar">
-      <h1 style="width:45%" class="lower"><%= t('captions.elements') %></h1>
-      <p id="format_media_elements">
-        <%= t('captions.display_mode') %>: <%= link_to t('captions.large'), '/media_elements?display=expanded', :class => 'current', :id => 'display_expanded_media_elements', :remote => true %> - <%= link_to t('captions.small'), '/media_elements?display=compact', :id => 'display_compact_media_elements', :remote => true %>
-      </p>
-      <div style="padding-left:20px">
-        <h2 style="padding-right:10px" class="lower"><%= t('captions.display') %></h2>
-        <div class="selectDisplay">
-          <select name="display" id="for_page_media_elements">
-            <% counter = true %>
-            <% @for_page_options.each do |f| %>
-              <option value="<%= f %>" <%= counter ? "selected=\"selected" : '' %>><%= f %></option>
-              <% counter = false %>
-            <% end %>
-          </select>
-        </div>
-      </div>
-      <div>
-        <h2 style="padding-right:10px"><%= t('captions.show') %></h2>
-        <select name="ricerca" id="filter_media_elements">
-          <% counter = true %>
-          <% Filters::MEDIA_ELEMENTS_SET.each do |f| %>
-            <% caption = Filters::CAPTIONS[f] %>
-            <option value="<%= f %>" <%= counter ? "selected=\"selected" : '' %>><%= caption %></option>
-            <% counter = false %>
-          <% end %>
-        </select>
-      </div>
-    </div>
+    <%= render :partial => 'media_elements/title_bar' %>
     <br class="clearfloat">
     <%= render :partial => "media_elements/my_media_elements" %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
