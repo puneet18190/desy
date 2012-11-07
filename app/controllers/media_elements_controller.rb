@@ -79,7 +79,7 @@ class MediaElementsController < ApplicationController
   
   def get_own_media_elements
     current_user_own_media_elements = @current_user.own_media_elements(@page, @for_page, @filter)
-    @my_media_elements_views = current_user_own_media_elements[:records]
+    @media_elements = current_user_own_media_elements[:records]
     @pages_amount = current_user_own_media_elements[:pages_amount]
   end
   

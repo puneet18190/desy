@@ -153,7 +153,7 @@ class LessonsController < ApplicationController
   
   def get_own_lessons
     current_user_own_lessons = @current_user.own_lessons(@page, @for_page, @filter)
-    @my_lessons_views = current_user_own_lessons[:records]
+    @lessons = current_user_own_lessons[:records]
     @pages_amount = current_user_own_lessons[:pages_amount]
   end
   
