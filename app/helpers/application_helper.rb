@@ -9,6 +9,7 @@ module ApplicationHelper
   end
   
   def add_page_parameter(page, an_url)
+    an_url = an_url.html_safe
     x = an_url.split('?')
     return "#{an_url}?page=#{page}".html_safe if x.length == 1
     x = x[1].split('&')
@@ -25,6 +26,7 @@ module ApplicationHelper
   end
   
   def remove_param_from_url(url, param)
+    url = url.html_safe
     return url if (url =~ /#{param}/).nil?
     x = url.split("#{param}=")
     pivot = "#{param}="
@@ -38,9 +40,9 @@ module ApplicationHelper
     end
     new_url.chop! if new_url.last == '?'
     new_url.gsub!('?&', '?') if !(new_url =~ /\?&/).nil?
-    return new_url
+    return new_url.html_safe
   end
-
+  
   # Metodo per aiutare il debug nelle viste
   def js_log(object)
     javascript_tag "console.log(#{object.inspect.to_json})"

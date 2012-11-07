@@ -9,6 +9,11 @@
   });
 <% end %>
 
-$('#info_container').data('currenturl', '<%= remove_param_from_url(request.url, 'delete_item') %>');
+<%
+  my_current_url = remove_param_from_url(request.url, 'delete_item')
+  my_current_url = add_page_parameter(@page, my_current_url)
+%>
 
-$('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => remove_param_from_url(request.url, 'delete_item')})) %>");
+$('#info_container').data('currenturl', '<%= j(my_current_url) %>');
+
+$('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
