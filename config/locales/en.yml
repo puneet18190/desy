@@ -75,6 +75,7 @@ en:
     enter_lesson_title: 'Enter the title of the lesson'
     enter_lesson_description: 'Describe your lesson...'
     enter_lesson_tags: 'Enter tags'
+    enter_title: "Enter title"
     help_using_desy: 'Need help using Desy?'
     insert_tag: 'Insert a tag'
     institute: 'Institute'
@@ -119,8 +120,9 @@ en:
     you_believe_content_unappropriate: 'You believe this content is unappropriate?'
   descriptions:
     change_info_element: "You can modify the data of your element. Inserting tags you will make it available to DESY community, remember that people are more likely to find your element if you insert more tags"
-    prelogin: "DESY has arrived, the new multimedia platform dedicated to the world of the school. Thanks to DESY will be possible to create multimedia lessons, uploading their images or videos or using those in the database of DESY. Share your work with other users DESY to create a large network of educational content."
     new_lesson: "Fill in the form to create a new lesson."
+    prelogin: "DESY has arrived, the new multimedia platform dedicated to the world of the school. Thanks to DESY will be possible to create multimedia lessons, uploading their images or videos or using those in the database of DESY. Share your work with other users DESY to create a large network of educational content."
+    slide_text: "Insert slide content here."
     update_lesson: "Use the form below to edit your lesson informations."
 
 # (3) accessors: empty situations, popups, help, etc

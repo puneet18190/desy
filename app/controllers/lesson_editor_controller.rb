@@ -50,7 +50,7 @@ class LessonEditorController < ApplicationController
   
   ## prompt image gallery in slide ##
   def show_gallery
-    @media_elements = MediaElement.limit(35)
+    @media_elements = Image.limit(35)
     @slide = Slide.find params[:slide]
     respond_to do |format|
       format.js
@@ -63,21 +63,31 @@ class LessonEditorController < ApplicationController
     @slide = @lesson.add_slide params[:kind], params[:position]
   end
   
+  def save_slide
+    save_current_slide
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   private
   
   def save_current_slide
     current_slide = Slide.find params[:slide_id]
+    current_slide.title = params[:title] if params[:title]
+    current_slide.text = params[:text] if params[:text]      
     current_slide.save
     (1...5).each do |i|
       if !params["media_element_#{i}"].blank?
-        mes = MediaElementSlide.where(:position => i, :slide_id => current_slide.id).first
+        mes = MediaElementsSlide.where(:position => i, :slide_id => current_slide.id).first
         if mes.nil? || mes.media_element_id != params["media_element_#{i}"].to_i
-          mes.destroy
-          mes2 = MediaElementSlide.new
+          mes.destroy if !mes.nil?
+          mes2 = MediaElementsSlide.new
           mes2.position = i
           mes2.slide_id = current_slide.id
           mes2.media_element_id = params["media_element_#{i}"].to_i
-          mes2.save
+          mes2.alignment = params[:alignment] ? params[:alignment] : 0
+          mes2.save!
         end
       end
     end

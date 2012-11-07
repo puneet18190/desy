@@ -42,6 +42,7 @@ Desy::Application.routes.draw do
   match 'lesson_editor/:lesson_id/add_slide/:position' => 'lesson_editor#add_slide', :via => :post
   match 'lesson_editor/add_new_slide/:slide' => 'lesson_editor#add_new_slide', :as => :add_new_slide
   match 'lesson_editor/show_gallery/:slide' => 'lesson_editor#show_gallery', :as => :show_gallery
+  match 'lesson_editor/save_slide' => 'lesson_editor#save_slide', :as => :save_slide
   
   # SEARCH LESSONS OR MEDIA ELEMENTS
   match 'search' => 'search#index', :as => :search_items, :via => :get
