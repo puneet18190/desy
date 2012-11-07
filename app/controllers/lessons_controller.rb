@@ -8,7 +8,7 @@ class LessonsController < ApplicationController
   
   def index
     get_own_lessons
-    if @page > @pages_amount
+    if @page > @pages_amount && @pages_amount != 0
       @page = @pages_amount
       get_own_lessons
     end

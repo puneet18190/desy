@@ -26,8 +26,8 @@ class User < ActiveRecord::Base
   end
   
   def search_media_elements(word, page, for_page, order=nil, filter=nil)
-    page = 1 if page.class != Fixnum || page < 0
-    for_page = 1 if for_page.class != Fixnum || for_page < 0
+    page = 1 if page.class != Fixnum || page <= 0
+    for_page = 1 if for_page.class != Fixnum || for_page <= 0
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
     order = SearchOrders::UPDATED_AT if order.nil? || !SearchOrders::MEDIA_ELEMENTS_SET.include?(order)
     offset = (page - 1) * for_page
@@ -42,8 +42,8 @@ class User < ActiveRecord::Base
   end
   
   def search_lessons(word, page, for_page, order=nil, filter=nil, subject_id=nil)
-    page = 1 if page.class != Fixnum || page < 0
-    for_page = 1 if for_page.class != Fixnum || for_page < 0
+    page = 1 if page.class != Fixnum || page <= 0
+    for_page = 1 if for_page.class != Fixnum || for_page <= 0
     subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
     order = SearchOrders::UPDATED_AT if order.nil? || !SearchOrders::LESSONS_SET.include?(order)
@@ -120,8 +120,8 @@ class User < ActiveRecord::Base
   end
   
   def own_media_elements(page, per_page, filter = nil)
-    page = 1 if !page.is_a?(Fixnum) || page < 0
-    for_page = 1 if !for_page.is_a?(Fixnum) || for_page < 0
+    page = 1 if !page.is_a?(Fixnum) || page <= 0
+    for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
     relation = MyMediaElementsView.where('(media_element_user_id = ? AND is_public = false) OR bookmark_user_id = ?', self.id, self.id).includes(:media_element)
     if [ Filters::VIDEO, Filters::AUDIO, Filters::IMAGE ].include? filter
@@ -138,8 +138,8 @@ class User < ActiveRecord::Base
   end
   
   def own_lessons(page, per_page, filter = nil)
-    page = 1 if !page.is_a?(Fixnum) || page < 0
-    for_page = 1 if !for_page.is_a?(Fixnum) || for_page < 0
+    page = 1 if !page.is_a?(Fixnum) || page <= 0
+    for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
     updated_at_order = 'updated_at DESC'
     relation = 
