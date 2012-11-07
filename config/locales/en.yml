@@ -139,6 +139,19 @@ en:
     playlist: 'Your playlist is empty'
   popups:
     report_ok: 'The report was sent successfully'
+  buttons:
+    add: 'follow this item in your own section'
+    add_virtual_classroom: 'add lesson to virtual classroom'
+    copy: 'create your own copy of the lesson'
+    destroy: 'cancel this item'
+    dislike: 'click to cancel your like'
+    edit: 'edit this item'
+    like: 'like this lesson'
+    preview: 'open the preview'
+    publish: 'publish your lesson'
+    remove: 'stop following this item'
+    remove_virtual_classroom: 'click remove lesson from virtual classroom'
+    unpublish: 'click to unpublish your lesson'
   help:
     dashboard:
       first:
