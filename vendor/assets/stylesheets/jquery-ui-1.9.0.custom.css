@@ -154,9 +154,9 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
   -webkit-border-radius: 5px;
 }
 .ui-dialog .timedPopUp img,
-.ui-dialog .conformPopUp img { 
+.ui-dialog .confirmPopUp img { 
   float:left;
-	width:37%;
+	margin-right:5%;
 	
 }
 .ui-dialog .timedPopUp h1,

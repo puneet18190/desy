@@ -23,6 +23,7 @@ function showTimedPopUp(content, id) {
 
 function showConfirmPopUp(content) {
   var obj = $('#dialog-confirm');
+	content = '<img src="/assets/alert.png"/><h1>' + content + '</h1>';
   if(obj.hasClass('ui-dialog-content')) {
     obj.html(content);
     obj.dialog('open');
@@ -81,7 +82,7 @@ function showImageMediaElementPopUp(id) {
 // FUNCTIONS DIRECTLY USED IN THE APPLICATION
 
 function showErrorPopUp(content) {
-  var new_content = '<img src="/assets/unsuccess.svg"/><h1>' + content + '</h1>';
+  var new_content = '<img src="/assets/unsuccess.png"/><h1>' + content + '</h1>';
   showTimedPopUp(new_content, 'dialog-error');
 }
 
