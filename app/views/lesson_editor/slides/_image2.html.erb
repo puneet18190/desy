@@ -1,2 +1,27 @@
-<img src="http://lorempixel.com/420/550/abstract/1" style="float:right">
-<img src="http://lorempixel.com/420/550/abstract/2" style="float:left">
+<%= form_tag("/lesson_editor/save_slide", :remote => true) do %>
+  <%= hidden_field_tag :slide_id, slide.id %>
+    <%- if slide.has_media_element?(1) %>
+      <%= link_to image_tag("http://lorempixel.com/420/550/abstract/1", :class=>"_slide_image image2-p1"), {:action => :show_gallery, :slide => slide.id, :position=>1} , :remote => true, :class => "show-gallery pull-right" %>
+      <%= hidden_field_tag :media_element_1, slide.has_media_element?(1).media_element_id, :class=> "media-tag-cover-1"  %>
+    <%- else %>
+      <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
+      <div class="cover-choose-image _cover_choose_image_1 cover-choose-image-right">
+        <%= link_to image_tag("choose-image.gif"), {:action => :show_gallery, :slide => slide.id, :position => 1} , :remote => true, :class => "show-gallery" %>
+        <br />
+        choose an image
+      </div>
+    <%- end %>
+
+    <%- if slide.has_media_element?(2) %>
+      <%= link_to image_tag("http://lorempixel.com/420/550/abstract/2", :class=>"_slide_image image2-p2"), {:action => :show_gallery, :slide => slide.id, :position=>2} , :remote => true, :class => "show-gallery pull-left" %>
+      <%= hidden_field_tag :media_element_2, slide.has_media_element?(2).media_element_id, :class=> "media-tag-cover-2"  %>
+    <%- else %>
+      <%= hidden_field_tag :media_element_2, "", :class=> "media-tag-cover-2" %>
+      <div class="cover-choose-image _cover_choose_image_2 cover-choose-image-left">
+        <%= link_to image_tag("choose-image.gif"), {:action => :show_gallery, :slide => slide.id, :position=>2} , :remote => true, :class => "show-gallery" %>
+        <br />
+        choose an image
+      </div>
+    <%- end %>
+    
+<% end %>

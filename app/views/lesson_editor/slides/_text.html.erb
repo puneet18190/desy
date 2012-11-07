@@ -1,6 +1,9 @@
-<h2 class="text">
-  <%= slide.title || "Text template slide" %>
-</h2>
-<div class="text-content">
-  <%= slide.text.html_safe if slide.text  %>
-</div>
+<%= form_tag("/lesson_editor/save_slide", :remote => true) do %>
+  <%= hidden_field_tag :slide_id, slide.id %>
+  <h2 class="text">
+    <%= text_field_tag :title, slide.title ? slide.title : "#{t 'captions.enter_title'}" %>
+  </h2>
+  <div class="text-content">
+    <%= text_area_tag :text, slide.text ? slide.text.html_safe : "#{t 'descriptions.slide_text'}"%>
+  </div>
+<% end %>
