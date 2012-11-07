@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
   end
   
   def authenticate
-    if session[:user_id].class != Fixnum || !User.exists?(session[:user_id])
+    if !logged_in?
       redirect_to prelogin_path
       return
     end
@@ -81,6 +81,10 @@ class ApplicationController < ActionController::Base
   
   def correct_integer?(x)
     x.class == String && (x =~ /\A\d+\Z/) == 0
+  end
+  
+  def logged_in?
+    session[:user_id].class == Fixnum && User.exists?(session[:user_id])
   end
   
 end
