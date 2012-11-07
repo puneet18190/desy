@@ -26,6 +26,8 @@
  *= require profile
  *= require action_buttons
  *= require icon_button_popup
+ *= require layouts/header_home
+ *= require layouts/home
  *= require layouts/prelogin
  *= require layouts/virtualclassroom
 
