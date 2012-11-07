@@ -47,16 +47,18 @@ Desy::Application.routes.draw do
   # SEARCH LESSONS OR MEDIA ELEMENTS
   match 'search' => 'search#index', :as => :search_items, :via => :get
   
-  # REGISTRATIONS, PROFILE, AUTHENTICATION
-  match 'profile' => 'registrations#edit', :as => :my_profile
-  match 'profile/update' => 'registrations#update', :via => :post
-  match 'logout' => 'registrations#logout', :as => :logout
-  match 'prelogin' => 'registrations#prelogin', :as => :prelogin
-  match 'login' => 'registrations#login', :as => :login
-  match 'sign_up' => 'registrations#new', :as => :sign_up
-  match 'create_user' => 'registrations#create', :as => :create_user, :via => :post
+  # LOGGED USER
+  match 'profile' => 'users#edit', :as => :my_profile
+  match 'profile/update' => 'users#update', :via => :post
+  match 'logout' => 'users#logout', :as => :logout
+  
+  # NOT LOGGED USER
+  match 'prelogin' => 'prelogin#index', :as => :prelogin
+  match 'login' => 'prelogin#login', :as => :login
+  match 'sign_up' => 'prelogin#registration', :as => :sign_up
+  match 'create_user' => 'prelogin#create_registration', :as => :create_user, :via => :post
   
   # APPLICATION ROOT
-  root :to => 'registrations#prelogin'
+  root :to => 'prelogin#index'
   
 end
