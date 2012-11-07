@@ -35,7 +35,7 @@
     <% end %>
   </div>
   
-  <div id="media_elements_in_dashboard">
+  <div id="media_elements_in_dashboard" style="display:none">
     <% if @media_elements.empty? %>
       <%= render :partial => 'dashboard/media_elements_empty', :locals => {:emptied => @media_elements_emptied} %>
     <% else %>
@@ -43,7 +43,7 @@
       <% (0...CONFIG['media_element_pages_in_dashboard']).each do |j| %>
         <% media_elements_block = @media_elements[tot_media_element, CONFIG['media_elements_for_page_in_dashboard']].to_a %>
         <% if media_elements_block.any? %>
-          <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:none; width:90%;  margin:0 auto 0 auto;">
+          <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none' : 'block' %>; width:90%;  margin:0 auto 0 auto;">
             <% media_elements_block.each do |me| %>
               <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
             <% end %>

@@ -1,15 +1,19 @@
 function switchToSuggestedMediaElements() {
-  $('#lessons_in_dashboard').css('display', 'none');
-  $('#media_elements_in_dashboard').css('display', 'block');
-  $('#switch_to_media_elements').addClass('current');
-  $('#switch_to_lessons').removeClass('current');
+  $('#lessons_in_dashboard').hide('fade', {}, 500, function() {
+    $(this).css('display', 'none');
+    $('#media_elements_in_dashboard').css('display', 'block');
+    $('#switch_to_media_elements').addClass('current');
+    $('#switch_to_lessons').removeClass('current');
+  });
 }
 
 function switchToSuggestedLessons() {
-  $('#media_elements_in_dashboard').css('display', 'none');
-  $('#lessons_in_dashboard').css('display', 'block');
-  $('#switch_to_lessons').addClass('current');
-  $('#switch_to_media_elements').removeClass('current');
+  $('#media_elements_in_dashboard').hide('fade', {}, 500, function() {
+    $(this).css('display', 'none');
+    $('#lessons_in_dashboard').css('display', 'block');
+    $('#switch_to_lessons').addClass('current');
+    $('#switch_to_media_elements').removeClass('current');
+  });
 }
 
 function getHtmlPagination(pos, pages_amount) {
