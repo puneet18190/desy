@@ -1,3 +1,10 @@
+function reloadDashboardPages(lessons_page, media_elements_page) {
+  $('#suggested_media_elements_1').css('display', 'none');
+  $('#suggested_media_elements_' + media_elements_page).css('display', 'block');
+  $('#suggested_lessons_1').css('display', 'none');
+  $('#suggested_lessons_' + lessons_page).css('display', 'block');
+}
+
 function switchToSuggestedMediaElements() {
   $('#lessons_in_dashboard').hide('fade', {}, 500, function() {
     $(this).css('display', 'none');
