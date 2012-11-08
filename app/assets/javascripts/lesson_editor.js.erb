@@ -29,9 +29,11 @@ $(document).ready(function() {
          $(this).children('.tooltip').animate({"opacity": "hide"}, "fast");
      });
   
-  $('#slide-numbers li a:not(.add-slide)').click(function(e){
+  $('#slide-numbers li a:not(._add_slide)').click(function(e){
     e.preventDefault();
     page = $(this).text();
+    slide_id = $(this).attr("data-slide");
+    $("#slide-numbers li a._add_slide").attr("href","/lesson_editor/add_new_slide/"+slide_id);
     if (parseInt(page) == 1){
       marginReset = 0
     }else{
@@ -44,11 +46,13 @@ $(document).ready(function() {
         opacity: 0.4,
       }, 150, function() {
         $(this).find(".buttons").fadeOut();
+        $(this).removeClass("active");
       });
     $("ul#slides li:nth-child("+page+")").animate({
         opacity: 1,
       }, 500, function(){
         $(this).find(".buttons").fadeIn();
+        $(this).addClass("active");
       });
     //$("ul#slides li:nth-child("+page+")").prepend("#{escape_javascript(render :partial => 'slide_buttons')}");
     $("#slide-numbers li a.active").removeClass("active");

@@ -76,6 +76,14 @@ html.lesson-editor-layout{
         color: #4b4b4b;
         text-align: center;
         font-size: 12px;
+        &._add_slide{
+          border:none;
+          padding:0;
+        }
+        &._add_slide:hover{
+          background-color:transparent;
+          border: none;
+        }
         &:hover {
           background-color: white;
           border: 1px solid white;

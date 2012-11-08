@@ -1,4 +1,4 @@
-var slideN = $(".slide-content.slide-<%=@slide.position %>");
+var slideN = $("li.slides.active .slide-content");
 slideN.removeClass("cover title video1 video2 audio image1 image2 image3 image4 text");
 slideN.html("<%= escape_javascript(render :partial => 'lesson_editor/new_slide') %>");
 slideN.siblings(".buttons").find(".add").addClass("active");
