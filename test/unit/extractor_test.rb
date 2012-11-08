@@ -699,9 +699,15 @@ class ExtractorTest < ActiveSupport::TestCase
     p1 = @user2.search_lessons('to', 1, 5, nil, nil, nil)
     p2 = @user2.search_lessons('to', 2, 5, nil, nil, nil)
     assert_ordered_item_extractor [1, @les1.id, @les2.id, @les3.id, @les4.id], p1[:records]
+    tag_ids = []
+    Tag.where(:word => ['gatto', 'barriere architettoniche', 'inquinamento', 'inquinamento atmosferico', 'tom cruise']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 7, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@les5.id, @les6.id], p2[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 7, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     # fourth case - filters and orders on the last search
@@ -711,6 +717,8 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 164, Tagging.count
     p1 = @user2.search_lessons('to', 1, 5, nil, 'only_mine', nil)
     assert_ordered_item_extractor [2], p1[:records]
+    tag_ids << Tag.find_by_word('antonio de curtis').id
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 1, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     # fifth case - words with similar beginning - I sort for likes and title
