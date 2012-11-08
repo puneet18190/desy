@@ -2,12 +2,12 @@
   <%= form_tag("/lesson_editor/save_slide", :remote => true) do %>
     <%= hidden_field_tag :slide_id, slide.id %>
     <%- if slide.has_media_element?(1) %>
-    <%= link_to image_tag("http://lorempixel.com/900/560", :class=>"_slide_image cover-p1"), {:action => :show_gallery, :slide => slide.id} , :remote => true, :class => "show-gallery" %>
+    <%= link_to image_tag("http://lorempixel.com/900/560", :class=>"_slide_image cover-p1"), {:action => :show_gallery, :slide => slide.id, :position=>1} , :remote => true, :class => "show-gallery" %>
       <%= hidden_field_tag :media_element_1, slide.has_media_element?(1).media_element_id, :class=> "media-tag-cover-1"  %>
     <%- else %>
       <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
       <div class="cover-choose-image _cover_choose_image_1">
-        <%= link_to image_tag("choose-image.gif"), {:action => :show_gallery, :slide => slide.id} , :remote => true, :class => "show-gallery" %>
+        <%= link_to image_tag("choose-image.gif"), {:action => :show_gallery, :slide => slide.id, :position=>1} , :remote => true, :class => "show-gallery" %>
         <br />
         choose an image
       </div>

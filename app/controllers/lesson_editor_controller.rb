@@ -50,7 +50,7 @@ class LessonEditorController < ApplicationController
   
   ## prompt image gallery in slide ##
   def show_gallery
-    @media_elements = Image.limit(35)
+    @media_elements = @current_user.own_media_elements(1,35,"image")[:records]
     @slide = Slide.find params[:slide]
     @img_position = params[:position]
     respond_to do |format|
@@ -59,9 +59,12 @@ class LessonEditorController < ApplicationController
   end
   
   def add_slide
+    @current_slide = Slide.find(params[:current_slide])
+    params[:slide_id] = params[:current_slide]
     save_current_slide
-    @lesson = Lesson.find params[:lesson_id]
-    @slide = @lesson.add_slide params[:kind], params[:position]
+    @lesson = Lesson.find @current_slide.lesson.id
+    @slide = @lesson.add_slide params[:kind], @current_slide.position + 1
+    redirect_to lesson_editor_path(@lesson.id)
   end
   
   def save_slide
@@ -82,7 +85,7 @@ class LessonEditorController < ApplicationController
       if !params["media_element_#{i}"].blank?
         mes = MediaElementsSlide.where(:position => i, :slide_id => current_slide.id).first
         if mes.nil? || mes.media_element_id != params["media_element_#{i}"].to_i
-          mes.destroy if !mes.nil?
+          mes.destroy if !mes.nil? #update id, don't destroy
           mes2 = MediaElementsSlide.new
           mes2.position = i
           mes2.slide_id = current_slide.id

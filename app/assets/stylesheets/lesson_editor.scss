@@ -231,6 +231,10 @@ html.lesson-editor-layout{
     height: 590px;
     
     li.slides {
+      input, textarea{
+        color: $orange;
+      }
+      
       &.active {
         width: 960px;
         height: 590px;
@@ -291,14 +295,12 @@ html.lesson-editor-layout{
             h2.text input{
                 font-size: 70px;
                 padding: 20px;
-                color: $orange;
                 width: 830px;
                 font-family: "Nunito", sans-serif;
             }
             .text-content textarea{
               margin: 10px;
               padding: 20px;
-              color: $orange;
               width: 830px;
               height: 350px;
             }
@@ -350,6 +352,21 @@ html.lesson-editor-layout{
             padding: 10px;
           }
         }
+        &.image4{
+          .image-4-box{
+              display:block;
+              width: 450px;
+              height: 295px;
+              margin:0;
+              padding: 0;
+              float:left;
+            }
+          .image4-p1, .image4-p3,.image4-p2, .image4-p4{
+            width: 410px;
+            height: 255px;
+            padding: 20px;
+          }
+        }
         &.image3{
           padding: 0;
           height: 590px;
@@ -377,21 +394,24 @@ html.lesson-editor-layout{
           }
         }
         &.image1{
-          padding: 20px;
-          height: 550px;
-          width: 860px;
-          h2{
+          padding: 0;
+          height: 590px;
+          width: 900px;
+          h2 input{
             font-size: 70px;
-            padding: 40px 20px;
+            padding: 20px;
+            width: 830px;
           }
-          img{
+          img.image1-p1{
             float:left;
-            width: 440px;
+            width:400px;
+            padding:20px 0 20px 20px;
           }
-          .image1-content{
+          .image1-content textarea{
             float:right;
             width: 380px;
-            margin: 0 10px;
+            height: 360px;
+            margin: 20px;
             padding: 10px;
           }
         }
@@ -606,6 +626,14 @@ html.lesson-editor-layout{
     height: 210px;
     color: #999;
     font-size: 16px;
+    &.choose-small{
+      padding: 80px 0;
+      width: 400px;
+      height: 150px;
+      img{
+        width: 80px;
+      }
+    }
     img{
       margin-bottom: 10px;
     }
