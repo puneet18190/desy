@@ -5,10 +5,13 @@ class Slide < ActiveRecord::Base
   has_many :media_elements_slides
   belongs_to :lesson
   
+  #TODO estrarre da database slide kinds
+  KINDS = ['cover', 'title', 'text', 'image1', 'image3', 'image2', 'image4', 'video2', 'video1', 'audio']
+  
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => I18n.t('language_parameters.slide.length_title'), :allow_nil => true
-  validates_inclusion_of :kind, :in => ['cover', 'title', 'text', 'image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2']
+  validates_inclusion_of :kind, :in => KINDS
   validates_uniqueness_of :position, :scope => :lesson_id
   validates_uniqueness_of :kind, :scope => :lesson_id, :if => :is_cover
   validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text, :validate_title
