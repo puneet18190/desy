@@ -6,18 +6,21 @@
   </span>
 </div>
 
+
 <script type="text/javascript">
-$(document).ready(function() {
-  var prevPage = function(prevPage) {
-    var url = '<%= add_page_parameter(page - 1, pagination_url) %>';
-    $.get(url);
-    return true;
-  }
-  var nextPage = function(nextPage) {
-    var url = '<%= add_page_parameter(page + 1, pagination_url) %>';
-    $.get(url);
-    return true;
-  }
-  new DotsPagination($('[role=pages]'), <%= j pages_amount.to_s %>, prevPage, nextPage);
-});
+  
+  $(document).ready(function() {
+    var prevPage = function(prevPage) {
+      var url = '<%= add_page_parameter(page - 1, pagination_url) %>';
+      $.get(url);
+      return true;
+    }
+    var nextPage = function(nextPage) {
+      var url = '<%= add_page_parameter(page + 1, pagination_url) %>';
+      $.get(url);
+      return true;
+    }
+    new DotsPagination($('[role=pages]'), <%= j pages_amount.to_s %>, prevPage, nextPage);
+  });
+  
 </script>

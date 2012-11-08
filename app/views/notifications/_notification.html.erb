@@ -1,5 +1,5 @@
 <li id="notification_<%= notification.id %>" class="_single_notification" data-param="<%= notification.id %>">
-  <a href="#" class="expanded <%= notification.seen ? 'current' : '' %>"><div style="overflow:hidden; width:210px; height:45px;"><%= notification.message.html_safe %></div></a>
+  <a class="expanded <%= notification.seen ? 'current' : '' %>"><div style="overflow:hidden; width:210px; height:45px;"><%= notification.message.html_safe %></div></a>
   <div class="cancelTooltip _destroy_notification" data-param="<%= notification.id %>"></div>
   <div class="_expanded_notification" style="display:none">
     <div style="padding:30px;"><%= notification.message.html_safe %></div>

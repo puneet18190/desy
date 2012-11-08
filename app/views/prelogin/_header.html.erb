@@ -1,0 +1,17 @@
+<!-- per la voce accesa aggiungere la class current agli a href del menu -->
+<div class="header">
+  <div class="headerMenu">
+  <ul>
+	  <li><a href="">Home</a></li>
+    <li><a href=""><%= t('captions.what_is_desy') %></a></li>
+    <li><a href=""><%= t('captions.learning_goals') %></a></li>
+    <li><%= link_to(t('captions.register'), sign_up_path) %></li>
+    <li><a href=""><%= t('captions.contact_us') %></a></li>
+  </ul>
+	<!-- questo partial deve apparire sulla home -->
+  <%= render :partial => "/prelogin/login" %>
+	
+	<!-- questo partial deve apparire nelle pagine di prelogin -->
+	<!--%= render :partial => "/prelogin/logo" %-->
+	 </div>
+</div>

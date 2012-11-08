@@ -53,12 +53,12 @@ Desy::Application.routes.draw do
   match 'logout' => 'users#logout', :as => :logout
   
   # NOT LOGGED USER
-  match 'prelogin' => 'prelogin#index', :as => :prelogin
+  match 'home' => 'prelogin#home', :as => :home
   match 'login' => 'prelogin#login', :as => :login
   match 'sign_up' => 'prelogin#registration', :as => :sign_up
   match 'create_user' => 'prelogin#create_registration', :as => :create_user, :via => :post
   
   # APPLICATION ROOT
-  root :to => 'prelogin#index'
+  root :to => 'prelogin#home'
   
 end
