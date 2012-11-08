@@ -1,3 +1,9 @@
+<%
+  pagination_locals = {}
+  pagination_locals[:me_tot] = (@media_elements.length.to_f / CONFIG['media_elements_for_page_in_dashboard']).ceil
+  pagination_locals[:l_tot] = (@lessons.length.to_f / CONFIG['lessons_for_page_in_dashboard']).ceil
+%>
+
 <div class="gray-bar">
   <%= render :partial => "dashboard/graybar_left" %>
   <%= render :partial => "shared/search" %>
@@ -5,7 +11,9 @@
 <br class="clearfloat">
 <div class="griglia-contenuti">
   <%= render :partial => "dashboard/lessons_and_media_elements" %>
+  <br class="clearfloat">
   <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
+  <%= render :partial => 'dashboard/pagination', :locals => pagination_locals %>
   <br class="clearfloat">
   <div class="boxContentIndex">
     <p><%= t('captions.help_using_desy') %></br>

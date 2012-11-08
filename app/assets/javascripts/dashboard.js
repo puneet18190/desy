@@ -4,6 +4,10 @@ function switchToSuggestedMediaElements() {
     $('#media_elements_in_dashboard').css('display', 'block');
     $('#switch_to_media_elements').addClass('current');
     $('#switch_to_lessons').removeClass('current');
+    var pagination_div = $('#dashboard_pagination');
+    var media_elements_page = pagination_div.data('media-elements-page');
+    var media_elements_tot = pagination_div.data('media-elements-tot');
+    reloadMediaElementsDashboardPagination(media_elements_page, media_elements_tot);
   });
 }
 
@@ -13,6 +17,10 @@ function switchToSuggestedLessons() {
     $('#lessons_in_dashboard').css('display', 'block');
     $('#switch_to_lessons').addClass('current');
     $('#switch_to_media_elements').removeClass('current');
+    var pagination_div = $('#dashboard_pagination');
+    var lessons_page = pagination_div.data('lessons-page');
+    var lessons_tot = pagination_div.data('lessons-tot');
+    reloadLessonsDashboardPagination(lessons_page, lessons_tot);
   });
 }
 
@@ -34,7 +42,9 @@ function getHtmlPagination(pos, pages_amount) {
 }
 
 function reloadMediaElementsDashboardPagination(pos, pages_amount) {
-  $('#dashboard_media_elements_pagination').html(getHtmlPagination(pos, pages_amount));
+  $('#dashboard_pagination').html(getHtmlPagination(pos, pages_amount));
+  $('#dashboard_pagination').data('media-elements-tot', pages_amount);
+  $('#dashboard_pagination').data('media-elements-page', pos);
   $(document).ready(function() {
     var prevPage = function(prevPage) {
       changePageDashboardMediaElements(pos, (pos - 1), pages_amount);
@@ -49,7 +59,9 @@ function reloadMediaElementsDashboardPagination(pos, pages_amount) {
 }
 
 function reloadLessonsDashboardPagination(pos, pages_amount) {
-  $('#dashboard_lessons_pagination').html(getHtmlPagination(pos, pages_amount));
+  $('#dashboard_pagination').html(getHtmlPagination(pos, pages_amount));
+  $('#dashboard_pagination').data('lessons-tot', pages_amount);
+  $('#dashboard_pagination').data('lessons-page', pos);
   $(document).ready(function() {
     var prevPage = function(prevPage) {
       changePageDashboardLessons(pos, (pos - 1), pages_amount);

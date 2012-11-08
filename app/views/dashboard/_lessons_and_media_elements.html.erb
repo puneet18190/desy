@@ -30,8 +30,6 @@
         <% end %>
         <% tot_lesson += CONFIG['lessons_for_page_in_dashboard'] %>
       <% end %>
-      <br class="clearfloat">
-      <%= render :partial => 'dashboard/lessons_pagination', :locals => {:page => 1, :pages_amount => (@lessons.length.to_f / CONFIG['lessons_for_page_in_dashboard']).ceil} %>
     <% end %>
   </div>
   
@@ -52,8 +50,6 @@
         <% end %>
         <% tot_media_element += CONFIG['media_elements_for_page_in_dashboard'] %>
       <% end %>
-      <br class="clearfloat">
-      <%= render :partial => 'dashboard/media_elements_pagination', :locals => {:page => 1, :pages_amount => (@media_elements.length.to_f / CONFIG['media_elements_for_page_in_dashboard']).ceil} %>
     <% end %>
   </div>
   

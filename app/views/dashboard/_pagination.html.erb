@@ -1,0 +1,24 @@
+<div class="dots_pagination_container" id="dashboard_pagination" data-lessons-tot="<%= l_tot %>" data-media-elements-tot="<%= me_tot %>" data-lessons-page="1" data-media-elements-page="1">
+  <span class="dots_pagination">
+    <span role="pages">
+      <a data-page="0" role="disabled"></a><a data-page="1" role="current"></a><a data-page="2" <%= 'role="disabled"'.html_safe if l_tot <= 1 %>></a>
+    </span>
+  </span>
+</div>
+
+
+<script type="text/javascript">
+  
+  $(document).ready(function() {
+    var prevPage = function(prevPage) {
+      changePageDashboardLessons(1, 0, <%= l_tot %>);
+      return true;
+    }
+    var nextPage = function(nextPage) {
+      changePageDashboardLessons(1, 2, <%= l_tot %>);
+      return true;
+    }
+    new DotsPagination($('[role=pages]'), <%= j l_tot.to_s %>, prevPage, nextPage);
+  });
+  
+</script>

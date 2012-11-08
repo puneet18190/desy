@@ -1,34 +1,17 @@
-var id_of_the_page_to_reload_lessons = '';
-var number_of_the_page_to_reload_lessons = 1;
+var pagination_div = $('#dashboard_pagination');
 
-var id_of_the_page_to_reload_media_elements = '';
-var number_of_the_page_to_reload_media_elements = 1;
+var lessons_page = pagination_div.data('lessons-page');
+var lessons_tot = pagination_div.data('lessons-tot');
+var media_elements_page = pagination_div.data('media-elements-page');
+var media_elements_tot = pagination_div.data('media-elements-tot');
 
-$('.suggested_lessons_page').each(function() {
-  if($(this).css('display') == 'block') {
-    id_of_the_page_to_reload_lessons = $(this).attr('id');
-    var parse_array = id_of_the_page_to_reload_lessons.split('_');
-    var previous_page = parseInt(parse_array[parse_array.length - 1]) - 1;
-    number_of_the_page_to_reload_lessons = previous_page + 1;
-    if(previous_page * <%= @lessons_for_page %> >= <%= @lessons.length %>) {
-      id_of_the_page_to_reload_lessons = 'suggested_lessons_' + previous_page;
-      number_of_the_page_to_reload_lessons = previous_page;
-    }
-  }
-});
+if((lessons_page - 1) * <%= @lessons_for_page %> >= <%= @lessons.length %>) {
+  lessons_page -= 1;
+}
 
-$('.suggested_media_elements_page').each(function() {
-  if($(this).css('display') == 'block') {
-    id_of_the_page_to_reload_media_elements = $(this).attr('id');
-    var parse_array = id_of_the_page_to_reload_media_elements.split('_');
-    var previous_page = parseInt(parse_array[parse_array.length - 1]) - 1;
-    number_of_the_page_to_reload_media_elements = previous_page + 1;
-    if(previous_page * <%= @media_elements_for_page %> >= <%= @media_elements.length %>) {
-      id_of_the_page_to_reload_media_elements = 'suggested_media_elements_' + previous_page;
-      number_of_the_page_to_reload_media_elements = previous_page;
-    }
-  }
-});
+if((media_elements_page - 1) * <%= @media_elements_for_page %> >= <%= @media_elements.length %>) {
+  media_elements_page -= 1;
+}
 
 var to_delete = $('#<%= @delete_item %>');
 to_delete.hide('scale', {percent: 0}, 500, function() {
@@ -38,11 +21,11 @@ to_delete.hide('scale', {percent: 0}, 500, function() {
     $('#media_elements_in_dashboard').css('display', 'block');
     $('#switch_to_media_elements').addClass('current');
     $('#switch_to_lessons').removeClass('current');
-    $('#' + id_of_the_page_to_reload_media_elements).css('display', 'block');
-    reloadMediaElementsDashboardPagination(number_of_the_page_to_reload_media_elements, <%= (@media_elements.length.to_f / CONFIG['media_elements_for_page_in_dashboard']).ceil %>);
+    $('#suggested_media_elements_' + media_elements_page).css('display', 'block');
+    reloadMediaElementsDashboardPagination(media_elements_page, <%= (@media_elements.length.to_f / CONFIG['media_elements_for_page_in_dashboard']).ceil %>);
   } else {
-    $('#' + id_of_the_page_to_reload_lessons).css('display', 'block');
-    reloadLessonsDashboardPagination(number_of_the_page_to_reload_lessons, <%= (@lessons.length.to_f / CONFIG['lessons_for_page_in_dashboard']).ceil %>);
+    $('#suggested_lessons_' + lessons_page).css('display', 'block');
+    reloadLessonsDashboardPagination(lessons_page, <%= (@lessons.length.to_f / CONFIG['lessons_for_page_in_dashboard']).ceil %>);
   }
 });
 
