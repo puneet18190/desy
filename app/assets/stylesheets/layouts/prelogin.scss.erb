@@ -1,10 +1,6 @@
 
 html.prelogin-layout {
   
-  @mixin hrefColorSize {
-	  color:#f29400;
-		font-size:90%;
-  }
   body {
     font: 80% Arial, Helvetica, sans-serif;
 	  background: #0f0f0f;
@@ -19,8 +15,6 @@ html.prelogin-layout {
       font-size: 50%;
 	  }
     
-		clear: left;
-		position: relative;
 		text-align:left;
 		padding:20px;
 		
@@ -30,30 +24,16 @@ html.prelogin-layout {
 			background-image: none;
 		}
 	  /*FINE HEADER*/
-		
-	 .containerText {
-		  padding:30px;
-			background-color: #231f20;
-			float:left;
-			a {
-			  @include hrefColorSize;
-			}
-			h1 {
-			 font: 150% 'Nunito', sans-serif;
-			 color:#505051;
-			 padding-top:14px;
-			 padding-bottom:0px;
-			 line-height:100%;
-			}
-			p {
-			  padding-top:10px;
-			}
-			
+		.containerText {
+		  border:1px solid red;
+			background: url(<%= asset_path 'bg_register.png' %>) top left no-repeat;
+			padding:20px;
 		}
-		/*fine container text*/
+	 
+		
 		.footer {
 		  padding:10px 150px 10px 40px;
-			background: transparent;
+			background-color: #373737;
       color: #515151;
       font-size: 75%;
       text-transform: lowercase;
@@ -63,4 +43,5 @@ html.prelogin-layout {
 }
 .registration-action .container {
   background-color: #2eaadc;
+	
 }
