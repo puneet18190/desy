@@ -381,6 +381,7 @@ class User < ActiveRecord::Base
       media_element.set_status self.id
       content << media_element
     end
+    resp[:tags] = Tag.where('word LIKE ?', "%#{word}%")
     resp[:records_amount] = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).count.length
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
     resp[:records] = content
@@ -482,6 +483,7 @@ class User < ActiveRecord::Base
       lesson.set_status self.id
       content << lesson
     end
+    resp[:tags] = Tag.where('word LIKE ?', "%#{word}%")
     resp[:records_amount] = count
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
     resp[:records] = content

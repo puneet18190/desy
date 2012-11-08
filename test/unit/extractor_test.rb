@@ -681,11 +681,17 @@ class ExtractorTest < ActiveSupport::TestCase
     # I start here, first case - no match
     p1 = @user2.search_lessons('ciao', 1, 5, nil, nil, nil)
     assert p1[:records].empty?
+    assert p1[:tags].empty?
     assert_equal 0, p1[:records_amount]
     assert_equal 0, p1[:pages_amount]
     # second case - it matches three tags
     p1 = @user2.search_lessons('di', 1, 5, nil, nil, nil)
     assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id, @les5.id], p1[:records]
+    tag_ids = []
+    Tag.where(:word => ['escrementi di usignolo', 'disabili', 'immondizia']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 4, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     # third case - it matches more tags - @les9 is not found because private
