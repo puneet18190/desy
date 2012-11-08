@@ -13,7 +13,9 @@
   <%= render :partial => "dashboard/lessons_and_media_elements" %>
   <br class="clearfloat">
   <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
-  <%= render :partial => 'dashboard/pagination', :locals => pagination_locals %>
+  <% if @lessons.any? %>
+    <%= render :partial => 'dashboard/pagination', :locals => pagination_locals %>
+  <% end %>
   <br class="clearfloat">
   <div class="boxContentIndex">
     <p><%= t('captions.help_using_desy') %></br>

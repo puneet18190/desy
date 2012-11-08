@@ -42,6 +42,12 @@ function getHtmlPagination(pos, pages_amount) {
 }
 
 function reloadMediaElementsDashboardPagination(pos, pages_amount) {
+  if(pages_amount == 0) {
+    $('#dashboard_pagination').html('');
+    $('#dashboard_pagination').data('media-elements-tot', 0);
+    $('#dashboard_pagination').data('media-elements-page', 0);
+    return;
+  }
   $('#dashboard_pagination').html(getHtmlPagination(pos, pages_amount));
   $('#dashboard_pagination').data('media-elements-tot', pages_amount);
   $('#dashboard_pagination').data('media-elements-page', pos);
@@ -59,6 +65,12 @@ function reloadMediaElementsDashboardPagination(pos, pages_amount) {
 }
 
 function reloadLessonsDashboardPagination(pos, pages_amount) {
+  if(pages_amount == 0) {
+    $('#dashboard_pagination').html('');
+    $('#dashboard_pagination').data('lessons-tot', 0);
+    $('#dashboard_pagination').data('lessons-page', 0);
+    return;
+  }
   $('#dashboard_pagination').html(getHtmlPagination(pos, pages_amount));
   $('#dashboard_pagination').data('lessons-tot', pages_amount);
   $('#dashboard_pagination').data('lessons-page', pos);
