@@ -21,10 +21,27 @@
               <% cont = (cont == 0) ? 1 : 0 %>
             <% end %>
             <% if cont == 1 %>
-              <%= render :partial => "dashboard/create_new_lesson" %>
+              <div class="boxNewLesson" style="float:right">
+                <div class="contentInterno" style="text-align:center;">
+                  <div class="contentNew">
+                    <div class="createButton"><a></a></div>
+                    <p><%= t("captions.create_new_lesson") %></p>
+                  </div>
+                </div>
+                <div style="height:3.5em;"></div>
+               </div>
+
               </div>
             <% else %>
-              <%= render :partial => "dashboard/create_new_lesson" %>
+              <div class="boxNewLesson" style="float:left">
+                <div class="contentInterno" style="text-align:center;">
+                  <div class="contentNew">
+                    <div class="createButton"><a></a></div>
+                    <p><%= t("captions.create_new_lesson") %></p>
+                  </div>
+                </div>
+                <div style="height:3.5em;"></div>
+               </div>
             <% end %>
           </div>
         <% end %>
@@ -45,7 +62,15 @@
             <% media_elements_block.each do |me| %>
               <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
             <% end %>
-            <%= render :partial => "dashboard/create_new_media_element" %>
+            <div class="boxViewExpandedMediaElement">
+              <div class="contentInterno" style="text-align:center; padding-top:120px;height:154px;">
+              <a class="createButton">&nbsp;</a>
+    <p style="padding-top:40px"><%= t("captions.load_new_media_element") %></p>
+  </div>
+  <div style="height:2.4em;background-color:#fbfafb;">
+  </div>
+</div>
+
           </div>
         <% end %>
         <% tot_media_element += CONFIG['media_elements_for_page_in_dashboard'] %>

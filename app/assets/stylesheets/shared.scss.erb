@@ -58,6 +58,10 @@
 	background-repeat: no-repeat;
 	background-position:0 0;
 }
+@mixin contentInterno {
+  padding:4%;
+  height:110px;
+}
 .boxViewExpandedLesson {
   @include contentLayout;
 	background-color:#fbfafb;
@@ -68,9 +72,19 @@
 	  float:right;
 	}
 	.contentInterno {
-	  padding:4%;
-		height:110px;
-		
+	  @include contentInterno;
+	  
+	}
+}
+
+.boxNewLesson {
+  @include contentLayout;
+	background-color:#fbfafb;
+	
+	width:49%;
+	
+	.contentInterno {
+	  @include contentInterno;
 	}
 	.contentNew {
 	  p {padding-top:90px;}
@@ -85,6 +99,8 @@
 		}
 	}
 }
+
+
 
 .boxViewSingleLesson {
   width:100%;
