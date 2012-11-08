@@ -21,10 +21,10 @@
               <% cont = (cont == 0) ? 1 : 0 %>
             <% end %>
             <% if cont == 1 %>
-              <%= render :partial => "lessons/create_new_lesson" %>
+              <%= render :partial => "dashboard/create_new_lesson" %>
               </div>
             <% else %>
-              <%= render :partial => "lessons/create_new_lesson" %>
+              <%= render :partial => "dashboard/create_new_lesson" %>
             <% end %>
           </div>
         <% end %>
@@ -45,7 +45,7 @@
             <% media_elements_block.each do |me| %>
               <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
             <% end %>
-            <%= render :partial => "media_elements/create_new_media_element" %>
+            <%= render :partial => "dashboard/create_new_media_element" %>
           </div>
         <% end %>
         <% tot_media_element += CONFIG['media_elements_for_page_in_dashboard'] %>
