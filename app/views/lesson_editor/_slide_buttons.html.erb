@@ -1,6 +1,6 @@
 <div class="buttons pull-right slide-id-<%= slide.id %> slide-position-<%= slide.position %>">
-  <a href="#detele" class="delete">delete</a>
-  <%= link_to "add", {:action => :add_new_slide, :slide => slide.id} , :remote => true, :class => "add add-slide" %>
+  <%= link_to "delete", delete_slide_path(slide.id), :class=> "delete"%>
+  <%= link_to "add", {:action => :add_new_slide, :slide => slide.id} , :remote => true, :class => "add _add_slide" %>
   <%= link_to "info", edit_lesson_path(@lesson), :class => "info"%>
   <a href="#" class="_save_slide save">save</a>
 </div>

@@ -4,13 +4,15 @@
     <ul id="slide-numbers">
       <%- @slides.each_with_index do |slide, index|%>
         <li>
-          <a href="#<%= slide.position %>" class="<%= (index == 0) ? 'active' : ''%>"><%= index + 1 %></a>
+          <a href="#<%= slide.position %>" class="<%= (index == 0) ? 'active' : ''%>" data-slide="<%= slide.id%>"><%= index + 1 %></a>
           <div class="tooltip">
             <%= render :partial => "shared/lesson_thumbnails/small/#{slide.kind}" , :locals => { :slide => slide }%>
           </div>
         </li>
       <%end%><!-- end each -->
-      <li><a href="#" class="add-slide"><%= image_tag "plus-rounded.png"%></a></li>
+      <li>
+        <%= link_to image_tag("plus-rounded.png"), {:action => :add_new_slide, :slide => @lesson.slides.first.id} , :remote => true, :class => "add _add_slide" %>
+      </li>
     </ul>
   </nav>
 <% end %>

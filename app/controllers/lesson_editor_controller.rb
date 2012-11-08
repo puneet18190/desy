@@ -74,6 +74,15 @@ class LessonEditorController < ApplicationController
     end
   end
   
+  def delete_slide
+    slide = Slide.find(params[:slide_id])
+    if slide.destroy
+      redirect_to lesson_editor_path(slide.lesson.id)
+    else
+      redirect_to :back
+    end
+  end
+  
   private
   
   def save_current_slide
