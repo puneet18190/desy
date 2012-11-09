@@ -1,66 +1,47 @@
 <%
   my_current_url = remove_param_from_url(request.url, 'delete_item')
   my_current_url = add_page_parameter(@page, my_current_url)
+  my_item = 'lessons'
+  my_other_item = 'media_elements'
+  my_objects = @lessons
+  my_objects_amount = @lessons_amount
+  if @search_item == 'media_elements'
+    my_item = 'media_elements'
+    my_other_item = 'lessons'
+    my_objects = @media_elements
+    my_objects_amount = @media_elements_amount
+  end
 %>
 
-<% if @search_item == 'media_elements' %>
-  
-  <% if @delete_item.blank? %>
-    $('#found_media_elements').hide('fade', {}, 500, function() {
-      $('#found_media_elements').replaceWith("<%= j(render(:partial => "search/media_elements/results")) %>");
-      $('#found_lessons').html('');
-      <% if @media_elements.any? %>
-        $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
-      <% else %>
-        $('#general_pagination').html('');
-      <% end %>
-    });
-  <% else %>
-    var to_delete = $('#<%= @delete_item %>');
-    to_delete.hide('fade', {}, 500, function() {
-      $('#found_media_elements').replaceWith("<%= j(render(:partial => "search/media_elements/results")) %>");
-      $('#found_lessons').html('');
-      <% if @media_elements.any? %>
-        $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
-      <% else %>
-        $('#general_pagination').html('');
-      <% end %>
-    });
-  <% end %>
-  
-  <% if @tags.any? %>
-    $('#media_elements_tag_details').replaceWith("<%= j(render(:partial => 'search/media_elements/tag_details', :locals => {:tags => @tags})) %>");
-  <% end %>
-  
+<% if @delete_item.blank? %>
+  $('#found_<%= my_item %>').hide('fade', {}, 500, function() {
+    $('#found_<%= my_item %>').replaceWith("<%= j(render(:partial => "search/${my_item}/results")) %>");
+    $('#found_<%= my_other_item %>').html('');
+    <% if my_objects.any? %>
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+    <% else %>
+      $('#general_pagination').html('');
+    <% end %>
+  });
 <% else %>
-  
-  <% if @delete_item.blank? %>
-    $('#found_lessons').hide('fade', {}, 500, function() {
-      $('#found_lessons').replaceWith("<%= j(render(:partial => "search/lessons/results")) %>");
-      $('#found_media_elements').html('');
-      <% if @lessons.any? %>
-        $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
-      <% else %>
-        $('#general_pagination').html('');
-      <% end %>
-    });
-  <% else %>
-    var to_delete = $('#<%= @delete_item %>');
-    to_delete.hide('fade', {}, 500, function() {
-      $('#found_lessons').replaceWith("<%= j(render(:partial => "search/lessons/results")) %>");
-      $('#found_media_elements').html('');
-      <% if @lessons.any? %>
-        $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
-      <% else %>
-        $('#general_pagination').html('');
-      <% end %>
-    });
-  <% end %>
-  
-  <% if @tags.any? %>
-    $('#lessons_tag_details').replaceWith("<%= j(render(:partial => 'search/lessons/tag_details', :locals => {:tags => @tags})) %>");
-  <% end %>
-  
+  var to_delete = $('#<%= @delete_item %>');
+  to_delete.hide('fade', {}, 500, function() {
+    $('#found_<%= my_item %>').replaceWith("<%= j(render(:partial => "search/#{my_item}/results")) %>");
+    $('#found_<%= my_other_item %>').html('');
+    <% if my_objects.any? %>
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+    <% else %>
+      $('#general_pagination').html('');
+    <% end %>
+  });
+<% end %>
+
+<% if my_objects_amount > 0 %>
+  $('#<%= my_item %>_search_amount').replaceWith("<%= j(render(:partial => "search/#{my_item}/amount", :locals => {:amount => my_objects_amount})) %>");
+<% end %>
+
+<% if @tags.any? %>
+  $('#<%= my_item %>_tag_details').replaceWith("<%= j(render(:partial => "search/#{my_item}/tag_details", :locals => {:tags => @tags})) %>");
 <% end %>
 
 $('#info_container').data('currenturl', '<%= remove_param_from_url(request.url, 'delete_item') %>');

@@ -44,6 +44,12 @@
     </div>
   </div>
   
+  <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) %>
+    <%= render :partial => "search/media_elements/amount", :locals => {:amount => @media_elements_amount} %>
+  <% else %>
+    <div id="media_elements_search_amount"></div>
+  <% end %>
+  
   <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) && @tags.any? %>
     <%= render :partial => "search/media_elements/tag_details", :locals => {:tags => @tags} %>
   <% else %>
