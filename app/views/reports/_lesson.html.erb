@@ -1,8 +1,9 @@
 <div id="report_lesson_click_<%= lesson.id %>" class="_report_lesson_click" data-param="<%= lesson.id %>">
-  <div class="menuController" style="padding-top:6px; width:25px">
-    <a class="<%= Buttons::REPORT %> _reportable_icon"></a>
+  <div class="menuController" style="padding-top:6px; width:2.4em">
+    <a class="<%= Buttons::REPORT %> _reportable_icon" style="width: 2.4em;
+height: 3.5em;"></a>
   </div>
-  <span style="padding-top:10px; float:left"><%= t('captions.report_abuse') %></span>
+  <span style="padding-top:1.2em; float:left"><%= t('captions.report_abuse') %></span>
 </div>
 <span class="lesson_tooltipForm _report_form_content" id="lesson_report_form_<%= lesson.id %>">
   <%= image_tag("freccia_tooltip_form.png", :class => "calloutForm") %>
