@@ -5,7 +5,7 @@ class MediaElement < ActiveRecord::Base
   
   self.inheritance_column = :sti_type
   
-  attr_accessible :title, :description, :media, :publication_date, :tags, :tags_as_string
+  attr_accessible :title, :description, :media, :publication_date, :tags, :tags_as_array_of_strings, :tags_as_string
   attr_reader :status, :is_reportable, :info_changeable
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
@@ -61,13 +61,22 @@ class MediaElement < ActiveRecord::Base
     alias_method_chain :new, :sti_type_inferring
   end
 
+  def tags_as_array_of_strings=(tags_as_array_of_strings)
+    self.tags = tags_as_array_of_strings.map{ |tag| Tag.find_or_initialize_by_word(tag) }
+    self.tags_as_array_of_strings
+  end
+
+  def tags_as_array_of_strings
+    tags.map(&:word)
+  end
+
   def tags_as_string=(tags_as_string)
-    self.tags = tags_as_string.split(',').map{ |tag| Tag.find_or_initialize_by_word(tag.downcase.strip) }
-    tags_as_string
+    self.tags_as_array_of_strings = tags_as_string.split(',')
+    self.tags_as_string
   end
 
   def tags_as_string
-    tags.join(', ')
+    tags_as_array_of_strings.join(', ')
   end
   
   def self.dashboard_emptied?(an_user_id)
