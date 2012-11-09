@@ -789,6 +789,12 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_extractor [Tag.find_by_word('walter nudo').id], p1[:tags]
     assert_equal 3, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
+    # check that it does not work for middle words
+    xx = @user2.search_lessons('nudo', 1, 5)
+    assert xx[:records].empty?
+    assert xx[:tags].empty?
+    assert_equal 0, xx[:records_amount]
+    assert_equal 0, xx[:pages_amount]
     # cases in chinese
     [@les7, @les8, @les9].each do |llll|
       assert Lesson.find(llll.id).publish
@@ -969,6 +975,9 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_extractor tag_ids, p2[:tags]
     assert_equal 3, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
+    # check middle words
+    assert_extractor [Tag.find_by_word('walter nudo').id], @user2.search_media_elements('walter ', 1, 5)[:tags]
+    assert @user2.search_media_elements('nudo', 1, 5)[:tags].empty?
   end
   
 end
