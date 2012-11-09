@@ -5,16 +5,17 @@ class MediaElement < ActiveRecord::Base
   
   self.inheritance_column = :sti_type
   
-  attr_accessible :title, :description, :duration, :publication_date
+  attr_accessible :title, :description, :media, :publication_date, :tags, :tags_as_string
   attr_reader :status, :is_reportable, :info_changeable
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
   has_many :reports, :as => :reportable, :dependent => :destroy
   has_many :taggings, :as => :taggable, :dependent => :destroy
+  has_many :tags, :through => :taggings
   belongs_to :user
   
-  validates_presence_of :user_id, :title, :description
+  validates_presence_of :user_id, :title, :description, :tags, :media
   validates_inclusion_of :is_public, :in => [true, false]
   validates_inclusion_of :sti_type, :in => ['Video', 'Audio', 'Image']
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
@@ -25,10 +26,48 @@ class MediaElement < ActiveRecord::Base
   
   before_validation :init_validation
   before_destroy :stop_if_public
-  
-  def tags
-    return [] if self.new_record?
-    Tag.get_tags_for_item 'MediaElement', self.id
+
+  # def self.test
+  #   self.new(title: 'Test', description: 'test') do |me|
+  #     me.user = User.first
+  #     me.is_public = false
+  #   end
+  # end
+
+  EXTENSIONS_BY_STI_TYPE = { 'Image' => %w(jpg jpeg png) }
+
+  class << self
+    def new_with_sti_type_inferring(attributes = nil, options = {}, &block)
+      media = attributes.try :[], :media
+      
+      unless media.is_a?(ActionDispatch::Http::UploadedFile) or media.is_a?(File)
+        return new_without_sti_type_inferring(attributes, options, &block)
+      end
+
+      extension = File.extname(
+          case media
+          when ActionDispatch::Http::UploadedFile then media.original_filename
+          when File                               then media.path
+          end
+        ).sub(/^\./, '').downcase
+      inferred_sti_type = EXTENSIONS_BY_STI_TYPE.detect{ |k, v| v.include? extension }.try(:first)
+
+      unless inferred_sti_type
+        return new_without_sti_type_inferring(attributes, options, &block)
+      end
+
+      inferred_sti_type.constantize.new_without_sti_type_inferring(attributes, options, &block)
+    end
+    alias_method_chain :new, :sti_type_inferring
+  end
+
+  def tags_as_string=(tags_as_string)
+    self.tags = tags_as_string.split(',').map{ |tag| Tag.find_or_initialize_by_word(tag.downcase.strip) }
+    tags_as_string
+  end
+
+  def tags_as_string
+    tags.join(', ')
   end
   
   def self.dashboard_emptied?(an_user_id)

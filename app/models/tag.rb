@@ -11,8 +11,6 @@ class Tag < ActiveRecord::Base
   validates_length_of :word, :minimum => MIN_LENGTH, :maximum => MAX_LENGTH
   validates_uniqueness_of :word
   
-  before_validation :convert_downcase_word
-  
   def self.get_tags_for_item(type, id)
     resp = ""
     first_tag = true
@@ -69,33 +67,9 @@ class Tag < ActiveRecord::Base
     end
     resp
   end
-  
-  private
-  
-  def convert_downcase_word
-    return if self.word.blank?
-    self.word = to_downcase_without_spaces self.word
-  end
-  
-  def to_downcase_without_spaces(x)
-    x = x.mb_chars.downcase.to_s
-    x = cut_first_spaces(x)
-    x.reverse!
-    x = cut_first_spaces(x)
-    return x.reverse
-  end
-  
-  def cut_first_spaces(x)
-    cont = 0
-    status = true
-    x.each_byte do |byte|
-      if byte == 32 && status
-        cont += 1
-      else
-        status = false
-      end
-    end
-    x = x[cont, x.length]
+
+  def word=(word)
+    write_attribute(:word, word.present? ? word.to_s.strip.mb_chars.downcase.to_s : word)
   end
   
 end

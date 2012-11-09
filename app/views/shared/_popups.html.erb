@@ -2,33 +2,6 @@
 
 <div class="timedPopUp" id="dialog-ok" style="display:none"></div>
 
-<div class="mediaElementInfoPopUp"  id="load-media-element" style="display:none;">
-  <div class="_media_element_pop_up_container">
-    <div class="_change_info_container" style="display:block; width:794px; padding:20px 20px 0px 20px">
-			<form class="formModifyInfo">
-			<div class="cols" style="float:left">
-			 <div class="selectButton">
-         <input class="uploadFile" name="" type="file">
-         <input type="button" value="" class="uploadFileButton submitButton">
-         <input class="fk_carica_elemento_file" name="fake_file" placeholder="Nessun file selezionato" type="text">
-       </div>
-			 <br class="clearfloat">
-				 <input type="text" name="title" value="title">
-				 <br>
-				 <%= text_area_tag 'description', 'beh' %>
-			 </div>
-			 <div class="cols" style="float:right;">
-				 <h1>upload new element</h1>
-				 <p style="padding-bottom:15px">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut </p>
-				 <%= text_area_tag 'tags', 'tags' %>
-				 <br>
-				 <%= submit_tag 'upload' %> <a href="">or cancel</a>
-			 </div>
-		 </form>
-   </div>
-  </div>
-  <div class="barraLoading">
-  </div>
-</div>
+<%= render partial: 'media_elements/new_form_popup', locals: { media_element: @new_media_element } %>
 
 <div class="confirmPopUp" id="dialog-confirm" style="display:none"></div>

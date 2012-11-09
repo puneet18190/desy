@@ -19,6 +19,7 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/:lesson_id/remove_lesson' => 'virtual_classroom#remove_lesson'
   
   # ACTION BUTTONS FOR MEDIA ELEMENTS
+  resources :media_elements, :only => :create
   post 'media_elements/:media_element_id/add' => 'media_elements#add'
   post 'media_elements/:media_element_id/destroy' => 'media_elements#destroy'
   post 'media_elements/:media_element_id/remove' => 'media_elements#remove'

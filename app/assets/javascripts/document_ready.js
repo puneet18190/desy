@@ -20,8 +20,9 @@ $(document).ready(function() {
   });
   
   
-  // REPORT FORMS
+  // FORMS
   
+  //   REPORT
   $('body').on('mouseover', '._report_lesson_click', function() {
     var obj = $('#' + this.id + ' a._reportable_icon');
     if(!obj.hasClass('_report_selected')) {
@@ -87,6 +88,18 @@ $(document).ready(function() {
   
   $('body').on('click', '._report_form_content ._send', function(e) {
     $(this).closest('form').submit();
+  });
+
+  //   NEW MEDIA ELEMENT
+  $('#new_media_element').bind('ajax:success', function(e, data) {
+    console.log(data);
+    console.log($('#load-media-element'));
+    //closePopUp('load-media-element');
+    return false;
+  }).bind('ajax:error', function(e, data) {
+    // TODO gestione errori
+    console.log(data);
+    return false;
   });
   
   
@@ -379,5 +392,8 @@ $(document).ready(function() {
     $(this).attr('value', '');
     $('#media_elements_tag_kind_for_search').attr('value', '0');
   });
+
+  // FAKE UPLOAD BUTTONS
+  new FakeUpload($('._fakeUploadTrigger'));
   
 });
