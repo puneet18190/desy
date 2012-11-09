@@ -20,6 +20,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     "media_elements/images/#{model.id}"
   end
 
+  def cache_dir
+    Rails.root.join 'tmp/media_elements/images'
+  end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
