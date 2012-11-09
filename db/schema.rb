@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030094116) do
+ActiveRecord::Schema.define(:version => 20121107172441) do
 
   create_table "locations", :force => true do |t|
     t.string   "description", :null => false
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20121030094116) do
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.datetime "publication_date"
+    t.string   "media"
     t.index ["title"], :name => "index_media_elements_on_title"
     t.index ["updated_at"], :name => "index_media_elements_on_updated_at"
     t.index ["user_id"], :name => "index_media_elements_on_user_id"
