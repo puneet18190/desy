@@ -679,6 +679,29 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 13, MediaElement.count
     assert_equal 168, Tagging.count
     assert_tags MediaElement.find(1), ['cane', 'sole', 'gatto', 'cincillà', 'walter nudo', 'luna', 'escrementi di usignolo']
+    assert_tags MediaElement.find(2), ['walter nudo', 'luna', 'escrementi di usignolo', 'disabili', 'barriere architettoniche', 'mare', 'petrolio']
+    assert_tags MediaElement.find(3), ['barriere architettoniche', 'mare', 'petrolio', 'sostenibilità', 'immondizia', 'inquinamento atmosferico', 'inquinamento']
+    assert_tags MediaElement.find(4), ['inquinamento', 'pollution', 'tom cruise', 'cammello', 'cammelli', 'acqua', 'acquario']
+    assert_tags MediaElement.find(5), ['cammelli', 'acqua', 'acquario', 'acquatico', '個名', '拿大即', '河']
+    assert_tags MediaElement.find(6), ['個名', '拿大即', '河', '條聖', '係英國', '拿', '住羅倫']
+    assert_tags @el1, ['gatto', 'luna', 'barriere architettoniche', 'sostenibilità', 'inquinamento', 'cammello', 'acquario']
+    assert_tags @el2, ['escrementi di usignolo', 'inquinamento atmosferico', 'acquario', '拿', 'walter nudo', 'mare', 'inquinamento']
+    assert_tags @el3, ['cane', 'sole', 'gatto', 'cincillà', 'walter nudo', 'luna', 'escrementi di usignolo']
+    assert_tags @el4, ['係英國', '拿', '住羅倫', '加', '大湖', '咗做', '個']
+    assert_tags @el5, ['walter nudo', 'luna', 'escrementi di usignolo', 'disabili', 'barriere architettoniche', 'mare', 'petrolio']
+    assert_tags @el6, ['大湖', '咗做', '個', '法條聖話', 'cane', 'sole', 'gatto']
+    assert_tags @el7, ['barriere architettoniche', 'mare', 'petrolio', 'sostenibilità', 'immondizia', 'inquinamento atmosferico', 'inquinamento']
+    assert_tags Lesson.find(1), ['inquinamento', 'pollution', 'tom cruise', 'cammello', 'cammelli', 'acqua', 'acquario']
+    assert_tags Lesson.find(2), ['cammelli', 'acqua', 'acquario', 'acquatico', '個名', '拿大即', '河']
+    assert_tags @les1, ['gatto', 'luna', 'barriere architettoniche', 'sostenibilità', 'inquinamento', 'cammello', 'acquario']
+    assert_tags @les2, ['escrementi di usignolo', 'inquinamento atmosferico', 'acquario', '拿', 'walter nudo', 'mare', 'inquinamento']
+    assert_tags @les3, ['cane', 'sole', 'gatto', 'cincillà', 'walter nudo', 'luna', 'escrementi di usignolo']
+    assert_tags @les4, ['walter nudo', 'luna', 'escrementi di usignolo', 'disabili', 'barriere architettoniche', 'mare', 'petrolio']
+    assert_tags @les5, ['barriere architettoniche', 'mare', 'petrolio', 'sostenibilità', 'immondizia', 'inquinamento atmosferico', 'inquinamento']
+    assert_tags @les6, ['inquinamento', 'pollution', 'tom cruise', 'cammello', 'cammelli', 'acqua', 'acquario']
+    assert_tags @les7, ['個名', '拿大即', '河', '條聖', '係英國', '拿', '住羅倫']
+    assert_tags @les8, ['係英國', '拿', '住羅倫', '加', '大湖', '咗做', '個']
+    assert_tags @les9, ['大湖', '咗做', '個', '法條聖話', 'cane', 'sole', 'gatto']
   end
   
   test 'google_lessons_with_tags' do
