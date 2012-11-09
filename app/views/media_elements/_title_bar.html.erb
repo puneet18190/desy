@@ -9,7 +9,7 @@
       <select name="display" id="for_page_media_elements">
         <% counter = true %>
         <% @for_page_options.each do |f| %>
-          <option value="<%= f %>" <%= counter ? "selected=\"selected".html_safe : '' %>><%= f %></option>
+          <option value="<%= f %>" <%= counter ? "selected=\"selected\"".html_safe : '' %>><%= f %></option>
           <% counter = false %>
         <% end %>
       </select>
@@ -21,7 +21,7 @@
       <% counter = true %>
       <% Filters::MEDIA_ELEMENTS_SET.each do |f| %>
         <% caption = Filters::CAPTIONS[f] %>
-        <option value="<%= f %>" <%= counter ? "selected=\"selected".html_safe : '' %>><%= caption %></option>
+        <option value="<%= f %>" <%= counter ? "selected=\"selected\"".html_safe : '' %>><%= caption %></option>
         <% counter = false %>
       <% end %>
     </select>
