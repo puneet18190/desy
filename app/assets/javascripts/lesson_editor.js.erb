@@ -1,10 +1,10 @@
 $(document).ready(function() {
-  masked = $("._mask_x a");
+  masked = $("._mask_x a:not('._choose')");
   masked.each(function(index) {
     console.log(masked[index]);
     makeDraggable($(masked[index]), "x");
   });
-  
+
   $("._save_slide").click(function(e) {
     e.preventDefault();
     $(this).parents(".buttons").siblings().find('form').submit();
@@ -91,4 +91,14 @@ masked.draggable({
     masked.parent().siblings(".media_element_align_1").val(parseInt(offset));
   }
 });
+}
+
+function imgRealSize(img) {
+	var $img = $(img);
+	if ($img.prop('naturalWidth') == undefined) {
+		var $tmpImg = $('<img/>').attr('src', $img.attr('src'));
+		$img.prop('naturalWidth', $tmpImg[0].width);
+		$img.prop('naturalHeight', $tmpImg[0].height);
+	}
+	return { 'width': $img.prop('naturalWidth'), 'height': $img.prop('naturalHeight') }
 }

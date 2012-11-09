@@ -383,16 +383,17 @@ html.lesson-editor-layout{
             padding: 0;
             float:left;
           }
-          .image4-p1, .image4-p3,.image4-p2, .image4-p4{
-            width: 410px;
-            height: 255px;
-            padding: 20px;
+          .image4-p1,.image4-p3{
+            float:left;
+          }
+          .image4-p2,.image4-p4{
+            float:right;
           }
           .mask{
-            width: 410px;
+            width: 430px;
             height: 255px;
             padding: 0;
-            margin: 0;
+            margin: 10px 5px 10px 10px;
             overflow:hidden;
             position:relative;
             img{
@@ -686,16 +687,10 @@ html.lesson-editor-layout{
     &.cover-choose-image-left{
       width:440px;
       float:left;
-      img{
-        margin-left: 180px;
-      }
     }
     &.cover-choose-image-right{
       width:440px;
       float:right;
-      img{
-        margin-left: 180px;
-      }
     }
   }
 
