@@ -33,10 +33,8 @@ class User < ActiveRecord::Base
     offset = (page - 1) * for_page
     if word.blank?
       search_media_elements_without_tag(offset, for_page, filter, order)
-    elsif word.class == Fixnum
-      search_media_elements_with_chosen_tag(word, offset, for_page, filter, order)
     else
-      word = word.to_s
+      word = word.to_s if word.class != Fixnum
       search_media_elements_with_tag(word, offset, for_page, filter, order)
     end
   end
@@ -50,10 +48,8 @@ class User < ActiveRecord::Base
     offset = (page - 1) * for_page
     if word.blank?
       search_lessons_without_tag(offset, for_page, filter, subject_id, order)
-    elsif word.class == Fixnum
-      search_lessons_with_chosen_tag(word, offset, for_page, filter, subject_id, order)
     else
-      word = word.to_s
+      word = word.to_s if word.class != Fixnum
       search_lessons_with_tag(word, offset, for_page, filter, subject_id, order)
     end
   end
@@ -350,16 +346,17 @@ class User < ActiveRecord::Base
   
   private
   
-  def search_media_elements_with_chosen_tag(tag_id, offset, limit, filter, order_by)
-    
-  end
-  
   def search_media_elements_with_tag(word, offset, limit, filter, order_by)
     resp = {}
     params = ["#{word}%", true, self.id]
     select = 'media_elements.id AS media_element_id'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
     where = 'tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
+    if word.class == Fixnum
+      params = [word, true, self.id]
+      joins = "INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
+      where = 'taggings.tag_id = ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
+    end
     order = ''
     case order_by
       when SearchOrders::UPDATED_AT
@@ -381,7 +378,7 @@ class User < ActiveRecord::Base
       media_element.set_status self.id
       content << media_element
     end
-    resp[:tags] = Tag.where('word LIKE ?', "#{word}%")
+    resp[:tags] = Tag.where('word LIKE ?', "#{word}%") if word.class != Fixnum
     resp[:records_amount] = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).count.length
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
     resp[:records] = content
@@ -424,16 +421,17 @@ class User < ActiveRecord::Base
     return resp
   end
   
-  def search_lessons_with_chosen_tag(tag_id, offset, limit, filter, subject_id, order)
-    
-  end
-  
   def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by)
     resp = {}
     params = ["#{word}%"]
     select = 'lessons.id AS lesson_id'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
     where = 'tags.word LIKE ?'
+    if word.class == Fixnum
+      params = [word]
+      joins = "INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
+      where = 'taggings.tag_id = ?'
+    end
     order = ''
     case order_by
       when SearchOrders::UPDATED_AT
@@ -483,7 +481,7 @@ class User < ActiveRecord::Base
       lesson.set_status self.id
       content << lesson
     end
-    resp[:tags] = Tag.where('word LIKE ?', "#{word}%")
+    resp[:tags] = Tag.where('word LIKE ?', "#{word}%") if word.class != Fixnum
     resp[:records_amount] = count
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
     resp[:records] = content
