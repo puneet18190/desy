@@ -33,10 +33,9 @@
 #     <a href="#" data-page="1"></a><a href="#" role="current" data-page="2"></a><a href="#" role="disabled"></a>
 #   </span>
 #
-# The pagination can take two prerequisite functions, one for the previous and one for the next page.
-# If the function corresponding to the direction returns false, the page will not be changed.
+# The pagination can take two callback functions, one for the previous and one for the next page.
 class DotsPagination
-  constructor: (@$pages, @pagesAmount, @okToGoToPrevPage, @okToGoToNextPage) ->
+  constructor: (@$pages, @pagesAmount, @prevPageCallback, @nextPageCallback) ->
     @$current = @$pages.find('[role=current]')
 
     @$pages.find(':not([role=current],[role=disabled])').on('mouseenter', @pageLinkMouseEnter).on('mouseleave', @pageLinkMouseLeave)
@@ -57,9 +56,9 @@ class DotsPagination
     [ exCurrentDirection, nearLinkSelector, nearLinkFunction, insertNearLinkFunction, animateLeftSign, pageIncrement, pageLimit, callback ] =
       switch direction = event.data.direction
         when 'prev'
-          [ 'next', ':first-child', direction, 'before', '', -1, 1,            @okToGoToPrevPage ]
+          [ 'next', ':first-child', direction, 'before', '', -1, 1,            @prevPageCallback ]
         when 'next'
-          [ 'prev', ':last-child',  direction, 'after',  '-', 1, @pagesAmount, @okToGoToNextPage ]
+          [ 'prev', ':last-child',  direction, 'after',  '-', 1, @pagesAmount, @nextPageCallback ]
         else 
           throw "unknown direction '#{direction}'"
 
