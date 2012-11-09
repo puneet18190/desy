@@ -44,7 +44,7 @@
     </div>
   </div>
   
-  <% if @did_you_search && @media_elements.any? && @tags.any? %>
+  <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) && @tags.any? %>
     <%= render :partial => "search/media_elements/tag_details", :locals => {:tags => @tags} %>
   <% else %>
     <div id="media_elements_tag_details"></div>
