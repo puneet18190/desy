@@ -43,6 +43,9 @@ class ExtractorTest < ActiveSupport::TestCase
   end
   
   def populate_tags
+    Tagging.all.each do |t|
+      t.destroy
+    end
     Tag.all.each do |t|
       t.destroy
     end

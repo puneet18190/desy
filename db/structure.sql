@@ -1185,7 +1185,7 @@ ALTER TABLE ONLY slides
 --
 
 ALTER TABLE ONLY taggings
-    ADD CONSTRAINT taggings_tag_id_fkey FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE;
+    ADD CONSTRAINT taggings_tag_id_fkey FOREIGN KEY (tag_id) REFERENCES tags(id);
 
 
 --

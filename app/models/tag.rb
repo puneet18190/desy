@@ -11,7 +11,9 @@ class Tag < ActiveRecord::Base
   validates_length_of :word, :minimum => MIN_LENGTH, :maximum => MAX_LENGTH
   validates_uniqueness_of :word
   
-  before_validation :convert_downcase_word
+  validate :word_not_changed
+  
+  before_validation :init_validation, :convert_downcase_word
   
   def self.get_tags_for_item(type, id)
     resp = ""
@@ -71,6 +73,14 @@ class Tag < ActiveRecord::Base
   end
   
   private
+  
+  def init_validation
+    @tag = Valid.get_association self, :id
+  end
+  
+  def word_not_changed
+    errors[:word] << "can't be changed" if @tag && @tag.word != self.word
+  end
   
   def convert_downcase_word
     return if self.word.blank?

@@ -43,4 +43,11 @@ class TagTest < ActiveSupport::TestCase
     assert_equal 'àáäâcanarino  ëïöü     a', @tag.word
   end
   
+  test 'impossible_changes' do
+    @tag.word = 'ciao'
+    assert_obj_saved @tag
+    assert_invalid @tag, :word, 'cia', 'ciao', /can't be changed/
+    assert_obj_saved @tag
+  end
+  
 end
