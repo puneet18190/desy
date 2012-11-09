@@ -2,6 +2,7 @@ class MediaElement < ActiveRecord::Base
   
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
+  EXTENSIONS_BY_STI_TYPE = { 'Image' => %w(jpg jpeg png) }
   
   self.inheritance_column = :sti_type
   
@@ -15,7 +16,8 @@ class MediaElement < ActiveRecord::Base
   has_many :tags, :through => :taggings
   belongs_to :user
   
-  validates_presence_of :user_id, :title, :description, :tags, :media
+  # TODO aggiungere :media a validates_presence_of una volta implementati tutti gli upload
+  validates_presence_of :user_id, :title, :description, :tags
   validates_inclusion_of :is_public, :in => [true, false]
   validates_inclusion_of :sti_type, :in => ['Video', 'Audio', 'Image']
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
@@ -27,14 +29,6 @@ class MediaElement < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_public
 
-  # def self.test
-  #   self.new(title: 'Test', description: 'test') do |me|
-  #     me.user = User.first
-  #     me.is_public = false
-  #   end
-  # end
-
-  EXTENSIONS_BY_STI_TYPE = { 'Image' => %w(jpg jpeg png) }
 
   class << self
     def new_with_sti_type_inferring(attributes = nil, options = {}, &block)
@@ -62,7 +56,7 @@ class MediaElement < ActiveRecord::Base
   end
 
   def tags_as_array_of_strings=(tags_as_array_of_strings)
-    self.tags = tags_as_array_of_strings.map{ |tag| Tag.find_or_initialize_by_word(tag) }
+    self.tags = tags_as_array_of_strings.compact.map{ |tag| Tag.find_or_initialize_by_word(tag) }
     self.tags_as_array_of_strings
   end
 
@@ -182,11 +176,12 @@ class MediaElement < ActiveRecord::Base
   end
   
   def validate_duration
-    if self.sti_type == 'Image'
-      errors[:duration] << 'must be blank for images' if !self.duration.nil?
-    else
-      errors[:duration] << "can't be blank for videos and audios" if self.duration.nil?
-    end
+    # TODO implementarla
+    # if self.sti_type == 'Image'
+    #   errors[:duration] << 'must be blank for images' if !self.duration.nil?
+    # else
+    #   errors[:duration] << "can't be blank for videos and audios" if self.duration.nil?
+    # end
   end
   
   def stop_if_public

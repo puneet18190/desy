@@ -17,7 +17,14 @@ subject3 = Subject.create :description => 'Scienze' # idem
 User.create_user CONFIG['admin_email'], 'DESY', 'Admin User', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
 
 if Rails.env.development?
+
+  #File.rm_rf "public/media_elements/images"
   
+  images = Dir.glob("#{Rails.root}/db/seeds/images/*").grep /\.jpe?g|png$/
+
+  #seed = 296861209221458667185695173753709909329
+  #r = Random.new(seed)
+
   tags = []
   tags << "cane"
   tags << "sole"
@@ -150,7 +157,7 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   descriptions << ["Balotelli imita Eto'o", "Balotelli BalotelliBalotelli Balotelli Balotelli Balotelli Balotelli Balotelli"]
   
   descriptions << ["Paura per Osvaldo", "Saranno Giovinco e Osvaldo a guidare l'Italia stasera contro l'Armenia."]
-  descriptions << ["Allenamenti differenziati? Storie inventate", "Un Prandelli concentratissimo ha spiegato tutti gli aspetti di questa vigilia di Armenia-Italia. Prandelli, dopo le difficoltà di settembre, che Italia dovremo aspettarci?"]
+  descriptions << ["Allenamenti differenziati? Storie!", "Un Prandelli concentratissimo ha spiegato tutti gli aspetti di questa vigilia di Armenia-Italia. Prandelli, dopo le difficoltà di settembre, che Italia dovremo aspettarci?"]
   descriptions << ["административно-территориальные единицы", "Отличается значительным этнокультурным разнообразием. Бо́льшая часть верующих (около 75 % населения[11]) исповедует православие, что делает Россию страной с самым большим православным населением в м"]
   descriptions << ["С начала XIV века среди", "(собственников земли) превратились в помещиков (держателей поместья — надела, за который они обязаны нести военную службу) и слились по своему статусу с сословием служилых люде"]
   descriptions << ["южные и юго-восточные", "рактически всё мужское население Крыма, что значительно подорвало военно-политические силы Крымского ханства. Фактически сражение при Молодях стало последней великой битвой Руси с"]
@@ -171,12 +178,14 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   descriptions << ["英文片名無變", "本片電影原聲帶已經由滾石喺台灣發行，目前喺中國大陸冇任何影音產品發行"]
   
   descriptions.each_with_index do |d, i|
-    x = MediaElement.new :description => d[1], :title => d[0]
+    sti_type = types[(i%3)]
+    x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[rand(images.size)]) : nil)
+    puts x.class
     x.user_id = admin.id
-    x.sti_type = types[(i%3)]
-    x.duration = (types[(i%3)] != 'Image') ? 10 : nil
+    x.sti_type = sti_type
+    #x.duration = (sti_type != 'Image') ? 10 : nil
     x.tags_as_array_of_strings = tag_map[i%10]
-    x.save
+    x.save!
   end
   
   descriptions = []
@@ -220,15 +229,16 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   descriptions << ["基百基百", "自我檢自我檢自我檢自我檢"]
   descriptions << ["譯譯", "喺討論頁上簽名係套維基百科簽名嘅說明喺討論頁上簽名係套維基百科簽名嘅說明"]
   
-  i = 0
-  descriptions.each do |d|
-    x = MediaElement.new :description => d[1], :title => d[0]
+  descriptions.each_with_index do |d, i|
+    sti_type = types[(i%3)]
+    x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[rand(images.size)]) : nil)
+    puts x.class
     x.user_id = u.id
-    x.sti_type = types[(i%3)]
-    x.duration = (types[(i%3)] != 'Image') ? 10 : nil
+    x.sti_type = sti_type
+    #x.duration = (sti_type != 'Image') ? 10 : nil
     x.tags_as_array_of_strings = tag_map[i%10]
-    x.save
-    i += 1
+    #x.media = (sti_type != 'Image') ? nil : File.open(images[rand(images.size)])
+    x.save!
   end
   
   slides = {1 => ['image1', 'image2'], 2 => ['text', 'video1'], 3 => ['video2', 'video2'], 4 => ['image3', 'audio'], 5 => [], 6 => ['audio'], 7 => ['text', 'text'], 8 => [], 9 => ['video1', 'title'], 10 => ['image1', 'image3'], 11 => ['text', 'image2', 'image2', 'text'], 12 => ['video2', 'audio', 'title'], 13 => [], 14 => [], 15 => [], 16 => [], 17 => [], 18 => [], 19 => [], 20 => [], 21 => [], 22 => [], 23 => [], 24 => [], 25 => [], 26 => [], 27 => [], 28 => [], 29 => [], 30 => [], 31 => [], 32 => [], 33 => [], 34 => [], 35 => [], 36 => [], 37 => []}
