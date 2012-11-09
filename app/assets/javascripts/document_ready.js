@@ -370,27 +370,34 @@ $(document).ready(function() {
   // SEARCH ITEMS
   
   $('body').on('click', '#which_item_to_search_switch_media_elements', function() {
-    $('#search_media_elements_main_page').css('display', 'block');
-    $('#search_lessons_main_page').css('display', 'none');
+    $('#search_lessons_main_page').hide('fade', {}, 500, function() {
+      $('#search_media_elements_main_page').css('display', 'block');
+      $('#search_lessons_main_page').css('display', 'none');
+    });
   });
   
   $('body').on('click', '#which_item_to_search_switch_lessons', function() {
-    $('#search_media_elements_main_page').css('display', 'none');
-    $('#search_lessons_main_page').css('display', 'block');
+    $('#search_media_elements_main_page').hide('fade', {}, 500, function() {
+      $('#search_media_elements_main_page').css('display', 'none');
+      $('#search_lessons_main_page').css('display', 'block');
+    });
   });
   
   $('body').on('focus', '#general_tag_reader_for_search', function() {
     $(this).attr('value', '');
+    $(this).css('color', '#939393');
     $('#general_tag_kind_for_search').attr('value', '0');
   });
   
   $('body').on('focus', '#lessons_tag_reader_for_search', function() {
     $(this).attr('value', '');
+    $(this).css('color', '#939393');
     $('#lessons_tag_kind_for_search').attr('value', '0');
   });
   
   $('body').on('focus', '#media_elements_tag_reader_for_search', function() {
     $(this).attr('value', '');
+    $(this).css('color', '#939393');
     $('#media_elements_tag_kind_for_search').attr('value', '0');
   });
   

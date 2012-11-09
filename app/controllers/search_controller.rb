@@ -49,7 +49,7 @@ class SearchController < ApplicationController
     @did_you_search = params.has_key? :tag
     @search_item = ['lessons', 'media_elements'].include?(params[:item]) ? params[:item] : 'lessons'
     if @did_you_search
-      @tag = params[:tag_kind].blank? ? '' : (params[:tag_kind] == '0' ? params[:tag] : params[:tag_kind].to_i)
+      @tag = params[:tag_kind].blank? ? '' : (params[:tag_kind] == '0' ? params[:tag] : (correct_integer?(params[:tag_kind]) ? params[:tag_kind].to_i : ''))
       @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
       case @search_item
         when 'lessons'
