@@ -18,7 +18,6 @@
   right:-7px;
 }
 @mixin inputSend {
-
   input[type="submit"] {
     font:  140% 'Nunito', sans-serif;
     color: #5D5C5C;
@@ -135,29 +134,30 @@ $canvasSize: 450%;
 
 /*TOOLTIP REPORT ABUSE*/
 $canvasSize: 450%;
-
-.lesson_tooltipForm {
-  display:none; 
-  @include misc;
+@mixin elementiComuni {
+  display:none;
   padding:10px;
-  
-  left:3px;
-  bottom:30px;
-  float:right;
-  background-color:#fbfbfb;
+	float:right;
+	background-color:#fbfbfb;
 	color:#c0c0c0;
   border:1px solid #c6c5c3;
   width:350px;
-	@include inputSend;
 	.text {
 	  margin:10px 0 10px 0;
 	  width: 336px;
 		overflow:hidden;
-    /*height: 67px;*/
-		padding-top:0px;
+    padding-top:0px;
 		padding-bottom:50px;
 		border:1px solid #f0e5e5;
 	}
+}
+.lesson_tooltipForm {
+  @include misc;
+	@include elementiComuni;
+	left:3px;
+  bottom:30px;
+  @include inputSend;
+	
 	.calloutForm {
     bottom: -8px;
     z-index:20;
@@ -169,25 +169,12 @@ $canvasSize: 450%;
 }
 
 .media_element_tooltipForm {
-  display:none; 
   @include misc;
-  padding:10px;
+	@include elementiComuni;
   right:3px;
   bottom:38px;
-  float:right;
-  background-color:#fbfbfb;
-	color:#c0c0c0;
-  border:1px solid #c6c5c3;
-  width:350px;
-	@include inputSend;
-	.text {
-	  margin:10px 0 10px 0;
-	  width: 336px;
-		overflow:hidden;
-    padding-top:0px;
-		padding-bottom:50px;
-		border:1px solid #f0e5e5;
-	}
+  @include inputSend;
+	
 	.calloutForm {
     bottom: -7px;
     z-index:20;
