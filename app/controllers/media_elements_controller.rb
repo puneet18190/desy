@@ -15,7 +15,22 @@ class MediaElementsController < ApplicationController
       @page = @pages_amount
       get_own_media_elements
     end
+    @new_media_element = MediaElement.new(params[:media_element])
     render_js_or_html_index
+  end
+
+  def create
+    media_element = MediaElement.new(params[:media_element]).tap{ |me| me.user = @current_user }
+
+    #if media_element.save
+      render json: I18n.t('forms.media_element.messages.success')
+    #else
+      # TODO aggiungere visualizzazione errori
+      #@new_media_element.errors.full_messages      
+      #render json: media_element.errors, :status => :unprocessable_entity
+    #end
+
+    #render layout: false, content_type: Mime::TEXT, text: media_element.inspect
   end
   
   def add

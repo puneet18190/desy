@@ -19,7 +19,7 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
-  def has_media_element?(position)
+  def media_element_at(position)
     MediaElementsSlide.where(:slide_id => self.id, :position => position).first
   end
   

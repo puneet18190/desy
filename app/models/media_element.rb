@@ -2,19 +2,22 @@ class MediaElement < ActiveRecord::Base
   
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
+  EXTENSIONS_BY_STI_TYPE = { 'Image' => %w(jpg jpeg png) }
   
   self.inheritance_column = :sti_type
   
-  attr_accessible :title, :description, :duration, :publication_date
+  attr_accessible :title, :description, :media, :publication_date, :tags, :tags_as_array_of_strings, :tags_as_string
   attr_reader :status, :is_reportable, :info_changeable
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
   has_many :reports, :as => :reportable, :dependent => :destroy
   has_many :taggings, :as => :taggable, :dependent => :destroy
+  has_many :tags, :through => :taggings
   belongs_to :user
   
-  validates_presence_of :user_id, :title, :description
+  # TODO aggiungere :media a validates_presence_of una volta implementati tutti gli upload
+  validates_presence_of :user_id, :title, :description, :tags
   validates_inclusion_of :is_public, :in => [true, false]
   validates_inclusion_of :sti_type, :in => ['Video', 'Audio', 'Image']
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
@@ -25,10 +28,49 @@ class MediaElement < ActiveRecord::Base
   
   before_validation :init_validation
   before_destroy :stop_if_public
-  
-  def tags
-    return [] if self.new_record?
-    Tag.get_tags_for_item 'MediaElement', self.id
+
+
+  class << self
+    def new_with_sti_type_inferring(attributes = nil, options = {}, &block)
+      media = attributes.try :[], :media
+      
+      unless media.is_a?(ActionDispatch::Http::UploadedFile) or media.is_a?(File)
+        return new_without_sti_type_inferring(attributes, options, &block)
+      end
+
+      extension = File.extname(
+          case media
+          when ActionDispatch::Http::UploadedFile then media.original_filename
+          when File                               then media.path
+          end
+        ).sub(/^\./, '').downcase
+      inferred_sti_type = EXTENSIONS_BY_STI_TYPE.detect{ |k, v| v.include? extension }.try(:first)
+
+      unless inferred_sti_type
+        return new_without_sti_type_inferring(attributes, options, &block)
+      end
+
+      inferred_sti_type.constantize.new_without_sti_type_inferring(attributes, options, &block)
+    end
+    alias_method_chain :new, :sti_type_inferring
+  end
+
+  def tags_as_array_of_strings=(tags_as_array_of_strings)
+    self.tags = tags_as_array_of_strings.compact.map{ |tag| Tag.find_or_initialize_by_word(tag) }
+    self.tags_as_array_of_strings
+  end
+
+  def tags_as_array_of_strings
+    tags.map(&:word)
+  end
+
+  def tags_as_string=(tags_as_string)
+    self.tags_as_array_of_strings = tags_as_string.split(',')
+    self.tags_as_string
+  end
+
+  def tags_as_string
+    tags_as_array_of_strings.join(', ')
   end
   
   def self.dashboard_emptied?(an_user_id)
@@ -134,11 +176,12 @@ class MediaElement < ActiveRecord::Base
   end
   
   def validate_duration
-    if self.sti_type == 'Image'
-      errors[:duration] << 'must be blank for images' if !self.duration.nil?
-    else
-      errors[:duration] << "can't be blank for videos and audios" if self.duration.nil?
-    end
+    # TODO implementarla
+    # if self.sti_type == 'Image'
+    #   errors[:duration] << 'must be blank for images' if !self.duration.nil?
+    # else
+    #   errors[:duration] << "can't be blank for videos and audios" if self.duration.nil?
+    # end
   end
   
   def stop_if_public

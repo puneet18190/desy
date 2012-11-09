@@ -172,8 +172,8 @@ html.lesson-editor-layout{
         padding: 10px;
       }
       .image1-content{
-        float:left;
-        width: 130px;
+        float:right;
+        width: 120px;
         margin-left: 5px;
       }
     }
@@ -263,6 +263,20 @@ html.lesson-editor-layout{
           top: 430px;
           h2{
             color: rgba(255,255,255,1);
+          }
+        }
+        .mask{
+          width: 900px;
+          height: 560px;
+          margin:0;
+          padding:0;
+          overflow:hidden;
+          position:relative;
+          img{
+            display:block;
+            cursor:move;
+            cursor: -webkit-grab;
+            left:0;
           }
         }
         .cover-slide-footer{
@@ -362,27 +376,52 @@ html.lesson-editor-layout{
         }
         &.image4{
           .image-4-box{
-              display:block;
-              width: 450px;
-              height: 295px;
-              margin:0;
-              padding: 0;
-              float:left;
-            }
-          .image4-p1, .image4-p3,.image4-p2, .image4-p4{
-            width: 410px;
+            display:block;
+            width: 450px;
+            height: 295px;
+            margin:0;
+            padding: 0;
+            float:left;
+          }
+          .image4-p1,.image4-p3{
+            float:left;
+          }
+          .image4-p2,.image4-p4{
+            float:right;
+          }
+          .mask{
+            width: 430px;
             height: 255px;
-            padding: 20px;
+            padding: 0;
+            margin: 10px 5px 10px 10px;
+            overflow:hidden;
+            position:relative;
+            img{
+              display:block;
+              cursor:move;
+              cursor: -webkit-grab;
+              left:0;
+            }
           }
         }
         &.image3{
           padding: 0;
           height: 590px;
           width: 900px;
-          img.image3-p1{
-            padding: 20px;
+          display:block;
+          .mask{
             width: 860px;
             height: 550px;
+            padding: 20px 0 0;
+            margin: 0 20px;
+            overflow:hidden;
+            position:relative;
+            img{
+              display:block;
+              cursor:move;
+              cursor: -webkit-grab;
+              left:0;
+            }
           }
         }
         

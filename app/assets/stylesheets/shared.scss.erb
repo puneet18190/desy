@@ -87,7 +87,10 @@
 	  @include contentInterno;
 	}
 	.contentNew {
-	  p {padding-top:90px;}
+	  p {
+		  padding-top:90px;
+			font: 110% 'Nunito', sans-serif;
+		}
 		.createButton a {
 		  background: url(<%= asset_path 'create.png' %>) top left no-repeat;
 			padding-bottom:90px;
@@ -112,6 +115,7 @@
   float:left;
   margin-bottom:1%;
   box-shadow: none;
+	background-color:#fbfafb;
 	.contentInterno {
     float:left;
     width:99%;
@@ -182,7 +186,11 @@
 		  float:right;
 			padding:0.5% 1.5% 0 0%;
 			width:54%;
+			font-size:90%;
 			margin-left:1%;
+			p {
+			  line-height:1.5em;
+			}
 			.intestazione {
 			  padding-bottom:20px;
 				float:left;
@@ -323,13 +331,16 @@
 	}
 	h4 {
 	 font-family: 'Nunito', sans-serif;
-	 line-height:1em;
+	 line-height:1.3em;
 	 padding-top:0.3em;
 	 }
 	.contentInterno {
 	  padding-top:0%;
 		height:274px;
 		background-color:#fbfafb;
+		p {
+		  font: 110% 'Nunito', sans-serif;
+		}
 		a.createButton {
 		  background: url(<%= asset_path 'create.png' %>) top center no-repeat;
 			padding:50px;
@@ -346,7 +357,7 @@
 	.description {
     padding-top:1%;
 	  padding-left:5%;
-		
+		width:90%;
   }
 }
 .boxViewCompactMediaElement {

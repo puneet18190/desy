@@ -15,8 +15,10 @@
 
 <% if @delete_item.blank? %>
   $('#found_<%= my_item %>').hide('fade', {}, 500, function() {
-    $('#found_<%= my_item %>').replaceWith("<%= j(render(:partial => "search/${my_item}/results")) %>");
+    $('#found_<%= my_item %>').replaceWith("<%= j(render(:partial => "search/#{my_item}/results")) %>");
     $('#found_<%= my_other_item %>').html('');
+    $('#<%= my_other_item %>_tag_details').html('');
+    $('#<%= my_other_item %>_search_amount').html('');
     <% if my_objects.any? %>
       $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
     <% else %>

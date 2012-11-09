@@ -58,7 +58,8 @@ $(document).ready(function() {
   
   // OTHER BUTTONS
   
-  $('.load_media_element').click(function() {
+  $('._load_media_element').click(function(e) {
+    e.preventDefault();
     showLoadMediaElementPopUp();
   });
   
@@ -74,8 +75,9 @@ $(document).ready(function() {
   });
   
   
-  // REPORT FORMS
+  // FORMS
   
+  //   REPORT
   $('body').on('mouseover', '._report_lesson_click', function() {
     var obj = $('#' + this.id + ' a._reportable_icon');
     if(!obj.hasClass('_report_selected')) {
@@ -142,6 +144,18 @@ $(document).ready(function() {
   $('body').on('click', '._report_form_content ._send', function(e) {
     $(this).closest('form').submit();
   });
+
+  //   NEW MEDIA ELEMENT
+  $('#new_media_element').bind('ajax:success', function(e, data) {
+    console.log(data);
+    console.log($('#load-media-element'));
+    //closePopUp('load-media-element');
+    return false;
+  }).bind('ajax:error', function(e, data) {
+    // TODO gestione errori
+    console.log(data);
+    return false;
+  });
   
   
   // FILTERS
@@ -169,28 +183,19 @@ $(document).ready(function() {
   $('body').on('change', '#filter_lessons', function() {
     var filter = $('#filter_lessons option:selected').val();
     var redirect_url = '/lessons?filter=' + filter;
-    $.ajax({
-      type: 'get',
-      url: redirect_url
-    });
+    $.get(redirect_url);
   });
   
   $('body').on('change', '#filter_media_elements', function() {
     var filter = $('#filter_media_elements option:selected').val();
     var redirect_url = getCompleteMediaElementsUrlWithoutFilter() + '&filter=' + filter;
-    $.ajax({
-      type: 'get',
-      url: redirect_url
-    });
+    $.get(redirect_url);
   });
   
   $('body').on('change', '#for_page_media_elements', function() {
     var for_page = $('#for_page_media_elements option:selected').val();
     var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + '&for_page=' + for_page;
-    $.ajax({
-      type: 'get',
-      url: redirect_url
-    });
+    $.get(redirect_url);
   });
   
   
@@ -405,20 +410,14 @@ $(document).ready(function() {
   $('#tooltip_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
     if(isAtBottom && (parseInt($('#tooltip_content').data('offset')) < parseInt($('#tooltip_content').data('totnumber')))) {
       var offset = $('#tooltip_content').data('offset');
-      $.ajax({
-        type: 'get',
-        url: '/notifications/get_new_block?offset=' + offset
-      });
+      $.get('/notifications/get_new_block?offset=' + offset);
     }
   });
   
   $('body').on('click', '._destroy_notification', function() {
     var my_id = $(this).data('param');
     var offset = $('#tooltip_content').data('offset');
-    $.ajax({
-      type: 'post',
-      url: '/notifications/' + my_id + '/destroy?offset=' + offset
-    });
+    $.post('/notifications/' + my_id + '/destroy?offset=' + offset);
   });
   
   
@@ -465,5 +464,8 @@ $(document).ready(function() {
     $(this).css('color', '#939393');
     $('#media_elements_tag_kind_for_search').attr('value', '0');
   });
+
+  // FAKE UPLOAD BUTTONS
+  new FakeUpload($('._fakeUploadTrigger'));
   
 });

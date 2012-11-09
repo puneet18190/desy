@@ -13,8 +13,8 @@ class Tag < ActiveRecord::Base
   
   validate :word_not_changed
   
-  before_validation :init_validation, :convert_downcase_word
-  
+  before_validation :init_validation
+
   def self.get_tags_for_item(type, id)
     resp = ""
     first_tag = true
@@ -71,7 +71,10 @@ class Tag < ActiveRecord::Base
     end
     resp
   end
-  
+
+  def word=(word)
+    write_attribute(:word, word.present? ? word.to_s.strip.mb_chars.downcase.to_s : word)
+  end  
   private
   
   def init_validation
@@ -80,32 +83,6 @@ class Tag < ActiveRecord::Base
   
   def word_not_changed
     errors[:word] << "can't be changed" if @tag && @tag.word != self.word
-  end
-  
-  def convert_downcase_word
-    return if self.word.blank?
-    self.word = to_downcase_without_spaces self.word
-  end
-  
-  def to_downcase_without_spaces(x)
-    x = x.mb_chars.downcase.to_s
-    x = cut_first_spaces(x)
-    x.reverse!
-    x = cut_first_spaces(x)
-    return x.reverse
-  end
-  
-  def cut_first_spaces(x)
-    cont = 0
-    status = true
-    x.each_byte do |byte|
-      if byte == 32 && status
-        cont += 1
-      else
-        status = false
-      end
-    end
-    x = x[cont, x.length]
   end
   
 end
