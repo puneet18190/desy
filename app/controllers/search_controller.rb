@@ -22,6 +22,7 @@ class SearchController < ApplicationController
           end
       end
     end
+    @tag = Tag.find_by_id(@tag.id) if @tag.class == Fixnum
     render_js_or_html_index
   end
   
