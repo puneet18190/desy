@@ -1,4 +1,4 @@
-<div id="search_media_elements_main_page" style="display:<%= @search_item == 'lessons' ? 'none' : 'block' %>">
+<div id="search_media_elements_main_page" style="display:<%= @search_item == 'lessons' ? 'none'.html_safe : 'block'.html_safe %>">
   
   <div class="contentSearch">
     <%= t('captions.media_elements') %>
@@ -14,7 +14,7 @@
               <select name="filter" id="filter_search_media_elements">
                 <% counter = true %>
                 <% Filters::MEDIA_ELEMENTS_SEARCH_SET.each do |f| %>
-                  <option value="<%= f %>" <%= counter ? "selected=\"selected\"" : '' %>><%= Filters::CAPTIONS[f] %></option>
+                  <option value="<%= f %>" <%= counter ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
                   <% counter = false %>
                 <% end %>
               </select>
@@ -26,7 +26,7 @@
               <% counter = true %>
               <% SearchOrders::MEDIA_ELEMENTS_SET.each do |so| %>
                 <% my_order_id = "#{so}_media_elements_radio_input" %>
-                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"" : '' %>><label for="<%= my_order_id %>"></label><%= SearchOrders::CAPTIONS[so] %><br>
+                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"></label><%= SearchOrders::CAPTIONS[so] %><br>
                 <% counter = false %>
               <% end %>
             </td>

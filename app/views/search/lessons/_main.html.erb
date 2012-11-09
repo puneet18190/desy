@@ -1,4 +1,4 @@
-<div id="search_lessons_main_page" style="display:<%= @search_item == 'lessons' ? 'block' : 'none' %>">
+<div id="search_lessons_main_page" style="display:<%= @search_item == 'lessons' ? 'block'.html_safe : 'none'.html_safe %>">
   
   <div class="contentSearch">
     <%= t('captions.lessons') %>
@@ -15,7 +15,7 @@
               <select name="filter" id="filter_search_lessons">
                 <% counter = true %>
                 <% Filters::LESSONS_SEARCH_SET.each do |f| %>
-                  <option value="<%= f %>" <%= counter ? "selected=\"selected\"" : '' %>><%= Filters::CAPTIONS[f] %></option>
+                  <option value="<%= f %>" <%= counter ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
                   <% counter = false %>
                 <% end %>
               </select>
@@ -36,7 +36,7 @@
               <% counter = true %>
               <% SearchOrders::LESSONS_SET.each do |so| %>
                 <% my_order_id = "#{so}_lessons_radio_input" %>
-                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"" : '' %>><label for="<%= my_order_id %>"></label><%= SearchOrders::CAPTIONS[so] %><br>
+                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"></label><%= SearchOrders::CAPTIONS[so] %><br>
                 <% counter = false %>
               <% end %>
             </td>
