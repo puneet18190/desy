@@ -709,6 +709,19 @@ class ExtractorTest < ActiveSupport::TestCase
   
   test 'google_lessons_with_tags' do
     populate_tags
+    # preliminarly, I try looking for a specific tag
+    luna = Tag.find_by_word 'luna'
+    p1 = @user2.search_lessons(luna.id, 1, 5)
+    assert_ordered_item_extractor [@les1.id, @les3.id, @les4.id], p1[:records]
+    assert !p1.has_key?(:tags)
+    assert_equal 3, p1[:records_amount]
+    assert_equal 1, p1[:pages_amount]
+    # it works only with integer
+    p1 = @user2.search_lessons(luna.id.to_f, 1, 5)
+    assert p1[:records].empty?
+    assert p1[:tags].empty?
+    assert_equal 0, p1[:records_amount]
+    assert_equal 0, p1[:pages_amount]
     # I start here, first case - no match
     p1 = @user2.search_lessons('ciao', 1, 5, nil, nil, nil)
     assert p1[:records].empty?
@@ -859,6 +872,19 @@ class ExtractorTest < ActiveSupport::TestCase
   
   test 'google_media_elements_with_tags' do
     populate_tags
+    # preliminarly, I try looking for a specific tag
+    luna = Tag.find_by_word 'luna'
+    p1 = @user2.search_media_elements(luna.id, 1, 5)
+    assert_ordered_item_extractor [2, @el1.id, @el3.id, @el5.id], p1[:records]
+    assert !p1.has_key?(:tags)
+    assert_equal 4, p1[:records_amount]
+    assert_equal 1, p1[:pages_amount]
+    # it works only with integer
+    p1 = @user2.search_media_elements(luna.id.to_f, 1, 5)
+    assert p1[:records].empty?
+    assert assert p1[:tags].empty?
+    assert_equal 0, p1[:records_amount]
+    assert_equal 0, p1[:pages_amount]
     # I start here, first case - no match
     p1 = @user2.search_media_elements('ciao', 1, 5, nil, nil)
     assert p1[:records].empty?
