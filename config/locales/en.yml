@@ -258,3 +258,16 @@ en:
       length_title: 40
     slide:
       length_title: 40
+
+# (6) forms
+  forms:
+    media_element:
+      title: 'upload new media element'
+      notes: 'notes'
+      submit: 'upload'
+      messages:
+        success: 'The media element has been successfully created'
+      labels:
+        title: 'title'
+        description: 'description'
+        tags: 'tags'

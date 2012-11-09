@@ -205,7 +205,8 @@ CREATE TABLE media_elements (
     is_public boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    publication_date timestamp without time zone
+    publication_date timestamp without time zone,
+    media character varying(255)
 );
 
 
@@ -1185,7 +1186,7 @@ ALTER TABLE ONLY slides
 --
 
 ALTER TABLE ONLY taggings
-    ADD CONSTRAINT taggings_tag_id_fkey FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE;
+    ADD CONSTRAINT taggings_tag_id_fkey FOREIGN KEY (tag_id) REFERENCES tags(id);
 
 
 --
@@ -1285,3 +1286,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121019091312');
 INSERT INTO schema_migrations (version) VALUES ('20121024101844');
 
 INSERT INTO schema_migrations (version) VALUES ('20121030094116');
+
+INSERT INTO schema_migrations (version) VALUES ('20121107172441');

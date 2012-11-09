@@ -81,15 +81,6 @@ class CascadeTest < ActiveSupport::TestCase
     end
   end
   
-  test 'tag_cascade' do
-    x = Tag.find 3
-    assert_equal 1, x.taggings.length
-    id = x.taggings.first
-    x.destroy
-    assert Tag.where(:id => 3).empty?
-    assert Tagging.where(:id => id).empty?
-  end
-  
   test 'lesson_bookmarks_cascade' do
     @bookmark = Bookmark.find 1
     assert_equal 'Lesson', @bookmark.bookmarkable_type
