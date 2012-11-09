@@ -18,12 +18,7 @@ User.create_user CONFIG['admin_email'], 'DESY', 'Admin User', 'School', school_l
 
 if Rails.env.development?
 
-  #File.rm_rf "public/media_elements/images"
-  
   images = Dir.glob("#{Rails.root}/db/seeds/images/*").grep /\.jpe?g|png$/
-
-  #seed = 296861209221458667185695173753709909329
-  #r = Random.new(seed)
 
   tags = []
   tags << "cane"
@@ -61,12 +56,6 @@ if Rails.env.development?
   tags << "個"
   tags << "法屬係話"
   
-  # tags.each do |t|
-  #   tt = Tag.new
-  #   tt.word = t
-  #   tt.save
-  # end
-
   tag_map = [
     [1, 2, 3, 4, 5, 6, 7],
     [5, 6, 7, 8, 9, 10, 11],
@@ -180,10 +169,8 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   descriptions.each_with_index do |d, i|
     sti_type = types[(i%3)]
     x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[rand(images.size)]) : nil)
-    puts x.class
     x.user_id = admin.id
     x.sti_type = sti_type
-    #x.duration = (sti_type != 'Image') ? 10 : nil
     x.tags_as_array_of_strings = tag_map[i%10]
     x.save!
   end
@@ -232,12 +219,9 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   descriptions.each_with_index do |d, i|
     sti_type = types[(i%3)]
     x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[rand(images.size)]) : nil)
-    puts x.class
     x.user_id = u.id
     x.sti_type = sti_type
-    #x.duration = (sti_type != 'Image') ? 10 : nil
     x.tags_as_array_of_strings = tag_map[i%10]
-    #x.media = (sti_type != 'Image') ? nil : File.open(images[rand(images.size)])
     x.save!
   end
   
@@ -478,20 +462,6 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
     cont += 1
   end
   MediaElement.record_timestamps = true
-  
-
-  
-  # cont = 0
-  
-  # MediaElement.all.each do |me|
-  #   Tag.create_tag_set('MediaElement', me.id, tag_map[cont%10])
-  #   cont += 1
-  # end
-  
-  # Lesson.all.each do |l|
-  #   Tag.create_tag_set('Lesson', l.id, tag_map[cont%10])
-  #   cont += 1
-  # end
   
 end
 
