@@ -817,6 +817,17 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_extractor tag_ids, p1[:tags]
     assert_equal 2, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
+    # I check that I find tags but not associated lessons
+    assert @user2.search_lessons('cammelli', 1, 5)[:records].any?
+    assert @les6.unpublish
+    cammelli = Tag.find_by_word 'cammelli'
+    cammelli.taggings.where(:taggable_type => 'Lesson').each do |t|
+      t.destroy if t.taggable_id != @les6.id
+    end
+    assert Tagging.where(:taggable_type => 'Lesson', :tag_id => cammelli.id).any?
+    xxx = @user2.search_lessons('cammelli', 1, 5)
+    assert xxx[:records].empty?
+    assert_extractor [cammelli.id], xxx[:tags]
   end
   
   test 'google_media_elements_without_tags' do
