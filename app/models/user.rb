@@ -356,7 +356,7 @@ class User < ActiveRecord::Base
   
   def search_media_elements_with_tag(word, offset, limit, filter, order_by)
     resp = {}
-    params = ["%#{word}%", true, self.id]
+    params = ["#{word}%", true, self.id]
     select = 'media_elements.id AS media_element_id'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
     where = 'tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
@@ -381,7 +381,7 @@ class User < ActiveRecord::Base
       media_element.set_status self.id
       content << media_element
     end
-    resp[:tags] = Tag.where('word LIKE ?', "%#{word}%")
+    resp[:tags] = Tag.where('word LIKE ?', "#{word}%")
     resp[:records_amount] = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).count.length
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
     resp[:records] = content
@@ -430,7 +430,7 @@ class User < ActiveRecord::Base
   
   def search_lessons_with_tag(word, offset, limit, filter, subject_id, order_by)
     resp = {}
-    params = ["%#{word}%"]
+    params = ["#{word}%"]
     select = 'lessons.id AS lesson_id'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
     where = 'tags.word LIKE ?'
@@ -483,7 +483,7 @@ class User < ActiveRecord::Base
       lesson.set_status self.id
       content << lesson
     end
-    resp[:tags] = Tag.where('word LIKE ?', "%#{word}%")
+    resp[:tags] = Tag.where('word LIKE ?', "#{word}%")
     resp[:records_amount] = count
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
     resp[:records] = content
