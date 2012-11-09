@@ -672,12 +672,17 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 1, p1[:pages_amount]
   end
   
-  test 'google_lessons_with_tags' do
+  test 'populate_tags' do
     populate_tags
     assert_equal 34, Tag.count
     assert_equal 11, Lesson.count
     assert_equal 13, MediaElement.count
     assert_equal 168, Tagging.count
+    assert_tags MediaElement.find(1), ['cane', 'sole', 'gatto', 'cincillà', 'walter nudo', 'luna', 'escrementi di usignolo']
+  end
+  
+  test 'google_lessons_with_tags' do
+    populate_tags
     # I start here, first case - no match
     p1 = @user2.search_lessons('ciao', 1, 5, nil, nil, nil)
     assert p1[:records].empty?
@@ -726,27 +731,36 @@ class ExtractorTest < ActiveSupport::TestCase
     assert Lesson.find(1).unpublish
     p1 = @user2.search_lessons('acqua', 1, 5, 'likes', 'public', nil)
     assert_ordered_item_extractor [@les1.id, @les6.id, @les2.id, 2], p1[:records]
+    tag_ids = []
+    Tag.where(:word => ['acqua', 'acquatico', 'acquario', 'acquazzone']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 4, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     # sixth case
     assert Lesson.find(1).publish
     p1 = @user2.search_lessons('acqua', 1, 5, 'likes', 'not_mine', nil)
     assert_ordered_item_extractor [@les1.id, @les6.id, @les2.id, 1], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 4, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     # seventh case
     p1 = @user2.search_lessons('acqua', 1, 5, 'title', 'not_mine', nil)
     assert_ordered_item_extractor [@les1.id, @les2.id, @les6.id, 1], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 4, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     # eight case
     p1 = @user2.search_lessons('acqua', 1, 5, 'title', 'not_mine', 1)
     assert_ordered_item_extractor [@les1.id, 1], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 2, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     # ninth case
     p1 = @user2.search_lessons('r n', 1, 5, nil, nil, nil)
     assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id], p1[:records]
+    assert_extractor [Tag.find_by_word('walter nudo').id], p1[:tags]
     assert_equal 3, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     # cases in chinese
@@ -755,10 +769,20 @@ class ExtractorTest < ActiveSupport::TestCase
     end
     p1 = @user2.search_lessons('個', 1, 5, 'title', nil, nil)
     assert_ordered_item_extractor [2, @les7.id, @les8.id, @les9.id], p1[:records]
+    tag_ids = []
+    Tag.where(:word => ['個名', '個']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 4, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_lessons('條聖', 1, 5, 'title', nil, nil)
     assert_ordered_item_extractor [@les7.id, @les9.id], p1[:records]
+    tag_ids = []
+    Tag.where(:word => ['法條聖話', '條聖']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 2, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
   end
@@ -792,10 +816,6 @@ class ExtractorTest < ActiveSupport::TestCase
   
   test 'google_media_elements_with_tags' do
     populate_tags
-    assert_equal 34, Tag.count
-    assert_equal 11, Lesson.count
-    assert_equal 13, MediaElement.count
-    assert_equal 168, Tagging.count
     # I start here, first case - no match
     p1 = @user2.search_media_elements('ciao', 1, 5, nil, nil)
     assert p1[:records].empty?

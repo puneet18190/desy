@@ -6,6 +6,14 @@ class ActiveSupport::TestCase
   
   fixtures :all
   
+  def assert_tags(item, tags)
+    tags2 = []
+    item.taggings.each do |t|
+      tags2 << t.tag.word
+    end
+    assert_equal tags2.sort, tags.sort
+  end
+  
   def assert_ordered_item_extractor(x1, x2)
     assert_equal x1.length, x2.length, "Error, #{x1.inspect} -- #{x2.inspect}"
     cont = 0
