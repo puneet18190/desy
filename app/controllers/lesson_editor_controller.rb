@@ -93,14 +93,16 @@ class LessonEditorController < ApplicationController
     (1...5).each do |i|
       if !params["media_element_#{i}"].blank?
         mes = MediaElementsSlide.where(:position => i, :slide_id => current_slide.id).first
-        if mes.nil? || mes.media_element_id != params["media_element_#{i}"].to_i
+        if mes.nil? || mes.media_element_id != params["media_element_#{i}"].to_i || mes.alignment != params["media_element_align_#{i}"].to_i
           mes.destroy if !mes.nil? #update id, don't destroy
           mes2 = MediaElementsSlide.new
           mes2.position = i
           mes2.slide_id = current_slide.id
           mes2.media_element_id = params["media_element_#{i}"].to_i
-          mes2.alignment = params[:alignment] ? params[:alignment] : 0
+          #TODO mettere default a zero per alignment 
+          mes2.alignment = params["media_element_align_#{i}"]
           mes2.save!
+
         end
       end
     end

@@ -1,4 +1,10 @@
 $(document).ready(function() {
+  masked = $("._mask_x a");
+  masked.each(function(index) {
+    console.log(masked[index]);
+    makeDraggable($(masked[index]), "x");
+  });
+  
   $("._save_slide").click(function(e) {
     e.preventDefault();
     $(this).parents(".buttons").siblings().find('form').submit();
@@ -59,3 +65,30 @@ $(document).ready(function() {
     $(this).addClass("active");
   });
 });
+
+/** functions to use in document.ready **/
+function makeDraggable(masked, axe){
+maskedImgWidth = masked.find("img").attr("width");
+var dist = maskedImgWidth - masked.parent().width();
+masked.draggable({ 
+  axis: axe, 
+  distance: 10, 
+  stop: function() {
+    var thisDrag = $(this)
+    var offset = thisDrag.css("left");
+    if (parseInt(offset) > 0){
+      offset = 0;
+      thisDrag.animate({
+          left: "0"
+        }, 100 );
+    }
+    else if (parseInt(offset) < -(parseInt(dist))){
+      offset = -parseInt(dist);
+      thisDrag.animate({
+          left: "-"+dist+"px"
+        }, 100 );
+    }
+    masked.parent().siblings(".media_element_align_1").val(parseInt(offset));
+  }
+});
+}
