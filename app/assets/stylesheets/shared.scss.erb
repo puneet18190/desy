@@ -58,6 +58,10 @@
 	background-repeat: no-repeat;
 	background-position:0 0;
 }
+@mixin contentInterno {
+  padding:4%;
+  height:110px;
+}
 .boxViewExpandedLesson {
   @include contentLayout;
 	background-color:#fbfafb;
@@ -68,9 +72,19 @@
 	  float:right;
 	}
 	.contentInterno {
-	  padding:4%;
-		height:110px;
-		
+	  @include contentInterno;
+	  
+	}
+}
+
+.boxNewLesson {
+  @include contentLayout;
+	background-color:#fbfafb;
+	
+	width:49%;
+	
+	.contentInterno {
+	  @include contentInterno;
 	}
 	.contentNew {
 	  p {padding-top:90px;}
@@ -81,9 +95,12 @@
 		}
 		.createButton a:hover {
 			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+			  cursor: pointer;
 		}
 	}
 }
+
+
 
 .boxViewSingleLesson {
   width:100%;
@@ -318,6 +335,7 @@
 			padding:50px;
 			&:hover {
 			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+			  cursor: pointer;
 			}
 		}
 		
@@ -400,6 +418,11 @@
 	   margin-right:30px;
 		 width:506px;
 		 height:340px;
+		 
+		 a:hover {
+		  cursor:pointer;
+		 }
+		 
 	 }
 	 h1 {
 	  color:#fff;
@@ -427,6 +450,10 @@
 	
 	.cols {
 	  width:40%;
+	  
+	  a:hover {
+	    cursor: pointer;
+	  }
 	}
 	input {
 	  border:1px solid #4fc356;

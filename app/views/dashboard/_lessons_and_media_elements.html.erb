@@ -6,10 +6,7 @@
     <% else %>
       <% tot_lesson = 0 %>
       <% (0...CONFIG['lesson_pages_in_dashboard']).each do |j| %>
-        <%
-          lessons_block = @lessons[tot_lesson, CONFIG['lessons_for_page_in_dashboard']].to_a
-          last_page = @lessons[tot_lesson + CONFIG['lessons_for_page_in_dashboard'], CONFIG['lessons_for_page_in_dashboard']].to_a.empty?
-        %>
+        <% lessons_block = @lessons[tot_lesson, CONFIG['lessons_for_page_in_dashboard']].to_a %>
         <% if lessons_block.any? %>
           <div class="suggested_lessons_page" id="suggested_lessons_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none' : 'block' %>">
             <% cont = 0 %>
@@ -24,13 +21,27 @@
               <% cont = (cont == 0) ? 1 : 0 %>
             <% end %>
             <% if cont == 1 %>
-              <%= render :partial => "lessons/create_new" %>
+              <div class="boxNewLesson" style="float:right">
+                <div class="contentInterno" style="text-align:center;">
+                  <div class="contentNew">
+                    <div class="createButton"><a></a></div>
+                    <p><%= t("captions.create_new_lesson") %></p>
+                  </div>
+                </div>
+                <div style="height:3.5em;"></div>
+              </div>
               </div>
             <% else %>
-              <%= render :partial => "lessons/create_new" %>
+              <div class="boxNewLesson" style="float:left">
+                <div class="contentInterno" style="text-align:center;">
+                  <div class="contentNew">
+                    <div class="createButton"><a></a></div>
+                    <p><%= t("captions.create_new_lesson") %></p>
+                  </div>
+                </div>
+                <div style="height:3.5em;"></div>
+              </div>
             <% end %>
-            <br class="clearfloat">
-            <%= render :partial => 'dashboard/lessons_pagination', :locals => {:page => (j + 1), :last_page => last_page, :first_page => (j == 0)} %>
           </div>
         <% end %>
         <% tot_lesson += CONFIG['lessons_for_page_in_dashboard'] %>
@@ -44,18 +55,20 @@
     <% else %>
       <% tot_media_element = 0 %>
       <% (0...CONFIG['media_element_pages_in_dashboard']).each do |j| %>
-        <%
-          media_elements_block = @media_elements[tot_media_element, CONFIG['media_elements_for_page_in_dashboard']].to_a
-          last_page = @media_elements[tot_media_element + CONFIG['media_elements_for_page_in_dashboard'], CONFIG['media_elements_for_page_in_dashboard']].to_a.empty?
-        %>
+        <% media_elements_block = @media_elements[tot_media_element, CONFIG['media_elements_for_page_in_dashboard']].to_a %>
         <% if media_elements_block.any? %>
-          <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:none; width:90%;  margin:0 auto 0 auto;">
+          <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none' : 'block' %>; width:90%;  margin:0 auto 0 auto;">
             <% media_elements_block.each do |me| %>
               <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
             <% end %>
-            <%= render :partial => "media_elements/create_new", :locals => {:item => 'media_element'} %>
-            <br class="clearfloat">
-            <%= render :partial => 'dashboard/media_elements_pagination', :locals => {:page => (j + 1), :last_page => last_page, :first_page => (j == 0)} %>
+            <div class="boxViewExpandedMediaElement">
+              <div class="contentInterno" style="text-align:center; padding-top:120px;height:154px;">
+                <a class="createButton">&nbsp;</a>
+                <p style="padding-top:40px"><%= t("captions.load_new_media_element") %></p>
+              </div>
+              <div style="height:2.4em;background-color:#fbfafb;">
+              </div>
+            </div>
           </div>
         <% end %>
         <% tot_media_element += CONFIG['media_elements_for_page_in_dashboard'] %>

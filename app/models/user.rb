@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
     if word.blank?
       search_media_elements_without_tag(offset, for_page, filter, order)
     elsif word.class == Fixnum
-      search_media_elements_with_tag(word, offset, for_page, filter, order)
+      search_media_elements_with_chosen_tag(word, offset, for_page, filter, order)
     else
       word = word.to_s
       search_media_elements_with_tag(word, offset, for_page, filter, order)
@@ -381,8 +381,10 @@ class User < ActiveRecord::Base
       media_element.set_status self.id
       content << media_element
     end
-    resp[:last_page] = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).offset(offset + limit).empty?
-    resp[:content] = content
+    resp[:tags] = Tag.where('word LIKE ?', "%#{word}%")
+    resp[:records_amount] = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).count.length
+    resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
+    resp[:records] = content
     return resp
   end
   
@@ -395,20 +397,20 @@ class User < ActiveRecord::Base
       when SearchOrders::TITLE
         order = 'title ASC, updated_at DESC'
     end
-    last_page = nil
+    count = 0
     query = []
     case filter
       when Filters::ALL_MEDIA_ELEMENTS
-        last_page = MediaElement.where('is_public = ? OR user_id = ?', true, self.id).offset(offset + limit).empty?
+        count = MediaElement.where('is_public = ? OR user_id = ?', true, self.id).count
         query = MediaElement.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
       when Filters::VIDEO
-        last_page = Video.where('is_public = ? OR user_id = ?', true, self.id).offset(offset + limit).empty?
+        count = Video.where('is_public = ? OR user_id = ?', true, self.id).count
         query = Video.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
       when Filters::AUDIO
-        last_page = Audio.where('is_public = ? OR user_id = ?', true, self.id).offset(offset + limit).empty?
+        count = Audio.where('is_public = ? OR user_id = ?', true, self.id).count
         query = Audio.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
       when Filters::IMAGE
-        last_page = Image.where('is_public = ? OR user_id = ?', true, self.id).offset(offset + limit).empty?
+        count = Image.where('is_public = ? OR user_id = ?', true, self.id).count
         query = Image.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
     end
     content = []
@@ -416,8 +418,9 @@ class User < ActiveRecord::Base
       q.set_status self.id
       content << q
     end
-    resp[:last_page] = last_page
-    resp[:content] = content
+    resp[:records_amount] = count
+    resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
+    resp[:records] = content
     return resp
   end
   
@@ -462,17 +465,17 @@ class User < ActiveRecord::Base
         params << self.id
     end
     query = []
-    last_page = nil
+    count = 0
     case params.length
       when 2
         query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
-        last_page = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1]).offset(offset + limit).empty?
+        count = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1]).count.length
       when 3
         query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
-        last_page = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2]).offset(offset + limit).empty?
+        count = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2]).count.length
       when 4
         query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order(order).offset(offset).limit(limit)
-        last_page = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2], params[3]).offset(offset + limit).empty?
+        count = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2], params[3]).count.length
     end
     content = []
     query.each do |q|
@@ -480,8 +483,10 @@ class User < ActiveRecord::Base
       lesson.set_status self.id
       content << lesson
     end
-    resp[:last_page] = last_page
-    resp[:content] = content
+    resp[:tags] = Tag.where('word LIKE ?', "%#{word}%")
+    resp[:records_amount] = count
+    resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
+    resp[:records] = content
     return resp
   end
   
@@ -521,17 +526,17 @@ class User < ActiveRecord::Base
       params << subject_id
     end
     query = []
-    last_page = nil
+    count = 0
     case params.length
       when 1
         query = Lesson.select(select).where(where, params[0]).order(order).offset(offset).limit(limit)
-        last_page = Lesson.where(where, params[0]).offset(offset + limit).empty?
+        count = Lesson.where(where, params[0]).count
       when 2
         query = Lesson.select(select).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
-        last_page = Lesson.where(where, params[0], params[1]).offset(offset + limit).empty?
+        count = Lesson.where(where, params[0], params[1]).count
       when 3
         query = Lesson.select(select).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
-        last_page = Lesson.where(where, params[0], params[1], params[2]).offset(offset + limit).empty?
+        count = Lesson.where(where, params[0], params[1], params[2]).count
     end
     content = []
     query.each do |q|
@@ -539,8 +544,9 @@ class User < ActiveRecord::Base
       lesson.set_status self.id
       content << lesson
     end
-    resp[:last_page] = last_page
-    resp[:content] = content
+    resp[:records_amount] = count
+    resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
+    resp[:records] = content
     return resp
   end
   

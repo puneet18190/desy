@@ -1,26 +1,46 @@
-
 html.prelogin-layout {
   
-  @mixin hrefColorSize {
-	  color:#f29400;
-		font-size:90%;
-  }
   body {
     font: 80% Arial, Helvetica, sans-serif;
 	  background: #0f0f0f;
 	  margin: 0;
 	  color: #fff;
 	  text-align: center;
+		width: 100%;
+		height: 100%;
+	}
+	a {
+	  color:#fff;
+		cursor:pointer;
+		
+	}
+	h1 {
+    font-size: 160%;
+		color:#fff;
+		padding-top:14px;
+		padding-bottom:0px;
+		line-height:100%;
+	}
+	h2 {
+	  font-size: 130%;
+		color:#ffd400;
+		padding-top:14px;
+		padding-bottom:0px;
+		line-height:100%;
+	}
+	h3 {
+	  font-size: 110%;
+		color:#fff;
+		line-height:100%;
 	}
 	.container {
     margin: 0 auto;
-    width: 984px;
+    width: 944px;
+		display:inline-block;
 		@media (max-width: 1024px) {
       font-size: 50%;
 	  }
     
-		clear: left;
-		position: relative;
 		text-align:left;
 		padding:20px;
 		
@@ -30,31 +50,98 @@ html.prelogin-layout {
 			background-image: none;
 		}
 	  /*FINE HEADER*/
-		
-	 .containerText {
-		  padding:30px;
-			background-color: #231f20;
-			float:left;
-			a {
-			  @include hrefColorSize;
-			}
-			h1 {
-			 font: 150% 'Nunito', sans-serif;
-			 color:#505051;
-			 padding-top:14px;
-			 padding-bottom:0px;
-			 line-height:100%;
-			}
-			p {
-			  padding-top:10px;
-			}
+		.containerText {
+		  background: url(<%= asset_path 'bg_register.png' %>) top left no-repeat;
+			padding:140px 20px 20px 290px;
+			font-family: 'Nunito', sans-serif;
 			
+			p {
+			  padding-bottom:10px;
+			}
 		}
-		/*fine container text*/
-		.footer {
+   .contentForm {
+	   width:860px;
+		 
+		 .insert-content {
+		   width:254px;
+		   .inputElement {
+			   p {
+				   color:#2f2e2e;
+				 }
+			 }
+			 
+		 }
+		 .checkbox-content {
+			   width:270px;
+				 float:right;
+				 padding-top: 48px;
+				 
+				 .checkboxElement {
+				   -moz-border-radius: 0px;
+           border-radius: 0px;
+           -webkit-border-radius: 0px;
+           background-color: transparent;
+					 font-size:100%;
+					 width:248px;
+					 padding-left:0px;
+					 table {
+					   width:142px;
+					 }
+					 table tr {
+					   line-height: 26px; 
+					 }
+					 table td {
+					   color:#fff;
+						 &:first-child {
+               width: 25px;
+             }
+					 }
+					 
+				 }
+				 .regular-checkbox + label {
+           -webkit-appearance: none;
+	         background-color: #fafafa;
+	         border: 1px solid #cacece;
+	         box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	         padding: 7px;
+	         border-radius: 50px;
+	         display: inline-block;
+	         position: relative;
+	         margin-right:10px;
+         }
+        .regular-checkbox + label:active, .regular-checkbox:checked + label:active {
+           box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+        }
+        .regular-checkbox:checked + label {
+          background-color: #e9ecee;
+          color: #99a1a7;
+          border: 1px solid #adb8c0;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+        }
+       .regular-checkbox:checked + label:after {
+         content: ' ';
+	       width: 8px;
+	       height: 8px;
+	       border-radius: 50px;
+	       position: absolute;
+	       top: 3px;
+	       background: #41a747;
+	       box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+	       text-shadow: 0px;
+	       left: 3px;
+	      }
+			 }
+		 input[type="text"], input[type="password"] {
+      background-color: #2b9cca;
+			color:#fff;
+		  font-size:120%;
+		  
+    }
+	 }
+	 .footer {
 		  padding:10px 150px 10px 40px;
-			background: transparent;
-      color: #515151;
+			background-color: transparent;
+      color: #fff;
       font-size: 75%;
       text-transform: lowercase;
 			text-align:right;
@@ -63,4 +150,5 @@ html.prelogin-layout {
 }
 .registration-action .container {
   background-color: #2eaadc;
+	
 }

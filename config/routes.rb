@@ -42,6 +42,7 @@ Desy::Application.routes.draw do
   put  'lesson_editor/:lesson_id/update' => 'lesson_editor#update', :as => :lesson
   post 'lesson_editor/:lesson_id/add_slide/:position' => 'lesson_editor#add_slide'
   get  'lesson_editor/add_new_slide/:slide' => 'lesson_editor#add_new_slide', :as => :add_new_slide
+  post 'lesson_editor/delete_slide/:slide_id' => 'lesson_editor#delete_slide', :as => :delete_slide
   get  'lesson_editor/show_gallery/:slide' => 'lesson_editor#show_gallery', :as => :show_gallery
   get  'lesson_editor/save_slide' => 'lesson_editor#save_slide', :as => :save_slide
   
