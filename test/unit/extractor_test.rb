@@ -617,8 +617,8 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 7, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@les5.id, @les6.id], p2[:records]
-    assert_equal 7, p1[:records_amount]
-    assert_equal 2, p1[:pages_amount]
+    assert_equal 7, p2[:records_amount]
+    assert_equal 2, p2[:pages_amount]
     # second case
     p1 = @user2.search_lessons('  ', 1, 5, nil, 'only_mine', nil)
     assert_ordered_item_extractor [2], p1[:records]
@@ -631,8 +631,8 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 6, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@les6.id], p2[:records]
-    assert_equal 6, p1[:records_amount]
-    assert_equal 2, p1[:pages_amount]
+    assert_equal 6, p2[:records_amount]
+    assert_equal 2, p2[:pages_amount]
     # fourth case
     lll = Lesson.find(1)
     lll.is_public = true
@@ -643,8 +643,8 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 8, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@les4.id, @les5.id, @les6.id], p2[:records]
-    assert_equal 8, p1[:records_amount]
-    assert_equal 2, p1[:pages_amount]
+    assert_equal 8, p2[:records_amount]
+    assert_equal 2, p2[:pages_amount]
     # fifth case
     p1 = @user2.search_lessons('', 1, 5, 'title', 'public', 1)
     assert_ordered_item_extractor [@les1.id, 1], p1[:records]
@@ -666,8 +666,8 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 10, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@les4.id, @les5.id, @les9.id, @les2.id, 2], p2[:records]
-    assert_equal 10, p1[:records_amount]
-    assert_equal 2, p1[:pages_amount]
+    assert_equal 10, p2[:records_amount]
+    assert_equal 2, p2[:pages_amount]
     # seventh case
     p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', 3)
     assert_ordered_item_extractor [@les3.id, @les9.id, 2], p1[:records]
@@ -738,9 +738,9 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 7, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@les5.id, @les6.id], p2[:records]
-    assert_extractor tag_ids, p1[:tags]
-    assert_equal 7, p1[:records_amount]
-    assert_equal 2, p1[:pages_amount]
+    assert_extractor tag_ids, p2[:tags]
+    assert_equal 7, p2[:records_amount]
+    assert_equal 2, p2[:pages_amount]
     # fourth case - filters and orders on the last search
     my_tag_chinese = Tag.find_by_word '個名'
     assert Tag.create_tag_set('Lesson', 2, ['Antonio de curtis', 'acquazzone', my_tag_chinese.id])
@@ -845,29 +845,47 @@ class ExtractorTest < ActiveSupport::TestCase
     # I start here, first case - no match
     p1 = @user2.search_media_elements('ciao', 1, 5, nil, nil)
     assert p1[:records].empty?
+    assert p1[:tags].empty?
     assert_equal 0, p1[:records_amount]
     assert_equal 0, p1[:pages_amount]
     # second case - it matches three tags
     p1 = @user2.search_media_elements('di', 1, 5, nil, nil)
     p2 = @user2.search_media_elements('di', 2, 5, nil, nil)
     assert_ordered_item_extractor [2, 3, @el2.id, @el3.id, @el5.id], p1[:records]
+    tag_ids = []
+    Tag.where(:word => ['escrementi di usignolo', 'disabili', 'immondizia']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 6, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@el7.id], p2[:records]
+    assert_extractor tag_ids, p2[:tags]
     assert_equal 6, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
     # third case - it matches more tags
     p1 = @user2.search_media_elements('to', 1, 5, 'title', nil)
     p2 = @user2.search_media_elements('to', 2, 5, 'title', nil)
     assert_ordered_item_extractor [4, @el1.id, @el2.id, @el3.id, @el5.id], p1[:records]
+    tag_ids = []
+    Tag.where(:word => ['gatto', 'barriere architettoniche', 'inquinamento', 'inquinamento atmosferico', 'tom cruise']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 8, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@el7.id, 2, 3], p2[:records]
+    assert_extractor tag_ids, p2[:tags]
     assert_equal 8, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
     # fourth case - chinese characters, and filters
     p1 = @user2.search_media_elements('加', 1, 5)
     assert p1[:records].empty?
+    tag_ids = []
+    Tag.where(:word => ['加']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 0, p1[:records_amount]
     assert_equal 0, p1[:pages_amount]
     @el4.is_public = true
@@ -875,14 +893,17 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_obj_saved @el4
     p1 = @user2.search_media_elements('加', 1, 5)
     assert_ordered_item_extractor [@el4.id], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 1, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('加', 1, 5, nil, 'image')
     assert p1[:records].empty?
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 0, p1[:records_amount]
     assert_equal 0, p1[:pages_amount]
     p1 = @user2.search_media_elements('加', 1, 5, nil, 'audio')
     assert_ordered_item_extractor [@el4.id], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 1, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     # fifth case - more filters
@@ -906,33 +927,48 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 170, Tagging.count
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'baudio')
     assert_ordered_item_extractor [@el6.id, 3, 6, @el2.id], p1[:records]
+    tag_ids = []
+    Tag.where(:word => ['條聖', '加條聖', '法條聖話']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 4, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'audio')
     assert_ordered_item_extractor [3], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 1, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'video')
     assert_ordered_item_extractor [@el2.id], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 1, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'image')
     assert_ordered_item_extractor [@el6.id, 6], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 2, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     # last case
     p1 = @user2.search_media_elements('加', 1, 5, 'title')
     assert_ordered_item_extractor [@el2.id, @el4.id, 3], p1[:records]
+    tag_ids = []
+    Tag.where(:word => ['加', '加條聖']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 3, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('加', 1, 2, 'title')
     p2 = @user2.search_media_elements('加', 2, 2, 'title')
     assert_ordered_item_extractor [@el2.id, @el4.id], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 3, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [3], p2[:records]
-    assert_equal 3, p1[:records_amount]
-    assert_equal 2, p1[:pages_amount]
+    assert_extractor tag_ids, p2[:tags]
+    assert_equal 3, p2[:records_amount]
+    assert_equal 2, p2[:pages_amount]
   end
   
 end
