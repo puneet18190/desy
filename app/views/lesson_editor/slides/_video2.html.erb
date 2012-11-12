@@ -4,7 +4,6 @@
     <%= link_to "<span class='rollover rollover-video'></span><video id='video' class='_slide_image video2-p1' src='http://slides.html5rocks.com/src/chrome_japan.mp4' controls></video>".html_safe, {:action => :show_gallery, :slide => slide.id, :position=>1, :kind_of =>"video"} , :remote => true, :class => "show-gallery", "data-param"=> "1" %>
     <%= hidden_field_tag :media_element_1, slide.media_element_at(1).media_element_id, :class=> "media-tag-cover-1"  %>
   <%- else %>
-  <!--TODO replace align value from db (after default at 0)-->
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
     <div class="cover-choose-image _cover_choose_image_1">
       <%= link_to image_tag("choose-video.png"), {:action => :show_gallery, :slide => slide.id, :position => 1, :kind_of =>"video"} , :remote => true, :class => "show-gallery video2-p1" %>

@@ -88,6 +88,7 @@ class LessonEditorController < ApplicationController
   
   def delete_slide
     slide = Slide.find(params[:slide_id])
+    #TODO reorder positions on destroy
     if slide.destroy
       redirect_to lesson_editor_path(slide.lesson.id)
     else

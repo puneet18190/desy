@@ -243,6 +243,33 @@ html.lesson-editor-layout{
         color: $orange;
       }
       
+      span.rollover {
+      	opacity: 1;
+      	-o-transition-duration: 1s;
+      	-moz-transition-duration: 1s;
+      	-webkit-transition: -webkit-transform 1s;
+      	cursor: pointer;
+      	position: absolute;
+      	z-index: 10;
+      	opacity: 0;
+      }
+
+      span.rollover-video{
+        background:url('choose-video.png') center center no-repeat #000;
+        height: 430px;
+      	width: 810px;
+      	margin-left: 30px;
+      	margin-top: 50px;
+      }
+
+      span.rollover:hover {
+      	opacity: .5;
+      	-o-transition-duration: 1s;
+      	-moz-transition-duration: 1s;
+      	-webkit-transition: -webkit-transform 1s;
+      }
+      
+      
       &.active {
         width: 960px;
         height: 590px;
@@ -357,22 +384,31 @@ html.lesson-editor-layout{
           }
         }
         &.video1{
-          padding: 20px;
-          height: 550px;
-          width: 860px;
+          padding: 0;
+          height: 590px;
+          width: 900px;
           video{
-            width: 440px;
+            width: 400px;
             float:left;
           }
-          h2{
+          h2 input{
             font-size: 70px;
-            padding: 40px 0;
+            padding: 20px;
+            width: 830px;
           }
           .video1-content{
             float: right;
-            width: 380px;
-            margin: 0 10px;
+            width: 350px;
+            height: 400px;
+            margin: 0 20px 0 10px;
             padding: 10px;
+            color: red;
+          }
+          span.rollover-video{
+            height: 250px;
+          	width: 400px;
+          	margin-left: 10px;
+          	margin-top: 10px;
           }
         }
         &.image4{
@@ -825,32 +861,6 @@ html.lesson-editor-layout{
     filter: alpha(opacity = 25);
     opacity: .25;
   }
-}
-
-span.rollover {
-	opacity: 1;
-	-o-transition-duration: 1s;
-	-moz-transition-duration: 1s;
-	-webkit-transition: -webkit-transform 1s;
-	cursor: pointer;
-	position: absolute;
-	z-index: 10;
-	opacity: 0;
-}
-
-span.rollover-video{
-  background:url('choose-video.png') center center no-repeat #000;
-  height: 430px;
-	width: 810px;
-	margin-left: 30px;
-	margin-top: 50px;
-}
-
-span.rollover:hover {
-	opacity: .5;
-	-o-transition-duration: 1s;
-	-moz-transition-duration: 1s;
-	-webkit-transition: -webkit-transform 1s;
 }
 
 /** jQuery scroller style **/
