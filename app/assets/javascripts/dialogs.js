@@ -1,11 +1,10 @@
 function showTimedPopUp(content, id) {
   var obj = $('#' + id);
-  if(obj.hasClass('ui-dialog-content')) {
-    obj.html(content);
+  obj.html(content);
+  if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
-    obj.css('display', 'block');
-    obj.html(content);
+    obj.show();
     obj.dialog({
       modal: true,
       resizable: false,
@@ -35,10 +34,10 @@ function showOkPopUp(content) {
 
 function showMediaElementInfoPopUp(media_element_id) {
   var obj = $('#dialog-media-element-' + media_element_id);
-  if(obj.hasClass('ui-dialog-content')) {
+  if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
-    obj.css('display', 'block');
+    obj.show();
     obj.dialog({
       modal: true,
       resizable: false,
@@ -59,10 +58,10 @@ function showMediaElementInfoPopUp(media_element_id) {
 
 function showLoadMediaElementPopUp() {
   var obj = $('#load-media-element');
-  if(obj.hasClass('ui-dialog-content')) {
+  if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
-    obj.css('display', 'block');
+    obj.show();
     obj.dialog({
       modal: true,
       resizable: false,
@@ -76,10 +75,10 @@ function showLoadMediaElementPopUp() {
 function showImageMediaElementPopUp(id) {
   var thumb = '._gallery_img_expanded_'+id;
   var obj = $(thumb);
-  if(obj.hasClass('ui-dialog-content')) {
+  if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
-    obj.css('display', 'block');
+    obj.show();
     obj.dialog({
       modal: true,
       resizable: false,
@@ -96,12 +95,12 @@ function showConfirmPopUp(content, msg_ok, msg_no, callback_ok, callback_no) {
   var dialog_buttons = {};
   dialog_buttons[msg_ok] = callback_ok;
   dialog_buttons[msg_no] = callback_no;
-  if(obj.hasClass('ui-dialog-content')) {
+  if(obj.data('dialog')) {
     obj.html(content);
     obj.dialog('option', 'buttons', dialog_buttons);
     obj.dialog('open');
   } else {
-    obj.css('display', 'block');
+    obj.show();
     obj.html(content);
     obj.dialog({
       modal: true,

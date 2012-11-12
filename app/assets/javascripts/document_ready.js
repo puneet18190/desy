@@ -55,13 +55,12 @@ $(document).ready(function() {
     which_item_to_search.attr('selected', 'selected');
   }
   
-  
   // OTHER BUTTONS
   
-  $('._load_media_element').click(function(e) {
-    e.preventDefault();
-    showLoadMediaElementPopUp();
-  });
+  // $('._load_media_element').click(function(e) {
+  //   e.preventDefault();
+  //   showLoadMediaElementPopUp();
+  // });
   
   
   // DASHBOARD SWITCH
@@ -147,14 +146,32 @@ $(document).ready(function() {
 
   //   NEW MEDIA ELEMENT
   $('#new_media_element').bind('ajax:success', function(e, data) {
-    console.log(data);
-    console.log($('#load-media-element'));
-    //closePopUp('load-media-element');
-    return false;
-  }).bind('ajax:error', function(e, data) {
+    console.log('successo');
+    // $('#load-media-element').bind('close', function(){
+    //   console.log('chiuso');
+    // });
+    closePopUp('load-media-element');
+    window.setTimeout(function(){
+      showOkPopUp(data.message);
+    }, 1000);
+      
+    
+    // return false;
+  });
+
+  $('._load_media_element').click(function(e) {
+    e.preventDefault();
+    showLoadMediaElementPopUp();
+  });
+
+
+  $('#new_media_element').bind('ajax:error', function(e, data, error) {
     // TODO gestione errori
-    console.log(data);
-    return false;
+    console.log('errore');
+    // return false;
+  });
+  $('#new_media_element').bind('ajax:aborted:file', function(event, elements){
+    console.log('file aborted');
   });
   
   
@@ -467,5 +484,5 @@ $(document).ready(function() {
 
   // FAKE UPLOAD BUTTONS
   new FakeUpload($('._fakeUploadTrigger'));
-  
+
 });

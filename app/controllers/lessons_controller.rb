@@ -13,7 +13,7 @@ class LessonsController < ApplicationController
       get_own_lessons
     end
     @new_media_element = MediaElement.new(params[:media_element])
-    render_js_or_html_index
+    # render_js_or_html_index
   end
   
   def add
