@@ -57,6 +57,8 @@ en:
     advanced_search: 'Advanced search'
     author: 'Author'
     back_in_desy: 'Back in DESY'
+    choose_image: 'choose an image'
+    choose_video: 'click here to add video'
     choose_wich_item_and_go: 'Select your option and go!'
     contact_us: 'Contact us'
     copyright: '©2012 DESY'
@@ -101,7 +103,9 @@ en:
     search_in_desy: 'Search in DESY'
     search_lesson_or_media_element: 'Do you need lessons or media elements?'
     selected_for_you: 'Selected for you'
+    select_audio: "Select audio"
     select_image: "Select image"
+    select_video: "Select video"
     send: 'Send'
     show: 'Show'
     slide_not_deleted: "This slide can't be deleted"

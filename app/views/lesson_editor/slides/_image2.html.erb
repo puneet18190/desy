@@ -14,7 +14,7 @@
       <div class="cover-choose-image _cover_choose_image_1 cover-choose-image-right">
         <%= link_to image_tag("choose-image.gif"), {:action => :show_gallery, :slide => slide.id, :position => 1} , :remote => true, :class => "show-gallery" %>
         <br />
-        choose an image
+        <%= t 'captions.choose_image' %>
       </div>
     <%- end %>
 
@@ -32,7 +32,7 @@
       <div class="cover-choose-image _cover_choose_image_2 cover-choose-image-left">
         <%= link_to image_tag("choose-image.gif"), {:action => :show_gallery, :slide => slide.id, :position=>2} , :remote => true, :class => "show-gallery" %>
         <br />
-        choose an image
+        <%= t 'captions.choose_image' %>
       </div>
     <%- end %>
     

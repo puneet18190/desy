@@ -1,7 +1,7 @@
-<div id="image-gallery" class="image_gallery">
+<div id="image-gallery" class="image_gallery #{kind_of}-kind">
   <div class="header">
     <h3 class="pull-left">
-      <%= image_tag("choose-image-small.png")%> <%= t "captions.select_image" %>
+      <%= image_tag("choose-image-small.png")%> <%= t "captions.select_#{kind_of}" %>
     </h3>
     <div id="image-search" class="pull-right">
       <input type="search" placeholder="<%= t 'captions.search' %>"/>
@@ -12,7 +12,7 @@
     <% @media_elements.each do |mel| %>
       <li id="#gallery_thumb_<%=mel.id%>" class="_gallery_thumb">
         <%= link_to (image_tag "testa.jpg", :width => '111'), "#{mel.id}" %>
-        <%= render :partial => "shared/image_gallery_popup", :locals => {:media_element => mel} %>
+        <%= render :partial => "shared/image_gallery_popup", :locals => {:media_element => mel, :kind_of => kind_of} %>
       </li>
     <% end %>
     <ul>
