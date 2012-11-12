@@ -29,7 +29,18 @@ class MediaElement < ActiveRecord::Base
   
   before_validation :init_validation
   before_destroy :stop_if_public
+
+  # def self.test
+  #   tags = %w(sole gatto luna).map{ |t| Tag.find_or_initialize_by_word(t) }
+  #   new(title: 'test', description: 'test', tags: tags) do |me|
+  #     me.user = User.first
+  #     me.sti_type = 'Video' 
+  #   end
+  # end
+
+=======
   
+>>>>>>> 0be9ffb79cad4ba0e190db2a53a735502aaa4426
   class << self
     def new_with_sti_type_inferring(attributes = nil, options = {}, &block)
       media = attributes.try :[], :media
@@ -50,9 +61,19 @@ class MediaElement < ActiveRecord::Base
     end
     alias_method_chain :new, :sti_type_inferring
   end
+<<<<<<< HEAD
+
+  def media_from_file_path=(file_path)
+    self.media = File.open(file_path)
+  end
+
+  def tags_as_array_of_strings=(tags_as_array_of_strings)
+    self.tags = tags_as_array_of_strings.compact.map{ |tag| Tag.find_or_initialize_by_word(tag.strip.mb_chars.downcase.to_s) }
+=======
   
   def tags_as_array_of_strings=(tags_as_array_of_strings)
     self.tags = tags_as_array_of_strings.compact.uniq.map{ |tag| Tag.find_or_initialize_by_word(tag) }
+>>>>>>> 0be9ffb79cad4ba0e190db2a53a735502aaa4426
     self.tags_as_array_of_strings
   end
   
@@ -137,11 +158,13 @@ class MediaElement < ActiveRecord::Base
   end
   
   private
-  
+
   def init_validation
     @media_element = Valid.get_association self, :id
+    # rigetto le eventuali tags che sono state salvate ma non esistono più nel database
+    self.tags.select!{ |t| (t.new_record? && t.valid?) || (t.persisted? && t.taggings.exists?(taggable_type: 'MediaElement', taggable_id: id)) }
   end
-  
+
   def validate_associations
     errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
   end
@@ -181,9 +204,7 @@ class MediaElement < ActiveRecord::Base
   end
   
   def stop_if_public
-    @media_element = Valid.get_association self, :id
-    return true if @media_element.nil?
-    return !@media_element.is_public
+    !reload.is_public
   end
   
 end
