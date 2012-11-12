@@ -38,9 +38,6 @@ class MediaElement < ActiveRecord::Base
   #   end
   # end
 
-=======
-  
->>>>>>> 0be9ffb79cad4ba0e190db2a53a735502aaa4426
   class << self
     def new_with_sti_type_inferring(attributes = nil, options = {}, &block)
       media = attributes.try :[], :media
@@ -61,7 +58,6 @@ class MediaElement < ActiveRecord::Base
     end
     alias_method_chain :new, :sti_type_inferring
   end
-<<<<<<< HEAD
 
   def media_from_file_path=(file_path)
     self.media = File.open(file_path)
@@ -69,11 +65,6 @@ class MediaElement < ActiveRecord::Base
 
   def tags_as_array_of_strings=(tags_as_array_of_strings)
     self.tags = tags_as_array_of_strings.compact.map{ |tag| Tag.find_or_initialize_by_word(tag.strip.mb_chars.downcase.to_s) }
-=======
-  
-  def tags_as_array_of_strings=(tags_as_array_of_strings)
-    self.tags = tags_as_array_of_strings.compact.uniq.map{ |tag| Tag.find_or_initialize_by_word(tag) }
->>>>>>> 0be9ffb79cad4ba0e190db2a53a735502aaa4426
     self.tags_as_array_of_strings
   end
   
