@@ -3,6 +3,6 @@ class Video < MediaElement
 
   private
   def validate_duration
-    errors[:duration] << "can't be blank for videos and audios" if self.duration.nil?
+    #errors[:duration] << "can't be blank for videos and audios" if self.duration.nil?
   end
 end
