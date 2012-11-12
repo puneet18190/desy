@@ -1,10 +1,10 @@
-<%= form_tag("/lesson_editor/save_slide", :remote => true) do %>
+<%= form_tag("/lesson_editor/save_slide", :method => :get, :remote => true) do %>
   <%= hidden_field_tag :slide_id, slide.id %>
     <%- if slide.media_element_at(1) %>
     <!--TODO replace align value from db (after default at 0)-->
     <%= hidden_field_tag :media_element_align_1, "#{slide.media_element_at(1).alignment ? slide.media_element_at(1).alignment : 0}px", :class =>"media_element_align_1" %>
-      <div class="image-4-box mask _mask_x">
-        <%= link_to image_tag("http://lorempixel.com/600/255/abstract/1", :width => "600", :class=>"_slide_image image4-p1"), {:action => :show_gallery, :slide => slide.id, :position=>1} , :remote => true, :class => "show-gallery" %>
+      <div class="image-4-box mask _mask_x image4-p1">
+        <%= link_to image_tag("http://lorempixel.com/600/255/abstract/1", :width => "600", :class=>"_slide_image image4-p1"), {:action => :show_gallery, :slide => slide.id, :position=>1} , :remote => true, :class => "show-gallery", "data-param" => "1", :style => "left: #{slide.media_element_at(1).alignment}px" %>
         <%= hidden_field_tag :media_element_1, slide.media_element_at(1).media_element_id, :class=> "media-tag-cover-1"  %>
       </div>
     <%- else %>
@@ -21,8 +21,8 @@
     <%- if slide.media_element_at(2) %>
       <!--TODO replace align value from db (after default at 0)-->
       <%= hidden_field_tag :media_element_align_2, "#{slide.media_element_at(2).alignment ? slide.media_element_at(2).alignment : 0}px", :class =>"media_element_align_2" %>
-      <div class="image-4-box mask _mask_x">
-      <%= link_to image_tag("http://lorempixel.com/600/255/abstract/2", :width => "600", :class=>"_slide_image image4-p2"), {:action => :show_gallery, :slide => slide.id, :position=>2} , :remote => true, :class => "show-gallery" %>
+      <div class="image-4-box mask _mask_x image4-p2">
+      <%= link_to image_tag("http://lorempixel.com/600/255/abstract/2", :width => "600", :class=>"_slide_image image4-p2"), {:action => :show_gallery, :slide => slide.id, :position=>2} , :remote => true, :class => "show-gallery", "data-param" => "2", :style => "left: #{slide.media_element_at(2).alignment}px" %>
       <%= hidden_field_tag :media_element_2, slide.media_element_at(2).media_element_id, :class=> "media-tag-cover-2"  %>
       </div>
     <%- else %>
@@ -39,8 +39,8 @@
     <%- if slide.media_element_at(3) %>
       <!--TODO replace align value from db (after default at 0)-->
       <%= hidden_field_tag :media_element_align_3, "#{slide.media_element_at(3).alignment ? slide.media_element_at(3).alignment : 0}px", :class =>"media_element_align_3" %>
-      <div class="image-4-box mask _mask_x">
-        <%= link_to image_tag("http://lorempixel.com/600/255/abstract/3", :width => "600", :class=>"_slide_image image4-p3"), {:action => :show_gallery, :slide => slide.id, :position=>3} , :remote => true, :class => "show-gallery" %>
+      <div class="image-4-box mask _mask_x image4-p3">
+        <%= link_to image_tag("http://lorempixel.com/600/255/abstract/3", :width => "600", :class=>"_slide_image image4-p3"), {:action => :show_gallery, :slide => slide.id, :position=>3} , :remote => true, :class => "show-gallery", "data-param" => "3", :style => "left: #{slide.media_element_at(3).alignment}px" %>
         <%= hidden_field_tag :media_element_3, slide.media_element_at(3).media_element_id, :class=> "media-tag-cover-3"  %>
       </div>
     <%- else %>
@@ -57,8 +57,8 @@
     <%- if slide.media_element_at(4) %>
     <!--TODO replace align value from db (after default at 0)-->
     <%= hidden_field_tag :media_element_align_4, "#{slide.media_element_at(4).alignment ? slide.media_element_at(4).alignment : 0}px", :class =>"media_element_align_4" %>
-      <div class="image-4-box mask _mask_x">
-        <%= link_to image_tag("http://lorempixel.com/600/255/abstract/4", :width => "600", :class=>"_slide_image image4-p4"), {:action => :show_gallery, :slide => slide.id, :position=>4} , :remote => true, :class => "show-gallery" %>
+      <div class="image-4-box mask _mask_x image4-p4">
+        <%= link_to image_tag("http://lorempixel.com/600/255/abstract/4", :width => "600", :class=>"_slide_image image4-p4"), {:action => :show_gallery, :slide => slide.id, :position=>4} , :remote => true, :class => "show-gallery", "data-param" => "4", :style => "left: #{slide.media_element_at(4).alignment}px" %>
         <%= hidden_field_tag :media_element_4, slide.media_element_at(4).media_element_id, :class=> "media-tag-cover-4"  %>
       </div>
     <%- else %>

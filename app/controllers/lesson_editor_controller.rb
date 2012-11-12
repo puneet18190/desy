@@ -6,6 +6,9 @@ class LessonEditorController < ApplicationController
   def index
     @lesson = Lesson.find params[:lesson_id]
     @slides = @lesson.slides.order :position
+    @slide = @slides.first
+    #TODO pass a parameter for the slide to redirect to after add_slide
+    #@slide_to = params[:slide_position] if params[:slide_position]
   end
   
   def new
@@ -18,17 +21,21 @@ class LessonEditorController < ApplicationController
   def create
     # TODO controllare redirect
     new_lesson = @current_user.create_lesson params[:title], params[:description], params[:subject]
-    Tag.create_tag_set 'Lesson', new_lesson.id, get_tags
-    redirect_to "/lesson_editor/#{new_lesson.id}/index"
+    if new_lesson
+      Tag.create_tag_set 'Lesson', new_lesson.id, get_tags
+      redirect_to "/lesson_editor/#{new_lesson.id}/index"
+    else
+      redirect_to :back, notice: "#{t 'captions.lesson_not_created'}"
+    end
   end
   
   def update
     lesson = Lesson.find params[:lesson_id]
     lesson.title = params[:lesson][:title]
     lesson.description =  params[:lesson][:description]
-    lesson.subject_id = params[:lesson][:subject_id]
+    lesson.subject_id = params[:subject]
     Tag.create_tag_set 'Lesson', lesson.id, get_tags
-    lesson.save
+    lesson.save!
     redirect_to lesson_editor_path(lesson.id)
   end
   
@@ -79,7 +86,7 @@ class LessonEditorController < ApplicationController
     if slide.destroy
       redirect_to lesson_editor_path(slide.lesson.id)
     else
-      redirect_to :back
+      redirect_to :back, notice: "#{t 'captions.slide_not_deleted'}"
     end
   end
   

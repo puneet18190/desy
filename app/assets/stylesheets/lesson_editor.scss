@@ -383,17 +383,11 @@ html.lesson-editor-layout{
             padding: 0;
             float:left;
           }
-          .image4-p1,.image4-p3{
-            float:left;
-          }
-          .image4-p2,.image4-p4{
-            float:right;
-          }
           .mask{
-            width: 430px;
-            height: 255px;
+            width: 400px;
+            height: 260px;
             padding: 0;
-            margin: 10px 5px 10px 10px;
+            margin: 0;
             overflow:hidden;
             position:relative;
             img{
@@ -401,6 +395,15 @@ html.lesson-editor-layout{
               cursor:move;
               cursor: -webkit-grab;
               left:0;
+              height: 260px;
+            }
+            &.image4-p1,&.image4-p3{
+              float:right;
+              margin: 20px 20px 0 0;
+            }
+            &.image4-p2,&.image4-p4{
+              float:left;
+              margin: 20px 0 0 20px;
             }
           }
         }
@@ -429,15 +432,26 @@ html.lesson-editor-layout{
           padding: 0;
           height: 590px;
           width: 900px;
-          .image2-p2{
-            float:left;
-            width:400px;
-            padding:20px 0 20px 20px;
-          }
-          .image2-p1{
-            float:right;
-            width:400px;
-            padding:20px 20px 20px 0;
+          .mask{
+            width: 400px;
+            height: 550px;
+            padding: 20px 0 0;
+            margin: 0 20px;
+            overflow:hidden;
+            position:relative;
+            &.image2-p1{
+              float:right;
+            }
+            &.image2-p2{
+              float:left;
+            }
+            img{
+              display:block;
+              cursor:move;
+              cursor: -webkit-grab;
+              left:0;
+              height: 560px;
+            }
           }
         }
         &.image1{
@@ -449,11 +463,23 @@ html.lesson-editor-layout{
             padding: 20px;
             width: 830px;
           }
-          img.image1-p1{
+          .mask{
+            width: 400px;
+            height: 400px;
+            overflow:hidden;
+            position:relative;
             float:left;
-            width:400px;
-            padding:20px 0 20px 20px;
+            margin:0 0 0 20px;
+            
+            img{
+              display:block;
+              cursor:move;
+              cursor: -webkit-grab;
+              left:0;
+              height: 400px;
+            }
           }
+          
           .image1-content textarea{
             float:right;
             width: 380px;
@@ -487,7 +513,7 @@ html.lesson-editor-layout{
         display:block;
         a{
           background: url("icone-editor-lezioni.svg") no-repeat top left; 
-          text-indent: -9999px;
+          text-indent: -999999px;
           width: 55px;
           height: 56px;
           display:block;
@@ -674,7 +700,7 @@ html.lesson-editor-layout{
     color: #999;
     font-size: 16px;
     &.choose-small{
-      padding: 80px 0;
+      padding: 65px 0;
       width: 400px;
       height: 150px;
       img{

@@ -82,6 +82,7 @@ en:
     large: 'Large'
     learning_goals: 'Learning Objectives'
     lessons: 'Lessons'
+    lesson_not_created: "The lesson can't be created"
     level: 'Level'
     load_new_media_element: 'Load a new element'
     load_new_media_element_now: 'Load an element now'
@@ -103,6 +104,7 @@ en:
     select_image: "Select image"
     send: 'Send'
     show: 'Show'
+    slide_not_deleted: "This slide can't be deleted"
     sort_results_by: 'Sort results by'
     status: 'Status'
     small: 'Small'
