@@ -48,6 +48,7 @@ five:
   sti_type: 'Image'
   is_public: false
   updated_at: '2012-01-01 19:59:56'
+  media: 'one.jpg'
 
 six:
   id: 6
@@ -58,3 +59,4 @@ six:
   is_public: true
   publication_date: '2011-01-01 10:00:00'
   updated_at: '2012-01-01 19:59:55'
+  media: 'two.jpg'

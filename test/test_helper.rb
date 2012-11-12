@@ -6,6 +6,16 @@ class ActiveSupport::TestCase
   
   fixtures :all
   
+  setup :initialize_media_path_for_media_elements
+  
+  def initialize_media_path_for_media_elements
+    [1, 2, 3, 4, 5, 6].each do |x|
+      me = MediaElement.find x
+      me.media = File.open(Rails.root.join("test/samples/#{me.media}".gsub("/media_elements/images/#{x}/", '')))
+      assert_obj_saved me
+    end
+  end
+  
   def assert_tags(item, tags)
     tags2 = []
     item.taggings.each do |t|
