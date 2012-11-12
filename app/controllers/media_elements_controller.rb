@@ -20,10 +20,12 @@ class MediaElementsController < ApplicationController
   end
 
   def create
-    media_element = MediaElement.new(params[:media_element]).tap{ |me| me.user = @current_user }
+    #media_element = MediaElement.new(params[:media_element]).tap{ |me| me.user = @current_user }
+
+    render json: { message: I18n.t('forms.media_element.messages.success') }
 
     #if media_element.save
-      render json: I18n.t('forms.media_element.messages.success')
+      #return render json:
     #else
       # TODO aggiungere visualizzazione errori
       #@new_media_element.errors.full_messages      

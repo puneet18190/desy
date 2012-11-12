@@ -1,5 +1,5 @@
 <% if @tag.class == Tag %>
-  <%= t('empty.media_elements_result_2') %><%= @tag.word %><%= t('empty.media_elements_result_4') %>
+  <div class="emptyFilter"><h1><%= t('empty.media_elements_result_2') %><%= @tag.word %><%= t('empty.media_elements_result_4') %></h1></div>
 <% else %>
-  <%= t('empty.media_elements_result_1') %><%= @tag %><%= t('empty.media_elements_result_3') %>
+  <div class="emptyFilter"><h1><%= t('empty.media_elements_result_1') %><%= @tag %><%= t('empty.media_elements_result_3') %></h1></div>
 <% end %>

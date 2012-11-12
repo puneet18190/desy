@@ -46,9 +46,8 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize_layout
-    @js_reload = !params.slice(:page, :for_page, :display, :filter, :delete_item, :order).empty?
     @delete_item = params[:delete_item]
-    if !@js_reload
+    if !request.xhr?
       @notifications = Notification.visible_block(@current_user.id, 0, CONFIG['notifications_loaded_together'])
       @new_notifications = Notification.number_not_seen(@current_user.id)
       @offset_notifications = @notifications.length
@@ -69,14 +68,7 @@ class ApplicationController < ActionController::Base
   end
   
   def render_js_or_html_index
-    respond_to do |format|
-      format.js do
-        render :file => "#{@where}/index.js.erb" if @js_reload
-      end
-      format.html do
-        render :file => "#{@where}/index.html.erb" if !@js_reload
-      end
-    end
+    render (request.xhr? ? 'index.js' : 'index.html')
   end
   
   def correct_integer?(x)

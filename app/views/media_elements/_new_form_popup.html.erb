@@ -4,7 +4,7 @@
       <%= form_for media_element, remote: true, html: { class:"formModifyInfo" } do |f| %>
         <div class="cols" style="float:left">
           <div class="selectButton">
-            <%= f.file_field :media, class: "uploadFile", style: 'display: none' %>
+            <%#= f.file_field :media, class: "uploadFile", style: 'display: none' %>
             <input type="button" class="uploadFileButton submitButton _fakeUploadTrigger" data-fake-upload-input-selector="#media_element_media" data-fake-upload-show-selector="#media_element_media_show">
             <input id="media_element_media_show" readonly="readonly" placeholder="Nessun file selezionato" class="fk_carica_elemento_file _fakeUploadTrigger" type="text" data-fake-upload-input-selector="#media_element_media" data-fake-upload-show-selector="#media_element_media_show">
           </div>
