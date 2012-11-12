@@ -1,4 +1,4 @@
-<% current_class = (lesson.status == :copied) ? 'current' : '' %>
+<% current_class = (lesson.status == :copied) ? 'current'.html_safe : '' %>
 
 <div id="<%= destination %>_<%= lesson.id %>" class="boxViewSingleLesson <%= current_class %>">
   

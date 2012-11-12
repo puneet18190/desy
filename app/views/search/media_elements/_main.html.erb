@@ -1,44 +1,61 @@
-<div class="contentSearch" id="search_media_elements_main_page" style="display:<%= @search_item == 'lessons' ? 'none' : 'block' %>">
-  <%= t('captions.media_elements') %>
-  <div class="boxCerca">
-    <form id="search_media_elements" class="search-form" method="get" action="/search" data-remote="true">
-      <%= hidden_field_tag 'item', 'media_elements' %>
-      <table summary="" cellpadding="0" cellspacing="0">
-        <tr>
-          <td style="width:10%">
-            <input type="text" name="tag" value="<%= t('captions.insert_tag') %>" class="text lower" id="media_elements_tag_reader_for_search">
-            <%= hidden_field_tag 'tag_kind', '', :id => 'media_elements_tag_kind_for_search' %>
-          <td>
-            <select name="filter" id="filter_search_media_elements">
+<div id="search_media_elements_main_page" style="display:<%= @search_item == 'lessons' ? 'none'.html_safe : 'block'.html_safe %>">
+  
+  <div class="contentSearch">
+    <%= t('captions.media_elements') %>
+    <div class="boxCerca">
+      <form id="search_media_elements" class="search-form" method="get" action="/search" data-remote="true">
+        <%= hidden_field_tag 'item', 'media_elements' %>
+        <table summary="" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="width:10%">
+              <input type="text" name="tag" value="<%= t('captions.insert_tag') %>" class="text lower" id="media_elements_tag_reader_for_search">
+              <%= hidden_field_tag 'tag_kind', '', :id => 'media_elements_tag_kind_for_search' %>
+            <td>
+              <select name="filter" id="filter_search_media_elements">
+                <% counter = true %>
+                <% Filters::MEDIA_ELEMENTS_SEARCH_SET.each do |f| %>
+                  <option value="<%= f %>" <%= counter ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
+                  <% counter = false %>
+                <% end %>
+              </select>
+            </td>
+            <td style="width:8%" valign="top" rowspan="2">
+              <%= t('captions.sort_results_by') %>
+            </td>
+            <td style="width:12%" rowspan="2">
               <% counter = true %>
-              <% Filters::MEDIA_ELEMENTS_SEARCH_SET.each do |f| %>
-                <option value="<%= f %>" <%= counter ? "selected=\"selected\"" : '' %>><%= Filters::CAPTIONS[f] %></option>
+              <% SearchOrders::MEDIA_ELEMENTS_SET.each do |so| %>
+                <% my_order_id = "#{so}_media_elements_radio_input" %>
+                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"></label><%= SearchOrders::CAPTIONS[so] %><br>
                 <% counter = false %>
               <% end %>
-            </select>
-          </td>
-          <td style="width:8%" valign="top" rowspan="2">
-            <%= t('captions.sort_results_by') %>
-          </td>
-          <td style="width:12%" rowspan="2">
-            <% counter = true %>
-            <% SearchOrders::MEDIA_ELEMENTS_SET.each do |so| %>
-              <% my_order_id = "#{so}_media_elements_radio_input" %>
-              <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"" : '' %>><label for="<%= my_order_id %>"></label><%= SearchOrders::CAPTIONS[so] %><br>
-              <% counter = false %>
-            <% end %>
-          </td>
-          <td align="left" rowspan="2">
-            <%= image_submit_tag(asset_path('cerca.png')) %>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <p><%= t('captions.warning') %><br><%= t('captions.warning_search_media_elements') %></p>
-          </td>
-        </tr>
-      </table>
-    </form>
+            </td>
+            <td align="left" rowspan="2">
+              <%= image_submit_tag(asset_path('cerca.png')) %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <p><%= t('captions.warning') %><br><%= t('captions.warning_search_media_elements') %></p>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
   </div>
+  
+  <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) %>
+    <%= render :partial => "search/media_elements/amount", :locals => {:amount => @media_elements_amount} %>
+  <% else %>
+    <div id="media_elements_search_amount"></div>
+  <% end %>
+  
+  <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) && @tags.any? %>
+    <%= render :partial => "search/media_elements/tag_details", :locals => {:tags => @tags} %>
+  <% else %>
+    <div id="media_elements_tag_details"></div>
+  <% end %>
+  
+  <%= render :partial => "search/media_elements/results", :locals => {:media_elements => @media_elements} %>
+  
 </div>
-<%= render :partial => "search/media_elements/results", :locals => {:media_elements => @media_elements} %>

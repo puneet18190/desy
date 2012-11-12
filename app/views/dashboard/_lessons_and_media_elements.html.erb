@@ -8,7 +8,7 @@
       <% (0...CONFIG['lesson_pages_in_dashboard']).each do |j| %>
         <% lessons_block = @lessons[tot_lesson, CONFIG['lessons_for_page_in_dashboard']].to_a %>
         <% if lessons_block.any? %>
-          <div class="suggested_lessons_page" id="suggested_lessons_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none' : 'block' %>">
+          <div class="suggested_lessons_page" id="suggested_lessons_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none'.html_safe : 'block'.html_safe %>">
             <% cont = 0 %>
             <% lessons_block.each do |l| %>
               <% if cont == 0 %>
@@ -57,7 +57,7 @@
       <% (0...CONFIG['media_element_pages_in_dashboard']).each do |j| %>
         <% media_elements_block = @media_elements[tot_media_element, CONFIG['media_elements_for_page_in_dashboard']].to_a %>
         <% if media_elements_block.any? %>
-          <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none' : 'block' %>; width:90%;  margin:0 auto 0 auto;">
+          <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none'.html_safe : 'block'.html_safe %>; width:90%;  margin:0 auto 0 auto;">
             <% media_elements_block.each do |me| %>
               <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
             <% end %>

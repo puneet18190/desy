@@ -48,15 +48,15 @@
 	}
 }
 @mixin iconeElements {
-  float:left; 
-  width:40%;
-	height:34px;
-  background-size: 2.7em;
-	padding-left:50px;
-	margin-right:1.8%;
+  background-size: 2.7em 8.1em;
+	width:40%;
 	background-image: url(<%= asset_path 'icon_elements.svg' %>);
 	background-repeat: no-repeat;
 	background-position:0 0;
+	float:left; 
+  padding:4px 0px 2px 50px;
+  display: inline-block;
+  margin-right:1.8%;
 }
 @mixin contentInterno {
   padding:4%;
@@ -383,23 +383,19 @@
 			/*audio*/
 			.audio {
 		    @include iconeElements;
-				padding-top:0.2em;
-				padding-bottom:0.2em;
-				background-position: 0 -2.6em;
+				background-position: 0 -2.5em;
 		  }
 			/*video*/
 			.video {
 		    @include iconeElements;
-				background-position: 0 .1em;
-				padding-top:0.2em;
-				padding-bottom:0.2em;
+				background-position: 0 0.3em;
+				
 		  }
 			/*image*/
 			.image {
 		    @include iconeElements;
-				background-position: 0 -5.1em;
-				padding-top:0.2em;
-				padding-bottom:0.2em;
+				background-position: 0 -5.2em;
+				
 		  }
 		}
 	.menuController {

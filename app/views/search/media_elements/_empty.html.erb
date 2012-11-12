@@ -1,1 +1,5 @@
-<%= t('empty.media_elements_result') %>
+<% if @tag.class == Tag %>
+  <%= t('empty.media_elements_result_2') %><%= @tag.word %><%= t('empty.media_elements_result_4') %>
+<% else %>
+  <%= t('empty.media_elements_result_1') %><%= @tag %><%= t('empty.media_elements_result_3') %>
+<% end %>

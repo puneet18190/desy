@@ -14,7 +14,7 @@
           <% counter = true %>
           <% Filters::LESSONS_SET.each do |f| %>
             <% caption = Filters::CAPTIONS[f] %>
-            <option value="<%= f %>" <%= counter ? "selected=\"selected" : '' %>><%= caption %></option>
+            <option value="<%= f %>" <%= counter ? "selected=\"selected\"".html_safe : '' %>><%= caption %></option>
             <% counter = false %>
           <% end %>
         </select>

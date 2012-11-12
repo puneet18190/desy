@@ -5,10 +5,7 @@
   border-radius:3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-	h3 {
-	  font:  140% 'Nunito', sans-serif;
-    color: #5d5c5c;
-	}
+	
 	
 }
 @mixin call {
@@ -31,7 +28,7 @@
   padding:2px 5px 2px 5px;
   right:110%;
   top:-9px;
-  width:210%;
+  width:218%;
 	background-color:#fff;
   border:1px solid #e8e8e8;
 	
@@ -154,10 +151,13 @@ $canvasSize: 450%;
 .lesson_tooltipForm {
   @include misc;
 	@include elementiComuni;
-	left:3px;
-  bottom:30px;
+	left:0.2em;
+  bottom:3.3em;
   @include inputSend;
-	
+	h3 {
+	  font:  120% 'Nunito', sans-serif;
+    color: #5d5c5c;
+	}
 	.calloutForm {
     bottom: -8px;
     z-index:20;
@@ -174,7 +174,10 @@ $canvasSize: 450%;
   right:3px;
   bottom:38px;
   @include inputSend;
-	
+	h3 {
+	  font:  140% 'Nunito', sans-serif;
+    color: #5d5c5c;
+	}
 	.calloutForm {
     bottom: -7px;
     z-index:20;

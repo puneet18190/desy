@@ -3,9 +3,9 @@
   <h2 class="text">
     <%= text_field_tag :title, slide.title ? slide.title : "#{t 'captions.enter_title'}" %>
   </h2>
-  <%- if slide.has_media_element?(1) %>
+  <%- if slide.media_element_at(1) %>
     <%= link_to image_tag("http://lorempixel.com/420/400/abstract/1", :class=>"_slide_image image1-p1"), {:action => :show_gallery, :slide => slide.id, :position=>1} , :remote => true, :class => "show-gallery pull-left" %>
-    <%= hidden_field_tag :media_element_1, slide.has_media_element?(1).media_element_id, :class=> "media-tag-cover-1"  %>
+    <%= hidden_field_tag :media_element_1, slide.media_element_at(1).media_element_id, :class=> "media-tag-cover-1"  %>
   <%- else %>
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
     <div class="cover-choose-image _cover_choose_image_1 cover-choose-image-left">

@@ -6,7 +6,6 @@
       <% @media_elements.each do |me| %>
         <%= render :partial => "media_elements/view_single_compact", :locals => {:media_element => me, :destination => ButtonDestinations::FOUND_MEDIA_ELEMENT} %>
       <% end %>
-      <%= render :partial => 'shared/pagination', :locals => {:page => @page, :last_page => @last_page, :first_page => (@page == 1), :pagination_url => remove_param_from_url(request.url, 'delete_item')} %>
     <% end %>
   <% end %>
 </div>

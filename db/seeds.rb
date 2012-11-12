@@ -275,6 +275,7 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   notifics << "Il fatto che per eliminare l'italia quella partita dovesse finire non solo in un pareggio, ma anche esattamente 2-2, le è sfuggito per caso, mica perchè avrebbe screditato le sue teorie, giusto?"
   notifics << "Irlanda travolta 6-1. Trap: «Non mi dimetto»"
   notifics << "Mou: «Balotelli? Potrei scriverci un romanzo»"
+  notifics << "Roma e lazio nel punto di vista simbolico storico la roma rappresenta il popolo romano e la Lazio I LEGIONALI!! grazie ai LEGIONALI Roma è diventata VASTA E POTENTE e i LEGIONALU ERANO ANCHE ESSI ROMANI!!!! Dunque il derby romano stesso rappresenta simbolicamente la potenza DI ROMA sia dal popplo romano e i LEGIONALI!!! Sabatini non è romano e non conosce storia e leggenda del derby ovvero E IGNORANTE!!!!"
   
   notifics.each do |n|
     Notification.send_to admin.id, n

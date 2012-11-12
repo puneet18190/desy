@@ -52,19 +52,19 @@ class ExtractorTest < ActiveSupport::TestCase
     tags = []
     tags << "cane" # 0
     tags << "sole"
-    tags << "gatto"
+    tags << "togatto"
     tags << "cincillà" # 3
     tags << "walter nudo"
     tags << "luna"
-    tags << "escrementi di usignolo" # 6
+    tags << "di escrementi di usignolo" # 6
     tags << "disabili"
-    tags << "barriere architettoniche"
+    tags << "torriere architettoniche"
     tags << "mare" # 9
     tags << "petrolio"
     tags << "sostenibilità"
-    tags << "immondizia" # 12
-    tags << "inquinamento atmosferico"
-    tags << "inquinamento"
+    tags << "di immondizia" # 12
+    tags << "tonquinamento atmosferico"
+    tags << "tonquinamento"
     tags << "pollution" # 15
     tags << "tom cruise"
     tags << "cammello"
@@ -83,12 +83,12 @@ class ExtractorTest < ActiveSupport::TestCase
     tags << "大湖" # 30
     tags << "咗做"
     tags << "個"
-    tags << "法條聖話" # 33
+    tags << "條聖法話" # 33
     tag_ids = []
     tags.each do |t|
       tt = Tag.new
       tt.word = t
-      tt.save
+      assert_obj_saved tt
       tag_ids << tt.id
     end
     tag_map = {
@@ -617,8 +617,8 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 7, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@les5.id, @les6.id], p2[:records]
-    assert_equal 7, p1[:records_amount]
-    assert_equal 2, p1[:pages_amount]
+    assert_equal 7, p2[:records_amount]
+    assert_equal 2, p2[:pages_amount]
     # second case
     p1 = @user2.search_lessons('  ', 1, 5, nil, 'only_mine', nil)
     assert_ordered_item_extractor [2], p1[:records]
@@ -631,8 +631,8 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 6, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@les6.id], p2[:records]
-    assert_equal 6, p1[:records_amount]
-    assert_equal 2, p1[:pages_amount]
+    assert_equal 6, p2[:records_amount]
+    assert_equal 2, p2[:pages_amount]
     # fourth case
     lll = Lesson.find(1)
     lll.is_public = true
@@ -643,8 +643,8 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 8, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@les4.id, @les5.id, @les6.id], p2[:records]
-    assert_equal 8, p1[:records_amount]
-    assert_equal 2, p1[:pages_amount]
+    assert_equal 8, p2[:records_amount]
+    assert_equal 2, p2[:pages_amount]
     # fifth case
     p1 = @user2.search_lessons('', 1, 5, 'title', 'public', 1)
     assert_ordered_item_extractor [@les1.id, 1], p1[:records]
@@ -666,8 +666,8 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 10, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@les4.id, @les5.id, @les9.id, @les2.id, 2], p2[:records]
-    assert_equal 10, p1[:records_amount]
-    assert_equal 2, p1[:pages_amount]
+    assert_equal 10, p2[:records_amount]
+    assert_equal 2, p2[:pages_amount]
     # seventh case
     p1 = @user2.search_lessons(nil, 1, 5, 'likes', 'all_lessons', 3)
     assert_ordered_item_extractor [@les3.id, @les9.id, 2], p1[:records]
@@ -681,34 +681,47 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 11, Lesson.count
     assert_equal 13, MediaElement.count
     assert_equal 168, Tagging.count
-    assert_tags MediaElement.find(1), ['cane', 'sole', 'gatto', 'cincillà', 'walter nudo', 'luna', 'escrementi di usignolo']
-    assert_tags MediaElement.find(2), ['walter nudo', 'luna', 'escrementi di usignolo', 'disabili', 'barriere architettoniche', 'mare', 'petrolio']
-    assert_tags MediaElement.find(3), ['barriere architettoniche', 'mare', 'petrolio', 'sostenibilità', 'immondizia', 'inquinamento atmosferico', 'inquinamento']
-    assert_tags MediaElement.find(4), ['inquinamento', 'pollution', 'tom cruise', 'cammello', 'cammelli', 'acqua', 'acquario']
+    assert_tags MediaElement.find(1), ['cane', 'sole', 'togatto', 'cincillà', 'walter nudo', 'luna', 'di escrementi di usignolo']
+    assert_tags MediaElement.find(2), ['walter nudo', 'luna', 'di escrementi di usignolo', 'disabili', 'torriere architettoniche', 'mare', 'petrolio']
+    assert_tags MediaElement.find(3), ['torriere architettoniche', 'mare', 'petrolio', 'sostenibilità', 'di immondizia', 'tonquinamento atmosferico', 'tonquinamento']
+    assert_tags MediaElement.find(4), ['tonquinamento', 'pollution', 'tom cruise', 'cammello', 'cammelli', 'acqua', 'acquario']
     assert_tags MediaElement.find(5), ['cammelli', 'acqua', 'acquario', 'acquatico', '個名', '拿大即', '河']
     assert_tags MediaElement.find(6), ['個名', '拿大即', '河', '條聖', '係英國', '拿', '住羅倫']
-    assert_tags @el1, ['gatto', 'luna', 'barriere architettoniche', 'sostenibilità', 'inquinamento', 'cammello', 'acquario']
-    assert_tags @el2, ['escrementi di usignolo', 'inquinamento atmosferico', 'acquario', '拿', 'walter nudo', 'mare', 'inquinamento']
-    assert_tags @el3, ['cane', 'sole', 'gatto', 'cincillà', 'walter nudo', 'luna', 'escrementi di usignolo']
+    assert_tags @el1, ['togatto', 'luna', 'torriere architettoniche', 'sostenibilità', 'tonquinamento', 'cammello', 'acquario']
+    assert_tags @el2, ['di escrementi di usignolo', 'tonquinamento atmosferico', 'acquario', '拿', 'walter nudo', 'mare', 'tonquinamento']
+    assert_tags @el3, ['cane', 'sole', 'togatto', 'cincillà', 'walter nudo', 'luna', 'di escrementi di usignolo']
     assert_tags @el4, ['係英國', '拿', '住羅倫', '加', '大湖', '咗做', '個']
-    assert_tags @el5, ['walter nudo', 'luna', 'escrementi di usignolo', 'disabili', 'barriere architettoniche', 'mare', 'petrolio']
-    assert_tags @el6, ['大湖', '咗做', '個', '法條聖話', 'cane', 'sole', 'gatto']
-    assert_tags @el7, ['barriere architettoniche', 'mare', 'petrolio', 'sostenibilità', 'immondizia', 'inquinamento atmosferico', 'inquinamento']
-    assert_tags Lesson.find(1), ['inquinamento', 'pollution', 'tom cruise', 'cammello', 'cammelli', 'acqua', 'acquario']
+    assert_tags @el5, ['walter nudo', 'luna', 'di escrementi di usignolo', 'disabili', 'torriere architettoniche', 'mare', 'petrolio']
+    assert_tags @el6, ['大湖', '咗做', '個', '條聖法話', 'cane', 'sole', 'togatto']
+    assert_tags @el7, ['torriere architettoniche', 'mare', 'petrolio', 'sostenibilità', 'di immondizia', 'tonquinamento atmosferico', 'tonquinamento']
+    assert_tags Lesson.find(1), ['tonquinamento', 'pollution', 'tom cruise', 'cammello', 'cammelli', 'acqua', 'acquario']
     assert_tags Lesson.find(2), ['cammelli', 'acqua', 'acquario', 'acquatico', '個名', '拿大即', '河']
-    assert_tags @les1, ['gatto', 'luna', 'barriere architettoniche', 'sostenibilità', 'inquinamento', 'cammello', 'acquario']
-    assert_tags @les2, ['escrementi di usignolo', 'inquinamento atmosferico', 'acquario', '拿', 'walter nudo', 'mare', 'inquinamento']
-    assert_tags @les3, ['cane', 'sole', 'gatto', 'cincillà', 'walter nudo', 'luna', 'escrementi di usignolo']
-    assert_tags @les4, ['walter nudo', 'luna', 'escrementi di usignolo', 'disabili', 'barriere architettoniche', 'mare', 'petrolio']
-    assert_tags @les5, ['barriere architettoniche', 'mare', 'petrolio', 'sostenibilità', 'immondizia', 'inquinamento atmosferico', 'inquinamento']
-    assert_tags @les6, ['inquinamento', 'pollution', 'tom cruise', 'cammello', 'cammelli', 'acqua', 'acquario']
+    assert_tags @les1, ['togatto', 'luna', 'torriere architettoniche', 'sostenibilità', 'tonquinamento', 'cammello', 'acquario']
+    assert_tags @les2, ['di escrementi di usignolo', 'tonquinamento atmosferico', 'acquario', '拿', 'walter nudo', 'mare', 'tonquinamento']
+    assert_tags @les3, ['cane', 'sole', 'togatto', 'cincillà', 'walter nudo', 'luna', 'di escrementi di usignolo']
+    assert_tags @les4, ['walter nudo', 'luna', 'di escrementi di usignolo', 'disabili', 'torriere architettoniche', 'mare', 'petrolio']
+    assert_tags @les5, ['torriere architettoniche', 'mare', 'petrolio', 'sostenibilità', 'di immondizia', 'tonquinamento atmosferico', 'tonquinamento']
+    assert_tags @les6, ['tonquinamento', 'pollution', 'tom cruise', 'cammello', 'cammelli', 'acqua', 'acquario']
     assert_tags @les7, ['個名', '拿大即', '河', '條聖', '係英國', '拿', '住羅倫']
     assert_tags @les8, ['係英國', '拿', '住羅倫', '加', '大湖', '咗做', '個']
-    assert_tags @les9, ['大湖', '咗做', '個', '法條聖話', 'cane', 'sole', 'gatto']
+    assert_tags @les9, ['大湖', '咗做', '個', '條聖法話', 'cane', 'sole', 'togatto']
   end
   
   test 'google_lessons_with_tags' do
     populate_tags
+    # preliminarly, I try looking for a specific tag
+    luna = Tag.find_by_word 'luna'
+    p1 = @user2.search_lessons(luna.id, 1, 5)
+    assert_ordered_item_extractor [@les1.id, @les3.id, @les4.id], p1[:records]
+    assert !p1.has_key?(:tags)
+    assert_equal 3, p1[:records_amount]
+    assert_equal 1, p1[:pages_amount]
+    # it works only with integer
+    p1 = @user2.search_lessons(luna.id.to_f, 1, 5)
+    assert p1[:records].empty?
+    assert p1[:tags].empty?
+    assert_equal 0, p1[:records_amount]
+    assert_equal 0, p1[:pages_amount]
     # I start here, first case - no match
     p1 = @user2.search_lessons('ciao', 1, 5, nil, nil, nil)
     assert p1[:records].empty?
@@ -719,7 +732,7 @@ class ExtractorTest < ActiveSupport::TestCase
     p1 = @user2.search_lessons('di', 1, 5, nil, nil, nil)
     assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id, @les5.id], p1[:records]
     tag_ids = []
-    Tag.where(:word => ['escrementi di usignolo', 'disabili', 'immondizia']).each do |t|
+    Tag.where(:word => ['di escrementi di usignolo', 'disabili', 'di immondizia']).each do |t|
       tag_ids << t.id
     end
     assert_extractor tag_ids, p1[:tags]
@@ -731,24 +744,24 @@ class ExtractorTest < ActiveSupport::TestCase
     p2 = @user2.search_lessons('to', 2, 5, nil, nil, nil)
     assert_ordered_item_extractor [1, @les1.id, @les2.id, @les3.id, @les4.id], p1[:records]
     tag_ids = []
-    Tag.where(:word => ['gatto', 'barriere architettoniche', 'inquinamento', 'inquinamento atmosferico', 'tom cruise']).each do |t|
+    Tag.where(:word => ['togatto', 'torriere architettoniche', 'tonquinamento', 'tonquinamento atmosferico', 'tom cruise']).each do |t|
       tag_ids << t.id
     end
     assert_extractor tag_ids, p1[:tags]
     assert_equal 7, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@les5.id, @les6.id], p2[:records]
-    assert_extractor tag_ids, p1[:tags]
-    assert_equal 7, p1[:records_amount]
-    assert_equal 2, p1[:pages_amount]
+    assert_extractor tag_ids, p2[:tags]
+    assert_equal 7, p2[:records_amount]
+    assert_equal 2, p2[:pages_amount]
     # fourth case - filters and orders on the last search
     my_tag_chinese = Tag.find_by_word '個名'
-    assert Tag.create_tag_set('Lesson', 2, ['Antonio de curtis', 'acquazzone', my_tag_chinese.id])
+    assert Tag.create_tag_set('Lesson', 2, ['Tonio de curtis', 'acquazzone', my_tag_chinese.id])
     assert_equal 36, Tag.count
     assert_equal 164, Tagging.count
     p1 = @user2.search_lessons('to', 1, 5, nil, 'only_mine', nil)
     assert_ordered_item_extractor [2], p1[:records]
-    tag_ids << Tag.find_by_word('antonio de curtis').id
+    tag_ids << Tag.find_by_word('tonio de curtis').id
     assert_extractor tag_ids, p1[:tags]
     assert_equal 1, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
@@ -784,11 +797,17 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 2, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     # ninth case
-    p1 = @user2.search_lessons('r n', 1, 5, nil, nil, nil)
+    p1 = @user2.search_lessons('walter ', 1, 5, nil, nil, nil)
     assert_ordered_item_extractor [@les2.id, @les3.id, @les4.id], p1[:records]
     assert_extractor [Tag.find_by_word('walter nudo').id], p1[:tags]
     assert_equal 3, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
+    # check that it does not work for middle words
+    xx = @user2.search_lessons('nudo', 1, 5)
+    assert xx[:records].empty?
+    assert xx[:tags].empty?
+    assert_equal 0, xx[:records_amount]
+    assert_equal 0, xx[:pages_amount]
     # cases in chinese
     [@les7, @les8, @les9].each do |llll|
       assert Lesson.find(llll.id).publish
@@ -805,12 +824,23 @@ class ExtractorTest < ActiveSupport::TestCase
     p1 = @user2.search_lessons('條聖', 1, 5, 'title', nil, nil)
     assert_ordered_item_extractor [@les7.id, @les9.id], p1[:records]
     tag_ids = []
-    Tag.where(:word => ['法條聖話', '條聖']).each do |t|
+    Tag.where(:word => ['條聖法話', '條聖']).each do |t|
       tag_ids << t.id
     end
     assert_extractor tag_ids, p1[:tags]
     assert_equal 2, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
+    # I check that I find tags but not associated lessons
+    assert @user2.search_lessons('cammelli', 1, 5)[:records].any?
+    assert @les6.unpublish
+    cammelli = Tag.find_by_word 'cammelli'
+    cammelli.taggings.where(:taggable_type => 'Lesson').each do |t|
+      t.destroy if t.taggable_id != @les6.id
+    end
+    assert Tagging.where(:taggable_type => 'Lesson', :tag_id => cammelli.id).any?
+    xxx = @user2.search_lessons('cammelli', 1, 5)
+    assert xxx[:records].empty?
+    assert_extractor [cammelli.id], xxx[:tags]
   end
   
   test 'google_media_elements_without_tags' do
@@ -842,32 +872,63 @@ class ExtractorTest < ActiveSupport::TestCase
   
   test 'google_media_elements_with_tags' do
     populate_tags
+    # preliminarly, I try looking for a specific tag
+    luna = Tag.find_by_word 'luna'
+    p1 = @user2.search_media_elements(luna.id, 1, 5)
+    assert_ordered_item_extractor [2, @el1.id, @el3.id, @el5.id], p1[:records]
+    assert !p1.has_key?(:tags)
+    assert_equal 4, p1[:records_amount]
+    assert_equal 1, p1[:pages_amount]
+    # it works only with integer
+    p1 = @user2.search_media_elements(luna.id.to_f, 1, 5)
+    assert p1[:records].empty?
+    assert assert p1[:tags].empty?
+    assert_equal 0, p1[:records_amount]
+    assert_equal 0, p1[:pages_amount]
     # I start here, first case - no match
     p1 = @user2.search_media_elements('ciao', 1, 5, nil, nil)
     assert p1[:records].empty?
+    assert p1[:tags].empty?
     assert_equal 0, p1[:records_amount]
     assert_equal 0, p1[:pages_amount]
     # second case - it matches three tags
     p1 = @user2.search_media_elements('di', 1, 5, nil, nil)
     p2 = @user2.search_media_elements('di', 2, 5, nil, nil)
     assert_ordered_item_extractor [2, 3, @el2.id, @el3.id, @el5.id], p1[:records]
+    tag_ids = []
+    Tag.where(:word => ['di escrementi di usignolo', 'disabili', 'di immondizia']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 6, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@el7.id], p2[:records]
+    assert_extractor tag_ids, p2[:tags]
     assert_equal 6, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
     # third case - it matches more tags
     p1 = @user2.search_media_elements('to', 1, 5, 'title', nil)
     p2 = @user2.search_media_elements('to', 2, 5, 'title', nil)
     assert_ordered_item_extractor [4, @el1.id, @el2.id, @el3.id, @el5.id], p1[:records]
+    tag_ids = []
+    Tag.where(:word => ['togatto', 'torriere architettoniche', 'tonquinamento', 'tonquinamento atmosferico', 'tom cruise']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 8, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [@el7.id, 2, 3], p2[:records]
+    assert_extractor tag_ids, p2[:tags]
     assert_equal 8, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
     # fourth case - chinese characters, and filters
     p1 = @user2.search_media_elements('加', 1, 5)
     assert p1[:records].empty?
+    tag_ids = []
+    Tag.where(:word => ['加']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 0, p1[:records_amount]
     assert_equal 0, p1[:pages_amount]
     @el4.is_public = true
@@ -875,14 +936,17 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_obj_saved @el4
     p1 = @user2.search_media_elements('加', 1, 5)
     assert_ordered_item_extractor [@el4.id], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 1, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('加', 1, 5, nil, 'image')
     assert p1[:records].empty?
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 0, p1[:records_amount]
     assert_equal 0, p1[:pages_amount]
     p1 = @user2.search_media_elements('加', 1, 5, nil, 'audio')
     assert_ordered_item_extractor [@el4.id], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 1, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     # fifth case - more filters
@@ -893,46 +957,64 @@ class ExtractorTest < ActiveSupport::TestCase
     Tagging.where(:taggable_type => 'MediaElement', :taggable_id => 3).each do |t|
       ids_tags << t.tag_id
     end
-    assert Tag.create_tag_set('MediaElement', 3, (ids_tags + ['加條聖']))
+    assert Tag.create_tag_set('MediaElement', 3, (ids_tags + ['加條聖', Tag.find_by_word('條聖').id]))
     tag_nuova = Tag.find_by_word('加條聖').id
     ids_tags = []
     Tagging.where(:taggable_type => 'MediaElement', :taggable_id => @el2.id).each do |t|
       ids_tags << t.tag_id
     end
-    assert Tag.create_tag_set('MediaElement', @el2.id, (ids_tags + [tag_nuova]))
+    assert Tag.create_tag_set('MediaElement', @el2.id, (ids_tags + [tag_nuova, Tag.find_by_word('條聖').id]))
     assert !MediaElement.find(3).is_public
     assert_equal 2, MediaElement.find(3).user_id
     assert_equal 35, Tag.count
-    assert_equal 170, Tagging.count
+    assert_equal 172, Tagging.count
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'baudio')
     assert_ordered_item_extractor [@el6.id, 3, 6, @el2.id], p1[:records]
+    tag_ids = []
+    Tag.where(:word => ['條聖', '條聖法話']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 4, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'audio')
     assert_ordered_item_extractor [3], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 1, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'video')
     assert_ordered_item_extractor [@el2.id], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 1, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'image')
     assert_ordered_item_extractor [@el6.id, 6], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 2, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     # last case
     p1 = @user2.search_media_elements('加', 1, 5, 'title')
     assert_ordered_item_extractor [@el2.id, @el4.id, 3], p1[:records]
+    tag_ids = []
+    Tag.where(:word => ['加', '加條聖']).each do |t|
+      tag_ids << t.id
+    end
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 3, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('加', 1, 2, 'title')
     p2 = @user2.search_media_elements('加', 2, 2, 'title')
     assert_ordered_item_extractor [@el2.id, @el4.id], p1[:records]
+    assert_extractor tag_ids, p1[:tags]
     assert_equal 3, p1[:records_amount]
     assert_equal 2, p1[:pages_amount]
     assert_ordered_item_extractor [3], p2[:records]
-    assert_equal 3, p1[:records_amount]
-    assert_equal 2, p1[:pages_amount]
+    assert_extractor tag_ids, p2[:tags]
+    assert_equal 3, p2[:records_amount]
+    assert_equal 2, p2[:pages_amount]
+    # check middle words
+    assert_extractor [Tag.find_by_word('walter nudo').id], @user2.search_media_elements('walter ', 1, 5)[:tags]
+    assert @user2.search_media_elements('nudo', 1, 5)[:tags].empty?
   end
   
 end

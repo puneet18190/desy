@@ -10,42 +10,46 @@ class SearchController < ApplicationController
       case @search_item
         when 'lessons'
           get_result_lessons
-          if @last_page && (@page != 1) && @lessons.empty?
-            @page = 1
+          if @page > @pages_amount && @pages_amount != 0
+            @page = @pages_amount
             get_result_lessons
           end
         when 'media_elements'
           get_result_media_elements
-          if @last_page && (@page != 1) && @media_elements.empty?
-            @page = 1
+          if @page > @pages_amount && @pages_amount != 0
+            @page = @pages_amount
             get_result_media_elements
           end
       end
     end
-    # render_js_or_html_index
+    @tag = Tag.find_by_id(@tag.id) if @tag.class == Fixnum
   end
   
   private
   
   def get_result_media_elements
     resp = @current_user.search_media_elements(@tag, @page, @for_page, @order, @filter)
-    @media_elements = resp[:content]
-    @last_page = resp[:last_page]
+    @media_elements = resp[:records]
+    @pages_amount = resp[:pages_amount]
+    @media_elements_amount = resp[:records_amount]
+    @tags = []
+    @tags = resp[:tags] if resp.has_key? :tags
   end
   
   def get_result_lessons
     resp = @current_user.search_lessons(@tag, @page, @for_page, @order, @filter, @subject_id)
-    @lessons = resp[:content]
-    @last_page = resp[:last_page]
+    @lessons = resp[:records]
+    @pages_amount = resp[:pages_amount]
+    @lessons_amount = resp[:records_amount]
+    @tags = []
+    @tags = resp[:tags] if resp.has_key? :tags
   end
   
   def initialize_paginator_and_filters
     @did_you_search = params.has_key? :tag
     @search_item = ['lessons', 'media_elements'].include?(params[:item]) ? params[:item] : 'lessons'
     if @did_you_search
-      # TODO @tag è provvisoria, al momento non prevede la ricerca con degli id di tags ma solo per parola
-      # @tag = params[:tag_kind].blank? ? '' : (params[:tag_kind] == '0' ? params[:tag] : params[:tag_kind])
-      @tag = params[:tag_kind].blank? ? '' : params[:tag]
+      @tag = params[:tag_kind].blank? ? '' : (params[:tag_kind] == '0' ? params[:tag] : (correct_integer?(params[:tag_kind]) ? params[:tag_kind].to_i : ''))
       @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
       case @search_item
         when 'lessons'
