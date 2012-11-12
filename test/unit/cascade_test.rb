@@ -9,11 +9,6 @@ class CascadeTest < ActiveSupport::TestCase
     @copied_lesson.user_id = 1
     @copied_lesson.parent_id = 2
     assert_obj_saved @copied_lesson
-    @tagging = Tagging.new
-    @tagging.taggable_type = 'Lesson'
-    @tagging.tag_id = 1
-    @tagging.taggable_id = 2
-    assert_obj_saved @tagging
     @lesson = Lesson.find @lesson.id
     ids = {Bookmark => [], Like => [], Slide => [], MediaElementsSlide => [], Tagging => [], Report => [], VirtualClassroomLesson => []}
     assert_equal @lesson.id, @copied_lesson.parent.id
@@ -35,7 +30,7 @@ class CascadeTest < ActiveSupport::TestCase
         ids[MediaElementsSlide] << b.id
       end
     end
-    assert_equal 1, @lesson.taggings.length
+    assert_equal 4, @lesson.taggings.length
     @lesson.taggings.each do |b|
       ids[Tagging] << b.id
     end
@@ -62,7 +57,7 @@ class CascadeTest < ActiveSupport::TestCase
     assert_obj_saved @media_elements_slide
     @media_element = MediaElement.find @media_element.id
     ids = {Tagging => [], Report => [], MediaElementsSlide => []}
-    assert_equal 2, @media_element.taggings.length
+    assert_equal 4, @media_element.taggings.length
     @media_element.taggings.each do |l|
       ids[Tagging] << l.id
     end

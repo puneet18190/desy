@@ -46,7 +46,6 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize_layout
-    #@js_reload = !params.slice(:page, :for_page, :display, :filter, :delete_item, :order).empty?
     @delete_item = params[:delete_item]
     if !request.xhr?
       @notifications = Notification.visible_block(@current_user.id, 0, CONFIG['notifications_loaded_together'])
@@ -68,16 +67,9 @@ class ApplicationController < ActionController::Base
     @current_user = User.find_by_id session[:user_id]
   end
   
-  # def render_js_or_html_index
-  #   respond_to do |format|
-  #     format.js do
-  #       render :file => "#{@where}/index.js.erb" if @js_reload
-  #     end
-  #     format.html do
-  #       render :file => "#{@where}/index.html.erb" if !@js_reload
-  #     end
-  #   end
-  # end
+  def render_js_or_html_index
+    render (request.xhr? ? 'index.js' : 'index.html')
+  end
   
   def correct_integer?(x)
     x.class == String && (x =~ /\A\d+\Z/) == 0

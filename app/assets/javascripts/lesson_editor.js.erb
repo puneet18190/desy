@@ -1,7 +1,7 @@
 $(document).ready(function() {
+  
   masked = $("._mask_x a:not('._choose')");
   masked.each(function(index) {
-    console.log(masked[index]);
     makeDraggable($(masked[index]), "x");
   });
 
@@ -88,7 +88,7 @@ masked.draggable({
           left: "-"+dist+"px"
         }, 100 );
     }
-    masked.parent().siblings(".media_element_align_1").val(parseInt(offset));
+    masked.parent().siblings(".media_element_align_"+masked.attr("data-param")).val(parseInt(offset));
   }
 });
 }

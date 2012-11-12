@@ -3,10 +3,18 @@ require 'test_helper'
 class TaggingTest < ActiveSupport::TestCase
   
   def setup
+    @tag = Tag.new
+    @tag.word = 'varano di komodo'
+    @tag.save
     @tagging = Tagging.new
-    @tagging.tag_id = 1
+    @tagging.tag_id = @tag.id
     @tagging.taggable_id = 2
     @tagging.taggable_type = 'MediaElement'
+  end
+  
+  test 'tags_and_taggings_in_fixtures' do
+    assert_equal 8, Tag.count
+    assert_equal 32, Tagging.count
   end
   
   test 'empty_and_defaults' do
@@ -21,8 +29,8 @@ class TaggingTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @tagging, :tag_id, 'rt', 1, /is not a number/
-    assert_invalid @tagging, :tag_id, 9.9, 1, /must be an integer/
+    assert_invalid @tagging, :tag_id, 'rt', @tag.id, /is not a number/
+    assert_invalid @tagging, :tag_id, 9.9, @tag.id, /must be an integer/
     assert_invalid @tagging, :taggable_id, -8, 2, /must be greater than 0/
     assert_invalid @tagging, :taggable_type, 'MidiaElement', 'MediaElement', /is not included in the list/
     assert_obj_saved @tagging
@@ -38,21 +46,21 @@ class TaggingTest < ActiveSupport::TestCase
     assert_invalid @tagging, :taggable_id, 1, 2, /has already been taken/
     @tagging.taggable_type = 'Lesson'
     @tagging.tag_id = 2
-    assert_invalid @tagging, :taggable_id, 1, 2, /has already been taken/
+    assert_invalid @tagging, :taggable_id, 5, 2, /has already been taken/
     assert_obj_saved @tagging
   end
   
   test 'associations' do
-    assert_invalid @tagging, :tag_id, 1000, 1, /doesn't exist/
+    assert_invalid @tagging, :tag_id, 1000, @tag.id, /doesn't exist/
     assert_invalid @tagging, :taggable_id, 1000, 2, /media element doesn't exist/
     @tagging.taggable_type = 'Lesson'
-    assert_invalid @tagging, :taggable_id, 1000, 1, /lesson doesn't exist/
+    assert_invalid @tagging, :taggable_id, 1000, 2, /lesson doesn't exist/
     assert_obj_saved @tagging
   end
   
   test 'impossible_changes' do
     assert_obj_saved @tagging
-    assert_invalid @tagging, :tag_id, 2, 1, /can't be changed/
+    assert_invalid @tagging, :tag_id, 2, @tag.id, /can't be changed/
     assert_invalid @tagging, :taggable_id, 3, 2, /can't be changed/
     assert_invalid @tagging, :taggable_type, 'Lesson', 'MediaElement', /can't be changed/
     assert_obj_saved @tagging

@@ -10,7 +10,7 @@ function addDeleteItemToCurrentUrl(current_url, delete_item) {
 }
 
 function addLesson(lesson_id, destination, current_url, reload) {
-  if(reload == 'true') {
+  if(reload) {
     $.ajax({
       type: 'post',
       url: '/lessons/' + lesson_id + '/add?destination=' + destination
@@ -77,7 +77,7 @@ function publishLesson(lesson_id, destination) {
 }
 
 function removeLesson(lesson_id, destination, current_url, reload) {
-  if(reload == 'true') {
+  if(reload) {
     $.ajax({
       type: 'post',
       url: '/lessons/' + lesson_id + '/remove?destination=' + destination
@@ -119,7 +119,7 @@ function removeLessonFromVirtualClassroom(lesson_id, destination) {
 }
 
 function addMediaElement(media_element_id, destination, current_url, reload) {
-  if(reload == 'true') {
+  if(reload) {
     $.ajax({
       type: 'post',
       url: '/media_elements/' + media_element_id + '/add?destination=' + destination
@@ -154,7 +154,7 @@ function destroyMediaElement(media_element_id, destination, current_url) {
 }
 
 function removeMediaElement(media_element_id, destination, current_url, reload) {
-  if(reload == 'true') {
+  if(reload) {
     $.ajax({
       type: 'post',
       url: '/media_elements/' + media_element_id + '/remove?destination=' + destination

@@ -17,27 +17,33 @@ class MediaElement < ActiveRecord::Base
   belongs_to :user
   
   # TODO aggiungere :media a validates_presence_of una volta implementati tutti gli upload
-  validates_presence_of :user_id, :title, :description, :tags
+  validates_presence_of :user_id, :title, :description
   validates_inclusion_of :is_public, :in => [true, false]
   validates_inclusion_of :sti_type, :in => ['Video', 'Audio', 'Image']
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :duration, :allow_nil => true, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => I18n.t('language_parameters.media_element.length_title')
   validates_length_of :description, :maximum => I18n.t('language_parameters.media_element.length_description')
+  validates_length_of :tags, :minimum => CONFIG['min_tags_for_item']
   validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_duration
   
   before_validation :init_validation
   before_destroy :stop_if_public
 
+  # def self.test
+  #   tags = %w(sole gatto luna).map{ |t| Tag.find_or_initialize_by_word(t) }
+  #   new(title: 'test', description: 'test', tags: tags) do |me|
+  #     me.user = User.first
+  #     me.sti_type = 'Video' 
+  #   end
+  # end
 
   class << self
     def new_with_sti_type_inferring(attributes = nil, options = {}, &block)
       media = attributes.try :[], :media
-      
-      unless media.is_a?(ActionDispatch::Http::UploadedFile) or media.is_a?(File)
+      unless media.is_a?(ActionDispatch::Http::UploadedFile) || media.is_a?(File)
         return new_without_sti_type_inferring(attributes, options, &block)
       end
-
       extension = File.extname(
           case media
           when ActionDispatch::Http::UploadedFile then media.original_filename
@@ -45,30 +51,32 @@ class MediaElement < ActiveRecord::Base
           end
         ).sub(/^\./, '').downcase
       inferred_sti_type = EXTENSIONS_BY_STI_TYPE.detect{ |k, v| v.include? extension }.try(:first)
-
       unless inferred_sti_type
         return new_without_sti_type_inferring(attributes, options, &block)
       end
-
       inferred_sti_type.constantize.new_without_sti_type_inferring(attributes, options, &block)
     end
     alias_method_chain :new, :sti_type_inferring
   end
 
-  def tags_as_array_of_strings=(tags_as_array_of_strings)
-    self.tags = tags_as_array_of_strings.compact.map{ |tag| Tag.find_or_initialize_by_word(tag) }
-    self.tags_as_array_of_strings
+  def media_from_file_path=(file_path)
+    self.media = File.open(file_path)
   end
 
+  def tags_as_array_of_strings=(tags_as_array_of_strings)
+    self.tags = tags_as_array_of_strings.compact.map{ |tag| Tag.find_or_initialize_by_word(tag.strip.mb_chars.downcase.to_s) }
+    self.tags_as_array_of_strings
+  end
+  
   def tags_as_array_of_strings
     tags.map(&:word)
   end
-
+  
   def tags_as_string=(tags_as_string)
     self.tags_as_array_of_strings = tags_as_string.split(',')
     self.tags_as_string
   end
-
+  
   def tags_as_string
     tags_as_array_of_strings.join(', ')
   end
@@ -141,11 +149,13 @@ class MediaElement < ActiveRecord::Base
   end
   
   private
-  
+
   def init_validation
     @media_element = Valid.get_association self, :id
+    # rigetto le eventuali tags che sono state salvate ma non esistono più nel database
+    self.tags.select!{ |t| (t.new_record? && t.valid?) || (t.persisted? && t.taggings.exists?(taggable_type: 'MediaElement', taggable_id: id)) }
   end
-  
+
   def validate_associations
     errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
   end
@@ -185,9 +195,7 @@ class MediaElement < ActiveRecord::Base
   end
   
   def stop_if_public
-    @media_element = Valid.get_association self, :id
-    return true if @media_element.nil?
-    return !@media_element.is_public
+    !reload.is_public
   end
   
 end
