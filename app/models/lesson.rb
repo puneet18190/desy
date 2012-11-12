@@ -3,7 +3,7 @@ class Lesson < ActiveRecord::Base
   statuses = ::STATUSES.lessons.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
   
-  attr_accessible :subject_id, :school_level_id, :title, :description
+  attr_accessible :subject_id, :school_level_id, :title, :description, :tags, :tags_as_array_of_strings, :tags_as_string
   attr_reader :status, :is_reportable
   
   belongs_to :user
@@ -17,6 +17,7 @@ class Lesson < ActiveRecord::Base
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :slides
   has_many :virtual_classroom_lessons
+  has_many :tags, :through => :taggings
   
   validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description, :token
   validates_numericality_of :user_id, :school_level_id, :subject_id, :only_integer => true, :greater_than => 0
@@ -25,6 +26,7 @@ class Lesson < ActiveRecord::Base
   validates_length_of :title, :maximum => I18n.t('language_parameters.lesson.length_title')
   validates_length_of :description, :maximum => I18n.t('language_parameters.lesson.length_description')
   validates_length_of :token, :is => 20
+  validates_length_of :tags, :minimum => CONFIG['min_tags_for_item']
   validates_uniqueness_of :parent_id, :scope => :user_id, :if => :present_parent_id
   validate :validate_associations, :validate_public, :validate_copied_not_modified_and_public, :validate_impossible_changes
   
@@ -32,9 +34,22 @@ class Lesson < ActiveRecord::Base
   
   before_validation :init_validation, :create_token
   
-  def tags
-    return [] if self.new_record?
-    Tag.get_tags_for_item 'Lesson', self.id
+  def tags_as_array_of_strings=(tags_as_array_of_strings)
+    self.tags = tags_as_array_of_strings.compact.uniq.map{ |tag| Tag.find_or_initialize_by_word(tag) }
+    self.tags_as_array_of_strings
+  end
+  
+  def tags_as_array_of_strings
+    tags.map(&:word)
+  end
+  
+  def tags_as_string=(tags_as_string)
+    self.tags_as_array_of_strings = tags_as_string.split(',')
+    self.tags_as_string
+  end
+  
+  def tags_as_string
+    tags_as_array_of_strings.join(', ')
   end
   
   def cover
