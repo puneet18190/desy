@@ -16,7 +16,7 @@ class MediaElementsController < ApplicationController
       get_own_media_elements
     end
     @new_media_element = MediaElement.new(params[:media_element])
-    # render_js_or_html_index
+    render_js_or_html_index
   end
 
   def create

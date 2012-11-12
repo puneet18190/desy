@@ -13,3 +13,15 @@ three:
 four:
   id: 4
   word: 'squalo'
+
+five:
+  id: 5
+  word: 'pappagallo'
+
+six:
+  id: 6
+  word: 'ornitorinco'
+
+seven:
+  id: 7
+  word: 'panda'

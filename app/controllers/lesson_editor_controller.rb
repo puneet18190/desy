@@ -18,7 +18,7 @@ class LessonEditorController < ApplicationController
   def create
     # TODO controllare redirect
     new_lesson = @current_user.create_lesson params[:title], params[:description], params[:subject]
-    Tag.create_tag_set 'Lesson', new_lesson.id, get_tags
+   # Tag.create_#tag_set 'Lesson', new_lesson.id, get_tags
     redirect_to "/lesson_editor/#{new_lesson.id}/index"
   end
   
@@ -27,7 +27,7 @@ class LessonEditorController < ApplicationController
     lesson.title = params[:lesson][:title]
     lesson.description =  params[:lesson][:description]
     lesson.subject_id = params[:lesson][:subject_id]
-    Tag.create_tag_set 'Lesson', lesson.id, get_tags
+   # Tag.create_#tag_set 'Lesson', lesson.id, get_tags
     lesson.save
     redirect_to lesson_editor_path(lesson.id)
   end
