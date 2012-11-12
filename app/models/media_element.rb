@@ -6,17 +6,17 @@ class MediaElement < ActiveRecord::Base
   
   self.inheritance_column = :sti_type
   
-  attr_accessible :title, :description, :media, :publication_date, :tags, :tags_as_array_of_strings, :tags_as_string
+  attr_accessible :title, :description, :media, :publication_date
   attr_reader :status, :is_reportable, :info_changeable
+  attr_accessor :tags
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
   has_many :reports, :as => :reportable, :dependent => :destroy
   has_many :taggings, :as => :taggable, :dependent => :destroy
-  has_many :tags, :through => :taggings
   belongs_to :user
   
-  # TODO aggiungere :media a validates_presence_of una volta implementati tutti gli upload
+  # FIXME aggiungere :media a validates_presence_of una volta implementati tutti gli upload
   validates_presence_of :user_id, :title, :description
   validates_inclusion_of :is_public, :in => [true, false]
   validates_inclusion_of :sti_type, :in => ['Video', 'Audio', 'Image']
@@ -29,15 +29,7 @@ class MediaElement < ActiveRecord::Base
   
   before_validation :init_validation
   before_destroy :stop_if_public
-
-  # def self.test
-  #   tags = %w(sole gatto luna).map{ |t| Tag.find_or_initialize_by_word(t) }
-  #   new(title: 'test', description: 'test', tags: tags) do |me|
-  #     me.user = User.first
-  #     me.sti_type = 'Video' 
-  #   end
-  # end
-
+  
   class << self
     def new_with_sti_type_inferring(attributes = nil, options = {}, &block)
       media = attributes.try :[], :media
@@ -61,24 +53,6 @@ class MediaElement < ActiveRecord::Base
 
   def media_from_file_path=(file_path)
     self.media = File.open(file_path)
-  end
-
-  def tags_as_array_of_strings=(tags_as_array_of_strings)
-    self.tags = tags_as_array_of_strings.compact.map{ |tag| Tag.find_or_initialize_by_word(tag.strip.mb_chars.downcase.to_s) }
-    self.tags_as_array_of_strings
-  end
-  
-  def tags_as_array_of_strings
-    tags.map(&:word)
-  end
-  
-  def tags_as_string=(tags_as_string)
-    self.tags_as_array_of_strings = tags_as_string.split(',')
-    self.tags_as_string
-  end
-  
-  def tags_as_string
-    tags_as_array_of_strings.join(', ')
   end
   
   def self.dashboard_emptied?(an_user_id)
@@ -149,13 +123,25 @@ class MediaElement < ActiveRecord::Base
   end
   
   private
-
+  
   def init_validation
     @media_element = Valid.get_association self, :id
-    # rigetto le eventuali tags che sono state salvate ma non esistono più nel database
-    self.tags.select!{ |t| (t.new_record? && t.valid?) || (t.persisted? && t.taggings.exists?(taggable_type: 'MediaElement', taggable_id: id)) }
+    if self.tags.blank?
+      self.tags = Tag.where('EXISTS (SELECT * FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = ? AND taggings.taggable_id = ?)', 'MediaElement', self.id)
+    else
+      resp_tags = []
+      self.tags.split(',').each do |t|
+        if !t.blank?
+          t = t.to_s.strip.mb_chars.downcase.to_s
+          tag = Tag.find_by_word t
+          tag = Tag.new(:word => t) if tag.nil?
+          resp_tags << tag if tag.valid?
+        end
+      end
+      self.tags = resp_tags
+    end
   end
-
+  
   def validate_associations
     errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
   end
