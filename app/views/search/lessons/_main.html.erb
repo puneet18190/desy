@@ -5,9 +5,9 @@
     <div class="boxCerca">
       <form id="search_lessons" class="search-form" method="get" action="/search" data-remote="true">
         <%= hidden_field_tag 'item', 'lessons' %>
-        <table summary="" cellpadding="0" cellspacing="0">
+        <table summary="" cellpadding="0" cellspacing="0" style="width:490px; float:left">
           <tr>
-            <td style="width:178px">
+            <td style="width:168px">
               <input type="text" name="tag" value="<%= t('captions.insert_tag') %>" class="text lower" id="lessons_tag_reader_for_search">
               <%= hidden_field_tag 'tag_kind', '', :id => 'lessons_tag_kind_for_search' %>
             </td>
@@ -20,40 +20,51 @@
                 <% end %>
               </select>
             </td>
-            <td>
+            <td style="width:186px;">
               <select name="subject_id" id="filter_search_lessons_subject">
-                <option value="" selected="selected"><%= t('captions.all_subjects') %></option>
+                <option  value="" selected="selected"><%= t('captions.all_subjects') %></option>
                 <% Subject.order(:description).each do |s| %>
                   <option value="<%= s.id %>"><%= s.description %></option>
                   <% counter = false %>
                 <% end %>
               </select>
             </td>
-            <td style="width:8%" valign="top" rowspan="2">
+						</tr>
+						<tr>
+            <td colspan="3">
+              <p><%= t('captions.warning') %><br><%= t('captions.warning_search_lessons') %></p>
+            </td>
+          </tr>
+						</table>
+						<table summary="" cellpadding="0" cellspacing="0" style="width:360px; float:right;">
+						<tr>
+            <td valign="top" rowspan="2">
               <%= t('captions.sort_results_by') %>
             </td>
-            <td style="width:12%" rowspan="2">
+            <td rowspan="2">
+						  <table style="padding:0">
+							<tr>
               <% counter = true %>
               <% SearchOrders::LESSONS_SET.each do |so| %>
                 <% my_order_id = "#{so}_lessons_radio_input" %>
-                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"></label><%= SearchOrders::CAPTIONS[so] %><br>
+                <td><input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"></label></td>
+								<td style="vertical-align:middle"><%= SearchOrders::CAPTIONS[so] %></td>
+								</tr>
                 <% counter = false %>
               <% end %>
+							
+							</table>
             </td>
             <td align="left" rowspan="2">
               <%= image_submit_tag(asset_path('cerca.png')) %>
             </td>
           </tr>
-          <tr>
-            <td colspan="2">
-              <p><%= t('captions.warning') %><br><%= t('captions.warning_search_lessons') %></p>
-            </td>
-          </tr>
+          
         </table>
       </form>
     </div>
   </div>
-  
+  <br class="clearfloat">
   <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) %>
     <%= render :partial => "search/lessons/amount", :locals => {:amount => @lessons_amount} %>
   <% else %>
