@@ -2,7 +2,7 @@
   <%= image_tag("http://lorempixel.com/385/266")%>
   <div class="caption">
     <a href="#" class="close _close_popup pull-right" data-param="<%= media_element.id %>">x</a>
-    <a href="#" class="pull-right _add-image_to_slide image-<%= media_element.id %>" data-param="<%= media_element.id %>">+</a>
+    <a href="#" class="pull-right _add_<%=kind_of%>_to_slide image-<%= media_element.id %>" data-param="<%= media_element.id %>">+</a>
     <p><%= media_element.title %></p>
   </div>
 </div>

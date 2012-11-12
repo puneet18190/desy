@@ -6,6 +6,9 @@ class LessonEditorController < ApplicationController
   def index
     @lesson = Lesson.find params[:lesson_id]
     @slides = @lesson.slides.order :position
+    @slide = @slides.first
+    #TODO pass a parameter for the slide to redirect to after add_slide
+    #@slide_to = params[:slide_position] if params[:slide_position]
   end
   
   def new
@@ -18,16 +21,21 @@ class LessonEditorController < ApplicationController
   def create
     # TODO controllare redirect
     new_lesson = @current_user.create_lesson params[:title], params[:description], params[:subject]
-   # Tag.create_#tag_set 'Lesson', new_lesson.id, get_tags
-    redirect_to "/lesson_editor/#{new_lesson.id}/index"
+    if new_lesson
+      #Tag.create_tag_set 'Lesson', new_lesson.id, get_tags
+      redirect_to "/lesson_editor/#{new_lesson.id}/index"
+    else
+      redirect_to :back, notice: "#{t 'captions.lesson_not_created'}"
+    end
   end
   
   def update
     lesson = Lesson.find params[:lesson_id]
     lesson.title = params[:lesson][:title]
     lesson.description =  params[:lesson][:description]
-    lesson.subject_id = params[:lesson][:subject_id]
-   # Tag.create_#tag_set 'Lesson', lesson.id, get_tags
+
+    lesson.subject_id = params[:subject]
+    #Tag.create_tag_set 'Lesson', lesson.id, get_tags
     lesson.save
     redirect_to lesson_editor_path(lesson.id)
   end
@@ -50,7 +58,12 @@ class LessonEditorController < ApplicationController
   
   ## prompt image gallery in slide ##
   def show_gallery
-    @media_elements = @current_user.own_media_elements(1,35,"image")[:records]
+    if params[:kind_of]
+      @kind_of = params[:kind_of]
+    else
+      @kind_of = "image"
+    end
+    @media_elements = @current_user.own_media_elements(1,35,@kind_of)[:records]
     @slide = Slide.find params[:slide]
     @img_position = params[:position]
     respond_to do |format|
@@ -76,10 +89,11 @@ class LessonEditorController < ApplicationController
   
   def delete_slide
     slide = Slide.find(params[:slide_id])
+    #TODO reorder positions on destroy
     if slide.destroy
       redirect_to lesson_editor_path(slide.lesson.id)
     else
-      redirect_to :back
+      redirect_to :back, notice: "#{t 'captions.slide_not_deleted'}"
     end
   end
   
