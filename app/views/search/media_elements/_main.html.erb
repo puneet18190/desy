@@ -19,30 +19,30 @@
                 <% end %>
               </select>
             </td>
-						</tr>
-						<tr>
+            </tr>
+            <tr>
             <td colspan="2">
               <p><%= t('captions.warning') %><br><%= t('captions.warning_search_media_elements') %></p>
             </td>
           </tr>
-						</table>
-						<table summary="" cellpadding="0" cellspacing="0" style="width:360px; float:right;">
-						<tr>
+            </table>
+            <table summary="" cellpadding="0" cellspacing="0" style="width:360px; float:right;">
+            <tr>
             <td  valign="top" rowspan="2">
               <%= t('captions.sort_results_by') %>
             </td>
             <td  rowspan="2">
-						<table style="padding:0">
-							<tr>
+            <table style="padding:0">
+              <tr>
               <% counter = true %>
               <% SearchOrders::MEDIA_ELEMENTS_SET.each do |so| %>
                 <% my_order_id = "#{so}_media_elements_radio_input" %>
                 <td><input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"></label></td>
-								<td style="vertical-align:middle"><%= SearchOrders::CAPTIONS[so] %></td>
-								</tr>
+                <td style="vertical-align:middle"><%= SearchOrders::CAPTIONS[so] %></td>
+                </tr>
                 <% counter = false %>
               <% end %>
-							</table>
+              </table>
             </td>
             <td align="left" rowspan="2">
               <%= image_submit_tag(asset_path('cerca.png')) %>

@@ -26,7 +26,7 @@ class Lesson < ActiveRecord::Base
   validates_length_of :title, :maximum => I18n.t('language_parameters.lesson.length_title')
   validates_length_of :description, :maximum => I18n.t('language_parameters.lesson.length_description')
   validates_length_of :token, :is => 20
-  validates_length_of :tags, :minimum => CONFIG['min_tags_for_item']
+  #validates_length_of :tags, :minimum => CONFIG['min_tags_for_item']
   validates_uniqueness_of :parent_id, :scope => :user_id, :if => :present_parent_id
   validate :validate_associations, :validate_public, :validate_copied_not_modified_and_public, :validate_impossible_changes
   

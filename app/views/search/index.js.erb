@@ -40,10 +40,14 @@
 
 <% if my_objects_amount > 0 %>
   $('#<%= my_item %>_search_amount').replaceWith("<%= j(render(:partial => "search/#{my_item}/amount", :locals => {:amount => my_objects_amount})) %>");
+<% else %>
+  $('#<%= my_item %>_search_amount').html('');
 <% end %>
 
-<% if @tags.any? %>
+<% if my_objects_amount > 0 && @tags.any? %>
   $('#<%= my_item %>_tag_details').replaceWith("<%= j(render(:partial => "search/#{my_item}/tag_details", :locals => {:tags => @tags})) %>");
+<% else %>
+  $('#<%= my_item %>_tag_details').html('');
 <% end %>
 
 $('#info_container').data('currenturl', '<%= remove_param_from_url(request.url, 'delete_item') %>');
