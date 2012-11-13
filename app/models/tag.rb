@@ -32,7 +32,7 @@ class Tag < ActiveRecord::Base
   def self.get_friendly_tags(item_id, kind)
     tags = Tagging.where(:taggable_id => item_id, :taggable_type => kind)
     return '' if tags.empty?
-    resp = tags.first.word
+    resp = tags.first.tag.word
     count = 1
     tags.each do |t|
       resp = "#{resp}, #{t.tag.word}" if count == 1

@@ -14,7 +14,7 @@
             <%= text_area_tag 'description', media_element.description %>
           </div>
           <div class="cols" style="float:right">
-            <%= text_area_tag 'tags', 'tags' %>
+            <%= text_area_tag 'tags', media_element.tags %>
             <br>
             <%= submit_tag 'save modify' %> <a class="lower _close_popup" data-param="<%= media_element.id %>"><%= t('captions.or_cancel') %></a>
           </div>

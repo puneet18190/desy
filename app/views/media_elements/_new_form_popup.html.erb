@@ -16,7 +16,7 @@
         <div class="cols" style="float:right; width:330px;">
           <h1><%= t('forms.media_element.title') %></h1>
           <p style="padding-bottom:15px"><%= t('forms.media_element.notes') %></p>
-          <!--%= f.text_area :tags_as_string, placeholder: t('forms.media_element.labels.tags') %-->
+          <%= f.text_area :tags, placeholder: t('forms.media_element.labels.tags') %>
           <br>
           <%= f.submit t('forms.media_element.submit') %> <a href="">or cancel</a>
         </div>
