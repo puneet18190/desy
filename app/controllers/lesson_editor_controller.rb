@@ -94,6 +94,17 @@ class LessonEditorController < ApplicationController
     end
   end
   
+  def change_slide_position
+    slide = Slide.find(params[:slide_id])
+    slide.change_position(params[:new_position].to_i)
+    @lesson = Lesson.find slide.lesson.id
+    @slides = @lesson.slides.order :position
+    @slide = @slides.first
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   private
   
   def save_current_slide

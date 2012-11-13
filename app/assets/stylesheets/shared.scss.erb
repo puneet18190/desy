@@ -411,10 +411,10 @@
 		text-align:left;
 	}
 }
-._media_element_pop_up_container {
+.MediaElementPopUpContainer {
   height:339px;
 	padding:20px;
-	._change_info_container {
+	.ChangeInfoContainer {
 	  z-index:10; 
 		position:absolute; 
 		background-color:#373737; 
@@ -425,6 +425,23 @@
 		p {
 		  padding-top:0px;
 		}
+		
+	}
+	.ChangeInfoContainerLoading {
+	  z-index:10; 
+		position:absolute; 
+		background-color:#373737; 
+		width:694px; 
+		height:319px; 
+		padding:0px; 
+		
+		p {
+		  padding-top:0px;
+		}
+		.cols {
+		  width:45%;
+		}
+		
 	}
 	 .contentElement {
 	   float:left;
@@ -500,7 +517,7 @@
 }
 .selectButton {
   width: 300px;
-	height:110px;
+	height:80px;
 	padding: 0px;
   
 	input {

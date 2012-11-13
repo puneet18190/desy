@@ -45,6 +45,7 @@ Desy::Application.routes.draw do
   post 'lesson_editor/delete_slide/:slide_id' => 'lesson_editor#delete_slide', :as => :delete_slide
   get  'lesson_editor/show_gallery/:slide' => 'lesson_editor#show_gallery', :as => :show_gallery
   get  'lesson_editor/save_slide' => 'lesson_editor#save_slide', :as => :save_slide
+  post 'lesson_editor/change_slide_position/:slide_id/' => 'lesson_editor#change_slide_position', :as => :change_slide_position
   
   # MEDIA ELEMENTS EDITOR
   get  'media_elements_editor/' => 'media_elements_editor#index'

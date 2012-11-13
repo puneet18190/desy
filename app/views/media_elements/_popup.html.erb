@@ -2,9 +2,9 @@
   
   <% if media_element.buttons.include? Buttons::PREVIEW %>
     
-    <div class="_media_element_pop_up_container" data-param="<%= media_element.id %>">
+    <div class="_media_element_pop_up_container MediaElementPopUpContainer" data-param="<%= media_element.id %>">
      <% if media_element.info_changeable %>
-      <div class="_change_info_container" style="display:none;" data-param="<%= media_element.id %>">
+      <div class="_change_info_container ChangeInfoContainer" style="display:none;" data-param="<%= media_element.id %>">
         <h1><%= t('captions.modify_info_element') %></h1>
         <p><%= t('descriptions.change_info_element') %></p>
         <%= form_tag media_element_path(media_element.id), :remote => true, :class => "formModifyInfo" do %>

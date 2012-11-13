@@ -23,16 +23,12 @@ class MediaElementsController < ApplicationController
   def create
     media_element = MediaElement.new(params[:media_element]) { |me| me.user = @current_user }
 
-    logger.info media_element.tags
-
     if media_element.save
-      render json: { message: I18n.t('forms.media_element.messages.success') }
-      #return render json:
+      render json: { message: I18n.t('forms.media_element.messages.success') }, :status => :created
     else
       # TODO aggiungere visualizzazione errori
       render json: { errors: media_element.errors, tags: media_element.tags }, :status => :unprocessable_entity
     end
-
     #render layout: false, content_type: Mime::TEXT, text: media_element.inspect
   end
   
