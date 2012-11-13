@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'test_helper'
 
 class MediaElementTest < ActiveSupport::TestCase
@@ -32,9 +33,10 @@ class MediaElementTest < ActiveSupport::TestCase
     assert_equal 1, @media_element.errors.messages[:tags].length
     assert_match /are not enough/, @media_element.errors.messages[:tags].first
     assert_equal 7, Tag.count
-    @media_element.tags = '  gatto, ornitorinco,   , cane, panda  '
+    @media_element.tags = '  gatto, oRnitOrinco,   , cane, panda  '
     assert_obj_saved @media_element
     assert_equal 7, Tag.count
+    @media_element.reload
     assert_tags @media_element, ['gatto', 'cane', 'ornitorinco', 'panda']
     @media_element.tags = '  gattaccio, gattaccio, panda,   , cane, ornitorinco  '
     assert_obj_saved @media_element
@@ -42,6 +44,19 @@ class MediaElementTest < ActiveSupport::TestCase
     @media_element.reload
     assert_tags @media_element, ['gattaccio', 'cane', 'panda', 'ornitorinco']
     assert Tag.where(:word => 'gattaccio').any?
+    @media_element.tags = 'gattaccio, panda, cane, trentatré trentini entrarono a trento tutti e trentatré trotterellando'
+    assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect} -- #{@media_element.tags.inspect}"
+    assert_equal 1, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
+    assert_equal 1, @media_element.errors.messages[:tags].length
+    assert_match /are not enough/, @media_element.errors.messages[:tags].first
+    @media_element.reload
+    assert_tags @media_element, ['gattaccio', 'cane', 'panda', 'ornitorinco']
+    @media_element = MediaElement.find @media_element.id
+    assert @media_element.tags.blank?
+    assert_obj_saved @media_element
+    assert_equal 8, Tag.count
+    @media_element.reload
+    assert_tags @media_element, ['gattaccio', 'cane', 'panda', 'ornitorinco']
   end
   
   test 'empty_and_defaults' do
