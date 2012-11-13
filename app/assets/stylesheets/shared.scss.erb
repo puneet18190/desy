@@ -589,3 +589,18 @@
   float: left;
   width: auto;
 }
+
+@mixin sharedElements {
+  background-size: 11.3em 22.7em;
+	background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
+	background-repeat: no-repeat;
+	background-position:0 0;
+	padding:0;
+}
+//ELEMENTI IN COMUNE TRA EDITOR E PLAYER//
+.iconMediaElements {
+  .audio {
+	  @include sharedElements;
+    background-position: 0 -2.5em;
+	}
+}
