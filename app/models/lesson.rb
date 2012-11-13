@@ -417,7 +417,7 @@ class Lesson < ActiveRecord::Base
   def init_validation
     @lesson = Valid.get_association self, :id
     if @tags.blank?
-      @inner_tags = Tag.where('EXISTS (SELECT * FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = ? AND taggings.taggable_id = ?)', 'Lesson', self.id)
+      @inner_tags = Tag.get_tags_for_item(self.id, 'Lesson')
     else
       resp_tags = []
       prev_tags = []

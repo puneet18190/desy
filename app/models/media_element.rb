@@ -154,7 +154,7 @@ class MediaElement < ActiveRecord::Base
   def init_validation
     @media_element = Valid.get_association self, :id
     if @tags.blank?
-      @inner_tags = Tag.where('EXISTS (SELECT * FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = ? AND taggings.taggable_id = ?)', 'MediaElement', self.id)
+      @inner_tags = Tag.get_tags_for_item(self.id, 'MediaElement')
     else
       resp_tags = []
       prev_tags = []
