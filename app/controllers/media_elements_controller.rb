@@ -7,6 +7,7 @@ class MediaElementsController < ApplicationController
   
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
+  before_filter :initialize_media_element_with_owner_and_private, :only => :update
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   
   def index
@@ -88,8 +89,16 @@ class MediaElementsController < ApplicationController
     end
   end
   
-  def change_info
-    
+  def update
+    if @ok
+      @media_element.title = params[:title]
+      @media_element.description = params[:description]
+      @media_element.tags = params[:tags]
+      if !@media_element.save
+        @ok = false
+        @errors = @media_element.errors.messages
+      end
+    end
   end
   
   private

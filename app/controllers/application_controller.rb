@@ -32,6 +32,11 @@ class ApplicationController < ActionController::Base
     @ok = false if !ButtonDestinations::LESSONS.include?(@destination)
   end
   
+  def initialize_media_element_with_owner_and_private
+    initialize_media_element_with_owner
+    @ok = !@media_element.is_public if @ok
+  end
+  
   def initialize_media_element_with_owner
     initialize_media_element
     @ok = (@current_user.id == @media_element.user_id) if @ok

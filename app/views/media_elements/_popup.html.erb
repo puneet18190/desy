@@ -7,7 +7,7 @@
       <div class="_change_info_container" style="display:none;" data-param="<%= media_element.id %>">
         <h1><%= t('captions.modify_info_element') %></h1>
         <p><%= t('descriptions.change_info_element') %></p>
-        <%= form_tag change_media_element_info_path(media_element.id), :class => "formModifyInfo" do %>
+        <%= form_tag media_element_path(media_element.id), :remote => true, :class => "formModifyInfo" do %>
           <div class="cols" style="float:left">
             <input type="text" name="title" value="<%= media_element.title %>">
             <br>
@@ -16,7 +16,7 @@
           <div class="cols" style="float:right">
             <%= text_area_tag 'tags', media_element.tags %>
             <br>
-            <%= submit_tag 'save modify' %> <a class="lower _close_popup" data-param="<%= media_element.id %>"><%= t('captions.or_cancel') %></a>
+            <%= submit_tag 'save modify' %> <a class="lower _close_media_element_preview_popup" data-param="<%= media_element.id %>"><%= t('captions.or_cancel') %></a>
           </div>
         <% end %>
       </div>
@@ -39,7 +39,7 @@
         <% if media_element.is_reportable %>
           <%= render :partial => "reports/media_element", :locals => {:media_element => media_element} %>
         <% end %>
-        <a class="close _close_popup" data-param="<%= media_element.id %>"></a>
+        <a class="close _close_media_element_preview_popup" data-param="<%= media_element.id %>"></a>
       </div>
     </div>
     

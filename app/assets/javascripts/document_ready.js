@@ -61,7 +61,7 @@ $(document).ready(function() {
     which_item_to_search.attr('selected', 'selected');
   }
   
-
+  
   // DASHBOARD SWITCH
   
   $('#switch_to_lessons').click(function() {
@@ -229,7 +229,7 @@ $(document).ready(function() {
   
   // EXPANDED MEDIA ELEMENT
   
-  $('body').on('click', '._close_popup', function() {
+  $('body').on('click', '._close_media_element_preview_popup', function() {
     var param = $(this).data('param');
     closePopUp('dialog-media-element-' + param);
   });
