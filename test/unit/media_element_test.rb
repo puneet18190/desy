@@ -20,6 +20,30 @@ class MediaElementTest < ActiveSupport::TestCase
     end
   end
   
+  test 'tags' do
+    @media_element.tags = 'gatto, gatto, gatto  ,   , cane, topo'
+    assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect} -- #{@media_element.tags.inspect}"
+    assert_equal 1, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
+    assert_equal 1, @media_element.errors.messages[:tags].length
+    assert_match /are not enough/, @media_element.errors.messages[:tags].first
+    @media_element.tags = 'gatto, gatto  ,   , cane, topo'
+    assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect} -- #{@media_element.tags.inspect}"
+    assert_equal 1, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
+    assert_equal 1, @media_element.errors.messages[:tags].length
+    assert_match /are not enough/, @media_element.errors.messages[:tags].first
+    assert_equal 7, Tag.count
+    @media_element.tags = '  gatto, ornitorinco,   , cane, panda  '
+    assert_obj_saved @media_element
+    assert_equal 7, Tag.count
+    assert_tags @media_element, ['gatto', 'cane', 'ornitorinco', 'panda']
+    @media_element.tags = '  gattaccio, gattaccio, panda,   , cane, ornitorinco  '
+    assert_obj_saved @media_element
+    assert_equal 8, Tag.count
+    @media_element.reload
+    assert_tags @media_element, ['gattaccio', 'cane', 'panda', 'ornitorinco']
+    assert Tag.where(:word => 'gattaccio').any?
+  end
+  
   test 'empty_and_defaults' do
     @media_element = MediaElement.new
     assert_equal false, @media_element.is_public
