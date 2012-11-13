@@ -8,6 +8,7 @@
         <h1><%= t('captions.modify_info_element') %></h1>
         <p><%= t('descriptions.change_info_element') %></p>
         <%= form_tag media_element_path(media_element.id), :remote => true, :class => "formModifyInfo" do %>
+          <%= hidden_field_tag 'destination', destination %>
           <div class="cols" style="float:left">
             <input type="text" name="title" value="<%= media_element.title %>">
             <br>
