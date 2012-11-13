@@ -20,9 +20,8 @@ class LessonEditorController < ApplicationController
   
   def create
     # TODO controllare redirect
-    new_lesson = @current_user.create_lesson params[:title], params[:description], params[:subject]
+    new_lesson = @current_user.create_lesson params[:title], params[:description], params[:subject], params[:tags]
     if new_lesson
-      #Tag.create_tag_set 'Lesson', new_lesson.id, get_tags
       redirect_to "/lesson_editor/#{new_lesson.id}/index"
     else
       redirect_to :back, notice: "#{t 'captions.lesson_not_created'}"
@@ -33,9 +32,8 @@ class LessonEditorController < ApplicationController
     lesson = Lesson.find params[:lesson_id]
     lesson.title = params[:lesson][:title]
     lesson.description =  params[:lesson][:description]
-
     lesson.subject_id = params[:subject]
-    #Tag.create_tag_set 'Lesson', lesson.id, get_tags
+    lesson.tags = params[:lesson][:tags]
     lesson.save
     redirect_to lesson_editor_path(lesson.id)
   end
@@ -120,30 +118,6 @@ class LessonEditorController < ApplicationController
         end
       end
     end
-  end
-  
-  def get_tags
-    tags = []
-    if params[:tags]
-      params[:tags].split(',').each do |tag|
-        existing_tag = Tag.find_by_word tag
-        if existing_tag.nil?
-          tags << tag
-        else
-          tags << existing_tag.id
-        end
-      end
-    else
-      params[:lesson][:tags].split(',').each do |tag|
-        existing_tag = Tag.find_by_word tag
-        if existing_tag.nil?
-          tags << tag
-        else
-          tags << existing_tag.id
-        end
-      end
-    end
-    tags
   end
   
 end
