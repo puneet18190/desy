@@ -6,7 +6,7 @@ class MediaElement < ActiveRecord::Base
   
   self.inheritance_column = :sti_type
   
-  attr_accessible :title, :description, :media, :publication_date
+  attr_accessible :title, :description, :media, :publication_date, :tags
   attr_reader :status, :is_reportable, :info_changeable
   attr_writer :tags
   
@@ -153,24 +153,24 @@ class MediaElement < ActiveRecord::Base
   
   def init_validation
     @media_element = Valid.get_association self, :id
-    if @tags.blank?
-      @inner_tags = Tag.get_tags_for_item(self.id, 'MediaElement')
-    else
-      resp_tags = []
-      prev_tags = []
-      @tags.split(',').each do |t|
-        if !t.blank?
-          t = t.to_s.strip.mb_chars.downcase.to_s
-          if !prev_tags.include? t
-            tag = Tag.find_by_word t
-            tag = Tag.new(:word => t) if tag.nil?
-            resp_tags << tag if tag.valid?
+    @inner_tags =
+      if @tags.blank?
+        Tag.get_tags_for_item(self.id, 'MediaElement')
+      else
+        resp_tags = []
+        prev_tags = []
+        @tags.split(',').each do |t|
+          if t.present?
+            t = t.to_s.strip.mb_chars.downcase.to_s
+            if !prev_tags.include? t
+              tag = Tag.find_or_initialize_by_word t
+              resp_tags << tag if tag.valid?
+            end
+            prev_tags << t
           end
-          prev_tags << t
         end
+        resp_tags
       end
-      @inner_tags = resp_tags
-    end
   end
   
   def validate_associations
