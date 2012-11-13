@@ -53,24 +53,17 @@ class ExtractorTest < ActiveSupport::TestCase
     Tag.all.each do |t|
       t.destroy
     end
-    tag_ids = []
-    ['cane', 'sole', 'togatto', 'cincillà', 'walter nudo', 'luna', 'di escrementi di usignolo', 'disabili', 'torriere architettoniche', 'mare', 'petrolio', 'sostenibilità', 'di immondizia', 'tonquinamento atmosferico', 'tonquinamento', 'pollution', 'tom cruise', 'cammello', 'cammelli', 'acqua', 'acquario', 'acquatico', '個名', '拿大即', '河', '條聖', '係英國', '拿', '住羅倫', '加', '大湖', '咗做', '個', '條聖法話'].each do |t|
-      tt = Tag.new
-      tt.word = t
-      assert_obj_saved tt
-      tag_ids << tt.id
-    end
     tag_map = {
-      0 => "#{tag_ids[0]}, #{tag_ids[1]}, #{tag_ids[2]}, #{tag_ids[3]}, #{tag_ids[4]}, #{tag_ids[5]}, #{tag_ids[6]}",
-      1 => "#{tag_ids[4]}, #{tag_ids[5]}, #{tag_ids[6]}, #{tag_ids[7]}, #{tag_ids[8]}, #{tag_ids[9]}, #{tag_ids[10]}",
-      2 => "#{tag_ids[8]}, #{tag_ids[9]}, #{tag_ids[10]}, #{tag_ids[11]}, #{tag_ids[12]}, #{tag_ids[13]}, #{tag_ids[14]}",
-      3 => "#{tag_ids[14]}, #{tag_ids[15]}, #{tag_ids[16]}, #{tag_ids[17]}, #{tag_ids[18]}, #{tag_ids[19]}, #{tag_ids[20]}",
-      4 => "#{tag_ids[18]}, #{tag_ids[19]}, #{tag_ids[20]}, #{tag_ids[21]}, #{tag_ids[22]}, #{tag_ids[23]}, #{tag_ids[24]}",
-      5 => "#{tag_ids[22]}, #{tag_ids[23]}, #{tag_ids[24]}, #{tag_ids[25]}, #{tag_ids[26]}, #{tag_ids[27]}, #{tag_ids[28]}",
-      6 => "#{tag_ids[26]}, #{tag_ids[27]}, #{tag_ids[28]}, #{tag_ids[29]}, #{tag_ids[30]}, #{tag_ids[31]}, #{tag_ids[32]}",
-      7 => "#{tag_ids[30]}, #{tag_ids[31]}, #{tag_ids[32]}, #{tag_ids[33]}, #{tag_ids[0]}, #{tag_ids[1]}, #{tag_ids[2]}",
-      8 => "#{tag_ids[2]}, #{tag_ids[5]}, #{tag_ids[8]}, #{tag_ids[11]}, #{tag_ids[14]}, #{tag_ids[17]}, #{tag_ids[20]}",
-      9 => "#{tag_ids[6]}, #{tag_ids[13]}, #{tag_ids[20]}, #{tag_ids[27]}, #{tag_ids[4]}, #{tag_ids[9]}, #{tag_ids[14]}"
+      0 => "cane, sole, togatto, cincillà, walter nudo, luna, di escrementi di usignolo",
+      1 => "walter nudo, luna, di escrementi di usignolo, disabili, torriere architettoniche, mare, petrolio",
+      2 => "torriere architettoniche, mare, petrolio, sostenibilità, di immondizia, tonquinamento atmosferico, tonquinamento",
+      3 => "tonquinamento, pollution, tom cruise, cammello, cammelli, acqua, acquario",
+      4 => "cammelli, acqua, acquario, acquatico, 個名, 拿大即, 河",
+      5 => "個名, 拿大即, 河, 條聖, 係英國, 拿, 住羅倫, 加",
+      6 => "係英國, 拿, 住羅倫, 加, 大湖, 咗做, 個",
+      7 => "大湖, 咗做, 個, 條聖法話, cane, sole, togatto",
+      8 => "togatto, luna, torriere architettoniche, sostenibilità, tonquinamento, cammello, acquario",
+      9 => "di escrementi di usignolo, tonquinamento atmosferico, acquario, 拿, walter nudo, mare, tonquinamento"
     }
     me1 = MediaElement.find 1
     me1.tags = tag_map[0]
@@ -309,9 +302,9 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les5.id
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
-    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    les10 = @user2.create_lesson('title10', 'desc10', 3, 'pippo, pluto, paperino, topolino')
     assert Lesson.exists?(les10.id)
-    les11 = @user2.create_lesson('title10', 'desc10', 3)
+    les11 = @user2.create_lesson('title10', 'desc10', 3, 'pippo, pluto, paperino, topolino')
     assert Lesson.exists?(les11.id)
     assert_item_extractor [les10.id, les11.id], @user2.own_lessons(1, 20, 'private')[:records]
     # last page true
@@ -330,7 +323,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les5.id
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
-    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    les10 = @user2.create_lesson('title10', 'desc10', 3, 'pippo, pluto, paperino, topolino')
     assert Lesson.exists?(les10.id)
     assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'public')[:records]
     # last page true
@@ -349,7 +342,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les5.id
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
-    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    les10 = @user2.create_lesson('title10', 'desc10', 3, 'pippo, pluto, paperino, topolino')
     assert Lesson.exists?(les10.id)
     assert_item_extractor [1, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'linked')[:records]
     # last page true
@@ -368,7 +361,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les5.id
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
-    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    les10 = @user2.create_lesson('title10', 'desc10', 3, 'pippo, pluto, paperino, topolino')
     assert Lesson.exists?(les10.id)
     assert_item_extractor [2, les10.id], @user2.own_lessons(1, 20, 'only_mine')[:records]
     # last page true
@@ -387,7 +380,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les5.id
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
-    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    les10 = @user2.create_lesson('title10', 'desc10', 3, 'pippo, pluto, paperino, topolino')
     assert Lesson.exists?(les10.id)
     les11 = les10.copy(@user2.id)
     assert Lesson.exists?(les11.id)
@@ -643,7 +636,6 @@ class ExtractorTest < ActiveSupport::TestCase
   end
   
   test 'populate_tags' do
-    populate_tags
     assert_equal 34, Tag.count
     assert_equal 11, Lesson.count
     assert_equal 13, MediaElement.count
@@ -675,7 +667,6 @@ class ExtractorTest < ActiveSupport::TestCase
   end
   
   test 'google_lessons_with_tags' do
-    populate_tags
     # preliminarly, I try looking for a specific tag
     luna = Tag.find_by_word 'luna'
     p1 = @user2.search_lessons(luna.id, 1, 5)
@@ -838,7 +829,6 @@ class ExtractorTest < ActiveSupport::TestCase
   end
   
   test 'google_media_elements_with_tags' do
-    populate_tags
     # preliminarly, I try looking for a specific tag
     luna = Tag.find_by_word 'luna'
     p1 = @user2.search_media_elements(luna.id, 1, 5)
