@@ -153,12 +153,16 @@ class MediaElement < ActiveRecord::Base
       @inner_tags = Tag.where('EXISTS (SELECT * FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = ? AND taggings.taggable_id = ?)', 'MediaElement', self.id)
     else
       resp_tags = []
+      prev_tags = []
       self.tags.split(',').each do |t|
         if !t.blank?
           t = t.to_s.strip.mb_chars.downcase.to_s
-          tag = Tag.find_by_word t
-          tag = Tag.new(:word => t) if tag.nil?
-          resp_tags << tag if tag.valid?
+          if !prev_tags.include? t
+            tag = Tag.find_by_word t
+            tag = Tag.new(:word => t) if tag.nil?
+            resp_tags << tag if tag.valid?
+          end
+          prev_tags << t
         end
       end
       @inner_tags = resp_tags
