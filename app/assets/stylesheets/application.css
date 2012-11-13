@@ -25,6 +25,7 @@
  *= require elements
  *= require profile
  *= require lesson_editor
+ *= require layouts/elements_editor
  *= require action_buttons
  *= require icon_button_popup
  *= require layouts/header_home
