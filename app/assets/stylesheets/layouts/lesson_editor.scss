@@ -459,6 +459,9 @@ html.lesson-editor-layout{
             width: 440px;
             height: 400px;
             display:block;
+            img{
+              width: 105px;
+            }
           }
           .rollover{
             height: 250px;
@@ -562,11 +565,12 @@ html.lesson-editor-layout{
           width: 900px;
           h2 input{
             font-size: 70px;
-            padding: 20px;
-            width: 830px;
+            margin: 10px;
+            padding: 10px;
+            width: 835px;
           }
           .mask{
-            width: 400px;
+            width: 440px;
             height: 400px;
             overflow:hidden;
             position:relative;
@@ -582,11 +586,21 @@ html.lesson-editor-layout{
             }
           }
           
+          .cover-choose-image{
+            margin: 0 0 0 20px;
+            width: 440px;
+            height: 400px;
+            display:block;
+            img{
+              width: 105px;
+            }
+          }
+          
           .image1-content textarea{
             float:right;
             width: 380px;
-            height: 360px;
-            margin: 20px;
+            height: 400px;
+            margin: 0 20px 0 0;
             padding: 10px;
           }
         }

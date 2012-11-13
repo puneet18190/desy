@@ -3,6 +3,9 @@
   <h2 class="text">
     <%= text_field_tag :title, slide.title ? slide.title : "#{t 'captions.enter_title'}" %>
   </h2>
+  <div class="image1-content">
+    <%= text_area_tag :text, slide.text ? slide.text.html_safe : "#{t 'descriptions.slide_text'}"%>
+  </div>
   <%- if slide.media_element_at(1) %>
     <!--TODO replace align value from db (after default at 0)-->
     <%= hidden_field_tag :media_element_align_1, "#{slide.media_element_at(1).alignment ? slide.media_element_at(1).alignment : 0}px", :class =>"media_element_align_1" %>
@@ -15,12 +18,9 @@
   <%= hidden_field_tag :media_element_align_1, "0", :class =>"media_element_align_1" %>
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
     <div class="cover-choose-image _cover_choose_image_1 cover-choose-image-left">
-      <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide => slide.id, :position => 1} , :remote => true, :class => "show-gallery" %>
+      <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide => slide.id, :position => 1} , :remote => true, :class => "show-gallery image1-p1" %>
       <br />
       <%= t 'captions.choose_image' %>
     </div>
   <%- end %>
-  <div class="image1-content">
-    <%= text_area_tag :text, slide.text ? slide.text.html_safe : "#{t 'descriptions.slide_text'}"%>
-  </div>
 <% end %>
