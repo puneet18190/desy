@@ -284,6 +284,7 @@ class ExtractorTest < ActiveSupport::TestCase
     xxx.title = 'tit1xxx'
     xxx.description = 'quef gsdsd dfs'
     xxx.sti_type = 'Image'
+    xxx.tags = 'tag1, tag2, tag3, tag4'
     assert_obj_saved xxx
     assert_item_extractor [xxx.id, @el5.id], @user2.own_media_elements(1, 20, 'image')[:records]
     # last page true
@@ -714,10 +715,10 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 2, p2[:pages_amount]
     # fourth case - filters and orders on the last search
     lees2 = Lesson.find 2
-    lees2.tags = '個名, Tonio de curtis, acquazzone'
+    lees2.tags = '個名, Tonio de curtis, acquazzone, zzzzaggiunta a caso'
     assert_obj_saved lees2
-    assert_equal 36, Tag.count
-    assert_equal 164, Tagging.count
+    assert_equal 37, Tag.count
+    assert_equal 165, Tagging.count
     p1 = @user2.search_lessons('to', 1, 5, nil, 'only_mine', nil)
     assert_ordered_item_extractor [2], p1[:records]
     tag_ids << Tag.find_by_word('tonio de curtis').id
