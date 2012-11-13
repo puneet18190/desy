@@ -1,8 +1,8 @@
 <div class="mediaElementInfoPopUp"  id="load-media-element" style="display:none;">
-  <div class="_media_element_pop_up_container">
-    <div class="_change_info_container" style="display:block; width:794px; padding:20px 20px 0px 20px">
+  <div class="_media_element_pop_up_container MediaElementPopUpContainer">
+    <div class="_change_info_container ChangeInfoContainerLoading">
       <%= form_for media_element, remote: true, html: { class:"formModifyInfo" } do |f| %>
-        <div class="cols" style="float:left">
+        <div class="cols fltlft">
           <div class="selectButton">
             <%= f.file_field :media, style: 'display: none' %>
             <input type="button" class="uploadFileButton submitButton _fakeUploadTrigger" data-fake-upload-input-selector="#media_element_media" data-fake-upload-show-selector="#media_element_media_show">
@@ -13,7 +13,7 @@
           <br>
           <%= f.text_area :description, placeholder: t('forms.media_element.labels.description') %>
         </div>
-        <div class="cols" style="float:right;">
+        <div class="cols fltrt">
           <h1><%= t('forms.media_element.title') %></h1>
           <p style="padding-bottom:15px"><%= t('forms.media_element.notes') %></p>
           <%= f.text_area :tags, placeholder: t('forms.media_element.labels.tags') %>
