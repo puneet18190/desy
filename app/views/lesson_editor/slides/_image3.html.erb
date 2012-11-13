@@ -1,6 +1,7 @@
 <%= form_tag("/lesson_editor/save_slide", :method => :get, :remote => true) do %>
   <%= hidden_field_tag :slide_id, slide.id %>
   <%- if slide.media_element_at(1) %>
+  <span class="spacer20"></span>
   <!--TODO replace align value from db (after default at 0)-->
   <%= hidden_field_tag :media_element_align_1, "#{slide.media_element_at(1).alignment ? slide.media_element_at(1).alignment : 0}px", :class =>"media_element_align_1" %>
     <div class="mask _mask_x">
@@ -11,6 +12,7 @@
   <!--TODO replace align value from db (after default at 0)-->
   <%= hidden_field_tag :media_element_align_1, "0", :class =>"media_element_align_1" %>
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
+    <span class="spacer20"></span>
     <div class="cover-choose-image _cover_choose_image_1">
       <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide => slide.id, :position => 1} , :remote => true, :class => "show-gallery" %>
       <br />

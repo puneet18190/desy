@@ -87,8 +87,7 @@ class LessonEditorController < ApplicationController
   
   def delete_slide
     slide = Slide.find(params[:slide_id])
-    #TODO reorder positions on destroy
-    if slide.destroy
+    if slide.destroy_with_positions
       redirect_to lesson_editor_path(slide.lesson.id)
     else
       redirect_to :back, notice: "#{t 'captions.slide_not_deleted'}"
@@ -98,6 +97,7 @@ class LessonEditorController < ApplicationController
   private
   
   def save_current_slide
+    #TODO aggiungere lesson.modify after save
     current_slide = Slide.find params[:slide_id]
     current_slide.title = params[:title] if params[:title]
     current_slide.text = params[:text] if params[:text]      
