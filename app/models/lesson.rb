@@ -404,7 +404,7 @@ class Lesson < ActiveRecord::Base
         raise ActiveRecord::Rollback if !tagging.save
       end
     end
-    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => self.id).each do |t|
+    Tagging.where(:taggable_type => 'Lesson', :taggable_id => self.id).each do |t|
       t.destroy if !words.include?(t.tag_id)
     end
   end
