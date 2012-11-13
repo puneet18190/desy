@@ -3,8 +3,9 @@ class Lesson < ActiveRecord::Base
   statuses = ::STATUSES.lessons.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
   
-  attr_accessible :subject_id, :school_level_id, :title, :description, :tags, :tags_as_array_of_strings, :tags_as_string
+  attr_accessible :subject_id, :school_level_id, :title, :description
   attr_reader :status, :is_reportable
+  attr_accessor :tags
   
   belongs_to :user
   belongs_to :subject
@@ -17,7 +18,6 @@ class Lesson < ActiveRecord::Base
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :slides
   has_many :virtual_classroom_lessons
-  has_many :tags, :through => :taggings
   
   validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description, :token
   validates_numericality_of :user_id, :school_level_id, :subject_id, :only_integer => true, :greater_than => 0
@@ -26,31 +26,12 @@ class Lesson < ActiveRecord::Base
   validates_length_of :title, :maximum => I18n.t('language_parameters.lesson.length_title')
   validates_length_of :description, :maximum => I18n.t('language_parameters.lesson.length_description')
   validates_length_of :token, :is => 20
-  #validates_length_of :tags, :minimum => CONFIG['min_tags_for_item']
   validates_uniqueness_of :parent_id, :scope => :user_id, :if => :present_parent_id
-  validate :validate_associations, :validate_public, :validate_copied_not_modified_and_public, :validate_impossible_changes
+  validate :validate_associations, :validate_public, :validate_copied_not_modified_and_public, :validate_impossible_changes, :validate_tags_length
   
-  after_save :create_cover
+  after_save :create_cover, :update_or_create_tags
   
   before_validation :init_validation, :create_token
-  
-  def tags_as_array_of_strings=(tags_as_array_of_strings)
-    self.tags = tags_as_array_of_strings.compact.uniq.map{ |tag| Tag.find_or_initialize_by_word(tag) }
-    self.tags_as_array_of_strings
-  end
-  
-  def tags_as_array_of_strings
-    tags.map(&:word)
-  end
-  
-  def tags_as_string=(tags_as_string)
-    self.tags_as_array_of_strings = tags_as_string.split(',')
-    self.tags_as_string
-  end
-  
-  def tags_as_string
-    tags_as_array_of_strings.join(', ')
-  end
   
   def cover
     return nil if self.new_record?
@@ -385,6 +366,10 @@ class Lesson < ActiveRecord::Base
   
   private
   
+  def validate_tags_length
+    errors[:tags] << "are not enough" if @inner_tags.length < CONFIG['min_tags_for_item']
+  end
+  
   def virtual_classroom_button
     @in_vc ? Buttons::REMOVE_VIRTUAL_CLASSROOM : Buttons::ADD_VIRTUAL_CLASSROOM
   end
@@ -405,8 +390,45 @@ class Lesson < ActiveRecord::Base
     errors[:parent_id] << "can't be the lesson itself" if @lesson && self.parent_id == @lesson.id
   end
   
+  def update_or_create_tags
+    words = []
+    @inner_tags.each do |t|
+      raise ActiveRecord::Rollback if t.new_record? && !t.save
+      words << t.id
+      tagging = Tagging.where(:taggable_id => self.id, :taggable_type => 'Lesson', :tag_id => t.id).first
+      if tagging.nil?
+        tagging = Tagging.new
+        tagging.taggable_id = self.id
+        tagging.taggable_type = 'Lesson'
+        tagging.tag_id = t.id
+        raise ActiveRecord::Rollback if !tagging.save
+      end
+    end
+    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => self.id).each do |t|
+      t.destroy if !words.include?(t.tag_id)
+    end
+  end
+  
   def init_validation
     @lesson = Valid.get_association self, :id
+    if self.tags.blank?
+      @inner_tags = Tag.where('EXISTS (SELECT * FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = ? AND taggings.taggable_id = ?)', 'Lesson', self.id)
+    else
+      resp_tags = []
+      prev_tags = []
+      self.tags.split(',').each do |t|
+        if !t.blank?
+          t = t.to_s.strip.mb_chars.downcase.to_s
+          if !prev_tags.include? t
+            tag = Tag.find_by_word t
+            tag = Tag.new(:word => t) if tag.nil?
+            resp_tags << tag if tag.valid?
+          end
+          prev_tags << t
+        end
+      end
+      @inner_tags = resp_tags
+    end
   end
   
   def create_cover
