@@ -4,7 +4,8 @@ class Lesson < ActiveRecord::Base
   STATUSES = Struct.new(*statuses).new(*statuses)
   
   attr_accessible :subject_id, :school_level_id, :title, :description
-  attr_reader :status, :is_reportable, :tags
+  attr_reader :status, :is_reportable
+  attr_writer :tags
   
   belongs_to :user
   belongs_to :subject
@@ -117,6 +118,7 @@ class Lesson < ActiveRecord::Base
       lesson.copied_not_modified = true
       lesson.user_id = an_user_id
       lesson.parent_id = self.id
+      lesson.tags = self.tags
       if !lesson.save
         errors.add(:base, :problem_copying)
         raise ActiveRecord::Rollback
@@ -414,12 +416,12 @@ class Lesson < ActiveRecord::Base
   
   def init_validation
     @lesson = Valid.get_association self, :id
-    if self.tags.blank?
+    if @tags.blank?
       @inner_tags = Tag.where('EXISTS (SELECT * FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = ? AND taggings.taggable_id = ?)', 'Lesson', self.id)
     else
       resp_tags = []
       prev_tags = []
-      self.tags.split(',').each do |t|
+      @tags.split(',').each do |t|
         if !t.blank?
           t = t.to_s.strip.mb_chars.downcase.to_s
           if !prev_tags.include? t

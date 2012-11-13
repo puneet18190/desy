@@ -7,7 +7,8 @@ class MediaElement < ActiveRecord::Base
   self.inheritance_column = :sti_type
   
   attr_accessible :title, :description, :media, :publication_date
-  attr_reader :status, :is_reportable, :info_changeable, :tags
+  attr_reader :status, :is_reportable, :info_changeable
+  attr_writer :tags
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
@@ -152,12 +153,12 @@ class MediaElement < ActiveRecord::Base
   
   def init_validation
     @media_element = Valid.get_association self, :id
-    if self.tags.blank?
+    if @tags.blank?
       @inner_tags = Tag.where('EXISTS (SELECT * FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = ? AND taggings.taggable_id = ?)', 'MediaElement', self.id)
     else
       resp_tags = []
       prev_tags = []
-      self.tags.split(',').each do |t|
+      @tags.split(',').each do |t|
         if !t.blank?
           t = t.to_s.strip.mb_chars.downcase.to_s
           if !prev_tags.include? t
