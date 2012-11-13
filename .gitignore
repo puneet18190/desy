@@ -26,3 +26,6 @@
 
 # Media elements caricati
 /public/media_elements
+
+# Seed immagini
+/db/seeds/*
