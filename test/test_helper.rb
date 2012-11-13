@@ -9,11 +9,13 @@ class ActiveSupport::TestCase
   setup :initialize_media_path_for_media_elements
   
   def initialize_media_path_for_media_elements
+    MediaElement.record_timestamps = false
     [1, 2, 3, 4, 5, 6].each do |x|
       me = MediaElement.find x
       me.media = File.open(Rails.root.join("test/samples/#{me.media}".gsub("/media_elements/images/#{x}/", '')))
       assert_obj_saved me
     end
+    MediaElement.record_timestamps = true
   end
   
   def assert_tags(item, tags)
