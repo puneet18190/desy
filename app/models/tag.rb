@@ -35,7 +35,7 @@ class Tag < ActiveRecord::Base
     resp = tags.first.tag.word
     count = 1
     tags.each do |t|
-      resp = "#{resp}, #{t.tag.word}" if count == 1
+      resp = "#{resp}, #{t.tag.word}" if count != 1
       count += 1
     end
     return resp

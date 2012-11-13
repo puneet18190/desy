@@ -149,6 +149,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 'ohlala', meds.caption
     assert_equal 6, meds.media_element_id
     assert_equal 2, meds.position
+    assert_tags resp, ['squalo', 'cane', 'elefante', 'gatto']
   end
   
   test 'publish_lesson' do

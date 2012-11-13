@@ -52,7 +52,6 @@ class MediaElementTest < ActiveSupport::TestCase
     @media_element.reload
     assert_tags @media_element, ['gattaccio', 'cane', 'panda', 'ornitorinco']
     @media_element = MediaElement.find @media_element.id
-    assert @media_element.tags.blank?
     assert_obj_saved @media_element
     assert_equal 8, Tag.count
     @media_element.reload

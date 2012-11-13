@@ -51,7 +51,6 @@ class LessonTest < ActiveSupport::TestCase
     @lesson.reload
     assert_tags @lesson, ['gattaccio', 'cane', 'panda', 'ornitorinco']
     @lesson = Lesson.find @lesson.id
-    assert @lesson.tags.blank?
     assert_obj_saved @lesson
     assert_equal 8, Tag.count
     @lesson.reload
