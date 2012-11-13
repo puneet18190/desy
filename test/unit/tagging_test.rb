@@ -36,6 +36,37 @@ class TaggingTest < ActiveSupport::TestCase
     assert_obj_saved @tagging
   end
   
+  test 'stop_destruction' do
+    # MEDIA ELEMENTS
+    t1 = Tagging.find 1
+    t1.destroy
+    t1 = Tagging.where(:id => 1).first
+    assert !t1.nil?
+    me = MediaElement.find 1
+    me.tags = "elefante, cane, topo, squalo, #{t1.tag.word}"
+    assert_obj_saved me
+    me = MediaElement.find me.id
+    assert_tags me, ['elefante', 'cane', 'topo', 'squalo', t1.tag.word]
+    t1 = Tagging.find 1
+    t1.destroy
+    t1 = Tagging.where(:id => 1).first
+    assert t1.nil?
+    # LESSONS
+    t2 = Tagging.find 25
+    t2.destroy
+    t2 = Tagging.where(:id => 25).first
+    assert !t2.nil?
+    me = MediaElement.find 1
+    me.tags = "elefante, cane, topo, panda, #{t2.tag.word}"
+    assert_obj_saved me
+    me = MediaElement.find me.id
+    assert_tags me, ['elefante', 'cane', 'topo', 'panda', t2.tag.word]
+    t2 = Tagging.find 25
+    t2.destroy
+    t2 = Tagging.where(:id => 25).first
+    assert t2.nil?
+  end
+  
   test 'association_methods' do
     assert_nothing_raised {@tagging.tag}
     assert_nothing_raised {@tagging.taggable}
@@ -45,8 +76,8 @@ class TaggingTest < ActiveSupport::TestCase
     @tagging.tag_id = 3
     assert_invalid @tagging, :taggable_id, 1, 2, /has already been taken/
     @tagging.taggable_type = 'Lesson'
-    @tagging.tag_id = 2
-    assert_invalid @tagging, :taggable_id, 5, 2, /has already been taken/
+    @tagging.tag_id = 5
+    assert_invalid @tagging, :taggable_id, 1, 2, /has already been taken/
     assert_obj_saved @tagging
   end
   
