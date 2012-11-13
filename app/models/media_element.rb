@@ -13,7 +13,7 @@ class MediaElement < ActiveRecord::Base
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
   has_many :reports, :as => :reportable, :dependent => :destroy
-  has_many :taggings, :as => :taggable, :dependent => :destroy
+  has_many :taggings, :as => :taggable, :dependent => :delete_all
   belongs_to :user
   
   # FIXME aggiungere :media a validates_presence_of una volta implementati tutti gli upload
