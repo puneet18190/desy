@@ -36,8 +36,21 @@ $("._add_video_to_slide").click(function(e){
   sld.children().show();
   sld.find("input.media-tag-cover-<%= @img_position %>").val($(this).attr("data-param"));
   closePopUp('_gallery_img_expanded_'+$(this).attr("data-param"));
-  sld.find("._cover_choose_image_<%=@img_position%>").replaceWith("<span class='rollover rollover-video'></span><a href='/lesson_editor/show_gallery/<%= @slide.id %>?position=<%=@img_position%>' class='show-gallery' data-param='<%=@img_position%>' data-remote='true'><video id='video' class='_slide_image image3-p1' src='http://slides.html5rocks.com/src/chrome_japan.mp4' controls></video></a>");
-  sld.find(".<%=@slide.kind%>-p<%=@img_position%>").parent("a").replaceWith("<span class='rollover rollover-video'></span><a href='/lesson_editor/show_gallery/<%= @slide.id %>?position=<%=@img_position%>' class='show-gallery' data-param='<%=@img_position%>' data-remote='true'><video id='video' class='_slide_image image3-p1' src='http://slides.html5rocks.com/src/chrome_japan.mp4' controls></video></a>")
+  sld.find("._cover_choose_image_<%=@img_position%>").replaceWith("<a href='/lesson_editor/show_gallery/<%= @slide.id %>?kind_of=<%=@kind_of%>&position=<%=@img_position%>' class='show-gallery' data-param='<%=@img_position%>' data-remote='true'><span class='rollover rollover-video'></span><video id='video' class='_slide_image <%=@slide.kind%>-p<%=@img_position%>' src='http://slides.html5rocks.com/src/chrome_japan.mp4' controls></video></a>");
+  sld.find(".<%=@slide.kind%>-p<%=@img_position%>").parent("a").replaceWith("<a href='/lesson_editor/show_gallery/<%= @slide.id %>?kind_of=<%=@kind_of%>&position=<%=@img_position%>' class='show-gallery' data-param='<%=@img_position%>' data-remote='true'><span class='rollover rollover-video'></span><video id='video' class='_slide_image <%=@slide.kind%>-p<%=@img_position%>' src='http://slides.html5rocks.com/src/chrome_japan.mp4' controls></video></a>")
+  $("#slide-numbers").show();
+  $(".buttons").show();
+});
+
+$("._add_audio_to_slide").click(function(e){
+  e.preventDefault();
+  $("#image-gallery").remove();
+  var sld = $(".slide-content.slide-<%=@slide.position %>").first();
+  sld.children().show();
+  sld.find("input.media-tag-cover-<%= @img_position %>").val($(this).attr("data-param"));
+  closePopUp('_gallery_img_expanded_'+$(this).attr("data-param"));
+  sld.find("._cover_choose_image_<%=@img_position%>").replaceWith("<a href='/lesson_editor/show_gallery/<%= @slide.id %>?kind_of=<%=@kind_of%>&position=<%=@img_position%>' class='show-gallery' data-param='<%=@img_position%>' data-remote='true'><span class='rollover rollover-audio'></span><audio id='audio' class='_slide_image <%=@slide.kind%>-p<%=@img_position%>' src='http://slides.html5rocks.com/src/rushus-modal_blues.mp3' controls></audio></a>");
+  sld.find(".<%=@slide.kind%>-p<%=@img_position%>").parent("a").replaceWith("<a href='/lesson_editor/show_gallery/<%= @slide.id %>?kind_of=<%=@kind_of%>&position=<%=@img_position%>' class='show-gallery' data-param='<%=@img_position%>' data-remote='true'><span class='rollover rollover-audio'></span><audio id='audio' class='_slide_image <%=@slide.kind%>-p<%=@img_position%>' src='http://slides.html5rocks.com/src/rushus-modal_blues.mp3' controls></audio></a>")
   $("#slide-numbers").show();
   $(".buttons").show();
 });

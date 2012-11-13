@@ -114,7 +114,7 @@ html.lesson-editor-layout{
     margin: 20px 0 0 -27px;
     position: absolute;
     padding: 20px 20px 25px 25px;
-    background: url("lesson-editor-tooltip-bg.png") top left no-repeat;
+    background: url("/assets/lesson-editor-tooltip-bg.png") top left no-repeat;
   }
 
   .slide-thumb {
@@ -165,6 +165,11 @@ html.lesson-editor-layout{
         width: 100px;
         margin: 0 5px;
         padding: 5px;
+      }
+    }
+    &.image4{
+      img{
+        margin-bottom:5px;
       }
     }
     &.image1{
@@ -257,7 +262,15 @@ html.lesson-editor-layout{
       }
 
       span.rollover-video{
-        background:url('choose-video.png') center center no-repeat #000;
+        background:url('/assets/choose-video.png') center center no-repeat #000;
+        height: 430px;
+      	width: 810px;
+      	margin-left: 30px;
+      	margin-top: 50px;
+      }
+      
+      span.rollover-audio{
+        background:url('/assets/choose-audio.png') center center no-repeat #000;
         height: 430px;
       	width: 810px;
       	margin-left: 30px;
@@ -335,7 +348,8 @@ html.lesson-editor-layout{
         &.title{
           .only-title textarea{
             padding:150px 100px;
-            width: 680px;
+            width: 655px;
+            margin: 10px;
             text-align:center;
             font-size: 70px;
             color: $orange;
@@ -345,34 +359,52 @@ html.lesson-editor-layout{
         &.text{
             h2.text input{
                 font-size: 70px;
-                padding: 20px;
-                width: 830px;
+                padding: 10px;
+                margin: 10px;
+                width: 840px;
                 font-family: "Nunito", sans-serif;
             }
             .text-content textarea{
-              margin: 10px;
-              padding: 20px;
-              width: 830px;
+              padding: 10px;
+              margin: 20px;
+              width: 840px;
               height: 350px;
             }
         }
         &.audio{
-          padding: 20px;
-          height: 550px;
-          width: 860px;
+          padding: 0;
+          height: 590px;
+          width: 900px;
           audio{
             width: 440px;
+            height: 250px;
+            margin: 0 0 0 20px;
             float:left;
           }
-          h2{
+          h2 input{
             font-size: 70px;
-            padding: 40px 0;
+            padding: 10px;
+            margin: 10px;
+            width: 840px;
           }
-          .audio-content{
+          .audio-content textarea{
             float: right;
             width: 380px;
-            margin: 0 10px;
+            height: 400px;
+            margin: 0 20px 0 0;
             padding: 10px;
+            display:block;
+          }
+          .cover-choose-image{
+            margin: 0 0 0 20px;
+            width: 440px;
+            height: 400px;
+            display:block;
+          }
+          .rollover{
+            height: 250px;
+          	width: 440px;
+          	margin: 0 0 0 20px;
           }
         }
 
@@ -427,6 +459,9 @@ html.lesson-editor-layout{
             width: 440px;
             height: 400px;
             display:block;
+            img{
+              width: 105px;
+            }
           }
           .rollover{
             height: 250px;
@@ -475,7 +510,7 @@ html.lesson-editor-layout{
           .mask{
             width: 860px;
             height: 550px;
-            padding: 20px 0 0;
+            padding: 0;
             margin: 0 20px;
             overflow:hidden;
             position:relative;
@@ -486,6 +521,11 @@ html.lesson-editor-layout{
               left:0;
             }
           }
+          .cover-choose-image{
+            margin: 0 20px;
+            width: 860px;
+            height: 550px;
+          }
         }
         
         &.image2{
@@ -495,7 +535,7 @@ html.lesson-editor-layout{
           .mask{
             width: 400px;
             height: 550px;
-            padding: 20px 0 0;
+            padding: 0;
             margin: 0 20px;
             overflow:hidden;
             position:relative;
@@ -513,6 +553,11 @@ html.lesson-editor-layout{
               height: 560px;
             }
           }
+          .cover-choose-image{
+            margin: 0 20px;
+            width: 400px;
+            height: 550px;
+          }
         }
         &.image1{
           padding: 0;
@@ -520,11 +565,12 @@ html.lesson-editor-layout{
           width: 900px;
           h2 input{
             font-size: 70px;
-            padding: 20px;
-            width: 830px;
+            margin: 10px;
+            padding: 10px;
+            width: 835px;
           }
           .mask{
-            width: 400px;
+            width: 440px;
             height: 400px;
             overflow:hidden;
             position:relative;
@@ -540,11 +586,21 @@ html.lesson-editor-layout{
             }
           }
           
+          .cover-choose-image{
+            margin: 0 0 0 20px;
+            width: 440px;
+            height: 400px;
+            display:block;
+            img{
+              width: 105px;
+            }
+          }
+          
           .image1-content textarea{
             float:right;
             width: 380px;
-            height: 360px;
-            margin: 20px;
+            height: 400px;
+            margin: 0 20px 0 0;
             padding: 10px;
           }
         }
@@ -572,7 +628,7 @@ html.lesson-editor-layout{
         margin: 185px 0 0 5px;
         display:block;
         a{
-          background: url("icone-editor-lezioni.svg") no-repeat top left; 
+          background: url("/assets/icone-editor-lezioni.svg") no-repeat top left; 
           text-indent: -999999px;
           width: 55px;
           height: 56px;
@@ -699,13 +755,13 @@ html.lesson-editor-layout{
        }
        .sbToggle{
          margin-top:5px;
-    	   background: url('select-icons-lessons.png') 0 -123px no-repeat;
+    	   background: url('/assets/select-icons-lessons.png') 0 -123px no-repeat;
     	 }                                           
        .sbToggle:hover{                            
-    	   background: url('select-icons-lessons.png') 0 -123px no-repeat;
+    	   background: url('/assets/select-icons-lessons.png') 0 -123px no-repeat;
        }                                           
        .sbToggleOpen{                              
-    	   background: url('select-icons-lessons.png') 0 -22px no-repeat;
+    	   background: url('/assets/select-icons-lessons.png') 0 -22px no-repeat;
        }
       .sbOptions{
     	  width: 200px;
@@ -760,11 +816,13 @@ html.lesson-editor-layout{
     background-color: #f1f1f1;
     font-size: 16px;
     &.choose-small{
-      padding: 65px 0;
+      padding: 0;
+      margin:20px 20px 0;
       width: 400px;
-      height: 150px;
+      height: 260px;
       img{
         width: 80px;
+        padding: 70px 0 0;
       }
     }
     img{
@@ -772,11 +830,9 @@ html.lesson-editor-layout{
       margin-bottom: 10px;
     }
     &.cover-choose-image-left{
-      width:440px;
       float:left;
     }
     &.cover-choose-image-right{
-      width:440px;
       float:right;
     }
   }
