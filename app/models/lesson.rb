@@ -4,8 +4,7 @@ class Lesson < ActiveRecord::Base
   STATUSES = Struct.new(*statuses).new(*statuses)
   
   attr_accessible :subject_id, :school_level_id, :title, :description
-  attr_reader :status, :is_reportable
-  attr_accessor :tags
+  attr_reader :status, :is_reportable, :tags
   
   belongs_to :user
   belongs_to :subject
@@ -32,6 +31,10 @@ class Lesson < ActiveRecord::Base
   after_save :create_cover, :update_or_create_tags
   
   before_validation :init_validation, :create_token
+  
+  def tags
+    self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'Lesson')
+  end
   
   def cover
     return nil if self.new_record?

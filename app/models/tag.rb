@@ -29,6 +29,18 @@ class Tag < ActiveRecord::Base
     resp
   end
   
+  def self.get_friendly_tags(item_id, kind)
+    tags = Tagging.where(:taggable_id => item_id, :taggable_type => kind)
+    return '' if tags.empty?
+    resp = tags.first.word
+    count = 1
+    tags.each do |t|
+      resp = "#{resp}, #{t.tag.word}" if count == 1
+      count += 1
+    end
+    return resp
+  end
+  
   def word=(word)
     write_attribute(:word, word.present? ? word.to_s.strip.mb_chars.downcase.to_s : word)
   end

@@ -7,8 +7,7 @@ class MediaElement < ActiveRecord::Base
   self.inheritance_column = :sti_type
   
   attr_accessible :title, :description, :media, :publication_date
-  attr_reader :status, :is_reportable, :info_changeable
-  attr_accessor :tags
+  attr_reader :status, :is_reportable, :info_changeable, :tags
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
@@ -49,6 +48,10 @@ class MediaElement < ActiveRecord::Base
       inferred_sti_type.constantize.new_without_sti_type_inferring(attributes, options, &block)
     end
     alias_method_chain :new, :sti_type_inferring
+  end
+  
+  def tags
+    self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'MediaElement')
   end
   
   def media_from_file_path=(file_path)
