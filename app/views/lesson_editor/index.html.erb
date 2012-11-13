@@ -3,14 +3,14 @@
     <!-- slides top numbered navigation -->
     <ul id="slide-numbers">
       <%- @slides.each_with_index do |slide, index|%>
-        <li>
+        <li class="<%= (index == 0) ? 'unsortable' : ''%>">
           <a href="#<%= slide.position %>" class="<%= (index == 0) ? 'active' : ''%>" data-slide="<%= slide.id%>"><%= index + 1 %></a>
           <div class="tooltip">
             <%= render :partial => "shared/lesson_thumbnails/small/#{slide.kind}" , :locals => { :slide => slide }%>
           </div>
         </li>
       <%end%><!-- end each -->
-      <li>
+      <li class="unsortable">
         <%= link_to image_tag("plus-rounded.png"), {:action => :add_new_slide, :slide => @lesson.slides.first.id} , :remote => true, :class => "add _add_slide" %>
       </li>
     </ul>

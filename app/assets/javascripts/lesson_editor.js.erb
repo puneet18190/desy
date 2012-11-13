@@ -1,5 +1,13 @@
 $(document).ready(function() {
-  
+  $('#slide-numbers').sortable({
+      items: "li:not(.unsortable)",
+      start: function(event, ui) {
+          console.log("Start position: " + (parseInt(ui.item.index()) + 1));
+      },
+      stop: function(event, ui) {
+          console.log("New position: " + (parseInt(ui.item.index()) + 1));
+      }
+  });
   masked = $("._mask_x a:not('._choose')");
   masked.each(function(index) {
     makeDraggable($(masked[index]), "x");
