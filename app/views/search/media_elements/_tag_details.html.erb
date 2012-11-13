@@ -1,6 +1,5 @@
 <div id="media_elements_tag_details">
   <% tags.each do |t| %>
-    <a id="<%= t.word %>_clicckable_tag"><%= t.word %></a>
+    <a id="clickable_tag_<%= t.id %>" class="_clickable_tag_for_media_elements <%= (tag.kind_of?(Tag) && t.id == tag) ? 'current'.html_safe : '' %>" data-param="<%= t.id %>"><%= t.word %></a>
   <% end %>
 </div>
-<br class="clearfloat">

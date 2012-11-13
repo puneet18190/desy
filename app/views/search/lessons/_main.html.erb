@@ -56,7 +56,7 @@
               </table>
             </td>
             <td align="left" rowspan="2">
-              <%= image_submit_tag(asset_path('cerca.png')) %>
+              <%= image_submit_tag(asset_path('cerca.png'), :id => 'submit_search_lessons') %>
             </td>
           </tr>
           
@@ -72,10 +72,12 @@
   <% end %>
   
   <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) && @tags.any? %>
-    <%= render :partial => "search/lessons/tag_details", :locals => {:tags => @tags} %>
+    <%= render :partial => "search/lessons/tag_details", :locals => {:tags => @tags, :tag => @tag} %>
   <% else %>
     <div id="lessons_tag_details"></div>
   <% end %>
+  
+  <br class="clearfloat">
   
   <%= render :partial => "search/lessons/results", :locals => {:lessons => @lessons} %>
   

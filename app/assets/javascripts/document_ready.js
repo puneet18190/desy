@@ -142,10 +142,10 @@ $(document).ready(function() {
   $('body').on('click', '._report_form_content ._send', function(e) {
     $(this).closest('form').submit();
   });
-
-
+  
+  
   //   NEW MEDIA ELEMENT
-
+  
   $('#new_media_element').on('submit', function(e) {
       e.preventDefault();
       $(this).ajaxSubmit({
@@ -164,10 +164,7 @@ $(document).ready(function() {
           }
       });
   });
-
-
-
-
+  
   
   // FILTERS
   
@@ -207,6 +204,18 @@ $(document).ready(function() {
     var for_page = $('#for_page_media_elements option:selected').val();
     var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + '&for_page=' + for_page;
     $.get(redirect_url);
+  });
+  
+  $('body').on('click', '._clickable_tag_for_lessons', function() {
+    var param = $(this).data('param');
+    $('#lessons_tag_kind_for_search').attr('value', param);
+    $('#submit_search_lessons').submit();
+  });
+  
+  $('body').on('click', '._clickable_tag_for_media_elements', function() {
+    var param = $(this).data('param');
+    $('#media_elements_tag_kind_for_search').attr('value', param);
+    $('#submit_search_media_elements').submit();
   });
   
   
