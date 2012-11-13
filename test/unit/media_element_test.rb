@@ -8,8 +8,15 @@ class MediaElementTest < ActiveSupport::TestCase
       @media_element.user_id = 1
       @media_element.sti_type = 'Video'
       @media_element.duration = 10
+      @media_element.tags = 'ciao, come, stai, tu?'
     rescue ActiveModel::MassAssignmentSecurity::Error
       @media_element = nil
+    end
+  end
+  
+  test 'valid_fixtures' do
+    MediaElement.find([1, 2, 3, 4, 5, 6]).each do |me|
+      assert me.valid?
     end
   end
   
@@ -105,14 +112,15 @@ class MediaElementTest < ActiveSupport::TestCase
     assert_equal 2, Image.count
   end
   
-  test 'duration' do
-    assert_invalid @media_element, :duration, nil, 11, /can't be blank for videos and audios/
-    @media_element.sti_type = 'Audio'
-    assert_invalid @media_element, :duration, nil, 11, /can't be blank for videos and audios/
-    @media_element.sti_type = 'Image'
-    assert_invalid @media_element, :duration, 11, nil, /must be blank for images/
-    assert_obj_saved @media_element
-  end
+  # FIXME riabilitarlo dopo aver preso la decisione
+  # test 'duration' do
+  #   assert_invalid @media_element, :duration, nil, 11, /can't be blank for videos and audios/
+  #   @media_element.sti_type = 'Audio'
+  #   assert_invalid @media_element, :duration, nil, 11, /can't be blank for videos and audios/
+  #   @media_element.sti_type = 'Image'
+  #   assert_invalid @media_element, :duration, 11, nil, /must be blank for images/
+  #   assert_obj_saved @media_element
+  # end
   
   test 'stop_destruction' do
     assert_obj_saved @media_element
