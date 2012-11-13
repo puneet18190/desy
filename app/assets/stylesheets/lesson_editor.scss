@@ -241,6 +241,8 @@ html.lesson-editor-layout{
     li.slides {
       input, textarea{
         color: $orange;
+        border: 1px solid #efefef;
+        resize:none;
       }
       
       span.rollover {
@@ -378,9 +380,22 @@ html.lesson-editor-layout{
           padding: 0px;
           height: 590px;
           width: 900px;
+          display:block;
           a video{
-            padding: 20;
+            margin: 0 20px;
             width:860px;
+            height: 484px;
+          }
+          .rollover{
+            margin: 0 20px;
+            width: 860px;
+            height: 484px;
+          }
+          .cover-choose-image{
+            margin: 0 20px;
+            width: 860px;
+            height: 505px;
+            display:block;
           }
         }
         &.video1{
@@ -388,27 +403,35 @@ html.lesson-editor-layout{
           height: 590px;
           width: 900px;
           video{
-            width: 400px;
+            width: 440px;
+            height: 250px;
+            margin: 0 0 0 20px;
             float:left;
           }
           h2 input{
             font-size: 70px;
-            padding: 20px;
-            width: 830px;
-          }
-          .video1-content{
-            float: right;
-            width: 350px;
-            height: 400px;
-            margin: 0 20px 0 10px;
             padding: 10px;
-            color: red;
+            margin: 10px;
+            width: 840px;
           }
-          span.rollover-video{
+          .video1-content textarea{
+            float: right;
+            width: 380px;
+            height: 400px;
+            margin: 0 20px 0 0;
+            padding: 10px;
+            display:block;
+          }
+          .cover-choose-image{
+            margin: 0 0 0 20px;
+            width: 440px;
+            height: 400px;
+            display:block;
+          }
+          .rollover{
             height: 250px;
-          	width: 400px;
-          	margin-left: 10px;
-          	margin-top: 10px;
+          	width: 440px;
+          	margin: 0 0 0 20px;
           }
         }
         &.image4{
@@ -729,12 +752,12 @@ html.lesson-editor-layout{
   }
 
   .cover-choose-image{
-    padding: 175px 0;
     text-align:center;
     display:block;
     width: 900px;
-    height: 210px;
+    height: 560px;
     color: #999;
+    background-color: #f1f1f1;
     font-size: 16px;
     &.choose-small{
       padding: 65px 0;
@@ -745,6 +768,7 @@ html.lesson-editor-layout{
       }
     }
     img{
+      padding: 145px 0 0;
       margin-bottom: 10px;
     }
     &.cover-choose-image-left{
@@ -860,6 +884,10 @@ html.lesson-editor-layout{
     -moz-opacity: .25;
     filter: alpha(opacity = 25);
     opacity: .25;
+  }
+  .spacer20{
+    height: 20px;
+    display:block;
   }
 }
 
