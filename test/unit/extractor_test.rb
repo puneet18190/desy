@@ -59,7 +59,7 @@ class ExtractorTest < ActiveSupport::TestCase
       2 => "torriere architettoniche, mare, petrolio, sostenibilità, di immondizia, tonquinamento atmosferico, tonquinamento",
       3 => "tonquinamento, pollution, tom cruise, cammello, cammelli, acqua, acquario",
       4 => "cammelli, acqua, acquario, acquatico, 個名, 拿大即, 河",
-      5 => "個名, 拿大即, 河, 條聖, 係英國, 拿, 住羅倫, 加",
+      5 => "個名, 拿大即, 河, 條聖, 係英國, 拿, 住羅倫",
       6 => "係英國, 拿, 住羅倫, 加, 大湖, 咗做, 個",
       7 => "大湖, 咗做, 個, 條聖法話, cane, sole, togatto",
       8 => "togatto, luna, torriere architettoniche, sostenibilità, tonquinamento, cammello, acquario",
@@ -713,8 +713,9 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 7, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
     # fourth case - filters and orders on the last search
-    my_tag_chinese = Tag.find_by_word '個名'
-    assert Tag.create_tag_set('Lesson', 2, ['Tonio de curtis', 'acquazzone', my_tag_chinese.id])
+    lees2 = Lesson.find 2
+    lees2.tags = '個名, Tonio de curtis, acquazzone'
+    assert_obj_saved lees2
     assert_equal 36, Tag.count
     assert_equal 164, Tagging.count
     p1 = @user2.search_lessons('to', 1, 5, nil, 'only_mine', nil)
@@ -910,17 +911,12 @@ class ExtractorTest < ActiveSupport::TestCase
     @el6.is_public = true
     @el6.publication_date = '2011-01-01 10:00:00'
     assert_obj_saved @el6
-    ids_tags = []
-    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => 3).each do |t|
-      ids_tags << t.tag_id
-    end
-    assert Tag.create_tag_set('MediaElement', 3, (ids_tags + ['加條聖', Tag.find_by_word('條聖').id]))
-    tag_nuova = Tag.find_by_word('加條聖').id
-    ids_tags = []
-    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => @el2.id).each do |t|
-      ids_tags << t.tag_id
-    end
-    assert Tag.create_tag_set('MediaElement', @el2.id, (ids_tags + [tag_nuova, Tag.find_by_word('條聖').id]))
+    mee3 = MediaElement.find 3
+    mee3.tags = 'torriere architettoniche, mare, petrolio, sostenibilità, di immondizia, tonquinamento atmosferico, tonquinamento, 加條聖, 條聖'
+    assert_obj_saved mee3
+    @el2 = MediaElement.find @el2.id
+    @el2.tags = 'di escrementi di usignolo, tonquinamento atmosferico, acquario, 拿, walter nudo, mare, tonquinamento, 加條聖, 條聖'
+    assert_obj_saved @el2
     assert !MediaElement.find(3).is_public
     assert_equal 2, MediaElement.find(3).user_id
     assert_equal 35, Tag.count
