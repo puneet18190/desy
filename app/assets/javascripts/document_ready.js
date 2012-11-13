@@ -1,5 +1,11 @@
 $(document).ready(function() {
   
+  // OTHER BUTTONS
+  
+  $('._load_media_element').click(function(e) {
+    e.preventDefault();
+    showLoadMediaElementPopUp();
+  });
   
   // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
   
@@ -55,14 +61,7 @@ $(document).ready(function() {
     which_item_to_search.attr('selected', 'selected');
   }
   
-  // OTHER BUTTONS
-  
-  // $('._load_media_element').click(function(e) {
-  //   e.preventDefault();
-  //   showLoadMediaElementPopUp();
-  // });
-  
-  
+
   // DASHBOARD SWITCH
   
   $('#switch_to_lessons').click(function() {
@@ -144,36 +143,31 @@ $(document).ready(function() {
     $(this).closest('form').submit();
   });
 
+
   //   NEW MEDIA ELEMENT
-  $('#new_media_element').bind('ajax:success', function(e, data) {
-    console.log('successo');
-    // $('#load-media-element').bind('close', function(){
-    //   console.log('chiuso');
-    // });
-    closePopUp('load-media-element');
-    window.setTimeout(function(){
-      showOkPopUp(data.message);
-    }, 1000);
-      
-    
-    // return false;
+
+  $('#new_media_element').on('submit', function(e) {
+      e.preventDefault();
+      $(this).ajaxSubmit({
+          success: function(data, status, xhr, element) {
+            // console.log(data, status, xhr, element);
+            closePopUp('load-media-element');
+            window.setTimeout(function(){
+              showOkPopUp(data.message);
+            }, 450);
+          },
+          error: function(data) {
+            console.log(data);
+          },
+          uploadProgress: function(e, position, total, percentComplete) {
+            console.log(e, position, total, percentComplete);
+          }
+      });
   });
 
-  $('._load_media_element').click(function(e) {
-    e.preventDefault();
-    showLoadMediaElementPopUp();
-  });
 
 
-  $('#new_media_element').bind('ajax:error', function(e, data, error) {
-    // TODO gestione errori
-    console.log('errore');
-    // return false;
-  });
-  $('#new_media_element').bind('ajax:aborted:file', function(event, elements){
-    console.log('file aborted');
-  });
-  
+
   
   // FILTERS
   
@@ -484,5 +478,13 @@ $(document).ready(function() {
 
   // FAKE UPLOAD BUTTONS
   new FakeUpload($('._fakeUploadTrigger'));
+
+
+  // POPUPS
+  //   CHIUSURA
+  //   es. <a data-dialog-id="load-media-element"></a>
+  $('._close').click(function(){
+    closePopUp($(this).data('dialog-id'));
+  });
 
 });

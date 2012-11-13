@@ -211,12 +211,13 @@ class User < ActiveRecord::Base
     VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(an_offset).limit(a_limit)
   end
   
-  def create_lesson(title, description, subject_id)
+  def create_lesson(title, description, subject_id, tags)
     return nil if self.new_record?
     return nil if UsersSubject.where(:user_id => self.id, :subject_id => subject_id).empty?
     lesson = Lesson.new :subject_id => subject_id, :school_level_id => self.school_level_id, :title => title, :description => description
     lesson.copied_not_modified = false
     lesson.user_id = self.id
+    lesson.tags = tags
     return lesson.save ? lesson : nil
   end
   

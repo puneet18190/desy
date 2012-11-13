@@ -6,6 +6,7 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
     @lesson.copied_not_modified = false
     @lesson.user_id = 2
+    @lesson.tags = 'topolino, pippo, pluto, paperino'
     @lesson.save
     begin
       @virtual_classroom_lesson = VirtualClassroomLesson.new :position => nil

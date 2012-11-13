@@ -8,12 +8,12 @@ class MediaElement < ActiveRecord::Base
   
   attr_accessible :title, :description, :media, :publication_date
   attr_reader :status, :is_reportable, :info_changeable
-  attr_accessor :tags
+  attr_writer :tags
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
   has_many :reports, :as => :reportable, :dependent => :destroy
-  has_many :taggings, :as => :taggable, :dependent => :destroy
+  has_many :taggings, :as => :taggable, :dependent => :delete_all
   belongs_to :user
   
   # FIXME aggiungere :media a validates_presence_of una volta implementati tutti gli upload
@@ -24,10 +24,10 @@ class MediaElement < ActiveRecord::Base
   validates_numericality_of :duration, :allow_nil => true, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => I18n.t('language_parameters.media_element.length_title')
   validates_length_of :description, :maximum => I18n.t('language_parameters.media_element.length_description')
-  validates_length_of :tags, :minimum => CONFIG['min_tags_for_item']
-  validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_duration
+  validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_tags_length#, :validate_duration
   
   before_validation :init_validation
+  after_save :update_or_create_tags
   before_destroy :stop_if_public
   
   class << self
@@ -50,7 +50,11 @@ class MediaElement < ActiveRecord::Base
     end
     alias_method_chain :new, :sti_type_inferring
   end
-
+  
+  def tags
+    self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'MediaElement')
+  end
+  
   def media_from_file_path=(file_path)
     self.media = File.open(file_path)
   end
@@ -124,21 +128,48 @@ class MediaElement < ActiveRecord::Base
   
   private
   
+  def validate_tags_length
+    errors[:tags] << "are not enough" if @inner_tags.length < CONFIG['min_tags_for_item']
+  end
+  
+  def update_or_create_tags
+    words = []
+    @inner_tags.each do |t|
+      raise ActiveRecord::Rollback if t.new_record? && !t.save
+      words << t.id
+      tagging = Tagging.where(:taggable_id => self.id, :taggable_type => 'MediaElement', :tag_id => t.id).first
+      if tagging.nil?
+        tagging = Tagging.new
+        tagging.taggable_id = self.id
+        tagging.taggable_type = 'MediaElement'
+        tagging.tag_id = t.id
+        raise ActiveRecord::Rollback if !tagging.save
+      end
+    end
+    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => self.id).each do |t|
+      t.destroy if !words.include?(t.tag_id)
+    end
+  end
+  
   def init_validation
     @media_element = Valid.get_association self, :id
-    if self.tags.blank?
-      self.tags = Tag.where('EXISTS (SELECT * FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = ? AND taggings.taggable_id = ?)', 'MediaElement', self.id)
+    if @tags.blank?
+      @inner_tags = Tag.get_tags_for_item(self.id, 'MediaElement')
     else
       resp_tags = []
-      self.tags.split(',').each do |t|
+      prev_tags = []
+      @tags.split(',').each do |t|
         if !t.blank?
           t = t.to_s.strip.mb_chars.downcase.to_s
-          tag = Tag.find_by_word t
-          tag = Tag.new(:word => t) if tag.nil?
-          resp_tags << tag if tag.valid?
+          if !prev_tags.include? t
+            tag = Tag.find_by_word t
+            tag = Tag.new(:word => t) if tag.nil?
+            resp_tags << tag if tag.valid?
+          end
+          prev_tags << t
         end
       end
-      self.tags = resp_tags
+      @inner_tags = resp_tags
     end
   end
   
@@ -171,17 +202,19 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
+  # TODO implementarla
   def validate_duration
-    # TODO implementarla
-    # if self.sti_type == 'Image'
-    #   errors[:duration] << 'must be blank for images' if !self.duration.nil?
-    # else
-    #   errors[:duration] << "can't be blank for videos and audios" if self.duration.nil?
-    # end
+    if self.sti_type == 'Image'
+      errors[:duration] << 'must be blank for images' if !self.duration.nil?
+    else
+      errors[:duration] << "can't be blank for videos and audios" if self.duration.nil?
+    end
   end
   
   def stop_if_public
-    !reload.is_public
+    @media_element = Valid.get_association self, :id
+    return true if @media_element.nil?
+    return !@media_element.is_public
   end
   
 end

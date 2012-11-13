@@ -10,8 +10,15 @@ class Tagging < ActiveRecord::Base
   validate :validate_associations, :validate_impossible_changes
   
   before_validation :init_validation
+  before_destroy :stop_destruction_if_last
   
   private
+  
+  def stop_destruction_if_last
+    @tagging = Valid.get_association self, :id
+    return true if @tagging.nil?
+    return @tagging.taggable.taggings.count > CONFIG['min_tags_for_item']
+  end
   
   def good_taggable_type
     ['Lesson', 'MediaElement'].include? self.taggable_type

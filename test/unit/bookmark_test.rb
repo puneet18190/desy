@@ -6,6 +6,7 @@ class BookmarkTest < ActiveSupport::TestCase
     @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
     @lesson.copied_not_modified = false
     @lesson.user_id = 2
+    @lesson.tags = 'ciao, come, stai, tu?'
     @lesson.save
     @lesson.is_public = true
     @lesson.save

@@ -15,18 +15,24 @@ class Tag < ActiveRecord::Base
   
   before_validation :init_validation
   
-  def self.get_tags_for_item(type, id)
-    resp = ""
-    first_tag = true
-    Tagging.where(:taggable_type => type, :taggable_id => id).each do |t|
-      if first_tag
-        resp = "#{t.tag.word}"
-      else
-        resp = "#{resp}, #{t.tag.word}"
-      end
-      first_tag = false
+  def self.get_tags_for_item(item_id, kind)
+    resp = []
+    Tagging.includes(:tag).where(:taggable_type => kind, :taggable_id => item_id).each do |t|
+      resp << t.tag
     end
     resp
+  end
+  
+  def self.get_friendly_tags(item_id, kind)
+    tags = Tagging.where(:taggable_id => item_id, :taggable_type => kind)
+    return '' if tags.empty?
+    resp = tags.first.tag.word
+    count = 1
+    tags.each do |t|
+      resp = "#{resp}, #{t.tag.word}" if count != 1
+      count += 1
+    end
+    return resp
   end
   
   def word=(word)

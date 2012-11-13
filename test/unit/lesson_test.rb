@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'test_helper'
 
 class LessonTest < ActiveSupport::TestCase
@@ -7,9 +8,53 @@ class LessonTest < ActiveSupport::TestCase
       @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
       @lesson.copied_not_modified = false
       @lesson.user_id = 1
+      @lesson.tags = 'ciao, come, stai, tu?'
     rescue ActiveModel::MassAssignmentSecurity::Error
       @lesson = nil
     end
+  end
+  
+  test 'valid_fixtures' do
+    Lesson.find([1, 2]).each do |l|
+      assert l.valid?
+    end
+  end
+  
+  test 'tags' do
+    @lesson.tags = 'gatto, gatto, gatto  ,   , cane, topo'
+    assert !@lesson.save, "Lesson erroneously saved - #{@lesson.inspect} -- #{@lesson.tags.inspect}"
+    assert_equal 1, @lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@lesson.errors.inspect}"
+    assert_equal 1, @lesson.errors.messages[:tags].length
+    assert_match /are not enough/, @lesson.errors.messages[:tags].first
+    @lesson.tags = 'gatto, gatto  ,   , cane, topo'
+    assert !@lesson.save, "Lesson erroneously saved - #{@lesson.inspect} -- #{@lesson.tags.inspect}"
+    assert_equal 1, @lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@lesson.errors.inspect}"
+    assert_equal 1, @lesson.errors.messages[:tags].length
+    assert_match /are not enough/, @lesson.errors.messages[:tags].first
+    assert_equal 7, Tag.count
+    @lesson.tags = '  gatto, oRnitOrinco,   , cane, panda  '
+    assert_obj_saved @lesson
+    assert_equal 7, Tag.count
+    @lesson.reload
+    assert_tags @lesson, ['gatto', 'cane', 'ornitorinco', 'panda']
+    @lesson.tags = '  gattaccio, gattaccio, panda,   , cane, ornitorinco  '
+    assert_obj_saved @lesson
+    assert_equal 8, Tag.count
+    @lesson.reload
+    assert_tags @lesson, ['gattaccio', 'cane', 'panda', 'ornitorinco']
+    assert Tag.where(:word => 'gattaccio').any?
+    @lesson.tags = 'gattaccio, panda, cane, trentatré trentini entrarono a trento tutti e trentatré trotterellando'
+    assert !@lesson.save, "Lesson erroneously saved - #{@lesson.inspect} -- #{@lesson.tags.inspect}"
+    assert_equal 1, @lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@lesson.errors.inspect}"
+    assert_equal 1, @lesson.errors.messages[:tags].length
+    assert_match /are not enough/, @lesson.errors.messages[:tags].first
+    @lesson.reload
+    assert_tags @lesson, ['gattaccio', 'cane', 'panda', 'ornitorinco']
+    @lesson = Lesson.find @lesson.id
+    assert_obj_saved @lesson
+    assert_equal 8, Tag.count
+    @lesson.reload
+    assert_tags @lesson, ['gattaccio', 'cane', 'panda', 'ornitorinco']
   end
   
   test 'empty_and_defaults' do
@@ -17,7 +62,7 @@ class LessonTest < ActiveSupport::TestCase
     assert_equal false, @lesson.is_public
     @lesson.is_public = nil
     @lesson.token = 'prova'
-    assert_error_size 13, @lesson
+    assert_error_size 14, @lesson
     assert @lesson.token != 'prova'
     assert_equal 20, @lesson.token.length
   end
@@ -51,6 +96,7 @@ class LessonTest < ActiveSupport::TestCase
     @lesson2 = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
     @lesson2.copied_not_modified = false
     @lesson2.user_id = 1
+    @lesson2.tags = 'ehilà, ohilà, ehi, ciao'
     assert_invalid @lesson2, :parent_id, 1, @lesson.id, /has already been taken/
     assert_obj_saved @lesson2
   end
@@ -117,11 +163,13 @@ class LessonTest < ActiveSupport::TestCase
     lesson3.copied_not_modified = false
     lesson3.user_id = 1
     lesson3.parent_id = 1
+    lesson3.tags = 'ehilà, ohilà, ehi, ciao'
     assert_obj_saved lesson3
     lesson4 = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
     lesson4.copied_not_modified = false
     lesson4.user_id = 2
     lesson4.parent_id = 1
+    lesson4.tags = 'ehilà, ohilà, ehi, ciao'
     assert_obj_saved lesson4
     @lesson = Lesson.find 1
     lesson4 = Lesson.find lesson4.id

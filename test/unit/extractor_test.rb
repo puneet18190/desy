@@ -42,108 +42,101 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @liker9.like @les1.id
   end
   
-  def populate_tags
-    Tagging.all.each do |t|
-      t.destroy
-    end
-    Tag.all.each do |t|
-      t.destroy
-    end
-    tags = []
-    tags << "cane" # 0
-    tags << "sole"
-    tags << "togatto"
-    tags << "cincillà" # 3
-    tags << "walter nudo"
-    tags << "luna"
-    tags << "di escrementi di usignolo" # 6
-    tags << "disabili"
-    tags << "torriere architettoniche"
-    tags << "mare" # 9
-    tags << "petrolio"
-    tags << "sostenibilità"
-    tags << "di immondizia" # 12
-    tags << "tonquinamento atmosferico"
-    tags << "tonquinamento"
-    tags << "pollution" # 15
-    tags << "tom cruise"
-    tags << "cammello"
-    tags << "cammelli" # 18
-    tags << "acqua"
-    tags << "acquario"
-    tags << "acquatico" # 21
-    tags << "個名"
-    tags << "拿大即"
-    tags << "河" # 24
-    tags << "條聖"
-    tags << "係英國"
-    tags << "拿" # 27
-    tags << "住羅倫"
-    tags << "加"
-    tags << "大湖" # 30
-    tags << "咗做"
-    tags << "個"
-    tags << "條聖法話" # 33
-    tag_ids = []
-    tags.each do |t|
-      tt = Tag.new
-      tt.word = t
-      assert_obj_saved tt
-      tag_ids << tt.id
-    end
-    tag_map = {
-      0 => [tag_ids[0], tag_ids[1], tag_ids[2], tag_ids[3], tag_ids[4], tag_ids[5], tag_ids[6]],
-      1 => [tag_ids[4], tag_ids[5], tag_ids[6], tag_ids[7], tag_ids[8], tag_ids[9], tag_ids[10]],
-      2 => [tag_ids[8], tag_ids[9], tag_ids[10], tag_ids[11], tag_ids[12], tag_ids[13], tag_ids[14]],
-      3 => [tag_ids[14], tag_ids[15], tag_ids[16], tag_ids[17], tag_ids[18], tag_ids[19], tag_ids[20]],
-      4 => [tag_ids[18], tag_ids[19], tag_ids[20], tag_ids[21], tag_ids[22], tag_ids[23], tag_ids[24]],
-      5 => [tag_ids[22], tag_ids[23], tag_ids[24], tag_ids[25], tag_ids[26], tag_ids[27], tag_ids[28]],
-      6 => [tag_ids[26], tag_ids[27], tag_ids[28], tag_ids[29], tag_ids[30], tag_ids[31], tag_ids[32]],
-      7 => [tag_ids[30], tag_ids[31], tag_ids[32], tag_ids[33], tag_ids[0], tag_ids[1], tag_ids[2]],
-      8 => [tag_ids[2], tag_ids[5], tag_ids[8], tag_ids[11], tag_ids[14], tag_ids[17], tag_ids[20]],
-      9 => [tag_ids[6], tag_ids[13], tag_ids[20], tag_ids[27], tag_ids[4], tag_ids[9], tag_ids[14]]
-    }
-    assert Tag.create_tag_set('MediaElement', 1, tag_map[0])
-    assert Tag.create_tag_set('MediaElement', 2, tag_map[1])
-    assert Tag.create_tag_set('MediaElement', 3, tag_map[2])
-    assert Tag.create_tag_set('MediaElement', 4, tag_map[3])
-    assert Tag.create_tag_set('MediaElement', 5, tag_map[4])
-    assert Tag.create_tag_set('MediaElement', 6, tag_map[5])
-    assert Tag.create_tag_set('MediaElement', @el1.id, tag_map[8])
-    assert Tag.create_tag_set('MediaElement', @el2.id, tag_map[9])
-    assert Tag.create_tag_set('MediaElement', @el3.id, tag_map[0])
-    assert Tag.create_tag_set('MediaElement', @el4.id, tag_map[6])
-    assert Tag.create_tag_set('MediaElement', @el5.id, tag_map[1])
-    assert Tag.create_tag_set('MediaElement', @el6.id, tag_map[7])
-    assert Tag.create_tag_set('MediaElement', @el7.id, tag_map[2])
-    assert Tag.create_tag_set('Lesson', 1, tag_map[3])
-    assert Tag.create_tag_set('Lesson', 2, tag_map[4])
-    assert Tag.create_tag_set('Lesson', @les1.id, tag_map[8])
-    assert Tag.create_tag_set('Lesson', @les2.id, tag_map[9])
-    assert Tag.create_tag_set('Lesson', @les3.id, tag_map[0])
-    assert Tag.create_tag_set('Lesson', @les4.id, tag_map[1])
-    assert Tag.create_tag_set('Lesson', @les5.id, tag_map[2])
-    assert Tag.create_tag_set('Lesson', @les6.id, tag_map[3])
-    assert Tag.create_tag_set('Lesson', @les7.id, tag_map[5])
-    assert Tag.create_tag_set('Lesson', @les8.id, tag_map[6])
-    assert Tag.create_tag_set('Lesson', @les9.id, tag_map[7])
-  end
-  
   def setup
     @user1 = User.find 1
     assert @user1.edit_fields 'a_name', 'a_surname', 'a_school', @user1.school_level_id, @user1.location_id, [1, 2, 3, 4, 5, 6]
     @user2 = User.find 2
     assert @user2.edit_fields 'a_name', 'a_surname', 'a_school', @user2.school_level_id, @user2.location_id, [1, 2, 3, 4]
-    # LESSONS
-    @les1 = @user1.create_lesson('title1', 'desc1', 1)
-    @les2 = @user1.create_lesson('title2', 'desc2', 2)
-    @les3 = @user1.create_lesson('title3', 'desc3', 3)
-    @les4 = @user1.create_lesson('title4', 'desc4', 4)
-    @les5 = @user1.create_lesson('title5', 'desc5', 5)
-    @les6 = @user1.create_lesson('title6', 'desc6', 6)
-    @les7 = @user1.create_lesson('title7', 'desc7', 1)
-    @les8 = @user1.create_lesson('title8', 'desc8', 2)
-    @les9 = @user1.create_lesson('title9', 'desc9', 3)
+    Tagging.all.each do |t|
+      ActiveRecord::Base.connection.execute "DELETE FROM taggings WHERE id = #{t.id}"
+    end
+    Tag.all.each do |t|
+      t.destroy
+    end
+    tag_map = {
+      0 => "cane, sole, togatto, cincillà, walter nudo, luna, di escrementi di usignolo",
+      1 => "walter nudo, luna, di escrementi di usignolo, disabili, torriere architettoniche, mare, petrolio",
+      2 => "torriere architettoniche, mare, petrolio, sostenibilità, di immondizia, tonquinamento atmosferico, tonquinamento",
+      3 => "tonquinamento, pollution, tom cruise, cammello, cammelli, acqua, acquario",
+      4 => "cammelli, acqua, acquario, acquatico, 個名, 拿大即, 河",
+      5 => "個名, 拿大即, 河, 條聖, 係英國, 拿, 住羅倫",
+      6 => "係英國, 拿, 住羅倫, 加, 大湖, 咗做, 個",
+      7 => "大湖, 咗做, 個, 條聖法話, cane, sole, togatto",
+      8 => "togatto, luna, torriere architettoniche, sostenibilità, tonquinamento, cammello, acquario",
+      9 => "di escrementi di usignolo, tonquinamento atmosferico, acquario, 拿, walter nudo, mare, tonquinamento"
+    }
+    me1 = MediaElement.find 1
+    me1.tags = tag_map[0]
+    assert_obj_saved me1
+    me2 = MediaElement.find 2
+    me2.tags = tag_map[1]
+    assert_obj_saved me2
+    me3 = MediaElement.find 3
+    me3.tags = tag_map[2]
+    assert_obj_saved me3
+    me4 = MediaElement.find 4
+    me4.tags = tag_map[3]
+    assert_obj_saved me4
+    me5 = MediaElement.find 5
+    me5.tags = tag_map[4]
+    assert_obj_saved me5
+    me6 = MediaElement.find 6
+    me6.tags = tag_map[5]
+    assert_obj_saved me6
+    @el1 = MediaElement.new :description => 'desc1', :title => 'titl1'
+    @el1.user_id = 1
+    @el1.sti_type = 'Video'
+    @el1.duration = 10
+    @el1.tags = tag_map[8]
+    assert_obj_saved @el1
+    @el2 = MediaElement.new :description => 'desc2', :title => 'titl2'
+    @el2.user_id = 1
+    @el2.sti_type = 'Video'
+    @el2.duration = 10
+    @el2.tags = tag_map[9]
+    assert_obj_saved @el2
+    @el3 = MediaElement.new :description => 'desc3', :title => 'titl3'
+    @el3.user_id = 1
+    @el3.sti_type = 'Audio'
+    @el3.duration = 10
+    @el3.tags = tag_map[0]
+    assert_obj_saved @el3
+    @el4 = MediaElement.new :description => 'desc4', :title => 'titl4'
+    @el4.user_id = 1
+    @el4.sti_type = 'Audio'
+    @el4.duration = 10
+    @el4.tags = tag_map[6]
+    assert_obj_saved @el4
+    @el5 = MediaElement.new :description => 'desc5', :title => 'titl5'
+    @el5.user_id = 1
+    @el5.sti_type = 'Image'
+    @el5.tags = tag_map[1]
+    assert_obj_saved @el5
+    @el6 = MediaElement.new :description => 'desc6', :title => 'titl6'
+    @el6.user_id = 1
+    @el6.sti_type = 'Image'
+    @el6.tags = tag_map[7]
+    assert_obj_saved @el6
+    @el7 = MediaElement.new :description => 'desc7', :title => 'titl7'
+    @el7.user_id = 1
+    @el7.sti_type = 'Image'
+    @el7.tags = tag_map[2]
+    assert_obj_saved @el7
+    le1 = Lesson.find 1
+    le1.tags = tag_map[3]
+    assert_obj_saved le1
+    le2 = Lesson.find 2
+    le2.tags = tag_map[4]
+    assert_obj_saved le2
+    @les1 = @user1.create_lesson('title1', 'desc1', 1, tag_map[8])
+    @les2 = @user1.create_lesson('title2', 'desc2', 2, tag_map[9])
+    @les3 = @user1.create_lesson('title3', 'desc3', 3, tag_map[0])
+    @les4 = @user1.create_lesson('title4', 'desc4', 4, tag_map[1])
+    @les5 = @user1.create_lesson('title5', 'desc5', 5, tag_map[2])
+    @les6 = @user1.create_lesson('title6', 'desc6', 6, tag_map[3])
+    @les7 = @user1.create_lesson('title7', 'desc7', 1, tag_map[5])
+    @les8 = @user1.create_lesson('title8', 'desc8', 2, tag_map[6])
+    @les9 = @user1.create_lesson('title9', 'desc9', 3, tag_map[7])
     assert_equal 11, Lesson.count, "Error, a lesson was not saved -- {les1 => #{@les1.inspect}, les2 => #{@les2.inspect}, les3 => #{@les3.inspect}, les4 => #{@les4.inspect}, les5 => #{@les5.inspect}, les6 => #{@les6.inspect}, les7 => #{@les7.inspect}, les8 => #{@les8.inspect}, les9 => #{@les9.inspect},}"
     assert @les1.publish
     assert @les2.publish
@@ -151,39 +144,6 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @les4.publish
     assert @les5.publish
     assert @les6.publish
-    # MEDIA ELEMENTS
-    @el1 = MediaElement.new :description => 'desc1', :title => 'titl1'
-    @el1.user_id = 1
-    @el1.sti_type = 'Video'
-    @el1.duration = 10
-    assert_obj_saved @el1
-    @el2 = MediaElement.new :description => 'desc2', :title => 'titl2'
-    @el2.user_id = 1
-    @el2.sti_type = 'Video'
-    @el2.duration = 10
-    assert_obj_saved @el2
-    @el3 = MediaElement.new :description => 'desc3', :title => 'titl3'
-    @el3.user_id = 1
-    @el3.sti_type = 'Audio'
-    @el3.duration = 10
-    assert_obj_saved @el3
-    @el4 = MediaElement.new :description => 'desc4', :title => 'titl4'
-    @el4.user_id = 1
-    @el4.sti_type = 'Audio'
-    @el4.duration = 10
-    assert_obj_saved @el4
-    @el5 = MediaElement.new :description => 'desc5', :title => 'titl5'
-    @el5.user_id = 1
-    @el5.sti_type = 'Image'
-    assert_obj_saved @el5
-    @el6 = MediaElement.new :description => 'desc6', :title => 'titl6'
-    @el6.user_id = 1
-    @el6.sti_type = 'Image'
-    assert_obj_saved @el6
-    @el7 = MediaElement.new :description => 'desc7', :title => 'titl7'
-    @el7.user_id = 1
-    @el7.sti_type = 'Image'
-    assert_obj_saved @el7
     Lesson.record_timestamps = false
     MediaElement.record_timestamps = false
     @el1.is_public = true
@@ -324,6 +284,7 @@ class ExtractorTest < ActiveSupport::TestCase
     xxx.title = 'tit1xxx'
     xxx.description = 'quef gsdsd dfs'
     xxx.sti_type = 'Image'
+    xxx.tags = 'tag1, tag2, tag3, tag4'
     assert_obj_saved xxx
     assert_item_extractor [xxx.id, @el5.id], @user2.own_media_elements(1, 20, 'image')[:records]
     # last page true
@@ -342,9 +303,9 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les5.id
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
-    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    les10 = @user2.create_lesson('title10', 'desc10', 3, 'pippo, pluto, paperino, topolino')
     assert Lesson.exists?(les10.id)
-    les11 = @user2.create_lesson('title10', 'desc10', 3)
+    les11 = @user2.create_lesson('title10', 'desc10', 3, 'pippo, pluto, paperino, topolino')
     assert Lesson.exists?(les11.id)
     assert_item_extractor [les10.id, les11.id], @user2.own_lessons(1, 20, 'private')[:records]
     # last page true
@@ -363,7 +324,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les5.id
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
-    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    les10 = @user2.create_lesson('title10', 'desc10', 3, 'pippo, pluto, paperino, topolino')
     assert Lesson.exists?(les10.id)
     assert_item_extractor [1, 2, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'public')[:records]
     # last page true
@@ -382,7 +343,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les5.id
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
-    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    les10 = @user2.create_lesson('title10', 'desc10', 3, 'pippo, pluto, paperino, topolino')
     assert Lesson.exists?(les10.id)
     assert_item_extractor [1, @les2.id, @les5.id, @les6.id], @user2.own_lessons(1, 20, 'linked')[:records]
     # last page true
@@ -401,7 +362,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les5.id
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
-    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    les10 = @user2.create_lesson('title10', 'desc10', 3, 'pippo, pluto, paperino, topolino')
     assert Lesson.exists?(les10.id)
     assert_item_extractor [2, les10.id], @user2.own_lessons(1, 20, 'only_mine')[:records]
     # last page true
@@ -420,7 +381,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @user2.bookmark 'Lesson', @les5.id
     assert @user2.bookmark 'Lesson', @les6.id
     assert @user2.bookmark 'Lesson', 1
-    les10 = @user2.create_lesson('title10', 'desc10', 3)
+    les10 = @user2.create_lesson('title10', 'desc10', 3, 'pippo, pluto, paperino, topolino')
     assert Lesson.exists?(les10.id)
     les11 = les10.copy(@user2.id)
     assert Lesson.exists?(les11.id)
@@ -676,7 +637,6 @@ class ExtractorTest < ActiveSupport::TestCase
   end
   
   test 'populate_tags' do
-    populate_tags
     assert_equal 34, Tag.count
     assert_equal 11, Lesson.count
     assert_equal 13, MediaElement.count
@@ -708,7 +668,6 @@ class ExtractorTest < ActiveSupport::TestCase
   end
   
   test 'google_lessons_with_tags' do
-    populate_tags
     # preliminarly, I try looking for a specific tag
     luna = Tag.find_by_word 'luna'
     p1 = @user2.search_lessons(luna.id, 1, 5)
@@ -755,10 +714,11 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 7, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
     # fourth case - filters and orders on the last search
-    my_tag_chinese = Tag.find_by_word '個名'
-    assert Tag.create_tag_set('Lesson', 2, ['Tonio de curtis', 'acquazzone', my_tag_chinese.id])
-    assert_equal 36, Tag.count
-    assert_equal 164, Tagging.count
+    lees2 = Lesson.find 2
+    lees2.tags = '個名, Tonio de curtis, acquazzone, zzzzaggiunta a caso'
+    assert_obj_saved lees2
+    assert_equal 37, Tag.count
+    assert_equal 165, Tagging.count
     p1 = @user2.search_lessons('to', 1, 5, nil, 'only_mine', nil)
     assert_ordered_item_extractor [2], p1[:records]
     tag_ids << Tag.find_by_word('tonio de curtis').id
@@ -871,7 +831,6 @@ class ExtractorTest < ActiveSupport::TestCase
   end
   
   test 'google_media_elements_with_tags' do
-    populate_tags
     # preliminarly, I try looking for a specific tag
     luna = Tag.find_by_word 'luna'
     p1 = @user2.search_media_elements(luna.id, 1, 5)
@@ -953,17 +912,12 @@ class ExtractorTest < ActiveSupport::TestCase
     @el6.is_public = true
     @el6.publication_date = '2011-01-01 10:00:00'
     assert_obj_saved @el6
-    ids_tags = []
-    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => 3).each do |t|
-      ids_tags << t.tag_id
-    end
-    assert Tag.create_tag_set('MediaElement', 3, (ids_tags + ['加條聖', Tag.find_by_word('條聖').id]))
-    tag_nuova = Tag.find_by_word('加條聖').id
-    ids_tags = []
-    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => @el2.id).each do |t|
-      ids_tags << t.tag_id
-    end
-    assert Tag.create_tag_set('MediaElement', @el2.id, (ids_tags + [tag_nuova, Tag.find_by_word('條聖').id]))
+    mee3 = MediaElement.find 3
+    mee3.tags = 'torriere architettoniche, mare, petrolio, sostenibilità, di immondizia, tonquinamento atmosferico, tonquinamento, 加條聖, 條聖'
+    assert_obj_saved mee3
+    @el2 = MediaElement.find @el2.id
+    @el2.tags = 'di escrementi di usignolo, tonquinamento atmosferico, acquario, 拿, walter nudo, mare, tonquinamento, 加條聖, 條聖'
+    assert_obj_saved @el2
     assert !MediaElement.find(3).is_public
     assert_equal 2, MediaElement.find(3).user_id
     assert_equal 35, Tag.count

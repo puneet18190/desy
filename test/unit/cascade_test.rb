@@ -8,6 +8,7 @@ class CascadeTest < ActiveSupport::TestCase
     @copied_lesson.copied_not_modified = false
     @copied_lesson.user_id = 1
     @copied_lesson.parent_id = 2
+    @copied_lesson.tags = 'pippo, pluto, paperino, topolino'
     assert_obj_saved @copied_lesson
     @lesson = Lesson.find @lesson.id
     ids = {Bookmark => [], Like => [], Slide => [], MediaElementsSlide => [], Tagging => [], Report => [], VirtualClassroomLesson => []}
@@ -46,7 +47,7 @@ class CascadeTest < ActiveSupport::TestCase
     assert Lesson.find(@copied_lesson.id).parent_id.nil?
     assert Lesson.where(:id => @lesson.id).empty?
     ids.each do |k, v|
-      assert k.where(:id => v).empty?
+      assert k.where(:id => v).empty?, "Error, #{k.to_s} not deleted -- #{k.where(:id => v).inspect}"
     end
   end
   
@@ -72,7 +73,7 @@ class CascadeTest < ActiveSupport::TestCase
     @media_element.destroy
     assert MediaElement.where(:id => @media_element.id).empty?
     ids.each do |k, v|
-      assert k.where(:id => v).empty?
+      assert k.where(:id => v).empty?, "Error, #{k.to_s} not deleted -- #{k.where(:id => v).inspect}"
     end
   end
   
