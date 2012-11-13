@@ -17,57 +17,21 @@ subject3 = Subject.create :description => 'Scienze' # idem
 User.create_user CONFIG['admin_email'], 'DESY', 'Admin User', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
 
 if Rails.env.development?
-
-  images = Dir.glob("#{Rails.root}/db/seeds/images/*").grep /\.jpe?g|png$/
-
-  tags = []
-  tags << "cane"
-  tags << "sole"
-  tags << "gatto"
-  tags << "cincillà"
-  tags << "walter nudo"
-  tags << "luna"
-  tags << "escrementi di usignolo"
-  tags << "disabili"
-  tags << "barriere architettoniche"
-  tags << "mare"
-  tags << "petrolio"
-  tags << "sostenibilità"
-  tags << "immondizia"
-  tags << "inquinamento atmosferico"
-  tags << "inquinamento"
-  tags << "pollution"
-  tags << "tom cruise"
-  tags << "cammello"
-  tags << "cammelli"
-  tags << "acqua"
-  tags << "acquario"
-  tags << "acquatico"
-  tags << "個名"
-  tags << "拿大即"
-  tags << "河"
-  tags << "條聖"
-  tags << "係英國"
-  tags << "拿"
-  tags << "住羅倫"
-  tags << "加"
-  tags << "大湖"
-  tags << "咗做"
-  tags << "個"
-  tags << "法屬係話"
   
-  tag_map = [
-    [1, 2, 3, 4, 5, 6, 7],
-    [5, 6, 7, 8, 9, 10, 11],
-    [9, 10, 11, 12, 13, 14, 15],
-    [15, 16, 17, 18, 19, 20, 21],
-    [19, 20, 21, 22, 23, 24, 25],
-    [23, 24, 25, 26, 27, 28, 29],
-    [27, 28, 29, 30, 31, 32, 33],
-    [31, 32, 33, 34, 1, 2, 3],
-    [3, 6, 9, 12, 15, 18, 21],
-    [7, 14, 21, 28, 5, 10, 15]
-  ].map{ |v| v.map{ |_v| tags[_v] } }
+  images = Dir.glob("#{Rails.root}/db/seeds/images/*").grep /\.jpe?g|png$/
+  
+  tag_map = {
+    0 => "cane, sole, gatto, cincillà, walter nudo, luna, escrementi di usignolo",
+    1 => "walter nudo, luna, escrementi di usignolo, disabili, barriere architettoniche, mare, petrolio",
+    2 => "barriere architettoniche, mare, petrolio, sostenibilità, immondizia, inquinamento atmosferico, inquinamento",
+    3 => "inquinamento, pollution, tom cruise, cammello, cammelli, acqua, acquario",
+    4 => "cammelli, acqua, acquario, acquatico, 個名, 拿大即, 河",
+    5 => "個名, 拿大即, 河, 條聖, 係英國, 拿, 住羅倫",
+    6 => "係英國, 拿, 住羅倫, 加, 大湖, 咗做, 個",
+    7 => "大湖, 咗做, 個, 條聖法話, cane, sole, gatto",
+    8 => "gatto, luna, barriere architettoniche, sostenibilità, inquinamento, cammello, acquario",
+    9 => "escrementi di usignolo, inquinamento atmosferico, acquario, 拿, walter nudo, mare, inquinamento"
+  }
   
   admin = User.find_by_email CONFIG['admin_email']
   
@@ -89,46 +53,46 @@ if Rails.env.development?
   galliani = User.create_user 'galliani@figc.it', 'Adriano', 'Galliani', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
   
   u = User.create_user 'assunzioni@pippo.it', 'Giorgio', 'Mastrota', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-  u.create_lesson('History of China: Shag Dynasty', 'Paolo Negro (Arzignano, 16 aprile 1972) è un allenatore di calcio ed ex calciatore italiano. Dal 2012 è alla guida dello Zagarolo.', 1)
-  u.create_lesson('The birth of the great empire', 'Cresce calcisticamente nel Brescia dove viene trasformato da attaccante in fluidificante[2] e nel 1990 passa al Bologna, con cui debutta in serie A il 28 ottobre 1990 in Genoa-Bologna 0-0 ed esordisce nelle coppe europee in Zagłębie Lubin-Bologna 0-1', 2)
-  u.create_lesson('Chain Reactions', "Per dieci stagioni consecutive segna almeno una rete in campionato; in particolare nell'annata 1994-1995, la prima sotto la guida del tecnico boemo Zdenek Zeman in cui la Lazio conclude il campionato con il migliore attacco, Negro segna 4 reti", 3)
-  u.create_lesson('Cronologia presenze Nazionale', 'Paolo Negro (Arzignano, Italia, 16 de abril de 1972), fue un futbolista italiano, que se desempeñó como defensa y lateral en cualquier banda. Fue internacional con la selección de fútbol de Italia y disputó una Eurocopa', 1)
-  u.create_lesson('Negro Gol', 'Neqro A Seriyasında 1990-cı il oktyabrın 28-də, 18 yaşı olarkən debüt edib. O, Boloniya da çıxış edirdi. Rossoblu ilə yanaşı, Paolo Breşiya da da təcrübə yığıb. Oradan isə 1993-cü ildə Romanı fəth etməyə gedib. Müdafiəçini Latsio', 2)
-  u.create_lesson('Pour les articles homonymes, voir Negro.', "Paolo Negro est un ancien footballeur italien, né le 16 avril 1972 à Arzignano. Il évoluait au poste de défenseur central ou défenseur latéral droit. Il a reçu 8 sélections en équipe d'Italie et a évolué pendant douze saisons à la Lazio, où il s'est construit un respectable", 3)
-  u.create_lesson('Voi siete negri.', "La parola negro definisce gli appartenenti a una razza pseudo-animale in parte simile all'uomo bianco. Le differenze da quest'ultimo sono note: i negri hanno notoriamente tre gambe.", 1)
-  u.create_lesson('Pescato il calamaro più grande del mondo', "Dieci metri di lunghezza per 450 chili di peso. Sono le dimensione del calamaro gigante pescato nei giorni scorsi al largo della Nuova Zelanda. Si tratta probabilmente dell'esemplare più grande mai pescato. ", 2)
-  u.create_lesson('Laberinto', "No habrá nunca una puerta. Estás adentro - y el alcázar abarca el universo - y no tiene ni anverso ni reverso - ni externo muro ni secreto centro.", 3)
-  u.create_lesson('Che significa vi ho purgato ancora?', "in which he scored during the final minutes of the game and celebrated by flashing a T-shirt under his jersey, which read 'Vi ho purgato ancora' (\"I've purged you guys again\"), in reference to events at the previous derby against Lazio", 1)
-  u.create_lesson('Chez Fifi', "\"Breakfast\", which was included, was supposed to start at 6:30 AM, which was fine with us because we had an early flight and did not want to spend an additional minute in this place. At 6:30 AM, Madam Fifi was sitting at the table. After we asked her \"where's breakfast?\"", 2)
-  u.create_lesson('跟隨羅馬', "托迪（意大利文：Francesco Totti，1976年9月27號—）係意大利足球員，打前鋒，現時效力意大利甲組足球聯賽球隊羅馬。托迪喺羅馬出世，佢早響16歲嗰陣已經代表球會上陣意甲賽事。佢好受羅馬重用，廿歲嗰陣就贏咗意甲最佳新人獎。2001年佢跟隨羅馬贏得意甲聯賽冠軍，之前又贏埋意大利聯賽最佳年青球員。由於佢生得靚仔，只係二十歲就係意大利女人心目中嘅最佳對象，地位等同英國嘅碧咸。", 3)
+  u.create_lesson('History of China: Shag Dynasty', 'Paolo Negro (Arzignano, 16 aprile 1972) è un allenatore di calcio ed ex calciatore italiano. Dal 2012 è alla guida dello Zagarolo.', 1, tag_map[0])
+  u.create_lesson('The birth of the great empire', 'Cresce calcisticamente nel Brescia dove viene trasformato da attaccante in fluidificante[2] e nel 1990 passa al Bologna, con cui debutta in serie A il 28 ottobre 1990 in Genoa-Bologna 0-0 ed esordisce nelle coppe europee in Zagłębie Lubin-Bologna 0-1', 2, tag_map[1])
+  u.create_lesson('Chain Reactions', "Per dieci stagioni consecutive segna almeno una rete in campionato; in particolare nell'annata 1994-1995, la prima sotto la guida del tecnico boemo Zdenek Zeman in cui la Lazio conclude il campionato con il migliore attacco, Negro segna 4 reti", 3, tag_map[2])
+  u.create_lesson('Cronologia presenze Nazionale', 'Paolo Negro (Arzignano, Italia, 16 de abril de 1972), fue un futbolista italiano, que se desempeñó como defensa y lateral en cualquier banda. Fue internacional con la selección de fútbol de Italia y disputó una Eurocopa', 1, tag_map[3])
+  u.create_lesson('Negro Gol', 'Neqro A Seriyasında 1990-cı il oktyabrın 28-də, 18 yaşı olarkən debüt edib. O, Boloniya da çıxış edirdi. Rossoblu ilə yanaşı, Paolo Breşiya da da təcrübə yığıb. Oradan isə 1993-cü ildə Romanı fəth etməyə gedib. Müdafiəçini Latsio', 2, tag_map[4])
+  u.create_lesson('Pour les articles homonymes, voir Negro.', "Paolo Negro est un ancien footballeur italien, né le 16 avril 1972 à Arzignano. Il évoluait au poste de défenseur central ou défenseur latéral droit. Il a reçu 8 sélections en équipe d'Italie et a évolué pendant douze saisons à la Lazio, où il s'est construit un respectable", 3, tag_map[5])
+  u.create_lesson('Voi siete negri.', "La parola negro definisce gli appartenenti a una razza pseudo-animale in parte simile all'uomo bianco. Le differenze da quest'ultimo sono note: i negri hanno notoriamente tre gambe.", 1, tag_map[6])
+  u.create_lesson('Pescato il calamaro più grande del mondo', "Dieci metri di lunghezza per 450 chili di peso. Sono le dimensione del calamaro gigante pescato nei giorni scorsi al largo della Nuova Zelanda. Si tratta probabilmente dell'esemplare più grande mai pescato. ", 2, tag_map[7])
+  u.create_lesson('Laberinto', "No habrá nunca una puerta. Estás adentro - y el alcázar abarca el universo - y no tiene ni anverso ni reverso - ni externo muro ni secreto centro.", 3, tag_map[8])
+  u.create_lesson('Che significa vi ho purgato ancora?', "in which he scored during the final minutes of the game and celebrated by flashing a T-shirt under his jersey, which read 'Vi ho purgato ancora' (\"I've purged you guys again\"), in reference to events at the previous derby against Lazio", 1, tag_map[9])
+  u.create_lesson('Chez Fifi', "\"Breakfast\", which was included, was supposed to start at 6:30 AM, which was fine with us because we had an early flight and did not want to spend an additional minute in this place. At 6:30 AM, Madam Fifi was sitting at the table. After we asked her \"where's breakfast?\"", 2, tag_map[0])
+  u.create_lesson('跟隨羅馬', "托迪（意大利文：Francesco Totti，1976年9月27號—）係意大利足球員，打前鋒，現時效力意大利甲組足球聯賽球隊羅馬。托迪喺羅馬出世，佢早響16歲嗰陣已經代表球會上陣意甲賽事。佢好受羅馬重用，廿歲嗰陣就贏咗意甲最佳新人獎。2001年佢跟隨羅馬贏得意甲聯賽冠軍，之前又贏埋意大利聯賽最佳年青球員。由於佢生得靚仔，只係二十歲就係意大利女人心目中嘅最佳對象，地位等同英國嘅碧咸。", 3, tag_map[1])
   arab_title = 'لكن أسرة'
   arab_desc = 'والحزب القومي الصيني. شهد النصف الأول من القرن العشرين سقوط البلاد في فترة من التفكك والحروب الأهلية التيلشيوعيون. انتهت أعمال العنف الكبرى في عام 1949 عندما حسم الشيوعيون الحرب الأهلية وأسسوا جمهورية الصين الشعبية في بر الصين الرئيسي. نقل حزب الكومينتانغ عاصمة جم'
-  u.create_lesson(arab_title, arab_desc, 1)
-  u.create_lesson('È lunedì, che umiliazione', 'Juventus-Napoli alla ripresa del campionato. Vale già per lo scudetto (anche se ci sarà tempo, per chi perde, di recuperare), ma vale soprattutto per indicare chi è la squadra più forte in questo momento. Proviamo a capirlo con questo sondaggio che, giorno.', 1)
-  u.create_lesson('Citroen conferma, Hyundai ritorna', 'come i principali gruppi industriali del mondo abbiano fiducia in questo sport, nonostante le difficoltà economiche». Nello stesso giorno del ritorno della casa coreana, arriva', 1)
-  u.create_lesson('Ladies', 'Ladies, it’s getting cold out there. What’s the logical thing to do? Wear a Spock hoodie, of course. And they’re available now, thanks to Ashley Eckstein and her apparel company, Her Universe. The Spock hoodie comes in uniform-like sciences blue, is made of Vulcan ears.', 2)
-  u.create_lesson("2013 Trek Calendars Available", "If you’re already thinking about that perfect gift for the Star Trek fan in your life… or for yourself, a classic standby awaits. Danilo’s 2013 Star Trek calendars. They’re offering two Trek calendars this year, Star Trek 2013 Calendar.", 1)
-  u.create_lesson("Holographic Love", "Star Trek is a worldwide phenomenon. StarTrek.com frequently presents excerpts from the latest issue of Star Trek Magazine, which is published out of England and available internationally. the official Star Trek magazine of Italy. ", 1)
-  u.create_lesson("Alimentazione", "I fattori che scatenano la prostatite sono molteplici e talvolta possono agire contemporaneamente, dando luogo a diverse forme di prostatite. Le principali cause della prostatite possono essere: batteri, che risalgono il condotto urinario e si depositano nella prostata.", 2)
-  u.create_lesson("Come Si Calcola I Giorno Di Fertilità?", "ciao a tutti cerco un vostro aiuto vorrei calcolare il giorno fertile. le mestruazione sono venute 27 marzo ed ho avuto 46 giorni di ritardo ed arriva fino 40 giorni cosa ci devo mettere non ci capisco più nulla", 3)
-  u.create_lesson("Educazione figli", "ho un bimbo bellisimo di 3 anni e mezzo beh, è già la seconda volta che il papà lo picchia con la cinta xkè ha disubbidito. Ebbene Nicol va col faccino mogio mogio dal suo papà e gli dice e il papà gli risponde \" prima di cena ti cinghio lo stesso e al parco non ci vai\"!!!", 1)
-  u.create_lesson("Lazio, nuovo caso Fiorito dell'Idv", "La Gdf interviene dopo una segnalazione della Banca d'Italia. L'indagine riguarda i fondi del gruppo dell'Italia dei valori e l'utilizzo fattone dal responsabile, Vincenzo Salvatore Maruccio, che è anche segretario regionale del partito", 2)
-  u.create_lesson("Ufologia", "Questo Database di oltre 300 immagini di Cerchi nel grano è suddiviso in diverse gallerie che riportano i vari dati sulla realizzazione. Le immagini sono state accuratamente cercate in rete e dopo averle sel ezionate", 1)
+  u.create_lesson(arab_title, arab_desc, 1, tag_map[2])
+  u.create_lesson('È lunedì, che umiliazione', 'Juventus-Napoli alla ripresa del campionato. Vale già per lo scudetto (anche se ci sarà tempo, per chi perde, di recuperare), ma vale soprattutto per indicare chi è la squadra più forte in questo momento. Proviamo a capirlo con questo sondaggio che, giorno.', 1, tag_map[3])
+  u.create_lesson('Citroen conferma, Hyundai ritorna', 'come i principali gruppi industriali del mondo abbiano fiducia in questo sport, nonostante le difficoltà economiche». Nello stesso giorno del ritorno della casa coreana, arriva', 1, tag_map[4])
+  u.create_lesson('Ladies', 'Ladies, it’s getting cold out there. What’s the logical thing to do? Wear a Spock hoodie, of course. And they’re available now, thanks to Ashley Eckstein and her apparel company, Her Universe. The Spock hoodie comes in uniform-like sciences blue, is made of Vulcan ears.', 2, tag_map[5])
+  u.create_lesson("2013 Trek Calendars Available", "If you’re already thinking about that perfect gift for the Star Trek fan in your life… or for yourself, a classic standby awaits. Danilo’s 2013 Star Trek calendars. They’re offering two Trek calendars this year, Star Trek 2013 Calendar.", 1, tag_map[6])
+  u.create_lesson("Holographic Love", "Star Trek is a worldwide phenomenon. StarTrek.com frequently presents excerpts from the latest issue of Star Trek Magazine, which is published out of England and available internationally. the official Star Trek magazine of Italy. ", 1, tag_map[7])
+  u.create_lesson("Alimentazione", "I fattori che scatenano la prostatite sono molteplici e talvolta possono agire contemporaneamente, dando luogo a diverse forme di prostatite. Le principali cause della prostatite possono essere: batteri, che risalgono il condotto urinario e si depositano nella prostata.", 2, tag_map[8])
+  u.create_lesson("Come Si Calcola I Giorno Di Fertilità?", "ciao a tutti cerco un vostro aiuto vorrei calcolare il giorno fertile. le mestruazione sono venute 27 marzo ed ho avuto 46 giorni di ritardo ed arriva fino 40 giorni cosa ci devo mettere non ci capisco più nulla", 3, tag_map[9])
+  u.create_lesson("Educazione figli", "ho un bimbo bellisimo di 3 anni e mezzo beh, è già la seconda volta che il papà lo picchia con la cinta xkè ha disubbidito. Ebbene Nicol va col faccino mogio mogio dal suo papà e gli dice e il papà gli risponde \" prima di cena ti cinghio lo stesso e al parco non ci vai\"!!!", 1, tag_map[0])
+  u.create_lesson("Lazio, nuovo caso Fiorito dell'Idv", "La Gdf interviene dopo una segnalazione della Banca d'Italia. L'indagine riguarda i fondi del gruppo dell'Italia dei valori e l'utilizzo fattone dal responsabile, Vincenzo Salvatore Maruccio, che è anche segretario regionale del partito", 2, tag_map[1])
+  u.create_lesson("Ufologia", "Questo Database di oltre 300 immagini di Cerchi nel grano è suddiviso in diverse gallerie che riportano i vari dati sulla realizzazione. Le immagini sono state accuratamente cercate in rete e dopo averle sel ezionate", 1, tag_map[2])
   
-  admin.create_lesson('Chimica Uno', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
-  admin.create_lesson('Chimica Due', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
-  admin.create_lesson('Chimica Tre', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
-admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
-  admin.create_lesson('Chimica Cinque', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
-  admin.create_lesson('Chimica Sei', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
-  admin.create_lesson('Chimica Sette', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
-  admin.create_lesson('Chimica Otto', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
-  admin.create_lesson('Chimica Nove', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
-  admin.create_lesson('Chimica Dieci', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
-  admin.create_lesson('Chimica Undici', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
-  admin.create_lesson('Chimica Dodici', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
-  admin.create_lesson('Chimica Tredici', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
-  admin.create_lesson('Chimica Quattordici', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1)
+  admin.create_lesson('Chimica Uno', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[3])
+  admin.create_lesson('Chimica Due', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[4])
+  admin.create_lesson('Chimica Tre', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[5])
+admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[6])
+  admin.create_lesson('Chimica Cinque', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[7])
+  admin.create_lesson('Chimica Sei', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[8])
+  admin.create_lesson('Chimica Sette', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[9])
+  admin.create_lesson('Chimica Otto', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[0])
+  admin.create_lesson('Chimica Nove', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[1])
+  admin.create_lesson('Chimica Dieci', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[2])
+  admin.create_lesson('Chimica Undici', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[3])
+  admin.create_lesson('Chimica Dodici', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[4])
+  admin.create_lesson('Chimica Tredici', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[5])
+  admin.create_lesson('Chimica Quattordici', 'Chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno, chimica parte uno', 1, tag_map[6])
   
   types = {0 => 'Video', 1 => 'Audio', 2 => 'Image'}
   descriptions = []
@@ -171,7 +135,7 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
     x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[rand(images.size)]) : nil)
     x.user_id = admin.id
     x.sti_type = sti_type
-    x.tags_as_array_of_strings = tag_map[i%10]
+    x.tags = tag_map[i%10]
     x.save!
   end
   
@@ -221,7 +185,7 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
     x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[rand(images.size)]) : nil)
     x.user_id = u.id
     x.sti_type = sti_type
-    x.tags_as_array_of_strings = tag_map[i%10]
+    x.tags = tag_map[i%10]
     x.save!
   end
   
@@ -286,7 +250,7 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   end
   
   Lesson.all.each do |l|
-    l.publish
+    raise Exception if !l.publish
   end
   
   cont = 0
@@ -305,7 +269,7 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
       admin.bookmark 'Lesson', l.id
     end
     if l.subject_id == 3
-      l.copy admin.id
+      raise Exception if !l.copy(admin.id)
     end
   end
   
@@ -439,7 +403,7 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   galliani.like(35)
   
   Lesson.last.modify
-  Lesson.last.copy(admin.id)
+  raise Exception if !Lesson.last.copy(admin.id)
   Lesson.last.modify
   
   admin.like(Bookmark.where(:user_id => admin.id, :bookmarkable_type => 'Lesson').first.id)
