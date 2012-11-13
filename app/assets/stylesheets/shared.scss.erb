@@ -380,6 +380,12 @@
 		  width:99%;
 		  padding:0.3% 0% 0.3% 1%;
 			@include float-content;
+			
+	    p {
+		    font-size:80%; 
+			  padding-top:0.6%;
+		  }
+	
 			/*audio*/
 			.audio {
 		    @include iconeElements;
@@ -494,12 +500,14 @@
 }
 .selectButton {
   width: 300px;
-  padding: 0px;
+	height:110px;
+	padding: 0px;
   
 	input {
 	  border:none;
 		background-color:transparent;
 		cursor:pointer;
+		
 	}
 	::-webkit-input-placeholder { 
 	  color:#fff; 
@@ -515,35 +523,44 @@
     opacity: 0;
     -moz-opacity: 0;
 	}
+	
+
 	.uploadFileButton {
     position: absolute;
-    left: 30px;
-    top: 45px;
+    left: 20px;
+    top: 15px;
     z-index: 0;
-    width:54px;
-		height:54px;
-		background: url(<%= asset_path 'add_upload_element.svg' %>) 0 0 no-repeat;
-		background-size: 9em;
+    width:64px;
+		height:64px;
+		background: url(<%= asset_path 'add_upload_element.svg' %>)  no-repeat;
+		background-position: -1em -1em; 
+		background-size: 13.8em 6.8em;
+		&::-moz-focus-inner {
+      border: 0;
+	  }
 		&:hover {
-		  background: url(<%= asset_path 'add_upload_element.svg' %>) 0 0 no-repeat;
-		  background-size: 9em;
-		  background-position: -4.5em 0; 
+		  background: url(<%= asset_path 'add_upload_element.svg' %>)  no-repeat;
+		  background-position: -7.8em -1em; 
+			background-size: 13.8em 6.8em;
+			
 		}
 	}
   .submitButton {
     margin: 0;
     padding: 0px;
     display: inline;
+		
   }
   .fk_carica_elemento_file {
     position: absolute;
-		width:180px;
+		width:140px;
 		padding:5px 20px;
-    left: 100px;
-    top: 60px;
+    left: 90px;
+    top: 30px;
     z-index: 0;
     background-color:#454343;
     -moz-border-radius: 4px;
+		border-radius: 4px;
     -webkit-border-radius: 4px;
 		text-align:center;
 	}
@@ -551,7 +568,7 @@
 .barraLoading {
 	  width:100%; 
 		background-color:#fff;
-		padding-top:30px;
+		height:60px;
 	}
 .lower {
   text-transform: lowercase;
