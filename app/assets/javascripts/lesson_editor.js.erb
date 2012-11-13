@@ -2,10 +2,15 @@ $(document).ready(function() {
   $('#slide-numbers').sortable({
       items: "li:not(.unsortable)",
       start: function(event, ui) {
-          console.log("Start position: " + (parseInt(ui.item.index()) + 1));
+        ui.item.startPos = ui.item.index() + 1;
       },
       stop: function(event, ui) {
-          console.log("New position: " + (parseInt(ui.item.index()) + 1));
+        ui.item.endPos = ui.item.index() + 1;
+        ui.item.find("a").text((parseInt(ui.item.index()) + 1));
+        $(this).find('li:not(:last)').each(function(i){
+          var current_i = (parseInt(i)+1);
+          $(this).find('a').text(current_i);
+        });
       }
   });
   masked = $("._mask_x a:not('._choose')");
