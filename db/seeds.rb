@@ -265,8 +265,8 @@ admin.create_lesson('Chimica Quattro', 'Chimica parte uno, chimica parte uno, ch
   end
   
   Lesson.all.each do |l|
-    if l.subject_id == 2
-      admin.bookmark 'Lesson', l.id
+    if [2, 3].include? l.subject_id
+      raise Exception if !admin.bookmark('Lesson', l.id)
     end
     if l.subject_id == 3
       raise Exception if !l.copy(admin.id)
