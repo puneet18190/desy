@@ -27,5 +27,6 @@
 # Media elements caricati
 /public/media_elements
 
-# Seed immagini
+# Seeds development
 /db/seeds/*
+/script/development_seeds.rb
