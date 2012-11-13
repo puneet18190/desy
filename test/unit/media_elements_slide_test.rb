@@ -136,7 +136,8 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
     @lesson.copied_not_modified = false
     @lesson.user_id = 1
-    @lesson.save
+    @lesson.tags = 'pippo, pluto, paperino, topolino'
+    assert_obj_saved @lesson
     @new_slide = Slide.where(:lesson_id => @lesson.id).first
     assert_equal 'cover', @new_slide.kind
     @media_elements_slide.slide_id = @new_slide.id
@@ -348,7 +349,8 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
     @lesson.copied_not_modified = false
     @lesson.user_id = 1
-    @lesson.save
+    @lesson.tags = 'pippo, pluto, paperino, topolino'
+    assert_obj_saved @lesson
     @new_slide = Slide.where(:lesson_id => @lesson.id).first
     assert_equal 'cover', @new_slide.kind
     @media_elements_slide.slide_id = @new_slide.id
