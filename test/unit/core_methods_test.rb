@@ -211,11 +211,12 @@ class CoreMethodsTest < ActiveSupport::TestCase
   end
   
   test 'create_lesson' do
-    assert !User.new.create_lesson('te', 'dsf', 1)
+    assert !User.new.create_lesson('te', 'dsf', 1, 'gatto, cane, topo, orso')
     @user = User.find 1
     assert UsersSubject.where(:user_id => 1, :subject_id => 2).empty?
-    assert !@user.create_lesson('te', 'dsf', 2)
-    resp = @user.create_lesson('gs', 'gshsf', 3)
+    assert !@user.create_lesson('te', 'dsf', 2, 'gatto, cane, topo, orso')
+    assert !@user.create_lesson('te', 'dsf', 2, 'gatto, cane, topo')
+    resp = @user.create_lesson('gs', 'gshsf', 3, 'gatto, cane, topo, orso')
     assert !resp.nil?
     assert_equal 'gs', resp.title
     assert_equal 'gshsf', resp.description
@@ -224,6 +225,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 1, resp.user_id
     assert_equal false, resp.copied_not_modified
     assert_equal false, resp.is_public
+    assert_tags resp, ['gatto', 'cane', 'orso', 'topo']
   end
   
   test 'destroy_lesson_with_notifications' do
@@ -370,11 +372,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
   
   test 'change_position_in_virtual_classroom_playlist' do
     user = User.find 2
-    lesson1 = user.create_lesson 'lesson1', 'lesson1', 1
-    lesson2 = user.create_lesson 'lesson2', 'lesson2', 1
-    lesson3 = user.create_lesson 'lesson3', 'lesson3', 1
-    lesson4 = user.create_lesson 'lesson4', 'lesson4', 1
-    lesson5 = user.create_lesson 'lesson5', 'lesson5', 1
+    lesson1 = user.create_lesson 'lesson1', 'lesson1', 1, 'gatto, cane, topo, orso'
+    lesson2 = user.create_lesson 'lesson2', 'lesson2', 1, 'gatto, cane, topo, orso'
+    lesson3 = user.create_lesson 'lesson3', 'lesson3', 1, 'gatto, cane, topo, orso'
+    lesson4 = user.create_lesson 'lesson4', 'lesson4', 1, 'gatto, cane, topo, orso'
+    lesson5 = user.create_lesson 'lesson5', 'lesson5', 1, 'gatto, cane, topo, orso'
     assert !lesson1.nil? && !lesson2.nil? && !lesson3.nil? && !lesson4.nil? && !lesson5.nil?
     cont = 2
     [lesson1, lesson2, lesson3, lesson4, lesson5].each do |l|
@@ -477,7 +479,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert x.add_to_playlist
     assert VirtualClassroomLesson.find(x.id).in_playlist?
     assert_equal 1, VirtualClassroomLesson.count
-    lesson1 = User.find(1).create_lesson 'lesson1', 'lesson1', 1
+    lesson1 = User.find(1).create_lesson 'lesson1', 'lesson1', 1, 'gatto, cane, topo, orso'
     xx = VirtualClassroomLesson.new
     xx.lesson_id = lesson1.id
     xx.user_id = 1
@@ -495,7 +497,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !x.remove_from_playlist
     assert_equal 1, x.errors.messages[:base].length
     assert_match /There was a problem removing your lesson from the playlist/, x.errors.messages[:base].first
-    lesson1 = User.find(1).create_lesson 'lesson1', 'lesson1', 1
+    lesson1 = User.find(1).create_lesson 'lesson1', 'lesson1', 1, 'gatto, cane, topo, orso'
     xx = VirtualClassroomLesson.new
     xx.lesson_id = lesson1.id
     xx.user_id = 1
@@ -557,7 +559,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
   
   test 'like_and_dislike' do
     u = User.find(1)
-    le = u.create_lesson('grg', 'fsbfs', 1)
+    le = u.create_lesson('grg', 'fsbfs', 1, 'gatto, cane, topo, orso')
     assert !User.new.like(le.id)
     assert !u.like(le.id)
     assert !u.like(1000)
