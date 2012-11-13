@@ -22,8 +22,6 @@ class MediaElementsController < ApplicationController
   def create
     media_element = MediaElement.new(params[:media_element]) { |me| me.user = @current_user }
 
-    logger.info media_element.tags
-
     if media_element.save
       render json: { message: I18n.t('forms.media_element.messages.success') }
       #return render json:
