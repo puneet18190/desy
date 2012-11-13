@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize_location
-    @where = params[:controller]
+    @where = controller_name
   end
   
   def authenticate
