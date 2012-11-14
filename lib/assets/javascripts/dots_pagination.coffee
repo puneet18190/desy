@@ -76,9 +76,9 @@ class DotsPagination
     $nearLink = 
       if $this.is nearLinkSelector
         if page == pageLimit
-          $('<a href="#" role="disabled"></a>')
+          $('<a/>', role: "disabled")
         else
-          $('<a href="#"></a>')
+          $('<a/>')
             .data('page', page + pageIncrement)
             .on('click', { direction: direction }, @changePage)
             .on('mouseenter', @pageLinkMouseEnter)
@@ -95,6 +95,9 @@ class DotsPagination
       $this[insertNearLinkFunction].call($this, $nearLink)
       @$pages.css(left: -$this.outerWidth(true)) if direction == 'prev'
 
-    @$pages.animate(left: "+=#{animateLeftSign}#{$this.outerWidth(true)}", complete: callback(page))
+    @$pages.animate(
+      { left: "+=#{animateLeftSign}#{$this.outerWidth(true)}" }, 
+      { complete: () -> callback(page) } if callback
+    )
 
 window.DotsPagination = DotsPagination

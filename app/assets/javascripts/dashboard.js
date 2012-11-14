@@ -47,34 +47,15 @@ function getHtmlPagination(pos, pages_amount) {
     $next_attrs.data = { page: pos+1 };
   }
 
-  var $prev = $('<span/>', $prev_attrs);
-  var $next = $('<span/>', $next_attrs);
-  var $current = $('<span/>', { role: 'current', data: { page: pos } });
   var $pagination = $('<span/>', { 'class': 'dots_pagination' });
-  var $pages =  $('<span/>', { role: 'pages' });
 
   $pagination.append(
-    $pages
-      .append($prev)
-      .append($current)
-      .append($next)
+    $('<span/>', { role: 'pages' })
+      .append( $('<a/>', $prev_attrs) )
+      .append( $('<a/>', { role: 'current', data: { page: pos } }) )
+      .append( $('<a/>', $next_attrs) )
   );
   return $pagination;
-
-  // var substitute = "<span class=\"dots_pagination\"><span role=\"pages\"><a data-page=\"";
-  // if(pos <= 1) {
-  //   substitute += ((pos - 1) + "\" role=\"disabled\"></a>");
-  // } else {
-  //   substitute += ((pos - 1) + "\"></a>");
-  // }
-  // substitute += ("<a data-page=\"" + pos + "\" role=\"current\"></a>");
-  // if(pos >= pages_amount) {
-  //   substitute += "<a data-page=\"" + (pos + 1) + "\" role=\"disabled\"></a>"
-  // } else {
-  //   substitute += "<a data-page=\"" + (pos + 1) + "\"></a>"
-  // }
-  // substitute += "</span></span>";
-  // return substitute;
 }
 
 function reloadMediaElementsDashboardPagination(pos, pages_amount) {
@@ -102,14 +83,12 @@ function reloadMediaElementsDashboardPagination(pos, pages_amount) {
 
 function reloadLessonsDashboardPagination(pos, pages_amount) {
   if(pages_amount == 0) {
-    $('#dashboard_pagination').html('');
-    $('#dashboard_pagination').data('lessons-tot', 0);
-    $('#dashboard_pagination').data('lessons-page', 0);
+    $('#dashboard_pagination').empty().data({ 'lessons-tot': 0, 'lessons-page': 0 });
     return;
   }
-  $('#dashboard_pagination').html(getHtmlPagination(pos, pages_amount));
-  $('#dashboard_pagination').data('lessons-tot', pages_amount);
-  $('#dashboard_pagination').data('lessons-page', pos);
+  $('#dashboard_pagination')
+    .html(getHtmlPagination(pos, pages_amount))
+    .data({ 'lessons-tot': pages_amount,'lessons-page': pos });
   $(document).ready(function() {
     var prevPage = function(prevPage) {
       changePageDashboardLessons(pos, (pos - 1), pages_amount);
