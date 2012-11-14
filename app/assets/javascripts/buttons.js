@@ -70,8 +70,8 @@ function previewLesson(lesson_id, destination) {
 }
 
 function publishLesson(lesson_id, destination) {
-  var captions_container = $('#popup_captions_container');
-  showConfirmPopUp(captions_container.data('publish-title'), captions_container.data('publish-confirm'), captions_container.data('publish-yes'), captions_container.data('publish-no'), function() {
+  var captions = $('#popup_captions_container');
+  showConfirmPopUp(captions.data('publish-title'), captions.data('publish-confirm'), captions.data('publish-yes'), captions.data('publish-no'), function() {
     $('#dialog-confirm').css('display', 'none');
     $.ajax({
       type: 'post',
@@ -105,9 +105,16 @@ function removeLesson(lesson_id, destination, current_url, reload) {
 }
 
 function unpublishLesson(lesson_id, destination) {
-  $.ajax({
-    type: 'post',
-    url: '/lessons/' + lesson_id + '/unpublish?destination=' + destination
+  var captions = $('#popup_captions_container');
+  showConfirmPopUp(captions.data('unpublish-title'), captions.data('unpublish-confirm'), captions.data('unpublish-yes'), captions.data('unpublish-no'), function() {
+    $('#dialog-confirm').css('display', 'none');
+    $.ajax({
+      type: 'post',
+      url: '/lessons/' + lesson_id + '/unpublish?destination=' + destination
+    });
+    closePopUp('dialog-confirm');
+  }, function() {
+    closePopUp('dialog-confirm');
   });
 }
 

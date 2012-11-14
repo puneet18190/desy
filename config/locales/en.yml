@@ -157,11 +157,16 @@ en:
     playlist: 'Your playlist is empty'
   popups: # ok = messaggio di successo, yes = caption confermo, no = caption non confermo, confirm = messaggio di conferma, error = messaggio di errore, title = titolo messaggio di conferma
     report_ok: 'The report was sent successfully'
-    publish_confirm: "Every media element in your lesson will be automatically shared."
+    publish_confirm: 'Every media element in your lesson will be automatically shared'
     publish_title: 'Sharing a lesson'
     publish_yes: 'Publish the lesson'
     publish_no: 'Cancel'
     publish_ok: 'The lesson has been published'
+    unpublish_confirm: 'Every person who is following your lesson will lose it'
+    unpublish_title: 'Unpublishing a lesson'
+    unpublish_yes: 'Unpublish the lesson'
+    unpublish_no: 'Cancel'
+    unpublish_ok: 'The lesson has been unpublished'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'
