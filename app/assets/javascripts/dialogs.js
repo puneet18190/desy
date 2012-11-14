@@ -14,7 +14,7 @@ function showTimedPopUp(content, id) {
       open: function(event, ui) {
         setTimeout(function() {
           closePopUp(id);
-        }, window.desy.timeOutDialog);
+        }, 5000);
       }
     });
   }
