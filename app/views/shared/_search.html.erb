@@ -12,7 +12,7 @@
             <option value="media_elements" <%= @where == 'media_elements' ? "selected=\"selected\"".html_safe : '' %>><%= t('captions.media_elements') %></option>
           </select>
         </td>
-        <td><a class="cerca">&nbsp;</a><!--%= image_submit_tag(asset_path('cerca.png')) %--></td>
+        <td><a id="search_general_submit" class="cerca current">&nbsp;</a></td>
       </tr>
     </table>
   </form>

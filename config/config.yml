@@ -6,6 +6,8 @@ min_tags_for_item: 4
 admin_email: 'nanjing@china.gov'
 # APPLICATION LANGUAGE
 application_language: 'en'
+# DIALOGS
+seconds_for_timeout_dialogs: 2500
 # DASHBOARD PAGINATION
 lessons_for_page_in_dashboard: 5
 lesson_pages_in_dashboard: 3
@@ -20,8 +22,6 @@ expanded_media_element_pagination: 14
 expanded_media_element_pagination_options: [14, 21, 28]
 # NOTIFICATIONS
 notifications_loaded_together: 8
-# DIALOGS
-seconds_for_timeout_dialogs: 10000
 # VIRTUAL CLASSROOM
 lessons_for_page_in_virtual_classroom: 12
 playlist_lessons_loaded_together: 10

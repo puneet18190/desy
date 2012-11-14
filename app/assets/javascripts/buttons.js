@@ -19,12 +19,18 @@ function addLesson(lesson_id, destination, current_url, reload) {
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
     $.ajax({
       type: 'post',
+      dataType: 'json',
       url: '/lessons/' + lesson_id + '/add?destination=' + destination,
       success: function(data) {
-        $.ajax({
-          type: 'get',
-          url: redirect_url
-        });
+        if(data.ok) {
+          $('#popup_captions_container').data('temporary-msg', data.msg);
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
       }
     });
   }
@@ -38,16 +44,28 @@ function copyLesson(lesson_id, destination) {
 }
 
 function destroyLesson(lesson_id, destination, current_url) {
-  var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
-  $.ajax({
-    type: 'post',
-    url: '/lessons/' + lesson_id + '/destroy?destination=' + destination,
-    success: function(data) {
-      $.ajax({
-        type: 'get',
-        url: redirect_url
-      });
-    }
+  var captions = $('#popup_captions_container');
+  showConfirmPopUp(captions.data('destroy-lesson-title'), captions.data('destroy-lesson-confirm'), captions.data('destroy-lesson-yes'), captions.data('destroy-lesson-no'), function() {
+    $('#dialog-confirm').css('display', 'none');
+    var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      url: '/lessons/' + lesson_id + '/destroy?destination=' + destination,
+      success: function(data) {
+        if(data.ok) {
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
+      }
+    });
+    closePopUp('dialog-confirm');
+  }, function() {
+    closePopUp('dialog-confirm');
   });
 }
 
@@ -70,9 +88,16 @@ function previewLesson(lesson_id, destination) {
 }
 
 function publishLesson(lesson_id, destination) {
-  $.ajax({
-    type: 'post',
-    url: '/lessons/' + lesson_id + '/publish?destination=' + destination
+  var captions = $('#popup_captions_container');
+  showConfirmPopUp(captions.data('publish-title'), captions.data('publish-confirm'), captions.data('publish-yes'), captions.data('publish-no'), function() {
+    $('#dialog-confirm').css('display', 'none');
+    $.ajax({
+      type: 'post',
+      url: '/lessons/' + lesson_id + '/publish?destination=' + destination
+    });
+    closePopUp('dialog-confirm');
+  }, function() {
+    closePopUp('dialog-confirm');
   });
 }
 
@@ -86,21 +111,34 @@ function removeLesson(lesson_id, destination, current_url, reload) {
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
     $.ajax({
       type: 'post',
+      dataType: 'json',
       url: '/lessons/' + lesson_id + '/remove?destination=' + destination,
       success: function(data) {
-        $.ajax({
-          type: 'get',
-          url: redirect_url
-        });
+        if(data.ok) {
+          $('#popup_captions_container').data('temporary-msg', data.msg);
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
       }
     });
   }
 }
 
 function unpublishLesson(lesson_id, destination) {
-  $.ajax({
-    type: 'post',
-    url: '/lessons/' + lesson_id + '/unpublish?destination=' + destination
+  var captions = $('#popup_captions_container');
+  showConfirmPopUp(captions.data('unpublish-title'), captions.data('unpublish-confirm'), captions.data('unpublish-yes'), captions.data('unpublish-no'), function() {
+    $('#dialog-confirm').css('display', 'none');
+    $.ajax({
+      type: 'post',
+      url: '/lessons/' + lesson_id + '/unpublish?destination=' + destination
+    });
+    closePopUp('dialog-confirm');
+  }, function() {
+    closePopUp('dialog-confirm');
   });
 }
 
@@ -128,28 +166,46 @@ function addMediaElement(media_element_id, destination, current_url, reload) {
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
     $.ajax({
       type: 'post',
+      dataType: 'json',
       url: '/media_elements/' + media_element_id + '/add?destination=' + destination,
       success: function(data) {
-        $.ajax({
-          type: 'get',
-          url: redirect_url
-        });
+        if(data.ok) {
+          $('#popup_captions_container').data('temporary-msg', data.msg);
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
       }
     });
   }
 }
 
 function destroyMediaElement(media_element_id, destination, current_url) {
-  var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
-  $.ajax({
-    type: 'post',
-    url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination,
-    success: function(data) {
-      $.ajax({
-        type: 'get',
-        url: redirect_url
-      });
-    }
+  var captions = $('#popup_captions_container');
+  showConfirmPopUp(captions.data('destroy-media-element-title'), captions.data('destroy-media-element-confirm'), captions.data('destroy-media-element-yes'), captions.data('destroy-media-element-no'), function() {
+    $('#dialog-confirm').css('display', 'none');
+    var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination,
+      success: function(data) {
+        if(data.ok) {
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
+      }
+    });
+    closePopUp('dialog-confirm');
+  }, function() {
+    closePopUp('dialog-confirm');
   });
 }
 
@@ -163,12 +219,18 @@ function removeMediaElement(media_element_id, destination, current_url, reload) 
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
     $.ajax({
       type: 'post',
+      dataType: 'json',
       url: '/media_elements/' + media_element_id + '/remove?destination=' + destination,
       success: function(data) {
-        $.ajax({
-          type: 'get',
-          url: redirect_url
-        });
+        if(data.ok) {
+          $('#popup_captions_container').data('temporary-msg', data.msg);
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
       }
     });
   }

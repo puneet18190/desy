@@ -18,6 +18,7 @@ class LessonsController < ApplicationController
   end
   
   def add
+    @ok_msg = t('popups.add_lesson_ok')
     if @ok
       if !@current_user.bookmark('Lesson', @lesson_id)
         @ok = false
@@ -30,7 +31,7 @@ class LessonsController < ApplicationController
       prepare_lesson_for_js
       render 'lessons/reload_compact.js'
     else
-      render :nothing => true
+      render :json => {:ok => @ok, :msg => (@ok ? @ok_msg : @error)}
     end
   end
   
@@ -56,7 +57,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_destroying')
     end
-    render :nothing => true
+    render :json => {:ok => @ok, :msg => @error}
   end
   
   def dislike
@@ -94,6 +95,7 @@ class LessonsController < ApplicationController
   end
   
   def publish
+    @ok_msg = t('popups.publish_ok')
     if @ok
       if !@lesson.publish
         @ok = false
@@ -111,6 +113,7 @@ class LessonsController < ApplicationController
   end
   
   def unpublish
+    @ok_msg = t('popups.unpublish_ok')
     if @ok
       if !@lesson.unpublish
         @ok = false
@@ -128,6 +131,7 @@ class LessonsController < ApplicationController
   end
   
   def remove
+    @ok_msg = t('popups.remove_lesson_ok')
     if @ok
       bookmark = Bookmark.where(:user_id => @current_user.id, :bookmarkable_type => 'Lesson', :bookmarkable_id => @lesson_id).first
       if bookmark.nil?
@@ -147,7 +151,7 @@ class LessonsController < ApplicationController
       prepare_lesson_for_js
       render 'lessons/reload_compact.js'
     else
-      render :nothing => true
+      render :json => {:ok => @ok, :msg => (@ok ? @ok_msg : @error)}
     end
   end
   

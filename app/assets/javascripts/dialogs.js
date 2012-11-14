@@ -14,7 +14,7 @@ function showTimedPopUp(content, id) {
       open: function(event, ui) {
         setTimeout(function() {
           closePopUp(id);
-        }, window.desy.timeOutDialog);
+        }, $('#popup_parameters_container').data('timeout'));
       }
     });
   }
@@ -89,9 +89,9 @@ function showImageMediaElementPopUp(id) {
   }
 }
 
-function showConfirmPopUp(content, msg_ok, msg_no, callback_ok, callback_no) {
+function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_no) {
   var obj = $('#dialog-confirm');
-  content = '<img src="/assets/alert.png"/><h1>' + content + '</h1>';
+  content = '<img src="/assets/alert.png"/><h1>' + title + '</h1><p>' + content + '</p>';
   var dialog_buttons = {};
   dialog_buttons[msg_ok] = callback_ok;
   dialog_buttons[msg_no] = callback_no;

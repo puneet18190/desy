@@ -72,7 +72,6 @@ $(document).ready(function() {
   
   // FORMS
   
-  //   REPORT
   $('body').on('mouseover', '._report_lesson_click', function() {
     var obj = $('#' + this.id + ' a._reportable_icon');
     if(!obj.hasClass('_report_selected')) {
@@ -207,13 +206,13 @@ $(document).ready(function() {
   $('body').on('click', '._clickable_tag_for_lessons', function() {
     var param = $(this).data('param');
     $('#lessons_tag_kind_for_search').attr('value', param);
-    $('#submit_search_lessons').submit();
+    $('#search_lessons').submit();
   });
   
   $('body').on('click', '._clickable_tag_for_media_elements', function() {
     var param = $(this).data('param');
     $('#media_elements_tag_kind_for_search').attr('value', param);
-    $('#submit_search_media_elements').submit();
+    $('#search_media_elements').submit();
   });
   
   
@@ -469,20 +468,65 @@ $(document).ready(function() {
     $(this).attr('value', '');
     $(this).css('color', '#939393');
     $('#general_tag_kind_for_search').attr('value', '0');
+    $('#search_general_submit').removeClass('current');
   });
   
   $('body').on('focus', '#lessons_tag_reader_for_search', function() {
     $(this).attr('value', '');
     $(this).css('color', '#939393');
     $('#lessons_tag_kind_for_search').attr('value', '0');
+    $('#search_lessons_submit').removeClass('current');
   });
   
   $('body').on('focus', '#media_elements_tag_reader_for_search', function() {
     $(this).attr('value', '');
     $(this).css('color', '#939393');
     $('#media_elements_tag_kind_for_search').attr('value', '0');
+    $('#search_media_elements_submit').removeClass('current');
   });
-
+  
+  $('body').on('click', '#search_general_submit', function() {
+    if(!$(this).hasClass('current')) {
+      $('#search_general').submit();
+      $(this).addClass('current');
+    }
+  });
+  
+  $('body').on('click', '#search_media_elements_submit', function() {
+    if(!$(this).hasClass('current')) {
+      $('#search_media_elements').submit();
+      $(this).addClass('current');
+    }
+  });
+  
+  $('body').on('click', '#search_lessons_submit', function() {
+    if(!$(this).hasClass('current')) {
+      $('#search_lessons').submit();
+      $(this).addClass('current');
+    }
+  });
+  
+  $('body').on('change', '#filter_search_lessons_subject', function() {
+    $('#search_lessons_submit').removeClass('current');
+  });
+  
+  $('body').on('change', '#filter_search_lessons', function() {
+    $('#search_lessons_submit').removeClass('current');
+  });
+  
+  $('body').on('change', '#filter_search_media_elements', function() {
+    $('#search_media_elements_submit').removeClass('current');
+  });
+  
+  $('body').on('change', '._order_media_elements_radio_input', function() {
+    $('#search_media_elements_submit').removeClass('current');
+  });
+  
+  $('body').on('change', '._order_lessons_radio_input', function() {
+    $('#search_lessons_submit').removeClass('current');
+  });
+  
+  
   // FAKE UPLOAD BUTTONS
   new FakeUpload($('._fakeUploadTrigger'));
 
