@@ -161,16 +161,23 @@ function addMediaElement(media_element_id, destination, current_url, reload) {
 }
 
 function destroyMediaElement(media_element_id, destination, current_url) {
-  var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
-  $.ajax({
-    type: 'post',
-    url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination,
-    success: function(data) {
-      $.ajax({
-        type: 'get',
-        url: redirect_url
-      });
-    }
+  var captions = $('#popup_captions_container');
+  showConfirmPopUp(captions.data('destroy-media-element-title'), captions.data('destroy-media-element-confirm'), captions.data('destroy-media-element-yes'), captions.data('destroy-media-element-no'), function() {
+    $('#dialog-confirm').css('display', 'none');
+    var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
+    $.ajax({
+      type: 'post',
+      url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination,
+      success: function(data) {
+        $.ajax({
+          type: 'get',
+          url: redirect_url
+        });
+      }
+    });
+    closePopUp('dialog-confirm');
+  }, function() {
+    closePopUp('dialog-confirm');
   });
 }
 
