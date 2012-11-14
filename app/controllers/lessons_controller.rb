@@ -31,7 +31,7 @@ class LessonsController < ApplicationController
       prepare_lesson_for_js
       render 'lessons/reload_compact.js'
     else
-      render :nothing => true
+      render :json => {:ok => @ok, :msg => (@ok ? @ok_msg : @error)}
     end
   end
   
@@ -57,7 +57,7 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_destroying')
     end
-    render :nothing => true
+    render :json => {:ok => @ok, :msg => @error}
   end
   
   def dislike
@@ -151,7 +151,7 @@ class LessonsController < ApplicationController
       prepare_lesson_for_js
       render 'lessons/reload_compact.js'
     else
-      render :nothing => true
+      render :json => {:ok => @ok, :msg => (@ok ? @ok_msg : @error)}
     end
   end
   

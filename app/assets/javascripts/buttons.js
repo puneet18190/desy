@@ -19,6 +19,7 @@ function addLesson(lesson_id, destination, current_url, reload) {
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
     $.ajax({
       type: 'post',
+      dataType: 'json',
       url: '/lessons/' + lesson_id + '/add?destination=' + destination,
       success: function(data) {
         $.ajax({
@@ -44,6 +45,7 @@ function destroyLesson(lesson_id, destination, current_url) {
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
     $.ajax({
       type: 'post',
+      dataType: 'json',
       url: '/lessons/' + lesson_id + '/destroy?destination=' + destination,
       success: function(data) {
         $.ajax({
@@ -100,6 +102,7 @@ function removeLesson(lesson_id, destination, current_url, reload) {
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
     $.ajax({
       type: 'post',
+      dataType: 'json',
       url: '/lessons/' + lesson_id + '/remove?destination=' + destination,
       success: function(data) {
         $.ajax({
@@ -149,6 +152,7 @@ function addMediaElement(media_element_id, destination, current_url, reload) {
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
     $.ajax({
       type: 'post',
+      dataType: 'json',
       url: '/media_elements/' + media_element_id + '/add?destination=' + destination,
       success: function(data) {
         $.ajax({
@@ -167,6 +171,7 @@ function destroyMediaElement(media_element_id, destination, current_url) {
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
     $.ajax({
       type: 'post',
+      dataType: 'json',
       url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination,
       success: function(data) {
         $.ajax({
@@ -191,6 +196,7 @@ function removeMediaElement(media_element_id, destination, current_url, reload) 
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
     $.ajax({
       type: 'post',
+      dataType: 'json',
       url: '/media_elements/' + media_element_id + '/remove?destination=' + destination,
       success: function(data) {
         $.ajax({

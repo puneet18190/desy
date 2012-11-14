@@ -47,7 +47,7 @@ class MediaElementsController < ApplicationController
       prepare_media_element_for_js
       render 'media_elements/reload.js'
     else
-      render :nothing => true
+      render :json => {:ok => @ok, :msg => (@ok ? @ok_msg : @error)}
     end
   end
   
@@ -60,7 +60,7 @@ class MediaElementsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.media_element.problem_destroying')
     end
-    render :nothing => true
+    render :json => {:ok => @ok, :msg => @error}
   end
   
   def remove
@@ -84,7 +84,7 @@ class MediaElementsController < ApplicationController
       prepare_media_element_for_js
       render 'media_elements/reload.js'
     else
-      render :nothing => true
+      render :json => {:ok => @ok, :msg => (@ok ? @ok_msg : @error)}
     end
   end
   
