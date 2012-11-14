@@ -122,9 +122,6 @@ a.cerca.current {
 	  height:3.5em;
 	}
 }
-
-
-
 .boxViewSingleLesson {
   width:100%;
   padding: 0;
@@ -402,7 +399,6 @@ a.cerca.current {
 		background-color:#fbfafb;
 	}
 }
-
 .boxViewCompactMediaElement {
 	  width:100%;
 		padding: 0;
@@ -666,9 +662,85 @@ a.cerca.current {
 }
 .scrollVerde {
   .jspTrack {
-   background: #504f50;
+   background: #3f3f3f;
   }
  .jspDrag {
   background: #41a62a;
  }
+}
+
+/*ICONOGRAFIA PER DISTINGUERE GLI ELEMENTI DIDATTICI*/
+@mixin iconEditorElement {
+  $button-size: 4.5em;
+  & {
+    float:left;
+		margin-right:5px;
+    width: $button-size;
+    height: $button-size;
+    background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($button-size*2) ($button-size*4);
+    padding:0;
+	}
+	&:hover {
+    cursor: pointer;
+  }
+	&.videoButton {
+	  font-size: 0.5em;
+    background-position: (-$button-size) 0;
+		opacity:0.2;
+	}
+	&.videoButton:hover {
+	  font-size: 0.5em;
+		background-position: 0 0;
+		opacity:1;
+	}
+	&.videoButton.current {
+	  font-size: 0.5em;
+		background-position: 0 0;
+		opacity:1;
+	}
+	&.photoButton {
+	  font-size: 0.5em;
+    background-position: (-$button-size) (-$button-size*2);
+		opacity:0.2;
+	}
+	&.photoButton:hover {
+	  font-size: 0.5em;
+		background-position: 0 (-$button-size*2);
+		opacity:1;
+	}
+	&.photoButton.current {
+	  font-size: 0.5em;
+		background-position: 0 (-$button-size*2);
+		opacity:1;
+	}
+	&.audioButton {
+	  font-size: 0.5em;
+    background-position: (-$button-size) (-$button-size);
+		opacity:0.2;
+	}
+	&.audioButton:hover {
+	  font-size: 0.5em;
+		background-position: 0 (-$button-size);
+		opacity:1;
+	}
+	&.audioButton.current {
+	  font-size: 0.5em;
+		background-position: 0 (-$button-size);
+		opacity:1;
+	}
+	
+ }
+ .videoButton {
+   @include iconEditorElement;
+	 
+}
+.photoButton {
+   @include iconEditorElement;
+	 
+}
+.audioButton {
+   @include iconEditorElement;
+	 
 }
