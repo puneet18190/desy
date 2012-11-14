@@ -48,10 +48,14 @@ function destroyLesson(lesson_id, destination, current_url) {
       dataType: 'json',
       url: '/lessons/' + lesson_id + '/destroy?destination=' + destination,
       success: function(data) {
-        $.ajax({
-          type: 'get',
-          url: redirect_url
-        });
+        if(data.ok) {
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
       }
     });
     closePopUp('dialog-confirm');
@@ -174,10 +178,14 @@ function destroyMediaElement(media_element_id, destination, current_url) {
       dataType: 'json',
       url: '/media_elements/' + media_element_id + '/destroy?destination=' + destination,
       success: function(data) {
-        $.ajax({
-          type: 'get',
-          url: redirect_url
-        });
+        if(data.ok) {
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
       }
     });
     closePopUp('dialog-confirm');
