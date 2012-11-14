@@ -477,7 +477,8 @@ $.fn.ajaxSubmit = function(options) {
                         io.addEventListener('load', cb, false);
                 }
                 setTimeout(checkState,15);
-                form.submit();
+                console.log('ciao');
+                $form.submit();
             }
             finally {
                 // reset attrs and remove "extra" input elements
@@ -1099,7 +1100,7 @@ $.fn.selected = function(select) {
 };
 
 // expose debug var
-$.fn.ajaxSubmit.debug = false;
+$.fn.ajaxSubmit.debug = true;
 
 // helper fn for console logging
 function log() {

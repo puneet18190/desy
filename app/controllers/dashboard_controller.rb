@@ -8,7 +8,7 @@ class DashboardController < ApplicationController
     @media_elements = @current_user.suggested_media_elements(@media_elements_for_page * @media_element_pages)
     @media_elements_emptied = MediaElement.dashboard_emptied? @current_user.id
     @new_media_element = MediaElement.new(params[:media_element])
-    #render_js_or_html_index
+    render_js_or_html_index
   end
   
   private
