@@ -61,7 +61,7 @@ $(document).ready(function() {
     which_item_to_search.attr('selected', 'selected');
   }
   
-
+  
   // DASHBOARD SWITCH
   
   $('#switch_to_lessons').click(function() {
@@ -142,10 +142,10 @@ $(document).ready(function() {
   $('body').on('click', '._report_form_content ._send', function(e) {
     $(this).closest('form').submit();
   });
-
-
+  
+  
   //   NEW MEDIA ELEMENT
-
+  
   $('#new_media_element').on('submit', function(e) {
       e.preventDefault();
       $(this).ajaxSubmit({
@@ -164,10 +164,7 @@ $(document).ready(function() {
           }
       });
   });
-
-
-
-
+  
   
   // FILTERS
   
@@ -209,6 +206,18 @@ $(document).ready(function() {
     $.get(redirect_url);
   });
   
+  $('body').on('click', '._clickable_tag_for_lessons', function() {
+    var param = $(this).data('param');
+    $('#lessons_tag_kind_for_search').attr('value', param);
+    $('#submit_search_lessons').submit();
+  });
+  
+  $('body').on('click', '._clickable_tag_for_media_elements', function() {
+    var param = $(this).data('param');
+    $('#media_elements_tag_kind_for_search').attr('value', param);
+    $('#submit_search_media_elements').submit();
+  });
+  
   
   // EXPAND LESSON
   
@@ -229,7 +238,7 @@ $(document).ready(function() {
   
   // EXPANDED MEDIA ELEMENT
   
-  $('body').on('click', '._close_popup', function() {
+  $('body').on('click', '._close_media_element_preview_popup', function() {
     var param = $(this).data('param');
     closePopUp('dialog-media-element-' + param);
   });

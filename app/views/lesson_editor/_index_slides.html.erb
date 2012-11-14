@@ -1,0 +1,8 @@
+<%- @slides.each_with_index do |slide, index|%>
+  <li class='<%= (index == 0) ? "active  #{slide.kind}" : "#{slide.kind}"%> slides slide-position-<%= slide.position %>'>
+    <%= render :partial => "slide_buttons", :locals => {:slide => slide } %>
+    <div class="slide-content <%= slide.kind%> slide-<%= slide.position %>">
+      <%= render :partial => "lesson_editor/slides/#{slide.kind}" , :locals => { :slide => slide }%>
+    </div>
+  </li>
+<% end %>

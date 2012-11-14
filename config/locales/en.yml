@@ -144,7 +144,7 @@ en:
     my_lessons_filter: 'The lesson filter produced no result'
     my_media_elements_filter: 'The element filter produced no result'
     lessons_result_1: 'No lessons were found associated to tags containing <'
-    lessons_result_2: 'No lessons were found associated to the tag tag <'
+    lessons_result_2: 'No lessons were found associated to the tag <'
     lessons_result_3: '>: try entering a smaller word, or changing your search parameters'
     lessons_result_4: '>: try filtering by a different tag, or changing your search parameters'
     media_elements_result_1: 'No elements were found associated to tags containing <'
