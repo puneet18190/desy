@@ -5,6 +5,7 @@ class LessonsController < ApplicationController
   before_filter :initialize_lesson, :only => [:add, :copy, :like, :remove, :dislike]
   before_filter :initialize_lesson_with_owner, :only => [:destroy, :publish, :unpublish]
   before_filter :initialize_layout, :initialize_paginator, :only => :index
+  before_filter :initialize_lesson_destination, :only => [:add, :copy, :like, :remove, :dislike, :destroy, :publish, :unpublish]
   
   def index
     get_own_lessons
