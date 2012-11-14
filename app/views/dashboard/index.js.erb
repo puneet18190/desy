@@ -15,6 +15,11 @@ if((media_elements_page - 1) * <%= @media_elements_for_page %> >= <%= @media_ele
 
 var to_delete = $('#<%= @delete_item %>');
 to_delete.hide('fade', {}, 500, function() {
+  var temporary_msg = $('#popup_captions_container').data('temporary-msg');
+  if(temporary_msg != '') {
+    showOkPopUp(temporary_msg);
+    $('#popup_captions_container').data('temporary-msg', '');
+  }
   $('#dashboard').replaceWith("<%= j(render(:partial => "dashboard/lessons_and_media_elements")) %>");
   reloadDashboardPages(lessons_page, media_elements_page);
   if('<%= @delete_item %>'.search('media_element') != -1) {
