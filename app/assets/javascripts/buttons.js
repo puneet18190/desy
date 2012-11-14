@@ -22,10 +22,15 @@ function addLesson(lesson_id, destination, current_url, reload) {
       dataType: 'json',
       url: '/lessons/' + lesson_id + '/add?destination=' + destination,
       success: function(data) {
-        $.ajax({
-          type: 'get',
-          url: redirect_url
-        });
+        if(data.ok) {
+          $('#popup_captions_container').data('temporary-msg', data.msg);
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
       }
     });
   }
@@ -109,10 +114,15 @@ function removeLesson(lesson_id, destination, current_url, reload) {
       dataType: 'json',
       url: '/lessons/' + lesson_id + '/remove?destination=' + destination,
       success: function(data) {
-        $.ajax({
-          type: 'get',
-          url: redirect_url
-        });
+        if(data.ok) {
+          $('#popup_captions_container').data('temporary-msg', data.msg);
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
       }
     });
   }
@@ -159,10 +169,15 @@ function addMediaElement(media_element_id, destination, current_url, reload) {
       dataType: 'json',
       url: '/media_elements/' + media_element_id + '/add?destination=' + destination,
       success: function(data) {
-        $.ajax({
-          type: 'get',
-          url: redirect_url
-        });
+        if(data.ok) {
+          $('#popup_captions_container').data('temporary-msg', data.msg);
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
       }
     });
   }
@@ -207,10 +222,15 @@ function removeMediaElement(media_element_id, destination, current_url, reload) 
       dataType: 'json',
       url: '/media_elements/' + media_element_id + '/remove?destination=' + destination,
       success: function(data) {
-        $.ajax({
-          type: 'get',
-          url: redirect_url
-        });
+        if(data.ok) {
+          $('#popup_captions_container').data('temporary-msg', data.msg);
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
       }
     });
   }
