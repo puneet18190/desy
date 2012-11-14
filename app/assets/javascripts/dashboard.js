@@ -32,20 +32,49 @@ function switchToSuggestedLessons() {
 }
 
 function getHtmlPagination(pos, pages_amount) {
-  var substitute = "<span class=\"dots_pagination\"><span role=\"pages\"><a data-page=\"";
+  var $prev_attrs = {};
+  var $next_attrs = {};
+
   if(pos <= 1) {
-    substitute += ((pos - 1) + "\" role=\"disabled\"></a>");
+    $prev_attrs.role = 'disabled';
   } else {
-    substitute += ((pos - 1) + "\"></a>");
+    $prev_attrs.data = { page: pos-1 };
   }
-  substitute += ("<a data-page=\"" + pos + "\" role=\"current\"></a>");
+
   if(pos >= pages_amount) {
-    substitute += "<a data-page=\"" + (pos + 1) + "\" role=\"disabled\"></a>"
+    $next_attrs.role = 'disabled';
   } else {
-    substitute += "<a data-page=\"" + (pos + 1) + "\"></a>"
+    $next_attrs.data = { page: pos+1 };
   }
-  substitute += "</span></span>";
-  return substitute;
+
+  var $prev = $('<span/>', $prev_attrs);
+  var $next = $('<span/>', $next_attrs);
+  var $current = $('<span/>', { role: 'current', data: { page: pos } });
+  var $pagination = $('<span/>', { 'class': 'dots_pagination' });
+  var $pages =  $('<span/>', { role: 'pages' });
+
+  $pagination.append(
+    $pages
+      .append($prev)
+      .append($current)
+      .append($next)
+  );
+  return $pagination;
+
+  // var substitute = "<span class=\"dots_pagination\"><span role=\"pages\"><a data-page=\"";
+  // if(pos <= 1) {
+  //   substitute += ((pos - 1) + "\" role=\"disabled\"></a>");
+  // } else {
+  //   substitute += ((pos - 1) + "\"></a>");
+  // }
+  // substitute += ("<a data-page=\"" + pos + "\" role=\"current\"></a>");
+  // if(pos >= pages_amount) {
+  //   substitute += "<a data-page=\"" + (pos + 1) + "\" role=\"disabled\"></a>"
+  // } else {
+  //   substitute += "<a data-page=\"" + (pos + 1) + "\"></a>"
+  // }
+  // substitute += "</span></span>";
+  // return substitute;
 }
 
 function reloadMediaElementsDashboardPagination(pos, pages_amount) {
@@ -108,4 +137,35 @@ function changePageDashboardLessons(old_pos, pos, pages_amount) {
     $('#suggested_lessons_' + (pos)).css('display', 'block');
     reloadLessonsDashboardPagination(pos, pages_amount);
   });
+}
+
+function asyncFormSubmit($form, resultDiv) {
+    // Create the iframe…
+    var $iframe = $('<iframe/>')
+            .attr("name", "upload_iframe")
+            .attr("id", "upload_iframe")
+            .hide();
+
+    $("body").append($iframe);
+
+    // When iframe loads, copy content back to target
+    var copyIframe = function() {
+        var contents = $iframe.contents().find("body").html();
+        $(resultDiv).html(contents);
+        // Delete the iframe
+        setTimeout(function () { $iframe.remove(); }, 250);
+    }
+    $iframe.one("load", copyIframe);
+
+    // Set properties of form
+    $form.attr("target", "upload_iframe");
+
+    // Submit the form. This triggers the iframe to "load" the
+    // response from the server. Once loaded we can then do other
+    // stuff.
+    $form.submit();
+
+    // This gets replaced by iframe content when ready
+    // $(resultDiv).html("Uploading...");
+    console.log('uploading');
 }

@@ -146,6 +146,7 @@ $(document).ready(function() {
   $('#new_media_element').on('submit', function(e) {
       e.preventDefault();
       $(this).ajaxSubmit({
+          iframe: true,
           success: function(data, status, xhr, element) {
             // console.log(data, status, xhr, element);
             closePopUp('load-media-element');

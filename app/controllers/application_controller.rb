@@ -1,9 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :authenticate, :initialize_location
+  before_filter :authenticate, :initialize_location, :set_custom_headers
   
   private
+
+  def set_custom_headers
+    response.headers["X-Frame-Options"] = "SAMEORIGIN"
+  end
   
   def prepare_lesson_for_js
     if !@lesson.nil?
