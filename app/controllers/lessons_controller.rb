@@ -45,7 +45,6 @@ class LessonsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.lesson.problem_copying')
     end
-    render 'lessons/insert.js'
   end
   
   def destroy

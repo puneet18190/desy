@@ -179,6 +179,10 @@ en:
     add_media_element_ok: 'Now you can use this media element'
     remove_lesson_ok: 'You removed the link of this lesson'
     remove_media_element_ok: 'You removed this media element'
+    after_copy_title: 'You copied the lesson!'
+    after_copy_confirm: 'What would you like to do now?'
+    after_copy_stay_in_page: 'Stay in this page'
+    after_copy_go_to_editor: 'Edit the lesson now'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'
