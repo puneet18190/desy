@@ -1,11 +1,13 @@
 $(document).ready(function() {
   
+  
   // OTHER BUTTONS
   
   $('._load_media_element').click(function(e) {
     e.preventDefault();
     showLoadMediaElementPopUp();
   });
+  
   
   // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
   
@@ -54,11 +56,6 @@ $(document).ready(function() {
   var attr = $('#updated_at_media_elements_radio_input').attr('checked');
   if(typeof(attr) !== 'undefined' && attr !== false) {
     $('#updated_at_media_elements_radio_input').attr('checked', 'checked');
-  }
-  
-  var which_item_to_search = $('#which_item_to_search option').first();
-  if(which_item_to_search.attr('selected') != '') {
-    which_item_to_search.attr('selected', 'selected');
   }
   
   

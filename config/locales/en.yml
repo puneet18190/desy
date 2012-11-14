@@ -147,10 +147,12 @@ en:
     lessons_result_2: 'No lessons were found associated to the tag <'
     lessons_result_3: '>: try entering a smaller word, or changing your search parameters'
     lessons_result_4: '>: try filtering by a different tag, or changing your search parameters'
+    lessons_result_5: 'No lesson was found with the filters you chose'
     media_elements_result_1: 'No elements were found associated to tags containing <'
     media_elements_result_2: 'No elements were found associated to tags containing <'
     media_elements_result_3: '>: try entering a smaller word, or changing your search parameters'
     media_elements_result_4: '>: try filtering by a different tag, or changing your search parameters'
+    media_elements_result_5: 'No element was found with the filters you chose'
     virtual_classroom: 'Your virtual classroom is empty'
     playlist: 'Your playlist is empty'
   popups:

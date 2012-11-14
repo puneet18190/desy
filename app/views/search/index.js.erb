@@ -38,7 +38,7 @@
   });
 <% end %>
 
-<% if my_objects_amount > 0 %>
+<% if my_objects_amount > 0 || @tag.kind_of?(Tag) %>
   $('#<%= my_item %>_search_amount').replaceWith("<%= j(render(:partial => "search/#{my_item}/amount", :locals => {:amount => my_objects_amount})) %>");
 <% else %>
   $('#<%= my_item %>_search_amount').html('');
@@ -48,7 +48,7 @@
   $('#<%= my_item %>_tag_details').replaceWith("<%= j(render(:partial => "search/#{my_item}/tag_details", :locals => {:tags => @tags, :tag => @tag})) %>");
 <% elsif @tag.kind_of?(Tag) %>
   $('._clickable_tag_for_<%= my_item %>').removeClass('current');
-  $('#clickable_tag_<%= @tag %>').addClass('current');
+  $('#clickable_tag_<%= @tag.id %>').addClass('current');
 <% else %>
   $('#<%= my_item %>_tag_details').html('');
 <% end %>
