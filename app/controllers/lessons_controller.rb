@@ -18,6 +18,7 @@ class LessonsController < ApplicationController
   end
   
   def add
+    @ok_msg = t('popups.add_lesson_ok')
     if @ok
       if !@current_user.bookmark('Lesson', @lesson_id)
         @ok = false
@@ -130,6 +131,7 @@ class LessonsController < ApplicationController
   end
   
   def remove
+    @ok_msg = t('popups.remove_lesson_ok')
     if @ok
       bookmark = Bookmark.where(:user_id => @current_user.id, :bookmarkable_type => 'Lesson', :bookmarkable_id => @lesson_id).first
       if bookmark.nil?

@@ -175,6 +175,10 @@ en:
     destroy_media_element_title: 'Delete this element?'
     destroy_media_element_yes: 'Yes I am sure'
     destroy_media_element_no: 'Cancel'
+    add_lesson_ok: 'Now you have a link of this lesson'
+    add_media_element_ok: 'Now you can use this media element'
+    remove_lesson_ok: 'You removed the link of this lesson'
+    remove_media_element_ok: 'You removed this media element'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'

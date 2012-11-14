@@ -34,6 +34,7 @@ class MediaElementsController < ApplicationController
   end
   
   def add
+    @ok_msg = t('popups.add_media_element_ok')
     if @ok
       if !@current_user.bookmark('MediaElement', @media_element_id)
         @ok = false
@@ -63,6 +64,7 @@ class MediaElementsController < ApplicationController
   end
   
   def remove
+    @ok_msg = t('popups.remove_media_element_ok')
     if @ok
       bookmark = Bookmark.where(:user_id => @current_user.id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => @media_element_id).first
       if bookmark.nil?
