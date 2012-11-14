@@ -21,25 +21,25 @@
               <% cont = (cont == 0) ? 1 : 0 %>
             <% end %>
             <% if cont == 1 %>
-              <div class="boxNewLesson" style="float:right">
-                <div class="contentInterno" style="text-align:center;">
+              <div class="boxNewLesson fltrt">
+                <div class="contentInterno">
                   <div class="contentNew">
                     <div class="createButton"><a></a></div>
                     <p><%= t("captions.create_new_lesson") %></p>
                   </div>
                 </div>
-                <div style="height:3.5em;"></div>
+                <div class="vuoto"></div>
               </div>
               </div>
             <% else %>
               <div class="boxNewLesson" style="float:left">
-                <div class="contentInterno" style="text-align:center;">
+                <div class="contentInterno">
                   <div class="contentNew">
                     <div class="createButton"><a></a></div>
                     <p><%= t("captions.create_new_lesson") %></p>
                   </div>
                 </div>
-                <div style="height:3.5em;"></div>
+                <div class="vuoto"></div>
               </div>
             <% end %>
           </div>
@@ -61,13 +61,12 @@
             <% media_elements_block.each do |me| %>
               <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
             <% end %>
-            <div class="boxViewExpandedMediaElement">
-              <div class="contentInterno" style="text-align:center; padding-top:120px;height:154px;">
+            <div class="boxNewMediaElement">
+              <div class="contentNew">
                 <a class="createButton">&nbsp;</a>
-                <p style="padding-top:40px"><%= t("captions.load_new_media_element") %></p>
+                <p><%= t("captions.load_new_media_element") %></p>
               </div>
-              <div style="height:2.4em;background-color:#fbfafb;">
-              </div>
+              <div class="vuoto"></div>
             </div>
           </div>
         <% end %>

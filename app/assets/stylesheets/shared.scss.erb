@@ -85,6 +85,7 @@
 	
 	.contentInterno {
 	  @include contentInterno;
+		text-align:center;
 	}
 	.contentNew {
 	  p {
@@ -100,6 +101,9 @@
 			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 			  cursor: pointer;
 		}
+	}
+	.vuoto {
+	  height:3.5em;
 	}
 }
 
@@ -341,14 +345,7 @@
 		p {
 		  font: 110% 'Nunito', sans-serif;
 		}
-		a.createButton {
-		  background: url(<%= asset_path 'create.png' %>) top center no-repeat;
-			padding:50px;
-			&:hover {
-			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
-			  cursor: pointer;
-			}
-		}
+		
 		
 	}
 	.menuController {
@@ -360,6 +357,36 @@
 		width:90%;
   }
 }
+.boxNewMediaElement {
+  @include contentLayout;
+	float:left;
+	width:200px;
+	margin-right: 2%;
+	margin-bottom:20px;
+	.contentNew {
+	  text-align:center; 
+		padding-top:120px;
+		height:154px;
+		background-color: #FBFAFB;
+		p {
+		  font: 110% 'Nunito', sans-serif;
+			padding-top:40px;
+		}
+		a.createButton {
+		  background: url(<%= asset_path 'create.png' %>) top center no-repeat;
+			padding:50px;
+			&:hover {
+			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+			  cursor: pointer;
+			}
+		}
+	}
+	.vuoto {
+	  height:2.4em;
+		background-color:#fbfafb;
+	}
+}
+
 .boxViewCompactMediaElement {
 	  width:100%;
 		padding: 0;
@@ -620,4 +647,12 @@
 	  @include sharedElements;
     background-position: 0 -2.5em;
 	}
+}
+.scrollVerde {
+  .jspTrack {
+   background: #504f50;
+  }
+ .jspDrag {
+  background: #41a62a;
+ }
 }

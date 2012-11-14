@@ -20,10 +20,10 @@ Desy::Application.routes.draw do
   
   # ACTION BUTTONS FOR MEDIA ELEMENTS
   resources :media_elements, :only => :create
+  post 'media_elements/:media_element_id' => 'media_elements#update', :as => :media_element
   post 'media_elements/:media_element_id/add' => 'media_elements#add'
   post 'media_elements/:media_element_id/destroy' => 'media_elements#destroy'
   post 'media_elements/:media_element_id/remove' => 'media_elements#remove'
-  post 'media_elements/:media_element_id/change_info' => 'media_elements#change_info', :as => :change_media_element_info
   
   # NOTIFICATIONS
   post 'notifications/:notification_id/seen' => 'notifications#seen'
@@ -45,12 +45,10 @@ Desy::Application.routes.draw do
   post 'lesson_editor/delete_slide/:slide_id' => 'lesson_editor#delete_slide', :as => :delete_slide
   get  'lesson_editor/show_gallery/:slide' => 'lesson_editor#show_gallery', :as => :show_gallery
   get  'lesson_editor/save_slide' => 'lesson_editor#save_slide', :as => :save_slide
-	
-	# MEDIA ELEMENTS EDITOR
+  post 'lesson_editor/change_slide_position/:slide_id/' => 'lesson_editor#change_slide_position', :as => :change_slide_position
   
- get  'media_elements_editor/' => 'media_elements_editor#index'
-  
-  
+  # MEDIA ELEMENTS EDITOR
+  get  'media_elements_editor/' => 'media_elements_editor#index'
   
   # SEARCH LESSONS OR MEDIA ELEMENTS
   get  'search' => 'search#index', :as => :search_items

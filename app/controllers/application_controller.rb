@@ -32,8 +32,16 @@ class ApplicationController < ActionController::Base
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @lesson = Lesson.find_by_id @lesson_id
     @ok = !@lesson.nil?
+  end
+  
+  def initialize_lesson_destination
     @destination = params[:destination]
     @ok = false if !ButtonDestinations::LESSONS.include?(@destination)
+  end
+  
+  def initialize_media_element_with_owner_and_private
+    initialize_media_element_with_owner
+    @ok = !@media_element.is_public if @ok
   end
   
   def initialize_media_element_with_owner
@@ -45,6 +53,9 @@ class ApplicationController < ActionController::Base
     @media_element_id = correct_integer?(params[:media_element_id]) ? params[:media_element_id].to_i : 0
     @media_element = MediaElement.find_by_id @media_element_id
     @ok = !@media_element.nil?
+  end
+  
+  def initialize_media_element_destination
     @destination = params[:destination]
     @ok = false if !ButtonDestinations::MEDIA_ELEMENTS.include?(@destination)
   end
