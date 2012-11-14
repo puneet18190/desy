@@ -1,5 +1,7 @@
 <% if @ok %>
-  showOkPopUp('<%= j @ok_msg %>');
+  <% if !@ok_msg.blank? %>
+    showOkPopUp('<%= j @ok_msg %>');
+  <% end %>
   var target = $('#<%= @destination %>_<%= @media_element_id %>');
   <% js_content = j(render(:partial => "media_elements/view_single_compact", :locals => {:media_element => @media_element, :destination => @destination})) %>
   target.replaceWith("<%= js_content %>");

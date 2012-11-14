@@ -38,16 +38,23 @@ function copyLesson(lesson_id, destination) {
 }
 
 function destroyLesson(lesson_id, destination, current_url) {
-  var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
-  $.ajax({
-    type: 'post',
-    url: '/lessons/' + lesson_id + '/destroy?destination=' + destination,
-    success: function(data) {
-      $.ajax({
-        type: 'get',
-        url: redirect_url
-      });
-    }
+  var captions = $('#popup_captions_container');
+  showConfirmPopUp(captions.data('destroy-lesson-title'), captions.data('destroy-lesson-confirm'), captions.data('destroy-lesson-yes'), captions.data('destroy-lesson-no'), function() {
+    $('#dialog-confirm').css('display', 'none');
+    var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
+    $.ajax({
+      type: 'post',
+      url: '/lessons/' + lesson_id + '/destroy?destination=' + destination,
+      success: function(data) {
+        $.ajax({
+          type: 'get',
+          url: redirect_url
+        });
+      }
+    });
+    closePopUp('dialog-confirm');
+  }, function() {
+    closePopUp('dialog-confirm');
   });
 }
 
