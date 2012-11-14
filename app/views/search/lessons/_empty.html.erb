@@ -1,5 +1,7 @@
-<% if @tag.class == Tag %>
+<% if @tag.kind_of?(Tag) %>
   <div class="emptyFilter"><h1><%= t('empty.lessons_result_2') %><%= @tag.word %><%= t('empty.lessons_result_4') %></h1></div>
-<% else %>
+<% elsif !@tag.blank? %>
   <div class="emptyFilter"><h1><%= t('empty.lessons_result_1') %><%= @tag %><%= t('empty.lessons_result_3') %></h1></div>
+<% else %>
+  <div class="emptyFilter"><h1><%= t('empty.lessons_result_5') %></h1></div>
 <% end %>

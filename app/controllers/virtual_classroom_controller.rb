@@ -4,6 +4,7 @@ class VirtualClassroomController < ApplicationController
   PLAYLIST_CONTENT = CONFIG['playlist_lessons_loaded_together']
   
   before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson]
+  before_filter :initialize_lesson_destination, :only => [:add_lesson, :remove_lesson]
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   layout 'virtual_classroom'
   
