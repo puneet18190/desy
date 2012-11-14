@@ -45,7 +45,7 @@
               </table>
             </td>
             <td align="left" rowspan="2">
-              <a id="search_media_elements_submit" class="cerca current">&nbsp;</a>
+              <a id="search_media_elements_submit" class="cerca">&nbsp;</a>
             </td>
           </tr>
           
@@ -63,7 +63,7 @@
   <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) && @tags.any? %>
     <%= render :partial => "search/media_elements/tag_details", :locals => {:tags => @tags, :tag => @tag} %>
   <% else %>
-    <div id="media_elements_tag_details"></div>
+    <div id="media_elements_tag_details" style="margin-bottom:0"></div>
   <% end %>
   
   <br class="clearfloat">
