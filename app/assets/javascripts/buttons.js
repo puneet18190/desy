@@ -70,9 +70,15 @@ function previewLesson(lesson_id, destination) {
 }
 
 function publishLesson(lesson_id, destination) {
-  $.ajax({
-    type: 'post',
-    url: '/lessons/' + lesson_id + '/publish?destination=' + destination
+  var captions_container = $('#popup_captions_container');
+  showConfirmPopUp(captions_container.data('publish-title'), captions_container.data('publish-confirm'), captions_container.data('publish-yes'), captions_container.data('publish-no'), function() {
+    $.ajax({
+      type: 'post',
+      url: '/lessons/' + lesson_id + '/publish?destination=' + destination
+    });
+    closePopUp('dialog-confirm');
+  }, function() {
+    closePopUp('dialog-confirm');
   });
 }
 

@@ -155,8 +155,12 @@ en:
     media_elements_result_5: 'No element was found with the filters you chose'
     virtual_classroom: 'Your virtual classroom is empty'
     playlist: 'Your playlist is empty'
-  popups:
+  popups: # ok = messaggio di successo, yes = caption confermo, no = caption non confermo, confirm = messaggio di conferma, error = messaggio di errore, title = titolo messaggio di conferma
     report_ok: 'The report was sent successfully'
+    publish_confirm: "Every media element in your lesson will be automatically shared."
+    publish_title: 'Sharing a lesson'
+    publish_yes: 'Publish the lesson'
+    publish_no: 'Cancel'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'

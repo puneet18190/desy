@@ -3,3 +3,7 @@
 <div class="timedPopUp" id="dialog-ok" style="display:none"></div>
 
 <div class="confirmPopUp" id="dialog-confirm" style="display:none"></div>
+
+<div id="popup_captions_container" style="display:none" data-publish-confirm="<%= t('popups.publish_confirm').html_safe %>" data-publish-yes="<%= t('popups.publish_yes').html_safe %>" data-publish-no="<%= t('popups.publish_no').html_safe %>" data-publish-title="<%= t('popups.publish_title') %>"></div>
+
+<div id="popup_parameters_container" style="display:none" data-timeout="<%= CONFIG['seconds_for_timeout_dialogs'].to_json %>"></div>

@@ -161,11 +161,21 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 
 }
 
-.ui-dialog .timedPopUp h1,
-.ui-dialog .confirmPopUp h1 {
+.ui-dialog .timedPopUp h1 {
 	font-size: 190% ;
 	color:#5d5c5c;
 	padding-top: 38px;
+  line-height: 1em;
+	
+}
+.ui-dialog .confirmPopUp h1 {
+	font-size: 190% ;
+	color:#5d5c5c;
+	padding-top: 10px;
+  line-height: 1em;
+	
+}
+.ui-dialog .confirmPopUp p {
   line-height: 1em;
 	
 }
@@ -187,7 +197,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-dialog .ui-dialog-content { position: relative; border: 0; padding: .5em 1.5em .5em 1em;  overflow: auto; zoom: 1;}
 .ui-dialog .ui-dialog-buttonpane { text-align: left; border-width: 1px 0 0 0; background-image: none; margin: .5em 0 0 0; padding: .3em 1em .5em .4em; }
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { float: left; position: absolute; top: 7em; left:12em }
-.ui-dialog .ui-dialog-buttonpane button { margin: .5em .4em .5em 0; cursor: pointer; }
+.ui-dialog .ui-dialog-buttonpane button { margin: .5em 1.4em .5em 0; cursor: pointer; }
 .ui-dialog .ui-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
 .ui-draggable .ui-dialog-titlebar { cursor: move; display:none }
 .ui-menu { list-style:none; padding: 2px; margin: 0; display:block; outline: none; }
