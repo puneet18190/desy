@@ -1,1 +1,5 @@
-<a class="<%= Buttons::EDIT %>" title="<%= t('buttons.edit') %>"></a> <!-- TODO qui ci andrà un altro if, con il corrispondente link a seconda che sia un elemento o una lezione -->
+<% if item.kind_of?(MediaElement) %>
+  <a class="<%= Buttons::EDIT %>" title="<%= t('buttons.edit') %>"></a>
+<% else %>
+  <%= link_to '', lesson_editor_path(item.id), :class => Buttons::EDIT, :title => t('buttons.edit') %>
+<% end %>
