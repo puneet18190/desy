@@ -47,7 +47,7 @@
               <% counter = true %>
               <% SearchOrders::LESSONS_SET.each do |so| %>
                 <% my_order_id = "#{so}_lessons_radio_input" %>
-                <td><input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio" <%= counter ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"></label></td>
+                <td><input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_lessons_radio_input" <%= counter ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"></label></td>
                 <td style="vertical-align:middle"><%= SearchOrders::CAPTIONS[so] %></td>
                 </tr>
                 <% counter = false %>
@@ -56,7 +56,7 @@
               </table>
             </td>
             <td align="left" rowspan="2">
-              <%= image_submit_tag(asset_path('cerca.png'), :id => 'submit_search_lessons') %>
+              <a id="search_lessons_submit" class="cerca current">&nbsp;</a>
             </td>
           </tr>
           
