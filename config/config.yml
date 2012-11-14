@@ -7,7 +7,7 @@ admin_email: 'nanjing@china.gov'
 # APPLICATION LANGUAGE
 application_language: 'en'
 # DIALOGS
-seconds_for_timeout_dialogs: 5000
+seconds_for_timeout_dialogs: 4000
 # DASHBOARD PAGINATION
 lessons_for_page_in_dashboard: 5
 lesson_pages_in_dashboard: 3
