@@ -1,7 +1,8 @@
 <% if @ok %>
+  showOkPopUp('<%= j @ok_msg %>');
   var target = $('#<%= @destination %>_<%= @lesson_id %>');
   <% js_content = j(render(:partial => "lessons/view_single_compact", :locals => {:lesson => @lesson, :destination => @destination})) %>
-  target.replaceWith("<%= j js_content %>");
+  target.replaceWith("<%= js_content %>");
 <% else %>
   showErrorPopUp('<%= j @error %>');
 <% end %>

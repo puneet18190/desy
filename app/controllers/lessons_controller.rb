@@ -94,6 +94,7 @@ class LessonsController < ApplicationController
   end
   
   def publish
+    @ok_msg = t('popups.publish_ok')
     if @ok
       if !@lesson.publish
         @ok = false

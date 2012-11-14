@@ -161,6 +161,7 @@ en:
     publish_title: 'Sharing a lesson'
     publish_yes: 'Publish the lesson'
     publish_no: 'Cancel'
+    publish_ok: 'The lesson has been published'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'
