@@ -1,4 +1,4 @@
-<%= form_tag("/lesson_editor/save_slide", :method => :get, :remote => true) do %>
+<%= form_tag "/lesson_editor/save_slide", :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
   <%= hidden_field_tag :slide_id, slide.id %>
     <%- if slide.media_element_at(1) %>
     <!--TODO replace align value from db (after default at 0)-->

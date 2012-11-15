@@ -1,1 +1,8 @@
-alert("slide saved");
+$("body").prepend("<span class='saveButton current _saved'></span>");
+$("._saved").animate({
+    opacity: 0.25,
+    left: '+=50',
+    height: 'toggle'
+  }, 5000, function() {
+    // Animation complete.
+  });
