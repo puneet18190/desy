@@ -959,6 +959,14 @@ html.lesson-editor-layout{
     height: 20px;
     display:block;
   }
+  
+  ._saved{
+    display:none;
+    position: absolute;
+    left:40%;
+    top:30%;
+    width: 5em;
+  }
 }
 
 /** tinyMce style **/

@@ -37,7 +37,6 @@ $(document).ready(function() {
     e.preventDefault();
     tinyMCE.triggerSave();
     var formId = $(this).attr("data-param");
-    console.log($("#"+formId+" textarea").text());
     $('form#'+formId).submit();
   });
   $("#lesson_subject").selectbox();
