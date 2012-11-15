@@ -195,20 +195,19 @@ class User < ActiveRecord::Base
   end
   
   def full_virtual_classroom(page, per_page)
-    page = 1 if page.class != Fixnum || page < 0
-    for_page = 1 if for_page.class != Fixnum || for_page < 0
-    offset = (page - 1) * for_page
+    page = 1 if !page.is_a?(Fixnum) || page <= 0
+    for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
+    offset = (page - 1) * per_page
     resp = {}
-    resp[:last_page] = VirtualClassroomLesson.where('user_id = ?', self.id).offset(offset + per_page).empty?
-    resp[:content] = VirtualClassroomLesson.where('user_id = ?', self.id).order('created_at DESC').offset(offset).limit(per_page)
+    resp[:pages_amount] = Rational(VirtualClassroomLesson.where(:user_id => self.id).count, per_page).ceil
+    resp[:records] = VirtualClassroomLesson.includes(:lesson).where(:user_id => self.id).order('created_at DESC').offset(offset).limit(per_page)
     return resp
   end
   
   def playlist_visible_block(an_offset, a_limit)
-    return [] if self.new_record?
-    offset = 1 if offset.class != Fixnum || offset < 0
-    limit = 1 if limit.class != Fixnum || limit < 0
-    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(an_offset).limit(a_limit)
+    offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
+    limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
+    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(an_offset).limit(a_limit)
   end
   
   def create_lesson(title, description, subject_id, tags)

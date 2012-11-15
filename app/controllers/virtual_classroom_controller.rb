@@ -10,11 +10,12 @@ class VirtualClassroomController < ApplicationController
   
   def index
     get_lessons
-    if @last_page && (@page != 1) && @lessons.empty?
-      @page = 1
+    if @page > @pages_amount && @pages_amount != 0
+      @page = @pages_amount
       get_lessons
     end
-    @playlist = @lessons
+    @playlist = @current_user.playlist_visible_block 0, PLAYLIST_CONTENT
+    render_js_or_html_index
   end
   
   def add_lesson
@@ -54,9 +55,9 @@ class VirtualClassroomController < ApplicationController
   private
   
   def get_lessons
-    resp = @current_user.full_virtual_classroom(@page, @for_page)
-    @lessons = resp[:content]
-    @last_page = resp[:last_page]
+    current_user_virtual_classroom_lessons = @current_user.full_virtual_classroom_lessons(@page, @for_page)
+    @lessons = current_user_virtual_classroom_lessons[:records]
+    @pages_amount = current_user_virtual_classroom_lessons[:pages_amount]
   end
   
   def initialize_paginator
