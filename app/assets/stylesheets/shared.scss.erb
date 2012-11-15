@@ -671,7 +671,7 @@ a.cerca.current {
 
 /*ICONOGRAFIA PER DISTINGUERE GLI ELEMENTI DIDATTICI*/
 @mixin iconEditorElement {
-  $button-size: 4.5em;
+  $button-size: 5.5em;
   & {
     float:left;
 		margin-right:5px;
@@ -679,7 +679,7 @@ a.cerca.current {
     height: $button-size;
     background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
     background-repeat: no-repeat;
-    background-size: ($button-size*2) ($button-size*4);
+    background-size: ($button-size*3) ($button-size*4);
     padding:0;
 	}
 	&:hover {
@@ -687,8 +687,8 @@ a.cerca.current {
   }
 	&.videoButton {
 	  font-size: 0.5em;
-    background-position: (-$button-size) 0;
-		opacity:0.2;
+    background-position: (-$button-size*2) 0;
+		opacity:0.1;
 	}
 	&.videoButton:hover {
 	  font-size: 0.5em;
@@ -702,8 +702,8 @@ a.cerca.current {
 	}
 	&.photoButton {
 	  font-size: 0.5em;
-    background-position: (-$button-size) (-$button-size*2);
-		opacity:0.2;
+    background-position: (-$button-size*2) (-$button-size*2);
+		opacity:0.1;
 	}
 	&.photoButton:hover {
 	  font-size: 0.5em;
@@ -717,8 +717,8 @@ a.cerca.current {
 	}
 	&.audioButton {
 	  font-size: 0.5em;
-    background-position: (-$button-size) (-$button-size);
-		opacity:0.2;
+    background-position: (-$button-size*2) (-$button-size);
+		opacity:0.1;
 	}
 	&.audioButton:hover {
 	  font-size: 0.5em;
