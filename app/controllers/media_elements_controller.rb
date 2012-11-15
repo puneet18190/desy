@@ -25,8 +25,12 @@ class MediaElementsController < ApplicationController
     media_element = MediaElement.new(params[:media_element]) { |me| me.user = @current_user }
 
     if media_element.save
+      puts 'ciao'
+      #render :formats => :js
       render json: { message: I18n.t('forms.media_element.messages.success') }, :status => :created
     else
+      puts 'ola'
+      #render :formats => :js
       # TODO aggiungere visualizzazione errori
       render json: { errors: media_element.errors, tags: media_element.tags }, :status => :unprocessable_entity
     end

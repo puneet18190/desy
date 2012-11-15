@@ -141,26 +141,87 @@ $(document).ready(function() {
   
   
   //   NEW MEDIA ELEMENT
+
+//   function asyncFormSubmit($form) {
+//     // Create the iframe...
+//     var $iframe;
+//     $iframe = $('#upload_iframe');
+//     if ($iframe.length === 0) {
+//       $iframe = $('<iframe/>')
+//               .attr("name", "upload_iframe")
+//               .attr("id", "upload_iframe")
+//               .hide();
+//     }
+
+//     $("body").append($iframe);
+
+//     // When iframe loads, copy content back to target
+//     var copyIframe = function() {
+//         var contents = $iframe.contents().find("body").html();
+//         //$(resultDiv).html(contents);
+//         // Delete the iframe
+//         setTimeout(function () { $iframe.remove(); }, 250);
+//     }
+//     $iframe.one("load", copyIframe);
+
+//     // Set properties of form
+//     $form.attr("target", "upload_iframe");
+
+//     // Submit the form. This triggers the iframe to "load" the
+//     // response from the server. Once loaded we can then do other
+//     // stuff.
+//     $form.data('iframe-upload', true);
+//     $form.submit();
+
+//     // This gets replaced by iframe content when ready
+//     // $(resultDiv).html("Uploading...");
+//     console.log('uploading');
+// }
   
-  $('#new_media_element').on('submit', function(e) {
-      e.preventDefault();
-      $(this).ajaxSubmit({
-          iframe: true,
-          success: function(data, status, xhr, element) {
-            // console.log(data, status, xhr, element);
-            closePopUp('load-media-element');
-            window.setTimeout(function(){
-              showOkPopUp(data.message);
-            }, 450);
-          },
-          error: function(data) {
-            console.log(data);
-          },
-          uploadProgress: function(e, position, total, percentComplete) {
-            console.log(e, position, total, percentComplete);
-          }
-      });
-  });
+  // $('#new_media_element').on('submit', function(e) {
+  //     // e.preventDefault();
+  //     // console.log(e.data);
+  //     // return false;
+  //     if (e.data && e.data.ajaxSubmitIframeUpload) {
+  //       console.log($(this));
+  //       return true;
+  //     }
+  //     e.preventDefault();
+  //     // asyncFormSubmit($(this));
+  //     $(this).ajaxSubmit({
+  //         iframe: true,
+  //         target: '#myResultsDiv',
+  //         success: function(data, status, xhr, element) {
+  //           // console.log(data, status, xhr, element);
+  //           closePopUp('load-media-element');
+  //           window.setTimeout(function(){
+  //             showOkPopUp(data.message);
+  //           }, 450);
+  //         },
+  //         error: function(data) {
+  //           console.log(data);
+  //         },
+  //         uploadProgress: function(e, position, total, percentComplete) {
+  //           console.log(e, position, total, percentComplete);
+  //         }
+  //     });
+  // });
+
+  // $('#new_media_element').on('submit', function(e) {
+  //   e.preventDefault();
+  //   var data = $(":input", this).serializeArray();
+  //   console.log(data);
+  //   $.ajax(this.action, {
+  //     type: 'POST',
+  //     data: $(":input", this).serializeArray(),
+  //     files: $(":file", this),
+  //     iframe: true,
+  //     processData: false
+  //   }).complete(function(data) {
+  //     var json = '';//JSON.parse(data.responseText);
+  //     console.log(data, json);
+  //   });
+  // });
   
   
   // FILTERS
