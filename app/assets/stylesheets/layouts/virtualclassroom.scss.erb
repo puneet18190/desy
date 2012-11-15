@@ -114,6 +114,7 @@ html.virtual_classroom-controller {
 	  padding:10px; 
 		background-color:#2b2929;
 		width:316px;
+		
 		h1 {
 		  color:#2eaadc;
 			font: 160% 'Nunito', sans-serif;
@@ -122,6 +123,11 @@ html.virtual_classroom-controller {
       font-size:80%;
       color:#373737;
     }
+		&.current {
+		
+		  background-color:#434343;
+		
+		}
 		.lista {
       padding-bottom: 15px;
       padding-top: 15px;
@@ -134,11 +140,12 @@ html.virtual_classroom-controller {
 			 padding:4px 8px;
 			 margin-right:15px;
 			 background-color:#434343;
+			 font-size:80%;
 			}
 			.description {
-			  width:248px;
+			  width:246px;
 				float:left;
-				
+				border:1px solid #2b2929;
 				.title {
 				  background-color:#f29400;
 				  padding:10px;
@@ -150,12 +157,11 @@ html.virtual_classroom-controller {
 			  }
 			  &:hover {
 				  cursor:pointer;
-					background-color:#000;
-				  opacity: 0.20;
+					border:1px solid #fff;
+					
 			  }
 				&.current {
-			    background-color:#000;
-				  opacity: 0.20;
+			    border:3px solid #fff;
 			  }	 
 				
 			}
@@ -166,7 +172,9 @@ html.virtual_classroom-controller {
 		    line-height:1em;
 				height: 25px;
 			}
+			
     }
+		
 		.play {
 		  padding:10px;
 			background-color:#2eaadc;
