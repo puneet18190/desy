@@ -1,3 +1,9 @@
-<% @lessons.each do |l| %>
-  <%= render :partial => "virtual_classroom/view_single", :locals => {:lesson => l.lesson} %>
-<% end %>
+<div id="my_virtual_classroom" style="float:left; width:63%;">
+  <% if @lessons.empty? %>
+    <%= render :partial => "virtual_classroom/empty" %>
+  <% else %>
+    <% @lessons.each do |l| %>
+      <%= render :partial => "virtual_classroom/view_single", :locals => {:lesson => l.lesson} %>
+    <% end %>
+  <% end %>
+</div>
