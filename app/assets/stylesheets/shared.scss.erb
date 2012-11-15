@@ -98,7 +98,9 @@ a.cerca.current {
 	background-color:#fbfafb;
 	
 	width:49%;
-	
+	&:hover {
+		cursor: pointer;
+	}
 	.contentInterno {
 	  @include contentInterno;
 		text-align:center;
@@ -116,6 +118,9 @@ a.cerca.current {
 		.createButton a:hover {
 			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 			  cursor: pointer;
+		}
+		.createButton a.current_plus {
+		  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 		}
 	}
 	.vuoto {
@@ -362,6 +367,9 @@ a.cerca.current {
 	width:200px;
 	margin-right: 2%;
 	margin-bottom:20px;
+	&:hover {
+		cursor: pointer;
+	}
 	.contentNew {
 	  text-align:center; 
 		padding-top:120px;
@@ -378,6 +386,9 @@ a.cerca.current {
 			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 			  cursor: pointer;
 			}
+		}
+		a.current_plus {
+		  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 		}
 	}
 	.vuoto {
@@ -700,6 +711,10 @@ a.cerca.current {
 	  background-position: 0 (-$button-size*2);
 		opacity:1;
 	}
+	&.iconButton {
+	  background-position: 0 (-$button-size*2);
+		opacity:1;
+	}
 	&.audioButton {
 	  background-position: (-$button-size*2) (-$button-size);
 		opacity:0.1;
@@ -719,9 +734,13 @@ a.cerca.current {
 .photoButton {
    @include iconEditorElement;
 }
+.iconButton {
+   @include iconEditorElement;
+}
 .audioButton {
    @include iconEditorElement;
 }
+
 /*MENU CONDIVISO EDITOR LESSON ED EDITOR ELEMENTS*/
 @mixin menuCondivisoElementLessonEditor {
   $button-size: 5.5em;
@@ -764,4 +783,37 @@ a.cerca.current {
 .saveButton, .saveButtonOrange {
    @include menuCondivisoElementLessonEditor;
  }
-
+/*MENU*/
+	@mixin buttonExitElement {
+  $button-size: 4.5em;
+  & {
+    display: block;
+    width: $button-size;
+    height: $button-size;
+    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($button-size*4) ($button-size*8);
+    padding:0;
+	}
+	&:hover {
+    cursor: pointer;
+  }
+	&.exitButton {
+	  font-size: 0.3em;
+    background-position: (-$button-size*2) 0;
+		opacity:0.2;
+	}
+	
+	
+	
+ }
+ /*FINE MENU*/
+ .exitContent {
+	  padding-top:7px;
+	  a {
+	    @include buttonExitElement;
+	  }
+  }
+	.exitButton {
+   @include buttonExitElement;
+ }

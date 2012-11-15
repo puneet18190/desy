@@ -2,6 +2,8 @@
 
 def plant_development_seeds
   
+  media_counter = 0
+  
   location1 = Location.find 1
   location2 = Location.find 2
   location3 = Location.find 3
@@ -126,11 +128,12 @@ def plant_development_seeds
   
   descriptions.each_with_index do |d, i|
     sti_type = types[(i%3)]
-    x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[rand(images.size)]) : nil)
+    x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[media_counter % 30]) : nil)
     x.user_id = admin.id
     x.sti_type = sti_type
     x.tags = tag_map[i%10]
     x.save!
+    media_counter += 1
   end
   
   descriptions = []
@@ -176,11 +179,12 @@ def plant_development_seeds
   
   descriptions.each_with_index do |d, i|
     sti_type = types[(i%3)]
-    x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[rand(images.size)]) : nil)
+    x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[media_counter % 30]) : nil)
     x.user_id = u.id
     x.sti_type = sti_type
     x.tags = tag_map[i%10]
     x.save!
+    media_counter += 1
   end
   
   slides = {1 => ['image1', 'image2'], 2 => ['text', 'video1'], 3 => ['video2', 'video2'], 4 => ['image3', 'audio'], 5 => [], 6 => ['audio'], 7 => ['text', 'text'], 8 => [], 9 => ['video1', 'title'], 10 => ['image1', 'image3'], 11 => ['text', 'image2', 'image2', 'text'], 12 => ['video2', 'audio', 'title'], 13 => [], 14 => [], 15 => [], 16 => [], 17 => [], 18 => [], 19 => [], 20 => [], 21 => [], 22 => [], 23 => [], 24 => [], 25 => [], 26 => [], 27 => [], 28 => [], 29 => [], 30 => [], 31 => [], 32 => [], 33 => [], 34 => [], 35 => [], 36 => [], 37 => []}
