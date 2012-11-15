@@ -1,14 +1,12 @@
-<div class="lista">
-<div class="contatore">1</div> 
-  <div class="boxNewMediaElement">
-    <div class="contentNew">
-      <a class="creaNuovoButton">&nbsp;</a>
+<div class="scrollVerde">
+  <div class="scroll-pane horizontal-only">
+    <div class="scrollContent">
+		<%= render :partial => "new_element" %>
+     <%= render :partial => "element" %> 
     </div>
   </div>
 </div>
-<div class="lista">
-  <div class="contatore">2</div> 
-	<div class="boxMediaElement">
-	  <%= image_tag("fotina_editor_element.jpg") %> 
-	</div>
+<div class="addAudioandSave">
+  <div class="fltlft"><a class="audioButton"></a><a><p>click to add audio background</p></a></div>
+	<div class="fltrt"><a class="saveButton"></a></div>
 </div>
