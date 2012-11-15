@@ -1,5 +1,1 @@
-<% if item.kind_of?(MediaElement) %>
-  <a class="<%= Buttons::EDIT %>" title="<%= t('buttons.edit') %>"></a>
-<% else %>
-  <%= link_to '', lesson_editor_path(item.id), :class => Buttons::EDIT, :title => t('buttons.edit') %>
-<% end %>
+<a class="<%= Buttons::EDIT %> _<%= item.class %>_button_<%= Buttons::EDIT %>" data-clickparam="<%= item.id %>" title="<%= t('buttons.edit') %>"></a>
