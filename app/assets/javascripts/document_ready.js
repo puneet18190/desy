@@ -366,6 +366,13 @@ $(document).ready(function() {
     return false;
   });
   
+  $('body').on('click', '._Lesson_button_edit', function(e) {
+    e.preventDefault();
+    var my_param = $(this).data('clickparam');
+    window.location = '/lesson_editor/' + my_param + '/index'
+    return false;
+  });
+  
   
   // MEDIA ELEMENT BUTTONS
   
@@ -387,6 +394,10 @@ $(document).ready(function() {
   $('body').on('click', '._Video_button_preview, ._Audio_button_preview, ._Image_button_preview', function(e) {
     var my_param = $(this).data('clickparam');
     showMediaElementInfoPopUp(my_param);
+  });
+  
+  $('body').on('click', '._Video_button_edit, ._Audio_button_edit, ._Image_button_edit', function(e) {
+    alert('questa parte manca ancora');
   });
   
   $('body').on('click', '._Video_button_remove, ._Audio_button_remove, ._Image_button_remove', function(e) {

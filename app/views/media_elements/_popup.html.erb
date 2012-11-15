@@ -30,7 +30,7 @@
     </div>
     <div style="float:left; width:100%; background-color:#fff;">
       <div class="menuIconButton" style="float:left;  padding-left:10px">
-        <%= render :partial => "shared/buttons/#{Buttons::EDIT}" %>
+        <%= render :partial => "shared/buttons/#{Buttons::EDIT}", :locals => {:item => media_element} %>
         <% if media_element.info_changeable %>
           <a class="<%= Buttons::CHANGE_INFO %> _change_info_to_pick" data-param="<%= media_element.id %>"></a>
         <% end %>
