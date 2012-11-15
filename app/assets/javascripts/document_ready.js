@@ -578,7 +578,7 @@ $(document).ready(function() {
   
   // VIRTUAL CLASSROOM
   
-  $('body').on('click', '._remove_lesson_from_inside_virtual_classrom', function() {
+  $('body').on('click', '._remove_lesson_from_inside_virtual_classroom', function() {
     var lesson_id = $(this).data('clickparam');
     var current_url = $('#info_container').data('currenturl');
     var redirect_url = addDeleteItemToCurrentUrl(current_url, ('virtual_classroom_lesson_' + lesson_id));
@@ -598,5 +598,7 @@ $(document).ready(function() {
       }
     });
   });
+  
+  initializeDraggableVirtualClassroom();
   
 });

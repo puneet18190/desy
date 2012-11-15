@@ -11,6 +11,7 @@
     <% else %>
       $('#general_pagination').html('');
     <% end %>
+    initializeDraggableVirtualClassroom();
   });
 <% else %>
   var to_delete = $('#<%= @delete_item %>');
@@ -26,6 +27,7 @@
     <% else %>
       $('#general_pagination').html('');
     <% end %>
+    initializeDraggableVirtualClassroom();
   });
 <% end %>
 
