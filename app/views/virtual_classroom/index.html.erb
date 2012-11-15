@@ -3,12 +3,15 @@
   <% if @lessons.empty? %>
     <%= render :partial => "virtual_classroom/empty" %>
   <% else %>
-    <% @lessons.each do |l| %>
-    <%= render :partial => "virtual_classroom/view_single", :locals => {:lesson => l.lesson} %>
-    <% end %>
+    <%= render :partial => 'virtual_classroom/my_virtual_classroom' %>
   <% end %>
   </div>
   <div style="float:right; margin-right:1%;">
     <%= render :partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist} %>
   </div>
+  <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
+  <br class="clearfloat">
+  <% if @lessons.any? %>
+    <%= render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => remove_param_from_url(request.url, 'delete_item')} %>
+  <% end %>
 </div>
