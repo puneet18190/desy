@@ -98,7 +98,9 @@ a.cerca.current {
 	background-color:#fbfafb;
 	
 	width:49%;
-	
+	&:hover {
+		cursor: pointer;
+	}
 	.contentInterno {
 	  @include contentInterno;
 		text-align:center;
@@ -116,6 +118,9 @@ a.cerca.current {
 		.createButton a:hover {
 			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 			  cursor: pointer;
+		}
+		.createButton a.current_plus {
+		  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 		}
 	}
 	.vuoto {
@@ -362,6 +367,9 @@ a.cerca.current {
 	width:200px;
 	margin-right: 2%;
 	margin-bottom:20px;
+	&:hover {
+		cursor: pointer;
+	}
 	.contentNew {
 	  text-align:center; 
 		padding-top:120px;
@@ -378,6 +386,9 @@ a.cerca.current {
 			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 			  cursor: pointer;
 			}
+		}
+		a.current_plus {
+		  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 		}
 	}
 	.vuoto {
@@ -722,6 +733,7 @@ a.cerca.current {
 .audioButton {
    @include iconEditorElement;
 }
+
 /*MENU CONDIVISO EDITOR LESSON ED EDITOR ELEMENTS*/
 @mixin menuCondivisoElementLessonEditor {
   $button-size: 5.5em;
@@ -764,4 +776,3 @@ a.cerca.current {
 .saveButton, .saveButtonOrange {
    @include menuCondivisoElementLessonEditor;
  }
-

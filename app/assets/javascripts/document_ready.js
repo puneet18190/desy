@@ -59,7 +59,7 @@ $(document).ready(function() {
   }
   
   
-  // DASHBOARD SWITCH
+  // DASHBOARD
   
   $('#switch_to_lessons').click(function() {
     switchToSuggestedLessons();
@@ -67,6 +67,30 @@ $(document).ready(function() {
   
   $('#switch_to_media_elements').click(function() {
     switchToSuggestedMediaElements();
+  });
+  
+  $('body').on('mouseover', '._large_dashboard_hover_lesson', function() {
+    $('._large_dashboard_hover_lesson a').addClass('current_plus');
+  });
+  
+  $('body').on('mouseout', '._large_dashboard_hover_lesson', function() {
+    $('._large_dashboard_hover_lesson a').removeClass('current_plus');
+  });
+  
+  $('body').on('mouseover', '._large_dashboard_hover_media_element', function() {
+    $('._large_dashboard_hover_media_element a').addClass('current_plus');
+  });
+  
+  $('body').on('mouseout', '._large_dashboard_hover_media_element', function() {
+    $('._large_dashboard_hover_media_element a').removeClass('current_plus');
+  });
+  
+  $('body').on('click', '._large_dashboard_hover_lesson', function() {
+    window.location = '/lesson_editor/new';
+  });
+  
+  $('body').on('click', '._large_dashboard_hover_media_element', function() {
+    alert('questa parte manca ancora');
   });
   
   
@@ -140,7 +164,7 @@ $(document).ready(function() {
   });
   
   
-  //   NEW MEDIA ELEMENT
+  // NEW MEDIA ELEMENT
   
   $('#new_media_element').on('submit', function(e) {
       e.preventDefault();
@@ -369,7 +393,7 @@ $(document).ready(function() {
   $('body').on('click', '._Lesson_button_edit', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    window.location = '/lesson_editor/' + my_param + '/index'
+    window.location = '/lesson_editor/' + my_param + '/index';
     return false;
   });
   

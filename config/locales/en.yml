@@ -100,6 +100,7 @@ en:
     profile: 'Profile'
     register: 'Register'
     report_abuse: 'Report abuse'
+    results_do_you_want: ' results. Do you want to refine your search? Results are also shown in these tags'
     search: 'Search'
     search_in_desy: 'Search in DESY'
     search_lesson_or_media_element: 'Do you need lessons or media elements?'
@@ -126,6 +127,7 @@ en:
     what_is_desy: 'What is DESY?'
     write_reason_report: 'Write the reason for your report, we will review it. Thank you for your cooperation!'
     you_believe_content_unappropriate: 'You believe this content is unappropriate?'
+    your_search_returned: 'Your search returned '
   descriptions:
     change_info_element: "You can modify the data of your element. Inserting tags you will make it available to DESY community, remember that people are more likely to find your element if you insert more tags"
     new_lesson: "Fill in the form to create a new lesson."

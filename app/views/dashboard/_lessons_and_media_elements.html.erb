@@ -21,7 +21,7 @@
               <% cont = (cont == 0) ? 1 : 0 %>
             <% end %>
             <% if cont == 1 %>
-              <div class="boxNewLesson fltrt">
+              <div class="boxNewLesson fltrt _large_dashboard_hover_lesson">
                 <div class="contentInterno">
                   <div class="contentNew">
                     <div class="createButton"><a></a></div>
@@ -32,7 +32,7 @@
               </div>
               </div>
             <% else %>
-              <div class="boxNewLesson" style="float:left">
+              <div class="boxNewLesson _large_dashboard_hover_lesson" style="float:left">
                 <div class="contentInterno">
                   <div class="contentNew">
                     <div class="createButton"><a></a></div>
@@ -61,7 +61,7 @@
             <% media_elements_block.each do |me| %>
               <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
             <% end %>
-            <div class="boxNewMediaElement">
+            <div class="boxNewMediaElement _large_dashboard_hover_media_element">
               <div class="contentNew">
                 <a class="createButton">&nbsp;</a>
                 <p><%= t("captions.load_new_media_element") %></p>
