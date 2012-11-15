@@ -711,6 +711,10 @@ a.cerca.current {
 	  background-position: 0 (-$button-size*2);
 		opacity:1;
 	}
+	&.iconButton {
+	  background-position: 0 (-$button-size*2);
+		opacity:1;
+	}
 	&.audioButton {
 	  background-position: (-$button-size*2) (-$button-size);
 		opacity:0.1;
@@ -728,6 +732,9 @@ a.cerca.current {
    @include iconEditorElement;
  }
 .photoButton {
+   @include iconEditorElement;
+}
+.iconButton {
    @include iconEditorElement;
 }
 .audioButton {
@@ -775,4 +782,38 @@ a.cerca.current {
 }
 .saveButton, .saveButtonOrange {
    @include menuCondivisoElementLessonEditor;
+ }
+/*MENU*/
+	@mixin buttonExitElement {
+  $button-size: 4.5em;
+  & {
+    display: block;
+    width: $button-size;
+    height: $button-size;
+    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($button-size*4) ($button-size*8);
+    padding:0;
+	}
+	&:hover {
+    cursor: pointer;
+  }
+	&.exitButton {
+	  font-size: 0.3em;
+    background-position: (-$button-size*2) 0;
+		opacity:0.2;
+	}
+	
+	
+	
+ }
+ /*FINE MENU*/
+ .exitContent {
+	  padding-top:7px;
+	  a {
+	    @include buttonExitElement;
+	  }
+  }
+	.exitButton {
+   @include buttonExitElement;
  }
