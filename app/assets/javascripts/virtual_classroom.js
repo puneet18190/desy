@@ -20,8 +20,11 @@ function initializeDraggableVirtualClassroom() {
     initializeDraggableVirtualClassroomLesson(this.id);
   });
   $('#virtual_classroom_playlist').droppable({
-    drop: function( event, ui ) {
-      alert('eccomi');
+    drop: function(event, ui) {
+      $.ajax({
+        type: 'post',
+        url: '/virtual_classroom/' + ui.draggable.data('lesson-id') + '/add_lesson_to_playlist'
+      });
     },
     hoverClass: 'current'
   });
@@ -32,7 +35,7 @@ function getMaximumZIndex(a_class) {
   $('.' + a_class).each(function() {
     var index_current = parseInt($(this).css("zIndex"), 10);
     if(index_current > index_highest) {
-        index_highest = index_current;
+      index_highest = index_current;
     }
   });
   return index_highest;

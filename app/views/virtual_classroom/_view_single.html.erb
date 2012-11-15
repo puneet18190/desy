@@ -1,4 +1,4 @@
-<div id="virtual_classroom_lesson_<%= lesson.id %>" class="boxViewSingleLesson _virtual_classroom_lesson">
+<div id="virtual_classroom_lesson_<%= lesson.id %>" class="boxViewSingleLesson _virtual_classroom_lesson" data-lesson-id="<%= lesson.id %>">
   <div class="contentInterno">
     <%= render :partial => "shared/lesson_thumbnails/small/cover", :locals => {:slide => lesson.cover} %>
     <br class="clearfloat">
