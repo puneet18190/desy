@@ -59,7 +59,7 @@ $(document).ready(function() {
   }
   
   
-  // DASHBOARD SWITCH
+  // DASHBOARD
   
   $('#switch_to_lessons').click(function() {
     switchToSuggestedLessons();
@@ -67,6 +67,22 @@ $(document).ready(function() {
   
   $('#switch_to_media_elements').click(function() {
     switchToSuggestedMediaElements();
+  });
+  
+  $('body').on('mouseover', '._large_dashboard_hover_lesson', function() {
+    $('._large_dashboard_hover_lesson a').addClass('current_plus');
+  });
+  
+  $('body').on('mouseout', '._large_dashboard_hover_lesson', function() {
+    $('._large_dashboard_hover_lesson a').removeClass('current_plus');
+  });
+  
+  $('body').on('mouseover', '._large_dashboard_hover_media_element', function() {
+    $('._large_dashboard_hover_media_element a').addClass('current_plus');
+  });
+  
+  $('body').on('mouseout', '._large_dashboard_hover_media_element', function() {
+    $('._large_dashboard_hover_media_element a').removeClass('current_plus');
   });
   
   
@@ -140,7 +156,7 @@ $(document).ready(function() {
   });
   
   
-  //   NEW MEDIA ELEMENT
+  // NEW MEDIA ELEMENT
   
   $('#new_media_element').on('submit', function(e) {
       e.preventDefault();
