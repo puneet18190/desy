@@ -563,14 +563,40 @@ $(document).ready(function() {
   
   
   // FAKE UPLOAD BUTTONS
+  
   new FakeUpload($('._fakeUploadTrigger'));
-
-
+  
+  
   // POPUPS
   //   CHIUSURA
   //   es. <a data-dialog-id="load-media-element"></a>
+  
   $('._close').click(function(){
     closePopUp($(this).data('dialog-id'));
   });
-
+  
+  
+  // VIRTUAL CLASSROOM
+  
+  $('body').on('click', '._remove_lesson_from_inside_virtual_classrom', function() {
+    var lesson_id = $(this).data('clickparam');
+    var current_url = $('#info_container').data('currenturl');
+    var redirect_url = addDeleteItemToCurrentUrl(current_url, ('virtual_classroom_lesson_' + lesson_id));
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      url: '/virtual_classroom/' + lesson_id + '/remove_lesson_from_inside',
+      success: function(data) {
+        if(data.ok) {
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
+      }
+    });
+  });
+  
 });

@@ -3,7 +3,7 @@ class VirtualClassroomController < ApplicationController
   FOR_PAGE = CONFIG['lessons_for_page_in_virtual_classroom']
   PLAYLIST_CONTENT = CONFIG['playlist_lessons_loaded_together']
   
-  before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson]
+  before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson, :remove_lesson_from_inside]
   before_filter :initialize_lesson_destination, :only => [:add_lesson, :remove_lesson]
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   layout 'virtual_classroom'
@@ -50,6 +50,18 @@ class VirtualClassroomController < ApplicationController
     else
       render 'lessons/reload_expanded.js'
     end
+  end
+  
+  def remove_lesson_from_inside
+    if @ok
+      if !@lesson.remove_from_virtual_classroom(@current_user.id)
+        @ok = false
+        @error = @lesson.get_base_error
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.lesson.problem_removing_from_virtual_classroom')
+    end
+    render :json => {:ok => @ok, :msg => @error}
   end
   
   private
