@@ -752,7 +752,7 @@ a.cerca.current {
 	&:hover {
     cursor: pointer;
   }
-	&.saveButton {
+	&.saveButton, &.saveButtonOrange {
 	  background-position: 0 (-$button-size*3);
 		opacity:0.2;
 	}
@@ -764,7 +764,15 @@ a.cerca.current {
 	  background-position: (-$button-size*3) (-$button-size*3);
 		opacity:1;
 	}
-
+		&.saveButtonOrange:hover {
+	  background-position: (-$button-size*4) (-$button-size*3);
+		opacity:1;
+	}
+	&.saveButtonOrange.current {
+	  background-position: (-$button-size*4) (-$button-size*3);
+		opacity:1;
+	}
+  
 }
 .saveButton {
    @include menuCondivisoElementLessonEditor;
