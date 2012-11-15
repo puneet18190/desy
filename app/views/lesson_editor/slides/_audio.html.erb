@@ -4,7 +4,7 @@
     <%= text_field_tag :title, slide.title ? slide.title : "#{t 'captions.enter_title'}" %>
   </h2>
   <div class="audio-content">
-    <%= text_area_tag :text, slide.text ? slide.text.html_safe : "#{t 'descriptions.slide_text'}"%>
+    <%= text_area_tag :text, slide.text ? slide.text.html_safe : "#{t 'descriptions.slide_text'}",:id => "ta-#{slide.id}", :class=>"tinymce"%>
   </div>
   <%- if slide.media_element_at(1) %>
     <%= link_to "<span class='rollover rollover-audio'></span><audio id='audio' class='_slide_image audio-p1' src='http://slides.html5rocks.com/src/rushus-modal_blues.mp3' controls></audio>".html_safe, {:action => :show_gallery, :slide => slide.id, :position=>1, :kind_of =>"audio"} , :remote => true, :class => "show-gallery", "data-param"=> "1" %>
