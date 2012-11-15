@@ -17,7 +17,11 @@ function initializeDraggableVirtualClassroomLesson(id) {
 
 function initializeDraggableVirtualClassroom() {
   $('._virtual_classroom_lesson').each(function() {
-    initializeDraggableVirtualClassroomLesson(this.id);
+    if($(this).data('in-playlist')) {
+      $('#' + this.id + ' ._cover_slide_thumb').addClass('current');
+    } else {
+      initializeDraggableVirtualClassroomLesson(this.id);
+    }
   });
   $('#virtual_classroom_playlist').droppable({
     drop: function(event, ui) {

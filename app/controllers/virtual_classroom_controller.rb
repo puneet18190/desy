@@ -80,7 +80,7 @@ class VirtualClassroomController < ApplicationController
   
   def initialize_virtual_classroom_lesson
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
-    @virtual_classroon_lesson = VirtualClassroomLesson.where(:lesson_id => @lesson_id, :user_id => @current_user.id).first
+    @virtual_classroom_lesson = VirtualClassroomLesson.where(:lesson_id => @lesson_id, :user_id => @current_user.id).first
     @ok = !@virtual_classroom_lesson.nil?
   end
   
