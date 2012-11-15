@@ -30,7 +30,7 @@ html.media_elements-layout {
 		padding:0;
 	}
 	/*MENU*/
-	@mixin buttonEditorElement {
+	@mixin buttonNuovoElemento {
   $button-size: 4.5em;
   & {
     display: block;
@@ -44,16 +44,7 @@ html.media_elements-layout {
 	&:hover {
     cursor: pointer;
   }
-	&.exitButton {
-	  font-size: 0.3em;
-    background-position: (-$button-size*2) 0;
-		opacity:0.2;
-	}
-	&.exitButton:hover {
-	  font-size: 0.3em;
-		background-position: (-$button-size*3) 0;
-		opacity:1;
-	}
+	
 	&.creaNuovoButton {
 	  font-size: 0.8em;
     background-position: (-$button-size*2) (-$button-size);
@@ -67,12 +58,7 @@ html.media_elements-layout {
 	}
  }
  /*FINE MENU*/
- .exitContent {
-	  padding-top:7px;
-	  a {
-	    @include buttonEditorElement;
-	  }
-  }
+ 
 	.header {
 	  background-color:#eaeaea;
 		font-family: 'Nunito', sans-serif;
@@ -151,6 +137,30 @@ html.media_elements-layout {
     -webkit-box-shadow: 0px 6px 10px #161515;
     box-shadow: 0px 6px 10px #161515;
 		position:relative;
+		
+		.boxContentMediaElement {
+		  position:absolute; 
+			z-index:1;
+			a:hover {
+			  
+			}
+		}	
+		.boxMenuMediaElement {
+		  background-color:#000; 
+			position:absolute; 
+			z-index:2; 
+			padding:6px; 
+			bottom:0; 
+			width:144px; 
+			background-color:#000; 
+			opacity:0.8;
+			font-size:11px;
+			display:block;
+			a {
+			  color:#fff;
+				float:left;
+			}
+		}
 	}
  }
 	.boxNewMediaElement {
@@ -164,7 +174,7 @@ html.media_elements-layout {
 			padding-left:55px;
 		  height:79px;
 			a {
-			  @include buttonEditorElement;
+			  @include buttonNuovoElemento;
 			}
 		}
 	}

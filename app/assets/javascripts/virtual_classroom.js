@@ -2,7 +2,8 @@ function initializeDraggableVirtualClassroomLesson(id) {
   $('#' + id).draggable({
     revert: true,
     helper: 'clone',
-    stack: 'div'
+    stack: 'div'//,
+//    start: 
   });
 }
 
