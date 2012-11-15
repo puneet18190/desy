@@ -17,6 +17,12 @@ function initializeDraggableVirtualClassroom() {
   $('._virtual_classroom_lesson').each(function() {
     initializeDraggableVirtualClassroomLesson(this.id);
   });
+  $('#virtual_classroom_playlist').droppable({
+    drop: function( event, ui ) {
+      alert('eccomi');
+    },
+    hoverClass: 'current'
+  });
 }
 
 function getMaximumZIndex(a_class) {
