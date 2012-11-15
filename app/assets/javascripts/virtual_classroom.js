@@ -1,6 +1,8 @@
 function initializeDraggableVirtualClassroomLesson(id) {
   $('#' + id).draggable({
     revert: true,
+    handle: '._cover_slide_thumb',
+    cursor: 'move',
     helper: function() {
       var current_z_index = getMaximumZIndex('_virtual_classroom_lesson') + 1;
       var div_to_return = $('#' + this.id + ' ._cover_slide_thumb')[0].outerHTML;
