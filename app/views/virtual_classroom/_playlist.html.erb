@@ -1,5 +1,5 @@
 <div class="playList">
-  <h1>Playlist</h1>
+  <h1><%= t('captions.playlist') %></h1>
   <% if lessons.empty? %>
     <%= render :partial => "virtual_classroom/empty_playlist" %> 
   <% else %>
@@ -10,8 +10,8 @@
         <% cont += 1 %>
       <% end %>
     </div>
-    <div  class="play">
-      <a>play</a>
+    <div class="play">
+      <a class="lower"><%= t('captions.play') %></a>
     </div>
   <% end %>
 </div>  

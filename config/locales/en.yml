@@ -97,6 +97,8 @@ en:
     modify_info_element: 'Modify info element'
     no_notifications: "You don't have any notifications"
     or_cancel: "Or cancel"
+    play: 'Play'
+    playlist: 'Playlist'
     problems_with_password: "I forgot my login information"
     profile: 'Profile'
     register: 'Register'
