@@ -1,17 +1,17 @@
 <div class="playList">
   <h1>Playlist</h1>
-	<% if lessons.empty? %>
-	  <%= render :partial => "virtual_classroom/empty_playlist" %> 
-	<% else %>
-		<div class="scroll-pane">
-			<% cont = 1 %>
-			<% lessons.each do |l| %>
-				<%= render :partial => "virtual_classroom/view_single_playlist", :locals => {:lesson => l.lesson, :cont => cont} %>
-				<% cont += 1 %>
-			<% end %>
-		</div>
-		<div  class="play">
-			<a>play</a>
-		</div>
+  <% if lessons.empty? %>
+    <%= render :partial => "virtual_classroom/empty_playlist" %> 
+  <% else %>
+    <div class="scroll-pane">
+      <% cont = 1 %>
+      <% lessons.each do |l| %>
+        <%= render :partial => "virtual_classroom/view_single_playlist", :locals => {:lesson => l.lesson, :cont => cont} %>
+        <% cont += 1 %>
+      <% end %>
+    </div>
+    <div  class="play">
+      <a>play</a>
+    </div>
   <% end %>
-</div>	
+</div>  

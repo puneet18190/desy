@@ -1,14 +1,14 @@
 <div class="griglia-contenuti">
   <div style="float:left; width:63%;">
   <% if @lessons.empty? %>
-	  <%= render :partial => "virtual_classroom/empty" %>
-	<% else %>
-	  <% @lessons.each do |l| %>
-	  <%= render :partial => "virtual_classroom/view_single", :locals => {:lesson => l.lesson} %>
-	  <% end %>
-	<% end %>
-	</div>
-	<div style="float:right; margin-right:1%;">
-	  <%= render :partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist} %>
-	</div>
+    <%= render :partial => "virtual_classroom/empty" %>
+  <% else %>
+    <% @lessons.each do |l| %>
+    <%= render :partial => "virtual_classroom/view_single", :locals => {:lesson => l.lesson} %>
+    <% end %>
+  <% end %>
+  </div>
+  <div style="float:right; margin-right:1%;">
+    <%= render :partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist} %>
+  </div>
 </div>

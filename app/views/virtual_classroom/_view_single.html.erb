@@ -1,12 +1,12 @@
 <div class="boxViewSingleLesson">
   <div class="contentInterno">
     <%= render :partial => "shared/lesson_thumbnails/small/cover", :locals => {:slide => lesson.cover} %>
-		<br class="clearfloat">
-		<p>
-      <a>Submit a lesson</a>
-			<br>
-			<a>Remove from Virtual Classroom</a>
+    <br class="clearfloat">
+    <p>
+      <a><%= t('captions.send_link_to_your_friends') %></a>
+      <br>
+      <a><%= t('captions.remove_from_virtual_classroom') %></a>
     </p>
-	</div>
-	
+  </div>
+  
 </div>
