@@ -51,6 +51,7 @@
   $('#clickable_tag_<%= @tag.id %>').addClass('current');
 <% else %>
   $('#<%= my_item %>_tag_details').html('');
+  $('#<%= my_item %>_tag_details').css('margin-bottom', '0');
 <% end %>
 
 $('#info_container').data('currenturl', '<%= remove_param_from_url(request.url, 'delete_item') %>');

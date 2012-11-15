@@ -5,7 +5,7 @@ obj.removeClass('<%= Buttons::REPORT %>_light');
 obj.addClass('<%= Buttons::REPORT %>');
 
 <% if @resp %>
-  showOkPopUp('<%= t('popups.report_ok') %>');
+  showOkPopUp('<%= j t('popups.report_ok') %>');
 <% else %>
-  showErrorPopUp('<%= @error %>');
+  showErrorPopUp('<%= j @error %>');
 <% end %>

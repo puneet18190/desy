@@ -15,6 +15,11 @@
 <% else %>
   var to_delete = $('#<%= @delete_item %>');
   to_delete.hide('fade', {}, 500, function() {
+    var temporary_msg = $('#popup_captions_container').data('temporary-msg');
+    if(temporary_msg != '') {
+      showOkPopUp(temporary_msg);
+      $('#popup_captions_container').data('temporary-msg', '');
+    }
     $('#my_media_elements').replaceWith("<%= j(render(:partial => "media_elements/my_media_elements")) %>");
     <% if @media_elements.any? %>
       $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");

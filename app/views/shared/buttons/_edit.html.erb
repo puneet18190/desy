@@ -1,1 +1,1 @@
-<a class="<%= Buttons::EDIT %>" title="<%= t('buttons.edit') %>"></a> <!-- TODO qui ci andrà un altro if, con il corrispondente link a seconda che sia un elemento o una lezione -->
+<a class="<%= Buttons::EDIT %> _<%= item.class %>_button_<%= Buttons::EDIT %>" data-clickparam="<%= item.id %>" title="<%= t('buttons.edit') %>"></a>

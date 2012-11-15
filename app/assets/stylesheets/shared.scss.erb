@@ -122,9 +122,6 @@ a.cerca.current {
 	  height:3.5em;
 	}
 }
-
-
-
 .boxViewSingleLesson {
   width:100%;
   padding: 0;
@@ -287,38 +284,24 @@ a.cerca.current {
       }
     }
   }
-  .scroll-pane{
-    padding: 10px 20px;
-    ul.gallery{
-      margin-top: 10px;
-      background-color: black;
-      height: 485px;
-      width: 870px;
-      overflow: auto;
+
+  ul{
+    padding: 0;
+    margin:0;
+    list-style:none;
+    .scroll-pane{
+      margin:20px 0 0 20px;
+      padding:0;
+      width: 860px;
+      height: 500px;
       li{
-        width: 111px;
-        height: 111px;
-        margin: 0 10px 10px 0;
-        float: left;
-        display: block;
-        a{
-          width: 111px;
-          height: 111px;
-          display:block;
-          margin: 0;
-          padding: 0;
-          border: 1px solid black;        
-          img{
-            margin:0;
-            padding: 0;
-          }
-        }
-        a:hover{
-          border: 1px solid white;
-        }
+        float:left; 
+        width: 115px;
+        margin: 0 5px 5px 0;
       }
     }
   }
+  
   .footer{
     display:block;
     padding: 10px 20px;
@@ -402,7 +385,6 @@ a.cerca.current {
 		background-color:#fbfafb;
 	}
 }
-
 .boxViewCompactMediaElement {
 	  width:100%;
 		padding: 0;
@@ -666,9 +648,120 @@ a.cerca.current {
 }
 .scrollVerde {
   .jspTrack {
-   background: #504f50;
+   background: #3f3f3f;
   }
  .jspDrag {
   background: #41a62a;
  }
 }
+
+
+
+/*ICONOGRAFIA PER DISTINGUERE GLI ELEMENTI DIDATTICI*/
+@mixin iconEditorElement {
+  $button-size: 5.5em;
+  & {
+    float:left;
+		margin-right:5px;
+    width: $button-size;
+    height: $button-size;
+    background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($button-size*3) ($button-size*4);
+    padding:0;
+		font-size: 0.5em;
+	}
+	&:hover {
+    cursor: pointer;
+  }
+	&.videoButton {
+	  
+    background-position: (-$button-size*2) 0;
+		opacity:0.1;
+	}
+	&.videoButton:hover {
+	  background-position: 0 0;
+		opacity:1;
+	}
+	&.videoButton.current {
+	  background-position: 0 0;
+		opacity:1;
+	}
+	&.photoButton {
+	  background-position: (-$button-size*2) (-$button-size*2);
+		opacity:0.1;
+	}
+	&.photoButton:hover {
+	  font-size: 0.5em;
+		background-position: 0 (-$button-size*2);
+		opacity:1;
+	}
+	&.photoButton.current {
+	  background-position: 0 (-$button-size*2);
+		opacity:1;
+	}
+	&.audioButton {
+	  background-position: (-$button-size*2) (-$button-size);
+		opacity:0.1;
+	}
+	&.audioButton:hover {
+	  background-position: 0 (-$button-size);
+		opacity:1;
+	}
+	&.audioButton.current {
+	  background-position: 0 (-$button-size);
+		opacity:1;
+	}
+}
+.videoButton {
+   @include iconEditorElement;
+ }
+.photoButton {
+   @include iconEditorElement;
+}
+.audioButton {
+   @include iconEditorElement;
+}
+/*MENU CONDIVISO EDITOR LESSON ED EDITOR ELEMENTS*/
+@mixin menuCondivisoElementLessonEditor {
+  $button-size: 5.5em;
+  & {
+    float:left;
+		width: $button-size;
+    height: $button-size;
+    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($button-size*4) ($button-size*8);
+		padding:0;
+		font-size:0.8em;
+	}
+	&:hover {
+    cursor: pointer;
+  }
+	&.saveButton,&.saveButtonOrange {
+	  background-position: 0 (-$button-size*3);
+		opacity:0.2;
+	}
+	&.saveButton:hover {
+	  background-position: (-$button-size*3) (-$button-size*3);
+		opacity:1;
+	}
+	&.saveButton.current {
+	  background-position: (-$button-size*3) (-$button-size*3);
+		opacity:1;
+	}
+	
+	&.saveButtonOrange:hover {
+	  background-position: (-$button-size) (-$button-size*3);
+		opacity:1;
+	}
+	&.saveButtonOrange.current {
+	  background-position: (-$button-size) (-$button-size*3);
+		opacity:1;
+	}
+  
+}
+.saveButton, .saveButtonOrange {
+   @include menuCondivisoElementLessonEditor;
+ }
+

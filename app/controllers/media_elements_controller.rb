@@ -38,6 +38,7 @@ class MediaElementsController < ApplicationController
   end
   
   def add
+    @ok_msg = t('popups.add_media_element_ok')
     if @ok
       if !@current_user.bookmark('MediaElement', @media_element_id)
         @ok = false
@@ -50,7 +51,7 @@ class MediaElementsController < ApplicationController
       prepare_media_element_for_js
       render 'media_elements/reload.js'
     else
-      render :nothing => true
+      render :json => {:ok => @ok, :msg => (@ok ? @ok_msg : @error)}
     end
   end
   
@@ -63,10 +64,11 @@ class MediaElementsController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.media_element.problem_destroying')
     end
-    render :nothing => true
+    render :json => {:ok => @ok, :msg => @error}
   end
   
   def remove
+    @ok_msg = t('popups.remove_media_element_ok')
     if @ok
       bookmark = Bookmark.where(:user_id => @current_user.id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => @media_element_id).first
       if bookmark.nil?
@@ -86,7 +88,7 @@ class MediaElementsController < ApplicationController
       prepare_media_element_for_js
       render 'media_elements/reload.js'
     else
-      render :nothing => true
+      render :json => {:ok => @ok, :msg => (@ok ? @ok_msg : @error)}
     end
   end
   
