@@ -5,6 +5,7 @@
     object.draggable('disable');
     object.data('in-playlist', true);
     initializeDroppablePlaylist();
+    $('#virtual_classroom_playlist .scroll-pane').jScrollPane();
   });
 <% else %>
   showErrorPopUp('<%= j @error %>');
