@@ -437,8 +437,9 @@ $(document).ready(function() {
   initializeHelp();
   
   $('#tooltip_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    if(isAtBottom && (parseInt($('#tooltip_content').data('offset')) < parseInt($('#tooltip_content').data('totnumber')))) {
-      var offset = $('#tooltip_content').data('offset');
+    var tot_number = $('#tooltip_content').data('tot-number');
+    var offset = $('#tooltip_content').data('offset');
+    if(isAtBottom && (offset < tot_number)) {
       $.get('/notifications/get_new_block?offset=' + offset);
     }
   });

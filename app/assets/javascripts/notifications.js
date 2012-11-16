@@ -1,5 +1,5 @@
 function initializeNotifications() {
-  if(parseInt($('#tooltip_arancione').data('number')) > 0) {
+  if($('#tooltip_arancione').data('number') > 0) {
     showNotificationsFumetto();
     showNotificationsButton();
   }
@@ -18,7 +18,7 @@ function initializeNotifications() {
       $('#tooltip_content').hide('fade', {}, 500, function() {
         hideNotificationsTooltip();
       });
-      if(parseInt($('#tooltip_arancione').data('number')) > 0) {
+      if($('#tooltip_arancione').data('number') > 0) {
         showNotificationsFumetto();
       } else {
         hideNotificationsButton();
