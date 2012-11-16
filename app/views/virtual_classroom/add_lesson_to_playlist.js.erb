@@ -1,8 +1,9 @@
 <% if @ok %>
+  var object = $('#virtual_classroom_lesson_<%= @lesson_id %>');
   $('#virtual_classroom_playlist').effect('highlight', {color: '#6E6363'}, 1000, function() {
     $('#virtual_classroom_playlist').replaceWith('<%= j(render(:partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist})) %>');
-    $('#virtual_classroom_lesson_<%= @lesson_id %>').draggable('disable');
-    $(this).data('in-playlist', 'true');
+    object.draggable('disable');
+    object.data('in-playlist', true);
     initializeDroppablePlaylist();
   });
 <% else %>
