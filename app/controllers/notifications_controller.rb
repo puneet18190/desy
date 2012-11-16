@@ -10,7 +10,7 @@ class NotificationsController < ApplicationController
   
   def destroy
     if @ok
-      old_offset_notification = @offset_notification
+      old_offset_notifications = @offset_notifications
       ActiveRecord::Base.transaction do
         @notification.destroy
         @notifications = Notification.visible_block(@current_user.id, 0, @offset_notifications)

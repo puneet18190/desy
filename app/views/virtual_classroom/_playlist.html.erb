@@ -1,6 +1,6 @@
 <div id="virtual_classroom_playlist" class="playList" data-offset="<%= lessons.count %>" data-tot-number="<%= tot_number %>">
   <div class="fltlft"><h1><%= t('captions.playlist') %></h1></div>
-	<span class="fltrt">empty playlist</span>
+  <span class="fltrt">empty playlist</span>
   <% if lessons.empty? %>
     <%= render :partial => "virtual_classroom/empty_playlist" %> 
   <% else %>
