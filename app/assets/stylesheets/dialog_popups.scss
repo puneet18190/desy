@@ -51,8 +51,21 @@
 }
 
 ._gallery_img_expanded.ui-dialog-content{
-  background-color:#fff;
+  background-color:rgba(255,255,255,0.85);
   color: #666;
-  height: 270px;
-  width: 420px;
+  height: 280px;
+  width: 400px;
+  padding: 10px;
+  img{
+    background-color:rgba(255,255,255,1);
+  }
+  .caption{
+    color:rgba(50,50,50,1);
+    padding: 5px 0 0;
+    display:block;
+  }
+  .aggiungiImgButton{
+    margin:-5px 0 0;
+    padding:0;
+  }
 }

@@ -57,5 +57,17 @@ $("._add_audio_to_slide").click(function(e){
 
 
 $('.scroll-pane').jScrollPane({
-   autoReinitialise: true
- });
+  autoReinitialise: true
+});
+
+$(document).on("click", function(e) {
+    var clickedOnDialog = $(e.srcElement)
+         .closest(".ui-widget.ui-dialog") // these classes are fixed
+         .children(".ui-dialog-content") // this as well
+         .is("._gallery_img_expanded"); // this is your own class
+
+    if (!clickedOnDialog) {
+      console.log("out");
+      $('._gallery_img_expanded').dialog('destroy');
+    }
+});
