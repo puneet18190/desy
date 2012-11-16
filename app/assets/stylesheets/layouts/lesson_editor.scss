@@ -2,9 +2,10 @@
 
 html.lesson-editor-layout{
   min-height: 100%;
-  
   $orange: #f29400;
-
+  *{
+    outline: none;
+  }
   body {
     font-family: Arial, Verdana, sans-serif;
 		font-size: 13px;
@@ -967,6 +968,7 @@ html.lesson-editor-layout{
     top:30%;
     width: 5em;
   }
+  
 }
 
 /** tinyMce style **/

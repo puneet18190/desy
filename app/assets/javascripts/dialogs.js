@@ -80,6 +80,7 @@ function showImageMediaElementPopUp(id) {
   } else {
     obj.show();
     obj.dialog({
+      closeOnEscape: true,
       modal: true,
       resizable: false,
       width: 410,
@@ -87,6 +88,10 @@ function showImageMediaElementPopUp(id) {
       hide: "fade"
     });
   }
+  
+  $('.ui-widget-overlay').click(function() { 
+    $(thumb).dialog("close");
+  });
 }
 
 function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_no) {
