@@ -24,15 +24,7 @@ function initializeDraggableVirtualClassroomLesson(id) {
   }
 }
 
-function reloadPlaylist() {
-  initializeDroppablePlaylist();
-  $('#virtual_classroom_playlist .scroll-pane').jScrollPane({
-    autoReinitialise: true
-  });
-  initializeScollReloadPlaylist();
-}
-
-function initializeDroppablePlaylist() {
+function initializePlaylist() {
   $('#virtual_classroom_playlist').droppable({
     drop: function(event, ui) {
       ui.helper.css('display', 'none');
@@ -45,15 +37,16 @@ function initializeDroppablePlaylist() {
     },
     hoverClass: 'current'
   });
-}
-
-function initializeScollReloadPlaylist() {
+  $('#notifications_list').jScrollPane({
+    autoReinitialise: true
+  });
   $('#virtual_classroom_playlist .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
     if(isAtBottom && (parseInt($('#virtual_classroom_playlist').data('offset')) < parseInt($('#virtual_classroom_playlist').data('tot-number')))) {
       var offset = $('#virtual_classroom_playlist').data('offset');
       $.get('/virtual_classroom/get_new_block_playlist?offset=' + offset);
     }
   });
+  $('#virtual_classroom_playlist .jspPane').sortable();
 }
 
 function initializeDraggableVirtualClassroom() {
@@ -64,8 +57,7 @@ function initializeDraggableVirtualClassroom() {
       initializeDraggableVirtualClassroomLesson(this.id);
     }
   });
-  initializeDroppablePlaylist();
-  initializeScollReloadPlaylist();
+  initializePlaylist();
 }
 
 function getMaximumZIndex(a_class) {

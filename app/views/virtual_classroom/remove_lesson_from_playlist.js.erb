@@ -4,7 +4,7 @@
     initializeDraggableVirtualClassroomLesson('virtual_classroom_lesson_<%= @lesson_id %>');
     $('#virtual_classroom_lesson_<%= @lesson_id %> ._cover_slide_thumb').removeClass('current');
     $('#virtual_classroom_lesson_<%= @lesson_id %>').data('in-playlist', false);
-    reloadPlaylist();
+    initializePlaylist();
   });
 <% else %>
   showErrorPopUp('<%= j @error %>');

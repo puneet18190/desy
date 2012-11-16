@@ -412,7 +412,11 @@ $(document).ready(function() {
   
   // JAVASCRIPT ANIMATIONS
   
-  $('.scroll-pane').jScrollPane({
+  $('#media_elements_list_in_video_editor').jScrollPane({
+    autoReinitialise: true
+  });
+  
+  $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });
   
