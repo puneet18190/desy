@@ -24,7 +24,7 @@ function initializeDraggableVirtualClassroomLesson(id) {
   }
 }
 
-function initializeDroppablePlaylist() {
+function initializePlaylist() {
   $('#virtual_classroom_playlist').droppable({
     drop: function(event, ui) {
       ui.helper.css('display', 'none');
@@ -46,7 +46,7 @@ function initializeDraggableVirtualClassroom() {
       initializeDraggableVirtualClassroomLesson(this.id);
     }
   });
-  initializeDroppablePlaylist();
+  initializePlaylist();
 }
 
 function getMaximumZIndex(a_class) {

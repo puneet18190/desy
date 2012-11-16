@@ -601,4 +601,12 @@ $(document).ready(function() {
   
   initializeDraggableVirtualClassroom();
   
+  $('body').on('mouseover', '._lesson_in_playlist', function() {
+    $('#' + this.id + ' ._remove_lesson_from_playlist').css('display', 'block');
+  });
+  
+  $('body').on('mouseout', '._lesson_in_playlist', function() {
+    $('#' + this.id + ' ._remove_lesson_from_playlist').css('display', 'none');
+  });
+  
 });

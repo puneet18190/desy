@@ -2,9 +2,9 @@
 
 <div class="lista">
   <div class="contatore"><%= virtual.position %></div> 
-  <div class="description">
+  <div id="lesson_in_playlist_<%= lesson.id %>" class="description _lesson_in_playlist">
     <div class="title"><h1><%= lesson.title %></h1></div>
     <div class="lessonType"><h2><%= lesson.subject.description %></h2></div>
-    <div class="exitButton">&nbsp;</div>
+    <div class="exitButton _remove_lesson_from_playlist" style="display:none">&nbsp;</div>
   </div>
 </div>
