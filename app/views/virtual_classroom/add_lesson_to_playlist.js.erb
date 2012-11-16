@@ -1,1 +1,12 @@
-//alert('ok = <%= @ok %>, e message = <%= @error %>');
+<% if @ok %>
+  var playlist = $('#virtual_classroom_playlist ._playlist_content');
+  if((playlist).hasClass('emptyPlayList')) {
+    playlist.removeClass('emptyPlayList');
+    playlist.addClass('scroll-pane');
+    playlist.html('');
+  }
+  $('#virtual_classroom_lesson_<%= @lesson_id %>').draggable('disable');
+<% else %>
+  showErrorPopUp('<%= j @error %>');
+  $('#virtual_classroom_lesson_<%= @lesson_id %> ._cover_slide_thumb').removeClass('current');
+<% end %>
