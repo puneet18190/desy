@@ -11,6 +11,11 @@ function initializeDraggableVirtualClassroomLesson(id) {
     },
     start: function() {
       $('#' + id + ' ._cover_slide_thumb').addClass('current');
+    },
+    stop: function(event, ui) {
+      if(!ui.helper.hasClass('_lesson_dropped')) {
+        $('#' + id + ' ._cover_slide_thumb').removeClass('current');
+      }
     }
   });
 }
@@ -25,6 +30,8 @@ function initializeDraggableVirtualClassroom() {
   });
   $('#virtual_classroom_playlist').droppable({
     drop: function(event, ui) {
+      ui.helper.css('display', 'none');
+      ui.helper.addClass('_lesson_dropped');
       $.ajax({
         type: 'post',
         url: '/virtual_classroom/' + ui.draggable.data('lesson-id') + '/add_lesson_to_playlist'
