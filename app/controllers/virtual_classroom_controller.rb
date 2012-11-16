@@ -6,7 +6,7 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson, :remove_lesson_from_inside]
   before_filter :initialize_lesson_destination, :only => [:add_lesson, :remove_lesson]
   before_filter :initialize_layout, :initialize_paginator, :only => :index
-  before_filter :initialize_virtual_classroom_lesson, :only => :add_lesson_to_playlist
+  before_filter :initialize_virtual_classroom_lesson, :initialize_offset, :only => :add_lesson_to_playlist
   layout 'virtual_classroom'
   
   def index
@@ -74,10 +74,14 @@ class VirtualClassroomController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_adding_to_playlist')
     end
-    @playlist = @current_user.playlist_visible_block 0, PLAYLIST_CONTENT
+    @playlist = @current_user.playlist_visible_block 0, @offset
   end
   
   private
+  
+  def initialize_offset
+    @offset = correct_integer?(params[:offset]) ? params[:offset].to_i : PLAYLIST_CONTENT
+  end
   
   def initialize_virtual_classroom_lesson
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
