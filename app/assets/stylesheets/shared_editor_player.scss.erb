@@ -113,7 +113,17 @@
 	&:hover {
     cursor: pointer;
   }
-	
+	&.creaNuovoButton {
+	  font-size: 0.7em;
+    background-position: (-$button-size*2) (-$button-size);
+		opacity:0.2;
+		
+	}
+	&.creaNuovoButton:hover {
+	  font-size: 0.7em;
+		background-position: (-$button-size*3) (-$button-size);
+		opacity:1;
+	}
 	&.deleteButtonOrange {
 	  background-position: 0 0;
 		opacity:0.2;
@@ -175,6 +185,10 @@
 	
   
 }
+.creaNuovoButton {
+  
+   @include menuCondivisoElementLessonEditor;
+ }
 .saveButton, .saveButtonOrange {
    @include menuCondivisoElementLessonEditor;
  }
@@ -207,9 +221,6 @@
     background-position: (-$button-size*2) 0;
 		opacity:0.2;
 	}
-	
-	
-	
  }
  /*FINE MENU*/
  .exitContent {

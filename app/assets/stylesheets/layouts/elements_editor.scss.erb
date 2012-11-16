@@ -29,36 +29,7 @@ html.media_elements-layout {
 	  font:  20px 'Nunito', sans-serif;
 		padding:0;
 	}
-	/*MENU*/
-	@mixin buttonNuovoElemento {
-  $button-size: 4.5em;
-  & {
-    display: block;
-    width: $button-size;
-    height: $button-size;
-    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*8);
-    padding:0;
-	}
-	&:hover {
-    cursor: pointer;
-  }
 	
-	&.creaNuovoButton {
-	  font-size: 0.8em;
-    background-position: (-$button-size*2) (-$button-size);
-		opacity:0.2;
-		
-	}
-	&.creaNuovoButton:hover {
-	  font-size: 0.8em;
-		background-position: (-$button-size*3) (-$button-size);
-		opacity:1;
-	}
- }
- /*FINE MENU*/
- 
 	.header {
 	  background-color:#eaeaea;
 		font-family: 'Nunito', sans-serif;
@@ -173,9 +144,7 @@ html.media_elements-layout {
 	    padding-top:25px;
 			padding-left:55px;
 		  height:79px;
-			a {
-			  @include buttonNuovoElemento;
-			}
+			
 		}
 	}
 	.addAudioandSave {
@@ -209,5 +178,4 @@ html.media_elements-layout {
 			text-align:left;
 		}
   }
-
 }
