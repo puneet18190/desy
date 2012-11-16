@@ -14,7 +14,7 @@ def plant_development_seeds
   subject2 = Subject.find 2
   subject3 = Subject.find 3
   
-  images = Dir.glob("#{Rails.root}/db/seeds/images/*").grep /\.jpe?g|png$/
+  images = Dir.glob("#{Rails.root}/db/seeds/images/*").grep(/\.jpe?g|png$/).shuffle
   
   tag_map = {
     0 => "cane, sole, gatto, cincillà, walter nudo, luna, escrementi di usignolo",
