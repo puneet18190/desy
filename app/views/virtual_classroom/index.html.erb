@@ -1,6 +1,6 @@
 <div class="griglia-contenuti">
   <div class="playListContainer">
-    <%= render :partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist} %>
+    <%= render :partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist, :tot_number => @playlist_tot} %>
   </div>
   <div class="listContainer">
     <%= render :partial => 'virtual_classroom/my_virtual_classroom' %>

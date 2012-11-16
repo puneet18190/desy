@@ -46,12 +46,12 @@ function initializeDroppablePlaylist() {
 }
 
 function initializeScollReloadPlaylist() {
-  //$('#tooltip_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-  //  if(isAtBottom && (parseInt($('#tooltip_content').data('offset')) < parseInt($('#tooltip_content').data('totnumber')))) {
-  //    var offset = $('#tooltip_content').data('offset');
-  //    $.get('/notifications/get_new_block?offset=' + offset);
-  //  }
-  //});
+  $('#virtual_classroom_playlist .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    if(isAtBottom && (parseInt($('#virtual_classroom_playlist').data('offset')) < parseInt($('#virtual_classroom_playlist').data('tot-number')))) {
+      var offset = $('#virtual_classroom_playlist').data('offset');
+      $.get('/virtual_classroom/get_new_block_playlist?offset=' + offset);
+    }
+  });
 }
 
 function initializeDraggableVirtualClassroom() {
