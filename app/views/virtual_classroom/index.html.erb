@@ -1,16 +1,13 @@
 <div class="griglia-contenuti">
   <div class="playListContainer">
-    <%= render :partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist} %>
+    <%= render :partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist, :tot_number => @playlist_tot} %>
   </div>
   <div class="listContainer">
-    
-      <%= render :partial => 'virtual_classroom/my_virtual_classroom' %>
-      <br class="clearfloat">
-			
-      <% if @lessons.any? %>
-        <%= render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => remove_param_from_url(request.url, 'delete_item')} %>
-      <% end %>
-    
+    <%= render :partial => 'virtual_classroom/my_virtual_classroom' %>
+    <br class="clearfloat">
+    <% if @lessons.any? %>
+      <%= render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => remove_param_from_url(request.url, 'delete_item')} %>
+    <% end %>
   </div>
   <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
 </div>
