@@ -3,4 +3,5 @@
     $('#virtual_classroom_playlist .jspPane').append("<%= j(render(:partial => "virtual_classroom/view_single_playlist", :locals => {:virtual => l})) %>");
   <% end %>
   $('#virtual_classroom_playlist').data('offset', <%= @offset + @playlist.count %>);
+  $('#virtual_classroom_playlist .scroll-pane').jScrollPane();
 <% end %>
