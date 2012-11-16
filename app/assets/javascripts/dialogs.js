@@ -88,6 +88,10 @@ function showImageMediaElementPopUp(id) {
       hide: "fade"
     });
   }
+  
+  $('.ui-widget-overlay').click(function() { 
+    $(thumb).dialog("close");
+  });
 }
 
 function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_no) {
@@ -116,17 +120,4 @@ function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_
 
 function closePopUp(id) {
   $('#' + id).dialog('close');
-}
-
-function closePopUpOnClickOut(){
-  $(document).on("click", function(e) {
-      var clickedOnDialog = $(e.srcElement)
-           .closest(".ui-widget.ui-dialog") // these classes are fixed
-           .children(".ui-dialog-content") // this as well
-           .is("._gallery_img_expanded"); // this is your own class
-
-      if (!clickedOnDialog) {
-          $('.dialog').dialog('destroy');
-      }
-  });
 }
