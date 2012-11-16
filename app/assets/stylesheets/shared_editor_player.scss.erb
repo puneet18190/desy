@@ -21,9 +21,6 @@
   background: #41a62a;
  }
 }
-
-
-
 /*ICONOGRAFIA PER DISTINGUERE GLI ELEMENTI DIDATTICI*/
 @mixin iconEditorElement {
   $button-size: 5.5em;
@@ -38,9 +35,7 @@
     padding:0;
 		font-size: 0.5em;
 	}
-	&:hover {
-    cursor: pointer;
-  }
+	
 	&.videoButton {
 	  
     background-position: (-$button-size*2) 0;
@@ -67,10 +62,6 @@
 	  background-position: 0 (-$button-size*2);
 		opacity:1;
 	}
-	&.iconButton {
-	  background-position: 0 (-$button-size*2);
-		opacity:1;
-	}
 	&.audioButton {
 	  background-position: (-$button-size*2) (-$button-size);
 		opacity:0.1;
@@ -83,6 +74,26 @@
 	  background-position: 0 (-$button-size);
 		opacity:1;
 	}
+	&.photoIcon {
+	  background-position: 0 (-$button-size*2);
+		opacity:1;
+		font-size: 0.4em;
+	}
+	&.videoIcon {
+	  background-position: 0 0;
+		opacity:1;
+		font-size: 0.4em;
+	}
+	&.audioIcon {
+	  background-position: 0 (-$button-size);
+		opacity:1;
+		font-size: 0.4em;
+	}
+	&.textIcon {
+	  background-position: 0 (-$button-size*3);
+		opacity:1;
+		font-size: 0.4em;
+	}
 }
 .videoButton {
    @include iconEditorElement;
@@ -90,13 +101,21 @@
 .photoButton {
    @include iconEditorElement;
 }
-.iconButton {
-   @include iconEditorElement;
-}
 .audioButton {
    @include iconEditorElement;
 }
-
+.photoIcon {
+   @include iconEditorElement;
+}
+.videoIcon {
+   @include iconEditorElement;
+}
+.audioIcon {
+   @include iconEditorElement;
+}
+.textIcon {
+   @include iconEditorElement;
+}
 /*MENU CONDIVISO EDITOR LESSON ED EDITOR ELEMENTS*/
 @mixin menuCondivisoElementLessonEditor {
   $button-size: 5.5em;

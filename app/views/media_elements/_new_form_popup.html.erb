@@ -1,27 +1,110 @@
 <div class="mediaElementInfoPopUp"  id="load-media-element" style="display:none;">
   <div class="_media_element_pop_up_container MediaElementPopUpContainer">
     <div class="_change_info_container ChangeInfoContainerLoading">
-      <%= form_for media_element, remote: true, html: { class:"formModifyInfo" } do |f| %>
+      <%= form_for media_element, html: { class:"formModifyInfo" } do |f| %>
         <div class="cols fltlft">
           <div class="selectButton">
-            <%= f.file_field :media, style: 'display: none' %>
-            <input type="button" class="uploadFileButton submitButton _fakeUploadTrigger" data-fake-upload-input-selector="#media_element_media" data-fake-upload-show-selector="#media_element_media_show">
-            <input id="media_element_media_show" readonly="readonly" placeholder="Nessun file selezionato" class="fk_carica_elemento_file _fakeUploadTrigger" type="text" data-fake-upload-input-selector="#media_element_media" data-fake-upload-show-selector="#media_element_media_show">
-          </div>
+            <%#= f.file_field :media %>
+             <a class="uploadFileButton submitButton" id="media_element_media_pick"></a>
+             <div id="media_element_media_show" class="fk_carica_elemento_file">Seleziona un file</div>
+<!--             <input id="media_element_media_show" readonly="readonly" placeholder="Nessun file selezionato" class="fk_carica_elemento_file _fakeUploadTrigger" type="text" data-fake-upload-input-selector="#media_element_media" data-fake-upload-show-selector="#media_element_media_show">
+ -->          </div>
           <br class="clearfloat">
-          <%= f.text_field :title, placeholder: t('forms.media_element.labels.title') %>
+          <%= f.text_field :title, name: 'title', placeholder: t('forms.media_element.labels.title') %>
           <br>
-          <%= f.text_area :description, placeholder: t('forms.media_element.labels.description') %>
+          <%= f.text_area :description, name: 'description', placeholder: t('forms.media_element.labels.description') %>
         </div>
         <div class="cols fltrt">
           <h1><%= t('forms.media_element.title') %></h1>
           <p style="padding-bottom:15px"><%= t('forms.media_element.notes') %></p>
-          <%= f.text_area :tags, placeholder: t('forms.media_element.labels.tags') %>
+          <%= f.text_area :tags, name: 'tags', placeholder: t('forms.media_element.labels.tags') %>
           <br>
-          <%= f.submit t('forms.media_element.submit') %> or <a class="_close" data-dialog-id="load-media-element">cancel</a>
+          <%= f.submit t('forms.media_element.submit'), id: 'new_media_element_submit' %> or <a class="_close" data-dialog-id="load-media-element">cancel</a>
         </div>
       <% end %>
     </div>
   </div>
-  <div class="barraLoading"></div>
+  <div class="barraLoading"><div></div></div>
+  <style type="text/css">
+  .barraLoading div { height: 100%; background-color: red; width: 0%;}
+  </style>
+<!--   <div id="container">
+    <div id="filelist">No runtime found.</div>
+    <br />
+    <a id="pickfiles" href="#">[Select files]</a>
+    <a id="uploadfiles" href="#">[Upload files]</a>
+  </div>
+ -->  <!-- <iframe id="upload_target" name="upload_target" src="" style="width:100px;height:100px;border:1px solid #ccc;"></iframe> -->
+  <!-- <div id="myResultsDiv" style="width: 100%;height: 10px"></div> -->
 </div>
+
+
+<script type="text/javascript">
+// Custom example logic
+
+function getFormParams() {
+  return $('#new_media_element').formParams();
+}
+
+$(function() {
+  var uploader = new plupload.Uploader({
+    runtimes : 'html5,flash',
+    url : '/media_elements',
+    browse_button : 'media_element_media_pick',
+    // container : 'container',
+    file_data_name : 'media',
+    filters : [
+      { title : "Image files", extensions : "jpg,jpeg,png" }
+    ]
+  });
+
+  uploader.bind('Init', function(up, params) {
+    // TODO vedere che succede nei browser senza Flash e senza HTML5 (aka IE9 senza Flash)
+    console.log(params.runtime);
+  });
+
+  $('#new_media_element').submit(function(e) {
+    e.preventDefault();
+    uploader.start();
+  });
+
+  uploader.init();
+
+  uploader.bind('BeforeUpload', function (up, file) {
+    up.settings.multipart_params = getFormParams();
+  });
+
+  uploader.bind('FilesAdded', function(up, files) {
+    var file = files[0];
+    $("#media_element_media_show").text(file.name);
+
+    up.refresh(); // Reposition Flash/Silverlight
+  });
+
+  // funziona solo con flash, probabilmente per l'HTML bisognerà
+  // pingare il server
+  uploader.bind('UploadProgress', function(up, file) {
+    $('.barraLoading div').width('' + file.percent + '%');
+  });
+
+  uploader.bind('Error', function(up, err) {
+    // TODO gestione errori lato client e server 500 (estensione e dimensioni principalmente)
+    console.log(err);
+    // $('#filelist').append("<div>Error: " + err.code +
+    //   ", Message: " + err.message +
+    //   (err.file ? ", File: " + err.file.name : "") +
+    //   "</div>"
+    // );
+
+    up.refresh(); // Reposition Flash/Silverlight
+  });
+
+  uploader.bind('FileUploaded', function(up, file, data) {
+    console.log(data);
+    $('.barraLoading div').width('100%');
+    // TODO gestione errori lato server (li gestiamo qui perché quest'evento ci ritorna i dati del server, mentre Error no)
+  });
+});
+</script>
+
+

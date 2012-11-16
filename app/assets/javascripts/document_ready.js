@@ -163,30 +163,7 @@ $(document).ready(function() {
     $(this).closest('form').submit();
   });
   
-  
-  // NEW MEDIA ELEMENT
-  
-  $('#new_media_element').on('submit', function(e) {
-      e.preventDefault();
-      $(this).ajaxSubmit({
-          iframe: true,
-          success: function(data, status, xhr, element) {
-            // console.log(data, status, xhr, element);
-            closePopUp('load-media-element');
-            window.setTimeout(function(){
-              showOkPopUp(data.message);
-            }, 450);
-          },
-          error: function(data) {
-            console.log(data);
-          },
-          uploadProgress: function(e, position, total, percentComplete) {
-            console.log(e, position, total, percentComplete);
-          }
-      });
-  });
-  
-  
+    
   // FILTERS
   
   function getMediaElementsFormat() {

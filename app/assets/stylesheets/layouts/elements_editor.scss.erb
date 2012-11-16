@@ -101,6 +101,8 @@ html.media_elements-layout {
         font-size:11px;
 			}
 		}
+	/*layout elementi sull'editor elementi*/
+	/*content elemento singolo*/
 	.boxMediaElement {
 	  width:156px;
 	  height:104px;
@@ -116,20 +118,28 @@ html.media_elements-layout {
 			  
 			}
 		}	
+		/*content menu elemento singolo*/
 		.boxMenuMediaElement {
 		  background-color:#000; 
 			position:absolute; 
 			z-index:2; 
-			padding:6px; 
+			padding:12px 6px; 
 			bottom:0; 
 			width:144px; 
-			background-color:#000; 
-			opacity:0.8;
+			background-color: rgba(0,0,0,0.7);
 			font-size:11px;
 			display:block;
+			
 			a {
 			  color:#fff;
 				float:left;
+				margin-right:10px;
+			}
+			.photoIcon {
+			  margin-right:0px;
+				position:absolute;
+				top:6px;
+				right:3px;
 			}
 		}
 	}
@@ -144,7 +154,6 @@ html.media_elements-layout {
 	    padding-top:25px;
 			padding-left:55px;
 		  height:79px;
-			
 		}
 	}
 	.addAudioandSave {
