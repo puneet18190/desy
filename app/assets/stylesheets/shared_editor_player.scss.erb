@@ -117,7 +117,6 @@
 	  font-size: 0.7em;
     background-position: (-$button-size*2) (-$button-size);
 		opacity:0.2;
-		
 	}
 	&.creaNuovoButton:hover {
 	  font-size: 0.7em;
@@ -187,6 +186,22 @@
 	  background-position: (-$button-size) (-$button-size*3);
 		opacity:1;
 	}
+  &.aggiungiImgButton {
+	  font-size: 0.5em;
+    background-position: (-$button-size*2) (-$button-size);
+		opacity:0.2;
+	}
+	&.aggiungiImgButton:hover {
+	  font-size: 0.5em;
+		background-position: (-$button-size*3) (-$button-size);
+		opacity:1;
+	}
+	&.aggiungiImgButton.current {
+	  font-size: 0.5em;
+		background-position: (-$button-size*3) (-$button-size);
+		opacity:1;
+	}
+	
 }
 .creaNuovoButton {
    @include menuCondivisoElementLessonEditor;
@@ -203,6 +218,11 @@
 .addButtonOrange {
    @include menuCondivisoElementLessonEditor;
  }
+.aggiungiImgButton {
+  @include menuCondivisoElementLessonEditor;
+}
+ 
+ 
 /*MENU*/
 	@mixin buttonExitElement {
   $button-size: 4.5em;
@@ -223,6 +243,11 @@
     background-position: (-$button-size*2) 0;
 		opacity:0.2;
 	}
+	&.exitButtonWhite {
+	  font-size: 0.3em;
+    background-position: 0 0;
+		opacity:1;
+	}
  }
  /*FINE MENU*/
  .exitContent {
@@ -231,7 +256,7 @@
 	    @include buttonExitElement;
 	  }
   }
-	.exitButton {
+	.exitButton, .exitButtonWhite {
    @include buttonExitElement;
  }
  
