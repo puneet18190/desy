@@ -33,6 +33,7 @@ gem 'recursive-open-struct'
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'tinymce-rails'
+gem 'plupload-rails', :github => 'ProGNOMmers/plupload-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
