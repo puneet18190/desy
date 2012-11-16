@@ -74,6 +74,7 @@ class VirtualClassroomController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_adding_to_playlist')
     end
+    @playlist = @current_user.playlist_visible_block 0, PLAYLIST_CONTENT
   end
   
   private

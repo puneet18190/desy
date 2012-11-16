@@ -3,7 +3,7 @@
   <% if lessons.empty? %>
     <%= render :partial => "virtual_classroom/empty_playlist" %> 
   <% else %>
-    <div class="_playlist_content scroll-pane">
+    <div class="scroll-pane">
       <% lessons.each do |l| %>
         <%= render :partial => "virtual_classroom/view_single_playlist", :locals => {:virtual => l} %>
       <% end %>
@@ -12,4 +12,4 @@
       <a class="lower"><%= t('captions.play') %></a>
     </div>
   <% end %>
-</div>  
+</div>
