@@ -587,4 +587,12 @@ $(document).ready(function() {
     $('#' + this.id + ' ._remove_lesson_from_playlist').css('display', 'none');
   });
   
+  $('body').on('click', '._remove_lesson_from_playlist', function() {
+    var lesson_id = $(this).data('clickparam');
+    $.ajax({
+      type: 'post',
+      url: '/virtual_classroom/' + lesson_id + '/remove_lesson_from_playlist'
+    });
+  });
+  
 });

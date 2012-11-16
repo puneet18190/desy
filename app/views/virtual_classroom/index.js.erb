@@ -15,12 +15,8 @@
   });
 <% else %>
   var to_delete = $('#<%= @delete_item %>');
+  var flash_playlist = to_delete.data('in-playlist');
   to_delete.hide('fade', {}, 500, function() {
-    var temporary_msg = $('#popup_captions_container').data('temporary-msg');
-    if(temporary_msg != '') {
-      showOkPopUp(temporary_msg);
-      $('#popup_captions_container').data('temporary-msg', '');
-    }
     $('#my_virtual_classroom').replaceWith("<%= j(render(:partial => "virtual_classroom/my_virtual_classroom")) %>");
     <% if @lessons.any? %>
       $('#virtual_classroom_pagination').replaceWith("<%= j(render(:partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
@@ -28,6 +24,13 @@
       $('#virtual_classroom_pagination').html('');
     <% end %>
     initializeDraggableVirtualClassroom();
+    $('#lesson_in_playlist_<%= @delete_item.split('_').last.html_safe %>').hide('fade', {}, 500, function() {
+      $('#virtual_classroom_playlist').replaceWith('<%= j(render(:partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist, :tot_number => @playlist_tot})) %>');
+      reloadPlaylist();
+    });
+    if(flash_playlist) {
+      $('#virtual_classroom_playlist').effect('highlight', {color: '#6E6363'}, 1000);
+    }
   });
 <% end %>
 
