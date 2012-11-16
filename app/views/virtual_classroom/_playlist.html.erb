@@ -1,17 +1,16 @@
-<div id="virtual_classroom_playlist" class="playList">
-  <h1><%= t('captions.playlist') %></h1>
+<div id="virtual_classroom_playlist" class="playList" data-offset="<%= lessons.count %>" data-tot-number="<%= tot_number %>">
+  <div class="fltlft"><h1><%= t('captions.playlist') %></h1></div>
+	<span class="fltrt">empty playlist</span>
   <% if lessons.empty? %>
     <%= render :partial => "virtual_classroom/empty_playlist" %> 
   <% else %>
     <div class="scroll-pane">
-      <% cont = 1 %>
       <% lessons.each do |l| %>
-        <%= render :partial => "virtual_classroom/view_single_playlist", :locals => {:lesson => l.lesson, :cont => cont} %>
-        <% cont += 1 %>
+        <%= render :partial => "virtual_classroom/view_single_playlist", :locals => {:virtual => l} %>
       <% end %>
     </div>
     <div class="play">
       <a class="lower"><%= t('captions.play') %></a>
     </div>
   <% end %>
-</div>  
+</div>

@@ -210,6 +210,10 @@ class User < ActiveRecord::Base
     VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(an_offset).limit(a_limit)
   end
   
+  def playlist_tot_number
+    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).count
+  end
+  
   def create_lesson(title, description, subject_id, tags)
     return nil if self.new_record?
     return nil if UsersSubject.where(:user_id => self.id, :subject_id => subject_id).empty?

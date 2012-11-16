@@ -1,0 +1,27 @@
+ <div class="dots_pagination_container paginatoreCentrato" id="virtual_classroom_pagination" style="display:block">
+  <span class="dots_pagination">
+    <span role="pages">
+      <a data-page="<%= page-1 %>" <%= 'role="disabled"'.html_safe if page <= 1 %>></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" <%= 'role="disabled"'.html_safe if page >= pages_amount %>></a>
+    </span>
+  </span>
+	
+</div>
+
+
+<script type="text/javascript">
+  
+  $(document).ready(function() {
+    var prevPage = function(prevPage) {
+      var url = '<%= add_page_parameter(page - 1, pagination_url) %>';
+      $.get(url);
+      return true;
+    }
+    var nextPage = function(nextPage) {
+      var url = '<%= add_page_parameter(page + 1, pagination_url) %>';
+      $.get(url);
+      return true;
+    }
+    new DotsPagination($('[role=pages]'), <%= j pages_amount.to_s %>, prevPage, nextPage);
+  });
+  
+</script>

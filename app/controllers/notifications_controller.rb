@@ -16,7 +16,7 @@ class NotificationsController < ApplicationController
       @offset_notifications = @notifications.length
       @tot_notifications = Notification.count_tot(@current_user.id)
       @next_notification = @notifications.last
-      @load_new = (@offset_notifications == CONFIG['notifications_loaded_together'])
+      @load_new = (@offset_notifications == CONFIG['notifications_loaded_together'] && @offset_notifications < @tot_notifications)
     end
   end
   

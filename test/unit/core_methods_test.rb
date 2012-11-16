@@ -479,6 +479,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 1, VirtualClassroomLesson.count
     assert x.add_to_playlist
     assert VirtualClassroomLesson.find(x.id).in_playlist?
+    assert_equal 1, VirtualClassroomLesson.find(x.id).position
     assert_equal 1, VirtualClassroomLesson.count
     lesson1 = User.find(1).create_lesson 'lesson1', 'lesson1', 1, 'gatto, cane, topo, orso'
     xx = VirtualClassroomLesson.new
@@ -490,7 +491,8 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 2, VirtualClassroomLesson.count
     assert xx.add_to_playlist
     assert_equal 2, VirtualClassroomLesson.count
-    assert_equal 2, VirtualClassroomLesson.find(xx.id).position
+    assert_equal 1, VirtualClassroomLesson.find(xx.id).position
+    assert_equal 2, VirtualClassroomLesson.find(x.id).position
   end
   
   test 'remove_from_playlist' do
@@ -506,6 +508,9 @@ class CoreMethodsTest < ActiveSupport::TestCase
     xx = VirtualClassroomLesson.find(xx.id)
     assert xx.add_to_playlist
     assert_equal 2, VirtualClassroomLesson.where(:user_id => 1).count
+    assert_equal 1, VirtualClassroomLesson.find(xx.id).position
+    vvv = VirtualClassroomLesson.find(xx.id)
+    assert vvv.change_position(2)
     assert_equal 2, VirtualClassroomLesson.find(xx.id).position
     assert VirtualClassroomLesson.find(1).remove_from_playlist
     assert VirtualClassroomLesson.find(1).position.nil?

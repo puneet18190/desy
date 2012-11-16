@@ -6,7 +6,8 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson, :remove_lesson_from_inside]
   before_filter :initialize_lesson_destination, :only => [:add_lesson, :remove_lesson]
   before_filter :initialize_layout, :initialize_paginator, :only => :index
-  before_filter :initialize_virtual_classroom_lesson, :only => :add_lesson_to_playlist
+  before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist]
+  before_filter :initialize_offset, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :index, :get_new_block_playlist]
   layout 'virtual_classroom'
   
   def index
@@ -15,7 +16,8 @@ class VirtualClassroomController < ApplicationController
       @page = @pages_amount
       get_lessons
     end
-    @playlist = @current_user.playlist_visible_block 0, PLAYLIST_CONTENT
+    @playlist = @current_user.playlist_visible_block 0, @offset
+    @playlist_tot = @current_user.playlist_tot_number
     render_js_or_html_index
   end
   
@@ -74,9 +76,33 @@ class VirtualClassroomController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_adding_to_playlist')
     end
+    @playlist = @current_user.playlist_visible_block 0, (@offset + 1)
+    @playlist_tot = @current_user.playlist_tot_number
+  end
+  
+  def get_new_block_playlist
+    @ok = correct_integer?(params[:offset])
+    @playlist = @current_user.playlist_visible_block @offset, PLAYLIST_CONTENT if @ok
+  end
+  
+  def remove_lesson_from_playlist
+    if @ok
+      if !@virtual_classroom_lesson.remove_from_playlist
+        @ok = false
+        @error = @virtual_classroom_lesson.get_base_error
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_removing_from_playlist')
+    end
+    @playlist = @current_user.playlist_visible_block 0, (@offset)
+    @playlist_tot = @current_user.playlist_tot_number
   end
   
   private
+  
+  def initialize_offset
+    @offset = correct_integer?(params[:offset]) ? params[:offset].to_i : PLAYLIST_CONTENT
+  end
   
   def initialize_virtual_classroom_lesson
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
