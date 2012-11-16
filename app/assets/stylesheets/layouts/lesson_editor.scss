@@ -593,6 +593,14 @@ html.lesson-editor-layout{
             width: 400px;
             height: 550px;
           }
+          .rollover{
+            height: 550px;
+          	width: 400px;
+          	margin: 0;
+          	.add-image{
+          	  margin:210px 0 0 135px;
+          	}
+          }
         }
         &.image1{
           padding: 0;
