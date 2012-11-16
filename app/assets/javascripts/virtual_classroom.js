@@ -26,7 +26,9 @@ function initializeDraggableVirtualClassroomLesson(id) {
 
 function reloadPlaylist() {
   initializeDroppablePlaylist();
-  $('#virtual_classroom_playlist .scroll-pane').jScrollPane();
+  $('#virtual_classroom_playlist .scroll-pane').jScrollPane({
+    autoReinitialise: true
+  });
   initializeScollReloadPlaylist();
 }
 
