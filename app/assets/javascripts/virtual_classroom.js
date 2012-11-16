@@ -9,7 +9,7 @@ function initializeDraggableVirtualClassroomLesson(id) {
       helper: function() {
         var current_z_index = getMaximumZIndex('_virtual_classroom_lesson') + 1;
         var div_to_return = $('#' + this.id + ' ._cover_slide_thumb')[0].outerHTML;
-        div_to_return = '<div ' + 'style="' + current_z_index + '" ' + div_to_return.substr(5,div_to_return.length);
+        div_to_return = '<div ' + 'style="' + current_z_index + ';outline:1px solid white" ' + div_to_return.substr(5,div_to_return.length);
         return div_to_return;
       },
       start: function() {

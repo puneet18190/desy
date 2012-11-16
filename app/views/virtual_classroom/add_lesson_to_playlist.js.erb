@@ -1,5 +1,5 @@
 <% if @ok %>
-  $('#virtual_classroom_playlist').effect('highlight', {}, 1000, function() {
+  $('#virtual_classroom_playlist').effect('highlight', {color: '#6E6363'}, 1000, function() {
     var playlist = $('#virtual_classroom_playlist ._playlist_content');
     if((playlist).hasClass('emptyPlayList')) {
       playlist.removeClass('emptyPlayList');
@@ -9,6 +9,7 @@
       $('#virtual_classroom_lesson_<%= @lesson_id %>').draggable('disable');
       $('#virtual_classroom_playlist ._playlist_content .jspPane').append('<%= j(render(:partial => "virtual_classroom/view_single_playlist", :locals => {:virtual => @virtual_classroom_lesson})) %>');
     }
+    $(this).data('in-playlist', 'true');
   });
 <% else %>
   showErrorPopUp('<%= j @error %>');
