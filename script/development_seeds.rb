@@ -128,7 +128,7 @@ def plant_development_seeds
   
   descriptions.each_with_index do |d, i|
     sti_type = types[(i%3)]
-    x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[media_counter % 30]) : nil)
+    x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[media_counter % 50]) : nil)
     x.user_id = admin.id
     x.sti_type = sti_type
     x.tags = tag_map[i%10]
@@ -179,7 +179,7 @@ def plant_development_seeds
   
   descriptions.each_with_index do |d, i|
     sti_type = types[(i%3)]
-    x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[media_counter % 30]) : nil)
+    x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[media_counter % 50]) : nil)
     x.user_id = u.id
     x.sti_type = sti_type
     x.tags = tag_map[i%10]
