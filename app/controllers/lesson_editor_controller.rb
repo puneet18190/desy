@@ -61,7 +61,7 @@ class LessonEditorController < ApplicationController
     else
       @kind_of = "image"
     end
-    @media_elements = @current_user.own_media_elements(1,35,@kind_of)[:records]
+    @media_elements = @current_user.own_media_elements(1, 35, @kind_of)[:records]
     @slide = Slide.find params[:slide]
     @img_position = params[:position]
     respond_to do |format|
