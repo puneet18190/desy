@@ -1,6 +1,6 @@
 <div id="<%= destination %>_<%= media_element.id %>" class="boxViewExpandedMediaElement">
   <div class="contentInterno">
-    <%= render :partial => "media_elements/thumbnails/#{media_element.sti_type.downcase}" %> <!-- TODO qui dovrò passare la url dell'attached quando necessario -->
+    <%= render :partial => "media_elements/thumbnails/#{media_element.sti_type.downcase}", :locals => {:item => media_element} %>
     <div class="description">
       <h3><%= media_element.sti_type %></h3>
       <h4><%= media_element.title %></h4>

@@ -47,6 +47,10 @@ Desy::Application.routes.draw do
   get  'lesson_editor/save_slide' => 'lesson_editor#save_slide', :as => :save_slide
   post 'lesson_editor/change_slide_position/:slide_id/' => 'lesson_editor#change_slide_position', :as => :change_slide_position
   
+  # VIRTUAL CLASSROOM
+  post 'virtual_classroom/:lesson_id/remove_lesson_from_inside' => 'virtual_classroom#remove_lesson_from_inside'
+  post 'virtual_classroom/:lesson_id/add_lesson_to_playlist' => 'virtual_classroom#add_lesson_to_playlist'
+  
   # MEDIA ELEMENTS EDITOR
   get  'media_elements_editor/' => 'media_elements_editor#index'
   
@@ -58,7 +62,7 @@ Desy::Application.routes.draw do
   post 'profile/update' => 'users#update'
   get  'logout' => 'users#logout', :as => :logout
   
-  # NOT LOGGED USER
+  # USER NOT LOGGED
   get  'home' => 'prelogin#home', :as => :home
   get  'login' => 'prelogin#login', :as => :login
   get  'sign_up' => 'prelogin#registration', :as => :sign_up

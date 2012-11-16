@@ -23,6 +23,14 @@ html.virtual_classroom-controller {
 	  background: #373737;
 	  margin: 0 auto;  
   }
+	.playListContainer {
+	  float:right; 
+		margin-right:20px; 
+		clear: right;
+	}
+	.listContainer {
+	  margin-right:366px;
+	}
 	.bluBar {
     margin: 0 auto 24px auto;
     padding-left:2%;
@@ -78,7 +86,9 @@ html.virtual_classroom-controller {
     -webkit-box-shadow: none;
     box-shadow: none;
     background-color: #434343;
-      
+    &:hover {
+	    cursor: default;
+	  }  
 	  .contentInterno {
 	    height:214px;
 			width:auto;
@@ -89,6 +99,12 @@ html.virtual_classroom-controller {
 			.img_expanded:hover {
 			  background-color:#000;
 				opacity: 0.20;
+				cursor:pointer;
+			}
+			.img_expanded.current {
+			  background-color:#000;
+				opacity: 0.20;
+				cursor:pointer;
 			}
 			p {
 			  font-size:100%;
@@ -114,6 +130,7 @@ html.virtual_classroom-controller {
 	  padding:10px; 
 		background-color:#2b2929;
 		width:316px;
+		
 		h1 {
 		  color:#2eaadc;
 			font: 160% 'Nunito', sans-serif;
@@ -122,6 +139,15 @@ html.virtual_classroom-controller {
       font-size:80%;
       color:#373737;
     }
+		&.current {
+		  background-color:#434343;
+		}
+		.jspTrack {
+		  background-color:#434343;
+		}
+		.jspDrag {
+		  background-color:#2eaadc;
+		}
 		.lista {
       padding-bottom: 15px;
       padding-top: 15px;
@@ -134,11 +160,12 @@ html.virtual_classroom-controller {
 			 padding:4px 8px;
 			 margin-right:15px;
 			 background-color:#434343;
+			 font-size:80%;
 			}
 			.description {
 			  width:248px;
 				float:left;
-				
+				position:relative;
 				.title {
 				  background-color:#f29400;
 				  padding:10px;
@@ -150,13 +177,12 @@ html.virtual_classroom-controller {
 			  }
 			  &:hover {
 				  cursor:pointer;
-					background-color:#000;
-				  opacity: 0.20;
+					outline:1px solid #fff;
+					
 			  }
 				&.current {
-			    background-color:#000;
-				  opacity: 0.20;
-			  }	 
+			    outline:3px solid #fff;
+				}	 
 				
 			}
 			
@@ -166,7 +192,9 @@ html.virtual_classroom-controller {
 		    line-height:1em;
 				height: 25px;
 			}
+			
     }
+		
 		.play {
 		  padding:10px;
 			background-color:#2eaadc;
@@ -223,5 +251,12 @@ html.virtual_classroom-controller {
 			width:150px;
 			text-align:right;
 		}
+	}
+	.exitButton {
+		 position:absolute; 
+		 right:3px; 
+		 top:3px;
+		 font-size: 4px;
+		 opacity:1;
 	}
 }

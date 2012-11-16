@@ -98,7 +98,9 @@ a.cerca.current {
 	background-color:#fbfafb;
 	
 	width:49%;
-	
+	&:hover {
+		cursor: pointer;
+	}
 	.contentInterno {
 	  @include contentInterno;
 		text-align:center;
@@ -116,6 +118,9 @@ a.cerca.current {
 		.createButton a:hover {
 			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 			  cursor: pointer;
+		}
+		.createButton a.current_plus {
+		  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 		}
 	}
 	.vuoto {
@@ -362,6 +367,9 @@ a.cerca.current {
 	width:200px;
 	margin-right: 2%;
 	margin-bottom:20px;
+	&:hover {
+		cursor: pointer;
+	}
 	.contentNew {
 	  text-align:center; 
 		padding-top:120px;
@@ -378,6 +386,9 @@ a.cerca.current {
 			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 			  cursor: pointer;
 			}
+		}
+		a.current_plus {
+		  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
 		}
 	}
 	.vuoto {
@@ -631,137 +642,6 @@ a.cerca.current {
   float: left;
   width: auto;
 }
-
-@mixin sharedElements {
-  background-size: 11.3em 22.7em;
-	background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
-	background-repeat: no-repeat;
-	background-position:0 0;
-	padding:0;
+.paginatoreCentrato {
+  width:91%;
 }
-//ELEMENTI IN COMUNE TRA EDITOR E PLAYER//
-.iconMediaElements {
-  .audio {
-	  @include sharedElements;
-    background-position: 0 -2.5em;
-	}
-}
-.scrollVerde {
-  .jspTrack {
-   background: #3f3f3f;
-  }
- .jspDrag {
-  background: #41a62a;
- }
-}
-
-
-
-/*ICONOGRAFIA PER DISTINGUERE GLI ELEMENTI DIDATTICI*/
-@mixin iconEditorElement {
-  $button-size: 5.5em;
-  & {
-    float:left;
-		margin-right:5px;
-    width: $button-size;
-    height: $button-size;
-    background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($button-size*3) ($button-size*4);
-    padding:0;
-		font-size: 0.5em;
-	}
-	&:hover {
-    cursor: pointer;
-  }
-	&.videoButton {
-	  
-    background-position: (-$button-size*2) 0;
-		opacity:0.1;
-	}
-	&.videoButton:hover {
-	  background-position: 0 0;
-		opacity:1;
-	}
-	&.videoButton.current {
-	  background-position: 0 0;
-		opacity:1;
-	}
-	&.photoButton {
-	  background-position: (-$button-size*2) (-$button-size*2);
-		opacity:0.1;
-	}
-	&.photoButton:hover {
-	  font-size: 0.5em;
-		background-position: 0 (-$button-size*2);
-		opacity:1;
-	}
-	&.photoButton.current {
-	  background-position: 0 (-$button-size*2);
-		opacity:1;
-	}
-	&.audioButton {
-	  background-position: (-$button-size*2) (-$button-size);
-		opacity:0.1;
-	}
-	&.audioButton:hover {
-	  background-position: 0 (-$button-size);
-		opacity:1;
-	}
-	&.audioButton.current {
-	  background-position: 0 (-$button-size);
-		opacity:1;
-	}
-}
-.videoButton {
-   @include iconEditorElement;
- }
-.photoButton {
-   @include iconEditorElement;
-}
-.audioButton {
-   @include iconEditorElement;
-}
-/*MENU CONDIVISO EDITOR LESSON ED EDITOR ELEMENTS*/
-@mixin menuCondivisoElementLessonEditor {
-  $button-size: 5.5em;
-  & {
-    float:left;
-		width: $button-size;
-    height: $button-size;
-    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*8);
-		padding:0;
-		font-size:0.8em;
-	}
-	&:hover {
-    cursor: pointer;
-  }
-	&.saveButton,&.saveButtonOrange {
-	  background-position: 0 (-$button-size*3);
-		opacity:0.2;
-	}
-	&.saveButton:hover {
-	  background-position: (-$button-size*3) (-$button-size*3);
-		opacity:1;
-	}
-	&.saveButton.current {
-	  background-position: (-$button-size*3) (-$button-size*3);
-		opacity:1;
-	}
-	
-	&.saveButtonOrange:hover {
-	  background-position: (-$button-size) (-$button-size*3);
-		opacity:1;
-	}
-	&.saveButtonOrange.current {
-	  background-position: (-$button-size) (-$button-size*3);
-		opacity:1;
-	}
-  
-}
-.saveButton, .saveButtonOrange {
-   @include menuCondivisoElementLessonEditor;
- }
-

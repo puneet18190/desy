@@ -1,0 +1,34 @@
+<%
+  my_current_url = remove_param_from_url(request.url, 'delete_item')
+  my_current_url = add_page_parameter(@page, my_current_url)
+%>
+
+<% if @delete_item.blank? %>
+  $('#my_virtual_classroom').hide('fade', {}, 500, function() {
+    $('#my_virtual_classroom').replaceWith("<%= j(render(:partial => "virtual_classroom/my_virtual_classroom")) %>");
+    <% if @lessons.any? %>
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+    <% else %>
+      $('#general_pagination').html('');
+    <% end %>
+    initializeDraggableVirtualClassroom();
+  });
+<% else %>
+  var to_delete = $('#<%= @delete_item %>');
+  to_delete.hide('fade', {}, 500, function() {
+    var temporary_msg = $('#popup_captions_container').data('temporary-msg');
+    if(temporary_msg != '') {
+      showOkPopUp(temporary_msg);
+      $('#popup_captions_container').data('temporary-msg', '');
+    }
+    $('#my_virtual_classroom').replaceWith("<%= j(render(:partial => "virtual_classroom/my_virtual_classroom")) %>");
+    <% if @lessons.any? %>
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+    <% else %>
+      $('#general_pagination').html('');
+    <% end %>
+    initializeDraggableVirtualClassroom();
+  });
+<% end %>
+
+$('#info_container').data('currenturl', '<%= j(my_current_url) %>');

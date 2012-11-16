@@ -59,7 +59,7 @@ $(document).ready(function() {
   }
   
   
-  // DASHBOARD SWITCH
+  // DASHBOARD
   
   $('#switch_to_lessons').click(function() {
     switchToSuggestedLessons();
@@ -67,6 +67,30 @@ $(document).ready(function() {
   
   $('#switch_to_media_elements').click(function() {
     switchToSuggestedMediaElements();
+  });
+  
+  $('body').on('mouseover', '._large_dashboard_hover_lesson', function() {
+    $('._large_dashboard_hover_lesson a').addClass('current_plus');
+  });
+  
+  $('body').on('mouseout', '._large_dashboard_hover_lesson', function() {
+    $('._large_dashboard_hover_lesson a').removeClass('current_plus');
+  });
+  
+  $('body').on('mouseover', '._large_dashboard_hover_media_element', function() {
+    $('._large_dashboard_hover_media_element a').addClass('current_plus');
+  });
+  
+  $('body').on('mouseout', '._large_dashboard_hover_media_element', function() {
+    $('._large_dashboard_hover_media_element a').removeClass('current_plus');
+  });
+  
+  $('body').on('click', '._large_dashboard_hover_lesson', function() {
+    window.location = '/lesson_editor/new';
+  });
+  
+  $('body').on('click', '._large_dashboard_hover_media_element', function() {
+    alert('questa parte manca ancora');
   });
   
   
@@ -139,91 +163,7 @@ $(document).ready(function() {
     $(this).closest('form').submit();
   });
   
-  
-  //   NEW MEDIA ELEMENT
-
-//   function asyncFormSubmit($form) {
-//     // Create the iframe...
-//     var $iframe;
-//     $iframe = $('#upload_iframe');
-//     if ($iframe.length === 0) {
-//       $iframe = $('<iframe/>')
-//               .attr("name", "upload_iframe")
-//               .attr("id", "upload_iframe")
-//               .hide();
-//     }
-
-//     $("body").append($iframe);
-
-//     // When iframe loads, copy content back to target
-//     var copyIframe = function() {
-//         var contents = $iframe.contents().find("body").html();
-//         //$(resultDiv).html(contents);
-//         // Delete the iframe
-//         setTimeout(function () { $iframe.remove(); }, 250);
-//     }
-//     $iframe.one("load", copyIframe);
-
-//     // Set properties of form
-//     $form.attr("target", "upload_iframe");
-
-//     // Submit the form. This triggers the iframe to "load" the
-//     // response from the server. Once loaded we can then do other
-//     // stuff.
-//     $form.data('iframe-upload', true);
-//     $form.submit();
-
-//     // This gets replaced by iframe content when ready
-//     // $(resultDiv).html("Uploading...");
-//     console.log('uploading');
-// }
-  
-  // $('#new_media_element').on('submit', function(e) {
-  //     // e.preventDefault();
-  //     // console.log(e.data);
-  //     // return false;
-  //     if (e.data && e.data.ajaxSubmitIframeUpload) {
-  //       console.log($(this));
-  //       return true;
-  //     }
-  //     e.preventDefault();
-  //     // asyncFormSubmit($(this));
-  //     $(this).ajaxSubmit({
-  //         iframe: true,
-  //         target: '#myResultsDiv',
-  //         success: function(data, status, xhr, element) {
-  //           // console.log(data, status, xhr, element);
-  //           closePopUp('load-media-element');
-  //           window.setTimeout(function(){
-  //             showOkPopUp(data.message);
-  //           }, 450);
-  //         },
-  //         error: function(data) {
-  //           console.log(data);
-  //         },
-  //         uploadProgress: function(e, position, total, percentComplete) {
-  //           console.log(e, position, total, percentComplete);
-  //         }
-  //     });
-  // });
-
-  // $('#new_media_element').on('submit', function(e) {
-  //   e.preventDefault();
-  //   var data = $(":input", this).serializeArray();
-  //   console.log(data);
-  //   $.ajax(this.action, {
-  //     type: 'POST',
-  //     data: $(":input", this).serializeArray(),
-  //     files: $(":file", this),
-  //     iframe: true,
-  //     processData: false
-  //   }).complete(function(data) {
-  //     var json = '';//JSON.parse(data.responseText);
-  //     console.log(data, json);
-  //   });
-  // });
-  
-  
+    
   // FILTERS
   
   function getMediaElementsFormat() {
@@ -430,7 +370,7 @@ $(document).ready(function() {
   $('body').on('click', '._Lesson_button_edit', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    window.location = '/lesson_editor/' + my_param + '/index'
+    window.location = '/lesson_editor/' + my_param + '/index';
     return false;
   });
   
@@ -600,14 +540,42 @@ $(document).ready(function() {
   
   
   // FAKE UPLOAD BUTTONS
+  
   new FakeUpload($('._fakeUploadTrigger'));
-
-
+  
+  
   // POPUPS
   //   CHIUSURA
   //   es. <a data-dialog-id="load-media-element"></a>
+  
   $('._close').click(function(){
     closePopUp($(this).data('dialog-id'));
   });
-
+  
+  
+  // VIRTUAL CLASSROOM
+  
+  $('body').on('click', '._remove_lesson_from_inside_virtual_classroom', function() {
+    var lesson_id = $(this).data('clickparam');
+    var current_url = $('#info_container').data('currenturl');
+    var redirect_url = addDeleteItemToCurrentUrl(current_url, ('virtual_classroom_lesson_' + lesson_id));
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      url: '/virtual_classroom/' + lesson_id + '/remove_lesson_from_inside',
+      success: function(data) {
+        if(data.ok) {
+          $.ajax({
+            type: 'get',
+            url: redirect_url
+          });
+        } else {
+          showErrorPopUp(data.msg);
+        }
+      }
+    });
+  });
+  
+  initializeDraggableVirtualClassroom();
+  
 });

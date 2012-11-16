@@ -3,13 +3,15 @@ $(document).ready(function() {
           mode : "textareas",
           theme : "advanced",
           editor_selector : "tinymce",
-          plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
-          theme_advanced_buttons1 : "bold,italic,underline,forecolorpicker,backcolorpicker,link,unlink,separator,numlist,bullist,justifyleft,justifycenter,justifyright,justifyfull",
+          skin : "desy",
+          plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+          theme_advanced_buttons1 : "fontsizeselect,forecolor,justifyleft,justifycenter,justifyright,justifyfull,bold,italic,underline,numlist,bullist",
           theme_advanced_toolbar_location : "external",
           theme_advanced_toolbar_align : "left",
-          theme_advanced_statusbar_location : "bottom",
+          theme_advanced_statusbar_location : false,
           theme_advanced_resizing : true
   });
+
   $('#slide-numbers').sortable({
       items: "li:not(.unsortable)",
       start: function(event, ui) {
@@ -33,7 +35,9 @@ $(document).ready(function() {
 
   $("._save_slide").click(function(e) {
     e.preventDefault();
-    $(this).parents(".buttons").siblings().find('form').submit();
+    tinyMCE.triggerSave();
+    var formId = $(this).attr("data-param");
+    $('form#'+formId).submit();
   });
   $("#lesson_subject").selectbox();
   WW = parseInt($(window).outerWidth());
