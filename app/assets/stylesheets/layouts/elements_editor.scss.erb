@@ -57,7 +57,10 @@ html.media_elements-layout {
 		}
 		
 	}
-	
+	@mixin boxShadow {
+	  -webkit-box-shadow: 0px 6px 10px #161515;
+    box-shadow: 0px 6px 10px #161515;
+	}
 	.top {
     margin-bottom: -190px;
     background: transparent;
@@ -77,8 +80,7 @@ html.media_elements-layout {
 		width:640px;
 		height:360px;
 		margin:0 auto;
-		-webkit-box-shadow: 0px 6px 10px #161515;
-    box-shadow: 0px 6px 10px #161515;
+		@include boxShadow;
 		margin-bottom:50px;
 		
 	}
@@ -118,8 +120,7 @@ html.media_elements-layout {
 	.boxMediaElement {
 	  width:156px;
 	  height:104px;
-		-webkit-box-shadow: 0px 6px 10px #161515;
-    box-shadow: 0px 6px 10px #161515;
+		@include boxShadow;
 		position:relative;
 		float:left;
 		.boxContentMediaElement {
@@ -163,8 +164,7 @@ html.media_elements-layout {
 	.boxNewMediaElement {
     width:156px;
 	  margin-bottom:0px;
-		-webkit-box-shadow: 0px 6px 10px #161515;
-    box-shadow: 0px 6px 10px #161515;
+		@include boxShadow;
 	  .contentNew {
 	    padding-top:25px;
 			padding-left:55px;
@@ -173,7 +173,7 @@ html.media_elements-layout {
 	}
 	.addAudioandSave {
 	  float:left;
-		padding-top:20px;
+		padding-top:8px;
 		width:960px;
 		.audioButton {
 		  font-size: 0.8em;
@@ -203,10 +203,24 @@ html.media_elements-layout {
 		}
   }
 	.timeline {
-	  outline:1px dotted red;
-		padding:20px;
+	  display:none;
+	  padding:20px;
+		height:35px;
 		position:absolute;
-		bottom:0px;
-		background-color:#000;
+		z-index:150;
+		top:150px;
+		width:920px;
+		 @include boxShadow;
+			background-color:#000;
+		span {
+		 
+		}
+		.callout {
+      top: -11px;
+      z-index:20;
+      position:absolute;
+      border:0;
+      left:440px;
+    }
 	}
 }
