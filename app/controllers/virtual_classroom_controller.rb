@@ -82,8 +82,7 @@ class VirtualClassroomController < ApplicationController
   
   def get_new_block_playlist
     @ok = correct_integer?(params[:offset])
-    @limit = PLAYLIST_CONTENT
-    @playlist = @current_user.playlist_visible_block @offset, @limit if @ok
+    @playlist = @current_user.playlist_visible_block @offset, PLAYLIST_CONTENT if @ok
   end
   
   private

@@ -5,7 +5,7 @@
     object.draggable('disable');
     object.data('in-playlist', true);
     reloadPlaylist();
-    $('#virtual_classroom_playlist').data('tot-number', ($('#virtual_classroom_playlist').data('tot-number') + 1));
+    $('#virtual_classroom_playlist').data('tot-number', <%= @playlist_tot %>);
   });
 <% else %>
   showErrorPopUp('<%= j @error %>');
