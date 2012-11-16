@@ -1,0 +1,12 @@
+<% if @ok %>
+  $('#lesson_in_playlist_<%= @lesson_id %>').hide('fade', {}, 500, function() {
+    $('#virtual_classroom_playlist').replaceWith('<%= j(render(:partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist, :tot_number => @playlist_tot})) %>');
+    initializeDraggableVirtualClassroomLesson('virtual_classroom_lesson_<%= @lesson_id %>');
+    $('#virtual_classroom_lesson_<%= @lesson_id %> ._cover_slide_thumb').removeClass('current');
+    object.data('in-playlist', false);
+    reloadPlaylist();
+    $('#virtual_classroom_playlist').data('tot-number', <%= @playlist_tot %>);
+  });
+<% else %>
+  showErrorPopUp('<%= j @error %>');
+<% end %>
