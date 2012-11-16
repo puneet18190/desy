@@ -1,44 +1,43 @@
 .ui-button { display: inline-block; position: relative; padding: 0; margin-right: .1em; cursor: pointer; text-align: center; zoom: 1; overflow: visible; border:none; background-color:#f29400; color:#fff; font: 100% 'Nunito', sans-serif;-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;}
-.ui-dialog .ui-dialog-titlebar { padding: .4em 1em; position: relative; display:none }
-.ui-dialog .timedPopUp,
-.ui-dialog .confirmPopUp { 
-  position: absolute; 
-  width: auto; 
-  overflow: hidden;
-  -moz-box-shadow: 1px 1px 1px #b4b4b4;
-  -webkit-box-shadow: 1px 1px 1px #b4b4b4;
-  box-shadow: 1px 1px 1px #b4b4b4;
-	font-family:'Nunito', sans-serif;
-	background-color: rgba(248,248,248,0.9);
-	-moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+.ui-dialog-titlebar { padding: .4em 1em; position: relative; display:none }
+.ui-dialog .ui-dialog-content {
+  &.timedPopUp, &.confirmPopUp { 
+    width: auto; 
+    overflow: hidden;
+    box-shadow: 1px 1px 1px #b4b4b4;
+    -webkit-box-shadow: 1px 1px 1px #b4b4b4;
+    font-family:'Nunito', sans-serif;
+	  background-color: rgba(248,248,248,0.9);
+	  border-radius: 5px;
+    -webkit-border-radius: 5px;
+  }
 }
-.ui-dialog .timedPopUp img,
-.ui-dialog .confirmPopUp img { 
+.timedPopUp img,
+.confirmPopUp img { 
   float:left;
 	margin-right:5%;
 }
 
-.ui-dialog .timedPopUp h1 {
+.timedPopUp h1 {
 	font-size: 190% ;
 	color:#5d5c5c;
 	padding-top: 38px;
   line-height: 1em;
 	
 }
-.ui-dialog .confirmPopUp h1 {
+.confirmPopUp h1 {
 	font-size: 190% ;
 	color:#5d5c5c;
 	padding-top: 10px;
   line-height: 1em;
 	
 }
-.ui-dialog .confirmPopUp p {
+.confirmPopUp p {
   line-height: 1em;
 	
 }
-.ui-dialog .timedPopUp a,
-.ui-dialog .confirmPopUp a {
+.timedPopUp a,
+.confirmPopUp a {
 	color:#72b863;
 	text-transform:uppercase;
 }
