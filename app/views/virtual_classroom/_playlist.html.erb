@@ -4,10 +4,8 @@
     <%= render :partial => "virtual_classroom/empty_playlist" %> 
   <% else %>
     <div class="_playlist_content scroll-pane">
-      <% cont = 1 %>
       <% lessons.each do |l| %>
-        <%= render :partial => "virtual_classroom/view_single_playlist", :locals => {:lesson => l.lesson, :cont => cont} %>
-        <% cont += 1 %>
+        <%= render :partial => "virtual_classroom/view_single_playlist", :locals => {:virtual => l} %>
       <% end %>
     </div>
     <div class="play">

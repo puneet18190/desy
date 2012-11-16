@@ -6,6 +6,7 @@
     playlist.html('');
   }
   $('#virtual_classroom_lesson_<%= @lesson_id %>').draggable('disable');
+  $('#virtual_classroom_playlist ._playlist_content .jspPane').append('<%= j(render(:partial => "virtual_classroom/view_single_playlist", :locals => {:virtual => @virtual_classroom_lesson})) %>');
 <% else %>
   showErrorPopUp('<%= j @error %>');
   $('#virtual_classroom_lesson_<%= @lesson_id %> ._cover_slide_thumb').removeClass('current');
