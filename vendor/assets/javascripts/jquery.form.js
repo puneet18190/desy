@@ -477,8 +477,8 @@ $.fn.ajaxSubmit = function(options) {
                         io.addEventListener('load', cb, false);
                 }
                 setTimeout(checkState,15);
-                console.log('ciao');
-                $form.submit();
+                // console.log('ciao');
+                $form.submit({ ajaxSubmitIframeUpload: true });
             }
             finally {
                 // reset attrs and remove "extra" input elements

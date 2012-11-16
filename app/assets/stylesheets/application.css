@@ -15,7 +15,7 @@
  *= require dialog_popups
  *= require global
  *= require shared
-  *= require shared_editor_player
+ *= require shared_editor_player
  *= require header
  *= require menu
  *= require notice_help

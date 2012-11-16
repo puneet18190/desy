@@ -16,7 +16,12 @@
 //= require jquery.jscrollpane.min
 //= require jquery.selectbox-0.2.min
 //= require jquery-ui-1.9.0.custom
-//= require jquery.form
 //= require tinymce-jquery
 //= require dots_pagination
+//= require jquery.formparams
+//= require plupload
+//= require plupload.settings
+//= require jquery.plupload.queue
+//= require plupload.flash
+//= require plupload.html5
 //= require_tree .

@@ -17,18 +17,22 @@ class MediaElementsController < ApplicationController
       @page = @pages_amount
       get_own_media_elements
     end
-    @new_media_element = MediaElement.new(params[:media_element])
+    @new_media_element = MediaElement.new(media_element_params)
     render_js_or_html_index
   end
 
   def create
-    media_element = MediaElement.new(params[:media_element]) { |me| me.user = @current_user }
+    media_element = MediaElement.new(media_element_params) { |me| me.user = @current_user }
 
     if media_element.save
+      #render :formats => :js
       render json: { message: I18n.t('forms.media_element.messages.success') }, :status => :created
     else
+      #render :formats => :js
       # TODO aggiungere visualizzazione errori
-      render json: { errors: media_element.errors, tags: media_element.tags }, :status => :unprocessable_entity
+      puts media_element.errors.inspect
+
+      render json: { errors: media_element.errors, tags: media_element.tags }
     end
     #render layout: false, content_type: Mime::TEXT, text: media_element.inspect
   end
@@ -102,6 +106,10 @@ class MediaElementsController < ApplicationController
   
   private
   
+  def media_element_params
+    Hash[ [:media, :title, :description, :tags].map{ |v| [ v, params[v] ] } ]
+  end
+
   def get_own_media_elements
     current_user_own_media_elements = @current_user.own_media_elements(@page, @for_page, @filter)
     @media_elements = current_user_own_media_elements[:records]
