@@ -4,7 +4,7 @@
     <ul class="navlist">
       <div id="notifications_list" class="scroll-pane">
         <% if @notifications.empty? %>
-          <span><%= t('captions.no_notifications') %></span>
+          <%= render :partial => 'notifications/empty' %>
         <% else %>
           <% @notifications.each do |n| %>
             <%= render :partial => "notifications/notification", :locals => {:notification => n} %>
