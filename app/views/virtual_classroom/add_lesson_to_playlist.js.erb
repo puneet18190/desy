@@ -1,12 +1,15 @@
 <% if @ok %>
-  var playlist = $('#virtual_classroom_playlist ._playlist_content');
-  if((playlist).hasClass('emptyPlayList')) {
-    playlist.removeClass('emptyPlayList');
-    playlist.addClass('scroll-pane');
-    playlist.html('');
-  }
-  $('#virtual_classroom_lesson_<%= @lesson_id %>').draggable('disable');
-  $('#virtual_classroom_playlist ._playlist_content .jspPane').append('<%= j(render(:partial => "virtual_classroom/view_single_playlist", :locals => {:virtual => @virtual_classroom_lesson})) %>');
+  $('#virtual_classroom_playlist').effect('highlight', {}, 1000, function() {
+    var playlist = $('#virtual_classroom_playlist ._playlist_content');
+    if((playlist).hasClass('emptyPlayList')) {
+      playlist.removeClass('emptyPlayList');
+      playlist.addClass('scroll-pane');
+      playlist.html('');
+    } else {
+      $('#virtual_classroom_lesson_<%= @lesson_id %>').draggable('disable');
+      $('#virtual_classroom_playlist ._playlist_content .jspPane').append('<%= j(render(:partial => "virtual_classroom/view_single_playlist", :locals => {:virtual => @virtual_classroom_lesson})) %>');
+    }
+  });
 <% else %>
   showErrorPopUp('<%= j @error %>');
   $('#virtual_classroom_lesson_<%= @lesson_id %> ._cover_slide_thumb').removeClass('current');
