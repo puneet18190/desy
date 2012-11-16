@@ -4,7 +4,7 @@
   <% if lessons.empty? %>
     <%= render :partial => "virtual_classroom/empty_playlist" %> 
   <% else %>
-    <div class="scroll-pane">
+    <div id="lessons_list_in_playlist" class="scroll-pane">
       <% lessons.each do |l| %>
         <%= render :partial => "virtual_classroom/view_single_playlist", :locals => {:virtual => l} %>
       <% end %>

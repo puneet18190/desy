@@ -2,7 +2,7 @@
   <%= image_tag("freccia_tooltip.png", :class => "callout") %>
   <div class="list">
     <ul class="navlist">
-      <div class="scroll-pane">
+      <div id="notifications_list" class="scroll-pane">
         <% if @notifications.empty? %>
           <span><%= t('captions.no_notifications') %></span>
         <% else %>
