@@ -25,6 +25,9 @@ function initializeDraggableVirtualClassroomLesson(id) {
 }
 
 function initializePlaylist() {
+  $('#lessons_list_in_playlist').jScrollPane({
+    autoReinitialise: true
+  });
   $('#virtual_classroom_playlist').droppable({
     drop: function(event, ui) {
       ui.helper.css('display', 'none');
@@ -36,9 +39,6 @@ function initializePlaylist() {
       });
     },
     hoverClass: 'current'
-  });
-  $('#notifications_list').jScrollPane({
-    autoReinitialise: true
   });
   $('#virtual_classroom_playlist .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
     if(isAtBottom && (parseInt($('#virtual_classroom_playlist').data('offset')) < parseInt($('#virtual_classroom_playlist').data('tot-number')))) {
