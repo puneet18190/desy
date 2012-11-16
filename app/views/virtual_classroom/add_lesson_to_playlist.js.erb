@@ -4,8 +4,7 @@
     $('#virtual_classroom_playlist').replaceWith('<%= j(render(:partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist})) %>');
     object.draggable('disable');
     object.data('in-playlist', true);
-    initializePlaylist();
-    $('#virtual_classroom_playlist .scroll-pane').jScrollPane();
+    reloadPlaylist();
   });
 <% else %>
   showErrorPopUp('<%= j @error %>');
