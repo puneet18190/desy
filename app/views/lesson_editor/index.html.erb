@@ -5,7 +5,7 @@
       <%- @slides.each_with_index do |slide, index|%>
         <li class="<%= (index == 0) ? 'unsortable' : ''%>">
           <a href="#<%= slide.position %>" class="<%= (index == 0) ? 'active' : ''%>" data-slide="<%= slide.id%>"><%= index + 1 %></a>
-          <div class="tooltip">
+          <div class="slide-tooltip">
             <%= render :partial => "shared/lesson_thumbnails/small/#{slide.kind}" , :locals => { :slide => slide }%>
           </div>
         </li>

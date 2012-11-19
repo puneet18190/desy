@@ -1,12 +1,16 @@
-@import url(http://fonts.googleapis.com/css?family=Nunito);
-
 html.lesson-editor-layout{
+  height:auto;
+  margin:0;
   min-height: 100%;
   $orange: #f29400;
   *{
     outline: none;
   }
   body {
+  	direction:ltr;
+  	@media (max-width: 1024px) {
+      font-size: 13px;
+  	}
     font-family: Arial, Verdana, sans-serif;
 		font-size: 13px;
     height: 100%;
@@ -109,7 +113,7 @@ html.lesson-editor-layout{
     }
   }
 
-  .tooltip {
+  .slide-tooltip {
     width: 300px;
     display: none;
 		z-index:1000;
@@ -380,22 +384,31 @@ html.lesson-editor-layout{
           }
         }
         &.text{
-            h2.text input{
-                font-size: 70px;
-                padding: 10px;
-                margin: 10px;
-                width: 840px;
-                font-family: "Nunito", sans-serif;
+          h2.text input{
+              font-size: 70px;
+              padding: 10px;
+              margin: 10px;
+              width: 840px;
+              font-family: "Nunito", sans-serif;
+          }
+          .text-content{
+            padding-left: 20px;
+            textarea{
+              padding: 10px;
+              margin: 20px;
+              width: 840px;
+              height: 350px;
             }
-            .text-content{
-              padding-left: 20px;
-              textarea{
-                padding: 10px;
-                margin: 20px;
-                width: 840px;
-                height: 350px;
-              }
+          }
+          .cover-choose-image{
+            margin: 0 20px;
+            width: 860px;
+            height: 405px;
+            padding: 145px 0 0;
+            a{
+              margin: 0 auto 0;
             }
+          }
         }
         &.audio{
           padding: 0;
@@ -605,9 +618,8 @@ html.lesson-editor-layout{
           .cover-choose-image{
             margin: 0 20px;
             width: 400px;
-            height: 550px;
             a{
-              margin-top: 210px;
+              margin-top: 70px;
             }
           }
           .rollover{
@@ -886,16 +898,17 @@ html.lesson-editor-layout{
     text-align:center;
     display:block;
     width: 900px;
-    height: 560px;
+    height: 420px;
     color: #999;
     background-color: #f1f1f1;
     font-size: 16px;
+    padding-top: 140px;
     a{
       width: 130px;
       height: 130px;
       display:block;
       padding: 0;
-      margin: 145px auto 10px;
+      margin: 0 auto 10px;
       background:url('/assets/icone_piene.svg');
       background-position: -260px center;
       background-repeat: no-repeat;
@@ -971,7 +984,7 @@ html.lesson-editor-layout{
 
   /*html, body {height: 100%;}*/
 
-  #container {
+  #lesson-editor-container {
     min-height: 100%;
   }
 

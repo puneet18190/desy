@@ -2,30 +2,17 @@
 <html class="lesson-editor-layout <%= controller_html_class %> <%= action_html_class %>">
 <head>
   <title>Desy</title>
-  <%= stylesheet_link_tag "jquery.jscrollpane.css", :media => "all" %>
-  <%= stylesheet_link_tag "jquery-ui-1.9.0.custom.css", :media => "all" %>
-  <%= stylesheet_link_tag "dialog_popups", :media => "all" %>
-  <%= stylesheet_link_tag "shared_editor_player", :media => "all" %>
-  <%= stylesheet_link_tag "shared", :media => "all" %>
-  <%= stylesheet_link_tag "layouts/lesson_editor", :media => "all" %>
-  <%= stylesheet_link_tag "jquery.selectbox", :media => "all" %>
-
-  <%#= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <!--[if !IE 7]>
   	<style type="text/css">
   		#container {display:table;height:100%}
   	</style>
   <![endif]-->
-  <%#= javascript_include_tag "jquery" %>
-  <%#= javascript_include_tag "jquery_ujs" %>
-  <%#= javascript_include_tag "jquery-ui-1.9.0.custom" %>
-  <%#= javascript_include_tag "jquery.selectbox-0.2.min" %>
-  <%#= javascript_include_tag "lesson_editor" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container">
+<div class="lesson-editor-container">
 
   <div class="content">
     <%= yield :nav %>

@@ -60,11 +60,11 @@ $(document).ready(function() {
      x = e.pageX - tip.offset().left;
      y = e.pageY - tip.offset().top;
      
-     tip.children('.tooltip').animate({"opacity": "show"}, "fast");
+     tip.children('.slide-tooltip').animate({"opacity": "show"}, "fast");
      
      }, function() {
        // Reset the z-index and hide the image tooltip 
-         $(this).children('.tooltip').animate({"opacity": "hide"}, "fast");
+         $(this).children('.slide-tooltip').animate({"opacity": "hide"}, "fast");
      });
   
   $('#slide-numbers li a:not(._add_slide)').click(function(e){
