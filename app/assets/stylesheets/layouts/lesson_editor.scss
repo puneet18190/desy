@@ -30,6 +30,7 @@ html.lesson-editor-layout{
     /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2d2d2d', endColorstr='#7db9e8',GradientType=0 );
     /* IE6-9 */
+    overflow:hidden;
   }
 
   a {
@@ -295,7 +296,7 @@ html.lesson-editor-layout{
       	  cursor: pointer;
       	}
       	.add-image:hover{
-      	  background-position: -390px center ;
+      	  background-position: -390px center;
       	}
       }
 
@@ -428,6 +429,12 @@ html.lesson-editor-layout{
             width: 440px;
             height: 400px;
             display:block;
+            a{
+              background-position: 0 center;
+            }
+            a:hover{
+              background-position: -390px center;
+            }
           }
           .rollover{
             height: 250px;
@@ -489,8 +496,11 @@ html.lesson-editor-layout{
             width: 440px;
             height: 400px;
             display:block;
-            img{
-              width: 105px;
+            a{
+              background-position: -130px center;
+            }
+            a:hover{
+              background-position: -390px center;
             }
           }
           .rollover{
@@ -554,7 +564,11 @@ html.lesson-editor-layout{
           .cover-choose-image{
             margin: 0 20px;
             width: 860px;
-            height: 550px;
+            height: 405px;
+            padding: 145px 0 0;
+            a{
+              margin-top:0;
+            }
           }
           .rollover{
             margin:0;
@@ -592,6 +606,9 @@ html.lesson-editor-layout{
             margin: 0 20px;
             width: 400px;
             height: 550px;
+            a{
+              margin-top: 210px;
+            }
           }
           .rollover{
             height: 550px;
@@ -644,7 +661,7 @@ html.lesson-editor-layout{
           	width: 440px;
           	margin: 0;
           	.add-image{
-          	  margin:135px 0 0 145px;
+          	  margin:135px 0 0 155px;
           	}
           }
           
@@ -873,19 +890,45 @@ html.lesson-editor-layout{
     color: #999;
     background-color: #f1f1f1;
     font-size: 16px;
+    a{
+      width: 130px;
+      height: 130px;
+      display:block;
+      padding: 0;
+      margin: 145px auto 10px;
+      background:url('/assets/icone_piene.svg');
+      background-position: -260px center;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      font-size: 130px;
+    }
+    a:hover{
+      background-position: -390px center;
+    }
+    img{
+      display:none;
+    }
     &.choose-small{
       padding: 0;
       margin:20px 20px 0;
       width: 400px;
       height: 260px;
-      img{
+      text-align:center;
+      a{
+        font-size: 80px;
         width: 80px;
-        padding: 70px 0 0;
+        height: 80px;
+        display:block;
+        padding: 0;
+        margin: 70px auto 5px;
+        font-size: 80px;
       }
-    }
-    img{
-      padding: 145px 0 0;
-      margin-bottom: 10px;
+      a:hover{
+        background-position: -390px center;
+      }
+      img{
+        display:none;
+      }
     }
     &.cover-choose-image-left{
       float:left;
