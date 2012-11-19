@@ -1,10 +1,10 @@
-<span class="tooltip" id="tooltip_content" data-offset="<%= @offset_notifications %>" data-totnumber="<%= @tot_notifications %>">
+<span class="tooltip" id="tooltip_content" data-offset="<%= @offset_notifications %>" data-tot-number="<%= @tot_notifications %>">
   <%= image_tag("freccia_tooltip.png", :class => "callout") %>
   <div class="list">
     <ul class="navlist">
-      <div class="scroll-pane">
+      <div id="notifications_list" class="scroll-pane">
         <% if @notifications.empty? %>
-          <span><%= t('captions.no_notifications') %></span>
+          <%= render :partial => 'notifications/empty' %>
         <% else %>
           <% @notifications.each do |n| %>
             <%= render :partial => "notifications/notification", :locals => {:notification => n} %>

@@ -14,6 +14,7 @@ $(document).ready(function() {
 
   $('#slide-numbers').sortable({
       items: "li:not(.unsortable)",
+      axis: 'x',
       start: function(event, ui) {
         ui.item.startPos = ui.item.index() + 1;
       },
@@ -32,6 +33,7 @@ $(document).ready(function() {
   masked.each(function(index) {
     makeDraggable($(masked[index]), "x");
   });
+  
 
   $("._save_slide").click(function(e) {
     e.preventDefault();
@@ -67,6 +69,10 @@ $(document).ready(function() {
   
   $('#slide-numbers li a:not(._add_slide)').click(function(e){
     e.preventDefault();
+    
+    tinyMCE.triggerSave();
+    $('.active form').submit();
+    
     page = $(this).text();
     slide_id = $(this).attr("data-slide");
     $("#slide-numbers li a._add_slide").attr("href","/lesson_editor/add_new_slide/"+slide_id);
@@ -100,24 +106,40 @@ $(document).ready(function() {
 function makeDraggable(masked, axe){
 maskedImgWidth = masked.find("img").attr("width");
 var dist = maskedImgWidth - masked.parent().width();
+var roll = masked.find(".rollover");
 masked.draggable({ 
   axis: axe, 
-  distance: 10, 
+  distance: 10,
+  start: function(){
+    roll.css("opacity","0");
+    roll.css("cursor","-webkit-grabbing");
+  },
+  //drag: function(){
+  //  var thisDrag = $(this);
+  //  var offset = thisDrag.css("left");
+  //  if (parseInt(offset) > 0){
+  //    thisDrag.draggable('disable');
+  //  }
+  //},
   stop: function() {
-    var thisDrag = $(this)
+    var thisDrag = $(this);
     var offset = thisDrag.css("left");
     if (parseInt(offset) > 0){
       offset = 0;
+      roll.css("left",0);
       thisDrag.animate({
           left: "0"
         }, 100 );
     }
     else if (parseInt(offset) < -(parseInt(dist))){
       offset = -parseInt(dist);
+      roll.css("left",-offset);
       thisDrag.animate({
           left: "-"+dist+"px"
         }, 100 );
     }
+    roll.css("left",-parseInt(offset)).css("opacity","0.5");
+    roll.css("cursor","-webkit-grab");
     masked.parent().siblings(".media_element_align_"+masked.attr("data-param")).val(parseInt(offset));
   }
 });
@@ -131,4 +153,12 @@ function imgRealSize(img) {
 		$img.prop('naturalHeight', $tmpImg[0].height);
 	}
 	return { 'width': $img.prop('naturalWidth'), 'height': $img.prop('naturalHeight') }
+}
+
+function centerThis(div) { 
+        var winH = $(window).height(); 
+        var winW = $(window).width(); 
+        var centerDiv = $(div); 
+        centerDiv.css('top', winH/2-centerDiv.height()/2); 
+        centerDiv.css('left', winW/2-centerDiv.width()/2); 
 }

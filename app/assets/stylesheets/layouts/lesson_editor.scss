@@ -252,7 +252,6 @@ html.lesson-editor-layout{
       }
       
       span.rollover {
-      	opacity: 1;
       	-o-transition-duration: 1s;
       	-moz-transition-duration: 1s;
       	-webkit-transition: -webkit-transform 1s;
@@ -277,8 +276,30 @@ html.lesson-editor-layout{
       	margin-left: 30px;
       	margin-top: 50px;
       }
+      
+      span.rollover-image{
+        background:transparent;
+        height: 430px;
+      	width: 810px;
+      	margin-left: 30px;
+      	margin-top: 50px;
+      	cursor:move;
+        cursor: -webkit-grab;
+      	.add-image{
+      	  width: 130px;
+      	  height: 130px;
+      	  font-size: 130px;
+      	  margin: 175px 0 0 365px;
+      	  display:block;
+      	  background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
+      	  cursor: pointer;
+      	}
+      	.add-image:hover{
+      	  background-position: -390px center ;
+      	}
+      }
 
-      span.rollover:hover {
+      span.rollover:hover,span.rollover.active{
       	opacity: .5;
       	-o-transition-duration: 1s;
       	-moz-transition-duration: 1s;
@@ -535,6 +556,11 @@ html.lesson-editor-layout{
             width: 860px;
             height: 550px;
           }
+          .rollover{
+            margin:0;
+            width: 860px;
+            height: 550px;
+          }
         }
         
         &.image2{
@@ -566,6 +592,14 @@ html.lesson-editor-layout{
             margin: 0 20px;
             width: 400px;
             height: 550px;
+          }
+          .rollover{
+            height: 550px;
+          	width: 400px;
+          	margin: 0;
+          	.add-image{
+          	  margin:210px 0 0 135px;
+          	}
           }
         }
         &.image1{
@@ -602,7 +636,16 @@ html.lesson-editor-layout{
             display:block;
             img{
               width: 105px;
-            }
+            }  
+          }
+          
+          .rollover{
+            height: 400px;
+          	width: 440px;
+          	margin: 0;
+          	.add-image{
+          	  margin:135px 0 0 145px;
+          	}
           }
           
           .image1-content{
@@ -964,9 +1007,13 @@ html.lesson-editor-layout{
   ._saved{
     display:none;
     position: absolute;
-    left:40%;
-    top:30%;
-    width: 5em;
+    font-size: 125px;
+    background-image: url("/assets/icone_piene.svg");
+    width: 125px;
+    height: 125px;
+    background-repeat: no-repeat;
+    background-position: -523px center;
+		padding:0;
   }
   
 }

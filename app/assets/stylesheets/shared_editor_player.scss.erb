@@ -17,13 +17,17 @@
   .jspTrack {
    background: #3f3f3f;
   }
+	.jspHorizontalBar {
+   height:8px;
+ }
  .jspDrag {
   background: #41a62a;
  }
+ 
 }
 /*ICONOGRAFIA PER DISTINGUERE GLI ELEMENTI DIDATTICI*/
 @mixin iconEditorElement {
-  $button-size: 5.5em;
+  $button-size: 5.6em;
   & {
     float:left;
 		margin-right:5px;
@@ -43,6 +47,7 @@
 	&.videoButton:hover {
 	  background-position: 0 0;
 		opacity:1;
+		
 	}
 	&.videoButton.current {
 	  background-position: 0 0;

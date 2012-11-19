@@ -412,7 +412,11 @@ $(document).ready(function() {
   
   // JAVASCRIPT ANIMATIONS
   
-  $('.scroll-pane').jScrollPane({
+  $('#media_elements_list_in_video_editor').jScrollPane({
+    autoReinitialise: true
+  });
+  
+  $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });
   
@@ -437,8 +441,9 @@ $(document).ready(function() {
   initializeHelp();
   
   $('#tooltip_content .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
-    if(isAtBottom && (parseInt($('#tooltip_content').data('offset')) < parseInt($('#tooltip_content').data('totnumber')))) {
-      var offset = $('#tooltip_content').data('offset');
+    var tot_number = $('#tooltip_content').data('tot-number');
+    var offset = $('#tooltip_content').data('offset');
+    if(isAtBottom && (offset < tot_number)) {
       $.get('/notifications/get_new_block?offset=' + offset);
     }
   });
@@ -584,6 +589,14 @@ $(document).ready(function() {
   
   $('body').on('mouseout', '._lesson_in_playlist', function() {
     $('#' + this.id + ' ._remove_lesson_from_playlist').css('display', 'none');
+  });
+  
+  $('body').on('click', '._remove_lesson_from_playlist', function() {
+    var lesson_id = $(this).data('clickparam');
+    $.ajax({
+      type: 'post',
+      url: '/virtual_classroom/' + lesson_id + '/remove_lesson_from_playlist'
+    });
   });
   
 });
