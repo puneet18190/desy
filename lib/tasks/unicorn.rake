@@ -7,7 +7,7 @@ namespace :unicorn do
   end
   desc 'start Unicorn server daemonized (config file: config/unicorn.rb)'
   task :start => :environment do
-    exec "ruby_187_didattica_digitale_unicorn_rails -c config/unicorn.rb -E #{rails_env} -D"
+    exec "ruby_193_desy_unicorn_rails -c config/unicorn.rb -E #{rails_env} -D"
   end
   desc 'stop Unicorn server'
   task :stop => :environment do
