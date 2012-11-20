@@ -453,6 +453,16 @@ a.cerca.current {
 		text-align:left;
 	}
 }
+.mediaStatus {
+  padding:5% 0 0 5%;
+	color:#c0c0c0;
+	font-weight:bold;
+	font-size:85%;
+	
+}
+
+
+
 .MediaElementPopUpContainer {
   height:339px;
 	padding:20px;
@@ -541,7 +551,11 @@ a.cerca.current {
     color: #fff;
 		width:160px;
     background-color:#41a62a;
+		&:hover {
+		  background-color: #67b855;
+		}
   }
+	
 	textarea {
 	  border:1px solid #4fc356;
 		background-color:#454343;
@@ -583,7 +597,6 @@ a.cerca.current {
     -moz-opacity: 0;
 	}
 	
-
 	.uploadFileButton {
     position: absolute;
     left: 20px;
@@ -591,16 +604,14 @@ a.cerca.current {
     z-index: 0;
     width:64px;
 		height:64px;
-		background: url(<%= asset_path 'add_upload_element.svg' %>)  no-repeat;
-		background-position: -1em -1em; 
-		background-size: 13.8em 6.8em;
+		background: url(<%= asset_path 'icone_piene.svg' %>)  no-repeat;
+		background-position: -15em 0; 
+		background-size: 25em 5em;
 		&::-moz-focus-inner {
       border: 0;
 	  }
 		&:hover {
-		  background: url(<%= asset_path 'add_upload_element.svg' %>)  no-repeat;
-		  background-position: -7.8em -1em; 
-			background-size: 13.8em 6.8em;
+		  opacity:0.8;
 			
 		}
 	}

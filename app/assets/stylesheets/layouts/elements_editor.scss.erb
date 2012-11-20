@@ -131,6 +131,7 @@ html.media_elements-layout {
 		
 		/*content menu elemento singolo*/
 		.boxMenuMediaElement {
+		  display:none;
 		  background-color:#000; 
 			position:absolute; 
 			z-index:2; 
@@ -139,7 +140,7 @@ html.media_elements-layout {
 			width:144px; 
 			background-color: rgba(0,0,0,0.7);
 			font-size:11px;
-			display:block;
+			
 			
 			a {
 			  color:#fff;
@@ -204,17 +205,21 @@ html.media_elements-layout {
   }
 	.timeline {
 	  display:none;
-	  padding:20px;
-		height:35px;
+	  padding:10px;
+		height:55px;
 		position:absolute;
 		z-index:150;
 		top:150px;
-		width:865px;
-		 @include boxShadow;
-			background-color:#000;
-		span {
-		 
-		}
+		width:882px;
+		@include boxShadow;
+		background-color:#000;
+		li {
+      display: inline;
+      list-style-type: none;
+      padding-right: 1em;
+			img {width:10%;}
+    }
+		
 		.callout {
       top: -11px;
       z-index:20;
@@ -222,5 +227,9 @@ html.media_elements-layout {
       border:0;
       left:440px;
     }
+	}
+	.gallery {
+	  outline:1px solid red; 
+	  background-color:#000;
 	}
 }
