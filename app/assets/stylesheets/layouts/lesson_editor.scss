@@ -329,6 +329,7 @@ html.lesson-editor-layout{
           padding: 0px 20px;
           width: 860px;
           position: absolute;
+          left: auto;
           top: 430px;
           h2{
             color: rgba(255,255,255,1);
@@ -440,7 +441,7 @@ html.lesson-editor-layout{
           .cover-choose-image{
             margin: 0 0 0 20px;
             width: 440px;
-            height: 400px;
+            height: 285px;
             display:block;
             a{
               background-position: 0 center;
@@ -507,7 +508,7 @@ html.lesson-editor-layout{
           .cover-choose-image{
             margin: 0 0 0 20px;
             width: 440px;
-            height: 400px;
+            height: 285px;
             display:block;
             a{
               background-position: -130px center;
@@ -618,8 +619,9 @@ html.lesson-editor-layout{
           .cover-choose-image{
             margin: 0 20px;
             width: 400px;
+            height: 405px;
             a{
-              margin-top: 70px;
+              margin: 70px auto 0;
             }
           }
           .rollover{
