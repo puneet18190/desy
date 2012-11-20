@@ -29,6 +29,7 @@ function initializePlaylist() {
     autoReinitialise: true
   });
   $('#virtual_classroom_playlist').droppable({
+    accept: '._virtual_classroom_lesson',
     drop: function(event, ui) {
       ui.helper.css('display', 'none');
       ui.helper.addClass('_lesson_dropped');
@@ -46,7 +47,11 @@ function initializePlaylist() {
       $.get('/virtual_classroom/get_new_block_playlist?offset=' + offset);
     }
   });
-  $('#virtual_classroom_playlist .jspPane').sortable();
+  $('#virtual_classroom_playlist .jspPane').sortable({
+    scroll: true,
+    axis: 'y',
+    cursor: 'move'
+  });
 }
 
 function initializeDraggableVirtualClassroom() {
