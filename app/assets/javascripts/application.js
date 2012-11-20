@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.mousewheel
-//= require jquery.jscrollpane
+//= require jquery.jscrollpane.min
 //= require jquery.selectbox-0.2.min
 //= require jquery-ui-1.9.0.custom
 //= require tinymce-jquery
