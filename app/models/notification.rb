@@ -23,26 +23,6 @@ class Notification < ActiveRecord::Base
     self.save
   end
   
-  def self.count_tot(an_user_id)
-    Notification.where(:user_id => an_user_id).count
-  end
-  
-  def self.last_in_visible_block(an_user_id, an_offset, a_limit)
-    Notification.order('created_at DESC').where(:user_id => an_user_id).offset(an_offset).limit(a_limit).last
-  end
-  
-  def self.count_visible_block(an_user_id, an_offset, a_limit)
-    Notification.where(:user_id => an_user_id).offset(an_offset).limit(a_limit).count
-  end
-  
-  def self.visible_block(an_user_id, an_offset, a_limit)
-    Notification.order('created_at DESC').where(:user_id => an_user_id).offset(an_offset).limit(a_limit)
-  end
-  
-  def self.number_not_seen(an_user_id)
-    Notification.where(:seen => false, :user_id => an_user_id).count
-  end
-  
   private
   
   def init_validation

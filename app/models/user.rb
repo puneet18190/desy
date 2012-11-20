@@ -204,6 +204,44 @@ class User < ActiveRecord::Base
     return resp
   end
   
+  def tot_notifications_number
+    Notification.where(:user_id => self.id).count
+  end
+  
+  def last_notification_in_visible_block(an_offset, a_limit)
+    offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
+    limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
+    Notification.order('created_at DESC').where(:user_id => self.id).offset(an_offset).limit(a_limit).last
+  end
+  
+  def count_notifications_visible_block(an_offset, a_limit)
+    offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
+    limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
+    Notification.where(:user_id => self.id).offset(an_offset).limit(a_limit).count
+  end
+  
+  def notifications_visible_block(an_offset, a_limit)
+    offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
+    limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
+    Notification.order('created_at DESC').where(:user_id => self.id).offset(an_offset).limit(a_limit)
+  end
+  
+  def number_notifications_not_seen
+    Notification.where(:seen => false, :user_id => self.id).count
+  end
+  
+  def last_in_playlist_visible_block(an_offset, a_limit)
+    offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
+    limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
+    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(an_offset).limit(a_limit).last
+  end
+  
+  def count_playlist_visible_block(an_offset, a_limit)
+    offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
+    limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
+    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).offset(an_offset).limit(a_limit).count
+  end
+  
   def playlist_visible_block(an_offset, a_limit)
     offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
     limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
