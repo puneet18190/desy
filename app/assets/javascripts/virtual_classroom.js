@@ -3,6 +3,7 @@ function initializeDraggableVirtualClassroomLesson(id) {
     $('#' + id).draggable('enable');
   } else {
     $('#' + id).draggable({
+      accept: '._virtual_classroom_lesson',
       revert: true,
       handle: '._cover_slide_thumb',
       cursor: 'move',
@@ -46,7 +47,11 @@ function initializePlaylist() {
       $.get('/virtual_classroom/get_new_block_playlist?offset=' + offset);
     }
   });
-  $('#virtual_classroom_playlist .jspPane').sortable();
+  $('#virtual_classroom_playlist .jspPane').sortable({
+    scroll: true,
+    axis: 'y',
+    cursor: 'move'
+  });
 }
 
 function initializeDraggableVirtualClassroom() {
