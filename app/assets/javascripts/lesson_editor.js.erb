@@ -1,112 +1,23 @@
 $(document).ready(function() {
-  tinyMCE.init({
-    mode : "textareas",
-    theme : "advanced",
-    editor_selector : "tinymce",
-    skin : "desy",
-    plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
-    theme_advanced_buttons1 : "fontsizeselect,forecolor,justifyleft,justifycenter,justifyright,justifyfull,bold,italic,underline,numlist,bullist",
-    theme_advanced_toolbar_location : "external",
-    theme_advanced_toolbar_align : "left",
-    theme_advanced_statusbar_location : false,
-    theme_advanced_resizing : true
-  });
-  $('body:not(textarea.tinymce)').click(function(){
-    $('.mceExternalToolbar').hide();
-  });
-  $('textarea.tinymce').click(function(){
-    $('.mceExternalToolbar').show();
-  });
-  $('#slide-numbers').sortable({
-      items: "li:not(.unsortable)",
-      axis: 'x',
-      start: function(event, ui) {
-        ui.item.startPos = ui.item.index() + 1;
-        tinyMCE.triggerSave();
-        $('.active form').submit();
-      },
-      stop: function(event, ui) {
-        ui.item.endPos = ui.item.index() + 1;
-        current_a = ui.item.find("a")
-        current_a.text((parseInt(ui.item.index()) + 1));
-        $.post('/lesson_editor/change_slide_position/' + current_a.attr("data-slide") + '?new_position=' + ui.item.endPos);
-        $(this).find('li:not(:last)').each(function(i){
-          var current_i = (parseInt(i)+1);
-          $(this).find('a').text(current_i);
-        });
-        //TODO recenter ul.slides
-      }
-  });
+  initTinymce(); // init tinymce configuration and manage external toolbar toggle
+  slideSortList("#slide-numbers"); // make sortable page number on top
+  $("#lesson_subject").selectbox(); // select subject in lesson new/edit views
+  initLessonEditorPositions(); // center and align slides offset
+  lessonEditorTooltip('#slide-numbers li'); // show tooltip on top list mouseover
+  scrollSlideTo('#slide-numbers li a:not(._add_slide)'); // scroll to slide N on top list click
+  
+  // apply mask to each slide image container
   masked = $("._mask_x a:not('._choose')");
   masked.each(function(index) {
     makeDraggable($(masked[index]), "x");
   });
   
-
+  // trigger save on "save button" click
   $("._save_slide").click(function(e) {
     e.preventDefault();
     tinyMCE.triggerSave();
     var formId = $(this).attr("data-param");
     $('form#'+formId).submit();
-  });
-  $("#lesson_subject").selectbox();
-  WW = parseInt($(window).outerWidth());
-  WH = parseInt($(window).outerHeight());
-  $("#main").css("width", WW);
-  $("ul#slides").css("width",$("ul#slides li").length * 1160);
-  $("ul#slides").css("top", ((WH / 2) - 295) + "px");
-  $("ul#slides.new").css("top", ((WH / 2) - 335) + "px")
-  $("#footer").css("top",(WH-40)+"px").css("width",(WW-24)+"px")
-  if(WW > 1000){
-    $("ul#slides li:first").css("margin-left", ((WW-900) / 2) + "px")
-    $("ul#slides.new li:first").css("margin-left",((WW-900) / 2) + "px");
-  }
-
-  $('#slide-numbers li').hover(function(e) {
-     tip = $(this); 
-     // Calculate the position of the image tooltip
-     x = e.pageX - tip.offset().left;
-     y = e.pageY - tip.offset().top;
-     
-     tip.children('.slide-tooltip').animate({"opacity": "show"}, "fast");
-     
-     }, function() {
-       // Reset the z-index and hide the image tooltip 
-         $(this).children('.slide-tooltip').animate({"opacity": "hide"}, "fast");
-     });
-  
-  $('#slide-numbers li a:not(._add_slide)').click(function(e){
-    e.preventDefault();
-    
-    tinyMCE.triggerSave();
-    $('.active form').submit();
-    
-    page = $(this).text();
-    slide_id = $(this).attr("data-slide");
-    $("#slide-numbers li a._add_slide").attr("href","/lesson_editor/add_new_slide/"+slide_id);
-    if (parseInt(page) == 1){
-      marginReset = 0
-    }else{
-      marginReset = parseInt(-((page-1)*1010))+"px"
-    }
-    $("ul#slides").animate({
-        marginLeft: marginReset
-      }, 1500 );
-    $("ul#slides li").animate({
-        opacity: 0.4,
-      }, 150, function() {
-        $(this).find(".buttons").fadeOut();
-        $(this).removeClass("active");
-      });
-    $("ul#slides li:nth-child("+page+")").animate({
-        opacity: 1,
-      }, 500, function(){
-        $(this).find(".buttons").fadeIn();
-        $(this).addClass("active");
-      });
-    //$("ul#slides li:nth-child("+page+")").prepend("#{escape_javascript(render :partial => 'slide_buttons')}");
-    $("#slide-numbers li a.active").removeClass("active");
-    $(this).addClass("active");
   });
 });
 
@@ -151,6 +62,113 @@ masked.draggable({
     masked.parent().siblings(".media_element_align_"+masked.attr("data-param")).val(parseInt(offset));
   }
 });
+}
+
+function scrollSlideTo(list){
+  $(list).click(function(e){
+    e.preventDefault();
+  
+    tinyMCE.triggerSave();
+    $('.active form').submit();
+  
+    page = $(this).text();
+    slide_id = $(this).attr("data-slide");
+    $("#slide-numbers li a._add_slide").attr("href","/lesson_editor/add_new_slide/"+slide_id);
+    if (parseInt(page) == 1){
+      marginReset = 0
+    }else{
+      marginReset = parseInt(-((page-1)*1010))+"px"
+    }
+    $("ul#slides").animate({
+        marginLeft: marginReset
+      }, 1500 );
+    $("ul#slides li").animate({
+        opacity: 0.4,
+      }, 150, function() {
+        $(this).find(".buttons").fadeOut();
+        $(this).removeClass("active");
+      });
+    $("ul#slides li:nth-child("+page+")").animate({
+        opacity: 1,
+      }, 500, function(){
+        $(this).find(".buttons").fadeIn();
+        $(this).addClass("active");
+      });
+    //$("ul#slides li:nth-child("+page+")").prepend("#{escape_javascript(render :partial => 'slide_buttons')}");
+    $("#slide-numbers li a.active").removeClass("active");
+    $(this).addClass("active");
+  });
+}
+
+function lessonEditorTooltip(list){
+  $(list).hover(function(e) {
+    tip = $(this); 
+    // Calculate the position of the image tooltip
+    x = e.pageX - tip.offset().left;
+    y = e.pageY - tip.offset().top;
+
+    tip.children('.slide-tooltip').animate({"opacity": "show"}, "fast");     
+  }, function() {
+    // Reset the z-index and hide the image tooltip 
+    $(this).children('.slide-tooltip').animate({"opacity": "hide"}, "fast");
+  });
+}
+
+function initLessonEditorPositions(){
+  WW = parseInt($(window).outerWidth());
+  WH = parseInt($(window).outerHeight());
+  $("#main").css("width", WW);
+  $("ul#slides").css("width",$("ul#slides li").length * 1160);
+  $("ul#slides").css("top", ((WH / 2) - 295) + "px");
+  $("ul#slides.new").css("top", ((WH / 2) - 335) + "px")
+  $("#footer").css("top",(WH-40)+"px").css("width",(WW-24)+"px")
+  if(WW > 1000){
+    $("ul#slides li:first").css("margin-left", ((WW-900) / 2) + "px")
+    $("ul#slides.new li:first").css("margin-left",((WW-900) / 2) + "px");
+  }
+}
+
+function slideSortList(list){
+  $(list).sortable({
+      items: "li:not(.unsortable)",
+      axis: 'x',
+      start: function(event, ui) {
+        ui.item.startPos = ui.item.index() + 1;
+        tinyMCE.triggerSave();
+        $('.active form').submit();
+      },
+      stop: function(event, ui) {
+        ui.item.endPos = ui.item.index() + 1;
+        current_a = ui.item.find("a")
+        current_a.text((parseInt(ui.item.index()) + 1));
+        $.post('/lesson_editor/change_slide_position/' + current_a.attr("data-slide") + '?new_position=' + ui.item.endPos);
+        $(this).find('li:not(:last)').each(function(i){
+          var current_i = (parseInt(i)+1);
+          $(this).find('a').text(current_i);
+        });
+      }
+  });
+}
+
+function initTinymce(){
+  tinyMCE.init({
+    mode : "textareas",
+    theme : "advanced",
+    editor_selector : "tinymce",
+    skin : "desy",
+    plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+    theme_advanced_buttons1 : "fontsizeselect,forecolor,justifyleft,justifycenter,justifyright,justifyfull,bold,italic,underline,numlist,bullist",
+    theme_advanced_toolbar_location : "external",
+    theme_advanced_toolbar_align : "left",
+    theme_advanced_statusbar_location : false,
+    theme_advanced_resizing : true
+  });
+  $('body:not(textarea.tinymce)').click(function(){
+    $('.mceExternalToolbar').hide();
+  });
+  $('textarea.tinymce').click(function(){
+    $('.mceExternalToolbar').show();
+  });
 }
 
 function imgRealSize(img) {
