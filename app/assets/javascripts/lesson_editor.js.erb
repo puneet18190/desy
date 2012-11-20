@@ -44,20 +44,27 @@ masked.draggable({
     var thisDrag = $(this);
     var offset = thisDrag.css("left");
     if (parseInt(offset) > 0){
+      console.log("offset > 0 (pre) : "+offset+" roll-left: " +roll.css("left"));
       offset = 0;
       roll.css("left",0);
+      console.log("offset > 0 (post) : "+offset+" roll-left: " +roll.css("left"));
       thisDrag.animate({
           left: "0"
         }, 100 );
     }
     else if (parseInt(offset) < -(parseInt(dist))){
+      console.log("offset < 0 (pre) : "+offset+" dist = "+ dist + " roll-left: " +roll.css("left"));
       offset = -parseInt(dist);
       roll.css("left",-offset);
+      console.log("offset < 0 (post) : "+offset+" dist = "+ dist + " roll-left: " +roll.css("left"));
       thisDrag.animate({
           left: "-"+dist+"px"
         }, 100 );
     }
+    console.log("offset < 0 (finale) : "+offset+" dist = "+ dist + " roll-left: " +roll.css("left"));
     roll.css("left",-parseInt(offset)).css("opacity","0.5");
+    console.log("offset < 0 (finale post) : "+offset+" dist = "+ dist + " roll-left: " +roll.css("left"));
+    console.log("/-----------------------/")//TODO FIX recenter of plus with real image
     roll.css("cursor","-webkit-grab");
     masked.parent().siblings(".media_element_align_"+masked.attr("data-param")).val(parseInt(offset));
   }
@@ -94,7 +101,6 @@ function scrollSlideTo(list){
         $(this).find(".buttons").fadeIn();
         $(this).addClass("active");
       });
-    //$("ul#slides li:nth-child("+page+")").prepend("#{escape_javascript(render :partial => 'slide_buttons')}");
     $("#slide-numbers li a.active").removeClass("active");
     $(this).addClass("active");
   });
