@@ -12,15 +12,17 @@ class NotificationsController < ApplicationController
   
   def destroy
     if @ok
-      old_offset_notifications = @offset_notifications
-      ActiveRecord::Base.transaction do
-        @notification.destroy
-        @next_notification = @current_user.last_notification_in_visible_block 0, @offset_notifications
-        @offset_notifications = @current_user.count_notifications_visible_block 0, @offset_notifications
+      resp = @current_user.destroy_notification_and_reload(@notification.id, 0, @offset_notifications)
+      if !resp.nil?
+        @offset_notifications = resp[:offset]
+        @next_notification = resp[:last]
+        @new_notifications = @current_user.number_notifications_not_seen
+        @tot_notifications = @current_user.tot_notifications_number
+      else
+        @error = I18n.t('activerecord.errors.models.notification.problem_destroying')
       end
-      @new_notifications = @current_user.number_notifications_not_seen
-      @tot_notifications = @current_user.tot_notifications_number
-      @load_new = (@offset_notifications == NOTIFICATIONS_LOADED_TOGETHER && old_offset_notifications == @offset_notifications)
+    else
+      @error = I18n.t('activerecord.errors.models.notification.problem_destroying')
     end
   end
   

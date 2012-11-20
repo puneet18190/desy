@@ -208,44 +208,47 @@ class User < ActiveRecord::Base
     Notification.where(:user_id => self.id).count
   end
   
-  def last_notification_in_visible_block(an_offset, a_limit)
-    offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
-    limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
-    Notification.order('created_at DESC').where(:user_id => self.id).offset(an_offset).limit(a_limit).last
+  def destroy_notification_and_reload(notification_id, offset, limit)
+    notification_id = 0 if !notification_if.is_a?(Fixnum) || notification_id < 0
+    offset = 0 if !offset.is_a?(Fixnum) || offset < 0
+    limit = 1 if !limit.is_a?(Fixnum) || limit <= 0
+    resp = nil
+    ActiveRecord::Base.transaction do
+      n = Notification.find_by_id(notification_id)
+      raise ActiveRecord::Rollback if n.nil? || n.user_id != self.id
+      n.destroy
+      resp_last = Notification.order('created_at DESC').where(:user_id => self.id).offset(offset).limit(limit).last
+      resp_offset = Notification.where(:user_id => self.id).offset(offset).limit(limit).count
+      resp_last = nil if ([resp_offset, resp_offset] == [CONFIG['notifications_loaded_together'], offset])
+      resp = {:last => resp_last, :offset => resp_offset}
+    end
+    resp
   end
   
-  def count_notifications_visible_block(an_offset, a_limit)
-    offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
-    limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
-    Notification.where(:user_id => self.id).offset(an_offset).limit(a_limit).count
-  end
-  
-  def notifications_visible_block(an_offset, a_limit)
-    offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
-    limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
-    Notification.order('created_at DESC').where(:user_id => self.id).offset(an_offset).limit(a_limit)
+  def notifications_visible_block(offset, limit)
+    Notification.order('created_at DESC').where(:user_id => self.id).offset(offset).limit(limit).last
   end
   
   def number_notifications_not_seen
     Notification.where(:seen => false, :user_id => self.id).count
   end
   
-  def last_in_playlist_visible_block(an_offset, a_limit)
-    offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
-    limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
-    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(an_offset).limit(a_limit).last
+  def last_in_playlist_visible_block(offset, limit)
+    offset = 0 if !offset.is_a?(Fixnum) || offset < 0
+    limit = 1 if !limit.is_a?(Fixnum) || limit <= 0
+    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(offset).limit(limit).last
   end
   
-  def count_playlist_visible_block(an_offset, a_limit)
-    offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
-    limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
-    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).offset(an_offset).limit(a_limit).count
+  def count_playlist_visible_block(offset, limit)
+    offset = 0 if !offset.is_a?(Fixnum) || offset < 0
+    limit = 1 if !limit.is_a?(Fixnum) || limit <= 0
+    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).offset(offset).limit(limit).count
   end
   
-  def playlist_visible_block(an_offset, a_limit)
-    offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
-    limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
-    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(an_offset).limit(a_limit)
+  def playlist_visible_block(offset, limit)
+    offset = 0 if !offset.is_a?(Fixnum) || offset < 0
+    limit = 1 if !limit.is_a?(Fixnum) || limit <= 0
+    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(offset).limit(limit)
   end
   
   def playlist_tot_number
