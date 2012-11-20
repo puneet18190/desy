@@ -74,36 +74,41 @@ masked.draggable({
 function scrollSlideTo(list){
   $(list).click(function(e){
     e.preventDefault();
-  
+    
     tinyMCE.triggerSave();
     $('.active form').submit();
-  
-    page = $(this).text();
-    slide_id = $(this).attr("data-slide");
-    $("#slide-numbers li a._add_slide").attr("href","/lesson_editor/add_new_slide/"+slide_id);
-    if (parseInt(page) == 1){
-      marginReset = 0
-    }else{
-      marginReset = parseInt(-((page-1)*1010))+"px"
-    }
-    $("ul#slides").animate({
-        marginLeft: marginReset
-      }, 1500 );
-    $("ul#slides li").animate({
-        opacity: 0.4,
-      }, 150, function() {
-        $(this).find(".buttons").fadeOut();
-        $(this).removeClass("active");
-      });
-    $("ul#slides li:nth-child("+page+")").animate({
-        opacity: 1,
-      }, 500, function(){
-        $(this).find(".buttons").fadeIn();
-        $(this).addClass("active");
-      });
-    $("#slide-numbers li a.active").removeClass("active");
-    $(this).addClass("active");
+    
+    slideTo(this);
   });
+}
+
+function slideTo(nth){
+  console.log("nth: "+nth+ "\n"+ $(nth));
+  page = $(nth).text();
+  slide_id = $(nth).attr("data-slide");
+  $("#slide-numbers li a._add_slide").attr("href","/lesson_editor/add_new_slide/"+slide_id);
+  if (parseInt(page) == 1){
+    marginReset = 0
+  }else{
+    marginReset = parseInt(-((page-1)*1010))+"px"
+  }
+  $("ul#slides").animate({
+      marginLeft: marginReset
+    }, 1500 );
+  $("ul#slides li").animate({
+      opacity: 0.4,
+    }, 150, function() {
+      $(this).find(".buttons").fadeOut();
+      $(this).removeClass("active");
+    });
+  $("ul#slides li:nth-child("+page+")").animate({
+      opacity: 1,
+    }, 500, function(){
+      $(this).find(".buttons").fadeIn();
+      $(this).addClass("active");
+    });
+  $("#slide-numbers li a.active").removeClass("active");
+  $(nth).addClass("active");
 }
 
 function lessonEditorTooltip(list){
@@ -152,6 +157,8 @@ function slideSortList(list){
           var current_i = (parseInt(i)+1);
           $(this).find('a').text(current_i);
         });
+        console.log($('.slide-numbers li:eq('+ui.item.endPos+')').first());
+        scrollTo('.slide-numbers li:eq('+ui.item.endPos+')');
       }
   });
 }
