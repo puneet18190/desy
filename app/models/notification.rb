@@ -27,6 +27,14 @@ class Notification < ActiveRecord::Base
     Notification.where(:user_id => an_user_id).count
   end
   
+  def self.last_in_visible_block(an_user_id, an_offset, a_limit)
+    Notification.order('created_at DESC').where(:user_id => an_user_id).offset(an_offset).limit(a_limit).last
+  end
+  
+  def self.count_visible_block(an_user_id, an_offset, a_limit)
+    Notification.order('created_at DESC').where(:user_id => an_user_id).offset(an_offset).limit(a_limit).count
+  end
+  
   def self.visible_block(an_user_id, an_offset, a_limit)
     Notification.order('created_at DESC').where(:user_id => an_user_id).offset(an_offset).limit(a_limit)
   end

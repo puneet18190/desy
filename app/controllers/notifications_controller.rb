@@ -13,12 +13,11 @@ class NotificationsController < ApplicationController
       old_offset_notifications = @offset_notifications
       ActiveRecord::Base.transaction do
         @notification.destroy
-        @notifications = Notification.visible_block(@current_user.id, 0, @offset_notifications)
+        @next_notification = Notification.last_in_visible_block(@current_user.id, 0, @offset_notifications)
+        @offset_notifications = Notification.count_visible_block(@current_user.id, 0, @offset_notifications)
       end
       @new_notifications = Notification.number_not_seen(@current_user.id)
-      @offset_notifications = @notifications.length
       @tot_notifications = Notification.count_tot(@current_user.id)
-      @next_notification = @notifications.last
       @load_new = (@offset_notifications == CONFIG['notifications_loaded_together'] && old_offset_notifications == @offset_notifications)
     end
   end
