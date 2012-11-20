@@ -1,7 +1,10 @@
 <div class="timeline">
-  <%= image_tag("arrow_timeline.png", :class => "callout") %>
-  <ul>
-	  <li><%= image_tag("fotina_editor_element.jpg") %></li>
-	</ul>
+  
+	  <div id="slider-range">
+	  </div>
+	
 </div>
 
+<script type="text/javascript">
+  $("#slider-range").slider({range: true});
+</script>
