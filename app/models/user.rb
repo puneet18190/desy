@@ -226,7 +226,7 @@ class User < ActiveRecord::Base
   end
   
   def notifications_visible_block(offset, limit)
-    Notification.order('created_at DESC').where(:user_id => self.id).offset(offset).limit(limit).last
+    Notification.order('created_at DESC').where(:user_id => self.id).offset(offset).limit(limit)
   end
   
   def number_notifications_not_seen
