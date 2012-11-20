@@ -50,7 +50,8 @@ function initializePlaylist() {
   $('#virtual_classroom_playlist .jspPane').sortable({
     scroll: true,
     axis: 'y',
-    cursor: 'move'
+    cursor: 'move',
+    cancel: '._remove_lesson_from_playlist'
   });
 }
 
