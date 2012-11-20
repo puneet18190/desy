@@ -294,9 +294,10 @@ html.lesson-editor-layout{
       	  width: 130px;
       	  height: 130px;
       	  font-size: 130px;
-      	  margin: 175px 0 0 365px;
+      	  margin: 130px 0 0 365px;
       	  display:block;
       	  background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
+      	  background-size: 650px 130px;
       	  cursor: pointer;
       	}
       	.add-image:hover{
@@ -475,7 +476,7 @@ html.lesson-editor-layout{
           .cover-choose-image{
             margin: 0 20px;
             width: 860px;
-            height: 505px;
+            height: 410px;
             display:block;
           }
         }
@@ -584,10 +585,13 @@ html.lesson-editor-layout{
               margin-top:0;
             }
           }
-          .rollover{
+          .rollover-image{
             margin:0;
             width: 860px;
             height: 550px;
+            .add-image{
+              margin-top:200px;
+            }
           }
         }
         
@@ -663,10 +667,10 @@ html.lesson-editor-layout{
           .cover-choose-image{
             margin: 0 0 0 20px;
             width: 440px;
-            height: 400px;
+            height: 285px;
             display:block;
-            img{
-              width: 105px;
+            a{
+              font-size: 100px;
             }  
           }
           
@@ -906,19 +910,20 @@ html.lesson-editor-layout{
     font-size: 16px;
     padding-top: 140px;
     a{
-      width: 130px;
-      height: 130px;
+      width: 1em;
+      height: 1em;
       display:block;
       padding: 0;
       margin: 0 auto 10px;
       background:url('/assets/icone_piene.svg');
-      background-position: -260px center;
+      background-position: -2em center;
+      background-size: 5em 1em;
       background-repeat: no-repeat;
       background-color: transparent;
       font-size: 130px;
     }
     a:hover{
-      background-position: -390px center;
+      background-position: -3em center;
     }
     img{
       display:none;
@@ -930,16 +935,17 @@ html.lesson-editor-layout{
       height: 260px;
       text-align:center;
       a{
+        margin-top:1em;
+        width: 1em;
+        height: 1em;
         font-size: 80px;
-        width: 80px;
-        height: 80px;
-        display:block;
-        padding: 0;
-        margin: 70px auto 5px;
-        font-size: 80px;
+        background-size: 5em 1em;
+        background-position: -2em center;
+        background-repeat: no-repeat;
+        background-color: transparent;
       }
       a:hover{
-        background-position: -390px center;
+        background-position: -3em center;
       }
       img{
         display:none;
