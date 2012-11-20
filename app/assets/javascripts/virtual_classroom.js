@@ -3,7 +3,6 @@ function initializeDraggableVirtualClassroomLesson(id) {
     $('#' + id).draggable('enable');
   } else {
     $('#' + id).draggable({
-      accept: '._virtual_classroom_lesson',
       revert: true,
       handle: '._cover_slide_thumb',
       cursor: 'move',
@@ -30,6 +29,7 @@ function initializePlaylist() {
     autoReinitialise: true
   });
   $('#virtual_classroom_playlist').droppable({
+    accept: '._virtual_classroom_lesson',
     drop: function(event, ui) {
       ui.helper.css('display', 'none');
       ui.helper.addClass('_lesson_dropped');
