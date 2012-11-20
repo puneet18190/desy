@@ -30,7 +30,7 @@ en:
           problem_destroying: 'There was a problem removing this element'
           cant_destroy_public: 'You cannot remove a public element'
         notification:
-          bookmark_cancelled: 'Your bookmark has been cancelled'
+          problem_destroying: 'There was a problem removing your notification'
         slide:
           problems_changing_position: 'There was a problem changing the position of the slide'
           invalid_position: 'The position of the slide is invalid'
