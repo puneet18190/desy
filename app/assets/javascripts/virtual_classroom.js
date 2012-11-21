@@ -53,9 +53,14 @@ function initializePlaylist() {
   });
   $('#virtual_classroom_playlist .jspPane').sortable({
     scroll: true,
+    handle: '._lesson_in_playlist',
     axis: 'y',
     cursor: 'move',
-    cancel: '._remove_lesson_from_playlist'
+    cancel: '._remove_lesson_from_playlist',
+    helper: function(event, ui) {
+      var current_z_index = getMaximumZIndex('_lesson_in_playlist') + 1;
+      return $($('#' + ui.attr('id'))[0].outerHTML).addClass('current').outerHTML;
+    }
   });
 }
 
