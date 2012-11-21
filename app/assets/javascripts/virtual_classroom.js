@@ -59,7 +59,13 @@ function initializePlaylist() {
     cancel: '._remove_lesson_from_playlist',
     helper: function(event, ui) {
       var current_z_index = getMaximumZIndex('_lesson_in_playlist') + 1;
-      return $($('#' + ui.attr('id'))[0].outerHTML).addClass('current').outerHTML;
+      var div_to_return = $($('#' + ui.attr('id'))[0].outerHTML);
+      div_to_return.addClass('current');
+      div_to_return = div_to_return[0].outerHTML;
+      var my_index = div_to_return.indexOf('<div class="_remove_lesson_from_playlist');
+      var second_half_string = div_to_return.substring(my_index, div_to_return.length);
+      var my_second_index = my_index + second_half_string.indexOf('</div>') + 6;
+      return div_to_return.substring(0, (my_index - 1)) + div_to_return.substring((my_second_index + 1), div_to_return.length);
     }
   });
 }
