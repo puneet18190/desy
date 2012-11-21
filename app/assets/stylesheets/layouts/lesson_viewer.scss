@@ -76,27 +76,35 @@ html.lesson-viewer-layout{
 	}
 	ul#cover {
 	  li.cover {
-		  display: inline;
+		  display: inline-block;
       list-style-type: none;
       padding: 0px;
 			float:left;
-			
+			width: 900px;
+    height: 590px;
+			-webkit-box-shadow: 0px 6px 16px #323333;
+      box-shadow: 0px 6px 16px #323333;
 		}
 	}
-	.img_expanded {
-    width: 900px;
-    height: 590px;
-    margin-left:0px;
-    background-color: white;
-		position:relative;
+	.bigViewLesson {
+    
+    float:left;
+    padding:0;
+  	position:relative;
+		
 		.bg_text {
 		  background-color: rgba(242, 148, 0, 0.95);
       height: 130px;
       width: 880px;
-      left: auto;
-      top: 414px;
-    
-		.lessonTitle {
+      padding:5px 10px 10px 10px;
+      background-color:#f29400;
+	    position:absolute;
+	    bottom:31px;
+	    left:0px;
+    .lessonTitle {
+		  font: 100% 'Nunito', sans-serif;
+      color:#fff;
+		  line-height:1em;
 		  font-size: 50px;
      }
 		}
@@ -104,8 +112,41 @@ html.lesson-viewer-layout{
 		   font-size: 13px;
        clear:both;
 			 width: 870px;
-			 padding:7px 15px;
+			 padding:6px 15px;
 			 position:static;
 		}
+		
   }
+  .playlistMenu {
+	  width:860px;
+		padding:20px;
+		display:block;
+		position:absolute;
+		bottom:0;
+		background-color:#141313;
+		ul {
+		  padding-left:10px;
+			display:inline-block;
+			height:168px;
+			width:850px;
+		}
+		li {
+		  display: inline-block;
+       list-style-type: none;
+       margin-right: 20px;
+		}
+	}
+  .bigViewLessonText, .bigViewLessonTextImage{
+	  padding:20px;
+		h2 {
+		  font-size: 70px;
+      padding: 20px;
+      margin: 10px;
+      width: 840px;
+    }
+	}
+	.contentText {
+	  padding: 10px 10px 10px 20px;
+		margin:20px;
+	}
 }
