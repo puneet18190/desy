@@ -12,18 +12,22 @@
 <br class="clearfloat">
 <%= render :partial => "notifications/main" %>
 <br class="clearfloat">
+<div class="content">
+  <div class="griglia-contenuti">
+	  <div class="playListContainer scroll-pane" style="outline:1px solid red">
+		   			   
+       
+        <% @lessons.each do |l| %>
+       
+      <div class="boxViewSingleLesson">
+	      <div class="contentInterno" style="height:auto"><%= render :partial => 'shared/lesson_thumbnails/small/cover', :locals => {:slide => l.cover} %>      </div>
+	  </div>
+  
+<% end %>
 
-<% counter = 0 %>
-<% @lessons.each do |l| %>
-  <% if counter % 3 == 0 %>
-    <% if counter != 0 %>
-      </div>
-    <% end %>
-    <div>
-  <% end %>
-  <%= render :partial => 'shared/lesson_thumbnails/small/cover', :locals => {:slide => l.cover} %>
-  <% counter += 1 %>
-<% end %>
-<% if counter != 0 %>
+
+  
+    </div>
   </div>
-<% end %>
+  <br class="clearfloat">
+</div>
