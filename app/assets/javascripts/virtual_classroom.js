@@ -1,3 +1,14 @@
+function initializeVirtualClassroom() {
+  $('._virtual_classroom_lesson').each(function() {
+    if($(this).data('in-playlist')) {
+      $('#' + this.id + ' ._cover_slide_thumb').addClass('current');
+    } else {
+      initializeDraggableVirtualClassroomLesson(this.id);
+    }
+  });
+  initializePlaylist();
+}
+
 function initializeDraggableVirtualClassroomLesson(id) {
   if($('#' + id).hasClass('ui-draggable')) {
     $('#' + id).draggable('enable');
@@ -46,17 +57,6 @@ function initializePlaylist() {
     cursor: 'move',
     cancel: '._remove_lesson_from_playlist'
   });
-}
-
-function initializeDraggableVirtualClassroom() {
-  $('._virtual_classroom_lesson').each(function() {
-    if($(this).data('in-playlist')) {
-      $('#' + this.id + ' ._cover_slide_thumb').addClass('current');
-    } else {
-      initializeDraggableVirtualClassroomLesson(this.id);
-    }
-  });
-  initializePlaylist();
 }
 
 function getMaximumZIndex(a_class) {

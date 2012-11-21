@@ -581,7 +581,7 @@ $(document).ready(function() {
     });
   });
   
-  initializeDraggableVirtualClassroom();
+  initializeVirtualClassroom();
   
   $('body').on('mouseover', '._lesson_in_playlist', function() {
     $('#' + this.id + ' ._remove_lesson_from_playlist').css('display', 'block');

@@ -11,7 +11,7 @@
     <% else %>
       $('#virtual_classroom_pagination').html('');
     <% end %>
-    initializeDraggableVirtualClassroom();
+    initializeVirtualClassroom();
   });
 <% else %>
   var to_delete = $('#<%= @delete_item %>');
@@ -22,7 +22,7 @@
     <% else %>
       $('#virtual_classroom_pagination').html('');
     <% end %>
-    initializeDraggableVirtualClassroom();
+    initializeVirtualClassroom();
     $('#lesson_in_playlist_<%= @delete_item.split('_').last.html_safe %>').hide('fade', {}, 500, function() {
       $('#virtual_classroom_playlist').replaceWith('<%= j(render(:partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist})) %>');
       initializePlaylist();
