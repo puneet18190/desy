@@ -3,8 +3,6 @@
     $('#virtual_classroom_playlist').replaceWith('<%= j(render(:partial => 'virtual_classroom/playlist', :locals => {:lessons => @playlist})) %>')
     initializeDraggableVirtualClassroomLesson('virtual_classroom_lesson_<%= @lesson_id %>');
     initializePlaylist();
-    $('#virtual_classroom_lesson_<%= @lesson_id %> ._cover_slide_thumb').removeClass('current');
-    $('#virtual_classroom_lesson_<%= @lesson_id %>').data('in-playlist', false);
   });
 <% else %>
   showErrorPopUp('<%= j @error %>');

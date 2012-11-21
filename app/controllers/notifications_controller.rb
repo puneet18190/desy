@@ -6,7 +6,9 @@ class NotificationsController < ApplicationController
   before_filter :initialize_notification_offset, :only => [:destroy, :get_new_block]
   
   def seen
-    @ok = @notification.has_been_seen if @ok
+    if @ok
+      @ok = @notification.has_been_seen
+    end
     @new_notifications = @current_user.number_notifications_not_seen
   end
   
@@ -40,8 +42,8 @@ class NotificationsController < ApplicationController
   def initialize_notification_with_owner
     @notification_id = correct_integer?(params[:notification_id]) ? params[:notification_id].to_i : 0
     @notification = Notification.find_by_id @notification_id
-    @ok = !@notification.nil?
-    @ok = (@current_user.id == @notification.user_id) if @ok
+    update_ok(!@notification.nil?)
+    update_ok(@current_user.id == @notification.user_id)
   end
   
 end
