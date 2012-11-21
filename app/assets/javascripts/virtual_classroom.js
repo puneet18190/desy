@@ -10,10 +10,12 @@ function initializeVirtualClassroom() {
 }
 
 function initializeDraggableVirtualClassroomLesson(id) {
-  if($('#' + id).hasClass('ui-draggable')) {
-    $('#' + id).draggable('enable');
+  var lesson_cover = $('#' + id + ' ._cover_slide_thumb');
+  var object = $('#' + id);
+  if(object.hasClass('ui-draggable')) {
+    object.draggable('enable');
   } else {
-    $('#' + id).draggable({
+    object.draggable({
       revert: true,
       handle: '._cover_slide_thumb',
       cursor: 'move',
@@ -24,14 +26,20 @@ function initializeDraggableVirtualClassroomLesson(id) {
         return div_to_return;
       },
       start: function() {
-        $('#' + id + ' ._cover_slide_thumb').addClass('current');
+        lesson_cover.addClass('current');
       },
       stop: function(event, ui) {
         if(!ui.helper.hasClass('_lesson_dropped')) {
-          $('#' + id + ' ._cover_slide_thumb').removeClass('current');
+          lesson_cover.removeClass('current');
         }
       }
     });
+  }
+  if(lesson_cover.hasClass('current')) {
+    lesson_cover.removeClass('current');
+  }
+  if(object.data('in-playlist')) {
+    object.data('in-playlist', false);
   }
 }
 

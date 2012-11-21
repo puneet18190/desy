@@ -104,6 +104,11 @@ class VirtualClassroomController < ApplicationController
     @playlist = @current_user.playlist
   end
   
+  def empty_playlist
+    @ok = @current_user.empty_playlist
+    @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_emptying_playlist') if !@ok
+  end
+  
   private
   
   def initialize_position

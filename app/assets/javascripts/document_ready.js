@@ -599,4 +599,11 @@ $(document).ready(function() {
     });
   });
   
+  $('body').on('click', '._empty_playlist_button', function() {
+    $.ajax({
+      type: 'post',
+      url: '/virtual_classroom/empty_playlist'
+    });
+  });
+  
 });

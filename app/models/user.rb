@@ -194,6 +194,19 @@ class User < ActiveRecord::Base
     b.save
   end
   
+  def empty_playlist
+    return false if self.new_record?
+    resp = false
+    ActiveRecord::Base.transaction do
+      VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).order('position DESC').each do |vcl|
+        vcl.position = nil
+        raise ActiveRecord::Rollback if !vcl.save
+      end
+      resp = true
+    end
+    resp
+  end
+  
   def full_virtual_classroom(page, per_page)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
