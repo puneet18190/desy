@@ -1,10 +1,6 @@
 <!--SLIDE LEZIONE-->
-<ul>
-  <%- @lesson.slides.each do |slide| %>
-    <li>
-      <%= slide.title if slide.title %>
-      <%= slide.text.html_safe if slide.text %>
-      <%= slide.media_element_at(1).caption if slide.media_element_at(1)%>
-    </li>
-  <% end %>
+<ul id="cover">
+  <!--%- @lesson.slides.each do |slide| %-->
+	<li class="cover"><%= render :partial => "cover" %></li>
+  <!--% end %-->
 </ul>
