@@ -59,6 +59,7 @@ Desy::Application.routes.draw do
   
   # MEDIA ELEMENTS EDITOR
   get  'media_elements_editor/' => 'media_elements_editor#index'
+	get  'media_elements_editor/show_gallery/' => 'media_elements_editor#show_gallery', :as => :show_gallery
   
   # SEARCH LESSONS OR MEDIA ELEMENTS
   get  'search' => 'search#index', :as => :search_items
