@@ -1,0 +1,16 @@
+  <div class="griglia-contenuti">
+	  <div class="playListContainer scroll-pane" style="outline:1px solid red">
+		   			   
+       
+        <% lessons.each do |l| %>
+       
+      <div class="boxViewSingleLesson">
+	      <div class="contentInterno" style="height:auto"><%= render :partial => 'shared/lesson_thumbnails/small/cover', :locals => {:slide => l.cover} %>      </div>
+	  </div>
+  
+<% end %>
+
+
+  
+    </div>
+  </div>
