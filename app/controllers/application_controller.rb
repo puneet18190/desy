@@ -21,10 +21,7 @@ class ApplicationController < ActionController::Base
   
   def initialize_lesson_with_owner
     initialize_lesson
-		
-		logger.info "\n\n\nATTENZIONE #{@ok.inspect} - #{@lesson_id.inspect} - #{@lesson.inspect}\n\n\n"
-		
-    update_ok(@current_user.id == @lesson.user_id)
+    update_ok(@lesson && @current_user.id == @lesson.user_id)
   end
   
   def initialize_lesson
@@ -40,12 +37,12 @@ class ApplicationController < ActionController::Base
   
   def initialize_media_element_with_owner_and_private
     initialize_media_element_with_owner
-    update_ok(!@media_element.is_public)
+    update_ok(@media_element && !@media_element.is_public)
   end
   
   def initialize_media_element_with_owner
     initialize_media_element
-    update_ok(@current_user.id == @media_element.user_id)
+    update_ok(@media_element && @current_user.id == @media_element.user_id)
   end
   
   def initialize_media_element
@@ -91,7 +88,7 @@ class ApplicationController < ActionController::Base
   
   def update_ok(condition)
     @ok = true if @ok.nil?
-    @ok = @ok && condition if @ok
+    @ok = @ok && condition
   end
   
   def logged_in?

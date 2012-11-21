@@ -42,8 +42,7 @@ class NotificationsController < ApplicationController
   def initialize_notification_with_owner
     @notification_id = correct_integer?(params[:notification_id]) ? params[:notification_id].to_i : 0
     @notification = Notification.find_by_id @notification_id
-    update_ok(!@notification.nil?)
-    update_ok(@current_user.id == @notification.user_id)
+    update_ok(!@notification.nil? && @current_user.id == @notification.user_id)
   end
   
 end
