@@ -6,7 +6,8 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson, :remove_lesson_from_inside]
   before_filter :initialize_lesson_destination, :only => [:add_lesson, :remove_lesson]
   before_filter :initialize_layout, :initialize_paginator, :only => :index
-  before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist]
+  before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :change_position_in_playlist]
+  before_filter :initialize_position, :only => :change_position_in_playlist
   layout 'virtual_classroom'
   
   def index
@@ -89,12 +90,21 @@ class VirtualClassroomController < ApplicationController
     @playlist = @current_user.playlist
   end
   
+  def change_position_in_playlist
+    
+  end
+  
   private
+  
+  def initialize_position
+    @position = correct_integer?(params[:position]) ? params[:position].to_i : 0
+    update_ok(@position > 0)
+  end
   
   def initialize_virtual_classroom_lesson
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @virtual_classroom_lesson = VirtualClassroomLesson.where(:lesson_id => @lesson_id, :user_id => @current_user.id).first
-    @ok = !@virtual_classroom_lesson.nil?
+    update_ok(!@virtual_classroom_lesson.nil?)
   end
   
   def get_lessons
