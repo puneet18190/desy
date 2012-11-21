@@ -27,16 +27,15 @@ class NotificationsController < ApplicationController
   end
   
   def get_new_block
-    if @ok
-      @notifications = @current_user.notifications_visible_block @offset_notifications, NOTIFICATIONS_LOADED_TOGETHER
-      @offset_notifications += @notifications.length
+    @notifications = @current_user.notifications_visible_block @offset_notifications, NOTIFICATIONS_LOADED_TOGETHER
+    @offset_notifications += @notifications.length
     end
   end
   
   private
   
   def initialize_notification_offset
-    @offset_notifications = (correct_integer?(params[:offset]) ? params[:offset].to_i : NOTIFICATIONS_LOADED_TOGETHER) if @ok
+    @offset_notifications = (correct_integer?(params[:offset]) ? params[:offset].to_i : NOTIFICATIONS_LOADED_TOGETHER)
   end
   
   def initialize_notification_with_owner

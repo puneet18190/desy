@@ -209,7 +209,7 @@ class User < ActiveRecord::Base
   end
   
   def destroy_notification_and_reload(notification_id, offset, limit)
-    notification_id = 0 if !notification_if.is_a?(Fixnum) || notification_id < 0
+    notification_id = 0 if !notification_id.is_a?(Fixnum) || notification_id < 0
     offset = 0 if !offset.is_a?(Fixnum) || offset < 0
     limit = 1 if !limit.is_a?(Fixnum) || limit <= 0
     resp = nil
