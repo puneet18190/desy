@@ -68,30 +68,40 @@ class VirtualClassroomController < ApplicationController
   
   def add_lesson_to_playlist
     if @ok
-      if !@virtual_classroom_lesson.add_to_playlist
+      if @virtual_classroom_lesson.add_to_playlist
+        @playlist = @current_user.playlist
+      else
         @ok = false
         @error = @virtual_classroom_lesson.get_base_error
       end
     else
       @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_adding_to_playlist')
     end
-    @playlist = @current_user.playlist
   end
   
   def remove_lesson_from_playlist
     if @ok
-      if !@virtual_classroom_lesson.remove_from_playlist
+      if @virtual_classroom_lesson.remove_from_playlist
+        @playlist = @current_user.playlist
+      else
         @ok = false
         @error = @virtual_classroom_lesson.get_base_error
       end
     else
       @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_removing_from_playlist')
     end
-    @playlist = @current_user.playlist
   end
   
   def change_position_in_playlist
-    
+    if @ok
+      if !@virtual_classroom_lesson.change_position(@position)
+        @ok = false
+        @error = @virtual_classroom_lesson.get_base_error
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_changing_position_in_playlist')
+    end
+    @playlist = @current_user.playlist
   end
   
   private
