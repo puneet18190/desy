@@ -1,4 +1,4 @@
 <ul class="navlist">
-  <li class="lower"><a><%= t('captions.add_new_lesson') %></a></li>
+  <li class="lower"><%= link_to t('captions.add_new_lesson'), select_lessons_for_virtual_classroom_path %></li>
   <li class="lower"><%= link_to t('captions.empty_virtual_classroom'), empty_virtual_classroom_path, :method => :post %></li>
 </ul>

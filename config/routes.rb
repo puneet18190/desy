@@ -58,6 +58,8 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/:lesson_id/playlist/:position/change_position' => 'virtual_classroom#change_position_in_playlist'
   post 'virtual_classroom/empty_playlist' => 'virtual_classroom#empty_playlist'
   post 'virtual_classroom/empty_virtual_classroom' => 'virtual_classroom#empty_virtual_classroom', :as => :empty_virtual_classroom
+  get  'virtual_classroom/select_lessons' => 'virtual_classroom#select_lessons', :as => :select_lessons_for_virtual_classroom
+  post 'virtual_classroom/load_lessons' => 'virtual_classroom#load_lessons'
   
   # MEDIA ELEMENTS EDITOR
   get  'media_elements_editor/' => 'media_elements_editor#index'
