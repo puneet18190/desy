@@ -21,6 +21,9 @@ class ApplicationController < ActionController::Base
   
   def initialize_lesson_with_owner
     initialize_lesson
+		
+		logger.info "\n\n\nATTENZIONE #{@ok.inspect} - #{@lesson_id.inspect} - #{@lesson.inspect}\n\n\n"
+		
     update_ok(@current_user.id == @lesson.user_id)
   end
   
@@ -88,7 +91,7 @@ class ApplicationController < ActionController::Base
   
   def update_ok(condition)
     @ok = true if @ok.nil?
-    @ok = @ok && condition
+    @ok = @ok && condition if @ok
   end
   
   def logged_in?
