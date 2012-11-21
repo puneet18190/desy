@@ -32,7 +32,7 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert_invalid @virtual_classroom_lesson, :user_id, 'ty', 2, /is not a number/
     assert_invalid @virtual_classroom_lesson, :user_id, -1, 2, /must be greater than 0/
     assert_invalid @virtual_classroom_lesson, :lesson_id, 1.5, @lesson.id, /must be an integer/
-    assert_invalid @virtual_classroom_lesson, :position, (1...34), nil, /is not a number/
+    assert_invalid @virtual_classroom_lesson, :position, 'iii', nil, /is not a number/
     assert_invalid @virtual_classroom_lesson, :position, -5, nil, /must be greater than 0/
     assert_invalid @virtual_classroom_lesson, :position, 1.5, nil, /must be an integer/
     assert_obj_saved @virtual_classroom_lesson

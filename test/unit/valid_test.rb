@@ -18,10 +18,6 @@ class ValidTest < ActiveSupport::TestCase
     assert Valid.get_association(x, :school_level_id).nil?
     x.school_level_id = 'egev'
     assert Valid.get_association(x, :school_level_id).nil?
-    x.school_level_id = (1...10)
-    assert Valid.get_association(x, :school_level_id).nil?
-    x.school_level_id = /regvr/
-    assert Valid.get_association(x, :school_level_id).nil?
     x.school_level_id = 0
     assert Valid.get_association(x, :school_level_id).nil?
     x.school_level_id = -5
