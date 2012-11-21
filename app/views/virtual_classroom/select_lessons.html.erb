@@ -13,21 +13,17 @@
 <%= render :partial => "notifications/main" %>
 <br class="clearfloat">
 
-<div class="content">
-  
-  <div class="griglia-contenuti">
-    <div class="playListContainer">
-      <!--%= render :partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist} %-->
-    </div>
-    <div class="listContainer">
-      <!--%= render :partial => 'virtual_classroom/my_virtual_classroom' %-->
-      <br class="clearfloat">
-      <!--% if @lessons.any? 
-         render :partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => remove_param_from_url(request.url, 'delete_item')} 
-       end %-->
-    </div>
-    <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
+<% counter = 0 %>
+<% @lessons.each do |l| %>
+  <% if counter % 3 == 0 %>
+    <% if counter != 0 %>
+      </div>
+    <% end %>
+    <div>
+  <% end %>
+  <%= render :partial => 'shared/lesson_thumbnails/small/cover', :locals => {:slide => l.cover} %>
+  <% counter += 1 %>
+<% end %>
+<% if counter != 0 %>
   </div>
-  <br class="clearfloat">
-  
-</div>
+<% end %>
