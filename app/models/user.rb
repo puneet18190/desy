@@ -204,14 +204,40 @@ class User < ActiveRecord::Base
     return resp
   end
   
-  def playlist_visible_block(an_offset, a_limit)
-    offset = 0 if !an_offset.is_a?(Fixnum) || an_offset < 0
-    limit = 1 if !a_limit.is_a?(Fixnum) || a_limit <= 0
-    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(an_offset).limit(a_limit)
+  def tot_notifications_number
+    Notification.where(:user_id => self.id).count
   end
   
-  def playlist_tot_number
-    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).count
+  def destroy_notification_and_reload(notification_id, offset)
+    notification_id = 0 if !notification_id.is_a?(Fixnum) || notification_id < 0
+    offset = 0 if !offset.is_a?(Fixnum) || offset < 0
+    resp = nil
+    ActiveRecord::Base.transaction do
+      n = Notification.find_by_id(notification_id)
+      raise ActiveRecord::Rollback if n.nil? || n.user_id != self.id
+      n.destroy
+      resp_last = Notification.order('created_at DESC').where(:user_id => self.id).limit(offset).last
+      resp_offset = Notification.where(:user_id => self.id).limit(offset).count
+      resp_last = nil if ([resp_offset, resp_offset] != [CONFIG['notifications_loaded_together'], offset])
+      resp = {:last => resp_last, :offset => resp_offset}
+    end
+    resp
+  end
+  
+  def notifications_visible_block(offset, limit)
+    Notification.order('created_at DESC').where(:user_id => self.id).offset(offset).limit(limit)
+  end
+  
+  def number_notifications_not_seen
+    Notification.where(:seen => false, :user_id => self.id).count
+  end
+  
+  def playlist_full?
+    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).count == CONFIG['lessons_in_playlist']
+  end
+  
+  def playlist
+    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
   end
   
   def create_lesson(title, description, subject_id, tags)

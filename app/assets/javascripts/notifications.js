@@ -15,7 +15,7 @@ function initializeNotifications() {
         showNotificationsButton();
       }
     } else {
-      $('#tooltip_content').hide('fade', {}, 500, function() {
+      $('#tooltip_content, #expanded_notification').hide('fade', {}, 500, function() {
         hideNotificationsTooltip();
       });
       if($('#tooltip_arancione').data('number') > 0) {

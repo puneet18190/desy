@@ -233,7 +233,7 @@ class Lesson < ActiveRecord::Base
         begin
           n = Notification.new
           n.user_id = b.user_id
-          n.message = I18n.t("#{Notification.errors_path}.bookmark_cancelled")
+          n.message = I18n.t('notifications.lesson_unpublished')
           n.seen = false
           if !n.save
             errors.add(:base, :problem_unpublishing)
@@ -266,7 +266,7 @@ class Lesson < ActiveRecord::Base
       Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
         n = Notification.new
         n.user_id = b.user_id
-        n.message = I18n.t("#{Notification.errors_path}.bookmark_cancelled")
+        n.message = I18n.t('notifications.lesson_destroyed')
         n.seen = false
         if !n.save
           errors.add(:base, :problem_destroying)

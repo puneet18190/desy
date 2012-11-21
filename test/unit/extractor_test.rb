@@ -547,13 +547,13 @@ class ExtractorTest < ActiveSupport::TestCase
     Notification.where('id NOT IN (?)', [us2_20.id, us2_13.id, us2_8.id, us2_9.id, us1_1.id, us1_3.id, us1_15.id, us1_17.id, us1_18.id, us1_5.id]).each do |n|
       assert n.has_been_seen
     end
-    assert_equal 4, Notification.number_not_seen(2)
-    assert_equal 6, Notification.number_not_seen(1)
+    assert_equal 4, User.find(2).number_notifications_not_seen
+    assert_equal 6, User.find(1).number_notifications_not_seen
     assert us2_9.has_been_seen
-    assert_equal 3, Notification.number_not_seen(2)
-    assert_equal 6, Notification.number_not_seen(1)
-    assert_extractor [us2_1.id, us2_2.id, us2_3.id, us2_4.id, us2_5.id], Notification.visible_block(2, 0, 5)
-    assert_extractor [us1_1.id, us1_2.id, us1_3.id, us1_4.id, us1_5.id], Notification.visible_block(1, 0, 5)
+    assert_equal 3, User.find(2).number_notifications_not_seen
+    assert_equal 6, User.find(1).number_notifications_not_seen
+    assert_extractor [us2_1.id, us2_2.id, us2_3.id, us2_4.id, us2_5.id], User.find(2).notifications_visible_block(0, 5)
+    assert_extractor [us1_1.id, us1_2.id, us1_3.id, us1_4.id, us1_5.id], User.find(1).notifications_visible_block(0, 5)
   end
   
   test 'google_lessons_without_tags' do

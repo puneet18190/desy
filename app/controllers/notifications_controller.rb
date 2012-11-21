@@ -1,40 +1,40 @@
 class NotificationsController < ApplicationController
   
+  NOTIFICATIONS_LOADED_TOGETHER = CONFIG['notifications_loaded_together']
+  
   before_filter :initialize_notification_with_owner, :only => [:seen, :destroy]
   before_filter :initialize_notification_offset, :only => [:destroy, :get_new_block]
   
   def seen
     @ok = @notification.has_been_seen if @ok
-    @new_notifications = Notification.number_not_seen(@current_user.id)
+    @new_notifications = @current_user.number_notifications_not_seen
   end
   
   def destroy
     if @ok
-      old_offset_notifications = @offset_notifications
-      ActiveRecord::Base.transaction do
-        @notification.destroy
-        @notifications = Notification.visible_block(@current_user.id, 0, @offset_notifications)
+      resp = @current_user.destroy_notification_and_reload(@notification.id, @offset_notifications)
+      if !resp.nil?
+        @offset_notifications = resp[:offset]
+        @next_notification = resp[:last]
+        @new_notifications = @current_user.number_notifications_not_seen
+        @tot_notifications = @current_user.tot_notifications_number
+      else
+        @error = I18n.t('activerecord.errors.models.notification.problem_destroying')
       end
-      @new_notifications = Notification.number_not_seen(@current_user.id)
-      @offset_notifications = @notifications.length
-      @tot_notifications = Notification.count_tot(@current_user.id)
-      @next_notification = @notifications.last
-      @load_new = (@offset_notifications == CONFIG['notifications_loaded_together'] && old_offset_notifications == @offset_notifications)
+    else
+      @error = I18n.t('activerecord.errors.models.notification.problem_destroying')
     end
   end
   
   def get_new_block
-    if @ok
-      @notifications = Notification.visible_block(@current_user.id, @offset_notifications, CONFIG['notifications_loaded_together'])
-      @offset_notifications += @notifications.length
-    end
+    @notifications = @current_user.notifications_visible_block @offset_notifications, NOTIFICATIONS_LOADED_TOGETHER
+    @offset_notifications += @notifications.length
   end
   
   private
   
   def initialize_notification_offset
-    @ok = !params['offset'].blank?
-    @offset_notifications = (correct_integer?(params['offset']) ? params['offset'].to_i : 0) if @ok
+    @offset_notifications = (correct_integer?(params[:offset]) ? params[:offset].to_i : NOTIFICATIONS_LOADED_TOGETHER)
   end
   
   def initialize_notification_with_owner

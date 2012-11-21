@@ -54,7 +54,6 @@ Desy::Application.routes.draw do
   # VIRTUAL CLASSROOM
   post 'virtual_classroom/:lesson_id/remove_lesson_from_inside' => 'virtual_classroom#remove_lesson_from_inside'
   post 'virtual_classroom/:lesson_id/add_lesson_to_playlist' => 'virtual_classroom#add_lesson_to_playlist'
-  get 'virtual_classroom/get_new_block_playlist' => 'virtual_classroom#get_new_block_playlist'
   post 'virtual_classroom/:lesson_id/remove_lesson_from_playlist' => 'virtual_classroom#remove_lesson_from_playlist'
   
   # MEDIA ELEMENTS EDITOR
