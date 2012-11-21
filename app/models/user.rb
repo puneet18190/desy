@@ -194,6 +194,12 @@ class User < ActiveRecord::Base
     b.save
   end
   
+  def empty_virtual_classroom
+    VirtualClassroomLesson.where(:user_id => self.id).each do |vcl|
+      vcl.destroy
+    end
+  end
+  
   def empty_playlist
     return false if self.new_record?
     resp = false

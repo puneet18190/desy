@@ -109,6 +109,11 @@ class VirtualClassroomController < ApplicationController
     @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_emptying_playlist') if !@ok
   end
   
+  def empty_virtual_classroom
+    @current_user.empty_virtual_classroom
+    redirect_to :action => :index
+  end
+  
   private
   
   def initialize_position
