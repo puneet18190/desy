@@ -74,6 +74,7 @@ class VirtualClassroomController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_adding_to_playlist')
     end
+    @playlist = @current_user.playlist
   end
   
   def remove_lesson_from_playlist
@@ -85,6 +86,7 @@ class VirtualClassroomController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_removing_from_playlist')
     end
+    @playlist = @current_user.playlist
   end
   
   private
