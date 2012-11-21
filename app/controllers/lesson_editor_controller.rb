@@ -124,8 +124,11 @@ class LessonEditorController < ApplicationController
           mes2.media_element_id = params["media_element_#{i}"].to_i
           #TODO mettere default a zero per alignment 
           mes2.alignment = params["media_element_align_#{i}"]
+          mes2.caption = params["caption_#{i}"] #TODO da controllare
           mes2.save!
-
+        else
+          mes.caption = params["caption_#{i}"] if params["caption_#{i}"]#TODO da controllare
+          mes.save
         end
       end
     end

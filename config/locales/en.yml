@@ -82,6 +82,7 @@ en:
     enter_lesson_tags: 'Enter tags'
     enter_title: "Enter title"
     help_using_desy: 'Need help using Desy?'
+    image_caption_placeholder: 'Write a caption...'
     insert_tag: 'Insert a tag'
     institute: 'Institute'
     large: 'Large'

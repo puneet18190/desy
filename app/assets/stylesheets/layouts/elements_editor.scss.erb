@@ -203,6 +203,13 @@ html.media_elements-layout {
 			text-align:left;
 		}
   }
+	.mediaEditorElementContainer {
+	  position:absolute; 
+		width:900px;
+		overflow:hidden;
+		height:660px;
+		outline:1px solid red;
+	}
 	.timeline {
 	  display:none;
 	  padding:10px;
@@ -213,13 +220,17 @@ html.media_elements-layout {
 		width:882px;
 		@include boxShadow;
 		background-color:#000;
-		li {
-      display: inline;
-      list-style-type: none;
-      padding-right: 1em;
-			img {width:10%;}
-    }
-		
+		.ui-slider-horizontal {
+		  border-radius:5px;
+      -webkit-border-radius: 5px;
+			background-color:blue;
+		}
+		.ui-slider-range {
+		  background-color:#666;
+		}
+		.ui-slider-handle {
+		  background-color:#fff;
+		}
 		.callout {
       top: -11px;
       z-index:20;
@@ -228,8 +239,22 @@ html.media_elements-layout {
       left:440px;
     }
 	}
-	.gallery {
-	  outline:1px solid red; 
-	  background-color:#000;
-	}
+	.boxViewAudioElement {
+    width: 100%;
+    padding: 10px;
+    color: silver;
+    position: relative;
+    float: left;
+    margin-bottom: 1%;
+    background-color: #4a4a4a;
+		
+		.contentAudio {
+      float: left;
+      width: 99%;
+      padding: 0.5% 0% 0.5% 1%;
+      color:#fff;
+      height: auto;
+    }
+  }
+	
 }
