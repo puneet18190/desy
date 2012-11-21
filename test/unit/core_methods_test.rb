@@ -493,6 +493,39 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 2, VirtualClassroomLesson.count
     assert_equal 1, VirtualClassroomLesson.find(xx.id).position
     assert_equal 2, VirtualClassroomLesson.find(x.id).position
+    # I try the error message for full playlist
+    user = User.find VirtualClassroomLesson.last.user_id
+    assert_equal 1, user.id
+    assert !user.playlist_full?
+    Lesson.where(:user_id => 1).each do |l|
+      l.destroy
+    end
+    VirtualClassroomLesson.where(:user_id => 1).each do |vcl|
+      vcl.destroy
+    end
+    assert Lesson.where(:user_id => 1).empty?
+    assert VirtualClassroomLesson.where(:user_id => 1).empty?
+    user = User.find 1
+    (0...20).each do |i|
+      x = user.create_lesson "title_#{i}", "description_#{i}", 1, 'paperino, pippo, pluto, topolino'
+      assert x
+      assert x.add_to_virtual_classroom 1
+      vc = VirtualClassroomLesson.where(:user_id => 1, :lesson_id => x.id).first
+      assert vc.add_to_playlist, "Failed adding to playlist the lesson #{vc.lesson.inspect}"
+      assert !user.playlist_full? if i != 19
+    end
+    assert_equal 20, Lesson.where(:user_id => 1).count
+    assert_equal 20, VirtualClassroomLesson.where(:user_id => 1).count
+    assert_equal 20, user.playlist.length
+    x = user.create_lesson "title_20", "description_20", 1, 'paperino, pippo, pluto, topolino'
+    assert x
+    assert x.add_to_virtual_classroom 1
+    vc = VirtualClassroomLesson.where(:user_id => 1, :lesson_id => x.id).first
+    assert vc.position.nil?
+    assert user.playlist_full?
+    assert !vc.add_to_playlist
+    assert_equal 1, vc.errors.messages[:base].length
+    assert_match /Your playlist is full!/, vc.errors.messages[:base].first
   end
   
   test 'remove_from_playlist' do
