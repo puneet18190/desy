@@ -267,6 +267,9 @@ en:
       third:
         title: "Balotelli ha insultato una città"
         content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
+  notifications:
+    lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
+    lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
 
 # (4) labels for constant keywords defined in lib/autoload
   statuses:
