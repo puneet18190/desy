@@ -12,7 +12,7 @@ class NotificationsController < ApplicationController
   
   def destroy
     if @ok
-      resp = @current_user.destroy_notification_and_reload(@notification.id, 0, @offset_notifications)
+      resp = @current_user.destroy_notification_and_reload(@notification.id, @offset_notifications)
       if !resp.nil?
         @offset_notifications = resp[:offset]
         @next_notification = resp[:last]
@@ -29,7 +29,6 @@ class NotificationsController < ApplicationController
   def get_new_block
     @notifications = @current_user.notifications_visible_block @offset_notifications, NOTIFICATIONS_LOADED_TOGETHER
     @offset_notifications += @notifications.length
-    end
   end
   
   private
