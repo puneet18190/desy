@@ -49,6 +49,7 @@ en:
           invalid_position_in_playlist: 'The position you chose is not valid for your playlist'
           problems_changing_position_in_playlist: 'There was a problem changing the position of the lesson in your playlist'
           problems_adding_to_playlist: 'There was a problem adding your lesson to the playlist'
+          playlist_full: 'Your playlist is full!'
           problems_removing_from_playlist: 'There was a problem removing your lesson from the playlist'
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions

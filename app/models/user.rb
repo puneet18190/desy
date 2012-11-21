@@ -232,6 +232,10 @@ class User < ActiveRecord::Base
     Notification.where(:seen => false, :user_id => self.id).count
   end
   
+  def playlist_full?
+    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).count == CONFIG['lessons_in_playlist']
+  end
+  
   def playlist
     VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
   end

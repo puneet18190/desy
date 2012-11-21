@@ -60,6 +60,11 @@ class VirtualClassroomLesson < ActiveRecord::Base
       errors.add(:base, :problems_adding_to_playlist)
       return false
     end
+    user = User.find_by_id(self.user_id)
+    if user.nil? || user.playlist_full?
+      errors.add(:base, :playlist_full)
+      return false
+    end
     return true if !self.position.nil?
     VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.user_id).order('position DESC').each do |vcl|
       vcl.position += 1
