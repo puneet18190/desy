@@ -134,6 +134,9 @@ html.virtual_classroom-controller {
 		width:316px;
 		.scroll-pane {
      height: 606px;
+		 .jspContainer {
+		   margin-top:15px;
+		 }
     }
 		h1 {
 		  color:#2eaadc;
@@ -144,10 +147,11 @@ html.virtual_classroom-controller {
       color:#373737;
     }
 		span {
-		  font-size:80%; 
+		  font-size:90%; 
 			color:#2EAADC; 
-			padding-top:5px;
+			padding:5px 0px 0px 30px;
 			font-weight:bold;
+			
 		}
 		&.current {
 		  background-color:#434343;
@@ -159,18 +163,17 @@ html.virtual_classroom-controller {
 		  background-color:#2eaadc;
 		}
 		.lista {
-      padding-bottom: 7px;
-      padding-top: 7px;
+		  margin-top: 2px;
+      margin-bottom: 8px;
 			float:left;
-			width:290px;
+			width:282px;
 					
       .contatore {
 		   float:left;
-			 padding:4px;
+			 padding:4px 6px 4px 6px;
 			 margin-right:15px;
 			 background-color:#434343;
 			 font-size:80%;
-			 width:18px;
 			 text-align:center;
 			}
 			.description {
@@ -184,28 +187,26 @@ html.virtual_classroom-controller {
 				
 				.lessonType {
 			    background-color:#fff;
-				  padding:5px 10px;
+				  padding:2px 10px;
 			  }
 			  &:hover {
 				  cursor:move;
 					outline:1px solid #fff;
-					
-			  }
-				&.current {
-			    outline:3px solid #fff;
-				}	 
-				
+				}
+							
 			}
 			
 			h1 {
-			  font: 120% 'Nunito', sans-serif;
+			  font: 100% 'Nunito', sans-serif;
         color:#fff;
 		    line-height:1em;
 				height: 25px;
 			}
 			
     }
-		
+		.lista.current .description {
+      outline:4px solid #fff;
+		}	
 		.play {
 		  padding:10px;
 			background-color:#2eaadc;
@@ -267,11 +268,13 @@ html.virtual_classroom-controller {
 	.exitButton {
 		 position:absolute; 
 		 right:3px; 
-		 top:3px;
-		 font-size: 4px;
-		 opacity:1;
+		 bottom:1px;
+		 font-size: 3px;
+		 opacity:0.1;
+		 
 		 &:hover {
-		   opacity:0.4;
+		   opacity:0.6;
+			 background-position: -4.7em 0;
 		 }
 	}
 }

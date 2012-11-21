@@ -1,6 +1,6 @@
 <div id="virtual_classroom_playlist" class="playList">
-  <div class="fltlft"><h1><%= t('captions.playlist') %><%= " (#{lessons.length} / #{CONFIG['lessons_in_playlist']})".html_safe %></h1></div>
-  <span class="fltrt lower"><%= t('captions.empty_playlist') %></span>
+  <span class="fltlft"><%= image_tag("playlist_symbol.png")%> <%= t('captions.playlist') %><%= " (#{lessons.length} / #{CONFIG['lessons_in_playlist']})".html_safe %></span>
+  <span class="fltrt lower" style="font-size:80%; color:#615e5e; padding:10px 34px 0px 0px"><%= t('captions.empty_playlist') %></span>
   <% if lessons.empty? %>
     <%= render :partial => "virtual_classroom/empty_playlist" %> 
   <% else %>
