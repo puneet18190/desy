@@ -74,6 +74,7 @@ en:
     display: 'display'
     download_manual: 'Download the user manual'
     edit: 'Edit'
+    empty_playlist: 'Empty playlist'
     empty_virtual_classroom: 'Empty the virtual classroom'
     enter: 'Enter'
     enter_lesson_title: 'Enter the title of the lesson'

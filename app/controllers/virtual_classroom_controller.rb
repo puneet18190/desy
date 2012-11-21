@@ -1,7 +1,7 @@
 class VirtualClassroomController < ApplicationController
   
   FOR_PAGE = CONFIG['lessons_for_page_in_virtual_classroom']
-  PLAYLIST_CONTENT = CONFIG['playlist_lessons_loaded_together']
+  PLAYLIST_CONTENT = CONFIG['lessons_in_playlist']
   
   before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson, :remove_lesson_from_inside]
   before_filter :initialize_lesson_destination, :only => [:add_lesson, :remove_lesson]
@@ -16,8 +16,7 @@ class VirtualClassroomController < ApplicationController
       @page = @pages_amount
       get_lessons
     end
-    @playlist = @current_user.playlist_visible_block 0, @offset
-    @playlist_tot = @current_user.playlist_tot_number
+    @playlist = @current_user.playlist
     render_js_or_html_index
   end
   
@@ -57,7 +56,13 @@ class VirtualClassroomController < ApplicationController
   
   def remove_lesson_from_inside
     if @ok
-      if !@lesson.remove_from_virtual_classroom(@current_user.id)
+      old_offset = @offset
+      if @lesson.remove_from_virtual_classroom(@current_user.id)
+        @next_playlist_lesson = @current_user.last_in_playlist_visible_block(0, @offset).id
+        @offset = @current_user.count_playlist_visible_block 0, @offset
+        @playlist_tot = @current_user.playlist_tot_number
+        @load_new = (@offset == PLAYLIST_CONTENT && old_offset == @offset)
+      else
         @ok = false
         @error = @lesson.get_base_error
       end
@@ -76,7 +81,6 @@ class VirtualClassroomController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_adding_to_playlist')
     end
-    @playlist = @current_user.playlist_visible_block 0, (@offset + 1)
     @playlist_tot = @current_user.playlist_tot_number
   end
   
@@ -94,7 +98,6 @@ class VirtualClassroomController < ApplicationController
     else
       @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_removing_from_playlist')
     end
-    @playlist = @current_user.playlist_visible_block 0, (@offset)
     @playlist_tot = @current_user.playlist_tot_number
   end
   

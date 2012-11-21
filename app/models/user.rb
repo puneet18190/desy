@@ -233,26 +233,8 @@ class User < ActiveRecord::Base
     Notification.where(:seen => false, :user_id => self.id).count
   end
   
-  def last_in_playlist_visible_block(offset, limit)
-    offset = 0 if !offset.is_a?(Fixnum) || offset < 0
-    limit = 1 if !limit.is_a?(Fixnum) || limit <= 0
-    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(offset).limit(limit).last
-  end
-  
-  def count_playlist_visible_block(offset, limit)
-    offset = 0 if !offset.is_a?(Fixnum) || offset < 0
-    limit = 1 if !limit.is_a?(Fixnum) || limit <= 0
-    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).offset(offset).limit(limit).count
-  end
-  
-  def playlist_visible_block(offset, limit)
-    offset = 0 if !offset.is_a?(Fixnum) || offset < 0
-    limit = 1 if !limit.is_a?(Fixnum) || limit <= 0
-    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).offset(offset).limit(limit)
-  end
-  
-  def playlist_tot_number
-    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).count
+  def playlist
+    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
   end
   
   def create_lesson(title, description, subject_id, tags)

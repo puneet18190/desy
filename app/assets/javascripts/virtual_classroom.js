@@ -1,3 +1,23 @@
+function removeLastLessonFromPlaylistEffect(id, replacement) {
+  $('#' + id).hide('fade', {}, 500, function() {
+    $('#virtual_classroom_playlist').replaceWith(replacement)
+    updateOffsetAndNumberPlaylist(0, 0);
+    initializePlaylist();
+  });
+}
+
+function removeLessonFromPlaylistEffect(id, offset, playlist_tot) {
+  $('#' + id).hide('fade', {}, 500, function() {
+    $(this).parent().replaceWith('');
+    updateOffsetAndNumberPlaylist(offset, playlist_tot);
+  });
+}
+
+function updateOffsetAndNumberPlaylist(new_offset, new_tot-number) {
+  $('#virtual_classroom_playlist').data('tot-number', new_tot-number);
+  $('#virtual_classroom_playlist').data('offset', new_offset);
+}
+
 function initializeDraggableVirtualClassroomLesson(id) {
   if($('#' + id).hasClass('ui-draggable')) {
     $('#' + id).draggable('enable');

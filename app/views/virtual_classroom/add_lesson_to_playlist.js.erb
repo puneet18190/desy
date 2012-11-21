@@ -1,6 +1,6 @@
 <% if @ok %>
   var object = $('#virtual_classroom_lesson_<%= @lesson_id %>');
-  $('#virtual_classroom_playlist').replaceWith('<%= j(render(:partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist, :tot_number => @playlist_tot})) %>');
+  $('#virtual_classroom_playlist ,jspPane').prepend('<%= j(render(:partial => "virtual_classroom/view_single_playlist", :locals => {:virtual => @virtual_classroom_lesson})) %>');
   object.draggable('disable');
   object.data('in-playlist', true);
   initializePlaylist();
