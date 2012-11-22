@@ -1,0 +1,15 @@
+<%
+  image = slide.media_element_url_at(1)
+%>
+
+<div class="bigViewLesson slideImage1">
+  <h2><%= slide.title %></h2>
+  <div class="medium">
+    <% if !image[:empty] %>
+      <%= image_tag image[:url], :style => "left:#{image[:alignment]}px" %>
+    <% end %>
+  </div>
+  <div class="image1-content">
+    <%= slide.text %>
+  </div>
+</div>

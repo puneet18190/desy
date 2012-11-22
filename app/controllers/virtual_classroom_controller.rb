@@ -1,13 +1,13 @@
 class VirtualClassroomController < ApplicationController
   
   FOR_PAGE = CONFIG['lessons_for_page_in_virtual_classroom']
-  PLAYLIST_CONTENT = CONFIG['playlist_lessons_loaded_together']
+  LESSONS_IN_QUICK_LOADER = CONFIG['lessons_in_quick_loader']
   
   before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson, :remove_lesson_from_inside]
   before_filter :initialize_lesson_destination, :only => [:add_lesson, :remove_lesson]
-  before_filter :initialize_layout, :initialize_paginator, :only => :index
-  before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist]
-  before_filter :initialize_offset, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :index, :get_new_block_playlist]
+  before_filter :initialize_layout, :initialize_paginator, :only => [:index]
+  before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :change_position_in_playlist]
+  before_filter :initialize_position, :only => :change_position_in_playlist
   layout 'virtual_classroom'
   
   def index
@@ -16,8 +16,7 @@ class VirtualClassroomController < ApplicationController
       @page = @pages_amount
       get_lessons
     end
-    @playlist = @current_user.playlist_visible_block 0, @offset
-    @playlist_tot = @current_user.playlist_tot_number
+    @playlist = @current_user.playlist
     render_js_or_html_index
   end
   
@@ -69,45 +68,71 @@ class VirtualClassroomController < ApplicationController
   
   def add_lesson_to_playlist
     if @ok
-      if !@virtual_classroom_lesson.add_to_playlist
+      if @virtual_classroom_lesson.add_to_playlist
+        @playlist = @current_user.playlist
+      else
         @ok = false
         @error = @virtual_classroom_lesson.get_base_error
       end
     else
       @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_adding_to_playlist')
     end
-    @playlist = @current_user.playlist_visible_block 0, (@offset + 1)
-    @playlist_tot = @current_user.playlist_tot_number
-  end
-  
-  def get_new_block_playlist
-    @ok = correct_integer?(params[:offset])
-    @playlist = @current_user.playlist_visible_block @offset, PLAYLIST_CONTENT if @ok
   end
   
   def remove_lesson_from_playlist
     if @ok
-      if !@virtual_classroom_lesson.remove_from_playlist
+      if @virtual_classroom_lesson.remove_from_playlist
+        @playlist = @current_user.playlist
+      else
         @ok = false
         @error = @virtual_classroom_lesson.get_base_error
       end
     else
       @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_removing_from_playlist')
     end
-    @playlist = @current_user.playlist_visible_block 0, (@offset)
-    @playlist_tot = @current_user.playlist_tot_number
+  end
+  
+  def change_position_in_playlist
+    if @ok
+      if !@virtual_classroom_lesson.change_position(@position)
+        @ok = false
+        @error = @virtual_classroom_lesson.get_base_error
+      end
+    else
+      @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_changing_position_in_playlist')
+    end
+    @playlist = @current_user.playlist
+  end
+  
+  def empty_playlist
+    @ok = @current_user.empty_playlist
+    @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_emptying_playlist') if !@ok
+  end
+  
+  def empty_virtual_classroom
+    @current_user.empty_virtual_classroom
+    redirect_to :action => :index
+  end
+  
+  def select_lessons
+    @lessons = @current_user.own_lessons(1, LESSONS_IN_QUICK_LOADER)[:records]
+  end
+  
+  def load_lessons
+    redirect_to :action => :index
   end
   
   private
   
-  def initialize_offset
-    @offset = correct_integer?(params[:offset]) ? params[:offset].to_i : PLAYLIST_CONTENT
+  def initialize_position
+    @position = correct_integer?(params[:position]) ? params[:position].to_i : 0
+    update_ok(@position > 0)
   end
   
   def initialize_virtual_classroom_lesson
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @virtual_classroom_lesson = VirtualClassroomLesson.where(:lesson_id => @lesson_id, :user_id => @current_user.id).first
-    @ok = !@virtual_classroom_lesson.nil?
+    update_ok(!@virtual_classroom_lesson.nil?)
   end
   
   def get_lessons

@@ -10,7 +10,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
   validates_numericality_of :position, :allow_nil => true, :only_integer => true, :greater_than => 0
   validates_uniqueness_of :lesson_id, :scope => :user_id
   validates_uniqueness_of :position, :scope => :user_id, :if => :in_playlist?
-  validate :validate_associations, :validate_availability, :validate_copied_not_modified, :validate_impossible_changes, :validate_positions
+  validate :validate_associations, :validate_availability, :validate_copied_not_modified, :validate_impossible_changes, :validate_positions, :validate_playlist_length
   
   before_validation :init_validation
   
@@ -58,6 +58,11 @@ class VirtualClassroomLesson < ActiveRecord::Base
     errors.clear
     if self.new_record?
       errors.add(:base, :problems_adding_to_playlist)
+      return false
+    end
+    user = User.find_by_id(self.user_id)
+    if user.nil? || user.playlist_full?
+      errors.add(:base, :playlist_full)
       return false
     end
     return true if !self.position.nil?
@@ -127,6 +132,10 @@ class VirtualClassroomLesson < ActiveRecord::Base
   end
   
   private
+  
+  def validate_playlist_length
+    errors[:position] << 'already reached the maximum number of lessons in playlist' if @virtual_classroom_lesson && @virtual_classroom_lesson.position.nil? && !self.position.nil? && VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', @virtual_classroom_lesson.user_id).count == CONFIG['lessons_in_playlist']
+  end
   
   def init_validation
     @virtual_classroom_lesson = Valid.get_association self, :id

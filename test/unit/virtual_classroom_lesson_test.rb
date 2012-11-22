@@ -32,7 +32,7 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert_invalid @virtual_classroom_lesson, :user_id, 'ty', 2, /is not a number/
     assert_invalid @virtual_classroom_lesson, :user_id, -1, 2, /must be greater than 0/
     assert_invalid @virtual_classroom_lesson, :lesson_id, 1.5, @lesson.id, /must be an integer/
-    assert_invalid @virtual_classroom_lesson, :position, (1...34), nil, /is not a number/
+    assert_invalid @virtual_classroom_lesson, :position, 'iii', nil, /is not a number/
     assert_invalid @virtual_classroom_lesson, :position, -5, nil, /must be greater than 0/
     assert_invalid @virtual_classroom_lesson, :position, 1.5, nil, /must be an integer/
     assert_obj_saved @virtual_classroom_lesson
@@ -119,6 +119,35 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert @virtual_classroom_lesson.valid?, "VirtualClassroomLesson not valid: #{@virtual_classroom_lesson.errors.inspect}"
     assert_invalid @virtual_classroom_lesson, :lesson_id, 1, @lesson.id, /can't be changed/
     assert_obj_saved @virtual_classroom_lesson
+  end
+  
+  test 'playlist_size' do
+    Lesson.where(:user_id => 1).each do |l|
+      l.destroy
+    end
+    VirtualClassroomLesson.where(:user_id => 1).each do |vcl|
+      vcl.destroy
+    end
+    assert Lesson.where(:user_id => 1).empty?
+    assert VirtualClassroomLesson.where(:user_id => 1).empty?
+    user = User.find 1
+    (0...20).each do |i|
+      x = user.create_lesson "title_#{i}", "description_#{i}", 1, 'paperino, pippo, pluto, topolino'
+      assert x
+      assert x.add_to_virtual_classroom 1
+      vc = VirtualClassroomLesson.where(:user_id => 1, :lesson_id => x.id).first
+      assert vc.add_to_playlist, "Failed adding to playlist the lesson #{vc.lesson.inspect}"
+    end
+    assert_equal 20, Lesson.where(:user_id => 1).count
+    assert_equal 20, VirtualClassroomLesson.where(:user_id => 1).count
+    assert_equal 20, user.playlist.length
+    x = user.create_lesson "title_20", "description_20", 1, 'paperino, pippo, pluto, topolino'
+    assert x
+    assert x.add_to_virtual_classroom 1
+    vc = VirtualClassroomLesson.where(:user_id => 1, :lesson_id => x.id).first
+    assert vc.position.nil?
+    assert_invalid vc, :position, 21, nil, /already reached the maximum number of lessons in playlist/
+    assert_obj_saved vc
   end
   
 end

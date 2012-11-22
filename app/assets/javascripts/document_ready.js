@@ -581,7 +581,7 @@ $(document).ready(function() {
     });
   });
   
-  initializeDraggableVirtualClassroom();
+  initializeVirtualClassroom();
   
   $('body').on('mouseover', '._lesson_in_playlist', function() {
     $('#' + this.id + ' ._remove_lesson_from_playlist').css('display', 'block');
@@ -596,6 +596,13 @@ $(document).ready(function() {
     $.ajax({
       type: 'post',
       url: '/virtual_classroom/' + lesson_id + '/remove_lesson_from_playlist'
+    });
+  });
+  
+  $('body').on('click', '._empty_playlist_button', function() {
+    $.ajax({
+      type: 'post',
+      url: '/virtual_classroom/empty_playlist'
     });
   });
   

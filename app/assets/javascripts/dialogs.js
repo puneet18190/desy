@@ -1,3 +1,20 @@
+function showVirtualClassroomQuickSelectPopUp(content) {
+  var obj = $('#dialog-virtual-classroom-quick-select');
+  obj.html(content);
+  if(obj.data('dialog')) {
+    obj.dialog('open');
+  } else {
+    obj.show();
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      width: 920,
+      show: "fade",
+      hide: "fade"
+    });
+  }
+}
+
 function showTimedPopUp(content, id) {
   var obj = $('#' + id);
   obj.html(content);

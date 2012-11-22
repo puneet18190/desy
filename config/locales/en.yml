@@ -30,7 +30,7 @@ en:
           problem_destroying: 'There was a problem removing this element'
           cant_destroy_public: 'You cannot remove a public element'
         notification:
-          bookmark_cancelled: 'Your bookmark has been cancelled'
+          problem_destroying: 'There was a problem removing your notification'
         slide:
           problems_changing_position: 'There was a problem changing the position of the slide'
           invalid_position: 'The position of the slide is invalid'
@@ -49,6 +49,8 @@ en:
           invalid_position_in_playlist: 'The position you chose is not valid for your playlist'
           problems_changing_position_in_playlist: 'There was a problem changing the position of the lesson in your playlist'
           problems_adding_to_playlist: 'There was a problem adding your lesson to the playlist'
+          problems_emptying_playlist: 'There was a problem emptying your playlist'
+          playlist_full: 'Your playlist is full!'
           problems_removing_from_playlist: 'There was a problem removing your lesson from the playlist'
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
@@ -74,6 +76,7 @@ en:
     display: 'display'
     download_manual: 'Download the user manual'
     edit: 'Edit'
+    empty_playlist: 'Empty playlist'
     empty_virtual_classroom: 'Empty the virtual classroom'
     enter: 'Enter'
     enter_lesson_title: 'Enter the title of the lesson'
@@ -267,6 +270,9 @@ en:
       third:
         title: "Balotelli ha insultato una città"
         content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
+  notifications:
+    lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
+    lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
 
 # (4) labels for constant keywords defined in lib/autoload
   statuses:

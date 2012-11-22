@@ -1,13 +1,34 @@
-<div class="griglia-contenuti">
-  <div class="playListContainer">
-    <%= render :partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist, :tot_number => @playlist_tot} %>
+<div class="header">
+  <%= link_to image_tag("logo.gif"), '/dashboard' %>
+  <%= render :partial => "shared/logout" %>
+</div>
+<div class="bluBar">
+  <h1 style="width:20%" class="lower"><%= t('captions.virtual_classroom') %></h1>
+  <%= render :partial => 'virtual_classroom/header_buttons' %>
+  <ul class="navlist" style="float:right">
+    <li class="lower"><%= link_to(t('captions.back_in_desy'), dashboard_index_path) %></li>
+  </ul>
+</div>
+
+<br class="clearfloat">
+<%= render :partial => "notifications/main" %>
+<br class="clearfloat">
+
+<div class="content">
+  
+  <div class="griglia-contenuti">
+    <div class="playListContainer">
+      <%= render :partial => "virtual_classroom/playlist", :locals => {:lessons => @playlist} %>
+    </div>
+    <div class="listContainer">
+      <%= render :partial => 'virtual_classroom/my_virtual_classroom' %>
+      <br class="clearfloat">
+      <% if @lessons.any? %>
+        <%= render :partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => remove_param_from_url(request.url, 'delete_item')} %>
+      <% end %>
+    </div>
+    <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
   </div>
-  <div class="listContainer">
-    <%= render :partial => 'virtual_classroom/my_virtual_classroom' %>
-    <br class="clearfloat">
-    <% if @lessons.any? %>
-      <%= render :partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => remove_param_from_url(request.url, 'delete_item')} %>
-    <% end %>
-  </div>
-  <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
+  <br class="clearfloat">
+  
 </div>

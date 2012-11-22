@@ -1,0 +1,33 @@
+<%
+  image1 = slide.media_element_url_at(1)
+  image2 = slide.media_element_url_at(2)
+  image3 = slide.media_element_url_at(3)
+  image4 = slide.media_element_url_at(4)
+%>
+
+<div class="bigViewLesson slideImage4">
+  <div class="prima_riga">
+    <div class="small">
+      <% if !image[:empty] %>
+        <%= image_tag image1[:url], :style => "left:#{image1[:alignment]}px" %>
+      <% end %>
+    </div>
+    <div class="small">
+      <% if !image[:empty] %>
+        <%= image_tag image2[:url], :style => "left:#{image2[:alignment]}px" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="seconda_riga">
+    <div class="small">
+      <% if !image[:empty] %>
+        <%= image_tag image3[:url], :style => "left:#{image3[:alignment]}px" %>
+      <% end %>
+    </div>
+    <div class="small">
+      <% if !image[:empty] %>
+        <%= image_tag image4[:url], :style => "left:#{image4[:alignment]}px" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -48,42 +48,62 @@ html.virtual_classroom-controller {
 		  float:left;
 		  width:39%;
 		}
-		ul.navlist {
+	}
+	/*BOTTONI BARRA BLU VIRTUALCLASSROOM*/
+	ul.navlist {
       margin: 1em 3.8em 0.5em 3em;
       padding: 0;
       white-space: nowrap;
 		  float:left;
-			
-    }
-    .navlist li {
-      display: inline;
-      list-style-type: none;
-      margin-right:10px;
-			&:last-child {
-			  margin-right:0px;
-			}
-    }
-    .navlist a {
-       padding: 5px 25px;
-	     background-color: #42b9e9;
-	     color:#fff;
-	  }
-	  .navlist a:hover	{
-	     background-color: #59c9f6;
-	  }
-	  .navlist a.current {
-       
-	     background-color: #59c9f6;
-	     
-	  }
 	}
+  .navlist li {
+    display: inline;
+    list-style-type: none;
+    margin-right:10px;
+		&:last-child {
+		  margin-right:0px;
+		}
+  }
+  .navlist a {
+    padding: 5px 25px;
+	  background-color: #42b9e9;
+	  color:#fff;
+	}
+	.navlist a:hover	{
+	  background-color: #59c9f6;
+	}
+	.navlist a.current {
+    background-color: #59c9f6;
+	}
+	/*upload popup*/
+	.uploadButtonPopUpSelectLesson {
+	  margin-top:25px;
+		
+	  display:inline-block;
+		width:890px;
+		.uploadButton a {
+      padding: 5px 25px;
+	    background-color: #42b9e9;
+	    color:#fff;
+		  font-size:1.5em;
+		  float:left;
+	  }
+	  .uploadButton a:hover	{
+	    background-color: #59c9f6;
+	  }
+		span {
+		  float:left;
+			padding:10px;
+			
+		}
+	}
+	
 	.boxViewSingleLesson {
     float:left;
 	  width:270px;
 	  margin-right: 20px;
 	  margin-bottom:20px;
-		-moz-box-shadow: none;
-    -webkit-box-shadow: none;
+		-webkit-box-shadow: none;
     box-shadow: none;
     background-color: #434343;
     &:hover {
@@ -93,8 +113,7 @@ html.virtual_classroom-controller {
 	    height:214px;
 			width:auto;
 			padding:10px;
-			-moz-box-shadow: none;
-      -webkit-box-shadow: none;
+			-webkit-box-shadow: none;
       box-shadow: none;
 			.img_expanded:hover {
 			  background-color:#000;
@@ -133,22 +152,39 @@ html.virtual_classroom-controller {
 		background-color:#2b2929;
 		width:316px;
 		.scroll-pane {
-     height: 606px;
-    }
+     height: 616px;
+		}
 		h1 {
 		  color:#2eaadc;
-			font: 160% 'Nunito', sans-serif;
+			font: 120% 'Nunito', sans-serif;
 		}
 		h2 {
       font-size:80%;
       color:#373737;
     }
-		span {
-		  font-size:80%; 
-			color:#2EAADC; 
+		.titlePlaylist {
+		  font-family: 'Nunito', sans-serif;
 			padding-top:5px;
+			color:#2EAADC;
+		}
+		span {
+		  font-size:90%; 
+			color:#2EAADC; 
+			padding:5px 0px 15px 30px;
 			font-weight:bold;
 		}
+		
+		  .emptyPlayListButton {
+        font-size: 80%;
+        color: #615e5e;
+        padding: 8px 34px 0px 0px;
+        
+        &:hover {
+          color: #2EAADC;
+          cursor: pointer;
+        }
+      }
+		
 		&.current {
 		  background-color:#434343;
 		}
@@ -159,18 +195,17 @@ html.virtual_classroom-controller {
 		  background-color:#2eaadc;
 		}
 		.lista {
-      padding-bottom: 7px;
-      padding-top: 7px;
+		  padding-top: 5px;
+      padding-bottom: 5px;
 			float:left;
-			width:290px;
+			width:288px;
 					
       .contatore {
 		   float:left;
-			 padding:4px;
+			 padding:4px 6px 4px 6px;
 			 margin-right:15px;
 			 background-color:#434343;
 			 font-size:80%;
-			 width:18px;
 			 text-align:center;
 			}
 			.description {
@@ -181,30 +216,25 @@ html.virtual_classroom-controller {
 				  background-color:#f29400;
 				  padding:10px;
 				}
-				
 				.lessonType {
 			    background-color:#fff;
-				  padding:5px 10px;
+				  padding:2px 10px;
 			  }
 			  &:hover {
 				  cursor:move;
 					outline:1px solid #fff;
-					
-			  }
-				&.current {
-			    outline:3px solid #fff;
-				}	 
-				
+				}
 			}
-			
 			h1 {
-			  font: 120% 'Nunito', sans-serif;
+			  font: 100% 'Nunito', sans-serif;
         color:#fff;
 		    line-height:1em;
 				height: 25px;
 			}
-			
-    }
+		}
+		.lista.current .description {
+      outline:4px solid #fff;
+		}
 		
 		.play {
 		  padding:10px;
@@ -252,8 +282,29 @@ html.virtual_classroom-controller {
       padding: 1em 3em 6em 5em;
 		}
   }
-	
-	
+	.virtualClassroomQuickSelectPopUp {
+	  background-color:#000;
+	  padding:20px 10px 25px 20px;
+		a {
+		  color:#fff;
+		}
+		h3 {
+		  color:#fff;
+			font-family:'Nunito', sans-serif;
+			padding-bottom:15px;
+		}
+	  .contentPopUp {
+		  .jspTrack {
+		    background-color:#434343;
+		  }
+		  .jspDrag {
+		    background-color:#2eaadc;
+		  }
+		}
+		.scroll-pane {
+		  height:590px;
+		}
+	}
 	.emptyPlayList {
 	  color:#727377;
 		padding-bottom:80px;
@@ -264,14 +315,19 @@ html.virtual_classroom-controller {
 			text-align:right;
 		}
 	}
+	
+
+	
 	.exitButton {
 		 position:absolute; 
 		 right:3px; 
-		 top:3px;
-		 font-size: 4px;
-		 opacity:1;
+		 bottom:1px;
+		 font-size: 3px;
+		 opacity:0.1;
+		 
 		 &:hover {
-		   opacity:0.4;
+		   opacity:0.6;
+			 background-position: -4.7em 0;
 		 }
 	}
 }
