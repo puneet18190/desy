@@ -11,7 +11,7 @@
         </li>
       <%end%><!-- end each -->
       <li class="unsortable">
-        <%= link_to image_tag("plus-rounded.png"), {:action => :add_new_slide, :slide => @lesson.slides.first.id} , :remote => true, :class => "add _add_slide" %>
+        <%= link_to "add slide", {:action => :add_new_slide, :slide => @lesson.slides.first.id} , :remote => true, :class => "add add-small _add_slide" %>
       </li>
     </ul>
   </nav>

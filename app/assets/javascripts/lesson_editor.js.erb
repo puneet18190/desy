@@ -83,7 +83,6 @@ function scrollSlideTo(list){
 }
 
 function slideTo(nth){
-  console.log("nth: "+nth+ "\n"+ $(nth));
   page = $(nth).text();
   slide_id = $(nth).attr("data-slide");
   $("#slide-numbers li a._add_slide").attr("href","/lesson_editor/add_new_slide/"+slide_id);
@@ -157,10 +156,20 @@ function slideSortList(list){
           var current_i = (parseInt(i)+1);
           $(this).find('a').text(current_i);
         });
-        console.log($('.slide-numbers li:eq('+ui.item.endPos+')').first());
         scrollTo('.slide-numbers li:eq('+ui.item.endPos+')');
       }
   });
+}
+
+function tinyMceCallbacks(inst){
+  console.log(inst.getBody().scrollHeight);
+  if (inst.getBody().scrollHeight > 417){
+    $(inst.getBody()).parentsUntil("table.mceLayout").css("border","1px solid red");
+  }
+  else
+  {
+    $(inst.getBody()).parentsUntil("table.mceLayout").css("border","1px solid white");
+  }
 }
 
 function initTinymce(){
@@ -169,19 +178,31 @@ function initTinymce(){
     theme : "advanced",
     editor_selector : "tinymce",
     skin : "desy",
-    plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
-    theme_advanced_buttons1 : "fontsizeselect,forecolor,justifyleft,justifycenter,justifyright,justifyfull,bold,italic,underline,numlist,bullist",
+    content_css : "/assets/tiny_mce_desy.css",
+    plugins : "fmath_formula,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+    theme_advanced_buttons1 : "fontsizeselect,forecolor,justifyleft,justifycenter,justifyright,justifyfull,bold,italic,underline,numlist,bullist,link,unlink,fmath_formula",
     theme_advanced_toolbar_location : "external",
     theme_advanced_toolbar_align : "left",
     theme_advanced_statusbar_location : false,
-    theme_advanced_resizing : true
+    theme_advanced_resizing : true,
+    theme_advanced_font_sizes : "1em=.size1,2em=.size2,3em=.size3,4em=.size4,5em=.size5,6em=.size6,7em=.size7",
+    setup : function(ed) {
+      ed.onKeyUp.add(function(ed, e) {
+        tinyMceCallbacks(ed);
+      });
+   }
   });
-  $('body:not(textarea.tinymce)').click(function(){
+  
+  $('body:not(textarea.tinymce)').click(function(e){
+    //console.log($(e.target).parentsUntil(".mceExternalToolbar"));
+    //$(e.target).parentsUntil(".mceExternalToolbar").fadeOut();
     $('.mceExternalToolbar').hide();
   });
+  
   $('textarea.tinymce').click(function(){
     $('.mceExternalToolbar').show();
   });
+  
 }
 
 function imgRealSize(img) {

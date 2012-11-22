@@ -82,12 +82,17 @@ html.lesson-editor-layout{
         color: #4b4b4b;
         text-align: center;
         font-size: 12px;
-        &._add_slide{
+        &.add-small{
+          text-indent: -9999999px;
           border:none;
           padding:0;
+          height: 17px;
+          width: 17px;
+          background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
         }
-        &._add_slide:hover{
+        &.add-small:hover{
           background-color:transparent;
+          background-position: bottom center;
           border: none;
         }
         &:hover {
@@ -196,12 +201,13 @@ html.lesson-editor-layout{
         .text-content{
           margin: 0 5px;
           padding: 2px;
-          font-size: 7px;
+          font-size: 100%;
+          line-height: 100%;
         }
     }
     &.cover{
       .title{
-        background-color: rgba(242,148,0,0.8);
+        background-color: rgba(242,148,0,0.95);
         height: 42px;
         padding: 0px 5px;
         width: 280px;
@@ -214,14 +220,14 @@ html.lesson-editor-layout{
       .cover-slide-footer{
         clear:both;
         background-color: #fff;
-        color: #777;
+        color: #373737;
         height: 5px;
         width: 280px;
         padding: 3px 5px;
         font-size: 4px;
         .subject .h3{
           font-family: Arial, sans-serif;
-          color: #777;
+          color: #373737;
         }
         .author .name{
           color: $orange;
@@ -254,6 +260,10 @@ html.lesson-editor-layout{
         color: $orange;
         border: 1px solid #efefef;
         resize:none;
+      }
+      
+      textarea{
+        overflow:hidden;
       }
       
       input.caption{
@@ -341,7 +351,7 @@ html.lesson-editor-layout{
       margin-left: 50px;
       &.cover{
         .title{
-          background-color: rgba(242,148,0,0.8);
+          background-color: rgba(242,148,0,0.95);
           height: 130px;
           padding: 0px 20px;
           width: 860px;
@@ -372,14 +382,14 @@ html.lesson-editor-layout{
         .cover-slide-footer{
           clear:both;
           background-color: #fff;
-          color: #777;
+          color: #373737;
           height: 16px;
           width: 870px;
           padding: 7px 15px;
           font-size: 13px;
           .subject .h3{
             font-family: Arial, sans-serif;
-            color: #777;
+            color: #373737;
           }
           .author .name{
             color: $orange;
@@ -418,7 +428,8 @@ html.lesson-editor-layout{
               padding: 10px;
               margin: 20px;
               width: 840px;
-              height: 350px;
+              height: 395px;
+              overflow:hidden;
             }
           }
           .cover-choose-image{
@@ -619,17 +630,18 @@ html.lesson-editor-layout{
           height: 590px;
           width: 900px;
           .mask{
-            width: 400px;
+            width: 420px;
             height: 550px;
             padding: 0;
-            margin: 0 20px;
             overflow:hidden;
             position:relative;
             &.image2-p1{
               float:right;
+              margin: 0 20px 0 0;
             }
             &.image2-p2{
               float:left;
+              margin: 0 0 0 20px;
             }
             img{
               display:block;
@@ -640,16 +652,21 @@ html.lesson-editor-layout{
             }
           }
           .cover-choose-image{
-            margin: 0 20px;
-            width: 400px;
-            height: 405px;
+            width: 420px;
+            height: 410px;
             a{
               margin: 70px auto 0;
             }
           }
+          .cover-choose-image-right{
+            margin: 0 20px 0 0;
+          }
+          .cover-choose-image-left{
+            margin: 0 0 0 20px;
+          }
           .rollover{
             height: 515px;
-          	width: 400px;
+          	width: 420px;
           	margin: 0;
           	.add-image{
           	  margin:210px 0 0 135px;

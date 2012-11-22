@@ -25,7 +25,7 @@
       <!--TODO replace align value from db (after default at 0)-->
       <%= hidden_field_tag :media_element_align_2, "#{slide.media_element_at(2).alignment ? slide.media_element_at(2).alignment : 0}px", :class =>"media_element_align_2" %>
       <div class="mask image2-p2 _mask_x">
-        <%= link_to "<span class='rollover rollover-image' style='left:#{-slide.media_element_at(2).alignment}px'><span class='add-image'></span></span><img src='http://lorempixel.com/1100/550/abstract/1' width='1100' class='_slide_image image2-p2' />".html_safe, {:action => :show_gallery, :slide => slide.id, :position=>2} , :remote => true, :class => "show-gallery pull-left", "data-param"=> "2", :style => "left: #{slide.media_element_at(2).alignment}px" %>
+        <%= link_to "<span class='rollover rollover-image' style='left:#{-slide.media_element_at(2).alignment}px'><span class='add-image'></span></span><img src='#{slide.media_element_at(2).media_element.media.url}' width='1100' class='_slide_image image2-p2' />".html_safe, {:action => :show_gallery, :slide => slide.id, :position=>2} , :remote => true, :class => "show-gallery pull-left", "data-param"=> "2", :style => "left: #{slide.media_element_at(2).alignment}px" %>
             <%= text_field_tag :caption_2, slide.media_element_at(2).caption, :class => "caption", :placeholder => "#{t 'captions.image_caption_placeholder'}", :maxlength =>"60" %>
         <%= hidden_field_tag :media_element_2, slide.media_element_at(2).media_element_id, :class=> "media-tag-cover-2"  %>
       </div>
