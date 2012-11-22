@@ -29,6 +29,18 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  def accepted_media_element_sti_type
+    if [COVER, IMAGE1, IMAGE2, IMAGE3, IMAGE4].include?(self.kind)
+      return MediaElement::IMAGE_TYPE
+    elsif [VIDEO1, VIDEO2].include?(self.kind)
+      return MediaElement::VIDEO_TYPE
+    elsif self.kind == AUDIO
+      return MediaElement::AUDIO_TYPE
+    else
+      return ''
+    end
+  end
+  
   def update_with_media_elements(title, text, media_elements)
     return false if self.new_record?
     resp = false

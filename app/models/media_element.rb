@@ -1,5 +1,11 @@
 class MediaElement < ActiveRecord::Base
   
+  #TODO estrarre da database sty_types
+  IMAGE_TYPE = 'Image'
+  AUDIO_TYPE = 'Audio'
+  VIDEO_TYPE = 'Video'
+  STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
+  
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
   EXTENSIONS_BY_STI_TYPE = { 'Image' => %w(jpg jpeg png) }
@@ -19,7 +25,7 @@ class MediaElement < ActiveRecord::Base
   # FIXME aggiungere :media a validates_presence_of una volta implementati tutti gli upload
   validates_presence_of :user_id, :title, :description
   validates_inclusion_of :is_public, :in => [true, false]
-  validates_inclusion_of :sti_type, :in => ['Video', 'Audio', 'Image']
+  validates_inclusion_of :sti_type, :in => STI_TYPES
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :duration, :allow_nil => true, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => I18n.t('language_parameters.media_element.length_title')
@@ -49,6 +55,18 @@ class MediaElement < ActiveRecord::Base
       inferred_sti_type.constantize.new_without_sti_type_inferring(attributes, options, &block)
     end
     alias_method_chain :new, :sti_type_inferring
+  end
+  
+  def image?
+    self.sti_type == IMAGE_TYPE
+  end
+  
+  def audio?
+    self.sti_type == AUDIO_TYPE
+  end
+  
+  def video?
+    self.sti_type == VIDEO_TYPE
   end
   
   def tags
