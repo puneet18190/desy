@@ -29,6 +29,14 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  def allows_title?
+    [COVER, IMAGE1, AUDIO, VIDEO1, TITLE, TEXT].include?(self.kind)
+  end
+  
+  def allows_text?
+    [TEXT, IMAGE1, AUDIO, VIDEO1].include?(self.kind)
+  end
+  
   def accepted_media_element_sti_type
     if [COVER, IMAGE1, IMAGE2, IMAGE3, IMAGE4].include?(self.kind)
       return MediaElement::IMAGE_TYPE
@@ -87,7 +95,7 @@ class Slide < ActiveRecord::Base
       errors.add(:base, :problems_destroying)
       return false
     end
-    if self.kind == 'cover'
+    if self.kind == COVER
       errors.add(:base, :dont_destroy_cover)
       return false
     end
@@ -126,7 +134,7 @@ class Slide < ActiveRecord::Base
     y = self.position
     return true if y == x
     desc = (y > x)
-    if self.kind == 'cover'
+    if self.kind == COVER
       errors.add(:base, :cant_change_position_of_cover)
       return false
     end
@@ -170,15 +178,15 @@ class Slide < ActiveRecord::Base
   end
   
   def validate_title
-    errors[:title] << 'must be null for this kind of slide' if ['image2', 'image3', 'image4', 'video2'].include?(self.kind) && !self.title.nil?
+    errors[:title] << 'must be null for this kind of slide' if !self.allows_title? && !self.title.nil?
   end
   
   def validate_text
-    errors[:text] << 'must be null for this kind of slide' if ['cover', 'title', 'image2', 'image3', 'image4', 'video2'].include?(self.kind) && !self.text.nil?
+    errors[:text] << 'must be null for this kind of slide' if !self.allows_text? && !self.text.nil?
   end
   
   def is_cover
-    self.kind == 'cover'
+    self.kind == COVER
   end
   
   def init_validation
@@ -197,14 +205,14 @@ class Slide < ActiveRecord::Base
   end
   
   def validate_cover
-    errors[:position] << "cover must be the first slide" if self.kind == 'cover' && self.position != 1
-    errors[:position] << "if not cover can't be the first slide" if self.kind != 'cover' && self.position == 1
+    errors[:position] << "cover must be the first slide" if self.kind == COVER && self.position != 1
+    errors[:position] << "if not cover can't be the first slide" if self.kind != COVER && self.position == 1
   end
   
   def stop_if_cover
     @slide = self.new_record? ? nil : Slide.where(:id => self.id).first
     return true if @slide.nil?
-    return @slide.kind != 'cover'
+    return @slide.kind != COVER
   end
   
 end
