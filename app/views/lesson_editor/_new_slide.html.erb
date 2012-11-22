@@ -1,5 +1,7 @@
-<div class="box new_slide">
-  <% (1..9).each do |index| %>
-      <%= link_to (image_tag "new_slide_thumb_#{index}.png"), "/lesson_editor/#{@slide.id}/add_slide/#{Slide::KINDS[index]}", :method => :post %>
-  <% end %>
+<div id="new_slide_option_list">
+  <div class="box new_slide">
+    <% (1..9).each do |index| %>
+        <%= image_tag "new_slide_thumb_#{index}.png" %>
+    <% end %>
+  </div>
 </div>

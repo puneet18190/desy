@@ -1,21 +1,28 @@
 class LessonEditorController < ApplicationController
   
-  before_filter :initialize_lesson_with_owner
+  FOR_PAGE = {
+    MediaElement::IMAGE_TYPE => CONFIG['images_for_page_in_gallery'],
+    MediaElement::IMAGE_TYPE => CONFIG['audios_for_page_in_gallery'],
+    MediaElement::IMAGE_TYPE => CONFIG['videos_for_page_in_gallery']
+  }
+  
+  before_filter :initialize_lesson_with_owner, :only => [:index, :update, :edit]
+  before_filter :initialize_subjects, :only => [:new, :edit]
+  before_filter :initialize_lesson_with_owner_and_slide, :only => [:show_gallery]
   layout 'lesson_editor'
   
   def index
-    @lesson = Lesson.find params[:lesson_id]
-    @slides = @lesson.slides.order :position
-    @slide = @slides.first
-    #TODO pass a parameter for the slide to redirect to after add_slide
-    #@slide_to = params[:slide_position] if params[:slide_position]
+    if !@ok
+      redirect_to '/dashboard'
+      return
+    else
+      @slides = @lesson.slides.order(:position)
+      #TODO pass a parameter for the slide to redirect to after add_slide
+      #@slide_to = params[:slide_position] if params[:slide_position]
+    end
   end
   
   def new
-    @subjects = [] 
-    @current_user.users_subjects.each do |sbj|
-      @subjects << sbj.subject
-    end
   end
   
   def create
@@ -24,48 +31,39 @@ class LessonEditorController < ApplicationController
     if new_lesson
       redirect_to "/lesson_editor/#{new_lesson.id}/index"
     else
-      redirect_to :back, notice: "#{t 'captions.lesson_not_created'}"
+      redirect_to :back, notice: t('captions.lesson_not_created')
     end
   end
   
   def update
-    lesson = Lesson.find params[:lesson_id]
-    lesson.title = params[:lesson][:title]
-    lesson.description =  params[:lesson][:description]
-    lesson.subject_id = params[:subject]
-    lesson.tags = params[:lesson][:tags]
-    lesson.save
-    redirect_to lesson_editor_path(lesson.id)
-  end
-  
-  def edit
-    @subjects = []
-    @lesson = Lesson.find params[:lesson_id]
-    @current_user.users_subjects.each do |sbj|
-      @subjects << sbj.subject
+    if !@ok
+      redirect_to '/dashboard'
+      return
+    else
+      @lesson.title = params[:lesson][:title]
+      @lesson.description =  params[:lesson][:description]
+      @lesson.subject_id = params[:subject]
+      @lesson.tags = params[:lesson][:tags]
+      @lesson.save
+      redirect_to lesson_editor_path(@lesson_id)
     end
   end
   
-  ## prompt new slide choice ##
-  def add_new_slide
-    @slide = Slide.find params[:slide]
-    respond_to do |format|
-      format.js
+  def edit
+    if !@ok
+      redirect_to '/dashboard'
+      return
     end
   end
   
   ## prompt image gallery in slide ##
   def show_gallery
-    if params[:kind_of]
-      @kind_of = params[:kind_of]
-    else
-      @kind_of = "image"
-    end
-    @media_elements = @current_user.own_media_elements(1, 35, @kind_of)[:records]
-    @slide = Slide.find params[:slide]
-    @img_position = params[:position]
-    respond_to do |format|
-      format.js
+    if @ok
+      @media_element_type = @slide.accepted_media_element_sti_type
+      @media_elements = @current_user.own_media_elements(1, FOR_PAGE[@media_element_type], @media_element_type.downcase)[:records]
+      @media_element_type = @media_element_type.downcase
+      @sti_types = {:video => MediaElement::VIDEO_TYPE.downcase, :image => MediaElement::IMAGE_TYPE.downcase, :audio => MediaElement::AUDIO_TYPE.downcase}
+      @img_position = params[:position]
     end
   end
   
@@ -107,11 +105,26 @@ class LessonEditorController < ApplicationController
   
   private
   
+  def initialize_lesson_with_owner_and_slide
+    initialize_lesson_with_owner
+    @slide_id = correct_integer?(params[:slide_id]) ? params[:slide_id].to_i : 0
+    @slide = Slide.find_by_id @slide_id
+    update_ok(@slide && @lesson.id == @slide.lesson_id)
+  end
+  
+  def initialize_subjects
+    @subjects = []
+    @current_user.users_subjects.each do |sbj|
+      @subjects << sbj.subject
+    end
+  end
+  
   def save_current_slide
-    #TODO aggiungere lesson.modify after save
+    @slide.update_with_media_elements()
+    # TODO aggiungere lesson.modify after save
     current_slide = Slide.find params[:slide_id]
     current_slide.title = params[:title] if params[:title]
-    current_slide.text = params[:text] if params[:text]      
+    current_slide.text = params[:text] if params[:text]
     current_slide.save
     (1...5).each do |i|
       if !params["media_element_#{i}"].blank?

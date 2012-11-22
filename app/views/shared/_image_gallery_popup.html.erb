@@ -2,7 +2,7 @@
   <!--<a href="#" class="close _close_popup exitButton" data-param="<%= media_element.id %>" style="float:right; outline:none; margin: -5px -20px 0px 10px; padding:0;"></a>-->
   <%= image_tag("http://lorempixel.com/390/266", :class=>"popup_expanded")%>
   <div class="caption">
-    <a href="#" class="aggiungiImgButton current _add_<%=kind_of%>_to_slide image-<%= media_element.id %>" data-param="<%= media_element.id %>" style="float:right"></a>
+    <a href="#" class="aggiungiImgButton current _add_<%= sti_type %>_to_slide image-<%= media_element.id %>" data-param="<%= media_element.id %>" style="float:right"></a>
     <p><%= media_element.title %></p>
   </div>
 </div>

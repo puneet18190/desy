@@ -19,6 +19,15 @@ $(document).ready(function() {
     var formId = $(this).attr("data-param");
     $('form#'+formId).submit();
   });
+  
+  $('body').on('click', '._add_new_slide_options', function() {
+    var slideN = $("li.slides.active .slide-content");
+    slideN.removeClass("cover title video1 video2 audio image1 image2 image3 image4 text");
+    var html_to_be_replaced = $('#new_slide_option_list').html();
+    slideN.html(html_to_be_replaced);
+    slideN.siblings(".buttons").find(".add").addClass("active");
+  }
+  
 });
 
 /** functions to use in document.ready **/
@@ -86,7 +95,6 @@ function slideTo(nth){
   console.log("nth: "+nth+ "\n"+ $(nth));
   page = $(nth).text();
   slide_id = $(nth).attr("data-slide");
-  $("#slide-numbers li a._add_slide").attr("href","/lesson_editor/add_new_slide/"+slide_id);
   if (parseInt(page) == 1){
     marginReset = 0
   }else{

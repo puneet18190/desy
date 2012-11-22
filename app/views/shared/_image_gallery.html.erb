@@ -1,25 +1,25 @@
-<div id="image-gallery" class="image_gallery <%=kind_of%>-kind">
+<div id="image-gallery" class="image_gallery <%= sti_type %>-kind">
   <div class="gallery-header">
     <h3 class="pull-left">
-      <%= image_tag("choose-image-small.png")%> <%= t "captions.select_#{kind_of}" %>
+      <%= image_tag("choose-image-small.png")%> <%= t "captions.select_#{sti_type}" %>
     </h3>
   </div>
   <div class="scrollVerde">
     <ul class="gallery">
       <div class="scroll-pane">
         <% @media_elements.each do |mel| %>
-          <li id="#gallery_thumb_<%=mel.id%>" class="_gallery_thumb">
-            <%- if kind_of == "video"%>
+          <li id="#gallery_thumb_<%= mel.id %>" class="_gallery_thumb">
+            <% if sti_type == @sti_types[:video] %>
               <%= link_to (image_tag "testa.jpg", :width => '250', :height=> "140"), "#{mel.id}" %>
             <% else %>
               <%= link_to (image_tag "testa.jpg", :width => '111'), "#{mel.id}" %>
             <% end %>
-            <%= render :partial => "shared/image_gallery_popup", :locals => {:media_element => mel, :kind_of => kind_of} %>
+            <%= render :partial => "shared/image_gallery_popup", :locals => {:media_element => mel, :sti_type => sti_type} %>
           </li>
         <% end %>
       </div>
     </ul>
-  </div>    
+  </div>
   <div class="gallery-footer">
     <div class="pull-right"><a href="#" class="_close_image_gallery exitButtonWhite"></a></div>
   </div>

@@ -1,5 +1,5 @@
 var slideN = $(".mediaEditorElementContainer").first();
-slideN.prepend("<%= escape_javascript(render :partial => 'shared/image_gallery', :locals => {:kind_of => "image" }) %>");
+slideN.prepend("<%= escape_javascript(render :partial => 'shared/image_gallery', :locals => {:sti_type => "image" }) %>");
 
 $("._close_image_gallery").click(function(e){
   e.preventDefault();

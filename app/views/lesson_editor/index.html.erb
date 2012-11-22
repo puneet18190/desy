@@ -11,7 +11,7 @@
         </li>
       <%end%><!-- end each -->
       <li class="unsortable">
-        <%= link_to image_tag("plus-rounded.png"), {:action => :add_new_slide, :slide => @lesson.slides.first.id} , :remote => true, :class => "add _add_slide" %>
+        <%= image_tag("plus-rounded.png"), :class => "add _add_slide _add_new_slide_options" %>
       </li>
     </ul>
   </nav>
@@ -19,9 +19,12 @@
 <ul id="slides">
   <%= render :partial => "index_slides", :locals => {:slides => @slides}%>
 </ul>
-<%- if @slide_to %>
+
+<%= render :partial => 'lesson_editor/new_slide' %>
+
+<% if @slide_to %>
   slide position: <%= @slide_to.position %>
   <script type="text/javascript" charset="utf-8">
-    $("#slide-numbers li a:eq(<%=@slide.position%>)").trigger("click");
+    $("#slide-numbers li a:eq(<%=@slides.first.position%>)").trigger("click");
   </script>
 <%end %>
