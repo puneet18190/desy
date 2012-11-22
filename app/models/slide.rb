@@ -56,7 +56,7 @@ class Slide < ActiveRecord::Base
   
   def media_element_url_at(position) # TODO aggiungi altezza e larghezza
     x = media_element_at position
-    url = x.nil? ? nil : x.media_element.media.url
+    url = x.nil? ? nil : (x.media_element.media ? x.media_element.media.url : "")
     alignment = x.nil? ? nil : x.alignment
     caption = x.nil? ? nil : x.caption
     media_element_id = x.nil? ? nil : x.media_element_id
