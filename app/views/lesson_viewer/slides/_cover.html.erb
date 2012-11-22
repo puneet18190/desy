@@ -1,12 +1,15 @@
 <%
   image = slide.media_element_url_at(1)
-  image = image[:empty] ? image[:placeholder] : image[:url]
   author = slide.lesson.user
   subject = slide.lesson.subject
 %>
 
 <div class="bigViewLesson slideCover">
-  <%= image_tag image %>
+  <div class="cover">
+    <% if !image[:empty] %>
+      <%= image_tag image[:url], :style => "left:#{image[:alignment]}px" %>
+    <% end %>
+  </div>
   <div class="bg_text">
     <div class="lessonTitle"><%= slide.title %></div>
   </div>

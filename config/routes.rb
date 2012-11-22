@@ -49,7 +49,7 @@ Desy::Application.routes.draw do
   
   # LESSON VIEWER
   get  'lesson_viewer/:lesson_id' => 'lesson_viewer#index', :as => :lesson_viewer
-  get  'lesson_viewer/:user_id/playlist' => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
+  get  'lesson_viewer/playlist' => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
   
   # VIRTUAL CLASSROOM
   post 'virtual_classroom/:lesson_id/remove_lesson_from_inside' => 'virtual_classroom#remove_lesson_from_inside'

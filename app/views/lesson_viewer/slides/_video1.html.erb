@@ -4,11 +4,11 @@
 
 <div class="bigViewLessonTextImage">
   <h2><%= slide.title %></h2>
-  <% if video[:empty] %>
-    <%= image_tag video[:placeholder], :style => "float:left" %>
-  <% else %>
-    <!-- TODO qui metto il player, usando la url contenuta in 'video[:url]' -->
-  <% end %>
+  <div class="medium">
+    <% if !video[:empty] %>
+      <!-- TODO qui metto il player, usando la url contenuta in 'video[:url]' -->
+    <% end %>
+  </div>
   <div class="image1-content">
     <%= slide.text %>
   </div>

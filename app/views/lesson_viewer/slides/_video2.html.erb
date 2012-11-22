@@ -3,9 +3,9 @@
 %>
 
 <div class="bigViewLessonTextImage">
-  <% if video[:empty] %>
-    <%= image_tag video[:placeholder], :style => "float:left" %>
-  <% else %>
-    <!-- TODO qui metto il player, usando la url contenuta in 'video[:url]' -->
-  <% end %>
+  <div class="big">
+    <% if !video[:empty] %>
+      <!-- TODO qui metto il player, usando la url contenuta in 'video[:url]' -->
+    <% end %>
+  </div>
 </div>

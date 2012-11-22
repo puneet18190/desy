@@ -4,11 +4,11 @@
 
 <div class="bigViewLesson slideAudio">
   <h2><%= slide.title %></h2>
-  <% if audio[:empty] %>
-    <%= image_tag audio[:placeholder], :style => "float:left" %>
-  <% else %>
-    <!-- TODO qui metto il player, usando la url contenuta in 'audio[:url]' -->
-  <% end %>
+  <div class="medium">
+    <% if !audio[:empty] %>
+      <!-- TODO qui metto il player, usando la url contenuta in 'audio[:url]' -->
+    <% end %>
+  </div>
   <div class="image1-content">
     <%= slide.text %>
   </div>

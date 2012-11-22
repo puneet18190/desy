@@ -17,22 +17,6 @@ class Slide < ActiveRecord::Base
   VIDEO1 = 'video1'
   VIDEO2 = 'video2'
   KINDS = [COVER, TITLE, TEXT, IMAGE1, IMAGE3, IMAGE2, IMAGE4, VIDEO2, VIDEO1, AUDIO]
-  SMALL_PLACEHOLDER = 'white_placeholders/small.png'
-  MEDIUM_PLACEHOLDER = 'white_placeholders/medium.png'
-  BIG_PLACEHOLDER = 'white_placeholders/big.png'
-  COVER_PLACEHOLDER = 'white_placeholders/big.png'
-  PLACEHOLDERS = {
-    AUDIO => MEDIUM_PLACEHOLDER,
-    COVER => COVER_PLACEHOLDER,
-    IMAGE1 => MEDIUM_PLACEHOLDER,
-    IMAGE2 => MEDIUM_PLACEHOLDER,
-    IMAGE3 => BIG_PLACEHOLDER,
-    IMAGE4 => SMALL_PLACEHOLDER,
-    TEXT => '',
-    TITLE => '',
-    VIDEO1 => MEDIUM_PLACEHOLDER,
-    VIDEO2 => BIG_PLACEHOLDER
-  }
   
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0
@@ -48,7 +32,8 @@ class Slide < ActiveRecord::Base
   def media_element_url_at(position) # TODO aggiungi altezza e larghezza
     x = media_element_at position
     url = x.nil? ? nil : x.media_element.media.url
-    return {:empty => x.nil?, :url => url, :placeholder => PLACEHOLDERS[self.kind]}
+    alignment = x.nil? ? nil : x.alignment
+    return {:empty => x.nil?, :url => url, :alignment => alignment}
   end
   
   def previous
