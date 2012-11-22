@@ -8,7 +8,7 @@ function showVirtualClassroomQuickSelectPopUp(content) {
     obj.dialog({
       modal: true,
       resizable: false,
-      width: 900,
+      width: 920,
       show: "fade",
       hide: "fade"
     });

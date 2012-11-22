@@ -48,35 +48,56 @@ html.virtual_classroom-controller {
 		  float:left;
 		  width:39%;
 		}
-		ul.navlist {
+	}
+	/*BOTTONI BARRA BLU VIRTUALCLASSROOM*/
+	ul.navlist {
       margin: 1em 3.8em 0.5em 3em;
       padding: 0;
       white-space: nowrap;
 		  float:left;
-			
-    }
-    .navlist li {
-      display: inline;
-      list-style-type: none;
-      margin-right:10px;
-			&:last-child {
-			  margin-right:0px;
-			}
-    }
-    .navlist a {
-       padding: 5px 25px;
-	     background-color: #42b9e9;
-	     color:#fff;
-	  }
-	  .navlist a:hover	{
-	     background-color: #59c9f6;
-	  }
-	  .navlist a.current {
-       
-	     background-color: #59c9f6;
-	     
-	  }
 	}
+  .navlist li {
+    display: inline;
+    list-style-type: none;
+    margin-right:10px;
+		&:last-child {
+		  margin-right:0px;
+		}
+  }
+  .navlist a {
+    padding: 5px 25px;
+	  background-color: #42b9e9;
+	  color:#fff;
+	}
+	.navlist a:hover	{
+	  background-color: #59c9f6;
+	}
+	.navlist a.current {
+    background-color: #59c9f6;
+	}
+	/*upload popup*/
+	.uploadButtonPopUpSelectLesson {
+	  margin-top:25px;
+		
+	  display:inline-block;
+		width:890px;
+		.uploadButton a {
+      padding: 5px 25px;
+	    background-color: #42b9e9;
+	    color:#fff;
+		  font-size:1.5em;
+		  float:left;
+	  }
+	  .uploadButton a:hover	{
+	    background-color: #59c9f6;
+	  }
+		span {
+		  float:left;
+			padding:10px;
+			
+		}
+	}
+	
 	.boxViewSingleLesson {
     float:left;
 	  width:270px;
@@ -213,7 +234,8 @@ html.virtual_classroom-controller {
 		}
 		.lista.current .description {
       outline:4px solid #fff;
-		}	
+		}
+		
 		.play {
 		  padding:10px;
 			background-color:#2eaadc;
@@ -260,8 +282,29 @@ html.virtual_classroom-controller {
       padding: 1em 3em 6em 5em;
 		}
   }
-	
-	
+	.virtualClassroomQuickSelectPopUp {
+	  background-color:#000;
+	  padding:20px 10px 25px 20px;
+		a {
+		  color:#fff;
+		}
+		h3 {
+		  color:#fff;
+			font-family:'Nunito', sans-serif;
+			padding-bottom:15px;
+		}
+	  .contentPopUp {
+		  .jspTrack {
+		    background-color:#434343;
+		  }
+		  .jspDrag {
+		    background-color:#2eaadc;
+		  }
+		}
+		.scroll-pane {
+		  height:590px;
+		}
+	}
 	.emptyPlayList {
 	  color:#727377;
 		padding-bottom:80px;
