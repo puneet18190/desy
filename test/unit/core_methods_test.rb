@@ -650,7 +650,6 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !Slide.new.update_with_media_elements('titolo', 'testo', {1 => [0, 0, 'asdgs']})
     assert slide.title.blank?
     assert slide.text.blank?
-    # MediaElement 1 = 
     assert slide.update_with_media_elements('titolo2', 'testo2', {1 => [5, 0, 'captionzz']})
     slide.reload
     assert_equal 'titolo2', slide.title
@@ -663,6 +662,35 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !slide.update_with_media_elements('titolo4', 'testo4', {1 => [1, 0, 'captionzz']})
     slide = Slide.find slide.id
     assert_equal 'titolo2', slide.title
+    # too many elements
+    assert !slide.update_with_media_elements('titolo4', 'testo4', {1 => [5, 0, 'captionzz'], 2 => [5, 0, 'captionzz']})
+    slide = Slide.find slide.id
+    assert_equal 'titolo2', slide.title
+    # let's try with image4
+    slide = lesson.add_slide('image4', 2)
+    assert !slide.nil?
+    assert slide.title.blank?
+    assert slide.text.blank?
+    assert slide.update_with_media_elements(nil, nil, {1 => [5, 0, 'caption1'], 2 => [6, 10, 'caption2'], 3 => [5, -110, 'caption3'], 4 => [6, 4, 'caption4']})
+    slide = Slide.find slide.id
+    assert slide.title.blank?
+    assert slide.text.blank?
+    mes = MediaElementsSlide.where(:slide_id => slide.id, :position => 1).first
+    assert !mes.nil?
+    assert_equal 0, mes.alignment
+    assert_equal 'caption1', mes.caption
+    mes = MediaElementsSlide.where(:slide_id => slide.id, :position => 2).first
+    assert !mes.nil?
+    assert_equal 10, mes.alignment
+    assert_equal 'caption2', mes.caption
+    mes = MediaElementsSlide.where(:slide_id => slide.id, :position => 3).first
+    assert !mes.nil?
+    assert_equal -110, mes.alignment
+    assert_equal 'caption3', mes.caption
+    mes = MediaElementsSlide.where(:slide_id => slide.id, :position => 4).first
+    assert !mes.nil?
+    assert_equal 4, mes.alignment
+    assert_equal 'caption4', mes.caption
   end
   
 end
