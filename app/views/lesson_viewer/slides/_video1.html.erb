@@ -1,0 +1,11 @@
+<%
+  video = slide.media_elements_slides.first.media_element
+%>
+
+<div class="bigViewLessonTextImage">
+  <h2><%= slide.title %></h2>
+  <%= image_tag("finta3.jpg", :style=>"float:left") %>
+  <div class="image1-content">
+    <%= slide.text %>
+  </div>
+</div>

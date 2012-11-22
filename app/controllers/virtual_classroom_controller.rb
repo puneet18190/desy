@@ -5,7 +5,7 @@ class VirtualClassroomController < ApplicationController
   
   before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson, :remove_lesson_from_inside]
   before_filter :initialize_lesson_destination, :only => [:add_lesson, :remove_lesson]
-  before_filter :initialize_layout, :initialize_paginator, :only => [:index, :select_lessons]
+  before_filter :initialize_layout, :initialize_paginator, :only => [:index]
   before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :change_position_in_playlist]
   before_filter :initialize_position, :only => :change_position_in_playlist
   layout 'virtual_classroom'

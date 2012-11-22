@@ -1,0 +1,11 @@
+<%
+  images = slide.media_elements_slides.order(:position)
+  image1 = images.first.media_element
+  image2 = images.last.media_element
+%>
+
+<div class="bigViewLesson slideImage2">
+  <h2><%= slide.title %></h2>
+  <%= image_tag image1.url, :style => "float:left" %>
+  <%= image_tag image2.url, :style => "float:right" %>
+</div>

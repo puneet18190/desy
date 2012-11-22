@@ -1,6 +1,5 @@
-<!--SLIDE LEZIONE-->
 <ul id="cover">
-  <!--%- @lesson.slides.each do |slide| %-->
-	<li class="cover"><%= render :partial => "img1" %></li>
-  <!--% end %-->
+  <% lesson.slides.each do |slide| %>
+    <li class="cover"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
+  <% end %>
 </ul>

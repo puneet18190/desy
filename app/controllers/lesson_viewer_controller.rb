@@ -1,6 +1,6 @@
 class LessonViewerController < ApplicationController
   
-  before_filter :initialize_lesson_with_owner
+#  before_filter 
   
   def index
     @lesson = Lesson.find params[:lesson_id]
@@ -11,9 +11,7 @@ class LessonViewerController < ApplicationController
   end
   
   def playlist
-    #TODO to fix with method
-    @lesson = Lesson.find params[:lesson_id]
-    @playlist = VirtualClassroomLesson.where("user_id = ? AND position IS NOT NULL", @current_user.id).order "created_at DESC"
+    @playlist = @current_user.playlist
   end
   
 end

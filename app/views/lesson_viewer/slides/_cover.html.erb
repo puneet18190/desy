@@ -1,0 +1,16 @@
+<%
+  image = slide.media_elements_slides.first
+  image = image.media_element.url if !image.nil?
+  author = slide.lesson.user
+  subject = slide.lesson.subject
+%>
+
+<div class="bigViewLesson slideCover">
+  <%= image_tag image %> <!-- TODO che cosa si vede se image = nil?? -->
+  <div class="bg_text">
+    <div class="lessonTitle"><%= slide.title %></div>
+  </div>
+  <div class="lessonSubject">
+    <%= subject.description %><span><%= t('captions.author') %>: <strong><%= author.full_name %></strong></span>
+  </div>
+</div>
