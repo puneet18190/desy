@@ -52,7 +52,6 @@ html.lesson-viewer-layout{
   }
 
   h2 {
-    padding: 10px;
     font-size: 50px;
     text-align: left;
     font-weight: normal;
@@ -87,11 +86,10 @@ html.lesson-viewer-layout{
 		}
 	}
 	.bigViewLesson {
-    
     float:left;
     padding:0;
   	position:relative;
-		
+		outline:1px dotted blue;	
 		.bg_text {
 		  background-color: rgba(242, 148, 0, 0.95);
       height: 130px;
@@ -101,6 +99,7 @@ html.lesson-viewer-layout{
 	    position:absolute;
 	    bottom:31px;
 	    left:0px;
+			
     .lessonTitle {
 		  font: 100% 'Nunito', sans-serif;
       color:#fff;
@@ -114,6 +113,9 @@ html.lesson-viewer-layout{
 			 width: 870px;
 			 padding:6px 15px;
 			 position:static;
+			 span {
+			   float:right;
+			 }
 		}
 		
   }
@@ -136,17 +138,76 @@ html.lesson-viewer-layout{
        margin-right: 20px;
 		}
 	}
-  .bigViewLessonText, .bigViewLessonTextImage{
-	  padding:20px;
-		h2 {
-		  font-size: 70px;
-      padding: 20px;
-      margin: 10px;
-      width: 840px;
-    }
+	@mixin formatElement {
+	  outline:1px solid blue; 
+		width:860px;
+		height:550px;
+		padding: 20px;
+		display:inline-block;
+	}
+  /*LAYOUT SLIDE*/
+	/*copertina*/
+	.slideCover{
+	  .cover {
+		  height:563px;
+	  }
+	}
+	/*slide image*/
+	.slideImage{
+	  @include formatElement
+	}
+	/*slide text*/
+	.slideText{
+	  @include formatElement
+	}
+	/*slide video*/
+	.slideVideo{
+	  @include formatElement
+	}
+	/*slide audio*/
+	.slideAudio{
+	  @include formatElement
+	}
+	.boxFissoImage {
+	  width:420px;
+		height:265px;
+		display:inline-block;
+	}
+	.big {
+	  float:left;
+		width:860px;
+		height:550px;
+		outline:1px solid red;
+		background-color:#f1f1f1;
+	}
+	.medium {
+	  float:left;
+		width:420px;
+		height:440px;
+		margin-right:20px;
+		outline:1px solid red;
+		background-color:#f1f1f1;
+		&:last-child {
+	    margin-right:0px;
+	  }
+	}
+	.small {
+	  background-color:#f1f1f1;
+		width:420px;
+		height:265px;
+	}
+	.textRightContent {
+	  float:right;
+		width:420px;
+		height:440px;
+		overflow:hidden;
+		outline:1px solid blue;
 	}
 	.contentText {
-	  padding: 10px 10px 10px 20px;
-		margin:20px;
+	  float:left;
+		width:860px;
+		height:465px;
+		overflow:hidden;
+		outline:1px solid red;
 	}
 }

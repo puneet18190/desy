@@ -9,8 +9,16 @@ function showVirtualClassroomQuickSelectPopUp(content) {
       modal: true,
       resizable: false,
       width: 920,
-      show: "fade",
-      hide: "fade"
+			show: "fade",
+      hide: "fade",
+			open: function(event, ui) {
+        $(".ui-widget-overlay").css({
+            opacity: 0.9,
+            filter: "Alpha(Opacity=100)",
+            backgroundColor: "#000",
+						zIndex: 11,
+        });
+      }
     });
   }
 }

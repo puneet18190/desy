@@ -2,14 +2,14 @@
   video = slide.media_element_url_at(1)
 %>
 
-<div class="bigViewLessonTextImage">
+<div class="bigViewLesson slideVideo">
   <h2><%= slide.title %></h2>
   <div class="medium">
     <% if !video[:empty] %>
       <!-- TODO qui metto il player, usando la url contenuta in 'video[:url]' -->
     <% end %>
   </div>
-  <div class="image1-content">
-    <%= slide.text %>
+  <div class="textRightContent">
+    <%= slide.text.html_safe %>
   </div>
 </div>

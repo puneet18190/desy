@@ -7,16 +7,21 @@
   <div class="scrollVerde">
     <ul class="gallery">
       <div class="scroll-pane">
-        <% @media_elements.each do |mel| %>
-          <li id="#gallery_thumb_<%= mel.id %>" class="_gallery_thumb">
-            <% if sti_type == @sti_types[:video] %>
+        <%- if @media_elements.first.kind_of?(Video)%>
+          <% @media_elements.each do |mel| %>
+            <li id="#gallery_thumb_<%=mel.id%>" class="_gallery_thumb">
               <%= link_to (image_tag "testa.jpg", :width => '250', :height=> "140"), "#{mel.id}" %>
-            <% else %>
-              <%= link_to (image_tag "testa.jpg", :width => '111'), "#{mel.id}" %>
-            <% end %>
-            <%= render :partial => "shared/image_gallery_popup", :locals => {:media_element => mel, :sti_type => sti_type} %>
-          </li>
-        <% end %>
+              <%= render :partial => "shared/image_gallery_popup", :locals => {:media_element => mel, :sti_type => sti_type} %>
+            </li>
+          <% end %>
+        <%else%>
+          <% @media_elements.each do |mel| %>
+            <li id="#gallery_thumb_<%=mel.id%>" class="_gallery_thumb">
+              <%= link_to (image_tag mel.media.thumb, :width => '111'), "#{mel.id}" %>
+              <%= render :partial => "shared/image_gallery_popup", :locals => {:media_element => mel, :sti_type => sti_type} %>
+            </li>
+          <% end %>
+        <%end%>
       </div>
     </ul>
   </div>

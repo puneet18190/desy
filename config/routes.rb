@@ -64,6 +64,10 @@ Desy::Application.routes.draw do
   get  'media_elements_editor/' => 'media_elements_editor#index'
   get  'media_elements_editor/show_gallery/' => 'media_elements_editor#show_gallery', :as => :show_gallery
   
+  # BASE64 TO IMAGE
+  post 'base64_to_image/' => "base64_to_image#create"
+  get 'base64_to_image_test' => "base64_to_image#test"
+  
   # SEARCH LESSONS OR MEDIA ELEMENTS
   get  'search' => 'search#index', :as => :search_items
   

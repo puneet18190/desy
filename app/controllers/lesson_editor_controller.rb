@@ -95,6 +95,7 @@ class LessonEditorController < ApplicationController
       @slide.change_position(@position)
       @lesson = Lesson.find @lesson_id
       @slides = @lesson.slides.order(:position)
+      @slide_to = @position - 1
     end
   end
   

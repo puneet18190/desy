@@ -2,29 +2,23 @@
   <nav id="heading">
     <!-- slides top numbered navigation -->
     <ul id="slide-numbers">
-      <%- @slides.each_with_index do |slide, index|%>
+      <%- @slides.each_with_index do |slide, index| %>
         <li class="<%= (index == 0) ? 'unsortable' : ''%>">
           <a href="#<%= slide.position %>" class="<%= (index == 0) ? 'active' : ''%>" data-slide="<%= slide.id%>"><%= index + 1 %></a>
           <div class="slide-tooltip">
             <%= render :partial => "shared/lesson_thumbnails/small/#{slide.kind}" , :locals => { :slide => slide }%>
           </div>
         </li>
-      <%end%><!-- end each -->
+      <% end %><!-- end each -->
       <li class="unsortable">
-        <%= image_tag("plus-rounded.png"), :class => "add _add_slide _add_new_slide_options" %>
+        <%= image_tag("plus-rounded.png"), :class => "add _add_slide _add_new_slide_options add-small" %>
       </li>
     </ul>
   </nav>
 <% end %>
+
 <ul id="slides">
-  <%= render :partial => "index_slides", :locals => {:slides => @slides}%>
+  <%= render :partial => "index_slides", :locals => {:slides => @slides} %>
 </ul>
 
 <%= render :partial => 'lesson_editor/new_slide' %>
-
-<% if @slide_to %>
-  slide position: <%= @slide_to.position %>
-  <script type="text/javascript" charset="utf-8">
-    $("#slide-numbers li a:eq(<%=@slides.first.position%>)").trigger("click");
-  </script>
-<%end %>
