@@ -1,7 +1,8 @@
 <%
-  image = slide.media_elements_slides.first.media_element
+  image1 = slide.media_element_url_at(1)
+  image1 = image[:empty] ? image[:placeholder] : image[:url]
 %>
 
 <div class="bigViewLesson slideImage3">
-  <%= image_tag image.url %>
+  <%= image_tag image %>
 </div>

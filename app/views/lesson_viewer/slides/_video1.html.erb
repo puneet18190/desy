@@ -1,10 +1,14 @@
 <%
-  video = slide.media_elements_slides.first.media_element
+  video = slide.media_element_url_at(1)
 %>
 
 <div class="bigViewLessonTextImage">
   <h2><%= slide.title %></h2>
-  <%= image_tag("finta3.jpg", :style=>"float:left") %>
+  <% if video[:empty] %>
+    <%= image_tag video[:placeholder], :style => "float:left" %>
+  <% else %>
+    <!-- TODO qui metto il player, usando la url contenuta in 'video[:url]' -->
+  <% end %>
   <div class="image1-content">
     <%= slide.text %>
   </div>

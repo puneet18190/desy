@@ -1,19 +1,21 @@
 <%
-  images = slide.media_elements_slides.order(:position)
-  image1 = images[0].media_element
-  image2 = images[1].media_element
-  image3 = images[2].media_element
-  image4 = images[3].media_element
-  
+  image1 = slide.media_element_url_at(1)
+  image1 = image[:empty] ? image[:placeholder] : image[:url]
+  image2 = slide.media_element_url_at(2)
+  image2 = image[:empty] ? image[:placeholder] : image[:url]
+  image3 = slide.media_element_url_at(3)
+  image3 = image[:empty] ? image[:placeholder] : image[:url]
+  image4 = slide.media_element_url_at(4)
+  image4 = image[:empty] ? image[:placeholder] : image[:url]
 %>
 
 <div class="bigViewLesson slideImage4">
   <div class="prima_riga">
-    <%= image_tag image1.url, :style => "float:left" %>
-    <%= image_tag image2.url, :style => "float:right" %>
+    <%= image_tag image1, :style => "float:left" %>
+    <%= image_tag image2, :style => "float:right" %>
   </div>
   <div class="seconda_riga">
-    <%= image_tag image3.url, :style => "float:left" %>
-    <%= image_tag image4.url, :style => "float:right" %>
+    <%= image_tag image3, :style => "float:left" %>
+    <%= image_tag image4, :style => "float:right" %>
   </div>
 </div>

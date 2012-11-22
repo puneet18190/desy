@@ -1,12 +1,12 @@
 <%
-  image = slide.media_elements_slides.first
-  image = image.media_element.url if !image.nil?
+  image = slide.media_element_url_at(1)
+  image = image[:empty] ? image[:placeholder] : image[:url]
   author = slide.lesson.user
   subject = slide.lesson.subject
 %>
 
 <div class="bigViewLesson slideCover">
-  <%= image_tag image %> <!-- TODO che cosa si vede se image = nil?? -->
+  <%= image_tag image %>
   <div class="bg_text">
     <div class="lessonTitle"><%= slide.title %></div>
   </div>

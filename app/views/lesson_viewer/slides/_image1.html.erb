@@ -1,11 +1,11 @@
 <%
-  image = slide.media_elements_slides.first
-  image = image.media_element.url if !image.nil?
+  image = slide.media_element_url_at(1)
+  image = image[:empty] ? image[:placeholder] : image[:url]
 %>
 
 <div class="bigViewLesson slideImage1">
   <h2><%= slide.title %></h2>
-  <%= image_tag image, :style => "float:left" %> <!-- TODO che cosa si vede se image = nil?? -->
+  <%= image_tag image, :style => "float:left" %>
   <div class="image1-content">
     <%= slide.text %>
   </div>

@@ -1,14 +1,13 @@
 <%
-  audio = slide.media_elements_slides.first
-  audio = audio.media_element.url if !audio.nil?
+  audio = slide.media_element_url_at(1)
 %>
 
 <div class="bigViewLesson slideAudio">
   <h2><%= slide.title %></h2>
-  <% if audio.nil? %>
-    <%= image_tag("finta3.jpg", :style=>"float:left") %> <!-- TODO qui metto l'immagine bianca che rappresenta un audio vuoto?? -->
+  <% if audio[:empty] %>
+    <%= image_tag audio[:placeholder], :style => "float:left" %>
   <% else %>
-    <%= image_tag("finta3.jpg", :style=>"float:left") %> <!-- TODO qui metto la tag audio -->
+    <!-- TODO qui metto il player, usando la url contenuta in 'audio[:url]' -->
   <% end %>
   <div class="image1-content">
     <%= slide.text %>
