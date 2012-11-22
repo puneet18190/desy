@@ -6,7 +6,33 @@ class Slide < ActiveRecord::Base
   belongs_to :lesson
   
   #TODO estrarre da database slide kinds
-  KINDS = ['cover', 'title', 'text', 'image1', 'image3', 'image2', 'image4', 'video2', 'video1', 'audio']
+  AUDIO = 'audio'
+  COVER = 'cover'
+  IMAGE1 = 'image1'
+  IMAGE2 = 'image2'
+  IMAGE3 = 'image3'
+  IMAGE4 = 'image4'
+  TEXT = 'text'
+  TITLE = 'title'
+  VIDEO1 = 'video1'
+  VIDEO2 = 'video2'
+  KINDS = [COVER, TITLE, TEXT, IMAGE1, IMAGE3, IMAGE2, IMAGE4, VIDEO2, VIDEO1, AUDIO]
+  SMALL_PLACEHOLDER = 'white_placeholders/small.png'
+  MEDIUM_PLACEHOLDER = 'white_placeholders/medium.png'
+  BIG_PLACEHOLDER = 'white_placeholders/big.png'
+  COVER_PLACEHOLDER = 'white_placeholders/big.png'
+  PLACEHOLDERS = {
+    AUDIO => MEDIUM_PLACEHOLDER,
+    COVER => COVER_PLACEHOLDER,
+    IMAGE1 => MEDIUM_PLACEHOLDER,
+    IMAGE2 => MEDIUM_PLACEHOLDER,
+    IMAGE3 => BIG_PLACEHOLDER,
+    IMAGE4 => SMALL_PLACEHOLDER,
+    TEXT => '',
+    TITLE => '',
+    VIDEO1 => MEDIUM_PLACEHOLDER,
+    VIDEO2 => BIG_PLACEHOLDER
+  }
   
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0
@@ -19,8 +45,10 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
-  def media_element_at(position)
-    MediaElementsSlide.where(:slide_id => self.id, :position => position).first
+  def media_element_url_at(position) # TODO aggiungi altezza e larghezza
+    x = media_element_at position
+    url = x.nil? ? nil : x.media_element.media.url
+    return {:empty => x.nil?, :url => url, :placeholder => PLACEHOLDERS[self.kind]}
   end
   
   def previous
@@ -114,6 +142,10 @@ class Slide < ActiveRecord::Base
   end
   
   private
+  
+  def media_element_at(position)
+    MediaElementsSlide.where(:slide_id => self.id, :position => position).first
+  end
   
   def validate_title
     errors[:title] << 'must be null for this kind of slide' if ['image2', 'image3', 'image4', 'video2'].include?(self.kind) && !self.title.nil?
