@@ -19,9 +19,3 @@
 <ul id="slides">
   <%= render :partial => "index_slides", :locals => {:slides => @slides}%>
 </ul>
-<%- if @slide_to %>
-  slide position: <%= @slide_to.position %>
-  <script type="text/javascript" charset="utf-8">
-    $("#slide-numbers li a:eq(<%=@slide.position%>)").trigger("click");
-  </script>
-<%end %>

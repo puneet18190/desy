@@ -1,9 +1,10 @@
 <%= form_tag "/lesson_editor/save_slide", :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
   <%= hidden_field_tag :slide_id, slide.id %>
-  <%- if slide.media_element_at(1) %>
+  <%- sme1 = slide.media_element_url_at(1) %>
+  <%- if !sme1[:empty] %>
   <span class="spacer20"></span>
     <%= link_to "<span class='rollover rollover-video'></span><video id='video' class='_slide_image video2-p1' src='http://slides.html5rocks.com/src/chrome_japan.mp4' controls></video>".html_safe, {:action => :show_gallery, :slide => slide.id, :position=>1, :kind_of =>"video"} , :remote => true, :class => "show-gallery", "data-param"=> "1" %>
-    <%= hidden_field_tag :media_element_1, slide.media_element_at(1).media_element_id, :class=> "media-tag-cover-1"  %>
+    <%= hidden_field_tag :media_element_1, sme1[:media_element_id], :class=> "media-tag-cover-1"  %>
   <%- else %>
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
     <span class="spacer20"></span>

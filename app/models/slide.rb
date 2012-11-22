@@ -33,7 +33,9 @@ class Slide < ActiveRecord::Base
     x = media_element_at position
     url = x.nil? ? nil : x.media_element.media.url
     alignment = x.nil? ? nil : x.alignment
-    return {:empty => x.nil?, :url => url, :alignment => alignment}
+    caption = x.nil? ? nil : x.caption
+    media_element_id = x.nil? ? nil : x.media_element_id
+    return {:empty => x.nil?, :url => url, :alignment => alignment, :caption => caption, :media_element_id => media_element_id}
   end
   
   def previous

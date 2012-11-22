@@ -100,6 +100,7 @@ class LessonEditorController < ApplicationController
     @lesson = Lesson.find slide.lesson.id
     @slides = @lesson.slides.order :position
     @slide = @slides.first
+    @slide_to = params[:new_position].to_i - 1
     respond_to do |format|
       format.js
     end

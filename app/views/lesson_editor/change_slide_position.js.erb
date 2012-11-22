@@ -1,4 +1,4 @@
-$("#slides").html("<%= escape_javascript(render :partial => 'index_slides')%>");
+$("#slides").html("<%= escape_javascript(render :partial => 'index_slides', :locals => {:slide_to => @slide_to})%>");
 
 initTinymce(); // init tinymce configuration and manage external toolbar toggle
 slideSortList("#slide-numbers"); // make sortable page number on top
