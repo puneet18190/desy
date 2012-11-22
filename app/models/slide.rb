@@ -29,6 +29,31 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  def update_with_media_elements(title, text, media_elements)
+    return false if self.new_record?
+    resp = false
+    ActiveRecord::Base.transaction do
+      self.title = title
+      self.text = text
+      raise ActiveRecord::Rollback if !self.save
+      media_elements.each do |k, v|
+        mes = MediaElementsSlide.where(:position => k, :slide_id => self.id).first
+        if mes.nil? || [mes.media_element_id, mes.alignment, mes.caption] != v
+          mes.destroy if !mes.nil?
+          mes2 = MediaElementsSlide.new
+          mes2.position = k
+          mes2.slide_id = self.id
+          mes2.media_element_id = v[0]
+          mes2.alignment = v[1]
+          mes2.caption = v[2]
+          raise ActiveRecord::Rollback if !mes2.save
+        end
+      end
+      resp = true
+    end
+    resp
+  end
+  
   def media_element_url_at(position) # TODO aggiungi altezza e larghezza
     x = media_element_at position
     url = x.nil? ? nil : x.media_element.media.url

@@ -1,5 +1,5 @@
 <ul id="cover">
-  <% lesson.slides.each do |slide| %>
+  <% lesson.slides.where(:kind=>"video1").order(:position).each do |slide| %>
     <li class="cover"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
   <% end %>
 </ul>
