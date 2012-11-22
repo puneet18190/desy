@@ -642,4 +642,27 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_match /You already reported this element/, x.errors.messages[:base].first
   end
   
+  test 'aaaupdate_slide' do
+    lesson = User.find(1).create_lesson('titolo', 'desc', 1, 'pippo, paperoga, pluto, qui quo qua')
+    assert !lesson.nil?
+    slide = lesson.add_slide('image1', 2)
+    assert !slide.nil?
+    assert !Slide.new.update_with_media_elements('titolo', 'testo', {1 => [0, 0, 'asdgs']})
+    assert slide.title.blank?
+    assert slide.text.blank?
+    # MediaElement 1 = 
+    assert slide.update_with_media_elements('titolo2', 'testo2', {1 => [5, 0, 'captionzz']})
+    slide.reload
+    assert_equal 'titolo2', slide.title
+    assert_equal 'testo2', slide.text
+    mes = MediaElementsSlide.where(:slide_id => slide.id, :media_element_id => 5).first
+    assert !mes.nil?
+    assert_equal 0, mes.alignment
+    assert_equal 'captionzz', mes.caption
+    # video in an image slide
+    assert !slide.update_with_media_elements('titolo4', 'testo4', {1 => [1, 0, 'captionzz']})
+    slide = Slide.find slide.id
+    assert_equal 'titolo2', slide.title
+  end
+  
 end
