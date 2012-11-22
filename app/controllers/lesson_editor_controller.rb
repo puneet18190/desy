@@ -8,7 +8,9 @@ class LessonEditorController < ApplicationController
   
   before_filter :initialize_lesson_with_owner, :only => [:index, :update, :edit]
   before_filter :initialize_subjects, :only => [:new, :edit]
-  before_filter :initialize_lesson_with_owner_and_slide, :only => [:show_gallery]
+  before_filter :initialize_lesson_with_owner_and_slide, :only => [:add_slide, :show_gallery, :save_slide, :delete_slide, :change_slide_position]
+  before_filter :initialize_kind, :only => :add_slide
+  before_filter :initialize_position, :only => :change_slide_position
   layout 'lesson_editor'
   
   def index
@@ -68,42 +70,40 @@ class LessonEditorController < ApplicationController
   end
   
   def add_slide
-    @current_slide = Slide.find(params[:current_slide])
-    params[:slide_id] = params[:current_slide]
-    save_current_slide
-    @lesson = Lesson.find @current_slide.lesson.id
-    @slide = @lesson.add_slide params[:kind], @current_slide.position + 1
-    redirect_to lesson_editor_path(@lesson.id)
-  end
-  
-  def save_slide
-    save_current_slide
-    respond_to do |format|
-      format.js
+    if @ok && save_current_slide
+      @lesson.add_slide @kind, (@slide.position + 1) # TODO qui si può prendere la variabile @new_slide per redirezionare alla slide appena aggiunta invece di ripartire da quella dove sto
+      redirect_to lesson_editor_path(@lesson.id)
     end
   end
   
+  def save_slide
+    save_current_slide if @ok
+  end
+  
   def delete_slide
-    slide = Slide.find(params[:slide_id])
-    if slide.destroy_with_positions
-      redirect_to lesson_editor_path(slide.lesson.id)
-    else
-      redirect_to :back, notice: "#{t 'captions.slide_not_deleted'}"
+    if @ok
+      if @slide.destroy_with_positions
+        redirect_to lesson_editor_path(@lesson_id)
+      else
+        redirect_to :back, notice: t('captions.slide_not_deleted')
+      end
     end
   end
   
   def change_slide_position
-    slide = Slide.find(params[:slide_id])
-    slide.change_position(params[:new_position].to_i)
-    @lesson = Lesson.find slide.lesson.id
-    @slides = @lesson.slides.order :position
-    @slide = @slides.first
-    respond_to do |format|
-      format.js
+    if @ok
+      @slide.change_position(@position)
+      @lesson = Lesson.find @lesson_id
+      @slides = @lesson.slides.order(:position)
     end
   end
   
   private
+  
+  def initialize_kind
+    @kind = (Slide::KINDS.reject {|a_kind| a_kind == Slide::COVER}).include?(params[:kind]) ? params[:kind] : ''
+    update_ok(!@kind.blank?)
+  end
   
   def initialize_lesson_with_owner_and_slide
     initialize_lesson_with_owner
@@ -120,31 +120,16 @@ class LessonEditorController < ApplicationController
   end
   
   def save_current_slide
-    @slide.update_with_media_elements()
-    # TODO aggiungere lesson.modify after save
-    current_slide = Slide.find params[:slide_id]
-    current_slide.title = params[:title] if params[:title]
-    current_slide.text = params[:text] if params[:text]
-    current_slide.save
+    media_elements_params = {}
     (1...5).each do |i|
       if !params["media_element_#{i}"].blank?
-        mes = MediaElementsSlide.where(:position => i, :slide_id => current_slide.id).first
-        if mes.nil? || mes.media_element_id != params["media_element_#{i}"].to_i || mes.alignment != params["media_element_align_#{i}"].to_i
-          mes.destroy if !mes.nil? #update id, don't destroy
-          mes2 = MediaElementsSlide.new
-          mes2.position = i
-          mes2.slide_id = current_slide.id
-          mes2.media_element_id = params["media_element_#{i}"].to_i
-          #TODO mettere default a zero per alignment 
-          mes2.alignment = params["media_element_align_#{i}"]
-          mes2.caption = params["caption_#{i}"] #TODO da controllare
-          mes2.save!
-        else
-          mes.caption = params["caption_#{i}"] if params["caption_#{i}"]#TODO da controllare
-          mes.save
-        end
+        media_element_id = correct_integer?(params["media_element_#{i}"]) ? params["media_element_#{i}"].to_i : 0
+        alignment = params["media_element_align_#{i}"].to_i
+        caption = params["caption_#{i}"]
+        media_elements_params[i] = [media_element_id, alignment, caption]
       end
     end
+    @slide.update_with_media_elements(params[:title], params[:text])
   end
   
 end

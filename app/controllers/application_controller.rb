@@ -56,6 +56,11 @@ class ApplicationController < ActionController::Base
     update_ok(ButtonDestinations::MEDIA_ELEMENTS.include?(@destination))
   end
   
+  def initialize_position
+    @position = correct_integer?(params[:position]) ? params[:position].to_i : 0
+    update_ok(@position > 0)
+  end
+  
   def initialize_layout
     @delete_item = params[:delete_item]
     if !request.xhr?
