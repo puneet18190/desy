@@ -113,9 +113,10 @@ class LessonEditorController < ApplicationController
   
   def initialize_subjects
     @subjects = []
-    @current_user.users_subjects.each do |sbj|
+    UsersSubject.joins(:subject).where(:user_id => @current_user.id).order('subjects.description ASC').each do |sbj|
       @subjects << sbj.subject
     end
+    @subjects
   end
   
   def save_current_slide
