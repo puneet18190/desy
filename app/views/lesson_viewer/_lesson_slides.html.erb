@@ -1,6 +1,6 @@
 <ul id="cover">
   <% lesson.slides.order(:position).each do |slide| %>
-	<% slide.text = "" if slide.text.blank? %>
+  <% slide.text = "" if slide.text.blank? %>
     <li class="cover"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
   <% end %>
 </ul>

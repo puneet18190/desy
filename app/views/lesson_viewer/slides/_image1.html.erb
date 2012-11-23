@@ -4,11 +4,13 @@
 
 <div class="bigViewLesson slideImage">
   <h2><%= slide.title %></h2>
-  <div class="medium">
-	
-	  <% if !image[:empty] %>
-      <%= image_tag image[:url], :style => "left:#{image[:alignment]}px" %>
-    	<div class="caption"><%= image[:caption] %></div>
+  <div class="medium" >
+	  
+	  <% if image[:empty] %>
+		<div class="photoIcon"></div>
+		<% else %>
+     <%= image_tag image[:url], :style => "left:#{image[:alignment]}px" %>
+    	<div class="caption"><%= image[:caption] %></div> 
 		<% end %>
   </div>
   <div class="textRightContent">

@@ -4,7 +4,9 @@
 
 <div class="bigViewLesson slideImage">
   <div class="big">
-	  <% if !image[:empty] %>
+	  <% if image[:empty] %>
+		  <div class="photoIcon"></div>
+		  <% else %>
       <%= image_tag image[:url], :style => "left:#{image[:alignment]}px" %>
 			<div class="caption"><%= image[:caption] %></div>
     <% end %>
