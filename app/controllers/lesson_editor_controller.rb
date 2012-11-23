@@ -72,6 +72,7 @@ class LessonEditorController < ApplicationController
     if @ok && save_current_slide
       @lesson.add_slide @kind, (@slide.position + 1) # TODO qui si può prendere la variabile @new_slide per redirezionare alla slide appena aggiunta invece di ripartire da quella dove sto
       redirect_to lesson_editor_path(@lesson_id)
+      return
     end
   end
   
@@ -100,7 +101,7 @@ class LessonEditorController < ApplicationController
   private
   
   def initialize_kind
-    @kind = !Slide::KINDS_WITHOUT_COVER.include?(params[:kind]) ? params[:kind] : ''
+    @kind = Slide::KINDS_WITHOUT_COVER.include?(params[:kind]) ? params[:kind] : ''
     update_ok(!@kind.blank?)
   end
   
@@ -129,7 +130,7 @@ class LessonEditorController < ApplicationController
         media_elements_params[i] = [media_element_id, alignment, caption]
       end
     end
-    @slide.update_with_media_elements(params[:title], params[:text])
+    @slide.update_with_media_elements(params[:title], params[:text], media_elements_params)
   end
   
 end

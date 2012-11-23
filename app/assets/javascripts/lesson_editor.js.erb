@@ -13,7 +13,12 @@ $(document).ready(function() {
   });
   
   // trigger save on "save button" click
-  initializeTriggerSaveSlide();
+  $('body').on('click', '._save_slide', function(e) {
+    e.preventDefault();
+    tinyMCE.triggerSave();
+    var formId = $(this).attr("data-param");
+    $('form#'+formId).submit();
+  });
   
   $('body').on('click', '._add_new_slide_options', function() {
     var slideN = $("li.slides.active .slide-content");
@@ -23,15 +28,20 @@ $(document).ready(function() {
     slideN.siblings(".buttons").find(".add").addClass("active");
   });
   
+  $('body').on('click', '._add_new_slide', function() {
+    var kind = $(this).data('kind');
+    var lesson_id = $('#info_container').data('lesson-id');
+    var slide_id = $('#info_container').data('slide-id');
+    $.ajax({
+      type: 'post',
+      url: '/lesson_editor/' + lesson_id + '/add_slide/' + slide_id + '/kind/' + kind
+    });
+  });
+  
 });
 
-function initializeTriggerSaveSlide() {
-  $("._save_slide").click(function(e) {
-    e.preventDefault();
-    tinyMCE.triggerSave();
-    var formId = $(this).attr("data-param");
-    $('form#'+formId).submit();
-  });
+function updateInfoCurrentSlide(slide_id) {
+  $('#info_container').data('slide-id', slide_id);
 }
 
 /** functions to use in document.ready **/
@@ -120,6 +130,9 @@ function slideTo(nth){
     });
   $("#slide-numbers li a.active").removeClass("active");
   $(nth).addClass("active");
+  
+  updateInfoCurrentSlide(slide_id)
+  
 }
 
 function lessonEditorTooltip(list){
