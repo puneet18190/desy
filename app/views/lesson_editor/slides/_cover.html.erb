@@ -7,7 +7,7 @@
     <%= hidden_field_tag :media_element_align_1, "#{sme1[:alignment]}px", :class =>"media_element_align_1" %>
     
     <div class="mask _mask_x">
-      <%= link_to "<span class='rollover rollover-image' style='left:#{-sme1[:alignment]}px'><span class='add-image'></span></span><img src='#{sme1[:url]}' width ='1200' class='_slide_image cover-p1' />".html_safe, {:action => :show_gallery, :slide => slide.id, :position => 1} , :remote => true, :class => "show-gallery", "data-param"=> "1", :style => "left: #{sme1[:alignment]}px" %>
+      <%= link_to "<span class='rollover rollover-image' style='left:#{-sme1[:alignment]}px'><span class='add-image'></span></span><img src='#{sme1[:url]}' width ='1200' class='_slide_image cover-p1' />".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery", "data-param"=> "1", :style => "left: #{sme1[:alignment]}px" %>
     </div>
       <%= hidden_field_tag :media_element_1, sme1[:media_element_id], :class=> "media-tag-cover-1"  %>
     <%- else %>
@@ -16,7 +16,7 @@
     
       <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
       <div class="cover-choose-image _cover_choose_image_1">
-        <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id} , :remote => true, :class => "show-gallery" %>
+        <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery" %>
         <br />
         <%= t 'captions.choose_image' %>
       </div>

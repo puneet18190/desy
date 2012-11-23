@@ -11,7 +11,7 @@
     <!--TODO replace align value from db (after default at 0)-->
     <%= hidden_field_tag :media_element_align_1, "#{sme1[:alignment]}px", :class =>"media_element_align_1" %>
     <div class="mask _mask_x">
-      <%= link_to "<span class='rollover rollover-image' style='left:#{-sme1[:alignment]}px'><span class='add-image'></span></span><img src='sme1[:url]' class='_slide_image image1-p1' width='1100' />".html_safe, {:action => :show_gallery, :slide => slide.id, :position=>1} , :remote => true, :class => "show-gallery", "data-param"=> "1", :style => "left: #{sme1[:alignment]}px" %>
+      <%= link_to "<span class='rollover rollover-image' style='left:#{-sme1[:alignment]}px'><span class='add-image'></span></span><img src='sme1[:url]' class='_slide_image image1-p1' width='1100' />".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery", "data-param"=> "1", :style => "left: #{sme1[:alignment]}px" %>
       <%= text_field_tag :caption_1, sme1[:caption], :class => "caption", :placeholder => "#{t 'captions.image_caption_placeholder'}", :maxlength =>"70" %>
       <%= hidden_field_tag :media_element_1, sme1[:media_element_id], :class=> "media-tag-cover-1"  %>
     </div>
@@ -20,7 +20,7 @@
   <%= hidden_field_tag :media_element_align_1, "0", :class =>"media_element_align_1" %>
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
     <div class="cover-choose-image _cover_choose_image_1 cover-choose-image-left">
-      <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide => slide.id, :position => 1} , :remote => true, :class => "show-gallery image1-p1" %>
+      <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery image1-p1" %>
       <br />
       <%= t 'captions.choose_image' %>
     </div>
