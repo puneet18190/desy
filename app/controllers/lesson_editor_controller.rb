@@ -2,8 +2,8 @@ class LessonEditorController < ApplicationController
   
   FOR_PAGE = {
     MediaElement::IMAGE_TYPE => CONFIG['images_for_page_in_gallery'],
-    MediaElement::IMAGE_TYPE => CONFIG['audios_for_page_in_gallery'],
-    MediaElement::IMAGE_TYPE => CONFIG['videos_for_page_in_gallery']
+    MediaElement::AUDIO_TYPE => CONFIG['audios_for_page_in_gallery'],
+    MediaElement::VIDEO_TYPE => CONFIG['videos_for_page_in_gallery']
   }
   
   before_filter :initialize_lesson_with_owner, :only => [:index, :update, :edit]
@@ -70,7 +70,7 @@ class LessonEditorController < ApplicationController
   end
   
   def add_slide
-    if @ok && save_current_slide
+    if @ok
       @lesson.add_slide @kind, (@slide.position + 1)
       @slides = @lesson.slides.order(:position)
       @slide_to = @slide.position

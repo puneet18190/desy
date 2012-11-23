@@ -7,7 +7,7 @@
   <div class="scrollVerde">
     <ul class="gallery">
       <div class="scroll-pane">
-        <%- if sti_type == MediaElement::VIDEO_TYPE %>
+        <%- if sti_type == MediaElement::VIDEO_TYPE.downcase %>
           <% media_elements.each do |mel| %>
             <li id="#gallery_thumb_<%=mel.id%>" class="_gallery_thumb">
               <%= link_to (image_tag "testa.jpg", :width => '250', :height=> "140"), "#{mel.id}" %>
