@@ -7,7 +7,7 @@
   <div class="mediumHeight">
 	  <% if !image1[:empty] %>
       <%= image_tag image1[:url], :style => "left:#{image1[:alignment]}px" %>
-			<div class="caption"><%= image[:caption] %></div>
+			<div class="caption"><%= image1[:caption] %></div>
     <% end %>
 		
   </div>
@@ -15,6 +15,6 @@
 	  <% if !image2[:empty] %>
       <%= image_tag image2[:url], :style => "left:#{image2[:alignment]}px" %>
     <% end %>
-		<div class="caption">inserisci caption</div>
+		<div class="caption"><%= image2[:caption] %></div>
   </div>
 </div>
