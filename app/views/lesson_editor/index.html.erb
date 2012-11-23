@@ -2,20 +2,25 @@
   <nav id="heading">
     <!-- slides top numbered navigation -->
     <ul id="slide-numbers">
-      <%- @slides.each_with_index do |slide, index|%>
+      <%- @slides.each_with_index do |slide, index| %>
         <li class="<%= (index == 0) ? 'unsortable' : ''%>">
           <a href="#<%= slide.position %>" class="<%= (index == 0) ? 'active' : ''%>" data-slide="<%= slide.id%>"><%= index + 1 %></a>
           <div class="slide-tooltip">
             <%= render :partial => "shared/lesson_thumbnails/small/#{slide.kind}" , :locals => { :slide => slide }%>
           </div>
         </li>
-      <%end%><!-- end each -->
+      <% end %><!-- end each -->
       <li class="unsortable">
-        <%= link_to "add slide", {:action => :add_new_slide, :slide => @lesson.slides.first.id} , :remote => true, :class => "add add-small _add_slide" %>
+        <%= image_tag "plus-rounded.png", :class => "add _add_slide _add_new_slide_options add-small" %>
       </li>
     </ul>
   </nav>
 <% end %>
+
 <ul id="slides">
-  <%= render :partial => "index_slides", :locals => {:slides => @slides}%>
+  <%= render :partial => "index_slides", :locals => {:slides => @slides} %>
 </ul>
+
+<%= render :partial => 'lesson_editor/new_slide' %>
+
+<div id="info_container" style="display:none" data-lesson-id="<%= @lesson_id %>" data-slide-id="<%= @slides.first.id %>"></div>

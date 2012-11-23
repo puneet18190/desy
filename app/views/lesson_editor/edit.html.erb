@@ -23,3 +23,11 @@
     </div>
   </li>
 </ul>
+
+<script type="text/javascript">
+  $('#lesson_subject option').each(function() {
+    if($(this).val() == <%= @lesson.subject_id %>) {
+      $(this).attr('selected', 'selected');
+    }
+  });
+</script>

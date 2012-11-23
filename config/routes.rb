@@ -40,12 +40,11 @@ Desy::Application.routes.draw do
   get  'lesson_editor/:lesson_id/index' => 'lesson_editor#index', :as => :lesson_editor
   get  'lesson_editor/:lesson_id/edit' => 'lesson_editor#edit', :as => :edit_lesson
   put  'lesson_editor/:lesson_id/update' => 'lesson_editor#update', :as => :lesson
-  post 'lesson_editor/:current_slide/add_slide/:kind' => 'lesson_editor#add_slide'
-  get  'lesson_editor/add_new_slide/:slide' => 'lesson_editor#add_new_slide', :as => :add_new_slide
-  post 'lesson_editor/delete_slide/:slide_id' => 'lesson_editor#delete_slide', :as => :delete_slide
-  get  'lesson_editor/show_gallery/:slide' => 'lesson_editor#show_gallery', :as => :show_gallery
-  get  'lesson_editor/save_slide' => 'lesson_editor#save_slide', :as => :save_slide
-  post 'lesson_editor/change_slide_position/:slide_id/' => 'lesson_editor#change_slide_position', :as => :change_slide_position
+  post 'lesson_editor/:lesson_id/add_slide/:slide_id/kind/:kind' => 'lesson_editor#add_slide'
+  post 'lesson_editor/:lesson_id/delete_slide/:slide_id' => 'lesson_editor#delete_slide', :as => :delete_slide
+  get  'lesson_editor/:lesson_id/show_gallery/:slide_id' => 'lesson_editor#show_gallery', :as => :show_gallery
+  get  'lesson_editor/:lesson_id/save_slide/:slide_id' => 'lesson_editor#save_slide', :as => :save_slide
+  post 'lesson_editor/:lesson_id/change_slide_position/:slide_id/position/:position' => 'lesson_editor#change_slide_position', :as => :change_slide_position
   
   # LESSON VIEWER
   get  'lesson_viewer/:lesson_id' => 'lesson_viewer#index', :as => :lesson_viewer

@@ -39,7 +39,7 @@ class Lesson < ActiveRecord::Base
   
   def cover
     return nil if self.new_record?
-    Slide.where(:kind => 'cover', :lesson_id => self.id).first
+    Slide.where(:kind => Slide::COVER, :lesson_id => self.id).first
   end
   
   def self.dashboard_emptied?(an_user_id)
@@ -286,7 +286,7 @@ class Lesson < ActiveRecord::Base
   
   def add_slide(kind, position)
     errors.clear
-    if self.new_record? || !['title', 'text', 'image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2'].include?(kind)
+    if self.new_record? || !Slide::KINDS_WITHOUT_COVER.include?(kind)
       errors.add(:base, :problem_adding_slide)
       return nil
     end
@@ -439,7 +439,7 @@ class Lesson < ActiveRecord::Base
   def create_cover
     if @lesson.nil?
       slide = Slide.new :title => self.title, :position => 1
-      slide.kind = 'cover'
+      slide.kind = Slide::COVER
       slide.lesson_id = self.id
       slide.save
     end

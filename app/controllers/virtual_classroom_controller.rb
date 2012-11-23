@@ -124,11 +124,6 @@ class VirtualClassroomController < ApplicationController
   
   private
   
-  def initialize_position
-    @position = correct_integer?(params[:position]) ? params[:position].to_i : 0
-    update_ok(@position > 0)
-  end
-  
   def initialize_virtual_classroom_lesson
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @virtual_classroom_lesson = VirtualClassroomLesson.where(:lesson_id => @lesson_id, :user_id => @current_user.id).first

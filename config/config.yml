@@ -26,3 +26,7 @@ notifications_loaded_together: 8
 lessons_for_page_in_virtual_classroom: 10
 lessons_in_playlist: 20
 lessons_in_quick_loader: 18
+# LESSON EDITOR
+images_for_page_in_gallery: 56
+videos_for_page_in_gallery: 18
+audios_for_page_in_gallery: 18

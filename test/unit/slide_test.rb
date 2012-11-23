@@ -27,7 +27,13 @@ class SlideTest < ActiveSupport::TestCase
     assert_invalid @slide, :position, 'ret', 2, /is not a number/
     assert_invalid @slide, :position, -9, 2, /must be greater than 0/
     assert_invalid @slide, :lesson_id, 1.1, 1, /must be an integer/
-    assert_invalid @slide, :kind, 'audio3', 'video1', /is not included in the list/
+    @slide.kind = 'audio3'
+    assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
+    assert_equal 3, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
+    assert_equal 1, @slide.errors.messages[:kind].length
+    assert_match /is not included in the list/, @slide.errors.messages[:kind].first
+    @slide.kind = 'video1'
+    assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
     assert_invalid @slide, :title, long_string(41), long_string(40), /is too long/
     @slide.title = nil
     assert_obj_saved @slide

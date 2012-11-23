@@ -1,5 +1,4 @@
-<%= form_tag "/lesson_editor/save_slide", :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
-  <%= hidden_field_tag :slide_id, slide.id %>
+<%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
   <h2>
     <%= text_field_tag :title, slide.title ? slide.title : "#{t 'captions.enter_title'}" %>
   </h2>
@@ -8,12 +7,12 @@
   </div>
   <%- sme1 = slide.media_element_url_at(1) %>
   <%- if !sme1[:empty] %>
-    <%= link_to "<span class='rollover rollover-video'></span><video id='video' class='_slide_image video1-p1' src='http://slides.html5rocks.com/src/chrome_japan.mp4' controls></video>".html_safe, {:action => :show_gallery, :slide => slide.id, :position=>1, :kind_of =>"video"} , :remote => true, :class => "show-gallery", "data-param"=> "1" %>
+    <%= link_to "<span class='rollover rollover-video'></span><video id='video' class='_slide_image video1-p1' src='http://slides.html5rocks.com/src/chrome_japan.mp4' controls></video>".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery", "data-param"=> "1" %>
     <%= hidden_field_tag :media_element_1, sme1[:media_element_id], :class=> "media-tag-cover-1"  %>
   <%- else %>
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
     <div class="cover-choose-image _cover_choose_image_1 cover-choose-image-left">
-      <%= link_to image_tag("choose-video.png"), {:action => :show_gallery, :slide => slide.id, :position => 1, :kind_of =>"video"} , :remote => true, :class => "show-gallery video1-p1" %>
+      <%= link_to image_tag("choose-video.png"), {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery video1-p1" %>
       <br />
       <%= t 'captions.choose_video' %>
     </div>

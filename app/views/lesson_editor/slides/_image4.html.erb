@@ -1,10 +1,9 @@
-<%= form_tag "/lesson_editor/save_slide", :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
-  <%= hidden_field_tag :slide_id, slide.id %>
+<%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
     <%- sme1 = slide.media_element_url_at(1) %>
     <%- if !sme1[:empty] %>
     <%= hidden_field_tag :media_element_align_1, "#{sme1[:alignment]}px", :class =>"media_element_align_1" %>
       <div class="image-4-box mask _mask_x image4-p1">
-        <%= link_to "<span class='rollover rollover-image' style='left:#{-sme1[:alignment]}px'><span class='add-image'></span></span><img src='#{sme1[:url]}' width ='600' class='_slide_image image4-p1' />".html_safe, {:action => :show_gallery, :slide => slide.id, :position=>1} , :remote => true, :class => "show-gallery", "data-param" => "1", :style => "left: #{sme1[:alignment]}px" %>
+        <%= link_to "<span class='rollover rollover-image' style='left:#{-sme1[:alignment]}px'><span class='add-image'></span></span><img src='#{sme1[:url]}' width ='600' class='_slide_image image4-p1' />".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery", "data-param" => "1", :style => "left: #{sme1[:alignment]}px" %>
         <%= text_field_tag :caption_1, sme1[:caption], :class => "caption", :placeholder => "#{t 'captions.image_caption_placeholder'}" , :maxlength =>"60" %>
         <%= hidden_field_tag :media_element_1, sme1[:media_element_id], :class=> "media-tag-cover-1"  %>
       </div>
@@ -13,7 +12,7 @@
       <%= hidden_field_tag :media_element_align_1, "0", :class =>"media_element_align_1" %>
       <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
       <div class="cover-choose-image choose-small _cover_choose_image_1 cover-choose-image-right">
-        <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide => slide.id, :position => 1} , :remote => true, :class => "show-gallery _choose" %>
+        <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery _choose" %>
         <br />
         <%= t 'captions.choose_image' %>
       </div>
@@ -23,7 +22,7 @@
       <!--TODO replace align value from db (after default at 0)-->
       <%= hidden_field_tag :media_element_align_2, "#{sme2[:alignment]}px", :class =>"media_element_align_2" %>
       <div class="image-4-box mask _mask_x image4-p2">
-      <%= link_to "<span class='rollover rollover-image' style='left:#{-sme2[:alignment]}px'><span class='add-image'></span></span><img src='#{sme2[:url]}' width ='600' class='_slide_image image4-p2' />".html_safe, {:action => :show_gallery, :slide => slide.id, :position=>2} , :remote => true, :class => "show-gallery", "data-param" => "2", :style => "left: #{sme2[:alignment]}px" %>
+      <%= link_to "<span class='rollover rollover-image' style='left:#{-sme2[:alignment]}px'><span class='add-image'></span></span><img src='#{sme2[:url]}' width ='600' class='_slide_image image4-p2' />".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 2} , :remote => true, :class => "show-gallery", "data-param" => "2", :style => "left: #{sme2[:alignment]}px" %>
       <%= text_field_tag :caption_2, sme2[:caption], :class => "caption", :placeholder => "#{t 'captions.image_caption_placeholder'}" , :maxlength =>"60" %>
       <%= hidden_field_tag :media_element_2, sme2[:media_element_id], :class=> "media-tag-cover-2"  %>
       </div>
@@ -32,7 +31,7 @@
     <%= hidden_field_tag :media_element_align_2, "0", :class =>"media_element_align_2" %>
       <%= hidden_field_tag :media_element_2, "", :class=> "media-tag-cover-2" %>
       <div class="cover-choose-image choose-small _cover_choose_image_2 cover-choose-image-left">
-        <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide => slide.id, :position=>2} , :remote => true, :class => "show-gallery _choose" %>
+        <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 2} , :remote => true, :class => "show-gallery _choose" %>
         <br />
         <%= t 'captions.choose_image' %>
       </div>
@@ -43,7 +42,7 @@
       
       <%= hidden_field_tag :media_element_align_3, "#{sme3[:alignment]}px", :class =>"media_element_align_3" %>
       <div class="image-4-box mask _mask_x image4-p3">
-        <%= link_to "<span class='rollover rollover-image' style='left:#{-sme3[:alignment]}px'><span class='add-image'></span></span><img src='#{sme3[:url]}' width ='600' class='_slide_image image4-p3' />".html_safe, {:action => :show_gallery, :slide => slide.id, :position=>3} , :remote => true, :class => "show-gallery", "data-param" => "3", :style => "left: #{sme3[:alignment]}px" %>
+        <%= link_to "<span class='rollover rollover-image' style='left:#{-sme3[:alignment]}px'><span class='add-image'></span></span><img src='#{sme3[:url]}' width ='600' class='_slide_image image4-p3' />".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 3} , :remote => true, :class => "show-gallery", "data-param" => "3", :style => "left: #{sme3[:alignment]}px" %>
         <%= text_field_tag :caption_3, sme3[:caption], :class => "caption", :placeholder => "#{t 'captions.image_caption_placeholder'}" , :maxlength =>"60" %>
         <%= hidden_field_tag :media_element_3, sme3[:media_element_id], :class=> "media-tag-cover-3"  %>
       </div>
@@ -52,7 +51,7 @@
       <%= hidden_field_tag :media_element_align_3, "0", :class =>"media_element_align_3" %>
       <%= hidden_field_tag :media_element_3, "", :class=> "media-tag-cover-3" %>
       <div class="cover-choose-image choose-small _cover_choose_image_3 cover-choose-image-right">
-        <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide => slide.id, :position => 3} , :remote => true, :class => "show-gallery _choose" %>
+        <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 3} , :remote => true, :class => "show-gallery _choose" %>
         <br />
         <%= t 'captions.choose_image' %>
       </div>
@@ -63,7 +62,7 @@
     <!--TODO replace align value from db (after default at 0)-->
     <%= hidden_field_tag :media_element_align_4, "#{sme4[:alignment]}px", :class =>"media_element_align_4" %>
       <div class="image-4-box mask _mask_x image4-p4">
-        <%= link_to "<span class='rollover rollover-image' style='left:#{-sme4[:alignment]}px'><span class='add-image'></span></span><img src='#{sme4[:url]}' width ='600' class='_slide_image image4-p4' />".html_safe, {:action => :show_gallery, :slide => slide.id, :position=>4} , :remote => true, :class => "show-gallery", "data-param" => "4", :style => "left: #{sme4[:alignment]}px" %>
+        <%= link_to "<span class='rollover rollover-image' style='left:#{-sme4[:alignment]}px'><span class='add-image'></span></span><img src='#{sme4[:url]}' width ='600' class='_slide_image image4-p4' />".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 4} , :remote => true, :class => "show-gallery", "data-param" => "4", :style => "left: #{sme4[:alignment]}px" %>
         <%= text_field_tag :caption_4, sme4[:caption], :class => "caption", :placeholder => "#{t 'captions.image_caption_placeholder'}" , :maxlength =>"60" %>
         <%= hidden_field_tag :media_element_4, sme4[:media_element_id], :class=> "media-tag-cover-4"  %>
       </div>
@@ -71,7 +70,7 @@
       <%= hidden_field_tag :media_element_align_4, "0", :class =>"media_element_align_4" %>
       <%= hidden_field_tag :media_element_4, "", :class=> "media-tag-cover-2" %>
       <div class="cover-choose-image choose-small _cover_choose_image_4 cover-choose-image-left">
-        <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide => slide.id, :position=>4} , :remote => true, :class => "show-gallery _choose" %>
+        <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 4} , :remote => true, :class => "show-gallery _choose" %>
         <br />
         <%= t 'captions.choose_image' %>
       </div>

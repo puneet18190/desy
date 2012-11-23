@@ -13,14 +13,6 @@ masked.each(function(index) {
   makeDraggable($(masked[index]), "x");
 });
 
-// trigger save on "save button" click
-$("._save_slide").click(function(e) {
-  e.preventDefault();
-  tinyMCE.triggerSave();
-  var formId = $(this).attr("data-param");
-  $('form#'+formId).submit();
-});
-
 $(".slide-content.cover .title").css("margin-left","auto");
 
 $("body").prepend("<span class='_saved'></span>");

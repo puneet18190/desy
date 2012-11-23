@@ -13,13 +13,36 @@ $(document).ready(function() {
   });
   
   // trigger save on "save button" click
-  $("._save_slide").click(function(e) {
+  $('body').on('click', '._save_slide', function(e) {
     e.preventDefault();
     tinyMCE.triggerSave();
     var formId = $(this).attr("data-param");
     $('form#'+formId).submit();
   });
+  
+  $('body').on('click', '._add_new_slide_options', function() {
+    var slideN = $("li.slides.active .slide-content");
+    slideN.removeClass("cover title video1 video2 audio image1 image2 image3 image4 text");
+    var html_to_be_replaced = $('#new_slide_option_list').html();
+    slideN.html(html_to_be_replaced);
+    slideN.siblings(".buttons").find(".add").addClass("active");
+  });
+  
+  $('body').on('click', '._add_new_slide', function() {
+    var kind = $(this).data('kind');
+    var lesson_id = $('#info_container').data('lesson-id');
+    var slide_id = $('#info_container').data('slide-id');
+    $.ajax({
+      type: 'post',
+      url: '/lesson_editor/' + lesson_id + '/add_slide/' + slide_id + '/kind/' + kind
+    });
+  });
+  
 });
+
+function updateInfoCurrentSlide(slide_id) {
+  $('#info_container').data('slide-id', slide_id);
+}
 
 /** functions to use in document.ready **/
 function makeDraggable(masked, axe){
@@ -85,29 +108,31 @@ function scrollSlideTo(list){
 function slideTo(nth){
   page = $(nth).text();
   slide_id = $(nth).attr("data-slide");
-  $("#slide-numbers li a._add_slide").attr("href","/lesson_editor/add_new_slide/"+slide_id);
   if (parseInt(page) == 1){
     marginReset = 0
   }else{
     marginReset = parseInt(-((page-1)*1010))+"px"
   }
   $("ul#slides").animate({
-      marginLeft: marginReset
-    }, 1500 );
+    marginLeft: marginReset
+  }, 1500 );
   $("ul#slides li").animate({
-      opacity: 0.4,
-    }, 150, function() {
-      $(this).find(".buttons").fadeOut();
-      $(this).removeClass("active");
-    });
+    opacity: 0.4,
+  }, 150, function() {
+    $(this).find(".buttons").fadeOut();
+    $(this).removeClass("active");
+  });
   $("ul#slides li:nth-child("+page+")").animate({
-      opacity: 1,
-    }, 500, function(){
-      $(this).find(".buttons").fadeIn();
-      $(this).addClass("active");
-    });
+    opacity: 1,
+  }, 500, function(){
+    $(this).find(".buttons").fadeIn();
+    $(this).addClass("active");
+  });
   $("#slide-numbers li a.active").removeClass("active");
   $(nth).addClass("active");
+  
+  updateInfoCurrentSlide(slide_id);
+  
 }
 
 function lessonEditorTooltip(list){
@@ -151,7 +176,7 @@ function slideSortList(list){
         ui.item.endPos = ui.item.index() + 1;
         current_a = ui.item.find("a")
         current_a.text((parseInt(ui.item.index()) + 1));
-        $.post('/lesson_editor/change_slide_position/' + current_a.attr("data-slide") + '?new_position=' + ui.item.endPos);
+        $.post('/lesson_editor/' + $('#info_container').data('lesson-id') + '/change_slide_position/' + current_a.attr("data-slide") + '/position/' + ui.item.endPos);
         $(this).find('li:not(:last)').each(function(i){
           var current_i = (parseInt(i)+1);
           $(this).find('a').text(current_i);

@@ -23,9 +23,9 @@ class MediaElementsSlide < ActiveRecord::Base
   end
   
   def validate_image_properties
-    errors[:alignment] << 'must be null if the element is not an image' if @media_element && @media_element.sti_type != 'Image' && !self.alignment.nil?
-    errors[:alignment] << "can't be null if the element is an image" if @media_element && @media_element.sti_type == 'Image' && self.alignment.nil?
-    errors[:caption] << 'must be null if the element is not an image' if @media_element && @media_element.sti_type != 'Image' && !self.caption.blank?
+    errors[:alignment] << 'must be null if the element is not an image' if @media_element && !@media_element.image? && !self.alignment.nil?
+    errors[:alignment] << "can't be null if the element is an image" if @media_element && @media_element.image? && self.alignment.nil?
+    errors[:caption] << 'must be null if the element is not an image' if @media_element && !@media_element.image? && !self.caption.blank?
   end
   
   def validate_associations
@@ -34,24 +34,12 @@ class MediaElementsSlide < ActiveRecord::Base
   end
   
   def validate_type_in_slide
-    if @media_element && @slide
-      flag = false
-      case @media_element.sti_type
-        when 'Image'
-          flag = true if !['image1', 'image2', 'image3', 'image4', 'cover'].include?(@slide.kind)
-        when 'Audio'
-          flag = true if @slide.kind != 'audio'
-        when 'Video'
-          flag = true if !['video1', 'video2'].include?(@slide.kind)
-      end
-      flag = true if @slide.kind == 'text'
-      errors[:media_element_id] << 'is not compatible with the kind of slide' if flag
-    end
+    errors[:media_element_id] << 'is not compatible with the kind of slide' if @media_element && @slide && @slide.accepted_media_element_sti_type != @media_element.sti_type
   end
   
   def validate_position
-    errors[:position] << "can't have two media elements if slide is not of the kinds 'image2', 'image4'" if @media_element && @slide && self.position == 2 && !['image2', 'image4'].include?(@slide.kind)
-    errors[:position] << "can't have more than two media elements if slide is not of the kind 'image4'" if @media_element && @slide && [3, 4].include?(self.position) && @slide.kind != 'image4'
+    errors[:position] << "can't have two media elements if slide is not of the kinds 'image2', 'image4'" if @media_element && @slide && self.position == 2 && ![Slide::IMAGE2, Slide::IMAGE4].include?(@slide.kind)
+    errors[:position] << "can't have more than two media elements if slide is not of the kind 'image4'" if @media_element && @slide && [3, 4].include?(self.position) && @slide.kind != Slide::IMAGE4
   end
   
   def validate_media_element
