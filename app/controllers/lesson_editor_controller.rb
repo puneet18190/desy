@@ -100,7 +100,7 @@ class LessonEditorController < ApplicationController
   private
   
   def initialize_kind
-    @kind = (Slide::KINDS.reject {|a_kind| a_kind == Slide::COVER}).include?(params[:kind]) ? params[:kind] : ''
+    @kind = !Slide::KINDS_WITHOUT_COVER.include?(params[:kind]) ? params[:kind] : ''
     update_ok(!@kind.blank?)
   end
   

@@ -17,6 +17,7 @@ class Slide < ActiveRecord::Base
   VIDEO1 = 'video1'
   VIDEO2 = 'video2'
   KINDS = [COVER, TITLE, TEXT, IMAGE1, IMAGE3, IMAGE2, IMAGE4, VIDEO2, VIDEO1, AUDIO]
+  KINDS_WITHOUT_COVER = [TITLE, TEXT, IMAGE1, IMAGE3, IMAGE2, IMAGE4, VIDEO2, VIDEO1, AUDIO]
   
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0

@@ -286,7 +286,7 @@ class Lesson < ActiveRecord::Base
   
   def add_slide(kind, position)
     errors.clear
-    if self.new_record? || !(Slide::KINDS.reject {|a_kind| a_kind == Slide::COVER}).include?(kind)
+    if self.new_record? || !Slide::KINDS_WITHOUT_COVER.include?(kind)
       errors.add(:base, :problem_adding_slide)
       return nil
     end
