@@ -80,6 +80,8 @@ Desy::Application.routes.draw do
   get  'home' => 'prelogin#home', :as => :home
   get  'login' => 'prelogin#login', :as => :login
   get  'sign_up' => 'prelogin#registration', :as => :sign_up
+  get  'what_is_desy' => 'prelogin#what_is_desy', :as => :what_is_desy
+  get  'contact_us' => 'prelogin#contact_us', :as => :contact_us
   post 'create_user' => 'prelogin#create_registration', :as => :create_user
   
   # APPLICATION ROOT
