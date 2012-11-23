@@ -203,6 +203,7 @@ class Slide < ActiveRecord::Base
   
   def validate_title
     errors[:title] << 'must be null for this kind of slide' if !self.allows_title? && !self.title.nil?
+    errors[:title] << "can't be null for this kind of slide" if self.cover? && self.title.nil?
   end
   
   def validate_text
@@ -226,7 +227,7 @@ class Slide < ActiveRecord::Base
     if @slide
       errors[:lesson_id] << "can't be changed" if @slide.lesson_id != self.lesson_id
       errors[:kind] << "can't be changed" if @slide.kind != self.kind
-      errors[:title] << "if cover it can't be different by lesson's title" if self.cover? && @slide.title != self.title && @lesson.title != self.title
+      errors[:title] << "if cover it can't be different by lesson's title" if @lesson && self.cover? && @slide.title != self.title && @lesson.title != self.title
     end
   end
   

@@ -9,7 +9,7 @@ module Valid
       else
         my_class = get_class_from_column_name column if my_class.nil?
         original_column = object.read_attribute_before_type_cast(column)
-        return original_column.kind_of?(Integer) ? my_class.where(:id => original_column).first : nil
+        return (original_column.class == String && (original_column =~ /\A\d+\Z/) == 0 || original_column.kind_of?(Integer)) ? my_class.where(:id => original_column).first : nil
       end
     end
     

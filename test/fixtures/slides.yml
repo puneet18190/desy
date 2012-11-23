@@ -3,12 +3,14 @@ one:
   lesson_id: 1
   position: 1
   kind: 'cover'
+  title: 'tstring'
 
 two:
   id: 2
   lesson_id: 2
   position: 1
   kind: 'cover'
+  title: 'string'
 
 three:
   id: 3

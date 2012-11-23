@@ -171,4 +171,15 @@ class SlideTest < ActiveSupport::TestCase
     assert_obj_saved @slide
   end
   
+  test 'cover_title_different_by_lesson_title' do
+    lesson = Lesson.find(1)
+    cover = lesson.cover
+    assert_equal cover.title, lesson.title
+    assert_invalid cover, :title, 'tstrong', 'tstring', /if cover it can't be different by lesson's title/
+    lesson.title = 'buahuahua'
+    assert_obj_asved lesson
+    cover = Slide.find cover.id
+    assert_equal 'buahuahua', cover.title
+  end
+  
 end
