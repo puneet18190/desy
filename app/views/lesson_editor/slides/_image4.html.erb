@@ -1,5 +1,4 @@
-<%= form_tag "/lesson_editor/save_slide", :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
-  <%= hidden_field_tag :slide_id, slide.id %>
+<%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
     <%- sme1 = slide.media_element_url_at(1) %>
     <%- if !sme1[:empty] %>
     <%= hidden_field_tag :media_element_align_1, "#{sme1[:alignment]}px", :class =>"media_element_align_1" %>

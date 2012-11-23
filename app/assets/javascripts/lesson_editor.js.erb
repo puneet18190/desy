@@ -13,12 +13,7 @@ $(document).ready(function() {
   });
   
   // trigger save on "save button" click
-  $("._save_slide").click(function(e) {
-    e.preventDefault();
-    tinyMCE.triggerSave();
-    var formId = $(this).attr("data-param");
-    $('form#'+formId).submit();
-  });
+  initializeTriggerSaveSlide();
   
   $('body').on('click', '._add_new_slide_options', function() {
     var slideN = $("li.slides.active .slide-content");
@@ -29,6 +24,15 @@ $(document).ready(function() {
   });
   
 });
+
+function initializeTriggerSaveSlide() {
+  $("._save_slide").click(function(e) {
+    e.preventDefault();
+    tinyMCE.triggerSave();
+    var formId = $(this).attr("data-param");
+    $('form#'+formId).submit();
+  });
+}
 
 /** functions to use in document.ready **/
 function makeDraggable(masked, axe){

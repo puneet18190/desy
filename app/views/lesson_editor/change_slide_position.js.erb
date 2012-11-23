@@ -14,12 +14,7 @@ masked.each(function(index) {
 });
 
 // trigger save on "save button" click
-$("._save_slide").click(function(e) {
-  e.preventDefault();
-  tinyMCE.triggerSave();
-  var formId = $(this).attr("data-param");
-  $('form#'+formId).submit();
-});
+initializeTriggerSaveSlide();
 
 $(".slide-content.cover .title").css("margin-left","auto");
 
