@@ -52,16 +52,17 @@ html.lesson-viewer-layout{
   }
 
   h2 {
-    font-size: 50px;
-    text-align: left;
+    font-size:70px;
+		line-height:70px;
     font-weight: normal;
-    line-height: 50px;
+    padding:10px;
+		margin:10px;
   }
 	.top {
     margin-bottom: -190px;
     background: transparent;
     width: 1px;
-    height: 30%;
+    height: 40%;
     float: left;
   }
 	.container {
@@ -74,13 +75,14 @@ html.lesson-viewer-layout{
 		padding:0;
 	}
 	ul#cover {
+	  display: block;
 	  li.cover {
 		  display: inline-block;
       list-style-type: none;
       padding: 0px;
 			float:left;
 			width: 900px;
-    height: 590px;
+      height: 590px;
 			-webkit-box-shadow: 0px 6px 16px #323333;
       box-shadow: 0px 6px 16px #323333;
 		}
@@ -89,15 +91,14 @@ html.lesson-viewer-layout{
     float:left;
     padding:0;
   	position:relative;
-		outline:1px dotted blue;	
+		
 		.bg_text {
 		  background-color: rgba(242, 148, 0, 0.95);
       height: 130px;
       width: 880px;
       padding:5px 10px 10px 10px;
-      background-color:#f29400;
-	    position:absolute;
-	    bottom:31px;
+      position:absolute;
+	    bottom:27px;
 	    left:0px;
 			
     .lessonTitle {
@@ -144,13 +145,40 @@ html.lesson-viewer-layout{
 		height:550px;
 		padding: 20px;
 		display:inline-block;
+		background-color:#fff;
+	}
+	@mixin styleCaption {
+	  background-color: rgba(50, 50, 50, 0.7);
+    color: #FAFAFA;
+		height:35px;
+    display: block;
+    position: absolute;
+    left: auto;
+    bottom: 0px;
+    padding: 0 5px;
+    line-height: 33px;
 	}
   /*LAYOUT SLIDE*/
 	/*copertina*/
 	.slideCover{
 	  .cover {
-		  height:563px;
+		  width:900px;
+		  height:560px;
+			overflow:hidden;
+			img {
+			  height:560px;
+			}
 	  }
+	}
+	/*slide title*/
+	.slideTitle{
+	  @include formatElement;
+		text-align:center;
+		display:table;
+		h2 {
+		  display:table-cell; 
+			vertical-align:middle;
+		}
 	}
 	/*slide image*/
 	.slideImage{
@@ -177,37 +205,80 @@ html.lesson-viewer-layout{
 	  float:left;
 		width:860px;
 		height:550px;
-		outline:1px solid red;
 		background-color:#f1f1f1;
+		overflow:hidden;
+		position:relative;
+		.caption {
+		  @include styleCaption;
+			width:860px;
+	  }
 	}
 	.medium {
 	  float:left;
 		width:420px;
 		height:440px;
 		margin-right:20px;
-		outline:1px solid red;
 		background-color:#f1f1f1;
+		overflow:hidden;
+		position:relative;
+		.caption {
+		  @include styleCaption;
+			width:410px;
+	  }
 		&:last-child {
 	    margin-right:0px;
 	  }
+		img {
+		  height:440px;
+		}
+	}
+	.mediumHeight {
+	  float:left;
+		width:420px;
+		height:550px;
+		margin-right:20px;
+		background-color:#f1f1f1;
+		overflow:hidden;
+		position:relative;
+		.caption {
+		  @include styleCaption;
+			width:410px;
+	  }
+		&:last-child {
+	    margin-right:0px;
+	  }
+		img {
+		  height:550px;
+		}
 	}
 	.small {
 	  background-color:#f1f1f1;
 		width:420px;
 		height:265px;
+		overflow:hidden;
+		position:relative;
+		img {
+		  height:265px;
+		}
+		.caption {
+		  @include styleCaption;
+			width:410px;
+	  }
 	}
 	.textRightContent {
 	  float:right;
-		width:420px;
-		height:440px;
+		padding:10px;
+		width:400px;
+		height:420px;
 		overflow:hidden;
-		outline:1px solid blue;
+		
 	}
 	.contentText {
 	  float:left;
-		width:860px;
-		height:465px;
+		width:820px;
+		height:400px;
 		overflow:hidden;
-		outline:1px solid red;
+		padding:20px;
 	}
+	
 }
