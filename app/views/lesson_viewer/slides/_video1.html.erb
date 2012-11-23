@@ -4,12 +4,13 @@
 
 <div class="bigViewLesson slideVideo">
   <h2><%= slide.title %></h2>
-  <div class="medium">
+  <div class="videoMedium">
     <% if !video[:empty] %>
       <!-- TODO qui metto il player, usando la url contenuta in 'video[:url]' -->
     <% end %>
+		<video id='video' class='video' src='http://slides.html5rocks.com/src/chrome_japan.mp4' controls></video>	
   </div>
-  <div class="textRightContent">
+  <div class="textRightVideoContent">
     <%= slide.text.html_safe %>
   </div>
 </div>
