@@ -70,9 +70,9 @@ class LessonEditorController < ApplicationController
   
   def add_slide
     if @ok && save_current_slide
-      @lesson.add_slide @kind, (@slide.position + 1) # TODO qui si può prendere la variabile @new_slide per redirezionare alla slide appena aggiunta invece di ripartire da quella dove sto
-      redirect_to lesson_editor_path(@lesson_id)
-      return
+      @lesson.add_slide @kind, (@slide.position + 1)
+      @slides = @lesson.slides.order(:position)
+      @slide_to = @slide.position
     end
   end
   
