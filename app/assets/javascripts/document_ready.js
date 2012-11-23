@@ -606,27 +606,4 @@ $(document).ready(function() {
     });
   });
   
-  
-  // PRELOGIN
-  
-  $('body').on('click', '#prelogin_link_to_home', function() {
-    switchToOtherPreloginSection('prelogin_home_content', $(this).attr('id'));
-    switchToOtherPreloginLogo('prelogin_login');
-  });
-  
-  $('body').on('click', '#prelogin_link_to_what_is_desy', function() {
-    switchToOtherPreloginSection('prelogin_what_is_desy_content', $(this).attr('id'));
-    switchToOtherPreloginLogo('prelogin_logo');
-  });
-  
-  $('body').on('click', '#prelogin_link_to_registration', function() {
-    switchToOtherPreloginSection('prelogin_registration_content', $(this).attr('id'));
-    switchToOtherPreloginLogo('prelogin_logo');
-  });
-  
-  $('body').on('click', '#prelogin_link_to_contact_us', function() {
-    switchToOtherPreloginSection('prelogin_contact_us_content', $(this).attr('id'));
-    switchToOtherPreloginLogo('prelogin_logo');
-  });
-  
 });
