@@ -203,7 +203,6 @@ class Slide < ActiveRecord::Base
   
   def validate_title
     errors[:title] << 'must be null for this kind of slide' if !self.allows_title? && !self.title.nil?
-    errors[:title] << "can't be null for this kind of slide" if self.cover? && self.title.nil?
   end
   
   def validate_text
