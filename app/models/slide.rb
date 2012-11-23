@@ -82,7 +82,15 @@ class Slide < ActiveRecord::Base
   
   def media_element_url_at(position) # TODO aggiungi altezza e larghezza
     x = media_element_at position
-    url = x.nil? ? nil : (x.media_element.media ? x.media_element.media.url : "")
+    # FIXME rimuovere queste due righe temporanee!
+    if !x.nil? && self.accepted_media_element_sti_type == MediaElement::AUDIO_TYPE
+      return {:empty => false, :url => 'http://slides.html5rocks.com/src/rushus-modal_blues.mp3', :media_element_id => x.media_element_id}
+    end
+    if !x.nil? && self.accepted_media_element_sti_type == MediaElement::VIDEO_TYPE
+      return {:empty => false, :url => 'http://slides.html5rocks.com/src/chrome_japan.mp4', :media_element_id => x.media_element_id}
+    end
+    # FINO A QUI
+    url = x.nil? ? nil : x.media_element.media.url
     alignment = x.nil? ? nil : x.alignment
     caption = x.nil? ? nil : x.caption
     media_element_id = x.nil? ? nil : x.media_element_id
