@@ -2,7 +2,7 @@ html.prelogin-layout {
   
   body {
     font: 80% Arial, Helvetica, sans-serif;
-	  background: #0f0f0f;
+	  background: #505051;
 	  margin: 0;
 	  color: #fff;
 	  text-align: center;
@@ -51,9 +51,7 @@ html.prelogin-layout {
 		}
 	  /*FINE HEADER*/
 		.containerText {
-		  background: url(<%= asset_path 'bg_register.png' %>) top left no-repeat;
-			padding:140px 20px 20px 290px;
-			font-family: 'Nunito', sans-serif;
+		  
 			
 			p {
 			  padding-bottom:10px;
@@ -150,5 +148,41 @@ html.prelogin-layout {
 }
 .registration-action .container {
   background-color: #2eaadc;
+	.header .headerMenu {
+	  background-color:#000;
+		a {
+		  color: white;
+		}
+	}	
+	.containerText {
+	  background: url(<%= asset_path 'bg_register.png' %>) top left no-repeat;
+		padding:140px 20px 20px 290px;
+		font-family: 'Nunito', sans-serif;
+	}
+}
+.what_is_desy-action .container {
+  background-color: #fdb525;
 	
+  .header .headerMenu {
+	  background-color:#000;
+		a {
+		  color: white;
+		}
+	}	
+	.containerText {
+	  background-image:none;
+		padding: 100px 20px 20px 20px;
+		width:60%;
+		color:#2f2e2e;
+		float:left;
+		h3 {
+		  padding-bottom:25px;
+		}
+	}
+	.colDx {
+	  float:right;
+		margin-top:110px;
+		width:30%;
+		background-color:#fff;
+	}
 }
