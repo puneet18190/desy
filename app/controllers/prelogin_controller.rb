@@ -3,9 +3,16 @@ class PreloginController < ApplicationController
   skip_before_filter :authenticate
   layout Proc.new { |controller| controller.action_name == 'home' ? 'home' : 'prelogin' }
   
-  def index
+  def home
     if logged_in?
       redirect_to '/dashboard'
+      return
+    end
+  end
+  
+  def registration
+    if logged_in?
+      redirect_to '/profile'
       return
     end
   end
