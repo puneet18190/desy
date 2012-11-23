@@ -1,6 +1,6 @@
 var slideN = $(".slide-content.slide-<%=@slide.position %>").first();
 slideN.children().hide(); 
-slideN.prepend("<%= escape_javascript(render :partial => 'shared/image_gallery', :locals => {:sti_type => @media_element_type }) %>");
+slideN.prepend("<%= escape_javascript(render :partial => 'shared/image_gallery', :locals => {:sti_type => @media_element_type, :media_elements => @media_elements }) %>");
 slideN.siblings(".buttons").hide();
 $("#slide-numbers").hide();
 
