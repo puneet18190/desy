@@ -5,10 +5,12 @@
 <div class="bigViewLesson slideVideo">
   <h2><%= slide.title %></h2>
   <div class="videoMedium">
-    <% if !video[:empty] %>
-      <!-- TODO qui metto il player, usando la url contenuta in 'video[:url]' -->
+    <% if video[:empty] %>
+		  <div class="videoIcon"></div>
+		<% else %>
+      <video id='video' class='video' src='video[:url]' controls></video>	
     <% end %>
-		<video id='video' class='video' src='http://slides.html5rocks.com/src/chrome_japan.mp4' controls></video>	
+		
   </div>
   <div class="textRightVideoContent">
     <%= slide.text.html_safe %>
