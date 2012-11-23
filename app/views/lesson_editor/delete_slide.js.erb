@@ -1,6 +1,8 @@
-$("#slides li.active").hide("scale", {percent: 200, direction: 'horizontal'}, 2000);
-
-$("#slides").html("<%= escape_javascript(render :partial => 'index_slides', :locals => {:slide_to => @slide_to})%>");
+$("#slides li.active").hide(function(){
+                              $(this).remove();
+                            },1000, function(){
+                              $("#slides").html("<%= escape_javascript(render :partial => 'index_slides', :locals => {:slide_to => @slide_to})%>");
+                            });
 
 $("nav#heading").html("<%= escape_javascript(render :partial => 'index_nav', :locals => {:slides => @slides})%>");
 

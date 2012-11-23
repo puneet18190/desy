@@ -1,3 +1,4 @@
+console.log("<%= escape_javascript(render :partial => 'index_slides', :locals => {:slide_to => @slide_to})%>");
 $("#slides").html("<%= escape_javascript(render :partial => 'index_slides', :locals => {:slide_to => @slide_to})%>");
 $("nav#heading").html("<%= escape_javascript(render :partial => 'index_nav', :locals => {:slides => @slides})%>");
 
