@@ -4,76 +4,76 @@
 //	Site: www.fmath.info
 //---------------------------------------------------------------
 
+/*
+  tinyMCEPopup.requireLangPack();
 
-tinyMCEPopup.requireLangPack();
-
-var MathML_FormulaDialog = {
-	init : function() {
+  var MathML_FormulaDialog = {
+  	init : function() {
 		
-	},
+  	},
 
-	insert : function() {
-		var urlServer = tinyMCEPopup.editor.plugins["fmath_formula"].getUrlViewer();
+  	insert : function() {
+  		var urlServer = tinyMCEPopup.editor.plugins["fmath_formula"].getUrlViewer();
 		
-		var mathml = document.getElementById('mathml_f').value;
-		mathml = mathml.replace("<math>", "");
-		mathml = mathml.replace("</math>", "");
-		if(mathml.indexOf("<?")==0){
-			mathml = mathml.substring(mathml.indexOf("/>") + 2);
-		}
+  		var mathml = document.getElementById('mathml_f').value;
+  		mathml = mathml.replace("<math>", "");
+  		mathml = mathml.replace("</math>", "");
+  		if(mathml.indexOf("<?")==0){
+  			mathml = mathml.substring(mathml.indexOf("/>") + 2);
+  		}
 	
-		mathml = mathml.replace(/\n/g,"");
-		mathml = mathml.replace(/m:m/g,"m");
+  		mathml = mathml.replace(/\n/g,"");
+  		mathml = mathml.replace(/m:m/g,"m");
 		
-		var imgName = document.getElementById('mathml_n').value;
+  		var imgName = document.getElementById('mathml_n').value;
 
-		var newName = tinyMCEPopup.editor.plugins["fmath_formula"].addMathML(mathml);
+  		var newName = tinyMCEPopup.editor.plugins["fmath_formula"].addMathML(mathml);
 		
-		/////////////////
-		//DESY OVERRIDE//
-		/////////////////
+  		/////////////////
+  		//DESY OVERRIDE//
+  		/////////////////
 		
-		//var imgTag = '<img id="'+newName+'" src="'+imgName+'" border="0"/>';
-		console.log("imgName: "+imgName);
-		var imgTag = imgName
+  		//var imgTag = '<img id="'+newName+'" src="'+imgName+'" border="0"/>';
+  		console.log("imgName: "+imgName);
+  		var imgTag = imgName
 		
-		tinyMCEPopup.editor.execCommand('mceInsertContent', false, imgTag);
+  		tinyMCEPopup.editor.execCommand('mceInsertContent', false, imgTag);
 
-		var currentElem = tinyMCEPopup.editor.dom.get(newName);
-		console.log("currentElem: "+currentElem);
-		currentElem.setAttribute('src', imgName);
+  		var currentElem = tinyMCEPopup.editor.dom.get(newName);
+  		console.log("currentElem: "+currentElem);
+  		currentElem.setAttribute('src', imgName);
 	
-		tinyMCEPopup.close();
-	},
-	update : function() {
+  		tinyMCEPopup.close();
+  	},
+  	update : function() {
 	
-		var urlServer = tinyMCEPopup.editor.plugins["fmath_formula"].getUrlViewer();
+  		var urlServer = tinyMCEPopup.editor.plugins["fmath_formula"].getUrlViewer();
 
-		var name = tinyMCEPopup.editor.plugins["fmath_formula"].getSelected();
+  		var name = tinyMCEPopup.editor.plugins["fmath_formula"].getSelected();
 		
-		var urlViewer = tinyMCEPopup.editor.plugins["fmath_formula"].getUrlViewer();
+  		var urlViewer = tinyMCEPopup.editor.plugins["fmath_formula"].getUrlViewer();
 		
-		var mathml = document.getElementById('mathml_f').value;
-		mathml = mathml.replace("<math>", "");
-		mathml = mathml.replace("</math>", "");
-		if(mathml.indexOf("<?")==0){
-			mathml = mathml.substring(mathml.indexOf("/>") + 2);
-		}
+  		var mathml = document.getElementById('mathml_f').value;
+  		mathml = mathml.replace("<math>", "");
+  		mathml = mathml.replace("</math>", "");
+  		if(mathml.indexOf("<?")==0){
+  			mathml = mathml.substring(mathml.indexOf("/>") + 2);
+  		}
 	
-		mathml = mathml.replace(/\n/g,"");
-		mathml = mathml.replace(/m:m/g,"m");
+  		mathml = mathml.replace(/\n/g,"");
+  		mathml = mathml.replace(/m:m/g,"m");
 		
-		tinyMCEPopup.editor.plugins["fmath_formula"].updateMathML(name, mathml);
+  		tinyMCEPopup.editor.plugins["fmath_formula"].updateMathML(name, mathml);
 
-		var imgName = document.getElementById('mathml_n').value;
+  		var imgName = document.getElementById('mathml_n').value;
 
-		tinyMCEPopup.editor.dom.setAttrib(name, 'src', imgName);
+  		tinyMCEPopup.editor.dom.setAttrib(name, 'src', imgName);
 	
 		
-		tinyMCEPopup.close();
-	}
+  		tinyMCEPopup.close();
+  	}
 	
-};
+  };
 
-tinyMCEPopup.onInit.add(MathML_FormulaDialog.init, MathML_FormulaDialog);
-
+  tinyMCEPopup.onInit.add(MathML_FormulaDialog.init, MathML_FormulaDialog);
+*/
