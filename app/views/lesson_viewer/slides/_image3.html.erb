@@ -6,6 +6,9 @@
   <div class="big">
 	  <% if !image[:empty] %>
       <%= image_tag image[:url], :style => "left:#{image[:alignment]}px" %>
+			<div class="caption"><%= image[:caption] %></div>
     <% end %>
+		
   </div>
+	
 </div>
