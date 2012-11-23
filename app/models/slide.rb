@@ -60,6 +60,7 @@ class Slide < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       self.title = title
       self.text = text
+      raise ActiveRecord::Rollback if !self.lesson.modify
       raise ActiveRecord::Rollback if !self.save
       media_elements.each do |k, v|
         mes = MediaElementsSlide.where(:position => k, :slide_id => self.id).first
@@ -110,6 +111,10 @@ class Slide < ActiveRecord::Base
     my_position = self.position
     my_lesson_id = self.lesson_id
     ActiveRecord::Base.transaction do
+      if !self.lesson.modify
+        errors.add(:base, :problems_destroying)
+        raise ActiveRecord::Rollback
+      end
       begin
         self.destroy
       rescue Exception
@@ -152,6 +157,10 @@ class Slide < ActiveRecord::Base
     end
     resp = false
     ActiveRecord::Base.transaction do
+      if !self.lesson.modify
+        errors.add(:base, :problems_changing_position)
+        raise ActiveRecord::Rollback
+      end
       self.position = tot_slides + 2
       if !self.save
         errors.add(:base, :problems_changing_position)

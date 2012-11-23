@@ -46,6 +46,7 @@ class LessonEditorController < ApplicationController
       @lesson.description =  params[:lesson][:description]
       @lesson.subject_id = params[:subject]
       @lesson.tags = params[:lesson][:tags]
+      @lesson.modified
       @lesson.save
       redirect_to lesson_editor_path(@lesson_id)
     end
