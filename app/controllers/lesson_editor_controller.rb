@@ -64,7 +64,6 @@ class LessonEditorController < ApplicationController
       @media_element_type = @slide.accepted_media_element_sti_type
       @media_elements = @current_user.own_media_elements(1, FOR_PAGE[@media_element_type], @media_element_type.downcase)[:records]
       @media_element_type = @media_element_type.downcase
-      @sti_types = {:video => MediaElement::VIDEO_TYPE.downcase, :image => MediaElement::IMAGE_TYPE.downcase, :audio => MediaElement::AUDIO_TYPE.downcase}
       @img_position = params[:position]
     end
   end
@@ -72,7 +71,7 @@ class LessonEditorController < ApplicationController
   def add_slide
     if @ok && save_current_slide
       @lesson.add_slide @kind, (@slide.position + 1) # TODO qui si può prendere la variabile @new_slide per redirezionare alla slide appena aggiunta invece di ripartire da quella dove sto
-      redirect_to lesson_editor_path(@lesson.id)
+      redirect_to lesson_editor_path(@lesson_id)
     end
   end
   
@@ -93,7 +92,6 @@ class LessonEditorController < ApplicationController
   def change_slide_position
     if @ok
       @slide.change_position(@position)
-      @lesson = Lesson.find @lesson_id
       @slides = @lesson.slides.order(:position)
       @slide_to = @position - 1
     end
@@ -110,7 +108,7 @@ class LessonEditorController < ApplicationController
     initialize_lesson_with_owner
     @slide_id = correct_integer?(params[:slide_id]) ? params[:slide_id].to_i : 0
     @slide = Slide.find_by_id @slide_id
-    update_ok(@slide && @lesson.id == @slide.lesson_id)
+    update_ok(@slide && @lesson && @lesson.id == @slide.lesson_id)
   end
   
   def initialize_subjects
