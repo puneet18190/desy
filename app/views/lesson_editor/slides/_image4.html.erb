@@ -4,7 +4,8 @@
     <%- if !sme1[:empty] %>
     <%= hidden_field_tag :media_element_align_1, "#{sme1[:alignment]}px", :class =>"media_element_align_1" %>
       <div class="image-4-box mask _mask_x image4-p1">
-        <%= link_to image_tag("#{sme1[:url]}", :width => "600", :class=>"_slide_image image4-p1"), {:action => :show_gallery, :slide => slide.id, :position=>1} , :remote => true, :class => "show-gallery", "data-param" => "1", :style => "left: #{sme1[:alignment]}px" %>
+        <%= link_to "<span class='rollover rollover-image' style='left:#{-sme1[:alignment]}px'><span class='add-image'></span></span><img src='#{sme1[:url]}' width ='600' class='_slide_image image4-p1' />", {:action => :show_gallery, :slide => slide.id, :position=>1} , :remote => true, :class => "show-gallery", "data-param" => "1", :style => "left: #{sme1[:alignment]}px" %>
+        <%= text_field_tag :caption_1, sme1[:caption], :class => "caption", :placeholder => "#{t 'captions.image_caption_placeholder'}" , :maxlength =>"60" %>
         <%= hidden_field_tag :media_element_1, sme1[:media_element_id], :class=> "media-tag-cover-1"  %>
       </div>
     <%- else %>
@@ -22,7 +23,8 @@
       <!--TODO replace align value from db (after default at 0)-->
       <%= hidden_field_tag :media_element_align_2, "#{sme2[:alignment]}px", :class =>"media_element_align_2" %>
       <div class="image-4-box mask _mask_x image4-p2">
-      <%= link_to image_tag("#{sme2[:url]}", :width => "600", :class=>"_slide_image image4-p2"), {:action => :show_gallery, :slide => slide.id, :position=>2} , :remote => true, :class => "show-gallery", "data-param" => "2", :style => "left: #{sme2[:alignment]}px" %>
+      <%= link_to "<span class='rollover rollover-image' style='left:#{-sme2[:alignment]}px'><span class='add-image'></span></span><img src='#{sme2[:url]}' width ='600' class='_slide_image image4-p2' />", {:action => :show_gallery, :slide => slide.id, :position=>2} , :remote => true, :class => "show-gallery", "data-param" => "2", :style => "left: #{sme2[:alignment]}px" %>
+      <%= text_field_tag :caption_2, sme2[:caption], :class => "caption", :placeholder => "#{t 'captions.image_caption_placeholder'}" , :maxlength =>"60" %>
       <%= hidden_field_tag :media_element_2, sme2[:media_element_id], :class=> "media-tag-cover-2"  %>
       </div>
     <%- else %>
@@ -41,7 +43,8 @@
       
       <%= hidden_field_tag :media_element_align_3, "#{sme3[:alignment]}px", :class =>"media_element_align_3" %>
       <div class="image-4-box mask _mask_x image4-p3">
-        <%= link_to image_tag("#{sme3[:url]}", :width => "600", :class=>"_slide_image image4-p3"), {:action => :show_gallery, :slide => slide.id, :position=>3} , :remote => true, :class => "show-gallery", "data-param" => "3", :style => "left: #{sme3[:alignment]}px" %>
+        <%= link_to "<span class='rollover rollover-image' style='left:#{-sme3[:alignment]}px'><span class='add-image'></span></span><img src='#{sme3[:url]}' width ='600' class='_slide_image image4-p3' />", {:action => :show_gallery, :slide => slide.id, :position=>3} , :remote => true, :class => "show-gallery", "data-param" => "3", :style => "left: #{sme3[:alignment]}px" %>
+        <%= text_field_tag :caption_3, sme3[:caption], :class => "caption", :placeholder => "#{t 'captions.image_caption_placeholder'}" , :maxlength =>"60" %>
         <%= hidden_field_tag :media_element_3, sme3[:media_element_id], :class=> "media-tag-cover-3"  %>
       </div>
     <%- else %>
@@ -60,7 +63,8 @@
     <!--TODO replace align value from db (after default at 0)-->
     <%= hidden_field_tag :media_element_align_4, "#{sme4[:alignment]}px", :class =>"media_element_align_4" %>
       <div class="image-4-box mask _mask_x image4-p4">
-        <%= link_to image_tag("#{sme4[:url]}", :width => "600", :class=>"_slide_image image4-p4"), {:action => :show_gallery, :slide => slide.id, :position=>4} , :remote => true, :class => "show-gallery", "data-param" => "4", :style => "left: #{sme4[:alignment]}px" %>
+        <%= link_to "<span class='rollover rollover-image' style='left:#{-sme4[:alignment]}px'><span class='add-image'></span></span><img src='#{sme4[:url]}' width ='600' class='_slide_image image4-p4' />", {:action => :show_gallery, :slide => slide.id, :position=>4} , :remote => true, :class => "show-gallery", "data-param" => "4", :style => "left: #{sme4[:alignment]}px" %>
+        <%= text_field_tag :caption_4, sme4[:caption], :class => "caption", :placeholder => "#{t 'captions.image_caption_placeholder'}" , :maxlength =>"60" %>
         <%= hidden_field_tag :media_element_4, sme4[:media_element_id], :class=> "media-tag-cover-4"  %>
       </div>
     <%- else %>
