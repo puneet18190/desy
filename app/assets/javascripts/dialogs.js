@@ -108,7 +108,11 @@ function showImageMediaElementPopUp(id) {
       closeOnEscape: true,
       modal: true,
       resizable: false,
-      width: 410,
+      resize: "auto",
+      width: "auto",
+      height: "auto",
+      maxWidth: 420,
+      maxHeight: 420,
       show: "fade",
       hide: "fade"
     });

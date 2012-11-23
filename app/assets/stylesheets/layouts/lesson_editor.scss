@@ -330,6 +330,27 @@ html.lesson-editor-layout{
       	  background-position: -390px center;
       	}
       }
+      
+      .image4 span.rollover-image{
+        background:transparent;
+        height: 2650px;
+      	width: 420px;
+      	cursor:move;
+        cursor: -webkit-grab;
+      	.add-image{
+          margin:1em 1.5em;
+          width: 1em;
+          height: 1em;
+          font-size: 80px;
+          background-size: 5em 1em;
+          background-position: -2em center;
+          background-repeat: no-repeat;
+          background-color: transparent;
+      	}
+      	.add-image:hover{
+      	  background-position: -3em center;
+      	}
+      }
 
       span.rollover:hover,span.rollover.active{
       	opacity: .5;
@@ -564,8 +585,8 @@ html.lesson-editor-layout{
             float:left;
           }
           .mask{
-            width: 400px;
-            height: 260px;
+            width: 420px;
+            height: 265px;
             padding: 0;
             margin: 0;
             overflow:hidden;
@@ -575,7 +596,7 @@ html.lesson-editor-layout{
               cursor:move;
               cursor: -webkit-grab;
               left:0;
-              height: 260px;
+              height: 265px;
             }
             &.image4-p1,&.image4-p3{
               float:right;
@@ -585,6 +606,18 @@ html.lesson-editor-layout{
               float:left;
               margin: 20px 0 0 20px;
             }
+          }
+          .rollover{
+            height: 230px;
+          	width: 420px;
+          	margin: 0;
+          	.add-image{
+          	  margin:80px 0 0 165px;
+          	}
+          }
+          input.caption{
+            top: 230px;
+            width: 420px;
           }
         }
         &.image3{
@@ -971,9 +1004,9 @@ html.lesson-editor-layout{
     }
     &.choose-small{
       padding: 0;
-      margin:20px 20px 0;
-      width: 400px;
-      height: 260px;
+      margin:20px 0 0;
+      width: 420px;
+      height: 265px;
       text-align:center;
       a{
         margin-top:1em;
@@ -990,6 +1023,12 @@ html.lesson-editor-layout{
       }
       img{
         display:none;
+      }
+      &.cover-choose-image-left{
+        margin-left: 20px;
+      }
+      &.cover-choose-image-right{
+        margin-right: 20px;
       }
     }
     &.cover-choose-image-left{
