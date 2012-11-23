@@ -107,12 +107,10 @@ function showImageMediaElementPopUp(id) {
     obj.dialog({
       closeOnEscape: true,
       modal: true,
-      resizable: false,
-      resize: "auto",
-      width: "auto",
-      height: "auto",
-      maxWidth: 420,
-      maxHeight: 420,
+      resizable: true,
+      resize:"auto",
+      maxWidth: 440,
+      maxHeight: 480,
       show: "fade",
       hide: "fade"
     });

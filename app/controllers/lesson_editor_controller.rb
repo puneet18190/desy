@@ -82,11 +82,10 @@ class LessonEditorController < ApplicationController
   
   def delete_slide
     if @ok
-      if @slide.destroy_with_positions
-        redirect_to lesson_editor_path(@lesson_id)
-      else
-        redirect_to :back, notice: t('captions.slide_not_deleted')
-      end
+      @slide.destroy_with_positions
+      @lesson = @slide.lesson
+      @slides = @lesson.slides.order(:position)
+      @slide_to = @slide.position - 1
     end
   end
   
