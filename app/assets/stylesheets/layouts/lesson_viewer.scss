@@ -234,7 +234,17 @@ html.lesson-viewer-layout{
 		  background-color:#fff;
 			padding-bottom:197px;
 	  }
-		
+	}
+	.audioBig {
+	  width:auto;
+		height:35px;
+		background-color:#f1f1f1;
+		.audio {
+		  width:860px;
+      padding-bottom:5px;
+		  background-color:#fff;
+			
+	  }
 	}
 	.medium {
 	  float:left;
@@ -304,8 +314,7 @@ html.lesson-viewer-layout{
     overflow:hidden;
 	}
 	.contentText {
-	  float:left;
-		width:820px;
+	  width:820px;
 		height:400px;
 		overflow:hidden;
 		padding:20px;
