@@ -140,8 +140,7 @@ html.lesson-viewer-layout{
 		}
 	}
 	@mixin formatElement {
-	  outline:1px solid blue; 
-		width:860px;
+	  width:860px;
 		height:550px;
 		padding: 20px;
 		display:inline-block;
@@ -213,6 +212,40 @@ html.lesson-viewer-layout{
 			width:860px;
 	  }
 	}
+	.videoBig {
+	  width:860px;
+		height:550px;
+		background-color:#f1f1f1;
+		.video {
+      width:848px;
+		  height:477px;
+		  padding:37px 6px 36px 6px;
+		  background-color:#fff;
+	  }
+	}
+	.videoMedium {
+	  width:432px;
+		height:440px;
+		background-color:#f1f1f1;
+		float:left;
+		.video {
+      width:432px;
+		  height:243px;
+		  background-color:#fff;
+			padding-bottom:197px;
+	  }
+	}
+	.audioBig {
+	  width:auto;
+		height:35px;
+		background-color:#f1f1f1;
+		.audio {
+		  width:860px;
+      padding-bottom:5px;
+		  background-color:#fff;
+			
+	  }
+	}
 	.medium {
 	  float:left;
 		width:420px;
@@ -273,9 +306,15 @@ html.lesson-viewer-layout{
 		overflow:hidden;
 		
 	}
+	.textRightVideoContent {
+    float:right;
+    padding:10px;
+    width:390px;
+    height:420px;
+    overflow:hidden;
+	}
 	.contentText {
-	  float:left;
-		width:820px;
+	  width:820px;
 		height:400px;
 		overflow:hidden;
 		padding:20px;

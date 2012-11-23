@@ -4,12 +4,13 @@
 
 <div class="bigViewLesson slideAudio">
   <h2><%= slide.title %></h2>
-  <div class="medium">
+  <div class="audioBig">
     <% if !audio[:empty] %>
       <!-- TODO qui metto il player, usando la url contenuta in 'audio[:url]' -->
     <% end %>
+		<audio id='audio' class='audio' src='http://slides.html5rocks.com/src/rushus-modal_blues.mp3' controls></audio>
   </div>
-  <div class="textRightContent">
+  <div class="contentText">
     <%= slide.text.html_safe %>
   </div>
 </div>
