@@ -30,6 +30,10 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  def cover?
+    self.kind == COVER
+  end
+  
   def allows_title?
     [COVER, IMAGE1, AUDIO, VIDEO1, TITLE, TEXT].include?(self.kind)
   end

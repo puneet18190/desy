@@ -114,24 +114,24 @@ function slideTo(nth){
     marginReset = parseInt(-((page-1)*1010))+"px"
   }
   $("ul#slides").animate({
-      marginLeft: marginReset
-    }, 1500 );
+    marginLeft: marginReset
+  }, 1500 );
   $("ul#slides li").animate({
-      opacity: 0.4,
-    }, 150, function() {
-      $(this).find(".buttons").fadeOut();
-      $(this).removeClass("active");
-    });
+    opacity: 0.4,
+  }, 150, function() {
+    $(this).find(".buttons").fadeOut();
+    $(this).removeClass("active");
+  });
   $("ul#slides li:nth-child("+page+")").animate({
-      opacity: 1,
-    }, 500, function(){
-      $(this).find(".buttons").fadeIn();
-      $(this).addClass("active");
-    });
+    opacity: 1,
+  }, 500, function(){
+    $(this).find(".buttons").fadeIn();
+    $(this).addClass("active");
+  });
   $("#slide-numbers li a.active").removeClass("active");
   $(nth).addClass("active");
   
-  updateInfoCurrentSlide(slide_id)
+  updateInfoCurrentSlide(slide_id);
   
 }
 
