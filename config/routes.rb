@@ -77,12 +77,11 @@ Desy::Application.routes.draw do
   get  'logout' => 'users#logout', :as => :logout
   
   # USER NOT LOGGED
-  get  'home' => 'prelogin#home', :as => :home
+  get  'home' => 'prelogin#index', :as => :prelogin
   get  'login' => 'prelogin#login', :as => :login
-  get  'sign_up' => 'prelogin#registration', :as => :sign_up
   post 'create_user' => 'prelogin#create_registration', :as => :create_user
   
   # APPLICATION ROOT
-  root :to => 'prelogin#home'
+  root :to => 'prelogin#index'
   
 end

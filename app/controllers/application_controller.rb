@@ -77,7 +77,7 @@ class ApplicationController < ActionController::Base
   
   def authenticate
     if !logged_in?
-      redirect_to home_path
+      redirect_to prelogin_path
       return
     end
     @current_user = User.find_by_id session[:user_id]
