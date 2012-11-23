@@ -168,6 +168,10 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  def modified
+    self.copied_not_modified = false
+  end
+  
   def modify
     self.copied_not_modified = false
     self.save
@@ -296,12 +300,7 @@ class Lesson < ActiveRecord::Base
       slide.kind = kind
       slide.lesson_id = self.id
       slide.position = Slide.order('position DESC').where(:lesson_id => self.id).limit(1).first.position + 1
-      if slide.save
-        if !slide.change_position(position)
-          errors.add(:base, :problem_adding_slide)
-          raise ActiveRecord::Rollback
-        end
-      else
+      if !slide.save || !slide.change_position(position) || !self.modify
         errors.add(:base, :problem_adding_slide)
         raise ActiveRecord::Rollback
       end

@@ -60,6 +60,7 @@ class Slide < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       self.title = title
       self.text = text
+      raise ActiveRecord::Rollback if !self.lesson.modify
       raise ActiveRecord::Rollback if !self.save
       media_elements.each do |k, v|
         mes = MediaElementsSlide.where(:position => k, :slide_id => self.id).first
@@ -81,7 +82,15 @@ class Slide < ActiveRecord::Base
   
   def media_element_url_at(position) # TODO aggiungi altezza e larghezza
     x = media_element_at position
-    url = x.nil? ? nil : (x.media_element.media ? x.media_element.media.url : "")
+    # FIXME rimuovere queste due righe temporanee!
+    if !x.nil? && self.accepted_media_element_sti_type == MediaElement::AUDIO_TYPE
+      return {:empty => false, :url => 'http://slides.html5rocks.com/src/rushus-modal_blues.mp3', :media_element_id => x.media_element_id}
+    end
+    if !x.nil? && self.accepted_media_element_sti_type == MediaElement::VIDEO_TYPE
+      return {:empty => false, :url => 'http://slides.html5rocks.com/src/chrome_japan.mp4', :media_element_id => x.media_element_id}
+    end
+    # FINO A QUI
+    url = x.nil? ? nil : x.media_element.media.url
     alignment = x.nil? ? nil : x.alignment
     caption = x.nil? ? nil : x.caption
     media_element_id = x.nil? ? nil : x.media_element_id
@@ -110,6 +119,10 @@ class Slide < ActiveRecord::Base
     my_position = self.position
     my_lesson_id = self.lesson_id
     ActiveRecord::Base.transaction do
+      if !self.lesson.modify
+        errors.add(:base, :problems_destroying)
+        raise ActiveRecord::Rollback
+      end
       begin
         self.destroy
       rescue Exception
@@ -152,6 +165,10 @@ class Slide < ActiveRecord::Base
     end
     resp = false
     ActiveRecord::Base.transaction do
+      if !self.lesson.modify
+        errors.add(:base, :problems_changing_position)
+        raise ActiveRecord::Rollback
+      end
       self.position = tot_slides + 2
       if !self.save
         errors.add(:base, :problems_changing_position)
