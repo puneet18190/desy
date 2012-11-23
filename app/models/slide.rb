@@ -215,6 +215,7 @@ class Slide < ActiveRecord::Base
   
   def init_validation
     @slide = Valid.get_association self, :id
+    @lesson = Valid.get_association self, :lesson_id
   end
   
   def validate_associations
@@ -225,6 +226,7 @@ class Slide < ActiveRecord::Base
     if @slide
       errors[:lesson_id] << "can't be changed" if @slide.lesson_id != self.lesson_id
       errors[:kind] << "can't be changed" if @slide.kind != self.kind
+      errors[:title] << "if cover it can't be different by lesson's title" if self.cover? && @slide.title != self.title && @lesson.title != self.title
     end
   end
   
