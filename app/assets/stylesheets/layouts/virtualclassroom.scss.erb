@@ -79,9 +79,9 @@ html.virtual_classroom-controller {
 	/*upload popup*/
 	.uploadButtonPopUpSelectLesson {
 	  margin-top:25px;
-		
-	  display:inline-block;
+		display:inline-block;
 		width:890px;
+		
 		.uploadButton a {
       padding: 5px 25px;
 	    background-color: #42b9e9;
@@ -97,6 +97,7 @@ html.virtual_classroom-controller {
 			padding:10px;
 			
 		}
+		
 	}
 	
 	.boxViewSingleLesson {
@@ -294,6 +295,18 @@ html.virtual_classroom-controller {
 		.boxViewSingleLesson .contentInterno .img_expanded {
 		  cursor: pointer;
 		}
+		
+		.boxViewSingleLesson .contentInterno .img_expanded.current {
+			  background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+			  background-size: 22em 45em;
+				background-repeat: no-repeat;
+				background-position:0 0;
+				padding:0;
+				outline:1px solid white;
+			}
+		  .boxViewSingleLesson .contentInterno .img_expanded.currentX {
+			  outline:1px solid red;
+		  }
 		h3 {
 		  color:#fff;
 			font-family:'Nunito', sans-serif;
