@@ -1,9 +1,15 @@
 <div class="playlistMenu">
-<ul>
-  <% @playlist.each do |classroom| %>
-    <li data-param="<%= classroom.position %>">
-      <%= render :partial => "shared/lesson_thumbnails/small/cover", :locals => { :slide => classroom.lesson.slides.first } %> 
-    </li>
-  <% end %>
-</ul>
+  <div class="scrollVerde">
+    <div class="scroll-pane horizontal-only" id="playlist_menu">
+      <div class="scrollContent">
+        <ul>
+          <% @playlist.each do |classroom| %>
+            <li data-param="<%= classroom.position %>">
+              <%= render :partial => "shared/lesson_thumbnails/small/cover", :locals => { :slide => classroom.lesson.slides.first } %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

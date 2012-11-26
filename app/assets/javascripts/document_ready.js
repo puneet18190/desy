@@ -416,6 +416,10 @@ $(document).ready(function() {
     autoReinitialise: true
   });
   
+  $('#playlist_menu').jScrollPane({
+    autoReinitialise: true
+  });
+  
   $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });

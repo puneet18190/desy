@@ -16,9 +16,16 @@ class Image < MediaElement
   end
 
   private
+  def width=(width)
+    metadata.width = width
+  end
+
+  def height=(height)
+    metadata.height = height
+  end
+
   def set_width_and_height
-    metadata.width  = media.width
-    metadata.height = media.height
+    self.width, self.height = media.width, media.height
     true 
   end
 
