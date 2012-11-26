@@ -140,40 +140,25 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @les4.publish
     assert @les5.publish
     assert @les6.publish
-    Lesson.record_timestamps = false
-    MediaElement.record_timestamps = false
-    @el1.is_public = true
-    @el1.publication_date = '2012-01-01 10:00:00'
-    @el1.updated_at = '2011-10-01 20:00:00'
-    assert_obj_saved @el1
-    @el2.is_public = true
-    @el2.publication_date = '2012-01-01 10:00:00'
-    @el2.updated_at = '2011-10-01 19:59:59'
-    assert_obj_saved @el2
-    @el3.is_public = true
-    @el3.publication_date = '2012-01-01 10:00:00'
-    @el3.updated_at = '2011-10-01 19:59:58'
-    assert_obj_saved @el3
-    @el4.updated_at = '2011-10-01 19:59:57'
-    assert_obj_saved @el4
-    @el5.is_public = true
-    @el5.publication_date = '2012-01-01 10:00:00'
-    @el5.updated_at = '2011-10-01 19:59:56'
-    assert_obj_saved @el5
-    @el6.updated_at = '2011-10-01 19:59:55'
-    assert_obj_saved @el6
-    @el7.is_public = true
-    @el7.publication_date = '2012-01-01 10:00:00'
-    @el7.updated_at = '2011-10-01 19:59:54'
-    assert_obj_saved @el7
+    # I SET UPDATED AT
+    MediaElement.where(:id => 1).update_all(:updated_at => '2012-01-01 20:00:00')
+    MediaElement.where(:id => 2).update_all(:updated_at => '2012-01-01 19:59:59')
+    MediaElement.where(:id => 3).update_all(:updated_at => '2012-01-01 19:59:58')
+    MediaElement.where(:id => 4).update_all(:updated_at => '2012-01-01 19:59:57')
+    MediaElement.where(:id => 5).update_all(:updated_at => '2012-01-01 19:59:56')
+    MediaElement.where(:id => 6).update_all(:updated_at => '2012-01-01 19:59:55')
+    MediaElement.where(:id => @el1.id).update_all(:updated_at => '2011-10-01 20:00:00', :is_public => true, :publication_date => '2012-01-01 10:00:00')
+    MediaElement.where(:id => @el2.id).update_all(:updated_at => '2011-10-01 19:59:59', :is_public => true, :publication_date => '2012-01-01 10:00:00')
+    MediaElement.where(:id => @el3.id).update_all(:updated_at => '2011-10-01 19:59:58', :is_public => true, :publication_date => '2012-01-01 10:00:00')
+    MediaElement.where(:id => @el4.id).update_all(:updated_at => '2011-10-01 19:59:57')
+    MediaElement.where(:id => @el5.id).update_all(:updated_at => '2011-10-01 19:59:56', :is_public => true, :publication_date => '2012-01-01 10:00:00')
+    MediaElement.where(:id => @el6.id).update_all(:updated_at => '2011-10-01 19:59:55')
+    MediaElement.where(:id => @el7.id).update_all(:updated_at => '2011-10-01 19:59:54', :is_public => true, :publication_date => '2012-01-01 10:00:00')
     date_now = '2011-01-01 20:00:00'.to_time
     Lesson.all.each do |l|
-      l.updated_at = date_now
-      assert_obj_saved l
+      Lesson.where(:id => l.id).update_all(:updated_at => date_now)
       date_now -= 1
     end
-    Lesson.record_timestamps = true
-    MediaElement.record_timestamps = true
   end
   
   test 'suggested_lessons' do
