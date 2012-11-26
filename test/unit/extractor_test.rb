@@ -86,25 +86,21 @@ class ExtractorTest < ActiveSupport::TestCase
     @el1 = MediaElement.new :description => 'desc1', :title => 'titl1'
     @el1.user_id = 1
     @el1.sti_type = 'Video'
-    @el1.duration = 10
     @el1.tags = tag_map[8]
     assert_obj_saved @el1
     @el2 = MediaElement.new :description => 'desc2', :title => 'titl2'
     @el2.user_id = 1
     @el2.sti_type = 'Video'
-    @el2.duration = 10
     @el2.tags = tag_map[9]
     assert_obj_saved @el2
     @el3 = MediaElement.new :description => 'desc3', :title => 'titl3'
     @el3.user_id = 1
     @el3.sti_type = 'Audio'
-    @el3.duration = 10
     @el3.tags = tag_map[0]
     assert_obj_saved @el3
     @el4 = MediaElement.new :description => 'desc4', :title => 'titl4'
     @el4.user_id = 1
     @el4.sti_type = 'Audio'
-    @el4.duration = 10
     @el4.tags = tag_map[6]
     assert_obj_saved @el4
     @el5 = MediaElement.new :description => 'desc5', :title => 'titl5'
