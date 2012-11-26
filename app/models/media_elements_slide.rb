@@ -29,8 +29,8 @@ class MediaElementsSlide < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:media_element_id] << "doesn't exist" if !MediaElement.exists?(self.media_element_id)
-    errors[:slide_id] << "doesn't exist" if !Slide.exists?(self.slide_id)
+    errors[:media_element_id] << "doesn't exist" if @media_element.nil?
+    errors[:slide_id] << "doesn't exist" if @slide.nil?
   end
   
   def validate_type_in_slide

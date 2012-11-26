@@ -27,10 +27,11 @@ class Notification < ActiveRecord::Base
   
   def init_validation
     @notification = Valid.get_association self, :id
+    @user = Valid.get_association self, :user_id
   end
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
+    errors[:user_id] << "doesn't exist" if @user.nil?
   end
   
   def validate_seen

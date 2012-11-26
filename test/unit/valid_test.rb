@@ -22,12 +22,26 @@ class ValidTest < ActiveSupport::TestCase
     assert Valid.get_association(x, :school_level_id).nil?
     x.school_level_id = -5
     assert Valid.get_association(x, :school_level_id).nil?
+    x.school_level_id = "5a1"
+    assert Valid.get_association(x, :school_level_id).nil?
     x.school_level_id = 4.4
     assert Valid.get_association(x, :school_level_id).nil?
     x.school_level_id = 1
     resp = Valid.get_association(x, :school_level_id)
     assert_equal SchoolLevel, resp.class
     assert_equal y.id, resp.id, "Expected #{y.id}, got #{resp.id} -- y was #{y.inspect} -- and resp was #{resp.inspect}"
+    x.school_level_id = "1"
+    resp = Valid.get_association(x, :school_level_id)
+    assert_equal SchoolLevel, resp.class
+    assert_equal y.id, resp.id, "Expected #{y.id}, got #{resp.id} -- y was #{y.inspect} -- and resp was #{resp.inspect}"
+  end
+  
+  test 'validation_at_risk' do
+    x = MediaElementsSlide.find(1)
+    assert_equal 'Image', MediaElement.find_by_id(x.media_element_id).sti_type
+    assert !x.alignment.nil?
+    x.alignment = nil
+    assert !x.valid?
   end
   
 end

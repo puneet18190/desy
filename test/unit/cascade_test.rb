@@ -53,8 +53,13 @@ class CascadeTest < ActiveSupport::TestCase
   
   test 'media_element_cascade' do
     @media_element = MediaElement.find 1
-    @media_elements_slide = MediaElementsSlide.find 3
+    l = Lesson.find(1)
+    slide = l.add_slide 'video1', 2
+    assert !slide.nil?
+    @media_elements_slide = MediaElementsSlide.new
+    @media_elements_slide.slide_id = slide.id
     @media_elements_slide.media_element_id = 1
+    @media_elements_slide.position = 1
     assert_obj_saved @media_elements_slide
     @media_element = MediaElement.find @media_element.id
     ids = {Tagging => [], Report => [], MediaElementsSlide => []}
@@ -70,6 +75,7 @@ class CascadeTest < ActiveSupport::TestCase
     @media_element.media_elements_slides.each do |l|
       ids[MediaElementsSlide] << l.id
     end
+    assert ids[MediaElementsSlide].any?
     @media_element.destroy
     assert MediaElement.where(:id => @media_element.id).empty?
     ids.each do |k, v|

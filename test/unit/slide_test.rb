@@ -159,8 +159,9 @@ class SlideTest < ActiveSupport::TestCase
     assert_match /must be null for this kind of slide/, @slide.errors.messages[:text].first
     @slide.text = nil
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
-    @slide = Lesson.first.slides.first
-    @slide.title = 'beh'
+    temmmporary_lesson = Lesson.first
+    @slide = temmmporary_lesson.slides.first
+    @slide.title = temmmporary_lesson.title
     @slide.text = 'ciao ciao ciao'
     assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
     assert_equal 1, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
@@ -169,6 +170,17 @@ class SlideTest < ActiveSupport::TestCase
     @slide.text = nil
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
     assert_obj_saved @slide
+  end
+  
+  test 'cover_title_different_by_lesson_title' do
+    lesson = Lesson.find(1)
+    cover = lesson.cover
+    assert_equal cover.title, lesson.title
+    assert_invalid cover, :title, 'tstrong', 'tstring', /if cover it can't be different by lesson's title/
+    lesson.title = 'buahuahua'
+    assert_obj_saved lesson
+    cover = Slide.find cover.id
+    assert_equal 'buahuahua', cover.title
   end
   
 end

@@ -26,12 +26,14 @@ class Tagging < ActiveRecord::Base
   
   def init_validation
     @tagging = Valid.get_association self, :id
+    @lesson = self.taggable_type == 'Lesson' ? Valid.get_association(self, :taggable_id, Lesson) : nil
+    @media_element = self.taggable_type == 'MediaElement' ? Valid.get_association(self, :taggable_id, MediaElement) : nil
   end
   
   def validate_associations
     errors[:tag_id] << "doesn't exist" if !Tag.exists?(self.tag_id)
-    errors[:taggable_id] << "lesson doesn't exist" if self.taggable_type == 'Lesson' && !Lesson.exists?(self.taggable_id)
-    errors[:taggable_id] << "media element doesn't exist" if self.taggable_type == 'MediaElement' && !MediaElement.exists?(self.taggable_id)
+    errors[:taggable_id] << "lesson doesn't exist" if self.taggable_type == 'Lesson' && @lesson.nil?
+    errors[:taggable_id] << "media element doesn't exist" if self.taggable_type == 'MediaElement' && @media_element.nil?
   end
   
   def validate_impossible_changes

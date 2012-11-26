@@ -642,7 +642,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_match /You already reported this element/, x.errors.messages[:base].first
   end
   
-  test 'aaaupdate_slide' do
+  test 'update_slide' do
     lesson = User.find(1).create_lesson('titolo', 'desc', 1, 'pippo, paperoga, pluto, qui quo qua')
     assert !lesson.nil?
     slide = lesson.add_slide('image1', 2)
@@ -671,6 +671,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !slide.nil?
     assert slide.title.blank?
     assert slide.text.blank?
+    assert MediaElementsSlide.where(:slide_id => slide.id).empty?
     assert slide.update_with_media_elements(nil, nil, {1 => [5, 0, 'caption1'], 2 => [6, 10, 'caption2'], 3 => [5, -110, 'caption3'], 4 => [6, 4, 'caption4']})
     slide = Slide.find slide.id
     assert slide.title.blank?
@@ -679,6 +680,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !mes.nil?
     assert_equal 0, mes.alignment
     assert_equal 'caption1', mes.caption
+    stored_id_me = mes.id
     mes = MediaElementsSlide.where(:slide_id => slide.id, :position => 2).first
     assert !mes.nil?
     assert_equal 10, mes.alignment
@@ -691,6 +693,49 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !mes.nil?
     assert_equal 4, mes.alignment
     assert_equal 'caption4', mes.caption
+    assert_equal 4, MediaElementsSlide.where(:slide_id => slide.id).count
+    count_media_elements_slide = MediaElementsSlide.count
+    assert slide.update_with_media_elements(nil, nil, {1 => [6, 0, 'caption1'], 2 => [6, 10, 'caption2'], 3 => [5, -110, 'caption3'], 4 => [6, 4, 'caption4']})
+    assert_equal count_media_elements_slide, MediaElementsSlide.count
+    assert_equal 6, MediaElementsSlide.find(stored_id_me).media_element_id
+  end
+  
+  test 'modify_lesson' do
+    # FIRST COPY
+    first_copy = Lesson.find(2).copy(1)
+    assert !first_copy.nil?
+    assert first_copy.copied_not_modified
+    assert first_copy.copy(2).nil?
+    assert_equal 3, Slide.where(:lesson_id => first_copy.id).count
+    s = Slide.where(:position => 2, :lesson_id => first_copy.id).first
+    assert s.change_position 3
+    first_copy = Lesson.find(first_copy.id)
+    assert !first_copy.copied_not_modified
+    # SECOND COPY
+    second_copy = first_copy.copy(1)
+    assert !second_copy.nil?
+    assert second_copy.copied_not_modified
+    assert second_copy.add_slide 'title', 2
+    second_copy = Lesson.find(second_copy.id)
+    assert !second_copy.copied_not_modified
+    # THIRD COPY
+    third_copy = second_copy.copy(1)
+    assert !third_copy.nil?
+    assert third_copy.copied_not_modified
+    assert_equal 4, Slide.where(:lesson_id => third_copy.id).count
+    s = Slide.where(:position => 4, :lesson_id => third_copy.id).first
+    assert s.update_with_media_elements('blaah', nil, {})
+    third_copy = Lesson.find third_copy.id
+    assert !third_copy.copied_not_modified
+    # FOURTH COPY
+    fourth_copy = third_copy.copy(1)
+    assert !fourth_copy.nil?
+    assert fourth_copy.copied_not_modified
+    assert_equal 4, Slide.where(:lesson_id => fourth_copy.id).count
+    s = Slide.where(:position => 4, :lesson_id => fourth_copy.id).first
+    assert s.destroy_with_positions
+    fourth_copy = Lesson.find fourth_copy.id
+    assert !fourth_copy.copied_not_modified
   end
   
 end

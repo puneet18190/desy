@@ -64,8 +64,7 @@ class Slide < ActiveRecord::Base
       raise ActiveRecord::Rollback if !self.save
       media_elements.each do |k, v|
         mes = MediaElementsSlide.where(:position => k, :slide_id => self.id).first
-        if mes.nil? || [mes.media_element_id, mes.alignment, mes.caption] != v
-          mes.destroy if !mes.nil?
+        if mes.nil?
           mes2 = MediaElementsSlide.new
           mes2.position = k
           mes2.slide_id = self.id
@@ -73,6 +72,11 @@ class Slide < ActiveRecord::Base
           mes2.alignment = v[1]
           mes2.caption = v[2]
           raise ActiveRecord::Rollback if !mes2.save
+        elsif [mes.media_element_id, mes.alignment, mes.caption] != v
+          mes.media_element_id = v[0]
+          mes.alignment = v[1]
+          mes.caption = v[2]
+          raise ActiveRecord::Rollback if !mes.save
         end
       end
       resp = true
@@ -215,16 +219,18 @@ class Slide < ActiveRecord::Base
   
   def init_validation
     @slide = Valid.get_association self, :id
+    @lesson = Valid.get_association self, :lesson_id
   end
   
   def validate_associations
-    errors[:lesson_id] << "doesn't exist" if !Lesson.exists?(self.lesson_id)
+    errors[:lesson_id] << "doesn't exist" if @lesson.nil?
   end
   
   def validate_impossible_changes
     if @slide
       errors[:lesson_id] << "can't be changed" if @slide.lesson_id != self.lesson_id
       errors[:kind] << "can't be changed" if @slide.kind != self.kind
+      errors[:title] << "if cover it can't be different by lesson's title" if @lesson && self.cover? && @slide.title != self.title && @lesson.title != self.title
     end
   end
   

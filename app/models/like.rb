@@ -13,8 +13,8 @@ class Like < ActiveRecord::Base
   private
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
-    errors[:lesson_id] << "doesn't exist" if !Lesson.exists?(self.lesson_id)
+    errors[:user_id] << "doesn't exist" if @user.nil?
+    errors[:lesson_id] << "doesn't exist" if @lesson.nil?
   end
   
   def init_validation

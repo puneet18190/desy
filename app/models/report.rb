@@ -19,12 +19,15 @@ class Report < ActiveRecord::Base
   
   def init_validation
     @report = Valid.get_association self, :id
+    @user = Valid.get_association self, :user_id
+    @lesson = self.reportable_type == 'Lesson' ? Valid.get_association(self, :reportable_id, Lesson) : nil
+    @media_element = self.reportable_type == 'MediaElement' ? Valid.get_association(self, :reportable_id, MediaElement) : nil
   end
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
-    errors[:reportable_id] << "lesson doesn't exist" if self.reportable_type == 'Lesson' && !Lesson.exists?(self.reportable_id)
-    errors[:reportable_id] << "media element doesn't exist" if self.reportable_type == 'MediaElement' && !MediaElement.exists?(self.reportable_id)
+    errors[:user_id] << "doesn't exist" if @user.nil?
+    errors[:reportable_id] << "lesson doesn't exist" if self.reportable_type == 'Lesson' && @lesson.nil?
+    errors[:reportable_id] << "media element doesn't exist" if self.reportable_type == 'MediaElement' && @media_element.nil?
   end
   
   def validate_impossible_changes

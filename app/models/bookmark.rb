@@ -19,15 +19,16 @@ class Bookmark < ActiveRecord::Base
   end
   
   def init_validation
+    @user = Valid.get_association self, :user_id
     @bookmark = Valid.get_association self, :id
     @lesson = self.bookmarkable_type == 'Lesson' ? Valid.get_association(self, :bookmarkable_id, Lesson) : nil
     @media_element = self.bookmarkable_type == 'MediaElement' ? Valid.get_association(self, :bookmarkable_id, MediaElement) : nil
   end
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
-    errors[:bookmarkable_id] << "lesson doesn't exist" if self.bookmarkable_type == 'Lesson' && !Lesson.exists?(self.bookmarkable_id)
-    errors[:bookmarkable_id] << "media element doesn't exist" if self.bookmarkable_type == 'MediaElement' && !MediaElement.exists?(self.bookmarkable_id)
+    errors[:user_id] << "doesn't exist" if @user.nil?
+    errors[:bookmarkable_id] << "lesson doesn't exist" if self.bookmarkable_type == 'Lesson' && @lesson.nil?
+    errors[:bookmarkable_id] << "media element doesn't exist" if self.bookmarkable_type == 'MediaElement' && @media_element.nil?
   end
   
   def validate_availability
