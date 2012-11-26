@@ -1,32 +1,9 @@
 <div class="playlistMenu">
 <ul>
-  <li><div class="img_expanded _cover_slide_thumb">
-    <a href="#id">
-      <%= image_tag('finta2.jpg') %>
-      <div class="bg_text">
-      <div class="lessonTitle">Titolo</div>
-    </a>
-  </div>
-  <div class="lessonSubject">Scienze   <span>Author: <strong>DESY Admin User</strong></span></div>
-</div><!--%= render :partial => "/shared/lesson_thumbnail/small/cover" %--></li>
-<li><div class="img_expanded _cover_slide_thumb">
-  <a href="#id">  
-    <%= image_tag('finta2.jpg') %>
-    <div class="bg_text">
-      <div class="lessonTitle">Titolo</div>
-    </div>
-  </a>
-  <div class="lessonSubject">Scienze   <span>Author: <strong>DESY Admin User</strong></span></div>
-</div><!--%= render :partial => "/shared/lesson_thumbnail/small/cover" %--></li>
-<li><div class="img_expanded _cover_slide_thumb">
-  <a href="#id">
-    <%= image_tag('finta2.jpg') %>
-    <div class="bg_text">
-      <div class="lessonTitle">Titolo</div>
-    </div>
-  </a>
-  <div class="lessonSubject">Scienze   <span>Author: <strong>DESY Admin User</strong></span></div>
-</div><!--%= render :partial => "/shared/lesson_thumbnail/small/cover" %--></li>
-
+  <% @playlist.each do |classroom| %>
+    <li data-param="<%= classroom.position %>">
+      <%= render :partial => "shared/lesson_thumbnails/small/cover", :locals => { :slide => classroom.lesson.slides.first } %> 
+    </li>
+  <% end %>
 </ul>
 </div>
