@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  
+  layout "user_mailer"
   default :from => CONFIG['admin_email']
   
   def see_my_lesson(emails, sender, lesson, message)

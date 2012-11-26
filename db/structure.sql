@@ -200,13 +200,13 @@ CREATE TABLE media_elements (
     user_id integer NOT NULL,
     title character varying(255) NOT NULL,
     description text NOT NULL,
-    duration integer,
     sti_type character varying(255) NOT NULL,
     is_public boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     publication_date timestamp without time zone,
-    media character varying(255)
+    media character varying(255),
+    metadata text
 );
 
 
@@ -1288,3 +1288,7 @@ INSERT INTO schema_migrations (version) VALUES ('20121024101844');
 INSERT INTO schema_migrations (version) VALUES ('20121030094116');
 
 INSERT INTO schema_migrations (version) VALUES ('20121107172441');
+
+INSERT INTO schema_migrations (version) VALUES ('20121126135928');
+
+INSERT INTO schema_migrations (version) VALUES ('20121126140000');

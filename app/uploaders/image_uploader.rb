@@ -38,7 +38,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-  process :resize_to_fit => [900, 590]
+  process :resize_to_fit => [1400, 1400]
 
   version :thumb do
     process :resize_to_fill => [200, 200]
@@ -53,6 +53,18 @@ class ImageUploader < CarrierWave::Uploader::Base
   # For images you might use something like this:
   def extension_white_list
     %w(jpg jpeg png)
+  end
+
+  def image
+    @image ||= MiniMagick::Image.open(path)
+  end
+
+  def width
+    image[:width]
+  end
+
+  def height
+    image[:height]
   end
 
   # Override the filename of the uploaded files:
