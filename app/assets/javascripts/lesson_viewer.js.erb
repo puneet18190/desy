@@ -1,11 +1,22 @@
 $(document).ready(function() {
+  $(".playlistMenu ul li").click(function(){
+    var lessonPos = $(this).attr("data-param");
+    var goToPos = $("#carousel_ul li.lesson_"+lessonPos+":first").index();
+    $(".playlistMenu").slideToggle("slow", function() {
+      $("#right_scroll a,#left_scroll a").toggle();
+    });
+    $('#carousel_ul').animate({'left' : -(goToPos*900)},{queue:false, duration:500},function(){
+      //evaluate if needed
+    });
+  });
+  
   var lessonsItems = $("#carousel_ul li").length;
   var viewerWidth = 900 * lessonsItems;
   
   $("a._playlist").click(function(){
     $(".playlistMenu").slideToggle("slow", function() {
-        $("#right_scroll a,#left_scroll a").toggle();
-      });
+      $("#right_scroll a,#left_scroll a").toggle();
+    });
   });
 
   //when user clicks the image for sliding right
