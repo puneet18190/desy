@@ -8,7 +8,7 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_layout, :initialize_paginator, :only => [:index]
   before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :change_position_in_playlist]
   before_filter :initialize_position, :only => :change_position_in_playlist
-  before_filter :initialize_lesson_with_public, :only => :send_link
+  before_filter :initialize_lesson_if_in_virtual_classroom, :only => :send_link
   before_filter :initialize_mails, :only => :send_link
   layout 'virtual_classroom'
   

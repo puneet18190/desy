@@ -24,9 +24,9 @@ class ApplicationController < ActionController::Base
     update_ok(@lesson && @current_user.id == @lesson.user_id)
   end
   
-  def initialize_lesson_with_public
+  def initialize_lesson_if_in_virtual_classroom
     initialize_lesson
-    update_ok(@lesson && @lesson.is_public)
+    update_ok(@lesson && @lesson.in_virtual_classroom?(@current_user.id))
   end
   
   def initialize_lesson
