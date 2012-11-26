@@ -599,11 +599,13 @@ class User < ActiveRecord::Base
   
   def init_validation
     @user = Valid.get_association self, :id
+    @location = Valid.get_association self, :location_id
+    @school_level = Valid.get_association self, :school_level_id
   end
   
   def validate_associations
-    errors[:location_id] << "doesn't exist" if !Location.exists?(self.location_id)
-    errors[:school_level_id] << "doesn't exist" if !SchoolLevel.exists?(self.school_level_id)
+    errors[:location_id] << "doesn't exist" if @location.nil?
+    errors[:school_level_id] << "doesn't exist" if @school_level.nil?
   end
   
   def validate_email

@@ -171,6 +171,7 @@ class MediaElement < ActiveRecord::Base
   
   def init_validation
     @media_element = Valid.get_association self, :id
+    @user = Valid.get_association self, :user_id
     @inner_tags =
       if @tags.blank?
         Tag.get_tags_for_item(self.id, 'MediaElement')
@@ -192,7 +193,7 @@ class MediaElement < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
+    errors[:user_id] << "doesn't exist" if @user.nil?
   end
   
   def validate_publication_date

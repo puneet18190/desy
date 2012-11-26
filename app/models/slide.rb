@@ -219,7 +219,7 @@ class Slide < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:lesson_id] << "doesn't exist" if !Lesson.exists?(self.lesson_id)
+    errors[:lesson_id] << "doesn't exist" if @lesson.nil?
   end
   
   def validate_impossible_changes

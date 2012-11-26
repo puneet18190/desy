@@ -10,11 +10,19 @@ class UsersSubject < ActiveRecord::Base
   validates_uniqueness_of :subject_id, :scope => :user_id
   validate :validate_associations
   
+  before_validation :init_validation
+  
   private
   
+  def init_validation
+    @users_subject = Valid.get_association self, :id
+    @user = Valid.get_association self, :user_id
+    @subject = Valid.get_association self, :subject_id
+  end
+  
   def validate_associations
-    errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
-    errors[:subject_id] << "doesn't exist" if !Subject.exists?(self.subject_id)
+    errors[:user_id] << "doesn't exist" if @user.nil?
+    errors[:subject_id] << "doesn't exist" if @subject.nil?
   end
   
 end
