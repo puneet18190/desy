@@ -45,3 +45,5 @@ gem 'unicorn'
 
 # To use debugger
 # gem 'debugger'
+
+gem "letter_opener", :group => :development

@@ -612,4 +612,16 @@ $(document).ready(function() {
     });
   });
   
+  $('body').on('click', '._send_lesson_link', function() {
+    var lesson_id = $(this).data('lesson-id');
+    showSendLessonLinkPopUp(lesson_id);
+  });
+  
+  $('body').on('focus', '._send_link_form_text_area', function() {
+    if($(this).data('not-yet-selected')) {
+      $(this).attr('value', '');
+      $(this).data('not-yet-selected', false);
+    }
+  });
+  
 });

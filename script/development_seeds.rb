@@ -238,6 +238,7 @@ def plant_development_seeds
   notifics << "Irlanda travolta 6-1. Trap: «Non mi dimetto»"
   notifics << "Mou: «Balotelli? Potrei scriverci un romanzo»"
   notifics << "Roma e lazio nel punto di vista simbolico storico la roma rappresenta il popolo romano e la Lazio I LEGIONALI!! grazie ai LEGIONALI Roma è diventata VASTA E POTENTE e i LEGIONALU ERANO ANCHE ESSI ROMANI!!!! Dunque il derby romano stesso rappresenta simbolicamente la potenza DI ROMA sia dal popplo romano e i LEGIONALI!!! Sabatini non è romano e non conosce storia e leggenda del derby ovvero E IGNORANTE!!!!"
+  notifics << "Felix, 36 km di volo e muro del suono rotto, ma mai spettacolare come il volo di Pessotto"
   
   notifics.each do |n|
     Notification.send_to admin.id, n

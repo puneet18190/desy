@@ -71,6 +71,7 @@ en:
     create_new_lesson_now: 'Create a lesson now'
     create_new_media_element: 'Create a new element'
     description: 'Description'
+    desy_full_description: 'DESY - Digital Education System'
     discover_a_new_way_of_teaching: "Discover a new way of teaching"
     display_mode: 'Display mode'
     display: 'display'
@@ -86,6 +87,7 @@ en:
     help_using_desy: 'Need help using Desy?'
     home: 'Home'
     image_caption_placeholder: 'Write a caption...'
+    insert_emails_here: 'Insert your emails here, separated by comma'
     insert_tag: 'Insert a tag'
     institute: 'Institute'
     large: 'Large'
@@ -134,6 +136,7 @@ en:
     welcome: 'Welcome'
     what_are_you_looking_for: 'What are you looking for?'
     what_is_desy: 'What is DESY?'
+    write_a_message: 'Write a message'
     write_reason_report: 'Write the reason for your report, we will review it. Thank you for your cooperation!'
     you_believe_content_unappropriate: 'You believe this content is unappropriate?'
     your_search_returned: 'Your search returned '
@@ -141,10 +144,15 @@ en:
   descriptions:
     change_info_element: "You can modify the data of your element. Inserting tags you will make it available to DESY community, remember that people are more likely to find your element if you insert more tags"
     instructions_to_fill_playlist: 'After loading the lessons in the virtual classroom drag to create a playlist of reproduction.'
+    mailer_link_1: 'The user '
+    mailer_link_2: ' thinks that you might be interested in a lesson in DESY.'
+    mailer_link_3: "Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser)."
+    mailer_link_4: 'DESY, the digital system so important bla bla bla'
     new_lesson: "Fill in the form to create a new lesson."
     prelogin: "DESY has arrived, the new multimedia platform dedicated to the world of the school. Thanks to DESY will be possible to create multimedia lessons, uploading their images or videos or using those in the database of DESY. Share your work with other users DESY to create a large network of educational content."
     slide_text: "Insert slide content here."
     update_lesson: "Use the form below to edit your lesson informations."
+    you_sent_the_link_of_lesson: "You sent the link of the lesson #title, with message #message, to the emails: "
 
 # (3) accessors: empty situations, popups, help, etc
   empty:
@@ -196,6 +204,10 @@ en:
     after_copy_confirm: 'What would you like to do now?'
     after_copy_stay_in_page: 'Stay in this page'
     after_copy_go_to_editor: 'Edit the lesson now'
+    send_lesson_link_yes: 'Yes, do it'
+    send_lesson_link_no: 'You changed idea'
+    send_lesson_link_ok: 'Link sent successfully!'
+    send_lesson_link_error: 'Link not sent: did you fill all the fields and write correct emails?'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'

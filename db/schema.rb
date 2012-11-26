@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121107172441) do
+ActiveRecord::Schema.define(:version => 20121126140000) do
 
   create_table "locations", :force => true do |t|
     t.string   "description", :null => false
@@ -91,13 +91,13 @@ ActiveRecord::Schema.define(:version => 20121107172441) do
     t.integer  "user_id",                             :null => false
     t.string   "title",                               :null => false
     t.text     "description",                         :null => false
-    t.integer  "duration"
     t.string   "sti_type",                            :null => false
     t.boolean  "is_public",        :default => false, :null => false
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.datetime "publication_date"
     t.string   "media"
+    t.text     "metadata"
     t.index ["title"], :name => "index_media_elements_on_title"
     t.index ["updated_at"], :name => "index_media_elements_on_updated_at"
     t.index ["user_id"], :name => "index_media_elements_on_user_id"

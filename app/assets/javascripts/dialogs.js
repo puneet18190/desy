@@ -1,3 +1,32 @@
+function showSendLessonLinkPopUp(lesson_id) {
+  var obj = $('#dialog-virtual-classroom-send-link');
+  $('#dialog-virtual-classroom-send-link form').attr('action', ('/virtual_classroom/' + lesson_id + '/send_link'));
+  if(obj.data('dialog')) {
+    obj.dialog('open');
+  } else {
+    var dialog_buttons = {};
+    var msg_ok = $('#popup_captions_container_virtual_classroom').data('send-lesson-link-yes');
+    var msg_no = $('#popup_captions_container_virtual_classroom').data('send-lesson-link-no');
+    dialog_buttons[msg_ok] = function() {
+      closePopUp('dialog-virtual-classroom-send-link');
+      $('#dialog-virtual-classroom-send-link form').submit();
+    };
+    dialog_buttons[msg_no] = function() {
+      obj.dialog('option', 'hide', 'fade');
+      closePopUp('dialog-virtual-classroom-send-link');
+      obj.dialog('option', 'hide', null);
+    };
+    obj.show();
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      width: 920,
+      show: "fade",
+      buttons: dialog_buttons
+    });
+  }
+}
+
 function showVirtualClassroomQuickSelectPopUp(content) {
   var obj = $('#dialog-virtual-classroom-quick-select');
   obj.html(content);
@@ -9,14 +38,14 @@ function showVirtualClassroomQuickSelectPopUp(content) {
       modal: true,
       resizable: false,
       width: 920,
-			show: "fade",
+      show: "fade",
       hide: "fade",
-			open: function(event, ui) {
+      open: function(event, ui) {
         $(".ui-widget-overlay").css({
-            opacity: 0.9,
-            filter: "Alpha(Opacity=100)",
-            backgroundColor: "#000",
-						zIndex: 11,
+          opacity: 0.9,
+          filter: "Alpha(Opacity=100)",
+          backgroundColor: "#000",
+          zIndex: 11,
         });
       }
     });

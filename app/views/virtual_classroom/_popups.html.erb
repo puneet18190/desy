@@ -1,0 +1,10 @@
+<div class="virtualClassroomQuickSelectPopUp" id="dialog-virtual-classroom-quick-select" style="display:none"></div>
+
+<div class="virtualClassroomSentLessonLinkPopUp" id="dialog-virtual-classroom-send-link" style="display:none">
+  <%= form_tag '/virtual_classroom/lesson_id/send_link', :remote => true do %>
+    <%= text_area_tag 'emails', t('captions.insert_emails_here'), :class => '_send_link_form_text_area', :data => {:not_yet_selected => true} %>
+    <%= text_area_tag 'message', t('captions.write_a_message'), :class => '_send_link_form_text_area', :data => {:not_yet_selected => true} %>
+  <% end %>
+</div>
+
+<div id="popup_captions_container_virtual_classroom" style="display:none" data-send-lesson-link-yes="<%= t('popups.send_lesson_link_yes') %>" data-send-lesson-link-no="<%= t('popups.send_lesson_link_no') %>"></div>

@@ -1,0 +1,5 @@
+<% if @ok %>
+  showOkPopUp('<%= j t('popups.send_lesson_link_ok') %>');
+<% else %>
+  showErrorPopUp('<%= j t('popups.send_lesson_link_error') %>');
+<% end %>

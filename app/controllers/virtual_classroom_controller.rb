@@ -8,6 +8,8 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_layout, :initialize_paginator, :only => [:index]
   before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :change_position_in_playlist]
   before_filter :initialize_position, :only => :change_position_in_playlist
+  before_filter :initialize_lesson_with_public, :only => :send_link
+  before_filter :initialize_mails, :only => :send_link
   layout 'virtual_classroom'
   
   def index
@@ -122,7 +124,41 @@ class VirtualClassroomController < ApplicationController
     redirect_to :action => :index
   end
   
+  def send_link
+    if @ok
+      UserMailer.see_my_lesson(@emails, @current_user, @lesson, @message).deliver
+      notification = t('descriptions.you_sent_the_link_of_lesson').gsub('#title', "\"#{@lesson.title}\"").gsub('#message', "\"#{@message}\"")
+      @emails.each do |em|
+        notification = "#{notification} '#{em}',"
+      end
+      notification.chop!
+      Notification.send_to @current_user.id, notification.html_safe
+    end
+  end
+  
   private
+  
+  def initialize_mails
+    @emails = []
+    params[:emails].split(',').each do |email|
+      flag = false
+      x = email.split('@')
+      if x.length == 2
+        x = x[1].split('.')
+        if x.length > 1
+          flag = true if x.last.length < 2
+        else
+          flag = true
+        end
+      else
+        flag = true
+      end
+      @emails << email
+      update_ok(!flag)
+    end
+    @message = params[:message]
+    update_ok(@emails.any? && !@message.blank?)
+  end
   
   def initialize_virtual_classroom_lesson
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0

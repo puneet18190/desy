@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate, :initialize_location
   
   private
-
+  
   def prepare_lesson_for_js
     if !@lesson.nil?
       @lesson = Lesson.find_by_id @lesson.id
@@ -22,6 +22,11 @@ class ApplicationController < ActionController::Base
   def initialize_lesson_with_owner
     initialize_lesson
     update_ok(@lesson && @current_user.id == @lesson.user_id)
+  end
+  
+  def initialize_lesson_with_public
+    initialize_lesson
+    update_ok(@lesson && @lesson.is_public)
   end
   
   def initialize_lesson
