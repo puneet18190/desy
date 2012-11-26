@@ -24,6 +24,11 @@ class ApplicationController < ActionController::Base
     update_ok(@lesson && @current_user.id == @lesson.user_id)
   end
   
+  def initialize_lesson_with_public
+    initialize_lesson
+    update_ok(@lesson && @lesson.is_public)
+  end
+  
   def initialize_lesson
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @lesson = Lesson.find_by_id @lesson_id

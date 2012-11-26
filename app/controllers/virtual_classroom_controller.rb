@@ -8,8 +8,8 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_layout, :initialize_paginator, :only => [:index]
   before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :change_position_in_playlist]
   before_filter :initialize_position, :only => :change_position_in_playlist
+  before_filter :initialize_lesson_with_public, :only => :send_link
   before_filter :initialize_mails, :only => :send_link
-  before_filter :initialize_lesson_with_owner, :only => :send_link
   layout 'virtual_classroom'
   
   def index
@@ -126,9 +126,7 @@ class VirtualClassroomController < ApplicationController
   
   def send_link
     if @ok
-      @emails.each do |email|
-        UserMailer.see_my_lesson(email, @current_user, @lesson, @message).deliver
-      end
+      UserMailer.see_my_lesson(@emails, @current_user, @lesson, @message).deliver
     end
   end
   
