@@ -1,11 +1,11 @@
 <h3>Select the lessons you want to upload in the virtual classroom</h3>
-<div id="virtual_classroom_quick_select_container" class="contentPopUp scroll-pane">
+<div id="virtual_classroom_quick_select_container" class="contentPopUp scroll-pane" data-tot-pages="<%= tot_pages %>" data-page="1">
   <% lessons.each do |l| %>
-  <div class="boxViewSingleLesson">
-    <div  class="contentInterno" style="height:auto">
-      <%= render :partial => 'shared/lesson_thumbnails/small/cover', :locals => {:slide => l.cover} %>
+    <div class="boxViewSingleLesson">
+      <div  class="contentInterno" style="height:auto">
+        <%= render :partial => 'shared/lesson_thumbnails/small/cover', :locals => {:slide => l.cover} %>
+      </div>
     </div>
-  </div>
   <% end %>
 </div>
 <div class="uploadButtonPopUpSelectLesson">
