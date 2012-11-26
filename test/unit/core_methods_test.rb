@@ -671,6 +671,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !slide.nil?
     assert slide.title.blank?
     assert slide.text.blank?
+    assert MediaElementsSlide.where(:slide_id => slide.id).empty?
     assert slide.update_with_media_elements(nil, nil, {1 => [5, 0, 'caption1'], 2 => [6, 10, 'caption2'], 3 => [5, -110, 'caption3'], 4 => [6, 4, 'caption4']})
     slide = Slide.find slide.id
     assert slide.title.blank?
@@ -679,6 +680,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !mes.nil?
     assert_equal 0, mes.alignment
     assert_equal 'caption1', mes.caption
+    stored_id_me = mes.id
     mes = MediaElementsSlide.where(:slide_id => slide.id, :position => 2).first
     assert !mes.nil?
     assert_equal 10, mes.alignment
@@ -691,6 +693,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !mes.nil?
     assert_equal 4, mes.alignment
     assert_equal 'caption4', mes.caption
+    assert_equal 4, MediaElementsSlide.where(:slide_id => slide.id).count
+    count_media_elements_slide = MediaElementsSlide.count
+    assert slide.update_with_media_elements(nil, nil, {1 => [6, 0, 'caption1'], 2 => [6, 10, 'caption2'], 3 => [5, -110, 'caption3'], 4 => [6, 4, 'caption4']})
+    assert_equal count_media_elements_slide, MediaElementsSlide.count
+    assert_equal 6, MediaElementsSlide.find(stored_id_me).media_element_id
   end
   
   test 'modify_lesson' do
