@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
   def see_my_lesson(emails, sender, lesson, message)
     @sender = sender
     @message = message
-    @url = Rails.root.join "/lesson_viewer/#{lesson.id}/show?token=#{lesson.token}"
+    @lesson_link = "#{lesson_viewer_path(lesson.id)}?token=#{lesson.token}"
     mail(:to => emails, :subject => "Welcome to My Awesome Site")
   end
   

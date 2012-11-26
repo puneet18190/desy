@@ -18,7 +18,7 @@ User.create_user CONFIG['admin_email'], 'DESY', 'Admin User', 'School', school_l
 
 required = true
 
-begin
+begin # TODO per eliminare i seeds dal progetto basta cancellare; (a) il file qui sotto, script/etc, (b) la cartella db/seeds/*
   require Rails.root.join('script/development_seeds.rb')
 rescue LoadError
   required = false
@@ -37,7 +37,7 @@ puts "#{UsersSubject.count} users_subjects (should be 54)"
 puts "#{Lesson.count} lessons (should be 43)"
 puts "#{MediaElement.count} media_elements (should be 70)"
 puts "#{Slide.count} slides (should be 73)"
-puts "#{Notification.count} notifications (should be 42)"
+puts "#{Notification.count} notifications (should be 43)"
 puts "#{Like.count} likes (should be 122)"
 puts "#{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons (should be 12)"
 puts "#{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements (should be 17)"
