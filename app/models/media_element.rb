@@ -1,6 +1,6 @@
 class MediaElement < ActiveRecord::Base
   
-  #TODO estrarre da database sty_types
+  # TODO estrarre da database sti_types
   IMAGE_TYPE = 'Image'
   AUDIO_TYPE = 'Audio'
   VIDEO_TYPE = 'Video'
@@ -27,7 +27,7 @@ class MediaElement < ActiveRecord::Base
   validates_inclusion_of :is_public, :in => [true, false]
   validates_inclusion_of :sti_type, :in => STI_TYPES
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
-  validates_numericality_of :duration, :allow_nil => true, :only_integer => true, :greater_than => 0
+  #validates_numericality_of :duration, :allow_nil => true, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => I18n.t('language_parameters.media_element.length_title')
   validates_length_of :description, :maximum => I18n.t('language_parameters.media_element.length_description')
   validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_tags_length#, :validate_duration
@@ -212,7 +212,7 @@ class MediaElement < ActiveRecord::Base
       if @media_element.is_public
         errors[:title] << "is not changeable for a public record" if @media_element.title != self.title
         errors[:description] << "is not changeable for a public record" if @media_element.description != self.description
-        errors[:duration] << "is not changeable for a public record" if @media_element.duration != self.duration
+        #errors[:duration] << "is not changeable for a public record" if @media_element.duration != self.duration
         errors[:is_public] << "is not changeable for a public record" if !self.is_public
         errors[:publication_date] << "is not changeable for a public record" if @media_element.publication_date != self.publication_date
       else
@@ -222,13 +222,13 @@ class MediaElement < ActiveRecord::Base
   end
   
   # TODO implementarla
-  def validate_duration
-    if self.sti_type == 'Image'
-      errors[:duration] << 'must be blank for images' if !self.duration.nil?
-    else
-      errors[:duration] << "can't be blank for videos and audios" if self.duration.nil?
-    end
-  end
+  # def validate_duration
+  #   if self.sti_type == 'Image'
+  #     errors[:duration] << 'must be blank for images' if !self.duration.nil?
+  #   else
+  #     errors[:duration] << "can't be blank for videos and audios" if self.duration.nil?
+  #   end
+  # end
   
   def stop_if_public
     @media_element = Valid.get_association self, :id

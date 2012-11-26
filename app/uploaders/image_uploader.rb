@@ -55,6 +55,18 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg png)
   end
 
+  def image
+    @image ||= MiniMagick::Image.open(path)
+  end
+
+  def width
+    image[:width]
+  end
+
+  def height
+    image[:height]
+  end
+
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
