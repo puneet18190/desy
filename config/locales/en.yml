@@ -117,6 +117,7 @@ en:
     selected_for_you: 'Selected for you'
     select_audio: "Select audio"
     select_image: "Select image"
+    select_the_lessons_you_want_to_upload: 'Select the lessons you want to upload in the Virtual Classroom'
     select_video: "Select video"
     send: 'Send'
     send_link_to_your_friends: 'Send a link to your friends'
@@ -128,6 +129,7 @@ en:
     talk_with_desy: 'Want to talk with DESY?'
     update: 'Update'
     update_lesson: 'Update lesson'
+    upload: 'Upload'
     virtual_classroom: 'Virtual classroom'
     warning: 'Warning!'
     warning_search_lessons: 'Not entering any keyword you can see all the lessons of the subject selected.'

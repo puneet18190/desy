@@ -124,7 +124,7 @@ class VirtualClassroomController < ApplicationController
   end
   
   def select_lessons_new_block
-    @lessons = @current_user.own_lessons(@page, LESSONS_IN_QUICK_LOADER)[:records]
+    @lessons = @current_user.own_lessons(@page, LESSONS_IN_QUICK_LOADER)[:records] if @ok
   end
   
   def load_lessons

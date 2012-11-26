@@ -1,4 +1,4 @@
-<h3>Select the lessons you want to upload in the virtual classroom</h3>
+<h3><%= t('captions.select_the_lessons_you_want_to_upload') %></h3>
 <div id="virtual_classroom_quick_select_container" class="contentPopUp scroll-pane" data-tot-pages="<%= tot_pages %>" data-page="1">
   <% lessons.each do |l| %>
     <div class="boxViewSingleLesson">
@@ -9,5 +9,5 @@
   <% end %>
 </div>
 <div class="uploadButtonPopUpSelectLesson">
-  <div class="lower uploadButton"><a>upload</a></div> <span>or <a>cancel</a></span>
+  <div class="lower uploadButton"><a class="lower"><%= t('captions.upload') %></a></div> <span><a class="lower"><%= t('captions.or_cancel') %></a></span>
 </div>
