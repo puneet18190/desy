@@ -387,10 +387,10 @@ class Lesson < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if !User.exists?(self.user_id)
-    errors[:subject_id] << "doesn't exist" if !Subject.exists?(self.subject_id)
-    errors[:school_level_id] << "doesn't exist" if !SchoolLevel.exists?(self.school_level_id)
-    errors[:parent_id] << "doesn't exist" if self.parent_id && !Lesson.exists?(self.parent_id)
+    errors[:user_id] << "doesn't exist" if @user.nil?
+    errors[:subject_id] << "doesn't exist" if @subject.nil?
+    errors[:school_level_id] << "doesn't exist" if @school_level.nil?
+    errors[:parent_id] << "doesn't exist" if self.parent_id && @parent.nil?
     errors[:parent_id] << "can't be the lesson itself" if @lesson && self.parent_id == @lesson.id
   end
   
@@ -415,6 +415,10 @@ class Lesson < ActiveRecord::Base
   
   def init_validation
     @lesson = Valid.get_association self, :id
+    @user = Valid.get_association self, :user_id
+    @subject = Valid.get_association self, :subject_id
+    @school_level = Valid.get_association self, :school_level_id
+    @parent = Valid.get_association self, :parent_id, Lesson
     @title_changed = (@lesson && @lesson.title != self.title)
     if @tags.blank?
       @inner_tags = Tag.get_tags_for_item(self.id, 'Lesson')
