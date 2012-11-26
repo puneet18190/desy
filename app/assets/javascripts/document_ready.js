@@ -613,4 +613,11 @@ $(document).ready(function() {
     showSendLessonLinkPopUp(lesson_id);
   });
   
+  $('body').on('focus', '._send_link_form_text_area', function() {
+    if($(this).data('not-yet-selected')) {
+      $(this).attr('value', '');
+      $(this).data('not-yet-selected', false);
+    }
+  });
+  
 });

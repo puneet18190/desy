@@ -126,6 +126,9 @@ class VirtualClassroomController < ApplicationController
   
   def send_link
     if @ok
+      @emails.each do |email|
+        UserMailer.see_my_lesson(email, @current_user, @lesson, @message).deliver
+      end
     end
   end
   
@@ -149,7 +152,8 @@ class VirtualClassroomController < ApplicationController
       @emails << email
       update_ok(!flag)
     end
-    update_ok(@emails.any?)
+    @message = params[:message]
+    update_ok(@emails.any? && !@message.blank?)
   end
   
   def initialize_virtual_classroom_lesson
