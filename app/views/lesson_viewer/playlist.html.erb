@@ -1,0 +1,5 @@
+<% @playlist.each do |classroom| %>
+  <%= render :partial => "lesson_slides", :locals => {:lesson => classroom.lesson} %>
+<%end%>
+<%= render :partial => "playlist_menu", :locals => {:lesson => @playlist} %>
+<a href="#" class="_playlist">Show Playlist</a>

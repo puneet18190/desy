@@ -47,8 +47,8 @@ Desy::Application.routes.draw do
   post 'lesson_editor/:lesson_id/change_slide_position/:slide_id/position/:position' => 'lesson_editor#change_slide_position', :as => :change_slide_position
   
   # LESSON VIEWER
-  get  'lesson_viewer/:lesson_id' => 'lesson_viewer#index', :as => :lesson_viewer
   get  'lesson_viewer/playlist' => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
+  get  'lesson_viewer/:lesson_id/show' => 'lesson_viewer#index', :as => :lesson_viewer
   
   # VIRTUAL CLASSROOM
   post 'virtual_classroom/:lesson_id/remove_lesson_from_inside' => 'virtual_classroom#remove_lesson_from_inside'

@@ -1,6 +1,6 @@
 <div class="box">
   <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
-    <%= hidden_field_tag :title %>
+    <%= hidden_field_tag :title, slide.title %>
     
     <% sme1 = slide.media_element_url_at(1) %>
     <%- if !sme1[:empty] %>
@@ -25,7 +25,7 @@
   <% end %>
 	<div class="title">
 
-    <h2><%= slide.lesson.title %></h2>
+    <h2><%= slide.title %></h2>
   </div>
 </div>
 <div class="cover-slide-footer">
