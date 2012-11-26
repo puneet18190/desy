@@ -135,14 +135,29 @@ html.lesson-viewer-layout{
 		  padding-left:10px;
 			display:inline-block;
 			height:168px;
-			width:850px;
+			width:auto;
 		}
 		li {
-		  display: inline-block;
-       list-style-type: none;
-       margin-right: 20px;
+      display: inline-block;
+      list-style-type: none;
+      margin: 0 20px 0 10px;
+      cursor:pointer;
 		}
 	}
+	
+	.scroll-pane {
+    width: 100%;
+	  height: 180px;
+	  overflow: auto;
+  }	
+  .horizontal-only {
+	  height:180px;
+	}
+	.scrollContent {
+    width:860px;
+		text-align:left;
+	}
+	
 	@mixin formatElement {
 	  width:860px;
 		height:550px;

@@ -81,7 +81,7 @@ html.lesson-editor-layout{
         border: 1px solid #4b4b4b;
         color: #4b4b4b;
         text-align: center;
-        font-size: 12px;
+        font-size: 1em;
         &.add-small{
           text-indent: -9999999px;
           border:none;
@@ -257,6 +257,10 @@ html.lesson-editor-layout{
     height: 590px;
     
     li.slides {
+      opacity: 0.4;
+      &.active{
+        opacity: 1;
+      }
       input, textarea{
         color: $orange;
         border: 1px solid #efefef;
