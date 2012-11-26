@@ -606,4 +606,9 @@ $(document).ready(function() {
     });
   });
   
+  $('body').on('click', '._send_lesson_link', function() {
+    var lesson_id = $(this).data('lesson-id');
+    showSendLessonLinkPopUp(lesson_id);
+  });
+  
 });

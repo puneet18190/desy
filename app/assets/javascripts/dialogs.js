@@ -1,3 +1,28 @@
+function showSendLessonLinkPopUp(lesson_id) {
+  var obj = $('#dialog-virtual-classroom-send-link');
+  $('#dialog-virtual-classroom-send-link form').attr('action', ('/virtual_classroom/' + lesson_id + '/send_link'));
+  if(obj.data('dialog')) {
+    obj.dialog('open');
+  } else {
+    obj.show();
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      width: 920,
+      show: "fade",
+      hide: "fade",
+      open: function(event, ui) {
+        $(".ui-widget-overlay").css({
+          opacity: 0.9,
+          filter: "Alpha(Opacity=100)",
+          backgroundColor: "#000",
+          zIndex: 11,
+        });
+      }
+    });
+  }
+}
+
 function showVirtualClassroomQuickSelectPopUp(content) {
   var obj = $('#dialog-virtual-classroom-quick-select');
   obj.html(content);
@@ -9,14 +34,14 @@ function showVirtualClassroomQuickSelectPopUp(content) {
       modal: true,
       resizable: false,
       width: 920,
-			show: "fade",
+      show: "fade",
       hide: "fade",
-			open: function(event, ui) {
+      open: function(event, ui) {
         $(".ui-widget-overlay").css({
-            opacity: 0.9,
-            filter: "Alpha(Opacity=100)",
-            backgroundColor: "#000",
-						zIndex: 11,
+          opacity: 0.9,
+          filter: "Alpha(Opacity=100)",
+          backgroundColor: "#000",
+          zIndex: 11,
         });
       }
     });

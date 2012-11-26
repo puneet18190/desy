@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate, :initialize_location
   
   private
-
+  
   def prepare_lesson_for_js
     if !@lesson.nil?
       @lesson = Lesson.find_by_id @lesson.id
