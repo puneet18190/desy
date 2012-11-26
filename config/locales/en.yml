@@ -210,6 +210,8 @@ en:
     send_lesson_link_no: 'You changed idea'
     send_lesson_link_ok: 'Link sent successfully!'
     send_lesson_link_error: 'Link not sent: did you fill all the fields and write correct emails?'
+    virtual_classroom_lessons_loaded_ok: 'Correctly loaded your lessons!'
+    virtual_classroom_lessons_loaded_error: 'There was a problem loading your lessons'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'

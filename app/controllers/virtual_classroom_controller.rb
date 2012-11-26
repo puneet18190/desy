@@ -128,7 +128,6 @@ class VirtualClassroomController < ApplicationController
   end
   
   def load_lessons
-    redirect_to :action => :index
   end
   
   def send_link
