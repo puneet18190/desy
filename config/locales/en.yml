@@ -71,6 +71,7 @@ en:
     create_new_lesson_now: 'Create a lesson now'
     create_new_media_element: 'Create a new element'
     description: 'Description'
+    desy_full_description: 'DESY - Digital Education System'
     discover_a_new_way_of_teaching: "Discover a new way of teaching"
     display_mode: 'Display mode'
     display: 'display'
@@ -143,6 +144,10 @@ en:
   descriptions:
     change_info_element: "You can modify the data of your element. Inserting tags you will make it available to DESY community, remember that people are more likely to find your element if you insert more tags"
     instructions_to_fill_playlist: 'After loading the lessons in the virtual classroom drag to create a playlist of reproduction.'
+    mailer_link_1: 'The user '
+    mailer_link_2: ' thinks that you might be interested in a lesson in DESY.'
+    mailer_link_3: "Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser)."
+    mailer_link_4: 'DESY, the digital system so important bla bla bla'
     new_lesson: "Fill in the form to create a new lesson."
     prelogin: "DESY has arrived, the new multimedia platform dedicated to the world of the school. Thanks to DESY will be possible to create multimedia lessons, uploading their images or videos or using those in the database of DESY. Share your work with other users DESY to create a large network of educational content."
     slide_text: "Insert slide content here."
