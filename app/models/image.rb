@@ -1,6 +1,17 @@
 class Image < MediaElement
   mount_uploader :media, ImageUploader
+  serialize :metadata, OpenStruct
 
-  # FIXME toglierlo da qui e metterlo in MediaElement una volta implementati tutti gli upload
+  # TODO toglierlo da qui e metterlo in MediaElement una volta implementati tutti gli upload
   validates_presence_of :media
+
+  before_save :set_width_and_height
+
+  private
+  def set_width_and_height
+    metadata.width  = media.width
+    metadata.height = media.height
+    true 
+  end
+
 end
