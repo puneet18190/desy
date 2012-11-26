@@ -1,5 +1,7 @@
 <div class="box">
   <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
+    <%= hidden_field_tag :title %>
+    
     <% sme1 = slide.media_element_url_at(1) %>
     <%- if !sme1[:empty] %>
     <!--TODO replace align value from db (after default at 0)-->

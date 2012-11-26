@@ -1,6 +1,13 @@
-<ul id="cover">
-  <% lesson.slides.order(:position).each do |slide| %>
-  <% slide.text = "" if slide.text.blank? %>
-    <li class="cover"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
-  <% end %>
-</ul>
+<div id='carousel_container'>
+  <div id='left_scroll'><a href="#"></a></div>
+    <div id='carousel_inner'>
+      <ul id='carousel_ul'>
+        <!--<ul id="cover">-->
+        <% lesson.slides.order(:position).each do |slide| %>
+        <% slide.text = "" if slide.text.blank? %>
+          <li class="cover"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
+        <% end %>
+      </ul>
+    </div>
+  <div id='right_scroll'><a href="#"></a></div>
+</div>

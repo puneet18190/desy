@@ -59,7 +59,7 @@ html.lesson-viewer-layout{
 		margin:10px;
   }
 	.top {
-    margin-bottom: -190px;
+    margin-bottom: -220px;
     background: transparent;
     width: 1px;
     height: 40%;
@@ -77,6 +77,9 @@ html.lesson-viewer-layout{
 	}
 	ul#cover {
 	  display: block;
+	  overflow:hidden;
+	  width: 900px;
+	  height: 590px;
 	  li.cover {
 		  display: inline-block;
       list-style-type: none;
@@ -122,9 +125,9 @@ html.lesson-viewer-layout{
 		
   }
   .playlistMenu {
+    display:none;
 	  width:860px;
 		padding:20px;
-		display:block;
 		position:absolute;
 		bottom:0;
 		background-color:#141313;
@@ -384,5 +387,54 @@ html.lesson-viewer-layout{
 		overflow:hidden;
 		padding:20px;
 	}
+	
+	/** carousel inner **/
+	#carousel_inner {
+  float:left; /* important for inline positioning */
+  width:900px; /* important (this width = width of list item(including margin) * items shown */
+  overflow: hidden;  /* important (hide the items outside the div) */
+  /* non-important styling bellow */
+  }
+
+  #carousel_ul {
+  position:relative;
+  left:0px; /* important (this should be negative number of list items width(including margin) */
+  list-style-type: none; /* removing the default styling for unordered list items */
+  margin: 0px;
+  padding: 0px;
+  width:9999px; /* important */
+  /* non-important styling bellow */
+  padding-bottom:10px;
+  }
+
+  #carousel_ul li{
+  float: left; /* important for inline positioning of the list items */
+  width:900px;  /* fixed width, important */
+  /* just styling bellow*/
+  padding:0px;
+  height:590px;
+  margin:0;
+  }
+
+  #left_scroll, #right_scroll{
+  margin:0;
+  position: absolute;
+  z-index: 10;
+  opacity:0.2;
+  
+  }
+  
+  #right_scroll{
+    left: 450px;
+  }
+  
+  #left_scroll a, #right_scroll a{
+  /*styling*/
+    cursor: pointer;
+    cursor: hand;
+    height:590px;
+    width:450px;
+    display:block;
+  }
 	
 }
