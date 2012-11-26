@@ -196,6 +196,8 @@ en:
     after_copy_confirm: 'What would you like to do now?'
     after_copy_stay_in_page: 'Stay in this page'
     after_copy_go_to_editor: 'Edit the lesson now'
+    confirm_send_lesson_link: 'Yes, do it'
+    cancel_send_lesson_link: 'You changed idea'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'

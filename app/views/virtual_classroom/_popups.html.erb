@@ -1,9 +1,11 @@
 <div class="virtualClassroomQuickSelectPopUp" id="dialog-virtual-classroom-quick-select" style="display:none"></div>
 
 <div class="virtualClassroomSentLessonLinkPopUp" id="dialog-virtual-classroom-send-link" style="display:none">
-  <% form_tag '/virtual_classroom/lesson_id/send_link' do %>
+  <%= form_tag '/virtual_classroom/lesson_id/send_link' do %>
     <%= text_area_tag 'mails', 'Inserisci le mails qui' %>
     <%= text_area_tag 'message', 'Inserisci il tuo messaggio qui!' %>
     <%= submit_tag 'vai!' %>
   <% end %>
 </div>
+
+<div id="popup_captions_container_virtual_classroom" style="display:none" data-ok-send-lesson-link="<%= t('popups.confirm_send_lesson_link') %>" data-dont-send-lesson-link="<%= t('popups.cancel_send_lesson_link') %>"></div>

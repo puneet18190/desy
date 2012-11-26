@@ -4,6 +4,17 @@ function showSendLessonLinkPopUp(lesson_id) {
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
+    var dialog_buttons = {};
+    var msg_ok = $('#popup_captions_container_virtual_classroom').data('ok-send-lesson-link');
+    var msg_no = $('#popup_captions_container_virtual_classroom').data('dont-send-lesson-link');
+    dialog_buttons[msg_ok] = function() {
+      alert('yesss');
+      closePopUp('dialog-virtual-classroom-send-link');
+    };
+    dialog_buttons[msg_no] = function() {
+      alert('noooo');
+      closePopUp('dialog-virtual-classroom-send-link');
+    };
     obj.show();
     obj.dialog({
       modal: true,
@@ -11,14 +22,7 @@ function showSendLessonLinkPopUp(lesson_id) {
       width: 920,
       show: "fade",
       hide: "fade",
-      open: function(event, ui) {
-        $(".ui-widget-overlay").css({
-          opacity: 0.9,
-          filter: "Alpha(Opacity=100)",
-          backgroundColor: "#000",
-          zIndex: 11,
-        });
-      }
+      buttons: dialog_buttons
     });
   }
 }
