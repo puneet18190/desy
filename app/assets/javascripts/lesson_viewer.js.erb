@@ -1,0 +1,37 @@
+$(document).ready(function() {
+  var lessonsItems = $("#carousel_ul li").length;
+  var viewerWidth = 900 * lessonsItems;
+  
+  $("a._playlist").click(function(){
+    $(".playlistMenu").slideToggle("slow", function() {
+        $("#right_scroll a,#left_scroll a").toggle();
+      });
+  });
+
+  //when user clicks the image for sliding right
+  $('#right_scroll a').click(function(){
+
+      var item_width = $('#carousel_ul li').outerWidth();
+      var left_indent = parseInt($('#carousel_ul').css('left')) - item_width;
+      if(left_indent == -viewerWidth){
+        left_indent = 0;
+      }
+      
+      $('#carousel_ul').animate({'left' : left_indent},{queue:false, duration:500},function(){
+        //evaluate if needed
+      });
+  });
+
+  //when user clicks the image for sliding left
+  $('#left_scroll a').click(function(){
+      var item_width = $('#carousel_ul li').outerWidth();
+      var left_indent = parseInt($('#carousel_ul').css('left')) + item_width;
+      if(left_indent > 0){
+        left_indent = 0;
+      }
+      $('#carousel_ul').animate({'left' : left_indent},{queue:false, duration:500},function(){
+        //evaluate if needed
+      });
+
+  });
+});

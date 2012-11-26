@@ -557,6 +557,8 @@ $(document).ready(function() {
     closePopUp($(this).data('dialog-id'));
   });
   
+  // LESSON VIEWER
+  
   
   // VIRTUAL CLASSROOM
   

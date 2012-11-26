@@ -73,7 +73,7 @@ class LessonEditorController < ApplicationController
     if @ok
       @lesson.add_slide @kind, (@slide.position + 1)
       @slides = @lesson.slides.order(:position)
-      @slide_to = @slide.position
+      @slide_to = @slide.position + 1
     end
   end
   
@@ -86,7 +86,7 @@ class LessonEditorController < ApplicationController
       @slide.destroy_with_positions
       @lesson = @slide.lesson
       @slides = @lesson.slides.order(:position)
-      @slide_to = @slide.position - 1
+      @slide_to = @slide.position - 2
     end
   end
   

@@ -213,6 +213,7 @@ html.lesson-editor-layout{
         width: 280px;
         position: absolute;
         top: 168px;
+        z-index:999999;
         h2{
           color: rgba(255,255,255,1);
         }
@@ -769,7 +770,10 @@ html.lesson-editor-layout{
         }
         
         .new_slide{
+          position:absolute;
+          z-index:99999999;
           height: 570px;
+          width: 860px;
           background-color: $orange;
           padding: 20px 0 0 40px;
           a img{
