@@ -1,6 +1,6 @@
 <h3><%= t('captions.select_the_lessons_you_want_to_upload') %></h3>
 <div id="virtual_classroom_quick_select_container" class="contentPopUp scroll-pane" data-tot-pages="<%= tot_pages %>" data-page="1">
-  <%= form_tag load_lessons_path do %>
+  <%= form_tag load_lessons_path, :remote => true do %>
     <% lessons.each do |l| %>
       <div id="virtual_classroom_quick_loaded_lesson_<%= l.id %>" class="boxViewSingleLesson _virtual_classroom_quick_loaded_lesson">
         <%= hidden_field_tag "virtual_classroom_quick_loaded_lesson_name_#{l.id}", "0" %>
@@ -12,5 +12,5 @@
   <% end %>
 </div>
 <div class="uploadButtonPopUpSelectLesson">
-  <div class="lower uploadButton"><a class="lower"><%= t('captions.upload') %></a></div> <span><a class="lower"><%= t('captions.or_cancel') %></a></span>
+  <div id="virtual_classroom_quick_select_submit" class="lower uploadButton"><a class="lower"><%= t('captions.upload') %></a></div> <span><a id="virtual_classroom_quick_select_close" class="lower"><%= t('captions.or_cancel') %></a></span>
 </div>
