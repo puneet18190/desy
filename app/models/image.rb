@@ -7,6 +7,14 @@ class Image < MediaElement
 
   before_save :set_width_and_height
 
+  def width
+    metadata.width
+  end
+
+  def height
+    metadata.height
+  end
+
   private
   def set_width_and_height
     metadata.width  = media.width
