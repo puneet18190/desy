@@ -127,6 +127,12 @@ class VirtualClassroomController < ApplicationController
   def send_link
     if @ok
       UserMailer.see_my_lesson(@emails, @current_user, @lesson, @message).deliver
+      notification = t('descriptions.you_sent_the_link_of_lesson').gsub('#title', "\"#{@lesson.title}\"").gsub('#message', "\"#{@message}\"")
+      @emails.each do |em|
+        notification = "#{notification} '#{em}',"
+      end
+      notification.chop!
+      Notification.send_to @current_user.id, notification.html_safe
     end
   end
   

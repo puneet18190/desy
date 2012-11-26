@@ -152,6 +152,7 @@ en:
     prelogin: "DESY has arrived, the new multimedia platform dedicated to the world of the school. Thanks to DESY will be possible to create multimedia lessons, uploading their images or videos or using those in the database of DESY. Share your work with other users DESY to create a large network of educational content."
     slide_text: "Insert slide content here."
     update_lesson: "Use the form below to edit your lesson informations."
+    you_sent_the_link_of_lesson: "You sent the link of the lesson #title, with message #message, to the emails: "
 
 # (3) accessors: empty situations, popups, help, etc
   empty:
