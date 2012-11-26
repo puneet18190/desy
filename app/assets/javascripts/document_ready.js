@@ -624,4 +624,9 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('click', '._virtual_classroom_quick_loaded_lesson', function() {
+    $('#' + this.id + ' input').val('1');
+    $('#' + this.id + ' ._cover_slide_thumb').addClass('current');
+  });
+  
 });
