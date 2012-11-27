@@ -12,13 +12,51 @@
     -webkit-border-radius: 5px;
   }
 }
-.virtualClassroomSentLessonLinkPopUp form {
-	  position: absolute;
-    top: 2em;
-    left: 5.5em;
-		
-		
+.virtual_classroom-layout {
+  .virtualClassroomSentLessonLinkPopUp {
+    overflow: hidden;
+    box-shadow: 0px 5px 15px #454343;
+    -webkit-box-shadow: 0px 5px 15px #454343;
+	  background-color:#2eaadc;
+	  font-family:'Nunito', sans-serif;
+	  
+	  h1 {
+	    color:#fff;
+		  padding:0.5em;
+	  }
+	  p {
+	    padding-left:1em;
+			padding-bottom:1em;
+	  }
+		form {
+		  padding:1em;
+			
+			float:left
+	  }	
+		textarea {
+		  background-color:#454343;
+			outline:1px solid white;
+			padding:10px;
+			width:290px;
+			color: white;
+			&.campoEmail {
+			  height: 15px;
+				margin-bottom:10px;
+			}
+			&.campoMessaggio {
+			  height: 108px;
+			}
+		}
+    .colonnaCoverLesson {
+		  float:right;
+			padding-top:1em;
+		}
+  }
+	.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+	  top:26em;
+		left:2em;
 	}
+}
 .timedPopUp img,
 .confirmPopUp img { 
   float:left;
