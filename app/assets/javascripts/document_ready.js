@@ -627,9 +627,23 @@ $(document).ready(function() {
   $('body').on('click', '._virtual_classroom_quick_loaded_lesson', function() {
     var cover = $('#' + this.id + ' ._cover_slide_thumb');
     if(!cover.hasClass('current')) {
-      $('#' + this.id + ' input').val('1');
-      cover.addClass('current');
+      var appended = $('#' + this.id + ' ._current_inserted');
+      if(appended.length == 0) {
+        $('#' + this.id + ' input').val('1');
+        cover.append('<div class="currentInserted _current_inserted"><a></a></div>');
+      } else {
+        $('#' + this.id + ' input').val('0');
+        appended.remove();
+      }
     }
+  });
+  
+  $('body').on('mouseover', '._current_inserted', function(){
+    $(this).children('a').css('background-position', '-7.4em 0em');
+  });
+  
+  $('body').on('mouseout', '._current_inserted', function(){
+    $(this).children('a').css('background-position', '-7.4em -11.3em');
   });
   
   $('body').on('click', '#virtual_classroom_quick_select_submit', function() {
