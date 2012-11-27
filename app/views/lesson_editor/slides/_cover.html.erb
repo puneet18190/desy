@@ -1,14 +1,11 @@
 <div class="box">
   <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
     <%= hidden_field_tag :title, slide.title %>
-    
     <% sme1 = slide.media_element_url_at(1) %>
     <%- if !sme1[:empty] %>
-      <%= render :partial => "/lesson_editor/slides/parts/filled_image", :locals => {:kind => "cover", :position => 1} %>      
+      <%= render :partial => "/lesson_editor/slides/parts/filled_image", :locals => {:slide => slide, :position => 1} %>      
     <%- else %>
-    <!--TODO replace align value from db (after default at 0)-->
-    <%= hidden_field_tag :media_element_align_1, "0", :class =>"media_element_align_1" %>
-    
+      <%= hidden_field_tag :media_element_align_1, "0", :class =>"media_element_align_1" %>
       <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
       <div class="cover-choose-image _cover_choose_image_1">
         <%= link_to image_tag("choose-image.png"), {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery" %>
@@ -18,7 +15,6 @@
     <%- end %>
   <% end %>
 	<div class="title">
-
     <h2><%= slide.title %></h2>
   </div>
 </div>

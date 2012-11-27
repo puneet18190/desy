@@ -197,6 +197,7 @@ html.lesson-editor-layout{
         h2.text{
             font-size: 20px;
             padding: 5px 5px 0 5px;
+            font-family: "Nunito", Helvetica, sans-serif;
         }
         .text-content{
           margin: 0 5px;
@@ -272,6 +273,7 @@ html.lesson-editor-layout{
       }
       
       input.caption{
+        font-family:"Nunito", sans-serif;
         border: 1px solid transparent;
         outline: none;
         width: 900px;
@@ -399,7 +401,18 @@ html.lesson-editor-layout{
             display:block;
             cursor:move;
             cursor: -webkit-grab;
+          }
+        }
+        ._mask_x{
+          img{
+            height: 560px;
             left:0;
+          }
+        }
+        ._mask_y{
+          img{
+            width: 900px;
+            top:0;
           }
         }
         input.caption{
@@ -429,6 +442,9 @@ html.lesson-editor-layout{
         height: 590px;
         margin-left:0px;
         background-color: white;
+        h2 input{
+          font-family: "Nunito", Helvetica, sans-serif;
+        }
         &.title{
           .only-title textarea{
             padding:150px 100px;
@@ -581,10 +597,10 @@ html.lesson-editor-layout{
           }
         }
         &.image4{
-          .image-4-box{
+          .mask.image4-p1,.mask.image4-p2,.mask.image4-p3,.mask.image4-p4{
             display:block;
-            width: 450px;
-            height: 295px;
+            width: 420px;
+            height: 265px;
             margin:0;
             padding: 0;
             float:left;
@@ -600,8 +616,6 @@ html.lesson-editor-layout{
               display:block;
               cursor:move;
               cursor: -webkit-grab;
-              left:0;
-              height: 265px;
             }
             &.image4-p1,&.image4-p3{
               float:right;
@@ -610,6 +624,18 @@ html.lesson-editor-layout{
             &.image4-p2,&.image4-p4{
               float:left;
               margin: 20px 0 0 20px;
+            }
+          }
+          ._mask_x{
+            img{
+              height: 265px;
+              left:0;
+            }
+          }
+          ._mask_y{
+            img{
+              width: 420px;
+              top:0;
             }
           }
           .rollover{
@@ -641,7 +667,18 @@ html.lesson-editor-layout{
               display:block;
               cursor:move;
               cursor: -webkit-grab;
+            }
+          }
+          ._mask_x{
+            img{
+              height: 550px;
               left:0;
+            }
+          }
+          ._mask_y{
+            img{
+              width: 860px;
+              top:0;
             }
           }
           .cover-choose-image{
@@ -685,8 +722,18 @@ html.lesson-editor-layout{
               display:block;
               cursor:move;
               cursor: -webkit-grab;
+            }
+          }
+          ._mask_x{
+            img{
+              height: 550px;
               left:0;
-              height: 560px;
+            }
+          }
+          ._mask_y{
+            img{
+              width: 420px;
+              top:0;
             }
           }
           .cover-choose-image{
@@ -723,7 +770,7 @@ html.lesson-editor-layout{
           }
           .mask{
             width: 440px;
-            height: 400px;
+            height: 420px;
             overflow:hidden;
             position:relative;
             float:left;
@@ -733,8 +780,18 @@ html.lesson-editor-layout{
               display:block;
               cursor:move;
               cursor: -webkit-grab;
+            }
+          }
+          ._mask_x{
+            img{
+              height: 420px;
               left:0;
-              height: 400px;
+            }
+          }
+          ._mask_y{
+            img{
+              width: 440px;
+              top:0;
             }
           }
           
@@ -749,7 +806,7 @@ html.lesson-editor-layout{
           }
           
           .rollover{
-            height: 365px;
+            height: 385px;
           	width: 440px;
           	margin: 0;
           	.add-image{
@@ -758,7 +815,7 @@ html.lesson-editor-layout{
           }
           
           input.caption{
-            top: 365px;
+            top: 385px;
             width: 440px;
           }
           
