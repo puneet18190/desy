@@ -10,7 +10,9 @@
 		<div class="photoIcon"></div>
 		<% else %>
      <%= image_tag image[:url], :style => "left:#{image[:alignment]}px" %>
-    	<div class="caption"><%= image[:caption] %></div> 
+      <% if !image[:caption].blank? %>
+    	  <div class="caption"><%= image[:caption] %></div> 
+    	<% end %>
 		<% end %>
   </div>
   <div class="textRightContent">

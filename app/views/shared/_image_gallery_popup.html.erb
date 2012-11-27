@@ -5,7 +5,7 @@
   <%else%>
     <%= image_tag(media_element.media.url, :class=>"popup_expanded", :style=>"max-height: 420px; max-width: 420px")%>
     <div class="caption">
-      <a href="#" class="aggiungiImgButton current _add_<%= sti_type %>_to_slide image-<%= media_element.id %>" data-param="<%= media_element.id %>" data-url="<%= media_element.media.url %>" style="float:right"></a>
+      <a href="#" class="aggiungiImgButton current _add_<%= sti_type %>_to_slide image-<%= media_element.id %>" data-param="<%= media_element.id %>" data-url="<%= media_element.media.url %>" data-width="<%= media_element.width %>" data-height="<%= media_element.height %>"  style="float:right"></a>
       <p><%= media_element.title %></p>
     </div>
   <%end%>

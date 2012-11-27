@@ -66,6 +66,7 @@ class LessonEditorController < ApplicationController
       @media_elements = @current_user.own_media_elements(1, FOR_PAGE[@media_element_type], @media_element_type.downcase)[:records]
       @media_element_type = @media_element_type.downcase
       @img_position = params[:position]
+      @sme = @slide.media_element_url_at(@img_position)
     end
   end
   

@@ -6,10 +6,16 @@ $(document).ready(function() {
   lessonEditorTooltip('#slide-numbers li'); // show tooltip on top list mouseover
   scrollSlideTo('#slide-numbers li a:not(._add_slide)'); // scroll to slide N on top list click
   
-  // apply mask to each slide image container
+  // apply mask to each horizontal slide image container
   masked = $("._mask_x a:not('._choose')");
   masked.each(function(index) {
     makeDraggable($(masked[index]), "x");
+  });
+  
+  // apply mask to each vertical slide image container
+  maskedY = $("._mask_y a:not('._choose')");
+  maskedY.each(function(index) {
+    makeDraggable($(maskedY[index]), "y");
   });
   
   // trigger save on "save button" click
@@ -46,9 +52,31 @@ function updateInfoCurrentSlide(slide_id) {
 
 /** functions to use in document.ready **/
 function makeDraggable(masked, axe){
+//if horizontal
 maskedImgWidth = masked.find("img").attr("width");
 var dist = maskedImgWidth - masked.parent().width();
+
+console.log("maskedImgWidth: "+ maskedImgWidth);
+console.log("parent.width: "+ masked.parent().width());
+console.log(dist);
+
+//if vertical
+maskedImgHeight = masked.find("img").attr("height");
+var vDist = maskedImgHeight - masked.parent().height();
+
+console.log("if height");
+console.log("maskedImgWidth: "+ maskedImgWidth);
+console.log("parent.width: "+ masked.parent().width());
+console.log(dist);
+
 var roll = masked.find(".rollover");
+var side = "";
+if(axe == "x"){
+  side = "left";
+}else{
+  side = "top";
+  dist = vDist;
+}
 masked.draggable({ 
   axis: axe, 
   distance: 10,
@@ -65,29 +93,37 @@ masked.draggable({
   //},
   stop: function() {
     var thisDrag = $(this);
-    var offset = thisDrag.css("left");
+    var offset = thisDrag.css(side);
+    console.log("offset: "+offset);
     if (parseInt(offset) > 0){
-      console.log("offset > 0 (pre) : "+offset+" roll-left: " +roll.css("left"));
       offset = 0;
-      roll.css("left",0);
-      console.log("offset > 0 (post) : "+offset+" roll-left: " +roll.css("left"));
-      thisDrag.animate({
-          left: "0"
-        }, 100 );
+      roll.css(side,0);
+      if(side=="left"){
+        thisDrag.animate({
+            left: "0"
+          }, 100 );
+      }else{
+        thisDrag.animate({
+            top: "0"
+          }, 100 );
+      }
     }
     else if (parseInt(offset) < -(parseInt(dist))){
-      console.log("offset < 0 (pre) : "+offset+" dist = "+ dist + " roll-left: " +roll.css("left"));
       offset = -parseInt(dist);
-      roll.css("left",-offset);
-      console.log("offset < 0 (post) : "+offset+" dist = "+ dist + " roll-left: " +roll.css("left"));
-      thisDrag.animate({
-          left: "-"+dist+"px"
-        }, 100 );
+      console.log("offset: "+offset+"dist: "+dist+"side: "+side+roll.css(side));
+      roll.css(side,-offset);
+      console.log("offset: "+offset+"dist: "+dist+"side: "+side+roll.css(side));
+      if(side=="left"){
+        thisDrag.animate({
+            left: "-"+dist+"px"
+          }, 100 );
+      }else{
+        thisDrag.animate({
+            top: "-"+dist+"px"
+          }, 100 );
+      }
     }
-    console.log("offset < 0 (finale) : "+offset+" dist = "+ dist + " roll-left: " +roll.css("left"));
-    roll.css("left",-parseInt(offset)).css("opacity","0.5");
-    console.log("offset < 0 (finale post) : "+offset+" dist = "+ dist + " roll-left: " +roll.css("left"));
-    console.log("/-----------------------/")//TODO FIX recenter of plus with real image
+    roll.css(side,-parseInt(offset)).css("opacity","0.5");
     roll.css("cursor","-webkit-grab");
     masked.parent().siblings(".media_element_align_"+masked.attr("data-param")).val(parseInt(offset));
   }
@@ -246,4 +282,61 @@ function centerThis(div) {
         var centerDiv = $(div); 
         centerDiv.css('top', winH/2-centerDiv.height()/2); 
         centerDiv.css('left', winW/2-centerDiv.width()/2); 
+}
+
+function isHorizontalMask(image_width,image_height,kind){
+  var ratio = image_width/image_height;
+  var slideRatio = 0;
+  switch(kind)
+  {
+    case "cover": slideRatio = 1.6;
+    break;
+    case "image1": slideRatio = 1.05;
+    break;
+    case "image2": slideRatio = 0.75;
+    break;
+    case "image3": slideRatio = 1.55;
+    break;
+    case "image4": slideRatio = 1.55;
+    break;
+    default: slideRatio = 1.5;
+  }
+  return (ratio >= slideRatio);
+}
+
+
+function resizeWidth(width,height,kind){
+  switch(kind)
+  {
+     case "cover": slideHeight = 560;
+     break;
+     case "image1": slideHeight = 420;
+     break;
+     case "image2": slideHeight = 550;
+     break;
+     case "image3": slideHeight = 550;
+     break;
+     case "image4": slideHeight = 265;
+     break;
+     default: slideHeight = 590;
+  }
+  return (width*slideHeight)/height;
+}
+  
+function resizeHeight(width,height,kind){
+  switch(kind)
+  {
+     case "cover": slideWidth = 900;
+     break;
+     case "image1": slideWidth = 440;
+     break;
+     case "image2": slideWidth = 420;
+     break;
+     case "image3": slideWidth = 860;
+     break;
+     case "image4": slideWidth = 420;
+     break;
+     default: slideWidth = 900;
+  }
+  return (height*slideWidth)/width;
 }
