@@ -1,6 +1,8 @@
 function showSendLessonLinkPopUp(lesson_id) {
   var obj = $('#dialog-virtual-classroom-send-link');
   $('#dialog-virtual-classroom-send-link form').attr('action', ('/virtual_classroom/' + lesson_id + '/send_link'));
+  var html_cover_content = $('#virtual_classroom_lesson_' + lesson_id + ' ._cover_slide_thumb').html();
+  $('#dialog-virtual-classroom-send-link ._cover_slide_thumb').html(html_cover_content);
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
@@ -21,7 +23,7 @@ function showSendLessonLinkPopUp(lesson_id) {
       modal: true,
       resizable: false,
       width: 654,
-			height: 400,
+      height: 400,
       show: "fade",
       buttons: dialog_buttons
     });
@@ -54,6 +56,7 @@ function showVirtualClassroomQuickSelectPopUp(content) {
             showErrorPopUp(loaded_msg);
           }
         }
+        obj.data('loaded', false);
       }
     });
   }
