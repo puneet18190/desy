@@ -33,7 +33,7 @@
 			
 			float:left
 	  }	
-		textarea {
+		input {
 		  background-color:#454343;
 			outline:1px solid white;
 			padding:10px;
@@ -124,4 +124,8 @@
   opacity: 0.9;
   background-color: #000;
   z-index: 11;
+}
+
+#dialog-virtual-classroom-send-link {
+  // metti in minuscolo il contenuto
 }
