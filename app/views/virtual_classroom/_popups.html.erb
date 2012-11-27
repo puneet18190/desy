@@ -1,8 +1,8 @@
 <div class="virtualClassroomQuickSelectPopUp" id="dialog-virtual-classroom-quick-select" style="display:none" data-loaded="false" data-loaded-correctly="true" data-loaded-msg=""></div>
 
 <div class="virtualClassroomSentLessonLinkPopUp" id="dialog-virtual-classroom-send-link" style="display:none">
-  <h1>Sends the lesson</h1>
-  <p>Enter the contacts to whom you want to send this lesson. You can also enter a comment in support of educational content.</p>
+  <h1><%= t('captions.share_lesson_public_link') %></h1>
+  <p><%= t('descriptions.send_lesson_link_explanation') %></p>
   <%= form_tag '/virtual_classroom/lesson_id/send_link', :remote => true do %>
     <input class="_send_link_form_text_area _emails campoEmail" type="text" value="" name="emails" data-not-yet-selected="true">
     <br>

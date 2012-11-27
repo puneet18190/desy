@@ -124,6 +124,7 @@ en:
     select_video: "Select video"
     send: 'Send'
     send_link_to_your_friends: 'Send a link to your friends'
+    share_lesson_public_link: 'Share the public link of this lesson'
     show: 'Show'
     slide_not_deleted: "This slide can't be deleted"
     sort_results_by: 'Sort results by'
@@ -156,6 +157,7 @@ en:
     mailer_link_4: 'DESY, the digital system so important bla bla bla'
     new_lesson: "Fill in the form to create a new lesson."
     prelogin: "DESY has arrived, the new multimedia platform dedicated to the world of the school. Thanks to DESY will be possible to create multimedia lessons, uploading their images or videos or using those in the database of DESY. Share your work with other users DESY to create a large network of educational content."
+    send_lesson_link_explanation: 'Write a list of emails and a message: clicking the button, you will send your contacts an email containing the public link of this lesson'
     slide_text: "Insert slide content here."
     update_lesson: "Use the form below to edit your lesson informations."
     what_is_desy_1: 'Created for ENI - who has now spread its use to Italian schools following agreement with the Italian Education Ministry - the '
