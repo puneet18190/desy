@@ -5,6 +5,7 @@ function showSendLessonLinkPopUp(lesson_id) {
   $('#dialog-virtual-classroom-send-link ._cover_slide_thumb').html(html_cover_content);
   if(obj.data('dialog')) {
     obj.dialog('open');
+    initializeBlurTextFieldsSendLessonLink();
   } else {
     obj.show();
     obj.dialog({
@@ -12,7 +13,10 @@ function showSendLessonLinkPopUp(lesson_id) {
       resizable: false,
       width: 654,
       height: 400,
-      show: "fade"
+      show: "fade",
+      open: function() {
+        initializeBlurTextFieldsSendLessonLink();
+      }
     });
   }
 }

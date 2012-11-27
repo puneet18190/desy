@@ -619,6 +619,11 @@ $(document).ready(function() {
   
   $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function() {
     closePopUp('dialog-virtual-classroom-send-link');
+    $('._send_link_form_text_area').each(function() {
+      if($(this).data('not-yet-selected')) {
+        $(this).attr('value', '');
+      }
+    });
     $('#dialog-virtual-classroom-send-link form').submit();
   });
   

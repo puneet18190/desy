@@ -4,9 +4,9 @@
   <h1>Sends the lesson</h1>
   <p>Enter the contacts to whom you want to send this lesson. You can also enter a comment in support of educational content.</p>
   <%= form_tag '/virtual_classroom/lesson_id/send_link', :remote => true do %>
-    <input class="_send_link_form_text_area campoEmail" type="text" value="<%= t('captions.insert_emails_here') %>" name="emails" data-not-yet-selected="true">
+    <input class="_send_link_form_text_area _emails campoEmail" type="text" value="" name="emails" data-not-yet-selected="true">
     <br>
-    <input class="_send_link_form_text_area campoMessaggio" type="text" value="<%= t('captions.write_a_message') %>" name="message" data-not-yet-selected="true">
+    <input class="_send_link_form_text_area _message campoMessaggio" type="text" value="" name="message" data-not-yet-selected="true">
   <% end %>
   <div class="colonnaCoverLesson">
     <div class="img_expanded _cover_slide_thumb"></div>
@@ -14,3 +14,5 @@
   <a class="_yes"><%= t('popups.send_lesson_link_yes') %></a>
   <a class="_no"><%= t('popups.send_lesson_link_no') %></a>
 </div>
+
+<div id="popup_captions_container_virtual_classroom" style="display:none" data-caption-emails="<%= t('captions.insert_emails_here') %>" data-caption-message="<%= t('captions.write_a_message') %>"></div>
