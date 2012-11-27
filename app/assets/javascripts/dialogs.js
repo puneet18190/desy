@@ -1,6 +1,6 @@
 function showSendLessonLinkPopUp(lesson_id) {
   var obj = $('#dialog-virtual-classroom-send-link');
-  $('#dialog-virtual-classroom-send-link form').attr('action', ('/virtual_classroom/' + lesson_id + '/send_link'));
+	$('#dialog-virtual-classroom-send-link form').attr('action', ('/virtual_classroom/' + lesson_id + '/send_link'));
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
@@ -20,7 +20,7 @@ function showSendLessonLinkPopUp(lesson_id) {
     obj.dialog({
       modal: true,
       resizable: false,
-      width: 920,
+      width: 485,
       show: "fade",
       buttons: dialog_buttons
     });

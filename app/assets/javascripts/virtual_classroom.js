@@ -1,3 +1,13 @@
+function initializeScrollPaneQuickLessonSelector() {
+  $('#virtual_classroom_quick_select_container.scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $('#virtual_classroom_quick_select_container').data('page');
+    var tot_pages = $('#virtual_classroom_quick_select_container').data('tot-pages');
+    if(isAtBottom && (page < tot_pages)) {
+      $.get('/virtual_classroom/select_lessons_new_block?page=' + (page + 1));
+    }
+  });
+}
+
 function initializeVirtualClassroom() {
   $('._virtual_classroom_lesson').each(function() {
     if($(this).data('in-playlist')) {

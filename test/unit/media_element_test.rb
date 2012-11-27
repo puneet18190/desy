@@ -8,7 +8,6 @@ class MediaElementTest < ActiveSupport::TestCase
       @media_element = MediaElement.new :description => 'Scuola Primaria', :title => 'Scuola'
       @media_element.user_id = 1
       @media_element.sti_type = 'Video'
-      @media_element.duration = 10
       @media_element.tags = 'ciao, come, stai, tu?'
     rescue ActiveModel::MassAssignmentSecurity::Error
       @media_element = nil
@@ -78,9 +77,6 @@ class MediaElementTest < ActiveSupport::TestCase
     assert_invalid @media_element, :user_id, 'po', 1, /is not a number/
     assert_invalid @media_element, :user_id, -3, 1, /must be greater than 0/
     assert_invalid @media_element, :user_id, 3.4, 1, /must be an integer/
-    assert_invalid @media_element, :duration, 'po', 1, /is not a number/
-    assert_invalid @media_element, :duration, -3, 1, /must be greater than 0/
-    assert_invalid @media_element, :duration, 3.4, 1, /must be an integer/
     assert_invalid @media_element, :is_public, nil, false, /is not included in the list/
     assert_invalid @media_element, :sti_type, 'Film', 'Video', /is not included in the list/
     assert_obj_saved @media_element
@@ -116,7 +112,6 @@ class MediaElementTest < ActiveSupport::TestCase
     assert_invalid @media_element, :user_id, 2, 1, /can't be changed/
     @media_element.title = 'Squola'
     @media_element.description = 'Squola Primaria'
-    @media_element.duration = 11
     assert_invalid @media_element, :publication_date, '2011-10-10 10:10:19', nil, /must be blank if private/
     @media_element.is_public = true
     assert_invalid @media_element, :publication_date, 1, '2011-11-11 10:00:00', /is not a date/
@@ -134,7 +129,6 @@ class MediaElementTest < ActiveSupport::TestCase
     # fino a qui
     assert_invalid @media_element, :title, 'Scuola', 'Squola', /is not changeable for a public record/
     assert_invalid @media_element, :description, 'Scuola Primaria', 'Squola Primaria', /is not changeable for a public record/
-    assert_invalid @media_element, :duration, 111, 11, /is not changeable for a public record/
     @media_element.user_id = 2
     assert_equal 1, MediaElement.find(@media_element.id).user_id
     assert_obj_saved @media_element
@@ -149,16 +143,6 @@ class MediaElementTest < ActiveSupport::TestCase
     assert_equal 3, Video.count
     assert_equal 2, Image.count
   end
-  
-  # FIXME riabilitarlo dopo aver preso la decisione
-  # test 'duration' do
-  #   assert_invalid @media_element, :duration, nil, 11, /can't be blank for videos and audios/
-  #   @media_element.sti_type = 'Audio'
-  #   assert_invalid @media_element, :duration, nil, 11, /can't be blank for videos and audios/
-  #   @media_element.sti_type = 'Image'
-  #   assert_invalid @media_element, :duration, 11, nil, /must be blank for images/
-  #   assert_obj_saved @media_element
-  # end
   
   test 'stop_destruction' do
     assert_obj_saved @media_element

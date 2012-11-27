@@ -58,7 +58,8 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/empty_playlist' => 'virtual_classroom#empty_playlist'
   post 'virtual_classroom/empty_virtual_classroom' => 'virtual_classroom#empty_virtual_classroom', :as => :empty_virtual_classroom
   get  'virtual_classroom/select_lessons' => 'virtual_classroom#select_lessons', :as => :select_lessons_for_virtual_classroom
-  post 'virtual_classroom/load_lessons' => 'virtual_classroom#load_lessons'
+  get  'virtual_classroom/select_lessons_new_block' => 'virtual_classroom#select_lessons_new_block'
+  post 'virtual_classroom/load_lessons' => 'virtual_classroom#load_lessons', :as => :load_lessons
   post 'virtual_classroom/:lesson_id/send_link' => 'virtual_classroom#send_link'
   
   # MEDIA ELEMENTS EDITOR

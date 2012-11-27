@@ -12,6 +12,13 @@
     -webkit-border-radius: 5px;
   }
 }
+.virtualClassroomSentLessonLinkPopUp form {
+	  position: absolute;
+    top: 2em;
+    left: 5.5em;
+		
+		
+	}
 .timedPopUp img,
 .confirmPopUp img { 
   float:left;
@@ -71,4 +78,6 @@
     margin:-5px 0 0;
     padding:0;
   }
+	
+	
 }

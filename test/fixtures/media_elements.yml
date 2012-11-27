@@ -3,42 +3,34 @@ one:
   user_id: 1
   title: 'tit1'
   description: 'quef gsdsd dfs'
-  duration: 19
   sti_type: 'Video'
   is_public: false
-  updated_at: '2012-01-01 20:00:00'
 
 two:
   id: 2
   user_id: 1
   title: 'za'
   description: 'quef gsdsd dfs'
-  duration: 19
   sti_type: 'Video'
   is_public: true
   publication_date: '2011-01-01 10:00:00'
-  updated_at: '2012-01-01 19:59:59'
 
 three:
   id: 3
   user_id: 2
   title: 'zo'
   description: 'quef gsdsd dfs'
-  duration: 19
   sti_type: 'Audio'
   is_public: false
-  updated_at: '2012-01-01 19:59:58'
 
 four:
   id: 4
   user_id: 1
   title: 'tit1'
   description: 'quef gsdsd dfs'
-  duration: 19
   sti_type: 'Audio'
   is_public: true
   publication_date: '2011-01-01 10:00:00'
-  updated_at: '2012-01-01 19:59:57'
 
 five:
   id: 5
@@ -47,7 +39,6 @@ five:
   description: 'quef gsdsd dfs'
   sti_type: 'Image'
   is_public: false
-  updated_at: '2012-01-01 19:59:56'
   media: 'one.jpg'
 
 six:
@@ -58,5 +49,4 @@ six:
   sti_type: 'Image'
   is_public: true
   publication_date: '2011-01-01 10:00:00'
-  updated_at: '2012-01-01 19:59:55'
   media: 'two.jpg'

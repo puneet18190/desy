@@ -8,8 +8,9 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_layout, :initialize_paginator, :only => [:index]
   before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :change_position_in_playlist]
   before_filter :initialize_position, :only => :change_position_in_playlist
-  before_filter :initialize_lesson_with_public, :only => :send_link
+  before_filter :initialize_lesson_if_in_virtual_classroom, :only => :send_link
   before_filter :initialize_mails, :only => :send_link
+  before_filter :initialize_page, :only => :select_lessons_new_block
   layout 'virtual_classroom'
   
   def index
@@ -117,11 +118,16 @@ class VirtualClassroomController < ApplicationController
   end
   
   def select_lessons
-    @lessons = @current_user.own_lessons(1, LESSONS_IN_QUICK_LOADER)[:records]
+    x = @current_user.own_lessons(1, LESSONS_IN_QUICK_LOADER)
+    @lessons = x[:records]
+    @tot_pages = x[:pages_amount]
+  end
+  
+  def select_lessons_new_block
+    @lessons = @current_user.own_lessons(@page, LESSONS_IN_QUICK_LOADER)[:records] if @ok
   end
   
   def load_lessons
-    redirect_to :action => :index
   end
   
   def send_link
@@ -137,6 +143,11 @@ class VirtualClassroomController < ApplicationController
   end
   
   private
+  
+  def initialize_page
+    @page = correct_integer?(params[:page]) ? params[:page].to_i : 0
+    update_ok(@page > 0)
+  end
   
   def initialize_mails
     @emails = []
