@@ -617,6 +617,18 @@ $(document).ready(function() {
     showSendLessonLinkPopUp(lesson_id);
   });
   
+  $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function() {
+    closePopUp('dialog-virtual-classroom-send-link');
+    $('#dialog-virtual-classroom-send-link form').submit();
+  });
+  
+  $('body').on('click', '#dialog-virtual-classroom-send-link ._no', function() {
+    var obj = $('#dialog-virtual-classroom-send-link');
+    obj.dialog('option', 'hide', 'fade');
+    closePopUp('dialog-virtual-classroom-send-link');
+    obj.dialog('option', 'hide', null);
+  });
+  
   $('body').on('focus', '._send_link_form_text_area', function() {
     if($(this).data('not-yet-selected')) {
       $(this).attr('value', '');
@@ -640,12 +652,10 @@ $(document).ready(function() {
   
   $('body').on('mouseover', '._current_inserted', function(){
     $(this).children('a').css('background-position', '-10em -0.5em');
-		
   });
   
   $('body').on('mouseout', '._current_inserted', function(){
     $(this).children('a').css('background-position', '-10em -15.5em');
-		
   });
   
   $('body').on('click', '#virtual_classroom_quick_select_submit', function() {
