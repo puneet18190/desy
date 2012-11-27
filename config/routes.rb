@@ -63,14 +63,15 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/:lesson_id/send_link' => 'virtual_classroom#send_link'
   
   # VIDEO EDITOR
-  get  'video_editor/:video_id/index' => 'video_editor#index'
-  get  'video_editor/new' => 'video_editor#new'
+  get  'videos/:video_id/edit' => 'video_editor#index'
+  get  'videos/new' => 'video_editor#index'
   
   # AUDIO EDITOR
-  get  'audio_editor/' => 'audio_editor#index'
+  get  'audios/:audio_id/edit' => 'audio_editor#index'
+  get  'audios/new' => 'audio_editor#index'
   
   # IMAGE EDITOR
-  get  'image_editor/' => 'image_editor#index'
+  get  'images/:image_id/edit' => 'image_editor#index'
   
   # BASE64 TO IMAGE
   post 'base64_to_image/' => "base64_to_image#create"
