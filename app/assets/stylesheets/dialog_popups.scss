@@ -37,6 +37,7 @@
 			outline:1px solid white;
 			padding:10px;
 			width:290px;
+			
 			color: white;
 			&.campoEmail {
 			  height: 15px;
@@ -45,10 +46,9 @@
 			
 		}
 		textarea {
-		  
+		  border:none;
 		  &.campoMessaggio {
-			  height: 8px;
-				padding-bottom:100px;
+			  height:108px;
 			}
 		}
     .colonnaCoverLesson {
