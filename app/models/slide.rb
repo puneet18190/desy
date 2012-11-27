@@ -97,8 +97,8 @@ class Slide < ActiveRecord::Base
     url = x.nil? ? nil : x.media_element.media.url
     alignment = x.nil? ? nil : x.alignment
     caption = x.nil? ? nil : x.caption
-    width = x.nil? ? nil : x.width
-    height = x.nil? ? nil : x.height
+    width = x.nil? ? nil : x.media_element.width
+    height = x.nil? ? nil : x.media_element.height
     media_element_id = x.nil? ? nil : x.media_element_id
     return {:empty => x.nil?, :url => url, :alignment => alignment, :caption => caption,:width => width, :height => height, :media_element_id => media_element_id}
   end
