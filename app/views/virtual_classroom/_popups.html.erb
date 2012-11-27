@@ -1,10 +1,26 @@
 <div class="virtualClassroomQuickSelectPopUp" id="dialog-virtual-classroom-quick-select" style="display:none" data-loaded="false" data-loaded-correctly="true" data-loaded-msg=""></div>
 
-<div class="virtualClassroomSentLessonLinkPopUp confirmPopUp" id="dialog-virtual-classroom-send-link" style="display:none">
+<div class="virtualClassroomSentLessonLinkPopUp" id="dialog-virtual-classroom-send-link" style="display:none">
+  <h1>Sends the lesson</h1>
+  <p>Enter the contacts to whom you want to send this lesson. You can also enter a comment in support of educational content.</p>
   <%= form_tag '/virtual_classroom/lesson_id/send_link', :remote => true do %>
-    <%= text_area_tag 'emails', t('captions.insert_emails_here'), :class => '_send_link_form_text_area', :data => {:not_yet_selected => true} %>
-    <%= text_area_tag 'message', t('captions.write_a_message'), :class => '_send_link_form_text_area', :data => {:not_yet_selected => true} %>
+    <%= text_area_tag 'email address', t('captions.insert_emails_here'), :class => '_send_link_form_text_area campoEmail', :data => {:not_yet_selected => true} %>
+		<br>
+    <%= text_area_tag 'message', t('captions.write_a_message'), :class => '_send_link_form_text_area campoMessaggio', :data => {:not_yet_selected => true} %>
   <% end %>
+	<div class="colonnaCoverLesson">
+	<!-- TODO: qui il partial della COVER della lesson -->
+	<div class="img_expanded _cover_slide_thumb">
+  <%= image_tag('finta2.jpg') %>
+    <div class="bg_text">
+      <div class="lessonTitle">Titolo</div>
+    </div>
+    <div class="lessonSubject">
+    <span><strong>autore</strong></span>
+    </div>
+	</div>
+  <!-- fine partial COVER lesson -->
+	</div>
 </div>
 
 <div id="popup_captions_container_virtual_classroom" style="display:none" data-send-lesson-link-yes="<%= t('popups.send_lesson_link_yes') %>" data-send-lesson-link-no="<%= t('popups.send_lesson_link_no') %>"></div>

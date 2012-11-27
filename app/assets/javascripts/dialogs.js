@@ -20,7 +20,8 @@ function showSendLessonLinkPopUp(lesson_id) {
     obj.dialog({
       modal: true,
       resizable: false,
-      width: 485,
+      width: 654,
+			height: 400,
       show: "fade",
       buttons: dialog_buttons
     });
