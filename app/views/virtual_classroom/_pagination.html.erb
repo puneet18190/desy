@@ -1,10 +1,9 @@
- <div class="dots_pagination_container paginatoreCentrato" id="virtual_classroom_pagination" style="display:block">
+<div class="dots_pagination_container paginatoreCentrato" id="virtual_classroom_pagination" style="display:block">
   <span class="dots_pagination">
     <span role="pages">
       <a data-page="<%= page-1 %>" <%= 'role="disabled"'.html_safe if page <= 1 %>></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" <%= 'role="disabled"'.html_safe if page >= pages_amount %>></a>
     </span>
   </span>
-	
 </div>
 
 

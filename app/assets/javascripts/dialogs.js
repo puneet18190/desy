@@ -41,12 +41,18 @@ function showVirtualClassroomQuickSelectPopUp(content) {
       show: "fade",
       hide: "fade",
       open: function(event, ui) {
-        $(".ui-widget-overlay").css({
-          opacity: 0.9,
-          filter: "Alpha(Opacity=100)",
-          backgroundColor: "#000",
-          zIndex: 11,
-        });
+        var overlay = obj.parent().prev();
+        overlay.addClass('dialog_opaco');
+      },
+      close: function() {
+        if(obj.data('loaded')) {
+          var loaded_msg = obj.data('loaded-msg');
+          if(obj.data('loaded-correctly')) {
+            showOkPopUp(loaded_msg);
+          } else {
+            showErrorPopUp(loaded_msg);
+          }
+        }
       }
     });
   }

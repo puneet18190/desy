@@ -25,6 +25,8 @@
       <br class="clearfloat">
       <% if @lessons.any? %>
         <%= render :partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => remove_param_from_url(request.url, 'delete_item')} %>
+      <% else %>
+         <div class="dots_pagination_container paginatoreCentrato" id="virtual_classroom_pagination"></div>
       <% end %>
     </div>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>

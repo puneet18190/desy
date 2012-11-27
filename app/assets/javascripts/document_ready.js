@@ -634,6 +634,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#virtual_classroom_quick_select_close', function() {
+    $('.dialog_opaco').removeClass('dialog_opaco');
     closePopUp('dialog-virtual-classroom-quick-select');
   });
   

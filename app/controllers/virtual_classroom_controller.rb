@@ -11,6 +11,7 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_lesson_if_in_virtual_classroom, :only => :send_link
   before_filter :initialize_mails, :only => :send_link
   before_filter :initialize_page, :only => :select_lessons_new_block
+  before_filter :initialize_loaded_lessons, :only => :load_lessons
   layout 'virtual_classroom'
   
   def index
@@ -128,6 +129,12 @@ class VirtualClassroomController < ApplicationController
   end
   
   def load_lessons
+    @loaded = 0
+    @load_lessons.each do |l|
+      @loaded += 1 if l.add_to_virtual_classroom(@current_user.id)
+    end
+    initialize_paginator
+    get_lessons
   end
   
   def send_link
@@ -143,6 +150,18 @@ class VirtualClassroomController < ApplicationController
   end
   
   private
+  
+  def initialize_loaded_lessons
+    @load_lessons = []
+    param_name = 'virtual_classroom_quick_loaded_lesson_name'
+    params.each do |k, v|
+      k_last = k.split('_').last
+      if k.gsub("_#{k_last}", '') == param_name && correct_integer?(k_last) && v == '1'
+        lesson = Lesson.find_by_id(k_last.to_i)
+        @load_lessons << lesson if !lesson.nil?
+      end
+    end
+  end
   
   def initialize_page
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 0
