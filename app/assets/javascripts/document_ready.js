@@ -639,11 +639,11 @@ $(document).ready(function() {
   });
   
   $('body').on('mouseover', '._current_inserted', function(){
-    $(this).children('a').css('background-position', '-7.4em 0em');
+    $(this).children('a').css('background-position', '-7.5em 0em');
   });
   
   $('body').on('mouseout', '._current_inserted', function(){
-    $(this).children('a').css('background-position', '-7.4em -11.3em');
+    $(this).children('a').css('background-position', '-7.5em -11.6em;');
   });
   
   $('body').on('click', '#virtual_classroom_quick_select_submit', function() {
