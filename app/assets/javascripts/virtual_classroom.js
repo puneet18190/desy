@@ -1,3 +1,11 @@
+function initializeNotAvailableLessonsToLoadQuick() {
+  $('._virtual_classroom_quick_loaded_lesson').each(function() {
+    if(!$(this).data('available')) {
+      $('#' + this.id + ' ._cover_slide_thumb').addClass('current');
+    }
+  });
+}
+
 function initializeScrollPaneQuickLessonSelector() {
   $('#virtual_classroom_quick_select_container.scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
     var page = $('#virtual_classroom_quick_select_container').data('page');
