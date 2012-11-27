@@ -30,7 +30,7 @@
  *= require icon_button_popup
  *= require layouts/lesson_editor
  *= require layouts/lesson_viewer
- *= require layouts/elements_editor
+ *= require layouts/media_element_editor
  *= require layouts/header_home
  *= require layouts/home
  *= require layouts/prelogin
