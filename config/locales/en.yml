@@ -71,6 +71,8 @@ en:
     create_new_lesson_now: 'Create a lesson now'
     create_new_media_element: 'Create a new element'
     description: 'Description'
+    desy: 'DESY'
+    desy_expanded_description: 'Digital Education System'
     desy_full_description: 'DESY - Digital Education System'
     discover_a_new_way_of_teaching: "Discover a new way of teaching"
     display_mode: 'Display mode'
@@ -84,10 +86,11 @@ en:
     enter_lesson_description: 'Describe your lesson...'
     enter_lesson_tags: 'Enter tags'
     enter_title: "Enter title"
+    find_out_the_benefits_of_desy: 'Find out the benefits of desy.'
     help_using_desy: 'Need help using Desy?'
     home: 'Home'
     image_caption_placeholder: 'Write a caption...'
-    insert_emails_here: 'Insert your emails here, separated by comma'
+    insert_emails_here: 'Insert your emails, separated by comma'
     insert_tag: 'Insert a tag'
     institute: 'Institute'
     large: 'Large'
@@ -121,6 +124,7 @@ en:
     select_video: "Select video"
     send: 'Send'
     send_link_to_your_friends: 'Send a link to your friends'
+    share_lesson_public_link: 'Share the public link of this lesson'
     show: 'Show'
     slide_not_deleted: "This slide can't be deleted"
     sort_results_by: 'Sort results by'
@@ -138,6 +142,7 @@ en:
     welcome: 'Welcome'
     what_are_you_looking_for: 'What are you looking for?'
     what_is_desy: 'What is DESY?'
+    why_sign_up: 'Why sign up?'
     write_a_message: 'Write a message'
     write_reason_report: 'Write the reason for your report, we will review it. Thank you for your cooperation!'
     you_believe_content_unappropriate: 'You believe this content is unappropriate?'
@@ -152,8 +157,18 @@ en:
     mailer_link_4: 'DESY, the digital system so important bla bla bla'
     new_lesson: "Fill in the form to create a new lesson."
     prelogin: "DESY has arrived, the new multimedia platform dedicated to the world of the school. Thanks to DESY will be possible to create multimedia lessons, uploading their images or videos or using those in the database of DESY. Share your work with other users DESY to create a large network of educational content."
+    send_lesson_link_explanation: 'Write a list of emails and a message: clicking the button, you will send your contacts an email containing the public link of this lesson'
     slide_text: "Insert slide content here."
     update_lesson: "Use the form below to edit your lesson informations."
+    what_is_desy_1: 'Created for ENI - who has now spread its use to Italian schools following agreement with the Italian Education Ministry - the '
+    what_is_desy_2: ' (DESY) allows teachers to create, share and provide students with multimedia and interactive lessons: the system is made up of an archive of lessons and other didactic components which the teacher may access, use, modify or base new lessons.'
+    what_is_desy_3: 'The creation of a new lesson is simple and intuitive: drag the icon from the workpage to the lesson sheet and any type of file (video, audio, image, table, chart, etc) can be inserted. Videos can be easily cut and edited according to didactic needs.'
+    what_is_desy_4: 'This way each lesson created can be followed by students in the classroom using a video projector or a multimedia blackboard, or remotely using a tablet or pc.'
+    what_is_desy_5: 'The lesson is at the same time stored in the systems database for access by all other registered teachers, thus creating a professional community which uses and shares the same didactic message and modules. A dedicated social network between students and teachers enables the activation of a virtuous circle for exchanging knowledge and contents to the benefit of teaching processes.'
+    what_is_desy_6: ' also includes an on-line and interactive English language course ('
+    what_is_desy_7: ') offering dedicated pages and functionalities both for teachers and students.'
+    what_is_desy_8: 'The application can easily be used for learning other languages: a course is currently being planned for teaching Italian to foreigners.'
+    what_is_desy_right_column: 'What is DESY? Placeholder for right column description -- DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY '
     you_sent_the_link_of_lesson: "You sent the link of the lesson #title, with message #message, to the emails: "
 
 # (3) accessors: empty situations, popups, help, etc
@@ -206,12 +221,12 @@ en:
     after_copy_confirm: 'What would you like to do now?'
     after_copy_stay_in_page: 'Stay in this page'
     after_copy_go_to_editor: 'Edit the lesson now'
-    send_lesson_link_yes: 'Yes, do it'
-    send_lesson_link_no: 'You changed idea'
+    send_lesson_link_yes: 'Send'
+    send_lesson_link_no: 'Or cancel'
     send_lesson_link_ok: 'Link sent successfully!'
     send_lesson_link_error: 'Link not sent: did you fill all the fields and write correct emails?'
     virtual_classroom_lessons_loaded_ok: 'Correctly loaded your lessons!'
-    virtual_classroom_lessons_loaded_error: 'There was a problem loading your lessons'
+    virtual_classroom_lessons_loaded_error: 'There was a problem, #number of your lessons were not loaded'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'

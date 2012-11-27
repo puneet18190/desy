@@ -1,28 +1,22 @@
 function showSendLessonLinkPopUp(lesson_id) {
   var obj = $('#dialog-virtual-classroom-send-link');
-	$('#dialog-virtual-classroom-send-link form').attr('action', ('/virtual_classroom/' + lesson_id + '/send_link'));
+  $('#dialog-virtual-classroom-send-link form').attr('action', ('/virtual_classroom/' + lesson_id + '/send_link'));
+  var html_cover_content = $('#virtual_classroom_lesson_' + lesson_id + ' ._cover_slide_thumb').html();
+  $('#dialog-virtual-classroom-send-link ._cover_slide_thumb').html(html_cover_content);
   if(obj.data('dialog')) {
     obj.dialog('open');
+    initializeBlurTextFieldsSendLessonLink();
   } else {
-    var dialog_buttons = {};
-    var msg_ok = $('#popup_captions_container_virtual_classroom').data('send-lesson-link-yes');
-    var msg_no = $('#popup_captions_container_virtual_classroom').data('send-lesson-link-no');
-    dialog_buttons[msg_ok] = function() {
-      closePopUp('dialog-virtual-classroom-send-link');
-      $('#dialog-virtual-classroom-send-link form').submit();
-    };
-    dialog_buttons[msg_no] = function() {
-      obj.dialog('option', 'hide', 'fade');
-      closePopUp('dialog-virtual-classroom-send-link');
-      obj.dialog('option', 'hide', null);
-    };
     obj.show();
     obj.dialog({
       modal: true,
       resizable: false,
-      width: 485,
+      width: 654,
+      height: 400,
       show: "fade",
-      buttons: dialog_buttons
+      open: function() {
+        initializeBlurTextFieldsSendLessonLink();
+      }
     });
   }
 }
@@ -41,12 +35,19 @@ function showVirtualClassroomQuickSelectPopUp(content) {
       show: "fade",
       hide: "fade",
       open: function(event, ui) {
-        $(".ui-widget-overlay").css({
-          opacity: 0.9,
-          filter: "Alpha(Opacity=100)",
-          backgroundColor: "#000",
-          zIndex: 11,
-        });
+        var overlay = obj.parent().prev();
+        overlay.addClass('dialog_opaco');
+      },
+      close: function() {
+        if(obj.data('loaded')) {
+          var loaded_msg = obj.data('loaded-msg');
+          if(obj.data('loaded-correctly')) {
+            showOkPopUp(loaded_msg);
+          } else {
+            showErrorPopUp(loaded_msg);
+          }
+        }
+        obj.data('loaded', false);
       }
     });
   }

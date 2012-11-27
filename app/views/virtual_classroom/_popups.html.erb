@@ -1,10 +1,21 @@
-<div class="virtualClassroomQuickSelectPopUp" id="dialog-virtual-classroom-quick-select" style="display:none"></div>
+<div class="virtualClassroomQuickSelectPopUp" id="dialog-virtual-classroom-quick-select" style="display:none" data-loaded="false" data-loaded-correctly="true" data-loaded-msg=""></div>
 
-<div class="virtualClassroomSentLessonLinkPopUp confirmPopUp" id="dialog-virtual-classroom-send-link" style="display:none">
+<div class="virtualClassroomSentLessonLinkPopUp" id="dialog-virtual-classroom-send-link" style="display:none">
+  <h1><%= t('captions.share_lesson_public_link') %></h1>
+  <p><%= t('descriptions.send_lesson_link_explanation') %></p>
   <%= form_tag '/virtual_classroom/lesson_id/send_link', :remote => true do %>
-    <%= text_area_tag 'emails', t('captions.insert_emails_here'), :class => '_send_link_form_text_area', :data => {:not_yet_selected => true} %>
-    <%= text_area_tag 'message', t('captions.write_a_message'), :class => '_send_link_form_text_area', :data => {:not_yet_selected => true} %>
+    <input class="_send_link_form_text_area _emails campoEmail" type="text" value="" name="emails" data-not-yet-selected="true">
+    <br>
+    <input class="_send_link_form_text_area _message campoMessaggio" type="text" value="" name="message" data-not-yet-selected="true">
   <% end %>
+  <div class="colonnaCoverLesson">
+    <div class="img_expanded _cover_slide_thumb"></div>
+  </div>
+  <br class="clearfloat">
+  <div class="buttonRow">
+    <a class="_yes send"><%= t('popups.send_lesson_link_yes') %></a>
+    <a class="_no"><%= t('popups.send_lesson_link_no') %></a>
+  </div>
 </div>
 
-<div id="popup_captions_container_virtual_classroom" style="display:none" data-send-lesson-link-yes="<%= t('popups.send_lesson_link_yes') %>" data-send-lesson-link-no="<%= t('popups.send_lesson_link_no') %>"></div>
+<div id="popup_captions_container_virtual_classroom" style="display:none" data-caption-emails="<%= t('captions.insert_emails_here') %>" data-caption-message="<%= t('captions.write_a_message') %>"></div>

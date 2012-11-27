@@ -1,27 +1,28 @@
-<% if @resp %>
-  showOkPopUp('<%= j t('popups.virtual_classroom_lessons_loaded_ok') %>');
+<%
+  my_current_url = my_virtual_classroom_path
+%>
+
+var dialog = $('#dialog-virtual-classroom-quick-select');
+dialog.data('loaded', true);
+
+<% if @loaded == @load_lessons.length %>
+  dialog.data('loaded-correctly', true);
+  var msg = '<%= j t('popups.virtual_classroom_lessons_loaded_ok') %>';
 <% else %>
-  /*showConfirmPopUp(captions.data('destroy-lesson-title'), captions.data('destroy-lesson-confirm'), captions.data('destroy-lesson-yes'), captions.data('destroy-lesson-no'), function() {
-    $('#dialog-confirm').css('display', 'none');
-    var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
-    $.ajax({
-      type: 'post',
-      dataType: 'json',
-      url: '/lessons/' + lesson_id + '/destroy?destination=' + destination,
-      success: function(data) {
-        if(data.ok) {
-          $.ajax({
-            type: 'get',
-            url: redirect_url
-          });
-        } else {
-          showErrorPopUp(data.msg);
-        }
-      }
-    });
-    closePopUp('dialog-confirm');
-  }, function() {
-    closePopUp('dialog-confirm');
-  });*/
-  showErrorPopUp('<%= j t('popups.virtual_classroom_lessons_loaded_error') %>');
+  dialog.data('loaded-correctly', false);
+  var msg = '<%= j t('popups.virtual_classroom_lessons_loaded_error').gsub('#number', (@load_lessons.length - @loaded).to_s) %>';
 <% end %>
+
+dialog.data('loaded-msg', msg);
+
+
+$('#my_virtual_classroom').replaceWith("<%= j(render(:partial => "virtual_classroom/my_virtual_classroom")) %>");
+<% if @lessons.any? %>
+  $('#virtual_classroom_pagination').replaceWith("<%= j(render(:partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+<% else %>
+  $('#virtual_classroom_pagination').html('');
+<% end %>
+initializeVirtualClassroom();
+
+$('.dialog_opaco').removeClass('dialog_opaco');
+closePopUp('dialog-virtual-classroom-quick-select');

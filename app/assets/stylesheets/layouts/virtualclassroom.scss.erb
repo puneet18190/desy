@@ -296,19 +296,23 @@ html.virtual_classroom-controller {
 		  cursor: pointer;
 		}
 		
-		.boxViewSingleLesson .contentInterno .img_expanded.current {
-			  background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
-			  background-size: 22em 45em;
-				background-repeat: no-repeat;
-				background-position:0em 4em;
-				padding:0;
-				outline:1px solid white;
+		.boxViewSingleLesson .contentInterno .currentInserted {
+		  background-color:#373737;
+			opacity:0.85;
+			position:absolute;
+			top:0;
+			left:0;
+			padding: 6em 7.25em 5.6em 8.1em;
+			a {
+			  background: url(<%= asset_path 'set-icone-editor.svg' %>) bottom right no-repeat;
+				background-size: 20em;
+				background-position:-10em -15.5em;
+				padding: 2em 2.5em;
+				
 			}
-		  .boxViewSingleLesson .contentInterno .img_expanded.currentX {
-			  outline:1px solid red;
-				background-color:#000;
-				opacity: 0.20;
-		  }
+			
+		}
+		  
 		h3 {
 		  color:#fff;
 			font-family:'Nunito', sans-serif;
