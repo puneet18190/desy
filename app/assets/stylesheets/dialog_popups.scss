@@ -30,7 +30,6 @@
 	  }
 		form {
 		  padding:1em;
-			
 			float:left
 	  }	
 		input {
@@ -44,7 +43,8 @@
 				margin-bottom:10px;
 			}
 			&.campoMessaggio {
-			  height: 108px;
+			  height: 8px;
+				padding-bottom:100px;
 			}
 		}
     .colonnaCoverLesson {
@@ -126,6 +126,18 @@
   z-index: 11;
 }
 
-#dialog-virtual-classroom-send-link {
-  // metti in minuscolo il contenuto
+#dialog-virtual-classroom-send-link .buttonRow {
+  padding:1em; 
+	margin-top:1em;
+	a {
+    text-transform:lowercase;
+	  color:white;
+	  margin-right:0.5em;
+    &.send {
+	    background-color:#373737;
+		  text-align:center;
+		  padding:0.5em 2.5em;
+		  font-size:1.4em;
+		}
+  }
 }

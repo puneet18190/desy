@@ -3,6 +3,7 @@
 <div class="virtualClassroomSentLessonLinkPopUp" id="dialog-virtual-classroom-send-link" style="display:none">
   <h1>Sends the lesson</h1>
   <p>Enter the contacts to whom you want to send this lesson. You can also enter a comment in support of educational content.</p>
+	
   <%= form_tag '/virtual_classroom/lesson_id/send_link', :remote => true do %>
     <input class="_send_link_form_text_area campoEmail" type="text" value="<%= t('captions.insert_emails_here') %>" name="emails" data-not-yet-selected="true">
     <br>
@@ -11,6 +12,9 @@
   <div class="colonnaCoverLesson">
     <div class="img_expanded _cover_slide_thumb"></div>
   </div>
-  <a class="_yes"><%= t('popups.send_lesson_link_yes') %></a>
+	<br class="clearfloat">
+	<div class="buttonRow">
+  <a class="_yes send"><%= t('popups.send_lesson_link_yes') %></a>
   <a class="_no"><%= t('popups.send_lesson_link_no') %></a>
+	</div>
 </div>
