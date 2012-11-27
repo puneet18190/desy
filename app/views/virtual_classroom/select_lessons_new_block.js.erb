@@ -1,11 +1,11 @@
 <% if @ok %>
   
   <% @lessons.each do |l| %>
-    var my_lesson_content = '<%= j(render(:partial => 'shared/lesson_thumbnails/small/cover', :locals => {:slide => l.cover})) %>';
-    var my_lesson = '<div class="boxViewSingleLesson"><div  class="contentInterno" style="height:auto">' + my_lesson_content + '</div></div>';
-    $('#virtual_classroom_quick_select_container .jspPane').append(my_lesson);
+    $('#virtual_classroom_quick_select_container .jspPane').append('<%= j(render(:partial => 'virtual_classroom/view_single_in_quick_load', :locals => {:lesson => l})) %>');
   <% end %>
   
   $('#virtual_classroom_quick_select_container').data('page', <%= @page %>);
+  
+  initializeNotAvailableLessonsToLoadQuick();
   
 <% end %>

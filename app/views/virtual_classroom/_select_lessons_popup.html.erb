@@ -2,12 +2,7 @@
 <div id="virtual_classroom_quick_select_container" class="contentPopUp scroll-pane" data-tot-pages="<%= tot_pages %>" data-page="1">
   <%= form_tag load_lessons_path, :remote => true do %>
     <% lessons.each do |l| %>
-      <div id="virtual_classroom_quick_loaded_lesson_<%= l.id %>" class="boxViewSingleLesson _virtual_classroom_quick_loaded_lesson" data-available="<%= !l.in_virtual_classroom?(@current_user.id) && !l.copied_not_modified %>">
-        <%= hidden_field_tag "virtual_classroom_quick_loaded_lesson_name_#{l.id}", "0" %>
-        <div  class="contentInterno" style="height:auto">
-          <%= render :partial => 'shared/lesson_thumbnails/small/cover', :locals => {:slide => l.cover} %>
-        </div>
-      </div>
+      <%= render :partial => 'virtual_classroom/view_single_in_quick_load', :locals => {:lesson => l} %>
     <% end %>
   <% end %>
 </div>
