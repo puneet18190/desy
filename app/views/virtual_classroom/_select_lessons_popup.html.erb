@@ -6,7 +6,9 @@
         <%= hidden_field_tag "virtual_classroom_quick_loaded_lesson_name_#{l.id}", "0" %>
         <div  class="contentInterno" style="height:auto">
           <%= render :partial => 'shared/lesson_thumbnails/small/cover', :locals => {:slide => l.cover} %>
+					
         </div>
+				
       </div>
     <% end %>
   <% end %>
