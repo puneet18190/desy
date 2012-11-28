@@ -56,6 +56,14 @@ class MediaElement < ActiveRecord::Base
     alias_method_chain :new, :sti_type_inferring
   end
   
+  def self.extract(media_element_id, user_id, my_sti_type)
+    media_element = MediaElement.find_by_id media_element_id
+    return nil if media_element.nil? || media_element.sti_type != my_sti_Type
+    media_element.set_status
+    return nil if media_element.status.nil?
+    media_element
+  end
+  
   def image?
     self.sti_type == IMAGE_TYPE
   end
