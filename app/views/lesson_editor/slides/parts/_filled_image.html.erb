@@ -1,4 +1,4 @@
-<% sme = slide.media_element_url_at(position) %>
+<% sme = slide.image_at(position) %>
 <%= hidden_field_tag "media_element_align_#{position}", "#{sme[:alignment]}px", :class =>"media_element_align_1" %>
 <%= hidden_field_tag "media_element_#{position}", sme[:media_element_id], :class=> "media-tag-cover-#{position}"  %>
 
