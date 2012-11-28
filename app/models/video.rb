@@ -31,10 +31,14 @@ class Video < MediaElement
   end
   
   def self.convert(hash, user_id)
-    return nil if !hash.kind_of?(Hash)
+    return nil if !hash.kind_of?(Hash) || !hash.has_key?(:initial_video_id) || (!hash[:initial_video_id].nil? && !hash[:initial_video_id].kind_of?(Integer))
     resp_hash = {}
-    initial_video = Video.get_media_element_from_hash(hash, :initial_video_id, user_id, 'Video')
-    return nil if initial_video.nil?
+    if hash[:initial_video_id].nil?
+      initial_video = nil
+    else
+      initial_video = Video.get_media_element_from_hash(hash, :initial_video_id, user_id, 'Video')
+      return nil if initial_video.nil? || initial_video.is_public
+    end
     resp_hash[:initial_video] = initial_video
     audio_track = Video.get_media_element_from_hash(hash, :audio_id, user_id, 'Audio')
     return nil if audio_track.nil?
