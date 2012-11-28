@@ -25,6 +25,23 @@ class User < ActiveRecord::Base
     "#{self.name} #{self.surname}"
   end
   
+  def get_video_editor_cache
+    return nil if self.new_record? || !File.exists?(Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml"))
+    YAML::load(File.open(Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml")))
+  end
+  
+  def save_video_editor_cache(hash)
+    return if self.new_record?
+    Dir.mkdir Rails.root.join('tmp') if !Dir.exists? Rails.root.join('tmp')
+    Dir.mkdir Rails.root.join('tmp/cache') if !Dir.exists? Rails.root.join('tmp/cache')
+    Dir.mkdir Rails.root.join('tmp/cache/video_editor') if !Dir.exists? Rails.root.join('tmp/cache/video_editor')
+    Dir.mkdir Rails.root.join("tmp/cache/video_editor/#{self.id}") if !Dir.exists? Rails.root.join("tmp/cache/video_editor/#{self.id}")
+    x = File.open Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml"), 'w'
+    x.write hash.to_yaml
+    x.close
+    true
+  end
+  
   def search_media_elements(word, page, for_page, order=nil, filter=nil)
     page = 1 if page.class != Fixnum || page <= 0
     for_page = 1 if for_page.class != Fixnum || for_page <= 0
