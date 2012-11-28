@@ -40,6 +40,11 @@ class ApplicationController < ActionController::Base
     update_ok(ButtonDestinations::LESSONS.include?(@destination))
   end
   
+  def initialize_media_element_with_owner_or_public
+    initialize_media_element
+    update_ok(@media_element && (@media_element.is_public || @current_user.id == @media_element.user_id))
+  end
+  
   def initialize_media_element_with_owner_and_private
     initialize_media_element_with_owner
     update_ok(@media_element && !@media_element.is_public)
