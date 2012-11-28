@@ -1,21 +1,20 @@
 <%
-  image = slide.media_element_url_at(1)
+  image = slide.image_at(1)
 %>
 
 <div class="bigViewLesson slideImage">
   <h2><%= slide.title %></h2>
   <div class="medium" >
-	  
-	  <% if image[:empty] %>
-		<div class="photoIcon"></div>
-		<% else %>
-     <%= image_tag image[:url], :style => "left:#{image[:alignment]}px" %>
+    <% if image[:empty] %>
+      <div class="photoIcon"></div>
+    <% else %>
+      <%= image_tag image[:url], :style => "left:#{image[:alignment]}px" %>
       <% if !image[:caption].blank? %>
-    	  <div class="caption"><%= image[:caption] %></div> 
-    	<% end %>
-		<% end %>
+        <div class="caption"><%= image[:caption] %></div> 
+      <% end %>
+    <% end %>
   </div>
   <div class="textRightContent">
-	  <%= slide.text.html_safe %>
-	</div>
+    <%= slide.text.html_safe %>
+  </div>
 </div>

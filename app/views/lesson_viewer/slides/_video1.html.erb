@@ -1,16 +1,15 @@
 <%
-  video = slide.media_element_url_at(1)
+  video = slide.video_at(1)
 %>
 
 <div class="bigViewLesson slideVideo">
   <h2><%= slide.title %></h2>
   <div class="videoMedium">
     <% if video[:empty] %>
-		  <div class="videoIcon"></div>
-		<% else %>
-      <video id='video' class='video' src='video[:url]' controls></video>	
+      <div class="videoIcon"></div>
+    <% else %>
+      <video id='video' class='video' src='video[:url]' controls></video>  
     <% end %>
-		
   </div>
   <div class="textRightVideoContent">
     <%= slide.text.html_safe %>
