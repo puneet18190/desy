@@ -30,14 +30,24 @@ class Video < MediaElement
     "/media_elements/videos/#{self.id.to_s}/cover.jpg"
   end
   
-  def self.convert(hash, user_id)
-    return nil if !hash.kind_of?(Hash)
+  def self.convert_parameters(hash, user_id)
+    return nil if !hash.kind_of?(Hash) || !hash.has_key?(:initial_video_id)
+    return nil if !hash[:initial_video_id].nil? && !hash[:initial_video_id].kind_of?(Integer)
+    return nil if !hash[:audio_id].nil? && !hash[:audio_id].kind_of?(Integer)
     resp_hash = {}
-    initial_video = Video.get_media_element_from_hash(hash, :initial_video_id, user_id, 'Video')
-    return nil if initial_video.nil?
+    if hash[:initial_video_id].nil?
+      initial_video = nil
+    else
+      initial_video = Video.get_media_element_from_hash(hash, :initial_video_id, user_id, 'Video')
+      return nil if initial_video.nil? || initial_video.is_public
+    end
     resp_hash[:initial_video] = initial_video
-    audio_track = Video.get_media_element_from_hash(hash, :audio_id, user_id, 'Audio')
-    return nil if audio_track.nil?
+    if hash[:audio_id].nil?
+      audio_track = nil
+    else
+      audio_track = Video.get_media_element_from_hash(hash, :audio_id, user_id, 'Audio')
+      return nil if audio_track.nil?
+    end
     resp_hash[:audio] = audio_track
     return nil if !hash.has_key?(:parameters) || !hash[:parameters].kind_of?(Array)
     resp_hash[:parameters] = []
@@ -48,7 +58,7 @@ class Video < MediaElement
           video = Video.get_media_element_from_hash(p, :video_id, user_id, 'Video')
           return nil if video.nil?
           return nil if !p.has_key?(:from) || !p[:from].kind_of?(Integer) || !p.has_key?(:until) || !p[:until].kind_of?(Integer)
-          return nil if p[:from] < 0 || p[:until] > video.duration
+          return nil if p[:from] < 0 || p[:until] > video.duration || p[:from] >= p[:until]
           resp_hash[:parameters] << {
             :component => VIDEO_COMPONENT,
             :video => video,
