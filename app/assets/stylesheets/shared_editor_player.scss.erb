@@ -188,19 +188,11 @@
 	  background-position: (-$button-size) (-$button-size*2);
 		opacity:1;
 	}
-	&.saveButton,&.saveButtonOrange {
+	&.saveButtonOrange {
 	  background-position: 0 (-$button-size*3);
 		opacity:0.2;
 	}
-	&.saveButton:hover {
-	  background-position: (-$button-size*3) (-$button-size*3);
-		opacity:1;
-	}
-	&.saveButton.current {
-	  background-position: (-$button-size*3) (-$button-size*3);
-		opacity:1;
-	}
-	
+		
 	&.saveButtonOrange:hover {
 	  background-position: (-$button-size) (-$button-size*3);
 		opacity:1;
@@ -224,9 +216,24 @@
 		background-position: (-$button-size*3) (-$button-size);
 		opacity:1;
 	}
+	&.saveButton {
+	  background-position: 0 (-$button-size*3);
+		opacity:0.2;
+		font-size:0.6em;
+	}
+	&.saveButton:hover {
+	  background-position: (-$button-size*3) (-$button-size*3);
+		opacity:1;
+	}
+	&.saveButton.current {
+	  background-position: (-$button-size*3) (-$button-size*3);
+		opacity:1;
+	}
 	&.closeButton {
 	  background-position: 0 0;
 		opacity:0.2;
+		font-size:0.6em;
+		outline:1px solid white;
 	}
 	&.closeButton:hover {
 	  background-position: (-$button-size*3) 0;
