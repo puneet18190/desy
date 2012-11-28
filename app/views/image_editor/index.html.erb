@@ -3,14 +3,27 @@
 	<h2>What to do?</h2><p>Select the scissors to cut the image
 or ABC to enter text.</p>
     <div style="padding:20px">
-		  <a style="color:white">CUT</a>
-			<br>
-			<a style="color:white">ABC</a>
+		  <a style="color:white" class="_toggle_crop">CUT</a>
+			<br />
+			<a style="color:white" class="_toggle_text">ABC</a>
 	  </div>
 	</div>
-  <div class="imagesContainer">[inserisci immagine]
+  <div id="_image_container" class="imagesContainer">
+    <div id="image_wrapper">
+      <%= image_tag("testolone.jpg", :id => "cropped_image",:style=>"{margin:0;padding:0;}")%>
+    </div>
 	</div>
-	<div class="menuRightEditorElement">dfgdfg</div>
+	<div class="menuRightEditorElement">
+	  <form action="/image_editor/crop" method="post">
+      <input type="hidden" name="x1" value="" />
+      <input type="hidden" name="y1" value="" />
+      <input type="hidden" name="x2" value="" />
+      <input type="hidden" name="y2" value="" />
+      <input type="submit" name="submit" value="CROP" />
+    </form>
+    <br />
+    <a href="#" id="editor_undo">UNDO</a>
+	</div>
 	<br class="clearfloat">
   <div class="menuFooterEditorElement">
 	  <p>Original image size: 1280x720 px</p>

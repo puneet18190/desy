@@ -279,4 +279,81 @@ html.media_element_editor-layout {
 			
 		}
 	}
+	
+	/*
+   * imgAreaSelect default style
+   */
+   
+  ._delete,._move{
+    display:none;
+    float:left;
+    width: auto;
+  }
+  
+  ._move{
+    float:right;
+  }
+   
+  #image_wrapper{
+    margin:0 auto;
+    padding:0;
+    width: 506px;
+    display:block;
+    overflow:hidden;
+  }
+  
+  #_image_container textarea{
+   background-color: rgba(230,230,230,0.5);
+   color: rgba(50,50,50,1);
+   border: 1px solid white;
+  }
+  
+  #_image_container a{
+    color: white;
+  }
+  
+  #_image_container img{
+    padding-top:20px;
+  }
+  
+  .imgareaselect-border1 {
+  	background: url(/assets/border-v.gif) repeat-y left top;
+  }
+
+  .imgareaselect-border2 {
+      background: url(/assets/border-h.gif) repeat-x left top;
+  }
+
+  .imgareaselect-border3 {
+      background: url(/assets/border-v.gif) repeat-y right top;
+  }
+
+  .imgareaselect-border4 {
+      background: url(/assets/border-h.gif) repeat-x left bottom;
+  }
+
+  .imgareaselect-border1, .imgareaselect-border2,
+  .imgareaselect-border3, .imgareaselect-border4 {
+      filter: alpha(opacity=50);
+  	opacity: 0.5;
+  }
+
+  .imgareaselect-handle {
+      background-color: #fff;
+      border: solid 1px #000;
+      filter: alpha(opacity=50);
+      opacity: 0.5;
+  }
+
+  .imgareaselect-outer {
+      background-color: #000;
+      filter: alpha(opacity=50);
+      opacity: 0.5;
+  }
+
+  .imgareaselect-selection {  
+  }
+  
+	
+	
 }
