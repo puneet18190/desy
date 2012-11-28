@@ -122,14 +122,14 @@
 }
 /*MENU CONDIVISO EDITOR LESSON ED EDITOR ELEMENTS*/
 @mixin menuCondivisoElementLessonEditor {
-  $button-size: 5.5em;
+  $button-size: 6em;
   & {
     float:left;
 		width: $button-size;
     height: $button-size;
     background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
     background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*8);
+    background-size: ($button-size*4) ($button-size*9);
 		padding:0;
 		font-size:0.8em;
 	}
@@ -188,19 +188,11 @@
 	  background-position: (-$button-size) (-$button-size*2);
 		opacity:1;
 	}
-	&.saveButton,&.saveButtonOrange {
+	&.saveButtonOrange {
 	  background-position: 0 (-$button-size*3);
 		opacity:0.2;
 	}
-	&.saveButton:hover {
-	  background-position: (-$button-size*3) (-$button-size*3);
-		opacity:1;
-	}
-	&.saveButton.current {
-	  background-position: (-$button-size*3) (-$button-size*3);
-		opacity:1;
-	}
-	
+		
 	&.saveButtonOrange:hover {
 	  background-position: (-$button-size) (-$button-size*3);
 		opacity:1;
@@ -224,9 +216,23 @@
 		background-position: (-$button-size*3) (-$button-size);
 		opacity:1;
 	}
+	&.saveButton {
+	  background-position: 0 (-$button-size*3);
+		opacity:0.2;
+		font-size:0.6em;
+	}
+	&.saveButton:hover {
+	  background-position: (-$button-size*3) (-$button-size*3);
+		opacity:1;
+	}
+	&.saveButton.current {
+	  background-position: (-$button-size*3) (-$button-size*3);
+		opacity:1;
+	}
 	&.closeButton {
 	  background-position: 0 0;
 		opacity:0.2;
+		font-size:0.6em;
 	}
 	&.closeButton:hover {
 	  background-position: (-$button-size*3) 0;
@@ -244,7 +250,10 @@
 .closeButton {
    @include menuCondivisoElementLessonEditor;
 }
-.saveButton, .saveButtonOrange {
+.saveButton {
+   @include menuCondivisoElementLessonEditor;
+ }
+.saveButtonOrange {
    @include menuCondivisoElementLessonEditor;
  }
 .deleteButtonOrange {
@@ -270,7 +279,7 @@
     height: $button-size;
     background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
     background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*8);
+    background-size: ($button-size*4) ($button-size*9);
     padding:0;
 	}
 	&:hover {
@@ -297,6 +306,24 @@
 	.exitButton, .exitButtonWhite {
    @include buttonExitElement;
  }
+ 
+ @mixin menuImageEditor {
+  $button-size: 5.5em;
+  & {
+    float:left;
+		width: $button-size;
+    height: $button-size;
+    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($button-size*4) ($button-size*9);
+		padding:0;
+		font-size:0.8em;
+	}
+	&:hover {
+    cursor: pointer;
+  }
+}
+ 
  
  /* TINYMCE SIZES */
  .size1{
