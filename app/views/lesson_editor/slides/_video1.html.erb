@@ -7,7 +7,7 @@
   </div>
   <%- sme1 = slide.video_at(1) %>
   <%- if !sme1[:empty] %>
-    <%= link_to "<span class='rollover rollover-video'></span><video id='video' class='_slide_image video1-p1' src='http://slides.html5rocks.com/src/chrome_japan.mp4' controls></video>".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery", "data-param"=> "1" %>
+    <%= link_to "<span class='rollover rollover-video'></span>#{render(:partial => 'shared/players/video', :locals => {:video => sme1[:video]})}".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery", "data-param"=> "1" %>
     <%= hidden_field_tag :media_element_1, sme1[:media_element_id], :class=> "media-tag-cover-1"  %>
   <%- else %>
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>

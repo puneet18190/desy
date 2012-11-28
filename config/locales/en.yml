@@ -150,6 +150,8 @@ en:
     write_a_message: 'Write a message'
     write_reason_report: 'Write the reason for your report, we will review it. Thank you for your cooperation!'
     you_believe_content_unappropriate: 'You believe this content is unappropriate?'
+    your_browser_does_not_support_video: 'Your browser does not support the video tag.'
+    your_browser_does_not_support_audio: 'Your browser does not support the audio tag.'
     your_search_returned: 'Your search returned '
     your_virtual_classroom_is_empty: 'Your virtual classroom is empty'
   descriptions:

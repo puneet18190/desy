@@ -28,22 +28,22 @@ class Video < MediaElement
   
   def mp4 # FIXME temporaneo
     # media.url.mp4
-    Rails.root.join "db/seeds/videos/url/mp4/#{(Video.where('id < ?', self.id).count % 5) + 1}.webm"
+    "/media_elements/videos/#{self.id.to_s}/video_mp4.webm"
   end
   
   def webm # FIXME temporaneo
     # media.url.webm
-    Rails.root.join "db/seeds/videos/url/webm/#{(Video.where('id < ?', self.id).count % 5) + 1}.webm"
+    "/media_elements/videos/#{self.id.to_s}/video_webm.webm"
   end
   
   def thumb # FIXME temporaneo
     # media.thumb
-    Rails.root.join "db/seeds/videos/thumb/#{(Video.where('id < ?', self.id).count % 5) + 1}.jpg"
+    "/media_elements/videos/#{self.id.to_s}/thumb.jpg"
   end
   
   def cover # FIXME temporaneo
     # media.cover
-    Rails.root.join "db/seeds/videos/cover/#{(Video.where('id < ?', self.id).count % 5) + 1}.jpg"
+    "/media_elements/videos/#{self.id.to_s}/cover.jpg"
   end
   
   def self.convert(hash, user_id)
