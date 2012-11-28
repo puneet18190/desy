@@ -330,7 +330,7 @@ html.lesson-editor-layout{
       	  margin: 130px 0 0 365px;
       	  display:block;
       	  background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
-      	  background-size: 650px 130px;
+      	  background-size: 780px 130px;
       	  cursor: pointer;
       	}
       	.add-image:hover{
@@ -349,7 +349,7 @@ html.lesson-editor-layout{
           width: 1em;
           height: 1em;
           font-size: 80px;
-          background-size: 5em 1em;
+          background-size: 6em 1em;
           background-position: -2em center;
           background-repeat: no-repeat;
           background-color: transparent;
@@ -837,6 +837,7 @@ html.lesson-editor-layout{
           width: 860px;
           background-color: $orange;
           padding: 20px 0 0 40px;
+          opacity: 1;
           a img{
             -moz-opacity: .50;
             filter: alpha(opacity = 50);
@@ -923,6 +924,7 @@ html.lesson-editor-layout{
       }
     }
     .info{
+      opacity: 1;
       input,textarea,select{
         border: none;
         color: #fff;
@@ -1056,7 +1058,7 @@ html.lesson-editor-layout{
       margin: 0 auto 10px;
       background:url('/assets/icone_piene.svg');
       background-position: -2em center;
-      background-size: 5em 1em;
+      background-size: 6em 1em;
       background-repeat: no-repeat;
       background-color: transparent;
       font-size: 130px;
@@ -1078,7 +1080,7 @@ html.lesson-editor-layout{
         width: 1em;
         height: 1em;
         font-size: 80px;
-        background-size: 5em 1em;
+        background-size: 6em 1em;
         background-position: -2em center;
         background-repeat: no-repeat;
         background-color: transparent;
@@ -1222,7 +1224,7 @@ html.lesson-editor-layout{
     height: 130px;
     background-repeat: no-repeat;
     background-position: -520px center;
-    background-size: 650px 130px;
+    background-size: 780px 130px;
 		padding:0;
   }
   
