@@ -21,4 +21,24 @@ class Video < MediaElement
     :pink => '#F4D0F3' # scelto da me
   }
   
+  def duration # FIXME temporaneo
+    # metadata.duration
+    10
+  end
+  
+  def mp4 # FIXME temporaneo
+    # media.url.mp4
+    'http://slides.html5rocks.com/src/chrome_japan.mp4'
+  end
+  
+  def webm # FIXME temporaneo
+    # media.url.webm
+    'http://slides.html5rocks.com/src/chrome_japan.mp4'
+  end
+  
+  def thumb # FIXME temporaneo
+    # media.thumb
+    Image.first.media.thumb
+  end
+  
 end

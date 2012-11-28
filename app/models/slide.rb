@@ -84,23 +84,54 @@ class Slide < ActiveRecord::Base
     resp
   end
   
-  def media_element_url_at(position) # TODO aggiungi altezza e larghezza
+  def video_at(position)
+    return {:empty => true} if self.accepted_media_element_sti_type != MediaElement::VIDEO_TYPE
     x = media_element_at position
-    # FIXME rimuovere queste due righe temporanee!
-    if !x.nil? && self.accepted_media_element_sti_type == MediaElement::AUDIO_TYPE
-      return {:empty => false, :url => 'http://slides.html5rocks.com/src/rushus-modal_blues.mp3', :media_element_id => x.media_element_id}
+    if x.nil?
+      {:empty => true}
+    else
+      {
+        :empty => false,
+        :mp4 => x.media_element.mp4,
+        :webm => x.media_element.webm,
+        :duration => x.media_element.duration,
+        :media_element_id => x.media_element_id
+      }
     end
-    if !x.nil? && self.accepted_media_element_sti_type == MediaElement::VIDEO_TYPE
-      return {:empty => false, :url => 'http://slides.html5rocks.com/src/chrome_japan.mp4', :media_element_id => x.media_element_id}
+  end
+  
+  def audio_at(position)
+    return {:empty => true} if self.accepted_media_element_sti_type != MediaElement::AUDIO_TYPE
+    x = media_element_at position
+    if x.nil?
+      {:empty => true}
+    else
+      {
+        :empty => false,
+        :mp3 => x.media_element.mp3,
+        :ogg => x.media_element.ogg,
+        :duration => x.media_element.duration,
+        :media_element_id => x.media_element_id
+      }
     end
-    # FINO A QUI
-    url = x.nil? ? nil : x.media_element.media.url
-    alignment = x.nil? ? nil : x.alignment
-    caption = x.nil? ? nil : x.caption
-    width = x.nil? ? nil : x.media_element.width
-    height = x.nil? ? nil : x.media_element.height
-    media_element_id = x.nil? ? nil : x.media_element_id
-    return {:empty => x.nil?, :url => url, :alignment => alignment, :caption => caption,:width => width, :height => height, :media_element_id => media_element_id}
+  end
+  
+  def image_at(position)
+    return {:empty => true} if self.accepted_media_element_sti_type != MediaElement::IMAGE_TYPE
+    x = media_element_at position
+    if x.nil?
+      {:empty => true}
+    else
+      {
+        :empty => false,
+        :url => x.media_element.url,
+        :alignment => x.alignment
+        :caption => x.caption
+        :width => x.media_element.width
+        :height => x.media_element.height
+        :media_element_id => x.media_element_id
+      }
+    end
   end
   
   def previous
