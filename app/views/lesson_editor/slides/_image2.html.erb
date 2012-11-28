@@ -16,7 +16,7 @@
 
     <% sme2 = slide.media_element_url_at(2) %>
     <%- if !sme2[:empty] %>
-      <%= render :partial => "/lesson_editor/slides/parts/filled_image", :locals => {:slide => slide, :position => 1} %>
+      <%= render :partial => "/lesson_editor/slides/parts/filled_image", :locals => {:slide => slide, :position => 2} %>
     <%- else %>
       <%= hidden_field_tag :media_element_align_2, "0", :class =>"media_element_align_2" %>
       <%= hidden_field_tag :media_element_2, "", :class=> "media-tag-cover-2" %>
