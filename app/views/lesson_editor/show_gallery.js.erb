@@ -25,7 +25,7 @@ $("._add_image_to_slide").click(function(e){
   image_width = $(this).attr("data-width");
   image_height = $(this).attr("data-height");
 
-  if(isHorizontalMask(image_width,image_height,'cover')){
+  if(isHorizontalMask(image_width,image_height,"<%=@slide.kind%>")){
     sld.find("._mask_y.<%=@slide.kind%>-p<%=@img_position%>").addClass("_mask_x").removeClass("_mask_y");
     sld.find("._cover_choose_image_<%=@img_position%>").replaceWith("<div class='mask _mask_x <%=@slide.kind%>-p<%=@img_position%>'><a href='/lessons/<%= @slide.lesson_id %>/slides/<%= @slide.id %>/show_gallery?position=<%=@img_position%>' class='show-gallery' data-param='<%=@img_position%>' data-remote='true'><span class='rollover rollover-image'><span class='add-image'></span></span><img src='"+image_url+"' alt='added-imgage' class='_slide_image <%=@slide.kind%>-p<%=@img_position%>' width='"+resizeWidth(image_width,image_height,"<%=@slide.kind%>")+"' /></a><input class='caption' id='caption_<%=@img_position%>' name='caption_<%=@img_position%>' placeholder='Write a caption...' type='text'></div>");
     sld.find(".<%=@slide.kind%>-p<%=@img_position%>").parent("a").replaceWith("<a href='/lessons/<%= @slide.lesson_id %>/slides/<%= @slide.id %>/show_gallery?position=<%=@img_position%>' class='show-gallery' data-param='<%=@img_position%>' data-remote='true'><span class='rollover rollover-image'><span class='add-image'></span></span><img src='"+image_url+"' alt='added-imgage' class='_slide_image <%=@slide.kind%>-p<%=@img_position%>' width='"+resizeWidth(image_width,image_height,"<%=@slide.kind%>")+"' /></a>")

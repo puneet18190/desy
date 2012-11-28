@@ -1,48 +1,48 @@
 <%
-  image1 = slide.media_element_url_at(1)
-  image2 = slide.media_element_url_at(2)
-  image3 = slide.media_element_url_at(3)
-  image4 = slide.media_element_url_at(4)
+  image1 = slide.image_at(1)
+  image2 = slide.image_at(2)
+  image3 = slide.image_at(3)
+  image4 = slide.image_at(4)
 %>
 
 <div class="bigViewLesson slideImage" style="display:block">
   <div class="boxFissoImage" style="margin-bottom:20px">  
     <div class="small">
-		  <% if image1[:empty] %>
-			  <div class="photoIcon"></div>
-		    <% else %>
+      <% if image1[:empty] %>
+        <div class="photoIcon"></div>
+      <% else %>
         <%= image_tag image1[:url], :style => "left:#{image1[:alignment]}px" %>
-				<div class="caption"><%= image1[:caption] %></div>
-      <% end %>
-    </div>
-	</div>
-	<div class="boxFissoImage" style="float:right">
-    <div class="small">
-		  <% if image2[:empty] %>
-			  <div class="photoIcon"></div>
-		    <% else %>
-        <%= image_tag image2[:url], :style => "left:#{image2[:alignment]}px" %>
-				<div class="caption"><%= image2[:caption] %></div>
-      <% end %>
-    </div>
-  </div>
-	<div class="boxFissoImage">
-    <div class="small">
-		  <% if image3[:empty] %>
-			  <div class="photoIcon"></div>
-		    <% else %>
-        <%= image_tag image3[:url], :style => "left:#{image3[:alignment]}px" %>
-				<div class="caption"><%= image3[:caption] %></div>
+        <div class="caption"><%= image1[:caption] %></div>
       <% end %>
     </div>
   </div>
   <div class="boxFissoImage" style="float:right">
     <div class="small">
-		  <% if image4[:empty] %>
-			  <div class="photoIcon"></div>
-		    <% else %>
+      <% if image2[:empty] %>
+        <div class="photoIcon"></div>
+      <% else %>
+        <%= image_tag image2[:url], :style => "left:#{image2[:alignment]}px" %>
+        <div class="caption"><%= image2[:caption] %></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="boxFissoImage">
+    <div class="small">
+      <% if image3[:empty] %>
+        <div class="photoIcon"></div>
+      <% else %>
+        <%= image_tag image3[:url], :style => "left:#{image3[:alignment]}px" %>
+        <div class="caption"><%= image3[:caption] %></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="boxFissoImage" style="float:right">
+    <div class="small">
+      <% if image4[:empty] %>
+        <div class="photoIcon"></div>
+      <% else %>
         <%= image_tag image4[:url], :style => "left:#{image4[:alignment]}px" %>
-				<div class="caption"><%= image4[:caption] %></div>
+        <div class="caption"><%= image4[:caption] %></div>
       <% end %>
     </div>
   </div>
