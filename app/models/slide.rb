@@ -92,9 +92,7 @@ class Slide < ActiveRecord::Base
     else
       {
         :empty => false,
-        :mp4 => x.media_element.mp4,
-        :webm => x.media_element.webm,
-        :duration => x.media_element.duration,
+        :video => x.media_element,
         :media_element_id => x.media_element_id
       }
     end
@@ -108,9 +106,7 @@ class Slide < ActiveRecord::Base
     else
       {
         :empty => false,
-        :mp3 => x.media_element.mp3,
-        :ogg => x.media_element.ogg,
-        :duration => x.media_element.duration,
+        :audio => x.media_element,
         :media_element_id => x.media_element_id
       }
     end

@@ -6,6 +6,22 @@ class MediaElement < ActiveRecord::Base
   VIDEO_TYPE = 'Video'
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
   
+  COLORS = {
+    :red => 'B51726', # colore sfondo della componente 'testo' nella timeline nel psd dell'editor video
+    :green => '#41A62A', # colore elementi didattici
+    :light_green => '#95E195', # scelto da me
+    :orange => '#F29400', # colore lezioni
+    :blue => '#2807CE', # scelto da me
+    :light_blue => '#2EAADC', # colore virtual classroom
+    :white => '#F2F2F2', # scelto da me
+    :black => '#373737', # colore dell'header desy
+    :gray => '#7D7D7D', # scritta 'profile' nel menu quando è selezionata (non sfondo)
+    :purple => '#6A05AE', # scelto da me
+    :yellow => '#FDB525', # sfondo sezione 'what is DESY'
+    :brown => '#622F0B', # scelto da me
+    :pink => '#F4D0F3' # scelto da me
+  }
+  
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
   EXTENSIONS_BY_STI_TYPE = { 'Image' => %w(jpg jpeg png) }
@@ -54,6 +70,14 @@ class MediaElement < ActiveRecord::Base
       inferred_sti_type.constantize.new_without_sti_type_inferring(attributes, options, &block)
     end
     alias_method_chain :new, :sti_type_inferring
+  end
+  
+  def self.extract(media_element_id, an_user_id, my_sti_type)
+    media_element = MediaElement.find_by_id media_element_id
+    return nil if media_element.nil? || media_element.sti_type != my_sti_Type
+    media_element.set_status(an_user_id)
+    return nil if media_element.status.nil?
+    media_element
   end
   
   def image?

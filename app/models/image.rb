@@ -36,7 +36,7 @@ class Image < MediaElement
   
   def set_width_and_height
     self.width, self.height = media.width, media.height
-    true 
+    true
   end
   
 end

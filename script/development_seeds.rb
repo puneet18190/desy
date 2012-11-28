@@ -427,4 +427,16 @@ def plant_development_seeds
   end
   MediaElement.record_timestamps = true
   
+  
+  FileUtils.rm_rf 'public/media_elements/videos' if Dir.exists? 'public/media_elements/videos'
+  Dir.mkdir 'public/media_elements/videos'
+  
+  Video.all.each do |v|
+    Dir.mkdir "public/media_elements/videos/#{v.id.to_s}"
+    FileUtils.cp("db/seeds/videos/url/mp4/#{(Video.where('id < ?', v.id).count % 5) + 1}.webm", "public/media_elements/videos/#{v.id.to_s}/video_mp4.webm")
+    FileUtils.cp("db/seeds/videos/url/webm/#{(Video.where('id < ?', v.id).count % 5) + 1}.webm", "public/media_elements/videos/#{v.id.to_s}/video_webm.webm")
+    FileUtils.cp("db/seeds/videos/thumb/#{(Video.where('id < ?', v.id).count % 5) + 1}.jpg", "public/media_elements/videos/#{v.id.to_s}/thumb.jpg")
+    FileUtils.cp("db/seeds/videos/cover/#{(Video.where('id < ?', v.id).count % 5) + 1}.jpg", "public/media_elements/videos/#{v.id.to_s}/cover.jpg")
+  end
+  
 end

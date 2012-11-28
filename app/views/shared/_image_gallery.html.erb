@@ -10,7 +10,7 @@
         <%- if sti_type == MediaElement::VIDEO_TYPE.downcase %>
           <% media_elements.each do |mel| %>
             <li id="#gallery_thumb_<%=mel.id%>" class="_gallery_thumb">
-              <%= link_to (image_tag "testa.jpg", :width => '250', :height=> "140"), "#{mel.id}" %>
+              <%= link_to (image_tag mel.thumb, :width => '250', :height=> "140"), "#{mel.id}" %>
               <%= render :partial => "shared/image_gallery_popup", :locals => {:media_element => mel, :sti_type => sti_type} %>
             </li>
           <% end %>
