@@ -35,20 +35,20 @@ Desy::Application.routes.draw do
   post 'reports/media_element' => 'reports#media_element'
   
   # LESSON EDITOR
-  get  'lesson_editor/new' => 'lesson_editor#new'
-  post 'lesson_editor/create' => 'lesson_editor#create'
-  get  'lesson_editor/:lesson_id/index' => 'lesson_editor#index', :as => :lesson_editor
-  get  'lesson_editor/:lesson_id/edit' => 'lesson_editor#edit', :as => :edit_lesson
-  put  'lesson_editor/:lesson_id/update' => 'lesson_editor#update', :as => :lesson
-  post 'lesson_editor/:lesson_id/add_slide/:slide_id/kind/:kind' => 'lesson_editor#add_slide'
-  post 'lesson_editor/:lesson_id/delete_slide/:slide_id' => 'lesson_editor#delete_slide', :as => :delete_slide
-  get  'lesson_editor/:lesson_id/show_gallery/:slide_id' => 'lesson_editor#show_gallery', :as => :show_gallery
-  get  'lesson_editor/:lesson_id/save_slide/:slide_id' => 'lesson_editor#save_slide', :as => :save_slide
-  post 'lesson_editor/:lesson_id/change_slide_position/:slide_id/position/:position' => 'lesson_editor#change_slide_position', :as => :change_slide_position
+  get  'lessons/new' => 'lesson_editor#new'
+  post 'lessons/create' => 'lesson_editor#create'
+  get  'lessons/:lesson_id/slides/edit' => 'lesson_editor#index', :as => :lesson_editor
+  get  'lessons/:lesson_id/edit' => 'lesson_editor#edit', :as => :edit_lesson
+  put  'lessons/:lesson_id/update' => 'lesson_editor#update', :as => :lesson
+  post 'lessons/:lesson_id/slides/:slide_id/kind/:kind/create' => 'lesson_editor#add_slide'
+  post 'lessons/:lesson_id/slides/:slide_id/delete' => 'lesson_editor#delete_slide', :as => :delete_slide
+  get  'lessons/:lesson_id/slides/:slide_id/show_gallery' => 'lesson_editor#show_gallery', :as => :show_gallery
+  get  'lessons/:lesson_id/slides/:slide_id/update' => 'lesson_editor#save_slide', :as => :save_slide
+  post 'lessons/:lesson_id/slides/:slide_id/move/:position' => 'lesson_editor#change_slide_position', :as => :change_slide_position
   
   # LESSON VIEWER
-  get  'lesson_viewer/playlist' => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
-  get  'lesson_viewer/:lesson_id/show' => 'lesson_viewer#index', :as => :lesson_viewer
+  get  'lessons/view/playlist' => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
+  get  'lessons/:lesson_id/view' => 'lesson_viewer#index', :as => :lesson_viewer
   
   # VIRTUAL CLASSROOM
   post 'virtual_classroom/:lesson_id/remove_lesson_from_inside' => 'virtual_classroom#remove_lesson_from_inside'
@@ -62,9 +62,16 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/load_lessons' => 'virtual_classroom#load_lessons', :as => :load_lessons
   post 'virtual_classroom/:lesson_id/send_link' => 'virtual_classroom#send_link'
   
-  # MEDIA ELEMENTS EDITOR
-  get  'media_elements_editor/' => 'media_elements_editor#index'
-  get  'media_elements_editor/show_gallery/' => 'media_elements_editor#show_gallery', :as => :show_gallery
+  # VIDEO EDITOR
+  get  'videos/:video_id/edit' => 'video_editor#index'
+  get  'videos/new' => 'video_editor#index'
+  
+  # AUDIO EDITOR
+  get  'audios/:audio_id/edit' => 'audio_editor#index'
+  get  'audios/new' => 'audio_editor#index'
+  
+  # IMAGE EDITOR
+  get  'images/:image_id/edit' => 'image_editor#index'
   
   # BASE64 TO IMAGE
   post 'base64_to_image/' => "base64_to_image#create"

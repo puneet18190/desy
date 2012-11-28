@@ -224,11 +224,26 @@
 		background-position: (-$button-size*3) (-$button-size);
 		opacity:1;
 	}
+	&.closeButton {
+	  background-position: 0 0;
+		opacity:0.2;
+	}
+	&.closeButton:hover {
+	  background-position: (-$button-size*3) 0;
+		opacity:1;
+	}
+	&.closeButton.current {
+	  background-position: (-$button-size*3) 0;
+		opacity:1;
+	}
 	
 }
 .creaNuovoButton {
    @include menuCondivisoElementLessonEditor;
  }
+.closeButton {
+   @include menuCondivisoElementLessonEditor;
+}
 .saveButton, .saveButtonOrange {
    @include menuCondivisoElementLessonEditor;
  }
