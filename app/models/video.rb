@@ -5,22 +5,6 @@ class Video < MediaElement
   IMAGE_COMPONENT = 'image'
   COMPONENTS = [VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT]
   
-  COLORS = {
-    :red => 'B51726', # colore sfondo della componente 'testo' nella timeline nel psd dell'editor video
-    :green => '#41A62A', # colore elementi didattici
-    :light_green => '#95E195', # scelto da me
-    :orange => '#F29400', # colore lezioni
-    :blue => '#2807CE', # scelto da me
-    :light_blue => '#2EAADC', # colore virtual classroom
-    :white => '#F2F2F2', # scelto da me
-    :black => '#373737', # colore dell'header desy
-    :gray => '#7D7D7D', # scritta 'profile' nel menu quando è selezionata (non sfondo)
-    :purple => '#6A05AE', # scelto da me
-    :yellow => '#FDB525', # sfondo sezione 'what is DESY'
-    :brown => '#622F0B', # scelto da me
-    :pink => '#F4D0F3' # scelto da me
-  }
-  
   def duration # FIXME temporaneo
     # metadata.duration
     YAML.load(File.open(Rails.root.join('db/seeds/videos/durations.yml'), 'r'))[(Video.where('id < ?', self.id).count % 5) + 1]
@@ -58,7 +42,7 @@ class Video < MediaElement
     return nil if !hash.has_key?(:parameters) || !hash[:parameters].kind_of?(Array)
     resp_hash[:parameters] = []
     hash[:parameters].each do |p|
-      return nil if !p.kind_of?(Hash) || !p.has_key?(:component) || !COMPONENTS.include?(p[:components])
+      return nil if !p.kind_of?(Hash) || !p.has_key?(:component) || !COMPONENTS.include?(p[:component])
       case p[:component]
         when VIDEO_COMPONENT
           video = Video.get_media_element_from_hash(p, :video_id, user_id, 'Video')
