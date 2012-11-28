@@ -86,7 +86,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._large_dashboard_hover_lesson', function() {
-    window.location = '/lesson_editor/new';
+    window.location = '/lessons/new';
   });
   
   $('body').on('click', '._large_dashboard_hover_media_element', function() {
@@ -370,7 +370,7 @@ $(document).ready(function() {
   $('body').on('click', '._Lesson_button_edit', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    window.location = '/lesson_editor/' + my_param + '/index';
+    window.location = '/lessons/' + my_param + '/slides/edit';
     return false;
   });
   

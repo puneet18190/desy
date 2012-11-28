@@ -129,7 +129,7 @@ function showLoadMediaElementPopUp() {
 
 function showImageMediaElementPopUp(id) {
   var thumb = '._gallery_img_expanded_'+id;
-  var obj = $(thumb);
+  var obj = $(thumb).first();
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {

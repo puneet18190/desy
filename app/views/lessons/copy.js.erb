@@ -1,7 +1,7 @@
 <% if @ok %>
   
   showConfirmPopUp('<%= j t('popups.after_copy_title') %>', '<%= j t('popups.after_copy_confirm') %>', '<%= j t('popups.after_copy_go_to_editor') %>', '<%= j t('popups.after_copy_stay_in_page') %>', function() {
-    window.location = 'lesson_editor/<%= @lesson_id %>/index'
+    window.location = '/lessons/<%= @lesson_id %>/slides/edit'
   }, function() {
     closePopUp('dialog-confirm');
     var redirect_url = $('#info_container').data('currenturl');

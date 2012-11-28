@@ -31,7 +31,7 @@ class LessonEditorController < ApplicationController
     # TODO controllare redirect
     new_lesson = @current_user.create_lesson params[:title], params[:description], params[:subject], params[:tags]
     if new_lesson
-      redirect_to "/lesson_editor/#{new_lesson.id}/index"
+      redirect_to "/lessons/#{new_lesson.id}/slides/edit"
     else
       redirect_to :back, notice: t('captions.lesson_not_created')
     end
