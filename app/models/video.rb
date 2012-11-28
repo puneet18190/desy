@@ -52,7 +52,7 @@ class Video < MediaElement
           video = Video.get_media_element_from_hash(p, :video_id, user_id, 'Video')
           return nil if video.nil?
           return nil if !p.has_key?(:from) || !p[:from].kind_of?(Integer) || !p.has_key?(:until) || !p[:until].kind_of?(Integer)
-          return nil if p[:from] < 0 || p[:until] > video.duration
+          return nil if p[:from] < 0 || p[:until] > video.duration || p[:from] >= p[:until]
           resp_hash[:parameters] << {
             :component => VIDEO_COMPONENT,
             :video => video,

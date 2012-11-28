@@ -74,7 +74,7 @@ class MediaElement < ActiveRecord::Base
   
   def self.extract(media_element_id, an_user_id, my_sti_type)
     media_element = MediaElement.find_by_id media_element_id
-    return nil if media_element.nil? || media_element.sti_type != my_sti_Type
+    return nil if media_element.nil? || media_element.sti_type != my_sti_type
     media_element.set_status(an_user_id)
     return nil if media_element.status.nil?
     media_element
