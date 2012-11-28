@@ -25,7 +25,13 @@ class User < ActiveRecord::Base
     "#{self.name} #{self.surname}"
   end
   
-  def get_video_editor_cache
+  def empty_video_editor_cache
+    return false if self.new_record?
+    File.delete(Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml")) if File.exists?(Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml"))
+    true
+  end
+  
+  def video_editor_cache
     return nil if self.new_record? || !File.exists?(Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml"))
     YAML::load(File.open(Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml")))
   end
