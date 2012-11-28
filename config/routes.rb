@@ -63,8 +63,9 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/:lesson_id/send_link' => 'virtual_classroom#send_link'
   
   # VIDEO EDITOR
-  get  'videos/:video_id/edit' => 'video_editor#index'
-  get  'videos/new' => 'video_editor#index'
+  get  'videos/:video_id/edit' => 'video_editor#edit'
+  get  'videos/new' => 'video_editor#new'
+  post 'videos/cache' => 'video#cache'
   
   # AUDIO EDITOR
   get  'audios/:audio_id/edit' => 'audio_editor#index'

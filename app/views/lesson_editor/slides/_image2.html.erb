@@ -1,5 +1,5 @@
 <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
-    <% sme1 = slide.media_element_url_at(1) %>
+    <% sme1 = slide.image_at(1) %>
     <%- if !sme1[:empty] %>
       <span class="spacer20"></span>
       <%= render :partial => "/lesson_editor/slides/parts/filled_image", :locals => {:slide => slide, :position => 1} %>
@@ -14,7 +14,7 @@
       </div>
     <%- end %>
 
-    <% sme2 = slide.media_element_url_at(2) %>
+    <% sme2 = slide.image_at(2) %>
     <%- if !sme2[:empty] %>
       <%= render :partial => "/lesson_editor/slides/parts/filled_image", :locals => {:slide => slide, :position => 2} %>
     <%- else %>

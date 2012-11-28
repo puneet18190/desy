@@ -1,6 +1,19 @@
 <div class="mediaEditorElementContainer">
-  <div class="closeOrSave">
-	  <div class="fltrt"><a class="closeButton"></a></div>
-    <div class="fltrt"><a class="saveButton"></a></div>
-  </div>
+  <div class="menuLeftEditorElement">
+	<h2>What to do?</h2><p>Select the scissors to cut the image
+or ABC to enter text.</p>
+    <div style="padding:20px">
+		  <a style="color:white">CUT</a>
+			<br>
+			<a style="color:white">ABC</a>
+	  </div>
+	</div>
+  <div class="imagesContainer">[inserisci immagine]
+	</div>
+	<div class="menuRightEditorElement">dfgdfg</div>
+	<br class="clearfloat">
+  <div class="menuFooterEditorElement">
+	  <p>Original image size: 1280x720 px</p>
+    <%= render :partial => "save_cancel" %>
+	</div>
 </div>

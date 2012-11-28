@@ -66,7 +66,7 @@ class LessonEditorController < ApplicationController
       @media_elements = @current_user.own_media_elements(1, FOR_PAGE[@media_element_type], @media_element_type.downcase)[:records]
       @media_element_type = @media_element_type.downcase
       @img_position = params[:position]
-      @sme = @slide.media_element_url_at(@img_position)
+      @sme = get_media_element_at(@slide, @img_position)
     end
   end
   
@@ -100,6 +100,18 @@ class LessonEditorController < ApplicationController
   end
   
   private
+  
+  def get_media_element_at(slide, position)
+    accepted = slide.accepted_media_element_sti_type
+    case accepted
+      when MediaElement::IMAGE_TYPE
+        slide.image_at position
+      when MediaElement::AUDIO_TYPE
+        slide.audio_at position
+      when MediaElement::VIDEO_TYPE
+        slide.video_at position
+    end
+  end
   
   def initialize_kind
     @kind = Slide::KINDS_WITHOUT_COVER.include?(params[:kind]) ? params[:kind] : ''

@@ -5,7 +5,7 @@
   <div class="image1-content">
     <%= text_area_tag :text, slide.text ? slide.text.html_safe : "#{t 'descriptions.slide_text'}", :id=> "ta-#{slide.id}", :class=>"tinymce"%>
   </div>
-  <%- sme1 = slide.media_element_url_at(1) %>
+  <%- sme1 = slide.image_at(1) %>
   <%- if !sme1[:empty] %>
     <%= render :partial => "/lesson_editor/slides/parts/filled_image", :locals => {:slide => slide, :position => 1} %>
   <%- else %>
