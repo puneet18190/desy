@@ -122,14 +122,14 @@
 }
 /*MENU CONDIVISO EDITOR LESSON ED EDITOR ELEMENTS*/
 @mixin menuCondivisoElementLessonEditor {
-  $button-size: 5.5em;
+  $button-size: 6em;
   & {
     float:left;
 		width: $button-size;
     height: $button-size;
     background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
     background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*8);
+    background-size: ($button-size*4) ($button-size*9);
 		padding:0;
 		font-size:0.8em;
 	}
@@ -233,7 +233,6 @@
 	  background-position: 0 0;
 		opacity:0.2;
 		font-size:0.6em;
-		outline:1px solid white;
 	}
 	&.closeButton:hover {
 	  background-position: (-$button-size*3) 0;
@@ -251,7 +250,10 @@
 .closeButton {
    @include menuCondivisoElementLessonEditor;
 }
-.saveButton, .saveButtonOrange {
+.saveButton {
+   @include menuCondivisoElementLessonEditor;
+ }
+.saveButtonOrange {
    @include menuCondivisoElementLessonEditor;
  }
 .deleteButtonOrange {
@@ -277,7 +279,7 @@
     height: $button-size;
     background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
     background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*8);
+    background-size: ($button-size*4) ($button-size*9);
     padding:0;
 	}
 	&:hover {
@@ -304,6 +306,24 @@
 	.exitButton, .exitButtonWhite {
    @include buttonExitElement;
  }
+ 
+ @mixin menuImageEditor {
+  $button-size: 5.5em;
+  & {
+    float:left;
+		width: $button-size;
+    height: $button-size;
+    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($button-size*4) ($button-size*9);
+		padding:0;
+		font-size:0.8em;
+	}
+	&:hover {
+    cursor: pointer;
+  }
+}
+ 
  
  /* TINYMCE SIZES */
  .size1{
