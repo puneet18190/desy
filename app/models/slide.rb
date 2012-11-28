@@ -125,10 +125,10 @@ class Slide < ActiveRecord::Base
       {
         :empty => false,
         :url => x.media_element.url,
-        :alignment => x.alignment
-        :caption => x.caption
-        :width => x.media_element.width
-        :height => x.media_element.height
+        :alignment => x.alignment,
+        :caption => x.caption,
+        :width => x.media_element.width,
+        :height => x.media_element.height,
         :media_element_id => x.media_element_id
       }
     end
