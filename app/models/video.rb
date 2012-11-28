@@ -42,7 +42,7 @@ class Video < MediaElement
       return nil if initial_video.nil? || initial_video.is_public
     end
     resp_hash[:initial_video] = initial_video
-    if hash[:audio_id]-nil?
+    if hash[:audio_id].nil?
       audio_track = nil
     else
       audio_track = Video.get_media_element_from_hash(hash, :audio_id, user_id, 'Audio')
