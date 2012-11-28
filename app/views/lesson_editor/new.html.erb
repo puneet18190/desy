@@ -3,7 +3,7 @@
     <div class="box">
       <h3><%= t "captions.create_new_lesson" %></h3>
       <p><%= t "descriptions.new_lesson" %></p>
-      <%= form_tag('/lesson_editor/create') do -%>
+      <%= form_tag('/lessons/create') do -%>
         <%= text_field_tag "title", "", :placeholder => "#{t 'captions.enter_lesson_title'}", :class=>"pull-left" %>
         <%= select_tag "subject", options_from_collection_for_select(@subjects, "id", "description"), :include_blank => false, :class=>"pull-right", :id => "lesson_subject" %>
         <%= text_area_tag "description", "", :placeholder=> "#{t 'captions.enter_lesson_description'}", :class=>"pull-left" %>
