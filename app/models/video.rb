@@ -28,12 +28,12 @@ class Video < MediaElement
   
   def mp4 # FIXME temporaneo
     # media.url.mp4
-    'http://slides.html5rocks.com/src/chrome_japan.mp4'
+    Rails.root.join "db/seeds/video/#{(Video.where('id < ?', self.id).count % 5) + 1}.webm"
   end
   
   def webm # FIXME temporaneo
     # media.url.webm
-    'http://slides.html5rocks.com/src/chrome_japan.mp4'
+    Rails.root.join "db/seeds/video/#{(Video.where('id < ?', self.id).count % 5) + 1}.webm"
   end
   
   def thumb # FIXME temporaneo
