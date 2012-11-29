@@ -1,9 +1,13 @@
+# SEEDS
+locations: ['Roma', 'Milano', '南京', '上海', '北京', '青岛'] # possibly, link here an external file with the list of locations
+subjects: ['Chemistry', 'Mathematics', 'History', 'Biology', 'Languages']
+school_levels: ['Primary School', 'Secondary School', 'Undergraduate', 'Master']
+admin_username: 'DESY Admin User'
+admin_email: 'nanjing@china.gov'
 # TAGS
 min_tag_length: 1
 max_tag_length: 25
 min_tags_for_item: 4
-# ADMIN USER
-admin_email: 'nanjing@china.gov'
 # APPLICATION LANGUAGE
 application_language: 'en'
 # DIALOGS

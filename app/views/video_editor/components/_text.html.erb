@@ -1,0 +1,15 @@
+<div class="contatore"><%= position %></div>
+<div class="boxMediaElement background_color_<%= component[:background_color] %>">
+  <div class="boxContentMediaElement">
+    
+      <p class="color_<%= component[:text_color] %>"><%= component[:content] %></p>
+    
+    <%= render :partial => 'video_editor/component_menu', :locals => {:component => component, :position => position} %>
+		<div class="textIcon"></div>
+  </div>
+  <%= hidden_field_tag "component_#{position}", component[:component] %>
+  <%= hidden_field_tag "content_#{position}", component[:content] %>
+  <%= hidden_field_tag "background_color_#{position}", component[:background_color] %>
+  <%= hidden_field_tag "text_color_#{position}", component[:text_color] %>
+  <%= hidden_field_tag "duration_#{position}", component[:duration] %>
+</div>

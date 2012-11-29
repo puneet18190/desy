@@ -412,10 +412,6 @@ $(document).ready(function() {
   
   // JAVASCRIPT ANIMATIONS
   
-  $('#media_elements_list_in_video_editor').jScrollPane({
-    autoReinitialise: true
-  });
-  
   $('#playlist_menu').jScrollPane({
     autoReinitialise: true
   });
@@ -671,5 +667,10 @@ $(document).ready(function() {
     $('.dialog_opaco').removeClass('dialog_opaco');
     closePopUp('dialog-virtual-classroom-quick-select');
   });
+  
+  
+  // VIDEO EDITOR
+  
+  initializeVideoEditor();
   
 });

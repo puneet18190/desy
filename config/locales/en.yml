@@ -107,6 +107,7 @@ en:
     matter: 'Matter'
     media_elements: 'Elements'
     modify_info_element: 'Modify info element'
+    new_element_untitled: 'New element - untitled'
     no_notifications: "You don't have any notifications"
     or_cancel: "Or cancel"
     play: 'Play'

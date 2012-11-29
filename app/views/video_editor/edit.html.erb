@@ -1,11 +1,17 @@
-<div class="mediaEditorElementContainer">
-<%= render :partial => "content_element" %>
-<div style="position:absolute; width:900px;">
-  <%= render :partial => "elements" %>
-	<%= render :partial => "timeline" %>
-	 <div class="addAudioandSave">
-    <%= render :partial => "add_audio" %>
-	  <%= render :partial => "save" %>
+<%= render :partial => 'video_editor/header', :locals => {:parameters => @parameters} %>
+  <div class="mediaEditorVideoContainer">
+    <%= render :partial => 'video_editor/preview_container', :locals => {:parameters => @parameters} %>
+		<div class="info">
+		<p>total lenght:</p> <p><span>03:12</span></p> <p>launches preview</p></div>
+    <div class="mediaEditorListaElementi">
+      <%= form_tag video_editor_save_cache_path do %>
+        <%= render :partial => 'timeline', :locals => {:parameters => @parameters} %>
+        <%= render :partial => 'cutter', :locals => {:parameters => @parameters} %>
+        <div class="addAudioandSave">
+          <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
+          <%= render :partial => 'save_cancel' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
-</div>
+
