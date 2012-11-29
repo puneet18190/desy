@@ -1,7 +1,7 @@
 <div id="video_component_<%= position %>">
   <div class="contatore"><%= position %></div>
   <div class="boxMediaElement background_color_<%= component[:background_color] %>">
-    <div class="boxContentMediaElement" style="outline:1px solid red">
+    <div class="boxContentMediaElement">
         <p class="color_<%= component[:text_color] %>"><%= component[:content] %></p>
       <%= render :partial => 'video_editor/component_menu', :locals => {:component => component, :position => position} %>
       <div class="textIcon"></div>
