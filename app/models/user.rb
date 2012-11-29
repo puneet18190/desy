@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   end
   
   def save_video_editor_cache(hash)
-    return if self.new_record?
+    return false if self.new_record?
     Dir.mkdir Rails.root.join('tmp') if !Dir.exists? Rails.root.join('tmp')
     Dir.mkdir Rails.root.join('tmp/cache') if !Dir.exists? Rails.root.join('tmp/cache')
     Dir.mkdir Rails.root.join('tmp/cache/video_editor') if !Dir.exists? Rails.root.join('tmp/cache/video_editor')
