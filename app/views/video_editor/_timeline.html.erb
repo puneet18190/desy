@@ -1,11 +1,11 @@
 <div class="scrollVerde">
   <div class="scroll-pane horizontal-only" id="media_elements_list_in_video_editor">
-    <div id="video_editor_timeline" class="scrollGatto" style="width:<%= (186 * parameters[:parameters].length) + 156 + 28 %>px">
+    <div id="video_editor_timeline" class="scrollGatto" style="width:<%= (186 * parameters[:components].length) + 156 + 28 %>px">
       
       <% cont = 1 %>
-      <% parameters[:parameters].each do |p| %>
+      <% parameters[:components].each do |p| %>
         <div class="lista">
-          <%= render :partial => "video_editor/components/#{p[:component]}", :locals => {:component => p, :position => cont} %>
+          <%= render :partial => "video_editor/components/#{p[:type]}", :locals => {:component => p, :position => cont} %>
           <div class="separatore"><%= image_tag("arrow_element_timeline.png") %></div>
         </div>
         <% cont += 1 %>
