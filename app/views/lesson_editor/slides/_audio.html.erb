@@ -12,7 +12,7 @@
   <%- else %>
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
     <div class="cover-choose-image _cover_choose_image_1 cover-choose-image-left">
-      <%= link_to image_tag("choose-audio.png"), {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery audio-p1" %>
+      <%= link_to image_tag("choose-audio.png"), {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "_show_audio_gallery_in_lesson_editor show-gallery audio-p1" %>
       <br />
       <%= t 'captions.choose_audio' %>
     </div>

@@ -1,14 +1,8 @@
 class LessonEditorController < ApplicationController
   
-  FOR_PAGE = {
-    MediaElement::IMAGE_TYPE => CONFIG['images_for_page_in_gallery'],
-    MediaElement::AUDIO_TYPE => CONFIG['audios_for_page_in_gallery'],
-    MediaElement::VIDEO_TYPE => CONFIG['videos_for_page_in_gallery']
-  }
-  
   before_filter :initialize_lesson_with_owner, :only => [:index, :update, :edit]
   before_filter :initialize_subjects, :only => [:new, :edit]
-  before_filter :initialize_lesson_with_owner_and_slide, :only => [:add_slide, :show_gallery, :save_slide, :delete_slide, :change_slide_position]
+  before_filter :initialize_lesson_with_owner_and_slide, :only => [:add_slide, :save_slide, :delete_slide, :change_slide_position]
   before_filter :initialize_kind, :only => :add_slide
   before_filter :initialize_position, :only => :change_slide_position
   layout 'lesson_editor'
@@ -56,17 +50,6 @@ class LessonEditorController < ApplicationController
     if !@ok
       redirect_to '/dashboard'
       return
-    end
-  end
-  
-  ## prompt image gallery in slide ##
-  def show_gallery
-    if @ok
-      @media_element_type = @slide.accepted_media_element_sti_type
-      @media_elements = @current_user.own_media_elements(1, FOR_PAGE[@media_element_type], @media_element_type.downcase)[:records]
-      @media_element_type = @media_element_type.downcase
-      @img_position = params[:position]
-      @sme = get_media_element_at(@slide, @img_position)
     end
   end
   
