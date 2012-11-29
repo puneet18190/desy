@@ -1,0 +1,9 @@
+<% CONFIG["colors"].each do |key,value| %>
+  $<%= key %>:<%= value %>;
+  .color_<%= key %>{
+    color: <%= value %>;
+  }
+  .background_color_<%= key %>{
+    background-color: <%= value %>;
+  }
+<%end%>
