@@ -33,11 +33,11 @@ class VideoEditorController < ApplicationController
     resp = {}
     resp[:initial_video_id] = @media_element.is_public ? nil : @media_element.id
     resp[:audio_id] = nil
-    resp[:parameters] = [{}]
-    resp[:parameters].first[:component] = Video::VIDEO_COMPONENT
-    resp[:parameters].first[:video_id] = @media_element.id
-    resp[:parameters].first[:from] = 0
-    resp[:parameters].first[:until] = @media_element.duration
+    resp[:components] = [{}]
+    resp[:components].first[:type] = Video::VIDEO_COMPONENT
+    resp[:components].first[:video_id] = @media_element.id
+    resp[:components].first[:from] = 0
+    resp[:components].first[:until] = @media_element.duration
     resp = Video.convert_parameters(resp, @current_user.id)
     resp.nil? ? empty_parameters : resp
   end
@@ -46,7 +46,7 @@ class VideoEditorController < ApplicationController
     resp = {}
     resp[:initial_video] = nil
     resp[:audio] = nil
-    resp[:parameters] = []
+    resp[:components] = []
     resp
   end
   

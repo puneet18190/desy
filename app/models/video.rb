@@ -49,18 +49,18 @@ class Video < MediaElement
       return nil if audio_track.nil?
     end
     resp_hash[:audio] = audio_track
-    return nil if !hash.has_key?(:parameters) || !hash[:parameters].kind_of?(Array)
-    resp_hash[:parameters] = []
-    hash[:parameters].each do |p|
-      return nil if !p.kind_of?(Hash) || !p.has_key?(:component) || !COMPONENTS.include?(p[:component])
-      case p[:component]
+    return nil if !hash.has_key?(:components) || !hash[:components].kind_of?(Array)
+    resp_hash[:components] = []
+    hash[:components].each do |p|
+      return nil if !p.kind_of?(Hash) || !p.has_key?(:type) || !COMPONENTS.include?(p[:type])
+      case p[:type]
         when VIDEO_COMPONENT
           video = Video.get_media_element_from_hash(p, :video_id, user_id, 'Video')
           return nil if video.nil?
           return nil if !p.has_key?(:from) || !p[:from].kind_of?(Integer) || !p.has_key?(:until) || !p[:until].kind_of?(Integer)
           return nil if p[:from] < 0 || p[:until] > video.duration || p[:from] >= p[:until]
-          resp_hash[:parameters] << {
-            :component => VIDEO_COMPONENT,
+          resp_hash[:components] << {
+            :type => VIDEO_COMPONENT,
             :video => video,
             :from => p[:from],
             :until => p[:until]
@@ -68,8 +68,8 @@ class Video < MediaElement
         when TEXT_COMPONENT
           return nil if !p.has_key?(:content) || !p.has_key?(:duration) || !p.has_key?(:background_color) || !p.has_key?(:text_color)
           return nil if !p[:duration].kind_of?(Integer) || p[:duration] < 1 || !CONFIG['colors'].has_key?(p[:background_color]) || !CONFIG['colors'].has_key?(p[:text_color])
-          resp_hash[:parameters] << {
-            :component => TEXT_COMPONENT,
+          resp_hash[:components] << {
+            :type => TEXT_COMPONENT,
             :content => p[:content].to_s,
             :duration => p[:duration],
             :background_color => p[:background_color],
@@ -79,8 +79,8 @@ class Video < MediaElement
           image = Video.get_media_element_from_hash(p, :image_id, user_id, 'Image')
           return nil if image.nil?
           return nil if !p.has_key?(:duration) || !p[:duration].kind_of?(Integer) || p[:duration] < 1
-          resp_hash[:parameters] << {
-            :component => IMAGE_COMPONENT,
+          resp_hash[:components] << {
+            :type => IMAGE_COMPONENT,
             :image => image,
             :duration => p[:duration]
           }
