@@ -673,4 +673,14 @@ $(document).ready(function() {
   
   initializeVideoEditor();
   
+  $('body').on('mouseover', '._video_editor_component', function() {
+    $('#' + this.id + ' ._video_editor_component_menu').css('display', 'block');
+    $('#' + this.id + ' ._video_editor_component_icon').css('display', 'none');
+  });
+  
+  $('body').on('mouseout', '._video_editor_component', function() {
+    $('#' + this.id + ' ._video_editor_component_menu').css('display', 'none');
+    $('#' + this.id + ' ._video_editor_component_icon').css('display', 'block');
+  });
+  
 });
