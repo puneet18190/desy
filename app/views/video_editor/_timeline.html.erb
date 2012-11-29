@@ -11,7 +11,7 @@
         <% cont += 1 %>
       <% end %>
       
-      <%= render :partial => "new_element" %>
+      <%= render :partial => 'video_editor/add_component', :locals => {:parameters => @parameters, :position => cont} %>
       
     </div>
   </div>
