@@ -1,21 +1,18 @@
-<div class="timeline">
-  <%= image_tag("arrow_timeline.png", :class => "callout") %>
-  <div id="slider-range">
+<div class="scrollVerde">
+  <div class="scroll-pane horizontal-only" id="media_elements_list_in_video_editor">
+    <div class="scrollContent">
+      
+      <% cont = 1 %>
+      <% parameters[:parameters].each do |p| %>
+        <div class="lista">
+          <%= render :partial => "video_editor/components/#{p[:component]}", :locals => {:component => p, :position => cont} %>
+          <div class="separatore"><%= image_tag("arrow_element_timeline.png") %></div>
+        </div>
+        <% cont += 1 %>
+      <% end %>
+      
+      <%= render :partial => "new_element" %>
+      
+    </div>
   </div>
 </div>
-
-<script>
-$(function() {
-  $( "#slider-range" ).slider({
-    range: true,
-    min: 0,
-    max: 500,
-    values: [ 75, 300 ],
-    slide: function( event, ui ) {
-      $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-    }
-   });
-   $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-     " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-   });
-</script>

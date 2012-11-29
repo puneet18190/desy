@@ -1,14 +1,14 @@
-<%= render :partial => "video_editor/header", :locals => {:parameters => @parameters} %>
+<%= render :partial => 'video_editor/header', :locals => {:parameters => @parameters} %>
 
 <div class="container">
   <div class="mediaEditorElementContainer">
-    <%= render :partial => "content_element" %>
+    <%= render :partial => 'video_editor/preview_container', :locals => {:parameters => @parameters} %>
     <div style="position:absolute; width:900px;">
-      <%= render :partial => "elements" %>
-      <%= render :partial => "timeline" %>
+      <%= render :partial => 'timeline', :locals => {:parameters => @parameters} %>
+      <%= render :partial => 'cutter', :locals => {:parameters => @parameters} %>
       <div class="addAudioandSave">
-        <%= render :partial => "add_audio" %>
-        <%= render :partial => "save" %>
+        <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
+        <div class="fltrt"><a class="saveButton"></a></div>
       </div>
     </div>
   </div>
