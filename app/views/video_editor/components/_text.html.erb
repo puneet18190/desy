@@ -1,8 +1,8 @@
 <div class="contatore"><%= position %></div>
-<div class="boxMediaElement">
+<div class="boxMediaElement background_color_<%= component[:background_color] %>">
   <div class="boxContentMediaElement">
-    <a>
-      <%= component[:content] %>
+    <a> <!-- FIXME per aurelia: sospetto che questa a non serva o comunque vada spostata un po' più fuori -->
+      <p class="color_<%= component[:text_color] %>"><%= component[:content] %></p>
     </a>
     <%= render :partial => 'video_editor/component_menu', :locals => {:component => component, :position => position} %>
   </div>

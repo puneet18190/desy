@@ -67,13 +67,13 @@ class Video < MediaElement
           }
         when TEXT_COMPONENT
           return nil if !p.has_key?(:content) || !p.has_key?(:duration) || !p.has_key?(:background_color) || !p.has_key?(:text_color)
-          return nil if !p[:duration].kind_of?(Integer) || p[:duration] < 1 || !COLORS.include?(p[:background_color]) || !COLORS.include?(p[:text_color])
+          return nil if !p[:duration].kind_of?(Integer) || p[:duration] < 1 || !CONFIG['colors'].has_key?(p[:background_color]) || !CONFIG['colors'].has_key?(p[:text_color])
           resp_hash[:parameters] << {
             :component => TEXT_COMPONENT,
             :content => p[:content].to_s,
             :duration => p[:duration],
-            :background_color => COLORS[p[:background_color]],
-            :text_color => COLORS[p[:text_color]]
+            :background_color => p[:background_color],
+            :text_color => p[:text_color]
           }
         when IMAGE_COMPONENT
           image = Video.get_media_element_from_hash(p, :image_id, user_id, 'Image')
