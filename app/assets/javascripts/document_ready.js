@@ -656,11 +656,11 @@ $(document).ready(function() {
   });
   
   $('body').on('mouseover', '._current_inserted', function(){
-    $(this).children('a').css('background-position', '-10em -0.5em');
+    $(this).children('a').css('background-position', '-10em -0.1em');
   });
   
   $('body').on('mouseout', '._current_inserted', function(){
-    $(this).children('a').css('background-position', '-10em -15.5em');
+    $(this).children('a').css('background-position', '-10em -15.2em');
   });
   
   $('body').on('click', '#virtual_classroom_quick_select_submit', function() {

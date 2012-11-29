@@ -229,6 +229,8 @@
 	  background-position: (-$button-size*3) (-$button-size*3);
 		opacity:1;
 	}
+	
+	
 	&.closeButton {
 	  background-position: 0 0;
 		opacity:0.2;
@@ -244,6 +246,8 @@
 	}
 	
 }
+
+
 .creaNuovoButton {
    @include menuCondivisoElementLessonEditor;
  }
@@ -268,7 +272,56 @@
 .aggiungiImgButton {
   @include menuCondivisoElementLessonEditor;
 }
- 
+
+/*MENU EDIT IMAGES*/
+
+ @mixin menuEditImages {
+  $button-size: 6em;
+  & {
+    width: $button-size;
+    height: $button-size;
+    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($button-size*4) ($button-size*9);
+		padding:2.3em 3em;
+		font-size:0.7em;
+	
+	}
+	&:hover {
+    cursor: pointer;
+  }
+	&.cutButton {
+	  background-position: 0 (-$button-size*7);
+		opacity:0.2;
+		
+	}
+	&.cutButton:hover {
+	  background-position: (-$button-size*3) (-$button-size*7);
+		opacity:1;
+	}
+	&.cutButton.current {
+	  background-position: (-$button-size*3) (-$button-size*7);
+		opacity:1;
+	}
+	&.abcButton {
+	  background-position: 0 (-$button-size*2);
+		opacity:0.2;
+	}
+	&.abcButton:hover {
+	  background-position: (-$button-size*3) (-$button-size*2);
+		opacity:1;
+	}
+	&.abcButton.current {
+	  background-position: (-$button-size*3) (-$button-size*2);
+		opacity:1;
+	}
+}
+.cutButton {
+   @include menuEditImages;
+}  
+.abcButton {
+   @include menuEditImages;
+} 
  
 /*MENU*/
 	@mixin buttonExitElement {
