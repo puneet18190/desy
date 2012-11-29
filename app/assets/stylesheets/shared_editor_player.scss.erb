@@ -129,7 +129,7 @@
     height: $button-size;
     background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
     background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*9);
+    background-size: ($button-size*4) ($button-size*10);
 		padding:0;
 		font-size:0.9em;
 	}
@@ -282,7 +282,7 @@
     height: $button-size;
     background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
     background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*9);
+    background-size: ($button-size*4) ($button-size*10);
 		padding:2.3em 3em;
 		font-size:0.7em;
 	
@@ -304,15 +304,15 @@
 		opacity:1;
 	}
 	&.abcButton {
-	  background-position: 0 (-$button-size*2);
+	  background-position: 0 (-$button-size*9);
 		opacity:0.2;
 	}
 	&.abcButton:hover {
-	  background-position: (-$button-size*3) (-$button-size*2);
+	  background-position: (-$button-size*3) (-$button-size*9);
 		opacity:1;
 	}
 	&.abcButton.current {
-	  background-position: (-$button-size*3) (-$button-size*2);
+	  background-position: (-$button-size*3) (-$button-size*9);
 		opacity:1;
 	}
 }
@@ -332,7 +332,7 @@
     height: $button-size;
     background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
     background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*9);
+    background-size: ($button-size*4) ($button-size*10);
     padding:0;
 	}
 	&:hover {
@@ -360,22 +360,6 @@
    @include buttonExitElement;
  }
  
- @mixin menuImageEditor {
-  $button-size: 5.5em;
-  & {
-    float:left;
-		width: $button-size;
-    height: $button-size;
-    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
-    background-repeat: no-repeat;
-    background-size: ($button-size*4) ($button-size*9);
-		padding:0;
-		font-size:0.8em;
-	}
-	&:hover {
-    cursor: pointer;
-  }
-}
  
  
  /* TINYMCE SIZES */
