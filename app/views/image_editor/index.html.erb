@@ -2,10 +2,11 @@
   <div class="menuLeftEditorElement">
 	<h2>What to do?</h2><p>Select the scissors to cut the image
 or ABC to enter text.</p>
-    <div style="padding:20px">
-		  <a class="do_crop _toggle_crop">CUT</a>
-			<br />
-			<a class="write_text _toggle_text">ABC</a>
+    <div class="menuModifyImages">
+		<ul>
+		  <li><a class="do_crop _toggle_crop cutButton"></a></li>
+			<li><a class="write_text _toggle_text abcButton"></a></li>
+		</ul>
 	  </div>
 	</div>
   <div id="_image_container" class="imagesContainer">
@@ -14,7 +15,7 @@ or ABC to enter text.</p>
     </div>
 	</div>
 	<div class="menuRightEditorElement">
-	  <form action="/image_editor/crop" method="post">
+	  <form action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
       <input type="hidden" name="x1" value="" />
       <input type="hidden" name="y1" value="" />
       <input type="hidden" name="x2" value="" />

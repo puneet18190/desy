@@ -3,18 +3,23 @@ $(document).ready(function() {
   
   $("._toggle_text").click(function(e){
     e.preventDefault;
-    $(this).addClass("active");
-    $("._toggle_crop").removeClass("active");
+    $(this).addClass("current");
+    $("._toggle_crop").removeClass("current");
     img_container.addClass("text_enabled").removeClass("crop_enabled");
+    $("#cropped_image").imgAreaSelect({ 
+      hide: true,
+      disable: true
+    });
   });
   
   $("._toggle_crop").click(function(e){
     e.preventDefault;
-    $(this).addClass("active");
-    $("._toggle_text").removeClass("active");
+    $(this).addClass("current");
+    $("._toggle_text").removeClass("current");
     img_container.removeClass("text_enabled").addClass("crop_enabled");
 
     $("#cropped_image").imgAreaSelect({ 
+      enable: true,
       handles: true,
       onSelectEnd: function (img, selection) {
         $('input[name="x1"]').val(selection.x1);

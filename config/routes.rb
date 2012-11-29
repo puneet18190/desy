@@ -74,6 +74,7 @@ Desy::Application.routes.draw do
   
   # IMAGE EDITOR
   get  'images/:image_id/edit' => 'image_editor#index'
+  post  'images/:image_id/crop' => 'image_editor#crop'
   
   # BASE64 TO IMAGE
   post 'base64_to_image/' => "base64_to_image#create"
