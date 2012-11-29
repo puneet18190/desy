@@ -1,5 +1,5 @@
-$("#image_wrapper").html("<img src='<%=@image_url%>' />");
 $("#cropped_image").imgAreaSelect({ 
   hide: true,
   disable: true
 });
+$("#image_wrapper").html("<img src='/media_elements/images/<%=@image_id%>/temp_crop.jpg' id='cropped_image' />")
