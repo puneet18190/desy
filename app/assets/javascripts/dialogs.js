@@ -1,6 +1,5 @@
 function showChangeInfoInVideoEditorPopUp() {
   var obj = $('#dialog-change-info-in-video-editor');
-  obj.html(content);
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
