@@ -79,11 +79,11 @@ html.media_element_editor-layout {
 	  max-height:170px;
 	}
 	.scrollContent {
-    width:1500px;
-		text-align:left;		
+    text-align:left;	
+			
 		.lista {
 		  margin: 0px;
-		  float:left; 
+		  display:inline-block;
 			width:186px;
 			.contatore {
 			  padding: 4px;
@@ -99,8 +99,9 @@ html.media_element_editor-layout {
 	@mixin layoutIconElements {
 	  margin-right:0px;
     position:absolute;
-	  top:6px;
+	  bottom:15px;
 	  right:3px;
+		font-size:0.3em;
 	}
 	/*content elemento singolo*/
 	.boxMediaElement {
@@ -109,12 +110,28 @@ html.media_element_editor-layout {
 		@include boxShadow;
 		position:relative;
 		float:left;
+		
 		.boxContentMediaElement {
 		  position:absolute; 
 			z-index:1;
+			width:156px;
+			height:100px;
+			
 			img {
 			  width: 156px;
 			  height: 87.75px;
+			}
+			.photoIcon {
+			  @include layoutIconElements;
+			}
+			.audioIcon {
+			  @include layoutIconElements;
+			}
+			.videoIcon {
+			  @include layoutIconElements;
+			}
+			.textIcon {
+			  @include layoutIconElements;
 			}
 		}
 				
@@ -130,23 +147,12 @@ html.media_element_editor-layout {
 			background-color: rgba(0,0,0,0.7);
 			font-size:11px;
 						
-			a {
+			/*a {
 			  color:#fff;
 				float:left;
 				margin-right:10px;
-			}
-			.photoIcon {
-			  @include layoutIconElements;
-			}
-			.audioIcon {
-			  @include layoutIconElements;
-			}
-			.videoIcon {
-			  @include layoutIconElements;
-			}
-			.textIcon {
-			  @include layoutIconElements;
-			}
+			}*/
+			
 		}
 	}
  }
@@ -244,7 +250,10 @@ html.media_element_editor-layout {
 	.mediaEditorElementContainer {
 	  width:984px;
 		display:inline-block;
-				
+		.mediaEditorListaElementi {
+		  position:absolute; 
+			width:906px;
+		}		
 		.imagesContainer {
 		  outline:1px dotted blue; 
 			width:600px; 
