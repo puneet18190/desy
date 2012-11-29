@@ -1,7 +1,10 @@
 <div class="contatore"><%= position %></div>
 <div class="boxMediaElement">
   <div class="boxContentMediaElement">
-    <a><%= image_tag("fotina_editor_element.jpg") %></a>
-    <%= render :partial => "menu_single_element" %>
+    <a><%= image_tag component[:image].thumb %></a>
+    <%= render :partial => 'video_editor/component_menu', :locals => {:component => component, :position => position} %>
   </div>
+  <%= hidden_field_tag "component_#{position}", component[:component] %>
+  <%= hidden_field_tag "image_#{position}", component[:image].id %>
+  <%= hidden_field_tag "duration_#{position}", component[:duration] %>
 </div>
