@@ -1,20 +1,25 @@
 # encoding: UTF-8
 
-location1 = Location.create :description => 'Nanjing' # qui va sostituito dalle città vere, prese da qualche file esterno
-location2 = Location.create :description => 'Shanghai' # qui va sostituito dalle città vere, prese da qualche file esterno
-location3 = Location.create :description => 'Beijing' # qui va sostituito dalle città vere, prese da qualche file esterno
+CONFIG['locations'].each do |l|
+  location = Location.new :description => l
+  location.save!
+end
 
-school_level1 = SchoolLevel.create :description => 'Elementare' # idem
-school_level2 = SchoolLevel.create :description => 'Medie' # idem
-school_level3 = SchoolLevel.create :description => 'Liceo' # idem
+CONFIG['school_levels'].each do |sl|
+  school_level = SchoolLevel.new :description => sl
+  school_level.save!
+end
 
+subject_ids = []
+CONFIG['subjects'].each do |s|
+  subject = Subject.new :description => s
+  subject.save!
+  subject_ids << subject.id
+end
 
-subject1 = Subject.create :description => 'Curiosità' # idem
-subject2 = Subject.create :description => 'Animali' # idem
-subject3 = Subject.create :description => 'Scienze' # idem
-
-
-User.create_user CONFIG['admin_email'], 'DESY', 'Admin User', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+user_name = CONFIG['admin_username'].split(' ').first
+user_surname = CONFIG['admin_username'].gsub("#{user_name} ", '')
+raise Exception if !User.create_user(CONFIG['admin_email'], user_name, user_surname, 'School', SchoolLevel.first.id, Location.first.id, subject_ids)
 
 required = true
 
@@ -29,9 +34,9 @@ if Rails.env.development? && required
 end
 
 puts "Created:"
-puts "#{Subject.count} subjects (should be 3)"
-puts "#{Location.count} locations (should be 3)"
-puts "#{SchoolLevel.count} school_levels (should be 3)"
+puts "#{Subject.count} subjects (should be 5)"
+puts "#{Location.count} locations (should be 6)"
+puts "#{SchoolLevel.count} school_levels (should be 4)"
 puts "#{User.count} users (should be 18)"
 puts "#{UsersSubject.count} users_subjects (should be 54)"
 puts "#{Lesson.count} lessons (should be 43)"
