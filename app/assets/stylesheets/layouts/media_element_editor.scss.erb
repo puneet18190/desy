@@ -2,8 +2,7 @@ html.media_element_editor-layout {
   
  
   body {
-    
-		font:  13px 'Nunito', sans-serif;
+ 		font:  13px 'Nunito', sans-serif;
 	  color: #fff;
 	  text-align: center;
 		width: 100%;
@@ -49,18 +48,7 @@ html.media_element_editor-layout {
 	  -webkit-box-shadow: 0px 6px 10px #161515;
     box-shadow: 0px 6px 10px #161515;
 	}
-	.top {
-    margin-bottom: -190px;
-    background: transparent;
-    width: 1px;
-    height: 22%;
-    float: left;
-  }
-	.container {
-    width: 960px;
-		padding-top:30px;
-		background-color:transparent;
-  }
+	
 	.contentElement {
 	  background-color:#000;
 		width:640px;
@@ -121,7 +109,7 @@ html.media_element_editor-layout {
 			
 			img {
 			  width: 156px;
-			  height: 87.75px;
+			  height: 88px;
 			}
 			.photoIcon {
 			  @include layoutIconElements;
@@ -249,19 +237,35 @@ html.media_element_editor-layout {
       height: auto;
     }
   }
-	.mediaEditorElementContainer {
+	.mediaEditorVideoContainer {
 	  width:984px;
 		display:inline-block;
+		position:relative;
+		padding-top:30px;
 		.mediaEditorListaElementi {
 		  position:absolute; 
 			width:906px;
 		}		
+		
+		.info {
+		  padding:20px; 
+			position:absolute; 
+			top:0px; 
+			right:20px; 
+			text-align:left;
+		}
+	}
+	.mediaEditorElementContainer {
+	  width:984px;
+		display:inline-block;
+		
 		.imagesContainer {
 		  outline:1px dotted blue; 
 			width:600px; 
 			height:600px; 
 			float:left;
 		}
+		
 	}
 	.menuLeftEditorElement {
 	  float:left; 

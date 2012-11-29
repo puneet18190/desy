@@ -1,8 +1,8 @@
 <%= render :partial => 'video_editor/header', :locals => {:parameters => @parameters} %>
-
-<div class="container">
-  <div class="mediaEditorElementContainer">
+  <div class="mediaEditorVideoContainer">
     <%= render :partial => 'video_editor/preview_container', :locals => {:parameters => @parameters} %>
+		<div class="info">
+		<p>total lenght:</p> <p><span>03:12</span></p> <p>launches preview</p></div>
     <div class="mediaEditorListaElementi">
       <%= form_tag video_editor_save_cache_path do %>
         <%= render :partial => 'timeline', :locals => {:parameters => @parameters} %>
@@ -14,4 +14,4 @@
       <% end %>
     </div>
   </div>
-</div>
+
