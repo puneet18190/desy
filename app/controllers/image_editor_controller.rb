@@ -31,19 +31,20 @@ class ImageEditorController < ApplicationController
   end
   
   def crop
-    original_image = Image.find(params[:image_id])
-    img = MiniMagick::Image.open(original_image.media.path)
+    o_image = Image.find(params[:image_id])
+    img = MiniMagick::Image.open(o_image.media.path)
     
-    x1= params[:x1]
-    y1= params[:y1]
-    w= params[:x2].to_i - x1.to_i
-    h= params[:y2].to_i - y1.to_i
+    x1= o_image.ratio_value(500,params[:x1],"w")
+    y1= o_image.ratio_value(500,params[:y1],"y")
+    w= o_image.ratio_value(500,params[:x2],"w").to_i - x1.to_i
+    h= o_image.ratio_value(500,params[:y2],"y").to_i - y1.to_i
     #100% image TODO scale dimensions
     crop_params = "#{w}x#{h}+#{x1}+#{y1}"
     img.crop(crop_params)
-    image_dir = "/media_elements/images/#{params[:image_id]}"
-    img.write("#{image_dir}/temp_crop.jpg")
-    @image_url = "#{image_dir}/temp_crop.jpg"    
+    image_dir = "/public/media_elements/images/#{params[:image_id]}"
+    img.write("#{Rails.root}#{image_dir}/temp_crop.jpg")
+    #@image_url = "#{image_dir}/temp_crop.jpg"
+    @image_id = params[:image_id]
   end
   
 end
