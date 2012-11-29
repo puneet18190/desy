@@ -37,15 +37,6 @@ $(document).ready(function() {
   });
   
   textCount = 0
-  activateImageTextareas();
-  
-  $("#editor_undo").click(function(e){
-    e.preventDefault;
-    img_container.find("div.image_editor_text:last").remove();
-  });
-});
-
-function activateImageTextareas(){
   $("img").click(function(e){
     coords = getRelativePosition($(this),e);
     textCount = $("#_image_container textarea").length;
@@ -73,7 +64,13 @@ function activateImageTextareas(){
 
   });
   
-}
+  $("#editor_undo").click(function(e){
+    e.preventDefault;
+    img_container.find("div.image_editor_text:last").remove();
+  });
+});
+
+
 
 //TODO ADD COLOR AND FONT SIZE
 function addTextAreaHiddenFields(coords, textCount){
@@ -84,7 +81,8 @@ function addTextAreaHiddenFields(coords, textCount){
 //TODO ADD COLOR AND FONT SIZE
 function textAreaContent(coords,textCount){
   var textarea = "<textarea name='text_"+textCount+"' style='resize:both;' data-coords='"+coords[2]+","+coords[3]+"' data-font='' data-size='' />";
-  
+  var colors = "<div class='text_colors'><a class='background_color_white'></a><a class='background_color_black'></a><a class='background_color_red'></a><a class='background_color_yellow'></a><a class='background_color_blue'></a><a class='background_color_green'></a></div>"
+  var fontSize = "<div class='font_sizes'><a class='small_font'>A</a><a class='medium_font'>A</a><a class='big_font'>A</a></div>"
   div = $("<div />",
   {
     class: "image_editor_text",
@@ -95,24 +93,21 @@ function textAreaContent(coords,textCount){
         left : coords[0],
         top : coords[1]
     }
-  }).html("<a class='_delete'>X</a><a class='_move'><-></a><br />").append(textarea);
+  }).html("<div class='text_tools'><a class='_delete'>X</a>"+colors+fontSize+"<a class='_move'><></a></div>").append(textarea);
   
   return div;
 }
 
 function offlightTextarea(){
-  $("._move").css("display","none");
-  $("._delete").css("display","none");
+  $(".text_tools").hide();
   $(".image_editor_text textarea").css("background-color","rgba(255,255,255,0)");
 }
 
 function enlightTextarea(obj){
   var tarea = obj;
-  var mo = tarea.siblings("._move");
-  var de = tarea.siblings("._delete");
-  
-  mo.css("display","block");
-  de.css("display","block");
+  var tools = tarea.siblings(".text_tools");
+
+  tools.show();
   tarea.css("background-color","rgba(230,230,230,0.5)");
 }
 
