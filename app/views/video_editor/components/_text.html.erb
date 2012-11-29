@@ -1,10 +1,11 @@
 <div class="contatore"><%= position %></div>
 <div class="boxMediaElement background_color_<%= component[:background_color] %>">
-  <div class="boxContentMediaElement">
-    <a> <!-- FIXME per aurelia: sospetto che questa a non serva o comunque vada spostata un po' più fuori -->
+  <div class="boxContentMediaElement" style="outline:1px solid red">
+    
       <p class="color_<%= component[:text_color] %>"><%= component[:content] %></p>
-    </a>
+    
     <%= render :partial => 'video_editor/component_menu', :locals => {:component => component, :position => position} %>
+		<div class="textIcon"></div>
   </div>
   <%= hidden_field_tag "component_#{position}", component[:component] %>
   <%= hidden_field_tag "content_#{position}", component[:content] %>
