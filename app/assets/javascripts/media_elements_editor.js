@@ -2,6 +2,7 @@ $(document).ready(function() {
   var img_container = $("#_image_container");
   
   $("._toggle_text").click(function(e){
+    console.log("toggled text");
     e.preventDefault;
     $(this).addClass("current");
     $("._toggle_crop").removeClass("current");
@@ -13,6 +14,7 @@ $(document).ready(function() {
   });
   
   $("._toggle_crop").click(function(e){
+    console.log("toggled crop");
     e.preventDefault;
     $(this).addClass("current");
     $("._toggle_text").removeClass("current");
@@ -30,11 +32,25 @@ $(document).ready(function() {
     });
   });
   
+  $("#editor_crop").click(function(){
+    $("form#_crop_form").submit();
+  });
+  
   textCount = 0
+  activateImageTextareas();
+  
+  $("#editor_undo").click(function(e){
+    e.preventDefault;
+    img_container.find("div.image_editor_text:last").remove();
+  });
+});
+
+function activateImageTextareas(){
   $("img").click(function(e){
     coords = getRelativePosition($(this),e);
     textCount = $("#_image_container textarea").length;
     $("#_image_container.text_enabled").append(textAreaContent(coords,textCount));
+    addTextAreaHiddenFields(coords, textCount);
     $('.image_editor_text').draggable({ 
       containment: "parent",
       handle: "._move"
@@ -49,24 +65,30 @@ $(document).ready(function() {
     });
   
     $("a._delete").click(function(){
-      $(this).parents(".image_editor_text").remove();
+      img_editor = $(this).parents(".image_editor_text")
+      img_editor.remove();
+      console.log(img_editor.attr("id"));
+      $("#_crop_form input#hidden_"+img_editor.attr("id")).remove();
     });
 
   });
-
   
-  $("#editor_undo").click(function(e){
-    e.preventDefault;
-    img_container.find("div.image_editor_text:last").remove();
-  });
-});
+}
 
+//TODO ADD COLOR AND FONT SIZE
+function addTextAreaHiddenFields(coords, textCount){
+  hidden_input = "<input type='hidden' id='hidden_text_"+textCount+"' name='text_"+textCount+","+coords[2]+","+coords[3]+"' value='' />"
+  $("#_crop_form").prepend(hidden_input);
+}
+
+//TODO ADD COLOR AND FONT SIZE
 function textAreaContent(coords,textCount){
   var textarea = "<textarea name='text_"+textCount+"' style='resize:both;' data-coords='"+coords[2]+","+coords[3]+"' data-font='' data-size='' />";
   
   div = $("<div />",
   {
     class: "image_editor_text",
+    id: "text_"+textCount,
     css: {
         position : "absolute",
         "z-index" : "100",

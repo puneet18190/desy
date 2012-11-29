@@ -12,6 +12,13 @@ or ABC to enter text.</p>
   <div id="_image_container" class="imagesContainer">
     <div id="image_wrapper">
       <%= image_tag(@image.media.url, :id => "cropped_image")%>
+      <form id="_crop_form" action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
+        <input type="hidden" name="x1" value="" />
+        <input type="hidden" name="y1" value="" />
+        <input type="hidden" name="x2" value="" />
+        <input type="hidden" name="y2" value="" />
+        <input type="hidden" name="cropped_image" value="" />
+      </form>
     </div>
 	</div>
 	<div class="menuRightEditorElement">
@@ -20,14 +27,11 @@ or ABC to enter text.</p>
 	  <div class="menuServiceImages">
 	  <ul>
 		  <li>
-			<form action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
-      <input type="hidden" name="x1" value="" />
-      <input type="hidden" name="y1" value="" />
-      <input type="hidden" name="x2" value="" />
-      <input type="hidden" name="y2" value="" />
-      <input type="submit" name="submit" value="CROP" />
-    </form></li>
-      <li><a href="#" id="editor_undo">UNDO</a></li>
+			  <a href="#" id="editor_crop">CROP</a>
+			</li>
+      <li>
+        <a href="#" id="editor_undo">UNDO</a>
+      </li>
 		</ul>
 		</div>
 
