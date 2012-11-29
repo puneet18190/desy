@@ -32,7 +32,7 @@ class VideoEditorController < ApplicationController
   def convert_media_element_to_parameters
     return nil if @media_element.nil?
     resp = {}
-    resp[:initial_video_id] = @media_element.id
+    resp[:initial_video_id] = @media_element.is_public ? nil : @media_element.id
     resp[:audio_id] = nil
     resp[:parameters] = [{}]
     resp[:parameters].first[:component] = Video::VIDEO_COMPONENT
@@ -40,7 +40,7 @@ class VideoEditorController < ApplicationController
     resp[:parameters].first[:from] = 0
     resp[:parameters].first[:until] = @media_element.duration
     resp = Video.convert_parameters(resp, @current_user.id)
-    resp.nil ? empty_parameters : resp
+    resp.nil? ? empty_parameters : resp
   end
   
   def empty_parameters
