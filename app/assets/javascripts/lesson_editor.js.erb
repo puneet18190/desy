@@ -109,8 +109,6 @@ $(document).ready(function() {
       to_make_draggable = 'x';
     }
     full_place.addClass(new_mask).removeClass(old_mask);
-    $('#' + place_id + ' ._full_image_in_slide a').css('top', '0').css('left', '0')
-    $('#' + place_id + ' ._full_image_in_slide ._rollover').css('top', '0').css('left', '0')
     var img_tag = $('#' + place_id + ' ._full_image_in_slide img');
     img_tag.attr('src', image_url);
     img_tag.removeAttr(old_orientation);
@@ -118,6 +116,18 @@ $(document).ready(function() {
     $("#slide-numbers").show();
     $('#slide_in_lesson_editor_' + slide_id).siblings(".buttons").show();
     makeDraggable(place_id);
+  });
+  
+  $('body').on('mouseover', '._lesson_editor_rollover', function() {
+    var slide_id = $(this).data('slide-id');
+    var position = $(this).data('position');
+    $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').css('display', 'block');
+  });
+  
+  $('body').on('mouseout', '._lesson_editor_rollover', function() {
+        var slide_id = $(this).data('slide-id');
+    var position = $(this).data('position');
+    $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').css('display', 'none');
   });
   
 });
@@ -135,7 +145,6 @@ function makeDraggable(place_id){
     axe = 'y';
   }
   var image = $('#' + place_id + '  ._full_image_in_slide img');
-  var roll = $('#' + place_id + ' ._rollover');
   var side = "";
   var maskedImgWidth;
   var maskedImgHeight;
@@ -152,17 +161,11 @@ function makeDraggable(place_id){
   $('#' + place_id + ' ._full_image_in_slide a').draggable({
     axis: axe,
     distance: 10,
-    start: function() {
-      roll.css("opacity","0");
-      roll.css("cursor","-webkit-grabbing");
-    },
     stop: function() {
       var thisDrag = $(this);
       var offset = thisDrag.css(side);
-      console.log("offset: "+offset);
       if(parseInt(offset) > 0) {
         offset = 0;
-        roll.css(side,0);
         if(side=="left") {
           thisDrag.animate({
             left: "0"
@@ -175,9 +178,6 @@ function makeDraggable(place_id){
       } else {
         if(parseInt(offset) < -(parseInt(dist))) {
           offset = -parseInt(dist);
-          console.log("offset: "+offset+"dist: "+dist+"side: "+side+roll.css(side));
-          roll.css(side,-offset);
-          console.log("offset: "+offset+"dist: "+dist+"side: "+side+roll.css(side));
           if(side=="left") {
             thisDrag.animate({
               left: "-" + dist + "px"
@@ -189,8 +189,6 @@ function makeDraggable(place_id){
           }
         }
       }
-      roll.css(side,-parseInt(offset)).css("opacity","0.5");
-      roll.css("cursor","-webkit-grab");
       $('#' + place_id + ' ._input_align').val(parseInt(offset));
     }
   });
