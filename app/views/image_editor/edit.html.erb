@@ -23,21 +23,24 @@ or ABC to enter text.</p>
     </div>
 	</div>
 	<div class="menuBottomEditorElement">
+	  <div class="menuTextImages upper">
+	    <%= t 'captions.click_image_to_add_text' %>
+	  </div>
 	  <div class="menuServiceImages">
 	  <ul>
 		  <li>
-			  <a href="#" id="editor_crop">CROP</a>
+			  <a href="#" id="_editor_crop">CROP</a>
 			</li>
       <li>
-        <a href="#" id="editor_undo">UNDO</a>
+        <a href="#" id="_editor_cancel">CANCEL</a>
       </li>
 		</ul>
 		</div>
 
 	</div>
-	<br class="clearfloat">
   <div class="menuFooterEditorElement">
 	  <p>Original image size: 1280x720 px</p>
     <%= render :partial => "save_cancel" %>
+	<br class="clearfloat">
 	</div>
 </div>

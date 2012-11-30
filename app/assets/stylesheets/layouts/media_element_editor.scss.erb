@@ -255,7 +255,7 @@ html.media_element_editor-layout {
 		.imagesContainer {
 		  outline:1px dotted blue; 
 			width:660px; 
-			height:515px;
+			height:520px;
 			float:left;
 		}
 		
@@ -264,7 +264,7 @@ html.media_element_editor-layout {
 	  float:left; 
 		width:183px;
 		text-align:left;
-		padding:16px;
+		padding:20px;
 		h2 {
 		  font-size:18px;
 			color:#43a848;
@@ -286,10 +286,15 @@ html.media_element_editor-layout {
 	.menuBottomEditorElement {
 	  clear:both;
 		width:660px;
+		height: 30px;
 		margin: 0 0 0 215px; 
 		text-align:center;
 		padding:10px;
+		.menuTextImages{
+		  display:none;
+		}
 		.menuServiceImages {
+		  display:none;
 		  margin:0 auto;
 		  width: 200px;
 			
@@ -297,7 +302,8 @@ html.media_element_editor-layout {
 		    float:left;
 		    width: auto;
 			  list-style: none;
-        margin-bottom: 10px;
+        margin-bottom: 0;
+        margin-left: 10px;
         padding:5px 10px;
 				text-align:center;
 				background-color:#2d2e2e;
@@ -311,10 +317,11 @@ html.media_element_editor-layout {
 		}
 	}
 	.menuFooterEditorElement {
-	  padding-top:15px;
-		margin-top:40px;
+	  padding-top:10px;
+		margin-top:10px;
 		border-top:10px solid #504f50;
 		width:984px;
+		height: 70px;
 		p {
 		  float:left;
 			font-size:11px;
@@ -328,7 +335,7 @@ html.media_element_editor-layout {
    
    #image_wrapper{
      margin:0 auto;
- 		padding-top:20px;
+ 		padding-top:25px;
      width: 660px;
      display:block;
      overflow:hidden;
@@ -343,6 +350,8 @@ html.media_element_editor-layout {
     border: 1px solid white;
     width: 280px;
     height: 30px;
+    max-width: 640px; 
+    max-height: 475px;
     padding: 10px;
     font-size: 1em;
     font-family: "Nunito", sans-serif;
@@ -399,7 +408,7 @@ html.media_element_editor-layout {
       }
       a{
         color:white;
-        margin-right: 3px;
+        margin-right: 6px;
         &.medium_font:hover,&.small_font:hover,&.big_font:hover,&.medium_font.current,&.small_font.current,&.big_font.current{
           color: yellow;
         }        
@@ -409,12 +418,16 @@ html.media_element_editor-layout {
     ._delete,._move{
       float:left;
       display:block;
-      color: white;
-      margin-top:4px;
+      margin-top:2px;
     }
     ._move{
       float:right;
-      width: auto;
+      margin-top:4px;
+      width: 17px;
+      height: 17px;
+      cursor:move;
+      cursor: -webkit-grab;
+      background: url("/assets/draggable_knob.png") no-repeat center center;
     }
   }
   a.do_crop,a.write_text{
