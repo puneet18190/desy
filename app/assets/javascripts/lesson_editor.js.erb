@@ -1,5 +1,7 @@
 $(document).ready(function() {
   
+  $('#info_container').data('current-img-position', 1);
+  
   initTinymce(); // init tinymce configuration and manage external toolbar toggle
   slideSortList("#slide-numbers"); // make sortable page number on top
   $("#lesson_subject").selectbox(); // select subject in lesson new/edit views
@@ -172,11 +174,11 @@ function makeDraggable(place_id){
           console.log("offset: "+offset+"dist: "+dist+"side: "+side+roll.css(side));
           if(side=="left") {
             thisDrag.animate({
-              left: "-"+dist+"px"
+              left: "-" + dist + "px"
             }, 100);
           } else {
             thisDrag.animate({
-              top: "-"+dist+"px"
+              top: "-" + dist + "px"
             }, 100);
           }
         }
