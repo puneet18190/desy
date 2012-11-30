@@ -1,10 +1,10 @@
 <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
-  <%- sme1 = slide.video_at(1) %>
-  <%- if !sme1[:empty] %>
+  <% video = slide.video_at(1) %>
+  <% if video %>
   <span class="spacer20"></span>
-    <%= link_to "<span class='rollover rollover-video'></span>#{render(:partial => 'shared/players/video', :locals => {:video => sme1[:video]})}".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery", "data-param"=> "1" %>
-    <%= hidden_field_tag :media_element_1, sme1[:media_element_id], :class=> "media-tag-cover-1"  %>
-  <%- else %>
+    <%= link_to "<span class='rollover rollover-video'></span>#{render(:partial => 'shared/players/video', :locals => {:video => video})}".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery", "data-param"=> "1" %>
+    <%= hidden_field_tag :media_element_1, video.id, :class=> "media-tag-cover-1"  %>
+  <% else %>
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
     <span class="spacer20"></span>
     <div class="cover-choose-image _cover_choose_image_1">
@@ -12,5 +12,5 @@
       <br/>
       <%= t('captions.choose_video') %>
     </div>
-  <%- end %>
+  <% end %>
 <% end %>

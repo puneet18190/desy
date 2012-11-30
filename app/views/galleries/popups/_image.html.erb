@@ -1,12 +1,7 @@
-<div class="_gallery_img_expanded _gallery_img_expanded_<%= media_element.id%>" id="_gallery_img_expanded_<%= media_element.id %>" data-param="<%= media_element.id %>">
-
-  <%- if sti_type == MediaElement::VIDEO_TYPE.downcase %>
-    <video id='video' class='_slide_image video1-p1' src='http://slides.html5rocks.com/src/chrome_japan.mp4' controls></video>
-  <%else%>
-    <%= image_tag(media_element.url, :class=>"popup_expanded", :style=>"max-height: 420px; max-width: 420px")%>
-    <div class="caption">
-      <a href="#" class="aggiungiImgButton current _add_<%= sti_type %>_to_slide image-<%= media_element.id %>" data-param="<%= media_element.id %>" data-url="<%= media_element.url %>" data-width="<%= media_element.width %>" data-height="<%= media_element.height %>"  style="float:right"></a>
-      <p><%= media_element.title %></p>
-    </div>
-  <%end%>
+<div class="_gallery_img_expanded _gallery_img_expanded_<%= image.id %>" id="_gallery_img_expanded_<%= image.id %>" data-param="<%= image.id %>">
+  <%= image_tag image.url, :class => "popup_expanded", :style => "max-height: 420px; max-width: 420px" %>
+  <div class="caption">
+    <a href="#" class="aggiungiImgButton current _add_image_to_slide image-<%= image.id %>" data-param="<%= image.id %>" data-url="<%= image.url %>" data-width="<%= image.width %>" data-height="<%= image.height %>"  style="float:right"></a>
+    <p><%= image.title %></p>
+  </div>
 </div>

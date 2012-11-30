@@ -84,18 +84,6 @@ class LessonEditorController < ApplicationController
   
   private
   
-  def get_media_element_at(slide, position)
-    accepted = slide.accepted_media_element_sti_type
-    case accepted
-      when MediaElement::IMAGE_TYPE
-        slide.image_at position
-      when MediaElement::AUDIO_TYPE
-        slide.audio_at position
-      when MediaElement::VIDEO_TYPE
-        slide.video_at position
-    end
-  end
-  
   def initialize_kind
     @kind = Slide::KINDS_WITHOUT_COVER.include?(params[:kind]) ? params[:kind] : ''
     update_ok(!@kind.blank?)

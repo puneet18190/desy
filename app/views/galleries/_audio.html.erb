@@ -1,4 +1,4 @@
-<div id="image-gallery" class="image_gallery <%= sti_type %>-kind">
+<div id="audio_gallery" class="image_gallery <%= sti_type %>-kind">
   <div class="gallery-header">
     <h3 class="pull-left">
       <%= image_tag("choose-image-small.png")%> <%= t "captions.select_#{sti_type}" %>
@@ -6,7 +6,7 @@
   </div>
   <div class="scrollVerde">
     <ul class="gallery">
-      <div class="scroll-pane">
+      <div id="scroll_pane_in_audio_gallery" class="scroll-pane">
         <%- if sti_type == MediaElement::VIDEO_TYPE.downcase %>
           <% media_elements.each do |mel| %>
             <li id="#gallery_thumb_<%=mel.id%>" class="_gallery_thumb">

@@ -85,49 +85,22 @@ class Slide < ActiveRecord::Base
   end
   
   def video_at(position)
-    return {:empty => true} if self.accepted_media_element_sti_type != MediaElement::VIDEO_TYPE
+    return nil if self.accepted_media_element_sti_type != MediaElement::VIDEO_TYPE
     x = media_element_at position
-    if x.nil?
-      {:empty => true}
-    else
-      {
-        :empty => false,
-        :video => x.media_element,
-        :media_element_id => x.media_element_id
-      }
-    end
+    x.nil? ? nil : x.media_element
   end
   
   def audio_at(position)
-    return {:empty => true} if self.accepted_media_element_sti_type != MediaElement::AUDIO_TYPE
+    return nil if self.accepted_media_element_sti_type != MediaElement::AUDIO_TYPE
     x = media_element_at position
-    if x.nil?
-      {:empty => true}
-    else
-      {
-        :empty => false,
-        :audio => x.media_element,
-        :media_element_id => x.media_element_id
-      }
-    end
+    x.nil? ? nil : x.media_element
   end
   
+  # this returns the record of media_elements_slides, instead of media_elements, since we need information contained in this table (alignment, caption)
   def image_at(position)
-    return {:empty => true} if self.accepted_media_element_sti_type != MediaElement::IMAGE_TYPE
+    return nil if self.accepted_media_element_sti_type != MediaElement::IMAGE_TYPE
     x = media_element_at position
-    if x.nil?
-      {:empty => true}
-    else
-      {
-        :empty => false,
-        :url => x.media_element.url,
-        :alignment => x.alignment,
-        :caption => x.caption,
-        :width => x.media_element.width,
-        :height => x.media_element.height,
-        :media_element_id => x.media_element_id
-      }
-    end
+    x.nil? ? nil : x
   end
   
   def previous
