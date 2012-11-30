@@ -73,7 +73,7 @@ Desy::Application.routes.draw do
   get  'audios/new' => 'audio_editor#index'
   
   # IMAGE EDITOR
-  get  'images/:image_id/edit' => 'image_editor#index'
+  get  'images/:image_id/edit' => 'image_editor#edit'
   post  'images/:image_id/crop' => 'image_editor#crop'
   
   # BASE64 TO IMAGE

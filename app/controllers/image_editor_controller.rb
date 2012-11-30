@@ -2,7 +2,7 @@ class ImageEditorController < ApplicationController
   
   layout 'media_element_editor'
   
-  def index
+  def edit
     @image = Image.find(params[:image_id])
   end
   
