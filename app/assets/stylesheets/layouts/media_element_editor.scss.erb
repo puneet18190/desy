@@ -71,7 +71,7 @@ html.media_element_editor-layout {
 		.info {
 		  padding:20px; 
 			position:absolute; 
-			top:0px; 
+			top:10px; 
 			right:20px; 
 			text-align:left;
 		}
@@ -155,11 +155,18 @@ html.media_element_editor-layout {
 		  background-color:#000; 
 			position:absolute; 
 			z-index:2; 
-			padding:12px 6px; 
+			padding:12px 0px 12px 30px; 
 			bottom:6px; 
-			width:144px; 
+			width:126px; 
 			background-color: rgba(0,0,0,0.7);
-			font-size:11px;
+			
+			a {
+			  font-size: 0.4em;
+				float:left;
+				padding:0;
+			}
+			
+			
 		}
 	}
  }
@@ -239,23 +246,6 @@ html.media_element_editor-layout {
       left:440px;
     }
 	}
-	.boxViewAudioElement {
-    width: 100%;
-    padding: 10px;
-    color: silver;
-    position: relative;
-    float: left;
-    margin-bottom: 1%;
-    background-color: #4a4a4a;
-		outline:1px solid red;
-		.contentAudio {
-      float: left;
-      width: 99%;
-      padding: 0.5% 0% 0.5% 1%;
-      color:#fff;
-      height: auto;
-    }
-  }
 	
 	/*IMAGES EDITOR*/
 	.mediaEditorElementContainer {
