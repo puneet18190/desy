@@ -55,4 +55,7 @@ class ImageEditorController < ApplicationController
     end
   end
   
+  def save
+  end
+  
 end
