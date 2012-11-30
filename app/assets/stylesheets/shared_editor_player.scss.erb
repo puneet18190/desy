@@ -244,7 +244,19 @@
 	  background-position: (-$button-size*3) (-$button-size*3);
 		opacity:1;
 	}
-	
+	&.playButton {
+	  background-position: 0 (-$button-size*5);
+		opacity:0.2;
+		font-size:0.6em;
+	}
+	&.playButton:hover {
+	  background-position: (-$button-size*3) (-$button-size*5);
+		opacity:1;
+	}
+	&.playButton.current {
+	  background-position: (-$button-size*3) (-$button-size*5);
+		opacity:1;
+	}
 	
 	&.closeButton {
 	  background-position: 0 0;
@@ -264,7 +276,9 @@
 	}
 	
 }
-
+.playButton {
+   @include menuCondivisoElementLessonEditor;
+ }
 
 .creaNuovoButton {
    @include menuCondivisoElementLessonEditor;
