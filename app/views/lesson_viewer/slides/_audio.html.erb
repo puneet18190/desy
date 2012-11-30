@@ -5,10 +5,10 @@
 <div class="bigViewLesson slideAudio">
   <h2><%= slide.title %></h2>
   <div class="audioBig">
-    <% if audio[:empty] %>
+    <% if audio.nil? %>
       <div class="audioIcon"></div>
     <% else %>
-      <audio id='audio' class='audio' src='audio[:mp3]' controls></audio> <!-- FIXME mettere ogg quando necessario-->
+      <audio class="audio" src="<%= audio.mp3 %>" controls></audio>
     <% end %>
   </div>
   <div class="contentText">

@@ -42,9 +42,17 @@ Desy::Application.routes.draw do
   put  'lessons/:lesson_id/update' => 'lesson_editor#update', :as => :lesson
   post 'lessons/:lesson_id/slides/:slide_id/kind/:kind/create' => 'lesson_editor#add_slide'
   post 'lessons/:lesson_id/slides/:slide_id/delete' => 'lesson_editor#delete_slide', :as => :delete_slide
-  get  'lessons/:lesson_id/slides/:slide_id/show_gallery' => 'lesson_editor#show_gallery', :as => :show_gallery
   get  'lessons/:lesson_id/slides/:slide_id/update' => 'lesson_editor#save_slide', :as => :save_slide
   post 'lessons/:lesson_id/slides/:slide_id/move/:position' => 'lesson_editor#change_slide_position', :as => :change_slide_position
+  
+  # GALLERIES
+  get  'lessons/galleries/image' => 'galleries#image_for_lesson_editor'
+  get  'lessons/galleries/audio' => 'galleries#audio_for_lesson_editor'
+  get  'lessons/galleries/video' => 'galleries#video_for_lesson_editor'
+  get  'videos/galleries/image' => 'galleries#image_for_video_editor'
+  get  'videos/galleries/audio' => 'galleries#audio_for_video_editor'
+  get  'videos/galleries/video' => 'galleries#video_for_video_editor'
+  get  'audios/galleries/audio' => 'galleries#audio_for_audio_editor'
   
   # LESSON VIEWER
   get  'lessons/view/playlist' => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist

@@ -6,8 +6,8 @@
 
 <div class="bigViewLesson slideCover">
   <div class="cover">
-    <% if !image[:empty] %>
-      <%= image_tag image[:url], :style => "left:#{image[:alignment]}px" %>
+    <% if image %>
+      <%= image_tag image.media_element.url, :style => "left:#{image.alignment}px" %>
     <% end %>
   </div>
   <div class="bg_text">

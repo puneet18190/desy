@@ -1,20 +1,9 @@
 <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
-  <h2>
+  <h2 class="text">
     <%= text_field_tag :title, slide.title ? slide.title : "#{t 'captions.enter_title'}" %>
   </h2>
   <div class="audio-content">
     <%= text_area_tag :text, slide.text ? slide.text.html_safe : "#{t 'descriptions.slide_text'}",:id => "ta-#{slide.id}", :class=>"tinymce"%>
   </div>
-  <%- sme1 = slide.audio_at(1) %>
-  <%- if !sme1[:empty] %>
-    <%= link_to "<span class='rollover rollover-audio'></span><audio id='audio' class='_slide_image audio-p1' src='http://slides.html5rocks.com/src/rushus-modal_blues.mp3' controls></audio>".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery", "data-param"=> "1" %>
-    <%= hidden_field_tag :media_element_1, sme1[:media_element_id], :class=> "media-tag-cover-1"  %>
-  <%- else %>
-    <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
-    <div class="cover-choose-image _cover_choose_image_1 cover-choose-image-left">
-      <%= link_to image_tag("choose-audio.png"), {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery audio-p1" %>
-      <br />
-      <%= t 'captions.choose_audio' %>
-    </div>
-  <%- end %>
-<% end %> 
+  <%= render :partial => 'lesson_editor/slides/parts/audio', :locals => {:slide => slide, :position => 1, :audio => slide.audio_at(1)} %>
+<% end %>

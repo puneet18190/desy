@@ -1,13 +1,12 @@
-<!-- slides top numbered navigation -->
 <ul id="slide-numbers">
-  <%- @slides.each_with_index do |slide, index| %>
+  <% @slides.each_with_index do |slide, index| %>
     <li class="<%= (index == 0) ? 'unsortable' : ''%>">
-      <a href="#<%= slide.position %>" class="<%= (index == 0) ? 'active' : ''%>" data-slide="<%= slide.id%>"><%= index + 1 %></a>
+      <a href="#<%= slide.position %>" class="<%= (index == 0) ? 'active' : ''%>" data-slide-id="<%= slide.id%>" data-kind="<%= slide.kind %>"><%= index + 1 %></a>
       <div class="slide-tooltip">
         <%= render :partial => "shared/lesson_thumbnails/small/#{slide.kind}" , :locals => { :slide => slide }%>
       </div>
     </li>
-  <% end %><!-- end each -->
+  <% end %>
   <li class="unsortable">
     <a class="add add-small _add_slide _add_new_slide_options"></a>
   </li>
