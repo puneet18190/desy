@@ -32,9 +32,9 @@
   <% end %>
   
   <div class="mask <%= slide.kind %>-p<%= position %> <%= mask %> _full_image_in_slide" style="display:<%= image.nil? ? 'none'.html_safe : 'block'.html_safe %>">
-    <a class="show-gallery _show_image_gallery_in_lesson_editor" data-position="<%= position %>" style="<%= style_negative %>">
+    <a class="show-gallery" style="<%= style_negative %>">
       <span class="rollover rollover-image _rollover" style="<%= style_positive %>">
-        <span class="add-image"></span>
+        <span class="add-image _show_image_gallery_in_lesson_editor" data-position="<%= position %>"></span>
       </span>
       <img src="<%= url %>" class="_slide_image <%= slide.kind %>-p<%= position %>" <%= orientation.nil? ? '' : orientation.html_safe %>/>
     </a>
