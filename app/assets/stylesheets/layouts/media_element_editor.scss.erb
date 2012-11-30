@@ -350,11 +350,21 @@ html.media_element_editor-layout {
 
    #_image_container textarea{
     background-color: rgba(230,230,230,0.5);
-    color: rgba(50,50,50,1);
     border: 1px solid white;
     width: 280px;
     height: 30px;
     padding: 10px;
+    font-size: 1em;
+    font-family: "Nunito", sans-serif;
+    &.small_font{
+      font-size: 1em
+    }
+    &.medium_font{
+      font-size: 1.5em
+    }
+    &.big_font{
+      font-size: 2em
+    }
    }
   
    
@@ -377,7 +387,7 @@ html.media_element_editor-layout {
         height: 8px;
         width: 12px;
       }
-      a:hover{
+      a:hover,a.current{
         margin-left:1px;
         margin-right:1px;
         border-left: 2px solid white;
@@ -400,7 +410,7 @@ html.media_element_editor-layout {
       a{
         color:white;
         margin-right: 3px;
-        &.medium_font:hover,&.small_font:hover,&.big_font:hover{
+        &.medium_font:hover,&.small_font:hover,&.big_font:hover,&.medium_font.current,&.small_font.current,&.big_font.current{
           color: yellow;
         }        
       }
@@ -408,9 +418,13 @@ html.media_element_editor-layout {
   
     ._delete,._move{
       float:left;
-      width: 20px;
       display:block;
       color: white;
+      margin-top:4px;
+    }
+    ._move{
+      float:right;
+      width: auto;
     }
   }
   a.do_crop,a.write_text{

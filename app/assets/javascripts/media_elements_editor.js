@@ -61,7 +61,29 @@ $(document).ready(function() {
       console.log(img_editor.attr("id"));
       $("#_crop_form input#hidden_"+img_editor.attr("id")).remove();
     });
-
+    
+    $(".text_tools div a").click(function(){
+      thisLink = $(this);
+      thisParent = $(this).parent("div");
+      thisTextTools = $(this).parents(".text_tools");
+      thisTextArea = thisTextTools.parent(".image_editor_text").find("textarea");
+      thisParent.find("a").removeClass("current");
+      thisLink.addClass("current");
+      
+      thisTextArea.removeAttr("class");
+      thisTextTools.find("a.current").each(function(){
+        if(thisParent.attr("class") == "font_sizes"){
+          var font_val = $(this).attr("class").replace('background_','').replace('current','');
+          thisTextArea.addClass(font_val);
+          thisTextArea.attr("data-size",font_val);
+        } else {
+          var color_val = $(this).attr("class").replace('background_','').replace('current','');
+          thisTextArea.addClass(color_val)
+          thisTextArea.attr("data-color",color_val);
+        }
+      });
+    });
+    
   });
   
   $("#editor_undo").click(function(e){
@@ -80,7 +102,7 @@ function addTextAreaHiddenFields(coords, textCount){
 
 //TODO ADD COLOR AND FONT SIZE
 function textAreaContent(coords,textCount){
-  var textarea = "<textarea name='text_"+textCount+"' style='resize:both;' data-coords='"+coords[2]+","+coords[3]+"' data-font='' data-size='' />";
+  var textarea = "<textarea id='area_"+textCount+"' name='text_"+textCount+"' style='resize:both;' data-coords='"+coords[2]+","+coords[3]+"' data-color='' data-size='' />";
   var colors = "<div class='text_colors'><a class='background_color_white'></a><a class='background_color_black'></a><a class='background_color_red'></a><a class='background_color_yellow'></a><a class='background_color_blue'></a><a class='background_color_green'></a></div>"
   var fontSize = "<div class='font_sizes'><a class='small_font'>A</a><a class='medium_font'>A</a><a class='big_font'>A</a></div>"
   div = $("<div />",
@@ -93,7 +115,7 @@ function textAreaContent(coords,textCount){
         left : coords[0],
         top : coords[1]
     }
-  }).html("<div class='text_tools'><a class='_delete'>X</a>"+colors+fontSize+"<a class='_move'><></a></div>").append(textarea);
+  }).html("<div class='text_tools' id='area_tools_"+textCount+"'><a class='_delete closeButton closeButtonSmall'></a>"+colors+fontSize+"<a class='_move'><></a></div>").append(textarea);
   
   return div;
 }
