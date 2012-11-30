@@ -8,15 +8,8 @@ $(document).ready(function() {
   scrollSlideTo('#slide-numbers li a:not(._add_slide)'); // scroll to slide N on top list click
   
   // apply mask to each horizontal slide image container
-  masked = $("._mask_x a:not('._choose')");
-  masked.each(function(index) {
-    makeDraggable($(masked[index]), "x");
-  });
-  
-  // apply mask to each vertical slide image container
-  maskedY = $("._mask_y a:not('._choose')");
-  maskedY.each(function(index) {
-    makeDraggable($(maskedY[index]), "y");
+  $('._image_container_in_lesson_editor').each(function() {
+    makeDraggable($(this).attr('id'));
   });
   
   // trigger save on "save button" click
@@ -101,33 +94,24 @@ $(document).ready(function() {
     }
     var old_mask = '_mask_x';
     var new_mask = '_mask_y';
-    var old_orientation = 'width';
-    var orientation = 'height';
-    var orientation_val = resizeHeight(image_width, image_height, kind);
+    var resized_height = resizeHeight(image_width, image_height, kind);
+    var resized_width = resizeWidth(image_width, image_height, kind);
+    var to_make_draggable = 'y';
     if(isHorizontalMask(image_width, image_height, kind)) {
       old_mask = '_mask_y';
       new_mask = '_mask_x';
-      var old_orientation = 'height';
-      var orientation = 'width';
-      var orientation_val = resizeWidth(image_width, image_height, kind);
+      to_make_draggable = 'x';
     }
     full_place.addClass(new_mask).removeClass(old_mask);
     $('#' + place_id + ' ._full_image_in_slide a').css('top', '0').css('left', '0')
     $('#' + place_id + ' ._full_image_in_slide ._rollover').css('top', '0').css('left', '0')
     var img_tag = $('#' + place_id + ' ._full_image_in_slide img');
     img_tag.attr('src', image_url);
-    img_tag.removeAttr(old_orientation);
-    img_tag.attr(orientation, orientation_val);
+    img_tag.data('resized-width', resized_width);
+    img_tag.data('resized-height', resized_height);
     $("#slide-numbers").show();
     $('#slide_in_lesson_editor_' + slide_id).siblings(".buttons").show();
-    maskedX = $('#' + place_id + ' ._mask_x a');
-    maskedX.each(function(index) {
-      makeDraggable($(maskedX[index]), "x");
-    });
-    maskedY = $('#' + place_id + ' ._mask_y a');
-    maskedY.each(function(index) {
-      makeDraggable($(maskedY[index]), "y");
-    });
+    makeDraggable(place_id);
   });
   
 });
@@ -138,83 +122,70 @@ function updateInfoCurrentSlide(slide_id, kind) {
 }
 
 /** functions to use in document.ready **/
-function makeDraggable(masked, axe){
-//if horizontal
-maskedImgWidth = masked.find("img").attr("width");
-var dist = maskedImgWidth - masked.parent().width();
-
-console.log("maskedImgWidth: "+ maskedImgWidth);
-console.log("parent.width: "+ masked.parent().width());
-console.log(dist);
-
-//if vertical
-maskedImgHeight = masked.find("img").attr("height");
-var vDist = maskedImgHeight - masked.parent().height();
-
-console.log("if height");
-console.log("maskedImgWidth: "+ maskedImgWidth);
-console.log("parent.width: "+ masked.parent().width());
-console.log(dist);
-
-var roll = masked.find(".rollover");
-var side = "";
-if(axe == "x"){
-  side = "left";
-}else{
-  side = "top";
-  dist = vDist;
-}
-masked.draggable({ 
-  axis: axe, 
-  distance: 10,
-  start: function(){
-    roll.css("opacity","0");
-    roll.css("cursor","-webkit-grabbing");
-  },
-  //drag: function(){
-  //  var thisDrag = $(this);
-  //  var offset = thisDrag.css("left");
-  //  if (parseInt(offset) > 0){
-  //    thisDrag.draggable('disable');
-  //  }
-  //},
-  stop: function() {
-    var thisDrag = $(this);
-    var offset = thisDrag.css(side);
-    console.log("offset: "+offset);
-    if (parseInt(offset) > 0){
-      offset = 0;
-      roll.css(side,0);
-      if(side=="left"){
-        thisDrag.animate({
-            left: "0"
-          }, 100 );
-      }else{
-        thisDrag.animate({
-            top: "0"
-          }, 100 );
-      }
-    }
-    else if (parseInt(offset) < -(parseInt(dist))){
-      offset = -parseInt(dist);
-      console.log("offset: "+offset+"dist: "+dist+"side: "+side+roll.css(side));
-      roll.css(side,-offset);
-      console.log("offset: "+offset+"dist: "+dist+"side: "+side+roll.css(side));
-      if(side=="left"){
-        thisDrag.animate({
-            left: "-"+dist+"px"
-          }, 100 );
-      }else{
-        thisDrag.animate({
-            top: "-"+dist+"px"
-          }, 100 );
-      }
-    }
-    roll.css(side,-parseInt(offset)).css("opacity","0.5");
-    roll.css("cursor","-webkit-grab");
-    masked.parent().siblings(".media_element_align_"+masked.attr("data-param")).val(parseInt(offset));
+function makeDraggable(place_id){
+  var full_place = $('#' + place_id + ' ._full_image_in_slide');
+  var axe = 'x';
+  if(full_place.hasClass('_mask_y')) {
+    axe = 'y';
   }
-});
+  var image = $('#' + place_id + '  ._full_image_in_slide img');
+  var maskedImgWidth = image.data('resized-width');
+  var maskedImgHeight = image.data('resized-height');
+  var dist = maskedImgWidth - full_place.width();
+  var vDist = maskedImgHeight - full_place.height();
+  var roll = $('#' + place_id + ' ._rollover');
+  var side = "";
+  if(axe == "x") {
+    side = "left";
+  } else {
+    side = "top";
+    dist = vDist;
+  }
+  full_place.draggable({
+    axis: axe,
+    distance: 10,
+    start: function() {
+      roll.css("opacity","0");
+      roll.css("cursor","-webkit-grabbing");
+    },
+    stop: function() {
+      var thisDrag = $(this);
+      var offset = thisDrag.css(side);
+      console.log("offset: "+offset);
+      if(parseInt(offset) > 0) {
+        offset = 0;
+        roll.css(side,0);
+        if(side=="left") {
+          thisDrag.animate({
+            left: "0"
+          }, 100);
+        } else {
+          thisDrag.animate({
+            top: "0"
+          }, 100);
+        }
+      } else {
+        if(parseInt(offset) < -(parseInt(dist))) {
+          offset = -parseInt(dist);
+          console.log("offset: "+offset+"dist: "+dist+"side: "+side+roll.css(side));
+          roll.css(side,-offset);
+          console.log("offset: "+offset+"dist: "+dist+"side: "+side+roll.css(side));
+          if(side=="left") {
+            thisDrag.animate({
+              left: "-"+dist+"px"
+            }, 100);
+          } else {
+            thisDrag.animate({
+              top: "-"+dist+"px"
+            }, 100);
+          }
+        }
+      }
+      roll.css(side,-parseInt(offset)).css("opacity","0.5");
+      roll.css("cursor","-webkit-grab");
+      $('#' + place_id + ' ._input_align').val(parseInt(offset));
+    }
+  });
 }
 
 function scrollSlideTo(list){

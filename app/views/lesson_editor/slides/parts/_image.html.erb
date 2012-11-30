@@ -5,17 +5,17 @@
     url = image.media_element.url
     mask = '_mask_y'
     style = "top:#{image.alignment}px"
-    orientation = "height=\"#{resize_height(width, height, slide.kind)}\""
+    resized_width = resize_width(width, height, slide.kind)
+    resized_height = resize_height(width, height, slide.kind)
     if horizontal_mask?(width, height, slide.kind)
       mask = '_mask_x'
       style = "left:#{image.alignment}px"
-      orientation = "width=\"#{resize_width(width, height, slide.kind)}\""
     end
   end
 %>
 
 
-<div id="media_element_<%= position %>_in_slide_<%= slide.id %>">
+<div id="media_element_<%= position %>_in_slide_<%= slide.id %>" class="_image_container_in_lesson_editor">
   
   <% if image %>
     <%= hidden_field_tag "media_element_align_#{position}", "#{image.alignment}", :class =>"media_element_align_#{position} _input_align" %>
@@ -30,7 +30,7 @@
       <span class="rollover rollover-image _rollover" style="<%= style %>">
         <span class="add-image"></span>
       </span>
-      <img src="<%= url %>" class="_slide_image <%= slide.kind %>-p<%= position %>" <%= orientation %>/>
+      <img src="<%= url %>" class="_slide_image <%= slide.kind %>-p<%= position %>" data-resized-height="<%= resized_height %>" data-resized-width="<%= resized_width %>"/>
     </a>
     <%= text_field_tag "caption_#{position}", (image.nil? ? '' : image.caption), :class => "caption", :placeholder => t('captions.image_caption_placeholder'), :maxlength => "60" %>
   </div>
