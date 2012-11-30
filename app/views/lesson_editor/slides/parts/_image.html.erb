@@ -18,7 +18,7 @@
 <div id="media_element_<%= position %>_in_slide_<%= slide.id %>">
   
   <% if image %>
-    <%= hidden_field_tag "media_element_align_#{position}", "#{image.alignment}px", :class =>"media_element_align_#{position} _input_align" %>
+    <%= hidden_field_tag "media_element_align_#{position}", "#{image.alignment}", :class =>"media_element_align_#{position} _input_align" %>
     <%= hidden_field_tag "media_element_#{position}", image.media_element_id, :class => "media-tag-#{position} _input_image_id" %>
   <% else %>
     <%= hidden_field_tag "media_element_align_#{position}", "0", :class =>"media_element_align_#{position} _input_align" %>
