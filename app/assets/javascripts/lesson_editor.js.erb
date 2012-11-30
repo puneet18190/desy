@@ -96,6 +96,7 @@ $(document).ready(function() {
     }
     var old_mask = '_mask_x';
     var new_mask = '_mask_y';
+    var old_orientation = 'width';
     var orientation = 'height';
     var orientation_val = resizeHeight(image_width, image_height, kind);
     var to_make_draggable = 'y';
@@ -148,7 +149,7 @@ function makeDraggable(place_id){
     side = "top";
     dist = maskedImgHeight - full_place.height();
   }
-  full_place.draggable({
+  $('#' + place_id + ' ._full_image_in_slide a').draggable({
     axis: axe,
     distance: 10,
     start: function() {
