@@ -69,6 +69,15 @@ $(document).ready(function() {
     });
   });
   
+  $('body').on('click', '._close_image_gallery_in_lesson_editor', function(e) {
+    e.preventDefault();
+    $('#image_gallery').remove();
+    var slide_id = $('#info_container').data('slide-id');
+    $('#slide_in_lesson_editor_' + slide_id).children().show();
+    $("#slide-numbers").show();
+    $(".buttons").show();
+  });
+  
 });
 
 function updateInfoCurrentSlide(slide_id) {
