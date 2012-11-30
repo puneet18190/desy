@@ -1,2 +1,2 @@
-<%= link_to "<span class='rollover rollover-video'></span>#{render(:partial => 'shared/players/video', :locals => {:video => video})}".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery", "data-param"=> "1" %>
+<%= link_to "<span class='video'></span>#{render(:partial => 'shared/players/video', :locals => {:video => video})}".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery", "data-param"=> "1" %>
     <%= hidden_field_tag :media_element_1, video.id, :class=> "media-tag-cover-1"  %>
