@@ -24,13 +24,15 @@ class Image < MediaElement
     metadata.height
   end
   
-  def ratio_value(scale_to_px,value,w_or_h)
-    if w_or_h == "w"
-      ratio = medatata.width / scale_to_px
+  def ratio_value(scale_to_px,value)
+    
+    ratio = self.width.to_f / scale_to_px.to_f if (self.width.to_i > scale_to_px.to_i )
+    
+    if ratio
+      return value.to_f * ratio.to_f
     else
-      ratio = medatata.height / scale_to_px
+      return value
     end
-    return value * ratio
   end
   
   private

@@ -61,6 +61,7 @@ en:
     audio_editor_label: 'Edit audio'
     author: 'Author'
     back_in_desy: 'Back in DESY'
+    click_image_to_add_text: "Click on the image to add text"
     choose_audio: 'click here to add audio'
     choose_image: 'click here to add image'
     choose_video: 'click here to add video'

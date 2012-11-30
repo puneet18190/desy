@@ -444,12 +444,20 @@ html.lesson-viewer-layout{
   }
   
   #left_scroll a, #right_scroll a{
-  /*styling*/
     cursor: pointer;
-    cursor: hand;
     height:590px;
     width:450px;
     display:block;
+		
   }
-	
+	#left_scroll a:hover {
+	  background: url(<%= asset_path 'freccia_left_lesson_viewer.svg' %>) center left no-repeat;
+    background-size: 8em;
+		opacity:0.4;
+	}
+	#right_scroll a:hover {
+	  background: url(<%= asset_path 'freccia_right_lesson_viewer.svg' %>) center right no-repeat;
+    background-size: 8em;
+		opacity:0.4;
+	}
 }

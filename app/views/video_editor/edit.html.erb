@@ -13,8 +13,11 @@
     <%= form_tag video_editor_save_cache_path do %>
       <%= render :partial => 'timeline', :locals => {:parameters => @parameters} %>
       <%= render :partial => 'cutter', :locals => {:parameters => @parameters} %>
+			<%= render :partial => 'audio', :locals => {:parameters => @parameters} %>
+			
       <div class="addAudioandSave">
         <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
+				
         <%= render :partial => 'save_cancel' %>
       </div>
     <% end %>

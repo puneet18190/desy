@@ -71,7 +71,7 @@ html.media_element_editor-layout {
 		.info {
 		  padding:20px; 
 			position:absolute; 
-			top:0px; 
+			top:10px; 
 			right:20px; 
 			text-align:left;
 		}
@@ -152,15 +152,20 @@ html.media_element_editor-layout {
 		/*menu elemento singolo*/
 		.boxMenuMediaElement {
 		  display:block;
-		  background-color:#000; 
-			position:absolute; 
+		  position:absolute; 
 			z-index:2; 
-			padding:12px 6px; 
+			padding:12px 0px 12px 30px; 
 			bottom:6px; 
-			width:144px; 
+			width:126px; 
 			background-color: rgba(0,0,0,0.7);
-			font-size:11px;
+			
+			a {
+			  font-size: 0.4em;
+				float:left;
+				padding:0;
+			}
 		}
+		
 	}
  }
   /*ELEMENTO NUOVO*/
@@ -169,12 +174,87 @@ html.media_element_editor-layout {
 	  height:88px;
 	  margin-bottom:0;
 		margin-right:0;
+		position:relative;
 		@include boxShadow;
 	  .contentNew {
 	    padding-top:15px;
 			padding-left:50px;
 		  height:73px;
 		}
+		/*choose new element*/
+		.boxChooseNewElement {
+		  display:none;
+			position:absolute; 
+			z-index:2; 
+			padding:27px 10px 0px 20px; 
+			top:0px; 
+			width:126px;
+			height:64px; 
+			background-color: rgba(47,47,47,0.8);
+		}
+	}
+	
+	.audioTrackCompact {
+	  width:840px;
+		
+		.audioTrackContent {
+	    background-color:#4a4a4a;
+		  padding:5px 10px;
+			height:34px;
+			.playButtonContent {
+			 float:left;
+			 padding-right:10px;
+			 border-right:1px solid #2d2d2d;
+			  .playButton {
+			    font-size: 0.4em;
+				  opacity:1;
+			  }	
+			}
+			
+			.infoTrack {
+			  float:left; 
+				padding:5px 10px;
+				border-left:1px solid #2d2d2d;
+				height:26px;
+				a {
+				  color:#fff;
+				}
+			}
+			.addButtonContent {
+			    float:left;
+			    padding-left:10px;
+			    border-left:1px solid #2d2d2d;
+					.creaNuovoButton {
+					  background-position: 0 -6em;
+					  font-size: 0.4em;
+            opacity: 1;
+						&:hover {
+						  background-position: -18em -6em;
+						}
+					}
+			  } 
+	  }
+	  .audioTrackExpanded {
+	    background-color:#3b3a3b;
+		  text-align:left;
+		  padding:16px 20px;
+		  position:relative;
+		  
+		  audio {
+		    width:434px;
+		  }
+		  .exitButton {
+		    background-position: 0 0;
+			  position:absolute;
+			  bottom:10px;
+			  right:10px;
+		  }
+	  }
+	}
+	.titleTrack {
+	  text-align:left;
+		padding:5px 10px;
+		float:left;
 	}
 	/*AGGIUNTA AUDIO -  SAVE ORA CANCEL*/
 	.addAudioandSave {
@@ -239,23 +319,6 @@ html.media_element_editor-layout {
       left:440px;
     }
 	}
-	.boxViewAudioElement {
-    width: 100%;
-    padding: 10px;
-    color: silver;
-    position: relative;
-    float: left;
-    margin-bottom: 1%;
-    background-color: #4a4a4a;
-		outline:1px solid red;
-		.contentAudio {
-      float: left;
-      width: 99%;
-      padding: 0.5% 0% 0.5% 1%;
-      color:#fff;
-      height: auto;
-    }
-  }
 	
 	/*IMAGES EDITOR*/
 	.mediaEditorElementContainer {
@@ -264,8 +327,8 @@ html.media_element_editor-layout {
 		
 		.imagesContainer {
 		  outline:1px dotted blue; 
-			width:600px; 
-			height:600px; 
+			width:660px; 
+			height:520px;
 			float:left;
 		}
 		
@@ -274,7 +337,7 @@ html.media_element_editor-layout {
 	  float:left; 
 		width:183px;
 		text-align:left;
-		padding:16px;
+		padding:20px;
 		h2 {
 		  font-size:18px;
 			color:#43a848;
@@ -293,29 +356,33 @@ html.media_element_editor-layout {
 			}
 		}
 	}
-	.menuRightEditorElement {
-	  float:right;
-		width:134px;
-		text-align:left;
-		padding:80px 16px 0 16px;
+	.menuBottomEditorElement {
+	  clear:both;
+		width:660px;
+		height: 30px;
+		margin: 0 0 0 215px; 
+		text-align:center;
+		padding:10px;
+		.menuTextImages{
+		  display:none;
+		}
 		.menuServiceImages {
-		  margin-top:20px;
+		  display:none;
+		  margin:0 auto;
+		  width: 200px;
 			
 		  li {
+		    float:left;
+		    width: auto;
 			  list-style: none;
-        margin-bottom: 10px;
+        margin-bottom: 0;
+        margin-left: 10px;
         padding:5px 10px;
 				text-align:center;
 				background-color:#2d2e2e;
 				border-radius: 10px;
         -webkit-border-radius: 10px;
 				font-size:14px;
-				input {
-				  color:#43a848;
-					padding:0px;
-					cursor:pointer;
-					font-size:14px;
-				}
 				a {
 				  color:#43a848;
 				}
@@ -323,10 +390,11 @@ html.media_element_editor-layout {
 		}
 	}
 	.menuFooterEditorElement {
-	  padding-top:15px;
-		margin-top:40px;
+	  padding-top:10px;
+		margin-top:10px;
 		border-top:10px solid #504f50;
 		width:984px;
+		height: 70px;
 		p {
 		  float:left;
 			font-size:11px;
@@ -338,49 +406,110 @@ html.media_element_editor-layout {
    * imgAreaSelect default style
    */
    
-  ._delete,._move{
-    display:none;
-    float:left;
-    width: auto;
-  }
+   #image_wrapper{
+     margin:0 auto;
+ 		padding-top:25px;
+     width: 660px;
+     display:block;
+     overflow:hidden;
+     img{
+       max-width: 660px;
+       max-height: 495px;
+     }
+   }
+
+   #_image_container textarea{
+    background-color: rgba(230,230,230,0.5);
+    border: 1px solid white;
+    width: 280px;
+    height: 30px;
+    max-width: 640px; 
+    max-height: 475px;
+    padding: 10px;
+    font-size: 1em;
+    font-family: "Nunito", sans-serif;
+    &.small_font{
+      font-size: 1em
+    }
+    &.medium_font{
+      font-size: 1.5em
+    }
+    &.big_font{
+      font-size: 2em
+    }
+   }
   
-  ._move{
-    float:right;
-  }
+   
+  .text_tools{
+    background-color: rgba(0,0,0,0.5);
+    height: 25px;
+    padding: 0 7px;
+    .text_colors{
+      float:left;
+      margin: 7px 7px 0;
+      width:110px;
+      padding:0 5px;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      a{
+        float:left;
+        margin-left: 2px;
+        margin-right: 2px;
+        border: 1px solid #f5f5f5;
+        height: 8px;
+        width: 12px;
+      }
+      a:hover,a.current{
+        margin-left:1px;
+        margin-right:1px;
+        border-left: 2px solid white;
+        border-right: 2px solid white;
+      }
+    }
+    .font_sizes{
+      margin: 0;
+      padding:3px 0 0;
+      float:left;
+      a.small_font{
+        font-size: 8px;
+      }
+      a.medium_font{
+        font-size: 10px;
+      }
+      a.big_font{
+        font-size: 12px;
+      }
+      a{
+        color:white;
+        margin-right: 6px;
+        &.medium_font:hover,&.small_font:hover,&.big_font:hover,&.medium_font.current,&.small_font.current,&.big_font.current{
+          color: yellow;
+        }        
+      }
+    }
   
+    ._delete,._move{
+      float:left;
+      display:block;
+      margin-top:2px;
+    }
+    ._move{
+      float:right;
+      margin-top:4px;
+      width: 17px;
+      height: 17px;
+      cursor:move;
+      cursor: -webkit-grab;
+      background: url("/assets/draggable_knob.png") no-repeat center center;
+    }
+  }
   a.do_crop,a.write_text{
     color: white;
     &.active{
       color: green;
     }
   }
-   
-  #image_wrapper{
-    margin:0 auto;
-    padding:0;
-    width: 500px;
-    display:block;
-    overflow:hidden;
-    img{
-      max-width: 500px;
-      max-height: 500px;
-    }
-  }
-  
-  #_image_container textarea{
-   background-color: rgba(230,230,230,0.5);
-   color: rgba(50,50,50,1);
-   border: 1px solid white;
-  }
-  
-  #_image_container a{
-    color: white;
-  }
-  
-  #_image_container img{
-    margin-top:20px;
-  }
-  
+     
   .imgareaselect-border1 {
   	background: url(/assets/border-v.gif) repeat-y left top;
   }
