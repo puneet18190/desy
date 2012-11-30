@@ -1,4 +1,5 @@
 var slide_id = $('#info_container').data('slide-id');
+var img_position = $('#info_container').data('current-img-position');
 
 var current_slide = $('#slide_in_lesson_editor_' + slide_id);
 current_slide.children().hide(); 
@@ -11,3 +12,8 @@ close_button.removeClass('_close_image_gallery');
 close_button.addClass('_close_image_gallery_in_lesson_editor');
 
 initializeImageGallery();
+
+
+
+
+

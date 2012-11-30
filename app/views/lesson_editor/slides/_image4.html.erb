@@ -1,55 +1,6 @@
 <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
-  
-  <% image1 = slide.image_at(1) %>
-  <% if image1 %>
-    <%= render :partial => 'lesson_editor/slides/filled_parts/_image', :locals => {:slide => slide, :position => 1, :image => image1} %>
-  <% else %>
-    <%= hidden_field_tag :media_element_align_1, "0", :class =>"media_element_align_1" %>
-    <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
-    <div class="cover-choose-image choose-small _cover_choose_image_1 cover-choose-image-right">
-      <a class="show-gallery _show_image_gallery_in_lesson_editor" data-position="1"><%= image_tag "choose-image.png" %></a>
-      <br/>
-      <%= t ('captions.choose_image') %>
-    </div>
-  <% end %>
-  
-  <% image2 = slide.image_at(2) %>
-  <% if image2 %>
-    <%= render :partial => 'lesson_editor/slides/filled_parts/_image', :locals => {:slide => slide, :position => 2, :image => image2} %>
-  <% else %>
-    <%= hidden_field_tag :media_element_align_2, "0", :class =>"media_element_align_2" %>
-    <%= hidden_field_tag :media_element_2, "", :class=> "media-tag-cover-2" %>
-    <div class="cover-choose-image choose-small _cover_choose_image_2 cover-choose-image-left">
-      <a class="show-gallery _show_image_gallery_in_lesson_editor" data-position="2"><%= image_tag "choose-image.png" %></a>
-      <br/>
-      <%= t('captions.choose_image') %>
-    </div>
-  <% end %>
-  
-  <% image3 = slide.image_at(3) %>
-  <% if image3 %>
-    <%= render :partial => 'lesson_editor/slides/filled_parts/_image', :locals => {:slide => slide, :position => 3, :image => image3} %>
-  <% else %>
-    <%= hidden_field_tag :media_element_align_3, "0", :class =>"media_element_align_3" %>
-    <%= hidden_field_tag :media_element_3, "", :class=> "media-tag-cover-3" %>
-    <div class="cover-choose-image choose-small _cover_choose_image_3 cover-choose-image-right">
-      <a class="show-gallery _show_image_gallery_in_lesson_editor" data-position="3"><%= image_tag "choose-image.png" %></a>
-      <br/>
-      <%= t('captions.choose_image') %>
-    </div>
-  <% end %>
-  
-  <% image4 = slide.image_at(4) %>
-  <% if image4 %>
-    <%= render :partial => 'lesson_editor/slides/filled_parts/_image', :locals => {:slide => slide, :position => 4, :image => image4} %>
-  <% else %>
-    <%= hidden_field_tag :media_element_align_4, "0", :class =>"media_element_align_4" %>
-    <%= hidden_field_tag :media_element_4, "", :class=> "media-tag-cover-2" %>
-    <div class="cover-choose-image choose-small _cover_choose_image_4 cover-choose-image-left">
-      <a class="show-gallery _show_image_gallery_in_lesson_editor" data-position="4"><%= image_tag "choose-image.png" %></a>
-      <br/>
-      <%= t('captions.choose_image') %>
-    </div>
-  <% end %>
-  
+  <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 1, :image => slide.image_at(1)} %>
+  <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 2, :image => slide.image_at(2)} %>
+  <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 3, :image => slide.image_at(3)} %>
+  <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 4, :image => slide.image_at(4)} %>
 <% end %>

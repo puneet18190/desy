@@ -78,10 +78,60 @@ $(document).ready(function() {
     $(".buttons").show();
   });
   
+  $('body').on('click', '._add_image_to_slide', function(e) {
+    e.preventDefault();
+    var slide_id = $('#info_container').data('slide-id');
+    var kind = $('#info_container').data('kind');
+    var position = $('#info_container').data('current-img-position');
+    var image_id = $(this).data('image-id');
+    $("#image_gallery").remove();
+    $('#slide_in_lesson_editor_' + slide_id).children().show();
+    var place = $('#media_element_' + position + '_in_slide_' + slide_id);
+    $('#' + place.id + ' ._input_image_id').val(image_id);
+    $('#' + place.id + ' ._input_align').val('0');
+    closePopUp('dialog-image-gallery-' + image_id);
+    $('.ui-widget-overlay').trigger("click"); // FIXME A CHE SERVE???
+    var image_url = $(this).data('url');
+    var image_width = $(this).data('width');
+    var image_height = $(this).data('height');
+    var full_place = $('#' + place.id + ' ._full_image_in_slide');
+    if(full_place.css('display') == 'none') {
+      full_place.css('display', 'block');
+      $('#' + place.id + ' ._empty_image_in_slide').css('display', 'none');
+    }
+    var old_mask = '_mask_x';
+    var new_mask = '_mask_y';
+    var old_orientation = 'width';
+    var orientation = 'height';
+    var orientation_val = resizeHeight(image_width, image_height, kind);
+    if(isHorizontalMask(image_width, image_height, image_kind)) {
+      old_mask = '_mask_y';
+      new_mask = '_mask_x';
+      var old_orientation = 'height';
+      var orientation = 'width';
+      var orientation_val = resizeWidth(image_width, image_height, kind);
+    }
+    full_place.addClass(new_mask).removeClass(old_mask);
+    $('#' + place.id + ' ._full_image_in_slide a').css('top', '0').css('left', '0')
+    $('#' + place.id + ' ._full_image_in_slide ._rollover').css('top', '0').css('left', '0')
+    $('#' + place.id + ' ._full_image_in_slide img').attr('src', image_url).removeAttr(old_orientation).attr(orientation, orientation_val);
+    $("#slide-numbers").show();
+    sld.siblings(".buttons").show();
+    maskedX = $('#' + place.id + ' ._mask_x a');
+    maskedX.each(function(index) {
+      makeDraggable($(maskedX[index]), "x");
+    });
+    maskedY = $('#' + place.id + ' ._mask_y a');
+    maskedY.each(function(index) {
+      makeDraggable($(maskedY[index]), "y");
+    });
+});
+  
 });
 
-function updateInfoCurrentSlide(slide_id) {
+function updateInfoCurrentSlide(slide_id, kind) {
   $('#info_container').data('slide-id', slide_id);
+  $('#info_container').data('kind', kind);
 }
 
 /** functions to use in document.ready **/
@@ -177,7 +227,8 @@ function scrollSlideTo(list){
 
 function slideTo(nth){
   page = $(nth).text();
-  slide_id = $(nth).attr("data-slide");
+  slide_id = $(nth).data('slide-id');
+  kind = $(nth).data('kind');
   if (parseInt(page) == 1){
     marginReset = 0
   }else{
@@ -201,7 +252,7 @@ function slideTo(nth){
   $("#slide-numbers li a.active").removeClass("active");
   $(nth).addClass("active");
   
-  updateInfoCurrentSlide(slide_id);
+  updateInfoCurrentSlide(slide_id, kind);
   
 }
 
