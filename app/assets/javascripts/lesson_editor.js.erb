@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  
   initTinymce(); // init tinymce configuration and manage external toolbar toggle
   slideSortList("#slide-numbers"); // make sortable page number on top
   $("#lesson_subject").selectbox(); // select subject in lesson new/edit views
@@ -41,6 +42,30 @@ $(document).ready(function() {
     $.ajax({
       type: 'post',
       url: '/lessons/' + lesson_id + '/slides/' + slide_id + '/kind/' + kind + '/create/'
+    });
+  });
+  
+  $('body').on('click', '._show_image_gallery_in_lesson_editor', function() {
+    $('#info_container').data('current-img-position', $(this).data('position'));
+    $.ajax({
+      type: 'get',
+      url: '/lessons/galleries/image'
+    });
+  });
+  
+  $('body').on('click', '._show_audio_gallery_in_lesson_editor', function() {
+    $('#info_container').data('current-img-position', $(this).data('position'));
+    $.ajax({
+      type: 'get',
+      url: '/lessons/galleries/audio'
+    });
+  });
+  
+  $('body').on('click', '._show_video_gallery_in_lesson_editor', function() {
+    $('#info_container').data('current-img-position', $(this).data('position'));
+    $.ajax({
+      type: 'get',
+      url: '/lessons/galleries/video'
     });
   });
   

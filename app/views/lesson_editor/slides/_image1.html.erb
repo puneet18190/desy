@@ -9,11 +9,10 @@
   <%- if !sme1[:empty] %>
     <%= render :partial => "/lesson_editor/slides/parts/filled_image", :locals => {:slide => slide, :position => 1} %>
   <%- else %>
-  <!--TODO replace align value from db (after default at 0)-->
-  <%= hidden_field_tag :media_element_align_1, "0", :class =>"media_element_align_1" %>
+    <%= hidden_field_tag :media_element_align_1, "0", :class =>"media_element_align_1" %>
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
     <div class="cover-choose-image _cover_choose_image_1 cover-choose-image-left">
-      <a class="show-gallery image1-p1 _show_image_gallery_in_lesson_editor"><%= image_tag "choose-image.png" %></a>
+      <a class="show-gallery image1-p1 _show_image_gallery_in_lesson_editor" data-position="1"><%= image_tag "choose-image.png" %></a>
       <br/>
       <%= t('captions.choose_image') %>
     </div>
