@@ -32,7 +32,7 @@
       </span>
       <img src="<%= url %>" class="_slide_image <%= slide.kind %>-p<%= position %>" <%= orientation %>/>
     </a>
-    <%= text_field_tag "caption_#{position}", image.caption, :class => "caption", :placeholder => t('captions.image_caption_placeholder'), :maxlength => "60" %>
+    <%= text_field_tag "caption_#{position}", (image.nil? ? '' : image.caption), :class => "caption", :placeholder => t('captions.image_caption_placeholder'), :maxlength => "60" %>
   </div>
   
   <div class="cover-choose-image _empty_image_in_slide" style="display:<%= image.nil? ? 'block'.html_safe : 'none'.html_safe %>">

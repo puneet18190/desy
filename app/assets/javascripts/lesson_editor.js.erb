@@ -86,42 +86,51 @@ $(document).ready(function() {
     var image_id = $(this).data('image-id');
     $("#image_gallery").remove();
     $('#slide_in_lesson_editor_' + slide_id).children().show();
-    var place = $('#media_element_' + position + '_in_slide_' + slide_id);
-    $('#' + place.id + ' ._input_image_id').val(image_id);
-    $('#' + place.id + ' ._input_align').val('0');
+    var place_id = 'media_element_' + position + '_in_slide_' + slide_id;
+    $('#' + place_id + ' ._input_image_id').val(image_id);
+    $('#' + place_id + ' ._input_align').val('0');
     closePopUp('dialog-image-gallery-' + image_id);
     $('.ui-widget-overlay').trigger("click"); // FIXME A CHE SERVE???
     var image_url = $(this).data('url');
     var image_width = $(this).data('width');
     var image_height = $(this).data('height');
-    var full_place = $('#' + place.id + ' ._full_image_in_slide');
+    var full_place = $('#' + place_id + ' ._full_image_in_slide');
+    
+    //alert('ecchime -- ' + '#' + place_id + ' ._full_image_in_slide --- e la url ' + image_url);
+    
     if(full_place.css('display') == 'none') {
       full_place.css('display', 'block');
-      $('#' + place.id + ' ._empty_image_in_slide').css('display', 'none');
+      $('#' + place_id + ' ._empty_image_in_slide').css('display', 'none');
     }
     var old_mask = '_mask_x';
     var new_mask = '_mask_y';
     var old_orientation = 'width';
     var orientation = 'height';
     var orientation_val = resizeHeight(image_width, image_height, kind);
-    if(isHorizontalMask(image_width, image_height, image_kind)) {
+    if(isHorizontalMask(image_width, image_height, kind)) {
       old_mask = '_mask_y';
       new_mask = '_mask_x';
       var old_orientation = 'height';
       var orientation = 'width';
       var orientation_val = resizeWidth(image_width, image_height, kind);
     }
-    full_place.addClass(new_mask).removeClass(old_mask);
-    $('#' + place.id + ' ._full_image_in_slide a').css('top', '0').css('left', '0')
-    $('#' + place.id + ' ._full_image_in_slide ._rollover').css('top', '0').css('left', '0')
-    $('#' + place.id + ' ._full_image_in_slide img').attr('src', image_url).removeAttr(old_orientation).attr(orientation, orientation_val);
+    full_place_addClass(new_mask).removeClass(old_mask);
+    $('#' + place_id + ' ._full_image_in_slide a').css('top', '0').css('left', '0')
+    $('#' + place_id + ' ._full_image_in_slide ._rollover').css('top', '0').css('left', '0')
+    var img_tag = $('#' + place_id + ' ._full_image_in_slide img');
+    
+    //alert('ehiehiei!');  QUI NON CI ARRIVO!
+    
+    img_tag.attr('src', image_url);
+    img_tag.removeAttr(old_orientation);
+    img_tag.attr(orientation, orientation_val);
     $("#slide-numbers").show();
-    sld.siblings(".buttons").show();
-    maskedX = $('#' + place.id + ' ._mask_x a');
+    $('#slide_in_lesson_editor_' + slide_id).siblings(".buttons").show();
+    maskedX = $('#' + place_id + ' ._mask_x a');
     maskedX.each(function(index) {
       makeDraggable($(maskedX[index]), "x");
     });
-    maskedY = $('#' + place.id + ' ._mask_y a');
+    maskedY = $('#' + place_id + ' ._mask_y a');
     maskedY.each(function(index) {
       makeDraggable($(maskedY[index]), "y");
     });
