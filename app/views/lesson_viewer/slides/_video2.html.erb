@@ -4,7 +4,7 @@
 
 <div class="bigViewLesson slideVideo">
   <div class="videoBig">
-    <% if video %>
+    <% if video.nil? %>
       <div class="videoIcon"></div>
     <% else %>
       <%= render :partial => 'shared/players/video', :locals => {:video => video} %>

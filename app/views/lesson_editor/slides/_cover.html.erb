@@ -2,10 +2,10 @@
   
   <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
     <%= hidden_field_tag :title, slide.title %>
-    <% sme1 = slide.image_at(1) %>
-    <%- if !sme1[:empty] %>
-      <%= render :partial => "/lesson_editor/slides/parts/filled_image", :locals => {:slide => slide, :position => 1} %>
-    <%- else %>
+    <% image = slide.image_at(1) %>
+    <% if image %>
+      <%= render :partial => "/lesson_editor/slides/parts/filled_image", :locals => {:slide => slide, :position => 1, :image => image} %>
+    <% else %>
       <%= hidden_field_tag :media_element_align_1, "0", :class =>"media_element_align_1" %>
       <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
       <div class="cover-choose-image _cover_choose_image_1">
@@ -13,7 +13,7 @@
         <br />
         <%= t 'captions.choose_image' %>
       </div>
-    <%- end %>
+    <% end %>
   <% end %>
   
   <div class="title">
