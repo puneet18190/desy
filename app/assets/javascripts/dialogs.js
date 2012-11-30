@@ -1,3 +1,19 @@
+function showChangeInfoInVideoEditorPopUp() {
+  var obj = $('#dialog-change-info-in-video-editor');
+  if(obj.data('dialog')) {
+    obj.dialog('open');
+  } else {
+    obj.show();
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      width: 920,
+      show: "fade",
+      hide: "fade"
+    });
+  }
+}
+
 function showSendLessonLinkPopUp(lesson_id) {
   var obj = $('#dialog-virtual-classroom-send-link');
   $('#dialog-virtual-classroom-send-link form').attr('action', ('/virtual_classroom/' + lesson_id + '/send_link'));
