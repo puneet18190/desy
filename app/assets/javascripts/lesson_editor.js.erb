@@ -96,12 +96,15 @@ $(document).ready(function() {
     }
     var old_mask = '_mask_x';
     var new_mask = '_mask_y';
-    var resized_height = resizeHeight(image_width, image_height, kind);
-    var resized_width = resizeWidth(image_width, image_height, kind);
+    var orientation = 'height';
+    var orientation_val = resizeHeight(image_width, image_height, kind);
     var to_make_draggable = 'y';
     if(isHorizontalMask(image_width, image_height, kind)) {
       old_mask = '_mask_y';
       new_mask = '_mask_x';
+      old_orientation = 'height';
+      orientation = 'width';
+      orientation_val = resizeWidth(image_width, image_height, kind);
       to_make_draggable = 'x';
     }
     full_place.addClass(new_mask).removeClass(old_mask);
@@ -109,8 +112,8 @@ $(document).ready(function() {
     $('#' + place_id + ' ._full_image_in_slide ._rollover').css('top', '0').css('left', '0')
     var img_tag = $('#' + place_id + ' ._full_image_in_slide img');
     img_tag.attr('src', image_url);
-    img_tag.data('resized-width', resized_width);
-    img_tag.data('resized-height', resized_height);
+    img_tag.removeAttr(old_orientation);
+    img_tag.attr(orientation, orientation_val);
     $("#slide-numbers").show();
     $('#slide_in_lesson_editor_' + slide_id).siblings(".buttons").show();
     makeDraggable(place_id);
@@ -131,17 +134,19 @@ function makeDraggable(place_id){
     axe = 'y';
   }
   var image = $('#' + place_id + '  ._full_image_in_slide img');
-  var maskedImgWidth = image.data('resized-width');
-  var maskedImgHeight = image.data('resized-height');
-  var dist = maskedImgWidth - full_place.width();
-  var vDist = maskedImgHeight - full_place.height();
   var roll = $('#' + place_id + ' ._rollover');
   var side = "";
+  var maskedImgWidth;
+  var maskedImgHeight;
+  var dist;
   if(axe == "x") {
+    maskedImgWidth = image.attr('width');
+    dist = maskedImgWidth - full_place.width();
     side = "left";
   } else {
+    maskedImgHeight = image.attr('height');
     side = "top";
-    dist = vDist;
+    dist = maskedImgHeight - full_place.height();
   }
   full_place.draggable({
     axis: axe,
