@@ -165,6 +165,22 @@ html.media_element_editor-layout {
 				padding:0;
 			}
 		}
+		
+	}
+ }
+  /*ELEMENTO NUOVO*/
+	.boxNewMediaElement {
+    width:156px;
+	  height:88px;
+	  margin-bottom:0;
+		margin-right:0;
+		position:relative;
+		@include boxShadow;
+	  .contentNew {
+	    padding-top:15px;
+			padding-left:50px;
+		  height:73px;
+		}
 		/*choose new element*/
 		.boxChooseNewElement {
 		  display:none;
@@ -175,20 +191,6 @@ html.media_element_editor-layout {
 			width:126px;
 			height:64px; 
 			background-color: rgba(47,47,47,0.8);
-		}
-	}
- }
-  /*ELEMENTO NUOVO*/
-	.boxNewMediaElement {
-    width:156px;
-	  height:88px;
-	  margin-bottom:0;
-		margin-right:0;
-		@include boxShadow;
-	  .contentNew {
-	    padding-top:15px;
-			padding-left:50px;
-		  height:73px;
 		}
 	}
 	
@@ -223,11 +225,11 @@ html.media_element_editor-layout {
 			    padding-left:10px;
 			    border-left:1px solid #2d2d2d;
 					.creaNuovoButton {
-					  background-position: 0 0;
+					  background-position: 0 -6em;
 					  font-size: 0.4em;
             opacity: 1;
 						&:hover {
-						  background-position: -18em 0;
+						  background-position: -18em -6em;
 						}
 					}
 			  } 
