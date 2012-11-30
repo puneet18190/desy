@@ -22,7 +22,7 @@
       </div>
     <% end %>
       <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals =>{:media_element => media_element} %>
-      <div class="fltlft" style="max-width:280px">
+      <div class="fltlft" style="max-width:210px">
         <h2><%= media_element.sti_type %></h2>
         <h3><%= media_element.title %></h3>
         <p><%= media_element.description %></p>

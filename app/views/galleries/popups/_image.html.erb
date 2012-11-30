@@ -1,0 +1,7 @@
+<div class="_gallery_img_expanded _gallery_img_expanded_<%= image.id %>" id="dialog-image-gallery-<%= image.id %>" data-image-id="<%= image.id %>">
+  <%= image_tag image.url, :class => "popup_expanded", :style => "max-height: 420px; max-width: 420px" %>
+  <div class="caption">
+    <a href="#" class="aggiungiImgButton current _add_image_to_slide image-<%= image.id %>" data-image-id="<%= image.id %>" data-url="<%= image.url %>" data-width="<%= image.width %>" data-height="<%= image.height %>" style="float:right"></a>
+    <p><%= image.title %></p>
+  </div>
+</div>

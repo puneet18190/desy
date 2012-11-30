@@ -4,10 +4,10 @@
 
 <div class="bigViewLesson slideVideo">
   <div class="videoBig">
-    <% if video[:empty] %>
+    <% if video.nil? %>
       <div class="videoIcon"></div>
     <% else %>
-      <video id='video' class='video' src='video[:mp4]' controls></video> <!-- FIXME mettere webm quando necessario -->
+      <%= render :partial => 'shared/players/video', :locals => {:video => video} %>
     <% end %>
   </div>
 </div>

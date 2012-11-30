@@ -5,19 +5,23 @@
 
 <div class="bigViewLesson slideImage">
   <div class="mediumHeight">
-    <% if image1[:empty] %>
+    <% if image1.nil? %>
       <div class="photoIcon"></div>
     <% else %>
-      <%= image_tag image1[:url], :style => "left:#{image1[:alignment]}px" %>
-      <div class="caption"><%= image1[:caption] %></div>
+      <%= image_tag image1.media_element.url, :style => "left:#{image1.alignment}px" %>
+      <% if !image1.caption.blank? %>
+        <div class="caption"><%= image1.caption %></div>
+      <% end %>
     <% end %>
   </div>
   <div class="mediumHeight">
-    <% if image2[:empty] %>
+    <% if image2.nil? %>
       <div class="photoIcon"></div>
     <% else %>
-      <%= image_tag image2[:url], :style => "left:#{image2[:alignment]}px" %>
-      <div class="caption"><%= image2[:caption] %></div>
+      <%= image_tag image2.media_element.url, :style => "left:#{image2.alignment}px" %>
+      <% if !image2.caption.blank? %>
+        <div class="caption"><%= image2.caption %></div>
+      <% end %>
     <% end %>
   </div>
 </div>
