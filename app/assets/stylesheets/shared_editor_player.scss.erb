@@ -78,6 +78,18 @@
 	  background-position: 0 (-$button-size);
 		opacity:1;
 	}
+	&.textButton {
+	  background-position: (-$button-size*2) (-$button-size*3);
+		opacity:0.1;
+	}
+	&.textButton:hover {
+	  background-position: 0 (-$button-size*3);
+		opacity:1;
+	}
+	&.textButton.current {
+	  background-position: 0 (-$button-size*3);
+		opacity:1;
+	}
 	&.photoIcon {
 	  background-position: 0 (-$button-size*2);
 		opacity:1;
@@ -106,6 +118,9 @@
    @include iconEditorElement;
 }
 .audioButton {
+   @include iconEditorElement;
+}
+.textButton {
    @include iconEditorElement;
 }
 .photoIcon {
