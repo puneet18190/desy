@@ -3,7 +3,7 @@
   <% image1 = slide.image_at(1) %>
   <% if image1 %>
     <span class="spacer20"></span>
-    <%= render :partial => "/lesson_editor/slides/parts/filled_image", :locals => {:slide => slide, :position => 1, :image => image1} %>
+    <%= render :partial => 'lesson_editor/slides/filled_parts/_image', :locals => {:slide => slide, :position => 1, :image => image1} %>
   <% else %>
     <%= hidden_field_tag :media_element_align_1, "0", :class =>"media_element_align_1" %>
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
@@ -17,7 +17,7 @@
   
   <% image2 = slide.image_at(2) %>
   <% if image2 %>
-    <%= render :partial => "/lesson_editor/slides/parts/filled_image", :locals => {:slide => slide, :position => 2, :image => image2} %>
+    <%= render :partial => 'lesson_editor/slides/filled_parts/_image', :locals => {:slide => slide, :position => 2, :image => image2} %>
   <% else %>
     <%= hidden_field_tag :media_element_align_2, "0", :class =>"media_element_align_2" %>
     <%= hidden_field_tag :media_element_2, "", :class=> "media-tag-cover-2" %>

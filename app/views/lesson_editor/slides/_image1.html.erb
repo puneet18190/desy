@@ -9,7 +9,7 @@
   
   <% image = slide.image_at(1) %>
   <% if image %>
-    <%= render :partial => "/lesson_editor/slides/parts/filled_image", :locals => {:slide => slide, :position => 1, :image => image} %>
+    <%= render :partial => 'lesson_editor/slides/filled_parts/_image', :locals => {:slide => slide, :position => 1, :image => image} %>
   <% else %>
     <%= hidden_field_tag :media_element_align_1, "0", :class =>"media_element_align_1" %>
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
