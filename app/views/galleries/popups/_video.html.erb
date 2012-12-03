@@ -1,5 +1,7 @@
 <div class="videoInGalleryPopUp" id="dialog-video-gallery-<%= video.id %>" data-video-id="<%= video.id %>">
-  
-  <video id='video' class='_slide_image video1-p1' src='http://slides.html5rocks.com/src/chrome_japan.mp4' controls></video>
-  
+  <%= render :partial => 'shared/players/video', :locals => {:video => video} %>
+  <div class="caption">
+    <a href="#" class="aggiungiImgButton current _add_video_to_slide video-<%= video.id %>" data-video-id="<%= video.id %>" data-mp4="<%= video.mp4 %>" data-webm="<%= video.webm %>" style="float:right"></a>
+    <p><%= video.title %></p>
+  </div>
 </div>

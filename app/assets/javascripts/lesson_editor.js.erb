@@ -73,6 +73,15 @@ $(document).ready(function() {
     $(".buttons").show();
   });
   
+  $('body').on('click', '._close_video_gallery_in_lesson_editor', function(e) {
+    e.preventDefault();
+    $('#video_gallery').remove();
+    var slide_id = $('#info_container').data('slide-id');
+    $('#slide_in_lesson_editor_' + slide_id).children().show();
+    $("#slide-numbers").show();
+    $(".buttons").show();
+  });
+  
   $('body').on('click', '._add_image_to_slide', function(e) {
     e.preventDefault();
     var slide_id = $('#info_container').data('slide-id');
