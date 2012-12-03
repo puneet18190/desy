@@ -1,0 +1,263 @@
+$(document).ready(function() {
+  var img_container = $("#_image_editor_container");
+  
+  $("body").on("click","._toggle_text",function(e){
+    e.preventDefault;
+    $(this).addClass("current");
+    $("._toggle_crop").removeClass("current");
+    $(".menuServiceImages").hide();
+    $(".menuTextImages").show();
+    img_container.addClass("text_enabled").removeClass("crop_enabled");
+    $("#cropped_image").imgAreaSelect({ 
+      hide: true,
+      disable: true
+    });
+  });
+  
+  $("body").on("click","._toggle_crop",function(e){
+    e.preventDefault;
+    $(this).addClass("current");
+    $("._toggle_text").removeClass("current");
+    $(".menuServiceImages").show();
+    $(".menuTextImages").hide();
+    img_container.removeClass("text_enabled").addClass("crop_enabled");
+    offlightTextarea();
+    $("#cropped_image").imgAreaSelect({ 
+      enable: true,
+      handles: true,
+      onSelectEnd: function (img, selection) {
+        $('input[name="x1"]').val(selection.x1);
+        $('input[name="y1"]').val(selection.y1);
+        $('input[name="x2"]').val(selection.x2);
+        $('input[name="y2"]').val(selection.y2);
+      }
+    });
+  });
+  
+  $("body").on("click","#_editor_crop",function(){
+    updateCrop();
+   //processTextAreaForm();
+   //var thisForm = $("form#_crop_form");
+   //thisForm.attr("action","/images/"+thisForm.data("param")+"/crop");
+   //thisForm.submit();
+  });
+  
+  $("body").on("click","#_image_editor_container img",function(e){
+    this_image = $(this);
+    coords = getRelativePosition(this_image,e);
+    textCount = $("#_image_editor_container textarea").length;
+    $("#_image_editor_container.text_enabled").append(textAreaContent(coords,textCount));
+    
+    $('.image_editor_text').draggable({ 
+      containment: "parent",
+      handle: "._move",
+      start: function() {
+        $(this).find("._move").css("cursor","-webkit-grabbing");
+      },
+      stop: function(e) {
+        $(this).find("._move").css("cursor","-webkit-grab");
+        console.log(e.pageX+"/"+e.pageY);
+      }
+    });
+    
+    offlightTextarea();
+    enlightTextarea($(".image_editor_text textarea:last"));
+    
+    $(".image_editor_text textarea").focus(function(){
+      offlightTextarea();
+      enlightTextarea($(this));
+    });
+  
+    $("a._delete").click(function(){
+      img_editor = $(this).parents(".image_editor_text");
+      img_editor.remove();
+      console.log(img_editor.attr("id"));
+      $("#_crop_form input."+img_editor.attr("id").replace("text","area")).each(function(){
+        $(this).remove();
+      });
+    });
+    
+    $(".text_tools div a").click(function(){
+      //variable init
+      var thisLink = $(this);
+      var thisParent = $(this).parent("div");
+      var thisTextTools = $(this).parents(".text_tools");
+      var thisTextArea = thisTextTools.parent(".image_editor_text").find("textarea");
+      
+      //textarea updates
+      thisParent.find("a").removeClass("current");
+      thisLink.addClass("current");
+      thisTextArea.removeAttr("class");
+      
+      if(thisParent.attr("class") == "font_sizes"){
+        
+        var font_val = $(this).attr("class").replace(" current","");
+        var font_size = $(this).data("param");
+        var color_class = thisTextTools.find(".text_colors a.current").attr("class");
+
+        thisTextArea.addClass(font_val);
+        thisTextArea.addClass(color_class.replace('background_','').replace('current','').replace(' ',''));        
+        thisTextArea.attr("data-size",font_size);
+        
+      } else {
+        
+        var color_val = $(this).attr("class").replace('background_','').replace('current','').replace(' ','');
+        var font_class = thisTextTools.find(".font_sizes a.current").attr("class");
+
+        thisTextArea.addClass(color_val);
+        thisTextArea.addClass(font_class.replace('current',''));        
+        thisTextArea.attr("data-color",color_val);
+      }
+
+    });
+    
+  });
+  
+  $("body").on("click","#_editor_cancel",function(e){
+    e.preventDefault;
+    $("#cropped_image").imgAreaSelect({ 
+      hide: true
+    });
+    //img_container.find("div.image_editor_text:last").remove();
+  });
+  
+  $("body").on("click","._save_edit_image", function(){
+    processTextAreaForm();
+    var thisForm = $("form#_crop_form");
+    thisForm.attr("action","/images/"+thisForm.data("param")+"/save");
+    thisForm.submit();
+  });
+});
+
+
+// Client side crop
+function updateCrop() {
+  var image = $("#_image_editor_container img");
+  var x1 = $('input[name="x1"]').val();
+  var y1 = $('input[name="y1"]').val();
+  var x2 = $('input[name="x2"]').val();
+  var y2 = $('input[name="y2"]').val();
+  var selWidth = x2-x1;
+  var selHeight = y2-y1;
+  
+  var ratio = selWidth/selHeight;
+  
+  console.log("W: "+selWidth+" H: "+selHeight);
+  console.log("Ratio: "+ratio);
+  
+  var mult = 1;
+  var constraint = ""
+  
+  if(ratio > 1,33){
+    mult = 660 - selWidth;
+    constraint = "width";
+  }else{
+    mult = 495 - selHeight;
+    constraint = "height";
+  }
+  
+  console.log("mult: "+mult);
+  image.css("-webkit-transform",mult);
+  
+  //image.css({
+  //  transform: scale(mult),
+  //  -ms-transform: scale(mult), /* IE 9 */
+  //  -webkit-transform: scale(mult), /* Safari and Chrome */
+  //  -o-transform: scale(mult), /* Opera */
+  //  -moz-transform: scale(mult) /* Firefox */
+  //});
+  
+  //var scaleX = 100 / (selection.width || 1);
+  //var scaleY = 100 / (selection.height || 1);
+  //
+  //$('img').css({
+  //    width: Math.round(scaleX * 400) + 'px',
+  //    height: Math.round(scaleY * 300) + 'px',
+  //    marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+  //    marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+  //});
+}
+
+// Update form with textareas
+function processTextAreaForm(){
+  $("#_image_editor_container textarea").each(function(index){
+    var tarea = $(this);
+    addTextAreaHiddenFields(tarea.data("color"), tarea.data("size"), tarea.data("coords"), tarea.val(), index);
+  });
+}
+
+
+//TODO ADD COLOR AND FONT SIZE
+function addTextAreaHiddenFields(color, size, coords, text, index){
+  hidden_input_coords = "<input type='hidden' class='area_"+index+"' id='hidden_coords_"+index+"' name='coords_"+index+"' value='"+coords+"' />"
+  hidden_input_text = "<input type='hidden' class='area_"+index+"' id='hidden_text_"+index+"' name='text_"+index+"' value='"+text+"' />"
+  hidden_input_color = "<input type='hidden' class='area_"+index+"' id='hidden_color_"+index+"' name='color_"+index+"' value='"+color+"' />"
+  hidden_input_font = "<input type='hidden' class='area_"+index+"' id='hidden_font_"+index+"' name='font_"+index+"' value='"+size+"' />"
+  $("#_crop_form").prepend(hidden_input_coords).prepend(hidden_input_text).prepend(hidden_input_color).prepend(hidden_input_font);
+}
+
+//TODO ADD COLOR AND FONT SIZE
+function textAreaContent(coords,textCount){
+  var textarea = "<textarea id='area_"+textCount+"' data-coords='"+coords[2]+","+coords[3]+"' data-color='color_black' data-size='15' name='text_"+textCount+"' />";
+  var colors = "<div class='text_colors'><a class='background_color_white'></a><a class='background_color_black current'></a><a class='background_color_red'></a><a class='background_color_yellow'></a><a class='background_color_blue'></a><a class='background_color_green'></a></div>"
+  var fontSize = "<div class='font_sizes'><a class='small_font current' data-param='15'>A</a><a class='medium_font' data-param='25'>A</a><a class='big_font' data-param='40'>A</a></div>"
+  div = $("<div />",
+  {
+    class: "image_editor_text",
+    id: "text_"+textCount,
+    css: {
+        position : "absolute",
+        "z-index" : "100",
+        left : coords[0],
+        top : coords[1]
+    }
+  }).html("<div class='text_tools' id='area_tools_"+textCount+"'><a class='_delete closeButton closeButtonSmall'></a>"+colors+fontSize+"<a class='_move'></a></div>").append(textarea);
+  
+  return div;
+}
+
+function offlightTextarea(){
+  $(".text_tools").css('visibility','hidden');
+  $(".image_editor_text textarea").css("background-color","rgba(255,255,255,0)");
+}
+
+function enlightTextarea(obj){
+  var tarea = obj;
+  var tools = tarea.siblings(".text_tools");
+
+  tools.css('visibility','visible');
+  tarea.css("background-color","rgba(230,230,230,0.5)");
+
+  updateValueOnKey(tarea);
+}
+
+function updateValueOnKey(textarea){
+  var name = textarea.attr("name");
+  textarea.keyup(function(){
+    $("form#_crop_form input#hidden_"+ name).val(textarea.val());
+  });
+}
+
+function updateRelativePosition(x_y,event){
+  //obj is the image, event the click position
+  var posX = obj.offset().left, posY = obj.offset().top;
+  coords = []
+  coords.push(event.pageX);
+  coords.push(event.pageY);
+  coords.push((event.pageX - posX)); 
+  coords.push((event.pageY - posY)+30); //padding +30
+  console.log(coords[0]+","+coords[1]+","+coords[2]+","+coords[3]);
+  return coords;
+}
+
+function getRelativePosition(obj,event){
+  //obj is the image, event the click position
+  var posX = obj.offset().left, posY = obj.offset().top;
+  coords = []
+  coords.push(event.pageX);
+  coords.push(event.pageY);
+  coords.push((event.pageX - posX));
+  coords.push((event.pageY - posY)+30); //padding + 30
+  console.log(coords[0]+","+coords[1]+","+coords[2]+","+coords[3]);
+  return coords;
+}

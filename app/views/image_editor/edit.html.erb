@@ -10,15 +10,14 @@ or ABC to enter text.</p>
 		</ul>
 	  </div>
 	</div>
-  <div id="_image_container" class="imagesContainer">
+  <div id="_image_editor_container" class="imagesContainer">
     <div id="image_wrapper">
       <%= image_tag(@image.media.url, :id => "cropped_image")%>
-      <form id="_crop_form" action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
+      <form id="_crop_form" data-param="<%= @image.id %>" action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
         <input type="hidden" name="x1" value="" />
         <input type="hidden" name="y1" value="" />
         <input type="hidden" name="x2" value="" />
         <input type="hidden" name="y2" value="" />
-        <input type="hidden" name="cropped_image" value="" />
       </form>
     </div>
 	</div>
@@ -39,7 +38,7 @@ or ABC to enter text.</p>
 
 	</div>
   <div class="menuFooterEditorElement">
-	  <p>Original image size: 1280x720 px</p>
+	  <p>Original image size: <%= @image.width %>x<%= @image.height %>px</p>
     <%= render :partial => "save_cancel" %>
 	<br class="clearfloat">
 	</div>

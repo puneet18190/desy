@@ -1,6 +1,9 @@
 $(document).ready(function() {
   
+  $("html.lesson-editor-layout ul#slides").css("margin-top",($(window).height() - 590)/2 + "px");
+
   $('#info_container').data('current-media-element-position', 1);
+
   
   initTinymce(); // init tinymce configuration and manage external toolbar toggle
   slideSortList("#slide-numbers"); // make sortable page number on top

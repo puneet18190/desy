@@ -40,7 +40,8 @@ $(document).ready(function() {
   
   textCount = 0
   $("img").click(function(e){
-    coords = getRelativePosition($(this),e);
+    this_image = $(this);
+    coords = getRelativePosition(this_image,e);
     textCount = $("#_image_container textarea").length;
     $("#_image_container.text_enabled").append(textAreaContent(coords,textCount));
     addTextAreaHiddenFields(coords, textCount);
@@ -48,10 +49,11 @@ $(document).ready(function() {
       containment: "parent",
       handle: "._move",
       start: function() {
-          $(this).find("._move").css("cursor","-webkit-grabbing");
+        $(this).find("._move").css("cursor","-webkit-grabbing");
       },
-      stop: function() {
-          $(this).find("._move").css("cursor","-webkit-grab");
+      stop: function(e) {
+        $(this).find("._move").css("cursor","-webkit-grab");
+        console.log(e.pageX+"/"+e.pageY);
       }
     });
     
@@ -123,7 +125,6 @@ function addTextAreaHiddenFields(coords, textCount){
 
 //TODO ADD COLOR AND FONT SIZE
 function textAreaContent(coords,textCount){
-  console.log("coords on new: "+coords[2]+","+coords[3]);
   var textarea = "<textarea id='area_"+textCount+"' name='text_"+textCount+"' style='resize:both;' data-coords='"+coords[2]+","+coords[3]+"' data-color='' data-size='' />";
   var colors = "<div class='text_colors'><a class='background_color_white'></a><a class='background_color_black'></a><a class='background_color_red'></a><a class='background_color_yellow'></a><a class='background_color_blue'></a><a class='background_color_green'></a></div>"
   var fontSize = "<div class='font_sizes'><a class='small_font'>A</a><a class='medium_font'>A</a><a class='big_font'>A</a></div>"
@@ -154,8 +155,31 @@ function enlightTextarea(obj){
   tools.css('visibility','visible');
   tarea.css("background-color","rgba(230,230,230,0.5)");
 
-  //TODOOOOOOO
   updateValueOnKey(tarea);
+}
+
+function updateValueOnKey(textarea){
+  var name = textarea.attr("name");
+  console.log(name);
+  textarea.keydown(function(){
+    console.log("keydown");
+    console.log(textarea.val());
+    $("form#_crop_form input#hidden_"+ name).val(textarea.val());
+  });
+}
+
+function updateRelativePosition(x_y,event){
+  //obj is the image, event the click position
+  var posX = obj.offset().left, posY = obj.offset().top;
+  console.log("offset.left(posX): " +posX+ " offset.top(posY)"+posY);
+  console.log("position.left: "+obj.position().left+"position.top: "+obj.position().top+ " event X,Y: " +event.pageX + "," +event.pageY);
+  coords = []
+  coords.push(event.pageX);
+  coords.push(event.pageY);
+  coords.push((event.pageX - posX));
+  coords.push((event.pageY - posY)+20);
+  console.log(coords[0]+","+coords[1]+","+coords[2]+","+coords[3]);
+  return coords;
 }
 
 function getRelativePosition(obj,event){
