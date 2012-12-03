@@ -3,7 +3,7 @@ var img_position = $('#info_container').data('current-img-position');
 
 var current_slide = $('#slide_in_lesson_editor_' + slide_id);
 current_slide.children().hide(); 
-current_slide.prepend("<%= j(render :partial => 'galleries/image', :locals => {:images => @images}) %>");
+current_slide.prepend("<%= j(render :partial => 'galleries/video', :locals => {:videos => @videos}) %>");
 current_slide.siblings(".buttons").hide();
 $("#slide-numbers").hide();
 

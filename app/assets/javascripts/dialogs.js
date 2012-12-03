@@ -143,9 +143,8 @@ function showLoadMediaElementPopUp() {
   }
 }
 
-function showImageMediaElementPopUp(id) {
-  var thumb = '._gallery_img_expanded_'+id;
-  var obj = $(thumb).first();
+function showMediaElementInGalleryPopUp(id) {
+  var obj = $('#' + id);
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
@@ -161,10 +160,6 @@ function showImageMediaElementPopUp(id) {
       hide: "fade"
     });
   }
-  
-  $('.ui-widget-overlay').click(function() { 
-    $(thumb).dialog("close");
-  });
 }
 
 function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_no) {

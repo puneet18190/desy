@@ -258,17 +258,25 @@ $(document).ready(function() {
     }
   });
   
+  
   // MEDIA ELEMENT GALLERY
-
-  $('body').on('click','._gallery_thumb', function(e) {
+  
+  $('body').on('click','._image_gallery_thumb', function(e) {
     e.preventDefault();
-    num = $(this).find("a").attr('href');
-    showImageMediaElementPopUp(num);
+    var my_id = 'dialog-image-gallery-' + $(this).data('image-id');
+    showMediaElementInGalleryPopUp(my_id);
   });
-
-  $('body').on('click', '._close_popup', function() {
-    var param = $(this).attr("data-param");
-    closePopUp('_gallery_img_expanded_'+param);
+  
+  $('body').on('click','._audio_gallery_thumb', function(e) {
+    e.preventDefault();
+    var my_id = 'dialog-audio-gallery-' + $(this).data('audio-id');
+    showMediaElementInGalleryPopUp(my_id);
+  });
+  
+  $('body').on('click','._video_gallery_thumb', function(e) {
+    e.preventDefault();
+    var my_id = 'dialog-video-gallery-' + $(this).data('video-id');
+    showMediaElementInGalleryPopUp(my_id);
   });
   
   
