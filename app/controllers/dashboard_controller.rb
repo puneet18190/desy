@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   
-  before_filter :initialize_layout, :initialize_pagination
+  before_filter :initialize_layout, :initialize_pagination, :reset_players_counter
   
   def index
     @lessons = @current_user.suggested_lessons(@lessons_for_page * @lesson_pages)

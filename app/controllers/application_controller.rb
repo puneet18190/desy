@@ -1,9 +1,31 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :authenticate, :initialize_location
+  before_filter :authenticate, :initialize_location, :initialize_players_counter
   
   private
+  
+  def initialize_players_counter
+    Dir.mkdir Rails.root.join('tmp') if !Dir.exists? Rails.root.join('tmp')
+    if File.exists?(Rails.root.join('tmp/players_counter.yml'))
+      file = YAML::load(File.open(Rails.root.join('tmp/players_counter.yml')))
+      @video_counter = [file['video_counter'], 1]
+      @audio_counter = [file['audio_counter'], 1]
+      file['video_counter'] += 1
+      file['audio_counter'] += 1
+    else
+      @video_counter = [1, 1]
+      @audio_counter = [1, 1]
+      file = {'video_counter' => 2, 'audio_counter' => 2}
+    end
+    yaml = File.open(Rails.root.join('tmp/players_counter.yml'), 'w')
+    yaml.write file.to_yaml
+    yaml.close
+  end
+  
+  def reset_players_counter
+    File.delete(Rails.root.join('tmp/players_counter.yml')) if File.exists?(Rails.root.join('tmp/players_counter.yml'))
+  end
   
   def prepare_lesson_for_js
     if !@lesson.nil?
