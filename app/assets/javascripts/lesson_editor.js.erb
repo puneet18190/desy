@@ -67,28 +67,19 @@ $(document).ready(function() {
   $('body').on('click', '._close_image_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
     $('#image_gallery').remove();
-    var slide_id = $('#info_container').data('slide-id');
-    $('#slide_in_lesson_editor_' + slide_id).children().show();
-    $("#slide-numbers").show();
-    $(".buttons").show();
+    enableSlidesInLessonEditor();
   });
   
   $('body').on('click', '._close_video_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
     $('#video_gallery').remove();
-    var slide_id = $('#info_container').data('slide-id');
-    $('#slide_in_lesson_editor_' + slide_id).children().show();
-    $("#slide-numbers").show();
-    $(".buttons").show();
+    enableSlidesInLessonEditor();
   });
   
   $('body').on('click', '._close_audio_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
     $('#audio_gallery').remove();
-    var slide_id = $('#info_container').data('slide-id');
-    $('#slide_in_lesson_editor_' + slide_id).children().show();
-    $("#slide-numbers").show();
-    $(".buttons").show();
+    enableSlidesInLessonEditor();
   });
   
   $('body').on('click', '._add_image_to_slide', function(e) {
@@ -181,6 +172,13 @@ $(document).ready(function() {
   });
   
 });
+
+function EnableSlidesInLessonEditor() {
+  var slide_id = $('#info_container').data('slide-id');
+  $('#slide_in_lesson_editor_' + slide_id).children().show();
+  $("#slide-numbers").show();
+  $(".buttons").show();
+}
 
 function updateInfoCurrentSlide(slide_id, kind) {
   $('#info_container').data('slide-id', slide_id);
