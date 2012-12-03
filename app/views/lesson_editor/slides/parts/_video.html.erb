@@ -1,14 +1,14 @@
 <%
-  empty_mask_class = "cover-choose-image #{classes}"
+  empty_mask_class = "cover-choose-image _empty_video_in_slide #{classes}"
 %>
 
 
 <div id="media_element_<%= position %>_in_slide_<%= slide.id %>" class="_video_container_in_lesson_editor contentOf-<%= slide.kind %>">
   
   <% if video %>
-    <%= hidden_field_tag "media_element_#{position}", video.id, :class=> "media-tag-cover-#{position}" %>
+    <%= hidden_field_tag "media_element_#{position}", video.id, :class => "media-tag-cover-#{position} _input_image_id" %>
   <% else %>
-    <%= hidden_field_tag "media_element_#{position}", "", :class=> "media-tag-cover-#{position}" %>
+    <%= hidden_field_tag "media_element_#{position}", "", :class => "media-tag-cover-#{position} _input_image_id" %>
   <% end %>
   
   <div class="<%= slide.kind %>-p<%= position %> _full_video_in_slide" style="display:<%= video.nil? ? 'none'.html_safe : 'block'.html_safe %>">
