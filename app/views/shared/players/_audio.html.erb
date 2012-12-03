@@ -1,5 +1,20 @@
-<audio controls="controls">
-  <source src="<%= audio.nil? ? '' : audio.ogg %>" type="audio/ogg">
-  <source src="<%= audio.nil? ? '' : audio.mp3 %>" type="audio/mp3">
-  <%= t('captions.your_browser_does_not_support_audio') %>
-</audio>
+<%
+  audio_class = audio.nil? ? '_empty_audio_player' : "_instance_of_audio_player_#{audio.id}"
+%>
+
+<div class="audioPlayer _audio_player <%= audio_class %>">
+  <audio>
+    <source src="<%= audio.nil? ? '' : audio.ogg %>" type="audio/ogg">
+    <source src="<%= audio.nil? ? '' : audio.mp3 %>" type="audio/mp3">
+    <%= t('captions.your_browser_does_not_support_audio') %>
+  </audio>
+  <a class="play _play"></a>
+  <a class="stop _stop"></a>
+  <div class="audioSlider _audio_slider"></div>
+</div>
+
+<script type="text/javascript">
+  
+  initializeAudioSlider('.<%= audio_class %> ._audio_slider');
+  
+</script>
