@@ -1,21 +1,13 @@
-.image_gallery {
-
-  background-color: black;
-  height: 590px;
-  width: 900px;
+@mixin headerGallery {
   display:block;
-  .gallery-header{
-    display:block;
-    padding: 20px;
-    width: 860px;
-    h3{
-      color: #666;
-      img{
-        vertical-align: middle;
-      }
-    }
-  }
-
+  padding: 20px;
+  width: 860px;
+  h3{
+    color: #666;
+    padding:5px 10px;
+	}
+}
+@mixin ulGallery {
   ul {
     padding: 0;
     margin:0;
@@ -32,13 +24,31 @@
       }
     }
   }
-  
-  .gallery-footer{
-    display:block;
-    padding: 10px 20px;
-    width: 865px;
+}
+
+@mixin galleryFooter {
+.gallery-footer{
+    display:inline-block;
+    padding: 10px 15px;
+		float:right;
+    width: 830px;
     color: #fff;
+	}
+}
+
+
+.image_gallery {
+  background-color: black;
+  height: 590px;
+  width: 900px;
+  display:block;
+  .gallery-header{
+    @include headerGallery;
   }
+  @include ulGallery;
+  @include galleryFooter;
+  
+  
   
   .imageInGalleryPopUp {
     display:none;
@@ -58,51 +68,83 @@
       outline:none;
     }
   }
-  
 }
 
 
 .audio_gallery {
-  
+  outline:1px solid red; 
   background-color: black;
   height: 590px;
   width: 900px;
   display:block;
   .gallery-header{
-    display:block;
-    padding: 20px;
-    width: 860px;
-    h3{
-      color: #666;
-      img{
-        vertical-align: middle;
-      }
-    }
-  }
+    @include headerGallery;  
+	}
+  .audioTrackCompact {
+	  width:840px;
+		
+		.audioTrackContent {
+	    background-color:#4a4a4a;
+		  padding:5px 10px;
+			height:34px;
+			.playButtonContent {
+			 float:left;
+			 padding-right:10px;
+			 border-right:1px solid #2d2d2d;
+			  .playButton {
+			    font-size: 0.4em;
+				  opacity:1;
+			  }	
+			}
+			
+			.infoTrack {
+			  float:left; 
+				padding:5px 10px;
+				border-left:1px solid #2d2d2d;
+				height:26px;
+				a {
+				  color:#fff;
+				}
+			}
+			.addButtonContent {
+			    float:left;
+			    padding-left:10px;
+			    border-left:1px solid #2d2d2d;
+					.creaNuovoButton {
+					  background-position: 0 -6em;
+					  font-size: 0.4em;
+            opacity: 1;
+						&:hover {
+						  background-position: -18em -6em;
+						}
+					}
+			  } 
+	  }
+	  .audioTrackExpanded {
+	    background-color:#3b3a3b;
+		  text-align:left;
+		  padding:10px 20px;
+		  position:relative;
+		  /*audio {
+		   width:434px;
+			 float:none;
+		  }*/
+		  .exitButton {
+		    background-position: 0 0;
+			  position:absolute;
+			  bottom:10px;
+			  right:10px;
+		  }
+	  }
+	}
+	.titleTrack {
+	  text-align:left;
+		padding:5px 10px;
+		float:left;
+	}
+	@include ulGallery;
+  @include galleryFooter;
   
-  ul {
-    padding: 0;
-    margin:0;
-    list-style:none;
-    .scroll-pane{
-      margin:20px 0 0 20px;
-      padding:0;
-      width: 860px;
-      height: 470px;
-      li{
-        float:left; 
-        width: 115px;
-        margin: 0 5px 5px 0;
-      }
-    }
-  }
-  
-  .gallery-footer{
-    display:block;
-    padding: 10px 20px;
-    width: 865px;
-    color: #fff;
-  }
 
   &.audio-kind {
     ul{
@@ -143,40 +185,11 @@
   width: 900px;
   display:block;
   .gallery-header{
-    display:block;
-    padding: 20px;
-    width: 860px;
-    h3{
-      color: #666;
-      img{
-        vertical-align: middle;
-      }
-    }
+    @include headerGallery;
   }
   
-  ul {
-    padding: 0;
-    margin:0;
-    list-style:none;
-    .scroll-pane{
-      margin:20px 0 0 20px;
-      padding:0;
-      width: 860px;
-      height: 470px;
-      li{
-        float:left; 
-        width: 115px;
-        margin: 0 5px 5px 0;
-      }
-    }
-  }
-  
-  .gallery-footer{
-    display:block;
-    padding: 10px 20px;
-    width: 865px;
-    color: #fff;
-  }
+  @include ulGallery;
+  @include galleryFooter;
 
   &.video-kind {
     ul{
