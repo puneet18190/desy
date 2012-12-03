@@ -433,10 +433,19 @@ def plant_development_seeds
   
   Video.all.each do |v|
     Dir.mkdir "public/media_elements/videos/#{v.id.to_s}"
-    FileUtils.cp("db/seeds/videos/url/mp4/#{(Video.where('id < ?', v.id).count % 5) + 1}.webm", "public/media_elements/videos/#{v.id.to_s}/video_mp4.webm")
+    FileUtils.cp("db/seeds/videos/url/mp4/#{(Video.where('id < ?', v.id).count % 5) + 1}.mp4", "public/media_elements/videos/#{v.id.to_s}/video_mp4.mp4")
     FileUtils.cp("db/seeds/videos/url/webm/#{(Video.where('id < ?', v.id).count % 5) + 1}.webm", "public/media_elements/videos/#{v.id.to_s}/video_webm.webm")
     FileUtils.cp("db/seeds/videos/thumb/#{(Video.where('id < ?', v.id).count % 5) + 1}.jpg", "public/media_elements/videos/#{v.id.to_s}/thumb.jpg")
     FileUtils.cp("db/seeds/videos/cover/#{(Video.where('id < ?', v.id).count % 5) + 1}.jpg", "public/media_elements/videos/#{v.id.to_s}/cover.jpg")
+  end
+  
+  FileUtils.rm_rf 'public/media_elements/audios' if Dir.exists? 'public/media_elements/audios'
+  Dir.mkdir 'public/media_elements/audios'
+  
+  Audio.all.each do |a|
+    Dir.mkdir "public/media_elements/audios/#{a.id.to_s}"
+    FileUtils.cp("db/seeds/audios/url/mp3/1.mp3", "public/media_elements/audios/#{a.id.to_s}/audio_mp3.mp3")
+    FileUtils.cp("db/seeds/audios/url/ogg/1.ogg", "public/media_elements/audios/#{a.id.to_s}/audio_ogg.ogg")
   end
   
 end

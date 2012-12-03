@@ -1,5 +1,5 @@
 <audio controls="controls">
-  <source src="<%= audio.ogg %>" type="audio/ogg">
-  <source src="<%= audio.mp3 %>" type="audio/mp3">
+  <source src="<%= audio.nil? ? '' : audio.ogg %>" type="audio/ogg">
+  <source src="<%= audio.nil? ? '' : audio.mp3 %>" type="audio/mp3">
   <%= t('captions.your_browser_does_not_support_audio') %>
 </audio>

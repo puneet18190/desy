@@ -6,7 +6,7 @@
     </div>
   </li>
 <% end %>
-<%- if @slide_to %>
+<% if @slide_to %>
   <script type="text/javascript" charset="utf-8">
     $("#slide-numbers li a:eq(<%=@slide_to %>)").trigger("click");
   </script>

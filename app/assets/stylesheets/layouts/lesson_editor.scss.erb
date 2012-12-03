@@ -289,85 +289,6 @@ html.lesson-editor-layout{
         line-height: 20px;
       }
       
-      
-      span.rollover {
-      	-o-transition-duration: 1s;
-      	-moz-transition-duration: 1s;
-      	-webkit-transition: -webkit-transform 1s;
-      	cursor: pointer;
-      	position: absolute;
-      	z-index: 10;
-      	opacity: 0;
-      }
-
-      span.rollover-video{
-        background:url('/assets/choose-video.png') center center no-repeat #000;
-        height: 430px;
-      	width: 810px;
-      	margin-left: 30px;
-      	margin-top: 50px;
-      }
-      
-      span.rollover-audio{
-        background:url('/assets/choose-audio.png') center center no-repeat #000;
-        height: 430px;
-      	width: 810px;
-      	margin-left: 30px;
-      	margin-top: 50px;
-      }
-      
-      span.rollover-image{
-        background:transparent;
-        height: 390px;
-      	width: 810px;
-      	margin-left: 30px;
-      	margin-top: 50px;
-      	cursor:move;
-        cursor: -webkit-grab;
-      	.add-image{
-      	  width: 130px;
-      	  height: 130px;
-      	  font-size: 130px;
-      	  margin: 130px 0 0 365px;
-      	  display:block;
-      	  background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
-      	  background-size: 780px 130px;
-      	  cursor: pointer;
-      	}
-      	.add-image:hover{
-      	  background-position: -390px center;
-      	}
-      }
-      
-      .image4 span.rollover-image{
-        background:transparent;
-        height: 2650px;
-      	width: 420px;
-      	cursor:move;
-        cursor: -webkit-grab;
-      	.add-image{
-          margin:1em 1.5em;
-          width: 1em;
-          height: 1em;
-          font-size: 80px;
-          background-size: 6em 1em;
-          background-position: -2em center;
-          background-repeat: no-repeat;
-          background-color: transparent;
-      	}
-      	.add-image:hover{
-      	  background-position: -3em center;
-      	}
-      }
-
-      span.rollover:hover,span.rollover.active{
-      	opacity: .5;
-      	-o-transition-duration: 1s;
-      	-moz-transition-duration: 1s;
-      	-webkit-transition: -webkit-transform 1s;
-      }
-      
-      
       &.active {
         width: 960px;
         height: 590px;
@@ -403,6 +324,23 @@ html.lesson-editor-layout{
             cursor:move;
             cursor: -webkit-grab;
           }
+        }
+				/*roll-over span*/
+				span.add-image{
+          width: 130px;
+          height: 130px;
+          font-size: 130px;
+          margin: 210px 0 0 387px;
+					display:block;
+          background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
+          background-size: 780px 130px;
+          cursor: pointer;
+					position:absolute;
+					top:0;
+					left:0;
+        }
+        span.add-image:hover{
+          background-position: -390px center;
         }
         ._mask_x{
           img{
@@ -490,10 +428,10 @@ html.lesson-editor-layout{
           height: 590px;
           width: 900px;
           audio{
-            width: 440px;
+            /*width: 440px;
             height: 250px;
             margin: 0 0 0 20px;
-            float:left;
+            float:left;*/
           }
           h2 input{
             font-size: 70px;
@@ -524,11 +462,6 @@ html.lesson-editor-layout{
               background-position: -390px center;
             }
           }
-          .rollover{
-            height: 250px;
-          	width: 440px;
-          	margin: 0 0 0 20px;
-          }
         }
 
         &.video2{
@@ -536,14 +469,10 @@ html.lesson-editor-layout{
           height: 590px;
           width: 900px;
           display:block;
+					position:relative;
           a video{
             margin: 0 20px;
             width:860px;
-            height: 484px;
-          }
-          .rollover{
-            margin: 0 20px;
-            width: 860px;
             height: 484px;
           }
           .cover-choose-image{
@@ -551,12 +480,57 @@ html.lesson-editor-layout{
             width: 860px;
             height: 410px;
             display:block;
+						a{
+              background-position: -130px center;
+            }
+            a:hover{
+              background-position: -390px center;
+            }
+          }
+					
+					/*roll-over span*/
+				  span.add-video{
+            width: 130px;
+            height: 130px;
+            font-size: 130px;
+            margin: 210px 0 0 387px;
+					  display:block;
+            background:url('/assets/icone_piene.svg') -127px center no-repeat transparent;
+            background-size: 780px 130px;
+            cursor: pointer;
+					  position:absolute;
+					  top:0;
+					  left:0;
+          }
+          span.add-video:hover{
+            background-position: -390px center;
           }
         }
         &.video1{
           padding: 0;
           height: 590px;
           width: 900px;
+					
+					.video1-p1 {
+					  position:relative;
+					/*roll-over span*/
+				  span.add-video{
+            width: 130px;
+            height: 130px;
+            font-size: 130px;
+            margin: 145px 0 0 180px;
+					  display:block;
+            background:url('/assets/icone_piene.svg') -130px center no-repeat transparent;
+            background-size: 780px 130px;
+            cursor: pointer;
+					  position:absolute;
+					  top:0;
+					  left:0;
+          }
+          span.add-video:hover{
+            background-position: -390px center;
+          }
+				}
           video{
             width: 440px;
             height: 250px;
@@ -578,6 +552,7 @@ html.lesson-editor-layout{
               height: 400px;
               padding: 10px;
             }
+					
           }
           .cover-choose-image{
             margin: 0 0 0 20px;
@@ -591,11 +566,7 @@ html.lesson-editor-layout{
               background-position: -390px center;
             }
           }
-          .rollover{
-            height: 250px;
-          	width: 440px;
-          	margin: 0 0 0 20px;
-          }
+					
         }
         &.image4{
           .mask.image4-p1,.mask.image4-p2,.mask.image4-p3,.mask.image4-p4{
@@ -638,14 +609,6 @@ html.lesson-editor-layout{
               width: 420px;
               top:0;
             }
-          }
-          .rollover{
-            height: 230px;
-          	width: 420px;
-          	margin: 0;
-          	.add-image{
-          	  margin:80px 0 0 165px;
-          	}
           }
           input.caption{
             top: 230px;
@@ -691,20 +654,13 @@ html.lesson-editor-layout{
               margin-top:0;
             }
           }
-          .rollover-image{
-            margin:0;
-            width: 860px;
-            height: 515px;
-            .add-image{
-              margin-top:200px;
-            }
-          }
         }
         
         &.image2{
           padding: 0;
           height: 590px;
           width: 900px;
+					position:relative;
           .mask{
             width: 420px;
             height: 550px;
@@ -724,6 +680,23 @@ html.lesson-editor-layout{
               cursor:move;
               cursor: -webkit-grab;
             }
+						/*roll-over span*/
+						span.add-image{
+              width: 130px;
+              height: 130px;
+              font-size: 130px;
+              margin: 190px 0 0 150px;
+							display:block;
+              background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
+              background-size: 780px 130px;
+              cursor: pointer;
+						  position:absolute;
+							top:0;
+							left:0;
+            }
+           span.add-image:hover{
+             background-position: -390px center;
+           }
           }
           ._mask_x{
             img{
@@ -750,14 +723,6 @@ html.lesson-editor-layout{
           .cover-choose-image-left{
             margin: 0 0 0 20px;
           }
-          .rollover{
-            height: 515px;
-          	width: 420px;
-          	margin: 0;
-          	.add-image{
-          	  margin:210px 0 0 135px;
-          	}
-          }
         }
         &.image1{
           padding: 0;
@@ -783,6 +748,23 @@ html.lesson-editor-layout{
               cursor: -webkit-grab;
             }
           }
+					/*rollover span*/
+					span.add-image{
+            width: 130px;
+            height: 130px;
+            font-size: 130px;
+            margin: 145px 0 0 150px;
+						display:block;
+            background:url('/assets/icone_piene.svg') -260px center no-repeat transparent;
+            background-size: 780px 130px;
+            cursor: pointer;
+						position:absolute;
+						top:0;
+						left:0;
+           }
+           span.add-image:hover{
+             background-position: -390px center;
+           }
           ._mask_x{
             img{
               height: 420px;
@@ -804,15 +786,6 @@ html.lesson-editor-layout{
             a{
               font-size: 100px;
             }  
-          }
-          
-          .rollover{
-            height: 385px;
-          	width: 440px;
-          	margin: 0;
-          	.add-image{
-          	  margin:135px 0 0 155px;
-          	}
           }
           
           input.caption{
@@ -857,15 +830,7 @@ html.lesson-editor-layout{
         height: 200px;
         margin: 185px 0 0 5px;
         display:block;
-/*        a{
-          background: url("/assets/icone-editor-lezioni.svg") no-repeat top left; 
-          text-indent: -999999px;
-          width: 55px;
-          height: 56px;
-          display:block;
-        }
-  */    
-  
+        
         a{
           text-indent: -999999px;
         }

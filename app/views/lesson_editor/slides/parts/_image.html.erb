@@ -8,20 +8,18 @@
     height = image.media_element.height
     url = image.media_element.url
     mask = '_mask_y'
-    style_negative = "top:#{image.alignment}px"
-    style_positive = "top:#{-image.alignment}px"
+    style = "top:#{image.alignment}px"
     orientation = "height=\"#{resize_height(width, height, slide.kind)}\""
     if horizontal_mask?(width, height, slide.kind)
       mask = '_mask_x'
-      style_negative = "left:#{image.alignment}px"
-      style_positive = "left:#{-image.alignment}px"
+      style = "left:#{image.alignment}px"
       orientation = "width=\"#{resize_width(width, height, slide.kind)}\""
     end
   end
 %>
 
 
-<div id="media_element_<%= position %>_in_slide_<%= slide.id %>" class="_image_container_in_lesson_editor">
+<div id="media_element_<%= position %>_in_slide_<%= slide.id %>" class="_image_container_in_lesson_editor contentOf-<%= slide.kind %>">
   
   <% if image %>
     <%= hidden_field_tag "media_element_align_#{position}", "#{image.alignment}", :class =>"media_element_align_#{position} _input_align" %>
@@ -32,17 +30,15 @@
   <% end %>
   
   <div class="mask <%= slide.kind %>-p<%= position %> <%= mask %> _full_image_in_slide" style="display:<%= image.nil? ? 'none'.html_safe : 'block'.html_safe %>">
-    <a class="show-gallery _show_image_gallery_in_lesson_editor" data-position="<%= position %>" style="<%= style_negative %>">
-      <span class="rollover rollover-image _rollover" style="<%= style_positive %>">
-        <span class="add-image"></span>
-      </span>
+    <a class="show-gallery" style="<%= style %>" data-slide-id="<%= slide.id %>" data-position="<%= position %>" data-rolloverable="true">
       <img src="<%= url %>" class="_slide_image <%= slide.kind %>-p<%= position %>" <%= orientation.nil? ? '' : orientation.html_safe %>/>
     </a>
+    <span class="add-image _show_image_gallery_in_lesson_editor _lesson_editor_rollover_content" data-position="<%= position %>" style="display:none"></span>
     <%= text_field_tag "caption_#{position}", (image.nil? ? '' : image.caption), :class => "caption", :placeholder => t('captions.image_caption_placeholder'), :maxlength => "60" %>
   </div>
   
   <div class="<%= empty_mask_class.html_safe %>" style="display:<%= image.nil? ? 'block'.html_safe : 'none'.html_safe %>">
-    <a class="show-gallery _show_image_gallery_in_lesson_editor" data-position="<%= position %>"><%= image_tag "choose-image.png" %></a>
+    <a class="show-gallery _show_image_gallery_in_lesson_editor" data-position="<%= position %>"></a>
     <br/>
     <%= t('captions.choose_image') %>
   </div>
