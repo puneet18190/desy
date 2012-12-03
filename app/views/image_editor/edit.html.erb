@@ -12,7 +12,8 @@ or ABC to enter text.</p>
 	</div>
   <div id="_image_editor_container" class="imagesContainer">
     <div id="image_wrapper">
-      <%= image_tag(@image.media.url, :id => "cropped_image")%>
+      <%= image_or_height(@image.width.to_i,@image.height.to_i) %>
+      <%= image_tag @image.media.url, :id => "cropped_image" %>
       <form id="_crop_form" data-param="<%= @image.id %>" action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
         <input type="hidden" name="x1" value="" />
         <input type="hidden" name="y1" value="" />

@@ -142,11 +142,17 @@ function updateCrop() {
   
   var ratio = selWidth/selHeight;
   
+  console.log("x: "+x1+" y: "+y1);
   console.log("W: "+selWidth+" H: "+selHeight);
   console.log("Ratio: "+ratio);
   
   var mult = 1;
   var constraint = ""
+  
+  var orgin_w = image.attr("width");
+  var orgin_h = image.attr("height");
+  
+  console.log("oW: "+orgin_w+"oH: "+origin_h+ "origin_ratio: "+ (origin_w/origin_h));
   
   if(ratio > 1,33){
     mult = 660 - selWidth;
@@ -157,7 +163,7 @@ function updateCrop() {
   }
   
   console.log("mult: "+mult);
-  image.css("-webkit-transform",mult);
+  image.css({'transform' : 'scale(2)', '-webkit-transform' : 'scale(2)'});
   
   //image.css({
   //  transform: scale(mult),
