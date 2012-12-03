@@ -30,7 +30,7 @@
   <% end %>
   
   <div class="mask <%= slide.kind %>-p<%= position %> <%= mask %> _full_image_in_slide" style="display:<%= image.nil? ? 'none'.html_safe : 'block'.html_safe %>">
-    <a class="show-gallery" style="<%= style %>" data-slide-id="<%= slide.id %>" data-position="<%= position %>">
+    <a class="show-gallery" style="<%= style %>" data-slide-id="<%= slide.id %>" data-position="<%= position %>" data-rolloverable="true">
       <img src="<%= url %>" class="_slide_image <%= slide.kind %>-p<%= position %>" <%= orientation.nil? ? '' : orientation.html_safe %>/>
     </a>
     <span class="add-image _show_image_gallery_in_lesson_editor _lesson_editor_rollover_content" data-position="<%= position %>" style="display:none"></span>

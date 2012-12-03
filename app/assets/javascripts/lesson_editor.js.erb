@@ -133,6 +133,7 @@ $(document).ready(function() {
     img_tag.attr(orientation, orientation_val);
     $("#slide-numbers").show();
     $('#slide_in_lesson_editor_' + slide_id).siblings(".buttons").show();
+    $('#' + place_id + ' span').css('display', 'block');
     makeDraggable(place_id);
   });
   
@@ -185,17 +186,21 @@ $(document).ready(function() {
   });
   
   $('body').on('mouseover', '._full_image_in_slide, ._full_audio_in_slide, ._full_video_in_slide', function() {
-    var father = $(this).parent();
-    var slide_id = $('#' + father.attr('id') + ' a').data('slide-id');
-    var position = $('#' + father.attr('id') + ' a').data('position');
-    $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').css('display', 'block');
+    var obj = $('#' + $(this).parent().attr('id') + ' a');
+    var slide_id = obj.data('slide-id');
+    var position = obj.data('position');
+    if(obj.data('rolloverable')) {
+      $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').css('display', 'block');
+    }
   });
   
   $('body').on('mouseout', '._full_image_in_slide, ._full_audio_in_slide, ._full_video_in_slide', function() {
-    var father = $(this).parent();
-    var slide_id = $('#' + father.attr('id') + ' a').data('slide-id');
-    var position = $('#' + father.attr('id') + ' a').data('position');
-    $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').css('display', 'none');
+    var obj = $('#' + $(this).parent().attr('id') + ' a');
+    var slide_id = obj.data('slide-id');
+    var position = obj.data('position');
+    if(obj.data('rolloverable')) {
+      $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').css('display', 'none');
+    }
   });
   
 });
@@ -229,7 +234,13 @@ function makeDraggable(place_id){
   $('#' + place_id + ' ._full_image_in_slide a').draggable({
     axis: axe,
     distance: 10,
+    start: function() {
+      $('#' + place_id + ' a').data('rolloverable', false);
+      $('#' + place_id + ' span').css('display', 'none');
+    },
     stop: function() {
+      $('#' + place_id + ' a').data('rolloverable', true);
+      $('#' + place_id + ' span').css('display', 'block');
       var thisDrag = $(this);
       var offset = thisDrag.css(side);
       if(parseInt(offset) > 0) {
