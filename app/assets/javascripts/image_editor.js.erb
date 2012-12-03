@@ -35,10 +35,11 @@ $(document).ready(function() {
   });
   
   $("body").on("click","#_editor_crop",function(){
-    processTextAreaForm();
-    var thisForm = $("form#_crop_form");
-    thisForm.attr("action","/images/"+thisForm.data("param")+"/crop");
-    thisForm.submit();
+    updateCrop();
+   //processTextAreaForm();
+   //var thisForm = $("form#_crop_form");
+   //thisForm.attr("action","/images/"+thisForm.data("param")+"/crop");
+   //thisForm.submit();
   });
   
   $("body").on("click","#_image_editor_container img",function(e){
@@ -130,30 +131,52 @@ $(document).ready(function() {
 
 
 // Client side crop
-function previewCrop(img, selection) {
-    var scaleX = 100 / (selection.width || 1);
-    var scaleY = 100 / (selection.height || 1);
+function updateCrop() {
+  var image = $("#_image_editor_container img");
+  var x1 = $('input[name="x1"]').val();
+  var y1 = $('input[name="y1"]').val();
+  var x2 = $('input[name="x2"]').val();
+  var y2 = $('input[name="y2"]').val();
+  var selWidth = x2-x1;
+  var selHeight = y2-y1;
   
-    $('#ferret + div > img').css({
-        width: Math.round(scaleX * 400) + 'px',
-        height: Math.round(scaleY * 300) + 'px',
-        marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
-        marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
-    });
-}
+  var ratio = selWidth/selHeight;
+  
+  console.log("W: "+selWidth+" H: "+selHeight);
+  console.log("Ratio: "+ratio);
+  
+  var mult = 1;
+  var constraint = ""
+  
+  if(ratio > 1,33){
+    mult = 660 / selWidth;
+    constraint = "width";
+  }else{
+    mult = 495 / selHeight;
+    constraint = "height";
+  }
+  
+  console.log("mult: "+mult);
 
-function temporaryCrop(img){
-    $('<div><img src="ferret.jpg" style="position: relative;" /><div>')
-        .css({
-            float: 'left',
-            position: 'relative',
-            overflow: 'hidden',
-            maxWidth: '660px',
-            maxHeight: '495px'
-        });
-        //.insertAfter($('#ferret'));
-
-    $('#ferret').imgAreaSelect({ onSelectChange: preview });
+  image.css("-webkit-transform",scale(mult));
+  
+  //image.css({
+  //  transform: scale(mult),
+  //  -ms-transform: scale(mult), /* IE 9 */
+  //  -webkit-transform: scale(mult), /* Safari and Chrome */
+  //  -o-transform: scale(mult), /* Opera */
+  //  -moz-transform: scale(mult) /* Firefox */
+  //});
+  
+  //var scaleX = 100 / (selection.width || 1);
+  //var scaleY = 100 / (selection.height || 1);
+  //
+  //$('img').css({
+  //    width: Math.round(scaleX * 400) + 'px',
+  //    height: Math.round(scaleY * 300) + 'px',
+  //    marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+  //    marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+  //});
 }
 
 // Update form with textareas
