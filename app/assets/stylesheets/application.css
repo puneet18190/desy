@@ -16,6 +16,7 @@
  *= require global
  *= require colors
  *= require shared
+ *= require galleries
  *= require shared_editor_player
  *= require header
  *= require menu
