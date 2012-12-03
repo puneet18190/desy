@@ -1,5 +1,7 @@
 $(document).ready(function() {
   
+  $("html.lesson-editor-layout ul#slides").css("margin-top",($(window).height() - 690)/2 + "px");
+  
   $('#info_container').data('current-img-position', 1);
   
   initTinymce(); // init tinymce configuration and manage external toolbar toggle

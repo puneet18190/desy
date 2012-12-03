@@ -6,10 +6,10 @@ if(<%=@crop%>){
   $("#image_wrapper").html("<img src='/media_elements/images/<%=@image_id%>/temp_crop.jpg' id='cropped_image' />");
   $('input[name="cropped_image"]').val("/media_elements/images/<%=@image_id%>/temp_crop.jpg");
   
-  $("img").click(function(e){
+  $("#_image_editor_container img").click(function(e){
     coords = getRelativePosition($(this),e);
-    textCount = $("#_image_container textarea").length;
-    $("#_image_container.text_enabled").append(textAreaContent(coords,textCount));
+    textCount = $("#_image_editor_container textarea").length;
+    $("#_image_editor_container.text_enabled").append(textAreaContent(coords,textCount));
     addTextAreaHiddenFields(coords, textCount);
     $('.image_editor_text').draggable({ 
       containment: "parent",
