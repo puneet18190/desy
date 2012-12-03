@@ -694,7 +694,24 @@ $(document).ready(function() {
   
   // PLAYERS
   
-  initializeAudioPlayers();
-  initializeVideoPlayers();
+  $('body').on('click', '._play', function() {
+    $(this).css('display', 'none');
+    var container_id = $(this).parent().attr('id');
+    var type = $(this).parent().data('media-type');
+    $('#' + container_id + ' ._slider_disabler').css('display', 'block');
+    $('#' + container_id + ' ._pause').css('display', 'block');
+    $('#' + container_id + ' ' + type)[0].play();
+  });
+  $('body').on('click', '._pause', function() {
+    $(this).css('display', 'none');
+    var container_id = $(this).parent().attr('id');
+    var type = $(this).parent().data('media-type');
+    $('#' + container_id + ' ._slider_disabler').css('display', 'none');
+    $('#' + container_id + ' ._play').css('display', 'block');
+    $('#' + container_id + ' ' + type)[0].pause();
+  });
+  $('audio, video').each(function() {
+    initializeMediaTimeUpdater(this);
+  });
   
 });

@@ -2,7 +2,7 @@
   audio_class = audio.nil? ? '_empty_audio_player' : "_instance_of_audio_player_#{audio.id}"
 %>
 
-<div id="instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player" class="audioPlayer _audio_player">
+<div id="instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player" class="audioPlayer _audio_player" data-media-type="audio">
   <audio>
     <source src="<%= audio.nil? ? '' : audio.ogg %>" type="audio/ogg">
     <source src="<%= audio.nil? ? '' : audio.mp3 %>" type="audio/mp3">
@@ -18,7 +18,7 @@
 
 <script type="text/javascript">
   
-  initializeAudioSlider('<%= @audio_counter[0] %>_<%= @audio_counter[1] %>', <%= audio.id %>, <%= audio.duration %>);
+  initializeMediaSlider('instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player', 'audio', <%= audio.duration %>);
   
 </script>
 
