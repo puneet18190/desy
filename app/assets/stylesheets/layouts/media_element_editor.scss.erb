@@ -361,25 +361,31 @@ html.media_element_editor-layout {
      }
    }
 
-   #_image_container textarea{
-    background-color: rgba(230,230,230,0.5);
-    border: 1px solid white;
-    width: 280px;
-    height: 30px;
-    max-width: 640px; 
-    max-height: 475px;
-    padding: 10px;
-    font-size: 1em;
-    font-family: "Nunito", sans-serif;
-    &.small_font{
-      font-size: 1em
-    }
-    &.medium_font{
-      font-size: 1.5em
-    }
-    &.big_font{
-      font-size: 2em
-    }
+    #_image_editor_container{
+      .image_editor_text{
+       padding:0; 
+      }
+      textarea{
+        background-color: rgba(230,230,230,0.5);
+        border: 1px solid white;
+        width: 230px;
+        height: 40px;
+        max-width: 640px; 
+        max-height: 475px;
+        padding: 0;
+        font-size: 15px;
+        font-family: Arial, sans-serif;
+        resize: both;
+        &.small_font{
+          font-size: 15px
+        }
+        &.medium_font{
+          font-size: 25px
+        }
+        &.big_font{
+          font-size: 40px
+        }
+      }
    }
   
    
