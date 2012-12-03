@@ -2,6 +2,7 @@ class LessonViewerController < ApplicationController
   
   skip_before_filter :authenticate, :only => :index
   before_filter :skip_authenticate_user_if_token, :only => :index
+  before_filter :reset_players_counter, :only => :index
   
   def index
     if !@ok

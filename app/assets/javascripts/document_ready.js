@@ -691,4 +691,10 @@ $(document).ready(function() {
     $('#' + this.id + ' ._video_editor_component_icon').css('display', 'block');
   });
   
+  
+  // PLAYERS
+  
+  initializeAudioPlayers();
+  initializeVideoPlayers();
+  
 });
