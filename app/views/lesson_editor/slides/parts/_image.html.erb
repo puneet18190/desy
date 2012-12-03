@@ -38,7 +38,7 @@
   </div>
   
   <div class="<%= empty_mask_class.html_safe %>" style="display:<%= image.nil? ? 'block'.html_safe : 'none'.html_safe %>">
-    <a class="show-gallery _show_image_gallery_in_lesson_editor" data-position="<%= position %>"><%= image_tag "choose-image.png" %></a>
+    <a class="show-gallery _show_image_gallery_in_lesson_editor" data-position="<%= position %>"></a>
     <br/>
     <%= t('captions.choose_image') %>
   </div>

@@ -1,6 +1,6 @@
 $(document).ready(function() {
   
-  $('#info_container').data('current-img-position', 1);
+  $('#info_container').data('current-media-element-position', 1);
   
   initTinymce(); // init tinymce configuration and manage external toolbar toggle
   slideSortList("#slide-numbers"); // make sortable page number on top
@@ -41,7 +41,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._show_image_gallery_in_lesson_editor', function() {
-    $('#info_container').data('current-img-position', $(this).data('position'));
+    $('#info_container').data('current-media-element-position', $(this).data('position'));
     $.ajax({
       type: 'get',
       url: '/lessons/galleries/image'
@@ -49,7 +49,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._show_audio_gallery_in_lesson_editor', function() {
-    $('#info_container').data('current-img-position', $(this).data('position'));
+    $('#info_container').data('current-media-element-position', $(this).data('position'));
     $.ajax({
       type: 'get',
       url: '/lessons/galleries/audio'
@@ -57,7 +57,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._show_video_gallery_in_lesson_editor', function() {
-    $('#info_container').data('current-img-position', $(this).data('position'));
+    $('#info_container').data('current-media-element-position', $(this).data('position'));
     $.ajax({
       type: 'get',
       url: '/lessons/galleries/video'
@@ -82,11 +82,20 @@ $(document).ready(function() {
     $(".buttons").show();
   });
   
+  $('body').on('click', '._close_audio_gallery_in_lesson_editor', function(e) {
+    e.preventDefault();
+    $('#audio_gallery').remove();
+    var slide_id = $('#info_container').data('slide-id');
+    $('#slide_in_lesson_editor_' + slide_id).children().show();
+    $("#slide-numbers").show();
+    $(".buttons").show();
+  });
+  
   $('body').on('click', '._add_image_to_slide', function(e) {
     e.preventDefault();
     var slide_id = $('#info_container').data('slide-id');
     var kind = $('#info_container').data('kind');
-    var position = $('#info_container').data('current-img-position');
+    var position = $('#info_container').data('current-media-element-position');
     var image_id = $(this).data('image-id');
     $("#image_gallery").remove();
     $('#slide_in_lesson_editor_' + slide_id).children().show();
