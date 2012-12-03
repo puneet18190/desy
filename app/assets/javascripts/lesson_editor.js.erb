@@ -125,7 +125,7 @@ $(document).ready(function() {
   });
   
   $('body').on('mouseout', '._lesson_editor_rollover', function() {
-        var slide_id = $(this).data('slide-id');
+    var slide_id = $(this).data('slide-id');
     var position = $(this).data('position');
     $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').css('display', 'none');
   });
