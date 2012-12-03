@@ -12,7 +12,7 @@ class Video < MediaElement
   
   def mp4 # FIXME temporaneo
     # media.url.mp4
-    "/media_elements/videos/#{self.id.to_s}/video_mp4.webm"
+    "/media_elements/videos/#{self.id.to_s}/video_mp4.mp4"
   end
   
   def webm # FIXME temporaneo
