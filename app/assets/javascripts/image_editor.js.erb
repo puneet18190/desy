@@ -149,16 +149,15 @@ function updateCrop() {
   var constraint = ""
   
   if(ratio > 1,33){
-    mult = 660 / selWidth;
+    mult = 660 - selWidth;
     constraint = "width";
   }else{
-    mult = 495 / selHeight;
+    mult = 495 - selHeight;
     constraint = "height";
   }
   
   console.log("mult: "+mult);
-
-  image.css("-webkit-transform",scale(mult));
+  image.css("-webkit-transform",mult);
   
   //image.css({
   //  transform: scale(mult),
