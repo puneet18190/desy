@@ -50,16 +50,20 @@
   }
   
 }
-
-.menuIconButton {
-  background-color:#fff;
-  padding:10px 5px 0px 5px; 
-  /*text-align:right;*/
-  color:#cbcbcb;
-  font-size:75%;
-  display: block;
-  border:none;
-  a {
-    @include button;
+.menuPopUp {
+  float:left; 
+	width:100%; 
+	background-color:#fff; 
+	outline:1px solid blue;
+  .menuIconButton {
+    background-color:#fff;
+    padding:10px 5px 0px 5px; 
+    color:#cbcbcb;
+    font-size:75%;
+    display: block;
+    border:none;
+    a {
+      @include button;
+    }
   }
 }

@@ -21,14 +21,20 @@
         <% end %>
       </div>
     <% end %>
-      <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals =>{:media_element => media_element} %>
-      <div class="fltlft" style="max-width:210px">
+		  <% if !media_element.audio? %>
+	      <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals =>{:media_element => media_element} %>
+		  <% end %>
+      <div class="<%= media_element.audio? ? '' : 'fltlft'.html_safe %>" style="width:auto; max-width:210px;">
         <h2><%= media_element.sti_type %></h2>
         <h3><%= media_element.title %></h3>
         <p><%= media_element.description %></p>
       </div>
+			
+			<% if media_element.audio? %>
+				<div class="contentAudioElement"><%= render :partial => "media_elements/previews/audio", :locals =>{:media_element => media_element} %></div>
+			<% end %>
     </div>
-    <div style="float:left; width:100%; background-color:#fff;">
+    <div class="menuPopUp">
       <div class="menuIconButton" style="float:left;  padding-left:10px">
         <%= render :partial => "shared/buttons/#{Buttons::EDIT}", :locals => {:item => media_element} %>
         <% if media_element.info_changeable %>
