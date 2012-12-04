@@ -714,6 +714,13 @@ $(document).ready(function() {
     $('._new_component_in_video_editor_hover a').removeClass('current');
   });
   
+  $('body').on('click', '._new_component_in_video_editor_button', function() {
+    $.ajax({
+      type: 'get',
+      url: '/videos/galleries'
+    });
+  });
+  
   
   // PLAYERS
   
