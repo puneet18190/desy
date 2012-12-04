@@ -33,12 +33,11 @@
 .audioPlayer {
   float:left;
   background-color: transparent;
-	width: 99%;
-	height:90%;
-	outline:1px solid red;
+	width: 95%;
+	height:62%;
 	position:absolute;
-	top:0;
-	
+	top:13px;
+	left:15px;
 }
 .audioPlayer .play {
   @include buttonPlayer;
@@ -52,7 +51,7 @@
 
 .audioSlider {
   float:left;
-	width: 80%;
+	width: 75%;
 	margin-top:12px;
   background-color: #2d2e2d;
 }
@@ -65,24 +64,29 @@
 	border:3px solid #fff;
 	width: 0.8em;
   height: 0.8em;
+	cursor:pointer;
 }
 .audioSlider .ui-slider-range-min {
   background-color: #43a848;
 	
 }
-.sliderDisabler {
-  position: relative;
-  top: 0px;
-	background-color: maroon;
-  width: 300px;
-  height: 50px;
-  display: none;
-}
 .secondTime {
-  width:65px;
+  width:70px;
 	height:20px;
 	padding-top:10px;
 	color:#fff;
 	float:left;
 	text-align:center;
+}
+.sliderDisabler {
+  position: absolute;
+  top: 0px;
+	left:90px;
+	background-color: #000;
+	opacity:0;
+  width: 610px;
+  height: 30px;
+  display: none;
+	z-index:5;
+	
 }
