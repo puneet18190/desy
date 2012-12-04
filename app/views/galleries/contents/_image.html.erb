@@ -1,0 +1,12 @@
+<div class="scrollVerde">
+  <ul class="gallery">
+    <div id="scroll_pane_in_image_gallery" class="scroll-pane">
+      <% images.each do |image| %>
+        <li id="#gallery_thumb_<%= image.id %>" class="_image_gallery_thumb" data-image-id="<%= image.id %>">
+          <%= link_to (image_tag image.thumb, :width => '111'), "#{image.id}" %>
+          <%= render :partial => "galleries/popups/image", :locals => {:image => image} %>
+        </li>
+      <% end %>
+    </div>
+  </ul>
+</div>
