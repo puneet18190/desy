@@ -49,9 +49,8 @@ Desy::Application.routes.draw do
   get  'lessons/galleries/image' => 'galleries#image_for_lesson_editor'
   get  'lessons/galleries/audio' => 'galleries#audio_for_lesson_editor'
   get  'lessons/galleries/video' => 'galleries#video_for_lesson_editor'
-  get  'videos/galleries/image' => 'galleries#image_for_video_editor'
+  get  'videos/galleries' => 'galleries#mixed_for_video_editor'
   get  'videos/galleries/audio' => 'galleries#audio_for_video_editor'
-  get  'videos/galleries/video' => 'galleries#video_for_video_editor'
   get  'audios/galleries/audio' => 'galleries#audio_for_audio_editor'
   
   # LESSON VIEWER

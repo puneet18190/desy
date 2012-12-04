@@ -9,6 +9,7 @@ class VideoEditorController < ApplicationController
     if @ok
       # FIXME qui in realtà dovrò proporre la finestra oscurata che mi chiede se voglio ripristinare la situazione precedente oppure no
       @parameters = @cache.nil? ? convert_media_element_to_parameters : Video.convert_parameters(@cache, @current_user.id)
+      @parameters = empty_parameters if @parameters.nil?
     else
       redirect_to dashboard_path
       return
@@ -18,6 +19,7 @@ class VideoEditorController < ApplicationController
   def new
     # FIXME qui in realtà dovrò proporre la finestra oscurata che mi chiede se voglio ripristinare la situazione precedente oppure no
     @parameters = @cache.nil? ? empty_parameters : Video.convert_parameters(@cache, @current_user.id)
+    @parameters = empty_parameters if @parameters.nil?
     render :edit
   end
   

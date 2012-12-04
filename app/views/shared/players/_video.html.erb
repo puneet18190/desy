@@ -8,15 +8,13 @@
     <source src="<%= video.nil? ? '' : video.mp4 %>" type="video/mp4">
     <%= t('captions.your_browser_does_not_support_video') %>
   </video>
-	
   <a class="play _media_player_play"></a>
   <a class="pause _media_player_pause"></a>
-  
-	<div class="_media_player_current_time secondTime">0</div>
+  <div class="_media_player_current_time secondTime">0</div>
   <div class="videoSlider _media_player_slider"></div>
   <div  class="secondTime"><%= seconds_to_time video.duration %></div>
-	<a class="fullScreen _video_full_screen"></a>
-	<div class="sliderDisabler _media_player_slider_disabler"></div> 
+  <a class="fullScreen _video_full_screen"></a>
+  <div class="sliderDisabler _media_player_slider_disabler"></div>
 </div>
 
 <script type="text/javascript">

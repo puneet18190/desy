@@ -279,6 +279,21 @@ $(document).ready(function() {
     showMediaElementInGalleryPopUp(my_id);
   });
   
+  $('body').on('click', '._compact_audio_in_gallery', function() {
+    var parent_id = $(this).parent().attr('id');
+    var obj = $('#' + parent_id + ' ._expanded_audio_in_gallery');
+    if(obj.css('display') == 'none') {
+      obj.show('blind', {}, 500, function() {
+        obj.css('display', 'block');
+      });
+    } else {
+      obj.hide('blind', {}, 500, function() {
+        stopMedia('#' + parent_id + ' audio');
+        obj.css('display', 'none');
+      });
+    }
+  });
+  
   
   // LESSON BUTTONS
   
@@ -695,7 +710,6 @@ $(document).ready(function() {
   // PLAYERS
   
   $('body').on('click', '._media_player_play', function() {
-    stopAllMedia();
     $(this).css('display', 'none');
     var container_id = $(this).parent().attr('id');
     var type = $(this).parent().data('media-type');
@@ -716,10 +730,6 @@ $(document).ready(function() {
   $('body').on('click', '._video_full_screen', function() {
     var container_id = $(this).parent().attr('id');
     $('#' + container_id + ' video').fullScreen(true);
-  });
-  
-  $('audio, video').each(function() {
-    initializeMediaTimeUpdater(this);
   });
   
 });

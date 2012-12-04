@@ -16,16 +16,13 @@ class GalleriesController < ApplicationController
     get_videos
   end
   
-  def image_for_video_editor
+  def mixed_for_video_editor
     get_images
+    get_videos
   end
   
   def audio_for_video_editor
     get_audios
-  end
-  
-  def video_for_video_editor
-    get_videos
   end
   
   def audio_for_audio_editor
