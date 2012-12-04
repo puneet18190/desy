@@ -25,116 +25,79 @@
  }
  
 }
+$icon-size: 5.6em;
 /*ICONOGRAFIA PER DISTINGUERE GLI ELEMENTI DIDATTICI*/
-@mixin iconEditorElement {
-  $button-size: 5.6em;
+@mixin iconEditorElement($font-size: 0.5em) {
+  
   & {
     float:left;
 		margin-right:5px;
-    width: $button-size;
-    height: $button-size;
+    width: $icon-size;
+    height: $icon-size;
     background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
     background-repeat: no-repeat;
-    background-size: ($button-size*3) ($button-size*4);
+    background-size: ($icon-size*3) ($icon-size*4);
     padding:0;
-		font-size: 0.5em;
-	}
-	
-	&.videoButton {
-	  background-position: (-$button-size*2) 0;
-		opacity:0.1;
-	}
-	&.videoButton:hover {
-	  background-position: 0 0;
-		opacity:1;
-		
-	}
-	&.videoButton.current {
-	  background-position: 0 0;
-		opacity:1;
-	}
-	&.photoButton {
-	  background-position: (-$button-size*2) (-$button-size*2);
-		opacity:0.1;
-	}
-	&.photoButton:hover {
-	  font-size: 0.5em;
-		background-position: 0 (-$button-size*2);
-		opacity:1;
-	}
-	&.photoButton.current {
-	  background-position: 0 (-$button-size*2);
-		opacity:1;
-	}
-	&.audioButton {
-	  background-position: (-$button-size*2) (-$button-size);
-		opacity:0.1;
-	}
-	&.audioButton:hover {
-	  background-position: 0 (-$button-size);
-		opacity:1;
-	}
-	&.audioButton.current {
-	  background-position: 0 (-$button-size);
-		opacity:1;
-	}
-	&.textButton {
-	  background-position: (-$button-size*2) (-$button-size*3);
-		opacity:0.1;
-	}
-	&.textButton:hover {
-	  background-position: 0 (-$button-size*3);
-		opacity:1;
-	}
-	&.textButton.current {
-	  background-position: 0 (-$button-size*3);
-		opacity:1;
-	}
-	&.photoIcon {
-	  background-position: 0 (-$button-size*2);
-		opacity:1;
-		font-size: 0.4em;
-	}
-	&.videoIcon {
-	  background-position: 0 0;
-		opacity:1;
-		font-size: 0.4em;
-	}
-	&.audioIcon {
-	  background-position: 0 (-$button-size);
-		opacity:1;
-		font-size: 0.4em;
-	}
-	&.textIcon {
-	  background-position: 0 (-$button-size*3);
-		opacity:1;
-		font-size: 0.4em;
+		font-size: $font-size;
 	}
 }
 .videoButton {
-   @include iconEditorElement;
+  @include iconEditorElement(0.5em);
+	background-position: (-$icon-size*2) 0;
+	opacity:0.1;
+	&:hover, &.current {
+	  background-position: 0 0;
+	  opacity:1;
+	}
  }
 .photoButton {
-   @include iconEditorElement;
+  @include iconEditorElement(0.5em);
+	background-position: (-$icon-size*2) (-$icon-size*2);
+	opacity:0.1;
+	&:hover, &.current {
+	  background-position: 0 (-$icon-size*2);
+		opacity:1;
+	}
 }
 .audioButton {
-   @include iconEditorElement;
+  @include iconEditorElement(0.5em);
+	background-position: (-$icon-size*2) (-$icon-size);
+	opacity:0.1;
+	&:hover, &.current {
+	  background-position: 0 (-$icon-size);
+		opacity:1;
+	}
 }
 .textButton {
-   @include iconEditorElement;
+  @include iconEditorElement(0.5em);
+  background-position: (-$icon-size*2) (-$icon-size*3);
+	opacity:0.1;
+	&:hover, &.current {
+	  background-position: 0 (-$icon-size*3);
+		opacity:1;
+	}
 }
 .photoIcon {
-   @include iconEditorElement;
+   @include iconEditorElement(0.4em);
+	 background-position: 0 (-$icon-size*2);
+		opacity:1;
 }
 .videoIcon {
-   @include iconEditorElement;
+   @include iconEditorElement(0.4em);
+	 background-position: 0 0;
+		opacity:1;
 }
 .audioIcon {
-   @include iconEditorElement;
+  @include iconEditorElement(0.4em);
+	background-position: 0 (-$icon-size);
+	opacity:1;
 }
 .textIcon {
-   @include iconEditorElement;
+  @include iconEditorElement(0.4em);
+	background-position: 0 (-$icon-size*3);
+	opacity:1;
 }
+
 
 $button-size: 6em;
 
@@ -196,7 +159,7 @@ $button-size: 6em;
   @include  menuCondivisoElementLessonEditor(0.75em);
 	background-position: 0 (-$button-size*3);
 	opacity:0.2;
-	&:hover ,&.current {
+	&:hover, &.current {
 	  background-position: (-$button-size) (-$button-size*3);
 		opacity:1;
 	}
@@ -258,37 +221,25 @@ $button-size: 6em;
 	&:hover {
     cursor: pointer;
   }
-	&.cutButton {
-	  background-position: 0 (-$button-size*7);
-		opacity:0.2;
-		
-	}
-	&.cutButton:hover {
-	  background-position: (-$button-size*3) (-$button-size*7);
-		opacity:1;
-	}
-	&.cutButton.current {
-	  background-position: (-$button-size*3) (-$button-size*7);
-		opacity:1;
-	}
-	&.abcButton {
-	  background-position: 0 (-$button-size*9);
-		opacity:0.2;
-	}
-	&.abcButton:hover {
-	  background-position: (-$button-size*3) (-$button-size*9);
-		opacity:1;
-	}
-	&.abcButton.current {
-	  background-position: (-$button-size*3) (-$button-size*9);
-		opacity:1;
-	}
+	
 }
 .cutButton {
-   @include menuEditImages;
+  @include menuEditImages;
+	background-position: 0 (-$button-size*7);
+	opacity:0.2;
+	&:hover, &.current {
+	  background-position: (-$button-size*3) (-$button-size*7);
+		opacity:1;
+	}
 }  
 .abcButton {
-   @include menuEditImages;
+  @include menuEditImages;
+	background-position: 0 (-$button-size*9);
+	opacity:0.2;
+	&:hover, &.current {
+	  background-position: (-$button-size*3) (-$button-size*9);
+		opacity:1;
+	}
 } 
  
 /*MENU*/
