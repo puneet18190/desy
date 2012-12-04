@@ -11,10 +11,13 @@
 	
   <a class="play _media_player_play"></a>
   <a class="pause _media_player_pause"></a>
+	<div class="_media_player_current_time secondTime">0</div>
   <div class="audioSlider _media_player_slider"></div>
+	<div class="secondTime"><%= audio.duration %></div>
+	
   <div class="sliderDisabler _media_player_slider_disabler"></div> <!-- FIXME aurelia: questo div deve coprire con opacità lo slider per renderlo non cliccabile -->
-  <div style="position:relative;left:150px;width:100px;height:30px;background-color:aqua;color:black;float:left" class="_media_player_current_time">0</div>
-  <div style="position:relative;left:200px;width:100px;height:30px;background-color:aqua;color:black;float:left"><%= audio.duration %></div>
+  
+  
 </div>
 
 <script type="text/javascript">
