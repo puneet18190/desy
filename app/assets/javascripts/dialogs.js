@@ -1,19 +1,3 @@
-function showChangeInfoInVideoEditorPopUp() {
-  var obj = $('#dialog-change-info-in-video-editor');
-  if(obj.data('dialog')) {
-    obj.dialog('open');
-  } else {
-    obj.show();
-    obj.dialog({
-      modal: true,
-      resizable: false,
-      width: 920,
-      show: "fade",
-      hide: "fade"
-    });
-  }
-}
-
 function showSendLessonLinkPopUp(lesson_id) {
   var obj = $('#dialog-virtual-classroom-send-link');
   $('#dialog-virtual-classroom-send-link form').attr('action', ('/virtual_classroom/' + lesson_id + '/send_link'));
@@ -116,7 +100,10 @@ function showMediaElementInfoPopUp(media_element_id) {
       show: "fade",
       hide: "fade",
       close: function() {
-        stopAllMedia();
+        var player_container = $('#dialog-media-element-' + media_element_id + ' ._instance_of_player_' + media_element_id);
+        if(player_container.length > 0) {
+          stopMedia('#dialog-media-element-' + media_element_id + ' ' + player_container.data('media-type'));
+        }
         $('#dialog-media-element-' + media_element_id + ' ._change_info_container').css('display', 'none');
         var change_info_button = $('#dialog-media-element-' + media_element_id + ' ._change_info_to_pick');
         if(change_info_button.hasClass('change_info_light')) {
