@@ -135,9 +135,11 @@
 .textIcon {
    @include iconEditorElement;
 }
+
+$button-size: 6em;
+
 /*MENU CONDIVISO EDITOR LESSON ED EDITOR ELEMENTS*/
-@mixin menuCondivisoElementLessonEditor {
-  $button-size: 6em;
+@mixin menuCondivisoElementLessonEditor($font-size: 0.9em) {
   & {
     float:left;
 		width: $button-size;
@@ -146,179 +148,99 @@
     background-repeat: no-repeat;
     background-size: ($button-size*4) ($button-size*10);
 		padding:0;
-		font-size:0.9em;
+		font-size: $font-size;
 	}
 	&:hover {
     cursor: pointer;
   }
-	&.creaNuovoButton {
-	  font-size: 0.7em;
-    background-position: (-$button-size*2) (-$button-size);
-		opacity:0.2;
-	}
-	&.creaNuovoButton:hover {
-	  font-size: 0.7em;
-		background-position: (-$button-size*3) (-$button-size);
-		opacity:1;
-	}
-	&.creaNuovoButton.current {
-	  font-size: 0.7em;
-		background-position: (-$button-size*3) (-$button-size);
-		opacity:1;
-	}
-	&.deleteButtonOrange {
-	  background-position: 0 0;
-		opacity:0.2;
-		font-size:0.75em;
-	}
-	&.deleteButtonOrange:hover {
-	  background-position: (-$button-size) 0;
-		opacity:1;
-		font-size:0.75em;
-	}
-	&.deleteButtonOrange.current {
-	  background-position: (-$button-size) 0;
-		opacity:1;
-		font-size:0.75em;
-	}
-	&.addButtonOrange {
-	  background-position: 0 (-$button-size);
-		opacity:0.2;
-		font-size:0.75em;
-	}
-	&.addButtonOrange:hover {
-	  background-position: (-$button-size) (-$button-size);
-		opacity:1;
-		font-size:0.75em;
-	}
-	&.addButtonOrange.current {
-	  background-position: (-$button-size) (-$button-size);
-		opacity:1;
-		font-size:0.75em;
-	}
-		
-	&.infoButtonOrange {
-	  background-position: 0 (-$button-size*2);
-		opacity:0.2;
-		font-size:0.75em;
-	}
-	&.infoButtonOrange:hover {
-	  background-position: (-$button-size) (-$button-size*2);
-		opacity:1;
-		font-size:0.75em;
-	}
-	&.infoButtonOrange.current {
-	  background-position: (-$button-size) (-$button-size*2);
-		opacity:1;
-		font-size:0.75em;
-	}
-	&.saveButtonOrange {
-	  background-position: 0 (-$button-size*3);
-		opacity:0.2;
-		font-size:0.75em;
-	}
-		
-	&.saveButtonOrange:hover {
-	  background-position: (-$button-size) (-$button-size*3);
-		opacity:1;
-		font-size:0.75em;
-	}
-	&.saveButtonOrange.current {
-	  background-position: (-$button-size) (-$button-size*3);
-		opacity:1;
-		font-size:0.75em;
-	}
-  &.aggiungiImgButton {
-	  font-size: 0.4em;
-    background-position: (-$button-size*2) (-$button-size);
-		opacity:0.2;
-	}
-	&.aggiungiImgButton:hover {
-	  font-size: 0.4em;
-		background-position: (-$button-size*3) (-$button-size);
-		opacity:1;
-	}
-	&.aggiungiImgButton.current {
-	  font-size: 0.4em;
-		background-position: (-$button-size*3) (-$button-size);
-		opacity:1;
-	}
-	&.saveButton {
-	  background-position: 0 (-$button-size*3);
-		opacity:0.2;
-		font-size:0.6em;
-	}
-	&.saveButton:hover {
-	  background-position: (-$button-size*3) (-$button-size*3);
-		opacity:1;
-	}
-	&.saveButton.current {
-	  background-position: (-$button-size*3) (-$button-size*3);
-		opacity:1;
-	}
-	&.playButton {
-	  background-position: 0 (-$button-size*5);
-		opacity:0.2;
-		font-size:0.6em;
-	}
-	&.playButton:hover {
-	  background-position: (-$button-size*3) (-$button-size*5);
-		opacity:1;
-	}
-	&.playButton.current {
-	  background-position: (-$button-size*3) (-$button-size*5);
-		opacity:1;
-	}
-	
-	&.closeButton {
-	  background-position: 0 0;
-		opacity:0.2;
-		font-size:0.6em;
-		&.closeButtonSmall{
-		  font-size: 0.25em;
-		  opacity:0.5;
-		}
-	}
-	&.closeButton:hover {
-	  background-position: (-$button-size*3) 0;
-		opacity:1;
-	}
-	&.closeButton.current {
-	  background-position: (-$button-size*3) 0;
-		opacity:1;
-	}
-	
 }
-.playButton {
-   @include menuCondivisoElementLessonEditor;
- }
 
 .creaNuovoButton {
-   @include menuCondivisoElementLessonEditor;
- }
-.closeButton {
-   @include menuCondivisoElementLessonEditor;
+	@include  menuCondivisoElementLessonEditor(0.7em);
+  background-position: (-$button-size*2) (-$button-size);
+	opacity:0.2;
+	&:hover, &.current {
+	  font-size: 0.7em;
+		background-position: (-$button-size*3) (-$button-size);
+		opacity:1;
+	 }
 }
-.saveButton {
-   @include menuCondivisoElementLessonEditor;
- }
-.saveButtonOrange {
-   @include menuCondivisoElementLessonEditor;
- }
 .deleteButtonOrange {
-   @include menuCondivisoElementLessonEditor;
- }
-.infoButtonOrange {
-  @include menuCondivisoElementLessonEditor;
+  @include  menuCondivisoElementLessonEditor(0.75em);
+	background-position: 0 0;
+	opacity:0.2;
+	&:hover, &.current {
+	  background-position: (-$button-size) 0;
+		opacity:1;
+	}
 }
 .addButtonOrange {
-   @include menuCondivisoElementLessonEditor;
-	 
- }
-.aggiungiImgButton {
-  @include menuCondivisoElementLessonEditor;
+  @include  menuCondivisoElementLessonEditor(0.75em);
+	background-position: 0 (-$button-size);
+	opacity:0.2;
+	&:hover, &.current {
+	  background-position: (-$button-size) (-$button-size);
+		opacity:1;
+	}
 }
-
+.infoButtonOrange {
+  @include  menuCondivisoElementLessonEditor(0.75em);
+	background-position: 0 (-$button-size*2);
+	opacity:0.2;
+	&:hover, &.current {
+	  background-position: (-$button-size) (-$button-size*2);
+		opacity:1;
+	}
+}
+.saveButtonOrange {
+  @include  menuCondivisoElementLessonEditor(0.75em);
+	background-position: 0 (-$button-size*3);
+	opacity:0.2;
+	&:hover ,&.current {
+	  background-position: (-$button-size) (-$button-size*3);
+		opacity:1;
+	}
+}
+.aggiungiImgButton {
+  @include  menuCondivisoElementLessonEditor(0.4em);
+	background-position: (-$button-size*2) (-$button-size);
+	opacity:0.2;
+	&:hover, &.current {
+	  background-position: (-$button-size*3) (-$button-size);
+		opacity:1;
+	}
+}
+.saveButton {
+  @include  menuCondivisoElementLessonEditor(0.6em);
+  background-position: 0 (-$button-size*3);
+	opacity:0.2;
+	&:hover, &.current {
+	  background-position: (-$button-size*3) (-$button-size*3);
+		opacity:1;
+	}
+}
+.playButton {
+  @include  menuCondivisoElementLessonEditor(0.6em);
+  background-position: 0 (-$button-size*5);
+	opacity:0.2;
+	&:hover, &.current {
+	  background-position: (-$button-size*3) (-$button-size*5);
+		opacity:1;
+	}
+}
+.closeButton {
+  @include  menuCondivisoElementLessonEditor(0.6em);
+	background-position: 0 0;
+	opacity:0.2;
+	.closeButtonSmall{
+	  font-size: 0.25em;
+		opacity:0.5;
+	}
+	&:hover, &.current {
+	  background-position: (-$button-size*3) 0;
+		opacity:1;
+	}
+}
 /*MENU EDIT IMAGES*/
 
  @mixin menuEditImages {
