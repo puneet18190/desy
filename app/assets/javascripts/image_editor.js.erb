@@ -36,7 +36,6 @@ $(document).ready(function() {
   
   $("body").on("click","#_editor_crop",function(){
    //updateCrop();
-   processTextAreaForm();
    var thisForm = $("form#_crop_form");
    thisForm.attr("action","/images/"+thisForm.data("param")+"/crop");
    thisForm.submit();
@@ -170,9 +169,9 @@ function addTextAreaHiddenFields(color, size, coords, text, index){
 
 //TODO ADD COLOR AND FONT SIZE
 function textAreaContent(coords,textCount){
-  var textarea = "<textarea id='area_"+textCount+"' data-coords='"+coords[2]+","+coords[3]+"' data-color='color_black' data-size='15' name='text_"+textCount+"' />";
+  var textarea = "<textarea id='area_"+textCount+"' data-coords='"+coords[2]+","+coords[3]+"' data-color='color_black' data-size='20' name='text_"+textCount+"' class='color_black small_font' />";
   var colors = "<div class='text_colors'><a class='background_color_white'></a><a class='background_color_black current'></a><a class='background_color_red'></a><a class='background_color_yellow'></a><a class='background_color_blue'></a><a class='background_color_green'></a></div>"
-  var fontSize = "<div class='font_sizes'><a class='small_font current' data-param='15'>A</a><a class='medium_font' data-param='25'>A</a><a class='big_font' data-param='40'>A</a></div>"
+  var fontSize = "<div class='font_sizes'><a class='small_font current' data-param='20'>A</a><a class='medium_font' data-param='31'>A</a><a class='big_font' data-param='40'>A</a></div>"
   div = $("<div />",
   {
     class: "image_editor_text",
@@ -217,7 +216,7 @@ function getRelativePosition(obj,event){
   coords.push(event.pageX);
   coords.push(event.pageY);
   coords.push((event.pageX - posX));
-  coords.push((event.pageY - posY)+30); //padding + 30
+  coords.push((event.pageY - posY)+25); //padding + 25
   console.log(coords[0]+","+coords[1]+","+coords[2]+","+coords[3]);
   return coords;
 }
