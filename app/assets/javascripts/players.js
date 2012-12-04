@@ -22,7 +22,7 @@ function initializeActionOfMediaTimeUpdater(media) {
   }
 }
 
-function initializeMediaSlider(content_id, type, duration) {
+function initializeMedia(content_id, type, duration) {
   $('#' + content_id + ' ._media_player_slider').slider({
     min: 0,
     max: duration,
@@ -34,6 +34,9 @@ function initializeMediaSlider(content_id, type, duration) {
         $('#' + content_id + ' ._media_player_current_time').html(secondsToDateString(ui.value));
       }
     }
+  });
+  $('#' + content_id + ' ' + type).bind('ended', function() {
+    alert("I'm done!");
   });
 }
 
