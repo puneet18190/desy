@@ -35,6 +35,7 @@ function initializeMedia(content_id, type, duration) {
       }
     }
   });
+  initializeMediaTimeUpdater('#' + content_id + ' ' + type);
   $('#' + content_id + ' ' + type).bind('ended', function() {
     stopMedia(this);
   });

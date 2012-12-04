@@ -717,8 +717,4 @@ $(document).ready(function() {
     $('#' + container_id + ' video').fullScreen(true);
   });
   
-  $('audio, video').each(function() {
-    initializeMediaTimeUpdater(this);
-  });
-  
 });
