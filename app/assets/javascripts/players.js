@@ -26,6 +26,7 @@ function initializeMediaSlider(content_id, type, duration) {
   $('#' + content_id + ' ._media_player_slider').slider({
     min: 0,
     max: duration,
+    range: 'min',
     value: 0,
     slide: function(event, ui) {
       if($('#' + content_id + ' ._media_player_play').css('display') == 'block') {
