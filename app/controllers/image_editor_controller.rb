@@ -91,7 +91,8 @@ class ImageEditorController < ApplicationController
 
         c.fill "#{color_hex}"
         c.stroke "none"
-        c.font 'Arial'
+        #c.encoding = "Unicode"
+        c.font "#{Rails.root}/vendor/fonts/wt014.ttf"
         size_value = params["font_#{t_num}"]
         width_val = woh[1]
         original_val = woh[0]
@@ -140,9 +141,7 @@ class ImageEditorController < ApplicationController
   
   
   def ratio_value(scale_to_px, value, original)
-    logger.info "\n\n\n\n into ratio scale_to: #{scale_to_px} - value: #{value} - original: #{original}"
     ratio = original.to_f / scale_to_px.to_f if (original.to_i > scale_to_px.to_i )
-    
     if ratio
       return value.to_f * ratio.to_f
     else
