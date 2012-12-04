@@ -5,9 +5,5 @@ if(<%=@crop%>){
   $("._toggle_crop").removeClass("current");
   $("#image_wrapper img").attr("src","/media_elements/images/<%=@image_id%>/temp_crop.jpg");
   $('input[name="cropped_image"]').val("<%=@image_url%>");
-  $('input[name="x1"]').val("");
-  $('input[name="y1"]').val("");
-  $('input[name="x2"]').val("");
-  $('input[name="y2"]').val("");
-  
+  resetSelect();
 }

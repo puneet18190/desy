@@ -12,6 +12,7 @@ $(document).ready(function() {
       hide: true,
       disable: true
     });
+    resetSelect();
   });
   
   $("body").on("click","._toggle_crop",function(e){
@@ -120,7 +121,7 @@ $(document).ready(function() {
     $("#cropped_image").imgAreaSelect({ 
       hide: true
     });
-    //img_container.find("div.image_editor_text:last").remove();
+    resetSelect();
   });
   
   $("body").on("click","._save_edit_image", function(){
@@ -233,6 +234,13 @@ function getDragPosition(obj){
   coords.push(offY-imgOffY); //textarea top padding
 
   return coords;
+}
+
+function resetSelect(){
+  $('input[name="x1"]').val("");
+  $('input[name="y1"]').val("");
+  $('input[name="x2"]').val("");
+  $('input[name="y2"]').val("");
 }
 
 
