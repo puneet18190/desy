@@ -29,6 +29,15 @@
     background-position: (-$button-size*2) (-$button-size*2);
 		opacity:0.3;
   }
+	&.fullScreen {
+    background-position:  (-$button-size*3) (-$button-size*2);
+		opacity:0.3;
+  }
+  &.fullScreen:hover {
+    background-position: (-$button-size*3) 0;
+		opacity:1;
+		
+  }
 }
 .audioPlayer {
   float:left;
@@ -38,16 +47,19 @@
 	position:absolute;
 	top:13px;
 	left:15px;
+	.sliderDisabler {
+    position: absolute;
+    top: 0px;
+	  left:90px;
+	  background-color: #000;
+	  opacity:0;
+    width: 610px;
+    height: 30px;
+    display: none;
+	  z-index:5;
+  }
 }
-.audioPlayer .play {
-  @include buttonPlayer;
-  float: left;
-}
-.audioPlayer .pause {
- @include buttonPlayer;
-  float: left;
-  display: none;
-}
+
 
 .audioSlider {
   float:left;
@@ -78,15 +90,54 @@
 	float:left;
 	text-align:center;
 }
-.sliderDisabler {
-  position: absolute;
-  top: 0px;
-	left:90px;
-	background-color: #000;
-	opacity:0;
-  width: 610px;
-  height: 30px;
-  display: none;
-	z-index:5;
+
+.videoPlayer {
+  background-color: transparent;
+	width:517px;
+	height:350px;
+}
+.videoSlider {
+  float:left;
+	width: 60%;
+	margin-top:12px;
+  background-color: #2d2e2d;
+	.sliderDisabler {
+    position: absolute;
+    top: 0px;
+	  left:90px;
+	  background-color: #000;
+	  opacity:0;
+    width: 341px;
+    height: 30px;
+    display: none;
+	  z-index:5;
+	}
+}
+
+.videoSlider .ui-slider-handle {
+  background-color: #43a848;
+	top:-.2em;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	border:3px solid #fff;
+	width: 0.9em;
+  height: 0.9em;
+	cursor:pointer;
+}
+.videoSlider .ui-slider-range-min {
+  background-color: #43a848;
 	
+}
+.play {
+  @include buttonPlayer;
+  float: left;
+}
+.fullScreen {
+  @include buttonPlayer;
+  float: left;
+}
+.pause {
+ @include buttonPlayer;
+  float: left;
+  display: none;
 }

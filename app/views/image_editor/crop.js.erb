@@ -3,62 +3,82 @@ if(<%=@crop%>){
     hide: true
   });
   $("._toggle_crop").removeClass("current");
-  $("#image_wrapper").html("<img src='/media_elements/images/<%=@image_id%>/temp_crop.jpg' id='cropped_image' />");
-  $('input[name="cropped_image"]').val("/media_elements/images/<%=@image_id%>/temp_crop.jpg");
+  $("#image_wrapper img").attr("src","/media_elements/images/<%=@image_id%>/temp_crop.jpg");
+  $('input[name="cropped_image"]').val("<%=@image_url%>");
+  $('input[name="x1"]').val("");
+  $('input[name="y1"]').val("");
+  $('input[name="x2"]').val("");
+  $('input[name="y2"]').val("");
   
-  $("#_image_editor_container img").click(function(e){
-    coords = getRelativePosition($(this),e);
-    textCount = $("#_image_editor_container textarea").length;
-    $("#_image_editor_container.text_enabled").append(textAreaContent(coords,textCount));
-    addTextAreaHiddenFields(coords, textCount);
-    $('.image_editor_text').draggable({ 
-      containment: "parent",
-      handle: "._move",
-      start: function() {
-          $(this).find("._move").css("cursor","-webkit-grabbing");
-      },
-      stop: function() {
-          $(this).find("._move").css("cursor","-webkit-grab");
-      }
-    });
-    
-    offlightTextarea();
-    enlightTextarea($(".image_editor_text textarea:last"));
-    
-    $(".image_editor_text textarea").focus(function(){
-      offlightTextarea();
-      enlightTextarea($(this));
-    });
-  
-    $("a._delete").click(function(){
-      img_editor = $(this).parents(".image_editor_text")
-      img_editor.remove();
-      console.log(img_editor.attr("id"));
-      $("#_crop_form input#hidden_"+img_editor.attr("id")).remove();
-    });
-    
-    $(".text_tools div a").click(function(){
-      thisLink = $(this);
-      thisParent = $(this).parent("div");
-      thisTextTools = $(this).parents(".text_tools");
-      thisTextArea = thisTextTools.parent(".image_editor_text").find("textarea");
-      thisParent.find("a").removeClass("current");
-      thisLink.addClass("current");
-      
-      thisTextArea.removeAttr("class");
-      thisTextTools.find("a.current").each(function(){
-        if(thisParent.attr("class") == "font_sizes"){
-          var font_val = $(this).attr("class").replace('background_','').replace('current','');
-          thisTextArea.addClass(font_val);
-          thisTextArea.attr("data-size",font_val);
-        } else {
-          var color_val = $(this).attr("class").replace('background_','').replace('current','');
-          thisTextArea.addClass(color_val)
-          thisTextArea.attr("data-color",color_val);
-        }
-      });
-    });
-    
-  });
+  $("body").on("click","#_image_editor_container img",function(e){
+     this_image = $(this);
+     coords = getRelativePosition(this_image,e);
+     textCount = $("#_image_editor_container textarea").length;
+     $("#_image_editor_container.text_enabled").append(textAreaContent(coords,textCount));
+
+     $('.image_editor_text').draggable({ 
+       containment: "parent",
+       handle: "._move",
+       start: function() {
+         $(this).find("._move").css("cursor","-webkit-grabbing");
+       },
+       stop: function(e) {
+         $(this).find("._move").css("cursor","-webkit-grab");
+         console.log(e.pageX+"/"+e.pageY);
+       }
+     });
+
+     offlightTextarea();
+     enlightTextarea($(".image_editor_text textarea:last"));
+
+     $(".image_editor_text textarea").focus(function(){
+       offlightTextarea();
+       enlightTextarea($(this));
+     });
+
+     $("a._delete").click(function(){
+       img_editor = $(this).parents(".image_editor_text");
+       img_editor.remove();
+       console.log(img_editor.attr("id"));
+       $("#_crop_form input."+img_editor.attr("id").replace("text","area")).each(function(){
+         $(this).remove();
+       });
+     });
+
+     $(".text_tools div a").click(function(){
+       //variable init
+       var thisLink = $(this);
+       var thisParent = $(this).parent("div");
+       var thisTextTools = $(this).parents(".text_tools");
+       var thisTextArea = thisTextTools.parent(".image_editor_text").find("textarea");
+
+       //textarea updates
+       thisParent.find("a").removeClass("current");
+       thisLink.addClass("current");
+       thisTextArea.removeAttr("class");
+
+       if(thisParent.attr("class") == "font_sizes"){
+
+         var font_val = $(this).attr("class").replace(" current","");
+         var font_size = $(this).data("param");
+         var color_class = thisTextTools.find(".text_colors a.current").attr("class");
+
+         thisTextArea.addClass(font_val);
+         thisTextArea.addClass(color_class.replace('background_','').replace('current','').replace(' ',''));        
+         thisTextArea.attr("data-size",font_size);
+
+       } else {
+
+         var color_val = $(this).attr("class").replace('background_','').replace('current','').replace(' ','');
+         var font_class = thisTextTools.find(".font_sizes a.current").attr("class");
+
+         thisTextArea.addClass(color_val);
+         thisTextArea.addClass(font_class.replace('current',''));        
+         thisTextArea.attr("data-color",color_val);
+       }
+
+     });
+
+   });
   
 }
