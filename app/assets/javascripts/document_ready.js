@@ -279,6 +279,21 @@ $(document).ready(function() {
     showMediaElementInGalleryPopUp(my_id);
   });
   
+  $('body').on('click', '._compact_audio_in_gallery', function() {
+    var parent_id = $(this).parent().attr('id');
+    var obj = $('#' + parent_id + ' ._expanded_audio_in_gallery');
+    if(obj.css('display') == 'none') {
+      obj.show('blind', {}, 500, function() {
+        obj.css('display', 'block');
+      });
+    } else {
+      obj.hide('blind', {}, 500, function() {
+        stopMedia('#' + parent_id + ' audio');
+        obj.css('display', 'none');
+      });
+    }
+  });
+  
   
   // LESSON BUTTONS
   
