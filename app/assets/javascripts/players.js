@@ -36,7 +36,7 @@ function initializeMedia(content_id, type, duration) {
     }
   });
   $('#' + content_id + ' ' + type).bind('ended', function() {
-    alert("I'm done!");
+    stopMedia(this);
   });
 }
 
@@ -52,6 +52,14 @@ function setCurrentTimeToMedia(media, x) {
 
 function stopAllMedia() {
   $('audio, video').each(function() {
-    $(this)[0].pause();
+    stopMedia(this);
   });
+}
+
+function stopMedia(media) {
+  var container_id = $(media).parent().attr('id');
+  $('#' + container_id + ' ._media_player_pause').click();
+  $('#' + container_id + ' ._media_player_slider').slider('value', 0);
+  $('#' + container_id + ' ._media_player_current_time').html(secondsToDateString(0));
+  setCurrentTimeToMedia($(media), 0)
 }
