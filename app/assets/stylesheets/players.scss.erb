@@ -1,40 +1,92 @@
+@mixin buttonPlayer {
+  $button-size: 2.5em;
+  & {
+    width: $button-size;
+    height: $button-size;
+    background-image: url(<%= asset_path 'icone-player.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($button-size*4) ($button-size*4);
+    padding:0;
+  }
+	
+  &:hover {
+    cursor: pointer;
+  }
+  
+  &.play {
+    background-position: 0 (-$button-size*2);
+		opacity:0.3;
+  }
+  &.play:hover {
+    background-position: 0 0;
+		opacity:1;
+  }
+  &.pause {
+    background-position: (-$button-size*2) 0 ;
+		opacity:1;
+  }
+  &.pause:hover {
+    background-position: (-$button-size*2) (-$button-size*2);
+		opacity:0.3;
+  }
+}
+.audioPlayer {
+  float:left;
+  background-color: transparent;
+	width: 95%;
+	height:62%;
+	position:absolute;
+	top:13px;
+	left:15px;
+}
 .audioPlayer .play {
-  outline:1px solid red;
-  width: 50px;
-  height: 50px;
+  @include buttonPlayer;
   float: left;
 }
-
 .audioPlayer .pause {
-  background-color: red;
-  width: 50px;
-  height: 50px;
+ @include buttonPlayer;
   float: left;
   display: none;
-}
-
-.audioPlayer {
-  width: 100%;
-  background-color: yellow;
-	position:absolute;
-	bottom:0px;
 }
 
 .audioSlider {
-  position: relative;
-  top: 5px;
-  background-color: green;
+  float:left;
+	width: 75%;
+	margin-top:12px;
+  background-color: #2d2e2d;
 }
 
 .audioSlider .ui-slider-handle {
-  background-color: lime;
+  background-color: #43a848;
+	top:-.2em;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	border:3px solid #fff;
+	width: 0.8em;
+  height: 0.8em;
+	cursor:pointer;
 }
-
+.audioSlider .ui-slider-range-min {
+  background-color: #43a848;
+	
+}
+.secondTime {
+  width:70px;
+	height:20px;
+	padding-top:10px;
+	color:#fff;
+	float:left;
+	text-align:center;
+}
 .sliderDisabler {
-  position: relative;
-  top: 180px;
-  background-color: maroon;
-  width: 300px;
-  height: 50px;
+  position: absolute;
+  top: 0px;
+	left:90px;
+	background-color: #000;
+	opacity:0;
+  width: 610px;
+  height: 30px;
   display: none;
+	z-index:5;
+	
 }

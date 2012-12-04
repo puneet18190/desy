@@ -1,5 +1,42 @@
 module ApplicationHelper
   
+  def seconds_to_time(secs)
+    mm = secs / 60
+    ss = secs % 60
+    hh = mm / 60
+    mm = mm % 60
+    resp = ''
+    if hh > 0
+      resp = "#{hh}:"
+      if mm == 0
+        resp = "#{resp}00:"
+      elsif mm < 10
+        resp = "#{resp}0#{mm}:"
+      else
+        resp = "#{resp}#{mm}:"
+      end
+      if ss == 0
+        resp = "#{resp}00"
+      elsif mm < 10
+        resp = "#{resp}0#{ss}"
+      else
+        resp = "#{resp}#{ss}"
+      end
+    elsif mm > 0
+      resp = "#{mm}:"
+      if ss == 0
+        resp = "#{resp}00"
+      elsif ss < 10
+        resp = "#{resp}0#{ss}"
+      else
+        resp = "#{resp}#{ss}"
+      end
+    else
+      resp = ss.to_s
+    end
+    resp
+  end
+  
   def controller_html_class
     "#{h controller_path}-controller"
   end

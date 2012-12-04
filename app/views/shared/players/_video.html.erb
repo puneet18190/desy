@@ -2,23 +2,24 @@
   video_class = video.nil? ? '_empty_video_player' : "_instance_of_video_player_#{video.id}"
 %>
 
-<div id="instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player" class="videoPlayer _video_player" data-media-type="video">
+<div id="instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player" class="videoPlayer" data-media-type="video">
   <video>
     <source src="<%= video.nil? ? '' : video.webm %>" type="video/webm">
     <source src="<%= video.nil? ? '' : video.mp4 %>" type="video/mp4">
     <%= t('captions.your_browser_does_not_support_video') %>
   </video>
-  <a class="play _play"></a>
-  <a class="pause _pause"></a>
-  <div class="videoSlider _slider"></div>
-  <div class="sliderDisabler _slider_disabler"></div> <!-- FIXME aurelia: questo div deve coprire con opacità lo slider per renderlo non cliccabile -->
-  <div style="position:relative;left:150px;width:100px;height:30px;background-color:aqua;color:black;float:left" class="_current_time">0</div>
-  <div style="position:relative;left:200px;width:100px;height:30px;background-color:aqua;color:black;float:left"><%= video.duration %></div>
+  <a class="play _media_player_play" style="width:50px;height:50px;background-color:red"></a>
+  <a class="pause _media_player_pause" style="width:50px;height:50px;background-color:blue"></a>
+  <a class="fullScreen _video_full_screen" style="width:50px;height:50px;background-color:green"></a>
+  <div class="videoSlider _media_player_slider"></div>
+  <div class="sliderDisabler _media_player_slider_disabler"></div> <!-- FIXME aurelia: questo div deve coprire con opacità lo slider per renderlo non cliccabile -->
+  <div style="position:relative;left:150px;width:100px;height:30px;background-color:aqua;color:black;float:left" class="_media_player_current_time">0</div>
+  <div style="position:relative;left:200px;width:100px;height:30px;background-color:aqua;color:black;float:left"><%= seconds_to_time video.duration %></div>
 </div>
 
 <script type="text/javascript">
   
-  initializeMediaSlider('instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player', 'video', <%= video.duration %>);
+  initializeMedia('instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player', 'video', <%= video.duration %>);
   
 </script>
 

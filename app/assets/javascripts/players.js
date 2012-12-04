@@ -15,24 +15,28 @@ function initializeMediaTimeUpdater(media) {
 
 function initializeActionOfMediaTimeUpdater(media) {
   var container_id = $(media).parent().attr('id');
-  if($('#' + container_id + ' ._play').css('display') == 'none') {
+  if($('#' + container_id + ' ._media_player_play').css('display') == 'none') {
     var parsed_int = parseInt(media.currentTime);
-    $('#' + container_id + ' ._current_time').html(parsed_int);
-    $('#' + container_id + ' ._slider').slider('value', parsed_int);
+    $('#' + container_id + ' ._media_player_current_time').html(secondsToDateString(parsed_int));
+    $('#' + container_id + ' ._media_player_slider').slider('value', parsed_int);
   }
 }
 
-function initializeMediaSlider(content_id, type, duration) {
-  $('#' + content_id + ' ._slider').slider({
+function initializeMedia(content_id, type, duration) {
+  $('#' + content_id + ' ._media_player_slider').slider({
     min: 0,
     max: duration,
+    range: 'min',
     value: 0,
     slide: function(event, ui) {
-      if($('#' + content_id + ' ._play').css('display') == 'block') {
+      if($('#' + content_id + ' ._media_player_play').css('display') == 'block') {
         setCurrentTimeToMedia($('#' + content_id + ' ' + type), ui.value);
-        $('#' + content_id + ' ._current_time').html(ui.value);
+        $('#' + content_id + ' ._media_player_current_time').html(secondsToDateString(ui.value));
       }
     }
+  });
+  $('#' + content_id + ' ' + type).bind('ended', function() {
+    alert("I'm done!");
   });
 }
 
