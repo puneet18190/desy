@@ -1,0 +1,12 @@
+<div class="scrollVerde">
+  <ul class="gallery">
+    <div id="scroll_pane_in_video_gallery" class="scroll-pane">
+      <% videos.each do |video| %>
+        <li id="#gallery_thumb_<%= video.id %>" class="_video_gallery_thumb" data-video-id="<%= video.id %>">
+          <%= link_to (image_tag video.cover, :width => '250', :height => "140"), "#{video.id}" %>
+          <%= render :partial => "galleries/popups/video", :locals => {:video => video} %>
+        </li>
+      <% end %>
+    </div>
+  </ul>
+</div>
