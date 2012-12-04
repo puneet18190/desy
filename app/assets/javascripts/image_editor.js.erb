@@ -8,7 +8,7 @@ $(document).ready(function() {
     $(".menuServiceImages").hide();
     $(".menuTextImages").show();
     img_container.addClass("text_enabled").removeClass("crop_enabled");
-    $("#image_wrapper").imgAreaSelect({ 
+    $("#cropped_image").imgAreaSelect({ 
       hide: true,
       disable: true
     });
@@ -22,7 +22,7 @@ $(document).ready(function() {
     $(".menuTextImages").hide();
     img_container.removeClass("text_enabled").addClass("crop_enabled");
     offlightTextarea();
-    $("#image_wrapper").imgAreaSelect({ 
+    $("#cropped_image").imgAreaSelect({ 
       enable: true,
       handles: true,
       onSelectEnd: function (img, selection) {
@@ -115,7 +115,7 @@ $(document).ready(function() {
   
   $("body").on("click","#_editor_cancel",function(e){
     e.preventDefault;
-    $("#image_wrapper").imgAreaSelect({ 
+    $("#cropped_image").imgAreaSelect({ 
       hide: true
     });
     //img_container.find("div.image_editor_text:last").remove();
@@ -172,7 +172,7 @@ function updateCrop() {
   //image.css({"zoom":resZoom,"margin-left":"-"+(x1)+"px","margin-top":"-"+(y1)+"px"});
   //wrapper.css({"width":selWidth*zoomVal+"px","height":selHeight*zoomVal+"px"})
   //
-  //$("#image_wrapper").imgAreaSelect({ 
+  //$("#cropped_image").imgAreaSelect({ 
   //  hide: true
   //});
   //
