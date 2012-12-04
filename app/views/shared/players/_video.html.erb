@@ -14,7 +14,7 @@
   <div class="videoSlider _media_player_slider"></div>
   <div class="sliderDisabler _media_player_slider_disabler"></div> <!-- FIXME aurelia: questo div deve coprire con opacità lo slider per renderlo non cliccabile -->
   <div style="position:relative;left:150px;width:100px;height:30px;background-color:aqua;color:black;float:left" class="_media_player_current_time">0</div>
-  <div style="position:relative;left:200px;width:100px;height:30px;background-color:aqua;color:black;float:left"><%= video.duration %></div>
+  <div style="position:relative;left:200px;width:100px;height:30px;background-color:aqua;color:black;float:left"><%= seconds_to_time video.duration %></div>
 </div>
 
 <script type="text/javascript">

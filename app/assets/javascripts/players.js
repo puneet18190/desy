@@ -17,7 +17,7 @@ function initializeActionOfMediaTimeUpdater(media) {
   var container_id = $(media).parent().attr('id');
   if($('#' + container_id + ' ._media_player_play').css('display') == 'none') {
     var parsed_int = parseInt(media.currentTime);
-    $('#' + container_id + ' ._media_player_current_time').html(parsed_int);
+    $('#' + container_id + ' ._media_player_current_time').html(secondsToDateString(parsed_int));
     $('#' + container_id + ' ._media_player_slider').slider('value', parsed_int);
   }
 }
@@ -31,7 +31,7 @@ function initializeMediaSlider(content_id, type, duration) {
     slide: function(event, ui) {
       if($('#' + content_id + ' ._media_player_play').css('display') == 'block') {
         setCurrentTimeToMedia($('#' + content_id + ' ' + type), ui.value);
-        $('#' + content_id + ' ._media_player_current_time').html(ui.value);
+        $('#' + content_id + ' ._media_player_current_time').html(secondsToDateString(ui.value));
       }
     }
   });
