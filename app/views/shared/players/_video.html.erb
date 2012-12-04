@@ -4,7 +4,7 @@
   mp4 = ''
   duration = ''
   if video
-    video_class = "_instance_of_video_player_#{video.id}"
+    video_class = "_instance_of_player_#{video.id}"
     webm = video.webm
     mp4 = video.mp4
     duration = seconds_to_time(video.duration)
