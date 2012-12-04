@@ -695,6 +695,7 @@ $(document).ready(function() {
   // PLAYERS
   
   $('body').on('click', '._media_player_play', function() {
+    stopAllMedia();
     $(this).css('display', 'none');
     var container_id = $(this).parent().attr('id');
     var type = $(this).parent().data('media-type');

@@ -116,6 +116,7 @@ function showMediaElementInfoPopUp(media_element_id) {
       show: "fade",
       hide: "fade",
       close: function() {
+        stopAllMedia();
         $('#dialog-media-element-' + media_element_id + ' ._change_info_container').css('display', 'none');
         var change_info_button = $('#dialog-media-element-' + media_element_id + ' ._change_info_to_pick');
         if(change_info_button.hasClass('change_info_light')) {
