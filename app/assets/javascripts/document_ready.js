@@ -706,6 +706,14 @@ $(document).ready(function() {
     $('#' + this.id + ' ._video_editor_component_icon').css('display', 'block');
   });
   
+  $('body').on('mouseover', '._new_component_in_video_editor_hover', function() {
+    $('._new_component_in_video_editor_hover a').addClass('current');
+  });
+  
+  $('body').on('mouseout', '._new_component_in_video_editor_hover', function() {
+    $('._new_component_in_video_editor_hover a').removeClass('current');
+  });
+  
   
   // PLAYERS
   
