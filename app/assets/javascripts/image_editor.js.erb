@@ -8,7 +8,7 @@ $(document).ready(function() {
     $(".menuServiceImages").hide();
     $(".menuTextImages").show();
     img_container.addClass("text_enabled").removeClass("crop_enabled");
-    $("#cropped_image").imgAreaSelect({ 
+    $("#image_wrapper").imgAreaSelect({ 
       hide: true,
       disable: true
     });
@@ -22,7 +22,7 @@ $(document).ready(function() {
     $(".menuTextImages").hide();
     img_container.removeClass("text_enabled").addClass("crop_enabled");
     offlightTextarea();
-    $("#cropped_image").imgAreaSelect({ 
+    $("#image_wrapper").imgAreaSelect({ 
       enable: true,
       handles: true,
       onSelectEnd: function (img, selection) {
@@ -35,11 +35,11 @@ $(document).ready(function() {
   });
   
   $("body").on("click","#_editor_crop",function(){
-    updateCrop();
-   //processTextAreaForm();
-   //var thisForm = $("form#_crop_form");
-   //thisForm.attr("action","/images/"+thisForm.data("param")+"/crop");
-   //thisForm.submit();
+   //updateCrop();
+   processTextAreaForm();
+   var thisForm = $("form#_crop_form");
+   thisForm.attr("action","/images/"+thisForm.data("param")+"/crop");
+   thisForm.submit();
   });
   
   $("body").on("click","#_image_editor_container img",function(e){
@@ -115,7 +115,7 @@ $(document).ready(function() {
   
   $("body").on("click","#_editor_cancel",function(e){
     e.preventDefault;
-    $("#cropped_image").imgAreaSelect({ 
+    $("#image_wrapper").imgAreaSelect({ 
       hide: true
     });
     //img_container.find("div.image_editor_text:last").remove();
@@ -130,41 +130,52 @@ $(document).ready(function() {
 });
 
 
-// Client side crop
+//// TODO: Use client side crop ////
 function updateCrop() {
-  var image = $("#_image_editor_container img");
-  var x1 = $('input[name="x1"]').val();
-  var y1 = $('input[name="y1"]').val();
-  var x2 = $('input[name="x2"]').val();
-  var y2 = $('input[name="y2"]').val();
-  var selWidth = x2-x1;
-  var selHeight = y2-y1;
-  
-  var ratio = selWidth/selHeight;
-  
-  console.log("x: "+x1+" y: "+y1);
-  console.log("W: "+selWidth+" H: "+selHeight);
-  console.log("Ratio: "+ratio);
-  
-  var mult = 1;
-  var constraint = ""
-  
-  var orgin_w = image.attr("width");
-  var orgin_h = image.attr("height");
-  
-  console.log("oW: "+orgin_w+"oH: "+origin_h+ "origin_ratio: "+ (origin_w/origin_h));
-  
-  if(ratio > 1,33){
-    mult = 660 - selWidth;
-    constraint = "width";
-  }else{
-    mult = 495 - selHeight;
-    constraint = "height";
-  }
-  
-  console.log("mult: "+mult);
-  image.css({'transform' : 'scale(2)', '-webkit-transform' : 'scale(2)'});
-  
+  //var wrapper = $("#image_wrapper");
+  //var image = $("#_image_editor_container img");
+  //var x1 = $('input[name="x1"]').val();
+  //var y1 = $('input[name="y1"]').val();
+  //var x2 = $('input[name="x2"]').val();
+  //var y2 = $('input[name="y2"]').val();
+  //var selWidth = x2-x1;
+  //var selHeight = y2-y1;
+  //var selRatio = selWidth/selHeight;
+  //
+  //var origin_w = image.attr("data-width");
+  //var origin_h = image.attr("data-height");
+  //var resValue = resizedValue(origin_w,origin_h);
+  //var resWidth = resValue[0];
+  //var resHeight = resValue[1];
+  //var resZoom = resValue[2]; //initial zoom resize
+  //var resRatio = resWidth/resHeight;
+  //  
+  //var totalZoom = resZoom;
+  //var leftOffset = 0;
+  //var topOffset = 0;
+  //
+  ////define zoom ratio based on longest side
+  //if(selRatio > 1,33){
+  //  zoomVal = resWidth/selWidth;
+  //}else{
+  //  zoomVal = resHeight/selHeight;
+  //}
+  //
+  //totalZoom = totalZoom*zoomVal;
+  //var leftOffset = resWidth-x1;
+  //var topOffset = resWidth-y1;
+  //
+  //console.log("resZoom: "+resZoom+" totalZ: "+totalZoom+"actual zoom: "+zoomVal);
+  //console.log("x1: "+ x1+" resW: "+resWidth+" leftOff: "+leftOffset);
+  //console.log("y1: "+ y1+" resH: "+resHeight+"topOff: "+topOffset);
+  //
+  //image.css({"zoom":resZoom,"margin-left":"-"+(x1)+"px","margin-top":"-"+(y1)+"px"});
+  //wrapper.css({"width":selWidth*zoomVal+"px","height":selHeight*zoomVal+"px"})
+  //
+  //$("#image_wrapper").imgAreaSelect({ 
+  //  hide: true
+  //});
+  //
   //image.css({
   //  transform: scale(mult),
   //  -ms-transform: scale(mult), /* IE 9 */
@@ -182,6 +193,24 @@ function updateCrop() {
   //    marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
   //    marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
   //});
+}
+
+function resizedValue(width,height){
+  wrapper_ratio = 660/495;
+  original_ratio = width/height;
+  resized= ["w","h","zoom"];
+  if(original_ratio >= wrapper_ratio){
+    //resized width is 660
+    r_h = 660*height/width 
+    r_zoom = width/660
+    resized=[660,r_h,r_zoom]
+  }else{
+    //resized height 495
+    r_w = 495*width/height
+    r_zoom = height/495
+    resized=[r_w,495,r_zoom]
+  }
+  return resized;
 }
 
 // Update form with textareas
