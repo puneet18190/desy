@@ -702,6 +702,7 @@ $(document).ready(function() {
     $('#' + container_id + ' ._media_player_pause').css('display', 'block');
     $('#' + container_id + ' ' + type)[0].play();
   });
+  
   $('body').on('click', '._media_player_pause', function() {
     $(this).css('display', 'none');
     var container_id = $(this).parent().attr('id');
@@ -710,6 +711,12 @@ $(document).ready(function() {
     $('#' + container_id + ' ._media_player_play').css('display', 'block');
     $('#' + container_id + ' ' + type)[0].pause();
   });
+  
+  $('body').on('click', '._video_full_screen', function() {
+    var container_id = $(this).parent().attr('id');
+    $('#' + container_id + ' video').fullScreen(true);
+  });
+  
   $('audio, video').each(function() {
     initializeMediaTimeUpdater(this);
   });

@@ -8,8 +8,9 @@
     <source src="<%= video.nil? ? '' : video.mp4 %>" type="video/mp4">
     <%= t('captions.your_browser_does_not_support_video') %>
   </video>
-  <a class="play _media_player_play" style="width:50px;height:50px;"></a>
-  <a class="pause _media_player_pause"></a>
+  <a class="play _media_player_play" style="width:50px;height:50px;background-color:red"></a>
+  <a class="pause _media_player_pause" style="width:50px;height:50px;background-color:blue"></a>
+  <a class="fullScreen _video_full_screen" style="width:50px;height:50px;background-color:green"></a>
   <div class="videoSlider _media_player_slider"></div>
   <div class="sliderDisabler _media_player_slider_disabler"></div> <!-- FIXME aurelia: questo div deve coprire con opacità lo slider per renderlo non cliccabile -->
   <div style="position:relative;left:150px;width:100px;height:30px;background-color:aqua;color:black;float:left" class="_media_player_current_time">0</div>
