@@ -24,7 +24,12 @@ class ApplicationController < ActionController::Base
   end
   
   def reset_players_counter
-    File.delete(Rails.root.join('tmp/players_counter.yml')) if File.exists?(Rails.root.join('tmp/players_counter.yml'))
+    @video_counter = [1, 1]
+    @audio_counter = [1, 1]
+    file = {'video_counter' => 2, 'audio_counter' => 2}
+    yaml = File.open(Rails.root.join('tmp/players_counter.yml'), 'w')
+    yaml.write file.to_yaml
+    yaml.close
   end
   
   def prepare_lesson_for_js

@@ -4,7 +4,7 @@
   mp3 = ''
   duration = ''
   if audio
-    audio_class = "_instance_of_audio_player_#{audio.id}"
+    audio_class = "_instance_of_player_#{audio.id}"
     ogg = audio.ogg
     mp3 = audio.mp3
     duration = seconds_to_time(audio.duration)
