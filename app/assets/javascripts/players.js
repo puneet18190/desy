@@ -36,7 +36,7 @@ function initializeMedia(content_id, type, duration) {
     }
   });
   $('#' + content_id + ' ' + type).bind('ended', function() {
-    alert("I'm done!");
+    stopMedia(this);
   });
 }
 
