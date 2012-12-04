@@ -1,11 +1,20 @@
 <%
-  video_class = video.nil? ? '_empty_video_player' : "_instance_of_video_player_#{video.id}"
+  video_class = '_empty_video_player'
+  webm = ''
+  mp4 = ''
+  duration = ''
+  if video
+    video_class = "_instance_of_video_player_#{video.id}"
+    webm = video.webm
+    mp4 = video.mp4
+    duration = seconds_to_time(video.duration)
+  end
 %>
 
-<div id="instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player" class="videoPlayer" data-media-type="video">
+<div id="instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player" class="videoPlayer <%= video_class %>" data-media-type="video">
   <video>
-    <source src="<%= video.nil? ? '' : video.webm %>" type="video/webm">
-    <source src="<%= video.nil? ? '' : video.mp4 %>" type="video/mp4">
+    <source src="<%= webm %>" type="video/webm">
+    <source src="<%= mp4 %>" type="video/mp4">
     <%= t('captions.your_browser_does_not_support_video') %>
   </video>
   <a class="play _media_player_play"></a>
@@ -17,11 +26,13 @@
   <div class="sliderDisabler _media_player_slider_disabler"></div>
 </div>
 
-<script type="text/javascript">
-  
-  initializeMedia('instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player', 'video', <%= video.duration %>);
-  
-</script>
+
+<% if video %>
+  <script type="text/javascript">
+    initializeMedia('instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player', 'video', <%= video.duration %>);
+  </script>
+<% end %>
+
 
 <%
   @video_counter[1] += 1
