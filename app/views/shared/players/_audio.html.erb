@@ -8,16 +8,12 @@
     <source src="<%= audio.nil? ? '' : audio.mp3 %>" type="audio/mp3">
     <%= t('captions.your_browser_does_not_support_audio') %>
   </audio>
-	
   <a class="play _media_player_play"></a>
   <a class="pause _media_player_pause"></a>
-	<div class="_media_player_current_time secondTime">0</div>
+  <div class="_media_player_current_time secondTime">0</div>
   <div class="audioSlider _media_player_slider"></div>
-	<div class="secondTime"><%= seconds_to_time audio.duration %></div>
-	
+  <div class="secondTime"><%= seconds_to_time audio.duration %></div>
   <div class="sliderDisabler _media_player_slider_disabler"></div>
-  
-  
 </div>
 
 <script type="text/javascript">
