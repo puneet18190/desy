@@ -136,8 +136,8 @@ function showLoadMediaElementPopUp() {
   }
 }
 
-function showImageInGalleryPopUp(id) {
-  var obj = $('#' + id);
+function showImageInGalleryPopUp(image_id) {
+  var obj = $('#dialog-image-gallery-' + image_id);
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
@@ -162,8 +162,8 @@ function showImageInGalleryPopUp(id) {
   }
 }
 
-function showVideoInGalleryPopUp(id) {
-  var obj = $('#' + id);
+function showVideoInGalleryPopUp(video_id) {
+  var obj = $('#dialog-video-gallery-' + video_id);
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
@@ -180,8 +180,11 @@ function showVideoInGalleryPopUp(id) {
       open: function(){
         customOverlayClose();
       },
-      beforeClose: function(){
+      beforeClose: function() {
         removeCustomOverlayClose();
+      },
+      close: function() {
+        stopMedia('#dialog-video-gallery-' + video_id + ' video');
       }
     });
   }
