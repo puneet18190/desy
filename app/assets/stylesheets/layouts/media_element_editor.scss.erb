@@ -65,12 +65,13 @@ html.media_element_editor-layout {
 		}		
 		
 		.info {
-		  padding:20px; 
+		  padding:0px; 
 			position:absolute; 
 			top:10px; 
-			right:20px; 
+			right:70px; 
 			text-align:left;
 		}
+		
 	}
 	@mixin iconeTipoElemento {
 	  background-image: url(<%= asset_path 'icone-etichette.svg' %>);
@@ -195,16 +196,41 @@ html.media_element_editor-layout {
 		  display:block;
 		  position:absolute; 
 			z-index:2;
-			width:156px;
-			height:32px; 
-			padding:0px; 
+			width:136px;
+			height:22px; 
+			padding: 5px 10px; 
 			bottom:0px; 
 			background-color: rgba(47,47,47,0.93);
 			
 			a {
-			  font-size: 0.4em;
+			  font-size: 0.3em;
 				float:left;
 				padding:0;
+				background-image: url(<%= asset_path 'action-fotogramma.svg' %>);
+        background-repeat: no-repeat;
+		    background-size: 12em 18em;
+				&.cutButton {
+				  background-position: -6em -12em;
+					&:hover {
+					  background-position: 0 -12em;
+						opacity:1;
+					}
+				}
+				&.creaNuovoButton {
+				  background-position: -6em -6em;
+					&:hover {
+					  background-position: 0 -6em;
+						opacity:1;
+					}
+				}
+				&.closeButton {
+				  background-position: -6em 0;
+					float:right;
+					&:hover {
+					  background-position: 0 0;
+						opacity:1;
+					}
+				}
 			}
 		}
 		
@@ -339,28 +365,7 @@ html.media_element_editor-layout {
 		.menuTextImages{
 		  display:none;
 		}
-		.menuServiceImages {
-		  display:none;
-		  margin:0 auto;
-		  width: 200px;
-			
-		  li {
-		    float:left;
-		    width: auto;
-			  list-style: none;
-        margin-bottom: 0;
-        margin-left: 10px;
-        padding:5px 10px;
-				text-align:center;
-				background-color:#43a848;
-				border-radius: 15px;
-        -webkit-border-radius: 15px;
-				font-size:14px;
-				a {
-				  color:#ffffff;
-				}
-			}
-		}
+		
 	}
 	.menuFooterEditorElement {
 	  padding-top:10px;
@@ -374,7 +379,13 @@ html.media_element_editor-layout {
 			
 		}
 	}
-	
+	.menuServiceImages {
+		  display:none;
+		  margin:0 auto;
+		  width: 200px;
+			
+		 
+		}
 	/*
    * imgAreaSelect default style
    */
