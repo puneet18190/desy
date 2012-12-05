@@ -34,7 +34,7 @@ function initializeNotifications() {
       my_expanded.html(my_content);
       my_expanded.data('contentid', my_own_id);
       my_expanded.show('fade', {}, 500, function() {
-        my_expanded.css('display', 'block');
+        my_expanded.show();
         if(!$(this).hasClass('current')) {
           $.ajax({
             type: 'post',
@@ -86,24 +86,24 @@ function initializeHelp() {
 
 function hideExpandedNotification() {
   $('#expanded_notification').html('');
-  $('#expanded_notification').css('display', 'none');
+  $('#expanded_notification').hide();
 }
 
 function hideNotificationsTooltip() {
-  $('#tooltip_content').css('display', 'none');
+  $('#tooltip_content').hide();
   hideExpandedNotification();
 }
 
 function showNotificationsTooltip() {
-  $('#tooltip_content').css('display', 'block');
+  $('#tooltip_content').show();
 }
 
 function hideHelpTooltip() {
-  $('#tooltip_help').css('display', 'none');
+  $('#tooltip_help').hide();
 }
 
 function showHelpTooltip() {
-  $('#tooltip_help').css('display', 'block');
+  $('#tooltip_help').show();
 }
 
 function hideNotificationsButton() {
@@ -115,11 +115,11 @@ function showNotificationsButton() {
 }
 
 function hideNotificationsFumetto() {
-  $('#tooltip_arancione').css('display', 'none');
+  $('#tooltip_arancione').hide();
 }
 
 function showNotificationsFumetto() {
-  $('#tooltip_arancione').css('display', 'block');
+  $('#tooltip_arancione').show();
 }
 
 function hideHelpButton() {

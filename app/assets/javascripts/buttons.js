@@ -46,7 +46,7 @@ function copyLesson(lesson_id, destination) {
 function destroyLesson(lesson_id, destination, current_url) {
   var captions = $('#popup_captions_container');
   showConfirmPopUp(captions.data('destroy-lesson-title'), captions.data('destroy-lesson-confirm'), captions.data('destroy-lesson-yes'), captions.data('destroy-lesson-no'), function() {
-    $('#dialog-confirm').css('display', 'none');
+    $('#dialog-confirm').hide();
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + lesson_id));
     $.ajax({
       type: 'post',
@@ -90,7 +90,7 @@ function previewLesson(lesson_id, destination) {
 function publishLesson(lesson_id, destination) {
   var captions = $('#popup_captions_container');
   showConfirmPopUp(captions.data('publish-title'), captions.data('publish-confirm'), captions.data('publish-yes'), captions.data('publish-no'), function() {
-    $('#dialog-confirm').css('display', 'none');
+    $('#dialog-confirm').hide();
     $.ajax({
       type: 'post',
       url: '/lessons/' + lesson_id + '/publish?destination=' + destination
@@ -131,7 +131,7 @@ function removeLesson(lesson_id, destination, current_url, reload) {
 function unpublishLesson(lesson_id, destination) {
   var captions = $('#popup_captions_container');
   showConfirmPopUp(captions.data('unpublish-title'), captions.data('unpublish-confirm'), captions.data('unpublish-yes'), captions.data('unpublish-no'), function() {
-    $('#dialog-confirm').css('display', 'none');
+    $('#dialog-confirm').hide();
     $.ajax({
       type: 'post',
       url: '/lessons/' + lesson_id + '/unpublish?destination=' + destination
@@ -186,7 +186,7 @@ function addMediaElement(media_element_id, destination, current_url, reload) {
 function destroyMediaElement(media_element_id, destination, current_url) {
   var captions = $('#popup_captions_container');
   showConfirmPopUp(captions.data('destroy-media-element-title'), captions.data('destroy-media-element-confirm'), captions.data('destroy-media-element-yes'), captions.data('destroy-media-element-no'), function() {
-    $('#dialog-confirm').css('display', 'none');
+    $('#dialog-confirm').hide();
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
     $.ajax({
       type: 'post',

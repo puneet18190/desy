@@ -1,14 +1,14 @@
 function reloadDashboardPages(lessons_page, media_elements_page) {
-  $('#suggested_media_elements_1').css('display', 'none');
-  $('#suggested_media_elements_' + media_elements_page).css('display', 'block');
-  $('#suggested_lessons_1').css('display', 'none');
-  $('#suggested_lessons_' + lessons_page).css('display', 'block');
+  $('#suggested_media_elements_1').hide();
+  $('#suggested_media_elements_' + media_elements_page).show();
+  $('#suggested_lessons_1').hide();
+  $('#suggested_lessons_' + lessons_page).show();
 }
 
 function switchToSuggestedMediaElements() {
   $('#lessons_in_dashboard').hide('fade', {}, 500, function() {
-    $(this).css('display', 'none');
-    $('#media_elements_in_dashboard').css('display', 'block');
+    $(this).hide();
+    $('#media_elements_in_dashboard').show();
     $('#switch_to_media_elements').addClass('current');
     $('#switch_to_lessons').removeClass('current');
     var pagination_div = $('#dashboard_pagination');
@@ -20,8 +20,8 @@ function switchToSuggestedMediaElements() {
 
 function switchToSuggestedLessons() {
   $('#media_elements_in_dashboard').hide('fade', {}, 500, function() {
-    $(this).css('display', 'none');
-    $('#lessons_in_dashboard').css('display', 'block');
+    $(this).hide();
+    $('#lessons_in_dashboard').show();
     $('#switch_to_lessons').addClass('current');
     $('#switch_to_media_elements').removeClass('current');
     var pagination_div = $('#dashboard_pagination');
@@ -104,16 +104,16 @@ function reloadLessonsDashboardPagination(pos, pages_amount) {
 
 function changePageDashboardMediaElements(old_pos, pos, pages_amount) {
   $('#suggested_media_elements_' + (old_pos)).hide('fade', {}, 500, function() {
-    $(this).css('display', 'none');
-    $('#suggested_media_elements_' + (pos)).css('display', 'block');
+    $(this).hide();
+    $('#suggested_media_elements_' + (pos)).show();
     reloadMediaElementsDashboardPagination(pos, pages_amount);
   });
 }
 
 function changePageDashboardLessons(old_pos, pos, pages_amount) {
   $('#suggested_lessons_' + (old_pos)).hide('fade', {}, 500, function() {
-    $(this).css('display', 'none');
-    $('#suggested_lessons_' + (pos)).css('display', 'block');
+    $(this).hide();
+    $('#suggested_lessons_' + (pos)).show();
     reloadLessonsDashboardPagination(pos, pages_amount);
   });
 }

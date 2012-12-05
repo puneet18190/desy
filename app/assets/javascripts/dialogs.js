@@ -104,7 +104,7 @@ function showMediaElementInfoPopUp(media_element_id) {
         if(player_container.length > 0) {
           stopMedia('#dialog-media-element-' + media_element_id + ' ' + player_container.data('media-type'));
         }
-        $('#dialog-media-element-' + media_element_id + ' ._change_info_container').css('display', 'none');
+        $('#dialog-media-element-' + media_element_id + ' ._change_info_container').hide();
         var change_info_button = $('#dialog-media-element-' + media_element_id + ' ._change_info_to_pick');
         if(change_info_button.hasClass('change_info_light')) {
           change_info_button.addClass('change_info');
@@ -145,7 +145,13 @@ function showMediaElementInGalleryPopUp(id) {
       maxWidth: 440,
       maxHeight: 480,
       show: "fade",
-      hide: "fade"
+      hide: "fade",
+      open: function(){
+        customOverlayClose();
+      },
+      close: function(){
+        removeCustomOverlayClose();
+      }
     });
   }
 }
@@ -176,4 +182,12 @@ function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_
 
 function closePopUp(id) {
   $('#' + id).dialog('close');
+}
+
+function customOverlayClose(){
+  $(".ui-widget-overlay").addClass("_close_on_click_out");
+}
+
+function removeCustomOverlayClose(){
+  $(".ui-widget-overlay").removeClass("_close_on_click_out");
 }

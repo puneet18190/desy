@@ -56,7 +56,7 @@ $(document).ready(function() {
         url: '/lessons/galleries/image'
       });
     } else {
-      $('#image_gallery').css('display', 'block');
+      $('#image_gallery').show();
     }
   });
   
@@ -109,14 +109,14 @@ $(document).ready(function() {
     $('#' + place_id + ' ._input_image_id').val(image_id);
     $('#' + place_id + ' ._input_align').val('0');
     closePopUp('dialog-image-gallery-' + image_id);
-    $('#image_gallery').css('display', 'none');
+    $('#image_gallery').hide();
     var image_url = $(this).data('url');
     var image_width = $(this).data('width');
     var image_height = $(this).data('height');
     var full_place = $('#' + place_id + ' ._full_image_in_slide');
     if(full_place.css('display') == 'none') {
-      full_place.css('display', 'block');
-      $('#' + place_id + ' ._empty_image_in_slide').css('display', 'none');
+      full_place.show();
+      $('#' + place_id + ' ._empty_image_in_slide').hide();
     }
     var old_mask = '_mask_x';
     var new_mask = '_mask_y';
@@ -139,7 +139,7 @@ $(document).ready(function() {
     img_tag.attr(orientation, orientation_val);
     $("#slide-numbers").show();
     $('#slide_in_lesson_editor_' + slide_id).siblings(".buttons").show();
-    $('#' + place_id + ' span').css('display', 'block');
+    $('#' + place_id + ' span').show();
     makeDraggable(place_id);
   });
   
@@ -158,8 +158,8 @@ $(document).ready(function() {
     $("#video_gallery").hide();
     var full_place = $('#' + place_id + ' ._full_video_in_slide');
     if(full_place.css('display') == 'none') {
-      full_place.css('display', 'block');
-      $('#' + place_id + ' ._empty_video_in_slide').css('display', 'none');
+      full_place.show();
+      $('#' + place_id + ' ._empty_video_in_slide').hide();
     }
     $('#' + place_id + ' ._full_video_in_slide source[type="video/mp4"]').attr('src', video_mp4);
     $('#' + place_id + ' ._full_video_in_slide source[type="video/webm"]').attr('src', video_webm);
@@ -173,7 +173,7 @@ $(document).ready(function() {
     var slide_id = obj.data('slide-id');
     var position = obj.data('position');
     if(obj.data('rolloverable')) {
-      $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').css('display', 'block');
+      $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').show();
     }
   });
   
@@ -182,7 +182,7 @@ $(document).ready(function() {
     var slide_id = obj.data('slide-id');
     var position = obj.data('position');
     if(obj.data('rolloverable')) {
-      $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').css('display', 'none');
+      $('#media_element_' + position + '_in_slide_' + slide_id + ' ._lesson_editor_rollover_content').hide();
     }
   });
   
@@ -226,11 +226,11 @@ function makeDraggable(place_id){
     distance: 10,
     start: function() {
       $('#' + place_id + ' a').data('rolloverable', false);
-      $('#' + place_id + ' span').css('display', 'none');
+      $('#' + place_id + ' span').hide();
     },
     stop: function() {
       $('#' + place_id + ' a').data('rolloverable', true);
-      $('#' + place_id + ' span').css('display', 'block');
+      $('#' + place_id + ' span').show();
       var thisDrag = $(this);
       var offset = thisDrag.css(side);
       if(parseInt(offset) > 0) {
