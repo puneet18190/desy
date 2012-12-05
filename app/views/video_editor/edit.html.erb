@@ -1,6 +1,6 @@
 <%= render :partial => 'video_editor/header', :locals => {:parameters => @parameters} %>
 
-<div class="mediaEditorVideoContainer">
+<div id="video_editor" class="mediaEditorVideoContainer">
   
   <%= render :partial => 'video_editor/preview_container', :locals => {:parameters => @parameters} %>
   
@@ -21,5 +21,8 @@
   
 </div>
 
-<div id="info_container" data-components-number="<%= @parameters[:components].count %>" style="display:none"></div>
+<div id="video_editor_mixed_gallery_container" class="mediaEditorVideoContainer" style="display:none" data-loaded="false"></div>
 
+<div id="video_editor_audio_gallery_container" class="mediaEditorVideoContainer" style="display:none" data-loaded="false"></div>
+
+<div id="info_container" data-components-number="<%= @parameters[:components].count %>" style="display:none"></div>
