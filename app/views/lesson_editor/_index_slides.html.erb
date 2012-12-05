@@ -6,8 +6,10 @@
     </div>
   </li>
 <% end %>
-<% if @slide_to %>
+<% if @current_slide %>
   <script type="text/javascript" charset="utf-8">
-    $("#slide-numbers li a:eq(<%=@slide_to %>)").trigger("click");
+    console.log("<%= @current_slide.position%>");
+    $("#slide-numbers li a:eq(<%= @current_slide.position %>)").trigger("click");
+    console.log($("#slide-numbers li a:eq(<%= @current_slide.position %>)").html());
   </script>
 <%end %>

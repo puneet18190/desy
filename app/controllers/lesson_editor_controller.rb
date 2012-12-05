@@ -56,9 +56,8 @@ class LessonEditorController < ApplicationController
   
   def add_slide
     if @ok
-      @lesson.add_slide @kind, (@slide.position + 1)
+      @current_slide = @lesson.add_slide @kind, (@slide.position + 1)
       @slides = @lesson.slides.order(:position)
-      @slide_to = @slide.position
     end
   end
   

@@ -1,9 +1,7 @@
 $(document).ready(function() {
   
   $("html.lesson-editor-layout ul#slides").css("margin-top",($(window).height() - 590)/2 + "px");
-
   $('#info_container').data('current-media-element-position', 1);
-
   
   initTinymce(); // init tinymce configuration and manage external toolbar toggle
   slideSortList("#slide-numbers"); // make sortable page number on top
@@ -40,6 +38,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._add_new_slide', function() {
+    hideNewSlideChoice();
     var kind = $(this).data('kind');
     var lesson_id = $('#info_container').data('lesson-id');
     var slide_id = $('#info_container').data('slide-id');
@@ -103,7 +102,6 @@ $(document).ready(function() {
     $('#' + place_id + ' ._input_image_id').val(image_id);
     $('#' + place_id + ' ._input_align').val('0');
     closePopUp('dialog-image-gallery-' + image_id);
-    $('.ui-widget-overlay').trigger("click"); // FIXME A CHE SERVE???
     var image_url = $(this).data('url');
     var image_width = $(this).data('width');
     var image_height = $(this).data('height');
@@ -360,7 +358,6 @@ function slideSortList(list){
 }
 
 function tinyMceCallbacks(inst){
-  console.log(inst.getBody().scrollHeight);
   if (inst.getBody().scrollHeight > 422){
     $(inst.getBody()).parentsUntil("table.mceLayout").css("border","1px solid red");
   }
