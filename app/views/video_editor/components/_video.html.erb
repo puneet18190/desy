@@ -4,7 +4,7 @@
     <div class="boxContentMediaElement">
       <%= image_tag component[:video].cover %>
       <%= render :partial => 'video_editor/component_menu', :locals => {:component => component, :position => position} %>
-			<div class="videoIcon _video_editor_component_icon"></div>
+      <div class="videoIcon"></div>
     </div>
     <%= hidden_field_tag "type_#{position}", component[:type] %>
     <%= hidden_field_tag "video_#{position}", component[:video].id %>
