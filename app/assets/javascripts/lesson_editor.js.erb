@@ -312,8 +312,11 @@ function lessonEditorTooltip(list){
 }
 
 function hideNewSlideChoice(){
-  $('li.slides.active .box.new_slide').remove();
-  $('li.slides.active ._hide_add_new_slide_options').removeAttr("class").addClass("addButtonOrange _add_slide _add_new_slide_options");
+  var activeSlide = $('li.slides.active');
+  var kind= $("#slide-numbers li a.active").data("kind");
+  activeSlide.find('div.slide-content').addClass(kind);
+  activeSlide.find('.box.new_slide').remove();
+  activeSlide.find('._hide_add_new_slide_options').removeAttr("class").addClass("addButtonOrange _add_slide _add_new_slide_options");
 }
 
 function initLessonEditorPositions(){
