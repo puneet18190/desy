@@ -1,5 +1,5 @@
-$('#video_editor').css('display', 'none');
-$('#video_editor_mixed_gallery_container').css('display', 'block');
+$('#video_editor').hide();
+$('#video_editor_mixed_gallery_container').show();
 $('#video_editor_mixed_gallery_container').html('<%= j(render(:partial => 'galleries/mixed_video_image_text', :locals => {:images => @images, :videos => @videos})) %>');
 $('#video_editor_mixed_gallery_container').data('loaded', true);
 $('._select_video_from_gallery').addClass('_add_video_component_to_video_editor').removeClass('_select_video_from_gallery');
