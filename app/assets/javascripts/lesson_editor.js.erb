@@ -31,7 +31,7 @@ $(document).ready(function() {
     var activeButton = slideN.siblings(".buttons");
     activeButton.find(".add").addClass("active");
     activeButton.find("._add_new_slide_options").removeAttr("class").addClass("minusButtonOrange _hide_add_slide _hide_add_new_slide_options");
-    activeButton.find("a:not(._hide_add_slide)").hide();
+    activeButton.find("a:not(._hide_add_slide)").css("visibility","hidden");
     $("body").on("click","._hide_add_new_slide_options",function(){
       hideNewSlideChoice();
     });
@@ -42,6 +42,9 @@ $(document).ready(function() {
     var kind = $(this).data('kind');
     var lesson_id = $('#info_container').data('lesson-id');
     var slide_id = $('#info_container').data('slide-id');
+    console.log("kind: "+kind);
+    console.log("lesson_id: "+lesson_id);
+    console.log("slide_id: "+slide_id);
     $.ajax({
       type: 'post',
       url: '/lessons/' + lesson_id + '/slides/' + slide_id + '/kind/' + kind + '/create/'
@@ -325,7 +328,7 @@ function hideNewSlideChoice(){
   activeSlide.find('div.slide-content').addClass(kind);
   activeSlide.find('.box.new_slide').remove();
   activeSlide.find('._hide_add_new_slide_options').removeAttr("class").addClass("addButtonOrange _add_slide _add_new_slide_options");
-  activeSlide.find(".buttons a").show();
+  activeSlide.find(".buttons a").css("visibility","visible");
 }
 
 function initLessonEditorPositions(){

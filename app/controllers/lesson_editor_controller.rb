@@ -58,6 +58,7 @@ class LessonEditorController < ApplicationController
     if @ok
       @current_slide = @lesson.add_slide @kind, (@slide.position + 1)
       @slides = @lesson.slides.order(:position)
+      logger.info "\n\n\n\n --- lesson: #{@lesson.id} --- slide: #{@slide.id} --- slide_pos: #{@slide.position} --- slide_to: #{@current_slide.position}\n\n\n\n"
     end
   end
   
