@@ -295,10 +295,8 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._close_mixed_gallery_in_video_editor', function() {
-    $('#video_editor_mixed_gallery_container').hide('fade', {}, 500, function() {
-      $('#video_editor_mixed_gallery_container').css('display', 'none');
-      $('#video_editor').css('display', 'block');
-    });
+    $('#video_editor_mixed_gallery_container').css('display', 'none');
+    $('#video_editor').css('display', 'block');
   });
   
   
@@ -705,12 +703,10 @@ $(document).ready(function() {
   
   $('body').on('mouseover', '._video_editor_component', function() {
     $('#' + this.id + ' ._video_editor_component_menu').css('display', 'block');
-    $('#' + this.id + ' ._video_editor_component_icon').css('display', 'none');
   });
   
   $('body').on('mouseout', '._video_editor_component', function() {
     $('#' + this.id + ' ._video_editor_component_menu').css('display', 'none');
-    $('#' + this.id + ' ._video_editor_component_icon').css('display', 'block');
   });
   
   $('body').on('mouseover', '._new_component_in_video_editor_hover', function() {
@@ -722,17 +718,32 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._new_component_in_video_editor_button', function() {
+    var father = $(this).parent();
+    if($(this).hasClass('_replace_component')) {
+      $('#info_container').data('replacing-component', true);
+      $('#info_container').data('current-component', 'video_component_' + father.data('position'));
+    }
     if($('#video_editor_mixed_gallery_container').data('loaded')) {
-      $('#video_editor').hide('fade', {}, 500, function() {
-        $('#video_editor').css('display', 'none');
-        $('#video_editor_mixed_gallery_container').css('display', 'block');
-      });
+      $('#video_editor').css('display', 'none');
+      $('#video_editor_mixed_gallery_container').css('display', 'block');
     } else {
       $.ajax({
         type: 'get',
         url: '/videos/galleries'
       });
     }
+  });
+  
+  $('body').on('click', '#video_editor_mixed_gallery_container ._switch_video', function() {
+    switchToOtherGalleryInMixedGalleryInVideoEditor('._videos');
+  });
+  
+  $('body').on('click', '#video_editor_mixed_gallery_container ._switch_image', function() {
+    switchToOtherGalleryInMixedGalleryInVideoEditor('._images');
+  });
+  
+  $('body').on('click', '#video_editor_mixed_gallery_container ._switch_text', function() {
+    switchToOtherGalleryInMixedGalleryInVideoEditor('._texts');
   });
   
   
