@@ -11,6 +11,7 @@ function showSendLessonLinkPopUp(lesson_id) {
     obj.dialog({
       modal: true,
       resizable: false,
+      draggable: false,
       width: 654,
       height: 400,
       show: "fade",
@@ -31,6 +32,7 @@ function showVirtualClassroomQuickSelectPopUp(content) {
     obj.dialog({
       modal: true,
       resizable: false,
+      draggable: false,
       width: 920,
       show: "fade",
       hide: "fade",
@@ -63,6 +65,7 @@ function showTimedPopUp(content, id) {
     obj.dialog({
       modal: true,
       resizable: false,
+      draggable: false,
       width: 485,
       show: "fade",
       hide: "fade",
@@ -96,6 +99,7 @@ function showMediaElementInfoPopUp(media_element_id) {
     obj.dialog({
       modal: true,
       resizable: false,
+      draggable: false,
       width: 874,
       show: "fade",
       hide: "fade",
@@ -124,6 +128,7 @@ function showLoadMediaElementPopUp() {
     obj.dialog({
       modal: true,
       resizable: false,
+      draggable: false,
       width: 760,
       show: "fade",
       hide: "fade"
@@ -142,6 +147,7 @@ function showImageInGalleryPopUp(id) {
       modal: true,
       resize: 'auto',
       resizable: false,
+      draggable: false,
       maxWidth: 440,
       maxHeight: 480,
       show: "fade",
@@ -165,10 +171,10 @@ function showVideoInGalleryPopUp(id) {
     obj.dialog({
       closeOnEscape: true,
       modal: true,
-      resize: 'auto',
       resizable: false,
-      maxWidth: 440,
-      maxHeight: 480,
+      draggable: false,
+      width: 470,
+      height: 440,
       show: "fade",
       hide: "fade",
       open: function(){
@@ -197,6 +203,7 @@ function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_
     obj.dialog({
       modal: true,
       resizable: false,
+      draggable: false,
       width: 485,
       show: "fade",
       hide: "fade",
