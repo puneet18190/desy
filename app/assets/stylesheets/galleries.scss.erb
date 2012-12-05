@@ -1,3 +1,12 @@
+@mixin headerGallery {
+  display:block;
+  padding: 20px;
+  width: 860px;
+  h3{
+    color: #666;
+    padding:5px 10px;
+	}
+}
 @mixin ulGallery {
   ul {
     padding: 0;
@@ -50,23 +59,15 @@
 		opacity:1;
   }
 }
-.gallery-header{
-  display:block;
-  padding: 20px;
-  width: 860px;
-	position:absolute;
-  h3{
-    color: #666;
-    padding:5px 10px;
-	}
-}
+
 .image_gallery {
-  padding:60px 40px;
   background-color: black;
-  height: 470px;
-  width: 820px;
+  height: 590px;
+  width: 900px;
   display:block;
-  outline:1px solid red;
+  .gallery-header{
+    @include headerGallery;
+  }
   @include ulGallery;
   @include galleryFooter;
   
@@ -99,7 +100,9 @@
   height: 590px;
   width: 900px;
   display:block;
-  
+  .gallery-header{
+    @include headerGallery;  
+	}
   .audioTrackCompact {
 	  width:840px;
 		
@@ -178,17 +181,18 @@
 
 
 .video_gallery {
-  padding:60px 40px;
-  background-color: black;
-  height: 470px;
-  width: 820px;
-  display:block;
   
+  background-color: black;
+  height: 590px;
+  width: 900px;
+  display:block;
+  .gallery-header{
+    @include headerGallery;
+  }
   
   @include ulGallery;
   @include galleryFooter;
-  
-	
+
   &.video-kind {
     ul{
       li{
