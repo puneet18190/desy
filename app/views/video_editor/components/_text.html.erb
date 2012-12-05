@@ -9,7 +9,7 @@
 
 <div class="lista _video_editor_component" id="video_component_<%= position %>">
   <div class="contatore"><%= position %> <div class="textIcon"></div></div>
-  <div class="boxMediaElement">
+  <div class="boxMediaElement _video_editor_component_hover">
     <%= render :partial => 'video_editor/components/thumbs/text', :locals => locals_for_text_thumb %>
     <%= hidden_field_tag "type_#{position}", component[:type] %>
     <%= hidden_field_tag "content_#{position}", component[:content] %>
