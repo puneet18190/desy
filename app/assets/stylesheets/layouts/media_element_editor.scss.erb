@@ -75,9 +75,10 @@ html.media_element_editor-layout {
 		
 	}
 	@mixin iconeTipoElemento {
+	  background-size: 5.7em 17em;
 	  background-image: url(<%= asset_path 'icone-etichette.svg' %>);
     background-repeat: no-repeat;
-    background-size: 5.7em 17em;
+    background-position:0 0;
 		position:absolute;
 		right:1px;
 		margin-right:0px;
@@ -113,15 +114,27 @@ html.media_element_editor-layout {
 				position:relative;
 				.textIcon {
 				  @include iconeTipoElemento;
-					background-position: 0 -11.7em;
+					background-position: -1em -11.9em;
+					padding:0;
+					width:4em;
+					height:4em;
+					
 				}
 				.photoIcon {
 				  @include iconeTipoElemento;
-					background-position: 0 -5.8em;
+					background-position: -1em -5.8em;
+					padding:0;
+					
+					width:4em;
+					height:4em;
 				}
 				.videoIcon {
+				  padding:0;
 				  @include iconeTipoElemento;
-					background-position: 0 0;
+					background-position: -1em -0.5em;
+					
+					width:4em;
+					height:4em;
 				}
 			}
 			.separatore {
@@ -135,6 +148,9 @@ html.media_element_editor-layout {
 		  margin: 0px;
 		  display:inline-block;
 			width:156px;
+			.contatore {
+			  margin-bottom:6px;
+			}
 		}
 	/*layout elementi sull'editor elementi*/
 	@mixin layoutIconElements {
@@ -213,6 +229,7 @@ html.media_element_editor-layout {
 		    background-size: 12em 18em;
 				&.cutButton {
 				  background-position: -6em -12em;
+					margin-right:2em;
 					&:hover {
 					  background-position: 0 -12em;
 						opacity:1;
