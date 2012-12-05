@@ -720,7 +720,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._new_component_in_video_editor_button', function() {
-    var father = $(this).parent();
+    var father = $(this).parent().parent().parent().parent();
     if($(this).hasClass('_replace_component')) {
       $('#info_container').data('replacing-component', true);
       $('#info_container').data('current-component', 'video_component_' + father.data('position'));

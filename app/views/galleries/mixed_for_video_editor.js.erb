@@ -4,4 +4,17 @@ $('#video_editor_mixed_gallery_container').html('<%= j(render(:partial => 'galle
 $('#video_editor_mixed_gallery_container').data('loaded', true);
 $('._select_video_from_gallery').addClass('_add_video_component_to_video_editor').removeClass('_select_video_from_gallery');
 $('._select_image_from_gallery').addClass('_add_image_component_to_video_editor').removeClass('_select_image_from_gallery');
+
+var temporary_invisible_div = '<div class="_temporary" style="display:none">';
+
+<% @images.each do |image| %>
+  var mini_image = '<%= j(render(:partial => 'video_editor/components/thumbs/image', :locals => {:image => image})) %>';
+  $('dialog-image-gallery-<%= image.id %>').append(temporary_invisible_div + mini_image + '</div>');
+<% end %>
+
+<% @videos.each do |video| %>
+  var mini_video = '<%= j(render(:partial => 'video_editor/components/thumbs/video', :locals => {:video => video})) %>';
+  $('dialog-video-gallery-<%= video.id %>').append(temporary_invisible_div + mini_video + '</div>');
+<% end %>
+
 initializeVideoEditorMixedGallery();
