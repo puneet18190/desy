@@ -1,11 +1,7 @@
 <div class="lista _video_editor_component" id="video_component_<%= position %>">
-  <div class="contatore"><%= position %></div>
+  <div class="contatore"><%= position %> <div class="videoIcon"></div></div>
   <div class="boxMediaElement">
-    <div class="boxContentMediaElement">
-      <%= image_tag component[:video].cover %>
-      <%= render :partial => 'video_editor/component_menu', :locals => {:component => component, :position => position} %>
-      <div class="videoIcon"></div>
-    </div>
+    <%= render :partial=> "video_editor/components/thumbs/video", :locals=>{:component=>component,:position=>position} %>
     <%= hidden_field_tag "type_#{position}", component[:type] %>
     <%= hidden_field_tag "video_#{position}", component[:video].id %>
     <%= hidden_field_tag "from_#{position}", component[:from] %>

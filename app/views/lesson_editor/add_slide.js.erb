@@ -8,6 +8,9 @@ initLessonEditorPositions(); // center and align slides offset
 lessonEditorTooltip('#slide-numbers li'); // show tooltip on top list mouseover
 
 scrollSlideTo('#slide-numbers li a:not(._add_slide)'); // scroll to slide N on top list click
+$("#slide-numbers li a.active").removeClass("active");
+$("#slide-numbers li a:eq(<%=@slide_to%>)").addClass("active");
+
 // apply mask to each slide image container
 masked = $("._mask_x a:not('._choose')");
 masked.each(function(index) {
