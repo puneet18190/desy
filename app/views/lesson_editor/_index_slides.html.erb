@@ -8,8 +8,10 @@
 <% end %>
 <% if @current_slide %>
   <script type="text/javascript" charset="utf-8">
-    console.log("<%= @current_slide.position%>");
-    $("#slide-numbers li a:eq(<%= @current_slide.position %>)").trigger("click");
-    console.log($("#slide-numbers li a:eq(<%= @current_slide.position %>)").html());
+    console.log("into");
+    console.log("<%=@current_slide.position%>");
+    $("#slide-numbers li a:first").trigger("click");
+    $("#slide-numbers li a:nth-child(<%= @current_slide.position %>)").trigger("click");
+    console.log($("#slide-numbers li a:nth-child(<%= @current_slide.position %>)").text());
   </script>
 <%end %>
