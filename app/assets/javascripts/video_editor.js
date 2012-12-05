@@ -19,3 +19,12 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
     });
   }
 }
+
+function removeComponentInVideoEditor(position) {
+}
+
+function addComponentInVideoEditor(component, position) {
+
+// mettere flash
+
+}
