@@ -131,7 +131,32 @@ function showLoadMediaElementPopUp() {
   }
 }
 
-function showMediaElementInGalleryPopUp(id) {
+function showImageInGalleryPopUp(id) {
+  var obj = $('#' + id);
+  if(obj.data('dialog')) {
+    obj.dialog('open');
+  } else {
+    obj.show();
+    obj.dialog({
+      closeOnEscape: true,
+      modal: true,
+      resize: 'auto',
+      resizable: false,
+      maxWidth: 440,
+      maxHeight: 480,
+      show: "fade",
+      hide: "fade",
+      open: function(){
+        customOverlayClose();
+      },
+      beforeClose: function(){
+        removeCustomOverlayClose();
+      }
+    });
+  }
+}
+
+function showVideoInGalleryPopUp(id) {
   var obj = $('#' + id);
   if(obj.data('dialog')) {
     obj.dialog('open');
