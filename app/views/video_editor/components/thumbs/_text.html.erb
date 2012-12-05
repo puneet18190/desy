@@ -1,0 +1,4 @@
+<div class="boxContentMediaElementText background_color_<%= component[:background_color] %>">
+  <p class="color_<%= component[:text_color] %>"><%= component[:content] %></p>
+  <%= render :partial => 'video_editor/component_menu', :locals => {:component => component, :position => position} %>
+</div>

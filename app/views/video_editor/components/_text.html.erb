@@ -1,11 +1,7 @@
 <div class="lista _video_editor_component" id="video_component_<%= position %>">
-  <div class="contatore"><%= position %></div>
-  <div class="boxMediaElement background_color_<%= component[:background_color] %>">
-    <div class="boxContentMediaElement">
-      <p class="color_<%= component[:text_color] %>"><%= component[:content] %></p>
-      <%= render :partial => 'video_editor/component_menu', :locals => {:component => component, :position => position} %>
-      <div class="textIcon"></div>
-    </div>
+  <div class="contatore"><%= position %> <div class="textIcon"></div></div>
+  <div class="boxMediaElement ">
+    <%= render :partial=> "video_editor/components/thumbs/text", :locals=>{:component=>component,:position=>position} %>
     <%= hidden_field_tag "type_#{position}", component[:type] %>
     <%= hidden_field_tag "content_#{position}", component[:content] %>
     <%= hidden_field_tag "background_color_#{position}", component[:background_color] %>
