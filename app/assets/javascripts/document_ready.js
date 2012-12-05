@@ -721,9 +721,13 @@ $(document).ready(function() {
   
   $('body').on('click', '._new_component_in_video_editor_button', function() {
     var father = $(this).parent().parent().parent().parent();
+    var infos = $('#info_container');
     if($(this).hasClass('_replace_component')) {
-      $('#info_container').data('replacing-component', true);
-      $('#info_container').data('current-component', 'video_component_' + father.data('position'));
+      infos.data('replacing-component', true);
+      infos.data('current-component', 'video_component_' + father.data('position'));
+    } else {
+      infos.data('replacing-component', false);
+      infos.data('current-component', 'video_component_' + (infos.data('components-number') + 1));
     }
     if($('#video_editor_mixed_gallery_container').data('loaded')) {
       $('#video_editor').hide();
