@@ -31,6 +31,10 @@ $(document).ready(function() {
     var html_to_be_replaced = $('#new_slide_option_list').html();
     slideN.prepend(html_to_be_replaced);
     slideN.siblings(".buttons").find(".add").addClass("active");
+    $(this).removeAttr("class").addClass("minusButtonOrange _hide_add_slide _hide_add_new_slide_options");
+    $("body").on("click","._hide_add_new_slide_options",function(){
+      hideNewSlideChoice();
+    });
   });
   
   $('body').on('click', '._add_new_slide', function() {
@@ -307,6 +311,11 @@ function lessonEditorTooltip(list){
   });
 }
 
+function hideNewSlideChoice(){
+  $('li.slides.active .box.new_slide').remove();
+  $('li.slides.active ._hide_add_new_slide_options').removeAttr("class").addClass("addButtonOrange _add_slide _add_new_slide_options");
+}
+
 function initLessonEditorPositions(){
   WW = parseInt($(window).outerWidth());
   WH = parseInt($(window).outerHeight());
@@ -397,6 +406,19 @@ function imgRealSize(img) {
 	}
 	return { 'width': $img.prop('naturalWidth'), 'height': $img.prop('naturalHeight') }
 }
+
+function slideSaved(){
+  $("body").prepend("<span class='_saved'></span>");
+  centerThis("._saved");
+  $("._saved").fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
+}
+
+function slideError(){
+  $("body").prepend("<span class='_slide_error'></span>");
+  centerThis("._slide_error");
+  $("._slide_error").fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
+}
+
 
 function centerThis(div) { 
         var winH = $(window).height(); 

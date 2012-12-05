@@ -128,6 +128,7 @@ $button-size: 6em;
 		opacity:1;
 	 }
 }
+
 .deleteButtonOrange {
   @include  menuCondivisoElementLessonEditor(0.75em);
 	background-position: 0 0;
@@ -137,6 +138,7 @@ $button-size: 6em;
 		opacity:1;
 	}
 }
+
 .addButtonOrange {
   @include  menuCondivisoElementLessonEditor(0.75em);
 	background-position: 0 (-$button-size);
@@ -146,6 +148,18 @@ $button-size: 6em;
 		opacity:1;
 	}
 }
+
+.minusButtonOrange {
+  @include  menuCondivisoElementLessonEditor(0.75em);
+	background-position: (-$button-size) (-$button-size*8);
+	opacity:1;
+	&:hover, &.current {
+	  background-position: 0 (-$button-size*8);
+		opacity:0.2;
+	}
+}
+
+
 .infoButtonOrange {
   @include  menuCondivisoElementLessonEditor(0.75em);
 	background-position: 0 (-$button-size*2);

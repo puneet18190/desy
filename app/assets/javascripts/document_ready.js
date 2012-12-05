@@ -294,6 +294,13 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('click', '._close_mixed_gallery_in_video_editor', function() {
+    $('#video_editor_mixed_gallery_container').hide('fade', {}, 500, function() {
+      $('#video_editor_mixed_gallery_container').css('display', 'none');
+      $('#video_editor').css('display', 'block');
+    });
+  });
+  
   
   // LESSON BUTTONS
   
@@ -712,6 +719,20 @@ $(document).ready(function() {
   
   $('body').on('mouseout', '._new_component_in_video_editor_hover', function() {
     $('._new_component_in_video_editor_hover a').removeClass('current');
+  });
+  
+  $('body').on('click', '._new_component_in_video_editor_button', function() {
+    if($('#video_editor_mixed_gallery_container').data('loaded')) {
+      $('#video_editor').hide('fade', {}, 500, function() {
+        $('#video_editor').css('display', 'none');
+        $('#video_editor_mixed_gallery_container').css('display', 'block');
+      });
+    } else {
+      $.ajax({
+        type: 'get',
+        url: '/videos/galleries'
+      });
+    }
   });
   
   

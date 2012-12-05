@@ -1,17 +1,22 @@
 function initializeImageGallery() {
-  $('#scroll_pane_in_image_gallery').jScrollPane({
+  $('#image_gallery_content > div').jScrollPane({
     autoReinitialise: true
   });
 }
 
 function initializeAudioGallery() {
-  $('#scroll_pane_in_audio_gallery').jScrollPane({
+  $('#audio_gallery_content > div').jScrollPane({
     autoReinitialise: true
   });
 }
 
 function initializeVideoGallery() {
-  $('#scroll_pane_in_video_gallery').jScrollPane({
+  $('#video_gallery_content > div').jScrollPane({
     autoReinitialise: true
   });
+}
+
+function initializeVideoEditorMixedGallery() {
+  initializeVideoGallery();
+  initializeImageGallery();
 }
