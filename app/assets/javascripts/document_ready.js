@@ -294,6 +294,12 @@ $(document).ready(function() {
   });
   
   
+  $('body').on('click', "._close_on_click_out", function(){
+    $(".ui-dialog-content:visible").each(function(){
+      closePopUp($(this).attr("id"));
+    });
+  });
+  
   // LESSON BUTTONS
   
   $('body').on('click', '._Lesson_button_add', function(e) {

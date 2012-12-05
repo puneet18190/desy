@@ -145,7 +145,13 @@ function showMediaElementInGalleryPopUp(id) {
       maxWidth: 440,
       maxHeight: 480,
       show: "fade",
-      hide: "fade"
+      hide: "fade",
+      open: function(){
+        customOverlayClose();
+      },
+      close: function(){
+        removeCustomOverlayClose();
+      }
     });
   }
 }
@@ -176,4 +182,12 @@ function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_
 
 function closePopUp(id) {
   $('#' + id).dialog('close');
+}
+
+function customOverlayClose(){
+  $(".ui-widget-overlay").addClass("_close_on_click_out");
+}
+
+function removeCustomOverlayClose(){
+  $(".ui-widget-overlay").removeClass("_close_on_click_out");
 }
