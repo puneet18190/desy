@@ -50,10 +50,14 @@ $(document).ready(function() {
   
   $('body').on('click', '._show_image_gallery_in_lesson_editor', function() {
     $('#info_container').data('current-media-element-position', $(this).data('position'));
-    $.ajax({
-      type: 'get',
-      url: '/lessons/galleries/image'
-    });
+    if($('#image_gallery').length == 0) {
+      $.ajax({
+        type: 'get',
+        url: '/lessons/galleries/image'
+      });
+    } else {
+      $('#image_gallery').css('display', 'block');
+    }
   });
   
   $('body').on('click', '._show_audio_gallery_in_lesson_editor', function() {
@@ -66,27 +70,31 @@ $(document).ready(function() {
   
   $('body').on('click', '._show_video_gallery_in_lesson_editor', function() {
     $('#info_container').data('current-media-element-position', $(this).data('position'));
-    $.ajax({
-      type: 'get',
-      url: '/lessons/galleries/video'
-    });
+    if($('#video_gallery').length == 0) {
+      $.ajax({
+        type: 'get',
+        url: '/lessons/galleries/video'
+      });
+    } else {
+      $('#video_gallery').show();
+    }
   });
   
   $('body').on('click', '._close_image_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
-    $('#image_gallery').remove();
+    $('#image_gallery').hide();
     enableSlidesInLessonEditor();
   });
   
   $('body').on('click', '._close_video_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
-    $('#video_gallery').remove();
+    $('#video_gallery').hide();
     enableSlidesInLessonEditor();
   });
   
   $('body').on('click', '._close_audio_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
-    $('#audio_gallery').remove();
+    $('#audio_gallery').hide();
     enableSlidesInLessonEditor();
   });
   
@@ -96,12 +104,12 @@ $(document).ready(function() {
     var kind = $('#info_container').data('kind');
     var position = $('#info_container').data('current-media-element-position');
     var image_id = $(this).data('image-id');
-    $("#image_gallery").remove();
     $('#slide_in_lesson_editor_' + slide_id).children().show();
     var place_id = 'media_element_' + position + '_in_slide_' + slide_id;
     $('#' + place_id + ' ._input_image_id').val(image_id);
     $('#' + place_id + ' ._input_align').val('0');
     closePopUp('dialog-image-gallery-' + image_id);
+    $('#image_gallery').css('display', 'none');
     var image_url = $(this).data('url');
     var image_width = $(this).data('width');
     var image_height = $(this).data('height');
@@ -143,11 +151,11 @@ $(document).ready(function() {
     var video_id = $(this).data('video-id');
     var video_mp4 = $(this).data('mp4');
     var video_webm = $(this).data('webm');
-    $("#video_gallery").remove();
     $('#slide_in_lesson_editor_' + slide_id).children().show();
     var place_id = 'media_element_' + position + '_in_slide_' + slide_id;
     $('#' + place_id + ' ._input_video_id').val(video_id);
     closePopUp('dialog-video-gallery-' + video_id);
+    $("#video_gallery").hide();
     var full_place = $('#' + place_id + ' ._full_video_in_slide');
     if(full_place.css('display') == 'none') {
       full_place.css('display', 'block');

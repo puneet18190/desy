@@ -26,17 +26,12 @@ or ABC to enter text.</p>
 	  <div class="menuTextImages upper">
 	    <%= t 'captions.click_image_to_add_text' %>
 	  </div>
-	  <div class="menuServiceImages">
-	  <ul>
-		  <li>
-			  <a href="#" id="_editor_crop">CROP</a>
-			</li>
-      <li>
-        <a href="#" id="_editor_cancel">CANCEL</a>
-      </li>
-		</ul>
-		</div>
-
+		<div class="menuServiceImages">
+	    <div class="bottoniVerdi fltlft">
+	      <a  href="#" id="_editor_crop">CROP</a>
+			  <a href="#" id="_editor_cancel">CANCEL</a>
+      </div>
+   </div>
 	</div>
   <div class="menuFooterEditorElement">
 	  <p>Original image size: <%= @image.width %>x<%= @image.height %>px</p>

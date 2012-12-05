@@ -140,8 +140,8 @@ function showMediaElementInGalleryPopUp(id) {
     obj.dialog({
       closeOnEscape: true,
       modal: true,
-      resizable: true,
-      resize:"auto",
+      resize: 'auto',
+      resizable: false,
       maxWidth: 440,
       maxHeight: 480,
       show: "fade",

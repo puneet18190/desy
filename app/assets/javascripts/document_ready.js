@@ -740,6 +740,18 @@ $(document).ready(function() {
     switchToOtherGalleryInMixedGalleryInVideoEditor('._texts');
   });
   
+  $('body').on('click', '._add_video_component_to_video_editor', function() {
+    alert('stai aggiungendo il video');
+  });
+  
+  $('body').on('click', '._add_image_component_to_video_editor', function() {
+    alert('stai aggiungendo la immagine');
+  });
+  
+  $('body').on('click', '._add_audio_track_to_video_editor', function() {
+    alert('stai aggiungendo la traccia audio');
+  });
+  
   
   // PLAYERS
   
