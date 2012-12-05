@@ -1,1 +1,7 @@
-alert('eccomi');
+$('#video_editor').hide('fade', {}, 500, function() {
+  $('#video_editor').css('display', 'none');
+  $('#video_editor_mixed_gallery_container').css('display', 'block');
+  $('#video_editor_mixed_gallery_container').html('<%= j(render(:partial => 'galleries/mixed_video_image_text', :locals => {:images => @images, :videos => @videos})) %>');
+  $('#video_editor_mixed_gallery_container').data('loaded', true);
+  initializeVideoEditorMixedGallery();
+});
