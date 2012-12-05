@@ -75,7 +75,7 @@ function initializePlaylist() {
   $('#virtual_classroom_playlist').droppable({
     accept: '._virtual_classroom_lesson',
     drop: function(event, ui) {
-      ui.helper.css('display', 'none');
+      ui.helper.hide();
       ui.helper.addClass('_lesson_dropped');
       $.ajax({
         type: 'post',

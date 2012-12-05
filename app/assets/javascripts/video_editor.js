@@ -2,7 +2,7 @@ function initializeVideoEditor() {
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true
   });
-  $('._video_editor_component_menu').css('display', 'none');
+  $('._video_editor_component_menu').hide();
 }
 
 function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
@@ -14,8 +14,8 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
       }
     });
     $(big_selector).hide('fade', {}, 500, function() {
-      $(this).css('display', 'none');
-      $('#video_editor_mixed_gallery_container ' + type).css('display', 'block');
+      $(this).hide();
+      $('#video_editor_mixed_gallery_container ' + type).show();
     });
   }
 }
