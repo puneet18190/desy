@@ -149,7 +149,7 @@ function showMediaElementInGalleryPopUp(id) {
       open: function(){
         customOverlayClose();
       },
-      close: function(){
+      beforeClose: function(){
         removeCustomOverlayClose();
       }
     });
