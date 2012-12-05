@@ -735,6 +735,18 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('click', '#video_editor_mixed_gallery_container ._switch_video', function() {
+    switchToOtherGalleryInMixedGalleryInVideoEditor('._videos');
+  });
+  
+  $('body').on('click', '#video_editor_mixed_gallery_container ._switch_image', function() {
+    switchToOtherGalleryInMixedGalleryInVideoEditor('._images');
+  });
+  
+  $('body').on('click', '#video_editor_mixed_gallery_container ._switch_text', function() {
+    switchToOtherGalleryInMixedGalleryInVideoEditor('._texts');
+  });
+  
   
   // PLAYERS
   
