@@ -9,12 +9,12 @@ var temporary_invisible_div = '<div class="_temporary" style="display:none">';
 
 <% @images.each do |image| %>
   var mini_image = '<%= j(render(:partial => 'video_editor/components/thumbs/image', :locals => {:image => image})) %>';
-  $('dialog-image-gallery-<%= image.id %>').append(temporary_invisible_div + mini_image + '</div>');
+  $('#dialog-image-gallery-<%= image.id %>').append(temporary_invisible_div + mini_image + '</div>');
 <% end %>
 
 <% @videos.each do |video| %>
   var mini_video = '<%= j(render(:partial => 'video_editor/components/thumbs/video', :locals => {:video => video})) %>';
-  $('dialog-video-gallery-<%= video.id %>').append(temporary_invisible_div + mini_video + '</div>');
+  $('#dialog-video-gallery-<%= video.id %>').append(temporary_invisible_div + mini_video + '</div>');
 <% end %>
 
 initializeVideoEditorMixedGallery();
