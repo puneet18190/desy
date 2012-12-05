@@ -290,7 +290,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._close_mixed_gallery_in_video_editor', function() {
     $('#video_editor_mixed_gallery_container').hide();
-    $('#video_editor').show();
+    $('#video_editor').css('display', 'inline-block');
   });
   
   
@@ -701,12 +701,14 @@ $(document).ready(function() {
   
   initializeVideoEditor();
   
-  $('body').on('mouseover', '._video_editor_component', function() {
-    $('#' + this.id + ' ._video_editor_component_menu').show();
+  $('body').on('mouseover', '._video_editor_component_hover', function() {
+    var father = $(this).parent();
+    $('#' + father.attr('id') + ' ._video_editor_component_menu').show();
   });
   
-  $('body').on('mouseout', '._video_editor_component', function() {
-    $('#' + this.id + ' ._video_editor_component_menu').hide();
+  $('body').on('mouseout', '._video_editor_component_hover', function() {
+    var father = $(this).parent();
+    $('#' + father.attr('id') + ' ._video_editor_component_menu').hide();
   });
   
   $('body').on('mouseover', '._new_component_in_video_editor_hover', function() {
@@ -718,14 +720,14 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._new_component_in_video_editor_button', function() {
-    var father = $(this).parent();
+    var father = $(this).parent().parent().parent().parent();
     if($(this).hasClass('_replace_component')) {
       $('#info_container').data('replacing-component', true);
       $('#info_container').data('current-component', 'video_component_' + father.data('position'));
     }
     if($('#video_editor_mixed_gallery_container').data('loaded')) {
       $('#video_editor').hide();
-      $('#video_editor_mixed_gallery_container').show();
+      $('#video_editor_mixed_gallery_container').css('display', 'inline-block');
     } else {
       $.ajax({
         type: 'get',
