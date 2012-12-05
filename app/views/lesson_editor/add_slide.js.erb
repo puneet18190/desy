@@ -6,8 +6,8 @@ slideSortList("#slide-numbers"); // make sortable page number on top
 $("#lesson_subject").selectbox(); // select subject in lesson new/edit views
 initLessonEditorPositions(); // center and align slides offset
 lessonEditorTooltip('#slide-numbers li'); // show tooltip on top list mouseover
-scrollSlideTo('#slide-numbers li a:not(._add_slide)'); // scroll to slide N on top list click
 
+scrollSlideTo('#slide-numbers li a:not(._add_slide)'); // scroll to slide N on top list click
 // apply mask to each slide image container
 masked = $("._mask_x a:not('._choose')");
 masked.each(function(index) {
@@ -16,6 +16,4 @@ masked.each(function(index) {
 
 $(".slide-content.cover .title").css("margin-left","auto");
 
-$("body").prepend("<span class='_saved'></span>");
-centerThis("._saved");
-$("._saved").fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
+slideSaved();

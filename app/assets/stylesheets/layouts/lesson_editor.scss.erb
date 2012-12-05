@@ -55,7 +55,7 @@ html.lesson-editor-layout{
 		position:absolute;
     left:0px;
     top:0px;
-    z-index:999;
+    z-index:9999999;
   }
 
   #slide-numbers {
@@ -70,11 +70,12 @@ html.lesson-editor-layout{
         height: 14px;
         padding-top: 1px;
         margin-right: 10px;
-        border: 1px solid #4b4b4b;
-        color: #5f5f5f;
+        border: 1px solid rgba(75,75,75,1);
+        color: rgba(95,95,95,1);
         text-align: center;
         font-size: 1em;
-				background-color:#2d2d2d;
+				background-color: rgba(45,45,45,0.5);
+				
         &.add-small{
           text-indent: -9999999px;
           border:none;
@@ -114,7 +115,7 @@ html.lesson-editor-layout{
   .slide-tooltip {
     width: 300px;
     display: none;
-		z-index:1000;
+		z-index:9999999999;
     margin: 20px 0 0 -27px;
     position: absolute;
     padding: 20px 20px 25px 25px;
@@ -207,7 +208,7 @@ html.lesson-editor-layout{
         width: 280px;
         position: absolute;
         top: 168px;
-        z-index:999999;
+        z-index:9999;
         h2{
           color: rgba(255,255,255,1);
         }
@@ -805,7 +806,7 @@ html.lesson-editor-layout{
         
         .new_slide{
           position:absolute;
-          z-index:99999999;
+          z-index:9999;
           height: 570px;
           width: 860px;
           background-color: $orange;

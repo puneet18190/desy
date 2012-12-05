@@ -1,5 +1,5 @@
+$button-size: 2.4em;
 @mixin buttonPlayer {
-  $button-size: 2.5em;
   & {
     width: $button-size;
     height: $button-size;
@@ -13,31 +13,7 @@
     cursor: pointer;
   }
   
-  &.play {
-    background-position: 0 (-$button-size*2);
-		opacity:0.3;
-  }
-  &.play:hover {
-    background-position: 0 0;
-		opacity:1;
-  }
-  &.pause {
-    background-position: (-$button-size*2) 0 ;
-		opacity:1;
-  }
-  &.pause:hover {
-    background-position: (-$button-size*2) (-$button-size*2);
-		opacity:0.3;
-  }
-	&.fullScreen {
-    background-position:  (-$button-size*3) (-$button-size*2);
-		opacity:0.3;
-  }
-  &.fullScreen:hover {
-    background-position: (-$button-size*3) 0;
-		opacity:1;
-		
-  }
+ 
 }
 .audioPlayer {
   background-color: transparent;
@@ -125,14 +101,32 @@
 }
 .play {
   @include buttonPlayer;
+	background-position: 0 (-$button-size*2);
+	opacity:0.3;
   float: left;
+	&:hover {
+	  background-position: 0 0;
+		opacity:1;
+	}
 }
 .fullScreen {
   @include buttonPlayer;
   float: left;
+	background-position:  (-$button-size*3) (-$button-size*2);
+	opacity:0.3;
+	&:hover {
+	  background-position: (-$button-size*3) 0;
+		opacity:1;
+	}
 }
 .pause {
  @include buttonPlayer;
   float: left;
   display: none;
+	background-position: (-$button-size*2) 0 ;
+	opacity:1;
+	&:hover {
+	  background-position: (-$button-size*2) (-$button-size*2);
+		opacity:0.3;
+	}
 }
