@@ -30,8 +30,10 @@ $(document).ready(function() {
     slideN.removeClass("cover title video1 video2 audio image1 image2 image3 image4 text");
     var html_to_be_replaced = $('#new_slide_option_list').html();
     slideN.prepend(html_to_be_replaced);
-    slideN.siblings(".buttons").find(".add").addClass("active");
-    $(this).removeAttr("class").addClass("minusButtonOrange _hide_add_slide _hide_add_new_slide_options");
+    var activeButton = slideN.siblings(".buttons");
+    activeButton.find(".add").addClass("active");
+    activeButton.find("._add_new_slide_options").removeAttr("class").addClass("minusButtonOrange _hide_add_slide _hide_add_new_slide_options");
+    activeButton.find("a:not(._hide_add_slide)").hide();
     $("body").on("click","._hide_add_new_slide_options",function(){
       hideNewSlideChoice();
     });
@@ -180,11 +182,11 @@ $(document).ready(function() {
   
 });
 
-function EnableSlidesInLessonEditor() {
+function enableSlidesInLessonEditor() {
   var slide_id = $('#info_container').data('slide-id');
-  $('#slide_in_lesson_editor_' + slide_id).children().show();
+  var current_slide = $('#slide_in_lesson_editor_' + slide_id);
+  current_slide.siblings(".buttons").show();
   $("#slide-numbers").show();
-  $(".buttons").show();
 }
 
 function updateInfoCurrentSlide(slide_id, kind) {
@@ -317,6 +319,7 @@ function hideNewSlideChoice(){
   activeSlide.find('div.slide-content').addClass(kind);
   activeSlide.find('.box.new_slide').remove();
   activeSlide.find('._hide_add_new_slide_options').removeAttr("class").addClass("addButtonOrange _add_slide _add_new_slide_options");
+  activeSlide.find(".buttons a").show();
 }
 
 function initLessonEditorPositions(){

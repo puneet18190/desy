@@ -1,14 +1,13 @@
 var slide_id = $('#info_container').data('slide-id');
 
 var current_slide = $('#slide_in_lesson_editor_' + slide_id);
-current_slide.children().hide(); 
+
 current_slide.prepend("<%= j(render :partial => 'galleries/video', :locals => {:videos => @videos}) %>");
 current_slide.siblings(".buttons").hide();
 $("#slide-numbers").hide();
 
-var close_button = $('._close_video_gallery');
-close_button.removeClass('_close_video_gallery');
-close_button.addClass('_close_video_gallery_in_lesson_editor');
+$('._close_video_gallery').addClass('_close_video_gallery_in_lesson_editor').removeClass('_close_video_gallery');
+$('._select_video_from_gallery').addClass('_add_video_to_slide').removeClass('_select_video_from_gallery');
 
 initializeVideoGallery();
 

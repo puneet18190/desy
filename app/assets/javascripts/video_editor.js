@@ -23,7 +23,13 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
 function removeComponentInVideoEditor(position) {
 }
 
-function addComponentInVideoEditor(component, position) {
+function replaceComponentInVideoEditor(component, position) {
+
+// mettere flash
+
+}
+
+function addComponentInVideoEditor(component) {
 
 // mettere flash
 
