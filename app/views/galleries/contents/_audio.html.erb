@@ -2,13 +2,13 @@
   <div class="scroll-pane">
     <% audios.each do |audio| %>
       <div id="gallery_audio_<%= audio.id %>" class="audioTrackCompact _audio_gallery_thumb">
-        <div class="audioTrackContent _compact_audio_in_gallery">
+        <div class="audioTrackContent _compact">
           <div class="titleTrack"><p><%= audio.title %></div>
           <div class="fltrt">
-            <div class="addButtonContent"><a class="creaNuovoButton"></a></div>
+            <div class="addButtonContent"><a class="creaNuovoButton _select_audio_from_gallery"></a></div>
           </div>
         </div>
-        <div class="audioTrackExpanded _expanded_audio_in_gallery" style="display:none">
+        <div class="audioTrackExpanded _expanded" style="display:none">
           <%= render :partial => 'shared/players/audio', :locals => {:audio => audio} %>
         </div>
       </div>
