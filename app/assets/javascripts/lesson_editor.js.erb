@@ -12,7 +12,7 @@ $(document).ready(function() {
   $('body').on('click', '#slide-numbers li a:not(_add_slide, _lesson_editor_current_slide_nav)', function(e){
     e.preventDefault();
     saveCurrentSlide();
-    slideTo(this);
+    slideTo($(this).data('slide-id'));
   });
   
   // apply mask to each horizontal slide image container
@@ -269,13 +269,13 @@ function saveCurrentSlide() {
   $('._lesson_editor_current_slide form').submit();
 }
 
-function slideTo(slide_id){
+function slideTo(slide_id) {
   var slide = $('#slide_in_lesson_editor_' + slide_id);
   var position = slide.data('position');
   if (position == 1) {
     marginReset = 0;
   } else {
-    marginReset = (-((position - 1) * 1010))) + "px";
+    marginReset = (-((position - 1) * 1010)) + "px";
   }
   $("ul#slides").animate({
     marginLeft: marginReset
