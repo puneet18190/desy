@@ -1,15 +1,4 @@
-$("#slides").html("<%= j(render :partial => 'index_slides', :locals => {:slides => @slides}) %>");
-$("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides}) %>");
-slideTo(<%=@current_slide.id%>);
-
+$("#slides").html("<%= j(render :partial => 'index_slides', :locals => {:slides => @slides, :with_current => false}) %>");
+$("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides, :with_current => false}) %>");
 initializeLessonEditor();
-
-
-/*
-
-
-
-$(".slide-content.cover .title").css("margin-left","auto");
-
-$("#slide-numbers li:nth-child(<%= @current_slide.position %>) a").trigger("click");
-*/
+slideTo(<%= @current_slide.id %>);
