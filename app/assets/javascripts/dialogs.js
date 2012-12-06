@@ -173,8 +173,8 @@ function showVideoInGalleryPopUp(video_id) {
       modal: true,
       resizable: false,
       draggable: false,
-      width: 470,
-      height: 440,
+      width: 446,
+      height: 360,
       show: "fade",
       hide: "fade",
       open: function(){
