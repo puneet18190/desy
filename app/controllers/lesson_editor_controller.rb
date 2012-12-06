@@ -14,8 +14,6 @@ class LessonEditorController < ApplicationController
       return
     else
       @slides = @lesson.slides.order(:position)
-      #TODO pass a parameter for the slide to redirect to after add_slide
-      #@slide_to = params[:slide_position] if params[:slide_position]
     end
   end
   
@@ -67,10 +65,9 @@ class LessonEditorController < ApplicationController
   
   def delete_slide
     if @ok
-      @slide.destroy_with_positions
-      @lesson = @slide.lesson
-      @slides = @lesson.slides.order(:position)
       @current_slide = @lesson.slides.where(:position => @slide.position - 1).first
+      @slide.destroy_with_positions
+      @slides = @lesson.slides.order(:position)
     end
   end
   
@@ -78,7 +75,7 @@ class LessonEditorController < ApplicationController
     if @ok
       @slide.change_position(@position)
       @slides = @lesson.slides.order(:position)
-      @slide_to = @position - 1
+      @current_slide = @slide
     end
   end
   
@@ -114,7 +111,7 @@ class LessonEditorController < ApplicationController
         media_elements_params[i] = [media_element_id, alignment, caption]
       end
     end
-    @slide.update_with_media_elements(params[:title], params[:text], media_elements_params)
+    @ok = @slide.update_with_media_elements(params[:title], params[:text], media_elements_params)
   end
   
 end

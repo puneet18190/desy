@@ -1,8 +1,4 @@
-<% if @new_slide %>
-$('#info_container').data('slide-id',"<%=@new_slide.id%>");
-<% end %>
-var slide_id = $('#info_container').data('slide-id');
-var current_slide = $('li.slides.active .slide-content');
+var current_slide = $('li._lesson_editor_current_slide');
 
 current_slide.prepend("<%= j(render :partial => 'galleries/image', :locals => {:images => @images}) %>");
 current_slide.siblings(".buttons").hide();

@@ -1253,7 +1253,23 @@ html.lesson-editor-layout{
     background-position: -650px center;
   }
 	
+	li.slides:not(active) {
+  	position: relative;
+	}
 	
+	layer._not_current_slide, layer._not_current_slide_disabled {
+	  position:absolute;
+	  top:0;
+	  left:0;
+	  width: 900px;
+	  height: 590px;
+	  display:block;
+	  z-index: 9999;
+	}
+	
+	layer._not_current_slide:hover, layer._not_current_slide_disabled:hover {
+    cursor: pointer;
+  }
 }
 
 /** tinyMce style **/

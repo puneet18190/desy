@@ -1,26 +1,6 @@
-$("#slides li.active").effect("scale", { percent: 0,origin:'center'}, 1000);
-$("#slides").html("<%= escape_javascript(render :partial => 'index_slides', :locals => {:slide_to => @current_slide})%>");
-
-$("nav#heading").html("<%= escape_javascript(render :partial => 'index_nav', :locals => {:slides => @slides})%>");
-
-$("slide-numbers li a.active").removeClass("active");
-
-initTinymce(); // init tinymce configuration and manage external toolbar toggle
-slideSortList("#slide-numbers"); // make sortable page number on top
-$("#lesson_subject").selectbox(); // select subject in lesson new/edit views
-initLessonEditorPositions(); // center and align slides offset
-lessonEditorTooltip('#slide-numbers li'); // show tooltip on top list mouseover
-scrollSlideTo('#slide-numbers li a:not(._add_slide)'); // scroll to slide N on top list click
-$("#slide-numbers li a.active").removeClass("active");
-$("#slide-numbers li a:eq(<%=@current_slide.position - 1 %>)").addClass("active");
-// apply mask to each slide image container
-masked = $("._mask_x a:not('._choose')");
-masked.each(function(index) {
-  makeDraggable($(masked[index]), "x");
+$('li._lesson_editor_current_slide').effect('fade', {}, 500, function() {
+  $("#slides").html("<%= j(render :partial => 'index_slides', :locals => {:slides => @slides, :with_current => false})%>");
+  $("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides, :with_current => false})%>");
+  initializeLessonEditor();
+  slideTo(<%= @current_slide.id %>);
 });
-
-$(".slide-content.cover .title").css("margin-left","auto");
-
-var new_num = $("#slide-numbers li:eq(<%= @current_slide.position.to_i - 1 %>) a");
-new_num.addClass("active");
-new_num.trigger("click");

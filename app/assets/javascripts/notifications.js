@@ -38,7 +38,7 @@ function initializeNotifications() {
         if(!$(this).hasClass('current')) {
           $.ajax({
             type: 'post',
-            url: 'notifications/' + closest_li.data('param') + '/seen'
+            url: '/notifications/' + closest_li.data('param') + '/seen'
           });
         }
       });
@@ -49,7 +49,7 @@ function initializeNotifications() {
         if(!$(this).hasClass('current')) {
           $.ajax({
             type: 'post',
-            url: 'notifications/' + closest_li.data('param') + '/seen'
+            url: '/notifications/' + closest_li.data('param') + '/seen'
           });
         }
       } else {

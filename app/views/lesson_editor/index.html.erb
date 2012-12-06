@@ -1,13 +1,13 @@
 <% content_for :nav do %>
   <nav id="heading">
-    <%= render :partial => "index_nav", :locals => {:slides => @slides} %>
+    <%= render :partial => "index_nav", :locals => {:slides => @slides, :with_current => true} %>
   </nav>
 <% end %>
 
 <ul id="slides">
-  <%= render :partial => "index_slides", :locals => {:slides => @slides} %>
+  <%= render :partial => "index_slides", :locals => {:slides => @slides, :with_current => true} %>
 </ul>
 
 <%= render :partial => 'lesson_editor/new_slide' %>
 
-<div id="info_container" style="display:none" data-lesson-id="<%= @lesson_id %>" data-slide-id="<%= @slides.first.id %>" data-current-media-element-position="" data-kind="cover"></div>
+<div id="info_container" style="display:none" data-lesson-id="<%= @lesson_id %>" data-current-media-element-position=""></div>
