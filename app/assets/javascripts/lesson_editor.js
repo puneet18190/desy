@@ -205,9 +205,17 @@ function showNewSlideOptions() {
   var html_to_be_replaced = $('#new_slide_option_list').html();
   slideN.prepend(html_to_be_replaced);
   var activeButton = slideN.siblings('.buttons');
-  activeButton.find('.add').addClass('active');
   activeButton.find('._add_new_slide_options').removeAttr('class').addClass('minusButtonOrange _hide_add_slide _hide_add_new_slide_options');
   activeButton.find('a:not(._hide_add_slide)').css('visibility', 'hidden');
+}
+
+function hideNewSlideChoice() {
+  $('#slide-numbers').show();
+  var activeSlide = $('li._lesson_editor_current_slide');
+  activeSlide.find('div.slide-content').addClass(activeSlide.data('kind'));
+  activeSlide.find('.box.new_slide').remove();
+  activeSlide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
+  activeSlide.find('.buttons a').css('visibility', 'visible');
 }
 
 function initializeLessonEditor() {
@@ -360,15 +368,6 @@ function slideTo(slide_id, callback) {
       callback();
     }
   }
-}
-
-function hideNewSlideChoice() {
-  $('#slide-numbers').show();
-  var activeSlide = $('li._lesson_editor_current_slide');
-  activeSlide.find('div.slide-content').addClass(activeSlide.data('kind'));
-  activeSlide.find('.box.new_slide').remove();
-  activeSlide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
-  activeSlide.find('.buttons a').css('visibility', 'visible');
 }
 
 function initLessonEditorPositions() {
