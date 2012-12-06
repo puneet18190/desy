@@ -1,13 +1,13 @@
+require 'media_editing'
 require 'media_editing/video'
 require 'media_editing/video/logging'
 require 'media_editing/video/in_tmp_dir'
-require 'media_editing/video/concat/cmd'
-require 'media_editing/video/concat/cmd/audio_stream_to_file'
-require 'media_editing/video/concat/cmd/mp3_to_wav'
-require 'media_editing/video/concat/cmd/concat_wavs_with_paddings'
-require 'media_editing/video/concat/cmd/merge_webm_video_streams'
-require 'media_editing/video/concat/cmd/mp4'
-require 'media_editing/video/concat/cmd/webm'
+require 'media_editing/video/cmd/audio_stream_to_file'
+require 'media_editing/video/cmd/mp3_to_wav'
+require 'media_editing/video/cmd/concat_wavs_with_paddings'
+require 'media_editing/video/cmd/merge_webm_video_streams'
+require 'media_editing/video/cmd/concat/mp4'
+require 'media_editing/video/cmd/concat/webm'
 
 module MediaEditing
   module Video
@@ -26,6 +26,8 @@ module MediaEditing
       FINAL_WEBM_NO_AUDIO    = 'final_webm_no_audio.webm'
       OUTPUT_MP4_FORMAT      = '%s.mp4'
       OUTPUT_WEBM_FORMAT     = '%s.webm'
+      
+      Cmd = MediaEditing::Video::Cmd
 
       # Usage example:
       #
@@ -106,11 +108,11 @@ module MediaEditing
 
         [ 
           ( Thread.new do
-              Cmd::Mp4.new(final_webm_no_audio, final_wav, final_webm_no_audio_info.duration, mp4_output).run! *logs('4_mp4') # 3.
+              Cmd::Concat::Mp4.new(final_webm_no_audio, final_wav, final_webm_no_audio_info.duration, mp4_output).run! *logs('4_mp4') # 3.
             end.tap{ |t| t.abort_on_exception = true } ),
           
           ( Thread.new do
-              Cmd::Webm.new(final_webm_no_audio, final_wav, final_webm_no_audio_info.duration, webm_output).run! *logs('4_webm') # 4.
+              Cmd::Concat::Webm.new(final_webm_no_audio, final_wav, final_webm_no_audio_info.duration, webm_output).run! *logs('4_webm') # 4.
             end.tap{ |t| t.abort_on_exception = true } )
 
         ].each(&:join)

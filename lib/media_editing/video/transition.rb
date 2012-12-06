@@ -1,15 +1,19 @@
+require 'media_editing'
 require 'media_editing/video'
-require 'pathname'
 require 'media_editing/video/in_tmp_dir'
 require 'media_editing/video/logging'
-require 'media_editing/video/replace_audio/cmd/video_stream_to_file'
-require 'media_editing/video/transition/cmd/extract_frame'
-require 'media_editing/video/transition/cmd/generate_transition_frames'
-require 'media_editing/video/transition/cmd'
+require 'media_editing/video/cmd/video_stream_to_file'
+require 'media_editing/video/cmd/extract_frame'
+require 'media_editing/video/cmd/generate_transition_frames'
+require 'media_editing/video/cmd/transition'
+require 'pathname'
 
 module MediaEditing
   module Video
     class Transition
+
+      include MediaEditing::Video::InTmpDir
+      include MediaEditing::Video::Logging
 
       FORMATS              = MediaEditing::Video::FORMATS
       START_FRAME          = 'start_frame.jpg'
@@ -21,8 +25,7 @@ module MediaEditing
       TRANSITIONS_FORMAT   = proc{ f = Pathname.new(TRANSITIONS); "#{f.basename(f.extname)}-%d#{f.extname}" }.call
       FRAME_RATE           = 25
 
-      include MediaEditing::Video::InTmpDir
-      include MediaEditing::Video::Logging
+      Cmd = MediaEditing::Video::Cmd
 
       def initialize(start_inputs, end_inputs, output_without_extension)
         unless start_inputs.is_a?(Hash)                       and 
@@ -65,7 +68,7 @@ module MediaEditing
           transitions_format = tmp_path TRANSITIONS_FORMAT
           FORMATS.map do |format|
             Thread.new do
-              Cmd.new(transitions_format, output(format), FRAME_RATE, format).run! *logs("4_#{format}") # 4.
+              Cmd::Transition.new(transitions_format, output(format), FRAME_RATE, format).run! *logs("4_#{format}") # 4.
             end.tap{ |t| t.abort_on_exception = true }
           end.each(&:join)
         end

@@ -1,5 +1,6 @@
+require 'media_editing'
 require 'media_editing/video'
-require 'media_editing/video/crop/cmd'
+require 'media_editing/video/cmd/crop'
 
 module MediaEditing
   module Video
@@ -8,6 +9,8 @@ module MediaEditing
       include MediaEditing::Video::Logging
 
       FORMATS = MediaEditing::Video::FORMATS
+
+      Cmd = MediaEditing::Video::Cmd
 
       def initialize(inputs, output_without_extension, start, duration)
         unless inputs.is_a?(Hash)                       and 
@@ -36,7 +39,7 @@ module MediaEditing
 
         @inputs.map do |format, input|
           Thread.new do
-            Cmd.new(input, output(format), @start, @duration, format).run! *logs
+            Cmd::Crop.new(input, output(format), @start, @duration, format).run! *logs
           end.tap{ |t| t.abort_on_exception = true }
         end.each(&:join)
 

@@ -1,8 +1,9 @@
+require 'media_editing'
 require 'media_editing/video'
 require 'media_editing/video/logging'
 require 'media_editing/video/info'
 require 'media_editing/video/error'
-require 'media_editing/video/conversion/cmd'
+require 'media_editing/video/cmd/conversion'
 require 'video_uploader'
 
 module MediaEditing
@@ -15,6 +16,8 @@ module MediaEditing
 
       INPUT_FOLDER       = File.join Rails.root, VideoUploader.env_relative_path('tmp/video_editing/conversions')
       DURATION_THRESHOLD = 1
+
+      Cmd = MediaEditing::Video::Cmd
 
       def self.log_folder
         super 'conversions'
@@ -86,7 +89,7 @@ module MediaEditing
           log_folder = create_log_folder
           stdout_log, stderr_log = stdout_log(format), stderr_log(format)
 
-          Cmd.new(input_file, output_file, format).run! %W(#{stdout_log} a), %W(#{stderr_log} a)
+          Cmd::Conversion.new(input_file, output_file, format).run! %W(#{stdout_log} a), %W(#{stderr_log} a)
         rescue StandardError => e
           FileUtils.rm_rf output_folder if File.exists? output_folder
           raise e

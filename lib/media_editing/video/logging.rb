@@ -1,3 +1,6 @@
+require 'media_editing'
+require 'media_editing/video'
+
 module MediaEditing
   module Video
     module Logging

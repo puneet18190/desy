@@ -1,5 +1,7 @@
+require 'media_editing'
 require 'media_editing/video'
 require 'subexec'
+
 module MediaEditing
   module Video
     class Cmd

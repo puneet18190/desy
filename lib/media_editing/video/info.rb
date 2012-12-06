@@ -1,3 +1,4 @@
+require 'media_editing/'
 require 'media_editing/video'
 require 'media_editing/video/error'
 require 'media_editing/video/cmd/avprobe'

@@ -1,5 +1,9 @@
+require 'media_editing'
 require 'media_editing/video'
 require 'media_editing/video/cmd'
+require 'media_editing/video/cmd/avconv'
+require 'shellwords'
+
 module MediaEditing
   module Video
     class Cmd

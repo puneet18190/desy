@@ -1,8 +1,9 @@
+require 'media_editing'
 require 'media_editing/video'
 require 'media_editing/video/logging'
 require 'media_editing/video/in_tmp_dir'
-require 'media_editing/video/replace_audio/cmd/video_stream_to_file'
-require 'media_editing/video/replace_audio/cmd'
+require 'media_editing/video/cmd/video_stream_to_file'
+require 'media_editing/video/cmd/replace_audio'
 
 module MediaEditing
   module Video
@@ -13,6 +14,8 @@ module MediaEditing
 
       FORMATS = MediaEditing::Video::FORMATS
       CORRESPONDING_AUDIO_FORMATS = { mp4: :mp3, webm: :ogg }
+
+      Cmd = MediaEditing::Video::Cmd
 
       def initialize(video_inputs, audio_inputs, output_without_extension)
         unless video_inputs.is_a?(Hash)                       and 
@@ -51,7 +54,7 @@ module MediaEditing
       private
       def replace_audio(format)
         video_input, audio_input = @video_inputs[format], @audio_inputs[ CORRESPONDING_AUDIO_FORMATS[format] ]
-        Cmd.new(video_input, audio_input, video_stream_duration(video_input), output(format), format).run! *logs("1_#{format}")
+        Cmd::ReplaceAudio.new(video_input, audio_input, video_stream_duration(video_input), output(format), format).run! *logs("1_#{format}")
       end
 
       def video_stream_duration(video_input)
