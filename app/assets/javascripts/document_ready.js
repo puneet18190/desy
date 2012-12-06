@@ -263,14 +263,12 @@ $(document).ready(function() {
   
   $('body').on('click','._image_gallery_thumb', function(e) {
     e.preventDefault();
-    var my_id = 'dialog-image-gallery-' + $(this).data('image-id');
-    showImageInGalleryPopUp(my_id);
+    showImageInGalleryPopUp($(this).data('image-id'));
   });
   
   $('body').on('click','._video_gallery_thumb', function(e) {
     e.preventDefault();
-    var my_id = 'dialog-video-gallery-' + $(this).data('video-id');
-    showVideoInGalleryPopUp(my_id);
+    showVideoInGalleryPopUp($(this).data('video-id'));
   });
   
   $('body').on('click', '._audio_gallery_thumb ._compact', function() {

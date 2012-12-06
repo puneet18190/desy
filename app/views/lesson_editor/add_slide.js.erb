@@ -1,5 +1,7 @@
 $("#slides").html("<%= escape_javascript(render :partial => 'index_slides', :locals => {:current_slide => @current_slide })%>");
 $("nav#heading").html("<%= escape_javascript(render :partial => 'index_nav', :locals => {:slides => @slides})%>");
+console.log("<%=@current_slide.position%>");
+
 
 initTinymce(); // init tinymce configuration and manage external toolbar toggle
 slideSortList("#slide-numbers"); // make sortable page number on top
@@ -20,5 +22,7 @@ masked.each(function(index) {
 });
 
 $(".slide-content.cover .title").css("margin-left","auto");
+
+$("#slide-numbers li:nth-child(<%= @current_slide.position %>) a").trigger("click");
 
 slideSaved();
