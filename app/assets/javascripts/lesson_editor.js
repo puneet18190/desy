@@ -353,7 +353,9 @@ function slideTo(slide_id, callback) {
       opacity: 0.4,
     }, 150, function() {
       $(this).find('.buttons').fadeOut();
-      $(this).addClass('_not_current_slide');
+      if($(this).find('layer').length == 0) {
+        $(this).prepend('<layer class="_not_current_slide"></layer>');
+      }
       $('a._lesson_editor_current_slide_nav').removeClass('_lesson_editor_current_slide_nav active');
       $('#slide_in_nav_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide_nav active');
     });
@@ -361,7 +363,7 @@ function slideTo(slide_id, callback) {
       opacity: 1,
     }, 500, function() {
       $(this).find(".buttons").fadeIn();
-      $(this).removeClass('_not_current_slide');
+      $(this).find('layer').remove();
       $('li._lesson_editor_current_slide').removeClass('_lesson_editor_current_slide active');
       $('#slide_in_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide active');
     });

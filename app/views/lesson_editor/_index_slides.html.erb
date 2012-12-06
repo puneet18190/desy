@@ -1,15 +1,17 @@
 <% slides.each do |slide|%>
   <%
     class_slide = "#{slide.kind} slides slide-position-#{slide.position}"
+    div_covering = ''
     if slide.cover? && with_current
       class_slide = "#{class_slide} active _lesson_editor_current_slide"
     else
-      class_slide = "#{class_slide} _not_current_slide"
+      div_covering = '<layer class="_not_current_slide"></layer>'
     end
   %>
   <li id="slide_in_lesson_editor_<%= slide.id %>" class="<%= class_slide %>" data-slide-id="<%= slide.id %>" data-kind="<%= slide.kind %>" data-position="<%= slide.position %>">
+    <%= div_covering.html_safe %>
     <%= render :partial => "slide_buttons", :locals => {:slide => slide } %>
-    <div class="slide-content <%= slide.kind%> slide-<%= slide.position %>">
+    <div class="slide-content <%= slide.kind %> slide-<%= slide.position %>">
       <%= render :partial => "lesson_editor/slides/#{slide.kind}" , :locals => { :slide => slide }%>
     </div>
   </li>
