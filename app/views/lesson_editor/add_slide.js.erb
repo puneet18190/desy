@@ -2,15 +2,3 @@ $("#slides").html("<%= j(render :partial => 'index_slides', :locals => {:slides 
 $("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides}) %>");
 initializeLessonEditor();
 slideTo(<%=@current_slide.id%>);
-
-
-
-
-/*
-
-
-
-$(".slide-content.cover .title").css("margin-left","auto");
-
-$("#slide-numbers li:nth-child(<%= @current_slide.position %>) a").trigger("click");
-*/

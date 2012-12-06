@@ -2,18 +2,3 @@ $("#slides").html("<%= j(render :partial => 'index_slides', :locals => {:slides 
 $("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides})%>");
 initializeLessonEditor();
 slideTo('<%= @current_slide.id %>');
-
-
-
-
-
-/*
-
-
-
-$(".slide-content.cover .title").css("margin-left","auto");
-
-$("body").prepend("<span class='_saved'></span>");
-centerThis("._saved");
-$("._saved").fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
-*/
