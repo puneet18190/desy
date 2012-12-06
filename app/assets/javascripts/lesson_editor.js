@@ -13,9 +13,11 @@ $(document).ready(function() {
     tip = $(this);
     x = e.pageX - tip.offset().left;
     y = e.pageY - tip.offset().top;
-    tip.children('.slide-tooltip').animate({"opacity": "show"}, "fast");
-  }, function() {
-    $(this).children('.slide-tooltip').animate({"opacity": "hide"}, "fast");
+    tip.children('.slide-tooltip').show();
+  });
+  
+  $('body').on('mouseout', '#slide-numbers li:not(._add_slide)', function(e) {
+    $(this).children('.slide-tooltip').hide();
   });
   
   $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav), ._not_current_slide', function(e){
