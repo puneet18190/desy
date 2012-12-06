@@ -49,12 +49,18 @@ $(document).ready(function() {
     var kind = $(this).data('kind');
     var lesson_id = $('#info_container').data('lesson-id');
     var slide_id = $('li._lesson_editor_current_slide').data('slide-id');
-    console.log("kind: "+kind);
-    console.log("lesson_id: "+lesson_id);
-    console.log("slide_id: "+slide_id);
     $.ajax({
       type: 'post',
       url: '/lessons/' + lesson_id + '/slides/' + slide_id + '/kind/' + kind + '/create/'
+    });
+  });
+  
+  $('body').on('click', '._delete_slide', function() {
+    var slide = $('li._lesson_editor_current_slide');
+    slide.prepend('<layer class="_not_current_slide_disabled"></layer>');
+    $.ajax({
+      type: 'post',
+      url: '/lessons/' + $('#info_container').data('lesson-id') + '/slides/' + slide.data('slide-id') + '/delete'
     });
   });
   

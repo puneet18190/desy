@@ -1,6 +1,6 @@
 <div class="buttons pull-right slide-position-<%= slide.position %>">
   <% if !slide.cover? %>
-    <%= link_to "delete", delete_slide_path(slide.lesson_id, slide.id), :method => :post, :remote => true, :class=> "deleteButtonOrange"%>
+    <a class ="deleteButtonOrange _delete_slide"></a>
   <% end %>
   <a class="addButtonOrange _add_new_slide_options"></a>
   <%= link_to "info", edit_lesson_path(@lesson), :class => "infoButtonOrange"%>
