@@ -1,8 +1,9 @@
 $("#slides").html("<%= j(render :partial => 'index_slides', :locals => {:slides => @slides}) %>");
 $("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides}) %>");
+initializeLessonEditor();
 slideTo(<%=@current_slide.id%>);
 
-initializeLessonEditor();
+
 
 
 /*

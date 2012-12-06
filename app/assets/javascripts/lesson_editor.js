@@ -7,8 +7,6 @@ $(document).ready(function() {
   
   $('#lesson_subject').selectbox();
   
-  initLessonEditorPositions();
-  
   $('body').on('mouseover', '#slide-numbers li:not(._add_slide)', function(e) {
     tip = $(this);
     x = e.pageX - tip.offset().left;
@@ -206,6 +204,7 @@ function initializeLessonEditor() {
   });
   initializeSortableNavs();
   $(".slide-content.cover .title").css("margin-left","auto"); // FIXME controllare se funziona senza
+  initLessonEditorPositions();
 }
 
 function initializeSortableNavs() {
