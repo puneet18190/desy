@@ -21,6 +21,7 @@ gem 'schema_plus'
 
 group :development do
   gem 'rails-erd'
+  gem "letter_opener"
 end
 
 gem 'recursive-open-struct'
@@ -46,4 +47,10 @@ gem 'unicorn'
 # To use debugger
 # gem 'debugger'
 
-gem "letter_opener", :group => :development
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+gem 'daemons'
+gem 'delayed_job_active_record'
+gem "subexec", :github => "ProGNOMmers/subexec"
