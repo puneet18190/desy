@@ -1,13 +1,17 @@
 <ul id="slide-numbers">
   <% slides.each do |slide| %>
-    <li class="<%= slide.cover? ? 'unsortable' : ''%>">
-      <a id="slide_in_nav_lesson_editor_<%= slide.id %>" class="<%= slide.cover? ? 'active _lesson_editor_current_slide_nav'.html_safe : '' %>" data-slide-id="<%= slide.id %>"><%= slide.position %></a>
+    <%
+      nav_class = '_slide_nav'
+      nav_class = "#{nav_class} active _lesson_editor_current_slide_nav" if slide.cover?
+    %>
+    <li class="<%= slide.cover? ? '' : '_slide_nav_sortable'.html_safe %>">
+      <a id="slide_in_nav_lesson_editor_<%= slide.id %>" class="<%= nav_class.html_safe %>" data-slide-id="<%= slide.id %>"><%= slide.position %></a>
       <div class="slide-tooltip">
         <%= render :partial => "shared/lesson_thumbnails/small/#{slide.kind}" , :locals => { :slide => slide }%>
       </div>
     </li>
   <% end %>
-  <li class="unsortable">
+  <li>
     <a class="add add-small _add_slide _add_new_slide_options"></a>
   </li>
 </ul>
