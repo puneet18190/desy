@@ -1,5 +1,5 @@
 $('li._lesson_editor_current_slide').effect('fade', {}, 500, function(){
-  $("#slides").html("<%= j(render :partial => 'index_slides', :locals => {:slides => @slides})%>");
+  $("#slides").html("<%= j(render :partial => 'index_slides', :locals => {:slides => @slides, :with_current => false})%>");
   $("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides, :with_current => false})%>");
   initializeLessonEditor();
   slideTo(<%= @current_slide.id %>);

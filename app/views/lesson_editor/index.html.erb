@@ -5,7 +5,7 @@
 <% end %>
 
 <ul id="slides">
-  <%= render :partial => "index_slides", :locals => {:slides => @slides} %>
+  <%= render :partial => "index_slides", :locals => {:slides => @slides, :with_current => true} %>
 </ul>
 
 <%= render :partial => 'lesson_editor/new_slide' %>

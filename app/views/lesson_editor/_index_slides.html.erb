@@ -1,7 +1,7 @@
 <% slides.each do |slide|%>
   <%
     class_slide = "#{slide.kind} slides slide-position-#{slide.position}"
-    if slide.cover?
+    if slide.cover? && with_current
       class_slide = "#{class_slide} active _lesson_editor_current_slide"
     else
       class_slide = "#{class_slide} _not_current_slide"
