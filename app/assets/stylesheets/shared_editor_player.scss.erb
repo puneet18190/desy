@@ -296,8 +296,31 @@ $button-size: 6em;
 	.exitButton, .exitButtonWhite {
    @include buttonExitElement;
  }
- 
- 
+ @mixin addElementInGallery {
+  $button-size: 2em;
+  & {
+    width: $button-size;
+    height: $button-size;
+    background-image: url(<%= asset_path 'icone-player.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($button-size*5) ($button-size*4);
+		background-position: -8em -4em;
+    padding:0;
+		opacity:0.5;
+		margin-top:5px;
+  }
+	
+  &:hover {
+    cursor: pointer;
+		background-position: -8em 0em;
+		opacity:1;
+  }
+} 
+a.addButtonContent {
+  @include addElementInGallery;
+	float:left;
+	
+}  
  
  /* TINYMCE SIZES */
  .size1{

@@ -1,7 +1,7 @@
 <div class="videoInGalleryPopUp" id="dialog-video-gallery-<%= video.id %>" data-video-id="<%= video.id %>">
   <%= render :partial => 'shared/players/video', :locals => {:video => video} %>
   <div class="caption">
-    <a href="#" class="aggiungiImgButton current _select_video_from_gallery video-<%= video.id %>" data-video-id="<%= video.id %>" data-mp4="<%= video.mp4 %>" data-webm="<%= video.webm %>" style="float:right"></a>
+    <a href="#" class="addButtonContent current _select_video_from_gallery video-<%= video.id %>" data-video-id="<%= video.id %>" data-mp4="<%= video.mp4 %>" data-webm="<%= video.webm %>" style="float:right"></a>
     <p><%= video.title %></p>
   </div>
 </div>

@@ -54,23 +54,23 @@ $button-size: 2.4em;
 	
 }
 .secondTime {
-  width:70px;
-	height:20px;
+  width:10%;
 	margin:10px 0 0 0;
 	color:#fff;
 	float:left;
 	text-align:center;
+	font-size:80%;
 }
 
 .videoPlayer {
-  background-color: transparent;
-	width:517px;
-	height:350px;
+  background-color: #3b3a3b;
+	/*width:517px;*/
+	height:280px;
 }
-.videoSlider {
+.videoSlider, html.lesson-editor-layout .videoSlider{
   float:left;
-	width: 60%;
-	margin-top:12px;
+	width: 65%;
+	margin-top:10px;
   background-color: #2d2e2d;
 	.sliderDisabler {
     position: absolute;
@@ -111,7 +111,7 @@ $button-size: 2.4em;
 }
 .fullScreen {
   @include buttonPlayer;
-  float: left;
+  float: right;
 	background-position:  (-$button-size*3) (-$button-size*2);
 	opacity:0.3;
 	&:hover {
