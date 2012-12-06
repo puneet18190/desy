@@ -10,8 +10,6 @@ initLessonEditorPositions(); // center and align slides offset
 lessonEditorTooltip('#slide-numbers li'); // show tooltip on top list mouseover
 
 scrollSlideTo('#slide-numbers li a:not(._add_slide)'); // scroll to slide N on top list click
-$("#slide-numbers li a.active").removeClass("active");
-$("#slide-numbers li a:eq(<%=@current_slide.position - 1%>)").addClass("active");
 
 updateInfoCurrentSlide(<%=@current_slide.id%>);
 
@@ -24,5 +22,3 @@ masked.each(function(index) {
 $(".slide-content.cover .title").css("margin-left","auto");
 
 $("#slide-numbers li:nth-child(<%= @current_slide.position %>) a").trigger("click");
-
-slideSaved();

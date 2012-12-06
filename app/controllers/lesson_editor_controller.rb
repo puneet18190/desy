@@ -67,10 +67,9 @@ class LessonEditorController < ApplicationController
   
   def delete_slide
     if @ok
-      @slide.destroy_with_positions
-      @lesson = @slide.lesson
-      @slides = @lesson.slides.order(:position)
       @current_slide = @lesson.slides.where(:position => @slide.position - 1).first
+      @slide.destroy_with_positions
+      @slides = @lesson.slides.order(:position)
     end
   end
   
