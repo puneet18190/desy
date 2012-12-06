@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   validate :validate_associations, :validate_email, :validate_email_not_changed
   
   before_validation :init_validation
+
+  def self.admin
+    find_by_email CONFIG['admin_email']
+  end
   
   def full_name
     "#{self.name} #{self.surname}"

@@ -38,7 +38,7 @@ module MediaEditing
           mp4_conversion  = Thread.new { convert_to(:mp4)  }
           webm_conversion = Thread.new { convert_to(:webm) }
 
-          mp4_conversion.abort_on_exception = webm_conversion.abort_on_exception = true      
+          mp4_conversion.abort_on_exception = webm_conversion.abort_on_exception = true
 
           # Say to the parent thread (me) to wait the threads to finish before to continue
           mp4_conversion.join

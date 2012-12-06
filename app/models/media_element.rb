@@ -12,6 +12,8 @@ class MediaElement < ActiveRecord::Base
   EXTENSIONS_BY_STI_TYPE = { 'Image' => %w(jpg jpeg png) }
   
   self.inheritance_column = :sti_type
+
+  serialize :metadata, OpenStruct
   
   attr_accessible :title, :description, :media, :publication_date, :tags
   attr_reader :status, :is_reportable, :info_changeable

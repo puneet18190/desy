@@ -5,31 +5,6 @@ class Video < MediaElement
   IMAGE_COMPONENT = 'image'
   COMPONENTS = [VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT]
   
-  def duration # FIXME temporaneo
-    # metadata.duration
-    YAML.load(File.open(Rails.root.join('db/seeds/videos/durations.yml'), 'r'))[(Video.where('id < ?', self.id).count % 5) + 1]
-  end
-  
-  def mp4 # FIXME temporaneo
-    # media.url.mp4
-    "/media_elements/videos/#{self.id.to_s}/video_mp4.mp4"
-  end
-  
-  def webm # FIXME temporaneo
-    # media.url.webm
-    "/media_elements/videos/#{self.id.to_s}/video_webm.webm"
-  end
-  
-  def thumb # FIXME temporaneo
-    # media.thumb
-    "/media_elements/videos/#{self.id.to_s}/thumb.jpg"
-  end
-  
-  def cover # FIXME temporaneo
-    # media.cover
-    "/media_elements/videos/#{self.id.to_s}/cover.jpg"
-  end
-  
   def self.convert_parameters(hash, user_id)
     return nil if !hash.kind_of?(Hash) || !hash.has_key?(:initial_video_id)
     return nil if !hash[:initial_video_id].nil? && !hash[:initial_video_id].kind_of?(Integer)
@@ -91,6 +66,51 @@ class Video < MediaElement
   
   def self.get_media_element_from_hash(hash, key, user_id, my_sti_type)
     (hash.has_key?(key) && hash[key].kind_of?(Integer)) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
+  end
+
+  after_save :convert
+  after_destroy :clean
+
+  attr_writer :skip_conversion
+
+  def media
+    media = read_attribute(:media)
+    @media || ( media ? VideoUploader.new(self, :media, media) : nil )
+  end
+
+  def media=(media)
+    @media = write_attribute :media, ( media.present? ? VideoUploader.new(self, :media, media) : nil )
+  end
+
+  def mp4_duration
+    metadata.mp4_duration
+  end
+  
+  def webm_duration
+    metadata.webm_duration
+  end
+
+  def mp4_duration=(mp4_duration)
+    metadata.mp4_duration = mp4_duration
+  end
+  
+  def webm_duration=(webm_duration)
+    metadata.webm_duration = webm_duration
+  end
+
+  private
+  def convert
+    # converted?
+    #   true  : conversione andata a buon fine
+    #   false : conversione non andata a buon fine
+    #   nil   : conversione da effettuare o in fase di conversione
+    return true if @skip_conversion or not converted.nil?
+    Delayed::Job.enqueue MediaEditing::Video::Conversion::Job.new(id, media.original_filename, media.tempfile.path)
+  end
+
+  def clean
+    absolute_folder = media.try(:absolute_folder)
+    FileUtils.rm_rf absolute_folder if absolute_folder and File.exists? absolute_folder
   end
   
 end

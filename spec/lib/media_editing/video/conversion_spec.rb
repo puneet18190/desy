@@ -11,7 +11,11 @@ module MediaEditing
       let(:filename)      { 'in put.flv' }
       let(:tempfile)      { File.open(uploaded_path) }
       let(:uploaded)      { ActionDispatch::Http::UploadedFile.new(filename: filename, tempfile: tempfile) }
-      let(:model)         { ::Video.new.tap{ |v| v.skip_conversion = true; v.save; v.media = uploaded } }
+      let(:model)         do
+        described_class.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: uploaded) do |video|
+          video.user_id = User.admin.id
+        end.tap{ |v| v.skip_conversion = true; v.save!; v.media = uploaded }
+      end
       let(:input)         { "#{Rails.root}/tmp/video_editing/conversions/#{Rails.env}/#{model.id}/#{filename}" }
       let(:output_folder) { "#{Rails.root}/public/media_elements/videos/#{Rails.env}/#{model.id}" }
       let(:output_format) { "#{output_folder}/in-put.%s" }
