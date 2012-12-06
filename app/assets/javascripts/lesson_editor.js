@@ -52,9 +52,11 @@ $(document).ready(function() {
   
   $('body').on('click', '._add_new_slide', function() {
     hideNewSlideChoice();
+    var slide = $('li._lesson_editor_current_slide');
+    slide.prepend('<layer class="_not_current_slide_disabled"></layer>');
     var kind = $(this).data('kind');
     var lesson_id = $('#info_container').data('lesson-id');
-    var slide_id = $('li._lesson_editor_current_slide').data('slide-id');
+    var slide_id = slide.data('slide-id');
     $.ajax({
       type: 'post',
       url: '/lessons/' + lesson_id + '/slides/' + slide_id + '/kind/' + kind + '/create/'
