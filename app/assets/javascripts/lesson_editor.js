@@ -207,6 +207,7 @@ function showNewSlideOptions() {
   var activeButton = slideN.siblings('.buttons');
   activeButton.find('._add_new_slide_options').removeAttr('class').addClass('minusButtonOrange _hide_add_slide _hide_add_new_slide_options');
   activeButton.find('a:not(._hide_add_slide)').css('visibility', 'hidden');
+  $('._not_current_slide').removeClass('_not_current_slide').addClass('_not_current_slide_disabled');
 }
 
 function hideNewSlideChoice() {
@@ -216,6 +217,7 @@ function hideNewSlideChoice() {
   activeSlide.find('.box.new_slide').remove();
   activeSlide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
   activeSlide.find('.buttons a').css('visibility', 'visible');
+  $('._not_current_slide_disabled').addClass('_not_current_slide').removeClass('_not_current_slide_disabled');
 }
 
 function initializeLessonEditor() {
