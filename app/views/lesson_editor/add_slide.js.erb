@@ -13,7 +13,7 @@ scrollSlideTo('#slide-numbers li a:not(._add_slide)'); // scroll to slide N on t
 $("#slide-numbers li a.active").removeClass("active");
 $("#slide-numbers li a:eq(<%=@current_slide.position - 1%>)").addClass("active");
 
-updateInfoCurrentSlide(<%=@current_slide.id%>,<%=@current_slide.kind%>)
+updateInfoCurrentSlide(<%=@current_slide.id%>);
 
 // apply mask to each slide image container
 masked = $("._mask_x a:not('._choose')");

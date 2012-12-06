@@ -41,7 +41,7 @@ $(document).ready(function() {
     hideNewSlideChoice();
     var kind = $(this).data('kind');
     var lesson_id = $('#info_container').data('lesson-id');
-    var slide_id = $('#info_container').data('slide-id');
+    var slide_id = $('li._lesson_editor_current_slide').data('slide-id');
     console.log("kind: "+kind);
     console.log("lesson_id: "+lesson_id);
     console.log("slide_id: "+slide_id);
@@ -103,7 +103,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._add_image_to_slide', function(e) {
     e.preventDefault();
-    var slide_id = $('#info_container').data('slide-id');
+    var slide_id = $('li._lesson_editor_current_slide').data('slide-id');
     var kind = $('#info_container').data('kind');
     var position = $('#info_container').data('current-media-element-position');
     var image_id = $(this).data('image-id');
@@ -148,7 +148,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._add_video_to_slide', function(e) {
     e.preventDefault();
-    var slide_id = $('#info_container').data('slide-id');
+    var slide_id = $('li._lesson_editor_current_slide').data('slide-id');
     var kind = $('#info_container').data('kind');
     var position = $('#info_container').data('current-media-element-position');
     var video_id = $(this).data('video-id');
@@ -192,15 +192,15 @@ $(document).ready(function() {
 });
 
 function enableSlidesInLessonEditor() {
-  var slide_id = $('#info_container').data('slide-id');
+  var slide_id = $('li._lesson_editor_current_slide').data('slide-id');
   var current_slide = $('#slide_in_lesson_editor_' + slide_id);
   current_slide.siblings(".buttons").show();
   $("#slide-numbers").show();
 }
 
-function updateInfoCurrentSlide(slide_id, kind) {
-  $('#info_container').data('slide-id', slide_id);
-  $('#info_container').data('kind', kind);
+function updateInfoCurrentSlide(slide_id) {
+  $('li._lesson_editor_current_slide').removeClass('_lesson_editor_current_slide active');
+  $('#slide_in_lesson_editor_' + slide.id).addClass('_lesson_editor_current_slide active');
 }
 
 /** functions to use in document.ready **/
@@ -301,11 +301,7 @@ function slideTo(nth){
     $(this).find(".buttons").fadeIn();
     $(this).addClass("active");
   });
-  $("#slide-numbers li a.active").removeClass("active");
-  $(nth).addClass("active");
-  
-  updateInfoCurrentSlide(slide_id, kind);
-  
+  updateInfoCurrentSlide(slide_id);
 }
 
 function lessonEditorTooltip(list){
