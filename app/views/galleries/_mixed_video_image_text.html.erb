@@ -1,10 +1,10 @@
 <div class="gallery-header">
   <h3 class="pull-left"><%= t('captions.select_component_to_add') %></h3>
-  <div class="_switch_video videoIcon">&nbsp;</div>
-  <div class="_switch_image photoIcon">&nbsp;</div>
-  <div class="_switch_text textIcon">&nbsp;</div>
+  <div class="_switch_video videoButton">&nbsp;</div>
+  <div class="_switch_image photoButton">&nbsp;</div>
+  <div class="_switch_text textButton">&nbsp;</div>
 </div>
-
+<br style="clear:both">
 <div class="_videos video_gallery video-kind">
   <%= render :partial => 'galleries/contents/video', :locals => {:videos => videos} %>
 </div>
