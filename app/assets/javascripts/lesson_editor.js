@@ -5,8 +5,9 @@ $(document).ready(function() {
   
   initializeLessonEditor();
   
-  $("#lesson_subject").selectbox(); // select subject in lesson new/edit views
-  initLessonEditorPositions(); // center and align slides offset
+  $('#lesson_subject').selectbox();
+  
+  initLessonEditorPositions();
   
   $('body').on('mouseover', '#slide-numbers li:not(._add_slide)', function(e) {
     tip = $(this);
@@ -202,6 +203,7 @@ function initializeLessonEditor() {
     makeDraggable($(this).attr('id'));
   });
   initializeSortableNavs();
+  $(".slide-content.cover .title").css("margin-left","auto"); // FIXME controllare se funziona senza
 }
 
 function initializeSortableNavs() {
@@ -344,7 +346,7 @@ function hideNewSlideChoice() {
   activeSlide.find('.buttons a').css('visibility', 'visible');
 }
 
-function initLessonEditorPositions(){
+function initLessonEditorPositions() {
   WW = parseInt($(window).outerWidth());
   WH = parseInt($(window).outerHeight());
   $("#main").css("width", WW);
@@ -352,18 +354,16 @@ function initLessonEditorPositions(){
   $("ul#slides").css("top", ((WH / 2) - 295) + "px");
   $("ul#slides.new").css("top", ((WH / 2) - 335) + "px")
   $("#footer").css("top",(WH-40)+"px").css("width",(WW-24)+"px")
-  if(WW > 1000){
+  if(WW > 1000) {
     $("ul#slides li:first").css("margin-left", ((WW-900) / 2) + "px")
     $("ul#slides.new li:first").css("margin-left",((WW-900) / 2) + "px");
   }
 }
 
 function tinyMceCallbacks(inst){
-  if (inst.getBody().scrollHeight > 422){
+  if (inst.getBody().scrollHeight > 422) {
     $(inst.getBody()).parentsUntil("table.mceLayout").css("border","1px solid red");
-  }
-  else
-  {
+  } else {
     $(inst.getBody()).parentsUntil("table.mceLayout").css("border","1px solid white");
   }
 }

@@ -5,24 +5,3 @@ $('li._lesson_editor_current_slide').effect('fade', {}, 500, function(){
 });
 
 initializeLessonEditor();
-
-
-/*
-
-$("#lesson_subject").selectbox(); // select subject in lesson new/edit views
-initLessonEditorPositions(); // center and align slides offset
-$("#slide-numbers li a.active").removeClass("active");
-$("#slide-numbers li a:eq(<%=@current_slide.position - 1 %>)").addClass("active");
-// apply mask to each slide image container
-masked = $("._mask_x a:not('._choose')");
-masked.each(function(index) {
-  makeDraggable($(masked[index]), "x");
-});
-
-$(".slide-content.cover .title").css("margin-left","auto");
-
-var new_num = $("#slide-numbers li:eq(<%= @current_slide.position.to_i - 1 %>) a");
-new_num.addClass("active");
-new_num.trigger("click");
-
-*/
