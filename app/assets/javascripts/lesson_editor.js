@@ -21,7 +21,7 @@ $(document).ready(function() {
   $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav), ._not_current_slide', function(e) {
     e.preventDefault();
     saveCurrentSlide();
-    slideTo($(this).data('slide-id'));
+    slideTo($(this).parent().data('slide-id'));
   });
   
   $('body').on('click', '._hide_add_new_slide_options', function() {
