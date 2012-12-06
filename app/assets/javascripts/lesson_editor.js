@@ -17,7 +17,7 @@ $(document).ready(function() {
     $(this).children('.slide-tooltip').animate({"opacity": "hide"}, "fast");
   });
   
-  $('body').on('click', '._slide_nav:not(_lesson_editor_current_slide_nav)', function(e){
+  $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav), ._not_current_slide', function(e){
     e.preventDefault();
     saveCurrentSlide();
     slideTo($(this).data('slide-id'));
@@ -233,9 +233,6 @@ function initializeSortableNavs() {
   });
 }
 
-
-
-
 function enableSlidesInLessonEditor() {
   var slide_id = $('li._lesson_editor_current_slide').data('slide-id');
   var current_slide = $('#slide_in_lesson_editor_' + slide_id);
@@ -325,15 +322,17 @@ function slideTo(slide_id) {
     opacity: 0.4,
   }, 150, function() {
     $(this).find('.buttons').fadeOut();
+    $(this).addClass('_not_current_slide');
     $('a._lesson_editor_current_slide_nav').removeClass('_lesson_editor_current_slide_nav active');
-    $('#slide_in_nav_lesson_editor_' + slide.id).addClass('_lesson_editor_current_slide_nav active');
+    $('#slide_in_nav_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide_nav active');
   });
   $('ul#slides li:eq(' + (position - 1) + ')').animate({
     opacity: 1,
   }, 500, function() {
     $(this).find(".buttons").fadeIn();
+    $(this).removeClass('_not_current_slide');
     $('li._lesson_editor_current_slide').removeClass('_lesson_editor_current_slide active');
-    $('#slide_in_lesson_editor_' + slide.id).addClass('_lesson_editor_current_slide active');
+    $('#slide_in_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide active');
   });
 }
 
@@ -403,13 +402,13 @@ function initTinymce() {
 }
 
 function imgRealSize(img) {
-	var $img = $(img);
-	if ($img.prop('naturalWidth') == undefined) {
-		var $tmpImg = $('<img/>').attr('src', $img.attr('src'));
-		$img.prop('naturalWidth', $tmpImg[0].width);
-		$img.prop('naturalHeight', $tmpImg[0].height);
-	}
-	return { 'width': $img.prop('naturalWidth'), 'height': $img.prop('naturalHeight') }
+  var $img = $(img);
+  if ($img.prop('naturalWidth') == undefined) {
+    var $tmpImg = $('<img/>').attr('src', $img.attr('src'));
+    $img.prop('naturalWidth', $tmpImg[0].width);
+    $img.prop('naturalHeight', $tmpImg[0].height);
+  }
+  return { 'width': $img.prop('naturalWidth'), 'height': $img.prop('naturalHeight') }
 }
 
 function slideError(){
@@ -418,13 +417,12 @@ function slideError(){
   $("._slide_error").fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
 }
 
-
-function centerThis(div) { 
-        var winH = $(window).height(); 
-        var winW = $(window).width(); 
-        var centerDiv = $(div); 
-        centerDiv.css('top', winH/2-centerDiv.height()/2); 
-        centerDiv.css('left', winW/2-centerDiv.width()/2); 
+function centerThis(div) {
+  var winH = $(window).height();
+  var winW = $(window).width();
+  var centerDiv = $(div);
+  centerDiv.css('top', winH/2-centerDiv.height()/2);
+  centerDiv.css('left', winW/2-centerDiv.width()/2);
 }
 
 function isHorizontalMask(image_width,image_height,kind){
