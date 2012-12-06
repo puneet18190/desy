@@ -50,7 +50,7 @@
 @mixin iconeElements {
   background-size: 2.7em 8.1em;
 	width:40%;
-	background-image: url(<%= asset_path 'icon_elements.svg' %>);
+	background-image: url("<%= asset_path 'icon_elements.svg' %>");
 	background-repeat: no-repeat;
 	background-position:0 0;
 	float:left; 
@@ -63,7 +63,7 @@
   height:110px;
 }
 a.cerca {
-  background-image:url(<%= asset_path 'cerca.png' %>);
+  background-image:url("<%= asset_path 'cerca.png' %>");
   background-repeat:no-repeat;
 	background-position:top left;  
 	padding-left:30px;
@@ -72,10 +72,10 @@ a.cerca {
 	margin-left:15px;
 }
 a:hover.cerca {
-  background-image:url(<%= asset_path 'cerca_on.png' %>);
+  background-image:url("<%= asset_path 'cerca_on.png' %>");
 }
 a.cerca.current {
-  background-image:url(<%= asset_path 'cerca_current.png' %>);
+  background-image:url("<%= asset_path 'cerca_current.png' %>");
 	cursor:auto;
 }
 .boxViewExpandedLesson {
@@ -111,16 +111,16 @@ a.cerca.current {
 			font: 110% 'Nunito', sans-serif;
 		}
 		.createButton a {
-		  background: url(<%= asset_path 'create.png' %>) top left no-repeat;
+		  background: url("<%= asset_path 'create.png' %>") top left no-repeat;
 			padding-bottom:90px;
 			padding-left:120px;
 		}
 		.createButton a:hover {
-			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+			  background: url("<%= asset_path 'create_white.png' %>") top center no-repeat;
 			  cursor: pointer;
 		}
 		.createButton a.current_plus {
-		  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+		  background: url("<%= asset_path 'create_white.png' %>") top center no-repeat;
 		}
 	}
 	.vuoto {
@@ -325,15 +325,15 @@ a.cerca.current {
 			padding-top:40px;
 		}
 		a.createButton {
-		  background: url(<%= asset_path 'create.png' %>) top center no-repeat;
+		  background: url("<%= asset_path 'create.png' %>") top center no-repeat;
 			padding:50px;
 			&:hover {
-			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+			  background: url("<%= asset_path 'create_white.png' %>") top center no-repeat;
 			  cursor: pointer;
 			}
 		}
 		a.current_plus {
-		  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+		  background: url("<%= asset_path 'create_white.png' %>") top center no-repeat;
 		}
 	}
 	.vuoto {
@@ -565,7 +565,7 @@ a.cerca.current {
     z-index: 0;
     width:64px;
 		height:64px;
-		background: url(<%= asset_path 'icone_piene.svg' %>)  no-repeat;
+		background: url("<%= asset_path 'icone_piene.svg' %>")  no-repeat;
 		background-position: -16em 0; 
 		background-size: 32em 5em;
 		&::-moz-focus-inner {
