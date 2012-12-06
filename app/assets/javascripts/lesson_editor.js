@@ -7,14 +7,14 @@ $(document).ready(function() {
   
   $('#lesson_subject').selectbox();
   
-  $('body').on('mouseover', '#slide-numbers li:not(._add_slide)', function(e) {
+  $('body').on('mouseover', '#slide-numbers li:not(._add_new_slide_options_in_last_position)', function(e) {
     tip = $(this);
     x = e.pageX - tip.offset().left;
     y = e.pageY - tip.offset().top;
     tip.children('.slide-tooltip').show();
   });
   
-  $('body').on('mouseout', '#slide-numbers li:not(._add_slide)', function(e) {
+  $('body').on('mouseout', '#slide-numbers li:not(._add_new_slide_options_in_last_position)', function(e) {
     $(this).children('.slide-tooltip').hide();
   });
   
@@ -30,17 +30,12 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._add_new_slide_options', function() {
-    var slideN = $("li._lesson_editor_current_slide .slide-content");
-    slideN.removeClass("cover title video1 video2 audio image1 image2 image3 image4 text");
-    var html_to_be_replaced = $('#new_slide_option_list').html();
-    slideN.prepend(html_to_be_replaced);
-    var activeButton = slideN.siblings(".buttons");
-    activeButton.find(".add").addClass("active");
-    activeButton.find("._add_new_slide_options").removeAttr("class").addClass("minusButtonOrange _hide_add_slide _hide_add_new_slide_options");
-    activeButton.find("a:not(._hide_add_slide)").css("visibility","hidden");
-    $("body").on("click","._hide_add_new_slide_options",function(){
-      hideNewSlideChoice();
-    });
+    showNewSlideOptions();
+  });
+  
+  $('body').on('click', '._add_new_slide_options_in_last_position', function() {
+    var last_slide_id = $(this).parent().prev().find('a').data('slide-id');
+    slideTo('' + last_slide_id, showNewSlideOptions);
   });
   
   $('body').on('click', '._add_new_slide', function() {
@@ -197,6 +192,20 @@ $(document).ready(function() {
   
 });
 
+function showNewSlideOptions() {
+  var slideN = $("li._lesson_editor_current_slide .slide-content");
+  slideN.removeClass("cover title video1 video2 audio image1 image2 image3 image4 text");
+  var html_to_be_replaced = $('#new_slide_option_list').html();
+  slideN.prepend(html_to_be_replaced);
+  var activeButton = slideN.siblings(".buttons");
+  activeButton.find(".add").addClass("active");
+  activeButton.find("._add_new_slide_options").removeAttr("class").addClass("minusButtonOrange _hide_add_slide _hide_add_new_slide_options");
+  activeButton.find("a:not(._hide_add_slide)").css("visibility","hidden");
+  $("body").on("click","._hide_add_new_slide_options",function(){
+    hideNewSlideChoice();
+  });
+}
+
 function initializeLessonEditor() {
   initTinymce();
   $('._image_container_in_lesson_editor').each(function() {
@@ -310,7 +319,7 @@ function saveCurrentSlide() {
   $('._lesson_editor_current_slide form').submit();
 }
 
-function slideTo(slide_id) {
+function slideTo(slide_id, callback) {
   var slide = $('#slide_in_lesson_editor_' + slide_id);
   var position = slide.data('position');
   if (position == 1) {
@@ -336,6 +345,12 @@ function slideTo(slide_id) {
     $(this).removeClass('_not_current_slide');
     $('li._lesson_editor_current_slide').removeClass('_lesson_editor_current_slide active');
     $('#slide_in_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide active');
+    if(typeof(callback) != 'undefined') {
+      
+      console.log('eccomi');
+      
+      callback();
+    }
   });
 }
 
@@ -343,7 +358,7 @@ function hideNewSlideChoice() {
   var activeSlide = $('li._lesson_editor_current_slide');
   activeSlide.find('div.slide-content').addClass(activeSlide.data('kind'));
   activeSlide.find('.box.new_slide').remove();
-  activeSlide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_slide _add_new_slide_options');
+  activeSlide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
   activeSlide.find('.buttons a').css('visibility', 'visible');
 }
 
