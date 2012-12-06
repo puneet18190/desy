@@ -2,7 +2,7 @@
   <% slides.each do |slide| %>
     <%
       nav_class = '_slide_nav'
-      nav_class = "#{nav_class} active _lesson_editor_current_slide_nav" if slide.cover?
+      nav_class = "#{nav_class} active _lesson_editor_current_slide_nav" if slide.cover? && with_current
     %>
     <li class="<%= slide.cover? ? '' : '_slide_nav_sortable'.html_safe %>">
       <a id="slide_in_nav_lesson_editor_<%= slide.id %>" class="<%= nav_class.html_safe %>" data-slide-id="<%= slide.id %>"><%= slide.position %></a>

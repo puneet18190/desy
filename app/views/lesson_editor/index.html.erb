@@ -1,6 +1,6 @@
 <% content_for :nav do %>
   <nav id="heading">
-    <%= render :partial => "index_nav", :locals => {:slides => @slides} %>
+    <%= render :partial => "index_nav", :locals => {:slides => @slides, :with_current => true} %>
   </nav>
 <% end %>
 
