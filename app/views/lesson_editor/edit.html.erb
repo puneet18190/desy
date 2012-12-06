@@ -1,23 +1,23 @@
 <ul id="slides" class="new">
   <li class="info slides">
     <div class="box">
-      <h3><%= t "captions.update_lesson" %>: <%= @lesson.title %></h3>
-      <p><%= t "descriptions.update_lesson" %></p>
-      <%= form_for(@lesson) do |f| -%>
+      <h3><%= t('captions.update_lesson') %>: <%= @lesson.title %></h3>
+      <p><%= t('captions.use_the_form_below_for_lesson_information') %></p>
+      <%= form_for(@lesson) do |f| %>
         <%= f.text_field :title, :class=>"pull-left" %>
         <%= select_tag "subject", options_from_collection_for_select(@subjects, "id", "description"), :include_blank => false, :class=>"pull-right", :id => "lesson_subject" %>
         <%= f.text_area :description, :class=>"pull-left" %>
         <textarea id="lesson_tags" name="lesson[tags]" class="pull-right"><%= @lesson.tags %></textarea>
-        <br />
-        <%= f.submit "#{t 'captions.update'}", :class=>"lesson-create pull-right" %>
-      <% end -%>
+        <br/>
+        <%= f.submit t('captions.update'), :class => "lesson-create pull-right" %>
+      <% end %>
     </div>
     <div class="info-slide-footer">
       <div class="school-level pull-left">
         <%=  @current_user.school_level.description %>
       </div>
       <div class="author pull-right">
-        <%= t "captions.author"%>: <span class="name"><%=  @current_user.full_name %></span>
+        <%= t('captions.author') %>: <span class="name"><%=  @current_user.full_name %></span>
       </div>
     </div>
   </li>
