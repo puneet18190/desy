@@ -321,37 +321,40 @@ function saveCurrentSlide() {
 
 function slideTo(slide_id, callback) {
   var slide = $('#slide_in_lesson_editor_' + slide_id);
-  var position = slide.data('position');
-  if (position == 1) {
-    marginReset = 0;
+  if(!slide.hasClass('_lesson_editor_current_slide')) {
+    var position = slide.data('position');
+    if (position == 1) {
+      marginReset = 0;
+    } else {
+      marginReset = (-((position - 1) * 1010)) + "px";
+    }
+    $("ul#slides").animate({
+      marginLeft: marginReset
+    }, 1500);
+    $("ul#slides li").animate({
+      opacity: 0.4,
+    }, 150, function() {
+      $(this).find('.buttons').fadeOut();
+      $(this).addClass('_not_current_slide');
+      $('a._lesson_editor_current_slide_nav').removeClass('_lesson_editor_current_slide_nav active');
+      $('#slide_in_nav_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide_nav active');
+    });
+    $('ul#slides li:eq(' + (position - 1) + ')').animate({
+      opacity: 1,
+    }, 500, function() {
+      $(this).find(".buttons").fadeIn();
+      $(this).removeClass('_not_current_slide');
+      $('li._lesson_editor_current_slide').removeClass('_lesson_editor_current_slide active');
+      $('#slide_in_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide active');
+      if(typeof(callback) != 'undefined') {
+        callback();
+      }
+    });
   } else {
-    marginReset = (-((position - 1) * 1010)) + "px";
-  }
-  $("ul#slides").animate({
-    marginLeft: marginReset
-  }, 1500);
-  $("ul#slides li").animate({
-    opacity: 0.4,
-  }, 150, function() {
-    $(this).find('.buttons').fadeOut();
-    $(this).addClass('_not_current_slide');
-    $('a._lesson_editor_current_slide_nav').removeClass('_lesson_editor_current_slide_nav active');
-    $('#slide_in_nav_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide_nav active');
-  });
-  $('ul#slides li:eq(' + (position - 1) + ')').animate({
-    opacity: 1,
-  }, 500, function() {
-    $(this).find(".buttons").fadeIn();
-    $(this).removeClass('_not_current_slide');
-    $('li._lesson_editor_current_slide').removeClass('_lesson_editor_current_slide active');
-    $('#slide_in_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide active');
     if(typeof(callback) != 'undefined') {
-      
-      console.log('eccomi');
-      
       callback();
     }
-  });
+  }
 }
 
 function hideNewSlideChoice() {
