@@ -18,7 +18,7 @@ $(document).ready(function() {
     $(this).children('.slide-tooltip').hide();
   });
   
-  $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav), ._not_current_slide', function(e){
+  $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav), ._not_current_slide', function(e) {
     e.preventDefault();
     saveCurrentSlide();
     slideTo($(this).data('slide-id'));
@@ -34,10 +34,12 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._add_new_slide_options', function() {
+    saveCurrentSlide();
     showNewSlideOptions();
   });
   
   $('body').on('click', '._add_new_slide_options_in_last_position', function() {
+    saveCurrentSlide();
     var last_slide_id = $(this).parent().prev().find('a').data('slide-id');
     slideTo('' + last_slide_id, showNewSlideOptions);
   });
@@ -332,7 +334,7 @@ function slideTo(slide_id, callback) {
     }
     $("ul#slides").animate({
       marginLeft: marginReset
-    }, 1500, function(){
+    }, 1500, function() {
       if(typeof(callback) != 'undefined') {
         callback();
       }
@@ -373,13 +375,13 @@ function initLessonEditorPositions() {
   WW = parseInt($(window).outerWidth());
   WH = parseInt($(window).outerHeight());
   $("#main").css("width", WW);
-  $("ul#slides").css("width",($("ul#slides li").length * 960) + (2*WW) );
+  $("ul#slides").css("width",($("ul#slides li").length * 960) + (2 * WW) );
   $("ul#slides").css("top", ((WH / 2) - 295) + "px");
   $("ul#slides.new").css("top", ((WH / 2) - 335) + "px")
-  $("#footer").css("top",(WH-40)+"px").css("width",(WW-24)+"px")
+  $("#footer").css("top", (WH - 40) + "px").css("width", (WW - 24) + "px")
   if(WW > 1000) {
-    $("ul#slides li:first").css("margin-left", ((WW-900) / 2) + "px")
-    $("ul#slides.new li:first").css("margin-left",((WW-900) / 2) + "px");
+    $("ul#slides li:first").css("margin-left", ((WW - 900) / 2) + "px")
+    $("ul#slides.new li:first").css("margin-left", ((WW - 900) / 2) + "px");
   }
 }
 
