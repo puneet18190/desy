@@ -3,11 +3,20 @@ $(document).ready(function() {
   $("html.lesson-editor-layout ul#slides").css("margin-top",($(window).height() - 590)/2 + "px");
   $('#info_container').data('current-media-element-position', 1);
   
-  initTinymce(); // init tinymce configuration and manage external toolbar toggle
+  initializeLessonEditor();
+  
   slideSortList("#slide-numbers"); // make sortable page number on top
   $("#lesson_subject").selectbox(); // select subject in lesson new/edit views
   initLessonEditorPositions(); // center and align slides offset
-  lessonEditorTooltip('#slide-numbers li'); // show tooltip on top list mouseover
+  
+  $('body').on('mouseover', '#slide-numbers li:not(._add_slide)', function(e) {
+    tip = $(this);
+    x = e.pageX - tip.offset().left;
+    y = e.pageY - tip.offset().top;
+    tip.children('.slide-tooltip').animate({"opacity": "show"}, "fast");
+  }, function() {
+    $(this).children('.slide-tooltip').animate({"opacity": "hide"}, "fast");
+  });
   
   $('body').on('click', '#slide-numbers li a:not(_add_slide, _lesson_editor_current_slide_nav)', function(e){
     e.preventDefault();
@@ -15,12 +24,6 @@ $(document).ready(function() {
     slideTo($(this).data('slide-id'));
   });
   
-  // apply mask to each horizontal slide image container
-  $('._image_container_in_lesson_editor').each(function() {
-    makeDraggable($(this).attr('id'));
-  });
-  
-  // trigger save on "save button" click
   $('body').on('click', '._save_slide', function(e) {
     e.preventDefault();
     saveCurrentSlide();
@@ -194,6 +197,13 @@ $(document).ready(function() {
   
 });
 
+function initializeLessonEditor() {
+  initTinymce();
+  $('._image_container_in_lesson_editor').each(function() {
+    makeDraggable($(this).attr('id'));
+  });
+}
+
 function enableSlidesInLessonEditor() {
   var slide_id = $('li._lesson_editor_current_slide').data('slide-id');
   var current_slide = $('#slide_in_lesson_editor_' + slide_id);
@@ -296,20 +306,6 @@ function slideTo(slide_id) {
   });
 }
 
-function lessonEditorTooltip(list){
-  $(list).hover(function(e) {
-    tip = $(this); 
-    // Calculate the position of the image tooltip
-    x = e.pageX - tip.offset().left;
-    y = e.pageY - tip.offset().top;
-
-    tip.children('.slide-tooltip').animate({"opacity": "show"}, "fast");
-  }, function() {
-    // Reset the z-index and hide the image tooltip 
-    $(this).children('.slide-tooltip').animate({"opacity": "hide"}, "fast");
-  });
-}
-
 function hideNewSlideChoice() {
   var activeSlide = $('li._lesson_editor_current_slide');
   activeSlide.find('div.slide-content').addClass(activeSlide.data('kind'));
@@ -341,15 +337,25 @@ function slideSortList(list){
       saveCurrentSlide();
     },
     stop: function(event, ui) {
-      ui.item.endPos = ui.item.index() + 1;
-      current_a = ui.item.find("a")
-      current_a.text((parseInt(ui.item.index()) + 1));
-      $.post('/lessons/' + $('#info_container').data('lesson-id') + '/slides/' + current_a.data('slide-id') + '/move/' + ui.item.endPos);
-      $(this).find('li:not(:last)').each(function(i){
-        var current_i = (parseInt(i)+1);
-        $(this).find('a').text(current_i);
-      });
-      slideTo('.slide-numbers li:eq('+ui.item.endPos+')');
+      var previous = ui.item.prev();
+      var new_position = 0;
+      var old_position = parseInt(ui.item.html());
+      if(previous.length == 1) {
+        new_position = 2;
+      } else {
+        var previous_item_position = parseInt(previous.html());
+        if(old_position > previous_item_position) {
+          new_position = previous_item_position + 1;
+        } else {
+          new_position = previous_item_position;
+        }
+      }
+      if(old_position != new_position) {
+        $.ajax({
+          type: 'post',
+          url: '/lessons/' + $('#info_container').data('lesson-id') + '/slides/' + ui.item.data('slide-id') + '/move/' + new_position
+        });
+      }
     }
   });
 }
@@ -364,7 +370,7 @@ function tinyMceCallbacks(inst){
   }
 }
 
-function initTinymce(){
+function initTinymce() {
   tinyMCE.init({
     mode : "textareas",
     theme : "advanced",

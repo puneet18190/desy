@@ -1,21 +1,16 @@
 $("#slides").html("<%= j(render :partial => 'index_slides', :locals => {:slides => @slides}) %>");
 $("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides}) %>");
+slideTo(<%=@current_slide.id%>);
+
+initializeLessonEditor();
 
 
-initTinymce(); // init tinymce configuration and manage external toolbar toggle
+/*
 slideSortList("#slide-numbers"); // make sortable page number on top
 $("#lesson_subject").selectbox(); // select subject in lesson new/edit views
 initLessonEditorPositions(); // center and align slides offset
-lessonEditorTooltip('#slide-numbers li'); // show tooltip on top list mouseover
-
-slideTo(<%=@current_slide.id%>);
-
-// apply mask to each slide image container
-masked = $("._mask_x a:not('._choose')");
-masked.each(function(index) {
-  makeDraggable($(masked[index]), "x");
-});
 
 $(".slide-content.cover .title").css("margin-left","auto");
 
 $("#slide-numbers li:nth-child(<%= @current_slide.position %>) a").trigger("click");
+*/

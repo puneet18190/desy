@@ -4,20 +4,14 @@ $('li._lesson_editor_current_slide').effect('fade', {}, 500, function(){
   slideTo('<%= @current_slide.id %>');
 });
 
-
-
-
+initializeLessonEditor();
 
 
 /*
 
-FIXME metti tutto in una funzione initializeLessonEditor
-
-initTinymce(); // init tinymce configuration and manage external toolbar toggle
 slideSortList("#slide-numbers"); // make sortable page number on top
 $("#lesson_subject").selectbox(); // select subject in lesson new/edit views
 initLessonEditorPositions(); // center and align slides offset
-lessonEditorTooltip('#slide-numbers li'); // show tooltip on top list mouseover
 $("#slide-numbers li a.active").removeClass("active");
 $("#slide-numbers li a:eq(<%=@current_slide.position - 1 %>)").addClass("active");
 // apply mask to each slide image container
