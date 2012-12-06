@@ -1,7 +1,7 @@
 $(document).ready(function() {
   
-  $("html.lesson-editor-layout ul#slides").css("margin-top",($(window).height() - 590)/2 + "px");
-  $('#info_container').data('current-media-element-position', 1);
+  $("html.lesson-editor-layout ul#slides").css("margin-top", ($(window).height() - 590)/2 + "px");
+  $('#info_container').data('current-media-element-position', 1); // FIXME DUBBIO?????
   
   initializeLessonEditor();
   
@@ -216,7 +216,7 @@ function initializeLessonEditor() {
     makeDraggable($(this).attr('id'));
   });
   initializeSortableNavs();
-  $(".slide-content.cover .title").css("margin-left","auto"); // FIXME controllare se funziona senza
+  $(".slide-content.cover .title").css("margin-left", "auto");
   initLessonEditorPositions();
 }
 
