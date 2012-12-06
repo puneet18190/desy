@@ -1,7 +1,7 @@
 <ul id="slide-numbers">
-  <% @slides.each do |slide| %>
+  <% slides.each do |slide| %>
     <li class="<%= slide.cover? ? 'unsortable' : ''%>">
-      <a href="#<%= slide.position %>" id="slide_in_nav_lesson_editor_<%= slide.id %>" class="<%= slide.cover? ? 'active _lesson_editor_current_slide_nav'.html_safe : '' %>" data-slide-id="<%= slide.id %>"><%= slide.position %></a>
+      <a id="slide_in_nav_lesson_editor_<%= slide.id %>" class="<%= slide.cover? ? 'active _lesson_editor_current_slide_nav'.html_safe : '' %>" data-slide-id="<%= slide.id %>"><%= slide.position %></a>
       <div class="slide-tooltip">
         <%= render :partial => "shared/lesson_thumbnails/small/#{slide.kind}" , :locals => { :slide => slide }%>
       </div>
