@@ -18,7 +18,13 @@ $(document).ready(function() {
     $(this).children('.slide-tooltip').hide();
   });
   
-  $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav), ._not_current_slide', function(e) {
+  $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav)', function(e) {
+    e.preventDefault();
+    saveCurrentSlide();
+    slideTo($(this).data('slide-id'));
+  });
+  
+  $('body').on('click', '._not_current_slide', function(e) {
     e.preventDefault();
     saveCurrentSlide();
     slideTo($(this).parent().data('slide-id'));
