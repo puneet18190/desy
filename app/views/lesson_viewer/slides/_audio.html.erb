@@ -8,7 +8,7 @@
     <% if audio.nil? %>
       <div class="audioIcon"></div>
     <% else %>
-      <audio class="audio" src="<%= audio.mp3 %>" controls></audio>
+      <%= render(:partial => 'shared/players/audio', :locals => {:audio => audio}) %>
     <% end %>
   </div>
   <div class="contentText">
