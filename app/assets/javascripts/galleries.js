@@ -20,3 +20,11 @@ function initializeVideoEditorMixedGallery() {
   initializeVideoGallery();
   initializeImageGallery();
 }
+
+function resizedWidthForImageGallery(width, height) {
+  if(height > width) {
+    return (420 * width / height) + 20;
+  } else {
+    return 440;
+  }
+}

@@ -467,11 +467,10 @@ function centerThis(div) {
   centerDiv.css('left', winW/2-centerDiv.width()/2);
 }
 
-function isHorizontalMask(image_width,image_height,kind){
+function isHorizontalMask(image_width, image_height, kind){
   var ratio = image_width/image_height;
   var slideRatio = 0;
-  switch(kind)
-  {
+  switch(kind) {
     case "cover": slideRatio = 1.6;
     break;
     case "image1": slideRatio = 1.05;
@@ -487,39 +486,36 @@ function isHorizontalMask(image_width,image_height,kind){
   return (ratio >= slideRatio);
 }
 
-
-function resizeWidth(width,height,kind){
-  switch(kind)
-  {
-     case "cover": slideHeight = 560;
-     break;
-     case "image1": slideHeight = 420;
-     break;
-     case "image2": slideHeight = 550;
-     break;
-     case "image3": slideHeight = 550;
-     break;
-     case "image4": slideHeight = 265;
-     break;
-     default: slideHeight = 590;
+function resizeWidth(width, height, kind){
+  switch(kind) {
+   case "cover": slideHeight = 560;
+   break;
+   case "image1": slideHeight = 420;
+   break;
+   case "image2": slideHeight = 550;
+   break;
+   case "image3": slideHeight = 550;
+   break;
+   case "image4": slideHeight = 265;
+   break;
+   default: slideHeight = 590;
   }
   return (width*slideHeight)/height;
 }
   
 function resizeHeight(width,height,kind){
-  switch(kind)
-  {
-     case "cover": slideWidth = 900;
-     break;
-     case "image1": slideWidth = 440;
-     break;
-     case "image2": slideWidth = 420;
-     break;
-     case "image3": slideWidth = 860;
-     break;
-     case "image4": slideWidth = 420;
-     break;
-     default: slideWidth = 900;
+  switch(kind) {
+   case "cover": slideWidth = 900;
+   break;
+   case "image1": slideWidth = 440;
+   break;
+   case "image2": slideWidth = 420;
+   break;
+   case "image3": slideWidth = 860;
+   break;
+   case "image4": slideWidth = 420;
+   break;
+   default: slideWidth = 900;
   }
   return (height*slideWidth)/width;
 }

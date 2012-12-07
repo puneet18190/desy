@@ -138,6 +138,7 @@ function showLoadMediaElementPopUp() {
 
 function showImageInGalleryPopUp(image_id) {
   var obj = $('#dialog-image-gallery-' + image_id);
+  var my_width = resizedWidthForImageGallery(obj.find('a').data('width'), obj.find('a').data('height'));
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
@@ -145,17 +146,15 @@ function showImageInGalleryPopUp(image_id) {
     obj.dialog({
       closeOnEscape: true,
       modal: true,
-      resize: 'auto',
+      width: my_width,
       resizable: false,
       draggable: false,
-      maxWidth: 440,
-      maxHeight: 480,
       show: "fade",
       hide: "fade",
-      open: function(){
+      open: function() {
         customOverlayClose();
       },
-      beforeClose: function(){
+      beforeClose: function() {
         removeCustomOverlayClose();
       }
     });
