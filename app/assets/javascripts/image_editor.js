@@ -171,7 +171,7 @@ function addTextAreaHiddenFields(color, size, coords, text, index){
 //TODO ADD COLOR AND FONT SIZE
 function textAreaContent(coords,textCount){
   var textarea = "<textarea id='area_"+textCount+"' data-coords='"+coords[2]+","+coords[3]+"' data-color='color_black' data-size='20' name='text_"+textCount+"' class='color_black small_font' />";
-  var colors = "<div class='text_colors'><a class='background_color_white'></a><a class='background_color_black current'></a><a class='background_color_red'></a><a class='background_color_yellow'></a><a class='background_color_blue'></a><a class='background_color_green'></a></div>"
+  var colors = "<div class='text_colors'><a class='background_color_white'></a><a class='background_color_black current'></a><a class='background_color_red'></a><a class='background_color_orange'></a><a class='background_color_light_blue'></a><a class='background_color_green'></a></div>"
   var fontSize = "<div class='font_sizes'><a class='small_font current' data-param='20'>A</a><a class='medium_font' data-param='31'>A</a><a class='big_font' data-param='40'>A</a></div>"
   div = $("<div />",
   {
