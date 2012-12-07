@@ -105,7 +105,9 @@ html.lesson-viewer-layout{
        clear:both;
 			 width: 870px;
 			 padding:6px 15px;
-			 position:static;
+			 position:absolute;
+			 bottom:0;
+			 background-color: #fff;
 			 span {
 			   float:right;
 			 }
@@ -187,12 +189,13 @@ html.lesson-viewer-layout{
   /*LAYOUT SLIDE*/
 	/*copertina*/
 	.slideCover{
+	  height:590px;
 	  .cover {
 		  width:900px;
 		  height:560px;
 			overflow:hidden;
-			img {
-			  height:560px;
+			img{
+			  position:absolute;
 			}
 	  }
 	}
@@ -208,7 +211,10 @@ html.lesson-viewer-layout{
 	}
 	/*slide image*/
 	.slideImage{
-	  @include formatElement
+	  @include formatElement;
+	  img{
+	    position:absolute;
+	  }
 	}
 	/*slide text*/
 	.slideText{
