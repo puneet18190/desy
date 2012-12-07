@@ -253,11 +253,15 @@
 		padding:10px;
 		-webkit-box-shadow: 0px 6px 16px #121111;
     box-shadow: 0px 6px 16px #121111;
-		h1 {
+		textarea {
 		  font-size:230%;
 			padding-top:147px;
 			color:white;
+			background-color:transparent;
+			text-align:center;
+			border:none;
 		}
+		
 	}
 	.menuTexts {
 	  position:absolute; 
@@ -272,6 +276,7 @@
 	  .scegliBgColor {
 	    p {
 		    float:left;
+				width:85px;
 		  }
 		  & > div {
 		   @include stileElementiSceltaColori;
@@ -281,6 +286,7 @@
 	  .scegliTxtColor {
 	    p {
 		    float:left;
+				width:85px;
 		  }
 		  & > div {
 		    @include stileElementiSceltaColori;
@@ -303,10 +309,12 @@
 }
 #video_editor_mixed_gallery_container {
   .scroll-pane {
-	  width:860px;
+	  width:840px;
 		position:absolute;
 		top:70px;
+		padding-left:20px;
   }
+	
 	.gallery-footer{
     display:inline-block;
     padding: 10px 15px;
@@ -316,3 +324,8 @@
 		bottom:10px; left:40px;
 	}
 }
+/*fixed per la centratura a 1024*/
+#video_editor_mixed_gallery_container.mediaEditorVideoContainer {
+	  width:900px;
+		
+	}

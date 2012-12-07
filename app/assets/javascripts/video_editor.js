@@ -13,10 +13,8 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
         big_selector = this;
       }
     });
-    $(big_selector).hide('fade', {}, 500, function() {
-      $(this).hide();
-      $('#video_editor_mixed_gallery_container ' + type).show();
-    });
+    $(big_selector).hide();
+    $('#video_editor_mixed_gallery_container ' + type).show();
   }
 }
 

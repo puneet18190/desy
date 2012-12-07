@@ -136,7 +136,7 @@ function showLoadMediaElementPopUp() {
   }
 }
 
-function showImageInGalleryPopUp(image_id) {
+function showImageInGalleryPopUp(image_id, callback) {
   var obj = $('#dialog-image-gallery-' + image_id);
   var my_width = resizedWidthForImageGallery(obj.find('a').data('width'), obj.find('a').data('height'));
   if(obj.data('dialog')) {
@@ -156,6 +156,11 @@ function showImageInGalleryPopUp(image_id) {
       },
       beforeClose: function() {
         removeCustomOverlayClose();
+      },
+      close: function() {
+        if(typeof(callback) != 'undefined') {
+          callback();
+        }
       }
     });
   }

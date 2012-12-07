@@ -739,14 +739,20 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor_mixed_gallery_container ._switch_video', function() {
+    $('._switch_image, ._switch_text').removeClass('current');
+    $(this).addClass('current');
     switchToOtherGalleryInMixedGalleryInVideoEditor('._videos');
   });
   
   $('body').on('click', '#video_editor_mixed_gallery_container ._switch_image', function() {
+    $('._switch_video, ._switch_text').removeClass('current');
+    $(this).addClass('current');
     switchToOtherGalleryInMixedGalleryInVideoEditor('._images');
   });
   
   $('body').on('click', '#video_editor_mixed_gallery_container ._switch_text', function() {
+    $('._switch_image, ._switch_video').removeClass('current');
+    $(this).addClass('current');
     switchToOtherGalleryInMixedGalleryInVideoEditor('._texts');
   });
   
@@ -760,6 +766,13 @@ $(document).ready(function() {
   
   $('body').on('click', '._add_audio_track_to_video_editor', function() {
     alert('stai aggiungendo la traccia audio');
+  });
+  
+  $('body').on('click', '._image_gallery_thumb_in_mixed_gallery_video_editor', function(e) {
+    e.preventDefault();
+    showImageInGalleryPopUp($(this).data('image-id'), function() {
+      alert('eccomi pronto per registrare il tempo');
+    });
   });
   
   
