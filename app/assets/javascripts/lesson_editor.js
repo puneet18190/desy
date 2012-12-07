@@ -1,7 +1,6 @@
 $(document).ready(function() {
   
   $("html.lesson-editor-layout ul#slides").css("margin-top", ($(window).height() - 590)/2 + "px");
-  $('#info_container').data('current-media-element-position', 1); // FIXME DUBBIO?????
   
   initializeLessonEditor();
   
@@ -74,8 +73,15 @@ $(document).ready(function() {
   
   $('body').on('click', '._show_image_gallery_in_lesson_editor', function() {
     $('#info_container').data('current-media-element-position', $(this).data('position'));
-    if($('#lesson_editor_image_gallery_container').data('loaded')) {
-      $('#image_gallery').show();
+    var current_slide = $('li._lesson_editor_current_slide');
+    current_slide.prepend('<layer class="_not_current_slide_disabled"></layer>');
+    hideEverythingOutCurrentSlide();
+    var gallery_container = $('#lesson_editor_image_gallery_container');
+    if(gallery_container.data('loaded')) {
+      var html_content = gallery_container.html();
+      gallery_container.html('');
+      current_slide.prepend(html_content);
+      current_slide.find('layer').remove();
     } else {
       $.ajax({
         type: 'get',
@@ -86,6 +92,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._show_audio_gallery_in_lesson_editor', function() {
     $('#info_container').data('current-media-element-position', $(this).data('position'));
+    hideEverythingOutCurrentSlide();
     $.ajax({
       type: 'get',
       url: '/lessons/galleries/audio'
@@ -94,6 +101,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._show_video_gallery_in_lesson_editor', function() {
     $('#info_container').data('current-media-element-position', $(this).data('position'));
+    hideEverythingOutCurrentSlide();
     if($('#video_gallery').length == 0) {
       $.ajax({
         type: 'get',
@@ -106,20 +114,23 @@ $(document).ready(function() {
   
   $('body').on('click', '._close_image_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
-    $('#image_gallery').hide();
-    enableSlidesInLessonEditor();
+    var gallery = $('#image_gallery');
+    var html_content = gallery[0].outerHTML;
+    gallery.remove();
+    $('#lesson_editor_image_gallery_container').html(html_content);
+    showEverythingOutCurrentSlide();
   });
   
   $('body').on('click', '._close_video_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
     $('#video_gallery').hide();
-    enableSlidesInLessonEditor();
+    showEverythingOutCurrentSlide();
   });
   
   $('body').on('click', '._close_audio_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
     $('#audio_gallery').hide();
-    enableSlidesInLessonEditor();
+    showEverythingOutCurrentSlide();
   });
   
   $('body').on('click', '._add_image_to_slide', function(e) {
@@ -213,31 +224,33 @@ $(document).ready(function() {
 });
 
 function showEverythingOutCurrentSlide() {
+  var current_slide = $('li._lesson_editor_current_slide');
   $('#slide-numbers').show();
   $('._not_current_slide_disabled').addClass('_not_current_slide').removeClass('_not_current_slide_disabled');
-  $('li._lesson_editor_current_slide').find('.buttons a').css('visibility', 'visible');
+  current_slide.find('.buttons a').css('visibility', 'visible');
 }
 
 function hideEverythingOutCurrentSlide() {
+  var current_slide = $('li._lesson_editor_current_slide');
   $('#slide-numbers').hide();
   $('._not_current_slide').removeClass('_not_current_slide').addClass('_not_current_slide_disabled');
-  $('li._lesson_editor_current_slide .slide-content').siblings('.buttons').find('a:not(._hide_add_slide)').css('visibility', 'hidden');
+  current_slide.find('.buttons a:not(._hide_add_slide)').css('visibility', 'hidden');
 }
 
 function showNewSlideOptions() {
-  var slideN = $('li._lesson_editor_current_slide .slide-content');
-  slideN.removeClass('cover title video1 video2 audio image1 image2 image3 image4 text');
+  var current_slide_content = $('li._lesson_editor_current_slide .slide-content');
+  current_slide_content.removeClass('cover title video1 video2 audio image1 image2 image3 image4 text');
   var html_to_be_replaced = $('#new_slide_option_list').html();
-  slideN.prepend(html_to_be_replaced);
-  slideN.siblings('.buttons').find('._add_new_slide_options').removeAttr('class').addClass('minusButtonOrange _hide_add_slide _hide_add_new_slide_options');
+  current_slide_content.prepend(html_to_be_replaced);
+  current_slide_content.siblings('.buttons').find('._add_new_slide_options').removeAttr('class').addClass('minusButtonOrange _hide_add_slide _hide_add_new_slide_options');
   hideEverythingOutCurrentSlide();
 }
 
 function hideNewSlideChoice() {
-  var activeSlide = $('li._lesson_editor_current_slide');
-  activeSlide.find('div.slide-content').addClass(activeSlide.data('kind'));
-  activeSlide.find('.box.new_slide').remove();
-  activeSlide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
+  var current_slide = $('li._lesson_editor_current_slide');
+  current_slide.find('div.slide-content').addClass(current_slide.data('kind'));
+  current_slide.find('.box.new_slide').remove();
+  current_slide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
   showEverythingOutCurrentSlide();
 }
 
@@ -278,13 +291,6 @@ function initializeSortableNavs() {
       }
     }
   });
-}
-
-function enableSlidesInLessonEditor() {
-  var slide_id = $('li._lesson_editor_current_slide').data('slide-id');
-  var current_slide = $('#slide_in_lesson_editor_' + slide_id);
-  current_slide.siblings(".buttons").show();
-  $("#slide-numbers").show();
 }
 
 function makeDraggable(place_id) {
@@ -435,19 +441,14 @@ function initTinymce() {
       ed.onKeyUp.add(function(ed, e) {
         tinyMceCallbacks(ed);
       });
-   }
+    }
   });
-  
   $('body:not(textarea.tinymce)').click(function(e){
-    //console.log($(e.target).parentsUntil(".mceExternalToolbar"));
-    //$(e.target).parentsUntil(".mceExternalToolbar").fadeOut();
     $('.mceExternalToolbar').hide();
   });
-  
   $('textarea.tinymce').click(function(){
     $('.mceExternalToolbar').show();
   });
-  
 }
 
 function imgRealSize(img) {
