@@ -441,27 +441,51 @@ html.lesson-editor-layout{
             width: 840px;
           }
           .audio-content{
-            float: right;
-            margin: 0 20px 0 0;
+            width: 860px;
+            margin: 0 0 0 20px;
             display:block;
             
             textarea{
-              width: 380px;
-              height: 400px;
+              margin-top: 20px;
+              width: 840px;
+              height: 300px;
               padding: 10px;
             }
           }
           .cover-choose-image{
             margin: 0 0 0 20px;
-            width: 440px;
-            height: 285px;
+            width: 860px;
+            height: 50px;
+            padding-top:10px;
             display:block;
             a{
+              width: 50px;
+              height: 50px;
+              font-size: 50px;
               background-position: 0 center;
+              background-size: 300px 50px;
             }
             a:hover{
-              background-position: -390px center;
+              background-position: -150px center;
             }
+          }
+          /*roll-over span*/
+				  span.add-audio{
+            width: 50px;
+            height: 50px;
+            font-size: 50px;
+            margin: 10px 0 0 387px;
+					  display:block;
+            background:url('/assets/icone_piene.svg') -50px center no-repeat transparent;
+            background-size: 300px 50px;
+            cursor: pointer;
+					  position:absolute;
+					  top:0;
+					  left:0;
+						opacity:0.80;
+          }
+          span.add-audio:hover{
+            background-position: -150px center;
           }
         }
 
