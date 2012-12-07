@@ -74,13 +74,13 @@ $(document).ready(function() {
   
   $('body').on('click', '._show_image_gallery_in_lesson_editor', function() {
     $('#info_container').data('current-media-element-position', $(this).data('position'));
-    if($('#image_gallery').length == 0) {
+    if($('#lesson_editor_image_gallery_container').data('loaded')) {
+      $('#image_gallery').show();
+    } else {
       $.ajax({
         type: 'get',
         url: '/lessons/galleries/image'
       });
-    } else {
-      $('#image_gallery').show();
     }
   });
   
@@ -212,26 +212,33 @@ $(document).ready(function() {
   
 });
 
-function showNewSlideOptions() {
+function showEverythingOutCurrentSlide() {
+  $('#slide-numbers').show();
+  $('._not_current_slide_disabled').addClass('_not_current_slide').removeClass('_not_current_slide_disabled');
+  $('li._lesson_editor_current_slide').find('.buttons a').css('visibility', 'visible');
+}
+
+function hideEverythingOutCurrentSlide() {
   $('#slide-numbers').hide();
+  $('._not_current_slide').removeClass('_not_current_slide').addClass('_not_current_slide_disabled');
+  $('li._lesson_editor_current_slide .slide-content').siblings('.buttons').find('a:not(._hide_add_slide)').css('visibility', 'hidden');
+}
+
+function showNewSlideOptions() {
   var slideN = $('li._lesson_editor_current_slide .slide-content');
   slideN.removeClass('cover title video1 video2 audio image1 image2 image3 image4 text');
   var html_to_be_replaced = $('#new_slide_option_list').html();
   slideN.prepend(html_to_be_replaced);
-  var activeButton = slideN.siblings('.buttons');
-  activeButton.find('._add_new_slide_options').removeAttr('class').addClass('minusButtonOrange _hide_add_slide _hide_add_new_slide_options');
-  activeButton.find('a:not(._hide_add_slide)').css('visibility', 'hidden');
-  $('._not_current_slide').removeClass('_not_current_slide').addClass('_not_current_slide_disabled');
+  slideN.siblings('.buttons').find('._add_new_slide_options').removeAttr('class').addClass('minusButtonOrange _hide_add_slide _hide_add_new_slide_options');
+  hideEverythingOutCurrentSlide();
 }
 
 function hideNewSlideChoice() {
-  $('#slide-numbers').show();
   var activeSlide = $('li._lesson_editor_current_slide');
   activeSlide.find('div.slide-content').addClass(activeSlide.data('kind'));
   activeSlide.find('.box.new_slide').remove();
   activeSlide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
-  activeSlide.find('.buttons a').css('visibility', 'visible');
-  $('._not_current_slide_disabled').addClass('_not_current_slide').removeClass('_not_current_slide_disabled');
+  showEverythingOutCurrentSlide();
 }
 
 function initializeLessonEditor() {

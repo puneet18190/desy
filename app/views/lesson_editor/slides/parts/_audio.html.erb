@@ -2,12 +2,12 @@
     
     
   <% if audio %>
-    <%= link_to "<span class=' audio'></span><audio id='audio' class='_slide_image audio-p1' src='http://slides.html5rocks.com/src/rushus-modal_blues.mp3' controls></audio>".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, :class => "show-gallery", "data-param"=> "1" %>
+    <%= link_to "<span class=' audio'></span><audio id='audio' class='_slide_image audio-p1' src='http://slides.html5rocks.com/src/rushus-modal_blues.mp3' controls></audio>".html_safe, {:action => :show_gallery, :slide_id => slide.id, :lesson_id => slide.lesson_id, :position => 1} , :remote => true, "data-param"=> "1" %>
     <%= hidden_field_tag :media_element_1, audio.id, :class=> "media-tag-cover-1"  %>
   <% else %>
     <%= hidden_field_tag :media_element_1, "", :class=> "media-tag-cover-1" %>
     <div class="cover-choose-image _cover_choose_image_1 cover-choose-image-left">
-      <a class="_show_audio_gallery_in_lesson_editor show-gallery audio-p1"><%= image_tag "choose-audio.png" %></a>
+      <a class="_show_audio_gallery_in_lesson_editor audio-p1"><%= image_tag "choose-audio.png" %></a>
       <br/>
       <%= t('captions.choose_audio') %>
     </div>
