@@ -9,8 +9,8 @@
 - :type: text
   :content: Titolo di prova
   :duration: 5
-  :background_color: yellow
-  :text_color: blue
+  :background_color: black
+  :text_color: light_blue
 - :type: video
   :video_id: 48
   :from: 0
@@ -23,7 +23,7 @@
   :content: Secondo titolo di prova
   :duration: 8
   :background_color: white
-  :text_color: light_blue
+  :text_color: green
 - :type: image
   :image_id: 3
   :duration: 11
