@@ -10,7 +10,8 @@ var temporary_invisible_div = '<div class="_temporary" style="display:none">';
 
 <% @images.each do |image| %>
   var mini_image = '<%= j(render(:partial => 'video_editor/components/thumbs/image', :locals => {:image => image})) %>';
-  $('#dialog-image-gallery-<%= image.id %>').append(temporary_invisible_div + mini_image + '</div>');
+  var duration_selector = '<%= j(render(:partial => 'video_editor/duration_selector')) %>';
+  $('#dialog-image-gallery-<%= image.id %>').append(temporary_invisible_div + mini_image + '</div>').append(duration_selector);
 <% end %>
 
 <% @videos.each do |video| %>
