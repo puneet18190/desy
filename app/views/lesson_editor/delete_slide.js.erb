@@ -2,8 +2,8 @@
   $('li._lesson_editor_current_slide').effect('fade', {}, 500, function() {
     $('#slide_in_lesson_editor_<%= @slide_id %>').remove();
     reInitializeSlidePositionsInLessonEditor();
-    $("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides, :with_current => false})%>");
-    initializeLessonEditor();
+    $("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides, :with_current => false}) %>");
+    initializeSortableNavs();
     slideTo(<%= @current_slide.id %>);
   });
 <% else %>
