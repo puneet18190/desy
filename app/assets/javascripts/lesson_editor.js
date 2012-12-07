@@ -166,8 +166,10 @@ $(document).ready(function() {
     $('#' + place_id + ' ._full_video_in_slide source[type="video/mp4"]').attr('src', video_mp4);
     $('#' + place_id + ' ._full_video_in_slide source[type="video/webm"]').attr('src', video_webm);
     $('#' + place_id + ' video').load();
-    initializeMedia((place_id + ' ._instance_of_player_' + video_id), 'video', duration);
-    $('#' + place_id + ' a').data('rolloverable', true);
+    var video_player = $('#' + place_id + ' ._empty_video_player');
+    video_player.removeClass('_empty_video_player').addClass('_instance_of_player_' + video_id);
+    initializeMedia((video_player.attr('id')), 'video', duration);
+    $('#' + place_id + ' ._rolloverable').data('rolloverable', true);
   });
   
   $('body').on('click', '._add_audio_to_slide', function(e) {
@@ -195,7 +197,7 @@ $(document).ready(function() {
   });
   
   $('body').on('mouseover', '._full_image_in_slide, ._full_video_in_slide', function() {
-    var obj = $('#' + $(this).parent().attr('id') + ' a');
+    var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
     var slide_id = obj.data('slide-id');
     var position = obj.data('position');
     if(obj.data('rolloverable')) {
@@ -204,7 +206,7 @@ $(document).ready(function() {
   });
   
   $('body').on('mouseout', '._full_image_in_slide, ._full_video_in_slide', function() {
-    var obj = $('#' + $(this).parent().attr('id') + ' a');
+    var obj = $('#' + $(this).parent().attr('id') + ' ._rolloverable');
     var slide_id = obj.data('slide-id');
     var position = obj.data('position');
     if(obj.data('rolloverable')) {
@@ -321,15 +323,15 @@ function makeDraggable(place_id) {
     side = "top";
     dist = maskedImgHeight - full_place.height();
   }
-  $('#' + place_id + ' ._full_image_in_slide a').draggable({
+  $('#' + place_id + ' ._full_image_in_slide ._rolloverable').draggable({
     axis: axe,
     distance: 10,
     start: function() {
-      $('#' + place_id + ' a').data('rolloverable', false);
+      $('#' + place_id + ' ._rolloverable').data('rolloverable', false);
       $('#' + place_id + ' span').hide();
     },
     stop: function() {
-      $('#' + place_id + ' a').data('rolloverable', true);
+      $('#' + place_id + ' ._rolloverable').data('rolloverable', true);
       $('#' + place_id + ' span').show();
       var thisDrag = $(this);
       var offset = thisDrag.css(side);
