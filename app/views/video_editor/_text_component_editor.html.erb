@@ -5,20 +5,19 @@
   end
 %>
 
-<div class="contentInsertText"><h1>Insert Text</h1></div>
+<div class="contentInsertText"><h1><%= t('captions.insert_text') %></h1></div>
 
 <div class="menuTexts">
   <div class="elementoTime">
     <div class="tempo">
-    <p>Time</p>
+    <p><%= t('captions.time') %></p>
       <div class="numberTime">10</div>
-			<p>sec</p>
+      <p class="lower"><%= t('captions.sec') %></p>
     </div>
-    
   </div>
   <div class="elementoGrigio">
     <div class="scegliBgColor">
-    <p>Background color</p>
+    <p><%= t('captions.background_color') %></p>
     <% colors.each do |color| %>
       <div class="background_color_<%= color %>"></div>
     <% end %>
@@ -26,11 +25,11 @@
   </div>
   <div class="elementoGrigio">
     <div class="scegliTxtColor">
-    <p>Text color</p> 
+    <p><%= t('captions.text_color') %></p>
     <% colors.each do |color| %>
       <div class="background_color_<%= color %>"></div>
     <% end %>
     </div>
   </div>
-	<div class="bottoniVerdi fltrt"><a>INSERT</a></div>
+  <div class="bottoniVerdi fltrt"><a class="upper"><%= t('captions.insert') %></a></div>
 </div>
