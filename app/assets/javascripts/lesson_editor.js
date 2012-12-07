@@ -175,17 +175,15 @@ $(document).ready(function() {
   $('body').on('click', '._add_audio_to_slide', function(e) {
     e.preventDefault();
     var audio_id = $(this).data('audio-id');
-    console.log("audio_id: "+audio_id);
+    closePopUp('dialog-audio-gallery-' + audio_id);
     removeGalleryInLessonEditor('audio');
     var current_slide = $('li._lesson_editor_current_slide');
     var position = $('#info_container').data('current-media-element-position');
-    console.log("position: "+position)
     var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
-    console.log("slide/place _id: "+place_id)
     $('#' + place_id + ' ._input_audio_id').val(audio_id);
     var audio_mp3 = $(this).data('mp3');
     var audio_ogg = $(this).data('ogg');
-    console.log("audio_mp3/ogg: "+audio_mp3+"/"+audio_ogg)
+    var duration = $(this).data('duration');
     var full_place = $('#' + place_id + ' ._full_audio_in_slide');
     if(full_place.css('display') == 'none') {
       full_place.show();
@@ -194,6 +192,9 @@ $(document).ready(function() {
     $('#' + place_id + ' ._full_audio_in_slide source[type="audio/mp3"]').attr('src', audio_mp3);
     $('#' + place_id + ' ._full_audio_in_slide source[type="audio/ogg"]').attr('src', audio_ogg);
     $('#' + place_id + ' audio').load();
+    var audio_player = $('#' + place_id + ' ._empty_audio_player');
+    audio_player.removeClass('_empty_audio_player').addClass('_instance_of_player_' + audio_id);
+    initializeMedia((audio_player.attr('id')), 'audio', duration);
   });
   
   $('body').on('mouseover', '._full_image_in_slide, ._full_video_in_slide', function() {
