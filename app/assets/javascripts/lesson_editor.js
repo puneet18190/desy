@@ -149,6 +149,7 @@ $(document).ready(function() {
     $('#' + place_id + ' ._input_video_id').val(video_id);
     var video_mp4 = $(this).data('mp4');
     var video_webm = $(this).data('webm');
+    var duration = $(this).data('duration');
     var full_place = $('#' + place_id + ' ._full_video_in_slide');
     if(full_place.css('display') == 'none') {
       full_place.show();
@@ -157,6 +158,7 @@ $(document).ready(function() {
     $('#' + place_id + ' ._full_video_in_slide source[type="video/mp4"]').attr('src', video_mp4);
     $('#' + place_id + ' ._full_video_in_slide source[type="video/webm"]').attr('src', video_webm);
     $('#' + place_id + ' video').load();
+    initializeMedia((place_id + ' ._instance_of_player_' + video_id), 'video', duration);
     $('#' + place_id + ' a').data('rolloverable', true);
   });
   
@@ -239,7 +241,6 @@ function hideNewSlideChoice() {
 }
 
 function initializeLessonEditor() {
-  initTinymce();
   $('._image_container_in_lesson_editor').each(function() {
     makeDraggable($(this).attr('id'));
   });
@@ -407,21 +408,21 @@ function tinyMceCallbacks(inst){
   }
 }
 
-function initTinymce() {
+function initTinymce(tiny_id) {
   tinyMCE.init({
-    mode : "textareas",
-    theme : "advanced",
-    editor_selector : "tinymce",
-    skin : "desy",
-    content_css : "/assets/tiny_mce_desy.css",
-    plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
-    theme_advanced_buttons1 : "fontsizeselect,forecolor,justifyleft,justifycenter,justifyright,justifyfull,bold,italic,underline,numlist,bullist,link,unlink",
-    theme_advanced_toolbar_location : "external",
-    theme_advanced_toolbar_align : "left",
-    theme_advanced_statusbar_location : false,
-    theme_advanced_resizing : true,
-    theme_advanced_font_sizes : "1em=.size1,2em=.size2,3em=.size3,4em=.size4,5em=.size5,6em=.size6,7em=.size7",
-    setup : function(ed) {
+    elements: tiny_id,
+    theme: "advanced",
+    editor_selector: "tinymce",
+    skin: "desy",
+    content_css: "/assets/tiny_mce_desy.css",
+    plugins: "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+    theme_advanced_buttons1: "fontsizeselect,forecolor,justifyleft,justifycenter,justifyright,justifyfull,bold,italic,underline,numlist,bullist,link,unlink",
+    theme_advanced_toolbar_location: "external",
+    theme_advanced_toolbar_align: "left",
+    theme_advanced_statusbar_location: false,
+    theme_advanced_resizing: true,
+    theme_advanced_font_sizes: "1em=.size1,2em=.size2,3em=.size3,4em=.size4,5em=.size5,6em=.size6,7em=.size7",
+    setup: function(ed) {
       ed.onKeyUp.add(function(ed, e) {
         tinyMceCallbacks(ed);
       });
