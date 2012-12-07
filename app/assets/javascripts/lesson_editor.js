@@ -72,65 +72,30 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._show_image_gallery_in_lesson_editor', function() {
-    $('#info_container').data('current-media-element-position', $(this).data('position'));
-    var current_slide = $('li._lesson_editor_current_slide');
-    current_slide.prepend('<layer class="_not_current_slide_disabled"></layer>');
-    hideEverythingOutCurrentSlide();
-    var gallery_container = $('#lesson_editor_image_gallery_container');
-    if(gallery_container.data('loaded')) {
-      var html_content = gallery_container.html();
-      gallery_container.html('');
-      current_slide.prepend(html_content);
-      current_slide.find('layer').remove();
-    } else {
-      $.ajax({
-        type: 'get',
-        url: '/lessons/galleries/image'
-      });
-    }
+    showGalleryInLessonEditor(this, 'image');
   });
   
   $('body').on('click', '._show_audio_gallery_in_lesson_editor', function() {
-    $('#info_container').data('current-media-element-position', $(this).data('position'));
-    hideEverythingOutCurrentSlide();
-    $.ajax({
-      type: 'get',
-      url: '/lessons/galleries/audio'
-    });
+    showGalleryInLessonEditor(this, 'audio');
   });
   
   $('body').on('click', '._show_video_gallery_in_lesson_editor', function() {
-    $('#info_container').data('current-media-element-position', $(this).data('position'));
-    hideEverythingOutCurrentSlide();
-    if($('#video_gallery').length == 0) {
-      $.ajax({
-        type: 'get',
-        url: '/lessons/galleries/video'
-      });
-    } else {
-      $('#video_gallery').show();
-    }
+    showGalleryInLessonEditor(this, 'video');
   });
   
   $('body').on('click', '._close_image_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
-    var gallery = $('#image_gallery');
-    var html_content = gallery[0].outerHTML;
-    gallery.remove();
-    $('#lesson_editor_image_gallery_container').html(html_content);
-    showEverythingOutCurrentSlide();
+    removeGalleryInLessonEditor('image');
   });
   
   $('body').on('click', '._close_video_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
-    $('#video_gallery').hide();
-    showEverythingOutCurrentSlide();
+    removeGalleryInLessonEditor('video');
   });
   
   $('body').on('click', '._close_audio_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
-    $('#audio_gallery').hide();
-    showEverythingOutCurrentSlide();
+    removeGalleryInLessonEditor('audio');
   });
   
   $('body').on('click', '._add_image_to_slide', function(e) {
@@ -222,6 +187,33 @@ $(document).ready(function() {
   });
   
 });
+
+function removeGalleryInLessonEditor(sti_type) {
+  var gallery = $('#' + sti_type + '_gallery');
+  var html_content = gallery[0].outerHTML;
+  gallery.remove();
+  $('#lesson_editor_' + sti_type + '_gallery_container').html(html_content);
+  showEverythingOutCurrentSlide();
+}
+
+function showGalleryInLessonEditor(obj, sti_type) {
+  $('#info_container').data('current-media-element-position', $(obj).data('position'));
+  var current_slide = $('li._lesson_editor_current_slide');
+  current_slide.prepend('<layer class="_not_current_slide_disabled"></layer>');
+  hideEverythingOutCurrentSlide();
+  var gallery_container = $('#lesson_editor_' + sti_type + '_gallery_container');
+  if(gallery_container.data('loaded')) {
+    var html_content = gallery_container.html();
+    gallery_container.html('');
+    current_slide.find('.slide-content').prepend(html_content);
+    current_slide.find('layer').remove();
+  } else {
+    $.ajax({
+      type: 'get',
+      url: '/lessons/galleries/' + sti_type
+    });
+  }
+}
 
 function showEverythingOutCurrentSlide() {
   var current_slide = $('li._lesson_editor_current_slide');
