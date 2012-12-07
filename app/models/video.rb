@@ -1,9 +1,28 @@
 class Video < MediaElement
   
   VIDEO_COMPONENT = 'video'
-  TEXT_COMPONENT = 'text'
+  TEXT_COMPONENT  = 'text'
   IMAGE_COMPONENT = 'image'
   COMPONENTS = [VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT]
+
+  after_save :upload
+  after_destroy :clean
+
+  attr_accessor :skip_conversion
+
+  # TODO validazione media
+
+  def self.test
+    media_without_extension = Rails.root.join('spec/support/samples/con verted').to_s
+    media = { copy: 'con verted', mp4: "#{media_without_extension}.mp4", webm: "#{media_without_extension}.webm" }
+    video = new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media) do |v|
+      v.user_id = User.admin.id
+    end
+    # puts video.object_id.inspect
+    video.save
+    puts video[:media].class.inspect
+    puts video.media.inspect
+  end
   
   def self.convert_parameters(hash, user_id)
     return nil if !hash.kind_of?(Hash) || !hash.has_key?(:initial_video_id)
@@ -68,14 +87,11 @@ class Video < MediaElement
     (hash.has_key?(key) && hash[key].kind_of?(Integer)) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
   end
 
-  after_save :convert
-  after_destroy :clean
-
-  attr_writer :skip_conversion
-
   def media
-    media = read_attribute(:media)
-    @media || ( media ? VideoUploader.new(self, :media, media) : nil )
+    @media || ( 
+      media = read_attribute(:media)
+      media ? VideoUploader.new(self, :media, media) : nil 
+    )
   end
 
   def media=(media)
@@ -99,13 +115,8 @@ class Video < MediaElement
   end
 
   private
-  def convert
-    # converted?
-    #   true  : conversione andata a buon fine
-    #   false : conversione non andata a buon fine
-    #   nil   : conversione da effettuare o in fase di conversione
-    return true if @skip_conversion or not converted.nil?
-    Delayed::Job.enqueue MediaEditing::Video::Conversion::Job.new(id, media.original_filename, media.tempfile.path)
+  def upload
+    media.upload if media
   end
 
   def clean

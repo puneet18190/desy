@@ -14,24 +14,19 @@ module MediaEditing
 
       include MediaEditing::Video::Logging
 
-      INPUT_FOLDER       = File.join Rails.root, VideoUploader.env_relative_path('tmp/video_editing/conversions')
+      INPUT_FOLDER       = File.join Rails.root, VideoUploader.env_relative_path('tmp/media_editing/video/conversions')
       DURATION_THRESHOLD = 1
 
       def self.log_folder
         super 'conversions'
       end
 
-      def self.output_folder(model_id)
-        VideoUploader.folder(model_id.to_s)
-      end
-
-      def initialize(model_id, original_filename, uploaded_file)
+      def initialize(model_id, output_path_without_extension, uploaded_file)
         @model_id = model_id
         init_model
 
-        # File.basename shouldn't be necessary, but never know...
-        @original_filename = File.basename original_filename
-        @uploaded_file     = uploaded_file
+        @output_path_without_extension = output_path_without_extension
+        @uploaded_file = uploaded_file
       end
 
       def run
@@ -54,7 +49,7 @@ module MediaEditing
           end
         rescue StandardError => e
           model.update_attribute(:converted, false) if model.present?
-          FileUtils.rm_rf output_folder if File.exists? output_folder
+          FileUtils.rm_rf output_folder if Dir.exists? output_folder
           raise e
         end
 
@@ -73,13 +68,13 @@ module MediaEditing
                                          input_file: input_file, uploaded_file: uploaded_file, format: format )
         end
 
-        FileUtils.mkdir_p input_folder unless File.exists? input_folder
+        FileUtils.mkdir_p input_folder unless Dir.exists? input_folder
 
         # If input_file already exists, I assume that someone has already processed it before;
         # so I use it (I use it as cache)
         FileUtils.mv uploaded_file, input_file unless File.exists? input_file
 
-        FileUtils.mkdir_p output_folder unless File.exists? output_folder
+        FileUtils.mkdir_p output_folder unless Dir.exists? output_folder
         
         begin
           output_file = output_file(format)
@@ -89,7 +84,7 @@ module MediaEditing
 
           Cmd::Conversion.new(input_file, output_file, format).run! %W(#{stdout_log} a), %W(#{stderr_log} a)
         rescue StandardError => e
-          FileUtils.rm_rf output_folder if File.exists? output_folder
+          FileUtils.rm_rf output_folder if Dir.exists? output_folder
           raise e
         end
 
@@ -101,31 +96,19 @@ module MediaEditing
       end
 
       def input_file
-        File.join input_folder, original_filename
-      end
-
-      def original_filename
-        @original_filename
-      end
-
-      def original_extension
-        File.extname(original_filename)
-      end
-
-      def original_filename_without_extension
-        File.basename(original_filename, original_extension)
-      end
-
-      def output_filename_without_extension
-        original_filename_without_extension.parameterize
+        File.join input_folder, output_path_without_extension
       end
 
       def output_file(format)
-        File.join output_folder, "#{output_filename_without_extension}.#{format}"
+        "#{output_path_without_extension}.#{format}"
+      end
+
+      def output_path_without_extension
+        @output_path_without_extension
       end
 
       def output_folder
-        self.class.output_folder(model_id)
+        File.dirname output_path_without_extension
       end
 
       def input_folder

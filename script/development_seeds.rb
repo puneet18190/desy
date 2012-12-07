@@ -2,8 +2,6 @@
 
 def plant_development_seeds
   
-  media_counter = 0
-  
   location1 = Location.find 1
   location2 = Location.find 2
   location3 = Location.find 3
@@ -15,6 +13,9 @@ def plant_development_seeds
   subject3 = Subject.find 3
   
   images = Dir.glob("#{Rails.root}/db/seeds/images/*").grep(/\.jpe?g|png$/).shuffle
+  # TODO
+  raise 'TODO videos...'
+  videos = Dir.glob("#{Rails.root}/db/seeds/videos/*").grep(/\.jpe?g|png$/).shuffle
   
   tag_map = {
     0 => "cane, sole, gatto, cincillà, walter nudo, luna, escrementi di usignolo",
@@ -126,14 +127,24 @@ def plant_development_seeds
   descriptions << ["寶貝歷險記", "La carica dei 101 in cinese"]
   descriptions << ["英文片名無變", "本片電影原聲帶已經由滾石喺台灣發行，目前喺中國大陸冇任何影音產品發行"]
   
-  descriptions.each_with_index do |d, i|
+  descriptions.each_with_index do |description, i|
     sti_type = types[(i%3)]
-    x = MediaElement.new :description => d[1], :title => d[0], :media => (sti_type == 'Image' ? File.open(images[media_counter % 50]) : nil)
-    x.user_id = admin.id
-    x.sti_type = sti_type
-    x.tags = tag_map[i%10]
-    x.save!
-    media_counter += 1
+
+    media_element = sti_type.constantize.new :description => description[1], :title => description[0] do |record|
+      record.user_id = admin.id
+      record.tags = tag_map[i%10]
+    end
+
+    case media_element
+    when Image
+      media_element.media = File.open(images[i%50])
+    when Video
+      media_element.media = File.open(videos[i%50])
+      media_element.converted = true
+      media_element.skip_conversion = true
+    end
+
+    media_element.save!
   end
   
   descriptions = []

@@ -1,6 +1,7 @@
 module MediaEditing
   module Video
     
+    # definisce CONFIG
     require 'media_editing/video/config'
     
     FORMATS = CONFIG.formats
