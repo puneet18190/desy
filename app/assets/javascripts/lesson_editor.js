@@ -2,7 +2,15 @@ $(document).ready(function() {
   
   $("html.lesson-editor-layout ul#slides").css("margin-top", ($(window).height() - 590)/2 + "px");
   
-  initializeLessonEditor();
+  $('._image_container_in_lesson_editor').each(function() {
+    makeDraggable($(this).attr('id'));
+  });
+  
+  initializeSortableNavs();
+  
+  $(".slide-content.cover .title").css("margin-left", "auto");
+  
+  initLessonEditorPositions();
   
   $('#lesson_subject').selectbox();
   
@@ -262,15 +270,6 @@ function hideNewSlideChoice() {
   current_slide.find('.box.new_slide').remove();
   current_slide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
   showEverythingOutCurrentSlide();
-}
-
-function initializeLessonEditor() {
-  $('._image_container_in_lesson_editor').each(function() {
-    makeDraggable($(this).attr('id'));
-  });
-  initializeSortableNavs();
-  $(".slide-content.cover .title").css("margin-left", "auto");
-  initLessonEditorPositions();
 }
 
 function initializeSortableNavs() {
