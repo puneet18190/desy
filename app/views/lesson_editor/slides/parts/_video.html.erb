@@ -5,6 +5,12 @@
 
 <div id="media_element_<%= position %>_in_slide_<%= slide.id %>" class="_video_container_in_lesson_editor">
   
+  <% if video %>
+    <%= hidden_field_tag "media_element_#{position}", video.id, :class => "media-tag-cover-#{position} _input_video_id" %>
+  <% else %>
+    <%= hidden_field_tag "media_element_#{position}", "", :class => "media-tag-cover-#{position} _input_video_id" %>
+  <% end %>
+  
   <div class="<%= slide.kind %>-p<%= position %> _full_video_in_slide" style="display:<%= video.nil? ? 'none'.html_safe : 'block'.html_safe %>">
     <a data-slide-id="<%= slide.id %>" data-position="<%= position %>" data-rolloverable="true">
       <%= render(:partial => 'shared/players/video', :locals => {:video => video}) %>
