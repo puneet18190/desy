@@ -432,8 +432,15 @@ function tinyMceCallbacks(inst){
   }
 }
 
+function reInitializeSlidePositionsInLessonEditor() {
+  $('ul#slides li').each(function(index){
+    $(this).data('position', (index + 1));
+  });
+}
+
 function initTinymce(tiny_id) {
   tinyMCE.init({
+    mode: 'exact',
     elements: tiny_id,
     theme: "advanced",
     editor_selector: "tinymce",
