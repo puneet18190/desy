@@ -391,6 +391,10 @@ function slideTo(slide_id, callback) {
       $(this).find('.buttons').fadeOut();
       if($(this).find('layer').length == 0) {
         $(this).prepend('<layer class="_not_current_slide"></layer>');
+      } else {
+        if($(this).find('layer._not_current_slide_disabled').length > 0) {
+          $(this).find('layer._not_current_slide_disabled').removeClass('_not_current_slide_disabled').addClass('_not_current_slide');
+        }
       }
       $('a._lesson_editor_current_slide_nav').removeClass('_lesson_editor_current_slide_nav active');
       $('#slide_in_nav_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide_nav active');
