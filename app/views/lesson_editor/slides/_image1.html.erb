@@ -3,7 +3,11 @@
     <%= text_field_tag :title, slide.title ? slide.title : t('captions.enter_title') %>
   </h2>
   <div class="image1-content">
-    <%= text_area_tag :text, slide.text ? slide.text.html_safe : t('captions.insert_slide_content_here'), :id=> "ta-#{slide.id}", :class => 'tinymce' %>
+    <%= text_area_tag :text, slide.text ? slide.text.html_safe : t('captions.insert_slide_content_here'), :id => "ta-#{slide.id}", :class => 'tinymce' %>
   </div>
   <%= render :partial => 'lesson_editor/slides/parts/image', :locals => {:slide => slide, :position => 1, :image => slide.image_at(1), :classes => ''} %>
 <% end %>
+
+<script type="text/javascript">
+  initTinymce('ta-<%= slide.id %>');
+</script>

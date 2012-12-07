@@ -6,3 +6,7 @@
     <%= text_area_tag :text, slide.text ? slide.text.html_safe : "#{t 'captions.insert_slide_content_here'}", :id => "ta-#{slide.id}", :class => "tinymce"%>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  initTinymce('ta-<%= slide.id %>');
+</script>

@@ -1,10 +1,11 @@
 @mixin headerGallery {
   display:block;
-  padding: 20px;
-  width: 860px;
+  padding: 20px 0px 20px 40px;
+  
   h3{
     color: #666;
-    padding:5px 10px;
+    padding-top:18px;
+		padding-right:15px;
 	}
 }
 @mixin ulGallery {
@@ -13,9 +14,9 @@
     margin:0;
     list-style:none;
     .scroll-pane{
-      margin:20px 0 0 20px;
-      padding:0;
-      width: 860px;
+      margin:50px 0 0 20px;
+      padding-left:20px;
+      width: 840px;
       height: 470px;
       li{
         float:left; 
@@ -29,9 +30,9 @@
 @mixin galleryFooter {
 .gallery-footer{
     display:inline-block;
-    padding: 10px 15px;
+    padding: 15px 15px;
 		float:right;
-    width: 830px;
+    /*width: 830px;*/
     color: #fff;
 	}
 }
@@ -66,14 +67,17 @@
   height: 590px;
   width: 900px;
   display:block;
+	.scroll-pane {
+	}
   .gallery-header{
     @include headerGallery;
+		.photoIcon {
+	    font-size:0.7em;
+	  }
   }
   @include ulGallery;
   @include galleryFooter;
-  
-  
-  
+   
   .imageInGalleryPopUp {
     display:none;
     background-color:#48484a;
@@ -102,10 +106,14 @@
   width: 900px;
   display:block;
   .gallery-header{
-    @include headerGallery;  
+    @include headerGallery; 
+		.audioIcon {
+	    font-size:0.7em;
+	  } 
 	}
+	
   .audioTrackCompact {
-	  width:840px;
+	  width:820px;
 		
 		.audioTrackContent {
 	    background-color:#4a4a4a;
@@ -186,6 +194,9 @@
   display:block;
   .gallery-header{
     @include headerGallery;
+		.videoIcon {
+	    font-size:0.7em;
+	  }
   }
   
   @include ulGallery;
@@ -311,17 +322,16 @@
   .scroll-pane {
 	  width:840px;
 		position:absolute;
-		top:70px;
+		top:90px;
 		padding-left:20px;
   }
 	
 	.gallery-footer{
     display:inline-block;
     padding: 10px 15px;
-		width: 830px;
-    color: #fff;
+		color: #fff;
 		position:absolute;
-		bottom:10px; left:40px;
+		top:20px; right:0px;
 	}
 }
 /*fixed per la centratura a 1024*/

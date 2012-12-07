@@ -2,7 +2,15 @@ $(document).ready(function() {
   
   $("html.lesson-editor-layout ul#slides").css("margin-top", ($(window).height() - 590)/2 + "px");
   
-  initializeLessonEditor();
+  $('._image_container_in_lesson_editor').each(function() {
+    makeDraggable($(this).attr('id'));
+  });
+  
+  initializeSortableNavs();
+  
+  $(".slide-content.cover .title").css("margin-left", "auto");
+  
+  initLessonEditorPositions();
   
   $('#lesson_subject').selectbox();
   
@@ -149,6 +157,7 @@ $(document).ready(function() {
     $('#' + place_id + ' ._input_video_id').val(video_id);
     var video_mp4 = $(this).data('mp4');
     var video_webm = $(this).data('webm');
+    var duration = $(this).data('duration');
     var full_place = $('#' + place_id + ' ._full_video_in_slide');
     if(full_place.css('display') == 'none') {
       full_place.show();
@@ -157,6 +166,7 @@ $(document).ready(function() {
     $('#' + place_id + ' ._full_video_in_slide source[type="video/mp4"]').attr('src', video_mp4);
     $('#' + place_id + ' ._full_video_in_slide source[type="video/webm"]').attr('src', video_webm);
     $('#' + place_id + ' video').load();
+    initializeMedia((place_id + ' ._instance_of_player_' + video_id), 'video', duration);
     $('#' + place_id + ' a').data('rolloverable', true);
   });
   
@@ -260,16 +270,6 @@ function hideNewSlideChoice() {
   current_slide.find('.box.new_slide').remove();
   current_slide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
   showEverythingOutCurrentSlide();
-}
-
-function initializeLessonEditor() {
-  initTinymce();
-  $('._image_container_in_lesson_editor').each(function() {
-    makeDraggable($(this).attr('id'));
-  });
-  initializeSortableNavs();
-  $(".slide-content.cover .title").css("margin-left", "auto");
-  initLessonEditorPositions();
 }
 
 function initializeSortableNavs() {
@@ -390,6 +390,10 @@ function slideTo(slide_id, callback) {
       $(this).find('.buttons').fadeOut();
       if($(this).find('layer').length == 0) {
         $(this).prepend('<layer class="_not_current_slide"></layer>');
+      } else {
+        if($(this).find('layer._not_current_slide_disabled').length > 0) {
+          $(this).find('layer._not_current_slide_disabled').removeClass('_not_current_slide_disabled').addClass('_not_current_slide');
+        }
       }
       $('a._lesson_editor_current_slide_nav').removeClass('_lesson_editor_current_slide_nav active');
       $('#slide_in_nav_lesson_editor_' + slide_id).addClass('_lesson_editor_current_slide_nav active');
@@ -431,21 +435,28 @@ function tinyMceCallbacks(inst){
   }
 }
 
-function initTinymce() {
+function reInitializeSlidePositionsInLessonEditor() {
+  $('ul#slides li').each(function(index){
+    $(this).data('position', (index + 1));
+  });
+}
+
+function initTinymce(tiny_id) {
   tinyMCE.init({
-    mode : "textareas",
-    theme : "advanced",
-    editor_selector : "tinymce",
-    skin : "desy",
-    content_css : "/assets/tiny_mce_desy.css",
-    plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
-    theme_advanced_buttons1 : "fontsizeselect,forecolor,justifyleft,justifycenter,justifyright,justifyfull,bold,italic,underline,numlist,bullist,link,unlink",
-    theme_advanced_toolbar_location : "external",
-    theme_advanced_toolbar_align : "left",
-    theme_advanced_statusbar_location : false,
-    theme_advanced_resizing : true,
-    theme_advanced_font_sizes : "1em=.size1,2em=.size2,3em=.size3,4em=.size4,5em=.size5,6em=.size6,7em=.size7",
-    setup : function(ed) {
+    mode: 'exact',
+    elements: tiny_id,
+    theme: "advanced",
+    editor_selector: "tinymce",
+    skin: "desy",
+    content_css: "/assets/tiny_mce_desy.css",
+    plugins: "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+    theme_advanced_buttons1: "fontsizeselect,forecolor,justifyleft,justifycenter,justifyright,justifyfull,bold,italic,underline,numlist,bullist,link,unlink",
+    theme_advanced_toolbar_location: "external",
+    theme_advanced_toolbar_align: "left",
+    theme_advanced_statusbar_location: false,
+    theme_advanced_resizing: true,
+    theme_advanced_font_sizes: "1em=.size1,2em=.size2,3em=.size3,4em=.size4,5em=.size5,6em=.size6,7em=.size7",
+    setup: function(ed) {
       ed.onKeyUp.add(function(ed, e) {
         tinyMceCallbacks(ed);
       });
