@@ -1,9 +1,13 @@
 <%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => :get, :remote => true, :id => "form-#{slide.id}" do %>
   <h2 class="text">
-    <%= text_field_tag :title, slide.title ? slide.title : "#{t 'captions.enter_title'}" %>
+    <%= text_field_tag :title, slide.title ? slide.title : t('captions.enter_title') %>
   </h2>
+  <%= render :partial => 'lesson_editor/slides/parts/audio', :locals => {:slide => slide, :position => 1, :audio => slide.audio_at(1)} %>
   <div class="audio-content">
     <%= text_area_tag :text, slide.text ? slide.text.html_safe : "#{t 'captions.insert_slide_content_here'}",:id => "ta-#{slide.id}", :class=>"tinymce"%>
   </div>
-  <%= render :partial => 'lesson_editor/slides/parts/audio', :locals => {:slide => slide, :position => 1, :audio => slide.audio_at(1)} %>
 <% end %>
+
+<script type="text/javascript">
+  initTinymce('ta-<%= slide.id %>');
+</script>

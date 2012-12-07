@@ -19,7 +19,7 @@
 %>
 
 
-<div id="media_element_<%= position %>_in_slide_<%= slide.id %>" class="_image_container_in_lesson_editor contentOf-<%= slide.kind %>">
+<div id="media_element_<%= position %>_in_slide_<%= slide.id %>" class="_image_container_in_lesson_editor">
   
   <% if image %>
     <%= hidden_field_tag "media_element_align_#{position}", "#{image.alignment}", :class =>"media_element_align_#{position} _input_align" %>
