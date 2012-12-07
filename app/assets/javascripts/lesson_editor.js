@@ -141,17 +141,15 @@ $(document).ready(function() {
   
   $('body').on('click', '._add_video_to_slide', function(e) {
     e.preventDefault();
-    var slide_id = $('li._lesson_editor_current_slide').data('slide-id');
-    var kind = $('#info_container').data('kind');
-    var position = $('#info_container').data('current-media-element-position');
     var video_id = $(this).data('video-id');
+    closePopUp('dialog-video-gallery-' + video_id);
+    removeGalleryInLessonEditor('video');
+    var current_slide = $('li._lesson_editor_current_slide');
+    var position = $('#info_container').data('current-media-element-position');
+    var place_id = 'media_element_' + position + '_in_slide_' + current_slide.data('slide-id');
+    $('#' + place_id + ' ._input_video_id').val(video_id);
     var video_mp4 = $(this).data('mp4');
     var video_webm = $(this).data('webm');
-    $('#slide_in_lesson_editor_' + slide_id).children().show();
-    var place_id = 'media_element_' + position + '_in_slide_' + slide_id;
-    $('#' + place_id + ' ._input_video_id').val(video_id);
-    closePopUp('dialog-video-gallery-' + video_id);
-    $("#video_gallery").hide();
     var full_place = $('#' + place_id + ' ._full_video_in_slide');
     if(full_place.css('display') == 'none') {
       full_place.show();
@@ -160,8 +158,6 @@ $(document).ready(function() {
     $('#' + place_id + ' ._full_video_in_slide source[type="video/mp4"]').attr('src', video_mp4);
     $('#' + place_id + ' ._full_video_in_slide source[type="video/webm"]').attr('src', video_webm);
     $('#' + place_id + ' video').load();
-    $("#slide-numbers").show();
-    $('#slide_in_lesson_editor_' + slide_id).siblings(".buttons").show();
   });
   
   $('body').on('mouseover', '._full_image_in_slide, ._full_audio_in_slide, ._full_video_in_slide', function() {
