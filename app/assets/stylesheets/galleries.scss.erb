@@ -224,13 +224,12 @@
   }
 }
 @mixin stileElementiSceltaColori{
-  width:12px;
-  height:10px;
+  padding:5px;
   outline:1px solid #e6e6e6;
   cursor:pointer;
 	float:left;
 	margin-left:8px;
-	margin-top:3px;
+	margin-top:2px;
   &:hover, &.current {
        outline:2px solid #fff;
      }
@@ -265,6 +264,10 @@
 		bottom:90px; 
 		left:140px; 
 		width:624px;
+		font-size:85%;
+		.elementoGrigio  {
+		  width:31%;
+		}
 		/*content scelta colore background*/
 	  .scegliBgColor {
 	    p {
@@ -283,13 +286,22 @@
 		    @include stileElementiSceltaColori;
 			}
 	  }
+		.tempo {
+		 
+	    p {
+		    float:left;
+		  }
+		  
+	  }
 	}
 	.bottoniVerdi {
 	  margin-top:10px;
+		a {
+		  font-size:11px;
+		}
 	}
 }
 #video_editor_mixed_gallery_container {
-
   .scroll-pane {
 	  width:860px;
 		position:absolute;
