@@ -3,7 +3,7 @@
   var old_position = to_be_moved.data('position');
   var html_to_move = to_be_moved[0].outerHTML;
   to_be_moved.remove();
-  var target_slide = $('ul#slides li:nth-child(<%= @position %>)');
+  var target_slide = $('#slide_in_lesson_editor_<%= @replaced_slide.id %>');
   if(old_position > <%= @position %>) {
     target_slide.before(html_to_move);
   } else {

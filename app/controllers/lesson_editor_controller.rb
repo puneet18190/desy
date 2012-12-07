@@ -73,6 +73,7 @@ class LessonEditorController < ApplicationController
   
   def change_slide_position
     if @ok
+      @replaced_slide = Slide.find_by_lesson_id_and_position(@lesson_id, @position)
       @slide.change_position(@position)
       @slides = @lesson.slides.order(:position)
       @current_slide = @slide
