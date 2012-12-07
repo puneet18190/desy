@@ -12,10 +12,10 @@
   <% end %>
   
   <div class="<%= slide.kind %>-p<%= position %> _full_video_in_slide" style="display:<%= video.nil? ? 'none'.html_safe : 'block'.html_safe %>">
-    <a data-slide-id="<%= slide.id %>" data-position="<%= position %>">
+    <a data-slide-id="<%= slide.id %>" data-position="<%= position %>" data-rolloverable="true">
       <%= render(:partial => 'shared/players/video', :locals => {:video => video}) %>
     </a>
-    <span class="add-video _show_video_gallery_in_lesson_editor _lesson_editor_rollover_content" data-position="<%= position %>"></span>
+    <span class="add-video _show_video_gallery_in_lesson_editor _lesson_editor_rollover_content" data-position="<%= position %>" style="display:none"></span>
   </div>
   
   <div class="<%= empty_mask_class.html_safe %>" style="display:<%= video.nil? ? 'block'.html_safe : 'none'.html_safe %>">

@@ -135,7 +135,6 @@ $(document).ready(function() {
     img_tag.attr('src', image_url);
     img_tag.removeAttr(old_orientation);
     img_tag.attr(orientation, orientation_val);
-    $('#' + place_id + ' span').show();
     makeDraggable(place_id);
   });
   
@@ -158,9 +157,10 @@ $(document).ready(function() {
     $('#' + place_id + ' ._full_video_in_slide source[type="video/mp4"]').attr('src', video_mp4);
     $('#' + place_id + ' ._full_video_in_slide source[type="video/webm"]').attr('src', video_webm);
     $('#' + place_id + ' video').load();
+    $('#' + place_id + ' a').data('rolloverable', true);
   });
   
-  $('body').on('mouseover', '._full_image_in_slide, ._full_audio_in_slide, ._full_video_in_slide', function() {
+  $('body').on('mouseover', '._full_image_in_slide, ._full_video_in_slide', function() {
     var obj = $('#' + $(this).parent().attr('id') + ' a');
     var slide_id = obj.data('slide-id');
     var position = obj.data('position');
@@ -169,7 +169,7 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('mouseout', '._full_image_in_slide, ._full_audio_in_slide, ._full_video_in_slide', function() {
+  $('body').on('mouseout', '._full_image_in_slide, ._full_video_in_slide', function() {
     var obj = $('#' + $(this).parent().attr('id') + ' a');
     var slide_id = obj.data('slide-id');
     var position = obj.data('position');
