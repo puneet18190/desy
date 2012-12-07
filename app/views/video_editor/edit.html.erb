@@ -15,7 +15,10 @@
       <%= render :partial => 'cutter', :locals => {:parameters => @parameters} %>
       <div class="addAudioandSave">
         <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
-        <%= render :partial => 'save_cancel' %>
+        <div class="fltrt">
+          <div class="fltrt"><a class="saveButton"></a></div>
+          <div class="fltrt"><%= link_to '', dashboard_index_path, :class => 'closeButton' %></div>
+        </div>
       </div>
     <% end %>
   </div>
