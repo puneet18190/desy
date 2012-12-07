@@ -762,6 +762,13 @@ $(document).ready(function() {
     alert('stai aggiungendo la traccia audio');
   });
   
+  $('body').on('click', '._image_gallery_thumb_in_mixed_gallery_video_editor', function(e) {
+    e.preventDefault();
+    showImageInGalleryPopUp($(this).data('image-id'), function() {
+      alert('eccomi pronto per registrare il tempo');
+    });
+  });
+  
   
   // PLAYERS
   
