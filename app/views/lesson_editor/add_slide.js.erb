@@ -1,4 +1,8 @@
-$("#slides").html("<%= j(render :partial => 'index_slides', :locals => {:slides => @slides, :with_current => false}) %>");
-$("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides, :with_current => false}) %>");
-initializeLessonEditor();
-slideTo(<%= @current_slide.id %>);
+<% if @ok %>
+  $("#slides").html("<%= j(render :partial => 'index_slides', :locals => {:slides => @slides, :with_current => false}) %>");
+  $("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides, :with_current => false}) %>");
+  initializeLessonEditor();
+  slideTo(<%= @current_slide.id %>);
+<% else %>
+  slideError();
+<% end %>
