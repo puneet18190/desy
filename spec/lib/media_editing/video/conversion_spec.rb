@@ -7,13 +7,26 @@ module MediaEditing
 
       supported_formats = MEVSS::FORMATS
 
+      let(:location)     { Location.create!(   description: ::CONFIG['locations'].first    ) }
+      let(:school_level) { SchoolLevel.create!(description: ::CONFIG['school_levels'].first) }
+      let(:db_subject)   { Subject.create!(    description: ::CONFIG['subjects'].first     ) }
+      let!(:user)        do
+        User.admin || (
+          user_name    = ::CONFIG['admin_username'].split(' ').first
+          user_surname = ::CONFIG['admin_username'].gsub("#{user_name} ", '')
+          unless user = User.create_user(::CONFIG['admin_email'], user_name, user_surname, 'School', school_level.id, location.id, [db_subject.id])
+            raise 'could not create admin user'
+          end
+          user
+        )
+      end
       let(:uploaded_path) { "#{MEVSS::SAMPLES_FOLDER}/tmp.in put.flv" }
       let(:filename)      { 'in put.flv' }
       let(:tempfile)      { File.open(uploaded_path) }
       let(:uploaded)      { ActionDispatch::Http::UploadedFile.new(filename: filename, tempfile: tempfile) }
       let(:model)         do
-        described_class.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: uploaded) do |video|
-          video.user_id = User.admin.id
+        ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: uploaded) do |video|
+          video.user_id = user.id
         end.tap{ |v| v.skip_conversion = true; v.save!; v.media = uploaded }
       end
       let(:input)         { "#{Rails.root}/tmp/video_editing/conversions/#{Rails.env}/#{model.id}/#{filename}" }
@@ -83,7 +96,12 @@ module MediaEditing
 
             context 'when upload file and input file do not exist' do
 
-              let(:model) { ::Video.new.tap{ |v| v.skip_conversion = true; v.save } }
+              # let(:model) { ::Video.new.tap{ |v| v.skip_conversion = true; v.save } }
+              let(:model) do
+                ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: uploaded) do |video|
+                  video.user_id = user.id
+                end.tap{ |v| v.skip_conversion = true; v.save! }
+              end
 
               subject { MediaEditing::Video::Conversion.new(model.id, filename, uploaded_path) }
 

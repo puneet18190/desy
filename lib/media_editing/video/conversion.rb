@@ -17,8 +17,6 @@ module MediaEditing
       INPUT_FOLDER       = File.join Rails.root, VideoUploader.env_relative_path('tmp/video_editing/conversions')
       DURATION_THRESHOLD = 1
 
-      Cmd = MediaEditing::Video::Cmd
-
       def self.log_folder
         super 'conversions'
       end

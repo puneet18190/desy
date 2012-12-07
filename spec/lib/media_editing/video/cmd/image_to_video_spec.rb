@@ -5,7 +5,7 @@ module MediaEditing
     class Cmd
       describe ImageToVideo do
         
-        supported_formats = MediaEditing::Video::AVCONV_FORMATS
+        supported_formats = MediaEditing::Video::FORMATS
 
         let(:pre_command) { MEVSS::AVCONV_PRE_COMMAND }
         let(:vbitrate) { MEVSS::VBITRATE }

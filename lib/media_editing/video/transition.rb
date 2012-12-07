@@ -25,8 +25,6 @@ module MediaEditing
       TRANSITIONS_FORMAT   = proc{ f = Pathname.new(TRANSITIONS); "#{f.basename(f.extname)}-%d#{f.extname}" }.call
       FRAME_RATE           = 25
 
-      Cmd = MediaEditing::Video::Cmd
-
       def initialize(start_inputs, end_inputs, output_without_extension)
         unless start_inputs.is_a?(Hash)                       and 
                start_inputs.keys.sort == FORMATS.sort         and
@@ -79,8 +77,7 @@ module MediaEditing
       private
       def extract_start_input_frame(start_frame)
         video_no_audio = tmp_path VIDEO_NO_AUDIO
-        # TODO fare una cartella di comandi condivisi/bili e spostare i comandi condivisi/bili lì
-        MediaEditing::Video::ReplaceAudio::Cmd::VideoStreamToFile.new(@start_inputs[:mp4], video_no_audio).run! *logs('0_video_stream_to_file')
+        Cmd::VideoStreamToFile.new(@start_inputs[:mp4], video_no_audio).run! *logs('0_video_stream_to_file')
 
         video_no_audio_duration = MediaEditing::Video::Info.new(video_no_audio).duration
         video_no_audio_duration.step(0, LAST_FRAME_SKIP_STEP) do |seek|

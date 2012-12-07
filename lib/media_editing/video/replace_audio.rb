@@ -15,8 +15,6 @@ module MediaEditing
       FORMATS = MediaEditing::Video::FORMATS
       CORRESPONDING_AUDIO_FORMATS = { mp4: :mp3, webm: :ogg }
 
-      Cmd = MediaEditing::Video::Cmd
-
       def initialize(video_inputs, audio_inputs, output_without_extension)
         unless video_inputs.is_a?(Hash)                       and 
                video_inputs.keys.sort == FORMATS.sort         and

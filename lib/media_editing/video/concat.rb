@@ -27,8 +27,6 @@ module MediaEditing
       OUTPUT_MP4_FORMAT      = '%s.mp4'
       OUTPUT_WEBM_FORMAT     = '%s.webm'
       
-      Cmd = MediaEditing::Video::Cmd
-
       # Usage example:
       #
       # MediaEditing::Video::Concat.new({ mp4:['concat1.mp4','concat2.mp4'], webm:['concat1.webm','concat2.webm'] }, '/output_without_extension').run 

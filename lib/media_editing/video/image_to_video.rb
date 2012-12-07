@@ -14,8 +14,6 @@ module MediaEditing
 
       PROCESSED_IMAGE_PATH_FORMAT = 'processed_image.%s'
 
-      Cmd = MediaEditing::Video::Cmd
-
       attr_reader :input_path, :output_without_extension, :duration
 
       def initialize(input_path, output_without_extension, duration)

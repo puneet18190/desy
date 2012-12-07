@@ -8,7 +8,7 @@ module MediaEditing
         let(:subexec_options) { MEVSS::AVCONV_WITH_FILTERS_SUBEXEC_OPTIONS }
         let(:pre_command)     { MEVSS::AVCONV_WITH_FILTERS_PRE_COMMAND }
       
-        supported_formats = MediaEditing::Video::AVCONV_FORMATS
+        supported_formats = MediaEditing::Video::FORMATS
 
         describe 'class methods' do
           subject { described_class }

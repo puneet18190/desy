@@ -20,7 +20,7 @@ module MediaEditing
             with_filters: {
               sh_vars: {},#{ 'LD_LIBRARY_PATH' => '/opt/libav-0.8.4/lib' },
               bin: 'avconv'#/opt/libav-0.8.4/bin/avconv'
-            }
+            },
             timeout: 86400
           },
           formats: {

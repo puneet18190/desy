@@ -6,8 +6,8 @@ require 'shellwords'
 
 module MediaEditing
   module Video
-    class ReplaceAudio
-      class Cmd < MediaEditing::Video::Cmd::Avconv
+    class Cmd
+      class ReplaceAudio < MediaEditing::Video::Cmd::Avconv
 
         def initialize(video_input, audio_input, _duration, output, format)
           @video_input, @audio_input, @duration, @output = video_input, audio_input, _duration, output

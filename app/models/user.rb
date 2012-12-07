@@ -24,6 +24,27 @@ class User < ActiveRecord::Base
   def self.admin
     find_by_email CONFIG['admin_email']
   end
+
+  # def self.find_or_create_admin
+  #   User.admin || (
+  #     ActiveRecord::Base.transation do
+  #       location     = Location.first    || Location.create!(description: CONFIG['locations'].first)
+  #       school_level = SchoolLevel.first || SchoolLevel.create!(description: CONFIG['school_levels'].first)
+  #       subject_ids = 
+  #         if Subject.first
+  #           Subject.all.pluck(:id)
+  #         else
+  #           [ Subject.create!(description: CONFIG['subjects'].first).id ]
+  #         end
+  #       user_name    = ::CONFIG['admin_username'].split(' ').first
+  #       user_surname = ::CONFIG['admin_username'].gsub("#{user_name} ", '')
+  #       unless user = User.create_user(::CONFIG['admin_email'], user_name, user_surname, 'School', school_level.id, location.id, subject_ids)
+  #         raise 'could not create admin user'
+  #       end
+  #       user
+  #     end
+  #   )
+  # end
   
   def full_name
     "#{self.name} #{self.surname}"
@@ -296,26 +317,36 @@ class User < ActiveRecord::Base
     return lesson.save ? lesson : nil
   end
   
-  def self.create_user(an_email, a_name, a_surname, a_school, a_school_level_id, a_location_id, subject_ids)
-    return nil if subject_ids.class != Array || subject_ids.empty?
-    resp = User.new :name => a_name, :surname => a_surname, :school_level_id => a_school_level_id, :school => a_school, :location_id => a_location_id
-    resp.email = an_email
+  def self.create_user(email, name, surname, school, school_level_id, location_id, subject_ids, raise_exception_if_fail = false)
+    return nil if !subject_ids.instance_of?(Array) || subject_ids.empty?
+    new_user = User.new :name => name, :surname => surname, :school_level_id => school_level_id, :school => school, :location_id => location_id
+    new_user.email = email
     ActiveRecord::Base.transaction do
-      if !resp.save
-        resp = nil
-        raise ActiveRecord::Rollback
+      begin
+        new_user.save!
+      rescue ActiveRecord::RecordNotSaved => e
+        if raise_exception_if_fail 
+          raise(e)
+        else
+          return nil
+        end
       end
       subject_ids.each do |s|
-        us = UsersSubject.new
-        us.user_id = resp.id
-        us.subject_id = s
-        if !us.save
-          resp = nil
-          raise ActiveRecord::Rollback
+        new_users_subject = UsersSubject.new
+        new_users_subject.user_id = new_user.id
+        new_users_subject.subject_id = s
+        begin
+          new_users_subject.save!
+        rescue ActiveRecord::RecordNotSaved => e
+          unless raise_exception_if_fail
+            new_user = nil
+            raise ActiveRecord::Rollback
+          end
+          raise e
         end
       end
     end
-    resp
+    new_user
   end
   
   def edit_fields(a_name, a_surname, a_school, a_school_level_id, a_location_id, subject_ids)

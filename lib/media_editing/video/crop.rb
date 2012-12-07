@@ -10,8 +10,6 @@ module MediaEditing
 
       FORMATS = MediaEditing::Video::FORMATS
 
-      Cmd = MediaEditing::Video::Cmd
-
       def initialize(inputs, output_without_extension, start, duration)
         unless inputs.is_a?(Hash)                       and 
                inputs.keys.sort == FORMATS.sort         and

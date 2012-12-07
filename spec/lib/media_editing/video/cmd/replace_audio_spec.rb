@@ -2,8 +2,8 @@ require 'spec_helper'
 
 module MediaEditing
   module Video
-    class ReplaceAudio
-      describe Cmd do
+    class Cmd
+      describe ReplaceAudio do
         
         let(:command) do
           pre_command = MEVSS::AVCONV_PRE_COMMAND
