@@ -1,14 +1,15 @@
 <div id="video_gallery" class="video_gallery video-kind">
-  
+   <div class="gallery-footer">
+    <div class="pull-right"><a href="#" class="_close_video_gallery exitButtonWhite"></a></div>
+  </div>
   <div class="gallery-header">
+	  <h3 class="pull-left"><%= t('captions.select_video') %></h3>
     <div class="videoIcon">&nbsp;</div>
-    <h3 class="pull-left"><%= t('captions.select_video') %></h3>
+    
   </div>
   
   <%= render :partial => 'galleries/contents/video', :locals => {:videos => videos} %>
   
-  <div class="gallery-footer">
-    <div class="pull-right"><a href="#" class="_close_video_gallery exitButtonWhite"></a></div>
-  </div>
+ 
   
 </div>
