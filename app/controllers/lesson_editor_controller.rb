@@ -106,7 +106,7 @@ class LessonEditorController < ApplicationController
     (1...5).each do |i|
       if !params["media_element_#{i}"].blank?
         media_element_id = correct_integer?(params["media_element_#{i}"]) ? params["media_element_#{i}"].to_i : 0
-        alignment = params["media_element_align_#{i}"].to_i
+        alignment = params["media_element_align_#{i}"].blank? ? nil : params["media_element_align_#{i}"].to_i
         caption = params["caption_#{i}"]
         media_elements_params[i] = [media_element_id, alignment, caption]
       end
