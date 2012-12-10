@@ -453,35 +453,34 @@ html.lesson-editor-layout{
             height: 61px;
             padding-top:10px;
             display:block;
-						font-size:10px;
+						font-size: 10px;
+						
             a{
-              width: 0.23em;
-              height: 0.23em;
+              width: 35px;
+              height: 35px;
               background-position: 0 center;
-							background-size: 1.36em;
-							outline:1px solid red
+              background-size: 210px 35px;
             }
             a:hover{
-              background-position: -0.67em center;
+              background-position: -105px center;
             }
           }
           /*roll-over span*/
 				  span.add-audio{
-            width: 50px;
-            height: 50px;
+            width: 35px;
+            height: 35px;
             font-size: 50px;
-            margin: 10px 0 0 387px;
-					  display:block;
-            background:url('/assets/icone_piene.svg') -50px center no-repeat transparent;
-            background-size: 300px 50px;
+            display:block;
+            background:url('/assets/icone_piene.svg') 0 center no-repeat transparent;
+            background-size: 210px 35px;
             cursor: pointer;
 					  position:absolute;
 					  top:0;
-					  left:0;
-						opacity:0.80;
+					  right:15px;
+						opacity:1;
           }
           span.add-audio:hover{
-            background-position: -150px center;
+            background-position: -105px center;
           }
         }
 
@@ -1074,12 +1073,14 @@ html.lesson-editor-layout{
       }
     }
   }
-	.audioPlayerInLessonsEditor .audioPlayer {
+	.audioPlayerInLessonsEditor {
+	  position:relative;
+	  .audioPlayer {
       padding:18px;
       margin:5px 20px 20px 20px;
-      position:static;
       width:826px;
-   }
+     }
+	 }
   .audioSlider {
     margin:12px 0px;
   } 
