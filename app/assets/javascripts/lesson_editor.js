@@ -375,7 +375,23 @@ function makeDraggable(place_id) {
 
 function saveCurrentSlide() {
   tinyMCE.triggerSave();
+  var temporary = new Array();
+  var temp_counter = 0;
+  $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
+    if($(this).data('placeholder')) {
+      temporary[temp_counter] = $(this).val();
+      temp_counter++;
+      $(this).val('');
+    }
+  });
   $('._lesson_editor_current_slide form').submit();
+  temp_counter = 0;
+  $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
+    if($(this).data('placeholder')) {
+      $(this).val(temporary[temp_counter]);
+      temp_counter++;
+    }
+  });
 }
 
 function slideTo(slide_id, callback) {

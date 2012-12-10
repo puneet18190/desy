@@ -112,7 +112,7 @@ class LessonEditorController < ApplicationController
         media_elements_params[i] = [media_element_id, alignment, caption]
       end
     end
-    @ok = @slide.update_with_media_elements(params[:title], params[:text], media_elements_params)
+    @ok = @slide.update_with_media_elements((params[:title].blank? ? nil : params[:title]), (params[:text].blank? ? nil : params[:text]), media_elements_params)
   end
   
 end
