@@ -460,6 +460,15 @@ $(document).ready(function() {
   
   $("#filter_search_media_elements").selectbox();
   
+  $('body').on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
+    var myself = $(this);
+    var len = myself.val().length;
+    var maxlength = myself.attr('maxlength')
+    if (maxlength && len > maxlength) {
+      myself.val(myself.val().slice(0, maxlength));
+    }
+  });
+  
   
   // NOTIFICATIONS
   
