@@ -287,8 +287,8 @@ function hideNewSlideChoice() {
 }
 
 function stopMediaInCurrentSlide() {
-  stopMedia('li._lesson_editor_current_slide audio');
-  stopMedia('li._lesson_editor_current_slide video');
+  // TODO RIPRISTINARLO  stopMedia('li._lesson_editor_current_slide audio');
+  // TODO RIPRISTINARLO  stopMedia('li._lesson_editor_current_slide video');
 }
 
 function initializeSortableNavs() {
@@ -505,12 +505,13 @@ function initTinymce(tiny_id) {
       });
     }
   });
-  $('body:not(textarea.tinymce)').click(function(e){
-    $('.mceExternalToolbar').hide();
-  });
-  $('textarea.tinymce').click(function(){
-    $('.mceExternalToolbar').show();
-  });
+  //TODO Make this work without closing on toolbar click
+  //$('body').on("click",".slides.active .slide-content", function(e){
+  //  $('.mceExternalToolbar').hide();
+  //});
+  //$('body').on("click",'textarea.tinymce',function(){
+  //  $('.mceExternalToolbar').show();
+  //});
 }
 
 function imgRealSize(img) {
