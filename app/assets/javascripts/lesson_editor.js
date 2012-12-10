@@ -215,6 +215,13 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('focus', '._lesson_editor_placeholder', function() {
+    if($(this).data('placeholder')) {
+      $(this).val('');
+      $(this).data('placeholder', false);
+    }
+  });
+  
 });
 
 function removeGalleryInLessonEditor(sti_type) {
@@ -462,6 +469,13 @@ function initTinymce(tiny_id) {
     setup: function(ed) {
       ed.onKeyUp.add(function(ed, e) {
         tinyMceCallbacks(ed);
+      });
+      ed.onClick.add(function(ed, e) {
+        var textarea = $('#' + tiny_id);
+        if(textarea.data('placeholder')) {
+          ed.setContent('');
+          textarea.data('placeholder', false);
+        }
       });
     }
   });
