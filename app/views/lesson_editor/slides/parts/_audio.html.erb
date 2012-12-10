@@ -1,4 +1,4 @@
-<div id="media_element_<%= position %>_in_slide_<%= slide.id %>" class="_audio_container_in_lesson_editor">
+<div id="media_element_<%= position %>_in_slide_<%= slide.id %>" class="_audio_container_in_lesson_editor audioPlayerInLessonsEditor">
   
   <% if audio %>
     <%= hidden_field_tag "media_element_#{position}", audio.id, :class => "media-tag-cover-#{position} _input_audio_id" %>
@@ -10,12 +10,11 @@
     <div data-slide-id="<%= slide.id %>" data-position="<%= position %>">
       <%= render(:partial => 'shared/players/audio', :locals => {:audio => audio}) %>
     </div>
-    <span class="add-audio _show_audio_gallery_in_lesson_editor" data-position="<%= position %>" style="display:none"></span>
+    <span class="add-audio _show_audio_gallery_in_lesson_editor" data-position="<%= position %>" style="display:block"></span>
   </div>
   
   <div class="cover-choose-image _empty_audio_in_slide" style="display:<%= audio.nil? ? 'block'.html_safe : 'none'.html_safe %>">
     <a class="_show_audio_gallery_in_lesson_editor" data-position="<%= position %>"><%= image_tag "choose-audio.png" %></a>
-    <br/>
     <%= t('captions.choose_audio') %>
   </div>
   
