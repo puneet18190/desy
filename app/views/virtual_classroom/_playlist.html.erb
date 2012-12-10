@@ -11,7 +11,7 @@
       <% end %>
     </div>
     <div class="playInVirtualClassroom">
-      <a class="lower"><%= t('captions.play') %></a>
+      <%= link_to t('captions.play'), lesson_viewer_playlist_path, :class => "lower" %>
     </div>
   <% end %>
 </div>

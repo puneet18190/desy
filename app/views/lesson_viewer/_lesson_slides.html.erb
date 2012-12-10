@@ -1,23 +1,23 @@
 <div id='carousel_container'>
-  <div id='left_scroll'><a href="#"></a></div>
+  <div id='left_scroll'><a></a></div>
     <div id='carousel_inner'>
       <ul id='carousel_ul'>
         <% if @playlist %>
           <% @playlist.each do |classroom| %>
            <% classroom.lesson.slides.order(:position).each do |slide| %>
             <% slide.text = "" if slide.text.blank? %>
-            <li class="cover lesson_<%= classroom.position%>"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
+            <li class="cover slide lesson_<%= classroom.position%>"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
             <% end %>
           <% end %> 
         <%else%>
           <% lesson.slides.order(:position).each do |slide| %>
           <% slide.text = "" if slide.text.blank? %>
-            <li class="cover"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
+            <li class="cover slide"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
           <% end %>
         <% end %>
       </ul>
     </div>
-  <div id='right_scroll'><a href="#"></a></div>
+  <div id='right_scroll'><a></a></div>
 </div>
 <a class="back-button" href="#" style="display:none">back</a>
 <script type="text/javascript" charset="utf-8">

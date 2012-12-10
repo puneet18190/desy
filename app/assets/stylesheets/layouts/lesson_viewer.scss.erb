@@ -53,6 +53,13 @@ html.lesson-viewer-layout{
     height: 40%;
     float: left;
   }
+  
+  .back-button{
+    position:fixed;
+    top:0;
+    right:0;
+    z-index: 9999px;
+  }
 	
 	.container {
     margin: 0 auto;
@@ -416,7 +423,7 @@ html.lesson-viewer-layout{
   padding-bottom:10px;
   }
 
-  #carousel_ul li{
+  #carousel_ul li.slide{
   float: left; /* important for inline positioning of the list items */
   width:900px;  /* fixed width, important */
   /* just styling bellow*/
