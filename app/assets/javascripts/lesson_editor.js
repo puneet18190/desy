@@ -35,6 +35,7 @@ $(document).ready(function() {
   $('body').on('click', '._not_current_slide', function(e) {
     e.preventDefault();
     saveCurrentSlide();
+    stopMediaInCurrentSlide();
     slideTo($(this).parent().data('slide-id'));
   });
   
