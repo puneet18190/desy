@@ -784,7 +784,14 @@ $(document).ready(function() {
     var type = $(this).parent().data('media-type');
     $('#' + container_id + ' ._media_player_slider_disabler').show();
     $('#' + container_id + ' ._media_player_pause').show();
-    $('#' + container_id + ' ' + type)[0].play();
+    var media = $('#' + container_id + ' ' + type);
+    if(media.readyState != 0) {
+      media[0].play();
+    } else {
+      media.on('loadedmetadata', function() {
+        media[0].play();
+      });
+    }
   });
   
   $('body').on('click', '._media_player_pause', function() {
