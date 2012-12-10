@@ -287,8 +287,8 @@ function hideNewSlideChoice() {
 }
 
 function stopMediaInCurrentSlide() {
-  stopMedia('li._lesson_editor_current_slide audio');
-  stopMedia('li._lesson_editor_current_slide video');
+  // TODO RIPRISTINARLO  stopMedia('li._lesson_editor_current_slide audio');
+  // TODO RIPRISTINARLO  stopMedia('li._lesson_editor_current_slide video');
 }
 
 function initializeSortableNavs() {
