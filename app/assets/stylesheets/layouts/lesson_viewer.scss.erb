@@ -43,9 +43,11 @@ html.lesson-viewer-layout{
     font-size:70px;
 		line-height:70px;
     font-weight: normal;
-    padding:10px;
-		margin:10px;
-  }
+    padding:20px 10px;
+		margin:0px 0px 30px 0px;
+		height:62px;
+		
+	}
 	.top {
     margin-bottom: -220px;
     background: transparent;
@@ -209,6 +211,8 @@ html.lesson-viewer-layout{
 	/*slide title*/
 	.slideTitle{
 	  @include formatElement;
+		width:740px;
+		margin-left:55px;
 		text-align:center;
 		display:table;
 		h2 {
@@ -293,9 +297,12 @@ html.lesson-viewer-layout{
 	}
 	.audioBig {
 	  width:auto;
-		height:35px;
+		height:71px;
+		margin: 5px 0 20px 0px;
 		background-color:#f1f1f1;
+		
 		.audioIcon {
+		  margin-top:20px;
 	    @include audioIconFormat;
 		  margin-left:408px;
 	  }
@@ -305,6 +312,11 @@ html.lesson-viewer-layout{
 		  background-color:#fff;
 			
 	  }
+		.audioPlayer {
+		  padding: 18px 20px 9px 20px;
+      margin: 0;
+      width: 820px;
+		}
 	}
 	/*slide immagini formato 420x440*/
 	.medium {

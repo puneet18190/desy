@@ -10,7 +10,7 @@
     <div data-slide-id="<%= slide.id %>" data-position="<%= position %>">
       <%= render(:partial => 'shared/players/audio', :locals => {:audio => audio}) %>
     </div>
-    <span class="add-audio _show_audio_gallery_in_lesson_editor" data-position="<%= position %>" style="display:block"></span>
+    <span class="add-audio _show_audio_gallery_in_lesson_editor" data-position="<%= position %>"></span>
   </div>
   
   <div class="cover-choose-image _empty_audio_in_slide" style="display:<%= audio.nil? ? 'block'.html_safe : 'none'.html_safe %>">
