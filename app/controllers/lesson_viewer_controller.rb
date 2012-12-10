@@ -7,9 +7,9 @@ class LessonViewerController < ApplicationController
   def index
     if !@ok
       redirect_to '/dashboard'
+    else
+      @back = params[:back] if params[:back]
     end
-    #TODO pass a parameter for the slide to redirect to after add_slide
-    #@slide_to = params[:slide_position] if params[:slide_position]
   end
   
   def playlist

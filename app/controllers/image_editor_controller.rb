@@ -87,7 +87,7 @@ class ImageEditorController < ApplicationController
 
       img.combine_options do |c|
         color_value = params["color_#{t_num}"]
-        color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]
+        color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
 
         c.fill "#{color_hex}"
         c.stroke "none"

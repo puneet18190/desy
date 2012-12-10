@@ -1,3 +1,6 @@
 <%= render :partial => "lesson_slides", :locals => {:lesson => @playlist} %>
 <%= render :partial => "playlist_menu", :locals => {:lesson => @playlist} %>
-<a href="#" class="_playlist">Show Playlist</a>
+<div class="playlist_footer">
+  <%= link_to "Close", my_virtual_classroom_path, :class=> "fltrt" %>
+  <a class="_playlist"><%= image_tag("playlist_symbol.png")%> <%= t('captions.playlist') %></a>
+</div>
