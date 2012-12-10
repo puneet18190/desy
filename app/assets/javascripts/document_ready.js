@@ -795,10 +795,8 @@ $(document).ready(function() {
     $('#' + container_id + ' ._media_player_pause').show();
     var media = $('#' + container_id + ' ' + type);
     if(media.readyState != 0) {
-      console.log("eccomi 1"+ media[0].play());
       media[0].play();
     } else {
-      console.log("eccomi 2");
       media.on('loadedmetadata', function() {
         media[0].play();
       });
