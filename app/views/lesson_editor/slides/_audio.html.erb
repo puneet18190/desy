@@ -2,7 +2,9 @@
   <h2 class="text">
     <%= text_field_tag :title, (slide.title.blank? ? t('captions.enter_title') : slide.title), :class => '_lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?}, :maxlength => t('language_parameters.slide.length_title') %>
   </h2>
+	<div class="contentAudioElement">
   <%= render :partial => 'lesson_editor/slides/parts/audio', :locals => {:slide => slide, :position => 1, :audio => slide.audio_at(1)} %>
+	</div>
   <div class="audio-content">
     <%= text_area_tag :text, (slide.text.blank? ? t('captions.insert_slide_content_here') : slide.text.html_safe), :id => "ta-#{slide.id}", :class => 'tinymce _lesson_editor_placeholder', :data => {:placeholder => slide.text.blank?} %>
   </div>

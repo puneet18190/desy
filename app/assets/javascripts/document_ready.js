@@ -346,8 +346,8 @@ $(document).ready(function() {
   $('body').on('click', '._Lesson_button_preview', function(e) {
     e.preventDefault();
     var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    previewLesson(my_param, destination);
+    var redirect_back_to = $("#info_container").data('currenturl');
+    previewLesson(my_param, redirect_back_to);
     return false;
   });
   
@@ -795,8 +795,10 @@ $(document).ready(function() {
     $('#' + container_id + ' ._media_player_pause').show();
     var media = $('#' + container_id + ' ' + type);
     if(media.readyState != 0) {
+      console.log("eccomi 1"+ media[0].play());
       media[0].play();
     } else {
+      console.log("eccomi 2");
       media.on('loadedmetadata', function() {
         media[0].play();
       });
