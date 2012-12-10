@@ -83,8 +83,8 @@ function likeLesson(lesson_id, destination) {
   });
 }
 
-function previewLesson(lesson_id, destination) {
-  // TODO forse andrà rimossa e messa direttamente in dialogs.js
+function previewLesson(lesson_id, redirect_to) {
+  window.location.href = '/lessons/' + lesson_id + '/view?back='+encodeURIComponent(redirect_to);
 }
 
 function publishLesson(lesson_id, destination) {

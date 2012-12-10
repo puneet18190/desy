@@ -361,6 +361,7 @@ en:
       length_title: 40
     slide:
       length_title: 40
+      length_caption: 60
 
 # (6) forms
   forms:
