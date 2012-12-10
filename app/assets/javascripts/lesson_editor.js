@@ -27,6 +27,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav)', function(e) {
     e.preventDefault();
+    stopMediaInCurrentSlide();
     saveCurrentSlide();
     slideTo($(this).data('slide-id'));
   });
@@ -71,6 +72,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._delete_slide', function() {
+    stopMediaInCurrentSlide();
     var slide = $('li._lesson_editor_current_slide');
     slide.prepend('<layer class="_not_current_slide_disabled"></layer>');
     $.ajax({
@@ -266,6 +268,7 @@ function hideEverythingOutCurrentSlide() {
 }
 
 function showNewSlideOptions() {
+  stopMediaInCurrentSlide();
   var current_slide_content = $('li._lesson_editor_current_slide .slide-content');
   current_slide_content.removeClass('cover title video1 video2 audio image1 image2 image3 image4 text');
   var html_to_be_replaced = $('#new_slide_option_list').html();
@@ -280,6 +283,11 @@ function hideNewSlideChoice() {
   current_slide.find('.box.new_slide').remove();
   current_slide.find('._hide_add_new_slide_options').removeAttr('class').addClass('addButtonOrange _add_new_slide_options');
   showEverythingOutCurrentSlide();
+}
+
+function stopMediaInCurrentSlide() {
+  stopMedia('li._lesson_editor_current_slide audio');
+  stopMedia('li._lesson_editor_current_slide video');
 }
 
 function initializeSortableNavs() {
@@ -301,6 +309,7 @@ function initializeSortableNavs() {
         }
       }
       if(old_position != new_position) {
+        stopMediaInCurrentSlide();
         saveCurrentSlide();
         $.ajax({
           type: 'post',
