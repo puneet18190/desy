@@ -10,12 +10,12 @@
   <div class="contatore"><%= position %> <div class="textIcon"></div></div>
   <div class="boxMediaElement _video_editor_component_hover">
     <%= render :partial => 'video_editor/components/thumbs/text', :locals => locals_for_text_thumb %>
-    <%= hidden_field_tag "type_#{position}", component[:type] %>
-    <%= hidden_field_tag "content_#{position}", component[:content] %>
-    <%= hidden_field_tag "background_color_#{position}", component[:background_color] %>
-    <%= hidden_field_tag "text_color_#{position}", component[:text_color] %>
-    <%= hidden_field_tag "duration_#{position}", component[:duration] %>
-    <%= hidden_field_tag "position_#{position}", position %>
+    <%= hidden_field_tag "type_#{position}", component[:type], :class => '_video_component_input_type' %>
+    <%= hidden_field_tag "content_#{position}", component[:content], :class => '_video_component_input_content' %>
+    <%= hidden_field_tag "background_color_#{position}", component[:background_color], :class => '_video_component_input_background_color' %>
+    <%= hidden_field_tag "text_color_#{position}", component[:text_color], :class => '_video_component_input_text_color' %>
+    <%= hidden_field_tag "duration_#{position}", component[:duration], :class => '_video_component_input_duration' %>
+    <%= hidden_field_tag "position_#{position}", position, :class => '_video_component_input_position' %>
   </div>
   <div class="separatore"><%= image_tag("arrow_element_timeline.png") %></div>
 </div>

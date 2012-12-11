@@ -740,15 +740,16 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._add_video_component_to_video_editor', function() {
-    var popup_id = 'dialog-video-gallery-' + $(this).data('video-id');
+    var video_id = $(this).data('video-id');
+    var popup_id = 'dialog-video-gallery-' + video_id;
     var component = $('#' + popup_id + ' ._temporary').html();
     var duration = $(this).data('duration');
     closePopUp(popup_id);
     closeMixedGalleryInVideoEditor();
     if($('#info_container').data('replacing-component')) {
-      replaceVideoComponentInVideoEditor(component, $('#info_container').data('current-component'), duration);
+      replaceVideoComponentInVideoEditor(video_id, component, $('#info_container').data('current-component'), duration);
     } else {
-      addVideoComponentInVideoEditor(component, duration);
+      addVideoComponentInVideoEditor(video_id, component, duration);
     }
   });
   
@@ -760,7 +761,8 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._add_image_component_to_video_editor_after_select_duration', function() {
-    var popup_id = 'dialog-image-gallery-' + $(this).data('image-id');
+    var image_id = $(this).data('image-id')
+    var popup_id = 'dialog-image-gallery-' + image_id;
     var duration = parseInt($('#' + popup_id + ' input').val());
     if(isNaN(duration) || duration < 1) {
       showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
@@ -769,9 +771,9 @@ $(document).ready(function() {
       closePopUp(popup_id);
       closeMixedGalleryInVideoEditor();
       if($('#info_container').data('replacing-component')) {
-        replaceImageComponentInVideoEditor(component, $('#info_container').data('current-component'), duration);
+        replaceImageComponentInVideoEditor(image_id, component, $('#info_container').data('current-component'), duration);
       } else {
-        addImageComponentInVideoEditor(component, duration);
+        addImageComponentInVideoEditor(image_id, component, duration);
       }
     }
   });

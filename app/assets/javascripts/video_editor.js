@@ -29,22 +29,29 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
 function removeComponentInVideoEditor(position) {
 }
 
-function addImageComponentInVideoEditor(component, duration) {
+function addImageComponentInVideoEditor(image_id, component, duration) {
   alert('stai aggiungendo la componente -- ' + component + ' in ultima posizione, per una durata di ' + duration + ' secondi');
   // mettere flash
 }
 
-function replaceImageComponentInVideoEditor(component, position, duration) {
-  alert('stai aggiungendo la componente -- ' + component + ' in posizione ' + position + ', rimpiazzando quella già esistente, per una durata di ' + duration + ' secondi');
+function replaceImageComponentInVideoEditor(image_id, component, position, duration) {
+  var identifier = position.split('_');
+  identifier = identifier[identifier.length - 1];
+  $('#' + position + ' ._video_component_thumb').replaceWith(component);
+  clearSpecificVideoEditorComponentParameters(position);
+  $('#' + position + ' ._video_component_input_type').val('image');
+  var to_be_appended = fillVideoEditorSingleParameter('image', identifier, image_id);
+  to_be_appended += fillVideoEditorSingleParameter('duration', identifier, duration);
+  $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
   // mettere flash
 }
 
-function addVideoComponentInVideoEditor(component, duration) {
+function addVideoComponentInVideoEditor(video_id, component, duration) {
   alert('stai aggiungendo la componente -- ' + component + ' in ultima posizione  (il video dura ' + duration + ' secondi)');
   // mettere flash
 }
 
-function replaceVideoComponentInVideoEditor(component, position, duration) {
+function replaceVideoComponentInVideoEditor(video_id, component, position, duration) {
   alert('stai aggiungendo la componente -- ' + component + ' in posizione ' + position + ', rimpiazzando quella già esistente (il video dura ' + duration + ' secondi)');
   // mettere flash
 }
@@ -91,4 +98,20 @@ function changeDurationVideoEditorComponent(component_id, new_duration) {
   $('#' + component_id).data('duration', new_duration);
   $('#info_container').data('total-length', total_length);
   $('#visual_video_editor_total_length').html(secondsToDateString(total_length));
+}
+
+function fillVideoEditorSingleParameter(input, identifier, value) {
+  return '<input id="' + input + '_' + identifier + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
+}
+
+function clearSpecificVideoEditorComponentParameters(component_id) {
+  var huge_selector = '#' + component_id + ' ._video_component_input_content';
+  huge_selector += ', #' + component_id + ' ._video_component_input_background_color';
+  huge_selector += ', #' + component_id + ' ._video_component_input_text_color';
+  huge_selector += ', #' + component_id + ' ._video_component_input_duration';
+  huge_selector += ', #' + component_id + ' ._video_component_input_image';
+  huge_selector += ', #' + component_id + ' ._video_component_input_video';
+  huge_selector += ', #' + component_id + ' ._video_component_input_from';
+  huge_selector += ', #' + component_id + ' ._video_component_input_until';
+  $(huge_selector).remove();
 }
