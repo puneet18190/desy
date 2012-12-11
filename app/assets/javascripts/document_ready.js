@@ -563,10 +563,14 @@ $(document).ready(function() {
     closePopUp($(this).data('dialog-id'));
   });
   
-  // LESSON VIEWER
-  
   
   // VIRTUAL CLASSROOM
+  
+  $('body').on('click', '._virtual_classroom_lesson ._cover_slide_thumb', function() {
+    var lesson_id = $(this).data('lesson-id');
+    var redirect_to = $('#info_container').data('currenturl');
+    window.location.href = '/lessons/' + lesson_id + '/view?back=' + encodeURIComponent(redirect_to);
+  });
   
   $('body').on('click', '._remove_lesson_from_inside_virtual_classroom', function() {
     var lesson_id = $(this).data('clickparam');
