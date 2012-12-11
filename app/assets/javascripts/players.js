@@ -22,7 +22,10 @@ function initializeActionOfMediaTimeUpdater(media) {
   }
 }
 
-function initializeMedia(content_id, type, duration) {
+function initializeMedia(content_id, type, mp4_duration, webm_duration) {
+  // TODO settare duration in base al formato video supportato dal browser
+  //      e riempire il div con la duration dentro shared/players/_video
+  var duration = mp4_duration;
   $('#' + content_id + ' ._media_player_slider').slider({
     min: 0,
     max: duration,

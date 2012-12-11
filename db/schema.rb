@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121126140000) do
+ActiveRecord::Schema.define(:version => 20121207091234) do
 
   create_table "locations", :force => true do |t|
     t.string   "description", :null => false
@@ -45,6 +45,21 @@ ActiveRecord::Schema.define(:version => 20121126140000) do
 
 # Could not dump table "bookmarks" because of following StandardError
 #   Unknown type 'teaching_object' for column 'bookmarkable_type'
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.index ["priority", "run_at"], :name => "delayed_jobs_priority"
+  end
 
   create_table "subjects", :force => true do |t|
     t.string   "description", :null => false
@@ -98,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20121126140000) do
     t.datetime "publication_date"
     t.string   "media"
     t.text     "metadata"
+    t.boolean  "converted"
     t.index ["title"], :name => "index_media_elements_on_title"
     t.index ["updated_at"], :name => "index_media_elements_on_updated_at"
     t.index ["user_id"], :name => "index_media_elements_on_user_id"
