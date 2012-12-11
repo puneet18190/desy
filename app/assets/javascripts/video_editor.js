@@ -6,7 +6,7 @@ function initializeVideoEditor() {
 }
 
 function closeMixedGalleryInVideoEditor() {
-  $('#video_editor_mixed_gallery_container').hide('fade', {}, 500, function() {
+  $('#video_editor_mixed_gallery_container').hide('fade', {}, 250, function() {
     $(this).hide();
     $('#video_editor').css('display', 'inline-block');
   });
