@@ -1,8 +1,5 @@
 function initializeVideoEditor() {
-  $('#media_elements_list_in_video_editor').jScrollPane({
-    autoReinitialise: false
-  });
-  $('._video_editor_component_menu').hide();
+  startAutoReinitialiseVideoEditorScrollPane();
 }
 
 function closeMixedGalleryInVideoEditor() {
@@ -141,4 +138,16 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
 function highlightAndUpdateVideoComponentIcon(component_id, icon_class) {
   $('#' + component_id + ' ._video_component_icon div').removeClass('textIcon videoIcon photoIcon').addClass(icon_class);
   $('#' + component_id + ' ._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
+}
+
+function stopAutoReinitialiseVideoEditorScrollPane() {
+  $('#media_elements_list_in_video_editor').jScrollPane({
+    autoReinitialise: false
+  });
+}
+
+function startAutoReinitialiseVideoEditorScrollPane() {
+  $('#media_elements_list_in_video_editor').jScrollPane({
+    autoReinitialise: true
+  });
 }
