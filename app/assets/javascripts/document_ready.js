@@ -761,7 +761,7 @@ $(document).ready(function() {
   $('body').on('click', '._add_image_component_to_video_editor_after_select_duration', function() {
     var popup_id = 'dialog-image-gallery-' + $(this).data('image-id');
     var duration = parseInt($('#' + popup_id + ' input').val());
-    if(duration < 1) {
+    if(isNaN(duration) || duration < 1) {
       showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
     } else {
       var component = $('#' + popup_id + ' ._temporary').html();
