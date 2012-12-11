@@ -7,10 +7,8 @@
     <h2 style="padding-right:10px" class="lower"><%= t('captions.display') %></h2>
     <div class="selectDisplay">
       <select name="display" id="for_page_media_elements">
-        <% counter = true %>
         <% @for_page_options.each do |f| %>
-          <option value="<%= f %>" <%= counter ? "selected=\"selected\"".html_safe : '' %>><%= f %></option>
-          <% counter = false %>
+          <option value="<%= f %>" <%= (@for_page == f) ? "selected=\"selected\"".html_safe : '' %>><%= f %></option>
         <% end %>
       </select>
     </div>
@@ -18,11 +16,9 @@
   <div>
     <h2 style="padding-right:10px"><%= t('captions.show') %></h2>
     <select name="ricerca" id="filter_media_elements">
-      <% counter = true %>
       <% Filters::MEDIA_ELEMENTS_SET.each do |f| %>
         <% caption = Filters::CAPTIONS[f] %>
-        <option value="<%= f %>" <%= counter ? "selected=\"selected\"".html_safe : '' %>><%= caption %></option>
-        <% counter = false %>
+        <option value="<%= f %>" <%= (@filter == f) ? "selected=\"selected\"".html_safe : '' %>><%= caption %></option>
       <% end %>
     </select>
   </div>
