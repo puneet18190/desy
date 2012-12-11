@@ -1,6 +1,6 @@
 function initializeVideoEditor() {
   $('#media_elements_list_in_video_editor').jScrollPane({
-    autoReinitialise: true
+    autoReinitialise: false
   });
   $('._video_editor_component_menu').hide();
 }
@@ -46,8 +46,6 @@ function replaceImageComponentInVideoEditor(image_id, component, position, durat
   to_be_appended += fillVideoEditorSingleParameter('duration', identifier, duration);
   $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(position, duration);
-  $('#' + position + ' ._video_component_icon div').removeClass('textIcon videoIcon photoIcon').addClass('photoIcon');
-  $('#' + position + ' ._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
 }
 
 function addVideoComponentInVideoEditor(video_id, component, duration) {
@@ -118,4 +116,9 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
   huge_selector += ', #' + component_id + ' ._video_component_input_from';
   huge_selector += ', #' + component_id + ' ._video_component_input_until';
   $(huge_selector).remove();
+}
+
+function highlightAndUpdateVideoComponentIcon(component_id, icon_class) {
+  $('#' + component_id + ' ._video_component_icon div').removeClass('textIcon videoIcon photoIcon').addClass('photoIcon');
+  $('#' + component_id + ' ._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
 }

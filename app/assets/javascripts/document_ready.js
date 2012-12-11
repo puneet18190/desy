@@ -744,10 +744,15 @@ $(document).ready(function() {
     var popup_id = 'dialog-video-gallery-' + video_id;
     var component = $('#' + popup_id + ' ._temporary').html();
     var duration = $(this).data('duration');
+    var current_component = $('#info_container').data('current-component');
     closePopUp(popup_id);
-    setTimeout(closeMixedGalleryInVideoEditor, 500);
+    $('#' + current_component + '._video_editor_component_menu').hide();
+    setTimeout(closeMixedGalleryInVideoEditor, 700);
+    setTimeout(function() {
+      highlightAndUpdateVideoComponentIcon(current_component, 'videoIcon');
+    }, 1400);
     if($('#info_container').data('replacing-component')) {
-      replaceVideoComponentInVideoEditor(video_id, component, $('#info_container').data('current-component'), duration);
+      replaceVideoComponentInVideoEditor(video_id, component, current_component, duration);
     } else {
       addVideoComponentInVideoEditor(video_id, component, duration);
     }
@@ -768,10 +773,15 @@ $(document).ready(function() {
       showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
     } else {
       var component = $('#' + popup_id + ' ._temporary').html();
+      var current_component = $('#info_container').data('current-component');
       closePopUp(popup_id);
-      setTimeout(closeMixedGalleryInVideoEditor, 500);
+      $('#' + current_component + '._video_editor_component_menu').hide();
+      setTimeout(closeMixedGalleryInVideoEditor, 700);
+      setTimeout(function() {
+        highlightAndUpdateVideoComponentIcon(current_component, 'photoIcon');
+      }, 1400);
       if($('#info_container').data('replacing-component')) {
-        replaceImageComponentInVideoEditor(image_id, component, $('#info_container').data('current-component'), duration);
+        replaceImageComponentInVideoEditor(image_id, component, current_component, duration);
       } else {
         addImageComponentInVideoEditor(image_id, component, duration);
       }
