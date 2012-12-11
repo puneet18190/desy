@@ -8,14 +8,16 @@
         <table summary="" cellpadding="0" cellspacing="0" style="width:490px; float:left">
           <tr>
             <td style="width:10%">
-              <input type="text" name="tag" value="<%= t('captions.insert_tag') %>" class="text lower" id="media_elements_tag_reader_for_search" style="color:#E2E1E1">
-              <%= hidden_field_tag 'tag_kind', '', :id => 'media_elements_tag_kind_for_search' %>
+              <% if @search_item == 'media_elements' %>
+                <input type="text" name="tag" value="<%= @tag_placeholder %>" class="text lower" id="media_elements_tag_reader_for_search" style="color:<%= @did_you_search ? '#939393'.html_safe : '#E2E1E1'.html_safe %>">
+              <% else %>
+                <input type="text" name="tag" value="<%= t('captions.insert_tag') %>" class="text lower" id="media_elements_tag_reader_for_search" style="color:#E2E1E1">
+              <% end %>
+              <%= hidden_field_tag 'tag_kind', (@tag.kind_of?(Tag) ? @tag.id : ''), :id => 'media_elements_tag_kind_for_search' %>
             <td>
               <select name="filter" id="filter_search_media_elements">
-                <% counter = true %>
                 <% Filters::MEDIA_ELEMENTS_SEARCH_SET.each do |f| %>
-                  <option value="<%= f %>" <%= counter ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
-                  <% counter = false %>
+                  <option value="<%= f %>" <%= (f == @filter) ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
                 <% end %>
               </select>
             </td>
@@ -34,21 +36,22 @@
             <td  rowspan="2">
             <table style="padding:0">
               <tr>
-              <% counter = true %>
               <% SearchOrders::MEDIA_ELEMENTS_SET.each do |so| %>
                 <% my_order_id = "#{so}_media_elements_radio_input" %>
-                <td><input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_media_elements_radio_input" <%= counter ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"></label></td>
+                <td><input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_media_elements_radio_input" <%= (so == @order) ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"></label></td>
                 <td style="vertical-align:middle"><%= SearchOrders::CAPTIONS[so] %></td>
                 </tr>
-                <% counter = false %>
               <% end %>
               </table>
             </td>
             <td align="left" rowspan="2">
-              <a id="search_media_elements_submit" class="cerca">&nbsp;</a>
+              <% if @search_item == 'media_elements' && @did_you_search %>
+                <a id="search_media_elements_submit" class="cerca current">&nbsp;</a>
+              <% else %>
+                <a id="search_media_elements_submit" class="cerca">&nbsp;</a>
+              <% end %>
             </td>
           </tr>
-          
         </table>
       </form>
     </div>
