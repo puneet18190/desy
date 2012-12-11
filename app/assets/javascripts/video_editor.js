@@ -21,14 +21,32 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
 function removeComponentInVideoEditor(position) {
 }
 
-function replaceComponentInVideoEditor(component, position) {
-
-// mettere flash
-
+function addImageComponentInVideoEditor(component, duration) {
+  alert('stai aggiungendo la componente -- ' + component + ' in ultima posizione, per una durata di ' + duration + ' secondi');
+  // mettere flash
 }
 
-function addComponentInVideoEditor(component) {
+function replaceImageComponentInVideoEditor(component, position, duration) {
+  alert('stai aggiungendo la componente -- ' + component + ' in posizione ' + position + ', rimpiazzando quella già esistente, per una durata di ' + duration + ' secondi');
+  // mettere flash
+}
 
-// mettere flash
+function addVideoComponentInVideoEditor(component, duration) {
+  alert('stai aggiungendo la componente -- ' + component + ' in ultima posizione  (il video dura ' + duration + ' secondi)');
+  // mettere flash
+}
 
+function replaceVideoComponentInVideoEditor(component, position, duration) {
+  alert('stai aggiungendo la componente -- ' + component + ' in posizione ' + position + ', rimpiazzando quella già esistente (il video dura ' + duration + ' secondi)');
+  // mettere flash
+}
+
+function addTextComponentInVideoEditor(content, duration, background_color, text_color) {
+  alert('stai aggiungendo la componente testuale -- ' + content + ' in ultima posizione, con una durata di ' + duration + ' secondi, con colore di sfondo ' + background_color + ' e colore testuale ' + text_color);
+  // mettere flash
+}
+
+function replaceTextComponentInVideoEditor(content, position, duration, background_color, text_color) {
+  alert('stai aggiungendo la componente -- ' + content + ' in posizione ' + position + ', rimpiazzando quella già esistente, con una durata di ' + duration + ' secondi, con colore di sfondo ' + background_color + ' e colore testuale ' + text_color);
+  // mettere flash
 }

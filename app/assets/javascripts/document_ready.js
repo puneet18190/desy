@@ -748,12 +748,22 @@ $(document).ready(function() {
     var popup_id = 'dialog-image-gallery-' + $(this).data('image-id');
     $('#' + popup_id + ' ._bottom_of_image_popup_in_gallery').hide();
     $('#' + popup_id + ' ._duration_selector').show();
+    $('#' + popup_id + ' ._duration_selector input').val('');
   });
   
   $('body').on('click', '._add_image_component_to_video_editor_after_select_duration', function() {
     var popup_id = 'dialog-image-gallery-' + $(this).data('image-id');
-    var duration = $('#' + popup_id + ' input').val();
-    alert("stai aggiungendo l'immagine " + $(this).data('image-id') + " con una durata di " + duration + " secondi!");
+    var duration = parseInt($('#' + popup_id + ' input').val());
+    if(duration < 1) {
+      showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
+    } else {
+      var component = $('#' + popup_id + ' ._temporary').html();
+      if($('#info_container').data('replacing-component')) {
+        replaceImageComponentInVideoEditor(component, $('#info_container').data('current-component'), duration);
+      } else {
+        addImageComponentInVideoEditor(component, duration);
+      }
+    }
   });
   
   $('body').on('click', '._add_audio_track_to_video_editor', function() {
@@ -762,8 +772,11 @@ $(document).ready(function() {
   
   $('body').on('click', '._image_gallery_thumb_in_mixed_gallery_video_editor', function(e) {
     e.preventDefault();
-    showImageInGalleryPopUp($(this).data('image-id'), function() {
-      alert('eccomi pronto per registrare il tempo');
+    var image_id = $(this).data('image-id');
+    showImageInGalleryPopUp(image_id, function() {
+      var popup_id = 'dialog-image-gallery-' + image_id;
+      $('#' + popup_id + ' ._bottom_of_image_popup_in_gallery').show();
+      $('#' + popup_id + ' ._duration_selector').hide();
     });
   });
   
