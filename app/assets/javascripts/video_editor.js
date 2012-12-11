@@ -19,6 +19,9 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
       }
     });
     $(big_selector).hide();
+    if(type == 'text') {
+      resetVideoEditorTextComponent();
+    }
     $('#video_editor_mixed_gallery_container ' + type).show();
   }
 }
@@ -54,6 +57,16 @@ function addTextComponentInVideoEditor(content, duration, background_color, text
 function replaceTextComponentInVideoEditor(content, position, duration, background_color, text_color) {
   alert('stai aggiungendo la componente -- ' + content + ' in posizione ' + position + ', rimpiazzando quella già esistente, con una durata di ' + duration + ' secondi, con colore di sfondo ' + background_color + ' e colore testuale ' + text_color);
   // mettere flash
+}
+
+function resetVideoEditorTextComponent() {
+  $('#text_component_preview textarea').val($('#popup_captions_container').data('text-component-placeholder-in-video-editor'));
+  $('#video_editor_mixed_gallery_container ._texts ._duration_selector input').val('');
+  $('#text_component_preview').data('placeholder', true);
+  var old_background_color = $('#text_component_preview').data('background-color');
+  var old_text_color = $('#text_component_preview').data('text-color');
+  switchTextComponentBackgroundColor(old_background_color, 'white');
+  switchTextComponentTextColor(old_text_color, 'black');
 }
 
 function switchTextComponentBackgroundColor(old_color, new_color) {
