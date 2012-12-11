@@ -1,4 +1,4 @@
-<div class="lista _video_editor_component" id="video_component_<%= position %>" data-position="<%= position %>">
+<div class="lista _video_editor_component" id="video_component_<%= position %>" data-position="<%= position %>" data-duration="<%= component[:until] - component[:from] %>">
   <div class="contatore"><%= position %> <div class="videoIcon"></div></div>
   <div class="boxMediaElement _video_editor_component_hover">
     <%= render :partial => 'video_editor/components/thumbs/video', :locals => {:video => component[:video]} %>

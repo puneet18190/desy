@@ -6,7 +6,7 @@
   }
 %>
 
-<div class="lista _video_editor_component" id="video_component_<%= position %>" data-position="<%= position %>">
+<div class="lista _video_editor_component" id="video_component_<%= position %>" data-position="<%= position %>" data-duration="<%= component[:duration] %>">
   <div class="contatore"><%= position %> <div class="textIcon"></div></div>
   <div class="boxMediaElement _video_editor_component_hover">
     <%= render :partial => 'video_editor/components/thumbs/text', :locals => locals_for_text_thumb %>

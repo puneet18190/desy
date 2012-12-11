@@ -82,3 +82,13 @@ function switchTextComponentTextColor(old_color, new_color) {
   $('._text_component_in_video_editor_text_color_selector .background_color_' + new_color).addClass('current');
   $('#text_component_preview').data('text-color', new_color);
 }
+
+function changeDurationVideoEditorComponent(component_id, new_duration) {
+  var old_duration = $('#' + component_id).data('duration');
+  var total_length = $('#info_container').data('total-length');
+  total_length -= old_duration;
+  total_length += new_duration;
+  $('#' + component_id).data('duration', new_duration);
+  $('#info_container').data('total-length', total_length);
+  $('#visual_video_editor_total_length').html(secondsToDateString(total_length));
+}
