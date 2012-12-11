@@ -90,6 +90,45 @@ ALTER SEQUENCE bookmarks_id_seq OWNED BY bookmarks.id;
 
 
 --
+-- Name: delayed_jobs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE delayed_jobs (
+    id integer NOT NULL,
+    priority integer DEFAULT 0,
+    attempts integer DEFAULT 0,
+    handler text,
+    last_error text,
+    run_at timestamp without time zone,
+    locked_at timestamp without time zone,
+    failed_at timestamp without time zone,
+    locked_by character varying(255),
+    queue character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: delayed_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE delayed_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: delayed_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE delayed_jobs_id_seq OWNED BY delayed_jobs.id;
+
+
+--
 -- Name: lessons; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -206,7 +245,8 @@ CREATE TABLE media_elements (
     updated_at timestamp without time zone NOT NULL,
     publication_date timestamp without time zone,
     media character varying(255),
-    metadata text
+    metadata text,
+    converted boolean
 );
 
 
@@ -631,6 +671,13 @@ ALTER TABLE ONLY bookmarks ALTER COLUMN id SET DEFAULT nextval('bookmarks_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY lessons ALTER COLUMN id SET DEFAULT nextval('lessons_id_seq'::regclass);
 
 
@@ -738,6 +785,14 @@ ALTER TABLE ONLY virtual_classroom_lessons ALTER COLUMN id SET DEFAULT nextval('
 
 ALTER TABLE ONLY bookmarks
     ADD CONSTRAINT bookmarks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: delayed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY delayed_jobs
+    ADD CONSTRAINT delayed_jobs_pkey PRIMARY KEY (id);
 
 
 --
@@ -858,6 +913,13 @@ ALTER TABLE ONLY users_subjects
 
 ALTER TABLE ONLY virtual_classroom_lessons
     ADD CONSTRAINT virtual_classroom_lessons_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: delayed_jobs_priority; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at);
 
 
 --
@@ -1292,3 +1354,7 @@ INSERT INTO schema_migrations (version) VALUES ('20121107172441');
 INSERT INTO schema_migrations (version) VALUES ('20121126135928');
 
 INSERT INTO schema_migrations (version) VALUES ('20121126140000');
+
+INSERT INTO schema_migrations (version) VALUES ('20121206140304');
+
+INSERT INTO schema_migrations (version) VALUES ('20121207091234');

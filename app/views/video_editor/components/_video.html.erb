@@ -1,12 +1,12 @@
-<div class="lista _video_editor_component" id="video_component_<%= position %>" data-position="<%= position %>">
-  <div class="contatore"><%= position %> <div class="videoIcon"></div></div>
+<div class="lista _video_editor_component" id="video_component_<%= position %>" data-position="<%= position %>" data-duration="<%= component[:until] - component[:from] %>">
+  <div class="contatore _video_component_icon"><%= position %> <div class="videoIcon"></div></div>
   <div class="boxMediaElement _video_editor_component_hover">
     <%= render :partial => 'video_editor/components/thumbs/video', :locals => {:video => component[:video]} %>
-    <%= hidden_field_tag "type_#{position}", component[:type] %>
-    <%= hidden_field_tag "video_#{position}", component[:video].id %>
-    <%= hidden_field_tag "from_#{position}", component[:from] %>
-    <%= hidden_field_tag "until_#{position}", component[:until] %>
-    <%= hidden_field_tag "position_#{position}", position %>
+    <%= hidden_field_tag "type_#{position}", component[:type], :class => '_video_component_input_type' %>
+    <%= hidden_field_tag "video_#{position}", component[:video].id, :class => '_video_component_input_video' %>
+    <%= hidden_field_tag "from_#{position}", component[:from], :class => '_video_component_input_from' %>
+    <%= hidden_field_tag "until_#{position}", component[:until], :class => '_video_component_input_until' %>
+    <%= hidden_field_tag "position_#{position}", position, :class => '_video_component_input_position' %>
   </div>
   <div class="separatore"><%= image_tag("arrow_element_timeline.png") %></div>
 </div>

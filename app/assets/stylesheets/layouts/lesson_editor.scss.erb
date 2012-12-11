@@ -448,7 +448,6 @@ html.lesson-editor-layout{
           h2 input{
             font-size: 70px;
             padding: 10px;
-            margin: 10px;
             width: 840px;
           }
           .audio-content{
@@ -558,12 +557,23 @@ html.lesson-editor-layout{
 					
 					.video1-p1 {
 					  position:relative;
+						
+						.videoPlayer {
+              width: 420px;
+              margin: 0px 0px 0px 20px;
+							float:left;
+						  a.play {margin-left:10px}
+						  a.pause {margin-left:10px}
+						  a.fullScreen {margin-right:10px}
+						  .videoSlider {width:60%}
+            }
+						
 					/*roll-over span*/
 				  span.add-video{
             width: 130px;
             height: 130px;
             font-size: 130px;
-            margin: 145px 0 0 180px;
+            margin: 70px 0 0 160px;
 					  display:block;
             background:url('/assets/icone_piene.svg') -130px center no-repeat transparent;
             background-size: 780px 130px;
@@ -577,9 +587,9 @@ html.lesson-editor-layout{
           }
 				}
           video{
-            width: 440px;
-            height: 250px;
-            margin: 0 0 0 20px;
+            width: 420px;
+            height: 236px;
+            margin-bottom: 5px;
             float:left;
           }
           h2 input{

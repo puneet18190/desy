@@ -19,17 +19,13 @@ end
 
 user_name = CONFIG['admin_username'].split(' ').first
 user_surname = CONFIG['admin_username'].gsub("#{user_name} ", '')
-raise Exception if !User.create_user(CONFIG['admin_email'], user_name, user_surname, 'School', SchoolLevel.first.id, Location.first.id, subject_ids)
+raise 'could not create admin user' if !User.create_user(CONFIG['admin_email'], user_name, user_surname, 'School', SchoolLevel.first.id, Location.first.id, subject_ids)
 
 required = true
 
-begin # TODO per eliminare i seeds dal progetto basta cancellare; (a) il file qui sotto, script/etc, (b) la cartella db/seeds/*
-  require Rails.root.join('script/development_seeds.rb')
-rescue LoadError
-  required = false
-end
 
-if Rails.env.development? && required
+if Rails.env.development?
+  require Rails.root.join('db/seeds/environments/development')
   plant_development_seeds
   puts "Created:"
   puts "#{Subject.count} subjects (should be 5)"
@@ -39,6 +35,9 @@ if Rails.env.development? && required
   puts "#{UsersSubject.count} users_subjects (should be 54)"
   puts "#{Lesson.count} lessons (should be 43)"
   puts "#{MediaElement.count} media_elements (should be 70)"
+  puts "#{Audio.count} audios (should be 19)"
+  puts "#{Image.count} images (should be 32)"
+  puts "#{Video.count} videos (should be 19)"
   puts "#{Slide.count} slides (should be 73)"
   puts "#{Notification.count} notifications (should be 43)"
   puts "#{Like.count} likes (should be 122)"

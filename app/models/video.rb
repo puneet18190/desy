@@ -1,33 +1,39 @@
 class Video < MediaElement
   
   VIDEO_COMPONENT = 'video'
-  TEXT_COMPONENT = 'text'
+  TEXT_COMPONENT  = 'text'
   IMAGE_COMPONENT = 'image'
   COMPONENTS = [VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT]
+
+  after_save :upload_or_copy
+  after_destroy :clean
+
+  attr_accessor :skip_conversion, :rename_media
+
+  validates_presence_of :media
+  validate :media_validation
   
-  def duration # FIXME temporaneo
-    # metadata.duration
-    YAML.load(File.open(Rails.root.join('db/seeds/videos/durations.yml'), 'r'))[(Video.where('id < ?', self.id).count % 5) + 1]
-  end
-  
-  def mp4 # FIXME temporaneo
-    # media.url.mp4
-    "/media_elements/videos/#{self.id.to_s}/video_mp4.mp4"
-  end
-  
-  def webm # FIXME temporaneo
-    # media.url.webm
-    "/media_elements/videos/#{self.id.to_s}/video_webm.webm"
-  end
-  
-  def thumb # FIXME temporaneo
-    # media.thumb
-    "/media_elements/videos/#{self.id.to_s}/thumb.jpg"
-  end
-  
-  def cover # FIXME temporaneo
-    # media.cover
-    "/media_elements/videos/#{self.id.to_s}/cover.jpg"
+  # it doesn't check that the parameters are valid; it takes as input regardless the basic hash and the full one
+  def self.total_prototype_time(hash)
+    return 0 if !hash.has_key?(:components) || !hash[:components].kind_of?(Array)
+    sum = 0
+    hash[:components].each do |component|
+      case component[:type]
+        when VIDEO_COMPONENT
+          return 0 if !component.has_key?(:until) || !component.has_key?(:from) || !component[:until].kind_of?(Integer) || !component[:from].kind_of?(Integer)
+          sum += component[:until]
+          sum -= component[:from]
+        when IMAGE_COMPONENT
+          return 0 if !component.has_key?(:duration) || !component[:duration].kind_of?(Integer)
+          sum += component[:duration]
+        when TEXT_COMPONENT
+          return 0 if !component.has_key?(:duration) || !component[:duration].kind_of?(Integer)
+          sum += component[:duration]
+      else
+        return 0
+      end
+    end
+    sum
   end
   
   def self.convert_parameters(hash, user_id)
@@ -90,7 +96,72 @@ class Video < MediaElement
   end
   
   def self.get_media_element_from_hash(hash, key, user_id, my_sti_type)
-    (hash.has_key?(key) && hash[key].kind_of?(Integer)) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
+    hash.has_key?(key) && hash[key].kind_of?(Integer) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
+  end
+
+  def thumb_path
+    # TODO
+    'TODO'
+  end
+
+  def mp4_path
+    media.try(:mp4_path)
+  end
+
+  def webm_path
+    media.try(:webm_path)
+  end
+
+  def media_validation
+    media.validation if media
+  end
+
+  def media
+    @media || ( 
+      media = read_attribute(:media)
+      media ? VideoUploader.new(self, :media, media) : nil 
+    )
+  end
+
+  def media=(media)
+    @media = write_attribute :media, (media.present? ? VideoUploader.new(self, :media, media) : nil)
+  end
+
+  def reload_media
+    @media = nil
+  end
+
+  def mp4_duration
+    metadata.mp4_duration
+  end
+  
+  def webm_duration
+    metadata.webm_duration
+  end
+
+  def mp4_duration=(mp4_duration)
+    metadata.mp4_duration = mp4_duration
+  end
+  
+  def webm_duration=(webm_duration)
+    metadata.webm_duration = webm_duration
+  end
+
+  def reload
+    @media = @skip_conversion = @rename_media = nil
+    super
+  end
+
+  private
+  def upload_or_copy
+    media.upload_or_copy if media
+    true
+  end
+
+  def clean
+    absolute_folder = media.try(:absolute_folder)
+    FileUtils.rm_rf absolute_folder if absolute_folder and File.exists? absolute_folder
+    true
   end
   
 end
