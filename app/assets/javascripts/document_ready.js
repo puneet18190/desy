@@ -258,10 +258,8 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._close_mixed_gallery_in_video_editor', function() {
-    $('#video_editor_mixed_gallery_container').hide();
-    $('#video_editor').css('display', 'inline-block');
+    closeMixedGalleryInVideoEditor();
   });
-  
   
   $('body').on('click', "._close_on_click_out", function(){
     $(".ui-dialog-content:visible").each(function(){
@@ -741,7 +739,16 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._add_video_component_to_video_editor', function() {
-    alert('stai aggiungendo il video');
+    var popup_id = 'dialog-video-gallery-' + $(this).data('video-id');
+    var component = $('#' + popup_id + ' ._temporary').html();
+    var duration = $(this).data('duration');
+    closePopUp(popup_id);
+    closeMixedGalleryInVideoEditor();
+    if($('#info_container').data('replacing-component')) {
+      replaceVideoComponentInVideoEditor(component, $('#info_container').data('current-component'), duration);
+    } else {
+      addVideoComponentInVideoEditor(component, duration);
+    }
   });
   
   $('body').on('click', '._add_image_component_to_video_editor', function() {
@@ -758,6 +765,8 @@ $(document).ready(function() {
       showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
     } else {
       var component = $('#' + popup_id + ' ._temporary').html();
+      closePopUp(popup_id);
+      closeMixedGalleryInVideoEditor();
       if($('#info_container').data('replacing-component')) {
         replaceImageComponentInVideoEditor(component, $('#info_container').data('current-component'), duration);
       } else {

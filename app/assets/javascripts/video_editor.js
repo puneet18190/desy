@@ -5,6 +5,11 @@ function initializeVideoEditor() {
   $('._video_editor_component_menu').hide();
 }
 
+function closeMixedGalleryInVideoEditor() {
+  $('#video_editor_mixed_gallery_container').hide();
+  $('#video_editor').css('display', 'inline-block');
+}
+
 function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
   if($('#video_editor_mixed_gallery_container ' + type).css('display') == 'none') {
     var big_selector = '#video_editor_mixed_gallery_container ._videos, #video_editor_mixed_gallery_container ._images, #video_editor_mixed_gallery_container ._texts';
