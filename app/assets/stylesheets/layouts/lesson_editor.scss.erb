@@ -265,6 +265,7 @@ html.lesson-editor-layout{
         color: $orange;
         border: 1px solid #efefef;
         resize:none;
+				font-size:13px;
       }
       
       textarea{
@@ -284,7 +285,7 @@ html.lesson-editor-layout{
         left: auto;
         top: 515px;
         padding: 0 5px;
-        line-height: 20px;
+        line-height: 35px;
       }
       
       &.active {
@@ -499,11 +500,21 @@ html.lesson-editor-layout{
           width: 900px;
           display:block;
 					position:relative;
-          a video{
-            margin: 0 20px;
+					
+					.videoPlayer {
+            height: 548px;
+            margin: 20px 20px 0px 20px;
+						a.play {margin-left:10px}
+						a.pause {margin-left:10px}
+						a.fullScreen {margin-right:10px}
+						.videoSlider {width:70%}
+          }
+          video{
+            margin-bottom:10px;
             width:860px;
             height: 484px;
           }
+					
           .cover-choose-image{
             margin: 0 20px;
             width: 860px;
@@ -809,7 +820,7 @@ html.lesson-editor-layout{
             width: 835px;
           }
           .mask{
-            width: 440px;
+            width: 420px;
             height: 420px;
             overflow:hidden;
             position:relative;
