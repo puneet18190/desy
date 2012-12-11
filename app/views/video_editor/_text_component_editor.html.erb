@@ -22,7 +22,7 @@
     <div class="scegliBgColor _text_component_in_video_editor_background_color_selector">
       <p><%= t('captions.background_color') %></p>
       <% colors.each do |color| %>
-        <div class="background_color_<%= color %> _color <%= (color == 'black') ? 'current'.html_safe : '' %>" data-color="<%= color %>"></div>
+        <div class="background_color_<%= color %> _color <%= (color == 'white') ? 'current'.html_safe : '' %>" data-color="<%= color %>"></div>
       <% end %>
     </div>
   </div>
@@ -30,7 +30,7 @@
     <div class="scegliTxtColor _text_component_in_video_editor_text_color_selector">
       <p><%= t('captions.text_color') %></p>
       <% colors.each do |color| %>
-        <div class="background_color_<%= color %> _color <%= (color == 'white') ? 'current'.html_safe : '' %>" data-color="<%= color %>"></div>
+        <div class="background_color_<%= color %> _color <%= (color == 'black') ? 'current'.html_safe : '' %>" data-color="<%= color %>"></div>
       <% end %>
     </div>
   </div>
