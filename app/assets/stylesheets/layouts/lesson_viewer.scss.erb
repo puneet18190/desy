@@ -41,11 +41,12 @@ html.lesson-viewer-layout{
 
   h2 {
     font-size:70px;
-		line-height:70px;
-    font-weight: normal;
-    padding:10px;
-		margin:10px;
-  }
+		font-weight: normal;
+    padding:20px 10px;
+		margin:0px 0px 30px 0px;
+		height:62px;
+		
+	}
 	.top {
     margin-bottom: -220px;
     background: transparent;
@@ -191,7 +192,8 @@ html.lesson-viewer-layout{
     left: auto;
     bottom: 0px;
     padding: 0 5px;
-    line-height: 33px;
+    line-height: 35px;
+		font-size:13px;
 	}
   /*LAYOUT SLIDE*/
 	/*copertina*/
@@ -209,6 +211,8 @@ html.lesson-viewer-layout{
 	/*slide title*/
 	.slideTitle{
 	  @include formatElement;
+		width:740px;
+		margin-left:55px;
 		text-align:center;
 		display:table;
 		h2 {
@@ -262,17 +266,24 @@ html.lesson-viewer-layout{
 	  width:860px;
 		height:550px;
 		background-color:#f1f1f1;
+		.videoPlayer {
+      height: 548px;
+      
+			a.play {margin-left:10px}
+						a.pause {margin-left:10px}
+						a.fullScreen {margin-right:10px}
+						.videoSlider {width:70%}
+          }
 		.videoIcon {
 	    @include videoIconFormat;
 		  margin-top:178px;
 			margin-left:328px;
 	  }
-		.video {
-      width:848px;
-		  height:477px;
-		  padding:37px 6px 36px 6px;
-		  background-color:#fff;
-	  }
+		video {
+      width:860px;
+		  height:484px;
+		  margin-bottom:10px;
+		}
 	}
 	.videoMedium {
 	  width:432px;
@@ -293,9 +304,12 @@ html.lesson-viewer-layout{
 	}
 	.audioBig {
 	  width:auto;
-		height:35px;
+		height:71px;
+		margin: 5px 0 20px 0px;
 		background-color:#f1f1f1;
+		
 		.audioIcon {
+		  margin-top:20px;
 	    @include audioIconFormat;
 		  margin-left:408px;
 	  }
@@ -305,12 +319,17 @@ html.lesson-viewer-layout{
 		  background-color:#fff;
 			
 	  }
+		.audioPlayer {
+		  padding: 18px 20px 9px 20px;
+      margin: 0;
+      width: 820px;
+		}
 	}
 	/*slide immagini formato 420x440*/
 	.medium {
 	  float:left;
 		width:420px;
-		height:440px;
+		height:420px;
 		margin-right:20px;
 		background-color:#f1f1f1;
 		overflow:hidden;
@@ -319,7 +338,7 @@ html.lesson-viewer-layout{
 		.photoIcon {
 	    @include photoIconFormat;
 		  margin-top:125px;
-			margin-left:110px;
+			margin-left:125px;
 	  }
 		.caption {
 		  @include styleCaption;
@@ -377,7 +396,7 @@ html.lesson-viewer-layout{
 	  float:right;
 		padding:10px;
 		width:400px;
-		height:420px;
+		height:400px;
 		overflow:hidden;
 		
 	}
