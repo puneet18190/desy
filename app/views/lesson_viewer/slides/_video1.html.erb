@@ -4,13 +4,14 @@
 
 <div class="bigViewLesson slideVideo">
   <h2><%= slide.title %></h2>
-  <div class="videoMedium">
     <% if video.nil? %>
+    <div class="videoMedium" style="background-color: white" >
       <div class="videoIcon"></div>
     <% else %>
+    <div class="videoMedium">
       <%= render :partial => 'shared/players/video', :locals => {:video => video} %>
     <% end %>
-  </div>
+    </div>
   <div class="textRightVideoContent">
     <%= slide.text.html_safe %>
   </div>
