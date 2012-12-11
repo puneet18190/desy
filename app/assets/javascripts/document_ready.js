@@ -741,7 +741,15 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._add_image_component_to_video_editor', function() {
-    alert('stai aggiungendo la immagine');
+    var popup_id = 'dialog-image-gallery-' + $(this).data('image-id');
+    $('#' + popup_id + ' ._bottom_of_image_popup_in_gallery').hide();
+    $('#' + popup_id + ' ._duration_selector').show();
+  });
+  
+  $('body').on('click', '._add_image_component_to_video_editor_after_select_duration', function() {
+    var popup_id = 'dialog-image-gallery-' + $(this).data('image-id');
+    var duration = $('#' + popup_id + ' input').val();
+    alert("stai aggiungendo l'immagine " + $(this).data('image-id') + " con una durata di " + duration + " secondi!");
   });
   
   $('body').on('click', '._add_audio_track_to_video_editor', function() {
