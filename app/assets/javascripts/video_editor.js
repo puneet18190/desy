@@ -57,13 +57,15 @@ function replaceTextComponentInVideoEditor(content, position, duration, backgrou
 }
 
 function switchTextComponentBackgroundColor(old_color, new_color) {
-  $('._text_component_preview').removeClass('background_color_' + old_color).addClass('background_color_' + new_color);
+  $('#text_component_preview').removeClass('background_color_' + old_color).addClass('background_color_' + new_color);
   $('._text_component_in_video_editor_background_color_selector ._color').removeClass('current');
   $('._text_component_in_video_editor_background_color_selector .background_color_' + new_color).addClass('current');
+  $('#text_component_preview').data('background-color', new_color);
 }
 
 function switchTextComponentTextColor(old_color, new_color) {
-  $('._text_component_preview textarea').removeClass('color_' + old_color).addClass('color_' + new_color);
+  $('#text_component_preview textarea').removeClass('color_' + old_color).addClass('color_' + new_color);
   $('._text_component_in_video_editor_text_color_selector ._color').removeClass('current');
   $('._text_component_in_video_editor_text_color_selector .background_color_' + new_color).addClass('current');
+  $('#text_component_preview').data('text-color', new_color);
 }

@@ -790,13 +790,13 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._text_component_in_video_editor_background_color_selector ._color', function() {
-    var old_background_color = $('._text_component_preview').data('background-color');
+    var old_background_color = $('#text_component_preview').data('background-color');
     var new_background_color = $(this).data('color');
     switchTextComponentBackgroundColor(old_background_color, new_background_color);
   });
   
   $('body').on('click', '._text_component_in_video_editor_text_color_selector ._color', function() {
-    var old_text_color = $('._text_component_preview').data('text-color');
+    var old_text_color = $('#text_component_preview').data('text-color');
     var new_text_color = $(this).data('color');
     switchTextComponentTextColor(old_text_color, new_text_color);
   });
