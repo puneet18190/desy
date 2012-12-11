@@ -1,4 +1,4 @@
-<%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => "get", :remote => true, :id => "form-#{slide.id}" do %>
+<%= form_tag save_slide_path(slide.lesson_id, slide.id), :method => "post", :remote => true, :id => "form-#{slide.id}" do %>
   <h2 class="text">
     <%= text_field_tag :title, (slide.title.blank? ? t('captions.enter_title') : slide.title), :class => '_lesson_editor_placeholder', :data => {:placeholder => slide.title.blank?}, :maxlength => t('language_parameters.slide.length_title') %>
   </h2>
