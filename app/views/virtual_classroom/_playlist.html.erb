@@ -10,8 +10,8 @@
         <%= render :partial => "virtual_classroom/view_single_playlist", :locals => {:virtual => l} %>
       <% end %>
     </div>
-    <div class="play">
-      <a class="lower"><%= t('captions.play') %></a>
+    <div class="playInVirtualClassroom">
+      <%= link_to t('captions.play'), lesson_viewer_playlist_path, :class => "lower" %>
     </div>
   <% end %>
 </div>

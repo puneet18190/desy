@@ -136,8 +136,9 @@ function showLoadMediaElementPopUp() {
   }
 }
 
-function showImageInGalleryPopUp(image_id) {
+function showImageInGalleryPopUp(image_id, callback) {
   var obj = $('#dialog-image-gallery-' + image_id);
+  var my_width = resizedWidthForImageGallery(obj.find('a').data('width'), obj.find('a').data('height'));
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
@@ -145,18 +146,24 @@ function showImageInGalleryPopUp(image_id) {
     obj.dialog({
       closeOnEscape: true,
       modal: true,
-      resize: 'auto',
+      width: my_width,
       resizable: false,
       draggable: false,
-      maxWidth: 440,
-      maxHeight: 480,
       show: "fade",
-      hide: "fade",
-      open: function(){
+      hide: {
+        effect: "fade",
+        duration: 500
+      },
+      open: function() {
         customOverlayClose();
       },
-      beforeClose: function(){
+      beforeClose: function() {
         removeCustomOverlayClose();
+      },
+      close: function() {
+        if(typeof(callback) != 'undefined') {
+          callback();
+        }
       }
     });
   }
@@ -176,7 +183,10 @@ function showVideoInGalleryPopUp(video_id) {
       width: 446,
       height: 360,
       show: "fade",
-      hide: "fade",
+      hide: {
+        effect: "fade",
+        duration: 500
+      },
       open: function(){
         customOverlayClose();
       },

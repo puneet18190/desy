@@ -13,6 +13,7 @@ html.lesson-viewer-layout{
   	}
     font-family: Arial, Verdana, sans-serif;
 		font-size: 13px;
+		
     height: 100%;
     width: 100%;
     margin: 0;
@@ -41,17 +42,25 @@ html.lesson-viewer-layout{
 
   h2 {
     font-size:70px;
-		line-height:70px;
-    font-weight: normal;
-    padding:10px;
-		margin:10px;
-  }
+		font-weight: normal;
+    padding:11px 11px;
+		margin:0px 0px 20px 0px;
+		height:92px;
+		
+	}
 	.top {
     margin-bottom: -220px;
     background: transparent;
     width: 1px;
     height: 40%;
     float: left;
+  }
+  
+  .back-button{
+    position:fixed;
+    top:0;
+    right:0;
+    z-index: 9999px;
   }
 	
 	.container {
@@ -105,7 +114,9 @@ html.lesson-viewer-layout{
        clear:both;
 			 width: 870px;
 			 padding:6px 15px;
-			 position:static;
+			 position:absolute;
+			 bottom:0;
+			 background-color: #fff;
 			 span {
 			   float:right;
 			 }
@@ -174,6 +185,7 @@ html.lesson-viewer-layout{
 		
 	}
 	@mixin styleCaption {
+	  font-family:"Nunito", sans-serif;
 	  background-color: rgba(50, 50, 50, 0.7);
     color: #FAFAFA;
 		height:35px;
@@ -182,23 +194,28 @@ html.lesson-viewer-layout{
     left: auto;
     bottom: 0px;
     padding: 0 5px;
-    line-height: 33px;
+    line-height: 35px;
+		font-size:13px;
+		
 	}
   /*LAYOUT SLIDE*/
 	/*copertina*/
 	.slideCover{
+	  height:590px;
 	  .cover {
 		  width:900px;
 		  height:560px;
 			overflow:hidden;
-			img {
-			  height:560px;
+			img{
+			  position:absolute;
 			}
 	  }
 	}
 	/*slide title*/
 	.slideTitle{
 	  @include formatElement;
+		width:740px;
+		margin-left:55px;
 		text-align:center;
 		display:table;
 		h2 {
@@ -208,7 +225,10 @@ html.lesson-viewer-layout{
 	}
 	/*slide image*/
 	.slideImage{
-	  @include formatElement
+	  @include formatElement;
+	  img{
+	    position:absolute;
+	  }
 	}
 	/*slide text*/
 	.slideText{
@@ -225,7 +245,7 @@ html.lesson-viewer-layout{
 	.boxFissoImage {
 	  width:420px;
 		height:265px;
-		display:inline-block;
+		display:block;
 	}
 	/*slide immagini formato 860x550*/
 	.big {
@@ -249,30 +269,52 @@ html.lesson-viewer-layout{
 	  width:860px;
 		height:550px;
 		background-color:#f1f1f1;
+		.videoPlayer {
+      height: 548px;
+      
+			a.play {margin-left:10px}
+						a.pause {margin-left:10px}
+						a.fullScreen {margin-right:10px}
+						.videoSlider {width:70%}
+          }
 		.videoIcon {
 	    @include videoIconFormat;
 		  margin-top:178px;
 			margin-left:328px;
 	  }
-		.video {
-      width:848px;
-		  height:477px;
-		  padding:37px 6px 36px 6px;
-		  background-color:#fff;
-	  }
+		video {
+      width:860px;
+		  height:484px;
+		  margin-bottom:10px;
+		}
 	}
 	.videoMedium {
-	  width:432px;
-		height:440px;
+	  width:420px;
+		height:420px;
 		background-color:#f1f1f1;
 		float:left;
+		.videoPlayer {
+      width: 420px;
+				
+      margin: 0px;
+			a.play {margin-left:10px}
+			a.pause {margin-left:10px}
+			a.fullScreen {margin-right:10px}
+			.videoSlider {width:60%}
+     }
 		.videoIcon {
 	    @include videoIconFormat;
 		  margin-top:125px;
 			margin-left:120px;
 	  }
+		video {
+      width:420px;
+		  height:236px;
+		  margin-bottom: 5px;
+      
+	  }
 		.video {
-      width:432px;
+      width:420px;
 		  height:243px;
 		  background-color:#fff;
 			padding-bottom:197px;
@@ -280,9 +322,12 @@ html.lesson-viewer-layout{
 	}
 	.audioBig {
 	  width:auto;
-		height:35px;
+		height:71px;
+		margin: 5px 0 20px 0px;
 		background-color:#f1f1f1;
+		
 		.audioIcon {
+		  margin-top:20px;
 	    @include audioIconFormat;
 		  margin-left:408px;
 	  }
@@ -292,12 +337,17 @@ html.lesson-viewer-layout{
 		  background-color:#fff;
 			
 	  }
+		.audioPlayer {
+		  padding: 18px 20px 9px 20px;
+      margin: 0;
+      width: 820px;
+		}
 	}
 	/*slide immagini formato 420x440*/
 	.medium {
 	  float:left;
 		width:420px;
-		height:440px;
+		height:420px;
 		margin-right:20px;
 		background-color:#f1f1f1;
 		overflow:hidden;
@@ -306,7 +356,7 @@ html.lesson-viewer-layout{
 		.photoIcon {
 	    @include photoIconFormat;
 		  margin-top:125px;
-			margin-left:110px;
+			margin-left:125px;
 	  }
 		.caption {
 		  @include styleCaption;
@@ -315,9 +365,6 @@ html.lesson-viewer-layout{
 		&:last-child {
 	    margin-right:0px;
 	  }
-		img {
-		  height:440px;
-		}
 	}
 	/*slide immagini formato 420x550*/
 	.mediumHeight {
@@ -341,9 +388,6 @@ html.lesson-viewer-layout{
 		&:last-child {
 	    margin-right:0px;
 	  }
-		img {
-		  height:550px;
-		}
 	}
 	/*slide immagini formato 420x265*/
 	.small {
@@ -361,9 +405,6 @@ html.lesson-viewer-layout{
 			width:140px;
 			height:140px;
 	  }
-		img {
-		  height:265px;
-		}
 		.caption {
 		  @include styleCaption;
 			width:410px;
@@ -373,7 +414,7 @@ html.lesson-viewer-layout{
 	  float:right;
 		padding:10px;
 		width:400px;
-		height:420px;
+		height:400px;
 		overflow:hidden;
 		
 	}
@@ -389,6 +430,14 @@ html.lesson-viewer-layout{
 		height:400px;
 		overflow:hidden;
 		padding:20px;
+		line-height: 13px;
+	}
+	
+	.playlist_footer{
+	  padding: 10px 0;
+	  height: 20px;
+	  display: block;
+	  clear:both;
 	}
 	
 	/** carousel inner **/
@@ -412,7 +461,7 @@ html.lesson-viewer-layout{
   padding-bottom:10px;
   }
 
-  #carousel_ul li{
+  #carousel_ul li.slide{
   float: left; /* important for inline positioning of the list items */
   width:900px;  /* fixed width, important */
   /* just styling bellow*/
@@ -426,17 +475,18 @@ html.lesson-viewer-layout{
   position: absolute;
   z-index: 10;
   opacity:0.2;
-  
+  top:230px
   }
   
   #right_scroll{
-    left: 450px;
+    right: 0;
+		
   }
   
   #left_scroll a, #right_scroll a{
     cursor: pointer;
-    height:590px;
-    width:450px;
+    height:150px;
+    width:130px;
     display:block;
 		
   }
@@ -450,4 +500,39 @@ html.lesson-viewer-layout{
     background-size: 8em;
 		opacity:0.4;
 	}
+	
+	.size1{
+   font-size: 120%;
+   line-height: 100%;
+  }              
+
+  .size2{        
+   font-size: 160%;
+   line-height: 110%;
+  }              
+
+  .size3{        
+   font-size: 200%;
+   line-height: 120%;
+  }              
+
+  .size4{        
+   font-size: 240%;
+   line-height: 130%;
+  }              
+
+  .size5{        
+   font-size: 280%;
+   line-height: 140%;
+  }              
+
+  .size6{        
+   font-size: 340%;
+   line-height: 150%;
+  }              
+
+  .size7{        
+   font-size: 400%;
+   line-height: 160%;
+  }
 }

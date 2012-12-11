@@ -60,6 +60,7 @@ en:
     advanced_search: 'Advanced search'
     audio_editor_label: 'Edit audio'
     author: 'Author'
+    background_color: 'Background color'
     back_in_desy: 'Back in DESY'
     click_image_to_add_text: 'Click on the image to add text'
     choose_audio: 'click here to add audio'
@@ -95,9 +96,11 @@ en:
     home: 'Home'
     image_caption_placeholder: 'Write a caption'
     image_editor_label: 'Edit image'
+    insert: 'Insert'
     insert_emails_here: 'Insert your emails, separated by comma'
     insert_slide_content_here: 'Insert slide content here'
     insert_tag: 'Insert a tag'
+    insert_text: 'Insert text'
     institute: 'Institute'
     large: 'Large'
     lessons: 'Lessons'
@@ -113,8 +116,10 @@ en:
     new_element_untitled: 'New element - untitled'
     no_notifications: "You don't have any notifications"
     or_cancel: 'Or cancel'
+    original_size: 'Original size'
     play: 'Play'
     playlist: 'Playlist'
+    preview: 'Preview'
     problems_with_password: 'I forgot my login information'
     profile: 'Profile'
     register: 'Register'
@@ -124,6 +129,7 @@ en:
     search: 'Search'
     search_in_desy: 'Search in DESY'
     search_lesson_or_media_element: 'Do you need lessons or media elements?'
+    sec: 'sec'
     selected_for_you: 'Selected for you'
     select_audio: 'Select audio'
     select_component_to_add: 'Select component to add'
@@ -139,6 +145,9 @@ en:
     status: 'Status'
     small: 'Small'
     talk_with_desy: 'Want to talk with DESY?'
+    text_color: 'Text color'
+    time: 'Time'
+    total_length: 'Total lenght'
     update: 'Update'
     update_lesson: 'Update lesson'
     upload: 'Upload'
@@ -236,6 +245,8 @@ en:
     send_lesson_link_error: 'Link not sent: did you fill all the fields and write correct emails?'
     virtual_classroom_lessons_loaded_ok: 'Correctly loaded your lessons!'
     virtual_classroom_lessons_loaded_error: 'There was a problem, #number of your lessons were not loaded'
+    invalid_component_duration_in_video_editor: 'You inserted a wrong duration, it must be a number greater than 0'
+    empty_text_component_in_video_editor: 'Insert a text'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'
@@ -355,6 +366,10 @@ en:
       length_title: 40
     slide:
       length_title: 40
+      length_caption: 40
+    video_editor:
+      length_text_component: 35
+      length_duration: 3
 
 # (6) forms
   forms:

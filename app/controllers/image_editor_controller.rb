@@ -6,30 +6,6 @@ class ImageEditorController < ApplicationController
     @image = Image.find(params[:image_id])
   end
   
-  #process image [with text]
-  def create
-    original_image = Image.find(params[:image_id])
-    
-    
-    img = MiniMagick::Image.open(original_image[:url])
-    
-    (1..10).each do |i|
-      img.combine_options do |c|
-        c.fill  params["text_color_#{i}"]
-        #c.stroke 'black'
-        #c.font 'Candice'
-        #pointsize font to scale
-        c.pointsize params["text_size_#{i}"]
-        #c.gravity 'center'
-        #text_position must be X,Y to scale
-        c.draw "text "+params["text_position_#{i}"] + params["text_#{i}"].to_s
-      end
-    end
-    
-    img.write("path_to_updated_file.jpg")
-    
-  end
-  
   def crop
     if !params[:x1].blank?
       o_image = Image.find(params[:image_id])
@@ -87,7 +63,7 @@ class ImageEditorController < ApplicationController
 
       img.combine_options do |c|
         color_value = params["color_#{t_num}"]
-        color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]
+        color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
 
         c.fill "#{color_hex}"
         c.stroke "none"

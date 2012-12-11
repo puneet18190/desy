@@ -13,6 +13,29 @@ class Video < MediaElement
   validates_presence_of :media
   validate :media_validation
   
+  # it doesn't check that the parameters are valid; it takes as input regardless the basic hash and the full one
+  def self.total_prototype_time(hash)
+    return 0 if !hash.has_key?(:components) || !hash[:components].kind_of?(Array)
+    sum = 0
+    hash[:components].each do |component|
+      case component[:type]
+        when VIDEO_COMPONENT
+          return 0 if !component.has_key?(:until) || !component.has_key?(:from) || !component[:until].kind_of?(Integer) || !component[:from].kind_of?(Integer)
+          sum += component[:until]
+          sum -= component[:from]
+        when IMAGE_COMPONENT
+          return 0 if !component.has_key?(:duration) || !component[:duration].kind_of?(Integer)
+          sum += component[:duration]
+        when TEXT_COMPONENT
+          return 0 if !component.has_key?(:duration) || !component[:duration].kind_of?(Integer)
+          sum += component[:duration]
+      else
+        return 0
+      end
+    end
+    sum
+  end
+  
   def self.convert_parameters(hash, user_id)
     return nil if !hash.kind_of?(Hash) || !hash.has_key?(:initial_video_id)
     return nil if !hash[:initial_video_id].nil? && !hash[:initial_video_id].kind_of?(Integer)

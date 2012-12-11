@@ -1,6 +1,6 @@
-module LessonEditorHelper
+module LessonViewerHelper
   
-  def horizontal_mask?(width,height,kind)
+  def is_horizontal?(width,height,kind)
     ratio = width.to_f/height.to_f
     result = case kind
     when "cover"

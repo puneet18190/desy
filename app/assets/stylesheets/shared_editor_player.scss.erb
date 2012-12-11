@@ -31,7 +31,7 @@ $icon-size: 5.6em;
   
   & {
     float:left;
-		margin-right:5px;
+		
     width: $icon-size;
     height: $icon-size;
     background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
@@ -43,6 +43,7 @@ $icon-size: 5.6em;
 }
 .videoButton {
   @include iconEditorElement(0.7em);
+	margin-right:0px;
 	background-position: (-$icon-size) 0;
 	opacity:0.3;
 	cursor:pointer;
@@ -53,6 +54,7 @@ $icon-size: 5.6em;
  }
 .photoButton {
   @include iconEditorElement(0.7em);
+	margin-right:0px;
 	background-position: (-$icon-size) (-$icon-size*2);
 	opacity:0.3;
 	cursor:pointer;
@@ -63,6 +65,7 @@ $icon-size: 5.6em;
 }
 .audioButton {
   @include iconEditorElement(0.7em);
+	margin-right:0px;
 	background-position: (-$icon-size*2) (-$icon-size);
 	opacity:0.1;
 	cursor:pointer;
@@ -73,6 +76,7 @@ $icon-size: 5.6em;
 }
 .textButton {
   @include iconEditorElement(0.7em);
+	margin-right:0px;
   background-position: (-$icon-size) (-$icon-size*3);
 	opacity:0.3;
 	cursor:pointer;
@@ -83,6 +87,7 @@ $icon-size: 5.6em;
 }
 .photoIcon {
    @include iconEditorElement(0.4em);
+	 margin-right:5px;
 	 background-position: 0 (-$icon-size*2);
 		opacity:1;
 }
@@ -93,11 +98,13 @@ $icon-size: 5.6em;
 }
 .audioIcon {
   @include iconEditorElement(0.4em);
+	margin-right:5px;
 	background-position: 0 (-$icon-size);
 	opacity:1;
 }
 .textIcon {
   @include iconEditorElement(0.4em);
+	margin-right:5px;
 	background-position: 0 (-$icon-size*3);
 	opacity:1;
 }

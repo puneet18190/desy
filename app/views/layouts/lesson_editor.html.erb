@@ -3,11 +3,6 @@
 <head>
   <title>Desy</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <!--[if !IE 7]>
-  	<style type="text/css">
-  		#container {display:table;height:100%}
-  	</style>
-  <![endif]-->
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -21,7 +16,7 @@
     
   </div>
   <div id="footer">
-    <a href="#" class="pull-right upper"><%= t('captions.exit') %></a>
+    <%= link_to t('captions.exit'), dashboard_index_path, :class => 'pull-right upper' %>
     <div id="lesson-title">
       <%= image_tag "lesson-editor-logo-footer.png" %>
       <p><%= @lesson.title if @lesson %></p>

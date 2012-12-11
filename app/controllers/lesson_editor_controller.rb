@@ -73,6 +73,7 @@ class LessonEditorController < ApplicationController
   
   def change_slide_position
     if @ok
+      @replaced_slide = Slide.find_by_lesson_id_and_position(@lesson_id, @position)
       @slide.change_position(@position)
       @slides = @lesson.slides.order(:position)
       @current_slide = @slide
@@ -106,12 +107,12 @@ class LessonEditorController < ApplicationController
     (1...5).each do |i|
       if !params["media_element_#{i}"].blank?
         media_element_id = correct_integer?(params["media_element_#{i}"]) ? params["media_element_#{i}"].to_i : 0
-        alignment = params["media_element_align_#{i}"].to_i
+        alignment = params["media_element_align_#{i}"].blank? ? nil : params["media_element_align_#{i}"].to_i
         caption = params["caption_#{i}"]
         media_elements_params[i] = [media_element_id, alignment, caption]
       end
     end
-    @ok = @slide.update_with_media_elements(params[:title], params[:text], media_elements_params)
+    @ok = @slide.update_with_media_elements((params[:title].blank? ? nil : params[:title]), (params[:text].blank? ? nil : params[:text]), media_elements_params)
   end
   
 end
