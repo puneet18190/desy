@@ -72,8 +72,20 @@ function addTextComponentInVideoEditor(component, content, duration, background_
 }
 
 function replaceTextComponentInVideoEditor(component, content, position, duration, background_color, text_color) {
-  alert('stai aggiungendo la componente -- ' + content + ' in posizione ' + position + ', rimpiazzando quella già esistente, con una durata di ' + duration + ' secondi, con colore di sfondo ' + background_color + ' e colore testuale ' + text_color);
-  // mettere flash
+  var identifier = position.split('_');
+  identifier = identifier[identifier.length - 1];
+  $('#' + position + ' ._video_component_thumb').replaceWith(component);
+  $('#' + position + ' ._video_component_thumb ._text_content').html(content);
+  $('#' + position + ' ._video_component_thumb ._text_content').removeClass('color_black').addClass('color_' + text_color);
+  $('#' + position + ' ._video_component_thumb').removeClass('background_color_white').addClass('background_color_' + background_color);
+  clearSpecificVideoEditorComponentParameters(position);
+  $('#' + position + ' ._video_component_input_type').val('text');
+  var to_be_appended = fillVideoEditorSingleParameter('content', identifier, content);
+  to_be_appended += fillVideoEditorSingleParameter('background_color', identifier, background_color);
+  to_be_appended += fillVideoEditorSingleParameter('text_color', identifier, text_color);
+  to_be_appended += fillVideoEditorSingleParameter('duration', identifier, duration);
+  $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
+  changeDurationVideoEditorComponent(position, duration);
 }
 
 function resetVideoEditorTextComponent() {
