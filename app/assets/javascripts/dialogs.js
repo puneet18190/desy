@@ -150,7 +150,10 @@ function showImageInGalleryPopUp(image_id, callback) {
       resizable: false,
       draggable: false,
       show: "fade",
-      hide: "fade",
+      hide: {
+        effect: "fade",
+        duration: 500
+      },
       open: function() {
         customOverlayClose();
       },
@@ -180,7 +183,10 @@ function showVideoInGalleryPopUp(video_id) {
       width: 446,
       height: 360,
       show: "fade",
-      hide: "fade",
+      hide: {
+        effect: "fade",
+        duration: 500
+      },
       open: function(){
         customOverlayClose();
       },
