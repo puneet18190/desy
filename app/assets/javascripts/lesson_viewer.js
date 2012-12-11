@@ -72,11 +72,13 @@ function scrollLesson(direction) {
     var left_indent = parseInt($('#carousel_ul').css('left')) + item_width;
   }
   if(left_indent == -viewerWidth) {
+    console.log("into top");
     left_indent = 0;
-    $('#carousel_ul li.slide').first().next().addClass('_lesson_viewer_current_slide');
+    $('#carousel_ul li.slide').first().addClass('_lesson_viewer_current_slide');
   } else if(left_indent > 0) {
+    console.log("into bottom");
     left_indent = - ((lessonsItems - 1)*900);
-    $('#carousel_ul li.slide').last().next().addClass('_lesson_viewer_current_slide');
+    $('#carousel_ul li.slide').last().addClass('_lesson_viewer_current_slide');
   }
   $('#carousel_ul').animate({
     'left': left_indent
