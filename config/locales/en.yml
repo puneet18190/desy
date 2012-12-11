@@ -44,6 +44,12 @@ en:
           problem_reporting: 'An error occurred, your report could not be sent'
           lesson_already_reported: 'You already reported this lesson'
           media_element_already_reported: 'You already reported this element'
+        video:
+          attributes:
+            media:
+              unsupported_format: "Your video's format is not supported"
+              invalid_video: 'Your video could not be loaded'
+              invalid_duration: 'Your video has an invalid duration'
         virtual_classroom_lesson:
           cant_change_position_if_not_in_playlist: 'You cannot change the position of a lesson which is not in the playlist'
           invalid_position_in_playlist: 'The position you chose is not valid for your playlist'
