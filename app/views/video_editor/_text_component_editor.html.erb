@@ -11,7 +11,11 @@
 
 <div class="menuTexts">
   <div class="elementoTime">
-    <%= render :partial => 'video_editor/duration_selector' %>
+    <div class="tempo _duration_selector">
+      <p><%= t('captions.time') %></p>
+      <input class="numberTime"/>
+      <p class="lower"><%= t('captions.sec') %></p>
+    </div>
   </div>
   <div class="elementoGrigio">
     <div class="scegliBgColor">

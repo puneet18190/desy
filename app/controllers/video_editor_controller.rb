@@ -1,17 +1,16 @@
 class VideoEditorController < ApplicationController
   
-  before_filter :convert_video_to_media_element
-  before_filter :initialize_media_element_with_owner_or_public, :only => :edit
+  before_filter :initialize_video_with_owner_or_public, :only => :edit
   before_filter :extract_cache, :only => [:edit, :new]
   layout 'media_element_editor'
   
   def edit
     if @ok
       # FIXME qui in realtà dovrò proporre la finestra oscurata che mi chiede se voglio ripristinare la situazione precedente oppure no
-      @parameters = @cache.nil? ? convert_media_element_to_parameters : Video.convert_parameters(@cache, @current_user.id)
+      @parameters = @cache.nil? ? convert_video_to_parameters : Video.convert_parameters(@cache, @current_user.id)
       @parameters = empty_parameters if @parameters.nil?
     else
-      redirect_to dashboard_path
+      redirect_to dashboard_index_path
       return
     end
   end
@@ -31,15 +30,15 @@ class VideoEditorController < ApplicationController
   
   private
   
-  def convert_media_element_to_parameters
+  def convert_video_to_parameters
     resp = {}
-    resp[:initial_video_id] = @media_element.is_public ? nil : @media_element.id
+    resp[:initial_video_id] = @video.is_public ? nil : @video.id
     resp[:audio_id] = nil
     resp[:components] = [{}]
     resp[:components].first[:type] = Video::VIDEO_COMPONENT
-    resp[:components].first[:video_id] = @media_element.id
+    resp[:components].first[:video_id] = @video.id
     resp[:components].first[:from] = 0
-    resp[:components].first[:until] = @media_element.duration
+    resp[:components].first[:until] = @video.duration
     resp = Video.convert_parameters(resp, @current_user.id)
     resp.nil? ? empty_parameters : resp
   end
@@ -56,12 +55,10 @@ class VideoEditorController < ApplicationController
     @cache = @current_user.video_editor_cache
   end
   
-  def convert_video_to_media_element
-    if params.has_key? :video_id
-      x = params[:video_id]
-      params.delete :video_id
-      params[:media_element_id] = x
-    end
+  def initialize_video_with_owner_or_public
+    @video_id = correct_integer?(params[:video_id]) ? params[:video_id].to_i : 0
+    @video = Video.find_by_id @video_id
+    update_ok(!@video.nil? && (@video.is_public || @current_user.id == @video.user_id))
   end
   
 end

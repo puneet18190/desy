@@ -22,7 +22,12 @@ class SearchController < ApplicationController
           end
       end
     end
-    @tag = Tag.find_by_id(@tag) if @tag.class == Fixnum
+    @tag_placeholder = @tag.blank? ? I18n.t('captions.insert_tag') : @tag
+    if @tag.class == Fixnum
+      @tag = Tag.find_by_id(@tag)
+      @tag_placeholder = params[:tag]
+      @tags = Tag.where('word LIKE ?', "#{@tag_placeholder}%")
+    end
     render_js_or_html_index
   end
   
@@ -52,17 +57,28 @@ class SearchController < ApplicationController
     if @did_you_search
       @tag = params[:tag_kind].blank? ? '' : (params[:tag_kind] == '0' ? params[:tag] : (correct_integer?(params[:tag_kind]) ? params[:tag_kind].to_i : ''))
       @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
-      case @search_item
-        when 'lessons'
+    end
+    case @search_item
+      when 'lessons'
+        if @did_you_search
           @filter = Filters::LESSONS_SEARCH_SET.include?(params[:filter]) ? params[:filter] : Filters::ALL_LESSONS
           @order = SearchOrders::LESSONS_SET.include?(params[:order]) ? params[:order] : SearchOrders::UPDATED_AT
           @subject_id = correct_integer?(params[:subject_id]) ? params[:subject_id].to_i : nil
           @for_page = LESSONS_FOR_PAGE
-        when 'media_elements'
+        else
+          @filter = Filters::ALL_LESSONS
+          @order = SearchOrders::UPDATED_AT
+          @subject_id = nil
+        end
+      when 'media_elements'
+        if @did_you_search
           @filter = Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(params[:filter]) ? params[:filter] : Filters::ALL_MEDIA_ELEMENTS
           @order = SearchOrders::MEDIA_ELEMENTS_SET.include?(params[:order]) ? params[:order] : SearchOrders::UPDATED_AT
           @for_page = MEDIA_ELEMENTS_FOR_PAGE
-      end
+        else
+          @filter = Filters::ALL_MEDIA_ELEMENTS
+          @order = SearchOrders::UPDATED_AT
+        end
     end
   end
   
