@@ -54,8 +54,16 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
 }
 
 function replaceVideoComponentInVideoEditor(video_id, component, position, duration) {
-  alert('stai aggiungendo la componente -- ' + component + ' in posizione ' + position + ', rimpiazzando quella già esistente (il video dura ' + duration + ' secondi)');
-  // mettere flash
+  var identifier = position.split('_');
+  identifier = identifier[identifier.length - 1];
+  $('#' + position + ' ._video_component_thumb').replaceWith(component);
+  clearSpecificVideoEditorComponentParameters(position);
+  $('#' + position + ' ._video_component_input_type').val('video');
+  var to_be_appended = fillVideoEditorSingleParameter('video', identifier, video_id);
+  to_be_appended += fillVideoEditorSingleParameter('from', identifier, 0);
+  to_be_appended += fillVideoEditorSingleParameter('until', identifier, duration);
+  $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
+  changeDurationVideoEditorComponent(position, duration);
 }
 
 function addTextComponentInVideoEditor(content, duration, background_color, text_color) {
