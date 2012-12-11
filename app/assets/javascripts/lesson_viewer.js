@@ -73,10 +73,10 @@ function scrollLesson(direction) {
   }
   if(left_indent == -viewerWidth) {
     left_indent = 0;
-    $('#carousel_ul li.slide').first().next().addClass('_lesson_viewer_current_slide');
+    $('#carousel_ul li.slide').first().addClass('_lesson_viewer_current_slide');
   } else if(left_indent > 0) {
     left_indent = - ((lessonsItems - 1)*900);
-    $('#carousel_ul li.slide').last().next().addClass('_lesson_viewer_current_slide');
+    $('#carousel_ul li.slide').last().addClass('_lesson_viewer_current_slide');
   }
   $('#carousel_ul').animate({
     'left': left_indent

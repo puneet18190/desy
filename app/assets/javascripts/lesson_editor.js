@@ -472,6 +472,7 @@ function tinyMceCallbacks(inst){
 }
 
 function reInitializeSlidePositionsInLessonEditor() {
+  $("ul#slides").css("width",($("ul#slides li").length * 960) + (2 * parseInt($(window).outerWidth())) );
   $('ul#slides li').each(function(index){
     $(this).data('position', (index + 1));
   });
@@ -544,7 +545,7 @@ function isHorizontalMask(image_width, image_height, kind){
   switch(kind) {
     case "cover": slideRatio = 1.6;
     break;
-    case "image1": slideRatio = 1.05;
+    case "image1": slideRatio = 1;
     break;
     case "image2": slideRatio = 0.75;
     break;
@@ -578,7 +579,7 @@ function resizeHeight(width,height,kind){
   switch(kind) {
    case "cover": slideWidth = 900;
    break;
-   case "image1": slideWidth = 440;
+   case "image1": slideWidth = 420;
    break;
    case "image2": slideWidth = 420;
    break;

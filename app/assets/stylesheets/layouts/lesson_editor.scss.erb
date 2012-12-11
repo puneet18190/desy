@@ -39,11 +39,12 @@ html.lesson-editor-layout{
   }
 
   h2 {
-    padding: 10px;
+    
     font-size: 50px;
     text-align: left;
     font-weight: normal;
     line-height: 50px;
+		margin-bottom:20px;
   }
   
   /** Page navigation **/
@@ -256,6 +257,14 @@ html.lesson-editor-layout{
 		  position:relative;
 		}
     li.slides {
+		  .desySkin table.mceLayout {
+			  border-left: 1px solid #EFEFEF;
+				border-right: 1px solid #EFEFEF;
+			}
+			.desySkin .mceIframeContainer {
+			  border-bottom: 1px solid #EFEFEF;
+				border-top: 1px solid #EFEFEF;
+			}
       opacity: 0.4;
       &.active{
         opacity: 1;
@@ -264,6 +273,7 @@ html.lesson-editor-layout{
         color: $orange;
         border: 1px solid #efefef;
         resize:none;
+				font-size:13px;
       }
       
       textarea{
@@ -283,7 +293,7 @@ html.lesson-editor-layout{
         left: auto;
         top: 515px;
         padding: 0 5px;
-        line-height: 20px;
+        line-height: 35px;
       }
       
       &.active {
@@ -389,6 +399,7 @@ html.lesson-editor-layout{
           .only-title textarea{
             padding:150px 100px;
             width: 655px;
+						height:250px;
             margin: 10px;
             text-align:center;
             font-size: 70px;
@@ -412,7 +423,9 @@ html.lesson-editor-layout{
               width: 840px;
               height: 395px;
               overflow:hidden;
+							
             }
+						
           }
           .cover-choose-image{
             margin: 0 20px;
@@ -467,20 +480,18 @@ html.lesson-editor-layout{
           }
           /*roll-over span*/
 				  span.add-audio{
-            width: 35px;
-            height: 35px;
-            font-size: 50px;
-            display:block;
+            width: 2em;
+            height: 2em;
             background:url('/assets/icone_piene.svg') 0 center no-repeat transparent;
-            background-size: 210px 35px;
+            background-size: 12em;
             cursor: pointer;
 					  position:absolute;
-					  top:0;
-					  right:15px;
+					  top:25px;
+					  right:30px;
 						opacity:1;
           }
           span.add-audio:hover{
-            background-position: -105px center;
+            background-position: -6em center;
           }
         }
 
@@ -490,11 +501,21 @@ html.lesson-editor-layout{
           width: 900px;
           display:block;
 					position:relative;
-          a video{
-            margin: 0 20px;
+					
+					.videoPlayer {
+            height: 548px;
+            margin: 20px 20px 0px 20px;
+						a.play {margin-left:10px}
+						a.pause {margin-left:10px}
+						a.fullScreen {margin-right:10px}
+						.videoSlider {width:70%}
+          }
+          video{
+            margin-bottom:10px;
             width:860px;
             height: 484px;
           }
+					
           .cover-choose-image{
             margin: 0 20px;
             width: 860px;
@@ -790,22 +811,22 @@ html.lesson-editor-layout{
           }
         }
         &.image1{
-          padding: 0;
-          height: 590px;
-          width: 900px;
+          height: 550px;
+          width: 860px;
+					padding:20px;
+					
           h2 input{
             font-size: 70px;
-            margin: 10px;
             padding: 10px;
-            width: 835px;
+            width:840px;
           }
           .mask{
-            width: 440px;
+            width: 420px;
             height: 420px;
             overflow:hidden;
             position:relative;
             float:left;
-            margin:0 0 0 20px;
+            margin:0;
             
             img{
               display:block;
@@ -861,11 +882,11 @@ html.lesson-editor-layout{
           
           .image1-content{
             float:right;
-            margin: 0 20px 0 0;
+            margin: 0 0px 0 0;
             textarea{
               padding: 10px;
-              width: 380px;
-              height: 400px;
+              width: 398px;
+              height: 398px;
             }
           }
         }
@@ -965,6 +986,7 @@ html.lesson-editor-layout{
         padding: 0 10px; 
         background-color: #e58e04;
         margin-top: 30px;
+				outline:none;
       }
       input::-webkit-input-placeholder{
          color: white;
@@ -1082,7 +1104,7 @@ html.lesson-editor-layout{
      }
 	 }
   .audioSlider {
-    margin:12px 0px;
+    margin:10px 0px;
   } 
 	.secondTime {
     margin:10px 0 0 0;
