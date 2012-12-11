@@ -13,9 +13,9 @@ class VideoUploader
       elsif @original_file
         error_message_for_file_to_convert
       elsif @value.instance_of? String
-        :renaming_denied if column_changed? and not rename?
+        'renaming denied' if column_changed? and not rename?
       else
-        :unsupported_upload
+        'unsupported upload'
       end
     end
 
@@ -34,15 +34,15 @@ class VideoUploader
     def error_message_for_converted_files
       mp4_path, webm_path = @converted_files[:mp4], @converted_files[:webm]
       if @original_filename_without_extension.blank?
-        :invalid_filename
+        'invalid filename'
       elsif [mp4_path, webm_path].map{ |p| File.extname(p) } != %w(.mp4 .webm)
-        :invalid_extension
+        'invalid extension'
       elsif !(mp4_info = MediaEditing::Video::Info.new(mp4_path, false)) || !(webm_info = MediaEditing::Video::Info.new(webm_path, false))
-        :invalid_video
+        'invalid video'
       elsif [mp4_info.duration, webm_info.duration].min < MIN_DURATION
-        :invalid_duration
+        'invalid duration'
       elsif not allowed_duration_range?(mp4_info.duration, webm_info.duration)
-        :invalid_duration_difference
+        'invalid duration difference'
       end
     end
   end
