@@ -5,10 +5,10 @@
 <div class="bigViewLesson slideVideo">
   <h2><%= slide.title %></h2>
     <% if video.nil? %>
-    <div class="videoMedium" style="background-color: white" >
+    <div class="videoMedium">
       <div class="videoIcon"></div>
     <% else %>
-    <div class="videoMedium">
+    <div class="videoMedium" style="background-color: white" >
       <%= render :partial => 'shared/players/video', :locals => {:video => video} %>
     <% end %>
     </div>
