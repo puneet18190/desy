@@ -745,7 +745,7 @@ $(document).ready(function() {
     var component = $('#' + popup_id + ' ._temporary').html();
     var duration = $(this).data('duration');
     closePopUp(popup_id);
-    closeMixedGalleryInVideoEditor();
+    setTimeout(closeMixedGalleryInVideoEditor, 500);
     if($('#info_container').data('replacing-component')) {
       replaceVideoComponentInVideoEditor(video_id, component, $('#info_container').data('current-component'), duration);
     } else {
@@ -769,7 +769,7 @@ $(document).ready(function() {
     } else {
       var component = $('#' + popup_id + ' ._temporary').html();
       closePopUp(popup_id);
-      closeMixedGalleryInVideoEditor();
+      setTimeout(closeMixedGalleryInVideoEditor, 500);
       if($('#info_container').data('replacing-component')) {
         replaceImageComponentInVideoEditor(image_id, component, $('#info_container').data('current-component'), duration);
       } else {
