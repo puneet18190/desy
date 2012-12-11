@@ -127,6 +127,6 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
 }
 
 function highlightAndUpdateVideoComponentIcon(component_id, icon_class) {
-  $('#' + component_id + ' ._video_component_icon div').removeClass('textIcon videoIcon photoIcon').addClass('photoIcon');
+  $('#' + component_id + ' ._video_component_icon div').removeClass('textIcon videoIcon photoIcon').addClass(icon_class);
   $('#' + component_id + ' ._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
 }
