@@ -44,7 +44,7 @@ html.lesson-editor-layout{
     text-align: left;
     font-weight: normal;
     line-height: 50px;
-		margin-bottom:20px;
+		margin:20px;
   }
   
   /** Page navigation **/
@@ -189,13 +189,13 @@ html.lesson-editor-layout{
       }
     }
     &.text{
-        h2.text{
-            font-size: 20px;
-            padding: 5px 5px 0 5px;
-            font-family: "Nunito", Helvetica, sans-serif;
-        }
-        .text-content{
-          margin: 0 5px;
+      h2.text{
+        font-size: 20px;
+        padding: 5px 5px 0 5px;
+        font-family: "Nunito", Helvetica, sans-serif;
+      }
+      .text-content{
+        margin: 0 5px;
           padding: 2px;
           font-size: 100%;
           line-height: 100%;
@@ -400,7 +400,7 @@ html.lesson-editor-layout{
             padding:150px 100px;
             width: 655px;
 						height:250px;
-            margin: 10px;
+            margin: 0px;
             text-align:center;
             font-size: 70px;
             color: $orange;
@@ -408,18 +408,20 @@ html.lesson-editor-layout{
           }
         }
         &.text{
+				  width: 900px;
+					height:590px;
+					
           h2.text input{
               font-size: 70px;
               padding: 10px;
-              margin: 10px;
               width: 840px;
               font-family: "Nunito", sans-serif;
           }
           .text-content{
-            padding-left: 20px;
+            margin-left:20px;
             textarea{
               padding: 10px;
-              margin: 20px;
+             
               width: 840px;
               height: 395px;
               overflow:hidden;
@@ -517,7 +519,7 @@ html.lesson-editor-layout{
           }
 					
           .cover-choose-image{
-            margin: 0 20px;
+            margin: 20px 20px;
             width: 860px;
             height: 410px;
             display:block;
@@ -811,9 +813,9 @@ html.lesson-editor-layout{
           }
         }
         &.image1{
-          height: 550px;
-          width: 860px;
-					padding:20px;
+          height: 590px;
+          width: 900px;
+					
 					
           h2 input{
             font-size: 70px;
@@ -826,7 +828,7 @@ html.lesson-editor-layout{
             overflow:hidden;
             position:relative;
             float:left;
-            margin:0;
+            margin-left:20px;
             
             img{
               display:block;
@@ -860,16 +862,17 @@ html.lesson-editor-layout{
           }
           ._mask_y{
             img{
-              width: 440px;
+              width: 420px;
               top:0;
             }
           }
           
           .cover-choose-image{
-            margin: 0 0 0 20px;
-            width: 440px;
-            height: 285px;
+            margin: 0px;
+            width: 420px;
+            height: 280px;
             display:block;
+						margin-left:20px;
             a{
               font-size: 100px;
             }  
@@ -882,11 +885,11 @@ html.lesson-editor-layout{
           
           .image1-content{
             float:right;
-            margin: 0 0px 0 0;
+            margin-right: 20px;
             textarea{
               padding: 10px;
               width: 398px;
-              height: 398px;
+              height: 396px;
             }
           }
         }
