@@ -6,7 +6,7 @@ module LessonViewerHelper
     when "cover"
       ratio > 1.6
     when "image1"
-      ratio > 1.05
+      ratio > 1
     when "image2"
       ratio > 0.75
     when "image3"
@@ -36,7 +36,7 @@ module LessonViewerHelper
     when "cover"
       (height*900)/width
     when "image1"
-      (height*440)/width
+      (height*420)/width
     when "image2"
       (height*420)/width
     when "image3"
