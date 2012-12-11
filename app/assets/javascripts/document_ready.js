@@ -712,6 +712,7 @@ $(document).ready(function() {
     if($('#video_editor_mixed_gallery_container').data('loaded')) {
       $('#video_editor').hide();
       $('#video_editor_mixed_gallery_container').css('display', 'inline-block');
+      resetVideoEditorTextComponent();
     } else {
       $.ajax({
         type: 'get',
@@ -790,15 +791,43 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._text_component_in_video_editor_background_color_selector ._color', function() {
-    var old_background_color = $('._text_component_preview').data('background-color');
+    var old_background_color = $('#text_component_preview').data('background-color');
     var new_background_color = $(this).data('color');
     switchTextComponentBackgroundColor(old_background_color, new_background_color);
   });
   
   $('body').on('click', '._text_component_in_video_editor_text_color_selector ._color', function() {
-    var old_text_color = $('._text_component_preview').data('text-color');
+    var old_text_color = $('#text_component_preview').data('text-color');
     var new_text_color = $(this).data('color');
     switchTextComponentTextColor(old_text_color, new_text_color);
+  });
+  
+  $('body').on('focus', '#text_component_preview textarea', function() {
+    var preview = $('#text_component_preview');
+    if(preview.data('placeholder')) {
+      preview.data('placeholder', false);
+      $(this).val('');
+    }
+  });
+  
+  $('body').on('click', '#insert_text_component_in_video_editor', function() {
+    var preview = $('#text_component_preview');
+    var background_color = preview.data('background-color');
+    var text_color = preview.data('text-color');
+    var duration = parseInt($('#video_editor_mixed_gallery_container ._texts ._duration_selector input').val());
+    if(isNaN(duration) || duration < 1) {
+      showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
+    } else if(preview.data('placeholder')) {
+      showErrorPopUp($('#popup_captions_container').data('empty-text-component-in-video-editor'));
+    } else {
+      var content = $('#text_component_preview textarea').val();
+      closeMixedGalleryInVideoEditor();
+      if($('#info_container').data('replacing-component')) {
+        replaceTextComponentInVideoEditor(content, $('#info_container').data('current-component'), duration, background_color, text_color);
+      } else {
+        addTextComponentInVideoEditor(content, duration, background_color, text_color);
+      }
+    }
   });
   
   

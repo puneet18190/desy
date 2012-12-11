@@ -19,6 +19,9 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
       }
     });
     $(big_selector).hide();
+    if(type == 'text') {
+      resetVideoEditorTextComponent();
+    }
     $('#video_editor_mixed_gallery_container ' + type).show();
   }
 }
@@ -56,14 +59,26 @@ function replaceTextComponentInVideoEditor(content, position, duration, backgrou
   // mettere flash
 }
 
+function resetVideoEditorTextComponent() {
+  $('#text_component_preview textarea').val($('#popup_captions_container').data('text-component-placeholder-in-video-editor'));
+  $('#video_editor_mixed_gallery_container ._texts ._duration_selector input').val('');
+  $('#text_component_preview').data('placeholder', true);
+  var old_background_color = $('#text_component_preview').data('background-color');
+  var old_text_color = $('#text_component_preview').data('text-color');
+  switchTextComponentBackgroundColor(old_background_color, 'white');
+  switchTextComponentTextColor(old_text_color, 'black');
+}
+
 function switchTextComponentBackgroundColor(old_color, new_color) {
-  $('._text_component_preview').removeClass('background_color_' + old_color).addClass('background_color_' + new_color);
+  $('#text_component_preview').removeClass('background_color_' + old_color).addClass('background_color_' + new_color);
   $('._text_component_in_video_editor_background_color_selector ._color').removeClass('current');
   $('._text_component_in_video_editor_background_color_selector .background_color_' + new_color).addClass('current');
+  $('#text_component_preview').data('background-color', new_color);
 }
 
 function switchTextComponentTextColor(old_color, new_color) {
-  $('._text_component_preview textarea').removeClass('color_' + old_color).addClass('color_' + new_color);
+  $('#text_component_preview textarea').removeClass('color_' + old_color).addClass('color_' + new_color);
   $('._text_component_in_video_editor_text_color_selector ._color').removeClass('current');
   $('._text_component_in_video_editor_text_color_selector .background_color_' + new_color).addClass('current');
+  $('#text_component_preview').data('text-color', new_color);
 }

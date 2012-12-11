@@ -6,15 +6,15 @@
   end
 %>
 
-<div class="contentInsertText background_color_white _text_component_preview" data-background-color="white" data-text-color="black">
-  <textarea class="color_black" cols="30" rows="2" maxlength="60"><%= t('captions.insert_text') %></textarea>
+<div id="text_component_preview" class="contentInsertText background_color_white" data-background-color="white" data-text-color="black" data-placeholder="true">
+  <textarea class="color_black" cols="30" rows="2" maxlength="<%= t('language_parameters.video_editor.length_text_component') %>"><%= t('captions.insert_text') %></textarea>
 </div>
 
 <div class="menuTexts">
   <div class="elementoTime">
     <div class="tempo _duration_selector">
       <p><%= t('captions.time') %></p>
-      <input class="numberTime"/>
+      <input class="numberTime" maxlength="<%= t('language_parameters.video_editor.length_duration') %>"/>
       <p class="lower"><%= t('captions.sec') %></p>
     </div>
   </div>
@@ -34,5 +34,5 @@
       <% end %>
     </div>
   </div>
-  <div class="bottoniVerdi fltrt"><a class="upper"><%= t('captions.insert') %></a></div>
+  <div class="bottoniVerdi fltrt"><a id="insert_text_component_in_video_editor" class="upper"><%= t('captions.insert') %></a></div>
 </div>
