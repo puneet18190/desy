@@ -2,12 +2,14 @@
   video_class = '_empty_video_player'
   webm = ''
   mp4 = ''
-  duration = ''
+  mp4_duration = ''
+  webm_duration = ''
   if video
     video_class = "_instance_of_player_#{video.id}"
-    webm = video.webm
-    mp4 = video.mp4
-    duration = seconds_to_time(video.duration)
+    webm = video.webm_path
+    mp4 = video.mp4_path
+    mp4_duration = seconds_to_time(video.mp4_duration)
+    webm_duration = seconds_to_time(video.webm_duration)
   end
 %>
 
@@ -21,7 +23,7 @@
   <a class="pause _media_player_pause"></a>
   <div class="_media_player_current_time secondTime">0</div>
   <div class="videoSlider _media_player_slider"></div>
-  <div  class="secondTime"><%= duration %></div>
+  <div class="secondTime"><%# TODO da riempire tramite initializeMedia %></div>
   <a class="fullScreen _video_full_screen"></a>
   <div class="sliderDisabler _media_player_slider_disabler"></div>
 </div>
@@ -29,7 +31,7 @@
 
 <% if video %>
   <script type="text/javascript">
-    initializeMedia('instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player', 'video', <%= video.duration %>);
+    initializeMedia('instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player', 'video', <%= video.mp4_duration %>, <%= video.webm_duration %>);
   </script>
 <% end %>
 

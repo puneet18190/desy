@@ -5,24 +5,13 @@ class Video < MediaElement
   IMAGE_COMPONENT = 'image'
   COMPONENTS = [VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT]
 
-  after_save :upload
+  after_save :upload_or_copy
   after_destroy :clean
 
-  attr_accessor :skip_conversion
+  attr_accessor :skip_conversion, :rename_media
 
-  # TODO validazione media
-
-  def self.test
-    media_without_extension = Rails.root.join('spec/support/samples/con verted').to_s
-    media = { copy: 'con verted', mp4: "#{media_without_extension}.mp4", webm: "#{media_without_extension}.webm" }
-    video = new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media) do |v|
-      v.user_id = User.admin.id
-    end
-    # puts video.object_id.inspect
-    video.save
-    puts video[:media].class.inspect
-    puts video.media.inspect
-  end
+  validates_presence_of :media
+  validate :media_validation
   
   def self.convert_parameters(hash, user_id)
     return nil if !hash.kind_of?(Hash) || !hash.has_key?(:initial_video_id)
@@ -84,7 +73,24 @@ class Video < MediaElement
   end
   
   def self.get_media_element_from_hash(hash, key, user_id, my_sti_type)
-    (hash.has_key?(key) && hash[key].kind_of?(Integer)) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
+    hash.has_key?(key) && hash[key].kind_of?(Integer) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
+  end
+
+  def thumb_path
+    # TODO
+    'TODO'
+  end
+
+  def mp4_path
+    media.try(:mp4_path)
+  end
+
+  def webm_path
+    media.try(:webm_path)
+  end
+
+  def media_validation
+    media.validation if media
   end
 
   def media
@@ -95,7 +101,11 @@ class Video < MediaElement
   end
 
   def media=(media)
-    @media = write_attribute :media, ( media.present? ? VideoUploader.new(self, :media, media) : nil )
+    @media = write_attribute :media, (media.present? ? VideoUploader.new(self, :media, media) : nil)
+  end
+
+  def reload_media
+    @media = nil
   end
 
   def mp4_duration
@@ -114,9 +124,15 @@ class Video < MediaElement
     metadata.webm_duration = webm_duration
   end
 
+  def reload
+    @media = @skip_conversion = @rename_media = nil
+    super
+  end
+
   private
-  def upload
-    media.upload if media
+  def upload_or_copy
+    media.upload_or_copy if media
+    true
   end
 
   def clean

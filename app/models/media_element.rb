@@ -50,7 +50,7 @@ class MediaElement < ActiveRecord::Base
           when File                               then media.path
           end
         ).sub(/^\./, '').downcase
-      inferred_sti_type = EXTENSIONS_BY_STI_TYPE.detect{ |k, v| v.include? extension }.try(:first)
+      inferred_sti_type = EXTENSIONS_BY_STI_TYPE.detect{ |_,v| v.include? extension }.try(:first)
       unless inferred_sti_type
         return new_without_sti_type_inferring(attributes, options, &block)
       end

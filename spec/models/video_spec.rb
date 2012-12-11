@@ -1,7 +1,7 @@
 require 'spec_helper'
 describe Video, slow: true do
 
-  supported_formats = [:webm, :mp4]
+  supported_formats = MEVSS::FORMATS
 
   let(:location)      { Location.create!(   description: ::CONFIG['locations'].first    ) }
   let(:school_level)  { SchoolLevel.create!(description: ::CONFIG['school_levels'].first) }
@@ -20,7 +20,7 @@ describe Video, slow: true do
   let(:filename)      { File.basename(uploaded_path) }
   let(:tempfile)      { File.open(uploaded_path) }
   let(:uploaded)      { ActionDispatch::Http::UploadedFile.new(filename: filename, tempfile: tempfile) }
-  let(:output_folder) { "#{Rails.root}/public/media_elements/videos/#{Rails.env}/#{model.id}" }
+  let(:output_folder) { "#{Rails.root}/public/media_elements/videos/test/#{model.id}" }
 
   subject do
     described_class.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: uploaded) do |video|
@@ -35,7 +35,7 @@ describe Video, slow: true do
       subject.save
     end
 
-    let(:output_format) { "#{Rails.root}/public/media_elements/videos/#{Rails.env}/#{subject.id}/in-put.%s" }
+    let(:output_format) { "#{Rails.root}/public/media_elements/videos/test/#{subject.id}/in-put.%s" }
 
     supported_formats.each do |format|
       context "with #{format} format", format: format do

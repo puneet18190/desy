@@ -16,16 +16,28 @@ module MediaEditing
 
       attr_reader :path
 
-      def initialize(path)
+      def initialize(path, raise_if_invalid = true)
         @path      = File.expand_path path
         @cmd       = MediaEditing::Video::Cmd::Avprobe.new(path)
         @output    = @cmd.run.output
         exitstatus = @cmd.exitstatus
 
-        raise MediaEditing::Video::Error.new('avprobe failed', cmd: @cmd, exitstatus: exitstatus) if exitstatus != 0
+        if exitstatus != 0
+          if raise_if_invalid
+            raise MediaEditing::Video::Error.new('avprobe failed', cmd: @cmd, exitstatus: exitstatus)
+          else
+            @invalid = true
+          end
+        end
+      end
+
+      def valid?
+        not @invalid
       end
 
       def duration
+        return nil unless valid?
+
         matches = @output.match DURATION_REGEX
         hours, minutes, seconds = matches[:hours], matches[:minutes], matches[:seconds]
 
@@ -55,6 +67,8 @@ module MediaEditing
       #       }
       #     }
       def streams
+        return nil unless valid?
+
         @streams ||=
           {}.tap do |streams|
             STREAMS.each do |stream_type|
@@ -71,14 +85,20 @@ module MediaEditing
       end
 
       def video_streams
+        return nil unless valid?
+
         streams[:video]
       end
 
       def audio_streams
+        return nil unless valid?
+
         streams[:audio]
       end
 
       def info
+        return nil unless valid?
+        
         { path: path, duration: duration, streams: streams }
       end
 

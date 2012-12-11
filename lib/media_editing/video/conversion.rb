@@ -1,6 +1,7 @@
 require 'media_editing'
 require 'media_editing/video'
 require 'media_editing/video/logging'
+require 'media_editing/video/allowed_duration_range'
 require 'media_editing/video/info'
 require 'media_editing/video/error'
 require 'media_editing/video/cmd/conversion'
@@ -13,20 +14,22 @@ module MediaEditing
     class Conversion
 
       include MediaEditing::Video::Logging
+      include MediaEditing::Video::AllowedDurationRange
 
       INPUT_FOLDER       = File.join Rails.root, VideoUploader.env_relative_path('tmp/media_editing/video/conversions')
-      DURATION_THRESHOLD = 1
+      DURATION_THRESHOLD = MediaEditing::Video::CONFIG.duration_threshold
 
       def self.log_folder
         super 'conversions'
       end
 
-      def initialize(model_id, output_path_without_extension, uploaded_file)
+      # Example: new(13, '/path/to/valid video.flv', '/path/to/desy/public/media_elements/13/valid-video')
+      def initialize(model_id, uploaded_file, output_path_without_extension)
         @model_id = model_id
         init_model
 
-        @output_path_without_extension = output_path_without_extension
         @uploaded_file = uploaded_file
+        @output_path_without_extension = output_path_without_extension
       end
 
       def run
@@ -43,7 +46,7 @@ module MediaEditing
           mp4_file_info  = MediaEditing::Video::Info.new output_file(:mp4)
           webm_file_info = MediaEditing::Video::Info.new output_file(:webm)
 
-          unless allowed_duration_range(mp4_file_info.duration).include? webm_file_info.duration
+          unless allowed_duration_range?(mp4_file_info.duration, webm_file_info.duration) 
             raise MediaEditing::Video::Error.new( 'output videos have different duration', 
                                            model_id: model_id, mp4_duration: mp4_file_info.duration, webm_duration: webm_file_info.duration )
           end
@@ -53,11 +56,13 @@ module MediaEditing
           raise e
         end
 
-        model.converted      = true
-        model.mp4_duration   = mp4_file_info.duration
-        model.webm_duration  = webm_file_info.duration
-        model.media          = output_filename_without_extension
-        model.save
+        model.converted     = true
+        model.rename_media  = true
+        model.mp4_duration  = mp4_file_info.duration
+        model.webm_duration = webm_file_info.duration
+        model.media         = output_filename_without_extension
+        model[:media]       = output_filename_without_extension
+        model.save!
 
         FileUtils.rm input_file
       end
@@ -91,24 +96,20 @@ module MediaEditing
       end
 
       private
-      def allowed_duration_range(duration)
-        (duration-DURATION_THRESHOLD)..(duration+DURATION_THRESHOLD)
-      end
-
       def input_file
-        File.join input_folder, output_path_without_extension
+        File.join input_folder, output_filename_without_extension
       end
 
       def output_file(format)
-        "#{output_path_without_extension}.#{format}"
+        "#{@output_path_without_extension}.#{format}"
       end
 
-      def output_path_without_extension
-        @output_path_without_extension
+      def output_filename_without_extension
+        File.basename @output_path_without_extension
       end
 
       def output_folder
-        File.dirname output_path_without_extension
+        File.dirname @output_path_without_extension
       end
 
       def input_folder
