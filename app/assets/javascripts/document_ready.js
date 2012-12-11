@@ -258,10 +258,8 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._close_mixed_gallery_in_video_editor', function() {
-    $('#video_editor_mixed_gallery_container').hide();
-    $('#video_editor').css('display', 'inline-block');
+    closeMixedGalleryInVideoEditor();
   });
-  
   
   $('body').on('click', "._close_on_click_out", function(){
     $(".ui-dialog-content:visible").each(function(){
@@ -563,10 +561,14 @@ $(document).ready(function() {
     closePopUp($(this).data('dialog-id'));
   });
   
-  // LESSON VIEWER
-  
   
   // VIRTUAL CLASSROOM
+  
+  $('body').on('click', '._virtual_classroom_lesson ._cover_slide_thumb', function() {
+    var lesson_id = $(this).data('lesson-id');
+    var redirect_to = $('#info_container').data('currenturl');
+    window.location.href = '/lessons/' + lesson_id + '/view?back=' + encodeURIComponent(redirect_to);
+  });
   
   $('body').on('click', '._remove_lesson_from_inside_virtual_classroom', function() {
     var lesson_id = $(this).data('clickparam');
@@ -737,19 +739,40 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._add_video_component_to_video_editor', function() {
-    alert('stai aggiungendo il video');
+    var popup_id = 'dialog-video-gallery-' + $(this).data('video-id');
+    var component = $('#' + popup_id + ' ._temporary').html();
+    var duration = $(this).data('duration');
+    closePopUp(popup_id);
+    closeMixedGalleryInVideoEditor();
+    if($('#info_container').data('replacing-component')) {
+      replaceVideoComponentInVideoEditor(component, $('#info_container').data('current-component'), duration);
+    } else {
+      addVideoComponentInVideoEditor(component, duration);
+    }
   });
   
   $('body').on('click', '._add_image_component_to_video_editor', function() {
     var popup_id = 'dialog-image-gallery-' + $(this).data('image-id');
     $('#' + popup_id + ' ._bottom_of_image_popup_in_gallery').hide();
     $('#' + popup_id + ' ._duration_selector').show();
+    $('#' + popup_id + ' ._duration_selector input').val('');
   });
   
   $('body').on('click', '._add_image_component_to_video_editor_after_select_duration', function() {
     var popup_id = 'dialog-image-gallery-' + $(this).data('image-id');
-    var duration = $('#' + popup_id + ' input').val();
-    alert("stai aggiungendo l'immagine " + $(this).data('image-id') + " con una durata di " + duration + " secondi!");
+    var duration = parseInt($('#' + popup_id + ' input').val());
+    if(isNaN(duration) || duration < 1) {
+      showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
+    } else {
+      var component = $('#' + popup_id + ' ._temporary').html();
+      closePopUp(popup_id);
+      closeMixedGalleryInVideoEditor();
+      if($('#info_container').data('replacing-component')) {
+        replaceImageComponentInVideoEditor(component, $('#info_container').data('current-component'), duration);
+      } else {
+        addImageComponentInVideoEditor(component, duration);
+      }
+    }
   });
   
   $('body').on('click', '._add_audio_track_to_video_editor', function() {
@@ -758,9 +781,24 @@ $(document).ready(function() {
   
   $('body').on('click', '._image_gallery_thumb_in_mixed_gallery_video_editor', function(e) {
     e.preventDefault();
-    showImageInGalleryPopUp($(this).data('image-id'), function() {
-      alert('eccomi pronto per registrare il tempo');
+    var image_id = $(this).data('image-id');
+    showImageInGalleryPopUp(image_id, function() {
+      var popup_id = 'dialog-image-gallery-' + image_id;
+      $('#' + popup_id + ' ._bottom_of_image_popup_in_gallery').show();
+      $('#' + popup_id + ' ._duration_selector').hide();
     });
+  });
+  
+  $('body').on('click', '._text_component_in_video_editor_background_color_selector ._color', function() {
+    var old_background_color = $('._text_component_preview').data('background-color');
+    var new_background_color = $(this).data('color');
+    switchTextComponentBackgroundColor(old_background_color, new_background_color);
+  });
+  
+  $('body').on('click', '._text_component_in_video_editor_text_color_selector ._color', function() {
+    var old_text_color = $('._text_component_preview').data('text-color');
+    var new_text_color = $(this).data('color');
+    switchTextComponentTextColor(old_text_color, new_text_color);
   });
   
   

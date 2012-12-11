@@ -243,6 +243,7 @@ en:
     send_lesson_link_error: 'Link not sent: did you fill all the fields and write correct emails?'
     virtual_classroom_lessons_loaded_ok: 'Correctly loaded your lessons!'
     virtual_classroom_lessons_loaded_error: 'There was a problem, #number of your lessons were not loaded'
+    invalid_component_duration_in_video_editor: 'You inserted a wrong duration, it must be a number greater than 0'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'

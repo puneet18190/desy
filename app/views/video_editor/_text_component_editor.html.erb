@@ -2,11 +2,12 @@
   colors = []
   CONFIG['colors'].each do |k, v|
     colors[v['pos'] - 1] = k
+    
   end
 %>
 
-<div class="contentInsertText">
-  <textarea placeholder="" cols="30" rows="2" maxlength="60"><%= t('captions.insert_text') %></textarea>
+<div class="contentInsertText background_color_white _text_component_preview" data-background-color="white" data-text-color="black">
+  <textarea class="color_black" cols="30" rows="2" maxlength="60"><%= t('captions.insert_text') %></textarea>
 </div>
 
 <div class="menuTexts">
@@ -18,19 +19,19 @@
     </div>
   </div>
   <div class="elementoGrigio">
-    <div class="scegliBgColor">
-    <p><%= t('captions.background_color') %></p>
-    <% colors.each do |color| %>
-      <div class="background_color_<%= color %>"></div>
-    <% end %>
+    <div class="scegliBgColor _text_component_in_video_editor_background_color_selector">
+      <p><%= t('captions.background_color') %></p>
+      <% colors.each do |color| %>
+        <div class="background_color_<%= color %> _color <%= (color == 'white') ? 'current'.html_safe : '' %>" data-color="<%= color %>"></div>
+      <% end %>
     </div>
   </div>
   <div class="elementoGrigio">
-    <div class="scegliTxtColor">
-    <p><%= t('captions.text_color') %></p>
-    <% colors.each do |color| %>
-      <div class="background_color_<%= color %>"></div>
-    <% end %>
+    <div class="scegliTxtColor _text_component_in_video_editor_text_color_selector">
+      <p><%= t('captions.text_color') %></p>
+      <% colors.each do |color| %>
+        <div class="background_color_<%= color %> _color <%= (color == 'black') ? 'current'.html_safe : '' %>" data-color="<%= color %>"></div>
+      <% end %>
     </div>
   </div>
   <div class="bottoniVerdi fltrt"><a class="upper"><%= t('captions.insert') %></a></div>
