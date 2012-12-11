@@ -104,6 +104,11 @@ class Video < MediaElement
     'TODO'
   end
 
+  def cover_path
+    # TODO
+    'TODO'
+  end
+
   def mp4_path
     media.try(:mp4_path)
   end
