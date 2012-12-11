@@ -707,7 +707,6 @@ $(document).ready(function() {
       infos.data('replacing-component', false);
       infos.data('current-component', 'video_component_' + (infos.data('components-number') + 1));
     }
-    stopAutoReinitialiseVideoEditorScrollPane();
     if($('#video_editor_mixed_gallery_container').data('loaded')) {
       $('#video_editor').hide();
       $('#video_editor_mixed_gallery_container').css('display', 'inline-block');
