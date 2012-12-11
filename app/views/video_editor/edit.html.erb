@@ -5,7 +5,7 @@
   <%= render :partial => 'video_editor/preview_container', :locals => {:parameters => @parameters} %>
   
   <div class="info">
-    <p clas="lower"><%= t('captions.total_length') %>:</p> <p><span><%= seconds_to_time(Video.total_prototype_time(@parameters)) %></span></p>
+    <p clas="lower"><%= t('captions.total_length') %>:</p> <p><span><%= seconds_to_time(@total_length) %></span></p>
     <div class="bottoniVerdi" style="margin-top:10px"><a class="lower"><%= t('captions.preview') %></a></div>
   </div>
   
@@ -29,4 +29,4 @@
 
 <div id="video_editor_audio_gallery_container" class="mediaEditorVideoContainer" style="display:none" data-loaded="false"></div>
 
-<div id="info_container" data-components-number="<%= @parameters[:components].count %>" data-current-component="" data-replacing-component="false" style="display:none"></div>
+<div id="info_container" data-components-number="<%= @parameters[:components].count %>" data-current-component="" data-replacing-component="false" data-total-length="<%= @total_length %>" style="display:none"></div>
