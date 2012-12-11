@@ -292,6 +292,7 @@ function stopMediaInCurrentSlide() {
 }
 
 function initializeSortableNavs() {
+  $('#slide-numbers').css("width", (parseInt($(window).outerWidth())-30) + "px");
   $('#slide-numbers').sortable({
     items: '._slide_nav_sortable',
     axis: 'x',
