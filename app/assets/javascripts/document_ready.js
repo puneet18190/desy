@@ -746,7 +746,6 @@ $(document).ready(function() {
     var duration = $(this).data('duration');
     var current_component = $('#info_container').data('current-component');
     closePopUp(popup_id);
-    $('#' + current_component + '._video_editor_component_menu').hide();
     setTimeout(closeMixedGalleryInVideoEditor, 700);
     setTimeout(function() {
       highlightAndUpdateVideoComponentIcon(current_component, 'videoIcon');
@@ -775,7 +774,6 @@ $(document).ready(function() {
       var component = $('#' + popup_id + ' ._temporary').html();
       var current_component = $('#info_container').data('current-component');
       closePopUp(popup_id);
-      $('#' + current_component + '._video_editor_component_menu').hide();
       setTimeout(closeMixedGalleryInVideoEditor, 700);
       setTimeout(function() {
         highlightAndUpdateVideoComponentIcon(current_component, 'photoIcon');
