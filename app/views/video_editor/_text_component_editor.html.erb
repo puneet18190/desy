@@ -1,9 +1,16 @@
 <%
+  
   colors = []
   CONFIG['colors'].each do |k, v|
     colors[v['pos'] - 1] = k
-    
   end
+  
+  locals_for_text_thumb = {
+    :background_color => 'white',
+    :text_color => 'black',
+    :content => t('captions.insert_text')
+  }
+  
 %>
 
 <div id="text_component_preview" class="contentInsertText background_color_white" data-background-color="white" data-text-color="black" data-placeholder="true">
@@ -35,4 +42,8 @@
     </div>
   </div>
   <div class="bottoniVerdi fltrt"><a id="insert_text_component_in_video_editor" class="upper"><%= t('captions.insert') %></a></div>
+</div>
+
+<div class="_temporary" style="display:none">
+  <%= render :partial => 'video_editor/components/thumbs/text', :locals => locals_for_text_thumb %>
 </div>

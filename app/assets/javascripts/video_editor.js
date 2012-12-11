@@ -66,12 +66,12 @@ function replaceVideoComponentInVideoEditor(video_id, component, position, durat
   changeDurationVideoEditorComponent(position, duration);
 }
 
-function addTextComponentInVideoEditor(content, duration, background_color, text_color) {
+function addTextComponentInVideoEditor(component, content, duration, background_color, text_color) {
   alert('stai aggiungendo la componente testuale -- ' + content + ' in ultima posizione, con una durata di ' + duration + ' secondi, con colore di sfondo ' + background_color + ' e colore testuale ' + text_color);
   // mettere flash
 }
 
-function replaceTextComponentInVideoEditor(content, position, duration, background_color, text_color) {
+function replaceTextComponentInVideoEditor(component, content, position, duration, background_color, text_color) {
   alert('stai aggiungendo la componente -- ' + content + ' in posizione ' + position + ', rimpiazzando quella già esistente, con una durata di ' + duration + ' secondi, con colore di sfondo ' + background_color + ' e colore testuale ' + text_color);
   // mettere flash
 }

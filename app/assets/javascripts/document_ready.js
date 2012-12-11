@@ -831,11 +831,16 @@ $(document).ready(function() {
       showErrorPopUp($('#popup_captions_container').data('empty-text-component-in-video-editor'));
     } else {
       var content = $('#text_component_preview textarea').val();
+      var component = $('#video_editor_mixed_gallery_container ._texts ._temporaray').html();
+      var current_component = $('#info_container').data('current-component');
       closeMixedGalleryInVideoEditor();
+      setTimeout(function() {
+        highlightAndUpdateVideoComponentIcon(current_component, 'textIcon');
+      }, 700);
       if($('#info_container').data('replacing-component')) {
-        replaceTextComponentInVideoEditor(content, $('#info_container').data('current-component'), duration, background_color, text_color);
+        replaceTextComponentInVideoEditor(component, content, current_component, duration, background_color, text_color);
       } else {
-        addTextComponentInVideoEditor(content, duration, background_color, text_color);
+        addTextComponentInVideoEditor(component, content, duration, background_color, text_color);
       }
     }
   });
