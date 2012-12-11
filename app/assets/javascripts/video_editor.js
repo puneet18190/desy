@@ -55,3 +55,11 @@ function replaceTextComponentInVideoEditor(content, position, duration, backgrou
   alert('stai aggiungendo la componente -- ' + content + ' in posizione ' + position + ', rimpiazzando quella già esistente, con una durata di ' + duration + ' secondi, con colore di sfondo ' + background_color + ' e colore testuale ' + text_color);
   // mettere flash
 }
+
+function switchTextComponentBackgroundColor(old_color, new_color) {
+  
+}
+
+function switchTextComponentTextColor(old_color, new_color) {
+  
+}
