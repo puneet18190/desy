@@ -2,30 +2,29 @@ function initializeMediaTimeUpdater(media) {
   media = $(media);
   if(media.readyState != 0) {
     media[0].addEventListener('timeupdate', function() {
-      initializeActionOfMediaTimeUpdater(this);
+      initializeActionOfMediaTimeUpdater(this, duration);
     }, false);
   } else {
     media.on('loadedmetadata', function() {
       media[0].addEventListener('timeupdate', function() {
-        initializeActionOfMediaTimeUpdater(this);
+        initializeActionOfMediaTimeUpdater(this, duration);
       }, false);
     });
   }
 }
 
-function initializeActionOfMediaTimeUpdater(media) {
+function initializeActionOfMediaTimeUpdater(media, duration) {
   var container_id = $(media).parent().attr('id');
-  if($('#' + container_id + ' ._media_player_play').css('display') == 'none') {
-    var parsed_int = parseInt(media.currentTime);
+  var parsed_float = parseFloat(media.currentTime);
+  var parsed_int = parseInt(parsed_float);
+  if(parsed_float == duration) {
+  } else if($('#' + container_id + ' ._media_player_play').css('display') == 'none') {
     $('#' + container_id + ' ._media_player_current_time').html(secondsToDateString(parsed_int));
     $('#' + container_id + ' ._media_player_slider').slider('value', parsed_int);
   }
 }
 
-function initializeMedia(content_id, type, mp4_duration, webm_duration) {
-  // TODO settare duration in base al formato video supportato dal browser
-  //      e riempire il div con la duration dentro shared/players/_video
-  var duration = mp4_duration;
+function initializeMedia(content_id, type, duration) {
   $('#' + content_id + ' ._media_player_slider').slider({
     min: 0,
     max: duration,
@@ -38,7 +37,7 @@ function initializeMedia(content_id, type, mp4_duration, webm_duration) {
       }
     }
   });
-  initializeMediaTimeUpdater('#' + content_id + ' ' + type);
+  initializeMediaTimeUpdater('#' + content_id + ' ' + type, duration);
   $('#' + content_id + ' ' + type).bind('ended', function() {
     stopMedia(this);
   });

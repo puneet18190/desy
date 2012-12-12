@@ -2,7 +2,7 @@
   <div class="scroll-pane">
     <% images.each do |image| %>
       <li id="gallery_image_<%= image.id %>" class="_image_gallery_thumb" data-image-id="<%= image.id %>">
-        <a><%= image_tag image.thumb, :width => '111' %></a>
+        <a><%= image_tag image.thumb_path, :width => '111' %></a>
         <%= render :partial => "galleries/popups/image", :locals => {:image => image} %>
       </li>
     <% end %>

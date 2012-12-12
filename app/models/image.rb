@@ -6,11 +6,11 @@ class Image < MediaElement
   
   before_save :set_width_and_height
   
-  def url
+  def path
     media.url
   end
   
-  def thumb
+  def thumb_path
     media.thumb
   end
   
