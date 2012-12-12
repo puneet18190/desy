@@ -39,7 +39,6 @@ five:
   description: 'quef gsdsd dfs'
   sti_type: 'Image'
   is_public: false
-  media: 'one.jpg'
 
 six:
   id: 6
@@ -49,4 +48,3 @@ six:
   sti_type: 'Image'
   is_public: true
   publication_date: '2011-01-01 10:00:00'
-  media: 'two.jpg'
