@@ -28,7 +28,8 @@ function initializeActionOfMediaTimeUpdater(media, reference_id) {
   }
 }
 
-function initializeMedia(content_id, type, duration) {
+function initializeMedia(content_id, type) {
+  var duration = $('#' + content_id).data('duration');
   $('#' + content_id + ' ._media_player_slider').slider({
     min: 0,
     max: duration,
@@ -42,6 +43,9 @@ function initializeMedia(content_id, type, duration) {
     }
   });
   initializeMediaTimeUpdater('#' + content_id + ' ' + type, content_id);
+  $('#' + content_id + ' ' + type).bind('ended', function() {
+    stopMedia(this);
+  });
   $('#' + content_id).data('initialized', true);
 }
 
