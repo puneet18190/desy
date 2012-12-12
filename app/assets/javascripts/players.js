@@ -41,9 +41,6 @@ function initializeMedia(content_id, type, duration) {
     }
   });
   initializeMediaTimeUpdater('#' + content_id + ' ' + type, duration);
-  $('#' + content_id + ' ' + type).bind('ended', function() {
-    stopMedia(this);
-  });
 }
 
 function setCurrentTimeToMedia(media, x) {
