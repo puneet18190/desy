@@ -191,7 +191,9 @@ function showVideoInGalleryPopUp(video_id) {
         customOverlayClose();
         var instance_id = $('#dialog-video-gallery-' + video_id + ' ._instance_of_player_' + video_id).attr('id');
         var video_duration = $('#dialog-video-gallery-' + video_id + ' ._select_video_from_gallery').data('duration');
-        initializeMedia(instance_id, 'video', video_duration);
+        if(!$('#' + instance_id).data('initialized')) {
+          initializeMedia(instance_id, 'video', video_duration);
+        }
       },
       beforeClose: function() {
         stopMedia('#dialog-video-gallery-' + video_id + ' video');

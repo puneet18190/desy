@@ -11,7 +11,7 @@
   end
 %>
 
-<div id="instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player" class="videoPlayer <%= video_class %>" data-media-type="video">
+<div id="instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player" class="videoPlayer <%= video_class %>" data-media-type="video" data-initialized="false">
   <video>
     <source src="<%= webm %>" type="video/webm">
     <source src="<%= mp4 %>" type="video/mp4">

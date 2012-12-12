@@ -11,7 +11,7 @@
   end
 %>
 
-<div id="instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player" class="audioPlayer <%= audio_class %>" data-media-type="audio">
+<div id="instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player" class="audioPlayer <%= audio_class %>" data-media-type="audio" data-initialized="false">
   <audio>
     <source src="<%= ogg  %>" type="audio/ogg">
     <source src="<%= mp3 %>" type="audio/mp3">
