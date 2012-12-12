@@ -251,7 +251,7 @@ html.lesson-viewer-layout{
 	/*slide text*/
 	.slideText{
 	  @include formatElement;
-		h2 {margin-bottom:32px;}
+		
 	}
 	/*slide video*/
 	.slideVideo{
@@ -435,6 +435,10 @@ html.lesson-viewer-layout{
 		width:400px;
 		height:400px;
 		overflow:hidden;
+		a	{
+		  color: $orange;
+		  text-decoration:underline;	
+		}
 		
 	}
 	.textRightVideoContent {
@@ -446,12 +450,15 @@ html.lesson-viewer-layout{
 	}
 	.contentText {
 	  width:840px;
-		height:420px;
+		height:400px;
 		margin: 0;
 		padding:0px 10px;
 		line-height: 13px;
-		
-		
+		overflow:hidden;
+		a	{
+		  color: $orange;
+		  text-decoration:underline;	
+		}
 		p {
 		  margin-top:1em;
 			margin-bottom:1em;

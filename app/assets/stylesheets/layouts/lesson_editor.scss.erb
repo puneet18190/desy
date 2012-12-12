@@ -112,7 +112,12 @@ html.lesson-editor-layout{
       }
     }
   }
-
+ @mixin colorLink {
+   a	{
+		color: $orange;
+		text-decoration:underline;	
+	}
+ }
   .slide-tooltip {
     width: 300px;
     display: none;
@@ -126,6 +131,7 @@ html.lesson-editor-layout{
   .slide-thumb {
     width: 237px;
     height: 152px;
+		overflow:hidden;
     padding: 5px;
     background-color: white;
     font-size: 7px;
@@ -186,6 +192,9 @@ html.lesson-editor-layout{
         float:right;
         width: 120px;
         margin-left: 5px;
+				overflow:hidden;
+				height:112px;
+				@include colorLink;
       }
     }
     &.text{
@@ -196,10 +205,13 @@ html.lesson-editor-layout{
       }
       .text-content{
         margin: 0 5px;
-          padding: 2px;
-          font-size: 100%;
-          line-height: 100%;
-        }
+        padding: 6px 2px;
+        font-size: 100%;
+        line-height: 100%;
+				overflow:hidden;
+				height:112px;
+				@include colorLink;
+			}
     }
     &.cover{
       .title{
@@ -420,9 +432,9 @@ html.lesson-editor-layout{
           }
           .text-content{
             margin-left:20px;
+						
             textarea{
               padding: 10px;
-             
               width: 840px;
               height: 395px;
               overflow:hidden;
