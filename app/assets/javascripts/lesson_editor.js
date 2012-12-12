@@ -292,8 +292,11 @@ function stopMediaInCurrentSlide() {
 }
 
 function initializeSortableNavs() {
-  $('#slide-numbers').css("width", (parseInt($(window).outerWidth())-30) + "px");
-  $('#slide-numbers').sortable({
+  $("#heading").css("width", (parseInt($(window).outerWidth())-50) + "px");
+  slides_numbers = $('#slide-numbers');
+  slides_amount = slides_numbers.find("li").length
+  slides_numbers.css('width', ''+(parseInt(slides_amount) * 40) + 'px');
+  slides_numbers.sortable({
     items: '._slide_nav_sortable',
     axis: 'x',
     stop: function(event, ui) {

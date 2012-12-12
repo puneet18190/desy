@@ -53,16 +53,22 @@ html.lesson-editor-layout{
     padding: 10px;
     height: 20px;
     display: block;
-		position:absolute;
+    width:100%;
+    overflow-x:auto;
+    -ms-overflow-x:auto;
+    overflow-y:hidden;
+    -ms-overflow-y:hidden; 
+		/*position:absolute;
     left:0px;
     top:0px;
-    z-index:9999999;
+    z-index:9999999;*/
   }  
 
   #slide-numbers {
-    position:fixed;
+    /*position:fixed;*/
     list-style: none;
     margin-left: 10px;
+    width: 3500px;
     li {
       float: left;
       a {
