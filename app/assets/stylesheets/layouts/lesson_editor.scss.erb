@@ -362,6 +362,44 @@ html.lesson-editor-layout{
 			  width:410px;
 	    }
 	  }
+		.medium {
+	    float:left;
+		  width:420px;
+		  height:420px;
+		  margin-right:20px;
+		  margin-top:3px;
+		  background-color:#f1f1f1;
+		  overflow:hidden;
+		  position:relative;
+			.photoIcon {
+	      @include photoIconFormat;
+		    margin-top:125px;
+			  margin-left:125px;
+	    }
+		  .caption {
+		    @include styleCaption;
+			  width:410px;
+	    }
+		  &:last-child {
+	      margin-right:0px;
+	    }
+			
+	    }
+			.textRightContent {
+	      float:right;
+		    padding:0px 10px;
+		    width:400px;
+		    height:400px;
+		    overflow:hidden;
+		    a	{
+		      color: $orange;
+		      text-decoration:underline;	
+		    }
+		    p {
+		      margin-top:0.8em;
+			    margin-bottom:0.8em;
+		    }
+		}
 		.mediumHeight {
 	    float:left;
 		  width:420px;
