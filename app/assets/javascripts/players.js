@@ -1,4 +1,4 @@
-function initializeMediaTimeUpdater(media) {
+function initializeMediaTimeUpdater(media, duration) {
   media = $(media);
   if(media.readyState != 0) {
     media[0].addEventListener('timeupdate', function() {
