@@ -62,7 +62,6 @@ html.lesson-editor-layout{
   	  height:230px;
   	}
   	.scroll-pane {
-  	  width:1250px;
   		/*position:absolute;*/
   		overflow-y:visible;
     }
@@ -71,8 +70,8 @@ html.lesson-editor-layout{
         background: #3f3f3f;
       }
       .jspHorizontalBar {
-        height:8px;
-        top: 20px;
+        height:5px;
+        top: 23px;
         position:absolute;
       }
       .jspDrag {
@@ -80,7 +79,6 @@ html.lesson-editor-layout{
       }
     }
   }  
-  
 
   #slide-numbers {
     /*position:fixed;*/
@@ -101,19 +99,6 @@ html.lesson-editor-layout{
         font-size: 1em;
 				background-color: rgba(45,45,45,0.5);
 				
-        &.add-small{
-          text-indent: -9999999px;
-          border:none;
-          padding:0;
-          height: 17px;
-          width: 17px;
-          background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
-        }
-        &.add-small:hover{
-          background-color:transparent;
-          background-position: bottom center;
-          border: none;
-        }
         &:hover {
           background-color: white;
           border: 1px solid white;
@@ -135,6 +120,23 @@ html.lesson-editor-layout{
         }
       }
     }
+  }
+  
+  .add-small{
+    position:absolute;
+    top:10px;
+    right: 10px;
+    text-indent: -9999999px;
+    border:none;
+    padding:0;
+    height: 17px;
+    width: 17px;
+    background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
+  }
+  .add-small:hover{
+    background-color:transparent;
+    background-position: bottom center;
+    border: none;
   }
  @mixin colorLink {
    a	{
