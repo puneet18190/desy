@@ -175,7 +175,7 @@ def plant_development_seeds
     sti_type = media_element_types[i%media_element_types.size]
 
     media_element = sti_type.constantize.new :description => description[1], :title => description[0] do |record|
-      record.user_id = admin.id
+      record.user_id = (i % 2 == 1) ? admin.id : u.id
       record.tags = tag_map[i%tag_map.size]
     end
 
@@ -189,7 +189,7 @@ def plant_development_seeds
     media_element.save!
   end
 
-  slides = {1 => ['image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2', 'text', 'title'], 2 => ['text', 'video1'], 3 => ['video2', 'video2'], 4 => ['image3', 'audio'], 5 => [], 6 => ['audio'], 7 => ['text', 'text'], 8 => [], 9 => ['video1', 'title'], 10 => ['image1', 'image3'], 11 => ['text', 'image2', 'image2', 'text'], 12 => ['video2', 'audio', 'title'], 13 => [], 14 => [], 15 => [], 16 => [], 17 => [], 18 => [], 19 => [], 20 => [], 21 => [], 22 => [], 23 => [], 24 => [], 25 => [], 26 => [], 27 => [], 28 => [], 29 => [], 30 => [], 31 => [], 32 => [], 33 => [], 34 => [], 35 => [], 36 => [], 37 => []}
+  slides = {1 => ['image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2', 'text', 'title'], 2 => ['text', 'video1'], 3 => ['video2', 'video2'], 4 => ['image3', 'audio'], 5 => [], 6 => ['audio'], 7 => ['text', 'text'], 8 => [], 9 => ['video1', 'title'], 10 => ['image1', 'image3'], 11 => ['text', 'image2', 'image2', 'text'], 12 => ['video2', 'audio', 'title'], 13 => [], 14 => [], 15 => [], 16 => [], 17 => [], 18 => [], 19 => [], 20 => [], 21 => [], 22 => [], 23 => [], 24 => [], 25 => [], 26 => [], 27 => [], 28 => [], 29 => [], 30 => [], 31 => [], 32 => [], 33 => ['image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2', 'text', 'title', 'image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2', 'text', 'title', 'image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2', 'text', 'title', 'image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2', 'text', 'title', 'image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2', 'text', 'title'], 34 => [], 35 => [], 36 => [], 37 => []}
   
   Lesson.all.each do |l|
     slides[l.id].each do |kind|

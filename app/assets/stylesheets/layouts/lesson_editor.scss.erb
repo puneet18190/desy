@@ -53,16 +53,40 @@ html.lesson-editor-layout{
     padding: 10px;
     height: 20px;
     display: block;
-		position:absolute;
+    width:100%;
+		/*position:absolute;
     left:0px;
     top:0px;
-    z-index:9999999;
+    z-index:9999999;*/
+    .horizontal-only {
+  	  height:230px;
+  	}
+  	.scroll-pane {
+  	  width:1250px;
+  		/*position:absolute;*/
+  		overflow-y:visible;
+    }
+    .scrollOrange {
+      .jspTrack {
+        background: #3f3f3f;
+      }
+      .jspHorizontalBar {
+        height:8px;
+        top: 20px;
+        position:absolute;
+      }
+      .jspDrag {
+        background: $orange;
+      }
+    }
   }  
+  
 
   #slide-numbers {
-    position:fixed;
+    /*position:fixed;*/
     list-style: none;
     margin-left: 10px;
+    width: 3500px;
     li {
       float: left;
       a {
@@ -127,6 +151,16 @@ html.lesson-editor-layout{
     padding: 20px 20px 25px 25px;
     background: url("/assets/lesson-editor-tooltip-bg.png") top left no-repeat;
   }
+  
+  .slide-tooltip-to-left {
+    width: 300px;
+    display: none;
+		z-index:9999999999;
+    margin: 20px 0 0 -247px;
+    position: absolute;
+    padding: 20px 20px 25px 25px;
+    background: url("/assets/lesson-editor-tooltip-bg-to-left.png") top left no-repeat;
+  }
 
   .slide-thumb {
     width: 237px;
@@ -157,6 +191,8 @@ html.lesson-editor-layout{
       .audio-content{
         float: right;
         width: 100px;
+				height:100px;
+				overflow:hidden;
         margin: 0 5px;
         padding: 5px;
       }
@@ -540,6 +576,8 @@ html.lesson-editor-layout{
             margin: 20px 20px;
             width: 860px;
             height: 410px;
+						height: 356px;
+            padding: 194px 0 0;
             display:block;
 						a{
               background-position: -130px center;
@@ -764,8 +802,8 @@ html.lesson-editor-layout{
           .cover-choose-image{
             margin: 0 20px;
             width: 860px;
-            height: 405px;
-            padding: 145px 0 0;
+            height: 356px;
+            padding: 194px 0 0;
             a{
               margin-top:0;
             }
