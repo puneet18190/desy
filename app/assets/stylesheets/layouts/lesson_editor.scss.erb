@@ -72,7 +72,8 @@ html.lesson-editor-layout{
       }
       .jspHorizontalBar {
         height:8px;
-        margin-top: -230px;
+        top: 20px;
+        position:absolute;
       }
       .jspDrag {
         background: $orange;
@@ -149,6 +150,16 @@ html.lesson-editor-layout{
     position: absolute;
     padding: 20px 20px 25px 25px;
     background: url("/assets/lesson-editor-tooltip-bg.png") top left no-repeat;
+  }
+  
+  .slide-tooltip-to-left {
+    width: 300px;
+    display: none;
+		z-index:9999999999;
+    margin: 20px 0 0 -247px;
+    position: absolute;
+    padding: 20px 20px 25px 25px;
+    background: url("/assets/lesson-editor-tooltip-bg-to-left.png") top left no-repeat;
   }
 
   .slide-thumb {
