@@ -564,7 +564,7 @@ $(document).ready(function() {
   
   // VIRTUAL CLASSROOM
   
-  $('body').on('click', '._virtual_classroom_lesson ._cover_slide_thumb', function() {
+  $('body').on('click', '._virtual_classroom_lesson ._lesson_thumb', function() {
     var lesson_id = $(this).data('lesson-id');
     var redirect_to = $('#info_container').data('currenturl');
     window.location.href = '/lessons/' + lesson_id + '/view?back=' + encodeURIComponent(redirect_to);
@@ -646,7 +646,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._virtual_classroom_quick_loaded_lesson', function() {
-    var cover = $('#' + this.id + ' ._cover_slide_thumb');
+    var cover = $('#' + this.id + ' ._lesson_thumb');
     if(!cover.hasClass('current')) {
       var appended = $('#' + this.id + ' ._current_inserted');
       if(appended.length == 0) {
