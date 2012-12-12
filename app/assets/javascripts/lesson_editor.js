@@ -31,7 +31,7 @@ $(document).ready(function() {
   $('body').on('mouseout', '#slide-numbers li:not(._add_new_slide_options_in_last_position)', function(e) {
     var this_tooltip =$(this).children('.slide-tooltip');
     this_tooltip.removeClass("slide-tooltip-to-left");
-    //this_tooltip.hide();
+    this_tooltip.hide();
   });
   
   $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav)', function(e) {
@@ -238,6 +238,14 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('click','._not_current_slide',function(){
+      console.log("scrollBy");
+      console.log($('#nav_list_menu').scrollBy(30));
+      $('#nav_list_menu').scrollBy(30);
+      return false;
+    }
+  );
+  
 });
 
 function removeGalleryInLessonEditor(sti_type) {
@@ -310,7 +318,7 @@ function initializeSortableNavs() {
   console.log("sl_num: "+slides_numbers);
   var slides_amount = slides_numbers.find("li").length;
   console.log("sl_amnt: "+slides_amount);
-  slides_numbers.css('width', ''+(parseInt(slides_amount + 1) * 32) + 'px');
+  slides_numbers.css('width', ''+((parseInt(slides_amount + 1) * 32)-28) + 'px');
   console.log("sl_num_width: "+slides_numbers.css("width"));
   var add_last_button = $("._add_new_slide_options_in_last_position");
   if(parseInt(slides_numbers.css('width')) < (parseInt($(window).outerWidth())-50)){
