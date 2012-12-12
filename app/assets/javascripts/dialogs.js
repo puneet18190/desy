@@ -104,7 +104,7 @@ function showMediaElementInfoPopUp(media_element_id) {
       show: "fade",
       hide: "fade",
       close: function() {
-        var player_container = $('#dialog-media-element-' + media_element_id + ' ._instance_of_player_' + media_element_id);
+        var player_container = $('#dialog-media-element-' + media_element_id + ' ._instance_of_player');
         if(player_container.length > 0) {
           stopMedia('#dialog-media-element-' + media_element_id + ' ' + player_container.data('media-type'));
         }
@@ -189,9 +189,10 @@ function showVideoInGalleryPopUp(video_id) {
       },
       open: function(){
         customOverlayClose();
-        var instance_id = $('#dialog-video-gallery-' + video_id + ' ._instance_of_player_' + video_id).attr('id');
-        var video_duration = $('#dialog-video-gallery-' + video_id + ' ._select_video_from_gallery').data('duration');
-        initializeMedia(instance_id, 'video', video_duration);
+        var instance_id = $('#dialog-video-gallery-' + video_id + ' ._instance_of_player').attr('id');
+        if(!$('#' + instance_id).data('initialized')) {
+          initializeMedia(instance_id, 'video');
+        }
       },
       beforeClose: function() {
         stopMedia('#dialog-video-gallery-' + video_id + ' video');

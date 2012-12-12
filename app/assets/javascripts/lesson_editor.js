@@ -184,9 +184,15 @@ $(document).ready(function() {
     $('#' + place_id + ' ._full_video_in_slide source[type="video/webm"]').attr('src', video_webm);
     $('#' + place_id + ' video').load();
     $('#' + place_id + ' ._media_player_total_time').html(secondsToDateString(duration));
-    var video_player = $('#' + place_id + ' ._empty_video_player');
-    video_player.removeClass('_empty_video_player').addClass('_instance_of_player_' + video_id);
-    initializeMedia((video_player.attr('id')), 'video', duration);
+    var video_player = $('#' + place_id + ' ._empty_video_player, #' + place_id + ' ._instance_of_player');
+    if(video_player.data('initialized')) {
+      video_player.data('duration', duration);
+      $('#' + video_player.attr('id') + ' ._media_player_slider').slider('option', 'max', duration);
+    } else {
+      video_player.removeClass('_empty_video_player').addClass('_instance_of_player');
+      video_player.data('duration', duration);
+      initializeMedia(video_player.attr('id'), 'video');
+    }
     $('#' + place_id + ' ._rolloverable').data('rolloverable', true);
   });
   
@@ -211,9 +217,15 @@ $(document).ready(function() {
     $('#' + place_id + ' ._full_audio_in_slide source[type="audio/ogg"]').attr('src', audio_ogg);
     $('#' + place_id + ' audio').load();
     $('#' + place_id + ' ._media_player_total_time').html(secondsToDateString(duration));
-    var audio_player = $('#' + place_id + ' ._empty_audio_player');
-    audio_player.removeClass('_empty_audio_player').addClass('_instance_of_player_' + audio_id);
-    initializeMedia((audio_player.attr('id')), 'audio', duration);
+    var audio_player = $('#' + place_id + ' ._empty_audio_player, #' + place_id + ' ._instance_of_player');
+    if(audio_player.data('initialized')) {
+      audio_player.data('duration', duration);
+      $('#' + audio_player.attr('id') + ' ._media_player_slider').slider('option', 'max', duration);
+    } else {
+      audio_player.removeClass('_empty_audio_player').addClass('_instance_of_player');
+      audio_player.data('duration', duration);
+      initializeMedia(audio_player.attr('id'), 'audio');
+    }
   });
   
   $('body').on('mouseover', '._full_image_in_slide, ._full_video_in_slide', function() {

@@ -184,7 +184,7 @@ html.lesson-editor-layout{
 		  zoom:27%;
 			/*slide video*/
 			.slideVideo {
-			  height: 93px;
+			  
         @include formatElement;
         display: inline-block;
         background-color: white;
@@ -236,6 +236,34 @@ html.lesson-editor-layout{
 		    }
 		   }
       }
+			/*slide audio*/
+			
+			  
+	    .slideAudio{
+	      @include formatElement;
+		    h2 {
+		      height:100px;
+		    }
+		    .contentText {
+		      height:310px;
+					overflow:hidden;
+					p {
+					  margin-top: 1em;
+            margin-bottom: 1em;
+					}
+		    }
+	      .audioBig {
+	        width:auto;
+		      height:71px;
+		      margin: 5px 0 20px 0px;
+		      background-color:#f1f1f1;
+		      .audioIcon {
+					  margin-top:20px;
+						@include audioIconFormat;
+						margin-left:408px;
+					}
+		    }		
+			}
 		  /*slide title*/
 	   .slideTitle{
 	     @include formatElement;
