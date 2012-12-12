@@ -1,0 +1,12 @@
+<div class="img_expanded _lesson_thumb" data-lesson-id="<%= lesson.id %>">
+  <%= image_tag('finta2.jpg') %>
+  <div class="bg_text">
+    <div class="lessonTitle"><%= lesson.title %></div>
+  </div>
+  <div class="lessonSubject">
+    <%= lesson.subject.description %>
+    <span>
+      <%= t "captions.author"%>: <strong><%= lesson.user.full_name %></strong>
+    </span>
+  </div>
+</div>
