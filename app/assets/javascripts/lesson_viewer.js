@@ -52,9 +52,8 @@ $(document).ready(function() {
 });
 
 function stopMediaInLessonViewer() {
-  // TODO - FIXME invalid state error
-  //stopMedia('._lesson_viewer_current_slide audio');
-  //stopMedia('._lesson_viewer_current_slide video');
+  stopMedia('._lesson_viewer_current_slide audio');
+  stopMedia('._lesson_viewer_current_slide video');
 }
 
 function scrollLesson(direction) {
