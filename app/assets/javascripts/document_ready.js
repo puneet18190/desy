@@ -245,15 +245,15 @@ $(document).ready(function() {
   $('body').on('click', '._audio_gallery_thumb ._compact', function() {
     var parent_id = $(this).parent().attr('id');
     var obj = $('#' + parent_id + ' ._expanded');
-    if(obj.css('display') == 'none') {
-      obj.show('blind', {}, 500, function() {
-        obj.show();
-      });
+    if(obj.css('display') == 'block') {
+      $('#' + parent_id).removeClass('_audio_expanded_in_gallery');
+      stopMedia('#' + parent_id + ' audio');
+      obj.hide('blind', {}, 500);
     } else {
-      obj.hide('blind', {}, 500, function() {
-        stopMedia('#' + parent_id + ' audio');
-        obj.hide();
-      });
+      $('#' + parent_id).addClass('_audio_expanded_in_gallery');
+      stopMedia('._audio_expanded_in_gallery audio');
+      $('._audio_expanded_in_gallery ._expanded').hide('blind', {}, 500);
+      obj.show('blind', {}, 500);
     }
   });
   
@@ -266,6 +266,7 @@ $(document).ready(function() {
       closePopUp($(this).attr("id"));
     });
   });
+  
   
   // LESSON BUTTONS
   
