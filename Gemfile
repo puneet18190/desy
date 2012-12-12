@@ -22,6 +22,7 @@ gem 'schema_plus'
 group :development do
   gem 'rails-erd'
   gem "letter_opener"
+  gem 'colorize'
 end
 
 gem 'recursive-open-struct'

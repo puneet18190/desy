@@ -15,6 +15,7 @@ class VideoUploader < String
 
   attr_reader :model, :column, :value
 
+  FORMATS                        = [:mp4, :webm]
   RAILS_PUBLIC                   = File.join Rails.root, 'public'
   PUBLIC_RELATIVE_FOLDER         = env_relative_path 'media_elements/videos'
   ABSOLUTE_FOLDER                = File.join RAILS_PUBLIC, PUBLIC_RELATIVE_FOLDER
@@ -22,9 +23,9 @@ class VideoUploader < String
   EXTENSIONS_WHITE_LIST_WITH_DOT = EXTENSIONS_WHITE_LIST.map{ |ext| ".#{ext}" }
   MIN_DURATION                   = 1
   DURATION_THRESHOLD             = MediaEditing::Video::CONFIG.duration_threshold
-  ALLOWED_KEYS                   = [:filename, :mp4, :webm]
-  COVER_FORMAT                   = '%s-cover.jpg'
-  THUMB_FORMAT                   = '%s-thumb.jpg'
+  ALLOWED_KEYS                   = [:filename] + FORMATS
+  VERSION_FORMATS                = { cover: 'cover_%s.jpg', thumb: 'thumb_%s.jpg' }
+  COVER_FORMAT, THUMB_FORMAT     = VERSION_FORMATS[:cover], VERSION_FORMATS[:thumb]
 
   def initialize(model, column, value)
     @model, @column, @value = model, column, value
@@ -41,7 +42,7 @@ class VideoUploader < String
       @original_filename = @value.original_filename
       model.converted    = nil
     when Hash
-      @converted_files                     = @value.select{ |k| [:mp4, :webm].include? k }
+      @converted_files                     = @value.select{ |k| FORMATS.include? k }
       @original_filename_without_extension = @value[:filename]
     else
       @filename_without_extension ||= ''
@@ -105,11 +106,6 @@ class VideoUploader < String
     model.id
   end
 
-  # converted
-  #   true  : conversione andata a buon fine
-  #   false : conversione non andata a buon fine
-  #   nil   : conversione da effettuare o in fase di conversione
-
   def column_changed?
     model.send(:"#{column}_changed?")
   end
@@ -128,7 +124,14 @@ class VideoUploader < String
   alias inspect to_s
 
   def public_relative_path(format = nil)
-    File.join public_relative_folder, (format ? "#{filename_without_extension}.#{format}" : "#{filename_without_extension}")
+    case format
+    when ->(f) { f.blank? }
+      File.join public_relative_folder, filename_without_extension.to_s
+    when *FORMATS
+      File.join public_relative_folder, "#{filename_without_extension}.#{format}"
+    when :cover, :thumb
+      File.join public_relative_folder, VERSION_FORMATS[format] % filename_without_extension.to_s
+    end
   end
   alias path public_relative_path
 
@@ -150,6 +153,14 @@ class VideoUploader < String
     path(:webm)
   end
 
+  def cover_path
+    path(:cover)
+  end
+
+  def thumb_path
+    path(:thumb)
+  end
+
   # def absolute_paths
   #   { mp4: absolute_path(:mp4), webm: absolute_path(:webm) }
   # end
@@ -165,11 +176,12 @@ class VideoUploader < String
       model.send :"#{format}_duration=", info.duration
     end
 
-    cover_path = COVER_FORMAT % output_path_without_extension
+    cover_path = File.join output_folder, COVER_FORMAT % processed_original_filename_without_extension
     extract_cover @converted_files[:mp4], cover_path, infos[:mp4].duration / 2
 
     # TODO ho copiato il resize to fill da carrierwave, adattarlo
-    thumb_path = THUMB_FORMAT % output_path_without_extension
+    thumb_path = File.join output_folder, THUMB_FORMAT % processed_original_filename_without_extension
+    # thumb_path = THUMB_FORMAT % output_path_without_extension
     extract_thumb cover_path, thumb_path
 
     model.converted = true

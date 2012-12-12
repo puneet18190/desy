@@ -48,4 +48,11 @@ if Rails.env.development?
   puts "#{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements (should be 17)"
   puts "#{Tag.count} tags (should be 34)"
   puts "#{Tagging.count} taggings (should be 791)"
+
+  begin
+    require 'colorize'
+    puts 'FINE'.green
+  rescue LoadError
+  end
+
 end
