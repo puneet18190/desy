@@ -7,7 +7,9 @@ $(document).ready(function() {
   });
   
   initializeSortableNavs();
-    
+  $('#nav_list_menu').jScrollPane({
+    autoReinitialise: false
+  });
   $(".slide-content.cover .title").css("margin-left", "auto");
   
   initLessonEditorPositions();
@@ -301,7 +303,6 @@ function stopMediaInCurrentSlide() {
 }
 
 function initializeSortableNavs() {
-  $('#nav_list_menu').jScrollPane();
   $("#heading, #heading .scroll-pane").css("width", (parseInt($(window).outerWidth())-50) + "px");
   var slides_numbers = $('#slide-numbers');
   console.log("sl_num: "+slides_numbers);
