@@ -1,3 +1,5 @@
+require 'video_uploader'
+
 class Video < MediaElement
   
   VIDEO_COMPONENT = 'video'
