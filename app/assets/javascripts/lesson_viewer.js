@@ -59,35 +59,30 @@ function stopMediaInLessonViewer() {
 
 function scrollLesson(direction) {
   if(direction == 'right') {
-    console.log("sl#: "+current_slide_number+"slAmount: "+slides_amount);
     if(current_slide_number == slides_amount) {
-      console.log("last slide right");
       left_indent = 0;
       $('#carousel_ul li.slide').first().addClass('_lesson_viewer_current_slide');
       $('#info_container').data("slide-number", 1);
+      current_slide_number = 1;
     } else {
     current_slide.next().addClass('_lesson_viewer_current_slide');
     current_slide.removeClass('_lesson_viewer_current_slide');
     $('#info_container').data("slide-number", (parseInt(current_slide_number) + 1));
     current_slide_number = $('#info_container').data("slide-number");
     left_indent = parseInt(current_slide_number - 1) * 900;
-    console.log("to-right: "+left_indent);
     }
   } else {
-    console.log("sl#: "+current_slide_number+"slAmount: "+slides_amount);
     if(current_slide_number == 1) {
-      console.log("first slide left");
       left_indent = ((slides_amount - 1) * 900);
-      console.log(left_indent);
       $('#carousel_ul li.slide').last().addClass('_lesson_viewer_current_slide');
       $('#info_container').data("slide-number", (parseInt(slides_amount)));
+      current_slide_number = slides_amount;
     } else {
       current_slide.prev().addClass('_lesson_viewer_current_slide');
       current_slide.removeClass('_lesson_viewer_current_slide');
       $('#info_container').data("slide-number", (parseInt(current_slide_number) - 1));
       current_slide_number = $('#info_container').data("slide-number");
       left_indent = parseInt(current_slide_number - 1) * 900;
-      console.log("to-left: "+left_indent);
     }
   }
   $('#carousel_ul').fadeOut("fast");
