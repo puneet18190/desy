@@ -244,6 +244,9 @@ html.lesson-viewer-layout{
 	/*slide image*/
 	.slideImage{
 	  @include formatElement;
+		h2 {
+		  height:93px;
+		}
 	  img{
 	    position:absolute;
 	  }
@@ -251,15 +254,26 @@ html.lesson-viewer-layout{
 	/*slide text*/
 	.slideText{
 	  @include formatElement;
-		
+		h2 {
+		  height:93px;
+		}
 	}
 	/*slide video*/
 	.slideVideo{
-	  @include formatElement
+	  @include formatElement;
+		h2 {
+		  height:93px;
+		}
 	}
 	/*slide audio*/
 	.slideAudio{
-	  @include formatElement
+	  @include formatElement;
+		h2 {
+		  height:100px;
+		}
+		.contentText {
+		height:300px;
+		}
 	}
 	.boxFissoImage {
 	  width:420px;
@@ -358,9 +372,9 @@ html.lesson-viewer-layout{
 			
 	  }
 		.audioPlayer {
-		  padding: 18px 20px 9px 20px;
-      margin: 0;
-      width: 820px;
+		  padding: 17px 20px 8px 18px;
+      margin:0;
+      width: 822px;
 		}
 	}
 	/*slide immagini formato 420x420*/
@@ -369,6 +383,7 @@ html.lesson-viewer-layout{
 		width:420px;
 		height:420px;
 		margin-right:20px;
+		margin-top:3px;
 		background-color:#f1f1f1;
 		overflow:hidden;
 		position:relative;
@@ -432,21 +447,24 @@ html.lesson-viewer-layout{
 	}
 	.textRightContent {
 	  float:right;
-		padding:10px;
+		padding:0px 10px;
 		width:400px;
-		height:400px;
+		height:420px;
 		overflow:hidden;
 		a	{
 		  color: $orange;
 		  text-decoration:underline;	
 		}
-		
+		p {
+		  margin-top:0.8em;
+			margin-bottom:0.8em;
+		}
 	}
 	.textRightVideoContent {
     float:right;
     padding:0px 10px;
     width:400px;
-    height:400px;
+    height:420px;
     overflow:hidden;
 		a	{
 		  color: $orange;

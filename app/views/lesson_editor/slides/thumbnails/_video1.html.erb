@@ -1,6 +1,7 @@
 <div class="slide-thumb <%= slide.kind%>">
   <h2><%= slide.title %></h2>
-  <video id="video" src="http://slides.html5rocks.com/src/chrome_japan.mp4" controls></video>
+  <% video = slide.video_at(1) %>
+  <%= image_tag video.cover_path, :width => "230", :height => "150" if video %>
   <div class="video1-content">
     <%= slide.text.html_safe if slide.text %>
   </div>
