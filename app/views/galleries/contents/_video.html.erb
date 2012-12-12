@@ -2,7 +2,8 @@
   <div class="scroll-pane">
     <% videos.each do |video| %>
       <li id="gallery_video_<%= video.id %>" class="_video_gallery_thumb" data-video-id="<%= video.id %>">
-        <a><%= image_tag video.cover, :width => '250', :height => '140' %></a>
+        <!-- REPLACE WITH video.cover -->
+        <a><%= image_tag "http://lorempixel.com/250/140", :width => '250', :height => '140' %></a>
         <%= render :partial => "galleries/popups/video", :locals => {:video => video} %>
       </li>
     <% end %>
