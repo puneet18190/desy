@@ -41,7 +41,7 @@ html.lesson-editor-layout{
   h2 {
     
     font-size: 50px;
-    text-align: left;
+    /*text-align: left;*/
     font-weight: normal;
     line-height: 50px;
 		margin:20px;
@@ -142,6 +142,34 @@ html.lesson-editor-layout{
 		text-decoration:underline;	
 	}
  }
+ @mixin formatElement {
+	  width:860px;
+		height:550px;
+		padding: 20px;
+		display:inline-block;
+		background-color:#fff;
+	}
+	@mixin photoIconFormat {
+	  font-size:2.8em;
+		background-position: -11.6em -11.6em;
+		opacity:0.1;
+		width:180px;
+		height:180px;
+	}
+	@mixin videoIconFormat {
+	  font-size:2.8em;
+		background-position: -11.6em -0.3em;
+		opacity:0.1;
+		width:180px;
+		height:180px;
+	}
+	@mixin audioIconFormat {
+	  font-size:0.45em;
+		background-position: -11.6em -5.5em;
+		opacity:0.1;
+		
+	}
+ /*THUMBNAILS*/
   .slide-tooltip {
     width: 300px;
     display: none;
@@ -150,6 +178,67 @@ html.lesson-editor-layout{
     position: absolute;
     padding: 20px 20px 25px 25px;
     background: url("/assets/lesson-editor-tooltip-bg.png") top left no-repeat;
+		.zoomOutThumb {
+		  zoom:27%;
+			/*slide video*/
+			.slideVideo {
+        @include formatElement;
+        display: inline-block;
+        background-color: white;
+				/*video grande*/
+				.videoBig {
+	        @include formatElement;
+					padding:0px;
+		      background-color:#f1f1f1;
+					position:relative;
+					.bulletPointVideo {
+            top:166px;
+						text-align:center;
+					}
+					.videoIcon {
+	          @include videoIconFormat;
+		        margin-top:178px;
+			      margin-left:328px;
+	        }
+		   }
+	
+      }
+		  /*slide title*/
+	   .slideTitle{
+	     @include formatElement;
+			 text-align:center;
+		   display:table;
+		   h2 {
+		     display:table-cell; 
+			   vertical-align:middle;
+				 padding:0px 100px;
+				 font-size:70px;
+				 line-height:70px;
+		   }
+	   }
+		 /*slide text*/
+		 .slideText {
+		    @include formatElement;
+        display: inline-block;
+        background-color: white;
+				h2 {
+		      height:93px;
+		    }
+				.contentText {
+				  width: 840px;
+          height: 400px;
+          margin: 0;
+          padding: 0px 10px;
+          overflow: hidden;
+					@include colorLink;
+					p {
+					  margin-top: 1em;
+            margin-bottom: 1em;
+					}
+				}
+		  }
+		}
+		
   }
   
   .slide-tooltip-to-left {
@@ -161,7 +250,7 @@ html.lesson-editor-layout{
     padding: 20px 20px 25px 25px;
     background: url("/assets/lesson-editor-tooltip-bg-to-left.png") top left no-repeat;
   }
-
+  
   .slide-thumb {
     width: 237px;
     height: 152px;
@@ -169,6 +258,7 @@ html.lesson-editor-layout{
     padding: 5px;
     background-color: white;
     font-size: 7px;
+		
     h2{
       font-size: 16px;
       line-height: 16px;
@@ -458,6 +548,7 @@ html.lesson-editor-layout{
             margin: 0px;
             text-align:center;
             font-size: 70px;
+						line-height:70px;
             color: $orange;
             font-family: "Nunito", sans-serif;
           }
