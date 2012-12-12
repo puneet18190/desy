@@ -40,7 +40,7 @@ class VideoEditorController < ApplicationController
     resp[:components].first[:type] = Video::VIDEO_COMPONENT
     resp[:components].first[:video_id] = @video.id
     resp[:components].first[:from] = 0
-    resp[:components].first[:until] = @video.duration
+    resp[:components].first[:until] = @video.min_duration
     resp = Video.convert_parameters(resp, @current_user.id)
     resp.nil? ? empty_parameters : resp
   end

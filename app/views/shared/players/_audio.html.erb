@@ -5,9 +5,9 @@
   duration = ''
   if audio
     audio_class = "_instance_of_player_#{audio.id}"
-    ogg = audio.ogg
-    mp3 = audio.mp3
-    duration = seconds_to_time(audio.duration)
+    ogg = audio.ogg_path
+    mp3 = audio.mp3_path
+    duration = seconds_to_time(audio.min_duration)
   end
 %>
 
@@ -28,7 +28,7 @@
 
 <% if audio %>
   <script type="text/javascript">
-    initializeMedia('instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player', 'audio', <%= audio.duration %>);
+    initializeMedia('instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player', 'audio', <%= audio.min_duration %>);
   </script>
 <% end %>
 
