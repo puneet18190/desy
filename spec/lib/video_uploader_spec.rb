@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-
 shared_examples 'after the saving of the associated video' do
   let(:public_relative_folder) { "/media_elements/videos/test/#{video.id}" }
   let(:name)                   { 'tmp-valid-video' }
   let(:path_without_extension) { "#{public_relative_folder}/#{name}" }
   let(:paths)                  { { mp4: "#{path_without_extension}.mp4", webm: "#{path_without_extension}.webm" } }
+  let(:durations)              { { mp4_duration: 38.19, webm_duration: 38.17 } }
 
   it 'resets rename_media' do
     video.rename_media.should_not be_true
@@ -16,7 +16,7 @@ shared_examples 'after the saving of the associated video' do
   end
 
   it 'sets the expected duration' do
-    video.metadata.marshal_dump.should == { mp4_duration: 38.19, webm_duration: 38.17 }
+    video.metadata.marshal_dump.should == durations
   end
 
   it 'sets the expected [:media] value' do
@@ -40,9 +40,7 @@ shared_examples 'after the saving of the associated video' do
   end
 end
 
-
 describe VideoUploader do
-
   let(:media_folder)           { Rails.root.join('spec/support/samples') }
   let(:valid_video_path)       { media_folder.join 'valid video.flv' }
   let(:tmp_valid_video_path)   { media_folder.join 'tmp.valid video.flv' }
@@ -57,25 +55,20 @@ describe VideoUploader do
 
   context 'with a new record' do
     context 'with a File', slow: true do
-      it 'works' do
-        let(:media) { File.open(tmp_valid_video_path) }
-        let(:video) { Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media) { |v| v.user_id = User.admin.id } }
-        
-        before(:all) do
-          video.save!
-          video.reload
-        end
-
-        include_examples 'after the saving of the associated video'
+      let(:media) { File.open(tmp_valid_video_path) }
+      let(:video) { Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media) { |v| v.user_id = User.admin.id } }
+      
+      before(:all) do
+        video.save!
+        video.reload
       end
+
+      include_examples 'after the saving of the associated video'
     end
 
-    context 'with a ActionDispatch::Http::UploadedFile', slow: true, focus: true do
-      let(:uploaded_path) { tmp_valid_video_path }
-      let(:filename)      { File.basename(uploaded_path) }
-      let(:tempfile)      { File.open(uploaded_path) }
-      let(:media)         { ActionDispatch::Http::UploadedFile.new(filename: filename, tempfile: tempfile) }
-      let(:video)         { Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media) { |v| v.user_id = User.admin.id } }
+    context 'with a ActionDispatch::Http::UploadedFile', slow: true do
+      let(:media) { ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_video_path), tempfile: File.open(tmp_valid_video_path)) }
+      let(:video) { Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media) { |v| v.user_id = User.admin.id } }
 
       before(:all) do
         video.save!
@@ -85,7 +78,7 @@ describe VideoUploader do
       include_examples 'after the saving of the associated video'
     end
 
-    context 'with a Hash', focus: true do
+    context 'with a Hash' do
       let(:media_without_extension) { media_folder.join('con verted').to_s }
       let(:media)                   { { filename: 'tmp.valid video', mp4: "#{media_without_extension}.mp4", webm: "#{media_without_extension}.webm" } }
       let(:video)                   { Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media) { |v| v.user_id = User.admin.id } }

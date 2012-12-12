@@ -11,7 +11,7 @@ module MediaEditing
       module ClassMethods
         def log_folder(folder_name = nil)
           folder_name ||= to_s.demodulize.underscore
-          File.join Rails.root, VideoUploader.env_relative_path("log/video_editing/#{folder_name}")
+          File.join Rails.root, VideoUploader.env_relative_path("log/media_editing/video/#{folder_name}")
         end      
       end
       
