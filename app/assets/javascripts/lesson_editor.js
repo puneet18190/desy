@@ -1,13 +1,16 @@
 $(document).ready(function() {
   
-  $("html.lesson-editor-layout ul#slides").css("margin-top", ($(window).height() - 590)/2 + "px");
+  $("html.lesson-editor-layout ul#slides").css("margin-top", ((($(window).height() - 590)/2)-40) + "px");
   
   $('._image_container_in_lesson_editor').each(function() {
     makeDraggable($(this).attr('id'));
   });
   
   initializeSortableNavs();
-  
+  $('#nav_list_menu').jScrollPane({
+      autoReinitialise: true
+    });
+    
   $(".slide-content.cover .title").css("margin-left", "auto");
   
   initLessonEditorPositions();
