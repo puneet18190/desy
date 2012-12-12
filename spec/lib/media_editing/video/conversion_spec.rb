@@ -7,19 +7,20 @@ module MediaEditing
 
       supported_formats = MEVSS::FORMATS
 
-      let(:location)     { Location.create!(   description: ::CONFIG['locations'].first    ) }
-      let(:school_level) { SchoolLevel.create!(description: ::CONFIG['school_levels'].first) }
-      let(:db_subject)   { Subject.create!(    description: ::CONFIG['subjects'].first     ) }
-      let!(:user)        do
-        User.admin || (
-          user_name    = ::CONFIG['admin_username'].split(' ').first
-          user_surname = ::CONFIG['admin_username'].gsub("#{user_name} ", '')
-          unless user = User.create_user(::CONFIG['admin_email'], user_name, user_surname, 'School', school_level.id, location.id, [db_subject.id])
-            raise 'could not create admin user'
-          end
-          user
-        )
-      end
+      # let(:location)     { Location.create!(   description: ::CONFIG['locations'].first    ) }
+      # let(:school_level) { SchoolLevel.create!(description: ::CONFIG['school_levels'].first) }
+      # let(:db_subject)   { Subject.create!(    description: ::CONFIG['subjects'].first     ) }
+      # let!(:user)        do
+      #   User.admin || (
+      #     user_name    = ::CONFIG['admin_username'].split(' ').first
+      #     user_surname = ::CONFIG['admin_username'].gsub("#{user_name} ", '')
+      #     unless user = User.create_user(::CONFIG['admin_email'], user_name, user_surname, 'School', school_level.id, location.id, [db_subject.id])
+      #       raise 'could not create admin user'
+      #     end
+      #     user
+      #   )
+      # end
+      let(:user)          { User.admin }
       let(:uploaded_path) { "#{MEVSS::SAMPLES_FOLDER}/tmp.in put.flv" }
       let(:filename)      { 'in put.flv' }
       let(:tempfile)      { File.open(uploaded_path) }
@@ -53,7 +54,7 @@ module MediaEditing
                 before(:all) do
                   FileUtils.cp video_constant, uploaded_path
                   [ stdout_log, stderr_log, input, output ].each { |f| FileUtils.rm(f) if File.exists?(f) }
-                  MediaEditing::Video::Conversion.new(model.id, filename, uploaded_path).convert_to(format)
+                  MediaEditing::Video::Conversion.new(model.id, uploaded_path, uploaded_path).convert_to(format)
                 end
 
                 it "creates a valid video" do
@@ -83,7 +84,7 @@ module MediaEditing
 
             context 'with an invalid video' do
 
-              subject { MediaEditing::Video::Conversion.new(model.id, filename, uploaded_path) }
+              subject { MediaEditing::Video::Conversion.new(model.id, uploaded_path, uploaded_path) }
               
               before do
                 FileUtils.cp MEVSS::INVALID_VIDEO, uploaded_path
@@ -103,7 +104,7 @@ module MediaEditing
                 end.tap{ |v| v.skip_conversion = true; v.save! }
               end
 
-              subject { MediaEditing::Video::Conversion.new(model.id, filename, uploaded_path) }
+              subject { MediaEditing::Video::Conversion.new(model.id, uploaded_path, uploaded_path) }
 
               before do
                 FileUtils.cp MEVSS::VALID_VIDEO, uploaded_path
@@ -124,7 +125,7 @@ module MediaEditing
 
       describe 'run' do
 
-        subject { MediaEditing::Video::Conversion.new(model.id, filename, uploaded_path) }
+        subject { MediaEditing::Video::Conversion.new(model.id, uploaded_path, uploaded_path) }
 
         context 'with a valid video' do
       
@@ -135,7 +136,7 @@ module MediaEditing
             model.reload
           end
 
-          it 'sets the model converted attribute' do
+          it 'sets the model converted attribute', focus: true do
             model.should be_converted
           end
 

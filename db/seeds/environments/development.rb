@@ -1,5 +1,7 @@
 # encoding: UTF-8
 
+require 'video_uploader'
+
 def plant_development_seeds
   
   videos_folder = VideoUploader::ABSOLUTE_FOLDER
@@ -15,11 +17,11 @@ def plant_development_seeds
   subject2 = Subject.find 2
   subject3 = Subject.find 3
 
-  media_element_types = { 'Video' => 19, 'Audio' => 19, 'Image' => 32 }.inject([]) do |ary, kv| 
+  media_element_types = [ 'Video' ]*5 + [ 'Image', 'Audio' ] + { 'Video' => 14, 'Audio' => 18, 'Image' => 31 }.inject([]) do |ary, kv| 
     k,v = kv
     ary + ([k]*v)
   end.shuffle
-  
+
   images = Dir.glob("#{Rails.root}/db/seeds/images/*").grep(/\.jpe?g|png$/).shuffle
   videos = Dir.glob("#{Rails.root}/db/seeds/videos/*.mp4").shuffle.map do |v|
     { mp4: v, webm: v.sub(/\.mp4$/, '.webm'), filename: File.basename(v, File.extname(File.basename v)) }

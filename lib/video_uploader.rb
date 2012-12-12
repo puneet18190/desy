@@ -1,24 +1,19 @@
 # encoding: utf-8
 
-require 'media_editing/video'
 require 'media_editing/video/allowed_duration_range'
+require 'env_relative_path'
+require 'media_editing/video/cmd/extract_frame'
 
 class VideoUploader < String
 
   require 'video_uploader/validation'
 
+  include EnvRelativePath
   include MediaEditing::Video::AllowedDurationRange
   include VideoUploader::Validation
 
-  attr_reader :model, :column, :value
 
-  # Paths are scoped in a folder named `Rails.env` unless the env is production
-  # Example: log folder path
-  #   Rails.env == development: 'log/video_editing/conversions/development'
-  #   Rails.env == production:  'log/video_editing/conversions'
-  def self.env_relative_path(path)
-    Rails.env.production? ? path : File.join(path, Rails.env)
-  end
+  attr_reader :model, :column, :value
 
   RAILS_PUBLIC                   = File.join Rails.root, 'public'
   PUBLIC_RELATIVE_FOLDER         = env_relative_path 'media_elements/videos'
@@ -28,6 +23,8 @@ class VideoUploader < String
   MIN_DURATION                   = 1
   DURATION_THRESHOLD             = MediaEditing::Video::CONFIG.duration_threshold
   ALLOWED_KEYS                   = [:filename, :mp4, :webm]
+  COVER_FORMAT                   = '%s-cover.jpg'
+  THUMB_FORMAT                   = '%s-thumb.jpg'
 
   def initialize(model, column, value)
     @model, @column, @value = model, column, value
@@ -86,7 +83,6 @@ class VideoUploader < String
     end
     true
   end
-
 
   def output_path_without_extension
     File.join output_folder, processed_original_filename_without_extension
@@ -161,11 +157,21 @@ class VideoUploader < String
   def copy
     FileUtils.mkdir_p output_folder unless Dir.exists? output_folder
     
+    infos = {}
     @converted_files.each do |format, input_path|
       FileUtils.cp input_path, output_path(format)
       info = MediaEditing::Video::Info.new(input_path)
+      infos[format] = info
       model.send :"#{format}_duration=", info.duration
     end
+
+    cover_path = COVER_FORMAT % output_path_without_extension
+    extract_cover @converted_files[:mp4], cover_path, infos[:mp4].duration / 2
+
+    # TODO ho copiato il resize to fill da carrierwave, adattarlo
+    thumb_path = THUMB_FORMAT % output_path_without_extension
+    extract_thumb cover_path, thumb_path
+
     model.converted = true
     model.send :"rename_#{column}=", true
     model.send :"#{column}=", processed_original_filename_without_extension
@@ -177,10 +183,40 @@ class VideoUploader < String
     model.send :"reload_#{column}"
   end
 
+  def extract_cover(input, output, seek)
+    MediaEditing::Video::Cmd::ExtractFrame.new(input, output, seek).run!
+    raise StandardError, 'unable to create cover' unless File.exists? output
+  end
+
   def upload
     if not model.skip_conversion
       Delayed::Job.enqueue MediaEditing::Video::Conversion::Job.new(model_id, @original_file.path, output_path_without_extension)
     end
+  end
+
+  def extract_thumb(input, output)
+    input_image = ::MiniMagick::Image.open(input)
+    cols, rows = input_image[:dimensions]
+    width, height = 200, 200
+    input_image.combine_options do |cmd|
+      if width != cols || height != rows
+        scale_x = width/cols.to_f
+        scale_y = height/rows.to_f
+        if scale_x >= scale_y
+          cols = (scale_x * (cols + 0.5)).round
+          rows = (scale_x * (rows + 0.5)).round
+          cmd.resize "#{cols}"
+        else
+          cols = (scale_y * (cols + 0.5)).round
+          rows = (scale_y * (rows + 0.5)).round
+          cmd.resize "x#{rows}"
+        end
+      end
+      cmd.gravity 'Center'
+      cmd.background "rgba(255,255,255,0.0)"
+      cmd.extent "#{width}x#{height}" if cols != width || rows != height
+    end
+    input_image.write(output)
   end
 
 end
