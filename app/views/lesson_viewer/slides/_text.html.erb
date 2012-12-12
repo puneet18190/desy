@@ -1,6 +1,6 @@
 <div class="bigViewLesson slideText">
   <h2><%= slide.title %></h2>
   <div class="contentText">
-	  <%= slide.text.html_safe %>
+	  <%= slide.text.html_safe if slide.text %>
   </div>
 </div>

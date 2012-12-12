@@ -12,6 +12,6 @@
     <% end %>
   </div>
   <div class="contentText">
-    <%= slide.text.html_safe %>
+    <%= slide.text.html_safe if slide.text %>
   </div>
 </div>
