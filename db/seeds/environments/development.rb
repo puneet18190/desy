@@ -175,7 +175,7 @@ def plant_development_seeds
     sti_type = media_element_types[i%media_element_types.size]
 
     media_element = sti_type.constantize.new :description => description[1], :title => description[0] do |record|
-      record.user_id = admin.id
+      record.user_id = (i % 2 == 1) ? admin.id : u.id
       record.tags = tag_map[i%tag_map.size]
     end
 
