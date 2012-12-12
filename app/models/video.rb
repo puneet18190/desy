@@ -64,7 +64,7 @@ class Video < MediaElement
           video = Video.get_media_element_from_hash(p, :video_id, user_id, 'Video')
           return nil if video.nil?
           return nil if !p.has_key?(:from) || !p[:from].kind_of?(Integer) || !p.has_key?(:until) || !p[:until].kind_of?(Integer)
-          return nil if p[:from] < 0 || p[:until] > video.duration || p[:from] >= p[:until]
+          return nil if p[:from] < 0 || p[:until] > video.min_duration || p[:from] >= p[:until]
           resp_hash[:components] << {
             :type => VIDEO_COMPONENT,
             :video => video,
@@ -98,7 +98,13 @@ class Video < MediaElement
   def self.get_media_element_from_hash(hash, key, user_id, my_sti_type)
     hash.has_key?(key) && hash[key].kind_of?(Integer) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
   end
-
+  
+  def min_duration
+    d1 = self.mp4_duration.to_i
+    d2 = self.webm_duration.to_i
+    d1 > d2 ? d2 : d1
+  end
+  
   def thumb_path
     # TODO
     'TODO'

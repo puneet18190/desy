@@ -19,7 +19,12 @@
   <div class="bg_text">
     <div class="lessonTitle"><%= slide.lesson.title %></div>
   </div>
-  <div class="lessonSubject">
-    <%= subject.description %><span><%= t('captions.author') %>: <strong><%= author.full_name %></strong></span>
+  <div class="cover-slide-footer">
+    <div class="subject pull-left">
+		  <%= subject.description %>
+		</div>
+		<div class="author pull-right">
+		  <%= t('captions.author') %>: <span class="name"><%= author.full_name %></span>
+		</div>
   </div>
 </div>

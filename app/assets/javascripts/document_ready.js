@@ -679,8 +679,6 @@ $(document).ready(function() {
   
   // VIDEO EDITOR
   
-  initializeVideoEditor();
-  
   $('body').on('mouseover', '._video_editor_component_hover', function() {
     var father = $(this).parent();
     $('#' + father.attr('id') + ' ._video_editor_component_menu').show();
@@ -831,7 +829,7 @@ $(document).ready(function() {
       showErrorPopUp($('#popup_captions_container').data('empty-text-component-in-video-editor'));
     } else {
       var content = $('#text_component_preview textarea').val();
-      var component = $('#video_editor_mixed_gallery_container ._texts ._temporaray').html();
+      var component = $('#video_editor_mixed_gallery_container ._texts ._temporary').html();
       var current_component = $('#info_container').data('current-component');
       closeMixedGalleryInVideoEditor();
       setTimeout(function() {
@@ -844,6 +842,8 @@ $(document).ready(function() {
       }
     }
   });
+  
+  initializeVideoEditor();
   
   
   // PLAYERS

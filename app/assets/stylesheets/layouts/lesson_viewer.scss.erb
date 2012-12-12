@@ -43,10 +43,9 @@ html.lesson-viewer-layout{
   h2 {
     font-size:70px;
 		font-weight: normal;
-    padding:11px 11px;
+    padding:11px 11px 7px;
 		margin:0px 0px 20px 0px;
-		height:92px;
-		
+	
 	}
 	.top {
     margin-bottom: -220px;
@@ -96,17 +95,18 @@ html.lesson-viewer-layout{
 		.bg_text {
 		  background-color: rgba(242, 148, 0, 0.95);
       height: 130px;
-      width: 880px;
-      padding:5px 10px 10px 10px;
+      width: 860px;
+      padding: 0px 20px;
       position:absolute;
-	    bottom:27px;
+	    top:430px;
 	    left:0px;
 			
     .lessonTitle {
 		  font: 100% 'Nunito', sans-serif;
       color:#fff;
-		  line-height:1em;
+		  line-height:50px;
 		  font-size: 50px;
+			margin:20px;
      }
 		}
 		.lessonSubject {
@@ -210,6 +210,23 @@ html.lesson-viewer-layout{
 			  position:absolute;
 			}
 	  }
+	 .cover-slide-footer{
+        clear: both;
+        background-color: white;
+        color: #373737;
+        height: 16px;
+        width: 870px;
+        padding: 7px 15px;
+        font-size: 13px;
+        
+        .subject .h3{
+          font-family: Arial, sans-serif;
+          color: #373737;
+        }
+        .author .name{
+          color: $orange;
+        }
+      }
 	}
 	/*slide title*/
 	.slideTitle{
@@ -343,7 +360,7 @@ html.lesson-viewer-layout{
       width: 820px;
 		}
 	}
-	/*slide immagini formato 420x440*/
+	/*slide immagini formato 420x420*/
 	.medium {
 	  float:left;
 		width:420px;
@@ -426,11 +443,17 @@ html.lesson-viewer-layout{
     overflow:hidden;
 	}
 	.contentText {
-	  width:820px;
+	  width:840px;
 		height:400px;
 		overflow:hidden;
-		padding:20px;
+		margin: 0;
+		padding:0 9px;
 		line-height: 13px;
+		
+		p {
+		  margin-top:1em;
+			margin-bottom:1em;
+		}
 	}
 	
 	.playlist_footer{
@@ -444,6 +467,7 @@ html.lesson-viewer-layout{
 	#carousel_inner {
   float:left; /* important for inline positioning */
   width:900px; /* important (this width = width of list item(including margin) * items shown */
+  height: 590px;
   overflow: hidden;  /* important (hide the items outside the div) */
   /* non-important styling bellow */
 	-webkit-box-shadow: 0px 6px 16px #161515;
@@ -456,8 +480,8 @@ html.lesson-viewer-layout{
   list-style-type: none; /* removing the default styling for unordered list items */
   margin: 0px;
   padding: 0px;
-  width:9999px; /* important */
-  /* non-important styling bellow */
+  
+  /* non-important styling below */
   padding-bottom:10px;
   }
 
