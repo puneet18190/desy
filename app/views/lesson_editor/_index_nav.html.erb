@@ -7,7 +7,13 @@
     <li class="<%= slide.cover? ? '' : '_slide_nav_sortable'.html_safe %>">
       <a id="slide_in_nav_lesson_editor_<%= slide.id %>" class="<%= nav_class.html_safe %>" data-slide-id="<%= slide.id %>"><%= slide.position %></a>
       <div class="slide-tooltip">
-        <%= render :partial => "lesson_editor/slides/thumbnails/#{slide.kind}", :locals => {:slide => slide} %>
+        <% if ["cover","audio","video1","video2"].include?(slide.kind)%>
+          <%= render :partial => "lesson_editor/slides/thumbnails/#{slide.kind}", :locals => {:slide => slide} %>
+        <% else %>
+          <div class="zoomOutThumb">
+            <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %>
+          </div>
+        <% end %>
       </div>
     </li>
   <% end %>  

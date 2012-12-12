@@ -191,10 +191,8 @@ function showVideoInGalleryPopUp(video_id) {
         customOverlayClose();
       },
       beforeClose: function() {
-        removeCustomOverlayClose();
-      },
-      close: function() {
         stopMedia('#dialog-video-gallery-' + video_id + ' video');
+        removeCustomOverlayClose();
       }
     });
   }
