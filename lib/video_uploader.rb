@@ -26,6 +26,7 @@ class VideoUploader < String
   ALLOWED_KEYS                   = [:filename] + FORMATS
   VERSION_FORMATS                = { cover: 'cover_%s.jpg', thumb: 'thumb_%s.jpg' }
   COVER_FORMAT, THUMB_FORMAT     = VERSION_FORMATS[:cover], VERSION_FORMATS[:thumb]
+  THUMB_SIZES                    = [200, 200]
 
   def initialize(model, column, value)
     @model, @column, @value = model, column, value
@@ -135,35 +136,24 @@ class VideoUploader < String
   end
   alias path public_relative_path
 
-  def absolute_path(format)
-    return nil if model.new_record?
-    File.join absolute_folder, "#{filename}.#{format}"
-  end
-
   def public_relative_paths
     { mp4: path(:mp4), webm: path(:webm) }
   end
   alias paths public_relative_paths
 
-  def mp4_path
-    path(:mp4)
+  def absolute_path(format)
+    case format
+    when *FORMATS
+      File.join absolute_folder, "#{filename_without_extension}.#{format}"
+    when :cover, :thumb
+      File.join absolute_folder, VERSION_FORMATS[format] % filename_without_extension.to_s
+    end
   end
 
-  def webm_path
-    path(:webm)
+  def absolute_paths
+    Hash[ [:mp4, :webm, :cover, :thumb].map{ |v| [v, absolute_path(v)] } ]
   end
 
-  def cover_path
-    path(:cover)
-  end
-
-  def thumb_path
-    path(:thumb)
-  end
-
-  # def absolute_paths
-  #   { mp4: absolute_path(:mp4), webm: absolute_path(:webm) }
-  # end
   private
   def copy
     FileUtils.mkdir_p output_folder unless Dir.exists? output_folder
@@ -182,7 +172,7 @@ class VideoUploader < String
     # TODO ho copiato il resize to fill da carrierwave, adattarlo
     thumb_path = File.join output_folder, THUMB_FORMAT % processed_original_filename_without_extension
     # thumb_path = THUMB_FORMAT % output_path_without_extension
-    extract_thumb cover_path, thumb_path
+    extract_thumb cover_path, thumb_path, *THUMB_SIZES
 
     model.converted = true
     model.send :"rename_#{column}=", true
@@ -206,10 +196,9 @@ class VideoUploader < String
     end
   end
 
-  def extract_thumb(input, output)
+  def extract_thumb(input, output, width, height)
     input_image = ::MiniMagick::Image.open(input)
     cols, rows = input_image[:dimensions]
-    width, height = 200, 200
     input_image.combine_options do |cmd|
       if width != cols || height != rows
         scale_x = width/cols.to_f
