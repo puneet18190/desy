@@ -184,9 +184,13 @@ html.lesson-editor-layout{
 		  zoom:27%;
 			/*slide video*/
 			.slideVideo {
+			  height: 93px;
         @include formatElement;
         display: inline-block;
         background-color: white;
+				h2 {
+				  height: 86px;
+				}
 				/*video grande*/
 				.videoBig {
 	        @include formatElement;
@@ -202,8 +206,35 @@ html.lesson-editor-layout{
 		        margin-top:178px;
 			      margin-left:328px;
 	        }
+		    }
+	     /*slide video + testo*/
+			 .videoMedium {
+	       width:420px;
+		     height:420px;
+		     background-color:#f1f1f1;
+		     float:left;
+				 position:relative;
+		    .videoIcon {
+	        @include videoIconFormat;
+		      margin-top:125px;
+			    margin-left:120px;
+	      }
 		   }
-	
+			 .textRightVideoContent {
+         float:right;
+         padding:0px 10px;
+         width:400px;
+         height:400px;
+         overflow:hidden;
+		     a	{
+		       color: $orange;
+		       text-decoration:underline;	
+		     }
+		     p {
+		       margin-top:0.8em;
+			     margin-bottom:0.8em;
+		    }
+		   }
       }
 		  /*slide title*/
 	   .slideTitle{
