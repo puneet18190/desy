@@ -7,7 +7,7 @@
     <% if video.nil? %>
       <div class="videoIcon"></div>
     <% else %>
-      <%= render :partial => 'shared/players/video', :locals => {:video => video} %>
+      <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true} %>
     <% end %>
   </div>
 </div>

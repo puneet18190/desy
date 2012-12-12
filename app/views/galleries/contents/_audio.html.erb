@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="audioTrackExpanded _expanded" style="display:none">
-          <%= render :partial => 'shared/players/audio', :locals => {:audio => audio} %>
+          <%= render :partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true} %>
         </div>
       </div>
     <% end %>
