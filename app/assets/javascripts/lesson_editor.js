@@ -97,10 +97,12 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._show_audio_gallery_in_lesson_editor', function() {
+    stopMediaInCurrentSlide();
     showGalleryInLessonEditor(this, 'audio');
   });
   
   $('body').on('click', '._show_video_gallery_in_lesson_editor', function() {
+    stopMediaInCurrentSlide();
     showGalleryInLessonEditor(this, 'video');
   });
   
@@ -297,8 +299,8 @@ function hideNewSlideChoice() {
 }
 
 function stopMediaInCurrentSlide() {
-  // TODO RIPRISTINARLO  stopMedia('li._lesson_editor_current_slide audio');
-  // TODO RIPRISTINARLO  stopMedia('li._lesson_editor_current_slide video');
+  stopMedia('li._lesson_editor_current_slide audio');
+  stopMedia('li._lesson_editor_current_slide video');
 }
 
 function initializeSortableNavs() {
