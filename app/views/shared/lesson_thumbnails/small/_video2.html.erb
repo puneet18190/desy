@@ -1,6 +1,7 @@
 <div class="slide-thumb <%= slide.kind%>">
   <div class="video2-content">
-    <%= image_tag slide.video_at(1).cover, :width => "230", :height => "150" if slide.video_at(1) %>
+    <% video = slide.video_at(1) %>
+    <%= image_tag video.cover_path, :width => "230", :height => "150" if video %>
     <div style="position:absolute; width:230px; top:50px; text-align:center">
       <a><%= image_tag 'bullet_video.svg' %></a>
     </div>
