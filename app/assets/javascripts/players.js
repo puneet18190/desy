@@ -1,19 +1,20 @@
-function initializeMediaTimeUpdater(media, duration) {
+function initializeMediaTimeUpdater(media, reference_id) {
   media = $(media);
   if(media.readyState != 0) {
     media[0].addEventListener('timeupdate', function() {
-      initializeActionOfMediaTimeUpdater(this, duration);
+      initializeActionOfMediaTimeUpdater(this, reference_id);
     }, false);
   } else {
     media.on('loadedmetadata', function() {
       media[0].addEventListener('timeupdate', function() {
-        initializeActionOfMediaTimeUpdater(this, duration);
+        initializeActionOfMediaTimeUpdater(this, reference_id);
       }, false);
     });
   }
 }
 
-function initializeActionOfMediaTimeUpdater(media, duration) {
+function initializeActionOfMediaTimeUpdater(media, reference_id) {
+  var duration = $('#' + reference_id).data('duration');
   var container_id = $(media).parent().attr('id');
   var parsed_int = parseInt(media.currentTime);
   if(parsed_int == (duration + 1)) {
@@ -27,7 +28,8 @@ function initializeActionOfMediaTimeUpdater(media, duration) {
   }
 }
 
-function initializeMedia(content_id, type, duration) {
+function initializeMedia(content_id, type) {
+  var duration = $('#' + content_id).data('duration');
   $('#' + content_id + ' ._media_player_slider').slider({
     min: 0,
     max: duration,
@@ -40,7 +42,11 @@ function initializeMedia(content_id, type, duration) {
       }
     }
   });
-  initializeMediaTimeUpdater('#' + content_id + ' ' + type, duration);
+  initializeMediaTimeUpdater('#' + content_id + ' ' + type, content_id);
+  $('#' + content_id + ' ' + type).bind('ended', function() {
+    stopMedia(this);
+  });
+  $('#' + content_id).data('initialized', true);
 }
 
 function setCurrentTimeToMedia(media, x) {

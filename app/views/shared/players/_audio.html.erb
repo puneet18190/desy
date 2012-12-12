@@ -3,15 +3,17 @@
   ogg = ''
   mp3 = ''
   duration = ''
+  string_duration = ''
   if audio
-    audio_class = "_instance_of_player_#{audio.id}"
+    audio_class = '_instance_of_player'
     ogg = audio.ogg_path
     mp3 = audio.mp3_path
-    duration = seconds_to_time(audio.min_duration)
+    duration = audio.min_duration
+    string_duration = seconds_to_time(duration)
   end
 %>
 
-<div id="instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player" class="audioPlayer <%= audio_class %>" data-media-type="audio">
+<div id="instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player" class="audioPlayer <%= audio_class %>" data-media-type="audio" data-initialized="false" data-duration="<%= duration %>">
   <audio>
     <source src="<%= ogg  %>" type="audio/ogg">
     <source src="<%= mp3 %>" type="audio/mp3">
@@ -21,14 +23,14 @@
   <a class="pause _media_player_pause"></a>
   <div class="_media_player_current_time secondTime">0</div>
   <div class="audioSlider _media_player_slider"></div>
-  <div class="_media_player_total_time secondTime"><%= duration  %></div>
+  <div class="_media_player_total_time secondTime"><%= string_duration  %></div>
   <div class="sliderDisabler _media_player_slider_disabler"></div>
 </div>
 
 
 <% if audio && initialize_now %>
   <script type="text/javascript">
-    initializeMedia('instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player', 'audio', <%= audio.min_duration %>);
+    initializeMedia('instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player', 'audio');
   </script>
 <% end %>
 
