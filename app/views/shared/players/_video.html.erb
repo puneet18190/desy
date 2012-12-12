@@ -2,14 +2,12 @@
   video_class = '_empty_video_player'
   webm = ''
   mp4 = ''
-  mp4_duration = ''
-  webm_duration = ''
+  duration = ''
   if video
     video_class = "_instance_of_player_#{video.id}"
     webm = video.webm_path
     mp4 = video.mp4_path
-    mp4_duration = seconds_to_time(video.mp4_duration)
-    webm_duration = seconds_to_time(video.webm_duration)
+    duration = seconds_to_time(video.min_duration)
   end
 %>
 
@@ -23,7 +21,7 @@
   <a class="pause _media_player_pause"></a>
   <div class="_media_player_current_time secondTime">0</div>
   <div class="videoSlider _media_player_slider"></div>
-  <div class="secondTime"><%= video.min_duration %></div>
+  <div class="secondTime"><%= duration %></div>
   <a class="fullScreen _video_full_screen"></a>
   <div class="sliderDisabler _media_player_slider_disabler"></div>
 </div>
