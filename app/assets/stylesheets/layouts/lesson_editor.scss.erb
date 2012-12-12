@@ -200,8 +200,41 @@ html.lesson-editor-layout{
 		        margin-top:178px;
 			      margin-left:328px;
 	        }
-		   }
-	
+		    }
+	     /*slide video + testo*/
+			 .videoMedium {
+	       width:420px;
+		     height:420px;
+		     background-color:#f1f1f1;
+		     margin-top:3px;
+		     float:left;
+		    .videoPlayer {
+      width: 420px;
+				
+      margin: 0px;
+			a.play {margin-left:10px}
+			a.pause {margin-left:10px}
+			a.fullScreen {margin-right:10px}
+			.videoSlider {width:60%}
+     }
+		.videoIcon {
+	    @include videoIconFormat;
+		  margin-top:125px;
+			margin-left:120px;
+	  }
+		video {
+      width:420px;
+		  height:236px;
+		  margin-bottom: 5px;
+      
+	  }
+		.video {
+      width:420px;
+		  height:243px;
+		  background-color:#fff;
+			padding-bottom:197px;
+	  }
+	}
       }
 		  /*slide title*/
 	   .slideTitle{
