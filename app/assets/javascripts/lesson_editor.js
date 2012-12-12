@@ -295,10 +295,10 @@ function stopMediaInCurrentSlide() {
 }
 
 function initializeSortableNavs() {
-  $("#heading").css("width", (parseInt($(window).outerWidth())-50) + "px");
+  $("#heading, #heading .scroll-pane").css("width", (parseInt($(window).outerWidth())-50) + "px");
   slides_numbers = $('#slide-numbers');
   slides_amount = slides_numbers.find("li").length
-  slides_numbers.css('width', ''+(parseInt(slides_amount) * 40) + 'px');
+  slides_numbers.css('width', ''+(parseInt(slides_amount + 1) * 32) + 'px');
   slides_numbers.sortable({
     items: '._slide_nav_sortable',
     axis: 'x',

@@ -54,22 +54,17 @@ html.lesson-editor-layout{
     height: 20px;
     display: block;
     width:100%;
-    overflow-x:auto;
-    -ms-overflow-x:auto;
-    overflow-y:hidden;
-    -ms-overflow-y:hidden; 
 		/*position:absolute;
     left:0px;
     top:0px;
     z-index:9999999;*/
     .horizontal-only {
-  	  height:30px;
+  	  height:230px;
   	}
   	.scroll-pane {
   	  width:1250px;
-  		position:absolute;
-  		top:10px;
-  		padding-left:0;
+  		/*position:absolute;*/
+  		overflow-y:visible;
     }
     .scrollOrange {
       .jspTrack {
@@ -77,6 +72,7 @@ html.lesson-editor-layout{
       }
       .jspHorizontalBar {
         height:8px;
+        margin-top: -230px;
       }
       .jspDrag {
         background: $orange;
