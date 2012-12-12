@@ -251,9 +251,7 @@ html.lesson-editor-layout{
 		   }
       }
 			/*slide audio*/
-			
-			  
-	    .slideAudio{
+			.slideAudio{
 	      @include formatElement;
 		    h2 {
 		      height:100px;
@@ -322,8 +320,24 @@ html.lesson-editor-layout{
 	    img{
 	      position:absolute;
 	    }
-	  }
-		.boxFissoImage {
+			.big {
+	      float:left;
+		    width:860px;
+		    height:550px;
+		    background-color:#f1f1f1;
+		    overflow:hidden;
+		    position:relative;
+		    .photoIcon {
+	         @include photoIconFormat;
+		       margin-top:178px;
+			     margin-left:328px;
+	      }
+		   .caption {
+		     @include styleCaption;
+			   width:860px;
+	     }
+	   }
+		 .boxFissoImage {
 	    width:420px;
 		  height:265px;
 		  display:block;
@@ -348,6 +362,29 @@ html.lesson-editor-layout{
 			  width:410px;
 	    }
 	  }
+		.mediumHeight {
+	    float:left;
+		  width:420px;
+		  height:550px;
+		  margin-right:20px;
+		  background-color:#f1f1f1;
+		  overflow:hidden;
+		  position:relative;
+		  .photoIcon {
+	      @include photoIconFormat;
+		    margin-top:194px;
+			  margin-left:110px;
+	    }
+		  .caption {
+		    @include styleCaption;
+			  width:410px;
+	    }
+		  &:last-child {
+	      margin-right:0px;
+	    }
+	  }
+	}
+		
   }
   
   .slide-tooltip-to-left {
@@ -837,6 +874,7 @@ html.lesson-editor-layout{
 					  position:absolute;
 					  top:0;
 					  left:0;
+						opacity: 0.80;
           }
           span.add-video:hover{
             background-position: -390px center;
