@@ -7,9 +7,11 @@ $(document).ready(function() {
   });
   
   initializeSortableNavs();
-  $('#nav_list_menu').jScrollPane({
+  var scroll_nav = $('#nav_list_menu').jScrollPane({
     autoReinitialise: false
   });
+  scroll_pane_api = scroll_nav.data('jsp');
+  
   $(".slide-content.cover .title").css("margin-left", "auto");
   
   initLessonEditorPositions();
@@ -46,6 +48,7 @@ $(document).ready(function() {
     saveCurrentSlide();
     stopMediaInCurrentSlide();
     slideTo($(this).parent().data('slide-id'));
+		scrollPaneUpdate(this);
   });
   
   $('body').on('click', '._hide_add_new_slide_options', function() {
@@ -238,15 +241,20 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click','._not_current_slide',function(){
-      console.log("scrollBy");
-      console.log($('#nav_list_menu').scrollBy(30));
-      $('#nav_list_menu').scrollBy(30);
-      return false;
-    }
-  );
-  
 });
+
+function scrollPaneUpdate(trigger_element){
+  //TODO Control if moving right or left and when to scroll
+  // better activate it on last visible in focus
+  // trigger element is _not_current_slide
+  var not_current = $(trigger_element);
+  if($(".slides.active").data("position") < not_current.parent("li").data("position")){
+    scroll_pane_api.scrollByX(30);
+  }else{
+	  scroll_pane_api.scrollByX(-30);
+  }
+	return false;
+}
 
 function removeGalleryInLessonEditor(sti_type) {
   var gallery = $('#' + sti_type + '_gallery');
@@ -315,11 +323,8 @@ function stopMediaInCurrentSlide() {
 function initializeSortableNavs() {
   $("#heading, #heading .scroll-pane").css("width", (parseInt($(window).outerWidth())-50) + "px");
   var slides_numbers = $('#slide-numbers');
-  console.log("sl_num: "+slides_numbers);
   var slides_amount = slides_numbers.find("li").length;
-  console.log("sl_amnt: "+slides_amount);
   slides_numbers.css('width', ''+((parseInt(slides_amount + 1) * 32)-28) + 'px');
-  console.log("sl_num_width: "+slides_numbers.css("width"));
   var add_last_button = $("._add_new_slide_options_in_last_position");
   if(parseInt(slides_numbers.css('width')) < (parseInt($(window).outerWidth())-50)){
     add_last_button.css("left", ""+(slides_numbers.find("li:last").position().left + 30)+"px"); 
