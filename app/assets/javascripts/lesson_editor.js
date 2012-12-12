@@ -8,9 +8,8 @@ $(document).ready(function() {
   
   initializeSortableNavs();
   $('#nav_list_menu').jScrollPane({
-      autoReinitialise: true
-    });
-    
+    autoReinitialise: false
+  });
   $(".slide-content.cover .title").css("margin-left", "auto");
   
   initLessonEditorPositions();
@@ -32,7 +31,7 @@ $(document).ready(function() {
   $('body').on('mouseout', '#slide-numbers li:not(._add_new_slide_options_in_last_position)', function(e) {
     var this_tooltip =$(this).children('.slide-tooltip');
     this_tooltip.removeClass("slide-tooltip-to-left");
-    this_tooltip.hide();
+    //this_tooltip.hide();
   });
   
   $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav)', function(e) {
@@ -65,7 +64,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._add_new_slide_options_in_last_position', function() {
     saveCurrentSlide();
-    var last_slide_id = $(this).parent().prev().find('a').data('slide-id');
+    var last_slide_id = $("#slide-numbers li:last").find('a').data('slide-id');
     slideTo('' + last_slide_id, showNewSlideOptions);
   });
   
@@ -319,9 +318,16 @@ function stopMediaInCurrentSlide() {
 
 function initializeSortableNavs() {
   $("#heading, #heading .scroll-pane").css("width", (parseInt($(window).outerWidth())-50) + "px");
-  slides_numbers = $('#slide-numbers');
-  slides_amount = slides_numbers.find("li").length
+  var slides_numbers = $('#slide-numbers');
+  console.log("sl_num: "+slides_numbers);
+  var slides_amount = slides_numbers.find("li").length;
+  console.log("sl_amnt: "+slides_amount);
   slides_numbers.css('width', ''+(parseInt(slides_amount + 1) * 32) + 'px');
+  console.log("sl_num_width: "+slides_numbers.css("width"));
+  var add_last_button = $("._add_new_slide_options_in_last_position");
+  if(parseInt(slides_numbers.css('width')) < (parseInt($(window).outerWidth())-50)){
+    add_last_button.css("left", ""+(slides_numbers.find("li:last").position().left + 30)+"px"); 
+  }
   slides_numbers.sortable({
     items: '._slide_nav_sortable',
     axis: 'x',
