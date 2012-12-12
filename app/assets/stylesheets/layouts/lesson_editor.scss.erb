@@ -53,16 +53,43 @@ html.lesson-editor-layout{
     padding: 10px;
     height: 20px;
     display: block;
-		position:absolute;
+    width:100%;
+    overflow-x:auto;
+    -ms-overflow-x:auto;
+    overflow-y:hidden;
+    -ms-overflow-y:hidden; 
+		/*position:absolute;
     left:0px;
     top:0px;
-    z-index:9999999;
+    z-index:9999999;*/
+    .horizontal-only {
+  	  height:30px;
+  	}
+  	.scroll-pane {
+  	  width:1250px;
+  		position:absolute;
+  		top:10px;
+  		padding-left:0;
+    }
+    .scrollOrange {
+      .jspTrack {
+        background: #3f3f3f;
+      }
+      .jspHorizontalBar {
+        height:8px;
+      }
+      .jspDrag {
+        background: $orange;
+      }
+    }
   }  
+  
 
   #slide-numbers {
-    position:fixed;
+    /*position:fixed;*/
     list-style: none;
     margin-left: 10px;
+    width: 3500px;
     li {
       float: left;
       a {
@@ -168,15 +195,21 @@ html.lesson-editor-layout{
       }
     }
     &.video1{
-      video{
-        width: 110px;
-        float:left;
-      }
+		 h2{
+       height:20px;
+     }
+     video{
+       width: 110px;
+       float:left;
+     }
       .video1-content{
+			  
         float: right;
         width: 100px;
+				height:100px;
         margin: 0 5px;
         padding: 5px;
+				overflow:hidden;
       }
     }
     &.image4{
@@ -185,9 +218,9 @@ html.lesson-editor-layout{
       }
     }
     &.image1{
-      .h2{
-        padding: 10px;
-      }
+      h2{
+        height:20px;
+       }
       .image1-content{
         float:right;
         width: 120px;
