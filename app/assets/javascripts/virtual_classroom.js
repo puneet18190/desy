@@ -8,7 +8,7 @@ function initializeBlurTextFieldsSendLessonLink() {
 function initializeNotAvailableLessonsToLoadQuick() {
   $('._virtual_classroom_quick_loaded_lesson').each(function() {
     if(!$(this).data('available')) {
-      $('#' + this.id + ' ._cover_slide_thumb').addClass('current');
+      $('#' + this.id + ' ._lesson_thumb').addClass('current');
     }
   });
 }
@@ -26,7 +26,7 @@ function initializeScrollPaneQuickLessonSelector() {
 function initializeVirtualClassroom() {
   $('._virtual_classroom_lesson').each(function() {
     if($(this).data('in-playlist')) {
-      $('#' + this.id + ' ._cover_slide_thumb').addClass('current');
+      $('#' + this.id + ' ._lesson_thumb').addClass('current');
     } else {
       initializeDraggableVirtualClassroomLesson(this.id);
     }
@@ -35,18 +35,18 @@ function initializeVirtualClassroom() {
 }
 
 function initializeDraggableVirtualClassroomLesson(id) {
-  var lesson_cover = $('#' + id + ' ._cover_slide_thumb');
+  var lesson_cover = $('#' + id + ' ._lesson_thumb');
   var object = $('#' + id);
   if(object.hasClass('ui-draggable')) {
     object.draggable('enable');
   } else {
     object.draggable({
       revert: true,
-      handle: '._cover_slide_thumb',
+      handle: '._lesson_thumb',
       cursor: 'move',
       helper: function() {
         var current_z_index = getMaximumZIndex('_virtual_classroom_lesson') + 1;
-        var div_to_return = $('#' + this.id + ' ._cover_slide_thumb')[0].outerHTML;
+        var div_to_return = $('#' + this.id + ' ._lesson_thumb')[0].outerHTML;
         div_to_return = '<div ' + 'style="' + current_z_index + ';outline:1px solid white" ' + div_to_return.substr(5,div_to_return.length);
         return div_to_return;
       },

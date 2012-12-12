@@ -1,8 +1,8 @@
 function showSendLessonLinkPopUp(lesson_id) {
   var obj = $('#dialog-virtual-classroom-send-link');
   $('#dialog-virtual-classroom-send-link form').attr('action', ('/virtual_classroom/' + lesson_id + '/send_link'));
-  var html_cover_content = $('#virtual_classroom_lesson_' + lesson_id + ' ._cover_slide_thumb').html();
-  $('#dialog-virtual-classroom-send-link ._cover_slide_thumb').html(html_cover_content);
+  var html_cover_content = $('#virtual_classroom_lesson_' + lesson_id + ' ._lesson_thumb').html();
+  $('#dialog-virtual-classroom-send-link ._lesson_thumb').html(html_cover_content);
   if(obj.data('dialog')) {
     obj.dialog('open');
     initializeBlurTextFieldsSendLessonLink();

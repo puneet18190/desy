@@ -5,7 +5,7 @@
         <ul>
           <% @playlist.each do |classroom| %>
             <li data-param="<%= classroom.position %>">
-              <%= render :partial => "shared/lesson_thumbnails/small/cover", :locals => { :slide => classroom.lesson.slides.first } %>
+              <%= render :partial => "lessons/thumbnail", :locals => {:lesson => classroom.lesson} %>
             </li>
           <% end %>
         </ul>
