@@ -17,10 +17,10 @@ def plant_development_seeds
   subject2 = Subject.find 2
   subject3 = Subject.find 3
 
-  media_element_types = [ 'Video' ]*5 + [ 'Image', 'Audio' ] + ({ 'Video' => 14, 'Audio' => 18, 'Image' => 31 }.inject([]) do |ary, kv| 
+  media_element_types = [ 'Video' ]*5 + [ 'Image', 'Audio' ] + { 'Video' => 14, 'Audio' => 18, 'Image' => 31 }.inject([]) do |ary, kv| 
     k,v = kv
     ary + ([k]*v)
-  end.shuffle)
+  end.shuffle
 
   images = Dir.glob("#{Rails.root}/db/seeds/images/*").grep(/\.jpe?g|png$/).shuffle
   videos = Dir.glob("#{Rails.root}/db/seeds/videos/*.mp4").shuffle.map do |v|
@@ -175,7 +175,7 @@ def plant_development_seeds
   descriptions << ["譯譯", "喺討論頁上簽名係套維基百科簽名嘅說明喺討論頁上簽名係套維基百科簽名嘅說明"]
   
   descriptions.each_with_index do |description, i|
-    sti_type = media_element_types[i]
+    sti_type = media_element_types[i%media_element_types.size]
 
     media_element = sti_type.constantize.new :description => description[1], :title => description[0] do |record|
       record.user_id = admin.id
