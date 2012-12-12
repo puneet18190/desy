@@ -85,7 +85,7 @@ class Video < MediaElement
     if hash[:initial_video_id].nil?
       initial_video = nil
     else
-      initial_video = Video.get_media_element_from_hash(hash, :initial_video_id, user_id, 'Video')
+      initial_video = get_media_element_from_hash(hash, :initial_video_id, user_id, 'Video')
       return nil if initial_video.nil? || initial_video.is_public
     end
     
@@ -96,7 +96,7 @@ class Video < MediaElement
     if hash[:audio_id].nil?
       audio_track = nil
     else
-      audio_track = Video.get_media_element_from_hash(hash, :audio_id, user_id, 'Audio')
+      audio_track = get_media_element_from_hash(hash, :audio_id, user_id, 'Audio')
       return nil if audio_track.nil?
     end
     
@@ -114,15 +114,15 @@ class Video < MediaElement
       return nil if !p.kind_of?(Hash) || !p.has_key?(:type) || !COMPONENTS.include?(p[:type])
       case p[:type]
         when VIDEO_COMPONENT
-          c = Video.extract_video_component(p, user_id)
+          c = extract_video_component(p, user_id)
           return nil if c.nil?
           resp_hash[:components] << c
         when TEXT_COMPONENT
-          c = Video.extract_text_component(p)
+          c = extract_text_component(p)
           return nil if c.nil?
           resp_hash[:components] << c
         when IMAGE_COMPONENT
-          c = Video.extract_image_component(p, user_id)
+          c = extract_image_component(p, user_id)
           return nil if c.nil?
           resp_hash[:components] << c
       end
@@ -132,7 +132,7 @@ class Video < MediaElement
   end
   
   def self.extract_image_component(component, user_id)
-    image = Video.get_media_element_from_hash(component, :image_id, user_id, 'Image')
+    image = get_media_element_from_hash(component, :image_id, user_id, 'Image')
     # I validate that the image exists and is accessible from the user
     return nil if image.nil?
     # DURATION is correct
@@ -145,7 +145,7 @@ class Video < MediaElement
   end
   
   def self.extract_video_component(component, user_id)
-    video = Video.get_media_element_from_hash(component, :video_id, user_id, 'Video')
+    video = get_media_element_from_hash(component, :video_id, user_id, 'Video')
     # I validate that the video exists and is accessible from the user
     return nil if video.nil?
     # FROM and UNTIL are correct

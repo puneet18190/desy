@@ -9,7 +9,7 @@
       <div class="videoIcon"></div>
     <% else %>
     <div class="videoMedium" style="background-color: white" >
-      <%= render :partial => 'shared/players/video', :locals => {:video => video} %>
+      <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true} %>
     <% end %>
     </div>
   <div class="textRightVideoContent">

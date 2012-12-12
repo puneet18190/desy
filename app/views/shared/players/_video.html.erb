@@ -21,13 +21,13 @@
   <a class="pause _media_player_pause"></a>
   <div class="_media_player_current_time secondTime">0</div>
   <div class="videoSlider _media_player_slider"></div>
-  <div class="secondTime"><%= duration %></div>
+  <div class="_media_player_total_time secondTime"><%= duration %></div>
   <a class="fullScreen _video_full_screen"></a>
   <div class="sliderDisabler _media_player_slider_disabler"></div>
 </div>
 
 
-<% if video %>
+<% if video && initialize_now %>
   <script type="text/javascript">
     initializeMedia('instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player', 'video', <%= video.min_duration %>);
   </script>

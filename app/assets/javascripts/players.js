@@ -15,9 +15,12 @@ function initializeMediaTimeUpdater(media, duration) {
 
 function initializeActionOfMediaTimeUpdater(media, duration) {
   var container_id = $(media).parent().attr('id');
-  var parsed_float = parseFloat(media.currentTime);
-  var parsed_int = parseInt(parsed_float);
-  if(parsed_float == duration) {
+  var parsed_int = parseInt(media.currentTime);
+  if(parsed_int == (duration + 1)) {
+    $('#' + container_id + ' ._media_player_pause').click();
+    $('#' + container_id + ' ._media_player_slider').slider('value', 0);
+    $('#' + container_id + ' ._media_player_current_time').html(secondsToDateString(0));
+    setCurrentTimeToMedia($(media), 0);
   } else if($('#' + container_id + ' ._media_player_play').css('display') == 'none') {
     $('#' + container_id + ' ._media_player_current_time').html(secondsToDateString(parsed_int));
     $('#' + container_id + ' ._media_player_slider').slider('value', parsed_int);
@@ -38,9 +41,6 @@ function initializeMedia(content_id, type, duration) {
     }
   });
   initializeMediaTimeUpdater('#' + content_id + ' ' + type, duration);
-  $('#' + content_id + ' ' + type).bind('ended', function() {
-    stopMedia(this);
-  });
 }
 
 function setCurrentTimeToMedia(media, x) {
@@ -76,5 +76,7 @@ function stopMedia(media) {
         setCurrentTimeToMedia($(media), 0);
       }
     }
-  } catch(err) {}
+  } catch(err) {
+    console.log('error stopping media: ' + err);
+  }
 }

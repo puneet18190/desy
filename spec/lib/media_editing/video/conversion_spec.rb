@@ -136,12 +136,12 @@ module MediaEditing
             model.reload
           end
 
-          it 'sets the model converted attribute', focus: true do
+          it 'sets the model converted attribute' do
             model.should be_converted
           end
 
           supported_formats.each do |format|
-            context "with #{format} format", format: format do
+            context "with #{format} format", format: format, focus: false do
               let(:format) { format }
               def info(format)
                 @info ||= {}
@@ -150,6 +150,14 @@ module MediaEditing
 
               it "creates a valid video" do
                 expect{ info(format) }.to_not raise_error
+              end
+
+              it 'creates the video cover' do
+                File.exists?(model.cover_path).should be_true
+              end
+
+              it 'creates the video thumb' do
+                File.exists?(model.thumb_path).should be_true
               end
 
               it 'sets the model duration attribute' do

@@ -31,7 +31,7 @@ $(document).ready(function() {
   $('body').on('mouseout', '#slide-numbers li:not(._add_new_slide_options_in_last_position)', function(e) {
     var this_tooltip =$(this).children('.slide-tooltip');
     this_tooltip.removeClass("slide-tooltip-to-left");
-    this_tooltip.hide();
+    //this_tooltip.hide();
   });
   
   $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav)', function(e) {
@@ -180,6 +180,7 @@ $(document).ready(function() {
     $('#' + place_id + ' ._full_video_in_slide source[type="video/mp4"]').attr('src', video_mp4);
     $('#' + place_id + ' ._full_video_in_slide source[type="video/webm"]').attr('src', video_webm);
     $('#' + place_id + ' video').load();
+    $('#' + place_id + ' ._media_player_total_time').html(secondsToDateString(duration));
     var video_player = $('#' + place_id + ' ._empty_video_player');
     video_player.removeClass('_empty_video_player').addClass('_instance_of_player_' + video_id);
     initializeMedia((video_player.attr('id')), 'video', duration);
@@ -206,6 +207,7 @@ $(document).ready(function() {
     $('#' + place_id + ' ._full_audio_in_slide source[type="audio/mp3"]').attr('src', audio_mp3);
     $('#' + place_id + ' ._full_audio_in_slide source[type="audio/ogg"]').attr('src', audio_ogg);
     $('#' + place_id + ' audio').load();
+    $('#' + place_id + ' ._media_player_total_time').html(secondsToDateString(duration));
     var audio_player = $('#' + place_id + ' ._empty_audio_player');
     audio_player.removeClass('_empty_audio_player').addClass('_instance_of_player_' + audio_id);
     initializeMedia((audio_player.attr('id')), 'audio', duration);

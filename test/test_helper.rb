@@ -9,10 +9,20 @@ class ActiveSupport::TestCase
   setup :initialize_media_path_for_media_elements
   
   def initialize_media_path_for_media_elements
-    [1, 2, 3, 4, 5, 6].each do |x|
-      me = MediaElement.find x
-      me.media = File.open(Rails.root.join("test/samples/#{me.media}".gsub("/media_elements/images/#{x}/", '')))
-      assert_obj_saved me
+    [1, 2].each do |x|
+      v = Video.find x
+      v.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
+      assert_obj_saved v
+    end
+    [3, 4].each do |x|
+      a = Audio.find x
+      a.media = 'prova_prova_prova.ogg'
+      assert_obj_saved a
+    end
+    [5, 6].each do |x|
+      i = Image.find x
+      i.media = File.open(Rails.root.join("test/samples/one.jpg".gsub("/media_elements/images/#{x}/", '')))
+      assert_obj_saved i
     end
   end
   

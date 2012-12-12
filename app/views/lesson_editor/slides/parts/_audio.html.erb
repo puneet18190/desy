@@ -8,7 +8,7 @@
   
   <div class="<%= slide.kind %>-p<%= position %> _full_audio_in_slide" style="display:<%= audio.nil? ? 'none'.html_safe : 'block'.html_safe %>">
     <div data-slide-id="<%= slide.id %>" data-position="<%= position %>">
-      <%= render(:partial => 'shared/players/audio', :locals => {:audio => audio}) %>
+      <%= render(:partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true}) %>
     </div>
     <span class="add-audio _show_audio_gallery_in_lesson_editor" data-position="<%= position %>"></span>
   </div>
