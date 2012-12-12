@@ -76,5 +76,7 @@ function stopMedia(media) {
         setCurrentTimeToMedia($(media), 0);
       }
     }
-  } catch(err) {}
+  } catch(err) {
+    console.log('error stopping media: ' + err);
+  }
 }

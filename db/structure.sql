@@ -923,38 +923,150 @@ CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at
 
 
 --
+-- Name: fk__bookmarks_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__bookmarks_user_id ON bookmarks USING btree (user_id);
+
+
+--
+-- Name: fk__lessons_parent_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__lessons_parent_id ON lessons USING btree (parent_id);
+
+
+--
+-- Name: fk__lessons_school_level_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__lessons_school_level_id ON lessons USING btree (school_level_id);
+
+
+--
+-- Name: fk__lessons_subject_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__lessons_subject_id ON lessons USING btree (subject_id);
+
+
+--
+-- Name: fk__lessons_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__lessons_user_id ON lessons USING btree (user_id);
+
+
+--
+-- Name: fk__likes_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__likes_lesson_id ON likes USING btree (lesson_id);
+
+
+--
+-- Name: fk__likes_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__likes_user_id ON likes USING btree (user_id);
+
+
+--
+-- Name: fk__media_elements_slides_media_element_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__media_elements_slides_media_element_id ON media_elements_slides USING btree (media_element_id);
+
+
+--
+-- Name: fk__media_elements_slides_slide_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__media_elements_slides_slide_id ON media_elements_slides USING btree (slide_id);
+
+
+--
+-- Name: fk__media_elements_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__media_elements_user_id ON media_elements USING btree (user_id);
+
+
+--
+-- Name: fk__notifications_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__notifications_user_id ON notifications USING btree (user_id);
+
+
+--
+-- Name: fk__reports_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__reports_user_id ON reports USING btree (user_id);
+
+
+--
+-- Name: fk__slides_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__slides_lesson_id ON slides USING btree (lesson_id);
+
+
+--
+-- Name: fk__taggings_tag_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__taggings_tag_id ON taggings USING btree (tag_id);
+
+
+--
+-- Name: fk__users_location_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__users_location_id ON users USING btree (location_id);
+
+
+--
+-- Name: fk__users_school_level_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__users_school_level_id ON users USING btree (school_level_id);
+
+
+--
+-- Name: fk__users_subjects_subject_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__users_subjects_subject_id ON users_subjects USING btree (subject_id);
+
+
+--
+-- Name: fk__users_subjects_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__users_subjects_user_id ON users_subjects USING btree (user_id);
+
+
+--
+-- Name: fk__virtual_classroom_lessons_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__virtual_classroom_lessons_lesson_id ON virtual_classroom_lessons USING btree (lesson_id);
+
+
+--
+-- Name: fk__virtual_classroom_lessons_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__virtual_classroom_lessons_user_id ON virtual_classroom_lessons USING btree (user_id);
+
+
+--
 -- Name: index_bookmarks_on_bookmarkable_type_and_bookmarkable_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_bookmarks_on_bookmarkable_type_and_bookmarkable_id ON bookmarks USING btree (bookmarkable_type, bookmarkable_id);
-
-
---
--- Name: index_bookmarks_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_bookmarks_on_user_id ON bookmarks USING btree (user_id);
-
-
---
--- Name: index_lessons_on_parent_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_lessons_on_parent_id ON lessons USING btree (parent_id);
-
-
---
--- Name: index_lessons_on_school_level_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_lessons_on_school_level_id ON lessons USING btree (school_level_id);
-
-
---
--- Name: index_lessons_on_subject_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_lessons_on_subject_id ON lessons USING btree (subject_id);
 
 
 --
@@ -972,27 +1084,6 @@ CREATE INDEX index_lessons_on_updated_at ON lessons USING btree (updated_at DESC
 
 
 --
--- Name: index_lessons_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_lessons_on_user_id ON lessons USING btree (user_id);
-
-
---
--- Name: index_likes_on_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_likes_on_lesson_id ON likes USING btree (lesson_id);
-
-
---
--- Name: index_likes_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_likes_on_user_id ON likes USING btree (user_id);
-
-
---
 -- Name: index_media_elements_on_title; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1007,34 +1098,6 @@ CREATE INDEX index_media_elements_on_updated_at ON media_elements USING btree (u
 
 
 --
--- Name: index_media_elements_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_media_elements_on_user_id ON media_elements USING btree (user_id);
-
-
---
--- Name: index_media_elements_slides_on_media_element_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_media_elements_slides_on_media_element_id ON media_elements_slides USING btree (media_element_id);
-
-
---
--- Name: index_media_elements_slides_on_slide_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_media_elements_slides_on_slide_id ON media_elements_slides USING btree (slide_id);
-
-
---
--- Name: index_notifications_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_notifications_on_user_id ON notifications USING btree (user_id);
-
-
---
 -- Name: index_reports_on_reportable_type_and_reportable_id_and_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1042,31 +1105,10 @@ CREATE UNIQUE INDEX index_reports_on_reportable_type_and_reportable_id_and_user_
 
 
 --
--- Name: index_reports_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_reports_on_user_id ON reports USING btree (user_id);
-
-
---
--- Name: index_slides_on_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_slides_on_lesson_id ON slides USING btree (lesson_id);
-
-
---
 -- Name: index_slides_on_position_and_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_slides_on_position_and_lesson_id ON slides USING btree ("position", lesson_id);
-
-
---
--- Name: index_taggings_on_tag_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_taggings_on_tag_id ON taggings USING btree (tag_id);
 
 
 --
@@ -1088,48 +1130,6 @@ CREATE UNIQUE INDEX index_tags_on_word ON tags USING btree (word);
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
-
-
---
--- Name: index_users_on_location_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_users_on_location_id ON users USING btree (location_id);
-
-
---
--- Name: index_users_on_school_level_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_users_on_school_level_id ON users USING btree (school_level_id);
-
-
---
--- Name: index_users_subjects_on_subject_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_users_subjects_on_subject_id ON users_subjects USING btree (subject_id);
-
-
---
--- Name: index_users_subjects_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_users_subjects_on_user_id ON users_subjects USING btree (user_id);
-
-
---
--- Name: index_virtual_classroom_lessons_on_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_virtual_classroom_lessons_on_lesson_id ON virtual_classroom_lessons USING btree (lesson_id);
-
-
---
--- Name: index_virtual_classroom_lessons_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_virtual_classroom_lessons_on_user_id ON virtual_classroom_lessons USING btree (user_id);
 
 
 --

@@ -20,31 +20,10 @@ class User < ActiveRecord::Base
   validate :validate_associations, :validate_email, :validate_email_not_changed
   
   before_validation :init_validation
-
+  
   def self.admin
     find_by_email CONFIG['admin_email']
   end
-
-  # def self.find_or_create_admin
-  #   User.admin || (
-  #     ActiveRecord::Base.transation do
-  #       location     = Location.first    || Location.create!(description: CONFIG['locations'].first)
-  #       school_level = SchoolLevel.first || SchoolLevel.create!(description: CONFIG['school_levels'].first)
-  #       subject_ids = 
-  #         if Subject.first
-  #           Subject.all.pluck(:id)
-  #         else
-  #           [ Subject.create!(description: CONFIG['subjects'].first).id ]
-  #         end
-  #       user_name    = ::CONFIG['admin_username'].split(' ').first
-  #       user_surname = ::CONFIG['admin_username'].gsub("#{user_name} ", '')
-  #       unless user = User.create_user(::CONFIG['admin_email'], user_name, user_surname, 'School', school_level.id, location.id, subject_ids)
-  #         raise 'could not create admin user'
-  #       end
-  #       user
-  #     end
-  #   )
-  # end
   
   def full_name
     "#{self.name} #{self.surname}"
@@ -324,8 +303,8 @@ class User < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       begin
         new_user.save!
-      rescue ActiveRecord::RecordNotSaved => e
-        if raise_exception_if_fail 
+      rescue ActiveRecord::RecordInvalid => e
+        if raise_exception_if_fail
           raise(e)
         else
           return nil
@@ -337,7 +316,7 @@ class User < ActiveRecord::Base
         new_users_subject.subject_id = s
         begin
           new_users_subject.save!
-        rescue ActiveRecord::RecordNotSaved => e
+        rescue ActiveRecord::RecordInvalid => e
           unless raise_exception_if_fail
             new_user = nil
             raise ActiveRecord::Rollback
