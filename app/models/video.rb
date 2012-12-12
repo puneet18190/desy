@@ -1,11 +1,13 @@
 require 'video_uploader'
 
+# converted
+#   true  : conversione andata a buon fine
+#   false : conversione non andata a buon fine
+#   nil   : conversione da effettuare o in fase di conversione
 class Video < MediaElement
   
-  VIDEO_COMPONENT = 'video'
-  TEXT_COMPONENT  = 'text'
-  IMAGE_COMPONENT = 'image'
-  COMPONENTS = [VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT]
+  COMPONENTS = %w(video text image)
+  VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT = COMPONENTS
 
   after_save :upload_or_copy
   after_destroy :clean
@@ -106,23 +108,21 @@ class Video < MediaElement
     d2 = self.webm_duration.to_i
     d1 > d2 ? d2 : d1
   end
-  
-  def thumb_path
-    # TODO
-    'TODO'
-  end
-
-  def cover_path
-    # TODO
-    'TODO'
-  end
 
   def mp4_path
-    media.try(:mp4_path)
+    media.try(:path, :mp4)
   end
 
   def webm_path
-    media.try(:webm_path)
+    media.try(:path, :webm)
+  end
+
+  def cover_path
+    media.try(:path, :cover)
+  end
+  
+  def thumb_path
+    media.try(:path, :thumb)
   end
 
   def media_validation
