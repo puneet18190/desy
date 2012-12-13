@@ -34,7 +34,7 @@ $(document).ready(function() {
   $('body').on('mouseout', '#slide-numbers li:not(._add_new_slide_options_in_last_position)', function(e) {
     var this_tooltip =$(this).children('.slide-tooltip');
     this_tooltip.removeClass("slide-tooltip-to-left");
-    //this_tooltip.hide();
+    this_tooltip.hide();
   });
   
   $('body').on('click', '._slide_nav:not(._lesson_editor_current_slide_nav)', function(e) {
