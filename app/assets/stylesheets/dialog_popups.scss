@@ -1,4 +1,21 @@
-.ui-button { display: inline-block; position: relative; padding: 0; margin-right: .1em; cursor: pointer; text-align: center; zoom: 1; overflow: visible; border:none; background-color:#f29400; color:#fff; font: 100% 'Nunito', sans-serif; -webkit-border-radius: 4px; border-radius: 4px;}
+.ui-button {
+  display: inline-block;
+  position: relative;
+  padding: 0;
+  margin-right: .1em;
+  cursor: pointer;
+  text-align: center;
+  zoom: 1;
+  overflow: visible;
+  border: none;
+  background-color: #f29400;
+  color: #fff;
+  font: 100% 'Nunito', sans-serif;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  z-index: 999;
+}
+
 .ui-dialog-titlebar { padding: .4em 1em; position: relative; display:none }
 .ui-dialog .ui-dialog-content {
   &.timedPopUp, &.confirmPopUp { 
@@ -168,4 +185,8 @@
 }
 .originalSize {
   font-size:10px;
+}
+
+.restoreCacheMediaElementEditorPopUp {
+  z-index: 999;
 }

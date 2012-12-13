@@ -62,9 +62,9 @@ def plant_development_seeds
   u.create_lesson('Chain Reactions', "Per dieci stagioni consecutive segna almeno una rete in campionato; in particolare nell'annata 1994-1995, la prima sotto la guida del tecnico boemo Zdenek Zeman in cui la Lazio conclude il campionato con il migliore attacco, Negro segna 4 reti", 3, tag_map[2])
   u.create_lesson('Cronologia presenze Nazionale', 'Paolo Negro (Arzignano, Italia, 16 de abril de 1972), fue un futbolista italiano, que se desempeñó como defensa y lateral en cualquier banda. Fue internacional con la selección de fútbol de Italia y disputó una Eurocopa', 1, tag_map[3])
   u.create_lesson('Negro Gol', 'Neqro A Seriyasında 1990-cı il oktyabrın 28-də, 18 yaşı olarkən debüt edib. O, Boloniya da çıxış edirdi. Rossoblu ilə yanaşı, Paolo Breşiya da da təcrübə yığıb. Oradan isə 1993-cü ildə Romanı fəth etməyə gedib. Müdafiəçini Latsio', 2, tag_map[4])
-  u.create_lesson('Pour les articles homonymes, voir Negro.', "Paolo Negro est un ancien footballeur italien, né le 16 avril 1972 à Arzignano. Il évoluait au poste de défenseur central ou défenseur latéral droit. Il a reçu 8 sélections en équipe d'Italie et a évolué pendant douze saisons à la Lazio, où il s'est construit un respectable", 3, tag_map[5])
+  u.create_lesson('Voir Negro', "Paolo Negro est un ancien footballeur italien, né le 16 avril 1972 à Arzignano. Il évoluait au poste de défenseur central ou défenseur latéral droit. Il a reçu 8 sélections en équipe d'Italie et a évolué pendant douze saisons à la Lazio, où il s'est construit un respectable", 3, tag_map[5])
   u.create_lesson('Voi siete negri.', "La parola negro definisce gli appartenenti a una razza pseudo-animale in parte simile all'uomo bianco. Le differenze da quest'ultimo sono note: i negri hanno notoriamente tre gambe.", 1, tag_map[6])
-  u.create_lesson('Pescato il calamaro più grande del mondo', "Dieci metri di lunghezza per 450 chili di peso. Sono le dimensione del calamaro gigante pescato nei giorni scorsi al largo della Nuova Zelanda. Si tratta probabilmente dell'esemplare più grande mai pescato. ", 2, tag_map[7])
+  u.create_lesson('Il calamaro più grande del mondo', "Dieci metri di lunghezza per 450 chili di peso. Sono le dimensione del calamaro gigante pescato nei giorni scorsi al largo della Nuova Zelanda. Si tratta probabilmente dell'esemplare più grande mai pescato. ", 2, tag_map[7])
   u.create_lesson('Laberinto', "No habrá nunca una puerta. Estás adentro - y el alcázar abarca el universo - y no tiene ni anverso ni reverso - ni externo muro ni secreto centro.", 3, tag_map[8])
   u.create_lesson('Che significa vi ho purgato ancora?', "in which he scored during the final minutes of the game and celebrated by flashing a T-shirt under his jersey, which read 'Vi ho purgato ancora' (\"I've purged you guys again\"), in reference to events at the previous derby against Lazio", 1, tag_map[9])
   u.create_lesson('Chez Fifi', "\"Breakfast\", which was included, was supposed to start at 6:30 AM, which was fine with us because we had an early flight and did not want to spend an additional minute in this place. At 6:30 AM, Madam Fifi was sitting at the table. After we asked her \"where's breakfast?\"", 2, tag_map[0])
@@ -78,7 +78,7 @@ def plant_development_seeds
   u.create_lesson("2013 Trek Calendars Available", "If you’re already thinking about that perfect gift for the Star Trek fan in your life… or for yourself, a classic standby awaits. Danilo’s 2013 Star Trek calendars. They’re offering two Trek calendars this year, Star Trek 2013 Calendar.", 1, tag_map[6])
   u.create_lesson("Holographic Love", "Star Trek is a worldwide phenomenon. StarTrek.com frequently presents excerpts from the latest issue of Star Trek Magazine, which is published out of England and available internationally. the official Star Trek magazine of Italy. ", 1, tag_map[7])
   u.create_lesson("Alimentazione", "I fattori che scatenano la prostatite sono molteplici e talvolta possono agire contemporaneamente, dando luogo a diverse forme di prostatite. Le principali cause della prostatite possono essere: batteri, che risalgono il condotto urinario e si depositano nella prostata.", 2, tag_map[8])
-  u.create_lesson("Come Si Calcola I Giorno Di Fertilità?", "ciao a tutti cerco un vostro aiuto vorrei calcolare il giorno fertile. le mestruazione sono venute 27 marzo ed ho avuto 46 giorni di ritardo ed arriva fino 40 giorni cosa ci devo mettere non ci capisco più nulla", 3, tag_map[9])
+  u.create_lesson("Qual è il giorno di fertilità?", "ciao a tutti cerco un vostro aiuto vorrei calcolare il giorno fertile. le mestruazione sono venute 27 marzo ed ho avuto 46 giorni di ritardo ed arriva fino 40 giorni cosa ci devo mettere non ci capisco più nulla", 3, tag_map[9])
   u.create_lesson("Educazione figli", "ho un bimbo bellisimo di 3 anni e mezzo beh, è già la seconda volta che il papà lo picchia con la cinta xkè ha disubbidito. Ebbene Nicol va col faccino mogio mogio dal suo papà e gli dice e il papà gli risponde \" prima di cena ti cinghio lo stesso e al parco non ci vai\"!!!", 1, tag_map[0])
   u.create_lesson("Lazio, nuovo caso Fiorito dell'Idv", "La Gdf interviene dopo una segnalazione della Banca d'Italia. L'indagine riguarda i fondi del gruppo dell'Italia dei valori e l'utilizzo fattone dal responsabile, Vincenzo Salvatore Maruccio, che è anche segretario regionale del partito", 2, tag_map[1])
   u.create_lesson("Ufologia", "Questo Database di oltre 300 immagini di Cerchi nel grano è suddiviso in diverse gallerie che riportano i vari dati sulla realizzazione. Le immagini sono state accuratamente cercate in rete e dopo averle sel ezionate", 1, tag_map[2])
@@ -101,25 +101,25 @@ def plant_development_seeds
   descriptions = []
   descriptions << ['Gatto', "Non dire gatto se non l'hai nel sacco"]
   descriptions << ["Pizza Berlusconi", "Pizza Berlusconi on tuotenimi Kotipizza-ketjun savuporopizzalle. Kotipizza on savuporopizzallaan voittanut maaliskuussa 2008 America's Plate International -pizzakilpailun New Yorkissa päihittäen muun muassa toiseksi kilpailussa tulleet italialaiset."]
-  descriptions << ["Kotipizza är Finlands största pizzakedja", "Kedjan gjorde ett försök med en Sverigelansering under 1990-talet då tre pizzarestauranger öppnades i Umeå, grannstad med Rabbe Grönbloms hemstad Vasa. Enligt Kotipizza gick lanseringen enligt förväntan men restaurangerna lades ner efter ett par år."]
+  descriptions << ["Kotipizza är Finlands största kedja", "Kedjan gjorde ett försök med en Sverigelansering under 1990-talet då tre pizzarestauranger öppnades i Umeå, grannstad med Rabbe Grönbloms hemstad Vasa. Enligt Kotipizza gick lanseringen enligt förväntan men restaurangerna lades ner efter ett par år."]
   descriptions << ['歷史', '中華人民共和國建立無耐，中國大陸因連年戰爭已經接近一個廢墟。1950年代初期，共產黨通過「鎮壓反革命」嘅運動，對私有經濟同財產進行城市工商業「社會主義改造」同農村「土改」同土地集體化，抑止戰時通貨膨脹、並喺蘇聯援助下建立一個初步完整嘅工業體系，普及國民教育同建立醫療保障體系。「一邊倒」）嘅政策，援助各社會主義國家同新興獨立國家共產主義活動。軍事上，1950年基本消滅國民黨喺大陸嘅殘餘勢力；']
   descriptions << [arab_title, arab_desc]
   descriptions << ['William Bligh', "Bligh was born in Tinten Manor in St Tudy near Bodmin, Cornwall, to Francis Bligh and his wife Jane. Francis was Jane's second husband; she was the widow of a man whose surname was Pearce and her maiden name was Balsam."]
-  descriptions << ["Tokelauan self-determination referendum", "Despite the majority 60% who voted in favour of the proposal, the referendum failed to get the two-thirds majority required for the referendum to succeed."]
+  descriptions << ["Tokelauan determination referendum", "Despite the majority 60% who voted in favour of the proposal, the referendum failed to get the two-thirds majority required for the referendum to succeed."]
   descriptions << ["History of Samoa", "Robert Louis Stevenson arrived in Samoa in 1889 and built a house at Vailima. He quickly became passionately interested, and involved, in the attendant political machinations."]
-  descriptions << ["Приднестровская Молдавская Республика", "С древних времён данная территория была населена тирагетами (фракийское племя)[10]. В раннем средневековье на территории современного Приднестровья жили славянские племена уличи и тиверцы, а также кочевники-тюрки — печенеги и половцы."]
+  descriptions << ["Приднестровская Молдавя Республика", "С древних времён данная территория была населена тирагетами (фракийское племя)[10]. В раннем средневековье на территории современного Приднестровья жили славянские племена уличи и тиверцы, а также кочевники-тюрки — печенеги и половцы."]
   descriptions << ["Calendario 2012", "Su questo sito ogni calendario online, annuale o mensile, sta, tra l’altro, per 2012, 2013 e 2014. Questo può essere molto utile quando si cerca una data (per esempio, quando si hanno le vacanze) "]
   descriptions << ["De Rossi-Zeman, è gelo", "Scarso impegno? Il romanista è infuriato, tre mesi per trovare la pace o sarà addio."]
   descriptions << ["Balotelli imita Eto'o", "Balotelli BalotelliBalotelli Balotelli Balotelli Balotelli Balotelli Balotelli"]
   
   descriptions << ["Paura per Osvaldo", "Saranno Giovinco e Osvaldo a guidare l'Italia stasera contro l'Armenia."]
   descriptions << ["Allenamenti differenziati? Storie!", "Un Prandelli concentratissimo ha spiegato tutti gli aspetti di questa vigilia di Armenia-Italia. Prandelli, dopo le difficoltà di settembre, che Italia dovremo aspettarci?"]
-  descriptions << ["административно-территориальные единицы", "Отличается значительным этнокультурным разнообразием. Бо́льшая часть верующих (около 75 % населения[11]) исповедует православие, что делает Россию страной с самым большим православным населением в м"]
+  descriptions << ["административно-территориальные еди", "Отличается значительным этнокультурным разнообразием. Бо́льшая часть верующих (около 75 % населения[11]) исповедует православие, что делает Россию страной с самым большим православным населением в м"]
   descriptions << ["С начала XIV века среди", "(собственников земли) превратились в помещиков (держателей поместья — надела, за который они обязаны нести военную службу) и слились по своему статусу с сословием служилых люде"]
   descriptions << ["южные и юго-восточные", "рактически всё мужское население Крыма, что значительно подорвало военно-политические силы Крымского ханства. Фактически сражение при Молодях стало последней великой битвой Руси с"]
-  descriptions << ["модернизации армии, государственного", "в результате Февральской революции монархия пала. Царя Николая II убедили отречься от престола в пользу своего брата Михаила, но тот не захотел принять бразды правления. В результате власть перешла к Временному"]
+  descriptions << ["модернизации арми, государственного", "в результате Февральской революции монархия пала. Царя Николая II убедили отречься от престола в пользу своего брата Михаила, но тот не захотел принять бразды правления. В результате власть перешла к Временному"]
   descriptions << ["История СССР#Образование СССР", "Сталин провёл чистку партийного аппарата. В государстве продолжились массовые репрессии. Создана система исправительно-трудовых лагерей"]
-  descriptions << ["стратегическое наступление и разгромили", "передовых западных стран в технологическом плане. В области внешней политики Брежнев немало сделал для достижения политической разрядки в 1970-х годах. Были заключены американо-советские"]
+  descriptions << ["стратегическое насение и разгромили", "передовых западных стран в технологическом плане. В области внешней политики Брежнев немало сделал для достижения политической разрядки в 1970-х годах. Были заключены американо-советские"]
   descriptions << ["независимость и вышли", "года консервативной частью руководства СССР была предпринята попытка спасения советского государственного строя. В историю эта попытка вошла под именем «Августовский путч», а инициативная"]
   descriptions << ["加拿大", "喺15世紀尾，英國同法國開始喺度擴張殖民地。後尾喺1763年，法國打輸咗七年戰爭，就割讓咗差唔多"]
   descriptions << ["國會架構", "皇室代表係總督。實質上，君主係唔會單方面行使權力，而係會聽總理嘅建議。加拿大國會眾議院係加拿大國會權力嘅核心。加拿大君主嘅權力只係象徵式"]
@@ -133,20 +133,20 @@ def plant_development_seeds
   descriptions << ["寶貝歷險記", "La carica dei 101 in cinese"]
   descriptions << ["英文片名無變", "本片電影原聲帶已經由滾石喺台灣發行，目前喺中國大陸冇任何影音產品發行"]
   descriptions << ["Juve-Napoli, che bufera!", "Il procuratore federale Palazzi ha deferito Antonio Conte, Aurelio De Laurentiis e i due club"]
-  descriptions << ["Maggio: «Cara Juve, siamo cresciuti»", "L'esterno del Napoli: «Loro hanno qualcosina in più come qualità di giocatori, noi come qualità tattica»"]
-  descriptions << ["Italia, con Balotelli Osvaldo o Giovinco", "Prandelli prova prima Giovinco e poi Osvaldo come spalla di SuperMario, con Montolivo alle spalle delle punte, per chiudere con un 4-3-3 senza il milanista ma con tutte e tre le punte"]
+  descriptions << ["Maggio: «Cara Juve, siam cresciuti»", "L'esterno del Napoli: «Loro hanno qualcosina in più come qualità di giocatori, noi come qualità tattica»"]
+  descriptions << ["Italia Balotelli Osvaldo o Giovinco", "Prandelli prova prima Giovinco e poi Osvaldo come spalla di SuperMario, con Montolivo alle spalle delle punte, per chiudere con un 4-3-3 senza il milanista ma con tutte e tre le punte"]
   descriptions << ["Candreva: Una super Lazio", "Il centrocampista, tornato in Nazionale dopo tre anni:"]
-  descriptions << ["Hernanes: «Vogliamo fare salto di qualit", "Il centrocampista della Lazio: «Il frutto di questo match è stato un buon risultato per affrontare la sosta con tranquillità»"]
+  descriptions << ["Hernanes: «Vogliamo fare un salto", "Il centrocampista della Lazio: «Il frutto di questo match è stato un buon risultato per affrontare la sosta con tranquillità»"]
   descriptions << ["Stipendi, Agnelli batte Lotito", "Consiglieri di amministrazione della Lazio senza paga. Nei bianconeri 1,65 milioni a Marotta e 200 mila euro a Nedved"]
   descriptions << ["Milan-Inter: c'è Valeri.", "Ecco le designazioni per le sfide della settima di Serie A: per Inter-Milan scelto Valeri. Pescara-Lazio a De Marco mentre Roma-Atalanta è stata affidata a Banti"]
-  descriptions << ["mazzoleni ha alzato la coppa a pechino!", "c'è tanta gente che ruba senza pagare, almeno voi in questo siete da esempio: a fine mese saldate sempre e comunque il conto e va detto che tutto ciò vi fa onore!! Ecco lo stile juve!! Lo sport e non solo prenda esempio da voi!!"]
+  descriptions << ["mazzoleni ha alzato la coppa!", "c'è tanta gente che ruba senza pagare, almeno voi in questo siete da esempio: a fine mese saldate sempre e comunque il conto e va detto che tutto ciò vi fa onore!! Ecco lo stile juve!! Lo sport e non solo prenda esempio da voi!!"]
   descriptions << ["Due turni a Gastaldello", "Il giudice sportivo ha squalificato per due giornate Daniele Gastaldello (Sampdoria) che era stata espulso durante la partita con il Napoli. Guastaldello era stato espulso dopo essere stato ammonito per comportamento scorretto nei confronti di u"]
-  descriptions << ["Risultato Juve-Roma: il tuo pronostico", "Come finirà la sfida dello Juventus Stadium? Quale sarà il punteggio finale? Chi segnerà? Ditecelo con un semplice commento!"]
+  descriptions << ["Risultato Juve-Roma", "Come finirà la sfida dello Juventus Stadium? Quale sarà il punteggio finale? Chi segnerà? Ditecelo con un semplice commento!"]
   descriptions << ["Cagliari-Pescara aperta al pubblico", "Via libera ufficiale della Commissione provinciale di vigilanza per l'apertura al pubblico dello stadio Is Arenas di Quartu. Domenica gli abbonati del club sardo potranno assistere alla sfida di Serie A"]
   descriptions << ["Zeman? Niente appello ai tifosi", "L'esterno del Barcellona ricorderà a lungo martedì 9 ottobre: esattamente dopo 223 giorni ha toccato un..."]
-  descriptions << ["Messi e Ronaldo, marziani al Camp Nou", "Hanno realizzato una doppietta a testa in quella che in questo momento è forse la più bella, spettacolare e avvincente partita che il mondo del calcio"]
+  descriptions << ["Messi e Ronaldo, marziani al Camp", "Hanno realizzato una doppietta a testa in quella che in questo momento è forse la più bella, spettacolare e avvincente partita che il mondo del calcio"]
   descriptions << ["Aguero e la perdita dell'innocenza", "L'attaccante del City attacca gli arbitri: «Hanno un occhio di riguardo per i giocatori inglesi»"]
-  descriptions << ["Zamparini, è Lo Monaco l'ultimo teatro", "Il presidente del Palermo possiede tanta immaginazione, e sembra che aumenti proporzionalmente al numero di sconfitte che la sua squadra incamera"]
+  descriptions << ["Zamparini, l'ultimo teatro", "Il presidente del Palermo possiede tanta immaginazione, e sembra che aumenti proporzionalmente al numero di sconfitte che la sua squadra incamera"]
   descriptions << ["Ronaldo parteciperà ad un reality", "Colui che per tutti era il Fenomeno è comparso in un programma di Rede Globo, la più grande e potente emittente del Paese e ha cominciato una dieta pubblica. Periodicamente ricomparirà in video per le misurazioni del caso"]
   descriptions << ["Il momento in cui i talenti cadono", "Narciso si innamorò della sua immagine riflessa e prendendo atto dell'impossibilità del rapporto amoroso, si lasciò morire, perché mai le stesse pulsioni dovrebbero essere assenti in chi sa bene di essere, nel suo campo, il migliore?"]
   descriptions << ["Sheva ora è un traditore venduto", "L'ex attacccante del Milan ha fondato un movimento: ma i tifosi che lo adoravano ora lo accusano di amoreggiare con il partito al potere"]
@@ -257,7 +257,7 @@ def plant_development_seeds
   cont = 0
   tim = Time.zone.now
   MediaElement.all.each do |l|
-    if ![20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40].include?(l.id)
+    if ![2, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40].include?(l.id)
       l.is_public = true
       l.publication_date = tim - cont
       l.save

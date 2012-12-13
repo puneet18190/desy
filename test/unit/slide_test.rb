@@ -34,7 +34,7 @@ class SlideTest < ActiveSupport::TestCase
     assert_match /is not included in the list/, @slide.errors.messages[:kind].first
     @slide.kind = 'video1'
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
-    assert_invalid @slide, :title, long_string(41), long_string(40), /is too long/
+    assert_invalid @slide, :title, long_string(36), long_string(35), /is too long/
     @slide.title = nil
     assert_obj_saved @slide
   end

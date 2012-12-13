@@ -30,3 +30,18 @@
 <div id="video_editor_audio_gallery_container" class="mediaEditorVideoContainer" style="display:none" data-loaded="false"></div>
 
 <div id="info_container" data-components-number="<%= @parameters[:components].count %>" data-current-component="" data-replacing-component="false" data-total-length="<%= @total_length %>" style="display:none"></div>
+
+
+<% if !@cache.nil? %>
+  <script type="text/javascript">
+    showRestoreCacheMediaElementEditorPopUp(function() {
+      window.location.href = '/videos/cache/restore'
+    }, function() {
+      closePopUp('dialog-restore-cache-media-element-editor');
+      $.ajax({
+        type: 'post',
+        url: '/videos/cache/empty'
+      });
+    });
+  </script>
+<% end %>

@@ -254,6 +254,9 @@ en:
     virtual_classroom_lessons_loaded_error: 'There was a problem, #number of your lessons were not loaded'
     invalid_component_duration_in_video_editor: 'You inserted a wrong duration, it must be a number greater than 0'
     empty_text_component_in_video_editor: 'Insert a text'
+    restore_cache_media_element_editor_message: 'A previous working session was closed unexpectedly!'
+    restore_cache_media_element_editor_yes: 'Restore'
+    restore_cache_media_element_editor_no: 'Clear'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'
@@ -367,15 +370,15 @@ en:
   language_parameters:
     lesson:
       length_description: 280 # for chinese it should be around 180 - 200
-      length_title: 40
+      length_title: 35 # for chinese it should be around 45
     media_element:
       length_description: 280 # for chinese it should be around 180 - 200
-      length_title: 40
+      length_title: 35 # for chinese it should be around 45
     slide:
-      length_title: 40
-      length_caption: 40
+      length_title: 35 # for chinese it should be around 45
+      length_caption: 35 # for chinese it should be around 45
     video_editor:
-      length_text_component: 35
+      length_text_component: 35 # for chinese it should be around 45
       length_duration: 3
 
 # (6) forms
