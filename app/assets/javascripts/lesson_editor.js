@@ -328,8 +328,9 @@ function hideNewSlideChoice() {
 }
 
 function stopMediaInCurrentSlide() {
-  stopMedia('li._lesson_editor_current_slide audio');
-  stopMedia('li._lesson_editor_current_slide video');
+  var current_slide_id = $('li._lesson_editor_current_slide').attr('id');
+  stopMedia('#' + current_slide_id + ' audio');
+  stopMedia('#' + current_slide_id + ' video');
 }
 
 function initializeSortableNavs() {

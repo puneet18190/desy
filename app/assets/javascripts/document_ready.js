@@ -250,9 +250,13 @@ $(document).ready(function() {
       stopMedia('#' + parent_id + ' audio');
       obj.hide('blind', {}, 500);
     } else {
+      var currently_open = $('._audio_expanded_in_gallery');
+      if(currently_open.length != 0) {
+        currently_open.removeClass('_audio_expanded_in_gallery');
+        stopMedia('#' + currently_open.attr('id') + ' audio');
+        $('#' + currently_open.attr('id') + ' ._expanded').hide('blind', {}, 500);
+      }
       $('#' + parent_id).addClass('_audio_expanded_in_gallery');
-      stopMedia('._audio_expanded_in_gallery audio');
-      $('._audio_expanded_in_gallery ._expanded').hide('blind', {}, 500);
       obj.show('blind', {}, 500);
     }
   });

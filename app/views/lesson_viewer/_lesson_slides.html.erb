@@ -12,7 +12,7 @@
         <%else%>
           <% lesson.slides.order(:position).each do |slide| %>
           <% slide.text = "" if slide.text.blank? %>
-            <li class="cover slide"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
+            <li id="slide_in_lesson_viewer_<%= slide.id %>" class="cover slide"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
           <% end %>
         <% end %>
       </ul>
