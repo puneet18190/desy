@@ -34,6 +34,7 @@ class VideoTest < ActiveSupport::TestCase
   end
   
   test 'convert_parameter_hash' do
+    assert_not_nil Video.convert_parameters(@parameters, 1)
     assert_nil Video.convert_parameters('o', 1)
     assert_nil Video.convert_parameters({}, 1)
     @parameters.delete :initial_video_id
@@ -66,66 +67,41 @@ class VideoTest < ActiveSupport::TestCase
     @parameters[:audio_id] = 3
     assert_nil Video.convert_parameters(@parameters, 1)
     reset_parameters
+    @parameters[:components] = '[]'
+    assert_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components] = []
+    assert_nil Video.convert_parameters(@parameters, 1)
+    reset_parameters
+    @parameters[:components][0][:type] = 'viddeo'
+    assert_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][0][:type] = 'video'
+    @parameters[:components][0].delete(:video_id)
+    assert_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][0][:video_id] = '3'
+    assert_nil Video.convert_parameters(@parameters, 1)
+    MediaElement.where(:id => 2).update_all(:user_id => 2, :is_public => false)
+    @parameters[:components][0][:video_id] = 2
+    assert_nil Video.convert_parameters(@parameters, 1)
+    MediaElement.where(:id => 2).update_all(:user_id => 1, :is_public => true)
+    reset_parameters
+    @parameters[:components][0][:from] = 't'
+    assert_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][0][:until] = '1'
+    assert_nil Video.convert_parameters(@parameters, 1)
+    reset_parameters
+    @parameters[:components][0][:until] = 12
+    assert_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][0][:until] = 11
+    assert_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][0][:until] = 22
+    assert_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][0][:until] = 21
+    assert_not_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][0][:from] = -1
+    assert_nil Video.convert_parameters(@parameters, 1)
+    reset_parameters
+    
 
-#    provare per ogni componente un caso in cui non è accessibile, ma non il caso in cui non esiste o non è il tipo giusto
-# inoltre provare per una componente sola il caso in cui non è un intero
-
-
-#    # there must be a list of components
-#    return nil if !hash[:components].instance_of?(Array) || !hash[:components].empty?
-#    
-#    # initialize empty components
-#    resp_hash[:components] = []
-#    
-#    # for each component I validate it and add it to the HASH
-#    hash[:components].each do |p|
-#      return nil if !p.instance_of?(Hash) || !COMPONENTS.include?(p[:type])
-#      case p[:type]
-#        when VIDEO_COMPONENT
-#          c = extract_video_component(p, user_id)
-#          return nil if c.nil?
-#          resp_hash[:components] << c
-#        when TEXT_COMPONENT
-#          c = extract_text_component(p)
-#          return nil if c.nil?
-#          resp_hash[:components] << c
-#        when IMAGE_COMPONENT
-#          c = extract_image_component(p, user_id)
-#          return nil if c.nil?
-#          resp_hash[:components] << c
-#      end
-#    end
-#    
-#    resp_hash
-#  end
-#  
-#  def self.extract_image_component(component, user_id)
-#    image = get_media_element_from_hash(component, :image_id, user_id, 'Image')
-#    # I validate that the image exists and is accessible from the user
-#    return nil if image.nil?
-#    # DURATION is correct
-#    return nil if !component[:duration].instance_of?(Integer) || component[:duration] < 1
-#    {
-#      :type => IMAGE_COMPONENT,
-#      :image => image,
-#      :duration => component[:duration]
-#    }
-#  end
-#  
-#  def self.extract_video_component(component, user_id)
-#    video = get_media_element_from_hash(component, :video_id, user_id, 'Video')
-#    # I validate that the video exists and is accessible from the user
-#    return nil if video.nil?
-#    # FROM and UNTIL are correct
-#    return nil if !component[:from].instance_of?(Integer) || !component[:until].instance_of?(Integer)
-#    return nil if component[:from] < 0 || component[:until] > video.min_duration || component[:from] >= component[:until]
-#    {
-#      :type => VIDEO_COMPONENT,
-#      :video => video,
-#      :from => component[:from],
-#      :until => component[:until]
-#    }
-#  end
 #  
 #  def self.extract_text_component(component)
 #    # CONTENT, COLORS, and DURATION are present and correct
@@ -139,6 +115,24 @@ class VideoTest < ActiveSupport::TestCase
 #      :text_color => component[:text_color]
 #    }
 #  end
+
+#    provare per ogni componente un caso in cui non è accessibile, ma non il caso in cui non esiste o non è il tipo giusto
+
+#  def self.extract_image_component(component, user_id)
+#    image = get_media_element_from_hash(component, :image_id, user_id, 'Image')
+#    # I validate that the image exists and is accessible from the user
+#    return nil if image.nil?
+#    # DURATION is correct
+#    return nil if !component[:duration].instance_of?(Integer) || component[:duration] < 1
+#    {
+#      :type => IMAGE_COMPONENT,
+#      :image => image,
+#      :duration => component[:duration]
+#    }
+#  end
+#  
+
+
 #  
 #  def self.get_media_element_from_hash(hash, key, user_id, my_sti_type)
 #    hash[key].instance_of?(Integer) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
