@@ -1,3 +1,38 @@
+function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
+  var obj = $('#dialog-restore-cache-media-element-editor');
+  var caption = $('#popup_captions_container').data('restore-cache-media-element-editor-message');
+  var msg_ok = $('#popup_captions_container').data('restore-cache-media-element-editor-yes');
+  var msg_no = $('#popup_captions_container').data('restore-cache-media-element-editor-no');
+  content = '<p class="upper">' + caption + '</p>'; // TODO per Aurelia, metti la stessa classe anche ai bottoni!!!!
+  var dialog_buttons = {};
+  dialog_buttons[msg_ok] = callback_ok;
+  dialog_buttons[msg_no] = callback_no;
+  if(obj.data('dialog')) {
+    obj.html(content);
+    obj.dialog('option', 'buttons', dialog_buttons);
+    obj.dialog('open');
+  } else {
+    obj.show();
+    obj.html(content);
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      draggable: false,
+      width: 485,
+      show: "fade",
+      hide: "fade",
+      buttons: dialog_buttons,
+      open: function(event, ui) {
+        var overlay = obj.parent().prev();
+        overlay.addClass('dialog_opaco');
+      },
+      beforeClose: function() {
+        $('.dialog_opaco').removeClass('dialog_opaco');
+      }
+    });
+  }
+}
+
 function showSendLessonLinkPopUp(lesson_id) {
   var obj = $('#dialog-virtual-classroom-send-link');
   $('#dialog-virtual-classroom-send-link form').attr('action', ('/virtual_classroom/' + lesson_id + '/send_link'));
