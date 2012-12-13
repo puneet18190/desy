@@ -120,6 +120,12 @@ $(document).ready(function() {
   
   $('body').on('click', '._close_audio_gallery_in_lesson_editor', function(e) {
     e.preventDefault();
+    var current_playing_audio = $('._audio_expanded_in_gallery');
+    if(current_playing_audio.length != 0) {
+      current_playing_audio.removeClass('_audio_expanded_in_gallery');
+      stopMedia('#' + current_playing_audio.attr('id') + ' audio');
+      $('#' + current_playing_audio.attr('id') + ' ._expanded').hide();
+    }
     removeGalleryInLessonEditor('audio');
   });
   
