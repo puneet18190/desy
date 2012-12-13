@@ -100,44 +100,39 @@ class VideoTest < ActiveSupport::TestCase
     @parameters[:components][0][:from] = -1
     assert_nil Video.convert_parameters(@parameters, 1)
     reset_parameters
-    
-
-#  
-#  def self.extract_text_component(component)
-#    # CONTENT, COLORS, and DURATION are present and correct
-#    return nil if !component.has_key?(:content) || !component[:duration].instance_of?(Integer) || component[:duration] < 1
-#    return nil if !CONFIG['colors'].has_key?(component[:background_color]) || !CONFIG['colors'].has_key?(component[:text_color])
-#    {
-#      :type => TEXT_COMPONENT,
-#      :content => component[:content].to_s,
-#      :duration => component[:duration],
-#      :background_color => component[:background_color],
-#      :text_color => component[:text_color]
-#    }
-#  end
-
-#    provare per ogni componente un caso in cui non è accessibile, ma non il caso in cui non esiste o non è il tipo giusto
-
-#  def self.extract_image_component(component, user_id)
-#    image = get_media_element_from_hash(component, :image_id, user_id, 'Image')
-#    # I validate that the image exists and is accessible from the user
-#    return nil if image.nil?
-#    # DURATION is correct
-#    return nil if !component[:duration].instance_of?(Integer) || component[:duration] < 1
-#    {
-#      :type => IMAGE_COMPONENT,
-#      :image => image,
-#      :duration => component[:duration]
-#    }
-#  end
-#  
-
-
-#  
-#  def self.get_media_element_from_hash(hash, key, user_id, my_sti_type)
-#    hash[key].instance_of?(Integer) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
-#  end
-#  
+    @parameters[:components][1][:type] = 'sext'
+    assert_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][1][:type] = 'text'
+    @parameters[:components][1].delete(:content)
+    assert_nil Video.convert_parameters(@parameters, 1)
+    reset_parameters
+    @parameters[:components][1][:duration] = 't'
+    assert_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][1][:duration] = 0
+    assert_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][1][:duration] = -3
+    assert_nil Video.convert_parameters(@parameters, 1)
+    reset_parameters
+    @parameters[:components][1][:text_color] = 'opoppp'
+    assert_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][1][:text_color] = 'red'
+    assert_not_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][1][:background_color] = 'pink'
+    assert_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][1][:background_color] = 'light_blue'
+    assert_not_nil Video.convert_parameters(@parameters, 1)
+    reset_parameters
+    @parameters[:components][2].delete(:image_id)
+    assert_nil Video.convert_parameters(@parameters, 1)
+    MediaElement.where(:id => 6).update_all(:is_public => false)
+    @parameters[:components][2][:image_id] = 6
+    assert_nil Video.convert_parameters(@parameters, 1)
+    MediaElement.where(:id => 6).update_all(:is_public => true)
+    reset_parameters
+    @parameters[:components][2][:duration] = 't'
+    assert_nil Video.convert_parameters(@parameters, 1)
+    @parameters[:components][2][:duration] = -6
+    assert_nil Video.convert_parameters(@parameters, 1)
   end
   
 end
