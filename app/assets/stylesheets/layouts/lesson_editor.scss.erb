@@ -5,7 +5,9 @@ html.lesson-editor-layout{
   $orange: #f29400;
   *{
     outline: none;
+
   }
+
   body {
   	direction:ltr;
   	@media (max-width: 1024px) {
@@ -150,6 +152,8 @@ html.lesson-editor-layout{
 		padding: 20px;
 		display:inline-block;
 		background-color:#fff;
+    position:absolute;
+    top:0;
 	}
 	@mixin photoIconFormat {
 	  font-size:2.8em;
@@ -188,6 +192,7 @@ html.lesson-editor-layout{
  /*THUMBNAILS*/
   .slide-tooltip {
     width: 300px;
+    height:300px;
     display: none;
 		z-index:9999999999;
     margin: 20px 0 0 -27px;
@@ -196,6 +201,8 @@ html.lesson-editor-layout{
     background: url("/assets/lesson-editor-tooltip-bg.png") top left no-repeat;
 		.zoomOutThumb {
 		  zoom:27%;
+      -moz-transform: scale(0.27);
+      position:absolute;
 			/*slide video*/
 			.slideVideo {
 			  
