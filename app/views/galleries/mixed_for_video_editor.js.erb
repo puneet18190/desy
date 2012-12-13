@@ -2,8 +2,8 @@ $('#video_editor').hide();
 $('#video_editor_mixed_gallery_container').show();
 $('#video_editor_mixed_gallery_container').html('<%= j(render(:partial => 'galleries/mixed_video_image_text', :locals => {:images => @images, :videos => @videos})) %>');
 $('#video_editor_mixed_gallery_container').data('loaded', true);
-$('._select_video_from_gallery').addClass('_add_video_component_to_video_editor').removeClass('_select_video_from_gallery');
-$('._select_image_from_gallery').addClass('_add_image_component_to_video_editor').removeClass('_select_image_from_gallery');
+$('._select_video_from_gallery').addClass('_add_video_component_to_video_editor');
+$('._select_image_from_gallery').addClass('_add_image_component_to_video_editor');
 $('._image_gallery_thumb').addClass('_image_gallery_thumb_in_mixed_gallery_video_editor').removeClass('_image_gallery_thumb');
 
 var temporary_invisible_div = '<div class="_temporary" style="display:none">';

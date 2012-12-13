@@ -8,7 +8,7 @@
     <% if audio.nil? %>
       <div class="audioIcon"></div>
     <% else %>
-      <%= render(:partial => 'shared/players/audio', :locals => {:audio => audio}) %>
+      <%= render :partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true} %>
     <% end %>
   </div>
   <div class="contentText">

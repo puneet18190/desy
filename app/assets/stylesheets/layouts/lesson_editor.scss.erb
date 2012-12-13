@@ -5,7 +5,9 @@ html.lesson-editor-layout{
   $orange: #f29400;
   *{
     outline: none;
+
   }
+
   body {
   	direction:ltr;
   	@media (max-width: 1024px) {
@@ -41,7 +43,7 @@ html.lesson-editor-layout{
   h2 {
     
     font-size: 50px;
-    text-align: left;
+    /*text-align: left;*/
     font-weight: normal;
     line-height: 50px;
 		margin:20px;
@@ -62,7 +64,6 @@ html.lesson-editor-layout{
   	  height:230px;
   	}
   	.scroll-pane {
-  	  width:1250px;
   		/*position:absolute;*/
   		overflow-y:visible;
     }
@@ -71,8 +72,8 @@ html.lesson-editor-layout{
         background: #3f3f3f;
       }
       .jspHorizontalBar {
-        height:8px;
-        top: 20px;
+        height:5px;
+        top: 23px;
         position:absolute;
       }
       .jspDrag {
@@ -80,7 +81,6 @@ html.lesson-editor-layout{
       }
     }
   }  
-  
 
   #slide-numbers {
     /*position:fixed;*/
@@ -101,19 +101,6 @@ html.lesson-editor-layout{
         font-size: 1em;
 				background-color: rgba(45,45,45,0.5);
 				
-        &.add-small{
-          text-indent: -9999999px;
-          border:none;
-          padding:0;
-          height: 17px;
-          width: 17px;
-          background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
-        }
-        &.add-small:hover{
-          background-color:transparent;
-          background-position: bottom center;
-          border: none;
-        }
         &:hover {
           background-color: white;
           border: 1px solid white;
@@ -136,20 +123,313 @@ html.lesson-editor-layout{
       }
     }
   }
+  
+  .add-small{
+    position:absolute;
+    top:10px;
+    right: 10px;
+    text-indent: -9999999px;
+    border:none;
+    padding:0;
+    height: 17px;
+    width: 17px;
+    background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
+  }
+  .add-small:hover{
+    background-color:transparent;
+    background-position: bottom center;
+    border: none;
+  }
  @mixin colorLink {
    a	{
 		color: $orange;
 		text-decoration:underline;	
 	}
  }
+ @mixin formatElement {
+	  width:860px;
+		height:550px;
+		padding: 20px;
+		display:inline-block;
+		background-color:#fff;
+    position:absolute;
+    top:0;
+	}
+	@mixin photoIconFormat {
+	  font-size:2.8em;
+		background-position: -11.6em -11.6em;
+		opacity:0.1;
+		width:180px;
+		height:180px;
+	}
+	@mixin videoIconFormat {
+	  font-size:2.8em;
+		background-position: -11.6em -0.3em;
+		opacity:0.1;
+		width:180px;
+		height:180px;
+	}
+	@mixin audioIconFormat {
+	  font-size:0.45em;
+		background-position: -11.6em -5.5em;
+		opacity:0.1;
+		
+	}
+	@mixin styleCaption {
+	  font-family:"Nunito", sans-serif;
+	  background-color: rgba(50, 50, 50, 0.7);
+    color: #FAFAFA;
+		height:35px;
+    display: block;
+    position: absolute;
+    left: auto;
+    bottom: 0px;
+    padding: 0 5px;
+    line-height: 35px;
+		font-size:13px;
+		
+	}
+ /*THUMBNAILS*/
   .slide-tooltip {
     width: 300px;
+    height:300px;
     display: none;
 		z-index:9999999999;
     margin: 20px 0 0 -27px;
     position: absolute;
     padding: 20px 20px 25px 25px;
     background: url("/assets/lesson-editor-tooltip-bg.png") top left no-repeat;
+		.zoomOutThumb {
+		  zoom:27%;
+      -moz-transform: scale(0.27);
+      position:absolute;
+			/*slide video*/
+			.slideVideo {
+			  
+        @include formatElement;
+        display: inline-block;
+        background-color: white;
+				h2 {
+				  height: 86px;
+				}
+				/*video grande*/
+				.videoBig {
+	        @include formatElement;
+					padding:0px;
+		      background-color:#f1f1f1;
+					position:relative;
+					.bulletPointVideo {
+            top:166px;
+						text-align:center;
+					}
+					.videoIcon {
+	          @include videoIconFormat;
+		        margin-top:178px;
+			      margin-left:328px;
+	        }
+		    }
+	     /*slide video + testo*/
+			 .videoMedium {
+	       width:420px;
+		     height:420px;
+		     background-color:#f1f1f1;
+		     float:left;
+				 position:relative;
+		    .videoIcon {
+	        @include videoIconFormat;
+		      margin-top:125px;
+			    margin-left:120px;
+	      }
+		   }
+			 .textRightVideoContent {
+         float:right;
+         padding:0px 10px;
+         width:400px;
+         height:400px;
+         overflow:hidden;
+		     a	{
+		       color: $orange;
+		       text-decoration:underline;	
+		     }
+		     p {
+		       margin-top:0.8em;
+			     margin-bottom:0.8em;
+		    }
+		   }
+      }
+			/*slide audio*/
+			.slideAudio{
+	      @include formatElement;
+		    h2 {
+		      height:100px;
+		    }
+		    .contentText {
+		      height:310px;
+					overflow:hidden;
+					p {
+					  margin-top: 1em;
+            margin-bottom: 1em;
+					}
+		    }
+	      .audioBig {
+	        width:auto;
+		      height:71px;
+		      margin: 5px 0 20px 0px;
+		      background-color:#f1f1f1;
+		      .audioIcon {
+					  margin-top:20px;
+						@include audioIconFormat;
+						margin-left:408px;
+					}
+		    }		
+			}
+		  /*slide title*/
+	   .slideTitle{
+	     @include formatElement;
+			 text-align:center;
+		   display:table;
+		   h2 {
+		     display:table-cell; 
+			   vertical-align:middle;
+				 padding:0px 100px;
+				 font-size:70px;
+				 line-height:70px;
+		   }
+	   }
+		 /*slide text*/
+		 .slideText {
+		    @include formatElement;
+        display: inline-block;
+        background-color: white;
+				h2 {
+		      height:93px;
+		    }
+				.contentText {
+				  width: 840px;
+          height: 400px;
+          margin: 0;
+          padding: 0px 10px;
+          overflow: hidden;
+					@include colorLink;
+					p {
+					  margin-top: 1em;
+            margin-bottom: 1em;
+					}
+				}
+		  }
+		}
+		/*slide image*/
+	  .slideImage{
+	    @include formatElement;
+		  h2 {
+		    height:93px;
+		  }
+	    img{
+	      position:absolute;
+	    }
+			.big {
+	      float:left;
+		    width:860px;
+		    height:550px;
+		    background-color:#f1f1f1;
+		    overflow:hidden;
+		    position:relative;
+		    .photoIcon {
+	         @include photoIconFormat;
+		       margin-top:178px;
+			     margin-left:328px;
+	      }
+		   .caption {
+		     @include styleCaption;
+			   width:860px;
+	     }
+	   }
+		 .boxFissoImage {
+	    width:420px;
+		  height:265px;
+		  display:block;
+	  }
+		.small {
+	    background-color:#f1f1f1;
+		  width:420px;
+		  height:265px;
+		  overflow:hidden;
+		  position:relative;
+		  .photoIcon {
+	      @include photoIconFormat;
+			  background-position: -11.6em -11.6em;
+		    margin-top:70px;
+			  margin-left:137px;
+			  font-size:2em;
+			  width:140px;
+			  height:140px;
+	    }
+		  .caption {
+		    @include styleCaption;
+			  width:410px;
+	    }
+	  }
+		.medium {
+	    float:left;
+		  width:420px;
+		  height:420px;
+		  margin-right:20px;
+		  margin-top:3px;
+		  background-color:#f1f1f1;
+		  overflow:hidden;
+		  position:relative;
+			.photoIcon {
+	      @include photoIconFormat;
+		    margin-top:125px;
+			  margin-left:125px;
+	    }
+		  .caption {
+		    @include styleCaption;
+			  width:410px;
+	    }
+		  &:last-child {
+	      margin-right:0px;
+	    }
+			
+	    }
+			.textRightContent {
+	      float:right;
+		    padding:0px 10px;
+		    width:400px;
+		    height:400px;
+		    overflow:hidden;
+		    a	{
+		      color: $orange;
+		      text-decoration:underline;	
+		    }
+		    p {
+		      margin-top:0.8em;
+			    margin-bottom:0.8em;
+		    }
+		}
+		.mediumHeight {
+	    float:left;
+		  width:420px;
+		  height:550px;
+		  margin-right:20px;
+		  background-color:#f1f1f1;
+		  overflow:hidden;
+		  position:relative;
+		  .photoIcon {
+	      @include photoIconFormat;
+		    margin-top:194px;
+			  margin-left:110px;
+	    }
+		  .caption {
+		    @include styleCaption;
+			  width:410px;
+	    }
+		  &:last-child {
+	      margin-right:0px;
+	    }
+	  }
+	}
+		
   }
   
   .slide-tooltip-to-left {
@@ -161,7 +441,7 @@ html.lesson-editor-layout{
     padding: 20px 20px 25px 25px;
     background: url("/assets/lesson-editor-tooltip-bg-to-left.png") top left no-repeat;
   }
-
+  
   .slide-thumb {
     width: 237px;
     height: 152px;
@@ -169,6 +449,7 @@ html.lesson-editor-layout{
     padding: 5px;
     background-color: white;
     font-size: 7px;
+		
     h2{
       font-size: 16px;
       line-height: 16px;
@@ -458,6 +739,7 @@ html.lesson-editor-layout{
             margin: 0px;
             text-align:center;
             font-size: 70px;
+						line-height:70px;
             color: $orange;
             font-family: "Nunito", sans-serif;
           }
@@ -637,6 +919,7 @@ html.lesson-editor-layout{
 					  position:absolute;
 					  top:0;
 					  left:0;
+						opacity: 0.80;
           }
           span.add-video:hover{
             background-position: -390px center;
@@ -1388,6 +1671,7 @@ html.lesson-editor-layout{
 	
 	layer._not_current_slide:hover {
     cursor: pointer;
+    background: url('/assets/not_current_slide_arrows.png') no-repeat center 264px;
   }
 }
 
@@ -1461,4 +1745,8 @@ a.jScrollArrowDown:hover {
 }
 a.jScrollActiveArrowButton, a.jScrollActiveArrowButton:hover {
 	/*background-color: #f00;*/
+}
+
+#lesson_editor_image_gallery_container, #lesson_editor_audio_gallery_container, #lesson_editor_video_gallery_container {
+  position: absolute;
 }

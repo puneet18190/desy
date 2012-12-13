@@ -1,7 +1,10 @@
 var current_slide = $('li._lesson_editor_current_slide');
-current_slide.find('.slide-content').prepend("<%= j(render :partial => 'galleries/audio', :locals => {:audios => @audios}) %>");
+$('#lesson_editor_audio_gallery_container').html("<%= j(render :partial => 'galleries/audio', :locals => {:audios => @audios}) %>");
+$('#lesson_editor_audio_gallery_container').show();
+$('li._lesson_editor_current_slide .slide-content').children().hide();
+centerThis('#lesson_editor_audio_gallery_container');
 current_slide.find('layer').remove();
 $('#lesson_editor_audio_gallery_container').data('loaded', true);
-$('._close_audio_gallery').addClass('_close_audio_gallery_in_lesson_editor').removeClass('_close_audio_gallery');
-$('._select_audio_from_gallery').addClass('_add_audio_to_slide').removeClass('_select_audio_from_gallery');
+$('._close_audio_gallery').addClass('_close_audio_gallery_in_lesson_editor');
+$('._select_audio_from_gallery').addClass('_add_audio_to_slide');
 initializeAudioGallery();
