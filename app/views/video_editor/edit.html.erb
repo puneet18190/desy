@@ -35,9 +35,13 @@
 <% if !@cache.nil? %>
   <script type="text/javascript">
     showRestoreCacheMediaElementEditorPopUp(function() {
-      alert('OKKKK');
+      window.location.href = '/videos/cache/restore'
     }, function() {
-      alert('NOOO');
+      closePopUp('dialog-restore-cache-media-element-editor');
+      $.ajax({
+        type: 'post',
+        url: '/videos/cache/empty'
+      });
     });
   </script>
 <% end %>
