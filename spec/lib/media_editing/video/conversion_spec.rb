@@ -7,34 +7,21 @@ module MediaEditing
 
       supported_formats = MEVSS::FORMATS
 
-      # let(:location)     { Location.create!(   description: ::CONFIG['locations'].first    ) }
-      # let(:school_level) { SchoolLevel.create!(description: ::CONFIG['school_levels'].first) }
-      # let(:db_subject)   { Subject.create!(    description: ::CONFIG['subjects'].first     ) }
-      # let!(:user)        do
-      #   User.admin || (
-      #     user_name    = ::CONFIG['admin_username'].split(' ').first
-      #     user_surname = ::CONFIG['admin_username'].gsub("#{user_name} ", '')
-      #     unless user = User.create_user(::CONFIG['admin_email'], user_name, user_surname, 'School', school_level.id, location.id, [db_subject.id])
-      #       raise 'could not create admin user'
-      #     end
-      #     user
-      #   )
-      # end
-      let(:user)          { User.admin }
-      let(:uploaded_path) { "#{MEVSS::SAMPLES_FOLDER}/tmp.in put.flv" }
-      let(:filename)      { 'in put.flv' }
-      let(:tempfile)      { File.open(uploaded_path) }
-      let(:uploaded)      { ActionDispatch::Http::UploadedFile.new(filename: filename, tempfile: tempfile) }
-      let(:model)         do
+      let(:uploaded_path)            { "#{MEVSS::SAMPLES_FOLDER}/tmp.in put.flv" }
+      let(:filename)                 { 'in put.flv' }
+      let(:tempfile)                 { File.open(uploaded_path) }
+      let(:uploaded)                 { ActionDispatch::Http::UploadedFile.new(filename: filename, tempfile: tempfile) }
+      let(:model)                    do
         ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: uploaded) do |video|
-          video.user_id = user.id
+          video.user_id = User.admin.id
         end.tap{ |v| v.skip_conversion = true; v.save!; v.media = uploaded }
       end
-      let(:input)         { "#{Rails.root}/tmp/video_editing/conversions/#{Rails.env}/#{model.id}/#{filename}" }
-      let(:output_folder) { "#{Rails.root}/public/media_elements/videos/#{Rails.env}/#{model.id}" }
-      let(:output_format) { "#{output_folder}/in-put.%s" }
-      let(:stdout_log)    { "#{Rails.root}/log/video_editing/conversions/#{Rails.env}/#{model.id}/#{format}.stdout.log" }
-      let(:stderr_log)    { "#{Rails.root}/log/video_editing/conversions/#{Rails.env}/#{model.id}/#{format}.stderr.log" }
+      let(:temp)                     { "#{Rails.root}/tmp/media_editing/video/conversions/#{Rails.env}/#{model.id}/#{filename}" }
+      let(:output_folder)            { "#{Rails.root}/public/media_elements/videos/#{Rails.env}/#{model.id}" }
+      let(:output_without_extension) { "#{output_folder}/in-put" }
+      let(:output)                   { "#{output_without_extension}.#{format}" }
+      let(:stdout_log)               { "#{Rails.root}/log/media_editing/video/conversions/#{Rails.env}/#{model.id}/#{format}.stdout.log" }
+      let(:stderr_log)               { "#{Rails.root}/log/media_editing/video/conversions/#{Rails.env}/#{model.id}/#{format}.stderr.log" }
 
       describe '#convert_to' do
 
@@ -42,7 +29,6 @@ module MediaEditing
           context "with #{format} format", format: format do
 
             let(:format) { format }
-            let(:output) { output_format % format }
 
             [ [ :valid_video,               MEVSS::VALID_VIDEO ],
               [ :valid_video_with_odd_size, MEVSS::VALID_VIDEO_WITH_ODD_SIZE ] ].each do |video_data|
@@ -51,19 +37,21 @@ module MediaEditing
 
               context "with a #{video.to_s.humanize.downcase}" do
 
+                subject { described_class.new(uploaded_path, output_without_extension, filename, model.id).convert_to(format) }
+
                 before(:all) do
                   FileUtils.cp video_constant, uploaded_path
-                  [ stdout_log, stderr_log, input, output ].each { |f| FileUtils.rm(f) if File.exists?(f) }
-                  MediaEditing::Video::Conversion.new(model.id, uploaded_path, uploaded_path).convert_to(format)
+                  [ stdout_log, stderr_log, temp, output_folder ].each { |f| FileUtils.rm(f) if File.exists?(f) }
+                  subject
                 end
 
                 it "creates a valid video" do
                   expect{ MediaEditing::Video::Info.new(output) }.to_not raise_error
                 end
 
-                it 'creates a video with a correct duration' do
-                  input_duration, output_duration = MediaEditing::Video::Info.new(input).duration, MediaEditing::Video::Info.new(output).duration
-                  input_duration.should be_within(described_class::DURATION_THRESHOLD).of(output_duration)
+                it 'creates a video with the expected duration' do
+                  temp_duration, output_duration = MediaEditing::Video::Info.new(temp).duration, MediaEditing::Video::Info.new(output).duration
+                  temp_duration.should be_within(described_class::DURATION_THRESHOLD).of(output_duration)
                 end
 
                 it "creates the stdout log" do
@@ -74,44 +62,43 @@ module MediaEditing
                   File.exists?(stderr_log).should be_true
                 end
 
-                it "does not delete the input video" do
-                  File.exists?(input).should be_true
+                it "does not delete the temporary video" do
+                  File.exists?(temp).should be_true
                 end
               
               end
 
             end
 
-            context 'with an invalid video' do
+            context 'with an invalid video', focus: true do
 
-              subject { MediaEditing::Video::Conversion.new(model.id, uploaded_path, uploaded_path) }
+              subject { described_class.new(model.id, uploaded_path, output_without_extension) }
               
               before do
                 FileUtils.cp MEVSS::INVALID_VIDEO, uploaded_path
-                FileUtils.rm(input) if File.exists?(input)
+                FileUtils.rm(uploaded_path) if File.exists?(uploaded_path)
               end
 
               it { expect { subject.convert_to(format) }.to raise_error(MediaEditing::Video::Error) }
 
             end
 
-            context 'when upload file and input file do not exist' do
+            context 'when uploaded_path file and temporary file do not exist' do
 
-              # let(:model) { ::Video.new.tap{ |v| v.skip_conversion = true; v.save } }
               let(:model) do
                 ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: uploaded) do |video|
-                  video.user_id = user.id
+                  video.user_id = User.admin.id
                 end.tap{ |v| v.skip_conversion = true; v.save! }
               end
 
-              subject { MediaEditing::Video::Conversion.new(model.id, uploaded_path, uploaded_path) }
+              subject { described_class.new(model.id, uploaded_path, output_without_extension) }
 
               before do
                 FileUtils.cp MEVSS::VALID_VIDEO, uploaded_path
                 model.media = uploaded
-                FileUtils.rm input if File.exists? input
+                FileUtils.rm uploaded_path if File.exists? uploaded_path
                 subject
-                FileUtils.rm uploaded_path
+                FileUtils.rm temp
               end
 
               it{ expect{ subject.convert_to(format) }.to raise_error(MediaEditing::Video::Error) }
@@ -125,13 +112,13 @@ module MediaEditing
 
       describe 'run' do
 
-        subject { MediaEditing::Video::Conversion.new(model.id, uploaded_path, uploaded_path) }
+        subject { described_class.new(model.id, uploaded_path, output_without_extension) }
 
         context 'with a valid video' do
       
           before(:all) do
             FileUtils.cp MEVSS::VALID_VIDEO, uploaded_path
-            FileUtils.rm input if File.exists? input
+            FileUtils.rm uploaded_path if File.exists? uploaded_path
             subject.run
             model.reload
           end
@@ -141,11 +128,14 @@ module MediaEditing
           end
 
           supported_formats.each do |format|
-            context "with #{format} format", format: format, focus: false do
+            context "with #{format} format", format: format do
+
               let(:format) { format }
+
               def info(format)
+                puts [format, output].inspect
                 @info ||= {}
-                @info[format] ||= MediaEditing::Video::Info.new(output_format % format)
+                @info[format] ||= MediaEditing::Video::Info.new(output)
               end
 
               it "creates a valid video" do
@@ -171,8 +161,8 @@ module MediaEditing
             model[:media].should == 'in-put'
           end
 
-          it 'deletes the input file' do
-            File.exists?(input).should_not be_true
+          it 'deletes the temporary file' do
+            File.exists?(temp).should_not be_true
           end
 
         end

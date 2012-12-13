@@ -6,7 +6,6 @@ class MediaElement < ActiveRecord::Base
   VIDEO_TYPE = 'Video'
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
 
-  
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
   EXTENSIONS_BY_STI_TYPE = { 'Image' => %w(jpg jpeg png) }

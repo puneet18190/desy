@@ -1,6 +1,23 @@
 $(document).ready(function() {
-  
-  
+
+  // BROWSER DETECTION: DECLARING BROWSER NAME AND VERSION AS HTML TAG CLASS
+  (function(){
+    var browser = $.browser;
+    var keys = Object.keys($.browser);
+
+    var name = $.grep(keys, function(el, i) {
+      return el !== 'version';
+    })[0];
+
+    if (!name) return;
+
+    var version = browser['version'];
+    var htmlClass = name;
+    if (version) htmlClass += '-' + version;
+    
+    $('html').addClass(htmlClass);
+  })();
+
   // OTHER BUTTONS
   
   $('._load_media_element').click(function(e) {

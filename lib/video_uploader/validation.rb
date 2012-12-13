@@ -24,10 +24,13 @@ class VideoUploader
       path, extension = @original_file.path, original_filename_extension
       if not EXTENSIONS_WHITE_LIST_WITH_DOT.include?(extension)
         :unsupported_format
-      elsif not info = MediaEditing::Video::Info.new(path, false)
-        :invalid_video
-      elsif info.duration < MIN_DURATION
-        :invalid_duration
+      else
+        info = MediaEditing::Video::Info.new(path, false)
+        if not info.valid?
+          :invalid_video
+        elsif info.duration < MIN_DURATION
+          :invalid_duration
+        end
       end
     end
 
