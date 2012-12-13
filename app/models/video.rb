@@ -19,19 +19,19 @@ class Video < MediaElement
   
   # it doesn't check that the parameters are valid; it takes as input regardless the basic hash and the full one
   def self.total_prototype_time(hash)
-    return 0 if !hash.has_key?(:components) || !hash[:components].kind_of?(Array)
+    return 0 if !hash[:components].instance_of?(Array)
     sum = 0
     hash[:components].each do |component|
       case component[:type]
         when VIDEO_COMPONENT
-          return 0 if !component.has_key?(:until) || !component.has_key?(:from) || !component[:until].kind_of?(Integer) || !component[:from].kind_of?(Integer)
+          return 0 if !component[:until].instance_of?(Integer) || !component[:from].instance_of?(Integer)
           sum += component[:until]
           sum -= component[:from]
         when IMAGE_COMPONENT
-          return 0 if !component.has_key?(:duration) || !component[:duration].kind_of?(Integer)
+          return 0 if !component[:duration].instance_of?(Integer)
           sum += component[:duration]
         when TEXT_COMPONENT
-          return 0 if !component.has_key?(:duration) || !component[:duration].kind_of?(Integer)
+          return 0 if !component[:duration].instance_of?(Integer)
           sum += component[:duration]
       else
         return 0
@@ -74,9 +74,9 @@ class Video < MediaElement
   def self.convert_parameters(hash, user_id)
     
     # check if initial video and audio track are correctly declared (they can be nil or integer)
-    return nil if !hash.kind_of?(Hash) || !hash.has_key?(:initial_video_id)
-    return nil if !hash[:initial_video_id].nil? && !hash[:initial_video_id].kind_of?(Integer)
-    return nil if !hash[:audio_id].nil? && !hash[:audio_id].kind_of?(Integer)
+    return nil if !hash.instance_of?(Hash) || !hash.has_key?(:initial_video_id) || !hash.has_key?(:audio_id)
+    return nil if !hash[:initial_video_id].nil? && !hash[:initial_video_id].instance_of?(Integer)
+    return nil if !hash[:audio_id].nil? && !hash[:audio_id].instance_of?(Integer)
     
     # initialize empty hash
     resp_hash = {}
@@ -104,14 +104,14 @@ class Video < MediaElement
     resp_hash[:audio] = audio_track
     
     # there must be a list of components
-    return nil if !hash.has_key?(:components) || !hash[:components].kind_of?(Array)
+    return nil if !hash[:components].instance_of?(Array) || !hash[:components].empty?
     
     # initialize empty components
     resp_hash[:components] = []
     
     # for each component I validate it and add it to the HASH
     hash[:components].each do |p|
-      return nil if !p.kind_of?(Hash) || !p.has_key?(:type) || !COMPONENTS.include?(p[:type])
+      return nil if !p.instance_of?(Hash) || !COMPONENTS.include?(p[:type])
       case p[:type]
         when VIDEO_COMPONENT
           c = extract_video_component(p, user_id)
@@ -136,7 +136,7 @@ class Video < MediaElement
     # I validate that the image exists and is accessible from the user
     return nil if image.nil?
     # DURATION is correct
-    return nil if !component.has_key?(:duration) || !component[:duration].kind_of?(Integer) || component[:duration] < 1
+    return nil if !component[:duration].instance_of?(Integer) || component[:duration] < 1
     {
       :type => IMAGE_COMPONENT,
       :image => image,
@@ -149,7 +149,7 @@ class Video < MediaElement
     # I validate that the video exists and is accessible from the user
     return nil if video.nil?
     # FROM and UNTIL are correct
-    return nil if !component.has_key?(:from) || !component[:from].kind_of?(Integer) || !component.has_key?(:until) || !component[:until].kind_of?(Integer)
+    return nil if !component[:from].instance_of?(Integer) || !component[:until].instance_of?(Integer)
     return nil if component[:from] < 0 || component[:until] > video.min_duration || component[:from] >= component[:until]
     {
       :type => VIDEO_COMPONENT,
@@ -161,8 +161,7 @@ class Video < MediaElement
   
   def self.extract_text_component(component)
     # CONTENT, COLORS, and DURATION are present and correct
-    return nil if !component.has_key?(:content) || !component.has_key?(:duration) || !component.has_key?(:background_color) || !component.has_key?(:text_color)
-    return nil if !component[:duration].kind_of?(Integer) || component[:duration] < 1
+    return nil if !component.has_key?(:content) || !component[:duration].instance_of?(Integer) || component[:duration] < 1
     return nil if !CONFIG['colors'].has_key?(component[:background_color]) || !CONFIG['colors'].has_key?(component[:text_color])
     {
       :type => TEXT_COMPONENT,
@@ -174,7 +173,7 @@ class Video < MediaElement
   end
   
   def self.get_media_element_from_hash(hash, key, user_id, my_sti_type)
-    hash.has_key?(key) && hash[key].kind_of?(Integer) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
+    hash[key].instance_of?(Integer) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
   end
   
   def min_duration
