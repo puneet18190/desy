@@ -146,7 +146,7 @@ def plant_development_seeds
   descriptions << ["Zeman? Niente appello ai tifosi", "L'esterno del Barcellona ricorderà a lungo martedì 9 ottobre: esattamente dopo 223 giorni ha toccato un..."]
   descriptions << ["Messi e Ronaldo, marziani al Camp", "Hanno realizzato una doppietta a testa in quella che in questo momento è forse la più bella, spettacolare e avvincente partita che il mondo del calcio"]
   descriptions << ["Aguero e la perdita dell'innocenza", "L'attaccante del City attacca gli arbitri: «Hanno un occhio di riguardo per i giocatori inglesi»"]
-  descriptions << ["Zamparini, Lo Monaco l'ultimo teatro", "Il presidente del Palermo possiede tanta immaginazione, e sembra che aumenti proporzionalmente al numero di sconfitte che la sua squadra incamera"]
+  descriptions << ["Zamparini, l'ultimo teatro", "Il presidente del Palermo possiede tanta immaginazione, e sembra che aumenti proporzionalmente al numero di sconfitte che la sua squadra incamera"]
   descriptions << ["Ronaldo parteciperà ad un reality", "Colui che per tutti era il Fenomeno è comparso in un programma di Rede Globo, la più grande e potente emittente del Paese e ha cominciato una dieta pubblica. Periodicamente ricomparirà in video per le misurazioni del caso"]
   descriptions << ["Il momento in cui i talenti cadono", "Narciso si innamorò della sua immagine riflessa e prendendo atto dell'impossibilità del rapporto amoroso, si lasciò morire, perché mai le stesse pulsioni dovrebbero essere assenti in chi sa bene di essere, nel suo campo, il migliore?"]
   descriptions << ["Sheva ora è un traditore venduto", "L'ex attacccante del Milan ha fondato un movimento: ma i tifosi che lo adoravano ora lo accusano di amoreggiare con il partito al potere"]
