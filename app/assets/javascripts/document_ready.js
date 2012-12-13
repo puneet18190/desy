@@ -2,10 +2,7 @@ $(document).ready(function() {
 
   // BROWSER DETECTION: DECLARING BROWSER NAME AND VERSION AS HTML TAG CLASS
   (function(){
-    var browser = $.browser;
-    var keys = Object.keys($.browser);
-
-    var name = $.grep(keys, function(el, i) {
+    var name = $.grep(Object.keys($.browser), function(el, i) {
       return el !== 'version';
     })[0];
 
