@@ -898,7 +898,11 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_obj_saved mee3
     @el2 = MediaElement.find @el2.id
     @el2.tags = 'di escrementi di usignolo, tonquinamento atmosferico, acquario, 拿, walter nudo, mare, tonquinamento, 加條聖, 條聖'
+    @el2.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
     assert_obj_saved @el2
+    MediaElement.where(:id => 3).update_all(:updated_at => '2012-01-01 19:59:58')
+    MediaElement.where(:id => @el2.id).update_all(:updated_at => '2011-10-01 19:59:59')
+    MediaElement.where(:id => @el4.id).update_all(:updated_at => '2011-10-01 19:59:57')
     assert !MediaElement.find(3).is_public
     assert_equal 2, MediaElement.find(3).user_id
     assert_equal 35, Tag.count
