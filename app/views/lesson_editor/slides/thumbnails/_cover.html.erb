@@ -1,12 +1,27 @@
-<div class="img_expanded" data-lesson-id="<%= slide.lesson_id %>">
-  <%= image_tag('finta2.jpg') %>
-  <div class="bg_text">
-    <div class="lessonTitle"><%= slide.title %></div>
-  </div>
-  <div class="lessonSubject">
-    <%= slide.lesson.subject.description %>
-    <span>
-      <%= t "captions.author"%>: <strong><%=  @current_user.full_name %></strong>
-    </span>
+<%
+  image = slide.image_at(1)
+  author = slide.lesson.user
+  subject = slide.lesson.subject
+  image_height = resize_height(image.media_element.width,image.media_element.height,"cover") if !image.nil?
+  image_width = resize_width(image.media_element.width,image.media_element.height,"cover") if !image.nil?
+%>
+<div class="zoomOutThumb">
+  <div class="bigViewLesson slideCover">
+    <div class="cover">
+      <% if image %>
+        <%= image_tag image.media_element.path, :style => "top:#{image.alignment}px; width: 900px;height: #{image_height}" %>
+      <% end %>
+    </div>
+    <div class="bg_text">
+      <div class="lessonTitle"><%= slide.lesson.title %></div>
+    </div>
+    <div class="cover-slide-footer">
+      <div class="subject pull-left">
+        <%= subject.description %>
+      </div>
+      <div class="author pull-right">
+        <%= t('captions.author') %>: <span class="name"><%= author.full_name %></span>
+      </div>
+    </div>
   </div>
 </div>
