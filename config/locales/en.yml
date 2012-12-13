@@ -367,15 +367,15 @@ en:
   language_parameters:
     lesson:
       length_description: 280 # for chinese it should be around 180 - 200
-      length_title: 40
+      length_title: 35 # for chinese it should be around 45
     media_element:
       length_description: 280 # for chinese it should be around 180 - 200
-      length_title: 40
+      length_title: 35 # for chinese it should be around 45
     slide:
-      length_title: 40
-      length_caption: 40
+      length_title: 35 # for chinese it should be around 45
+      length_caption: 35 # for chinese it should be around 45
     video_editor:
-      length_text_component: 35
+      length_text_component: 35 # for chinese it should be around 45
       length_duration: 3
 
 # (6) forms
