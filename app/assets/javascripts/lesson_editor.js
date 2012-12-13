@@ -271,10 +271,8 @@ function scrollPaneUpdate(trigger_element){
 }
 
 function removeGalleryInLessonEditor(sti_type) {
-  var gallery = $('#' + sti_type + '_gallery');
-  var html_content = gallery[0].outerHTML;
-  gallery.remove();
-  $('#lesson_editor_' + sti_type + '_gallery_container').html(html_content);
+  $('#lesson_editor_' + sti_type + '_gallery_container').hide();
+  $('li._lesson_editor_current_slide .slide-content').children().show();
   showEverythingOutCurrentSlide();
 }
 
@@ -285,9 +283,8 @@ function showGalleryInLessonEditor(obj, sti_type) {
   hideEverythingOutCurrentSlide();
   var gallery_container = $('#lesson_editor_' + sti_type + '_gallery_container');
   if(gallery_container.data('loaded')) {
-    var html_content = gallery_container.html();
-    gallery_container.html('');
-    current_slide.find('.slide-content').prepend(html_content);
+    gallery_container.show();
+    $('li._lesson_editor_current_slide .slide-content').children().hide();
     current_slide.find('layer').remove();
   } else {
     $.ajax({
