@@ -199,7 +199,9 @@ $(document).ready(function() {
   $('body').on('click', '._add_audio_to_slide', function(e) {
     e.preventDefault();
     var audio_id = $(this).data('audio-id');
-    closePopUp('dialog-audio-gallery-' + audio_id);
+    $('#gallery_audio_' + audio_id).removeClass('_audio_expanded_in_gallery');
+    stopMedia('#gallery_audio_' + audio_id + ' audio');
+    $('#gallery_audio_' + audio_id + ' ._expanded').hide();
     removeGalleryInLessonEditor('audio');
     var current_slide = $('li._lesson_editor_current_slide');
     var position = $('#info_container').data('current-media-element-position');
@@ -269,10 +271,8 @@ function scrollPaneUpdate(trigger_element){
 }
 
 function removeGalleryInLessonEditor(sti_type) {
-  var gallery = $('#' + sti_type + '_gallery');
-  var html_content = gallery[0].outerHTML;
-  gallery.remove();
-  $('#lesson_editor_' + sti_type + '_gallery_container').html(html_content);
+  $('#lesson_editor_' + sti_type + '_gallery_container').hide();
+  $('li._lesson_editor_current_slide .slide-content').children().show();
   showEverythingOutCurrentSlide();
 }
 
@@ -283,9 +283,8 @@ function showGalleryInLessonEditor(obj, sti_type) {
   hideEverythingOutCurrentSlide();
   var gallery_container = $('#lesson_editor_' + sti_type + '_gallery_container');
   if(gallery_container.data('loaded')) {
-    var html_content = gallery_container.html();
-    gallery_container.html('');
-    current_slide.find('.slide-content').prepend(html_content);
+    gallery_container.show();
+    $('li._lesson_editor_current_slide .slide-content').children().hide();
     current_slide.find('layer').remove();
   } else {
     $.ajax({
@@ -328,8 +327,9 @@ function hideNewSlideChoice() {
 }
 
 function stopMediaInCurrentSlide() {
-  stopMedia('li._lesson_editor_current_slide audio');
-  stopMedia('li._lesson_editor_current_slide video');
+  var current_slide_id = $('li._lesson_editor_current_slide').attr('id');
+  stopMedia('#' + current_slide_id + ' audio');
+  stopMedia('#' + current_slide_id + ' video');
 }
 
 function initializeSortableNavs() {
