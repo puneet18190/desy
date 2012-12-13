@@ -72,7 +72,9 @@ Desy::Application.routes.draw do
   # VIDEO EDITOR
   get  'videos/:video_id/edit' => 'video_editor#edit'
   get  'videos/new' => 'video_editor#new'
-  post 'videos/cache' => 'video_editor#save_cache', :as => :video_editor_save_cache
+  get  'videos/cache/restore' => 'video_editor#restore_cache', :as => :video_editor_restore_cache
+  post 'videos/cache/save' => 'video_editor#save_cache', :as => :video_editor_save_cache
+  post 'videos/cache/empty' => 'video_editor#empty_cache', :as => :video_editor_empty_cache
   post 'videos/commit' => 'video_editor#commit', :as => :video_editor_commit
   
   # AUDIO EDITOR
