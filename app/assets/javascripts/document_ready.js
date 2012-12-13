@@ -11,11 +11,7 @@ $(document).ready(function() {
 
     if (!name) return;
 
-    var version = browser['version'];
-    var htmlClass = name;
-    if (version) htmlClass += '-' + version;
-    
-    $('html').addClass(htmlClass);
+    $('html').addClass(name);
   })();
 
   // OTHER BUTTONS
