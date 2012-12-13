@@ -36,11 +36,11 @@ ActiveRecord::Schema.define(:version => 20121207091234) do
     t.integer  "location_id",     :null => false
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.index ["email"], :name => "index_users_on_email", :unique => true
-    t.index ["location_id"], :name => "index_users_on_location_id"
-    t.index ["school_level_id"], :name => "index_users_on_school_level_id"
-    t.foreign_key ["school_level_id"], "school_levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "users_school_level_id_fkey"
+    t.index ["location_id"], :name => "fk__users_location_id", :order => {"location_id" => :asc}
+    t.index ["school_level_id"], :name => "fk__users_school_level_id", :order => {"school_level_id" => :asc}
+    t.index ["email"], :name => "index_users_on_email", :unique => true, :order => {"email" => :asc}
     t.foreign_key ["location_id"], "locations", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "users_location_id_fkey"
+    t.foreign_key ["school_level_id"], "school_levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "users_school_level_id_fkey"
   end
 
 # Could not dump table "bookmarks" because of following StandardError
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20121207091234) do
     t.string   "queue"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
-    t.index ["priority", "run_at"], :name => "delayed_jobs_priority"
+    t.index ["priority", "run_at"], :name => "delayed_jobs_priority", :order => {"priority" => :asc, "run_at" => :asc}
   end
 
   create_table "subjects", :force => true do |t|
@@ -79,16 +79,16 @@ ActiveRecord::Schema.define(:version => 20121207091234) do
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.string   "token",               :limit => 20
-    t.index ["parent_id"], :name => "index_lessons_on_parent_id"
-    t.index ["school_level_id"], :name => "index_lessons_on_school_level_id"
-    t.index ["subject_id"], :name => "index_lessons_on_subject_id"
-    t.index ["title"], :name => "index_lessons_on_title"
-    t.index ["updated_at"], :name => "index_lessons_on_updated_at"
-    t.index ["user_id"], :name => "index_lessons_on_user_id"
-    t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "lessons_user_id_fkey"
+    t.index ["parent_id"], :name => "fk__lessons_parent_id", :order => {"parent_id" => :asc}
+    t.index ["school_level_id"], :name => "fk__lessons_school_level_id", :order => {"school_level_id" => :asc}
+    t.index ["subject_id"], :name => "fk__lessons_subject_id", :order => {"subject_id" => :asc}
+    t.index ["user_id"], :name => "fk__lessons_user_id", :order => {"user_id" => :asc}
+    t.index ["title"], :name => "index_lessons_on_title", :order => {"title" => :desc}
+    t.index ["updated_at"], :name => "index_lessons_on_updated_at", :order => {"updated_at" => :desc}
+    t.foreign_key ["parent_id"], "lessons", ["id"], :on_update => :no_action, :on_delete => :set_null, :name => "lessons_parent_id_fkey"
     t.foreign_key ["school_level_id"], "school_levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "lessons_school_level_id_fkey"
     t.foreign_key ["subject_id"], "subjects", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "lessons_subject_id_fkey"
-    t.foreign_key ["parent_id"], "lessons", ["id"], :on_update => :no_action, :on_delete => :set_null, :name => "lessons_parent_id_fkey"
+    t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "lessons_user_id_fkey"
   end
 
   create_table "likes", :force => true do |t|
@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(:version => 20121207091234) do
     t.integer  "user_id",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.index ["lesson_id"], :name => "index_likes_on_lesson_id"
-    t.index ["user_id"], :name => "index_likes_on_user_id"
+    t.index ["lesson_id"], :name => "fk__likes_lesson_id", :order => {"lesson_id" => :asc}
+    t.index ["user_id"], :name => "fk__likes_user_id", :order => {"user_id" => :asc}
     t.foreign_key ["lesson_id"], "lessons", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "likes_lesson_id_fkey"
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "likes_user_id_fkey"
   end
@@ -114,9 +114,9 @@ ActiveRecord::Schema.define(:version => 20121207091234) do
     t.string   "media"
     t.text     "metadata"
     t.boolean  "converted"
-    t.index ["title"], :name => "index_media_elements_on_title"
-    t.index ["updated_at"], :name => "index_media_elements_on_updated_at"
-    t.index ["user_id"], :name => "index_media_elements_on_user_id"
+    t.index ["user_id"], :name => "fk__media_elements_user_id", :order => {"user_id" => :asc}
+    t.index ["title"], :name => "index_media_elements_on_title", :order => {"title" => :desc}
+    t.index ["updated_at"], :name => "index_media_elements_on_updated_at", :order => {"updated_at" => :desc}
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "media_elements_user_id_fkey"
   end
 
@@ -131,8 +131,8 @@ ActiveRecord::Schema.define(:version => 20121207091234) do
     t.datetime "updated_at",       :null => false
     t.text     "caption"
     t.integer  "alignment"
-    t.index ["media_element_id"], :name => "index_media_elements_slides_on_media_element_id"
-    t.index ["slide_id"], :name => "index_media_elements_slides_on_slide_id"
+    t.index ["media_element_id"], :name => "fk__media_elements_slides_media_element_id", :order => {"media_element_id" => :asc}
+    t.index ["slide_id"], :name => "fk__media_elements_slides_slide_id", :order => {"slide_id" => :asc}
     t.foreign_key ["media_element_id"], "media_elements", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "media_elements_slides_media_element_id_fkey"
     t.foreign_key ["slide_id"], "slides", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "media_elements_slides_slide_id_fkey"
   end
@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(:version => 20121207091234) do
     t.boolean  "seen",       :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
-    t.index ["user_id"], :name => "index_notifications_on_user_id"
+    t.index ["user_id"], :name => "fk__notifications_user_id", :order => {"user_id" => :asc}
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "notifications_user_id_fkey"
   end
 
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(:version => 20121207091234) do
     t.string   "word",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.index ["word"], :name => "index_tags_on_word", :unique => true
+    t.index ["word"], :name => "index_tags_on_word", :unique => true, :order => {"word" => :asc}
   end
 
 # Could not dump table "taggings" because of following StandardError
@@ -167,10 +167,10 @@ ActiveRecord::Schema.define(:version => 20121207091234) do
     t.integer  "subject_id", :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.index ["subject_id"], :name => "index_users_subjects_on_subject_id"
-    t.index ["user_id"], :name => "index_users_subjects_on_user_id"
-    t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "users_subjects_user_id_fkey"
+    t.index ["subject_id"], :name => "fk__users_subjects_subject_id", :order => {"subject_id" => :asc}
+    t.index ["user_id"], :name => "fk__users_subjects_user_id", :order => {"user_id" => :asc}
     t.foreign_key ["subject_id"], "subjects", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "users_subjects_subject_id_fkey"
+    t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "users_subjects_user_id_fkey"
   end
 
   create_table "virtual_classroom_lessons", :force => true do |t|
@@ -179,8 +179,8 @@ ActiveRecord::Schema.define(:version => 20121207091234) do
     t.integer  "position"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.index ["lesson_id"], :name => "index_virtual_classroom_lessons_on_lesson_id"
-    t.index ["user_id"], :name => "index_virtual_classroom_lessons_on_user_id"
+    t.index ["lesson_id"], :name => "fk__virtual_classroom_lessons_lesson_id", :order => {"lesson_id" => :asc}
+    t.index ["user_id"], :name => "fk__virtual_classroom_lessons_user_id", :order => {"user_id" => :asc}
     t.foreign_key ["lesson_id"], "lessons", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "virtual_classroom_lessons_lesson_id_fkey"
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "virtual_classroom_lessons_user_id_fkey"
   end
