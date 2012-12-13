@@ -257,6 +257,10 @@ en:
     restore_cache_media_element_editor_message: 'A previous working session was closed unexpectedly!'
     restore_cache_media_element_editor_yes: 'Restore'
     restore_cache_media_element_editor_no: 'Clear'
+    exit_video_editor_title: 'Leaving the video editor'
+    exit_video_editor_confirm: 'Are you sure you want to leave?'
+    exit_video_editor_yes: 'Yes'
+    exit_video_editor_no: 'Stay on the page'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'

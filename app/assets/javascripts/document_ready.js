@@ -694,6 +694,15 @@ $(document).ready(function() {
   
   // VIDEO EDITOR
   
+  $('body').on('click', '._exit_video_editor', function() {
+    var captions = $('#popup_captions_container');
+    showConfirmPopUp(captions.data('exit-video-editor-title'), captions.data('exit-video-editor-confirm'), captions.data('exit-video-editor-yes'), captions.data('exit-video-editor-no'), function() {
+      alert('Sei uscito');
+    }, function() {
+      alert('Hai scelto di rimanere');
+    });
+  });
+  
   $('body').on('mouseover', '._video_editor_component_hover', function() {
     var father = $(this).parent();
     $('#' + father.attr('id') + ' ._video_editor_component_menu').show();
