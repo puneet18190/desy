@@ -48,6 +48,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     @media_elements_slide.media_element_id = 6
     assert_invalid @media_elements_slide, :alignment, 'r', 1, /is not a number/
     assert_invalid @media_elements_slide, :alignment, 5.5, 1, /must be an integer/
+    assert_invalid @media_elements_slide, :caption, long_string(36), long_string(35), /is too long/
     @media_elements_slide.alignment = 0
     assert @media_elements_slide.valid?
     @media_elements_slide.alignment = -8
