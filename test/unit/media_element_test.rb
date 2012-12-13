@@ -51,6 +51,7 @@ class MediaElementTest < ActiveSupport::TestCase
     @media_element.reload
     assert_tags @media_element, ['gattaccio', 'cane', 'panda', 'ornitorinco']
     @media_element = MediaElement.find @media_element.id
+    @media_element.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
     assert_obj_saved @media_element
     assert_equal 8, Tag.count
     @media_element.reload

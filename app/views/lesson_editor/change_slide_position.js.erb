@@ -1,4 +1,5 @@
 <% if @ok %>
+  $('#nav_list_menu').data('jsp').destroy();
   var to_be_moved = $('#slide_in_lesson_editor_<%= @current_slide.id %>');
   var old_position = to_be_moved.data('position');
   var html_to_move = to_be_moved[0].outerHTML;
@@ -10,8 +11,12 @@
     target_slide.after(html_to_move);
   }
   reInitializeSlidePositionsInLessonEditor();
-  $("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides, :with_current => false})%>");
+  
+  $("nav#heading #nav_list_menu").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides, :with_current => false})%>");
   initializeSortableNavs();
+  $('#nav_list_menu').jScrollPane({
+    autoReinitialise: false
+  });
   slideTo(<%= @current_slide.id %>);
 <% else %>
   slideError();

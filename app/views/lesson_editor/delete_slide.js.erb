@@ -2,8 +2,12 @@
   $('li._lesson_editor_current_slide').effect('fade', {}, 500, function() {
     $('#slide_in_lesson_editor_<%= @slide_id %>').remove();
     reInitializeSlidePositionsInLessonEditor();
-    $("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides, :with_current => false}) %>");
+    $('#nav_list_menu').data('jsp').destroy();
+    $("nav#heading #nav_list_menu").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides, :with_current => false}) %>");
     initializeSortableNavs();
+    $('#nav_list_menu').jScrollPane({
+      autoReinitialise: false
+    });
     slideTo(<%= @current_slide.id %>);
   });
 <% else %>
