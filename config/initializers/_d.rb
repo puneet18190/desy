@@ -3,7 +3,7 @@ case Rails.env
 when 'development', 'test'
   require 'colorize'
   def _d(*args)
-    puts "#{caller.first}: #{args.map(&:inspect).join(', ')}"
+    puts "#{caller.first}: #{args.map(&:inspect).join(', ')}".yellow
   end
 else
   def _d; end
