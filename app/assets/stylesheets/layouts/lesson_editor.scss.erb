@@ -59,6 +59,7 @@ html.lesson-editor-layout{
 		
     .horizontal-only {
   	  height:230px;
+      z-index: 99999;
   	}
   	.scroll-pane {
   		overflow-y:visible;
@@ -66,14 +67,19 @@ html.lesson-editor-layout{
     .scrollOrange {
       .jspTrack {
         background: #3f3f3f;
+        z-index: 99999;
       }
       .jspHorizontalBar {
         height:5px;
         top: 23px;
         position:absolute;
       }
+      .jspPane {
+        z-index: 99999;
+      }
       .jspDrag {
         background: $orange;
+        z-index: 99999;
       }
     }
   }  
@@ -129,6 +135,7 @@ html.lesson-editor-layout{
     height: 17px;
     width: 17px;
     background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
+    z-index:100000;
   }
   .add-small:hover{
     background-color:transparent;

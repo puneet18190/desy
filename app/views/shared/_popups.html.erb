@@ -19,6 +19,9 @@
   data_captions = "#{data_captions} data-invalid-component-duration-in-video-editor=\"#{t('popups.invalid_component_duration_in_video_editor').html_safe}\""
   data_captions = "#{data_captions} data-empty-text-component-in-video-editor=\"#{t('popups.empty_text_component_in_video_editor')}\""
   data_captions = "#{data_captions} data-text-component-placeholder-in-video-editor=\"#{t('captions.insert_text')}\""
+  data_captions = "#{data_captions} data-restore-cache-media-element-editor-message=\"#{t('popups.restore_cache_media_element_editor_message').html_safe}\""
+  data_captions = "#{data_captions} data-restore-cache-media-element-editor-yes=\"#{t('popups.restore_cache_media_element_editor_yes').html_safe}\""
+  data_captions = "#{data_captions} data-restore-cache-media-element-editor-no=\"#{t('popups.restore_cache_media_element_editor_no').html_safe}\""
   data_captions = "#{data_captions} data-temporary-msg=\"\""
 %>
 
@@ -32,6 +35,8 @@
 <div class="timedPopUp" id="dialog-ok" style="display:none"></div>
 
 <div class="confirmPopUp" id="dialog-confirm" style="display:none"></div>
+
+<div class="restoreCacheMediaElementEditorPopUp" id="dialog-restore-cache-media-element-editor" style="display:none"></div>
 
 <div id="popup_captions_container" style="display:none" <%= data_captions.html_safe %> ></div>
 

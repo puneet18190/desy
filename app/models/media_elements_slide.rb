@@ -9,6 +9,7 @@ class MediaElementsSlide < ActiveRecord::Base
   validates_numericality_of :media_element_id, :slide_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :alignment, :only_integer => true, :allow_nil => true
   validates_inclusion_of :position, :in => [1, 2, 3, 4]
+  validates_length_of :caption, :maximum => I18n.t('language_parameters.slide.length_caption'), :allow_nil => true
   validates_uniqueness_of :position, :scope => [:media_element_id, :slide_id]
   validate :validate_associations, :validate_type_in_slide, :validate_position, :validate_media_element, :validate_impossible_changes, :validate_image_properties
   

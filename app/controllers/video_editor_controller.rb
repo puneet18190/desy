@@ -1,13 +1,12 @@
 class VideoEditorController < ApplicationController
   
   before_filter :initialize_video_with_owner_or_public, :only => :edit
-  before_filter :extract_cache, :only => [:edit, :new]
+  before_filter :extract_cache, :only => [:edit, :new, :restore_cache]
   layout 'media_element_editor'
   
   def edit
     if @ok
-      # FIXME qui in realtà dovrò proporre la finestra oscurata che mi chiede se voglio ripristinare la situazione precedente oppure no
-      @parameters = @cache.nil? ? convert_video_to_parameters : Video.convert_parameters(@cache, @current_user.id)
+      @parameters = convert_video_to_parameters
       @parameters = empty_parameters if @parameters.nil?
       @total_length = Video.total_prototype_time(@parameters)
     else
@@ -17,11 +16,22 @@ class VideoEditorController < ApplicationController
   end
   
   def new
-    # FIXME qui in realtà dovrò proporre la finestra oscurata che mi chiede se voglio ripristinare la situazione precedente oppure no
+    @parameters = empty_parameters
+    @total_length = Video.total_prototype_time(@parameters)
+    render :edit
+  end
+  
+  def restore_cache
     @parameters = @cache.nil? ? empty_parameters : Video.convert_parameters(@cache, @current_user.id)
+    @cache = nil
     @parameters = empty_parameters if @parameters.nil?
     @total_length = Video.total_prototype_time(@parameters)
     render :edit
+  end
+  
+  def empty_cache
+    @current_user.empty_video_editor_cache
+    render :nothing => true
   end
   
   def save_cache

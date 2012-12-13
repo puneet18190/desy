@@ -73,7 +73,7 @@ class MediaElementTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @media_element, :title, long_string(41), long_string(40), /is too long/
+    assert_invalid @media_element, :title, long_string(36), long_string(35), /is too long/
     assert_invalid @media_element, :description, long_string(281), long_string(280), /is too long/
     assert_invalid @media_element, :user_id, 'po', 1, /is not a number/
     assert_invalid @media_element, :user_id, -3, 1, /must be greater than 0/
