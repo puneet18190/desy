@@ -60,6 +60,9 @@ class VideoTest < ActiveSupport::TestCase
     MediaElement.where(:id => 1).update_all(:user_id => 2)
     assert_nil Video.convert_parameters(@parameters, 1)
     MediaElement.where(:id => 1).update_all(:user_id => 1)
+    MediaElement.where(:id => 1).update_all(:is_public => true)
+    assert_nil Video.convert_parameters(@parameters, 1)
+    MediaElement.where(:id => 1).update_all(:is_public => false)
     @parameters[:audio_id] = 1
     assert_nil Video.convert_parameters(@parameters, 1)
     @parameters[:audio_id] = 99
