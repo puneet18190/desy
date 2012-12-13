@@ -70,13 +70,17 @@ module MediaEditing
 
             end
 
-            context 'with an invalid video', focus: true do
+            # TODO sistemare quello che si è rotto cambiando gli argomenti di Conversion,
+            # probabile che non funziona manco VideoUploader
+            context 'with an invalid video' do
 
-              subject { described_class.new(model.id, uploaded_path, output_without_extension) }
+              subject { described_class.new(uploaded_path, output_without_extension, filename, model.id) }
               
               before do
+                FileUtils.cp MEVSS::VALID_VIDEO, uploaded_path
+                model
                 FileUtils.cp MEVSS::INVALID_VIDEO, uploaded_path
-                FileUtils.rm(uploaded_path) if File.exists?(uploaded_path)
+                FileUtils.rm(temp) if File.exists?(temp)
               end
 
               it { expect { subject.convert_to(format) }.to raise_error(MediaEditing::Video::Error) }
@@ -85,20 +89,20 @@ module MediaEditing
 
             context 'when uploaded_path file and temporary file do not exist' do
 
-              let(:model) do
-                ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: uploaded) do |video|
-                  video.user_id = User.admin.id
-                end.tap{ |v| v.skip_conversion = true; v.save! }
-              end
+              # let(:model) do
+              #   ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: uploaded) do |video|
+              #     video.user_id = User.admin.id
+              #   end.tap{ |v| v.skip_conversion = true; v.save! }
+              # end
 
-              subject { described_class.new(model.id, uploaded_path, output_without_extension) }
+              subject { described_class.new(uploaded_path, output_without_extension, filename, model.id) }
 
               before do
                 FileUtils.cp MEVSS::VALID_VIDEO, uploaded_path
                 model.media = uploaded
                 FileUtils.rm uploaded_path if File.exists? uploaded_path
                 subject
-                FileUtils.rm temp
+                FileUtils.rm temp if File.exists? temp
               end
 
               it{ expect{ subject.convert_to(format) }.to raise_error(MediaEditing::Video::Error) }
@@ -112,13 +116,13 @@ module MediaEditing
 
       describe 'run' do
 
-        subject { described_class.new(model.id, uploaded_path, output_without_extension) }
+        subject { described_class.new(uploaded_path, output_without_extension, filename, model.id) }
 
         context 'with a valid video' do
       
           before(:all) do
             FileUtils.cp MEVSS::VALID_VIDEO, uploaded_path
-            FileUtils.rm uploaded_path if File.exists? uploaded_path
+            FileUtils.rm temp if File.exists? temp
             subject.run
             model.reload
           end
@@ -133,7 +137,6 @@ module MediaEditing
               let(:format) { format }
 
               def info(format)
-                puts [format, output].inspect
                 @info ||= {}
                 @info[format] ||= MediaEditing::Video::Info.new(output)
               end
@@ -143,15 +146,15 @@ module MediaEditing
               end
 
               it 'creates the video cover' do
-                File.exists?(model.cover_path).should be_true
+                File.exists?(model.media.absolute_path(:cover)).should be_true
               end
 
               it 'creates the video thumb' do
-                File.exists?(model.thumb_path).should be_true
+                File.exists?(model.media.absolute_path(:thumb)).should be_true
               end
 
               it 'sets the model duration attribute' do
-                model.send(:"#{format}_duration").should == info(format).duration
+                model.send(:"#{format}_duration").should be_within(0.2).of info(format).duration
               end
 
             end
@@ -165,6 +168,14 @@ module MediaEditing
             File.exists?(temp).should_not be_true
           end
 
+        end
+      end
+
+      after(:all) do
+        FileUtils.rm uploaded_path if File.exists? uploaded_path
+        begin
+          FileUtils.rm temp
+        rescue Errno::ENOENT
         end
       end
 

@@ -10,8 +10,6 @@ require 'video_uploader'
 
 module MediaEditing
   module Video
-  # WARNING!!!
-  # avconv requires the package libavcodec-extra-53 to be installed for the libx264 codec
     class Conversion
 
       include EnvRelativePath

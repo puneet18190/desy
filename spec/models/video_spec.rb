@@ -3,19 +3,7 @@ describe Video, slow: true do
 
   supported_formats = MEVSS::FORMATS
 
-  let(:location)      { Location.create!(   description: ::CONFIG['locations'].first    ) }
-  let(:school_level)  { SchoolLevel.create!(description: ::CONFIG['school_levels'].first) }
-  let(:db_subject)    { Subject.create!(    description: ::CONFIG['subjects'].first     ) }
-  let!(:user)         do
-    User.admin || (
-      user_name    = ::CONFIG['admin_username'].split(' ').first
-      user_surname = ::CONFIG['admin_username'].gsub("#{user_name} ", '')
-      unless user = User.create_user(::CONFIG['admin_email'], user_name, user_surname, 'School', school_level.id, location.id, [db_subject.id])
-        raise 'could not create admin user'
-      end
-      user
-    )
-  end
+  let(:user)          { User.admin }
   let(:uploaded_path) { "#{MEVSS::SAMPLES_FOLDER}/in put.flv" }
   let(:filename)      { File.basename(uploaded_path) }
   let(:tempfile)      { File.open(uploaded_path) }
