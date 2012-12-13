@@ -13,7 +13,11 @@ class VideoUploader
       elsif @original_file
         error_message_for_file_to_convert
       elsif @value.instance_of? String
-        'renaming denied' if column_changed? and not rename?
+        if column_changed? and not rename?
+          'renaming denied'
+        elsif process(@value).blank?
+          :invalid_filename
+        end
       else
         'unsupported upload'
       end
@@ -21,11 +25,12 @@ class VideoUploader
 
     private
     def error_message_for_file_to_convert
-      path, extension = @original_file.path, original_filename_extension
-      if not EXTENSIONS_WHITE_LIST_WITH_DOT.include?(extension)
+      return :invalid_filename if processed_original_filename_without_extension.blank?
+        
+      if not EXTENSIONS_WHITE_LIST_WITH_DOT.include?(original_filename_extension)
         :unsupported_format
       else
-        info = MediaEditing::Video::Info.new(path, false)
+        info = MediaEditing::Video::Info.new(@original_file.path, false)
         if not info.valid?
           :invalid_video
         elsif info.duration < MIN_DURATION
@@ -36,11 +41,11 @@ class VideoUploader
 
     def error_message_for_converted_files
       mp4_path, webm_path = @converted_files[:mp4], @converted_files[:webm]
-      if @original_filename_without_extension.blank?
-        'invalid filename'
+      if !@original_filename_without_extension.is_a?(String) || process(@original_filename_without_extension).blank?
+        :invalid_filename
       elsif [mp4_path, webm_path].map{ |p| File.extname(p) } != %w(.mp4 .webm)
         'invalid extension'
-      elsif !(mp4_info = MediaEditing::Video::Info.new(mp4_path, false)) || !(webm_info = MediaEditing::Video::Info.new(webm_path, false))
+      elsif !(mp4_info = MediaEditing::Video::Info.new(mp4_path, false)).valid? || !(webm_info = MediaEditing::Video::Info.new(webm_path, false)).valid?
         'invalid video'
       elsif [mp4_info.duration, webm_info.duration].min < MIN_DURATION
         'invalid duration'

@@ -67,7 +67,7 @@ class VideoUploader < String
   end
 
   def processed_original_filename
-    process(original_filename, original_filename_extension)
+    process(original_filename_without_extension, original_filename_extension)
   end
 
   def processed_original_filename_without_extension

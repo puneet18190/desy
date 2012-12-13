@@ -114,7 +114,7 @@ module MediaEditing
 
       end
 
-      describe 'run' do
+      describe '#run' do
 
         subject { described_class.new(uploaded_path, output_without_extension, filename, model.id) }
 
