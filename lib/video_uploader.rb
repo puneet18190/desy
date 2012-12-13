@@ -3,6 +3,7 @@
 require 'media_editing/video/allowed_duration_range'
 require 'env_relative_path'
 require 'media_editing/video/cmd/extract_frame'
+require 'media_editing/image/resize_to_fill'
 
 class VideoUploader < String
 
@@ -11,7 +12,6 @@ class VideoUploader < String
   include EnvRelativePath
   include MediaEditing::Video::AllowedDurationRange
   include VideoUploader::Validation
-
 
   attr_reader :model, :column, :value
 
@@ -48,15 +48,26 @@ class VideoUploader < String
     else
       @filename_without_extension ||= ''
     end
+  end
 
+  def filename(format)
+    "#{filename_without_extension}.#{format}"
   end
 
   def filename_without_extension
-    @filename_without_extension || original_filename_without_extension
+    (@filename_without_extension || original_filename_without_extension).to_s
   end
 
-  def process(string)
-    string.parameterize
+  def process(filename, extension = nil)
+    if extension
+      "#{filename.parameterize}.#{extension}"
+    else
+      filename.parameterize
+    end
+  end
+
+  def processed_original_filename
+    process(original_filename, original_filename_extension)
   end
 
   def processed_original_filename_without_extension
@@ -64,7 +75,11 @@ class VideoUploader < String
   end
 
   def original_filename_without_extension
-    @original_filename_without_extension || File.basename(@original_filename, original_filename_extension)
+    @original_filename_without_extension || File.basename(original_filename, original_filename_extension)
+  end
+
+  def original_filename
+    File.basename(@original_filename)
   end
 
   def original_filename_extension
@@ -127,11 +142,11 @@ class VideoUploader < String
   def public_relative_path(format = nil)
     case format
     when ->(f) { f.blank? }
-      File.join public_relative_folder, filename_without_extension.to_s
+      File.join public_relative_folder, filename_without_extension
     when *FORMATS
-      File.join public_relative_folder, "#{filename_without_extension}.#{format}"
+      File.join public_relative_folder, filename(format)
     when :cover, :thumb
-      File.join public_relative_folder, VERSION_FORMATS[format] % filename_without_extension.to_s
+      File.join public_relative_folder, VERSION_FORMATS[format] % filename_without_extension
     end
   end
   alias path public_relative_path
@@ -144,9 +159,9 @@ class VideoUploader < String
   def absolute_path(format)
     case format
     when *FORMATS
-      File.join absolute_folder, "#{filename_without_extension}.#{format}"
+      File.join absolute_folder, filename(format)
     when :cover, :thumb
-      File.join absolute_folder, VERSION_FORMATS[format] % filename_without_extension.to_s
+      File.join absolute_folder, VERSION_FORMATS[format] % filename_without_extension
     end
   end
 
@@ -167,11 +182,9 @@ class VideoUploader < String
     end
 
     cover_path = File.join output_folder, COVER_FORMAT % processed_original_filename_without_extension
-    extract_cover @converted_files[:mp4], cover_path, infos[:mp4].duration / 2
+    extract_cover @converted_files[:mp4], cover_path, infos[:mp4].duration
 
-    # TODO ho copiato il resize to fill da carrierwave, adattarlo
     thumb_path = File.join output_folder, THUMB_FORMAT % processed_original_filename_without_extension
-    # thumb_path = THUMB_FORMAT % output_path_without_extension
     extract_thumb cover_path, thumb_path, *THUMB_SIZES
 
     model.converted = true
@@ -185,39 +198,20 @@ class VideoUploader < String
     model.send :"reload_#{column}"
   end
 
-  def extract_cover(input, output, seek)
+  def extract_cover(input, output, duration)
+    seek = duration / 2
     MediaEditing::Video::Cmd::ExtractFrame.new(input, output, seek).run!
     raise StandardError, 'unable to create cover' unless File.exists? output
   end
 
-  def upload
-    if not model.skip_conversion
-      Delayed::Job.enqueue MediaEditing::Video::Conversion::Job.new(model_id, @original_file.path, output_path_without_extension)
-    end
+  def extract_thumb(input, output, width, height)
+    MediaEditing::Image::ResizeToFill.new(cover_path, thumb_path, width, height).run
   end
 
-  def extract_thumb(input, output, width, height)
-    input_image = ::MiniMagick::Image.open(input)
-    cols, rows = input_image[:dimensions]
-    input_image.combine_options do |cmd|
-      if width != cols || height != rows
-        scale_x = width/cols.to_f
-        scale_y = height/rows.to_f
-        if scale_x >= scale_y
-          cols = (scale_x * (cols + 0.5)).round
-          rows = (scale_x * (rows + 0.5)).round
-          cmd.resize "#{cols}"
-        else
-          cols = (scale_y * (cols + 0.5)).round
-          rows = (scale_y * (rows + 0.5)).round
-          cmd.resize "x#{rows}"
-        end
-      end
-      cmd.gravity 'Center'
-      cmd.background "rgba(255,255,255,0.0)"
-      cmd.extent "#{width}x#{height}" if cols != width || rows != height
+  def upload
+    if not model.skip_conversion
+      Delayed::Job.enqueue MediaEditing::Video::Conversion::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
     end
-    input_image.write(output)
   end
 
 end

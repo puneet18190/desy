@@ -6,10 +6,14 @@
       :slide => @current_slide
     }
   %>
+  $('#nav_list_menu').data('jsp').destroy();
   $('#slide_in_lesson_editor_<%= @slide_id %>').after('<%= j(render(:partial => "lesson_editor/slide_wrapper", :locals => locals)) %>');
   reInitializeSlidePositionsInLessonEditor();
-  $("nav#heading").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides, :with_current => false}) %>");
+  $("nav#heading #nav_list_menu").html("<%= j(render :partial => 'index_nav', :locals => {:slides => @slides, :with_current => false}) %>");
   initializeSortableNavs();
+  $('#nav_list_menu').jScrollPane({
+    autoReinitialise: false
+  });
   slideTo(<%= @current_slide.id %>);
 <% else %>
   slideError();

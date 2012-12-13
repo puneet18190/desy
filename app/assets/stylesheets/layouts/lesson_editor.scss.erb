@@ -152,6 +152,7 @@ html.lesson-editor-layout{
 		padding: 20px;
 		display:inline-block;
 		background-color:#fff;
+
     position:absolute;
     top:0;
 	}
@@ -191,19 +192,68 @@ html.lesson-editor-layout{
 	}
  /*THUMBNAILS*/
   .slide-tooltip {
-    width: 300px;
-    height:300px;
+    width: 250px;
+    height:156px;
     display: none;
 		z-index:9999999999;
     margin: 20px 0 0 -27px;
     position: absolute;
     padding: 20px 20px 25px 25px;
     background: url("/assets/lesson-editor-tooltip-bg.png") top left no-repeat;
+    outline:1px solid red;
 		.zoomOutThumb {
 		  zoom:27%;
       -moz-transform: scale(0.27);
       position:absolute;
-			/*slide video*/
+    /*copertina*/
+    .slideCover{
+      height:590px;
+      position:absolute;
+      .cover {
+        width:900px;
+        height:560px;
+        overflow:hidden;
+        position: relative;
+        img{
+          position:absolute;
+        }
+      }
+      .bg_text {
+        background-color: rgba(242, 148, 0, 0.95);
+        height: 130px;
+        width: 860px;
+        padding: 0px 20px;
+        position:absolute;
+        top:430px;
+        left:0px;
+        
+        .lessonTitle {
+          font: 100% 'Nunito', sans-serif;
+          color:#fff;
+          line-height:50px;
+          font-size: 50px;
+          margin:20px;
+         }
+      }
+     .cover-slide-footer{
+          clear: both;
+          background-color: white;
+          color: #373737;
+          height: 16px;
+          width: 870px;
+          padding: 7px 15px;
+          font-size: 13px;
+          
+          .subject .h3{
+            font-family: Arial, sans-serif;
+            color: #373737;
+          }
+          .author .name{
+            color: $orange;
+          }
+        }
+      }
+      /*slide video*/
 			.slideVideo {
 			  
         @include formatElement;
