@@ -152,6 +152,7 @@ html.lesson-editor-layout{
 		padding: 20px;
 		display:inline-block;
 		background-color:#fff;
+    
     position:absolute;
     top:0;
 	}
@@ -199,11 +200,42 @@ html.lesson-editor-layout{
     position: absolute;
     padding: 20px 20px 25px 25px;
     background: url("/assets/lesson-editor-tooltip-bg.png") top left no-repeat;
+    outline:1px solid red;
 		.zoomOutThumb {
 		  zoom:27%;
       -moz-transform: scale(0.27);
       position:absolute;
-			/*slide video*/
+    /*copertina*/
+    .slideCover{
+      height:590px;
+      .cover {
+        width:900px;
+        height:560px;
+        overflow:hidden;
+        position: relative;
+        img{
+          position:absolute;
+        }
+      }
+     .cover-slide-footer{
+          clear: both;
+          background-color: white;
+          color: #373737;
+          height: 16px;
+          width: 870px;
+          padding: 7px 15px;
+          font-size: 13px;
+          
+          .subject .h3{
+            font-family: Arial, sans-serif;
+            color: #373737;
+          }
+          .author .name{
+            color: $orange;
+          }
+        }
+      }
+      /*slide video*/
 			.slideVideo {
 			  
         @include formatElement;
