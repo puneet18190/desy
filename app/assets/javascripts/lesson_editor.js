@@ -199,7 +199,9 @@ $(document).ready(function() {
   $('body').on('click', '._add_audio_to_slide', function(e) {
     e.preventDefault();
     var audio_id = $(this).data('audio-id');
-    closePopUp('dialog-audio-gallery-' + audio_id);
+    $('#gallery_audio_' + audio_id).removeClass('_audio_expanded_in_gallery');
+    stopMedia('#gallery_audio_' + audio_id + ' audio');
+    $('#gallery_audio_' + audio_id + ' ._expanded').hide();
     removeGalleryInLessonEditor('audio');
     var current_slide = $('li._lesson_editor_current_slide');
     var position = $('#info_container').data('current-media-element-position');
