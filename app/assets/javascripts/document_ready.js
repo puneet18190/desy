@@ -6,9 +6,7 @@ $(document).ready(function() {
       return el !== 'version';
     })[0];
 
-    if (!name) return;
-
-    $('html').addClass(name);
+    if(name) $('html').addClass(name);
   })();
 
   // OTHER BUTTONS
