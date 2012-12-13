@@ -52,8 +52,9 @@ $(document).ready(function() {
 });
 
 function stopMediaInLessonViewer() {
-  stopMedia('._lesson_viewer_current_slide audio');
-  stopMedia('._lesson_viewer_current_slide video');
+  var current_slide_id = $('._lesson_viewer_current_slide').attr('id');
+  stopMedia('#' + current_slide_id + ' audio');
+  stopMedia('#' + current_slide_id + ' video');
 }
 
 function scrollLesson(direction) {
