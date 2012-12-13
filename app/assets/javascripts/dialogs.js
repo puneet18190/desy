@@ -3,7 +3,7 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
   var caption = $('#popup_captions_container').data('restore-cache-media-element-editor-message');
   var msg_ok = $('#popup_captions_container').data('restore-cache-media-element-editor-yes');
   var msg_no = $('#popup_captions_container').data('restore-cache-media-element-editor-no');
-  content = '<p class="upper">' + caption + '</p>'; // TODO per Aurelia, metti la stessa classe anche ai bottoni!!!!
+  content = '<p class="upper">' + caption + '</p>';
   var dialog_buttons = {};
   dialog_buttons[msg_ok] = callback_ok;
   dialog_buttons[msg_no] = callback_no;
@@ -28,6 +28,9 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
       },
       beforeClose: function() {
         $('.dialog_opaco').removeClass('dialog_opaco');
+      },
+      create:function () {
+        $(this).closest('.ui-dialog').find('.ui-button').addClass('upper');
       }
     });
   }
