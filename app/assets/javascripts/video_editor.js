@@ -70,7 +70,7 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   var next_position = $('#info_container').data('components-number') + 1;
   $('#info_container').data('components-number', next_position);
   var empty_component = $('#empty_video_component_for_video_editor').html();
-  empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(5, div_to_return.length);
+  empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(5, empty_component.length);
   $('#add_new_video_component').before(empty_component);
   current_component = $('#temporary_empty_component');
   current_component.attr('id', ('video_component_' + next_position));
@@ -84,9 +84,9 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   to_be_appended += fillVideoEditorSingleParameter('until', next_position, duration);
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
-  changeDurationVideoEditorComponent(position, duration);
+  changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
   setTimeout(function() {
-    highlightAndUpdateVideoComponentIcon(current_component, 'videoIcon');
+    highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'videoIcon');
   }, 1400);
 }
 
