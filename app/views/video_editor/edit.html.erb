@@ -56,7 +56,9 @@
         type: 'post',
         url: '/videos/cache/empty',
         success: function() {
-          startCacheLoop();
+          setTimeout(function() {
+            startCacheLoop();
+          }, $('#popup_parameters_container').data('cache-time'));
         }
       });
     });
