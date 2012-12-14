@@ -410,7 +410,7 @@ $(document).ready(function() {
   $('body').on('click', '._Video_button_edit', function(e) {
     e.preventDefault();
     var video_id = $(this).data('clickparam');
-    window.location = 'videos/' + video_id + '/edit';
+    window.location = '/videos/' + video_id + '/edit';
     return false;
   });
   
@@ -421,7 +421,7 @@ $(document).ready(function() {
   $('body').on('click', '._Image_button_edit', function(e) {
     e.preventDefault();
     var image_id = $(this).data('clickparam');
-    window.location = 'images/' + image_id + '/edit';
+    window.location = '/images/' + image_id + '/edit';
     return false;
   });
   
