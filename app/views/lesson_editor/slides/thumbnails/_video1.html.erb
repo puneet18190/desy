@@ -5,16 +5,16 @@
   <div class="videoMedium">
     <% if video.nil? %>
       <div class="videoIcon"></div>
-			
+      
     <% else %>
       <%= image_tag video.cover_path, :width => "420" if video %>
-			<div class="bulletPointVideo">
+      <div class="bulletPointVideo">
          <img alt="Bullet_video" src="/assets/bullet_video.svg" style="width:40%">
       </div>
-			
+      
     <% end %>
   </div>
-	<div class="textRightVideoContent">
+  <div class="textRightVideoContent">
     <%= slide.text.html_safe if slide.text %>
   </div>
 </div>

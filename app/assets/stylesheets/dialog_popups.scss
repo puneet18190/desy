@@ -24,8 +24,8 @@
     box-shadow: 1px 1px 1px #b4b4b4;
     -webkit-box-shadow: 1px 1px 1px #b4b4b4;
     font-family:'Nunito', sans-serif;
-	  background-color: rgba(248,248,248,0.9);
-	  border-radius: 5px;
+    background-color: rgba(248,248,248,0.9);
+    border-radius: 5px;
     -webkit-border-radius: 5px;
   }
 }
@@ -34,84 +34,84 @@
     overflow: hidden;
     box-shadow: 0px 5px 15px #454343;
     -webkit-box-shadow: 0px 5px 15px #454343;
-	  background-color:#2eaadc;
-	  font-family:'Nunito', sans-serif;
-	  
-	  h1 {
-	    color:#fff;
-		  padding:0.5em;
-	  }
-	  p {
-	    padding-left:1em;
-			padding-bottom:1em;
-	  }
-		form {
-		  padding:1em;
-			float:left
-	  }	
-		input, textarea {
-		  background-color:#454343;
-			outline:1px solid white;
-			padding:10px;
-			width:290px;
-			
-			color: white;
-			&.campoEmail {
-			  height: 15px;
-				margin-bottom:10px;
-			}
-			
-		}
-		textarea {
-		  border:none;
-		  &.campoMessaggio {
-			  height:108px;
-			}
-		}
+    background-color:#2eaadc;
+    font-family:'Nunito', sans-serif;
+    
+    h1 {
+      color:#fff;
+      padding:0.5em;
+    }
+    p {
+      padding-left:1em;
+      padding-bottom:1em;
+    }
+    form {
+      padding:1em;
+      float:left
+    }  
+    input, textarea {
+      background-color:#454343;
+      outline:1px solid white;
+      padding:10px;
+      width:290px;
+      
+      color: white;
+      &.campoEmail {
+        height: 15px;
+        margin-bottom:10px;
+      }
+      
+    }
+    textarea {
+      border:none;
+      &.campoMessaggio {
+        height:108px;
+      }
+    }
     .colonnaCoverLesson {
-		  float:right;
-			padding-top:1em;
-		}
+      float:right;
+      padding-top:1em;
+    }
   }
-	.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
-	  top:26em;
-		left:2em;
-	}
+  .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    top:26em;
+    left:2em;
+  }
 }
 .timedPopUp img,
 .confirmPopUp img { 
   float:left;
-	margin-right:5%;
+  margin-right:5%;
 }
 
 .timedPopUp h1 {
-	font-size: 190% ;
-	color:#5d5c5c;
-	margin-top: 38px;
+  font-size: 190% ;
+  color:#5d5c5c;
+  margin-top: 38px;
   line-height: 1em;
-	
+  
 }
 .confirmPopUp h1 {
-	font-size: 190% ;
-	color:#5d5c5c;
-	margin-top: 10px;
+  font-size: 190% ;
+  color:#5d5c5c;
+  margin-top: 10px;
   line-height: 1em;
-	
+  
 }
 .confirmPopUp p {
   line-height: 1em;
-	color:#5D5C5C;
+  color:#5D5C5C;
 }
 .timedPopUp a,
 .confirmPopUp a {
-	color:#72b863;
-	text-transform:uppercase;
+  color:#72b863;
+  text-transform:uppercase;
 }
 .mediaElementInfoPopUp.ui-dialog-content { 
   padding: 0;
   background-color:#373737;
   color:#fff;
-	-webkit-box-shadow: 1px 5px 5px #c7c5c5;
+  -webkit-box-shadow: 1px 5px 5px #c7c5c5;
   box-shadow: 1px 5px 5px #c7c5c5;
 }
 
@@ -125,18 +125,18 @@
   }
   .caption{
     color: #fff;
-		text-align:left;
+    text-align:left;
     padding: 5px 0 0;
     display:block;
     max-width: 420px;
-		
+    
   }
   .aggiungiImgButton{
     margin:-5px 0 0;
     padding:0;
   }
-	
-	
+  
+  
 }
 
 .videoInGalleryPopUp.ui-dialog-content {
@@ -145,13 +145,13 @@
   overflow: hidden;
   .caption {
     color: #fff;
-		text-align:left;
-		margin-top:30px;
-		float:left;
-		width:100%;
-		p {
-		  padding-top:7px;
-		}
+    text-align:left;
+    margin-top:30px;
+    float:left;
+    width:100%;
+    p {
+      padding-top:7px;
+    }
   }
   .aggiungiImgButton {
     padding: 0;
@@ -170,17 +170,17 @@
 
 #dialog-virtual-classroom-send-link .buttonRow {
   padding:1em; 
-	margin-top:1em;
-	a {
+  margin-top:1em;
+  a {
     text-transform:lowercase;
-	  color:white;
-	  margin-right:0.5em;
+    color:white;
+    margin-right:0.5em;
     &.send {
-	    background-color:#373737;
-		  text-align:center;
-		  padding:0.5em 2.5em;
-		  font-size:1.4em;
-		}
+      background-color:#373737;
+      text-align:center;
+      padding:0.5em 2.5em;
+      font-size:1.4em;
+    }
   }
 }
 .originalSize {

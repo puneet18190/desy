@@ -5,8 +5,8 @@
   border-radius:3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-	
-	
+  
+  
 }
 @mixin call {
   z-index:20;
@@ -19,7 +19,7 @@
     font:  140% 'Nunito', sans-serif;
     color: #5D5C5C;
     background-color: transparent;
-		cursor:pointer;
+    cursor:pointer;
   }
 }
 .tooltip {
@@ -29,17 +29,17 @@
   right:110%;
   top:-9px;
   width:218%;
-	background-color:#fff;
+  background-color:#fff;
   border:1px solid #e8e8e8;
-	
+  
   .list ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
-		span  { 
-		  color:#5d5c5c;
-			font-weight:bold;
-		}
+    span  { 
+      color:#5d5c5c;
+      font-weight:bold;
+    }
     li { 
       margin: 5px 0 5px 0;
       padding:0%;
@@ -49,44 +49,44 @@
         position:absolute;
         right:0.1em;
         top:0.1em;
-				background-image: url(<%= asset_path 'cancel_tooltip_notice.png' %>);
+        background-image: url(<%= asset_path 'cancel_tooltip_notice.png' %>);
         background-position:center center;
-				background-repeat:no-repeat;
-				padding:10px;
-				background-color:transparent;
-				cursor: pointer;
+        background-repeat:no-repeat;
+        padding:10px;
+        background-color:transparent;
+        cursor: pointer;
       }
-			.cancelTooltip:hover {
+      .cancelTooltip:hover {
         background-image: url(<%= asset_path 'cancel_tooltip_notice_on.png' %>);
       }
     }
     a {
       display: block;
       background-color: #c1e6f6;
-			background-image: url(<%= asset_path 'arrow_tooltip_notice.png' %>);
+      background-image: url(<%= asset_path 'arrow_tooltip_notice.png' %>);
       background-position:0.3em center;
-			background-repeat:no-repeat;
+      background-repeat:no-repeat;
       border-radius:3px;
       -webkit-border-radius: 3px;
-			border-radius: 3px;
+      border-radius: 3px;
       margin-right: 0;
       padding:10px;
-			
-			
+      
+      
     }
     a.expanded {
       display: block;
       background-image:none;
       background-image: url(<%= asset_path 'arrow_tooltip_notice.png' %>);
       background-position:0.3em center;
-			background-repeat:no-repeat;
+      background-repeat:no-repeat;
       border-radius:3px;
       -moz-border-radius: 3px;
       -webkit-border-radius: 3px;
       margin-right: 0;
       padding:10px 10px 10px 20px;
-			margin-bottom:10px;
-			
+      margin-bottom:10px;
+      
     }
     a:hover {
       cursor: pointer;
@@ -128,8 +128,8 @@ $canvasSize: 450%;
     display:inline-block; 
     width:30%;
     padding:1%;
-		vertical-align: top;
-		color:#5D5C5C;
+    vertical-align: top;
+    color:#5D5C5C;
   }
 }
 
@@ -138,51 +138,51 @@ $canvasSize: 450%;
 @mixin elementiComuni {
   display:none;
   padding:10px;
-	float:right;
-	background-color:#fbfbfb;
-	color:#c0c0c0;
+  float:right;
+  background-color:#fbfbfb;
+  color:#c0c0c0;
   border:1px solid #c6c5c3;
   width:350px;
-	.text {
-	  margin:10px 0 10px 0;
-	  width: 336px;
-		overflow:hidden;
+  .text {
+    margin:10px 0 10px 0;
+    width: 336px;
+    overflow:hidden;
     padding-top:0px;
-		padding-bottom:50px;
-		border:1px solid #f0e5e5;
-	}
+    padding-bottom:50px;
+    border:1px solid #f0e5e5;
+  }
 }
 .lesson_tooltipForm {
   @include misc;
-	@include elementiComuni;
-	left:0.2em;
+  @include elementiComuni;
+  left:0.2em;
   bottom:3.3em;
   @include inputSend;
-	h3 {
-	  font:  120% 'Nunito', sans-serif;
+  h3 {
+    font:  120% 'Nunito', sans-serif;
     color: #5d5c5c;
-	}
-	.calloutForm {
+  }
+  .calloutForm {
     bottom: -8px;
     z-index:20;
     position:absolute;
     border:0;
     left:8px;
   }
-	
+  
 }
 
 .media_element_tooltipForm {
   @include misc;
-	@include elementiComuni;
+  @include elementiComuni;
   right:3px;
   bottom:38px;
   @include inputSend;
-	h3 {
-	  font:  140% 'Nunito', sans-serif;
+  h3 {
+    font:  140% 'Nunito', sans-serif;
     color: #5d5c5c;
-	}
-	.calloutForm {
+  }
+  .calloutForm {
     bottom: -7px;
     z-index:20;
     position:absolute;
@@ -194,7 +194,7 @@ $canvasSize: 450%;
 .callout {
   top: 15px;
   @include call;
-	
+  
 }
 .calloutTooltipArancione {
   top: 4px;
@@ -213,15 +213,15 @@ $canvasSize: 450%;
   border-radius:3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
   -webkit-border-radius: 3px 0 0 3px;
-	position:absolute;
+  position:absolute;
   right:328%;
   top:-9px;
-	overflow:hidden;
+  overflow:hidden;
   width:430px;
-	height:309px;
-	background-color:#fff;
+  height:309px;
+  background-color:#fff;
   border-top:1px solid #e8e8e8;
-	border-left:1px solid #e8e8e8;
-	border-bottom:1px solid #e8e8e8;
-	color:#5D5C5C;
+  border-left:1px solid #e8e8e8;
+  border-bottom:1px solid #e8e8e8;
+  color:#5D5C5C;
 }

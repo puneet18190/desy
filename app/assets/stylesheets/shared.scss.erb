@@ -2,58 +2,58 @@
   p {
     width:10%;
     text-align:center;
-		float:left;
-	}
-	div {
+    float:left;
+  }
+  div {
     float:right;
   }
 }
 @mixin tag-formatting {
   h1 {
-	  color:#fff;
-		padding:0;
-		margin:0;
-		font: 200% 'Nunito', sans-serif;
-		float:left;
-		width:39%;
-	}
-	h2 {
-	  font: 120% 'Nunito', sans-serif;
-		color:#fff;
-		float:left;
-		padding:0px;
-		margin:0px;
-	}
-	h3 {
-	  font: 120% 'Nunito', sans-serif;
-		color:#5d5c5c;
-		padding:0px;
-		width:38.5%;
-		float:left;
-	}
+    color:#fff;
+    padding:0;
+    margin:0;
+    font: 200% 'Nunito', sans-serif;
+    float:left;
+    width:39%;
+  }
+  h2 {
+    font: 120% 'Nunito', sans-serif;
+    color:#fff;
+    float:left;
+    padding:0px;
+    margin:0px;
+  }
+  h3 {
+    font: 120% 'Nunito', sans-serif;
+    color:#5d5c5c;
+    padding:0px;
+    width:38.5%;
+    float:left;
+  }
 }
 @mixin contentLayout {
   margin-bottom:1%;
-	-moz-box-shadow: 0px 3px 4px #d3d3d3;
+  -moz-box-shadow: 0px 3px 4px #d3d3d3;
   -webkit-box-shadow: 0px 3px 4px #d3d3d3;
   box-shadow: 0px 3px 4px #d3d3d3;
-	
-	h1 {
-	  font:  110% 'Nunito', sans-serif;
-	  color:#f29400;
-		padding:0px;
-	}
-	h2 {
-	  font:  140% 'Nunito', sans-serif;
-	}
+  
+  h1 {
+    font:  110% 'Nunito', sans-serif;
+    color:#f29400;
+    padding:0px;
+  }
+  h2 {
+    font:  140% 'Nunito', sans-serif;
+  }
 }
 @mixin iconeElements {
   background-size: 2.7em 8.1em;
-	width:40%;
-	background-image: url(<%= asset_path 'icon_elements.svg' %>);
-	background-repeat: no-repeat;
-	background-position:0 0;
-	float:left; 
+  width:40%;
+  background-image: url(<%= asset_path 'icon_elements.svg' %>);
+  background-repeat: no-repeat;
+  background-position:0 0;
+  float:left; 
   padding:4px 0px 2px 50px;
   display: inline-block;
   margin-right:1.8%;
@@ -65,67 +65,67 @@
 a.cerca {
   background-image:url(<%= asset_path 'cerca.png' %>);
   background-repeat:no-repeat;
-	background-position:top left;  
-	padding-left:30px;
-	padding-top:5px;
-	padding-bottom:15px;
-	margin-left:15px;
+  background-position:top left;  
+  padding-left:30px;
+  padding-top:5px;
+  padding-bottom:15px;
+  margin-left:15px;
 }
 a:hover.cerca {
   background-image:url(<%= asset_path 'cerca_on.png' %>);
 }
 a.cerca.current {
   background-image:url(<%= asset_path 'cerca_current.png' %>);
-	cursor:auto;
+  cursor:auto;
 }
 .boxViewExpandedLesson {
   @include contentLayout;
-	background-color:#fbfafb;
-	float:left;
-	width:49%;
-	
-	&:last-child {
-	  float:right;
-	}
-	.contentInterno {
-	  @include contentInterno;
-	  
-	}
+  background-color:#fbfafb;
+  float:left;
+  width:49%;
+  
+  &:last-child {
+    float:right;
+  }
+  .contentInterno {
+    @include contentInterno;
+    
+  }
 }
 
 .boxNewLesson {
   @include contentLayout;
-	background-color:#fbfafb;
-	
-	width:49%;
-	&:hover {
-		cursor: pointer;
-	}
-	.contentInterno {
-	  @include contentInterno;
-		text-align:center;
-	}
-	.contentNew {
-	  p {
-		  padding-top:90px;
-			font: 110% 'Nunito', sans-serif;
-		}
-		.createButton a {
-		  background: url(<%= asset_path 'create.png' %>) top left no-repeat;
-			padding-bottom:90px;
-			padding-left:120px;
-		}
-		.createButton a:hover {
-			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
-			  cursor: pointer;
-		}
-		.createButton a.current_plus {
-		  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
-		}
-	}
-	.vuoto {
-	  height:3.5em;
-	}
+  background-color:#fbfafb;
+  
+  width:49%;
+  &:hover {
+    cursor: pointer;
+  }
+  .contentInterno {
+    @include contentInterno;
+    text-align:center;
+  }
+  .contentNew {
+    p {
+      padding-top:90px;
+      font: 110% 'Nunito', sans-serif;
+    }
+    .createButton a {
+      background: url(<%= asset_path 'create.png' %>) top left no-repeat;
+      padding-bottom:90px;
+      padding-left:120px;
+    }
+    .createButton a:hover {
+        background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+        cursor: pointer;
+    }
+    .createButton a.current_plus {
+      background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+    }
+  }
+  .vuoto {
+    height:3.5em;
+  }
 }
 .boxViewSingleLesson {
   width:100%;
@@ -137,8 +137,8 @@ a.cerca.current {
   float:left;
   margin-bottom:1%;
   box-shadow: none;
-	background-color:#fbfafb;
-	.contentInterno {
+  background-color:#fbfafb;
+  .contentInterno {
     float:left;
     width:99%;
     padding:0.5% 0% 0.5% 1%;
@@ -148,466 +148,466 @@ a.cerca.current {
     @include tag-formatting;
     h3 {padding-top:0.5%}
     p {font-size:80%; padding-top:0.6%}
-		height:auto;
-	}
+    height:auto;
+  }
   &:hover {
-	  background-color:#f2eef2;
-		cursor: pointer;
-	}
-	.menuController {
-	  padding:0px; 
+    background-color:#f2eef2;
+    cursor: pointer;
+  }
+  .menuController {
+    padding:0px; 
     border-top:none;
-		background-color:transparent;
-		float:left;		
-		text-align:left;
-	}
-	.lessons-expanded {
-	  display:none;
-		color:#373737;
-		background-color:#e8e8e8;
-		-moz-box-shadow: inset 0px 3px 4px #d3d3d3;
+    background-color:transparent;
+    float:left;    
+    text-align:left;
+  }
+  .lessons-expanded {
+    display:none;
+    color:#373737;
+    background-color:#e8e8e8;
+    -moz-box-shadow: inset 0px 3px 4px #d3d3d3;
     -webkit-box-shadow: inset 0px 3px 4px #d3d3d3;
     box-shadow: inset 0px 3px 4px #d3d3d3;
-		padding:1% 5% 1% 1%;
-		float:left;
-		width:94%;
-		cursor:auto;
-		h1 {
-	    font-size: 100%;
-		  color:#a7a9ac;
-		}
-		.img_expanded {
-		  h1 {
-			  color:#fff;
-			}
-		}
-		.info-text {
-		  float:left;
-			padding:1px 2px 0 10px;
-			font-size:85%;
-			position:relative;
-			p {
-			  padding-top:20px;
-				padding-bottom:10px;
-			}
-			.tooltipForm h1 {
-	      font: 150% 'Nunito', sans-serif;
-		    color:#5d5c5c;
-	     }
-			.tooltipForm p {
+    padding:1% 5% 1% 1%;
+    float:left;
+    width:94%;
+    cursor:auto;
+    h1 {
+      font-size: 100%;
+      color:#a7a9ac;
+    }
+    .img_expanded {
+      h1 {
+        color:#fff;
+      }
+    }
+    .info-text {
+      float:left;
+      padding:1px 2px 0 10px;
+      font-size:85%;
+      position:relative;
+      p {
+        padding-top:20px;
+        padding-bottom:10px;
+      }
+      .tooltipForm h1 {
+        font: 150% 'Nunito', sans-serif;
+        color:#5d5c5c;
+       }
+      .tooltipForm p {
         display:inline-block; 
         padding:0% 1%;
-		  }
+      }
       ._report_lesson_click:hover {
         cursor:pointer;
       }
-		}
-		.description-text {
-		  float:right;
-			padding:0.5% 1.5% 0 0%;
-			width:54%;
-			font-size:90%;
-			margin-left:1%;
-			p {
-			  line-height:1.5em;
-			}
-			.intestazione {
-			  padding-bottom:20px;
-				float:left;
-				h1 {
-				  float:left;
-					padding-right:5px;
-					padding-bottom:0px;
-				}
-				p {
-				  float:left;
-					padding-right:20px;
-				}
-			}
-			h1 {
-			  padding-bottom:5px;
-			}
-		}
-		
-	}
-	
+    }
+    .description-text {
+      float:right;
+      padding:0.5% 1.5% 0 0%;
+      width:54%;
+      font-size:90%;
+      margin-left:1%;
+      p {
+        line-height:1.5em;
+      }
+      .intestazione {
+        padding-bottom:20px;
+        float:left;
+        h1 {
+          float:left;
+          padding-right:5px;
+          padding-bottom:0px;
+        }
+        p {
+          float:left;
+          padding-right:20px;
+        }
+      }
+      h1 {
+        padding-bottom:5px;
+      }
+    }
+    
+  }
+  
 }
 .img_expanded {
   float:left;
   padding:0;
   color:#fff;
-	font-size:100%;
-	position:relative;
+  font-size:100%;
+  position:relative;
   .lessonSubject {
     background-color:#fff;
     font-size:80%;
     color:#373737;
     padding:3px 10px;
-		position:absolute;
-		bottom:0px;
-		left:0px;
-		width:227px;
-		span {
-		  float:right
-		}
-		strong {
-		  color:#F29400;
-			font-weight:normal;
-		}
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    width:227px;
+    span {
+      float:right
+    }
+    strong {
+      color:#F29400;
+      font-weight:normal;
+    }
   }
-	.bg_text {
+  .bg_text {
     padding:5px 10px 10px 10px;
     background-color:#f29400;
-	  height:30px;
-	  position:absolute;
-	  bottom:10px;
-	  left:0px;
-	  width:227px;
-	 .lessonTitle {
+    height:30px;
+    position:absolute;
+    bottom:10px;
+    left:0px;
+    width:227px;
+   .lessonTitle {
       font: 100% 'Nunito', sans-serif;
       color:#fff;
-		  line-height:1em;
+      line-height:1em;
     }
   }
 }
 
 .boxViewExpandedMediaElement {
   @include contentLayout;
-	float:left;
-	width:200px;
-	margin-right: 2%;
-	margin-bottom:20px;
-	h3 {
-	  color:#41a62a;
-		font-size: 90%;
-		padding-bottom:0%;
-	}
-	h4 {
-	 font-family: 'Nunito', sans-serif;
-	 line-height:1.3em;
-	 padding-top:0.3em;
-	 }
-	.contentInterno {
-	  padding-top:0%;
-		height:274px;
-		background-color:#fbfafb;
-		p {
-		  font: 110% 'Nunito', sans-serif;
-		}
-		
-		
-	}
-	.menuController {
-	  font-size: 55%;
-	}
-	.description {
+  float:left;
+  width:200px;
+  margin-right: 2%;
+  margin-bottom:20px;
+  h3 {
+    color:#41a62a;
+    font-size: 90%;
+    padding-bottom:0%;
+  }
+  h4 {
+   font-family: 'Nunito', sans-serif;
+   line-height:1.3em;
+   padding-top:0.3em;
+   }
+  .contentInterno {
+    padding-top:0%;
+    height:274px;
+    background-color:#fbfafb;
+    p {
+      font: 110% 'Nunito', sans-serif;
+    }
+    
+    
+  }
+  .menuController {
+    font-size: 55%;
+  }
+  .description {
     padding-top:1%;
-	  padding-left:5%;
-		width:90%;
+    padding-left:5%;
+    width:90%;
   }
 }
 .boxNewMediaElement {
   @include contentLayout;
-	float:left;
-	width:200px;
-	margin-right: 2%;
-	margin-bottom:20px;
-	&:hover {
-		cursor: pointer;
-	}
-	.contentNew {
-	  text-align:center; 
-		padding-top:120px;
-		height:154px;
-		background-color: #FBFAFB;
-		p {
-		  font: 110% 'Nunito', sans-serif;
-			padding-top:40px;
-		}
-		a.createButton {
-		  background: url(<%= asset_path 'create.png' %>) top center no-repeat;
-			padding:50px;
-			&:hover {
-			  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
-			  cursor: pointer;
-			}
-		}
-		a.current_plus {
-		  background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
-		}
-	}
-	.vuoto {
-	  height:2.4em;
-		background-color:#fbfafb;
-	}
+  float:left;
+  width:200px;
+  margin-right: 2%;
+  margin-bottom:20px;
+  &:hover {
+    cursor: pointer;
+  }
+  .contentNew {
+    text-align:center; 
+    padding-top:120px;
+    height:154px;
+    background-color: #FBFAFB;
+    p {
+      font: 110% 'Nunito', sans-serif;
+      padding-top:40px;
+    }
+    a.createButton {
+      background: url(<%= asset_path 'create.png' %>) top center no-repeat;
+      padding:50px;
+      &:hover {
+        background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+        cursor: pointer;
+      }
+    }
+    a.current_plus {
+      background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+    }
+  }
+  .vuoto {
+    height:2.4em;
+    background-color:#fbfafb;
+  }
 }
 .boxViewCompactMediaElement {
-	  width:100%;
-		padding: 0;
-	  color:#c0c0c0;
-		@include contentLayout;
+    width:100%;
+    padding: 0;
+    color:#c0c0c0;
+    @include contentLayout;
     background-color: #FBFAFB;
-	  float:left;
-		h3 {
-	    color:#41a62a;
-		  font-size: 90%;
-		  padding-bottom:0%;
-	  }
-		h4 {
-		  padding-bottom: 0%;
-		}
-		.contentInterno {
-		  float:left;
-		  width:99%;
-		  padding:0.3% 0% 0.3% 1%;
-			@include float-content;
-			
-	    p {
-		    font-size:80%; 
-			  padding-top:0.6%;
-		  }
-	
-			/*audio*/
-			.audio {
-		    @include iconeElements;
-				background-position: 0 -2.5em;
-		  }
-			/*video*/
-			.video {
-		    @include iconeElements;
-				background-position: 0 0.3em;
-				
-		  }
-			/*image*/
-			.image {
-		    @include iconeElements;
-				background-position: 0 -5.2em;
-				
-		  }
-		}
-	.menuController {
-	  padding:0px; 
+    float:left;
+    h3 {
+      color:#41a62a;
+      font-size: 90%;
+      padding-bottom:0%;
+    }
+    h4 {
+      padding-bottom: 0%;
+    }
+    .contentInterno {
+      float:left;
+      width:99%;
+      padding:0.3% 0% 0.3% 1%;
+      @include float-content;
+      
+      p {
+        font-size:80%; 
+        padding-top:0.6%;
+      }
+  
+      /*audio*/
+      .audio {
+        @include iconeElements;
+        background-position: 0 -2.5em;
+      }
+      /*video*/
+      .video {
+        @include iconeElements;
+        background-position: 0 0.3em;
+        
+      }
+      /*image*/
+      .image {
+        @include iconeElements;
+        background-position: 0 -5.2em;
+        
+      }
+    }
+  .menuController {
+    padding:0px; 
     border-top:none;
-		background-color:transparent;
-		text-align:left;
-	}
+    background-color:transparent;
+    text-align:left;
+  }
 }
 .mediaStatus {
   padding:5% 0 0 5%;
-	color:#c0c0c0;
-	font-weight:bold;
-	font-size:85%;
-	
+  color:#c0c0c0;
+  font-weight:bold;
+  font-size:85%;
+  
 }
 
 
 
 .MediaElementPopUpContainer {
   height:339px;
-	padding:20px;
-	.ChangeInfoContainer {
-	  z-index:10; 
-		position:absolute; 
-		background-color:#373737; 
-		width:694px; 
-		height:320px; 
-		padding:20px 70px 0px 70px; 
-		
-		p {
-		  padding-top:0px;
-		}
-		
-	}
-	
-	.ChangeInfoContainerLoading {
-	  z-index:10; 
-		position:absolute; 
-		background-color:#373737; 
-		width:694px; 
-		height:319px; 
-		padding:0px; 
-		
-		p {
-		  padding-top:0px;
-		}
-		.cols {
-		  width:45%;
-		}
-		
-	}
-	.contentAudioElement {
-	   padding:10px 20px;
-		 width:794px;
-		 outline:1px solid #524f4f;
-		 background-color:#3b3a3b;
-		 position:absolute;
-		 bottom:60px;
-		 display:inline-block;
-		 
-	}
-	
-	 .contentElement {
-	   float:left;
-	   margin-right:30px;
-		 height:340px;
-		 .videoPlayer {
-		   width:517px;
-			 height:350px;
-		 }
-		 img{
-  	   max-height: 340px;
-  	   max-width: 500px;
-  	 }
-		 
-		 a:hover {
-		  cursor:pointer;
-		 }
-		 video {
-       height:290px;
-			 margin-bottom:15px;
+  padding:20px;
+  .ChangeInfoContainer {
+    z-index:10; 
+    position:absolute; 
+    background-color:#373737; 
+    width:694px; 
+    height:320px; 
+    padding:20px 70px 0px 70px; 
+    
+    p {
+      padding-top:0px;
+    }
+    
+  }
+  
+  .ChangeInfoContainerLoading {
+    z-index:10; 
+    position:absolute; 
+    background-color:#373737; 
+    width:694px; 
+    height:319px; 
+    padding:0px; 
+    
+    p {
+      padding-top:0px;
+    }
+    .cols {
+      width:45%;
+    }
+    
+  }
+  .contentAudioElement {
+     padding:10px 20px;
+     width:794px;
+     outline:1px solid #524f4f;
+     background-color:#3b3a3b;
+     position:absolute;
+     bottom:60px;
+     display:inline-block;
+     
+  }
+  
+   .contentElement {
+     float:left;
+     margin-right:30px;
+     height:340px;
+     .videoPlayer {
+       width:517px;
+       height:350px;
      }
-		 
-	 }
-	 
-	 h1 {
-	  color:#fff;
-		font: 180% 'Nunito', sans-serif;
-	}
-	h2 {
-	  font-size: 110%;
-		color:#41a62a;
-		padding:0px;
-	 	
-	}
-	h3 {
-	 	color:#fff;
-		font: 160% 'Nunito', sans-serif;
-	}
-	p {
-	  padding-top:15px;
-	}
-	
+     img{
+       max-height: 340px;
+       max-width: 500px;
+     }
+     
+     a:hover {
+      cursor:pointer;
+     }
+     video {
+       height:290px;
+       margin-bottom:15px;
+     }
+     
+   }
+   
+   h1 {
+    color:#fff;
+    font: 180% 'Nunito', sans-serif;
+  }
+  h2 {
+    font-size: 110%;
+    color:#41a62a;
+    padding:0px;
+     
+  }
+  h3 {
+     color:#fff;
+    font: 160% 'Nunito', sans-serif;
+  }
+  p {
+    padding-top:15px;
+  }
+  
 }
 .formModifyInfo {
   padding-top:3%;
-	float:left;
-	width:100%;
-	
-	.cols {
-	  width:40%;
-	  
-	  a:hover {
-	    cursor: pointer;
-	  }
-	}
-	input {
-	  border:1px solid #4fc356;
-		background-color:#454343;
-		padding:2% 4%;
-		width:92%;
-		margin-bottom:20px;
-		font: 95% Arial, Helvetica, sans-serif;
-		color: #fff;
-	}
-	input[type="submit"] {
+  float:left;
+  width:100%;
+  
+  .cols {
+    width:40%;
+    
+    a:hover {
+      cursor: pointer;
+    }
+  }
+  input {
+    border:1px solid #4fc356;
+    background-color:#454343;
+    padding:2% 4%;
+    width:92%;
+    margin-bottom:20px;
+    font: 95% Arial, Helvetica, sans-serif;
+    color: #fff;
+  }
+  input[type="submit"] {
     font: 130% 'Nunito', sans-serif;
     color: #fff;
-		width:160px;
+    width:160px;
     background-color:#41a62a;
-		&:hover {
-		  background-color: #67b855;
-		  cursor: pointer;
-		}
+    &:hover {
+      background-color: #67b855;
+      cursor: pointer;
+    }
   }
-	
-	textarea {
-	  border:1px solid #4fc356;
-		background-color:#454343;
-		font: 95% Arial, Helvetica, sans-serif;
-		padding:2% 4%;
-		width:92%;
-		height:130px;
-		color:#fff;
-		resize: none;
-		margin-bottom:20px
-	}
-	a {color:#fff}
-	
-	
+  
+  textarea {
+    border:1px solid #4fc356;
+    background-color:#454343;
+    font: 95% Arial, Helvetica, sans-serif;
+    padding:2% 4%;
+    width:92%;
+    height:130px;
+    color:#fff;
+    resize: none;
+    margin-bottom:20px
+  }
+  a {color:#fff}
+  
+  
 }
 .selectButton {
   width: 300px;
-	height:80px;
-	padding: 0px;
+  height:80px;
+  padding: 0px;
   
-	input {
-	  border:none;
-		background-color:transparent;
-		cursor:pointer;
-		
-	}
-	::-webkit-input-placeholder { 
-	  color:#fff; 
-	}
+  input {
+    border:none;
+    background-color:transparent;
+    cursor:pointer;
+    
+  }
+  ::-webkit-input-placeholder { 
+    color:#fff; 
+  }
   input:-moz-placeholder { 
-	  color:#fff; 
-	}
-	
+    color:#fff; 
+  }
+  
   .uploadFile {
     position: relative;
     z-index: 200;
     width: 210px;
     opacity: 0;
     -moz-opacity: 0;
-	}
-	
-	.uploadFileButton {
+  }
+  
+  .uploadFileButton {
     position: absolute;
     left: 20px;
     top: 15px;
     z-index: 0;
     width:64px;
-		height:64px;
-		background: url(<%= asset_path 'icone_piene.svg' %>)  no-repeat;
-		background-position: -16em 0; 
-		background-size: 32em 5em;
-		&::-moz-focus-inner {
+    height:64px;
+    background: url(<%= asset_path 'icone_piene.svg' %>)  no-repeat;
+    background-position: -16em 0; 
+    background-size: 32em 5em;
+    &::-moz-focus-inner {
       border: 0;
-	  }
-		&:hover {
-		  opacity:0.8;
-			
-		}
-	}
+    }
+    &:hover {
+      opacity:0.8;
+      
+    }
+  }
   .submitButton {
     margin: 0;
     padding: 0px;
     display: inline;
-		
+    
   }
   .fk_carica_elemento_file {
     position: absolute;
-		width:140px;
-		padding:5px 20px;
+    width:140px;
+    padding:5px 20px;
     left: 90px;
     top: 30px;
     z-index: 0;
     background-color:#454343;
     border-radius: 4px;
     -webkit-border-radius: 4px;
-		text-align:center;
-	}
+    text-align:center;
+  }
 }
 .barraLoading {
-	  width:100%; 
-		background-color:#fff;
-		height:60px;
-		div {
-		  height: 100%; 
-			background-color: #41a62a; 
-			width: 0%;
-		}
-	}
+    width:100%; 
+    background-color:#fff;
+    height:60px;
+    div {
+      height: 100%; 
+      background-color: #41a62a; 
+      width: 0%;
+    }
+  }
 .lower {
   text-transform: lowercase;
 }
@@ -633,16 +633,16 @@ a.cerca.current {
 .bottoniVerdi {
   a {
   width: auto;
-	list-style: none;
+  list-style: none;
   margin-top:20px;
   padding:5px 10px;
-	text-align:center;
-	background-color:#43a848;
-	border-radius: 15px;
+  text-align:center;
+  background-color:#43a848;
+  border-radius: 15px;
   -webkit-border-radius: 15px;
-	font-size:14px;
-	color:#ffffff;
-	}
+  font-size:14px;
+  color:#ffffff;
+  }
 }
 .elementoGrigio {
   float:left;
@@ -661,11 +661,11 @@ a.cerca.current {
   width:14%;
   padding:5px 10px;
   margin-right:1em;
-	
-	p {
-	  padding-top:5px;
-	}
-	input.numberTime {
+  
+  p {
+    padding-top:5px;
+  }
+  input.numberTime {
     float:left;
     margin:0 5px;
     background-color:#323234;
