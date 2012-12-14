@@ -1,4 +1,5 @@
 module MediaEditing
+  TMP_PREFIX = "desy#{Thread.current.object_id}"
 end
 
 require 'media_editing/video'

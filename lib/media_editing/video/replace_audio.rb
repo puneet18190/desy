@@ -10,7 +10,7 @@ module MediaEditing
     class ReplaceAudio
       
       include MediaEditing::Video::Logging
-      include MediaEditing::Video::InTmpDir
+      include MediaEditing::InTmpDir
 
       FORMATS = MediaEditing::Video::FORMATS
       CORRESPONDING_AUDIO_FORMATS = { mp4: :mp3, webm: :ogg }

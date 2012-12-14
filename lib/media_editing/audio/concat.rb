@@ -32,15 +32,17 @@ module MediaEditing
         # Caso speciale: se ho una sola coppia di input copio i due video nei rispettivi output e li ritorno
         return copy_first_inputs_to_outputs if mp3_inputs.size == 1
 
-        mp3_inputs_infos = mp3_inputs.map{ |input| Info.new(input) }
-        paddings = paddings mp3_inputs_infos
-        final_videos = nil
+        create_log_folder
 
         in_tmp_dir do
-          final_videos = concat(mp3_inputs_infos, paddings)
+          FORMATS.map do |format|
+            Thread.new do
+              concat(format)
+            end.tap{ |t| t.abort_on_exception = true }
+          end.each(&:join)
         end
 
-        final_videos
+        outputs
       end
 
       private
@@ -54,6 +56,16 @@ module MediaEditing
 
       def outputs
         { mp3: mp3_output, ogg: ogg_output }
+      end
+
+      def copy_first_inputs_to_outputs
+        Hash[
+          @inputs.map do |format, inputs|
+            input, output = inputs.first, outputs[format]
+            FileUtils.cp input, output
+            [format, output]
+          end
+        ]
       end
     end
   end

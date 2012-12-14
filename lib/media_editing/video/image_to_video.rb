@@ -10,7 +10,7 @@ module MediaEditing
     class ImageToVideo
 
       include MediaEditing::Video::Logging
-      include MediaEditing::Video::InTmpDir
+      include MediaEditing::InTmpDir
 
       PROCESSED_IMAGE_PATH_FORMAT = 'processed_image.%s'
 

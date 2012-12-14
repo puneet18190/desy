@@ -14,7 +14,7 @@ module MediaEditing
     class Concat
 
       include MediaEditing::Video::Logging
-      include MediaEditing::Video::InTmpDir
+      include MediaEditing::InTmpDir
 
       FORMATS                = MediaEditing::Video::FORMATS
       # Durata del padding alla fine del file aggiunto da lame durante la codifica
