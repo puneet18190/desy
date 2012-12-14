@@ -1,6 +1,6 @@
 <%
-  external_div_attributes = "id=\"video_component_#{position}\" data-position=\"#{position}\" data-duration=\"#{component[:until] - component[:from]}\""
-  external_div_attributes = "data-position=\"\" data-duration=\"\"" if empty
+  external_div_attributes = "data-position=\"\" data-duration=\"\""
+  external_div_attributes = "id=\"video_component_#{position}\" data-position=\"#{position}\" data-duration=\"#{component[:until] - component[:from]}\"" if !empty
 %>
 
 <div class="lista _video_editor_component" <%= external_div_attributes %>>
