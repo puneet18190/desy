@@ -11,12 +11,12 @@ module MediaEditing
           
           context 'with audio input' do
             let(:audio_input) { 'audio input' }
-            its(:to_s) { should == %Q[#{pre_command} -i video\\ input -i audio\\ input -sn -threads #{MediaEditing::Video::AVCONV_OUTPUT_THREADS[:mp4]} -q:v 1 -q:a 4 -c:v libx264 -c:a libmp3lame -t 10.0 -shortest out\\ put] }
+            its(:to_s) { should == %Q[#{pre_command} -i video\\ input -i audio\\ input -sn -threads #{AVCONV_OUTPUT_THREADS[:mp4]} -q:v 1 -q:a 4 -c:v libx264 -c:a libmp3lame -t 10.0 -shortest out\\ put] }
           end
 
           context 'with no audio input' do
             let(:audio_input) { nil }
-            its(:to_s) { should == %Q[#{pre_command} -i video\\ input -sn -threads #{MediaEditing::Video::AVCONV_OUTPUT_THREADS[:mp4]} -q:v 1 -q:a 4 -c:v libx264 -t 10.0 -shortest out\\ put] }
+            its(:to_s) { should == %Q[#{pre_command} -i video\\ input -sn -threads #{AVCONV_OUTPUT_THREADS[:mp4]} -q:v 1 -q:a 4 -c:v libx264 -t 10.0 -shortest out\\ put] }
           end
 
         end

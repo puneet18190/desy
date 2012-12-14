@@ -7,8 +7,8 @@ module MediaEditing
         
         let(:command) do
           pre_command = MEVSS::AVCONV_PRE_COMMAND
-          { mp4:  "#{pre_command} -r 25 -i transition\\ format -sn -threads #{MediaEditing::Video::AVCONV_OUTPUT_THREADS[:mp4]} -q:v 1 -c:v libx264 output",
-            webm: "#{pre_command} -r 25 -i transition\\ format -sn -threads #{MediaEditing::Video::AVCONV_OUTPUT_THREADS[:webm]} -q:v 1 -b:v 2M -c:v libvpx output" }
+          { mp4:  "#{pre_command} -r 25 -i transition\\ format -sn -threads #{AVCONV_OUTPUT_THREADS[:mp4]} -q:v 1 -c:v libx264 output",
+            webm: "#{pre_command} -r 25 -i transition\\ format -sn -threads #{AVCONV_OUTPUT_THREADS[:webm]} -q:v 1 -b:v 2M -c:v libvpx output" }
         end
         
         MEVSS::FORMATS.each do |format|
