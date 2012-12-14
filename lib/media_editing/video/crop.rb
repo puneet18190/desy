@@ -8,8 +8,6 @@ module MediaEditing
 
       include Logging
 
-      FORMATS = MediaEditing::Video::FORMATS
-
       def initialize(inputs, output_without_extension, start, duration)
         unless inputs.is_a?(Hash)                       and 
                inputs.keys.sort == FORMATS.sort         and

@@ -16,7 +16,6 @@ module MediaEditing
       include Logging
       include MediaEditing::InTmpDir
 
-      FORMATS                = MediaEditing::Video::FORMATS
       # Durata del padding alla fine del file aggiunto da lame durante la codifica
       # In genere lame aggiunge un pad di massimo 0.04, per cui lo settiamo a 0.05 per stare sicuri di non tagliare troppo
       LAME_ENCODING_RPADDING = 0.05

@@ -12,7 +12,6 @@ module MediaEditing
       include Logging
       include MediaEditing::InTmpDir
 
-      FORMATS = MediaEditing::Video::FORMATS
       CORRESPONDING_AUDIO_FORMATS = { mp4: :mp3, webm: :ogg }
 
       def initialize(video_inputs, audio_inputs, output_without_extension)
