@@ -7,11 +7,11 @@ require 'media_editing/error'
 module MediaEditing
   module Video
     class Cmd
-      class Conversion < MediaEditing::Video::Cmd::Avconv
+      class Conversion < Cmd::Avconv
 
-        OW, OH, OAR = MediaEditing::Video::AVCONV_OUTPUT_WIDTH, MediaEditing::Video::AVCONV_OUTPUT_HEIGHT, MediaEditing::Video::AVCONV_OUTPUT_ASPECT_RATIO
-        SH_VARS     = Hash[ MediaEditing::Video::CONFIG.avtools.avconv.cmd.with_filters.sh_vars.marshal_dump.map{ |k, v| [k.to_s, v] } ]
-        BIN         = MediaEditing::Video::CONFIG.avtools.avconv.cmd.with_filters.bin
+        OW, OH, OAR = AVCONV_OUTPUT_WIDTH, AVCONV_OUTPUT_HEIGHT, AVCONV_OUTPUT_ASPECT_RATIO
+        SH_VARS     = Hash[ CONFIG.avtools.avconv.cmd.with_filters.sh_vars.marshal_dump.map{ |k, v| [k.to_s, v] } ]
+        BIN         = CONFIG.avtools.avconv.cmd.with_filters.bin
 
         @subexec_options = superclass.subexec_options.merge(sh_vars: SH_VARS)
         @bin             = BIN
@@ -22,7 +22,7 @@ module MediaEditing
           @input_file_info = input_file_info || Info.new(input_file)
           if vstreams.empty?
             raise Error.new( 'at least one video stream must be present', 
-                                           input_file: input_file, output_file: output_file, format: format, input_file_info: input_file_info )
+                             input_file: input_file, output_file: output_file, format: format, input_file_info: input_file_info )
           end
           
           output_options [ vcodec, acodec, vmap, amap, vfilters ]

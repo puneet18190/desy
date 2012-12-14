@@ -8,7 +8,7 @@ require 'shellwords'
 module MediaEditing
   module Video
     class Cmd
-      class TrimAudioFile < MediaEditing::Video::Cmd::Sox
+      class TrimAudioFile < Cmd::Sox
 
         def initialize(input, output, ltrim, rtrim)
           @input, @output, @ltrim, @rtrim = input, output, ltrim, rtrim

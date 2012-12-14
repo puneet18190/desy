@@ -7,7 +7,7 @@ require 'shellwords'
 module MediaEditing
   module Video
     class Cmd
-      class Transition < MediaEditing::Video::Cmd::Avconv
+      class Transition < Cmd::Avconv
 
         # avconv -r 25 -i ../trans-%d.jpg -c:v libx264 -q 1  trans.r25.mp4
         def initialize(transitions, output, _frame_rate, format)

@@ -7,7 +7,7 @@ require 'shellwords'
 module MediaEditing
   module Video
     class Cmd
-      class ConcatWavsWithPaddings < MediaEditing::Video::Cmd::Sox
+      class ConcatWavsWithPaddings < Cmd::Sox
 
         def initialize(wavs_with_paddings, output)
           @wavs_with_paddings, @output = wavs_with_paddings, output

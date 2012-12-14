@@ -42,9 +42,9 @@ module MediaEditing
 
           if mp4_file_info.duration != webm_file_info.duration
             raise Error.new( 'output videos have not the same duration',
-                                           input_path: input_path, processed_image_path: processed_image_path,
-                                           mp4_output_path: mp4_output_path, webm_output_path: webm_output_path,
-                                           mp4_duration: mp4_file_info.duration, webm_duration: webm_file_info.duration )
+                             input_path: input_path, processed_image_path: processed_image_path,
+                             mp4_output_path: mp4_output_path, webm_output_path: webm_output_path,
+                             mp4_duration: mp4_file_info.duration, webm_duration: webm_file_info.duration )
           end
         end
         { webm: webm_output_path, mp4: mp4_output_path }
@@ -92,9 +92,9 @@ module MediaEditing
       # resize and crop
       def image_process(processed_image_path)
         input.combine_options do |cmd|
-          cmd.resize  "#{MediaEditing::Video::AVCONV_OUTPUT_WIDTH}x#{MediaEditing::Video::AVCONV_OUTPUT_HEIGHT}^"
+          cmd.resize  "#{AVCONV_OUTPUT_WIDTH}x#{AVCONV_OUTPUT_HEIGHT}^"
           cmd.gravity 'center'
-          cmd.extent  "#{MediaEditing::Video::AVCONV_OUTPUT_WIDTH}x#{MediaEditing::Video::AVCONV_OUTPUT_HEIGHT}"
+          cmd.extent  "#{AVCONV_OUTPUT_WIDTH}x#{AVCONV_OUTPUT_HEIGHT}"
         end
         input.write(processed_image_path)
       end

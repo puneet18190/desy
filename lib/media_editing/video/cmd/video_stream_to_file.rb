@@ -7,7 +7,7 @@ require 'shellwords'
 module MediaEditing
   module Video
     class Cmd
-      class VideoStreamToFile < MediaEditing::Video::Cmd::Avconv
+      class VideoStreamToFile < Cmd::Avconv
         def initialize(input, output)
           @input, @output = input, output
         end

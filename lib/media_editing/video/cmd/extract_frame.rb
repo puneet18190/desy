@@ -7,7 +7,7 @@ require 'shellwords'
 module MediaEditing
   module Video
     class Cmd
-      class ExtractFrame < MediaEditing::Video::Cmd::Avconv
+      class ExtractFrame < Cmd::Avconv
 
         # avconv -i arbitro.webm -ss 38.70 -frames:v 1 arbitro.jpg
         def initialize(input, output, _seek)

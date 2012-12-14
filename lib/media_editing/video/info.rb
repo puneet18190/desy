@@ -18,7 +18,7 @@ module MediaEditing
 
       def initialize(path, raise_if_invalid = true)
         @path      = File.expand_path path
-        @cmd       = MediaEditing::Video::Cmd::Avprobe.new(path)
+        @cmd       = Cmd::Avprobe.new(path)
         @output    = @cmd.run.output
         exitstatus = @cmd.exitstatus
 

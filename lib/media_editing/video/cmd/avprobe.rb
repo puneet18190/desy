@@ -6,10 +6,10 @@ require 'shellwords'
 module MediaEditing
   module Video
     class Cmd
-      class Avprobe < MediaEditing::Video::Cmd
-        SH_VARS         = Hash[ MediaEditing::Video::CONFIG.avtools.avprobe.cmd.sh_vars.marshal_dump.map{ |k, v| [k.to_s, v] } ]
-        BIN             = MediaEditing::Video::CONFIG.avtools.avprobe.cmd.bin
-        SUBEXEC_OPTIONS = { sh_vars: SH_VARS, timeout: MediaEditing::Video::AVPROBE_SUBEXEC_TIMEOUT }
+      class Avprobe < Cmd
+        SH_VARS         = Hash[ CONFIG.avtools.avprobe.cmd.sh_vars.marshal_dump.map{ |k, v| [k.to_s, v] } ]
+        BIN             = CONFIG.avtools.avprobe.cmd.bin
+        SUBEXEC_OPTIONS = { sh_vars: SH_VARS, timeout: AVPROBE_SUBEXEC_TIMEOUT }
         
         @subexec_options = SUBEXEC_OPTIONS
 

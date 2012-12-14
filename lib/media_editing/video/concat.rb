@@ -28,7 +28,7 @@ module MediaEditing
       
       # Usage example:
       #
-      # MediaEditing::Video::Concat.new({ mp4:['concat1.mp4','concat2.mp4'], webm:['concat1.webm','concat2.webm'] }, '/output_without_extension').run 
+      # Concat.new({ mp4:['concat1.mp4','concat2.mp4'], webm:['concat1.webm','concat2.webm'] }, '/output_without_extension').run 
       #
       #   #=> { mp4:'/output_without_extension.mp4', webm:'/output_without_extension.webm' }
       #
