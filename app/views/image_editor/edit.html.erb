@@ -19,7 +19,7 @@ or ABC to enter text.</p>
         <input type="hidden" name="x2" value="" />
         <input type="hidden" name="y2" value="" />
         <input type="hidden" name="cropped_image" value="" />
-        <%= render :partial => 'media_elements/info_form_in_editor/new' %>
+        <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => @image.sti_type } %>
         <% if !@image.is_public %>
           <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @image} %>
         <% end %>
