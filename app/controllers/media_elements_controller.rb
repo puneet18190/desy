@@ -21,10 +21,13 @@ class MediaElementsController < ApplicationController
     @new_media_element = MediaElement.new(media_element_params)
     render_js_or_html_index
   end
-
+  
+  def new
+    render :layout => 'media_element_editor'
+  end
+  
   def create
     media_element = MediaElement.new(media_element_params) { |me| me.user = @current_user }
-
     if media_element.save
       #render :formats => :js
       render json: { message: I18n.t('forms.media_element.messages.success') }, :status => :created
@@ -32,7 +35,6 @@ class MediaElementsController < ApplicationController
       #render :formats => :js
       # TODO aggiungere visualizzazione errori
       puts media_element.errors.inspect
-
       render json: { errors: media_element.errors, tags: media_element.tags }
     end
     #render layout: false, content_type: Mime::TEXT, text: media_element.inspect
