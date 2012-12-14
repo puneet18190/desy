@@ -67,8 +67,27 @@ function replaceImageComponentInVideoEditor(image_id, component, position, durat
 }
 
 function addVideoComponentInVideoEditor(video_id, component, duration) {
-  alert('stai aggiungendo la componente -- ' + component + ' in ultima posizione  (il video dura ' + duration + ' secondi)');
-  // mettere flash
+  var next_position = $('#info_container').data('components-number') + 1;
+  $('#info_container').data('components-number', next_position);
+  var empty_component = $('#empty_video_component_for_video_editor').html();
+  empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(5, div_to_return.length);
+  $('#add_new_video_component').before(empty_component);
+  current_component = $('#temporary_empty_component');
+  current_component.attr('id', ('video_component_' + next_position));
+  current_component.data('duration', 0);
+  current_component.data('position', next_position);
+  current_component.find('._video_component_icon').html(next_position);
+  current_component.find('._video_editor_component_hover').append(component);
+  var to_be_appended = fillVideoEditorSingleParameter('type', next_position, 'video');
+  to_be_appended += fillVideoEditorSingleParameter('video_id', next_position, video_id);
+  to_be_appended += fillVideoEditorSingleParameter('from', next_position, 0);
+  to_be_appended += fillVideoEditorSingleParameter('until', next_position, duration);
+  to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
+  current_component.find('._video_editor_component_hover').append(to_be_appended);
+  changeDurationVideoEditorComponent(position, duration);
+  setTimeout(function() {
+    highlightAndUpdateVideoComponentIcon(current_component, 'videoIcon');
+  }, 1400);
 }
 
 function replaceVideoComponentInVideoEditor(video_id, component, position, duration) {
@@ -141,7 +160,7 @@ function changeDurationVideoEditorComponent(component_id, new_duration) {
 }
 
 function fillVideoEditorSingleParameter(input, identifier, value) {
-  return '<input id="' + input + '_' + identifier + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
+  return '<input id="' + input + '_' + identifier + '" class="_video_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
 }
 
 function clearSpecificVideoEditorComponentParameters(component_id) {
