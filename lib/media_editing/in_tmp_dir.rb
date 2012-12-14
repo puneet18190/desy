@@ -1,0 +1,21 @@
+require 'media_editing'
+
+module MediaEditing
+  module InTmpDir
+  
+    def in_tmp_dir
+      Dir.mktmpdir(CONFIG.tmp_prefix) do |dir|
+        @tmp_dir = dir
+        yield
+      end
+    ensure
+      @tmp_dir = nil
+    end
+
+    def tmp_path(path)
+      raise Error.new('@tmp_dir must be present') if @tmp_dir.blank?
+      File.join(@tmp_dir, path)
+    end
+
+  end
+end

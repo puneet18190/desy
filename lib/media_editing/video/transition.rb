@@ -1,7 +1,8 @@
 require 'media_editing'
 require 'media_editing/video'
-require 'media_editing/video/in_tmp_dir'
-require 'media_editing/video/logging'
+require 'media_editing/logging'
+require 'media_editing/in_tmp_dir'
+require 'media_editing/info'
 require 'media_editing/video/cmd/video_stream_to_file'
 require 'media_editing/video/cmd/extract_frame'
 require 'media_editing/video/cmd/generate_transition_frames'
@@ -12,17 +13,16 @@ module MediaEditing
   module Video
     class Transition
 
-      include MediaEditing::Video::InTmpDir
-      include MediaEditing::Video::Logging
+      include Logging
+      include MediaEditing::InTmpDir
 
-      FORMATS              = MediaEditing::Video::FORMATS
       START_FRAME          = 'start_frame.jpg'
       VIDEO_NO_AUDIO       = 'video_no_audio.mp4'
       LAST_FRAME_SKIP_STEP = -0.2
       END_FRAME            = 'end_frame.jpg'
       TRANSITIONS          = 'transition.jpg'
       INNER_FRAMES_AMOUNT  = 23
-      TRANSITIONS_FORMAT   = proc{ f = Pathname.new(TRANSITIONS); "#{f.basename(f.extname)}-%d#{f.extname}" }.call
+      TRANSITIONS_FORMAT   = ->{ f = Pathname.new(TRANSITIONS); "#{f.basename(f.extname)}-%d#{f.extname}" }.call
       FRAME_RATE           = 25
 
       def initialize(start_inputs, end_inputs, output_without_extension)
@@ -79,7 +79,7 @@ module MediaEditing
         video_no_audio = tmp_path VIDEO_NO_AUDIO
         Cmd::VideoStreamToFile.new(@start_inputs[:mp4], video_no_audio).run! *logs('0_video_stream_to_file')
 
-        video_no_audio_duration = MediaEditing::Video::Info.new(video_no_audio).duration
+        video_no_audio_duration = Info.new(video_no_audio).duration
         video_no_audio_duration.step(0, LAST_FRAME_SKIP_STEP) do |seek|
           Cmd::ExtractFrame.new(@start_inputs[:mp4], start_frame, seek).run! *logs('1_extract_start_input_last_frame')
           break if File.exists? start_frame

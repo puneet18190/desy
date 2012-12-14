@@ -1,7 +1,8 @@
 require 'media_editing'
 require 'media_editing/video'
-require 'media_editing/video/logging'
-require 'media_editing/video/in_tmp_dir'
+require 'media_editing/logging'
+require 'media_editing/in_tmp_dir'
+require 'media_editing/info'
 require 'media_editing/video/cmd/audio_stream_to_file'
 require 'media_editing/video/cmd/mp3_to_wav'
 require 'media_editing/video/cmd/concat_wavs_with_paddings'
@@ -13,10 +14,9 @@ module MediaEditing
   module Video
     class Concat
 
-      include MediaEditing::Video::Logging
-      include MediaEditing::Video::InTmpDir
+      include Logging
+      include InTmpDir
 
-      FORMATS                = MediaEditing::Video::FORMATS
       # Durata del padding alla fine del file aggiunto da lame durante la codifica
       # In genere lame aggiunge un pad di massimo 0.04, per cui lo settiamo a 0.05 per stare sicuri di non tagliare troppo
       LAME_ENCODING_RPADDING = 0.05
@@ -29,7 +29,7 @@ module MediaEditing
       
       # Usage example:
       #
-      # MediaEditing::Video::Concat.new({ mp4:['concat1.mp4','concat2.mp4'], webm:['concat1.webm','concat2.webm'] }, '/output_without_extension').run 
+      # Concat.new({ mp4:['concat1.mp4','concat2.mp4'], webm:['concat1.webm','concat2.webm'] }, '/output_without_extension').run 
       #
       #   #=> { mp4:'/output_without_extension.mp4', webm:'/output_without_extension.webm' }
       #
@@ -59,7 +59,7 @@ module MediaEditing
         # Caso speciale: se ho una sola coppia di input copio i due video nei rispettivi output e li ritorno
         return copy_first_inputs_to_outputs if mp4_inputs.size == 1
 
-        mp4_inputs_infos = mp4_inputs.map{ |input| MediaEditing::Video::Info.new(input) }
+        mp4_inputs_infos = mp4_inputs.map{ |input| Info.new(input) }
         paddings = paddings mp4_inputs_infos
         final_videos = nil
 
@@ -102,7 +102,7 @@ module MediaEditing
         final_webm_no_audio = tmp_path FINAL_WEBM_NO_AUDIO
         Cmd::MergeWebmVideoStreams.new(webm_inputs, final_webm_no_audio).run! *logs('3_merge_webm_video_streams') # 2.
 
-        final_webm_no_audio_info = MediaEditing::Video::Info.new final_webm_no_audio
+        final_webm_no_audio_info = Info.new final_webm_no_audio
 
         [ 
           ( Thread.new do
@@ -151,7 +151,7 @@ module MediaEditing
       end
 
       def increase_rpadding_depending_on_video_overflow(video_info, wav, paddings)
-        wav_info = MediaEditing::Video::Info.new(wav)
+        wav_info = Info.new(wav)
         overflow = video_info.duration - wav_info.duration - LAME_ENCODING_RPADDING
         paddings[1] += overflow if overflow > 0
       end

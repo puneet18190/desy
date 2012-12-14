@@ -4,7 +4,7 @@ module MediaEditing
   module Video
     class Cmd
       describe VideoStreamToFile do
-        let(:pre_command) { MEVSS::AVCONV_PRE_COMMAND }
+        let(:pre_command) { MESS::AVCONV_PRE_COMMAND }
         
         subject { described_class.new('inp ut', 'out put') }
         

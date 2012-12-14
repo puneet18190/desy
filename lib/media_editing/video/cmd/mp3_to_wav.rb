@@ -6,7 +6,7 @@ require 'shellwords'
 module MediaEditing
   module Video
     class Cmd
-      class Mp3ToWav < MediaEditing::Video::Cmd
+      class Mp3ToWav < Cmd
 
         LAME_BIN = 'lame'
 

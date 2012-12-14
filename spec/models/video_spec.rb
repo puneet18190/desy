@@ -9,7 +9,7 @@ describe Video, slow: true do
   let(:user)                 { User.admin }
 
   def saved
-    FileUtils.cp MEVSS::VALID_VIDEO, tmp_valid_video_path
+    FileUtils.cp MESS::VALID_VIDEO, tmp_valid_video_path
     subject.save!
     subject
   end

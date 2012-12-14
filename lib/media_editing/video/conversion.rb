@@ -1,9 +1,9 @@
 require 'media_editing'
 require 'media_editing/video'
-require 'media_editing/video/logging'
+require 'media_editing/logging'
 require 'media_editing/video/allowed_duration_range'
-require 'media_editing/video/info'
-require 'media_editing/video/error'
+require 'media_editing/info'
+require 'media_editing/error'
 require 'media_editing/video/cmd/conversion'
 require 'env_relative_path'
 require 'video_uploader'
@@ -13,11 +13,11 @@ module MediaEditing
     class Conversion
 
       include EnvRelativePath
-      include MediaEditing::Video::Logging
-      include MediaEditing::Video::AllowedDurationRange
+      include Logging
+      include AllowedDurationRange
 
       TEMP_FOLDER        = Rails.root.join(env_relative_path('tmp/media_editing/video/conversions')).to_s
-      DURATION_THRESHOLD = MediaEditing::Video::CONFIG.duration_threshold
+      DURATION_THRESHOLD = CONFIG.video.duration_threshold
       COVER_FORMAT       = VideoUploader::COVER_FORMAT
       THUMB_FORMAT       = VideoUploader::THUMB_FORMAT
       THUMB_SIZES        = VideoUploader::THUMB_SIZES
@@ -49,8 +49,8 @@ module MediaEditing
           mp4_conversion.join
           webm_conversion.join
 
-          mp4_file_info  = MediaEditing::Video::Info.new output_path(:mp4)
-          webm_file_info = MediaEditing::Video::Info.new output_path(:webm)
+          mp4_file_info  = Info.new output_path(:mp4)
+          webm_file_info = Info.new output_path(:webm)
 
           unless allowed_duration_range?(mp4_file_info.duration, webm_file_info.duration) 
             raise Error.new( 'output videos have different duration', 
@@ -81,7 +81,7 @@ module MediaEditing
       end
 
       def extract_thumb(input, output, width, height)
-        MediaEditing::Image::ResizeToFill.new(input, output, width, height).run
+        Image::ResizeToFill.new(input, output, width, height).run
       end
 
       def extract_cover(input, output, duration)
