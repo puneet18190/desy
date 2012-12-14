@@ -696,6 +696,12 @@ $(document).ready(function() {
     closePopUp('dialog-virtual-classroom-quick-select');
   });
   
+  // IMAGE EDITOR
+  
+  $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
+  $('body').on('click','._add_image_to_image_editor', function(){
+    window.location = '/images/'+$(this).data('image-id')+'/edit';
+  });
   
   // VIDEO EDITOR
   

@@ -3,7 +3,18 @@ class ImageEditorController < ApplicationController
   layout 'media_element_editor'
   
   def edit
-    @image = Image.find(params[:image_id])
+    image = Image.find(params[:image_id])
+    if rand(2) == 1 # posso sovrascrivere
+      @parameters = {
+        :initial_image => image,
+        :image => image
+      } 
+    else
+      @parameters = {
+        :initial_image => nil,
+        :image => image
+      }
+    end  
   end
   
   def crop
@@ -56,34 +67,41 @@ class ImageEditorController < ApplicationController
     end
     
     woh = width_or_height(original_width,original_height)
-        
-    textCount = (params.length - 5) / 4
-
-    (0..textCount-1).each do |t_num|
-
-      img.combine_options do |c|
-        color_value = params["color_#{t_num}"]
-        color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
-
-        c.fill "#{color_hex}"
-        c.stroke "none"
-        #c.encoding = "Unicode"
-        c.font "#{Rails.root}/vendor/fonts/wt014.ttf"
-        size_value = params["font_#{t_num}"]
-        width_val = woh[1]
-        original_val = woh[0]
-        c.pointsize "#{ratio_value(width_val,(size_value.to_f*72/96), original_val)}"
-        c.gravity 'NorthWest'
-        
-        coords_value = params["coords_#{t_num}"].split(",")
-        c0 = ratio_value(width_val,coords_value[0], original_val)
-        c1 = ratio_value(width_val,coords_value[1], original_val)
-        text_value = params["text_#{t_num}"]
-        
-        c.draw "text #{c0},#{c1} \'#{text_value}\'"
-        
+    
+    textCount = 0
+    params.each do |p,val|
+      if p.starts_with?('text')
+        textCount += 1
       end
     end
+    logger.info "\n\n\n\n\n tCount: #{textCount} \n\n\n\n"
+    if textCount > 0
+      (0..textCount-1).each do |t_num|
+
+        img.combine_options do |c|
+          color_value = params["color_#{t_num}"]
+          color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
+          c.fill "#{color_hex}"
+          c.stroke "none"
+          #c.encoding = "Unicode"
+          c.font "#{Rails.root}/vendor/fonts/wt014.ttf"
+          size_value = params["font_#{t_num}"]
+          width_val = woh[1]
+          original_val = woh[0]
+          c.pointsize "#{ratio_value(width_val,(size_value.to_f*72/96), original_val)}"
+          c.gravity 'NorthWest'
+          
+          coords_value = params["coords_#{t_num}"].to_s.split(",")
+          c0 = ratio_value(width_val,coords_value[0], original_val)
+          c1 = ratio_value(width_val,coords_value[1], original_val)
+          text_value = params["text_#{t_num}"]
+
+          c.draw "text #{c0},#{c1} \'#{text_value}\'"
+
+        end
+      end
+    end
+    logger.info "\n\n\n\n\n tCount after: #{textCount} \n\n\n\n"
     
     if !params[:x1].blank?
       x1= ratio_value(woh[1],params[:x1],woh[0])
@@ -99,7 +117,11 @@ class ImageEditorController < ApplicationController
     end
     
     image_dir = "/public/media_elements/images/#{params[:image_id]}"
-    img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
+    final_image_url = img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
+    
+    new_image = Image.new { |me| me.user = @current_user }
+    new_image.media = final_image_url
+    new_image.save!
     
   end
   

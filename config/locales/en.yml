@@ -155,6 +155,7 @@ en:
     text_color: 'Text color'
     time: 'Time'
     total_length: 'Total lenght'
+    untitled_new_element: "New element - untitled"
     update: 'Update'
     update_lesson: 'Update lesson'
     upload: 'Upload'

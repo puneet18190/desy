@@ -1,4 +1,11 @@
+<% save_class = "_save_edit_image saveButton" %>
+<% if @parameters[:initial_image] %>
+  <% save_class = "#{save_class} _updatable_image" %>
+<% else %>
+  <% save_class = "#{save_class} _create_new_image" %>
+<% end %>
 <div class="fltrt">
-  <div class="fltrt"><a class="_save_edit_image saveButton"></a></div>
-  <div class="fltrt"><a class="closeButton"></a></div>
+  <div class="fltrt"><a class="<%= save_class %>" data-image-id="<%= @parameters[:image].id %>"></a></div>
+  <div class="fltrt">
+    <%= link_to "", dashboard_index_path, :class=>"closeButton" %></div>
 </div>
