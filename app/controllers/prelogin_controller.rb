@@ -24,7 +24,13 @@ class PreloginController < ApplicationController
   
   def login
     session[:user_id] = User.find_by_email(CONFIG['admin_email']).id # FIXME TEMPORANEO
-    redirect_to '/dashboard'
+    redirect = session[:prelogin_request]
+    session[:prelogin_request] = nil
+    if redirect.blank?
+      redirect_to '/dashboard'
+    else
+      redirect_to redirect
+    end
   end
   
   private
