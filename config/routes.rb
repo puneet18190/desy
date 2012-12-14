@@ -6,7 +6,7 @@ Desy::Application.routes.draw do
   get  'media_elements' => 'media_elements#index', :as => :my_media_elements
   get  'virtual_classroom' => 'virtual_classroom#index', :as => :my_virtual_classroom
   
-  # ACTION BUTTONS FOR LESSONS
+  # LESSONS
   post 'lessons/:lesson_id/add' => 'lessons#add'
   post 'lessons/:lesson_id/copy' => 'lessons#copy'
   post 'lessons/:lesson_id/destroy' => 'lessons#destroy'
@@ -18,8 +18,9 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/:lesson_id/add_lesson' => 'virtual_classroom#add_lesson'
   post 'virtual_classroom/:lesson_id/remove_lesson' => 'virtual_classroom#remove_lesson'
   
-  # ACTION BUTTONS FOR MEDIA ELEMENTS
+  # MEDIA ELEMENTS
   resources :media_elements, :only => :create
+  get  'media_elements/new' => 'media_elements#new', :as => :new_media_elements_editor
   post 'media_elements/:media_element_id' => 'media_elements#update', :as => :media_element
   post 'media_elements/:media_element_id/add' => 'media_elements#add'
   post 'media_elements/:media_element_id/destroy' => 'media_elements#destroy'
@@ -42,7 +43,7 @@ Desy::Application.routes.draw do
   put  'lessons/:lesson_id/update' => 'lesson_editor#update', :as => :lesson
   post 'lessons/:lesson_id/slides/:slide_id/kind/:kind/create' => 'lesson_editor#add_slide'
   post 'lessons/:lesson_id/slides/:slide_id/delete' => 'lesson_editor#delete_slide', :as => :delete_slide
-  post  'lessons/:lesson_id/slides/:slide_id/update' => 'lesson_editor#save_slide', :as => :save_slide
+  post 'lessons/:lesson_id/slides/:slide_id/update' => 'lesson_editor#save_slide', :as => :save_slide
   post 'lessons/:lesson_id/slides/:slide_id/move/:position' => 'lesson_editor#change_slide_position', :as => :change_slide_position
   
   # GALLERIES
