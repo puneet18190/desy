@@ -40,123 +40,139 @@ class ImageEditorController < ApplicationController
       else
         @crop = false
       end
+    else
+      # mettere 'X' rossa
     end
   end
   
   def save
-    if !params[:cropped_image].blank?
-      img = MiniMagick::Image.open("#{Rails.root}#{params[:cropped_image]}")
-      original_width = img[:width]
-      original_height = img[:height]
-    else
-      img = MiniMagick::Image.open(@image.media.path)
-      original_width = @image.media.width
-      original_height = @image.media.height
-    end
-    woh = width_or_height(original_width,original_height)
-    textCount = 0
-    params.each do |p,val|
-      if p.starts_with?('text')
-        textCount += 1
+    if @ok
+      if !params[:cropped_image].blank?
+        img = MiniMagick::Image.open("#{Rails.root}#{params[:cropped_image]}")
+        original_width = img[:width]
+        original_height = img[:height]
+      else
+        img = MiniMagick::Image.open(@image.media.path)
+        original_width = @image.media.width
+        original_height = @image.media.height
       end
-    end
-    logger.info "\n\n\n\n\n tCount: #{textCount} \n\n\n\n"
-    if textCount > 0
-      (0..textCount-1).each do |t_num|
-        img.combine_options do |c|
-          color_value = params["color_#{t_num}"]
-          color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
-          c.fill "#{color_hex}"
-          c.stroke "none"
-          #c.encoding = "Unicode"
-          c.font "#{Rails.root}/vendor/fonts/wt014.ttf"
-          size_value = params["font_#{t_num}"]
-          width_val = woh[1]
-          original_val = woh[0]
-          c.pointsize "#{ratio_value(width_val,(size_value.to_f*72/96), original_val)}"
-          c.gravity 'NorthWest'
-          coords_value = params["coords_#{t_num}"].to_s.split(",")
-          c0 = ratio_value(width_val,coords_value[0], original_val)
-          c1 = ratio_value(width_val,coords_value[1], original_val)
-          text_value = params["text_#{t_num}"]
-          c.draw "text #{c0},#{c1} \'#{text_value}\'"
+      woh = width_or_height(original_width,original_height)
+      textCount = 0
+      params.each do |p,val|
+        if p.starts_with?('text')
+          textCount += 1
         end
       end
+      logger.info "\n\n\n\n\n tCount: #{textCount} \n\n\n\n"
+      if textCount > 0
+        (0..textCount-1).each do |t_num|
+          img.combine_options do |c|
+            color_value = params["color_#{t_num}"]
+            color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
+            c.fill "#{color_hex}"
+            c.stroke "none"
+            #c.encoding = "Unicode"
+            c.font "#{Rails.root}/vendor/fonts/wt014.ttf"
+            size_value = params["font_#{t_num}"]
+            width_val = woh[1]
+            original_val = woh[0]
+            c.pointsize "#{ratio_value(width_val,(size_value.to_f*72/96), original_val)}"
+            c.gravity 'NorthWest'
+            coords_value = params["coords_#{t_num}"].to_s.split(",")
+            c0 = ratio_value(width_val,coords_value[0], original_val)
+            c1 = ratio_value(width_val,coords_value[1], original_val)
+            text_value = params["text_#{t_num}"]
+            c.draw "text #{c0},#{c1} \'#{text_value}\'"
+          end
+        end
+      end
+      logger.info "\n\n\n\n\n tCount after: #{textCount} \n\n\n\n"
+      if !params[:x1].blank?
+        x1= ratio_value(woh[1],params[:x1],woh[0])
+        y1= ratio_value(woh[1],params[:y1],woh[0])
+        x2= ratio_value(woh[1],params[:x2],woh[0])
+        y2= ratio_value(woh[1],params[:y2],woh[0])
+        w = x2.to_i - x1.to_i
+        h = y2.to_i - y1.to_i
+        crop_params = "#{w}x#{h}+#{x1}+#{y1}"
+        img.crop(crop_params)
+      end
+      image_dir = "/public/media_elements/images/#{params[:image_id]}"
+      final_image_url = img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
+      new_image = Image.new { |me| me.user = @current_user }
+      new_image.media = final_image_url
+      new_image.save!
+      
+      # manca redirect_to my_media_elements_path
+      
+    else
+      redirect_to '/dashboard'
     end
-    logger.info "\n\n\n\n\n tCount after: #{textCount} \n\n\n\n"
-    if !params[:x1].blank?
-      x1= ratio_value(woh[1],params[:x1],woh[0])
-      y1= ratio_value(woh[1],params[:y1],woh[0])
-      x2= ratio_value(woh[1],params[:x2],woh[0])
-      y2= ratio_value(woh[1],params[:y2],woh[0])
-      w = x2.to_i - x1.to_i
-      h = y2.to_i - y1.to_i
-      crop_params = "#{w}x#{h}+#{x1}+#{y1}"
-      img.crop(crop_params)
-    end
-    image_dir = "/public/media_elements/images/#{params[:image_id]}"
-    final_image_url = img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
-    new_image = Image.new { |me| me.user = @current_user }
-    new_image.media = final_image_url
-    new_image.save!
   end
   
   def overwrite
-    if !params[:cropped_image].blank?
-      img = MiniMagick::Image.open("#{Rails.root}#{params[:cropped_image]}")
-      original_width = img[:width]
-      original_height = img[:height]
-    else
-      img = MiniMagick::Image.open(@image.media.path)
-      original_width = @image.media.width
-      original_height = @image.media.height
-    end
-    woh = width_or_height(original_width,original_height)
-    textCount = 0
-    params.each do |p,val|
-      if p.starts_with?('text')
-        textCount += 1
+    if @ok
+      if !params[:cropped_image].blank?
+        img = MiniMagick::Image.open("#{Rails.root}#{params[:cropped_image]}")
+        original_width = img[:width]
+        original_height = img[:height]
+      else
+        img = MiniMagick::Image.open(@image.media.path)
+        original_width = @image.media.width
+        original_height = @image.media.height
       end
-    end
-    logger.info "\n\n\n\n\n tCount: #{textCount} \n\n\n\n"
-    if textCount > 0
-      (0..textCount-1).each do |t_num|
-        img.combine_options do |c|
-          color_value = params["color_#{t_num}"]
-          color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
-          c.fill "#{color_hex}"
-          c.stroke "none"
-          #c.encoding = "Unicode"
-          c.font "#{Rails.root}/vendor/fonts/wt014.ttf"
-          size_value = params["font_#{t_num}"]
-          width_val = woh[1]
-          original_val = woh[0]
-          c.pointsize "#{ratio_value(width_val,(size_value.to_f*72/96), original_val)}"
-          c.gravity 'NorthWest'
-          coords_value = params["coords_#{t_num}"].to_s.split(",")
-          c0 = ratio_value(width_val,coords_value[0], original_val)
-          c1 = ratio_value(width_val,coords_value[1], original_val)
-          text_value = params["text_#{t_num}"]
-          c.draw "text #{c0},#{c1} \'#{text_value}\'"
+      woh = width_or_height(original_width,original_height)
+      textCount = 0
+      params.each do |p,val|
+        if p.starts_with?('text')
+          textCount += 1
         end
       end
+      logger.info "\n\n\n\n\n tCount: #{textCount} \n\n\n\n"
+      if textCount > 0
+        (0..textCount-1).each do |t_num|
+          img.combine_options do |c|
+            color_value = params["color_#{t_num}"]
+            color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
+            c.fill "#{color_hex}"
+            c.stroke "none"
+            #c.encoding = "Unicode"
+            c.font "#{Rails.root}/vendor/fonts/wt014.ttf"
+            size_value = params["font_#{t_num}"]
+            width_val = woh[1]
+            original_val = woh[0]
+            c.pointsize "#{ratio_value(width_val,(size_value.to_f*72/96), original_val)}"
+            c.gravity 'NorthWest'
+            coords_value = params["coords_#{t_num}"].to_s.split(",")
+            c0 = ratio_value(width_val,coords_value[0], original_val)
+            c1 = ratio_value(width_val,coords_value[1], original_val)
+            text_value = params["text_#{t_num}"]
+            c.draw "text #{c0},#{c1} \'#{text_value}\'"
+          end
+        end
+      end
+      logger.info "\n\n\n\n\n tCount after: #{textCount} \n\n\n\n"
+      if !params[:x1].blank?
+        x1= ratio_value(woh[1],params[:x1],woh[0])
+        y1= ratio_value(woh[1],params[:y1],woh[0])
+        x2= ratio_value(woh[1],params[:x2],woh[0])
+        y2= ratio_value(woh[1],params[:y2],woh[0])
+        w = x2.to_i - x1.to_i
+        h = y2.to_i - y1.to_i
+        crop_params = "#{w}x#{h}+#{x1}+#{y1}"
+        img.crop(crop_params)
+      end
+      image_dir = "/public/media_elements/images/#{params[:image_id]}"
+      final_image_url = img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
+      new_image = Image.new { |me| me.user = @current_user }
+      new_image.media = final_image_url
+      new_image.save!
+      
+      # manca redirect_to my_media_elements_path
+      
+    else
+      redirect_to '/dashboard'
     end
-    logger.info "\n\n\n\n\n tCount after: #{textCount} \n\n\n\n"
-    if !params[:x1].blank?
-      x1= ratio_value(woh[1],params[:x1],woh[0])
-      y1= ratio_value(woh[1],params[:y1],woh[0])
-      x2= ratio_value(woh[1],params[:x2],woh[0])
-      y2= ratio_value(woh[1],params[:y2],woh[0])
-      w = x2.to_i - x1.to_i
-      h = y2.to_i - y1.to_i
-      crop_params = "#{w}x#{h}+#{x1}+#{y1}"
-      img.crop(crop_params)
-    end
-    image_dir = "/public/media_elements/images/#{params[:image_id]}"
-    final_image_url = img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
-    new_image = Image.new { |me| me.user = @current_user }
-    new_image.media = final_image_url
-    new_image.save!
   end
   
   private
