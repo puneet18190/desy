@@ -30,7 +30,7 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
         $('.dialog_opaco').removeClass('dialog_opaco');
       },
       create:function () {
-        $(this).closest('.ui-dialog').find('.ui-button').addClass('upper');
+        $(this).closest('.ui-dialog').find('.ui-button').addClass('upper').addClass('schiacciato');
       }
     });
   }
