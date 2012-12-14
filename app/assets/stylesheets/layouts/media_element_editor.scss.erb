@@ -50,23 +50,37 @@ html.media_element_editor-layout {
   }
   
   /* ELEMENTS EDITOR */
-  #form_info_new_media_element_in_editor, #form_info_update_media_element_in_editor .formInfoMediaElementEditor {
+  #form_info_new_media_element_in_editor.formInfoMediaElementEditor, #form_info_update_media_element_in_editor.formInfoMediaElementEditor {
     background-color: #43a848;
     width: 990px;
     height: 600px;
     position: absolute;
     top: 78px;
+    
+    .videoIcon {
+      background-position: -6em 0;
+      font-size:1em;
+      margin-right:15px;
+    }
+    .imageIcon {
+      background-position: -6em -11.2em;
+      font-size:1em;
+      margin-right:15px;
+    }
+    .audioIcon {
+      background-position: -6em -5.6;
+      font-size:1em;
+      margin-right:15px;
+    }
     .contentFormInfoMediaElementEditor {
       padding-top: 60px;
       width:670px;
       margin:0 auto;
       .titleFormInfo {
         padding-bottom:40px;
-        .videoIcon {
-          font-size:1em;
-          background-position: -6em 0;
-          margin-right:15px;
-        }
+        display:inline-block;
+        width:670px;
+        
         h1 {
           color:#fff;
           text-align:left;
@@ -99,7 +113,7 @@ html.media_element_editor-layout {
       textarea {
         height: 106px;
       }
-      textarea#new_tags  {
+      textarea#new_tags, textarea#update_tags {
         height:155px;
       }
       input[type="submit"] {
