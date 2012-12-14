@@ -81,7 +81,7 @@ module MediaEditing
       end
 
       def extract_thumb(input, output, width, height)
-        MediaEditing::Image::ResizeToFill.new(input, output, width, height).run
+        Image::ResizeToFill.new(input, output, width, height).run
       end
 
       def extract_cover(input, output, duration)
