@@ -30,7 +30,7 @@ class VideoUploader
       if not EXTENSIONS_WHITE_LIST_WITH_DOT.include?(original_filename_extension)
         :unsupported_format
       else
-        info = MediaEditing::Video::Info.new(@original_file.path, false)
+        info = MediaEditing::Info.new(@original_file.path, false)
         if not info.valid?
           :invalid_video
         elsif info.duration < MIN_DURATION
@@ -45,7 +45,7 @@ class VideoUploader
         :invalid_filename
       elsif [mp4_path, webm_path].map{ |p| File.extname(p) } != %w(.mp4 .webm)
         'invalid extension'
-      elsif !(mp4_info = MediaEditing::Video::Info.new(mp4_path, false)).valid? || !(webm_info = MediaEditing::Video::Info.new(webm_path, false)).valid?
+      elsif !(mp4_info = MediaEditing::Info.new(mp4_path, false)).valid? || !(webm_info = MediaEditing::Info.new(webm_path, false)).valid?
         'invalid video'
       elsif [mp4_info.duration, webm_info.duration].min < MIN_DURATION
         'invalid duration'

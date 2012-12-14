@@ -6,7 +6,7 @@ require 'shellwords'
 module MediaEditing
   module Video
     class Cmd
-      class MergeWebmVideoStreams < MediaEditing::Video::Cmd
+      class MergeWebmVideoStreams < Cmd
 
         def initialize(inputs, output)
           @inputs, @output = inputs, output

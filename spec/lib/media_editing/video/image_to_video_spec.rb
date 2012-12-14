@@ -4,7 +4,7 @@ module MediaEditing
   module Video
     describe ImageToVideo do
 
-      supported_video_formats = MEVSS::FORMATS
+      supported_video_formats = MESS::FORMATS
       supported_image_formats = [:jpg, :png]
 
       describe '.new' do
@@ -34,15 +34,19 @@ module MediaEditing
               Dir.glob(File.join(described_class.log_folder, '*'))
             end
 
-            subject do 
-              described_class.new(MEVSS.const_get(:"VALID_#{image_format.upcase}"), output_prefix.path, duration).run
-            end
+            let(:image_to_video) { described_class.new(MESS.const_get(:"VALID_#{image_format.upcase}"), output_prefix.path, duration) }
+
+            subject { image_to_video.run }
 
             before(:all) do
               @before_log_folder_children = log_folder_children
               subject
               @after_log_folder_children = log_folder_children
               @created_log_folders = @after_log_folder_children-@before_log_folder_children
+            end
+
+            it 'has the expected log folder' do
+              image_to_video.send(:stdout_log).should start_with Rails.root.join('log/media_editing/video/image_to_video/test/').to_s
             end
 
             supported_video_formats.each do |format|
@@ -52,7 +56,7 @@ module MediaEditing
               end
               def info(format)
                 @info ||= {}
-                @info[format] ||= MediaEditing::Video::Info.new(output(format))
+                @info[format] ||= Info.new(output(format))
               end
 
               context "with #{format} format", format: format do

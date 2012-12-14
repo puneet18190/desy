@@ -6,9 +6,7 @@ module MediaEditing
   module Video
     class Crop
 
-      include MediaEditing::Video::Logging
-
-      FORMATS = MediaEditing::Video::FORMATS
+      include Logging
 
       def initialize(inputs, output_without_extension, start, duration)
         unless inputs.is_a?(Hash)                       and 
