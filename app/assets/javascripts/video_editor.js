@@ -19,8 +19,7 @@ function stopCacheLoop() {
 function saveCacheLoop() {
   var time = $('#popup_parameters_container').data('cache-time');
   if($('#info_container').data('save-cache')) {
-    console.log('sto salvando la cache');
-    //$('#video_editor_form').submit();
+    $('#video_editor_form').submit();
     setTimeout(function() {
       saveCacheLoop();
     }, time);

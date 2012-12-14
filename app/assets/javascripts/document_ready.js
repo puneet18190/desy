@@ -407,8 +407,22 @@ $(document).ready(function() {
     showMediaElementInfoPopUp(my_param);
   });
   
-  $('body').on('click', '._Video_button_edit, ._Audio_button_edit, ._Image_button_edit', function(e) {
-    alert('questa parte manca ancora');
+  $('body').on('click', '._Video_button_edit', function(e) {
+    e.preventDefault();
+    var video_id = $(this).data('clickparam');
+    window.location = 'videos/' + video_id + '/edit';
+    return false;
+  });
+  
+  $('body').on('click', '._Audio_button_edit', function(e) {
+    alert('ancora non abbiamo editor di audio');
+  });
+  
+  $('body').on('click', '._Image_button_edit', function(e) {
+    e.preventDefault();
+    var image_id = $(this).data('clickparam');
+    window.location = 'images/' + image_id + '/edit';
+    return false;
   });
   
   $('body').on('click', '._Video_button_remove, ._Audio_button_remove, ._Image_button_remove', function(e) {
