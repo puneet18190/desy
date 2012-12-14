@@ -22,9 +22,8 @@ class VideoEditorController < ApplicationController
   end
   
   def restore_cache
-    @parameters = @cache.nil? ? empty_parameters : Video.convert_parameters(@cache, @current_user.id)
+    @parameters = @cache.nil? ? empty_parameters : @cache
     @cache = nil
-    @parameters = empty_parameters if @parameters.nil?
     @total_length = Video.total_prototype_time(@parameters)
     render :edit
   end
@@ -107,7 +106,7 @@ class VideoEditorController < ApplicationController
   end
   
   def extract_cache
-    @cache = @current_user.video_editor_cache
+    @cache = Video.convert_parameters @current_user.video_editor_cache, @current_user.id
   end
   
   def initialize_video_with_owner_or_public
