@@ -15,14 +15,14 @@ class VideoUploader < String
 
   attr_reader :model, :column, :value
 
-  FORMATS                        = [:mp4, :webm]
+  FORMATS                        = MediaEditing::Video::FORMATS
   RAILS_PUBLIC                   = File.join Rails.root, 'public'
   PUBLIC_RELATIVE_FOLDER         = env_relative_path 'media_elements/videos'
   ABSOLUTE_FOLDER                = File.join RAILS_PUBLIC, PUBLIC_RELATIVE_FOLDER
   EXTENSIONS_WHITE_LIST          = %w(avi divx flv h264 mkv mov mp4 mpe mpeg mpg ogm ogv webm wmv xvid)
   EXTENSIONS_WHITE_LIST_WITH_DOT = EXTENSIONS_WHITE_LIST.map{ |ext| ".#{ext}" }
   MIN_DURATION                   = 1
-  DURATION_THRESHOLD             = MediaEditing::CONFIG.duration_threshold
+  DURATION_THRESHOLD             = MediaEditing::CONFIG.video.duration_threshold
   ALLOWED_KEYS                   = [:filename] + FORMATS
   VERSION_FORMATS                = { cover: 'cover_%s.jpg', thumb: 'thumb_%s.jpg' }
   COVER_FORMAT, THUMB_FORMAT     = VERSION_FORMATS[:cover], VERSION_FORMATS[:thumb]

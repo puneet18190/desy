@@ -4,7 +4,7 @@ module MediaEditing
   module InTmpDir
   
     def in_tmp_dir
-      Dir.mktmpdir(TMP_PREFIX) do |dir|
+      Dir.mktmpdir(CONFIG.tmp_prefix) do |dir|
         @tmp_dir = dir
         yield
       end

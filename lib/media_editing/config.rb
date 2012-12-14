@@ -4,7 +4,7 @@ require 'recursive_open_struct'
 module MediaEditing
 
   CONFIG = RecursiveOpenStruct.new({
-    duration_threshold: 1,
+    tmp_prefix: "desy#{Thread.current.object_id}",
     avtools: {
       avprobe: {
         cmd: {
@@ -53,6 +53,9 @@ module MediaEditing
           bin: 'convert'
         }
       }
+    },
+    video: {
+      duration_threshold: 1
     }
   })
 

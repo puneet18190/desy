@@ -2,8 +2,6 @@ module MediaEditing
   
   # Definisce CONFIG
   require 'media_editing/config'
-  
-  TMP_PREFIX = "desy#{Thread.current.object_id}"
 end
 
 require 'media_editing/error'
