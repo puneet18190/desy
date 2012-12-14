@@ -11,5 +11,7 @@ module MediaEditing
       formats: [:mp3, :ogg]
     })
 
+    FORMATS = CONFIG.formats
+
   end
 end

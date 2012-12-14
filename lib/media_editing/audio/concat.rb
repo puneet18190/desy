@@ -1,12 +1,14 @@
 require 'media_editing'
 require 'media_editing/audio'
-require 'media_editing/error'
+require 'media_editing/logging'
+require 'media_editing/in_tmp_dir'
 
 module MediaEditing
   module Audio
     class Concat
 
-      FORMATS = CONFIG.formats
+      include Logging
+      include MediaEditing::InTmpDir
 
       def initialize(inputs, output_without_extension)
         unless inputs.is_a?(Hash)                                                     and 
