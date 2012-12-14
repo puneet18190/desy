@@ -1,11 +1,21 @@
-<div id="form_info_new_media_element_in_editor" class="_<%= sti_type %>" style="display:none">
-  <div class="cols" style="float:left">
-    <%= text_field_tag 'new_title', '' %>
-    <%= text_area_tag 'new_description', '' %>
+<div id="form_info_new_media_element_in_editor" class="_<%= sti_type %> formInfoMediaElementEditor" style="display:block">
+  <div class="contentFormInfoMediaElementEditor">
+    <div class="titleFormInfo">
+      <div class="videoIcon pull-left">&nbsp;</div>
+      <h1 class="pull-left">You're creating a new educational element.</h1>
+      <br style="clear:float">
+      <h2 class="pull-left">Enter all the details of the new element</h2>
+    </div>
+    <div class="cols" style="float:left">
+      <%= text_field_tag 'new_title', '' %>
+      <br>
+      <%= text_area_tag 'new_description', '' %>
+    </div>
+    <div class="cols" style="float:right">
+      <%= text_area_tag 'new_tags', '' %>
+    </div>
+    <br class="clearfloat">
+    <a class="_cancel buttonForm">cancel</a>
+    <a class="_commit buttonForm">save</a>
   </div>
-  <div class="cols" style="float:right">
-    <%= text_area_tag 'new_tags', '' %>
-  </div>
-  <a class="_cancel"></a>
-  <a class="_save"></a>
 </div>
