@@ -177,9 +177,7 @@ class Video < MediaElement
   end
   
   def min_duration
-    d1 = self.mp4_duration.to_i
-    d2 = self.webm_duration.to_i
-    d1 > d2 ? d2 : d1
+    [mp4_duration, webm_duration].map(&:to_i).min
   end
 
   def mp4_path
