@@ -29,17 +29,17 @@ module MediaEditing
         unless start_inputs.is_a?(Hash)                       and 
                start_inputs.keys.sort == FORMATS.sort         and
                start_inputs.values.all?{ |v| v.is_a? String }
-          raise MediaEditing::Video::Error.new("start_inputs must be an Hash with #{FORMATS.inspect} as keys and strings as values", start_inputs: start_inputs)
+          raise Error.new("start_inputs must be an Hash with #{FORMATS.inspect} as keys and strings as values", start_inputs: start_inputs)
         end
 
         unless end_inputs.is_a?(Hash)                       and
                end_inputs.keys.sort == FORMATS.sort         and
                end_inputs.values.all?{ |v| v.is_a? String }
-          raise MediaEditing::Video::Error.new("end_inputs must be an Hash with #{FORMATS.inspect} as keys and strings as values", end_inputs: end_inputs)
+          raise Error.new("end_inputs must be an Hash with #{FORMATS.inspect} as keys and strings as values", end_inputs: end_inputs)
         end
 
         unless output_without_extension.is_a?(String)
-          raise MediaEditing::Video::Error.new('output_without_extension must be a string', output_without_extension: output_without_extension)
+          raise Error.new('output_without_extension must be a string', output_without_extension: output_without_extension)
         end
 
         @start_inputs, @end_inputs, @output_without_extension = start_inputs, end_inputs, output_without_extension
@@ -87,7 +87,7 @@ module MediaEditing
 
         # se non sono riuscito a tirare fuori il frame non va bene
         unless File.exists? start_frame
-          raise MediaEditing::Video::Error.new('start frame extraction failed', start_input_mp4: @start_inputs[:mp4])
+          raise Error.new('start frame extraction failed', start_input_mp4: @start_inputs[:mp4])
         end
       end
 
@@ -96,7 +96,7 @@ module MediaEditing
         
         # se non sono riuscito a tirare fuori il frame non va bene
         unless File.exists? end_frame
-          raise MediaEditing::Video::Error.new('end frame extraction failed', end_input_mp4: @end_inputs[:mp4])
+          raise Error.new('end frame extraction failed', end_input_mp4: @end_inputs[:mp4])
         end
       end
 

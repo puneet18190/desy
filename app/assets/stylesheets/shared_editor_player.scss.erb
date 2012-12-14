@@ -1,23 +1,23 @@
 //ELEMENTI IN COMUNE TRA EDITOR E PLAYER//
 @mixin sharedElements {
   background-size: 11.3em 22.7em;
-	background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
-	background-repeat: no-repeat;
-	background-position:0 0;
-	padding:0;
+  background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
+  background-repeat: no-repeat;
+  background-position:0 0;
+  padding:0;
 }
 
 .iconMediaElements {
   .audio {
-	  @include sharedElements;
+    @include sharedElements;
     background-position: 0 -2.5em;
-	}
+  }
 }
 .scrollVerde {
   .jspTrack {
    background: #3f3f3f;
   }
-	.jspHorizontalBar {
+  .jspHorizontalBar {
    height:8px;
  }
  .jspDrag {
@@ -31,82 +31,82 @@ $icon-size: 5.6em;
   
   & {
     float:left;
-		
+    
     width: $icon-size;
     height: $icon-size;
     background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
     background-repeat: no-repeat;
     background-size: ($icon-size*3) ($icon-size*4);
     padding:0;
-		font-size: $font-size;
-	}
+    font-size: $font-size;
+  }
 }
 .videoButton {
   @include iconEditorElement(0.7em);
-	margin-right:0px;
-	background-position: (-$icon-size) 0;
-	opacity:0.3;
-	cursor:pointer;
-	&:hover, &.current {
-	  background-position: 0 0;
-	  opacity:1;
-	}
+  margin-right:0px;
+  background-position: (-$icon-size) 0;
+  opacity:0.3;
+  cursor:pointer;
+  &:hover, &.current {
+    background-position: 0 0;
+    opacity:1;
+  }
  }
 .photoButton {
   @include iconEditorElement(0.7em);
-	margin-right:0px;
-	background-position: (-$icon-size) (-$icon-size*2);
-	opacity:0.3;
-	cursor:pointer;
-	&:hover, &.current {
-	  background-position: 0 (-$icon-size*2);
-		opacity:1;
-	}
+  margin-right:0px;
+  background-position: (-$icon-size) (-$icon-size*2);
+  opacity:0.3;
+  cursor:pointer;
+  &:hover, &.current {
+    background-position: 0 (-$icon-size*2);
+    opacity:1;
+  }
 }
 .audioButton {
   @include iconEditorElement(0.7em);
-	margin-right:0px;
-	background-position: (-$icon-size*2) (-$icon-size);
-	opacity:0.1;
-	cursor:pointer;
-	&:hover, &.current {
-	  background-position: 0 (-$icon-size);
-		opacity:1;
-	}
+  margin-right:0px;
+  background-position: (-$icon-size*2) (-$icon-size);
+  opacity:0.1;
+  cursor:pointer;
+  &:hover, &.current {
+    background-position: 0 (-$icon-size);
+    opacity:1;
+  }
 }
 .textButton {
   @include iconEditorElement(0.7em);
-	margin-right:0px;
+  margin-right:0px;
   background-position: (-$icon-size) (-$icon-size*3);
-	opacity:0.3;
-	cursor:pointer;
-	&:hover, &.current {
-	  background-position: 0 (-$icon-size*3);
-		opacity:1;
-	}
+  opacity:0.3;
+  cursor:pointer;
+  &:hover, &.current {
+    background-position: 0 (-$icon-size*3);
+    opacity:1;
+  }
 }
 .photoIcon {
    @include iconEditorElement(0.4em);
-	 margin-right:5px;
-	 background-position: 0 (-$icon-size*2);
-		opacity:1;
+   margin-right:5px;
+   background-position: 0 (-$icon-size*2);
+    opacity:1;
 }
 .videoIcon {
    @include iconEditorElement(0.4em);
-	 background-position: 0 0;
-		opacity:1;
+   background-position: 0 0;
+    opacity:1;
 }
 .audioIcon {
   @include iconEditorElement(0.4em);
-	margin-right:5px;
-	background-position: 0 (-$icon-size);
-	opacity:1;
+  margin-right:5px;
+  background-position: 0 (-$icon-size);
+  opacity:1;
 }
 .textIcon {
   @include iconEditorElement(0.4em);
-	margin-right:5px;
-	background-position: 0 (-$icon-size*3);
-	opacity:1;
+  margin-right:5px;
+  background-position: 0 (-$icon-size*3);
+  opacity:1;
 }
 
 
@@ -116,118 +116,118 @@ $button-size: 6em;
 @mixin menuCondivisoElementLessonEditor($font-size: 0.9em) {
   & {
     float:left;
-		width: $button-size;
+    width: $button-size;
     height: $button-size;
     background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
     background-repeat: no-repeat;
     background-size: ($button-size*4) ($button-size*10);
-		padding:0;
-		font-size: $font-size;
-	}
-	&:hover {
+    padding:0;
+    font-size: $font-size;
+  }
+  &:hover {
     cursor: pointer;
   }
 }
 
 .creaNuovoButton {
-	@include  menuCondivisoElementLessonEditor(0.7em);
+  @include  menuCondivisoElementLessonEditor(0.7em);
   background-position: (-$button-size*2) (-$button-size);
-	opacity:0.2;
-	&:hover, &.current {
-	  font-size: 0.7em;
-		background-position: (-$button-size*3) (-$button-size);
-		opacity:1;
-	 }
+  opacity:0.2;
+  &:hover, &.current {
+    font-size: 0.7em;
+    background-position: (-$button-size*3) (-$button-size);
+    opacity:1;
+   }
 }
 
 .deleteButtonOrange {
   @include  menuCondivisoElementLessonEditor(0.75em);
-	background-position: 0 0;
-	opacity:0.2;
-	&:hover, &.current {
-	  background-position: (-$button-size) 0;
-		opacity:1;
-	}
+  background-position: 0 0;
+  opacity:0.2;
+  &:hover, &.current {
+    background-position: (-$button-size) 0;
+    opacity:1;
+  }
 }
 
 .addButtonOrange {
   @include  menuCondivisoElementLessonEditor(0.75em);
-	background-position: 0 (-$button-size);
-	opacity:0.2;
-	&:hover, &.current {
-	  background-position: (-$button-size) (-$button-size);
-		opacity:1;
-	}
+  background-position: 0 (-$button-size);
+  opacity:0.2;
+  &:hover, &.current {
+    background-position: (-$button-size) (-$button-size);
+    opacity:1;
+  }
 }
 
 .minusButtonOrange {
   @include  menuCondivisoElementLessonEditor(0.75em);
-	background-position: (-$button-size) (-$button-size*8);
-	opacity:1;
-	&:hover, &.current {
-	  background-position: 0 (-$button-size*8);
-		opacity:0.2;
-	}
+  background-position: (-$button-size) (-$button-size*8);
+  opacity:1;
+  &:hover, &.current {
+    background-position: 0 (-$button-size*8);
+    opacity:0.2;
+  }
 }
 
 
 .infoButtonOrange {
   @include  menuCondivisoElementLessonEditor(0.75em);
-	background-position: 0 (-$button-size*2);
-	opacity:0.2;
-	&:hover, &.current {
-	  background-position: (-$button-size) (-$button-size*2);
-		opacity:1;
-	}
+  background-position: 0 (-$button-size*2);
+  opacity:0.2;
+  &:hover, &.current {
+    background-position: (-$button-size) (-$button-size*2);
+    opacity:1;
+  }
 }
 .saveButtonOrange {
   @include  menuCondivisoElementLessonEditor(0.75em);
-	background-position: 0 (-$button-size*3);
-	opacity:0.2;
-	&:hover, &.current {
-	  background-position: (-$button-size) (-$button-size*3);
-		opacity:1;
-	}
+  background-position: 0 (-$button-size*3);
+  opacity:0.2;
+  &:hover, &.current {
+    background-position: (-$button-size) (-$button-size*3);
+    opacity:1;
+  }
 }
 .aggiungiImgButton {
   @include  menuCondivisoElementLessonEditor(0.4em);
-	background-position: (-$button-size*2) (-$button-size);
-	opacity:0.2;
-	&:hover, &.current {
-	  background-position: (-$button-size*3) (-$button-size);
-		opacity:1;
-	}
+  background-position: (-$button-size*2) (-$button-size);
+  opacity:0.2;
+  &:hover, &.current {
+    background-position: (-$button-size*3) (-$button-size);
+    opacity:1;
+  }
 }
 .saveButton {
   @include  menuCondivisoElementLessonEditor(0.6em);
   background-position: 0 (-$button-size*3);
-	opacity:0.2;
-	&:hover, &.current {
-	  background-position: (-$button-size*3) (-$button-size*3);
-		opacity:1;
-	}
+  opacity:0.2;
+  &:hover, &.current {
+    background-position: (-$button-size*3) (-$button-size*3);
+    opacity:1;
+  }
 }
 .playButton {
   @include  menuCondivisoElementLessonEditor(0.6em);
   background-position: 0 (-$button-size*5);
-	opacity:0.2;
-	&:hover, &.current {
-	  background-position: (-$button-size*3) (-$button-size*5);
-		opacity:1;
-	}
+  opacity:0.2;
+  &:hover, &.current {
+    background-position: (-$button-size*3) (-$button-size*5);
+    opacity:1;
+  }
 }
 .closeButton {
   @include  menuCondivisoElementLessonEditor(0.6em);
-	background-position: 0 0;
-	opacity:0.2;
-	&.closeButtonSmall{
-	  font-size: 0.25em;
-		opacity:0.5;
-	}
-	&:hover, &.current {
-	  background-position: (-$button-size*3) 0;
-		opacity:1;
-	}
+  background-position: 0 0;
+  opacity:0.2;
+  &.closeButtonSmall{
+    font-size: 0.25em;
+    opacity:0.5;
+  }
+  &:hover, &.current {
+    background-position: (-$button-size*3) 0;
+    opacity:1;
+  }
 }
 /*MENU EDIT IMAGES*/
 
@@ -239,36 +239,36 @@ $button-size: 6em;
     background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
     background-repeat: no-repeat;
     background-size: ($button-size*4) ($button-size*10);
-		padding:2.3em 3em;
-		font-size:0.7em;
-	
-	}
-	&:hover {
+    padding:2.3em 3em;
+    font-size:0.7em;
+  
+  }
+  &:hover {
     cursor: pointer;
   }
-	
+  
 }
 .cutButton {
   @include menuEditImages;
-	background-position: 0 (-$button-size*7);
-	opacity:0.2;
-	&:hover, &.current {
-	  background-position: (-$button-size*3) (-$button-size*7);
-		opacity:1;
-	}
+  background-position: 0 (-$button-size*7);
+  opacity:0.2;
+  &:hover, &.current {
+    background-position: (-$button-size*3) (-$button-size*7);
+    opacity:1;
+  }
 }  
 .abcButton {
   @include menuEditImages;
-	background-position: 0 (-$button-size*9);
-	opacity:0.2;
-	&:hover, &.current {
-	  background-position: (-$button-size*3) (-$button-size*9);
-		opacity:1;
-	}
+  background-position: 0 (-$button-size*9);
+  opacity:0.2;
+  &:hover, &.current {
+    background-position: (-$button-size*3) (-$button-size*9);
+    opacity:1;
+  }
 } 
  
 /*MENU*/
-	@mixin buttonExitElement {
+  @mixin buttonExitElement {
   $button-size: 4.5em;
   & {
     display: block;
@@ -278,29 +278,29 @@ $button-size: 6em;
     background-repeat: no-repeat;
     background-size: ($button-size*4) ($button-size*10);
     padding:0;
-	}
-	&:hover {
+  }
+  &:hover {
     cursor: pointer;
   }
-	&.exitButton {
-	  font-size: 0.3em;
+  &.exitButton {
+    font-size: 0.3em;
     background-position: (-$button-size*2) 0;
-		opacity:0.2;
-	}
-	&.exitButtonWhite {
-	  font-size: 0.3em;
+    opacity:0.2;
+  }
+  &.exitButtonWhite {
+    font-size: 0.3em;
     background-position: 0 0;
-		opacity:1;
-	}
+    opacity:1;
+  }
  }
  /*FINE MENU*/
  .exitContent {
-	  padding-top:7px;
-	  a {
-	    @include buttonExitElement;
-	  }
+    padding-top:7px;
+    a {
+      @include buttonExitElement;
+    }
   }
-	.exitButton, .exitButtonWhite {
+  .exitButton, .exitButtonWhite {
    @include buttonExitElement;
  }
  @mixin addElementInGallery {
@@ -311,22 +311,22 @@ $button-size: 6em;
     background-image: url(<%= asset_path 'icone-player.svg' %>);
     background-repeat: no-repeat;
     background-size: ($button-size*5) ($button-size*4);
-		background-position: -8em -4em;
+    background-position: -8em -4em;
     padding:0;
-		opacity:0.5;
-		margin-top:5px;
+    opacity:0.5;
+    margin-top:5px;
   }
-	
+  
   &:hover {
     cursor: pointer;
-		background-position: -8em 0em;
-		opacity:1;
+    background-position: -8em 0em;
+    opacity:1;
   }
 } 
 a.addButtonContent {
   @include addElementInGallery;
-	float:left;
-	
+  float:left;
+  
 }  
  
  /* TINYMCE SIZES */

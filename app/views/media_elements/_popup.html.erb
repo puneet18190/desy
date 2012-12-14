@@ -21,19 +21,19 @@
         <% end %>
       </div>
     <% end %>
-		  <% if !media_element.audio? %>
-	      <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals =>{:media_element => media_element} %>
-		  <% end %>
+      <% if !media_element.audio? %>
+        <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals =>{:media_element => media_element} %>
+      <% end %>
       
-			<div <%= media_element.audio? ? "style=\"max-width:410px;\"".html_safe : "class=\"fltlft\" style=\"max-width:210px;\"".html_safe %>>
+      <div <%= media_element.audio? ? "style=\"max-width:410px;\"".html_safe : "class=\"fltlft\" style=\"max-width:210px;\"".html_safe %>>
         <h2><%= media_element.sti_type %></h2>
         <h3><%= media_element.title %></h3>
         <p><%= media_element.description %></p>
       </div>
-			
-			<% if media_element.audio? %>
-				<div class="contentAudioElement"><%= render :partial => "media_elements/previews/audio", :locals =>{:media_element => media_element} %></div>
-			<% end %>
+      
+      <% if media_element.audio? %>
+        <div class="contentAudioElement"><%= render :partial => "media_elements/previews/audio", :locals =>{:media_element => media_element} %></div>
+      <% end %>
     </div>
     <div class="menuPopUp">
       <div class="menuIconButton" style="float:left;  padding-left:10px">

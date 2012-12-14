@@ -18,7 +18,7 @@ module MediaEditing
           describe 'new' do
             context 'with unsupported formats' do
               subject { described_class.new('in\ put', 'out\ put', :unsupported_format, double(video_streams: [], audio_streams: [])) }
-              it { expect { subject }.to raise_error(MediaEditing::Video::Error) }
+              it { expect { subject }.to raise_error(Error) }
             end
 
             supported_formats.each do |format|
@@ -26,7 +26,7 @@ module MediaEditing
               context "with format #{format}" do
                 context 'without any video stream' do
                   subject { described_class.new('in\ put', 'out\ put', format, double(video_streams: [], audio_streams: [])) }
-                  it { expect { subject }.to raise_error(MediaEditing::Video::Error) }
+                  it { expect { subject }.to raise_error(Error) }
                 end
               end
 

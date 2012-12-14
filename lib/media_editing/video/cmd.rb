@@ -19,7 +19,7 @@ module MediaEditing
 
       def run!(stdout = :dev_null, stderr = :dev_null)
         run(stdout, stderr)
-        raise MediaEditing::Video::Error.new('command failed', cmd: cmd, exitstatus: exitstatus, output: subexec.output, stdout: stdout, stderr: stderr) if exitstatus != 0
+        raise Error.new('command failed', cmd: cmd, exitstatus: exitstatus, output: subexec.output, stdout: stdout, stderr: stderr) if exitstatus != 0
       end
 
       def exitstatus
