@@ -1,4 +1,4 @@
-module MediaEditing
+module Media
   
   # Definisce CONFIG
   require 'media_editing/config'
