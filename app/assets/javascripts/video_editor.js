@@ -12,7 +12,8 @@ function saveCacheLoop() {
     console.log('sto salvando la cache');
     
     //$('#video_editor_form').submit();
-  }, time);
+    saveCacheLoop();
+  }, 5000);
 }
 
 function closeMixedGalleryInVideoEditor() {
