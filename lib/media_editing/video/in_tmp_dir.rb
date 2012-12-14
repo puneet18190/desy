@@ -15,7 +15,7 @@ module MediaEditing
       end
 
       def tmp_path(path)
-        raise MediaEditing::Video::Error.new('@tmp_dir must be present') if @tmp_dir.blank?
+        raise Error.new('@tmp_dir must be present') if @tmp_dir.blank?
         File.join(@tmp_dir, path)
       end
 

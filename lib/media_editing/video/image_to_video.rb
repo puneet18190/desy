@@ -20,7 +20,7 @@ module MediaEditing
         @input_path               = input_path
         @output_without_extension = output_without_extension
         @duration                 = duration
-        raise MediaEditing::Video::Error.new('duration must be a Numeric > 0', duration: duration) unless duration.is_a? Numeric and duration > 0
+        raise Error.new('duration must be a Numeric > 0', duration: duration) unless duration.is_a? Numeric and duration > 0
       end
 
       def run
@@ -41,7 +41,7 @@ module MediaEditing
           webm_file_info = MediaEditing::Video::Info.new webm_output_path
 
           if mp4_file_info.duration != webm_file_info.duration
-            raise MediaEditing::Video::Error.new( 'output videos have not the same duration',
+            raise Error.new( 'output videos have not the same duration',
                                            input_path: input_path, processed_image_path: processed_image_path,
                                            mp4_output_path: mp4_output_path, webm_output_path: webm_output_path,
                                            mp4_duration: mp4_file_info.duration, webm_duration: webm_file_info.duration )
@@ -61,7 +61,7 @@ module MediaEditing
         exitstatus = subexec.exitstatus
 
         if exitstatus != 0
-          raise MediaEditing::Video::Error.new('conversion process failed', format: format, cmd: cmd, exitstatus: exitstatus) 
+          raise Error.new('conversion process failed', format: format, cmd: cmd, exitstatus: exitstatus) 
         end
       end
 

@@ -19,17 +19,17 @@ module MediaEditing
         unless video_inputs.is_a?(Hash)                       and 
                video_inputs.keys.sort == FORMATS.sort         and
                video_inputs.values.all?{ |v| v.is_a? String }
-          raise MediaEditing::Video::Error.new("video_inputs must be an Hash with #{FORMATS.inspect} as keys and strings as values", video_inputs: video_inputs)
+          raise Error.new("video_inputs must be an Hash with #{FORMATS.inspect} as keys and strings as values", video_inputs: video_inputs)
         end
 
         unless audio_inputs.is_a?(Hash)                                          and
                audio_inputs.keys.sort == CORRESPONDING_AUDIO_FORMATS.values.sort and
                audio_inputs.values.all?{ |v| v.is_a? String }
-          raise MediaEditing::Video::Error.new("audio_inputs must be an Hash with #{CORRESPONDING_AUDIO_FORMATS.values.inspect} as keys and strings as values", audio_inputs: audio_inputs)
+          raise Error.new("audio_inputs must be an Hash with #{CORRESPONDING_AUDIO_FORMATS.values.inspect} as keys and strings as values", audio_inputs: audio_inputs)
         end
 
         unless output_without_extension.is_a?(String)
-          raise MediaEditing::Video::Error.new('output_without_extension must be a string', output_without_extension: output_without_extension)
+          raise Error.new('output_without_extension must be a string', output_without_extension: output_without_extension)
         end
 
         @video_inputs, @audio_inputs, @output_without_extension = video_inputs, audio_inputs, output_without_extension

@@ -22,7 +22,7 @@ module MediaEditing
 
         def initialize(input_files, output_file, format = nil)
           if format and not MediaEditing::Video::FORMATS.include? format
-            raise MediaEditing::Video::Error.new( 'format unsupported',
+            raise Error.new( 'format unsupported',
                                            input_files: input_files, output_file: output_file, format: format )
           end
 
