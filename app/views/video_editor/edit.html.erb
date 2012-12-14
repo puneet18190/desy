@@ -20,7 +20,7 @@
       <div class="addAudioandSave">
         <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
         <div class="fltrt">
-          <div class="fltrt"><a class="saveButton"></a></div>
+          <div class="fltrt"><a class="saveButton _commit_video_editor <%= @parameters[:initial_video].nil? ? '' : '_with_choice'.html_safe %>"></a></div>
           <div class="fltrt"><a class="closeButton _exit_video_editor"></a></div>
         </div>
       </div>
