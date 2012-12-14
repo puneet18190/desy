@@ -2,7 +2,7 @@
   <div class="contenitore">
   <h1 class="fltlft upper"><%= t("captions.image_editor_label") %></h1>
     <div class="testo fltlft">
-      <span><%= @image.title %></span>
+      <span><%= (@parameters && @parameters[:initial_image]) ? @parameters[:image].title : t('captions.untitled_new_element') %></span>
     </div>
   </div>
 </div>

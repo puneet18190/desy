@@ -4,7 +4,7 @@ module MediaEditing
   module Video
 
     CONFIG = RecursiveOpenStruct.new({
-      formats: [:webm, :mp4],
+      formats: [:mp4, :webm],
       duration_threshold: 1,
       avtools: {
         avprobe: {

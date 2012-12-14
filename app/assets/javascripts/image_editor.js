@@ -124,13 +124,38 @@ $(document).ready(function() {
     resetSelect();
   });
   
-  $("body").on("click","._save_edit_image", function(){
+  $("body").on("click","._updatable_image", function(){
+    var image_id = $(this).data("slide-id");
+    saveImageChoice(image_id)
+  });
+  
+  //$("body").on("click","._save_edit_image", function(){
+  //  processTextAreaForm();
+  //  var thisForm = $("form#_crop_form");
+  //  thisForm.attr("action","/images/"+thisForm.data("param")+"/save");
+  //  thisForm.submit();
+  //});
+  
+});
+
+function saveImageChoice(image_id) {
+  var title = $('.header h1 span');
+  showConfirmPopUp(title.text(), "Update or create new image", "update", "new", function() {
+    $('#dialog-confirm').hide();
     processTextAreaForm();
     var thisForm = $("form#_crop_form");
-    thisForm.attr("action","/images/"+thisForm.data("param")+"/save");
-    thisForm.submit();
+    thisForm.attr("action","/images/"+thisForm.data("param")+"/save?choice=update");
+    //thisForm.submit();
+    closePopUp('dialog-confirm');
+  }, function() {
+    $('#dialog-confirm').hide();
+    processTextAreaForm();
+    var thisForm = $("form#_crop_form");
+    thisForm.attr("action","/images/"+thisForm.data("param")+"/save?choice=new_image");
+    //thisForm.submit();
+    closePopUp('dialog-confirm');
   });
-});
+}
 
 function resizedValue(width,height){
   wrapper_ratio = 660/495;

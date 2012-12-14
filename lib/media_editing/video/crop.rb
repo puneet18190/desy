@@ -14,19 +14,19 @@ module MediaEditing
         unless inputs.is_a?(Hash)                       and 
                inputs.keys.sort == FORMATS.sort         and
                inputs.values.all?{ |v| v.is_a? String }
-          raise MediaEditing::Video::Error.new("inputs must be an Hash with #{FORMATS.inspect} as keys and strings as values", inputs: inputs)
+          raise Error.new("inputs must be an Hash with #{FORMATS.inspect} as keys and strings as values", inputs: inputs)
         end
 
         unless output_without_extension.is_a?(String)
-          raise MediaEditing::Video::Error.new('output_without_extension must be a String', output_without_extension: output_without_extension)
+          raise Error.new('output_without_extension must be a String', output_without_extension: output_without_extension)
         end
 
         unless start.is_a?(Numeric) and start >= 0
-          raise MediaEditing::Video::Error.new('start must be a Numeric >= 0', start: start)
+          raise Error.new('start must be a Numeric >= 0', start: start)
         end
 
         unless duration.is_a?(Numeric) and duration > 0
-          raise MediaEditing::Video::Error.new('duration must be a Numeric > 0', duration: duration)
+          raise Error.new('duration must be a Numeric > 0', duration: duration)
         end
 
         @inputs, @output_without_extension, @start, @duration = inputs, output_without_extension, start, duration

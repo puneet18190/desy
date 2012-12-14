@@ -53,6 +53,7 @@ Desy::Application.routes.draw do
   get  'videos/galleries' => 'galleries#mixed_for_video_editor'
   get  'videos/galleries/audio' => 'galleries#audio_for_video_editor'
   get  'audios/galleries/audio' => 'galleries#audio_for_audio_editor'
+  get  'images/galleries/image' => 'galleries#image_for_image_editor'
   
   # LESSON VIEWER
   get  'lessons/view/playlist' => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist

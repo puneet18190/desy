@@ -83,7 +83,7 @@ module MediaEditing
                 FileUtils.rm(temp) if File.exists?(temp)
               end
 
-              it { expect { subject.convert_to(format) }.to raise_error(MediaEditing::Video::Error) }
+              it { expect { subject.convert_to(format) }.to raise_error(Error) }
 
             end
 
@@ -105,7 +105,7 @@ module MediaEditing
                 FileUtils.rm temp if File.exists? temp
               end
 
-              it{ expect{ subject.convert_to(format) }.to raise_error(MediaEditing::Video::Error) }
+              it{ expect{ subject.convert_to(format) }.to raise_error(Error) }
 
             end
 

@@ -14,55 +14,55 @@ module MediaEditing
         context 'when inputs are not an Hash' do
           let(:start_inputs) { nil }
           let(:end_inputs)   { nil }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when start_input is not an Hash' do
           let(:start_inputs) { nil }
           let(:end_inputs)   { valid_inputs }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when end_input is not an Hash' do
           let(:start_inputs) { valid_inputs }
           let(:end_inputs)   { nil }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when inputs have not the right keys' do
           let(:start_inputs) { { ciao: 'input' } }
           let(:end_inputs)   { { ola:  'input' } }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when start_input have not the right keys' do
           let(:start_inputs) { { ciao: 'input' } }
           let(:end_inputs)   { valid_inputs }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when end_input have not the right keys' do
           let(:start_inputs) { valid_inputs }
           let(:end_inputs)   { { ola:  'input' } }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when inputs are not Strings' do
           let(:start_inputs) { { mp4: nil, webm: nil } }
           let(:end_inputs)   { { mp4: nil, webm: nil } }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when start_input are not Strings' do
           let(:start_inputs) { { mp4: nil, webm: nil } }
           let(:end_inputs)   { valid_inputs }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when end_input are not Strings' do
           let(:start_inputs) { valid_inputs }
           let(:end_inputs)   { { mp4: nil, webm: nil } }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when output_without_extension is not a String' do
@@ -70,7 +70,7 @@ module MediaEditing
           let(:end_inputs)   { valid_inputs }
 
           let(:output_without_extension) { nil }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when inputs have the right keys and the right values' do
