@@ -691,6 +691,10 @@ $(document).ready(function() {
     closePopUp('dialog-virtual-classroom-quick-select');
   });
   
+  // ELEMENTS EDITOR
+  
+  $('#form_info_new_media_element_in_editor, #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
+  
   // IMAGE EDITOR
   
   $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
