@@ -24,7 +24,7 @@ module MediaEditing
 
         if exitstatus != 0
           if raise_if_invalid
-            raise MediaEditing::Video::Error.new('avprobe failed', cmd: @cmd, exitstatus: exitstatus)
+            raise Error.new('avprobe failed', cmd: @cmd, exitstatus: exitstatus)
           else
             @invalid = true
           end
@@ -42,7 +42,7 @@ module MediaEditing
         hours, minutes, seconds = matches[:hours], matches[:minutes], matches[:seconds]
 
         unless hours and minutes and seconds
-          raise MediaEditing::Video::Error.new('not parsable duration', cmd: @cmd, output: @output)
+          raise Error.new('not parsable duration', cmd: @cmd, output: @output)
         end
 
         hours_to_seconds   = hours.to_i   * 3600
@@ -111,7 +111,7 @@ module MediaEditing
         bitrate_match = stream_data.match BITRATE_MATCH_REGEX
 
         unless sizes_match
-          raise MediaEditing::Video::Error.new('not parsable video sizes', cmd: @cmd, output: @output)
+          raise Error.new('not parsable video sizes', cmd: @cmd, output: @output)
         end
 
         { codec:     codec_match.try(:[], :codec  ),

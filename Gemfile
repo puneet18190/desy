@@ -23,7 +23,6 @@ gem 'schema_plus'
 group :development do
   gem 'rails-erd'
   gem "letter_opener"
-  gem 'colorize'
 end
 
 gem 'recursive-open-struct'
@@ -51,6 +50,7 @@ gem 'unicorn'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'colorize'
 end
 
 gem 'daemons'

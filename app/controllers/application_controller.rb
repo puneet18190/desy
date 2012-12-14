@@ -114,6 +114,7 @@ class ApplicationController < ActionController::Base
   
   def authenticate
     if !logged_in?
+      session[:prelogin_request] = request.url
       redirect_to home_path
       return
     end

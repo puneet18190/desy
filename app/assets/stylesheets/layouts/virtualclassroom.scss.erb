@@ -1,183 +1,183 @@
 html.virtual_classroom-controller {
   height: 100%;
   @mixin hrefColorSize {
-	  color:#fff;
-		font-size:90%;
+    color:#fff;
+    font-size:90%;
   }
   body {
     font: 80% Arial, Helvetica, sans-serif;
-	  background: #373737;
-	  margin: 0;
-	  padding: 0;
-	  color: #FFF;
-	  direction:ltr;
-	  @media (max-width: 1024px) {
+    background: #373737;
+    margin: 0;
+    padding: 0;
+    color: #FFF;
+    direction:ltr;
+    @media (max-width: 1024px) {
       font-size: 50%;
-	  }
+    }
   }
-	.content {
-	  color:#fff;
-	}
-	.container {
-	  width: 100%;
-	  background: #373737;
-	  margin: 0 auto;  
+  .content {
+    color:#fff;
   }
-	.playListContainer {
-	  float:right; 
-		margin-right:20px; 
-		clear: right;
-	}
-	.listContainer {
-	  margin-right:366px;
-	}
-	.bluBar {
+  .container {
+    width: 100%;
+    background: #373737;
+    margin: 0 auto;  
+  }
+  .playListContainer {
+    float:right; 
+    margin-right:20px; 
+    clear: right;
+  }
+  .listContainer {
+    margin-right:366px;
+  }
+  .bluBar {
     margin: 0 auto 24px auto;
     padding-left:2%;
-		float: left;
+    float: left;
     width: 98%;
-		padding-top:5px;
-		padding-bottom:10px;
+    padding-top:5px;
+    padding-bottom:10px;
     font: 120% 'Nunito', sans-serif;
-		background-color:#2eaadc;
-		h1 {
-	    color:#fff;
-		  padding:0;
-		  margin-top:5px;
-		  font: 200% 'Nunito', sans-serif;
-		  float:left;
-		  width:39%;
-		}
-		/*BOTTONI BARRA BLU VIRTUALCLASSROOM*/
-	ul.navlist {
+    background-color:#2eaadc;
+    h1 {
+      color:#fff;
+      padding:0;
+      margin-top:5px;
+      font: 200% 'Nunito', sans-serif;
+      float:left;
+      width:39%;
+    }
+    /*BOTTONI BARRA BLU VIRTUALCLASSROOM*/
+  ul.navlist {
       margin: 1em 3.8em 0.5em 3em;
       padding: 0;
       white-space: nowrap;
-		  float:left;
-	}
+      float:left;
+  }
   .navlist li {
     display: inline;
     list-style-type: none;
     margin-right:10px;
-		&:last-child {
-		  margin-right:0px;
-		}
+    &:last-child {
+      margin-right:0px;
+    }
   }
   .navlist a {
     padding: 5px 25px;
-	  background-color: #42b9e9;
-	  color:#fff;
-	}
-	.navlist a:hover	{
-	  background-color: #59c9f6;
-	}
-	.navlist a.current {
+    background-color: #42b9e9;
+    color:#fff;
+  }
+  .navlist a:hover  {
     background-color: #59c9f6;
-	}
-	}
-	
-	/*upload popup*/
-	.uploadButtonPopUpSelectLesson {
-	  margin-top:25px;
-		display:inline-block;
-		width:890px;
-		
-		.uploadButton a {
+  }
+  .navlist a.current {
+    background-color: #59c9f6;
+  }
+  }
+  
+  /*upload popup*/
+  .uploadButtonPopUpSelectLesson {
+    margin-top:25px;
+    display:inline-block;
+    width:890px;
+    
+    .uploadButton a {
       padding: 5px 25px;
-	    background-color: #42b9e9;
-	    color:#fff;
-		  font-size:1.5em;
-		  float:left;
-	  }
-	  .uploadButton a:hover	{
-	    background-color: #59c9f6;
-	  }
-		span {
-		  float:left;
-			padding:10px;
-			
-		}
-		
-	}
-	
-	.boxViewSingleLesson {
+      background-color: #42b9e9;
+      color:#fff;
+      font-size:1.5em;
+      float:left;
+    }
+    .uploadButton a:hover  {
+      background-color: #59c9f6;
+    }
+    span {
+      float:left;
+      padding:10px;
+      
+    }
+    
+  }
+  
+  .boxViewSingleLesson {
     float:left;
-	  width:270px;
-	  margin-right: 20px;
-	  margin-bottom:20px;
-		-webkit-box-shadow: none;
+    width:270px;
+    margin-right: 20px;
+    margin-bottom:20px;
+    -webkit-box-shadow: none;
     box-shadow: none;
     background-color: #434343;
     &:hover {
-	    cursor: default;
-	  }  
-	  .contentInterno {
-	    height:214px;
-			width:auto;
-			padding:10px;
-			-webkit-box-shadow: none;
+      cursor: default;
+    }  
+    .contentInterno {
+      height:214px;
+      width:auto;
+      padding:10px;
+      -webkit-box-shadow: none;
       box-shadow: none;
-			
-			.img_expanded:hover {
-			  background-color:#000;
-				opacity: 0.70;
-				cursor:move;
-			}
-			.img_expanded.current {
-			  background-color:#000;
-				opacity: 0.20;
-				&:hover {
-				  cursor:default;
-				}
-			}
-			p {
-			  font-size:100%;
-				width:100%;
-				text-align:left;
-			}
-		  a {
-			  color:#fff;
-				padding-left:10px;
-				font-size:80%;
-				&:hover {
-				   color:#F29400;
-				}
-			}	
-			div {
-			  float:none;
-			}
-					
-	  }
-		
+      
+      .img_expanded:hover {
+        background-color:#000;
+        opacity: 0.70;
+        cursor:move;
+      }
+      .img_expanded.current {
+        background-color:#000;
+        opacity: 0.20;
+        &:hover {
+          cursor:default;
+        }
+      }
+      p {
+        font-size:100%;
+        width:100%;
+        text-align:left;
+      }
+      a {
+        color:#fff;
+        padding-left:10px;
+        font-size:80%;
+        &:hover {
+           color:#F29400;
+        }
+      }  
+      div {
+        float:none;
+      }
+          
+    }
+    
   }
-	.playList {
-	  padding:10px; 
-		background-color:#2b2929;
-		width:316px;
-		.scroll-pane {
+  .playList {
+    padding:10px; 
+    background-color:#2b2929;
+    width:316px;
+    .scroll-pane {
      height: 616px;
-		}
-		h1 {
-		  color:#2eaadc;
-			font: 120% 'Nunito', sans-serif;
-		}
-		h2 {
+    }
+    h1 {
+      color:#2eaadc;
+      font: 120% 'Nunito', sans-serif;
+    }
+    h2 {
       font-size:80%;
       color:#373737;
     }
-		.titlePlaylist {
-		  font-family: 'Nunito', sans-serif;
-			padding-top:5px;
-			color:#2EAADC;
-		}
-		span {
-		  font-size:90%; 
-			color:#2EAADC; 
-			padding:5px 0px 15px 30px;
-			font-weight:bold;
-		}
-		
-		  .emptyPlayListButton {
+    .titlePlaylist {
+      font-family: 'Nunito', sans-serif;
+      padding-top:5px;
+      color:#2EAADC;
+    }
+    span {
+      font-size:90%; 
+      color:#2EAADC; 
+      padding:5px 0px 15px 30px;
+      font-weight:bold;
+    }
+    
+      .emptyPlayListButton {
         font-size: 80%;
         color: #615e5e;
         padding: 8px 34px 0px 0px;
@@ -187,177 +187,177 @@ html.virtual_classroom-controller {
           cursor: pointer;
         }
       }
-		
-		&.current {
-		  background-color:#434343;
-		}
-		.jspTrack {
-		  background-color:#434343;
-		}
-		.jspDrag {
-		  background-color:#2eaadc;
-		}
-		.lista {
-		  padding-top: 5px;
+    
+    &.current {
+      background-color:#434343;
+    }
+    .jspTrack {
+      background-color:#434343;
+    }
+    .jspDrag {
+      background-color:#2eaadc;
+    }
+    .lista {
+      padding-top: 5px;
       padding-bottom: 5px;
-			float:left;
-			width:288px;
-					
+      float:left;
+      width:288px;
+          
       .contatore {
-		   float:left;
-			 padding:4px 6px 4px 6px;
-			 margin-right:15px;
-			 background-color:#434343;
-			 font-size:80%;
-			 text-align:center;
-			}
-			.description {
-			  width:248px;
-				float:right;
-				position:relative;
-				.title {
-				  background-color:#f29400;
-				  padding:10px;
-				}
-				.lessonType {
-			    background-color:#fff;
-				  padding:2px 10px;
-			  }
-			  &:hover {
-				  cursor:move;
-					outline:1px solid #fff;
-				}
-			}
-			h1 {
-			  font: 100% 'Nunito', sans-serif;
+       float:left;
+       padding:4px 6px 4px 6px;
+       margin-right:15px;
+       background-color:#434343;
+       font-size:80%;
+       text-align:center;
+      }
+      .description {
+        width:248px;
+        float:right;
+        position:relative;
+        .title {
+          background-color:#f29400;
+          padding:10px;
+        }
+        .lessonType {
+          background-color:#fff;
+          padding:2px 10px;
+        }
+        &:hover {
+          cursor:move;
+          outline:1px solid #fff;
+        }
+      }
+      h1 {
+        font: 100% 'Nunito', sans-serif;
         color:#fff;
-		    line-height:1em;
-				height: 25px;
-			}
-		}
-		.lista.current .description {
+        line-height:1em;
+        height: 25px;
+      }
+    }
+    .lista.current .description {
       outline:4px solid #fff;
-		}
-		
-		.playInVirtualClassroom {
-		  padding:10px;
-			background-color:#2eaadc;
-			text-align:center;
-			color:#fff;
-			font: 180% 'Nunito', sans-serif;
-			margin-top:15px;
-			
-			&:hover {
-			  cursor:pointer;
-				background-color:#59c9f6;
-			}
-		}
-		a {
-		  color:#fff;
-		}
+    }
+    
+    .playInVirtualClassroom {
+      padding:10px;
+      background-color:#2eaadc;
+      text-align:center;
+      color:#fff;
+      font: 180% 'Nunito', sans-serif;
+      margin-top:15px;
+      
+      &:hover {
+        cursor:pointer;
+        background-color:#59c9f6;
+      }
+    }
+    a {
+      color:#fff;
+    }
   }
-	.empty {
-	  color:#727377;
-			width:370px;
-			clear:none;
-		.emptyContent {
-	    float:left;
-			padding-top:1.2em;
-	  }
-		h1 {
-		  font: 100% 'Nunito', sans-serif;
-		}
-		h2 {
-		  font: 240% 'Nunito', sans-serif;
-		}
-	}
-	.createButton {
-	  float:left;
-	}
-	.createButton a {
+  .empty {
+    color:#727377;
+      width:370px;
+      clear:none;
+    .emptyContent {
+      float:left;
+      padding-top:1.2em;
+    }
+    h1 {
+      font: 100% 'Nunito', sans-serif;
+    }
+    h2 {
+      font: 240% 'Nunito', sans-serif;
+    }
+  }
+  .createButton {
+    float:left;
+  }
+  .createButton a {
     background: url(<%= asset_path 'add_vc_off.svg' %>) bottom right no-repeat;
     background-size: 8em;
     padding: 1em 3em 6em 5em;
     
-		&:hover {
-		  background: url(<%= asset_path 'add_vc_on.svg' %>) bottom right no-repeat;
-			background-size: 8em;
+    &:hover {
+      background: url(<%= asset_path 'add_vc_on.svg' %>) bottom right no-repeat;
+      background-size: 8em;
       padding: 1em 3em 6em 5em;
-		}
+    }
   }
-	.virtualClassroomQuickSelectPopUp {
-	  background-color:#373737;
-	  padding:20px 10px 25px 20px;
-		z-index:999;
-		a {
-		  color:#fff;
-		}
-		.boxViewSingleLesson .contentInterno .img_expanded {
-		  cursor: pointer;
-		}
-		
-		.boxViewSingleLesson .contentInterno .currentInserted {
-		  background-color:#373737;
-			opacity:0.85;
-			position:absolute;
-			top:0;
-			left:0;
-			padding: 75px 12px 12px 100px;
-			width:135px;
-			height:76px;
-			a {
-			  background: url(<%= asset_path 'set-icone-editor.svg' %>) bottom right no-repeat;
-				background-size: 20em;
-				background-position:-10em -15.2em;
-				padding: 2em 2.5em;
-				
-			}
-			
-		}
-		  
-		h3 {
-		  color:#fff;
-			font-family:'Nunito', sans-serif;
-			padding-bottom:15px;
-		}
-	  .contentPopUp {
-		  .jspTrack {
-		    background-color:#2b2828;
-		  }
-		  .jspDrag {
-		    background-color:#2eaadc;
-		  }
-		}
-		.scroll-pane {
-		  height:590px;
-		}
-	}
-	.emptyPlayList {
-	  color:#727377;
-		padding-bottom:80px;
-		background: url(<%= asset_path 'bg_playlist_empty.png' %>) top right no-repeat;
-		p {
-		  padding:120px 0px 0px 30px;
-			width:150px;
-			text-align:right;
-		}
-	}
-	
+  .virtualClassroomQuickSelectPopUp {
+    background-color:#373737;
+    padding:20px 10px 25px 20px;
+    z-index:999;
+    a {
+      color:#fff;
+    }
+    .boxViewSingleLesson .contentInterno .img_expanded {
+      cursor: pointer;
+    }
+    
+    .boxViewSingleLesson .contentInterno .currentInserted {
+      background-color:#373737;
+      opacity:0.85;
+      position:absolute;
+      top:0;
+      left:0;
+      padding: 75px 12px 12px 100px;
+      width:135px;
+      height:76px;
+      a {
+        background: url(<%= asset_path 'set-icone-editor.svg' %>) bottom right no-repeat;
+        background-size: 20em;
+        background-position:-10em -15.2em;
+        padding: 2em 2.5em;
+        
+      }
+      
+    }
+      
+    h3 {
+      color:#fff;
+      font-family:'Nunito', sans-serif;
+      padding-bottom:15px;
+    }
+    .contentPopUp {
+      .jspTrack {
+        background-color:#2b2828;
+      }
+      .jspDrag {
+        background-color:#2eaadc;
+      }
+    }
+    .scroll-pane {
+      height:590px;
+    }
+  }
+  .emptyPlayList {
+    color:#727377;
+    padding-bottom:80px;
+    background: url(<%= asset_path 'bg_playlist_empty.png' %>) top right no-repeat;
+    p {
+      padding:120px 0px 0px 30px;
+      width:150px;
+      text-align:right;
+    }
+  }
+  
 
-	
-	.exitButton {
-		 position:absolute; 
-		 right:3px; 
-		 bottom:1px;
-		 font-size: 3px;
-		 opacity:0.1;
-		 
-		 &:hover {
-		   opacity:0.6;
-			 background-position: -4.7em 0;
-		 }
-	}
-	/*.img_expanded {
-	      z-index:30;
-	    }*/
+  
+  .exitButton {
+     position:absolute; 
+     right:3px; 
+     bottom:1px;
+     font-size: 3px;
+     opacity:0.1;
+     
+     &:hover {
+       opacity:0.6;
+       background-position: -4.7em 0;
+     }
+  }
+  /*.img_expanded {
+        z-index:30;
+      }*/
 }

@@ -1,15 +1,15 @@
 <%= render :partial => 'image_editor/header' %>
 <div class="mediaEditorElementContainer">
   <div class="menuLeftEditorElement">
-	<h2>What to do?</h2><p>Select the scissors to cut the image
+  <h2>What to do?</h2><p>Select the scissors to cut the image
 or ABC to enter text.</p>
     <div class="menuModifyImages">
-		<ul>
-		  <li><a class="do_crop _toggle_crop cutButton"></a></li>
-			<li><a class="write_text _toggle_text abcButton"></a></li>
-		</ul>
-	  </div>
-	</div>
+    <ul>
+      <li><a class="do_crop _toggle_crop cutButton"></a></li>
+      <li><a class="write_text _toggle_text abcButton"></a></li>
+    </ul>
+    </div>
+  </div>
   <div id="_image_editor_container" class="imagesContainer">
     <div id="image_wrapper">
       <%= image_tag @parameters[:image].path, :id => "cropped_image", "data-width"=>@parameters[:image].width, "data-height"=>@parameters[:image].height %>
@@ -21,21 +21,21 @@ or ABC to enter text.</p>
         <input type="hidden" name="cropped_image" value="" />
       </form>
     </div>
-	</div>
-	<div class="menuBottomEditorElement">
-	  <div class="menuTextImages upper">
-	    <%= t 'captions.click_image_to_add_text' %>
-	  </div>
-		<div class="menuServiceImages">
-	    <div class="bottoniVerdi fltlft">
-	      <a  href="#" id="_editor_crop">CROP</a>
-			  <a href="#" id="_editor_cancel">CANCEL</a>
+  </div>
+  <div class="menuBottomEditorElement">
+    <div class="menuTextImages upper">
+      <%= t 'captions.click_image_to_add_text' %>
+    </div>
+    <div class="menuServiceImages">
+      <div class="bottoniVerdi fltlft">
+        <a  href="#" id="_editor_crop">CROP</a>
+        <a href="#" id="_editor_cancel">CANCEL</a>
       </div>
    </div>
-	</div>
+  </div>
   <div class="menuFooterEditorElement">
 	  <p>Original image size: <%= @parameters[:image].width %>x<%= @parameters[:image].height %>px</p>
     <%= render :partial => "save_cancel" %>
-	<br class="clearfloat">
-	</div>
+  <br class="clearfloat">
+  </div>
 </div>

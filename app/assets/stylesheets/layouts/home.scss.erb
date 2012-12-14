@@ -1,65 +1,65 @@
 html.home-layout {
   height: 100%;
   @mixin hrefColorSize {
-	  color:#f29400;
-		font-size:90%;
+    color:#f29400;
+    font-size:90%;
   }
   body {
     font: 80% Arial, Helvetica, sans-serif;
-	  background: #505051;
-	  margin: 0;
-	  color: #505051;
-	  text-align: center;
-		width: 100%;
-		height: 100%;
+    background: #505051;
+    margin: 0;
+    color: #505051;
+    text-align: center;
+    width: 100%;
+    height: 100%;
   }
-	.top {
+  .top {
     margin-bottom: -190px;
     background: transparent;
     width: 1px;
     height: 30%;
     float: left;
   }
-	.container {
+  .container {
     margin: 0 auto;
     width: 984px;
-		@media (max-width: 1024px) {
+    @media (max-width: 1024px) {
       font-size: 50%;
-	  }
+    }
     background-color: #030303;
-		clear: left;
-		position: relative;
-		text-align:left;
-		padding:0;
-		
-		
-	 .containerText {
-		  padding:30px;
-			background-color: #fff;
-			float:left;
-			a {
-			  @include hrefColorSize;
-			}
-			h1 {
-			 font: 150% 'Nunito', sans-serif;
-			 color:#505051;
-			 padding-top:14px;
-			 padding-bottom:0px;
-			 line-height:100%;
-			}
-			p {
-			  padding-top:10px;
-			}
-			
-		}
-		/*fine container text*/
-		.footer {
-		  padding:10px 150px 10px 40px;
-			background: #fdb525;
+    clear: left;
+    position: relative;
+    text-align:left;
+    padding:0;
+    
+    
+   .containerText {
+      padding:30px;
+      background-color: #fff;
+      float:left;
+      a {
+        @include hrefColorSize;
+      }
+      h1 {
+       font: 150% 'Nunito', sans-serif;
+       color:#505051;
+       padding-top:14px;
+       padding-bottom:0px;
+       line-height:100%;
+      }
+      p {
+        padding-top:10px;
+      }
+      
+    }
+    /*fine container text*/
+    .footer {
+      padding:10px 150px 10px 40px;
+      background: #fdb525;
       color: #fff;
       font-size: 75%;
       text-transform: lowercase;
-			text-align:right;
-		}
+      text-align:right;
+    }
   }
 }

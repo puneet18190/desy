@@ -67,7 +67,7 @@ class VideoUploader < String
   end
 
   def processed_original_filename
-    process(original_filename, original_filename_extension)
+    process(original_filename_without_extension, original_filename_extension)
   end
 
   def processed_original_filename_without_extension
@@ -151,11 +151,6 @@ class VideoUploader < String
   end
   alias path public_relative_path
 
-  def public_relative_paths
-    { mp4: path(:mp4), webm: path(:webm) }
-  end
-  alias paths public_relative_paths
-
   def absolute_path(format)
     case format
     when *FORMATS
@@ -163,10 +158,6 @@ class VideoUploader < String
     when :cover, :thumb
       File.join absolute_folder, VERSION_FORMATS[format] % filename_without_extension
     end
-  end
-
-  def absolute_paths
-    Hash[ [:mp4, :webm, :cover, :thumb].map{ |v| [v, absolute_path(v)] } ]
   end
 
   private
@@ -205,7 +196,7 @@ class VideoUploader < String
   end
 
   def extract_thumb(input, output, width, height)
-    MediaEditing::Image::ResizeToFill.new(cover_path, thumb_path, width, height).run
+    MediaEditing::Image::ResizeToFill.new(input, output, width, height).run
   end
 
   def upload

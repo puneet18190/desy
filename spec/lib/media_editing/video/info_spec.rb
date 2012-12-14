@@ -7,7 +7,7 @@ module MediaEditing
       context "when the video is not valid" do
         describe 'new' do
           subject { described_class.new(MEVSS::INVALID_VIDEO) }
-          it { expect { subject }.to raise_error(MediaEditing::Video::Error) }
+          it { expect { subject }.to raise_error(Error) }
         end
       end    
 

@@ -11,34 +11,34 @@ module MediaEditing
 
         context 'when inputs is not an Hash' do
           let(:inputs) { nil }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when inputs is an Hash with the wrong keys' do
           let(:inputs) { { webm: ['input'], mp4: ['input'], ciao: ['input'] } }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when there is some inputs value which is not an array' do
           let(:inputs) { { webm: ['input'], mp4: true } }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when inputs are not paired' do
           let(:inputs) { { mp4: ['input', 'input'], webm: ['input'] } }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when at least one value of the inputs is empty' do
           let(:inputs) { { mp4: ['input'], webm: [] } }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when output_without_extension is not a string' do
           let(:inputs) { { webm: ['input'], mp4: ['input'] } }
 
           let(:output_without_extension) { nil }
-          it { expect { subject }.to raise_error MediaEditing::Video::Error }
+          it { expect { subject }.to raise_error Error }
         end
 
         context 'when inputs values is an Hash with the right keys and paired values' do

@@ -10,8 +10,6 @@ require 'video_uploader'
 
 module MediaEditing
   module Video
-  # WARNING!!!
-  # avconv requires the package libavcodec-extra-53 to be installed for the libx264 codec
     class Conversion
 
       include EnvRelativePath
@@ -55,7 +53,7 @@ module MediaEditing
           webm_file_info = MediaEditing::Video::Info.new output_path(:webm)
 
           unless allowed_duration_range?(mp4_file_info.duration, webm_file_info.duration) 
-            raise MediaEditing::Video::Error.new( 'output videos have different duration', 
+            raise Error.new( 'output videos have different duration', 
                                                   model_id: model_id, mp4_duration: mp4_file_info.duration, webm_duration: webm_file_info.duration )
           end
 
@@ -90,14 +88,14 @@ module MediaEditing
         seek = duration / 2
         Cmd::ExtractFrame.new(input, output, seek).run! %W(#{stdout_log} a), %W(#{stderr_log} a)
         unless File.exists? output
-          raise MediaEditing::Video::Error.new( 'unable to create cover',
+          raise Error.new( 'unable to create cover',
                                                 model_id: model_id, input: input, output: output, stdout_log: stdout_log, stderr_log: stderr_log)
         end
       end
 
       def convert_to(format)
         if not File.exists? uploaded_path and not File.exists? temp_path
-          raise MediaEditing::Video::Error.new( "at least one between uploaded_path and temp_path must exist", 
+          raise Error.new( "at least one between uploaded_path and temp_path must exist", 
                                                 temp_path: temp_path, uploaded_path: uploaded_path, format: format )
         end
 

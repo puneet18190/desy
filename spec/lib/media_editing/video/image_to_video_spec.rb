@@ -11,14 +11,14 @@ module MediaEditing
         subject { described_class.new('input', 'output', duration) }
         context 'when duration is not a Numeric' do
           let(:duration) { nil }
-          it 'raises a MediaEditing::Video::Error' do
-            expect{ subject }.to raise_error(MediaEditing::Video::Error)
+          it 'raises a Error' do
+            expect{ subject }.to raise_error(Error)
           end
         end
         context 'when duration is not > 0' do
           let(:duration) { 0 }
-          it 'raises a MediaEditing::Video::Error' do
-            expect{ subject }.to raise_error(MediaEditing::Video::Error)
+          it 'raises a Error' do
+            expect{ subject }.to raise_error(Error)
           end
         end
       end
