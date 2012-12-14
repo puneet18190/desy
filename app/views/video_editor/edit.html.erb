@@ -20,6 +20,10 @@
           <div class="fltrt"><a class="closeButton _exit_video_editor"></a></div>
         </div>
       </div>
+      <%= render :partial => 'media_elements/info_form_in_editor/new' %>
+      <% if @parameters[:initial_video] %>
+        <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @parameters[:initial_video]} %>
+      <% end %>
     <% end %>
   </div>
   

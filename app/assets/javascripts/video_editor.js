@@ -4,7 +4,7 @@ function initializeVideoEditor() {
   });
   setTimeout(function() {
     startCacheLoop();
-  }, /*$('#popup_parameters_container').data('cache-time')*/ 5000);
+  }, $('#popup_parameters_container').data('cache-time'));
 }
 
 function startCacheLoop() {
@@ -23,7 +23,7 @@ function saveCacheLoop() {
     //$('#video_editor_form').submit();
     setTimeout(function() {
       saveCacheLoop();
-    }, /*time*/ 5000);
+    }, time);
   }
 }
 
