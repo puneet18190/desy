@@ -2,18 +2,28 @@ function initializeVideoEditor() {
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: false
   });
+  setTimeout(function() {
+    startCacheLoop();
+  }, $('#popup_parameters_container').data('cache-time'));
+}
+
+function startCacheLoop() {
+  $('#info_container').data('save-cache', true);
   saveCacheLoop();
+}
+
+function stopCacheLoop() {
+  $('#info_container').data('save-cache', false);
 }
 
 function saveCacheLoop() {
   var time = $('#popup_parameters_container').data('cache-time');
-  setTimeout(function() {
-    
-    console.log('sto salvando la cache');
-    
-    //$('#video_editor_form').submit();
-    saveCacheLoop();
-  }, 5000);
+  if($('#info_container').data('save-cache')) {
+    $('#video_editor_form').submit();
+    setTimeout(function() {
+      saveCacheLoop();
+    }, time);
+  }
 }
 
 function closeMixedGalleryInVideoEditor() {

@@ -1,0 +1,11 @@
+<div id="form_info_update_media_element_in_editor" class="_<%= media_element.sti_type %>" style="display:none">
+  <div class="cols" style="float:left">
+    <%= text_field_tag 'update_title', media_element.title %>
+    <%= text_area_tag 'update_description', media_element.description %>
+  </div>
+  <div class="cols" style="float:right">
+    <%= text_area_tag 'update_tags', media_element.tags %>
+  </div>
+  <a class="_cancel"></a>
+  <a class="_save"></a>
+</div>

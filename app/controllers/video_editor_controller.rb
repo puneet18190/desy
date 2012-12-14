@@ -35,6 +35,7 @@ class VideoEditorController < ApplicationController
   end
   
   def save_cache
+    render :nothing => true
   end
   
   def commit
