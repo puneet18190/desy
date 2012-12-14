@@ -37,8 +37,8 @@ module MediaEditing
           mp4_conversion.join
           webm_conversion.join
 
-          mp4_file_info  = MediaEditing::Video::Info.new mp4_output_path
-          webm_file_info = MediaEditing::Video::Info.new webm_output_path
+          mp4_file_info  = Info.new mp4_output_path
+          webm_file_info = Info.new webm_output_path
 
           if mp4_file_info.duration != webm_file_info.duration
             raise Error.new( 'output videos have not the same duration',

@@ -48,11 +48,11 @@ module MediaEditing
                 end
 
                 it "creates a valid video" do
-                  expect{ MediaEditing::Video::Info.new(output) }.to_not raise_error
+                  expect{ Info.new(output) }.to_not raise_error
                 end
 
                 it 'creates a video with the expected duration' do
-                  temp_duration, output_duration = MediaEditing::Video::Info.new(temp).duration, MediaEditing::Video::Info.new(output).duration
+                  temp_duration, output_duration = Info.new(temp).duration, Info.new(output).duration
                   temp_duration.should be_within(described_class::DURATION_THRESHOLD).of(output_duration)
                 end
 
@@ -142,7 +142,7 @@ module MediaEditing
 
               def info(format)
                 @info ||= {}
-                @info[format] ||= MediaEditing::Video::Info.new(output)
+                @info[format] ||= Info.new(output)
               end
 
               it "creates a valid video" do

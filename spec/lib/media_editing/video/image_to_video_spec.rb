@@ -56,7 +56,7 @@ module MediaEditing
               end
               def info(format)
                 @info ||= {}
-                @info[format] ||= MediaEditing::Video::Info.new(output(format))
+                @info[format] ||= Info.new(output(format))
               end
 
               context "with #{format} format", format: format do

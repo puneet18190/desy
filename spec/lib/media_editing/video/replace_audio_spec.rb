@@ -113,8 +113,8 @@ module MediaEditing
 
                 let(:format)      { format }
                 let(:description) { description }
-                let(:input_info)  { MediaEditing::Video::Info.new(video_inputs[format]).info }
-                let(:output_info) { MediaEditing::Video::Info.new(subject[format]).info }
+                let(:input_info)  { Info.new(video_inputs[format]).info }
+                let(:output_info) { Info.new(subject[format]).info }
 
                 it 'creates a video with the expected duration' do
                   output_info[:duration].should be_within(0.1).of input_info[:duration]

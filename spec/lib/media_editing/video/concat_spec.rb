@@ -118,7 +118,7 @@ module MediaEditing
               context "with #{format} format", format: format do
 
                 let(:format) { format }
-                let(:info)   { MediaEditing::Video::Info.new(subject[format]).info }
+                let(:info)   { Info.new(subject[format]).info }
                 let(:concat) { described_class.new(input_videos, output) }
                 
                 subject { concat.run }

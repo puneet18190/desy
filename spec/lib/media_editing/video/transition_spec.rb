@@ -107,7 +107,7 @@ module MediaEditing
             context "with #{format} format", format: format do
 
               let(:format)      { format }
-              let(:output_info) { MediaEditing::Video::Info.new(subject[format]).info }
+              let(:output_info) { Info.new(subject[format]).info }
 
               it 'creates a video with the expected duration' do
                 expected_duration = Rational(described_class::INNER_FRAMES_AMOUNT+2, described_class::FRAME_RATE)

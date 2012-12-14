@@ -49,8 +49,8 @@ module MediaEditing
           mp4_conversion.join
           webm_conversion.join
 
-          mp4_file_info  = MediaEditing::Video::Info.new output_path(:mp4)
-          webm_file_info = MediaEditing::Video::Info.new output_path(:webm)
+          mp4_file_info  = Info.new output_path(:mp4)
+          webm_file_info = Info.new output_path(:webm)
 
           unless allowed_duration_range?(mp4_file_info.duration, webm_file_info.duration) 
             raise Error.new( 'output videos have different duration', 

@@ -72,7 +72,7 @@ module MediaEditing
 
           context "with #{format} format", format: format do
             let(:format) { format }
-            let(:info)   { MediaEditing::Video::Info.new(subject[format]).info }
+            let(:info)   { Info.new(subject[format]).info }
 
             it 'creates a video with the expected duration' do
               duration = info[:duration]

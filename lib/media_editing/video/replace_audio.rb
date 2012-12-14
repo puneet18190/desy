@@ -55,7 +55,7 @@ module MediaEditing
       end
 
       def video_stream_duration(video_input)
-        video_input_info = MediaEditing::Video::Info.new video_input
+        video_input_info = Info.new video_input
 
         video_input_no_audio_duration =
           if video_input_info.audio_streams.blank?
@@ -63,7 +63,7 @@ module MediaEditing
           else
             video_input_no_audio = tmp_path "video_no_audio.#{File.extname video_input}"
             Cmd::VideoStreamToFile.new(video_input, video_input_no_audio).run! *logs('0_video_stream_to_file')
-            MediaEditing::Video::Info.new(video_input_no_audio).duration
+            Info.new(video_input_no_audio).duration
           end
       end
 

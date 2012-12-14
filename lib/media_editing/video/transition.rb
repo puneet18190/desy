@@ -79,7 +79,7 @@ module MediaEditing
         video_no_audio = tmp_path VIDEO_NO_AUDIO
         Cmd::VideoStreamToFile.new(@start_inputs[:mp4], video_no_audio).run! *logs('0_video_stream_to_file')
 
-        video_no_audio_duration = MediaEditing::Video::Info.new(video_no_audio).duration
+        video_no_audio_duration = Info.new(video_no_audio).duration
         video_no_audio_duration.step(0, LAST_FRAME_SKIP_STEP) do |seek|
           Cmd::ExtractFrame.new(@start_inputs[:mp4], start_frame, seek).run! *logs('1_extract_start_input_last_frame')
           break if File.exists? start_frame

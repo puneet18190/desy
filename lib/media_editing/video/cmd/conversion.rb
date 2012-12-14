@@ -19,7 +19,7 @@ module MediaEditing
         def initialize(input_file, output_file, format, input_file_info = nil)
           super([input_file], output_file, format)
 
-          @input_file_info = input_file_info || MediaEditing::Video::Info.new(input_file)
+          @input_file_info = input_file_info || Info.new(input_file)
           if vstreams.empty?
             raise Error.new( 'at least one video stream must be present', 
                                            input_file: input_file, output_file: output_file, format: format, input_file_info: input_file_info )

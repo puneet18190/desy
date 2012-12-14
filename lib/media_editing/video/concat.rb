@@ -58,7 +58,7 @@ module MediaEditing
         # Caso speciale: se ho una sola coppia di input copio i due video nei rispettivi output e li ritorno
         return copy_first_inputs_to_outputs if mp4_inputs.size == 1
 
-        mp4_inputs_infos = mp4_inputs.map{ |input| MediaEditing::Video::Info.new(input) }
+        mp4_inputs_infos = mp4_inputs.map{ |input| Info.new(input) }
         paddings = paddings mp4_inputs_infos
         final_videos = nil
 
@@ -101,7 +101,7 @@ module MediaEditing
         final_webm_no_audio = tmp_path FINAL_WEBM_NO_AUDIO
         Cmd::MergeWebmVideoStreams.new(webm_inputs, final_webm_no_audio).run! *logs('3_merge_webm_video_streams') # 2.
 
-        final_webm_no_audio_info = MediaEditing::Video::Info.new final_webm_no_audio
+        final_webm_no_audio_info = Info.new final_webm_no_audio
 
         [ 
           ( Thread.new do
@@ -150,7 +150,7 @@ module MediaEditing
       end
 
       def increase_rpadding_depending_on_video_overflow(video_info, wav, paddings)
-        wav_info = MediaEditing::Video::Info.new(wav)
+        wav_info = Info.new(wav)
         overflow = video_info.duration - wav_info.duration - LAME_ENCODING_RPADDING
         paddings[1] += overflow if overflow > 0
       end
