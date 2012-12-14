@@ -8,6 +8,11 @@ class GalleriesController < ApplicationController
     get_images
   end
   
+  def image_for_image_editor
+    get_images
+    render :layout => 'media_element_editor'
+  end
+  
   def audio_for_lesson_editor
     get_audios
   end

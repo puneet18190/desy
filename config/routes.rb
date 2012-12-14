@@ -53,6 +53,7 @@ Desy::Application.routes.draw do
   get  'videos/galleries' => 'galleries#mixed_for_video_editor'
   get  'videos/galleries/audio' => 'galleries#audio_for_video_editor'
   get  'audios/galleries/audio' => 'galleries#audio_for_audio_editor'
+  get  'images/galleries/image' => 'galleries#image_for_image_editor'
   
   # LESSON VIEWER
   get  'lessons/view/playlist' => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
@@ -76,7 +77,8 @@ Desy::Application.routes.draw do
   get  'videos/cache/restore' => 'video_editor#restore_cache', :as => :video_editor_restore_cache
   post 'videos/cache/save' => 'video_editor#save_cache', :as => :video_editor_save_cache
   post 'videos/cache/empty' => 'video_editor#empty_cache', :as => :video_editor_empty_cache
-  post 'videos/commit' => 'video_editor#commit', :as => :video_editor_commit
+  post 'videos/commit/new' => 'video_editor#save'
+  post 'videos/commit/overwrite' => 'video_editor#overwrite'
   
   # AUDIO EDITOR
   get  'audios/:audio_id/edit' => 'audio_editor#index'
@@ -84,8 +86,9 @@ Desy::Application.routes.draw do
   
   # IMAGE EDITOR
   get  'images/:image_id/edit' => 'image_editor#edit'
-  post  'images/:image_id/crop' => 'image_editor#crop'
-  post  'images/:image_id/save' => 'image_editor#save'
+  post 'images/:image_id/crop' => 'image_editor#crop'
+  post 'images/:image_id/commit/new' => 'image_editor#save'
+  post 'videos/:image_id/commit/overwrite' => 'image_editor#overwrite'
   
   # BASE64 TO IMAGE
   post 'base64_to_image/' => "base64_to_image#create"

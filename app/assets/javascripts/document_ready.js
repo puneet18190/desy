@@ -407,8 +407,22 @@ $(document).ready(function() {
     showMediaElementInfoPopUp(my_param);
   });
   
-  $('body').on('click', '._Video_button_edit, ._Audio_button_edit, ._Image_button_edit', function(e) {
-    alert('questa parte manca ancora');
+  $('body').on('click', '._Video_button_edit', function(e) {
+    e.preventDefault();
+    var video_id = $(this).data('clickparam');
+    window.location = 'videos/' + video_id + '/edit';
+    return false;
+  });
+  
+  $('body').on('click', '._Audio_button_edit', function(e) {
+    alert('ancora non abbiamo editor di audio');
+  });
+  
+  $('body').on('click', '._Image_button_edit', function(e) {
+    e.preventDefault();
+    var image_id = $(this).data('clickparam');
+    window.location = 'images/' + image_id + '/edit';
+    return false;
   });
   
   $('body').on('click', '._Video_button_remove, ._Audio_button_remove, ._Image_button_remove', function(e) {
@@ -691,15 +705,34 @@ $(document).ready(function() {
     closePopUp('dialog-virtual-classroom-quick-select');
   });
   
+  // ELEMENTS EDITOR
+  
+  $('#form_info_new_media_element_in_editor, #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
+  
+  // IMAGE EDITOR
+  
+  $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
+  $('body').on('click','._add_image_to_image_editor', function(){
+    window.location = '/images/'+$(this).data('image-id')+'/edit';
+  });
   
   // VIDEO EDITOR
   
   $('body').on('click', '._exit_video_editor', function() {
+    stopCacheLoop();
     var captions = $('#popup_captions_container');
     showConfirmPopUp(captions.data('exit-video-editor-title'), captions.data('exit-video-editor-confirm'), captions.data('exit-video-editor-yes'), captions.data('exit-video-editor-no'), function() {
-      alert('Sei uscito');
+      $('dialog-confirm').hide();
+      $.ajax({
+        type: 'post',
+        url: '/videos/cache/empty',
+        success: function() {
+          window.location = '/dashboard';
+        }
+      });
     }, function() {
-      alert('Hai scelto di rimanere');
+      startCacheLoop();
+      closePopUp('dialog-confirm');
     });
   });
   
@@ -864,6 +897,14 @@ $(document).ready(function() {
       } else {
         addTextComponentInVideoEditor(component, content, duration, background_color, text_color);
       }
+    }
+  });
+  
+  $('body').on('click', '._commit_video_editor', function() {
+    if($(this).hasClass('_with_choice')) {
+      alert('hai la scelta');
+    } else {
+      alert('non hai nessuna scelta');
     }
   });
   

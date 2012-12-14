@@ -36,7 +36,7 @@ $(document).ready(function() {
   });
   
   $("body").on("click","#_editor_crop",function(){
-   //updateCrop();
+   //updateCrop(); #TODO implement client_side fake crop
    var thisForm = $("form#_crop_form");
    thisForm.attr("action","/images/"+thisForm.data("param")+"/crop");
    thisForm.submit();
@@ -124,13 +124,54 @@ $(document).ready(function() {
     resetSelect();
   });
   
-  $("body").on("click","._save_edit_image", function(){
-    processTextAreaForm();
-    var thisForm = $("form#_crop_form");
-    thisForm.attr("action","/images/"+thisForm.data("param")+"/save");
-    thisForm.submit();
+  $("body").on("click","#image_editor_not_public ._save_edit_image", function(){
+    var image_id = $(this).data("slide-id");
+    saveImageChoice(image_id);
   });
+  
+  $("body").on("click","#image_editor_public ._save_edit_image", function(){
+    var image_id = $(this).data("slide-id");
+    $('#form_info_new_media_element_in_editor').show();
+  });
+  
+  $('body').on('click','#form_info_new_media_element_in_editor _save', function(){
+    commitImageEditing("save");
+  });
+  
+  $('body').on('click','#form_info_update_media_element_in_editor _save', function(){
+    commitImageEditing("overwrite");
+  });
+  
+  $('body').on('click','#form_info_new_media_element_in_editor _cancel', function(){
+    $('#form_info_new_media_element_in_editor').hide();
+  });
+  
+  $('body').on('click','#form_info_update_media_element_in_editor _cancel', function(){
+    $('#form_info_update_media_element_in_editor').hide();
+  });
+  
 });
+
+function commitImageEditing(save_or_overwrite){
+  processTextAreaForm();
+  var thisForm = $("form#_crop_form");
+  thisForm.attr("action","/images/"+thisForm.data("param")+"/"+save_or_overwrite);
+  thisForm.submit();
+}
+
+function saveImageChoice(image_id) {
+  var title = $('.header h1 span');
+  showConfirmPopUp(title.text(), "Update or create new image", "update", "new", function() {
+    $('#dialog-confirm').hide();
+    $('#form_info_update_media_element_in_editor').show();
+    
+    closePopUp('dialog-confirm');
+  }, function() {
+    $('#dialog-confirm').hide();
+    $('#form_info_new_media_element_in_editor').show();
+    closePopUp('dialog-confirm');
+  });
+}
 
 function resizedValue(width,height){
   wrapper_ratio = 660/495;

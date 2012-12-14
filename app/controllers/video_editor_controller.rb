@@ -22,9 +22,8 @@ class VideoEditorController < ApplicationController
   end
   
   def restore_cache
-    @parameters = @cache.nil? ? empty_parameters : Video.convert_parameters(@cache, @current_user.id)
+    @parameters = @cache.nil? ? empty_parameters : @cache
     @cache = nil
-    @parameters = empty_parameters if @parameters.nil?
     @total_length = Video.total_prototype_time(@parameters)
     render :edit
   end
@@ -35,12 +34,55 @@ class VideoEditorController < ApplicationController
   end
   
   def save_cache
+    @current_user.save_video_editor_cache(extract_form_parameters)
+    render :nothing => true
   end
   
   def commit
   end
   
   private
+  
+  def extract_single_form_parameter(p, value)
+    if ['type', 'content', 'background_color', 'text_color'].include? p
+      return value
+    elsif ['position', 'video_id', 'image_id', 'from', 'until', 'duration'].include? p
+      return value.to_i
+    else
+      return nil
+    end
+  end
+  
+  def extract_form_parameters
+    unordered_resp = {}
+    ordered_resp = {}
+    resp = {
+      :initial_video_id => params[:initial_video_id].blank? ? nil : params[:initial_video_id].to_i,
+      :audio_id => params[:audio_id].blank? ? nil : params[:audio_id].to_i,
+      :components => []
+    }
+    params.each do |k, v|
+      if !(k =~ /_/).nil?
+        index = k.split('_').last.to_i
+        p = k.gsub("_#{index}", '')
+        if ['type', 'video_id', 'image_id', 'from', 'until', 'position', 'content', 'background_color', 'text_color', 'duration'].include?(p)
+          if unordered_resp.has_key? index
+            unordered_resp[index][:"#{p}"] = extract_single_form_parameter(p, v)
+          else
+            unordered_resp[index] = {:"#{p}" => extract_single_form_parameter(p, v)}
+          end
+        end
+      end
+    end
+    unordered_resp.each do |k, v|
+      ordered_resp[v[:position]] = v
+      ordered_resp[v[:position]].delete(:position)
+    end
+    ordered_resp.sort.each do |item|
+      resp[:components] << item[1]
+    end
+    resp
+  end
   
   def convert_video_to_parameters
     resp = {}
@@ -64,7 +106,7 @@ class VideoEditorController < ApplicationController
   end
   
   def extract_cache
-    @cache = @current_user.video_editor_cache
+    @cache = Video.convert_parameters @current_user.video_editor_cache, @current_user.id
   end
   
   def initialize_video_with_owner_or_public
