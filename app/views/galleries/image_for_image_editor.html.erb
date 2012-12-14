@@ -1,4 +1,4 @@
-<%= render :partial => 'image_editor/header' %>
+<%= render :partial => 'image_editor/header', :locals => {:image => nil} %>
 <div id="image_gallery_for_image_editor">
   <div class="mediaEditorElementContainer">
     <%= render :partial => 'galleries/image', :locals => {:images => @images} %>
