@@ -2,7 +2,7 @@ require 'media_editing'
 require 'media_editing/video'
 require 'media_editing/video/cmd'
 require 'media_editing/video/cmd/avconv'
-require 'media_editing/video/error'
+require 'media_editing/error'
 
 module MediaEditing
   module Video
