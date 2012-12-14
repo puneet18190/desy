@@ -1,29 +1,68 @@
+require 'audio_uploader'
+
 class Audio < MediaElement
+
+  after_save :upload_or_copy
+  after_destroy :clean
+
+  attr_accessor :skip_conversion, :rename_media
+
+  validates_presence_of :media
+  validate :media_validation
   
-  def mp3_path # FIXME temporaneo
-    # media.url.mp3
-    "/media_elements/audios/#{self.id.to_s}/audio_mp3.mp3"
+  def mp3_path
+    media.try(:path, :mp3)
+  end
+
+  def ogg_path
+    media.try(:path, :ogg)
   end
   
-  def ogg_path # FIXME temporaneo
-    # media.url.ogg
-    "/media_elements/audios/#{self.id.to_s}/audio_ogg.ogg"
+  def mp3_duration
+    metadata.mp3_duration
   end
   
-  def mp3_duration # FIXME temporaneo
-    # metadata.duration
-    YAML.load(File.open(Rails.root.join('db/seeds/audios/durations.yml'), 'r'))[1]
+  def ogg_duration
+    metadata.ogg_duration
+  end
+
+  def mp3_duration=(mp3_duration)
+    metadata.mp3_duration = mp3_duration
   end
   
-  def ogg_duration # FIXME temporaneo
-    # metadata.duration
-    YAML.load(File.open(Rails.root.join('db/seeds/audios/durations.yml'), 'r'))[1]
+  def ogg_duration=(ogg_duration)
+    metadata.ogg_duration = ogg_duration
   end
   
   def min_duration
-    d1 = self.mp3_duration.to_i
-    d2 = self.ogg_duration.to_i
-    d1 > d2 ? d2 : d1
+    [mp3_duration, ogg_duration].map(&:to_i).min
   end
   
+  def media
+    @media || ( 
+      media = read_attribute(:media)
+      media ? AudioUploader.new(self, :media, media) : nil 
+    )
+  end
+
+  def media=(media)
+    @media = write_attribute :media, (media.present? ? AudioUploader.new(self, :media, media) : nil)
+  end
+
+  def reload
+    @media = @skip_conversion = @rename_media = nil
+    super
+  end
+
+  private
+  def upload_or_copy
+    media.upload_or_copy if media
+    true
+  end
+
+  def clean
+    absolute_folder = media.try(:absolute_folder)
+    FileUtils.rm_rf absolute_folder if absolute_folder and File.exists? absolute_folder
+    true
+  end
 end

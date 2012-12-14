@@ -211,10 +211,6 @@ class Video < MediaElement
     @media = write_attribute :media, (media.present? ? VideoUploader.new(self, :media, media) : nil)
   end
 
-  def reload_media
-    @media = nil
-  end
-
   def mp4_duration
     metadata.mp4_duration
   end
