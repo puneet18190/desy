@@ -22,7 +22,7 @@ class VideoUploader < String
   EXTENSIONS_WHITE_LIST          = %w(avi divx flv h264 mkv mov mp4 mpe mpeg mpg ogm ogv webm wmv xvid)
   EXTENSIONS_WHITE_LIST_WITH_DOT = EXTENSIONS_WHITE_LIST.map{ |ext| ".#{ext}" }
   MIN_DURATION                   = 1
-  DURATION_THRESHOLD             = MediaEditing::Video::CONFIG.duration_threshold
+  DURATION_THRESHOLD             = MediaEditing::CONFIG.duration_threshold
   ALLOWED_KEYS                   = [:filename] + FORMATS
   VERSION_FORMATS                = { cover: 'cover_%s.jpg', thumb: 'thumb_%s.jpg' }
   COVER_FORMAT, THUMB_FORMAT     = VERSION_FORMATS[:cover], VERSION_FORMATS[:thumb]

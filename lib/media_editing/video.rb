@@ -5,12 +5,9 @@ require 'env_relative_path'
 module MediaEditing
   module Video
     
-    # definisce CONFIG
-    require 'media_editing/video/config'
-
     include EnvRelativePath
     
-    FORMATS = CONFIG.formats
+    FORMATS = MediaEditing::CONFIG.avtools.avconv.video.formats.marshal_dump.keys
 
     AVPROBE_BIN             = CONFIG.avtools.avprobe.cmd.bin
     AVPROBE_SUBEXEC_TIMEOUT = CONFIG.avtools.avprobe.cmd.subexec_timeout
@@ -19,14 +16,14 @@ module MediaEditing
     AVCONV_TIMEOUT         = CONFIG.avtools.avconv.cmd.timeout
     AVCONV_SUBEXEC_TIMEOUT = AVCONV_TIMEOUT + 10
 
-    AVCONV_CODECS            = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.formats.send(f).codecs] } ]
-    AVCONV_DEFAULT_BITRATES  = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.formats.send(f).default_bitrates] } ]
+    AVCONV_CODECS            = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).codecs] } ]
+    AVCONV_DEFAULT_BITRATES  = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).default_bitrates] } ]
 
-    AVCONV_OUTPUT_WIDTH        = CONFIG.avtools.avconv.output.width
-    AVCONV_OUTPUT_HEIGHT       = CONFIG.avtools.avconv.output.height
+    AVCONV_OUTPUT_WIDTH        = CONFIG.avtools.avconv.video.output.width
+    AVCONV_OUTPUT_HEIGHT       = CONFIG.avtools.avconv.video.output.height
     AVCONV_OUTPUT_ASPECT_RATIO = Rational(AVCONV_OUTPUT_WIDTH, AVCONV_OUTPUT_HEIGHT)
-    AVCONV_OUTPUT_THREADS      = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.formats.send(f).threads] } ]
-    AVCONV_OUTPUT_QA           = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.formats.send(f).qa] } ]
+    AVCONV_OUTPUT_THREADS      = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).threads] } ]
+    AVCONV_OUTPUT_QA           = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).qa] } ]
 
     SOX_BIN            = CONFIG.sox.cmd.bin
     SOX_GLOBAL_OPTIONS = CONFIG.sox.cmd.global_options
