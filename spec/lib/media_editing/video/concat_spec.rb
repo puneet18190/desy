@@ -66,9 +66,15 @@ module MediaEditing
           let(:input_videos) do
             Hash[ MEVSS::CONCAT_VIDEOS[:videos_with_some_audio_streams][:videos].map{ |k,v| [k, [v.first] ] } ]
           end
-          subject            { described_class.new(input_videos, output).run }
+          let(:concat) { described_class.new(input_videos, output) }
+          
+          subject { concat.run }
 
           before(:all) { subject }
+
+          it 'has the expected log folder' do
+            concat.send(:stdout_log).should start_with Rails.root.join('log/media_editing/video/concat/test/').to_s
+          end
 
           MEVSS::FORMATS.each do |format|
 
@@ -113,10 +119,15 @@ module MediaEditing
 
                 let(:format) { format }
                 let(:info)   { MediaEditing::Video::Info.new(subject[format]).info }
+                let(:concat) { described_class.new(input_videos, output) }
                 
-                subject { described_class.new(input_videos, output).run }
+                subject { concat.run }
 
                 before(:all) { subject }
+
+                it 'has the expected log folder' do
+                  concat.send(:stdout_log).should start_with Rails.root.join('log/media_editing/video/concat/test/').to_s
+                end
 
                 it 'creates a video with the expected duration' do
                   duration = info[:duration]

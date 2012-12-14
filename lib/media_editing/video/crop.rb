@@ -6,7 +6,7 @@ module MediaEditing
   module Video
     class Crop
 
-      include MediaEditing::Video::Logging
+      include Logging
 
       FORMATS = MediaEditing::Video::FORMATS
 

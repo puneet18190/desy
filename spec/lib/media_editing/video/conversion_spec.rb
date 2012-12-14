@@ -37,7 +37,9 @@ module MediaEditing
 
               context "with a #{video.to_s.humanize.downcase}" do
 
-                subject { described_class.new(uploaded_path, output_without_extension, filename, model.id).convert_to(format) }
+                let(:conversion) { described_class.new(uploaded_path, output_without_extension, filename, model.id) }
+
+                subject { conversion.convert_to(format) }
 
                 before(:all) do
                   FileUtils.cp video_constant, uploaded_path
@@ -52,6 +54,14 @@ module MediaEditing
                 it 'creates a video with the expected duration' do
                   temp_duration, output_duration = MediaEditing::Video::Info.new(temp).duration, MediaEditing::Video::Info.new(output).duration
                   temp_duration.should be_within(described_class::DURATION_THRESHOLD).of(output_duration)
+                end
+
+                it 'has the expected stdout_log path' do
+                  conversion.send(:stdout_log, format).should == stdout_log
+                end
+
+                it 'has the expected stderr_log path' do
+                  conversion.send(:stderr_log, format).should == stderr_log
                 end
 
                 it "creates the stdout log" do
@@ -88,12 +98,6 @@ module MediaEditing
             end
 
             context 'when uploaded_path file and temporary file do not exist' do
-
-              # let(:model) do
-              #   ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: uploaded) do |video|
-              #     video.user_id = User.admin.id
-              #   end.tap{ |v| v.skip_conversion = true; v.save! }
-              # end
 
               subject { described_class.new(uploaded_path, output_without_extension, filename, model.id) }
 

@@ -1,6 +1,6 @@
 require 'media_editing'
 require 'media_editing/video'
-require 'media_editing/video/logging'
+require 'media_editing/logging'
 require 'media_editing/in_tmp_dir'
 require 'media_editing/video/cmd/video_stream_to_file'
 require 'media_editing/video/cmd/extract_frame'
@@ -12,7 +12,7 @@ module MediaEditing
   module Video
     class Transition
 
-      include MediaEditing::Video::Logging
+      include Logging
       include MediaEditing::InTmpDir
 
       FORMATS              = MediaEditing::Video::FORMATS

@@ -1,6 +1,6 @@
 require 'media_editing'
 require 'media_editing/video'
-require 'media_editing/video/logging'
+require 'media_editing/logging'
 require 'media_editing/in_tmp_dir'
 require 'media_editing/video/cmd/audio_stream_to_file'
 require 'media_editing/video/cmd/mp3_to_wav'
@@ -13,7 +13,7 @@ module MediaEditing
   module Video
     class Concat
 
-      include MediaEditing::Video::Logging
+      include Logging
       include MediaEditing::InTmpDir
 
       FORMATS                = MediaEditing::Video::FORMATS

@@ -95,10 +95,17 @@ module MediaEditing
 
           context "with #{description.to_s.gsub('_',' ')}" do
 
-            let(:video_inputs) { video_inputs }
-            let(:audio_inputs) { audio_inputs }
+            let(:video_inputs)  { video_inputs }
+            let(:audio_inputs)  { audio_inputs }
+            let(:replace_audio) { described_class.new(video_inputs, audio_inputs, output) }
 
-            subject { described_class.new(video_inputs, audio_inputs, output).run }
+            subject { replace_audio.run }
+
+            before(:all) { subject }
+
+            it 'has the expected log folder' do
+              replace_audio.send(:log_folder).should start_with Rails.root.join('log/media_editing/video/replace_audio/test/').to_s
+            end
 
             MEVSS::FORMATS.each do |format|
 
@@ -119,7 +126,7 @@ module MediaEditing
           end
         end
 
-        after { Dir.glob("#{@tmp_dir}/*") { |file| FileUtils.rm file } if @tmp_dir }
+        # after { Dir.glob("#{@tmp_dir}/*") { |file| FileUtils.rm file } if @tmp_dir }
 
         after(:all) do
           if @tmp_dir 

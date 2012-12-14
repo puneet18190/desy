@@ -1,6 +1,6 @@
 require 'media_editing'
 require 'media_editing/video'
-require 'media_editing/video/logging'
+require 'media_editing/logging'
 require 'media_editing/video/allowed_duration_range'
 require 'media_editing/video/info'
 require 'media_editing/error'
@@ -13,7 +13,7 @@ module MediaEditing
     class Conversion
 
       include EnvRelativePath
-      include MediaEditing::Video::Logging
+      include Logging
       include MediaEditing::Video::AllowedDurationRange
 
       TEMP_FOLDER        = Rails.root.join(env_relative_path('tmp/media_editing/video/conversions')).to_s

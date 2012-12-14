@@ -1,6 +1,6 @@
 require 'media_editing'
 require 'media_editing/video'
-require 'media_editing/video/logging'
+require 'media_editing/logging'
 require 'media_editing/in_tmp_dir'
 require 'media_editing/video/cmd/image_to_video'
 require 'mini_magick'
@@ -9,7 +9,7 @@ module MediaEditing
   module Video
     class ImageToVideo
 
-      include MediaEditing::Video::Logging
+      include Logging
       include MediaEditing::InTmpDir
 
       PROCESSED_IMAGE_PATH_FORMAT = 'processed_image.%s'
@@ -54,7 +54,7 @@ module MediaEditing
       def convert_to(processed_image_path, format)
         output_path = output_path(format)
 
-        log_folder = create_log_folder
+        create_log_folder
         stdout_log, stderr_log = stdout_log(format), stderr_log(format)
         cmd        = Cmd::ImageToVideo.new(processed_image_path, output_path, format, duration)
         subexec    = cmd.run %W(#{stdout_log} a), %W(#{stderr_log} a)

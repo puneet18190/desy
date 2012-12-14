@@ -1,11 +1,14 @@
 require 'media_editing'
 require 'shellwords'
+require 'env_relative_path'
 
 module MediaEditing
   module Video
     
     # definisce CONFIG
     require 'media_editing/video/config'
+
+    include EnvRelativePath
     
     FORMATS = CONFIG.formats
 

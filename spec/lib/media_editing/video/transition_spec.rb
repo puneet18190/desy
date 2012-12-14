@@ -92,8 +92,15 @@ module MediaEditing
 
           let(:start_inputs) { MEVSS::TRANSITION_VIDEOS[:start_inputs] }
           let(:end_inputs)   { MEVSS::TRANSITION_VIDEOS[:end_inputs] }
+          let(:transition)   { described_class.new(start_inputs, end_inputs, output) }
 
-          subject { described_class.new(start_inputs, end_inputs, output).run }
+          subject { transition.run }
+
+          before(:all) { subject }
+
+          it 'has the expected log folder' do
+            transition.send(:log_folder).should start_with Rails.root.join('log/media_editing/video/transition/test/').to_s
+          end
 
           MEVSS::FORMATS.each do |format|
 
@@ -111,8 +118,6 @@ module MediaEditing
           end
 
         end
-
-        after { Dir.glob("#{@tmp_dir}/*") { |file| FileUtils.rm file } if @tmp_dir }
 
         after(:all) do
           if @tmp_dir 
