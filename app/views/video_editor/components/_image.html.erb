@@ -3,7 +3,7 @@
   external_div_attributes = "id=\"video_component_#{position}\" data-position=\"#{position}\" data-duration=\"#{component[:duration]}\"" if !empty
 %>
 
-<div class="lista _video_editor_component" <%= external_div_attributes %>>
+<div class="lista _video_editor_component" <%= external_div_attributes.html_safe %>>
   <div class="contatore _video_component_icon"><%= empty ? '' : position %> <div class="photoIcon"></div></div>
   <div class="boxMediaElement _video_editor_component_hover">
     <% if !empty %>
