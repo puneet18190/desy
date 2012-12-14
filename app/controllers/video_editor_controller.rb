@@ -35,7 +35,7 @@ class VideoEditorController < ApplicationController
   end
   
   def save_cache
-    @parameters = extract_form_parameters
+    @current_user.save_video_editor_cache(extract_form_parameters)
     render :nothing => true
   end
   
