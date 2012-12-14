@@ -691,15 +691,28 @@ $(document).ready(function() {
     closePopUp('dialog-virtual-classroom-quick-select');
   });
   
+  // IMAGE EDITOR
+  
+  $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
+  $('body').on('click','._add_image_to_image_editor', function(){
+    window.location = '/images/'+$(this).data('image-id')+'/edit';
+  });
   
   // VIDEO EDITOR
   
   $('body').on('click', '._exit_video_editor', function() {
     var captions = $('#popup_captions_container');
     showConfirmPopUp(captions.data('exit-video-editor-title'), captions.data('exit-video-editor-confirm'), captions.data('exit-video-editor-yes'), captions.data('exit-video-editor-no'), function() {
-      alert('Sei uscito');
+      $('dialog-confirm').hide();
+      $.ajax({
+        type: 'post',
+        url: '/videos/cache/empty',
+        success: function() {
+          window.location = '/dashboard';
+        }
+      });
     }, function() {
-      alert('Hai scelto di rimanere');
+      closePopUp('dialog-confirm');
     });
   });
   

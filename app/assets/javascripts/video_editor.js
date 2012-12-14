@@ -2,6 +2,18 @@ function initializeVideoEditor() {
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: false
   });
+  saveCacheLoop();
+}
+
+function saveCacheLoop() {
+  var time = $('#popup_parameters_container').data('cache-time');
+  setTimeout(function() {
+    
+    console.log('sto salvando la cache');
+    
+    //$('#video_editor_form').submit();
+    saveCacheLoop();
+  }, 5000);
 }
 
 function closeMixedGalleryInVideoEditor() {

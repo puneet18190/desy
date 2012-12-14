@@ -10,7 +10,7 @@
   </div>
   
   <div class="mediaEditorListaElementi">
-    <%= form_tag video_editor_save_cache_path do %>
+    <%= form_tag video_editor_save_cache_path, :id => 'video_editor_form' do %>
       <%= render :partial => 'timeline', :locals => {:parameters => @parameters} %>
       <%= render :partial => 'cutter', :locals => {:parameters => @parameters} %>
       <div class="addAudioandSave">
