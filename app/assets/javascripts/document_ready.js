@@ -900,6 +900,14 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('click', '._commit_video_editor', function() {
+    if($(this).hasClass('_with_choice')) {
+      alert('hai la scelta');
+    } else {
+      alert('non hai nessuna scelta');
+    }
+  });
+  
   initializeVideoEditor();
   
   

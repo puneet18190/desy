@@ -1,4 +1,4 @@
-<%= render :partial => 'image_editor/header' %>
+<%= render :partial => 'image_editor/header', :locals => {:image => @image} %>
 <% div_id =  @image.is_public ? "public" : "not_public" %>
 <div class="mediaEditorElementContainer" id="image_editor_<%= div_id %>">
   <div class="menuLeftEditorElement">
