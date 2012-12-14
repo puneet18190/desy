@@ -64,11 +64,11 @@ module MediaEditing
         end
         let(:output) { File.join tmp_dir, 'out put' }
 
-        subject { described_class.new(MEVSS::CROP_VIDEOS, output, 10, 10).run }
+        subject { described_class.new(MESS::CROP_VIDEOS, output, 10, 10).run }
 
         before(:all) { subject }
 
-        MEVSS::FORMATS.each do |format|
+        MESS::FORMATS.each do |format|
 
           context "with #{format} format", format: format do
             let(:format) { format }

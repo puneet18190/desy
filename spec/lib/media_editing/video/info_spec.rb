@@ -6,13 +6,13 @@ module MediaEditing
 
       context "when the video is not valid" do
         describe 'new' do
-          subject { described_class.new(MEVSS::INVALID_VIDEO) }
+          subject { described_class.new(MESS::INVALID_VIDEO) }
           it { expect { subject }.to raise_error(Error) }
         end
       end    
 
       context "when the video is valid" do
-        subject { described_class.new(MEVSS::VALID_VIDEO) }
+        subject { described_class.new(MESS::VALID_VIDEO) }
 
         it "parses video duration" do
           subject.duration.should == 38.17

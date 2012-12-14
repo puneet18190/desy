@@ -5,8 +5,8 @@ module MediaEditing
     class Cmd
       describe Conversion do
 
-        let(:subexec_options) { MEVSS::AVCONV_WITH_FILTERS_SUBEXEC_OPTIONS }
-        let(:pre_command)     { MEVSS::AVCONV_WITH_FILTERS_PRE_COMMAND }
+        let(:subexec_options) { MESS::AVCONV_WITH_FILTERS_SUBEXEC_OPTIONS }
+        let(:pre_command)     { MESS::AVCONV_WITH_FILTERS_PRE_COMMAND }
       
         supported_formats = FORMATS
 

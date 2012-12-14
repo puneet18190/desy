@@ -90,8 +90,8 @@ module MediaEditing
 
         context "with valid videos" do
 
-          let(:start_inputs) { MEVSS::TRANSITION_VIDEOS[:start_inputs] }
-          let(:end_inputs)   { MEVSS::TRANSITION_VIDEOS[:end_inputs] }
+          let(:start_inputs) { MESS::TRANSITION_VIDEOS[:start_inputs] }
+          let(:end_inputs)   { MESS::TRANSITION_VIDEOS[:end_inputs] }
           let(:transition)   { described_class.new(start_inputs, end_inputs, output) }
 
           subject { transition.run }
@@ -102,7 +102,7 @@ module MediaEditing
             transition.send(:log_folder).should start_with Rails.root.join('log/media_editing/video/transition/test/').to_s
           end
 
-          MEVSS::FORMATS.each do |format|
+          MESS::FORMATS.each do |format|
 
             context "with #{format} format", format: format do
 

@@ -5,7 +5,7 @@ module MediaEditing
     class Cmd
       module Concat
         describe Webm do
-          let(:pre_command) { MEVSS::AVCONV_PRE_COMMAND }
+          let(:pre_command) { MESS::AVCONV_PRE_COMMAND }
           
           subject { described_class.new('video input', audio_input, 10, 'out put') }
           

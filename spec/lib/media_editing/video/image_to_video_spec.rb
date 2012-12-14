@@ -4,7 +4,7 @@ module MediaEditing
   module Video
     describe ImageToVideo do
 
-      supported_video_formats = MEVSS::FORMATS
+      supported_video_formats = MESS::FORMATS
       supported_image_formats = [:jpg, :png]
 
       describe '.new' do
@@ -34,7 +34,7 @@ module MediaEditing
               Dir.glob(File.join(described_class.log_folder, '*'))
             end
 
-            let(:image_to_video) { described_class.new(MEVSS.const_get(:"VALID_#{image_format.upcase}"), output_prefix.path, duration) }
+            let(:image_to_video) { described_class.new(MESS.const_get(:"VALID_#{image_format.upcase}"), output_prefix.path, duration) }
 
             subject { image_to_video.run }
 

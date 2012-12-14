@@ -5,9 +5,9 @@ module MediaEditing
   module Video
     describe Conversion, slow: true do
 
-      supported_formats = MEVSS::FORMATS
+      supported_formats = MESS::FORMATS
 
-      let(:uploaded_path)            { "#{MEVSS::SAMPLES_FOLDER}/tmp.in put.flv" }
+      let(:uploaded_path)            { "#{MESS::SAMPLES_FOLDER}/tmp.in put.flv" }
       let(:filename)                 { 'in put.flv' }
       let(:tempfile)                 { File.open(uploaded_path) }
       let(:uploaded)                 { ActionDispatch::Http::UploadedFile.new(filename: filename, tempfile: tempfile) }
@@ -30,8 +30,8 @@ module MediaEditing
 
             let(:format) { format }
 
-            [ [ :valid_video,               MEVSS::VALID_VIDEO ],
-              [ :valid_video_with_odd_size, MEVSS::VALID_VIDEO_WITH_ODD_SIZE ] ].each do |video_data|
+            [ [ :valid_video,               MESS::VALID_VIDEO ],
+              [ :valid_video_with_odd_size, MESS::VALID_VIDEO_WITH_ODD_SIZE ] ].each do |video_data|
 
               video, video_constant = video_data
 
@@ -87,9 +87,9 @@ module MediaEditing
               subject { described_class.new(uploaded_path, output_without_extension, filename, model.id) }
               
               before do
-                FileUtils.cp MEVSS::VALID_VIDEO, uploaded_path
+                FileUtils.cp MESS::VALID_VIDEO, uploaded_path
                 model
-                FileUtils.cp MEVSS::INVALID_VIDEO, uploaded_path
+                FileUtils.cp MESS::INVALID_VIDEO, uploaded_path
                 FileUtils.rm(temp) if File.exists?(temp)
               end
 
@@ -102,7 +102,7 @@ module MediaEditing
               subject { described_class.new(uploaded_path, output_without_extension, filename, model.id) }
 
               before do
-                FileUtils.cp MEVSS::VALID_VIDEO, uploaded_path
+                FileUtils.cp MESS::VALID_VIDEO, uploaded_path
                 model.media = uploaded
                 FileUtils.rm uploaded_path if File.exists? uploaded_path
                 subject
@@ -125,7 +125,7 @@ module MediaEditing
         context 'with a valid video' do
       
           before(:all) do
-            FileUtils.cp MEVSS::VALID_VIDEO, uploaded_path
+            FileUtils.cp MESS::VALID_VIDEO, uploaded_path
             FileUtils.rm temp if File.exists? temp
             subject.run
             model.reload

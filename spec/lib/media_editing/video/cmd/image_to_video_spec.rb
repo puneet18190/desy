@@ -7,8 +7,8 @@ module MediaEditing
         
         supported_formats = FORMATS
 
-        let(:pre_command) { MEVSS::AVCONV_PRE_COMMAND }
-        let(:vbitrate) { MEVSS::VBITRATE }
+        let(:pre_command) { MESS::AVCONV_PRE_COMMAND }
+        let(:vbitrate) { MESS::VBITRATE }
 
         supported_formats.each do |format|
           context "with #{format} format", format: format do

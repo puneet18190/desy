@@ -90,7 +90,7 @@ module MediaEditing
         end
         let(:output) { File.join tmp_dir, 'out put' }
 
-        MEVSS::REPLACE_AUDIO_VIDEOS.each do |description, other_infos|
+        MESS::REPLACE_AUDIO_VIDEOS.each do |description, other_infos|
           video_inputs, audio_inputs = other_infos[:video_inputs], other_infos[:audio_inputs]
 
           context "with #{description.to_s.gsub('_',' ')}" do
@@ -107,7 +107,7 @@ module MediaEditing
               replace_audio.send(:log_folder).should start_with Rails.root.join('log/media_editing/video/replace_audio/test/').to_s
             end
 
-            MEVSS::FORMATS.each do |format|
+            MESS::FORMATS.each do |format|
 
               context "with #{format} format", format: format do
 

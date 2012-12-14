@@ -64,7 +64,7 @@ module MediaEditing
           end
           let(:output)       { File.join tmp_dir, 'out put' }
           let(:input_videos) do
-            Hash[ MEVSS::CONCAT_VIDEOS[:videos_with_some_audio_streams][:videos].map{ |k,v| [k, [v.first] ] } ]
+            Hash[ MESS::CONCAT_VIDEOS[:videos_with_some_audio_streams][:videos].map{ |k,v| [k, [v.first] ] } ]
           end
           let(:concat) { described_class.new(input_videos, output) }
           
@@ -76,7 +76,7 @@ module MediaEditing
             concat.send(:stdout_log).should start_with Rails.root.join('log/media_editing/video/concat/test/').to_s
           end
 
-          MEVSS::FORMATS.each do |format|
+          MESS::FORMATS.each do |format|
 
             context "with #{format} format", format: format do
 
@@ -102,7 +102,7 @@ module MediaEditing
 
         end
 
-        MEVSS::CONCAT_VIDEOS.each do |description, other_infos|
+        MESS::CONCAT_VIDEOS.each do |description, other_infos|
           input_videos, output_infos = other_infos[:videos], other_infos[:output_infos]
 
           context "with #{description.to_s.gsub('_',' ')}" do
@@ -113,7 +113,7 @@ module MediaEditing
             let(:output)       { File.join tmp_dir, 'out put' }
             let(:input_videos) { input_videos }
 
-            MEVSS::FORMATS.each do |format|
+            MESS::FORMATS.each do |format|
 
               context "with #{format} format", format: format do
 

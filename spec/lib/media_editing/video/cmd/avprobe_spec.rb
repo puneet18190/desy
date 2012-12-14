@@ -6,7 +6,7 @@ module MediaEditing
       describe Avprobe do
 
         describe 'class methods' do
-          let(:subexec_options) { MEVSS::AVPROBE_SUBEXEC_OPTIONS }
+          let(:subexec_options) { MESS::AVPROBE_SUBEXEC_OPTIONS }
           subject { described_class }
 
           its(:subexec_options) { should == subexec_options }
@@ -15,7 +15,7 @@ module MediaEditing
         let(:input) { 'in put.flv' }
         subject { described_class.new(input) }
 
-        its(:to_s) { should == "#{MEVSS::AVPROBE_PRE_COMMAND} in\\ put.flv" }
+        its(:to_s) { should == "#{MESS::AVPROBE_PRE_COMMAND} in\\ put.flv" }
 
         describe 'run' do
           it 'returns a Subexec instance' do
@@ -25,22 +25,22 @@ module MediaEditing
             subject.run.should be subject.subexec
           end
           it 'sets the correct #subexec sh vars' do
-            subject.run.sh_vars.should == MEVSS::AVPROBE_SUBEXEC_SH_VARS
+            subject.run.sh_vars.should == MESS::AVPROBE_SUBEXEC_SH_VARS
           end
           it 'sets the correct #subexec timeout' do
-            subject.run.timeout.should == MEVSS::AVPROBE_SUBEXEC_TIMEOUT
+            subject.run.timeout.should == MESS::AVPROBE_SUBEXEC_TIMEOUT
           end
           it 'sets #exitstatus equal to subexec exitstatus' do
             subject.run.exitstatus.should be subject.exitstatus
           end
           context 'with a valid video' do
-            let(:input) { MEVSS::VALID_VIDEO }
+            let(:input) { MESS::VALID_VIDEO }
             it 'sets exitstatus equal to 0' do
               subject.run.exitstatus.should be 0
             end
           end
           context 'with an invalid video' do
-            let(:input) { MEVSS::INVALID_VIDEO }
+            let(:input) { MESS::INVALID_VIDEO }
             it 'sets exitstatus greater than 0' do
               subject.run.exitstatus.should be > 0
             end
