@@ -134,19 +134,19 @@ $(document).ready(function() {
     $('#form_info_new_media_element_in_editor').show();
   });
   
-  $('body').on('click','#form_info_new_media_element_in_editor _save', function(){
+  $('body').on('click','#form_info_new_media_element_in_editor ._save', function(){
     commitImageEditing("save");
   });
   
-  $('body').on('click','#form_info_update_media_element_in_editor _save', function(){
+  $('body').on('click','#form_info_update_media_element_in_editor ._save', function(){
     commitImageEditing("overwrite");
   });
   
-  $('body').on('click','#form_info_new_media_element_in_editor _cancel', function(){
+  $('body').on('click','#form_info_new_media_element_in_editor ._cancel', function(){
     $('#form_info_new_media_element_in_editor').hide();
   });
   
-  $('body').on('click','#form_info_update_media_element_in_editor _cancel', function(){
+  $('body').on('click','#form_info_update_media_element_in_editor ._cancel', function(){
     $('#form_info_update_media_element_in_editor').hide();
   });
   
