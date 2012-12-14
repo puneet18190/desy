@@ -2,9 +2,6 @@ function initializeVideoEditor() {
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: false
   });
-  setTimeout(function() {
-    startCacheLoop();
-  }, $('#popup_parameters_container').data('cache-time'));
 }
 
 function startCacheLoop() {
@@ -63,7 +60,7 @@ function replaceImageComponentInVideoEditor(image_id, component, position, durat
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
   clearSpecificVideoEditorComponentParameters(position);
   $('#' + position + ' ._video_component_input_type').val('image');
-  var to_be_appended = fillVideoEditorSingleParameter('image', identifier, image_id);
+  var to_be_appended = fillVideoEditorSingleParameter('image_id', identifier, image_id);
   to_be_appended += fillVideoEditorSingleParameter('duration', identifier, duration);
   $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(position, duration);
@@ -80,7 +77,7 @@ function replaceVideoComponentInVideoEditor(video_id, component, position, durat
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
   clearSpecificVideoEditorComponentParameters(position);
   $('#' + position + ' ._video_component_input_type').val('video');
-  var to_be_appended = fillVideoEditorSingleParameter('video', identifier, video_id);
+  var to_be_appended = fillVideoEditorSingleParameter('video_id', identifier, video_id);
   to_be_appended += fillVideoEditorSingleParameter('from', identifier, 0);
   to_be_appended += fillVideoEditorSingleParameter('until', identifier, duration);
   $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
@@ -152,8 +149,8 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
   huge_selector += ', #' + component_id + ' ._video_component_input_background_color';
   huge_selector += ', #' + component_id + ' ._video_component_input_text_color';
   huge_selector += ', #' + component_id + ' ._video_component_input_duration';
-  huge_selector += ', #' + component_id + ' ._video_component_input_image';
-  huge_selector += ', #' + component_id + ' ._video_component_input_video';
+  huge_selector += ', #' + component_id + ' ._video_component_input_image_id';
+  huge_selector += ', #' + component_id + ' ._video_component_input_video_id';
   huge_selector += ', #' + component_id + ' ._video_component_input_from';
   huge_selector += ', #' + component_id + ' ._video_component_input_until';
   $(huge_selector).remove();

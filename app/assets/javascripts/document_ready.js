@@ -719,6 +719,7 @@ $(document).ready(function() {
   // VIDEO EDITOR
   
   $('body').on('click', '._exit_video_editor', function() {
+    stopCacheLoop();
     var captions = $('#popup_captions_container');
     showConfirmPopUp(captions.data('exit-video-editor-title'), captions.data('exit-video-editor-confirm'), captions.data('exit-video-editor-yes'), captions.data('exit-video-editor-no'), function() {
       $('dialog-confirm').hide();
@@ -730,6 +731,7 @@ $(document).ready(function() {
         }
       });
     }, function() {
+      startCacheLoop();
       closePopUp('dialog-confirm');
     });
   });
@@ -895,6 +897,14 @@ $(document).ready(function() {
       } else {
         addTextComponentInVideoEditor(component, content, duration, background_color, text_color);
       }
+    }
+  });
+  
+  $('body').on('click', '._commit_video_editor', function() {
+    if($(this).hasClass('_with_choice')) {
+      alert('hai la scelta');
+    } else {
+      alert('non hai nessuna scelta');
     }
   });
   
