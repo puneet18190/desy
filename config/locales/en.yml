@@ -68,6 +68,7 @@ en:
     author: 'Author'
     background_color: 'Background color'
     back_in_desy: 'Back in DESY'
+    cancel: 'Cancel'
     click_image_to_add_text: 'Click on the image to add text'
     choose_audio: 'click here to add audio'
     choose_image: 'click here to add image'
@@ -96,8 +97,9 @@ en:
     enter_lesson_tags: 'Enter tags'
     enter_title: 'Enter title'
     exit: 'Exit'
-    fill_in_form_for_new_lesson: 'Fill in the form to create a new lesson'
+    fill_in_form_for_new_lesson: 'Enter the details of the lesson you are about to create.'
     find_out_the_benefits_of_desy: 'Find out the benefits of DESY'
+    good_work: 'Good work!'
     help_using_desy: 'Need help using Desy?'
     home: 'Home'
     image_caption_placeholder: 'Write a caption'
@@ -119,6 +121,7 @@ en:
     matter: 'Matter'
     media_elements: 'Elements'
     modify_info_element: 'Modify info element'
+    next: "Next"
     new_element_untitled: 'New element - untitled'
     no_notifications: "You don't have any notifications"
     or_cancel: 'Or cancel'
@@ -157,9 +160,9 @@ en:
     total_length: 'Total lenght'
     untitled_new_element: "New element - untitled"
     update: 'Update'
-    update_lesson: 'Update lesson'
+    update_lesson: 'Change the lesson info'
     upload: 'Upload'
-    use_the_form_below_for_lesson_information: 'Use the form below to edit your lesson info'
+    use_the_form_below_for_lesson_information: 'Modify or change information related to your lesson.'
     video_editor_label: 'Edit video'
     virtual_classroom: 'Virtual classroom'
     warning: 'Warning!'
