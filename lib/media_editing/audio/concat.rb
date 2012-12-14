@@ -48,6 +48,10 @@ module MediaEditing
       end
 
       private
+      def concat(format)
+
+      end
+      
       def mp3_output
         OUTPUT_MP3_FORMAT % @output_without_extension
       end

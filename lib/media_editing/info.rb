@@ -1,6 +1,6 @@
 require 'media_editing'
 require 'media_editing/error'
-require 'media_editing/video/cmd/avprobe'
+require 'media_editing/cmd/avprobe'
 
 module MediaEditing
   class Info

@@ -1,3 +1,5 @@
+require 'media_editing'
+require 'media_editing/video'
 require 'recursive_open_struct'
 
 module MediaEditing

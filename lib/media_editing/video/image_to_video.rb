@@ -2,6 +2,7 @@ require 'media_editing'
 require 'media_editing/video'
 require 'media_editing/logging'
 require 'media_editing/in_tmp_dir'
+require 'media_editing/info'
 require 'media_editing/video/cmd/image_to_video'
 require 'mini_magick'
 

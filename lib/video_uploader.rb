@@ -167,7 +167,7 @@ class VideoUploader < String
     infos = {}
     @converted_files.each do |format, input_path|
       FileUtils.cp input_path, output_path(format)
-      info = MediaEditing::Video::Info.new(input_path)
+      info = MediaEditing::Info.new(input_path)
       infos[format] = info
       model.send :"#{format}_duration=", info.duration
     end

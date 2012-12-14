@@ -2,6 +2,7 @@ require 'media_editing'
 require 'media_editing/video'
 require 'media_editing/logging'
 require 'media_editing/in_tmp_dir'
+require 'media_editing/info'
 require 'media_editing/video/cmd/video_stream_to_file'
 require 'media_editing/video/cmd/replace_audio'
 
