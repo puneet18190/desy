@@ -36,16 +36,25 @@
 <div id="info_container" data-components-number="<%= @parameters[:components].count %>" data-current-component="" data-replacing-component="false" data-total-length="<%= @total_length %>" data-save-cache="false" style="display:none"></div>
 
 
-<% if !@cache.nil? %>
-  <script type="text/javascript">
+<script type="text/javascript">
+  <% if @cache.nil? %>
+    $(document).ready(function() {
+      setTimeout(function() {
+        startCacheLoop();
+      }, $('#popup_parameters_container').data('cache-time'));
+    });
+  <% else %>
     showRestoreCacheMediaElementEditorPopUp(function() {
       window.location.href = '/videos/cache/restore'
     }, function() {
       closePopUp('dialog-restore-cache-media-element-editor');
       $.ajax({
         type: 'post',
-        url: '/videos/cache/empty'
+        url: '/videos/cache/empty',
+        success: function() {
+          startCacheLoop();
+        }
       });
     });
-  </script>
-<% end %>
+  <% end %>
+</script>

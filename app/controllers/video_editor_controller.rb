@@ -35,7 +35,7 @@ class VideoEditorController < ApplicationController
   end
   
   def save_cache
-    @parameters = extract_form_parameters
+   # @parameters = extract_form_parameters
     render :nothing => true
   end
   
@@ -44,71 +44,77 @@ class VideoEditorController < ApplicationController
   
   private
   
-  def extract_form_parameters
-    
-  resp = {}
-  
-  params.each do |k, v|
-    if !(k =~ /_/).nil?
-      index = k.split('_').last.to_i
-      p = k.gsub("_#{index}", '')
-      if ['type', 'video', 'image', 'from', 'until', 'position', 'content', 'background_color', 'text_color', 'duration'].include?(p)
-        if resp.has_key? index
-          resp[index][p] = extract_single_form_parameter p, v
-      end
-    end
-  end
-  
-  
-  {
-    #"type_1" => "video",
-    #"video_1" => "1",
-    #"from_1" => "1",
-    #"until_1" => "14",
-    #"position_1" => "1",
-    #"type_2" => "text",
-    #"content_2" => "Titolo di prova",
-    #"background_color_2" => "black",
-    #"text_color_2" => "light_blue",
-    #"duration_2" => "5",
-    #"position_2" => "2",
-    #"type_3" => "video",
-    #"video_3" => "3",
-    #"from_3" => "0",
-    #"until_3" => "38",
-    #"position_3" => "3",
-    #"type_4" => "video",
-    #"video_4" => "4",
-    #"from_4" => "10",
-    #"until_4" => "15",
-    #"position_4" => "4",
-    #"type_5" => "text",
-    #"content_5" => "Secondo titolo di prova",
-    #"background_color_5" => "white",
-    #"text_color_5" => "green",
-    #"duration_5" => "8",
-    #"position_5" => "5",
-    #"type_6" => "image",
-    #"image_6" => "6",
-    #"duration_6" => "11",
-    #"position_6" => "6",
-    #"type_7" => "video",
-    #"video_7" => "5",
-    #"from_7" => "14",
-    #"until_7" => "15",
-    #"position_7" => "7",
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  end
+#  def extract_single_form_parameter p, 
+#  end
+#  
+#  def extract_form_parameters
+#    
+#  resp = {}
+#  
+#  params.each do |k, v|
+#    if !(k =~ /_/).nil?
+#      index = k.split('_').last.to_i
+#      p = k.gsub("_#{index}", '')
+#      if ['type', 'video', 'image', 'from', 'until', 'position', 'content', 'background_color', 'text_color', 'duration'].include?(p)
+#        if resp.has_key? index
+#          resp[index][p] = extract_single_form_parameter(p, v)
+#        else
+#          resp[index] = {p => extract_single_form_parameter(p, v)}
+#        end
+#      end
+#    end
+#  end
+#  
+#  
+#  {
+#    #"type_1" => "video",
+#    #"video_1" => "1",
+#    #"from_1" => "1",
+#    #"until_1" => "14",
+#    #"position_1" => "1",
+#    #"type_2" => "text",
+#    #"content_2" => "Titolo di prova",
+#    #"background_color_2" => "black",
+#    #"text_color_2" => "light_blue",
+#    #"duration_2" => "5",
+#    #"position_2" => "2",
+#    #"type_3" => "video",
+#    #"video_3" => "3",
+#    #"from_3" => "0",
+#    #"until_3" => "38",
+#    #"position_3" => "3",
+#    #"type_4" => "video",
+#    #"video_4" => "4",
+#    #"from_4" => "10",
+#    #"until_4" => "15",
+#    #"position_4" => "4",
+#    #"type_5" => "text",
+#    #"content_5" => "Secondo titolo di prova",
+#    #"background_color_5" => "white",
+#    #"text_color_5" => "green",
+#    #"duration_5" => "8",
+#    #"position_5" => "5",
+#    #"type_6" => "image",
+#    #"image_6" => "6",
+#    #"duration_6" => "11",
+#    #"position_6" => "6",
+#    #"type_7" => "video",
+#    #"video_7" => "5",
+#    #"from_7" => "14",
+#    #"until_7" => "15",
+#    #"position_7" => "7",
+#  }
+#  
+#  
+#  
+#  
+#  
+#  
+#  
+#  
+#  
+#  
+#  end
   
   def convert_video_to_parameters
     resp = {}

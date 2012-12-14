@@ -2,9 +2,6 @@ function initializeVideoEditor() {
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: false
   });
-  setTimeout(function() {
-    startCacheLoop();
-  }, $('#popup_parameters_container').data('cache-time'));
 }
 
 function startCacheLoop() {
