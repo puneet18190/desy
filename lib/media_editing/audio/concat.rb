@@ -8,7 +8,7 @@ module MediaEditing
     class Concat
 
       include Logging
-      include MediaEditing::InTmpDir
+      include InTmpDir
 
       def initialize(inputs, output_without_extension)
         unless inputs.is_a?(Hash)                                                     and 
