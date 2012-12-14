@@ -39,11 +39,53 @@ class VideoEditorController < ApplicationController
   end
   
   def save
-    
+    parameters = Video.convert_parameters(extract_form_parameters, @current_user.id)
+    if parameters.nil?
+      @current_user.empty_video_editor_cache
+      redirect_to '/dashboard' # FIXME decidere che fare in questo caso
+      return
+    end
+    parameters[:initial_video] = Video.new
+    parameters[:initial_video].title = params[:new_title]
+    parameters[:initial_video].description = params[:new_description]
+    parameters[:initial_video].tags = params[:new_tags]
+    parameters[:initial_video].user_id = @current_user.id
+    temporary_initial_video = parameters[:initial_video]
+    # provo a validarlo per vedere se è ok
+    temporary_initial_video.valid?
+    errors = temporary_initial_video.errors.messages
+    errors.delete(:media)
+    if errors.empty?
+      # manda parameters al video editor di Maurizio, e fai redirect_to my_media_elements_path
+      # usa le notifiche per segnalare la riuscita o non riuscita del salvataggio??
+      # svuota la cache se il salvataggio riesce
+    else
+      # rispondi JS! creare un file .js.erb, devo ritornare al form iniziale!
+    end
   end
   
   def overwrite
-    
+    parameters = Video.convert_parameters(extract_form_parameters, @current_user.id)
+    if parameters.nil?
+      @current_user.empty_video_editor_cache
+      redirect_to '/dashboard' # FIXME decidere che fare in questo caso
+      return
+    end
+    parameters[:initial_video].title = params[:new_title]
+    parameters[:initial_video].description = params[:new_description]
+    parameters[:initial_video].tags = params[:new_tags]
+    temporary_initial_video = parameters[:initial_video]
+    # provo a validarlo per vedere se è ok
+    temporary_initial_video.valid?
+    errors = temporary_initial_video.errors.messages
+    errors.delete(:media)
+    if errors.empty?
+      # manda parameters al video editor di Maurizio, e fai redirect_to my_media_elements_path
+      # usa le notifiche per segnalare la riuscita o non riuscita del salvataggio??
+      # svuota la cache se il salvataggio riesce
+    else
+      # rispondi JS! creare un file .js.erb, devo ritornare al form iniziale!
+    end
   end
   
   private
