@@ -38,7 +38,12 @@ class VideoEditorController < ApplicationController
     render :nothing => true
   end
   
-  def commit
+  def save
+    
+  end
+  
+  def overwrite
+    
   end
   
   private
