@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require 'media_editing/video/allowed_duration_range'
+require 'media_editing/allowed_duration_range'
 require 'env_relative_path'
 require 'media_editing/video/cmd/extract_frame'
 require 'media_editing/image/resize_to_fill'
@@ -10,7 +10,7 @@ class VideoUploader < String
   require 'video_uploader/validation'
 
   include EnvRelativePath
-  include MediaEditing::Video::AllowedDurationRange
+  include MediaEditing::AllowedDurationRange
   include VideoUploader::Validation
 
   attr_reader :model, :column, :value

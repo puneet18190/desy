@@ -1,7 +1,7 @@
 require 'media_editing'
 require 'media_editing/video'
 require 'media_editing/logging'
-require 'media_editing/video/allowed_duration_range'
+require 'media_editing/allowed_duration_range'
 require 'media_editing/info'
 require 'media_editing/error'
 require 'media_editing/video/cmd/conversion'
@@ -54,7 +54,7 @@ module MediaEditing
 
           unless allowed_duration_range?(mp4_file_info.duration, webm_file_info.duration) 
             raise Error.new( 'output videos have different duration', 
-                                                  model_id: model_id, mp4_duration: mp4_file_info.duration, webm_duration: webm_file_info.duration )
+                             model_id: model_id, mp4_duration: mp4_file_info.duration, webm_duration: webm_file_info.duration )
           end
 
           cover_path = File.join output_folder, COVER_FORMAT % output_filename_without_extension
@@ -89,14 +89,14 @@ module MediaEditing
         Cmd::ExtractFrame.new(input, output, seek).run! %W(#{stdout_log} a), %W(#{stderr_log} a)
         unless File.exists? output
           raise Error.new( 'unable to create cover',
-                                                model_id: model_id, input: input, output: output, stdout_log: stdout_log, stderr_log: stderr_log)
+                           model_id: model_id, input: input, output: output, stdout_log: stdout_log, stderr_log: stderr_log)
         end
       end
 
       def convert_to(format)
         if not File.exists? uploaded_path and not File.exists? temp_path
           raise Error.new( "at least one between uploaded_path and temp_path must exist", 
-                                                temp_path: temp_path, uploaded_path: uploaded_path, format: format )
+                           temp_path: temp_path, uploaded_path: uploaded_path, format: format )
         end
 
         FileUtils.mkdir_p temp_folder unless Dir.exists? temp_folder
