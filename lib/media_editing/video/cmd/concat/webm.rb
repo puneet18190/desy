@@ -10,7 +10,7 @@ module MediaEditing
     class Cmd
       module Concat
 
-        class Webm < MediaEditing::Video::Cmd::Avconv
+        class Webm < Cmd::Avconv
           def initialize(video_input, audio_input, _duration, output)
             @video_input, @audio_input, @duration, @output = video_input, audio_input, _duration, output
             inputs = [@video_input]

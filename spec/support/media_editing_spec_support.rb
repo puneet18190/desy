@@ -1,6 +1,6 @@
 require 'media_editing'
 
-module MediaEditingVideoSpecSupport
+module MediaEditingSpecSupport
   SAMPLES_FOLDER = Pathname.new File.expand_path('../samples', __FILE__)
 
   INVALID_VIDEO             = SAMPLES_FOLDER.join('invalid video.flv').to_s
@@ -62,4 +62,4 @@ module MediaEditingVideoSpecSupport
   IMAGEMAGICK_CONVERT_PRE_COMMAND = 'convert'
 end
 
-MEVSS = MediaEditingVideoSpecSupport
+MESS = MediaEditingSpecSupport

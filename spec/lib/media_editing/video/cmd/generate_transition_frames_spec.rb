@@ -5,7 +5,7 @@ module MediaEditing
     class Cmd
       describe GenerateTransitionFrames do
 
-        let(:pre_command) { MEVSS::IMAGEMAGICK_CONVERT_PRE_COMMAND }
+        let(:pre_command) { MESS::IMAGEMAGICK_CONVERT_PRE_COMMAND }
         
         subject { described_class.new('start frame', 'end frame', 'frames format', 23) }
         

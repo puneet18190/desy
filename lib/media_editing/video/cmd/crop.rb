@@ -7,7 +7,7 @@ require 'shellwords'
 module MediaEditing
   module Video
     class Cmd
-      class Crop < MediaEditing::Video::Cmd::Avconv
+      class Crop < Cmd::Avconv
         def initialize(input, output, _start, _duration, format)
           inputs = [input]
           super inputs, output, format

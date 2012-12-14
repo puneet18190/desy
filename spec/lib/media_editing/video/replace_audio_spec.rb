@@ -90,24 +90,31 @@ module MediaEditing
         end
         let(:output) { File.join tmp_dir, 'out put' }
 
-        MEVSS::REPLACE_AUDIO_VIDEOS.each do |description, other_infos|
+        MESS::REPLACE_AUDIO_VIDEOS.each do |description, other_infos|
           video_inputs, audio_inputs = other_infos[:video_inputs], other_infos[:audio_inputs]
 
           context "with #{description.to_s.gsub('_',' ')}" do
 
-            let(:video_inputs) { video_inputs }
-            let(:audio_inputs) { audio_inputs }
+            let(:video_inputs)  { video_inputs }
+            let(:audio_inputs)  { audio_inputs }
+            let(:replace_audio) { described_class.new(video_inputs, audio_inputs, output) }
 
-            subject { described_class.new(video_inputs, audio_inputs, output).run }
+            subject { replace_audio.run }
 
-            MEVSS::FORMATS.each do |format|
+            before(:all) { subject }
+
+            it 'has the expected log folder' do
+              replace_audio.send(:log_folder).should start_with Rails.root.join('log/media_editing/video/replace_audio/test/').to_s
+            end
+
+            MESS::FORMATS.each do |format|
 
               context "with #{format} format", format: format do
 
                 let(:format)      { format }
                 let(:description) { description }
-                let(:input_info)  { MediaEditing::Video::Info.new(video_inputs[format]).info }
-                let(:output_info) { MediaEditing::Video::Info.new(subject[format]).info }
+                let(:input_info)  { Info.new(video_inputs[format]).info }
+                let(:output_info) { Info.new(subject[format]).info }
 
                 it 'creates a video with the expected duration' do
                   output_info[:duration].should be_within(0.1).of input_info[:duration]
@@ -119,7 +126,7 @@ module MediaEditing
           end
         end
 
-        after { Dir.glob("#{@tmp_dir}/*") { |file| FileUtils.rm file } if @tmp_dir }
+        # after { Dir.glob("#{@tmp_dir}/*") { |file| FileUtils.rm file } if @tmp_dir }
 
         after(:all) do
           if @tmp_dir 

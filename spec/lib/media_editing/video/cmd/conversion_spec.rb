@@ -5,10 +5,10 @@ module MediaEditing
     class Cmd
       describe Conversion do
 
-        let(:subexec_options) { MEVSS::AVCONV_WITH_FILTERS_SUBEXEC_OPTIONS }
-        let(:pre_command)     { MEVSS::AVCONV_WITH_FILTERS_PRE_COMMAND }
+        let(:subexec_options) { MESS::AVCONV_WITH_FILTERS_SUBEXEC_OPTIONS }
+        let(:pre_command)     { MESS::AVCONV_WITH_FILTERS_PRE_COMMAND }
       
-        supported_formats = MediaEditing::Video::FORMATS
+        supported_formats = FORMATS
 
         describe 'class methods' do
           subject { described_class }
@@ -41,13 +41,13 @@ module MediaEditing
 
             context "with format #{format}" do
               
-              let(:ow)             { MediaEditing::Video::AVCONV_OUTPUT_WIDTH        }
-              let(:oh)             { MediaEditing::Video::AVCONV_OUTPUT_HEIGHT       }
-              let(:oar)            { MediaEditing::Video::AVCONV_OUTPUT_ASPECT_RATIO }
+              let(:ow)             { AVCONV_OUTPUT_WIDTH        }
+              let(:oh)             { AVCONV_OUTPUT_HEIGHT       }
+              let(:oar)            { AVCONV_OUTPUT_ASPECT_RATIO }
               let!(:format)        { format }
               let!(:vbitrate) { ' -b:v 2M' if format == :webm }
               let!(:cmd_format)   do
-                %Q[#{pre_command} -i inp\\ ut -sn -threads #{MediaEditing::Video::AVCONV_OUTPUT_THREADS[format]} -q:v 1 -q:a #{MediaEditing::Video::AVCONV_OUTPUT_QA[format]}#{vbitrate} -c:v #{MediaEditing::Video::AVCONV_CODECS[format][0]} -c:a #{MediaEditing::Video::AVCONV_CODECS[format][1]} -map 0:v:0%s -vf 'scale=lt(iw/ih\\,#{oar})*#{ow}+gte(iw/ih\\,#{oar})*-1:lt(iw/ih\\,#{oar})*-1+gte(iw/ih\\,#{oar})*#{oh},crop=#{ow}:#{oh}:(iw-ow)/2:(ih-oh)/2' out\\ put]
+                %Q[#{pre_command} -i inp\\ ut -sn -threads #{AVCONV_OUTPUT_THREADS[format]} -q:v 1 -q:a #{AVCONV_OUTPUT_QA[format]}#{vbitrate} -c:v #{AVCONV_CODECS[format][0]} -c:a #{AVCONV_CODECS[format][1]} -map 0:v:0%s -vf 'scale=lt(iw/ih\\,#{oar})*#{ow}+gte(iw/ih\\,#{oar})*-1:lt(iw/ih\\,#{oar})*-1+gte(iw/ih\\,#{oar})*#{oh},crop=#{ow}:#{oh}:(iw-ow)/2:(ih-oh)/2' out\\ put]
               end
 
               context 'when audio streams are not present' do

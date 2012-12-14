@@ -5,9 +5,9 @@ module MediaEditing
   module Video
     describe Conversion, slow: true do
 
-      supported_formats = MEVSS::FORMATS
+      supported_formats = MESS::FORMATS
 
-      let(:uploaded_path)            { "#{MEVSS::SAMPLES_FOLDER}/tmp.in put.flv" }
+      let(:uploaded_path)            { "#{MESS::SAMPLES_FOLDER}/tmp.in put.flv" }
       let(:filename)                 { 'in put.flv' }
       let(:tempfile)                 { File.open(uploaded_path) }
       let(:uploaded)                 { ActionDispatch::Http::UploadedFile.new(filename: filename, tempfile: tempfile) }
@@ -30,14 +30,16 @@ module MediaEditing
 
             let(:format) { format }
 
-            [ [ :valid_video,               MEVSS::VALID_VIDEO ],
-              [ :valid_video_with_odd_size, MEVSS::VALID_VIDEO_WITH_ODD_SIZE ] ].each do |video_data|
+            [ [ :valid_video,               MESS::VALID_VIDEO ],
+              [ :valid_video_with_odd_size, MESS::VALID_VIDEO_WITH_ODD_SIZE ] ].each do |video_data|
 
               video, video_constant = video_data
 
               context "with a #{video.to_s.humanize.downcase}" do
 
-                subject { described_class.new(uploaded_path, output_without_extension, filename, model.id).convert_to(format) }
+                let(:conversion) { described_class.new(uploaded_path, output_without_extension, filename, model.id) }
+
+                subject { conversion.convert_to(format) }
 
                 before(:all) do
                   FileUtils.cp video_constant, uploaded_path
@@ -46,12 +48,20 @@ module MediaEditing
                 end
 
                 it "creates a valid video" do
-                  expect{ MediaEditing::Video::Info.new(output) }.to_not raise_error
+                  expect{ Info.new(output) }.to_not raise_error
                 end
 
                 it 'creates a video with the expected duration' do
-                  temp_duration, output_duration = MediaEditing::Video::Info.new(temp).duration, MediaEditing::Video::Info.new(output).duration
+                  temp_duration, output_duration = Info.new(temp).duration, Info.new(output).duration
                   temp_duration.should be_within(described_class::DURATION_THRESHOLD).of(output_duration)
+                end
+
+                it 'has the expected stdout_log path' do
+                  conversion.send(:stdout_log, format).should == stdout_log
+                end
+
+                it 'has the expected stderr_log path' do
+                  conversion.send(:stderr_log, format).should == stderr_log
                 end
 
                 it "creates the stdout log" do
@@ -77,9 +87,9 @@ module MediaEditing
               subject { described_class.new(uploaded_path, output_without_extension, filename, model.id) }
               
               before do
-                FileUtils.cp MEVSS::VALID_VIDEO, uploaded_path
+                FileUtils.cp MESS::VALID_VIDEO, uploaded_path
                 model
-                FileUtils.cp MEVSS::INVALID_VIDEO, uploaded_path
+                FileUtils.cp MESS::INVALID_VIDEO, uploaded_path
                 FileUtils.rm(temp) if File.exists?(temp)
               end
 
@@ -89,16 +99,10 @@ module MediaEditing
 
             context 'when uploaded_path file and temporary file do not exist' do
 
-              # let(:model) do
-              #   ::Video.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: uploaded) do |video|
-              #     video.user_id = User.admin.id
-              #   end.tap{ |v| v.skip_conversion = true; v.save! }
-              # end
-
               subject { described_class.new(uploaded_path, output_without_extension, filename, model.id) }
 
               before do
-                FileUtils.cp MEVSS::VALID_VIDEO, uploaded_path
+                FileUtils.cp MESS::VALID_VIDEO, uploaded_path
                 model.media = uploaded
                 FileUtils.rm uploaded_path if File.exists? uploaded_path
                 subject
@@ -121,7 +125,7 @@ module MediaEditing
         context 'with a valid video' do
       
           before(:all) do
-            FileUtils.cp MEVSS::VALID_VIDEO, uploaded_path
+            FileUtils.cp MESS::VALID_VIDEO, uploaded_path
             FileUtils.rm temp if File.exists? temp
             subject.run
             model.reload
@@ -138,7 +142,7 @@ module MediaEditing
 
               def info(format)
                 @info ||= {}
-                @info[format] ||= MediaEditing::Video::Info.new(output)
+                @info[format] ||= Info.new(output)
               end
 
               it "creates a valid video" do

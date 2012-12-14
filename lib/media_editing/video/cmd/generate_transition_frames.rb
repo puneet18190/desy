@@ -6,9 +6,9 @@ require 'shellwords'
 module MediaEditing
   module Video
     class Cmd
-      class GenerateTransitionFrames < MediaEditing::Video::Cmd
+      class GenerateTransitionFrames < Cmd
 
-        BIN = MediaEditing::Video::IMAGEMAGICK_CONVERT_BIN.shellescape
+        BIN = IMAGEMAGICK_CONVERT_BIN.shellescape
 
         # convert arbitro.jpg piscina.jpg -morph 23 trans.jpg
         def initialize(start_frame, end_frame, frames_format, frames_amount)

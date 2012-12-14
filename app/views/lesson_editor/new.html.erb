@@ -1,15 +1,20 @@
 <ul id="slides" class="new">
   <li class="info slides">
     <div class="box">
-      <h3><%= t('captions.create_new_lesson') %></h3>
-      <p><%= t('captions.fill_in_form_for_new_lesson') %></p>
+      <span class="infoButtonWhite"></span>
+      <h2><%= t('captions.create_new_lesson') %></h2>
+      <h3>
+        <%= t('captions.fill_in_form_for_new_lesson') %>
+        <br />
+        <%= t('captions.good_work') %>
+      </h3>
       <%= form_tag('/lessons/create') do -%>
         <%= text_field_tag "title", "", :placeholder => "#{t 'captions.enter_lesson_title'}", :class=>"pull-left" %>
         <%= select_tag "subject", options_from_collection_for_select(@subjects, "id", "description"), :include_blank => false, :class=>"pull-right", :id => "lesson_subject" %>
         <%= text_area_tag "description", "", :placeholder=> "#{t 'captions.enter_lesson_description'}", :class=>"pull-left" %>
         <%= text_area_tag "tags", "", :placeholder=>"#{t 'captions.enter_lesson_tags'}", :class=>"pull-right" %>
         <br />
-        <%= submit_tag "#{t 'captions.create'}", :class=>"lesson-create pull-right" %>
+        <%= submit_tag "#{t 'captions.next'}".downcase, :class=>"lesson-create pull-right" %>
       <% end -%>
     </div>
     <div class="info-slide-footer">
