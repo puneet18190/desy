@@ -10,8 +10,8 @@ module MediaEditing
       class Conversion < Cmd::Avconv
 
         OW, OH, OAR = AVCONV_OUTPUT_WIDTH, AVCONV_OUTPUT_HEIGHT, AVCONV_OUTPUT_ASPECT_RATIO
-        SH_VARS     = Hash[ CONFIG.avtools.avconv.cmd.with_filters.sh_vars.marshal_dump.map{ |k, v| [k.to_s, v] } ]
-        BIN         = CONFIG.avtools.avconv.cmd.with_filters.bin
+        SH_VARS     = Hash[ CONFIG.avtools.avconv.cmd.sh_vars.marshal_dump.map{ |k, v| [k.to_s, v] } ]
+        BIN         = CONFIG.avtools.avconv.cmd.bin
 
         @subexec_options = superclass.subexec_options.merge(sh_vars: SH_VARS)
         @bin             = BIN
