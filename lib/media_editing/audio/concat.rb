@@ -6,7 +6,7 @@ module MediaEditing
   module Audio
     class Concat
 
-      FORMATS = %w(mp3 ogg)
+      FORMATS = CONFIG.formats
 
       def initialize(inputs, output_without_extension)
         unless inputs.is_a?(Hash)                                                     and 
