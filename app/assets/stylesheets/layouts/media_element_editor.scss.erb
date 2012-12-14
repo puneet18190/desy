@@ -91,6 +91,30 @@ html.media_element_editor-layout {
     }
     
   }
+  .mediaSelectEditorButtonContainer{
+    width:550px;
+    height:550px;
+    margin: 0 auto;
+    text-align:center;
+    display:table;
+    .contentTitle {
+      display:table-cell; 
+       vertical-align:middle;
+      h1 {
+        text-align:left;
+        color:#40a748;
+        font-size:30px;
+      }
+      h2 {
+        text-align:left;
+        color:#fff;
+        font-size:18px;
+      }
+
+    }
+    
+
+  }
   @mixin iconeTipoElemento {
     background-size: 5.7em 17em;
     background-image: url(<%= asset_path 'icone-etichette.svg' %>);
