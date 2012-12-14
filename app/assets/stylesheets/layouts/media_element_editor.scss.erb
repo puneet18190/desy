@@ -101,6 +101,23 @@ html.media_element_editor-layout {
     }
     
   }
+  $icon-size: 5.6em;
+/*ICONOGRAFIA PER DISTINGUERE GLI ELEMENTI DIDATTICI*/
+@mixin iconEditorElement($font-size: 2em) {
+  
+  & {
+    float:left;
+    
+    width: $icon-size;
+    height: $icon-size;
+    background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($icon-size*3) ($icon-size*4);
+    padding:0;
+    font-size: $font-size;
+  }
+}
+
   .mediaSelectEditorButtonContainer{
     width:550px;
     height:550px;
@@ -114,16 +131,50 @@ html.media_element_editor-layout {
         text-align:left;
         color:#40a748;
         font-size:30px;
+        font-weight:normal;
       }
       h2 {
         text-align:left;
         color:#fff;
         font-size:18px;
+        font-weight:normal;
       }
-
     }
-    
-
+    .contentSelectButton {
+      float:left;
+      padding-top:45px;
+      .videoButton {
+      @include iconEditorElement();
+      background-position: 0 0;
+      opacity:1;
+      cursor:pointer;
+      &:hover, &.current {
+        background-position: (-$icon-size) 0;
+        opacity:0.4;
+      }
+     }
+    .photoButton {
+      @include iconEditorElement();
+      
+      background-position: 0 (-$icon-size*2);
+      opacity:1;
+      cursor:pointer;
+      &:hover, &.current {
+        background-position: (-$icon-size)(-$icon-size*2);
+        opacity:0.4;
+      }
+    }
+    .audioButton {
+      @include iconEditorElement();
+      background-position: 0 (-$icon-size);
+      opacity:1;
+      cursor:pointer;
+      &:hover, &.current {
+        background-position: (-$icon-size) (-$icon-size);
+        opacity:0.4;
+      }
+    }
+    }
   }
   @mixin iconeTipoElemento {
     background-size: 5.7em 17em;

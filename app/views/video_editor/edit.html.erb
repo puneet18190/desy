@@ -11,6 +11,10 @@
   
   <div class="mediaEditorListaElementi">
     <%= form_tag video_editor_save_cache_path, :id => 'video_editor_form', :remote => true do %>
+      <% if @parameters[:initial_video] %>
+        <%= hidden_field_tag 'initial_video_id', @parameters[:initial_video].id %>
+      <% end %>
+      <%= hidden_field_tag 'audio_id', (@parameters[:audio].nil? ? '' : @parameters[:audio].id) %>
       <%= render :partial => 'timeline', :locals => {:parameters => @parameters} %>
       <%= render :partial => 'cutter', :locals => {:parameters => @parameters} %>
       <div class="addAudioandSave">
@@ -36,16 +40,27 @@
 <div id="info_container" data-components-number="<%= @parameters[:components].count %>" data-current-component="" data-replacing-component="false" data-total-length="<%= @total_length %>" data-save-cache="false" style="display:none"></div>
 
 
-<% if !@cache.nil? %>
-  <script type="text/javascript">
+<script type="text/javascript">
+  <% if @cache.nil? %>
+    $(document).ready(function() {
+      setTimeout(function() {
+        startCacheLoop();
+      }, $('#popup_parameters_container').data('cache-time'));
+    });
+  <% else %>
     showRestoreCacheMediaElementEditorPopUp(function() {
       window.location.href = '/videos/cache/restore'
     }, function() {
       closePopUp('dialog-restore-cache-media-element-editor');
       $.ajax({
         type: 'post',
-        url: '/videos/cache/empty'
+        url: '/videos/cache/empty',
+        success: function() {
+          setTimeout(function() {
+            startCacheLoop();
+          }, $('#popup_parameters_container').data('cache-time'));
+        }
       });
     });
-  </script>
-<% end %>
+  <% end %>
+</script>
