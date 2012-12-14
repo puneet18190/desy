@@ -15,14 +15,13 @@ module MediaEditing
       include Logging
       include MediaEditing::InTmpDir
 
-      FORMATS              = MediaEditing::Video::FORMATS
       START_FRAME          = 'start_frame.jpg'
       VIDEO_NO_AUDIO       = 'video_no_audio.mp4'
       LAST_FRAME_SKIP_STEP = -0.2
       END_FRAME            = 'end_frame.jpg'
       TRANSITIONS          = 'transition.jpg'
       INNER_FRAMES_AMOUNT  = 23
-      TRANSITIONS_FORMAT   = proc{ f = Pathname.new(TRANSITIONS); "#{f.basename(f.extname)}-%d#{f.extname}" }.call
+      TRANSITIONS_FORMAT   = ->{ f = Pathname.new(TRANSITIONS); "#{f.basename(f.extname)}-%d#{f.extname}" }.call
       FRAME_RATE           = 25
 
       def initialize(start_inputs, end_inputs, output_without_extension)
