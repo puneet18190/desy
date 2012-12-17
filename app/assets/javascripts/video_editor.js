@@ -2,10 +2,12 @@ function initializeVideoEditor() {
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true
   });
-  var gallery1 = $('#video_editor_mixed_gallery_container');
-  var gallery2 = $('#video_editor_audio_gallery_container');
-  gallery1.css('left', (($(window).width() - 904) / 2) + 'px');
-  gallery2.css('left', (($(window).width() - 904) / 2) + 'px');
+  calculateNewPositionGalleriesInVideoEditor();
+}
+
+function calculateNewPositionGalleriesInVideoEditor() {
+  $('#video_editor_mixed_gallery_container').css('left', (($(window).width() - 910) / 2) + 'px');
+  $('#video_editor_audio_gallery_container').css('left', (($(window).width() - 910) / 2) + 'px');
 }
 
 function startCacheLoop() {
@@ -28,7 +30,10 @@ function saveCacheLoop() {
 }
 
 function closeMixedGalleryInVideoEditor() {
-  $('#video_editor_mixed_gallery_container').hide('fade', {}, 250);
+  $('#video_editor_mixed_gallery_container').hide('fade', {}, 250, function() {
+    $('._video_editor_bottom_bar').show();
+    calculateNewPositionGalleriesInVideoEditor();
+  });
 }
 
 function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {

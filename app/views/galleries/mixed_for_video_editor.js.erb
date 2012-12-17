@@ -1,4 +1,6 @@
 $('#video_editor_mixed_gallery_container').show();
+$('._video_editor_bottom_bar').hide();
+calculateNewPositionGalleriesInVideoEditor();
 $('#video_editor_mixed_gallery_container').html('<%= j(render(:partial => 'galleries/mixed_video_image_text', :locals => {:images => @images, :videos => @videos})) %>');
 $('#video_editor_mixed_gallery_container').data('loaded', true);
 $('._select_video_from_gallery').addClass('_add_video_component_to_video_editor');

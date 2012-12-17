@@ -766,6 +766,8 @@ $(document).ready(function() {
     }
     if($('#video_editor_mixed_gallery_container').data('loaded')) {
       $('#video_editor_mixed_gallery_container').show();
+      $('._video_editor_bottom_bar').hide();
+      calculateNewPositionGalleriesInVideoEditor();
       resetVideoEditorTextComponent();
     } else {
       $.ajax({

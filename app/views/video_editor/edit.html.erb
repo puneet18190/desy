@@ -18,7 +18,7 @@
       <%= render :partial => 'timeline', :locals => {:parameters => @parameters} %>
       <%= render :partial => 'cutter', :locals => {:parameters => @parameters} %>
       <!-- NEXT -->
-      <div class="addAudioandSave">
+      <div class="addAudioandSave _video_editor_bottom_bar">
         <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
         <div class="fltrt">
           <div class="fltrt"><a class="nextButton _commit_video_editor <%= @parameters[:initial_video].nil? ? '' : '_with_choice'.html_safe %>"></a></div>
