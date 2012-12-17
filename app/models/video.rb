@@ -196,10 +196,6 @@ class Video < MediaElement
     media.try(:path, :thumb)
   end
 
-  def media_validation
-    media.validation if media
-  end
-
   def media
     @media || ( 
       media = read_attribute(:media)
@@ -237,6 +233,10 @@ class Video < MediaElement
   end
 
   private
+  def media_validation
+    media.validation if media
+  end
+  
   def upload_or_copy
     media.upload_or_copy if media
     true

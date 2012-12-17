@@ -77,7 +77,7 @@ module Media
               concat.send(:stdout_log).should start_with Rails.root.join('log/media/video/editing/concat/test/').to_s
             end
   
-            MESS::FORMATS.each do |format|
+            MESS::VIDEO_FORMATS.each do |format|
   
               context "with #{format} format", format: format do
   
@@ -114,7 +114,7 @@ module Media
               let(:output)       { File.join tmp_dir, 'out put' }
               let(:input_videos) { input_videos }
   
-              MESS::FORMATS.each do |format|
+              MESS::VIDEO_FORMATS.each do |format|
   
                 context "with #{format} format", format: format do
   

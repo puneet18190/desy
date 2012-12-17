@@ -1,4 +1,4 @@
-#require 'audio_uploader'
+require 'media/audio/uploader'
 
 class Audio < MediaElement
 
@@ -33,7 +33,7 @@ class Audio < MediaElement
   def ogg_duration=(ogg_duration)
     metadata.ogg_duration = ogg_duration
   end
-  
+
   def min_duration
     [mp3_duration, ogg_duration].map(&:to_i).min
   end
@@ -41,12 +41,12 @@ class Audio < MediaElement
   def media
     @media || ( 
       media = read_attribute(:media)
-      media ? AudioUploader.new(self, :media, media) : nil 
+      media ? Media::Audio::Uploader.new(self, :media, media) : nil 
     )
   end
 
   def media=(media)
-    @media = write_attribute :media, (media.present? ? AudioUploader.new(self, :media, media) : nil)
+    @media = write_attribute :media, (media.present? ? Media::Audio::Uploader.new(self, :media, media) : nil)
   end
 
   def reload
@@ -54,7 +54,15 @@ class Audio < MediaElement
     super
   end
 
+  def reload_media
+    @media = nil
+  end
+
   private
+  def media_validation
+    media.validation if media
+  end
+
   def upload_or_copy
     media.upload_or_copy if media
     true

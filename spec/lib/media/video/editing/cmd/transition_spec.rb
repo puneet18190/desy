@@ -12,7 +12,7 @@ module Media
               webm: "#{pre_command} -r 25 -i transition\\ format -sn -threads #{AVCONV_OUTPUT_THREADS[:webm]} -q:v 1 -b:v 2M -c:v libvpx output" }
           end
           
-          MESS::FORMATS.each do |format|
+          MESS::VIDEO_FORMATS.each do |format|
   
             context "with #{format} format", format: format do
               let(:format) { format }

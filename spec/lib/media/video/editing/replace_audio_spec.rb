@@ -108,7 +108,7 @@ module Media
                 replace_audio.send(:log_folder).should start_with Rails.root.join('log/media/video/editing/replace_audio/test/').to_s
               end
   
-              MESS::FORMATS.each do |format|
+              MESS::VIDEO_FORMATS.each do |format|
   
                 context "with #{format} format", format: format do
   

@@ -6,7 +6,7 @@ module Media
     module Editing
       describe Conversion, slow: true do
   
-        supported_formats = MESS::FORMATS
+        supported_formats = MESS::VIDEO_FORMATS
   
         let(:uploaded_path)            { "#{MESS::SAMPLES_FOLDER}/tmp.in put.flv" }
         let(:filename)                 { 'in put.flv' }
@@ -81,8 +81,6 @@ module Media
   
               end
   
-              # TODO sistemare quello che si è rotto cambiando gli argomenti di Conversion,
-              # probabile che non funziona manco Media::Video::Uploader
               context 'with an invalid video' do
   
                 subject { described_class.new(uploaded_path, output_without_extension, filename, model.id) }

@@ -12,10 +12,6 @@ module Media
       
       AVPROBE_BIN             = CONFIG.avtools.avprobe.cmd.bin
   
-      AVCONV_BIN             = CONFIG.avtools.avconv.cmd.bin
-      AVCONV_TIMEOUT         = CONFIG.avtools.avconv.cmd.timeout
-      AVCONV_SUBEXEC_TIMEOUT = AVCONV_TIMEOUT + 10
-  
       AVCONV_CODECS            = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).codecs] } ]
       AVCONV_DEFAULT_BITRATES  = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).default_bitrates] } ]
   

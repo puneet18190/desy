@@ -3,16 +3,15 @@ require 'subexec'
 
 module Media
   class Cmd
+    class_attribute :subexec_options
+    self.subexec_options = {}
+    
     attr_reader :cmd, :subexec
-
-    def self.subexec_options
-      @subexec_options ||= {}
-    end
 
     def run(stdout = :dev_null, stderr = :dev_null)
       stdout = %w(/dev/null w) if stdout == :dev_null
       stderr = %w(/dev/null w) if stderr == :dev_null
-      @subexec = Subexec.run cmd, self.class.subexec_options.merge(stdout: stdout, stderr: stderr)
+      @subexec = Subexec.run cmd, subexec_options.merge(stdout: stdout, stderr: stderr)
     end
 
     def run!(stdout = :dev_null, stderr = :dev_null)

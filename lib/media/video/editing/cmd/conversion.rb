@@ -1,4 +1,5 @@
-require 'media/video/editing'
+require 'media'
+require 'media/video'
 require 'media/video/editing'
 require 'media/video/editing/cmd'
 require 'media/video/editing/cmd/avconv'
@@ -11,17 +12,18 @@ module Media
         class Conversion < Cmd::Avconv
   
           OW, OH, OAR = AVCONV_OUTPUT_WIDTH, AVCONV_OUTPUT_HEIGHT, AVCONV_OUTPUT_ASPECT_RATIO
-          SH_VARS     = Hash[ CONFIG.avtools.avconv.cmd.sh_vars.marshal_dump.map{ |k, v| [k.to_s, v] } ]
-          BIN         = CONFIG.avtools.avconv.cmd.bin
-  
-          @subexec_options = superclass.subexec_options.merge(sh_vars: SH_VARS)
-          @bin             = BIN
+
+          self.formats        = FORMATS
+          self.codecs         = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).codecs] } ]
+          self.output_qa      = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).qa] } ] 
+          self.output_threads = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).threads] } ]
+
   
           def initialize(input_file, output_file, format, input_file_info = nil)
             super([input_file], output_file, format)
   
             @input_file_info = input_file_info || Info.new(input_file)
-            if vstreams.empty?
+            if vstreams.blank?
               raise Error.new( 'at least one video stream must be present', 
                                input_file: input_file, output_file: output_file, format: format, input_file_info: input_file_info )
             end

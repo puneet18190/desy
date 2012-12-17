@@ -69,7 +69,7 @@ module Media
   
           before(:all) { subject }
   
-          MESS::FORMATS.each do |format|
+          MESS::VIDEO_FORMATS.each do |format|
   
             context "with #{format} format", format: format do
               let(:format) { format }

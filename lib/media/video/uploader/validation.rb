@@ -37,6 +37,8 @@ module Media
             info = Info.new(@original_file.path, false)
             if not info.valid?
               :invalid_video
+            elsif info.video_streams.blank?
+              :blank_video_streams
             elsif info.duration < MIN_DURATION
               :invalid_duration
             end

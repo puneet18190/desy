@@ -12,7 +12,7 @@ module Media
           
           subject { described_class.new('inp ut', 'out put', 10) }
           
-          MESS::FORMATS.each do |format|
+          MESS::VIDEO_FORMATS.each do |format|
             context "with #{format} format", format: format do
               let!(:format)  { format }
               let!(:command) { commands[format] }

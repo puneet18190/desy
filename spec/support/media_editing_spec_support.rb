@@ -6,6 +6,8 @@ module MediaEditingSpecSupport
   INVALID_VIDEO             = SAMPLES_FOLDER.join('invalid video.flv').to_s
   VALID_VIDEO               = SAMPLES_FOLDER.join('valid video.flv').to_s
   VALID_VIDEO_WITH_ODD_SIZE = SAMPLES_FOLDER.join('valid video with odd size.webm').to_s
+  VALID_AUDIO               = SAMPLES_FOLDER.join('valid audio.mp3').to_s
+  INVALID_AUDIO             = SAMPLES_FOLDER.join('invalid audio.mp3').to_s
   VALID_JPG                 = SAMPLES_FOLDER.join('valid image.jpg').to_s
   VALID_PNG                 = SAMPLES_FOLDER.join('valid image.png').to_s
   #INVALID_IMAGE             = SAMPLES_FOLDER.join 'invalid image.jpg'
@@ -32,11 +34,11 @@ module MediaEditingSpecSupport
   REPLACE_AUDIO_VIDEOS = { 
                            videos_with_some_audio_streams: {
                              video_inputs: Hash[ [:mp4, :webm].map{ |f| [f, SAMPLES_FOLDER.join("con verted.#{f}").to_s] } ],
-                             audio_inputs: Hash[ [:mp3, :ogg ].map{ |f| [f, SAMPLES_FOLDER.join("valid audio.#{f}").to_s] } ]
+                             audio_inputs: Hash[ [:mp3, :ogg ].map{ |f| [f, SAMPLES_FOLDER.join("valid audio 2.#{f}").to_s] } ]
                            },
                            videos_without_audio_streams:   { 
                              video_inputs: Hash[ [:mp4, :webm].map{ |f| [f, SAMPLES_FOLDER.join("converted no audio.#{f}").to_s] } ],
-                             audio_inputs: Hash[ [:mp3, :ogg ].map{ |f| [f, SAMPLES_FOLDER.join("valid audio.#{f}").to_s] } ]
+                             audio_inputs: Hash[ [:mp3, :ogg ].map{ |f| [f, SAMPLES_FOLDER.join("valid audio 2.#{f}").to_s] } ]
                            }
                          }
 
@@ -45,11 +47,12 @@ module MediaEditingSpecSupport
     end_inputs:   Hash[ [:mp4, :webm].map{ |f| [f, SAMPLES_FOLDER.join("converted no audio.#{f}").to_s] } ]
   }
 
-  FORMATS = [:webm, :mp4]
-  AVCONV_SH_VARS                      = {}#{ 'LD_LIBRARY_PATH' => '/opt/libav-0.8.4/lib' }
-  AVCONV_WITH_FILTERS_SH_VARS         = AVCONV_SH_VARS#{ 'LD_LIBRARY_PATH' => '/opt/libav-0.8.4/lib' }
-  AVCONV_PRE_COMMAND                  = 'avconv -v 9 -loglevel 99 -benchmark -y -timelimit 86400'#/opt/libav-0.8.4/bin/avconv'
-  AVCONV_WITH_FILTERS_PRE_COMMAND     = AVCONV_PRE_COMMAND#'/opt/libav-0.8.4/bin/avconv'
+  VIDEO_FORMATS = [:mp4, :webm]
+  AUDIO_FORMATS = [:mp3, :ogg]
+  AVCONV_SH_VARS                      = {}                                                          # { 'LD_LIBRARY_PATH' => '/opt/libav-0.8.4/lib' }
+  AVCONV_WITH_FILTERS_SH_VARS         = AVCONV_SH_VARS                                              # { 'LD_LIBRARY_PATH' => '/opt/libav-0.8.4/lib' }
+  AVCONV_PRE_COMMAND                  = 'avconv -v 9 -loglevel 99 -benchmark -y -timelimit 86400'   # '/opt/libav-0.8.4/bin/avconv'
+  AVCONV_WITH_FILTERS_PRE_COMMAND     = AVCONV_PRE_COMMAND                                          # '/opt/libav-0.8.4/bin/avconv'
   AVCONV_WITH_FILTERS_SUBEXEC_OPTIONS = { sh_vars: AVCONV_SH_VARS, timeout: 86410 }
   VBITRATE                  = { mp4: '', webm: ' -b:v 2M' }
 

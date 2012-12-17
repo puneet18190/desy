@@ -8,3 +8,6 @@ module Media
     THUMB_SIZES                = [200, 200]
   end
 end
+
+require 'media/video/uploader'
+require 'media/video/editing'

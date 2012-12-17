@@ -5,7 +5,7 @@ module Media
     module Editing
       describe ImageToVideo do
   
-        supported_video_formats = MESS::FORMATS
+        supported_video_formats = MESS::VIDEO_FORMATS
         supported_image_formats = [:jpg, :png]
   
         describe '.new' do

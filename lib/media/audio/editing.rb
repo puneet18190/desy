@@ -1,4 +1,5 @@
-require 'media_editing'
+require 'media'
+require 'media/audio'
 require 'recursive_open_struct'
 require 'env_relative_path'
 

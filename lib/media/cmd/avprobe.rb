@@ -9,7 +9,7 @@ module Media
       BIN             = CONFIG.avtools.avprobe.cmd.bin
       SUBEXEC_OPTIONS = { sh_vars: SH_VARS, timeout: CONFIG.avtools.avprobe.cmd.subexec_timeout }
       
-      @subexec_options = SUBEXEC_OPTIONS
+      self.subexec_options = SUBEXEC_OPTIONS
 
       def initialize(input_file)
         @input_file = input_file
