@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe VideoUploader do
+describe Media::Video::Uploader do
   let(:media_folder)            { Rails.root.join('spec/support/samples') }
   let(:media_without_extension) { media_folder.join('con verted').to_s }
   let(:valid_video_path)        { media_folder.join('valid video.flv').to_s }

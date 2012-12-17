@@ -1,8 +1,8 @@
 require 'media/video/editing'
 require 'media/video/editing'
-require 'media/video/editing/logging'
-require 'media/video/editing/in_tmp_dir'
-require 'media/video/editing/info'
+require 'media/logging'
+require 'media/in_tmp_dir'
+require 'media/info'
 require 'media/video/editing/cmd/image_to_video'
 require 'mini_magick'
 

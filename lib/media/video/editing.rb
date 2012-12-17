@@ -1,3 +1,5 @@
+require 'media'
+require 'media/video'
 require 'media/video/editing'
 require 'shellwords'
 require 'env_relative_path'
@@ -8,8 +10,6 @@ module Media
       
       include EnvRelativePath
       
-      FORMATS = MediaEditing::CONFIG.avtools.avconv.video.formats.marshal_dump.keys
-  
       AVPROBE_BIN             = CONFIG.avtools.avprobe.cmd.bin
   
       AVCONV_BIN             = CONFIG.avtools.avconv.cmd.bin

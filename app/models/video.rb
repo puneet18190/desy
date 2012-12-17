@@ -1,4 +1,4 @@
-#require 'video_uploader'
+require 'media/video/uploader'
 
 # converted
 #   true  : conversione andata a buon fine
@@ -203,12 +203,12 @@ class Video < MediaElement
   def media
     @media || ( 
       media = read_attribute(:media)
-      media ? VideoUploader.new(self, :media, media) : nil 
+      media ? Media::Video::Uploader.new(self, :media, media) : nil 
     )
   end
 
   def media=(media)
-    @media = write_attribute :media, (media.present? ? VideoUploader.new(self, :media, media) : nil)
+    @media = write_attribute :media, (media.present? ? Media::Video::Uploader.new(self, :media, media) : nil)
   end
 
   def mp4_duration

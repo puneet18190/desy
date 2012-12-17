@@ -1,12 +1,12 @@
+require 'media'
+require 'media/video'
 require 'media/video/editing'
-require 'media/video/editing'
-require 'media/video/editing/logging'
-require 'media/video/editing/allowed_duration_range'
-require 'media/video/editing/info'
-require 'media/video/editing/error'
+require 'media/logging'
+require 'media/allowed_duration_range'
+require 'media/info'
+require 'media/error'
 require 'media/video/editing/cmd/conversion'
 require 'env_relative_path'
-require 'video_uploader'
 
 module Media
   module Video
@@ -19,9 +19,6 @@ module Media
   
         TEMP_FOLDER        = Rails.root.join(env_relative_path('tmp/media/video/editing/conversions')).to_s
         DURATION_THRESHOLD = CONFIG.video.duration_threshold
-        COVER_FORMAT       = VideoUploader::COVER_FORMAT
-        THUMB_FORMAT       = VideoUploader::THUMB_FORMAT
-        THUMB_SIZES        = VideoUploader::THUMB_SIZES
   
         def self.log_folder
           super 'conversions'

@@ -1,8 +1,8 @@
 require 'media/video/editing'
 require 'media/video/editing'
-require 'media/video/editing/logging'
-require 'media/video/editing/in_tmp_dir'
-require 'media/video/editing/info'
+require 'media/logging'
+require 'media/in_tmp_dir'
+require 'media/info'
 require 'media/video/editing/cmd/video_stream_to_file'
 require 'media/video/editing/cmd/replace_audio'
 

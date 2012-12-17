@@ -1,6 +1,6 @@
 require 'video_uploader'
 
-class VideoUploader
+class Media::Video::Uploader
   module Validation
     def validation
       error_message = self.error_message

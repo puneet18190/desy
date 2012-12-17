@@ -81,7 +81,7 @@ module MediaEditing
             end
 
             # TODO sistemare quello che si è rotto cambiando gli argomenti di Conversion,
-            # probabile che non funziona manco VideoUploader
+            # probabile che non funziona manco Media::Video::Uploader
             context 'with an invalid video' do
 
               subject { described_class.new(uploaded_path, output_without_extension, filename, model.id) }

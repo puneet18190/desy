@@ -5,13 +5,8 @@ require 'env_relative_path'
 module MediaEditing
   module Audio
 
-    include EnvRelativePath
-
-    CONFIG = RecursiveOpenStruct.new({
-      formats: [:mp3, :ogg]
-    })
-
-    FORMATS = CONFIG.formats
-
+    module Editing
+      # include EnvRelativePath
+    end
   end
 end

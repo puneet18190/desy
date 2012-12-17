@@ -1,8 +1,8 @@
 require 'media/video/editing'
 require 'media/video/editing'
-require 'media/video/editing/logging'
-require 'media/video/editing/in_tmp_dir'
-require 'media/video/editing/info'
+require 'media/logging'
+require 'media/in_tmp_dir'
+require 'media/info'
 require 'media/video/editing/cmd/video_stream_to_file'
 require 'media/video/editing/cmd/extract_frame'
 require 'media/video/editing/cmd/generate_transition_frames'
@@ -15,7 +15,7 @@ module Media
       class Transition
   
         include Logging
-        include MediaEditing::InTmpDir
+        include InTmpDir
   
         START_FRAME          = 'start_frame.jpg'
         VIDEO_NO_AUDIO       = 'video_no_audio.mp4'

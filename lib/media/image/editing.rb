@@ -1,6 +1,9 @@
-require 'media_editing'
+require 'media'
+require 'media/image'
 
-module MediaEditing
+module Media
   module Image
+    module Editing
+    end
   end
 end
