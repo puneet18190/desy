@@ -33,6 +33,20 @@
   
 </div>
 
+
+<div id="empty_video_component_for_video_editor" style="display:none">
+  <%= render :partial => "video_editor/components/video", :locals => {:component => {}, :position => 1, :empty => true} %>
+</div>
+
+<div id="empty_image_component_for_video_editor" style="display:none">
+  <%= render :partial => "video_editor/components/image", :locals => {:component => {}, :position => 1, :empty => true} %>
+</div>
+
+<div id="empty_text_component_for_video_editor" style="display:none">
+  <%= render :partial => "video_editor/components/text", :locals => {:component => {}, :position => 1, :empty => true} %>
+</div>
+
+
 <div id="video_editor_mixed_gallery_container" class="mediaEditorVideoContainer" style="display:none" data-loaded="false"></div>
 
 <div id="video_editor_audio_gallery_container" class="mediaEditorVideoContainer" style="display:none" data-loaded="false"></div>
