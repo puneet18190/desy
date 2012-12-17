@@ -1,2 +1,17 @@
-<!--<div class="fltlft"><a class="audioButton"></a><a><p>click to add audio background</p></a></div>-->
-<div class="fltlft"><div class="audioButton current"></div><div class="titleTrack">Ennio Morricone - The good, the bad and the ugly<br>02:39</div><div class="exitContent fltlft"><a class="exitButton">&nbsp;</a></div></div>
+<% if parameters[:audio] %>
+  <div class="fltlft">
+    <div class="audioButton current _show_audio_gallery_in_video_editor"></div>
+    <div class="titleTrack"><%= parameters[:audio].title %><br/><%= seconds_to_time(parameters[:audio].min_duration) %></div>
+    <div class="exitContent fltlft">
+      <a class="exitButton">&nbsp;</a>
+    </div>
+  </div>
+<% else %>
+  <div class="fltlft">
+    <a class="creaNuovoButton _show_audio_gallery_in_video_editor"></a>
+    <a>
+      <p><%= t('captions.add_audio_track') %></p><br/>
+      <p><%= t('descriptions.audio_track_in_video_editor') %></p>
+    </a>
+  </div>
+<% end %>

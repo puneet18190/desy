@@ -1,4 +1,4 @@
-require 'media_editing/video'
+require 'media/video/editing'
 
 class VideoConversionWorker
   # include Sidekiq::Worker

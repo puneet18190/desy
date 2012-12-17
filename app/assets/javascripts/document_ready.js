@@ -780,6 +780,18 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('click', '._show_audio_gallery_in_video_editor', function() {
+    if($('#video_editor_audio_gallery_container').data('loaded')) {
+      $('#video_editor').hide();
+      $('#video_editor_audio_gallery_container').css('display', 'inline-block');
+    } else {
+      $.ajax({
+        type: 'get',
+        url: '/videos/galleries/audio'
+      });
+    }
+  });
+  
   $('body').on('click', '#video_editor_mixed_gallery_container ._switch_video', function() {
     $('._switch_image, ._switch_text').removeClass('current');
     $(this).addClass('current');

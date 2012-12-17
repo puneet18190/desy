@@ -20,10 +20,10 @@
   <div id='right_scroll'><a></a></div>
 </div>
 <div id="info_container" data-slide-number="1" style="display:none"></div>
-<a class="back-button" href="#" style="display:none">back</a>
+<a class="esciButton fltrt" href="#" style="margin-top:20px; display:none"></a>
 <script type="text/javascript" charset="utf-8">
   if("<%= @back %>".length > 0){
-    var bb = $(".back-button");
+    var bb = $(".esciButton");
     bb.attr("href","<%=@back%>");
     bb.show();
   }

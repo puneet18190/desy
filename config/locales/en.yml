@@ -50,6 +50,7 @@ en:
               unsupported_format: "Your video's format is not supported"
               invalid_video: 'Your video could not be loaded'
               invalid_duration: 'Your video has an invalid duration'
+              blank_video_streams: 'Your video has not video streams'
         virtual_classroom_lesson:
           cant_change_position_if_not_in_playlist: 'You cannot change the position of a lesson which is not in the playlist'
           invalid_position_in_playlist: 'The position you chose is not valid for your playlist'
@@ -61,6 +62,7 @@ en:
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
   captions:
+    add_audio_track: 'Add audio track'
     add_lesson_now: 'Add a lesson now'
     add_new_lesson: 'Add new lesson'
     advanced_search: 'Advanced search'
@@ -189,6 +191,7 @@ en:
     your_search_returned: 'Your search returned '
     your_virtual_classroom_is_empty: 'Your virtual classroom is empty'
   descriptions:
+    audio_track_in_video_editor: 'You can upload an audio track that will be the background of your video'
     change_info_element: 'You can modify the data of your element. Inserting tags you will make it available to DESY community, remember that people are more likely to find your element if you insert more tags'
     instructions_to_fill_playlist: 'After loading the lessons in the virtual classroom drag to create a playlist of reproduction.'
     mailer_link_1: 'The user '
@@ -206,7 +209,6 @@ en:
     what_is_desy_7: ') offering dedicated pages and functionalities both for teachers and students.'
     what_is_desy_8: 'The application can easily be used for learning other languages: a course is currently being planned for teaching Italian to foreigners.'
     what_is_desy_right_column: 'What is DESY? Placeholder for right column description -- DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY '
-    you_sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
 
 # (3) accessors: empty situations, popups, help, etc
   empty:
@@ -350,6 +352,7 @@ en:
   notifications:
     lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
     lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
+    sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
 
 # (4) labels for constant keywords defined in lib/autoload
   statuses:

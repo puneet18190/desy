@@ -7,7 +7,7 @@
     <% end %>
   <% else %>
     <% @media_elements.each do |me| %>
-      <% if @display == Formats::EXPANDED %>
+      <% if @display == MediaElement::DISPLAY_MODES[:expanded] %>
         <div style="width:90%;  margin:0 auto 0 auto;">
           <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
         </div>

@@ -7,18 +7,17 @@
   image_alignment = image.alignment / 4.12 if !image.nil?
 %>
 <div class="img_expanded _lesson_thumb" data-lesson-id="<%= lesson.id %>">
- <% if !image %>
- <div style="width:247px; height:143px; background-color:white"></div>
-    <% else %>
+  <% if !image %>
+    <div style="width:247px; height:143px; background-color:white"></div>
+  <% else %>
     <div class="cover">
       <% if is_horizontal?(image.media_element.width,image.media_element.height,"cover")%>
         <%= image_tag image.media_element.path, :style => "left:#{image_alignment}px; height: 143px; width: #{image_width /4.12}px" %>
       <% else %>
         <%= image_tag image.media_element.path, :style => "top:#{image_alignment}px; width: 247px;height: #{image_height /4.12}px" %>
       <% end %>
-      </div>
-    <% end %>
-
+    </div>
+  <% end %>
   <div class="bg_text">
     <div class="lessonTitle"><%= lesson.title %></div>
   </div>

@@ -4,7 +4,7 @@ require 'video_uploader'
 
 def plant_development_seeds
   
-  videos_folder = VideoUploader::ABSOLUTE_FOLDER
+  videos_folder = Media::Video::Uploader::ABSOLUTE_FOLDER
   FileUtils.rm_rf Rails.root.join'public/media_elements/videos/development' if Dir.exists? 'public/media_elements/videos/development'
 
   location1 = Location.find 1
