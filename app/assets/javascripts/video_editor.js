@@ -77,7 +77,7 @@ function addImageComponentInVideoEditor(image_id, component, duration) {
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
   setTimeout(function() {
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100);
-    highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'videoIcon');
+    highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'photoIcon');
   }, 1400);
 }
 
@@ -140,8 +140,40 @@ function replaceVideoComponentInVideoEditor(video_id, component, position, durat
 }
 
 function addTextComponentInVideoEditor(component, content, duration, background_color, text_color) {
-  alert('stai aggiungendo la componente testuale -- ' + content + ' in ultima posizione, con una durata di ' + duration + ' secondi, con colore di sfondo ' + background_color + ' e colore testuale ' + text_color);
-  // mettere flash
+  $('._new_component_in_video_editor_hover a').removeClass('current');
+  var next_position = $('#info_container').data('components-number') + 1;
+  var new_timeline_width = (187 * next_position) + 156;
+  $('#media_elements_list_in_video_editor').data('jsp').destroy();
+  $('#video_editor_timeline').css('width', new_timeline_width + 'px');
+  $('#media_elements_list_in_video_editor').jScrollPane({
+    autoReinitialise: true
+  });
+  $('#info_container').data('components-number', next_position);
+  var empty_component = $('#empty_text_component_for_video_editor').html();
+  empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(empty_component.indexOf('div') + 3, empty_component.length);
+  $('#add_new_video_component').before(empty_component);
+  current_component = $('#temporary_empty_component');
+  current_component.attr('id', ('video_component_' + next_position));
+  current_component.data('duration', 0);
+  current_component.data('position', next_position);
+  current_component.find('._video_component_icon').html(next_position + '<div class="textIcon"></div>');
+  $('#add_new_video_component ._component_counter').html(next_position + 1);
+  current_component.find('._video_editor_component_hover').append(component);
+  $('#video_component_' + next_position + ' ._video_component_thumb ._text_content').html(content);
+  $('#video_component_' + next_position + ' ._video_component_thumb ._text_content').removeClass('color_black').addClass('color_' + text_color);
+  $('#video_component_' + next_position + ' ._video_component_thumb').removeClass('background_color_white').addClass('background_color_' + background_color);
+  var to_be_appended = fillVideoEditorSingleParameter('type', next_position, 'text');
+  to_be_appended += fillVideoEditorSingleParameter('content', next_position, content);
+  to_be_appended += fillVideoEditorSingleParameter('duration', next_position, duration);
+  to_be_appended += fillVideoEditorSingleParameter('background_color', next_position, background_color);
+  to_be_appended += fillVideoEditorSingleParameter('text_color', next_position, text_color);
+  to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
+  current_component.find('._video_editor_component_hover').append(to_be_appended);
+  changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  setTimeout(function() {
+    $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100);
+    highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'textIcon');
+  }, 1400);
 }
 
 function replaceTextComponentInVideoEditor(component, content, position, duration, background_color, text_color) {
