@@ -94,6 +94,9 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
   setTimeout(function() {
+    $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100);
+  }, 1000);
+  setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'videoIcon');
   }, 1400);
 }
