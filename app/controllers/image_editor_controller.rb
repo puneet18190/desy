@@ -105,15 +105,21 @@ class ImageEditorController < ApplicationController
       new_image.title = params[:new_title]
       new_image.description = params[:new_description]
       new_image.tags = params[:new_tags]
-            
-      new_image.valid?
-      msg = new_image.errors.messages
-      msg.delete(:media)
-      if msg.empty?
+      
+      logger.info "\n\n\n\n\n\n valid: #{new_image.valid?} \n\n\n"
+      
+      if !new_image.valid?
+        msg = new_image.errors.messages
+        msg.delete(:media)
+        logger.info "\n\n\n\n\n\n message: #{msg} \n\n\n"
+      end
+      
+      if msg && msg.empty?
         new_image.media = File.open("#{Rails.root}#{image_dir}/final_crop.jpg")
         new_image.save
       else
         @errors = msg
+        logger.info "\n\n\n\n\n\n errors: #{@errors} \n\n\n"
       end
       
       # manca redirect_to my_media_elements_path
