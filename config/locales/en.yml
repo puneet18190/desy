@@ -82,6 +82,7 @@ en:
     create_new_lesson_now: 'Create a lesson now'
     create_new_media_element: 'Create a new element'
     creating_new_media_element: "You're creating a new educational element."
+    dashboard: 'Dashboard'
     description: 'Description'
     desy: 'DESY'
     desy_expanded_description: 'Digital Education System'
