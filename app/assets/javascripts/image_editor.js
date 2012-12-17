@@ -134,28 +134,39 @@ $(document).ready(function() {
     $('#form_info_new_media_element_in_editor').show();
   });
   
-  $('body').on('click','#form_info_new_media_element_in_editor _save', function(){
-    commitImageEditing("save");
+  $('body').on('click','#form_info_new_media_element_in_editor ._commit', function(){
+    $('.form_error').removeClass("form_error");
+    commitImageEditing("new");
   });
   
-  $('body').on('click','#form_info_update_media_element_in_editor _save', function(){
+  $('body').on('click','#form_info_update_media_element_in_editor ._commit', function(){
+    $('.form_error').removeClass("form_error");
     commitImageEditing("overwrite");
   });
   
-  $('body').on('click','#form_info_new_media_element_in_editor _cancel', function(){
+  $('body').on('click','#form_info_new_media_element_in_editor ._cancel', function(){
+    $('.form_error').removeClass("form_error");
     $('#form_info_new_media_element_in_editor').hide();
+    $('._save_edit_image').show();
   });
   
-  $('body').on('click','#form_info_update_media_element_in_editor _cancel', function(){
+  $('body').on('click','#form_info_new_media_element_in_editor._title_reset ._cancel', function(){
+    $('._titled').show();
+    $('._untitled').hide();
+  });
+  
+  $('body').on('click','#form_info_update_media_element_in_editor ._cancel', function(){
+    $('.form_error').removeClass("form_error");
     $('#form_info_update_media_element_in_editor').hide();
+    $('._save_edit_image').show();
   });
   
 });
 
-function commitImageEditing(save_or_overwrite){
+function commitImageEditing(new_or_overwrite){
   processTextAreaForm();
   var thisForm = $("form#_crop_form");
-  thisForm.attr("action","/images/"+thisForm.data("param")+"/"+save_or_overwrite);
+  thisForm.attr("action","/images/"+thisForm.data("param")+"/commit/"+new_or_overwrite);
   thisForm.submit();
 }
 
@@ -163,12 +174,16 @@ function saveImageChoice(image_id) {
   var title = $('.header h1 span');
   showConfirmPopUp(title.text(), "Update or create new image", "update", "new", function() {
     $('#dialog-confirm').hide();
+    $('._save_edit_image').hide();
     $('#form_info_update_media_element_in_editor').show();
-    
     closePopUp('dialog-confirm');
   }, function() {
     $('#dialog-confirm').hide();
+    $('._titled').hide();
+    $('._untitled').show();
+    $('._save_edit_image').hide();
     $('#form_info_new_media_element_in_editor').show();
+    $('#form_info_new_media_element_in_editor').addClass("_title_reset");
     closePopUp('dialog-confirm');
   });
 }
@@ -193,7 +208,7 @@ function resizedValue(width,height){
 
 // Update form with textareas
 function processTextAreaForm(){
-  $("#_image_editor_container textarea").each(function(index){
+  $("#_image_editor_container .image_editor_text textarea").each(function(index){
     var tarea = $(this);
     addTextAreaHiddenFields(tarea.data("color"), tarea.data("size"), tarea.data("coords"), tarea.val(), index);
   });

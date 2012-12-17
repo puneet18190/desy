@@ -1,2 +1,13 @@
-alert("saved");
-//window.location = "<%= my_media_elements_path %>"
+alert("save!");
+<% if @errors %>
+  alert("into errors");
+  <% @errors.each do |err,val|%>
+    $("#error_messages").html(<%= val %>);
+    console.log("<%=err%>");
+    console.log("<%=val%>");
+    $("#new_<%=err%>").addClass("form_error");
+    $("#update_<%=err%>").addClass("form_error");
+  <% end %>
+<% else %>
+  window.location = "<%= my_media_elements_path %>"
+<% end %>

@@ -91,6 +91,12 @@ $icon-size: 5.6em;
    background-position: 0 (-$icon-size*2);
     opacity:1;
 }
+.imageIcon {
+   @include iconEditorElement(0.4em);
+   margin-right:5px;
+   background-position: 0 (-$icon-size*2);
+    opacity:1;
+}
 .videoIcon {
    @include iconEditorElement(0.4em);
    background-position: 0 0;
@@ -171,6 +177,12 @@ $button-size: 6em;
 }
 
 
+.infoButtonWhite {
+  @include  menuCondivisoElementLessonEditor(0.75em);
+  background-position: 0 (-$button-size*2);
+  opacity:1;
+}
+
 .infoButtonOrange {
   @include  menuCondivisoElementLessonEditor(0.75em);
   background-position: 0 (-$button-size*2);
@@ -180,6 +192,7 @@ $button-size: 6em;
     opacity:1;
   }
 }
+
 .saveButtonOrange {
   @include  menuCondivisoElementLessonEditor(0.75em);
   background-position: 0 (-$button-size*3);
@@ -328,7 +341,38 @@ a.addButtonContent {
   float:left;
   
 }  
- 
+.esciButton {
+  background-image: url(<%= asset_path 'esci.svg' %>);
+    background-repeat: no-repeat;
+    background-size: 12em 6em;
+    background-position: 0em -1em;
+    padding:0;
+    float:right;
+    font-size:0.4em;
+    width: 5.8em;
+    height: 4em;
+    margin-top:6px;
+    &:hover {
+      background-position: -6em -1em;
+    };
+} 
+.nextButton {
+  background-image: url(<%= asset_path 'next.svg' %>);
+    background-repeat: no-repeat;
+    background-size: 12em 6em;
+    background-position: 0em 0em;
+    padding:0;
+    font-size:0.6em;
+    width: 6em;
+    float:right;
+    height: 6em;
+    opacity: 0.2;
+    &:hover {
+      background-position: -6em 0em;
+      font-size:0.6em;
+      opacity:1;
+    };
+} 
  /* TINYMCE SIZES */
  .size1{
    font-size: 120%;

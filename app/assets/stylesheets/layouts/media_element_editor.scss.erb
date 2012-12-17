@@ -15,7 +15,7 @@ html.media_element_editor-layout {
   }
   .header {
     background-color:#43a848;
-    padding:10px;
+    padding:5px;
     margin: 0 auto;
     
     .contenitore {
@@ -40,7 +40,7 @@ html.media_element_editor-layout {
     
   }
   .headerEmpty {
-    height: 54px;
+    height: 44px;
     background-color:#43a848;
     margin: 0 auto;
   }
@@ -50,23 +50,38 @@ html.media_element_editor-layout {
   }
   
   /* ELEMENTS EDITOR */
-  #form_info_new_media_element_in_editor, #form_info_update_media_element_in_editor .formInfoMediaElementEditor {
+  #form_info_new_media_element_in_editor.formInfoMediaElementEditor, #form_info_update_media_element_in_editor.formInfoMediaElementEditor {
     background-color: #43a848;
     width: 990px;
     height: 600px;
     position: absolute;
-    top: 78px;
+    top: 68px;
+    z-index: 101;
+    
+    .videoIcon {
+      background-position: -6em 0;
+      font-size:1em;
+      margin-right:15px;
+    }
+    .imageIcon {
+      background-position: -6em -11.2em;
+      font-size:1em;
+      margin-right:15px;
+    }
+    .audioIcon {
+      background-position: -6em -5.6;
+      font-size:1em;
+      margin-right:15px;
+    }
     .contentFormInfoMediaElementEditor {
       padding-top: 60px;
       width:670px;
       margin:0 auto;
       .titleFormInfo {
         padding-bottom:40px;
-        .videoIcon {
-          font-size:1em;
-          background-position: -6em 0;
-          margin-right:15px;
-        }
+        display:inline-block;
+        width:670px;
+        
         h1 {
           color:#fff;
           text-align:left;
@@ -91,6 +106,9 @@ html.media_element_editor-layout {
         font: 12px Arial, Helvetica, sans-serif;
         color: #fff;
         resize:none;
+        &.form_error,{
+          outline: 3px solid white;
+        }
       }
       input {
         height:25px;
@@ -99,7 +117,7 @@ html.media_element_editor-layout {
       textarea {
         height: 106px;
       }
-      textarea#new_tags  {
+      textarea#new_tags, textarea#update_tags {
         height:155px;
       }
       input[type="submit"] {
@@ -115,6 +133,9 @@ html.media_element_editor-layout {
       .buttonForm {
         background-color:#000;
         color:white;
+        &:hover {
+          background-color: #67b855;
+        }
       }
     }
     
@@ -441,6 +462,7 @@ html.media_element_editor-layout {
       text-align:left;
       padding:5px 10px;
       float:left;
+      margin-top:10px;
     }
     .audioButton {
       font-size: 0.8em;
@@ -574,7 +596,7 @@ html.media_element_editor-layout {
    #image_wrapper{
      margin:0 auto 0;
      padding:0;
-      margin-top:25px;
+     margin-top:25px;
      width: 660px;
      display:block;
      overflow:hidden;
@@ -584,7 +606,7 @@ html.media_element_editor-layout {
      }
    }
 
-    #_image_editor_container{
+    #_image_editor_container {
       .image_editor_text{
        padding:0;
       }

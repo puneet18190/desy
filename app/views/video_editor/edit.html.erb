@@ -17,11 +17,12 @@
       <%= hidden_field_tag 'audio_id', (@parameters[:audio].nil? ? '' : @parameters[:audio].id) %>
       <%= render :partial => 'timeline', :locals => {:parameters => @parameters} %>
       <%= render :partial => 'cutter', :locals => {:parameters => @parameters} %>
+      <!-- NEXT -->
       <div class="addAudioandSave">
         <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
         <div class="fltrt">
-          <div class="fltrt"><a class="saveButton _commit_video_editor <%= @parameters[:initial_video].nil? ? '' : '_with_choice'.html_safe %>"></a></div>
-          <div class="fltrt"><a class="closeButton _exit_video_editor"></a></div>
+          <div class="fltrt"><a class="nextButton _commit_video_editor <%= @parameters[:initial_video].nil? ? '' : '_with_choice'.html_safe %>"></a></div>
+          
         </div>
       </div>
       <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => MediaElement::VIDEO_TYPE} %>
@@ -32,6 +33,20 @@
   </div>
   
 </div>
+
+
+<div id="empty_video_component_for_video_editor" style="display:none">
+  <%= render :partial => "video_editor/components/video", :locals => {:component => {}, :position => 1, :empty => true} %>
+</div>
+
+<div id="empty_image_component_for_video_editor" style="display:none">
+  <%= render :partial => "video_editor/components/image", :locals => {:component => {}, :position => 1, :empty => true} %>
+</div>
+
+<div id="empty_text_component_for_video_editor" style="display:none">
+  <%= render :partial => "video_editor/components/text", :locals => {:component => {}, :position => 1, :empty => true} %>
+</div>
+
 
 <div id="video_editor_mixed_gallery_container" class="mediaEditorVideoContainer" style="display:none" data-loaded="false"></div>
 
