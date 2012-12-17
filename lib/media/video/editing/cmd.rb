@@ -1,10 +1,12 @@
-require 'media_editing'
 require 'media/video/editing'
-require 'media_editing/cmd'
+require 'media/video/editing'
+require 'media/video/editing/cmd'
 
-module MediaEditing
+module Media
   module Video
-    class Cmd < Cmd
+    module Editing
+      class Cmd < Cmd
+      end
     end
   end
 end

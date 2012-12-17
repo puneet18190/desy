@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-require 'media_editing/allowed_duration_range'
+require 'media/video/editing/allowed_duration_range'
 require 'env_relative_path'
 require 'media/video/editing/cmd/extract_frame'
-require 'media_editing/image/resize_to_fill'
+require 'media/video/editing/image/resize_to_fill'
 
 class VideoUploader < String
 

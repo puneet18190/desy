@@ -10,5 +10,5 @@ require 'media/info'
 require 'media/allowed_duration_range'
 
 # TODO renamespacing
-# require 'media/video/editing'
+require 'media/video/editing'
 # require 'media/audio/editing'

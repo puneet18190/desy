@@ -1,24 +1,26 @@
-require 'media_editing'
+require 'media/video/editing'
 require 'media/video/editing'
 require 'media/video/editing/cmd'
 require 'shellwords'
 
-module MediaEditing
+module Media
   module Video
-    class Cmd
-      class AudioStreamToFile < Cmd::Avconv
-        def initialize(input, output)
-          @input, @output = input, output
-        end
-
-        private
-        def cmd!
-          %Q[ #{self.class.bin}
-                #{global_options.join(' ')}
-                -i #{@input.shellescape}
-                -map 0:a:0
-                -c copy
-                #{@output.shellescape} ].squish
+    module Editing
+      class Cmd
+        class AudioStreamToFile < Cmd::Avconv
+          def initialize(input, output)
+            @input, @output = input, output
+          end
+  
+          private
+          def cmd!
+            %Q[ #{self.class.bin}
+                  #{global_options.join(' ')}
+                  -i #{@input.shellescape}
+                  -map 0:a:0
+                  -c copy
+                  #{@output.shellescape} ].squish
+          end
         end
       end
     end
