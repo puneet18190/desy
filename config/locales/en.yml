@@ -203,7 +203,6 @@ en:
     what_is_desy_7: ') offering dedicated pages and functionalities both for teachers and students.'
     what_is_desy_8: 'The application can easily be used for learning other languages: a course is currently being planned for teaching Italian to foreigners.'
     what_is_desy_right_column: 'What is DESY? Placeholder for right column description -- DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY '
-    you_sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
 
 # (3) accessors: empty situations, popups, help, etc
   empty:
@@ -347,6 +346,7 @@ en:
   notifications:
     lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
     lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
+    sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
 
 # (4) labels for constant keywords defined in lib/autoload
   statuses:
