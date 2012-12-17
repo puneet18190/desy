@@ -152,7 +152,7 @@ class ImageEditorController < ApplicationController
             c.stroke "none"
             #c.encoding = "Unicode"
             c.font "#{Rails.root}/vendor/fonts/wt014.ttf"
-            size_value = params["font_#{t_num}"].to_f * 0.75
+            size_value = params["font_#{t_num}"].to_f # should add * 0.75 to compensate px to pt
             width_val = woh[1]
             original_val = woh[0]
             c.pointsize "#{ratio_value(width_val,(size_value), original_val)}"

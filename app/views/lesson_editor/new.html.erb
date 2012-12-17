@@ -8,6 +8,7 @@
         <br />
         <%= t('captions.good_work') %>
       </h3>
+      <div class="_error_messages"></div>
       <%= form_tag('/lessons/create') do -%>
         <%= text_field_tag "title", "", :placeholder => "#{t 'captions.enter_lesson_title'}", :class=>"pull-left" %>
         <%= select_tag "subject", options_from_collection_for_select(@subjects, "id", "description"), :include_blank => false, :class=>"pull-right", :id => "lesson_subject" %>
