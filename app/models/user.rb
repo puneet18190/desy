@@ -293,7 +293,7 @@ class User < ActiveRecord::Base
     lesson.copied_not_modified = false
     lesson.user_id = self.id
     lesson.tags = tags
-    return lesson.save ? lesson : nil
+    return lesson.save ? lesson : lesson.errors.messages
   end
   
   def self.create_user(email, name, surname, school, school_level_id, location_id, subject_ids, raise_exception_if_fail = false)
