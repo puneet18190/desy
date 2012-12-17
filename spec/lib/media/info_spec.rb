@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module MediaEditing
+module Media
   describe Info do
 
     context "when the video is not valid" do
