@@ -31,7 +31,7 @@ module Media
         def error_message_for_file_to_convert
           return :invalid_filename if processed_original_filename_without_extension.blank?
             
-          if not EXTENSIONS_WHITE_LIST_WITH_DOT.include?(original_filename_extension)
+          if not EXTENSION_WHITE_LIST_WITH_DOT.include?(original_filename_extension)
             :unsupported_format
           else
             info = Info.new(@original_file.path, false)

@@ -1,4 +1,6 @@
 class Image < MediaElement
+  EXTENSION_WHITE_LIST = %w(jpg jpeg png)
+  
   mount_uploader :media, ImageUploader
   
   # TODO toglierlo da qui e metterlo in MediaElement una volta implementati tutti gli upload

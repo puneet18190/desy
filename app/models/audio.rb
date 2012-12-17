@@ -2,6 +2,8 @@ require 'media/audio/uploader'
 
 class Audio < MediaElement
 
+  EXTENSION_WHITE_LIST = %w(mp3 ogg flac aiff wav wma aac)
+
   after_save :upload_or_copy
   after_destroy :clean
 
