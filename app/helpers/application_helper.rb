@@ -1,5 +1,13 @@
 module ApplicationHelper
   
+  def media_elements_error_messages(errors)
+    msg = ""
+    errors.each do |key,val|
+      msg << "#{key.to_s}: #{val[0].to_s}, " 
+    end
+    return msg[0..-3].html_safe
+  end
+  
   def seconds_to_time(secs)
     mm = secs / 60
     ss = secs % 60
