@@ -86,7 +86,7 @@ class ImageEditorController < ApplicationController
           end
         end
       end
-      logger.info "\n\n\n\n\n tCount after: #{textCount} \n\n\n\n"
+
       if !params[:x1].blank?
         x1= ratio_value(woh[1],params[:x1],woh[0])
         y1= ratio_value(woh[1],params[:y1],woh[0])
@@ -101,11 +101,20 @@ class ImageEditorController < ApplicationController
       #TODO update replacing write temp image
       img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
       new_image = Image.new { |me| me.user = @current_user }
-      new_image.media = File.open("#{Rails.root}#{image_dir}/final_crop.jpg")
+
       new_image.title = params[:new_title]
       new_image.description = params[:new_description]
       new_image.tags = params[:new_tags]
-      new_image.save!
+            
+      new_image.valid?
+      msg = new_image.errors.messages
+      msg.delete(:media)
+      if msg.empty?
+        new_image.media = File.open("#{Rails.root}#{image_dir}/final_crop.jpg")
+        new_image.save
+      else
+        @errors = msg
+      end
       
       # manca redirect_to my_media_elements_path
       
@@ -168,9 +177,20 @@ class ImageEditorController < ApplicationController
       end
       image_dir = "/public/media_elements/images/#{params[:image_id]}"
       final_image_url = img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
-      new_image = Image.new { |me| me.user = @current_user }
-      new_image.media = final_image_url
-      new_image.save!
+      @image
+
+      @image.title = params[:new_title]
+      @image.description = params[:new_description]
+      @image.tags = params[:new_tags]
+            
+      
+      
+      if @image.valid?
+        @image.media = File.open("#{Rails.root}#{image_dir}/final_crop.jpg")
+        @image.save
+      else
+        @errors = @image.errors.messages
+      end
       
       # manca redirect_to my_media_elements_path
       

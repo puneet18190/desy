@@ -135,14 +135,17 @@ $(document).ready(function() {
   });
   
   $('body').on('click','#form_info_new_media_element_in_editor ._commit', function(){
+    $('.form_error').removeClass("form_error");
     commitImageEditing("new");
   });
   
   $('body').on('click','#form_info_update_media_element_in_editor ._commit', function(){
+    $('.form_error').removeClass("form_error");
     commitImageEditing("overwrite");
   });
   
   $('body').on('click','#form_info_new_media_element_in_editor ._cancel', function(){
+    $('.form_error').removeClass("form_error");
     $('#form_info_new_media_element_in_editor').hide();
     $('._save_edit_image').show();
   });
@@ -153,6 +156,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click','#form_info_update_media_element_in_editor ._cancel', function(){
+    $('.form_error').removeClass("form_error");
     $('#form_info_update_media_element_in_editor').hide();
     $('._save_edit_image').show();
   });
