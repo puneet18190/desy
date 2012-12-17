@@ -98,9 +98,13 @@ class ImageEditorController < ApplicationController
         img.crop(crop_params)
       end
       image_dir = "/public/media_elements/images/#{params[:image_id]}"
-      final_image_url = img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
+      #TODO update replacing write temp image
+      img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
       new_image = Image.new { |me| me.user = @current_user }
-      new_image.media = final_image_url
+      new_image.media = File.open("#{Rails.root}#{image_dir}/final_crop.jpg")
+      new_image.title = params[:new_title]
+      new_image.description = params[:new_description]
+      new_image.tags = params[:new_tags]
       new_image.save!
       
       # manca redirect_to my_media_elements_path
