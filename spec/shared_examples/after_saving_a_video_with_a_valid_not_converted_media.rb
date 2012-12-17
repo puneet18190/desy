@@ -7,7 +7,7 @@ shared_examples 'after saving a video with a valid not converted media' do
                                    cover: "#{public_relative_folder}/cover_#{name}.jpg", thumb: "#{public_relative_folder}/thumb_#{name}.jpg" } }
   let(:absolute_paths)         { { mp4: "#{absolute_folder}/#{name}.mp4", webm: "#{absolute_folder}/#{name}.webm",
                                    cover: "#{absolute_folder}/cover_#{name}.jpg", thumb: "#{absolute_folder}/thumb_#{name}.jpg" } }
-  let(:info)                   { Hash[ [:mp4, :webm].map{ |f| [f, MediaEditing::Info.new(video.media.absolute_path(f))] } ] }
+  let(:info)                   { Hash[ [:mp4, :webm].map{ |f| [f, Media::Info.new(video.media.absolute_path(f))] } ] }
   let(:durations)              { Hash[ [:mp4, :webm].map{ |f| [:"#{f}_duration", info[f].duration] } ] }
   let(:versions)               { [:mp4, :webm, :cover, :thumb] }
 
