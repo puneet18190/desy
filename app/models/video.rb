@@ -232,6 +232,10 @@ class Video < MediaElement
     super
   end
 
+  def reload_media
+    @media = nil
+  end
+
   private
   def upload_or_copy
     media.upload_or_copy if media

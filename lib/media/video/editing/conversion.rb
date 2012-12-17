@@ -5,8 +5,9 @@ require 'media/logging'
 require 'media/allowed_duration_range'
 require 'media/info'
 require 'media/error'
-require 'media/video/editing/cmd/conversion'
 require 'env_relative_path'
+require 'media/video/editing/cmd/conversion'
+require 'media/image/editing/resize_to_fill'
 
 module Media
   module Video
@@ -79,7 +80,7 @@ module Media
         end
   
         def extract_thumb(input, output, width, height)
-          Image::ResizeToFill.new(input, output, width, height).run
+          Image::Editing::ResizeToFill.new(input, output, width, height).run
         end
   
         def extract_cover(input, output, duration)

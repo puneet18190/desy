@@ -190,12 +190,12 @@ module Media
 
       def extract_cover(input, output, duration)
         seek = duration / 2
-        Video::Cmd::ExtractFrame.new(input, output, seek).run!
+        Editing::Cmd::ExtractFrame.new(input, output, seek).run!
         raise StandardError, 'unable to create cover' unless File.exists? output
       end
 
       def extract_thumb(input, output, width, height)
-        Image::ResizeToFill.new(input, output, width, height).run
+        Image::Editing::ResizeToFill.new(input, output, width, height).run
       end
 
       def upload
