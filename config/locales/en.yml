@@ -61,6 +61,7 @@ en:
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
   captions:
+    add_audio_track: 'Add audio track'
     add_lesson_now: 'Add a lesson now'
     add_new_lesson: 'Add new lesson'
     advanced_search: 'Advanced search'
@@ -189,6 +190,7 @@ en:
     your_search_returned: 'Your search returned '
     your_virtual_classroom_is_empty: 'Your virtual classroom is empty'
   descriptions:
+    audio_track_in_video_editor: 'You can upload an audio track that will be the background of your video'
     change_info_element: 'You can modify the data of your element. Inserting tags you will make it available to DESY community, remember that people are more likely to find your element if you insert more tags'
     instructions_to_fill_playlist: 'After loading the lessons in the virtual classroom drag to create a playlist of reproduction.'
     mailer_link_1: 'The user '
