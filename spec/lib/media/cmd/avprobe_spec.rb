@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module MediaEditing
+module Media
   class Cmd
     describe Avprobe do
 

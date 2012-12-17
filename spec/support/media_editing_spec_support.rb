@@ -1,4 +1,4 @@
-require 'media_editing'
+require 'media'
 
 module MediaEditingSpecSupport
   SAMPLES_FOLDER = Pathname.new File.expand_path('../samples', __FILE__)
