@@ -50,8 +50,35 @@ function removeComponentInVideoEditor(position) {
 }
 
 function addImageComponentInVideoEditor(image_id, component, duration) {
-  alert('stai aggiungendo la componente -- ' + component + ' in ultima posizione, per una durata di ' + duration + ' secondi');
-  // mettere flash
+  $('._new_component_in_video_editor_hover a').removeClass('current');
+  var next_position = $('#info_container').data('components-number') + 1;
+  var new_timeline_width = (187 * next_position) + 156;
+  $('#media_elements_list_in_video_editor').data('jsp').destroy();
+  $('#video_editor_timeline').css('width', new_timeline_width + 'px');
+  $('#media_elements_list_in_video_editor').jScrollPane({
+    autoReinitialise: true
+  });
+  $('#info_container').data('components-number', next_position);
+  var empty_component = $('#empty_image_component_for_video_editor').html();
+  empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(empty_component.indexOf('div') + 3, empty_component.length);
+  $('#add_new_video_component').before(empty_component);
+  current_component = $('#temporary_empty_component');
+  current_component.attr('id', ('video_component_' + next_position));
+  current_component.data('duration', 0);
+  current_component.data('position', next_position);
+  current_component.find('._video_component_icon').html(next_position + '<div class="photoIcon"></div>');
+  $('#add_new_video_component ._component_counter').html(next_position + 1);
+  current_component.find('._video_editor_component_hover').append(component);
+  var to_be_appended = fillVideoEditorSingleParameter('type', next_position, 'image');
+  to_be_appended += fillVideoEditorSingleParameter('image_id', next_position, image_id);
+  to_be_appended += fillVideoEditorSingleParameter('duration', next_position, duration);
+  to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
+  current_component.find('._video_editor_component_hover').append(to_be_appended);
+  changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  setTimeout(function() {
+    $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100);
+    highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'videoIcon');
+  }, 1400);
 }
 
 function replaceImageComponentInVideoEditor(image_id, component, position, duration) {
