@@ -40,7 +40,16 @@ or ABC to enter text.</p>
   </div>
   <div class="menuFooterEditorElement">
 	  <p>Original image size: <%= @image.width %>x<%= @image.height %>px</p>
-    <%= render :partial => "save_cancel" %>
+    <!-- NEXT -->
+    <% save_class = "_save_edit_image nextButton" %>
+    <% if @image.is_public %>
+      <% save_class = "#{save_class} _create_new_image" %>
+    <% else %>
+      <% save_class = "#{save_class} _updatable_image" %>
+    <% end %>
+    <div class="fltrt">
+      <div class="fltrt"><a class="<%= save_class %>" data-image-id="<%= @image.id %>"></a></div>
+    </div>
   <br class="clearfloat">
   </div>
 </div>

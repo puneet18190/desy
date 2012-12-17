@@ -341,7 +341,38 @@ a.addButtonContent {
   float:left;
   
 }  
- 
+.esciButton {
+  background-image: url(<%= asset_path 'esci.svg' %>);
+    background-repeat: no-repeat;
+    background-size: 12em 6em;
+    background-position: -1em -1em;
+    padding:0;
+    float:right;
+    font-size:0.4em;
+    width: 5em;
+    height: 4em;
+    margin-top:6px;
+    &:hover {
+      background-position: -7em -1em;
+    };
+} 
+.nextButton {
+  background-image: url(<%= asset_path 'next.svg' %>);
+    background-repeat: no-repeat;
+    background-size: 12em 6em;
+    background-position: 0em 0em;
+    padding:0;
+    font-size:0.6em;
+    width: 6em;
+    float:right;
+    height: 6em;
+    opacity: 0.2;
+    &:hover {
+      background-position: -6em 0em;
+      font-size:0.6em;
+      opacity:1;
+    };
+} 
  /* TINYMCE SIZES */
  .size1{
    font-size: 120%;

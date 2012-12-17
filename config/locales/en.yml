@@ -70,6 +70,7 @@ en:
     back_in_desy: 'Back in DESY'
     cancel: 'Cancel'
     click_image_to_add_text: 'Click on the image to add text'
+    change_media_element_info: 'If appropriate, change the information entered.'
     choose_audio: 'click here to add audio'
     choose_image: 'click here to add image'
     choose_video: 'click here to add video'
@@ -80,6 +81,7 @@ en:
     create_new_lesson: 'Create a new lesson'
     create_new_lesson_now: 'Create a lesson now'
     create_new_media_element: 'Create a new element'
+    creating_new_media_element: "You're creating a new educational element."
     description: 'Description'
     desy: 'DESY'
     desy_expanded_description: 'Digital Education System'
@@ -95,6 +97,7 @@ en:
     enter_lesson_title: 'Enter the title of the lesson'
     enter_lesson_description: 'Describe your lesson'
     enter_lesson_tags: 'Enter tags'
+    enter_new_media_element_details: 'Enter all the details of the new element'
     enter_title: 'Enter title'
     exit: 'Exit'
     fill_in_form_for_new_lesson: 'Enter the details of the lesson you are about to create.'
@@ -161,6 +164,7 @@ en:
     untitled_new_element: "New element - untitled"
     update: 'Update'
     update_lesson: 'Change the lesson info'
+    updating_media_element: 'Update the element information'
     upload: 'Upload'
     use_the_form_below_for_lesson_information: 'Modify or change information related to your lesson.'
     video_editor_label: 'Edit video'
