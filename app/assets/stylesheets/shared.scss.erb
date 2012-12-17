@@ -238,14 +238,23 @@ a.cerca.current {
   color:#fff;
   font-size:100%;
   position:relative;
+  .cover {
+    width: 247px;
+    height: 143px;
+    overflow: hidden;
+    position: relative;
+    
+    img {
+      position:absolute;
+    }
+
+  }
   .lessonSubject {
     background-color:#fff;
     font-size:80%;
     color:#373737;
     padding:3px 10px;
-    position:absolute;
-    bottom:0px;
-    left:0px;
+    clear: both;
     width:227px;
     span {
       float:right
@@ -254,19 +263,20 @@ a.cerca.current {
       color:#F29400;
       font-weight:normal;
     }
+
   }
   .bg_text {
-    padding:5px 10px 10px 10px;
-    background-color:#f29400;
-    height:30px;
+    padding:0px 20px;
+    background-color: rgba(242, 148, 0, 0.95);
+    height:35px;
     position:absolute;
-    bottom:10px;
+    bottom:17px;
     left:0px;
-    width:227px;
+    width:207px;
    .lessonTitle {
       font: 100% 'Nunito', sans-serif;
       color:#fff;
-      line-height:1em;
+      line-height:2.5em;
     }
   }
 }
@@ -629,6 +639,7 @@ a.cerca.current {
 }
 .paginatoreCentrato {
   width:91%;
+ 
 }
 .bottoniVerdi {
   a {
