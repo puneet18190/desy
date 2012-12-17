@@ -67,6 +67,7 @@ function replaceImageComponentInVideoEditor(image_id, component, position, durat
 }
 
 function addVideoComponentInVideoEditor(video_id, component, duration) {
+  $('._new_component_in_video_editor_hover a').removeClass('current');
   var next_position = $('#info_container').data('components-number') + 1;
   var new_timeline_width = (187 * next_position) + 156;
   $('#media_elements_list_in_video_editor').data('jsp').destroy();

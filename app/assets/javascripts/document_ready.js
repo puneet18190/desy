@@ -765,6 +765,10 @@ $(document).ready(function() {
       infos.data('current-component', 'video_component_' + (infos.data('components-number') + 1));
     }
     if($('#video_editor_mixed_gallery_container').data('loaded')) {
+      $('#media_elements_list_in_video_editor').data('jsp').destroy();
+      $('#media_elements_list_in_video_editor').jScrollPane({
+        autoReinitialise: false
+      });
       $('#video_editor').hide();
       $('#video_editor_mixed_gallery_container').css('display', 'inline-block');
       resetVideoEditorTextComponent();
