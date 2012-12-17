@@ -29,6 +29,13 @@ function saveCacheLoop() {
   }
 }
 
+function showMixedGalleryInVideoEditor() {
+  $('#video_editor_mixed_gallery_container').show();
+  $('._video_editor_bottom_bar').hide();
+  calculateNewPositionGalleriesInVideoEditor();
+  $('._new_component_in_video_editor_button').hide();
+}
+
 function closeMixedGalleryInVideoEditor() {
   $('#video_editor_mixed_gallery_container').hide('fade', {}, 250, function() {
     $('._video_editor_bottom_bar').show();

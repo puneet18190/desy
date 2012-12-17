@@ -765,9 +765,7 @@ $(document).ready(function() {
       infos.data('current-component', 'video_component_' + (infos.data('components-number') + 1));
     }
     if($('#video_editor_mixed_gallery_container').data('loaded')) {
-      $('#video_editor_mixed_gallery_container').show();
-      $('._video_editor_bottom_bar').hide();
-      calculateNewPositionGalleriesInVideoEditor();
+      showMixedGalleryInVideoEditor();
       resetVideoEditorTextComponent();
     } else {
       $.ajax({
