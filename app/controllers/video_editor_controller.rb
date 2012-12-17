@@ -71,15 +71,10 @@ class VideoEditorController < ApplicationController
       redirect_to '/dashboard' # FIXME decidere che fare in questo caso
       return
     end
-    parameters[:initial_video].title = params[:new_title]
-    parameters[:initial_video].description = params[:new_description]
-    parameters[:initial_video].tags = params[:new_tags]
-    temporary_initial_video = parameters[:initial_video]
-    # provo a validarlo per vedere se è ok
-    temporary_initial_video.valid?
-    errors = temporary_initial_video.errors.messages
-    errors.delete(:media)
-    if errors.empty?
+    parameters[:initial_video].title = params[:update_title]
+    parameters[:initial_video].description = params[:update_description]
+    parameters[:initial_video].tags = params[:update_tags]
+    if parameters[:initial_video].valid?
       # manda parameters al video editor di Maurizio, e fai redirect_to my_media_elements_path
       # usa le notifiche per segnalare la riuscita o non riuscita del salvataggio??
       # svuota la cache se il salvataggio riesce
