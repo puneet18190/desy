@@ -1,4 +1,4 @@
-$dots-pagination-link-width: 20px;
+$dots-pagination-link-width: 10px;
 $dots-pagination-link-height: $dots-pagination-link-width;
 $dots-pagination-link-lr-margin: 3px;
 $dots-pagination-link-border-radius: $dots-pagination-link-width / 2;
@@ -11,7 +11,7 @@ $dots-pagination-link-disabled-color: grayscale(lighten($dots-pagination-link-cu
 
 .dots_pagination_container {
   text-align: center;
-
+  margin:25px 0px;
   .dots_pagination {
     display: inline-block;
     position: relative;

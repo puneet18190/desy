@@ -1,16 +1,14 @@
 <% audio = slide.audio_at(1) %>
-<div class="zoomOutThumb">
-  <div class="bigViewLesson slideAudio">
-  <h2><%= slide.title %></h2>
-    <div class="audioBig">
-      <% if audio.nil? %>
-      <div class="audioIcon"></div>
-      <% else %>
-      <p><%= audio.title %></p>
-      <% end %>
-   </div>
-   <div class="contentText">
-      <%= slide.text.html_safe if slide.text %>
-   </div>
+<div class="bigViewLesson slideAudio">
+<h2><%= slide.title %></h2>
+  <div class="audioBig">
+    <% if audio.nil? %>
+    <div class="audioIcon"></div>
+    <% else %>
+    <p><%= audio.title %></p>
+    <% end %>
+ </div>
+ <div class="contentText">
+    <%= slide.text.html_safe if slide.text %>
  </div>
 </div>
