@@ -1,9 +1,3 @@
-$('#media_elements_list_in_video_editor').data('jsp').destroy();
-$('#media_elements_list_in_video_editor').jScrollPane({
-  autoReinitialise: true
-});
-
-$('#video_editor').hide();
 $('#video_editor_mixed_gallery_container').show();
 $('#video_editor_mixed_gallery_container').html('<%= j(render(:partial => 'galleries/mixed_video_image_text', :locals => {:images => @images, :videos => @videos})) %>');
 $('#video_editor_mixed_gallery_container').data('loaded', true);
