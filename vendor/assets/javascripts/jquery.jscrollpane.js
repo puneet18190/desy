@@ -195,6 +195,13 @@
 					initialiseVerticalScroll();
 					initialiseHorizontalScroll();
 					resizeScrollbars();
+					
+					// FIXME qui qui qui
+					if (isScrollableH && settings.directlyOnTheRight) {
+						horizontalDrag.css('left', dragMaxX);
+						_positionDragX(dragMaxX);
+					}
+					// fino a qui
 
 					if (isMaintainingPositon) {
 						scrollToX(maintainAtRight  ? (contentWidth  - paneWidth ) : lastContentX, false);
@@ -1405,6 +1412,7 @@
 		clickOnTrack				: true,
 		autoReinitialise			: false,
 		autoReinitialiseDelay		: 500,
+		directlyOnTheRight			: false,
 		verticalDragMinHeight		: 0,
 		verticalDragMaxHeight		: 99999,
 		horizontalDragMinWidth		: 0,
