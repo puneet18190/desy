@@ -6,8 +6,8 @@ function initializeVideoEditor() {
 }
 
 function calculateNewPositionGalleriesInVideoEditor() {
-  $('#video_editor_mixed_gallery_container').css('left', (($(window).width() - 910) / 2) + 'px');
-  $('#video_editor_audio_gallery_container').css('left', (($(window).width() - 910) / 2) + 'px');
+  $('#video_editor_mixed_gallery_container').css('left', (($(window).width() - 960) / 2) + 'px');
+  $('#video_editor_audio_gallery_container').css('left', (($(window).width() - 960) / 2) + 'px');
 }
 
 function startCacheLoop() {
