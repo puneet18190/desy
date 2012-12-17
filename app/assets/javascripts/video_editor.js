@@ -68,7 +68,7 @@ function replaceImageComponentInVideoEditor(image_id, component, position, durat
 
 function addVideoComponentInVideoEditor(video_id, component, duration) {
   var next_position = $('#info_container').data('components-number') + 1;
-  var new_timeline_width = (186 * next_position) + 156 + 7;
+  var new_timeline_width = (187 * next_position) + 156;
   $('#media_elements_list_in_video_editor').data('jsp').destroy();
   $('#video_editor_timeline').css('width', new_timeline_width + 'px');
   $('#media_elements_list_in_video_editor').jScrollPane({
@@ -76,13 +76,13 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   });
   $('#info_container').data('components-number', next_position);
   var empty_component = $('#empty_video_component_for_video_editor').html();
-  empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(5, empty_component.length);
+  empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(empty_component.indexOf('div') + 3, empty_component.length);
   $('#add_new_video_component').before(empty_component);
   current_component = $('#temporary_empty_component');
   current_component.attr('id', ('video_component_' + next_position));
   current_component.data('duration', 0);
   current_component.data('position', next_position);
-  current_component.find('._video_component_icon').html(next_position);
+  current_component.find('._video_component_icon').html(next_position + '<div class="videoIcon"></div>');
   $('#add_new_video_component ._component_counter').html(next_position + 1);
   current_component.find('._video_editor_component_hover').append(component);
   var to_be_appended = fillVideoEditorSingleParameter('type', next_position, 'video');
