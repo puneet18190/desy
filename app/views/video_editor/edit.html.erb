@@ -18,7 +18,7 @@
       <%= render :partial => 'timeline', :locals => {:parameters => @parameters} %>
       <%= render :partial => 'cutter', :locals => {:parameters => @parameters} %>
       <!-- NEXT -->
-      <div class="addAudioandSave">
+      <div class="addAudioandSave _video_editor_bottom_bar">
         <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
         <div class="fltrt">
           <div class="fltrt"><a class="nextButton _commit_video_editor <%= @parameters[:initial_video].nil? ? '' : '_with_choice'.html_safe %>"></a></div>
@@ -48,9 +48,9 @@
 </div>
 
 
-<div id="video_editor_mixed_gallery_container" class="mediaEditorVideoContainer" style="display:none" data-loaded="false"></div>
+<div id="video_editor_mixed_gallery_container" class="mediaEditorVideoGalleryContainer" style="display:none" data-loaded="false"></div>
 
-<div id="video_editor_audio_gallery_container" class="mediaEditorVideoContainer" style="display:none" data-loaded="false"></div>
+<div id="video_editor_audio_gallery_container" class="mediaEditorVideoGalleryContainer" style="display:none" data-loaded="false"></div>
 
 <div id="info_container" data-components-number="<%= @parameters[:components].count %>" data-current-component="" data-replacing-component="false" data-total-length="<%= @total_length %>" data-save-cache="false" style="display:none"></div>
 
