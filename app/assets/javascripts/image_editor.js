@@ -146,6 +146,11 @@ $(document).ready(function() {
     $('#form_info_new_media_element_in_editor').hide();
   });
   
+  $('body').on('click','#form_info_new_media_element_in_editor._title_reset ._cancel', function(){
+    $('._titled').show();
+    $('._untitled').hide();
+  });
+  
   $('body').on('click','#form_info_update_media_element_in_editor ._cancel', function(){
     $('#form_info_update_media_element_in_editor').hide();
   });
@@ -164,11 +169,13 @@ function saveImageChoice(image_id) {
   showConfirmPopUp(title.text(), "Update or create new image", "update", "new", function() {
     $('#dialog-confirm').hide();
     $('#form_info_update_media_element_in_editor').show();
-    
     closePopUp('dialog-confirm');
   }, function() {
     $('#dialog-confirm').hide();
+    $('._titled').hide();
+    $('._untitled').show();
     $('#form_info_new_media_element_in_editor').show();
+    $('#form_info_new_media_element_in_editor').addClass("_title_reset");
     closePopUp('dialog-confirm');
   });
 }
