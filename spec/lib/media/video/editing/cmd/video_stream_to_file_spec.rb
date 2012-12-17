@@ -1,0 +1,17 @@
+require 'spec_helper'
+
+module Media
+  module Video
+    module Editing
+      class Cmd
+        describe VideoStreamToFile do
+          let(:pre_command) { MESS::AVCONV_PRE_COMMAND }
+          
+          subject { described_class.new('inp ut', 'out put') }
+          
+          its(:to_s) { should == %Q[#{pre_command} -i inp\\ ut -map 0:v:0 -c copy out\\ put] }
+        end
+      end
+    end
+  end
+end

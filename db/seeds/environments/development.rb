@@ -1,11 +1,14 @@
 # encoding: UTF-8
 
-require 'video_uploader'
-
 def plant_development_seeds
   
-  videos_folder = VideoUploader::ABSOLUTE_FOLDER
-  FileUtils.rm_rf Rails.root.join'public/media_elements/videos/development' if Dir.exists? 'public/media_elements/videos/development'
+  videos_folder = Media::Video::Uploader::ABSOLUTE_FOLDER
+  audios_folder = Media::Audio::Uploader::ABSOLUTE_FOLDER
+
+  # in produzione è meglio rimuoverle manualmente
+  unless Rails.env.production?
+    [videos_folder, audios_folder].each { |d| FileUtils.rm_rf d if Dir.exists? d }
+  end
 
   location1 = Location.find 1
   location2 = Location.find 2
@@ -23,7 +26,10 @@ def plant_development_seeds
   videos = Dir.glob("#{Rails.root}/db/seeds/videos/*.mp4").shuffle.map do |v|
     { mp4: v, webm: v.sub(/\.mp4$/, '.webm'), filename: File.basename(v, File.extname(File.basename v)) }
   end
-  
+  audios = Dir.glob("#{Rails.root}/db/seeds/audios/*.mp3").shuffle.map do |v|
+    { mp3: v, ogg: v.sub(/\.mp3$/, '.ogg'), filename: File.basename(v, File.extname(File.basename v)) }
+  end
+
   tag_map = [
     "cane, sole, gatto, cincillà, walter nudo, luna, escrementi di usignolo",
     "walter nudo, luna, escrementi di usignolo, disabili, barriere architettoniche, mare, petrolio",
@@ -184,6 +190,8 @@ def plant_development_seeds
       media_element.media = File.open(images[i%images.size])
     when Video
       media_element.media = videos[i%videos.size]
+    when Audio
+      media_element.media = audios[i%audios.size]
     end
 
     media_element.save!
@@ -428,14 +436,5 @@ def plant_development_seeds
     cont += 1
   end
   MediaElement.record_timestamps = true
-  
-  FileUtils.rm_rf 'public/media_elements/audios' if Dir.exists? 'public/media_elements/audios'
-  Dir.mkdir 'public/media_elements/audios'
-  
-  Audio.all.each do |a|
-    Dir.mkdir "public/media_elements/audios/#{a.id.to_s}"
-    FileUtils.cp("db/seeds/audios/url/mp3/1.mp3", "public/media_elements/audios/#{a.id.to_s}/audio_mp3.mp3")
-    FileUtils.cp("db/seeds/audios/url/ogg/1.ogg", "public/media_elements/audios/#{a.id.to_s}/audio_ogg.ogg")
-  end
   
 end

@@ -1,4 +1,4 @@
-require 'video_uploader'
+require 'media/video/uploader'
 
 # converted
 #   true  : conversione andata a buon fine
@@ -177,9 +177,7 @@ class Video < MediaElement
   end
   
   def min_duration
-    d1 = self.mp4_duration.to_i
-    d2 = self.webm_duration.to_i
-    d1 > d2 ? d2 : d1
+    [mp4_duration, webm_duration].map(&:to_i).min
   end
 
   def mp4_path
@@ -198,23 +196,15 @@ class Video < MediaElement
     media.try(:path, :thumb)
   end
 
-  def media_validation
-    media.validation if media
-  end
-
   def media
     @media || ( 
       media = read_attribute(:media)
-      media ? VideoUploader.new(self, :media, media) : nil 
+      media ? Media::Video::Uploader.new(self, :media, media) : nil 
     )
   end
 
   def media=(media)
-    @media = write_attribute :media, (media.present? ? VideoUploader.new(self, :media, media) : nil)
-  end
-
-  def reload_media
-    @media = nil
+    @media = write_attribute :media, (media.present? ? Media::Video::Uploader.new(self, :media, media) : nil)
   end
 
   def mp4_duration
@@ -238,7 +228,15 @@ class Video < MediaElement
     super
   end
 
+  def reload_media
+    @media = nil
+  end
+
   private
+  def media_validation
+    media.validation if media
+  end
+  
   def upload_or_copy
     media.upload_or_copy if media
     true

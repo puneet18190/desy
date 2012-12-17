@@ -31,7 +31,7 @@
 
 $('#info_container').data('currenturl', '<%= j(my_current_url) %>');
 
-<% if @display == Formats::EXPANDED %>
+<% if @display == MediaElement::DISPLAY_MODES[:expanded] %>
   if($('#display_compact_media_elements').hasClass('current')) {
     $('#media_elements_title_bar').replaceWith('<%= j(render(:partial => 'media_elements/title_bar')) %>');
     $("#for_page_media_elements").selectbox();
@@ -39,7 +39,7 @@ $('#info_container').data('currenturl', '<%= j(my_current_url) %>');
   }
 <% end %>
 
-<% if @display == Formats::COMPACT %>
+<% if @display == MediaElement::DISPLAY_MODES[:compact] %>
   if($('#display_expanded_media_elements').hasClass('current')) {
     $('#media_elements_title_bar').replaceWith('<%= j(render(:partial => 'media_elements/title_bar')) %>');
     $("#for_page_media_elements").selectbox();

@@ -5,6 +5,7 @@ class MediaElement < ActiveRecord::Base
   AUDIO_TYPE = 'Audio'
   VIDEO_TYPE = 'Video'
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
+  DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
 
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
