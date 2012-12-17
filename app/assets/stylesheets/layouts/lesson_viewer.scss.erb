@@ -55,12 +55,7 @@ html.lesson-viewer-layout{
     float: left;
   }
   
-  .back-button{
-    position:fixed;
-    top:0;
-    right:0;
-    z-index: 9999px;
-  }
+  
   
   .container {
     margin: 0 auto;
@@ -498,10 +493,20 @@ html.lesson-viewer-layout{
   .playlist_footer{
     padding: 10px 0;
     height: 20px;
-    display: block;
-    clear:both;
+    display: inline-block;
+    width:900px;
+    
+    margin-top:20px;
   }
-  
+  .esciButton{
+    margin-top:0;
+    font-size: 0.35em;
+    opacity:0.4;
+    &:hover {
+      background-position: 0em -1em;
+      opacity:1;
+    };
+  }
   /** carousel inner **/
   #carousel_inner {
   float:left; /* important for inline positioning */
