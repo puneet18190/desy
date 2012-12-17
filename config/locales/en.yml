@@ -84,6 +84,7 @@ en:
     creating_new_media_element: "You're creating a new educational element."
     dashboard: 'Dashboard'
     description: 'Description'
+    description_max_chars: 'Description (max %{num} characters)'
     desy: 'DESY'
     desy_expanded_description: 'Digital Education System'
     desy_full_description: 'DESY - Digital Education System'
@@ -158,9 +159,11 @@ en:
     sort_results_by: 'Sort results by'
     status: 'Status'
     small: 'Small'
+    tags_max: 'Insert a minimum of %{items} tags (max %{num} characters each)'
     talk_with_desy: 'Want to talk with DESY?'
     text_color: 'Text color'
     time: 'Time'
+    title_max_chars: 'Title (max %{num} characters)'
     total_length: 'Total lenght'
     untitled_new_element: "New element - untitled"
     update: 'Update'
