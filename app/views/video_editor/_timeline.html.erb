@@ -4,7 +4,7 @@
       
       <% cont = 1 %>
       <% parameters[:components].each do |p| %>
-        <%= render :partial => "video_editor/components/#{p[:type]}", :locals => {:component => p, :position => cont} %>
+        <%= render :partial => "video_editor/components/#{p[:type]}", :locals => {:component => p, :position => cont, :empty => false} %>
         <% cont += 1 %>
       <% end %>
       
