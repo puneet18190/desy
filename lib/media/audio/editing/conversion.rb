@@ -1,10 +1,10 @@
 require 'media_editing'
-require 'media_editing/audio'
+require 'media/audio/editing'
 require 'media_editing/logging'
 require 'media_editing/allowed_duration_range'
 require 'media_editing/info'
 require 'media_editing/error'
-require 'media_editing/audio/cmd/conversion'
+require 'media/audio/editing/cmd/conversion'
 require 'env_relative_path'
 
 module MediaEditing
@@ -15,7 +15,7 @@ module MediaEditing
       include Logging
       include AllowedDurationRange
 
-      TEMP_FOLDER        = Rails.root.join(env_relative_path('tmp/media_editing/audio/conversions')).to_s
+      TEMP_FOLDER        = Rails.root.join(env_relative_path('tmp/media/audio/editing/conversions')).to_s
       DURATION_THRESHOLD = CONFIG.audio.duration_threshold
 
       def self.log_folder

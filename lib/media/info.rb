@@ -1,8 +1,8 @@
-require 'media_editing'
-require 'media_editing/error'
-require 'media_editing/cmd/avprobe'
+require 'media'
+require 'media/error'
+require 'media/cmd/avprobe'
 
-module MediaEditing
+module Media
   class Info
 
     DURATION_REGEX       = /^  Duration: (?<hours>\d{2,}):(?<minutes>\d\d):(?<seconds>\d\d\.\d\d)/

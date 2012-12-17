@@ -1,12 +1,14 @@
 module Media
   
   # Definisce CONFIG
-  require 'media_editing/config'
+  require 'media/config'
 end
 
-require 'media_editing/error'
-require 'media_editing/in_tmp_dir'
-require 'media_editing/info'
-require 'media_editing/allowed_duration_range'
-require 'media_editing/video'
-require 'media_editing/audio'
+require 'media/error'
+require 'media/in_tmp_dir'
+require 'media/info'
+require 'media/allowed_duration_range'
+
+# TODO renamespacing
+# require 'media/video/editing'
+# require 'media/audio/editing'

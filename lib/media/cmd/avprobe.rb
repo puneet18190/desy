@@ -1,15 +1,13 @@
-require 'media_editing'
-require 'media_editing/cmd'
+require 'media'
+require 'media/cmd'
 require 'shellwords'
 
-module MediaEditing
+module Media
   class Cmd
     class Avprobe < Cmd
-      # TODO spostare le config di MediaEditing::Video in MediaEditing
-      require 'media_editing/video'
-      SH_VARS         = Hash[ MediaEditing::CONFIG.avtools.avprobe.cmd.sh_vars.marshal_dump.map{ |k, v| [k.to_s, v] } ]
-      BIN             = MediaEditing::CONFIG.avtools.avprobe.cmd.bin
-      SUBEXEC_OPTIONS = { sh_vars: SH_VARS, timeout: MediaEditing::Video::AVPROBE_SUBEXEC_TIMEOUT }
+      SH_VARS         = Hash[ CONFIG.avtools.avprobe.cmd.sh_vars.marshal_dump.map{ |k, v| [k.to_s, v] } ]
+      BIN             = CONFIG.avtools.avprobe.cmd.bin
+      SUBEXEC_OPTIONS = { sh_vars: SH_VARS, timeout: CONFIG.avtools.avprobe.cmd.subexec_timeout }
       
       @subexec_options = SUBEXEC_OPTIONS
 

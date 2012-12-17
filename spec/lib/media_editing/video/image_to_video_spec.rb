@@ -46,7 +46,7 @@ module MediaEditing
             end
 
             it 'has the expected log folder' do
-              image_to_video.send(:stdout_log).should start_with Rails.root.join('log/media_editing/video/image_to_video/test/').to_s
+              image_to_video.send(:stdout_log).should start_with Rails.root.join('log/media/video/editing/image_to_video/test/').to_s
             end
 
             supported_video_formats.each do |format|

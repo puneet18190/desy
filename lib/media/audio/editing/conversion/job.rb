@@ -1,6 +1,6 @@
 require 'media_editing'
-require 'media_editing/audio'
-require 'media_editing/audio/conversion'
+require 'media/audio/editing'
+require 'media/audio/editing/conversion'
 
 module MediaEditing
   module Audio

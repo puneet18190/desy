@@ -104,7 +104,7 @@ module MediaEditing
             before(:all) { subject }
 
             it 'has the expected log folder' do
-              replace_audio.send(:log_folder).should start_with Rails.root.join('log/media_editing/video/replace_audio/test/').to_s
+              replace_audio.send(:log_folder).should start_with Rails.root.join('log/media/video/editing/replace_audio/test/').to_s
             end
 
             MESS::FORMATS.each do |format|

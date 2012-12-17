@@ -1,8 +1,8 @@
 require 'media_editing'
-require 'media_editing/video'
-require 'media_editing/video/cmd'
-require 'media_editing/video/cmd/concat'
-require 'media_editing/video/cmd/avconv'
+require 'media/video/editing'
+require 'media/video/editing/cmd'
+require 'media/video/editing/cmd/concat'
+require 'media/video/editing/cmd/avconv'
 require 'shellwords'
 
 module MediaEditing

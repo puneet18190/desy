@@ -1,4 +1,4 @@
-require 'video_uploader'
+#require 'video_uploader'
 
 # converted
 #   true  : conversione andata a buon fine

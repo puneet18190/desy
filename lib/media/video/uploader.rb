@@ -2,7 +2,7 @@
 
 require 'media_editing/allowed_duration_range'
 require 'env_relative_path'
-require 'media_editing/video/cmd/extract_frame'
+require 'media/video/editing/cmd/extract_frame'
 require 'media_editing/image/resize_to_fill'
 
 class VideoUploader < String

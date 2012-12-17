@@ -1,7 +1,7 @@
 require 'media_editing'
-require 'media_editing/video'
-require 'media_editing/video/cmd'
-require 'media_editing/video/cmd/sox'
+require 'media/video/editing'
+require 'media/video/editing/cmd'
+require 'media/video/editing/cmd/sox'
 require 'shellwords'
 
 module MediaEditing

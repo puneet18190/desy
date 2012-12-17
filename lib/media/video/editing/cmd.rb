@@ -1,5 +1,5 @@
 require 'media_editing'
-require 'media_editing/video'
+require 'media/video/editing'
 require 'media_editing/cmd'
 
 module MediaEditing

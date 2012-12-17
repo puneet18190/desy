@@ -1,4 +1,4 @@
-require 'audio_uploader'
+#require 'audio_uploader'
 
 class Audio < MediaElement
 

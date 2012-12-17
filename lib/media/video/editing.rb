@@ -10,7 +10,6 @@ module MediaEditing
     FORMATS = MediaEditing::CONFIG.avtools.avconv.video.formats.marshal_dump.keys
 
     AVPROBE_BIN             = CONFIG.avtools.avprobe.cmd.bin
-    AVPROBE_SUBEXEC_TIMEOUT = CONFIG.avtools.avprobe.cmd.subexec_timeout
 
     AVCONV_BIN             = CONFIG.avtools.avconv.cmd.bin
     AVCONV_TIMEOUT         = CONFIG.avtools.avconv.cmd.timeout
@@ -40,10 +39,10 @@ module MediaEditing
   end
 end
 
-require 'media_editing/video/conversion'
-require 'media_editing/video/conversion/job'
-require 'media_editing/video/image_to_video'
-require 'media_editing/video/concat'
-require 'media_editing/video/crop'
-require 'media_editing/video/replace_audio'
-require 'media_editing/video/transition'
+require 'media/video/editing/conversion'
+require 'media/video/editing/conversion/job'
+require 'media/video/editing/image_to_video'
+require 'media/video/editing/concat'
+require 'media/video/editing/crop'
+require 'media/video/editing/replace_audio'
+require 'media/video/editing/transition'

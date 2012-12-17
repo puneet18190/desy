@@ -73,7 +73,7 @@ module MediaEditing
           before(:all) { subject }
 
           it 'has the expected log folder' do
-            concat.send(:stdout_log).should start_with Rails.root.join('log/media_editing/video/concat/test/').to_s
+            concat.send(:stdout_log).should start_with Rails.root.join('log/media/video/editing/concat/test/').to_s
           end
 
           MESS::FORMATS.each do |format|
@@ -126,7 +126,7 @@ module MediaEditing
                 before(:all) { subject }
 
                 it 'has the expected log folder' do
-                  concat.send(:stdout_log).should start_with Rails.root.join('log/media_editing/video/concat/test/').to_s
+                  concat.send(:stdout_log).should start_with Rails.root.join('log/media/video/editing/concat/test/').to_s
                 end
 
                 it 'creates a video with the expected duration' do

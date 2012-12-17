@@ -14,7 +14,7 @@ describe VideoUploader do
   describe 'saving the associated model' do
     before(:all) do
       FileUtils.cp valid_video_path, tmp_valid_video_path
-      ['public/media_elements/videos/test', 'tmp/media_editing/video/conversions/test'].each do |folder|
+      ['public/media_elements/videos/test', 'tmp/media/video/editing/conversions/test'].each do |folder|
         f = Rails.root.join(folder)
         FileUtils.rm_rf f if Dir.exists? f
       end

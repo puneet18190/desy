@@ -99,7 +99,7 @@ module MediaEditing
           before(:all) { subject }
 
           it 'has the expected log folder' do
-            transition.send(:log_folder).should start_with Rails.root.join('log/media_editing/video/transition/test/').to_s
+            transition.send(:log_folder).should start_with Rails.root.join('log/media/video/editing/transition/test/').to_s
           end
 
           MESS::FORMATS.each do |format|

@@ -1,10 +1,10 @@
 require 'media_editing'
-require 'media_editing/video'
+require 'media/video/editing'
 require 'media_editing/logging'
 require 'media_editing/allowed_duration_range'
 require 'media_editing/info'
 require 'media_editing/error'
-require 'media_editing/video/cmd/conversion'
+require 'media/video/editing/cmd/conversion'
 require 'env_relative_path'
 require 'video_uploader'
 
@@ -16,7 +16,7 @@ module MediaEditing
       include Logging
       include AllowedDurationRange
 
-      TEMP_FOLDER        = Rails.root.join(env_relative_path('tmp/media_editing/video/conversions')).to_s
+      TEMP_FOLDER        = Rails.root.join(env_relative_path('tmp/media/video/editing/conversions')).to_s
       DURATION_THRESHOLD = CONFIG.video.duration_threshold
       COVER_FORMAT       = VideoUploader::COVER_FORMAT
       THUMB_FORMAT       = VideoUploader::THUMB_FORMAT

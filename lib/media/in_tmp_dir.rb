@@ -1,6 +1,6 @@
-require 'media_editing'
+require 'media'
 
-module MediaEditing
+module Media
   module InTmpDir
   
     def in_tmp_dir

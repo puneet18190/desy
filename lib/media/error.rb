@@ -1,6 +1,6 @@
-require 'media_editing'
+require 'media'
 
-module MediaEditing
+module Media
   class Error < StandardError
 
     def initialize(msg, data = {})

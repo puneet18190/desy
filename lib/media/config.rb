@@ -1,7 +1,7 @@
-require 'media_editing'
+require 'media'
 require 'recursive_open_struct'
 
-module MediaEditing
+module Media
 
   CONFIG = RecursiveOpenStruct.new({
     tmp_prefix: "desy#{Thread.current.object_id}",

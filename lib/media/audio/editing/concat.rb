@@ -1,5 +1,5 @@
 require 'media_editing'
-require 'media_editing/audio'
+require 'media/audio/editing'
 require 'media_editing/logging'
 require 'media_editing/in_tmp_dir'
 

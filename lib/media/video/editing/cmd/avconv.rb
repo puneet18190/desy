@@ -1,6 +1,6 @@
 require 'media_editing'
-require 'media_editing/video'
-require 'media_editing/video/cmd'
+require 'media/video/editing'
+require 'media/video/editing/cmd'
 require 'shellwords'
 require 'subexec'
 

@@ -1,12 +1,12 @@
 require 'media_editing'
-require 'media_editing/video'
+require 'media/video/editing'
 require 'media_editing/logging'
 require 'media_editing/in_tmp_dir'
 require 'media_editing/info'
-require 'media_editing/video/cmd/video_stream_to_file'
-require 'media_editing/video/cmd/extract_frame'
-require 'media_editing/video/cmd/generate_transition_frames'
-require 'media_editing/video/cmd/transition'
+require 'media/video/editing/cmd/video_stream_to_file'
+require 'media/video/editing/cmd/extract_frame'
+require 'media/video/editing/cmd/generate_transition_frames'
+require 'media/video/editing/cmd/transition'
 require 'pathname'
 
 module MediaEditing

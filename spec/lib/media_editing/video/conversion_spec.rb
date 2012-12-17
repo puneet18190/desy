@@ -16,12 +16,12 @@ module MediaEditing
           video.user_id = User.admin.id
         end.tap{ |v| v.skip_conversion = true; v.save!; v.media = uploaded }
       end
-      let(:temp)                     { "#{Rails.root}/tmp/media_editing/video/conversions/#{Rails.env}/#{model.id}/#{filename}" }
+      let(:temp)                     { "#{Rails.root}/tmp/media/video/editing/conversions/#{Rails.env}/#{model.id}/#{filename}" }
       let(:output_folder)            { "#{Rails.root}/public/media_elements/videos/#{Rails.env}/#{model.id}" }
       let(:output_without_extension) { "#{output_folder}/in-put" }
       let(:output)                   { "#{output_without_extension}.#{format}" }
-      let(:stdout_log)               { "#{Rails.root}/log/media_editing/video/conversions/#{Rails.env}/#{model.id}/#{format}.stdout.log" }
-      let(:stderr_log)               { "#{Rails.root}/log/media_editing/video/conversions/#{Rails.env}/#{model.id}/#{format}.stderr.log" }
+      let(:stdout_log)               { "#{Rails.root}/log/media/video/editing/conversions/#{Rails.env}/#{model.id}/#{format}.stdout.log" }
+      let(:stderr_log)               { "#{Rails.root}/log/media/video/editing/conversions/#{Rails.env}/#{model.id}/#{format}.stderr.log" }
 
       describe '#convert_to' do
 

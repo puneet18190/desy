@@ -1,7 +1,7 @@
-require 'media_editing'
+require 'media'
 require 'subexec'
 
-module MediaEditing
+module Media
   class Cmd
     attr_reader :cmd, :subexec
 

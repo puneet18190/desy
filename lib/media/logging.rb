@@ -1,7 +1,7 @@
-require 'media_editing'
+require 'media'
 require 'env_relative_path'
 
-module MediaEditing
+module Media
   module Logging
 
     STDOUT_LOG = 'stdout.log'
@@ -9,7 +9,7 @@ module MediaEditing
 
     module ClassMethods
       def log_folder(folder_name = nil)
-        nesting = folder_name ? 2 : 3
+        nesting = folder_name ? 3 : 4
         log_folder_const = self.to_s.split('::').take(nesting).join('::').underscore
         
         env_relative_path Rails.root, 'log', log_folder_const, folder_name.to_s
