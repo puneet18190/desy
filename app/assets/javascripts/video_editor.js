@@ -33,7 +33,7 @@ function showMixedGalleryInVideoEditor() {
   $('#video_editor_mixed_gallery_container').show();
   $('._video_editor_bottom_bar').hide();
   calculateNewPositionGalleriesInVideoEditor();
-  $('._new_component_in_video_editor_button').hide();
+  $('._video_editor_component_menu').hide();
 }
 
 function closeMixedGalleryInVideoEditor() {
