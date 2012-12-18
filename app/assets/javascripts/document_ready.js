@@ -272,7 +272,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._close_mixed_gallery_in_video_editor', function() {
-    closeMixedGalleryInVideoEditor();
+    closeGalleryInVideoEditor('mixed');
   });
   
   $('body').on('click', "._close_on_click_out", function(){
@@ -765,7 +765,7 @@ $(document).ready(function() {
       infos.data('current-component', 'video_component_' + (infos.data('components-number') + 1));
     }
     if($('#video_editor_mixed_gallery_container').data('loaded')) {
-      showMixedGalleryInVideoEditor();
+      showGalleryInVideoEditor('mixed');
       resetVideoEditorTextComponent();
     } else {
       $.ajax({
@@ -811,7 +811,9 @@ $(document).ready(function() {
     var component = $('#' + popup_id + ' ._temporary').html();
     var duration = $(this).data('duration');
     closePopUp(popup_id);
-    setTimeout(closeMixedGalleryInVideoEditor, 700);
+    setTimeout(function() {
+      closeGalleryInVideoEditor('mixed');
+    }, 700);
     if($('#info_container').data('replacing-component')) {
       var current_component = $('#info_container').data('current-component');
       setTimeout(function() {
@@ -839,7 +841,9 @@ $(document).ready(function() {
     } else {
       var component = $('#' + popup_id + ' ._temporary').html();
       closePopUp(popup_id);
-      setTimeout(closeMixedGalleryInVideoEditor, 700);
+      setTimeout(function() {
+        closeGalleryInVideoEditor('mixed');
+      }, 700);
       if($('#info_container').data('replacing-component')) {
         var current_component = $('#info_container').data('current-component');
         setTimeout(function() {
@@ -898,7 +902,7 @@ $(document).ready(function() {
     } else {
       var content = $('#text_component_preview textarea').val();
       var component = $('#video_editor_mixed_gallery_container ._texts ._temporary').html();
-      closeMixedGalleryInVideoEditor();
+      closeGalleryInVideoEditor('mixed');
       if($('#info_container').data('replacing-component')) {
         var current_component = $('#info_container').data('current-component');
         setTimeout(function() {

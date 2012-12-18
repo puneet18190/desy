@@ -29,15 +29,15 @@ function saveCacheLoop() {
   }
 }
 
-function showMixedGalleryInVideoEditor() {
-  $('#video_editor_mixed_gallery_container').show();
+function showGalleryInVideoEditor(type) {
+  $('#video_editor_' + type + '_gallery_container').show();
   $('._video_editor_bottom_bar').hide();
   calculateNewPositionGalleriesInVideoEditor();
   $('._video_editor_component_menu').hide();
 }
 
-function closeMixedGalleryInVideoEditor() {
-  $('#video_editor_mixed_gallery_container').hide('fade', {}, 250, function() {
+function closeGalleryInVideoEditor(type) {
+  $('#video_editor_' + type + '_gallery_container').hide('fade', {}, 250, function() {
     $('._video_editor_bottom_bar').show();
     calculateNewPositionGalleriesInVideoEditor();
   });
