@@ -8,8 +8,20 @@ function initializeVideoEditor() {
     handle: '._video_editor_component_hover',
     axis: 'x',
     cursor: 'move',
-    cancel: '._video_editor_component_menu'/*,
+    cancel: '._video_editor_component_menu',
+    start: function() {
+      $('._video_editor_component ._video_component_transition.current').addClass('_video_component_temporary_no_transition');
+      $('._video_editor_component ._video_component_transition').addClass('current');
+    },
+    stop: function() {
+      $('._video_editor_component ._video_component_transition.current').removeClass('current');
+      $('._video_component_temporary_no_transition').addClass('current');
+    },
+    helper: function(event, ui) {
+      return ui.find('._video_component_thumb')[0].outerHTML;
+    }
     
+    /*
     helper: function(event, ui) {
       var div_to_return = $($('#' + ui.attr('id'))[0].outerHTML);
       div_to_return.addClass('current');
@@ -18,7 +30,7 @@ function initializeVideoEditor() {
       var second_half_string = div_to_return.substring(my_index, div_to_return.length);
       var my_second_index = my_index + second_half_string.indexOf('</div>') + 6;
       return div_to_return.substring(0, (my_index - 1)) + div_to_return.substring((my_second_index + 1), div_to_return.length);
-    },
+    },/*
     stop: function(event, ui) {
       var previous = ui.item.prev();
       var new_position = 0;
@@ -98,19 +110,15 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
 }
 
 function reloadVideoEditorComponentPositions() {
-  var over = false;
-  $('._video_editor_component').each(function(index) {
-    if(typeof($(this).attr('id')) != 'undefined') {
-      $(this).data('position', (index + 1));
-      $('#' + $(this).attr('id') + ' ._video_component_input_position').val(index + 1);
-      var counter_html = $('#' + $(this).attr('id') + ' ._video_component_icon').html();
-      counter_html = counter_html.substr(counter_html.indexOf('<div'), counter_html.length);
-      $('#' + $(this).attr('id') + ' ._video_component_icon').html((index + 1) + counter_html);
-    } else if(!over) {
-      $('#add_new_video_component ._component_counter').html(index + 1);
-      over = true;
-    }
+  var components = $('._video_editor_component');
+  components.each(function(index) {
+    $(this).data('position', (index + 1));
+    $('#' + $(this).attr('id') + ' ._video_component_input_position').val(index + 1);
+    var counter_html = $('#' + $(this).attr('id') + ' ._video_component_icon').html();
+    counter_html = counter_html.substr(counter_html.indexOf('<div'), counter_html.length);
+    $('#' + $(this).attr('id') + ' ._video_component_icon').html((index + 1) + counter_html);
   });
+  $('#add_new_video_component ._component_counter').html(components.length + 1);
 }
 
 function addImageComponentInVideoEditor(image_id, component, duration) {
@@ -128,6 +136,7 @@ function addImageComponentInVideoEditor(image_id, component, duration) {
   $('#add_new_video_component').before(empty_component);
   current_component = $('#temporary_empty_component');
   current_component.attr('id', ('video_component_' + next_position));
+  current_component.removeClass('_video_editor_empty_component').addClass('_video_editor_component');
   current_component.data('duration', 0);
   current_component.data('position', next_position);
   current_component.find('._video_component_icon').html(next_position + '<div class="photoIcon"></div>');
@@ -172,6 +181,7 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   $('#add_new_video_component').before(empty_component);
   current_component = $('#temporary_empty_component');
   current_component.attr('id', ('video_component_' + next_position));
+  current_component.removeClass('_video_editor_empty_component').addClass('_video_editor_component');
   current_component.data('duration', 0);
   current_component.data('position', next_position);
   current_component.find('._video_component_icon').html(next_position + '<div class="videoIcon"></div>');
@@ -218,6 +228,7 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   $('#add_new_video_component').before(empty_component);
   current_component = $('#temporary_empty_component');
   current_component.attr('id', ('video_component_' + next_position));
+  current_component.removeClass('_video_editor_empty_component').addClass('_video_editor_component');
   current_component.data('duration', 0);
   current_component.data('position', next_position);
   current_component.find('._video_component_icon').html(next_position + '<div class="textIcon"></div>');

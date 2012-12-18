@@ -411,7 +411,7 @@ html.media_element_editor-layout {
       display:inline-block;
       width:156px;
       .contatore {
-        margin-bottom:6px;
+        margin-bottom:10px;
       }
     }
   /*layout elementi sull'editor elementi*/
@@ -431,7 +431,6 @@ html.media_element_editor-layout {
     float:left;
     
     .boxContentMediaElement {
-      position:absolute; 
       width:156px;
       height:88px;      
       img {
@@ -441,7 +440,6 @@ html.media_element_editor-layout {
       
     }
     .boxContentMediaElementText {
-      position:absolute; 
       width:156px;
       height:88px;
       
@@ -823,5 +821,23 @@ html.media_element_editor-layout {
   }
 
   .imgareaselect-selection {  
+  }
+}
+
+._video_editor_component_hover:hover {
+  cursor: move;
+}
+
+._video_editor_component_menu:hover {
+  cursor: default;
+}
+
+._video_component_thumb {
+  float: left;
+  width: 156px;
+  height: 88px;
+  img {
+    width: 156px;
+    height: 88px;
   }
 }

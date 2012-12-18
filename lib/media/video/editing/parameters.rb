@@ -33,6 +33,18 @@ module Media
           sum
         end
         
+        def convert_to_primitive_parameters(hash, user_id)
+          resp = convert_parameters(hash, user_id)
+          return nil if resp.nil?
+          resp[:initial_video] = resp[:initial_video].id if resp[:initial_video]
+          resp[:audio_track] = resp[:audio_track].id if resp[:audio_track]
+          resp[:components].each do |component|
+            component[:video] = component[:video].id if component[:video]
+            component[:image] = component[:image].id if component[:image]
+          end
+          resp
+        end
+        
         # EXAMPLE OF RETURNED HASH:
         # - two initial parameters, 'initial_video' and 'audio_track'
         # - then an ordered array of components:
