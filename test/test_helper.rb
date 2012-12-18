@@ -16,7 +16,7 @@ class ActiveSupport::TestCase
     end
     [3, 4].each do |x|
       a = Audio.find x
-      a.media = 'prova_prova_prova.ogg'
+      a.media = {:mp3 => Rails.root.join("test/samples/one.mp3").to_s, :ogg => Rails.root.join("test/samples/one.ogg").to_s, :filename => "audio_test"}
       assert_obj_saved a
     end
     [5, 6].each do |x|
