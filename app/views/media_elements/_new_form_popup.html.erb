@@ -52,7 +52,9 @@ $(function() {
     // container : 'container',
     file_data_name : 'media',
     filters : [
-      { title : "Image files", extensions : "jpg,jpeg,png" }
+      { title : "Image files", extensions : <%= Image::EXTENSION_WHITE_LIST.join(',').to_json.html_safe %> },
+      { title : "Video files", extensions : <%= Video::EXTENSION_WHITE_LIST.join(',').to_json.html_safe %> },
+      { title : "Audio files", extensions : <%= Audio::EXTENSION_WHITE_LIST.join(',').to_json.html_safe %> }
     ]
   });
 
@@ -73,6 +75,10 @@ $(function() {
   });
 
   uploader.bind('FilesAdded', function(up, files) {
+    // Lascio solo il file appena caricato
+    if (up.files.length > 1) {
+      up.splice(0, 1);
+    }
     var file = files[0];
     $("#media_element_media_show").text(file.name);
 
