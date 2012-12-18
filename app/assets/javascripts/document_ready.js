@@ -762,12 +762,16 @@ $(document).ready(function() {
   
   $('body').on('mouseover', '._video_editor_component_hover', function() {
     var father = $(this).parent();
-    $('#' + father.attr('id') + ' ._video_editor_component_menu').show();
+    if(father.data('rolloverable')) {
+      $('#' + father.attr('id') + ' ._video_editor_component_menu').show();
+    }
   });
   
   $('body').on('mouseout', '._video_editor_component_hover', function() {
     var father = $(this).parent();
-    $('#' + father.attr('id') + ' ._video_editor_component_menu').hide();
+    if(father.data('rolloverable')) {
+      $('#' + father.attr('id') + ' ._video_editor_component_menu').hide();
+    }
   });
   
   $('body').on('mouseover', '._new_component_in_video_editor_hover', function() {
