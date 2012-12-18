@@ -709,9 +709,11 @@ $(document).ready(function() {
     closePopUp('dialog-virtual-classroom-quick-select');
   });
   
-  // ELEMENTS EDITOR
+  
+  // MEDIA ELEMENTS EDITOR
   
   $('#form_info_new_media_element_in_editor, #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
+  
   
   // IMAGE EDITOR
   
@@ -719,6 +721,7 @@ $(document).ready(function() {
   $('body').on('click','._add_image_to_image_editor', function(){
     window.location = '/images/'+$(this).data('image-id')+'/edit';
   });
+  
   
   // VIDEO EDITOR
   
@@ -738,6 +741,12 @@ $(document).ready(function() {
       startCacheLoop();
       closePopUp('dialog-confirm');
     });
+  });
+  
+  $('body').on('click', '._remove_component_from_video_editor_button', function() {
+    var component = $(this).parent().parent().parent().parent();
+    
+    alert('id = ' + component.attr('id'));
   });
   
   $('body').on('mouseover', '._video_editor_component_hover', function() {
