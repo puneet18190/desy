@@ -405,7 +405,7 @@ en:
   forms:
     media_element:
       title: 'upload new media element'
-      notes: 'notes'
+      notes: 'Enter the required information when loading a new education element. Warning! You must enter at least 4 tags to properly load an item.'
       submit: 'upload'
       messages:
         success: 'The media element has been successfully created'
