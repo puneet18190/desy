@@ -87,36 +87,43 @@ class ExtractorTest < ActiveSupport::TestCase
     @el1.user_id = 1
     @el1.sti_type = 'Video'
     @el1.tags = tag_map[8]
+    @el1.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
     assert_obj_saved @el1
     @el2 = MediaElement.new :description => 'desc2', :title => 'titl2'
     @el2.user_id = 1
     @el2.sti_type = 'Video'
     @el2.tags = tag_map[9]
+    @el2.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
     assert_obj_saved @el2
     @el3 = MediaElement.new :description => 'desc3', :title => 'titl3'
     @el3.user_id = 1
     @el3.sti_type = 'Audio'
     @el3.tags = tag_map[0]
+    @el3.media = {:mp3 => Rails.root.join("test/samples/one.mp3").to_s, :ogg => Rails.root.join("test/samples/one.ogg").to_s, :filename => "audio_test"}
     assert_obj_saved @el3
     @el4 = MediaElement.new :description => 'desc4', :title => 'titl4'
     @el4.user_id = 1
     @el4.sti_type = 'Audio'
     @el4.tags = tag_map[6]
+    @el4.media = {:mp3 => Rails.root.join("test/samples/one.mp3").to_s, :ogg => Rails.root.join("test/samples/one.ogg").to_s, :filename => "audio_test"}
     assert_obj_saved @el4
     @el5 = MediaElement.new :description => 'desc5', :title => 'titl5'
     @el5.user_id = 1
     @el5.sti_type = 'Image'
     @el5.tags = tag_map[1]
+    @el5.media = File.open(Rails.root.join("test/samples/one.jpg"))
     assert_obj_saved @el5
     @el6 = MediaElement.new :description => 'desc6', :title => 'titl6'
     @el6.user_id = 1
     @el6.sti_type = 'Image'
     @el6.tags = tag_map[7]
+    @el6.media = File.open(Rails.root.join("test/samples/one.jpg"))
     assert_obj_saved @el6
     @el7 = MediaElement.new :description => 'desc7', :title => 'titl7'
     @el7.user_id = 1
     @el7.sti_type = 'Image'
     @el7.tags = tag_map[2]
+    @el7.media = File.open(Rails.root.join("test/samples/one.jpg"))
     assert_obj_saved @el7
     le1 = Lesson.find 1
     le1.tags = tag_map[3]

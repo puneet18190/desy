@@ -21,7 +21,7 @@ class ActiveSupport::TestCase
     end
     [5, 6].each do |x|
       i = Image.find x
-      i.media = File.open(Rails.root.join("test/samples/one.jpg".gsub("/media_elements/images/#{x}/", '')))
+      i.media = File.open(Rails.root.join("test/samples/one.jpg"))
       assert_obj_saved i
     end
   end
