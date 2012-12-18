@@ -16,7 +16,6 @@ class Video < MediaElement
 
   attr_accessor :skip_conversion, :rename_media
 
-  validates_presence_of :media
   validate :media_validation
   
   # it doesn't check that the parameters are valid; it takes as input regardless the basic hash and the full one
