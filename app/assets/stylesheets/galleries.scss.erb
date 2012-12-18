@@ -5,21 +5,20 @@
     margin:0;
     list-style:none;
     .scroll-pane{
-      margin-left:20px;    
-      width: 870px;
+      margin-left:35px;    
+      width: 840px;
       position:absolute;
       top:190px;
       li{
         float:left; 
-        width: 115px;
-        margin: 5px 5px 5px 0;
+        
       }
     }
   }
 }
 @mixin boxShadow {
   
-  height: 486px;
+  height: 590px;
   width: 900px;
   background-color:#252323;
 }
@@ -65,10 +64,8 @@
   @include boxShadow;
   
   display:block;
-  .scroll-pane {
-  }
   .gallery-header{
-    left: 40px;
+    
     h3{
       color: #666;
       padding-top:18px;
@@ -79,7 +76,13 @@
     }
   }
   @include ulGallery;
-  
+  .scroll-pane {
+    
+    li {
+     width: 111px;
+     margin: 4px;
+    }
+  }
    
   .imageInGalleryPopUp {
     display:none;
@@ -111,7 +114,7 @@
   
   display:block;
   .gallery-header{
-    left: 40px;
+    
    h3{
      color: #666;
      padding-top:18px;
@@ -191,7 +194,9 @@
       outline:none;
     }
   }
-
+.addButtonContent {
+  margin-top: 5px;
+}
 }
 
 
@@ -199,10 +204,10 @@
   
   @include boxShadow;
   display:block;
-
+  
   
   .gallery-header{
-    left: 40px;
+    
     h3{
       color: #666;
       padding-top:18px;
@@ -216,6 +221,10 @@
   @include ulGallery;
   .scroll-pane {
     height: 320px;
+    li {
+      width: 250px;
+      margin: 0px 36px 36px 0;
+    }
   }
   
 
@@ -224,7 +233,7 @@
       li{
         width: 250px;
         height: 140px;
-        margin: 0 36px 36px 0;
+        margin: 10px 26px 16px 0;
       }
     }
   }
@@ -265,6 +274,7 @@
 /*testo*/
 ._texts {
   @include boxShadow;
+  height: 486px;
   display: block;
   font: 90% 'Nunito', sans-serif;
   /*content inserimento testo*/
@@ -332,24 +342,7 @@
     }
   }
 }
-/*#video_gallery_content{
-  .scroll-pane {
-    width:870px;
-    position:absolute;
-    top:190px;
-    
-  }
-  
-  
-}
-#image_gallery_content {
-  .scroll-pane {
-    width:840px;
-    position:absolute;
-    top:190px;
-    padding-left:20px;
-  }
-}*/
+
 	
 #image_gallery_for_image_editor{
   margin-top: 20px;
@@ -366,8 +359,8 @@
   display: inline-block;
   color: white;
   position: absolute;
-  bottom: 20px;
-  right: 15px;
-  
+  bottom: 30px;
+  right: 18px;
+
 }
 

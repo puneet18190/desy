@@ -335,7 +335,7 @@ $button-size: 6em;
 a.addButtonContent {
   @include addElementInGallery;
   float:left;
-  
+  margin-top:0px;
 }  
 .esciButton {
   background-image: url(<%= asset_path 'esci.svg' %>);
@@ -361,6 +361,9 @@ a.addButtonContent {
   font-size:0.6em;
   width: 3em;
   height: 3em;
+  &:hover {
+    background-position: -17em 0em;
+  };
 } 
 .nextButton {
   background-image: url(<%= asset_path 'next.svg' %>);
