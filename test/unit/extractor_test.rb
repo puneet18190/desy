@@ -273,6 +273,7 @@ class ExtractorTest < ActiveSupport::TestCase
     xxx.description = 'quef gsdsd dfs'
     xxx.sti_type = 'Image'
     xxx.tags = 'tag1, tag2, tag3, tag4'
+    xxx.media = File.open(Rails.root.join("test/samples/one.jpg"))
     assert_obj_saved xxx
     assert_item_extractor [xxx.id, @el5.id], @user2.own_media_elements(1, 20, 'image')[:records]
     # last page true
