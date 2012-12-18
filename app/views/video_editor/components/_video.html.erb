@@ -2,7 +2,7 @@
   external_div_attributes = "data-position=\"\" data-duration=\"\""
   last = false
   if !empty
-    external_div_attributes = "id=\"video_component_#{position}\" data-position=\"#{position}\" data-duration=\"#{component[:until] - component[:from]}\""
+    external_div_attributes = "id=\"video_component_#{position}\" data-position=\"#{position}\" data-duration=\"#{component[:to] - component[:from]}\""
     last = component[:last]
   end
 %>
