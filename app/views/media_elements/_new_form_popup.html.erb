@@ -110,6 +110,10 @@ $(function() {
   });
 
   uploader.bind('FileUploaded', function(up, file, data) {
+    var resp = jQuery.parseJSON(data);
+    if(resp.errors.leng){
+      
+    }
     console.log(data);
     $('.barraLoading div').width('100%');
     // TODO gestione errori lato server (li gestiamo qui perché quest'evento ci ritorna i dati del server, mentre Error no)
