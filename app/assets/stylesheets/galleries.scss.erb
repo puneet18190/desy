@@ -1,12 +1,4 @@
-@mixin headerGallery {
-  padding: 20px 0px 20px 40px;
-  display:inline-block;
-  h3{
-    color: #666;
-    padding-top:18px;
-    padding-right:15px;
-  }
-}
+
 @mixin ulGallery {
   ul {
     padding: 0;
@@ -57,7 +49,17 @@
     opacity:1;
   }
 }
-
+.gallery-header {
+  position:absolute;
+  top:40px; left:60px;
+  padding: 0px;
+  display:inline-block;
+  h3{
+    color: #666;
+    padding-top:18px;
+    padding-right:15px;
+  }
+}
 .image_gallery {
   background-color: #252323;
   @include boxShadow;
@@ -66,7 +68,12 @@
   .scroll-pane {
   }
   .gallery-header{
-    @include headerGallery;
+    left: 40px;
+    h3{
+      color: #666;
+      padding-top:18px;
+      padding-right:15px;
+    }  
     .photoIcon {
       font-size:0.7em;
     }
@@ -104,7 +111,12 @@
   
   display:block;
   .gallery-header{
-    @include headerGallery; 
+    left: 40px;
+   h3{
+     color: #666;
+     padding-top:18px;
+     padding-right:15px;
+   } 
     .audioIcon {
       font-size:0.7em;
     } 
@@ -187,8 +199,15 @@
   
   @include boxShadow;
   display:block;
+
+  
   .gallery-header{
-    @include headerGallery;
+    left: 40px;
+    h3{
+      color: #666;
+      padding-top:18px;
+      padding-right:15px;
+    }
     .videoIcon {
       font-size:0.7em;
     }
@@ -325,7 +344,14 @@
   
   
 }
-
+#image_gallery_content {
+  .scroll-pane {
+    width:840px;
+    position:absolute;
+    top:190px;
+    padding-left:20px;
+  }
+}
 	
 #image_gallery_for_image_editor{
   margin-top: 20px;
