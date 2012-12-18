@@ -748,8 +748,14 @@ $(document).ready(function() {
     var identifier = component.attr('id');
     identifier = identifier[identifier.length - 1];
     $('#video_component_' + identifier).hide('fade', {}, 500, function() {
-      changeDurationVideoEditorComponent(('#video_component_' + identifier), 0);
+      changeDurationVideoEditorComponent(('video_component_' + identifier), 0);
       $(this).remove();
+      var old_timeline_width = $('#video_editor_timeline').css('width');
+      $('#media_elements_list_in_video_editor').data('jsp').destroy();
+      $('#video_editor_timeline').css('width', ((old_timeline_width - 187) + 'px'));
+      $('#media_elements_list_in_video_editor').jScrollPane({
+        autoReinitialise: true
+      });
     });
   });
   
