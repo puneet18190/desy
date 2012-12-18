@@ -8,9 +8,13 @@ function initializeVideoEditor() {
     handle: '._video_editor_component_hover',
     axis: 'x',
     cursor: 'move',
-    cancel: '._video_editor_component_menu',
+    cancel: '._video_editor_component_menu'/*,
     start: function() {
-      
+      $('._video_editor_component').each(function() {
+        if(typeof($(this).attr('id')) != 'undefined') {
+          ._video_component_transition
+        }
+      });
     },
     stop: function() {
       
@@ -135,6 +139,7 @@ function addImageComponentInVideoEditor(image_id, component, duration) {
   $('#add_new_video_component').before(empty_component);
   current_component = $('#temporary_empty_component');
   current_component.attr('id', ('video_component_' + next_position));
+  current_component.removeClass('_video_editor_empty_component').addClass('_video_editor_component');
   current_component.data('duration', 0);
   current_component.data('position', next_position);
   current_component.find('._video_component_icon').html(next_position + '<div class="photoIcon"></div>');
@@ -179,6 +184,7 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   $('#add_new_video_component').before(empty_component);
   current_component = $('#temporary_empty_component');
   current_component.attr('id', ('video_component_' + next_position));
+  current_component.removeClass('_video_editor_empty_component').addClass('_video_editor_component');
   current_component.data('duration', 0);
   current_component.data('position', next_position);
   current_component.find('._video_component_icon').html(next_position + '<div class="videoIcon"></div>');
@@ -225,6 +231,7 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   $('#add_new_video_component').before(empty_component);
   current_component = $('#temporary_empty_component');
   current_component.attr('id', ('video_component_' + next_position));
+  current_component.removeClass('_video_editor_empty_component').addClass('_video_editor_component');
   current_component.data('duration', 0);
   current_component.data('position', next_position);
   current_component.find('._video_component_icon').html(next_position + '<div class="textIcon"></div>');
