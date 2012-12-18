@@ -751,6 +751,7 @@ $(document).ready(function() {
       changeDurationVideoEditorComponent(('video_component_' + identifier), 0);
       $('#media_elements_list_in_video_editor').data('jsp').destroy();
       $(this).remove();
+      reloadVideoEditorComponentPositions();
       var old_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', ''));
       $('#video_editor_timeline').css('width', ((old_timeline_width - 187) + 'px'));
       $('#media_elements_list_in_video_editor').jScrollPane({
