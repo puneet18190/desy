@@ -6,7 +6,7 @@ require 'media/video/uploader'
 #   nil   : conversione da effettuare o in fase di conversione
 class Video < MediaElement
   
-  EXTENSION_WHITE_LIST = %w(avi divx flv h264 mkv mov mp4 mpe mpeg mpg ogm ogv webm wmv xvid)
+  EXTENSION_WHITE_LIST = Media::Video::Uploader::EXTENSION_WHITE_LIST
   
   COMPONENTS = %w(video text image)
   VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT = COMPONENTS

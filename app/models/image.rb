@@ -1,5 +1,5 @@
 class Image < MediaElement
-  EXTENSION_WHITE_LIST = %w(jpg jpeg png)
+  EXTENSION_WHITE_LIST = ImageUploader
   
   mount_uploader :media, ImageUploader
   
