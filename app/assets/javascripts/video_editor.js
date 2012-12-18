@@ -8,8 +8,15 @@ function initializeVideoEditor() {
     handle: '._video_editor_component_hover',
     axis: 'x',
     cursor: 'move',
-    cancel: '._video_editor_component_menu'/*,
+    cancel: '._video_editor_component_menu',
+    start: function() {
+      
+    },
+    stop: function() {
+      
+    }
     
+    /*
     helper: function(event, ui) {
       var div_to_return = $($('#' + ui.attr('id'))[0].outerHTML);
       div_to_return.addClass('current');

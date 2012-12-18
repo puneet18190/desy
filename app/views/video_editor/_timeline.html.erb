@@ -4,6 +4,7 @@
       
       <% cont = 1 %>
       <% parameters[:components].each do |p| %>
+        <% p[:last] = (cont == parameters[:components].length) %>
         <%= render :partial => "video_editor/components/#{p[:type]}", :locals => {:component => p, :position => cont, :empty => false} %>
         <% cont += 1 %>
       <% end %>

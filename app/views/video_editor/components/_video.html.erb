@@ -1,6 +1,10 @@
 <%
   external_div_attributes = "data-position=\"\" data-duration=\"\""
-  external_div_attributes = "id=\"video_component_#{position}\" data-position=\"#{position}\" data-duration=\"#{component[:until] - component[:from]}\"" if !empty
+  last = false
+  if !empty
+    external_div_attributes = "id=\"video_component_#{position}\" data-position=\"#{position}\" data-duration=\"#{component[:until] - component[:from]}\""
+    last = component[:last]
+  end
 %>
 
 <div class="lista _video_editor_component" <%= external_div_attributes.html_safe %>>
@@ -15,5 +19,5 @@
       <%= hidden_field_tag "position_#{position}", position, :class => '_video_component_input_position' %>
     <% end %>
   </div>
-  <div class="separatore">&nbsp;</div>
+  <div class="separatore <%= last ? 'current'.html_safe : '' %>">&nbsp;</div>
 </div>
