@@ -288,7 +288,7 @@ class User < ActiveRecord::Base
   
   def create_lesson(title, description, subject_id, tags)
     return nil if self.new_record?
-    return nil if UsersSubject.where(:user_id => self.id, :subject_id => subject_id).empty?
+    return {:subject_id => "is not your subject"} if UsersSubject.where(:user_id => self.id, :subject_id => subject_id).empty?
     lesson = Lesson.new :subject_id => subject_id, :school_level_id => self.school_level_id, :title => title, :description => description
     lesson.copied_not_modified = false
     lesson.user_id = self.id

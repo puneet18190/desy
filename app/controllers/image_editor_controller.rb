@@ -1,5 +1,7 @@
+require 'shellwords'
+
 class ImageEditorController < ApplicationController
-  
+
   before_filter :initialize_image_with_owner_or_public, :only => [:edit, :crop, :save]
   before_filter :initialize_image_with_owner_and_private, :only => :overwrite
   layout 'media_element_editor'
@@ -66,6 +68,7 @@ class ImageEditorController < ApplicationController
 
       if textCount > 0
         (0..textCount-1).each do |t_num|
+
           img.combine_options do |c|
             color_value = params["color_#{t_num}"]
             color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
@@ -82,7 +85,8 @@ class ImageEditorController < ApplicationController
             c0 = ratio_value(width_val,coords_value[0], original_val)
             c1 = ratio_value(width_val,coords_value[1], original_val)
             text_value = params["text_#{t_num}"]
-            c.draw "text #{c0},#{c1} \'#{text_value}\'"
+
+            c.draw "text #{c0},#{c1} '#{text_value.shellescape}'"
           end
         end
       end
@@ -161,7 +165,7 @@ class ImageEditorController < ApplicationController
             c0 = ratio_value(width_val,coords_value[0], original_val)
             c1 = ratio_value(width_val,coords_value[1], original_val)
             text_value = params["text_#{t_num}"]
-            c.draw "text #{c0},#{c1} \'#{text_value}\'"
+            c.draw "text #{c0},#{c1} '#{text_value}'"
           end
         end
       end
@@ -223,10 +227,9 @@ class ImageEditorController < ApplicationController
   end
   
   def ratio_value(scale_to_px, value, original)
-    logger.info "\n\n\n\n\n scaling: #{original} to #{scale_to_px} for #{value}"
+
     ratio = original.to_f / scale_to_px.to_f if (original.to_i > scale_to_px.to_i )
     if ratio
-      logger.info "\n\n\n\n\n scaling: #{original} to #{scale_to_px} for #{value}, gets ratio #{ratio} and value #{(value.to_f * ratio.to_f)} \n\n\n\n"
       return value.to_f * ratio.to_f
     else
       return value

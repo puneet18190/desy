@@ -8,8 +8,8 @@
         <br />
         <%= t('captions.good_work') %>
       </h3>
-      <div class="_error_messages"><%= @errors.to_s %></div>
-      <%= form_tag('/lessons/create') do -%>
+      <div class="_error_messages"><%= media_elements_error_messages(params[:errors]) if params[:errors] %></div>
+      <%= form_tag('/lessons/create', :remote => true) do -%>
         <%= text_field_tag "title", "", :placeholder => "#{t 'captions.enter_lesson_title'}", :class=>"pull-left" %>
         <%= select_tag "subject", options_from_collection_for_select(@subjects, "id", "description"), :include_blank => false, :class=>"pull-right", :id => "lesson_subject" %>
         <%= text_area_tag "description", "", :placeholder=> "#{t 'captions.enter_lesson_description'}", :class=>"pull-left" %>

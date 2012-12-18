@@ -173,7 +173,7 @@ function commitImageEditing(new_or_overwrite){
 
 function saveImageChoice(image_id) {
   var title = $('.header h1 span');
-  showConfirmPopUp(title.text(), "<h1>Update or create new image</h1>", "update", "new", function() {
+  showConfirmPopUp(title.text(), "<h1>What's next?</h1><p>You can choose to update original image or create a new one</p>", "update", "new", function() {
     $('#dialog-confirm').hide();
     $('._save_edit_image').hide();
     $('#form_info_update_media_element_in_editor').show();
@@ -212,16 +212,46 @@ function processTextAreaForm(){
   $("#_image_editor_container .image_editor_text textarea").each(function(index){
     var tarea = $(this);
     addTextAreaHiddenFields(tarea.data("color"), tarea.data("size"), tarea.data("coords"), tarea.val(), index);
+    console.log(tarea.val());
   });
 }
 
 
 //TODO ADD COLOR AND FONT SIZE
 function addTextAreaHiddenFields(color, size, coords, text, index){
-  hidden_input_coords = "<input type='hidden' class='area_"+index+"' id='hidden_coords_"+index+"' name='coords_"+index+"' value='"+coords+"' />"
-  hidden_input_text = "<input type='hidden' class='area_"+index+"' id='hidden_text_"+index+"' name='text_"+index+"' value='"+text+"' />"
-  hidden_input_color = "<input type='hidden' class='area_"+index+"' id='hidden_color_"+index+"' name='color_"+index+"' value='"+color+"' />"
-  hidden_input_font = "<input type='hidden' class='area_"+index+"' id='hidden_font_"+index+"' name='font_"+index+"' value='"+size+"' />"
+  hidden_input_coords = $("<input />",
+  {
+    "class": "area_"+index,
+    type: "hidden",
+    id: "hidden_coords_"+index,
+    name: "coords_"+index,
+    val: coords
+  });
+  hidden_input_text = $("<input />",
+  {
+    "class": "area_"+index,
+    type: "hidden",
+    id: "hidden_text_"+index,
+    name: "text_"+index,
+    val: text
+  });
+  hidden_input_color = $("<input />",
+  {
+    "class": "area_"+index,
+    type: "hidden",
+    id: "hidden_color_"+index,
+    name: "color_"+index,
+    val: color
+  });
+  hidden_input_font = $("<input />",
+  {
+    "class": "area_"+index,
+    type: "hidden",
+    id: "hidden_font_"+index,
+    name: "font_"+index,
+    val: size
+  });
+    
   $("#_crop_form").prepend(hidden_input_coords).prepend(hidden_input_text).prepend(hidden_input_color).prepend(hidden_input_font);
 }
 
@@ -232,7 +262,7 @@ function textAreaContent(coords,textCount){
   var fontSize = "<div class='font_sizes'><a class='small_font current' data-param='15'>A</a><a class='medium_font' data-param='25'>A</a><a class='big_font' data-param='35'>A</a></div>"
   div = $("<div />",
   {
-    class: "image_editor_text",
+    "class": "image_editor_text",
     id: "text_"+textCount,
     css: {
         position : "absolute",
