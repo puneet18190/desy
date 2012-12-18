@@ -6,7 +6,7 @@
           <div class="selectButton">
             <%#= f.file_field :media %>
              <a class="uploadFileButton submitButton" id="media_element_media_pick"></a>
-             <div id="media_element_media_show" class="fk_carica_elemento_file">Seleziona un file</div>
+             <div id="media_element_media_show" class="fk_carica_elemento_file"><%= t('captions.select_file').downcase%></div>
 <!--             <input id="media_element_media_show" readonly="readonly" placeholder="Nessun file selezionato" class="fk_carica_elemento_file _fakeUploadTrigger" type="text" data-fake-upload-input-selector="#media_element_media" data-fake-upload-show-selector="#media_element_media_show">
  -->          </div>
           <br class="clearfloat">
@@ -22,6 +22,7 @@
           <%= f.submit t('forms.media_element.submit'), id: 'new_media_element_submit' %> or <a class="_close" data-dialog-id="load-media-element">cancel</a>
         </div>
       <% end %>
+      <div class="_error_messages"></div>
     </div>
   </div>
   <div class="barraLoading"><div></div></div>
@@ -60,12 +61,17 @@ $(function() {
 
   uploader.bind('Init', function(up, params) {
     // TODO vedere che succede nei browser senza Flash e senza HTML5 (aka IE9 senza Flash)
-    console.log(params.runtime);
+    //console.log(params.runtime);
   });
 
   $('#new_media_element').submit(function(e) {
     e.preventDefault();
-    uploader.start();
+    if($('#media_element_media_show').text() != "<%= t('captions.select_file').downcase%>"){
+      uploader.start();
+      $('._error_messages').text('');
+    }else{
+      $('._error_messages').text("File: no file selected");
+    }
   });
 
   uploader.init();
@@ -81,7 +87,6 @@ $(function() {
     }
     var file = files[0];
     $("#media_element_media_show").text(file.name);
-
     up.refresh(); // Reposition Flash/Silverlight
   });
 
@@ -93,7 +98,8 @@ $(function() {
 
   uploader.bind('Error', function(up, err) {
     // TODO gestione errori lato client e server 500 (estensione e dimensioni principalmente)
-    console.log(err);
+    
+    console.log("Errors: "+err);
     // $('#filelist').append("<div>Error: " + err.code +
     //   ", Message: " + err.message +
     //   (err.file ? ", File: " + err.file.name : "") +
@@ -104,6 +110,10 @@ $(function() {
   });
 
   uploader.bind('FileUploaded', function(up, file, data) {
+    var resp = jQuery.parseJSON(data);
+    if(resp.errors.leng){
+      
+    }
     console.log(data);
     $('.barraLoading div').width('100%');
     // TODO gestione errori lato server (li gestiamo qui perché quest'evento ci ritorna i dati del server, mentre Error no)

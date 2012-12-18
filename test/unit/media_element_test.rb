@@ -9,6 +9,7 @@ class MediaElementTest < ActiveSupport::TestCase
       @media_element.user_id = 1
       @media_element.sti_type = 'Video'
       @media_element.tags = 'ciao, come, stai, tu?'
+      @media_element.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
     rescue ActiveModel::MassAssignmentSecurity::Error
       @media_element = nil
     end
@@ -62,7 +63,7 @@ class MediaElementTest < ActiveSupport::TestCase
     @media_element = MediaElement.new
     assert_equal false, @media_element.is_public
     @media_element.is_public = nil
-    assert_error_size 8, @media_element
+    assert_error_size 9, @media_element
   end
   
   test 'attr_accessible' do

@@ -3,6 +3,44 @@ function initializeVideoEditor() {
     autoReinitialise: true
   });
   calculateNewPositionGalleriesInVideoEditor();
+  $('#video_editor_timeline').sortable({
+    scroll: true,
+    handle: '._video_editor_component_hover',
+    axis: 'x',
+    cursor: 'move',
+    cancel: '._video_editor_component_menu'/*,
+    
+    helper: function(event, ui) {
+      var div_to_return = $($('#' + ui.attr('id'))[0].outerHTML);
+      div_to_return.addClass('current');
+      div_to_return = div_to_return[0].outerHTML;
+      var my_index = div_to_return.indexOf('<div class="_video_editor_component_menu');
+      var second_half_string = div_to_return.substring(my_index, div_to_return.length);
+      var my_second_index = my_index + second_half_string.indexOf('</div>') + 6;
+      return div_to_return.substring(0, (my_index - 1)) + div_to_return.substring((my_second_index + 1), div_to_return.length);
+    },
+    stop: function(event, ui) {
+      var previous = ui.item.prev();
+      var new_position = 0;
+      var old_position = ui.item.data('position');
+      if(previous.length == 0) {
+        new_position = 1;
+      } else {
+        var previous_item_position = previous.data('position');
+        if(old_position > previous_item_position) {
+          new_position = previous_item_position + 1;
+        } else {
+          new_position = previous_item_position;
+        }
+      }
+      if(old_position != new_position) {
+        $.ajax({
+          type: 'post',
+          url: '/virtual_classroom/' + ui.item.data('lesson-id') + '/playlist/' + new_position + '/change_position'
+        });
+      }
+    }*/
+  });
 }
 
 function calculateNewPositionGalleriesInVideoEditor() {
@@ -59,19 +97,32 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
   }
 }
 
-function removeComponentInVideoEditor(position) {
+function reloadVideoEditorComponentPositions() {
+  var over = false;
+  $('._video_editor_component').each(function(index) {
+    if(typeof($(this).attr('id')) != 'undefined') {
+      $(this).data('position', (index + 1));
+      $('#' + $(this).attr('id') + ' ._video_component_input_position').val(index + 1);
+      var counter_html = $('#' + $(this).attr('id') + ' ._video_component_icon').html();
+      counter_html = counter_html.substr(counter_html.indexOf('<div'), counter_html.length);
+      $('#' + $(this).attr('id') + ' ._video_component_icon').html((index + 1) + counter_html);
+    } else if(!over) {
+      $('#add_new_video_component ._component_counter').html(index + 1);
+      over = true;
+    }
+  });
 }
 
 function addImageComponentInVideoEditor(image_id, component, duration) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
-  var next_position = $('#info_container').data('components-number') + 1;
-  var new_timeline_width = (187 * next_position) + 156;
+  var next_position = $('#info_container').data('last-component-id') + 1;
+  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 187;
   $('#media_elements_list_in_video_editor').data('jsp').destroy();
   $('#video_editor_timeline').css('width', new_timeline_width + 'px');
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true
   });
-  $('#info_container').data('components-number', next_position);
+  $('#info_container').data('last-component-id', next_position);
   var empty_component = $('#empty_image_component_for_video_editor').html();
   empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(empty_component.indexOf('div') + 3, empty_component.length);
   $('#add_new_video_component').before(empty_component);
@@ -108,14 +159,14 @@ function replaceImageComponentInVideoEditor(image_id, component, position, durat
 
 function addVideoComponentInVideoEditor(video_id, component, duration) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
-  var next_position = $('#info_container').data('components-number') + 1;
-  var new_timeline_width = (187 * next_position) + 156;
+  var next_position = $('#info_container').data('last-component-id') + 1;
+  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 187;
   $('#media_elements_list_in_video_editor').data('jsp').destroy();
   $('#video_editor_timeline').css('width', new_timeline_width + 'px');
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true
   });
-  $('#info_container').data('components-number', next_position);
+  $('#info_container').data('last-component-id', next_position);
   var empty_component = $('#empty_video_component_for_video_editor').html();
   empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(empty_component.indexOf('div') + 3, empty_component.length);
   $('#add_new_video_component').before(empty_component);
@@ -154,14 +205,14 @@ function replaceVideoComponentInVideoEditor(video_id, component, position, durat
 
 function addTextComponentInVideoEditor(component, content, duration, background_color, text_color) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
-  var next_position = $('#info_container').data('components-number') + 1;
-  var new_timeline_width = (187 * next_position) + 156;
+  var next_position = $('#info_container').data('last-component-id') + 1;
+  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 187;
   $('#media_elements_list_in_video_editor').data('jsp').destroy();
   $('#video_editor_timeline').css('width', new_timeline_width + 'px');
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true
   });
-  $('#info_container').data('components-number', next_position);
+  $('#info_container').data('last-component-id', next_position);
   var empty_component = $('#empty_text_component_for_video_editor').html();
   empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(empty_component.indexOf('div') + 3, empty_component.length);
   $('#add_new_video_component').before(empty_component);
