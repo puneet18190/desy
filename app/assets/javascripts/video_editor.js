@@ -8,16 +8,14 @@ function initializeVideoEditor() {
     handle: '._video_editor_component_hover',
     axis: 'x',
     cursor: 'move',
-    cancel: '._video_editor_component_menu'/*,
+    cancel: '._video_editor_component_menu',
     start: function() {
-      $('._video_editor_component').each(function() {
-        if(typeof($(this).attr('id')) != 'undefined') {
-          ._video_component_transition
-        }
-      });
+      $('._video_editor_component ._video_component_transition.current').addClass('_video_component_temporary_no_transition');
+      $('._video_editor_component ._video_component_transition').addClass('current');
     },
     stop: function() {
-      
+      $('._video_editor_component ._video_component_transition.current').removeClass('current');
+      $('._video_component_temporary_no_transition').addClass('current');
     }
     
     /*
