@@ -11,6 +11,7 @@ tags_max = t('captions.tags_max', :items => CONFIG['min_tags_for_item'].to_s, :n
       <br style="clear:float">
       <h2 class="pull-left"><%= t 'captions.enter_new_media_element_details'%></h2>
     </div>
+    <div id="error_messages"></div>
     <div class="cols" style="float:left">
       <%= text_field_tag 'new_title', title_max %>
       <br>
@@ -19,8 +20,6 @@ tags_max = t('captions.tags_max', :items => CONFIG['min_tags_for_item'].to_s, :n
     <div class="cols" style="float:right">
       <%= text_area_tag 'new_tags', tags_max %>
     </div>
-    <br class="clearfloat">
-    <div id="error_messages">errore:</div>
     <br class="clearfloat">
     <div class="cols" style="float:right">
       <a class="_cancel buttonForm">cancel</a>

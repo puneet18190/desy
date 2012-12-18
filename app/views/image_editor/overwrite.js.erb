@@ -1,7 +1,7 @@
 <% if @errors %>
   $("#error_messages").html("<%= j media_elements_error_messages(@errors) %>");
   <% @errors.each do |err,val|%>
-    $("#new_<%=err%>").addClass("form_error");
+    $("#update_<%=err%>").addClass("form_error");
   <% end %>
 <% else %>
   window.location = "<%= my_media_elements_path %>"

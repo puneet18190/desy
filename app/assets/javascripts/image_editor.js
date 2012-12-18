@@ -131,6 +131,7 @@ $(document).ready(function() {
   
   $("body").on("click","#image_editor_public ._save_edit_image", function(){
     var image_id = $(this).data("slide-id");
+    $('._save_edit_image').hide();
     $('#form_info_new_media_element_in_editor').show();
   });
   
@@ -172,7 +173,7 @@ function commitImageEditing(new_or_overwrite){
 
 function saveImageChoice(image_id) {
   var title = $('.header h1 span');
-  showConfirmPopUp(title.text(), "Update or create new image", "update", "new", function() {
+  showConfirmPopUp(title.text(), "<h1>Update or create new image</h1>", "update", "new", function() {
     $('#dialog-confirm').hide();
     $('._save_edit_image').hide();
     $('#form_info_update_media_element_in_editor').show();
@@ -226,9 +227,9 @@ function addTextAreaHiddenFields(color, size, coords, text, index){
 
 //TODO ADD COLOR AND FONT SIZE
 function textAreaContent(coords,textCount){
-  var textarea = "<textarea id='area_"+textCount+"' data-coords='"+coords[2]+","+coords[3]+"' data-color='color_black' data-size='20' name='text_"+textCount+"' class='color_black small_font' />";
+  var textarea = "<textarea id='area_"+textCount+"' data-coords='"+coords[2]+","+coords[3]+"' data-color='color_black' data-size='15' name='text_"+textCount+"' class='color_black small_font' />";
   var colors = "<div class='text_colors'><a class='background_color_white'></a><a class='background_color_black current'></a><a class='background_color_red'></a><a class='background_color_orange'></a><a class='background_color_light_blue'></a><a class='background_color_green'></a></div>"
-  var fontSize = "<div class='font_sizes'><a class='small_font current' data-param='20'>A</a><a class='medium_font' data-param='31'>A</a><a class='big_font' data-param='40'>A</a></div>"
+  var fontSize = "<div class='font_sizes'><a class='small_font current' data-param='15'>A</a><a class='medium_font' data-param='25'>A</a><a class='big_font' data-param='35'>A</a></div>"
   div = $("<div />",
   {
     class: "image_editor_text",
