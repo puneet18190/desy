@@ -1,6 +1,6 @@
 <%
   external_div_attributes = "data-position=\"\" data-duration=\"\""
-  external_div_attributes = "id=\"video_component_#{position}\" data-position=\"#{position}\" data-duration=\"#{component[:until] - component[:from]}\"" if !empty
+  external_div_attributes = "id=\"video_component_#{position}\" data-position=\"#{position}\" data-duration=\"#{component[:to] - component[:from]}\"" if !empty
 %>
 
 <div class="lista _video_editor_component" <%= external_div_attributes.html_safe %>>
@@ -11,7 +11,7 @@
       <%= hidden_field_tag "type_#{position}", component[:type], :class => '_video_component_input_type' %>
       <%= hidden_field_tag "video_id_#{position}", component[:video].id, :class => '_video_component_input_video_id' %>
       <%= hidden_field_tag "from_#{position}", component[:from], :class => '_video_component_input_from' %>
-      <%= hidden_field_tag "until_#{position}", component[:until], :class => '_video_component_input_until' %>
+      <%= hidden_field_tag "to_#{position}", component[:to], :class => '_video_component_input_tos' %>
       <%= hidden_field_tag "position_#{position}", position, :class => '_video_component_input_position' %>
     <% end %>
   </div>

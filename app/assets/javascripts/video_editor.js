@@ -129,7 +129,7 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   var to_be_appended = fillVideoEditorSingleParameter('type', next_position, 'video');
   to_be_appended += fillVideoEditorSingleParameter('video_id', next_position, video_id);
   to_be_appended += fillVideoEditorSingleParameter('from', next_position, 0);
-  to_be_appended += fillVideoEditorSingleParameter('until', next_position, duration);
+  to_be_appended += fillVideoEditorSingleParameter('to', next_position, duration);
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
@@ -147,7 +147,7 @@ function replaceVideoComponentInVideoEditor(video_id, component, position, durat
   $('#' + position + ' ._video_component_input_type').val('video');
   var to_be_appended = fillVideoEditorSingleParameter('video_id', identifier, video_id);
   to_be_appended += fillVideoEditorSingleParameter('from', identifier, 0);
-  to_be_appended += fillVideoEditorSingleParameter('until', identifier, duration);
+  to_be_appended += fillVideoEditorSingleParameter('to', identifier, duration);
   $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(position, duration);
 }
@@ -252,7 +252,7 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
   huge_selector += ', #' + component_id + ' ._video_component_input_image_id';
   huge_selector += ', #' + component_id + ' ._video_component_input_video_id';
   huge_selector += ', #' + component_id + ' ._video_component_input_from';
-  huge_selector += ', #' + component_id + ' ._video_component_input_until';
+  huge_selector += ', #' + component_id + ' ._video_component_input_to';
   $(huge_selector).remove();
 }
 

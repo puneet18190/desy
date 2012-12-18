@@ -15,7 +15,7 @@ class VideoTest < ActiveSupport::TestCase
           :type => 'video',
           :video_id => 2,
           :from => 12,
-          :until => 20
+          :to => 20
         },
         {
           :type => 'text',
@@ -89,16 +89,16 @@ class VideoTest < ActiveSupport::TestCase
     reset_parameters
     @parameters[:components][0][:from] = 't'
     assert_nil Video.convert_parameters(@parameters, 1)
-    @parameters[:components][0][:until] = '1'
+    @parameters[:components][0][:to] = '1'
     assert_nil Video.convert_parameters(@parameters, 1)
     reset_parameters
-    @parameters[:components][0][:until] = 12
+    @parameters[:components][0][:to] = 12
     assert_nil Video.convert_parameters(@parameters, 1)
-    @parameters[:components][0][:until] = 11
+    @parameters[:components][0][:to] = 11
     assert_nil Video.convert_parameters(@parameters, 1)
-    @parameters[:components][0][:until] = 22
+    @parameters[:components][0][:to] = 22
     assert_nil Video.convert_parameters(@parameters, 1)
-    @parameters[:components][0][:until] = 21
+    @parameters[:components][0][:to] = 21
     assert_not_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][0][:from] = -1
     assert_nil Video.convert_parameters(@parameters, 1)
