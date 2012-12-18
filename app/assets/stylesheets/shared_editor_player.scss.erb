@@ -300,11 +300,7 @@ $button-size: 6em;
     background-position: (-$button-size*2) 0;
     opacity:0.2;
   }
-  &.exitButtonWhite {
-    font-size: 0.3em;
-    background-position: 0 0;
-    opacity:1;
-  }
+  
  }
  /*FINE MENU*/
  .exitContent {
@@ -313,7 +309,7 @@ $button-size: 6em;
       @include buttonExitElement;
     }
   }
-  .exitButton, .exitButtonWhite {
+  .exitButton {
    @include buttonExitElement;
  }
  @mixin addElementInGallery {
@@ -343,18 +339,28 @@ a.addButtonContent {
 }  
 .esciButton {
   background-image: url(<%= asset_path 'esci.svg' %>);
-    background-repeat: no-repeat;
-    background-size: 12em 6em;
-    background-position: 0em -1em;
-    padding:0;
-    float:right;
-    font-size:0.4em;
-    width: 5.8em;
-    height: 4em;
-    margin-top:6px;
-    &:hover {
-      background-position: -6em -1em;
-    };
+  background-repeat: no-repeat;
+  background-size: 12em 6em;
+  background-position: 0em -1em;
+  padding:0;
+  float:right;
+  font-size:0.4em;
+  width: 5.8em;
+  height: 4em;
+  margin-top:6px;
+  &:hover {
+    background-position: -6em -1em;
+  };
+}
+.exitGallery {
+  background-image: url(<%= asset_path 'x.svg' %>);
+  background-repeat: no-repeat;
+  background-size: 23.8em 3.4em;
+  background-position: -7em 0em;
+  float:right;
+  font-size:0.6em;
+  width: 3em;
+  height: 3em;
 } 
 .nextButton {
   background-image: url(<%= asset_path 'next.svg' %>);

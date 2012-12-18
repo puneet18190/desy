@@ -5,10 +5,10 @@
     margin:0;
     list-style:none;
     .scroll-pane{
-      margin:10px 0 0 20px;
-      padding-left:20px;
-      width: 840px;
-      /*height: 470px;*/
+      margin-left:20px;    
+      width: 870px;
+      position:absolute;
+      top:190px;
       li{
         float:left; 
         width: 115px;
@@ -19,7 +19,7 @@
 }
 @mixin boxShadow {
   
-  height: 590px;
+  height: 486px;
   width: 900px;
   background-color:#252323;
 }
@@ -51,7 +51,7 @@
 }
 .gallery-header {
   position:absolute;
-  top:40px; left:60px;
+  top:40px; left:40px;
   padding: 0px;
   display:inline-block;
   h3{
@@ -215,7 +215,7 @@
   
   @include ulGallery;
   .scroll-pane {
-    height: 360px;
+    height: 320px;
   }
   
 
@@ -224,7 +224,7 @@
       li{
         width: 250px;
         height: 140px;
-        margin: 0 20px 20px 0;
+        margin: 0 36px 36px 0;
       }
     }
   }
@@ -264,9 +264,7 @@
 }
 /*testo*/
 ._texts {
-  background-color: #252323;
-  height: 590px;
-  width: 900px;
+  @include boxShadow;
   display: block;
   font: 90% 'Nunito', sans-serif;
   /*content inserimento testo*/
@@ -334,12 +332,12 @@
     }
   }
 }
-#video_gallery_content{
+/*#video_gallery_content{
   .scroll-pane {
-    width:840px;
+    width:870px;
     position:absolute;
     top:190px;
-    padding-left:20px;
+    
   }
   
   
@@ -351,7 +349,7 @@
     top:190px;
     padding-left:20px;
   }
-}
+}*/
 	
 #image_gallery_for_image_editor{
   margin-top: 20px;
@@ -370,5 +368,6 @@
   position: absolute;
   bottom: 20px;
   right: 15px;
+  
 }
 
