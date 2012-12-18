@@ -1,0 +1,11 @@
+<% if @errors %>
+  $(".form_error").removeClass("form_error");
+  $("._error_messages").html("<%= j media_elements_error_messages(@errors) %>");
+  <% @errors.each do |err,val|%>
+    $("#lesson_<%=err%>").addClass("form_error");
+  <% end %>
+<% else %>
+  $(".form_error").removeClass("form_error");
+  $("._error_messages").html("");
+  window.location = "/lessons/<%= @lesson.id %>/slides/edit/"
+<% end %>

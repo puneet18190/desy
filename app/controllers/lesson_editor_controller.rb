@@ -23,11 +23,10 @@ class LessonEditorController < ApplicationController
   def create
     # TODO controllare redirect
     new_lesson = @current_user.create_lesson params[:title], params[:description], params[:subject], params[:tags]
-    if new_lesson
-      redirect_to "/lessons/#{new_lesson.id}/slides/edit"
+    if new_lesson.instance_of?(Lesson)
+      @lesson = new_lesson
     else
-      @errors = new_lesson.errors.messages
-      redirect_to :action => :new
+      @errors = new_lesson
     end
   end
   
@@ -41,8 +40,9 @@ class LessonEditorController < ApplicationController
       @lesson.subject_id = params[:subject]
       @lesson.tags = params[:lesson][:tags]
       @lesson.modified
-      @lesson.save
-      redirect_to lesson_editor_path(@lesson_id)
+      if !@lesson.save
+        @errors = @lesson.errors.messages
+      end
     end
   end
   
