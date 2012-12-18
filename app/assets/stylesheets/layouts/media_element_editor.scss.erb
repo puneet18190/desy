@@ -395,10 +395,15 @@ html.media_element_editor-layout {
         }
       }
       .separatore {
+        background-image: url(<%= asset_path 'arrow_element_timeline.png' %>);
+        background-repeat: no-repeat;
+        background-position:0 0;
         float:left; 
-        padding-top:38px; 
-        margin-left:7px;
-        margin-right:4px;
+        margin:38px 4px 0px 7px;
+        width:16px;
+        .current {
+          background-image: none;
+        }
       }
     }
     .newElement {
