@@ -8,12 +8,14 @@ module Media
       class Composer
 
         #  {
-        #    :initial_video => OBJECT OF TYPE VIDEO or NIL,
-        #    :audio_track => OBJECT OF TYPE AUDIO or NIL,
+        #    :initial_video => {
+        #      :id => VIDEO ID or NIL,
+        #    },
+        #    :audio_track_id => AUDIO ID or NIL,
         #    :components => [
         #      {
         #        :type => Video::VIDEO_COMPONENT,
-        #        :video => OBJECT OF TYPE VIDEO,
+        #        :video_id => VIDEO ID,
         #        :from => 12,
         #        :to => 24
         #      },
@@ -26,7 +28,7 @@ module Media
         #      },
         #      {
         #        :type => Video::IMAGE_COMPONENT,
-        #        :image => OBJECT OF TYPE IMAGE,
+        #        :image_id => IMAGE ID,
         #        :duration => 2
         #      }
         #    ]
@@ -36,17 +38,37 @@ module Media
         end
 
         def run
-          @params[:components].each do |component|
-            type, video, from, to = components.values_at(:type, :video, :from, :to)
-          end
+          @params[:components].map do |component|
+            Thread.new do
+              case component[:type]
+              when ::Video::VIDEO_COMPONENT
+                compose_video *component.values_at(:video_id, :from, :to)
+              when ::Video::AUDIO_COMPONENT
+              when ::Video::TEXT_COMPONENT
+              end
+            end.tap{ |t| t.abort_on_exception = true }
+          end.each(&:join)
         end
 
-        def video_id
-          @params[:initial_video].try(:id)
+        private
+        def compose_video(video_id, from, to)
+          video = Video.find video_id
+          
+
         end
 
-        def audio_id
-          @params[:audio_track].try(:id)
+        def final_video
+          @video ||= (
+            id = @params[:initial_video][:id]
+            Video.find(id) if id
+          )
+        end
+
+        def final_audio
+          @audio ||= (
+            id = @params[:audio_track_id]
+            Audio.find(id) if id
+          )
         end
       end
     end
