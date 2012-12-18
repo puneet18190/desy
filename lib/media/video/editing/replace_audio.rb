@@ -1,4 +1,5 @@
-require 'media/video/editing'
+require 'media'
+require 'media/video'
 require 'media/video/editing'
 require 'media/logging'
 require 'media/in_tmp_dir'

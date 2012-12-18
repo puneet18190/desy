@@ -1,3 +1,7 @@
+require 'media'
+require 'media/video'
+require 'media/video/editing'
+
 module Media
   module Video
     module Editing
