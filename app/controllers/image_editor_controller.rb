@@ -1,3 +1,5 @@
+require 'shellwords'
+
 class ImageEditorController < ApplicationController
 
   before_filter :initialize_image_with_owner_or_public, :only => [:edit, :crop, :save]
@@ -84,7 +86,7 @@ class ImageEditorController < ApplicationController
             c1 = ratio_value(width_val,coords_value[1], original_val)
             text_value = params["text_#{t_num}"]
 
-            c.draw "text #{c0},#{c1} '#{text_value}'"
+            c.draw "text #{c0},#{c1} '#{text_value.shellescape}'"
           end
         end
       end
@@ -163,7 +165,7 @@ class ImageEditorController < ApplicationController
             c0 = ratio_value(width_val,coords_value[0], original_val)
             c1 = ratio_value(width_val,coords_value[1], original_val)
             text_value = params["text_#{t_num}"]
-            c.draw "text #{c0},#{c1} \'#{text_value}\'"
+            c.draw "text #{c0},#{c1} '#{text_value}'"
           end
         end
       end

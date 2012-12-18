@@ -243,16 +243,16 @@ function addTextAreaHiddenFields(color, size, coords, text, index){
     name: "color_"+index,
     val: color
   });
-  hidden_input_size = $("<input />",
+  hidden_input_font = $("<input />",
   {
     "class": "area_"+index,
     type: "hidden",
-    id: "hidden_size_"+index,
-    name: "size_"+index,
+    id: "hidden_font_"+index,
+    name: "font_"+index,
     val: size
   });
     
-  $("#_crop_form").prepend(hidden_input_coords).prepend(hidden_input_text).prepend(hidden_input_color).prepend(hidden_input_size);
+  $("#_crop_form").prepend(hidden_input_coords).prepend(hidden_input_text).prepend(hidden_input_color).prepend(hidden_input_font);
 }
 
 //TODO ADD COLOR AND FONT SIZE
