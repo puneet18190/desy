@@ -69,6 +69,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     image[:height]
   end
 
+  def absolute_folder
+    File.dirname path if path
+  end
+
   def original_extension
     File.extname(original_filename)
   end
