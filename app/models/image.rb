@@ -1,8 +1,7 @@
 class Image < MediaElement
-  mount_uploader :media, ImageUploader
+  EXTENSION_WHITE_LIST = ImageUploader::EXTENSION_WHITE_LIST
   
-  # TODO toglierlo da qui e metterlo in MediaElement una volta implementati tutti gli upload
-  validates_presence_of :media
+  mount_uploader :media, ImageUploader
   
   before_save :set_width_and_height
   

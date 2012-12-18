@@ -26,7 +26,8 @@ class LessonEditorController < ApplicationController
     if new_lesson
       redirect_to "/lessons/#{new_lesson.id}/slides/edit"
     else
-      redirect_to :back, notice: t('captions.lesson_not_created')
+      @errors = new_lesson.errors.messages
+      redirect_to :action => :new
     end
   end
   

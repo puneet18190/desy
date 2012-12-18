@@ -63,7 +63,7 @@ class ImageEditorController < ApplicationController
           textCount += 1
         end
       end
-      logger.info "\n\n\n\n\n tCount: #{textCount} \n\n\n\n"
+
       if textCount > 0
         (0..textCount-1).each do |t_num|
           img.combine_options do |c|
@@ -73,10 +73,10 @@ class ImageEditorController < ApplicationController
             c.stroke "none"
             #c.encoding = "Unicode"
             c.font "#{Rails.root}/vendor/fonts/wt014.ttf"
-            size_value = params["font_#{t_num}"]
+            size_value = params["font_#{t_num}"].to_f * 0.75
             width_val = woh[1]
             original_val = woh[0]
-            c.pointsize "#{ratio_value(width_val,(size_value.to_f*72/96), original_val)}"
+            c.pointsize "#{ratio_value(width_val,(size_value), original_val)}"
             c.gravity 'NorthWest'
             coords_value = params["coords_#{t_num}"].to_s.split(",")
             c0 = ratio_value(width_val,coords_value[0], original_val)
@@ -106,20 +106,15 @@ class ImageEditorController < ApplicationController
       new_image.description = params[:new_description]
       new_image.tags = params[:new_tags]
       
-      logger.info "\n\n\n\n\n\n valid: #{new_image.valid?} \n\n\n"
-      
-      if !new_image.valid?
+      new_image.valid?
         msg = new_image.errors.messages
         msg.delete(:media)
-        logger.info "\n\n\n\n\n\n message: #{msg} \n\n\n"
-      end
-      
-      if msg && msg.empty?
+
+      if msg.empty?
         new_image.media = File.open("#{Rails.root}#{image_dir}/final_crop.jpg")
         new_image.save
       else
         @errors = msg
-        logger.info "\n\n\n\n\n\n errors: #{@errors} \n\n\n"
       end
       
       # manca redirect_to my_media_elements_path
@@ -147,7 +142,7 @@ class ImageEditorController < ApplicationController
           textCount += 1
         end
       end
-      logger.info "\n\n\n\n\n tCount: #{textCount} \n\n\n\n"
+
       if textCount > 0
         (0..textCount-1).each do |t_num|
           img.combine_options do |c|
@@ -157,10 +152,10 @@ class ImageEditorController < ApplicationController
             c.stroke "none"
             #c.encoding = "Unicode"
             c.font "#{Rails.root}/vendor/fonts/wt014.ttf"
-            size_value = params["font_#{t_num}"]
+            size_value = params["font_#{t_num}"].to_f # should add * 0.75 to compensate px to pt
             width_val = woh[1]
             original_val = woh[0]
-            c.pointsize "#{ratio_value(width_val,(size_value.to_f*72/96), original_val)}"
+            c.pointsize "#{ratio_value(width_val,(size_value), original_val)}"
             c.gravity 'NorthWest'
             coords_value = params["coords_#{t_num}"].to_s.split(",")
             c0 = ratio_value(width_val,coords_value[0], original_val)
@@ -170,7 +165,6 @@ class ImageEditorController < ApplicationController
           end
         end
       end
-      logger.info "\n\n\n\n\n tCount after: #{textCount} \n\n\n\n"
       if !params[:x1].blank?
         x1= ratio_value(woh[1],params[:x1],woh[0])
         y1= ratio_value(woh[1],params[:y1],woh[0])
@@ -182,12 +176,11 @@ class ImageEditorController < ApplicationController
         img.crop(crop_params)
       end
       image_dir = "/public/media_elements/images/#{params[:image_id]}"
-      final_image_url = img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
-      @image
+      img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
 
-      @image.title = params[:new_title]
-      @image.description = params[:new_description]
-      @image.tags = params[:new_tags]
+      @image.title = params[:update_title]
+      @image.description = params[:update_description]
+      @image.tags = params[:update_tags]
             
       
       
@@ -230,8 +223,10 @@ class ImageEditorController < ApplicationController
   end
   
   def ratio_value(scale_to_px, value, original)
+    logger.info "\n\n\n\n\n scaling: #{original} to #{scale_to_px} for #{value}"
     ratio = original.to_f / scale_to_px.to_f if (original.to_i > scale_to_px.to_i )
     if ratio
+      logger.info "\n\n\n\n\n scaling: #{original} to #{scale_to_px} for #{value}, gets ratio #{ratio} and value #{(value.to_f * ratio.to_f)} \n\n\n\n"
       return value.to_f * ratio.to_f
     else
       return value

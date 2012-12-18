@@ -91,7 +91,7 @@ function addImageComponentInVideoEditor(image_id, component, duration) {
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'photoIcon');
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
-  }, 1400);
+  }, 1100);
 }
 
 function replaceImageComponentInVideoEditor(image_id, component, position, duration) {
@@ -136,7 +136,7 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'videoIcon');
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
-  }, 1400);
+  }, 1100);
 }
 
 function replaceVideoComponentInVideoEditor(video_id, component, position, duration) {
@@ -186,7 +186,7 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'textIcon');
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
-  }, 1400);
+  }, 1100);
 }
 
 function replaceTextComponentInVideoEditor(component, content, position, duration, background_color, text_color) {

@@ -26,7 +26,7 @@ class MediaElement < ActiveRecord::Base
   belongs_to :user
   
   # FIXME aggiungere :media a validates_presence_of una volta implementati tutti gli upload
-  validates_presence_of :user_id, :title, :description
+  validates_presence_of :user_id, :title, :description, :media
   validates_inclusion_of :is_public, :in => [true, false]
   validates_inclusion_of :sti_type, :in => STI_TYPES
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0

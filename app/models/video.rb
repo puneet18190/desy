@@ -6,6 +6,8 @@ require 'media/video/uploader'
 #   nil   : conversione da effettuare o in fase di conversione
 class Video < MediaElement
   
+  EXTENSION_WHITE_LIST = Media::Video::Uploader::EXTENSION_WHITE_LIST
+  
   COMPONENTS = %w(video text image)
   VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT = COMPONENTS
 
@@ -14,7 +16,6 @@ class Video < MediaElement
 
   attr_accessor :skip_conversion, :rename_media
 
-  validates_presence_of :media
   validate :media_validation
   
   # it doesn't check that the parameters are valid; it takes as input regardless the basic hash and the full one
