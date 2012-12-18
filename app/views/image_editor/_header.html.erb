@@ -2,18 +2,17 @@
   <div class="contenitore">
   <h1 class="fltlft upper"><%= t("captions.image_editor_label") %></h1>
     <div class="testo fltlft">
-      <% if (image.nil? || !image.is_public) %>
+      <% if (image.nil? || image.is_public) %>
+        <span class="_titled" style="display:none">
+        </span>
+        <span class="_untitled">
+          <%= t('captions.untitled_new_element') %>
+        </span>
+      <% else %>
         <span class="_titled">
           <%= image.title %>
         </span>
         <span class="_untitled" style="display:none">
-          <%= t('captions.untitled_new_element') %>
-        </span>
-      <% else %>
-      <span class="_titled" style="display:none">
-        <%= image.title %>
-      </span>
-        <span class="_untitled">
           <%= t('captions.untitled_new_element') %>
         </span>
       <% end %>
