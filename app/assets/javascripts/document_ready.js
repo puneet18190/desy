@@ -745,7 +745,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._remove_component_from_video_editor_button', function() {
     var component = $(this).parent().parent().parent().parent();
-    var identifier = component.attr('id');
+    var identifier = component.attr('id').split('_');;
     identifier = identifier[identifier.length - 1];
     $('#video_component_' + identifier).hide('fade', {}, 500, function() {
       changeDurationVideoEditorComponent(('video_component_' + identifier), 0);
