@@ -9,6 +9,7 @@ function initializeVideoEditor() {
     axis: 'x',
     cursor: 'move',
     cancel: '._video_editor_component_menu',
+    containment: 'parent',
     start: function(event, ui) {
       // FIXME farlo funzionare e aggiungerlo anche per i bordi della componente $(ui.item).find('._video_component_icon').addClass('current');
       my_item = $(ui.item);
