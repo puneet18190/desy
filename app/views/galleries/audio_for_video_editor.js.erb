@@ -1,5 +1,4 @@
-$('#video_editor').hide();
-$('#video_editor_audio_gallery_container').show();
+showGalleryInVideoEditor('audio');
 $('#video_editor_audio_gallery_container').html('<%= j(render(:partial => 'galleries/audio', :locals => {:audios => @audios})) %>');
 $('#video_editor_mixed_gallery_container').data('loaded', true);
 $('._select_audio_from_gallery').addClass('_add_audio_track_to_video_editor');

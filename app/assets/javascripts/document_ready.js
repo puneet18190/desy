@@ -275,6 +275,10 @@ $(document).ready(function() {
     closeGalleryInVideoEditor('mixed');
   });
   
+  $('body').on('click', '._close_audio_gallery_in_video_editor', function() {
+    closeGalleryInVideoEditor('audio');
+  });
+  
   $('body').on('click', "._close_on_click_out", function(){
     $(".ui-dialog-content:visible").each(function(){
       closePopUp($(this).attr("id"));
@@ -777,8 +781,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._show_audio_gallery_in_video_editor', function() {
     if($('#video_editor_audio_gallery_container').data('loaded')) {
-      $('#video_editor').hide();
-      $('#video_editor_audio_gallery_container').css('display', 'inline-block');
+      showGalleryInVideoEditor('audio');
     } else {
       $.ajax({
         type: 'get',
