@@ -1,4 +1,4 @@
-showMixedGalleryInVideoEditor();
+showGalleryInVideoEditor('mixed');
 
 $('#video_editor_mixed_gallery_container').html('<%= j(render(:partial => 'galleries/mixed_video_image_text', :locals => {:images => @images, :videos => @videos})) %>');
 $('#video_editor_mixed_gallery_container').data('loaded', true);
