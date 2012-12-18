@@ -860,7 +860,16 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._add_audio_track_to_video_editor', function() {
-    alert('stai aggiungendo la traccia audio');
+    var audio_id = $(this).data('audio-id');
+    closeGalleryInVideoEditor('audio');
+    stopMedia('#gallery_audio_' + audio_id + ' audio');
+    $('#gallery_audio_' + audio_id + ' ._expanded').hide();
+    $('#audio_track_in_video_editor_input').val(audio_id);
+    $('#empty_audio_track_placeholder_in_video_editor').hide();
+    $('#full_audio_track_placeholder_in_video_editor').show();
+    var new_html_title = $('#gallery_audio_' + audio_id + ' ._compact p').html();
+    new_html_title += ('<br/>' + secondsToDateString($(this).data('duration')));
+    $('#full_audio_track_placeholder_in_video_editor ._title').html(new_html_title);
   });
   
   $('body').on('click', '._image_gallery_thumb_in_mixed_gallery_video_editor', function(e) {

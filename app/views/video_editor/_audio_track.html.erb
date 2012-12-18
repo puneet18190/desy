@@ -1,17 +1,28 @@
-<% if parameters[:audio] %>
-  <div class="fltlft">
-    <div class="audioButton current _show_audio_gallery_in_video_editor"></div>
-    <div class="titleTrack"><%= parameters[:audio].title %><br/><%= seconds_to_time(parameters[:audio].min_duration) %></div>
-    <div class="exitContent fltlft">
-      <a class="exitButton">&nbsp;</a>
-    </div>
+<%
+  title = ''
+  duration = ''
+  style_full = 'display:none'
+  style_empty = 'display:block'
+  if parameters[:audio]
+    title = parameters[:audio].title
+    duration = seconds_to_time(parameters[:audio].min_duration)
+    style_full = 'display:block'
+    style_empty = 'display:none'
+  end
+%>
+
+<div id="full_audio_track_placeholder_in_video_editor" class="fltlft" style="<%= style_full %>">
+  <div class="audioButton current _show_audio_gallery_in_video_editor"></div>
+  <div class="titleTrack _title"><%= title %><br/><%= duration %></div>
+  <div class="exitContent fltlft">
+    <a class="exitButton">&nbsp;</a>
   </div>
-<% else %>
-  <div class="fltlft">
-    <a class="creaNuovoButton _show_audio_gallery_in_video_editor"></a>
-    <a>
-      <p><%= t('captions.add_audio_track') %></p><br/>
-      <p><%= t('descriptions.audio_track_in_video_editor') %></p>
-    </a>
-  </div>
-<% end %>
+</div>
+
+<div id="empty_audio_track_placeholder_in_video_editor" class="fltlft" style="<%= style_empty %>">
+  <a class="creaNuovoButton _show_audio_gallery_in_video_editor"></a>
+  <a>
+    <p><%= t('captions.add_audio_track') %></p><br/>
+    <p><%= t('descriptions.audio_track_in_video_editor') %></p>
+  </a>
+</div>
