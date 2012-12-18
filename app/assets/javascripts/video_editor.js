@@ -16,6 +16,9 @@ function initializeVideoEditor() {
     stop: function() {
       $('._video_editor_component ._video_component_transition.current').removeClass('current');
       $('._video_component_temporary_no_transition').addClass('current');
+    },
+    helper: function(event, ui) {
+      return ui.find('._video_component_thumb')[0].outerHTML;
     }
     
     /*
@@ -27,7 +30,7 @@ function initializeVideoEditor() {
       var second_half_string = div_to_return.substring(my_index, div_to_return.length);
       var my_second_index = my_index + second_half_string.indexOf('</div>') + 6;
       return div_to_return.substring(0, (my_index - 1)) + div_to_return.substring((my_second_index + 1), div_to_return.length);
-    },
+    },/*
     stop: function(event, ui) {
       var previous = ui.item.prev();
       var new_position = 0;
