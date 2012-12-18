@@ -709,9 +709,11 @@ $(document).ready(function() {
     closePopUp('dialog-virtual-classroom-quick-select');
   });
   
-  // ELEMENTS EDITOR
+  
+  // MEDIA ELEMENTS EDITOR
   
   $('#form_info_new_media_element_in_editor, #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
+  
   
   // IMAGE EDITOR
   
@@ -719,6 +721,7 @@ $(document).ready(function() {
   $('body').on('click','._add_image_to_image_editor', function(){
     window.location = '/images/'+$(this).data('image-id')+'/edit';
   });
+  
   
   // VIDEO EDITOR
   
@@ -737,6 +740,23 @@ $(document).ready(function() {
     }, function() {
       startCacheLoop();
       closePopUp('dialog-confirm');
+    });
+  });
+  
+  $('body').on('click', '._remove_component_from_video_editor_button', function() {
+    var component = $(this).parent().parent().parent().parent();
+    var identifier = component.attr('id').split('_');;
+    identifier = identifier[identifier.length - 1];
+    $('#video_component_' + identifier).hide('fade', {}, 500, function() {
+      changeDurationVideoEditorComponent(('video_component_' + identifier), 0);
+      $('#media_elements_list_in_video_editor').data('jsp').destroy();
+      $(this).remove();
+      reloadVideoEditorComponentPositions();
+      var old_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', ''));
+      $('#video_editor_timeline').css('width', ((old_timeline_width - 187) + 'px'));
+      $('#media_elements_list_in_video_editor').jScrollPane({
+        autoReinitialise: true
+      });
     });
   });
   
@@ -766,7 +786,6 @@ $(document).ready(function() {
       infos.data('current-component', 'video_component_' + father.data('position'));
     } else {
       infos.data('replacing-component', false);
-      infos.data('current-component', 'video_component_' + (infos.data('components-number') + 1));
     }
     if($('#video_editor_mixed_gallery_container').data('loaded')) {
       showGalleryInVideoEditor('mixed');
