@@ -25,29 +25,6 @@ function initializeVideoEditor() {
       $('._video_editor_component ._video_component_transition.current').removeClass('current');
       $('._video_component_temporary_no_transition').addClass('current');
     }
-    
-/*
-    stop: function(event, ui) {
-      var previous = ui.item.prev();
-      var new_position = 0;
-      var old_position = ui.item.data('position');
-      if(previous.length == 0) {
-        new_position = 1;
-      } else {
-        var previous_item_position = previous.data('position');
-        if(old_position > previous_item_position) {
-          new_position = previous_item_position + 1;
-        } else {
-          new_position = previous_item_position;
-        }
-      }
-      if(old_position != new_position) {
-        $.ajax({
-          type: 'post',
-          url: '/virtual_classroom/' + ui.item.data('lesson-id') + '/playlist/' + new_position + '/change_position'
-        });
-      }
-    }*/
   });
 }
 
