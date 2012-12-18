@@ -1,182 +1,24 @@
 require 'media/video/uploader'
+require 'media/video/editing/parameters'
 
 # converted
 #   true  : conversione andata a buon fine
 #   false : conversione non andata a buon fine
 #   nil   : conversione da effettuare o in fase di conversione
 class Video < MediaElement
+
+  extend Media::Video::Editing::Parameters
   
-  EXTENSION_WHITE_LIST = %w(avi divx flv h264 mkv mov mp4 mpe mpeg mpg ogm ogv webm wmv xvid)
-  
-  COMPONENTS = %w(video text image)
-  VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT = COMPONENTS
+  EXTENSION_WHITE_LIST = Media::Video::Uploader::EXTENSION_WHITE_LIST
 
   after_save :upload_or_copy
   after_destroy :clean
 
   attr_accessor :skip_conversion, :rename_media
 
-  validates_presence_of :media
   validate :media_validation
   
-  # it doesn't check that the parameters are valid; it takes as input regardless the basic hash and the full one
-  def self.total_prototype_time(hash)
-    return 0 if !hash[:components].instance_of?(Array)
-    sum = 0
-    hash[:components].each do |component|
-      case component[:type]
-        when VIDEO_COMPONENT
-          return 0 if !component[:until].kind_of?(Integer) || !component[:from].kind_of?(Integer)
-          sum += component[:until]
-          sum -= component[:from]
-        when IMAGE_COMPONENT
-          return 0 if !component[:duration].kind_of?(Integer)
-          sum += component[:duration]
-        when TEXT_COMPONENT
-          return 0 if !component[:duration].kind_of?(Integer)
-          sum += component[:duration]
-      else
-        return 0
-      end
-    end
-    sum
-  end
-  
-  # EXAMPLE OF RETURNED HASH:
-  # - two initial parameters, 'initial_video' and 'audio_track'
-  # - then an ordered array of components:
-  #   - each component is a hash, with a key called :type
-  #   - if the type is 'video', there is an object of kind VIDEO associated to the key :video
-  #   - if the type is 'image', there is an object of kind IMAGE associated to the key :image
-  #
-  #  {
-  #    :initial_video => OBJECT OF TYPE VIDEO or NIL,
-  #    :audio_track => OBJECT OF TYPE AUDIO or NIL,
-  #    :components => [
-  #      {
-  #        :type => Video::VIDEO_COMPONENT,
-  #        :video => OBJECT OF TYPE VIDEO,
-  #        :from => 12,
-  #        :until => 24
-  #      },
-  #      {
-  #        :type => Video::TEXT_COMPONENT,
-  #        :content => 'Titolo titolo titolo',
-  #        :duration => 14,
-  #        :background_color => 'red',
-  #        :text_color => 'white'
-  #      },
-  #      {
-  #        :type => Video::IMAGE_COMPONENT,
-  #        :image => OBJECT OF TYPE IMAGE,
-  #        :duration => 2
-  #      }
-  #    ]
-  #  }
-  def self.convert_parameters(hash, user_id)
-    
-    # check if initial video and audio track are correctly declared (they can be nil or integer)
-    return nil if !hash.instance_of?(Hash) || !hash.has_key?(:initial_video_id) || !hash.has_key?(:audio_id)
-    return nil if !hash[:initial_video_id].nil? && !hash[:initial_video_id].kind_of?(Integer)
-    return nil if !hash[:audio_id].nil? && !hash[:audio_id].kind_of?(Integer)
-    
-    # initialize empty hash
-    resp_hash = {}
-    
-    # if initial video is present, I validate that it exists and is accessible from the user
-    if hash[:initial_video_id].nil?
-      initial_video = nil
-    else
-      initial_video = get_media_element_from_hash(hash, :initial_video_id, user_id, 'Video')
-      return nil if initial_video.nil? || initial_video.is_public
-    end
-    
-    # insert initial video (which is nil if the video does not overwrite any previous one)
-    resp_hash[:initial_video] = initial_video
-    
-    # if audio track is present, I validate that it exists and is accessible from the user
-    if hash[:audio_id].nil?
-      audio_track = nil
-    else
-      audio_track = get_media_element_from_hash(hash, :audio_id, user_id, 'Audio')
-      return nil if audio_track.nil?
-    end
-    
-    # insert audio track (which is nil if the user wants to keep the original audio of each component)
-    resp_hash[:audio] = audio_track
-    
-    # there must be a list of components
-    return nil if !hash[:components].instance_of?(Array) || hash[:components].empty?
-    
-    # initialize empty components
-    resp_hash[:components] = []
-    
-    # for each component I validate it and add it to the HASH
-    hash[:components].each do |p|
-      return nil if !p.instance_of?(Hash) || !COMPONENTS.include?(p[:type])
-      case p[:type]
-        when VIDEO_COMPONENT
-          c = extract_video_component(p, user_id)
-          return nil if c.nil?
-          resp_hash[:components] << c
-        when TEXT_COMPONENT
-          c = extract_text_component(p)
-          return nil if c.nil?
-          resp_hash[:components] << c
-        when IMAGE_COMPONENT
-          c = extract_image_component(p, user_id)
-          return nil if c.nil?
-          resp_hash[:components] << c
-      end
-    end
-    
-    resp_hash
-  end
-  
-  def self.extract_image_component(component, user_id)
-    image = get_media_element_from_hash(component, :image_id, user_id, 'Image')
-    # I validate that the image exists and is accessible from the user
-    return nil if image.nil?
-    # DURATION is correct
-    return nil if !component[:duration].kind_of?(Integer) || component[:duration] < 1
-    {
-      :type => IMAGE_COMPONENT,
-      :image => image,
-      :duration => component[:duration]
-    }
-  end
-  
-  def self.extract_video_component(component, user_id)
-    video = get_media_element_from_hash(component, :video_id, user_id, 'Video')
-    # I validate that the video exists and is accessible from the user
-    return nil if video.nil?
-    # FROM and UNTIL are correct
-    return nil if !component[:from].kind_of?(Integer) || !component[:until].kind_of?(Integer)
-    return nil if component[:from] < 0 || component[:until] > video.min_duration || component[:from] >= component[:until]
-    {
-      :type => VIDEO_COMPONENT,
-      :video => video,
-      :from => component[:from],
-      :until => component[:until]
-    }
-  end
-  
-  def self.extract_text_component(component)
-    # CONTENT, COLORS, and DURATION are present and correct
-    return nil if !component.has_key?(:content) || !component[:duration].kind_of?(Integer) || component[:duration] < 1
-    return nil if !CONFIG['colors'].has_key?(component[:background_color]) || !CONFIG['colors'].has_key?(component[:text_color])
-    {
-      :type => TEXT_COMPONENT,
-      :content => component[:content].to_s,
-      :duration => component[:duration],
-      :background_color => component[:background_color],
-      :text_color => component[:text_color]
-    }
-  end
-  
-  def self.get_media_element_from_hash(hash, key, user_id, my_sti_type)
-    hash[key].kind_of?(Integer) ? MediaElement.extract(hash[key], user_id, my_sti_type) : nil
-  end
+
   
   def min_duration
     [mp4_duration, webm_duration].map(&:to_i).min

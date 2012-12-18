@@ -19,7 +19,7 @@ module Media
       RAILS_PUBLIC                  = File.join Rails.root, 'public'
       PUBLIC_RELATIVE_FOLDER        = env_relative_path 'media_elements/audios'
       ABSOLUTE_FOLDER               = File.join RAILS_PUBLIC, PUBLIC_RELATIVE_FOLDER
-      EXTENSION_WHITE_LIST          = ::Audio::EXTENSION_WHITE_LIST
+      EXTENSION_WHITE_LIST          = %w(mp3 ogg flac aiff wav wma aac)
       EXTENSION_WHITE_LIST_WITH_DOT = EXTENSION_WHITE_LIST.map{ |ext| ".#{ext}" }
       MIN_DURATION                  = 1
       DURATION_THRESHOLD            = CONFIG.audio.duration_threshold
