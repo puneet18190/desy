@@ -10,9 +10,6 @@ class Video < MediaElement
   extend Media::Video::Editing::Parameters
   
   EXTENSION_WHITE_LIST = Media::Video::Uploader::EXTENSION_WHITE_LIST
-  
-  COMPONENTS = %w(video text image)
-  VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT = COMPONENTS
 
   after_save :upload_or_copy
   after_destroy :clean

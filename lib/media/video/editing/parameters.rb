@@ -2,6 +2,10 @@ module Media
   module Video
     module Editing
       module Parameters
+        
+        COMPONENTS = %w(video text image)
+        VIDEO_COMPONENT, TEXT_COMPONENT, IMAGE_COMPONENT = COMPONENTS
+        
         # it doesn't check that the parameters are valid; it takes as input regardless the basic hash and the full one
         def total_prototype_time(hash)
           return 0 if !hash[:components].instance_of?(Array)
@@ -147,7 +151,7 @@ module Media
         def extract_text_component(component)
           # CONTENT, COLORS, and DURATION are present and correct
           return nil if !component.has_key?(:content) || !component[:duration].kind_of?(Integer) || component[:duration] < 1
-          return nil if !CONFIG['colors'].has_key?(component[:background_color]) || !CONFIG['colors'].has_key?(component[:text_color])
+          return nil if !::CONFIG['colors'].has_key?(component[:background_color]) || !::CONFIG['colors'].has_key?(component[:text_color])
           {
             :type => TEXT_COMPONENT,
             :content => component[:content].to_s,

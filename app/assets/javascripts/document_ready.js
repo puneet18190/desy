@@ -872,6 +872,13 @@ $(document).ready(function() {
     $('#full_audio_track_placeholder_in_video_editor ._title').html(new_html_title);
   });
   
+  $('body').on('click', '#full_audio_track_placeholder_in_video_editor ._remove', function() {
+    var audio_id = $('#audio_track_in_video_editor_input').val();
+    $('#audio_track_in_video_editor_input').val('');
+    $('#full_audio_track_placeholder_in_video_editor').hide();
+    $('#empty_audio_track_placeholder_in_video_editor').show();
+  });
+  
   $('body').on('click', '._image_gallery_thumb_in_mixed_gallery_video_editor', function(e) {
     e.preventDefault();
     var image_id = $(this).data('image-id');
