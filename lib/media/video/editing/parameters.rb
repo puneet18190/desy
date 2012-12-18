@@ -17,8 +17,8 @@ module Media
           hash[:components].each do |component|
             case component[:type]
               when VIDEO_COMPONENT
-                return 0 if !component[:until].kind_of?(Integer) || !component[:from].kind_of?(Integer)
-                sum += component[:until]
+                return 0 if !component[:to].kind_of?(Integer) || !component[:from].kind_of?(Integer)
+                sum += component[:to]
                 sum -= component[:from]
               when IMAGE_COMPONENT
                 return 0 if !component[:duration].kind_of?(Integer)
@@ -48,7 +48,7 @@ module Media
         #        :type => Video::VIDEO_COMPONENT,
         #        :video => OBJECT OF TYPE VIDEO,
         #        :from => 12,
-        #        :until => 24
+        #        :to => 24
         #      },
         #      {
         #        :type => Video::TEXT_COMPONENT,
@@ -142,13 +142,13 @@ module Media
           # I validate that the video exists and is accessible from the user
           return nil if video.nil?
           # FROM and UNTIL are correct
-          return nil if !component[:from].kind_of?(Integer) || !component[:until].kind_of?(Integer)
-          return nil if component[:from] < 0 || component[:until] > video.min_duration || component[:from] >= component[:until]
+          return nil if !component[:from].kind_of?(Integer) || !component[:to].kind_of?(Integer)
+          return nil if component[:from] < 0 || component[:to] > video.min_duration || component[:from] >= component[:to]
           {
             :type => VIDEO_COMPONENT,
             :video => video,
             :from => component[:from],
-            :until => component[:until]
+            :to => component[:to]
           }
         end
         

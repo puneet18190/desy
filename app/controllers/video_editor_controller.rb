@@ -88,7 +88,7 @@ class VideoEditorController < ApplicationController
   def extract_single_form_parameter(p, value)
     if ['type', 'content', 'background_color', 'text_color'].include? p
       return value
-    elsif ['position', 'video_id', 'image_id', 'from', 'until', 'duration'].include? p
+    elsif ['position', 'video_id', 'image_id', 'from', 'to', 'duration'].include? p
       return value.to_i
     else
       return nil
@@ -107,7 +107,7 @@ class VideoEditorController < ApplicationController
       if !(k =~ /_/).nil?
         index = k.split('_').last.to_i
         p = k.gsub("_#{index}", '')
-        if ['type', 'video_id', 'image_id', 'from', 'until', 'position', 'content', 'background_color', 'text_color', 'duration'].include?(p)
+        if ['type', 'video_id', 'image_id', 'from', 'to', 'position', 'content', 'background_color', 'text_color', 'duration'].include?(p)
           if unordered_resp.has_key? index
             unordered_resp[index][:"#{p}"] = extract_single_form_parameter(p, v)
           else
@@ -134,7 +134,7 @@ class VideoEditorController < ApplicationController
     resp[:components].first[:type] = Video::VIDEO_COMPONENT
     resp[:components].first[:video_id] = @video.id
     resp[:components].first[:from] = 0
-    resp[:components].first[:until] = @video.min_duration
+    resp[:components].first[:to] = @video.min_duration
     resp = Video.convert_parameters(resp, @current_user.id)
     resp.nil? ? empty_parameters : resp
   end
