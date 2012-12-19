@@ -447,128 +447,127 @@ def plant_development_seeds
   video1.title = 'Water'
   video1.description = 'A video explaining scientific facts about water.'
   video1.tags = 'water, science, chemical, nature'
-  video1.media = {:mp4 => Rails.root.join('db/seeds/videos/acqua.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/acqua.webm').to_s, :filename => 'acqua
+  video1.media = {:mp4 => Rails.root.join('db/seeds/videos/acqua.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/acqua.webm').to_s, :filename => 'acqua'}
   video1.user_id = fupete.id
   video1.save!
   video1.is_public = true
   video1.save!
   
   video2 = Video.new
-  video2.title = The life of bees
-  video2.description =The life of bees and their work worker in a very nice and interesting movie.
-  video2.tags = bees, science, flower, nature, color
-  video2.media = {:mp4 => Rails.root.join('db/seeds/videos/ape_su_fiori.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/ape_su_fiori.webm').to_s, :filename => 'ape_su_fiori
+  video2.title = 'The life of bees'
+  video2.description = 'A very nice and interesting movie about bees.'
+  video2.tags = 'bees, science, flower, nature, color'
+  video2.media = {:mp4 => Rails.root.join('db/seeds/videos/ape_su_fiori.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/ape_su_fiori.webm').to_s, :filename => 'ape_su_fiori'}
   video2.user_id = toostrong.id
   video2.save!
   video2.is_public = true
   video2.save!
   
   video3 = Video.new
-  video3.title = The structure of the atom
-  video3.description = The atom is a structure in which it is normally organized matter. More atoms forming molecules, while the atoms are in turn formed by protons, neutrons and electrons. It was so called because originally considered the smallest unit of matter and indivisible.
+  video3.title = 'The structure of the atoms'
+  video3.description = 'Atoms are made by protons, neutrons and electrons.'
   video3.tags = atom, science, neutrons, molecules, electrons
-  video3.media = {:mp4 => Rails.root.join('db/seeds/videos/atomo.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/atomo.webm').to_s, :filename => 'atomo
+  video3.media = {:mp4 => Rails.root.join('db/seeds/videos/atomo.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/atomo.webm').to_s, :filename => 'atomo'}
   video3.user_id = jeg.id
   video3.save!
   video3.is_public = true
   video3.save!
   
   video4 = Video.new
-  video4.title = Bacteria seen under a microscope
-  video4.description = The kingdom bacteria, bacteria or eubacteria, includes unicellular microorganisms, prokaryotes, previously also called schizomycetes, usually of the order of size of a few micrometers, but which may vary from about 0.2 m of mycoplasmas up to 30 uM of some spirochetes.
-  video4.tags = bacteria, science, chemical, microscope, electrons, experiment, laboratory
-  video4.media = {:mp4 => Rails.root.join('db/seeds/videos/batteri.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/batteri.webm').to_s, :filename => 'batteri
+  video4.title = 'Bacteria seen under a microscope'
+  video4.description = 'Bacteria include unicellular microorganisms and prokaryotes.'
+  video4.tags = 'bacteria, science, chemical, microscope, electrons, experiment, laboratory'
+  video4.media = {:mp4 => Rails.root.join('db/seeds/videos/batteri.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/batteri.webm').to_s, :filename => 'batteri'}
   video4.user_id = holly.id
   video4.save!
   video4.is_public = true
   video4.save!
   
   video5 = Video.new
-  video5.title = Cellular structure
-  video5.description = The cell (from the Latin, small room) is the morphofunctional unit, that is, form and function of living organisms, the smallest structure to be classified as living.
-  video5.tags = cellular, science, chemical, microscope, organism, experiment, laboratory
-  video5.media = {:mp4 => Rails.root.join('db/seeds/videos/catena_cellulare.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/catena_cellulare.webm').to_s, :filename => 'catena_cellulare
+  video5.title = 'Structure of the cell'
+  video5.description = 'The cell is the smallest structure that might bt classified as living.'
+  video5.tags = 'cellular, science, chemical, microscope, organism, experiment, laboratory'
+  video5.media = {:mp4 => Rails.root.join('db/seeds/videos/catena_cellulare.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/catena_cellulare.webm').to_s, :filename => 'catena_cellulare'}
   video5.user_id = holly.id
   video5.save!
   video5.is_public = true
   video5.save!
   
   video6 = Video.new
-  video6.title = Let's look inside of us
-  video6.description = The cell (from the Latin, small room) is the morphofunctional unit, that is, form and function of living organisms, the smallest structure to be classified as living.
-  video6.tags = cellular, science, chemical, microscope, organism, experiment, laboratory
-  video6.media = {:mp4 => Rails.root.join('db/seeds/videos/cellule.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/cellule.webm').to_s, :filename => 'cellule
+  video6.title = "Let's look inside us"
+  video6.description = 'A video about cells.'
+  video6.tags = 'cellular, science, chemical, microscope, organism, experiment, laboratory'
+  video6.media = {:mp4 => Rails.root.join('db/seeds/videos/cellule.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/cellule.webm').to_s, :filename => 'cellule'}
   video6.user_id = fupete.id
   video6.save!
   video6.is_public = true
   video6.save!
   
   video7 = Video.new
-  video7.title = A chemistry experiment
-  video7.description = Chemistry is the science, or more specifically the branch of natural science, which studies the composition of matter and its behavior based on this composition.
-  video7.tags = liquid, science, chemical, microscope, organism, experiment, laboratory
-  video7.media = {:mp4 => Rails.root.join('db/seeds/videos/chimica.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/chimica.webm').to_s, :filename => 'chimica
+  video7.title = 'A chemical experiment'
+  video7.description = 'Chemistry is the science, which studies the composition of matter.'
+  video7.tags = 'liquid, science, chemical, microscope, organism, experiment, laboratory'
+  video7.media = {:mp4 => Rails.root.join('db/seeds/videos/chimica.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/chimica.webm').to_s, :filename => 'chimica'}
   video7.user_id = retlaw.id
   video7.save!
   video7.is_public = true
   video7.save!
   
   video8 = Video.new
-  video8.title = A new chemistry experiment
-  video8.description = Chemistry is the science, or more specifically the branch of natural science, which studies the composition of matter and its behavior based on this composition.
-  video8.tags = liquid, science, chemical, microscope, organism, experiment, laboratory
-  video8.media = {:mp4 => Rails.root.join('db/seeds/videos/chimica2.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/chimica2.webm').to_s, :filename => 'chimica2
+  video8.title = 'Interesting chemical experiment'
+  video8.description = 'A video about an interesting chemical experiment.'
+  video8.tags = 'liquid, science, chemical, microscope, organism, experiment, laboratory'
+  video8.media = {:mp4 => Rails.root.join('db/seeds/videos/chimica2.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/chimica2.webm').to_s, :filename => 'chimica2'}
   video8.user_id = jeg.id
   video8.save!
   video8.is_public = true
   video8.save!
   
   video9 = Video.new
-  video9.title = The future comes from the sun
-  video9.description = Solar energy is the energy associated with solar radiation is the primary source of energy on earth which makes life possible.
-  video9.tags = sun, science, chemical, energy, sky, experiment
-  video9.media = {:mp4 => Rails.root.join('db/seeds/videos/energia_solare.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/energia_solare.webm').to_s, :filename => 'energia_solare
+  video9.title = 'The future comes from the sun'
+  video9.description = 'Solar energy is the energy which makes life possible on the earth.'
+  video9.tags = 'sun, science, chemical, energy, sky, experiment'
+  video9.media = {:mp4 => Rails.root.join('db/seeds/videos/energia_solare.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/energia_solare.webm').to_s, :filename => 'energia_solare'}
   video9.user_id = benj.id
   video9.save!
   video9.is_public = true
   video9.save!
   
   video10 = Video.new
-  video10.title = The biggest star
-  video10.description = The Sun (Latin: Sol) is the parent star of the solar system, around which orbit the eight major planets (including Earth), dwarf planets, their satellites, countless other small bodies and dust spread through space, that form the interplanetary medium. The mass of the Sun, which amounts to about 2 · 1030 kg, alone accounts for 99.9% of the total mass of the solar system.
-  video10.tags = sun, science, chemical, energy, sky, experiment, space
-  video10.media = {:mp4 => Rails.root.join('db/seeds/videos/energia.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/energia.webm').to_s, :filename => 'energia
+  video10.title = 'The biggest star'
+  video10.description = 'The Sun is the parent star of the solar system.'
+  video10.tags = 'sun, science, chemical, energy, sky, experiment, space'
+  video10.media = {:mp4 => Rails.root.join('db/seeds/videos/energia.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/energia.webm').to_s, :filename => 'energia'}
   video10.user_id = retlaw.id
   video10.save!
   video10.is_public = true
   video10.save!
   
   video11 = Video.new
-  video11.title = A chemistry experiment - Liquids
-  video11.description = The liquid is one of the states of matter.
-  video11.tags = liquid, science, chemical, experiment, chemistry, 
-  video11.media = {:mp4 => Rails.root.join('db/seeds/videos/esperimento_acqua.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/esperimento_acqua.webm').to_s, :filename => 'esperimento_acqua
+  video11.title = 'A chemical experiment about liquids'
+  video11.description = 'The liquid is one of the states of matter.'
+  video11.tags = 'liquid, science, chemical, experiment, chemistry'
+  video11.media = {:mp4 => Rails.root.join('db/seeds/videos/esperimento_acqua.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/esperimento_acqua.webm').to_s, :filename => 'esperimento_acqua'}
   video11.user_id = toostrong.id
   video11.save!
   video11.is_public = true
   video11.save!
   
   video12 = Video.new
-  video12.title = Discover the characteristics of the liquid
-  video12.description = Ionic liquids are chemical compounds consisting exclusively of ions and combinations thereof, but unlike the salts are liquid at room temperature even without the presence of a molecular solvent.
-  A general definition of ionic liquids is that which describes them as the salts that have melting points lower than the boiling point of water. This is a definition based solely on temperature, which does not provide information on the composition of the material except for the fact to define it consists of only ions.
-  video12.tags = liquid, science, chemical, experiment, chemistry, 
-  video12.media = {:mp4 => Rails.root.join('db/seeds/videos/esperimento.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/esperimento.webm').to_s, :filename => 'esperimento
+  video12.title = 'Discover the characteristics of liquids'
+  video12.description = 'Ionic liquids are chemical compounds consisting exclusively of ions.'
+  video12.tags = 'ionic, liquid, science, chemical, experiment, chemistry'
+  video12.media = {:mp4 => Rails.root.join('db/seeds/videos/esperimento.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/esperimento.webm').to_s, :filename => 'esperimento'}
   video12.user_id = fupete.id
   video12.save!
   video12.is_public = true
   video12.save!
   
   video13 = Video.new
-  video13.title = We enter the world of mathematics
-  video13.description = Mathematics has a long tradition among all the peoples of ancient and modern history, it was the first discipline to develop systems to exacting standards and scope. Has gradually expanded the topics of his investigation and has gradually expanded the scope to which it can provide aid and computational modeling. It is significant that in some languages ​​and in some situations the singular term is preferred plural mathematics.
-  video13.tags = maths, science, calculation, equation
-  video13.media = {:mp4 => Rails.root.join('db/seeds/videos/formule.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/formule.webm').to_s, :filename => 'formule
+  video13.title = 'Inside mathematics'
+  video13.description = 'Mathematics has a long tradition.'
+  video13.tags = 'mathematics, science, calculation, equation'
+  video13.media = {:mp4 => Rails.root.join('db/seeds/videos/formule.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/formule.webm').to_s, :filename => 'formule'}
   video13.user_id = benj.id
   video13.save!
   video13.is_public = true
@@ -578,7 +577,7 @@ def plant_development_seeds
   video14.title = Descriptive geometry
   video14.description = Descriptive geometry is the science that allows, through certain geometrical constructions, to represent unequivocally on one or more floors, two-dimensional and three-dimensional. The representation can be designed to display objects already exist, such as in relief (mostly architectural), and / or objects mentally conceived, as in the design of three-dimensional artifacts.
   video14.tags = maths, geometry, solid, science, constructions, floors, objects
-  video14.media = {:mp4 => Rails.root.join('db/seeds/videos/geometria.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/geometria.webm').to_s, :filename => 'geometria
+  video14.media = {:mp4 => Rails.root.join('db/seeds/videos/geometria.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/geometria.webm').to_s, :filename => 'geometria'}
   video14.user_id = benj.id
   video14.save!
   video14.is_public = true
@@ -588,7 +587,7 @@ def plant_development_seeds
   video15.title = The triangle no, I had not considered
   video15.description = In geometry, the triangle is a polygon formed by three corners or vertices and three sides; represents the figure with the least number of sides, because three is the minimum number of segments required to delimit a closed surface.
   video15.tags = maths, geometry, solid, science, constructions, floors, objects, triangle
-  video15.media = {:mp4 => Rails.root.join('db/seeds/videos/geometria2.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/geometria2.webm').to_s, :filename => 'geometria2
+  video15.media = {:mp4 => Rails.root.join('db/seeds/videos/geometria2.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/geometria2.webm').to_s, :filename => 'geometria2'}
   video15.user_id = jeg.id
   video15.save!
   video15.is_public = true
@@ -598,7 +597,7 @@ def plant_development_seeds
   video16.title = Chemistry lab
   video16.description = Two researchers working in a chemistry lab.
   video16.tags = chemistry, liquid, experiment, science, lab
-  video16.media = {:mp4 => Rails.root.join('db/seeds/videos/laboratorio.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/laboratorio.webm').to_s, :filename => 'laboratorio
+  video16.media = {:mp4 => Rails.root.join('db/seeds/videos/laboratorio.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/laboratorio.webm').to_s, :filename => 'laboratorio'}
   video16.user_id = toostrong.id
   video16.save!
   video16.is_public = true
@@ -608,7 +607,7 @@ def plant_development_seeds
   video17.title = Behavior of union between liquid
   video17.description = In the liquid state forces acting between the constituents are less intense and they are free to slide over each other. A liquid undergoes volume changes much less pronounced compared to gas and tends to assume the shape of the vessel in which it is contained.
   video17.tags = chemistry, liquid, experiment, science, lab
-  video17.media = {:mp4 => Rails.root.join('db/seeds/videos/liquidi.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/liquidi.webm').to_s, :filename => 'liquidi
+  video17.media = {:mp4 => Rails.root.join('db/seeds/videos/liquidi.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/liquidi.webm').to_s, :filename => 'liquidi'}
   video17.user_id = fupete.id
   video17.save!
   video17.is_public = true
@@ -618,7 +617,7 @@ def plant_development_seeds
   video18.title = Snail
   video18.description = The snail is not always gray in gray, but is also found in a variety of colors from light gray to yellow to dark brown, but always without color smear. It was proposed the name monochrome snail. Even in this case in German the name is not appropriate for all copies, because there may be several bands dicome staining in the base color.
   video18.tags = animal, snail, science, nature
-  video18.media = {:mp4 => Rails.root.join('db/seeds/videos/lumaca.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/lumaca.webm').to_s, :filename => 'lumaca
+  video18.media = {:mp4 => Rails.root.join('db/seeds/videos/lumaca.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/lumaca.webm').to_s, :filename => 'lumaca'}
   video18.user_id = benj.id
   video18.save!
   video18.is_public = true
@@ -628,7 +627,7 @@ def plant_development_seeds
   video19.title = In the footsteps of Titanic
   video19.description = The name comes from the Dutch word iceberg ijsberg which means mountain (berg) ice (ijs), cognate to Danish isbjerg, German Eisberg, Low Saxon to Iesbarg and the Swedish and Norwegian Isberg.
   video19.tags = ice, sea, titanic, iceberg
-  video19.media = {:mp4 => Rails.root.join('db/seeds/videos/mare.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/mare.webm').to_s, :filename => 'mare
+  video19.media = {:mp4 => Rails.root.join('db/seeds/videos/mare.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/mare.webm').to_s, :filename => 'mare'}
   video19.user_id = holly.id
   video19.save!
   video19.is_public = true
@@ -638,7 +637,7 @@ def plant_development_seeds
   video20.title = Wind Energy - The power that comes from wind
   video20.description = Wind energy is the energy obtained from the wind or the product of the conversion of kinetic energy, obtained from drafts, other forms of energy (electrical or mechanical).
   video20.tags = energy, science, wind, sky, power
-  video20.media = {:mp4 => Rails.root.join('db/seeds/videos/paleeoliche.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/paleeoliche.webm').to_s, :filename => 'paleeoliche
+  video20.media = {:mp4 => Rails.root.join('db/seeds/videos/paleeoliche.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/paleeoliche.webm').to_s, :filename => 'paleeoliche'}
   video20.user_id = benj.id
   video20.save!
   video20.is_public = true
@@ -648,7 +647,7 @@ def plant_development_seeds
   video21.title = How it's made a real chemistry lab?
   video21.description = How it's made a real chemical laboratory? Work as researchers? We enter into a research center.
   video21.tags = energy, science, lab, chemistry, experiment
-  video21.media = {:mp4 => Rails.root.join('db/seeds/videos/ricercatori.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/ricercatori.webm').to_s, :filename => 'ricercatori
+  video21.media = {:mp4 => Rails.root.join('db/seeds/videos/ricercatori.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/ricercatori.webm').to_s, :filename => 'ricercatori'}
   video21.user_id = jeg.id
   video21.save!
   video21.is_public = true
@@ -658,7 +657,7 @@ def plant_development_seeds
   video22.title = The birth of a star
   video22.description = A star is a celestial body that shines with its own light. In astronomy and astrophysics, the term designates a spheroid luminous plasma that generates energy in its core by nuclear fusion processes, and this energy is radiated into space as electromagnetic radiation, flow of elementary particles (stellar wind) and neutrinos.
   video22.tags = energy, science, space, sky, fire, star, power, history
-  video22.media = {:mp4 => Rails.root.join('db/seeds/videos/sole.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/sole.webm').to_s, :filename => 'sole
+  video22.media = {:mp4 => Rails.root.join('db/seeds/videos/sole.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/sole.webm').to_s, :filename => 'sole'}
   video22.user_id = jeg.id
   video22.save!
   video22.is_public = true
@@ -668,7 +667,7 @@ def plant_development_seeds
   video23.title = Little scientists grow...
   video23.description = A class of high school with his teachers try to play in the class of simple chemistry experiments.
   video23.tags = student, science, school, experiment, lab
-  video23.media = {:mp4 => Rails.root.join('db/seeds/videos/studenti.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/studenti.webm').to_s, :filename => 'studenti
+  video23.media = {:mp4 => Rails.root.join('db/seeds/videos/studenti.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/studenti.webm').to_s, :filename => 'studenti'}
   video23.user_id = benj.id
   video23.save!
   video23.is_public = true
@@ -677,7 +676,7 @@ def plant_development_seeds
   video24 = Video.new
   video24.title = Look at the virus closely
   video24.description = Viruses are biological entities with characteristics of obligate parasite, whose nature of living organism or subcellular structure is discussed, as well as the taxonomic treatment. For this reason they are considered to be the link between the chemical and living organism. The single virus particle is called a virion.
-  video24.media = {:mp4 => Rails.root.join('db/seeds/videos/virus.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/virus.webm').to_s, :filename => 'virus
+  video24.media = {:mp4 => Rails.root.join('db/seeds/videos/virus.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/virus.webm').to_s, :filename => 'virus'}
   video24.user_id = toostrong.id
   video24.save!
   video24.is_public = true
