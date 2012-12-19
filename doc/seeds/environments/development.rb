@@ -107,11 +107,9 @@ def plant_development_seeds
   image5.is_public = true
   image5.save!
   
-  # giunto qui
-  
   image6 = Image.new
-  image6.title = Wind
-  image6.description = Wind energy is the energy obtained from the wind or the product of the conversion of kinetic energy, obtained from drafts, other forms of energy (electrical or mechanical). Today it is mostly converted into electricity by a wind farm, while in the past, wind energy was immediately used on site as motive power for industrial and pre-industrial.
+  image6.title = 'Wind'
+  image6.description = 'Wind power is the energy obtained from the wind or the product of the conversion of kinetic energy, obtained from drafts, other forms of energy (electrical or mechanical). Today it is mostly converted into electricity by a wind farm, while in the past, wind energy was immediately used on site as motive power for industrial and pre-industrial.
   image6.tags = science, energy, wind, sky, geography, nature
   image6.media = File.open(Rails.root.join('db/seeds/images/energia_del_vento.jpg'))
   image6.user_id = toostrong.id
