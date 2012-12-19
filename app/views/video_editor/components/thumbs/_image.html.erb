@@ -1,4 +1,13 @@
+<%
+  image_height = resize_height(image.width, image.height, 'video_component')
+  image_width = resize_width(image.width, imageheight, 'video_component')
+%>
+
 <div class="boxContentMediaElement _video_component_thumb">
-  <%= image_tag image.thumb_path %>
+  <% if is_horizontal?(image.width, image.height, 'video_component') %>
+    <%= image_tag image.path, :style => "height: 88px; width: #{image_width}px" %>
+  <% else %>
+    <%= image_tag image.path, :style => "height: #{image_height}px; width: 156px" %>
+  <% end %>
   <%= render :partial => 'video_editor/component_menu' %>
 </div>
