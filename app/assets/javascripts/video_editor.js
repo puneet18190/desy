@@ -11,19 +11,37 @@ function initializeVideoEditor() {
     cancel: '._video_editor_component_menu',
     containment: 'parent',
     start: function(event, ui) {
-      // FIXME farlo funzionare e aggiungerlo anche per i bordi della componente $(ui.item).find('._video_component_icon').addClass('current');
       my_item = $(ui.item);
       my_item.find('._video_editor_component_menu').hide();
       my_item.data('rolloverable', false);
-      $('._video_editor_component ._video_component_transition.current').addClass('_video_component_temporary_no_transition');
+      my_item.find('._video_component_icon').addClass('current');
+      my_item.find('._video_component_thumb').addClass('current');
       $('._video_editor_component ._video_component_transition').addClass('current');
     },
     stop: function(event, ui) {
       my_item = $(ui.item);
       my_item.data('rolloverable', true);
-      // FIXME farlo funzionare e aggiungerlo anche per i bordi della componente $(ui.item).find('._video_component_icon').removeClass('current');
-      $('._video_editor_component ._video_component_transition.current').removeClass('current');
-      $('._video_component_temporary_no_transition').addClass('current');
+      my_item.find('._video_component_icon').removeClass('current');
+      my_item.find('._video_component_thumb').removeClass('current');
+      resetVisibilityOfVideoEditorTransitions();
+      var boolean1 = (my_item.next().attr('id') == 'add_new_video_component');
+      var boolean2 = (my_item.data('position') != $('._video_editor_component').length);
+      var boolean3 = (my_item.next().data('position') != (my_item.data('position') + 1));
+      if(boolean1 && boolean2 || !boolean1 && boolean3) {
+        reloadVideoEditorComponentPositions();
+        $('._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
+      }
+    }
+  });
+}
+
+function resetVisibilityOfVideoEditorTransitions() {
+  var components = $('._video_editor_component');
+  components.each(function(index) {
+    if(index < (components.length - 1)) {
+      $(this).find('._video_component_transition').removeClass('current');
+    } else {
+      $(this).find('._video_component_transition').addClass('current');
     }
   });
 }
@@ -121,6 +139,8 @@ function addImageComponentInVideoEditor(image_id, component, duration) {
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  reloadVideoEditorComponentPositions();
+  resetVisibilityOfVideoEditorTransitions();
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'photoIcon');
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
@@ -167,6 +187,8 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  reloadVideoEditorComponentPositions()
+  resetVisibilityOfVideoEditorTransitions();
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'videoIcon');
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
@@ -218,6 +240,8 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  reloadVideoEditorComponentPositions()
+  resetVisibilityOfVideoEditorTransitions();
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'textIcon');
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
