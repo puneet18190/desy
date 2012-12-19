@@ -363,7 +363,7 @@ html.media_element_editor-layout {
     
     .lista {
       margin: 0px;
-      display:inline-block;
+      float: left;
       
       .contatore {
         padding: 4px 8px;
@@ -404,7 +404,7 @@ html.media_element_editor-layout {
         background-repeat: no-repeat;
         background-position:0 0;
         float:left; 
-        margin:38px 4px 0px 7px;
+        margin:38px 7px 0px 7px;
         width:16px;
         &.current {
           background-image: none;
@@ -416,7 +416,7 @@ html.media_element_editor-layout {
       display:inline-block;
       width:156px;
       .contatore {
-        margin-bottom:6px;
+        margin-bottom:10px;
       }
     }
   /*layout elementi sull'editor elementi*/
@@ -436,7 +436,6 @@ html.media_element_editor-layout {
     float:left;
     
     .boxContentMediaElement {
-      position:absolute; 
       width:156px;
       height:88px;      
       img {
@@ -446,7 +445,6 @@ html.media_element_editor-layout {
       
     }
     .boxContentMediaElementText {
-      position:absolute; 
       width:156px;
       height:88px;
       
@@ -829,4 +827,12 @@ html.media_element_editor-layout {
 
   .imgareaselect-selection {  
   }
+}
+
+._video_editor_component_hover:hover {
+  cursor: move;
+}
+
+._video_editor_component_menu:hover {
+  cursor: default;
 }

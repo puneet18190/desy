@@ -17,8 +17,8 @@ module Media
           hash[:components].each do |component|
             case component[:type]
               when VIDEO_COMPONENT
-                return 0 if !component[:until].kind_of?(Integer) || !component[:from].kind_of?(Integer)
-                sum += component[:until]
+                return 0 if !component[:to].kind_of?(Integer) || !component[:from].kind_of?(Integer)
+                sum += component[:to]
                 sum -= component[:from]
               when IMAGE_COMPONENT
                 return 0 if !component[:duration].kind_of?(Integer)
@@ -31,6 +31,18 @@ module Media
             end
           end
           sum
+        end
+        
+        def convert_to_primitive_parameters(hash, user_id)
+          resp = convert_parameters(hash, user_id)
+          return nil if resp.nil?
+          resp[:initial_video] = resp[:initial_video].id if resp[:initial_video]
+          resp[:audio_track] = resp[:audio_track].id if resp[:audio_track]
+          resp[:components].each do |component|
+            component[:video] = component[:video].id if component[:video]
+            component[:image] = component[:image].id if component[:image]
+          end
+          resp
         end
         
         # EXAMPLE OF RETURNED HASH:
@@ -48,7 +60,7 @@ module Media
         #        :type => Video::VIDEO_COMPONENT,
         #        :video => OBJECT OF TYPE VIDEO,
         #        :from => 12,
-        #        :until => 24
+        #        :to => 24
         #      },
         #      {
         #        :type => Video::TEXT_COMPONENT,
@@ -142,13 +154,13 @@ module Media
           # I validate that the video exists and is accessible from the user
           return nil if video.nil?
           # FROM and UNTIL are correct
-          return nil if !component[:from].kind_of?(Integer) || !component[:until].kind_of?(Integer)
-          return nil if component[:from] < 0 || component[:until] > video.min_duration || component[:from] >= component[:until]
+          return nil if !component[:from].kind_of?(Integer) || !component[:to].kind_of?(Integer)
+          return nil if component[:from] < 0 || component[:to] > video.min_duration || component[:from] >= component[:to]
           {
             :type => VIDEO_COMPONENT,
             :video => video,
             :from => component[:from],
-            :until => component[:until]
+            :to => component[:to]
           }
         end
         

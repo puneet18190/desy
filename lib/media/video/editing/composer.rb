@@ -15,7 +15,7 @@ module Media
         #        :type => Video::VIDEO_COMPONENT,
         #        :video => OBJECT OF TYPE VIDEO,
         #        :from => 12,
-        #        :until => 24
+        #        :to => 24
         #      },
         #      {
         #        :type => Video::TEXT_COMPONENT,
@@ -33,6 +33,12 @@ module Media
         #  }
         def initialize(params)
           @params = params
+        end
+
+        def run
+          @params[:components].each do |component|
+            type, video, from, to = components.values_at(:type, :video, :from, :to)
+          end
         end
 
         def video_id

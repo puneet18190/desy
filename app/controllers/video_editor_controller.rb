@@ -39,23 +39,29 @@ class VideoEditorController < ApplicationController
   end
   
   def save
-    parameters = Video.convert_parameters(extract_form_parameters, @current_user.id)
+    parameters = Video.convert_to_primitive_parameters(extract_form_parameters, @current_user.id)
     if parameters.nil?
       @current_user.empty_video_editor_cache
       redirect_to '/dashboard' # FIXME decidere che fare in questo caso
       return
     end
-    parameters[:initial_video] = Video.new
-    parameters[:initial_video].title = params[:new_title]
-    parameters[:initial_video].description = params[:new_description]
-    parameters[:initial_video].tags = params[:new_tags]
-    parameters[:initial_video].user_id = @current_user.id
-    temporary_initial_video = parameters[:initial_video]
+    initial_video_test = Video.new
+    initial_video_test.title = params[:new_title]
+    initial_video_test.description = params[:new_description]
+    initial_video_test.tags = params[:new_tags]
+    initial_video_test.user_id = @current_user.id
     # provo a validarlo per vedere se è ok
-    temporary_initial_video.valid?
-    errors = temporary_initial_video.errors.messages
+    initial_video_test.valid?
+    errors = initial_video_test.errors.messages
     errors.delete(:media)
     if errors.empty?
+      parameters[:initial_video] = {
+        :id => nil,
+        :title => params[:new_title],
+        :description => params[:new_description],
+        :tags => params[:new_tags],
+        :user_id => @current_user.id
+      }
       # manda parameters al video editor di Maurizio, e fai redirect_to my_media_elements_path
       # usa le notifiche per segnalare la riuscita o non riuscita del salvataggio??
       # svuota la cache se il salvataggio riesce
@@ -65,16 +71,23 @@ class VideoEditorController < ApplicationController
   end
   
   def overwrite
-    parameters = Video.convert_parameters(extract_form_parameters, @current_user.id)
+    parameters = Video.convert_to_primitive_parameters(extract_form_parameters, @current_user.id)
     if parameters.nil?
       @current_user.empty_video_editor_cache
       redirect_to '/dashboard' # FIXME decidere che fare in questo caso
       return
     end
-    parameters[:initial_video].title = params[:update_title]
-    parameters[:initial_video].description = params[:update_description]
-    parameters[:initial_video].tags = params[:update_tags]
-    if parameters[:initial_video].valid?
+    initial_video_test = Video.find_by_id parameters[:initial_video]
+    initial_video_test.title = params[:update_title]
+    initial_video_test.description = params[:update_description]
+    initial_video_test.tags = params[:update_tags]
+    if initial_video_test.valid?
+      parameters[:initial_video] = {
+        :id => parameters[:initial_video],
+        :title => params[:new_title],
+        :description => params[:new_description],
+        :tags => params[:new_tags]
+      }
       # manda parameters al video editor di Maurizio, e fai redirect_to my_media_elements_path
       # usa le notifiche per segnalare la riuscita o non riuscita del salvataggio??
       # svuota la cache se il salvataggio riesce
@@ -88,7 +101,7 @@ class VideoEditorController < ApplicationController
   def extract_single_form_parameter(p, value)
     if ['type', 'content', 'background_color', 'text_color'].include? p
       return value
-    elsif ['position', 'video_id', 'image_id', 'from', 'until', 'duration'].include? p
+    elsif ['position', 'video_id', 'image_id', 'from', 'to', 'duration'].include? p
       return value.to_i
     else
       return nil
@@ -107,7 +120,7 @@ class VideoEditorController < ApplicationController
       if !(k =~ /_/).nil?
         index = k.split('_').last.to_i
         p = k.gsub("_#{index}", '')
-        if ['type', 'video_id', 'image_id', 'from', 'until', 'position', 'content', 'background_color', 'text_color', 'duration'].include?(p)
+        if ['type', 'video_id', 'image_id', 'from', 'to', 'position', 'content', 'background_color', 'text_color', 'duration'].include?(p)
           if unordered_resp.has_key? index
             unordered_resp[index][:"#{p}"] = extract_single_form_parameter(p, v)
           else
@@ -134,7 +147,7 @@ class VideoEditorController < ApplicationController
     resp[:components].first[:type] = Video::VIDEO_COMPONENT
     resp[:components].first[:video_id] = @video.id
     resp[:components].first[:from] = 0
-    resp[:components].first[:until] = @video.min_duration
+    resp[:components].first[:to] = @video.min_duration
     resp = Video.convert_parameters(resp, @current_user.id)
     resp.nil? ? empty_parameters : resp
   end

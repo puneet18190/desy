@@ -7,3 +7,5 @@ module Media
     end
   end
 end
+
+require 'media/image/editing/text_to_image'

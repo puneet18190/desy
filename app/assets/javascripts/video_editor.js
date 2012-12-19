@@ -8,38 +8,23 @@ function initializeVideoEditor() {
     handle: '._video_editor_component_hover',
     axis: 'x',
     cursor: 'move',
-    cancel: '._video_editor_component_menu'/*,
-    
-    helper: function(event, ui) {
-      var div_to_return = $($('#' + ui.attr('id'))[0].outerHTML);
-      div_to_return.addClass('current');
-      div_to_return = div_to_return[0].outerHTML;
-      var my_index = div_to_return.indexOf('<div class="_video_editor_component_menu');
-      var second_half_string = div_to_return.substring(my_index, div_to_return.length);
-      var my_second_index = my_index + second_half_string.indexOf('</div>') + 6;
-      return div_to_return.substring(0, (my_index - 1)) + div_to_return.substring((my_second_index + 1), div_to_return.length);
+    cancel: '._video_editor_component_menu',
+    containment: 'parent',
+    start: function(event, ui) {
+      // FIXME farlo funzionare e aggiungerlo anche per i bordi della componente $(ui.item).find('._video_component_icon').addClass('current');
+      my_item = $(ui.item);
+      my_item.find('._video_editor_component_menu').hide();
+      my_item.data('rolloverable', false);
+      $('._video_editor_component ._video_component_transition.current').addClass('_video_component_temporary_no_transition');
+      $('._video_editor_component ._video_component_transition').addClass('current');
     },
     stop: function(event, ui) {
-      var previous = ui.item.prev();
-      var new_position = 0;
-      var old_position = ui.item.data('position');
-      if(previous.length == 0) {
-        new_position = 1;
-      } else {
-        var previous_item_position = previous.data('position');
-        if(old_position > previous_item_position) {
-          new_position = previous_item_position + 1;
-        } else {
-          new_position = previous_item_position;
-        }
-      }
-      if(old_position != new_position) {
-        $.ajax({
-          type: 'post',
-          url: '/virtual_classroom/' + ui.item.data('lesson-id') + '/playlist/' + new_position + '/change_position'
-        });
-      }
-    }*/
+      my_item = $(ui.item);
+      my_item.data('rolloverable', true);
+      // FIXME farlo funzionare e aggiungerlo anche per i bordi della componente $(ui.item).find('._video_component_icon').removeClass('current');
+      $('._video_editor_component ._video_component_transition.current').removeClass('current');
+      $('._video_component_temporary_no_transition').addClass('current');
+    }
   });
 }
 
@@ -98,19 +83,15 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
 }
 
 function reloadVideoEditorComponentPositions() {
-  var over = false;
-  $('._video_editor_component').each(function(index) {
-    if(typeof($(this).attr('id')) != 'undefined') {
-      $(this).data('position', (index + 1));
-      $('#' + $(this).attr('id') + ' ._video_component_input_position').val(index + 1);
-      var counter_html = $('#' + $(this).attr('id') + ' ._video_component_icon').html();
-      counter_html = counter_html.substr(counter_html.indexOf('<div'), counter_html.length);
-      $('#' + $(this).attr('id') + ' ._video_component_icon').html((index + 1) + counter_html);
-    } else if(!over) {
-      $('#add_new_video_component ._component_counter').html(index + 1);
-      over = true;
-    }
+  var components = $('._video_editor_component');
+  components.each(function(index) {
+    $(this).data('position', (index + 1));
+    $('#' + $(this).attr('id') + ' ._video_component_input_position').val(index + 1);
+    var counter_html = $('#' + $(this).attr('id') + ' ._video_component_icon').html();
+    counter_html = counter_html.substr(counter_html.indexOf('<div'), counter_html.length);
+    $('#' + $(this).attr('id') + ' ._video_component_icon').html((index + 1) + counter_html);
   });
+  $('#add_new_video_component ._component_counter').html(components.length + 1);
 }
 
 function addImageComponentInVideoEditor(image_id, component, duration) {
@@ -128,6 +109,7 @@ function addImageComponentInVideoEditor(image_id, component, duration) {
   $('#add_new_video_component').before(empty_component);
   current_component = $('#temporary_empty_component');
   current_component.attr('id', ('video_component_' + next_position));
+  current_component.removeClass('_video_editor_empty_component').addClass('_video_editor_component');
   current_component.data('duration', 0);
   current_component.data('position', next_position);
   current_component.find('._video_component_icon').html(next_position + '<div class="photoIcon"></div>');
@@ -172,6 +154,7 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   $('#add_new_video_component').before(empty_component);
   current_component = $('#temporary_empty_component');
   current_component.attr('id', ('video_component_' + next_position));
+  current_component.removeClass('_video_editor_empty_component').addClass('_video_editor_component');
   current_component.data('duration', 0);
   current_component.data('position', next_position);
   current_component.find('._video_component_icon').html(next_position + '<div class="videoIcon"></div>');
@@ -180,7 +163,7 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   var to_be_appended = fillVideoEditorSingleParameter('type', next_position, 'video');
   to_be_appended += fillVideoEditorSingleParameter('video_id', next_position, video_id);
   to_be_appended += fillVideoEditorSingleParameter('from', next_position, 0);
-  to_be_appended += fillVideoEditorSingleParameter('until', next_position, duration);
+  to_be_appended += fillVideoEditorSingleParameter('to', next_position, duration);
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
@@ -198,7 +181,7 @@ function replaceVideoComponentInVideoEditor(video_id, component, position, durat
   $('#' + position + ' ._video_component_input_type').val('video');
   var to_be_appended = fillVideoEditorSingleParameter('video_id', identifier, video_id);
   to_be_appended += fillVideoEditorSingleParameter('from', identifier, 0);
-  to_be_appended += fillVideoEditorSingleParameter('until', identifier, duration);
+  to_be_appended += fillVideoEditorSingleParameter('to', identifier, duration);
   $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(position, duration);
 }
@@ -218,6 +201,7 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   $('#add_new_video_component').before(empty_component);
   current_component = $('#temporary_empty_component');
   current_component.attr('id', ('video_component_' + next_position));
+  current_component.removeClass('_video_editor_empty_component').addClass('_video_editor_component');
   current_component.data('duration', 0);
   current_component.data('position', next_position);
   current_component.find('._video_component_icon').html(next_position + '<div class="textIcon"></div>');
@@ -303,7 +287,7 @@ function clearSpecificVideoEditorComponentParameters(component_id) {
   huge_selector += ', #' + component_id + ' ._video_component_input_image_id';
   huge_selector += ', #' + component_id + ' ._video_component_input_video_id';
   huge_selector += ', #' + component_id + ' ._video_component_input_from';
-  huge_selector += ', #' + component_id + ' ._video_component_input_until';
+  huge_selector += ', #' + component_id + ' ._video_component_input_to';
   $(huge_selector).remove();
 }
 
