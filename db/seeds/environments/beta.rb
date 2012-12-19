@@ -68,7 +68,7 @@ def plant_development_seeds
   
   image2 = Image.new
   image2.title = 'Futuristic architecture'
-  image2.description = 'Between the end of the twentieth century and early twenty-first century, in the city of Valencia (Spain), several architectural and urban projects took place. The most impressive is the City of Arts and Sciences, a new neighborhood in the southwest of the center designed by the Valencian architect Santiago Calatrava.'
+  image2.description = 'Between the end of the twentieth century and early twenty-first century, in the city of Valencia (Spain), several architectural and urban projects took place.'
   image2.tags = 'future, architecture, art, design, spain, valencia, geography'
   image2.media =  File.open(Rails.root.join('db/seeds/images/architettura.jpg'))
   image2.user_id = toostrong.id
@@ -79,7 +79,7 @@ def plant_development_seeds
   
   image3 = Image.new
   image3.title = 'Birds'
-  image3.description = 'Sea gulls are birds of medium size: a small sea gull measures around 30 centimeters (for a weight of 120 grams), while a big one can reah 75 centimeters (for 200 grams kilos). The beak is long and strong, and the feet are webbed and fit to swim. The wings are usually white, gray or black, but sometimes they can be also brown. Depending on the species, the birds take two to four years before reaching the adult age.'
+  image3.description = 'Sea gulls are birds of medium size: a small sea gull measures around 30 centimeters (for a weight of 120 grams), while a big one can reah 75 centimeters (for 200 grams kilos).'
   image3.tags = 'animals, birds, fly, sea, sky, new york, geography'
   image3.media = File.open(Rails.root.join('db/seeds/images/uccelli.jpg'))
   image3.user_id = benj.id
@@ -90,7 +90,7 @@ def plant_development_seeds
   
   image4 = Image.new
   image4.title = 'Traffic'
-  image4.description = 'A picture from New York City. The metropolitan area of ​​New York is located at the intersection of three states (New York, New Jersey and Connecticut). The entire urban agglomeration has 18.223.567 inhabitants, while the metropolitan population is 23.019.036, which make it the third most populous urban area in the world and the first in the American continent (in competition with Mexico City and Sao Paulo, Brazil).'
+  image4.description = 'A picture from New York City. The metropolitan area of ​​New York is located at the intersection of three states (New York, New Jersey and Connecticut).'
   image4.tags = 'city, traffic, urban, new york, geography'
   image4.media = File.open(Rails.root.join('db/seeds/images/city.jpg'))
   image4.user_id = benj.id
@@ -101,7 +101,7 @@ def plant_development_seeds
   
   image5 = Image.new
   image5.title = 'Iguana'
-  image5.description = 'A beautiful picture of an iguana. Iguanas are very similar to lizards, but bigger and slower. In the adult age they grow a characteristic crest on their back, much more evident in males than in females. In the male the head has a triangular shape, sharper than in the female.'
+  image5.description = 'A beautiful picture of an iguana. Iguanas are very similar to lizards, but bigger and slower.'
   image5.tags = 'science, animals, nature, reptile, geography, iguana'
   image5.media = File.open(Rails.root.join('db/seeds/images/rettile.jpg'))
   image5.user_id = fupete.id
@@ -123,7 +123,7 @@ def plant_development_seeds
   
   image7 = Image.new
   image7.title = 'Love for art'
-  image7.description = 'Chuck Close (Snohomish County, July 5, 1940) is an American painter and photographer. He achieved world fame as a painter through his hyper-realistic paintings of large dimensions. Despite being paralyzed since the vertebral artery collapse in 1988, he kept painting and producing art works.'
+  image7.description = 'Chuck Close (Snohomish County, July 5, 1940) is an American painter and photographer.'
   image7.tags = 'art, museum, love, new york, creative, idea, mom, close'
   image7.media = File.open(Rails.root.join('db/seeds/images/coppia.jpg'))
   image7.user_id = benj.id
@@ -746,21 +746,21 @@ def plant_development_seeds
   # RESUME
   
   puts "Created:"
-  puts "#{Subject.count} subjects (should be 5)"
-  puts "#{Location.count} locations (should be 6)"
-  puts "#{SchoolLevel.count} school_levels (should be 4)"
-  puts "#{User.count} users (should be 18)"
-  puts "#{UsersSubject.count} users_subjects (should be 54)"
-  puts "#{Lesson.count} lessons (should be 43)"
-  puts "#{MediaElement.count} media_elements (should be 70)"
+  puts "#{Subject.count} subjects (should be 11)"
+  puts "#{Location.count} locations (should be 7)"
+  puts "#{SchoolLevel.count} school_levels (should be 3)"
+  puts "#{User.count} users (should be 7)"
+  puts "#{UsersSubject.count} users_subjects (should be 29)"
+  puts "#{Lesson.count} lessons (should be 0)"
+  puts "#{MediaElement.count} media_elements (should be 62)"
   puts " - #{Image.count} images (should be 32)"
-  puts " - #{Audio.count} audios (should be 19)"
-  puts " - #{Video.count} videos (should be 19)"
-  puts "#{Slide.count} slides (should be 125)"
-  puts "#{Notification.count} notifications (should be 43)"
-  puts "#{Like.count} likes (should be 122)"
-  puts "#{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons (should be 12)"
-  puts "#{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements (should be 17)"
+  puts " - #{Audio.count} audios (should be 6)"
+  puts " - #{Video.count} videos (should be 24)"
+  puts "#{Slide.count} slides (should be 0)"
+  puts "#{Notification.count} notifications (should be 0)"
+  puts "#{Like.count} likes (should be 0)"
+  puts "#{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons (should be 0)"
+  puts "#{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements (should be 0)"
   puts "#{Tag.count} tags (should be 34)"
   puts "#{Tagging.count} taggings (should be 791)"
   

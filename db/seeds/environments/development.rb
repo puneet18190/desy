@@ -448,7 +448,7 @@ def plant_development_seeds
   puts " - #{Image.count} images (should be 32)"
   puts " - #{Audio.count} audios (should be 19)"
   puts " - #{Video.count} videos (should be 19)"
-  puts "#{Slide.count} slides (should be 125)"
+  puts "#{Slide.count} slides (should be 126)"
   puts "#{Notification.count} notifications (should be 43)"
   puts "#{Like.count} likes (should be 122)"
   puts "#{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons (should be 12)"
