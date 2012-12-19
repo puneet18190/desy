@@ -109,8 +109,8 @@ def plant_development_seeds
   
   image6 = Image.new
   image6.title = 'Wind'
-  image6.description = 'Wind power is the energy obtained from the wind or the product of the conversion of kinetic energy, obtained from drafts, other forms of energy (electrical or mechanical). Today it is mostly converted into electricity by a wind farm, while in the past, wind energy was immediately used on site as motive power for industrial and pre-industrial.
-  image6.tags = science, energy, wind, sky, geography, nature
+  image6.description = 'Wind power is the energy obtained from the wind. Today it is mostly converted into electricity by a wind farm, while in the past wind energy was directly used by a local factory.'
+  image6.tags = 'science, energy, wind, sky, geography, nature'
   image6.media = File.open(Rails.root.join('db/seeds/images/energia_del_vento.jpg'))
   image6.user_id = toostrong.id
   image6.save!
@@ -118,9 +118,9 @@ def plant_development_seeds
   image6.save!
   
   image7 = Image.new
-  image7.title = Love for art
-  image7.description = Chuck Close (Snohomish County, July 5, 1940) is an American painter and photographer. He achieved world fame as a painter through his hyper-realistic paintings of large dimensions. Despite the collapse of the vertebral artery in 1988 has left severely paralyzed, he continued to paint and produce works sought after by museums and collectors.
-  image7.tags = art, museum, love, new york, creative, idea, mom, close
+  image7.title = 'Love for art'
+  image7.description = 'Chuck Close (Snohomish County, July 5, 1940) is an American painter and photographer. He achieved world fame as a painter through his hyper-realistic paintings of large dimensions. Despite being paralyzed since the vertebral artery collapse in 1988, he kept painting and producing art works.'
+  image7.tags = 'art, museum, love, new york, creative, idea, mom, close'
   image7.media = File.open(Rails.root.join('db/seeds/images/coppia.jpg'))
   image7.user_id = benj.id
   image7.save!
@@ -128,9 +128,9 @@ def plant_development_seeds
   image7.save!
   
   image8 = Image.new
-  image8.title = Compact disk
-  image8.description = The compact disc is composed of a disk of transparent polycarbonate, generally 12 centimeters in diameter, coupled at the top to a thin sheet of metal material on which, in the lower part stores information as a succession of "holes" and "lands" (in English "pits" and "lands") subsequently read by means of a laser (for this reason are also called optical discs).
-  image8.tags = science, tech, optical, disc, compact disc, music, light, laser
+  image8.title = 'Compact disk'
+  image8.description = 'The compact disc is composed of a disk of transparent polycarbonate, generally 12 centimeters in diameter, covered at the top by a thin sheet of metal material.'
+  image8.tags = 'science, optical, disc, compact disc, music, light, laser'
   image8.media = File.open(Rails.root.join('db/seeds/images/cd.jpg'))
   image8.user_id = toostrong.id
   image8.save!
@@ -138,9 +138,9 @@ def plant_development_seeds
   image8.save!
   
   image9 = Image.new
-  image9.title = Flowers
-  image9.description = The flower comes from the differentiation of the apex of a branch whose leaves have almost always lost photosynthetic capacity. This differentiation that flower induction or induction antogena, occurs when the apex is still microscopic in size within the gem, under the stimulus of hormonal and environmental factors. The flower induction precedes the real flowering, depending on the species, from a few weeks to about one year.
-  image9.tags = science, nature, color, flower, air, smell
+  image9.title = 'Flowers'
+  image9.description = 'A picture of nice colored flowers, to be used in any natural science lesson.'
+  image9.tags = 'science, nature, color, flower, air, smell'
   image9.media = File.open(Rails.root.join('db/seeds/images/fiori.jpg'))
   image9.user_id = fupete.id
   image9.save!
@@ -148,9 +148,9 @@ def plant_development_seeds
   image9.save!
   
   image10 = Image.new
-  image10.title = Battery
-  image10.description = The stack itself is not rechargeable and in this connection is also called a primary battery, to distinguish it from the rechargeable battery that takes the name instead of secondary battery or accumulator of electric charge. A set of more batteries arranged in series instead takes the name of the battery pack.
-  image10.tags = energy, science, battery, electric
+  image10.title = 'Battery'
+  image10.description = 'A battery is a device consisting of one or more electrochemical cells that convert stored chemical energy into electrical energy.'
+  image10.tags = 'energy, science, battery, electric'
   image10.media = File.open(Rails.root.join('db/seeds/images/batterie.jpg'))
   image10.user_id = jeg.id
   image10.save!
@@ -158,9 +158,9 @@ def plant_development_seeds
   image10.save!
   
   image11 = Image.new
-  image11.title = Pantheon
-  image11.description = Tthe Pantheon ("Temple of all the gods") is a building of ancient Rome, built as a temple dedicated to the gods of Olympus. The inhabitants of Rome call it a friendly Rotonna or Ritonna, from which the name of the square. Was made to reconstruct the Emperor Hadrian between 118 and 128 AD, after the fire, 80 and 110 AD had damaged the previous construction of the Augustan age.
-  image11.tags = rome, history, sky, roman, temple, god, ancient, art
+  image11.title = 'Pantheon'
+  image11.description = "The Pantheon (\"Temple of all gods\") is an ancient building in the center of Rome."
+  image11.tags = 'rome, history, sky, roman, temple, god, ancient, art'
   image11.media = File.open(Rails.root.join('db/seeds/images/cielo_roma.jpg'))
   image11.user_id = benj.id
   image11.save!
@@ -168,9 +168,9 @@ def plant_development_seeds
   image11.save!
   
   image12 = Image.new
-  image12.title = Lawn
-  image12.description = The ear is a simple inflorescence composed of numerous flowers sessile (no stalk) placed on a central spine.
-  image12.tags = lawn, nature, sky, ear
+  image12.title = 'Lawn'
+  image12.description = 'A picture of a winded lawn during spring.'
+  image12.tags = 'lawn, nature, sky, ear'
   image12.media = File.open(Rails.root.join('db/seeds/images/natura.jpg'))
   image12.user_id = retlaw.id
   image12.save!
@@ -178,9 +178,9 @@ def plant_development_seeds
   image12.save!
   
   image13 = Image.new
-  image13.title = The history of the wood
-  image13.description = The wood of the trees is an energy source (direct combustion and charcoal) and construction material (whole house, beams, ships, furniture, everyday objects and art). Always from the trees, often grown for the purpose, is derived cellulose for the production of paper.
-  image13.tags = wood, nature, paper, art, science, geography
+  image13.title = 'History of the wood'
+  image13.description = 'The wood is a source of energy and cellulose.'
+  image13.tags = 'wood, nature, paper, art, science, geography'
   image13.media = File.open(Rails.root.join('db/seeds/images/ossigeno.jpg'))
   image13.user_id = fupete.id
   image13.save!
@@ -188,9 +188,9 @@ def plant_development_seeds
   image13.save!
   
   image14 = Image.new
-  image14.title = Rome
-  image14.description = A beautiful photo of one of the most beautiful cities in the world. In the picture you can see the dome of St Peter, the cradle of Christian civilization.
-  image14.tags = rome, river, bridge, geography, sky, water, history, art
+  image14.title = 'Rome'
+  image14.description = 'A beautiful picture of one of the most beautiful cities in the world. You can see the dome of St Peter, the cradle of Christian civilization.'
+  image14.tags = 'rome, river, bridge, geography, sky, water, history, art'
   image14.media = File.open(Rails.root.join('db/seeds/images/roma.jpg'))
   image14.user_id = jeg.id
   image14.save!
@@ -198,9 +198,9 @@ def plant_development_seeds
   image14.save!
   
   image15 = Image.new
-  image15.title = The life of bees
-  image15.description = The bee is an insect since ancient times symbolic myths, legends and religions, certainly already known from prehistoric times to its usefulness.
-  image15.tags = nature, bee, flower, color, nature, animal, honey
+  image15.title = 'Bees'
+  image15.description = 'Since prehistoric times, the bee has been useful to mankind.'
+  image15.tags = 'nature, bee, flower, color, nature, animal, honey'
   image15.media = File.open(Rails.root.join('db/seeds/images/ape.jpg'))
   image15.user_id = holly.id
   image15.save!
@@ -208,18 +208,20 @@ def plant_development_seeds
   image15.save!
   
   image16 = Image.new
-  image16.title = A perfect machine
-  image16.description = Living beings who most successfully are able to master the ability to fly are insects, birds and bats.
-  image16.tags = nature, fly, sky, nature, animal, air, science
+  image16.title = 'A flying machine'
+  image16.description = 'Nature has provided birds with a perfect structure allowing them to fly.'
+  image16.tags = 'nature, fly, sky, nature, animal, air, science'
   image16.media = File.open(Rails.root.join('db/seeds/images/uccello.jpg'))
   image16.user_id = holly.id
   image16.save!
   image16.is_public = true
   image16.save!
   
+  # arrivato qui
+  
   image17 = Image.new
-  image17.title = natural gas
-  image17.description = Natural gas is a gas produced by the anaerobic decomposition of organic material. In nature it is commonly found in the fossil state, along with the oil, coal or natural gas deposits only. It is, however, also produced by the decomposition processes current in the swamps in landfills, during digestion in animals and other natural processes.
+  image17.title = 'Natural gas'
+  image17.description = 'Natural gas is a gas produced by the anaerobic decomposition of organic material. In nature it is commonly found in the fossil state, along with the oil, coal or natural gas deposits only. It is, however, also produced by the decomposition processes current in the swamps in landfills, during digestion in animals and other natural processes.'
   image17.tags = nature, gas, fire, nature, energie, air, science
   image17.media = File.open(Rails.root.join('db/seeds/images/fiamma.jpg'))
   image17.user_id = toostrong.id
