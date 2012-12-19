@@ -364,7 +364,8 @@ html.media_element_editor-layout {
     .lista {
       margin: 0px;
       float: left;
-      
+      width:186px;
+      height:117px;
       .contatore {
         padding: 4px 8px;
         width:32px;
@@ -373,7 +374,9 @@ html.media_element_editor-layout {
         -webkit-border-radius: 10px;
         margin-bottom:6px;
         background-color:#747574;
+        height:15px;
         position:relative;
+
         .textIcon {
           @include iconeTipoElemento;
           background-position: -1em -11.9em;
@@ -394,9 +397,12 @@ html.media_element_editor-layout {
           padding:0;
           @include iconeTipoElemento;
           background-position: -1em -0.5em;
-          
           width:4em;
           height:4em;
+        }
+        &.current {
+          visibility:hidden;
+          height: 15px;
         }
       }
       .separatore {
@@ -415,8 +421,12 @@ html.media_element_editor-layout {
       margin: 0px;
       display:inline-block;
       width:156px;
+      height:117px;
       .contatore {
-        margin-bottom:10px;
+        height:15px;
+        padding: 4px 0px;
+        width:32px;
+        margin-bottom:6px;
       }
     }
   /*layout elementi sull'editor elementi*/
@@ -434,7 +444,9 @@ html.media_element_editor-layout {
     @include boxShadow;
     position:relative;
     float:left;
-    
+    &.current {
+      outline:4px solid #fff;
+    }
     .boxContentMediaElement {
       width:156px;
       height:88px;      
