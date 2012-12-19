@@ -9,6 +9,7 @@ function initializeVideoEditor() {
     axis: 'x',
     cursor: 'move',
     cancel: '._video_editor_component_menu',
+    containment: 'parent',
     start: function(event, ui) {
       my_item = $(ui.item);
       my_item.find('._video_editor_component_menu').hide();
@@ -138,6 +139,7 @@ function addImageComponentInVideoEditor(image_id, component, duration) {
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  reloadVideoEditorComponentPositions();
   resetVisibilityOfVideoEditorTransitions();
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'photoIcon');
@@ -185,6 +187,7 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  reloadVideoEditorComponentPositions()
   resetVisibilityOfVideoEditorTransitions();
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'videoIcon');
@@ -237,6 +240,7 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  reloadVideoEditorComponentPositions()
   resetVisibilityOfVideoEditorTransitions();
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'textIcon');
