@@ -724,6 +724,18 @@ $(document).ready(function() {
   });
   
   
+  // PRELOGIN
+  
+  $('body').on('click', '._show_login_form', function() {
+    var form = $('#login_form');
+    if(form.css('display') == 'none') {
+      form.show('fade', {}, 500);
+    } else {
+      form.hide('fade', {}, 500);
+    }
+  });
+  
+  
   // VIDEO EDITOR
   
   $('body').on('click', '._exit_video_editor', function() {
