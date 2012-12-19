@@ -788,7 +788,7 @@ $(document).ready(function() {
     var infos = $('#info_container');
     if($(this).hasClass('_replace_component')) {
       infos.data('replacing-component', true);
-      infos.data('current-component', 'video_component_' + father.data('position'));
+      infos.data('current-component', father.attr('id'));
     } else {
       infos.data('replacing-component', false);
     }
