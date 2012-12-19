@@ -3,6 +3,7 @@ require 'media/video'
 require 'media/video/editing'
 require 'media/in_tmp_dir'
 require 'sensitive_thread'
+require 'media/audio'
 
 module Media
   module Video
@@ -45,37 +46,51 @@ module Media
 
         def run
           in_tmp_dir do
-
             concats = {}
 
             @params[:components].each_with_index.map do |component, i|
               raise [component, i].inspect
-              @i = i
-              SensitiveThread.new do
-                puts "thread i: #{@i}"
-                concats.store i,
-                  case component[:type]
-                  when ::Video::VIDEO_COMPONENT
-                    compose_video *component.values_at(:video, :from, :to)
-                  when ::Video::IMAGE_COMPONENT
-                    compose_image *component.values_at(:image, :duration)
-                  when ::Video::TEXT_COMPONENT
-                    compose_text *component.values_at(:content, :duration, :text_color, :background_color)
-                  else
-                    # TODO messaggio migliore
-                    raise "unknown component type: #{component[:type].inspect}"
-                  end
+              begin
+                @i = i
+                SensitiveThread.new do
+                  concats.store i,
+                    case component[:type]
+                    when ::Video::VIDEO_COMPONENT
+                      compose_video *component.values_at(:video, :from, :to)
+                    when ::Video::IMAGE_COMPONENT
+                      compose_image *component.values_at(:image, :duration)
+                    when ::Video::TEXT_COMPONENT
+                      compose_text *component.values_at(:content, :duration, :text_color, :background_color)
+                    else
+                      # TODO messaggio migliore
+                      raise "unknown component type: #{component[:type].inspect}"
+                    end
+                end
+              ensure
+                @i = nil
               end
             end.each(&:join)
 
             concats_sorted = concats.sort
             concats_sorted[0, concats_sorted.size-1].map do |i, concat|
-              next_concat = concats_sorted[i+1]
+              next_i = i+1
+              next_concat = concats_sorted[next_i]
               SensitiveThread.new do
-                concats.store (i+1)/2.0, Transition.new(concat, next_concat).run
+                transition_i = (i+next_i)/2.0
+                concats.store transition_i, Transition.new(concat, next_concat, tmp_path transition_i.to_s).run
               end
             end.each(&:join)
 
+            concat = tmp_path 'concat'
+            outputs = Concat.new(concats.sort.map{ |_,(_,concat)| concat }, concat).run
+
+            if audio
+              audios = Hash[ Media::Audio::FORMATS.map{ |f| [f, audio.media.absolute_path(f) } ]
+              outputs = ReplaceAudio.new(outputs, audios, tmp_path 'replace_audio').run
+            end
+
+            video.media = outputs.merge(filename: video.title)
+            video.save!
           end
         end
 
@@ -115,7 +130,7 @@ module Media
         end
 
         def video_copy(input, output)
-          # se uso l'audio di sottofondo scarto gli stream audio, così poi non perdo tempo a convertirli
+          # se uso l'audio di sottofondo scarto gli stream audio, così poi non perdo tempo a processare le tracce audio inutilmente
           if final_audio
             Cmd::VideoStreamToFile.new(input, output).run!
           else
@@ -130,11 +145,15 @@ module Media
         def final_video
           @video ||= (
             id = @params[:initial_video][:id]
-            ::Video.find(id) if id
+            return ::Video.find(id) if id
+
+            ::Video.new(@params[:initial_video].select{ |k| [:title, :description, :tags].include? k }) do |video|
+              video.user_id = @params[:initial_video][:user_id]
+            end
           )
         end
 
-        def final_audio
+        def audio
           @audio ||= (
             id = @params[:audio_track]
             ::Audio.find(id) if id

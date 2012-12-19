@@ -126,11 +126,11 @@
     background-color:rgba(255,255,255,1);
   }
   .caption{
-    color: #fff;
+    color: #8c8a8c;
     text-align:left;
-    padding: 5px 0 0;
+    padding: 10px;
     display:block;
-    max-width: 420px;
+    float:left;
     
   }
   .aggiungiImgButton{
@@ -146,11 +146,11 @@
   padding: 10px;
   overflow: hidden;
   .caption {
-    color: #fff;
+    color: #8c8a8c;
     text-align:left;
-    margin-top:30px;
+    padding:10px;
     float:left;
-    width:100%;
+    
     p {
       padding-top:7px;
     }
@@ -164,6 +164,12 @@
   }
 }
 
+.imageInGalleryPopUp.ui-dialog-content, .videoInGalleryPopUp.ui-dialog-content {
+  a.addButtonContent {
+    font-size:1.7em;
+    margin-top: 10px;
+  }
+}
 .dialog_opaco {
   opacity: 0.9;
   background-color: #000;
@@ -187,6 +193,7 @@
 }
 .originalSize {
   font-size:10px;
+  color:#fff;
 }
 
 .restoreCacheMediaElementEditorPopUp {
