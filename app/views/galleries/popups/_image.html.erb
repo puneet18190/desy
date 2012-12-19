@@ -1,8 +1,10 @@
 <div class="imageInGalleryPopUp" id="dialog-image-gallery-<%= image.id %>" data-image-id="<%= image.id %>">
   <%= image_tag image.path, :class => "popup_expanded", :style => "max-height: 420px; max-width: 420px" %>
-  <div class="caption _bottom_of_image_popup_in_gallery">
+  <div class=" _bottom_of_image_popup_in_gallery">
+    <div class="caption">
+      <p><%= image.title %></p>
+      <p class="originalSize"><%= t('captions.original_size') %>: <%= image.width %> x <%= image.height %></p>
+    </div>
     <a class="addButtonContent current _select_image_from_gallery image-<%= image.id %>" data-image-id="<%= image.id %>" data-url="<%= image.path %>" data-width="<%= image.width %>" data-height="<%= image.height %>" style="float:right"></a>
-    <p><%= image.title %></p><br/>
-    <p class="originalSize"><%= t('captions.original_size') %>: <%= image.width %> x <%= image.height %></p>
   </div>
 </div>
