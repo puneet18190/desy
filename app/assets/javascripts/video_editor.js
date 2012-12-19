@@ -11,16 +11,18 @@ function initializeVideoEditor() {
     cancel: '._video_editor_component_menu',
     containment: 'parent',
     start: function(event, ui) {
-      // FIXME farlo funzionare e aggiungerlo anche per i bordi della componente $(ui.item).find('._video_component_icon').addClass('current');
       my_item = $(ui.item);
       my_item.find('._video_editor_component_menu').hide();
       my_item.data('rolloverable', false);
+      my_item.find('._video_component_icon').addClass('current');
+      my_item.find('._video_component_thumb').addClass('current');
       $('._video_editor_component ._video_component_transition').addClass('current');
     },
     stop: function(event, ui) {
       my_item = $(ui.item);
       my_item.data('rolloverable', true);
-      // FIXME farlo funzionare e aggiungerlo anche per i bordi della componente $(ui.item).find('._video_component_icon').removeClass('current');
+      my_item.find('._video_component_icon').removeClass('current');
+      my_item.find('._video_component_thumb').removeClass('current');
       resetVisibilityOfVideoEditorTransitions();
     }
   });
