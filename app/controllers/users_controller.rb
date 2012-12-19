@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   before_filter :initialize_layout, :only => :edit
-  skip_before_filter :authenticate, :only => [:login, :prelogin, :new, :create]
+  skip_before_filter :authenticate, :only => :logout
   
   def edit
   end
