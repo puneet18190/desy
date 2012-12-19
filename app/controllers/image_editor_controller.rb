@@ -42,6 +42,7 @@ class ImageEditorController < ApplicationController
         x2= ratio_value(woh[1],params[:x2],woh[0])
         y2= ratio_value(woh[1],params[:y2],woh[0])
         
+        #BRING OUT IMAGE WRITE FROM CROP
         @custom_filename = Media::Image::Editing::Crop.new(img, editing_folder, x1, y1, x2, y2).run
         @image_id = params[:image_id]
         @crop = true
@@ -59,30 +60,44 @@ class ImageEditorController < ApplicationController
         editing_folder = File.join(@image.media.absolute_folder, "editing","user_#{@current_user.id}")
         img = MiniMagick::Image.open(File.join(editing_folder,params[:cropped_image]))
         original_height = img[:height]
+        original_width = img[:width]
       else
         img = MiniMagick::Image.open(@image.media.path)
         original_width = @image.media.width
         original_height = @image.media.height
       end
+      
       woh = width_or_height(original_width,original_height)
+      
       textCount = 0
       params.each do |p,val|
         if p.starts_with?('text')
           textCount += 1
         end
       end
-
+      
       if textCount > 0
         (0..textCount-1).each do |t_num|
-
+          
+          color_value = params["color_#{t_num}"]
+          color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
+          size_value = params["font_#{t_num}"].to_f
+          width_val = woh[1]
+          original_val = woh[0]
+          font_size = "#{ratio_value(width_val,(size_value), original_val)}"
+          coords_value = params["coords_#{t_num}"]
+          text_value = params["text_#{t_num}"]
+          
+          #Media::Image::Editing::AddTextToImage.new(img, color_hex, font_size, coords_value, text_value)
+          
           img.combine_options do |c|
             color_value = params["color_#{t_num}"]
             color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
             c.fill "#{color_hex}"
             c.stroke "none"
             #c.encoding = "Unicode"
-            c.font "#{Rails.root}/vendor/fonts/wt014.ttf"
-            size_value = params["font_#{t_num}"].to_f * 0.75
+            c.font "#{Rails.root}/vendor/fonts/DroidSansFallback.ttf"
+            size_value = params["font_#{t_num}"].to_f
             width_val = woh[1]
             original_val = woh[0]
             c.pointsize "#{ratio_value(width_val,(size_value), original_val)}"
@@ -92,11 +107,11 @@ class ImageEditorController < ApplicationController
             c1 = ratio_value(width_val,coords_value[1], original_val)
             text_value = params["text_#{t_num}"]
 
-            c.draw "text #{c0},#{c1} '#{text_value.shellescape}'"
+            c.draw "text #{c0},#{c1} '#{text_value}'"
           end
         end
       end
-
+      
       if !params[:x1].blank?
         x1= ratio_value(woh[1],params[:x1],woh[0])
         y1= ratio_value(woh[1],params[:y1],woh[0])
@@ -162,7 +177,7 @@ class ImageEditorController < ApplicationController
             c.fill "#{color_hex}"
             c.stroke "none"
             #c.encoding = "Unicode"
-            c.font "#{Rails.root}/vendor/fonts/wt014.ttf"
+            c.font "#{Rails.root}/vendor/fonts/DroidSansFallback.ttf"
             size_value = params["font_#{t_num}"].to_f # should add * 0.75 to compensate px to pt
             width_val = woh[1]
             original_val = woh[0]
@@ -172,7 +187,7 @@ class ImageEditorController < ApplicationController
             c0 = ratio_value(width_val,coords_value[0], original_val)
             c1 = ratio_value(width_val,coords_value[1], original_val)
             text_value = params["text_#{t_num}"]
-            c.draw "text #{c0},#{c1} '#{text_value}'"
+            c.draw "text #{c0},#{c1} \'#{text_value}\'"
           end
         end
       end
