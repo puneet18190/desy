@@ -106,7 +106,7 @@ module ApplicationHelper
       when 'image4'
         ratio > 1.55
       when 'video_component'
-        (height * 420) / width
+        ratio > 1.77
     end
   end
   
@@ -123,7 +123,7 @@ module ApplicationHelper
       when 'image4'
         (width * 265) / height
       when 'video_component'
-        (height * 420) / width
+        (width * 88) / height
     end
   end
   
@@ -140,7 +140,7 @@ module ApplicationHelper
       when 'image4'
         (height * 420) / width
       when 'video_component'
-        (height * 420) / width
+        (height * 156) / width
     end
   end
   
