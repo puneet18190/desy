@@ -373,7 +373,9 @@ html.media_element_editor-layout {
         -webkit-border-radius: 10px;
         margin-bottom:6px;
         background-color:#747574;
+        height:15px;
         position:relative;
+
         .textIcon {
           @include iconeTipoElemento;
           background-position: -1em -11.9em;
@@ -394,9 +396,12 @@ html.media_element_editor-layout {
           padding:0;
           @include iconeTipoElemento;
           background-position: -1em -0.5em;
-          
           width:4em;
           height:4em;
+        }
+        &.current {
+          visibility:hidden;
+          height: 15px;
         }
       }
       .separatore {
