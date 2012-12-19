@@ -574,9 +574,9 @@ def plant_development_seeds
   video13.save!
   
   video14 = Video.new
-  video14.title = Descriptive geometry
-  video14.description = Descriptive geometry is the science that allows, through certain geometrical constructions, to represent unequivocally on one or more floors, two-dimensional and three-dimensional. The representation can be designed to display objects already exist, such as in relief (mostly architectural), and / or objects mentally conceived, as in the design of three-dimensional artifacts.
-  video14.tags = maths, geometry, solid, science, constructions, floors, objects
+  video14.title = 'Descriptive geometry'
+  video14.description = 'A video about descriptive geometry.'
+  video14.tags = 'mathematics, geometry, solid, science, constructions, floors, objects'
   video14.media = {:mp4 => Rails.root.join('db/seeds/videos/geometria.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/geometria.webm').to_s, :filename => 'geometria'}
   video14.user_id = benj.id
   video14.save!
@@ -584,9 +584,9 @@ def plant_development_seeds
   video14.save!
   
   video15 = Video.new
-  video15.title = The triangle no, I had not considered
-  video15.description = In geometry, the triangle is a polygon formed by three corners or vertices and three sides; represents the figure with the least number of sides, because three is the minimum number of segments required to delimit a closed surface.
-  video15.tags = maths, geometry, solid, science, constructions, floors, objects, triangle
+  video15.title = 'The triangle'
+  video15.description = 'In geometry, the triangle is a polygon formed by three corners or vertices and three sides.'
+  video15.tags = 'renato zero, maths, geometry, solid, science, constructions, floors, objects, triangle'
   video15.media = {:mp4 => Rails.root.join('db/seeds/videos/geometria2.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/geometria2.webm').to_s, :filename => 'geometria2'}
   video15.user_id = jeg.id
   video15.save!
@@ -594,9 +594,9 @@ def plant_development_seeds
   video15.save!
   
   video16 = Video.new
-  video16.title = Chemistry lab
-  video16.description = Two researchers working in a chemistry lab.
-  video16.tags = chemistry, liquid, experiment, science, lab
+  video16.title = 'Chemical lab'
+  video16.description = 'Two researchers working in a chemical lab.'
+  video16.tags = 'chemistry, liquid, experiment, science, lab'
   video16.media = {:mp4 => Rails.root.join('db/seeds/videos/laboratorio.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/laboratorio.webm').to_s, :filename => 'laboratorio'}
   video16.user_id = toostrong.id
   video16.save!
@@ -604,9 +604,9 @@ def plant_development_seeds
   video16.save!
   
   video17 = Video.new
-  video17.title = Behavior of union between liquid
-  video17.description = In the liquid state forces acting between the constituents are less intense and they are free to slide over each other. A liquid undergoes volume changes much less pronounced compared to gas and tends to assume the shape of the vessel in which it is contained.
-  video17.tags = chemistry, liquid, experiment, science, lab
+  video17.title = 'Behavior of liquids'
+  video17.description = 'A video about the behavior of liquids.'
+  video17.tags = 'chemistry, liquid, experiment, science, lab'
   video17.media = {:mp4 => Rails.root.join('db/seeds/videos/liquidi.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/liquidi.webm').to_s, :filename => 'liquidi'}
   video17.user_id = fupete.id
   video17.save!
@@ -614,9 +614,9 @@ def plant_development_seeds
   video17.save!
   
   video18 = Video.new
-  video18.title = Snail
-  video18.description = The snail is not always gray in gray, but is also found in a variety of colors from light gray to yellow to dark brown, but always without color smear. It was proposed the name monochrome snail. Even in this case in German the name is not appropriate for all copies, because there may be several bands dicome staining in the base color.
-  video18.tags = animal, snail, science, nature
+  video18.title = 'Snail'
+  video18.description = 'The snail is not always gray.'
+  video18.tags = 'animal, snail, science, nature, invertebrate'
   video18.media = {:mp4 => Rails.root.join('db/seeds/videos/lumaca.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/lumaca.webm').to_s, :filename => 'lumaca'}
   video18.user_id = benj.id
   video18.save!
@@ -624,9 +624,9 @@ def plant_development_seeds
   video18.save!
   
   video19 = Video.new
-  video19.title = In the footsteps of Titanic
-  video19.description = The name comes from the Dutch word iceberg ijsberg which means mountain (berg) ice (ijs), cognate to Danish isbjerg, German Eisberg, Low Saxon to Iesbarg and the Swedish and Norwegian Isberg.
-  video19.tags = ice, sea, titanic, iceberg
+  video19.title = 'On the footsteps of Titanic'
+  video19.description = 'The Titanic sank in the beginning of twentieth century in the Atlantic Ocean.'
+  video19.tags = 'ice, sea, titanic, iceberg, tragedy'
   video19.media = {:mp4 => Rails.root.join('db/seeds/videos/mare.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/mare.webm').to_s, :filename => 'mare'}
   video19.user_id = holly.id
   video19.save!
@@ -634,9 +634,9 @@ def plant_development_seeds
   video19.save!
   
   video20 = Video.new
-  video20.title = Wind Energy - The power that comes from wind
-  video20.description = Wind energy is the energy obtained from the wind or the product of the conversion of kinetic energy, obtained from drafts, other forms of energy (electrical or mechanical).
-  video20.tags = energy, science, wind, sky, power
+  video20.title = 'Wind Energy - The power that comes from wind'
+  video20.description = 'Wind energy is the energy obtained from the wind.'
+  video20.tags = 'energy, science, wind, sky, power'
   video20.media = {:mp4 => Rails.root.join('db/seeds/videos/paleeoliche.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/paleeoliche.webm').to_s, :filename => 'paleeoliche'}
   video20.user_id = benj.id
   video20.save!
@@ -644,9 +644,9 @@ def plant_development_seeds
   video20.save!
   
   video21 = Video.new
-  video21.title = How it's made a real chemistry lab?
-  video21.description = How it's made a real chemical laboratory? Work as researchers? We enter into a research center.
-  video21.tags = energy, science, lab, chemistry, experiment
+  video21.title = 'How does a real chemistry lab work?'
+  video21.description = 'We enter into a research center.'
+  video21.tags = 'energy, science, lab, chemistry, experiment'
   video21.media = {:mp4 => Rails.root.join('db/seeds/videos/ricercatori.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/ricercatori.webm').to_s, :filename => 'ricercatori'}
   video21.user_id = jeg.id
   video21.save!
@@ -654,9 +654,9 @@ def plant_development_seeds
   video21.save!
   
   video22 = Video.new
-  video22.title = The birth of a star
-  video22.description = A star is a celestial body that shines with its own light. In astronomy and astrophysics, the term designates a spheroid luminous plasma that generates energy in its core by nuclear fusion processes, and this energy is radiated into space as electromagnetic radiation, flow of elementary particles (stellar wind) and neutrinos.
-  video22.tags = energy, science, space, sky, fire, star, power, history
+  video22.title = 'The birth of a star'
+  video22.description = 'A star is a celestial body that shines with its own light.'
+  video22.tags = 'energy, science, space, sky, fire, star, power, history'
   video22.media = {:mp4 => Rails.root.join('db/seeds/videos/sole.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/sole.webm').to_s, :filename => 'sole'}
   video22.user_id = jeg.id
   video22.save!
@@ -664,9 +664,9 @@ def plant_development_seeds
   video22.save!
   
   video23 = Video.new
-  video23.title = Little scientists grow...
-  video23.description = A class of high school with his teachers try to play in the class of simple chemistry experiments.
-  video23.tags = student, science, school, experiment, lab
+  video23.title = 'Little scientists'
+  video23.description = 'A high school class try simple chemistry experiments.'
+  video23.tags = 'student, science, school, experiment, lab'
   video23.media = {:mp4 => Rails.root.join('db/seeds/videos/studenti.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/studenti.webm').to_s, :filename => 'studenti'}
   video23.user_id = benj.id
   video23.save!
@@ -674,8 +674,8 @@ def plant_development_seeds
   video23.save!
   
   video24 = Video.new
-  video24.title = Look at the virus closely
-  video24.description = Viruses are biological entities with characteristics of obligate parasite, whose nature of living organism or subcellular structure is discussed, as well as the taxonomic treatment. For this reason they are considered to be the link between the chemical and living organism. The single virus particle is called a virion.
+  video24.title = 'Look at the virus closely'
+  video24.description = 'Viruses are biological entities.'
   video24.media = {:mp4 => Rails.root.join('db/seeds/videos/virus.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/virus.webm').to_s, :filename => 'virus'}
   video24.user_id = toostrong.id
   video24.save!
