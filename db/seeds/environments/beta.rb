@@ -63,6 +63,7 @@ def plant_development_seeds
   image1.user_id = holly.id
   image1.save!
   image1.is_public = true
+  image1.publication_date = Time.zone.now
   image1.save!
   
   image2 = Image.new
@@ -73,6 +74,7 @@ def plant_development_seeds
   image2.user_id = toostrong.id
   image2.save!
   image2.is_public = true
+  image2.publication_date = Time.zone.now
   image2.save!
   
   image3 = Image.new
@@ -83,6 +85,7 @@ def plant_development_seeds
   image3.user_id = benj.id
   image3.save!
   image3.is_public = true
+  image3.publication_date = Time.zone.now
   image3.save!
   
   image4 = Image.new
@@ -93,6 +96,7 @@ def plant_development_seeds
   image4.user_id = benj.id
   image4.save!
   image4.is_public = true
+  image4.publication_date = Time.zone.now
   image4.save!
   
   image5 = Image.new
@@ -103,6 +107,7 @@ def plant_development_seeds
   image5.user_id = fupete.id
   image5.save!
   image5.is_public = true
+  image5.publication_date = Time.zone.now
   image5.save!
   
   image6 = Image.new
@@ -113,6 +118,7 @@ def plant_development_seeds
   image6.user_id = toostrong.id
   image6.save!
   image6.is_public = true
+  image6publication_date = Time.zone.now
   image6.save!
   
   image7 = Image.new
@@ -123,6 +129,7 @@ def plant_development_seeds
   image7.user_id = benj.id
   image7.save!
   image7.is_public = true
+  image7.publication_date = Time.zone.now
   image7.save!
   
   image8 = Image.new
@@ -133,6 +140,7 @@ def plant_development_seeds
   image8.user_id = toostrong.id
   image8.save!
   image8.is_public = true
+  image8.publication_date = Time.zone.now
   image8.save!
   
   image9 = Image.new
@@ -143,6 +151,7 @@ def plant_development_seeds
   image9.user_id = fupete.id
   image9.save!
   image9.is_public = true
+  image9.publication_date = Time.zone.now
   image9.save!
   
   image10 = Image.new
@@ -153,6 +162,7 @@ def plant_development_seeds
   image10.user_id = jeg.id
   image10.save!
   image10.is_public = true
+  image10.publication_date = Time.zone.now
   image10.save!
   
   image11 = Image.new
@@ -163,6 +173,7 @@ def plant_development_seeds
   image11.user_id = benj.id
   image11.save!
   image11.is_public = true
+  image11.publication_date = Time.zone.now
   image11.save!
   
   image12 = Image.new
@@ -173,6 +184,7 @@ def plant_development_seeds
   image12.user_id = retlaw.id
   image12.save!
   image12.is_public = true
+  image12.publication_date = Time.zone.now
   image12.save!
   
   image13 = Image.new
@@ -183,6 +195,7 @@ def plant_development_seeds
   image13.user_id = fupete.id
   image13.save!
   image13.is_public = true
+  image13.publication_date = Time.zone.now
   image13.save!
   
   image14 = Image.new
@@ -193,6 +206,7 @@ def plant_development_seeds
   image14.user_id = jeg.id
   image14.save!
   image14.is_public = true
+  image14.publication_date = Time.zone.now
   image14.save!
   
   image15 = Image.new
@@ -203,6 +217,7 @@ def plant_development_seeds
   image15.user_id = holly.id
   image15.save!
   image15.is_public = true
+  image15.publication_date = Time.zone.now
   image15.save!
   
   image16 = Image.new
@@ -213,6 +228,7 @@ def plant_development_seeds
   image16.user_id = holly.id
   image16.save!
   image16.is_public = true
+  image16.publication_date = Time.zone.now
   image16.save!
   
   image17 = Image.new
@@ -223,6 +239,7 @@ def plant_development_seeds
   image17.user_id = toostrong.id
   image17.save!
   image17.is_public = true
+  image17.publication_date = Time.zone.now
   image17.save!
   
   image18 = Image.new
@@ -233,6 +250,7 @@ def plant_development_seeds
   image18.user_id = toostrong.id
   image18.save!
   image18.is_public = true
+  image18.publication_date = Time.zone.now
   image18.save!
   
   image19 = Image.new
@@ -243,6 +261,7 @@ def plant_development_seeds
   image19.user_id = retlaw.id
   image19.save!
   image19.is_public = true
+  image19.publication_date = Time.zone.now
   image19.save!
   
   image20 = Image.new
@@ -253,6 +272,7 @@ def plant_development_seeds
   image20.user_id = benj.id
   image20.save!
   image20.is_public = true
+  image20.publication_date = Time.zone.now
   image20.save!
   
   image21 = Image.new
@@ -263,6 +283,7 @@ def plant_development_seeds
   image21.user_id = toostrong.id
   image21.save!
   image21.is_public = true
+  image21.publication_date = Time.zone.now
   image21.save!
   
   image22 = Image.new
@@ -273,6 +294,7 @@ def plant_development_seeds
   image22.user_id = benj.id
   image22.save!
   image22.is_public = true
+  image22.publication_date = Time.zone.now
   image22.save!
   
   image23 = Image.new
@@ -283,6 +305,7 @@ def plant_development_seeds
   image23.user_id = benj.id
   image23.save!
   image23.is_public = true
+  image23.publication_date = Time.zone.now
   image23.save!
   
   image24 = Image.new
@@ -293,6 +316,7 @@ def plant_development_seeds
   image24.user_id = jeg.id
   image24.save!
   image24.is_public = true
+  image24.publication_date = Time.zone.now
   image24.save!
   
   image25 = Image.new
@@ -303,6 +327,7 @@ def plant_development_seeds
   image25.user_id = benj.id
   image25.save!
   image25.is_public = true
+  image25.publication_date = Time.zone.now
   image25.save!
   
   image26 = Image.new
@@ -313,6 +338,7 @@ def plant_development_seeds
   image26.user_id = fupete.id
   image26.save!
   image26.is_public = true
+  image26.publication_date = Time.zone.now
   image26.save!
   
   image27 = Image.new
@@ -323,6 +349,7 @@ def plant_development_seeds
   image27.user_id = benj.id
   image27.save!
   image27.is_public = true
+  image27.publication_date = Time.zone.now
   image27.save!
   
   image28 = Image.new
@@ -333,6 +360,7 @@ def plant_development_seeds
   image28.user_id = benj.id
   image28.save!
   image28.is_public = true
+  image28.publication_date = Time.zone.now
   image28.save!
   
   image29 = Image.new
@@ -343,6 +371,7 @@ def plant_development_seeds
   image29.user_id = fupete.id
   image29.save!
   image29.is_public = true
+  image29.publication_date = Time.zone.now
   image29.save!
   
   image30 = Image.new
@@ -353,6 +382,7 @@ def plant_development_seeds
   image30.user_id = benj.id
   image30.save!
   image30.is_public = true
+  image30.publication_date = Time.zone.now
   image30.save!
   
   image31 = Image.new
@@ -363,6 +393,7 @@ def plant_development_seeds
   image31.user_id = fupete.id
   image31.save!
   image31.is_public = true
+  image31.publication_date = Time.zone.now
   image31.save!
   
   image32 = Image.new
@@ -373,6 +404,7 @@ def plant_development_seeds
   image32.user_id = jeg.id
   image32.save!
   image32.is_public = true
+  image32.publication_date = Time.zone.now
   image32.save!
   
   
@@ -386,6 +418,7 @@ def plant_development_seeds
   audio1.user_id = toostrong.id
   audio1.save!
   audio1.is_public = true
+  audio1.publication_date = Time.zone.now
   audio1.save!
   
   audio2 = Audio.new
@@ -396,6 +429,7 @@ def plant_development_seeds
   audio2.user_id = fupete.id
   audio2.save!
   audio2.is_public = true
+  audio2.publication_date = Time.zone.now
   audio2.save!
   
   audio3 = Audio.new
@@ -406,6 +440,7 @@ def plant_development_seeds
   audio3.user_id = jeg.id
   audio3.save!
   audio3.is_public = true
+  audio3.publication_date = Time.zone.now
   audio3.save!
   
   audio4 = Audio.new
@@ -416,6 +451,7 @@ def plant_development_seeds
   audio4.user_id = holly.id
   audio4.save!
   audio4.is_public = true
+  audio4.publication_date = Time.zone.now
   audio4.save!
   
   audio5 = Audio.new
@@ -426,6 +462,7 @@ def plant_development_seeds
   audio5.user_id = benji.id
   audio5.save!
   audio5.is_public = true
+  audio5.publication_date = Time.zone.now
   audio5.save!
   
   audio6 = Audio.new
@@ -436,6 +473,7 @@ def plant_development_seeds
   audio6.user_id = retlaw.id
   audio6.save!
   audio6.is_public = true
+  audio6.publication_date = Time.zone.now
   audio6.save!
   
   
@@ -449,6 +487,7 @@ def plant_development_seeds
   video1.user_id = fupete.id
   video1.save!
   video1.is_public = true
+  video1.publication_date = Time.zone.now
   video1.save!
   
   video2 = Video.new
@@ -459,6 +498,7 @@ def plant_development_seeds
   video2.user_id = toostrong.id
   video2.save!
   video2.is_public = true
+  video2.publication_date = Time.zone.now
   video2.save!
   
   video3 = Video.new
@@ -469,6 +509,7 @@ def plant_development_seeds
   video3.user_id = jeg.id
   video3.save!
   video3.is_public = true
+  video3.publication_date = Time.zone.now
   video3.save!
   
   video4 = Video.new
@@ -479,6 +520,7 @@ def plant_development_seeds
   video4.user_id = holly.id
   video4.save!
   video4.is_public = true
+  video4.publication_date = Time.zone.now
   video4.save!
   
   video5 = Video.new
@@ -489,6 +531,7 @@ def plant_development_seeds
   video5.user_id = holly.id
   video5.save!
   video5.is_public = true
+  video5.publication_date = Time.zone.now
   video5.save!
   
   video6 = Video.new
@@ -499,6 +542,7 @@ def plant_development_seeds
   video6.user_id = fupete.id
   video6.save!
   video6.is_public = true
+  video6.publication_date = Time.zone.now
   video6.save!
   
   video7 = Video.new
@@ -509,6 +553,7 @@ def plant_development_seeds
   video7.user_id = retlaw.id
   video7.save!
   video7.is_public = true
+  video7.publication_date = Time.zone.now
   video7.save!
   
   video8 = Video.new
@@ -519,6 +564,7 @@ def plant_development_seeds
   video8.user_id = jeg.id
   video8.save!
   video8.is_public = true
+  video8.publication_date = Time.zone.now
   video8.save!
   
   video9 = Video.new
@@ -529,6 +575,7 @@ def plant_development_seeds
   video9.user_id = benj.id
   video9.save!
   video9.is_public = true
+  video9.publication_date = Time.zone.now
   video9.save!
   
   video10 = Video.new
@@ -539,6 +586,7 @@ def plant_development_seeds
   video10.user_id = retlaw.id
   video10.save!
   video10.is_public = true
+  video10.publication_date = Time.zone.now
   video10.save!
   
   video11 = Video.new
@@ -549,6 +597,7 @@ def plant_development_seeds
   video11.user_id = toostrong.id
   video11.save!
   video11.is_public = true
+  video11.publication_date = Time.zone.now
   video11.save!
   
   video12 = Video.new
@@ -559,6 +608,7 @@ def plant_development_seeds
   video12.user_id = fupete.id
   video12.save!
   video12.is_public = true
+  video12.publication_date = Time.zone.now
   video12.save!
   
   video13 = Video.new
@@ -569,6 +619,7 @@ def plant_development_seeds
   video13.user_id = benj.id
   video13.save!
   video13.is_public = true
+  video13.publication_date = Time.zone.now
   video13.save!
   
   video14 = Video.new
@@ -579,6 +630,7 @@ def plant_development_seeds
   video14.user_id = benj.id
   video14.save!
   video14.is_public = true
+  video14.publication_date = Time.zone.now
   video14.save!
   
   video15 = Video.new
@@ -589,6 +641,7 @@ def plant_development_seeds
   video15.user_id = jeg.id
   video15.save!
   video15.is_public = true
+  video15.publication_date = Time.zone.now
   video15.save!
   
   video16 = Video.new
@@ -599,6 +652,7 @@ def plant_development_seeds
   video16.user_id = toostrong.id
   video16.save!
   video16.is_public = true
+  video16.publication_date = Time.zone.now
   video16.save!
   
   video17 = Video.new
@@ -609,6 +663,7 @@ def plant_development_seeds
   video17.user_id = fupete.id
   video17.save!
   video17.is_public = true
+  video17.publication_date = Time.zone.now
   video17.save!
   
   video18 = Video.new
@@ -619,6 +674,7 @@ def plant_development_seeds
   video18.user_id = benj.id
   video18.save!
   video18.is_public = true
+  video18.publication_date = Time.zone.now
   video18.save!
   
   video19 = Video.new
@@ -629,6 +685,7 @@ def plant_development_seeds
   video19.user_id = holly.id
   video19.save!
   video19.is_public = true
+  video19.publication_date = Time.zone.now
   video19.save!
   
   video20 = Video.new
@@ -639,6 +696,7 @@ def plant_development_seeds
   video20.user_id = benj.id
   video20.save!
   video20.is_public = true
+  video20.publication_date = Time.zone.now
   video20.save!
   
   video21 = Video.new
@@ -649,6 +707,7 @@ def plant_development_seeds
   video21.user_id = jeg.id
   video21.save!
   video21.is_public = true
+  video21.publication_date = Time.zone.now
   video21.save!
   
   video22 = Video.new
@@ -659,6 +718,7 @@ def plant_development_seeds
   video22.user_id = jeg.id
   video22.save!
   video22.is_public = true
+  video22.publication_date = Time.zone.now
   video22.save!
   
   video23 = Video.new
@@ -669,6 +729,7 @@ def plant_development_seeds
   video23.user_id = benj.id
   video23.save!
   video23.is_public = true
+  video23.publication_date = Time.zone.now
   video23.save!
   
   video24 = Video.new
@@ -678,6 +739,7 @@ def plant_development_seeds
   video24.user_id = toostrong.id
   video24.save!
   video24.is_public = true
+  video24.publication_date = Time.zone.now
   video24.save!
   
   
