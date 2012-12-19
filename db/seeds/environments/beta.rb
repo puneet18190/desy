@@ -4,44 +4,42 @@ def plant_development_seeds
   
   # INITIALIZE
   
-  videos_folder = media =:Video::Uploader::ABSOLUTE_FOLDER
-  audios_folder = media =:Audio::Uploader::ABSOLUTE_FOLDER
-  unless Rails.env.production?
-    [videos_folder, audios_folder].each { |d| FileUtils.rm_rf d if Dir.exists? d }
-  end
+  videos_folder = Media::Video::Uploader::ABSOLUTE_FOLDER
+  audios_folder = Media::Audio::Uploader::ABSOLUTE_FOLDER
+  [videos_folder, audios_folder].each { |d| FileUtils.rm_rf d if Dir.exists? d }
   
   
   # LOCATIONS
   
-  shanghai = Location.find_by_name 'Shanghai'
-  guangzhou = Location.find_by_name 'Guangzhou'
-  wuhan = Location.find_by_name 'Wuhan'
-  beijing = Location.find_by_name 'Beijing'
-  tianjin = Location.find_by_name 'Tianjin'
-  shenzhen = Location.find_by_name 'Shenzhen'
-  nanjing = Location.find_by_name 'Nanjing'
+  shanghai = Location.find_by_description 'Shanghai'
+  guangzhou = Location.find_by_description 'Guangzhou'
+  wuhan = Location.find_by_description 'Wuhan'
+  beijing = Location.find_by_description 'Beijing'
+  tianjin = Location.find_by_description 'Tianjin'
+  shenzhen = Location.find_by_description 'Shenzhen'
+  nanjing = Location.find_by_description 'Nanjing'
   
   
   # SUBJECTS
   
-  mathematics = Subject.find_by_name 'Mathematics'
-  natural_sciences = Subject.find_by_name 'Natural Sciences'
-  geography = Subject.find_by_name 'Geography'
-  history = Subject.find_by_name 'History'
-  visive_arts = Subject.find_by_name 'Visive Arts'
-  music = Subject.find_by_name 'Music'
-  physical_education = Subject.find_by_name 'Phisycal Education'
-  computer_science = Subject.find_by_name 'Computer Science'
-  languages = Subject.find_by_name 'Languages'
-  literature = Subject.find_by_name 'Literature'
-  chemistry = Subject.find_by_name 'Chemistry'
+  mathematics = Subject.find_by_description 'Mathematics'
+  natural_sciences = Subject.find_by_description 'Natural Sciences'
+  geography = Subject.find_by_description 'Geography'
+  history = Subject.find_by_description 'History'
+  visive_arts = Subject.find_by_description 'Visive Arts'
+  music = Subject.find_by_description 'Music'
+  physical_education = Subject.find_by_description 'Phisycal Education'
+  computer_science = Subject.find_by_description 'Computer Science'
+  languages = Subject.find_by_description 'Languages'
+  literature = Subject.find_by_description 'Literature'
+  chemistry = Subject.find_by_description 'Chemistry'
   
   
   # SCHOOL LEVELS
   
-  primary_school = SchoolLevel.find_by_name 'Primary School'
-  secondary_school = SchoolLevel.find_by_name 'Secondary School'
-  undergraduate = SchoolLevel.find_by_name 'Undergraduate'
+  primary_school = SchoolLevel.find_by_description 'Primary School'
+  secondary_school = SchoolLevel.find_by_description 'Secondary School'
+  undergraduate = SchoolLevel.find_by_description 'Undergraduate'
   
   
   # USERS

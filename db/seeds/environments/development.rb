@@ -4,11 +4,7 @@ def plant_development_seeds
   
   videos_folder = Media::Video::Uploader::ABSOLUTE_FOLDER
   audios_folder = Media::Audio::Uploader::ABSOLUTE_FOLDER
-
-  # in produzione è meglio rimuoverle manualmente
-  unless Rails.env.production?
-    [videos_folder, audios_folder].each { |d| FileUtils.rm_rf d if Dir.exists? d }
-  end
+  [videos_folder, audios_folder].each { |d| FileUtils.rm_rf d if Dir.exists? d }
 
   location1 = Location.find 1
   location2 = Location.find 2
