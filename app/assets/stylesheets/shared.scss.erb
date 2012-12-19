@@ -447,6 +447,13 @@ a.cerca.current {
     height:320px; 
     padding:0px; 
     
+    .buttonForm {
+      color:#fff;
+      background-color:#41a62a;
+      &:hover {
+        background-color: #67b855;
+      };
+    }
     p {
       padding-top:0px;
     }
@@ -519,7 +526,13 @@ a.cerca.current {
   padding-top:20px;
   float:left;
   width:100%;
-  
+  .buttonForm {
+      color:#fff;
+      background-color:#41a62a;
+      &:hover {
+        background-color: #67b855;
+      };
+    }
   .cols {
     width:320px;
     
@@ -527,6 +540,7 @@ a.cerca.current {
       cursor: pointer;
     }
   }
+  
   input {
     border:1px solid #4fc356;
     background-color:#454343;
@@ -537,10 +551,14 @@ a.cerca.current {
     color: #fff;
   }
   input[type="submit"] {
-    font: 130% 'Nunito', sans-serif;
+    padding:5px 0px ;
+    width:130px;
+    
+    font: 18px 'Nunito', sans-serif;
     color: #fff;
-    width:160px;
+    
     background-color:#41a62a;
+    border:none;
     &:hover {
       background-color: #67b855;
       cursor: pointer;
@@ -593,11 +611,12 @@ a.cerca.current {
     left: 20px;
     top: 15px;
     z-index: 0;
-    width:64px;
+    width:54px;
     height:64px;
     background: url(<%= asset_path 'icone_piene.svg' %>)  no-repeat;
     background-position: -16em 0; 
     background-size: 32em 5em;
+    font-size:11px;
     &::-moz-focus-inner {
       border: 0;
     }
@@ -707,5 +726,5 @@ a.cerca.current {
   padding:5px 30px ;
   color:#000;
   background-color:white;
-  font-size:18px;
+  font:18px 'Nunito', sans-serif;
 }
