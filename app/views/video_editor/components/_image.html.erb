@@ -1,9 +1,13 @@
 <%
   external_div_attributes = "data-position=\"\" data-duration=\"\""
-  external_div_attributes = "id=\"video_component_#{position}\" data-position=\"#{position}\" data-duration=\"#{component[:duration]}\"" if !empty
+  last = false
+  if !empty
+    external_div_attributes = "id=\"video_component_#{position}\" data-position=\"#{position}\" data-duration=\"#{component[:duration]}\""
+    last = component[:last]
+  end
 %>
 
-<div class="lista _video_editor_component" <%= external_div_attributes.html_safe %>>
+<div class="lista <%= empty ? '_video_editor_empty_component'.html_safe : '_video_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-rolloverable="true">
   <div class="contatore _video_component_icon"><%= empty ? '' : position %> <div class="photoIcon"></div></div>
   <div class="boxMediaElement _video_editor_component_hover">
     <% if !empty %>
@@ -14,5 +18,5 @@
       <%= hidden_field_tag "position_#{position}", position, :class => '_video_component_input_position' %>
     <% end %>
   </div>
-  <div class="separatore">&nbsp;</div>
+  <div class="_video_component_transition separatore <%= last ? 'current'.html_safe : '' %>">&nbsp;</div>
 </div>
