@@ -215,6 +215,11 @@ html.media_element_editor-layout {
     .image_gallery {
       height: 486px;
       width:876px;
+      .scroll-pane {
+        margin-left: 20px;
+        height:368px;
+        top:140px;
+      }
       &.video-kind {
         ul{
           li{
@@ -359,7 +364,8 @@ html.media_element_editor-layout {
     .lista {
       margin: 0px;
       float: left;
-      
+      width:186px;
+      height:117px;
       .contatore {
         padding: 4px 8px;
         width:32px;
@@ -368,7 +374,9 @@ html.media_element_editor-layout {
         -webkit-border-radius: 10px;
         margin-bottom:6px;
         background-color:#747574;
+        height:15px;
         position:relative;
+
         .textIcon {
           @include iconeTipoElemento;
           background-position: -1em -11.9em;
@@ -389,9 +397,12 @@ html.media_element_editor-layout {
           padding:0;
           @include iconeTipoElemento;
           background-position: -1em -0.5em;
-          
           width:4em;
           height:4em;
+        }
+        &.current {
+          visibility:hidden;
+          height: 15px;
         }
       }
       .separatore {
@@ -410,8 +421,12 @@ html.media_element_editor-layout {
       margin: 0px;
       display:inline-block;
       width:156px;
+      height:117px;
       .contatore {
-        margin-bottom:10px;
+        height:15px;
+        padding: 4px 0px;
+        width:32px;
+        margin-bottom:6px;
       }
     }
   /*layout elementi sull'editor elementi*/
@@ -429,14 +444,20 @@ html.media_element_editor-layout {
     @include boxShadow;
     position:relative;
     float:left;
-    
+
     .boxContentMediaElement {
       width:156px;
-      height:88px;      
+      height:88px;
+      position: relative;
+      overflow: hidden;
       img {
         width: 156px;
+        position: absolute;
         height: 88px;
       }
+      &.current {
+      outline: 2px solid #fff;
+    }
       
     }
     .boxContentMediaElementText {
@@ -559,13 +580,12 @@ html.media_element_editor-layout {
       background-position: -9em 0;
   }
     p {
-      padding:10px 10px;
+      padding:5px 0px 0px 5px;
       float:left;
-      color:#fff;
-      width:400px;
-      outline:1px solid red;
+      color:#dedede;
       text-align:left;
-      font: 13px Arial, Helvetica, sans-serif;
+      font: 13px 'Nunito', sans-serif;
+      text-shadow: 1px 1px #4f4f4f;
     }
   }
   
@@ -603,14 +623,15 @@ html.media_element_editor-layout {
   .mediaEditorElementContainer {
     width:984px;
     display:inline-block;
-    
     .imagesContainer {
       width:660px; 
       height:520px;
       float:left;
+      
     }
     
   }
+  
   .menuLeftEditorElement {
     float:left; 
     width:183px;
@@ -830,14 +851,4 @@ html.media_element_editor-layout {
 
 ._video_editor_component_menu:hover {
   cursor: default;
-}
-
-._video_component_thumb {
-  float: left;
-  width: 156px;
-  height: 88px;
-  img {
-    width: 156px;
-    height: 88px;
-  }
 }

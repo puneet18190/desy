@@ -144,7 +144,7 @@ class VideoEditorController < ApplicationController
     resp[:initial_video_id] = @video.is_public ? nil : @video.id
     resp[:audio_id] = nil
     resp[:components] = [{}]
-    resp[:components].first[:type] = Video::VIDEO_COMPONENT
+    resp[:components].first[:type] = Media::Video::Editing::Parameters::VIDEO_COMPONENT
     resp[:components].first[:video_id] = @video.id
     resp[:components].first[:from] = 0
     resp[:components].first[:to] = @video.min_duration

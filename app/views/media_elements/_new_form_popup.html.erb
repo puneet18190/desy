@@ -19,7 +19,10 @@
           <p style="padding-bottom:15px"><%= t('forms.media_element.notes') %></p>
           <%= f.text_area :tags, name: 'tags', placeholder: t('forms.media_element.labels.tags') %>
           <br>
-          <%= f.submit t('forms.media_element.submit'), id: 'new_media_element_submit' %> or <a class="_close" data-dialog-id="load-media-element">cancel</a>
+          <div class="fltrt">
+            <a class="_close buttonForm" data-dialog-id="load-media-element">cancel</a>
+            <%= f.submit t('forms.media_element.submit'), id: 'new_media_element_submit' %>
+         </div>
         </div>
       <% end %>
       <div class="_error_messages"></div>
@@ -49,6 +52,7 @@ $(function() {
   var uploader = new plupload.Uploader({
     runtimes : 'html5,flash',
     url : '/media_elements',
+    //max_file_size: '10mb',
     browse_button : 'media_element_media_pick',
     // container : 'container',
     file_data_name : 'media',
@@ -85,6 +89,7 @@ $(function() {
     if (up.files.length > 1) {
       up.splice(0, 1);
     }
+    
     var file = files[0];
     $("#media_element_media_show").text(file.name);
     up.refresh(); // Reposition Flash/Silverlight
@@ -93,13 +98,18 @@ $(function() {
   // funziona solo con flash, probabilmente per l'HTML bisognerà
   // pingare il server
   uploader.bind('UploadProgress', function(up, file) {
-    $('.barraLoading div').width('' + file.percent + '%');
+    // IT STARTS EVEN WITH SERVER ERRORS TO FIX
+    
+    //$('.barraLoading div').width('' + file.percent + '%');
   });
 
   uploader.bind('Error', function(up, err) {
-    // TODO gestione errori lato client e server 500 (estensione e dimensioni principalmente)
+    // THIS IS TO MANAGE ON FILE LOAD ERRORS, SUCH AS FILE SIZE CHECK, WRONG EXT, ECC
+    $('._error_messages').text(err.message);
     
-    console.log("Errors: "+err);
+    // TODO gestione errori lato client e server 500 (estensione e dimensioni principalmente)
+    //var resp = jQuery.parseJSON(err);
+    // console.log(err); #inline errors on file load
     // $('#filelist').append("<div>Error: " + err.code +
     //   ", Message: " + err.message +
     //   (err.file ? ", File: " + err.file.name : "") +
@@ -110,15 +120,32 @@ $(function() {
   });
 
   uploader.bind('FileUploaded', function(up, file, data) {
-    var resp = jQuery.parseJSON(data);
-    if(resp.errors.leng){
-      
+    var errs = JSON.parse(data.response).errors;
+    if(errs){
+      $('._error_messages').text(media_elements_error_messages(errs));
+      console.log("Up Pre: ")
+      console.log(up);
+      up.refresh();
+      console.log("Up Post: ");
+      console.log(up);
+      console.log("if1");
+    }else{
+      console.log("else2");
+      $('._close').trigger('click');
+      $('.barraLoading div').width('100%');
     }
-    console.log(data);
-    $('.barraLoading div').width('100%');
+    up.refresh(); // Reposition Flash/Silverlight
     // TODO gestione errori lato server (li gestiamo qui perché quest'evento ci ritorna i dati del server, mentre Error no)
   });
 });
+
+  function media_elements_error_messages(errors){
+    var msg = ""
+    $.each(errors,function(key,value){
+      msg = msg + key + ": " + value+", ";
+    });
+    return msg
+  }
 </script>
 
 

@@ -9,55 +9,46 @@ function initializeVideoEditor() {
     axis: 'x',
     cursor: 'move',
     cancel: '._video_editor_component_menu',
-    start: function() {
-      $('._video_editor_component ._video_component_transition.current').addClass('_video_component_temporary_no_transition');
+    containment: 'parent',
+    start: function(event, ui) {
+      my_item = $(ui.item);
+      my_item.find('._video_editor_component_menu').hide();
+      my_item.data('rolloverable', false);
+      my_item.find('._video_component_icon').addClass('current');
+      my_item.find('._video_component_thumb').addClass('current');
       $('._video_editor_component ._video_component_transition').addClass('current');
     },
-    stop: function() {
-      $('._video_editor_component ._video_component_transition.current').removeClass('current');
-      $('._video_component_temporary_no_transition').addClass('current');
-    },
-    helper: function(event, ui) {
-      return ui.find('._video_component_thumb')[0].outerHTML;
-    }
-    
-    /*
-    helper: function(event, ui) {
-      var div_to_return = $($('#' + ui.attr('id'))[0].outerHTML);
-      div_to_return.addClass('current');
-      div_to_return = div_to_return[0].outerHTML;
-      var my_index = div_to_return.indexOf('<div class="_video_editor_component_menu');
-      var second_half_string = div_to_return.substring(my_index, div_to_return.length);
-      var my_second_index = my_index + second_half_string.indexOf('</div>') + 6;
-      return div_to_return.substring(0, (my_index - 1)) + div_to_return.substring((my_second_index + 1), div_to_return.length);
-    },/*
     stop: function(event, ui) {
-      var previous = ui.item.prev();
-      var new_position = 0;
-      var old_position = ui.item.data('position');
-      if(previous.length == 0) {
-        new_position = 1;
-      } else {
-        var previous_item_position = previous.data('position');
-        if(old_position > previous_item_position) {
-          new_position = previous_item_position + 1;
-        } else {
-          new_position = previous_item_position;
-        }
+      my_item = $(ui.item);
+      my_item.data('rolloverable', true);
+      my_item.find('._video_component_icon').removeClass('current');
+      my_item.find('._video_component_thumb').removeClass('current');
+      resetVisibilityOfVideoEditorTransitions();
+      var boolean1 = (my_item.next().attr('id') == 'add_new_video_component');
+      var boolean2 = (my_item.data('position') != $('._video_editor_component').length);
+      var boolean3 = (my_item.next().data('position') != (my_item.data('position') + 1));
+      if(boolean1 && boolean2 || !boolean1 && boolean3) {
+        reloadVideoEditorComponentPositions();
+        $('._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
       }
-      if(old_position != new_position) {
-        $.ajax({
-          type: 'post',
-          url: '/virtual_classroom/' + ui.item.data('lesson-id') + '/playlist/' + new_position + '/change_position'
-        });
-      }
-    }*/
+    }
+  });
+}
+
+function resetVisibilityOfVideoEditorTransitions() {
+  var components = $('._video_editor_component');
+  components.each(function(index) {
+    if(index < (components.length - 1)) {
+      $(this).find('._video_component_transition').removeClass('current');
+    } else {
+      $(this).find('._video_component_transition').addClass('current');
+    }
   });
 }
 
 function calculateNewPositionGalleriesInVideoEditor() {
-  $('#video_editor_mixed_gallery_container').css('left', (($(window).width() - 960) / 2) + 'px');
-  $('#video_editor_audio_gallery_container').css('left', (($(window).width() - 960) / 2) + 'px');
+  $('#video_editor_mixed_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
+  $('#video_editor_audio_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
 }
 
 function startCacheLoop() {
@@ -148,6 +139,8 @@ function addImageComponentInVideoEditor(image_id, component, duration) {
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  reloadVideoEditorComponentPositions();
+  resetVisibilityOfVideoEditorTransitions();
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'photoIcon');
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
@@ -194,6 +187,8 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  reloadVideoEditorComponentPositions()
+  resetVisibilityOfVideoEditorTransitions();
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'videoIcon');
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
@@ -245,6 +240,8 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  reloadVideoEditorComponentPositions()
+  resetVisibilityOfVideoEditorTransitions();
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'textIcon');
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);

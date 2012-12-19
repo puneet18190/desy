@@ -1,5 +1,5 @@
 @mixin button {
-  $button-size: 3em;
+  $button-size: 3.4em;
   & {
     display: inline-block;
     width: $button-size;
@@ -17,12 +17,14 @@
   
   &.edit {
     background-position: 0 (-$button-size*2);
+    
   }
   &.edit:hover {
     background-position: (-$button-size) (-$button-size*2);
   }
   &.report {
     background-position: 0 0;
+    
   }
   &.report:hover {
     background-position: (-$button-size) 0;
@@ -33,6 +35,7 @@
   
   &.close {
     background-position: 0 (-$button-size);
+    
   }
   &.close:hover {
     background-position: (-$button-size) (-$button-size);
@@ -62,6 +65,7 @@
     font-size:75%;
     display: block;
     border:none;
+    
     a {
       @include button;
     }
