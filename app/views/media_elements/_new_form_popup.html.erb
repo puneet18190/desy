@@ -19,7 +19,10 @@
           <p style="padding-bottom:15px"><%= t('forms.media_element.notes') %></p>
           <%= f.text_area :tags, name: 'tags', placeholder: t('forms.media_element.labels.tags') %>
           <br>
-          <%= f.submit t('forms.media_element.submit'), id: 'new_media_element_submit' %> or <a class="_close" data-dialog-id="load-media-element">cancel</a>
+          <div class="fltrt">
+            <a class="_close buttonForm" data-dialog-id="load-media-element">cancel</a>
+            <%= f.submit t('forms.media_element.submit'), id: 'new_media_element_submit' %>
+         </div>
         </div>
       <% end %>
       <div class="_error_messages"></div>
