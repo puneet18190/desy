@@ -85,30 +85,39 @@ class ImageEditorController < ApplicationController
           width_val = woh[1]
           original_val = woh[0]
           font_size = "#{ratio_value(width_val,(size_value), original_val)}"
-          coords_value = params["coords_#{t_num}"]
+          coords_value = params["coords_#{t_num}"].to_s.split(",")
+          coordX = ratio_value(width_val,coords_value[0], original_val)
+          coordY = ratio_value(width_val,coords_value[1], original_val)
           text_value = params["text_#{t_num}"]
           
-          #Media::Image::Editing::AddTextToImage.new(img, color_hex, font_size, coords_value, text_value)
-          
-          img.combine_options do |c|
-            color_value = params["color_#{t_num}"]
-            color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
-            c.fill "#{color_hex}"
-            c.stroke "none"
-            #c.encoding = "Unicode"
-            c.font "#{Rails.root}/vendor/fonts/DroidSansFallback.ttf"
-            size_value = params["font_#{t_num}"].to_f
-            width_val = woh[1]
-            original_val = woh[0]
-            c.pointsize "#{ratio_value(width_val,(size_value), original_val)}"
-            c.gravity 'NorthWest'
-            coords_value = params["coords_#{t_num}"].to_s.split(",")
-            c0 = ratio_value(width_val,coords_value[0], original_val)
-            c1 = ratio_value(width_val,coords_value[1], original_val)
-            text_value = params["text_#{t_num}"]
-
-            c.draw "text #{c0},#{c1} '#{text_value}'"
+          tmp_file = Tempfile.new('textarea')
+          begin
+            tmp_file << text_value
+            Media::Image::Editing::AddTextToImage.new(img, color_hex, font_size, coordX, coordY, text_value).run
+          ensure
+            tmp_file.close
+            tmp_file.unlink
           end
+          
+          #img.combine_options do |c|
+          #  color_value = params["color_#{t_num}"]
+          #  color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
+          #  c.fill "#{color_hex}"
+          #  c.stroke "none"
+          #  #c.encoding = "Unicode"
+          #  c.font "#{Rails.root}/vendor/fonts/DroidSansFallback.ttf"
+          #  size_value = params["font_#{t_num}"].to_f
+          #  width_val = woh[1]
+          #  original_val = woh[0]
+          #  c.pointsize "#{ratio_value(width_val,(size_value), original_val)}"
+          #  c.gravity 'NorthWest'
+          #  coords_value = params["coords_#{t_num}"].to_s.split(",")
+          #  c0 = ratio_value(width_val,coords_value[0], original_val)
+          #  c1 = ratio_value(width_val,coords_value[1], original_val)
+          #  text_value = params["text_#{t_num}"]
+          #
+          #  c.draw "text #{c0},#{c1} '#{text_value}'"
+          #end
         end
       end
       
@@ -176,7 +185,6 @@ class ImageEditorController < ApplicationController
             color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
             c.fill "#{color_hex}"
             c.stroke "none"
-            #c.encoding = "Unicode"
             c.font "#{Rails.root}/vendor/fonts/DroidSansFallback.ttf"
             size_value = params["font_#{t_num}"].to_f # should add * 0.75 to compensate px to pt
             width_val = woh[1]
@@ -191,6 +199,7 @@ class ImageEditorController < ApplicationController
           end
         end
       end
+      
       if !params[:x1].blank?
         x1= ratio_value(woh[1],params[:x1],woh[0])
         y1= ratio_value(woh[1],params[:y1],woh[0])
@@ -201,6 +210,7 @@ class ImageEditorController < ApplicationController
         crop_params = "#{w}x#{h}+#{x1}+#{y1}"
         img.crop(crop_params)
       end
+      
       image_dir = "/public/media_elements/images/#{params[:image_id]}"
       img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
 
