@@ -78,6 +78,18 @@ a.cerca.current {
   background-image:url(<%= asset_path 'cerca_current.png' %>);
   cursor:auto;
 }
+
+._error_messages{
+  height: 10px;
+  padding-top: 10px;
+  width: 700px;
+  display:block;
+}
+.form_error{
+  border:1px solid white;
+  outline: 2px solid white;
+}
+
 .boxViewExpandedLesson {
   @include contentLayout;
   background-color:#fbfafb;
@@ -411,17 +423,6 @@ a.cerca.current {
   
 }
 
-._error_messages{
-  height: 10px;
-  padding-top: 10px;
-  width: 700px;
-  display:block;
-}
-.form_error{
-  border:1px solid white;
-  outline: 2px solid white;
-}
-
 .MediaElementPopUpContainer {
   height:339px;
   padding:20px;
@@ -442,15 +443,22 @@ a.cerca.current {
     z-index:10; 
     position:absolute; 
     background-color:#373737; 
-    width:694px; 
-    height:319px; 
+    width:700px; 
+    height:320px; 
     padding:0px; 
     
     p {
       padding-top:0px;
     }
     .cols {
-      width:45%;
+      width:320px;
+      margin-left: 20px;
+    }
+    ._error_messages{
+      padding:0;
+      margin: -10px 20px 0;
+      clear:both;
+      width: 660px;
     }
     
   }
@@ -508,12 +516,12 @@ a.cerca.current {
   
 }
 .formModifyInfo {
-  padding-top:3%;
+  padding-top:20px;
   float:left;
   width:100%;
   
   .cols {
-    width:40%;
+    width:320px;
     
     a:hover {
       cursor: pointer;
@@ -598,6 +606,7 @@ a.cerca.current {
       
     }
   }
+  
   .submitButton {
     margin: 0;
     padding: 0px;

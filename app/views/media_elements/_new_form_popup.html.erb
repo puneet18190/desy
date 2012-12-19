@@ -98,7 +98,7 @@ $(function() {
 
   uploader.bind('Error', function(up, err) {
     // TODO gestione errori lato client e server 500 (estensione e dimensioni principalmente)
-    
+    //var resp = jQuery.parseJSON(err);
     console.log("Errors: "+err);
     // $('#filelist').append("<div>Error: " + err.code +
     //   ", Message: " + err.message +
@@ -110,15 +110,31 @@ $(function() {
   });
 
   uploader.bind('FileUploaded', function(up, file, data) {
-    var resp = jQuery.parseJSON(data);
-    if(resp.errors.leng){
-      
+    var errs = JSON.parse(data.response);
+    if($('#media_element_media_show').text() != "<%= t('captions.select_file').downcase%>"){
+      $('._error_messages').text(errs);
+    }else{
+      $('._error_messages').text("File: no file selected "+errs);
     }
+    //var resp = JSON(data);
+    //if(resp.errors.length > 0){
+    //  console.log("ERR: "+resp.errors);
+    //}else{
+    //  console.log("NOERR");
+    //}
     console.log(data);
     $('.barraLoading div').width('100%');
     // TODO gestione errori lato server (li gestiamo qui perché quest'evento ci ritorna i dati del server, mentre Error no)
   });
 });
+
+  function media_elements_error_messages(errors){
+    //var msg = ""
+    //errors.each do |key,val|
+    //  msg << "#{key.to_s}: #{val[0].to_s}, " 
+    //end
+    //return msg[0..-3].html_safe
+  }
 </script>
 
 
