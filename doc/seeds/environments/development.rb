@@ -309,12 +309,10 @@ def plant_development_seeds
   image25.is_public = true
   image25.save!
   
-  # giunto qui
-  
   image26 = Image.new
-  image26.title = Plane
-  image26.description = The Boeing 737 is the most widely used airliner for routes medium-short: with 7,634 aircraft delivered and 2,134 other passenger aircraft to be delivered is the most produced in the history of aviation. The project is Boeing that produces since 1967. It is so widespread that in 2006 it was estimated there were about 1,250 aircraft of this type in flight simultaneously around the world, while, on average, it took off or landed one every five seconds.
-  image26.tags = plane, london, city, fly, people, geography
+  image26.title = 'Plane'
+  image26.description = 'The Boeing 737 is the most widely used airliner for medium-short routes.'
+  image26.tags = 'plane, london, city, fly, people, geography'
   image26.media = File.open(Rails.root.join('db/seeds/images/plane.jpg'))
   image26.user_id = fupete.id
   image26.save!
@@ -322,9 +320,9 @@ def plant_development_seeds
   image26.save!
   
   image27 = Image.new
-  image27.title = Lady Liberty
-  image27.description = Liberty Enlightening the World (lit. Liberty enlightening the world; fr. Éclairant La liberté le monde), known more commonly as the Statue of Liberty is a monument symbol of New York and the entire United States of America.
-  image27.tags = art, new york, city, people, geography
+  image27.title = 'Statue of Liberty'
+  image27.description = 'Liberty Enlightening the World (lit. Liberty enlightening the world; fr. Éclairant La liberté le monde), more commonly known as the Statue of Liberty, is the symbol of New York.'
+  image27.tags = 'art, new york, city, people, geography'
   image27.media = File.open(Rails.root.join('db/seeds/images/liberty.jpg'))
   image27.user_id = benj.id
   image27.save!
@@ -332,9 +330,9 @@ def plant_development_seeds
   image27.save!
   
   image28 = Image.new
-  image28.title = A young woman
-  image28.description = Portrait of a Muslim woman
-  image28.tags = woman, new york, city, people, geography
+  image28.title = 'A young woman'
+  image28.description = 'Portrait of a Muslim woman.'
+  image28.tags = 'woman, new york, city, people, geography'
   image28.media = File.open(Rails.root.join('db/seeds/images/donna.jpg'))
   image28.user_id = benj.id
   image28.save!
@@ -342,9 +340,9 @@ def plant_development_seeds
   image28.save!
   
   image29 = Image.new
-  image29.title = The Sphinx
-  image29.description = The sphinx is a mythological figure as belonging to Greek mythology as the Egyptian mythology. Is portrayed as a monster with the body of a lion (or dog) and the human head (androsfinge), hawk (ieracosfinge) or goat (criosfinge), looking magnificent and imposing.
-  image29.tags = history, egypt, city, art, geography
+  image29.title = 'The Sphinx'
+  image29.description = 'The sphinx is a mythological figure belonging to Egyptian mythology.'
+  image29.tags = 'history, egypt, city, art, geography'
   image29.media = File.open(Rails.root.join('db/seeds/images/statua.jpg'))
   image29.user_id = fupete.id
   image29.save!
@@ -352,9 +350,9 @@ def plant_development_seeds
   image29.save!
   
   image30 = Image.new
-  image30.title = A long bridge
-  image30.description = A bridge is a structure used to overcome a natural or artificial barriers, which puts the continuity of a line of communication.
-  image30.tags = geography, city, new york, art, geography
+  image30.title = 'A long bridge'
+  image30.description = 'A picture of a bridge.'
+  image30.tags = 'city, new york, art, geography'
   image30.media = File.open(Rails.root.join('db/seeds/images/ponte.jpg'))
   image30.user_id = benj.id
   image30.save!
@@ -362,9 +360,9 @@ def plant_development_seeds
   image30.save!
   
   image31 = Image.new
-  image31.title = DNA
-  image31.description = From the chemical point of view, DNA is an organic polymer made ​​up of monomers called nucleotides (deoxyribonucleotides). All nucleotides consist of three basic components: a phosphate group, the deoxyribose (pentose sugar) and a nitrogenous base which binds to the deoxyribose with N-glycosidic bond.
-  image31.tags = dan, science, chemical, organic, polymer, basic
+  image31.title = 'DNA'
+  image31.description = 'DNA is an organic polymer made ​​up of monomers called nucleotides (deoxyribonucleotides).'
+  image31.tags = 'dna, science, chemical, organic, polymer, basic'
   image31.media = File.open(Rails.root.join('db/seeds/images/dna.jpg'))
   image31.user_id = fupete.id
   image31.save!
@@ -372,286 +370,13 @@ def plant_development_seeds
   image31.save!
   
   image32 = Image.new
-  image32.title = Solar system
-  image32.description = The solar system is the planetary system consists of a variety of celestial bodies kept in orbit by the gravitational force of the Sun, also belongs to the Earth. It consists of eight planets, in their natural satellites, five dwarf planets and billions of small bodies.
-  image32.tags = space, science, chemical, planet, sky, history
+  image32.title = 'Solar system'
+  image32.description = 'The solar system consists of a variety of celestial bodies kept in orbit by the gravitational force of the Sun.'
+  image32.tags = 'space, science, chemical, planet, sky, history'
   image32.media = File.open(Rails.root.join('db/seeds/images/space.jpg'))
   image32.user_id = jeg.id
   image32.save!
   image32.is_public = true
   image32.save!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  slides = {1 => ['image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2', 'text', 'title'], 2 => ['text', 'video1'], 3 => ['video2', 'video2'], 4 => ['image3', 'audio'], 5 => [], 6 => ['audio'], 7 => ['text', 'text'], 8 => [], 9 => ['video1', 'title'], 10 => ['image1', 'image3'], 11 => ['text', 'image2', 'image2', 'text'], 12 => ['video2', 'audio', 'title'], 13 => [], 14 => [], 15 => [], 16 => [], 17 => [], 18 => [], 19 => [], 20 => [], 21 => [], 22 => [], 23 => [], 24 => [], 25 => [], 26 => [], 27 => [], 28 => [], 29 => [], 30 => [], 31 => [], 32 => [], 33 => ['image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2', 'text', 'title', 'image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2', 'text', 'title', 'image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2', 'text', 'title', 'image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2', 'text', 'title', 'image1', 'image2', 'image3', 'image4', 'audio', 'video1', 'video2', 'text', 'title'], 34 => [], 35 => [], 36 => [], 37 => []}
-  
-  Lesson.all.each do |l|
-    slides[l.id].each do |kind|
-      l.add_slide kind, 2
-    end
-  end
-  
-  notifics = []
-  notifics << "Que tipo de homosexual sufre mucho? Un cristiano con tendencias homosexuales o un homosexual no cristiano?"
-  notifics << "I laziali staranno già avendo la loro prima erezione mattutina, ma possono stare tranquilli. Il loro incubo resta a Roma. Pronto a purgarli ancora!!"
-  notifics << "speriamo sia giunta l'ora di levarcelo di torno, ha un pò stancato....che vada a fare il turista a Mosca adesso. "
-  notifics << "Corriere dello sport, la tifoseria romanista ha capito qual è l'andazzo (il fatto che il direttore sia ex-Tuttosport vale più di mille parole) e non abbocca più a questi casi creati ad hoc dopo che la Roma vince una partita. Restate da soli con le vostre \"notizie\""
-  notifics << "La roma dovrebbe stare sul fondo della classifica ed invece grazie alle partite truccate e alle vittorie a tavolino eccola li nel gruppo di testa. Il calcio in Italia sta diventando una cosa ridicola!"
-  notifics << "Che tristezza...Preziosi ingrato! De Canio allenatore capace e molto preparato (ma poco sponsorizzato....) "
-  notifics << "E ci vogliamo meravigliare ancora? Si sa che Preziosi é della pasta di Zamparini... Per cui alla fine 1+1 ha sempre fatto due. Per la serie \"Il gatto e la volpe\""
-  notifics << "Voi parlate dei bagni... C'e' un video su youtube che dimostra che quelli non sono i bagni del settore ospiti. Che squallido tentativo di spostare l'attenzione sullo schifo che fanno gli juventini e il loro giornalista in primis... Dopo Roma, Torino. Ho scoperto sabato di avere un vicino juventino, e ' aperta la caccia..."
-  notifics << "Io Puzzo ... di lava, di tufo, di ortobotanico, di golfo e di isole, di mare e pure di cozze, di ragu' e di dolci fatti in casa, di pizza, di almeno tre castelli, di solfatara, di canzoni cantate a squarcia gola nel traffico,"
-  notifics << "non siamo una nazione perchè non è nata su un concetto di unità ma su un concetto di dualità...ed ancora oggi così viene gestita"
-  notifics << "Caro Mazzarri questo non succedera' mai perchè altrimenti non avremmo perso la partita di Pechino.Ci sara' sempre qualcuno che fara' l'occhiolino alla Juve.Saluti"
-  notifics << "Questo giornalista merita il premio 'ciuccio juventino dell'anno'. facciamogli i complimenti, ha vinto una bella concorrenza, ma se lo merita proprio!"
-  notifics << "vogliamo 1 turno di squalifica per i tifosi.. A PORTE CHIUSE!!!!"
-  notifics << "ormai il razzismo è così radicato in voi che non ci fate manco più caso ...ma chi se ne frega del risultato della partita"
-  notifics << "vergognati di vivere razzista"
-  notifics << "Alla fine, ciò che conta questo è di essere felici e sbocciato, no? In un mondo o i riferimenti che siano familiari, sociali, etici﻿ esplodono, come non volete essere perturbato?"
-  notifics << "Luca﻿ è ancora gay...probabilmente represso..."
-  notifics << "dovrebbero cambiare il image.title in: Luca è bisex -.-'''' Inoltre Freud sosteneva che l'uomo nascesse bisessuale!!!! a Povia studia un po' prima di scrivere﻿ minchiate!!!!"
-  notifics << "guarda ke non parla di se stesso ma parla di un ragazzo che si kiama davvero luca e ke ha avuto davvero questi problemi﻿"
-  notifics << "vabbe' e' una storia, Povia parla evidentemente﻿ della sua esperienza , non e' contro l'omossesualita'.."
-  notifics << "I do not understand italian language, but I know the history of this his song. You are a brave man for writing it, dude! Keep going with that! Congratulations!!!﻿"
-  notifics << "Comunque oltre al testo che fa schifo, anche il video è terribile e poco professionale. Questa canzone è una delle solite figuraccie italiane nei confronti del mondo intero."
-  notifics << "Un po' come quando la Mussolini dice \"meglio fascista che frocio\" in tv e Berlusconi dice che \"è meglio essere appassionati delle belle ragazze che gay\""
-  notifics << "é terribile questo video ed offensivo nei confronti di tutte le persone﻿ omosessuali"
-  notifics << 'Ma De Rossi a Roma che cosa ci sta a fare quando le cose vanno male è sempre colpa sua'
-  notifics << "a daniè t'avevo detto che dovevi annà al city"
-  notifics << "共產黨通過「鎮壓反革命」嘅運動，對私有經濟同財產進行城市工商業"
-  notifics << "Prova il brivido del Poker online Gioca su StarCasinò. Bonus 1.000€!"
-  notifics << "Io i napoletani li conosco benissimo senza la violenza sono gente morta"
-  notifics << "CMQ SE DOVESSERO ESSERE STANCHI CI PENSA IL DR.FAJARDO A TIRARLI SU."
-  notifics << "La unica cosa certa che c'e' e' che gli juventini e i napoletani sono riusciti a fare odiare la nazionale"
-  notifics << "la lazio e' l'unica squadra forte che abbiamo in italia... juventus e napoli si credono real madrid e barcellona "
-  notifics << "stai dicendo fregnacce.....taci e meglio,e non condannare prima del tempo."
-  notifics << "Uhm e chi sarebbero i giocatori della juve che non han giocato???"
-  notifics << "se la pensi cosi è meglio che cambi sport!!!!"
-  notifics << "Un número apreciable de hombres y mujeres presentan tendencias homosexuales instintivas"
-  notifics << "La squadra piu ladra del pianeta rubera' l'ennesimo scudetto ,,,cavolo che soddisfazione !!! "
-  notifics << "scommettiamo che la prossima degli azzurri non gioca neanche Pirlo?"
-  notifics << "Il fatto che per eliminare l'italia quella partita dovesse finire non solo in un pareggio, ma anche esattamente 2-2, le è sfuggito per caso, mica perchè avrebbe screditato le sue teorie, giusto?"
-  notifics << "Irlanda travolta 6-1. Trap: «Non mi dimetto»"
-  notifics << "Mou: «Balotelli? Potrei scriverci un romanzo»"
-  notifics << "Roma e lazio nel punto di vista simbolico storico la roma rappresenta il popolo romano e la Lazio I LEGIONALI!! grazie ai LEGIONALI Roma è diventata VASTA E POTENTE e i LEGIONALU ERANO ANCHE ESSI ROMANI!!!! Dunque il derby romano stesso rappresenta simbolicamente la potenza DI ROMA sia dal popplo romano e i LEGIONALI!!! Sabatini non è romano e non conosce storia e leggenda del derby ovvero E IGNORANTE!!!!"
-  notifics << "Felix, 36 km di volo e muro del suono rotto, ma mai spettacolare come il volo di Pessotto"
-  
-  notifics.each do |n|
-    Notification.send_to admin.id, n
-  end
-  
-  Notification.limit(32).each do |n|
-    n.has_been_seen
-  end
-  
-  Lesson.all.each do |l|
-    raise Exception if !l.publish
-  end
-  
-  cont = 0
-  tim = Time.zone.now
-  MediaElement.all.each do |l|
-    if ![2, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40].include?(l.id)
-      l.is_public = true
-      l.publication_date = tim - cont
-      l.save
-      cont += 1
-    end
-  end
-  
-  Lesson.all.each do |l|
-    if [2, 3].include? l.subject_id
-      raise Exception if !admin.bookmark('Lesson', l.id)
-    end
-    if l.subject_id == 3
-      raise Exception if !l.copy(admin.id)
-    end
-  end
-  
-  MediaElement.all.each do |me|
-    if me.id % 3 == 1
-      admin.bookmark 'MediaElement', me.id
-    end
-  end
-  
-  paparesta.like(1)
-  paparesta.like(10)
-  paparesta.like(14)
-  paparesta.like(16)
-  paparesta.like(34)
-  paparesta.like(25)
-  paparesta.like(28)
-  paparesta.like(19)
-  paparesta.like(21)
-  paparesta.like(3)
-  paparesta.like(4)
-  paparesta.like(5)
-  paparesta.like(9)
-  banti.like(20)
-  banti.like(22)
-  banti.like(23)
-  banti.like(24)
-  banti.like(25)
-  banti.like(26)
-  valeri.like(30)
-  valeri.like(31)
-  valeri.like(32)
-  valeri.like(33)
-  valeri.like(34)
-  valeri.like(35)
-  giannoccaro.like(4)
-  giannoccaro.like(6)
-  giannoccaro.like(17)
-  giannoccaro.like(29)
-  giannoccaro.like(36)
-  giannoccaro.like(34)
-  giannoccaro.like(33)
-  giannoccaro.like(29)
-  giannoccaro.like(18)
-  giannoccaro.like(16)
-  giannoccaro.like(11)
-  trefoloni.like(10)
-  trefoloni.like(25)
-  trefoloni.like(15)
-  trefoloni.like(5)
-  trefoloni.like(3)
-  trefoloni.like(2)
-  trefoloni.like(1)
-  trefoloni.like(34)
-  trefoloni.like(37)
-  de_sanctis.like(6)
-  de_sanctis.like(16)
-  de_sanctis.like(26)
-  de_sanctis.like(36)
-  de_sanctis.like(33)
-  de_sanctis.like(11)
-  de_sanctis.like(22)
-  mazzini.like(14)
-  mazzini.like(13)
-  mazzini.like(12)
-  mazzini.like(11)
-  mazzini.like(7)
-  mazzini.like(17)
-  carraro.like(18)
-  carraro.like(28)
-  carraro.like(8)
-  carraro.like(37)
-  carraro.like(21)
-  carraro.like(22)
-  carraro.like(23)
-  carraro.like(24)
-  pairetto.like(1)
-  pairetto.like(2)
-  pairetto.like(3)
-  pairetto.like(6)
-  pairetto.like(7)
-  pairetto.like(8)
-  pairetto.like(9)
-  pairetto.like(12)
-  bergamo.like(16)
-  bergamo.like(21)
-  bergamo.like(22)
-  bergamo.like(23)
-  bergamo.like(25)
-  celi.like(5)
-  celi.like(6)
-  celi.like(7)
-  celi.like(11)
-  celi.like(14)
-  celi.like(15)
-  celi.like(17)
-  collina.like(4)
-  collina.like(21)
-  collina.like(20)
-  collina.like(19)
-  collina.like(18)
-  collina.like(17)
-  collina.like(36)
-  lotito.like(31)
-  lotito.like(32)
-  lotito.like(33)
-  lotito.like(13)
-  lotito.like(16)
-  lotito.like(17)
-  lotito.like(18)
-  della_valle.like(2)
-  della_valle.like(4)
-  della_valle.like(5)
-  della_valle.like(8)
-  della_valle.like(10)
-  della_valle.like(20)
-  della_valle.like(22)
-  della_valle.like(24)
-  moggi.like(1)
-  moggi.like(11)
-  moggi.like(21)
-  moggi.like(31)
-  galliani.like(10)
-  galliani.like(18)
-  galliani.like(19)
-  galliani.like(20)
-  galliani.like(21)
-  galliani.like(22)
-  galliani.like(23)
-  galliani.like(24)
-  galliani.like(34)
-  galliani.like(35)
-  
-  Lesson.last.modify
-  raise Exception if !Lesson.last.copy(admin.id)
-  Lesson.last.modify
-  
-  admin.like(Bookmark.where(:user_id => admin.id, :bookmarkable_type => 'Lesson').first.id)
-  
-  Lesson.record_timestamps = false
-  prima_data = '2012-10-10 12:00:00'.to_time
-  cont = 0
-  Lesson.all.each do |l|
-    l.created_at = prima_data + cont
-    l.save
-    cont += 1
-  end
-  Lesson.record_timestamps = true
-  
-  MediaElement.record_timestamps = false
-  prima_data = '2012-10-10 12:00:00'.to_time
-  cont = 0
-  MediaElement.all.each do |l|
-    l.created_at = prima_data + cont
-    l.save
-    cont += 1
-  end
-  MediaElement.record_timestamps = true
   
 end
