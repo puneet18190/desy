@@ -136,6 +136,7 @@ en:
     or_cancel: 'Or cancel'
     original_size: 'Original size'
     password: 'Password'
+    password_or_username_not_correct: 'Wrong login data'
     play: 'Play'
     playlist: 'Playlist'
     preview: 'Preview'

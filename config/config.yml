@@ -3,7 +3,7 @@ locations: ['Roma', 'Milano', '南京', '上海', '北京', '青岛'] # possibly
 subjects: ['Chemistry', 'Mathematics', 'History', 'Biology', 'Languages']
 school_levels: ['Primary School', 'Secondary School', 'Undergraduate', 'Master']
 admin_username: 'DESY Admin User'
-admin_email: 'nanjing@china.gov'
+admin_email: 'desy@morganspa.com'
 # TAGS
 min_tag_length: 1
 max_tag_length: 25
