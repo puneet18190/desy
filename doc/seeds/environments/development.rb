@@ -70,7 +70,7 @@ def plant_development_seeds
   image2 = Image.new
   image2.title = 'Futuristic architecture'
   image2.description = 'Between the end of the twentieth century and early twenty-first century, in the city of Valencia (Spain), several architectural and urban projects took place. The most impressive is the City of Arts and Sciences, a new neighborhood in the southwest of the center designed by the Valencian architect Santiago Calatrava.'
-  image2.tags = 'future, architecture, art, design, spagna, valencia, geography'
+  image2.tags = 'future, architecture, art, design, spain, valencia, geography'
   image2.media =  File.open(Rails.root.join('db/seeds/images/architettura.jpg'))
   image2.user_id = toostrong.id
   image2.save!
@@ -78,10 +78,9 @@ def plant_development_seeds
   image2.save!
   
   image3 = Image.new
-  image3.title = Birds
-  image3.description = Gulls are birds of medium to large size, with sizes ranging from 29 cm in length and 120 g in weight of the little gull, to 75 cm in length and 1.75 to 2 kg of great Gull. The beak is long and strong, and webbed feet.
-  image3.The wings are usually white, gray or black and brown young people also. Depending on the species the young employ two to four years before reaching the adult livery. In this phase change is the color of the feathers and those of the beak, feet and eyes.
-  image3.tags = animals, birds, fly, sea, sky, new york, geography
+  image3.title = 'Birds'
+  image3.description = 'Sea gulls are birds of medium size: a small sea gull measures around 30 centimeters (for a weight of 120 grams), while a big one can reah 75 centimeters (for 200 grams kilos). The beak is long and strong, and the feet are webbed and fit to swim. The wings are usually white, gray or black, but sometimes they can be also brown. Depending on the species, the birds take two to four years before reaching the adult age.'
+  image3.tags = 'animals, birds, fly, sea, sky, new york, geography'
   image3.media = File.open(Rails.root.join('db/seeds/images/uccelli.jpg'))
   image3.user_id = benj.id
   image3.save!
@@ -89,10 +88,9 @@ def plant_development_seeds
   image3.save!
   
   image4 = Image.new
-  image4.title = Traffic
-  image4.description = A picture taken in new york city.
-  The metropolitan area of ​​New York is located at the intersection of three states (New York, New Jersey and Connecticut). The entire urban agglomeration has 18,223,567 inhabitants, while the metropolitan population is 23,019,036, making it, according to estimates from the third to the sixth most populous urban area in the world and the first to third in the American continent (in competition with Mexico City and Sao Paulo, Brazil).
-  image4.tags = city, traffic, urban, new york, geography
+  image4.title = 'Traffic'
+  image4.description = 'A picture from New York City. The metropolitan area of ​​New York is located at the intersection of three states (New York, New Jersey and Connecticut). The entire urban agglomeration has 18.223.567 inhabitants, while the metropolitan population is 23.019.036, which make it the third most populous urban area in the world and the first in the American continent (in competition with Mexico City and Sao Paulo, Brazil).'
+  image4.tags = 'city, traffic, urban, new york, geography'
   image4.media = File.open(Rails.root.join('db/seeds/images/city.jpg'))
   image4.user_id = benj.id
   image4.save!
@@ -100,14 +98,16 @@ def plant_development_seeds
   image4.save!
   
   image5 = Image.new
-  image5.title = Iguana
-  image5.description = A beautiful picture of an iguana. Iguanas are very similar to lizards, but bigger and slower. To adulthood have a characteristic crest on the back, much more evident in males than in females. The head of the female is rounded, triangular than men.
-  image5.tags = science, animals, nature, reptile, geography, iguana
+  image5.title = 'Iguana'
+  image5.description = 'A beautiful picture of an iguana. Iguanas are very similar to lizards, but bigger and slower. In the adult age they grow a characteristic crest on their back, much more evident in males than in females. In the male the head has a triangular shape, sharper than in the female.'
+  image5.tags = 'science, animals, nature, reptile, geography, iguana'
   image5.media = File.open(Rails.root.join('db/seeds/images/rettile.jpg'))
   image5.user_id = fupete.id
   image5.save!
   image5.is_public = true
   image5.save!
+  
+  # giunto qui
   
   image6 = Image.new
   image6.title = Wind
