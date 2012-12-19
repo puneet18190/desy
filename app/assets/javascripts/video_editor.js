@@ -121,6 +121,8 @@ function addImageComponentInVideoEditor(image_id, component, duration) {
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  $('._video_editor_component ._video_component_transition.current').removeClass('current');
+  current_component.find('._video_component_transition').addClass('current');
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'photoIcon');
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
@@ -167,6 +169,8 @@ function addVideoComponentInVideoEditor(video_id, component, duration) {
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  $('._video_editor_component ._video_component_transition.current').removeClass('current');
+  current_component.find('._video_component_transition').addClass('current');
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'videoIcon');
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
@@ -218,6 +222,8 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
+  $('._video_editor_component ._video_component_transition.current').removeClass('current');
+  current_component.find('._video_component_transition').addClass('current');
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position), 'textIcon');
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
