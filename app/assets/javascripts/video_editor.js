@@ -27,8 +27,14 @@ function initializeVideoEditor() {
 }
 
 function resetVisibilityOfVideoEditorTransitions() {
-  $('._video_editor_component ._video_component_transition.current').removeClass('current');
-  current_component.find('._video_component_transition').addClass('current');
+  var components = $('._video_editor_component');
+  components.each(function(index) {
+    if(index < (components.length - 1)) {
+      $(this).find('._video_component_transition').removeClass('current');
+    } else {
+      $(this).find('._video_component_transition').addClass('current');
+    }
+  });
 }
 
 function calculateNewPositionGalleriesInVideoEditor() {
