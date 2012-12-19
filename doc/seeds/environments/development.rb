@@ -217,8 +217,6 @@ def plant_development_seeds
   image16.is_public = true
   image16.save!
   
-  # arrivato qui
-  
   image17 = Image.new
   image17.title = 'Natural gas'
   image17.description = 'In nature, the gas is produced by the anaerobic decomposition of organic material.'
@@ -378,5 +376,68 @@ def plant_development_seeds
   image32.save!
   image32.is_public = true
   image32.save!
+  
+  
+  # AUDIOS
+  
+  audio1 = Audio.new
+  audio1.title = 'What is energy?'
+  audio1.description = 'The interview with an expert talking about energy (in italian language).'
+  audio1.tags = 'interview, science, energy, power'
+  audio1.media = {:mp3 => Rails.root.join('db/seeds/audios/energia_cosa.mp3').to_s, :ogg => Rails.root.join('db/seeds/audios/energia_cosa.ogg').to_s, :filename => 'energia_cosa'}
+  audio1.user_id = toostrong.id
+  audio1.save!
+  audio1.is_public = true
+  audio1.save!
+  
+  audio2 = Audio.new
+  audio2.title = 'Energy statistics in Italy'
+  audio2.description = 'An interview with experts about italian use and production of energy (in italian language).'
+  audio2.tags = 'interview, science, energy, power, numbers'
+  audio2.media = {:mp3 => Rails.root.join('db/seeds/audios/energia_dati.mp3').to_s, :ogg => Rails.root.join('db/seeds/audios/energia_dati.ogg').to_s, :filename => 'energia_dati'}
+  audio2.user_id = fupete.id
+  audio2.save!
+  audio2.is_public = true
+  audio2.save!
+  
+  audio3 = Audio.new
+  audio3.title = 'Principles of modern energy'
+  audio3.description = 'The principles of modern energy explained by experts (in italian language).'
+  audio3.tags = 'interview, science, energy, power, principles'
+  audio3.media = {:mp3 => Rails.root.join('db/seeds/audios/energia_principi.mp3').to_s, :ogg => Rails.root.join('db/seeds/audios/energia_principi.ogg').to_s, :filename => 'energia_principi'}
+  audio3.user_id = jeg.id
+  audio3.save!
+  audio3.is_public = true
+  audio3.save!
+  
+  audio4 = Audio.new
+  audio4.title = 'Once upon a time the energy'
+  audio4.description = 'The history of energy development in the twentieth century (in italian language).'
+  audio4.tags = 'interview, science, energy, power, history'
+  audio4.media = {:mp3 => Rails.root.join('db/seeds/audios/energia_storia.mp3').to_s, :ogg => Rails.root.join('db/seeds/audios/energia_storia.ogg').to_s, :filename => 'energia_storia'}
+  audio4.user_id = holly.id
+  audio4.save!
+  audio4.is_public = true
+  audio4.save!
+  
+  audio5 = Audio.new
+  audio5.title = 'Digital sound'
+  audio5.description = 'A good base of digital music to be used in your video.'
+  audio5.tags = 'music, digital, sound, audio, song'
+  audio5.media = {:mp3 => Rails.root.join('db/seeds/audios/archangel.mp3').to_s, :ogg => Rails.root.join('db/seeds/audios/archangel.ogg').to_s, :filename => 'archangel'}
+  audio5.user_id = benji.id
+  audio5.save!
+  audio5.is_public = true
+  audio5.save!
+  
+  audio6 = Audio.new
+  audio6.title = 'Modern digital sound'
+  audio6.description = 'A good base of digital music to be used in your video.'
+  audio6.tags = 'music, digital, sound, audio, song'
+  audio6.media = {:mp3 => Rails.root.join('db/seeds/audios/homeless.mp3').to_s, :ogg => Rails.root.join('db/seeds/audios/homeless.ogg').to_s, :filename => 'homeless'}
+  audio6.user_id = retlaw.id
+  audio6.save!
+  audio6.is_public = true
+  audio6.save!
   
 end
