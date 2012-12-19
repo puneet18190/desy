@@ -735,6 +735,10 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('click', '#submit_login_form', function() {
+    $('#login_form form').submit();
+  });
+  
   
   // VIDEO EDITOR
   

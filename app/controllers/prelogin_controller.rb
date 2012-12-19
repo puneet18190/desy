@@ -23,6 +23,12 @@ class PreloginController < ApplicationController
   end
   
   def login
+  
+    if params[:email].blank? || params[:password].blank?
+      render 'login_error.js'
+      return
+    end
+    
     session[:user_id] = User.find_by_email(CONFIG['admin_email']).id # FIXME TEMPORANEO
     redirect = session[:prelogin_request]
     session[:prelogin_request] = nil
