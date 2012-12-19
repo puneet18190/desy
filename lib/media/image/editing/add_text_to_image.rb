@@ -8,27 +8,32 @@ module Media
     module Editing
       class AddTextToImage
         
-        def initialize(img, color_hex, font_size, coords_value, text_value)
-          @img, @color_hex, @font_size, @coords_value, @text_value = img, color_hex, font_size, coords_value, text_value
+        #img is a mini_magick object
+        def initialize(img, color_hex, font_size, coordX, coordY, text_value)
+          @img, @color_hex, @font_size, @coordX, @coordY, @text = img, color_hex, font_size, coordX, coordY, text_value
         end
         
         def run
           @img.combine_options do |c|
             c.fill "#{@color_hex}"
             c.stroke "none"
-            #c.encoding = "Unicode"
             c.font "#{Rails.root.join('vendor/fonts/DroidSansFallback.ttf')}"
-            size_value = params["font_#{t_num}"].to_f * 0.75
-            width_val = woh[1]
-            original_val = woh[0]
-            c.pointsize "#{ratio_value(width_val,(size_value), original_val)}"
+            c.pointsize "#{@font_size}"
             c.gravity 'NorthWest'
-            coords_value = params["coords_#{t_num}"].to_s.split(",")
-            c0 = ratio_value(width_val,coords_value[0], original_val)
-            c1 = ratio_value(width_val,coords_value[1], original_val)
-            text_value = params["text_#{t_num}"]
-
-            c.draw "text #{c0},#{c1} '#{text_value.shellescape}'"
+            #c.annotate
+            c.draw "text #{@coordX.to_i},#{@coordY.to_i} #{shellescaped_text}"
+          end
+        end
+        
+        private
+        def shellescaped_text
+          case @text
+          when File, Tempfile
+            "@#{text.path.shellescape}"
+          when Pathname
+            "@#{text.to_s.shellescape}"
+          else
+            @text.to_s.shellescape
           end
         end
         
