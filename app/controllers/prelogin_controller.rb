@@ -12,6 +12,7 @@ class PreloginController < ApplicationController
   end
   
   def create_registration
+    redirect_to_dashboard_if_logged_in
   end
   
   def what_is_desy
