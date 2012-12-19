@@ -19,19 +19,14 @@ module Media
             output = @output.shellescape
             wavs_with_paddings_length = @wavs_with_paddings.length
   
-            cmds = shellescaped_wavs_with_paddings.each_with_index.to_a.map do |wav_with_paddings_and_i|
-              wav_with_paddings, i = wav_with_paddings_and_i
-              wav, paddings = wav_with_paddings
-  
+            shellescaped_wavs_with_paddings.each_with_index.map do |(wav, paddings), i|
               sox_input  = sox_input(i, wav)
               sox_output = sox_output(wavs_with_paddings_length, i, output)
               sox_pad    = "pad #{paddings[0]} #{paddings[1]}"
   
               "#{BIN_AND_GLOBAL_OPTIONS} #{sox_input} #{sox_output} #{sox_pad}"
   
-            end
-  
-            cmds.join(' | ')
+            end.join(' | ')
           end
   
           def sox_input(i, input)

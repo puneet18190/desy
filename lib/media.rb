@@ -2,6 +2,8 @@ module Media
   
   # Definisce CONFIG
   require 'media/config'
+
+  TMP_PREFIX = CONFIG.tmp_prefix
 end
 
 require 'media/error'
