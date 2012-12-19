@@ -712,6 +712,8 @@ $(document).ready(function() {
   
   // MEDIA ELEMENTS EDITOR
   
+  $('#form_info_new_media_element_in_editor, #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
+  
   
   // IMAGE EDITOR
   
