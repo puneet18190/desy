@@ -9,7 +9,6 @@ function initializeVideoEditor() {
     axis: 'x',
     cursor: 'move',
     cancel: '._video_editor_component_menu',
-    containment: 'parent',
     start: function(event, ui) {
       my_item = $(ui.item);
       my_item.find('._video_editor_component_menu').hide();
@@ -24,6 +23,13 @@ function initializeVideoEditor() {
       my_item.find('._video_component_icon').removeClass('current');
       my_item.find('._video_component_thumb').removeClass('current');
       resetVisibilityOfVideoEditorTransitions();
+      var boolean1 = (my_item.next().attr('id') == 'add_new_video_component');
+      var boolean2 = (my_item.data('position') != $('._video_editor_component').length);
+      var boolean3 = (my_item.next().data('position') != (my_item.data('position') + 1));
+      if(boolean1 && boolean2 || !boolean1 && boolean3) {
+        reloadVideoEditorComponentPositions();
+        $('._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
+      }
     }
   });
 }
