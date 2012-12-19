@@ -221,8 +221,8 @@ def plant_development_seeds
   
   image17 = Image.new
   image17.title = 'Natural gas'
-  image17.description = 'Natural gas is a gas produced by the anaerobic decomposition of organic material. In nature it is commonly found in the fossil state, along with the oil, coal or natural gas deposits only. It is, however, also produced by the decomposition processes current in the swamps in landfills, during digestion in animals and other natural processes.'
-  image17.tags = nature, gas, fire, nature, energie, air, science
+  image17.description = 'In nature, the gas is produced by the anaerobic decomposition of organic material.'
+  image17.tags = 'nature, gas, fire, nature, energie, air, science'
   image17.media = File.open(Rails.root.join('db/seeds/images/fiamma.jpg'))
   image17.user_id = toostrong.id
   image17.save!
@@ -230,9 +230,9 @@ def plant_development_seeds
   image17.save!
   
   image18 = Image.new
-  image18.title = Family
-  image18.description = A mother helps her child to study using the internet.
-  image18.tags = school, computer, history, science, maths, student, mother
+  image18.title = 'Family'
+  image18.description = 'A mother uses the internet to help her child studying.'
+  image18.tags = 'school, computer, history, science, maths, student, mother'
   image18.media = File.open(Rails.root.join('db/seeds/images/mamma_e_figlia.jpg'))
   image18.user_id = toostrong.id
   image18.save!
@@ -240,9 +240,9 @@ def plant_development_seeds
   image18.save!
   
   image19 = Image.new
-  image19.title = Harlem
-  image19.description = Harlem is a neighborhood of Manhattan in New York City, known to be a major commercial and cultural center of African-Americans. Although the name is generally attributed to the whole region uptown Manhattan, Harlem has traditionally been limited by Road 155 (155th Street) to the north, and the Harlem River to the east.
-  image19.tags = geography, new york,woman, city, colored, walk
+  image19.title = 'Harlem'
+  image19.description = 'Harlem is a neighborhood of Manhattan in New York City, known as a major commercial and cultural center of Afro-Americans.'
+  image19.tags = 'geography, new york,woman, city, colored, walk'
   image19.media = File.open(Rails.root.join('db/seeds/images/colored.jpg'))
   image19.user_id = retlaw.id
   image19.save!
@@ -250,10 +250,9 @@ def plant_development_seeds
   image19.save!
   
   image20 = Image.new
-  image20.title = Modern architecture
-  image20.description = "The Hemisfèric is one of the buildings that are part of the Ciutat de les Arts i les Ciències of Valencia.
-  The building was designed by Santiago Calatrava and was the first of the Ciutat de les Arts i les Ciències to be open to the public April 16, 1998. It was designed in the shape of the eye and inside there is a large room with a concave screen of 900 square meters and 24 meters in diameter, which are de l'Hemisfèric the IMAX theater largest in Spain."
-  image20.tags = geography, valencia, modern, water, creative
+  image20.title = 'Modern architecture'
+  image20.description = "The \"Hemisfèric\" is one of the buildings of \"Ciutat de les Arts i les Ciències\" in Valencia."
+  image20.tags = 'geography, valencia, modern, water, creative'
   image20.media = File.open(Rails.root.join('db/seeds/images/architettura_acqua.jpg'))
   image20.user_id = benj.id
   image20.save!
@@ -261,9 +260,9 @@ def plant_development_seeds
   image20.save!
   
   image21 = Image.new
-  image21.title = Peacock
-  image21.description = The plumage of these birds is one of the most representative cases of sexual dimorphism: see the head and neck covered with feathers of the male electric blue metallic reflections. The area around the eye is naked, with white leather interrupted by a black stripe.
-  image21.tags = animal, peacock, color, science, bird
+  image21.title = 'Peacock'
+  image21.description = 'The plumage of these birds is one of the most colorful in the animal world.'
+  image21.tags = 'animal, peacock, color, science, bird'
   image21.media = File.open(Rails.root.join('db/seeds/images/pavone.jpg'))
   image21.user_id = toostrong.id
   image21.save!
@@ -271,9 +270,9 @@ def plant_development_seeds
   image21.save!
   
   image22 = Image.new
-  image22.title = People
-  image22.description = A group of interested visitors walking in the halls of a museum of modern art.
-  image22.tags = art, people, museum, new york, culture
+  image22.title = 'People'
+  image22.description = 'A group of interested visitors walking in the halls of a museum of modern art.'
+  image22.tags = 'art, people, museum, new york, culture'
   image22.media = File.open(Rails.root.join('db/seeds/images/museo.jpg'))
   image22.user_id = benj.id
   image22.save!
@@ -281,9 +280,9 @@ def plant_development_seeds
   image22.save!
   
   image23 = Image.new
-  image23.title = Money
-  image23.description = The U.S. dollar is the official currency of the United States of America. It is also widely used as a reserve currency outside the United States. The commonly used symbol for the U.S. dollar is '$'. The ISO 4217 currency code is USD.
-  image23.tags = USA, money, geography, new york, culture
+  image23.title = 'Money'
+  image23.description = "As in a famous song of the Beatles, \"That's all I want\"."
+  image23.tags = 'money, geography, new york, culture'
   image23.media = File.open(Rails.root.join('db/seeds/images/dollari.jpg'))
   image23.user_id = benj.id
   image23.save!
@@ -291,9 +290,9 @@ def plant_development_seeds
   image23.save!
   
   image24 = Image.new
-  image24.title = Airport
-  image24.description = The London Heathrow Airport is the main airport in London. It is the busiest airport in the EU by passenger numbers (and third in the world after the Atlanta and Beijing) and the third, in the EU, by number of flight movements preceded by Paris-Charles de Gaulle and Frankfurt.
-  image24.tags = airport, london, city, departure, fly, geography
+  image24.title = 'Airport'
+  image24.description = 'Heathrow Airport is the main airport in London.'
+  image24.tags = 'airport, london, city, departure, fly, geography'
   image24.media = File.open(Rails.root.join('db/seeds/images/london.jpg'))
   image24.user_id = jeg.id
   image24.save!
@@ -301,14 +300,16 @@ def plant_development_seeds
   image24.save!
   
   image25 = Image.new
-  image25.title = Underground
-  image25.description = The London Underground (London Underground in English) is the oldest subway system in the world, the largest in Europe and the second largest boasting Some 460 km of line independent of which 45% are underground tunnels, exceeded only by 467.5 km of the recent Shanghai plant.
-  image25.tags = underground, london, city, train, people, geography
+  image25.title = 'Underground'
+  image25.description = 'The London Underground is the largest subway system in Europe.'
+  image25.tags = 'underground, london, city, train, people, geography'
   image25.media = File.open(Rails.root.join('db/seeds/images/underground.jpg'))
   image25.user_id = benj.id
   image25.save!
   image25.is_public = true
   image25.save!
+  
+  # giunto qui
   
   image26 = Image.new
   image26.title = Plane
