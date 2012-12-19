@@ -49,6 +49,7 @@ $(function() {
   var uploader = new plupload.Uploader({
     runtimes : 'html5,flash',
     url : '/media_elements',
+    //max_file_size: '10mb',
     browse_button : 'media_element_media_pick',
     // container : 'container',
     file_data_name : 'media',
@@ -85,6 +86,7 @@ $(function() {
     if (up.files.length > 1) {
       up.splice(0, 1);
     }
+    
     var file = files[0];
     $("#media_element_media_show").text(file.name);
     up.refresh(); // Reposition Flash/Silverlight
@@ -93,13 +95,18 @@ $(function() {
   // funziona solo con flash, probabilmente per l'HTML bisognerà
   // pingare il server
   uploader.bind('UploadProgress', function(up, file) {
-    $('.barraLoading div').width('' + file.percent + '%');
+    // IT STARTS EVEN WITH SERVER ERRORS TO FIX
+    
+    //$('.barraLoading div').width('' + file.percent + '%');
   });
 
   uploader.bind('Error', function(up, err) {
+    // THIS IS TO MANAGE ON FILE LOAD ERRORS, SUCH AS FILE SIZE CHECK, WRONG EXT, ECC
+    $('._error_messages').text(err.message);
+    
     // TODO gestione errori lato client e server 500 (estensione e dimensioni principalmente)
     //var resp = jQuery.parseJSON(err);
-    console.log("Errors: "+err);
+    // console.log(err); #inline errors on file load
     // $('#filelist').append("<div>Error: " + err.code +
     //   ", Message: " + err.message +
     //   (err.file ? ", File: " + err.file.name : "") +
@@ -110,30 +117,31 @@ $(function() {
   });
 
   uploader.bind('FileUploaded', function(up, file, data) {
-    var errs = JSON.parse(data.response);
-    if($('#media_element_media_show').text() != "<%= t('captions.select_file').downcase%>"){
-      $('._error_messages').text(errs);
+    var errs = JSON.parse(data.response).errors;
+    if(errs){
+      $('._error_messages').text(media_elements_error_messages(errs));
+      console.log("Up Pre: ")
+      console.log(up);
+      up.refresh();
+      console.log("Up Post: ");
+      console.log(up);
+      console.log("if1");
     }else{
-      $('._error_messages').text("File: no file selected "+errs);
+      console.log("else2");
+      $('._close').trigger('click');
+      $('.barraLoading div').width('100%');
     }
-    //var resp = JSON(data);
-    //if(resp.errors.length > 0){
-    //  console.log("ERR: "+resp.errors);
-    //}else{
-    //  console.log("NOERR");
-    //}
-    console.log(data);
-    $('.barraLoading div').width('100%');
+    up.refresh(); // Reposition Flash/Silverlight
     // TODO gestione errori lato server (li gestiamo qui perché quest'evento ci ritorna i dati del server, mentre Error no)
   });
 });
 
   function media_elements_error_messages(errors){
-    //var msg = ""
-    //errors.each do |key,val|
-    //  msg << "#{key.to_s}: #{val[0].to_s}, " 
-    //end
-    //return msg[0..-3].html_safe
+    var msg = ""
+    $.each(errors,function(key,value){
+      msg = msg + key + ": " + value+", ";
+    });
+    return msg
   }
 </script>
 
