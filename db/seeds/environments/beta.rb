@@ -4,44 +4,42 @@ def plant_development_seeds
   
   # INITIALIZE
   
-  videos_folder = media =:Video::Uploader::ABSOLUTE_FOLDER
-  audios_folder = media =:Audio::Uploader::ABSOLUTE_FOLDER
-  unless Rails.env.production?
-    [videos_folder, audios_folder].each { |d| FileUtils.rm_rf d if Dir.exists? d }
-  end
+  videos_folder = Media::Video::Uploader::ABSOLUTE_FOLDER
+  audios_folder = Media::Audio::Uploader::ABSOLUTE_FOLDER
+  [videos_folder, audios_folder].each { |d| FileUtils.rm_rf d if Dir.exists? d }
   
   
   # LOCATIONS
   
-  shanghai = Location.find_by_name 'Shanghai'
-  guangzhou = Location.find_by_name 'Guangzhou'
-  wuhan = Location.find_by_name 'Wuhan'
-  beijing = Location.find_by_name 'Beijing'
-  tianjin = Location.find_by_name 'Tianjin'
-  shenzhen = Location.find_by_name 'Shenzhen'
-  nanjing = Location.find_by_name 'Nanjing'
+  shanghai = Location.find_by_description 'Shanghai'
+  guangzhou = Location.find_by_description 'Guangzhou'
+  wuhan = Location.find_by_description 'Wuhan'
+  beijing = Location.find_by_description 'Beijing'
+  tianjin = Location.find_by_description 'Tianjin'
+  shenzhen = Location.find_by_description 'Shenzhen'
+  nanjing = Location.find_by_description 'Nanjing'
   
   
   # SUBJECTS
   
-  mathematics = Subject.find_by_name 'Mathematics'
-  natural_sciences = Subject.find_by_name 'Natural Sciences'
-  geography = Subject.find_by_name 'Geography'
-  history = Subject.find_by_name 'History'
-  visive_arts = Subject.find_by_name 'Visive Arts'
-  music = Subject.find_by_name 'Music'
-  physical_education = Subject.find_by_name 'Phisycal Education'
-  computer_science = Subject.find_by_name 'Computer Science'
-  languages = Subject.find_by_name 'Languages'
-  literature = Subject.find_by_name 'Literature'
-  chemistry = Subject.find_by_name 'Chemistry'
+  mathematics = Subject.find_by_description 'Mathematics'
+  natural_sciences = Subject.find_by_description 'Natural Sciences'
+  geography = Subject.find_by_description 'Geography'
+  history = Subject.find_by_description 'History'
+  visive_arts = Subject.find_by_description 'Visive Arts'
+  music = Subject.find_by_description 'Music'
+  physical_education = Subject.find_by_description 'Phisycal Education'
+  computer_science = Subject.find_by_description 'Computer Science'
+  languages = Subject.find_by_description 'Languages'
+  literature = Subject.find_by_description 'Literature'
+  chemistry = Subject.find_by_description 'Chemistry'
   
   
   # SCHOOL LEVELS
   
-  primary_school = SchoolLevel.find_by_name 'Primary School'
-  secondary_school = SchoolLevel.find_by_name 'Secondary School'
-  undergraduate = SchoolLevel.find_by_name 'Undergraduate'
+  primary_school = SchoolLevel.find_by_description 'Primary School'
+  secondary_school = SchoolLevel.find_by_description 'Secondary School'
+  undergraduate = SchoolLevel.find_by_description 'Undergraduate'
   
   
   # USERS
@@ -55,6 +53,8 @@ def plant_development_seeds
   retlaw = User.create_user 'retlaw@morganspa.com', 'Retlaw', 'Ofracs', 'ISA Amor III', undergraduate.id, shenzhen.id, [mathematics.id, visive_arts.id, music.id, literature.id, natural_sciences.id, geography.id, chemistry.id]
   
   
+  pub_date = Time.zone.now
+  
   # IMAGES
   
   image1 = Image.new
@@ -65,47 +65,62 @@ def plant_development_seeds
   image1.user_id = holly.id
   image1.save!
   image1.is_public = true
+  image1.publication_date = pub_date
   image1.save!
+  
+  pub_date += 1
   
   image2 = Image.new
   image2.title = 'Futuristic architecture'
-  image2.description = 'Between the end of the twentieth century and early twenty-first century, in the city of Valencia (Spain), several architectural and urban projects took place. The most impressive is the City of Arts and Sciences, a new neighborhood in the southwest of the center designed by the Valencian architect Santiago Calatrava.'
+  image2.description = 'Between the end of the twentieth century and early twenty-first century, in the city of Valencia (Spain), several architectural and urban projects took place.'
   image2.tags = 'future, architecture, art, design, spain, valencia, geography'
   image2.media =  File.open(Rails.root.join('db/seeds/images/architettura.jpg'))
   image2.user_id = toostrong.id
   image2.save!
   image2.is_public = true
+  image2.publication_date = pub_date
   image2.save!
+  
+  pub_date += 1
   
   image3 = Image.new
   image3.title = 'Birds'
-  image3.description = 'Sea gulls are birds of medium size: a small sea gull measures around 30 centimeters (for a weight of 120 grams), while a big one can reah 75 centimeters (for 200 grams kilos). The beak is long and strong, and the feet are webbed and fit to swim. The wings are usually white, gray or black, but sometimes they can be also brown. Depending on the species, the birds take two to four years before reaching the adult age.'
+  image3.description = 'Sea gulls are birds of medium size: a small sea gull measures around 30 centimeters (for a weight of 120 grams), while a big one can reah 75 centimeters (for 200 grams kilos).'
   image3.tags = 'animals, birds, fly, sea, sky, new york, geography'
   image3.media = File.open(Rails.root.join('db/seeds/images/uccelli.jpg'))
-  image3.user_id = benj.id
+  image3.user_id = benji.id
   image3.save!
   image3.is_public = true
+  image3.publication_date = pub_date
   image3.save!
+  
+  pub_date += 1
   
   image4 = Image.new
   image4.title = 'Traffic'
-  image4.description = 'A picture from New York City. The metropolitan area of ​​New York is located at the intersection of three states (New York, New Jersey and Connecticut). The entire urban agglomeration has 18.223.567 inhabitants, while the metropolitan population is 23.019.036, which make it the third most populous urban area in the world and the first in the American continent (in competition with Mexico City and Sao Paulo, Brazil).'
+  image4.description = 'A picture from New York City. The metropolitan area of ​​New York is located at the intersection of three states (New York, New Jersey and Connecticut).'
   image4.tags = 'city, traffic, urban, new york, geography'
   image4.media = File.open(Rails.root.join('db/seeds/images/city.jpg'))
-  image4.user_id = benj.id
+  image4.user_id = benji.id
   image4.save!
   image4.is_public = true
+  image4.publication_date = pub_date
   image4.save!
+  
+  pub_date += 1
   
   image5 = Image.new
   image5.title = 'Iguana'
-  image5.description = 'A beautiful picture of an iguana. Iguanas are very similar to lizards, but bigger and slower. In the adult age they grow a characteristic crest on their back, much more evident in males than in females. In the male the head has a triangular shape, sharper than in the female.'
+  image5.description = 'A beautiful picture of an iguana. Iguanas are very similar to lizards, but bigger and slower.'
   image5.tags = 'science, animals, nature, reptile, geography, iguana'
   image5.media = File.open(Rails.root.join('db/seeds/images/rettile.jpg'))
   image5.user_id = fupete.id
   image5.save!
   image5.is_public = true
+  image5.publication_date = pub_date
   image5.save!
+  
+  pub_date += 1
   
   image6 = Image.new
   image6.title = 'Wind'
@@ -115,17 +130,23 @@ def plant_development_seeds
   image6.user_id = toostrong.id
   image6.save!
   image6.is_public = true
+  image6.publication_date = pub_date
   image6.save!
+  
+  pub_date += 1
   
   image7 = Image.new
   image7.title = 'Love for art'
-  image7.description = 'Chuck Close (Snohomish County, July 5, 1940) is an American painter and photographer. He achieved world fame as a painter through his hyper-realistic paintings of large dimensions. Despite being paralyzed since the vertebral artery collapse in 1988, he kept painting and producing art works.'
+  image7.description = 'Chuck Close (Snohomish County, July 5, 1940) is an American painter and photographer.'
   image7.tags = 'art, museum, love, new york, creative, idea, mom, close'
   image7.media = File.open(Rails.root.join('db/seeds/images/coppia.jpg'))
-  image7.user_id = benj.id
+  image7.user_id = benji.id
   image7.save!
   image7.is_public = true
+  image7.publication_date = pub_date
   image7.save!
+  
+  pub_date += 1
   
   image8 = Image.new
   image8.title = 'Compact disk'
@@ -135,7 +156,10 @@ def plant_development_seeds
   image8.user_id = toostrong.id
   image8.save!
   image8.is_public = true
+  image8.publication_date = pub_date
   image8.save!
+  
+  pub_date += 1
   
   image9 = Image.new
   image9.title = 'Flowers'
@@ -145,7 +169,10 @@ def plant_development_seeds
   image9.user_id = fupete.id
   image9.save!
   image9.is_public = true
+  image9.publication_date = pub_date
   image9.save!
+  
+  pub_date += 1
   
   image10 = Image.new
   image10.title = 'Battery'
@@ -155,17 +182,23 @@ def plant_development_seeds
   image10.user_id = jeg.id
   image10.save!
   image10.is_public = true
+  image10.publication_date = pub_date
   image10.save!
+  
+  pub_date += 1
   
   image11 = Image.new
   image11.title = 'Pantheon'
   image11.description = "The Pantheon (\"Temple of all gods\") is an ancient building in the center of Rome."
   image11.tags = 'rome, history, sky, roman, temple, god, ancient, art'
   image11.media = File.open(Rails.root.join('db/seeds/images/cielo_roma.jpg'))
-  image11.user_id = benj.id
+  image11.user_id = benji.id
   image11.save!
   image11.is_public = true
+  image11.publication_date = pub_date
   image11.save!
+  
+  pub_date += 1
   
   image12 = Image.new
   image12.title = 'Lawn'
@@ -175,7 +208,10 @@ def plant_development_seeds
   image12.user_id = retlaw.id
   image12.save!
   image12.is_public = true
+  image12.publication_date = pub_date
   image12.save!
+  
+  pub_date += 1
   
   image13 = Image.new
   image13.title = 'History of the wood'
@@ -185,7 +221,10 @@ def plant_development_seeds
   image13.user_id = fupete.id
   image13.save!
   image13.is_public = true
+  image13.publication_date = pub_date
   image13.save!
+  
+  pub_date += 1
   
   image14 = Image.new
   image14.title = 'Rome'
@@ -195,7 +234,10 @@ def plant_development_seeds
   image14.user_id = jeg.id
   image14.save!
   image14.is_public = true
+  image14.publication_date = pub_date
   image14.save!
+  
+  pub_date += 1
   
   image15 = Image.new
   image15.title = 'Bees'
@@ -205,7 +247,10 @@ def plant_development_seeds
   image15.user_id = holly.id
   image15.save!
   image15.is_public = true
+  image15.publication_date = pub_date
   image15.save!
+  
+  pub_date += 1
   
   image16 = Image.new
   image16.title = 'A flying machine'
@@ -215,7 +260,10 @@ def plant_development_seeds
   image16.user_id = holly.id
   image16.save!
   image16.is_public = true
+  image16.publication_date = pub_date
   image16.save!
+  
+  pub_date += 1
   
   image17 = Image.new
   image17.title = 'Natural gas'
@@ -225,7 +273,10 @@ def plant_development_seeds
   image17.user_id = toostrong.id
   image17.save!
   image17.is_public = true
+  image17.publication_date = pub_date
   image17.save!
+  
+  pub_date += 1
   
   image18 = Image.new
   image18.title = 'Family'
@@ -235,7 +286,10 @@ def plant_development_seeds
   image18.user_id = toostrong.id
   image18.save!
   image18.is_public = true
+  image18.publication_date = pub_date
   image18.save!
+  
+  pub_date += 1
   
   image19 = Image.new
   image19.title = 'Harlem'
@@ -245,17 +299,23 @@ def plant_development_seeds
   image19.user_id = retlaw.id
   image19.save!
   image19.is_public = true
+  image19.publication_date = pub_date
   image19.save!
+  
+  pub_date += 1
   
   image20 = Image.new
   image20.title = 'Modern architecture'
   image20.description = "The \"Hemisfèric\" is one of the buildings of \"Ciutat de les Arts i les Ciències\" in Valencia."
   image20.tags = 'geography, valencia, modern, water, creative'
   image20.media = File.open(Rails.root.join('db/seeds/images/architettura_acqua.jpg'))
-  image20.user_id = benj.id
+  image20.user_id = benji.id
   image20.save!
   image20.is_public = true
+  image20.publication_date = pub_date
   image20.save!
+  
+  pub_date += 1
   
   image21 = Image.new
   image21.title = 'Peacock'
@@ -265,27 +325,36 @@ def plant_development_seeds
   image21.user_id = toostrong.id
   image21.save!
   image21.is_public = true
+  image21.publication_date = pub_date
   image21.save!
+  
+  pub_date += 1
   
   image22 = Image.new
   image22.title = 'People'
   image22.description = 'A group of interested visitors walking in the halls of a museum of modern art.'
   image22.tags = 'art, people, museum, new york, culture'
   image22.media = File.open(Rails.root.join('db/seeds/images/museo.jpg'))
-  image22.user_id = benj.id
+  image22.user_id = benji.id
   image22.save!
   image22.is_public = true
+  image22.publication_date = pub_date
   image22.save!
+  
+  pub_date += 1
   
   image23 = Image.new
   image23.title = 'Money'
   image23.description = "As in a famous song of the Beatles, \"That's all I want\"."
   image23.tags = 'money, geography, new york, culture'
   image23.media = File.open(Rails.root.join('db/seeds/images/dollari.jpg'))
-  image23.user_id = benj.id
+  image23.user_id = benji.id
   image23.save!
   image23.is_public = true
+  image23.publication_date = pub_date
   image23.save!
+  
+  pub_date += 1
   
   image24 = Image.new
   image24.title = 'Airport'
@@ -295,17 +364,23 @@ def plant_development_seeds
   image24.user_id = jeg.id
   image24.save!
   image24.is_public = true
+  image24.publication_date = pub_date
   image24.save!
+  
+  pub_date += 1
   
   image25 = Image.new
   image25.title = 'Underground'
   image25.description = 'The London Underground is the largest subway system in Europe.'
   image25.tags = 'underground, london, city, train, people, geography'
   image25.media = File.open(Rails.root.join('db/seeds/images/underground.jpg'))
-  image25.user_id = benj.id
+  image25.user_id = benji.id
   image25.save!
   image25.is_public = true
+  image25.publication_date = pub_date
   image25.save!
+  
+  pub_date += 1
   
   image26 = Image.new
   image26.title = 'Plane'
@@ -315,27 +390,36 @@ def plant_development_seeds
   image26.user_id = fupete.id
   image26.save!
   image26.is_public = true
+  image26.publication_date = pub_date
   image26.save!
+  
+  pub_date += 1
   
   image27 = Image.new
   image27.title = 'Statue of Liberty'
   image27.description = 'Liberty Enlightening the World (lit. Liberty enlightening the world; fr. Éclairant La liberté le monde), more commonly known as the Statue of Liberty, is the symbol of New York.'
   image27.tags = 'art, new york, city, people, geography'
   image27.media = File.open(Rails.root.join('db/seeds/images/liberty.jpg'))
-  image27.user_id = benj.id
+  image27.user_id = benji.id
   image27.save!
   image27.is_public = true
+  image27.publication_date = pub_date
   image27.save!
+  
+  pub_date += 1
   
   image28 = Image.new
   image28.title = 'A young woman'
   image28.description = 'Portrait of a Muslim woman.'
   image28.tags = 'woman, new york, city, people, geography'
   image28.media = File.open(Rails.root.join('db/seeds/images/donna.jpg'))
-  image28.user_id = benj.id
+  image28.user_id = benji.id
   image28.save!
   image28.is_public = true
+  image28.publication_date = pub_date
   image28.save!
+  
+  pub_date += 1
   
   image29 = Image.new
   image29.title = 'The Sphinx'
@@ -345,17 +429,23 @@ def plant_development_seeds
   image29.user_id = fupete.id
   image29.save!
   image29.is_public = true
+  image29.publication_date = pub_date
   image29.save!
+  
+  pub_date += 1
   
   image30 = Image.new
   image30.title = 'A long bridge'
   image30.description = 'A picture of a bridge.'
   image30.tags = 'city, new york, art, geography'
   image30.media = File.open(Rails.root.join('db/seeds/images/ponte.jpg'))
-  image30.user_id = benj.id
+  image30.user_id = benji.id
   image30.save!
   image30.is_public = true
+  image30.publication_date = pub_date
   image30.save!
+  
+  pub_date += 1
   
   image31 = Image.new
   image31.title = 'DNA'
@@ -365,7 +455,10 @@ def plant_development_seeds
   image31.user_id = fupete.id
   image31.save!
   image31.is_public = true
+  image31.publication_date = pub_date
   image31.save!
+  
+  pub_date += 1
   
   image32 = Image.new
   image32.title = 'Solar system'
@@ -375,7 +468,10 @@ def plant_development_seeds
   image32.user_id = jeg.id
   image32.save!
   image32.is_public = true
+  image32.publication_date = pub_date
   image32.save!
+  
+  pub_date += 1
   
   
   # AUDIOS
@@ -388,7 +484,10 @@ def plant_development_seeds
   audio1.user_id = toostrong.id
   audio1.save!
   audio1.is_public = true
+  audio1.publication_date = pub_date
   audio1.save!
+  
+  pub_date += 1
   
   audio2 = Audio.new
   audio2.title = 'Energy statistics in Italy'
@@ -398,7 +497,10 @@ def plant_development_seeds
   audio2.user_id = fupete.id
   audio2.save!
   audio2.is_public = true
+  audio2.publication_date = pub_date
   audio2.save!
+  
+  pub_date += 1
   
   audio3 = Audio.new
   audio3.title = 'Principles of modern energy'
@@ -408,7 +510,10 @@ def plant_development_seeds
   audio3.user_id = jeg.id
   audio3.save!
   audio3.is_public = true
+  audio3.publication_date = pub_date
   audio3.save!
+  
+  pub_date += 1
   
   audio4 = Audio.new
   audio4.title = 'Once upon a time the energy'
@@ -418,7 +523,10 @@ def plant_development_seeds
   audio4.user_id = holly.id
   audio4.save!
   audio4.is_public = true
+  audio4.publication_date = pub_date
   audio4.save!
+  
+  pub_date += 1
   
   audio5 = Audio.new
   audio5.title = 'Digital sound'
@@ -428,7 +536,10 @@ def plant_development_seeds
   audio5.user_id = benji.id
   audio5.save!
   audio5.is_public = true
+  audio5.publication_date = pub_date
   audio5.save!
+  
+  pub_date += 1
   
   audio6 = Audio.new
   audio6.title = 'Modern digital sound'
@@ -438,7 +549,10 @@ def plant_development_seeds
   audio6.user_id = retlaw.id
   audio6.save!
   audio6.is_public = true
+  audio6.publication_date = pub_date
   audio6.save!
+  
+  pub_date += 1
   
   
   # VIDEOS
@@ -451,7 +565,10 @@ def plant_development_seeds
   video1.user_id = fupete.id
   video1.save!
   video1.is_public = true
+  video1.publication_date = pub_date
   video1.save!
+  
+  pub_date += 1
   
   video2 = Video.new
   video2.title = 'The life of bees'
@@ -461,17 +578,23 @@ def plant_development_seeds
   video2.user_id = toostrong.id
   video2.save!
   video2.is_public = true
+  video2.publication_date = pub_date
   video2.save!
+  
+  pub_date += 1
   
   video3 = Video.new
   video3.title = 'The structure of the atoms'
   video3.description = 'Atoms are made by protons, neutrons and electrons.'
-  video3.tags = atom, science, neutrons, molecules, electrons
+  video3.tags = 'atom, science, neutrons, molecules, electrons'
   video3.media = {:mp4 => Rails.root.join('db/seeds/videos/atomo.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/atomo.webm').to_s, :filename => 'atomo'}
   video3.user_id = jeg.id
   video3.save!
   video3.is_public = true
+  video3.publication_date = pub_date
   video3.save!
+  
+  pub_date += 1
   
   video4 = Video.new
   video4.title = 'Bacteria seen under a microscope'
@@ -481,7 +604,10 @@ def plant_development_seeds
   video4.user_id = holly.id
   video4.save!
   video4.is_public = true
+  video4.publication_date = pub_date
   video4.save!
+  
+  pub_date += 1
   
   video5 = Video.new
   video5.title = 'Structure of the cell'
@@ -491,7 +617,10 @@ def plant_development_seeds
   video5.user_id = holly.id
   video5.save!
   video5.is_public = true
+  video5.publication_date = pub_date
   video5.save!
+  
+  pub_date += 1
   
   video6 = Video.new
   video6.title = "Let's look inside us"
@@ -501,7 +630,10 @@ def plant_development_seeds
   video6.user_id = fupete.id
   video6.save!
   video6.is_public = true
+  video6.publication_date = pub_date
   video6.save!
+  
+  pub_date += 1
   
   video7 = Video.new
   video7.title = 'A chemical experiment'
@@ -511,7 +643,10 @@ def plant_development_seeds
   video7.user_id = retlaw.id
   video7.save!
   video7.is_public = true
+  video7.publication_date = pub_date
   video7.save!
+  
+  pub_date += 1
   
   video8 = Video.new
   video8.title = 'Interesting chemical experiment'
@@ -521,17 +656,23 @@ def plant_development_seeds
   video8.user_id = jeg.id
   video8.save!
   video8.is_public = true
+  video8.publication_date = pub_date
   video8.save!
+  
+  pub_date += 1
   
   video9 = Video.new
   video9.title = 'The future comes from the sun'
   video9.description = 'Solar energy is the energy which makes life possible on the earth.'
   video9.tags = 'sun, science, chemical, energy, sky, experiment'
   video9.media = {:mp4 => Rails.root.join('db/seeds/videos/energia_solare.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/energia_solare.webm').to_s, :filename => 'energia_solare'}
-  video9.user_id = benj.id
+  video9.user_id = benji.id
   video9.save!
   video9.is_public = true
+  video9.publication_date = pub_date
   video9.save!
+  
+  pub_date += 1
   
   video10 = Video.new
   video10.title = 'The biggest star'
@@ -541,7 +682,10 @@ def plant_development_seeds
   video10.user_id = retlaw.id
   video10.save!
   video10.is_public = true
+  video10.publication_date = pub_date
   video10.save!
+  
+  pub_date += 1
   
   video11 = Video.new
   video11.title = 'A chemical experiment about liquids'
@@ -551,37 +695,49 @@ def plant_development_seeds
   video11.user_id = toostrong.id
   video11.save!
   video11.is_public = true
+  video11.publication_date = pub_date
   video11.save!
   
+  pub_date += 1
+  
   video12 = Video.new
-  video12.title = 'Discover the characteristics of liquids'
+  video12.title = 'Discover the liquids'
   video12.description = 'Ionic liquids are chemical compounds consisting exclusively of ions.'
   video12.tags = 'ionic, liquid, science, chemical, experiment, chemistry'
   video12.media = {:mp4 => Rails.root.join('db/seeds/videos/esperimento.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/esperimento.webm').to_s, :filename => 'esperimento'}
   video12.user_id = fupete.id
   video12.save!
   video12.is_public = true
+  video12.publication_date = pub_date
   video12.save!
+  
+  pub_date += 1
   
   video13 = Video.new
   video13.title = 'Inside mathematics'
   video13.description = 'Mathematics has a long tradition.'
   video13.tags = 'mathematics, science, calculation, equation'
   video13.media = {:mp4 => Rails.root.join('db/seeds/videos/formule.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/formule.webm').to_s, :filename => 'formule'}
-  video13.user_id = benj.id
+  video13.user_id = benji.id
   video13.save!
   video13.is_public = true
+  video13.publication_date = pub_date
   video13.save!
+  
+  pub_date += 1
   
   video14 = Video.new
   video14.title = 'Descriptive geometry'
   video14.description = 'A video about descriptive geometry.'
   video14.tags = 'mathematics, geometry, solid, science, constructions, floors, objects'
   video14.media = {:mp4 => Rails.root.join('db/seeds/videos/geometria.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/geometria.webm').to_s, :filename => 'geometria'}
-  video14.user_id = benj.id
+  video14.user_id = benji.id
   video14.save!
   video14.is_public = true
+  video14.publication_date = pub_date
   video14.save!
+  
+  pub_date += 1
   
   video15 = Video.new
   video15.title = 'The triangle'
@@ -591,7 +747,10 @@ def plant_development_seeds
   video15.user_id = jeg.id
   video15.save!
   video15.is_public = true
+  video15.publication_date = pub_date
   video15.save!
+  
+  pub_date += 1
   
   video16 = Video.new
   video16.title = 'Chemical lab'
@@ -601,7 +760,10 @@ def plant_development_seeds
   video16.user_id = toostrong.id
   video16.save!
   video16.is_public = true
+  video16.publication_date = pub_date
   video16.save!
+  
+  pub_date += 1
   
   video17 = Video.new
   video17.title = 'Behavior of liquids'
@@ -611,17 +773,23 @@ def plant_development_seeds
   video17.user_id = fupete.id
   video17.save!
   video17.is_public = true
+  video17.publication_date = pub_date
   video17.save!
+  
+  pub_date += 1
   
   video18 = Video.new
   video18.title = 'Snail'
   video18.description = 'The snail is not always gray.'
   video18.tags = 'animal, snail, science, nature, invertebrate'
   video18.media = {:mp4 => Rails.root.join('db/seeds/videos/lumaca.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/lumaca.webm').to_s, :filename => 'lumaca'}
-  video18.user_id = benj.id
+  video18.user_id = benji.id
   video18.save!
   video18.is_public = true
+  video18.publication_date = pub_date
   video18.save!
+  
+  pub_date += 1
   
   video19 = Video.new
   video19.title = 'On the footsteps of Titanic'
@@ -631,17 +799,23 @@ def plant_development_seeds
   video19.user_id = holly.id
   video19.save!
   video19.is_public = true
+  video19.publication_date = pub_date
   video19.save!
   
+  pub_date += 1
+  
   video20 = Video.new
-  video20.title = 'Wind Energy - The power that comes from wind'
+  video20.title = 'Wind Energy'
   video20.description = 'Wind energy is the energy obtained from the wind.'
   video20.tags = 'energy, science, wind, sky, power'
   video20.media = {:mp4 => Rails.root.join('db/seeds/videos/paleeoliche.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/paleeoliche.webm').to_s, :filename => 'paleeoliche'}
-  video20.user_id = benj.id
+  video20.user_id = benji.id
   video20.save!
   video20.is_public = true
+  video20.publication_date = pub_date
   video20.save!
+  
+  pub_date += 1
   
   video21 = Video.new
   video21.title = 'How does a real chemistry lab work?'
@@ -651,7 +825,10 @@ def plant_development_seeds
   video21.user_id = jeg.id
   video21.save!
   video21.is_public = true
+  video21.publication_date = pub_date
   video21.save!
+  
+  pub_date += 1
   
   video22 = Video.new
   video22.title = 'The birth of a star'
@@ -661,46 +838,56 @@ def plant_development_seeds
   video22.user_id = jeg.id
   video22.save!
   video22.is_public = true
+  video22.publication_date = pub_date
   video22.save!
+  
+  pub_date += 1
   
   video23 = Video.new
   video23.title = 'Little scientists'
   video23.description = 'A high school class try simple chemistry experiments.'
   video23.tags = 'student, science, school, experiment, lab'
   video23.media = {:mp4 => Rails.root.join('db/seeds/videos/studenti.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/studenti.webm').to_s, :filename => 'studenti'}
-  video23.user_id = benj.id
+  video23.user_id = benji.id
   video23.save!
   video23.is_public = true
+  video23.publication_date = pub_date
   video23.save!
+  
+  pub_date += 1
   
   video24 = Video.new
   video24.title = 'Look at the virus closely'
   video24.description = 'Viruses are biological entities.'
+  video23.tags = 'virus, experiment, lab, biology'
   video24.media = {:mp4 => Rails.root.join('db/seeds/videos/virus.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/virus.webm').to_s, :filename => 'virus'}
   video24.user_id = toostrong.id
   video24.save!
   video24.is_public = true
+  video24.publication_date = pub_date
   video24.save!
+  
+  pub_date += 1
   
   
   # RESUME
   
   puts "Created:"
-  puts "#{Subject.count} subjects (should be 5)"
-  puts "#{Location.count} locations (should be 6)"
-  puts "#{SchoolLevel.count} school_levels (should be 4)"
-  puts "#{User.count} users (should be 18)"
-  puts "#{UsersSubject.count} users_subjects (should be 54)"
-  puts "#{Lesson.count} lessons (should be 43)"
-  puts "#{MediaElement.count} media_elements (should be 70)"
+  puts "#{Subject.count} subjects (should be 11)"
+  puts "#{Location.count} locations (should be 7)"
+  puts "#{SchoolLevel.count} school_levels (should be 3)"
+  puts "#{User.count} users (should be 7)"
+  puts "#{UsersSubject.count} users_subjects (should be 29)"
+  puts "#{Lesson.count} lessons (should be 0)"
+  puts "#{MediaElement.count} media_elements (should be 62)"
   puts " - #{Image.count} images (should be 32)"
-  puts " - #{Audio.count} audios (should be 19)"
-  puts " - #{Video.count} videos (should be 19)"
-  puts "#{Slide.count} slides (should be 125)"
-  puts "#{Notification.count} notifications (should be 43)"
-  puts "#{Like.count} likes (should be 122)"
-  puts "#{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons (should be 12)"
-  puts "#{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements (should be 17)"
+  puts " - #{Audio.count} audios (should be 6)"
+  puts " - #{Video.count} videos (should be 24)"
+  puts "#{Slide.count} slides (should be 0)"
+  puts "#{Notification.count} notifications (should be 0)"
+  puts "#{Like.count} likes (should be 0)"
+  puts "#{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons (should be 0)"
+  puts "#{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements (should be 0)"
   puts "#{Tag.count} tags (should be 34)"
   puts "#{Tagging.count} taggings (should be 791)"
   
