@@ -19,6 +19,8 @@ def plant_development_seeds
   shenzhen = Location.find_by_description 'Shenzhen'
   nanjing = Location.find_by_description 'Nanjing'
   
+  puts "Saved #{Location.count} locations (should be 7)\n"
+  
   
   # SUBJECTS
   
@@ -34,6 +36,8 @@ def plant_development_seeds
   literature = Subject.find_by_description 'Literature'
   chemistry = Subject.find_by_description 'Chemistry'
   
+  puts "Saved #{Subject.count} subjects (should be 11)\n"
+  
   
   # SCHOOL LEVELS
   
@@ -41,21 +45,39 @@ def plant_development_seeds
   secondary_school = SchoolLevel.find_by_description 'Secondary School'
   undergraduate = SchoolLevel.find_by_description 'Undergraduate'
   
+  puts "Saved #{SchoolLevel.count} school_levels (should be 3)\n"
+  
   
   # USERS
   
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 1} user...\r"
+  $stdout.flush
   admin = User.find_by_email CONFIG['admin_email']
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 2} user...\r"
+  $stdout.flush
   toostrong = User.create_user 'toostrong@morganspa.com', 'Oscar', 'Pettinari', 'ITC BrokenTower', secondary_school.id, shenzhen.id, [mathematics.id, natural_sciences.id]
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 3} user...\r"
+  $stdout.flush
   fupete = User.create_user 'fupete@morganspa.com', 'Massimo', 'Decimomeridio', 'ISS Pro', undergraduate.id, shanghai.id, [natural_sciences.id, computer_science.id, chemistry.id]
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 4} user...\r"
+  $stdout.flush
   jeg = User.create_user 'jeg@morganspa.com', 'Hiroshi', 'Sheba', 'ISA Carlocracco', secondary_school.id, wuhan.id, [literature.id, computer_science.id, geography.id]
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 5} user...\r"
+  $stdout.flush
   holly = User.create_user 'holly@morganspa.com', 'Oliver', 'Hutton', 'ITC Pocotopocoto', primary_school.id, beijing.id, [mathematics.id, visive_arts.id, music.id]
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 6} user...\r"
+  $stdout.flush
   benji = User.create_user 'benji@morganspa.com', 'Benji', 'Price', 'ITC Pocotopocoto', primary_school.id, tianjin.id, [mathematics.id, visive_arts.id, music.id, literature.id]
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 7} user...\r"
+  $stdout.flush
   retlaw = User.create_user 'retlaw@morganspa.com', 'Retlaw', 'Ofracs', 'ISA Amor III', undergraduate.id, shenzhen.id, [mathematics.id, visive_arts.id, music.id, literature.id, natural_sciences.id, geography.id, chemistry.id]
   
+  puts "Saved #{User.count} users (should be 7)\n"
   
-  pub_date = Time.zone.now
   
   # IMAGES
+  
+  pub_date = Time.zone.now
   
   image1 = Image.new
   image1.title = 'A couple of donkeys'
@@ -63,6 +85,8 @@ def plant_development_seeds
   image1.tags = 'animals, smile, teeth, nature, science'
   image1.media = File.open(Rails.root.join('db/seeds/images/asino.jpg'))
   image1.user_id = holly.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 1} image...\r"
+  $stdout.flush
   image1.save!
   image1.is_public = true
   image1.publication_date = pub_date
@@ -76,6 +100,8 @@ def plant_development_seeds
   image2.tags = 'future, architecture, art, design, spain, valencia, geography'
   image2.media =  File.open(Rails.root.join('db/seeds/images/architettura.jpg'))
   image2.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 2} image...\r"
+  $stdout.flush
   image2.save!
   image2.is_public = true
   image2.publication_date = pub_date
@@ -89,6 +115,8 @@ def plant_development_seeds
   image3.tags = 'animals, birds, fly, sea, sky, new york, geography'
   image3.media = File.open(Rails.root.join('db/seeds/images/uccelli.jpg'))
   image3.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 3} image...\r"
+  $stdout.flush
   image3.save!
   image3.is_public = true
   image3.publication_date = pub_date
@@ -102,6 +130,8 @@ def plant_development_seeds
   image4.tags = 'city, traffic, urban, new york, geography'
   image4.media = File.open(Rails.root.join('db/seeds/images/city.jpg'))
   image4.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 4} image...\r"
+  $stdout.flush
   image4.save!
   image4.is_public = true
   image4.publication_date = pub_date
@@ -115,6 +145,8 @@ def plant_development_seeds
   image5.tags = 'science, animals, nature, reptile, geography, iguana'
   image5.media = File.open(Rails.root.join('db/seeds/images/rettile.jpg'))
   image5.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 5} image...\r"
+  $stdout.flush
   image5.save!
   image5.is_public = true
   image5.publication_date = pub_date
@@ -128,6 +160,8 @@ def plant_development_seeds
   image6.tags = 'science, energy, wind, sky, geography, nature'
   image6.media = File.open(Rails.root.join('db/seeds/images/energia_del_vento.jpg'))
   image6.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 6} image...\r"
+  $stdout.flush
   image6.save!
   image6.is_public = true
   image6.publication_date = pub_date
@@ -141,6 +175,8 @@ def plant_development_seeds
   image7.tags = 'art, museum, love, new york, creative, idea, mom, close'
   image7.media = File.open(Rails.root.join('db/seeds/images/coppia.jpg'))
   image7.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 7} image...\r"
+  $stdout.flush
   image7.save!
   image7.is_public = true
   image7.publication_date = pub_date
@@ -154,6 +190,8 @@ def plant_development_seeds
   image8.tags = 'science, optical, disc, compact disc, music, light, laser'
   image8.media = File.open(Rails.root.join('db/seeds/images/cd.jpg'))
   image8.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 8} image...\r"
+  $stdout.flush
   image8.save!
   image8.is_public = true
   image8.publication_date = pub_date
@@ -167,6 +205,8 @@ def plant_development_seeds
   image9.tags = 'science, nature, color, flower, air, smell'
   image9.media = File.open(Rails.root.join('db/seeds/images/fiori.jpg'))
   image9.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 9} image...\r"
+  $stdout.flush
   image9.save!
   image9.is_public = true
   image9.publication_date = pub_date
@@ -180,6 +220,8 @@ def plant_development_seeds
   image10.tags = 'energy, science, battery, electric'
   image10.media = File.open(Rails.root.join('db/seeds/images/batterie.jpg'))
   image10.user_id = jeg.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 10} image...\r"
+  $stdout.flush
   image10.save!
   image10.is_public = true
   image10.publication_date = pub_date
@@ -193,6 +235,8 @@ def plant_development_seeds
   image11.tags = 'rome, history, sky, roman, temple, god, ancient, art'
   image11.media = File.open(Rails.root.join('db/seeds/images/cielo_roma.jpg'))
   image11.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 11} image...\r"
+  $stdout.flush
   image11.save!
   image11.is_public = true
   image11.publication_date = pub_date
@@ -206,6 +250,8 @@ def plant_development_seeds
   image12.tags = 'lawn, nature, sky, ear'
   image12.media = File.open(Rails.root.join('db/seeds/images/natura.jpg'))
   image12.user_id = retlaw.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 12} image...\r"
+  $stdout.flush
   image12.save!
   image12.is_public = true
   image12.publication_date = pub_date
@@ -219,6 +265,8 @@ def plant_development_seeds
   image13.tags = 'wood, nature, paper, art, science, geography'
   image13.media = File.open(Rails.root.join('db/seeds/images/ossigeno.jpg'))
   image13.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 13} image...\r"
+  $stdout.flush
   image13.save!
   image13.is_public = true
   image13.publication_date = pub_date
@@ -232,6 +280,8 @@ def plant_development_seeds
   image14.tags = 'rome, river, bridge, geography, sky, water, history, art'
   image14.media = File.open(Rails.root.join('db/seeds/images/roma.jpg'))
   image14.user_id = jeg.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 14} image...\r"
+  $stdout.flush
   image14.save!
   image14.is_public = true
   image14.publication_date = pub_date
@@ -245,6 +295,8 @@ def plant_development_seeds
   image15.tags = 'nature, bee, flower, color, nature, animal, honey'
   image15.media = File.open(Rails.root.join('db/seeds/images/ape.jpg'))
   image15.user_id = holly.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 15} image...\r"
+  $stdout.flush
   image15.save!
   image15.is_public = true
   image15.publication_date = pub_date
@@ -258,6 +310,8 @@ def plant_development_seeds
   image16.tags = 'nature, fly, sky, nature, animal, air, science'
   image16.media = File.open(Rails.root.join('db/seeds/images/uccello.jpg'))
   image16.user_id = holly.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 16} image...\r"
+  $stdout.flush
   image16.save!
   image16.is_public = true
   image16.publication_date = pub_date
@@ -271,6 +325,8 @@ def plant_development_seeds
   image17.tags = 'nature, gas, fire, nature, energie, air, science'
   image17.media = File.open(Rails.root.join('db/seeds/images/fiamma.jpg'))
   image17.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 17} image...\r"
+  $stdout.flush
   image17.save!
   image17.is_public = true
   image17.publication_date = pub_date
@@ -284,6 +340,8 @@ def plant_development_seeds
   image18.tags = 'school, computer, history, science, maths, student, mother'
   image18.media = File.open(Rails.root.join('db/seeds/images/mamma_e_figlia.jpg'))
   image18.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 18} image...\r"
+  $stdout.flush
   image18.save!
   image18.is_public = true
   image18.publication_date = pub_date
@@ -297,6 +355,8 @@ def plant_development_seeds
   image19.tags = 'geography, new york,woman, city, colored, walk'
   image19.media = File.open(Rails.root.join('db/seeds/images/colored.jpg'))
   image19.user_id = retlaw.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 19} image...\r"
+  $stdout.flush
   image19.save!
   image19.is_public = true
   image19.publication_date = pub_date
@@ -310,6 +370,8 @@ def plant_development_seeds
   image20.tags = 'geography, valencia, modern, water, creative'
   image20.media = File.open(Rails.root.join('db/seeds/images/architettura_acqua.jpg'))
   image20.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 20} image...\r"
+  $stdout.flush
   image20.save!
   image20.is_public = true
   image20.publication_date = pub_date
@@ -323,6 +385,8 @@ def plant_development_seeds
   image21.tags = 'animal, peacock, color, science, bird'
   image21.media = File.open(Rails.root.join('db/seeds/images/pavone.jpg'))
   image21.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 21} image...\r"
+  $stdout.flush
   image21.save!
   image21.is_public = true
   image21.publication_date = pub_date
@@ -336,6 +400,8 @@ def plant_development_seeds
   image22.tags = 'art, people, museum, new york, culture'
   image22.media = File.open(Rails.root.join('db/seeds/images/museo.jpg'))
   image22.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 22} image...\r"
+  $stdout.flush
   image22.save!
   image22.is_public = true
   image22.publication_date = pub_date
@@ -349,6 +415,8 @@ def plant_development_seeds
   image23.tags = 'money, geography, new york, culture'
   image23.media = File.open(Rails.root.join('db/seeds/images/dollari.jpg'))
   image23.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 23} image...\r"
+  $stdout.flush
   image23.save!
   image23.is_public = true
   image23.publication_date = pub_date
@@ -362,6 +430,8 @@ def plant_development_seeds
   image24.tags = 'airport, london, city, departure, fly, geography'
   image24.media = File.open(Rails.root.join('db/seeds/images/london.jpg'))
   image24.user_id = jeg.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 24} image...\r"
+  $stdout.flush
   image24.save!
   image24.is_public = true
   image24.publication_date = pub_date
@@ -375,6 +445,8 @@ def plant_development_seeds
   image25.tags = 'underground, london, city, train, people, geography'
   image25.media = File.open(Rails.root.join('db/seeds/images/underground.jpg'))
   image25.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 25} image...\r"
+  $stdout.flush
   image25.save!
   image25.is_public = true
   image25.publication_date = pub_date
@@ -388,6 +460,8 @@ def plant_development_seeds
   image26.tags = 'plane, london, city, fly, people, geography'
   image26.media = File.open(Rails.root.join('db/seeds/images/plane.jpg'))
   image26.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 26} image...\r"
+  $stdout.flush
   image26.save!
   image26.is_public = true
   image26.publication_date = pub_date
@@ -401,6 +475,8 @@ def plant_development_seeds
   image27.tags = 'art, new york, city, people, geography'
   image27.media = File.open(Rails.root.join('db/seeds/images/liberty.jpg'))
   image27.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 27} image...\r"
+  $stdout.flush
   image27.save!
   image27.is_public = true
   image27.publication_date = pub_date
@@ -414,6 +490,8 @@ def plant_development_seeds
   image28.tags = 'woman, new york, city, people, geography'
   image28.media = File.open(Rails.root.join('db/seeds/images/donna.jpg'))
   image28.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 28} image...\r"
+  $stdout.flush
   image28.save!
   image28.is_public = true
   image28.publication_date = pub_date
@@ -427,6 +505,8 @@ def plant_development_seeds
   image29.tags = 'history, egypt, city, art, geography'
   image29.media = File.open(Rails.root.join('db/seeds/images/statua.jpg'))
   image29.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 29} image...\r"
+  $stdout.flush
   image29.save!
   image29.is_public = true
   image29.publication_date = pub_date
@@ -440,6 +520,8 @@ def plant_development_seeds
   image30.tags = 'city, new york, art, geography'
   image30.media = File.open(Rails.root.join('db/seeds/images/ponte.jpg'))
   image30.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 30} image...\r"
+  $stdout.flush
   image30.save!
   image30.is_public = true
   image30.publication_date = pub_date
@@ -453,6 +535,8 @@ def plant_development_seeds
   image31.tags = 'dna, science, chemical, organic, polymer, basic'
   image31.media = File.open(Rails.root.join('db/seeds/images/dna.jpg'))
   image31.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 31} image...\r"
+  $stdout.flush
   image31.save!
   image31.is_public = true
   image31.publication_date = pub_date
@@ -466,12 +550,16 @@ def plant_development_seeds
   image32.tags = 'space, science, chemical, planet, sky, history'
   image32.media = File.open(Rails.root.join('db/seeds/images/space.jpg'))
   image32.user_id = jeg.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 32} image...\r"
+  $stdout.flush
   image32.save!
   image32.is_public = true
   image32.publication_date = pub_date
   image32.save!
   
   pub_date += 1
+  
+  puts "Saved #{Image.count} images (should be 32)\n"
   
   
   # AUDIOS
@@ -482,6 +570,8 @@ def plant_development_seeds
   audio1.tags = 'interview, science, energy, power'
   audio1.media = {:mp3 => Rails.root.join('db/seeds/audios/energia_cosa.mp3').to_s, :ogg => Rails.root.join('db/seeds/audios/energia_cosa.ogg').to_s, :filename => 'energia_cosa'}
   audio1.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 1} audio...\r"
+  $stdout.flush
   audio1.save!
   audio1.is_public = true
   audio1.publication_date = pub_date
@@ -495,6 +585,8 @@ def plant_development_seeds
   audio2.tags = 'interview, science, energy, power, numbers'
   audio2.media = {:mp3 => Rails.root.join('db/seeds/audios/energia_dati.mp3').to_s, :ogg => Rails.root.join('db/seeds/audios/energia_dati.ogg').to_s, :filename => 'energia_dati'}
   audio2.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 2} audio...\r"
+  $stdout.flush
   audio2.save!
   audio2.is_public = true
   audio2.publication_date = pub_date
@@ -508,6 +600,8 @@ def plant_development_seeds
   audio3.tags = 'interview, science, energy, power, principles'
   audio3.media = {:mp3 => Rails.root.join('db/seeds/audios/energia_principi.mp3').to_s, :ogg => Rails.root.join('db/seeds/audios/energia_principi.ogg').to_s, :filename => 'energia_principi'}
   audio3.user_id = jeg.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 3} audio...\r"
+  $stdout.flush
   audio3.save!
   audio3.is_public = true
   audio3.publication_date = pub_date
@@ -521,6 +615,8 @@ def plant_development_seeds
   audio4.tags = 'interview, science, energy, power, history'
   audio4.media = {:mp3 => Rails.root.join('db/seeds/audios/energia_storia.mp3').to_s, :ogg => Rails.root.join('db/seeds/audios/energia_storia.ogg').to_s, :filename => 'energia_storia'}
   audio4.user_id = holly.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 4} audio...\r"
+  $stdout.flush
   audio4.save!
   audio4.is_public = true
   audio4.publication_date = pub_date
@@ -534,6 +630,8 @@ def plant_development_seeds
   audio5.tags = 'music, digital, sound, audio, song'
   audio5.media = {:mp3 => Rails.root.join('db/seeds/audios/archangel.mp3').to_s, :ogg => Rails.root.join('db/seeds/audios/archangel.ogg').to_s, :filename => 'archangel'}
   audio5.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 5} audio...\r"
+  $stdout.flush
   audio5.save!
   audio5.is_public = true
   audio5.publication_date = pub_date
@@ -547,12 +645,16 @@ def plant_development_seeds
   audio6.tags = 'music, digital, sound, audio, song'
   audio6.media = {:mp3 => Rails.root.join('db/seeds/audios/homeless.mp3').to_s, :ogg => Rails.root.join('db/seeds/audios/homeless.ogg').to_s, :filename => 'homeless'}
   audio6.user_id = retlaw.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 6} audio...\r"
+  $stdout.flush
   audio6.save!
   audio6.is_public = true
   audio6.publication_date = pub_date
   audio6.save!
   
   pub_date += 1
+  
+  puts "Saved #{Audio.count} audios (should be 6)\n"
   
   
   # VIDEOS
@@ -563,6 +665,8 @@ def plant_development_seeds
   video1.tags = 'water, science, chemical, nature'
   video1.media = {:mp4 => Rails.root.join('db/seeds/videos/acqua.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/acqua.webm').to_s, :filename => 'acqua'}
   video1.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 1} video...\r"
+  $stdout.flush
   video1.save!
   video1.is_public = true
   video1.publication_date = pub_date
@@ -576,6 +680,8 @@ def plant_development_seeds
   video2.tags = 'bees, science, flower, nature, color'
   video2.media = {:mp4 => Rails.root.join('db/seeds/videos/ape_su_fiori.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/ape_su_fiori.webm').to_s, :filename => 'ape_su_fiori'}
   video2.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 2} video...\r"
+  $stdout.flush
   video2.save!
   video2.is_public = true
   video2.publication_date = pub_date
@@ -589,6 +695,8 @@ def plant_development_seeds
   video3.tags = 'atom, science, neutrons, molecules, electrons'
   video3.media = {:mp4 => Rails.root.join('db/seeds/videos/atomo.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/atomo.webm').to_s, :filename => 'atomo'}
   video3.user_id = jeg.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 3} video...\r"
+  $stdout.flush
   video3.save!
   video3.is_public = true
   video3.publication_date = pub_date
@@ -602,6 +710,8 @@ def plant_development_seeds
   video4.tags = 'bacteria, science, chemical, microscope, electrons, experiment, laboratory'
   video4.media = {:mp4 => Rails.root.join('db/seeds/videos/batteri.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/batteri.webm').to_s, :filename => 'batteri'}
   video4.user_id = holly.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 4} video...\r"
+  $stdout.flush
   video4.save!
   video4.is_public = true
   video4.publication_date = pub_date
@@ -615,6 +725,8 @@ def plant_development_seeds
   video5.tags = 'cellular, science, chemical, microscope, organism, experiment, laboratory'
   video5.media = {:mp4 => Rails.root.join('db/seeds/videos/catena_cellulare.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/catena_cellulare.webm').to_s, :filename => 'catena_cellulare'}
   video5.user_id = holly.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 5} video...\r"
+  $stdout.flush
   video5.save!
   video5.is_public = true
   video5.publication_date = pub_date
@@ -628,6 +740,8 @@ def plant_development_seeds
   video6.tags = 'cellular, science, chemical, microscope, organism, experiment, laboratory'
   video6.media = {:mp4 => Rails.root.join('db/seeds/videos/cellule.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/cellule.webm').to_s, :filename => 'cellule'}
   video6.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 6} video...\r"
+  $stdout.flush
   video6.save!
   video6.is_public = true
   video6.publication_date = pub_date
@@ -641,6 +755,8 @@ def plant_development_seeds
   video7.tags = 'liquid, science, chemical, microscope, organism, experiment, laboratory'
   video7.media = {:mp4 => Rails.root.join('db/seeds/videos/chimica.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/chimica.webm').to_s, :filename => 'chimica'}
   video7.user_id = retlaw.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 7} video...\r"
+  $stdout.flush
   video7.save!
   video7.is_public = true
   video7.publication_date = pub_date
@@ -654,6 +770,8 @@ def plant_development_seeds
   video8.tags = 'liquid, science, chemical, microscope, organism, experiment, laboratory'
   video8.media = {:mp4 => Rails.root.join('db/seeds/videos/chimica2.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/chimica2.webm').to_s, :filename => 'chimica2'}
   video8.user_id = jeg.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 8} video...\r"
+  $stdout.flush
   video8.save!
   video8.is_public = true
   video8.publication_date = pub_date
@@ -667,6 +785,8 @@ def plant_development_seeds
   video9.tags = 'sun, science, chemical, energy, sky, experiment'
   video9.media = {:mp4 => Rails.root.join('db/seeds/videos/energia_solare.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/energia_solare.webm').to_s, :filename => 'energia_solare'}
   video9.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 9} video...\r"
+  $stdout.flush
   video9.save!
   video9.is_public = true
   video9.publication_date = pub_date
@@ -680,6 +800,8 @@ def plant_development_seeds
   video10.tags = 'sun, science, chemical, energy, sky, experiment, space'
   video10.media = {:mp4 => Rails.root.join('db/seeds/videos/energia.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/energia.webm').to_s, :filename => 'energia'}
   video10.user_id = retlaw.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 10} video...\r"
+  $stdout.flush
   video10.save!
   video10.is_public = true
   video10.publication_date = pub_date
@@ -693,6 +815,8 @@ def plant_development_seeds
   video11.tags = 'liquid, science, chemical, experiment, chemistry'
   video11.media = {:mp4 => Rails.root.join('db/seeds/videos/esperimento_acqua.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/esperimento_acqua.webm').to_s, :filename => 'esperimento_acqua'}
   video11.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 11} video...\r"
+  $stdout.flush
   video11.save!
   video11.is_public = true
   video11.publication_date = pub_date
@@ -706,6 +830,8 @@ def plant_development_seeds
   video12.tags = 'ionic, liquid, science, chemical, experiment, chemistry'
   video12.media = {:mp4 => Rails.root.join('db/seeds/videos/esperimento.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/esperimento.webm').to_s, :filename => 'esperimento'}
   video12.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 12} video...\r"
+  $stdout.flush
   video12.save!
   video12.is_public = true
   video12.publication_date = pub_date
@@ -719,6 +845,8 @@ def plant_development_seeds
   video13.tags = 'mathematics, science, calculation, equation'
   video13.media = {:mp4 => Rails.root.join('db/seeds/videos/formule.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/formule.webm').to_s, :filename => 'formule'}
   video13.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 13} video...\r"
+  $stdout.flush
   video13.save!
   video13.is_public = true
   video13.publication_date = pub_date
@@ -732,6 +860,8 @@ def plant_development_seeds
   video14.tags = 'mathematics, geometry, solid, science, constructions, floors, objects'
   video14.media = {:mp4 => Rails.root.join('db/seeds/videos/geometria.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/geometria.webm').to_s, :filename => 'geometria'}
   video14.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 14} video...\r"
+  $stdout.flush
   video14.save!
   video14.is_public = true
   video14.publication_date = pub_date
@@ -745,6 +875,8 @@ def plant_development_seeds
   video15.tags = 'renato zero, maths, geometry, solid, science, constructions, floors, objects, triangle'
   video15.media = {:mp4 => Rails.root.join('db/seeds/videos/geometria2.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/geometria2.webm').to_s, :filename => 'geometria2'}
   video15.user_id = jeg.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 15} video...\r"
+  $stdout.flush
   video15.save!
   video15.is_public = true
   video15.publication_date = pub_date
@@ -758,6 +890,8 @@ def plant_development_seeds
   video16.tags = 'chemistry, liquid, experiment, science, lab'
   video16.media = {:mp4 => Rails.root.join('db/seeds/videos/laboratorio.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/laboratorio.webm').to_s, :filename => 'laboratorio'}
   video16.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 16} video...\r"
+  $stdout.flush
   video16.save!
   video16.is_public = true
   video16.publication_date = pub_date
@@ -771,6 +905,8 @@ def plant_development_seeds
   video17.tags = 'chemistry, liquid, experiment, science, lab'
   video17.media = {:mp4 => Rails.root.join('db/seeds/videos/liquidi.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/liquidi.webm').to_s, :filename => 'liquidi'}
   video17.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 17} video...\r"
+  $stdout.flush
   video17.save!
   video17.is_public = true
   video17.publication_date = pub_date
@@ -784,6 +920,8 @@ def plant_development_seeds
   video18.tags = 'animal, snail, science, nature, invertebrate'
   video18.media = {:mp4 => Rails.root.join('db/seeds/videos/lumaca.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/lumaca.webm').to_s, :filename => 'lumaca'}
   video18.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 18} video...\r"
+  $stdout.flush
   video18.save!
   video18.is_public = true
   video18.publication_date = pub_date
@@ -797,6 +935,8 @@ def plant_development_seeds
   video19.tags = 'ice, sea, titanic, iceberg, tragedy'
   video19.media = {:mp4 => Rails.root.join('db/seeds/videos/mare.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/mare.webm').to_s, :filename => 'mare'}
   video19.user_id = holly.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 19} video...\r"
+  $stdout.flush
   video19.save!
   video19.is_public = true
   video19.publication_date = pub_date
@@ -810,6 +950,8 @@ def plant_development_seeds
   video20.tags = 'energy, science, wind, sky, power'
   video20.media = {:mp4 => Rails.root.join('db/seeds/videos/paleeoliche.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/paleeoliche.webm').to_s, :filename => 'paleeoliche'}
   video20.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 20} video...\r"
+  $stdout.flush
   video20.save!
   video20.is_public = true
   video20.publication_date = pub_date
@@ -823,6 +965,8 @@ def plant_development_seeds
   video21.tags = 'energy, science, lab, chemistry, experiment'
   video21.media = {:mp4 => Rails.root.join('db/seeds/videos/ricercatori.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/ricercatori.webm').to_s, :filename => 'ricercatori'}
   video21.user_id = jeg.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 21} video...\r"
+  $stdout.flush
   video21.save!
   video21.is_public = true
   video21.publication_date = pub_date
@@ -836,6 +980,8 @@ def plant_development_seeds
   video22.tags = 'energy, science, space, sky, fire, star, power, history'
   video22.media = {:mp4 => Rails.root.join('db/seeds/videos/sole.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/sole.webm').to_s, :filename => 'sole'}
   video22.user_id = jeg.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 22} video...\r"
+  $stdout.flush
   video22.save!
   video22.is_public = true
   video22.publication_date = pub_date
@@ -849,6 +995,8 @@ def plant_development_seeds
   video23.tags = 'student, science, school, experiment, lab'
   video23.media = {:mp4 => Rails.root.join('db/seeds/videos/studenti.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/studenti.webm').to_s, :filename => 'studenti'}
   video23.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 23} video...\r"
+  $stdout.flush
   video23.save!
   video23.is_public = true
   video23.publication_date = pub_date
@@ -859,9 +1007,11 @@ def plant_development_seeds
   video24 = Video.new
   video24.title = 'Look at the virus closely'
   video24.description = 'Viruses are biological entities.'
-  video23.tags = 'virus, experiment, lab, biology'
+  video24.tags = 'virus, experiment, lab, biology'
   video24.media = {:mp4 => Rails.root.join('db/seeds/videos/virus.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/virus.webm').to_s, :filename => 'virus'}
   video24.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 24} video...\r"
+  $stdout.flush
   video24.save!
   video24.is_public = true
   video24.publication_date = pub_date
@@ -869,27 +1019,7 @@ def plant_development_seeds
   
   pub_date += 1
   
-  
-  # RESUME
-  
-  puts "Created:"
-  puts "#{Subject.count} subjects (should be 11)"
-  puts "#{Location.count} locations (should be 7)"
-  puts "#{SchoolLevel.count} school_levels (should be 3)"
-  puts "#{User.count} users (should be 7)"
-  puts "#{UsersSubject.count} users_subjects (should be 29)"
-  puts "#{Lesson.count} lessons (should be 0)"
-  puts "#{MediaElement.count} media_elements (should be 62)"
-  puts " - #{Image.count} images (should be 32)"
-  puts " - #{Audio.count} audios (should be 6)"
-  puts " - #{Video.count} videos (should be 24)"
-  puts "#{Slide.count} slides (should be 0)"
-  puts "#{Notification.count} notifications (should be 0)"
-  puts "#{Like.count} likes (should be 0)"
-  puts "#{Bookmark.where(:bookmarkable_type => 'Lesson').count} bookmarks for lessons (should be 0)"
-  puts "#{Bookmark.where(:bookmarkable_type => 'MediaElement').count} bookmarks for media elements (should be 0)"
-  puts "#{Tag.count} tags (should be 34)"
-  puts "#{Tagging.count} taggings (should be 791)"
+  puts "Saved #{Video.count} videos (should be 24)\n"
   
   puts 'FINE'
   
