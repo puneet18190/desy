@@ -153,6 +153,7 @@ class ImageEditorController < ApplicationController
           img.write("#{tmpdir}/#{new_filename}")
           new_image.media = File.open("#{tmpdir}/#{new_filename}")
           new_image.save
+          remove_crop_path(@image)
         end
       else
         @errors = msg
@@ -233,6 +234,7 @@ class ImageEditorController < ApplicationController
           img.write("#{tmpdir}/#{new_filename}")
           @image.media = File.open("#{tmpdir}/#{new_filename}")
           @image.save
+          remove_crop_path(@image)
         end
       else
         @errors = @image.errors.messages
@@ -247,12 +249,17 @@ class ImageEditorController < ApplicationController
   
   private
   
+  def remove_crop_path(image)
+    editing_folder = File.join(image.media.absolute_folder, "editing","user_#{@current_user.id}")
+    FileUtils.rm_rf(editing_folder) if File.exists?(editing_folder)
+  end
+  
   def in_tmpdir
     path = File.expand_path "#{Dir.tmpdir}/#{Time.now.to_i}#{rand(1000)}/"
     FileUtils.mkdir_p path
     yield path
   ensure
-    FileUtils.rm_rf( path ) if File.exists?( path )
+    FileUtils.rm_rf(path) if File.exists?(path)
   end
   
   def remove_tmp_crop(image_dir)
