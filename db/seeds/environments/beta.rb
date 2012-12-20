@@ -83,7 +83,7 @@ def plant_development_seeds
   image1 = Image.new
   image1.title = 'A couple of donkeys'
   image1.description = 'A nice picture. Two donkeys smiling!'
-  image1.tags = 'animals, smile, teeth, nature, science'
+  image1.tags = 'animal, smile, teeth, nature, science'
   image1.media = File.open(Rails.root.join('db/seeds/images/asino.jpg'))
   image1.user_id = holly.id
   $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 1} image...\r"
@@ -113,7 +113,7 @@ def plant_development_seeds
   image3 = Image.new
   image3.title = 'Birds'
   image3.description = 'Sea gulls are birds of medium size: a small sea gull measures around 30 centimeters (for a weight of 120 grams), while a big one can reah 75 centimeters (for 200 grams kilos).'
-  image3.tags = 'animals, birds, fly, sea, sky, new york, geography'
+  image3.tags = 'animal, birds, fly, sea, sky, new york, geography'
   image3.media = File.open(Rails.root.join('db/seeds/images/uccelli.jpg'))
   image3.user_id = benji.id
   $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 3} image...\r"
@@ -143,7 +143,7 @@ def plant_development_seeds
   image5 = Image.new
   image5.title = 'Iguana'
   image5.description = 'A beautiful picture of an iguana. Iguanas are very similar to lizards, but bigger and slower.'
-  image5.tags = 'science, animals, nature, reptile, geography, iguana'
+  image5.tags = 'science, animal, nature, reptile, geography, iguana'
   image5.media = File.open(Rails.root.join('db/seeds/images/rettile.jpg'))
   image5.user_id = fupete.id
   $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 5} image...\r"
@@ -678,7 +678,7 @@ def plant_development_seeds
   video2 = Video.new
   video2.title = 'The life of bees'
   video2.description = 'A very nice and interesting movie about bees.'
-  video2.tags = 'bees, science, flower, nature, color'
+  video2.tags = 'bee, science, flower, nature, color'
   video2.media = {:mp4 => Rails.root.join('db/seeds/videos/ape_su_fiori.mp4').to_s, :webm => Rails.root.join('db/seeds/videos/ape_su_fiori.webm').to_s, :filename => 'ape_su_fiori'}
   video2.user_id = toostrong.id
   $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 2} video...\r"
@@ -1025,7 +1025,7 @@ def plant_development_seeds
   
   # RESUME
   
-  puts "Saved #{Tag.count} tags (should be 132)\n"
+  puts "Saved #{Tag.count} tags (should be 130)\n"
   puts "Saved #{Tagging.count} taggings (should be 355)\n"
   puts 'FINE'
   
