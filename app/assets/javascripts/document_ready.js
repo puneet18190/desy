@@ -581,11 +581,6 @@ $(document).ready(function() {
   });
   
   
-  // FAKE UPLOAD BUTTONS
-  
-  new FakeUpload($('._fakeUploadTrigger'));
-  
-  
   // POPUPS
   //   CHIUSURA
   //   es. <a data-dialog-id="load-media-element"></a>
