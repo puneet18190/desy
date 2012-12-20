@@ -67,12 +67,14 @@ en:
     add_new_lesson: 'Add lessons'
     advanced_search: 'Advanced search'
     audio_editor_label: 'Edit audio'
+    audio_track_in_video_editor: 'You can upload an audio track: this will cover the original audio of all the chosen components'
     author: 'Author'
     background_color: 'Background color'
     back_in_desy: 'Back in DESY'
     cancel: 'Cancel'
     click_image_to_add_text: 'Click on the image to add text'
     change_media_element_info: "Update here the element's info according to its new content"
+    change_media_element_info_in_popup: 'Fill the form below to modify the data'
     choose_audio: 'Click here to add an audio'
     choose_image: 'Click here to add an image'
     choose_video: 'Click here to add a video'
@@ -189,9 +191,6 @@ en:
     your_search_returned: 'Found %{num} results. To refine your search select between these tags'
     your_virtual_classroom_is_empty: 'Your Virtual Classroom is empty'
   descriptions:
-  
-    audio_track_in_video_editor: 'You can upload an audio track that will be the background of your video'
-    change_info_element: 'You can modify the data of your element. Inserting tags you will make it available to DESY community, remember that people are more likely to find your element if you insert more tags'
     instructions_to_fill_playlist: 'After loading the lessons in the virtual classroom drag to create a playlist of reproduction.'
     mailer_link_1: 'The user '
     mailer_link_2: ' thinks that you might be interested in a lesson in DESY.'

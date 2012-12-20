@@ -6,7 +6,7 @@
      <% if media_element.info_changeable %>
       <div class="_change_info_container ChangeInfoContainer" style="display:none;" data-param="<%= media_element.id %>">
         <h1><%= t('captions.modify_info_element') %></h1>
-        <p><%= t('descriptions.change_info_element') %></p>
+        <p><%= t('captions.change_media_element_info_in_popup') %></p>
         <div class="_error_messages"></div>
         <%= form_tag media_element_path(media_element.id), :remote => true, :class => "formModifyInfo" do %>
           <div class="cols" style="float:left">
