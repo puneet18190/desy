@@ -438,11 +438,11 @@ def plant_development_seeds
   MediaElement.record_timestamps = true
   
   puts "Created:"
-  puts "#{Subject.count} subjects (should be 5)"
-  puts "#{Location.count} locations (should be 6)"
-  puts "#{SchoolLevel.count} school_levels (should be 4)"
+  puts "#{Subject.count} subjects (should be #{CONFIG['subjects'].length})"
+  puts "#{Location.count} locations (should be #{CONFIG['locations'].length})"
+  puts "#{SchoolLevel.count} school_levels (should be #{CONFIG['school_levels'].length})"
   puts "#{User.count} users (should be 18)"
-  puts "#{UsersSubject.count} users_subjects (should be 54)"
+  puts "#{UsersSubject.count} users_subjects (should be #{51 + CONFIG['subjects'].length})"
   puts "#{Lesson.count} lessons (should be 43)"
   puts "#{MediaElement.count} media_elements (should be 70)"
   puts " - #{Image.count} images (should be 32)"

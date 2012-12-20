@@ -19,7 +19,7 @@ def plant_development_seeds
   shenzhen = Location.find_by_description 'Shenzhen'
   nanjing = Location.find_by_description 'Nanjing'
   
-  puts "Saved #{Location.count} locations (should be 7)\n"
+  puts "Saved #{Location.count} locations (should be #{CONFIG['locations'].length})\n"
   
   
   # SUBJECTS
@@ -36,7 +36,7 @@ def plant_development_seeds
   literature = Subject.find_by_description 'Literature'
   chemistry = Subject.find_by_description 'Chemistry'
   
-  puts "Saved #{Subject.count} subjects (should be 11)\n"
+  puts "Saved #{Subject.count} subjects (should be #{CONFIG['subjects'].length})\n"
   
   
   # SCHOOL LEVELS
@@ -45,7 +45,7 @@ def plant_development_seeds
   secondary_school = SchoolLevel.find_by_description 'Secondary School'
   undergraduate = SchoolLevel.find_by_description 'Undergraduate'
   
-  puts "Saved #{SchoolLevel.count} school_levels (should be 3)\n"
+  puts "Saved #{SchoolLevel.count} school_levels (should be #{CONFIG['school_levels'].length})\n"
   
   
   # USERS
@@ -73,6 +73,7 @@ def plant_development_seeds
   retlaw = User.create_user 'retlaw@morganspa.com', 'Retlaw', 'Ofracs', 'ISA Amor III', undergraduate.id, shenzhen.id, [mathematics.id, visive_arts.id, music.id, literature.id, natural_sciences.id, geography.id, chemistry.id]
   
   puts "Saved #{User.count} users (should be 7)\n"
+  puts "Saved #{UsersSubject.count} users_subjects (should be #{22 + CONFIG['subjects'].length})\n"
   
   
   # IMAGES
