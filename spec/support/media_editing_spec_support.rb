@@ -52,10 +52,11 @@ module MediaEditingSpecSupport
     end_inputs:   Hash[ [:mp4, :webm].map{ |f| [f, SAMPLES_FOLDER.join("converted no audio.#{f}").to_s] } ]
   }
   AVCONV_SH_VARS                      = {}                                                          # { 'LD_LIBRARY_PATH' => '/opt/libav-0.8.4/lib' }
-  AVCONV_WITH_FILTERS_SH_VARS         = AVCONV_SH_VARS                                              # { 'LD_LIBRARY_PATH' => '/opt/libav-0.8.4/lib' }
+  # AVCONV_WITH_FILTERS_SH_VARS         = AVCONV_SH_VARS                                              # { 'LD_LIBRARY_PATH' => '/opt/libav-0.8.4/lib' }
   AVCONV_PRE_COMMAND                  = 'avconv -v 9 -loglevel 99 -benchmark -y -timelimit 86400'   # '/opt/libav-0.8.4/bin/avconv'
-  AVCONV_WITH_FILTERS_PRE_COMMAND     = AVCONV_PRE_COMMAND                                          # '/opt/libav-0.8.4/bin/avconv'
-  AVCONV_WITH_FILTERS_SUBEXEC_OPTIONS = { sh_vars: AVCONV_SH_VARS, timeout: 86410 }
+  # AVCONV_WITH_FILTERS_PRE_COMMAND     = AVCONV_PRE_COMMAND                                          # '/opt/libav-0.8.4/bin/avconv'
+  # AVCONV_WITH_FILTERS_SUBEXEC_OPTIONS = { sh_vars: AVCONV_SH_VARS, timeout: 86410 }
+  AVCONV_SUBEXEC_OPTIONS              = { sh_vars: AVCONV_SH_VARS, timeout: 86410 }
   VBITRATE                  = { mp4: '', webm: ' -b:v 2M' }
 
   AVPROBE_PRE_COMMAND     = 'avprobe'

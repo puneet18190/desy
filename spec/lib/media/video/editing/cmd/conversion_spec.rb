@@ -6,8 +6,8 @@ module Media
       class Cmd
         describe Conversion do
   
-          let(:subexec_options) { MESS::AVCONV_WITH_FILTERS_SUBEXEC_OPTIONS }
-          let(:pre_command)     { MESS::AVCONV_WITH_FILTERS_PRE_COMMAND }
+          let(:subexec_options) { MESS::AVCONV_SUBEXEC_OPTIONS }
+          let(:pre_command)     { MESS::AVCONV_PRE_COMMAND }
         
           supported_formats = FORMATS
   
