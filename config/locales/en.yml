@@ -123,13 +123,7 @@ en:
     login: 'Login'
     logout: 'Logout'
     media_elements: 'Elements'
-    
-    
-    
-    
-    
-    modify_info_element: 'Modify info element'
-    
+    modify_info_element: "Element's information"
     next: "Next"
     new_element_untitled: 'New element - untitled'
     no_notifications: "You don't have any notifications"
@@ -140,12 +134,17 @@ en:
     play: 'Play'
     playlist: 'Playlist'
     preview: 'Preview'
-    problems_with_password: 'I forgot my login information'
+    problems_with_password: 'Problems with login?'
     profile: 'Profile'
     register: 'Register'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     report_abuse: 'Report abuse'
-    results_do_you_want: ' results. Do you want to refine your search? Results are also shown in these tags'
+    
+    
+    # qui
+    
+    
+    results_do_you_want: ' results. Do you want to refine your search? Results are also shown in these tags' # separarlo!!
     school_level: 'School level'
     search: 'Search'
     search_in_desy: 'Search in DESY'
