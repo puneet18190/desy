@@ -124,16 +124,11 @@ $(function() {
     var errs = JSON.parse(data.response).errors;
     if(errs){
       $('._error_messages').text(media_elements_error_messages(errs));
-      console.log("Up Pre: ")
-      console.log(up);
       up.refresh();
-      console.log("Up Post: ");
-      console.log(up);
-      console.log("if1");
     }else{
-      console.log("else2");
-      $('._close').trigger('click');
       $('.barraLoading div').width('100%');
+      $('._close').trigger('click');
+      window.location = "<%= my_media_elements_path %>"
     }
     up.refresh(); // Reposition Flash/Silverlight
     // TODO gestione errori lato server (li gestiamo qui perché quest'evento ci ritorna i dati del server, mentre Error no)
