@@ -92,7 +92,7 @@ en:
     desy: 'DESY'
     desy_expanded_description: 'Digital Education System'
     desy_full_description: 'DESY - Digital Education System'
-    discover_a_new_way_of_teaching: 'Discover a new way of teaching'
+    discover_a_new_way_of_teaching: 'A new way of teaching'
     display_mode: 'Display mode'
     display: 'Display'
     download_manual: 'Download the user manual'
@@ -139,6 +139,7 @@ en:
     register: 'Sign up'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     report_abuse: 'Report abuse'
+    save: 'Save'
     school_level: 'School level'
     search: 'Search'
     search_in_desy: 'Search in DESY'
@@ -191,12 +192,12 @@ en:
     your_search_returned: 'Found %{num} results. To refine your search select between these tags'
     your_virtual_classroom_is_empty: 'Your Virtual Classroom is empty'
   descriptions:
-    instructions_to_fill_playlist: 'After loading the lessons in the virtual classroom drag to create a playlist of reproduction.'
+    instructions_to_fill_playlist: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist.'
     mailer_link_1: 'The user '
     mailer_link_2: ' thinks that you might be interested in a lesson in DESY.'
     mailer_link_3: "Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser)."
-    mailer_link_4: 'DESY, the digital system so important bla bla bla'
-    prelogin: 'DESY has arrived, the new multimedia platform dedicated to the world of the school. Thanks to DESY will be possible to create multimedia lessons, uploading their images or videos or using those in the database of DESY. Share your work with other users DESY to create a large network of educational content.'
+    mailer_link_4: 'DESY - Digital Educational System'
+    prelogin: "<b>DESY</b> is the new platform dedicated to the world of education. In <b>DESY</b> you can easily create professional online Lessons, good looking and designed in every detail. A Lesson may contain images, audio tracks and videos, which you can upload, cut and refine inside the application itself. Users take also advantage of our Community, sharing and receiving media elements ready to be re-used. <i>If something is produced in <b>DESY</b>, we guarantee its high quality and the care for details</i>."
     send_lesson_link_explanation: 'Write a list of emails and a message: clicking the button, you will send your contacts an email containing the public link of this lesson'
     what_is_desy_1: 'Created for ENI - who has now spread its use to Italian schools following agreement with the Italian Education Ministry - the '
     what_is_desy_2: ' (DESY) allows teachers to create, share and provide students with multimedia and interactive lessons: the system is made up of an archive of lessons and other didactic components which the teacher may access, use, modify or base new lessons.'
@@ -228,7 +229,7 @@ en:
     media_elements_result_3: '>: try entering a smaller word, or changing your search parameters'
     media_elements_result_4: '>: try filtering by a different tag, or changing your search parameters'
     media_elements_result_5: 'No element was found with the filters you chose'
-    virtual_classroom: 'Your virtual classroom is empty'
+    virtual_classroom: 'Your Virtual Classroom is empty'
     playlist: 'Your playlist is empty'
   popups: # ok = messaggio di successo, yes = caption confermo, no = caption non confermo, confirm = messaggio di conferma, error = messaggio di errore, title = titolo messaggio di conferma
     report_ok: 'The report was sent successfully'
