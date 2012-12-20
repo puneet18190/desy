@@ -26,13 +26,6 @@ module Media
   
       IMAGEMAGICK_CONVERT_BIN = CONFIG.imagemagick.convert.cmd.bin
   
-      def self.ubuntu_packages
-        %w(libav-tools libavcodec-extra-53 mkvtoolnix sox lame)
-      end
-  
-      def self.ubuntu_install
-        puts `sudo apt-get install #{ubuntu_packages.map(&:shellescape).join(' ')}`
-      end
     end
   end
 end
