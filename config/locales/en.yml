@@ -5,45 +5,48 @@ en:
     errors:
       models:
         bookmark:
-          problem_creating_for_lesson: 'There was a problem adding the lesson'
-          problem_creating_for_media_element: 'There was a problem adding the element'
-          problem_destroying_for_lesson: 'There was a problem removing the lesson'
-          problem_destroying_for_media_element: 'There was a problem removing the element'
+          problem_creating_for_lesson: 'The lesson could not be added'
+          problem_creating_for_media_element: 'The element could not be added'
+          problem_destroying_for_lesson: 'The lesson could not be removed'
+          problem_destroying_for_media_element: 'The element could not be removed'
         lesson:
-          problem_copying: 'There was a problem copying the lesson'
+          problem_copying: 'The lesson could not be copied'
           already_copied: 'You already have a copy of this lesson'
           just_copied: 'You just copied this lesson'
-          already_published: 'The lesson you selected has already been published'
-          problem_publishing: 'There was a problem publishing the lesson'
-          problem_unpublishing: 'There was a problem unpublishing the lesson'
-          already_unpublished: 'The lesson you selected has already been unpublished'
-          problem_destroying: 'The lesson could not be destroyed correctly'
-          problem_adding_slide: 'There was a problem adding the slide'
-          problem_adding_to_virtual_classroom: 'There was a problem adding the selected lesson to your virtual classroom'
-          lesson_already_in_virtual_classroom: 'The selected lesson is already in your virtual classroom'
-          lesson_not_available_for_virtual_classroom: 'The lesson you selected cannot be added directly to your virtual classroom'
-          problem_removing_from_virtual_classroom: 'There was a problem removing the lesson from your virtual classroom'
+          already_published: 'This lesson is already public'
+          problem_publishing: 'The lesson could not be published'
+          problem_unpublishing: 'The lesson could not be unpublished'
+          already_unpublished: 'This lesson has not been published yet'
+          problem_destroying: 'The lesson could not be deleted'
+          problem_adding_slide: 'The slide could not be added'
+          problem_adding_to_virtual_classroom: 'The lesson could not be added to your Virtual Classroom'
+          lesson_already_in_virtual_classroom: 'This lesson is already in your Virtual Classroom'
+          lesson_not_available_for_virtual_classroom: "This lesson can't be added to your Virtual Classroom"
+          problem_removing_from_virtual_classroom: 'The lesson could not be removed from your Virtual Classroom'
         like:
-          problem_destroying: 'An error occurred, your like has not been removed'
-          problem_creating: 'An error occurred, your like has not been registered'
+          problem_destroying: 'Your like could not be removed'
+          problem_creating: 'Your like could not be registered'
         media_element:
-          problem_destroying: 'There was a problem removing this element'
-          cant_destroy_public: 'You cannot remove a public element'
+          problem_destroying: 'The element could not be deleted'
+          cant_destroy_public: "This element is public, you can't delete it"
         notification:
-          problem_destroying: 'There was a problem removing your notification'
+          problem_destroying: 'The notification could not be deleted'
         slide:
-          problems_changing_position: 'There was a problem changing the position of the slide'
-          invalid_position: 'The position of the slide is invalid'
-          cant_change_position_of_cover: 'You cannot change the position of the cover'
-          problems_destroying: 'There was a problem destroying the slide'
-          dont_destroy_cover: 'You cannot remove the cover of a lesson'
+          problems_changing_position: "The slide's position could not be changed"
+          invalid_position: "This slide's position is not valid"
+          cant_change_position_of_cover: "This slide is the cover, it can't be moved"
+          problems_destroying: 'The slide could not be deleted'
+          dont_destroy_cover: "This slide is the cover, it can't be deleted"
         user:
-          problems_updating: 'Could not update your personal data'
-          problems_destroying: 'Could not destroy the selected user'
-          missing_subjects: 'You need to select at least one subject'
-          problem_reporting: 'An error occurred, your report could not be sent'
+          problems_updating: 'Your profile could not be updated'
+          problems_destroying: 'The user could not be deleted'
+          missing_subjects: 'Choose at least one subject'
+          problem_reporting: 'Your report could not be sent'
           lesson_already_reported: 'You already reported this lesson'
           media_element_already_reported: 'You already reported this element'
+        
+        # giunto qui
+        
         video:
           attributes:
             media:
