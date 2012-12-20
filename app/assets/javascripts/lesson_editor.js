@@ -352,7 +352,7 @@ function initializeSortableNavs() {
   slides_numbers.css('width', ''+((parseInt(slides_amount + 1) * 32)-28) + 'px');
   var add_last_button = $("._add_new_slide_options_in_last_position");
   if(parseInt(slides_numbers.css('width')) < (parseInt($(window).outerWidth())-50)){
-    add_last_button.css("left", ""+(slides_numbers.find("li._slide_nav_sortable:last").position().left + 30)+"px"); 
+    add_last_button.css("left", ""+(slides_numbers.find("li.navNumbers :last").position().left + 30)+"px"); 
   }
   slides_numbers.sortable({
     items: '._slide_nav_sortable',
