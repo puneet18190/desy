@@ -5,66 +5,66 @@ en:
     errors:
       models:
         bookmark:
-          problem_creating_for_lesson: 'There was a problem adding the lesson'
-          problem_creating_for_media_element: 'There was a problem adding the element'
-          problem_destroying_for_lesson: 'There was a problem removing the lesson'
-          problem_destroying_for_media_element: 'There was a problem removing the element'
+          problem_creating_for_lesson: 'The lesson could not be added'
+          problem_creating_for_media_element: 'The element could not be added'
+          problem_destroying_for_lesson: 'The lesson could not be removed'
+          problem_destroying_for_media_element: 'The element could not be removed'
         lesson:
-          problem_copying: 'There was a problem copying the lesson'
+          problem_copying: 'The lesson could not be copied'
           already_copied: 'You already have a copy of this lesson'
           just_copied: 'You just copied this lesson'
-          already_published: 'The lesson you selected has already been published'
-          problem_publishing: 'There was a problem publishing the lesson'
-          problem_unpublishing: 'There was a problem unpublishing the lesson'
-          already_unpublished: 'The lesson you selected has already been unpublished'
-          problem_destroying: 'The lesson could not be destroyed correctly'
-          problem_adding_slide: 'There was a problem adding the slide'
-          problem_adding_to_virtual_classroom: 'There was a problem adding the selected lesson to your virtual classroom'
-          lesson_already_in_virtual_classroom: 'The selected lesson is already in your virtual classroom'
-          lesson_not_available_for_virtual_classroom: 'The lesson you selected cannot be added directly to your virtual classroom'
-          problem_removing_from_virtual_classroom: 'There was a problem removing the lesson from your virtual classroom'
+          already_published: 'This lesson is already public'
+          problem_publishing: 'The lesson could not be published'
+          problem_unpublishing: 'The lesson could not be unpublished'
+          already_unpublished: 'This lesson has not been published yet'
+          problem_destroying: 'The lesson could not be deleted'
+          problem_adding_slide: 'The slide could not be added'
+          problem_adding_to_virtual_classroom: 'The lesson could not be added to your Virtual Classroom'
+          lesson_already_in_virtual_classroom: 'This lesson is already in your Virtual Classroom'
+          lesson_not_available_for_virtual_classroom: "This lesson can't be added to your Virtual Classroom"
+          problem_removing_from_virtual_classroom: 'The lesson could not be removed from your Virtual Classroom'
         like:
-          problem_destroying: 'An error occurred, your like has not been removed'
-          problem_creating: 'An error occurred, your like has not been registered'
+          problem_destroying: 'Your like could not be removed'
+          problem_creating: 'Your like could not be registered'
         media_element:
-          problem_destroying: 'There was a problem removing this element'
-          cant_destroy_public: 'You cannot remove a public element'
+          problem_destroying: 'The element could not be deleted'
+          cant_destroy_public: "This element is public, you can't delete it"
         notification:
-          problem_destroying: 'There was a problem removing your notification'
+          problem_destroying: 'The notification could not be deleted'
         slide:
-          problems_changing_position: 'There was a problem changing the position of the slide'
-          invalid_position: 'The position of the slide is invalid'
-          cant_change_position_of_cover: 'You cannot change the position of the cover'
-          problems_destroying: 'There was a problem destroying the slide'
-          dont_destroy_cover: 'You cannot remove the cover of a lesson'
+          problems_changing_position: "The slide's position could not be changed"
+          invalid_position: "This slide's position is not valid"
+          cant_change_position_of_cover: "This slide is the cover, it can't be moved"
+          problems_destroying: 'The slide could not be deleted'
+          dont_destroy_cover: "This slide is the cover, it can't be deleted"
         user:
-          problems_updating: 'Could not update your personal data'
-          problems_destroying: 'Could not destroy the selected user'
-          missing_subjects: 'You need to select at least one subject'
-          problem_reporting: 'An error occurred, your report could not be sent'
+          problems_updating: 'Your profile could not be updated'
+          problems_destroying: 'The user could not be deleted'
+          missing_subjects: 'Choose at least one subject'
+          problem_reporting: 'Your report could not be sent'
           lesson_already_reported: 'You already reported this lesson'
           media_element_already_reported: 'You already reported this element'
         video:
           attributes:
             media:
-              unsupported_format: "Your video's format is not supported"
+              unsupported_format: "The format of your video is not supported"
               invalid_video: 'Your video could not be loaded'
               invalid_duration: 'Your video has an invalid duration'
-              blank_video_streams: 'Your video has not video streams'
+              blank_video_streams: 'Your video does not have any video stream'
         virtual_classroom_lesson:
-          cant_change_position_if_not_in_playlist: 'You cannot change the position of a lesson which is not in the playlist'
-          invalid_position_in_playlist: 'The position you chose is not valid for your playlist'
-          problems_changing_position_in_playlist: 'There was a problem changing the position of the lesson in your playlist'
-          problems_adding_to_playlist: 'There was a problem adding your lesson to the playlist'
-          problems_emptying_playlist: 'There was a problem emptying your playlist'
+          cant_change_position_if_not_in_playlist: 'This lesson is not in the playlist'
+          invalid_position_in_playlist: "This lesson's position is not valid"
+          problems_changing_position_in_playlist: "The lesson's position could not be changed"
+          problems_adding_to_playlist: 'The lesson could not be added to the playlist'
+          problems_emptying_playlist: 'Your playlist could not be emptied'
           playlist_full: 'Your playlist is full!'
-          problems_removing_from_playlist: 'There was a problem removing your lesson from the playlist'
+          problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
   captions:
     add_audio_track: 'Add audio track'
     add_lesson_now: 'Add a lesson now'
-    add_new_lesson: 'Add new lesson'
+    add_new_lesson: 'Add lessons'
     advanced_search: 'Advanced search'
     audio_editor_label: 'Edit audio'
     author: 'Author'
@@ -72,18 +72,18 @@ en:
     back_in_desy: 'Back in DESY'
     cancel: 'Cancel'
     click_image_to_add_text: 'Click on the image to add text'
-    change_media_element_info: 'If appropriate, change the information entered.'
-    choose_audio: 'click here to add audio'
-    choose_image: 'click here to add image'
-    choose_video: 'click here to add video'
-    choose_wich_item_and_go: 'Select your option and go!'
+    change_media_element_info: "Update here the element's info according to its new content"
+    choose_audio: 'Click here to add an audio'
+    choose_image: 'Click here to add an image'
+    choose_video: 'Click here to add a video'
+    choose_wich_item_and_go: 'Insert a word, choose the filters and go!'
     contact_us: 'Contact us'
     copyright: '©2012 DESY'
     create: 'Create'
     create_new_lesson: 'Create a new lesson'
     create_new_lesson_now: 'Create a lesson now'
-    create_new_media_element: 'Create a new element'
-    creating_new_media_element: "You're creating a new educational element."
+    create_new_media_element: 'Element editor'
+    creating_new_media_element: "You are creating a new element"
     dashboard: 'Dashboard'
     description: 'Description'
     description_max_chars: 'Description (max %{num} characters)'
@@ -92,44 +92,38 @@ en:
     desy_full_description: 'DESY - Digital Education System'
     discover_a_new_way_of_teaching: 'Discover a new way of teaching'
     display_mode: 'Display mode'
-    display: 'display'
+    display: 'Display'
     download_manual: 'Download the user manual'
     edit: 'Edit'
     email: 'Email'
     empty_playlist: 'Empty playlist'
-    empty_virtual_classroom: 'Empty the virtual classroom'
+    empty_virtual_classroom: 'Empty the Virtual Classroom'
     enter: 'Enter'
-    enter_lesson_title: 'Enter the title of the lesson'
-    enter_lesson_description: 'Describe your lesson'
-    enter_lesson_tags: 'Enter tags'
-    enter_new_media_element_details: 'Enter all the details of the new element'
+    enter_new_media_element_details: 'Enter all the details in the form below'
     enter_title: 'Enter title'
     exit: 'Exit'
     fill_all_login_fields: 'Insert username and password'
-    fill_in_form_for_new_lesson: 'Enter the details of the lesson you are about to create.'
+    fill_in_form_for_new_lesson: 'Enter all the details in the form below'
     find_out_the_benefits_of_desy: 'Find out the benefits of DESY'
-    good_work: 'Good work!'
     help_using_desy: 'Need help using Desy?'
     home: 'Home'
     image_caption_placeholder: 'Write a caption'
     image_editor_label: 'Edit image'
     insert: 'Insert'
-    insert_emails_here: 'Insert your emails, separated by comma'
-    insert_slide_content_here: 'Insert slide content here'
+    insert_emails_here: 'Insert emails separated by comma'
+    insert_slide_content_here: 'Write a text here'
     insert_tag: 'Insert a tag'
     insert_text: 'Insert text'
     institute: 'Institute'
     large: 'Large'
     lessons: 'Lessons'
-    lesson_not_created: "The lesson can't be created"
     level: 'Level'
     load_new_media_element: 'Load a new element'
-    load_new_media_element_now: 'Load an element now'
+    load_new_media_element_now: 'Load a new element now'
     login: 'Login'
     logout: 'Logout'
-    matter: 'Matter'
     media_elements: 'Elements'
-    modify_info_element: 'Modify info element'
+    modify_info_element: "Element's information"
     next: "Next"
     new_element_untitled: 'New element - untitled'
     no_notifications: "You don't have any notifications"
@@ -140,12 +134,17 @@ en:
     play: 'Play'
     playlist: 'Playlist'
     preview: 'Preview'
-    problems_with_password: 'I forgot my login information'
+    problems_with_password: 'Problems with login?'
     profile: 'Profile'
     register: 'Register'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     report_abuse: 'Report abuse'
-    results_do_you_want: ' results. Do you want to refine your search? Results are also shown in these tags'
+    
+    
+    # qui
+    
+    
+    results_do_you_want: ' results. Do you want to refine your search? Results are also shown in these tags' # separarlo!!
     school_level: 'School level'
     search: 'Search'
     search_in_desy: 'Search in DESY'
@@ -163,9 +162,10 @@ en:
     share_lesson_public_link: 'Share the public link of this lesson'
     show: 'Show'
     slide_not_deleted: "This slide can't be deleted"
+    small: 'Small'
     sort_results_by: 'Sort results by'
     status: 'Status'
-    small: 'Small'
+    subject: 'Subject' # GIÀ FATTO
     tags_max: 'Insert a minimum of %{items} tags (max %{num} characters each)'
     talk_with_desy: 'Want to talk with DESY?'
     text_color: 'Text color'
@@ -174,10 +174,10 @@ en:
     total_length: 'Total lenght'
     untitled_new_element: "New element - untitled"
     update: 'Update'
-    update_lesson: 'Change the lesson info'
-    updating_media_element: 'Update the element information'
+    update_lesson: 'Are you making important changes?' # GIÀ FATTO
+    updating_media_element: 'Have you made important changes?' # GIÀ FATTO
     upload: 'Upload'
-    use_the_form_below_for_lesson_information: 'Modify or change information related to your lesson.'
+    use_the_form_below_for_lesson_information: "Update here the lesson's info according to its new content" # GIÀ FATTO
     video_editor_label: 'Edit video'
     virtual_classroom: 'Virtual classroom'
     warning: 'Warning!'
@@ -190,6 +190,7 @@ en:
     why_sign_up: 'Why sign up?'
     write_a_message: 'Write a message'
     write_reason_report: 'Write the reason for your report, we will review it. Thank you for your cooperation!'
+    you_are_creating_a_new_lesson: 'You are creating a new lesson' # GIÀ FATTO
     you_believe_content_unappropriate: 'You believe this content is unappropriate?'
     your_browser_does_not_support_video: 'Your browser does not support the video tag'
     your_browser_does_not_support_audio: 'Your browser does not support the audio tag'
