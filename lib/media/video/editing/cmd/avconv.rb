@@ -11,6 +11,10 @@ module Media
     module Editing
       class Cmd
         class Avconv < Avconv
+          self.formats        = FORMATS
+          self.codecs         = AVCONV_CODECS
+          self.output_threads = AVCONV_OUTPUT_THREADS
+          self.output_qa      = AVCONV_OUTPUT_QA
         end
       end
     end

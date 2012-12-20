@@ -6,6 +6,7 @@ require 'media/in_tmp_dir'
 require 'media/info'
 require 'media/video/editing/cmd/image_to_video'
 require 'mini_magick'
+require 'sensitive_thread'
 
 module Media
   module Video
@@ -31,15 +32,9 @@ module Media
             processed_image_path = tmp_path( PROCESSED_IMAGE_PATH_FORMAT % File.extname(input_path) )
             image_process(processed_image_path)
   
-            mp4_conversion  = Thread.new { convert_to(processed_image_path, :mp4)  }
-            webm_conversion = Thread.new { convert_to(processed_image_path, :webm) }
-  
-            mp4_conversion.abort_on_exception = webm_conversion.abort_on_exception = true
-  
-            # Say to the parent thread (me) to wait the children threads to finish before to continue
-            mp4_conversion.join
-            webm_conversion.join
-  
+            [ SensitiveThread.new { convert_to(processed_image_path, :mp4)  },
+              SensitiveThread.new { convert_to(processed_image_path, :webm) } ].each(&:join)
+
             mp4_file_info  = Info.new mp4_output_path
             webm_file_info = Info.new webm_output_path
   

@@ -31,24 +31,17 @@ module Media
   
         def run
           create_log_folder
+
+          outputs = nil
   
           in_tmp_dir do
             image = tmp_path 'text_to_image.jpg'
-            Image::Editing::Cmd::TextToImage.new(text, image, options).run!
+            Image::Editing::Cmd::TextToImage.new(text, image, @options).run!
 
-            ImageToVideo.new(image, outputs, duration).run
+            outputs = ImageToVideo.new(image, @output_without_extension, duration).run
           end
 
           outputs
-        end
-  
-        private
-        def output(format)
-          "#{@output_without_extension}.#{format}"
-        end
-  
-        def outputs
-          Hash[ FORMATS.map{ |format| [format, output(format)] } ]
         end
 
       end

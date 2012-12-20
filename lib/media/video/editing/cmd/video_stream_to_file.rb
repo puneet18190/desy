@@ -15,7 +15,7 @@ module Media
   
           private
           def cmd!
-            %Q[ #{self.class.bin}
+            %Q[ #{BIN}
                   #{global_options.join(' ')}
                   -i #{@input.shellescape}
                   -map 0:v:0

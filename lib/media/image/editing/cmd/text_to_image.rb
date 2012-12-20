@@ -38,9 +38,9 @@ module Media
           def shellescaped_text
             case @text
             when File, Tempfile
-              "@#{text.path.shellescape}"
+              "@#{@text.path.shellescape}"
             when Pathname
-              "@#{text.to_s.shellescape}"
+              "@#{@text.to_s.shellescape}"
             else
               @text.to_s.shellescape
             end
