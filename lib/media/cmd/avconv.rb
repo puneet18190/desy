@@ -10,7 +10,7 @@ module Media
       BIN                  = CONFIG.avtools.avconv.cmd.bin
       TIMEOUT              = CONFIG.avtools.avconv.cmd.timeout
       SUBEXEC_TIMEOUT      = TIMEOUT + 10
-      SUBEXEC_OPTIONS      = { sh_vars: SH_VARS, timeout: CONFIG.avtools.avconv.cmd.subexec_timeout }
+      SUBEXEC_OPTIONS      = { sh_vars: SH_VARS, timeout: SUBEXEC_TIMEOUT }
 
       class_attribute :subexec_options, :formats
       class_attribute :codecs, :output_qa, :output_threads, instance_reader: false
