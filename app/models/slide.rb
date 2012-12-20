@@ -58,9 +58,11 @@ class Slide < ActiveRecord::Base
     return false if self.new_record?
     resp = false
     ActiveRecord::Base.transaction do
+      lesson = Lesson.find_by_id self.lesson_id
+      raise ActiveRecord::Rollback if lesson.nil?
       self.title = title
       self.text = text
-      raise ActiveRecord::Rollback if !self.lesson.modify
+      raise ActiveRecord::Rollback if !lesson.modify
       raise ActiveRecord::Rollback if !self.save
       media_elements.each do |k, v|
         mes = MediaElementsSlide.where(:position => k, :slide_id => self.id).first
@@ -77,6 +79,18 @@ class Slide < ActiveRecord::Base
           mes.alignment = v[1]
           mes.caption = v[2]
           raise ActiveRecord::Rollback if !mes.save
+        end
+        my_media_element = MediaElement.find_by_id v[0]
+        raise ActiveRecord::Rollback if my_media_element.nil?
+        if lesson.is_public && !my_media_element.is_public
+          my_media_element.is_public = true
+          my_media_element.publication_date = Time.zone.now
+          raise ActiveRecord::Rollback if !my_media_element.save
+          boo = Bookmark.new
+          boo.user_id = my_media_element.user_id
+          boo.bookmarkable_type = 'MediaElement'
+          boo.bookmarkable_id = my_media_element.id
+          raise ActiveRecord::Rollback if !boo.save
         end
       end
       resp = true
