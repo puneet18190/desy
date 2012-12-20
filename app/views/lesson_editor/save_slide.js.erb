@@ -2,6 +2,15 @@
   $("body").prepend("<span class='_saved'></span>");
   centerThis("._saved");
   $("._saved").fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
+  var thumb_num = $("#slide_in_nav_lesson_editor_"+<%=@slide.id%>);
+  thumb_div = thumb_num.siblings(".slide-tooltip").find(".zoomOutThumb");
+  <%
+    locals = {
+      :slide => @slide
+    }
+  %>
+  thumb_div.html('<%= j(render :partial => "lesson_editor/slides/choose_thumbnail", :locals => locals) %>')
+  
 <% else %>
   slideError();
 <% end %>
