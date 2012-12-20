@@ -94,7 +94,7 @@ def plant_development_seeds
   image1.publication_date = pub_date
   image1.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image2 = Image.new
   image2.title = 'Futuristic architecture'
@@ -109,7 +109,7 @@ def plant_development_seeds
   image2.publication_date = pub_date
   image2.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image3 = Image.new
   image3.title = 'Birds'
@@ -124,7 +124,7 @@ def plant_development_seeds
   image3.publication_date = pub_date
   image3.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image4 = Image.new
   image4.title = 'Traffic'
@@ -139,7 +139,7 @@ def plant_development_seeds
   image4.publication_date = pub_date
   image4.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image5 = Image.new
   image5.title = 'Iguana'
@@ -154,7 +154,7 @@ def plant_development_seeds
   image5.publication_date = pub_date
   image5.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image6 = Image.new
   image6.title = 'Wind'
@@ -169,7 +169,7 @@ def plant_development_seeds
   image6.publication_date = pub_date
   image6.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image7 = Image.new
   image7.title = 'Love for art'
@@ -184,7 +184,7 @@ def plant_development_seeds
   image7.publication_date = pub_date
   image7.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image8 = Image.new
   image8.title = 'Compact disk'
@@ -199,7 +199,7 @@ def plant_development_seeds
   image8.publication_date = pub_date
   image8.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image9 = Image.new
   image9.title = 'Flowers'
@@ -214,7 +214,7 @@ def plant_development_seeds
   image9.publication_date = pub_date
   image9.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image10 = Image.new
   image10.title = 'Battery'
@@ -229,7 +229,7 @@ def plant_development_seeds
   image10.publication_date = pub_date
   image10.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image11 = Image.new
   image11.title = 'Pantheon'
@@ -244,7 +244,7 @@ def plant_development_seeds
   image11.publication_date = pub_date
   image11.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image12 = Image.new
   image12.title = 'Lawn'
@@ -259,7 +259,7 @@ def plant_development_seeds
   image12.publication_date = pub_date
   image12.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image13 = Image.new
   image13.title = 'History of the wood'
@@ -274,7 +274,7 @@ def plant_development_seeds
   image13.publication_date = pub_date
   image13.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image14 = Image.new
   image14.title = 'Rome'
@@ -289,7 +289,7 @@ def plant_development_seeds
   image14.publication_date = pub_date
   image14.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image15 = Image.new
   image15.title = 'Bees'
@@ -304,7 +304,7 @@ def plant_development_seeds
   image15.publication_date = pub_date
   image15.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image16 = Image.new
   image16.title = 'A flying machine'
@@ -319,7 +319,7 @@ def plant_development_seeds
   image16.publication_date = pub_date
   image16.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image17 = Image.new
   image17.title = 'Natural gas'
@@ -334,7 +334,7 @@ def plant_development_seeds
   image17.publication_date = pub_date
   image17.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image18 = Image.new
   image18.title = 'Family'
@@ -349,7 +349,7 @@ def plant_development_seeds
   image18.publication_date = pub_date
   image18.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image19 = Image.new
   image19.title = 'Harlem'
@@ -364,7 +364,7 @@ def plant_development_seeds
   image19.publication_date = pub_date
   image19.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image20 = Image.new
   image20.title = 'Modern architecture'
@@ -379,7 +379,7 @@ def plant_development_seeds
   image20.publication_date = pub_date
   image20.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image21 = Image.new
   image21.title = 'Peacock'
@@ -394,7 +394,7 @@ def plant_development_seeds
   image21.publication_date = pub_date
   image21.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image22 = Image.new
   image22.title = 'People'
@@ -409,7 +409,7 @@ def plant_development_seeds
   image22.publication_date = pub_date
   image22.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image23 = Image.new
   image23.title = 'Money'
@@ -424,7 +424,7 @@ def plant_development_seeds
   image23.publication_date = pub_date
   image23.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image24 = Image.new
   image24.title = 'Airport'
@@ -439,7 +439,7 @@ def plant_development_seeds
   image24.publication_date = pub_date
   image24.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image25 = Image.new
   image25.title = 'Underground'
@@ -454,7 +454,7 @@ def plant_development_seeds
   image25.publication_date = pub_date
   image25.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image26 = Image.new
   image26.title = 'Plane'
@@ -469,7 +469,7 @@ def plant_development_seeds
   image26.publication_date = pub_date
   image26.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image27 = Image.new
   image27.title = 'Statue of Liberty'
@@ -484,7 +484,7 @@ def plant_development_seeds
   image27.publication_date = pub_date
   image27.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image28 = Image.new
   image28.title = 'A young woman'
@@ -499,7 +499,7 @@ def plant_development_seeds
   image28.publication_date = pub_date
   image28.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image29 = Image.new
   image29.title = 'The Sphinx'
@@ -514,7 +514,7 @@ def plant_development_seeds
   image29.publication_date = pub_date
   image29.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image30 = Image.new
   image30.title = 'A long bridge'
@@ -529,7 +529,7 @@ def plant_development_seeds
   image30.publication_date = pub_date
   image30.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image31 = Image.new
   image31.title = 'DNA'
@@ -544,7 +544,7 @@ def plant_development_seeds
   image31.publication_date = pub_date
   image31.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   image32 = Image.new
   image32.title = 'Solar system'
@@ -559,7 +559,7 @@ def plant_development_seeds
   image32.publication_date = pub_date
   image32.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   puts "Saved #{Image.count} images (should be 32)\n"
   
@@ -581,7 +581,7 @@ def plant_development_seeds
   audio1.publication_date = pub_date
   audio1.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   audio2 = Audio.new
   audio2.title = 'Energy statistics in Italy'
@@ -596,7 +596,7 @@ def plant_development_seeds
   audio2.publication_date = pub_date
   audio2.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   audio3 = Audio.new
   audio3.title = 'Principles of modern energy'
@@ -611,7 +611,7 @@ def plant_development_seeds
   audio3.publication_date = pub_date
   audio3.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   audio4 = Audio.new
   audio4.title = 'Once upon a time the energy'
@@ -626,7 +626,7 @@ def plant_development_seeds
   audio4.publication_date = pub_date
   audio4.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   audio5 = Audio.new
   audio5.title = 'Digital sound'
@@ -641,7 +641,7 @@ def plant_development_seeds
   audio5.publication_date = pub_date
   audio5.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   audio6 = Audio.new
   audio6.title = 'Modern digital sound'
@@ -656,7 +656,7 @@ def plant_development_seeds
   audio6.publication_date = pub_date
   audio6.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   puts "Saved #{Audio.count} audios (should be 6)\n"
   
@@ -678,7 +678,7 @@ def plant_development_seeds
   video1.publication_date = pub_date
   video1.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video2 = Video.new
   video2.title = 'The life of bees'
@@ -693,7 +693,7 @@ def plant_development_seeds
   video2.publication_date = pub_date
   video2.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video3 = Video.new
   video3.title = 'The structure of the atoms'
@@ -708,7 +708,7 @@ def plant_development_seeds
   video3.publication_date = pub_date
   video3.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video4 = Video.new
   video4.title = 'Bacteria seen under a microscope'
@@ -723,7 +723,7 @@ def plant_development_seeds
   video4.publication_date = pub_date
   video4.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video5 = Video.new
   video5.title = 'Structure of the cell'
@@ -738,7 +738,7 @@ def plant_development_seeds
   video5.publication_date = pub_date
   video5.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video6 = Video.new
   video6.title = "Let's look inside us"
@@ -753,7 +753,7 @@ def plant_development_seeds
   video6.publication_date = pub_date
   video6.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video7 = Video.new
   video7.title = 'A chemical experiment'
@@ -768,7 +768,7 @@ def plant_development_seeds
   video7.publication_date = pub_date
   video7.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video8 = Video.new
   video8.title = 'Interesting chemical experiment'
@@ -783,7 +783,7 @@ def plant_development_seeds
   video8.publication_date = pub_date
   video8.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video9 = Video.new
   video9.title = 'The future comes from the sun'
@@ -798,7 +798,7 @@ def plant_development_seeds
   video9.publication_date = pub_date
   video9.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video10 = Video.new
   video10.title = 'The biggest star'
@@ -813,7 +813,7 @@ def plant_development_seeds
   video10.publication_date = pub_date
   video10.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video11 = Video.new
   video11.title = 'A chemical experiment about liquids'
@@ -828,7 +828,7 @@ def plant_development_seeds
   video11.publication_date = pub_date
   video11.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video12 = Video.new
   video12.title = 'Discover the liquids'
@@ -843,7 +843,7 @@ def plant_development_seeds
   video12.publication_date = pub_date
   video12.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video13 = Video.new
   video13.title = 'Inside mathematics'
@@ -858,7 +858,7 @@ def plant_development_seeds
   video13.publication_date = pub_date
   video13.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video14 = Video.new
   video14.title = 'Descriptive geometry'
@@ -873,7 +873,7 @@ def plant_development_seeds
   video14.publication_date = pub_date
   video14.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video15 = Video.new
   video15.title = 'The triangle'
@@ -888,7 +888,7 @@ def plant_development_seeds
   video15.publication_date = pub_date
   video15.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video16 = Video.new
   video16.title = 'Chemical lab'
@@ -903,7 +903,7 @@ def plant_development_seeds
   video16.publication_date = pub_date
   video16.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video17 = Video.new
   video17.title = 'Behavior of liquids'
@@ -918,7 +918,7 @@ def plant_development_seeds
   video17.publication_date = pub_date
   video17.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video18 = Video.new
   video18.title = 'Snail'
@@ -933,7 +933,7 @@ def plant_development_seeds
   video18.publication_date = pub_date
   video18.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video19 = Video.new
   video19.title = 'On the footsteps of Titanic'
@@ -948,7 +948,7 @@ def plant_development_seeds
   video19.publication_date = pub_date
   video19.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video20 = Video.new
   video20.title = 'Wind Energy'
@@ -963,7 +963,7 @@ def plant_development_seeds
   video20.publication_date = pub_date
   video20.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video21 = Video.new
   video21.title = 'How does a real chemistry lab work?'
@@ -978,7 +978,7 @@ def plant_development_seeds
   video21.publication_date = pub_date
   video21.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video22 = Video.new
   video22.title = 'The birth of a star'
@@ -993,7 +993,7 @@ def plant_development_seeds
   video22.publication_date = pub_date
   video22.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video23 = Video.new
   video23.title = 'Little scientists'
@@ -1008,7 +1008,7 @@ def plant_development_seeds
   video23.publication_date = pub_date
   video23.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   video24 = Video.new
   video24.title = 'Look at the virus closely'
@@ -1023,7 +1023,7 @@ def plant_development_seeds
   video24.publication_date = pub_date
   video24.save!
   
-  pub_date += 3
+  pub_date -= 3
   
   puts "Saved #{Video.count} videos (should be 24)\n"
   
