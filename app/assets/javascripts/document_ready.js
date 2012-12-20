@@ -48,10 +48,6 @@ $(document).ready(function() {
     $(this).find('._empty_media_elements_hover').removeClass('current');
   });
   
-  $('body').on('click', '._empty_media_elements', function() {
-    alert('questa parte manca ancora'); // TODO
-  });
-  
   $('body').on('mouseover', '._empty_lessons', function() {
     $(this).find('._empty_lessons_hover').addClass('current');
   });

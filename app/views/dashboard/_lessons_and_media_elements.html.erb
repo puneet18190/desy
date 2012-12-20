@@ -61,7 +61,7 @@
             <% media_elements_block.each do |me| %>
               <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
             <% end %>
-            <div class="boxNewMediaElement _empty_media_elements">
+            <div class="boxNewMediaElement _empty_media_elements _load_media_element">
               <div class="contentNew">
                 <a class="createButton _empty_media_elements_hover">&nbsp;</a>
                 <p><%= t("captions.load_new_media_element") %></p>
