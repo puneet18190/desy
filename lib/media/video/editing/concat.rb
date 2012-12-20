@@ -31,17 +31,22 @@ module Media
         
         # Usage example:
         #
-        # Concat.new({ mp4:['concat1.mp4','concat2.mp4'], webm:['concat1.webm','concat2.webm'] }, '/output_without_extension').run 
+        # Concat.new([ { webm: 'input.webm', mp4: 'input.mp4'}, { webm: 'input2.webm', mp4: 'input2.mp4'} ], '/output/without/extension').run 
         #
-        #   #=> { mp4:'/output_without_extension.mp4', webm:'/output_without_extension.webm' }
+        #   #=> { mp4:'/output/without/extension.mp4', webm:'/output/without/extension.webm' }
         #
         def initialize(inputs, output_without_extension)
   
-          unless inputs.is_a?(Hash)                                                     and 
-                 inputs.keys.sort == FORMATS.sort                                       and
-                 inputs.values.all?{ |v| v.is_a? Array }                                and
-                 inputs.values.map{ |v| v.all?{ |_v| _v.is_a? String } }.uniq == [true]
-            raise Error.new("inputs must be an Hash with #{FORMATS.inspect} as keys and an array of strings as values with at least one value", inputs: inputs, output_without_extension: output_without_extension)
+          unless inputs.is_a?(Array) and
+                 inputs.present?     and
+                 inputs.all? do |input|
+                   input.instance_of?(Hash)          and
+                   input.keys.sort == FORMATS.sort   and
+                   input.values.size == FORMATS.size and
+                   input.values.all?{ |v| v.instance_of? String }
+                 end
+            raise Error.new( "inputs must be an array with at least one element and its elements must be hashes with #{FORMATS.inspect} as keys and strings as values", 
+                             inputs: inputs, output_without_extension: output_without_extension )
           end
   
           unless output_without_extension.is_a?(String)
@@ -51,7 +56,7 @@ module Media
           @inputs, @output_without_extension = inputs, output_without_extension
           
           if mp4_inputs.size != webm_inputs.size
-            raise Error.new('inputs[:mp4] and inputs[:webm] must be of the same size', inputs: @inputs, output_without_extension: @output_without_extension)
+            raise Error.new('mp4_inputs and webm_inputs must be of the same size', inputs: @inputs, output_without_extension: @output_without_extension)
           end
   
         end
@@ -75,8 +80,8 @@ module Media
         private
         def copy_first_inputs_to_outputs
           Hash[
-            @inputs.map do |format, inputs|
-              input, output = inputs.first, outputs[format]
+            @inputs.first.map do |format, input|
+              output = outputs[format]
               FileUtils.cp input, output
               [format, output]
             end
@@ -192,11 +197,11 @@ module Media
         end
   
         def mp4_inputs
-          @inputs[:mp4]
+          @inputs.map{ |v| v[:mp4] }
         end
   
         def webm_inputs
-          @inputs[:webm]
+          @inputs.map{ |v| v[:webm] }
         end
   
         def mp4_output

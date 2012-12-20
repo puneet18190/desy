@@ -9,7 +9,7 @@ class MediaElement < ActiveRecord::Base
 
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
-  EXTENSIONS_BY_STI_TYPE = { 'Image' => %w(jpg jpeg png) }
+  EXTENSIONS_BY_STI_TYPE = { Image => %w(jpg jpeg png) }
   
   self.inheritance_column = :sti_type
 
@@ -50,11 +50,14 @@ class MediaElement < ActiveRecord::Base
           when File                               then media.path
           end
         ).sub(/^\./, '').downcase
-      inferred_sti_type = EXTENSIONS_BY_STI_TYPE.detect{ |_,v| v.include? extension }.try(:first)
+      inferred_sti_type = Hash[ [Image, Video, Audio].
+        map{ |v| [v, v.const_get(:EXTENSION_WHITE_LIST)] } ].
+        detect{ |_,v| v.include? extension }.
+        try(:first)
       unless inferred_sti_type
         return new_without_sti_type_inferring(attributes, options, &block)
       end
-      inferred_sti_type.constantize.new_without_sti_type_inferring(attributes, options, &block)
+      inferred_sti_type.new_without_sti_type_inferring(attributes, options, &block)
     end
     alias_method_chain :new, :sti_type_inferring
   end
