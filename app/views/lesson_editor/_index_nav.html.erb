@@ -4,15 +4,11 @@
       nav_class = '_slide_nav'
       nav_class = "#{nav_class} active _lesson_editor_current_slide_nav" if slide.cover? && with_current
     %>
-    <li class="<%= slide.cover? ? '' : '_slide_nav_sortable'.html_safe %>">
+    <li class="navNumbers <%= slide.cover? ? '' : '_slide_nav_sortable'.html_safe %>">
       <a id="slide_in_nav_lesson_editor_<%= slide.id %>" class="<%= nav_class.html_safe %>" data-slide-id="<%= slide.id %>"><%= slide.position %></a>
       <div class="slide-tooltip">
         <div class="zoomOutThumb">
-          <% if ["cover","audio","video1","video2"].include?(slide.kind)%>
-            <%= render :partial => "lesson_editor/slides/thumbnails/#{slide.kind}", :locals => {:slide => slide} %>
-          <% else %>
-            <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %>
-          <% end %>
+          <%= render :partial => "lesson_editor/slides/choose_thumbnail", :locals => {:slide => slide}%>
         </div>
       </div>
     </li>

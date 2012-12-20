@@ -21,10 +21,10 @@
               <% cont = (cont == 0) ? 1 : 0 %>
             <% end %>
             <% if cont == 1 %>
-              <div class="boxNewLesson fltrt _large_dashboard_hover_lesson">
+              <div class="boxNewLesson fltrt _empty_lessons">
                 <div class="contentInterno">
                   <div class="contentNew">
-                    <div class="createButton"><a></a></div>
+                    <div class="createButton"><a class="_empty_lessons_hover"></a></div>
                     <p><%= t("captions.create_new_lesson") %></p>
                   </div>
                 </div>
@@ -32,10 +32,10 @@
               </div>
               </div>
             <% else %>
-              <div class="boxNewLesson _large_dashboard_hover_lesson" style="float:left">
+              <div class="boxNewLesson _empty_lessons" style="float:left">
                 <div class="contentInterno">
                   <div class="contentNew">
-                    <div class="createButton"><a></a></div>
+                    <div class="createButton"><a class="_empty_lessons_hover"></a></div>
                     <p><%= t("captions.create_new_lesson") %></p>
                   </div>
                 </div>
@@ -61,9 +61,9 @@
             <% media_elements_block.each do |me| %>
               <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
             <% end %>
-            <div class="boxNewMediaElement _large_dashboard_hover_media_element">
+            <div class="boxNewMediaElement _empty_media_elements _load_media_element">
               <div class="contentNew">
-                <a class="createButton">&nbsp;</a>
+                <a class="createButton _empty_media_elements_hover">&nbsp;</a>
                 <p><%= t("captions.load_new_media_element") %></p>
               </div>
               <div class="vuoto"></div>

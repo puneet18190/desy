@@ -1,15 +1,16 @@
 <%
-title_max = t('captions.title_max_chars', :num => t('language_parameters.media_element.length_title').to_s).downcase 
-description_max = t('captions.description_max_chars', :num => t('language_parameters.media_element.length_description').to_s).downcase
-tags_max = t('captions.tags_max', :items => CONFIG['min_tags_for_item'].to_s, :num => CONFIG['max_tag_length'].to_s).downcase
+  title_max = t('captions.title_max_chars', :num => t('language_parameters.media_element.length_title').to_s).downcase 
+  description_max = t('captions.description_max_chars', :num => t('language_parameters.media_element.length_description').to_s).downcase
+  tags_max = t('captions.tags_max', :items => CONFIG['min_tags_for_item'].to_s, :num => CONFIG['max_tag_length'].to_s).downcase
 %>
+
 <div id="form_info_new_media_element_in_editor" class="_<%= sti_type %> formInfoMediaElementEditor" style="display:none">
   <div class="contentFormInfoMediaElementEditor">
     <div class="titleFormInfo">
       <div class="<%= sti_type.downcase %>Icon pull-left">&nbsp;</div>
-      <h1 class="pull-left"><%= t 'captions.creating_new_media_element'%></h1>
+      <h1 class="pull-left"><%= t('captions.creating_new_media_element') %></h1>
       <br style="clear:float">
-      <h2 class="pull-left"><%= t 'captions.enter_new_media_element_details'%></h2>
+      <h2 class="pull-left"><%= t('captions.enter_new_media_element_details') %></h2>
     </div>
     <div id="error_messages"></div>
     <div class="cols" style="float:left">

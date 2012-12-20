@@ -40,36 +40,32 @@ $(document).ready(function() {
   
   // DASHBOARD
   
+  $('body').on('mouseover', '._empty_media_elements', function() {
+    $(this).find('._empty_media_elements_hover').addClass('current');
+  });
+  
+  $('body').on('mouseout', '._empty_media_elements', function() {
+    $(this).find('._empty_media_elements_hover').removeClass('current');
+  });
+  
+  $('body').on('mouseover', '._empty_lessons', function() {
+    $(this).find('._empty_lessons_hover').addClass('current');
+  });
+  
+  $('body').on('mouseout', '._empty_lessons', function() {
+    $(this).find('._empty_lessons_hover').removeClass('current');
+  });
+  
+  $('body').on('click', '._empty_lessons', function() {
+    window.location = '/lessons/new';
+  });
+  
   $('#switch_to_lessons').click(function() {
     switchToSuggestedLessons();
   });
   
   $('#switch_to_media_elements').click(function() {
     switchToSuggestedMediaElements();
-  });
-  
-  $('body').on('mouseover', '._large_dashboard_hover_lesson', function() {
-    $('._large_dashboard_hover_lesson a').addClass('current_plus');
-  });
-  
-  $('body').on('mouseout', '._large_dashboard_hover_lesson', function() {
-    $('._large_dashboard_hover_lesson a').removeClass('current_plus');
-  });
-  
-  $('body').on('mouseover', '._large_dashboard_hover_media_element', function() {
-    $('._large_dashboard_hover_media_element a').addClass('current_plus');
-  });
-  
-  $('body').on('mouseout', '._large_dashboard_hover_media_element', function() {
-    $('._large_dashboard_hover_media_element a').removeClass('current_plus');
-  });
-  
-  $('body').on('click', '._large_dashboard_hover_lesson', function() {
-    window.location = '/lessons/new';
-  });
-  
-  $('body').on('click', '._large_dashboard_hover_media_element', function() {
-    alert('questa parte manca ancora');
   });
   
   
@@ -579,11 +575,6 @@ $(document).ready(function() {
   $('body').on('change', '._order_lessons_radio_input', function() {
     $('#search_lessons_submit').removeClass('current');
   });
-  
-  
-  // FAKE UPLOAD BUTTONS
-  
-  new FakeUpload($('._fakeUploadTrigger'));
   
   
   // POPUPS
