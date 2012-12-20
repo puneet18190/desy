@@ -1,5 +1,5 @@
 <div class="title-bar" id="media_elements_title_bar">
-  <h1 style="width:45%" class="lower"><%= t('captions.elements') %></h1>
+  <h1 style="width:40%" class="lower"><%= t('captions.elements') %></h1>
   <p id="format_media_elements">
     <%= t('captions.display_mode') %>: <%= link_to t('captions.large'), '/media_elements?display=expanded', :class => (@display == MediaElement::DISPLAY_MODES[:expanded] ? 'current' : ''), :id => 'display_expanded_media_elements', :remote => true %> - <%= link_to t('captions.small'), '/media_elements?display=compact', :class => (@display == MediaElement::DISPLAY_MODES[:compact] ? 'current' : ''), :id => 'display_compact_media_elements', :remote => true %>
   </p>
