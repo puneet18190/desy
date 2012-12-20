@@ -111,24 +111,25 @@ en:
     image_editor_label: 'Edit image'
     insert: 'Insert'
     insert_emails_here: 'Insert emails separated by comma'
-    
-    
-    
-    insert_slide_content_here: 'Insert slide content here'
+    insert_slide_content_here: 'Write a text here'
     insert_tag: 'Insert a tag'
     insert_text: 'Insert text'
     institute: 'Institute'
     large: 'Large'
     lessons: 'Lessons'
-    lesson_not_created: "The lesson can't be created"
     level: 'Level'
     load_new_media_element: 'Load a new element'
-    load_new_media_element_now: 'Load an element now'
+    load_new_media_element_now: 'Load a new element now'
     login: 'Login'
     logout: 'Logout'
-    matter: 'Matter'
     media_elements: 'Elements'
+    
+    
+    
+    
+    
     modify_info_element: 'Modify info element'
+    
     next: "Next"
     new_element_untitled: 'New element - untitled'
     no_notifications: "You don't have any notifications"
@@ -162,9 +163,10 @@ en:
     share_lesson_public_link: 'Share the public link of this lesson'
     show: 'Show'
     slide_not_deleted: "This slide can't be deleted"
+    small: 'Small'
     sort_results_by: 'Sort results by'
     status: 'Status'
-    small: 'Small'
+    subject: 'Subject' # GIÀ FATTO
     tags_max: 'Insert a minimum of %{items} tags (max %{num} characters each)'
     talk_with_desy: 'Want to talk with DESY?'
     text_color: 'Text color'
@@ -173,10 +175,10 @@ en:
     total_length: 'Total lenght'
     untitled_new_element: "New element - untitled"
     update: 'Update'
-    update_lesson: 'Change the lesson info'
+    update_lesson: 'Are you making important changes?' # GIÀ FATTO
     updating_media_element: 'Have you made important changes?' # GIÀ FATTO
     upload: 'Upload'
-    use_the_form_below_for_lesson_information: 'Modify or change information related to your lesson.'
+    use_the_form_below_for_lesson_information: "Update here the lesson's info according to its new content" # GIÀ FATTO
     video_editor_label: 'Edit video'
     virtual_classroom: 'Virtual classroom'
     warning: 'Warning!'
