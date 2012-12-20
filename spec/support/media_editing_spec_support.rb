@@ -3,6 +3,9 @@ require 'media'
 module MediaEditingSpecSupport
   SAMPLES_FOLDER = Pathname.new File.expand_path('../samples', __FILE__)
 
+  VIDEO_FORMATS = [:mp4, :webm]
+  AUDIO_FORMATS = [:mp3, :ogg]
+
   INVALID_VIDEO             = SAMPLES_FOLDER.join('invalid video.flv').to_s
   VALID_VIDEO               = SAMPLES_FOLDER.join('valid video.flv').to_s
   VALID_VIDEO_WITH_ODD_SIZE = SAMPLES_FOLDER.join('valid video with odd size.webm').to_s
@@ -10,20 +13,22 @@ module MediaEditingSpecSupport
   INVALID_AUDIO             = SAMPLES_FOLDER.join('invalid audio.mp3').to_s
   VALID_JPG                 = SAMPLES_FOLDER.join('valid image.jpg').to_s
   VALID_PNG                 = SAMPLES_FOLDER.join('valid image.png').to_s
-  #INVALID_IMAGE             = SAMPLES_FOLDER.join 'invalid image.jpg'
+
+  CONVERTED_VIDEO_HASH = { mp4: SAMPLES_FOLDER.join('con verted.mp4').to_s, webm: SAMPLES_FOLDER.join('con verted.webm').to_s, filename: 'con verted' }
+  CONVERTED_AUDIO_HASH = { mp3: SAMPLES_FOLDER.join('con verted.mp3').to_s, ogg: SAMPLES_FOLDER.join('con verted.ogg').to_s, filename: 'con verted' }
   
-  CROP_VIDEOS = { mp4: SAMPLES_FOLDER.join('con verted.mp4').to_s, webm: SAMPLES_FOLDER.join('con verted.webm').to_s }
+  CROP_VIDEOS = CONVERTED_VIDEO_HASH.select{ |k| [:mp4, :webm].include? k }
   
   CONCAT_VIDEOS = {
                     videos_with_some_audio_streams: {
-                      videos: Hash[ [:mp4, :webm].map{ |f| [f, (['concat 1', 'concat 2'] * 2).map{ |v| SAMPLES_FOLDER.join("#{v}.#{f}").to_s } ] } ],
+                      videos: ['concat 1', 'concat 2'].map{ |i| Hash[ VIDEO_FORMATS.map{ |f| [f, SAMPLES_FOLDER.join("#{i}.#{f}").to_s] } ] } * 2,
                       output_infos: {
                         mp4:  {:duration=>96.36, :streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>865}], :audio=>[{:codec=>"mp3", :bitrate=>69}]}},
                         webm: {:duration=>96.34, :streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[{:codec=>"vorbis", :bitrate=>nil}]}}
                       }
                     },
-                    videos_without_audio_streams:   { 
-                      videos: Hash[ [:mp4, :webm].map{ |f| [f, (['concat 1'] * 2).map{ |v| SAMPLES_FOLDER.join("#{v}.#{f}").to_s } ] } ],
+                    videos_without_audio_streams:   {
+                      videos: ['concat 1'].map{ |i| Hash[ VIDEO_FORMATS.map{ |f| [f, SAMPLES_FOLDER.join("#{i}.#{f}").to_s] } ] } * 2,
                       output_infos: {
                         mp4:  {:duration=>20.0, :streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>56}], :audio=>[]}},
                         webm: {:duration=>20.0, :streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[]}}
@@ -46,9 +51,6 @@ module MediaEditingSpecSupport
     start_inputs: Hash[ [:mp4, :webm].map{ |f| [f, SAMPLES_FOLDER.join("con verted.#{f}").to_s] } ],
     end_inputs:   Hash[ [:mp4, :webm].map{ |f| [f, SAMPLES_FOLDER.join("converted no audio.#{f}").to_s] } ]
   }
-
-  VIDEO_FORMATS = [:mp4, :webm]
-  AUDIO_FORMATS = [:mp3, :ogg]
   AVCONV_SH_VARS                      = {}                                                          # { 'LD_LIBRARY_PATH' => '/opt/libav-0.8.4/lib' }
   AVCONV_WITH_FILTERS_SH_VARS         = AVCONV_SH_VARS                                              # { 'LD_LIBRARY_PATH' => '/opt/libav-0.8.4/lib' }
   AVCONV_PRE_COMMAND                  = 'avconv -v 9 -loglevel 99 -benchmark -y -timelimit 86400'   # '/opt/libav-0.8.4/bin/avconv'

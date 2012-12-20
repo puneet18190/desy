@@ -2,7 +2,10 @@ require 'media'
 require 'media/video'
 require 'media/video/editing'
 require 'media/in_tmp_dir'
+require 'media/video/editing/parameters'
 require 'sensitive_thread'
+require 'media/video/editing/text_to_video'
+require 'media/video/editing/image_to_video'
 require 'media/audio'
 
 module Media
@@ -11,6 +14,10 @@ module Media
       class Composer
 
         include InTmpDir
+
+        VIDEO_COMPONENT = Parameters::VIDEO_COMPONENT
+        TEXT_COMPONENT  = Parameters::TEXT_COMPONENT
+        IMAGE_COMPONENT = Parameters::IMAGE_COMPONENT
 
         #  {
         #    :initial_video => {
@@ -21,20 +28,20 @@ module Media
         #    :audio_track_id => AUDIO ID or NIL,
         #    :components => [
         #      {
-        #        :type => Video::VIDEO_COMPONENT,
+        #        :type => VIDEO_COMPONENT,
         #        :video => VIDEO ID,
         #        :from => 12,
         #        :to => 24
         #      },
         #      {
-        #        :type => Video::TEXT_COMPONENT,
+        #        :type => TEXT_COMPONENT,
         #        :content => 'Titolo titolo titolo',
         #        :duration => 14,
         #        :background_color => 'red',
         #        :text_color => 'white'
         #      },
         #      {
-        #        :type => Video::IMAGE_COMPONENT,
+        #        :type => IMAGE_COMPONENT,
         #        :image => IMAGE ID,
         #        :duration => 2
         #      }
@@ -45,48 +52,46 @@ module Media
         end
 
         def run
+          # if video
+          #   ::Video.update_all {converted: nil}
+          # end
+
           in_tmp_dir do
             concats = {}
 
             @params[:components].each_with_index.map do |component, i|
-              raise [component, i].inspect
-              begin
-                @i = i
-                SensitiveThread.new do
-                  concats.store i,
-                    case component[:type]
-                    when ::Video::VIDEO_COMPONENT
-                      compose_video *component.values_at(:video, :from, :to)
-                    when ::Video::IMAGE_COMPONENT
-                      compose_image *component.values_at(:image, :duration)
-                    when ::Video::TEXT_COMPONENT
-                      compose_text *component.values_at(:content, :duration, :text_color, :background_color)
-                    else
-                      # TODO messaggio migliore
-                      raise "unknown component type: #{component[:type].inspect}"
-                    end
-                end
-              ensure
-                @i = nil
+              SensitiveThread.new do
+                concats.store i,
+                  case component[:type]
+                  when VIDEO_COMPONENT
+                    compose_video *component.values_at(:video, :from, :to), i
+                  when IMAGE_COMPONENT
+                    compose_image *component.values_at(:image, :duration), i
+                  when TEXT_COMPONENT
+                    compose_text *component.values_at(:content, :duration, :text_color, :background_color), i
+                  else
+                    # TODO messaggio migliore
+                    raise "unknown component type: #{component[:type].inspect}"
+                  end
               end
             end.each(&:join)
 
             concats_sorted = concats.sort
             concats_sorted[0, concats_sorted.size-1].map do |i, concat|
               next_i = i+1
-              next_concat = concats_sorted[next_i]
+              next_concat = concats_sorted[next_i][1]
               SensitiveThread.new do
                 transition_i = (i+next_i)/2.0
-                concats.store transition_i, Transition.new(concat, next_concat, tmp_path transition_i.to_s).run
+                concats.store transition_i, Transition.new(concat, next_concat, tmp_path(transition_i.to_s)).run
               end
             end.each(&:join)
 
             concat = tmp_path 'concat'
-            outputs = Concat.new(concats.sort.map{ |_,(_,concat)| concat }, concat).run
+            outputs = Concat.new(concats.sort.map{ |_,c| c }, concat).run
 
             if audio
-              audios = Hash[ Media::Audio::FORMATS.map{ |f| [f, audio.media.absolute_path(f) } ]
-              outputs = ReplaceAudio.new(outputs, audios, tmp_path 'replace_audio').run
+              audios = Hash[ Media::Audio::FORMATS.map{ |f| [f, audio.media.absolute_path(f)] } ]
+              outputs = ReplaceAudio.new(outputs, audios, tmp_path('replace_audio')).run
             end
 
             video.media = outputs.merge(filename: video.title)
@@ -94,20 +99,19 @@ module Media
           end
         end
 
-
         private
-        def compose_text(text, duration, color, background_color)
-          text_file = tmp_path "text_#{@i}.txt"
+        def compose_text(text, duration, color, background_color, i)
+          text_file = Pathname.new tmp_path "text_#{i}.txt"
           File.open(text_file, 'w') { |f| f.write text }
-          TextToVideo.new(text_file, output_without_extension, duration, color: color, background_color: background_color).run
+          TextToVideo.new(text_file, output_without_extension(i), duration, color: color, background_color: background_color).run
         end
 
-        def compose_image(image_id, duration)
-          image = Image.find image_id
-          ImageToVideo.new(image.media.path, output_without_extension, duration).run
+        def compose_image(image_id, duration, i)
+          image = ::Image.find image_id
+          ImageToVideo.new(image.media.path, output_without_extension(i), duration).run
         end
 
-        def compose_video(video_id, from, to)
+        def compose_video(video_id, from, to, i)
           video = ::Video.find video_id
           if video.converted.nil?
             # TODO messaggio migliore
@@ -119,37 +123,47 @@ module Media
           if from == 0 && to == video.min_duration
             {}.tap do |outputs|
               inputs.map do |format, input|
-                outputs[f] = output = "#{output_without_extension}.#{format}"
+                outputs[format] = output = "#{output_without_extension(i)}.#{format}"
                 SensitiveThread.new{ video_copy input, output }
               end.each(&:join)
             end
           else
             start, duration = from, to-from
-            Crop.new(inputs, output_without_extension, start, duration).run
+            Crop.new(inputs, output_without_extension(i), start, duration).run
           end
         end
 
         def video_copy(input, output)
           # se uso l'audio di sottofondo scarto gli stream audio, così poi non perdo tempo a processare le tracce audio inutilmente
-          if final_audio
+          if audio
             Cmd::VideoStreamToFile.new(input, output).run!
           else
             FileUtils.cp(input, output)
           end
         end
 
-        def output_without_extension
-          tmp_path @i.to_s
+        def output_without_extension(i)
+          tmp_path i.to_s
         end
 
-        def final_video
+        def video
           @video ||= (
             id = @params[:initial_video][:id]
-            return ::Video.find(id) if id
+            video =
+              if id
+                ::Video.find(id)
+              else
+                ::Video.new do |video|
+                  video.user_id = @params[:initial_video][:user_id]
+                end
+              end
 
-            ::Video.new(@params[:initial_video].select{ |k| [:title, :description, :tags].include? k }) do |video|
-              video.user_id = @params[:initial_video][:user_id]
+            attributes = @params[:initial_video].select{ |k| [:title, :description, :tags].include? k }
+            attributes.each do |attribute, value|
+              video.send :"#{attribute}=", value
             end
+            
+            video
           )
         end
 

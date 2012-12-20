@@ -68,7 +68,21 @@
         background-size:6em;
         cursor: pointer;
       }
+   .createButton  a.current {
+        background: url(<%= asset_path 'add-element-on.svg' %>) bottom right no-repeat;
+        background-size:6em;
+        cursor: pointer;
+      }
 }
+
+._empty_media_elements:hover {
+  cursor:pointer;
+}
+
+._empty_lessons:hover {
+  cursor:pointer;
+}
+
 .emptyFilter {
   margin: 0 auto;
   padding-top:5em;

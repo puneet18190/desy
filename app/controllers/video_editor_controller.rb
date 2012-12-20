@@ -62,6 +62,7 @@ class VideoEditorController < ApplicationController
         :tags => params[:new_tags],
         :user_id => @current_user.id
       }
+      _d parameters
       # manda parameters al video editor di Maurizio, e fai redirect_to my_media_elements_path
       # usa le notifiche per segnalare la riuscita o non riuscita del salvataggio??
       # svuota la cache se il salvataggio riesce

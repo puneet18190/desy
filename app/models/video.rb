@@ -18,8 +18,6 @@ class Video < MediaElement
 
   validate :media_validation
   
-
-  
   def min_duration
     [mp4_duration, webm_duration].map(&:to_i).min
   end

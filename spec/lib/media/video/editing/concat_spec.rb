@@ -10,33 +10,33 @@ module Media
   
           subject { described_class.new(inputs, output_without_extension) }
   
-          context 'when inputs is not an Hash' do
+          context 'when inputs is not an Array' do
             let(:inputs) { nil }
             it { expect { subject }.to raise_error Error }
           end
   
           context 'when inputs is an Hash with the wrong keys' do
-            let(:inputs) { { webm: ['input'], mp4: ['input'], ciao: ['input'] } }
+            let(:inputs) { [ { webm: 'input', ciao: 'input'} ] }
             it { expect { subject }.to raise_error Error }
           end
   
-          context 'when there is some inputs value which is not an array' do
-            let(:inputs) { { webm: ['input'], mp4: true } }
+          context 'when there is some inputs value which is not an hash' do
+            let(:inputs) { [ { webm: 'input', mp4: 'input'}, nil ] }
             it { expect { subject }.to raise_error Error }
           end
   
           context 'when inputs are not paired' do
-            let(:inputs) { { mp4: ['input', 'input'], webm: ['input'] } }
+            let(:inputs) { [ { webm: 'input', mp4: 'input'}, { webm: 'input' } ] }
             it { expect { subject }.to raise_error Error }
           end
   
           context 'when at least one value of the inputs is empty' do
-            let(:inputs) { { mp4: ['input'], webm: [] } }
+            let(:inputs) { [ { webm: 'input', mp4: nil } ] }
             it { expect { subject }.to raise_error Error }
           end
   
           context 'when output_without_extension is not a string' do
-            let(:inputs) { { webm: ['input'], mp4: ['input'] } }
+            let(:inputs) { [ { webm: 'input', mp4: 'input'} ] }
   
             let(:output_without_extension) { nil }
             it { expect { subject }.to raise_error Error }
@@ -44,12 +44,12 @@ module Media
   
           context 'when inputs values is an Hash with the right keys and paired values' do
             context 'with one pair of values' do
-              let(:inputs) { { webm: ['input'], mp4: ['input'] } }
+              let(:inputs) { [{ webm: 'input', mp4: 'input'} ] }
               it { expect { subject }.to_not raise_error }
             end
   
             context 'with two pairs of values' do
-              let(:inputs) { { webm: ['input', 'input'], mp4: ['input', 'input'] } }
+              let(:inputs) { [ { webm: 'input', mp4: 'input' }, { webm: 'input', mp4: 'input' } ] }
               it { expect { subject }.to_not raise_error }
             end
           end
@@ -65,7 +65,7 @@ module Media
             end
             let(:output)       { File.join tmp_dir, 'out put' }
             let(:input_videos) do
-              Hash[ MESS::CONCAT_VIDEOS[:videos_with_some_audio_streams][:videos].map{ |k,v| [k, [v.first] ] } ]
+              MESS::CONCAT_VIDEOS[:videos_with_some_audio_streams][:videos][0,1]
             end
             let(:concat) { described_class.new(input_videos, output) }
             
@@ -84,7 +84,7 @@ module Media
                 let(:format) { format }
               
                 it 'copies the inputs to the outputs' do
-                  FileUtils.cmp(input_videos[format].first, subject[format]).should be_true
+                  FileUtils.cmp(input_videos.first[format], subject[format]).should be_true
                 end
   
               end
@@ -198,7 +198,7 @@ module Media
         describe '#paddings' do
           let(:info) { Struct.new(:audio_streams, :duration) }
   
-          subject { described_class.new({mp4: ['input'], webm: ['input']}, '/output/path').send(:paddings, infos) }
+          subject { described_class.new([ { webm: 'input', mp4: 'input' } ], '/output/path').send(:paddings, infos) }
   
           context 'with empty infos' do
             let(:infos) { [] }
