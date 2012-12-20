@@ -967,11 +967,44 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._commit_video_editor', function() {
+    stopCacheLoop();
+    $('#video_editor_form').submit();
     if($(this).hasClass('_with_choice')) {
-      alert('hai la scelta');
+      // TODO hai la scelta
+/*      showConfirmPopUp(captions.data('exit-video-editor-title'), captions.data('exit-video-editor-confirm'), captions.data('exit-video-editor-yes'), captions.data('exit-video-editor-no'), function() {
+      $('dialog-confirm').hide();
+      $.ajax({
+        type: 'post',
+        url: '/videos/cache/empty',
+        success: function() {
+          window.location = '/dashboard';
+        }
+      });
+    }, function() {
+      startCacheLoop();
+      closePopUp('dialog-confirm');
+    });*/
+    
+    
     } else {
-      alert('non hai nessuna scelta');
+      // TODO non hai scelta
     }
+  });
+  
+  $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._commit', function() {
+    
+  });
+  
+  $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._commit', function() {
+    
+  });
+  
+  $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._cancel', function() {
+    
+  });
+  
+  $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._cancel', function() {
+    
   });
   
   initializeVideoEditor();
