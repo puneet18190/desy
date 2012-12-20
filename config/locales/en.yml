@@ -44,24 +44,21 @@ en:
           problem_reporting: 'Your report could not be sent'
           lesson_already_reported: 'You already reported this lesson'
           media_element_already_reported: 'You already reported this element'
-        
-        # giunto qui
-        
         video:
           attributes:
             media:
-              unsupported_format: "Your video's format is not supported"
+              unsupported_format: "The format of your video is not supported"
               invalid_video: 'Your video could not be loaded'
               invalid_duration: 'Your video has an invalid duration'
-              blank_video_streams: 'Your video has not video streams'
+              blank_video_streams: 'Your video does not have any video stream'
         virtual_classroom_lesson:
-          cant_change_position_if_not_in_playlist: 'You cannot change the position of a lesson which is not in the playlist'
-          invalid_position_in_playlist: 'The position you chose is not valid for your playlist'
-          problems_changing_position_in_playlist: 'There was a problem changing the position of the lesson in your playlist'
-          problems_adding_to_playlist: 'There was a problem adding your lesson to the playlist'
-          problems_emptying_playlist: 'There was a problem emptying your playlist'
+          cant_change_position_if_not_in_playlist: 'This lesson is not in the playlist'
+          invalid_position_in_playlist: "This lesson's position is not valid"
+          problems_changing_position_in_playlist: "The lesson's position could not be changed"
+          problems_adding_to_playlist: 'The lesson could not be added to the playlist'
+          problems_emptying_playlist: 'Your playlist could not be emptied'
           playlist_full: 'Your playlist is full!'
-          problems_removing_from_playlist: 'There was a problem removing your lesson from the playlist'
+          problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
   captions:
