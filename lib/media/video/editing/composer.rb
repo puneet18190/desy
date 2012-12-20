@@ -52,6 +52,10 @@ module Media
         end
 
         def run
+          if video
+            ::Video.update_all {converted: nil}
+          end
+
           in_tmp_dir do
             concats = {}
 
@@ -92,16 +96,12 @@ module Media
 
             video.media = outputs.merge(filename: video.title)
             video.save!
-
-            video.reload
-            _d video.id, video.media.absolute_folder
           end
         end
 
-
         private
         def compose_text(text, duration, color, background_color, i)
-          text_file = tmp_path "text_#{@i}.txt"
+          text_file = Pathname.new tmp_path "text_#{i}.txt"
           File.open(text_file, 'w') { |f| f.write text }
           TextToVideo.new(text_file, output_without_extension(i), duration, color: color, background_color: background_color).run
         end
@@ -149,11 +149,21 @@ module Media
         def video
           @video ||= (
             id = @params[:initial_video][:id]
-            return ::Video.find(id) if id
+            video =
+              if id
+                ::Video.find(id)
+              else
+                ::Video.new do |video|
+                  video.user_id = @params[:initial_video][:user_id]
+                end
+              end
 
-            ::Video.new(@params[:initial_video].select{ |k| [:title, :description, :tags].include? k }) do |video|
-              video.user_id = @params[:initial_video][:user_id]
+            attributes = @params[:initial_video].select{ |k| [:title, :description, :tags].include? k }
+            attributes.each do |attribute, value|
+              video.send :"#{attribute}=", value
             end
+            
+            video
           )
         end
 

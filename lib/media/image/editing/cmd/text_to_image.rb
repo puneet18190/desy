@@ -21,7 +21,7 @@ module Media
 
           attr_reader :output, *OPTIONS
 
-          # text can be a file or a Pathname: if so, its contents will be used as text for the image
+          # text can be a File, a Tempfile or a Pathname: if so, its contents will be used as text for the image
           def initialize(text, output, options = {})
             if (options.keys - OPTIONS).present?
               raise Error.new("options keys must be included into #{OPTIONS.inspect}")

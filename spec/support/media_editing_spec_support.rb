@@ -15,6 +15,7 @@ module MediaEditingSpecSupport
   VALID_PNG                 = SAMPLES_FOLDER.join('valid image.png').to_s
 
   CONVERTED_VIDEO_HASH = { mp4: SAMPLES_FOLDER.join('con verted.mp4').to_s, webm: SAMPLES_FOLDER.join('con verted.webm').to_s, filename: 'con verted' }
+  CONVERTED_AUDIO_HASH = { mp3: SAMPLES_FOLDER.join('con verted.mp3').to_s, ogg: SAMPLES_FOLDER.join('con verted.ogg').to_s, filename: 'con verted' }
   
   CROP_VIDEOS = CONVERTED_VIDEO_HASH.select{ |k| [:mp4, :webm].include? k }
   
@@ -26,7 +27,7 @@ module MediaEditingSpecSupport
                         webm: {:duration=>96.34, :streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[{:codec=>"vorbis", :bitrate=>nil}]}}
                       }
                     },
-                    videos_without_audio_streams:   { 
+                    videos_without_audio_streams:   {
                       videos: ['concat 1'].map{ |i| Hash[ VIDEO_FORMATS.map{ |f| [f, SAMPLES_FOLDER.join("#{i}.#{f}").to_s] } ] } * 2,
                       output_infos: {
                         mp4:  {:duration=>20.0, :streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>56}], :audio=>[]}},
