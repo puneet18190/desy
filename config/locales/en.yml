@@ -82,7 +82,7 @@ en:
     create: 'Create'
     create_new_lesson: 'Create a new lesson'
     create_new_lesson_now: 'Create a lesson now'
-    create_new_media_element: 'Element editor'
+    create_new_media_element: 'Elements editor'
     creating_new_media_element: "You are creating a new element"
     dashboard: 'Dashboard'
     description: 'Description'
@@ -117,7 +117,6 @@ en:
     institute: 'Institute'
     large: 'Large'
     lessons: 'Lessons'
-    level: 'Level'
     load_new_media_element: 'Load a new element'
     load_new_media_element_now: 'Load a new element now'
     login: 'Login'
@@ -127,7 +126,6 @@ en:
     next: "Next"
     new_element_untitled: 'New element - untitled'
     no_notifications: "You don't have any notifications"
-    or_cancel: 'Or cancel'
     original_size: 'Original size'
     password: 'Password'
     password_or_username_not_correct: 'Wrong login data'
@@ -139,20 +137,19 @@ en:
     register: 'Register'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     report_abuse: 'Report abuse'
-    
-    
-    # qui
-    
-    
-    results_do_you_want: ' results. Do you want to refine your search? Results are also shown in these tags' # separarlo!!
     school_level: 'School level'
     search: 'Search'
     search_in_desy: 'Search in DESY'
-    search_lesson_or_media_element: 'Do you need lessons or media elements?'
-    sec: 'sec'
+    search_lesson_or_media_element: 'Are you looking for lessons or elements?'
+    seconds_shortened: 'Sec'
     selected_for_you: 'Selected for you'
     select_audio: 'Select audio'
     select_component_to_add: 'Select component to add'
+    
+    
+    
+    
+    
     select_file: 'Select the item to be loaded'
     select_image: 'Select image'
     select_the_lessons_you_want_to_upload: 'Select the lessons you want to upload in the Virtual Classroom'
@@ -194,7 +191,7 @@ en:
     you_believe_content_unappropriate: 'You believe this content is unappropriate?'
     your_browser_does_not_support_video: 'Your browser does not support the video tag'
     your_browser_does_not_support_audio: 'Your browser does not support the audio tag'
-    your_search_returned: 'Your search returned '
+    your_search_returned: 'Found %{num} results. To refine your search select between these tags' # GIÀ FATTO
     your_virtual_classroom_is_empty: 'Your virtual classroom is empty'
   descriptions:
     audio_track_in_video_editor: 'You can upload an audio track that will be the background of your video'
