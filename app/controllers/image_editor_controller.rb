@@ -131,9 +131,12 @@ class ImageEditorController < ApplicationController
         crop_params = "#{w}x#{h}+#{x1}+#{y1}"
         img.crop(crop_params)
       end
-      image_dir = "/public/media_elements/images/#{params[:image_id]}"
+      
       #TODO update replacing write temp image
-      img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
+      #image_dir = "/public/media_elements/images/#{params[:image_id]}"
+      #img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
+      
+      
       new_image = Image.new { |me| me.user = @current_user }
 
       new_image.title = params[:new_title]
@@ -143,10 +146,14 @@ class ImageEditorController < ApplicationController
       new_image.valid?
         msg = new_image.errors.messages
         msg.delete(:media)
-
+      
       if msg.empty?
-        new_image.media = File.open("#{Rails.root}#{image_dir}/final_crop.jpg")
-        new_image.save
+        in_tmpdir do |tmpdir|
+          new_filename = "#{params[:new_title].gsub(/[^0-9A-Za-z]/, '')}-edit-#{Time.now.strftime('%Y%m%d-%H%M%S')}.jpg"
+          img.write("#{tmpdir}/#{new_filename}")
+          new_image.media = File.open("#{tmpdir}/#{new_filename}")
+          new_image.save
+        end
       else
         @errors = msg
       end
@@ -211,8 +218,8 @@ class ImageEditorController < ApplicationController
         img.crop(crop_params)
       end
       
-      image_dir = "/public/media_elements/images/#{params[:image_id]}"
-      img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
+      #image_dir = "/public/media_elements/images/#{params[:image_id]}"
+      #img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
 
       @image.title = params[:update_title]
       @image.description = params[:update_description]
@@ -221,8 +228,12 @@ class ImageEditorController < ApplicationController
       
       
       if @image.valid?
-        @image.media = File.open("#{Rails.root}#{image_dir}/final_crop.jpg")
-        @image.save
+        in_tmpdir do |tmpdir|
+          new_filename = "#{params[:new_title].gsub(/[^0-9A-Za-z]/, '')}-edit-#{Time.now.strftime('%Y%m%d-%H%M%S')}.jpg"
+          img.write("#{tmpdir}/#{new_filename}")
+          @image.media = File.open("#{tmpdir}/#{new_filename}")
+          @image.save
+        end
       else
         @errors = @image.errors.messages
       end
@@ -235,6 +246,14 @@ class ImageEditorController < ApplicationController
   end
   
   private
+  
+  def in_tmpdir
+    path = File.expand_path "#{Dir.tmpdir}/#{Time.now.to_i}#{rand(1000)}/"
+    FileUtils.mkdir_p path
+    yield path
+  ensure
+    FileUtils.rm_rf( path ) if File.exists?( path )
+  end
   
   def remove_tmp_crop(image_dir)
     #dir_contents = Dir.entries("#{image_dir}")
