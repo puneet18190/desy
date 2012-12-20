@@ -47,6 +47,26 @@ html.lesson-viewer-layout{
     margin:0px 0px 20px 0px;
   
   }
+  @mixin formatList{
+    ol {
+      display: block;
+      list-style-type: decimal;
+      -webkit-margin-before: 1em;
+      -webkit-margin-after: 1em;
+      -webkit-margin-start: 0px;
+      -webkit-margin-end: 0px;
+      -webkit-padding-start: 40px;
+    }
+    ul {
+      display: block;
+      list-style-type: disc;
+      -webkit-margin-before: 1em;
+      -webkit-margin-after: 1em;
+      -webkit-margin-start: 0px;
+      -webkit-margin-end: 0px;
+      -webkit-padding-start: 40px;
+    }
+  }
   .top {
     margin-bottom: -220px;
     background: transparent;
@@ -253,9 +273,7 @@ html.lesson-viewer-layout{
     h2 {
       height:93px;
     }
-    ol {
-      
-    }
+    @include formatList;
   }
   /*slide video*/
   .slideVideo{
@@ -271,8 +289,9 @@ html.lesson-viewer-layout{
       height:100px;
     }
     .contentText {
-    height:300px;
+      height:300px;
     }
+    @include formatList;
   }
   .boxFissoImage {
     width:420px;
@@ -459,6 +478,7 @@ html.lesson-viewer-layout{
       margin-top:0.8em;
       margin-bottom:0.8em;
     }
+    @include formatList;
   }
   .textRightVideoContent {
     float:right;
@@ -474,6 +494,7 @@ html.lesson-viewer-layout{
       margin-top:0.8em;
       margin-bottom:0.8em;
     }
+    @include formatList;
   }
   .contentText {
     width:840px;
