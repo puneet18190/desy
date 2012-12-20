@@ -186,11 +186,11 @@
     text-transform:lowercase;
     color:white;
     margin-right:0.5em;
-    &.send {
-      background-color:#373737;
-      text-align:center;
-      padding:0.5em 2.5em;
-      font-size:1.4em;
+    &.buttonForm {
+      background-color:#42b9e9;
+     &:hover {
+      background-color: #59c9f6;
+     }; 
     }
   }
 }
