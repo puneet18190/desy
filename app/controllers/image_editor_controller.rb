@@ -58,67 +58,15 @@ class ImageEditorController < ApplicationController
     if @ok
       if !params[:cropped_image].blank?
         editing_folder = File.join(@image.media.absolute_folder, "editing","user_#{@current_user.id}")
-        img = MiniMagick::Image.open(File.join(editing_folder,params[:cropped_image]))
+        image_path = File.join(editing_folder,params[:cropped_image])
+        img = MiniMagick::Image.open(image_path)
         original_height = img[:height]
         original_width = img[:width]
       else
-        img = MiniMagick::Image.open(@image.media.path)
+        image_path = @image.media.path
+        img = MiniMagick::Image.open(image_path)
         original_width = @image.media.width
         original_height = @image.media.height
-      end
-      
-      woh = width_or_height(original_width,original_height)
-      
-      textCount = 0
-      params.each do |p,val|
-        if p.starts_with?('text')
-          textCount += 1
-        end
-      end
-      
-      if textCount > 0
-        (0..textCount-1).each do |t_num|
-          
-          color_value = params["color_#{t_num}"]
-          color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
-          size_value = params["font_#{t_num}"].to_f
-          width_val = woh[1]
-          original_val = woh[0]
-          font_size = "#{ratio_value(width_val,(size_value), original_val)}"
-          coords_value = params["coords_#{t_num}"].to_s.split(",")
-          coordX = ratio_value(width_val,coords_value[0], original_val)
-          coordY = ratio_value(width_val,coords_value[1], original_val)
-          text_value = params["text_#{t_num}"]
-          
-          tmp_file = Tempfile.new('textarea')
-          begin
-            tmp_file << text_value
-            Media::Image::Editing::AddTextToImage.new(img, color_hex, font_size, coordX, coordY, text_value).run
-          ensure
-            tmp_file.close
-            tmp_file.unlink
-          end
-          
-          #img.combine_options do |c|
-          #  color_value = params["color_#{t_num}"]
-          #  color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
-          #  c.fill "#{color_hex}"
-          #  c.stroke "none"
-          #  #c.encoding = "Unicode"
-          #  c.font "#{Rails.root}/vendor/fonts/DroidSansFallback.ttf"
-          #  size_value = params["font_#{t_num}"].to_f
-          #  width_val = woh[1]
-          #  original_val = woh[0]
-          #  c.pointsize "#{ratio_value(width_val,(size_value), original_val)}"
-          #  c.gravity 'NorthWest'
-          #  coords_value = params["coords_#{t_num}"].to_s.split(",")
-          #  c0 = ratio_value(width_val,coords_value[0], original_val)
-          #  c1 = ratio_value(width_val,coords_value[1], original_val)
-          #  text_value = params["text_#{t_num}"]
-          #
-          #  c.draw "text #{c0},#{c1} '#{text_value}'"
-          #end
-        end
       end
       
       if !params[:x1].blank?
@@ -131,14 +79,8 @@ class ImageEditorController < ApplicationController
         crop_params = "#{w}x#{h}+#{x1}+#{y1}"
         img.crop(crop_params)
       end
-      
-      #TODO update replacing write temp image
-      #image_dir = "/public/media_elements/images/#{params[:image_id]}"
-      #img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
-      
-      
+            
       new_image = Image.new { |me| me.user = @current_user }
-
       new_image.title = params[:new_title]
       new_image.description = params[:new_description]
       new_image.tags = params[:new_tags]
@@ -150,8 +92,11 @@ class ImageEditorController < ApplicationController
       if msg.empty?
         in_tmpdir do |tmpdir|
           new_filename = "#{params[:new_title].gsub(/[^0-9A-Za-z]/, '')}-edit-#{Time.now.strftime('%Y%m%d-%H%M%S')}.jpg"
-          img.write("#{tmpdir}/#{new_filename}")
-          new_image.media = File.open("#{tmpdir}/#{new_filename}")
+          new_file_path = File.join(tmpdir,new_filename)
+          img.write(new_file_path)
+          woh = width_or_height(original_width,original_height)
+          process_textareas(params,woh,new_file_path)
+          new_image.media = File.open(new_file_path)
           new_image.save
           remove_crop_path(@image)
         end
@@ -170,42 +115,15 @@ class ImageEditorController < ApplicationController
     if @ok
       if !params[:cropped_image].blank?
         editing_folder = File.join(@image.media.absolute_folder, "editing","user_#{@current_user.id}")
-        img = MiniMagick::Image.open(File.join(editing_folder,params[:cropped_image]))
+        image_path = File.join(editing_folder,params[:cropped_image])
+        img = MiniMagick::Image.open(image_path)
         original_width = img[:width]
         original_height = img[:height]
       else
-        img = MiniMagick::Image.open(@image.media.path)
+        image_path = @image.media.path
+        img = MiniMagick::Image.open(image_path)
         original_width = @image.media.width
         original_height = @image.media.height
-      end
-      woh = width_or_height(original_width,original_height)
-      textCount = 0
-      params.each do |p,val|
-        if p.starts_with?('text')
-          textCount += 1
-        end
-      end
-
-      if textCount > 0
-        (0..textCount-1).each do |t_num|
-          img.combine_options do |c|
-            color_value = params["color_#{t_num}"]
-            color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
-            c.fill "#{color_hex}"
-            c.stroke "none"
-            c.font "#{Rails.root}/vendor/fonts/DroidSansFallback.ttf"
-            size_value = params["font_#{t_num}"].to_f # should add * 0.75 to compensate px to pt
-            width_val = woh[1]
-            original_val = woh[0]
-            c.pointsize "#{ratio_value(width_val,(size_value), original_val)}"
-            c.gravity 'NorthWest'
-            coords_value = params["coords_#{t_num}"].to_s.split(",")
-            c0 = ratio_value(width_val,coords_value[0], original_val)
-            c1 = ratio_value(width_val,coords_value[1], original_val)
-            text_value = params["text_#{t_num}"]
-            c.draw "text #{c0},#{c1} \'#{text_value}\'"
-          end
-        end
       end
       
       if !params[:x1].blank?
@@ -218,9 +136,6 @@ class ImageEditorController < ApplicationController
         crop_params = "#{w}x#{h}+#{x1}+#{y1}"
         img.crop(crop_params)
       end
-      
-      #image_dir = "/public/media_elements/images/#{params[:image_id]}"
-      #img.write("#{Rails.root}#{image_dir}/final_crop.jpg")
 
       @image.title = params[:update_title]
       @image.description = params[:update_description]
@@ -232,6 +147,8 @@ class ImageEditorController < ApplicationController
         in_tmpdir do |tmpdir|
           new_filename = "#{params[:new_title].gsub(/[^0-9A-Za-z]/, '')}-edit-#{Time.now.strftime('%Y%m%d-%H%M%S')}.jpg"
           img.write("#{tmpdir}/#{new_filename}")
+          woh = width_or_height(original_width,original_height)
+          process_textareas(params,woh,"#{tmpdir}/#{new_filename}")
           @image.media = File.open("#{tmpdir}/#{new_filename}")
           @image.save
           remove_crop_path(@image)
@@ -248,6 +165,42 @@ class ImageEditorController < ApplicationController
   end
   
   private
+  
+  def process_textareas(params, woh,image_path)
+    textCount = 0
+    params.each do |p,val|
+      if p.starts_with?('text')
+        textCount += 1
+      end
+    end
+
+    if textCount > 0
+      (0..textCount-1).each do |t_num|
+        
+        color_value = params["color_#{t_num}"]
+        color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
+        size_value = params["font_#{t_num}"].to_f
+        width_val = woh[1]
+        original_val = woh[0]
+        font_size = "#{ratio_value(width_val,(size_value), original_val)}"
+        coords_value = params["coords_#{t_num}"].to_s.split(",")
+        coordX = ratio_value(width_val,coords_value[0], original_val)
+        coordY = ratio_value(width_val,coords_value[1], original_val)
+        text_value = params["text_#{t_num}"]
+        
+        tmp_file = Tempfile.new('textarea')
+        begin
+          tmp_file.write("#{text_value}")
+          tmp_file.close
+          cmd = Media::Image::Editing::AddTextToImage.new(image_path, color_hex, font_size, coordX, coordY, tmp_file)
+          puts cmd
+          cmd.run!
+        ensure
+          tmp_file.unlink
+        end
+      end
+    end
+  end
   
   def remove_crop_path(image)
     editing_folder = File.join(image.media.absolute_folder, "editing","user_#{@current_user.id}")
