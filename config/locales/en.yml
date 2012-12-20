@@ -76,19 +76,14 @@ en:
     choose_audio: 'Click here to add an audio'
     choose_image: 'Click here to add an image'
     choose_video: 'Click here to add a video'
-    
-    
-    
-    # qui
-    
-    choose_wich_item_and_go: 'Select your option and go!'
+    choose_wich_item_and_go: 'Insert a word, choose the filters and go!'
     contact_us: 'Contact us'
     copyright: '©2012 DESY'
     create: 'Create'
     create_new_lesson: 'Create a new lesson'
     create_new_lesson_now: 'Create a lesson now'
-    create_new_media_element: 'Create a new element'
-    creating_new_media_element: "You're creating a new educational element."
+    create_new_media_element: 'Element editor'
+    creating_new_media_element: "You are creating a new element"
     dashboard: 'Dashboard'
     description: 'Description'
     description_max_chars: 'Description (max %{num} characters)'
@@ -97,29 +92,28 @@ en:
     desy_full_description: 'DESY - Digital Education System'
     discover_a_new_way_of_teaching: 'Discover a new way of teaching'
     display_mode: 'Display mode'
-    display: 'display'
+    display: 'Display'
     download_manual: 'Download the user manual'
     edit: 'Edit'
     email: 'Email'
     empty_playlist: 'Empty playlist'
-    empty_virtual_classroom: 'Empty the virtual classroom'
+    empty_virtual_classroom: 'Empty the Virtual Classroom'
     enter: 'Enter'
-    enter_lesson_title: 'Enter the title of the lesson'
-    enter_lesson_description: 'Describe your lesson'
-    enter_lesson_tags: 'Enter tags'
-    enter_new_media_element_details: 'Enter all the details of the new element'
+    enter_new_media_element_details: 'Enter all the details in the form below'
     enter_title: 'Enter title'
     exit: 'Exit'
     fill_all_login_fields: 'Insert username and password'
-    fill_in_form_for_new_lesson: 'Enter the details of the lesson you are about to create.'
+    fill_in_form_for_new_lesson: 'Enter all the details in the form below'
     find_out_the_benefits_of_desy: 'Find out the benefits of DESY'
-    good_work: 'Good work!'
     help_using_desy: 'Need help using Desy?'
     home: 'Home'
     image_caption_placeholder: 'Write a caption'
     image_editor_label: 'Edit image'
     insert: 'Insert'
-    insert_emails_here: 'Insert your emails, separated by comma'
+    insert_emails_here: 'Insert emails separated by comma'
+    
+    
+    
     insert_slide_content_here: 'Insert slide content here'
     insert_tag: 'Insert a tag'
     insert_text: 'Insert text'
@@ -195,6 +189,7 @@ en:
     why_sign_up: 'Why sign up?'
     write_a_message: 'Write a message'
     write_reason_report: 'Write the reason for your report, we will review it. Thank you for your cooperation!'
+    you_are_creating_a_new_lesson: 'You are creating a new lesson' # GIÀ FATTO
     you_believe_content_unappropriate: 'You believe this content is unappropriate?'
     your_browser_does_not_support_video: 'Your browser does not support the video tag'
     your_browser_does_not_support_audio: 'Your browser does not support the audio tag'
