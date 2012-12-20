@@ -1022,6 +1022,11 @@ def plant_development_seeds
   
   puts "Saved #{Video.count} videos (should be 24)\n"
   
+  
+  # RESUME
+  
+  puts "Saved #{Tag.count} tags (should be 132)\n"
+  puts "Saved #{Tagging.count} taggings (should be 355)\n"
   puts 'FINE'
   
 end
