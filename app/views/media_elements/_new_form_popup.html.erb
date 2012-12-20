@@ -5,7 +5,7 @@
         <div class="cols fltlft">
           <div class="selectButton">
             <%#= f.file_field :media %>
-             <a class="uploadFileButton submitButton" id="media_element_media_pick"></a>
+             <input type="file" class="uploadFileButton submitButton" id="media_element_media_pick" />
              <div id="media_element_media_show" class="fk_carica_elemento_file"><%= t('captions.select_file').downcase%></div>
 <!--             <input id="media_element_media_show" readonly="readonly" placeholder="Nessun file selezionato" class="fk_carica_elemento_file _fakeUploadTrigger" type="text" data-fake-upload-input-selector="#media_element_media" data-fake-upload-show-selector="#media_element_media_show">
  -->          </div>
