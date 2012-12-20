@@ -27,12 +27,12 @@ class PreloginController < ApplicationController
     # FIXME provvisorio
     login_hash = {
       CONFIG['admin_email'] => 'desymorgan$$',
-      'toostrong@gmail.com' => 'bellaperme',
-      'fupete@gmail.com' => 'bellaperte',
-      'jeg@gmail.com' => 'bellaperlui',
-      'holly@gmail.com' => 'bellapernoi',
-      'benji@gmail.com' => 'bellapervoi',
-      'retlaw@gmail.com' => 'bellaperloro'
+      'toostrong@morganspa.com' => 'bellaperme',
+      'fupete@morganspa.com' => 'bellaperte',
+      'jeg@morganspa.com' => 'bellaperlui',
+      'holly@morganspa.com' => 'bellapernoi',
+      'benji@morganspa.com' => 'bellapervoi',
+      'retlaw@morganspa.com' => 'bellaperloro'
     }
     if params[:email].blank? || params[:password].blank?
       @error = t('captions.fill_all_login_fields')
