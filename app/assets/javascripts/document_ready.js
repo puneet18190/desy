@@ -965,22 +965,22 @@ $(document).ready(function() {
     stopCacheLoop();
     $('#video_editor_form').submit();
     if($(this).hasClass('_with_choice')) {
-      // TODO hai la scelta
-/*      showConfirmPopUp(captions.data('exit-video-editor-title'), captions.data('exit-video-editor-confirm'), captions.data('exit-video-editor-yes'), captions.data('exit-video-editor-no'), function() {
-      $('dialog-confirm').hide();
-      $.ajax({
-        type: 'post',
-        url: '/videos/cache/empty',
-        success: function() {
-          window.location = '/dashboard';
-        }
+      var captions = $('#popup_captions_container');
+      var title = captions.data('save-media-element-editor-title');
+      var confirm = captions.data('save-media-element-editor-confirm');
+      var yes = captions.data('save-media-element-editor-yes');
+      var no = captions.data('save-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        closePopUp('dialog-confirm');
+        $('._video_editor_bottom_bar').hide();
+        $('#video_editor #form_info_update_media_element_in_editor').show();
+      }, function() {
+        closePopUp('dialog-confirm');
+        $('#video_editor_title ._titled').hide();
+        $('#video_editor_title ._untitled').show();
+        $('._video_editor_bottom_bar').hide();
+        $('#video_editor #form_info_new_media_element_in_editor').show();
       });
-    }, function() {
-      startCacheLoop();
-      closePopUp('dialog-confirm');
-    });*/
-    
-    
     } else {
       $('._video_editor_bottom_bar').hide();
       $('#video_editor #form_info_new_media_element_in_editor').show();
