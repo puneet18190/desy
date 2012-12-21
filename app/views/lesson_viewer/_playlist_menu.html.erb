@@ -4,7 +4,7 @@
       <div class="scrollContent">
         <ul>
           <% @playlist.each do |classroom| %>
-            <li data-param="<%= classroom.position %>">
+            <li data-param="<%= classroom.position %>" data-lesson-id="<%= classroom.lesson_id %>">
               <%= render :partial => "lessons/thumbnail", :locals => {:lesson => classroom.lesson} %>
             </li>
           <% end %>

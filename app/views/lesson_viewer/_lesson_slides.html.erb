@@ -10,7 +10,7 @@
               <% slide.text = "" if slide.text.blank? %>
               <% class_cover = slide.cover? ? "_cover_bookmark_for_lesson_viewer_#{classroom.lesson_id}".html_safe : '' %>
               <li id="slide_in_lesson_viewer_<%= overall_counter %>" class="cover slide lesson_<%= classroom.position%> <%= class_current %> <%= class_cover %>">
-                <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %>
+                <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide, :counter => overall_counter} %>
               </li>
               <% class_current = '' %>
               <% overall_counter += 1 %>
@@ -22,7 +22,7 @@
           <% lesson.slides.order(:position).each do |slide| %>
             <% slide.text = "" if slide.text.blank? %>
             <li id="slide_in_lesson_viewer_<%= overall_counter %>" class="cover slide <%= class_current %>">
-              <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %>
+              <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide, :counter => overall_counter} %>
             </li>
             <% class_current = '' %>
             <% overall_counter += 1 %>
