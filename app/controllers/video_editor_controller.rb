@@ -1,3 +1,5 @@
+require 'media/video/editing/composer/job'
+
 class VideoEditorController < ApplicationController
   
   before_filter :initialize_video_with_owner_or_public, :only => :edit
@@ -64,7 +66,9 @@ class VideoEditorController < ApplicationController
         :user_id => @current_user.id
       }
       
-      logger.info "\n\nATTENZIONE, #{parameters.inspect}\n\n"
+      # logger.info "\n\nATTENZIONE, #{parameters.inspect}\n\n"
+
+      Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
       
       # manda parameters al video editor di Maurizio, e fai redirect_to my_media_elements_path
       # usa le notifiche per segnalare la riuscita o non riuscita del salvataggio??
@@ -94,7 +98,10 @@ class VideoEditorController < ApplicationController
         :tags => params[:new_tags]
       }
       
-      logger.info "\n\nATTENZIONE, #{parameters.inspect}\n\n"
+      # logger.info "\n\nATTENZIONE, #{parameters.inspect}\n\n"
+      _d 'ciaoooooooo'
+
+      Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
       
       # manda parameters al video editor di Maurizio, e fai redirect_to my_media_elements_path
       # usa le notifiche per segnalare la riuscita o non riuscita del salvataggio??
