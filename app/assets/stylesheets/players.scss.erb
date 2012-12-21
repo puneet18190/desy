@@ -24,11 +24,11 @@ $button-size: 2.4em;
   display:inline-block;
     .sliderDisabler {
     position: absolute;
-    top: 0px;
-    left:90px;
+    top: 20px;
+    left:130px;
     background-color: #000;
     opacity:0;
-    width: 610px;
+    width: 620px;
     height: 30px;
     display: none;
     z-index:5;
@@ -66,8 +66,20 @@ $button-size: 2.4em;
 
 .videoPlayer {
   background-color: #3b3a3b;
-  /*width:517px;*/
   height:280px;
+  position:relative;
+  .sliderDisabler {
+    position: absolute;
+    bottom: 4%;
+    left:10%;
+    background-color: #000;
+    opacity:0;
+    width: 80%;
+    height: 30px;
+    display: none;
+    z-index:5;
+   
+  }
 }
 .videoSlider, html.lesson-editor-layout .videoSlider{
   float:left;
@@ -76,14 +88,15 @@ $button-size: 2.4em;
   background-color: #2d2e2d;
   .sliderDisabler {
     position: absolute;
-    top: 0px;
-    left:90px;
+    top: 20px;
+    left:20px;
     background-color: #000;
     opacity:0;
     width: 341px;
     height: 30px;
     display: none;
     z-index:5;
+    border:1px solid red;
   }
 }
 

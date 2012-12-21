@@ -541,6 +541,22 @@ html.media_element_editor-layout {
     
   }
  }
+ $button-size: 6em;
+ @mixin menuCondivisoElementLessonEditor($font-size: 0.9em) {
+  & {
+    float:left;
+    width: $button-size;
+    height: $button-size;
+    background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($button-size*4) ($button-size*10);
+    padding:0;
+    font-size: $font-size;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
   /*ELEMENTO NUOVO*/
   .boxNewMediaElement {
     width:156px;
@@ -553,6 +569,16 @@ html.media_element_editor-layout {
       padding-top:15px;
       padding-left:50px;
       height:73px;
+      .creaNuovoButton {
+        @include  menuCondivisoElementLessonEditor(0.7em);
+        background-position: (-$button-size*2) (-$button-size);
+        opacity:0.2;
+        &:hover, &.current {
+          font-size: 0.7em;
+          background-position: (-$button-size*3) (-$button-size);
+          opacity:1;
+         }
+      }
     }
   }
     
