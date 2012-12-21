@@ -175,11 +175,13 @@ module Media
                       bitrate.should be_nil
                     end
                   end
+
+                  after(:all) { Dir.glob("#{@tmp_dir}/*") { |file| FileUtils.rm file } if @tmp_dir }
+                  
                 end
   
               end
   
-              after { Dir.glob("#{@tmp_dir}/*") { |file| FileUtils.rm file } if @tmp_dir }
   
               after(:all) do
                 if @tmp_dir 
