@@ -990,11 +990,13 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._commit', function() {
+    $('.form_error').removeClass("form_error");
     $('#video_editor_form').attr('action', '/videos/commit/new');
     $('#video_editor_form').submit();
   });
   
   $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._commit', function() {
+    $('.form_error').removeClass("form_error");
     $('#video_editor_form').attr('action', '/videos/commit/new');
     $('#video_editor_form').submit();
   });

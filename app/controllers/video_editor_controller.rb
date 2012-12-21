@@ -40,9 +40,10 @@ class VideoEditorController < ApplicationController
   
   def save
     parameters = Video.convert_to_primitive_parameters(extract_form_parameters, @current_user.id)
+    @redirect = false
     if parameters.nil?
       @current_user.empty_video_editor_cache
-      redirect_to '/dashboard' # FIXME decidere che fare in questo caso
+      @redirect = true
       return
     end
     initial_video_test = Video.new
@@ -69,15 +70,16 @@ class VideoEditorController < ApplicationController
       # usa le notifiche per segnalare la riuscita o non riuscita del salvataggio??
       # svuota la cache se il salvataggio riesce
     else
-      # rispondi JS! creare un file .js.erb, devo ritornare al form iniziale!
+      @errors = errors
     end
   end
   
   def overwrite
     parameters = Video.convert_to_primitive_parameters(extract_form_parameters, @current_user.id)
+    @redirect = false
     if parameters.nil?
       @current_user.empty_video_editor_cache
-      redirect_to '/dashboard' # FIXME decidere che fare in questo caso
+      @redirect = true
       return
     end
     initial_video_test = Video.find_by_id parameters[:initial_video]
@@ -98,7 +100,7 @@ class VideoEditorController < ApplicationController
       # usa le notifiche per segnalare la riuscita o non riuscita del salvataggio??
       # svuota la cache se il salvataggio riesce
     else
-      # rispondi JS! creare un file .js.erb, devo ritornare al form iniziale!
+      @errors = initial_video_test.errors.messages
     end
   end
   
