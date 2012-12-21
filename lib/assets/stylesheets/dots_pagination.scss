@@ -1,13 +1,14 @@
-$dots-pagination-link-width: 10px;
+$dots-pagination-link-width: 12px;
 $dots-pagination-link-height: $dots-pagination-link-width;
 $dots-pagination-link-lr-margin: 3px;
 $dots-pagination-link-border-radius: $dots-pagination-link-width / 2;
 
 $dots-pagination-width: ($dots-pagination-link-width * 3) + ($dots-pagination-link-lr-margin * 6);
 
-$dots-pagination-link-current-color: orange;
-$dots-pagination-link-default-color: lighten($dots-pagination-link-current-color, 30%);
-$dots-pagination-link-disabled-color: grayscale(lighten($dots-pagination-link-current-color, 40%));
+$dots-pagination-link-current-color: #FBA61A;
+$dots-pagination-link-default-color: #FFE881;
+$dots-pagination-link-default-hover-color: #F7DB59;
+$dots-pagination-link-disabled-color: #F3F1F3;
 
 .dots_pagination_container {
   text-align: center;
@@ -32,6 +33,9 @@ $dots-pagination-link-disabled-color: grayscale(lighten($dots-pagination-link-cu
 
         &, &[role=current].default {
           background-color: $dots-pagination-link-default-color;
+          &:hover {
+            background-color: $dots-pagination-link-default-hover-color;
+          }
         }
         
         &[role=current], &.current {
