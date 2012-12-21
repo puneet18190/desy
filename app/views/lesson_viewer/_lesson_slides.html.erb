@@ -4,14 +4,14 @@
       <ul id='carousel_ul'>
         <% if @playlist %>
           <% @playlist.each do |classroom| %>
-           <% classroom.lesson.slides.order(:position).each do |slide| %>
-            <% slide.text = "" if slide.text.blank? %>
-            <li class="cover slide lesson_<%= classroom.position%>"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
+            <% classroom.lesson.slides.order(:position).each do |slide| %>
+              <% slide.text = "" if slide.text.blank? %>
+              <li id="slide_in_lesson_viewer_<%= slide.id %>" class="cover slide lesson_<%= classroom.position%>"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
             <% end %>
-          <% end %> 
-        <%else%>
+          <% end %>
+        <% else %>
           <% lesson.slides.order(:position).each do |slide| %>
-          <% slide.text = "" if slide.text.blank? %>
+            <% slide.text = "" if slide.text.blank? %>
             <li id="slide_in_lesson_viewer_<%= slide.id %>" class="cover slide"><%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %></li>
           <% end %>
         <% end %>
@@ -22,7 +22,7 @@
 <div id="info_container" data-slide-number="1" style="display:none"></div>
 <a class="esciButton fltrt" href="#" style="margin-top:20px; display:none"></a>
 <script type="text/javascript" charset="utf-8">
-  if("<%= @back %>".length > 0){
+  if("<%= @back %>".length > 0) {
     var bb = $(".esciButton");
     bb.attr("href","<%=@back%>");
     bb.show();

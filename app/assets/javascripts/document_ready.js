@@ -588,6 +588,10 @@ $(document).ready(function() {
   
   // VIRTUAL CLASSROOM
   
+  $('body').on('click', '._playlist_play', function() {
+    window.location = '/lessons/view/playlist';
+  });
+  
   $('body').on('click', '._virtual_classroom_lesson ._lesson_thumb', function() {
     var lesson_id = $(this).data('lesson-id');
     var redirect_to = $('#info_container').data('currenturl');
