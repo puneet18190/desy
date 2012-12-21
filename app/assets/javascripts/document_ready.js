@@ -702,6 +702,7 @@ $(document).ready(function() {
   
   
   // IMAGE EDITOR
+  $('.image_editor_only #form_info_new_media_element_in_editor, .image_editor_only #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
   
   $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
   $('#image_gallery_for_image_editor .gallery-header').css("left",($(window).width()/2)-420);
