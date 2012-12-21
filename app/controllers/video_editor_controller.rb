@@ -66,8 +66,6 @@ class VideoEditorController < ApplicationController
         :user_id => @current_user.id
       }
 
-      logger.info "\n\nATTENZIONE, #{parameters.inspect}\n\n"
-      
       # TODO mandare la notifica all'utente per segnalare la riuscita/non riuscita di un editing
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
       # TODO far cancellare la sessione dal job quando è andato a buon fine invece che da qua dentro
@@ -97,8 +95,6 @@ class VideoEditorController < ApplicationController
         :tags => params[:update_tags]
       }
 
-      logger.info "\n\nATTENZIONE, #{parameters.inspect}\n\n"
-      
       # TODO mandare la notifica all'utente per segnalare la riuscita/non riuscita di un editing
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
       # TODO far cancellare la sessione dal job quando è andato a buon fine invece che da qua dentro
