@@ -4,7 +4,6 @@ $(document).ready(function() {
   
   var slides = $('#carousel_ul li.slide');
   current_slide = $('#carousel_ul li._lesson_viewer_current_slide');
-  current_slide_number = $('#info_container').data("slide-number");
   slides_amount = slides.length;
   $('#carousel_ul').css("width", (slides_amount * 900) + "px").css("left",0);
   slides.first().addClass('_lesson_viewer_current_slide');
@@ -25,7 +24,9 @@ $(document).ready(function() {
   
   $('a._playlist').click(function() {
     $('.playlistMenu').slideToggle('slow', function() {
-      $('#right_scroll a,#left_scroll a').toggle();
+      $('#right_scroll a, #left_scroll a').toggle();
+     // var _cover_bookmark_for_lesson_viewer_#{classroom.lesson_id}"
+     // $('#info_container').data('slide-number', 
     });
   });
   
@@ -58,17 +59,16 @@ function stopMediaInLessonViewer() {
 }
 
 function scrollLesson(direction) {
+  current_slide_number = $('#info_container').data("slide-number");
   $('#slide_in_lesson_viewer_' + current_slide_number).removeClass('_lesson_viewer_current_slide');
   if(direction == 'right') {
     if(current_slide_number == slides_amount) {
       left_indent = 0;
       $('#slide_in_lesson_viewer_1').addClass('_lesson_viewer_current_slide');
       $('#info_container').data('slide-number', 1);
-      current_slide_number = 1;
     } else {
       $('#slide_in_lesson_viewer_' + (current_slide_number + 1)).addClass('_lesson_viewer_current_slide');
       $('#info_container').data('slide-number', (parseInt(current_slide_number) + 1));
-      current_slide_number = $('#info_container').data('slide-number');
       left_indent = parseInt(current_slide_number - 1) * 900;
     }
   } else {
@@ -76,11 +76,9 @@ function scrollLesson(direction) {
       left_indent = ((slides_amount - 1) * 900);
       $('#slide_in_lesson_viewer_' + slides_amount).addClass('_lesson_viewer_current_slide');
       $('#info_container').data('slide-number', (parseInt(slides_amount)));
-      current_slide_number = slides_amount;
     } else {
       $('#slide_in_lesson_viewer_' + (current_slide_number - 1)).addClass('_lesson_viewer_current_slide');
       $('#info_container').data('slide-number', (parseInt(current_slide_number) - 1));
-      current_slide_number = $('#info_container').data('slide-number');
       left_indent = parseInt(current_slide_number - 1) * 900;
     }
   }
