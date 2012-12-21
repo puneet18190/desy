@@ -334,24 +334,24 @@ en:
         content: "When you share a lesson or a media element, if you want to make it visible to the community you have to choose good tags. The minimum of tags for each item is 4."
     users:
       first:
-        title: "Profile, tris alla Danimarca"
-        content: "Missione compiuta. Dopo il 3-1 in Armenia, a San Siro l'Italia di Prandelli supera con lo stesso risultato l'ostacolo Danimarca e ora può guardare con grande ottimismo alla strada che manca per arrivare al Mondiale del 2014. Grazie ai gol di Montolivo, De Rossi e Balotelli, infatti, gli azzurri consolidano il primato in classifca"
+        title: "Profile"
+        content: "This section is not functional yet."
       second:
-        title: "De Rossi o Zeman?"
+        title: ""
         content: "La Nazionale restituisce alla Roma un De Rossi rigenerato. Dopo essersi riposato in panchina contro l’Atalanta, nell’ultima partita di campionato prima della sosta, il centrocampista ha fornito due grandi prestazioni in azzurro, realizzando due reti che hanno un grande valore in chiave mondiale."
       third:
-        title: "Balotelli ha insultato una città"
+        title: ""
         content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
     virtual_classroom:
       first:
-        title: "Virtual Classroom, tris alla Danimarca"
-        content: "Missione compiuta. Dopo il 3-1 in Armenia, a San Siro l'Italia di Prandelli supera con lo stesso risultato l'ostacolo Danimarca e ora può guardare con grande ottimismo alla strada che manca per arrivare al Mondiale del 2014. Grazie ai gol di Montolivo, De Rossi e Balotelli, infatti, gli azzurri consolidano il primato in classifca"
+        title: "DESY's Virtual Classroom"
+        content: "Welcome to your Virtual Classroom. clicking on the '+' you open a popup with the list of your lessons: choose the ones you need and add them clicking 'upload'."
       second:
-        title: "De Rossi o Zeman?"
-        content: "La Nazionale restituisce alla Roma un De Rossi rigenerato. Dopo essersi riposato in panchina contro l’Atalanta, nell’ultima partita di campionato prima della sosta, il centrocampista ha fornito due grandi prestazioni in azzurro, realizzando due reti che hanno un grande valore in chiave mondiale."
+        title: "Playlist"
+        content: "Drag and drop a lesson to the area on the right to fill your playlist."
       third:
-        title: "Balotelli ha insultato una città"
-        content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
+        title: "Send a link to your friends"
+        content: "Even if a lesson is private, it's available a link to show it to people not logged in DESY. The link contains a crypted code, without which it's possible to view the lesson only if you are logged in and the lesson is public. To send the link, click on 'send link to your friends' and fill in the form with a list of emails and a message."
   notifications:
     lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
     lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
