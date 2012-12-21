@@ -4,7 +4,7 @@ require 'media/video'
 module Media
   module Video
     class Placeholder
-      PUBLIC_RELATIVE_FOLDER     = '/public/media_elements/videos/placeholder'
+      PUBLIC_RELATIVE_FOLDER     = '/media_elements/videos/placeholder'
       FILENAME_WITHOUT_EXTENSION = 'placeholder'
       FILENAME                   = Hash[ FORMATS.map{ |f| [f, "#{FILENAME_WITHOUT_EXTENSION}.#{f}"] } ]
       DURATION                   = 5
