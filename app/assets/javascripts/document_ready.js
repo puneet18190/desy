@@ -701,11 +701,6 @@ $(document).ready(function() {
   });
   
   
-  // MEDIA ELEMENTS EDITOR
-  
-  $('#form_info_new_media_element_in_editor, #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
-  
-  
   // IMAGE EDITOR
   
   $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
@@ -987,24 +982,25 @@ $(document).ready(function() {
     
     
     } else {
-      // TODO non hai scelta
+      $('._video_editor_bottom_bar').hide();
+      $('#video_editor #form_info_new_media_element_in_editor').show();
     }
   });
   
   $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._commit', function() {
-    
+    alert('commit new');
   });
   
   $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._commit', function() {
-    
+    alert('commit update');
   });
   
   $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._cancel', function() {
-    
+    alert('cancel new');
   });
   
   $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._cancel', function() {
-    
+    alert('cancel update');
   });
   
   initializeVideoEditor();
