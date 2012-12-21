@@ -1,6 +1,6 @@
 <%= render :partial => 'image_editor/header', :locals => {:image => @image} %>
 <% div_id =  @image.is_public ? "public" : "not_public" %>
-<div class="mediaEditorElementContainer" id="image_editor_<%= div_id %>">
+<div class="mediaEditorElementContainer image_editor_only" id="image_editor_<%= div_id %>">
   <div class="menuLeftEditorElement">
   <h2>What to do?</h2><p>Select the scissors to cut the image
 or ABC to enter text.</p>
