@@ -1,0 +1,12 @@
+<div class="img_expanded _cover_slide_thumb">
+  <%= image_tag('finta2.jpg') %>
+  <div class="bg_text">
+    <div class="lessonTitle"><%= slide.title %></div>
+  </div>
+  <div class="lessonSubject">
+    <%= slide.lesson.subject.description %>
+    <span>
+      <%= t "captions.author"%>: <strong><%=  @current_user.full_name %></strong>
+    </span>
+  </div>
+</div>
