@@ -15,7 +15,7 @@ $(document).ready(function() {
     var lessonPos = $(this).attr('data-param');
     var goToPos = $('#carousel_ul li.lesson_' + lessonPos + ':first').index();
     var new_cover = $('._cover_bookmark_for_lesson_viewer_' + $(this).data('lesson-id'));
-    // TODO QUI  $('#info_container').data('slide-number', 
+    $('#info_container').data('slide-number', new_cover.data('overall-counter'));
     $('.playlistMenu').slideToggle('slow', function() {
       $('#right_scroll a,#left_scroll a').toggle();
     });
