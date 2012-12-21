@@ -18,6 +18,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
+  # TODO omologarla agli altri uploaders (relatività con Rails.env)
   def store_dir
     "media_elements/images/#{model.id}"
   end
