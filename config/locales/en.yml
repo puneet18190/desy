@@ -274,6 +274,10 @@ en:
     exit_video_editor_confirm: 'Are you sure you want to leave?'
     exit_video_editor_yes: 'Yes'
     exit_video_editor_no: 'Stay on the page'
+    save_media_element_editor_title: 'Saving a private element'
+    save_media_element_editor_confirm: 'Since the element you modified is private, you can overwrite it'
+    save_media_element_editor_yes: 'Overwrite'
+    save_media_element_editor_no: 'Save as new element'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'

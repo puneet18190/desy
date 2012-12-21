@@ -701,12 +701,8 @@ $(document).ready(function() {
   });
   
   
-  // MEDIA ELEMENTS EDITOR
-  
-  $('#form_info_new_media_element_in_editor, #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
-  
-  
   // IMAGE EDITOR
+  $('.image_editor_only #form_info_new_media_element_in_editor, .image_editor_only #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
   
   $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
   $('#image_gallery_for_image_editor .gallery-header').css("left",($(window).width()/2)-420);
@@ -967,11 +963,59 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._commit_video_editor', function() {
+    setTimeout(function() {
+      stopCacheLoop();
+    }, $('#popup_parameters_container').data('cache-time'));
+    $('#video_editor_form').submit();
     if($(this).hasClass('_with_choice')) {
-      alert('hai la scelta');
+      var captions = $('#popup_captions_container');
+      var title = captions.data('save-media-element-editor-title');
+      var confirm = captions.data('save-media-element-editor-confirm');
+      var yes = captions.data('save-media-element-editor-yes');
+      var no = captions.data('save-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        closePopUp('dialog-confirm');
+        $('._video_editor_bottom_bar').hide();
+        $('#video_editor #form_info_update_media_element_in_editor').show();
+      }, function() {
+        closePopUp('dialog-confirm');
+        $('#video_editor_title ._titled').hide();
+        $('#video_editor_title ._untitled').show();
+        $('._video_editor_bottom_bar').hide();
+        $('#video_editor #form_info_new_media_element_in_editor').show();
+      });
     } else {
-      alert('non hai nessuna scelta');
+      $('._video_editor_bottom_bar').hide();
+      $('#video_editor #form_info_new_media_element_in_editor').show();
     }
+  });
+  
+  $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._commit', function() {
+    $('.form_error').removeClass("form_error");
+    $('#video_editor_form').attr('action', '/videos/commit/new');
+    $('#video_editor_form').submit();
+  });
+  
+  $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._commit', function() {
+    $('.form_error').removeClass("form_error");
+    $('#video_editor_form').attr('action', '/videos/commit/new');
+    $('#video_editor_form').submit();
+  });
+  
+  $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._cancel', function() {
+    if($('#video_editor_title ._titled').length > 0) {
+      $('#video_editor_title ._titled').show();
+      $('#video_editor_title ._untitled').hide();
+    }
+    $('._video_editor_bottom_bar').show();
+    $('#video_editor #form_info_new_media_element_in_editor').hide();
+    startCacheLoop();
+  });
+  
+  $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._cancel', function() {
+    $('._video_editor_bottom_bar').show();
+    $('#video_editor #form_info_update_media_element_in_editor').hide();
+    startCacheLoop();
   });
   
   initializeVideoEditor();

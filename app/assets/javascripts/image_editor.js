@@ -124,39 +124,41 @@ $(document).ready(function() {
     resetSelect();
   });
   
-  $("body").on("click","#image_editor_not_public ._save_edit_image", function(){
+  $("body").on("click", "#image_editor_not_public ._save_edit_image", function() {
     var image_id = $(this).data("slide-id");
     saveImageChoice(image_id);
   });
   
-  $("body").on("click","#image_editor_public ._save_edit_image", function(){
+  $("body").on("click", "#image_editor_public ._save_edit_image", function(){
     var image_id = $(this).data("slide-id");
     $('._save_edit_image').hide();
     $('#form_info_new_media_element_in_editor').show();
   });
   
-  $('body').on('click','#form_info_new_media_element_in_editor ._commit', function(){
+  $('body').on('click', '#image_editor_public #form_info_new_media_element_in_editor ._commit, #image_editor_not_public #form_info_new_media_element_in_editor ._commit', function() {
     $('.form_error').removeClass("form_error");
+    //$(this).removeClass("_commit");
     commitImageEditing("new");
   });
   
-  $('body').on('click','#form_info_update_media_element_in_editor ._commit', function(){
+  $('body').on('click', '#image_editor_not_public #form_info_update_media_element_in_editor ._commit', function() {
     $('.form_error').removeClass("form_error");
+    //$(this).removeClass("_commit");
     commitImageEditing("overwrite");
   });
   
-  $('body').on('click','#form_info_new_media_element_in_editor ._cancel', function(){
+  $('body').on('click', '#image_editor_public #form_info_new_media_element_in_editor ._cancel', function() {
     $('.form_error').removeClass("form_error");
     $('#form_info_new_media_element_in_editor').hide();
     $('._save_edit_image').show();
   });
   
-  $('body').on('click','#form_info_new_media_element_in_editor._title_reset ._cancel', function(){
+  $('body').on('click', '#image_editor_not_public #form_info_new_media_element_in_editor._title_reset ._cancel', function() {
     $('._titled').show();
     $('._untitled').hide();
   });
   
-  $('body').on('click','#form_info_update_media_element_in_editor ._cancel', function(){
+  $('body').on('click','#image_editor_not_public #form_info_update_media_element_in_editor ._cancel', function() {
     $('.form_error').removeClass("form_error");
     $('#form_info_update_media_element_in_editor').hide();
     $('._save_edit_image').show();
