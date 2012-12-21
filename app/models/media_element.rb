@@ -1,15 +1,16 @@
 class MediaElement < ActiveRecord::Base
+  require 'image'
+  require 'video'
+  require 'audio'
   
   # TODO estrarre da database sti_types
-  IMAGE_TYPE = 'Image'
-  AUDIO_TYPE = 'Audio'
-  VIDEO_TYPE = 'Video'
+  SUBMODELS = [::Image, ::Video, ::Audio]
+  IMAGE_TYPE, VIDEO_TYPE, AUDIO_TYPE = SUBMODELS.map(&:to_s)
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
   DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
 
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
-  EXTENSIONS_BY_STI_TYPE = { Image => %w(jpg jpeg png) }
   
   self.inheritance_column = :sti_type
 
