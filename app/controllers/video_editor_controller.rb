@@ -65,14 +65,13 @@ class VideoEditorController < ApplicationController
         :tags => params[:new_tags],
         :user_id => @current_user.id
       }
-      
-      # logger.info "\n\nATTENZIONE, #{parameters.inspect}\n\n"
 
-      Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
+      logger.info "\n\nATTENZIONE, #{parameters.inspect}\n\n"
       
-      # manda parameters al video editor di Maurizio, e fai redirect_to my_media_elements_path
-      # usa le notifiche per segnalare la riuscita o non riuscita del salvataggio??
-      # svuota la cache se il salvataggio riesce
+      # TODO mandare la notifica all'utente per segnalare la riuscita/non riuscita di un editing
+      Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
+      # TODO far cancellare la sessione dal job quando è andato a buon fine invece che da qua dentro
+      current_user.empty_video_editor_cache
     else
       @errors = errors
     end
@@ -93,21 +92,17 @@ class VideoEditorController < ApplicationController
     if initial_video_test.valid?
       parameters[:initial_video] = {
         :id => parameters[:initial_video],
-        :title => params[:new_title],
-        :description => params[:new_description],
-        :tags => params[:new_tags]
+        :title => params[:update_title],
+        :description => params[:update_description],
+        :tags => params[:update_tags]
       }
-      
-      # logger.info "\n\nATTENZIONE, #{parameters.inspect}\n\n"
-      _d 'ciaoooooooo'
 
-      # TODO far cancellare la sessione da 
+      logger.info "\n\nATTENZIONE, #{parameters.inspect}\n\n"
+      
+      # TODO mandare la notifica all'utente per segnalare la riuscita/non riuscita di un editing
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
-
-      
-      # manda parameters al video editor di Maurizio, e fai redirect_to my_media_elements_path
-      # usa le notifiche per segnalare la riuscita o non riuscita del salvataggio??
-      # svuota la cache se il salvataggio riesce
+      # TODO far cancellare la sessione dal job quando è andato a buon fine invece che da qua dentro
+      @current_user.empty_video_editor_cache
     else
       @errors = initial_video_test.errors.messages
     end
