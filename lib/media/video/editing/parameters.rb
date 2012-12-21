@@ -106,7 +106,7 @@ module Media
           end
           
           # insert audio track (which is nil if the user wants to keep the original audio of each component)
-          resp_hash[:audio] = audio_track
+          resp_hash[:audio_track] = audio_track
           
           # there must be a list of components
           return nil if !hash[:components].instance_of?(Array) || hash[:components].empty?

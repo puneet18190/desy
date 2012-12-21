@@ -71,7 +71,7 @@ class VideoEditorController < ApplicationController
       # TODO mandare la notifica all'utente per segnalare la riuscita/non riuscita di un editing
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
       # TODO far cancellare la sessione dal job quando è andato a buon fine invece che da qua dentro
-      current_user.empty_video_editor_cache
+      @current_user.empty_video_editor_cache
     else
       @errors = errors
     end
