@@ -19,7 +19,7 @@ $(document).ready(function() {
   
   $('#lesson_subject').selectbox();
   
-  $('body').on('mouseover', '#slide-numbers li:not(._add_new_slide_options_in_last_position)', function(e) {
+  $('body').on('mouseover', '#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)', function(e) {
     var tip = $(this);
     var this_tooltip = tip.children('.slide-tooltip');
     if(e.pageX < ($(window).width()/2)){
@@ -31,7 +31,7 @@ $(document).ready(function() {
     
   });
   
-  $('body').on('mouseout', '#slide-numbers li:not(._add_new_slide_options_in_last_position)', function(e) {
+  $('body').on('mouseout', '#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)', function(e) {
     var this_tooltip =$(this).children('.slide-tooltip');
     this_tooltip.removeClass("slide-tooltip-to-left");
     this_tooltip.hide();
@@ -348,7 +348,7 @@ function stopMediaInCurrentSlide() {
 function initializeSortableNavs() {
   $("#heading, #heading .scroll-pane").css("width", (parseInt($(window).outerWidth())-50) + "px");
   var slides_numbers = $('#slide-numbers');
-  var slides_amount = slides_numbers.find("li").length;
+  var slides_amount = slides_numbers.find("li.navNumbers").length;
   slides_numbers.css('width', ''+((parseInt(slides_amount + 1) * 32)-28) + 'px');
   var add_last_button = $("._add_new_slide_options_in_last_position");
   if(parseInt(slides_numbers.css('width')) < (parseInt($(window).outerWidth())-50)){
