@@ -962,7 +962,9 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._commit_video_editor', function() {
-    stopCacheLoop();
+    setTimeout(function() {
+      stopCacheLoop();
+    }, $('#popup_parameters_container').data('cache-time'));
     $('#video_editor_form').submit();
     if($(this).hasClass('_with_choice')) {
       var captions = $('#popup_captions_container');
