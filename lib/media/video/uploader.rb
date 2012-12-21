@@ -3,6 +3,7 @@ require 'media/video'
 require 'media/allowed_duration_range'
 require 'env_relative_path'
 require 'media/video/editing/cmd/extract_frame'
+require 'media/video/editing/conversion'
 require 'media/video/editing/conversion/job'
 require 'media/image/editing/resize_to_fill'
 
@@ -200,6 +201,16 @@ module Media
 
       def upload
         if not model.skip_conversion
+          # FIXME a volte il file temporaneo caricato viene cancellato prima dell'inizio della conversione,
+          #       per cui lo copio nella cartella temporanea delle conversioni. Bisognerebbe evitare questo passaggio
+          #       e far sì che il file temporaneo non venga cancellato se possibile.
+          #       Per non rallentare la risposta, si potrebbe far partire la copia in un thread e rinviare la conversione
+          #       fin quando la copia non è finita
+          raise 'model id cannot be blank' if model_id.blank?
+          conversion_temp_path = Editing::Conversion.temp_path(model_id, original_filename)
+          conversion_temp_folder = File.dirname conversion_temp_path
+          FileUtils.mkdir_p conversion_temp_folder
+          FileUtils.cp @original_file.path, conversion_temp_path
           Delayed::Job.enqueue Media::Video::Editing::Conversion::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
         end
       end
