@@ -30,12 +30,13 @@ module Media
   end
 end
 
-require 'media/video/editing/conversion'
-require 'media/video/editing/conversion/job'
 require 'media/video/editing/image_to_video'
 require 'media/video/editing/text_to_video'
 require 'media/video/editing/concat'
 require 'media/video/editing/crop'
 require 'media/video/editing/replace_audio'
 require 'media/video/editing/transition'
+require 'media/video/editing/conversion'
+require 'media/video/editing/conversion/job'
 require 'media/video/editing/composer'
+require 'media/video/editing/composer/job'
