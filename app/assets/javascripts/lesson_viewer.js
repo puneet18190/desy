@@ -69,7 +69,7 @@ function scrollLesson(direction) {
     } else {
       $('#slide_in_lesson_viewer_' + (current_slide_number + 1)).addClass('_lesson_viewer_current_slide');
       $('#info_container').data('slide-number', (parseInt(current_slide_number) + 1));
-      left_indent = parseInt(current_slide_number - 1) * 900;
+      left_indent = parseInt(current_slide_number) * 900;
     }
   } else {
     if(current_slide_number == 1) {
@@ -79,7 +79,7 @@ function scrollLesson(direction) {
     } else {
       $('#slide_in_lesson_viewer_' + (current_slide_number - 1)).addClass('_lesson_viewer_current_slide');
       $('#info_container').data('slide-number', (parseInt(current_slide_number) - 1));
-      left_indent = parseInt(current_slide_number - 1) * 900;
+      left_indent = parseInt(current_slide_number - 2) * 900;
     }
   }
   $('#carousel_ul').fadeOut("fast");
