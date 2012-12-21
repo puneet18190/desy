@@ -561,7 +561,307 @@ def plant_development_seeds
   
   pub_date -= 3
   
-  puts "Saved #{Image.count} images (should be 32)\n"
+  image33 = Image.new
+  image33.title = "Egon Schiele"
+  image33.description = "Portrait."
+  image33.tags = "art, portrait, painting, art"
+  image33.media = File.open(Rails.root.join("db/seeds/images/936full-egon-schiele.jpg"))
+  image33.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 33} image...\r"
+  $stdout.flush
+  image33.save!
+  image33.is_public = true
+  image33.publication_date = pub_date
+  image33.save!
+  
+  pub_date -= 3
+  
+  image34 = Image.new
+  image34.title = "Jean Michelle"
+  image34.description = "Jean-Michel Basquiat (December 22, 1960 – August 12, 1988) was an American artist.[1] He began as an obscure graffiti artist in New York City in the late 1970s and evolved into an acclaimed Neo-expressionist and Primitivist painter by the 1980s."
+  image34.tags = "history, logo, arte, history"
+  image34.media = File.open(Rails.root.join("db/seeds/images/basquiat-2.jpg"))
+  image34.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 34} image...\r"
+  $stdout.flush
+  image34.save!
+  image34.is_public = true
+  image34.publication_date = pub_date
+  image34.save!
+  
+  pub_date -= 3
+  
+  image35 = Image.new
+  image35.title = "Basquiat"
+  image35.description = "Jean-Michel Basquiat (December 22, 1960 – August 12, 1988) was an American artist.[1] He began as an obscure graffiti artist in New York City in the late 1970s and evolved into an acclaimed Neo-expressionist and Primitivist painter by the 1980s."
+  image35.tags = "art, basquiat, history, paint"
+  image35.media = File.open(Rails.root.join("db/seeds/images/basquiat.jpg"))
+  image35.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 35} image...\r"
+  $stdout.flush
+  image35.save!
+  image35.is_public = true
+  image35.publication_date = pub_date
+  image35.save!
+  
+  pub_date -= 3
+  
+  image36 = Image.new
+  image36.title = "SAMO"
+  image36.description = "Jean-Michel Basquiat, born in Brooklyn, New York after the death of his brother Max, was the second of four children of Matilda Andrades (July 28, 1934 – November 17, 2008) and Gerard Basquiat (born 1930)."
+  image36.tags = "art, basquiat, paint, history, color"
+  image36.media = File.open(Rails.root.join("db/seeds/images/samo.jpg"))
+  image36.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 36} image...\r"
+  $stdout.flush
+  image36.save!
+  image36.is_public = true
+  image36.publication_date = pub_date
+  image36.save!
+  
+  pub_date -= 3
+  
+  image37 = Image.new
+  image37.title = "J.M.Basquiat - 50Cent"
+  image37.description = "In 1976, Basquiat and friend Al Diaz began spray-painting graffiti on buildings in Lower Manhattan, working under the pseudonym SAMO."
+  image37.tags = "art, basquiat, art, history"
+  image37.media = File.open(Rails.root.join("db/seeds/images/50-cent-piece.jpg"))
+  image37.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 37} image...\r"
+  $stdout.flush
+  image37.save!
+  image37.is_public = true
+  image37.publication_date = pub_date
+  image37.save!
+  
+  pub_date -= 3
+  
+  image38 = Image.new
+  image38.title = "J.M.Basquiat - King"
+  image38.description = "In 1976, Basquiat and friend Al Diaz began spray-painting graffiti on buildings in Lower Manhattan, working under the pseudonym SAMO."
+  image38.tags = "art, samo, basquiat, ny, history"
+  image38.media = File.open(Rails.root.join("db/seeds/images/king-alphonso.jpg"))
+  image38.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 38} image...\r"
+  $stdout.flush
+  image38.save!
+  image38.is_public = true
+  image38.publication_date = pub_date
+  image38.save!
+  
+  pub_date -= 3
+  
+  image39 = Image.new
+  image39.title = "J.M.Basquiat - Ghost"
+  image39.description = "In 1976, Basquiat and friend Al Diaz began spray-painting graffiti on buildings in Lower Manhattan, working under the pseudonym SAMO."
+  image39.tags = "art, ghost, basquiat, new york, history"
+  image39.media = File.open(Rails.root.join("db/seeds/images/tumblr_mapa1vnds61rhpgvfo1_500.jpg"))
+  image39.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 39} image...\r"
+  $stdout.flush
+  image39.save!
+  image39.is_public = true
+  image39.publication_date = pub_date
+  image39.save!
+  
+  pub_date -= 3
+  
+  image40 = Image.new
+  image40.title = "J.M.Basquiat"
+  image40.description = "In 1976, Basquiat and friend Al Diaz began spray-painting graffiti on buildings in Lower Manhattan, working under the pseudonym SAMO."
+  image40.tags = "art, basquiat, art, samo, new york, history"
+  image40.media = File.open(Rails.root.join("db/seeds/images/tumblr_ma02thv8vk1qzp5xxo1_500.jpg"))
+  image40.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 40} image...\r"
+  $stdout.flush
+  image40.save!
+  image40.is_public = true
+  image40.publication_date = pub_date
+  image40.save!
+  
+  pub_date -= 3
+  
+  image41 = Image.new
+  image41.title = "J.M.Basquiat in New York"
+  image41.description = "In 1976, Basquiat and friend Al Diaz began spray-painting graffiti on buildings in Lower Manhattan, working under the pseudonym SAMO."
+  image41.tags = "art, basquiat, new york, history, art"
+  image41.media = File.open(Rails.root.join("db/seeds/images/tumblr_m79phdivez1rwgohco1_r1_500.jpg"))
+  image41.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 41} image...\r"
+  $stdout.flush
+  image41.save!
+  image41.is_public = true
+  image41.publication_date = pub_date
+  image41.save!
+  
+  pub_date -= 3
+  
+  image42 = Image.new
+  image42.title = "London taxy"
+  image42.description = "The famous london taxi"
+  image42.tags = "geography, london, people, english, taxi"
+  image42.media = File.open(Rails.root.join("db/seeds/images/taxi_1360265b.jpg"))
+  image42.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 42} image...\r"
+  $stdout.flush
+  image42.save!
+  image42.is_public = true
+  image42.publication_date = pub_date
+  image42.save!
+  
+  pub_date -= 3
+  
+  image43 = Image.new
+  image43.title = "London"
+  image43.description = "The London Eye is a giant Ferris wheel situated on the banks of the River Thames in London, England. The entire structure is 135 metres (443 ft) tall and the wheel has a diameter of 120 metres (394 ft)."
+  image43.tags = "geography, geography, taxi, car, english"
+  image43.media = File.open(Rails.root.join("db/seeds/images/london2.jpg"))
+  image43.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 43} image...\r"
+  $stdout.flush
+  image43.save!
+  image43.is_public = true
+  image43.publication_date = pub_date
+  image43.save!
+  
+  pub_date -= 3
+  
+  image44 = Image.new
+  image44.title = "The weather in London"
+  image44.description = "The etymology of London is uncertain. It is an ancient name and can be found in sources from the 2nd century."
+  image44.tags = "geography, geography, english, city"
+  image44.media = File.open(Rails.root.join("db/seeds/images/london1.jpg"))
+  image44.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 44} image...\r"
+  $stdout.flush
+  image44.save!
+  image44.is_public = true
+  image44.publication_date = pub_date
+  image44.save!
+  
+  pub_date -= 3
+  
+  image45 = Image.new
+  image45.title = "Duffy"
+  image45.description = "Stephen Anthony James Duffy (born 30 May 1960, Alum Rock, Birmingham, England) is an English singer/songwriter, and multi-instrumentalist."
+  image45.tags = "london, duffy, english, pop"
+  image45.media = File.open(Rails.root.join("db/seeds/images/duffy.jpg"))
+  image45.user_id = benji.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 45} image...\r"
+  $stdout.flush
+  image45.save!
+  image45.is_public = true
+  image45.publication_date = pub_date
+  image45.save!
+  
+  pub_date -= 3
+  
+  image46 = Image.new
+  image46.title = "Egon Schiele"
+  image46.description = "Two girls embracing each other"
+  image46.tags = "art, art, painter, expressionism"
+  image46.media = File.open(Rails.root.join("db/seeds/images/egon_schiele_022.jpg"))
+  image46.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 46} image...\r"
+  $stdout.flush
+  image46.save!
+  image46.is_public = true
+  image46.publication_date = pub_date
+  image46.save!
+  
+  pub_date -= 3
+  
+  image47 = Image.new
+  image47.title = "calendar"
+  image47.description = "The 2012 phenomenon comprises a range of"
+  image47.tags = "maya, calendar, maya, cataclysmic"
+  image47.media = File.open(Rails.root.join("db/seeds/images/nmai-mayan-calendar.jpg"))
+  image47.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 47} image...\r"
+  $stdout.flush
+  image47.save!
+  image47.is_public = true
+  image47.publication_date = pub_date
+  image47.save!
+  
+  pub_date -= 3
+  
+  image48 = Image.new
+  image48.title = "maya"
+  image48.description = "sdlò ds"
+  image48.tags = "asjdlkdj, aisudiosd, asjdklj, zxmnc"
+  image48.media = File.open(Rails.root.join("db/seeds/images/jeu_de_balle_maya.jpg"))
+  image48.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 48} image...\r"
+  $stdout.flush
+  image48.save!
+  image48.is_public = true
+  image48.publication_date = pub_date
+  image48.save!
+  
+  pub_date -= 3
+  
+  image49 = Image.new
+  image49.title = "Arthut Roessler"
+  image49.description = "Egon Schiele"
+  image49.tags = "art, art, painter, expressionism"
+  image49.media = File.open(Rails.root.join("db/seeds/images/arthur-roessler-egon-schiele.jpg"))
+  image49.user_id = fupete.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 49} image...\r"
+  $stdout.flush
+  image49.save!
+  image49.is_public = true
+  image49.publication_date = pub_date
+  image49.save!
+  
+  pub_date -= 3
+  
+  image50 = Image.new
+  image50.title = "Roy Lichtenstein"
+  image50.description = "His work probably defines the basic premise of pop art better than any other through parody.[7] Selecting the old-fashioned comic strip as subject matter, Lichtenstein produces a hard-edged, precise composition that documents while it parodies in a soft manner."
+  image50.tags = "art, art, roy, new york"
+  image50.media = File.open(Rails.root.join("db/seeds/images/royL.jpg"))
+  image50.user_id = retlaw.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 50} image...\r"
+  $stdout.flush
+  image50.save!
+  image50.is_public = true
+  image50.publication_date = pub_date
+  image50.save!
+  
+  pub_date -= 3
+  
+  image51 = Image.new
+  image51.title = "Warhol - Marilyn"
+  image51.description = "Although Pop Art began in the late 1950s, Pop Art in America was given its greatest impetus during the 1960s."
+  image51.tags = "art, pop, new york, color, warhol"
+  image51.media = File.open(Rails.root.join("db/seeds/images/marylin.jpg"))
+  image51.user_id = retlaw.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 51} image...\r"
+  $stdout.flush
+  image51.save!
+  image51.is_public = true
+  image51.publication_date = pub_date
+  image51.save!
+  
+  pub_date -= 3
+  
+  image52 = Image.new
+  image52.title = "Pleiades"
+  image52.description = "Many beautiful stars"
+  image52.tags = "stars, universe, pleiades, lights"
+  image52.media = File.open(Rails.root.join("db/seeds/images/pleiades_large.jpg"))
+  image52.user_id = toostrong.id
+  $stdout.print "Saving #{ActiveSupport::Inflector.ordinalize 52} image...\r"
+  $stdout.flush
+  image52.save!
+  image52.is_public = true
+  image52.publication_date = pub_date
+  image52.save!
+  
+  pub_date -= 3
+  
+  puts "Saved #{Image.count} images (should be 52)\n"
   
   
   # AUDIOS
