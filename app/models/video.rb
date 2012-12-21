@@ -1,4 +1,5 @@
 require 'media/video/uploader'
+require 'media/video/placeholder'
 require 'media/video/editing/parameters'
 
 # converted
@@ -10,6 +11,7 @@ class Video < MediaElement
   extend Media::Video::Editing::Parameters
   
   EXTENSION_WHITE_LIST = Media::Video::Uploader::EXTENSION_WHITE_LIST
+  PLACEHOLDER          = Media::Video::Placeholder
 
   after_save :upload_or_copy
   after_destroy :clean
@@ -23,19 +25,19 @@ class Video < MediaElement
   end
 
   def mp4_path
-    media.try(:path, :mp4)
+    converted ? media.try(:path, :mp4) : PLACEHOLDER.path(:mp4)
   end
 
   def webm_path
-    media.try(:path, :webm)
+    converted ? media.try(:path, :webm) : PLACEHOLDER.path(:webm)
   end
 
   def cover_path
-    media.try(:path, :cover)
+    converted ? media.try(:path, :cover) : PLACEHOLDER.path(:cover)
   end
   
   def thumb_path
-    media.try(:path, :thumb)
+    converted ? media.try(:path, :thumb) : PLACEHOLDER.path(:thumb)
   end
 
   def media
@@ -50,11 +52,11 @@ class Video < MediaElement
   end
 
   def mp4_duration
-    metadata.mp4_duration
+    converted ? metadata.mp4_duration : PLACEHOLDER.mp4_duration
   end
   
   def webm_duration
-    metadata.webm_duration
+    converted ? metadata.webm_duration : PLACEHOLDER.webm_duration
   end
 
   def mp4_duration=(mp4_duration)
