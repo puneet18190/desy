@@ -101,7 +101,9 @@ class VideoEditorController < ApplicationController
       # logger.info "\n\nATTENZIONE, #{parameters.inspect}\n\n"
       _d 'ciaoooooooo'
 
+      # TODO far cancellare la sessione da 
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
+
       
       # manda parameters al video editor di Maurizio, e fai redirect_to my_media_elements_path
       # usa le notifiche per segnalare la riuscita o non riuscita del salvataggio??
