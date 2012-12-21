@@ -996,11 +996,19 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._cancel', function() {
-    alert('cancel new');
+    if($('#video_editor_title ._titled').length > 0) {
+      $('#video_editor_title ._titled').show();
+      $('#video_editor_title ._untitled').hide();
+    }
+    $('._video_editor_bottom_bar').show();
+    $('#video_editor #form_info_new_media_element_in_editor').hide();
+    startCacheLoop();
   });
   
   $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._cancel', function() {
-    alert('cancel update');
+    $('._video_editor_bottom_bar').show();
+    $('#video_editor #form_info_update_media_element_in_editor').hide();
+    startCacheLoop();
   });
   
   initializeVideoEditor();
