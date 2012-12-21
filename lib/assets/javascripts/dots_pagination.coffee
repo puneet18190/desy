@@ -38,17 +38,17 @@ class DotsPagination
   constructor: (@$pages, @pagesAmount, @prevPageCallback, @nextPageCallback) ->
     @$current = @$pages.find('[role=current]')
 
-    @$pages.find(':not([role=current],[role=disabled])').on('mouseenter', @pageLinkMouseEnter).on('mouseleave', @pageLinkMouseLeave)
+    # @$pages.find(':not([role=current],[role=disabled])').on('mouseenter', @pageLinkMouseEnter).on('mouseleave', @pageLinkMouseLeave)
     @$current.prev(':not([role=disabled])').on('click', { direction: 'prev' }, @changePage)
     @$current.next(':not([role=disabled])').on('click', { direction: 'next' }, @changePage)
 
-  pageLinkMouseEnter: (event) =>
-    $(event.currentTarget).addClass 'current'
-    @$current.addClass 'default'
+  # pageLinkMouseEnter: (event) =>
+  #   $(event.currentTarget).addClass 'current'
+  #   @$current.addClass 'default'
 
-  pageLinkMouseLeave: (event) =>
-    $(event.currentTarget).removeClass 'current'
-    @$current.removeClass 'default'
+  # pageLinkMouseLeave: (event) =>
+  #   $(event.currentTarget).removeClass 'current'
+  #   @$current.removeClass 'default'
 
   changePage: (event) =>
     event.preventDefault()
@@ -69,8 +69,8 @@ class DotsPagination
       .removeAttr('role') # removing current role is useless (it is used just at the beginning), we do it just for coherence
       .removeClass('current')
       .on('click', { direction: exCurrentDirection }, @changePage)
-      .on('mouseenter', @pageLinkMouseEnter)
-      .on('mouseleave', @pageLinkMouseLeave)
+      # .on('mouseenter', @pageLinkMouseEnter)
+      # .on('mouseleave', @pageLinkMouseLeave)
     @$current = $this
 
     $nearLink = 
@@ -81,15 +81,15 @@ class DotsPagination
           $('<a/>')
             .data('page', page + pageIncrement)
             .on('click', { direction: direction }, @changePage)
-            .on('mouseenter', @pageLinkMouseEnter)
-            .on('mouseleave', @pageLinkMouseLeave)
+            # .on('mouseenter', @pageLinkMouseEnter)
+            # .on('mouseleave', @pageLinkMouseLeave)
 
     $this
       .attr('role', 'current') # adding current role is useless (it is used just at the beginning), we do it just for coherence
       .removeClass('default')
       .off('click', @changePage)
-      .off('mouseenter', @pageLinkMouseEnter)
-      .off('mouseleave', @pageLinkMouseLeave)
+      # .off('mouseenter', @pageLinkMouseEnter)
+      # .off('mouseleave', @pageLinkMouseLeave)
 
     if $nearLink
       $this[insertNearLinkFunction].call($this, $nearLink)
