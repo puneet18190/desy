@@ -1,0 +1,25 @@
+var slideN = $(".mediaEditorElementContainer").first();
+slideN.prepend("<%= escape_javascript(render :partial => 'shared/image_gallery', :locals => {:sti_type => "image" }) %>");
+
+$("._close_image_gallery").click(function(e){
+  e.preventDefault();
+  $("#image-gallery").remove();
+  
+});
+
+$("._add_image_to_slide").click(function(e){
+  
+});
+
+$("._add_video_to_slide").click(function(e){
+  
+});
+
+$("._add_audio_to_slide").click(function(e){
+  
+});
+
+
+$('.scroll-pane').jScrollPane({
+  autoReinitialise: true
+});
