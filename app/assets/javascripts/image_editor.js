@@ -137,11 +137,13 @@ $(document).ready(function() {
   
   $('body').on('click', '#image_editor_public #form_info_new_media_element_in_editor ._commit, #image_editor_not_public #form_info_new_media_element_in_editor ._commit', function() {
     $('.form_error').removeClass("form_error");
+    $(this).removeClass("_commit");
     commitImageEditing("new");
   });
   
   $('body').on('click', '#image_editor_not_public #form_info_update_media_element_in_editor ._commit', function() {
     $('.form_error').removeClass("form_error");
+    $(this).removeClass("_commit");
     commitImageEditing("overwrite");
   });
   
