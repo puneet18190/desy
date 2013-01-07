@@ -1,13 +1,15 @@
-<div id="video_component_<%= identifier %>_cutter" class="cutter" style="display:none">
-  <a class="play _media_player_play_in_video_editor_preview"></a>
-  <a class="pause _media_player_pause_in_video_editor_preview"></a>
-  <div class="_media_player_current_time secondTime">0</div>
-  <div class="videoSlider _media_player_slider"></div>
-  <div class="_media_player_total_time secondTime"><%= seconds_to_time(component[:video].min_duration) %></div>
-  <div class="sliderDisabler _media_player_slider_disabler"></div>
-  <!-- div id="slider-range" FIXME mettere lo slider doppio qui! -->
-</div>
+<div id="video_component_<%= identifier %>_cutter" class="contentCutter">
+  <div  class="cutter" style="display:none">
+    <a class="play _media_player_play_in_video_editor_preview"></a>
+    <a class="pause _media_player_pause_in_video_editor_preview"></a>
+    <div class="_media_player_current_time secondTime">0</div>
+    <div class="videoSlider _media_player_slider"></div>
+    <div class="_media_player_total_time secondTime"><%= seconds_to_time(component[:video].min_duration) %></div>
+    <div class="sliderDisabler _media_player_slider_disabler"></div>
+    <!-- div id="slider-range" FIXME mettere lo slider doppio qui! -->
+  </div>
 
-<script type="text/javascript">
-  initializeVideoInVideoEditorPreview(<%= identifier %>);
-</script>
+  <script type="text/javascript">
+    initializeVideoInVideoEditorPreview(<%= identifier %>);
+  </script>
+</div>
