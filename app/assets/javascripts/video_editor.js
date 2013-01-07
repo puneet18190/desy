@@ -35,6 +35,10 @@ function initializeVideoEditor() {
   });
 }
 
+function showVideoEditorComponentPreview(component_id) {
+  
+}
+
 function resetVisibilityOfVideoEditorTransitions() {
   var components = $('._video_editor_component');
   components.each(function(index) {
