@@ -16,6 +16,7 @@
       <% end %>
       <%= hidden_field_tag 'audio_id', (@parameters[:audio].nil? ? '' : @parameters[:audio].id), :id => 'audio_track_in_video_editor_input' %>
       <%= render :partial => 'timeline', :locals => {:parameters => @parameters} %>
+      <%= render :partial => 'cutters', :locals => {:parameters => @parameters} %>
       <div class="addAudioandSave _video_editor_bottom_bar">
         <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
         <div class="fltrt">
