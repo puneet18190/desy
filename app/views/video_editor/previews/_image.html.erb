@@ -5,7 +5,7 @@
   offset = horizontal ? ((width - 640) / 2) : ((height - 360) / 2)
 %>
 
-<div id="video_component_<%= identifier %>_preview" class="boxContentMediaElement" style="display:none">
+<div id="video_component_<%= identifier %>_preview" class="boxContentMediaElementImage" style="display:none">
   <% if horizontal %>
     <%= image_tag component[:image].path, :style => "right:-#{offset}px; height:360px; width:#{width}px" %>
   <% else %>
