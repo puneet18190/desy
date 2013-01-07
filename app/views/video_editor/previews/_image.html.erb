@@ -1,14 +1,11 @@
-<%
-  horizontal = is_horizontal? component[:image].width, component[:image].height, 'video_component_preview'
-  height = resize_height component[:image].width, component[:image].height, 'video_component_preview'
-  width = resize_width component[:image].width, component[:image].height, 'video_component_preview'
-  offset = horizontal ? ((width - 640) / 2) : ((height - 360) / 2)
-%>
-
-<div id="video_component_<%= identifier %>_preview" class="boxContentMediaElementImage" style="display:none">
-  <% if horizontal %>
-    <%= image_tag component[:image].path, :style => "right:-#{offset}px; height:360px; width:#{width}px" %>
-  <% else %>
-    <%= image_tag component[:image].path, :style => "bottom:-#{offset}px; height:#{height}px; width:640px" %>
-  <% end %>
-</div>
+<% if empty %>
+  
+  <div class="boxContentMediaElementImage" style="display:none"></div>
+  
+<% else %>
+  
+  <div id="video_component_<%= identifier %>_preview" class="boxContentMediaElementImage" style="display:none">
+    <%= render :partial => 'video_editor/previews/image_thumb', :locals => {:image => component[:image]} %>
+  </div>
+  
+<% end %>
