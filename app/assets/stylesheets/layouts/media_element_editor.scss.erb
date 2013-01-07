@@ -408,13 +408,13 @@ html.media_element_editor-layout {
       height:117px;
       .contatore {
         padding: 4px 8px;
-        width:32px;
+        width:62px;
         font-size:11px;
-        border-radius:10px;
-        -webkit-border-radius: 10px;
+        border-radius:5px;
+        -webkit-border-radius: 5px;
         margin-bottom:6px;
-        background-color:#747574;
-        height:15px;
+        background-color:#474747;
+        height:14px;
         position:relative;
 
         .textIcon {
@@ -655,15 +655,22 @@ html.media_element_editor-layout {
     }
   }
   .contentCutter {
+    background-color:#232121;
+    width:905px;
+    height:98px;
+    position:absolute;
+    bottom:0px;
+    -webkit-box-shadow: 0px 6px 10px #161515;
+    box-shadow: 0px 6px 10px #161515;
+    z-index:150;
+    font: 10px 'Nunito', sans-serif;
+    color:#787575;
+    text-align: left;
     .cutter {
       padding:10px;
-      height:78px;
-      position:absolute;
-      z-index:150;
-      width:882px;
-      bottom:0px;
-      @include boxShadow;
-      background-color:#232121;
+      height:47px;
+      background-color:#303030;
+      margin-bottom:10px;
       .ui-slider-horizontal {
         border-radius:5px;
         -webkit-border-radius: 5px;
