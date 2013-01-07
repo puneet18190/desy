@@ -969,9 +969,8 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._commit_video_editor', function() {
-    setTimeout(function() {
-      stopCacheLoop();
-    }, $('#popup_parameters_container').data('cache-time'));
+    stopCacheLoop();
+    $('#info_container').data('cache-enabled-first-time', false);
     $('#video_editor_form').submit();
     if($(this).hasClass('_with_choice')) {
       var captions = $('#popup_captions_container');

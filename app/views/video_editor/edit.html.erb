@@ -51,14 +51,16 @@
 
 <div id="video_editor_audio_gallery_container" class="mediaEditorVideoGalleryContainer" style="display:none" data-loaded="false"></div>
 
-<div id="info_container" data-last-component-id="<%= @parameters[:components].count %>" data-current-component="" data-replacing-component="false" data-total-length="<%= @total_length %>" data-save-cache="false" style="display:none"></div>
+<div id="info_container" data-last-component-id="<%= @parameters[:components].count %>" data-current-component="" data-replacing-component="false" data-total-length="<%= @total_length %>" data-save-cache="false" data-cache-enabled-first-time="true" style="display:none"></div>
 
 
 <script type="text/javascript">
   <% if @cache.nil? %>
     $(document).ready(function() {
       setTimeout(function() {
-        startCacheLoop();
+        if($('#info_container').data('cache-enabled-first-time')) {
+          startCacheLoop();
+        }
       }, $('#popup_parameters_container').data('cache-time'));
     });
   <% else %>
@@ -71,7 +73,9 @@
         url: '/videos/cache/empty',
         success: function() {
           setTimeout(function() {
-            startCacheLoop();
+            if($('#info_container').data('cache-enabled-first-time')) {
+              startCacheLoop();
+            }
           }, $('#popup_parameters_container').data('cache-time'));
         }
       });
