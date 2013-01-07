@@ -222,6 +222,15 @@ function addTextComponentInVideoEditor(component, content, duration, background_
     autoReinitialise: true
   });
   $('#info_container').data('last-component-id', next_position);
+  // build preview
+  var empty_preview = $('#empty_text_component_for_video_editor').html();
+  empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(empty_component.indexOf('div') + 3, empty_component.length);
+  $('#add_new_video_component').before(empty_component);
+  // build cutter
+  var empty_preview = $('#empty_text_component_for_video_editor').html();
+  empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(empty_component.indexOf('div') + 3, empty_component.length);
+  $('#add_new_video_component').before(empty_component);
+  // build component
   var empty_component = $('#empty_text_component_for_video_editor').html();
   empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(empty_component.indexOf('div') + 3, empty_component.length);
   $('#add_new_video_component').before(empty_component);
