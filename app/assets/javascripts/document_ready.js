@@ -953,7 +953,7 @@ $(document).ready(function() {
     } else if(preview.data('placeholder')) {
       showErrorPopUp($('#popup_captions_container').data('empty-text-component-in-video-editor'));
     } else {
-      var content = $('#text_component_preview textarea').val();
+      var content = $('#text_component_preview textarea').val().split("\n").join('<br/>');
       var component = $('#video_editor_mixed_gallery_container ._texts ._temporary').html();
       closeGalleryInVideoEditor('mixed');
       if($('#info_container').data('replacing-component')) {
