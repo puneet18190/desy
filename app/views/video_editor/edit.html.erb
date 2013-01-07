@@ -47,6 +47,32 @@
 </div>
 
 
+<div id="empty_video_preview_for_video_editor" style="display:none">
+  <%#= render :partial => "video_editor/components/video", :locals => {:component => {}, :identifier => 1, :empty => true} %>
+</div>
+
+<div id="empty_image_preview_for_video_editor" style="display:none">
+  <%#= render :partial => "video_editor/components/image", :locals => {:component => {}, :identifier => 1, :empty => true} %>
+</div>
+
+<div id="empty_text_preview_for_video_editor" style="display:none">
+  <%= render :partial => "video_editor/components/text", :locals => {:component => {}, :identifier => 1, :empty => true} %>
+</div>
+
+
+<div id="empty_video_cutter_for_video_editor" style="display:none">
+  <%= render :partial => "video_editor/components/video", :locals => {:component => {}, :identifier => 1, :empty => true} %>
+</div>
+
+<div id="empty_image_cutter_for_video_editor" style="display:none">
+  <%= render :partial => "video_editor/components/image", :locals => {:component => {}, :identifier => 1, :empty => true} %>
+</div>
+
+<div id="empty_text_cutter_for_video_editor" style="display:none">
+  <%= render :partial => "video_editor/components/text", :locals => {:component => {}, :identifier => 1, :empty => true} %>
+</div>
+
+
 <div id="video_editor_mixed_gallery_container" class="mediaEditorVideoGalleryContainer" style="display:none" data-loaded="false"></div>
 
 <div id="video_editor_audio_gallery_container" class="mediaEditorVideoGalleryContainer" style="display:none" data-loaded="false"></div>
