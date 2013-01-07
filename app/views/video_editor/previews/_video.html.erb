@@ -7,12 +7,16 @@
 %>
 
 
-<div id="video_component_<%= identifier %>_preview" style="display:none" class="videoPlayer" data-duration="<%= duration %>">
-  <video>
-    <source src="<%= webm %>" type="video/webm">
-    <source src="<%= mp4 %>" type="video/mp4">
-    <%= t('captions.your_browser_does_not_support_video') %>
-  </video>
+<div id="video_component_<%= identifier %>_preview" style="display:none" class="boxContentMediaElementVideo" data-duration="<%= duration %>">
+  
+  <div class="videoPlayer">
+    <video width="640" height="360">
+      <source src="<%= webm %>" type="video/webm">
+      <source src="<%= mp4 %>" type="video/mp4">
+      <%= t('captions.your_browser_does_not_support_video') %>
+    </video>
+  </div>
+  
   <div class="cutter _video_editor_cutter" style="display:none">
     <a class="play _media_player_play_in_video_editor_preview"></a>
     <a class="pause _media_player_pause_in_video_editor_preview"></a>
@@ -22,6 +26,7 @@
     <div class="sliderDisabler _media_player_slider_disabler"></div>
     <!-- div id="slider-range" FIXME mettere lo slider doppio qui! -->
   </div>
+  
 </div>
 
 <script type="text/javascript">
