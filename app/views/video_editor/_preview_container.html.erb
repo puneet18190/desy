@@ -1,3 +1,9 @@
-<div class="contentVideo">
-inserisci contenuto
+<div id="video_editor_preview_container" class="contentVideo">
+
+<% cont = 1 %>
+<% parameters[:components].each do |c| %>
+  <%= render :partial => "video_editor/previews/#{c[:type]}", :locals => {:component => c, :identifier => cont} %>
+  <% cont += 1 %>
+<% end %>
+
 </div>

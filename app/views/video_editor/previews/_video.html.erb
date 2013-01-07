@@ -1,3 +1,7 @@
+<div id="video_component_<%= identifier %>_preview" style="display:none">
+
+video <%= component.inspect %>
+
 <div class="cutter">
   <%= image_tag("arrow_timeline.png", :class => "callout") %>
   <div id="slider-range">
@@ -19,3 +23,5 @@ $(function() {
      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
    });
 </script>
+
+</div>
