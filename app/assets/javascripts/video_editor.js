@@ -263,6 +263,7 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   to_be_appended += fillVideoEditorSingleParameter('text_color', next_position, text_color);
   to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
   current_component.find('._video_editor_component_hover').append(to_be_appended);
+  // other things
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
   reloadVideoEditorComponentPositions()
   resetVisibilityOfVideoEditorTransitions();
@@ -275,6 +276,25 @@ function addTextComponentInVideoEditor(component, content, duration, background_
 function replaceTextComponentInVideoEditor(component, content, position, duration, background_color, text_color) {
   var identifier = position.split('_');
   identifier = identifier[identifier.length - 1];
+  // build preview
+  var empty_preview = $('#empty_text_preview_for_video_editor').html();
+  empty_preview = '<div id="temporary_empty_preview" ' + empty_preview.substr(empty_preview.indexOf('div') + 3, empty_preview.length);
+  $('#video_component_' + identifier + '_preview').replaceWith(empty_preview);
+  // build cutter
+  var empty_cutter = $('#empty_text_cutter_for_video_editor').html();
+  empty_cutter = '<div id="temporary_empty_cutter" ' + empty_cutter.substr(empty_cutter.indexOf('div') + 3, empty_cutter.length);
+  $('#video_component_' + identifier + '_cutter').replaceWith(empty_cutter);
+  // edit preview
+  current_preview = $('#temporary_empty_preview');
+  current_preview.attr('id', ('video_component_' + identifier + '_preview'));
+  current_preview.removeClass('background_color_white').addClass('background_color_' + background_color);
+  current_preview.find('p').removeClass('color_black').addClass('color_' + text_color);
+  current_preview.find('p').html(content);
+  // edit cutter
+  current_cutter = $('#temporary_empty_cutter');
+  current_cutter.attr('id', ('video_component_' + identifier + '_cutter'));
+  current_cutter.find('._duration_selector input').val(duration);
+  // edit component
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
   $('#' + position + ' ._video_component_thumb ._text_content').html(content);
   $('#' + position + ' ._video_component_thumb ._text_content').removeClass('color_black').addClass('color_' + text_color);
@@ -286,6 +306,7 @@ function replaceTextComponentInVideoEditor(component, content, position, duratio
   to_be_appended += fillVideoEditorSingleParameter('text_color', identifier, text_color);
   to_be_appended += fillVideoEditorSingleParameter('duration', identifier, duration);
   $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
+  // other things
   changeDurationVideoEditorComponent(position, duration);
 }
 
