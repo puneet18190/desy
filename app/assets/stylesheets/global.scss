@@ -131,8 +131,15 @@ p {
   font-size: 1px;
   line-height: 0px;
 }
-
+.dots_pagination_container {
+  
+  padding-bottom: 15px;
+}
 .footer {
+  width:100%;
+  position:fixed;
+  bottom:0;
+  z-index:5000;
   padding: 26px 55px 34px 30px;
   background: #373737;
   color:#fff;
