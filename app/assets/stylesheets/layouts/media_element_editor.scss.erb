@@ -654,34 +654,37 @@ html.media_element_editor-layout {
       text-shadow: 1px 1px #4f4f4f;
     }
   }
-  
-  .cutter {
-    padding:10px;
-    height:55px;
-    position:absolute;
-    z-index:150;
-    width:882px;
-    @include boxShadow;
-    background-color:#000;
-    .ui-slider-horizontal {
-      border-radius:5px;
-      -webkit-border-radius: 5px;
-      background-color:blue;
-    }
-    .ui-slider-range {
-      background-color:#666;
-    }
-    .ui-slider-handle {
-      background-color:#fff;
-    }
-    .callout {
-      top: -11px;
-      z-index:20;
+  .contentCutter {
+    .cutter {
+      padding:10px;
+      height:78px;
       position:absolute;
-      border:0;
-      left:440px;
+      z-index:150;
+      width:882px;
+      bottom:0px;
+      @include boxShadow;
+      background-color:#232121;
+      .ui-slider-horizontal {
+        border-radius:5px;
+        -webkit-border-radius: 5px;
+        background-color:blue;
+      }
+      .ui-slider-range {
+        background-color:#666;
+      }
+      .ui-slider-handle {
+        background-color:#fff;
+      }
+      .callout {
+        top: -11px;
+        z-index:20;
+        position:absolute;
+        border:0;
+        left:440px;
+      }
     }
   }
+  
   
   /*IMAGES EDITOR*/
   .mediaEditorElementContainer {
