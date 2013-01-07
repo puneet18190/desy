@@ -107,6 +107,8 @@ module ApplicationHelper
         ratio > 1.55
       when 'video_component'
         ratio > 1.77
+      when 'video_component_preview'
+        ratio > 1.77
     end
   end
   
@@ -124,6 +126,8 @@ module ApplicationHelper
         (width * 265) / height
       when 'video_component'
         (width * 88) / height
+      when 'video_component_preview'
+        (width * 360) / height
     end
   end
   
@@ -141,6 +145,8 @@ module ApplicationHelper
         (height * 420) / width
       when 'video_component'
         (height * 156) / width
+      when 'video_component_preview'
+        (height * 640) / width
     end
   end
   

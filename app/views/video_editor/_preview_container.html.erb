@@ -2,9 +2,7 @@
 
 <% cont = 1 %>
 <% parameters[:components].each do |c| %>
-  <div id="video_component_<%= cont %>_preview" style="display:none">
-    <%= render :partial => "video_editor/previews/#{c[:type]}", :locals => {:component => c} %>
-  </div>
+  <%= render :partial => "video_editor/previews/#{c[:type]}", :locals => {:component => c, :identifier => cont} %>
   <% cont += 1 %>
 <% end %>
 
