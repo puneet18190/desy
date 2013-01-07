@@ -1,27 +1,39 @@
+<%
+  video = component[:video]
+  webm = video.webm_path
+  mp4 = video.mp4_path
+  duration = video.min_duration
+  string_duration = seconds_to_time(duration)
+%>
+
+
+
 <div id="video_component_<%= identifier %>_preview" style="display:none">
-
-video <%= component.inspect %>
-
-<div class="cutter">
-  <%= image_tag("arrow_timeline.png", :class => "callout") %>
-  <div id="slider-range">
+  
+  <div id="instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player" class="videoPlayer" data-media-type="video" data-initialized="false" data-duration="<%= duration %>">
+    <video>
+      <source src="<%= webm %>" type="video/webm">
+      <source src="<%= mp4 %>" type="video/mp4">
+      <%= t('captions.your_browser_does_not_support_video') %>
+    </video>
+    <div class="cutter _video_editor_cutter" style="display:none">
+      <a class="play _media_player_play"></a>
+      <a class="pause _media_player_pause"></a>
+      <div class="_media_player_current_time secondTime">0</div>
+      <div class="videoSlider _media_player_slider"></div>
+      <div class="_media_player_total_time secondTime"><%= string_duration %></div>
+      <a class="fullScreen _video_full_screen"></a>
+      <div class="sliderDisabler _media_player_slider_disabler"></div>
+      <!-- div id="slider-range" FIXME mettere lo slider doppio qui! -->
+    </div>
   </div>
+  
 </div>
 
-<script>
-$(function() {
-  $( "#slider-range" ).slider({
-    range: true,
-    min: 0,
-    max: 500,
-    values: [ 75, 300 ],
-    slide: function( event, ui ) {
-      $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-    }
-   });
-   $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-     " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-   });
+<script type="text/javascript">
+  initializeMedia('instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player', 'video');
 </script>
 
-</div>
+<%
+  @video_counter[1] += 1
+%>
