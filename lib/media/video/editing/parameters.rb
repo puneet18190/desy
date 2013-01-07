@@ -41,6 +41,7 @@ module Media
           resp[:components].each do |component|
             component[:video] = component[:video].id if component[:video]
             component[:image] = component[:image].id if component[:image]
+            component[:content] = component[:content].gsub('<br/>', "\n") if component[:type] == TEXT_COMPONENT
           end
           resp
         end
