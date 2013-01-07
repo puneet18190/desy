@@ -71,7 +71,7 @@ function initializeMediaTimeUpdaterInVideoEditor(media, reference_id) {
 
 function initializeActionOfMediaTimeUpdaterInVideoEditor(media, reference_id) {
   var duration = $('#' + reference_id).data('duration');
-  var container_id = $(media).parent().attr('id');
+  var container_id = $(media).parent().parent().attr('id');
   var parsed_int = parseInt(media.currentTime);
   if(parsed_int == (duration + 1)) {
     $('#' + container_id + ' ._media_player_pause').click();
