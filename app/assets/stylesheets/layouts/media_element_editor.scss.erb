@@ -423,11 +423,6 @@ html.media_element_editor-layout {
         background-color:#474747;
         height:14px;
         position:relative;
-            
-      
-        
-        
-        
         &.current {
           visibility:hidden;
           height: 15px;
@@ -654,6 +649,14 @@ html.media_element_editor-layout {
       font: 13px 'Nunito', sans-serif;
       text-shadow: 1px 1px #4f4f4f;
     }
+  }
+  /*CUTTER*/
+  .arrowUpCutter {
+    background: url(<%= asset_path 'arrow_up.png' %>) top center  no-repeat;
+    width:156px;
+    height:14px;
+    position:absolute;
+    bottom:-26px;
   }
   #video_editor_cutters {
     .left {
