@@ -2,8 +2,8 @@
 
 def plant_development_seeds
   
-  videos_folder = Media::Video::Uploader::ABSOLUTE_FOLDER
-  audios_folder = Media::Audio::Uploader::ABSOLUTE_FOLDER
+  videos_folder = Media::Video::Uploader.absolute_folder
+  audios_folder = Media::Audio::Uploader.absolute_folder
   [videos_folder, audios_folder].each { |d| FileUtils.rm_rf d if Dir.exists? d }
 
   location1 = Location.find 1

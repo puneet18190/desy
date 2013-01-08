@@ -12,16 +12,16 @@ module Media
 
       include Validation
 
-      self.public_relative_folder        = env_relative_path 'media_elements/audios'
-      self.absolute_folder               = File.join RAILS_PUBLIC, public_relative_folder
-      self.extension_white_list          = %w(mp3 ogg flac aiff wav wma aac)
-      self.extension_white_list_with_dot = extension_white_list.map{ |ext| ".#{ext}" }
-      self.min_duration                  = 1
-      self.duration_threshold            = CONFIG.audio.duration_threshold
-      self.formats                       = FORMATS
-      self.allowed_keys                  = [:filename] + formats
-      self.version_formats               = VERSION_FORMATS
-      self.conversion_class              = Editing::Conversion
+      PUBLIC_RELATIVE_FOLDER        = env_relative_path 'media_elements/audios'
+      ABSOLUTE_FOLDER               = File.join RAILS_PUBLIC, PUBLIC_RELATIVE_FOLDER
+      EXTENSION_WHITE_LIST          = %w(mp3 ogg flac aiff wav wma aac)
+      EXTENSION_WHITE_LIST_WITH_DOT = EXTENSION_WHITE_LIST.map{ |ext| ".#{ext}" }
+      MIN_DURATION                  = 1
+      DURATION_THRESHOLD            = CONFIG.audio.duration_threshold
+      FORMATS                       = FORMATS
+      ALLOWED_KEYS                  = [:filename] + FORMATS
+      VERSION_FORMATS               = VERSION_FORMATS
+      CONVERSION_CLASS              = Editing::Conversion
 
     end
   end

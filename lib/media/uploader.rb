@@ -13,25 +13,6 @@ module Media
     attr_reader :model, :column, :value
 
     RAILS_PUBLIC = File.join Rails.root, 'public'
-    cattr_accessor :public_relative_folder ,
-                   :absolute_folder        ,
-                   instance_reader: false, instance_writer: false
-    cattr_accessor :extension_white_list          ,
-                   :extension_white_list_with_dot ,
-                   :min_duration                  ,
-                   :duration_threshold            ,
-                   :allowed_keys                  ,
-                   :formats                       ,
-                   :version_formats               ,
-                   :conversion_class              ,
-                   instance_writer: false
-    # PUBLIC_RELATIVE_FOLDER        = env_relative_path 'media_elements/videos'
-    # ABSOLUTE_FOLDER               = File.join RAILS_PUBLIC, PUBLIC_RELATIVE_FOLDER
-    # EXTENSION_WHITE_LIST          = %w(avi divx flv h264 mkv mov mp4 mpe mpeg mpg ogm ogv webm wmv xvid)
-    # EXTENSION_WHITE_LIST_WITH_DOT = EXTENSION_WHITE_LIST.map{ |ext| ".#{ext}" }
-    # MIN_DURATION                  = 1
-    # DURATION_THRESHOLD            = CONFIG.video.duration_threshold
-    # ALLOWED_KEYS                  = [:filename] + FORMATS
 
     def initialize(model, column, value)
       @model, @column, @value = model, column, value
@@ -48,7 +29,7 @@ module Media
         @original_filename = @value.original_filename
         model.converted    = nil
       when Hash
-        @converted_files                     = @value.select{ |k| formats.include? k }
+        @converted_files                     = @value.select{ |k| self.class::FORMATS.include? k }
         @original_filename_without_extension = @value[:filename]
       else
         @filename_without_extension ||= ''
@@ -115,12 +96,12 @@ module Media
     end
 
     def absolute_folder
-      File.join self.class.absolute_folder, model_id.to_s
+      File.join self.class::ABSOLUTE_FOLDER, model_id.to_s
     end
     alias output_folder absolute_folder
 
     def public_relative_folder
-      File.join '/', self.class.public_relative_folder, model_id.to_s
+      File.join '/', self.class::PUBLIC_RELATIVE_FOLDER, model_id.to_s
     end
 
     def model_id
@@ -145,13 +126,14 @@ module Media
     alias inspect to_s
 
     def public_relative_path(format = nil)
-      _d format, formats
       File.join public_relative_folder, (
         case format
         when ->(f) { f.blank? }
           filename_without_extension
-        when *formats
+        when *self.class::FORMATS
           filename(format)
+        when *self.class::VERSION_FORMATS.keys
+          self.class::VERSION_FORMATS[format] % filename_without_extension
         else
           ''
         end
@@ -161,10 +143,10 @@ module Media
 
     def absolute_path(format)
       case format
-      when *formats
+      when *self.class::FORMATS
         File.join absolute_folder, filename(format)
-      when *version_formats.keys
-        File.join absolute_folder, version_formats[format] % filename_without_extension
+      when *self.class::VERSION_FORMATS.keys
+        File.join absolute_folder, self.class::VERSION_FORMATS[format] % filename_without_extension
       end
     end
 
@@ -204,11 +186,11 @@ module Media
         #       Per non rallentare la risposta, si potrebbe far partire la copia in un thread e rinviare la conversione
         #       fin quando la copia non è finita
         raise 'model id cannot be blank' if model_id.blank?
-        conversion_temp_path = conversion_class.temp_path(model_id, original_filename)
+        conversion_temp_path = self.class::CONVERSION_CLASS.temp_path(model_id, original_filename)
         conversion_temp_folder = File.dirname conversion_temp_path
         FileUtils.mkdir_p conversion_temp_folder
         FileUtils.cp @original_file.path, conversion_temp_path
-        Delayed::Job.enqueue conversion_class::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
+        Delayed::Job.enqueue self.class::CONVERSION_CLASS::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
       end
     end
   end
