@@ -14,34 +14,11 @@ module ApplicationHelper
     hh = mm / 60
     mm = mm % 60
     resp = ''
-    if hh > 0
-      resp = "#{hh}:"
-      if mm == 0
-        resp = "#{resp}00:"
-      elsif mm < 10
-        resp = "#{resp}0#{mm}:"
-      else
-        resp = "#{resp}#{mm}:"
-      end
-      if ss == 0
-        resp = "#{resp}00"
-      elsif mm < 10
-        resp = "#{resp}0#{ss}"
-      else
-        resp = "#{resp}#{ss}"
-      end
-    elsif mm > 0
-      resp = "#{mm}:"
-      if ss == 0
-        resp = "#{resp}00"
-      elsif ss < 10
-        resp = "#{resp}0#{ss}"
-      else
-        resp = "#{resp}#{ss}"
-      end
-    else
-      resp = ss.to_s
-    end
+    resp = "#{hh}:" if hh > 0
+    resp = "#{resp}#{mm}:" if mm > 9
+    resp = "#{resp}0#{mm}:" if mm < 10
+    resp = "#{resp}#{ss}" if ss > 9
+    resp = "#{resp}0#{ss}" if ss < 10
     resp
   end
   
