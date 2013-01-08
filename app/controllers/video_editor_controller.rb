@@ -163,7 +163,7 @@ class VideoEditorController < ApplicationController
   def empty_parameters
     resp = {}
     resp[:initial_video] = nil
-    resp[:audio] = nil
+    resp[:audio_track] = nil
     resp[:components] = []
     resp
   end
