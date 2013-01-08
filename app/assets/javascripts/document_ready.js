@@ -733,6 +733,20 @@ $(document).ready(function() {
   
   // VIDEO EDITOR
   
+  $('body').on('click', '._video_component_cutter_button', function() {
+    $('#video_editor_box_ghost').show();
+  });
+  
+  $('body').on('click', '._media_player_done_video_component_in_video_editor_preview', function() {
+    $('#video_editor_box_ghost').hide();
+    alert('sto chiudendo un video');
+  });
+  
+  $('body').on('click', '._media_player_done_other_component_in_video_editor_preview', function() {
+    $('#video_editor_box_ghost').hide();
+    alert('sto chiudendo una componente generica');
+  });
+  
   $('body').on('click', '._exit_video_editor', function() {
     stopCacheLoop();
     var captions = $('#popup_captions_container');

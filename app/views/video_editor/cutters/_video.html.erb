@@ -5,9 +5,9 @@
 <div class="contentCutter"  style="display:none" <%= div_id.html_safe %>>
   <div class="cutter">
     <a class="left"></a>
-    <a class="play _media_player_play_in_video_editor_preview">PLAY</a>
-    <a class="pause _media_player_pause_in_video_editor_preview">PAUSE</a>
-    <a class="done _media_player_done_in_video_editor_preview">DONE</a>
+    <a class="play _media_player_play_in_video_editor_preview"><%= t('captions.play') %></a>
+    <a class="pause _media_player_pause_in_video_editor_preview"><%= t('captions.pause') %></a>
+    <a class="done _media_player_done_video_component_in_video_editor_preview upper"><%= t('captions.done') %></a>
     <div style="display:none" class="_media_player_current_time secondTime">0</div>
     <div class="videoSlider _media_player_slider"></div>
     <div style="display:none" class="_media_player_total_time secondTime"><%= empty ? '' : seconds_to_time(component[:video].min_duration) %></div>
@@ -15,8 +15,8 @@
     <div class="sliderDisabler _media_player_slider_disabler" style="display: none;"></div>
     <!-- div id="slider-range" FIXME mettere lo slider doppio qui! -->
   </div>
-  <p>Total lenght clip: 1:36</p>
-  <p>Selected: 0:25</p>
+  <p><%= t('captions.total_clip_length') %>: 1:36</p>
+  <p><%= t('captions.selected') %>: 0:25</p>
 </div>
 
 <% if !empty %>
