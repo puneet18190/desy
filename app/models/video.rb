@@ -10,7 +10,7 @@ class Video < MediaElement
 
   extend Media::Video::Editing::Parameters
   
-  EXTENSION_WHITE_LIST = Media::Video::Uploader::EXTENSION_WHITE_LIST
+  EXTENSION_WHITE_LIST = Media::Video::Uploader.extension_white_list
   PLACEHOLDER          = Media::Video::Placeholder
 
   after_save :upload_or_copy

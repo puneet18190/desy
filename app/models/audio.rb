@@ -2,7 +2,7 @@ require 'media/audio/uploader'
 
 class Audio < MediaElement
 
-  EXTENSION_WHITE_LIST = Media::Audio::Uploader::EXTENSION_WHITE_LIST
+  EXTENSION_WHITE_LIST = Media::Audio::Uploader.extension_white_list
 
   after_save :upload_or_copy
   after_destroy :clean
