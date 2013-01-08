@@ -497,7 +497,7 @@ html.media_element_editor-layout {
       }
       &.current {
       outline: 2px solid #fff;
-    }
+      }
       
     }
     .boxContentMediaElementText {
@@ -513,9 +513,13 @@ html.media_element_editor-layout {
         width:116px;
         height:48px;
         line-height:12px;
-        overlay:hidden;
-      }      
+        overflow:hidden;
+      }
+      &.current {
+      outline: 2px solid #fff;
+      }     
     }
+
     .photoIcon {
         @include layoutIconElements;
       }
@@ -691,7 +695,7 @@ html.media_element_editor-layout {
       
     }
     .videoSlider {
-      margin-top:22px;
+      margin-top:18px;
     }
   }
   .contentCutter {
@@ -719,8 +723,8 @@ html.media_element_editor-layout {
       };
     }
     .cutter {
-      padding:10px;
-      height:47px;
+      padding:25px 10px 0px 10px;
+      height:42px;
       background-color:#303030;
       margin-bottom:10px;
 
@@ -735,9 +739,9 @@ html.media_element_editor-layout {
       .ui-slider-handle {
         background-color:#fff;
         border-radius:0%;
-        height:60px;
-        width: 1px;
-        top:-3.3em;
+        height:6em;
+        width: 0.1em;
+        top:-2.8em;
       }
       .callout {
         top: -11px;
