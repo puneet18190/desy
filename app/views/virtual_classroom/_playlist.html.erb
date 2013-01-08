@@ -3,8 +3,8 @@
   <% if lessons.empty? %>
     <%= render :partial => "virtual_classroom/empty_playlist" %> 
   <% else %>
-  <span class="fltlft" style="padding-top:8px"><%= image_tag("playlist_symbol.png")%></span>
-  <div class="titlePlaylist fltlft lower"  style="padding-left:0"><%= t('captions.playlist') %><%= " (#{lessons.length} / #{CONFIG['lessons_in_playlist']})".html_safe %></div>
+  <span class="fltlft" style="padding-top:8px"></span>
+  <div class="titlePlaylist fltlft "  style="padding-left:0"><%= t('captions.playlist') %><%= " (#{lessons.length} / #{CONFIG['lessons_in_playlist']})".html_safe %></div>
     <div id="lessons_list_in_playlist" class="scroll-pane">
       <% lessons.each do |l| %>
         <%= render :partial => "virtual_classroom/view_single_playlist", :locals => {:virtual => l} %>
