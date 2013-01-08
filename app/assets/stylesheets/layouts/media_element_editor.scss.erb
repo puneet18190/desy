@@ -590,10 +590,9 @@ html.media_element_editor-layout {
   }
  }
  ._video_editor_component_hover.selected {
-      background-color:#515152;
-      opacity:0.1;
-     
-    }
+    background-color:#515152;
+    opacity:0.1;
+  }
  $button-size: 6em;
  @mixin menuCondivisoElementLessonEditor($font-size: 0.9em) {
   & {
@@ -723,6 +722,7 @@ html.media_element_editor-layout {
       margin-top:2px;
     }
   }
+  
   .contentCutter {
     background-color:#232121;
     padding:0;
@@ -819,7 +819,14 @@ html.media_element_editor-layout {
       };
     }
     .elementoTime {
-      width:85%;
+      color:#fff;
+      width:135px;
+      margin-right: 0;
+      padding:5px 0px 5px 0px;
+      input.numberTime {
+        width:16%;
+        margin-left:10px;
+      }
     }
   }
   
