@@ -1,0 +1,8 @@
+<% if @errors %>
+  <p style="margin:0; padding:0; color: white, font-family: Arial, sans-serif;"><%= media_elements_error_messages(@errors) %></p>
+<%else%>
+  Success!
+  <script type="text/javascript" charset="utf-8">
+    window.location = "<%= my_media_elements_path %>";
+  </script>
+<%end%>

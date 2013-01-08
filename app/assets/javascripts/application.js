@@ -21,9 +21,4 @@
 //= require tinymce-jquery
 //= require dots_pagination
 //= require jquery.formparams
-//= require plupload
-//= require plupload.settings
-//= require jquery.plupload.queue
-//= require plupload.flash
-//= require plupload.html5
 //= require_tree .

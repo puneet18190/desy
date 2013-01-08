@@ -3,6 +3,11 @@ $(document).ready(function() {
   $("html.lesson-editor-layout ul#slides").css("margin-top", ((($(window).height() - 590)/2)-40) + "px");
   $("html.lesson-editor-layout ul#slides.new").css("margin-top", ((($(window).height() - 590)/2)) + "px");
   
+  $(window).resize(function() {
+    $("html.lesson-editor-layout ul#slides").css("margin-top", ((($(window).height() - 590)/2)-40) + "px");
+    $("html.lesson-editor-layout ul#slides.new").css("margin-top", ((($(window).height() - 590)/2)) + "px");
+  });
+  
   $('._image_container_in_lesson_editor').each(function() {
     makeDraggable($(this).attr('id'));
   });

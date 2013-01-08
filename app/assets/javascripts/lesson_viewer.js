@@ -2,6 +2,10 @@ $(document).ready(function() {
   
   $('html.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
   
+  $(window).resize(function() {
+    $('html.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
+  });
+  
   var slides = $('#carousel_ul li.slide');
   current_slide = $('#carousel_ul li._lesson_viewer_current_slide');
   slides_amount = slides.length;

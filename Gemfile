@@ -31,7 +31,6 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'tinymce-rails'
 gem 'tinymce-rails-langs'
-gem 'plupload-rails', :github => 'ProGNOMmers/plupload-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

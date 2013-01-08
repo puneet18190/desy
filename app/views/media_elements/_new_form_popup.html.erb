@@ -1,14 +1,17 @@
 <div class="mediaElementInfoPopUp"  id="load-media-element" style="display:none;">
   <div class="_media_element_pop_up_container MediaElementPopUpContainer">
     <div class="_change_info_container ChangeInfoContainerLoading">
-      <%= form_for media_element, html: { class:"formModifyInfo" } do |f| %>
+      <%= form_for media_element, html: { class:"formModifyInfo", :multipart => true } do |f| %>
         <div class="cols fltlft">
           <div class="selectButton">
             <%#= f.file_field :media %>
-             <!--<input type="file" class="uploadFileButton submitButton" id="media_element_media_pick" />-->
-             <a class="uploadFileButton submitButton" id="media_element_media_pick"></a>
+            <a class="uploadFileButton submitButton" id="media_element_media_pick">
+              <input type="file" name="media" class="innerUploadFileButton" />
+            </a>
+            <div id="media_element_media_show" class="fk_carica_elemento_file"><%= t('captions.select_file').downcase%></div>
+             <!--
              <div id="media_element_media_show" class="fk_carica_elemento_file"><%= t('captions.select_file').downcase%></div>
-<!--             <input id="media_element_media_show" readonly="readonly" placeholder="Nessun file selezionato" class="fk_carica_elemento_file _fakeUploadTrigger" type="text" data-fake-upload-input-selector="#media_element_media" data-fake-upload-show-selector="#media_element_media_show">
+             <input id="media_element_media_show" readonly="readonly" placeholder="Nessun file selezionato" class="fk_carica_elemento_file _fakeUploadTrigger" type="text" data-fake-upload-input-selector="#media_element_media" data-fake-upload-show-selector="#media_element_media_show">
  -->          </div>
           <br class="clearfloat">
           <%= f.text_field :title, name: 'title', placeholder: t('forms.media_element.labels.title') %>
@@ -26,7 +29,9 @@
          </div>
         </div>
       <% end %>
-      <div class="_error_messages"></div>
+      <iframe id="upload_target" width="700" height="20" border="0" class="error_messages_iframe" name="upload_target" src="">
+      </iframe>
+
     </div>
   </div>
   <div class="barraLoading"><div></div></div>
@@ -43,105 +48,21 @@
 
 
 <script type="text/javascript">
-// Custom example logic
+  $("input.innerUploadFileButton").change(function(){
+    console.log("changed");
+    console.log($(this).val());
+    $("#media_element_media_show").text($(this).val());
+  }); 
+</script>
 
-function getFormParams() {
-  return $('#new_media_element').formParams();
+<script type="text/javascript">
+
+function init() {
+	document.getElementById('new_media_element').onsubmit=function() {
+		document.getElementById('new_media_element').target = 'upload_target'; //'upload_target' is the name of the iframe
+	}
 }
-
-$(function() {
-  var uploader = new plupload.Uploader({
-    runtimes : 'html5,flash',
-    url : '/media_elements',
-    //max_file_size: '10mb',
-    browse_button : 'media_element_media_pick',
-    // container : 'container',
-    file_data_name : 'media',
-    filters : [
-      { title : "Image files", extensions : <%= Image::EXTENSION_WHITE_LIST.join(',').to_json.html_safe %> },
-      { title : "Video files", extensions : <%= Video::EXTENSION_WHITE_LIST.join(',').to_json.html_safe %> },
-      { title : "Audio files", extensions : <%= Audio::EXTENSION_WHITE_LIST.join(',').to_json.html_safe %> }
-    ]
-  });
-
-  uploader.bind('Init', function(up, params) {
-    // TODO vedere che succede nei browser senza Flash e senza HTML5 (aka IE9 senza Flash)
-    //console.log(params.runtime);
-  });
-
-  $('#new_media_element').submit(function(e) {
-    e.preventDefault();
-    if($('#media_element_media_show').text() != "<%= t('captions.select_file').downcase%>"){
-      uploader.start();
-      $('._error_messages').text('');
-    }else{
-      $('._error_messages').text("File: no file selected");
-    }
-  });
-
-  uploader.init();
-
-  uploader.bind('BeforeUpload', function (up, file) {
-    up.settings.multipart_params = getFormParams();
-  });
-
-  uploader.bind('FilesAdded', function(up, files) {
-    // Lascio solo il file appena caricato
-    if (up.files.length > 1) {
-      up.splice(0, 1);
-    }
-    
-    var file = files[0];
-    $("#media_element_media_show").text(file.name);
-    up.refresh(); // Reposition Flash/Silverlight
-  });
-
-  // funziona solo con flash, probabilmente per l'HTML bisognerà
-  // pingare il server
-  uploader.bind('UploadProgress', function(up, file) {
-    // IT STARTS EVEN WITH SERVER ERRORS TO FIX
-    
-    //$('.barraLoading div').width('' + file.percent + '%');
-  });
-
-  uploader.bind('Error', function(up, err) {
-    // THIS IS TO MANAGE ON FILE LOAD ERRORS, SUCH AS FILE SIZE CHECK, WRONG EXT, ECC
-    $('._error_messages').text(err.message);
-    
-    // TODO gestione errori lato client e server 500 (estensione e dimensioni principalmente)
-    //var resp = jQuery.parseJSON(err);
-    // console.log(err); #inline errors on file load
-    // $('#filelist').append("<div>Error: " + err.code +
-    //   ", Message: " + err.message +
-    //   (err.file ? ", File: " + err.file.name : "") +
-    //   "</div>"
-    // );
-
-    up.refresh(); // Reposition Flash/Silverlight
-  });
-
-  uploader.bind('FileUploaded', function(up, file, data) {
-    var errs = JSON.parse(data.response).errors;
-    if(errs){
-      $('._error_messages').text(media_elements_error_messages(errs));
-      up.refresh();
-    }else{
-      $('.barraLoading div').width('100%');
-      $('._close').trigger('click');
-      window.location = "<%= my_media_elements_path %>"
-    }
-    up.refresh(); // Reposition Flash/Silverlight
-    // TODO gestione errori lato server (li gestiamo qui perché quest'evento ci ritorna i dati del server, mentre Error no)
-  });
-});
-
-  function media_elements_error_messages(errors){
-    var msg = ""
-    $.each(errors,function(key,value){
-      msg = msg + key + ": " + value+", ";
-    });
-    return msg
-  }
+window.onload=init;
 </script>
 
 

@@ -618,6 +618,7 @@ a.cerca.current {
     background-position: -16em 0; 
     background-size: 32em 5em;
     font-size:11px;
+    cursor:pointer;
     &::-moz-focus-inner {
       border: 0;
     }
@@ -627,12 +628,23 @@ a.cerca.current {
     }
   }
   
+  .innerUploadFileButton {
+    opacity:0;
+    height: 20px;
+    padding: 20px 10px;
+    display:block;
+    z-index: 1000px;
+    cursor: pointer;
+  }
+  
   .submitButton {
     margin: 0;
     padding: 0px;
     display: inline;
     
   }
+  
+  
   .fk_carica_elemento_file {
     position: absolute;
     width:180px;
@@ -644,6 +656,15 @@ a.cerca.current {
     border-radius: 10px;
     -webkit-border-radius: 10px;
     text-align:center;
+  }
+  
+  .error_messages_iframe{
+    border: 0;
+    outline: 0;
+    width: 700px;
+    height: 50px;
+    display: block;
+    background-color: red;
   }
 }
 .barraLoading {
