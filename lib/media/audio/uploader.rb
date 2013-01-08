@@ -154,6 +154,8 @@ module Media
         case format
         when *FORMATS
           File.join absolute_folder, filename(format)
+        when *VERSION_FORMATS.keys
+          File.join absolute_folder, VERSION_FORMATS[format] % filename_without_extension
         end
       end
 
@@ -169,6 +171,8 @@ module Media
           model.send :"#{format}_duration=", info.duration
         end
 
+        extract_versions(infos)
+
         model.converted = true
         model.send :"rename_#{column}=", true
         model.send :"#{column}=", processed_original_filename_without_extension
@@ -180,9 +184,22 @@ module Media
         model.send :"reload_#{column}"
       end
 
+      def extract_versions(infos)
+      end
+
       def upload
         if not model.skip_conversion
-          Delayed::Job.enqueue Media::Audio::Editing::Conversion::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
+          # FIXME a volte il file temporaneo caricato viene cancellato prima dell'inizio della conversione,
+          #       per cui lo copio nella cartella temporanea delle conversioni. Bisognerebbe evitare questo passaggio
+          #       e far sì che il file temporaneo non venga cancellato se possibile.
+          #       Per non rallentare la risposta, si potrebbe far partire la copia in un thread e rinviare la conversione
+          #       fin quando la copia non è finita
+          raise 'model id cannot be blank' if model_id.blank?
+          conversion_temp_path = Editing::Conversion.temp_path(model_id, original_filename)
+          conversion_temp_folder = File.dirname conversion_temp_path
+          FileUtils.mkdir_p conversion_temp_folder
+          FileUtils.cp @original_file.path, conversion_temp_path
+          Delayed::Job.enqueue Editing::Conversion::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
         end
       end
     end

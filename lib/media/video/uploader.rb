@@ -140,14 +140,16 @@ module Media
       alias inspect to_s
 
       def public_relative_path(format = nil)
-        case format
-        when ->(f) { f.blank? }
-          File.join public_relative_folder, filename_without_extension
-        when *FORMATS
-          File.join public_relative_folder, filename(format)
-        when :cover, :thumb
-          File.join public_relative_folder, VERSION_FORMATS[format] % filename_without_extension
-        end
+        File.join public_relative_folder, (
+          case format
+          when ->(f) { f.blank? }
+            filename_without_extension
+          when *FORMATS
+            filename(format)
+          else
+            ''
+          end
+        )
       end
       alias path public_relative_path
 
@@ -155,7 +157,7 @@ module Media
         case format
         when *FORMATS
           File.join absolute_folder, filename(format)
-        when :cover, :thumb
+        when *VERSION_FORMATS.keys
           File.join absolute_folder, VERSION_FORMATS[format] % filename_without_extension
         end
       end
@@ -172,11 +174,7 @@ module Media
           model.send :"#{format}_duration=", info.duration
         end
 
-        cover_path = File.join output_folder, COVER_FORMAT % processed_original_filename_without_extension
-        extract_cover @converted_files[:mp4], cover_path, infos[:mp4].duration
-
-        thumb_path = File.join output_folder, THUMB_FORMAT % processed_original_filename_without_extension
-        extract_thumb cover_path, thumb_path, *THUMB_SIZES
+        extract_versions(infos)
 
         model.converted = true
         model.send :"rename_#{column}=", true
@@ -187,6 +185,14 @@ module Media
         model.send :"rename_#{column}=", nil
         model.skip_conversion = nil
         model.send :"reload_#{column}"
+      end
+
+      def extract_versions(infos)
+        cover_path = File.join output_folder, COVER_FORMAT % processed_original_filename_without_extension
+        extract_cover @converted_files[:mp4], cover_path, infos[:mp4].duration
+
+        thumb_path = File.join output_folder, THUMB_FORMAT % processed_original_filename_without_extension
+        extract_thumb cover_path, thumb_path, *THUMB_SIZES
       end
 
       def extract_cover(input, output, duration)
@@ -211,7 +217,7 @@ module Media
           conversion_temp_folder = File.dirname conversion_temp_path
           FileUtils.mkdir_p conversion_temp_folder
           FileUtils.cp @original_file.path, conversion_temp_path
-          Delayed::Job.enqueue Media::Video::Editing::Conversion::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
+          Delayed::Job.enqueue Editing::Conversion::Job.new(@original_file.path, output_path_without_extension, original_filename, model_id)
         end
       end
     end
