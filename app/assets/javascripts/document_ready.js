@@ -758,6 +758,8 @@ $(document).ready(function() {
     var identifier = component.attr('id').split('_');;
     identifier = identifier[identifier.length - 1];
     $('#video_component_' + identifier).hide('fade', {}, 500, function() {
+      $('#video_component_' + identifier + '_preview').remove();
+      $('#video_component_' + identifier + '_cutter').remove();
       changeDurationVideoEditorComponent(('video_component_' + identifier), 0);
       $('#media_elements_list_in_video_editor').data('jsp').destroy();
       $(this).remove();
