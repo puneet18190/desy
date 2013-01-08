@@ -107,12 +107,9 @@ function reloadVideoEditorComponentPositions() {
   var components = $('._video_editor_component');
   components.each(function(index) {
     $(this).data('position', (index + 1));
-    $('#' + $(this).attr('id') + ' ._video_component_input_position').val(index + 1);
-    var counter_html = $('#' + $(this).attr('id') + ' ._video_component_icon').html();
-    counter_html = counter_html.substr(counter_html.indexOf('<div'), counter_html.length);
-    $('#' + $(this).attr('id') + ' ._video_component_icon').html((index + 1) + counter_html);
+    $(this).find('._video_component_input_position').val(index + 1);
+    $(this).find('._video_component_icon ._left').html(index + 1);
   });
-  $('#add_new_video_component ._component_counter').html(components.length + 1);
 }
 
 function addImageComponentInVideoEditor(image_id, component, preview, duration) {
@@ -250,7 +247,7 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   // other things
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
-  reloadVideoEditorComponentPositions()
+  reloadVideoEditorComponentPositions();
   resetVisibilityOfVideoEditorTransitions();
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position));
@@ -346,7 +343,7 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   current_component.find('._video_editor_component_hover').append(to_be_appended);
   // other things
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
-  reloadVideoEditorComponentPositions()
+  reloadVideoEditorComponentPositions();
   resetVisibilityOfVideoEditorTransitions();
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position));
@@ -429,6 +426,7 @@ function changeDurationVideoEditorComponent(component_id, new_duration) {
     }
   }
   $('#' + component_id).data('duration', new_duration);
+  $('#' + component_id + ' ._video_component_icon ._right').html(secondsToDateString(new_duration));
   $('#info_container').data('total-length', total_length);
   $('#visual_video_editor_total_length').html(secondsToDateString(total_length));
 }
