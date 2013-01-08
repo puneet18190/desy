@@ -4,9 +4,11 @@
       <%= form_for media_element, html: { class:"formModifyInfo", :multipart => true } do |f| %>
         <div class="cols fltlft">
           <div class="selectButton">
+            
             <a class="uploadFileButton submitButton" id="media_element_media_pick">
               <input type="file" name="media" class="innerUploadFileButton" />
             </a>
+            
             <div id="media_element_media_show" class="fk_carica_elemento_file"><%= t('captions.select_file').downcase%></div>
           </div>
           <br class="clearfloat">
@@ -31,7 +33,7 @@
     </div>
   </div>
     <div class="barraLoading">
-      <%= image_tag "loadingBar.gif", :style=>"display:none"%>
+      <img src="" alt="loading" style="display:none"%>
     <div>    
   </div></div>
   
@@ -40,13 +42,18 @@
 
 <script type="text/javascript">
   $("input.innerUploadFileButton").change(function(){
-    console.log("changed");
-    console.log($(this).val());
-    $("#media_element_media_show").text($(this).val());
+    $("#media_element_media_show").text($(this).val().replace("C:\\fakepath\\", ""));
   });
   
+  $("._close").click(function(){
+    $(this).parents("form")[0].reset();
+    $("#media_element_media_show").text("<%= t('captions.select_file').downcase%>");
+  })
+  
   $("body").on("click","#new_media_element_submit", function(){
+    $("input,textarea").removeClass("form_error");
     $(".barraLoading img").show();
+    $(".barraLoading img").attr("src","/assets/loadingBar.gif");
   });
 </script>
 
@@ -59,13 +66,19 @@ function init() {
 }
 window.onload=init;
 
-function uploadDone(){
+function uploadError(errors){
+  var errs = errors.replace(/[\[\:\] ]/g,"").split(",");
+  jQuery.each(errs, function() {
+    $("#media_element_" + this).addClass("form_error");
+  });
   $(".barraLoading img").hide();
+  $(".barraLoading img").attr("src","");
 }
 
 function uploadDoneRedirect(){
   $(".barraLoading").css("background-color","#41A62A");
   $(".barraLoading img").hide();
+  $(".barraLoading img").attr("src","");
   window.location = "<%= my_media_elements_path %>";
 }
 </script>

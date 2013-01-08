@@ -10,9 +10,13 @@
 
 <% if @errors %>
   <p style="padding-left:20px"><%= media_elements_error_messages(@errors) %></p>
+  <% @err = [] %>
+  <% @errors.each do |key,val| %>
+    <% @err << key %>
+  <% end %>
   <script type="text/javascript">
   function init() {
-  	if(top.uploadDone) top.uploadDone(); //top means parent frame.
+  	if(top.uploadError) top.uploadError("<%= @err %>"); //top means parent frame.
   }
   window.onload=init;
   </script>
