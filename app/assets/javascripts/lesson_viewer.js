@@ -15,11 +15,17 @@ $(document).ready(function() {
   var lessonsNum = $('.playlistMenu ul li').length;
   $('.scrollContent').css('width', (lessonsNum * 285) + 'px');
   
+  $("._lesson_title_in_playlist").first().show();
+  
   $('.playlistMenu ul li').click(function() {
     var lessonPos = $(this).attr('data-param');
     var goToPos = $('#carousel_ul li.lesson_' + lessonPos + ':first').index();
     var new_cover = $('._cover_bookmark_for_lesson_viewer_' + $(this).data('lesson-id'));
     $('#info_container').data('slide-number', new_cover.data('overall-counter'));
+    
+    $("._lesson_title_in_playlist:visible").hide();
+    $("._lesson_title_in_playlist").eq(lessonPos - 1).show();
+    
     $('.playlistMenu').slideToggle('slow', function() {
       $('#right_scroll a,#left_scroll a').toggle();
     });
