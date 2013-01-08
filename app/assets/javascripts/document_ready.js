@@ -745,6 +745,8 @@ $(document).ready(function() {
     $('#' + component_id + '_cutter').show('fade', {}, 250, function() {
       $('._video_component_transition').addClass('current');
       $('._video_editor_component:not(#' + component_id + ') ._video_editor_component_hover').addClass('selected');
+      $('._video_component_icon').addClass('selected');
+      $('#' + component_id + ' ._video_component_icon').removeClass('selected');
       $('._new_component_in_video_editor_hover').addClass('selected');
     });
   });
