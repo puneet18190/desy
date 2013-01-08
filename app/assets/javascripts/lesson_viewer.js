@@ -38,6 +38,7 @@ $(document).ready(function() {
     $('.playlistMenu').slideToggle('slow', function() {
       $('#right_scroll a, #left_scroll a').toggle();
     });
+    $(this).find('span').toggle();
   });
   
   $(document.documentElement).keyup(function (event) {

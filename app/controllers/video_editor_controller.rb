@@ -9,7 +9,6 @@ class VideoEditorController < ApplicationController
   def edit
     if @ok
       @parameters = convert_video_to_parameters
-      @parameters = empty_parameters if @parameters.nil?
       @total_length = Video.total_prototype_time(@parameters)
     else
       redirect_to dashboard_index_path
@@ -163,7 +162,7 @@ class VideoEditorController < ApplicationController
   def empty_parameters
     resp = {}
     resp[:initial_video] = nil
-    resp[:audio] = nil
+    resp[:audio_track] = nil
     resp[:components] = []
     resp
   end

@@ -3,9 +3,9 @@
   duration = ''
   style_full = 'display:none'
   style_empty = 'display:block'
-  if parameters[:audio]
-    title = parameters[:audio].title
-    duration = seconds_to_time(parameters[:audio].min_duration)
+  if parameters[:audio_track]
+    title = parameters[:audio_track].title
+    duration = seconds_to_time(parameters[:audio_track].min_duration)
     style_full = 'display:block'
     style_empty = 'display:none'
   end
