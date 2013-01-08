@@ -423,30 +423,14 @@ html.media_element_editor-layout {
         background-color:#474747;
         height:14px;
         position:relative;
-
-        .textIcon {
-          @include iconeTipoElemento;
-          background-position: -1em -11.9em;
-          padding:0;
-          width:4em;
-          height:4em;
-          
+        div:last-child {
+          float:left;
         }
-        .photoIcon {
-          @include iconeTipoElemento;
-          background-position: -1em -5.8em;
-          padding:0;
-          
-          width:4em;
-          height:4em;
-        }
-        .videoIcon {
-          padding:0;
-          @include iconeTipoElemento;
-          background-position: -1em -0.5em;
-          width:4em;
-          height:4em;
-        }
+        
+      
+        
+        
+        
         &.current {
           visibility:hidden;
           height: 15px;
