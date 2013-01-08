@@ -734,17 +734,41 @@ $(document).ready(function() {
   // VIDEO EDITOR
   
   $('body').on('click', '._video_component_cutter_button', function() {
+    var component_id = $(this).parent().parent().parent().parent().attr('id');
+    if($('#' + component_id + '_preview').css('display') == 'none') {
+      startVideoEditorPreviewClip(component_id);
+    }
+    $('._video_editor_bottom_bar').css('visibility', 'hidden');
+    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
     $('#video_editor_box_ghost').show();
+    $('#' + component_id + '_cutter').show('fade', {}, 250, function() {
+      $('._video_editor_component').each(function() {
+        if($(this).attr('id') != component_id) {
+          $(this).find('._video_editor_component_hover').addClass('selected');
+        }
+      });
+    });
   });
   
   $('body').on('click', '._media_player_done_video_component_in_video_editor_preview', function() {
-    $('#video_editor_box_ghost').hide();
-    alert('sto chiudendo un video');
+    $('._video_component_cutter').hide('fade', {}, 250, function() {
+      $('._video_editor_bottom_bar').css('visibility', 'visible');
+      $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
+      $('._video_editor_bottom_bar').show();
+      $('#video_editor_box_ghost').hide();
+      $('._video_editor_component_hover').removeClass('selected');
+    });
   });
   
   $('body').on('click', '._media_player_done_other_component_in_video_editor_preview', function() {
-    $('#video_editor_box_ghost').hide();
-    alert('sto chiudendo una componente generica');
+    $('._video_component_cutter').hide('fade', {}, 250, function() {
+      $('._video_editor_bottom_bar').css('visibility', 'visible');
+      $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
+      $('._video_editor_bottom_bar').show();
+      $('#video_editor_box_ghost').hide();
+      $('._video_editor_component_hover').removeClass('selected');
+    });
+    // qui devo anche salvare l'input e mandare una popup se è sbagliato
   });
   
   $('body').on('click', '._exit_video_editor', function() {

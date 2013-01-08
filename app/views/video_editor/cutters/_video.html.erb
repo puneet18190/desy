@@ -2,7 +2,7 @@
   div_id = empty ? '' : "id=\"video_component_#{identifier}_cutter\""
 %>
 
-<div class="contentCutter"  style="display:none" <%= div_id.html_safe %>>
+<div class="contentCutter _video_component_cutter" style="display:none" <%= div_id.html_safe %>>
   <div class="cutter">
     <a class="left"></a>
     <a class="play _media_player_play_in_video_editor_preview"><%= t('captions.play') %></a>
