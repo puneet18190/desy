@@ -7,8 +7,8 @@
   end
 %>
 
-<div class="lista <%= empty ? '_video_editor_empty_component'.html_safe : '_video_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %>  data-rolloverable="true">
-  <div class="contatore _video_component_icon"><%= empty ? '' : position %> </div>
+<div class="lista <%= empty ? '_video_editor_empty_component'.html_safe : '_video_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %>  data-rolloverable="true" data-preview-selected="false">
+  <div class="contatore _video_component_icon"><%= empty ? '' : position %><div class="videoIcon"></div></div>
   <div class="boxMediaElement _video_editor_component_hover">
     <% if !empty %>
       <%= render :partial => 'video_editor/components/thumbs/video', :locals => {:video => component[:video]} %>

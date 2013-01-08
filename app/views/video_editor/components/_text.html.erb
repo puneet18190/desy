@@ -7,8 +7,8 @@
   end
 %>
 
-<div class="lista <%= empty ? '_video_editor_empty_component'.html_safe : '_video_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-rolloverable="true">
-  <div class="contatore _video_component_icon"><%= empty ? '' : position %> </div>
+<div class="lista <%= empty ? '_video_editor_empty_component'.html_safe : '_video_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-rolloverable="true" data-preview-selected="false">
+  <div class="contatore _video_component_icon"><%= empty ? '' : position %><div class="textIcon"></div></div>
   <div class="boxMediaElement _video_editor_component_hover">
     <% if !empty %>
       <% locals_for_text_thumb = {:background_color => component[:background_color], :text_color => component[:text_color], :content => component[:content]} %>

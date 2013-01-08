@@ -1,4 +1,8 @@
 class MediaElement < ActiveRecord::Base
+  # Questa deve stare prima delle require dei submodels, perché
+  # l'after_save delle tags deve venire prima di quella dell'uploader
+  after_save :update_or_create_tags
+  
   require 'image'
   require 'video'
   require 'audio'
@@ -36,7 +40,6 @@ class MediaElement < ActiveRecord::Base
   validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_tags_length
   
   before_validation :init_validation
-  after_save :update_or_create_tags
   before_destroy :stop_if_public
   
   class << self
