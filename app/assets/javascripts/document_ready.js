@@ -876,7 +876,8 @@ $(document).ready(function() {
     if(isNaN(duration) || duration < 1) {
       showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
     } else {
-      var component = $('#' + popup_id + ' ._temporary').html();
+      var component = $('#' + popup_id + ' ._temporary ._video_component_thumb')[0].outerHTML;
+      var preview = $('#' + popup_id + ' ._temporary ._image_preview_in_video_editor_gallery').html();
       closePopUp(popup_id);
       setTimeout(function() {
         closeGalleryInVideoEditor('mixed');
@@ -886,9 +887,9 @@ $(document).ready(function() {
         setTimeout(function() {
           highlightAndUpdateVideoComponentIcon(current_component, 'photoIcon');
         }, 1400);
-        replaceImageComponentInVideoEditor(image_id, component, current_component, duration);
+        replaceImageComponentInVideoEditor(image_id, component, preview, current_component, duration);
       } else {
-        addImageComponentInVideoEditor(image_id, component, duration);
+        addImageComponentInVideoEditor(image_id, component, preview, duration);
       }
     }
   });
