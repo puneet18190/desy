@@ -9,10 +9,10 @@
 
 <div class="lista <%= empty ? '_video_editor_empty_component'.html_safe : '_video_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-rolloverable="true" data-preview-selected="false">
   <div class="contatore _video_component_icon">
-    <div class="_left">
+    <div class="_left fltlft">
       <%= empty ? '' : position %>
     </div>
-    <div class="_right">
+    <div class="_right fltrt">
       <%= empty ? '' : seconds_to_time(component[:duration]) %>
     </div>
   </div>
