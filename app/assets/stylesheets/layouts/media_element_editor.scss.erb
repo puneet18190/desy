@@ -460,7 +460,7 @@ html.media_element_editor-layout {
     .newElement {
       margin: 0px;
       display:inline-block;
-      width:156px;
+      /*width:156px;*/
       height:117px;
       .contatore {
         height:15px;
@@ -481,7 +481,8 @@ html.media_element_editor-layout {
   .boxMediaElement {
     width:156px;
     height:88px;
-    @include boxShadow;
+    -webkit-box-shadow: 0px 3px 10px #161515;
+    box-shadow: 0px 3px 10px #161515;
     position:relative;
     float:left;
 
@@ -601,7 +602,8 @@ html.media_element_editor-layout {
     margin-bottom:0;
     margin-right:0;
     position:relative;
-    @include boxShadow;
+    -webkit-box-shadow: 0px 3px 10px #161515;
+    box-shadow: 0px 3px 10px #161515;
     .contentNew {
       padding-top:15px;
       padding-left:50px;
@@ -664,12 +666,20 @@ html.media_element_editor-layout {
       float:left;
       width: 10px;
       height: 15px;
+      margin-right:8px;
+      &:hover {
+        background: url(<%= asset_path 'arrow_cutter_left_on.png' %>) top left  no-repeat;  
+      };
     }
     .right {
       background: url(<%= asset_path 'arrow_cutter_right.png' %>) top left  no-repeat;
-      float:left;
+      float:right;
       width: 10px;
       height: 15px;
+      margin-left:8px;
+       &:hover {
+        background: url(<%= asset_path 'arrow_cutter_right_on.png' %>) top left  no-repeat;  
+      };
     }
     a.play {
       position:absolute;
@@ -695,7 +705,7 @@ html.media_element_editor-layout {
       
     }
     .videoSlider {
-      margin-top:18px;
+      margin-top:2px;
     }
   }
   .contentCutter {
@@ -723,8 +733,8 @@ html.media_element_editor-layout {
       };
     }
     .cutter {
-      padding:25px 10px 0px 10px;
-      height:42px;
+      padding:27px 10px 0px 10px;
+      height:40px;
       background-color:#303030;
       margin-bottom:10px;
 
@@ -742,6 +752,7 @@ html.media_element_editor-layout {
         height:6em;
         width: 0.1em;
         top:-2.8em;
+        margin-left: 0;
       }
       .callout {
         top: -11px;
