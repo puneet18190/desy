@@ -31,7 +31,7 @@ module Media
         def error_message_for_file_to_convert
           return :invalid_filename if processed_original_filename_without_extension.blank?
             
-          if not EXTENSION_WHITE_LIST_WITH_DOT.include?(original_filename_extension)
+          if not self.class::EXTENSION_WHITE_LIST_WITH_DOT.include?(original_filename_extension)
             :unsupported_format
           else
             info = Info.new(@original_file.path, false)
@@ -39,7 +39,7 @@ module Media
               :invalid_video
             elsif info.video_streams.blank?
               :blank_video_streams
-            elsif info.duration < MIN_DURATION
+            elsif info.duration < self.class::MIN_DURATION
               :invalid_duration
             end
           end
@@ -53,7 +53,7 @@ module Media
             'invalid extension'
           elsif !(mp4_info = Info.new(mp4_path, false)).valid? || !(webm_info = Info.new(webm_path, false)).valid?
             'invalid video'
-          elsif [mp4_info.duration, webm_info.duration].min < MIN_DURATION
+          elsif [mp4_info.duration, webm_info.duration].min < self.class::MIN_DURATION
             'invalid duration'
           elsif not allowed_duration_range?(mp4_info.duration, webm_info.duration)
             'invalid duration difference'

@@ -24,6 +24,14 @@ module Media
           super 'conversions'
         end
 
+        def self.temp_folder(model_id)
+          File.join TEMP_FOLDER, model_id.to_s
+        end
+
+        def self.temp_path(model_id, original_filename)
+          File.join temp_folder(model_id), original_filename
+        end
+
         attr_reader :model_id, :uploaded_path
 
         # Example: new('/tmp/path.abcdef', '/path/to/desy/public/media_elements/13/valid-audio', 'valid audio.mp3', 13)
@@ -116,13 +124,13 @@ module Media
         def output_folder
           File.dirname @output_path_without_extension
         end
-
+  
         def temp_path
-          File.join temp_folder, @original_filename
+          self.class.temp_path(model_id, @original_filename)
         end
-
+  
         def temp_folder
-          File.join TEMP_FOLDER, model_id.to_s
+          File.dirname temp_path
         end
 
         def log_folder(_ = nil)

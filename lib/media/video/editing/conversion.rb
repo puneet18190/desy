@@ -127,9 +127,8 @@ module Media
           end
   
         end
-  
+
         private
-  
         def output_path(format)
           "#{@output_path_without_extension}.#{format}"
         end
