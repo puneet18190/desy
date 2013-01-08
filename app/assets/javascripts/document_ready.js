@@ -758,6 +758,7 @@ $(document).ready(function() {
       $('#video_editor_box_ghost').hide();
       $('._video_editor_component_hover').removeClass('selected');
     });
+    // TODO qui devo stoppare il media
   });
   
   $('body').on('click', '._media_player_done_other_component_in_video_editor_preview', function() {
@@ -768,7 +769,8 @@ $(document).ready(function() {
       $('#video_editor_box_ghost').hide();
       $('._video_editor_component_hover').removeClass('selected');
     });
-    // qui devo anche salvare l'input e mandare una popup se è sbagliato
+    // TODO qui devo anche salvare l'input e mandare una popup se è sbagliato
+    // TODO anche, devo aggiornare le durate
   });
   
   $('body').on('click', '._exit_video_editor', function() {

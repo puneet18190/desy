@@ -420,6 +420,12 @@ function changeDurationVideoEditorComponent(component_id, new_duration) {
   var total_length = $('#info_container').data('total-length');
   total_length -= old_duration;
   total_length += new_duration;
+  if(old_duration == 0) {
+    total_length += 1;
+  }
+  if(new_duration == 0) {
+    total_length -= 1;
+  }
   $('#' + component_id).data('duration', new_duration);
   $('#info_container').data('total-length', total_length);
   $('#visual_video_editor_total_length').html(secondsToDateString(total_length));
