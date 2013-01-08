@@ -128,6 +128,7 @@ en:
     modify_info_element: "Element's information"
     next: "Next"
     new_element_untitled: 'New element - untitled'
+    new_time: 'New time'
     no_notifications: "You don't have any notifications"
     original_size: 'Original size'
     password: 'Password'
