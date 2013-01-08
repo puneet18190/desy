@@ -393,7 +393,14 @@ html.media_element_editor-layout {
     opacity:0.4;
   }
   /*SCROLL ORIZZONTALE*/
-  
+  .boxGhost {
+      position:absolute; 
+      top:0px; 
+      left:0px; 
+      width:906px; 
+      height:170px; 
+      z-index:100;
+  }
   .horizontal-only {
     max-height:170px;
   }
@@ -416,33 +423,13 @@ html.media_element_editor-layout {
         background-color:#474747;
         height:14px;
         position:relative;
-
-        .textIcon {
-          @include iconeTipoElemento;
-          background-position: -1em -11.9em;
-          padding:0;
-          width:4em;
-          height:4em;
-          
-        }
-        .photoIcon {
-          @include iconeTipoElemento;
-          background-position: -1em -5.8em;
-          padding:0;
-          
-          width:4em;
-          height:4em;
-        }
-        .videoIcon {
-          padding:0;
-          @include iconeTipoElemento;
-          background-position: -1em -0.5em;
-          width:4em;
-          height:4em;
-        }
         &.current {
           visibility:hidden;
           height: 15px;
+        }
+        &.selected {
+          background-color:#515152;
+          opacity:0.1; 
         }
       }
       .separatore {
@@ -460,7 +447,7 @@ html.media_element_editor-layout {
     .newElement {
       margin: 0px;
       display:inline-block;
-      width:156px;
+      /*width:156px;*/
       height:117px;
       .contatore {
         height:15px;
@@ -481,7 +468,8 @@ html.media_element_editor-layout {
   .boxMediaElement {
     width:156px;
     height:88px;
-    @include boxShadow;
+    -webkit-box-shadow: 0px 3px 10px #161515;
+    box-shadow: 0px 3px 10px #161515;
     position:relative;
     float:left;
 
@@ -497,7 +485,7 @@ html.media_element_editor-layout {
       }
       &.current {
       outline: 2px solid #fff;
-    }
+      }
       
     }
     .boxContentMediaElementText {
@@ -513,9 +501,13 @@ html.media_element_editor-layout {
         width:116px;
         height:48px;
         line-height:12px;
-        overlay:hidden;
-      }      
+        overflow:hidden;
+      }
+      &.current {
+      outline: 2px solid #fff;
+      }     
     }
+
     .photoIcon {
         @include layoutIconElements;
       }
@@ -571,9 +563,12 @@ html.media_element_editor-layout {
         }
       }
     }
-    
   }
  }
+ ._video_editor_component_hover.selected {
+    background-color:#515152;
+    opacity:0.1;
+  }
  $button-size: 6em;
  @mixin menuCondivisoElementLessonEditor($font-size: 0.9em) {
   & {
@@ -597,7 +592,8 @@ html.media_element_editor-layout {
     margin-bottom:0;
     margin-right:0;
     position:relative;
-    @include boxShadow;
+    -webkit-box-shadow: 0px 3px 10px #161515;
+    box-shadow: 0px 3px 10px #161515;
     .contentNew {
       padding-top:15px;
       padding-left:50px;
@@ -654,8 +650,66 @@ html.media_element_editor-layout {
       text-shadow: 1px 1px #4f4f4f;
     }
   }
+  /*CUTTER*/
+  .arrowUpCutter {
+    background: url(<%= asset_path 'arrow_up.png' %>) top center  no-repeat;
+    width:156px;
+    height:14px;
+    position:absolute;
+    bottom:-26px;
+  }
+  #video_editor_cutters {
+    .left {
+      background: url(<%= asset_path 'arrow_cutter_left.png' %>) top left  no-repeat;
+      float:left;
+      width: 10px;
+      height: 15px;
+      margin-right:8px;
+      &:hover {
+        background: url(<%= asset_path 'arrow_cutter_left_on.png' %>) top left  no-repeat;  
+      };
+    }
+    .right {
+      background: url(<%= asset_path 'arrow_cutter_right.png' %>) top left  no-repeat;
+      float:right;
+      width: 10px;
+      height: 15px;
+      margin-left:8px;
+       &:hover {
+        background: url(<%= asset_path 'arrow_cutter_right_on.png' %>) top left  no-repeat;  
+      };
+    }
+    a.play {
+      position:absolute;
+      bottom:-7px;
+      right: 80px;
+      background-image: none;
+      font-size: 12px;
+      
+    }
+    a.pause {
+      position:absolute;
+      bottom:-7px;
+      right: 80px;
+      background-image: none;
+      font-size: 12px;
+      
+    }
+    a.done {
+      position:absolute;
+      bottom:6px;
+      right: 15px;
+      font-size: 12px;
+      
+    }
+    .videoSlider {
+      margin-top:2px;
+    }
+  }
+  
   .contentCutter {
     background-color:#232121;
+    padding:0;
     width:905px;
     height:98px;
     position:absolute;
@@ -666,21 +720,48 @@ html.media_element_editor-layout {
     font: 10px 'Nunito', sans-serif;
     color:#787575;
     text-align: left;
+    p {
+      padding-left:10px;
+      display:inline-block;
+    }
+    a {
+      color:#787575;
+      opacity: 1;
+      &:hover {
+        color:#505050;
+      };
+    }
     .cutter {
-      padding:10px;
-      height:47px;
+      padding:27px 10px 0px 10px;
+      height:40px;
       background-color:#303030;
       margin-bottom:10px;
+      .videoSlider {
+        width:95.4%;
+      }
+      .sliderDisabler {
+        height: 67px;
+        opacity:1;
+        top:0;
+        left:0;
+      }
       .ui-slider-horizontal {
-        border-radius:5px;
-        -webkit-border-radius: 5px;
-        background-color:blue;
+        height:13px;
+        background: url(<%= asset_path 'bg_ui_slider_horizontal.png' %>) top left repeat-x;
+        
       }
       .ui-slider-range {
-        background-color:#666;
+        background: url(<%= asset_path 'bg_ui_slider_horizontal.png' %>) top left repeat-x;
       }
       .ui-slider-handle {
         background-color:#fff;
+        border-radius:0%;
+        height:6.5em;
+        width: 0.1em;
+        top:-2.8em;
+        margin-left: 0;
+        border:1px solid white;
+        opacity:0.6;
       }
       .callout {
         top: -11px;
@@ -691,7 +772,47 @@ html.media_element_editor-layout {
       }
     }
   }
-  
+  .contentCutterTextImage {
+    background-color:#232121;
+    padding:0;
+    width:156px;
+    height:98px;
+    position:absolute;
+    bottom:0px;
+    -webkit-box-shadow: 0px 6px 10px #161515;
+    box-shadow: 0px 6px 10px #161515;
+    z-index:150;
+    font: 10px 'Nunito', sans-serif;
+    color:#787575;
+    text-align: left;
+    .cutter {
+      padding:20px 10px 0px 10px;
+      height:47px;
+      background-color:#303030;
+      margin-bottom:10px;
+    }
+    p {
+      padding-left:10px;
+      display:inline-block;
+    }
+    a {
+      color:#787575;
+      opacity: 1;
+      &:hover {
+        color:#505050;
+      };
+    }
+    .elementoTime {
+      color:#fff;
+      width:135px;
+      margin-right: 0;
+      padding:5px 0px 5px 0px;
+      input.numberTime {
+        width:16%;
+        margin-left:10px;
+      }
+    }
+  }
   
   /*IMAGES EDITOR*/
   .mediaEditorElementContainer {

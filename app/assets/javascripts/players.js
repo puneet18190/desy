@@ -91,7 +91,7 @@ function initializeVideoInVideoEditorPreview(identifier) {
     range: 'min',
     value: 0,
     slide: function(event, ui) {
-      if($('#video_component' + identifier + '_cutter ._media_player_play_in_video_editor_preview').css('display') == 'block') {
+      if($('#video_component_' + identifier + '_cutter ._media_player_play_in_video_editor_preview').css('display') == 'block') {
         setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), ui.value);
         $('#video_component_' + identifier + '_cutter ._media_player_current_time').html(secondsToDateString(ui.value));
       }

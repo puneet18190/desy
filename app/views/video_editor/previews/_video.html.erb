@@ -1,13 +1,17 @@
 <%
-  video = component[:video]
-  webm = video.webm_path
-  mp4 = video.mp4_path
-  duration = video.min_duration
-  string_duration = seconds_to_time(duration)
+  webm = ''
+  mp4 = ''
+  duration = 0
+  if !empty
+    video = component[:video]
+    webm = video.webm_path
+    mp4 = video.mp4_path
+    duration = video.min_duration
+  end
 %>
 
 
-<div id="video_component_<%= identifier %>_preview" style="display:none" class="boxContentMediaElementVideo" data-duration="<%= duration %>">
+<div id="video_component_<%= identifier %>_preview" style="display:none" class="boxContentMediaElementVideo _video_component_preview" data-duration="<%= duration %>">
   
   <div class="videoPlayer">
     <video width="640" height="360">
