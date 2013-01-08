@@ -141,7 +141,7 @@ function addImageComponentInVideoEditor(image_id, component, preview, duration) 
   // edit cutter
   current_cutter = $('#temporary_empty_cutter');
   current_cutter.attr('id', ('video_component_' + next_position + '_cutter'));
-  current_cutter.find('._duration_selector input').val(duration);
+  current_cutter.find('._old').html(secondsToDateString(duration));
   // edit component
   current_component = $('#temporary_empty_component');
   current_component.attr('id', ('video_component_' + next_position));
@@ -184,7 +184,7 @@ function replaceImageComponentInVideoEditor(image_id, component, preview, positi
   // edit cutter
   current_cutter = $('#temporary_empty_cutter');
   current_cutter.attr('id', ('video_component_' + identifier + '_cutter'));
-  current_cutter.find('._duration_selector input').val(duration);
+  current_cutter.find('._old').html(secondsToDateString(duration));
   // edit component
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
   clearSpecificVideoEditorComponentParameters(position);
@@ -321,7 +321,7 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   // edit cutter
   current_cutter = $('#temporary_empty_cutter');
   current_cutter.attr('id', ('video_component_' + next_position + '_cutter'));
-  current_cutter.find('._duration_selector input').val(duration);
+  current_cutter.find('._old').html(secondsToDateString(duration));
   // edit component
   current_component = $('#temporary_empty_component');
   current_component.attr('id', ('video_component_' + next_position));
@@ -371,7 +371,7 @@ function replaceTextComponentInVideoEditor(component, content, position, duratio
   // edit cutter
   current_cutter = $('#temporary_empty_cutter');
   current_cutter.attr('id', ('video_component_' + identifier + '_cutter'));
-  current_cutter.find('._duration_selector input').val(duration);
+  current_cutter.find('._old').html(secondsToDateString(duration));
   // edit component
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
   $('#' + position + ' ._video_component_thumb ._text_content').html(content);
