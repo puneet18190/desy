@@ -748,22 +748,31 @@ html.media_element_editor-layout {
       height:40px;
       background-color:#303030;
       margin-bottom:10px;
-
+      .videoSlider {
+        width:95.4%;
+      }
+      .sliderDisabler {
+        height: 67px;
+        opacity:1;
+        top:0;
+        left:0;
+      }
       .ui-slider-horizontal {
         height:13px;
         background: url(<%= asset_path 'bg_ui_slider_horizontal.png' %>) top left repeat-x;
         
       }
       .ui-slider-range {
-        background-color:#666;
+        background: url(<%= asset_path 'bg_ui_slider_horizontal.png' %>) top left repeat-x;
       }
       .ui-slider-handle {
         background-color:#fff;
         border-radius:0%;
-        height:6em;
+        height:6.5em;
         width: 0.1em;
         top:-2.8em;
         margin-left: 0;
+        border:1px solid white;
       }
       .callout {
         top: -11px;
