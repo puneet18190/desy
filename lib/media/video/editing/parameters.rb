@@ -30,6 +30,9 @@ module Media
               return 0
             end
           end
+          if hash[:components].any?
+            sum += (hash[:components].length - 1)
+          end
           sum
         end
         
