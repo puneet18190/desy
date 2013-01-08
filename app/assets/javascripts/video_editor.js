@@ -228,6 +228,7 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   current_preview.data('duration', duration);
   current_preview.find('source[type="video/webm"]').attr('src', webm);
   current_preview.find('source[type="video/mp4"]').attr('src', mp4);
+  current_preview.find('video').load();
   // edit cutter
   current_cutter = $('#temporary_empty_cutter');
   current_cutter.attr('id', ('video_component_' + next_position + '_cutter'));
