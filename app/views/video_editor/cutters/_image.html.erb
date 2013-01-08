@@ -13,5 +13,5 @@
    </div>
     <a class="done _media_player_done_other_component_in_video_editor_preview upper"><%= t('captions.done') %></a>
   </div>
-  <p style="padding-left:10px"><%= t('captions.time') %>: 10 sec</p>
+  <p style="padding-left:10px"><%= t('captions.time') %> <%= empty ? '' : seconds_to_time(component[:duration]) %></p>
 </div>
