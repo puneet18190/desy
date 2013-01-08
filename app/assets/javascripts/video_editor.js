@@ -262,6 +262,27 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
 function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, position, duration) {
   var identifier = position.split('_');
   identifier = identifier[identifier.length - 1];
+  // build preview
+  var empty_preview = $('#empty_video_preview_for_video_editor').html();
+  empty_preview = '<div id="temporary_empty_preview" ' + empty_preview.substr(empty_preview.indexOf('div') + 3, empty_preview.length);
+  $('#video_component_' + identifier + '_preview').replaceWith(empty_preview);
+  // build cutter
+  var empty_cutter = $('#empty_video_cutter_for_video_editor').html();
+  empty_cutter = '<div id="temporary_empty_cutter" ' + empty_cutter.substr(empty_cutter.indexOf('div') + 3, empty_cutter.length);
+  $('#video_component_' + identifier + '_cutter').replaceWith(empty_cutter);
+  // edit preview
+  current_preview = $('#temporary_empty_preview');
+  current_preview.attr('id', ('video_component_' + identifier + '_preview'));
+  current_preview.data('duration', duration);
+  current_preview.find('source[type="video/webm"]').attr('src', webm);
+  current_preview.find('source[type="video/mp4"]').attr('src', mp4);
+  current_preview.find('video').load();
+  // edit cutter
+  current_cutter = $('#temporary_empty_cutter');
+  current_cutter.attr('id', ('video_component_' + identifier + '_cutter'));
+  current_cutter.find('._media_player_total_time').html(secondsToDateString(duration));
+  initializeVideoInVideoEditorPreview(identifier);
+  // edit component
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
   clearSpecificVideoEditorComponentParameters(position);
   $('#' + position + ' ._video_component_input_type').val('video');
@@ -269,6 +290,7 @@ function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, posi
   to_be_appended += fillVideoEditorSingleParameter('from', identifier, 0);
   to_be_appended += fillVideoEditorSingleParameter('to', identifier, duration);
   $('#' + position + ' ._video_editor_component_hover').append(to_be_appended);
+  // other things
   changeDurationVideoEditorComponent(position, duration);
 }
 
