@@ -451,6 +451,10 @@ html.media_element_editor-layout {
           visibility:hidden;
           height: 15px;
         }
+        &.selected {
+          background-color:#515152;
+          opacity:0.1; 
+        }
       }
       .separatore {
         background-image: url(<%= asset_path 'arrow_element_timeline.png' %>);
@@ -784,7 +788,40 @@ html.media_element_editor-layout {
       }
     }
   }
-  
+  .contentCutterTextImage {
+    background-color:#232121;
+    padding:0;
+    width:156px;
+    height:98px;
+    position:absolute;
+    bottom:0px;
+    -webkit-box-shadow: 0px 6px 10px #161515;
+    box-shadow: 0px 6px 10px #161515;
+    z-index:150;
+    font: 10px 'Nunito', sans-serif;
+    color:#787575;
+    text-align: left;
+    .cutter {
+      padding:20px 10px 0px 10px;
+      height:47px;
+      background-color:#303030;
+      margin-bottom:10px;
+    }
+    p {
+      padding-left:10px;
+      display:inline-block;
+    }
+    a {
+      color:#787575;
+      opacity: 1;
+      &:hover {
+        color:#505050;
+      };
+    }
+    .elementoTime {
+      width:85%;
+    }
+  }
   
   /*IMAGES EDITOR*/
   .mediaEditorElementContainer {
