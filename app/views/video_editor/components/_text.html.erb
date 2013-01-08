@@ -8,7 +8,14 @@
 %>
 
 <div class="lista <%= empty ? '_video_editor_empty_component'.html_safe : '_video_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-rolloverable="true" data-preview-selected="false">
-  <div class="contatore _video_component_icon"><%= empty ? '' : position %><div class="textIcon"></div></div>
+  <div class="contatore _video_component_icon">
+    <div class="_left fltlft">
+      <%= empty ? '' : position %>
+    </div>
+    <div class="_right fltrt" style="color:#787575">
+      <%= empty ? '' : seconds_to_time(component[:duration]) %>
+    </div>
+  </div>
   <div class="boxMediaElement _video_editor_component_hover">
     <% if !empty %>
       <% locals_for_text_thumb = {:background_color => component[:background_color], :text_color => component[:text_color], :content => component[:content]} %>
@@ -22,4 +29,5 @@
     <% end %>
   </div>
   <div class="_video_component_transition separatore <%= last ? 'current'.html_safe : '' %>">&nbsp;</div>
+  <div class="arrowUpCutter" style="display:none"></div>
 </div>

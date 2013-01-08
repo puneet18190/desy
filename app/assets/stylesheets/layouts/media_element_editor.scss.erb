@@ -423,30 +423,6 @@ html.media_element_editor-layout {
         background-color:#474747;
         height:14px;
         position:relative;
-
-        .textIcon {
-          @include iconeTipoElemento;
-          background-position: -1em -11.9em;
-          padding:0;
-          width:4em;
-          height:4em;
-          
-        }
-        .photoIcon {
-          @include iconeTipoElemento;
-          background-position: -1em -5.8em;
-          padding:0;
-          
-          width:4em;
-          height:4em;
-        }
-        .videoIcon {
-          padding:0;
-          @include iconeTipoElemento;
-          background-position: -1em -0.5em;
-          width:4em;
-          height:4em;
-        }
         &.current {
           visibility:hidden;
           height: 15px;
@@ -590,10 +566,9 @@ html.media_element_editor-layout {
   }
  }
  ._video_editor_component_hover.selected {
-      background-color:#515152;
-      opacity:0.1;
-     
-    }
+    background-color:#515152;
+    opacity:0.1;
+  }
  $button-size: 6em;
  @mixin menuCondivisoElementLessonEditor($font-size: 0.9em) {
   & {
@@ -675,6 +650,14 @@ html.media_element_editor-layout {
       text-shadow: 1px 1px #4f4f4f;
     }
   }
+  /*CUTTER*/
+  .arrowUpCutter {
+    background: url(<%= asset_path 'arrow_up.png' %>) top center  no-repeat;
+    width:156px;
+    height:14px;
+    position:absolute;
+    bottom:-26px;
+  }
   #video_editor_cutters {
     .left {
       background: url(<%= asset_path 'arrow_cutter_left.png' %>) top left  no-repeat;
@@ -723,6 +706,7 @@ html.media_element_editor-layout {
       margin-top:2px;
     }
   }
+  
   .contentCutter {
     background-color:#232121;
     padding:0;
@@ -808,7 +792,7 @@ html.media_element_editor-layout {
       margin-bottom:10px;
     }
     p {
-      padding-left:10px;
+      padding-left:5px;
       display:inline-block;
     }
     a {
@@ -819,7 +803,14 @@ html.media_element_editor-layout {
       };
     }
     .elementoTime {
-      width:85%;
+      color:#fff;
+      width:135px;
+      margin-right: 0;
+      padding:5px 0px 5px 0px;
+      input.numberTime {
+        width:20%;
+        margin-left:10px;
+      }
     }
   }
   

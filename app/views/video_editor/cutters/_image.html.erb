@@ -2,7 +2,6 @@
   div_id = empty ? '' : "id=\"video_component_#{identifier}_cutter\""
   duration = empty ? 0 : component[:duration]
 %>
-
 <div class="contentCutterTextImage _video_component_cutter" style="display:none" <%= div_id.html_safe %>>
   <div class="cutter">
    <div class="elementoTime">
@@ -14,6 +13,5 @@
    </div>
     <a class="done _media_player_done_other_component_in_video_editor_preview upper"><%= t('captions.done') %></a>
   </div>
-  <p><%= t('captions.total_clip_length') %>: 1:36</p>
-  <p><%= t('captions.selected') %>: 0:25</p>
+  <p style="padding-left:10px"><%= t('captions.time') %>: 10 sec</p>
 </div>

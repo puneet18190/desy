@@ -6,39 +6,16 @@ function secondsToDateString(seconds) {
   var resp = '';
   if(hh > 0) {
     resp = hh + ':';
-    if(mm == 0) {
-      resp = resp + '00:';
-    } else {
-      if(mm < 10) {
-        resp = resp + '0' + mm + ':';
-      } else {
-        resp = resp + '' + mm + ':';
-      }
-    }
-    if(ss == 0) {
-      resp = resp + '00';
-    } else {
-      if(mm < 10) {
-        resp = resp + '0' + ss;
-      } else {
-        resp = resp + '' + ss;
-      }
-    }
+  }
+  if(mm > 9) {
+    resp = mm + ':';
   } else {
-    if(mm > 0) {
-      resp = mm + ':';
-      if(ss == 0) {
-        resp = resp + '00';
-      } else {
-        if(ss < 10) {
-          resp = resp + '0' + ss;
-        } else {
-          resp = resp + '' + ss;
-        }
-      }
-    } else {
-      resp = ss + '';
-    }
+    resp = '0' + mm + ':';
+  }
+  if(ss > 9) {
+    resp = resp + ss;
+  } else {
+    resp = resp + '0' + ss;
   }
   return resp;
 }
