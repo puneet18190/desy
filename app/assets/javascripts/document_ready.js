@@ -774,12 +774,15 @@ $(document).ready(function() {
   $('body').on('mouseover', '._video_editor_component_hover', function() {
     var father = $(this).parent();
     if(father.data('rolloverable')) {
+      father.data('preview-selected', true);
+      startVideoEditorPreviewClipWithDelay(father.attr('id'));
       $('#' + father.attr('id') + ' ._video_editor_component_menu').show();
     }
   });
   
   $('body').on('mouseout', '._video_editor_component_hover', function() {
     var father = $(this).parent();
+    father.data('preview-selected', false);
     if(father.data('rolloverable')) {
       $('#' + father.attr('id') + ' ._video_editor_component_menu').hide();
     }

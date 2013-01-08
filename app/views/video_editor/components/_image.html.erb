@@ -7,7 +7,7 @@
   end
 %>
 
-<div class="lista <%= empty ? '_video_editor_empty_component'.html_safe : '_video_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-rolloverable="true">
+<div class="lista <%= empty ? '_video_editor_empty_component'.html_safe : '_video_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-rolloverable="true" data-preview-selected="false">
   <div class="contatore _video_component_icon"><%= empty ? '' : position %><div class="photoIcon"></div></div>
   <div class="boxMediaElement _video_editor_component_hover">
     <% if !empty %>
