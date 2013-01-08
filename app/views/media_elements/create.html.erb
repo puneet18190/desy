@@ -1,8 +1,28 @@
+<style type="text/css" media="screen">
+  *{
+    margin:0; 
+    padding:0; 
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+  }
+</style>
+
 <% if @errors %>
-  <p style="margin:0; padding:0; color: white, font-family: Arial, sans-serif;"><%= media_elements_error_messages(@errors) %></p>
-<%else%>
-  Success!
-  <script type="text/javascript" charset="utf-8">
-    window.location = "<%= my_media_elements_path %>";
+  <p style="padding-left:20px"><%= media_elements_error_messages(@errors) %></p>
+  <script type="text/javascript">
+  function init() {
+  	if(top.uploadDone) top.uploadDone(); //top means parent frame.
+  }
+  window.onload=init;
   </script>
+<%else%>
+  
+  <script type="text/javascript">
+  function init() {
+  	if(top.uploadDoneRedirect) top.uploadDoneRedirect(); //top means parent frame.
+  }
+  window.onload=init;
+  </script>
+  Upload completed!
 <%end%>
