@@ -12,7 +12,9 @@ function initializeVideoEditor() {
     containment: 'parent',
     start: function(event, ui) {
       my_item = $(ui.item);
-      startVideoEditorPreviewClip(my_item.attr('id'));
+      if($('#' + my_item.attr('id') + '_preview').css('display') == 'none') {
+        startVideoEditorPreviewClip(my_item.attr('id'));
+      }
       my_item.find('._video_editor_component_menu').hide();
       my_item.data('rolloverable', false);
       my_item.find('._video_component_icon').addClass('current');
@@ -34,10 +36,6 @@ function initializeVideoEditor() {
       }
     }
   });
-}
-
-function showVideoEditorComponentPreview(component_id) {
-  
 }
 
 function resetVisibilityOfVideoEditorTransitions() {
