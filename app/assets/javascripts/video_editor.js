@@ -110,7 +110,6 @@ function reloadVideoEditorComponentPositions() {
     $(this).find('._video_component_input_position').val(index + 1);
     $(this).find('._video_component_icon ._left').html(index + 1);
   });
-  $('#add_new_video_component ._component_counter').html(components.length + 1);
 }
 
 function addImageComponentInVideoEditor(image_id, component, preview, duration) {
