@@ -901,7 +901,7 @@ $(document).ready(function() {
     if($('#info_container').data('replacing-component')) {
       var current_component = $('#info_container').data('current-component');
       setTimeout(function() {
-        highlightAndUpdateVideoComponentIcon(current_component, 'videoIcon');
+        highlightAndUpdateVideoComponentIcon(current_component);
       }, 1400);
       replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, current_component, duration);
     } else {
@@ -932,7 +932,7 @@ $(document).ready(function() {
       if($('#info_container').data('replacing-component')) {
         var current_component = $('#info_container').data('current-component');
         setTimeout(function() {
-          highlightAndUpdateVideoComponentIcon(current_component, 'photoIcon');
+          highlightAndUpdateVideoComponentIcon(current_component);
         }, 1400);
         replaceImageComponentInVideoEditor(image_id, component, preview, current_component, duration);
       } else {
@@ -1007,7 +1007,7 @@ $(document).ready(function() {
       if($('#info_container').data('replacing-component')) {
         var current_component = $('#info_container').data('current-component');
         setTimeout(function() {
-          highlightAndUpdateVideoComponentIcon(current_component, 'textIcon');
+          highlightAndUpdateVideoComponentIcon(current_component);
         }, 700);
         replaceTextComponentInVideoEditor(component, content, current_component, duration, background_color, text_color);
       } else {
