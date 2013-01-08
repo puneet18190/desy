@@ -1,11 +1,13 @@
 <%
   div_id = empty ? '' : "id=\"video_component_#{identifier}_cutter\""
+  duration = empty ? 0 : component[:duration]
 %>
+
 <div class="contentCutter" style="display:none" <%= div_id.html_safe %>>
   <div class="cutter">
     <div class="tempo _duration_selector">
       <p>Time</p>
-      <input class="numberTime" maxlength="3">
+      <input value="<%= duration %>" class="numberTime" maxlength="3">
       <p class="lower">Sec</p>
     </div>
   </div>
