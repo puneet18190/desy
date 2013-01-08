@@ -741,34 +741,21 @@ $(document).ready(function() {
     $('._video_editor_bottom_bar').css('visibility', 'hidden');
     $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
     $('#video_editor_box_ghost').show();
+    $('#' + component_id + ' ._video_component_cutter_arrow').show('fade', {}, 250);
     $('#' + component_id + '_cutter').show('fade', {}, 250, function() {
-      $('._video_editor_component').each(function() {
-        if($(this).attr('id') != component_id) {
-          $(this).find('._video_editor_component_hover').addClass('selected');
-        }
-      });
+      $('._video_component_transition').addClass('current');
+      $('._video_editor_component:not(#' + component_id + ') ._video_editor_component_hover').addClass('selected');
+      $('._new_component_in_video_editor_hover').addClass('selected');
     });
   });
   
   $('body').on('click', '._media_player_done_video_component_in_video_editor_preview', function() {
-    $('._video_component_cutter').hide('fade', {}, 250, function() {
-      $('._video_editor_bottom_bar').css('visibility', 'visible');
-      $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
-      $('._video_editor_bottom_bar').show();
-      $('#video_editor_box_ghost').hide();
-      $('._video_editor_component_hover').removeClass('selected');
-    });
+    closeGenericVideoComponentCutter();
     // TODO qui devo stoppare il media
   });
   
   $('body').on('click', '._media_player_done_other_component_in_video_editor_preview', function() {
-    $('._video_component_cutter').hide('fade', {}, 250, function() {
-      $('._video_editor_bottom_bar').css('visibility', 'visible');
-      $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
-      $('._video_editor_bottom_bar').show();
-      $('#video_editor_box_ghost').hide();
-      $('._video_editor_component_hover').removeClass('selected');
-    });
+    closeGenericVideoComponentCutter();
     // TODO qui devo anche salvare l'input e mandare una popup se è sbagliato
     // TODO anche, devo aggiornare le durate
   });
