@@ -1,7 +1,7 @@
 <%= render :partial => "lesson_slides", :locals => {:lesson => @playlist} %>
 <%= render :partial => "playlist_menu", :locals => {:lesson => @playlist} %>
 <div class="playlist_footer">
+  <%= render :partial => "playlist_lessons_title", :locals => {:playlist => @playlist} %>
   <%= link_to "", my_virtual_classroom_path, :class=> "esciButton fltrt" %>
-  <span class="_lesson_title_in_playlist"></span>
-  <a class="_playlist"><%= image_tag("playlist_symbol.png")%> <%= t('captions.playlist') %></a>
+  <a class="_playlist fltlft"><%= image_tag("playlist_symbol.png")%> <%= t('captions.playlist') %></a>
 </div>
