@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/ProGNOMmers/plupload-rails.git
-  revision: 6d07d0f7e05d0b3fdc9b03b49d3a7c3aa1cd703b
-  specs:
-    plupload-rails (1.0.6)
-      rails (~> 3.1)
-
-GIT
   remote: git://github.com/ProGNOMmers/subexec.git
   revision: ccd3f062dd513a8d6bbe1de01e97224d2ef830c8
   specs:
@@ -182,7 +175,6 @@ DEPENDENCIES
   libv8 (~> 3.11.8)
   mini_magick
   pg
-  plupload-rails!
   rails (= 3.2.9)
   rails-erd
   recursive-open-struct
