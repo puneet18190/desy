@@ -11,6 +11,6 @@ when 'development', 'test'
   end
 else
   # lo dichiaro anche in produzione sia mai che mi scappa di lasciarlo nel codice
-  def _d;  end
-  def _d!; end
+  def _d(*_);  end
+  def _d!(*_); end
 end

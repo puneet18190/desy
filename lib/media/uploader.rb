@@ -1,14 +1,9 @@
 require 'media'
-require 'env_relative_path'
 
 module Media
   class Uploader < String
 
-    # require 'media/video/uploader/validation'
-
-    include EnvRelativePath
     include AllowedDurationRange
-    # include Validation
 
     attr_reader :model, :column, :value
 

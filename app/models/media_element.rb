@@ -239,8 +239,11 @@ class MediaElement < ActiveRecord::Base
   
   def stop_if_public
     @media_element = Valid.get_association self, :id
-    return true if @media_element.nil?
-    return !@media_element.is_public
+    return @media_element.nil? || !@media_element.is_public
+  end
+
+  def cannot_destroy_while_converting
+    !converted.nil?
   end
   
 end
