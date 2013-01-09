@@ -242,7 +242,9 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   // edit cutter
   current_cutter = $('#temporary_empty_cutter');
   current_cutter.attr('id', ('video_component_' + next_position + '_cutter'));
-  current_cutter.find('._media_player_total_time').html(secondsToDateString(duration));
+  current_cutter.find('._video_editor_cutter_total_time').html(secondsToDateString(duration));
+  current_cutter.find('._video_editor_cutter_selected_time').html(secondsToDateString(duration));
+  current_cutter.data('to', duration);
   initializeVideoInVideoEditorPreview(next_position);
   // edit component
   current_component = $('#temporary_empty_component');
@@ -290,7 +292,9 @@ function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, posi
   // edit cutter
   current_cutter = $('#temporary_empty_cutter');
   current_cutter.attr('id', ('video_component_' + identifier + '_cutter'));
-  current_cutter.find('._media_player_total_time').html(secondsToDateString(duration));
+  current_cutter.find('._video_editor_cutter_total_time').html(secondsToDateString(duration));
+  current_cutter.find('._video_editor_cutter_selected_time').html(secondsToDateString(duration));
+  current_cutter.data('to', duration);
   initializeVideoInVideoEditorPreview(identifier);
   // edit component
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
