@@ -480,6 +480,19 @@ function startVideoEditorPreviewClipWithDelay(component_id) {
   }, 500);
 }
 
+function showVideoEditorCutter(component_id) {
+  $('._video_editor_bottom_bar').css('visibility', 'hidden');
+  $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
+  $('#' + component_id + ' ._video_component_cutter_arrow').show('fade', {}, 250);
+  $('#' + component_id + '_cutter').show('fade', {}, 250, function() {
+    $('._video_component_transition').addClass('current');
+    $('._video_editor_component:not(#' + component_id + ') ._video_editor_component_hover').addClass('selected');
+    $('._video_component_icon').addClass('selected');
+    $('#' + component_id + ' ._video_component_icon').removeClass('selected');
+    $('._new_component_in_video_editor_hover').addClass('selected');
+  });
+}
+
 function startVideoEditorPreviewClip(component_id) {
   $('._video_component_preview').hide();
   $('#' + component_id + '_preview').show('fade', {}, 250);
@@ -495,5 +508,3 @@ function getNormalizedPositionTimelineHorizontalScrollPane(jscrollpane_id, compo
   }
   return resp;
 }
-
-

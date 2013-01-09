@@ -745,20 +745,17 @@ $(document).ready(function() {
     $('#video_editor_box_ghost').show();
     var pos = $('#' + component_id).data('position');
     var scroll_to = getNormalizedPositionTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186, pos, 5);
-    $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
-      $('._video_editor_bottom_bar').css('visibility', 'hidden');
-      $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
-      $('#' + component_id + ' ._video_component_cutter_arrow').show('fade', {}, 250);
-      $('#' + component_id + '_cutter').show('fade', {}, 250, function() {
-        $('._video_component_transition').addClass('current');
-        $('._video_editor_component:not(#' + component_id + ') ._video_editor_component_hover').addClass('selected');
-        $('._video_component_icon').addClass('selected');
-        $('#' + component_id + ' ._video_component_icon').removeClass('selected');
-        $('._new_component_in_video_editor_hover').addClass('selected');
+    // TODO solo se è piccolo mini cutter, PRENDI LA POSIZIONE (fai funzione generale)
+    // TODO alle stesse condizioni, sposta con un left l'oggetto giusto
+    if(scroll_to != $('#media_elements_list_in_video_editor').data('jsp').getContentPositionX()) {
+      $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
+        showVideoEditorCutter(component_id);
+        $('#media_elements_list_in_video_editor').jScrollPane().unbind('panescrollstop');
       });
-      $('#media_elements_list_in_video_editor').jScrollPane().unbind('panescrollstop');
-    });
-    $('#media_elements_list_in_video_editor').data('jsp').scrollToX(scroll_to, true);
+      $('#media_elements_list_in_video_editor').data('jsp').scrollToX(scroll_to, true);
+    } else {
+      showVideoEditorCutter(component_id);
+    }
   });
   
   $('body').on('click', '._media_player_done_video_component_in_video_editor_preview', function() {
