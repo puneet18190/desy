@@ -88,6 +88,7 @@ function saveCacheLoop() {
 }
 
 function showGalleryInVideoEditor(type) {
+  $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#video_editor_' + type + '_gallery_container').show();
   $('._video_editor_bottom_bar').hide();
   calculateNewPositionGalleriesInVideoEditor();
@@ -96,6 +97,7 @@ function showGalleryInVideoEditor(type) {
 
 function closeGalleryInVideoEditor(type) {
   $('#video_editor_' + type + '_gallery_container').hide('fade', {}, 250, function() {
+    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
     $('._video_editor_bottom_bar').show();
     calculateNewPositionGalleriesInVideoEditor();
   });
@@ -129,12 +131,13 @@ function reloadVideoEditorComponentPositions() {
 function addImageComponentInVideoEditor(image_id, component, preview, duration) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
   var next_position = $('#info_container').data('last-component-id') + 1;
-  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 187;
+  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 186;
   $('#media_elements_list_in_video_editor').data('jsp').destroy();
   $('#video_editor_timeline').css('width', new_timeline_width + 'px');
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true
   });
+  $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#info_container').data('last-component-id', next_position);
   // build preview
   var empty_preview = $('#empty_image_preview_for_video_editor').html();
@@ -212,12 +215,13 @@ function replaceImageComponentInVideoEditor(image_id, component, preview, positi
 function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
   var next_position = $('#info_container').data('last-component-id') + 1;
-  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 187;
+  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 186;
   $('#media_elements_list_in_video_editor').data('jsp').destroy();
   $('#video_editor_timeline').css('width', new_timeline_width + 'px');
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true
   });
+  $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#info_container').data('last-component-id', next_position);
   // build preview
   var empty_preview = $('#empty_video_preview_for_video_editor').html();
@@ -309,12 +313,13 @@ function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, posi
 function addTextComponentInVideoEditor(component, content, duration, background_color, text_color) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
   var next_position = $('#info_container').data('last-component-id') + 1;
-  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 187;
+  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 186;
   $('#media_elements_list_in_video_editor').data('jsp').destroy();
   $('#video_editor_timeline').css('width', new_timeline_width + 'px');
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true
   });
+  $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#info_container').data('last-component-id', next_position);
   // build preview
   var empty_preview = $('#empty_text_preview_for_video_editor').html();
