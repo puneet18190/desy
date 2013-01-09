@@ -4,12 +4,9 @@
       <%= form_for media_element, html: { class:"formModifyInfo", :multipart => true } do |f| %>
         <div class="cols fltlft">
           <div class="selectButton">
-            
-            <a class="uploadFileButton submitButton" id="media_element_media_pick">
-              <input type="file" name="media" class="innerUploadFileButton" />
-            </a>
-            
+            <a class="uploadFileButton submitButton" id="media_element_media_pick"> </a>
             <div id="media_element_media_show" class="fk_carica_elemento_file"><%= t('captions.select_file').downcase%></div>
+            <input type="file" name="media" class="innerUploadFileButton" />
           </div>
           <br class="clearfloat">
           <%= f.text_field :title, name: 'title', placeholder: t('forms.media_element.labels.title') %>

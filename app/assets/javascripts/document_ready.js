@@ -16,6 +16,10 @@ $(document).ready(function() {
     showLoadMediaElementPopUp();
   });
   
+  $("body").on("click",".uploadFileButton", function(){
+    $("input.innerUploadFileButton").trigger("click");
+  });
+  
   
   // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
   
