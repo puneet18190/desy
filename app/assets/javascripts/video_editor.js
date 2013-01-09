@@ -163,7 +163,6 @@ function addImageComponentInVideoEditor(image_id, component, preview, duration) 
   current_component.data('duration', 0);
   current_component.data('position', next_position);
   current_component.find('._video_component_icon ._left').html(next_position);
-  $('#add_new_video_component ._component_counter').html(next_position + 1);
   current_component.find('._video_editor_component_hover').append(component);
   var to_be_appended = fillVideoEditorSingleParameter('type', next_position, 'image');
   to_be_appended += fillVideoEditorSingleParameter('image_id', next_position, image_id);
@@ -253,7 +252,6 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   current_component.data('duration', 0);
   current_component.data('position', next_position);
   current_component.find('._video_component_icon ._left').html(next_position);
-  $('#add_new_video_component ._component_counter').html(next_position + 1);
   current_component.find('._video_editor_component_hover').append(component);
   var to_be_appended = fillVideoEditorSingleParameter('type', next_position, 'video');
   to_be_appended += fillVideoEditorSingleParameter('video_id', next_position, video_id);
@@ -347,7 +345,6 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   current_component.data('duration', 0);
   current_component.data('position', next_position);
   current_component.find('._video_component_icon ._left').html(next_position);
-  $('#add_new_video_component ._component_counter').html(next_position + 1);
   current_component.find('._video_editor_component_hover').append(component);
   $('#video_component_' + next_position + ' ._video_component_thumb ._text_content').html(content);
   $('#video_component_' + next_position + ' ._video_component_thumb ._text_content').removeClass('color_black').addClass('color_' + text_color);
