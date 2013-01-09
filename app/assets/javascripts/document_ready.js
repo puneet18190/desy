@@ -768,9 +768,16 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._media_player_done_other_component_in_video_editor_preview', function() {
-    closeGenericVideoComponentCutter();
-    // TODO qui devo anche salvare l'input e mandare una popup se è sbagliato
-    // TODO anche, devo aggiornare le durate
+    var component_id = $(this).parent().parent().attr('id');
+    var identifier = component_id.split('_');
+    identifier = identifier[identifier.length - 2];
+    var duration = parseInt($('#' + component_id + ' ._duration_selector input').val());
+    if(isNaN(duration) || duration < 1) {
+      showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
+    } else {
+      closeGenericVideoComponentCutter();
+      changeDurationVideoEditorComponent(('video_component_' + identifier), duration);
+    }
   });
   
   $('body').on('click', '._exit_video_editor', function() {
