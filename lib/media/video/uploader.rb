@@ -6,6 +6,7 @@ require 'media/video/editing/cmd/extract_frame'
 require 'media/video/editing/conversion'
 require 'media/video/editing/conversion/job'
 require 'media/image/editing/resize_to_fill'
+require 'env_relative_path'
 
 module Media
   module Video
@@ -14,6 +15,7 @@ module Media
       require 'media/video/uploader/validation'
 
       include Validation
+      include EnvRelativePath
 
       PUBLIC_RELATIVE_FOLDER        = env_relative_path 'media_elements/videos'
       ABSOLUTE_FOLDER               = File.join RAILS_PUBLIC, PUBLIC_RELATIVE_FOLDER

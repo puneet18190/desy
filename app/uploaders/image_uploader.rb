@@ -1,10 +1,13 @@
 # encoding: utf-8
 
+require 'env_relative_path'
+
 class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
+  include EnvRelativePath
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   # include Sprockets::Helpers::RailsHelper
@@ -14,13 +17,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
 
+  STORE_DIR            = env_relative_path "media_elements/images"
   EXTENSION_WHITE_LIST = %w(jpg jpeg png)
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   # TODO omologarla agli altri uploaders (relatività con Rails.env)
   def store_dir
-    "media_elements/images/#{model.id}"
+    File.join STORE_DIR, "#{model.id}"
   end
 
   def cache_dir

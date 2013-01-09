@@ -3,6 +3,7 @@ require 'media/audio'
 require 'media/uploader'
 require 'media/allowed_duration_range'
 require 'media/audio/editing/conversion/job'
+require 'env_relative_path'
 
 module Media
   module Audio
@@ -11,6 +12,7 @@ module Media
       require 'media/audio/uploader/validation'
 
       include Validation
+      include EnvRelativePath
 
       PUBLIC_RELATIVE_FOLDER        = env_relative_path 'media_elements/audios'
       ABSOLUTE_FOLDER               = File.join RAILS_PUBLIC, PUBLIC_RELATIVE_FOLDER
