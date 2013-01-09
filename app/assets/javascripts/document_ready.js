@@ -748,12 +748,13 @@ $(document).ready(function() {
     if($('#' + component_id + '_cutter').hasClass('_mini_cutter')) {
       $('#' + component_id + '_cutter').css('left', (43 + getAbsolutePositionTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186, pos, 5)));
     }
-    if(scroll_to != $('#media_elements_list_in_video_editor').data('jsp').getContentPositionX()) {
+    var jsp_handler = $('#media_elements_list_in_video_editor').data('jsp');
+    if(scroll_to != jsp_handler.getContentPositionX() && jsp_handler.getPercentScrolledX() != 1) {
       $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
         showVideoEditorCutter(component_id);
         $('#media_elements_list_in_video_editor').jScrollPane().unbind('panescrollstop');
       });
-      $('#media_elements_list_in_video_editor').data('jsp').scrollToX(scroll_to, true);
+      jsp_handler.scrollToX(scroll_to, true);
     } else {
       showVideoEditorCutter(component_id);
     }
