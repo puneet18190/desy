@@ -8,7 +8,10 @@
 </head>
 <body>
 <div class="lesson-editor-container">
-
+  <% if(@lesson && (@lesson.slides.count > 1)) %>
+    <a class="nav_left"></a>
+    <a class="nav_right"></a>
+  <% end %>
   <div class="content">
     <%= yield :nav %>
     
