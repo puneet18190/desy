@@ -753,7 +753,10 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_done_video_component_in_video_editor_preview', function() {
     closeGenericVideoComponentCutter();
-    // TODO qui devo stoppare il media
+    var component_id = $(this).parent().parent().attr('id');
+    var identifier = component_id.split('_');
+    identifier = identifier[identifier.length - 2];
+    stopVideoInVideoEditorPreview(identifier);
   });
   
   $('body').on('click', '._media_player_done_other_component_in_video_editor_preview', function() {
@@ -794,7 +797,7 @@ $(document).ready(function() {
       $(this).remove();
       reloadVideoEditorComponentPositions();
       var old_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', ''));
-      $('#video_editor_timeline').css('width', ((old_timeline_width - 187) + 'px'));
+      $('#video_editor_timeline').css('width', ((old_timeline_width - 186) + 'px'));
       $('#media_elements_list_in_video_editor').jScrollPane({
         autoReinitialise: true
       });
