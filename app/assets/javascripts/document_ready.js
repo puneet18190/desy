@@ -748,12 +748,13 @@ $(document).ready(function() {
     if($('#' + component_id + '_cutter').hasClass('_mini_cutter')) {
       $('#' + component_id + '_cutter').css('left', (43 + getAbsolutePositionTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186, pos, 5)));
     }
-    if(scroll_to != $('#media_elements_list_in_video_editor').data('jsp').getContentPositionX()) {
+    var jsp_handler = $('#media_elements_list_in_video_editor').data('jsp');
+    if(scroll_to != jsp_handler.getContentPositionX() && jsp_handler.getPercentScrolledX() != 1) {
       $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
         showVideoEditorCutter(component_id);
         $('#media_elements_list_in_video_editor').jScrollPane().unbind('panescrollstop');
       });
-      $('#media_elements_list_in_video_editor').data('jsp').scrollToX(scroll_to, true);
+      jsp_handler.scrollToX(scroll_to, true);
     } else {
       showVideoEditorCutter(component_id);
     }
@@ -768,9 +769,20 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._media_player_done_other_component_in_video_editor_preview', function() {
-    closeGenericVideoComponentCutter();
-    // TODO qui devo anche salvare l'input e mandare una popup se è sbagliato
-    // TODO anche, devo aggiornare le durate
+    var component_id = $(this).parent().parent().attr('id');
+    var identifier = component_id.split('_');
+    identifier = identifier[identifier.length - 2];
+    var duration = parseInt($('#' + component_id + ' ._duration_selector input').val());
+    if(isNaN(duration) || duration < 1) {
+      showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
+    } else {
+      closeGenericVideoComponentCutter();
+      changeDurationVideoEditorComponent(('video_component_' + identifier), duration);
+      $('#' + component_id + ' ._duration_selector input').val('');
+      $('#' + component_id + ' ._old').html(secondsToDateString(duration));
+      $('#video_component_' + identifier + ' ._video_component_input_duration').val(duration);
+      highlightAndUpdateVideoComponentIcon('video_component_' + identifier);
+    }
   });
   
   $('body').on('click', '._exit_video_editor', function() {
