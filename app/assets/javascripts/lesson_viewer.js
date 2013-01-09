@@ -59,15 +59,15 @@ $(document).ready(function() {
   
   
   $('#right_scroll a, a.navRight').hover(function(){
-    $('a.navRight').fadeTo("fast",0.6);
-  },function(){
     $('a.navRight').fadeTo("fast",1);
+  },function(){
+    $('a.navRight').fadeTo("fast",0.6);
   });
   
   $('#left_scroll a, a.navLeft').hover(function(){
-    $('a.navLeft').fadeTo("fast",0.6);
-  },function(){
     $('a.navLeft').fadeTo("fast",1);
+  },function(){
+    $('a.navLeft').fadeTo("fast",0.6);
   });
   
   $('#right_scroll a, a.navRight').click(function(e) {
