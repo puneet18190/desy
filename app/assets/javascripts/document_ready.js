@@ -777,6 +777,10 @@ $(document).ready(function() {
     } else {
       closeGenericVideoComponentCutter();
       changeDurationVideoEditorComponent(('video_component_' + identifier), duration);
+      $('#' + component_id + ' ._duration_selector input').val('');
+      $('#' + component_id + ' ._old').html(secondsToDateString(duration));
+      $('#video_component_' + identifier + ' ._video_component_input_duration').val(duration);
+      highlightAndUpdateVideoComponentIcon('video_component_' + identifier);
     }
   });
   
