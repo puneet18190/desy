@@ -51,6 +51,28 @@ function initializeMedia(content_id, type) {
   $('#' + content_id).data('initialized', true);
 }
 
+function stopMedia(media) {
+  try {
+    if($(media).length != 0) {
+      var has_source = true;
+      $(media).find('source').each(function() {
+        if($(this).attr('src') == '') {
+          has_source = false;
+        }
+      });
+      if(has_source) {
+        var container_id = $(media).parent().attr('id');
+        $('#' + container_id + ' ._media_player_pause').click();
+        $('#' + container_id + ' ._media_player_slider').slider('value', 0);
+        $('#' + container_id + ' ._media_player_current_time').html(secondsToDateString(0));
+        setCurrentTimeToMedia($(media), 0);
+      }
+    }
+  } catch(err) {
+    console.log('error stopping media: ' + err);
+  }
+}
+
 
 // VIDEO PLAYERS IN VIDEO EDITOR
 
@@ -73,12 +95,10 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
   var duration = $('#video_component_' + identifier + '_preview').data('duration');
   var parsed_int = parseInt(media.currentTime);
   if(parsed_int == (duration + 1)) {
-    $('#video_component_' + identifier + '_cutter ._media_player_pause').click();
+    $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').click();
     $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value', 0);
-    $('#video_component_' + identifier + '_cutter ._media_player_current_time').html(secondsToDateString(0));
     setCurrentTimeToMedia($(media), 0);
   } else if($('#video_component_' + identifier + '_cutter ._media_player_play_in_video_editor_preview').css('display') == 'none') {
-    $('#video_component_' + identifier + '_cutter ._media_player_current_time').html(secondsToDateString(parsed_int));
     $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value', parsed_int);
   }
 }
@@ -93,7 +113,6 @@ function initializeVideoInVideoEditorPreview(identifier) {
     slide: function(event, ui) {
       if($('#video_component_' + identifier + '_cutter ._media_player_play_in_video_editor_preview').css('display') == 'block') {
         setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), ui.value);
-        $('#video_component_' + identifier + '_cutter ._media_player_current_time').html(secondsToDateString(ui.value));
       }
     }
   });
@@ -101,6 +120,26 @@ function initializeVideoInVideoEditorPreview(identifier) {
   $('#video_component_' + identifier + '_preview video').bind('ended', function() {
     stopMedia(this);
   });
+}
+
+function stopVideoInVideoEditorPreview(identifier) {
+  try {
+    if($('#video_component_' + identifier + '_preview video').length != 0) {
+      var has_source = true;
+      $('#video_component_' + identifier + '_preview video').find('source').each(function() {
+        if($(this).attr('src') == '') {
+          has_source = false;
+        }
+      });
+      if(has_source) {
+        $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').click();
+        $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value', 0);
+        setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), 0);
+      }
+    }
+  } catch(err) {
+    console.log('error stopping media: ' + err);
+  }
 }
 
 
@@ -120,26 +159,4 @@ function stopAllMedia() {
   $('audio, video').each(function() {
     stopMedia(this);
   });
-}
-
-function stopMedia(media) {
-  try {
-    if($(media).length != 0) {
-      var has_source = true;
-      $(media).find('source').each(function() {
-        if($(this).attr('src') == '') {
-          has_source = false;
-        }
-      });
-      if(has_source) {
-        var container_id = $(media).parent().attr('id');
-        $('#' + container_id + ' ._media_player_pause').click();
-        $('#' + container_id + ' ._media_player_slider').slider('value', 0);
-        $('#' + container_id + ' ._media_player_current_time').html(secondsToDateString(0));
-        setCurrentTimeToMedia($(media), 0);
-      }
-    }
-  } catch(err) {
-    console.log('error stopping media: ' + err);
-  }
 }

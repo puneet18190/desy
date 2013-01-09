@@ -14,7 +14,7 @@
       <% if @parameters[:initial_video] %>
         <%= hidden_field_tag 'initial_video_id', @parameters[:initial_video].id, :id => 'initial_video_in_video_editor_input' %>
       <% end %>
-      <%= hidden_field_tag 'audio_id', (@parameters[:audio].nil? ? '' : @parameters[:audio].id), :id => 'audio_track_in_video_editor_input' %>
+      <%= hidden_field_tag 'audio_id', (@parameters[:audio_track].nil? ? '' : @parameters[:audio_track].id), :id => 'audio_track_in_video_editor_input' %>
       <%= render :partial => 'timeline', :locals => {:parameters => @parameters} %>
       <div class="addAudioandSave _video_editor_bottom_bar">
         <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
