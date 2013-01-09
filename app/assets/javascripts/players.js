@@ -118,7 +118,7 @@ function initializeVideoInVideoEditorPreview(identifier) {
   });
   initializeMediaTimeUpdaterInVideoEditor('#video_component_' + identifier + '_preview video', identifier);
   $('#video_component_' + identifier + '_preview video').bind('ended', function() {
-    stopMedia(this);
+    stopVideoInVideoEditorPreview(identifier);
   });
 }
 
