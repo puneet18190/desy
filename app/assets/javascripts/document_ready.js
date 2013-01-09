@@ -772,16 +772,21 @@ $(document).ready(function() {
     var component_id = $(this).parent().parent().attr('id');
     var identifier = component_id.split('_');
     identifier = identifier[identifier.length - 2];
-    var duration = parseInt($('#' + component_id + ' ._duration_selector input').val());
-    if(isNaN(duration) || duration < 1) {
-      showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
-    } else {
+    var duration = $('#' + component_id + ' ._duration_selector input').val();
+    if(duration == '') {
       closeGenericVideoComponentCutter();
-      changeDurationVideoEditorComponent(('video_component_' + identifier), duration);
-      $('#' + component_id + ' ._duration_selector input').val('');
-      $('#' + component_id + ' ._old').html(secondsToDateString(duration));
-      $('#video_component_' + identifier + ' ._video_component_input_duration').val(duration);
-      highlightAndUpdateVideoComponentIcon('video_component_' + identifier);
+    } else {
+      duration = parseInt(duration);
+      if(isNaN(duration) || duration < 1) {
+        showErrorPopUp($('#popup_captions_container').data('invalid-component-duration-in-video-editor'));
+      } else {
+        closeGenericVideoComponentCutter();
+        changeDurationVideoEditorComponent(('video_component_' + identifier), duration);
+        $('#' + component_id + ' ._duration_selector input').val('');
+        $('#' + component_id + ' ._old').html(secondsToDateString(duration));
+        $('#video_component_' + identifier + ' ._video_component_input_duration').val(duration);
+        highlightAndUpdateVideoComponentIcon('video_component_' + identifier);
+      }
     }
   });
   
