@@ -18,5 +18,5 @@ function getAbsolutePositionTimelineHorizontalScrollPane(jscrollpane_id, compone
 
 function getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpane_id, component_width) {
   var hidden_to_left = $('#' + jscrollpane_id).data('jsp').getContentPositionX();
-  var how_many_hidden_to_left = parseInt(hidden_to_left / component_width);
+  return parseInt(hidden_to_left / component_width);
 }

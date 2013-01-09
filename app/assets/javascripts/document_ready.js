@@ -746,7 +746,7 @@ $(document).ready(function() {
     var pos = $('#' + component_id).data('position');
     var scroll_to = getNormalizedPositionTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186, pos, 5);
     if($('#' + component_id + '_cutter').hasClass('_mini_cutter')) {
-      $('#' + component_id + '_cutter').css('left', getAbsolutePositionTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186, pos, 5));
+      $('#' + component_id + '_cutter').css('left', (43 + getAbsolutePositionTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186, pos, 5)));
     }
     if(scroll_to != $('#media_elements_list_in_video_editor').data('jsp').getContentPositionX()) {
       $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
