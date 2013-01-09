@@ -753,7 +753,10 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_done_video_component_in_video_editor_preview', function() {
     closeGenericVideoComponentCutter();
-    // TODO qui devo stoppare il media
+    var component_id = $(this).parent().parent().attr('id');
+    var identifier = component_id.split('_');
+    identifier = identifier[identifier.length - 2];
+    stopVideoInVideoEditorPreview(identifier);
   });
   
   $('body').on('click', '._media_player_done_other_component_in_video_editor_preview', function() {
