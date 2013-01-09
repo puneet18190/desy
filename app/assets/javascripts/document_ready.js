@@ -742,17 +742,23 @@ $(document).ready(function() {
     if($('#' + component_id + '_preview').css('display') == 'none') {
       startVideoEditorPreviewClip(component_id);
     }
-    $('._video_editor_bottom_bar').css('visibility', 'hidden');
-    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
     $('#video_editor_box_ghost').show();
-    $('#' + component_id + ' ._video_component_cutter_arrow').show('fade', {}, 250);
-    $('#' + component_id + '_cutter').show('fade', {}, 250, function() {
-      $('._video_component_transition').addClass('current');
-      $('._video_editor_component:not(#' + component_id + ') ._video_editor_component_hover').addClass('selected');
-      $('._video_component_icon').addClass('selected');
-      $('#' + component_id + ' ._video_component_icon').removeClass('selected');
-      $('._new_component_in_video_editor_hover').addClass('selected');
+    var pos = $('#' + component_id).data('position');
+    var scroll_to = getNormalizedPositionTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186, pos, 5);
+    $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
+      $('._video_editor_bottom_bar').css('visibility', 'hidden');
+      $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
+      $('#' + component_id + ' ._video_component_cutter_arrow').show('fade', {}, 250);
+      $('#' + component_id + '_cutter').show('fade', {}, 250, function() {
+        $('._video_component_transition').addClass('current');
+        $('._video_editor_component:not(#' + component_id + ') ._video_editor_component_hover').addClass('selected');
+        $('._video_component_icon').addClass('selected');
+        $('#' + component_id + ' ._video_component_icon').removeClass('selected');
+        $('._new_component_in_video_editor_hover').addClass('selected');
+      });
+      $('#media_elements_list_in_video_editor').jScrollPane().unbind('panescrollstop');
     });
+    $('#media_elements_list_in_video_editor').data('jsp').scrollToX(scroll_to, true);
   });
   
   $('body').on('click', '._media_player_done_video_component_in_video_editor_preview', function() {
