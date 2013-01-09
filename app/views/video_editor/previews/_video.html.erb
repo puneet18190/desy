@@ -2,7 +2,9 @@
   webm = ''
   mp4 = ''
   duration = 0
+  div_id = ''
   if !empty
+    div_id = "id=\"video_component_#{identifier}_preview\""
     video = component[:video]
     webm = video.webm_path
     mp4 = video.mp4_path
@@ -11,7 +13,7 @@
 %>
 
 
-<div id="video_component_<%= identifier %>_preview" style="display:none" class="boxContentMediaElementVideo _video_component_preview" data-duration="<%= duration %>">
+<div style="display:none" class="boxContentMediaElementVideo _video_component_preview" data-duration="<%= duration %>" <%= div_id.html_safe %>>
   
   <div class="videoPlayer">
     <video width="640" height="360">
