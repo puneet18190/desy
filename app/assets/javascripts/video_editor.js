@@ -137,6 +137,7 @@ function addImageComponentInVideoEditor(image_id, component, preview, duration) 
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true
   });
+  $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#info_container').data('last-component-id', next_position);
   // build preview
   var empty_preview = $('#empty_image_preview_for_video_editor').html();
@@ -220,6 +221,7 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true
   });
+  $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#info_container').data('last-component-id', next_position);
   // build preview
   var empty_preview = $('#empty_video_preview_for_video_editor').html();
@@ -317,6 +319,7 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true
   });
+  $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#info_container').data('last-component-id', next_position);
   // build preview
   var empty_preview = $('#empty_text_preview_for_video_editor').html();
