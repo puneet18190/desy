@@ -131,7 +131,7 @@ function reloadVideoEditorComponentPositions() {
 function addImageComponentInVideoEditor(image_id, component, preview, duration) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
   var next_position = $('#info_container').data('last-component-id') + 1;
-  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 187;
+  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 186;
   $('#media_elements_list_in_video_editor').data('jsp').destroy();
   $('#video_editor_timeline').css('width', new_timeline_width + 'px');
   $('#media_elements_list_in_video_editor').jScrollPane({
@@ -215,7 +215,7 @@ function replaceImageComponentInVideoEditor(image_id, component, preview, positi
 function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
   var next_position = $('#info_container').data('last-component-id') + 1;
-  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 187;
+  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 186;
   $('#media_elements_list_in_video_editor').data('jsp').destroy();
   $('#video_editor_timeline').css('width', new_timeline_width + 'px');
   $('#media_elements_list_in_video_editor').jScrollPane({
@@ -313,7 +313,7 @@ function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, posi
 function addTextComponentInVideoEditor(component, content, duration, background_color, text_color) {
   $('._new_component_in_video_editor_hover a').removeClass('current');
   var next_position = $('#info_container').data('last-component-id') + 1;
-  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 187;
+  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 186;
   $('#media_elements_list_in_video_editor').data('jsp').destroy();
   $('#video_editor_timeline').css('width', new_timeline_width + 'px');
   $('#media_elements_list_in_video_editor').jScrollPane({
