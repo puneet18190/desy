@@ -88,6 +88,7 @@ function saveCacheLoop() {
 }
 
 function showGalleryInVideoEditor(type) {
+  $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#video_editor_' + type + '_gallery_container').show();
   $('._video_editor_bottom_bar').hide();
   calculateNewPositionGalleriesInVideoEditor();
@@ -96,6 +97,7 @@ function showGalleryInVideoEditor(type) {
 
 function closeGalleryInVideoEditor(type) {
   $('#video_editor_' + type + '_gallery_container').hide('fade', {}, 250, function() {
+    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
     $('._video_editor_bottom_bar').show();
     calculateNewPositionGalleriesInVideoEditor();
   });
