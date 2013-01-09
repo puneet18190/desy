@@ -8439,9 +8439,20 @@ $.widget("ui.dialog", {
 		}
 
 		if ( this.options.hide ) {
-			this.uiDialog.hide( this.options.hide, function() {
-				that._trigger( "close", event );
-			});
+			
+			// bug riparato da Adriano seguendo il link http://bugs.jqueryui.com/ticket/8684
+			
+			this.options.hide.complete = function() {
+        that._trigger( "close", event );
+      }; this.uiDialog.hide( this.options.hide);
+			
+			// fino a qui
+			// PRIMA ERA COSÌ:
+      //this.uiDialog.hide( this.options.hide, function() {
+      //  that._trigger( "close", event );
+      //});
+
+			
 		} else {
 			this.uiDialog.hide();
 			this._trigger( "close", event );
