@@ -57,14 +57,27 @@ $(document).ready(function() {
     updateLessonTitle();
   });
   
-  $('#right_scroll a').click(function(e) {
+  
+  $('#right_scroll a').hover(function(){
+    $('a.navRight').fadeTo("fast",0.6);
+  },function(){
+    $('a.navRight').fadeTo("fast",1);
+  });
+  
+  $('#left_scroll a').hover(function(){
+    $('a.navLeft').fadeTo("fast",0.6);
+  },function(){
+    $('a.navLeft').fadeTo("fast",1);
+  });
+  
+  $('#right_scroll a, a.navRight').click(function(e) {
     e.preventDefault();
     stopMediaInLessonViewer();
     scrollLesson('right');
     updateLessonTitle();
   });
   
-  $('#left_scroll a').click(function(e) {
+  $('#left_scroll a, a.navLeft').click(function(e) {
     e.preventDefault();
     stopMediaInLessonViewer();
     scrollLesson('left');
