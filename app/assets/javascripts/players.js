@@ -109,13 +109,18 @@ function initializeVideoInVideoEditorPreview(identifier) {
   $('#video_component_' + identifier + '_cutter ._media_player_slider').slider({
     min: 0,
     max: duration,
-    range: 'min',
     value: 0,
     slide: function(event, ui) {
       if($('#video_component_' + identifier + '_cutter ._media_player_play_in_video_editor_preview').css('display') == 'block') {
         setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), ui.value);
       }
     }
+  });
+  $('#video_component_' + identifier + '_cutter ._double_slider').slider({
+    min: 0,
+    max: duration,
+    range: true,
+    values: [0, duration]
   });
   initializeMediaTimeUpdaterInVideoEditor('#video_component_' + identifier + '_preview video', identifier);
   $('#video_component_' + identifier + '_preview video').bind('ended', function() {
