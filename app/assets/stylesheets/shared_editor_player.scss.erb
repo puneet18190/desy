@@ -448,3 +448,27 @@ a.addButtonContent {
    font-size: 220%;
    line-height: 120%;
  }
+.navLeft {
+  background: url(<%= asset_path 'nav_left.png' %>) center left no-repeat;
+  opacity:0.6;
+  position:absolute; 
+  left:0%; 
+  bottom:50%;
+  width:46px;
+  height:59px;
+  &:hover {
+    opacity:1;
+  };
+}
+.navRight {
+  background: url(<%= asset_path 'nav_right.png' %>) center left no-repeat;
+  opacity:0.6;
+  position:absolute; 
+  right:0%; 
+  bottom:50%;
+  width:46px;
+  height:59px;
+   &:hover {
+    opacity:1;
+  };
+} 

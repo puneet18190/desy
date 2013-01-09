@@ -4,12 +4,9 @@
       <%= form_for media_element, html: { class:"formModifyInfo", :multipart => true } do |f| %>
         <div class="cols fltlft">
           <div class="selectButton">
-            
-            <a class="uploadFileButton submitButton" id="media_element_media_pick">
-              <input type="file" name="media" class="innerUploadFileButton" />
-            </a>
-            
+            <a class="uploadFileButton submitButton" id="media_element_media_pick"> </a>
             <div id="media_element_media_show" class="fk_carica_elemento_file"><%= t('captions.select_file').downcase%></div>
+            <input type="file" name="media" class="innerUploadFileButton" />
           </div>
           <br class="clearfloat">
           <%= f.text_field :title, name: 'title', placeholder: t('forms.media_element.labels.title') %>
@@ -48,6 +45,9 @@
   $("._close").click(function(){
     $(this).parents("form")[0].reset();
     $("#media_element_media_show").text("<%= t('captions.select_file').downcase%>");
+    $(".form_error").removeClass("form_error");
+    $("iframe").attr("src","about:blank");
+    
   })
   
   $("body").on("click","#new_media_element_submit", function(){

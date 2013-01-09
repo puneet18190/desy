@@ -1432,5 +1432,80 @@
 		scrollPagePercent			: .8		// Percent of visible area scrolled when pageUp/Down or track area pressed
 	};
 
-})(jQuery,this);
 
+
+
+/* MESSO DA ADRIANO!!!!! PER L'EVENTO STOP SCROLL
+  
+  jquery.scrollpane-startstop.js
+  Custom start and stop scrolling events for jScrollPane
+  https://gist.github.com/1963544
+  
+  Usage:
+  
+  $('#scroller').jScrollPane().bind('panescrollstart', function() {
+    console.log('Scrolling started');
+  }).bind('panescrollstop', function() {
+    console.log('Scrolling stopped');
+  });
+  
+  jScrollPane http://jscrollpane.kelvinluck.com/
+  
+  Insipred by James Padolsey's Special Scroll Events
+  http://james.padolsey.com/javascript/special-scroll-events-for-jquery/
+  
+*/
+
+
+
+  var special = $.event.special, uid1 = 'D' + (+new Date()), uid2 = 'D' + (+new Date() + 1), latency = 300;
+  special.panescrollstart = {
+    setup: function() {
+      var timer;
+      var handler = function(evt) {
+        var _self = this, _args = arguments;
+        if (timer) {
+          clearTimeout(timer);
+        } else {
+          evt.type = 'panescrollstart';
+          $.event.handle.apply(_self, _args);
+        }
+        timer = setTimeout(function() {
+          timer = null;
+        }, latency);
+      };
+      $(this).bind('jsp-scroll-x', handler).data(uid1, handler);
+      $(this).bind('jsp-scroll-y', handler).data(uid1, handler);
+    },
+    teardown: function() {
+      $(this).unbind( 'jsp-scroll-x', $(this).data(uid1) );
+      $(this).unbind( 'jsp-scroll-y', $(this).data(uid1) );
+    }
+  };
+  special.panescrollstop = {
+    setup: function() {
+      var timer;
+      var handler = function(evt) {
+        var _self = this, _args = arguments;
+        if (timer) {
+          clearTimeout(timer);
+        }
+        timer = setTimeout(function() {
+          timer = null;
+          evt.type = 'panescrollstop';
+          $.event.handle.apply(_self, _args);
+        }, latency);
+      };
+      $(this).bind('jsp-scroll-x', handler).data(uid2, handler);
+      $(this).bind('jsp-scroll-y', handler).data(uid2, handler);
+    },
+    teardown: function() {
+      $(this).unbind( 'jsp-scroll-x', $(this).data(uid2) );
+      $(this).unbind( 'jsp-scroll-y', $(this).data(uid2) );
+    }
+  };
+
+
+
+
+})(jQuery,this);

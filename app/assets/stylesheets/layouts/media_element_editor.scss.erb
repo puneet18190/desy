@@ -404,7 +404,7 @@ html.media_element_editor-layout {
   }
   /*SCROLL GALLERIA EDITOR VIDEO*/
   .scrollGatto {
-    text-align:left;    
+    text-align:left;
     
     .lista {
       margin: 0px;
@@ -435,7 +435,7 @@ html.media_element_editor-layout {
         background-repeat: no-repeat;
         background-position:0 0;
         float:left; 
-        margin:38px 7px 0px 7px;
+        margin:38px 4px 0px 7px;
         width:16px;
         &.current {
           background-image: none;
@@ -466,6 +466,7 @@ html.media_element_editor-layout {
   .boxMediaElement {
     width:156px;
     height:88px;
+    margin-left:3px;
     -webkit-box-shadow: 0px 2px 6px rgba(22, 21, 21, 0.6);
     box-shadow: 0px 2px 6px rgba(22, 21, 21, 0.6);
     position:relative;
@@ -590,10 +591,10 @@ html.media_element_editor-layout {
     width:156px;
     height:88px;
     margin-bottom:0;
-    margin-right:0;
+    margin-right:3px;
     position:relative;
-    -webkit-box-shadow: 0px 3px 10px #161515;
-    box-shadow: 0px 3px 10px #161515;
+    -webkit-box-shadow: 0px 2px 6px rgba(22, 21, 21, 0.6);
+    box-shadow: 0px 2px 6px rgba(22, 21, 21, 0.6);
     .contentNew {
       padding-top:15px;
       padding-left:50px;
@@ -656,7 +657,7 @@ html.media_element_editor-layout {
     width:156px;
     height:14px;
     position:absolute;
-    bottom:-26px;
+    top:130px;
   }
   #video_editor_cutters {
     .left {
@@ -702,12 +703,14 @@ html.media_element_editor-layout {
       font-size: 12px;
       
     }
-    .videoSlider {
-      margin-top:2px;
-    }
   }
-  
   .contentCutter {
+    .videoSlider, .videoDoubleSlider {
+      margin-top: 0;
+      width:93.4%;
+      position: absolute;
+      left: 27px;
+    }
     background-color:#232121;
     padding:0;
     width:905px;
@@ -737,7 +740,40 @@ html.media_element_editor-layout {
       background-color:#303030;
       margin-bottom:10px;
       .videoSlider {
-        width:95.4%;
+        z-index: 100;
+        .ui-slider-handle {
+          position: absolute;
+          z-index: 400;
+          background-color:#fff;
+          border-radius:0%;
+          height:6.5em;
+          width: 0;
+          top:-2.8em;
+          margin-left: 0;
+          border:1px solid white;
+        }
+      }
+      .videoDoubleSlider {
+        z-index: 200;
+        .ui-slider-handle {
+          position: absolute;
+          z-index: 500;
+          background-color: #43A848;
+          border-radius:0%;
+          height:6.5em;
+          width: 0;
+          top:-2.8em;
+          margin-left: 0;
+          border-left:4px solid #43A848;
+          border-right:4px solid #43A848;
+          border-top:1px solid #43A848;
+          border-bottom:1px solid #43A848;
+        }
+        .ui-slider-range {
+          position: absolute;
+          z-index: 300;
+          background: url(<%= asset_path 'bg_ui_slider_horizontal.png' %>) top left repeat-x;
+        }
       }
       .sliderDisabler {
         height: 67px;
@@ -747,21 +783,7 @@ html.media_element_editor-layout {
       }
       .ui-slider-horizontal {
         height:13px;
-        background: url(<%= asset_path 'bg_ui_slider_horizontal.png' %>) top left repeat-x;
-        
-      }
-      .ui-slider-range {
-        background: url(<%= asset_path 'bg_ui_slider_horizontal.png' %>) top left repeat-x;
-      }
-      .ui-slider-handle {
-        background-color:#fff;
-        border-radius:0%;
-        height:6.5em;
-        width: 0.1em;
-        top:-2.8em;
-        margin-left: 0;
-        border:1px solid white;
-        opacity:0.6;
+        background-color: #000;
       }
       .callout {
         top: -11px;

@@ -139,15 +139,16 @@ html.lesson-viewer-layout{
     bottom:0;
     background-color:#141313;
     ul {
-      padding-left:10px;
+      padding:0;
       display:inline-block;
       height:168px;
       width:auto;
+      margin: 0;
     }
     li {
       display: inline-block;
       list-style-type: none;
-      margin: 0 20px 0 10px;
+      margin: 0 55px 0 0;
       cursor:pointer;
     }
   }
@@ -599,17 +600,7 @@ html.lesson-viewer-layout{
     display:block;
     
   }
-  #left_scroll a:hover {
-    background: url(<%= asset_path 'freccia_left_lesson_viewer.svg' %>) center left no-repeat;
-    background-size: 8em;
-    opacity:0.4;
-  }
-  #right_scroll a:hover {
-    background: url(<%= asset_path 'freccia_right_lesson_viewer.svg' %>) center right no-repeat;
-    background-size: 8em;
-    opacity:0.4;
-  }
-  
+    
   .size1{
    font-size: 120%;
    line-height: 100%;
