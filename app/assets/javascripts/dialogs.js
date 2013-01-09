@@ -20,7 +20,7 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
       draggable: false,
       width: 485,
       show: "fade",
-      hide: "fade",
+      hide: {effect: "fade"},
       buttons: dialog_buttons,
       open: function(event, ui) {
         var overlay = obj.parent().prev();
@@ -73,7 +73,7 @@ function showVirtualClassroomQuickSelectPopUp(content) {
       draggable: false,
       width: 920,
       show: "fade",
-      hide: "fade",
+      hide: {effect: "fade"},
       open: function(event, ui) {
         var overlay = obj.parent().prev();
         overlay.addClass('dialog_opaco');
@@ -106,7 +106,7 @@ function showTimedPopUp(content, id) {
       draggable: false,
       width: 485,
       show: "fade",
-      hide: "fade",
+      hide: {effect: "fade"},
       open: function(event, ui) {
         setTimeout(function() {
           closePopUp(id);
@@ -140,7 +140,7 @@ function showMediaElementInfoPopUp(media_element_id) {
       draggable: false,
       width: 874,
       show: "fade",
-      hide: "fade",
+      hide: {effect: "fade"},
       close: function() {
         var player_container = $('#dialog-media-element-' + media_element_id + ' ._instance_of_player');
         if(player_container.length > 0) {
@@ -169,7 +169,7 @@ function showLoadMediaElementPopUp() {
       draggable: false,
       width: 760,
       show: "fade",
-      hide: "fade"
+      hide: {effect: "fade"}
     });
   }
 }
@@ -259,7 +259,7 @@ function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_
       draggable: false,
       width: 485,
       show: "fade",
-      hide: "fade",
+      hide: {effect: "fade"},
       buttons: dialog_buttons
     });
   }
