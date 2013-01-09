@@ -745,8 +745,9 @@ $(document).ready(function() {
     $('#video_editor_box_ghost').show();
     var pos = $('#' + component_id).data('position');
     var scroll_to = getNormalizedPositionTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186, pos, 5);
-    // TODO solo se è piccolo mini cutter, PRENDI LA POSIZIONE (fai funzione generale)
-    // TODO alle stesse condizioni, sposta con un left l'oggetto giusto
+    if($('#' + component_id + '_cutter').hasClass('_mini_cutter')) {
+      $('#' + component_id + '_cutter').css('left', getAbsolutePositionTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186, pos, 5));
+    }
     if(scroll_to != $('#media_elements_list_in_video_editor').data('jsp').getContentPositionX()) {
       $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
         showVideoEditorCutter(component_id);
