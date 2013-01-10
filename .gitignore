@@ -28,7 +28,10 @@
 /public/media_elements
 
 # Seeds development
-#/db/seeds/*
-#/script/development_seeds.rb
+# /db/seeds/*
+# /script/development_seeds.rb
 
 /backups
+
+# Ignoro gli assets
+# /public/assets
