@@ -27,11 +27,8 @@
 # Media elements caricati
 /public/media_elements
 
-# Seeds development
-# /db/seeds/*
-# /script/development_seeds.rb
-
+# Cartella dei backups
 /backups
 
-# Ignoro gli assets
-# /public/assets
+# Ignoro gli assets perché altrimenti si hanno effetti strani in sviluppo
+/public/assets
