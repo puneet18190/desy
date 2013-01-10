@@ -136,6 +136,15 @@ p {
   
   padding-bottom: 15px;
 }
+/*  TOOLTIP */
+.ui-tooltip {
+  padding: 10px;
+  color: #5D5C5C;
+  background-color: white;
+  box-shadow: 0px 3px 4px lightGrey;
+  border-top: 1px solid #F2F1F2;
+}
+
 .footer {
   width:100%;
   position:fixed;
