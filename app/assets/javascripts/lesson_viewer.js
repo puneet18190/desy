@@ -13,7 +13,7 @@ $(document).ready(function() {
   slides.first().addClass('_lesson_viewer_current_slide');
   
   var lessonsNum = $('.playlistMenu ul li').length;
-  $('.scrollContent').css('width', ((lessonsNum * 305)-55) + 'px');
+  $('.scrollContent').css('width', ((lessonsNum * 306)-58) + 'px');
   
   $("._lesson_title_in_playlist").first().show();
   $('.playlistMenu ul li:last').css("margin","0");
