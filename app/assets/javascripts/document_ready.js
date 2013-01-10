@@ -1150,8 +1150,9 @@ $(document).ready(function() {
   // TOOLTIP
   $(function() {
     $( document ).tooltip({
+      items: "a[title]",
       position: {
-        my: "center bottom-2",
+        my: "center bottom+60",
         at: "center top",
         using: function( position, feedback ) {
           $( this ).css( position );
