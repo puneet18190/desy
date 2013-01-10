@@ -174,6 +174,10 @@ $(document).ready(function() {
     full_place.addClass(new_mask).removeClass(old_mask);
     var img_tag = $('#' + place_id + ' ._full_image_in_slide img');
     img_tag.attr('src', image_url);
+    //reset position on image change
+    img_tag.parent().css("left",0);
+    img_tag.parent().css("top",0);
+
     img_tag.removeAttr(old_orientation);
     img_tag.attr(orientation, orientation_val);
     makeDraggable(place_id);
