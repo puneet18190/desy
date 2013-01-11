@@ -1,14 +1,15 @@
 @mixin button-test {
-  $button-size: 3.6em;
+  $button-size: 3.5em;
   & {
     display: inline-block;
     width: $button-size;
     height: $button-size;
-    background-image: url(<%= asset_path 'action-button3.svg' %>);
+    background-image: url(<%= asset_path 'action_buttons.svg' %>);
     background-repeat: no-repeat;
     background-size: ($button-size*2) ($button-size*10);
     padding:0;
     margin-right:8px;
+    font-size:1em;
   }
   
   &:hover {
