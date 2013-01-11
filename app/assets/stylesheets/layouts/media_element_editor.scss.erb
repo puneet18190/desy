@@ -19,6 +19,7 @@ html.media_element_editor-layout {
     background-color:#43a848;
     padding:5px;
     margin: 0 auto;
+    height:34px;
     
     .contenitore {
       width: 960px;
@@ -312,7 +313,7 @@ html.media_element_editor-layout {
     
     width: $icon-size;
     height: $icon-size;
-    background-image: url(<%= asset_path 'icone_editor_elementi.svg' %>);
+    background-image: url(<%= asset_path 'set-editor-elementi.svg' %>);
     background-repeat: no-repeat;
     background-size: ($icon-size*3) ($icon-size*4);
     padding:0;
@@ -345,37 +346,39 @@ html.media_element_editor-layout {
     .contentSelectButton {
       float:left;
       padding-top:45px;
+
       .videoButton {
-      @include iconEditorElement();
-      background-position: 0 0;
-      opacity:1;
-      cursor:pointer;
-      &:hover, &.current {
+        @include iconEditorElement();
         background-position: (-$icon-size) 0;
         opacity:0.4;
+        
+        cursor:pointer;
+        &:hover, &.current {
+          background-position: 0  0;
+          opacity:1;
+        }
       }
-     }
-    .photoButton {
-      @include iconEditorElement();
-      
-      background-position: 0 (-$icon-size*2);
-      opacity:1;
-      cursor:pointer;
-      &:hover, &.current {
-        background-position: (-$icon-size)(-$icon-size*2);
+      .photoButton {
+        @include iconEditorElement();
+        
+        background-position: (-$icon-size) (-$icon-size*2);
         opacity:0.4;
+        cursor:pointer;
+        &:hover, &.current {
+          background-position: 0 (-$icon-size*2);
+          opacity:1;
+        }
       }
-    }
-    .audioButton {
-      @include iconEditorElement();
-      background-position: 0 (-$icon-size);
-      opacity:1;
-      cursor:pointer;
-      &:hover, &.current {
+      .audioButton {
+        @include iconEditorElement();
         background-position: (-$icon-size) (-$icon-size);
         opacity:0.4;
+        cursor:pointer;
+        &:hover, &.current {
+          background-position: 0 (-$icon-size);
+          opacity:1;
+        }
       }
-    }
     }
   }
   @mixin iconeTipoElemento {
