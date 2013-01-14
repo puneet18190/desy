@@ -415,19 +415,22 @@ html.lesson-editor-layout{
             }
           }
           /*roll-over span*/
+
           span.add-audio{
-            width: 2em;
-            height: 2em;
-            background:url('/assets/icone_piene.svg') 0 center no-repeat transparent;
-            background-size: 12em;
+            $button-size: 2em;
+            width: $button-size;
+            height: $button-size;
+            background:url('/assets/icone_piene.svg') 0.1em center no-repeat transparent;
+            background-size: ($button-size*5);
             cursor: pointer;
             position:absolute;
-            top:25px;
-            right:30px;
+            top:15px;
+            right:25px;
             opacity:1;
+            font-size:1.8em;
           }
           span.add-audio:hover{
-            background-position: -6em center;
+            background-position: -8.2em center;
           }
         }
 
