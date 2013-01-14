@@ -18,11 +18,11 @@ subject3 = Subject.find 3
 
 media_element_types = [ 'Video' ]*5 + [ 'Image', 'Audio' ] + ([ 'Video' ]*14 + [ 'Audio' ]*18 + [ 'Image' ] * 31).shuffle
 
-images = Dir.glob("#{Rails.root}/db/seeds/images/*").grep(/\.jpe?g|png$/).shuffle
-videos = Dir.glob("#{Rails.root}/db/seeds/videos/*.mp4").shuffle.map do |v|
+images = Dir.glob("#{Rails.root}/db/seeds/environments/development/media_elements/images/*").grep(/\.jpe?g|png$/).shuffle
+videos = Dir.glob("#{Rails.root}/db/seeds/environments/development/media_elements/videos/*.mp4").shuffle.map do |v|
   { mp4: v, webm: v.sub(/\.mp4$/, '.webm'), filename: File.basename(v, File.extname(File.basename v)) }
 end
-audios = Dir.glob("#{Rails.root}/db/seeds/audios/*.mp3").shuffle.map do |v|
+audios = Dir.glob("#{Rails.root}/db/seeds/environments/development/media_elements/audios/*.mp3").shuffle.map do |v|
   { mp3: v, ogg: v.sub(/\.mp3$/, '.ogg'), filename: File.basename(v, File.extname(File.basename v)) }
 end
 
