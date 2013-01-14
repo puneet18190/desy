@@ -498,7 +498,9 @@ function startVideoEditorPreviewClip(component_id) {
   $('#' + component_id + '_preview').show('fade', {}, 250);
 }
 
-function commitVideoComponentVideoCutter(identifier, from, to) {
+function commitVideoComponentVideoCutter(identifier) {
+  var from = $('#video_component_' + identifier + '_cutter').data('from');
+  var to = $('#video_component_' + identifier + '_cutter').data('to');
   $('#video_component_' + identifier + ' ._video_component_input_from').val(from);
   $('#video_component_' + identifier + ' ._video_component_input_to').val(to);
   changeDurationVideoEditorComponent('video_component_' + identifier, to - from);

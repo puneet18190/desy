@@ -766,6 +766,7 @@ $(document).ready(function() {
     var identifier = component_id.split('_');
     identifier = identifier[identifier.length - 2];
     stopVideoInVideoEditorPreview(identifier);
+    commitVideoComponentVideoCutter(identifier);
   });
   
   $('body').on('click', '._media_player_done_other_component_in_video_editor_preview', function() {
@@ -1090,8 +1091,8 @@ $(document).ready(function() {
   
   $('body').on('click', '._precision_arrow_left', function() {
     var cutter = $(this).parent().parent();
-    var identifier = position.split('_');
-    identifier = identifier[identifier.length - 1];
+    var identifier = cutter.attr('id').split('_');
+    identifier = identifier[identifier.length - 2];
     var single_slider = cutter.find('._media_player_slider');
     var double_slider = cutter.find('._double_slider');
     if(single_slider.find('.ui-slider-handle').hasClass('selected')) {
@@ -1119,8 +1120,8 @@ $(document).ready(function() {
   
   $('body').on('click', '._precision_arrow_right', function() {
     var cutter = $(this).parent().parent();
-    var identifier = position.split('_');
-    identifier = identifier[identifier.length - 1];
+    var identifier = cutter.attr('id').split('_');
+    identifier = identifier[identifier.length - 2];
     var duration = cutter.data('max-to');
     var single_slider = cutter.find('._media_player_slider');
     var double_slider = cutter.find('._double_slider');
