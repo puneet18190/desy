@@ -106,6 +106,9 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
 
 function initializeVideoInVideoEditorPreview(identifier) {
   var my_cutter = $('#video_component_' + identifier + '_cutter');
+  $('#video_component_' + identifier + '_preview video').on('loadeddata', function() {
+    setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), my_cutter.data('from'));
+  });
   var video_max_to = my_cutter.data('max-to');
   my_cutter.find('._media_player_slider').slider({
     min: 0,
