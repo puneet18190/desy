@@ -417,21 +417,23 @@ html.lesson-editor-layout{
           /*roll-over span*/
 
           span.add-audio{
-            $button-size: 2em;
-            width: $button-size;
-            height: $button-size;
-            background:url('/assets/icone_piene.svg') 0.1em center no-repeat transparent;
-            background-size: ($button-size*5);
+            $button-sizeAudio: 2.2em;
+            width: $button-sizeAudio;
+            height: $button-sizeAudio;
+            background:url('/assets/add_audio.svg') 0  no-repeat transparent;
+            background-size: ($button-sizeAudio*2);
             cursor: pointer;
             position:absolute;
             top:15px;
-            right:25px;
+            right:19px;
             opacity:1;
-            font-size:1.8em;
+            font-size:1.6em;
+            &:hover {
+              background-position: (-$button-sizeAudio);
+            }
+
           }
-          span.add-audio:hover{
-            background-position: -8.2em center;
-          }
+          
         }
 
         &.video2{
