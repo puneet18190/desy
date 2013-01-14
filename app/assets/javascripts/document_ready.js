@@ -1150,4 +1150,10 @@ $(document).ready(function() {
     $('#' + preview_id + ' video')[0].pause();
   });
   
+  $('body').on('click', '._video_component_cutter ._double_slider .ui-slider-range', function() {
+    
+    console.log('EHIIIIII');
+    
+  });
+  
 });
