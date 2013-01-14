@@ -121,19 +121,19 @@ function initializeVideoInVideoEditorPreview(identifier) {
     min: 0,
     max: video_max_to,
     range: true,
-    values: [0, video_max_to],
+    values: [my_cutter.data('from'), my_cutter.data('to')],
     stop: function(event, ui) {
       var left_val = ui.values[0];
       var right_val = ui.values[1];
       if(left_val != my_cutter.data('from')) {
-        if(left_val == video_max_to || left_val == right_val) {
+        if(left_val == right_val) {
           my_cutter.find('._double_slider').slider('values', 0, left_val - 1);
           left_val -= 1;
         }
         cutVideoComponentLeftSide(identifier, left_val);
       }
       if(right_val != my_cutter.data('to')) {
-        if(right_val == 0 || left_val == right_val) {
+        if(left_val == right_val) {
           my_cutter.find('._double_slider').slider('values', 1, right_val + 1);
           right_val += 1;
         }
