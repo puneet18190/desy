@@ -1150,10 +1150,16 @@ $(document).ready(function() {
     $('#' + preview_id + ' video')[0].pause();
   });
   
-  $('body').on('click', '._video_component_cutter ._double_slider .ui-slider-range', function() {
-    
-    console.log('EHIIIIII');
-    
+  $('body').on('click', '._video_component_cutter ._double_slider .ui-slider-range', function(e) {
+    var cutter = $(this).parent().parent().parent();
+    var percent = cutter.data('max-to') * (e.pageX - cutter.find('._double_slider').offset().left) / cutter.find('._double_slider').width();
+    resp = parseInt(percent);
+    if(percent - parseInt(percent) > 0.5) {
+      resp += 1;
+    }
+    cutter.find('.ui-slider-handle').removeClass('selected');
+    cutter.find('._media_player_slider .ui-slider-handle').addClass('selected');
+    selectVideoComponentCutterHandle(cutter, resp);
   });
   
 });
