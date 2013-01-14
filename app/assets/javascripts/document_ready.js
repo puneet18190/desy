@@ -1097,14 +1097,17 @@ $(document).ready(function() {
       if(resp > 0 && resp > double_slider.slider('values', 0)) {
         selectVideoComponentCutterHandle(cutter, resp - 1);
       }
-    } else if(double_slider.find('.ui-slider-handle')[0].hasClass('selected')) {
+    } else if($(double_slider.find('.ui-slider-handle')[0]).hasClass('selected')) {
       var resp = double_slider.slider('values', 0);
       if(resp > 0) {
         double_slider.slider('values', 0, resp - 1);
       }
     } else {
       var resp = double_slider.slider('values', 1);
-      if(resp > 0) {
+      if(resp > double_slider.slider('values', 0) + 1) {
+        if(single_slider.slider('value') == resp) {
+          selectVideoComponentCutterHandle(cutter, resp - 1);
+        }
         double_slider.slider('values', 1, resp - 1);
       }
     }
@@ -1120,9 +1123,12 @@ $(document).ready(function() {
       if(resp < duration && resp < double_slider.slider('values', 1)) {
         selectVideoComponentCutterHandle(cutter, resp + 1);
       }
-    } else if(double_slider.find('.ui-slider-handle')[0].hasClass('selected')) {
+    } else if($(double_slider.find('.ui-slider-handle')[0]).hasClass('selected')) {
       var resp = double_slider.slider('values', 0);
-      if(resp < duration) {
+      if(resp < double_slider.slider('values', 1) - 1) {
+        if(single_slider.slider('value') == resp) {
+          selectVideoComponentCutterHandle(cutter, resp + 1);
+        }
         double_slider.slider('values', 0, resp + 1);
       }
     } else {
