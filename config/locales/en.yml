@@ -298,18 +298,28 @@ en:
     remove_virtual_classroom: 'click remove lesson from virtual classroom'
     unpublish: 'click to unpublish your lesson'
   general_titles:
+    add_element_title: 'add element'
     add_slides_title: 'add slide'
+    add_new_audio: 'add new audio'
+    audio_new_title: 'new audio'
     back_in_slides: 'back'
     change_information_slides: 'change information slides'
+    close_gallery_title: 'close gallery'
+    close_title: 'close'
     delete_slides_title: 'delete slide'
     exit_title: 'exit'
     forward_in_slides: 'forward'
+    fullscreen_title: 'fullscreen'
     header_notification: 'notice'
     header_help_for_me: 'help for me'
+    pause_title: 'pause'
+    photo_new_title: 'new photo'
+    play_title: 'play'
     refine_the_search: 'refine the search'
+    reports_title: 'reports'
     save_slides_title: 'save slide'
     search: 'search'
-
+    video_new_title: 'new video'
     
   help:
     dashboard:

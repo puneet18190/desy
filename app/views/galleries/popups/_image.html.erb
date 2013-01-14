@@ -5,6 +5,6 @@
       <p><%= image.title %></p>
       <p class="originalSize"><%= t('captions.original_size') %>: <%= image.width %> x <%= image.height %></p>
     </div>
-    <a class="addButtonContent current _select_image_from_gallery image-<%= image.id %>" data-image-id="<%= image.id %>" data-url="<%= image.path %>" data-width="<%= image.width %>" data-height="<%= image.height %>" style="float:right"></a>
+    <a class="addButtonContent current _select_image_from_gallery image-<%= image.id %>" data-image-id="<%= image.id %>" data-url="<%= image.path %>" data-width="<%= image.width %>" data-height="<%= image.height %>" style="float:right"  title="<%= t('general_titles.add_element_title') %>"></a>
   </div>
 </div>
