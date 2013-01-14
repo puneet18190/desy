@@ -783,13 +783,17 @@ html.media_element_editor-layout {
           cursor: default;
           position: absolute;
           z-index: 400;
-          background-color:#fff;
+          background-color: #787575;
           border-radius:0%;
           height:6.5em;
           width: 0;
           top:-2.8em;
           margin-left: 0;
-          border:1px solid white;
+          border:1px solid #787575;
+          &.selected {
+            background-color:#fff;
+            border:1px solid #fff;
+          }
         }
       }
       .videoDoubleSlider {
@@ -808,6 +812,13 @@ html.media_element_editor-layout {
           border-right:4px solid #43A848;
           border-top:1px solid #43A848;
           border-bottom:1px solid #43A848;
+          &.selected {
+            background-color: red;
+            border-left:4px solid red;
+            border-right:4px solid red;
+            border-top:1px solid red;
+            border-bottom:1px solid red;
+          }
         }
         .ui-slider-range {
           position: absolute;

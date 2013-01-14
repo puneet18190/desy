@@ -92,9 +92,9 @@ function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
 }
 
 function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
-  var duration = $('#video_component_' + identifier + '_preview').data('duration');
+  var video_cut_to = $('#video_component_' + identifier + '_cutter').data('to');
   var parsed_int = parseInt(media.currentTime);
-  if(parsed_int == (duration + 1)) {
+  if(parsed_int == (video_cut_to + 1)) {
     $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').click();
     var initial_time = $('#video_component_' + identifier + '_cutter').data('from');
     $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value', initial_time);
@@ -105,23 +105,64 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
 }
 
 function initializeVideoInVideoEditorPreview(identifier) {
-  var duration = $('#video_component_' + identifier + '_preview').data('duration');
-  $('#video_component_' + identifier + '_cutter ._media_player_slider').slider({
+  var my_cutter = $('#video_component_' + identifier + '_cutter');
+  $('#video_component_' + identifier + '_preview video').on('loadeddata', function() {
+    setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), my_cutter.data('from'));
+  });
+  var video_max_to = my_cutter.data('max-to');
+  my_cutter.find('._media_player_slider').slider({
     min: 0,
-    max: duration,
-    value: 0,
+    max: video_max_to,
+    value: my_cutter.data('from'),
     slide: function(event, ui) {
-      if($('#video_component_' + identifier + '_cutter ._media_player_play_in_video_editor_preview').css('display') == 'block') {
+      if(my_cutter.find('._media_player_play_in_video_editor_preview').css('display') == 'block') {
         setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), ui.value);
       }
     }
   });
-  $('#video_component_' + identifier + '_cutter ._double_slider').slider({
+  my_cutter.find('._double_slider').slider({
     min: 0,
-    max: duration,
+    max: video_max_to,
     range: true,
-    values: [0, duration]
+    values: [my_cutter.data('from'), my_cutter.data('to')],
+    slide: function(event, ui) {
+      var left_val = ui.values[0];
+      var right_val = ui.values[1];
+      var cursor_val = my_cutter.find('._media_player_slider').slider('value');
+      if(left_val != my_cutter.data('from')) {
+        if(cursor_val < left_val) {
+          selectVideoComponentCutterHandle(my_cutter, $(ui.handle), left_val);
+        } else {
+          selectVideoComponentCutterHandle(my_cutter, $(ui.handle));
+        }
+      } else {
+        if(cursor_val > right_val) {
+          selectVideoComponentCutterHandle(my_cutter, $(ui.handle), right_val);
+        } else {
+          selectVideoComponentCutterHandle(my_cutter, $(ui.handle));
+        }
+      }
+    },
+    stop: function(event, ui) {
+      var left_val = ui.values[0];
+      var right_val = ui.values[1];
+      if(left_val != my_cutter.data('from')) {
+        if(left_val == right_val) {
+          my_cutter.find('._double_slider').slider('values', 0, left_val - 1);
+          left_val -= 1;
+        }
+        cutVideoComponentLeftSide(identifier, left_val);
+      }
+      if(right_val != my_cutter.data('to')) {
+        if(left_val == right_val) {
+          my_cutter.find('._double_slider').slider('values', 1, right_val + 1);
+          right_val += 1;
+        }
+        cutVideoComponentRightSide(identifier, right_val);
+      }
+    }
   });
+  $('#video_component_' + identifier + '_cutter ._media_player_slider .ui-slider-handle').addClass('selected');
   initializeMediaTimeUpdaterInVideoEditor('#video_component_' + identifier + '_preview video', identifier);
   $('#video_component_' + identifier + '_preview video').bind('ended', function() {
     stopVideoInVideoEditorPreview(identifier);
@@ -146,6 +187,15 @@ function stopVideoInVideoEditorPreview(identifier) {
     }
   } catch(err) {
     console.log('error stopping media: ' + err);
+  }
+}
+
+function selectVideoComponentCutterHandle(cutter, handle, val) {
+  cutter.find('.ui-slider-handle').removeClass('selected');
+  handle.addClass('selected');
+  if(typeof(val) != 'undefined') {
+    setCurrentTimeToMedia($('#' + cutter.attr('id').replace('cutter', 'preview') + ' video'), val);
+    cutter.find('._media_player_slider').slider('value', val);
   }
 }
 
