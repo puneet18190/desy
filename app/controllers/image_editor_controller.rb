@@ -31,9 +31,9 @@ class ImageEditorController < ApplicationController
           original_width = @image.media.width
           original_height = @image.media.height
           editing_folder = File.join(@image.media.absolute_folder, "editing","user_#{@current_user.id}")
-
+          
           #Make dir of first crop
-          FileUtils.mkdir_p(editing_folder) unless Dir.exists? editing_folder
+          fold = FileUtils.mkdir_p(editing_folder) unless Dir.exists? editing_folder
         end
         
         woh = width_or_height(original_width,original_height)
@@ -43,7 +43,10 @@ class ImageEditorController < ApplicationController
         y2= ratio_value(woh[1],params[:y2],woh[0])
         
         #BRING OUT IMAGE WRITE FROM CROP
+        
         @custom_filename = Media::Image::Editing::Crop.new(img, editing_folder, x1, y1, x2, y2).run
+        @editing_url = File.join(File.dirname(@image.media.url),"editing","user_#{@current_user.id}")
+        
         @image_id = params[:image_id]
         @crop = true
       else

@@ -3,7 +3,7 @@ if(<%=@crop%>){
     hide: true
   });
   $("._toggle_crop").removeClass("current");
-  $("#image_wrapper img").attr("src","/media_elements/images/<%=@image_id%>/editing/user_<%=@current_user.id%>/<%= @custom_filename %>");
+  $("#image_wrapper img").attr("src","<%=@editing_url%>/<%= @custom_filename %>");
   $('input[name="cropped_image"]').val("<%= @custom_filename %>");
   resetSelect();
 }

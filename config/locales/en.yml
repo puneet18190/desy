@@ -297,6 +297,13 @@ en:
     remove: 'stop following this item'
     remove_virtual_classroom: 'click remove lesson from virtual classroom'
     unpublish: 'click to unpublish your lesson'
+  general_titles:
+    header_notification: 'notice'
+    header_help_for_me: 'help for me'
+    refine_the_search: 'refine the search'
+    search: 'search'
+
+    
   help:
     dashboard:
       first:

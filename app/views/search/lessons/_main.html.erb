@@ -55,9 +55,9 @@
             </td>
             <td align="left" rowspan="2">
               <% if @search_item == 'lessons' && @did_you_search %>
-                <a id="search_lessons_submit" class="cerca current">&nbsp;</a>
+                <a id="search_lessons_submit" title="<%= t('general_titles.refine_the_search') %>" class="cerca current">&nbsp;</a>
               <% else %>
-                <a id="search_lessons_submit" class="cerca">&nbsp;</a>
+                <a id="search_lessons_submit" title="<%= t('general_titles.refine_the_search') %> " class="cerca">&nbsp;</a>
               <% end %>
             </td>
           </tr>

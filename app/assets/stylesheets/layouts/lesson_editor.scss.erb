@@ -415,20 +415,25 @@ html.lesson-editor-layout{
             }
           }
           /*roll-over span*/
+
           span.add-audio{
-            width: 2em;
-            height: 2em;
-            background:url('/assets/icone_piene.svg') 0 center no-repeat transparent;
-            background-size: 12em;
+            $button-sizeAudio: 2.2em;
+            width: $button-sizeAudio;
+            height: $button-sizeAudio;
+            background:url('/assets/add_audio.svg') 0  no-repeat transparent;
+            background-size: ($button-sizeAudio*2);
             cursor: pointer;
             position:absolute;
-            top:25px;
-            right:30px;
+            top:15px;
+            right:19px;
             opacity:1;
+            font-size:1.6em;
+            &:hover {
+              background-position: (-$button-sizeAudio);
+            }
+
           }
-          span.add-audio:hover{
-            background-position: -6em center;
-          }
+          
         }
 
         &.video2{
