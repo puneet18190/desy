@@ -1090,10 +1090,47 @@ $(document).ready(function() {
   
   $('body').on('click', '._precision_arrow_left', function() {
     var cutter = $(this).parent().parent();
+    var single_slider = cutter.find('._media_player_slider');
+    var double_slider = cutter.find('._double_slider');
+    if(single_slider.find('.ui-slider-handle').hasClass('selected')) {
+      var resp = single_slider.slider('value');
+      if(resp > 0 && resp > double_slider.slider('values', 0)) {
+        selectVideoComponentCutterHandle(cutter, resp - 1);
+      }
+    } else if(double_slider.find('.ui-slider-handle')[0].hasClass('selected')) {
+      var resp = double_slider.slider('values', 0);
+      if(resp > 0) {
+        double_slider.slider('values', 0, resp - 1);
+      }
+    } else {
+      var resp = double_slider.slider('values', 1);
+      if(resp > 0) {
+        double_slider.slider('values', 1, resp - 1);
+      }
+    }
   });
   
   $('body').on('click', '._precision_arrow_right', function() {
     var cutter = $(this).parent().parent();
+    var duration = cutter.data('max-to');
+    var single_slider = cutter.find('._media_player_slider');
+    var double_slider = cutter.find('._double_slider');
+    if(single_slider.find('.ui-slider-handle').hasClass('selected')) {
+      var resp = single_slider.slider('value');
+      if(resp < duration && resp < double_slider.slider('values', 1)) {
+        selectVideoComponentCutterHandle(cutter, resp + 1);
+      }
+    } else if(double_slider.find('.ui-slider-handle')[0].hasClass('selected')) {
+      var resp = double_slider.slider('values', 0);
+      if(resp < duration) {
+        double_slider.slider('values', 0, resp + 1);
+      }
+    } else {
+      var resp = double_slider.slider('values', 1);
+      if(resp < duration) {
+        double_slider.slider('values', 1, resp + 1);
+      }
+    }
   });
   
   initializeVideoEditor();
