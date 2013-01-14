@@ -298,9 +298,16 @@ en:
     remove_virtual_classroom: 'click remove lesson from virtual classroom'
     unpublish: 'click to unpublish your lesson'
   general_titles:
+    add_slides_title: 'add slide'
+    back_in_slides: 'back'
+    change_information_slides: 'change information slides'
+    delete_slides_title: 'delete slide'
+    exit_title: 'exit'
+    forward_in_slides: 'forward'
     header_notification: 'notice'
     header_help_for_me: 'help for me'
     refine_the_search: 'refine the search'
+    save_slides_title: 'save slide'
     search: 'search'
 
     

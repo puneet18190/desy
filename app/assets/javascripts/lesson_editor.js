@@ -19,6 +19,10 @@ $(document).ready(function() {
   $(window).resize(function() {
     $("html.lesson-editor-layout ul#slides").css("margin-top", ((($(window).height() - 590)/2)-40) + "px");
     $("html.lesson-editor-layout ul#slides.new").css("margin-top", ((($(window).height() - 590)/2)) + "px");
+    if(WW > 1000) {
+      $("ul#slides li:first").css("margin-left", (($(window).width() - 900) / 2) + "px")
+      $("ul#slides.new li:first").css("margin-left", (($(window).width() - 900) / 2) + "px");
+    }
     $("#footer").css("top", ($(window).height() - 40) + "px").css("width", ($(window).width() - 24) + "px");
   });
   

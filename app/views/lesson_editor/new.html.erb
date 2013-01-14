@@ -21,6 +21,7 @@
         <%= text_area_tag 'tags', tags_max, :class => 'pull-right', :onfocus =>"this.value=''"  %>
         <br />
         <%= submit_tag t('captions.next').downcase, :class => 'lesson-create pull-right' %>
+        <%= link_to t('captions.cancel').downcase, my_lessons_path,  :class => "buttonForm pull-right" %>
       <% end -%>
     </div>
     <div class="info-slide-footer">
