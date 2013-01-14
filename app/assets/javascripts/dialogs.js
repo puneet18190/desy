@@ -141,6 +141,12 @@ function showMediaElementInfoPopUp(media_element_id) {
       width: 874,
       show: "fade",
       hide: {effect: "fade"},
+      open: function() {
+        customOverlayClose();
+      },
+      beforeClose: function() {
+        removeCustomOverlayClose();
+      },
       close: function() {
         var player_container = $('#dialog-media-element-' + media_element_id + ' ._instance_of_player');
         if(player_container.length > 0) {
@@ -270,6 +276,7 @@ function closePopUp(id) {
 }
 
 function customOverlayClose(){
+  $(".ui-widget-overlay").css('display','block').css('height',(2*$(window).height())+"px");
   $(".ui-widget-overlay").addClass("_close_on_click_out");
 }
 
