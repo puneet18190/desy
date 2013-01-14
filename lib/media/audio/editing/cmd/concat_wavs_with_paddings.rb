@@ -1,11 +1,12 @@
-require 'media/video/editing'
-require 'media/video/editing'
-require 'media/video/editing/cmd'
-require 'media/video/editing/cmd/sox'
+require 'media'
+require 'media/audio'
+require 'media/audio/editing'
+require 'media/audio/editing/cmd'
+require 'media/audio/editing/cmd/sox'
 require 'shellwords'
 
 module Media
-  module Video
+  module Audio
     module Editing
       class Cmd
         class ConcatWavsWithPaddings < Cmd::Sox

@@ -2,13 +2,10 @@ require 'media'
 require 'media/video'
 require 'media/video/editing'
 require 'shellwords'
-require 'env_relative_path'
 
 module Media
   module Video
     module Editing
-      
-      include EnvRelativePath
       
       AVPROBE_BIN             = CONFIG.avtools.avprobe.cmd.bin
   
@@ -20,9 +17,6 @@ module Media
       AVCONV_OUTPUT_ASPECT_RATIO = Rational(AVCONV_OUTPUT_WIDTH, AVCONV_OUTPUT_HEIGHT)
       AVCONV_OUTPUT_THREADS      = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).threads] } ]
       AVCONV_OUTPUT_QA           = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).qa] } ]
-  
-      SOX_BIN            = CONFIG.sox.cmd.bin
-      SOX_GLOBAL_OPTIONS = CONFIG.sox.cmd.global_options
   
       IMAGEMAGICK_CONVERT_BIN = CONFIG.imagemagick.convert.cmd.bin
   

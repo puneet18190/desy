@@ -6,10 +6,9 @@ require 'media/in_tmp_dir'
 require 'media/info'
 require 'media/video/editing/cmd/audio_stream_to_file'
 require 'media/video/editing/cmd/mp3_to_wav'
-require 'media/video/editing/cmd/concat_wavs_with_paddings'
+require 'media/audio/editing/cmd/concat_wavs_with_paddings'
 require 'media/video/editing/cmd/merge_webm_video_streams'
-require 'media/video/editing/cmd/concat/mp4'
-require 'media/video/editing/cmd/concat/webm'
+require 'media/video/editing/cmd/concat'
 
 module Media
   module Video
@@ -92,10 +91,10 @@ module Media
         #
         #   1. se c'è almeno uno stream audio
         #     a. genero il file wav dell'audio
+        #     b. altrimenti no
         #   2. genero la traccia video concatenando le tracce video dei webm e scartando le relative tracce audio; dopo questa
         #      operazione avrò la traccia audio in formato wav e la traccia video in formato webm dei video finale
-        #   3. genero il video mp4 unendo le due tracce e convertendo la traccia video e l'eventuale traccia audio
-        #   4. genero il video webm unendo le due tracce e convertendo l'eventuale traccia audio
+        #   3. genero i video mp4 e webm unendo le due tracce e convertendo la traccia video e l'eventuale traccia audio
         def concat(mp4_inputs_infos, paddings)
           create_log_folder
   
@@ -103,26 +102,22 @@ module Media
             if mp4_inputs_infos.any?{ |info| info.audio_streams.present? } # 1.
               final_wav(mp4_inputs_infos, paddings) # 1.a
             else
-              nil
+              nil # 1.b
             end
   
           final_webm_no_audio = tmp_path FINAL_WEBM_NO_AUDIO
           Cmd::MergeWebmVideoStreams.new(webm_inputs, final_webm_no_audio).run! *logs('3_merge_webm_video_streams') # 2.
   
           final_webm_no_audio_info = Info.new final_webm_no_audio
+
+          FORMATS.map do |format|
+            SensitiveThread.new do
+              output = outputs[format]
+              Cmd::Concat.new(final_webm_no_audio, final_wav, final_webm_no_audio_info.duration, output, format).run! *logs("4_#{format}") # 3.
+            end
+          end.each(&:join)
   
-          [ 
-            ( Thread.new do
-                Cmd::Concat::Mp4.new(final_webm_no_audio, final_wav, final_webm_no_audio_info.duration, mp4_output).run! *logs('4_mp4') # 3.
-              end.tap{ |t| t.abort_on_exception = true } ),
-            
-            ( Thread.new do
-                Cmd::Concat::Webm.new(final_webm_no_audio, final_wav, final_webm_no_audio_info.duration, webm_output).run! *logs('4_webm') # 4.
-              end.tap{ |t| t.abort_on_exception = true } )
-  
-          ].each(&:join)
-  
-          { mp4: mp4_output, webm: webm_output }
+          outputs
         end
   
         # Generazione traccia audio
@@ -153,7 +148,7 @@ module Media
           end.each(&:join)
   
           final_wav = tmp_path FINAL_WAV
-          Cmd::ConcatWavsWithPaddings.new(wavs_with_paddings, final_wav).run! *logs('2_concat_wavs_with_paddings') # 5.
+          Audio::Editing::Cmd::ConcatWavsWithPaddings.new(wavs_with_paddings, final_wav).run! *logs('2_concat_wavs_with_paddings') # 5.
           final_wav
         end
   
