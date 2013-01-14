@@ -1088,6 +1088,14 @@ $(document).ready(function() {
     startCacheLoop();
   });
   
+  $('body').on('click', '._precision_arrow_left', function() {
+    var cutter = $(this).parent().parent();
+  });
+  
+  $('body').on('click', '._precision_arrow_right', function() {
+    var cutter = $(this).parent().parent();
+  });
+  
   initializeVideoEditor();
   
   
