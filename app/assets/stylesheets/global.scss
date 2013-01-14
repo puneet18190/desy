@@ -31,6 +31,7 @@ input {
   padding-left:10px;
   margin:0px;
   border:none;
+  font-family: Arial, Helvetica, sans-serif;
 }
 input[type="submit"] {
   font-size:90%;
@@ -135,14 +136,6 @@ p {
 .dots_pagination_container {
   
   padding-bottom: 15px;
-}
-/*  TOOLTIP */
-.ui-tooltip {
-  padding: 5px;
-  color: #939393;
-  background-color: white;
-  
-  font-size:75%;
 }
 
 .footer {
