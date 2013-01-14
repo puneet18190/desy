@@ -754,9 +754,10 @@ html.media_element_editor-layout {
           width: 0;
           top:-2.8em;
           margin-left: 0;
-          border:1px solid white;
-          .selected {
+          border:1px solid #787575;
+          &.selected {
             background-color:#fff;
+            border:1px solid #fff;
           }
         }
       }
@@ -776,8 +777,12 @@ html.media_element_editor-layout {
           border-right:4px solid #43A848;
           border-top:1px solid #43A848;
           border-bottom:1px solid #43A848;
-          .selected {
+          &.selected {
             background-color: red;
+            border-left:4px solid red;
+            border-right:4px solid red;
+            border-top:1px solid red;
+            border-bottom:1px solid red;
           }
         }
         .ui-slider-range {

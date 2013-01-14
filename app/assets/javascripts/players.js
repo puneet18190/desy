@@ -141,6 +141,7 @@ function initializeVideoInVideoEditorPreview(identifier) {
       }
     }
   });
+  $('#video_component_' + identifier + '_cutter ._media_player_slider .ui-slider-handle').addClass('selected');
   initializeMediaTimeUpdaterInVideoEditor('#video_component_' + identifier + '_preview video', identifier);
   $('#video_component_' + identifier + '_preview video').bind('ended', function() {
     stopVideoInVideoEditorPreview(identifier);
