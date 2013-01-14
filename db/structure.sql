@@ -1063,10 +1063,10 @@ CREATE INDEX fk__virtual_classroom_lessons_user_id ON virtual_classroom_lessons 
 
 
 --
--- Name: index_bookmarks_on_bookmarkable_type_and_bookmarkable_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_bookmarks_on_bookmarkable_type_bookmarkable_id_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE UNIQUE INDEX index_bookmarks_on_bookmarkable_type_and_bookmarkable_id ON bookmarks USING btree (bookmarkable_type, bookmarkable_id);
+CREATE UNIQUE INDEX index_bookmarks_on_bookmarkable_type_bookmarkable_id_user_id ON bookmarks USING btree (bookmarkable_type, bookmarkable_id, user_id);
 
 
 --
