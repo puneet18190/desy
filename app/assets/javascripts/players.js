@@ -125,6 +125,15 @@ function initializeVideoInVideoEditorPreview(identifier) {
     max: video_max_to,
     range: true,
     values: [my_cutter.data('from'), my_cutter.data('to')],
+    slide: function(event, ui) {
+      var left_val = ui.values[0];
+      var right_val = ui.values[1];
+      if(ui.values[0] != my_cutter.data('from')) {
+        selectVideoComponentCutterHandle(my_cutter, $(ui.handle), ui.values[0]);
+      } else {
+        selectVideoComponentCutterHandle(my_cutter, $(ui.handle));
+      }
+    },
     stop: function(event, ui) {
       var left_val = ui.values[0];
       var right_val = ui.values[1];
@@ -169,6 +178,14 @@ function stopVideoInVideoEditorPreview(identifier) {
     }
   } catch(err) {
     console.log('error stopping media: ' + err);
+  }
+}
+
+function selectVideoComponentCutterHandle(cutter, handle, val) {
+  cutter.find('.ui-slider-handle').removeClass('selected');
+  handle.addClass('selected');
+  if(typeof(val) != 'undefined') {
+    cutter.find('._media_player_slider').slider('value', val);
   }
 }
 

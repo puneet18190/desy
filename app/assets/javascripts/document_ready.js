@@ -1129,7 +1129,7 @@ $(document).ready(function() {
     var preview_id = cutter_id.replace('cutter', 'preview');
     $('#' + cutter_id + ' ._media_player_slider_disabler').show();
     $('#' + cutter_id + ' ._media_player_pause_in_video_editor_preview').show();
-    $('#' + cutter_id + ' ._media_player_slider .ui-slider-handle').removeClass('selected');
+    $('#' + cutter_id + ' .ui-slider-handle').removeClass('selected');
     var media = $('#' + preview_id + ' video');
     if(media.readyState != 0) {
       media[0].play();
