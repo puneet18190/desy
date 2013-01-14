@@ -20,7 +20,7 @@ gem 'jquery-rails'
 
 gem 'schema_plus'
 
-group :development, :beta do
+group :development do
   gem 'rails-erd'
   gem "letter_opener"
 end
