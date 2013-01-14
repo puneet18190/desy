@@ -1148,18 +1148,4 @@ $(document).ready(function() {
     $('#' + preview_id + ' video')[0].pause();
   });
   
-  
-  // TOOLTIP
-  
-  $('a[title]').tooltip({
-    position: {
-      my: 'center bottom+60',
-      at: 'center top',
-      using: function(position, feedback) {
-        $( this ).css(position);
-        $('<div>').addClass(feedback.horizontal).appendTo(this);
-      }
-    }
-  });
-  
 });

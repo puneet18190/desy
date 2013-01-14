@@ -6,17 +6,13 @@ class Bookmark < ActiveRecord::Base
   validates_presence_of :user_id, :bookmarkable_id
   validates_numericality_of :user_id, :bookmarkable_id, :only_integer => true, :greater_than => 0
   validates_inclusion_of :bookmarkable_type, :in => ['Lesson', 'MediaElement']
-  validates_uniqueness_of :bookmarkable_id, :scope => [:user_id, :bookmarkable_type], :if => :good_bookmarkable_type
+  validates_uniqueness_of :bookmarkable_id, :scope => [:user_id, :bookmarkable_type]
   validate :validate_associations, :validate_availability, :validate_impossible_changes
   
   before_validation :init_validation
   before_destroy :destroy_virtual_classroom
   
   private
-  
-  def good_bookmarkable_type
-    ['Lesson', 'MediaElement'].include? self.bookmarkable_type
-  end
   
   def init_validation
     @user = Valid.get_association self, :user_id
