@@ -110,7 +110,7 @@ function initializeVideoInVideoEditorPreview(identifier) {
   my_cutter.find('._media_player_slider').slider({
     min: 0,
     max: video_max_to,
-    value: 0,
+    value: my_cutter.data('from'),
     slide: function(event, ui) {
       if(my_cutter.find('._media_player_play_in_video_editor_preview').css('display') == 'block') {
         setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), ui.value);

@@ -748,13 +748,16 @@ html.media_element_editor-layout {
           cursor: default;
           position: absolute;
           z-index: 400;
-          background-color:#fff;
+          background-color: #787575;
           border-radius:0%;
           height:6.5em;
           width: 0;
           top:-2.8em;
           margin-left: 0;
           border:1px solid white;
+          .selected {
+            background-color:#fff;
+          }
         }
       }
       .videoDoubleSlider {
@@ -773,6 +776,9 @@ html.media_element_editor-layout {
           border-right:4px solid #43A848;
           border-top:1px solid #43A848;
           border-bottom:1px solid #43A848;
+          .selected {
+            background-color: red;
+          }
         }
         .ui-slider-range {
           position: absolute;
