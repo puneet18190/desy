@@ -1147,22 +1147,20 @@ $(document).ready(function() {
     $('#' + cutter_id + ' ._media_player_play_in_video_editor_preview').show();
     $('#' + preview_id + ' video')[0].pause();
   });
+  
+  
   // TOOLTIP
-  $(function() {
-    $( document ).tooltip({
-      items: "a[title]",
+  
+  $('a[title]').tooltip({
       position: {
-        my: "center bottom+60",
-        at: "center top",
-        using: function( position, feedback ) {
-          $( this ).css( position );
-          $( "<div>" )
-            //.addClass( "arrow" )
-            //.addClass( feedback.vertical )
-            .addClass( feedback.horizontal )
-            .appendTo( this );
+        my: 'center bottom+60',
+        at: 'center top',
+        using: function(position, feedback) {
+          $( this ).css(position);
+          $('<div>').addClass(feedback.horizontal).appendTo(this);
         }
       }
     });
   });
+  
 });
