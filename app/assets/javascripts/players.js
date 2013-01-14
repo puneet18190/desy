@@ -92,9 +92,9 @@ function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
 }
 
 function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
-  var duration = $('#video_component_' + identifier + '_preview').data('duration');
+  var video_cut_to = $('#video_component_' + identifier + '_cutter').data('to');
   var parsed_int = parseInt(media.currentTime);
-  if(parsed_int == (duration + 1)) {
+  if(parsed_int == (video_cut_to + 1)) {
     $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').click();
     var initial_time = $('#video_component_' + identifier + '_cutter').data('from');
     $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value', initial_time);
@@ -105,22 +105,41 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
 }
 
 function initializeVideoInVideoEditorPreview(identifier) {
-  var duration = $('#video_component_' + identifier + '_preview').data('duration');
-  $('#video_component_' + identifier + '_cutter ._media_player_slider').slider({
+  var my_cutter = $('#video_component_' + identifier + '_cutter');
+  var video_max_to = my_cutter.data('max-to');
+  my_cutter.find('._media_player_slider').slider({
     min: 0,
-    max: duration,
+    max: video_max_to,
     value: 0,
     slide: function(event, ui) {
-      if($('#video_component_' + identifier + '_cutter ._media_player_play_in_video_editor_preview').css('display') == 'block') {
+      if(my_cutter.find('._media_player_play_in_video_editor_preview').css('display') == 'block') {
         setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), ui.value);
       }
     }
   });
-  $('#video_component_' + identifier + '_cutter ._double_slider').slider({
+  my_cutter.find('._double_slider').slider({
     min: 0,
-    max: duration,
+    max: video_max_to,
     range: true,
-    values: [0, duration]
+    values: [0, video_max_to],
+    stop: function(event, ui) {
+      var left_val = ui.values[0];
+      var right_val = ui.values[1];
+      if(left_val != my_cutter.data('from')) {
+        if(left_val == video_max_to || left_val == right_val) {
+          my_cutter.find('._double_slider').slider('values', 0, left_val - 1);
+          left_val -= 1;
+        }
+        cutVideoComponentLeftSide(identifier, left_val);
+      }
+      if(right_val != my_cutter.data('to')) {
+        if(right_val == 0 || left_val == right_val) {
+          my_cutter.find('._double_slider').slider('values', 1, right_val + 1);
+          right_val += 1;
+        }
+        cutVideoComponentRightSide(identifier, right_val);
+      }
+    }
   });
   initializeMediaTimeUpdaterInVideoEditor('#video_component_' + identifier + '_preview video', identifier);
   $('#video_component_' + identifier + '_preview video').bind('ended', function() {
