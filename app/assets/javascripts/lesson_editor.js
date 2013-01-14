@@ -3,11 +3,6 @@ $(document).ready(function() {
   $("html.lesson-editor-layout ul#slides").css("margin-top", ((($(window).height() - 590)/2)-40) + "px");
   $("html.lesson-editor-layout ul#slides.new").css("margin-top", ((($(window).height() - 590)/2)) + "px");
   
-  $(window).resize(function() {
-    $("html.lesson-editor-layout ul#slides").css("margin-top", ((($(window).height() - 590)/2)-40) + "px");
-    $("html.lesson-editor-layout ul#slides.new").css("margin-top", ((($(window).height() - 590)/2)) + "px");
-  });
-  
   $('._image_container_in_lesson_editor').each(function() {
     makeDraggable($(this).attr('id'));
   });
@@ -17,10 +12,15 @@ $(document).ready(function() {
     autoReinitialise: false
   });
   
-  
   $(".slide-content.cover .title").css("margin-left", "auto");
   
   initLessonEditorPositions();
+  
+  $(window).resize(function() {
+    $("html.lesson-editor-layout ul#slides").css("margin-top", ((($(window).height() - 590)/2)-40) + "px");
+    $("html.lesson-editor-layout ul#slides.new").css("margin-top", ((($(window).height() - 590)/2)) + "px");
+    $("#footer").css("top", ($(window).height() - 40) + "px").css("width", ($(window).width() - 24) + "px");
+  });
   
   $('#lesson_subject').selectbox();
   
