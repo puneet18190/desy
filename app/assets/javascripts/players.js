@@ -136,14 +136,10 @@ function initializeVideoInVideoEditorPreview(identifier) {
       if(left_val != my_cutter.data('from')) {
         if(cursor_val < left_val) {
           selectVideoComponentCutterHandle(my_cutter, left_val);
-        } else {
-          selectVideoComponentCutterHandle(my_cutter);
         }
       } else {
         if(cursor_val > right_val) {
           selectVideoComponentCutterHandle(my_cutter, right_val);
-        } else {
-          selectVideoComponentCutterHandle(my_cutter);
         }
       }
     },
@@ -198,10 +194,8 @@ function stopVideoInVideoEditorPreview(identifier) {
 }
 
 function selectVideoComponentCutterHandle(cutter, val) {
-  if(typeof(val) != 'undefined') {
-    setCurrentTimeToMedia($('#' + cutter.attr('id').replace('cutter', 'preview') + ' video'), val);
-    cutter.find('._media_player_slider').slider('value', val);
-  }
+  setCurrentTimeToMedia($('#' + cutter.attr('id').replace('cutter', 'preview') + ' video'), val);
+  cutter.find('._media_player_slider').slider('value', val);
 }
 
 
