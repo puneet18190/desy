@@ -128,10 +128,19 @@ function initializeVideoInVideoEditorPreview(identifier) {
     slide: function(event, ui) {
       var left_val = ui.values[0];
       var right_val = ui.values[1];
-      if(ui.values[0] != my_cutter.data('from')) {
-        selectVideoComponentCutterHandle(my_cutter, $(ui.handle), ui.values[0]);
+      var cursor_val = my_cutter.find('._media_player_slider').slider('value');
+      if(left_val != my_cutter.data('from')) {
+        if(cursor_val < left_val) {
+          selectVideoComponentCutterHandle(my_cutter, $(ui.handle), left_val);
+        } else {
+          selectVideoComponentCutterHandle(my_cutter, $(ui.handle));
+        }
       } else {
-        selectVideoComponentCutterHandle(my_cutter, $(ui.handle));
+        if(cursor_val > right_val) {
+          selectVideoComponentCutterHandle(my_cutter, $(ui.handle), right_val);
+        } else {
+          selectVideoComponentCutterHandle(my_cutter, $(ui.handle));
+        }
       }
     },
     stop: function(event, ui) {
@@ -185,6 +194,7 @@ function selectVideoComponentCutterHandle(cutter, handle, val) {
   cutter.find('.ui-slider-handle').removeClass('selected');
   handle.addClass('selected');
   if(typeof(val) != 'undefined') {
+    setCurrentTimeToMedia($('#' + cutter.attr('id').replace('cutter', 'preview') + ' video'), val);
     cutter.find('._media_player_slider').slider('value', val);
   }
 }
