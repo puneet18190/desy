@@ -4,9 +4,9 @@
 	padding-top:3px; 
 	padding-bottom:3px; 
   background-color:#fff;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 	position: relative;
 	font-size:85%;
 }
@@ -61,7 +61,7 @@
 }
 .sbOptions{
 	background-color: #fff;
-	border: solid 1px #f5f5f5;
+	/*border: solid 1px #f5f5f5;*/
 	list-style: none;
 	left: -1px;
 	margin: 0;
@@ -71,17 +71,17 @@
 	width: 126px;
 	z-index: 1;
 	overflow-y: auto;
-	-moz-border-radius:  0 0 4px 4px;
-  -webkit-border-radius: 0 0 4px 4px;
+	-moz-border-radius:  4px;
+  -webkit-border-radius: 4px;
 }
 .sbOptions li{
-	padding: 0 7px;
+	padding: 7px;
 }
 .sbOptions a{
-	border-bottom: solid 1px #f5f5f5;
+	/*border: solid 1px #f5f5f5;*/
 	display: block;
 	outline: none;
-	padding: 7px 0 7px 3px;
+	padding: 3px;
 }
 .sbOptions a:link, .sbOptions a:visited{
 	color: #ddd;
@@ -90,8 +90,20 @@
 .sbOptions a:hover,
 .sbOptions a:focus,
 .sbOptions a.sbFocus{
-	color: #EBB52D;
+	/*color: #EBB52D;*/
+	color: #fff;
+	background-color: #F29400;
 }
+
+.media_elements-controller{
+  .sbOptions a:hover,
+  .sbOptions a:focus,
+  .sbOptions a.sbFocus{
+  	color: #fff;
+  	background-color: #41A62A;
+  }
+}
+
 .sbOptions li.last a{
 	border-bottom: none;
 }
