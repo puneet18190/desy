@@ -86,11 +86,5 @@ class Video < MediaElement
     media.upload_or_copy if media
     true
   end
-
-  def clean
-    absolute_folder = media.try(:absolute_folder)
-    FileUtils.rm_rf absolute_folder if absolute_folder and File.exists? absolute_folder
-    true
-  end
   
 end

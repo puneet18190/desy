@@ -6,7 +6,7 @@ require 'media/in_tmp_dir'
 require 'media/info'
 require 'media/video/editing/cmd/audio_stream_to_file'
 require 'media/video/editing/cmd/mp3_to_wav'
-require 'media/audio/editing/cmd/concat_wavs_with_paddings'
+require 'media/audio/editing/cmd/concat'
 require 'media/video/editing/cmd/merge_webm_video_streams'
 require 'media/video/editing/cmd/concat'
 
@@ -148,7 +148,7 @@ module Media
           end.each(&:join)
   
           final_wav = tmp_path FINAL_WAV
-          Audio::Editing::Cmd::ConcatWavsWithPaddings.new(wavs_with_paddings, final_wav).run! *logs('2_concat_wavs_with_paddings') # 5.
+          Audio::Editing::Cmd::Concat.new(wavs_with_paddings, final_wav).run! *logs('2_concat_with_paddings') # 5.
           final_wav
         end
   
@@ -192,11 +192,11 @@ module Media
         end
   
         def mp4_inputs
-          @inputs.map{ |v| v[:mp4] }
+          @inputs.map{ |input| input[:mp4] }
         end
   
         def webm_inputs
-          @inputs.map{ |v| v[:webm] }
+          @inputs.map{ |input| input[:webm] }
         end
   
         def mp4_output

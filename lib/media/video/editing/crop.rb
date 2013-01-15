@@ -36,9 +36,9 @@ module Media
           create_log_folder
   
           @inputs.map do |format, input|
-            Thread.new do
+            SensitiveThread.new do
               Cmd::Crop.new(input, output(format), @start, @duration, format).run! *logs
-            end.tap{ |t| t.abort_on_exception = true }
+            end
           end.each(&:join)
   
           outputs

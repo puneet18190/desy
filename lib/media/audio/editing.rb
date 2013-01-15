@@ -11,3 +11,7 @@ module Media
     end
   end
 end
+
+require 'media/audio/editing/concat'
+require 'media/audio/editing/conversion'
+require 'media/audio/editing/conversion/job'

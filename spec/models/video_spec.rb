@@ -32,12 +32,12 @@ describe Video, slow: true do
 
   describe '#destroy' do
 
-    before(:all) { saved.destroy }
+    before(:all) { saved.reload.destroy }
 
     let(:output_folder) { "#{Rails.root}/public/media_elements/videos/test/#{subject.id}" }
 
     it 'destroys the video folder' do
-      File.exists?(subject.media.absolute_folder).should_not be_true
+      File.exists?(output_folder).should_not be_true
     end
 
   end
