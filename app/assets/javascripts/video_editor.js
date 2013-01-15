@@ -550,3 +550,20 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
   }
   return duration;
 }
+
+function playVideoEditorComponent(identifier) {
+  
+  
+  var component = $('#video_component_' + identifier);
+  if(component.hasClass('_video')) {
+    
+  } else {
+    $('#video_component_' + identifier + '_preview').show();
+    setTimeout(function() {
+      $('._video_component_preview').hide();
+    }, component.data('duration'));
+  }
+  
+  // TODO CONTINUARE
+  
+}
