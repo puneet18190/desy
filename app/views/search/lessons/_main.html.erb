@@ -1,28 +1,30 @@
 <div id="search_lessons_main_page" style="display:<%= @search_item == 'lessons' ? 'block'.html_safe : 'none'.html_safe %>">
   
   <div class="contentSearch">
-    <%= t('captions.lessons') %>
     <div class="boxCerca">
       <form id="search_lessons" class="search-form" method="get" action="/search" data-remote="true">
         <%= hidden_field_tag 'item', 'lessons' %>
-        <table summary="" cellpadding="0" cellspacing="0" style="width:490px; float:left">
+        <table summary="" cellpadding="0" cellspacing="0" style="width:100%;">
           <tr>
-            <td style="width:168px">
+            <td width="20%">
+              <label><%= t('captions.keyword') %></label><br />
               <% if @search_item == 'lessons' %>
-                <input type="text" name="tag" value="<%= @tag_placeholder %>" class="text lower" id="lessons_tag_reader_for_search" style="color:<%= @did_you_search ? '#939393'.html_safe : '#E2E1E1'.html_safe %>">
+                <input type="text" name="tag" value="<%= @tag_placeholder %>" class="text lower" id="lessons_tag_reader_for_search" style="color:<%= @did_you_search ? '#999'.html_safe : '#bbb'.html_safe %>">
               <% else %>
-                <input type="text" name="tag" value="<%= t('captions.insert_tag') %>" class="text lower" id="lessons_tag_reader_for_search" style="color:#E2E1E1">
+                <input type="text" name="tag" value="<%= t('captions.insert_tag') %>" class="text lower" id="lessons_tag_reader_for_search" style="color:#999">
               <% end %>
               <%= hidden_field_tag 'tag_kind', (@tag.kind_of?(Tag) ? @tag.id : ''), :id => 'lessons_tag_kind_for_search' %>
             </td>
-            <td style="width:136px">
+            <td width="20%">
+              <label><%= t('captions.category') %></label><br />
               <select name="filter" id="filter_search_lessons">
                 <% Filters::LESSONS_SEARCH_SET.each do |f| %>
                   <option value="<%= f %>" <%= (f == @filter) ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
                 <% end %>
               </select>
             </td>
-            <td style="width:186px;">
+            <td width="20%">
+              <label><%= t('captions.subject') %></label><br />
               <select name="subject_id" id="filter_search_lessons_subject">
                 <option value="" <%= @subject_id.nil? ? "selected=\"selected\"".html_safe : '' %>><%= t('captions.all_subjects') %></option>
                 <% Subject.order(:description).each do |s| %>
@@ -30,38 +32,38 @@
                 <% end %>
               </select>
             </td>
-            </tr>
-            <tr>
-            <td colspan="3">
+            <td width="20%"></td>
+            <td width="20%">
               <p  style="font-size:80%; padding-left:10px; padding-top:10px;"><%= t('captions.warning') %><br><%= t('captions.warning_search_lessons') %></p>
             </td>
-          </tr>
-            </table>
-            <table summary="" cellpadding="0" cellspacing="0" style="width:360px; float:right;">
+            </tr>
             <tr>
-            <td valign="top" rowspan="2">
-              <%= t('captions.sort_results_by') %>
-            </td>
-            <td rowspan="2">
-              <table style="padding:0">
-              <tr>
+            
+          </tr>
+          <tr>
+            <td><br /><h3><%= t('captions.sort_results_by') %></h3></td>
+          </tr>
+          <tr>
               <% SearchOrders::LESSONS_SET.each do |so| %>
                 <% my_order_id = "#{so}_lessons_radio_input" %>
-                <td><input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_lessons_radio_input" <%= (so == @order) ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"></label></td>
-                <td style="vertical-align:middle"><%= SearchOrders::CAPTIONS[so] %></td>
-                </tr>
+                <td width="5%"><input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_lessons_radio_input" <%= (so == @order) ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"> </label>&nbsp;<%= SearchOrders::CAPTIONS[so] %></td>
               <% end %>
-              </table>
             </td>
-            <td align="left" rowspan="2">
+            <td align="left" colspan="2" width="40%">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <br /><br />
               <% if @search_item == 'lessons' && @did_you_search %>
-                <a id="search_lessons_submit" title="<%= t('general_titles.refine_the_search') %>" class="cerca current">&nbsp;</a>
+                <a id="search_lessons_submit" title="<%= t('general_titles.refine_the_search') %>" class="cerca current"><%= t('caption.search')%></a>
               <% else %>
-                <a id="search_lessons_submit" title="<%= t('general_titles.refine_the_search') %> " class="cerca">&nbsp;</a>
+                <a id="search_lessons_submit" title="<%= t('general_titles.refine_the_search') %> " class="cerca"><%= t('caption.search')%></a>
               <% end %>
             </td>
           </tr>
         </table>
+        <div class="clearfloat"></div>
       </form>
     </div>
   </div>

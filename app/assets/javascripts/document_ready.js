@@ -504,6 +504,9 @@ $(document).ready(function() {
         $('#general_pagination').show();
       }
     });
+    if($('#search_lessons #keep-searching').length > 0){
+      $('#search_lessons #keep-searching').trigger('click');
+    }
   });
   
   $('body').on('click', '#which_item_to_search_switch_lessons', function() {
@@ -516,6 +519,9 @@ $(document).ready(function() {
         $('#general_pagination').show();
       }
     });
+    if($('#search_media_elements #keep-searching').length > 0){
+      $('#search_media_elements #keep-searching').trigger('click');
+    }
   });
   
   $('body').on('focus', '#general_tag_reader_for_search', function() {
@@ -550,6 +556,7 @@ $(document).ready(function() {
     if(!$(this).hasClass('current')) {
       $('#search_media_elements').submit();
       $(this).addClass('current');
+      add_keep_searching(this);
     }
   });
   
@@ -557,7 +564,12 @@ $(document).ready(function() {
     if(!$(this).hasClass('current')) {
       $('#search_lessons').submit();
       $(this).addClass('current');
+      add_keep_searching(this);
     }
+  });
+  
+  $('body').on('click','#keep-searching',function(){
+    remove_keep_searching(this);
   });
   
   $('body').on('change', '#filter_search_lessons_subject', function() {
