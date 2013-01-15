@@ -1,19 +1,21 @@
 <%
   title = ''
-  duration = ''
+  string_duration = ''
+  duration = 0
   style_full = 'display:none'
   style_empty = 'display:block'
   if parameters[:audio_track]
     title = parameters[:audio_track].title
-    duration = seconds_to_time(parameters[:audio_track].min_duration)
+    duration = parameters[:audio_track].min_duration
+    string_duration = seconds_to_time(duration)
     style_full = 'display:block'
     style_empty = 'display:none'
   end
 %>
 
-<div id="full_audio_track_placeholder_in_video_editor" class="fltlft" style="<%= style_full %>">
+<div id="full_audio_track_placeholder_in_video_editor" data-duration="<%= duration %>" class="fltlft" style="<%= style_full %>">
   <div class="audioButton current _show_audio_gallery_in_video_editor"></div>
-  <div class="titleTrack _title"><%= title %><br/><%= duration %></div>
+  <div class="titleTrack _title"><%= title %><br/><%= string_duration %></div>
   <div class="exitContent fltlft">
     <a class="exitButton _remove">&nbsp;</a>
   </div>

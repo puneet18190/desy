@@ -978,6 +978,7 @@ $(document).ready(function() {
     $('#audio_track_in_video_editor_input').val(audio_id);
     $('#empty_audio_track_placeholder_in_video_editor').hide();
     $('#full_audio_track_placeholder_in_video_editor').show();
+    $('#full_audio_track_placeholder_in_video_editor').data('duration', $(this).data('duration'));
     var new_html_title = $('#gallery_audio_' + audio_id + ' ._compact p').html();
     new_html_title += ('<br/>' + secondsToDateString($(this).data('duration')));
     $('#full_audio_track_placeholder_in_video_editor ._title').html(new_html_title);
@@ -1217,9 +1218,10 @@ $(document).ready(function() {
         video[0].play();
       });
     }
-    if(videoEditorWithAudioTrack()) {
+    var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(identifier);
+    if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
       var audio_track = $('#video_editor_preview_container audio');
-      setCurrentTimeToMedia(audio_track, calculateVideoComponentStartSecondInVideoEditor(identifier));
+      setCurrentTimeToMedia(audio_track, actual_audio_track_time);
       if(audio_track.readyState != 0) {
         audio_track[0].play();
       } else {
