@@ -3,7 +3,7 @@
     <table summary="" cellpadding="0" cellspacing="0">
       <tr>
         <td>
-          <input type="text" name="tag" value="<%= t('captions.search_in_desy') %>" class="text lower" id="general_tag_reader_for_search" style="color:#E2E1E1">
+          <input type="text" name="tag" value="<%= t('captions.search_in_desy') %>" class="text lower" id="general_tag_reader_for_search" style="color:#999">
           <%= hidden_field_tag 'tag_kind', '', :id => 'general_tag_kind_for_search' %>
         </td>
         <td>
@@ -12,7 +12,7 @@
             <option value="media_elements" <%= @where == 'media_elements' ? "selected=\"selected\"".html_safe : '' %>><%= t('captions.media_elements') %></option>
           </select>
         </td>
-        <td><a id="search_general_submit" class="cerca current">&nbsp;</a></td>
+        <td><a id="search_general_submit" class="cerca current"  title="<%= t('general_titles.search') %>">&nbsp;</a></td>
       </tr>
     </table>
   </form>

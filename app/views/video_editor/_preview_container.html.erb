@@ -4,4 +4,7 @@
     <%= render :partial => "video_editor/previews/#{c[:type]}", :locals => {:component => c, :identifier => cont, :empty => false} %>
     <% cont += 1 %>
   <% end %>
+  <% if parameters[:audio_track] %>
+    <%= render :partial => 'video_editor/previews/audio_track', :locals => {:audio_track => parameters[:audio_track]} %>
+  <% end %>
 </div>

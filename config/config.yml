@@ -32,9 +32,9 @@ lessons_for_page_in_virtual_classroom: 10
 lessons_in_playlist: 20
 lessons_in_quick_loader: 18
 # GALLERIES
-images_for_page_in_gallery: 200 # FIXME era 56
-videos_for_page_in_gallery: 200 # FIXME era 18
-audios_for_page_in_gallery: 200 # FIXME era 18
+images_for_page_in_gallery: 42
+videos_for_page_in_gallery: 18
+audios_for_page_in_gallery: 12
 # APP COLORS
 colors:
   red:

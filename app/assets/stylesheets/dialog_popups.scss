@@ -116,8 +116,10 @@
   padding: 0;
   background-color:#373737;
   color:#fff;
-  -webkit-box-shadow: 1px 5px 5px #c7c5c5;
-  box-shadow: 1px 5px 5px #c7c5c5;
+  /*-webkit-box-shadow: 1px 5px 5px #c7c5c5;
+  box-shadow: 1px 5px 5px #c7c5c5;*/
+  -webkit-box-shadow: 1px 5px 5px #999;
+  box-shadow: 1px 5px 5px #999;
 }
 
 .imageInGalleryPopUp.ui-dialog-content{
@@ -175,7 +177,10 @@
     font-size:1.7em;
     margin-top: 10px;
   }
-  
+  .ui-slider-handle {
+    margin-left:0;
+  }
+  .videoSlider {width:64%;}
 }
 .dialog_opaco {
   opacity: 0.9;

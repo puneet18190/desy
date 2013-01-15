@@ -1,8 +1,8 @@
 <div class="buttons pull-right">
   <% if !slide.cover? %>
-    <a class ="deleteButtonOrange _delete_slide"></a>
+    <a class ="deleteButtonOrange _delete_slide" title="<%= t('general_titles.delete_slides_title') %>"></a>
   <% end %>
-  <a class="addButtonOrange _add_new_slide_options"></a>
-  <%= link_to "", edit_lesson_path(@lesson), :class => "infoButtonOrange"%>
-  <a href="#" data-param="form-<%= slide.id %>" class="_save_slide saveButtonOrange"></a>
+  <a class="addButtonOrange _add_new_slide_options" title="<%= t('general_titles.add_slides_title') %>"></a>
+  <%= link_to "", edit_lesson_path(@lesson), :title => t('general_titles.change_information_slides'), :class => "infoButtonOrange"%>
+  <a href="#" data-param="form-<%= slide.id %>" class="_save_slide saveButtonOrange"  title="<%= t('general_titles.save_slides_title') %>"></a>
 </div>

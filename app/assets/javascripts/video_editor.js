@@ -238,7 +238,6 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   // edit preview
   current_preview = $('#temporary_empty_preview');
   current_preview.attr('id', ('video_component_' + next_position + '_preview'));
-  current_preview.data('duration', duration);
   current_preview.find('source[type="video/webm"]').attr('src', webm);
   current_preview.find('source[type="video/mp4"]').attr('src', mp4);
   current_preview.find('video').load();
@@ -248,6 +247,7 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   current_cutter.find('._video_editor_cutter_total_time').html(secondsToDateString(duration));
   current_cutter.find('._video_editor_cutter_selected_time').html(secondsToDateString(duration));
   current_cutter.data('to', duration);
+  current_cutter.data('max-to', duration);
   initializeVideoInVideoEditorPreview(next_position);
   // edit component
   current_component = $('#temporary_empty_component');
@@ -287,7 +287,6 @@ function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, posi
   // edit preview
   current_preview = $('#temporary_empty_preview');
   current_preview.attr('id', ('video_component_' + identifier + '_preview'));
-  current_preview.data('duration', duration);
   current_preview.find('source[type="video/webm"]').attr('src', webm);
   current_preview.find('source[type="video/mp4"]').attr('src', mp4);
   current_preview.find('video').load();
@@ -297,6 +296,7 @@ function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, posi
   current_cutter.find('._video_editor_cutter_total_time').html(secondsToDateString(duration));
   current_cutter.find('._video_editor_cutter_selected_time').html(secondsToDateString(duration));
   current_cutter.data('to', duration);
+  current_cutter.data('max-to', duration);
   initializeVideoInVideoEditorPreview(identifier);
   // edit component
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
@@ -498,18 +498,26 @@ function startVideoEditorPreviewClip(component_id) {
   $('#' + component_id + '_preview').show('fade', {}, 250);
 }
 
+function commitVideoComponentVideoCutter(identifier) {
+  var from = $('#video_component_' + identifier + '_cutter').data('from');
+  var to = $('#video_component_' + identifier + '_cutter').data('to');
+  $('#video_component_' + identifier + ' ._video_component_input_from').val(from);
+  $('#video_component_' + identifier + ' ._video_component_input_to').val(to);
+  changeDurationVideoEditorComponent('video_component_' + identifier, to - from);
+  if($('#video_component_' + identifier + '_cutter').data('changed')) {
+    highlightAndUpdateVideoComponentIcon('video_component_' + identifier);
+    $('#video_component_' + identifier + '_cutter').data('changed', false);
+  }
+}
+
 function cutVideoComponentLeftSide(identifier, pos) {
   $('#video_component_' + identifier + '_cutter').data('from', pos);
-  $('#video_component_' + identifier + ' ._video_component_input_from').val(pos);
   var new_duration = $('#video_component_' + identifier + '_cutter').data('to') - pos;
   $('#video_component_' + identifier + '_cutter ._video_editor_cutter_selected_time').html(secondsToDateString(new_duration));
-  changeDurationVideoEditorComponent('video_component_' + identifier, new_duration);
 }
 
 function cutVideoComponentRightSide(identifier, pos) {
   $('#video_component_' + identifier + '_cutter').data('to', pos);
-  $('#video_component_' + identifier + ' ._video_component_input_to').val(pos);
   var new_duration = pos - $('#video_component_' + identifier + '_cutter').data('from');
   $('#video_component_' + identifier + '_cutter ._video_editor_cutter_selected_time').html(secondsToDateString(new_duration));
-  changeDurationVideoEditorComponent('video_component_' + identifier, new_duration);
 }

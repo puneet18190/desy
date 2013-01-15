@@ -7,10 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <a class="navLeft"></a>
+  <a class="navLeft" title="<%= t('general_titles.back_in_slides') %>"></a>
   <div class="container">    
     <%= yield %>
   </div>   
-   <a class="navRight"></a>
+   <a class="navRight" title="<%= t('general_titles.forward_in_slides') %>"></a>
 </body>
 </html>

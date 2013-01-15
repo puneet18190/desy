@@ -11,7 +11,7 @@
         <%= select_tag "subject", options_from_collection_for_select(@subjects, "id", "description"), :include_blank => false, :class=>"pull-right", :id => "lesson_subject" %>
         <%= f.text_area :description, :class=>"pull-left" %>
         <textarea id="lesson_tags" name="lesson[tags]" class="pull-right"><%= @lesson.tags %></textarea>
-        <br/>
+        <br style="clear:both" />
         <%= f.submit t('captions.update').downcase, :class => "lesson-create pull-right" %>
         <%= link_to t('captions.cancel').downcase, lesson_editor_path(@lesson),  :class => "buttonForm pull-right" %>
       <% end %>
