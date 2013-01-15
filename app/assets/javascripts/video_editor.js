@@ -550,3 +550,71 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
   }
   return duration;
 }
+
+
+
+
+
+// TODO TODO TODO 
+
+
+
+
+
+
+function startVideoEditorGlobalPreview() {
+  var current_identifier = $('#video_editor_global_preview').data('current-component');
+  var current_component = $('#video_component_' + current_identifier);
+  var current_time = $('#video_editor_global_preview').data('current-time'); // time INSIDE the component, not absolute
+  if(current_component.length == 0) {
+    current_component = $($('._video_editor_component')[0]);
+    current_time = 0;
+  } else {
+    var current_cutter = $('#video_component_' + current_identifier + '_cutter');
+    if(current_component.hasClass('_video')) {
+      if((current_cutter.data('from') > current_time || current_cutter.data('to') < current_time)) {
+        current_time = current_cutter.data('from');
+      }
+    } else {
+      if((current_cutter.data('duration') < current_time)) {
+        current_time = 0;
+      }
+    }
+  }
+  startVideoEditorGlobalPreviewFromComponentAndTime(current_component, current_time);
+}
+
+function startVideoEditorGlobalPreviewFromComponentAndTime(component, time) {
+  $('._video_component_preview').hide();
+  $('#video_editor_global_preview').data('in-use', true);
+  var identifier = component.attr('id').split('_');
+  identifier = identifier[identifier.length - 1];
+  var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(identifier);
+  if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
+    var audio_track = $('#video_editor_preview_container audio');
+    setCurrentTimeToMedia(audio_track, actual_audio_track_time);
+    if(audio_track.readyState != 0) {
+      audio_track[0].play();
+    } else {
+      audio_track.on('loadedmetadata', function() {
+        audio_track[0].play();
+      });
+    }
+  }
+  playVideoEditorComponent(component, time);
+}
+
+function playVideoEditorComponent(component, start_time) { // funzione ricorsiva
+  component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
+  if(component.hasClass('_video')) {
+    
+  } else {
+    $('#video_component_' + identifier + '_preview').show();
+    setTimeout(function() {
+      $('._video_component_preview').hide(); // TODO fade etc etc
+    }, component.data('duration'));
+  }
+  
+  // TODO CONTINUARE
+  
+}

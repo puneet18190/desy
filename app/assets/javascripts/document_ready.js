@@ -750,7 +750,20 @@ $(document).ready(function() {
   // VIDEO EDITOR
   
   $('body').on('click', '#video_editor_global_preview._enabled', function() {
-    alert('PREVIEWWW');
+    $('._video_component_preview').hide();
+    $('#video_editor_preview_container ._loader').show();
+    $('._video_editor_bottom_bar').css('visibility', 'hidden');
+    $('#visual_video_editor_total_length_caption').css('visibility', 'hidden');
+    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
+    $('#video_editor_box_ghost').show();
+    $('#visual_video_editor_total_length').html(secondsToDateString(0));
+    $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
+    $('._video_component_transition').addClass('current');
+    $('._video_component_icon ._right').html(secondsToDateString(0));
+    setTimeout(function() {
+      $('#video_editor_preview_container ._loader').hide();
+      startVideoEditorGlobalPreview();
+    }, 1500);
   });
   
   $('body').on('click', '._video_component_cutter_button', function() {

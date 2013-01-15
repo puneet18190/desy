@@ -7,4 +7,7 @@
   <% if parameters[:audio_track] %>
     <%= render :partial => 'video_editor/previews/audio_track', :locals => {:audio_track => parameters[:audio_track]} %>
   <% end %>
+  <div class="_loader" style="padding-top:120px; display:none">
+    <%= image_tag 'loading3.gif' %>
+  </div>
 </div>
