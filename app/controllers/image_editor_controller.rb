@@ -45,7 +45,7 @@ class ImageEditorController < ApplicationController
         #BRING OUT IMAGE WRITE FROM CROP
         
         @custom_filename = Media::Image::Editing::Crop.new(img, editing_folder, x1, y1, x2, y2).run
-        @editing_url = File.join(File.dirname(@image.media.url),"editing","user_#{@current_user.id}")
+        @editing_url = File.join(File.dirname(@image.url),"editing","user_#{@current_user.id}")
         
         @image_id = params[:image_id]
         @crop = true
@@ -66,7 +66,7 @@ class ImageEditorController < ApplicationController
         original_height = img[:height]
         original_width = img[:width]
       else
-        image_path = @image.media.path
+        image_path = @image.url
         img = MiniMagick::Image.open(image_path)
         original_width = @image.media.width
         original_height = @image.media.height
@@ -123,7 +123,7 @@ class ImageEditorController < ApplicationController
         original_width = img[:width]
         original_height = img[:height]
       else
-        image_path = @image.media.path
+        image_path = @image.url
         img = MiniMagick::Image.open(image_path)
         original_width = @image.media.width
         original_height = @image.media.height
