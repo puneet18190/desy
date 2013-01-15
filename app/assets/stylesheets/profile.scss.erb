@@ -28,6 +28,40 @@
     @include tag-formatting;
     background-color:#5d5c5c;
     text-shadow: #4d4c4c 0px 2px 0px;
+    h1{
+      font-size: 30px;
+      margin-left: 30px;
+    }
+    
+    ul.navlist{
+      float:right;
+      width: auto;
+      list-style:none;
+      li{
+        float:left;
+        width: auto;
+        a{
+          font: 14px 'Nunito' sans-serif;
+          text-transform: lowercase;  
+          background-color: #999;
+          color: #fff;
+          float:left;
+          width: 110px;
+          display:block;
+          margin: 10px;
+          width: 100px;
+          height: 20px;
+          padding: 5px;
+          text-align:center;
+          display:block;
+          text-shadow: none;
+          &:hover,&.current{
+            background-color: #fff;
+            color: #666;
+          }
+        }
+      }
+    }
   }
 }
 .contentForm {
