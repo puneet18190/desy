@@ -237,6 +237,9 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   $('#add_new_video_component').before(empty_component);
   // edit preview
   current_preview = $('#temporary_empty_preview');
+  if(videoEditorWithAudioTrack()) {
+    current_preview.find('video').prop('muted', true);
+  }
   current_preview.attr('id', ('video_component_' + next_position + '_preview'));
   current_preview.find('source[type="video/webm"]').attr('src', webm);
   current_preview.find('source[type="video/mp4"]').attr('src', mp4);
@@ -286,6 +289,9 @@ function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, posi
   $('#video_component_' + identifier + '_cutter').replaceWith(empty_cutter);
   // edit preview
   current_preview = $('#temporary_empty_preview');
+  if(videoEditorWithAudioTrack()) {
+    current_preview.find('video').prop('muted', true);
+  }
   current_preview.attr('id', ('video_component_' + identifier + '_preview'));
   current_preview.find('source[type="video/webm"]').attr('src', webm);
   current_preview.find('source[type="video/mp4"]').attr('src', mp4);
@@ -508,6 +514,10 @@ function commitVideoComponentVideoCutter(identifier) {
     highlightAndUpdateVideoComponentIcon('video_component_' + identifier);
     $('#video_component_' + identifier + '_cutter').data('changed', false);
   }
+}
+
+function videoEditorWithAudioTrack() {
+  return $('#audio_track_in_video_editor_input').val() != '';
 }
 
 function cutVideoComponentLeftSide(identifier, pos) {
