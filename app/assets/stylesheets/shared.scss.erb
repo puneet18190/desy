@@ -84,10 +84,6 @@ a.cerca.current {
   width: 700px;
   display:block;
 }
-.form_error{
-  border:1px solid white;
-  outline: 2px solid white;
-}
 
 .boxViewExpandedLesson {
   @include contentLayout;
@@ -457,7 +453,7 @@ a.cerca.current {
     }
     .cols {
       width:320px;
-      height: 310px;
+      height: 300px;
       margin-left: 20px;
     }
     ._error_messages{
@@ -540,8 +536,9 @@ a.cerca.current {
     }
   }
   
-  input {
-    border:1px solid #4fc356;
+  input[type="text"] {
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px rgba(10, 10, 10, 0.2) inset;
     background-color:#454343;
     padding:2% 4%;
     width:92%;
@@ -565,12 +562,14 @@ a.cerca.current {
   }
   
   textarea {
-    border:1px solid #4fc356;
+    border-color: #373737;
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2) inset;
     background-color:#454343;
     font: 95% Arial, Helvetica, sans-serif;
     padding:2% 4%;
     width:92%;
-    height:130px;
+    height:120px;
     color:#fff;
     resize: none;
     margin-bottom:20px
@@ -750,4 +749,8 @@ a.cerca.current {
   color:#000;
   background-color:white;
   font:18px 'Nunito', sans-serif;
+}
+
+.form_error,textarea.form_error, input.form_error{
+  border: 3px solid rgba(250, 0, 0, 0.5);
 }

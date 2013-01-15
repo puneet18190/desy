@@ -1,3 +1,12 @@
 <div class="footer">
-  <%= t('captions.copyright') %>
+  <div class="footer_content">
+    <div class="fltlft">
+      <%= t('captions.copyright') %>
+    </div>
+    <% if controller_name != "dashboard" %>
+      <div class="fltrt dashboard">
+        <%= link_to t('captions.back_to_dashboard'), dashboard_index_path %> <%= image_tag "lesson-editor-logo-footer.png" %>
+      </div>
+    <%end%>
+  </div>
 </div>

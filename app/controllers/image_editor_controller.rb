@@ -158,6 +158,7 @@ class ImageEditorController < ApplicationController
         end
       else
         @errors = @image.errors.messages
+        logger.info "\n\n\n\n\n #{@errors} \n\n\n\n"
       end
       
       # manca redirect_to my_media_elements_path
