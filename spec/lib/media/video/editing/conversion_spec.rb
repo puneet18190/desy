@@ -149,11 +149,11 @@ module Media
                 end
   
                 it 'creates the video cover' do
-                  File.exists?(model.media.absolute_path(:cover)).should be_true
+                  File.exists?(model.media.path(:cover)).should be_true
                 end
   
                 it 'creates the video thumb' do
-                  File.exists?(model.media.absolute_path(:thumb)).should be_true
+                  File.exists?(model.media.path(:thumb)).should be_true
                 end
   
                 it 'sets the model duration attribute' do

@@ -90,10 +90,10 @@ module Media
       "#{output_path_without_extension}.#{format}"
     end
 
-    def absolute_folder
-      File.join self.class::ABSOLUTE_FOLDER, model_id.to_s
+    def folder
+      File.join self.class::FOLDER, model_id.to_s
     end
-    alias output_folder absolute_folder
+    alias output_folder folder
 
     def public_relative_folder
       File.join '/', self.class::PUBLIC_RELATIVE_FOLDER, model_id.to_s
@@ -134,14 +134,14 @@ module Media
         end
       )
     end
-    alias path public_relative_path
+    alias url public_relative_path
 
-    def absolute_path(format)
+    def path(format)
       case format
       when *self.class::FORMATS
-        File.join absolute_folder, filename(format)
+        File.join folder, filename(format)
       when *self.class::VERSION_FORMATS.keys
-        File.join absolute_folder, self.class::VERSION_FORMATS[format] % filename_without_extension
+        File.join folder, self.class::VERSION_FORMATS[format] % filename_without_extension
       end
     end
 

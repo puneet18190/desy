@@ -1,11 +1,11 @@
 shared_examples 'after saving an audio with a valid not converted media' do
   let(:public_relative_folder) { "/media_elements/audios/test/#{audio.id}" }
-  let(:absolute_folder)        { "#{Rails.root}/public#{public_relative_folder}" }
+  let(:folder)                 { "#{Rails.root}/public#{public_relative_folder}" }
   let(:name)                   { 'tmp-valid-audio' }
-  let(:path_without_extension) { "#{public_relative_folder}/#{name}" }
-  let(:paths)                  { { mp3: "#{path_without_extension}.mp3", ogg: "#{path_without_extension}.ogg"} }
-  let(:absolute_paths)         { { mp3: "#{absolute_folder}/#{name}.mp3", ogg: "#{absolute_folder}/#{name}.ogg" } }
-  let(:info)                   { Hash[ [:mp3, :ogg].map{ |f| [f, Media::Info.new(audio.media.absolute_path(f))] } ] }
+  let(:url_without_extension)  { "#{public_relative_folder}/#{name}" }
+  let(:urls)                   { { mp3: "#{url_without_extension}.mp3", ogg: "#{url_without_extension}.ogg"} }
+  let(:paths)                  { { mp3: "#{folder}/#{name}.mp3", ogg: "#{folder}/#{name}.ogg" } }
+  let(:info)                   { Hash[ [:mp3, :ogg].map{ |f| [f, Media::Info.new(audio.media.path(f))] } ] }
   let(:durations)              { Hash[ [:mp3, :ogg].map{ |f| [:"#{f}_duration", info[f].duration] } ] }
   let(:versions)               { [:mp3, :ogg] }
 
@@ -26,15 +26,15 @@ shared_examples 'after saving an audio with a valid not converted media' do
   end
 
   it 'has the expected to_s' do
-    audio.media.to_s.should == path_without_extension
+    audio.media.to_s.should == url_without_extension
+  end
+
+  it 'has the expected urls' do
+    Hash[ versions.map{ |f| [f, audio.media.url(f)] } ].should == urls
   end
 
   it 'has the expected paths' do
     Hash[ versions.map{ |f| [f, audio.media.path(f)] } ].should == paths
-  end
-
-  it 'has the expected absolute_paths' do
-    Hash[ versions.map{ |f| [f, audio.media.absolute_path(f)] } ].should == absolute_paths
   end
 
   it 'creates valid audios' do

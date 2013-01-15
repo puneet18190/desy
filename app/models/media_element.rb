@@ -247,8 +247,8 @@ class MediaElement < ActiveRecord::Base
   end
 
   def clean
-    absolute_folder = media.try(:absolute_folder)
-    FileUtils.rm_rf absolute_folder if absolute_folder and File.exists? absolute_folder
+    folder = media.try(:folder)
+    FileUtils.rm_rf folder if folder and File.exists? folder
     true
   end
   

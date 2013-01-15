@@ -10,7 +10,7 @@ module Media
       DURATION                   = 5
 
       class << self
-        def path(format = nil)
+        def url(format = nil)
           case format
           when ->(f) { f.blank? }
             File.join PUBLIC_RELATIVE_FOLDER, FILENAME_WITHOUT_EXTENSION

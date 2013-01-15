@@ -7,9 +7,9 @@
 
 <div class="boxContentMediaElement _video_component_thumb">
   <% if horizontal %>
-    <%= image_tag image.path, :style => "right:-#{offset}px; height:88px; width:#{width}px" %>
+    <%= image_tag image.url, :style => "right:-#{offset}px; height:88px; width:#{width}px" %>
   <% else %>
-    <%= image_tag image.path, :style => "bottom:-#{offset}px; height:#{height}px; width:156px" %>
+    <%= image_tag image.url, :style => "bottom:-#{offset}px; height:#{height}px; width:156px" %>
   <% end %>
   <%= render :partial => 'video_editor/component_menu' %>
 </div>

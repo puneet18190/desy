@@ -25,20 +25,20 @@ class Video < MediaElement
     [mp4_duration, webm_duration].map(&:to_i).min
   end
 
-  def mp4_path
-    converted ? media.try(:path, :mp4) : PLACEHOLDER.path(:mp4)
+  def mp4_url
+    converted ? media.try(:url, :mp4) : PLACEHOLDER.url(:mp4)
   end
 
-  def webm_path
-    converted ? media.try(:path, :webm) : PLACEHOLDER.path(:webm)
+  def webm_url
+    converted ? media.try(:url, :webm) : PLACEHOLDER.url(:webm)
   end
 
-  def cover_path
-    converted ? media.try(:path, :cover) : PLACEHOLDER.path(:cover)
+  def cover_url
+    converted ? media.try(:url, :cover) : PLACEHOLDER.url(:cover)
   end
   
-  def thumb_path
-    converted ? media.try(:path, :thumb) : PLACEHOLDER.path(:thumb)
+  def thumb_url
+    converted ? media.try(:url, :thumb) : PLACEHOLDER.url(:thumb)
   end
 
   def media

@@ -4,7 +4,7 @@
     <% if video.nil? %>
       <div class="videoIcon"></div>
     <% else %>
-      <%= image_tag video.cover_path, :width => "860", :height => "484" if video %>
+      <%= image_tag video.mp4_url, :width => "860", :height => "484" if video %>
       <div class="bulletPointVideo">
          <img alt="Bullet_video" src="/assets/bullet_video.svg" style="width:20%">
       </div>

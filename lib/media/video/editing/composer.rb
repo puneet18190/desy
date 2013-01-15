@@ -90,7 +90,7 @@ module Media
             outputs = Concat.new(concats.sort.map{ |_,c| c }, concat).run
 
             if audio
-              audios = Hash[ Media::Audio::FORMATS.map{ |f| [f, audio.media.absolute_path(f)] } ]
+              audios = Hash[ Media::Audio::FORMATS.map{ |f| [f, audio.media.path(f)] } ]
               outputs = ReplaceAudio.new(outputs, audios, tmp_path('replace_audio')).run
             end
 
@@ -117,7 +117,7 @@ module Media
           # TODO messaggio migliore
           raise 'could not edit a video while converting' if video.converted.nil?
 
-          inputs = Hash[ FORMATS.map{ |f| [f, video.media.absolute_path(f)] } ]
+          inputs = Hash[ FORMATS.map{ |f| [f, video.media.path(f)] } ]
 
           if from == 0 && to == video.min_duration
             {}.tap do |outputs|

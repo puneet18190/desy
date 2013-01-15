@@ -12,12 +12,12 @@ class Audio < MediaElement
 
   validate :media_validation
   
-  def mp3_path
-    media.try(:path, :mp3)
+  def mp3_url
+    media.try(:url, :mp3)
   end
 
-  def ogg_path
-    media.try(:path, :ogg)
+  def ogg_url
+    media.try(:url, :ogg)
   end
   
   def mp3_duration
