@@ -1,30 +1,30 @@
 <div class="gray-bar advancedSearch">
-  <div class="cols" style="width:43%">
+  <div class="cols fltlft">
     <%= image_tag("ico_advanced_search.png", :align => "left", :style => "padding-top:5px; padding-right: 10px") %><%= t('captions.advanced_search') %><h1><%= t('captions.what_are_you_looking_for') %></h1>
   </div>
-  <div class="cols">
+  <div class="cols fltrt" style="width:240px">
     <p><%= t('captions.search_lesson_or_media_element') %><br><%= t('captions.choose_wich_item_and_go') %></p>
-  </div>
-  <div class="cols" style="padding-top:18px; width:18%">
-    <table>
-      <tr>
-        <td style="padding-right:10px; padding-top:5px;">
-          <input id="which_item_to_search_switch_lessons" type="radio" name="switch" value="lessons" class="regular-radio _which_item_to_search_switch" <%= @search_item == 'lessons' ? "checked=\"checked\"".html_safe : '' %>>
-          <label for="which_item_to_search_switch_lessons"></label>
-        </td>
-        <td style="padding-right:10px"><%= t('captions.lessons') %></td>
-        <td style="padding-right:10px; padding-top:5px;">
-          <input id="which_item_to_search_switch_media_elements" type="radio" name="switch" value="elements" class="regular-radio _which_item_to_search_switch" style="margin-left:40px" <%= @search_item == 'lessons' ? '' : "checked=\"checked\"".html_safe %>>
-          <label for="which_item_to_search_switch_media_elements"></label>
-        </td>
-        <td><%= t('captions.media_elements') %></td>
-      </tr>
-    </table>
   </div>
 </div>
 <br class="clearfloat">
 <div class="griglia-contenuti">
   <div class="advanced-search-content">
+    <div class="cols search-switch">
+      <table>
+        <tr>
+          <td>
+            <input id="which_item_to_search_switch_lessons" type="radio" name="switch" value="lessons" class="regular-radio _which_item_to_search_switch" <%= @search_item == 'lessons' ? "checked=\"checked\"".html_safe : '' %>>
+            <label for="which_item_to_search_switch_lessons"></label>
+          </td>
+          <td><%= t('captions.lessons') %></td>
+          <td>
+            <input id="which_item_to_search_switch_media_elements" type="radio" name="switch" value="elements" class="regular-radio _which_item_to_search_switch" style="margin-left:40px" <%= @search_item == 'lessons' ? '' : "checked=\"checked\"".html_safe %>>
+            <label for="which_item_to_search_switch_media_elements"></label>
+          </td>
+          <td><%= t('captions.media_elements') %></td>
+        </tr>
+      </table>
+    </div>
     <%= render :partial => "search/lessons/main" %>
     <%= render :partial => "search/media_elements/main" %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
