@@ -747,7 +747,7 @@ html.media_element_editor-layout {
       margin-top: 0;
       width:93.4%;
       position: absolute;
-      left: 27px;
+      left: 28px;
     }
     background-color:#232121;
     padding:0;
@@ -778,16 +778,16 @@ html.media_element_editor-layout {
       background-color:#303030;
       margin-bottom:10px;
       .videoSlider {
+        cursor: pointer;
         z-index: 100;
         .ui-slider-handle {
           cursor: default;
           position: absolute;
-          z-index: 400;
           background-color: #787575;
           border-radius:0%;
-          height:6.5em;
+          height: 65px;
           width: 0;
-          top:-2.8em;
+          top: -27px;
           margin-left: 0;
           border:1px solid #787575;
           &.selected {
@@ -797,21 +797,21 @@ html.media_element_editor-layout {
         }
       }
       .videoDoubleSlider {
-        z-index: 200;
+        cursor: pointer;
+        z-index: 300;
         .ui-slider-handle {
           cursor: pointer;
           position: absolute;
-          z-index: 500;
           background-color: #43A848;
-          border-radius:0%;
-          height:6.5em;
+          border-radius: 0%;
+          height: 65px;
           width: 0;
-          top:-2.8em;
+          top: -27px;
           margin-left: 0;
-          border-left:4px solid #43A848;
-          border-right:4px solid #43A848;
-          border-top:1px solid #43A848;
-          border-bottom:1px solid #43A848;
+          border-left: 4px solid #43A848;
+          border-right: 4px solid #43A848;
+          border-top: 1px solid #43A848;
+          border-bottom: 1px solid #43A848;
           &.selected {
             background-color: red;
             border-left:4px solid red;
@@ -822,15 +822,23 @@ html.media_element_editor-layout {
         }
         .ui-slider-range {
           position: absolute;
-          z-index: 300;
           background: url(<%= asset_path 'bg_ui_slider_horizontal.png' %>) top left repeat-x;
         }
       }
-      .sliderDisabler {
+      .sliderDisabler, .underDoubleSlider {
+        position: absolute;
         height: 67px;
-        opacity:1;
-        top:0;
+        bottom: 31px;
+      }
+      .sliderDisabler {
+        z-index: 400;
+        width: 100%;
         left:0;
+      }
+      .underDoubleSlider {
+        z-index: 200;
+        width: 93.4%;
+        left: 28px;
       }
       .ui-slider-horizontal {
         height:13px;
