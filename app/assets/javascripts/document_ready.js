@@ -504,8 +504,8 @@ $(document).ready(function() {
         $('#general_pagination').show();
       }
     });
-    if($('#keep-searching').length > 0){
-      $('#keep-searching').trigger('click');
+    if($('#search_lessons #keep-searching').length > 0){
+      $('#search_lessons #keep-searching').trigger('click');
     }
   });
   
@@ -519,6 +519,9 @@ $(document).ready(function() {
         $('#general_pagination').show();
       }
     });
+    if($('#search_media_elements #keep-searching').length > 0){
+      $('#search_media_elements #keep-searching').trigger('click');
+    }
   });
   
   $('body').on('focus', '#general_tag_reader_for_search', function() {
@@ -553,6 +556,7 @@ $(document).ready(function() {
     if(!$(this).hasClass('current')) {
       $('#search_media_elements').submit();
       $(this).addClass('current');
+      add_keep_searching(this);
     }
   });
   
@@ -560,24 +564,12 @@ $(document).ready(function() {
     if(!$(this).hasClass('current')) {
       $('#search_lessons').submit();
       $(this).addClass('current');
-      var f = $(this).parents('form');
-      f.animate({
-        height: '15'
-      }, 500, function() {
-        f.prepend("<a id='keep-searching'>Search again...</a>");
-        $('#keep-searching').siblings().hide();
-      });
+      add_keep_searching(this);
     }
   });
   
   $('body').on('click','#keep-searching',function(){
-    var f = $(this).parent('form');
-    f.animate({
-      height: '210'
-    }, 500, function() {
-      $('#keep-searching').siblings().show();
-      $("#keep-searching").remove();
-    });
+    remove_keep_searching(this);
   });
   
   $('body').on('change', '#filter_search_lessons_subject', function() {
