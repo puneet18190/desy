@@ -1,8 +1,8 @@
 <div class="gallery-header">
   <h3 class="pull-left"><%= t('captions.select_component_to_add') %></h3>
-  <div class="_switch_video videoButton current">&nbsp;</div>
-  <div class="_switch_image photoButton">&nbsp;</div>
-  <div class="_switch_text textButton">&nbsp;</div>
+  <div class="_switch_video videoButton current" title="<%= t('general_titles.go_to_video_gallery') %>">&nbsp;</div>
+  <div class="_switch_image photoButton" title="<%= t('general_titles.go_to_photo_gallery') %>">&nbsp;</div>
+  <div class="_switch_text textButton" title="<%= t('general_titles.go_to_insert_text') %>">&nbsp;</div>
 </div>
 <br style="clear:both">
 <div class="_videos video_gallery video-kind">
@@ -18,5 +18,5 @@
 </div>
 
 <div class="gallery-footer">
-  <div class="pull-right"><a class="_close_mixed_gallery_in_video_editor exitGallery"></a></div>
+  <div class="pull-right"><a class="_close_mixed_gallery_in_video_editor exitGallery" title="<%= t('general_titles.close_gallery_title') %>"></a></div>
 </div>

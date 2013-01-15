@@ -498,18 +498,23 @@ function startVideoEditorPreviewClip(component_id) {
   $('#' + component_id + '_preview').show('fade', {}, 250);
 }
 
+function commitVideoComponentVideoCutter(identifier) {
+  var from = $('#video_component_' + identifier + '_cutter').data('from');
+  var to = $('#video_component_' + identifier + '_cutter').data('to');
+  $('#video_component_' + identifier + ' ._video_component_input_from').val(from);
+  $('#video_component_' + identifier + ' ._video_component_input_to').val(to);
+  changeDurationVideoEditorComponent('video_component_' + identifier, to - from);
+  highlightAndUpdateVideoComponentIcon('video_component_' + identifier);
+}
+
 function cutVideoComponentLeftSide(identifier, pos) {
   $('#video_component_' + identifier + '_cutter').data('from', pos);
-  $('#video_component_' + identifier + ' ._video_component_input_from').val(pos);
   var new_duration = $('#video_component_' + identifier + '_cutter').data('to') - pos;
   $('#video_component_' + identifier + '_cutter ._video_editor_cutter_selected_time').html(secondsToDateString(new_duration));
-  changeDurationVideoEditorComponent('video_component_' + identifier, new_duration);
 }
 
 function cutVideoComponentRightSide(identifier, pos) {
   $('#video_component_' + identifier + '_cutter').data('to', pos);
-  $('#video_component_' + identifier + ' ._video_component_input_to').val(pos);
   var new_duration = pos - $('#video_component_' + identifier + '_cutter').data('from');
   $('#video_component_' + identifier + '_cutter ._video_editor_cutter_selected_time').html(secondsToDateString(new_duration));
-  changeDurationVideoEditorComponent('video_component_' + identifier, new_duration);
 }
