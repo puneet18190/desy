@@ -46,7 +46,7 @@
           <tr>
               <% SearchOrders::LESSONS_SET.each do |so| %>
                 <% my_order_id = "#{so}_lessons_radio_input" %>
-                <td width="5%"><input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_lessons_radio_input" <%= (so == @order) ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"> </label><%= SearchOrders::CAPTIONS[so] %></td>
+                <td width="5%"><input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_lessons_radio_input" <%= (so == @order) ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"> </label>&nbsp;<%= SearchOrders::CAPTIONS[so] %></td>
               <% end %>
             </td>
             <td align="left" colspan="2" width="40%">

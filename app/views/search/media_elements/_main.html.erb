@@ -37,7 +37,7 @@
                 <td width="5%">
                   <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_media_elements_radio_input" <%= (so == @order) ? "checked=\"checked\"".html_safe : '' %>>
                   <label for="<%= my_order_id %>"></label>
-                  <%= SearchOrders::CAPTIONS[so] %>
+                  &nbsp;<%= SearchOrders::CAPTIONS[so] %>
                 </td>
               <% end %>
             <td colspan="3" width="60%">
