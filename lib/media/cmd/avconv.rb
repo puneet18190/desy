@@ -20,7 +20,7 @@ module Media
       def initialize(input_files, output_file, format = nil)
         if format and not formats.include? format
           raise Error.new( 'format unsupported',
-                           input_files: input_files, output_file: output_file, format: format )
+                           input_files: input_files, output_file: output_file, formats: formats, format: format )
         end
 
         @input_files, @output_file, @format = input_files, output_file, format
