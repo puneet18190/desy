@@ -605,16 +605,34 @@ function startVideoEditorGlobalPreviewFromComponentAndTime(component, time) {
 }
 
 function playVideoEditorComponent(component, start_time) { // funzione ricorsiva
-  component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
+  component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
+  
   if(component.hasClass('_video')) {
     
   } else {
     $('#video_component_' + identifier + '_preview').show();
     setTimeout(function() {
-      $('._video_component_preview').hide(); // TODO fade etc etc
+      var next_component = component.next();
+      if(next_component.hasClass('._video_editor_component')) {
+        $('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
+        component.find('._video_component_transition').removeClass('current');
+        $('._video_component_preview').hide('fade', {}, 1000);
+        $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
+        playVideoEditorComponent(next_component, getInitialPointOfVideoEditorComponent(next_component));
+      } else {
+// TODO        stop
+      }
     }, component.data('duration'));
   }
   
-  // TODO CONTINUARE
+
   
+}
+
+function getInitialPointOfVideoEditorComponent(component) {
+  resp = 0;
+  if(component.hasClass('_video')) {
+    resp = $('#' + component.attr('id') + '_cutter').data('from');
+  }
+  return resp;
 }
