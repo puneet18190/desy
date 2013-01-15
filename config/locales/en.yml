@@ -176,8 +176,8 @@ en:
     total_length: 'Total lenght'
     untitled_new_element: 'New element - untitled'
     update: 'Update'
-    update_lesson: 'Are you making important changes?'
-    updating_media_element: 'Have you made important changes?'
+    update_lesson: 'Are you making significant changes?'
+    updating_media_element: 'Have you made significant changes?'
     upload: 'Upload'
     use_the_form_below_for_lesson_information: "Update here the lesson's info according to its new content"
     video_editor_label: 'Edit video'

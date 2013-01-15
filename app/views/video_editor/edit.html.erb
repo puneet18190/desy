@@ -47,7 +47,7 @@
 
 
 <div id="empty_video_preview_for_video_editor" style="display:none">
-  <%= render :partial => "video_editor/previews/video", :locals => {:component => {}, :identifier => 1, :empty => true} %>
+  <%= render :partial => "video_editor/previews/video", :locals => {:component => {}, :identifier => 1, :empty => true, :mute => false} %>
 </div>
 
 <div id="empty_image_preview_for_video_editor" style="display:none">
@@ -56,6 +56,10 @@
 
 <div id="empty_text_preview_for_video_editor" style="display:none">
   <%= render :partial => "video_editor/previews/text", :locals => {:component => {}, :identifier => 1, :empty => true} %>
+</div>
+
+<div id="empty_audio_track_preview_for_video_editor" style="display:none">
+  <%= render :partial => 'video_editor/previews/audio_track', :locals => {:audio_track => nil} %>
 </div>
 
 
