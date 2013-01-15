@@ -19,7 +19,7 @@
         <%= select_tag 'subject', options_from_collection_for_select(@subjects, 'id', 'description'), :include_blank => false, :class => 'pull-right', :id => 'lesson_subject' %>
         <%= text_area_tag 'description', description_max, :class => 'pull-left', :onfocus =>"this.value=''"  %>
         <%= text_area_tag 'tags', tags_max, :class => 'pull-right', :onfocus =>"this.value=''"  %>
-        <br />
+        <br style="clear:both" />
         <%= submit_tag t('captions.next').downcase, :class => 'lesson-create pull-right' %>
         <%= link_to t('captions.cancel').downcase, my_lessons_path,  :class => "buttonForm pull-right" %>
       <% end -%>
