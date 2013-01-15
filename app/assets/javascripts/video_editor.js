@@ -504,7 +504,10 @@ function commitVideoComponentVideoCutter(identifier) {
   $('#video_component_' + identifier + ' ._video_component_input_from').val(from);
   $('#video_component_' + identifier + ' ._video_component_input_to').val(to);
   changeDurationVideoEditorComponent('video_component_' + identifier, to - from);
-  highlightAndUpdateVideoComponentIcon('video_component_' + identifier);
+  if($('#video_component_' + identifier + '_cutter').data('changed')) {
+    highlightAndUpdateVideoComponentIcon('video_component_' + identifier);
+    $('#video_component_' + identifier + '_cutter').data('changed', false);
+  }
 }
 
 function cutVideoComponentLeftSide(identifier, pos) {
