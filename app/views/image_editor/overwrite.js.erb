@@ -1,5 +1,5 @@
 <% if @errors %>
-  $("#error_messages").html("<%= j media_elements_error_messages(@errors) %>");
+  $("#form_info_update_media_element_in_editor #error_messages").html("<%= j media_elements_error_messages(@errors) %>");
   <% @errors.each do |err,val|%>
     $("#update_<%=err%>").addClass("form_error");
   <% end %>
