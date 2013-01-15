@@ -1,7 +1,7 @@
 module ApplicationHelper
   
   def media_elements_error_messages(errors)
-    msg = ""
+    msg = "<img src='/assets/puntoesclamativo.png' style='margin: 0 5px -3px 0' />"
     errors.each do |key,val|
       msg << "#{key.to_s}: #{val[0].to_s}, " 
     end
