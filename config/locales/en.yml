@@ -71,6 +71,7 @@ en:
     author: 'Author'
     background_color: 'Background color'
     back_in_desy: 'Back in DESY'
+    back_to_dashboard: 'Back to dashboard'
     cancel: 'Cancel'
     click_image_to_add_text: 'Click on the image to add text'
     close: 'Close'
