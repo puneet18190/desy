@@ -1,12 +1,12 @@
 require 'media'
-require 'media/video'
-require 'media/video/editing'
-require 'media/video/editing/cmd'
-require 'media/video/editing/cmd/avconv'
+require 'media/audio'
+require 'media/audio/editing'
+require 'media/audio/editing/cmd'
+require 'media/audio/editing/cmd/avconv'
 require 'shellwords'
 
 module Media
-  module Video
+  module Audio
     module Editing
       class Cmd
         class Crop < Cmd::Avconv
@@ -14,7 +14,7 @@ module Media
             inputs = [input]
             super inputs, output, format
             @start, @duration = _start, _duration
-            output_options [ vcodec, acodec, start, duration ]
+            output_options [ acodec, start, duration ]
           end
   
           private

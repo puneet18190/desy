@@ -2,6 +2,7 @@ require 'media'
 require 'media/video'
 require 'media/video/editing'
 require 'media/video/editing/cmd/crop'
+require 'media/logging'
 
 module Media
   module Video
@@ -9,12 +10,16 @@ module Media
       class Crop
   
         include Logging
+
+        FORMATS  = FORMATS
+        CROP_CMD = Cmd::Crop
   
         def initialize(inputs, output_without_extension, start, duration)
-          unless inputs.is_a?(Hash)                       and 
-                 inputs.keys.sort == FORMATS.sort         and
+          # _d FORMATS, self.class, self.class::FORMATS
+          unless inputs.is_a?(Hash)                           and 
+                 inputs.keys.sort == self.class::FORMATS.sort and
                  inputs.values.all?{ |v| v.is_a? String }
-            raise Error.new("inputs must be an Hash with #{FORMATS.inspect} as keys and strings as values", inputs: inputs)
+            raise Error.new("inputs must be an Hash with #{self.class::FORMATS.inspect} as keys and strings as values", inputs: inputs)
           end
   
           unless output_without_extension.is_a?(String)
@@ -36,9 +41,9 @@ module Media
           create_log_folder
   
           @inputs.map do |format, input|
-            Thread.new do
-              Cmd::Crop.new(input, output(format), @start, @duration, format).run! *logs
-            end.tap{ |t| t.abort_on_exception = true }
+            SensitiveThread.new do
+              self.class::CROP_CMD.new(input, output(format), @start, @duration, format).run! *logs
+            end
           end.each(&:join)
   
           outputs
@@ -50,7 +55,7 @@ module Media
         end
   
         def outputs
-          Hash[ FORMATS.map{ |format| [format, output(format)] } ]
+          Hash[ self.class::FORMATS.map{ |format| [format, output(format)] } ]
         end
       end
     end

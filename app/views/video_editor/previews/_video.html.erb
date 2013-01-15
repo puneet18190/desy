@@ -6,8 +6,8 @@
   if !empty
     div_id = "id=\"video_component_#{identifier}_preview\""
     video = component[:video]
-    webm = video.webm_path
-    mp4 = video.mp4_path
+    webm = video.webm_url
+    mp4 = video.mp4_url
     duration = video.min_duration
   end
 %>

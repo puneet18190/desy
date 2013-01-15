@@ -239,11 +239,17 @@ class MediaElement < ActiveRecord::Base
   
   def stop_if_public
     @media_element = Valid.get_association self, :id
-    return @media_element.nil? || !@media_element.is_public
+    @media_element.nil? || !@media_element.is_public
   end
 
   def cannot_destroy_while_converting
     !converted.nil?
+  end
+
+  def clean
+    folder = media.try(:folder)
+    FileUtils.rm_rf folder if folder and File.exists? folder
+    true
   end
   
 end

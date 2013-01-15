@@ -17,7 +17,8 @@ module MediaEditingSpecSupport
   CONVERTED_VIDEO_HASH = { mp4: SAMPLES_FOLDER.join('con verted.mp4').to_s, webm: SAMPLES_FOLDER.join('con verted.webm').to_s, filename: 'con verted' }
   CONVERTED_AUDIO_HASH = { mp3: SAMPLES_FOLDER.join('con verted.mp3').to_s, ogg: SAMPLES_FOLDER.join('con verted.ogg').to_s, filename: 'con verted' }
   
-  CROP_VIDEOS = CONVERTED_VIDEO_HASH.select{ |k| [:mp4, :webm].include? k }
+  CROP_VIDEOS = CONVERTED_VIDEO_HASH.select{ |k| VIDEO_FORMATS.include? k }
+  CROP_AUDIOS = CONVERTED_AUDIO_HASH.select{ |k| AUDIO_FORMATS.include? k }
   
   CONCAT_VIDEOS = {
                     videos_with_some_audio_streams: {
@@ -38,26 +39,32 @@ module MediaEditingSpecSupport
 
   REPLACE_AUDIO_VIDEOS = { 
                            videos_with_some_audio_streams: {
-                             video_inputs: Hash[ [:mp4, :webm].map{ |f| [f, SAMPLES_FOLDER.join("con verted.#{f}").to_s] } ],
-                             audio_inputs: Hash[ [:mp3, :ogg ].map{ |f| [f, SAMPLES_FOLDER.join("valid audio 2.#{f}").to_s] } ]
+                             video_inputs: Hash[ VIDEO_FORMATS.map{ |f| [f, SAMPLES_FOLDER.join("con verted.#{f}").to_s] } ],
+                             audio_inputs: Hash[ AUDIO_FORMATS.map{ |f| [f, SAMPLES_FOLDER.join("valid audio 2.#{f}").to_s] } ]
                            },
                            videos_without_audio_streams:   { 
-                             video_inputs: Hash[ [:mp4, :webm].map{ |f| [f, SAMPLES_FOLDER.join("converted no audio.#{f}").to_s] } ],
-                             audio_inputs: Hash[ [:mp3, :ogg ].map{ |f| [f, SAMPLES_FOLDER.join("valid audio 2.#{f}").to_s] } ]
+                             video_inputs: Hash[ VIDEO_FORMATS.map{ |f| [f, SAMPLES_FOLDER.join("converted no audio.#{f}").to_s] } ],
+                             audio_inputs: Hash[ AUDIO_FORMATS.map{ |f| [f, SAMPLES_FOLDER.join("valid audio 2.#{f}").to_s] } ]
                            }
                          }
 
   TRANSITION_VIDEOS = {
-    start_inputs: Hash[ [:mp4, :webm].map{ |f| [f, SAMPLES_FOLDER.join("con verted.#{f}").to_s] } ],
-    end_inputs:   Hash[ [:mp4, :webm].map{ |f| [f, SAMPLES_FOLDER.join("converted no audio.#{f}").to_s] } ]
+    start_inputs: Hash[ VIDEO_FORMATS.map{ |f| [f, SAMPLES_FOLDER.join("con verted.#{f}").to_s] } ],
+    end_inputs:   Hash[ VIDEO_FORMATS.map{ |f| [f, SAMPLES_FOLDER.join("converted no audio.#{f}").to_s] } ]
   }
-  AVCONV_SH_VARS                      = {}                                                          # { 'LD_LIBRARY_PATH' => '/opt/libav-0.8.4/lib' }
-  # AVCONV_WITH_FILTERS_SH_VARS         = AVCONV_SH_VARS                                              # { 'LD_LIBRARY_PATH' => '/opt/libav-0.8.4/lib' }
-  AVCONV_PRE_COMMAND                  = 'avconv -v 9 -loglevel 99 -benchmark -y -timelimit 86400'   # '/opt/libav-0.8.4/bin/avconv'
-  # AVCONV_WITH_FILTERS_PRE_COMMAND     = AVCONV_PRE_COMMAND                                          # '/opt/libav-0.8.4/bin/avconv'
-  # AVCONV_WITH_FILTERS_SUBEXEC_OPTIONS = { sh_vars: AVCONV_SH_VARS, timeout: 86410 }
-  AVCONV_SUBEXEC_OPTIONS              = { sh_vars: AVCONV_SH_VARS, timeout: 86410 }
-  VBITRATE                  = { mp4: '', webm: ' -b:v 2M' }
+
+  CONCAT_AUDIOS = {
+                    audios: ['concat 1', 'concat 2'].map{ |i| Hash[ AUDIO_FORMATS.map{ |f| [f, SAMPLES_FOLDER.join("#{i}.#{f}").to_s] } ] } * 2,
+                    output_infos: {
+                      mp3:  {:duration=>136.51, :streams=>{:audio=>[{:codec=>"mp3", :bitrate=>128}]}},
+                      ogg: {:duration=>136.3, :streams=>{:audio=>[{:codec=>"vorbis", :bitrate=>112}]}}
+                    }
+                  }
+
+  AVCONV_SH_VARS         = {}
+  AVCONV_PRE_COMMAND     = 'avconv -v 9 -loglevel 99 -benchmark -y -timelimit 86400'
+  AVCONV_SUBEXEC_OPTIONS = { sh_vars: AVCONV_SH_VARS, timeout: 86410 }
+  VBITRATE               = { mp4: '', webm: ' -b:v 2M' }
 
   AVPROBE_PRE_COMMAND     = 'avprobe'
   AVPROBE_SH_VARS         = AVCONV_SH_VARS

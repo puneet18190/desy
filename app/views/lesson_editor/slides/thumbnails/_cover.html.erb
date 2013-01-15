@@ -10,7 +10,7 @@
     <% if !image %>
       <div style="width:900px; height:550px; background-color:white"></div>
     <% else %>
-      <%= image_tag image.media_element.path, :style => "top:#{image.alignment}px; width: 900px;height: #{image_height}" %>
+      <%= image_tag image.media_element.url, :style => "top:#{image.alignment}px; width: 900px;height: #{image_height}" %>
     <% end %>
   </div>
   <div class="bg_text">

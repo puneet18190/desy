@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 module Media
-  module Video
+  module Audio
     module Editing
       describe Crop do
   
         describe '.new' do
           subject { described_class.new(inputs, output_without_extension, start, duration) }
   
-          let(:inputs)                   { { mp4: 'input', webm: 'input' } }
+          let(:inputs)                   { { mp3: 'input', ogg: 'input' } }
           let(:output_without_extension) { 'output' }
           let(:start)                    { 0 }
           let(:duration)                 { 10 }
@@ -24,7 +24,7 @@ module Media
           end
   
           context 'when inputs are not strings' do
-            let(:inputs) { { mp4: nil, webm: nil } }
+            let(:inputs) { { mp3: nil, ogg: nil } }
             it { expect { subject }.to raise_error Error }
           end
   
@@ -65,22 +65,20 @@ module Media
           end
           let(:output) { File.join tmp_dir, 'out put' }
   
-          subject { described_class.new(MESS::CROP_VIDEOS, output, 10, 10).run }
+          subject { described_class.new(MESS::CROP_AUDIOS, output, 10, 10).run }
   
           before(:all) { subject }
   
-          MESS::VIDEO_FORMATS.each do |format|
-  
+          MESS::AUDIO_FORMATS.each do |format|
             context "with #{format} format", format: format do
               let(:format) { format }
               let(:info)   { Info.new(subject[format]).info }
   
-              it 'creates a video with the expected duration' do
+              it 'creates a audio with the expected duration' do
                 duration = info[:duration]
                 duration.should be_within(0.5).of(10)
               end
             end
-  
           end
   
           after(:all) do

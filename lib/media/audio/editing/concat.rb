@@ -1,77 +1,106 @@
-require 'media_editing'
+require 'media'
+require 'media/audio'
 require 'media/audio/editing'
-require 'media_editing/logging'
-require 'media_editing/in_tmp_dir'
+require 'media/logging'
+require 'media/in_tmp_dir'
 
-module MediaEditing
+module Media
   module Audio
-    class Concat
+    module Editing
+      class Concat
 
-      include Logging
-      include InTmpDir
+        include Logging
+        include InTmpDir
 
-      def initialize(inputs, output_without_extension)
-        unless inputs.is_a?(Hash)                                                     and 
-               inputs.keys.sort == FORMATS.sort                                       and
-               inputs.values.all?{ |v| v.is_a? Array }                                and
-               inputs.values.map{ |v| v.all?{ |_v| _v.is_a? String } }.uniq == [true]
-          raise Error.new("inputs must be an Hash with #{FORMATS.inspect} as keys and an array of strings as values with at least one value", inputs: inputs, output_without_extension: output_without_extension)
-        end
-
-        unless output_without_extension.is_a?(String)
-          raise Error.new('output_without_extension must be a string', output_without_extension: output_without_extension)
-        end
-
-        @inputs, @output_without_extension = inputs, output_without_extension
+        OUTPUT_MP3_FORMAT = '%s.mp3'
+        OUTPUT_OGG_FORMAT = '%s.ogg'
         
-        if mp3_inputs.size != ogg_inputs.size
-          raise Error.new('inputs[:mp3] and inputs[:ogg] must be of the same size', inputs: @inputs, output_without_extension: @output_without_extension)
-        end
-      end
-
-      def run
-        # Posso controllare mp3_inputs per sapere quante coppie di video ho, perché ho già visto che mp3_inputs.size == webm_inputs.size
-        # Caso speciale: se ho una sola coppia di input copio i due video nei rispettivi output e li ritorno
-        return copy_first_inputs_to_outputs if mp3_inputs.size == 1
-
-        create_log_folder
-
-        in_tmp_dir do
-          FORMATS.map do |format|
-            Thread.new do
-              concat(format)
-            end.tap{ |t| t.abort_on_exception = true }
-          end.each(&:join)
-        end
-
-        outputs
-      end
-
-      private
-      def concat(format)
-
-      end
-      
-      def mp3_output
-        OUTPUT_MP3_FORMAT % @output_without_extension
-      end
-
-      def ogg_output
-        OUTPUT_OGG_FORMAT % @output_without_extension
-      end
-
-      def outputs
-        { mp3: mp3_output, ogg: ogg_output }
-      end
-
-      def copy_first_inputs_to_outputs
-        Hash[
-          @inputs.map do |format, inputs|
-            input, output = inputs.first, outputs[format]
-            FileUtils.cp input, output
-            [format, output]
+        # Usage example:
+        #
+        # Concat.new([ { webm: 'input.webm', mp4: 'input.mp4'}, { webm: 'input2.webm', mp4: 'input2.mp4'} ], '/output/without/extension').run 
+        #
+        #   #=> { mp4:'/output/without/extension.mp4', webm:'/output/without/extension.webm' }
+        #
+        def initialize(inputs, output_without_extension)
+          unless inputs.is_a?(Array) and
+                 inputs.present?     and
+                 inputs.all? do |input|
+                   input.instance_of?(Hash)          and
+                   input.keys.sort == FORMATS.sort   and
+                   input.values.size == FORMATS.size and
+                   input.values.all?{ |v| v.instance_of? String }
+                 end
+            raise Error.new( "inputs must be an array with at least one element and its elements must be hashes with #{FORMATS.inspect} as keys and strings as values", 
+                             inputs: inputs, output_without_extension: output_without_extension )
           end
-        ]
+  
+          unless output_without_extension.is_a?(String)
+            raise Error.new('output_without_extension must be a string', output_without_extension: output_without_extension)
+          end
+  
+          @inputs, @output_without_extension = inputs, output_without_extension
+          
+          if mp3_inputs.size != ogg_inputs.size
+            raise Error.new('mp3_inputs and ogg_inputs must be of the same size', inputs: @inputs, output_without_extension: @output_without_extension)
+          end
+        end
+
+        def run
+          # Posso controllare mp3_inputs per sapere quante coppie di video ho, perché ho già visto che mp3_inputs.size == webm_inputs.size
+          # Caso speciale: se ho una sola coppia di input copio i due video nei rispettivi output e li ritorno
+          return copy_first_inputs_to_outputs if mp3_inputs.size == 1
+
+          create_log_folder
+
+          in_tmp_dir do
+            FORMATS.map do |format|
+              SensitiveThread.new do
+                concat(format)
+              end
+            end.each(&:join)
+          end
+
+          outputs
+        end
+
+        private
+        def concat(format)
+          Cmd::Concat.new(inputs[format], outputs[format]).run! *logs
+        end
+        
+        def mp3_output
+          OUTPUT_MP3_FORMAT % @output_without_extension
+        end
+
+        def ogg_output
+          OUTPUT_OGG_FORMAT % @output_without_extension
+        end
+
+        def outputs
+          { mp3: mp3_output, ogg: ogg_output }
+        end
+
+        def inputs
+          @_inputs ||= Hash[ FORMATS.map{ |f| [f, @inputs.map{ |input| input[f] } ] } ]
+        end
+
+        def mp3_inputs
+          @inputs.map{ |input| input[:mp3] }
+        end
+        
+        def ogg_inputs
+          @inputs.map{ |input| input[:ogg] }
+        end
+
+        def copy_first_inputs_to_outputs
+          Hash[
+            @inputs.first.map do |format, input|
+              output = outputs[format]
+              FileUtils.cp input, output
+              [format, output]
+            end
+          ]
+        end
       end
     end
   end

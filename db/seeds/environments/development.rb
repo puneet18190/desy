@@ -2,8 +2,8 @@
 
 create_locations_school_levels_subjects_admin_user
 
-videos_folder = Media::Video::Uploader::ABSOLUTE_FOLDER
-audios_folder = Media::Audio::Uploader::ABSOLUTE_FOLDER
+videos_folder = Media::Video::Uploader::FOLDER
+audios_folder = Media::Audio::Uploader::FOLDER
 [videos_folder, audios_folder].each { |d| FileUtils.rm_rf d if Dir.exists? d }
 
 location1 = Location.find 1

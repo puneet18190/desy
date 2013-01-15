@@ -6,8 +6,8 @@
   string_duration = ''
   if audio
     audio_class = '_instance_of_player'
-    ogg = audio.ogg_path
-    mp3 = audio.mp3_path
+    ogg = audio.ogg_url
+    mp3 = audio.mp3_url
     duration = audio.min_duration
     string_duration = seconds_to_time(duration)
   end

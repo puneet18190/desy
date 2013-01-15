@@ -5,12 +5,12 @@ class Image < MediaElement
   
   before_save :set_width_and_height
   
-  def path
+  def url
     media.url
   end
   
-  def thumb_path
-    media.thumb
+  def thumb_url
+    media.thumb.url
   end
   
   def width
@@ -21,9 +21,7 @@ class Image < MediaElement
     metadata.height
   end
   
-  
   private
-  
   def width=(width)
     metadata.width = width
   end

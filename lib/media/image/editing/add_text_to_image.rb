@@ -7,23 +7,24 @@ module Media
   module Image
     module Editing
       class AddTextToImage < Cmd
+
+        FONT_PATH = Rails.root.join('vendor/fonts/DroidSansFallback.ttf').to_s
         
         #img is a mini_magick object
-        def initialize(img, color_hex, font_size, coordX, coordY, text_value)
-          @img, @color_hex, @font_size, @coordX, @coordY, @text = img, color_hex, font_size, coordX, coordY, text_value
+        def initialize(img, color_hex, font_size, coord_x, coord_y, text_value)
+          @img, @color_hex, @font_size, @coord_x, @coord_y, @text = img, color_hex, font_size, coord_x, coord_y, text_value
         end
         
         private
         
         def cmd!
-        font = "#{Rails.root.join('vendor/fonts/DroidSansFallback.ttf')}"
         %Q[ mogrify
-              -fill       #{@color_hex.to_s.shellescape}
-              -stroke     none
-              -font       #{font.to_s.shellescape}
-              -pointsize  #{@font_size.to_s.shellescape}
-              -gravity    NorthWest
-              -annotate   +#{@coordX.to_i.to_s.shellescape}+#{@coordY.to_i.to_s.shellescape} #{shellescaped_text}
+              -fill      #{@color_hex.to_s.shellescape}
+              -stroke    none
+              -font      #{FONT_PATH.shellescape}
+              -pointsize #{@font_size.to_s.shellescape}
+              -gravity   NorthWest
+              -annotate  +#{@coord_x.to_i.to_s.shellescape}+#{@coord_y.to_i.to_s.shellescape} #{shellescaped_text}
               #{@img.to_s.shellescape} ].squish
         end
         

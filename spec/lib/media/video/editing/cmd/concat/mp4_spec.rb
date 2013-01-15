@@ -4,7 +4,7 @@ module Media
   module Video
     module Editing
       class Cmd
-        module Concat
+        class Concat
           describe Mp4 do
             let(:pre_command) { MESS::AVCONV_PRE_COMMAND }
             
