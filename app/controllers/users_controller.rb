@@ -1,9 +1,15 @@
 class UsersController < ApplicationController
   
-  before_filter :initialize_layout, :only => :edit
+  before_filter :initialize_layout, :only => [:edit, :subjects, :stats]
   skip_before_filter :authenticate, :only => :logout
   
   def edit
+  end
+  
+  def subjects
+  end
+  
+  def stats
   end
   
   def update
