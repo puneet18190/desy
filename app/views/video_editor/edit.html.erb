@@ -58,6 +58,10 @@
   <%= render :partial => "video_editor/previews/text", :locals => {:component => {}, :identifier => 1, :empty => true} %>
 </div>
 
+<div id="empty_audio_track_preview_for_video_editor" style="display:none">
+  <%= render :partial => 'video_editor/previews/audio_track', :locals => {:audio_track => nil} %>
+</div>
+
 
 <div id="empty_video_cutter_for_video_editor" style="display:none">
   <%= render :partial => "video_editor/cutters/video", :locals => {:component => {}, :identifier => 1, :empty => true} %>
