@@ -967,6 +967,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._add_audio_track_to_video_editor', function() {
+    $('#video_editor_preview_container ._audio_track_preview').remove();
     var audio_id = $(this).data('audio-id');
     closeGalleryInVideoEditor('audio');
     stopMedia('#gallery_audio_' + audio_id + ' audio');
@@ -977,10 +978,17 @@ $(document).ready(function() {
     var new_html_title = $('#gallery_audio_' + audio_id + ' ._compact p').html();
     new_html_title += ('<br/>' + secondsToDateString($(this).data('duration')));
     $('#full_audio_track_placeholder_in_video_editor ._title').html(new_html_title);
+    $('#video_editor_preview_container').append($('#empty_audio_track_preview_for_video_editor').html());
+    var new_audio_track = $('#video_editor_preview_container ._audio_track_preview');
+    new_audio_track.data('duration', $(this).data('duration'));
+    new_audio_track.find('source[type="audio/mp3"]').attr('src', $(this).data('mp3'));
+    new_audio_track.find('source[type="audio/ogg"]').attr('src', $(this).data('ogg'));
+    new_audio_track.find('audio').load();
   });
   
   $('body').on('click', '#full_audio_track_placeholder_in_video_editor ._remove', function() {
     var audio_id = $('#audio_track_in_video_editor_input').val();
+    $('#video_editor_preview_container ._audio_track_preview').remove();
     $('#audio_track_in_video_editor_input').val('');
     $('#full_audio_track_placeholder_in_video_editor').hide();
     $('#empty_audio_track_placeholder_in_video_editor').show();
