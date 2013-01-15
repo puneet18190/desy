@@ -16,7 +16,7 @@
 <div style="display:none" class="boxContentMediaElementVideo _video_component_preview" <%= div_id.html_safe %>>
   
   <div class="videoPlayer">
-    <video width="640" height="360">
+    <video width="640" height="360" <%= mute ? "muted=\"muted\"".html_safe : '' %>>
       <source src="<%= webm %>" type="video/webm">
       <source src="<%= mp4 %>" type="video/mp4">
       <%= t('captions.your_browser_does_not_support_video') %>
