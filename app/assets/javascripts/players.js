@@ -130,6 +130,7 @@ function initializeVideoInVideoEditorPreview(identifier) {
       $(ui.handle).addClass('selected');
     },
     slide: function(event, ui) {
+      my_cutter.data('changed', true);
       var left_val = ui.values[0];
       var right_val = ui.values[1];
       var cursor_val = my_cutter.find('._media_player_slider').slider('value');
