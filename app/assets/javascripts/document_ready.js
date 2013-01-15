@@ -968,6 +968,9 @@ $(document).ready(function() {
   
   $('body').on('click', '._add_audio_track_to_video_editor', function() {
     $('#video_editor_preview_container ._audio_track_preview').remove();
+    if(!$('#video_editor_preview_container video').prop('muted')) {
+      $('#video_editor_preview_container video').prop('muted', true);
+    }
     var audio_id = $(this).data('audio-id');
     closeGalleryInVideoEditor('audio');
     stopMedia('#gallery_audio_' + audio_id + ' audio');
@@ -987,6 +990,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#full_audio_track_placeholder_in_video_editor ._remove', function() {
+    $('#video_editor_preview_container video').prop('muted', false);
     var audio_id = $('#audio_track_in_video_editor_input').val();
     $('#video_editor_preview_container ._audio_track_preview').remove();
     $('#audio_track_in_video_editor_input').val('');

@@ -237,6 +237,9 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   $('#add_new_video_component').before(empty_component);
   // edit preview
   current_preview = $('#temporary_empty_preview');
+  if(videoEditorWithAudioTrack()) {
+    current_preview.find('video').prop('muted', true);
+  }
   current_preview.attr('id', ('video_component_' + next_position + '_preview'));
   current_preview.find('source[type="video/webm"]').attr('src', webm);
   current_preview.find('source[type="video/mp4"]').attr('src', mp4);
@@ -286,6 +289,9 @@ function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, posi
   $('#video_component_' + identifier + '_cutter').replaceWith(empty_cutter);
   // edit preview
   current_preview = $('#temporary_empty_preview');
+  if(videoEditorWithAudioTrack()) {
+    current_preview.find('video').prop('muted', true);
+  }
   current_preview.attr('id', ('video_component_' + identifier + '_preview'));
   current_preview.find('source[type="video/webm"]').attr('src', webm);
   current_preview.find('source[type="video/mp4"]').attr('src', mp4);
@@ -510,6 +516,10 @@ function commitVideoComponentVideoCutter(identifier) {
   }
 }
 
+function videoEditorWithAudioTrack() {
+  return $('#audio_track_in_video_editor_input').val() != '';
+}
+
 function cutVideoComponentLeftSide(identifier, pos) {
   $('#video_component_' + identifier + '_cutter').data('from', pos);
   var new_duration = $('#video_component_' + identifier + '_cutter').data('to') - pos;
@@ -520,4 +530,23 @@ function cutVideoComponentRightSide(identifier, pos) {
   $('#video_component_' + identifier + '_cutter').data('to', pos);
   var new_duration = pos - $('#video_component_' + identifier + '_cutter').data('from');
   $('#video_component_' + identifier + '_cutter ._video_editor_cutter_selected_time').html(secondsToDateString(new_duration));
+}
+
+function calculateVideoComponentStartSecondInVideoEditor(identifier) {
+  var duration = 0;
+  var stop = false;
+  $('._video_editor_component').each(function(index) {
+    var my_identifier = $(this).attr('id').split('_');
+    my_identifier = my_identifier[my_identifier.length - 1];
+    if(my_identifier == identifier) {
+      stop = true;
+    } else if(!stop) {
+      duration += ($(this).data('duration') + 1);
+    }
+  });
+  var cutter = $('#video_component_' + identifier + '_cutter');
+  if(!cutter.hasClass('_mini_cutter')) {
+    duration += $('#video_component_' + identifier + '_cutter').data('from');
+  }
+  return duration;
 }
