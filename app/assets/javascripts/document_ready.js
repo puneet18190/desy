@@ -1204,18 +1204,29 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_play_in_video_editor_preview', function() {
     $(this).hide();
-    var cutter_id = $(this).parent().parent().attr('id');
-    var preview_id = cutter_id.replace('cutter', 'preview');
-    $('#' + cutter_id + ' ._media_player_slider_disabler').show();
-    $('#' + cutter_id + ' ._media_player_pause_in_video_editor_preview').show();
-    $('#' + cutter_id + ' .ui-slider-handle').removeClass('selected');
-    var media = $('#' + preview_id + ' video');
-    if(media.readyState != 0) {
-      media[0].play();
+    var identifier = $(this).parent().parent().attr('id').split('_');
+    identifier = identifier[identifier.length - 2];
+    $('#video_component_' + identifier + '_cutter ._media_player_slider_disabler').show();
+    $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').show();
+    $('#video_component_' + identifier + '_cutter .ui-slider-handle').removeClass('selected');
+    var video = $('#video_component_' + identifier + '_preview video');
+    if(video.readyState != 0) {
+      video[0].play();
     } else {
-      media.on('loadedmetadata', function() {
-        media[0].play();
+      video.on('loadedmetadata', function() {
+        video[0].play();
       });
+    }
+    if(videoEditorWithAudioTrack()) {
+      var audio_track = $('#video_editor_preview_container audio');
+      setCurrentTimeToMedia(audio_track, calculateVideoComponentStartSecondInVideoEditor(identifier));
+      if(audio_track.readyState != 0) {
+        audio_track[0].play();
+      } else {
+        audio_track.on('loadedmetadata', function() {
+          audio_track[0].play();
+        });
+      }
     }
   });
   
@@ -1227,6 +1238,9 @@ $(document).ready(function() {
     $('#' + cutter_id + ' ._media_player_play_in_video_editor_preview').show();
     $('#' + cutter_id + ' ._media_player_slider .ui-slider-handle').addClass('selected');
     $('#' + preview_id + ' video')[0].pause();
+    if(videoEditorWithAudioTrack()) {
+      $('#video_editor_preview_container audio')[0].pause();
+    }
   });
   
   $('body').on('click', '._video_component_cutter ._double_slider .ui-slider-range', function(e) {
