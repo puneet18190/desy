@@ -737,12 +737,17 @@ $(document).ready(function() {
   
   // VIDEO EDITOR
   
+  $('body').on('click', '#video_editor_global_preview._enabled', function() {
+    alert('PREVIEWWW');
+  });
+  
   $('body').on('click', '._video_component_cutter_button', function() {
     var component_id = $(this).parent().parent().parent().parent().attr('id');
     if($('#' + component_id + '_preview').css('display') == 'none') {
       startVideoEditorPreviewClip(component_id);
     }
     $('#video_editor_box_ghost').show();
+    $('#video_editor_global_preview').removeClass('_enabled');
     var pos = $('#' + component_id).data('position');
     var scroll_to = getNormalizedPositionTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186, pos, 5);
     if($('#' + component_id + '_cutter').hasClass('_mini_cutter')) {
@@ -767,6 +772,7 @@ $(document).ready(function() {
     identifier = identifier[identifier.length - 2];
     stopVideoInVideoEditorPreview(identifier);
     commitVideoComponentVideoCutter(identifier);
+    $('#video_editor_global_preview').addClass('_enabled');
   });
   
   $('body').on('click', '._media_player_done_other_component_in_video_editor_preview', function() {
@@ -789,6 +795,7 @@ $(document).ready(function() {
         highlightAndUpdateVideoComponentIcon('video_component_' + identifier);
       }
     }
+    $('#video_editor_global_preview').addClass('_enabled');
   });
   
   $('body').on('click', '._exit_video_editor', function() {
