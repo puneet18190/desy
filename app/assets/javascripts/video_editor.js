@@ -531,3 +531,22 @@ function cutVideoComponentRightSide(identifier, pos) {
   var new_duration = pos - $('#video_component_' + identifier + '_cutter').data('from');
   $('#video_component_' + identifier + '_cutter ._video_editor_cutter_selected_time').html(secondsToDateString(new_duration));
 }
+
+function calculateVideoComponentStartSecondInVideoEditor(identifier) {
+  var duration = 0;
+  var stop = false;
+  $('._video_editor_component').each(function(index) {
+    var my_identifier = $(this).attr('id').split('_');
+    my_identifier = my_identifier[my_identifier.length - 1];
+    if(my_identifier == identifier) {
+      stop = true;
+    } else if(!stop) {
+      duration += ($(this).data('duration') + 1);
+    }
+  });
+  var cutter = $('#video_component_' + identifier + '_cutter');
+  if(!cutter.hasClass('_mini_cutter')) {
+    duration += $('#video_component_' + identifier + '_cutter').data('from');
+  }
+  return duration;
+}
