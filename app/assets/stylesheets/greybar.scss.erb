@@ -61,7 +61,6 @@
     padding-top:20px
   }
   .boxCerca {
-    padding:0px;
     margin:0px;
     float: right;
 
@@ -117,8 +116,51 @@
 
 .advanced-search-content {
  .contentSearch {
-   width: 94%; 
+   width: 100%;
    margin: 0 auto 0 auto;
+   form{
+     font: 100% 'Nunito', sans-serif;
+     padding: 1% 3%;
+     border: 1px solid #efefef;
+     label{
+       font-size: 10px;
+     }
+     input{
+       border-radius: 4px;
+       box-shadow: 0 1px 2px rgba(50,50,50,0.2) inset;
+       color: #bbb;
+       font:  100% 'Nunito', sans-serif;
+     }
+     .sbHolder{
+       width: 170px;
+     }
+     .sbOptions{
+       width: 170px;
+     }
+     
+     .cerca{
+       background:#555;
+       color: #fff;
+       text-transform: uppercase;
+       padding: 10px 30px;
+       font-family: Arial, sans-serif;
+       margin: 0;
+       &:hover{
+         background:#999;
+       }
+       &.current,&:hover.current{
+         color:#ccc;
+         background:#999;
+       }
+     }
+     
+     #keep-searching{
+       background: url('/assets/select-icons.png') 0 -123px no-repeat;
+       padding-left: 30px;
+       margin-left:-4px;
+     }
+   }
+
   }
   table {
     width:100%;
@@ -130,10 +172,11 @@
   .sbHolder {
     background-color:#f8f8f8;
   }
-  .sbOptions a:link, .sbOptions a:visited{
+  .sbOptions a{
     color: #939393;
-    &:hover {
-      color:#f29400;
+    &:hover, &.sbFocus {
+      color: #fff;
+      background-color: #f29400;
     };
   }
 

@@ -504,6 +504,9 @@ $(document).ready(function() {
         $('#general_pagination').show();
       }
     });
+    if($('#keep-searching').length > 0){
+      $('#keep-searching').trigger('click');
+    }
   });
   
   $('body').on('click', '#which_item_to_search_switch_lessons', function() {
@@ -557,7 +560,24 @@ $(document).ready(function() {
     if(!$(this).hasClass('current')) {
       $('#search_lessons').submit();
       $(this).addClass('current');
+      var f = $(this).parents('form');
+      f.animate({
+        height: '15'
+      }, 500, function() {
+        f.prepend("<a id='keep-searching'>Search again...</a>");
+        $('#keep-searching').siblings().hide();
+      });
     }
+  });
+  
+  $('body').on('click','#keep-searching',function(){
+    var f = $(this).parent('form');
+    f.animate({
+      height: '210'
+    }, 500, function() {
+      $('#keep-searching').siblings().show();
+      $("#keep-searching").remove();
+    });
   });
   
   $('body').on('change', '#filter_search_lessons_subject', function() {
