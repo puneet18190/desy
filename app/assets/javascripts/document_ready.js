@@ -738,6 +738,7 @@ $(document).ready(function() {
   // VIDEO EDITOR
   
   $('body').on('click', '#video_editor_global_preview._enabled', function() {
+    $('._video_component_preview').hide();
     $('#video_editor_preview_container ._loader').show();
     $('._video_editor_bottom_bar').css('visibility', 'hidden');
     $('#visual_video_editor_total_length_caption').css('visibility', 'hidden');
@@ -749,9 +750,7 @@ $(document).ready(function() {
     $('._video_component_icon ._right').html(secondsToDateString(0));
     setTimeout(function() {
       $('#video_editor_preview_container ._loader').hide();
-      
-      // TODO CONTINUARE QUI
-      
+      startVideoEditorGlobalPreview();
     }, 1500);
   });
   
