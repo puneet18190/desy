@@ -561,13 +561,20 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
 
 
 
-
-function startVideoEditorGlobalPreview() {
+// questa funzione serve per filtrare i parametri rimasti dall'ultima pausa: se ho fatto modifiche che mi fanno perdere il punto, tipo
+// eliminazione della componente su cui avevo fatto pausa, o cose analoghe; la funzione va chiamata con preview già vuota
+function startVideoEditorGlobalPreview(times_already_set) {
+  $('#video_editor_global_preview').data('in-use', true);
   var current_identifier = $('#video_editor_global_preview').data('current-component');
   var current_component = $('#video_component_' + current_identifier);
   var current_time = $('#video_editor_global_preview').data('current-time'); // time INSIDE the component, not absolute
+  
+  if(!times_already_set) {
+    setVisualTimesVideoEditorPreview() // FIXME SISTEMARLA -- la chiamo solo se non sono già stati settati prima
+  }
+  
   if(current_component.length == 0) {
-    current_component = $($('._video_editor_component')[0]);
+    current_component = getFirstVideoEditorComponent();
     current_time = 0;
   } else {
     var current_cutter = $('#video_component_' + current_identifier + '_cutter');
@@ -581,13 +588,7 @@ function startVideoEditorGlobalPreview() {
       }
     }
   }
-  startVideoEditorGlobalPreviewFromComponentAndTime(current_component, current_time);
-}
-
-function startVideoEditorGlobalPreviewFromComponentAndTime(component, time) {
-  $('._video_component_preview').hide();
-  $('#video_editor_global_preview').data('in-use', true);
-  var identifier = component.attr('id').split('_');
+  var identifier = current_component.attr('id').split('_');
   identifier = identifier[identifier.length - 1];
   var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(identifier);
   if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
@@ -601,7 +602,16 @@ function startVideoEditorGlobalPreviewFromComponentAndTime(component, time) {
       });
     }
   }
-  playVideoEditorComponent(component, time);
+  playVideoEditorComponent(current_component, current_time);
+}
+
+function getFirstVideoEditorComponent() {
+  return $($('._video_editor_component')[0]);
+}
+
+function setVisualTimesVideoEditorPreview(component, time) {
+  $('._video_component_icon ._right').html(secondsToDateString(0)); // TODO farlo a seconda di quale componente parto
+        $('#visual_video_editor_total_length').html(secondsToDateString(0)); // (6) setto a zero il tempo corrente (
 }
 
 function playVideoEditorComponent(component, start_time) { // funzione ricorsiva

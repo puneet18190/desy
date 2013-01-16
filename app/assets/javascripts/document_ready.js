@@ -750,19 +750,22 @@ $(document).ready(function() {
   // VIDEO EDITOR
   
   $('body').on('click', '#video_editor_global_preview._enabled', function() {
-    $('._video_component_preview').hide();
-    $('#video_editor_preview_container ._loader').show();
-    $('._video_editor_bottom_bar').css('visibility', 'hidden');
-    $('#visual_video_editor_total_length_caption').css('visibility', 'hidden');
-    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
-    $('#video_editor_box_ghost').show();
-    $('#visual_video_editor_total_length').html(secondsToDateString(0));
-    $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
-    $('._video_component_transition').addClass('current');
-    $('._video_component_icon ._right').html(secondsToDateString(0));
+    $('._video_component_preview').hide(); // (1) svuoto la preview attualmente nello schermo
+    $('._video_editor_bottom_bar').css('visibility', 'hidden'); // (2) nascondo la barra audio
+    $('#visual_video_editor_total_length_caption').css('visibility', 'hidden'); // (3) nascondo la caption della durata finale TODO forse provvisorio
+    // (4) TODO manca mostrare il tempo corrente oltre a quello fisso
+    // (5) TODO manca cambiare il bottone preview in pausa
+    // (6) TODO manca mostrare il bottone esci
+    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden'); // (7) nascondo la barra orizzontale
+    $('#video_editor_box_ghost').show(); // (8) disabilito tutte le azioni della timeline
+    $('._video_editor_component_hover, ._video_component_icon').addClass('selected'); // (9) oscuro tutte le componenti e tutti i loro header
+    $('._video_component_transition').addClass('current'); // (10) nascondo tutte le transizioni
+    setVisualTimesVideoEditorPreview(getFirstVideoEditorComponent(), 0); // (11) setto a zero tutti i tempi
+    $('#video_editor_preview_container ._loader').show(); // (12) mostro il loader
     setTimeout(function() {
+      // ora sono pronto a far partire la preview e nascondere il loader
       $('#video_editor_preview_container ._loader').hide();
-      startVideoEditorGlobalPreview();
+      startVideoEditorGlobalPreview(true);
     }, 1500);
   });
   
