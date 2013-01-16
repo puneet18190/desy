@@ -654,6 +654,15 @@ function getVideoComponentIdentifier(item_id) {
   }
 }
 
+function singleComponentTimerVideoEditorPreview(component, time) {
+  setTimeout(function() {
+    if($('#video_editor_global_preview').data('in-use') && time <= component.data('duration')) {
+      component.find('._video_component_icon ._right').html(secondsToDateString(time));
+      singleComponentTimerVideoEditorPreview(component, time + 1);
+    }
+  }, 1000);
+}
+
 function generalTimerVideoEditorPreview(time, total_length) {
   setTimeout(function() {
     if($('#video_editor_global_preview').data('in-use') && time <= total_length) {
