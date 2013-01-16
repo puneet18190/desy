@@ -595,7 +595,6 @@ function getFirstVideoEditorComponent() {
 function playVideoEditorComponent(component, start_time) {
   var identifier = getVideoComponentIdentifier(component.attr('id'));
   $('._video_component_transition').addClass('current');
-  singleComponentTimerVideoEditorPreview(component, start_time + 1);
   component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
   if(component.hasClass('_video')) {
     var video = $('#video_component_' + identifier + '_preview video');
@@ -607,7 +606,7 @@ function playVideoEditorComponent(component, start_time) {
       });
     }
   } else {
-    setTimeout(function() {
+    automaticIncreaseVideoEditorPreviewTimer(1, component.data('duration'), function() {
       var next_component = component.next();
       var next_identifier = getVideoComponentIdentifier(next_component.attr('id'));
       if(next_component.hasClass('_video_editor_component')) {
@@ -623,7 +622,7 @@ function playVideoEditorComponent(component, start_time) {
       } else {
         console.log('STOP');
       }
-    }, component.data('duration') * 1000);
+    });
   }
 }
 
@@ -662,10 +661,15 @@ function getVideoComponentIdentifier(item_id) {
   }
 }
 
-function automaticIncreaseVideoEditorPreviewTimer(time, total_length) {
+function automaticIncreaseVideoEditorPreviewTimer(time, total_length, callback) {
   setTimeout(function() {
-    if($('#video_editor_global_preview').data('in-use') && time <= total_length) {
-      automaticIncreaseVideoEditorPreviewTimer(time + 1, total_length);
+    if($('#video_editor_global_preview').data('in-use')) {
+      if(time <= total_length) {
+        increaseVideoEditorPreviewTimer();
+        automaticIncreaseVideoEditorPreviewTimer(time + 1, total_length, callback);
+      } else {
+        callback();
+      }
     }
   }, 1000);
 }
@@ -676,8 +680,8 @@ function increaseVideoEditorPreviewTimer() {
   var component = $('#video_component_' + identifier);
   var global_time = data_container.data('current-time');
   var component_time = component.data('current-preview-time');
-  $('#visual_video_editor_current_time').html(secondsToDateString(time + 1));
+  $('#visual_video_editor_current_time').html(secondsToDateString(global_time + 1));
   component.find('._video_component_icon ._right').html(secondsToDateString(component_time + 1));
-  data_container.data('current-time', time + 1);
-  component.data('preview-current-time', component_time + 1);
+  data_container.data('current-time', global_time + 1);
+  component.data('current-preview-time', component_time + 1);
 }
