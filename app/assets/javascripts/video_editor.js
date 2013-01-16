@@ -596,27 +596,30 @@ function getFirstVideoEditorComponent() {
 // current_time  da considerarsi relativo al punto '0' della componente selezionata, non all'effettiva durata del video
 // current_component è già la componente attuale
 function playVideoEditorComponent(component, start_time) {
+  var identifier = getVideoComponentIdentifier(component.attr('id'));
   $('._video_component_transition').addClass('current');
+  singleComponentTimerVideoEditorPreview(component, start_time + 1);
   component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
   if(component.hasClass('_video')) {
     console.log('video');
   } else {
     setTimeout(function() {
       var next_component = component.next();
+      var next_identifier = getVideoComponentIdentifier(next_component.attr('id'));
       if(next_component.hasClass('_video_editor_component')) {
         $('#video_editor_global_preview').data('current-time', 0);
         $('#video_editor_global_preview').data('current-component', getVideoComponentIdentifier(next_component.attr('id')));
-        component.find('._video_component_preview').hide('fade', {}, 1000);
-        $('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
+        $('#video_component_' + identifier + '_preview').hide('fade', {}, 1000);
         component.find('._video_component_transition').removeClass('current');
-        $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
-        next_component.find('._video_component_preview').show('fade', {}, 1000, function() {
+        next_component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
+        $('#video_component_' + next_identifier + '_preview').show('fade', {}, 1000, function() {
+          component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
           playVideoEditorComponent(next_component, getInitialPointOfVideoEditorComponent(next_component));
         });
       } else {
         console.log('STOP');
       }
-    }, component.data('duration'));
+    }, component.data('duration') * 1000);
   }
 }
 

@@ -781,6 +781,7 @@ $(document).ready(function() {
     $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden'); // (7) nascondo la barra orizzontale
     $('#video_editor_box_ghost').show(); // (8) disabilito tutte le azioni della timeline
     $('._video_editor_component_hover, ._video_component_icon').addClass('selected'); // (9) oscuro tutte le componenti e tutti i loro header
+    $('._new_component_in_video_editor_hover').addClass('selected'); // idem. bottone finale
     $('._video_component_transition').addClass('current'); // (10) nascondo tutte le transizioni
     setVisualTimesVideoEditorPreview(first_component, 0); // (11) setto a zero tutti i tempi
     $('#video_editor_preview_container ._loader').show(); // (12) mostro il loader
@@ -788,7 +789,7 @@ $(document).ready(function() {
       // ora sono pronto a far partire la preview e nascondere il loader
       $('#video_editor_preview_container ._loader').hide();
       $('#video_editor_global_preview').data('current-component', first_identifier); // setto la componente attuale
-      first_component.find('._video_component_preview').show();
+      $('#video_component_' + first_identifier + '_preview').show();
       startVideoEditorGlobalPreview(true);
     }, 1500);
   });
