@@ -784,23 +784,24 @@ $(document).ready(function() {
   $('body').on('click', '#video_editor_global_preview._enabled', function() {
     var first_component = getFirstVideoEditorComponent();
     var first_identifier = getVideoComponentIdentifier(first_component.attr('id'));
-    $('._video_component_preview').hide(); // (1) svuoto la preview attualmente nello schermo
-    $('#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor').css('visibility', 'hidden'); // (2) nascondo la barra audio
-    $('#visual_video_editor_current_time').css('visibility', 'visible').css('color', 'white'); // (3) mostro il tempo corrente oltre a quello fisso, e lo coloro di bianco
-    $('#visual_video_editor_total_length').css('color', '#787575'); // (4) coloro di grigio il tempo totale
-    $('#video_editor_global_preview').hide(); $('#video_editor_global_preview_pause').show(); // (5) cambio il bottone preview in pausa
-    $('#commit_video_editor').hide(); $('#exit_video_editor_preview').show(); // (6) mostro il bottone esci al posto della freccia
-    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden'); // (7) nascondo la barra orizzontale
-    $('#video_editor_box_ghost').show(); // (8) disabilito tutte le azioni della timeline
-    $('._video_editor_component_hover, ._video_component_icon').addClass('selected'); // (9) oscuro tutte le componenti e tutti i loro header
-    $('._new_component_in_video_editor_hover').addClass('selected'); // idem. bottone finale
-    $('._video_component_transition').addClass('current'); // (10) nascondo tutte le transizioni
-    setVisualTimesVideoEditorPreview(first_component, 0); // (11) setto a zero tutti i tempi
-    $('#video_editor_preview_container ._loader').show(); // (12) mostro il loader
+    $('._video_component_preview').hide();
+    $('#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor').css('visibility', 'hidden');
+    $('#visual_video_editor_current_time').css('visibility', 'visible').css('color', 'white');
+    $('#visual_video_editor_total_length').css('color', '#787575');
+    $('#video_editor_global_preview').hide();
+    $('#video_editor_global_preview_pause').show();
+    $('#commit_video_editor').hide();
+    $('#exit_video_editor_preview').show();
+    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
+    $('#video_editor_box_ghost').show();
+    $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
+    $('._new_component_in_video_editor_hover').addClass('selected');
+    $('._video_component_transition').addClass('current');
+    setVisualTimesVideoEditorPreview(first_component, 0);
+    $('#video_editor_preview_container ._loader').show();
     setTimeout(function() {
-      // ora sono pronto a far partire la preview e nascondere il loader
       $('#video_editor_preview_container ._loader').hide();
-      $('#video_editor_global_preview').data('current-component', first_identifier); // setto la componente attuale
+      $('#video_editor_global_preview').data('current-component', first_identifier);
       $('#video_component_' + first_identifier + '_preview').show();
       startVideoEditorGlobalPreview(true);
     }, 1500);
