@@ -183,8 +183,7 @@ function addImageComponentInVideoEditor(image_id, component, preview, duration) 
 }
 
 function replaceImageComponentInVideoEditor(image_id, component, preview, position, duration) {
-  var identifier = position.split('_');
-  identifier = identifier[identifier.length - 1];
+  var identifier = getVideoComponentIdentifier(position);
   // build preview
   var empty_preview = $('#empty_image_preview_for_video_editor').html();
   empty_preview = '<div id="temporary_empty_preview" ' + empty_preview.substr(empty_preview.indexOf('div') + 3, empty_preview.length);
@@ -277,8 +276,7 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
 }
 
 function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, position, duration) {
-  var identifier = position.split('_');
-  identifier = identifier[identifier.length - 1];
+  var identifier = getVideoComponentIdentifier(position);
   // build preview
   var empty_preview = $('#empty_video_preview_for_video_editor').html();
   empty_preview = '<div id="temporary_empty_preview" ' + empty_preview.substr(empty_preview.indexOf('div') + 3, empty_preview.length);
@@ -378,8 +376,7 @@ function addTextComponentInVideoEditor(component, content, duration, background_
 }
 
 function replaceTextComponentInVideoEditor(component, content, position, duration, background_color, text_color) {
-  var identifier = position.split('_');
-  identifier = identifier[identifier.length - 1];
+  var identifier = getVideoComponentIdentifier(position);
   // build preview
   var empty_preview = $('#empty_text_preview_for_video_editor').html();
   empty_preview = '<div id="temporary_empty_preview" ' + empty_preview.substr(empty_preview.indexOf('div') + 3, empty_preview.length);
@@ -536,8 +533,7 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
   var duration = 0;
   var stop = false;
   $('._video_editor_component').each(function(index) {
-    var my_identifier = $(this).attr('id').split('_');
-    my_identifier = my_identifier[my_identifier.length - 1];
+    var my_identifier = getVideoComponentIdentifier($(this).attr('id'));
     if(my_identifier == identifier) {
       stop = true;
     } else if(!stop) {
@@ -588,9 +584,7 @@ function startVideoEditorGlobalPreview(times_already_set) {
       }
     }
   }
-  var identifier = current_component.attr('id').split('_');
-  identifier = identifier[identifier.length - 1];
-  var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(identifier);
+  var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier);
   if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
     var audio_track = $('#video_editor_preview_container audio');
     setCurrentTimeToMedia(audio_track, actual_audio_track_time);
@@ -610,6 +604,9 @@ function getFirstVideoEditorComponent() {
 }
 
 function setVisualTimesVideoEditorPreview(component, time) {
+  $('._video_editor_component').each(function() {
+    
+  });
   $('._video_component_icon ._right').html(secondsToDateString(0)); // TODO farlo a seconda di quale componente parto
         $('#visual_video_editor_total_length').html(secondsToDateString(0)); // (6) setto a zero il tempo corrente (
 }
@@ -645,4 +642,13 @@ function getInitialPointOfVideoEditorComponent(component) {
     resp = $('#' + component.attr('id') + '_cutter').data('from');
   }
   return resp;
+}
+
+function getVideoComponentIdentifier(item_id) {
+  var resp = item_id.split('_');
+  if($('#' + item_id).hasClass('._video_editor_component')) {
+    return resp[resp.length - 1];
+  } else {
+    return resp[resp.length - 2];
+  }
 }
