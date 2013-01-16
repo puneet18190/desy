@@ -5,89 +5,63 @@
       <ul class="navlist">
         <li><%= link_to t('captions.personal_info'), my_profile_path %></li>
         <li><%= link_to t('captions.subjects'), my_subjects_path, :class => 'current' %></li>
-        <li><%= link_to t('captions.stats'), my_stats_path %></li>
+        <li><%= link_to t('captions.statistics'), my_statistics_path %></li>
       </ul>
     </div>
     <br class="clearfloat">
     <div class="contentForm">
-    
-      <div class="checkbox-content" style="float:left">
-        <div class="title"><h2>Choose the matters you want to stay connected</h2></div>
-        <!-- CHEMICAL -->
-        <div class="checkboxElement">
-          <table>
-          <tr>
-            <td><input type="checkbox" id="checkbox-2-1" class="regular-checkbox big-checkbox" /><label for="checkbox-2-1"></label></td>
-            <td>Chemical</td>
-          </tr>
-          </table>
+      <header>
+        <h2>Subjects</h2>
+        <p>Choose the matters you want to stay connected</p>
+      </header>
+      <form>
+        <div class="insert-content">
+          <!-- CHEMICAL -->
+          <div class="checkboxElement">
+              <input type="checkbox" id="checkbox-2-1" class="regular-checkbox big-checkbox" /><label for="checkbox-2-1"></label>
+              Chemical
+          </div>
+          <!-- LANGUAGE -->
+          <div class="checkboxElement">
+              <input type="checkbox" id="checkbox-2-2" class="regular-checkbox big-checkbox" /><label for="checkbox-2-2"></label>
+              Language
+          </div>
+          <!-- MATHEMATICA -->
+          <div class="checkboxElement">
+              <input type="checkbox" id="checkbox-2-3" class="regular-checkbox big-checkbox" /><label for="checkbox-2-3"></label>
+              Mathematics
+          </div>
+          <!-- HISTORY -->
+          <div class="checkboxElement">
+              <input type="checkbox" id="checkbox-2-4" class="regular-checkbox big-checkbox" />
+              <label for="checkbox-2-4"></label>
+              History
+          </div>
+          <!-- BIOLOGY -->
+          <div class="checkboxElement">
+              <input type="checkbox" id="checkbox-2-5" class="regular-checkbox big-checkbox" /><label for="checkbox-2-5"></label>
+              Biology
+          </div>
+          <!-- GEOGRAPHY -->
+          <div class="checkboxElement">
+              <input type="checkbox" id="checkbox-2-6" class="regular-checkbox big-checkbox" /><label for="checkbox-2-6"></label>
+              Geography
+          </div>
+          <!-- ASTRONOMY -->
+          <div class="checkboxElement">
+              <input type="checkbox" id="checkbox-2-7" class="regular-checkbox big-checkbox" /><label for="checkbox-2-7"></label>
+              Astronomy
+          </div>
+          <!-- DESIGN -->
+          <div class="checkboxElement">
+              <input type="checkbox" id="checkbox-2-8" class="regular-checkbox big-checkbox" /><label for="checkbox-2-8"></label>
+              Design
+          </div>
         </div>
-        <!-- LANGUAGE -->
-        <div class="checkboxElement">
-          <table>
-          <tr>
-            <td><input type="checkbox" id="checkbox-2-2" class="regular-checkbox big-checkbox" /><label for="checkbox-2-2"></label></td>
-            <td>Language</td>
-          </tr>
-          </table>
+        <div class="form_submit">
+          <input type="submit" value="save" />
         </div>
-        <!-- MATHEMATICA -->
-        <div class="checkboxElement">
-          <table>
-          <tr>
-            <td><input type="checkbox" id="checkbox-2-3" class="regular-checkbox big-checkbox" /><label for="checkbox-2-3"></label></td>
-            <td>Mathematics</td>
-          </tr>
-          </table>
-        </div>
-        <!-- HISTORY -->
-        <div class="checkboxElement">
-          <table>
-          <tr>
-            <td><input type="checkbox" id="checkbox-2-4" class="regular-checkbox big-checkbox" /><label for="checkbox-2-4"></label></td>
-            <td>History</td>
-          </tr>
-          </table>
-        </div>
-      </div>
-      <div class="checkbox-content" style="float:left">
-        <!-- BIOLOGY -->
-        <div class="checkboxElement">
-          <table>
-          <tr>
-            <td><input type="checkbox" id="checkbox-2-5" class="regular-checkbox big-checkbox" /><label for="checkbox-2-5"></label></td>
-            <td>Biology</td>
-          </tr>
-          </table>
-        </div>
-        <!-- GEOGRAPHY -->
-        <div class="checkboxElement">
-          <table>
-          <tr>
-            <td><input type="checkbox" id="checkbox-2-6" class="regular-checkbox big-checkbox" /><label for="checkbox-2-6"></label></td>
-            <td>Geography</td>
-          </tr>
-          </table>
-        </div>
-        <!-- ASTRONOMY -->
-        <div class="checkboxElement">
-          <table>
-          <tr>
-            <td><input type="checkbox" id="checkbox-2-7" class="regular-checkbox big-checkbox" /><label for="checkbox-2-7"></label></td>
-            <td>Astronomy</td>
-          </tr>
-          </table>
-        </div>
-        <!-- DESIGN -->
-        <div class="checkboxElement">
-          <table>
-          <tr>
-            <td><input type="checkbox" id="checkbox-2-8" class="regular-checkbox big-checkbox" /><label for="checkbox-2-8"></label></td>
-            <td>Design</td>
-          </tr>
-          </table>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>
