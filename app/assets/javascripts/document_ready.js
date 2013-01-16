@@ -10,9 +10,7 @@ $(document).ready(function() {
   })();
   
 
-  // BEFORE AND AFTER WINDOW RESIZE
-  recenterMyMediaElements();
-  
+  // AFTER WINDOW RESIZE
   $(window).resize(function() {
     recenterMyMediaElements();
   });
