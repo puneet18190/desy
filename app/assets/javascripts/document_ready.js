@@ -277,6 +277,16 @@ $(document).ready(function() {
   
   $('body').on('click', '._close_audio_gallery_in_video_editor', function() {
     closeGalleryInVideoEditor('audio');
+    var audio_id = 0;
+    $('._audio_gallery_thumb').each(function() {
+      if($(this).find('._expanded').css('display') == 'block') {
+        audio_id = $(this).find('._add_audio_track_to_video_editor').data('audio-id');
+      }
+    });
+    if(audio_id != 0) {
+      stopMedia('#gallery_audio_' + audio_id + ' audio');
+      $('#gallery_audio_' + audio_id + ' ._expanded').hide();
+    }
   });
   
   $('body').on('click', "._close_on_click_out", function(){
