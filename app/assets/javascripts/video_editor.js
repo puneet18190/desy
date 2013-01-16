@@ -558,18 +558,17 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
 
 // questa funzione serve per filtrare i parametri rimasti dall'ultima pausa: se ho fatto modifiche che mi fanno perdere il punto, tipo
 // eliminazione della componente su cui avevo fatto pausa, o cose analoghe; la funzione va chiamata con preview già vuota
+// è chiamata con la preview attuale già visibile col cursore al punto giusto, se è un video e time > 0
 function startVideoEditorGlobalPreview(times_already_set) {
-  $('#video_editor_global_preview').data('in-use', true);
+  $('#video_editor_global_preview').data('in-use', true); // (1) setto che sto facendo funzionare la preview
   var current_identifier = $('#video_editor_global_preview').data('current-component');
   var current_component = $('#video_component_' + current_identifier);
-  var current_time = $('#video_editor_global_preview').data('current-time'); // time INSIDE the component, not absolute
-  if(!times_already_set) { // faccio questa operazione solo se non ho già settato a 0 i tempi nel click da cui chiamo questa funzione
+  var current_time = $('#video_editor_global_preview').data('current-time'); // questo è il tempo dentro la componente attuale
+  if(!times_already_set) { // (2) faccio questa operazione solo se non ho già settato a 0 i tempi nel click da cui chiamo questa funzione
     setVisualTimesVideoEditorPreview(current_component, current_time); // qui non setto il cursore, ma riempio solo le labels dei tempi
   }
-  
-  // manca settare il cursore ??? o più probabilmente aggiungo  time a actual_audio_track_time
-  
-  var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier);
+  var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier) + current_time;
+  // (3) se c'è l'audio di sottofondo, lo faccio partire
   if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
     var audio_track = $('#video_editor_preview_container audio');
     setCurrentTimeToMedia(audio_track, actual_audio_track_time);
@@ -581,11 +580,40 @@ function startVideoEditorGlobalPreview(times_already_set) {
       });
     }
   }
+  // (4) faccio partire la componente selezionata
   playVideoEditorComponent(current_component, current_time);
 }
 
 function getFirstVideoEditorComponent() {
   return $($('._video_editor_component')[0]);
+}
+
+// funzione ricorsiva; si suppone che le altre componenti siano già spente, e la preview già visibile, se è un video già posizionata al punto giusto
+function playVideoEditorComponent(component, start_time) {
+  component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
+  
+  if(component.hasClass('_video')) {
+    
+  } else {
+    $('#video_component_' + identifier + '_preview').show();
+    setTimeout(function() {
+      var next_component = component.next();
+      if(next_component.hasClass('_video_editor_component')) {
+        $('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
+        component.find('._video_component_transition').removeClass('current');
+        component.find('._video_component_preview').hide('fade', {}, 1000);
+        $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
+        next_component.find('._video_component_preview').show('fade', {}, 1000, function() {
+          playVideoEditorComponent(next_component, getInitialPointOfVideoEditorComponent(next_component));
+        }
+      } else {
+// TODO        stop
+      }
+    }, component.data('duration'));
+  }
+  
+
+  
 }
 
 function setVisualTimesVideoEditorPreview(component, time) {
@@ -603,31 +631,6 @@ function setVisualTimesVideoEditorPreview(component, time) {
       $(this).find('._video_component_icon ._right').html(secondsToDateString($(this).data('duration')));
     }
   });
-}
-
-function playVideoEditorComponent(component, start_time) { // funzione ricorsiva
-  component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
-  
-  if(component.hasClass('_video')) {
-    
-  } else {
-    $('#video_component_' + identifier + '_preview').show();
-    setTimeout(function() {
-      var next_component = component.next();
-      if(next_component.hasClass('_video_editor_component')) {
-        $('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
-        component.find('._video_component_transition').removeClass('current');
-        $('._video_component_preview').hide('fade', {}, 1000);
-        $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
-        playVideoEditorComponent(next_component, getInitialPointOfVideoEditorComponent(next_component));
-      } else {
-// TODO        stop
-      }
-    }, component.data('duration'));
-  }
-  
-
-  
 }
 
 function getInitialPointOfVideoEditorComponent(component) {
