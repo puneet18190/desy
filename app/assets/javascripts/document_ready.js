@@ -759,13 +759,23 @@ $(document).ready(function() {
   
   // VIDEO EDITOR
   
+  $('body').on('click', '#exit_video_editor_preview', function() {
+    // TODO
+    alert('exittttt!');
+  });
+  
+  $('body').on('click', '#video_editor_global_preview_pause', function() {
+    // TODO
+    alert('pausaaa!');
+  });
+  
   $('body').on('click', '#video_editor_global_preview._enabled', function() {
     $('._video_component_preview').hide(); // (1) svuoto la preview attualmente nello schermo
-    $('._video_editor_bottom_bar').css('visibility', 'hidden'); // (2) nascondo la barra audio
+    $('#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor').css('visibility', 'hidden'); // (2) nascondo la barra audio
     $('#visual_video_editor_current_time').css('visibility', 'visible').css('color', 'white'); // (3) mostro il tempo corrente oltre a quello fisso, e lo coloro di bianco
     $('#visual_video_editor_total_length').css('color', '#787575'); // (4) coloro di grigio il tempo totale
-    // (5) TODO manca cambiare il bottone preview in pausa -- cambiare classe e caption, o semplicemente nascondere uno e mostrare un altro da mettere nascosto in edit.html
-    // (6) TODO manca mostrare il bottone esci al posto della freccia
+    $('#video_editor_global_preview').hide(); $('#video_editor_global_preview_pause').show(); // (5) cambio il bottone preview in pausa
+    $('#commit_video_editor').hide(); $('#exit_video_editor_preview').show(); // (6) mostro il bottone esci al posto della freccia
     $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden'); // (7) nascondo la barra orizzontale
     $('#video_editor_box_ghost').show(); // (8) disabilito tutte le azioni della timeline
     $('._video_editor_component_hover, ._video_component_icon').addClass('selected'); // (9) oscuro tutte le componenti e tutti i loro header
@@ -775,7 +785,7 @@ $(document).ready(function() {
     setTimeout(function() {
       // ora sono pronto a far partire la preview e nascondere il loader
       $('#video_editor_preview_container ._loader').hide();
-      // FIXME ripristinare startVideoEditorGlobalPreview(true);
+      startVideoEditorGlobalPreview(true);
     }, 1500);
   });
   
@@ -1089,7 +1099,7 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click', '._commit_video_editor', function() {
+  $('body').on('click', '#commit_video_editor', function() {
     stopCacheLoop();
     $('#info_container').data('cache-enabled-first-time', false);
     $('#video_editor_form').submit();
