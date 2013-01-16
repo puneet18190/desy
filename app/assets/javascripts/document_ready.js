@@ -12,7 +12,9 @@ $(document).ready(function() {
 
   // AFTER WINDOW RESIZE
   $(window).resize(function() {
-    recenterMyMediaElements();
+    if($('#my_media_elements').length > 0){
+      recenterMyMediaElements();
+    }
   });
   
   
