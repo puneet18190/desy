@@ -174,7 +174,7 @@ en:
     time: 'Time'
     title_max_chars: 'Title (max %{num} characters)'
     total_clip_length: 'Total clip length'
-    total_length: 'Total lenght'
+    total_length: 'Total length'
     untitled_new_element: 'New element - untitled'
     update: 'Update'
     update_lesson: 'Are you making significant changes?'
