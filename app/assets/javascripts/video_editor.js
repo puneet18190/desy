@@ -580,6 +580,9 @@ function startVideoEditorGlobalPreview(times_already_set) {
       });
     }
   }
+  
+  // TODO manca far partire il contatore di tempo che aggiorna tutto!
+  
   // (4) faccio partire la componente selezionata
   playVideoEditorComponent(current_component, current_time);
 }
@@ -606,7 +609,7 @@ function playVideoEditorComponent(component, start_time) {
         $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
         next_component.find('._video_component_preview').show('fade', {}, 1000, function() {
           playVideoEditorComponent(next_component, getInitialPointOfVideoEditorComponent(next_component));
-        }
+        });
       } else {
 // TODO        stop
       }
@@ -649,4 +652,13 @@ function getVideoComponentIdentifier(item_id) {
   } else {
     return resp[resp.length - 2];
   }
+}
+
+function generalTimerVideoEditorPreview(time, total_length) {
+  setTimeout(function() {
+    if($('#video_editor_global_preview').data('in-use') && time <= total_length) {
+      $('#visual_video_editor_current_time').html(secondsToDateString(time));
+      generalTimerVideoEditorPreview(time + 1, total_length);
+    }
+  }, 1000);
 }

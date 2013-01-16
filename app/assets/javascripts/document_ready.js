@@ -760,12 +760,12 @@ $(document).ready(function() {
   // VIDEO EDITOR
   
   $('body').on('click', '#exit_video_editor_preview', function() {
-    // TODO qui devo anche settare current time = 0
+    // TODO qui devo anche settare current time = 0, e rimettere a posto tutti i cursori ?? '?? ??
     alert('exittttt!');
   });
   
   $('body').on('click', '#video_editor_global_preview_pause', function() {
-    // TODO
+    // TODO se sto playando un video, qui devo settare current time al secondo esatto in cui ho lasciato, per sicurezza
     alert('pausaaa!');
   });
   
