@@ -558,7 +558,7 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
 
 // questa funzione serve per filtrare i parametri rimasti dall'ultima pausa: se ho fatto modifiche che mi fanno perdere il punto, tipo
 // eliminazione della componente su cui avevo fatto pausa, o cose analoghe; la funzione va chiamata con preview già vuota
-// è chiamata con la preview attuale già visibile col cursore al punto giusto, se è un video e time > 0
+// è chiamata con la preview attuale già visibile, e con current_component e current_time già settati
 function startVideoEditorGlobalPreview(times_already_set) {
   $('#video_editor_global_preview').data('in-use', true); // (1) setto che sto facendo funzionare la preview
   var current_identifier = $('#video_editor_global_preview').data('current-component');
@@ -589,6 +589,7 @@ function getFirstVideoEditorComponent() {
 }
 
 // funzione ricorsiva; si suppone che le altre componenti siano già spente, e la preview già visibile, se è un video già posizionata al punto giusto
+// current_time  da considerarsi relativo al punto '0' della componente selezionata, non all'effettiva durata del video
 function playVideoEditorComponent(component, start_time) {
   component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
   

@@ -760,7 +760,7 @@ $(document).ready(function() {
   // VIDEO EDITOR
   
   $('body').on('click', '#exit_video_editor_preview', function() {
-    // TODO
+    // TODO qui devo anche settare current time = 0
     alert('exittttt!');
   });
   
@@ -787,7 +787,7 @@ $(document).ready(function() {
     setTimeout(function() {
       // ora sono pronto a far partire la preview e nascondere il loader
       $('#video_editor_preview_container ._loader').hide();
-      $('#video_editor_global_preview').data('current-component', first_identifier);
+      $('#video_editor_global_preview').data('current-component', first_identifier); // setto la componente attuale
       first_component.find('._video_component_preview').show();
       startVideoEditorGlobalPreview(true);
     }, 1500);
