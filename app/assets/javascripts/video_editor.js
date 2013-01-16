@@ -563,26 +563,12 @@ function startVideoEditorGlobalPreview(times_already_set) {
   var current_identifier = $('#video_editor_global_preview').data('current-component');
   var current_component = $('#video_component_' + current_identifier);
   var current_time = $('#video_editor_global_preview').data('current-time'); // time INSIDE the component, not absolute
-  
-  if(!times_already_set) {
-    setVisualTimesVideoEditorPreview() // FIXME SISTEMARLA -- la chiamo solo se non sono già stati settati prima
+  if(!times_already_set) { // faccio questa operazione solo se non ho già settato a 0 i tempi nel click da cui chiamo questa funzione
+    setVisualTimesVideoEditorPreview(current_component, current_time); // qui non setto il cursore, ma riempio solo le labels dei tempi
   }
   
-  if(current_component.length == 0) {
-    current_component = getFirstVideoEditorComponent();
-    current_time = 0;
-  } else {
-    var current_cutter = $('#video_component_' + current_identifier + '_cutter');
-    if(current_component.hasClass('_video')) {
-      if((current_cutter.data('from') > current_time || current_cutter.data('to') < current_time)) {
-        current_time = current_cutter.data('from');
-      }
-    } else {
-      if((current_cutter.data('duration') < current_time)) {
-        current_time = 0;
-      }
-    }
-  }
+  // manca settare il cursore ??? o più probabilmente aggiungo  time a actual_audio_track_time
+  
   var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier);
   if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
     var audio_track = $('#video_editor_preview_container audio');
@@ -604,16 +590,17 @@ function getFirstVideoEditorComponent() {
 
 function setVisualTimesVideoEditorPreview(component, time) {
   var identifier = getVideoComponentIdentifier(component.attr('id'));
-  $('#visual_video_editor_current_time').html(secondsToDateString(calculateVideoComponentStartSecondInVideoEditor(identifier)));
+  // qui sotto aggiungo 'time' perché nella funzione che calcola il tempo viene sommato prendendolo dal valore del cutter, che qui non è preso in considerazione
+  $('#visual_video_editor_current_time').html(secondsToDateString(calculateVideoComponentStartSecondInVideoEditor(identifier) + time));
   var start = false;
   $('._video_editor_component').each(function() {
     if(getVideoComponentIdentifier($(this).attr('id')) == identifier) {
-      $(this).find('._video_component_icon').html(secondsToDateString(time));
+      $(this).find('._video_component_icon ._right').html(secondsToDateString(time));
       start = true;
     } else if(start) {
-      $(this).find('._video_component_icon').html(secondsToDateString(0));
+      $(this).find('._video_component_icon ._right').html(secondsToDateString(0));
     } else {
-      $(this).find('._video_component_icon').html(secondsToDateString($(this).data('duration')));
+      $(this).find('._video_component_icon ._right').html(secondsToDateString($(this).data('duration')));
     }
   });
 }
