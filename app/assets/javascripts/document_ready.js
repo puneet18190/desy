@@ -8,7 +8,14 @@ $(document).ready(function() {
 
     if(name) $('html').addClass(name);
   })();
+  
 
+  // AFTER WINDOW RESIZE
+  $(window).resize(function() {
+    recenterMyMediaElements();
+  });
+  
+  
   // OTHER BUTTONS
   
   $('._load_media_element').click(function(e) {
@@ -465,6 +472,9 @@ $(document).ready(function() {
   $("#filter_search_lessons").selectbox();
   
   $("#filter_search_lessons_subject").selectbox();
+  
+  $("#profile_school_level").selectbox();
+  $("#profile_region").selectbox();
   
   $("#for_page_media_elements").selectbox();
   
