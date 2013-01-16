@@ -201,6 +201,7 @@ function replaceImageComponentInVideoEditor(image_id, component, preview, positi
   current_cutter.attr('id', ('video_component_' + identifier + '_cutter'));
   current_cutter.find('._old').html(secondsToDateString(duration));
   // edit component
+  $('#' + position).removeClass('_video _image _text').addClass('_image');
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
   clearSpecificVideoEditorComponentParameters(position);
   $('#' + position + ' ._video_component_input_type').val('image');
@@ -303,6 +304,7 @@ function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, posi
   current_cutter.data('max-to', duration);
   initializeVideoInVideoEditorPreview(identifier);
   // edit component
+  $('#' + position).removeClass('_video _image _text').addClass('_video');
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
   clearSpecificVideoEditorComponentParameters(position);
   $('#' + position + ' ._video_component_input_type').val('video');
@@ -396,6 +398,7 @@ function replaceTextComponentInVideoEditor(component, content, position, duratio
   current_cutter.attr('id', ('video_component_' + identifier + '_cutter'));
   current_cutter.find('._old').html(secondsToDateString(duration));
   // edit component
+  $('#' + position).removeClass('_video _image _text').addClass('_text');
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
   $('#' + position + ' ._video_component_thumb ._text_content').html(content);
   $('#' + position + ' ._video_component_thumb ._text_content').removeClass('color_black').addClass('color_' + text_color);
