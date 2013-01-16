@@ -627,7 +627,7 @@ function playVideoEditorComponent(component, start_time) { // funzione ricorsiva
     $('#video_component_' + identifier + '_preview').show();
     setTimeout(function() {
       var next_component = component.next();
-      if(next_component.hasClass('._video_editor_component')) {
+      if(next_component.hasClass('_video_editor_component')) {
         $('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
         component.find('._video_component_transition').removeClass('current');
         $('._video_component_preview').hide('fade', {}, 1000);
@@ -653,7 +653,7 @@ function getInitialPointOfVideoEditorComponent(component) {
 
 function getVideoComponentIdentifier(item_id) {
   var resp = item_id.split('_');
-  if($('#' + item_id).hasClass('._video_editor_component')) {
+  if($('#' + item_id).hasClass('_video_editor_component')) {
     return resp[resp.length - 1];
   } else {
     return resp[resp.length - 2];
