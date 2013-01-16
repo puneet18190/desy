@@ -613,7 +613,7 @@ function playVideoEditorComponent(component, start_time) {
         component.find('._video_component_transition').removeClass('current');
         next_component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
         $('#video_component_' + next_identifier + '_preview').show('fade', {}, 1000, function() {
-          component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
+          component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
           playVideoEditorComponent(next_component, getInitialPointOfVideoEditorComponent(next_component));
         });
       } else {
