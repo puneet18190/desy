@@ -87,7 +87,8 @@ en:
     create_new_lesson: 'Create a new lesson'
     create_new_lesson_now: 'Create a lesson now'
     create_new_media_element: 'Elements editor'
-    creating_new_media_element: "You are creating a new element"
+    creating_new_media_element: 'You are creating a new element'
+    current_time: 'Current time'
     dashboard: 'Dashboard'
     description: 'Description'
     description_max_chars: 'Description (max %{num} characters)'

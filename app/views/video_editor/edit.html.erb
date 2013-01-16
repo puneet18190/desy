@@ -5,7 +5,14 @@
   <%= render :partial => 'video_editor/preview_container', :locals => {:parameters => @parameters} %>
   
   <div class="info">
-    <p id="visual_video_editor_total_length_caption" class="lower"><%= t('captions.total_length') %>:</p> <p><span id="visual_video_editor_total_length"><%= seconds_to_time(@total_length) %></span></p>
+    <p class="lower"><%= t('captions.total_length') %>:</p>
+    <p>
+      <span id="visual_video_editor_total_length"><%= seconds_to_time(@total_length) %></span>
+    </p>
+    <p class="lower"><%= t('captions.current_time') %>:</p>
+    <p>
+      <span id="visual_video_editor_current_time" style="visibility:hidden"><%= seconds_to_time(0) %></span>
+    </p>
     <div id="video_editor_global_preview" class="bottoniVerdi _enabled" style="margin-top:10px" data-current-component="0" data-current-time="0" data-in-use="false">
       <a class="lower"><%= t('captions.preview') %></a>
     </div>

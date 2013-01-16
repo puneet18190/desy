@@ -533,8 +533,7 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
   var duration = 0;
   var stop = false;
   $('._video_editor_component').each(function(index) {
-    var my_identifier = getVideoComponentIdentifier($(this).attr('id'));
-    if(my_identifier == identifier) {
+    if(getVideoComponentIdentifier($(this).attr('id')) == identifier) {
       stop = true;
     } else if(!stop) {
       duration += ($(this).data('duration') + 1);
@@ -604,11 +603,19 @@ function getFirstVideoEditorComponent() {
 }
 
 function setVisualTimesVideoEditorPreview(component, time) {
+  var identifier = getVideoComponentIdentifier(component.attr('id'));
+  $('#visual_video_editor_current_time').html(secondsToDateString(calculateVideoComponentStartSecondInVideoEditor(identifier)));
+  var start = false;
   $('._video_editor_component').each(function() {
-    
+    if(getVideoComponentIdentifier($(this).attr('id')) == identifier) {
+      $(this).find('._video_component_icon').html(secondsToDateString(time));
+      start = true;
+    } else if(start) {
+      $(this).find('._video_component_icon').html(secondsToDateString(0));
+    } else {
+      $(this).find('._video_component_icon').html(secondsToDateString($(this).data('duration')));
+    }
   });
-  $('._video_component_icon ._right').html(secondsToDateString(0)); // TODO farlo a seconda di quale componente parto
-        $('#visual_video_editor_total_length').html(secondsToDateString(0)); // (6) setto a zero il tempo corrente (
 }
 
 function playVideoEditorComponent(component, start_time) { // funzione ricorsiva
