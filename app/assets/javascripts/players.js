@@ -92,6 +92,9 @@ function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
 }
 
 function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
+  if($('#video_editor_global_preview').data('in-use')) {
+    return;
+  }
   var video_cut_to = $('#video_component_' + identifier + '_cutter').data('to');
   var parsed_int = parseInt(media.currentTime);
   if(parsed_int == (video_cut_to + 1)) {

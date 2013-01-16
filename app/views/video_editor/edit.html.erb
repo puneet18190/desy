@@ -5,10 +5,17 @@
   <%= render :partial => 'video_editor/preview_container', :locals => {:parameters => @parameters} %>
   
   <div class="info">
-    <p id="visual_video_editor_total_length_caption" class="lower"><%= t('captions.total_length') %>:</p> <p><span id="visual_video_editor_total_length"><%= seconds_to_time(@total_length) %></span></p>
     <div id="video_editor_global_preview" class="bottoniVerdi _enabled" style="margin-top:10px" data-current-component="0" data-current-time="0" data-in-use="false">
-      <a class="lower"><%= t('captions.preview') %></a>
+      <a class="upper"><%= t('captions.preview') %></a>
     </div>
+    <div id="video_editor_global_preview_pause" class="bottoniVerdi" style="margin-top:10px; display:none">
+      <a class="upper"><%= t('captions.pause') %></a>
+    </div>
+    <p class="lower"><%= t('captions.total_length') %>:</p>
+    <p>
+      <span id="visual_video_editor_total_length"><%= seconds_to_time(@total_length) %></span>
+      <span id="visual_video_editor_current_time" style="visibility:hidden; color:#787575"><%= seconds_to_time(0) %></span>
+    </p>
   </div>
   
   <div class="mediaEditorListaElementi">
@@ -21,7 +28,11 @@
       <div class="addAudioandSave _video_editor_bottom_bar">
         <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
         <div class="fltrt">
-          <div class="fltrt"><a class="nextButton _commit_video_editor <%= @parameters[:initial_video].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('general_titles.save_element_title') %>"></a></div>
+          <div class="fltrt">
+            <a id="commit_video_editor" class="nextButton <%= @parameters[:initial_video].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('general_titles.save_element_title') %>">
+            </a>
+            <a id="exit_video_editor_preview" class="nextButton" style="display:none"></a>
+          </div>
         </div>
       </div>
       <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => MediaElement::VIDEO_TYPE} %>

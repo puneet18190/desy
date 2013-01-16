@@ -286,6 +286,16 @@ $(document).ready(function() {
   
   $('body').on('click', '._close_audio_gallery_in_video_editor', function() {
     closeGalleryInVideoEditor('audio');
+    var audio_id = 0;
+    $('._audio_gallery_thumb').each(function() {
+      if($(this).find('._expanded').css('display') == 'block') {
+        audio_id = $(this).find('._add_audio_track_to_video_editor').data('audio-id');
+      }
+    });
+    if(audio_id != 0) {
+      stopMedia('#gallery_audio_' + audio_id + ' audio');
+      $('#gallery_audio_' + audio_id + ' ._expanded').hide();
+    }
   });
   
   $('body').on('click', "._close_on_click_out", function(){
@@ -761,20 +771,38 @@ $(document).ready(function() {
   
   // VIDEO EDITOR
   
+  $('body').on('click', '#exit_video_editor_preview', function() {
+    // TODO qui devo anche settare current time = 0, e rimettere a posto tutti i cursori ?? '?? ??
+    alert('exittttt!');
+  });
+  
+  $('body').on('click', '#video_editor_global_preview_pause', function() {
+    // TODO se sto playando un video, qui devo settare current time al secondo esatto in cui ho lasciato, per sicurezza
+    alert('pausaaa!');
+  });
+  
   $('body').on('click', '#video_editor_global_preview._enabled', function() {
-    $('._video_component_preview').hide();
-    $('#video_editor_preview_container ._loader').show();
-    $('._video_editor_bottom_bar').css('visibility', 'hidden');
-    $('#visual_video_editor_total_length_caption').css('visibility', 'hidden');
-    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
-    $('#video_editor_box_ghost').show();
-    $('#visual_video_editor_total_length').html(secondsToDateString(0));
-    $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
-    $('._video_component_transition').addClass('current');
-    $('._video_component_icon ._right').html(secondsToDateString(0));
+    var first_component = getFirstVideoEditorComponent();
+    var first_identifier = getVideoComponentIdentifier(first_component.attr('id'));
+    $('._video_component_preview').hide(); // (1) svuoto la preview attualmente nello schermo
+    $('#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor').css('visibility', 'hidden'); // (2) nascondo la barra audio
+    $('#visual_video_editor_current_time').css('visibility', 'visible').css('color', 'white'); // (3) mostro il tempo corrente oltre a quello fisso, e lo coloro di bianco
+    $('#visual_video_editor_total_length').css('color', '#787575'); // (4) coloro di grigio il tempo totale
+    $('#video_editor_global_preview').hide(); $('#video_editor_global_preview_pause').show(); // (5) cambio il bottone preview in pausa
+    $('#commit_video_editor').hide(); $('#exit_video_editor_preview').show(); // (6) mostro il bottone esci al posto della freccia
+    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden'); // (7) nascondo la barra orizzontale
+    $('#video_editor_box_ghost').show(); // (8) disabilito tutte le azioni della timeline
+    $('._video_editor_component_hover, ._video_component_icon').addClass('selected'); // (9) oscuro tutte le componenti e tutti i loro header
+    $('._new_component_in_video_editor_hover').addClass('selected'); // idem. bottone finale
+    $('._video_component_transition').addClass('current'); // (10) nascondo tutte le transizioni
+    setVisualTimesVideoEditorPreview(first_component, 0); // (11) setto a zero tutti i tempi
+    $('#video_editor_preview_container ._loader').show(); // (12) mostro il loader
     setTimeout(function() {
+      // ora sono pronto a far partire la preview e nascondere il loader
       $('#video_editor_preview_container ._loader').hide();
-      startVideoEditorGlobalPreview();
+      $('#video_editor_global_preview').data('current-component', first_identifier); // setto la componente attuale
+      $('#video_component_' + first_identifier + '_preview').show();
+      startVideoEditorGlobalPreview(true);
     }, 1500);
   });
   
@@ -805,8 +833,7 @@ $(document).ready(function() {
   $('body').on('click', '._media_player_done_video_component_in_video_editor_preview', function() {
     closeGenericVideoComponentCutter();
     var component_id = $(this).parent().parent().attr('id');
-    var identifier = component_id.split('_');
-    identifier = identifier[identifier.length - 2];
+    var identifier = getVideoComponentIdentifier(component_id);
     stopVideoInVideoEditorPreview(identifier);
     commitVideoComponentVideoCutter(identifier);
     $('#video_editor_global_preview').addClass('_enabled');
@@ -814,8 +841,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_done_other_component_in_video_editor_preview', function() {
     var component_id = $(this).parent().parent().attr('id');
-    var identifier = component_id.split('_');
-    identifier = identifier[identifier.length - 2];
+    var identifier = getVideoComponentIdentifier(component_id);
     var duration = $('#' + component_id + ' ._duration_selector input').val();
     if(duration == '') {
       closeGenericVideoComponentCutter();
@@ -857,8 +883,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._remove_component_from_video_editor_button', function() {
     var component = $(this).parent().parent().parent().parent();
-    var identifier = component.attr('id').split('_');;
-    identifier = identifier[identifier.length - 1];
+    var identifier = getVideoComponentIdentifier(component.attr('id'));
     $('#video_component_' + identifier).hide('fade', {}, 500, function() {
       $('#video_component_' + identifier + '_preview').remove();
       $('#video_component_' + identifier + '_cutter').remove();
@@ -1091,7 +1116,7 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click', '._commit_video_editor', function() {
+  $('body').on('click', '#commit_video_editor', function() {
     stopCacheLoop();
     $('#info_container').data('cache-enabled-first-time', false);
     $('#video_editor_form').submit();
@@ -1148,8 +1173,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._precision_arrow_left', function() {
     var cutter = $(this).parent().parent();
-    var identifier = cutter.attr('id').split('_');
-    identifier = identifier[identifier.length - 2];
+    var identifier = getVideoComponentIdentifier(cutter.attr('id'));
     var single_slider = cutter.find('._media_player_slider');
     var double_slider = cutter.find('._double_slider');
     if(single_slider.find('.ui-slider-handle').hasClass('selected')) {
@@ -1177,8 +1201,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._precision_arrow_right', function() {
     var cutter = $(this).parent().parent();
-    var identifier = cutter.attr('id').split('_');
-    identifier = identifier[identifier.length - 2];
+    var identifier = getVideoComponentIdentifier(cutter.attr('id'));
     var duration = cutter.data('max-to');
     var single_slider = cutter.find('._media_player_slider');
     var double_slider = cutter.find('._double_slider');
@@ -1242,8 +1265,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_play_in_video_editor_preview', function() {
     $(this).hide();
-    var identifier = $(this).parent().parent().attr('id').split('_');
-    identifier = identifier[identifier.length - 2];
+    var identifier = getVideoComponentIdentifier($(this).parent().parent().attr('id'));
     $('#video_component_' + identifier + '_cutter ._media_player_slider_disabler').show();
     $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').show();
     $('#video_component_' + identifier + '_cutter .ui-slider-handle').removeClass('selected');
