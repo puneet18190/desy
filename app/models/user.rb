@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   
-  attr_accessible :name, :surname, :school_level_id, :school, :location_id
+  include Authentication
+
+  attr_accessor :password
+
+  attr_accessible :password, :password_confirmation, :name, :surname, :school_level_id, :school, :location_id
   
   has_many :bookmarks
   has_many :notifications
@@ -15,46 +19,60 @@ class User < ActiveRecord::Base
   
   validates_presence_of :email, :name, :surname, :school_level_id, :school, :location_id
   validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
+  validates_confirmation_of :password
+  validates_presence_of :password, :on => :create
   validates_uniqueness_of :email
   validates_length_of :name, :surname, :email, :school, :maximum => 255
+  validates_length_of :password, :minimum => 8, :allow_nil => true
   validate :validate_associations, :validate_email, :validate_email_not_changed
   
   before_validation :init_validation
-  
-  def self.admin
-    find_by_email CONFIG['admin_email']
-  end
 
-  def self.create_user(email, name, surname, school, school_level_id, location_id, subject_ids, raise_exception_if_fail = false)
-    return nil if !subject_ids.instance_of?(Array) || subject_ids.empty?
-    new_user = User.new :name => name, :surname => surname, :school_level_id => school_level_id, :school => school, :location_id => location_id
-    new_user.email = email
-    ActiveRecord::Base.transaction do
-      begin
-        new_user.save!
-      rescue ActiveRecord::RecordInvalid => e
-        if raise_exception_if_fail
-          raise(e)
-        else
-          return nil
-        end
-      end
-      subject_ids.each do |s|
-        new_users_subject = UsersSubject.new
-        new_users_subject.user_id = new_user.id
-        new_users_subject.subject_id = s
-        begin
-          new_users_subject.save!
-        rescue ActiveRecord::RecordInvalid => e
-          unless raise_exception_if_fail
-            new_user = nil
-            raise ActiveRecord::Rollback
-          end
-          raise e
-        end
-      end
+  scope :confirmed, where(confirmed: true)
+
+  class << self
+    def admin
+      find_by_email CONFIG['admin_email']
     end
-    new_user
+
+    def create_user(email, password, password_confirmation, name, surname, school, school_level_id, location_id, subject_ids, confirmed = false, raise_exception_if_fail = false)
+      return nil if !subject_ids.instance_of?(Array) || subject_ids.empty?
+      new_user = User.new :name                  => name, 
+                          :surname               => surname, 
+                          :school_level_id       => school_level_id, 
+                          :school                => school, 
+                          :location_id           => location_id,
+                          :password              => password,
+                          :password_confirmation => password_confirmation
+      new_user.email = email
+      new_user.confirmed = confirmed
+      ActiveRecord::Base.transaction do
+        begin
+          new_user.save!
+        rescue ActiveRecord::RecordInvalid => e
+          if raise_exception_if_fail
+            raise(e)
+          else
+            return nil
+          end
+        end
+        subject_ids.each do |s|
+          new_users_subject = UsersSubject.new
+          new_users_subject.user_id = new_user.id
+          new_users_subject.subject_id = s
+          begin
+            new_users_subject.save!
+          rescue ActiveRecord::RecordInvalid => e
+            unless raise_exception_if_fail
+              new_user = nil
+              raise ActiveRecord::Rollback
+            end
+            raise e
+          end
+        end
+      end
+      new_user
+    end
   end
 
   def full_name

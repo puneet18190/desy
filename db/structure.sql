@@ -600,8 +600,8 @@ CREATE TABLE users (
     surname character varying(255) NOT NULL,
     school_level_id integer NOT NULL,
     school character varying(255) NOT NULL,
-    password_hash character varying(255),
-    password_salt character varying(255),
+    encrypted_password character varying(255),
+    confirmed boolean NOT NULL,
     location_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL

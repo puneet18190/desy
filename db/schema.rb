@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207091234) do
+ActiveRecord::Schema.define(:version => 20130115155629) do
 
   create_table "locations", :force => true do |t|
     t.string   "description", :null => false
@@ -26,16 +26,16 @@ ActiveRecord::Schema.define(:version => 20121207091234) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",           :null => false
-    t.string   "name",            :null => false
-    t.string   "surname",         :null => false
-    t.integer  "school_level_id", :null => false
-    t.string   "school",          :null => false
-    t.string   "password_hash"
-    t.string   "password_salt"
-    t.integer  "location_id",     :null => false
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.string   "email",              :null => false
+    t.string   "name",               :null => false
+    t.string   "surname",            :null => false
+    t.integer  "school_level_id",    :null => false
+    t.string   "school",             :null => false
+    t.string   "encrypted_password"
+    t.boolean  "confirmed",          :null => false
+    t.integer  "location_id",        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.index ["location_id"], :name => "fk__users_location_id", :order => {"location_id" => :asc}
     t.index ["school_level_id"], :name => "fk__users_school_level_id", :order => {"school_level_id" => :asc}
     t.index ["email"], :name => "index_users_on_email", :unique => true, :order => {"email" => :asc}
@@ -151,6 +151,15 @@ ActiveRecord::Schema.define(:version => 20121207091234) do
 
 # Could not dump table "reports" because of following StandardError
 #   Unknown type 'teaching_object' for column 'reportable_type'
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.index ["session_id"], :name => "index_sessions_on_session_id", :order => {"session_id" => :asc}
+    t.index ["updated_at"], :name => "index_sessions_on_updated_at", :order => {"updated_at" => :asc}
+  end
 
   create_table "tags", :force => true do |t|
     t.string   "word",       :null => false
