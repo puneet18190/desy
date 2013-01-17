@@ -774,8 +774,11 @@ $(document).ready(function() {
   // VIDEO EDITOR
   
   $('body').on('click', '#video_editor_global_preview_play', function() {
-    // TODO 
-    alert('playyyy!');
+    $(this).hide();
+    $('#video_editor_global_preview_pause').show();
+    $('#visual_video_editor_current_time').css('color', 'white');
+    $('#visual_video_editor_total_length').css('color', '#787575');
+    startVideoEditorGlobalPreview();
   });
   
   $('body').on('click', '#exit_video_editor_preview', function() {
@@ -784,8 +787,20 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor_global_preview_pause', function() {
-    // TODO se sto playando un video, qui devo settare current time al secondo esatto in cui ho lasciato, per sicurezza
-    alert('pausaaa!');
+    $('#video_editor_global_preview').data('in-use', false);
+    $(this).hide();
+    $('#video_editor_global_preview_play').show();
+    $('#visual_video_editor_current_time').css('color', '#787575');
+    $('#visual_video_editor_total_length').css('color', 'white');
+    var current_identifier = $('#video_editor_global_preview').data('current-component');
+    var current_component = $('#video_component_' + current_identifier);
+    if($('#video_component_' + current_identifier + '_preview video').length > 0) {
+      $('#video_component_' + current_identifier + '_preview video')[0].pause();
+      setCurrentTimeToMedia($('#video_component_' + current_identifier + '_preview video'), current_component.data('current-preview-time'));
+    }
+    if(videoEditorWithAudioTrack()) {
+      $('#video_editor_preview_container audio')[0].pause();
+    }
   });
   
   $('body').on('click', '#video_editor_global_preview._enabled', function() {
@@ -808,9 +823,8 @@ $(document).ready(function() {
     $('#video_editor_preview_container ._loader').show();
     setTimeout(function() {
       $('#video_editor_preview_container ._loader').hide();
-      $('#video_editor_global_preview').data('current-component', first_identifier);
       $('#video_component_' + first_identifier + '_preview').show();
-      startVideoEditorGlobalPreview(true);
+      startVideoEditorGlobalPreview();
     }, 1500);
   });
   
