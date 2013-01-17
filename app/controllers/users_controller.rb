@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     @all_shared_elements = Statistics.all_shared_elements
     @all_shared_lessons = Statistics.all_shared_lessons
     @all_users = Statistics.all_users
+    @all_users_like = Statistics.all_users_like
     @all_subjects_chart = Statistics.all_subjects_chart[0].split(',')
     @all_subjects_desc = Statistics.all_subjects_chart[1].split(',')
   end
