@@ -12,6 +12,10 @@ module Statistics
       MediaElement.where(:user_id => user.id).count
     end
     
+    def my_copied_lessons
+      Lesson.joins(:user)
+    end
+    
     def my_liked_lessons(last_n)
       Lesson.where(user_id: user.id, copied_not_modified: false).joins(:likes).group('lessons.id').order('count(likes) DESC').limit(last_n)
     end
@@ -22,6 +26,32 @@ module Statistics
     
     def all_liked_lessons(last_n)
       Lesson.joins(:likes).group('lessons.id').order('count(likes) DESC').limit(last_n)
+    end
+    
+    def all_users
+      User.count
+    end
+    
+    def all_shared_lessons
+      Lesson.where(is_public: true).count
+    end
+    
+    def all_shared_elements
+      MediaElement.where(is_public: true).count
+    end
+    
+    def all_liked_users(last_n)
+      Lesson.where(user_id: user.id).joins(:likes).group('lessons.id').order('count(likes) DESC').limit(last_n)
+    end
+    
+    def all_subjects_chart
+      amt = ""
+      desc = ""
+      Subject.all.each do |sbj|
+        amt = amt + sbj.lessons.count.to_s + ","
+        desc = desc + sbj.description.to_s + ","
+      end
+      return [amt.to_s[0..-2], desc.to_s[0..-2]]
     end
     
   end
