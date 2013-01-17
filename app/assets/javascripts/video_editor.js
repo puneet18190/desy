@@ -553,24 +553,16 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
 
 
 
-// TODO TODO TODO 
+// TODO TODO TODO preview
 
 
 
-
-
-// questa funzione serve per filtrare i parametri rimasti dall'ultima pausa: se ho fatto modifiche che mi fanno perdere il punto, tipo
-// eliminazione della componente su cui avevo fatto pausa, o cose analoghe; la funzione va chiamata con preview già vuota
-// è chiamata con la preview attuale già visibile, e con current_component e current_time già settati
-function startVideoEditorGlobalPreview(times_already_set) {
+function startVideoEditorGlobalPreview() {
   $('#video_editor_global_preview').data('in-use', true);
   var current_identifier = $('#video_editor_global_preview').data('current-component');
   var current_component = $('#video_component_' + current_identifier);
   var current_time = $('#video_editor_global_preview').data('current-time');
-  if(!times_already_set) {
-    setVisualTimesVideoEditorPreview(current_component, current_time);
-  }
-  var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier) + current_time;
+  var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier) + current_component.data('current-preview-time');
   if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
     var audio_track = $('#video_editor_preview_container audio');
     setCurrentTimeToMedia(audio_track, actual_audio_track_time);
@@ -589,9 +581,6 @@ function getFirstVideoEditorComponent() {
   return $($('._video_editor_component')[0]);
 }
 
-// funzione ricorsiva; si suppone che le altre componenti siano già spente, e la preview già visibile, se è un video già posizionata al punto giusto
-// current_time  da considerarsi relativo al punto '0' della componente selezionata, non all'effettiva durata del video
-// current_component è già la componente attuale
 function playVideoEditorComponent(component) {
   var identifier = getVideoComponentIdentifier(component.attr('id'));
   $('._video_component_transition').addClass('current');
@@ -630,8 +619,10 @@ function playVideoEditorComponent(component) {
 
 function setVisualTimesVideoEditorPreview(component, time) {
   var identifier = getVideoComponentIdentifier(component.attr('id'));
-  // qui sotto aggiungo 'time' perché nella funzione che calcola il tempo viene sommato prendendolo dal valore del cutter, che qui non è preso in considerazione
-  $('#visual_video_editor_current_time').html(secondsToDateString(calculateVideoComponentStartSecondInVideoEditor(identifier) + time));
+  var global_time = calculateVideoComponentStartSecondInVideoEditor(identifier) + time;
+  $('#visual_video_editor_current_time').html(secondsToDateString(global_time));
+  $('#video_editor_global_preview').data('current-time', global_time);
+  $('#video_editor_global_preview').data('current-component', identifier);
   var start = false;
   $('._video_editor_component').each(function() {
     if(getVideoComponentIdentifier($(this).attr('id')) == identifier) {
