@@ -50,10 +50,12 @@
               <% end %>
             </ul>
           </li>
-          <li class="generic_stat"><span><%= t('captions.users_more_likes')%> (TODO)</span>
+          <li class="generic_stat"><span><%= t('captions.users_more_likes')%></span>
             <ul>
-              <li><span>user</span><div>23123</div></li>
-              <li><span>user</span><div>32312</div></li>
+              <% @all_users_like.first(3).each do |key,value| %>
+                <% u = User.find(key) %>
+                <li><span><%= u.name%> <%= u.surname %></span><div><%=value%></div></li>
+              <%end%>
             </ul>
           </li>
         </ul>

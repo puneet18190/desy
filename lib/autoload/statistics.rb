@@ -17,20 +17,24 @@ module Statistics
       return Lesson.where("user_id != ? AND id IN(?)", user.id, copied_id).count
     end
     
-    def my_liked_lessons(last_n)
-      Lesson.where(user_id: user.id, copied_not_modified: false).joins(:likes).group('lessons.id').order('count(likes) DESC').limit(last_n)
+    def my_liked_lessons(first_n)
+      Lesson.where(user_id: user.id, copied_not_modified: false).joins(:likes).group('lessons.id').order('count(likes) DESC').limit(first_n)
     end
     
     def my_likes_count
       Lesson.where(user_id: user.id, copied_not_modified: false).joins(:likes).count
     end
     
-    def all_liked_lessons(last_n)
-      Lesson.joins(:likes).group('lessons.id').order('count(likes) DESC').limit(last_n)
+    def all_liked_lessons(first_n)
+      Lesson.joins(:likes).group('lessons.id').order('count(likes) DESC').limit(first_n)
     end
     
     def all_users
       User.count
+    end
+    
+    def all_users_like
+      User.joins(:lessons => :likes).group('users.id').order('count(likes) DESC').count()
     end
     
     def all_shared_lessons
@@ -41,8 +45,8 @@ module Statistics
       MediaElement.where(is_public: true).count
     end
     
-    def all_liked_users(last_n)
-      Lesson.where(user_id: user.id).joins(:likes).group('lessons.id').order('count(likes) DESC').limit(last_n)
+    def all_liked_users(first_n)
+      Lesson.where(user_id: user.id).joins(:likes).group('lessons.id').order('count(likes) DESC').limit(first_n)
     end
     
     def all_subjects_chart
