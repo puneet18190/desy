@@ -796,7 +796,7 @@ $(document).ready(function() {
     var current_component = $('#video_component_' + current_identifier);
     if($('#video_component_' + current_identifier + '_preview video').length > 0) {
       $('#video_component_' + current_identifier + '_preview video')[0].pause();
-      setCurrentTimeToMedia($('#video_component_' + current_identifier + '_preview video'), current_component.data('current-preview-time'));
+      setCurrentTimeToMedia($('#video_component_' + current_identifier + '_preview video'), ($('#video_component_' + current_identifier + '_cutter').data('from') + current_component.data('current-preview-time')));
     }
     if(videoEditorWithAudioTrack()) {
       $('#video_editor_preview_container audio')[0].pause();

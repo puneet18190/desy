@@ -595,7 +595,7 @@ function playVideoEditorComponent(component) {
       });
     }
   } else {
-    automaticIncreaseVideoEditorPreviewTimer(component.data('current-preview-time') + 1, (component.data('duration') - component.data('current-preview-time')), function() {
+    automaticIncreaseVideoEditorPreviewTimer(component.data('current-preview-time') + 1, component.data('duration'), function() {
       var next_component = component.next();
       var next_identifier = getVideoComponentIdentifier(next_component.attr('id'));
       if(next_component.hasClass('_video_editor_component')) {
@@ -607,7 +607,9 @@ function playVideoEditorComponent(component) {
         $('#video_component_' + next_identifier + '_preview').show('fade', {}, 1000, function() {
           increaseVideoEditorPreviewTimer(false);
           component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
-          playVideoEditorComponent(next_component);
+          if($('#video_editor_global_preview').data('in-use')) {
+            playVideoEditorComponent(next_component);
+          }
         });
       } else {
         // FIXME fai una funzione che stoppa!

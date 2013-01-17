@@ -110,7 +110,9 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
           $('#video_component_' + next_identifier + '_preview').show('fade', {}, 1000, function() {
             increaseVideoEditorPreviewTimer(false);
             component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
-            playVideoEditorComponent(next_component);
+            if($('#video_editor_global_preview').data('in-use')) {
+              playVideoEditorComponent(next_component);
+            }
           });
         } else {
           // FIXME fai una funzione che stoppa!
