@@ -624,6 +624,7 @@ function playVideoEditorComponent(component) {
         if(videoEditorWithAudioTrack()) {
           $('#video_editor_preview_container audio')[0].pause();
         }
+        $('#video_editor_global_preview_pause').trigger('click');
       }
     });
   }

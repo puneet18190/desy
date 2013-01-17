@@ -782,6 +782,8 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#exit_video_editor_preview', function() {
+    
+    
     // TODO qui devo anche settare current time = 0, e rimettere a posto tutti i cursori ?? '?? ??
     alert('exittttt!');
   });
