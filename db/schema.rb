@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20130115155629) do
     t.datetime "updated_at",         :null => false
     t.index ["location_id"], :name => "fk__users_location_id", :order => {"location_id" => :asc}
     t.index ["school_level_id"], :name => "fk__users_school_level_id", :order => {"school_level_id" => :asc}
+    t.index ["confirmed"], :name => "index_users_on_confirmed", :order => {"confirmed" => :asc}
     t.index ["email"], :name => "index_users_on_email", :unique => true, :order => {"email" => :asc}
     t.foreign_key ["location_id"], "locations", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "users_location_id_fkey"
     t.foreign_key ["school_level_id"], "school_levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "users_school_level_id_fkey"
