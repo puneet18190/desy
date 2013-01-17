@@ -5,15 +5,16 @@
   <%= render :partial => 'video_editor/preview_container', :locals => {:parameters => @parameters} %>
   
   <div class="info">
-    <div id="video_editor_global_preview" class="bottoniVerdi _enabled" style="margin-top:10px" data-current-component="0" data-current-time="0" data-in-use="false">
+    <div id="video_editor_global_preview" class="bottoniVerdi _enabled" data-current-component="0" data-current-time="0" data-in-use="false">
       <a class="upper"><%= t('captions.preview') %></a>
     </div>
-    <div id="video_editor_global_preview_pause" class="bottoniVerdi" style="margin-top:10px; display:none">
+    <div id="video_editor_global_preview_pause" class="bottoniVerdi" style="display:none">
       <a class="upper"><%= t('captions.pause') %></a>
     </div>
-    <p class="lower"><%= t('captions.total_length') %>:</p>
+    <p class="capitalize" style="color:#43a848"><%= t('captions.total_length') %>:</p>
     <p>
       <span id="visual_video_editor_total_length"><%= seconds_to_time(@total_length) %></span>
+      <br>
       <span id="visual_video_editor_current_time" style="visibility:hidden; color:#787575"><%= seconds_to_time(0) %></span>
     </p>
   </div>
@@ -31,7 +32,7 @@
           <div class="fltrt">
             <a id="commit_video_editor" class="nextButton <%= @parameters[:initial_video].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('general_titles.save_element_title') %>">
             </a>
-            <a id="exit_video_editor_preview" class="nextButton" style="display:none"></a>
+            <a id="exit_video_editor_preview" class="closeButton" style="display:none"></a>
           </div>
         </div>
       </div>
