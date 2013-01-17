@@ -582,7 +582,7 @@ function startVideoEditorGlobalPreview(times_already_set) {
       });
     }
   }
-  playVideoEditorComponent(current_component, current_time);
+  playVideoEditorComponent(current_component);
 }
 
 function getFirstVideoEditorComponent() {
@@ -592,7 +592,7 @@ function getFirstVideoEditorComponent() {
 // funzione ricorsiva; si suppone che le altre componenti siano già spente, e la preview già visibile, se è un video già posizionata al punto giusto
 // current_time  da considerarsi relativo al punto '0' della componente selezionata, non all'effettiva durata del video
 // current_component è già la componente attuale
-function playVideoEditorComponent(component, start_time) {
+function playVideoEditorComponent(component) {
   var identifier = getVideoComponentIdentifier(component.attr('id'));
   $('._video_component_transition').addClass('current');
   component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
@@ -606,7 +606,7 @@ function playVideoEditorComponent(component, start_time) {
       });
     }
   } else {
-    automaticIncreaseVideoEditorPreviewTimer(1, component.data('duration'), function() {
+    automaticIncreaseVideoEditorPreviewTimer(component.data('current-preview-time') + 1, (component.data('duration') - component.data('current-preview-time')), function() {
       var next_component = component.next();
       var next_identifier = getVideoComponentIdentifier(next_component.attr('id'));
       if(next_component.hasClass('_video_editor_component')) {
@@ -618,7 +618,7 @@ function playVideoEditorComponent(component, start_time) {
         $('#video_component_' + next_identifier + '_preview').show('fade', {}, 1000, function() {
           increaseVideoEditorPreviewTimer(false);
           component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
-          playVideoEditorComponent(next_component, getInitialPointOfVideoEditorComponent(next_component));
+          playVideoEditorComponent(next_component);
         });
       } else {
         // FIXME fai una funzione che stoppa!

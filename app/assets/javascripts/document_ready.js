@@ -772,7 +772,7 @@ $(document).ready(function() {
   // VIDEO EDITOR
   
   $('body').on('click', '#video_editor_global_preview_play', function() {
-    // TODO 
+    // TODO chiamare semplicemente la funzione??? e risettare a posto i colori dei numeri!
     alert('playyyy!');
   });
   
