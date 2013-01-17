@@ -8,4 +8,14 @@ class Subject < ActiveRecord::Base
   validates_presence_of :description
   validates_length_of :description, :maximum => 255
   
+  def self.chart_colors
+    tot = self.find(Lesson.pluck(:subject_id).uniq).count
+    part = (255.to_f/tot).floor
+    colors = []
+    (0..tot-1).each do |index|
+      colors << "rgb(255,#{part*index},0)"
+    end
+    return colors
+  end
+  
 end
