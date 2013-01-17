@@ -586,6 +586,11 @@ function getFirstVideoEditorComponent() {
   return $($('._video_editor_component')[0]);
 }
 
+function getLastVideoEditorComponent() {
+  var components = $('._video_editor_component');
+  return $(components[components.length - 1]);
+}
+
 function playVideoEditorComponent(component) {
   var identifier = getVideoComponentIdentifier(component.attr('id'));
   $('._video_component_transition').addClass('current');
@@ -711,5 +716,18 @@ function increaseVideoEditorPreviewTimer(with_component) {
     var component_time = component.data('current-preview-time');
     component.find('._video_component_icon ._right').html(secondsToDateString(component_time + 1));
     component.data('current-preview-time', component_time + 1);
+  }
+}
+
+function showVideoEditorPreviewArrowToComponents() {
+  if(getVideoComponentIdentifier(getFirstVideoEditorComponent().attr('id')) != $('#video_editor_global_preview').data('current-component')) {
+    $('#video_editor_preview_go_to_left_component').show();
+  } else {
+    $('#video_editor_preview_go_to_left_component').hide();
+  }
+  if(getVideoComponentIdentifier(getLastVideoEditorComponent().attr('id')) != $('#video_editor_global_preview').data('current-component')) {
+    $('#video_editor_preview_go_to_right_component').show();
+  } else {
+    $('#video_editor_preview_go_to_right_component').hide();
   }
 }

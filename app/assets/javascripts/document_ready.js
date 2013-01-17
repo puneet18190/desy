@@ -773,8 +773,17 @@ $(document).ready(function() {
   
   // VIDEO EDITOR
   
+  $('body').on('click', '#video_editor_preview_go_to_left_component', function() {
+    
+  });
+  
+  $('body').on('click', '#video_editor_preview_go_to_right_component', function() {
+    
+  });
+  
   $('body').on('click', '#video_editor_global_preview_play', function() {
     $(this).hide();
+    $('#video_editor_preview_go_to_left_component, #video_editor_preview_go_to_right_component').hide();
     $('#video_editor_global_preview_pause').show();
     $('#visual_video_editor_current_time').css('color', 'white');
     $('#visual_video_editor_total_length').css('color', '#787575');
@@ -784,6 +793,7 @@ $(document).ready(function() {
   
   $('body').on('click', '#exit_video_editor_preview', function() {
     $('#video_editor_global_preview_pause').removeClass('_enabled');
+    $('#video_editor_preview_go_to_left_component, #video_editor_preview_go_to_right_component').hide();
     $('._video_component_preview').hide();
     $('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
     setVisualTimesVideoEditorPreview(getFirstVideoEditorComponent(), 0);
@@ -801,6 +811,7 @@ $(document).ready(function() {
   
   $('body').on('click', '#video_editor_global_preview_pause._enabled', function() {
     $('#video_editor_global_preview').data('in-use', false);
+    showVideoEditorPreviewArrowToComponents();
     $(this).hide();
     $('#video_editor_global_preview_play').show();
     $('#exit_video_editor_preview').show();
