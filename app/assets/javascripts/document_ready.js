@@ -29,7 +29,7 @@ $(document).ready(function() {
     $("input.innerUploadFileButton").trigger("click");
   });
   
-  $("span.pie").peity("pie");
+  initPieChart();
   
   
   // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
