@@ -778,18 +778,32 @@ $(document).ready(function() {
     $('#video_editor_global_preview_pause').show();
     $('#visual_video_editor_current_time').css('color', 'white');
     $('#visual_video_editor_total_length').css('color', '#787575');
+    $('#exit_video_editor_preview').hide();
     startVideoEditorGlobalPreview();
   });
   
   $('body').on('click', '#exit_video_editor_preview', function() {
-    // TODO qui devo anche settare current time = 0, e rimettere a posto tutti i cursori ?? '?? ??
-    alert('exittttt!');
+    $('#video_editor_global_preview_pause').removeClass('_enabled');
+    $('._video_component_preview').hide();
+    $('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
+    setVisualTimesVideoEditorPreview(getFirstVideoEditorComponent(), 0);
+    resetVisibilityOfVideoEditorTransitions();
+    $('#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor').css('visibility', 'visible');
+    $('#visual_video_editor_current_time').css('visibility', 'hidden')
+    $('#video_editor_global_preview').show();
+    $('#video_editor_global_preview_play').hide();
+    $('#commit_video_editor').show();
+    $('#exit_video_editor_preview').hide();
+    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
+    $('#video_editor_box_ghost').hide();
+    $('._new_component_in_video_editor_hover').removeClass('selected');
   });
   
-  $('body').on('click', '#video_editor_global_preview_pause', function() {
+  $('body').on('click', '#video_editor_global_preview_pause._enabled', function() {
     $('#video_editor_global_preview').data('in-use', false);
     $(this).hide();
     $('#video_editor_global_preview_play').show();
+    $('#exit_video_editor_preview').show();
     $('#visual_video_editor_current_time').css('color', '#787575');
     $('#visual_video_editor_total_length').css('color', 'white');
     var current_identifier = $('#video_editor_global_preview').data('current-component');
@@ -813,7 +827,6 @@ $(document).ready(function() {
     $('#video_editor_global_preview').hide();
     $('#video_editor_global_preview_pause').show();
     $('#commit_video_editor').hide();
-    $('#exit_video_editor_preview').show();
     $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
     $('#video_editor_box_ghost').show();
     $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
@@ -821,9 +834,13 @@ $(document).ready(function() {
     $('._video_component_transition').addClass('current');
     setVisualTimesVideoEditorPreview(first_component, 0);
     $('#video_editor_preview_container ._loader').show();
+    $('#video_editor_global_preview_pause a').addClass('disabled');
     setTimeout(function() {
+      $('#video_editor_global_preview_pause').addClass('_enabled');
+      $('#video_editor_global_preview_pause a').removeClass('disabled');
       $('#video_editor_preview_container ._loader').hide();
       $('#video_component_' + first_identifier + '_preview').show();
+      first_component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
       startVideoEditorGlobalPreview();
     }, 1500);
   });
