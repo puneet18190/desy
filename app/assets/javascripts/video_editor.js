@@ -621,6 +621,9 @@ function playVideoEditorComponent(component) {
         });
       } else {
         selectVideoComponentInPreview(getFirstVideoEditorComponent());
+        if(videoEditorWithAudioTrack()) {
+          $('#video_editor_preview_container audio')[0].pause();
+        }
       }
     });
   }
