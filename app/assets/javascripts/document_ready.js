@@ -778,6 +778,7 @@ $(document).ready(function() {
     $('#video_editor_global_preview_pause').show();
     $('#visual_video_editor_current_time').css('color', 'white');
     $('#visual_video_editor_total_length').css('color', '#787575');
+    $('#exit_video_editor_preview').hide();
     startVideoEditorGlobalPreview();
   });
   
@@ -792,6 +793,7 @@ $(document).ready(function() {
     $('#video_editor_global_preview').data('in-use', false);
     $(this).hide();
     $('#video_editor_global_preview_play').show();
+    $('#exit_video_editor_preview').show();
     $('#visual_video_editor_current_time').css('color', '#787575');
     $('#visual_video_editor_total_length').css('color', 'white');
     var current_identifier = $('#video_editor_global_preview').data('current-component');
@@ -815,7 +817,6 @@ $(document).ready(function() {
     $('#video_editor_global_preview').hide();
     $('#video_editor_global_preview_pause').show();
     $('#commit_video_editor').hide();
-    $('#exit_video_editor_preview').show();
     $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
     $('#video_editor_box_ghost').show();
     $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
