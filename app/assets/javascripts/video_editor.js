@@ -41,6 +41,7 @@ function initializeVideoEditor() {
 function closeGenericVideoComponentCutter() {
   $('._video_component_cutter_arrow').hide('fade', {}, 250);
   $('._video_component_cutter').hide('fade', {}, 250, function() {
+    $('#video_editor_global_preview a').removeClass('disabled');
     $('._video_editor_bottom_bar').css('visibility', 'visible');
     resetVisibilityOfVideoEditorTransitions();
     $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
@@ -176,6 +177,10 @@ function addImageComponentInVideoEditor(image_id, component, preview, duration) 
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
   reloadVideoEditorComponentPositions();
   resetVisibilityOfVideoEditorTransitions();
+  if(!$('#video_editor_global_preview').hasClass('_enabled')) {
+    $('#video_editor_global_preview').addClass('_enabled');
+    $('#video_editor_global_preview a').removeClass('disabled');
+  }
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position));
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
@@ -270,6 +275,10 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
   reloadVideoEditorComponentPositions();
   resetVisibilityOfVideoEditorTransitions();
+  if(!$('#video_editor_global_preview').hasClass('_enabled')) {
+    $('#video_editor_global_preview').addClass('_enabled');
+    $('#video_editor_global_preview a').removeClass('disabled');
+  }
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position));
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
@@ -371,6 +380,10 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
   reloadVideoEditorComponentPositions();
   resetVisibilityOfVideoEditorTransitions();
+  if(!$('#video_editor_global_preview').hasClass('_enabled')) {
+    $('#video_editor_global_preview').addClass('_enabled');
+    $('#video_editor_global_preview a').removeClass('disabled');
+  }
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position));
     $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
@@ -491,6 +504,7 @@ function showVideoEditorCutter(component_id) {
   $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#' + component_id + ' ._video_component_cutter_arrow').show('fade', {}, 250);
   $('#' + component_id + '_cutter').show('fade', {}, 250, function() {
+    $('#video_editor_global_preview a').addClass('disabled');
     $('._video_component_transition').addClass('current');
     $('._video_editor_component:not(#' + component_id + ') ._video_editor_component_hover').addClass('selected');
     $('._video_component_icon').addClass('selected');
@@ -605,6 +619,9 @@ function playVideoEditorComponent(component) {
         component.find('._video_component_transition').removeClass('current');
         next_component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
         $('#video_component_' + next_identifier + '_preview').show('fade', {}, 1000, function() {
+          if(!$('#video_editor_global_preview').data('in-use')) {
+            $('._video_component_transition').addClass('current');
+          }
           increaseVideoEditorPreviewTimer(false);
           component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
           if($('#video_editor_global_preview').data('in-use')) {
