@@ -20,156 +20,46 @@ Use or modify to suit your needs the lessons of other teachers who use desy.
 Organize your lessons in your virtual classroom and discover a new way of teaching.</p>
 </div>
 <%= form_for @user do |f| %>
+
+  <%= render partial: 'users/personal_info', :locals => { :f => f } %>
+  <%= render partial: 'users/personal_subjects', :locals => { :f => f } %>
+
   <div class="contentForm">
+    <br class="clearfloat">
+    <p>
+      <strong>Torem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tin</strong><br><br>
 
-    <label for="checkbox1" style="display:inline-block;width:100px">Chimica</label>
-    <input type="checkbox" id="checkbox1">
-    <br>
-
-    <label for="checkbox2" style="display:inline-block;width:100px">Biologia</label>
-    <input type="checkbox" id="checkbox2">
-    <br>
-
-    <label for="checkbox3" style="display:inline-block;width:100px">Italiano</label>
-    <input type="checkbox" id="checkbox3">
-    <br>
-
-    <label for="checkbox4" style="display:inline-block;width:100px">Storia</label>
-    <input type="checkbox" id="checkbox4">
-    <br>
-
-    <label for="checkbox5" style="display:inline-block;width:100px">Geografia</label>
-    <input type="checkbox" id="checkbox5">
-    <br>
-
-    <% if false -%>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-
-    <%= f.label :surname %>
-    <%= f.text_field :surname %>
-
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-
-    <%= f.label :school %>
-    <%= f.text_field :school %>
-
-    <%= f.label :school_level %>
-    <%= f.text_field :school_level %>
-
-    <%= f.label :region %>
-    <%= f.text_field :region %>
-
-    <%= f.label :password %>
-    <%= f.text_field :password %>
-
-    <%= f.label :password_confirmation %>
-    <%= f.text_field :password_confirmation %>
-
-    <% end -%>
-<!--   <div class="insert-content">
-    <div class="inputElement">
-      <p>Name</p><input type="text" name="nome" value="" class="text" id="">
+      Cidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+    </p>
+    <div class="checkbox-content" style="float:none; padding-top:0">
+      <div class="checkboxElement">
+        <table>
+          <tr>
+            <td><input type="checkbox" id="checkbox-2-5" class="regular-checkbox" /><label for="checkbox-2-5"></label></td>
+            <td>accept</td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="inputElement">
-      <p>email</p><input type="text" name="email" value="" class="text" id="">
+    <br class="clearfloat">
+    <p>
+      <strong>Torem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tin</strong><br><br>
+
+      Cidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+    </p>
+    <div class="checkbox-content" style="float:none; padding-top:0">
+      <div class="checkboxElement">
+        <table>
+          <tr>
+            <td><input type="checkbox" id="checkbox-2-5" class="regular-checkbox" /><label for="checkbox-2-5"></label></td>
+            <td>accept</td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="inputElement">  
-      <p>School level</p><input type="text" name="school_level" value="" class="text" id="">
-    </div>
-    <div class="inputElement">
-      <p>Password</p><input type="password" name="nome" value="" class="text" id="">
-    </div>
+    <br class="clearfloat">
+    <a style="font-size:140%;">Register now</a>
   </div>
-  <div class="insert-content">
-    <div class="inputElement">
-      <p>Surname</p><input type="text" name="cognome" value="" class="text" id="">
-    </div>
-    <div class="inputElement">
-      <p>School</p><input type="text" name="school" value="" class="text" id="">
-    </div>
-    <div class="inputElement">
-      <p>Region</p><input type="text" name="region" value="" class="text" id="">
-    </div>
-    <div class="inputElement" style="margin-right:0">
-      <p>Repeat password</p><input type="password" name="cognome" value="" class="text" id="">
-    </div>
-  </div> -->
-  
-  <div class="checkbox-content">
-    <h3>Choose the matters you want to stay connected</h3>
-    <div class="checkboxElement">
-    <table>
-    <tr>
-      <td><input type="checkbox" id="checkbox-2-1" class="regular-checkbox" /><label for="checkbox-2-1"></label></td>
-      <td>Chemical</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" id="checkbox-2-2" class="regular-checkbox" /><label for="checkbox-2-2"></label></td>
-      <td>Language</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" id="checkbox-2-3" class="regular-checkbox" /><label for="checkbox-2-3"></label></td>
-      <td>Mathematics</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" id="checkbox-2-4" class="regular-checkbox" /><label for="checkbox-2-4"></label></td>
-      <td>History</td>
-    </tr>
-    </table>
-    
-    <table>
-    <tr>
-      <td><input type="checkbox" id="checkbox-2-5" class="regular-checkbox" /><label for="checkbox-2-5"></label></td>
-      <td>Biology</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" id="checkbox-2-6" class="regular-checkbox" /><label for="checkbox-2-6"></label></td>
-      <td>Geography</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" id="checkbox-2-7" class="regular-checkbox" /><label for="checkbox-2-7"></label></td>
-      <td>Astronomy</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" id="checkbox-2-8" class="regular-checkbox" /><label for="checkbox-2-8"></label></td>
-      <td>Design</td>
-    </tr>
-    </table>
-    </div>
-  </div>
-  <br class="clearfloat">
-<p><strong>Torem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tin</strong><br><br>
-
-Cidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-  <div class="checkbox-content" style="float:none; padding-top:0">
-  <div class="checkboxElement">
-  <table>
-  <tr>
-    <td><input type="checkbox" id="checkbox-2-5" class="regular-checkbox" /><label for="checkbox-2-5"></label></td>
-    <td>accept</td>
-  </tr>
-  </table>
-  </div>
-  </div>
-<br class="clearfloat">
-<p><strong>Torem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tin</strong><br><br>
-
-Cidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-  <div class="checkbox-content" style="float:none; padding-top:0">
-    <div class="checkboxElement">
-    <table>
-    <tr>
-      <td><input type="checkbox" id="checkbox-2-5" class="regular-checkbox" /><label for="checkbox-2-5"></label></td>
-      <td>accept</td>
-    </tr>
-    </table>
-    </div>
-  </div>
-  <br class="clearfloat">
-  <a style="font-size:140%;">Register now</a>
-</div>
 <% end %>
 <br class="clearfloat">
 <div class="footer">

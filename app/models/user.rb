@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :media_elements
   has_many :reports
   has_many :users_subjects
+  has_many :subjects, through: :users_subjects
   has_many :virtual_classroom_lessons
   belongs_to :school_level
   belongs_to :location
@@ -81,22 +82,24 @@ class User < ActiveRecord::Base
   
   def empty_video_editor_cache
     return false if self.new_record?
-    File.delete(Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml")) if File.exists?(Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml"))
+    cache = Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml")
+    if File.exists?(cache)
+      File.delete(cache)
+    end
     true
   end
   
   def video_editor_cache
-    return nil if self.new_record? || !File.exists?(Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml"))
-    YAML::load(File.open(Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml")))
+    cache = Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml")
+    return nil if self.new_record? || !File.exists?(cache)
+    YAML::load(File.open(cache))
   end
   
   def save_video_editor_cache(hash)
     return false if self.new_record?
-    Dir.mkdir Rails.root.join('tmp') if !Dir.exists? Rails.root.join('tmp')
-    Dir.mkdir Rails.root.join('tmp/cache') if !Dir.exists? Rails.root.join('tmp/cache')
-    Dir.mkdir Rails.root.join('tmp/cache/video_editor') if !Dir.exists? Rails.root.join('tmp/cache/video_editor')
-    Dir.mkdir Rails.root.join("tmp/cache/video_editor/#{self.id}") if !Dir.exists? Rails.root.join("tmp/cache/video_editor/#{self.id}")
-    x = File.open Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml"), 'w'
+    folder = Rails.root.join "tmp/cache/video_editor/#{self.id}"
+    FileUtils.mkdir_p folder if !Dir.exists? folder
+    x = File.open folder.join("cache.yml"), 'w'
     x.write hash.to_yaml
     x.close
     true

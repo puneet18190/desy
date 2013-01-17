@@ -38,39 +38,35 @@ class Users::SessionsController < ApplicationController
   # end
   def create
     if params[:email].blank? || params[:password].blank?
-      # flash[:error] = 
-      redirect_to home_path, flash: { error: t('captions.fill_all_login_fields') }
+      redirect_to root_path, flash: { error: t('captions.fill_all_login_fields') }
       return
-      # render 'login_error.js'
-      # return
     end
+
     self.current_user = User.authenticate(params[:email], params[:password])
 
-    redirect_url = params[:redirect_to]
-    redirect_path = dashboard_path
-
-    redirect_to
-      if current_user
-
-        if redirect_url
-          begin
-            url = URI.parse(redirect_url)
-            if url.path
-              redirect_path = url.path
-              redirect_path << "?#{url.query}" if url.query
-              redirect_path << "##{url.fragment}" if url.fragment
-          rescue URI::InvalidURIError, URI::BadURIError
+    if current_user
+      redirect_path = dashboard_path
+      redirect_url = params[:redirect_to]
+      if redirect_url
+        begin
+          url = URI.parse(redirect_url)
+          if url.path
+            redirect_path = url.path
+            redirect_path << "?#{url.query}" if url.query
+            redirect_path << "##{url.fragment}" if url.fragment
           end
+        rescue URI::InvalidURIError, URI::BadURIError
         end
-
-        redirect_path
-      else
-        home_path, flash: { error: t('captions.password_or_username_not_correct') }
       end
+    else
+      redirect_path = root_path, { flash: { error: t('captions.password_or_username_not_correct') } }
+    end
+
+    redirect_to redirect_path
   end
 
   def destroy
-    session[:user_id] = nil
+    self.current_user = nil
     redirect_to root_path
   end
   

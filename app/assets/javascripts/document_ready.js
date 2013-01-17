@@ -761,6 +761,7 @@ $(document).ready(function() {
     var form = $('#login_form_container');
     if(form.css('display') == 'none') {
       form.show('fade', {}, 500);
+      $('#email').focus();
     } else {
       form.hide('fade', {}, 500);
     }

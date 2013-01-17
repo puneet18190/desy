@@ -10,6 +10,11 @@ class PreloginController < ApplicationController
   
   def registration
     @user = User.new(params[:user])
+    @user = User.admin
+
+    @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
+    @location_ids     = Location.order(:description).map{ |sl| [sl.to_s, sl.id] }
+    @subjects         = Subject.order(:description)
   end
   
   def create_registration
