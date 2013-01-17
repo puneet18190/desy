@@ -802,6 +802,9 @@ $(document).ready(function() {
     $('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
     setVisualTimesVideoEditorPreview(getFirstVideoEditorComponent(), 0);
     resetVisibilityOfVideoEditorTransitions();
+    $('._video_editor_component').each(function() {
+      $(this).find('._video_component_icon ._right').html(secondsToDateString($(this).data('duration')));
+    });
     $('#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor').css('visibility', 'visible');
     $('#visual_video_editor_current_time').css('visibility', 'hidden')
     $('#video_editor_global_preview').show();
