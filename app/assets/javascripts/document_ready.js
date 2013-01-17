@@ -771,6 +771,11 @@ $(document).ready(function() {
   
   // VIDEO EDITOR
   
+  $('body').on('click', '#video_editor_global_preview_play', function() {
+    // TODO 
+    alert('playyyy!');
+  });
+  
   $('body').on('click', '#exit_video_editor_preview', function() {
     // TODO qui devo anche settare current time = 0, e rimettere a posto tutti i cursori ?? '?? ??
     alert('exittttt!');
@@ -835,6 +840,7 @@ $(document).ready(function() {
     closeGenericVideoComponentCutter();
     var component_id = $(this).parent().parent().attr('id');
     var identifier = getVideoComponentIdentifier(component_id);
+    $('#video_component_' + identifier + '_cutter ._double_slider .ui-slider-handle').removeClass('selected');
     stopVideoInVideoEditorPreview(identifier);
     commitVideoComponentVideoCutter(identifier);
     $('#video_editor_global_preview').addClass('_enabled');
@@ -1279,6 +1285,10 @@ $(document).ready(function() {
       });
     }
     var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(identifier);
+    // fix per aggiornare all'interno del secondo in cui ho fatto pausa -- questo fix è stato messo qui invece che nella funzione
+    // calculateVideoComponentStartSecondInVideoEditor perché in tutti gli altri casi di pausa si ripristina il secondo intero precedente
+    actual_audio_track_time -= $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value');
+    actual_audio_track_time += $('#video_component_' + identifier + '_preview video')[0].currentTime;
     if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
       var audio_track = $('#video_editor_preview_container audio');
       setCurrentTimeToMedia(audio_track, actual_audio_track_time);
