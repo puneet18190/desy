@@ -824,6 +824,7 @@ $(document).ready(function() {
     setTimeout(function() {
       $('#video_editor_preview_container ._loader').hide();
       $('#video_component_' + first_identifier + '_preview').show();
+      first_component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
       startVideoEditorGlobalPreview();
     }, 1500);
   });
