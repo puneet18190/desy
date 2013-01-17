@@ -6,7 +6,9 @@ $(document).ready(function() {
       return el !== 'version';
     })[0];
 
-    if(name) $('html').addClass(name);
+    if( name ) {
+      $('html').addClass(name);
+    }
   })();
 
   // OTHER BUTTONS
@@ -721,8 +723,8 @@ $(document).ready(function() {
   
   // PRELOGIN
   
-  $('body').on('click', '._show_login_form', function() {
-    var form = $('#login_form');
+  $('body').on('click', '._show_login_form_container', function() {
+    var form = $('#login_form_container');
     if(form.css('display') == 'none') {
       form.show('fade', {}, 500);
     } else {
@@ -731,7 +733,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#submit_login_form', function() {
-    $('#login_form form').submit();
+    $('#new_users_session_form').submit();
   });
   
   

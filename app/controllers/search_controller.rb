@@ -34,7 +34,7 @@ class SearchController < ApplicationController
   private
   
   def get_result_media_elements
-    resp = @current_user.search_media_elements(@tag, @page, @for_page, @order, @filter)
+    resp = current_user.search_media_elements(@tag, @page, @for_page, @order, @filter)
     @media_elements = resp[:records]
     @pages_amount = resp[:pages_amount]
     @media_elements_amount = resp[:records_amount]
@@ -43,7 +43,7 @@ class SearchController < ApplicationController
   end
   
   def get_result_lessons
-    resp = @current_user.search_lessons(@tag, @page, @for_page, @order, @filter, @subject_id)
+    resp = current_user.search_lessons(@tag, @page, @for_page, @order, @filter, @subject_id)
     @lessons = resp[:records]
     @pages_amount = resp[:pages_amount]
     @lessons_amount = resp[:records_amount]

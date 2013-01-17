@@ -32,7 +32,7 @@ class LessonsController < ApplicationController
       # 29919  
       # 29920  
       # 29921  Started GET "/lessons" for 151.15.112.120 at 2013-01-11 12:47:01 +0100
-      if !@current_user.bookmark('Lesson', @lesson_id)
+      if !current_user.bookmark('Lesson', @lesson_id)
         @ok = false
         @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_lesson')
       end
@@ -49,7 +49,7 @@ class LessonsController < ApplicationController
   
   def copy
     if @ok
-      @new_lesson = @lesson.copy(@current_user.id)
+      @new_lesson = @lesson.copy(current_user.id)
       if @new_lesson.nil?
         @ok = false
         @error = @lesson.get_base_error
@@ -73,7 +73,7 @@ class LessonsController < ApplicationController
   
   def dislike
     if @ok
-      if !@current_user.dislike(@lesson_id)
+      if !current_user.dislike(@lesson_id)
         @ok = false
         @error = I18n.t('activerecord.errors.models.like.problem_destroying')
       end
@@ -90,7 +90,7 @@ class LessonsController < ApplicationController
   
   def like
     if @ok
-      if !@current_user.like(@lesson_id)
+      if !current_user.like(@lesson_id)
         @ok = false
         @error = I18n.t('activerecord.errors.models.like.problem_creating')
       end
@@ -144,13 +144,13 @@ class LessonsController < ApplicationController
   def remove
     @ok_msg = t('popups.remove_lesson_ok')
     if @ok
-      bookmark = Bookmark.where(:user_id => @current_user.id, :bookmarkable_type => 'Lesson', :bookmarkable_id => @lesson_id).first
+      bookmark = Bookmark.where(:user_id => current_user.id, :bookmarkable_type => 'Lesson', :bookmarkable_id => @lesson_id).first
       if bookmark.nil?
         @ok = false
         @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_lesson')
       else
         bookmark.destroy
-        if Bookmark.where(:user_id => @current_user.id, :bookmarkable_type => 'Lesson', :bookmarkable_id => @lesson_id).any?
+        if Bookmark.where(:user_id => current_user.id, :bookmarkable_type => 'Lesson', :bookmarkable_id => @lesson_id).any?
           @ok = false
           @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_lesson')
         end
@@ -169,7 +169,7 @@ class LessonsController < ApplicationController
   private
   
   def get_own_lessons
-    current_user_own_lessons = @current_user.own_lessons(@page, @for_page, @filter)
+    current_user_own_lessons = current_user.own_lessons(@page, @for_page, @filter)
     @lessons = current_user_own_lessons[:records]
     @pages_amount = current_user_own_lessons[:pages_amount]
   end

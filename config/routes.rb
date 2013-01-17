@@ -1,7 +1,7 @@
 Desy::Application.routes.draw do
   
   # MAIN SECTIONS
-  get  'dashboard' => 'dashboard#index', :as => :dashboard_index
+  get  'dashboard' => 'dashboard#index', :as => :dashboard
   get  'lessons' => 'lessons#index', :as => :my_lessons
   get  'media_elements' => 'media_elements#index', :as => :my_media_elements
   get  'virtual_classroom' => 'virtual_classroom#index', :as => :my_virtual_classroom
@@ -92,7 +92,7 @@ Desy::Application.routes.draw do
   
   # BASE64 TO IMAGE
   post 'base64_to_image/' => "base64_to_image#create"
-  get 'base64_to_image_test' => "base64_to_image#test"
+  get  'base64_to_image_test' => "base64_to_image#test"
   
   # SEARCH LESSONS OR MEDIA ELEMENTS
   get  'search' => 'search#index', :as => :search_items
@@ -100,15 +100,21 @@ Desy::Application.routes.draw do
   # LOGGED USER
   get  'profile' => 'users#edit', :as => :my_profile
   post 'profile/update' => 'users#update'
-  get  'logout' => 'users#logout', :as => :logout
+  # get  'logout' => 'users#logout', :as => :logout
+
+  # USER SESSION
+  post 'users_sessions' => 'users/sessions#create'
+  delete 'users_session' => 'users/sessions#destroy'
   
   # USER NOT LOGGED
+  resources :users, only: :create
+  # resources :user_sessions, only: [:create, :destroy], controller: 'users/sessions'
   get  'home' => 'prelogin#home', :as => :home
-  get  'login' => 'prelogin#login', :as => :login
+  # get  'login' => 'prelogin#login', :as => :login
   get  'sign_up' => 'prelogin#registration', :as => :sign_up
   get  'what_is_desy' => 'prelogin#what_is_desy', :as => :what_is_desy
   get  'contact_us' => 'prelogin#contact_us', :as => :contact_us
-  post 'create_user' => 'prelogin#create_registration', :as => :create_user
+  # post 'create_user' => 'prelogin#create_registration', :as => :create_user
   
   # APPLICATION ROOT
   root :to => 'prelogin#home'

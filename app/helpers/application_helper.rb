@@ -128,9 +128,13 @@ module ApplicationHelper
   end
   
   # Metodo per aiutare il debug nelle viste
-  def js_log(object)
-    javascript_tag "console.log(#{object.inspect.to_json})"
+  if Rails.env.production?
+    def jsd(object)
+    end
+  else
+    def jsd(object)
+      javascript_tag "console.log(#{object.inspect.to_json})"
+    end
   end
-  alias jsl js_log
   
 end

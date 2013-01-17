@@ -1,7 +1,7 @@
 <div class="header">
   <div class="headerMenu">
   <ul>
-    <li><%= link_to t('captions.home'), home_path %></li>
+    <li><%= link_to t('captions.home'), root_path %></li>
     <li><%= link_to t('captions.what_is_desy'), what_is_desy_path %></li>
     <li><%= link_to t('captions.register'), sign_up_path, :class => 'current' %></li>
     <li><%= link_to t('captions.contact_us'), contact_us_path %></li>
@@ -19,9 +19,56 @@
 Use or modify to suit your needs the lessons of other teachers who use desy.
 Organize your lessons in your virtual classroom and discover a new way of teaching.</p>
 </div>
-<%= form_tag create_user_path do %>
-<div class="contentForm">
-  <div class="insert-content">
+<%= form_for @user do |f| %>
+  <div class="contentForm">
+
+    <label for="checkbox1" style="display:inline-block;width:100px">Chimica</label>
+    <input type="checkbox" id="checkbox1">
+    <br>
+
+    <label for="checkbox2" style="display:inline-block;width:100px">Biologia</label>
+    <input type="checkbox" id="checkbox2">
+    <br>
+
+    <label for="checkbox3" style="display:inline-block;width:100px">Italiano</label>
+    <input type="checkbox" id="checkbox3">
+    <br>
+
+    <label for="checkbox4" style="display:inline-block;width:100px">Storia</label>
+    <input type="checkbox" id="checkbox4">
+    <br>
+
+    <label for="checkbox5" style="display:inline-block;width:100px">Geografia</label>
+    <input type="checkbox" id="checkbox5">
+    <br>
+
+    <% if false -%>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :surname %>
+    <%= f.text_field :surname %>
+
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+
+    <%= f.label :school %>
+    <%= f.text_field :school %>
+
+    <%= f.label :school_level %>
+    <%= f.text_field :school_level %>
+
+    <%= f.label :region %>
+    <%= f.text_field :region %>
+
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+
+    <%= f.label :password_confirmation %>
+    <%= f.text_field :password_confirmation %>
+
+    <% end -%>
+<!--   <div class="insert-content">
     <div class="inputElement">
       <p>Name</p><input type="text" name="nome" value="" class="text" id="">
     </div>
@@ -48,11 +95,10 @@ Organize your lessons in your virtual classroom and discover a new way of teachi
     <div class="inputElement" style="margin-right:0">
       <p>Repeat password</p><input type="password" name="cognome" value="" class="text" id="">
     </div>
-  </div>
+  </div> -->
   
   <div class="checkbox-content">
     <h3>Choose the matters you want to stay connected</h3>
-    <!-- CHEMICAL -->
     <div class="checkboxElement">
     <table>
     <tr>
