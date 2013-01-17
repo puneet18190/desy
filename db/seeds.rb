@@ -18,7 +18,7 @@ def create_locations_school_levels_subjects_admin_user
 
   user_name = CONFIG['admin_username'].split(' ').first
   user_surname = CONFIG['admin_username'].gsub("#{user_name} ", '')
-  User.create_user(CONFIG['admin_email'], user_name, user_surname, 'School', SchoolLevel.first.id, Location.first.id, subject_ids)
+  User.create_user(CONFIG['admin_email'], 'password', 'password', user_name, user_surname, 'School', SchoolLevel.first.id, Location.first.id, subject_ids, true)
 end
 
 begin
