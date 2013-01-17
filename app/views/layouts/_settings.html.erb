@@ -1,8 +1,4 @@
 <script type="text/javascript" charset="utf-8">
-  window.desy = {
-    timeOutDialog: <%= CONFIG['seconds_for_timeout_dialogs'].to_json %>
-  }
-
   function initPieChart(){
     $.fn.peity.defaults.pie = {
       colours: <%= Subject.chart_colors.to_json.html_safe %>,
