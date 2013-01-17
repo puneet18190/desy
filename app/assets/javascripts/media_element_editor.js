@@ -24,7 +24,7 @@ function getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpan
   return parseInt(hidden_to_left / component_width);
 }
 
-function recenterMyMediaElements(){
+function recenterMyMediaElements() {
   var WW = $(window).width();
   var elNumber = WW / 220;
   $('._boxViewExpandedMediaElementWrapper').css('width',(100/parseInt(elNumber))+"%");

@@ -762,5 +762,12 @@ function openPreviewModeInVideoEditor() {
 }
 
 function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
-  
+  var jsp_handler = $('#media_elements_list_in_video_editor').data('jsp');
+  var pos = $('#video_component_' + $('#video_editor_global_preview').data('current-component')).data('position');
+  var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186);
+  if(pos - how_many_hidden_to_left > 4) {
+    jsp_handler.scrollToX((pos + 4) * 186, true);
+  } else if(pos < how_many_hidden_to_left) {
+    jsp_handler.scrollToX((pos - 4) * 186, true);
+  }
 }
