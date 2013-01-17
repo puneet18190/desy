@@ -592,6 +592,7 @@ function getLastVideoEditorComponent() {
 }
 
 function playVideoEditorComponent(component) {
+  followPreviewComponentsWithHorizontalScrollInVideoEditor();
   var identifier = getVideoComponentIdentifier(component.attr('id'));
   $('._video_component_transition').addClass('current');
   if(component.hasClass('_video')) {
@@ -625,7 +626,6 @@ function playVideoEditorComponent(component) {
         });
       } else {
         selectVideoComponentInPreview(getFirstVideoEditorComponent());
-        followPreviewComponentsWithHorizontalScrollInVideoEditor();
         if(videoEditorWithAudioTrack()) {
           $('#video_editor_preview_container audio')[0].pause();
         }
@@ -765,9 +765,9 @@ function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
   var jsp_handler = $('#media_elements_list_in_video_editor').data('jsp');
   var pos = $('#video_component_' + $('#video_editor_global_preview').data('current-component')).data('position');
   var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186);
-  if(pos - how_many_hidden_to_left > 4) {
-    jsp_handler.scrollToX((pos + 4) * 186, true);
-  } else if(pos < how_many_hidden_to_left) {
-    jsp_handler.scrollToX((pos - 4) * 186, true);
+  if(pos - how_many_hidden_to_left > 3) {
+    jsp_handler.scrollToX((how_many_hidden_to_left + 3) * 186, true);
+  } else if(pos <= how_many_hidden_to_left) {
+    jsp_handler.scrollToX((how_many_hidden_to_left - 3) * 186, true);
   }
 }

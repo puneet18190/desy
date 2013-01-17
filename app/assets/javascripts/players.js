@@ -116,7 +116,6 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
           });
         } else {
           selectVideoComponentInPreview(getFirstVideoEditorComponent());
-          followPreviewComponentsWithHorizontalScrollInVideoEditor();
           if(videoEditorWithAudioTrack()) {
             $('#video_editor_preview_container audio')[0].pause();
           }
