@@ -254,6 +254,7 @@ html.media_element_editor-layout {
       /*position:absolute; */
       width:906px;
       margin-left:40px;
+      position:relative;
     }
     
     .info {
@@ -706,10 +707,12 @@ html.media_element_editor-layout {
   
   #video_editor_preview_go_to_left_component {
     background: url(<%= asset_path 'arrow_cutter_left.png' %>) top left  no-repeat;
-    float:left;
+    position:absolute;
+    left:-26px;
+    top:65px;
     width: 10px;
     height: 15px;
-    margin-right:8px;
+    
     &:hover {
       background: url(<%= asset_path 'arrow_cutter_left_on.png' %>) top left  no-repeat;  
     };
@@ -717,10 +720,12 @@ html.media_element_editor-layout {
   
   #video_editor_preview_go_to_right_component {
     background: url(<%= asset_path 'arrow_cutter_right.png' %>) top left  no-repeat;
-    float:right;
+    position:absolute;
+    right:-26px;
+    top:65px;
     width: 10px;
     height: 15px;
-    margin-left:8px;
+    
      &:hover {
       background: url(<%= asset_path 'arrow_cutter_right_on.png' %>) top left  no-repeat;  
     };
