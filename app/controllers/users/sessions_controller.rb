@@ -45,24 +45,24 @@ class Users::SessionsController < ApplicationController
     self.current_user = User.authenticate(params[:email], params[:password])
 
     if current_user
-      redirect_path = dashboard_path
+      redirect_args = [dashboard_path]
       redirect_url = params[:redirect_to]
       if redirect_url
         begin
           url = URI.parse(redirect_url)
           if url.path
-            redirect_path = url.path
-            redirect_path << "?#{url.query}" if url.query
-            redirect_path << "##{url.fragment}" if url.fragment
+            redirect_args = [url.path]
+            redirect_args[0] << "?#{url.query}" if url.query
+            redirect_args[0] << "##{url.fragment}" if url.fragment
           end
         rescue URI::InvalidURIError, URI::BadURIError
         end
       end
     else
-      redirect_path = root_path, { flash: { error: t('captions.password_or_username_not_correct') } }
+      redirect_args = [root_path, { flash: { error: t('captions.password_or_username_not_correct') } }]
     end
 
-    redirect_to redirect_path
+    redirect_to *redirect_args
   end
 
   def destroy

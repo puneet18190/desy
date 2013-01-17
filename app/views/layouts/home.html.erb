@@ -10,8 +10,16 @@
 <%= render :partial => "shared/popups" %>
 <%= render :partial => "shared/loading" %>
 <div class="top"></div>
-<div class="container">
+  <div class="container">
+    <% if flash[:error] %>
+      <script>
+      $(document).ready(function(){
+        showErrorPopUp(<%= flash[:error].to_json.html_safe %>);
+      });
+      </script>
+    <% end %>
+
     <%= yield %>
-</div>
+  </div>
 </body>
 </html>

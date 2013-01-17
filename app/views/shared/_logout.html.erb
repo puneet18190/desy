@@ -3,5 +3,5 @@
   <span class="nome"><%= current_user.name %></span>
   <span class="cognome"><%= current_user.surname %></span>
   <br class="clearfloat">
-  <%= link_to(t('captions.logout'), logout_path) %>
+  <%= link_to t('captions.logout'), users_session_path, method: :delete %>
 </div>
