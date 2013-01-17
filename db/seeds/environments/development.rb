@@ -18,11 +18,11 @@ subject3 = Subject.find 3
 
 media_element_types = [ 'Video' ]*5 + [ 'Image', 'Audio' ] + ([ 'Video' ]*14 + [ 'Audio' ]*18 + [ 'Image' ] * 31).shuffle
 
-images = Dir.glob("#{Rails.root}/db/seeds/environments/development/media_elements/images/*").grep(/\.jpe?g|png$/).shuffle
-videos = Dir.glob("#{Rails.root}/db/seeds/environments/development/media_elements/videos/*.mp4").shuffle.map do |v|
+images = Dir.glob("#{Rails.root}/db/seeds/environments/#{Rails.env}/media_elements/images/*").grep(/\.jpe?g|png$/).shuffle
+videos = Dir.glob("#{Rails.root}/db/seeds/environments/#{Rails.env}/media_elements/videos/*.mp4").shuffle.map do |v|
   { mp4: v, webm: v.sub(/\.mp4$/, '.webm'), filename: File.basename(v, File.extname(File.basename v)) }
 end
-audios = Dir.glob("#{Rails.root}/db/seeds/environments/development/media_elements/audios/*.mp3").shuffle.map do |v|
+audios = Dir.glob("#{Rails.root}/db/seeds/environments/#{Rails.env}/media_elements/audios/*.mp3").shuffle.map do |v|
   { mp3: v, ogg: v.sub(/\.mp3$/, '.ogg'), filename: File.basename(v, File.extname(File.basename v)) }
 end
 
@@ -41,24 +41,24 @@ tag_map = [
 
 admin = User.find_by_email CONFIG['admin_email']
 
-paparesta = User.create_user 'paparesta@figc.it', 'Luca', 'Paparesta', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-banti = User.create_user 'banti@figc.it', 'Giorgio', 'Banti', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-valeri = User.create_user 'valeri@figc.it', 'Marco', 'Valeri', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-giannoccaro = User.create_user 'giannoccaro@figc.it', 'Adolfo', 'Giannoccaro', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-trefoloni = User.create_user 'trefoloni@figc.it', 'Umberto', 'Trefoloni', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-de_sanctis = User.create_user 'de_sanctis@figc.it', 'Massimo', 'De Sanctis', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-mazzini = User.create_user 'mazzini@figc.it', 'Luigi', 'Mazzini', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-carraro = User.create_user 'carraro@figc.it', 'Franco', 'Carraro', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-pairetto = User.create_user 'pairetto@figc.it', 'Fabio', 'Pairetto', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-bergamo = User.create_user 'bergamo@figc.it', 'Ernesto', 'Bergamo', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-celi = User.create_user 'celi@figc.it', 'Giangiorgio', 'Celi', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-collina = User.create_user 'collina@figc.it', 'Pierluigi', 'Collina', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-lotito = User.create_user 'lotito@figc.it', 'Claudio', 'Lotito', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-della_valle = User.create_user 'della_valle@figc.it', 'Luca', 'Della Valle', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-moggi = User.create_user 'moggi@figc.it', 'Luciano', 'Moggi', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
-galliani = User.create_user 'galliani@figc.it', 'Adriano', 'Galliani', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+paparesta = User.create_user 'paparesta@figc.it', 'password', 'password', 'Luca', 'Paparesta', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+banti = User.create_user 'banti@figc.it', 'password', 'password', 'Giorgio', 'Banti', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+valeri = User.create_user 'valeri@figc.it', 'password', 'password', 'Marco', 'Valeri', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+giannoccaro = User.create_user 'giannoccaro@figc.it', 'password', 'password', 'Adolfo', 'Giannoccaro', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+trefoloni = User.create_user 'trefoloni@figc.it', 'password', 'password', 'Umberto', 'Trefoloni', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+de_sanctis = User.create_user 'de_sanctis@figc.it', 'password', 'password', 'Massimo', 'De Sanctis', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+mazzini = User.create_user 'mazzini@figc.it', 'password', 'password', 'Luigi', 'Mazzini', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+carraro = User.create_user 'carraro@figc.it', 'password', 'password', 'Franco', 'Carraro', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+pairetto = User.create_user 'pairetto@figc.it', 'password', 'password', 'Fabio', 'Pairetto', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+bergamo = User.create_user 'bergamo@figc.it', 'password', 'password', 'Ernesto', 'Bergamo', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+celi = User.create_user 'celi@figc.it', 'password', 'password', 'Giangiorgio', 'Celi', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+collina = User.create_user 'collina@figc.it', 'password', 'password', 'Pierluigi', 'Collina', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+lotito = User.create_user 'lotito@figc.it', 'password', 'password', 'Claudio', 'Lotito', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+della_valle = User.create_user 'della_valle@figc.it', 'password', 'password', 'Luca', 'Della Valle', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+moggi = User.create_user 'moggi@figc.it', 'password', 'password', 'Luciano', 'Moggi', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
+galliani = User.create_user 'galliani@figc.it', 'password', 'password', 'Adriano', 'Galliani', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
 
-u = User.create_user 'assunzioni@pippo.it', 'Giorgio', 'Mastrota', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id]
+u = User.create_user 'assunzioni@pippo.it', 'password', 'password', 'Giorgio', 'Mastrota', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
 u.create_lesson('History of China: Shag Dynasty', 'Paolo Negro (Arzignano, 16 aprile 1972) è un allenatore di calcio ed ex calciatore italiano. Dal 2012 è alla guida dello Zagarolo.', 1, tag_map[0])
 u.create_lesson('The birth of the great empire', 'Cresce calcisticamente nel Brescia dove viene trasformato da attaccante in fluidificante[2] e nel 1990 passa al Bologna, con cui debutta in serie A il 28 ottobre 1990 in Genoa-Bologna 0-0 ed esordisce nelle coppe europee in Zagłębie Lubin-Bologna 0-1', 2, tag_map[1])
 u.create_lesson('Chain Reactions', "Per dieci stagioni consecutive segna almeno una rete in campionato; in particolare nell'annata 1994-1995, la prima sotto la guida del tecnico boemo Zdenek Zeman in cui la Lazio conclude il campionato con il migliore attacco, Negro segna 4 reti", 3, tag_map[2])
