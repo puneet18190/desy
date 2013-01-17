@@ -428,6 +428,38 @@ ALTER SEQUENCE school_levels_id_seq OWNED BY school_levels.id;
 
 
 --
+-- Name: sessions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sessions (
+    id integer NOT NULL,
+    session_id character varying(255) NOT NULL,
+    data text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sessions_id_seq OWNED BY sessions.id;
+
+
+--
 -- Name: slides; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -568,8 +600,8 @@ CREATE TABLE users (
     surname character varying(255) NOT NULL,
     school_level_id integer NOT NULL,
     school character varying(255) NOT NULL,
-    password_hash character varying(255),
-    password_salt character varying(255),
+    encrypted_password character varying(255),
+    confirmed boolean NOT NULL,
     location_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -734,6 +766,13 @@ ALTER TABLE ONLY school_levels ALTER COLUMN id SET DEFAULT nextval('school_level
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY sessions ALTER COLUMN id SET DEFAULT nextval('sessions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY slides ALTER COLUMN id SET DEFAULT nextval('slides_id_seq'::regclass);
 
 
@@ -857,6 +896,14 @@ ALTER TABLE ONLY reports
 
 ALTER TABLE ONLY school_levels
     ADD CONSTRAINT school_levels_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sessions
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -1105,6 +1152,20 @@ CREATE UNIQUE INDEX index_reports_on_reportable_type_and_reportable_id_and_user_
 
 
 --
+-- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_sessions_on_session_id ON sessions USING btree (session_id);
+
+
+--
+-- Name: index_sessions_on_updated_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_sessions_on_updated_at ON sessions USING btree (updated_at);
+
+
+--
 -- Name: index_slides_on_position_and_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1123,6 +1184,13 @@ CREATE UNIQUE INDEX index_taggings_on_taggable_type_and_taggable_id_and_tag_id O
 --
 
 CREATE UNIQUE INDEX index_tags_on_word ON tags USING btree (word);
+
+
+--
+-- Name: index_users_on_confirmed; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_confirmed ON users USING btree (confirmed);
 
 
 --
@@ -1358,3 +1426,7 @@ INSERT INTO schema_migrations (version) VALUES ('20121126140000');
 INSERT INTO schema_migrations (version) VALUES ('20121206140304');
 
 INSERT INTO schema_migrations (version) VALUES ('20121207091234');
+
+INSERT INTO schema_migrations (version) VALUES ('20130115155629');
+
+INSERT INTO schema_migrations (version) VALUES ('30000000000000');
