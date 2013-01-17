@@ -567,7 +567,6 @@ function startVideoEditorGlobalPreview() {
   $('#video_editor_global_preview').data('in-use', true);
   var current_identifier = $('#video_editor_global_preview').data('current-component');
   var current_component = $('#video_component_' + current_identifier);
-  var current_time = $('#video_editor_global_preview').data('current-time');
   var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier) + current_component.data('current-preview-time');
   if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
     var audio_track = $('#video_editor_preview_container audio');
