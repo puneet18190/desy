@@ -783,10 +783,20 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#exit_video_editor_preview', function() {
-    
-    
-    // TODO qui devo anche settare current time = 0, e rimettere a posto tutti i cursori ?? '?? ??
-    alert('exittttt!');
+    $('#video_editor_global_preview_pause').removeClass('_enabled');
+    $('._video_component_preview').hide();
+    $('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
+    setVisualTimesVideoEditorPreview(component, 0);
+    resetVisibilityOfVideoEditorTransitions();
+    $('#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor').css('visibility', 'visible');
+    $('#visual_video_editor_current_time').css('visibility', 'hidden')
+    $('#video_editor_global_preview').show();
+    $('#video_editor_global_preview_play').hide();
+    $('#commit_video_editor').show();
+    $('#exit_video_editor_preview').hide();
+    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
+    $('#video_editor_box_ghost').hide();
+    $('._new_component_in_video_editor_hover').removeClass('selected');
   });
   
   $('body').on('click', '#video_editor_global_preview_pause._enabled', function() {
