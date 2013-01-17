@@ -41,6 +41,7 @@ function initializeVideoEditor() {
 function closeGenericVideoComponentCutter() {
   $('._video_component_cutter_arrow').hide('fade', {}, 250);
   $('._video_component_cutter').hide('fade', {}, 250, function() {
+    $('#video_editor_global_preview a').removeClass('disabled');
     $('._video_editor_bottom_bar').css('visibility', 'visible');
     resetVisibilityOfVideoEditorTransitions();
     $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
@@ -491,6 +492,7 @@ function showVideoEditorCutter(component_id) {
   $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#' + component_id + ' ._video_component_cutter_arrow').show('fade', {}, 250);
   $('#' + component_id + '_cutter').show('fade', {}, 250, function() {
+    $('#video_editor_global_preview a').addClass('disabled');
     $('._video_component_transition').addClass('current');
     $('._video_editor_component:not(#' + component_id + ') ._video_editor_component_hover').addClass('selected');
     $('._video_component_icon').addClass('selected');
