@@ -12,7 +12,7 @@ $(document).ready(function() {
 
   // AFTER WINDOW RESIZE
   $(window).resize(function() {
-    if($('#my_media_elements').length > 0){
+    if($('#my_media_elements').length > 0 || $('#media_elements_in_dashboard').length > 0){
       recenterMyMediaElements();
     }
   });
@@ -28,6 +28,8 @@ $(document).ready(function() {
   $("body").on("click",".uploadFileButton", function(){
     $("input.innerUploadFileButton").trigger("click");
   });
+  
+  $("span.pie").peity("pie");
   
   
   // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
