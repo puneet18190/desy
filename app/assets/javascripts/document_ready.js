@@ -840,6 +840,7 @@ $(document).ready(function() {
     closeGenericVideoComponentCutter();
     var component_id = $(this).parent().parent().attr('id');
     var identifier = getVideoComponentIdentifier(component_id);
+    $('#video_component_' + identifier + '_cutter ._double_slider .ui-slider-handle').removeClass('selected');
     stopVideoInVideoEditorPreview(identifier);
     commitVideoComponentVideoCutter(identifier);
     $('#video_editor_global_preview').addClass('_enabled');
