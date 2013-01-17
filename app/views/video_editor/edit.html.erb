@@ -36,7 +36,9 @@
         <%= hidden_field_tag 'initial_video_id', @parameters[:initial_video].id, :id => 'initial_video_in_video_editor_input' %>
       <% end %>
       <%= hidden_field_tag 'audio_id', (@parameters[:audio_track].nil? ? '' : @parameters[:audio_track].id), :id => 'audio_track_in_video_editor_input' %>
+      <a id="video_editor_preview_go_to_left_component" style="display:none"></a>
       <%= render :partial => 'timeline', :locals => {:parameters => @parameters} %>
+      <a id="video_editor_preview_go_to_right_component" style="display:none"></a>
       <div class="addAudioandSave _video_editor_bottom_bar">
         <%= render :partial => 'audio_track', :locals => {:parameters => @parameters} %>
         <div class="fltrt">
