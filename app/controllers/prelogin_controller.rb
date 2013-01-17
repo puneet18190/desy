@@ -27,6 +27,7 @@ class PreloginController < ApplicationController
     # FIXME provvisorio
     login_hash = {
       CONFIG['admin_email'] => 'desymorgan',
+      'paparesta@figc.it' => 'password',
       'desy1@morganspa.com' => 'desymorgan1',
       'desy2@morganspa.com' => 'desymorgan2',
       'desy3@morganspa.com' => 'desymorgan3',
