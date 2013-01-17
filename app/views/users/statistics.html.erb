@@ -58,10 +58,23 @@
           </li>
         </ul>
         <ul class="col fltrt">
-          <li class="element_stat">
+          <li class="element_stat chart">
             <%= t('captions.percentual_lesson_subject')%>
             <br style="clear:both" />
-            <span class="pie" data-text="<%= @all_subjects_desc %>" data-diameter="400"><%= @all_subjects_chart %></span>
+            <table id="subjects-stats" width="auto" class="fltlft">
+              <tr>
+                <th><%= t('captions.subject')%></th>
+                <th><%= t('captions.value')%></th>
+              </tr>
+              <% (0..@all_subjects_chart.count-1).each do |index|%>
+                <tr>
+                  <td><%= @all_subjects_desc[index] %></td>
+                  <td><%= @all_subjects_chart[index] %>%</td>
+                </tr>
+              <% end %>
+            </table>
+            <span class="pie" data-text="<%= @all_subjects_desc %>" data-diameter="250" class="fltrt"><%= @all_subjects_chart.to_s[1..-2].gsub('"','') %></span>
+            <br style="clear:both" />
           </li>
         </ul>
         <br style="clear:both" />

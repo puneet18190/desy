@@ -48,10 +48,22 @@ module Statistics
       amt = ""
       desc = ""
       Subject.all.each do |sbj|
-        amt = amt + sbj.lessons.count.to_s + ","
+        amt = amt + sbj_to_percentage(sbj.lessons.count).to_s + ","
         desc = desc + sbj.description.to_s + ","
       end
       return [amt.to_s[0..-2], desc.to_s[0..-2]]
+    end
+    
+    private
+    
+    def sbj_to_percentage(val)
+      tot = Lesson.count
+      if(val > 0)
+        res = (val.to_f * 100) / tot.to_f
+        res.round(2)
+      else
+        return 0
+      end
     end
     
   end
