@@ -666,7 +666,7 @@ function getVideoComponentIdentifier(item_id) {
 function automaticIncreaseVideoEditorPreviewTimer(time, total_length, callback) {
   setTimeout(function() {
     if($('#video_editor_global_preview').data('in-use')) {
-      if(time <= total_length) {
+      if(time < total_length) {
         increaseVideoEditorPreviewTimer(true);
         automaticIncreaseVideoEditorPreviewTimer(time + 1, total_length, callback);
       } else {
