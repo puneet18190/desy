@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def statistics
     @my_created_lessons = Statistics.my_created_lessons
     @my_created_elements = Statistics.my_created_elements
+    @my_copied_lessons = Statistics.my_copied_lessons
     @my_liked_lessons = Statistics.my_liked_lessons(3)
     @all_liked_lessons = Statistics.all_liked_lessons(3)
     @my_likes_count = Statistics.my_likes_count
