@@ -1187,6 +1187,13 @@ CREATE UNIQUE INDEX index_tags_on_word ON tags USING btree (word);
 
 
 --
+-- Name: index_users_on_confirmed; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_confirmed ON users USING btree (confirmed);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1421,3 +1428,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121206140304');
 INSERT INTO schema_migrations (version) VALUES ('20121207091234');
 
 INSERT INTO schema_migrations (version) VALUES ('20130115155629');
+
+INSERT INTO schema_migrations (version) VALUES ('30000000000000');
