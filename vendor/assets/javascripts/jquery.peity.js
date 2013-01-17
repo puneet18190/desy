@@ -17,8 +17,6 @@
         $.each($this.data(), function(name, value) {
           if (name in defaults){
             data[name] = value
-          }else{
-            data[text] = value
           }
         })
 
