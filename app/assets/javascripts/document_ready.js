@@ -8,7 +8,16 @@ $(document).ready(function() {
 
     if(name) $('html').addClass(name);
   })();
+  
 
+  // AFTER WINDOW RESIZE
+  $(window).resize(function() {
+    if($('#my_media_elements').length > 0){
+      recenterMyMediaElements();
+    }
+  });
+  
+  
   // OTHER BUTTONS
   
   $('._load_media_element').click(function(e) {
@@ -277,6 +286,16 @@ $(document).ready(function() {
   
   $('body').on('click', '._close_audio_gallery_in_video_editor', function() {
     closeGalleryInVideoEditor('audio');
+    var audio_id = 0;
+    $('._audio_gallery_thumb').each(function() {
+      if($(this).find('._expanded').css('display') == 'block') {
+        audio_id = $(this).find('._add_audio_track_to_video_editor').data('audio-id');
+      }
+    });
+    if(audio_id != 0) {
+      stopMedia('#gallery_audio_' + audio_id + ' audio');
+      $('#gallery_audio_' + audio_id + ' ._expanded').hide();
+    }
   });
   
   $('body').on('click', "._close_on_click_out", function(){
@@ -456,6 +475,9 @@ $(document).ready(function() {
   
   $("#filter_search_lessons_subject").selectbox();
   
+  $("#profile_school_level").selectbox();
+  $("#profile_region").selectbox();
+  
   $("#for_page_media_elements").selectbox();
   
   $("#filter_media_elements").selectbox();
@@ -504,6 +526,9 @@ $(document).ready(function() {
         $('#general_pagination').show();
       }
     });
+    if($('#search_lessons #keep-searching').length > 0){
+      $('#search_lessons #keep-searching').trigger('click');
+    }
   });
   
   $('body').on('click', '#which_item_to_search_switch_lessons', function() {
@@ -516,6 +541,9 @@ $(document).ready(function() {
         $('#general_pagination').show();
       }
     });
+    if($('#search_media_elements #keep-searching').length > 0){
+      $('#search_media_elements #keep-searching').trigger('click');
+    }
   });
   
   $('body').on('focus', '#general_tag_reader_for_search', function() {
@@ -550,6 +578,7 @@ $(document).ready(function() {
     if(!$(this).hasClass('current')) {
       $('#search_media_elements').submit();
       $(this).addClass('current');
+      add_keep_searching(this);
     }
   });
   
@@ -557,7 +586,12 @@ $(document).ready(function() {
     if(!$(this).hasClass('current')) {
       $('#search_lessons').submit();
       $(this).addClass('current');
+      add_keep_searching(this);
     }
+  });
+  
+  $('body').on('click','#keep-searching',function(){
+    remove_keep_searching(this);
   });
   
   $('body').on('change', '#filter_search_lessons_subject', function() {
@@ -737,8 +771,40 @@ $(document).ready(function() {
   
   // VIDEO EDITOR
   
+  $('body').on('click', '#exit_video_editor_preview', function() {
+    // TODO qui devo anche settare current time = 0, e rimettere a posto tutti i cursori ?? '?? ??
+    alert('exittttt!');
+  });
+  
+  $('body').on('click', '#video_editor_global_preview_pause', function() {
+    // TODO se sto playando un video, qui devo settare current time al secondo esatto in cui ho lasciato, per sicurezza
+    alert('pausaaa!');
+  });
+  
   $('body').on('click', '#video_editor_global_preview._enabled', function() {
-    alert('PREVIEWWW');
+    var first_component = getFirstVideoEditorComponent();
+    var first_identifier = getVideoComponentIdentifier(first_component.attr('id'));
+    $('._video_component_preview').hide();
+    $('#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor').css('visibility', 'hidden');
+    $('#visual_video_editor_current_time').css('visibility', 'visible').css('color', 'white');
+    $('#visual_video_editor_total_length').css('color', '#787575');
+    $('#video_editor_global_preview').hide();
+    $('#video_editor_global_preview_pause').show();
+    $('#commit_video_editor').hide();
+    $('#exit_video_editor_preview').show();
+    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
+    $('#video_editor_box_ghost').show();
+    $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
+    $('._new_component_in_video_editor_hover').addClass('selected');
+    $('._video_component_transition').addClass('current');
+    setVisualTimesVideoEditorPreview(first_component, 0);
+    $('#video_editor_preview_container ._loader').show();
+    setTimeout(function() {
+      $('#video_editor_preview_container ._loader').hide();
+      $('#video_editor_global_preview').data('current-component', first_identifier);
+      $('#video_component_' + first_identifier + '_preview').show();
+      startVideoEditorGlobalPreview(true);
+    }, 1500);
   });
   
   $('body').on('click', '._video_component_cutter_button', function() {
@@ -768,8 +834,7 @@ $(document).ready(function() {
   $('body').on('click', '._media_player_done_video_component_in_video_editor_preview', function() {
     closeGenericVideoComponentCutter();
     var component_id = $(this).parent().parent().attr('id');
-    var identifier = component_id.split('_');
-    identifier = identifier[identifier.length - 2];
+    var identifier = getVideoComponentIdentifier(component_id);
     stopVideoInVideoEditorPreview(identifier);
     commitVideoComponentVideoCutter(identifier);
     $('#video_editor_global_preview').addClass('_enabled');
@@ -777,8 +842,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_done_other_component_in_video_editor_preview', function() {
     var component_id = $(this).parent().parent().attr('id');
-    var identifier = component_id.split('_');
-    identifier = identifier[identifier.length - 2];
+    var identifier = getVideoComponentIdentifier(component_id);
     var duration = $('#' + component_id + ' ._duration_selector input').val();
     if(duration == '') {
       closeGenericVideoComponentCutter();
@@ -820,8 +884,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._remove_component_from_video_editor_button', function() {
     var component = $(this).parent().parent().parent().parent();
-    var identifier = component.attr('id').split('_');;
-    identifier = identifier[identifier.length - 1];
+    var identifier = getVideoComponentIdentifier(component.attr('id'));
     $('#video_component_' + identifier).hide('fade', {}, 500, function() {
       $('#video_component_' + identifier + '_preview').remove();
       $('#video_component_' + identifier + '_cutter').remove();
@@ -978,6 +1041,7 @@ $(document).ready(function() {
     $('#audio_track_in_video_editor_input').val(audio_id);
     $('#empty_audio_track_placeholder_in_video_editor').hide();
     $('#full_audio_track_placeholder_in_video_editor').show();
+    $('#full_audio_track_placeholder_in_video_editor').data('duration', $(this).data('duration'));
     var new_html_title = $('#gallery_audio_' + audio_id + ' ._compact p').html();
     new_html_title += ('<br/>' + secondsToDateString($(this).data('duration')));
     $('#full_audio_track_placeholder_in_video_editor ._title').html(new_html_title);
@@ -1053,7 +1117,7 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click', '._commit_video_editor', function() {
+  $('body').on('click', '#commit_video_editor', function() {
     stopCacheLoop();
     $('#info_container').data('cache-enabled-first-time', false);
     $('#video_editor_form').submit();
@@ -1110,8 +1174,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._precision_arrow_left', function() {
     var cutter = $(this).parent().parent();
-    var identifier = cutter.attr('id').split('_');
-    identifier = identifier[identifier.length - 2];
+    var identifier = getVideoComponentIdentifier(cutter.attr('id'));
     var single_slider = cutter.find('._media_player_slider');
     var double_slider = cutter.find('._double_slider');
     if(single_slider.find('.ui-slider-handle').hasClass('selected')) {
@@ -1139,8 +1202,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._precision_arrow_right', function() {
     var cutter = $(this).parent().parent();
-    var identifier = cutter.attr('id').split('_');
-    identifier = identifier[identifier.length - 2];
+    var identifier = getVideoComponentIdentifier(cutter.attr('id'));
     var duration = cutter.data('max-to');
     var single_slider = cutter.find('._media_player_slider');
     var double_slider = cutter.find('._double_slider');
@@ -1204,8 +1266,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_play_in_video_editor_preview', function() {
     $(this).hide();
-    var identifier = $(this).parent().parent().attr('id').split('_');
-    identifier = identifier[identifier.length - 2];
+    var identifier = getVideoComponentIdentifier($(this).parent().parent().attr('id'));
     $('#video_component_' + identifier + '_cutter ._media_player_slider_disabler').show();
     $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').show();
     $('#video_component_' + identifier + '_cutter .ui-slider-handle').removeClass('selected');
@@ -1217,9 +1278,10 @@ $(document).ready(function() {
         video[0].play();
       });
     }
-    if(videoEditorWithAudioTrack()) {
+    var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(identifier);
+    if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
       var audio_track = $('#video_editor_preview_container audio');
-      setCurrentTimeToMedia(audio_track, calculateVideoComponentStartSecondInVideoEditor(identifier));
+      setCurrentTimeToMedia(audio_track, actual_audio_track_time);
       if(audio_track.readyState != 0) {
         audio_track[0].play();
       } else {

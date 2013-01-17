@@ -1,0 +1,69 @@
+<div class="griglia-contenuti">
+  <div class="profile-content">
+    <div class="title-bar">
+      <h1>profile</h1>
+      <ul class="navlist">
+        <li><%= link_to t('captions.personal_info'), my_profile_path%></li>
+        <li><%= link_to t('captions.subjects'), my_subjects_path %></li>
+        <li><%= link_to t('captions.statistics'), my_statistics_path, :class => 'current' %></li>
+      </ul>
+    </div>
+    <div class="contentForm">
+      <header>
+        <h2><%= t('captions.statistics')%></h2>
+        <p>Follow you numbers in DESY and statistics of the system.</p>
+      </header>
+      <div class="stats">
+        <h2><%= t('captions.personal')%></h2>
+        <ul class="col fltlft">
+          <li class="lesson_stat">
+            <span class="fltlft"><%= t('captions.lessons_created')%></span><div><%= @my_created_lessons %></div>
+          </li>
+          <li class="lesson_stat">
+            <span class="fltlft"><%= t('captions.lessons_copied_by')%></span><div>100</div>
+          </li>
+          <li class="lesson_stat"><span class="fltlft"><%= t('captions.lessons_more_likes')%></span>
+            <ul>
+              <li><span>title</span><div>1231</div></li>
+              <li><span>title</span><div>321</div></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="col fltrt">
+          <li class="element_stat"><span><%= t('captions.elements_loaded')%></span><div><%= @my_created_elements %></div></li>
+          <li class="generic_stat"><span><%= t('captions.likes_on_content')%></span><div>21</div></li>
+        </ul>
+        <br style="clear:both" />
+      </div>
+    
+      <div class="stats">
+        <h2><%= t('captions.general')%></h2>
+        <ul class="col fltlft">
+          <li class="lesson_stat"><span><%= t('captions.lesson_shared')%></span><div>122</div></li>
+          <li class="element_stat"><span><%= t('captions.elements_shared')%></span><div>321</div></li>
+          <li class="generic_stat"><span><%= t('captions.total_users')%></span><div>12323</div></li>
+          <li class="lesson_stat"><span><%= t('captions.lessons_more_like')%></span>
+            <ul>
+              <li><span>title</span><div>11</div></li>
+              <li><span>title</span><div>2</div></li>
+            </ul>
+          </li>
+          <li class="generic_stat"><%= t('captions.users_more_likes')%>
+            <ul>
+              <li><span>user</span><div>23123</div></li>
+              <li><span>user</span><div>32312</div></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="col fltrt">
+          <li class="element_stat">
+            <%= t('captions.percentual_lesson_subject')%>
+            <br />
+            <%= image_tag "http://lorempixel.com/300/300/abstract/1"%>
+          </li>
+        </ul>
+        <br style="clear:both" />
+      </div>
+    </div>
+  </div>
+</div>

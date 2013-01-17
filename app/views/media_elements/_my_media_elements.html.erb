@@ -6,14 +6,26 @@
       <%= render :partial => "media_elements/empty_filter" %>
     <% end %>
   <% else %>
-    <% @media_elements.each do |me| %>
-      <% if @display == MediaElement::DISPLAY_MODES[:expanded] %>
-        <div style="width:90%;  margin:0 auto 0 auto;">
-          <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
-        </div>
-      <% else %>
+    <% if @display == MediaElement::DISPLAY_MODES[:expanded] %>
+    <div style="text-align:center; width: 100%;">
+      <div style="width:auto;  margin:0 auto 0 auto;">
+        <% @media_elements.each do |me| %>
+          <div class="_boxViewExpandedMediaElementWrapper">
+            <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% else %>
+      <% @media_elements.each do |me| %>
         <%= render :partial => "media_elements/view_single_compact", :locals => {:media_element => me, :destination => ButtonDestinations::COMPACT_MEDIA_ELEMENT} %>
       <% end %>
     <% end %>
+    
   <% end %>
 </div>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    recenterMyMediaElements();
+  });
+</script>

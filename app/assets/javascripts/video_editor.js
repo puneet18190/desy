@@ -183,8 +183,7 @@ function addImageComponentInVideoEditor(image_id, component, preview, duration) 
 }
 
 function replaceImageComponentInVideoEditor(image_id, component, preview, position, duration) {
-  var identifier = position.split('_');
-  identifier = identifier[identifier.length - 1];
+  var identifier = getVideoComponentIdentifier(position);
   // build preview
   var empty_preview = $('#empty_image_preview_for_video_editor').html();
   empty_preview = '<div id="temporary_empty_preview" ' + empty_preview.substr(empty_preview.indexOf('div') + 3, empty_preview.length);
@@ -202,6 +201,7 @@ function replaceImageComponentInVideoEditor(image_id, component, preview, positi
   current_cutter.attr('id', ('video_component_' + identifier + '_cutter'));
   current_cutter.find('._old').html(secondsToDateString(duration));
   // edit component
+  $('#' + position).removeClass('_video _image _text').addClass('_image');
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
   clearSpecificVideoEditorComponentParameters(position);
   $('#' + position + ' ._video_component_input_type').val('image');
@@ -277,8 +277,7 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
 }
 
 function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, position, duration) {
-  var identifier = position.split('_');
-  identifier = identifier[identifier.length - 1];
+  var identifier = getVideoComponentIdentifier(position);
   // build preview
   var empty_preview = $('#empty_video_preview_for_video_editor').html();
   empty_preview = '<div id="temporary_empty_preview" ' + empty_preview.substr(empty_preview.indexOf('div') + 3, empty_preview.length);
@@ -305,6 +304,7 @@ function replaceVideoComponentInVideoEditor(video_id, webm, mp4, component, posi
   current_cutter.data('max-to', duration);
   initializeVideoInVideoEditorPreview(identifier);
   // edit component
+  $('#' + position).removeClass('_video _image _text').addClass('_video');
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
   clearSpecificVideoEditorComponentParameters(position);
   $('#' + position + ' ._video_component_input_type').val('video');
@@ -378,8 +378,7 @@ function addTextComponentInVideoEditor(component, content, duration, background_
 }
 
 function replaceTextComponentInVideoEditor(component, content, position, duration, background_color, text_color) {
-  var identifier = position.split('_');
-  identifier = identifier[identifier.length - 1];
+  var identifier = getVideoComponentIdentifier(position);
   // build preview
   var empty_preview = $('#empty_text_preview_for_video_editor').html();
   empty_preview = '<div id="temporary_empty_preview" ' + empty_preview.substr(empty_preview.indexOf('div') + 3, empty_preview.length);
@@ -399,6 +398,7 @@ function replaceTextComponentInVideoEditor(component, content, position, duratio
   current_cutter.attr('id', ('video_component_' + identifier + '_cutter'));
   current_cutter.find('._old').html(secondsToDateString(duration));
   // edit component
+  $('#' + position).removeClass('_video _image _text').addClass('_text');
   $('#' + position + ' ._video_component_thumb').replaceWith(component);
   $('#' + position + ' ._video_component_thumb ._text_content').html(content);
   $('#' + position + ' ._video_component_thumb ._text_content').removeClass('color_black').addClass('color_' + text_color);
@@ -536,9 +536,7 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
   var duration = 0;
   var stop = false;
   $('._video_editor_component').each(function(index) {
-    var my_identifier = $(this).attr('id').split('_');
-    my_identifier = my_identifier[my_identifier.length - 1];
-    if(my_identifier == identifier) {
+    if(getVideoComponentIdentifier($(this).attr('id')) == identifier) {
       stop = true;
     } else if(!stop) {
       duration += ($(this).data('duration') + 1);
@@ -549,4 +547,141 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
     duration += $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value');
   }
   return duration;
+}
+
+
+
+
+
+// TODO TODO TODO 
+
+
+
+
+
+// questa funzione serve per filtrare i parametri rimasti dall'ultima pausa: se ho fatto modifiche che mi fanno perdere il punto, tipo
+// eliminazione della componente su cui avevo fatto pausa, o cose analoghe; la funzione va chiamata con preview già vuota
+// è chiamata con la preview attuale già visibile, e con current_component e current_time già settati
+function startVideoEditorGlobalPreview(times_already_set) {
+  $('#video_editor_global_preview').data('in-use', true);
+  var current_identifier = $('#video_editor_global_preview').data('current-component');
+  var current_component = $('#video_component_' + current_identifier);
+  var current_time = $('#video_editor_global_preview').data('current-time');
+  if(!times_already_set) {
+    setVisualTimesVideoEditorPreview(current_component, current_time);
+  }
+  var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier) + current_time;
+  if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
+    var audio_track = $('#video_editor_preview_container audio');
+    setCurrentTimeToMedia(audio_track, actual_audio_track_time);
+    if(audio_track.readyState != 0) {
+      audio_track[0].play();
+    } else {
+      audio_track.on('loadedmetadata', function() {
+        audio_track[0].play();
+      });
+    }
+  }
+  playVideoEditorComponent(current_component, current_time);
+}
+
+function getFirstVideoEditorComponent() {
+  return $($('._video_editor_component')[0]);
+}
+
+// funzione ricorsiva; si suppone che le altre componenti siano già spente, e la preview già visibile, se è un video già posizionata al punto giusto
+// current_time  da considerarsi relativo al punto '0' della componente selezionata, non all'effettiva durata del video
+// current_component è già la componente attuale
+function playVideoEditorComponent(component, start_time) {
+  var identifier = getVideoComponentIdentifier(component.attr('id'));
+  $('._video_component_transition').addClass('current');
+  component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
+  if(component.hasClass('_video')) {
+    var video = $('#video_component_' + identifier + '_preview video');
+    if(video.readyState != 0) {
+      video[0].play();
+    } else {
+      video.on('loadedmetadata', function() {
+        video[0].play();
+      });
+    }
+  } else {
+    automaticIncreaseVideoEditorPreviewTimer(1, component.data('duration'), function() {
+      var next_component = component.next();
+      var next_identifier = getVideoComponentIdentifier(next_component.attr('id'));
+      if(next_component.hasClass('_video_editor_component')) {
+        $('#video_editor_global_preview').data('current-time', 0);
+        $('#video_editor_global_preview').data('current-component', getVideoComponentIdentifier(next_component.attr('id')));
+        $('#video_component_' + identifier + '_preview').hide('fade', {}, 1000);
+        component.find('._video_component_transition').removeClass('current');
+        next_component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
+        $('#video_component_' + next_identifier + '_preview').show('fade', {}, 1000, function() {
+          component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
+          playVideoEditorComponent(next_component, getInitialPointOfVideoEditorComponent(next_component));
+        });
+      } else {
+        console.log('STOP');
+      }
+    });
+  }
+}
+
+function setVisualTimesVideoEditorPreview(component, time) {
+  var identifier = getVideoComponentIdentifier(component.attr('id'));
+  // qui sotto aggiungo 'time' perché nella funzione che calcola il tempo viene sommato prendendolo dal valore del cutter, che qui non è preso in considerazione
+  $('#visual_video_editor_current_time').html(secondsToDateString(calculateVideoComponentStartSecondInVideoEditor(identifier) + time));
+  var start = false;
+  $('._video_editor_component').each(function() {
+    $(this).data('current-preview-time', 0);
+    if(getVideoComponentIdentifier($(this).attr('id')) == identifier) {
+      $(this).find('._video_component_icon ._right').html(secondsToDateString(time));
+      start = true;
+    } else if(start) {
+      $(this).find('._video_component_icon ._right').html(secondsToDateString(0));
+    } else {
+      $(this).find('._video_component_icon ._right').html(secondsToDateString($(this).data('duration')));
+    }
+  });
+}
+
+function getInitialPointOfVideoEditorComponent(component) {
+  resp = 0;
+  if(component.hasClass('_video')) {
+    resp = $('#' + component.attr('id') + '_cutter').data('from');
+  }
+  return resp;
+}
+
+function getVideoComponentIdentifier(item_id) {
+  var resp = item_id.split('_');
+  if($('#' + item_id).hasClass('_video_editor_component')) {
+    return resp[resp.length - 1];
+  } else {
+    return resp[resp.length - 2];
+  }
+}
+
+function automaticIncreaseVideoEditorPreviewTimer(time, total_length, callback) {
+  setTimeout(function() {
+    if($('#video_editor_global_preview').data('in-use')) {
+      if(time <= total_length) {
+        increaseVideoEditorPreviewTimer();
+        automaticIncreaseVideoEditorPreviewTimer(time + 1, total_length, callback);
+      } else {
+        callback();
+      }
+    }
+  }, 1000);
+}
+
+function increaseVideoEditorPreviewTimer() {
+  var data_container = $('#video_editor_global_preview');
+  var identifier = data_container.data('current-component');
+  var component = $('#video_component_' + identifier);
+  var global_time = data_container.data('current-time');
+  var component_time = component.data('current-preview-time');
+  $('#visual_video_editor_current_time').html(secondsToDateString(global_time + 1));
+  component.find('._video_component_icon ._right').html(secondsToDateString(component_time + 1));
+  data_container.data('current-time', global_time + 1);
+  component.data('current-preview-time', component_time + 1);
 }
