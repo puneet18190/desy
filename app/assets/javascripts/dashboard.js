@@ -148,3 +148,23 @@ function asyncFormSubmit($form, resultDiv) {
     // $(resultDiv).html("Uploading...");
     console.log('uploading');
 }
+
+function add_keep_searching(form){
+  var f = $(form).parents('form');
+  f.animate({
+    height: '15'
+  }, 500, function() {
+    f.prepend("<a id='keep-searching'>Search again...</a>");
+    $('#keep-searching').siblings().hide();
+  });
+}
+
+function remove_keep_searching(link){
+  var f = $(link).parent('form');
+  f.animate({
+    height: '210'
+  }, 500, function() {
+    $('#keep-searching').siblings().show();
+    $("#keep-searching").remove();
+  });
+}
