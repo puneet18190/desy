@@ -625,6 +625,7 @@ function playVideoEditorComponent(component) {
         });
       } else {
         selectVideoComponentInPreview(getFirstVideoEditorComponent());
+        followPreviewComponentsWithHorizontalScrollInVideoEditor();
         if(videoEditorWithAudioTrack()) {
           $('#video_editor_preview_container audio')[0].pause();
         }
@@ -758,4 +759,8 @@ function openPreviewModeInVideoEditor() {
     first_component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
     startVideoEditorGlobalPreview();
   }, 1500);
+}
+
+function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
+  
 }
