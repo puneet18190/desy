@@ -544,7 +544,7 @@ function calculateVideoComponentStartSecondInVideoEditor(identifier) {
   });
   var cutter = $('#video_component_' + identifier + '_cutter');
   if(!cutter.hasClass('_mini_cutter')) {
-    duration += $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value');
+    duration += (cutter.find('._media_player_slider').slider('value') - cutter.data('from'));
   }
   return duration;
 }
