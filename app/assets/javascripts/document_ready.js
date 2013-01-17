@@ -786,7 +786,7 @@ $(document).ready(function() {
     $('#video_editor_global_preview_pause').removeClass('_enabled');
     $('._video_component_preview').hide();
     $('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
-    setVisualTimesVideoEditorPreview(component, 0);
+    setVisualTimesVideoEditorPreview(getFirstVideoEditorComponent(), 0);
     resetVisibilityOfVideoEditorTransitions();
     $('#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor').css('visibility', 'visible');
     $('#visual_video_editor_current_time').css('visibility', 'hidden')
