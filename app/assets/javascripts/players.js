@@ -115,8 +115,10 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
             }
           });
         } else {
-          // FIXME fai una funzione che stoppa!
-          console.log('STOP');
+          selectVideoComponentInPreview(getFirstVideoEditorComponent());
+          if(videoEditorWithAudioTrack()) {
+            $('#video_editor_preview_container audio')[0].pause();
+          }
         }
       } else {
         increaseVideoEditorPreviewTimer(true);
