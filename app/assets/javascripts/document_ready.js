@@ -29,8 +29,6 @@ $(document).ready(function() {
     $("input.innerUploadFileButton").trigger("click");
   });
   
-  initPieChart();
-  
   
   // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
   
