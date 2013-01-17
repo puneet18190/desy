@@ -19,7 +19,7 @@ function initializeActionOfMediaTimeUpdater(media, reference_id) {
   var duration = $('#' + reference_id).data('duration');
   var container_id = $(media).parent().attr('id');
   var parsed_int = parseInt(media.currentTime);
-  if(parsed_int == (duration + 1)) {
+  if(parsed_int == (duration)) {
     $('#' + container_id + ' ._media_player_pause').click();
     $('#' + container_id + ' ._media_player_slider').slider('value', 0);
     $('#' + container_id + ' ._media_player_current_time').html(secondsToDateString(0));
@@ -122,7 +122,7 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
     }
     
   } else {
-    if(parsed_int == (video_cut_to + 1)) {
+    if(parsed_int == (video_cut_to)) {
       var initial_time = $('#video_component_' + identifier + '_cutter').data('from');
       $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').click();
       $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value', initial_time);

@@ -634,14 +634,16 @@ function setVisualTimesVideoEditorPreview(component, time) {
   $('#visual_video_editor_current_time').html(secondsToDateString(calculateVideoComponentStartSecondInVideoEditor(identifier) + time));
   var start = false;
   $('._video_editor_component').each(function() {
-    $(this).data('current-preview-time', 0);
     if(getVideoComponentIdentifier($(this).attr('id')) == identifier) {
       $(this).find('._video_component_icon ._right').html(secondsToDateString(time));
+      $(this).data('current-preview-time', time);
       start = true;
     } else if(start) {
       $(this).find('._video_component_icon ._right').html(secondsToDateString(0));
+      $(this).data('current-preview-time', 0);
     } else {
       $(this).find('._video_component_icon ._right').html(secondsToDateString($(this).data('duration')));
+      $(this).data('current-preview-time', $(this).data('duration'));
     }
   });
 }
