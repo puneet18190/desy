@@ -247,7 +247,7 @@ html.media_element_editor-layout {
     .mediaEditorListaElementi {
       /*position:absolute; */
       width:906px;
-      margin-left:40px;
+      margin-left:36px;
       position:relative;
     }
     
@@ -664,7 +664,19 @@ html.media_element_editor-layout {
     float:left;
     padding-top:8px;
     width:900px;
-    
+    a.creaNuovoButton {
+      font-size: 0.6em;
+      float:left;
+      padding:0;
+      background-image: url(<%= asset_path 'action-fotogramma.svg' %>);
+      background-repeat: no-repeat;
+      background-size: 12em 18em;
+      background-position: -6em -6em;
+      &:hover {
+        background-position: 0 -6em;
+        opacity:1;
+      }
+    }
     .titleTrack {
       text-align:left;
       padding:5px 10px;
