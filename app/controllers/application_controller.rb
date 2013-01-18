@@ -141,6 +141,18 @@ class ApplicationController < ActionController::Base
     @ok = @ok && condition
   end
   
+  def convert_item_error_messages(errors)
+    resp = [t('error_captions.fill_all_the_fields_or_too_long')]
+    flag = false
+    errors[:tags].each do |v|
+      if !flag && v == 'are not enough'
+        flag = true
+        resp << t('error_captions.tags_are_not_enough')
+      end
+    end
+    resp
+  end
+  
   def logged_in?
     current_user
   end

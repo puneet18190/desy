@@ -59,6 +59,9 @@ en:
           problems_emptying_playlist: 'Your playlist could not be emptied'
           playlist_full: 'Your playlist is full!'
           problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
+  error_captions:
+    fill_all_the_fields_or_too_long: 'Fill all the fields without exceeding the max length'
+    tags_are_not_enough: 'Tags are not enough'
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
   captions:

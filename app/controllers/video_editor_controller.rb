@@ -67,7 +67,9 @@ class VideoEditorController < ApplicationController
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
       current_user.empty_video_editor_cache
     else
-      @errors = errors
+      @error_ids = '#new'
+      @errors = convert_item_error_messages(errors)
+      @error_fields = errors.keys
     end
   end
   
@@ -93,7 +95,10 @@ class VideoEditorController < ApplicationController
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
       current_user.empty_video_editor_cache
     else
-      @errors = initial_video_test.errors.messages
+      @error_ids = '#update'
+      @errors = convert_item_error_messages(initial_video_test.errors.messages)
+      @error_fields = initial_video_test.errors.messages.keys
+      render 'save'
     end
   end
   
