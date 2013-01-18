@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   
-  FOR_PAGE = CONFIG['compact_lesson_pagination']
+  FOR_PAGE = SETTINGS['compact_lesson_pagination']
   
   before_filter :initialize_lesson, :only => [:add, :copy, :like, :remove, :dislike]
   before_filter :initialize_lesson_with_owner, :only => [:destroy, :publish, :unpublish]

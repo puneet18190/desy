@@ -39,7 +39,7 @@ tag_map = [
   "escrementi di usignolo, inquinamento atmosferico, acquario, 拿, walter nudo, mare, inquinamento"
 ]
 
-admin = User.find_by_email CONFIG['admin_email']
+admin = User.admin
 
 paparesta = User.create_user 'paparesta@figc.it', 'password', 'password', 'Luca', 'Paparesta', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
 banti = User.create_user 'banti@figc.it', 'password', 'password', 'Giorgio', 'Banti', 'School', school_level1.id, location1.id, [subject1.id, subject2.id, subject3.id], true
@@ -438,11 +438,11 @@ end
 MediaElement.record_timestamps = true
 
 puts "Created:"
-puts "#{Subject.count} subjects (should be #{CONFIG['subjects'].length})"
-puts "#{Location.count} locations (should be #{CONFIG['locations'].length})"
-puts "#{SchoolLevel.count} school_levels (should be #{CONFIG['school_levels'].length})"
+puts "#{Subject.count} subjects (should be #{SETTINGS['subjects'].length})"
+puts "#{Location.count} locations (should be #{SETTINGS['locations'].length})"
+puts "#{SchoolLevel.count} school_levels (should be #{SETTINGS['school_levels'].length})"
 puts "#{User.count} users (should be 18)"
-puts "#{UsersSubject.count} users_subjects (should be #{51 + CONFIG['subjects'].length})"
+puts "#{UsersSubject.count} users_subjects (should be #{51 + SETTINGS['subjects'].length})"
 puts "#{Lesson.count} lessons (should be 43)"
 puts "#{MediaElement.count} media_elements (should be 70)"
 puts " - #{Image.count} images (should be 32)"

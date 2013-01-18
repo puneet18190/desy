@@ -134,7 +134,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
   private
   
   def validate_playlist_length
-    errors[:position] << 'already reached the maximum number of lessons in playlist' if @virtual_classroom_lesson && @virtual_classroom_lesson.position.nil? && !self.position.nil? && VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', @virtual_classroom_lesson.user_id).count == CONFIG['lessons_in_playlist']
+    errors[:position] << 'already reached the maximum number of lessons in playlist' if @virtual_classroom_lesson && @virtual_classroom_lesson.position.nil? && !self.position.nil? && VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', @virtual_classroom_lesson.user_id).count == SETTINGS['lessons_in_playlist']
   end
   
   def init_validation

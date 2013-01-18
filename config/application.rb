@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'yaml'
-CONFIG = YAML.load(File.read(File.expand_path('../config.yml', __FILE__)))
+SETTINGS = YAML.load(File.read(File.expand_path('../settings.yml', __FILE__)))
 
 require 'rails/all'
 
@@ -34,7 +34,7 @@ module Desy
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = CONFIG['application_language'].to_sym
+    config.i18n.default_locale = SETTINGS['application_language'].to_sym
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
