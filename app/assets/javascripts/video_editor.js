@@ -775,12 +775,24 @@ function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
   var pos = $('#video_component_' + $('#video_editor_global_preview').data('current-component')).data('position');
   var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186);
   if(pos - how_many_hidden_to_left == 5) {
-    jsp_handler.scrollToX((how_many_hidden_to_left + 4) * 186, true);
+    var movement = calculateCorrectMovementHorizontalScrollRight(how_many_hidden_to_left, 4, $('._video_editor_component').length, 5);
+    if(movement > 0) {
+      jsp_handler.scrollToX((how_many_hidden_to_left + movement) * 186, true, (3000 * movement / 4));
+    }
   } else if(pos - how_many_hidden_to_left == 6) {
-    jsp_handler.scrollToX((how_many_hidden_to_left + 5) * 186, true);
+    var movement = calculateCorrectMovementHorizontalScrollRight(how_many_hidden_to_left, 5, $('._video_editor_component').length, 5);
+    if(movement > 0) {
+      jsp_handler.scrollToX((how_many_hidden_to_left + movement) * 186, true, (3000 * movement / 4));
+    }
   } else if(pos == how_many_hidden_to_left) {
-    jsp_handler.scrollToX((how_many_hidden_to_left - 5) * 186, true);
+    var movement = calculateCorrectMovementHorizontalScrollLeft(how_many_hidden_to_left, 5);
+    if(movement > 0) {
+      jsp_handler.scrollToX((how_many_hidden_to_left - movement) * 186, true, (3000 * movement / 4));
+    }
   } else if(pos == how_many_hidden_to_left + 1) {
-    jsp_handler.scrollToX((how_many_hidden_to_left - 4) * 186, true);
+    var movement = calculateCorrectMovementHorizontalScrollLeft(how_many_hidden_to_left, 4);
+    if(movement > 0) {
+      jsp_handler.scrollToX((how_many_hidden_to_left - movement) * 186, true, (3000 * movement / 4));
+    }
   }
 }

@@ -24,6 +24,18 @@ function getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(jscrollpan
   return parseInt(hidden_to_left / component_width);
 }
 
+function calculateCorrectMovementHorizontalScrollLeft(hidden, movement) {
+  if(movement > hidden) {
+    return hidden;
+  } else {
+    return movement;
+  }
+}
+
+function calculateCorrectMovementHorizontalScrollRight(hidden, movement, tot, visible) {
+  return calculateCorrectMovementHorizontalScrollLeft(tot - hidden - visible, movement);
+}
+
 function recenterMyMediaElements() {
   var WW = $(window).width();
   var elNumber = WW / 220;
