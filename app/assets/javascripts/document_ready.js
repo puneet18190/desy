@@ -772,15 +772,19 @@ $(document).ready(function() {
   // VIDEO EDITOR
   
   $('body').on('click', '#video_editor_preview_go_to_left_component', function() {
-    selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).prev());
-    followPreviewComponentsWithHorizontalScrollInVideoEditor();
-    showVideoEditorPreviewArrowToComponents();
+    if($('#video_editor_global_preview').data('arrows')) {
+      selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).prev());
+      showVideoEditorPreviewArrowToComponents();
+      followPreviewComponentsWithHorizontalScrollInVideoEditor();
+    }
   });
   
   $('body').on('click', '#video_editor_preview_go_to_right_component', function() {
-    selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).next());
-    followPreviewComponentsWithHorizontalScrollInVideoEditor();
-    showVideoEditorPreviewArrowToComponents();
+    if($('#video_editor_global_preview').data('arrows')) {
+      selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).next());
+      showVideoEditorPreviewArrowToComponents();
+      followPreviewComponentsWithHorizontalScrollInVideoEditor();
+    }
   });
   
   $('body').on('click', '#video_editor_global_preview_play', function() {
@@ -794,6 +798,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#exit_video_editor_preview', function() {
+    $('#info_container').data('forced-kevin-luck-style', '');
     $('#video_editor_global_preview_pause').removeClass('_enabled');
     $('#video_editor_preview_go_to_left_component, #video_editor_preview_go_to_right_component').hide();
     $('._video_component_preview').hide();
@@ -804,14 +809,21 @@ $(document).ready(function() {
       $(this).find('._video_component_icon ._right').html(secondsToDateString($(this).data('duration')));
     });
     $('#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor').css('visibility', 'visible');
+    $('#media_elements_list_in_video_editor').data('jsp').destroy();
+    $('#add_new_video_component').show();
+    $('#add_new_video_component').prev().find('._video_component_transition').show();
+    $('#add_new_video_component').prev().css('width', '186');
+    var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 184;
+    $('#video_editor_timeline').css('width', new_timeline_width + 'px');
+    $('#media_elements_list_in_video_editor').jScrollPane({
+      autoReinitialise: true,
+    });
     $('#visual_video_editor_current_time').css('visibility', 'hidden')
     $('#video_editor_global_preview').show();
     $('#video_editor_global_preview_play').hide();
     $('#commit_video_editor').show();
     $('#exit_video_editor_preview').hide();
-    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
     $('#video_editor_box_ghost').hide();
-    $('._new_component_in_video_editor_hover').removeClass('selected');
   });
   
   $('body').on('click', '#video_editor_global_preview_pause._enabled', function() {
@@ -834,6 +846,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor_global_preview._enabled', function() {
+    $('#info_container').data('forced-kevin-luck-style', 'visibility:hidden');
     var jsp_handler = $('#media_elements_list_in_video_editor').data('jsp');
     if(jsp_handler.getContentPositionX() > 0) {
       $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
