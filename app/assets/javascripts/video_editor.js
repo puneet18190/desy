@@ -592,7 +592,7 @@ function getLastVideoEditorComponent() {
 }
 
 function playVideoEditorComponent(component) {
-  followPreviewComponentsWithHorizontalScrollInVideoEditor();
+  followPreviewComponentsWithHorizontalScrollInVideoEditor(false);
   var identifier = getVideoComponentIdentifier(component.attr('id'));
   $('._video_component_transition').addClass('current');
   if(component.hasClass('_video')) {
@@ -770,29 +770,52 @@ function openPreviewModeInVideoEditor() {
   }, 1500);
 }
 
-function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
+function followPreviewComponentsWithHorizontalScrollInVideoEditor(with_arrows) {
   var jsp_handler = $('#media_elements_list_in_video_editor').data('jsp');
   var pos = $('#video_component_' + $('#video_editor_global_preview').data('current-component')).data('position');
   var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186);
+  var whole_movement = 0;
+  var whole_duration = 0;
   if(pos - how_many_hidden_to_left == 5) {
     var movement = calculateCorrectMovementHorizontalScrollRight(how_many_hidden_to_left, 4, $('._video_editor_component').length, 5);
     if(movement > 0) {
-      jsp_handler.scrollToX((how_many_hidden_to_left + movement) * 186, true, (3000 * movement / 4));
+      whole_movement = (how_many_hidden_to_left + movement) * 186;
+      whole_duration = (3000 * movement) / 4;
     }
   } else if(pos - how_many_hidden_to_left == 6) {
     var movement = calculateCorrectMovementHorizontalScrollRight(how_many_hidden_to_left, 5, $('._video_editor_component').length, 5);
     if(movement > 0) {
-      jsp_handler.scrollToX((how_many_hidden_to_left + movement) * 186, true, (3000 * movement / 4));
+      whole_movement = (how_many_hidden_to_left + movement) * 186;
+      whole_duration = (3000 * movement) / 4;
     }
   } else if(pos == how_many_hidden_to_left) {
     var movement = calculateCorrectMovementHorizontalScrollLeft(how_many_hidden_to_left, 5);
     if(movement > 0) {
-      jsp_handler.scrollToX((how_many_hidden_to_left - movement) * 186, true, (3000 * movement / 4));
+      whole_movement = (how_many_hidden_to_left - movement) * 186;
+      whole_duration = (3000 * movement) / 4;
     }
   } else if(pos == how_many_hidden_to_left + 1) {
     var movement = calculateCorrectMovementHorizontalScrollLeft(how_many_hidden_to_left, 4);
     if(movement > 0) {
-      jsp_handler.scrollToX((how_many_hidden_to_left - movement) * 186, true, (3000 * movement / 4));
+      whole_movement = (how_many_hidden_to_left - movement) * 186;
+      whole_duration = (3000 * movement) / 4;
+    }
+  }
+  if(movement != 0) {
+    if(with_arrows) {
+      $('#video_editor_global_preview').data('arrows', false);
+      $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
+        showVideoEditorPreviewArrowToComponents();
+        $('#video_editor_global_preview').data('arrows', true);
+        $('#media_elements_list_in_video_editor').jScrollPane().unbind('panescrollstop');
+      });
+      jsp_handler.scrollToX(whole_movement, true, whole_duration);
+    } else {
+      jsp_handler.scrollToX(whole_movement, true, whole_duration);
+    }
+  } else {
+    if(with_arrows) {
+      showVideoEditorPreviewArrowToComponents();
     }
   }
 }

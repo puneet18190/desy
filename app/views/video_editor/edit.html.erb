@@ -7,11 +7,11 @@
   <div class="info">
     
     <% if @parameters[:components].any? %>
-      <div id="video_editor_global_preview" class="bottoniVerdi _enabled" data-current-component="0" data-current-time="0" data-in-use="false">
+      <div id="video_editor_global_preview" class="bottoniVerdi _enabled" data-current-component="0" data-current-time="0" data-in-use="false" data-arrows="true">
         <a class="upper"><%= t('captions.preview') %></a>
       </div>
     <% else %>
-      <div id="video_editor_global_preview" class="bottoniVerdi" data-current-component="0" data-current-time="0" data-in-use="false">
+      <div id="video_editor_global_preview" class="bottoniVerdi" data-current-component="0" data-current-time="0" data-in-use="false" data-arrows="true">
         <a class="upper disabled"><%= t('captions.preview') %></a>
       </div>
     <% end %>

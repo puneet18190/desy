@@ -772,15 +772,17 @@ $(document).ready(function() {
   // VIDEO EDITOR
   
   $('body').on('click', '#video_editor_preview_go_to_left_component', function() {
-    selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).prev());
-    followPreviewComponentsWithHorizontalScrollInVideoEditor();
-    showVideoEditorPreviewArrowToComponents();
+    if($('#video_editor_global_preview').data('arrows')) {
+      selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).prev());
+      followPreviewComponentsWithHorizontalScrollInVideoEditor(true);
+    }
   });
   
   $('body').on('click', '#video_editor_preview_go_to_right_component', function() {
-    selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).next());
-    followPreviewComponentsWithHorizontalScrollInVideoEditor();
-    showVideoEditorPreviewArrowToComponents();
+    if($('#video_editor_global_preview').data('arrows')) {
+      selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).next());
+      followPreviewComponentsWithHorizontalScrollInVideoEditor(true);
+    }
   });
   
   $('body').on('click', '#video_editor_global_preview_play', function() {
