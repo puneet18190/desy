@@ -337,9 +337,8 @@
 			function initialiseHorizontalScroll()
 			{
 				if (isScrollableH) {
-
 					container.append(
-						$('<div class="jspHorizontalBar" />').append(
+						$('<div class="jspHorizontalBar" style="' + settings.initialHorizontalStyles + '" />').append(
 							$('<div class="jspCap jspCapLeft" />'),
 							$('<div class="jspTrack" />').append(
 								$('<div class="jspDrag" />').append(
@@ -1417,6 +1416,7 @@
 		animateScroll				: false,
 		animateDuration				: 300,
 		animateEase					: 'linear',
+		initialHorizontalStyles : '',
 		hijackInternalLinks			: false,
 		verticalGutter				: 4,
 		horizontalGutter			: 4,
