@@ -37,7 +37,7 @@ html.media_element_editor-layout {
     
     .testo {
      padding-top:7px; 
-     width:700px; 
+     width:82%; 
      text-align:center;
     }
     
@@ -421,6 +421,7 @@ html.media_element_editor-layout {
         &:hover, &.current {
           background-position: 0 (-$icon-size);
           opacity:1;
+          outline:1px solid red;
         }
       }
     }
@@ -677,6 +678,20 @@ html.media_element_editor-layout {
         opacity:1;
       }
     }
+    a.closeButton {
+      font-size: 0.6em;
+      float:left;
+      padding:0;
+      opacity: 0.2;
+      background-image: url(<%= asset_path 'action-fotogramma.svg' %>);
+      background-repeat: no-repeat;
+      background-size: 12em 18em;
+      background-position:-6em 0;
+      &:hover {
+        opacity: 1;
+        background-position: 0em 0;
+      };
+    }
     .titleTrack {
       text-align:left;
       padding:5px 10px;
@@ -688,15 +703,18 @@ html.media_element_editor-layout {
       background-position: -5.2em -5.3em;
       opacity:0.2;
       float:left;
+
     }
     .audioButton:hover {
       background-position: 0.3em -5.3em;
       opacity:1;
     }
     .audioButton.current {
+      font-size: 0.7em;
       background-position: 0.3em -5.3em;
       opacity:1;
       float:left;
+      
     }
     a.exitButton {
       opacity:0.5;
