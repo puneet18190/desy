@@ -18,7 +18,7 @@ def create_locations_school_levels_subjects_admin_user
 
   user_name = SETTINGS['admin_username'].split(' ').first
   user_surname = SETTINGS['admin_username'].gsub("#{user_name} ", '')
-  User.create_user(SETTINGS['admin_email'], 'password', 'password', user_name, user_surname, 'School', SchoolLevel.first.id, Location.first.id, subject_ids, true)
+  User.create_user(SETTINGS['admin_email'], 'desymorgan', 'desymorgan', user_name, user_surname, 'School', SchoolLevel.first.id, Location.first.id, subject_ids, true)
 end
 
 begin
