@@ -772,6 +772,51 @@ $(document).ready(function() {
   });
   
   
+  // MEDIA ELEMENT EDITOR GENERAL FUNCTIONS
+  
+  $('body').on('focus', '#form_info_update_media_element_in_editor #update_title', function() {
+    if($('#form_info_update_media_element_in_editor #update_title_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_update_media_element_in_editor #update_title_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#form_info_update_media_element_in_editor #update_description', function() {
+    if($('#form_info_update_media_element_in_editor #update_description_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_update_media_element_in_editor #update_description_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#form_info_update_media_element_in_editor #update_tags', function() {
+    if($('#form_info_update_media_element_in_editor #update_tags_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_update_media_element_in_editor #update_tags_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#form_info_new_media_element_in_editor #new_title', function() {
+    if($('#form_info_new_media_element_in_editor #new_title_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_new_media_element_in_editor #new_title_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#form_info_new_media_element_in_editor #new_description', function() {
+    if($('#form_info_new_media_element_in_editor #new_description_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_new_media_element_in_editor #new_description_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#form_info_new_media_element_in_editor #new_tags', function() {
+    if($('#form_info_new_media_element_in_editor #new_tags_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_new_media_element_in_editor #new_tags_placeholder').attr('value', '0');
+    }
+  });
+  
+  
   // VIDEO EDITOR
   
   $('body').on('click', '#video_editor_preview_go_to_left_component', function() {
@@ -1217,6 +1262,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._cancel', function() {
+    resetMediaElementEditorForms();
     if($('#video_editor_title ._titled').length > 0) {
       $('#video_editor_title ._titled').show();
       $('#video_editor_title ._untitled').hide();
@@ -1227,6 +1273,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._cancel', function() {
+    resetMediaElementEditorForms();
     $('._video_editor_bottom_bar').show();
     $('#video_editor #form_info_update_media_element_in_editor').hide();
     startCacheLoop();
