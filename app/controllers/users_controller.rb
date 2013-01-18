@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
   
+  skip_before_filter :authenticate, only: :create
   before_filter :initialize_layout, :only => [:edit, :subjects, :statistics]
+
+  def create
+    @user = User.new(params[:user])
+
+    _d @user
+  end
   
   def edit
   end
