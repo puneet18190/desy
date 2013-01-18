@@ -804,14 +804,21 @@ $(document).ready(function() {
       $(this).find('._video_component_icon ._right').html(secondsToDateString($(this).data('duration')));
     });
     $('#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor').css('visibility', 'visible');
+    $('#media_elements_list_in_video_editor').data('jsp').destroy();
+    $('#add_new_video_component').show();
+    $('#add_new_video_component').prev().find('._video_component_transition').show();
+    $('#add_new_video_component').prev().css('width', '186');
+    var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 184;
+    $('#video_editor_timeline').css('width', new_timeline_width + 'px');
+    $('#media_elements_list_in_video_editor').jScrollPane({
+      autoReinitialise: true,
+    });
     $('#visual_video_editor_current_time').css('visibility', 'hidden')
     $('#video_editor_global_preview').show();
     $('#video_editor_global_preview_play').hide();
     $('#commit_video_editor').show();
     $('#exit_video_editor_preview').hide();
-    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
     $('#video_editor_box_ghost').hide();
-    $('._new_component_in_video_editor_hover').removeClass('selected');
   });
   
   $('body').on('click', '#video_editor_global_preview_pause._enabled', function() {

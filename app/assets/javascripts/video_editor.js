@@ -743,10 +743,18 @@ function openPreviewModeInVideoEditor() {
   $('#video_editor_global_preview').hide();
   $('#video_editor_global_preview_pause').show();
   $('#commit_video_editor').hide();
-  $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#video_editor_box_ghost').show();
   $('._video_editor_component_hover, ._video_component_icon').addClass('selected');
-  $('._new_component_in_video_editor_hover').addClass('selected');
+  $('#media_elements_list_in_video_editor').data('jsp').destroy();
+  $('#add_new_video_component').hide();
+  $('#add_new_video_component').prev().find('._video_component_transition').hide();
+  $('#add_new_video_component').prev().css('width', '159');
+  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) - 184;
+  $('#video_editor_timeline').css('width', new_timeline_width + 'px');
+  $('#media_elements_list_in_video_editor').jScrollPane({
+    autoReinitialise: true,
+    initialHorizontalStyles: 'visibility:hidden'
+  });
   $('._video_component_transition').addClass('current');
   setVisualTimesVideoEditorPreview(first_component, 0);
   $('#video_editor_preview_container ._loader').show();
