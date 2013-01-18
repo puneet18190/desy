@@ -1,7 +1,7 @@
 class VirtualClassroomController < ApplicationController
   
-  FOR_PAGE = CONFIG['lessons_for_page_in_virtual_classroom']
-  LESSONS_IN_QUICK_LOADER = CONFIG['lessons_in_quick_loader']
+  FOR_PAGE = SETTINGS['lessons_for_page_in_virtual_classroom']
+  LESSONS_IN_QUICK_LOADER = SETTINGS['lessons_in_quick_loader']
   
   before_filter :initialize_lesson, :only => [:add_lesson, :remove_lesson, :remove_lesson_from_inside]
   before_filter :initialize_lesson_destination, :only => [:add_lesson, :remove_lesson]

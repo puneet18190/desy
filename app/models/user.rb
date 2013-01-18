@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
   class << self
     def admin
-      find_by_email CONFIG['admin_email']
+      find_by_email SETTINGS['admin_email']
     end
 
     def create_user(email, password, password_confirmation, name, surname, school, school_level_id, location_id, subject_ids, confirmed = false, raise_exception_if_fail = false)
@@ -317,7 +317,7 @@ class User < ActiveRecord::Base
       n.destroy
       resp_last = Notification.order('created_at DESC').where(:user_id => self.id).limit(offset).last
       resp_offset = Notification.where(:user_id => self.id).limit(offset).count
-      resp_last = nil if ([resp_offset, resp_offset] != [CONFIG['notifications_loaded_together'], offset])
+      resp_last = nil if ([resp_offset, resp_offset] != [SETTINGS['notifications_loaded_together'], offset])
       resp = {:last => resp_last, :offset => resp_offset}
     end
     resp
@@ -332,7 +332,7 @@ class User < ActiveRecord::Base
   end
   
   def playlist_full?
-    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).count == CONFIG['lessons_in_playlist']
+    VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.id).count == SETTINGS['lessons_in_playlist']
   end
   
   def playlist
@@ -421,7 +421,7 @@ class User < ActiveRecord::Base
         end
         MediaElement.where(:user_id => self.id).each do |me|
           if me.is_public
-            me.user_id = User.find_by_email(CONFIG['admin_email']).id
+            me.user_id = User.find_by_email(SETTINGS['admin_email']).id
             if !me.save
               errors.add(:base, :problems_destroying)
               raise ActiveRecord::Rollback

@@ -104,7 +104,7 @@ class ApplicationController < ActionController::Base
   def initialize_layout
     @delete_item = params[:delete_item]
     if !request.xhr?
-      @notifications = current_user.notifications_visible_block 0, CONFIG['notifications_loaded_together']
+      @notifications = current_user.notifications_visible_block 0, SETTINGS['notifications_loaded_together']
       @new_notifications = current_user.number_notifications_not_seen
       @offset_notifications = @notifications.length
       @tot_notifications = current_user.tot_notifications_number

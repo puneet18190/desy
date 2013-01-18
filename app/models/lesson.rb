@@ -371,7 +371,7 @@ class Lesson < ActiveRecord::Base
   private
   
   def validate_tags_length
-    errors[:tags] << "are not enough" if @inner_tags.length < CONFIG['min_tags_for_item']
+    errors[:tags] << "are not enough" if @inner_tags.length < SETTINGS['min_tags_for_item']
   end
   
   def virtual_classroom_button

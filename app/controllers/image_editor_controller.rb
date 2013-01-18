@@ -182,7 +182,7 @@ class ImageEditorController < ApplicationController
       (0..textCount-1).each do |t_num|
         
         color_value = params["color_#{t_num}"]
-        color_hex = CONFIG["colors"]["#{color_value.gsub('color_','')}"]["code"]
+        color_hex = SETTINGS["colors"]["#{color_value.gsub('color_','')}"]["code"]
         size_value = params["font_#{t_num}"].to_f
         width_val = woh[1]
         original_val = woh[0]
