@@ -196,7 +196,7 @@ html.media_element_editor-layout {
     width:984px;
     display:inline-block;
     position:relative;
-    margin-top:40px;
+    margin-top:36px;
     
     .contentVideo {
       background-color:#000;
@@ -254,6 +254,7 @@ html.media_element_editor-layout {
       /*position:absolute; */
       width:906px;
       margin-left:40px;
+      position:relative;
     }
     
     .info {
@@ -269,9 +270,15 @@ html.media_element_editor-layout {
       .bottoniVerdi {
         margin-top:10px; 
         margin-bottom:30px;
+        a.disabled {
+          color:#303130;
+          background-color:#494948;
+          &:hover {
+            cursor: default;
+          }
+        }
       }
     }
-    
   }
   
   .mediaEditorVideoGalleryContainer {
@@ -697,6 +704,33 @@ html.media_element_editor-layout {
       text-shadow: 1px 1px #4f4f4f;
     }
   }
+  
+  #video_editor_preview_go_to_left_component {
+    background: url(<%= asset_path 'arrow_cutter_left.png' %>) top left  no-repeat;
+    position:absolute;
+    left:-26px;
+    top:65px;
+    width: 10px;
+    height: 15px;
+    
+    &:hover {
+      background: url(<%= asset_path 'arrow_cutter_left_on.png' %>) top left  no-repeat;  
+    };
+  }
+  
+  #video_editor_preview_go_to_right_component {
+    background: url(<%= asset_path 'arrow_cutter_right.png' %>) top left  no-repeat;
+    position:absolute;
+    right:-26px;
+    top:65px;
+    width: 10px;
+    height: 15px;
+    
+     &:hover {
+      background: url(<%= asset_path 'arrow_cutter_right_on.png' %>) top left  no-repeat;  
+    };
+  }
+  
   /*CUTTER*/
   .arrowUpCutter {
     background: url(<%= asset_path 'arrow_up.png' %>) top center  no-repeat;
@@ -762,7 +796,7 @@ html.media_element_editor-layout {
     width:905px;
     height:98px;
     position:absolute;
-    bottom:0px;
+    top:136px;
     -webkit-box-shadow: 0px 6px 10px #161515;
     box-shadow: 0px 6px 10px #161515;
     z-index:150;
@@ -867,7 +901,7 @@ html.media_element_editor-layout {
     width:156px;
     height:98px;
     position:absolute;
-    bottom:0px;
+    top:136px;
     -webkit-box-shadow: 0px 6px 10px #161515;
     box-shadow: 0px 6px 10px #161515;
     z-index:150;

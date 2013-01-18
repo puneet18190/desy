@@ -57,16 +57,22 @@
       <% (0...CONFIG['media_element_pages_in_dashboard']).each do |j| %>
         <% media_elements_block = @media_elements[tot_media_element, CONFIG['media_elements_for_page_in_dashboard']].to_a %>
         <% if media_elements_block.any? %>
-          <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none'.html_safe : 'block'.html_safe %>; width:90%;  margin:0 auto 0 auto;">
-            <% media_elements_block.each do |me| %>
-              <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
-            <% end %>
-            <div class="boxNewMediaElement _empty_media_elements _load_media_element">
-              <div class="contentNew">
-                <a class="createButton _empty_media_elements_hover">&nbsp;</a>
-                <p><%= t("captions.load_new_media_element") %></p>
+          <div style="text-align:center; width: 100%;">
+            <div class="suggested_media_elements_page" id="suggested_media_elements_<%= j + 1 %>" style="display:<%= (j != 0) ? 'none'.html_safe : 'block'.html_safe %>; width:auto;  margin:0 auto 0 auto;">
+              <% media_elements_block.each do |me| %>
+                <div class="_boxViewExpandedMediaElementWrapper">
+                  <%= render :partial => "media_elements/view_single_expanded", :locals => {:media_element => me, :destination => ButtonDestinations::EXPANDED_MEDIA_ELEMENT} %>
+                </div>
+              <% end %>
+              <div class="_boxViewExpandedMediaElementWrapper">
+                <div class="boxNewMediaElement _empty_media_elements _load_media_element">
+                  <div class="contentNew">
+                    <a class="createButton _empty_media_elements_hover">&nbsp;</a>
+                    <p><%= t("captions.load_new_media_element") %></p>
+                  </div>
+                  <div class="vuoto"></div>
+                </div>
               </div>
-              <div class="vuoto"></div>
             </div>
           </div>
         <% end %>

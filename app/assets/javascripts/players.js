@@ -19,7 +19,7 @@ function initializeActionOfMediaTimeUpdater(media, reference_id) {
   var duration = $('#' + reference_id).data('duration');
   var container_id = $(media).parent().attr('id');
   var parsed_int = parseInt(media.currentTime);
-  if(parsed_int == (duration + 1)) {
+  if(parsed_int == (duration)) {
     $('#' + container_id + ' ._media_player_pause').click();
     $('#' + container_id + ' ._media_player_slider').slider('value', 0);
     $('#' + container_id + ' ._media_player_current_time').html(secondsToDateString(0));
@@ -96,30 +96,42 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
   var parsed_int = parseInt(media.currentTime);
   if($('#video_editor_global_preview').data('in-use')) {
     var component = $('#video_component_' + identifier);
-    if(parsed_int == video_cut_to) {
-      $('#video_component_' + identifier + '_preview video')[0].pause();
-      var next_component = component.next();
-      var next_identifier = getVideoComponentIdentifier(next_component.attr('id'));
-      if(next_component.hasClass('_video_editor_component')) {
-        increaseVideoEditorPreviewTimer(true);
-        $('#video_editor_global_preview').data('current-component', getVideoComponentIdentifier(next_component.attr('id')));
-        $('#video_component_' + identifier + '_preview').hide('fade', {}, 1000);
-        component.find('._video_component_transition').removeClass('current');
-        next_component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
-        $('#video_component_' + next_identifier + '_preview').show('fade', {}, 1000, function() {
-          increaseVideoEditorPreviewTimer(false);
-          component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
-          playVideoEditorComponent(next_component, getInitialPointOfVideoEditorComponent(next_component));
-        });
+    if(parsed_int > component.data('current-preview-time') + $('#video_component_' + identifier + '_cutter').data('from')) {
+      if(parsed_int == video_cut_to) {
+        $('#video_component_' + identifier + '_preview video')[0].pause();
+        var next_component = component.next();
+        var next_identifier = getVideoComponentIdentifier(next_component.attr('id'));
+        if(next_component.hasClass('_video_editor_component')) {
+          increaseVideoEditorPreviewTimer(true);
+          $('#video_editor_global_preview').data('current-component', getVideoComponentIdentifier(next_component.attr('id')));
+          $('#video_component_' + identifier + '_preview').hide('fade', {}, 1000);
+          component.find('._video_component_transition').removeClass('current');
+          next_component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
+          $('#video_component_' + next_identifier + '_preview').show('fade', {}, 1000, function() {
+            if(!$('#video_editor_global_preview').data('in-use')) {
+              $('._video_component_transition').addClass('current');
+            }
+            increaseVideoEditorPreviewTimer(false);
+            component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
+            if($('#video_editor_global_preview').data('in-use')) {
+              playVideoEditorComponent(next_component, true);
+            }
+          });
+        } else {
+          selectVideoComponentInPreview(getFirstVideoEditorComponent());
+          if(videoEditorWithAudioTrack()) {
+            $('#video_editor_preview_container audio')[0].pause();
+          }
+          $('#video_editor_global_preview_pause').trigger('click');
+          $('#media_elements_list_in_video_editor').data('jsp').scrollToX(0, true, 500);
+        }
       } else {
-        // FIXME fai una funzione che stoppa!
-        console.log('STOP');
+        increaseVideoEditorPreviewTimer(true);
       }
-    } else if(parsed_int > component.data('current-preview-time') + $('#video_component_' + identifier + '_cutter').data('from')) {
-      increaseVideoEditorPreviewTimer(true);
     }
+    
   } else {
-    if(parsed_int == (video_cut_to + 1)) {
+    if(parsed_int == (video_cut_to)) {
       var initial_time = $('#video_component_' + identifier + '_cutter').data('from');
       $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').click();
       $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value', initial_time);
