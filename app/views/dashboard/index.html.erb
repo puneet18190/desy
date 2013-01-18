@@ -1,7 +1,7 @@
 <%
   pagination_locals = {}
-  pagination_locals[:me_tot] = (@media_elements.length.to_f / CONFIG['media_elements_for_page_in_dashboard']).ceil
-  pagination_locals[:l_tot] = (@lessons.length.to_f / CONFIG['lessons_for_page_in_dashboard']).ceil
+  pagination_locals[:me_tot] = (@media_elements.length.to_f / SETTINGS['media_elements_for_page_in_dashboard']).ceil
+  pagination_locals[:l_tot] = (@lessons.length.to_f / SETTINGS['lessons_for_page_in_dashboard']).ceil
 %>
 
 <div class="gray-bar">

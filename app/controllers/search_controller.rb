@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
   
-  LESSONS_FOR_PAGE = CONFIG['compact_lesson_pagination']
-  MEDIA_ELEMENTS_FOR_PAGE = CONFIG['compact_media_element_pagination']
+  LESSONS_FOR_PAGE = SETTINGS['compact_lesson_pagination']
+  MEDIA_ELEMENTS_FOR_PAGE = SETTINGS['compact_media_element_pagination']
   
   before_filter :initialize_layout, :initialize_paginator_and_filters, :reset_players_counter
   

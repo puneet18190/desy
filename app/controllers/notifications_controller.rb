@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   
-  NOTIFICATIONS_LOADED_TOGETHER = CONFIG['notifications_loaded_together']
+  NOTIFICATIONS_LOADED_TOGETHER = SETTINGS['notifications_loaded_together']
   
   before_filter :initialize_notification_with_owner, :only => [:seen, :destroy]
   before_filter :initialize_notification_offset, :only => [:destroy, :get_new_block]

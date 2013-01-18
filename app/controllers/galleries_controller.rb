@@ -1,8 +1,8 @@
 class GalleriesController < ApplicationController
   
-  IMAGES_FOR_PAGE = CONFIG['images_for_page_in_gallery']
-  AUDIOS_FOR_PAGE = CONFIG['audios_for_page_in_gallery']
-  VIDEOS_FOR_PAGE = CONFIG['videos_for_page_in_gallery']
+  IMAGES_FOR_PAGE = SETTINGS['images_for_page_in_gallery']
+  AUDIOS_FOR_PAGE = SETTINGS['audios_for_page_in_gallery']
+  VIDEOS_FOR_PAGE = SETTINGS['videos_for_page_in_gallery']
   
   def image_for_lesson_editor
     get_images
