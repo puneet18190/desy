@@ -48,9 +48,9 @@ class VideoEditorController < ApplicationController
       return
     end
     initial_video_test = Video.new
-    initial_video_test.title = params[:new_title]
-    initial_video_test.description = params[:new_description]
-    initial_video_test.tags = params[:new_tags]
+    initial_video_test.title = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
+    initial_video_test.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
+    initial_video_test.tags = params[:new_tags_placeholder] != '0' ? '' : params[:new_tags]
     initial_video_test.user_id = current_user.id
     # provo a validarlo per vedere se è ok
     initial_video_test.valid?
@@ -64,10 +64,7 @@ class VideoEditorController < ApplicationController
         :tags => params[:new_tags],
         :user_id => current_user.id
       }
-
-      # TODO mandare la notifica all'utente per segnalare la riuscita/non riuscita di un editing
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
-      # TODO far cancellare la sessione dal job quando è andato a buon fine invece che da qua dentro
       current_user.empty_video_editor_cache
     else
       @errors = errors
@@ -83,9 +80,9 @@ class VideoEditorController < ApplicationController
       return
     end
     initial_video_test = Video.find_by_id parameters[:initial_video]
-    initial_video_test.title = params[:update_title]
-    initial_video_test.description = params[:update_description]
-    initial_video_test.tags = params[:update_tags]
+    initial_video_test.title = params[:update_title_placeholder] != '0' ? '' : params[:update_title]
+    initial_video_test.description = params[:update_description_placeholder] != '0' ? '' : params[:update_description]
+    initial_video_test.tags = params[:update_tags_placeholder] != '0' ? '' : params[:update_tags]
     if initial_video_test.valid?
       parameters[:initial_video] = {
         :id => parameters[:initial_video],
@@ -93,10 +90,7 @@ class VideoEditorController < ApplicationController
         :description => params[:update_description],
         :tags => params[:update_tags]
       }
-
-      # TODO mandare la notifica all'utente per segnalare la riuscita/non riuscita di un editing
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
-      # TODO far cancellare la sessione dal job quando è andato a buon fine invece che da qua dentro
       current_user.empty_video_editor_cache
     else
       @errors = initial_video_test.errors.messages
