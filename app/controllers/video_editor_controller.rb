@@ -11,7 +11,7 @@ class VideoEditorController < ApplicationController
       @parameters = convert_video_to_parameters
       @total_length = Video.total_prototype_time(@parameters)
     else
-      redirect_to dashboard_index_path
+      redirect_to dashboard_path
       return
     end
   end
@@ -30,20 +30,20 @@ class VideoEditorController < ApplicationController
   end
   
   def empty_cache
-    @current_user.empty_video_editor_cache
+    current_user.empty_video_editor_cache
     render :nothing => true
   end
   
   def save_cache
-    @current_user.save_video_editor_cache(extract_form_parameters)
+    current_user.save_video_editor_cache(extract_form_parameters)
     render :nothing => true
   end
   
   def save
-    parameters = Video.convert_to_primitive_parameters(extract_form_parameters, @current_user.id)
+    parameters = Video.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false
     if parameters.nil?
-      @current_user.empty_video_editor_cache
+      current_user.empty_video_editor_cache
       @redirect = true
       return
     end
@@ -51,7 +51,7 @@ class VideoEditorController < ApplicationController
     initial_video_test.title = params[:new_title]
     initial_video_test.description = params[:new_description]
     initial_video_test.tags = params[:new_tags]
-    initial_video_test.user_id = @current_user.id
+    initial_video_test.user_id = current_user.id
     # provo a validarlo per vedere se è ok
     initial_video_test.valid?
     errors = initial_video_test.errors.messages
@@ -62,23 +62,23 @@ class VideoEditorController < ApplicationController
         :title => params[:new_title],
         :description => params[:new_description],
         :tags => params[:new_tags],
-        :user_id => @current_user.id
+        :user_id => current_user.id
       }
 
       # TODO mandare la notifica all'utente per segnalare la riuscita/non riuscita di un editing
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
       # TODO far cancellare la sessione dal job quando è andato a buon fine invece che da qua dentro
-      @current_user.empty_video_editor_cache
+      current_user.empty_video_editor_cache
     else
       @errors = errors
     end
   end
   
   def overwrite
-    parameters = Video.convert_to_primitive_parameters(extract_form_parameters, @current_user.id)
+    parameters = Video.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false
     if parameters.nil?
-      @current_user.empty_video_editor_cache
+      current_user.empty_video_editor_cache
       @redirect = true
       return
     end
@@ -97,7 +97,7 @@ class VideoEditorController < ApplicationController
       # TODO mandare la notifica all'utente per segnalare la riuscita/non riuscita di un editing
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
       # TODO far cancellare la sessione dal job quando è andato a buon fine invece che da qua dentro
-      @current_user.empty_video_editor_cache
+      current_user.empty_video_editor_cache
     else
       @errors = initial_video_test.errors.messages
     end
@@ -155,7 +155,7 @@ class VideoEditorController < ApplicationController
     resp[:components].first[:video_id] = @video.id
     resp[:components].first[:from] = 0
     resp[:components].first[:to] = @video.min_duration
-    resp = Video.convert_parameters(resp, @current_user.id)
+    resp = Video.convert_parameters(resp, current_user.id)
     resp.nil? ? empty_parameters : resp
   end
   
@@ -168,13 +168,13 @@ class VideoEditorController < ApplicationController
   end
   
   def extract_cache
-    @cache = Video.convert_parameters @current_user.video_editor_cache, @current_user.id
+    @cache = Video.convert_parameters current_user.video_editor_cache, current_user.id
   end
   
   def initialize_video_with_owner_or_public
     @video_id = correct_integer?(params[:video_id]) ? params[:video_id].to_i : 0
     @video = Video.find_by_id @video_id
-    update_ok(!@video.nil? && (@video.is_public || @current_user.id == @video.user_id))
+    update_ok(!@video.nil? && (@video.is_public || current_user.id == @video.user_id))
   end
   
 end

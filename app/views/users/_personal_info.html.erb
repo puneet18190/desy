@@ -1,41 +1,38 @@
 <fieldset class="insert-content">
   <div class="inputElement">
-    <p>Name</p><input type="text" name="nome" value="" class="text" id="">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'text' %>
   </div>
   <div class="inputElement">
-    <p>Surname</p><input type="text" name="cognome" value="" class="text" id="">
+    <%= f.label :surname %>
+    <%= f.text_field :surname, class: 'text' %>
   </div>
   <div class="inputElement">
-    <p>Email</p><input type="text" name="email" value="" class="text" id="">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'text' %>
   </div>
   <br class="clearfloat" />
   <div class="inputElement">
-    <p>Password</p><input type="password" name="nome" value="" class="text" id="">
+    <%= f.label :password %>
+    <%= f.text_field :password, class: 'text' %>
   </div>
   <div class="inputElement" style="margin-right:0">
-    <p>Repeat password</p><input type="password" name="cognome" value="" class="text" id="">
+    <%= f.label :password_confirmation %>
+    <%= f.text_field :password_confirmation, class: 'text' %>
   </div>
 </fieldset>
 <fieldset class="insert-content">
   <div class="inputElement">
-    <p>School</p><input type="text" name="school" value="" class="text school" id="">
+    <%= f.label :school %>
+    <%= f.text_field :school, class: 'text school' %>
   </div>
   <br class="clearfloat" />
   <div class="inputElement">
-    <p>School level</p>
-    <select name="school_level_id" id="profile_region">
-      <option value="">First</option>
-      <option value="">Second</option>
-    </select>
+    <%= f.label :school_level_id %>
+    <%= f.select :school_level_id, @school_level_ids %>
   </div>
   <div class="inputElement">
-    <p>Region</p>
-    <select name="school_level_id" id="profile_school_level">
-      <option value="">Bejing</option>
-      <option value="">Other</option>
-    </select>
+    <%= f.label :location_id %>
+    <%= f.select :location_id, @location_ids %>
   </div>
-</div>
-<div class="form_submit">
-  <input type="submit" value="save" />
 </fieldset>

@@ -4,9 +4,12 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate, :initialize_location, :initialize_players_counter
   
   private
+
+  attr_reader :current_user
+  helper_method :current_user
   
   def initialize_players_counter
-    Dir.mkdir Rails.root.join('tmp') if !Dir.exists? Rails.root.join('tmp')
+    Dir.mkdir Rails.root.join('tmp') unless Dir.exists? Rails.root.join('tmp')
     if File.exists?(Rails.root.join('tmp/players_counter.yml'))
       file = YAML::load(File.open(Rails.root.join('tmp/players_counter.yml')))
       @video_counter = [file['video_counter'], 1]
@@ -35,25 +38,25 @@ class ApplicationController < ActionController::Base
   def prepare_lesson_for_js
     if !@lesson.nil?
       @lesson = Lesson.find_by_id @lesson.id
-      @lesson.set_status @current_user.id
+      @lesson.set_status current_user.id
     end
   end
   
   def prepare_media_element_for_js
     if !@media_element.nil?
       @media_element = MediaElement.find_by_id @media_element.id
-      @media_element.set_status @current_user.id
+      @media_element.set_status current_user.id
     end
   end
   
   def initialize_lesson_with_owner
     initialize_lesson
-    update_ok(@lesson && @current_user.id == @lesson.user_id)
+    update_ok(@lesson && current_user.id == @lesson.user_id)
   end
   
   def initialize_lesson_if_in_virtual_classroom
     initialize_lesson
-    update_ok(@lesson && @lesson.in_virtual_classroom?(@current_user.id))
+    update_ok(@lesson && @lesson.in_virtual_classroom?(current_user.id))
   end
   
   def initialize_lesson
@@ -69,7 +72,7 @@ class ApplicationController < ActionController::Base
   
   def initialize_media_element_with_owner_or_public
     initialize_media_element
-    update_ok(@media_element && (@media_element.is_public || @current_user.id == @media_element.user_id))
+    update_ok(@media_element && (@media_element.is_public || current_user.id == @media_element.user_id))
   end
   
   def initialize_media_element_with_owner_and_private
@@ -79,7 +82,7 @@ class ApplicationController < ActionController::Base
   
   def initialize_media_element_with_owner
     initialize_media_element
-    update_ok(@media_element && @current_user.id == @media_element.user_id)
+    update_ok(@media_element && current_user.id == @media_element.user_id)
   end
   
   def initialize_media_element
@@ -101,10 +104,10 @@ class ApplicationController < ActionController::Base
   def initialize_layout
     @delete_item = params[:delete_item]
     if !request.xhr?
-      @notifications = @current_user.notifications_visible_block 0, CONFIG['notifications_loaded_together']
-      @new_notifications = @current_user.number_notifications_not_seen
+      @notifications = current_user.notifications_visible_block 0, CONFIG['notifications_loaded_together']
+      @new_notifications = current_user.number_notifications_not_seen
       @offset_notifications = @notifications.length
-      @tot_notifications = @current_user.tot_notifications_number
+      @tot_notifications = current_user.tot_notifications_number
     end
   end
   
@@ -113,16 +116,20 @@ class ApplicationController < ActionController::Base
   end
   
   def authenticate
-    if !logged_in?
-      session[:prelogin_request] = request.url
-      redirect_to home_path
-      return
-    end
-    @current_user = User.find_by_id session[:user_id]
+    return redirect_to root_path(redirect_to: request.fullpath) if !logged_in?
+  end
+
+  def current_user
+    @current_user ||= ( session[:user_id] and User.confirmed.find_by_id(session[:user_id]) )
+  end
+
+  def current_user=(user)
+    session[:user_id] = user ? user.id : nil
+    @current_user = user
   end
   
   def render_js_or_html_index
-    render (request.xhr? ? 'index.js' : 'index.html')
+    render 'index', formats: [request.xhr? ? :js : :html]
   end
   
   def correct_integer?(x)
@@ -135,7 +142,7 @@ class ApplicationController < ActionController::Base
   end
   
   def logged_in?
-    session[:user_id].class == Fixnum && User.exists?(session[:user_id])
+    current_user
   end
   
 end

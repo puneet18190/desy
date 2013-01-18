@@ -1,4 +1,15 @@
 <fieldset class="insert-content">
+
+  <% @subjects.each do |subject| -%>
+    <% html_id = "users_subject_ids_#{subject.id}" -%>
+    <div class="checkboxElement">
+      <%= check_box_tag "users[subject_ids][]", subject.id, @user.subjects.include?(subject), id: html_id, class: "regular-checkbox big-checkbox" %>
+      <%= label_tag html_id, '' %>
+      <%= subject.to_s %>
+    </div>
+  <% end -%>
+
+<% if false %>
   <!-- CHEMICAL -->
   <div class="checkboxElement">
       <input type="checkbox" id="checkbox-2-1" class="regular-checkbox big-checkbox" /><label for="checkbox-2-1"></label>
@@ -16,8 +27,7 @@
   </div>
   <!-- HISTORY -->
   <div class="checkboxElement">
-      <input type="checkbox" id="checkbox-2-4" class="regular-checkbox big-checkbox" />
-      <label for="checkbox-2-4"></label>
+      <input type="checkbox" id="checkbox-2-4" class="regular-checkbox big-checkbox" /><label for="checkbox-2-4"></label>
       History
   </div>
   <!-- BIOLOGY -->
@@ -40,7 +50,7 @@
       <input type="checkbox" id="checkbox-2-8" class="regular-checkbox big-checkbox" /><label for="checkbox-2-8"></label>
       Design
   </div>
+
+<% end %>
+
 </fieldset>
-<div class="form_submit">
-  <input type="submit" value="save" />
-</div>

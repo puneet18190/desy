@@ -10,10 +10,10 @@ class ImageEditorController < ApplicationController
   
   def edit
     if !@ok
-      # editing_folder = File.join(@image.media.folder, "editing","user_#{@current_user.id}") exists
+      # editing_folder = File.join(@image.media.folder, "editing","user_#{current_user.id}") exists
       # File.exists?(editing_folder)
       #TODO ADD WARNING MESSAGE with 'image already in editing'
-      redirect_to dashboard_index_path
+      redirect_to dashboard_path
       return
     end
   end
@@ -22,7 +22,7 @@ class ImageEditorController < ApplicationController
     if @ok
       if !params[:x1].blank?
         if !params[:cropped_image].blank?          
-          editing_folder = File.join(@image.media.folder, "editing","user_#{@current_user.id}")
+          editing_folder = File.join(@image.media.folder, "editing","user_#{current_user.id}")
           img = MiniMagick::Image.open(File.join(editing_folder,params[:cropped_image]))
           original_width = img[:width]
           original_height = img[:height]
@@ -30,7 +30,7 @@ class ImageEditorController < ApplicationController
           img = MiniMagick::Image.open(@image.media.path)
           original_width = @image.media.width
           original_height = @image.media.height
-          editing_folder = File.join(@image.media.folder, "editing","user_#{@current_user.id}")
+          editing_folder = File.join(@image.media.folder, "editing","user_#{current_user.id}")
           
           #Make dir of first crop
           fold = FileUtils.mkdir_p(editing_folder) unless Dir.exists? editing_folder
@@ -45,7 +45,7 @@ class ImageEditorController < ApplicationController
         #BRING OUT IMAGE WRITE FROM CROP
         
         @custom_filename = Media::Image::Editing::Crop.new(img, editing_folder, x1, y1, x2, y2).run
-        @editing_url = File.join(File.dirname(@image.url),"editing","user_#{@current_user.id}")
+        @editing_url = File.join(File.dirname(@image.url),"editing","user_#{current_user.id}")
         
         @image_id = params[:image_id]
         @crop = true
@@ -60,7 +60,7 @@ class ImageEditorController < ApplicationController
   def save
     if @ok
       if !params[:cropped_image].blank?
-        editing_folder = File.join(@image.media.folder, "editing","user_#{@current_user.id}")
+        editing_folder = File.join(@image.media.folder, "editing","user_#{current_user.id}")
         image_path = File.join(editing_folder,params[:cropped_image])
         img = MiniMagick::Image.open(image_path)
         original_height = img[:height]
@@ -83,7 +83,7 @@ class ImageEditorController < ApplicationController
         img.crop(crop_params)
       end
             
-      new_image = Image.new { |me| me.user = @current_user }
+      new_image = Image.new { |me| me.user = current_user }
       new_image.title = params[:new_title]
       new_image.description = params[:new_description]
       new_image.tags = params[:new_tags]
@@ -117,7 +117,7 @@ class ImageEditorController < ApplicationController
   def overwrite
     if @ok
       if !params[:cropped_image].blank?
-        editing_folder = File.join(@image.media.folder, "editing","user_#{@current_user.id}")
+        editing_folder = File.join(@image.media.folder, "editing","user_#{current_user.id}")
         image_path = File.join(editing_folder,params[:cropped_image])
         img = MiniMagick::Image.open(image_path)
         original_width = img[:width]
@@ -207,7 +207,7 @@ class ImageEditorController < ApplicationController
   end
   
   def remove_crop_path(image)
-    editing_folder = File.join(image.media.folder, "editing","user_#{@current_user.id}")
+    editing_folder = File.join(image.media.folder, "editing","user_#{current_user.id}")
     FileUtils.rm_rf(editing_folder) if File.exists?(editing_folder)
   end
   
@@ -236,13 +236,13 @@ class ImageEditorController < ApplicationController
   def initialize_image_with_owner_or_public
     @image_id = correct_integer?(params[:image_id]) ? params[:image_id].to_i : 0
     @image = Image.find_by_id @image_id
-    update_ok(!@image.nil? && (@image.is_public || @current_user.id == @image.user_id))
+    update_ok(!@image.nil? && (@image.is_public || current_user.id == @image.user_id))
   end
   
   def initialize_image_with_owner_and_private
     @image_id = correct_integer?(params[:image_id]) ? params[:image_id].to_i : 0
     @image = Image.find_by_id @image_id
-    update_ok(!@image.nil? && !@image.is_public && @current_user.id == @image.user_id)
+    update_ok(!@image.nil? && !@image.is_public && current_user.id == @image.user_id)
   end
   
   def ratio_value(scale_to_px, value, original)

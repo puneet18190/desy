@@ -22,7 +22,7 @@ class LessonEditorController < ApplicationController
   
   def create
     # TODO controllare redirect
-    new_lesson = @current_user.create_lesson params[:title], params[:description], params[:subject], params[:tags]
+    new_lesson = current_user.create_lesson params[:title], params[:description], params[:subject], params[:tags]
     if new_lesson.instance_of?(Lesson)
       @lesson = new_lesson
     else
@@ -97,7 +97,7 @@ class LessonEditorController < ApplicationController
   
   def initialize_subjects
     @subjects = []
-    UsersSubject.joins(:subject).where(:user_id => @current_user.id).order('subjects.description ASC').each do |sbj|
+    UsersSubject.joins(:subject).where(:user_id => current_user.id).order('subjects.description ASC').each do |sbj|
       @subjects << sbj.subject
     end
     @subjects

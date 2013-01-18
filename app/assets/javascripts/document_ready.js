@@ -6,7 +6,9 @@ $(document).ready(function() {
       return el !== 'version';
     })[0];
 
-    if(name) $('html').addClass(name);
+    if( name ) {
+      $('html').addClass(name);
+    }
   })();
   
 
@@ -755,17 +757,18 @@ $(document).ready(function() {
   
   // PRELOGIN
   
-  $('body').on('click', '._show_login_form', function() {
-    var form = $('#login_form');
+  $('body').on('click', '._show_login_form_container', function() {
+    var form = $('#login_form_container');
     if(form.css('display') == 'none') {
       form.show('fade', {}, 500);
+      $('#email').focus();
     } else {
       form.hide('fade', {}, 500);
     }
   });
   
   $('body').on('click', '#submit_login_form', function() {
-    $('#login_form form').submit();
+    $('#new_users_session_form').submit();
   });
   
   

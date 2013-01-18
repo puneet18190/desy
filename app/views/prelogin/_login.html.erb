@@ -1,29 +1,27 @@
 <div class="login">
   <p><%= t('captions.problems_with_password') %></p>
   <div class="button">
-    <a class="_show_login_form"><%= t('captions.login') %></a>
+    <a class="_show_login_form_container"><%= t('captions.login') %></a>
   </div>
-  <div id="login_form" class="tooltip">
+  <div id="login_form_container" class="tooltip">
     <%= image_tag("freccia_tooltip_up.png", :class => "callout") %>
-    <%= form_tag login_path, :method => :get, :remote => true do %>
-      <table summary="" cellpadding="0" cellspacing="0">
-        <tbody>
-          <tr>
-            <td class="lower"><%= t('captions.email') %></td>
-          </tr>
-          <tr>
-            <td><%= text_field_tag 'email', '', :class => 'text' %></td>
-          </tr>
-          <tr>
-            <td class="lower"><%= t('captions.password') %></td>
-          </tr>
-          <tr>
-            <td><%= password_field_tag 'password', '', :class => 'text' %></td>
-          </tr>
-        </tbody>
+    <%= form_tag users_sessions_path, id: 'new_users_session_form' do %>
+      <%=  hidden_field_tag :redirect_to, params[:redirect_to] %>
+      <table cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="lower"><%= t('captions.email') %></td>
+        </tr>
+        <tr>
+          <td><%= text_field_tag :email, '', :class => 'text' %></td>
+        </tr>
+        <tr>
+          <td class="lower"><%= t('captions.password') %></td>
+        </tr>
+        <tr>
+          <td><%= password_field_tag :password, '', :class => 'text' %></td>
+        </tr>
       </table>
-      <a id="submit_login_form"><%= t('captions.enter') %></a>
-      <%= submit_tag '', :style => 'display:none' %>
+      <%= submit_tag t('captions.enter') %>
     <% end %>
   </div>
 </div>

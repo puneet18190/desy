@@ -27,7 +27,7 @@ class MediaElementsController < ApplicationController
   end
   
   def create
-    media_element = MediaElement.new(media_element_params) { |me| me.user = @current_user }
+    media_element = MediaElement.new(media_element_params) { |me| me.user = current_user }
     if media_element.save
       #render :formats => :js
       #render json: { message: I18n.t('forms.media_element.messages.success') }, :status => :created
@@ -45,7 +45,7 @@ class MediaElementsController < ApplicationController
   def add
     @ok_msg = t('popups.add_media_element_ok')
     if @ok
-      if !@current_user.bookmark('MediaElement', @media_element_id)
+      if !current_user.bookmark('MediaElement', @media_element_id)
         @ok = false
         @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_media_element')
       end
@@ -75,13 +75,13 @@ class MediaElementsController < ApplicationController
   def remove
     @ok_msg = t('popups.remove_media_element_ok')
     if @ok
-      bookmark = Bookmark.where(:user_id => @current_user.id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => @media_element_id).first
+      bookmark = Bookmark.where(:user_id => current_user.id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => @media_element_id).first
       if bookmark.nil?
         @ok = false
         @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_media_element')
       else
         bookmark.destroy
-        if Bookmark.where(:user_id => @current_user.id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => @media_element_id).any?
+        if Bookmark.where(:user_id => current_user.id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => @media_element_id).any?
           @ok = false
           @error = I18n.t('activerecord.errors.models.bookmark.problem_destroying_for_media_element')
         end
@@ -116,7 +116,7 @@ class MediaElementsController < ApplicationController
   end
 
   def get_own_media_elements
-    current_user_own_media_elements = @current_user.own_media_elements(@page, @for_page, @filter)
+    current_user_own_media_elements = current_user.own_media_elements(@page, @for_page, @filter)
     @media_elements = current_user_own_media_elements[:records]
     @pages_amount = current_user_own_media_elements[:pages_amount]
   end
