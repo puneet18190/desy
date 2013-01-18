@@ -114,7 +114,7 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
             increaseVideoEditorPreviewTimer(false);
             component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
             if($('#video_editor_global_preview').data('in-use')) {
-              playVideoEditorComponent(next_component);
+              playVideoEditorComponent(next_component, true);
             }
           });
         } else {

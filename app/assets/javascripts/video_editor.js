@@ -579,7 +579,11 @@ function startVideoEditorGlobalPreview() {
       });
     }
   }
-  playVideoEditorComponent(current_component);
+  if(current_component.data('position') == getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186) + 1) {
+    playVideoEditorComponent(current_component, false);
+  } else {
+    playVideoEditorComponent(current_component, true);
+  }
 }
 
 function getFirstVideoEditorComponent() {
@@ -591,8 +595,10 @@ function getLastVideoEditorComponent() {
   return $(components[components.length - 1]);
 }
 
-function playVideoEditorComponent(component) {
-  followPreviewComponentsWithHorizontalScrollInVideoEditor();
+function playVideoEditorComponent(component, with_scroll) {
+  if(with_scroll) {
+    followPreviewComponentsWithHorizontalScrollInVideoEditor();
+  }
   var identifier = getVideoComponentIdentifier(component.attr('id'));
   $('._video_component_transition').addClass('current');
   if(component.hasClass('_video')) {
@@ -621,7 +627,7 @@ function playVideoEditorComponent(component) {
           increaseVideoEditorPreviewTimer(false);
           component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
           if($('#video_editor_global_preview').data('in-use')) {
-            playVideoEditorComponent(next_component);
+            playVideoEditorComponent(next_component, true);
           }
         });
       } else {
