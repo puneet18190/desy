@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   def initialize_players_counter
-    Dir.mkdir Rails.root.join('tmp') if !Dir.exists? Rails.root.join('tmp')
+    Dir.mkdir Rails.root.join('tmp') unless Dir.exists? Rails.root.join('tmp')
     if File.exists?(Rails.root.join('tmp/players_counter.yml'))
       file = YAML::load(File.open(Rails.root.join('tmp/players_counter.yml')))
       @video_counter = [file['video_counter'], 1]
@@ -116,7 +116,7 @@ class ApplicationController < ActionController::Base
   end
   
   def authenticate
-    return redirect_to root_path(redirect_to: request.path) if !logged_in?
+    return redirect_to root_path(redirect_to: request.fullpath) if !logged_in?
   end
 
   def current_user
@@ -124,12 +124,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user=(user)
-    session[:user_id] = user.try(:id)
+    session[:user_id] = user ? user.id : nil
     @current_user = user
   end
   
   def render_js_or_html_index
-    render (request.xhr? ? 'index.js' : 'index.html')
+    render 'index', formats: [request.xhr? ? :js : :html]
   end
   
   def correct_integer?(x)

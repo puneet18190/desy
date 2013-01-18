@@ -2,65 +2,22 @@ class Users::SessionsController < ApplicationController
   
   skip_before_filter :authenticate, only: :create
 
-  # def login
-  #   # FIXME provvisorio
-  #   login_hash = {
-  #     CONFIG['admin_email'] => 'desymorgan',
-  #     'desy1@morganspa.com' => 'desymorgan1',
-  #     'desy2@morganspa.com' => 'desymorgan2',
-  #     'desy3@morganspa.com' => 'desymorgan3',
-  #     'desy4@morganspa.com' => 'desymorgan4',
-  #     'desy5@morganspa.com' => 'desymorgan5',
-  #     'desy6@morganspa.com' => 'desymorgan6',
-  #     'toostrong@morganspa.com' => 'bellaperme',
-  #     'fupete@morganspa.com' => 'bellaperte',
-  #     'jeg@morganspa.com' => 'bellaperlui',
-  #     'holly@morganspa.com' => 'bellapernoi',
-  #     'benji@morganspa.com' => 'bellapervoi',
-  #     'retlaw@morganspa.com' => 'bellaperloro'
-  #   }
-  #   if params[:email].blank? || params[:password].blank?
-  #     @error = t('captions.fill_all_login_fields')
-  #     render 'login_error.js'
-  #     return
-  #   end
-  #   if !login_hash.has_key?(params[:email]) || login_hash[params[:email]] != params[:password] || User.find_by_email(params[:email]).nil?
-  #     @error = t('captions.password_or_username_not_correct')
-  #     render 'login_error.js'
-  #     return
-  #   end
-  #   session[:user_id] = User.find_by_email(params[:email]).id
-  #   # FINO A QUI
-  #   @redirect = session[:prelogin_request]
-  #   session[:prelogin_request] = nil
-  #   @redirect = '/dashboard' if @redirect.blank?
-  #   render 'login_ok.js'
-  # end
   def create
-    if params[:email].blank? || params[:password].blank?
-      redirect_to root_path, flash: { error: t('captions.fill_all_login_fields') }
-      return
-    end
+    redirect_to_param = params[:redirect_to]
+    path_params = redirect_to_param ? { redirect_to: redirect_to_param } : {}
 
-    self.current_user = User.authenticate(params[:email], params[:password])
+    redirect_args =
+      if params[:email].blank? || params[:password].blank?
+        failed_authentication_redirect_args path_params, t('captions.fill_all_login_fields')
+      else
+        self.current_user = User.authenticate(params[:email], params[:password])
 
-    if current_user
-      redirect_args = [dashboard_path]
-      redirect_url = params[:redirect_to]
-      if redirect_url
-        begin
-          url = URI.parse(redirect_url)
-          if url.path
-            redirect_args = [url.path]
-            redirect_args[0] << "?#{url.query}" if url.query
-            redirect_args[0] << "##{url.fragment}" if url.fragment
-          end
-        rescue URI::InvalidURIError, URI::BadURIError
+        if current_user
+          redirect_args_from(redirect_to_param) || [dashboard_path]
+        else
+          failed_authentication_redirect_args path_params, t('captions.password_or_username_not_correct')
         end
       end
-    else
-      redirect_args = [root_path, { flash: { error: t('captions.password_or_username_not_correct') } }]
-    end
 
     redirect_to *redirect_args
   end
@@ -68,6 +25,32 @@ class Users::SessionsController < ApplicationController
   def destroy
     self.current_user = nil
     redirect_to root_path
+  end
+
+  private
+  def failed_authentication_redirect_args(path_params, error)
+    [ root_path(path_params), { flash: { error: error } } ]
+  end
+
+  def redirect_args_from(redirect_url)
+    return nil unless redirect_url
+
+    components = URI.split redirect_url
+
+    # Scheme, Userinfo, Host, Port, Registry, Opaque
+    invalid_components_indexes = [0, 1, 2, 3, 4, 6]
+    # Path, Query (Fragment is unuseful, ignoring it)
+    valid_components_indexes = [5, 7]
+
+    return nil if components.values_at(*invalid_components_indexes).compact.present?
+
+    path, query = components.values_at(*valid_components_indexes)
+    return nil if path.blank?
+
+    path << "?#{query}" if query
+    
+    [path]
+  rescue URI::InvalidURIError, URI::BadURIError
   end
   
 end
