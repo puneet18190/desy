@@ -774,27 +774,6 @@ $(document).ready(function() {
   
   // MEDIA ELEMENT EDITOR GENERAL FUNCTIONS
   
-  $('body').on('focus', '#form_info_update_media_element_in_editor #update_title', function() {
-    if($('#form_info_update_media_element_in_editor #update_title_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#form_info_update_media_element_in_editor #update_title_placeholder').attr('value', '0');
-    }
-  });
-  
-  $('body').on('focus', '#form_info_update_media_element_in_editor #update_description', function() {
-    if($('#form_info_update_media_element_in_editor #update_description_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#form_info_update_media_element_in_editor #update_description_placeholder').attr('value', '0');
-    }
-  });
-  
-  $('body').on('focus', '#form_info_update_media_element_in_editor #update_tags', function() {
-    if($('#form_info_update_media_element_in_editor #update_tags_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#form_info_update_media_element_in_editor #update_tags_placeholder').attr('value', '0');
-    }
-  });
-  
   $('body').on('focus', '#form_info_new_media_element_in_editor #new_title', function() {
     if($('#form_info_new_media_element_in_editor #new_title_placeholder').val() == '') {
       $(this).attr('value', '');

@@ -9,14 +9,11 @@
     <div id="error_messages"></div>
     <div class="cols" style="float:left">
       <%= text_field_tag 'update_title', media_element.title %>
-      <%= hidden_field_tag 'update_title_placeholder', '' %>
       <br>
       <%= text_area_tag 'update_description', media_element.description %>
-      <%= hidden_field_tag 'update_description_placeholder', '' %>
     </div>
     <div class="cols" style="float:right">
       <%= text_area_tag 'update_tags', media_element.tags %>
-      <%= hidden_field_tag 'update_tags_placeholder', '' %>
     </div>
     <br class="clearfloat">
     <div class="cols" style="float:right">
