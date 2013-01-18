@@ -144,10 +144,12 @@ class ApplicationController < ActionController::Base
   def convert_item_error_messages(errors)
     resp = [t('error_captions.fill_all_the_fields_or_too_long')]
     flag = false
-    errors[:tags].each do |v|
-      if !flag && v == 'are not enough'
-        flag = true
-        resp << t('error_captions.tags_are_not_enough')
+    if errors.has_key? :tags
+      errors[:tags].each do |v|
+        if !flag && v == 'are not enough'
+          flag = true
+          resp << t('error_captions.tags_are_not_enough')
+        end
       end
     end
     resp
