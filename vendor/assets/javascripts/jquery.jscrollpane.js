@@ -337,8 +337,17 @@
 			function initialiseHorizontalScroll()
 			{
 				if (isScrollableH) {
+				  // forzato da Adriano
+					var my_forced_style = settings.initialHorizontalStyles;
+					if(my_forced_style == '') {
+					  var infos = $('#info_container');
+					  if(infos.length > 0 && infos.data('forced-kevin-luck-style') != undefined) {
+					    my_forced_style = infos.data('forced-kevin-luck-style');
+					  }
+					}
+					// fino a qui
 					container.append(
-						$('<div class="jspHorizontalBar" style="' + settings.initialHorizontalStyles + '" />').append(
+						$('<div class="jspHorizontalBar" style="' + my_forced_style + '" />').append(
 							$('<div class="jspCap jspCapLeft" />'),
 							$('<div class="jspTrack" />').append(
 								$('<div class="jspDrag" />').append(
