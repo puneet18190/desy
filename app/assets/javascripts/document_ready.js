@@ -210,16 +210,18 @@ $(document).ready(function() {
   // EXPAND LESSON
   
   $('body').on('click','._lesson_compact', function() {
-    var my_id = $(this).parent().attr('id');
-    var my_expanded = $('#' + my_id + ' ._lesson_expanded');
-    if(my_expanded.css('display') == 'block') {
-      my_expanded.hide('blind', {}, 500, function() {
-        my_expanded.hide();
-      });
-    } else {
-      my_expanded.show('blind', {}, 500, function() {
-        my_expanded.show();
-      });
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_id = $(this).parent().attr('id');
+      var my_expanded = $('#' + my_id + ' ._lesson_expanded');
+      if(my_expanded.css('display') == 'block') {
+        my_expanded.hide('blind', {}, 500, function() {
+          my_expanded.hide();
+        });
+      } else {
+        my_expanded.show('blind', {}, 500, function() {
+          my_expanded.show();
+        });
+      }
     }
   });
   
@@ -311,101 +313,125 @@ $(document).ready(function() {
   
   $('body').on('click', '._Lesson_button_add', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    var reload = $(this).data('reload');
-    var current_url = $('#info_container').data('currenturl');
-    addLesson(my_param, destination, current_url, reload);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var reload = $(this).data('reload');
+      var current_url = $('#info_container').data('currenturl');
+      addLesson(my_param, destination, current_url, reload);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_copy', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    copyLesson(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      copyLesson(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_destroy', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    var current_url = $('#info_container').data('currenturl');
-    destroyLesson(my_param, destination, current_url);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var current_url = $('#info_container').data('currenturl');
+      destroyLesson(my_param, destination, current_url);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_dislike', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    dislikeLesson(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      dislikeLesson(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_like', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    likeLesson(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      likeLesson(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_preview', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var redirect_back_to = $("#info_container").data('currenturl');
-    previewLesson(my_param, redirect_back_to);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var redirect_back_to = $("#info_container").data('currenturl');
+      previewLesson(my_param, redirect_back_to);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_publish', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    publishLesson(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      publishLesson(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_remove', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    var reload = $(this).data('reload');
-    var current_url = $('#info_container').data('currenturl');
-    removeLesson(my_param, destination, current_url, reload);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var reload = $(this).data('reload');
+      var current_url = $('#info_container').data('currenturl');
+      removeLesson(my_param, destination, current_url, reload);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_unpublish', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    unpublishLesson(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      unpublishLesson(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_add_virtual_classroom', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    addLessonToVirtualClassroom(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      addLessonToVirtualClassroom(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_remove_virtual_classroom', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    removeLessonFromVirtualClassroom(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      removeLessonFromVirtualClassroom(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_edit', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    window.location = '/lessons/' + my_param + '/slides/edit';
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      window.location = '/lessons/' + my_param + '/slides/edit';
+    }
     return false;
   });
   
@@ -413,7 +439,7 @@ $(document).ready(function() {
   // MEDIA ELEMENT BUTTONS
   
   $('body').on('click', '._Video_button_add, ._Audio_button_add, ._Image_button_add', function(e) {
-    if($(this).parent().hasClass('_enabled')) {
+    if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
       var destination = $(this).data('destination');
       var reload = $(this).data('reload');
@@ -423,7 +449,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._Video_button_destroy, ._Audio_button_destroy, ._Image_button_destroy', function(e) {
-    if($(this).parent().hasClass('_enabled')) {
+    if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
       var destination = $(this).data('destination');
       var current_url = $('#info_container').data('currenturl');
@@ -432,14 +458,14 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._Video_button_preview, ._Audio_button_preview, ._Image_button_preview', function(e) {
-    if($(this).parent().hasClass('_enabled')) {
+    if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
       showMediaElementInfoPopUp(my_param);
     }
   });
   
   $('body').on('click', '._Video_button_edit', function(e) {
-    if($(this).parent().hasClass('_enabled')) {
+    if(!$(this).parent().hasClass('_disabled')) {
       e.preventDefault();
       var video_id = $(this).data('clickparam');
       window.location = '/videos/' + video_id + '/edit';
@@ -448,13 +474,13 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._Audio_button_edit', function(e) {
-    if($(this).parent().hasClass('_enabled')) {
+    if(!$(this).parent().hasClass('_disabled')) {
       alert('ancora non abbiamo editor di audio');
     }
   });
   
   $('body').on('click', '._Image_button_edit', function(e) {
-    if($(this).parent().hasClass('_enabled')) {
+    if(!$(this).parent().hasClass('_disabled')) {
       e.preventDefault();
       var image_id = $(this).data('clickparam');
       window.location = '/images/' + image_id + '/edit';
@@ -463,7 +489,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._Video_button_remove, ._Audio_button_remove, ._Image_button_remove', function(e) {
-    if($(this).parent().hasClass('_enabled')) {
+    if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
       var destination = $(this).data('destination');
       var reload = $(this).data('reload');

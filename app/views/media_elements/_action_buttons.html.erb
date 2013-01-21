@@ -1,4 +1,4 @@
-<div class="menuController <%= media_element.converted.nil? ? '' : '_enabled'.html_safe %>" id="media_element_menu_buttons_<%= media_element.id %>">
+<div class="menuController <%= media_element.converted.nil? ? '_disabled'.html_safe : '' %>" id="media_element_menu_buttons_<%= media_element.id %>">
   <% cont = 0 %>
   <% media_element.buttons.each do |b| %>
     <%= render :partial => "shared/buttons/#{b}", :locals => {:item => media_element, :destination => destination} %>

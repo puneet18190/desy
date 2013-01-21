@@ -42,7 +42,7 @@ class Lesson < ActiveRecord::Base
     self.metadata.available_audio = true
   end
   
-  def available
+  def available?
     self.metadata.available_video && self.metadata.available_audio
   end
   

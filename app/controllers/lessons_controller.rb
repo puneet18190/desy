@@ -171,7 +171,7 @@ class LessonsController < ApplicationController
   
   def check_available_for_user
     l = Lesson.find_by_id params[:lesson_id]
-    if l && !l.available
+    if l && !l.available?
       render :nothing => true
       return
     end
