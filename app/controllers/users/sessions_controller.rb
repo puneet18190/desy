@@ -29,7 +29,7 @@ class Users::SessionsController < ApplicationController
 
   private
   def failed_authentication_redirect_args(path_params, error)
-    [ root_path(path_params), { flash: { error: error } } ]
+    [ root_path(path_params), { flash: { alert: error } } ]
   end
 
   def redirect_args_from(redirect_url)

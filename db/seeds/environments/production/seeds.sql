@@ -155,19 +155,19 @@ INSERT INTO school_levels VALUES (3, 'Undergraduate', '2012-12-20 10:31:31.45832
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: desy
 --
 
-INSERT INTO users VALUES (1, 'desy@morganspa.com', 'DESY', 'Admin User', 1, 'School', NULL, NULL, 1, '2012-12-20 10:31:31.781634', '2012-12-20 10:31:31.781634');
-INSERT INTO users VALUES (2, 'toostrong@morganspa.com', 'Kassandra', 'Scarlet', 2, 'ITC BrokenTower', NULL, NULL, 6, '2012-12-20 10:31:31.963232', '2012-12-20 10:31:31.963232');
-INSERT INTO users VALUES (3, 'fupete@morganspa.com', 'Victor', 'Plum', 3, 'ISS Pro', NULL, NULL, 1, '2012-12-20 10:31:31.985945', '2012-12-20 10:31:31.985945');
-INSERT INTO users VALUES (4, 'jeg@morganspa.com', 'Jack', 'Mustard', 2, 'ISA Carlocracco', NULL, NULL, 3, '2012-12-20 10:31:32.009968', '2012-12-20 10:31:32.009968');
-INSERT INTO users VALUES (5, 'holly@morganspa.com', 'Jacob', 'Green', 1, 'ITC Pocotopocoto', NULL, NULL, 4, '2012-12-20 10:31:32.033923', '2012-12-20 10:31:32.033923');
-INSERT INTO users VALUES (6, 'benji@morganspa.com', 'Diane', 'White', 1, 'ITC Pocotopocoto', NULL, NULL, 5, '2012-12-20 10:31:32.057864', '2012-12-20 10:31:32.057864');
-INSERT INTO users VALUES (7, 'retlaw@morganspa.com', 'Eleanor', 'Peacock', 3, 'ISA Amor III', NULL, NULL, 6, '2012-12-20 10:31:32.087904', '2012-12-20 10:31:32.087904');
-INSERT INTO users VALUES (8, 'desy1@morganspa.com', 'DESY', 'Admin User 1', 1, 'School', NULL, NULL, 1, '2012-12-21 15:39:53.886583', '2012-12-21 15:39:53.886583');
-INSERT INTO users VALUES (9, 'desy2@morganspa.com', 'DESY', 'Admin User 2', 1, 'School', NULL, NULL, 1, '2012-12-21 15:39:54.026194', '2012-12-21 15:39:54.026194');
-INSERT INTO users VALUES (10, 'desy3@morganspa.com', 'DESY', 'Admin User 3', 1, 'School', NULL, NULL, 1, '2012-12-21 15:39:54.084753', '2012-12-21 15:39:54.084753');
-INSERT INTO users VALUES (11, 'desy4@morganspa.com', 'DESY', 'Admin User 4', 1, 'School', NULL, NULL, 1, '2012-12-21 15:39:54.144766', '2012-12-21 15:39:54.144766');
-INSERT INTO users VALUES (12, 'desy5@morganspa.com', 'DESY', 'Admin User 5', 1, 'School', NULL, NULL, 1, '2012-12-21 15:39:54.204831', '2012-12-21 15:39:54.204831');
-INSERT INTO users VALUES (13, 'desy6@morganspa.com', 'DESY', 'Admin User 6', 1, 'School', NULL, NULL, 1, '2012-12-21 15:39:54.264916', '2012-12-21 15:39:54.264916');
+INSERT INTO users VALUES (1, 'desy@morganspa.com', 'DESY', 'Admin User', 1, 'School', NULL, true, 1, '2012-12-20 10:31:31.781634', '2012-12-20 10:31:31.781634');
+INSERT INTO users VALUES (2, 'toostrong@morganspa.com', 'Kassandra', 'Scarlet', 2, 'ITC BrokenTower', NULL, true, 6, '2012-12-20 10:31:31.963232', '2012-12-20 10:31:31.963232');
+INSERT INTO users VALUES (3, 'fupete@morganspa.com', 'Victor', 'Plum', 3, 'ISS Pro', NULL, true, 1, '2012-12-20 10:31:31.985945', '2012-12-20 10:31:31.985945');
+INSERT INTO users VALUES (4, 'jeg@morganspa.com', 'Jack', 'Mustard', 2, 'ISA Carlocracco', NULL, true, 3, '2012-12-20 10:31:32.009968', '2012-12-20 10:31:32.009968');
+INSERT INTO users VALUES (5, 'holly@morganspa.com', 'Jacob', 'Green', 1, 'ITC Pocotopocoto', NULL, true, 4, '2012-12-20 10:31:32.033923', '2012-12-20 10:31:32.033923');
+INSERT INTO users VALUES (6, 'benji@morganspa.com', 'Diane', 'White', 1, 'ITC Pocotopocoto', NULL, true, 5, '2012-12-20 10:31:32.057864', '2012-12-20 10:31:32.057864');
+INSERT INTO users VALUES (7, 'retlaw@morganspa.com', 'Eleanor', 'Peacock', 3, 'ISA Amor III', NULL, true, 6, '2012-12-20 10:31:32.087904', '2012-12-20 10:31:32.087904');
+INSERT INTO users VALUES (8, 'desy1@morganspa.com', 'DESY', 'Admin User 1', 1, 'School', NULL, true, 1, '2012-12-21 15:39:53.886583', '2012-12-21 15:39:53.886583');
+INSERT INTO users VALUES (9, 'desy2@morganspa.com', 'DESY', 'Admin User 2', 1, 'School', NULL, true, 1, '2012-12-21 15:39:54.026194', '2012-12-21 15:39:54.026194');
+INSERT INTO users VALUES (10, 'desy3@morganspa.com', 'DESY', 'Admin User 3', 1, 'School', NULL, true, 1, '2012-12-21 15:39:54.084753', '2012-12-21 15:39:54.084753');
+INSERT INTO users VALUES (11, 'desy4@morganspa.com', 'DESY', 'Admin User 4', 1, 'School', NULL, true, 1, '2012-12-21 15:39:54.144766', '2012-12-21 15:39:54.144766');
+INSERT INTO users VALUES (12, 'desy5@morganspa.com', 'DESY', 'Admin User 5', 1, 'School', NULL, true, 1, '2012-12-21 15:39:54.204831', '2012-12-21 15:39:54.204831');
+INSERT INTO users VALUES (13, 'desy6@morganspa.com', 'DESY', 'Admin User 6', 1, 'School', NULL, true, 1, '2012-12-21 15:39:54.264916', '2012-12-21 15:39:54.264916');
 
 
 --
