@@ -1229,15 +1229,28 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._commit', function() {
-    $('.form_error').removeClass("form_error");
     $('#video_editor_form').attr('action', '/videos/commit/new');
     $('#video_editor_form').submit();
   });
   
   $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._commit', function() {
-    $('.form_error').removeClass("form_error");
-    $('#video_editor_form').attr('action', '/videos/commit/overwrite');
-    $('#video_editor_form').submit();
+    if($('#info_container').data('used-in-private-lessons')) {
+      var captions = $('#popup_captions_container');
+      var title = captions.data('overwrite-media-element-editor-title');
+      var confirm = captions.data('overwrite-media-element-editor-confirm');
+      var yes = captions.data('overwrite-media-element-editor-yes');
+      var no = captions.data('overwrite-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        $('dialog-confirm').hide();
+        $('#video_editor_form').attr('action', '/videos/commit/overwrite');
+        $('#video_editor_form').submit();
+      }, function() {
+        closePopUp('dialog-confirm');
+      });
+    } else {
+      $('#video_editor_form').attr('action', '/videos/commit/overwrite');
+      $('#video_editor_form').submit();
+    }
   });
   
   $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._cancel', function() {

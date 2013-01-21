@@ -293,6 +293,10 @@ en:
     save_media_element_editor_confirm: 'Since the element you modified is private, you can overwrite it'
     save_media_element_editor_yes: 'Overwrite'
     save_media_element_editor_no: 'Save as new element'
+    overwrite_media_element_editor_title: 'This element is in use!'
+    overwrite_media_element_editor_confirm: 'If you overwrite it, it will be replaced in any private lesson containing it'
+    overwrite_media_element_editor_yes: 'Overwrite'
+    overwrite_media_element_editor_no: 'Cancel'
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'
