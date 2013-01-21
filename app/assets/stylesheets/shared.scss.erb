@@ -292,6 +292,11 @@ a.cerca.current {
   text-align: center;
   display:block;
 }
+
+
+
+/* (1) ELEMENTI ESTESI */
+
 .boxViewExpandedMediaElement {
   @include contentLayout;
   width:200px;
@@ -311,6 +316,7 @@ a.cerca.current {
     }
     .menuController {
       opacity:0.3;
+      font-size:55%;
 
     }
   }
@@ -344,42 +350,8 @@ a.cerca.current {
   
 }
 
-.boxNewMediaElement {
-  @include contentLayout;
-  width:200px;
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom:20px;
-  &:hover {
-    cursor: pointer;
-  }
-  .contentNew {
-    text-align:center; 
-    padding-top:120px;
-    height:154px;
-    background-color: #FBFAFB;
-    p {
-      font: 110% 'Nunito', sans-serif;
-      padding-top:40px;
-    }
-    
-    a.createButton {
-      background: url(<%= asset_path 'create.png' %>) top center no-repeat;
-      padding:50px;
-      &:hover {
-        background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
-        cursor: pointer;
-      }
-    }
-    a.current {
-      background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
-    }
-  }
-  .vuoto {
-    height:2.4em;
-    background-color:#fbfafb;
-  }
-}
+/* (2) ELEMENTI COMPATTI */
+
 .boxViewCompactMediaElement {
     width:100%;
     padding: 0;
@@ -389,8 +361,14 @@ a.cerca.current {
     float:left;
     &._disabled {
       opacity:0.3;
+      .menuController {
+        padding:0px; 
+        border-top:none;
+        background-color:transparent;
+        text-align:left;
+        
+      }
     }
-
     h3 {
       color:#41a62a;
       font-size: 90%;
@@ -435,6 +413,53 @@ a.cerca.current {
     text-align:left;
   }
 }
+
+
+
+
+
+
+
+
+
+
+.boxNewMediaElement {
+  @include contentLayout;
+  width:200px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom:20px;
+  &:hover {
+    cursor: pointer;
+  }
+  .contentNew {
+    text-align:center; 
+    padding-top:120px;
+    height:154px;
+    background-color: #FBFAFB;
+    p {
+      font: 110% 'Nunito', sans-serif;
+      padding-top:40px;
+    }
+    
+    a.createButton {
+      background: url(<%= asset_path 'create.png' %>) top center no-repeat;
+      padding:50px;
+      &:hover {
+        background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+        cursor: pointer;
+      }
+    }
+    a.current {
+      background: url(<%= asset_path 'create_white.png' %>) top center no-repeat;
+    }
+  }
+  .vuoto {
+    height:2.4em;
+    background-color:#fbfafb;
+  }
+}
+
 .mediaStatus {
   padding:5% 0 0 5%;
   color:#c0c0c0;
