@@ -353,7 +353,6 @@ class User < ActiveRecord::Base
     return lesson.save ? lesson : lesson.errors.messages
   end
   
-  
   def edit_fields(a_name, a_surname, a_school, a_school_level_id, a_location_id, subject_ids)
     errors.clear
     if subject_ids.class != Array || subject_ids.empty?
