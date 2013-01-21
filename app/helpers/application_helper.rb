@@ -1,11 +1,11 @@
 module ApplicationHelper
   
-  def media_elements_error_messages(errors)
-    msg = "<img src='/assets/puntoesclamativo.png' style='margin: 0 5px -3px 0' />"
-    errors.each do |key,val|
-      msg << "#{key.to_s}: #{val[0].to_s}, " 
+  def standard_form_error_messages(errors)
+    msg = "<img src='/assets/puntoesclamativo.png' style='margin: 0 5px -3px 0' /><span class=\"lower\">"
+    errors.each do |val|
+      msg << "#{val}; "
     end
-    return msg[0..-3].html_safe
+    return "#{msg[0..-3]}</span>".html_safe
   end
   
   def seconds_to_time(secs)

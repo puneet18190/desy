@@ -4,7 +4,7 @@
   tags_max = t('captions.tags_max', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
 
-<div id="form_info_new_media_element_in_editor" class="_<%= sti_type %> formInfoMediaElementEditor" style="display:none">
+<div id="form_info_new_media_element_in_editor" class="_<%= sti_type %> formInfoMediaElementEditor" style="display:none" data-title="<%= title_max %>" data-description="<%= description_max %>" data-tags="<%= tags_max %>">
   <div class="contentFormInfoMediaElementEditor">
     <div class="titleFormInfo">
       <div class="<%= sti_type.downcase %>Icon pull-left">&nbsp;</div>
@@ -12,19 +12,22 @@
       <br style="clear:float">
       <h2 class="pull-left"><%= t('captions.enter_new_media_element_details') %></h2>
     </div>
-    <div id="error_messages"></div>
+    <div class="error_messages"></div>
     <div class="cols" style="float:left">
       <%= text_field_tag 'new_title', title_max %>
+      <%= hidden_field_tag 'new_title_placeholder', '' %>
       <br>
       <%= text_area_tag 'new_description', description_max  %>
+      <%= hidden_field_tag 'new_description_placeholder', '' %>
     </div>
     <div class="cols" style="float:right">
       <%= text_area_tag 'new_tags', tags_max %>
+      <%= hidden_field_tag 'new_tags_placeholder', '' %>
     </div>
     <br class="clearfloat">
     <div class="cols" style="float:right">
-      <a class="_cancel buttonForm">cancel</a>
-      <a class="_commit buttonForm">save</a>
+      <a class="_cancel buttonForm"><%= t('captions.cancel') %></a>
+      <a class="_commit buttonForm"><%= t('captions.save') %></a>
     </div>
   </div>
 </div>
