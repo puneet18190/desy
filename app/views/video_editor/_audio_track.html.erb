@@ -14,10 +14,10 @@
 %>
 
 <div id="full_audio_track_placeholder_in_video_editor" data-duration="<%= duration %>" class="fltlft" style="<%= style_full %>">
-  <div class="audioButton current _show_audio_gallery_in_video_editor"></div>
+  <div class="audioButton current _show_audio_gallery_in_video_editor"  title="<%= t('general_titles.add_element_title') %>"></div>
   <div class="titleTrack _title"><%= title %><br/><%= string_duration %></div>
-  <div class="exitContent fltlft">
-    <a class="exitButton _remove">&nbsp;</a>
+  <div class="fltlft">
+    <a class="exitButton _remove" title="<%= t('general_titles.remove_element_title') %>">&nbsp;</a>
   </div>
 </div>
 

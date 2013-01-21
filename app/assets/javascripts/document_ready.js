@@ -772,6 +772,30 @@ $(document).ready(function() {
   });
   
   
+  // MEDIA ELEMENT EDITOR GENERAL FUNCTIONS
+  
+  $('body').on('focus', '#form_info_new_media_element_in_editor #new_title', function() {
+    if($('#form_info_new_media_element_in_editor #new_title_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_new_media_element_in_editor #new_title_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#form_info_new_media_element_in_editor #new_description', function() {
+    if($('#form_info_new_media_element_in_editor #new_description_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_new_media_element_in_editor #new_description_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#form_info_new_media_element_in_editor #new_tags', function() {
+    if($('#form_info_new_media_element_in_editor #new_tags_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_new_media_element_in_editor #new_tags_placeholder').attr('value', '0');
+    }
+  });
+  
+  
   // VIDEO EDITOR
   
   $('body').on('click', '#video_editor_preview_go_to_left_component', function() {
@@ -1205,18 +1229,33 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._commit', function() {
-    $('.form_error').removeClass("form_error");
     $('#video_editor_form').attr('action', '/videos/commit/new');
     $('#video_editor_form').submit();
   });
   
   $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._commit', function() {
-    $('.form_error').removeClass("form_error");
-    $('#video_editor_form').attr('action', '/videos/commit/overwrite');
-    $('#video_editor_form').submit();
+    if($('#info_container').data('used-in-private-lessons')) {
+      var captions = $('#popup_captions_container');
+      var title = captions.data('overwrite-media-element-editor-title');
+      var confirm = captions.data('overwrite-media-element-editor-confirm');
+      var yes = captions.data('overwrite-media-element-editor-yes');
+      var no = captions.data('overwrite-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        $('dialog-confirm').hide();
+        $('#video_editor_form').attr('action', '/videos/commit/overwrite');
+        $('#video_editor_form').submit();
+      }, function() {
+        closePopUp('dialog-confirm');
+      });
+    } else {
+      $('#video_editor_form').attr('action', '/videos/commit/overwrite');
+      $('#video_editor_form').submit();
+    }
   });
   
   $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._cancel', function() {
+    $('#video_editor_form').attr('action', '/videos/cache/save');
+    resetMediaElementEditorForms();
     if($('#video_editor_title ._titled').length > 0) {
       $('#video_editor_title ._titled').show();
       $('#video_editor_title ._untitled').hide();
@@ -1227,6 +1266,8 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._cancel', function() {
+    $('#video_editor_form').attr('action', '/videos/cache/save');
+    resetMediaElementEditorForms();
     $('._video_editor_bottom_bar').show();
     $('#video_editor #form_info_update_media_element_in_editor').hide();
     startCacheLoop();

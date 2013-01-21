@@ -14,10 +14,10 @@ class DashboardController < ApplicationController
   private
   
   def initialize_pagination
-    @lessons_for_page = CONFIG['lessons_for_page_in_dashboard']
-    @lesson_pages = CONFIG['lesson_pages_in_dashboard']
-    @media_elements_for_page = CONFIG['media_elements_for_page_in_dashboard']
-    @media_element_pages = CONFIG['media_element_pages_in_dashboard']
+    @lessons_for_page = SETTINGS['lessons_for_page_in_dashboard']
+    @lesson_pages = SETTINGS['lesson_pages_in_dashboard']
+    @media_elements_for_page = SETTINGS['media_elements_for_page_in_dashboard']
+    @media_element_pages = SETTINGS['media_element_pages_in_dashboard']
   end
   
 end

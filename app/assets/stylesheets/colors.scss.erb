@@ -1,4 +1,4 @@
-<% CONFIG["colors"].each do |key, value| %>
+<% SETTINGS["colors"].each do |key, value| %>
   $<%= key %>:<%= value['code'] %>;
   .color_<%= key %>{
     color: <%= value['code'] %>;

@@ -7,7 +7,7 @@ or ABC to enter text.</p>
     <div class="menuModifyImages">
     <ul>
       <li><a class="do_crop _toggle_crop cutButton" title="<%= t('general_titles.crop_element_title') %>"></a></li>
-      <li><a class="write_text _toggle_text abcButton"></a></li>
+      <li><a class="write_text _toggle_text abcButton" title="<%= t('general_titles.add_text_title') %>"></a></li>
     </ul>
     </div>
   </div>
@@ -48,7 +48,7 @@ or ABC to enter text.</p>
       <% save_class = "#{save_class} _updatable_image" %>
     <% end %>
     <div class="fltrt">
-      <div class="fltrt"><a class="<%= save_class %>" data-image-id="<%= @image.id %>"></a></div>
+      <div class="fltrt"><a class="<%= save_class %>" data-image-id="<%= @image.id %>" title="<%= t('general_titles.save_element_title') %>"></a></div>
     </div>
   <br class="clearfloat">
   </div>

@@ -37,7 +37,7 @@ html.media_element_editor-layout {
     
     .testo {
      padding-top:7px; 
-     width:700px; 
+     width:82%; 
      text-align:center;
     }
     
@@ -100,6 +100,10 @@ html.media_element_editor-layout {
           text-align:left;
         }
       }
+      .error_messages {
+        padding:15px 0 15px 0;
+        height:18px;
+      }
       .cols {
         padding-top:40px;
         text-align:left;
@@ -129,7 +133,7 @@ html.media_element_editor-layout {
         height: 106px;
       }
       textarea#new_tags, textarea#update_tags {
-        height:155px;
+        height:161px;
       }
       input[type="submit"] {
         font: 130% 'Nunito', sans-serif;
@@ -180,12 +184,6 @@ html.media_element_editor-layout {
     }
   }
 
-
-
-
-
-
-
   /*VIDEO EDITOR*/
   #video_editor #form_info_new_media_element_in_editor.formInfoMediaElementEditor, #video_editor #form_info_update_media_element_in_editor.formInfoMediaElementEditor{
     top:0;
@@ -196,7 +194,7 @@ html.media_element_editor-layout {
     width:984px;
     display:inline-block;
     position:relative;
-    margin-top:36px;
+    margin-top:40px;
     
     .contentVideo {
       background-color:#000;
@@ -253,7 +251,7 @@ html.media_element_editor-layout {
     .mediaEditorListaElementi {
       /*position:absolute; */
       width:906px;
-      margin-left:40px;
+      margin-left:36px;
       position:relative;
     }
     
@@ -270,6 +268,10 @@ html.media_element_editor-layout {
       .bottoniVerdi {
         margin-top:10px; 
         margin-bottom:30px;
+        a {
+          display:block;
+          width:68px;
+        }
         a.disabled {
           color:#303130;
           background-color:#494948;
@@ -427,6 +429,7 @@ html.media_element_editor-layout {
         &:hover, &.current {
           background-position: 0 (-$icon-size);
           opacity:1;
+          
         }
       }
     }
@@ -670,6 +673,33 @@ html.media_element_editor-layout {
     float:left;
     padding-top:8px;
     width:900px;
+    a.creaNuovoButton {
+      font-size: 0.6em;
+      float:left;
+      padding:0;
+      background-image: url(<%= asset_path 'action-fotogramma.svg' %>);
+      background-repeat: no-repeat;
+      background-size: 12em 18em;
+      background-position: -6em -6em;
+      &:hover {
+        background-position: 0 -6em;
+        opacity:1;
+      }
+    }
+    a.closeButton {
+      font-size: 0.6em;
+      float:left;
+      padding:0;
+      opacity: 0.2;
+      background-image: url(<%= asset_path 'action-fotogramma.svg' %>);
+      background-repeat: no-repeat;
+      background-size: 12em 18em;
+      background-position:-6em 0;
+      &:hover {
+        opacity: 1;
+        background-position: 0em 0;
+      };
+    }
     .titleTrack {
       text-align:left;
       padding:5px 10px;
@@ -681,20 +711,26 @@ html.media_element_editor-layout {
       background-position: -5.2em -5.3em;
       opacity:0.2;
       float:left;
+
     }
     .audioButton:hover {
       background-position: 0.3em -5.3em;
       opacity:1;
     }
     .audioButton.current {
+      font-size: 0.7em;
       background-position: 0.3em -5.3em;
       opacity:1;
       float:left;
+      
     }
     a.exitButton {
       opacity:0.5;
       background-position: -9em 0;
-  }
+      &:hover {
+        background-position: 0 0;  
+      };
+    }
     p {
       padding:5px 0px 0px 5px;
       float:left;
@@ -1167,7 +1203,8 @@ html.media_element_editor-layout {
 ._video_editor_component_menu:hover {
   cursor: default;
 }
-
-.form_error,textarea.form_error,input.form_error{
+/*.form_error,textarea.form_error,input.form_error{
   border: 3px solid rgba(250, 0, 0, 0.5) !important;
-}
+}*/
+
+

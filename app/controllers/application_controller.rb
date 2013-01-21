@@ -104,7 +104,7 @@ class ApplicationController < ActionController::Base
   def initialize_layout
     @delete_item = params[:delete_item]
     if !request.xhr?
-      @notifications = current_user.notifications_visible_block 0, CONFIG['notifications_loaded_together']
+      @notifications = current_user.notifications_visible_block 0, SETTINGS['notifications_loaded_together']
       @new_notifications = current_user.number_notifications_not_seen
       @offset_notifications = @notifications.length
       @tot_notifications = current_user.tot_notifications_number
@@ -141,8 +141,35 @@ class ApplicationController < ActionController::Base
     @ok = @ok && condition
   end
   
+  def convert_item_error_messages(errors)
+    resp = []
+    flag = true
+    errors.each do |k, v|
+      v.each do |single_error|
+        if flag && single_error == "can't be blank" || !(single_error =~ /is too long/).nil? || !(single_error =~ /is too short/).nil?
+          flag = false
+          resp << t('error_captions.fill_all_the_fields_or_too_long')
+        end
+      end
+    end
+    flag = false
+    if errors.has_key? :tags
+      errors[:tags].each do |v|
+        if !flag && v == 'are not enough'
+          flag = true
+          resp << t('error_captions.tags_are_not_enough')
+        end
+      end
+    end
+    resp
+  end
+  
   def logged_in?
     current_user
+  end
+  
+  def logga(x)
+    logger.info "\n\n\n\nErrore loggato: #{x}\n\n\n\n"
   end
   
 end

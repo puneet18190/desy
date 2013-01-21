@@ -27,9 +27,9 @@ to_delete.hide('fade', {}, 500, function() {
     $('#media_elements_in_dashboard').show();
     $('#switch_to_media_elements').addClass('current');
     $('#switch_to_lessons').removeClass('current');
-    reloadMediaElementsDashboardPagination(media_elements_page, <%= (@media_elements.length.to_f / CONFIG['media_elements_for_page_in_dashboard']).ceil %>);
+    reloadMediaElementsDashboardPagination(media_elements_page, <%= (@media_elements.length.to_f / SETTINGS['media_elements_for_page_in_dashboard']).ceil %>);
   } else {
-    reloadLessonsDashboardPagination(lessons_page, <%= (@lessons.length.to_f / CONFIG['lessons_for_page_in_dashboard']).ceil %>);
+    reloadLessonsDashboardPagination(lessons_page, <%= (@lessons.length.to_f / SETTINGS['lessons_for_page_in_dashboard']).ceil %>);
   }
 });
 
