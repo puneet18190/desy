@@ -144,7 +144,8 @@ CREATE TABLE lessons (
     copied_not_modified boolean NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    token character varying(20)
+    token character varying(20),
+    available boolean DEFAULT true NOT NULL
 );
 
 
@@ -1427,4 +1428,4 @@ INSERT INTO schema_migrations (version) VALUES ('20121207091234');
 
 INSERT INTO schema_migrations (version) VALUES ('20130115155629');
 
-INSERT INTO schema_migrations (version) VALUES ('30000000000000');
+INSERT INTO schema_migrations (version) VALUES ('20130121130513');
