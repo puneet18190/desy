@@ -145,7 +145,7 @@ CREATE TABLE lessons (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     token character varying(20),
-    available boolean DEFAULT true NOT NULL
+    metadata text
 );
 
 

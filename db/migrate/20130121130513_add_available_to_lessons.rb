@@ -1,5 +1,5 @@
 class AddAvailableToLessons < ActiveRecord::Migration
   def change
-    add_column :lessons, :available, :boolean, :default => true, :null => false
+    add_column :lessons, :metadata, :text
   end
 end

@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(:version => 20130121130513) do
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.string   "token",               :limit => 20
-    t.boolean  "available",                         :default => true,  :null => false
+    t.text     "metadata"
     t.index ["parent_id"], :name => "fk__lessons_parent_id", :order => {"parent_id" => :asc}
     t.index ["school_level_id"], :name => "fk__lessons_school_level_id", :order => {"school_level_id" => :asc}
     t.index ["subject_id"], :name => "fk__lessons_subject_id", :order => {"subject_id" => :asc}

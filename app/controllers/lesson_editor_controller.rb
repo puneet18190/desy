@@ -1,5 +1,6 @@
 class LessonEditorController < ApplicationController
   
+  before_filter :check_available_for_user
   before_filter :initialize_lesson_with_owner, :only => [:index, :update, :edit]
   before_filter :initialize_subjects, :only => [:new, :edit]
   before_filter :initialize_lesson_with_owner_and_slide, :only => [:add_slide, :save_slide, :delete_slide, :change_slide_position]
@@ -82,6 +83,14 @@ class LessonEditorController < ApplicationController
   end
   
   private
+  
+  def check_available_for_user
+    l = Lesson.find_by_id params[:lesson_id]
+    if l && !l.available
+      render 'not_available'
+      return
+    end
+  end
   
   def initialize_kind
     @kind = Slide::KINDS_WITHOUT_COVER.include?(params[:kind]) ? params[:kind] : ''

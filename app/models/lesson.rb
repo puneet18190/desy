@@ -7,6 +7,8 @@ class Lesson < ActiveRecord::Base
   attr_reader :status, :is_reportable
   attr_writer :tags
   
+  serialize :metadata, OpenStruct
+  
   belongs_to :user
   belongs_to :subject
   belongs_to :school_level
@@ -22,7 +24,7 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description, :token
   validates_numericality_of :user_id, :school_level_id, :subject_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :parent_id, :only_integer => true, :greater_than => 0, :allow_nil => true
-  validates_inclusion_of :is_public, :copied_not_modified, :available, :in => [true, false]
+  validates_inclusion_of :is_public, :copied_not_modified, :in => [true, false]
   validates_length_of :title, :maximum => I18n.t('language_parameters.lesson.length_title')
   validates_length_of :description, :maximum => I18n.t('language_parameters.lesson.length_description')
   validates_length_of :token, :is => 20
@@ -32,6 +34,17 @@ class Lesson < ActiveRecord::Base
   after_save :create_or_update_cover, :update_or_create_tags
   
   before_validation :init_validation, :create_token
+  
+  before_create :initialize_metadata
+  
+  def initialize_metadata
+    self.metadata.available_video = true
+    self.metadata.available_audio = true
+  end
+  
+  def available
+    self.metadata.available_video && self.metadata.available_audio
+  end
   
   def tags
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'Lesson')
