@@ -260,7 +260,9 @@ $(document).ready(function() {
   
   $('body').on('click','._video_gallery_thumb', function(e) {
     e.preventDefault();
-    showVideoInGalleryPopUp($(this).data('video-id'));
+    if(!$(this).hasClass('_disabled')) {
+      showVideoInGalleryPopUp($(this).data('video-id'));
+    }
   });
   
   $('body').on('click', '._audio_gallery_thumb ._compact', function(e) {
