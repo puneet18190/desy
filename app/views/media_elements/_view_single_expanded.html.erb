@@ -10,7 +10,7 @@
     <%= media_element.status %>
   </div>
   <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination} %>
-  <% if !media_element.converted.nil? %>
+  <% if media_element.image? || !media_element.converted.nil? %>
     <%= render :partial => "media_elements/popup", :locals => {:media_element => media_element} %>
   <% end %>
 </div>
