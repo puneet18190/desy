@@ -146,18 +146,20 @@ html.prelogin-layout {
     }
   }
 }
-.registration-action .container {
-  background-color: #2eaadc;
-  .header .headerMenu {
-    background-color:#000;
-    a {
-      color: white;
+.registration-action, .users-controller.create-action {
+  .container {
+    background-color: #2eaadc;
+    .header .headerMenu {
+      background-color:#000;
+      a {
+        color: white;
+      }
     }
-  }  
-  .containerText {
-    background: url(<%= asset_path 'bg_register.png' %>) top left no-repeat;
-    padding:140px 20px 20px 290px;
-    font-family: 'Nunito', sans-serif;
+    .containerText {
+      background: url(<%= asset_path 'bg_register.png' %>) top left no-repeat;
+      padding:140px 20px 20px 290px;
+      font-family: 'Nunito', sans-serif;
+    }
   }
 }
 .what_is_desy-action .container {
