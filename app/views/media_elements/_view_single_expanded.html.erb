@@ -10,7 +10,9 @@
     <%= media_element.status %>
   </div>
   <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination} %>
-  <%= render :partial => "media_elements/popup", :locals => {:media_element => media_element} %>
+  <% if !media_element.converted.nil? %>
+    <%= render :partial => "media_elements/popup", :locals => {:media_element => media_element} %>
+  <% end %>
 </div>
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){

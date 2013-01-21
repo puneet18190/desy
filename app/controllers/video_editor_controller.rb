@@ -2,6 +2,7 @@ require 'media/video/editing/composer/job'
 
 class VideoEditorController < ApplicationController
   
+  before_filter :check_available_for_user
   before_filter :initialize_video_with_owner_or_public, :only => :edit
   before_filter :extract_cache, :only => [:edit, :new, :restore_cache]
   layout 'media_element_editor'
@@ -68,7 +69,6 @@ class VideoEditorController < ApplicationController
         :user_id => current_user.id
       }
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
-      current_user.empty_video_editor_cache
     else
       @error_ids = 'new'
       @errors = convert_item_error_messages(errors)
@@ -96,8 +96,8 @@ class VideoEditorController < ApplicationController
         :description => params[:update_description],
         :tags => params[:update_tags]
       }
+      initial_video_test.disable_lessons_containing_me
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
-      current_user.empty_video_editor_cache
     else
       @error_ids = 'update'
       @errors = convert_item_error_messages(initial_video_test.errors.messages)
@@ -111,6 +111,13 @@ class VideoEditorController < ApplicationController
   def used_in_private_lessons
     return false if @parameters[:initial_video].nil?
     @parameters[:initial_video].media_elements_slides.any?
+  end
+  
+  def check_available_for_user
+    if !current_user.video_editor_available
+      render 'not_available'
+      return
+    end
   end
   
   def extract_single_form_parameter(p, value)

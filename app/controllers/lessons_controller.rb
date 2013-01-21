@@ -2,6 +2,7 @@ class LessonsController < ApplicationController
   
   FOR_PAGE = SETTINGS['compact_lesson_pagination']
   
+  before_filter :check_available_for_user, :only => [:copy, :publish]
   before_filter :initialize_lesson, :only => [:add, :copy, :like, :remove, :dislike]
   before_filter :initialize_lesson_with_owner, :only => [:destroy, :publish, :unpublish]
   before_filter :initialize_layout, :initialize_paginator, :only => :index
@@ -167,6 +168,14 @@ class LessonsController < ApplicationController
   end
   
   private
+  
+  def check_available_for_user
+    l = Lesson.find_by_id params[:lesson_id]
+    if l && !l.available
+      render :nothing => true
+      return
+    end
+  end
   
   def get_own_lessons
     current_user_own_lessons = current_user.own_lessons(@page, @for_page, @filter)

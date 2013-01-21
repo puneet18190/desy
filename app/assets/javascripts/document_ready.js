@@ -413,49 +413,63 @@ $(document).ready(function() {
   // MEDIA ELEMENT BUTTONS
   
   $('body').on('click', '._Video_button_add, ._Audio_button_add, ._Image_button_add', function(e) {
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    var reload = $(this).data('reload');
-    var current_url = $('#info_container').data('currenturl');
-    addMediaElement(my_param, destination, current_url, reload);
+    if($(this).parent().hasClass('_enabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var reload = $(this).data('reload');
+      var current_url = $('#info_container').data('currenturl');
+      addMediaElement(my_param, destination, current_url, reload);
+    }
   });
   
   $('body').on('click', '._Video_button_destroy, ._Audio_button_destroy, ._Image_button_destroy', function(e) {
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    var current_url = $('#info_container').data('currenturl');
-    destroyMediaElement(my_param, destination, current_url);
+    if($(this).parent().hasClass('_enabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var current_url = $('#info_container').data('currenturl');
+      destroyMediaElement(my_param, destination, current_url);
+    }
   });
   
   $('body').on('click', '._Video_button_preview, ._Audio_button_preview, ._Image_button_preview', function(e) {
-    var my_param = $(this).data('clickparam');
-    showMediaElementInfoPopUp(my_param);
+    if($(this).parent().hasClass('_enabled')) {
+      var my_param = $(this).data('clickparam');
+      showMediaElementInfoPopUp(my_param);
+    }
   });
   
   $('body').on('click', '._Video_button_edit', function(e) {
-    e.preventDefault();
-    var video_id = $(this).data('clickparam');
-    window.location = '/videos/' + video_id + '/edit';
-    return false;
+    if($(this).parent().hasClass('_enabled')) {
+      e.preventDefault();
+      var video_id = $(this).data('clickparam');
+      window.location = '/videos/' + video_id + '/edit';
+      return false;
+    }
   });
   
   $('body').on('click', '._Audio_button_edit', function(e) {
-    alert('ancora non abbiamo editor di audio');
+    if($(this).parent().hasClass('_enabled')) {
+      alert('ancora non abbiamo editor di audio');
+    }
   });
   
   $('body').on('click', '._Image_button_edit', function(e) {
-    e.preventDefault();
-    var image_id = $(this).data('clickparam');
-    window.location = '/images/' + image_id + '/edit';
-    return false;
+    if($(this).parent().hasClass('_enabled')) {
+      e.preventDefault();
+      var image_id = $(this).data('clickparam');
+      window.location = '/images/' + image_id + '/edit';
+      return false;
+    }
   });
   
   $('body').on('click', '._Video_button_remove, ._Audio_button_remove, ._Image_button_remove', function(e) {
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    var reload = $(this).data('reload');
-    var current_url = $('#info_container').data('currenturl');
-    removeMediaElement(my_param, destination, current_url, reload);
+    if($(this).parent().hasClass('_enabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var reload = $(this).data('reload');
+      var current_url = $('#info_container').data('currenturl');
+      removeMediaElement(my_param, destination, current_url, reload);
+    }
   });
   
   
