@@ -26,7 +26,11 @@ class SearchController < ApplicationController
     if @tag.class == Fixnum
       @tag = Tag.find_by_id(@tag)
       @tag_placeholder = params[:tag]
-      @tags = Tag.where('word LIKE ?', "#{@tag_placeholder}%")
+      if @tag_placeholder.blank?
+        @tags = [@tag]
+      else
+        @tags = Tag.where('word LIKE ?', "#{@tag_placeholder}%") 
+      end
     end
     render_js_or_html_index
   end
