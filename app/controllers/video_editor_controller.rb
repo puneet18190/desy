@@ -10,6 +10,7 @@ class VideoEditorController < ApplicationController
     if @ok
       @parameters = convert_video_to_parameters
       @total_length = Video.total_prototype_time(@parameters)
+      @used_in_private_lessons = used_in_private_lessons
     else
       redirect_to dashboard_path
       return
@@ -19,6 +20,7 @@ class VideoEditorController < ApplicationController
   def new
     @parameters = empty_parameters
     @total_length = Video.total_prototype_time(@parameters)
+    @used_in_private_lessons = used_in_private_lessons
     render :edit
   end
   
@@ -26,6 +28,7 @@ class VideoEditorController < ApplicationController
     @parameters = @cache.nil? ? empty_parameters : @cache
     @cache = nil
     @total_length = Video.total_prototype_time(@parameters)
+    @used_in_private_lessons = used_in_private_lessons
     render :edit
   end
   
@@ -104,6 +107,11 @@ class VideoEditorController < ApplicationController
   end
   
   private
+  
+  def used_in_private_lessons
+    return false if @parameters[:initial_video].nil?
+    @parameters[:initial_video].media_elements_slides.any?
+  end
   
   def extract_single_form_parameter(p, value)
     if ['type', 'content', 'background_color', 'text_color'].include? p
