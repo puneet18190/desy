@@ -51,7 +51,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !uu.destroy_with_dependencies
     assert_equal 1, uu.errors.messages[:base].length
     assert_match /The user could not be deleted/, uu.errors.messages[:base].first
-    resp = User.create_user(SETTINGS['admin_email'], 'oo', 'fsg', 'asf', 1, 1, [1, 2])
+    resp = User.create_user(SETTINGS['admin']['email'], 'oo', 'fsg', 'asf', 1, 1, [1, 2])
     assert !resp.nil?
     x = User.find 1
     lessons = Lesson.where(:user_id => 1)

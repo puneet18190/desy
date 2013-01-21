@@ -16,9 +16,6 @@ class PreloginController < ApplicationController
     @subjects         = Subject.order(:description)
   end
   
-  def create_registration
-  end
-  
   def what_is_desy
   end
   
