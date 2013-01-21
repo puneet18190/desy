@@ -1,6 +1,10 @@
 <div style="position:relative;">
-  <%= image_tag item.thumb_url %>
-  <div class="bulletPointVideo">
-    <%= image_tag 'bullet_video.svg', :style => "width:40%" %>
-  </div>
+  <% if item.converted.nil? %>
+    <%= image_tag item.placeholders_url(:thumb) %>
+  <% else %>
+    <%= image_tag item.thumb_url %>
+    <div class="bulletPointVideo">
+      <%= image_tag 'bullet_video.svg', :style => "width:40%" %>
+    </div>
+  <% end %>
 </div>

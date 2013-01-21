@@ -2,6 +2,7 @@ require 'media/video/editing/composer/job'
 
 class VideoEditorController < ApplicationController
   
+  before_filter :check_available_for_user
   before_filter :initialize_video_with_owner_or_public, :only => :edit
   before_filter :extract_cache, :only => [:edit, :new, :restore_cache]
   layout 'media_element_editor'
@@ -111,6 +112,13 @@ class VideoEditorController < ApplicationController
   def used_in_private_lessons
     return false if @parameters[:initial_video].nil?
     @parameters[:initial_video].media_elements_slides.any?
+  end
+  
+  def check_available_for_user
+    if !current_user.video_editor_available
+      render 'not_available'
+      return
+    end
   end
   
   def extract_single_form_parameter(p, value)

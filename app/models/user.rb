@@ -80,6 +80,10 @@ class User < ActiveRecord::Base
     "#{self.name} #{self.surname}"
   end
   
+  def video_editor_available
+    Video.where('converted IS NULL AND user_id = ?', self.id).empty?
+  end
+  
   def empty_video_editor_cache
     return false if self.new_record?
     cache = Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml")
