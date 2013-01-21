@@ -67,7 +67,7 @@ class VideoEditorController < ApplicationController
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
       current_user.empty_video_editor_cache
     else
-      @error_ids = '#new'
+      @error_ids = 'new'
       @errors = convert_item_error_messages(errors)
       @error_fields = errors.keys
     end
@@ -82,9 +82,9 @@ class VideoEditorController < ApplicationController
       return
     end
     initial_video_test = Video.find_by_id parameters[:initial_video]
-    initial_video_test.title = params[:update_title_placeholder] != '0' ? '' : params[:update_title]
-    initial_video_test.description = params[:update_description_placeholder] != '0' ? '' : params[:update_description]
-    initial_video_test.tags = params[:update_tags_placeholder] != '0' ? '' : params[:update_tags]
+    initial_video_test.title = params[:update_title]
+    initial_video_test.description = params[:update_description]
+    initial_video_test.tags = params[:update_tags]
     if initial_video_test.valid?
       parameters[:initial_video] = {
         :id => parameters[:initial_video],
@@ -95,11 +95,11 @@ class VideoEditorController < ApplicationController
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
       current_user.empty_video_editor_cache
     else
-      @error_ids = '#update'
+      @error_ids = 'update'
       @errors = convert_item_error_messages(initial_video_test.errors.messages)
       @error_fields = initial_video_test.errors.messages.keys
-      render 'save'
     end
+    render 'save'
   end
   
   private

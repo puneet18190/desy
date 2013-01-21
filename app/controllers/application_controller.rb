@@ -142,7 +142,16 @@ class ApplicationController < ActionController::Base
   end
   
   def convert_item_error_messages(errors)
-    resp = [t('error_captions.fill_all_the_fields_or_too_long')]
+    resp = []
+    flag = true
+    errors.each do |k, v|
+      v.each do |single_error|
+        if flag && single_error == "can't be blank" || !(single_error =~ /is too long/).nil? || !(single_error =~ /is too short/).nil?
+          flag = false
+          resp << t('error_captions.fill_all_the_fields_or_too_long')
+        end
+      end
+    end
     flag = false
     if errors.has_key? :tags
       errors[:tags].each do |v|
@@ -157,6 +166,10 @@ class ApplicationController < ActionController::Base
   
   def logged_in?
     current_user
+  end
+  
+  def logga(x)
+    logger.info "\n\n\n\nErrore loggato: #{x}\n\n\n\n"
   end
   
 end
