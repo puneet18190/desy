@@ -310,11 +310,7 @@ $button-size: 6em;
   &:hover {
     cursor: pointer;
   }
-  &.exitButton {
-    font-size: 0.3em;
-    background-position: (-$button-size*2) 0;
-    opacity:0.2;
-  }
+  
   
  }
  /*FINE MENU*/
@@ -326,6 +322,9 @@ $button-size: 6em;
   }
   .exitButton {
    @include buttonExitElement;
+   font-size: 0.3em;
+   background-position: (-$button-size*2) 0;
+   opacity:0.2;
  }
  @mixin addElementInGallery {
   $button-size: 2em;
