@@ -6,6 +6,7 @@ admin:
   name: 'DESY'
   surname: 'Admin User'
   email: 'desy@morganspa.com'
+  password: 'desymorgan'
 # TAGS
 min_tag_length: 1
 max_tag_length: 25
