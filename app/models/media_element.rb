@@ -30,7 +30,6 @@ class MediaElement < ActiveRecord::Base
   has_many :taggings, :as => :taggable, :dependent => :delete_all
   belongs_to :user
   
-  # FIXME aggiungere :media a validates_presence_of una volta implementati tutti gli upload
   validates_presence_of :user_id, :title, :description, :media
   validates_inclusion_of :is_public, :in => [true, false]
   validates_inclusion_of :sti_type, :in => STI_TYPES
@@ -69,7 +68,11 @@ class MediaElement < ActiveRecord::Base
   def disable_lessons_containing_me
     MediaElementsSlide.where(:media_element_id => self.id).each do |mes|
       l = mes.slide.lesson
-      l.available = false
+      if self.video?
+        l.metadata.available_video = false
+      elsif self.audio?
+        l.metadata.available_audio = false
+      end
       l.save
     end
   end
@@ -77,7 +80,11 @@ class MediaElement < ActiveRecord::Base
   def enable_lessons_containing_me
     MediaElementsSlide.where(:media_element_id => self.id).each do |mes|
       l = mes.slide.lesson
-      l.available = true
+      if self.video?
+        l.metadata.available_video = true
+      elsif self.audio?
+        l.metadata.available_audio = true
+      end
       l.save
     end
   end
