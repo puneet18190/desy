@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20130121130513) do
     t.string   "surname",            :null => false
     t.integer  "school_level_id",    :null => false
     t.string   "school",             :null => false
-    t.string   "encrypted_password"
+    t.string   "encrypted_password", :null => false
     t.boolean  "confirmed",          :null => false
     t.integer  "location_id",        :null => false
     t.datetime "created_at",         :null => false

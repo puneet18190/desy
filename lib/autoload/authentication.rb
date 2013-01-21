@@ -8,6 +8,7 @@ module Authentication
     def authenticate(email, password)
       return false if email.blank? || password.blank?
       user = confirmed.where(email: email).first
+      # and user: in order to return the user
       user.try(:valid_password?, password) and user
     end
 

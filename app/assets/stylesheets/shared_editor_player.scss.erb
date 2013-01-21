@@ -269,12 +269,10 @@ $button-size: 6em;
     background-size: ($button-size*4) ($button-size*10);
     padding:2.3em 3em;
     font-size:0.7em;
-  
   }
   &:hover {
     cursor: pointer;
   }
-  
 }
 .cutButton {
   @include menuEditImages;
@@ -310,13 +308,7 @@ $button-size: 6em;
   &:hover {
     cursor: pointer;
   }
-  &.exitButton {
-    font-size: 0.3em;
-    background-position: (-$button-size*2) 0;
-    opacity:0.2;
-  }
-  
- }
+}
  /*FINE MENU*/
  .exitContent {
     padding-top:7px;
@@ -326,6 +318,9 @@ $button-size: 6em;
   }
   .exitButton {
    @include buttonExitElement;
+   font-size: 0.3em;
+   background-position: (-$button-size*2) 0;
+   opacity:0.2;
  }
  @mixin addElementInGallery {
   $button-size: 2em;
@@ -371,50 +366,48 @@ a.addButtonContent {
   background-image: url(<%= asset_path 'x.svg' %>);
   background-repeat: no-repeat;
   background-size: 23.8em 3.4em;
-  background-position: -7.3em 0em;
+  background-position: -7.1em 0em;
   float:right;
-  font-size:0.6em;
+  font-size:0.5em;
   width: 3em;
   height: 3em;
   &:hover {
-    background-position: -10.7em 0em;
+    background-position: -10.5em 0em;
   };
 } 
 .nextButton {
   background-image: url(<%= asset_path 'next.svg' %>);
-    background-repeat: no-repeat;
-    background-size: 12em 6em;
-    background-position: 0em 0em;
-    padding:0;
+  background-repeat: no-repeat;
+  background-size: 12em 6em;
+  background-position: 0em 0em;
+  padding:0;
+  font-size:0.6em;
+  width: 6em;
+  float:right;
+  height: 6em;
+  opacity: 0.2;
+  &:hover {
+    background-position: -6.1em 0em;
     font-size:0.6em;
-    width: 6em;
-    float:right;
-    height: 6em;
-    opacity: 0.2;
-
-    &:hover {
-      background-position: -6.1em 0em;
-      font-size:0.6em;
-      opacity:1;
-    };
+    opacity:1;
+  };
 }
 .okButtonContent {
-    width: 6.2em;
-    height: 6.3em;
-    background-image: url(/assets/v.svg);
-    background-repeat: no-repeat;
-    background-size: 14em 7em;
-    background-position: 0 0;
-    padding: 0;
-    opacity: 0.5;
-    margin-top: 5px;
-    font-size:0.6em;
-
-    &:hover {
-      opacity:1;
-      background-position: -7.1em 0em;
-    };
-  } 
+  width: 6.2em;
+  height: 6.3em;
+  background-image: url(/assets/v.svg);
+  background-repeat: no-repeat;
+  background-size: 14em 7em;
+  background-position: 0 0;
+  padding: 0;
+  opacity: 0.5;
+  margin-top: 5px;
+  font-size:0.6em;
+  &:hover {
+    opacity:1;
+    background-position: -7.1em 0em;
+  };
+} 
  /* TINYMCE SIZES */
  .size1{
    font-size: 120%;

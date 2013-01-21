@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
 
-  attr_accessible :password, :password_confirmation, :name, :surname, :school_level_id, :school, :location_id
+  attr_accessible :password, :password_confirmation, :name, :surname, :school_level_id, :school, :location_id, :subject_ids
   
   has_many :bookmarks
   has_many :notifications
@@ -33,18 +33,18 @@ class User < ActiveRecord::Base
 
   class << self
     def admin
-      find_by_email SETTINGS['admin_email']
+      find_by_email SETTINGS['admin']['email']
     end
 
     def create_user(email, password, password_confirmation, name, surname, school, school_level_id, location_id, subject_ids, confirmed = false, raise_exception_if_fail = false)
       return nil if !subject_ids.instance_of?(Array) || subject_ids.empty?
-      new_user = User.new :name                  => name, 
-                          :surname               => surname, 
-                          :school_level_id       => school_level_id, 
-                          :school                => school, 
-                          :location_id           => location_id,
-                          :password              => password,
-                          :password_confirmation => password_confirmation
+      new_user = new :name                  => name, 
+                     :surname               => surname, 
+                     :school_level_id       => school_level_id, 
+                     :school                => school, 
+                     :location_id           => location_id,
+                     :password              => password,
+                     :password_confirmation => password_confirmation
       new_user.email = email
       new_user.confirmed = confirmed
       ActiveRecord::Base.transaction do
@@ -425,7 +425,7 @@ class User < ActiveRecord::Base
         end
         MediaElement.where(:user_id => self.id).each do |me|
           if me.is_public
-            me.user_id = User.find_by_email(SETTINGS['admin_email']).id
+            me.user_id = self.class.admin.id
             if !me.save
               errors.add(:base, :problems_destroying)
               raise ActiveRecord::Rollback
