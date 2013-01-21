@@ -79,6 +79,7 @@ class VideoEditorController < ApplicationController
     if parameters.nil?
       current_user.empty_video_editor_cache
       @redirect = true
+      render 'save'
       return
     end
     initial_video_test = Video.find_by_id parameters[:initial_video]
