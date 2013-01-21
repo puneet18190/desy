@@ -66,6 +66,22 @@ class MediaElement < ActiveRecord::Base
     alias_method_chain :new, :sti_type_inferring
   end
   
+  def disable_lessons_containing_me
+    MediaElementsSlide.where(:media_element_id => self.id).each do |mes|
+      l = mes.slide.lesson
+      l.available = false
+      l.save
+    end
+  end
+  
+  def enable_lessons_containing_me
+    MediaElementsSlide.where(:media_element_id => self.id).each do |mes|
+      l = mes.slide.lesson
+      l.available = true
+      l.save
+    end
+  end
+  
   def self.extract(media_element_id, an_user_id, my_sti_type)
     media_element = MediaElement.find_by_id media_element_id
     return nil if media_element.nil? || media_element.sti_type != my_sti_type

@@ -69,7 +69,6 @@ class VideoEditorController < ApplicationController
         :user_id => current_user.id
       }
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
-      current_user.empty_video_editor_cache
     else
       @error_ids = 'new'
       @errors = convert_item_error_messages(errors)
@@ -97,8 +96,8 @@ class VideoEditorController < ApplicationController
         :description => params[:update_description],
         :tags => params[:update_tags]
       }
+      initial_video_test.disable_lessons_containing_me
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
-      current_user.empty_video_editor_cache
     else
       @error_ids = 'update'
       @errors = convert_item_error_messages(initial_video_test.errors.messages)
