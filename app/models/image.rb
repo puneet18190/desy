@@ -46,8 +46,8 @@ class Image < MediaElement
   
   def enter_edit_mode(user_id)
     @edit_mode = user_id
-    ed_path = "#{self.media.folder}/editing/user_#{@edit_mode}"
-    FileUtils.mkdir_p(ed_path) if !Dir.exists?(ed_path)
+    ed_dir = "#{self.media.folder}/editing/user_#{@edit_mode}"
+    FileUtils.mkdir_p(ed_dir) if !Dir.exists?(ed_dir)
     curr_path = current_editing_image
     FileUtils.cp(self.media.path, curr_path) if !File.exists?(curr_path)
     true
@@ -55,8 +55,8 @@ class Image < MediaElement
   
   def leave_edit_mode
     return false if !self.in_edit_mode?
-    ed_path = "#{self.media.folder}/editing/user_#{@edit_mode}"
-    FileUtils.rm_r(ed_path) if Dir.exists?(ed_path)
+    ed_dir = "#{self.media.folder}/editing/user_#{@edit_mode}"
+    FileUtils.rm_r(ed_dir) if Dir.exists?(ed_dir)
     @edit_mode = nil
     true
   end
@@ -93,28 +93,14 @@ class Image < MediaElement
   end
   
   def crop(x1, y1, x2, y2, user_id)
-    return false if !self.in_edit_mode?
-    
-    
-    
-    img_path = self.temporary_editing_image
-
-      FileUtils.mkdir_p(ed_path) unless Dir.exists? ed_path
-      img = MiniMagick::Image.open(self.media.path)
-      width = self.width
-      height = self.height
-    else
-      img = MiniMagick::Image.open(img_path)
-      width = img[:width]
-      height = img[:height]
-    end
-    woh = Image.width_or_height(width, height)
-    x1 = Image.ratio_value(woh[1], x1, woh[0])
-    y1 = Image.ratio_value(woh[1], y1, woh[0])
-    x2 = Image.ratio_value(woh[1], x2, woh[0])
-    y2 = Image.ratio_value(woh[1], y2, woh[0])
-    resp = Media::Image::Editing::Crop.new(img_path, img, ed_path, x1, y1, x2, y2).run
-    return "#{ed_url}/#{resp}"
+    return false if !self.in_edit_mode? || !self.save_editing_prev
+    img = MiniMagick::Image.open self.current_editing_image
+    x1 = Image.ratio_value img[:width], img[:height], x1
+    y1 = Image.ratio_value img[:width], img[:height], y1
+    x2 = Image.ratio_value img[:width], img[:height], x2
+    y2 = Image.ratio_value img[:width], img[:height], y2
+    Media::Image::Editing::Crop.new(img_path, img, ed_path, x1, y1, x2, y2).run
+    true
   end
   
   def self.ratio_value(w, h, value)
