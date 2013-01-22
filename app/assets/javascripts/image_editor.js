@@ -61,12 +61,12 @@ $(document).ready(function() {
   
   $('body').on('click', '#image_editor_container._text_enabled img', function(e) {
     var coords = getRelativePositionInImageEditor($(this), e);
-    var textCount = $('#image_editor_container textarea').length;
-    $('#image_editor_container._text_enabled').append(textAreaContent(coords, textCount));
+    var textCount = $('#image_editor_container ._inner_textarea').length + 1;
+    $('#image_editor_container._text_enabled').append(textAreaImageEditorContent(coords, textCount));
     
     
     
-    
+    /*
     $('.image_editor_text').draggable({
       containment: 'parent',
       handle: '._move',
@@ -80,7 +80,7 @@ $(document).ready(function() {
       }
     });
     offlightTextarea();
-    enlightTextarea($('.image_editor_text textarea:last'));
+    enlightTextarea($('.image_editor_text textarea:last'));*/
   });
   
   
@@ -320,7 +320,7 @@ function textAreaImageEditorContent(coords, textCount) {
   textarea.attr('name', 'text_' + textCount);
   textarea_container.css('left', coords[0]);
   textarea_container.css('top', coords[1]);
-  return textarea_container;
+  return textarea_container[0];
 }
 
 function getRelativePositionInImageEditor(obj, event) {
