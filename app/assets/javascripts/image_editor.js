@@ -263,7 +263,7 @@ function addTextAreaHiddenFields(color, size, coords, text, index) {
   $('#crop_form').prepend(hidden_input_coords).prepend(hidden_input_text).prepend(hidden_input_color).prepend(hidden_input_font);
 }
 
-//TODO ADD COLOR AND FONT SIZE
+/*
 function textAreaContent(coords,textCount) {
   var textarea = '<textarea id="area_' + textCount + '" data-coords="' + coords[2] + ',' + coords[3] + '" data-color="color_black" data-size="15" name="text_' + textCount + '" class="color_black small_font" />';
   var colors = '<div class="text_colors"><a class="background_color_white"></a><a class="background_color_black current"></a><a class="background_color_red"></a><a class="background_color_orange"></a><a class="background_color_light_blue"></a><a class="background_color_green"></a></div>';
@@ -280,7 +280,7 @@ function textAreaContent(coords,textCount) {
     }
   }).html('<div class="text_tools" id="area_tools_' + textCount + '"><a class="_delete closeButton closeButtonSmall"></a>' + colors + fontSize + '<a class="_move"></a></div>').append(textarea);
   return div;
-}
+}*/
 
 function offlightTextarea() {
   $('.text_tools').css('visibility', 'hidden');
