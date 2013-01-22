@@ -2,14 +2,19 @@ $(document).ready(function() {
   
   $('body').on('click', '#image_editor_crop_action', function() {
     if(!$(this).hasClass('current')) {
+      // reset buttons
       resetImageEditorOperationsChoice();
-      $('#image_wrapper img').removeClass('forText').addClass('forCrop');
-      $('#image_editor_container').removeClass('_text_enabled');
-      // FIXME manca resetta parametri testo
-      $('#image_editor_empty_buttons').hide();
+      // reset other functions in the image
+      resetImageEditorTexts();
+      // buttons for crop
       $(this).addClass('current');
-      $('._create_new_image, ._updatable_image').css('visibility', 'hidden');
+      $('#image_editor_empty_buttons').hide();
       $('#image_editor_crop_buttons').show();
+      // class of the image
+      $('#image_wrapper img').addClass('forCrop');
+      // button to commit
+      $('._create_new_image, ._updatable_image').css('visibility', 'hidden');
+      // initialize
       $('#cropped_image').imgAreaSelect({
         enable: true,
         handles: true,
@@ -25,38 +30,33 @@ $(document).ready(function() {
   
   $('body').on('click', '#image_editor_crop_buttons ._cancel', function() {
     resetImageEditorOperationsChoice();
-    $('#image_wrapper img').removeClass('forCrop');
-    $('._create_new_image, ._updatable_image').css('visibility', 'visible');
-    $('#cropped_image').imgAreaSelect({
-      hide: true,
-      disable: true
-    });
     resetImageEditorCrop();
+    $('._create_new_image, ._updatable_image').css('visibility', 'visible');
   });
   
   $('body').on('click', '#image_editor_text_action', function() {
     if(!$(this).hasClass('current')) {
+      // reset buttons
       resetImageEditorOperationsChoice();
-      $('#image_wrapper img').removeClass('forCrop').addClass('forText');
-      $('#cropped_image').imgAreaSelect({
-        hide: true,
-        disable: true
-      });
+      // reset other functions in the image
       resetImageEditorCrop();
-      $('#image_editor_empty_buttons').hide();
+      // buttons for texts
       $(this).addClass('current');
-      $('._create_new_image, ._updatable_image').css('visibility', 'hidden');
+      $('#image_editor_empty_buttons').hide();
       $('#image_editor_text_buttons').show();
+      // class of the image
+      $('#image_wrapper img').addClass('forText');
+      // button to commit
+      $('._create_new_image, ._updatable_image').css('visibility', 'hidden');
+      // initialize
       $('#image_editor_container').addClass('_text_enabled');
     }
   });
   
   $('body').on('click', '#image_editor_text_buttons ._cancel', function() {
     resetImageEditorOperationsChoice();
-    $('#image_wrapper img').removeClass('forText');
+    resetImageEditorText();
     $('._create_new_image, ._updatable_image').css('visibility', 'visible');
-    $('#image_editor_container').removeClass('_text_enabled');
-    // FIXME manca resetta parametri
   });
   
   
@@ -174,14 +174,6 @@ $(document).ready(function() {
   });
   
 });
-
-function resetImageEditorOperationsChoice() {
-  $('#image_editor_crop_buttons').hide();
-  $('#image_editor_text_buttons').hide();
-  $('#image_editor_empty_buttons').show();
-  $('#image_editor_crop_action').removeClass('current');
-  $('#image_editor_text_action').removeClass('current');
-}
 
 function commitImageEditing(new_or_overwrite) {
   processTextAreaForm();
@@ -333,6 +325,25 @@ function getDragPosition(obj) {
   return coords;
 }
 
+function resetImageEditorOperationsChoice() {
+  $('#image_editor_crop_buttons').hide();
+  $('#image_editor_text_buttons').hide();
+  $('#image_editor_empty_buttons').show();
+  $('#image_editor_crop_action').removeClass('current');
+  $('#image_editor_text_action').removeClass('current');
+}
+
 function resetImageEditorCrop() {
+  $('#image_wrapper img').removeClass('forCrop');
+  $('#cropped_image').imgAreaSelect({
+    hide: true,
+    disable: true
+  });
   $('#crop_form input._coord').val('');
+}
+
+function resetImageEditorTexts() {
+  $('#image_wrapper img').removeClass('forText');
+  $('#image_editor_container').removeClass('_text_enabled');
+  // FIXME manca resetta parametri testo
 }
