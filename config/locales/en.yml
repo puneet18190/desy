@@ -155,6 +155,7 @@ en:
     register: 'Sign up'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     report_abuse: 'Report abuse'
+    sample_letter: 'A'
     save: 'Save'
     school_level: 'School level'
     search: 'Search'
