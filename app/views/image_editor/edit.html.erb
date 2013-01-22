@@ -2,19 +2,17 @@
 <% div_id =  @image.is_public ? "public" : "not_public" %>
 <div class="mediaEditorElementContainer image_editor_only" id="image_editor_<%= div_id %>">
   <div class="menuLeftEditorElement">
-  <h2>What to do?</h2><p>Select the scissors to cut the image
-or ABC to enter text.</p>
+  <h2><%= t('captions.what_to_do') %></h2><p><%= t('captions.select_the_scissors') %></p>
     <div class="menuModifyImages">
     <ul>
       <li><a class="do_crop _toggle_crop cutButton" title="<%= t('general_titles.crop_element_title') %>"></a></li>
-      <li><a class="write_text _toggle_text abcButton" title="<%= t('general_titles.add_text_title') %>"></a></li>
     </ul>
     </div>
   </div>
-  <div id="image_editor_container" class="imagesContainer">
+  <div id="image_editor_container" class="imagesContainer _text_enabled">
     <div id="image_wrapper">
       <%= image_tag @image.url, :id => "cropped_image", "data-width" => @image.width, "data-height"=>@image.height %>
-      <form id="_crop_form" data-param="<%= @image.id %>" action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
+      <form id="crop_form" data-param="<%= @image.id %>" action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
         <input type="hidden" name="x1" value="" />
         <input type="hidden" name="y1" value="" />
         <input type="hidden" name="x2" value="" />
@@ -30,16 +28,15 @@ or ABC to enter text.</p>
     <div class="menuTextImages upper">
       <%= t 'captions.click_image_to_add_text' %>
     </div>
-    <div class="menuServiceImages">
+    <div class="menuServiceImages" style="display:none">
       <div class="bottoniVerdi fltlft">
-        <a  href="#" id="editor_crop">CROP</a>
-        <a href="#" id="editor_cancel">CANCEL</a>
+        <a href="#" id="image_editor_crop" class="upper"><%= t('captions.crop') %></a>
+        <a href="#" id="image_editor_cancel_crop" class="upper"><%= t('captions.cancel') %></a>
       </div>
    </div>
   </div>
   <div class="menuFooterEditorElement">
-	  <p>Original image size: <%= @image.width %>x<%= @image.height %>px</p>
-    <!-- NEXT -->
+    <p><%= t('captions.original_image_size') %>: <%= @image.width %>x<%= @image.height %>px</p>
     <% save_class = "_save_edit_image nextButton" %>
     <% if @image.is_public %>
       <% save_class = "#{save_class} _create_new_image" %>

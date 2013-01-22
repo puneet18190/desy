@@ -1,52 +1,61 @@
 $(document).ready(function() {
   
   var img_container = $('#image_editor_container');
-  
-  $('body').on('click', '._toggle_text', function(e) {
-    e.preventDefault;
-    $(this).addClass('current');
-    $('._toggle_crop').removeClass('current');
-    $('.menuServiceImages').hide();
-    $('.menuTextImages').show();
-    img_container.addClass('text_enabled').removeClass('crop_enabled');
-    $('#cropped_image').imgAreaSelect({
-      hide: true,
-      disable: true
-    });
-    resetSelect();
+  $('#cropped_image').imgAreaSelect({
+    hide: true,
+    disable: true
   });
+  resetSelect();
   
   $('body').on('click', '._toggle_crop', function(e) {
     e.preventDefault;
-    $(this).addClass('current');
-    $('._toggle_text').removeClass('current');
-    $('.menuServiceImages').show();
-    $('.menuTextImages').hide();
-    img_container.removeClass('text_enabled').addClass('crop_enabled');
-    offlightTextarea();
-    $('#cropped_image').imgAreaSelect({
-      enable: true,
-      handles: true,
-      onSelectEnd: function (img, selection) {
-        $('input[name="x1"]').val(selection.x1);
-        $('input[name="y1"]').val(selection.y1);
-        $('input[name="x2"]').val(selection.x2);
-        $('input[name="y2"]').val(selection.y2);
-      }
-    });
+    if(!$(this).hasClass('current')) {
+      $(this).addClass('current');
+      $('._create_new_image, _updatable_image').css('visibilty', 'hidden');
+      $('.menuServiceImages').show();
+      $('.menuTextImages').hide();
+      img_container.removeClass('_text_enabled');
+      offlightTextarea();
+      $('#cropped_image').imgAreaSelect({
+        enable: true,
+        handles: true,
+        onSelectEnd: function (img, selection) {
+          $('input[name="x1"]').val(selection.x1);
+          $('input[name="y1"]').val(selection.y1);
+          $('input[name="x2"]').val(selection.x2);
+          $('input[name="y2"]').val(selection.y2);
+        }
+      });
+    }
   });
   
-  $('body').on('click', '#editor_crop', function() {
-   var thisForm = $('#crop_form');
-   thisForm.attr('action', '/images/' + thisForm.data('param') + '/crop');
-   thisForm.submit();
+  $('body').on('click', '#image_editor_cancel_crop', function(e) {
+    e.preventDefault;
+    $('#cropped_image').imgAreaSelect({
+      hide: true
+    });
+    $('.menuServiceImages').hide();
+    $('.menuTextImages').show();
+    $('._create_new_image, _updatable_image').css('visibilty', 'visible');
+    $('._toggle_crop'.removeClass('current');
+    resetSelect();
+  });
+  
+  $('body').on('click', '#image_editor_crop', function() {
+    var thisForm = $('#crop_form');
+    thisForm.attr('action', '/images/' + thisForm.data('param') + '/crop');
+    thisForm.submit();
+    $('.menuServiceImages').hide();
+    $('.menuTextImages').show();
+    $('._create_new_image, _updatable_image').css('visibilty', 'visible');
+    $('._toggle_crop'.removeClass('current');
   });
   
   $('body').on('click', '#image_editor_container img', function(e) {
     this_image = $(this);
     coords = getRelativePosition(this_image,e);
     textCount = $('#image_editor_container textarea').length;
-    $('#image_editor_container.text_enabled').append(textAreaContent(coords,textCount));
+    $('#image_editor_container._text_enabled').append(textAreaContent(coords,textCount));
     $('.image_editor_text').draggable({
       containment: 'parent',
       handle: '._move',
@@ -98,14 +107,6 @@ $(document).ready(function() {
       thisTextArea.addClass(font_class.replace('current', ''));
       thisTextArea.attr('data-color', color_val);
     }
-  });
-  
-  $('body').on('click', '#_editor_cancel',function(e) {
-    e.preventDefault;
-    $('#cropped_image').imgAreaSelect({
-      hide: true
-    });
-    resetSelect();
   });
   
   $('body').on('click', '#image_editor_not_public ._save_edit_image', function() {
