@@ -59,29 +59,14 @@ $(document).ready(function() {
     $('._create_new_image, ._updatable_image').css('visibility', 'visible');
   });
   
-  
-  
-  
-  
-  // FIXME FIXME FIXME fino a qui
-  
-
-  
-  $('body').on('click', '#image_editor_crop', function() {
-    var thisForm = $('#crop_form');
-    thisForm.attr('action', '/images/' + thisForm.data('param') + '/crop');
-    thisForm.submit();
-    $('.menuServiceImages').hide();
-    $('.menuTextImages').show();
-    $('._create_new_image, ._updatable_image').css('visibility', 'visible');
-    $('._toggle_crop').removeClass('current');
-  });
-  
-  $('body').on('click', '#image_editor_container img', function(e) {
-    this_image = $(this);
-    coords = getRelativePosition(this_image,e);
-    textCount = $('#image_editor_container textarea').length;
-    $('#image_editor_container._text_enabled').append(textAreaContent(coords,textCount));
+  $('body').on('click', '#image_editor_container._text_enabled img', function(e) {
+    var coords = getRelativePositionInImageEditor($(this), e);
+    var textCount = $('#image_editor_container textarea').length;
+    $('#image_editor_container._text_enabled').append(textAreaContent(coords, textCount));
+    
+    
+    
+    
     $('.image_editor_text').draggable({
       containment: 'parent',
       handle: '._move',
@@ -96,6 +81,25 @@ $(document).ready(function() {
     });
     offlightTextarea();
     enlightTextarea($('.image_editor_text textarea:last'));
+  });
+  
+  
+  
+  
+  
+  
+  
+  
+  // FIXME FIXME FIXME fino a qui
+  
+  $('body').on('click', '#image_editor_crop', function() {
+    var thisForm = $('#crop_form');
+    thisForm.attr('action', '/images/' + thisForm.data('param') + '/crop');
+    thisForm.submit();
+    $('.menuServiceImages').hide();
+    $('.menuTextImages').show();
+    $('._create_new_image, ._updatable_image').css('visibility', 'visible');
+    $('._toggle_crop').removeClass('current');
   });
   
   $('body').on('focus', '.image_editor_text textarea', function() {
@@ -226,7 +230,6 @@ function processTextAreaForm() {
   });
 }
 
-//TODO ADD COLOR AND FONT SIZE
 function addTextAreaHiddenFields(color, size, coords, text, index) {
   hidden_input_coords = $('<input />',
   {
@@ -263,25 +266,6 @@ function addTextAreaHiddenFields(color, size, coords, text, index) {
   $('#crop_form').prepend(hidden_input_coords).prepend(hidden_input_text).prepend(hidden_input_color).prepend(hidden_input_font);
 }
 
-/*
-function textAreaContent(coords,textCount) {
-  var textarea = '<textarea id="area_' + textCount + '" data-coords="' + coords[2] + ',' + coords[3] + '" data-color="color_black" data-size="15" name="text_' + textCount + '" class="color_black small_font" />';
-  var colors = '<div class="text_colors"><a class="background_color_white"></a><a class="background_color_black current"></a><a class="background_color_red"></a><a class="background_color_orange"></a><a class="background_color_light_blue"></a><a class="background_color_green"></a></div>';
-  var fontSize = '<div class="font_sizes"><a class="small_font current" data-param="15">A</a><a class="medium_font" data-param="25">A</a><a class="big_font" data-param="35">A</a></div>';
-  div = $('<div />',
-  {
-    'class': 'image_editor_text',
-    id: 'text_' + textCount,
-    css: {
-      position: 'absolute',
-      'z-index': '100',
-      left: coords[0],
-      top: coords[1]
-    }
-  }).html('<div class="text_tools" id="area_tools_' + textCount + '"><a class="_delete closeButton closeButtonSmall"></a>' + colors + fontSize + '<a class="_move"></a></div>').append(textarea);
-  return div;
-}*/
-
 function offlightTextarea() {
   $('.text_tools').css('visibility', 'hidden');
   $('.image_editor_text textarea').css('background-color', 'rgba(255,255,255,0)');
@@ -302,17 +286,6 @@ function updateValueOnKey(textarea) {
   });
 }
 
-function getRelativePosition(obj,event) {
-  //obj is the image, event the click position
-  var posX = obj.offset().left, posY = obj.offset().top;
-  coords = []
-  coords.push(event.pageX);
-  coords.push(event.pageY);
-  coords.push((event.pageX - posX));
-  coords.push((event.pageY - posY) + 25); //padding + 25
-  return coords;
-}
-
 function getDragPosition(obj) {
   //obj is the textarea box
   var imgOff = $('#image_wrapper').children('img').offset();
@@ -322,6 +295,41 @@ function getDragPosition(obj) {
   coords = []
   coords.push(offX-imgOffX);
   coords.push(offY-imgOffY);
+  return coords;
+}
+
+
+
+
+
+
+// FIXME FIXME FIXME funzioni già riviste
+
+
+
+
+
+
+function textAreaImageEditorContent(coords, textCount) {
+  var textarea_container = $($('#image_editor_empty_text_area_container').html());
+  textarea_container.find('#image_editor_textarea_without_id').attr('id', 'image_editor_textarea_' + textCount);
+  textarea_container.find('#image_editor_textarea_tools_without_id').attr('id', 'image_editor_textarea_tools' + textCount);
+  textarea_container.attr('id', 'image_editor_text_' + textCount);
+  var textarea = textarea_container.find('#image_editor_textarea_tools_' + textCount);
+  textarea.data('coords', (coords[2] + ',' + coords[3]));
+  textarea.attr('name', 'text_' + textCount);
+  textarea_container.css('left', coords[0]);
+  textarea_container.css('top', coords[1]);
+  return textarea_container;
+}
+
+function getRelativePositionInImageEditor(obj, event) {
+  var posX = obj.offset().left, posY = obj.offset().top;
+  coords = []
+  coords.push(event.pageX);
+  coords.push(event.pageY);
+  coords.push((event.pageX - posX));
+  coords.push((event.pageY - posY) + 25); //padding + 25
   return coords;
 }
 
