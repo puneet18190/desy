@@ -26,7 +26,7 @@ class Image < MediaElement
   def editing_url
     return '' if !self.in_edit_mode?
     my_url = self.url
-    file_name = my_url.split('/').last
+    file_name = "/#{my_url.split('/').last}"
     "#{my_url.gsub(file_name, '')}/editing/user_#{user_id}/tmp.#{self.media.file.extension}"
   end
   
