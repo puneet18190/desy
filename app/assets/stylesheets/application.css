@@ -29,7 +29,6 @@
  *= require lessons
  *= require elements
  *= require profile
- *= require action_buttons
  *= require icon_button_popup
  *= require layouts/lesson_editor
  *= require layouts/lesson_editor_thumbnails
