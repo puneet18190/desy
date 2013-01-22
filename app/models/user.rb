@@ -84,7 +84,18 @@ class User < ActiveRecord::Base
     Video.where('converted IS NULL AND user_id = ?', self.id).empty?
   end
   
-  def empty_video_editor_cache
+  def empty_image_editor_cache(image_id) # FIXME chiamare la sessione
+    image = Image.find_by_id image_id
+    return false if image.nil?
+    begin
+      FileUtils.rm_rf("#{image.media.folder}/editing/user_#{self.id}")
+    rescue
+      return false
+    end
+    true
+  end
+  
+  def empty_video_editor_cache # FIXME chiamare la sessione
     return false if self.new_record?
     cache = Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml")
     if File.exists?(cache)
@@ -93,13 +104,13 @@ class User < ActiveRecord::Base
     true
   end
   
-  def video_editor_cache
+  def video_editor_cache # FIXME chiamare la sessione
     cache = Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml")
     return nil if self.new_record? || !File.exists?(cache)
     YAML::load(File.open(cache))
   end
   
-  def save_video_editor_cache(hash)
+  def save_video_editor_cache(hash) # FIXME chiamare la sessione
     return false if self.new_record?
     folder = Rails.root.join "tmp/cache/video_editor/#{self.id}"
     FileUtils.mkdir_p folder if !Dir.exists? folder
