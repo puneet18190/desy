@@ -5,7 +5,8 @@
   <h2><%= t('captions.what_to_do') %></h2><p><%= t('captions.select_the_scissors') %></p>
     <div class="menuModifyImages">
     <ul>
-      <li><a class="do_crop _toggle_crop cutButton" title="<%= t('general_titles.crop_element_title') %>"></a></li>
+      <li><a id="image_editor_crop_action" class="do_crop cutButton" title="<%= t('general_titles.crop_element_title') %>"></a></li>
+      <li><a id="image_editor_text_action" class="write_text abcButton" title="<%= t('general_titles.add_text_title') %>"></a></li>
     </ul>
     </div>
   </div>
@@ -25,15 +26,26 @@
     </div>
   </div>
   <div class="menuBottomEditorElement">
-    <div class="menuTextImages upper">
-      <%= t 'captions.click_image_to_add_text' %>
-    </div>
-    <div class="menuServiceImages" style="display:none">
+    <div id="image_editor_empty_buttons" class="menuTextImages upper">
+      <span><%= t('captions.select_an_action') %></span>
       <div class="bottoniVerdi fltlft">
-        <a href="#" id="image_editor_crop" class="upper"><%= t('captions.crop') %></a>
-        <a href="#" id="image_editor_cancel_crop" class="upper"><%= t('captions.cancel') %></a>
+        <a class="_undo upper" style="display:none"><%= t('captions.undo') %></a>
       </div>
-   </div>
+    </div>
+    <div id="image_editor_crop_buttons" class="menuServiceImages" style="display:none">
+      <span><%= t('captions.drag_image_to_select') %></span>
+      <div class="bottoniVerdi fltlft">
+        <a class="_do upper"><%= t('captions.crop') %></a>
+        <a class="_cancel _enabled upper"><%= t('captions.cancel') %></a>
+      </div>
+    </div>
+    <div id="image_editor_text_buttons" class="menuServiceImages" style="display:none">
+      <span><%= t('captions.click_image_to_add_text') %></span>
+      <div class="bottoniVerdi fltlft">
+        <a class="_do upper"><%= t('captions.crop') %></a>
+        <a class="_cancel _enabled upper"><%= t('captions.cancel') %></a>
+      </div>
+    </div>
   </div>
   <div class="menuFooterEditorElement">
     <p><%= t('captions.original_image_size') %>: <%= @image.width %>x<%= @image.height %>px</p>

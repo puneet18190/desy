@@ -11,7 +11,7 @@ $(document).ready(function() {
     e.preventDefault;
     if(!$(this).hasClass('current')) {
       $(this).addClass('current');
-      $('._create_new_image, _updatable_image').css('visibilty', 'hidden');
+      $('._create_new_image, ._updatable_image').css('visibility', 'hidden');
       $('.menuServiceImages').show();
       $('.menuTextImages').hide();
       img_container.removeClass('_text_enabled');
@@ -36,7 +36,7 @@ $(document).ready(function() {
     });
     $('.menuServiceImages').hide();
     $('.menuTextImages').show();
-    $('._create_new_image, _updatable_image').css('visibilty', 'visible');
+    $('._create_new_image, ._updatable_image').css('visibility', 'visible');
     $('._toggle_crop').removeClass('current');
     resetSelect();
   });
@@ -47,7 +47,7 @@ $(document).ready(function() {
     thisForm.submit();
     $('.menuServiceImages').hide();
     $('.menuTextImages').show();
-    $('._create_new_image, _updatable_image').css('visibilty', 'visible');
+    $('._create_new_image, ._updatable_image').css('visibility', 'visible');
     $('._toggle_crop').removeClass('current');
   });
   
@@ -299,7 +299,7 @@ function getDragPosition(obj) {
   return coords;
 }
 
-function resetSelect(){
+function resetSelect() {
   $('input[name="x1"]').val('');
   $('input[name="y1"]').val('');
   $('input[name="x2"]').val('');
