@@ -14,10 +14,10 @@
     <div id="image_wrapper">
       <%= image_tag @image.url, :id => "cropped_image", "data-width" => @image.width, "data-height"=>@image.height %>
       <form id="crop_form" data-param="<%= @image.id %>" action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
-        <input type="hidden" name="x1" value="" />
-        <input type="hidden" name="y1" value="" />
-        <input type="hidden" name="x2" value="" />
-        <input type="hidden" name="y2" value="" />
+        <input type="hidden" name="x1" value="" class="_coord"/>
+        <input type="hidden" name="y1" value="" class="_coord"/>
+        <input type="hidden" name="x2" value="" class="_coord"/>
+        <input type="hidden" name="y2" value="" class="_coord"/>
         <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => @image.sti_type } %>
         <% if !@image.is_public %>
           <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @image} %>

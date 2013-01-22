@@ -13,7 +13,8 @@ class ImageEditorController < ApplicationController
       redirect_to dashboard_path
       return
     end
-    current_user.empty_image_editor_cache(@image_id)
+    @image.leave_edit_mode
+    @image.enter_edit_mode current_user.id
   end
   
   def add_text

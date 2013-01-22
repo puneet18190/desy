@@ -5,7 +5,7 @@ $(document).ready(function() {
     hide: true,
     disable: true
   });
-  resetSelect();
+  resetImageEditorCrop();
   
   $('body').on('click', '._toggle_crop', function(e) {
     e.preventDefault;
@@ -31,6 +31,7 @@ $(document).ready(function() {
   
   $('body').on('click', '#image_editor_cancel_crop', function(e) {
     e.preventDefault;
+    resetImageEditorOperationsChoice();
     $('#cropped_image').imgAreaSelect({
       hide: true
     });
@@ -38,7 +39,7 @@ $(document).ready(function() {
     $('.menuTextImages').show();
     $('._create_new_image, ._updatable_image').css('visibility', 'visible');
     $('._toggle_crop').removeClass('current');
-    resetSelect();
+    resetImageEditorCrop();
   });
   
   $('body').on('click', '#image_editor_crop', function() {
@@ -141,13 +142,21 @@ $(document).ready(function() {
     $('._untitled').hide();
   });
   
-  $('body').on('click','#image_editor_not_public #form_info_update_media_element_in_editor ._cancel', function() {
+  $('body').on('click', '#image_editor_not_public #form_info_update_media_element_in_editor ._cancel', function() {
     $('.form_error').removeClass('form_error');
     $('#form_info_update_media_element_in_editor').hide();
     $('._save_edit_image').show();
   });
   
 });
+
+function resetImageEditorOperationsChoice() {
+  $('#image_editor_crop_buttons').hide();
+  $('#image_editor_text_buttons').hide();
+  $('#image_editor_empty_buttons').show();
+  $('#image_editor_crop_action').removeClass('current');
+  $('#image_editor_text_action').removeClass('current');
+}
 
 function commitImageEditing(new_or_overwrite) {
   processTextAreaForm();
@@ -299,9 +308,6 @@ function getDragPosition(obj) {
   return coords;
 }
 
-function resetSelect() {
-  $('input[name="x1"]').val('');
-  $('input[name="y1"]').val('');
-  $('input[name="x2"]').val('');
-  $('input[name="y2"]').val('');
+function resetImageEditorCrop() {
+  $('#crop_form input._coord').val('');
 }
