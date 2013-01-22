@@ -5,6 +5,8 @@ class Image < MediaElement
   
   before_save :set_width_and_height
   
+  attr_reader :edit_mode
+  
   def url
     media.url
   end
@@ -21,59 +23,82 @@ class Image < MediaElement
     metadata.height
   end
   
-  def editing_url(user_id)
+  def editing_url
+    return '' if !self.in_edit_mode?
     my_url = self.url
     file_name = my_url.split('/').last
-    "#{my_url.gsub(file_name, '')}/editing/user_#{user_id}"
+    "#{my_url.gsub(file_name, '')}/editing/user_#{user_id}/tmp.#{self.media.file.extension}"
   end
   
-  def editing_path(user_id)
-    "#{self.media.folder}/editing/user_#{user_id}"
+  def prev_editing_image
+    return '' if !self.in_edit_mode?
+    "#{self.media.folder}/editing/user_#{@edit_mode}/prev.#{self.media.file.extension}"
   end
   
-  def temporary_editing_image(user_id)
-    ed_path = self.editing_path user_id
-    return '' if !File.exists?(ed_path) || (Dir.entries(ed_path) - %w{ . .. }).empty?
-    "#{ed_path}/#{Dir.entries(ed_path).sort.last}"
+  def current_editing_image
+    return '' if !self.in_edit_mode?
+    "#{self.media.folder}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}"
   end
   
-  def process_textareas(params)
-    ed_path = self.editing_path user_id
-    img_path = self.temporary_editing_image(user_id)
-    custom_filename = "tmp_#{Time.now.strftime('%Y%m%d-%H%M%S')}.jpg"
-    if img_path.blank?
-      FileUtils.mkdir_p(ed_path) unless Dir.exists? ed_path
-      FileUtils.cp(self.media.path, "#{ed_path}/#{custom_filename}")
-    else
-      FileUtils.cp(img_path, "#{ed_path}/#{custom_filename}")
+  def in_edit_mode?
+    !@edit_mode.nil?
+  end
+  
+  def enter_edit_mode(user_id)
+    @edit_mode = user_id
+    ed_path = "#{self.media.folder}/editing/user_#{@edit_mode}"
+    FileUtils.mkdir_p(ed_path) if !Dir.exists?(ed_path)
+    curr_path = current_editing_image
+    FileUtils.cp(self.media.path, curr_path) if !File.exists?(curr_path)
+    true
+  end
+  
+  def leave_edit_mode
+    return false if !self.in_edit_mode?
+    ed_path = "#{self.media.folder}/editing/user_#{@edit_mode}"
+    FileUtils.rm_r(ed_path) if Dir.exists?(ed_path)
+    @edit_mode = nil
+    true
+  end
+  
+  def save_editing_prev
+    return false if !self.in_edit_mode?
+    prev_path = self.prev_editing_image
+    curr_path = self.current_editing_image
+    begin
+      FileUtils.rm(prev_path) if File.exists?(prev_path)
+      FileUtils.cp(curr_path, prev_path)
+      FileUtils.rm(curr_path)
+    rescue
+      return false
     end
-    img_path = "#{ed_path}/#{custom_filename}"
-    img = MiniMagick::Image.open(img_path)
-    woh = Image.width_or_height(img[:width], img[:height])
-    params.each do |p|
-      color = p[:color]
-      original_size = p[:font_size]
-      font_size = Image.ratio_value woh[1], original_size, woh[0]
-      coord_x = Image.ratio_value(woh[1], p[:coord_x], woh[0])
-      coord_x = Image.ratio_value(woh[1], p[:coord_y], woh[0])
-      tmp_file = Tempfile.new('textarea')
-      begin
-        tmp_file.write(p[:text])
-        tmp_file.close
-        cmd = Media::Image::Editing::AddTextToImage.new(img_path, color, font_size, coord_x, coord_y, tmp_file)
-        puts cmd
-        cmd.run!
-      ensure
-        tmp_file.unlink
-      end
+    true
+  end
+  
+  def add_text(color, font_size, coord_x, coord_y, text)
+    return false if !self.in_edit_mode? || !self.save_editing_prev
+    img = MiniMagick::Image.open self.current_editing_image
+    font_size = Image.ratio_value img[:width], img[:height], font_size
+    coord_x = Image.ratio_value img[:width], img[:height], coord_x
+    coord_x = Image.ratio_value img[:width], img[:height], coord_y
+    tmp_file = Tempfile.new('textarea')
+    begin
+      tmp_file.write(text)
+      tmp_file.close
+      Media::Image::Editing::AddTextToImage.new(self.current_editing_image, color, font_size, coord_x, coord_y, tmp_file).run!
+    ensure
+      tmp_file.unlink
     end
+    true
   end
   
   def crop(x1, y1, x2, y2, user_id)
-    ed_path = self.editing_path user_id
-    ed_url = self.editing_url user_id
-    img_path = self.temporary_editing_image(user_id)
-    if img_path.blank?
+    return false if !self.in_edit_mode?
+    
+    
+    
+    img_path = self.temporary_editing_image
+
       FileUtils.mkdir_p(ed_path) unless Dir.exists? ed_path
       img = MiniMagick::Image.open(self.media.path)
       width = self.width
@@ -88,25 +113,23 @@ class Image < MediaElement
     y1 = Image.ratio_value(woh[1], y1, woh[0])
     x2 = Image.ratio_value(woh[1], x2, woh[0])
     y2 = Image.ratio_value(woh[1], y2, woh[0])
-    resp = Media::Image::Editing::Crop.new(img, ed_path, x1, y1, x2, y2).run
+    resp = Media::Image::Editing::Crop.new(img_path, img, ed_path, x1, y1, x2, y2).run
     return "#{ed_url}/#{resp}"
   end
   
-  def self.ratio_value(scale_to_px, value, original)
-    if (original.to_i > scale_to_px.to_i )
-      return value.to_f * (original.to_f / scale_to_px.to_f).to_f
-    else
-      return value
-    end
-  end
-  
-  def self.width_or_height(w, h)
+  def self.ratio_value(w, h, value)
     to_ratio = 660 / 495
     origin_ratio = w.to_f / h.to_f
     if origin_ratio > to_ratio
-      return [w, 660]
+      h = w
+      w = 660
     else
-      return [h, 495]
+      w = 495
+    end
+    if (h.to_i > w.to_i )
+      return value.to_f * (h.to_f / w.to_f)
+    else
+      return value
     end
   end
   

@@ -84,17 +84,6 @@ class User < ActiveRecord::Base
     Video.where('converted IS NULL AND user_id = ?', self.id).empty?
   end
   
-  def empty_image_editor_cache(image_id) # FIXME chiamare la sessione
-    image = Image.find_by_id image_id
-    return false if image.nil?
-    begin
-      FileUtils.rm_rf("#{image.media.folder}/editing/user_#{self.id}")
-    rescue
-      return false
-    end
-    true
-  end
-  
   def empty_video_editor_cache # FIXME chiamare la sessione
     return false if self.new_record?
     cache = Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml")

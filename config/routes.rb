@@ -87,6 +87,8 @@ Desy::Application.routes.draw do
   # IMAGE EDITOR
   get  'images/:image_id/edit' => 'image_editor#edit'
   post 'images/:image_id/crop' => 'image_editor#crop'
+  post 'images/:image_id/add_text' => 'image_editor#add_text'
+  post 'images/:image_id/undo' => 'image_editor#undo'
   post 'images/:image_id/commit/new' => 'image_editor#save'
   post 'images/:image_id/commit/overwrite' => 'image_editor#overwrite'
   

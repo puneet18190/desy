@@ -4,7 +4,7 @@ require 'media/image/editing/crop'
 
 class ImageEditorController < ApplicationController
   
-  before_filter :initialize_image_with_owner_or_public, :only => [:edit, :crop, :save]
+  before_filter :initialize_image_with_owner_or_public, :only => [:edit, :crop, :save, :add_text, :undo]
   before_filter :initialize_image_with_owner_and_private, :only => :overwrite
   layout 'media_element_editor'
   
@@ -16,11 +16,25 @@ class ImageEditorController < ApplicationController
     current_user.empty_image_editor_cache(@image_id)
   end
   
+  def add_text
+    if @ok
+    else
+      @new_url = ''
+    end
+  end
+  
+  def undo
+    if @ok
+    else
+      @new_url = ''
+    end
+  end
+  
   def crop
     if @ok && !params[:x1].blank?
-      @crop_url = @image.crop params[:x1], params[:y1], params[:x2], params[:y2], current_user.id
+      @new_url = @image.crop params[:x1], params[:y1], params[:x2], params[:y2], current_user.id
     else
-      @crop_url = ''
+      @new_url = ''
     end
   end
   
