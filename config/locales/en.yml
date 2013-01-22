@@ -337,6 +337,7 @@ en:
     go_to_insert_text: 'insert new text'
     header_notification: 'notice'
     header_help_for_me: 'help for me'
+    info_title: 'item information'
     pause_title: 'pause'
     photo_new_title: 'new photo'
     play_title: 'play'
