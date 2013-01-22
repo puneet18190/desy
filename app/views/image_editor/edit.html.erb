@@ -11,7 +11,7 @@ or ABC to enter text.</p>
     </ul>
     </div>
   </div>
-  <div id="_image_editor_container" class="imagesContainer">
+  <div id="image_editor_container" class="imagesContainer">
     <div id="image_wrapper">
       <%= image_tag @image.url, :id => "cropped_image", "data-width" => @image.width, "data-height"=>@image.height %>
       <form id="_crop_form" data-param="<%= @image.id %>" action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
@@ -32,8 +32,8 @@ or ABC to enter text.</p>
     </div>
     <div class="menuServiceImages">
       <div class="bottoniVerdi fltlft">
-        <a  href="#" id="_editor_crop">CROP</a>
-        <a href="#" id="_editor_cancel">CANCEL</a>
+        <a  href="#" id="editor_crop">CROP</a>
+        <a href="#" id="editor_cancel">CANCEL</a>
       </div>
    </div>
   </div>
