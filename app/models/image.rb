@@ -21,6 +21,12 @@ class Image < MediaElement
     metadata.height
   end
   
+  def editing_url(user_id)
+    my_url = self.url
+    file_name = my_url.split('/').last
+    "#{my_url.gsub(file_name, '')}/editing/user_#{user_id}"
+  end
+  
   def editing_path(user_id)
     "#{self.media.folder}/editing/user_#{user_id}"
   end
@@ -61,11 +67,11 @@ class Image < MediaElement
         tmp_file.unlink
       end
     end
-    img_path
   end
   
   def crop(x1, y1, x2, y2, user_id)
     ed_path = self.editing_path user_id
+    ed_url = self.editing_url user_id
     img_path = self.temporary_editing_image(user_id)
     if img_path.blank?
       FileUtils.mkdir_p(ed_path) unless Dir.exists? ed_path
@@ -83,7 +89,7 @@ class Image < MediaElement
     x2 = Image.ratio_value(woh[1], x2, woh[0])
     y2 = Image.ratio_value(woh[1], y2, woh[0])
     resp = Media::Image::Editing::Crop.new(img, ed_path, x1, y1, x2, y2).run
-    return "#{ed_path}/#{resp}"
+    return "#{ed_url}/#{resp}"
   end
   
   def self.ratio_value(scale_to_px, value, original)
