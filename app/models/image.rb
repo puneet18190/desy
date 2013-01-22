@@ -75,19 +75,21 @@ class Image < MediaElement
     true
   end
   
-  def add_text(color, font_size, coord_x, coord_y, text)
+  def add_text(texts)
     return false if !self.in_edit_mode? || !self.save_editing_prev
     img = MiniMagick::Image.open self.current_editing_image
-    font_size = Image.ratio_value img[:width], img[:height], font_size
-    coord_x = Image.ratio_value img[:width], img[:height], coord_x
-    coord_x = Image.ratio_value img[:width], img[:height], coord_y
-    tmp_file = Tempfile.new('textarea')
-    begin
-      tmp_file.write(text)
-      tmp_file.close
-      Media::Image::Editing::AddTextToImage.new(self.current_editing_image, color, font_size, coord_x, coord_y, tmp_file).run!
-    ensure
-      tmp_file.unlink
+    texts.each do |t|
+      font_size = Image.ratio_value img[:width], img[:height], t[:font_size]
+      coord_x = Image.ratio_value img[:width], img[:height], t[:coord_x]
+      coord_x = Image.ratio_value img[:width], img[:height], t[:coord_y]
+      tmp_file = Tempfile.new('textarea')
+      begin
+        tmp_file.write(t[:text])
+        tmp_file.close
+        Media::Image::Editing::AddTextToImage.new(self.current_editing_image, t[:color], font_size, coord_x, coord_y, tmp_file).run!
+      ensure
+        tmp_file.unlink
+      end
     end
     true
   end

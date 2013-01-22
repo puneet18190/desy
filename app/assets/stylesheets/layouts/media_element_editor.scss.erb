@@ -1051,9 +1051,15 @@ html.media_element_editor-layout {
      width: 660px;
      display:block;
      overflow:hidden;
-     img{
+     img {
        max-width: 660px;
        max-height: 495px;
+       &.forCrop:hover {
+         cursor: crosshair;
+       }
+       &.forText:hover {
+         cursor: pointer;
+       }
      }
    }
 

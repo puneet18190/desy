@@ -1,25 +1,19 @@
 $(document).ready(function() {
   
-  var img_container = $('#image_editor_container');
-  $('#cropped_image').imgAreaSelect({
-    hide: true,
-    disable: true
-  });
-  resetImageEditorCrop();
-  
-  $('body').on('click', '._toggle_crop', function(e) {
-    e.preventDefault;
+  $('body').on('click', '#image_editor_crop_action', function() {
     if(!$(this).hasClass('current')) {
+      resetImageEditorOperationsChoice();
+      $('#image_wrapper img').removeClass('forText').addClass('forCrop');
+      $('#image_editor_container').removeClass('_text_enabled');
+      // FIXME manca resetta parametri testo
+      $('#image_editor_empty_buttons').hide();
       $(this).addClass('current');
       $('._create_new_image, ._updatable_image').css('visibility', 'hidden');
-      $('.menuServiceImages').show();
-      $('.menuTextImages').hide();
-      img_container.removeClass('_text_enabled');
-      offlightTextarea();
+      $('#image_editor_crop_buttons').show();
       $('#cropped_image').imgAreaSelect({
         enable: true,
         handles: true,
-        onSelectEnd: function (img, selection) {
+        onSelectEnd: function(img, selection) {
           $('input[name="x1"]').val(selection.x1);
           $('input[name="y1"]').val(selection.y1);
           $('input[name="x2"]').val(selection.x2);
@@ -29,18 +23,49 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click', '#image_editor_cancel_crop', function(e) {
-    e.preventDefault;
+  $('body').on('click', '#image_editor_crop_buttons ._cancel', function() {
     resetImageEditorOperationsChoice();
-    $('#cropped_image').imgAreaSelect({
-      hide: true
-    });
-    $('.menuServiceImages').hide();
-    $('.menuTextImages').show();
+    $('#image_wrapper img').removeClass('forCrop');
     $('._create_new_image, ._updatable_image').css('visibility', 'visible');
-    $('._toggle_crop').removeClass('current');
+    $('#cropped_image').imgAreaSelect({
+      hide: true,
+      disable: true
+    });
     resetImageEditorCrop();
   });
+  
+  $('body').on('click', '#image_editor_text_action', function() {
+    if(!$(this).hasClass('current')) {
+      resetImageEditorOperationsChoice();
+      $('#image_wrapper img').removeClass('forCrop').addClass('forText');
+      $('#cropped_image').imgAreaSelect({
+        hide: true,
+        disable: true
+      });
+      resetImageEditorCrop();
+      $('#image_editor_empty_buttons').hide();
+      $(this).addClass('current');
+      $('._create_new_image, ._updatable_image').css('visibility', 'hidden');
+      $('#image_editor_text_buttons').show();
+      $('#image_editor_container').addClass('_text_enabled');
+    }
+  });
+  
+  $('body').on('click', '#image_editor_text_buttons ._cancel', function() {
+    resetImageEditorOperationsChoice();
+    $('#image_wrapper img').removeClass('forText');
+    $('._create_new_image, ._updatable_image').css('visibility', 'visible');
+    $('#image_editor_container').removeClass('_text_enabled');
+    // FIXME manca resetta parametri
+  });
+  
+  
+  
+  
+  
+  // FIXME FIXME FIXME fino a qui
+  
+
   
   $('body').on('click', '#image_editor_crop', function() {
     var thisForm = $('#crop_form');

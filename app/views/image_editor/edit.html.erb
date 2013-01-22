@@ -10,7 +10,7 @@
     </ul>
     </div>
   </div>
-  <div id="image_editor_container" class="imagesContainer _text_enabled">
+  <div id="image_editor_container" class="imagesContainer">
     <div id="image_wrapper">
       <%= image_tag @image.url, :id => "cropped_image", "data-width" => @image.width, "data-height"=>@image.height %>
       <form id="crop_form" data-param="<%= @image.id %>" action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
@@ -42,7 +42,7 @@
     <div id="image_editor_text_buttons" class="menuServiceImages" style="display:none">
       <span><%= t('captions.click_image_to_add_text') %></span>
       <div class="bottoniVerdi fltlft">
-        <a class="_do upper"><%= t('captions.crop') %></a>
+        <a class="_do upper"><%= t('captions.done') %></a>
         <a class="_cancel _enabled upper"><%= t('captions.cancel') %></a>
       </div>
     </div>
