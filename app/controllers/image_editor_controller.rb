@@ -3,62 +3,30 @@ require 'media/image/editing/add_text_to_image'
 require 'media/image/editing/crop'
 
 class ImageEditorController < ApplicationController
-
+  
   before_filter :initialize_image_with_owner_or_public, :only => [:edit, :crop, :save]
   before_filter :initialize_image_with_owner_and_private, :only => :overwrite
   layout 'media_element_editor'
   
   def edit
     if !@ok
-      # editing_folder = File.join(@image.media.folder, "editing","user_#{current_user.id}") exists
-      # File.exists?(editing_folder)
-      #TODO ADD WARNING MESSAGE with 'image already in editing'
       redirect_to dashboard_path
       return
     end
+    current_user.empty_image_editor_cache(@image_id)
   end
   
   def crop
     if @ok
-      if !params[:x1].blank?
-        if !params[:cropped_image].blank?          
-          editing_folder = File.join(@image.media.folder, "editing","user_#{current_user.id}")
-          img = MiniMagick::Image.open(File.join(editing_folder,params[:cropped_image]))
-          original_width = img[:width]
-          original_height = img[:height]
-        else
-          img = MiniMagick::Image.open(@image.media.path)
-          original_width = @image.media.width
-          original_height = @image.media.height
-          editing_folder = File.join(@image.media.folder, "editing","user_#{current_user.id}")
-          
-          #Make dir of first crop
-          fold = FileUtils.mkdir_p(editing_folder) unless Dir.exists? editing_folder
-        end
-        
-        woh = width_or_height(original_width,original_height)
-        x1= ratio_value(woh[1],params[:x1],woh[0])
-        y1= ratio_value(woh[1],params[:y1],woh[0])
-        x2= ratio_value(woh[1],params[:x2],woh[0])
-        y2= ratio_value(woh[1],params[:y2],woh[0])
-        
-        #BRING OUT IMAGE WRITE FROM CROP
-        
-        @custom_filename = Media::Image::Editing::Crop.new(img, editing_folder, x1, y1, x2, y2).run
-        @editing_url = File.join(File.dirname(@image.url),"editing","user_#{current_user.id}")
-        
-        @image_id = params[:image_id]
-        @crop = true
-      else
-        @crop = false
-      end
+      @crop_url = @image.crop
     else
-      # mettere 'X' rossa
+      @crop_url = ''
     end
   end
   
   def save
     if @ok
+      
       if !params[:cropped_image].blank?
         editing_folder = File.join(@image.media.folder, "editing","user_#{current_user.id}")
         image_path = File.join(editing_folder,params[:cropped_image])
@@ -106,7 +74,7 @@ class ImageEditorController < ApplicationController
       else
         @errors = msg
       end
-      
+
       # manca redirect_to my_media_elements_path
       
     else
@@ -223,16 +191,6 @@ class ImageEditorController < ApplicationController
     #dir_contents = Dir.entries("#{image_dir}")
   end
   
-  def width_or_height(original_w,original_h)
-    to_ratio = 660/495
-    origin_ratio = original_w.to_f/original_h.to_f
-    if origin_ratio > to_ratio
-      return [original_w,660]
-    else
-      return [original_h,495]
-    end
-  end
-  
   def initialize_image_with_owner_or_public
     @image_id = correct_integer?(params[:image_id]) ? params[:image_id].to_i : 0
     @image = Image.find_by_id @image_id
@@ -245,13 +203,6 @@ class ImageEditorController < ApplicationController
     update_ok(!@image.nil? && !@image.is_public && current_user.id == @image.user_id)
   end
   
-  def ratio_value(scale_to_px, value, original)
-    ratio = original.to_f / scale_to_px.to_f if (original.to_i > scale_to_px.to_i )
-    if ratio
-      return value.to_f * ratio.to_f
-    else
-      return value
-    end
-  end
+  
   
 end
