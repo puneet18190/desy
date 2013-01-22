@@ -26,13 +26,7 @@ class ImageEditorController < ApplicationController
   
   def save
     if @ok
-      if !params[:x1].blank?
-        @image.crop params[:x1], params[:y1], params[:x2], params[:y2], current_user.id
-      end
-      image_url = @image.process_textareas extract_textareas_params(params)
-      
-      
-      
+      new_image_url = @image.process_textareas extract_textareas_params(params)
       new_image = Image.new
       new_image.user_id = current_user.id
       new_image.title = params[:new_title]
@@ -42,74 +36,34 @@ class ImageEditorController < ApplicationController
       msg = new_image.errors.messages
       msg.delete(:media)
       if msg.empty?
-          
-
-          new_image.media = File.open(new_file_path)
-          new_image.save
-          remove_crop_path(@image)
-        end
+        new_image.media = File.open(new_image_url)
+        new_image.save
       else
+        File.delete new_image_url
         @errors = msg
       end
-
-      # manca redirect_to my_media_elements_path
-      
     else
       redirect_to '/dashboard'
+      return
     end
   end
   
   def overwrite
     if @ok
-      if !params[:cropped_image].blank?
-        editing_folder = File.join(@image.media.folder, "editing","user_#{current_user.id}")
-        image_path = File.join(editing_folder,params[:cropped_image])
-        img = MiniMagick::Image.open(image_path)
-        original_width = img[:width]
-        original_height = img[:height]
-      else
-        image_path = @image.url
-        img = MiniMagick::Image.open(image_path)
-        original_width = @image.media.width
-        original_height = @image.media.height
-      end
-      
-      if !params[:x1].blank?
-        x1= ratio_value(woh[1],params[:x1],woh[0])
-        y1= ratio_value(woh[1],params[:y1],woh[0])
-        x2= ratio_value(woh[1],params[:x2],woh[0])
-        y2= ratio_value(woh[1],params[:y2],woh[0])
-        w = x2.to_i - x1.to_i
-        h = y2.to_i - y1.to_i
-        crop_params = "#{w}x#{h}+#{x1}+#{y1}"
-        img.crop(crop_params)
-      end
-
+      new_image_url = @image.process_textareas extract_textareas_params(params)
       @image.title = params[:update_title]
       @image.description = params[:update_description]
       @image.tags = params[:update_tags]
-            
-      
-      
       if @image.valid?
-        in_tmpdir do |tmpdir|
-          new_filename = "#{params[:new_title].gsub(/[^0-9A-Za-z]/, '')}-edit-#{Time.now.strftime('%Y%m%d-%H%M%S')}.jpg"
-          img.write("#{tmpdir}/#{new_filename}")
-          woh = width_or_height(original_width,original_height)
-          process_textareas extract_textareas(params)
-          @image.media = File.open("#{tmpdir}/#{new_filename}")
-          @image.save
-          remove_crop_path(@image)
-        end
+        @image.media = File.open(new_image_url)
+        @image.save
       else
+        File.delete new_image_url
         @errors = @image.errors.messages
-        logger.info "\n\n\n\n\n #{@errors} \n\n\n\n"
       end
-      
-      # manca redirect_to my_media_elements_path
-      
     else
       redirect_to '/dashboard'
+      return
     end
   end
   
