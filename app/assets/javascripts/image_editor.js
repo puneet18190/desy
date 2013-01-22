@@ -37,7 +37,7 @@ $(document).ready(function() {
     $('.menuServiceImages').hide();
     $('.menuTextImages').show();
     $('._create_new_image, _updatable_image').css('visibilty', 'visible');
-    $('._toggle_crop'.removeClass('current');
+    $('._toggle_crop').removeClass('current');
     resetSelect();
   });
   
@@ -48,7 +48,7 @@ $(document).ready(function() {
     $('.menuServiceImages').hide();
     $('.menuTextImages').show();
     $('._create_new_image, _updatable_image').css('visibilty', 'visible');
-    $('._toggle_crop'.removeClass('current');
+    $('._toggle_crop').removeClass('current');
   });
   
   $('body').on('click', '#image_editor_container img', function(e) {

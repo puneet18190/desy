@@ -37,7 +37,7 @@ class Image < MediaElement
     custom_filename = "tmp_#{Time.now.strftime('%Y%m%d-%H%M%S')}.jpg"
     if img_path.blank?
       FileUtils.mkdir_p(ed_path) unless Dir.exists? ed_path
-      FileUtils.cp(self.url, "#{ed_path}/#{custom_filename}")
+      FileUtils.cp(self.media.path, "#{ed_path}/#{custom_filename}")
     else
       FileUtils.cp(img_path, "#{ed_path}/#{custom_filename}")
     end
@@ -69,7 +69,7 @@ class Image < MediaElement
     img_path = self.temporary_editing_image(user_id)
     if img_path.blank?
       FileUtils.mkdir_p(ed_path) unless Dir.exists? ed_path
-      img = MiniMagick::Image.open(self.url)
+      img = MiniMagick::Image.open(self.media.path)
       width = self.width
       height = self.height
     else
