@@ -1,6 +1,8 @@
 if(<%= !@new_url.blank? %>) {
   $('#image_wrapper img').attr('src', '<%= @new_url %>?timestamp=' + new Date().getTime());
   $('#image_editor_text_buttons ._cancel').trigger('click');
+  $('#crop_form input._additional').remove();
+  // mostra la 'V' verde
 } else {
   // TODO metti 'x' rossa
 }

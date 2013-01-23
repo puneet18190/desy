@@ -1,5 +1,22 @@
 $(document).ready(function() {
   
+  $('#cropped_image').imgAreaSelect({
+    hide: true,
+    disable: true,
+    handles: true,
+    onSelectEnd: function(img, selection) {
+      $('input[name="x1"]').val(selection.x1);
+      $('input[name="y1"]').val(selection.y1);
+      $('input[name="x2"]').val(selection.x2);
+      $('input[name="y2"]').val(selection.y2);
+      $('#image_editor_crop_buttons ._do').removeClass('disabled');
+    }
+  });
+  
+  $('body').on('click', '.imgareaselect-outer', function() {
+    $('#image_editor_crop_buttons ._do').addClass('disabled');
+  });
+  
   $('body').on('click', '#image_editor_crop_action', function() {
     if(!$(this).hasClass('current')) {
       // reset buttons
@@ -16,14 +33,8 @@ $(document).ready(function() {
       $('._create_new_image, ._updatable_image').css('visibility', 'hidden');
       // initialize
       $('#cropped_image').imgAreaSelect({
-        enable: true,
-        handles: true,
-        onSelectEnd: function(img, selection) {
-          $('input[name="x1"]').val(selection.x1);
-          $('input[name="y1"]').val(selection.y1);
-          $('input[name="x2"]').val(selection.x2);
-          $('input[name="y2"]').val(selection.y2);
-        }
+        hide: false,
+        disable: false
       });
     }
   });
@@ -62,6 +73,7 @@ $(document).ready(function() {
   $('body').on('click', '#image_editor_container._text_enabled img', function(e) {
     var coords = getRelativePositionInImageEditor($(this), e);
     var textCount = $('#info_container').data('current-textarea-identifier');
+    $('#image_editor_text_buttons ._do').removeClass('disabled');
     $('#info_container').data('current-textarea-identifier', textCount + 1);
     $('#image_editor_container').append(textAreaImageEditorContent(coords, textCount));
     $('#image_editor_text_' + textCount).draggable({
@@ -118,21 +130,28 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#image_editor_text_buttons ._do', function() {
-    var form = $('#crop_form');
-    $('._image_editor_text ._inner_textarea').each(function() {
-      var id = $(this).attr('id').split('_')[3];
-      var coords = '<input type="hidden" name="coords_' + id + '" value="' + $(this).data('coords') + '"/>';
-      var text = '<input type="hidden" name="text_' + id + '" value="' + $(this).val() + '"/>';
-      var color = '<input type="hidden" name="color_' + id + '" value="' + $(this).data('color') + '"/>';
-      var font = '<input type="hidden" name="font_' + id + '" value="' + $(this).data('size') + '"/>';
-      form.prepend(coords).prepend(text).prepend(color).prepend(font);
-    });
-    form.attr('action', '/images/' + form.data('param') + '/add_text');
-    form.submit();
+    if(!$(this).hasClass('disabled')) {
+      var form = $('#crop_form');
+      $('._image_editor_text ._inner_textarea').each(function() {
+        var id = $(this).attr('id').split('_')[3];
+        var coords = '<input class="_additional" type="hidden" name="coords_' + id + '" value="' + $(this).data('coords') + '"/>';
+        var text = '<input class="_additional" type="hidden" name="text_' + id + '" value="' + $(this).val() + '"/>';
+        var color = '<input class="_additional" type="hidden" name="color_' + id + '" value="' + $(this).data('color') + '"/>';
+        var font = '<input class="_additional" type="hidden" name="font_' + id + '" value="' + $(this).data('size') + '"/>';
+        form.prepend(coords).prepend(text).prepend(color).prepend(font);
+      });
+      form.attr('action', '/images/' + form.data('param') + '/add_text');
+      form.submit();
+    }
   });
   
-  
-  
+  $('body').on('click', '#image_editor_crop_buttons ._do', function() {
+    if(!$(this).hasClass('disabled')) {
+      var form = $('#crop_form');
+      form.attr('action', '/images/' + form.data('param') + '/crop');
+      thisForm.submit();
+    }
+  });
   
   
   
@@ -141,16 +160,6 @@ $(document).ready(function() {
   
   
   // FIXME FIXME FIXME fino a qui
-  
-  $('body').on('click', '#image_editor_crop', function() {
-    var thisForm = $('#crop_form');
-    thisForm.attr('action', '/images/' + thisForm.data('param') + '/crop');
-    thisForm.submit();
-    $('.menuServiceImages').hide();
-    $('.menuTextImages').show();
-    $('._create_new_image, ._updatable_image').css('visibility', 'visible');
-    $('._toggle_crop').removeClass('current');
-  });
   
   $('body').on('click', '#image_editor_not_public ._save_edit_image', function() {
     var image_id = $(this).data('slide-id');
@@ -295,10 +304,12 @@ function resetImageEditorCrop() {
     disable: true
   });
   $('#crop_form input._coord').val('');
+  $('#image_editor_crop_buttons ._do').addClass('disabled');
 }
 
 function resetImageEditorTexts() {
   $('#image_wrapper img').removeClass('forText');
   $('#image_editor_container').removeClass('_text_enabled');
   $('._image_editor_text').remove();
+  $('#image_editor_text_buttons ._do').addClass('disabled');
 }
