@@ -69,10 +69,7 @@ class ImageEditorController < ApplicationController
       new_image.tags = params[:new_tags_placeholder] != '0' ? '' : params[:new_tags]
       new_image.user_id = current_user.id
       new_image.media = @image.current_editing_image
-      if new_image.save
-        redirect_to '/dashboard'
-        return
-      else
+      if !new_image.save
         @error_ids = 'new'
         @errors = convert_item_error_messages(new_image.errors.messages)
         @error_fields = new_image.errors.messages.keys
@@ -89,10 +86,7 @@ class ImageEditorController < ApplicationController
       @image.title = params[:update_title]
       @image.description = params[:update_description]
       @image.tags = params[:update_tags]
-      if @image.save
-        redirect_to '/dashboard'
-        return
-      else
+      if !@image.save
         @error_ids = 'update'
         @errors = convert_item_error_messages(@image.errors.messages)
         @error_fields = @image.errors.messages.keys
