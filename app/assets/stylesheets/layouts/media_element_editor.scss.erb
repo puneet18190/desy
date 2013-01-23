@@ -115,6 +115,10 @@ html.media_element_editor-layout {
         height: 30px;
         display:block;
       }
+      .form_error,textarea.form_error, input.form_error{
+          border: 3px solid rgba(250, 0, 0, 0.5);
+      }
+
       input, textarea {
         background-color: #454343;
         border-radius: 10px;
@@ -124,6 +128,7 @@ html.media_element_editor-layout {
         font: 12px Arial, Helvetica, sans-serif;
         color: #fff;
         resize:none;
+        border: 3px solid #43a848;
       }
       input {
         height:25px;
@@ -270,7 +275,7 @@ html.media_element_editor-layout {
         margin-bottom:30px;
         a {
           display:block;
-          width:68px;
+          
         }
         a.disabled {
           color:#303130;
@@ -886,16 +891,23 @@ html.media_element_editor-layout {
           width: 0;
           top: -27px;
           margin-left: 0;
-          border-left: 4px solid #43A848;
-          border-right: 4px solid #43A848;
-          border-top: 1px solid #43A848;
-          border-bottom: 1px solid #43A848;
+          border-left: 1px solid rgb(20, 20, 20);
+          border-right: 7px solid rgb(70, 70, 70);
+          border-top: 1px solid rgb(70, 70, 70);
+          border-bottom: 1px solid rgb(70, 70, 70);
+          &:hover {
+            /*background-color: red;*/
+            border-left:4px solid rgb(141, 141, 141);
+            border-right:4px solid rgb(141, 141, 141);
+            border-top:1px solid rgb(141, 141, 141);
+            border-bottom:1px solid rgb(141, 141, 141);
+          }
           &.selected {
-            background-color: red;
-            border-left:4px solid red;
-            border-right:4px solid red;
-            border-top:1px solid red;
-            border-bottom:1px solid red;
+            /*background-color: red;*/
+            border-left:1px solid rgb(20, 20, 20);
+            border-right:7px solid #fff;
+            border-top:1px solid #fff;
+            border-bottom:1px solid #fff;
           }
         }
         .ui-slider-range {
@@ -1014,12 +1026,12 @@ html.media_element_editor-layout {
     width:660px;
     height: 30px;
     margin: 0 0 0 215px; 
-    text-align:center;
+    text-align:left;
     padding:10px;
-    .menuTextImages{
-      display:none;
+    .bottoniVerdi a{
+      margin-top:0px;
+      display:inline-block;
     }
-    
   }
   .menuFooterEditorElement {
     padding-top:10px;
@@ -1034,9 +1046,8 @@ html.media_element_editor-layout {
     }
   }
   .menuServiceImages {
-      display:none;
-      margin:0 auto;
-      width: 200px;
+      margin:0;
+      padding:0;
     }
   /*
    * imgAreaSelect default style
@@ -1049,13 +1060,19 @@ html.media_element_editor-layout {
      width: 660px;
      display:block;
      overflow:hidden;
-     img{
+     img {
        max-width: 660px;
        max-height: 495px;
+       &.forCrop:hover {
+         cursor: crosshair;
+       }
+       &.forText:hover {
+         cursor: pointer;
+       }
      }
    }
 
-    #_image_editor_container {
+    #image_editor_container {
       .image_editor_text{
        padding:0;
       }
@@ -1106,11 +1123,14 @@ html.media_element_editor-layout {
         height: 8px;
         width: 12px;
       }
-      a:hover,a.current{
+      a:hover, a.current{
         margin-left:1px;
         margin-right:1px;
         border-left: 2px solid white;
         border-right: 2px solid white;
+      }
+      a.current:hover {
+        cursor: default;
       }
     }
     .font_sizes{
@@ -1125,6 +1145,9 @@ html.media_element_editor-layout {
       }
       a.big_font{
         font-size: 12px;
+      }
+      a.current:hover {
+        cursor: default;
       }
       a{
         color:white;

@@ -7,7 +7,11 @@
     <% if video.nil? %>
       <div class="videoIcon"></div>
     <% else %>
-      <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true} %>
+      <% if video.converted.nil? %>
+        <%= image_tag video.placeholders_url(:cover) %>
+      <% else %>
+        <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true} %>
+      <% end %>
     <% end %>
   </div>
 </div>

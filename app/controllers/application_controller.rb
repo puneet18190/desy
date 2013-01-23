@@ -54,11 +54,6 @@ class ApplicationController < ActionController::Base
     update_ok(@lesson && current_user.id == @lesson.user_id)
   end
   
-  def initialize_lesson_if_in_virtual_classroom
-    initialize_lesson
-    update_ok(@lesson && @lesson.in_virtual_classroom?(current_user.id))
-  end
-  
   def initialize_lesson
     @lesson_id = correct_integer?(params[:lesson_id]) ? params[:lesson_id].to_i : 0
     @lesson = Lesson.find_by_id @lesson_id

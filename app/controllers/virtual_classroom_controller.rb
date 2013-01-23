@@ -8,7 +8,7 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_layout, :initialize_paginator, :only => [:index]
   before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :change_position_in_playlist]
   before_filter :initialize_position, :only => :change_position_in_playlist
-  before_filter :initialize_lesson_if_in_virtual_classroom, :only => :send_link
+  before_filter :initialize_lesson_for_sending_link, :only => :send_link
   before_filter :initialize_mails, :only => :send_link
   before_filter :initialize_page, :only => :select_lessons_new_block
   before_filter :initialize_loaded_lessons, :only => :load_lessons
@@ -151,6 +151,11 @@ class VirtualClassroomController < ApplicationController
   end
   
   private
+  
+  def initialize_lesson_for_sending_link
+    initialize_lesson
+    update_ok(@lesson && @lesson.user_id == current_user.id && @lesson.in_virtual_classroom?(current_user.id))
+  end
   
   def initialize_loaded_lessons
     @load_lessons = []

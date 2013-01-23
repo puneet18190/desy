@@ -1,9 +1,15 @@
 <ul id="video_gallery_content" class="scrollVerde">
   <div class="scroll-pane">
     <% videos.each do |video| %>
-      <li id="gallery_video_<%= video.id %>" class="_video_gallery_thumb" data-video-id="<%= video.id %>">
+      <%
+        disabled = video.converted.nil?
+        additional_class = disabled ? '_disabled'.html_safe : ''
+      %>
+      <li id="gallery_video_<%= video.id %>" class="_video_gallery_thumb <%= additional_class %>" data-video-id="<%= video.id %>">
         <a><%= image_tag video.cover_url, :width => '250', :height => '140' %></a>
-        <%= render :partial => "galleries/popups/video", :locals => {:video => video} %>
+        <% if !disabled %>
+          <%= render :partial => "galleries/popups/video", :locals => {:video => video} %>
+        <% end %>
       </li>
     <% end %>
   </div>

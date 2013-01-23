@@ -5,13 +5,18 @@
 <div class="bigViewLesson slideVideo">
   <h2><%= slide.title %></h2>
     <% if video.nil? %>
-    <div class="videoMedium">
-      <div class="videoIcon"></div>
+      <div class="videoMedium">
+        <div class="videoIcon"></div>
+      </div>
     <% else %>
-    <div class="videoMedium" style="background-color: white" >
-      <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true} %>
+      <div class="videoMedium" style="background-color: white" >
+        <% if video.converted.nil? %>
+          <%= image_tag video.placeholders_url(:cover) %>
+        <% else %>
+          <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true} %>
+        <% end %>
+      </div>
     <% end %>
-    </div>
   <div class="textRightVideoContent">
     <%= slide.text.html_safe if slide.text %>
   </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 30000000000000) do
+ActiveRecord::Schema.define(:version => 20130121130513) do
 
   create_table "locations", :force => true do |t|
     t.string   "description", :null => false
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(:version => 30000000000000) do
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.string   "token",               :limit => 20
+    t.text     "metadata"
     t.index ["parent_id"], :name => "fk__lessons_parent_id", :order => {"parent_id" => :asc}
     t.index ["school_level_id"], :name => "fk__lessons_school_level_id", :order => {"school_level_id" => :asc}
     t.index ["subject_id"], :name => "fk__lessons_subject_id", :order => {"subject_id" => :asc}

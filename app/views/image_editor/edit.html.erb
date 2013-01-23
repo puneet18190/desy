@@ -1,25 +1,33 @@
+<%
+  div_id =  @image.is_public ? 'public' : 'not_public'
+  save_class = '_save_edit_image nextButton _updatable_image'
+  if @image.is_public
+    save_class = '_save_edit_image nextButton _create_new_image'
+  end
+%>
+
 <%= render :partial => 'image_editor/header', :locals => {:image => @image} %>
-<% div_id =  @image.is_public ? "public" : "not_public" %>
+
 <div class="mediaEditorElementContainer image_editor_only" id="image_editor_<%= div_id %>">
+  
   <div class="menuLeftEditorElement">
-  <h2>What to do?</h2><p>Select the scissors to cut the image
-or ABC to enter text.</p>
+    <h2><%= t('captions.what_to_do') %></h2><p><%= t('captions.select_the_scissors') %></p>
     <div class="menuModifyImages">
-    <ul>
-      <li><a class="do_crop _toggle_crop cutButton" title="<%= t('general_titles.crop_element_title') %>"></a></li>
-      <li><a class="write_text _toggle_text abcButton" title="<%= t('general_titles.add_text_title') %>"></a></li>
-    </ul>
+      <ul>
+        <li><a id="image_editor_crop_action" class="do_crop cutButton" title="<%= t('general_titles.crop_element_title') %>"></a></li>
+        <li><a id="image_editor_text_action" class="write_text abcButton" title="<%= t('general_titles.add_text_title') %>"></a></li>
+      </ul>
     </div>
   </div>
-  <div id="_image_editor_container" class="imagesContainer">
+  
+  <div id="image_editor_container" class="imagesContainer">
     <div id="image_wrapper">
       <%= image_tag @image.url, :id => "cropped_image", "data-width" => @image.width, "data-height"=>@image.height %>
-      <form id="_crop_form" data-param="<%= @image.id %>" action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
-        <input type="hidden" name="x1" value="" />
-        <input type="hidden" name="y1" value="" />
-        <input type="hidden" name="x2" value="" />
-        <input type="hidden" name="y2" value="" />
-        <input type="hidden" name="cropped_image" value="" />
+      <form id="crop_form" data-param="<%= @image.id %>" action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
+        <input type="hidden" name="x1" value="" class="_coord"/>
+        <input type="hidden" name="y1" value="" class="_coord"/>
+        <input type="hidden" name="x2" value="" class="_coord"/>
+        <input type="hidden" name="y2" value="" class="_coord"/>
         <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => @image.sti_type } %>
         <% if !@image.is_public %>
           <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @image} %>
@@ -27,29 +35,46 @@ or ABC to enter text.</p>
       </form>
     </div>
   </div>
+  
   <div class="menuBottomEditorElement">
-    <div class="menuTextImages upper">
-      <%= t 'captions.click_image_to_add_text' %>
-    </div>
-    <div class="menuServiceImages">
-      <div class="bottoniVerdi fltlft">
-        <a  href="#" id="_editor_crop">CROP</a>
-        <a href="#" id="_editor_cancel">CANCEL</a>
+    
+    <div id="image_editor_empty_buttons" class="menuTextImages upper">
+      <span><%= t('captions.select_an_action') %></span>
+      <div class="bottoniVerdi fltrt">
+        <a class="_undo upper" style="display:none"><%= t('captions.undo') %></a> <!-- TODO deve essere _enabled -->
       </div>
-   </div>
-  </div>
-  <div class="menuFooterEditorElement">
-	  <p>Original image size: <%= @image.width %>x<%= @image.height %>px</p>
-    <!-- NEXT -->
-    <% save_class = "_save_edit_image nextButton" %>
-    <% if @image.is_public %>
-      <% save_class = "#{save_class} _create_new_image" %>
-    <% else %>
-      <% save_class = "#{save_class} _updatable_image" %>
-    <% end %>
-    <div class="fltrt">
-      <div class="fltrt"><a class="<%= save_class %>" data-image-id="<%= @image.id %>" title="<%= t('general_titles.save_element_title') %>"></a></div>
     </div>
-  <br class="clearfloat">
+    
+    <div id="image_editor_crop_buttons" class="menuServiceImages upper" style="display:none">
+      <span><%= t('captions.drag_image_to_select') %></span>
+      <div class="bottoniVerdi fltrt">
+        <a class="_do"><%= t('captions.crop') %></a> <!-- TODO deve essere _enabled -->
+        <a class="_cancel"><%= t('captions.cancel') %></a>
+      </div>
+    </div>
+    
+    <div id="image_editor_text_buttons" class="menuServiceImages upper" style="display:none">
+      <span><%= t('captions.click_image_to_add_text') %></span>
+      <div class="bottoniVerdi fltrt">
+        <a class="_do"><%= t('captions.done') %></a> <!-- TODO deve essere _enabled -->
+        <a class="_cancel"><%= t('captions.cancel') %></a>
+      </div>
+    </div>
+    
   </div>
+  
+  <div class="menuFooterEditorElement">
+    <p><%= t('captions.original_image_size') %>: <%= @image.width %>x<%= @image.height %>px</p>
+    <div class="fltrt">
+      <div class="fltrt"><a class="<%= save_class.html_safe %>" data-image-id="<%= @image.id %>" title="<%= t('general_titles.save_element_title') %>"></a></div>
+    </div>
+    <br class="clearfloat">
+  </div>
+  
+  <div id="image_editor_empty_text_area_container" style="display:none">
+    <%= render :partial => 'image_editor/text_area' %>
+  </div>
+  
+  <div id="info_container" data-current-textarea-identifier="1"></div>
+  
 </div>

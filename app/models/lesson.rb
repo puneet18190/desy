@@ -7,6 +7,8 @@ class Lesson < ActiveRecord::Base
   attr_reader :status, :is_reportable
   attr_writer :tags
   
+  serialize :metadata, OpenStruct
+  
   belongs_to :user
   belongs_to :subject
   belongs_to :school_level
@@ -32,6 +34,17 @@ class Lesson < ActiveRecord::Base
   after_save :create_or_update_cover, :update_or_create_tags
   
   before_validation :init_validation, :create_token
+  
+  before_create :initialize_metadata
+  
+  def initialize_metadata
+    self.metadata.available_video = true
+    self.metadata.available_audio = true
+  end
+  
+  def available?
+    self.metadata.available_video && self.metadata.available_audio
+  end
   
   def tags
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'Lesson')

@@ -171,7 +171,7 @@ module Media
         def extract_text_component(component)
           # CONTENT, COLORS, and DURATION are present and correct
           return nil if !component.has_key?(:content) || !component[:duration].kind_of?(Integer) || component[:duration] < 1
-          return nil if !::CONFIG['colors'].has_key?(component[:background_color]) || !::CONFIG['colors'].has_key?(component[:text_color])
+          return nil if !::SETTINGS['colors'].has_key?(component[:background_color]) || !::SETTINGS['colors'].has_key?(component[:text_color])
           {
             :type => TEXT_COMPONENT,
             :content => component[:content].to_s,

@@ -30,7 +30,6 @@ class MediaElement < ActiveRecord::Base
   has_many :taggings, :as => :taggable, :dependent => :delete_all
   belongs_to :user
   
-  # FIXME aggiungere :media a validates_presence_of una volta implementati tutti gli upload
   validates_presence_of :user_id, :title, :description, :media
   validates_inclusion_of :is_public, :in => [true, false]
   validates_inclusion_of :sti_type, :in => STI_TYPES
@@ -64,6 +63,30 @@ class MediaElement < ActiveRecord::Base
       inferred_sti_type.new_without_sti_type_inferring(attributes, options, &block)
     end
     alias_method_chain :new, :sti_type_inferring
+  end
+  
+  def disable_lessons_containing_me
+    MediaElementsSlide.where(:media_element_id => self.id).each do |mes|
+      l = mes.slide.lesson
+      if self.video?
+        l.metadata.available_video = false
+      elsif self.audio?
+        l.metadata.available_audio = false
+      end
+      l.save
+    end
+  end
+  
+  def enable_lessons_containing_me
+    MediaElementsSlide.where(:media_element_id => self.id).each do |mes|
+      l = mes.slide.lesson
+      if self.video?
+        l.metadata.available_video = true
+      elsif self.audio?
+        l.metadata.available_audio = true
+      end
+      l.save
+    end
   end
   
   def self.extract(media_element_id, an_user_id, my_sti_type)
