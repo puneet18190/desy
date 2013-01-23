@@ -152,7 +152,7 @@ $(document).ready(function() {
     if(!$(this).hasClass('disabled')) {
       var form = $('#crop_form');
       form.attr('action', '/images/' + form.data('param') + '/crop');
-      thisForm.submit();
+      form.submit();
     }
   });
   

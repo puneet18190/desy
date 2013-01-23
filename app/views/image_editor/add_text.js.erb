@@ -2,8 +2,8 @@ if(<%= !@new_url.blank? %>) {
   $('#image_wrapper img').attr('src', '<%= @new_url %>?timestamp=' + new Date().getTime());
   $('#image_editor_text_buttons ._cancel').trigger('click');
   $('#crop_form input._additional').remove();
+  $('#image_editor_empty_buttons ._undo').show();
   // mostra la 'V' verde
-  // funzione che abilita il undo
 } else {
   // TODO metti 'x' rossa
 }

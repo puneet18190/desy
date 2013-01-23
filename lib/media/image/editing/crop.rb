@@ -10,8 +10,8 @@ module Media
         
         #input: image
         #output: saving folder
-        def initialize(input, output, output_path, x1, y1, x2, y2)
-          @input, @output, @output_path, @x1, @y1, @x2, @y2 = input, output, output_path, x1, y1, x2, y2
+        def initialize(input, output, x1, y1, x2, y2)
+          @input, @output, @x1, @y1, @x2, @y2 = input, output, x1, y1, x2, y2
         end
         
         def run
@@ -19,7 +19,7 @@ module Media
           h = @y2.to_i - @y1.to_i
           crop_params = "#{w}x#{h}+#{@x1}+#{@y1}"
           @input.crop(crop_params)
-          @input.write File.join(@output.to_s, @output_path)
+          @input.write @output
         end
         
       end

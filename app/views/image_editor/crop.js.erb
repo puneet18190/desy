@@ -1,15 +1,10 @@
-/*if(<%= !@crop_url.blank? %>) {
-  $('#cropped_image').imgAreaSelect({
-    hide: true
-  });
-  $('._toggle_crop').removeClass('current');
-  $('#image_wrapper img').attr('src', '<%= @crop_url %>');
-  resetImageEditorCrop();
+if(<%= !@new_url.blank? %>) {
+  $('#image_wrapper img').attr('src', '<%= @new_url %>?timestamp=' + new Date().getTime());
+  $('#image_editor_crop_buttons ._cancel').trigger('click');
+  $('#crop_form input._coord').val('');
+  $('#image_editor_empty_buttons ._undo').show();
+  // aggiornare dimensioni reali
+  // mostra la 'V' verde
 } else {
   // TODO metti 'x' rossa
-}*/
-
-// aggiornare dimensioni reali
-// ripristinare azione del form
-// svuotare tutto il resto
-console.log('fatto -- <%= @new_url %>');
+}

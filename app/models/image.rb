@@ -100,14 +100,14 @@ class Image < MediaElement
     true
   end
   
-  def crop(x1, y1, x2, y2, user_id)
+  def crop(x1, y1, x2, y2)
     return false if !self.in_edit_mode? || !self.save_editing_prev
     img = MiniMagick::Image.open self.current_editing_image
     x1 = Image.ratio_value img[:width], img[:height], x1
     y1 = Image.ratio_value img[:width], img[:height], y1
     x2 = Image.ratio_value img[:width], img[:height], x2
     y2 = Image.ratio_value img[:width], img[:height], y2
-    Media::Image::Editing::Crop.new(img_path, img, ed_path, x1, y1, x2, y2).run
+    Media::Image::Editing::Crop.new(img, self.current_editing_image, x1, y1, x2, y2).run
     true
   end
   
