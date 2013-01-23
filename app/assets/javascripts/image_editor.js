@@ -116,15 +116,20 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#image_editor_text_buttons ._do', function() {
-    $('._inner_textarea').each(function() {
+    var form = $('#crop_form');
+    $('._image_editor_text ._inner_textarea').each(function() {
       var id = $(this).attr('id').split('_')[3];
+      
+      
+      console.log("ehiehiehi  -- " + $(this).attr('id'))
+      
+      
       var coords = '<input type="hidden" name="coords_' + id + '" value="' + $(this).data('coords') + '"/>';
       var text = '<input type="hidden" name="text_"' + id + '" value="' + $(this).val() + '"/>';
       var color = '<input type="hidden" name="color_"' + id + '" value="' + $(this).data('color') + '"/>';
       var font = '<input type="hidden" name="font_"' + id + '" value="' + $(this).data('size') + '"/>';
+      form.prepend(coords).prepend(text).prepend(color).prepend(font);
     });
-    var form = $('#crop_form');
-    form.prepend(coords).prepend(text).prepend(color).prepend(font);
     form.attr('action', '/images/' + form.data('param') + '/add_text');
     form.submit();
   });
