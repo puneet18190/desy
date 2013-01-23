@@ -7,7 +7,6 @@ class DashboardController < ApplicationController
     @lessons_emptied = Lesson.dashboard_emptied? current_user.id
     @media_elements = current_user.suggested_media_elements(@media_elements_for_page * @media_element_pages)
     @media_elements_emptied = MediaElement.dashboard_emptied? current_user.id
-    @new_media_element = empty_media_element_to_load
     render_js_or_html_index
   end
   

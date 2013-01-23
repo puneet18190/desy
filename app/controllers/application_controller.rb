@@ -167,8 +167,4 @@ class ApplicationController < ActionController::Base
     logger.info "\n\n\n\nErrore loggato: #{x}\n\n\n\n"
   end
   
-  def empty_media_element_to_load
-    # TODO
-  end
-  
 end

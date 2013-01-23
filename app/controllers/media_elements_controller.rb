@@ -18,7 +18,6 @@ class MediaElementsController < ApplicationController
       @page = @pages_amount
       get_own_media_elements
     end
-    @new_media_element = empty_media_element_to_load
     render_js_or_html_index
   end
   
