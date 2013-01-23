@@ -145,12 +145,13 @@ p {
   position:fixed;
   bottom:0;
   z-index:5000;
-  background: #373737;
+  /*background: #373737;*/
+  background: url('/assets/tile_footer.gif') top left repeat-x;
   color:#999;
   font-size:85%;
-  text-transform:lowercase;
+  
   .footer_content{
-    padding: 26px 55px 34px 30px;
+    padding: 26px 55px 80px 30px;
     a{
       color: #fff;
       &:hover{
