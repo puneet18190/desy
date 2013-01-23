@@ -1,10 +1,12 @@
-if(<%= !@crop_url.blank? %>) {
-  $('#cropped_image').imgAreaSelect({
-    hide: true
-  });
-  $('._toggle_crop').removeClass('current');
-  $('#image_wrapper img').attr('src', '<%= @crop_url %>');
-  resetImageEditorCrop();
-} else {
-  // TODO metti 'x' rossa
-}
+<% if !@new_url.blank? %>
+  $('#image_wrapper img').attr('src', '<%= @new_url %>?timestamp=' + new Date().getTime());
+  $('#image_editor_crop_buttons ._cancel').trigger('click');
+  $('#image_editor_form input._coord').val('');
+  $('#image_editor_empty_buttons ._undo').show();
+  $('#image_editor_real_dimensions').html('<%= j t("captions.original_image_size") %>: <%= @new_img[:width] %>x<%= @new_img[:height] %>px');
+  $('body').prepend('<span class="_saved"></span>');
+  centerThis('._saved');
+  $('._saved').fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
+<% else %>
+  slideError();
+<% end %>
