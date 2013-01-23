@@ -28,18 +28,10 @@ class MediaElementsController < ApplicationController
   
   def create
     media_element = MediaElement.new(media_element_params) { |me| me.user = current_user }
-    if media_element.save
-      #render :formats => :js
-      #render json: { message: I18n.t('forms.media_element.messages.success') }, :status => :created
-      #redirect_to my_media_elements_path
-    else
+    if !media_element.save
       @errors = media_element.errors.messages
-      #render :formats => :js
-      # TODO aggiungere visualizzazione errori
-      #puts media_element.errors.inspect
-      #render json: { errors: media_element.errors }
     end
-    render layout: false#, content_type: Mime::TEXT, text: media_element.inspect
+    render :layout => false
   end
   
   def add
