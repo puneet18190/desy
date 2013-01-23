@@ -84,6 +84,7 @@ class ImageEditorController < ApplicationController
   
   def extract_textareas_params(params)
     resp = {}
+    fonts = {'small_font' => 15, 'medium_font' => 25, 'big_font' => 35}
     params.each do |k, v|
       if !(k =~ /_/).nil?
         index = k.split('_').last.to_i
@@ -101,7 +102,7 @@ class ImageEditorController < ApplicationController
     resp.each do |k, v|
       final_resp << {
         :color => SETTINGS['colors'][v[:color].gsub('color_', '')]['code'],
-        :font_size => v[:font].to_f,
+        :font_size => fonts[v[:font]].to_f,
         :coord_x => v[:coords].split(',').first.to_f,
         :coord_y => v[:coords].split(',').last.to_f,
         :text => v[:text]
