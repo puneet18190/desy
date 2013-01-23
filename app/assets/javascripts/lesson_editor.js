@@ -279,6 +279,8 @@ $(document).ready(function() {
     }
   });
   
+  initTagsAutocomplete("tags");
+  
 });
 
 function scrollPaneUpdate(trigger_element){
