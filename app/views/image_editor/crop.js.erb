@@ -4,7 +4,9 @@ if(<%= !@new_url.blank? %>) {
   $('#crop_form input._coord').val('');
   $('#image_editor_empty_buttons ._undo').show();
   // aggiornare dimensioni reali
-  // mostra la 'V' verde
+  $('body').prepend('<span class="_saved"></span>');
+  centerThis('._saved');
+  $('._saved').fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
 } else {
   slideError();
 }
