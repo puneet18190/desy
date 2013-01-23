@@ -1,4 +1,9 @@
-<div id="<%= destination %>_<%= media_element.id %>" class="boxViewExpandedMediaElement">
+<%
+  disabled = (!media_element.image? && media_element.converted.nil?)
+  additional_class = disabled ? '_disabled'.html_safe : ''
+%>
+
+<div id="<%= destination %>_<%= media_element.id %>" class="boxViewExpandedMediaElement <%= additional_class %>">
   <div class="contentInterno">
     <%= render :partial => "media_elements/thumbnails/#{media_element.sti_type.downcase}", :locals => {:item => media_element} %>
     <div class="description">
@@ -9,8 +14,10 @@
   <div class="mediaStatus fltlft">
     <%= media_element.status %>
   </div>
-  <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination} %>
-  <%= render :partial => "media_elements/popup", :locals => {:media_element => media_element} %>
+  <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination, :additional_class => additional_class} %>
+  <% if !disabled %>
+    <%= render :partial => "media_elements/popup", :locals => {:media_element => media_element} %>
+  <% end %>
 </div>
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){

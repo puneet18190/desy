@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
   
-  LESSONS_FOR_PAGE = CONFIG['compact_lesson_pagination']
-  MEDIA_ELEMENTS_FOR_PAGE = CONFIG['compact_media_element_pagination']
+  LESSONS_FOR_PAGE = SETTINGS['compact_lesson_pagination']
+  MEDIA_ELEMENTS_FOR_PAGE = SETTINGS['compact_media_element_pagination']
   
   before_filter :initialize_layout, :initialize_paginator_and_filters, :reset_players_counter
   
@@ -26,7 +26,11 @@ class SearchController < ApplicationController
     if @tag.class == Fixnum
       @tag = Tag.find_by_id(@tag)
       @tag_placeholder = params[:tag]
-      @tags = Tag.where('word LIKE ?', "#{@tag_placeholder}%")
+      if @tag_placeholder.blank?
+        @tags = [@tag]
+      else
+        @tags = Tag.where('word LIKE ?', "#{@tag_placeholder}%") 
+      end
     end
     render_js_or_html_index
   end
@@ -34,7 +38,7 @@ class SearchController < ApplicationController
   private
   
   def get_result_media_elements
-    resp = @current_user.search_media_elements(@tag, @page, @for_page, @order, @filter)
+    resp = current_user.search_media_elements(@tag, @page, @for_page, @order, @filter)
     @media_elements = resp[:records]
     @pages_amount = resp[:pages_amount]
     @media_elements_amount = resp[:records_amount]
@@ -43,7 +47,7 @@ class SearchController < ApplicationController
   end
   
   def get_result_lessons
-    resp = @current_user.search_lessons(@tag, @page, @for_page, @order, @filter, @subject_id)
+    resp = current_user.search_lessons(@tag, @page, @for_page, @order, @filter, @subject_id)
     @lessons = resp[:records]
     @pages_amount = resp[:pages_amount]
     @lessons_amount = resp[:records_amount]

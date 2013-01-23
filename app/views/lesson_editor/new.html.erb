@@ -1,7 +1,7 @@
 <%
   title_max = t('captions.title_max_chars', :num => t('language_parameters.lesson.length_title').to_s).downcase 
   description_max = t('captions.description_max_chars', :num => t('language_parameters.lesson.length_description').to_s).downcase
-  tags_max = t('captions.tags_max', :items => CONFIG['min_tags_for_item'].to_s, :num => CONFIG['max_tag_length'].to_s).downcase
+  tags_max = t('captions.tags_max', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
 
 <ul id="slides" class="new">
@@ -26,10 +26,10 @@
     </div>
     <div class="info-slide-footer">
       <div class="school-level pull-left">
-        <%= t('captions.school_level') %>: <%= @current_user.school_level.description %>
+        <%= t('captions.school_level') %>: <%= current_user.school_level.description %>
       </div>
       <div class="author pull-right">
-        <%= t('captions.author') %>: <span class="name"><%=  @current_user.full_name %></span>
+        <%= t('captions.author') %>: <span class="name"><%=  current_user.full_name %></span>
       </div>
     </div>
   </li>

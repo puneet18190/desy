@@ -37,7 +37,7 @@ html.media_element_editor-layout {
     
     .testo {
      padding-top:7px; 
-     width:700px; 
+     width:82%; 
      text-align:center;
     }
     
@@ -100,6 +100,10 @@ html.media_element_editor-layout {
           text-align:left;
         }
       }
+      .error_messages {
+        padding:15px 0 15px 0;
+        height:18px;
+      }
       .cols {
         padding-top:40px;
         text-align:left;
@@ -129,7 +133,7 @@ html.media_element_editor-layout {
         height: 106px;
       }
       textarea#new_tags, textarea#update_tags {
-        height:155px;
+        height:161px;
       }
       input[type="submit"] {
         font: 130% 'Nunito', sans-serif;
@@ -179,12 +183,6 @@ html.media_element_editor-layout {
      
     }
   }
-
-
-
-
-
-
 
   /*VIDEO EDITOR*/
   #video_editor #form_info_new_media_element_in_editor.formInfoMediaElementEditor, #video_editor #form_info_update_media_element_in_editor.formInfoMediaElementEditor{
@@ -253,7 +251,7 @@ html.media_element_editor-layout {
     .mediaEditorListaElementi {
       /*position:absolute; */
       width:906px;
-      margin-left:40px;
+      margin-left:36px;
       position:relative;
     }
     
@@ -270,6 +268,10 @@ html.media_element_editor-layout {
       .bottoniVerdi {
         margin-top:10px; 
         margin-bottom:30px;
+        a {
+          display:block;
+          width:68px;
+        }
         a.disabled {
           color:#303130;
           background-color:#494948;
@@ -427,6 +429,7 @@ html.media_element_editor-layout {
         &:hover, &.current {
           background-position: 0 (-$icon-size);
           opacity:1;
+          
         }
       }
     }
@@ -670,6 +673,33 @@ html.media_element_editor-layout {
     float:left;
     padding-top:8px;
     width:900px;
+    a.creaNuovoButton {
+      font-size: 0.6em;
+      float:left;
+      padding:0;
+      background-image: url(<%= asset_path 'action-fotogramma.svg' %>);
+      background-repeat: no-repeat;
+      background-size: 12em 18em;
+      background-position: -6em -6em;
+      &:hover {
+        background-position: 0 -6em;
+        opacity:1;
+      }
+    }
+    a.closeButton {
+      font-size: 0.6em;
+      float:left;
+      padding:0;
+      opacity: 0.2;
+      background-image: url(<%= asset_path 'action-fotogramma.svg' %>);
+      background-repeat: no-repeat;
+      background-size: 12em 18em;
+      background-position:-6em 0;
+      &:hover {
+        opacity: 1;
+        background-position: 0em 0;
+      };
+    }
     .titleTrack {
       text-align:left;
       padding:5px 10px;
@@ -681,20 +711,26 @@ html.media_element_editor-layout {
       background-position: -5.2em -5.3em;
       opacity:0.2;
       float:left;
+
     }
     .audioButton:hover {
       background-position: 0.3em -5.3em;
       opacity:1;
     }
     .audioButton.current {
+      font-size: 0.7em;
       background-position: 0.3em -5.3em;
       opacity:1;
       float:left;
+      
     }
     a.exitButton {
       opacity:0.5;
       background-position: -9em 0;
-  }
+      &:hover {
+        background-position: 0 0;  
+      };
+    }
     p {
       padding:5px 0px 0px 5px;
       float:left;
@@ -796,7 +832,7 @@ html.media_element_editor-layout {
     width:905px;
     height:98px;
     position:absolute;
-    bottom:0px;
+    top:136px;
     -webkit-box-shadow: 0px 6px 10px #161515;
     box-shadow: 0px 6px 10px #161515;
     z-index:150;
@@ -850,16 +886,23 @@ html.media_element_editor-layout {
           width: 0;
           top: -27px;
           margin-left: 0;
-          border-left: 4px solid #43A848;
-          border-right: 4px solid #43A848;
-          border-top: 1px solid #43A848;
-          border-bottom: 1px solid #43A848;
+          border-left: 1px solid rgb(20, 20, 20);
+          border-right: 7px solid rgb(70, 70, 70);
+          border-top: 1px solid rgb(70, 70, 70);
+          border-bottom: 1px solid rgb(70, 70, 70);
+          &:hover {
+            /*background-color: red;*/
+            border-left:4px solid rgb(141, 141, 141);
+            border-right:4px solid rgb(141, 141, 141);
+            border-top:1px solid rgb(141, 141, 141);
+            border-bottom:1px solid rgb(141, 141, 141);
+          }
           &.selected {
-            background-color: red;
-            border-left:4px solid red;
-            border-right:4px solid red;
-            border-top:1px solid red;
-            border-bottom:1px solid red;
+            /*background-color: red;*/
+            border-left:1px solid rgb(20, 20, 20);
+            border-right:7px solid #fff;
+            border-top:1px solid #fff;
+            border-bottom:1px solid #fff;
           }
         }
         .ui-slider-range {
@@ -901,7 +944,7 @@ html.media_element_editor-layout {
     width:156px;
     height:98px;
     position:absolute;
-    bottom:0px;
+    top:136px;
     -webkit-box-shadow: 0px 6px 10px #161515;
     box-shadow: 0px 6px 10px #161515;
     z-index:150;
@@ -980,10 +1023,6 @@ html.media_element_editor-layout {
     margin: 0 0 0 215px; 
     text-align:center;
     padding:10px;
-    .menuTextImages{
-      display:none;
-    }
-    
   }
   .menuFooterEditorElement {
     padding-top:10px;
@@ -998,7 +1037,6 @@ html.media_element_editor-layout {
     }
   }
   .menuServiceImages {
-      display:none;
       margin:0 auto;
       width: 200px;
     }
@@ -1013,9 +1051,15 @@ html.media_element_editor-layout {
      width: 660px;
      display:block;
      overflow:hidden;
-     img{
+     img {
        max-width: 660px;
        max-height: 495px;
+       &.forCrop:hover {
+         cursor: crosshair;
+       }
+       &.forText:hover {
+         cursor: pointer;
+       }
      }
    }
 
@@ -1167,7 +1211,8 @@ html.media_element_editor-layout {
 ._video_editor_component_menu:hover {
   cursor: default;
 }
-
-.form_error,textarea.form_error,input.form_error{
+/*.form_error,textarea.form_error,input.form_error{
   border: 3px solid rgba(250, 0, 0, 0.5) !important;
-}
+}*/
+
+

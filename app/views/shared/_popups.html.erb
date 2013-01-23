@@ -30,13 +30,17 @@
   data_captions = "#{data_captions} data-save-media-element-editor-confirm=\"#{t('popups.save_media_element_editor_confirm')}\""
   data_captions = "#{data_captions} data-save-media-element-editor-yes=\"#{t('popups.save_media_element_editor_yes')}\""
   data_captions = "#{data_captions} data-save-media-element-editor-no=\"#{t('popups.save_media_element_editor_no')}\""
+  data_captions = "#{data_captions} data-overwrite-media-element-editor-title=\"#{t('popups.overwrite_media_element_editor_title')}\""
+  data_captions = "#{data_captions} data-overwrite-media-element-editor-confirm=\"#{t('popups.overwrite_media_element_editor_confirm')}\""
+  data_captions = "#{data_captions} data-overwrite-media-element-editor-yes=\"#{t('popups.overwrite_media_element_editor_yes')}\""
+  data_captions = "#{data_captions} data-overwrite-media-element-editor-no=\"#{t('popups.overwrite_media_element_editor_no')}\""
   data_captions = "#{data_captions} data-temporary-msg=\"\""
 %>
 
 <%
   data_parameters = ''
-  data_parameters = "#{data_parameters}data-timeout=\"#{CONFIG['seconds_for_timeout_dialogs'].to_json}\""
-  data_parameters = "#{data_parameters} data-cache-time=\"#{CONFIG['seconds_for_saving_cache'].to_json}\""
+  data_parameters = "#{data_parameters}data-timeout=\"#{SETTINGS['seconds_for_timeout_dialogs'].to_json}\""
+  data_parameters = "#{data_parameters} data-cache-time=\"#{SETTINGS['seconds_for_saving_cache'].to_json}\""
 %>
 
 <div class="timedPopUp" id="dialog-error" style="display:none"></div>

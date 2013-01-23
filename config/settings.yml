@@ -2,8 +2,11 @@
 locations: ['Shanghai', 'Guangzhou', 'Wuhan', 'Beijing', 'Tianjin', 'Shenzhen', 'Nanjing'] # possibly, link here an external file with the list of locations
 subjects: ['Mathematics', 'Natural Sciences', 'Geography', 'History', 'Visive Arts', 'Music', 'Phisycal Education', 'Computer Science', 'Languages', 'Literature', 'Chemistry']
 school_levels: ['Primary School', 'Secondary School', 'Undergraduate']
-admin_username: 'DESY Admin User'
-admin_email: 'desy@morganspa.com'
+admin:
+  name: 'DESY'
+  surname: 'Admin User'
+  email: 'desy@morganspa.com'
+  password: 'desymorgan'
 # TAGS
 min_tag_length: 1
 max_tag_length: 25

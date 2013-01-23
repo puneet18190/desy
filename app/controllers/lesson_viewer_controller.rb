@@ -13,7 +13,7 @@ class LessonViewerController < ApplicationController
   end
   
   def playlist
-    @playlist = @current_user.playlist
+    @playlist = current_user.playlist
   end
   
   private

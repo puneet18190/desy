@@ -52,10 +52,6 @@ module Media
         end
 
         def run
-          # if video
-          #   ::Video.update_all {converted: nil}
-          # end
-
           in_tmp_dir do
             concats = {}
 

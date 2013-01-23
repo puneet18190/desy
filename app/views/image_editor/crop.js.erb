@@ -1,9 +1,10 @@
-if(<%=@crop%>){
-  $("#cropped_image").imgAreaSelect({ 
+if(<%= !@crop_url.blank? %>) {
+  $('#cropped_image').imgAreaSelect({
     hide: true
   });
-  $("._toggle_crop").removeClass("current");
-  $("#image_wrapper img").attr("src","<%=@editing_url%>/<%= @custom_filename %>");
-  $('input[name="cropped_image"]').val("<%= @custom_filename %>");
-  resetSelect();
+  $('._toggle_crop').removeClass('current');
+  $('#image_wrapper img').attr('src', '<%= @crop_url %>');
+  resetImageEditorCrop();
+} else {
+  // TODO metti 'x' rossa
 }

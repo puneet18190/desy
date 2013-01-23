@@ -144,7 +144,8 @@ CREATE TABLE lessons (
     copied_not_modified boolean NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    token character varying(20)
+    token character varying(20),
+    metadata text
 );
 
 
@@ -600,7 +601,7 @@ CREATE TABLE users (
     surname character varying(255) NOT NULL,
     school_level_id integer NOT NULL,
     school character varying(255) NOT NULL,
-    encrypted_password character varying(255),
+    encrypted_password character varying(255) NOT NULL,
     confirmed boolean NOT NULL,
     location_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -1427,4 +1428,4 @@ INSERT INTO schema_migrations (version) VALUES ('20121207091234');
 
 INSERT INTO schema_migrations (version) VALUES ('20130115155629');
 
-INSERT INTO schema_migrations (version) VALUES ('30000000000000');
+INSERT INTO schema_migrations (version) VALUES ('20130121130513');

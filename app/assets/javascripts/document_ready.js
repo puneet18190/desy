@@ -6,7 +6,9 @@ $(document).ready(function() {
       return el !== 'version';
     })[0];
 
-    if(name) $('html').addClass(name);
+    if( name ) {
+      $('html').addClass(name);
+    }
   })();
   
 
@@ -28,8 +30,6 @@ $(document).ready(function() {
   $("body").on("click",".uploadFileButton", function(){
     $("input.innerUploadFileButton").trigger("click");
   });
-  
-  //initPieChart();
   
   
   // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
@@ -210,16 +210,18 @@ $(document).ready(function() {
   // EXPAND LESSON
   
   $('body').on('click','._lesson_compact', function() {
-    var my_id = $(this).parent().attr('id');
-    var my_expanded = $('#' + my_id + ' ._lesson_expanded');
-    if(my_expanded.css('display') == 'block') {
-      my_expanded.hide('blind', {}, 500, function() {
-        my_expanded.hide();
-      });
-    } else {
-      my_expanded.show('blind', {}, 500, function() {
-        my_expanded.show();
-      });
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_id = $(this).parent().attr('id');
+      var my_expanded = $('#' + my_id + ' ._lesson_expanded');
+      if(my_expanded.css('display') == 'block') {
+        my_expanded.hide('blind', {}, 500, function() {
+          my_expanded.hide();
+        });
+      } else {
+        my_expanded.show('blind', {}, 500, function() {
+          my_expanded.show();
+        });
+      }
     }
   });
   
@@ -258,7 +260,9 @@ $(document).ready(function() {
   
   $('body').on('click','._video_gallery_thumb', function(e) {
     e.preventDefault();
-    showVideoInGalleryPopUp($(this).data('video-id'));
+    if(!$(this).hasClass('_disabled')) {
+      showVideoInGalleryPopUp($(this).data('video-id'));
+    }
   });
   
   $('body').on('click', '._audio_gallery_thumb ._compact', function(e) {
@@ -311,101 +315,125 @@ $(document).ready(function() {
   
   $('body').on('click', '._Lesson_button_add', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    var reload = $(this).data('reload');
-    var current_url = $('#info_container').data('currenturl');
-    addLesson(my_param, destination, current_url, reload);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var reload = $(this).data('reload');
+      var current_url = $('#info_container').data('currenturl');
+      addLesson(my_param, destination, current_url, reload);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_copy', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    copyLesson(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      copyLesson(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_destroy', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    var current_url = $('#info_container').data('currenturl');
-    destroyLesson(my_param, destination, current_url);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var current_url = $('#info_container').data('currenturl');
+      destroyLesson(my_param, destination, current_url);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_dislike', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    dislikeLesson(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      dislikeLesson(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_like', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    likeLesson(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      likeLesson(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_preview', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var redirect_back_to = $("#info_container").data('currenturl');
-    previewLesson(my_param, redirect_back_to);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var redirect_back_to = $("#info_container").data('currenturl');
+      previewLesson(my_param, redirect_back_to);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_publish', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    publishLesson(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      publishLesson(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_remove', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    var reload = $(this).data('reload');
-    var current_url = $('#info_container').data('currenturl');
-    removeLesson(my_param, destination, current_url, reload);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var reload = $(this).data('reload');
+      var current_url = $('#info_container').data('currenturl');
+      removeLesson(my_param, destination, current_url, reload);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_unpublish', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    unpublishLesson(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      unpublishLesson(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_add_virtual_classroom', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    addLessonToVirtualClassroom(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      addLessonToVirtualClassroom(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_remove_virtual_classroom', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    removeLessonFromVirtualClassroom(my_param, destination);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      removeLessonFromVirtualClassroom(my_param, destination);
+    }
     return false;
   });
   
   $('body').on('click', '._Lesson_button_edit', function(e) {
     e.preventDefault();
-    var my_param = $(this).data('clickparam');
-    window.location = '/lessons/' + my_param + '/slides/edit';
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      window.location = '/lessons/' + my_param + '/slides/edit';
+    }
     return false;
   });
   
@@ -413,49 +441,63 @@ $(document).ready(function() {
   // MEDIA ELEMENT BUTTONS
   
   $('body').on('click', '._Video_button_add, ._Audio_button_add, ._Image_button_add', function(e) {
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    var reload = $(this).data('reload');
-    var current_url = $('#info_container').data('currenturl');
-    addMediaElement(my_param, destination, current_url, reload);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var reload = $(this).data('reload');
+      var current_url = $('#info_container').data('currenturl');
+      addMediaElement(my_param, destination, current_url, reload);
+    }
   });
   
   $('body').on('click', '._Video_button_destroy, ._Audio_button_destroy, ._Image_button_destroy', function(e) {
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    var current_url = $('#info_container').data('currenturl');
-    destroyMediaElement(my_param, destination, current_url);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var current_url = $('#info_container').data('currenturl');
+      destroyMediaElement(my_param, destination, current_url);
+    }
   });
   
   $('body').on('click', '._Video_button_preview, ._Audio_button_preview, ._Image_button_preview', function(e) {
-    var my_param = $(this).data('clickparam');
-    showMediaElementInfoPopUp(my_param);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      showMediaElementInfoPopUp(my_param);
+    }
   });
   
   $('body').on('click', '._Video_button_edit', function(e) {
-    e.preventDefault();
-    var video_id = $(this).data('clickparam');
-    window.location = '/videos/' + video_id + '/edit';
-    return false;
+    if(!$(this).parent().hasClass('_disabled')) {
+      e.preventDefault();
+      var video_id = $(this).data('clickparam');
+      window.location = '/videos/' + video_id + '/edit';
+      return false;
+    }
   });
   
   $('body').on('click', '._Audio_button_edit', function(e) {
-    alert('ancora non abbiamo editor di audio');
+    if(!$(this).parent().hasClass('_disabled')) {
+      alert('ancora non abbiamo editor di audio');
+    }
   });
   
   $('body').on('click', '._Image_button_edit', function(e) {
-    e.preventDefault();
-    var image_id = $(this).data('clickparam');
-    window.location = '/images/' + image_id + '/edit';
-    return false;
+    if(!$(this).parent().hasClass('_disabled')) {
+      e.preventDefault();
+      var image_id = $(this).data('clickparam');
+      window.location = '/images/' + image_id + '/edit';
+      return false;
+    }
   });
   
   $('body').on('click', '._Video_button_remove, ._Audio_button_remove, ._Image_button_remove', function(e) {
-    var my_param = $(this).data('clickparam');
-    var destination = $(this).data('destination');
-    var reload = $(this).data('reload');
-    var current_url = $('#info_container').data('currenturl');
-    removeMediaElement(my_param, destination, current_url, reload);
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
+      var reload = $(this).data('reload');
+      var current_url = $('#info_container').data('currenturl');
+      removeMediaElement(my_param, destination, current_url, reload);
+    }
   });
   
   
@@ -757,32 +799,61 @@ $(document).ready(function() {
   
   // PRELOGIN
   
-  $('body').on('click', '._show_login_form', function() {
-    var form = $('#login_form');
+  $('body').on('click', '._show_login_form_container', function() {
+    var form = $('#login_form_container');
     if(form.css('display') == 'none') {
       form.show('fade', {}, 500);
+      $('#email').focus();
     } else {
       form.hide('fade', {}, 500);
     }
   });
   
   $('body').on('click', '#submit_login_form', function() {
-    $('#login_form form').submit();
+    $('#new_users_session_form').submit();
+  });
+  
+  
+  // MEDIA ELEMENT EDITOR GENERAL FUNCTIONS
+  
+  $('body').on('focus', '#form_info_new_media_element_in_editor #new_title', function() {
+    if($('#form_info_new_media_element_in_editor #new_title_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_new_media_element_in_editor #new_title_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#form_info_new_media_element_in_editor #new_description', function() {
+    if($('#form_info_new_media_element_in_editor #new_description_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_new_media_element_in_editor #new_description_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#form_info_new_media_element_in_editor #new_tags', function() {
+    if($('#form_info_new_media_element_in_editor #new_tags_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#form_info_new_media_element_in_editor #new_tags_placeholder').attr('value', '0');
+    }
   });
   
   
   // VIDEO EDITOR
   
   $('body').on('click', '#video_editor_preview_go_to_left_component', function() {
-    selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).prev());
-    followPreviewComponentsWithHorizontalScrollInVideoEditor();
-    showVideoEditorPreviewArrowToComponents();
+    if($('#video_editor_global_preview').data('arrows')) {
+      selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).prev());
+      showVideoEditorPreviewArrowToComponents();
+      followPreviewComponentsWithHorizontalScrollInVideoEditor();
+    }
   });
   
   $('body').on('click', '#video_editor_preview_go_to_right_component', function() {
-    selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).next());
-    followPreviewComponentsWithHorizontalScrollInVideoEditor();
-    showVideoEditorPreviewArrowToComponents();
+    if($('#video_editor_global_preview').data('arrows')) {
+      selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).next());
+      showVideoEditorPreviewArrowToComponents();
+      followPreviewComponentsWithHorizontalScrollInVideoEditor();
+    }
   });
   
   $('body').on('click', '#video_editor_global_preview_play', function() {
@@ -796,21 +867,32 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#exit_video_editor_preview', function() {
+    $('#info_container').data('forced-kevin-luck-style', '');
     $('#video_editor_global_preview_pause').removeClass('_enabled');
     $('#video_editor_preview_go_to_left_component, #video_editor_preview_go_to_right_component').hide();
     $('._video_component_preview').hide();
     $('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
     setVisualTimesVideoEditorPreview(getFirstVideoEditorComponent(), 0);
     resetVisibilityOfVideoEditorTransitions();
+    $('._video_editor_component').each(function() {
+      $(this).find('._video_component_icon ._right').html(secondsToDateString($(this).data('duration')));
+    });
     $('#full_audio_track_placeholder_in_video_editor, #empty_audio_track_placeholder_in_video_editor').css('visibility', 'visible');
+    $('#media_elements_list_in_video_editor').data('jsp').destroy();
+    $('#add_new_video_component').show();
+    $('#add_new_video_component').prev().find('._video_component_transition').show();
+    $('#add_new_video_component').prev().css('width', '186');
+    var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 184;
+    $('#video_editor_timeline').css('width', new_timeline_width + 'px');
+    $('#media_elements_list_in_video_editor').jScrollPane({
+      autoReinitialise: true,
+    });
     $('#visual_video_editor_current_time').css('visibility', 'hidden')
     $('#video_editor_global_preview').show();
     $('#video_editor_global_preview_play').hide();
     $('#commit_video_editor').show();
     $('#exit_video_editor_preview').hide();
-    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
     $('#video_editor_box_ghost').hide();
-    $('._new_component_in_video_editor_hover').removeClass('selected');
   });
   
   $('body').on('click', '#video_editor_global_preview_pause._enabled', function() {
@@ -833,6 +915,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor_global_preview._enabled', function() {
+    $('#info_container').data('forced-kevin-luck-style', 'visibility:hidden');
     var jsp_handler = $('#media_elements_list_in_video_editor').data('jsp');
     if(jsp_handler.getContentPositionX() > 0) {
       $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
@@ -855,7 +938,7 @@ $(document).ready(function() {
     var pos = $('#' + component_id).data('position');
     var scroll_to = getNormalizedPositionTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186, pos, 5);
     if($('#' + component_id + '_cutter').hasClass('_mini_cutter')) {
-      $('#' + component_id + '_cutter').css('left', (43 + getAbsolutePositionTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186, pos, 5)));
+      $('#' + component_id + '_cutter').css('left', (3 + getAbsolutePositionTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186, pos, 5)));
     }
     var jsp_handler = $('#media_elements_list_in_video_editor').data('jsp');
     if(scroll_to != jsp_handler.getContentPositionX() && jsp_handler.getPercentScrolledX() != 1) {
@@ -1188,18 +1271,33 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._commit', function() {
-    $('.form_error').removeClass("form_error");
     $('#video_editor_form').attr('action', '/videos/commit/new');
     $('#video_editor_form').submit();
   });
   
   $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._commit', function() {
-    $('.form_error').removeClass("form_error");
-    $('#video_editor_form').attr('action', '/videos/commit/overwrite');
-    $('#video_editor_form').submit();
+    if($('#info_container').data('used-in-private-lessons')) {
+      var captions = $('#popup_captions_container');
+      var title = captions.data('overwrite-media-element-editor-title');
+      var confirm = captions.data('overwrite-media-element-editor-confirm');
+      var yes = captions.data('overwrite-media-element-editor-yes');
+      var no = captions.data('overwrite-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        $('dialog-confirm').hide();
+        $('#video_editor_form').attr('action', '/videos/commit/overwrite');
+        $('#video_editor_form').submit();
+      }, function() {
+        closePopUp('dialog-confirm');
+      });
+    } else {
+      $('#video_editor_form').attr('action', '/videos/commit/overwrite');
+      $('#video_editor_form').submit();
+    }
   });
   
   $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._cancel', function() {
+    $('#video_editor_form').attr('action', '/videos/cache/save');
+    resetMediaElementEditorForms();
     if($('#video_editor_title ._titled').length > 0) {
       $('#video_editor_title ._titled').show();
       $('#video_editor_title ._untitled').hide();
@@ -1210,6 +1308,8 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._cancel', function() {
+    $('#video_editor_form').attr('action', '/videos/cache/save');
+    resetMediaElementEditorForms();
     $('._video_editor_bottom_bar').show();
     $('#video_editor #form_info_update_media_element_in_editor').hide();
     startCacheLoop();

@@ -1,8 +1,8 @@
 class GalleriesController < ApplicationController
   
-  IMAGES_FOR_PAGE = CONFIG['images_for_page_in_gallery']
-  AUDIOS_FOR_PAGE = CONFIG['audios_for_page_in_gallery']
-  VIDEOS_FOR_PAGE = CONFIG['videos_for_page_in_gallery']
+  IMAGES_FOR_PAGE = SETTINGS['images_for_page_in_gallery']
+  AUDIOS_FOR_PAGE = SETTINGS['audios_for_page_in_gallery']
+  VIDEOS_FOR_PAGE = SETTINGS['videos_for_page_in_gallery']
   
   def image_for_lesson_editor
     get_images
@@ -37,15 +37,15 @@ class GalleriesController < ApplicationController
   private
   
   def get_audios
-    @audios = @current_user.own_media_elements(1, AUDIOS_FOR_PAGE, Filters::AUDIO)[:records]
+    @audios = current_user.own_media_elements(1, AUDIOS_FOR_PAGE, Filters::AUDIO)[:records]
   end
   
   def get_videos
-    @videos = @current_user.own_media_elements(1, VIDEOS_FOR_PAGE, Filters::VIDEO)[:records]
+    @videos = current_user.own_media_elements(1, VIDEOS_FOR_PAGE, Filters::VIDEO)[:records]
   end
   
   def get_images
-    @images = @current_user.own_media_elements(1, IMAGES_FOR_PAGE, Filters::IMAGE)[:records]
+    @images = current_user.own_media_elements(1, IMAGES_FOR_PAGE, Filters::IMAGE)[:records]
   end
   
 end

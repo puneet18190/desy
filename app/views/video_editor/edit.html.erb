@@ -7,11 +7,11 @@
   <div class="info">
     
     <% if @parameters[:components].any? %>
-      <div id="video_editor_global_preview" class="bottoniVerdi _enabled" data-current-component="0" data-current-time="0" data-in-use="false">
+      <div id="video_editor_global_preview" class="bottoniVerdi _enabled" data-current-component="0" data-current-time="0" data-in-use="false" data-arrows="true">
         <a class="upper"><%= t('captions.preview') %></a>
       </div>
     <% else %>
-      <div id="video_editor_global_preview" class="bottoniVerdi" data-current-component="0" data-current-time="0" data-in-use="false">
+      <div id="video_editor_global_preview" class="bottoniVerdi" data-current-component="0" data-current-time="0" data-in-use="false" data-arrows="true">
         <a class="upper disabled"><%= t('captions.preview') %></a>
       </div>
     <% end %>
@@ -30,8 +30,12 @@
     </p>
   </div>
   
-  <div class="mediaEditorListaElementi">
-    <%= form_tag video_editor_save_cache_path, :id => 'video_editor_form', :remote => true do %>
+  <%= form_tag video_editor_save_cache_path, :id => 'video_editor_form', :remote => true do %>
+    <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => MediaElement::VIDEO_TYPE} %>
+    <% if @parameters[:initial_video] %>
+      <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @parameters[:initial_video]} %>
+    <% end %>
+    <div class="mediaEditorListaElementi">
       <% if @parameters[:initial_video] %>
         <%= hidden_field_tag 'initial_video_id', @parameters[:initial_video].id, :id => 'initial_video_in_video_editor_input' %>
       <% end %>
@@ -45,17 +49,13 @@
           <div class="fltrt">
             <a id="commit_video_editor" class="nextButton <%= @parameters[:initial_video].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('general_titles.save_element_title') %>">
             </a>
-            <a id="exit_video_editor_preview" class="closeButton" style="display:none"></a>
+            <a id="exit_video_editor_preview" class="closeButton" style="display:none" title="<%= t('general_titles.close_title') %>"></a>
           </div>
         </div>
       </div>
-      <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => MediaElement::VIDEO_TYPE} %>
-      <% if @parameters[:initial_video] %>
-        <%= render :partial => 'media_elements/info_form_in_editor/edit', :locals => {:media_element => @parameters[:initial_video]} %>
-      <% end %>
-    <% end %>
-    <%= render :partial => 'cutters', :locals => {:parameters => @parameters} %>
-  </div>
+      <%= render :partial => 'cutters', :locals => {:parameters => @parameters} %>
+    </div>
+  <% end %>
   
 </div>
 
@@ -107,7 +107,7 @@
 
 <div id="video_editor_audio_gallery_container" class="mediaEditorVideoGalleryContainer" style="display:none" data-loaded="false"></div>
 
-<div id="info_container" data-last-component-id="<%= @parameters[:components].count %>" data-current-component="" data-replacing-component="false" data-total-length="<%= @total_length %>" data-save-cache="false" data-cache-enabled-first-time="true" style="display:none"></div>
+<div id="info_container" data-last-component-id="<%= @parameters[:components].count %>" data-current-component="" data-replacing-component="false" data-total-length="<%= @total_length %>" data-save-cache="false" data-cache-enabled-first-time="true" data-forced-kevin-luck-style="" data-used-in-private-lessons="<%= @used_in_private_lessons %>" style="display:none"></div>
 
 
 <script type="text/javascript">

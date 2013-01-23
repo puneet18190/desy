@@ -337,9 +337,17 @@
 			function initialiseHorizontalScroll()
 			{
 				if (isScrollableH) {
-
+				  // forzato da Adriano
+					var my_forced_style = settings.initialHorizontalStyles;
+					if(my_forced_style == '') {
+					  var infos = $('#info_container');
+					  if(infos.length > 0 && infos.data('forced-kevin-luck-style') != undefined) {
+					    my_forced_style = infos.data('forced-kevin-luck-style');
+					  }
+					}
+					// fino a qui
 					container.append(
-						$('<div class="jspHorizontalBar" />').append(
+						$('<div class="jspHorizontalBar" style="' + my_forced_style + '" />').append(
 							$('<div class="jspCap jspCapLeft" />'),
 							$('<div class="jspTrack" />').append(
 								$('<div class="jspDrag" />').append(
@@ -710,7 +718,7 @@
 				elem.trigger('jsp-scroll-y', [-destTop, isAtTop, isAtBottom]).trigger('scroll');
 			}
 
-			function positionDragX(destX, animate)
+			function positionDragX(destX, animate, duration)
 			{
 				if (!isScrollableH) {
 					return;
@@ -725,7 +733,7 @@
 					animate = settings.animateScroll;
 				}
 				if (animate) {
-					jsp.animate(horizontalDrag, 'left', destX,	_positionDragX);
+					jsp.animate(horizontalDrag, 'left', destX,	_positionDragX, duration);
 				} else {
 					horizontalDrag.css('left', destX);
 					_positionDragX(destX);
@@ -779,10 +787,10 @@
 				positionDragY(percentScrolled * dragMaxY, animate);
 			}
 
-			function scrollToX(destX, animate)
+			function scrollToX(destX, animate, duration)
 			{
 				var percentScrolled = destX / (contentWidth - paneWidth);
-				positionDragX(percentScrolled * dragMaxX, animate);
+				positionDragX(percentScrolled * dragMaxX, animate, duration);
 			}
 
 			function scrollToElement(ele, stickToTop, animate)
@@ -1221,9 +1229,9 @@
 					// Scrolls the pane so that the specified co-ordinate within the content is at the left of the
 					// viewport. animate is optional and if not passed then the value of animateScroll from the settings
 					// object this jScrollPane was initialised with is used.
-					scrollToX: function(destX, animate)
+					scrollToX: function(destX, animate, duration)
 					{
-						scrollToX(destX, animate);
+						scrollToX(destX, animate, duration);
 					},
 					// Scrolls the pane so that the specified co-ordinate within the content is at the top of the
 					// viewport. animate is optional and if not passed then the value of animateScroll from the settings
@@ -1290,14 +1298,18 @@
 					//  * value        - the value it's being animated to
 					//  * stepCallback - a function that you must execute each time you update the value of the property
 					// You can use the default implementation (below) as a starting point for your own implementation.
-					animate: function(ele, prop, value, stepCallback)
+					animate: function(ele, prop, value, stepCallback, my_duration)
 					{
 						var params = {};
+						var duration = my_duration;
+						if(typeof(duration) == 'undefined') {
+						  duration = settings.animateDuration;
+						}
 						params[prop] = value;
 						ele.animate(
 							params,
 							{
-								'duration'	: settings.animateDuration,
+								'duration'	: duration,
 								'easing'	: settings.animateEase,
 								'queue'		: false,
 								'step'		: stepCallback
@@ -1413,6 +1425,7 @@
 		animateScroll				: false,
 		animateDuration				: 300,
 		animateEase					: 'linear',
+		initialHorizontalStyles : '',
 		hijackInternalLinks			: false,
 		verticalGutter				: 4,
 		horizontalGutter			: 4,
