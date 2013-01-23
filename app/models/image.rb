@@ -31,7 +31,7 @@ class Image < MediaElement
     return '' if !self.in_edit_mode?
     my_url = self.url
     file_name = "/#{my_url.split('/').last}"
-    "#{my_url.gsub(file_name, '')}/editing/user_#{user_id}/tmp.#{self.media.file.extension}"
+    "#{my_url.gsub(file_name, '')}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}"
   end
   
   def prev_editing_image
@@ -57,10 +57,13 @@ class Image < MediaElement
     true
   end
   
-  def leave_edit_mode
-    return false if !self.in_edit_mode?
-    ed_dir = "#{self.media.folder}/editing/user_#{@edit_mode}"
-    FileUtils.rm_r(ed_dir) if Dir.exists?(ed_dir)
+  def leave_edit_mode(user_id)
+    ed_dir = "#{self.media.folder}/editing/user_#{user_id}"
+    begin
+      FileUtils.rm_r(ed_dir)
+    rescue
+      return false
+    end
     @edit_mode = nil
     true
   end

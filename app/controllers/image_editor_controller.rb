@@ -9,14 +9,18 @@ class ImageEditorController < ApplicationController
       redirect_to dashboard_path
       return
     end
-    @image.leave_edit_mode
+    @image.leave_edit_mode current_user.id
     @image.enter_edit_mode current_user.id
   end
   
   def add_text
     if @ok
       @image.enter_edit_mode current_user.id
-      @new_url = @image.add_text extract_textareas_params(params)
+      if @image.add_text extract_textareas_params(params)
+        @new_url = @image.editing_url
+      else
+        @new_url = ''
+      end
     else
       @new_url = ''
     end
