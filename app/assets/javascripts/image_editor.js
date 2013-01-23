@@ -87,14 +87,32 @@ $(document).ready(function() {
     $('#image_editor_text_' + id).remove();
   });
   
+  $('body').on('click', '._image_editor_text .text_colors a', function() {
+    if(!$(this).hasClass('current')) {
+      var new_color = $(this).attr('class').replace(' ', '').replace('background_', '');
+      var id = $(this).parent().parent().attr('id').split('_')[4];
+      var textarea = $('#image_editor_textarea_' + id);
+      var tools = $('#image_editor_textarea_tools_' + id);
+      tools.find('.text_colors a').removeClass('current');
+      $(this).addClass('current');
+      var old_color = textarea.data('color');
+      textarea.data('color', new_color);
+      textarea.removeClass(old_color).addClass(new_color);
+    }
+  });
   
   
   
   
   
   
-  // ANCORA NON SISTEMATA!!!
-  $('body').on('click', '.text_tools div a', function() {
+  
+  
+  
+  $('body').on('click', '._image_editor_text .font_sizes a', function() {
+    
+    
+    
     var thisLink = $(this);
     var thisParent = $(this).parent('div');
     var thisTextTools = $(this).parents('.text_tools');
@@ -110,13 +128,14 @@ $(document).ready(function() {
       thisTextArea.addClass(color_class.replace('background_', '').replace('current', '').replace(' ', ''));
       thisTextArea.attr('data-size', font_size);
     } else {
-      var color_val = $(this).attr('class').replace('background_', '').replace('current', '').replace(' ', '');
-      var font_class = thisTextTools.find('.font_sizes a.current').attr('class');
-      thisTextArea.addClass(color_val);
-      thisTextArea.addClass(font_class.replace('current', ''));
-      thisTextArea.attr('data-color', color_val);
+      
     }
+    
   });
+    
+    
+    
+
   
   
   
