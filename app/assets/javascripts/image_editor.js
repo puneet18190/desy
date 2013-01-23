@@ -55,33 +55,81 @@ $(document).ready(function() {
   
   $('body').on('click', '#image_editor_text_buttons ._cancel', function() {
     resetImageEditorOperationsChoice();
-    resetImageEditorText();
+    resetImageEditorTexts();
     $('._create_new_image, ._updatable_image').css('visibility', 'visible');
   });
   
   $('body').on('click', '#image_editor_container._text_enabled img', function(e) {
     var coords = getRelativePositionInImageEditor($(this), e);
-    var textCount = $('#image_editor_container ._inner_textarea').length + 1;
-    $('#image_editor_container._text_enabled').append(textAreaImageEditorContent(coords, textCount));
-    
-    
-    
-    /*
-    $('.image_editor_text').draggable({
+    var textCount = $('#info_container').data('current-textarea-identifier');
+    $('#info_container').data('current-textarea-identifier', textCount + 1);
+    $('#image_editor_container').append(textAreaImageEditorContent(coords, textCount));
+    $('#image_editor_text_' + textCount).draggable({
       containment: 'parent',
       handle: '._move',
-      start: function() {
-        $(this).find('._move').css('cursor', '-webkit-grabbing');
-      },
-      stop: function(event) {
-        $(this).find('._move').css('cursor', '-webkit-grab');
+      cursor: '-webkit-grabbing',
+      stop: function() {
         coords = getDragPosition($(this));
-        $(this).children('textarea').data('coords', coords[0] + ',' + coords[1]);
+        $('#image_editor_textarea_' + textCount).data('coords', coords[0] + ',' + coords[1]);
       }
     });
-    offlightTextarea();
-    enlightTextarea($('.image_editor_text textarea:last'));*/
+    offlightTextareas();
+    enlightTextarea(textCount);
   });
+  
+  $('body').on('focus', '._inner_textarea', function() {
+    offlightTextareas();
+    enlightTextarea($(this).parent().attr('id').split('_')[3]);
+  });
+  
+  $('body').on('click', 'a._delete', function() {
+    var id = $(this).parent().attr('id').split('_')[4];
+    $('#image_editor_text_' + id).remove();
+  });
+  
+  $('body').on('click', '._image_editor_text .text_colors a', function() {
+    if(!$(this).hasClass('current')) {
+      var new_color = $(this).attr('class').replace(' ', '').replace('background_', '');
+      var id = $(this).parent().parent().attr('id').split('_')[4];
+      var textarea = $('#image_editor_textarea_' + id);
+      var tools = $('#image_editor_textarea_tools_' + id);
+      tools.find('.text_colors a').removeClass('current');
+      $(this).addClass('current');
+      var old_color = textarea.data('color');
+      textarea.data('color', new_color);
+      textarea.removeClass(old_color).addClass(new_color);
+    }
+  });
+  
+  $('body').on('click', '._image_editor_text .font_sizes a', function() {
+    if(!$(this).hasClass('current')) {
+      var new_size = $(this).attr('class').replace(' ', '').replace('upper', '');
+      var id = $(this).parent().parent().attr('id').split('_')[4];
+      var textarea = $('#image_editor_textarea_' + id);
+      var tools = $('#image_editor_textarea_tools_' + id);
+      tools.find('.font_sizes a').removeClass('current');
+      $(this).addClass('current');
+      var old_size = textarea.data('size');
+      textarea.data('size', new_size);
+      textarea.removeClass(old_size).addClass(new_size);
+    }
+  });
+  
+  $('body').on('click', '#image_editor_text_buttons ._do', function() {
+    var form = $('#crop_form');
+    $('._image_editor_text ._inner_textarea').each(function() {
+      var id = $(this).attr('id').split('_')[3];
+      var coords = '<input type="hidden" name="coords_' + id + '" value="' + $(this).data('coords') + '"/>';
+      var text = '<input type="hidden" name="text_' + id + '" value="' + $(this).val() + '"/>';
+      var color = '<input type="hidden" name="color_' + id + '" value="' + $(this).data('color') + '"/>';
+      var font = '<input type="hidden" name="font_' + id + '" value="' + $(this).data('size') + '"/>';
+      form.prepend(coords).prepend(text).prepend(color).prepend(font);
+    });
+    form.attr('action', '/images/' + form.data('param') + '/add_text');
+    form.submit();
+  });
+  
+  
   
   
   
@@ -100,43 +148,6 @@ $(document).ready(function() {
     $('.menuTextImages').show();
     $('._create_new_image, ._updatable_image').css('visibility', 'visible');
     $('._toggle_crop').removeClass('current');
-  });
-  
-  $('body').on('focus', '.image_editor_text textarea', function() {
-    offlightTextarea();
-    enlightTextarea($(this));
-  });
-
-  $('body').on('click', 'a._delete', function() {
-    img_editor = $(this).parents('.image_editor_text');
-    img_editor.remove();
-    $('#crop_form input.' + img_editor.attr('id').replace('text', 'area')).each(function() {
-      $(this).remove();
-    });
-  });
-  
-  $('body').on('click', '.text_tools div a', function() {
-    var thisLink = $(this);
-    var thisParent = $(this).parent('div');
-    var thisTextTools = $(this).parents('.text_tools');
-    var thisTextArea = thisTextTools.parent('.image_editor_text').find('textarea');
-    thisParent.find('a').removeClass('current');
-    thisLink.addClass('current');
-    thisTextArea.removeAttr('class');
-    if(thisParent.attr('class') == 'font_sizes') {
-      var font_val = $(this).attr('class').replace(' current', '');
-      var font_size = $(this).data('param');
-      var color_class = thisTextTools.find('.text_colors a.current').attr('class');
-      thisTextArea.addClass(font_val);
-      thisTextArea.addClass(color_class.replace('background_', '').replace('current', '').replace(' ', ''));
-      thisTextArea.attr('data-size', font_size);
-    } else {
-      var color_val = $(this).attr('class').replace('background_', '').replace('current', '').replace(' ', '');
-      var font_class = thisTextTools.find('.font_sizes a.current').attr('class');
-      thisTextArea.addClass(color_val);
-      thisTextArea.addClass(font_class.replace('current', ''));
-      thisTextArea.attr('data-color', color_val);
-    }
   });
   
   $('body').on('click', '#image_editor_not_public ._save_edit_image', function() {
@@ -204,90 +215,35 @@ function saveImageChoice(image_id) {
   });
 }
 
-function resizedValue(width,height) {
-  wrapper_ratio = 660/495;
-  original_ratio = width/height;
-  resized= ['w', 'h', 'zoom'];
-  if(original_ratio >= wrapper_ratio) {
-    //resized width is 660
-    r_h = 660*height/width 
-    r_zoom = width/660
-    resized=[660,r_h,r_zoom]
-  } else {
-    //resized height 495
-    r_w = 495*width/height
-    r_zoom = height/495
-    resized=[r_w,495,r_zoom]
-  }
-  return resized;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// FIXME FIXME FIXME funzioni già riviste
+
+
+function enlightTextarea(id) {
+  $('#image_editor_textarea_' + id).css('background-color', 'rgba(230,230,230,0.5)');
+  $('#image_editor_textarea_tools_' + id).css('visibility', 'visible');
 }
 
-// Update form with textareas
-function processTextAreaForm() {
-  $('#_image_editor_container .image_editor_text textarea').each(function(index) {
-    var tarea = $(this);
-    addTextAreaHiddenFields(tarea.data('color'), tarea.data('size'), tarea.data('coords'), tarea.val(), index);
-  });
-}
-
-function addTextAreaHiddenFields(color, size, coords, text, index) {
-  hidden_input_coords = $('<input />',
-  {
-    'class': 'area_' + index,
-    type: 'hidden',
-    id: 'hidden_coords_' + index,
-    name: 'coords_' + index,
-    val: coords
-  });
-  hidden_input_text = $('<input />',
-  {
-    'class': 'area_' + index,
-    type: 'hidden',
-    id: 'hidden_text_' + index,
-    name: 'text_' + index,
-    val: text
-  });
-  hidden_input_color = $('<input />',
-  {
-    'class': 'area_' + index,
-    type: 'hidden',
-    id: 'hidden_color_' + index,
-    name: 'color_' + index,
-    val: color
-  });
-  hidden_input_font = $('<input />',
-  {
-    'class': 'area_' + index,
-    type: 'hidden',
-    id: 'hidden_font_' + index,
-    name: 'font_' + index,
-    val: size
-  });
-  $('#crop_form').prepend(hidden_input_coords).prepend(hidden_input_text).prepend(hidden_input_color).prepend(hidden_input_font);
-}
-
-function offlightTextarea() {
+function offlightTextareas() {
   $('.text_tools').css('visibility', 'hidden');
-  $('.image_editor_text textarea').css('background-color', 'rgba(255,255,255,0)');
-}
-
-function enlightTextarea(obj) {
-  var tarea = obj;
-  var tools = tarea.siblings('.text_tools');
-  tools.css('visibility', 'visible');
-  tarea.css('background-color', 'rgba(230,230,230,0.5)');
-  updateValueOnKey(tarea);
-}
-
-function updateValueOnKey(textarea) {
-  var name = textarea.attr('name');
-  textarea.keyup(function() {
-    $('#_crop_form input#hidden_' + name).val(textarea.val());
-  });
+  $('._inner_textarea').css('background-color', 'rgba(255,255,255,0)');
 }
 
 function getDragPosition(obj) {
-  //obj is the textarea box
   var imgOff = $('#image_wrapper').children('img').offset();
   var imgOffX = imgOff.left;
   var imgOffY = imgOff.top;
@@ -298,22 +254,11 @@ function getDragPosition(obj) {
   return coords;
 }
 
-
-
-
-
-
-// FIXME FIXME FIXME funzioni già riviste
-
-
-
-
-
-
 function textAreaImageEditorContent(coords, textCount) {
   var textarea_container = $($('#image_editor_empty_text_area_container').html());
+  textarea_container.addClass('_image_editor_text');
   textarea_container.find('#image_editor_textarea_without_id').attr('id', 'image_editor_textarea_' + textCount);
-  textarea_container.find('#image_editor_textarea_tools_without_id').attr('id', 'image_editor_textarea_tools' + textCount);
+  textarea_container.find('#image_editor_textarea_tools_without_id').attr('id', 'image_editor_textarea_tools_' + textCount);
   textarea_container.attr('id', 'image_editor_text_' + textCount);
   var textarea = textarea_container.find('#image_editor_textarea_tools_' + textCount);
   textarea.data('coords', (coords[2] + ',' + coords[3]));
@@ -353,5 +298,5 @@ function resetImageEditorCrop() {
 function resetImageEditorTexts() {
   $('#image_wrapper img').removeClass('forText');
   $('#image_editor_container').removeClass('_text_enabled');
-  // FIXME manca resetta parametri testo
+  $('._image_editor_text').remove();
 }

@@ -40,24 +40,24 @@
     
     <div id="image_editor_empty_buttons" class="menuTextImages upper">
       <span><%= t('captions.select_an_action') %></span>
-      <div class="bottoniVerdi fltlft">
+      <div class="bottoniVerdi fltrt">
         <a class="_undo upper" style="display:none"><%= t('captions.undo') %></a> <!-- TODO deve essere _enabled -->
       </div>
     </div>
     
-    <div id="image_editor_crop_buttons" class="menuServiceImages" style="display:none">
+    <div id="image_editor_crop_buttons" class="menuServiceImages upper" style="display:none">
       <span><%= t('captions.drag_image_to_select') %></span>
-      <div class="bottoniVerdi fltlft">
-        <a class="_do upper"><%= t('captions.crop') %></a> <!-- TODO deve essere _enabled -->
-        <a class="_cancel upper"><%= t('captions.cancel') %></a>
+      <div class="bottoniVerdi fltrt">
+        <a class="_do"><%= t('captions.crop') %></a> <!-- TODO deve essere _enabled -->
+        <a class="_cancel"><%= t('captions.cancel') %></a>
       </div>
     </div>
     
-    <div id="image_editor_text_buttons" class="menuServiceImages" style="display:none">
+    <div id="image_editor_text_buttons" class="menuServiceImages upper" style="display:none">
       <span><%= t('captions.click_image_to_add_text') %></span>
-      <div class="bottoniVerdi fltlft">
-        <a class="_do upper"><%= t('captions.done') %></a> <!-- TODO deve essere _enabled -->
-        <a class="_cancel upper"><%= t('captions.cancel') %></a>
+      <div class="bottoniVerdi fltrt">
+        <a class="_do"><%= t('captions.done') %></a> <!-- TODO deve essere _enabled -->
+        <a class="_cancel"><%= t('captions.cancel') %></a>
       </div>
     </div>
     
@@ -74,5 +74,7 @@
   <div id="image_editor_empty_text_area_container" style="display:none">
     <%= render :partial => 'image_editor/text_area' %>
   </div>
+  
+  <div id="info_container" data-current-textarea-identifier="1"></div>
   
 </div>
