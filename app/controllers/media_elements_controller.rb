@@ -18,7 +18,7 @@ class MediaElementsController < ApplicationController
       @page = @pages_amount
       get_own_media_elements
     end
-    @new_media_element = MediaElement.new(media_element_params)
+    @new_media_element = empty_media_element_to_load
     render_js_or_html_index
   end
   
@@ -27,7 +27,7 @@ class MediaElementsController < ApplicationController
   end
   
   def create
-    media_element = MediaElement.new(media_element_params) { |me| me.user = current_user }
+    # TODO 
     if !media_element.save
       @errors = media_element.errors.messages
     end
@@ -103,10 +103,6 @@ class MediaElementsController < ApplicationController
   
   private
   
-  def media_element_params
-    Hash[ [:media, :title, :description, :tags].map{ |v| [ v, params[v] ] } ]
-  end
-
   def get_own_media_elements
     current_user_own_media_elements = current_user.own_media_elements(@page, @for_page, @filter)
     @media_elements = current_user_own_media_elements[:records]

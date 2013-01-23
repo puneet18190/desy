@@ -9,21 +9,21 @@
             <input type="file" name="media" class="innerUploadFileButton" />
           </div>
           <br class="clearfloat">
-          <%= f.text_field :title, '' %>
+          <%= f.text_field :title %>
           <%= hidden_field_tag 'title_placeholder', '' %>
           <br>
-          <%= f.text_area :description, '' %>
+          <%= f.text_area :description %>
           <%= hidden_field_tag 'description_placeholder', '' %>
         </div>
         <div class="cols fltrt">
           <h1><%= t('captions.upload_a_media_element') %></h1>
           <p style="padding-bottom:15px"><%= t('descriptions.upload_media_element_instructions') %></p>
-          <%= f.text_area :tags, '' %>
+          <%= f.text_area :tags %>
           <%= hidden_field_tag 'tags_placeholder', '' %>
           <br>
           <div class="fltrt lower">
             <a class="_close buttonForm" data-dialog-id="load-media-element"><%= t('captions.cancel') %></a>
-            <%= f.submit t('captions.upload'), id: 'new_media_element_submit' %>
+            <%= f.submit t('captions.upload').downcase, id: 'new_media_element_submit' %>
          </div>
         </div>
       <% end %>

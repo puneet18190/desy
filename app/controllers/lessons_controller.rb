@@ -15,24 +15,12 @@ class LessonsController < ApplicationController
       @page = @pages_amount
       get_own_lessons
     end
-    @new_media_element = MediaElement.new(params[:media_element])
     render_js_or_html_index
   end
   
   def add
     @ok_msg = t('popups.add_lesson_ok')
     if @ok
-      # FIXME dà 500 se il bookmark esiste già
-      #
-      # Backtrace eccezione:
-      # 29914  ActiveRecord::RecordNotUnique (PG::Error: ERROR:  duplicate key value violates unique constraint "index_bookmarks_on_bookmarkable_type_and_bookmarkable_id"
-      # 29915  DETAIL:  Key (bookmarkable_type, bookmarkable_id)=(Lesson, 1) already exists.
-      # 29916  : INSERT INTO "bookmarks" ("bookmarkable_id", "bookmarkable_type", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"):
-      # 29917    app/models/user.rb:221:in `bookmark'
-      # 29918    app/controllers/lessons_controller.rb:24:in `add'
-      # 29919  
-      # 29920  
-      # 29921  Started GET "/lessons" for 151.15.112.120 at 2013-01-11 12:47:01 +0100
       if !current_user.bookmark('Lesson', @lesson_id)
         @ok = false
         @error = I18n.t('activerecord.errors.models.bookmark.problem_creating_for_lesson')
