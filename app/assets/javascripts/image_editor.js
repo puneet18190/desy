@@ -63,25 +63,40 @@ $(document).ready(function() {
     var coords = getRelativePositionInImageEditor($(this), e);
     var textCount = $('#image_editor_container ._inner_textarea').length + 1;
     $('#image_editor_container._text_enabled').append(textAreaImageEditorContent(coords, textCount));
-    
-    
-    
-    /*
-    $('.image_editor_text').draggable({
+    $('#image_editor_text_' + textCount).draggable({
       containment: 'parent',
       handle: '._move',
-      start: function() {
-        $(this).find('._move').css('cursor', '-webkit-grabbing');
-      },
-      stop: function(event) {
-        $(this).find('._move').css('cursor', '-webkit-grab');
+      cursor: '-webkit-grabbing',
+      stop: function() {
         coords = getDragPosition($(this));
         $(this).children('textarea').data('coords', coords[0] + ',' + coords[1]);
       }
     });
-    offlightTextarea();
-    enlightTextarea($('.image_editor_text textarea:last'));*/
+    offlightTextareas();
+    enlightTextarea(textCount);
   });
+  
+  $('body').on('focus', '.image_editor_text textarea', function() {
+    offlightTextareas();
+    enlightTextarea($(this).parent().attr('id').split('_')[3]);
+  });
+  
+  $('body').on('click', 'a._delete', function() {
+    
+    
+    
+    
+    
+    
+    
+    img_editor = $(this).parents('.image_editor_text');
+    img_editor.remove();
+    $('#crop_form input.' + img_editor.attr('id').replace('text', 'area')).each(function() {
+      $(this).remove();
+    });
+  });
+  
+  
   
   
   
@@ -100,19 +115,6 @@ $(document).ready(function() {
     $('.menuTextImages').show();
     $('._create_new_image, ._updatable_image').css('visibility', 'visible');
     $('._toggle_crop').removeClass('current');
-  });
-  
-  $('body').on('focus', '.image_editor_text textarea', function() {
-    offlightTextarea();
-    enlightTextarea($(this));
-  });
-
-  $('body').on('click', 'a._delete', function() {
-    img_editor = $(this).parents('.image_editor_text');
-    img_editor.remove();
-    $('#crop_form input.' + img_editor.attr('id').replace('text', 'area')).each(function() {
-      $(this).remove();
-    });
   });
   
   $('body').on('click', '.text_tools div a', function() {
@@ -266,37 +268,13 @@ function addTextAreaHiddenFields(color, size, coords, text, index) {
   $('#crop_form').prepend(hidden_input_coords).prepend(hidden_input_text).prepend(hidden_input_color).prepend(hidden_input_font);
 }
 
-function offlightTextarea() {
-  $('.text_tools').css('visibility', 'hidden');
-  $('.image_editor_text textarea').css('background-color', 'rgba(255,255,255,0)');
-}
 
-function enlightTextarea(obj) {
-  var tarea = obj;
-  var tools = tarea.siblings('.text_tools');
-  tools.css('visibility', 'visible');
-  tarea.css('background-color', 'rgba(230,230,230,0.5)');
-  updateValueOnKey(tarea);
-}
 
-function updateValueOnKey(textarea) {
-  var name = textarea.attr('name');
-  textarea.keyup(function() {
-    $('#_crop_form input#hidden_' + name).val(textarea.val());
-  });
-}
 
-function getDragPosition(obj) {
-  //obj is the textarea box
-  var imgOff = $('#image_wrapper').children('img').offset();
-  var imgOffX = imgOff.left;
-  var imgOffY = imgOff.top;
-  var offX = obj.children('textarea').offset().left, offY = (obj.children('textarea').offset().top);
-  coords = []
-  coords.push(offX-imgOffX);
-  coords.push(offY-imgOffY);
-  return coords;
-}
+
+
+
+
 
 
 
@@ -306,9 +284,26 @@ function getDragPosition(obj) {
 // FIXME FIXME FIXME funzioni già riviste
 
 
+function enlightTextarea(id) {
+  $('#image_editor_text_' + id).css('background-color', 'rgba(230,230,230,0.5)');
+  $('#image_editor_textarea_tools_' + id).css('visibility', 'visible');
+}
 
+function offlightTextareas() {
+  $('.text_tools').css('visibility', 'hidden');
+  $('.image_editor_text textarea').css('background-color', 'rgba(255,255,255,0)');
+}
 
-
+function getDragPosition(obj) {
+  var imgOff = $('#image_wrapper').children('img').offset();
+  var imgOffX = imgOff.left;
+  var imgOffY = imgOff.top;
+  var offX = obj.children('textarea').offset().left, offY = (obj.children('textarea').offset().top);
+  coords = []
+  coords.push(offX-imgOffX);
+  coords.push(offY-imgOffY);
+  return coords;
+}
 
 function textAreaImageEditorContent(coords, textCount) {
   var textarea_container = $($('#image_editor_empty_text_area_container').html());
