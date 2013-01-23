@@ -28,6 +28,12 @@ class ImageEditorController < ApplicationController
   
   def undo
     if @ok
+      @image.enter_edit_mode current_user.id
+      if @image.undo
+        @new_url = @image.editing_url
+      else
+        @new_url = ''
+      end
     else
       @new_url = ''
     end

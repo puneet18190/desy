@@ -81,6 +81,17 @@ class Image < MediaElement
     true
   end
   
+  def undo
+    return false if !self.in_edit_mode?
+    prev_path = self.prev_editing_image
+    curr_path = self.current_editing_image
+    return false if !File.exists? prev_path
+    FileUtils.rm(curr_path)
+    FileUtils.cp(prev_path, curr_path)
+    FileUtils.rm(prev_path)
+    true
+  end
+  
   def add_text(texts)
     return false if !self.in_edit_mode? || !self.save_editing_prev
     img = MiniMagick::Image.open self.current_editing_image

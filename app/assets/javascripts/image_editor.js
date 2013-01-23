@@ -158,6 +158,13 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('click', '#image_editor_empty_buttons ._undo', function() {
+    $.ajax({
+      url: '/images/' + $('#crop_form').data('param') + '/undo',
+      type: 'post'
+    });
+  });
+  
 });
 
 /* FIXME FIXME FIXME inizio parte form commit
