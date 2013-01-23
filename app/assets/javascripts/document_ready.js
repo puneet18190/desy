@@ -1023,6 +1023,7 @@ $(document).ready(function() {
       if($('._video_editor_component').length == 0) {
         $('#video_editor_global_preview').removeClass('_enabled');
         $('#video_editor_global_preview a').addClass('disabled');
+        $('#commit_video_editor').css('visibility', 'hidden');
       }
     });
   });
