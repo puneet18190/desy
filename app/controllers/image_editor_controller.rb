@@ -58,17 +58,12 @@ class ImageEditorController < ApplicationController
     if @ok
       @image.enter_edit_mode current_user.id
       @redirect = false
-      if parameters.nil?
-        current_user.empty_video_editor_cache
-        @redirect = true
-        return
-      end
       new_image = Image.new
       new_image.title = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
       new_image.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
       new_image.tags = params[:new_tags_placeholder] != '0' ? '' : params[:new_tags]
       new_image.user_id = current_user.id
-      new_image.media = @image.current_editing_image
+      new_image.media = File.open @image.current_editing_image
       if !new_image.save
         @error_ids = 'new'
         @errors = convert_item_error_messages(new_image.errors.messages)
@@ -86,6 +81,7 @@ class ImageEditorController < ApplicationController
       @image.title = params[:update_title]
       @image.description = params[:update_description]
       @image.tags = params[:update_tags]
+      @image.media = File.open @image.current_editing_image
       if !@image.save
         @error_ids = 'update'
         @errors = convert_item_error_messages(@image.errors.messages)
