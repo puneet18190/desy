@@ -73,6 +73,8 @@ $(document).ready(function() {
         $('#image_editor_textarea_' + textCount).data('coords', coords[0] + ',' + coords[1]);
       }
     });
+    coords = getDragPosition($('#image_editor_text_' + textCount));
+    $('#image_editor_textarea_' + textCount).data('coords', coords[0] + ',' + coords[1]);
     offlightTextareas();
     enlightTextarea(textCount);
   });

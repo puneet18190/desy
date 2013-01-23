@@ -1,3 +1,7 @@
+require 'shellwords'
+require 'media/image/editing/add_text_to_image'
+require 'media/image/editing/crop'
+
 class Image < MediaElement
   EXTENSION_WHITE_LIST = ImageUploader::EXTENSION_WHITE_LIST
   
@@ -27,7 +31,7 @@ class Image < MediaElement
     return '' if !self.in_edit_mode?
     my_url = self.url
     file_name = "/#{my_url.split('/').last}"
-    "#{my_url.gsub(file_name, '')}/editing/user_#{user_id}/tmp.#{self.media.file.extension}"
+    "#{my_url.gsub(file_name, '')}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}"
   end
   
   def prev_editing_image
@@ -53,10 +57,13 @@ class Image < MediaElement
     true
   end
   
-  def leave_edit_mode
-    return false if !self.in_edit_mode?
-    ed_dir = "#{self.media.folder}/editing/user_#{@edit_mode}"
-    FileUtils.rm_r(ed_dir) if Dir.exists?(ed_dir)
+  def leave_edit_mode(user_id)
+    ed_dir = "#{self.media.folder}/editing/user_#{user_id}"
+    begin
+      FileUtils.rm_r(ed_dir)
+    rescue
+      return false
+    end
     @edit_mode = nil
     true
   end
@@ -68,7 +75,6 @@ class Image < MediaElement
     begin
       FileUtils.rm(prev_path) if File.exists?(prev_path)
       FileUtils.cp(curr_path, prev_path)
-      FileUtils.rm(curr_path)
     rescue
       return false
     end
@@ -81,7 +87,7 @@ class Image < MediaElement
     texts.each do |t|
       font_size = Image.ratio_value img[:width], img[:height], t[:font_size]
       coord_x = Image.ratio_value img[:width], img[:height], t[:coord_x]
-      coord_x = Image.ratio_value img[:width], img[:height], t[:coord_y]
+      coord_y = Image.ratio_value img[:width], img[:height], t[:coord_y]
       tmp_file = Tempfile.new('textarea')
       begin
         tmp_file.write(t[:text])

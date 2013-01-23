@@ -23,7 +23,7 @@
   <div id="image_editor_container" class="imagesContainer">
     <div id="image_wrapper">
       <%= image_tag @image.url, :id => "cropped_image", "data-width" => @image.width, "data-height"=>@image.height %>
-      <form id="crop_form" data-param="<%= @image.id %>" action="/images/<%=@image.id%>/crop/" method="post" data-remote="true">
+      <form id="crop_form" data-param="<%= @image.id %>" action="" method="post" data-remote="true">
         <input type="hidden" name="x1" value="" class="_coord"/>
         <input type="hidden" name="y1" value="" class="_coord"/>
         <input type="hidden" name="x2" value="" class="_coord"/>

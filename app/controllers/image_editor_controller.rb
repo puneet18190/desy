@@ -1,7 +1,3 @@
-require 'shellwords'
-require 'media/image/editing/add_text_to_image'
-require 'media/image/editing/crop'
-
 class ImageEditorController < ApplicationController
   
   before_filter :initialize_image_with_owner_or_public, :only => [:edit, :crop, :save, :add_text, :undo]
@@ -13,14 +9,18 @@ class ImageEditorController < ApplicationController
       redirect_to dashboard_path
       return
     end
-    @image.leave_edit_mode
+    @image.leave_edit_mode current_user.id
     @image.enter_edit_mode current_user.id
   end
   
   def add_text
     if @ok
       @image.enter_edit_mode current_user.id
-      @new_url = @image.add_text extract_textareas_params(params)
+      if @image.add_text extract_textareas_params(params)
+        @new_url = @image.editing_url
+      else
+        @new_url = ''
+      end
     else
       @new_url = ''
     end
@@ -87,25 +87,32 @@ class ImageEditorController < ApplicationController
   private
   
   def extract_textareas_params(params)
-    text_count = 0
-    resp = []
-    params.each do |p,val|
-      if p.starts_with?('text')
-        text_count += 1
+    resp = {}
+    fonts = {'small_font' => 15, 'medium_font' => 25, 'big_font' => 35}
+    params.each do |k, v|
+      if !(k =~ /_/).nil?
+        index = k.split('_').last.to_i
+        p = k.gsub("_#{index}", '')
+        if ['color', 'font', 'coords', 'text'].include?(p)
+          if resp.has_key? index
+            resp[index][:"#{p}"] = v
+          else
+            resp[index] = {:"#{p}" => v}
+          end
+        end
       end
     end
-    if text_count > 0
-      (0..text_count-1).each do |t_num|
-        resp << {
-          :color => SETTINGS['colors'][params["color_#{t_num}"].gsub('color_', '')]['code'],
-          :font_size => params["font_#{t_num}"].to_f,
-          :coord_x => params["coords_#{t_num}"].split(',').first.to_f,
-          :coord_y => params["coords_#{t_num}"].split(',').last.to_f,
-          :text => params["text_#{t_num}"]
-        }
-      end
+    final_resp = []
+    resp.each do |k, v|
+      final_resp << {
+        :color => SETTINGS['colors'][v[:color].gsub('color_', '')]['code'],
+        :font_size => fonts[v[:font]].to_f,
+        :coord_x => v[:coords].split(',').first.to_f,
+        :coord_y => v[:coords].split(',').last.to_f,
+        :text => v[:text]
+      }
     end
-    resp
+    final_resp
   end
   
   def initialize_image_with_owner_or_public
