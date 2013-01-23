@@ -27,8 +27,8 @@ module Authentication
     def encrypt_password
       if password
         self.encrypted_password = BCrypt::Password.create("#{password}#{PEPPER}", cost: 10).to_s
-        self.password = nil
       end
+      true
     end
 
     def valid_password?(password)
@@ -44,6 +44,7 @@ module Authentication
 
     receiver.instance_eval do
       before_save :encrypt_password
+      after_save  { |record| record.password = nil }
     end
   end
 end

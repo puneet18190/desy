@@ -2,7 +2,7 @@
   <% @subjects.each do |subject| -%>
     <% html_id = "users_subject_ids_#{subject.id}" -%>
     <div class="checkboxElement">
-      <%= check_box_tag "user[subject_ids][]", subject.id, @user.subjects.include?(subject), id: html_id, class: "regular-checkbox big-checkbox" %>
+      <%= check_box_tag "user[subject_ids][]", subject.id, @user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: "regular-checkbox big-checkbox" %>
       <%= label_tag html_id, '' %>
       <%= subject.to_s %>
     </div>

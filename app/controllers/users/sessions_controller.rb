@@ -13,7 +13,7 @@ class Users::SessionsController < ApplicationController
         self.current_user = User.authenticate(params[:email], params[:password])
 
         if current_user
-          redirect_args_from(redirect_to_param) || [dashboard_path]
+          uri_path_and_query(redirect_to_param) || [dashboard_path]
         else
           failed_authentication_redirect_args path_params, t('captions.password_or_username_not_correct')
         end
@@ -32,10 +32,10 @@ class Users::SessionsController < ApplicationController
     [ root_path(path_params), { flash: { alert: error } } ]
   end
 
-  def redirect_args_from(redirect_url)
-    return nil unless redirect_url
+  def uri_path_and_query(url)
+    return nil unless url
 
-    components = URI.split redirect_url
+    components = URI.split url
 
     # Scheme, Userinfo, Host, Port, Registry, Opaque
     invalid_components_indexes = [0, 1, 2, 3, 4, 6]

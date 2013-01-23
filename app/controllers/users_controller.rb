@@ -12,12 +12,8 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      _d 'saved'
-      # TODO invio email di conferma
       redirect_to root_path, { flash: { notice: t('captions.successful_registration') } }
     else
-      _d @user.errors
-
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
       @location_ids     = Location.order(:description).map{ |l| [l.to_s, l.id] }
       @subjects         = Subject.order(:description)
