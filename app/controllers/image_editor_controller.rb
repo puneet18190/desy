@@ -72,6 +72,7 @@ class ImageEditorController < ApplicationController
     else
       @redirect = true
     end
+    render 'media_elements/info_form_in_editor/save'
   end
   
   def overwrite
@@ -90,7 +91,7 @@ class ImageEditorController < ApplicationController
     else
       @redirect = true
     end
-    render 'save'
+    render 'media_elements/info_form_in_editor/save'
   end
   
   private
