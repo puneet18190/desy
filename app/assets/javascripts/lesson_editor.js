@@ -535,8 +535,13 @@ function initLessonEditorPositions() {
   }
 }
 
-function tinyMceCallbacks(inst){
-  if (inst.getBody().scrollHeight > 422) {
+function tinyMceCallbacks(inst,tiny_id){
+  var maxH = 422;
+  if($("textarea#"+tiny_id).parent('.audio-content').length > 0){
+    maxH = 324;
+  }
+  
+  if (inst.getBody().scrollHeight > maxH) {
     $(inst.getBody()).parentsUntil("table.mceLayout").css("border","1px solid red");
   } else {
     $(inst.getBody()).parentsUntil("table.mceLayout").css("border","1px solid white");
@@ -567,7 +572,7 @@ function initTinymce(tiny_id) {
     theme_advanced_font_sizes: "1em=.size1,2em=.size2,3em=.size3,4em=.size4,5em=.size5,6em=.size6,7em=.size7",
     setup: function(ed) {
       ed.onKeyUp.add(function(ed, e) {
-        tinyMceCallbacks(ed);
+        tinyMceCallbacks(ed,tiny_id);
       });
       ed.onClick.add(function(ed, e) {
         var textarea = $('#' + tiny_id);
