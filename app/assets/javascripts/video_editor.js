@@ -180,6 +180,7 @@ function addImageComponentInVideoEditor(image_id, component, preview, duration) 
   if(!$('#video_editor_global_preview').hasClass('_enabled')) {
     $('#video_editor_global_preview').addClass('_enabled');
     $('#video_editor_global_preview a').removeClass('disabled');
+    $('#commit_video_editor').css('visibility', 'visible');
   }
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position));
@@ -278,6 +279,7 @@ function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration
   if(!$('#video_editor_global_preview').hasClass('_enabled')) {
     $('#video_editor_global_preview').addClass('_enabled');
     $('#video_editor_global_preview a').removeClass('disabled');
+    $('#commit_video_editor').css('visibility', 'visible');
   }
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position));
@@ -383,6 +385,7 @@ function addTextComponentInVideoEditor(component, content, duration, background_
   if(!$('#video_editor_global_preview').hasClass('_enabled')) {
     $('#video_editor_global_preview').addClass('_enabled');
     $('#video_editor_global_preview a').removeClass('disabled');
+    $('#commit_video_editor').css('visibility', 'visible');
   }
   setTimeout(function() {
     highlightAndUpdateVideoComponentIcon(('video_component_' + next_position));

@@ -28,6 +28,13 @@ class ImageEditorController < ApplicationController
   
   def undo
     if @ok
+      @image.enter_edit_mode current_user.id
+      if @image.undo
+        @new_url = @image.editing_url
+        @new_img = MiniMagick::Image.open @image.current_editing_image
+      else
+        @new_url = ''
+      end
     else
       @new_url = ''
     end
@@ -35,7 +42,13 @@ class ImageEditorController < ApplicationController
   
   def crop
     if @ok && !params[:x1].blank?
-      @new_url = @image.crop params[:x1], params[:y1], params[:x2], params[:y2], current_user.id
+      @image.enter_edit_mode current_user.id
+      if @image.crop(params[:x1], params[:y1], params[:x2], params[:y2])
+        @new_url = @image.editing_url
+        @new_img = MiniMagick::Image.open @image.current_editing_image
+      else
+        @new_url = ''
+      end
     else
       @new_url = ''
     end

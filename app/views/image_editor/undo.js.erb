@@ -1,4 +1,10 @@
-// aggiornare dimensioni reali
-// ripristinare azione del form
-// svuotare tutto il resto
-console.log('fatto -- <%= @new_url %>');
+<% if !@new_url.blank? %>
+  $('#image_wrapper img').attr('src', '<%= @new_url %>?timestamp=' + new Date().getTime());
+  $('#image_editor_empty_buttons ._undo').hide();
+  $('#image_editor_real_dimensions').html('<%= j t("captions.original_image_size") %>: <%= @new_img[:width] %>x<%= @new_img[:height] %>px');
+  $('body').prepend('<span class="_saved"></span>');
+  centerThis('._saved');
+  $('._saved').fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
+<% else %>
+  slideError();
+<% end %>
