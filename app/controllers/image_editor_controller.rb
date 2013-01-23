@@ -1,7 +1,3 @@
-require 'shellwords'
-require 'media/image/editing/add_text_to_image'
-require 'media/image/editing/crop'
-
 class ImageEditorController < ApplicationController
   
   before_filter :initialize_image_with_owner_or_public, :only => [:edit, :crop, :save, :add_text, :undo]
@@ -111,9 +107,6 @@ class ImageEditorController < ApplicationController
         :text => v[:text]
       }
     end
-    
-    logga final_resp
-    
     final_resp
   end
   

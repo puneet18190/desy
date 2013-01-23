@@ -1,3 +1,7 @@
+require 'shellwords'
+require 'media/image/editing/add_text_to_image'
+require 'media/image/editing/crop'
+
 class Image < MediaElement
   EXTENSION_WHITE_LIST = ImageUploader::EXTENSION_WHITE_LIST
   
@@ -68,7 +72,6 @@ class Image < MediaElement
     begin
       FileUtils.rm(prev_path) if File.exists?(prev_path)
       FileUtils.cp(curr_path, prev_path)
-      FileUtils.rm(curr_path)
     rescue
       return false
     end
@@ -81,7 +84,7 @@ class Image < MediaElement
     texts.each do |t|
       font_size = Image.ratio_value img[:width], img[:height], t[:font_size]
       coord_x = Image.ratio_value img[:width], img[:height], t[:coord_x]
-      coord_x = Image.ratio_value img[:width], img[:height], t[:coord_y]
+      coord_y = Image.ratio_value img[:width], img[:height], t[:coord_y]
       tmp_file = Tempfile.new('textarea')
       begin
         tmp_file.write(t[:text])
