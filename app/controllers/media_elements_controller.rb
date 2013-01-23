@@ -26,7 +26,7 @@ class MediaElementsController < ApplicationController
   end
   
   def create
-    # TODO 
+    # TODO riempire qui!!!!!!!!!!!
     if !media_element.save
       @errors = media_element.errors.messages
     end
