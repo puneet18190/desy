@@ -87,25 +87,34 @@ class ImageEditorController < ApplicationController
   private
   
   def extract_textareas_params(params)
-    text_count = 0
-    resp = []
-    params.each do |p,val|
-      if p.starts_with?('text')
-        text_count += 1
+    resp = {}
+    params.each do |k, v|
+      if !(k =~ /_/).nil?
+        index = k.split('_').last.to_i
+        p = k.gsub("_#{index}", '')
+        if ['color', 'font', 'coords', 'text'].include?(p)
+          if resp.has_key? index
+            resp[index][:"#{p}"] = v
+          else
+            resp[index] = {:"#{p}" => v}
+          end
+        end
       end
     end
-    if text_count > 0
-      (0..text_count-1).each do |t_num|
-        resp << {
-          :color => SETTINGS['colors'][params["color_#{t_num}"].gsub('color_', '')]['code'],
-          :font_size => params["font_#{t_num}"].to_f,
-          :coord_x => params["coords_#{t_num}"].split(',').first.to_f,
-          :coord_y => params["coords_#{t_num}"].split(',').last.to_f,
-          :text => params["text_#{t_num}"]
-        }
-      end
+    final_resp = []
+    resp.each do |k, v|
+      final_resp << {
+        :color => SETTINGS['colors'][v[:color].gsub('color_', '')]['code'],
+        :font_size => v[:font].to_f,
+        :coord_x => v[:coords].split(',').first.to_f,
+        :coord_y => v[:coords].split(',').last.to_f,
+        :text => v[:text]
+      }
     end
-    resp
+    
+    logga final_resp
+    
+    final_resp
   end
   
   def initialize_image_with_owner_or_public
