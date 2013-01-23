@@ -55,14 +55,15 @@ $(document).ready(function() {
   
   $('body').on('click', '#image_editor_text_buttons ._cancel', function() {
     resetImageEditorOperationsChoice();
-    resetImageEditorText();
+    resetImageEditorTexts();
     $('._create_new_image, ._updatable_image').css('visibility', 'visible');
   });
   
   $('body').on('click', '#image_editor_container._text_enabled img', function(e) {
     var coords = getRelativePositionInImageEditor($(this), e);
-    var textCount = $('#image_editor_container ._inner_textarea').length + 1;
-    $('#image_editor_container._text_enabled').append(textAreaImageEditorContent(coords, textCount));
+    var textCount = $('#info_container').data('current-textarea-identifier');
+    $('#info_container').data('current-textarea-identifier', textCount + 1);
+    $('#image_editor_container').append(textAreaImageEditorContent(coords, textCount));
     $('#image_editor_text_' + textCount).draggable({
       containment: 'parent',
       handle: '._move',
@@ -76,24 +77,14 @@ $(document).ready(function() {
     enlightTextarea(textCount);
   });
   
-  $('body').on('focus', '.image_editor_text textarea', function() {
+  $('body').on('focus', '._inner_textarea', function() {
     offlightTextareas();
     enlightTextarea($(this).parent().attr('id').split('_')[3]);
   });
   
   $('body').on('click', 'a._delete', function() {
-    
-    
-    
-    
-    
-    
-    
-    img_editor = $(this).parents('.image_editor_text');
-    img_editor.remove();
-    $('#crop_form input.' + img_editor.attr('id').replace('text', 'area')).each(function() {
-      $(this).remove();
-    });
+    var id = $(this).parent().attr('id').split('_')[4];
+    $('#image_editor_text_' + id).remove();
   });
   
   
@@ -102,21 +93,7 @@ $(document).ready(function() {
   
   
   
-  
-  
-  
-  // FIXME FIXME FIXME fino a qui
-  
-  $('body').on('click', '#image_editor_crop', function() {
-    var thisForm = $('#crop_form');
-    thisForm.attr('action', '/images/' + thisForm.data('param') + '/crop');
-    thisForm.submit();
-    $('.menuServiceImages').hide();
-    $('.menuTextImages').show();
-    $('._create_new_image, ._updatable_image').css('visibility', 'visible');
-    $('._toggle_crop').removeClass('current');
-  });
-  
+  // ANCORA NON SISTEMATA!!!
   $('body').on('click', '.text_tools div a', function() {
     var thisLink = $(this);
     var thisParent = $(this).parent('div');
@@ -139,6 +116,25 @@ $(document).ready(function() {
       thisTextArea.addClass(font_class.replace('current', ''));
       thisTextArea.attr('data-color', color_val);
     }
+  });
+  
+  
+  
+  
+  
+  
+  
+  
+  // FIXME FIXME FIXME fino a qui
+  
+  $('body').on('click', '#image_editor_crop', function() {
+    var thisForm = $('#crop_form');
+    thisForm.attr('action', '/images/' + thisForm.data('param') + '/crop');
+    thisForm.submit();
+    $('.menuServiceImages').hide();
+    $('.menuTextImages').show();
+    $('._create_new_image, ._updatable_image').css('visibility', 'visible');
+    $('._toggle_crop').removeClass('current');
   });
   
   $('body').on('click', '#image_editor_not_public ._save_edit_image', function() {
@@ -285,13 +281,13 @@ function addTextAreaHiddenFields(color, size, coords, text, index) {
 
 
 function enlightTextarea(id) {
-  $('#image_editor_text_' + id).css('background-color', 'rgba(230,230,230,0.5)');
+  $('#image_editor_textarea_' + id).css('background-color', 'rgba(230,230,230,0.5)');
   $('#image_editor_textarea_tools_' + id).css('visibility', 'visible');
 }
 
 function offlightTextareas() {
   $('.text_tools').css('visibility', 'hidden');
-  $('.image_editor_text textarea').css('background-color', 'rgba(255,255,255,0)');
+  $('._inner_textarea').css('background-color', 'rgba(255,255,255,0)');
 }
 
 function getDragPosition(obj) {
@@ -308,7 +304,7 @@ function getDragPosition(obj) {
 function textAreaImageEditorContent(coords, textCount) {
   var textarea_container = $($('#image_editor_empty_text_area_container').html());
   textarea_container.find('#image_editor_textarea_without_id').attr('id', 'image_editor_textarea_' + textCount);
-  textarea_container.find('#image_editor_textarea_tools_without_id').attr('id', 'image_editor_textarea_tools' + textCount);
+  textarea_container.find('#image_editor_textarea_tools_without_id').attr('id', 'image_editor_textarea_tools_' + textCount);
   textarea_container.attr('id', 'image_editor_text_' + textCount);
   var textarea = textarea_container.find('#image_editor_textarea_tools_' + textCount);
   textarea.data('coords', (coords[2] + ',' + coords[3]));
@@ -348,5 +344,5 @@ function resetImageEditorCrop() {
 function resetImageEditorTexts() {
   $('#image_wrapper img').removeClass('forText');
   $('#image_editor_container').removeClass('_text_enabled');
-  // FIXME manca resetta parametri testo
+  $('._image_editor_text').remove();
 }
