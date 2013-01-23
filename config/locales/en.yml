@@ -141,6 +141,7 @@ en:
     password: 'Password'
     password_or_username_not_correct: 'Wrong login data'
     pause: 'Pause'
+    personal_info: 'Personal info'
     play: 'Play'
     playlist: 'Playlist'
     preview: 'Preview'
