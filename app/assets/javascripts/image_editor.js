@@ -303,6 +303,7 @@ function getDragPosition(obj) {
 
 function textAreaImageEditorContent(coords, textCount) {
   var textarea_container = $($('#image_editor_empty_text_area_container').html());
+  textarea_container.addClass('_image_editor_text');
   textarea_container.find('#image_editor_textarea_without_id').attr('id', 'image_editor_textarea_' + textCount);
   textarea_container.find('#image_editor_textarea_tools_without_id').attr('id', 'image_editor_textarea_tools_' + textCount);
   textarea_container.attr('id', 'image_editor_text_' + textCount);
