@@ -70,7 +70,7 @@ $(document).ready(function() {
       cursor: '-webkit-grabbing',
       stop: function() {
         coords = getDragPosition($(this));
-        $(this).children('textarea').data('coords', coords[0] + ',' + coords[1]);
+        $('#image_editor_textarea_' + textCount).data('coords', coords[0] + ',' + coords[1]);
       }
     });
     offlightTextareas();
@@ -114,10 +114,22 @@ $(document).ready(function() {
       textarea.removeClass(old_size).addClass(new_size);
     }
   });
-    
-    
-    
-
+  
+  $('body').on('click', '#image_editor_text_buttons ._do', function() {
+    var form = $('#crop_form');
+    $('._image_editor_text ._inner_textarea').each(function() {
+      var id = $(this).attr('id').split('_')[3];
+      var coords = '<input type="hidden" name="coords_' + id + '" value="' + $(this).data('coords') + '"/>';
+      var text = '<input type="hidden" name="text_' + id + '" value="' + $(this).val() + '"/>';
+      var color = '<input type="hidden" name="color_' + id + '" value="' + $(this).data('color') + '"/>';
+      var font = '<input type="hidden" name="font_' + id + '" value="' + $(this).data('size') + '"/>';
+      form.prepend(coords).prepend(text).prepend(color).prepend(font);
+    });
+    form.attr('action', '/images/' + form.data('param') + '/add_text');
+    form.submit();
+  });
+  
+  
   
   
   
@@ -203,67 +215,7 @@ function saveImageChoice(image_id) {
   });
 }
 
-function resizedValue(width,height) {
-  wrapper_ratio = 660/495;
-  original_ratio = width/height;
-  resized= ['w', 'h', 'zoom'];
-  if(original_ratio >= wrapper_ratio) {
-    //resized width is 660
-    r_h = 660*height/width 
-    r_zoom = width/660
-    resized=[660,r_h,r_zoom]
-  } else {
-    //resized height 495
-    r_w = 495*width/height
-    r_zoom = height/495
-    resized=[r_w,495,r_zoom]
-  }
-  return resized;
-}
 
-// Update form with textareas
-function processTextAreaForm() {
-  $('#_image_editor_container .image_editor_text textarea').each(function(index) {
-    var tarea = $(this);
-    addTextAreaHiddenFields(tarea.data('color'), tarea.data('size'), tarea.data('coords'), tarea.val(), index);
-  });
-}
-
-function addTextAreaHiddenFields(color, size, coords, text, index) {
-  hidden_input_coords = $('<input />',
-  {
-    'class': 'area_' + index,
-    type: 'hidden',
-    id: 'hidden_coords_' + index,
-    name: 'coords_' + index,
-    val: coords
-  });
-  hidden_input_text = $('<input />',
-  {
-    'class': 'area_' + index,
-    type: 'hidden',
-    id: 'hidden_text_' + index,
-    name: 'text_' + index,
-    val: text
-  });
-  hidden_input_color = $('<input />',
-  {
-    'class': 'area_' + index,
-    type: 'hidden',
-    id: 'hidden_color_' + index,
-    name: 'color_' + index,
-    val: color
-  });
-  hidden_input_font = $('<input />',
-  {
-    'class': 'area_' + index,
-    type: 'hidden',
-    id: 'hidden_font_' + index,
-    name: 'font_' + index,
-    val: size
-  });
-  $('#crop_form').prepend(hidden_input_coords).prepend(hidden_input_text).prepend(hidden_input_color).prepend(hidden_input_font);
-}
 
 
 

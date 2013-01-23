@@ -19,6 +19,8 @@ class ImageEditorController < ApplicationController
   
   def add_text
     if @ok
+      @image.enter_edit_mode current_user.id
+      @new_url = @image.add_text extract_textareas_params(params)
     else
       @new_url = ''
     end
@@ -41,7 +43,7 @@ class ImageEditorController < ApplicationController
   
   def save
     if @ok
-      new_image_url = @image.process_textareas extract_textareas_params(params)
+
       new_image = Image.new
       new_image.user_id = current_user.id
       new_image.title = params[:new_title]
