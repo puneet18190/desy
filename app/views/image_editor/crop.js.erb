@@ -3,7 +3,7 @@ if(<%= !@new_url.blank? %>) {
   $('#image_editor_crop_buttons ._cancel').trigger('click');
   $('#crop_form input._coord').val('');
   $('#image_editor_empty_buttons ._undo').show();
-  // aggiornare dimensioni reali
+  $('#image_editor_real_dimensions').html('<%= j t("captions.original_image_size") %>: <%= @new_img[:width] %>x<%= @new_img[:height] %>px');
   $('body').prepend('<span class="_saved"></span>');
   centerThis('._saved');
   $('._saved').fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();

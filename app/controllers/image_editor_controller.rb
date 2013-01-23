@@ -31,6 +31,7 @@ class ImageEditorController < ApplicationController
       @image.enter_edit_mode current_user.id
       if @image.undo
         @new_url = @image.editing_url
+        @new_img = MiniMagick::Image.open @image.current_editing_image
       else
         @new_url = ''
       end
@@ -44,6 +45,7 @@ class ImageEditorController < ApplicationController
       @image.enter_edit_mode current_user.id
       if @image.crop(params[:x1], params[:y1], params[:x2], params[:y2])
         @new_url = @image.editing_url
+        @new_img = MiniMagick::Image.open @image.current_editing_image
       else
         @new_url = ''
       end

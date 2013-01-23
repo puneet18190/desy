@@ -64,7 +64,7 @@
   </div>
   
   <div class="menuFooterEditorElement">
-    <p><%= t('captions.original_image_size') %>: <%= @image.width %>x<%= @image.height %>px</p>
+    <p id="image_editor_real_dimensions"><%= t('captions.original_image_size') %>: <%= @image.width %>x<%= @image.height %>px</p>
     <div class="fltrt">
       <div class="fltrt"><a class="<%= save_class.html_safe %>" data-image-id="<%= @image.id %>" title="<%= t('general_titles.save_element_title') %>"></a></div>
     </div>
