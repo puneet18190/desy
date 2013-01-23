@@ -82,6 +82,15 @@ class LessonEditorController < ApplicationController
     end
   end
   
+  def get_tag_list
+    if params[:term]
+      @tags = Tag.where("word ILIKE '%#{params[:term]}%'").select("id, word AS value").limit(20)
+    else
+      @tags = Tag.select("id, word AS value").limit(20)
+    end
+    render :json => @tags
+  end
+  
   private
   
   def check_available_for_user
