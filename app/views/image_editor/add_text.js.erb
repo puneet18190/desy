@@ -1,4 +1,4 @@
-if(<%= !@new_url.blank? %>) {
+<% if !@new_url.blank? %>
   $('#image_wrapper img').attr('src', '<%= @new_url %>?timestamp=' + new Date().getTime());
   $('#image_editor_text_buttons ._cancel').trigger('click');
   $('#crop_form input._additional').remove();
@@ -6,6 +6,6 @@ if(<%= !@new_url.blank? %>) {
   $('body').prepend('<span class="_saved"></span>');
   centerThis('._saved');
   $('._saved').fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
-} else {
+<% else %>
   slideError();
-}
+<% end %>
