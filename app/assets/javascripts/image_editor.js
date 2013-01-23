@@ -101,36 +101,18 @@ $(document).ready(function() {
     }
   });
   
-  
-  
-  
-  
-  
-  
-  
-  
   $('body').on('click', '._image_editor_text .font_sizes a', function() {
-    
-    
-    
-    var thisLink = $(this);
-    var thisParent = $(this).parent('div');
-    var thisTextTools = $(this).parents('.text_tools');
-    var thisTextArea = thisTextTools.parent('.image_editor_text').find('textarea');
-    thisParent.find('a').removeClass('current');
-    thisLink.addClass('current');
-    thisTextArea.removeAttr('class');
-    if(thisParent.attr('class') == 'font_sizes') {
-      var font_val = $(this).attr('class').replace(' current', '');
-      var font_size = $(this).data('param');
-      var color_class = thisTextTools.find('.text_colors a.current').attr('class');
-      thisTextArea.addClass(font_val);
-      thisTextArea.addClass(color_class.replace('background_', '').replace('current', '').replace(' ', ''));
-      thisTextArea.attr('data-size', font_size);
-    } else {
-      
+    if(!$(this).hasClass('current')) {
+      var new_size = $(this).attr('class').replace(' ', '').replace('upper', '');
+      var id = $(this).parent().parent().attr('id').split('_')[4];
+      var textarea = $('#image_editor_textarea_' + id);
+      var tools = $('#image_editor_textarea_tools_' + id);
+      tools.find('.font_sizes a').removeClass('current');
+      $(this).addClass('current');
+      var old_size = textarea.data('size');
+      textarea.data('size', new_size);
+      textarea.removeClass(old_size).addClass(new_size);
     }
-    
   });
     
     
