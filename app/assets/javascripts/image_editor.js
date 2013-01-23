@@ -99,6 +99,9 @@ $(document).ready(function() {
   $('body').on('click', 'a._delete', function() {
     var id = $(this).parent().attr('id').split('_')[4];
     $('#image_editor_text_' + id).remove();
+    if($('._image_editor_text').length == 0) {
+      $('#image_editor_text_buttons ._do').addClass('disabled');
+    }
   });
   
   $('body').on('click', '._image_editor_text .text_colors a', function() {
