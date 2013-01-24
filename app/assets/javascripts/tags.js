@@ -1,4 +1,5 @@
 function initTagsAutocomplete(div_id, container){
+  console.log(container);
   function split( val ) {
     return val.split( /,\s*/ );
   }
