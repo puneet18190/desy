@@ -5,10 +5,13 @@ function initMediaElementLoader() {
 }
 
 function uploadMediaElementLoaderError(errors) {
-  var errs = errors.replace(/[\[\:\] ]/g, '').split(',');
-  $.each(errs, function() {
-    $('#media_element_' + this).addClass('form_error');
-  });
+  for (var i = 0; i < errors.length; i++) {
+    var error = errors[i];
+    $('#' + error).addClass('form_error');
+    if($('#' + error + '_placeholder').val() == '') {
+      $('#' + error).val('');
+    }
+  }
   $('.barraLoading img').hide();
   $('.barraLoading img').attr('src', '');
 }

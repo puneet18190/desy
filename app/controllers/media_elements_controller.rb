@@ -33,6 +33,15 @@ class MediaElementsController < ApplicationController
     new_media_element.user_id = current_user.id
     if !new_media_element.save
       @errors = convert_media_element_uploader_messages new_media_element.errors.messages
+      fields = new_media_element.errors.messages.keys
+      if fields.include? :sti_type
+        fields << :media if !fields.include? :media
+        fields.delete :sti_type
+      end
+      @error_fields = []
+      fields.each do |f|
+        @error_fields << f.to_s
+      end
     end
     render :layout => false
   end
