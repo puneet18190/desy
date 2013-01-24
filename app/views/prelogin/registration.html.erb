@@ -22,7 +22,6 @@ Organize your lessons in your virtual classroom and discover a new way of teachi
 
 <%= form_for @user do |f| %>
   <% if @user.errors.present? -%>
-    <%= jsd @user.errors %>
     <div class="errors"><%= t('forms.fields_with_errors') %></div>
     <% if @user.errors.added? :users_subjects, :blank -%>
       <div class="errors"><%= t('forms.sign_up.subjects_blank') %></div>

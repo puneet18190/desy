@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   
   include Authentication
+  include Confirmation
+
   REGISTRATION_POLICIES = SETTINGS['user_registration_policies'].map(&:to_sym)
 
   attr_accessor :password
@@ -35,7 +37,8 @@ class User < ActiveRecord::Base
   
   before_validation :init_validation
 
-  scope :confirmed, where(confirmed: true)
+  scope :confirmed,     where(confirmed: true)
+  scope :not_confirmed, where(confirmed: false)
 
   class << self
     def admin
@@ -75,6 +78,12 @@ class User < ActiveRecord::Base
       end
       user
     end
+  end
+
+  def reset_password!
+    new_password = SecureRandom.urlsafe_base64(10)
+    update_attributes!(password: new_password, password_confirmation: new_password)
+    new_password
   end
 
   def subject_ids=(subject_ids)

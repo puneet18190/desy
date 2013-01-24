@@ -10,7 +10,6 @@ $(document).ready(function() {
       $('html').addClass(name);
     }
   })();
-  
 
   // AFTER WINDOW RESIZE
   $(window).resize(function() {
@@ -1463,5 +1462,7 @@ $(document).ready(function() {
     cutter.find('._media_player_slider .ui-slider-handle').addClass('selected');
     selectVideoComponentCutterHandle(cutter, resp);
   });
+
+  
   
 });
