@@ -22,9 +22,11 @@
           <label for="tags"></label>
           <%= text_field_tag 'tags', tags_max  %>
         </div>
-        <br style="clear:both" />
-        <%= submit_tag t('captions.next').downcase, :class => 'lesson-create pull-right' %>
-        <%= link_to t('captions.cancel').downcase, my_lessons_path,  :class => "buttonForm pull-right" %>
+        
+        <div class="fltrt" style="margin-top:30px">
+          <div class="fltlft" style="margin-top:5px;"><%= link_to t('captions.cancel').downcase, my_lessons_path,  :class => "buttonForm" %></div>
+          <div class="fltrt"><%= submit_tag t('captions.next').downcase, :class => 'lesson-create' %></div>
+        </div>
       <% end -%>
     </div>
     <div class="info-slide-footer">
