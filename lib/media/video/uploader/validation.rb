@@ -20,7 +20,7 @@ module Media
             if column_changed? and not rename?
               'renaming denied'
             elsif process(@value).blank?
-              :invalid_filename
+              'invalid filename'
             end
           else
             'unsupported upload'
@@ -29,18 +29,18 @@ module Media
 
         private
         def error_message_for_file_to_convert
-          return :invalid_filename if processed_original_filename_without_extension.blank?
+          return 'invalid filename' if processed_original_filename_without_extension.blank?
             
           if not self.class::EXTENSION_WHITE_LIST_WITH_DOT.include?(original_filename_extension)
-            :unsupported_format
+            'unsupported format'
           else
             info = Info.new(@original_file.path, false)
             if not info.valid?
-              :invalid_video
+              'invalid video'
             elsif info.video_streams.blank?
-              :blank_video_streams
+              'blank video streams'
             elsif info.duration < self.class::MIN_DURATION
-              :invalid_duration
+              'invalid duration'
             end
           end
         end
@@ -48,7 +48,7 @@ module Media
         def error_message_for_converted_files
           mp4_path, webm_path = @converted_files[:mp4], @converted_files[:webm]
           if !@original_filename_without_extension.is_a?(String) || process(@original_filename_without_extension).blank?
-            :invalid_filename
+            'invalid filename'
           elsif [mp4_path, webm_path].map{ |p| File.extname(p) } != %w(.mp4 .webm)
             'invalid extension'
           elsif !(mp4_info = Info.new(mp4_path, false)).valid? || !(webm_info = Info.new(webm_path, false)).valid?
