@@ -1029,9 +1029,9 @@ html.lesson-editor-layout{
         line-height: 20px; /* Altezza di riga */
       }
       
-      #new-lesson-tags{
-        width: 300px;
-        height: 130px;
+      #new-lesson-tags,#edit-lesson-tags{
+        width: 336px;
+        height: 140px;
         display:block;
         resize: none; 
         line-height: 20px; /* Altezza di riga */
@@ -1069,16 +1069,18 @@ html.lesson-editor-layout{
             
             &:hover{
               background-position: -20px 0;
+              opacity:0.8;
             }
           }
         }
         input#tags{
+          overflow:visible;
           clear:both;
           border: none;
           margin-top: 5px; 
           padding: 0 10px;
           box-shadow: none;
-          width: 250px;
+          width: 295px;
           height: auto;
           
         }

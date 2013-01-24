@@ -279,7 +279,12 @@ $(document).ready(function() {
     }
   });
   
-  initTagsAutocomplete("tags");
+  if($("#new-lesson-tags").length > 0){
+    initTagsAutocomplete("tags","new-lesson-tags");
+  }
+  if($("#edit-lesson-tags").length > 0){
+    initTagsAutocomplete("tags","edit-lesson-tags");
+  }
   
 });
 

@@ -92,7 +92,6 @@ class LessonEditorController < ApplicationController
     if @tags.count == 0
       @tags = [:id=>0,:value=>params[:term]]
     end
-    logger.info "\n\n\n\n\n #{@tags.to_json} \n\n\n\n\n"
     render :json => @tags
   end
   
