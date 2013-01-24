@@ -202,6 +202,8 @@ $(document).ready(function() {
       var my_id = $(this).parent().attr('id');
       var my_expanded = $('#' + my_id + ' ._lesson_expanded');
       if(my_expanded.css('display') == 'block') {
+        my_expanded.find('._report_form_content').hide();
+        my_expanded.find('._reportable_icon').removeClass('report_light _report_selected').addClass('report');
         my_expanded.hide('blind', {}, 500, function() {
           my_expanded.hide();
         });
