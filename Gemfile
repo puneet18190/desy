@@ -55,3 +55,4 @@ end
 gem 'daemons'
 gem 'delayed_job_active_record'
 gem "subexec", :github => "ProGNOMmers/subexec"
+gem 'oj'
