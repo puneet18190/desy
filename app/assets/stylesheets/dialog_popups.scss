@@ -117,10 +117,14 @@
   padding: 0;
   background-color:#373737;
   color:#fff;
-  /*-webkit-box-shadow: 1px 5px 5px #c7c5c5;
-  box-shadow: 1px 5px 5px #c7c5c5;*/
   -webkit-box-shadow: 1px 5px 5px #999;
   box-shadow: 1px 5px 5px #999;
+  input[type="text"],textarea,.fk_carica_elemento_file {
+      border: 3px solid #373737;
+  }
+  .form_error,textarea.form_error, input.form_error{
+    border: 3px solid rgba(250, 0, 0, 0.5);
+  }
 }
 
 .imageInGalleryPopUp.ui-dialog-content{

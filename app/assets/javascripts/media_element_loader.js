@@ -27,3 +27,12 @@ function uploadMediaElementLoadeDoneRedirect() {
   $('.barraLoading img').attr('src', '');
   window.location = '/media_elements';
 }
+
+function resetMediaElementChangeInfo(media_element_id) {
+  var container = $('#dialog-media-element-' + media_element_id + ' ._change_info_container');
+  container.find('#title').val(container.data('title'));
+  container.find('#description').val(container.data('description'));
+  container.find('#tags').val(container.data('tags'));
+  container.find('.form_error').removeClass('form_error');
+  // manca la rimozione dei msg di errore
+}

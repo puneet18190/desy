@@ -148,6 +148,9 @@ function showMediaElementInfoPopUp(media_element_id) {
         removeCustomOverlayClose();
       },
       close: function() {
+        resetMediaElementChangeInfo(media_element_id);
+        $(this).find('._report_form_content').hide();
+        $(this).find('._report_media_element_click').removeClass('report_light');
         var player_container = $('#dialog-media-element-' + media_element_id + ' ._instance_of_player');
         if(player_container.length > 0) {
           stopMedia('#dialog-media-element-' + media_element_id + ' ' + player_container.data('media-type'));
