@@ -1,7 +1,5 @@
-
-    <h1><%= t('captions.desy_full_description') %></h1>
-    <p><%= t('descriptions.mailer_link_1') %><b><%= @sender.full_name %></b><%= t('descriptions.mailer_link_2') %></p>
-    <div class="messageContent"><%= @message %></div>
-    <p><%= t('descriptions.mailer_link_3') %><%= @lesson_link %></p></br>
-    <p><%= t('descriptions.mailer_link_4') %></p>
-  
+<h1><%= t('captions.desy_full_description') %></h1>
+<p><%= t('descriptions.mailer_link_1') %><b><%= @sender.full_name %></b><%= t('descriptions.mailer_link_2') %></p>
+<div class="messageContent"><%= @message %></div>
+<p><%= t('descriptions.mailer_link_3') %> <%= @lesson_link %></p></br>
+<p><%= t('descriptions.mailer_link_4') %></p>

@@ -112,6 +112,7 @@ en:
     enter_new_media_element_details: 'Enter all the details in the form below'
     enter_title: 'Enter title'
     exit: 'Exit'
+    failed_confirmation: 'The link you submitted is not longer valid.'
     fill_all_login_fields: 'Insert username and password'
     fill_in_form_for_new_lesson: 'Enter all the details in the form below'
     find_out_the_benefits_of_desy: 'Find out the benefits of DESY'
@@ -144,6 +145,7 @@ en:
     original_size: 'Original size'
     password: 'Password'
     password_or_username_not_correct: 'Wrong login data'
+    password_resetted_successfully: 'Password resetted successfully'
     pause: 'Pause'
     personal_info: 'Personal info'
     play: 'Play'
@@ -181,6 +183,8 @@ en:
     sort_results_by: 'Sort results by'
     status: 'Status'
     subject: 'Subject'
+    successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
+    successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
     tags_max: 'Insert a minimum of %{items} tags (max %{num} characters each)'
     talk_with_desy: 'Want to talk with DESY?'
     text_color: 'Text color'
@@ -220,12 +224,21 @@ en:
     instructions_to_fill_playlist: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist.'
     mailer_link_1: 'The user '
     mailer_link_2: ' thinks that you might be interested in a lesson in DESY.'
-    mailer_link_3: "Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser)."
+    mailer_link_3: "Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):"
     mailer_link_4: 'DESY - Digital Educational System'
     prelogin: "<b>DESY</b> is the new platform dedicated to the world of education. In <b>DESY</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and refine inside the application itself. Users take also advantage of our Community, sharing and receiving media elements ready to be re-used. <i>In <b>DESY</b> we guarantee high quality and care for details</i>."
     send_lesson_link_explanation: 'Write a list of emails and a message: clicking the button, you will send your contacts an email containing the public link of this lesson'
     upload_media_element_instructions: 'Select a file clicking on the button on the left'
     upload_media_element_success: 'The media element has been successfully created'
+    user_mailer:
+      account_confirmation_1: 'Greetings %{name} %{surname},'
+      account_confirmation_2: 'Thank you for your registration into DESY!'
+      account_confirmation_3: 'In order to complete your registration click here:'
+      account_confirmation_4: 'If the link does not appear clickable copy it and paste it into your browser.'
+      account_confirmation_5: 'When the registration will be confirmed, the link will not be valid anymore.'
+      account_confirmation_6: "Sign in with the username and the password inserted during the registration phase in order to access to the system."
+      account_confirmation_7: 'N.B.'
+      account_confirmation_8: "The confirmation of the account can be done just one time."
     what_is_desy_1: 'Created for ENI - who has now spread its use to Italian schools following agreement with the Italian Education Ministry - the '
     what_is_desy_2: ' (DESY) allows teachers to create, share and provide students with multimedia and interactive lessons: the system is made up of an archive of lessons and other didactic components which the teacher may access, use, modify or base new lessons.'
     what_is_desy_3: 'The creation of a new lesson is simple and intuitive: drag the icon from the workpage to the lesson sheet and any type of file (video, audio, image, table, chart, etc) can be inserted. Videos can be easily cut and edited according to didactic needs.'
@@ -321,6 +334,7 @@ en:
     publish: 'publish your lesson'
     remove: 'stop following this item'
     remove_virtual_classroom: 'click remove lesson from virtual classroom'
+    reset_password: 'reset password'
     unpublish: 'click to unpublish your lesson'
   general_titles:
     add_element_title: 'add element'
@@ -466,3 +480,38 @@ en:
     video_editor:
       length_text_component: 35 # for chinese it should be around 45
       length_duration: 3
+
+# (6) forms
+  forms:
+    fields_with_errors: 'please compile the form correctly'
+    media_element:
+      title: 'upload new media element'
+      notes: 'Enter the required information when loading a new education element. Warning! You must enter at least 4 tags to properly load an item.'
+      submit: 'upload'
+      messages:
+        success: 'The media element has been successfully created'
+      labels:
+        title: 'title'
+        description: 'description'
+        tags: 'tags'
+    sign_up:
+      subjects_blank: 'please check at least one subject'
+      policy_1:
+        title: 'Torem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tin'
+        description: 'Cidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.'
+      policy_2:
+        title: 'Torem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tin'
+        description: 'Cidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.'
+
+  # (7) emails
+  emails:
+    account_confirmation: 
+      subject: 'DESY - Account confirmation'
+    new_password: 
+      subject: 'DESY - New password'
+      body_1: 'Greetings %{name} %{surname},'
+      body_2: 'we received your password reset request; this is your new password'
+      body_3: 'You can login into DESY now using the new password, at the following URL'
+      body_4: "you will be able to set another password at your choice once logged in, in the 'Profile' section."
+    see_my_lesson: 
+      subject: 'DESY - Lesson link'

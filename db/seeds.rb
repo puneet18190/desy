@@ -16,7 +16,16 @@ def create_locations_school_levels_subjects_admin_user
     subject_ids << subject.id
   end
 
-  User.create_user(SETTINGS['admin']['email'], SETTINGS['admin']['password'], SETTINGS['admin']['password'], SETTINGS['admin']['name'], SETTINGS['admin']['surname'], 'School', SchoolLevel.first.id, Location.first.id, subject_ids, true)
+  User.confirmed.new(password:              SETTINGS['admin']['password'], 
+                     password_confirmation: SETTINGS['admin']['password'], 
+                     name:                  SETTINGS['admin']['name'], 
+                     surname:               SETTINGS['admin']['surname'], 
+                     school:                'School', 
+                     school_level_id:       SchoolLevel.first.id, 
+                     location_id:           Location.first.id,
+                     subject_ids:           subject_ids) do |user|
+    user.email = SETTINGS['admin']['email']
+  end.save!
 end
 
 begin

@@ -22,11 +22,14 @@ html.prelogin-layout {
     line-height:100%;
   }
   h2 {
+    color:#fff;
     font-size: 130%;
-    color:#ffd400;
     padding-top:14px;
     padding-bottom:0px;
     line-height:100%;
+  }
+  h1 + h2 {
+    color:#ffd400;
   }
   h3 {
     font-size: 110%;
@@ -145,44 +148,55 @@ html.prelogin-layout {
       text-align:right;
     }
   }
-}
-.registration-action .container {
-  background-color: #2eaadc;
-  .header .headerMenu {
-    background-color:#000;
-    a {
-      color: white;
+  &.registration-action, &.users-controller.create-action {
+    .container {
+      background-color: #2eaadc;
+      .header .headerMenu {
+        background-color:#000;
+        a {
+          color: white;
+        }
+      }
+      .containerText {
+        background: url(<%= asset_path 'bg_register.png' %>) top left no-repeat;
+        padding:140px 20px 20px 290px;
+        font-family: 'Nunito', sans-serif;
+      }
     }
-  }  
-  .containerText {
-    background: url(<%= asset_path 'bg_register.png' %>) top left no-repeat;
-    padding:140px 20px 20px 290px;
-    font-family: 'Nunito', sans-serif;
-  }
-}
-.what_is_desy-action .container {
-  background-color: #fdb525;
-  
-  .header .headerMenu {
-    background-color:#000;
-    a {
-      color: white;
-    }
-  }  
-  .containerText {
-    background-image:none;
-    padding: 100px 20px 20px 20px;
-    width:60%;
-    color:#2f2e2e;
-    float:left;
-    h3 {
-      padding-bottom:25px;
+
+    // stile dei campi del form di registrazione che hanno errori
+    &.users-controller.create-action {
+      .field_with_errors {
+        input, select, textarea {
+          border: 1px solid red;
+        }
+      }
     }
   }
-  .colDx {
-    float:right;
-    margin-top:110px;
-    width:30%;
-    background-color:#fff;
+  &.what_is_desy-action .container {
+    background-color: #fdb525;
+    
+    .header .headerMenu {
+      background-color:#000;
+      a {
+        color: white;
+      }
+    }  
+    .containerText {
+      background-image:none;
+      padding: 100px 20px 20px 20px;
+      width:60%;
+      color:#2f2e2e;
+      float:left;
+      h3 {
+        padding-bottom:25px;
+      }
+    }
+    .colDx {
+      float:right;
+      margin-top:110px;
+      width:30%;
+      background-color:#fff;
+    }
   }
 }

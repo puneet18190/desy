@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   
-  skip_before_filter :authenticate, only: :create
+  skip_before_filter :authenticate, only: [:create, :confirm, :request_reset_password, :reset_password]
   before_filter :initialize_layout, :only => [:edit, :subjects, :statistics]
-  layout 'prelogin', only: :create
+  layout 'prelogin', only: [:create, :request_reset_password]
 
   def create
     email = params[:user].try(:delete, :email)
@@ -12,18 +12,41 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      _d 'saved'
-      # TODO invio email di conferma
-      redirect_to root_path, { flash: { notice: t('captions.successful_registration') } }
+      redirect_to root_path(login: true), { flash: { notice: t('captions.successful_registration') } }
+      UserMailer.account_confirmation(@user, request.host, request.port).deliver
     else
-      _d @user.errors
-
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
       @location_ids     = Location.order(:description).map{ |l| [l.to_s, l.id] }
       @subjects         = Subject.order(:description)
 
       render 'prelogin/registration'
     end
+  end
+
+  def confirm
+    if User.confirm!(params[:token])
+      redirect_to root_path(login: true), { flash: { notice: t('captions.successful_confirmation') } }
+    else
+      redirect_to root_path, { flash: { alert: t('captions.failed_confirmation') } }
+    end
+  end
+
+  def request_reset_password
+  end
+
+  def reset_password
+    email = params[:email]
+    if email.blank?
+      redirect_to user_request_reset_password_path, { flash: { alert: t('captions.email_is_blank') } } 
+      return
+    end
+
+    if user = User.confirmed.where(email: email).first
+      new_password = user.reset_password!
+      UserMailer.new_password(user, new_password, request.host, request.port).deliver
+    end
+
+    redirect_to root_path, { flash: { notice: t('captions.password_resetted_successfully') } }
   end
   
   def edit
@@ -34,7 +57,7 @@ class UsersController < ApplicationController
   
   def subjects
   end
-  
+
   def statistics
     Statistics.user = current_user
 
@@ -53,8 +76,8 @@ class UsersController < ApplicationController
   end
   
   def logout
-    session[:user_id] = nil
-    redirect_to '/'
+    self.current_user = nil
+    redirect_to root_path
   end
   
 end

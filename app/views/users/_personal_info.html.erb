@@ -9,16 +9,16 @@
   </div>
   <div class="inputElement">
     <%= f.label :email %>
-    <%= f.text_field :email, class: 'text' %>
+    <%= f.email_field :email, class: 'text' %>
   </div>
   <br class="clearfloat" />
   <div class="inputElement">
     <%= f.label :password %>
-    <%= f.text_field :password, class: 'text' %>
+    <%= f.password_field :password, class: 'text' %>
   </div>
   <div class="inputElement" style="margin-right:0">
     <%= f.label :password_confirmation %>
-    <%= f.text_field :password_confirmation, class: 'text' %>
+    <%= f.password_field :password_confirmation, class: 'text' %>
   </div>
 </fieldset>
 <fieldset class="insert-content">
@@ -35,4 +35,15 @@
     <%= f.label :location_id %>
     <%= f.select :location_id, @location_ids %>
   </div>
+
+  <%# ERRORI %>
+  <% errors = @user.errors.select{ |k,_| [:name, :surname, :email, :password, :password_confirmation, :school, :school_level_id, :location_id].include? k } -%>
+  <ul>
+  <% errors.each do |k, v| -%>
+    <%# TODO usare l'icona di errore '!.png' %>
+    <li><%= @user.errors.full_message(k, v) %></li>
+  <% end if errors.present? -%>
+  </ul>
+
 </fieldset>
+

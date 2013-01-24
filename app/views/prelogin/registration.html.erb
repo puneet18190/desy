@@ -19,48 +19,50 @@
 Use or modify to suit your needs the lessons of other teachers who use desy.
 Organize your lessons in your virtual classroom and discover a new way of teaching.</p>
 </div>
+
 <%= form_for @user do |f| %>
 
   <%= render partial: 'users/personal_info', :locals => { :f => f } %>
+
+  <h2>Choose the subjects you want to stay connected</h2>
   <%= render partial: 'users/personal_subjects', :locals => { :f => f } %>
 
   <div class="contentForm">
-    <br class="clearfloat">
-    <p>
-      <strong>Torem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tin</strong><br><br>
-
-      Cidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-    </p>
-    <div class="checkbox-content" style="float:none; padding-top:0">
-      <div class="checkboxElement">
-        <table>
-          <tr>
-            <td><input type="checkbox" id="checkbox-2-5" class="regular-checkbox" /><label for="checkbox-2-5"></label></td>
-            <td>accept</td>
-          </tr>
-        </table>
+    <% @user.registration_policies.each do |policy| -%>
+      <p>
+        <strong><%= t("forms.sign_up.#{policy}.title") %></strong><br><br>
+        <%= t("forms.sign_up.#{policy}.description") %>
+      </p>
+      <div class="checkbox-content" style="float:none; padding-top:0">
+        <div class="checkboxElement">
+          <table>
+            <tr>
+              <td>
+                <%= f.check_box policy, class: 'regular-checkbox' %>
+                <%= f.label policy %>
+              </td>
+              <td>accept</td>
+            </tr>
+          </table>
+        </div>
       </div>
-    </div>
-    <br class="clearfloat">
-    <p>
-      <strong>Torem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tin</strong><br><br>
+      <br class="clearfloat">
+    <% end -%>
+    
+    <%# ERRORI %>
+    <% errors = @user.errors.select{ |k,_| @user.registration_policies.include? k } -%>
+    <ul>
+    <% errors.each do |k, v| -%>
+      <%# TODO usare l'icona di errore '!.png' %>
+      <li><%= @user.errors.full_message(k, v) %></li>
+    <% end if errors.present? -%>
+    </ul>
 
-      Cidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-    </p>
-    <div class="checkbox-content" style="float:none; padding-top:0">
-      <div class="checkboxElement">
-        <table>
-          <tr>
-            <td><input type="checkbox" id="checkbox-2-5" class="regular-checkbox" /><label for="checkbox-2-5"></label></td>
-            <td>accept</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-    <br class="clearfloat">
     <%= f.submit t('captions.register') %>
   </div>
+
 <% end %>
+
 <br class="clearfloat">
 <div class="footer">
   <%= t('captions.copyright') %>
