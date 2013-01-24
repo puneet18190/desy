@@ -1,19 +1,18 @@
 <div class="footer">
   <div class="footer_content">
-    <div class="fltlft" style="padding-top:35px">
-     <img src="<%= asset_path 'logos_xueda.gif' %>"> 
+    <% if controller_name != "dashboard" %>
+    <div class="fltrt dashboard">
+      <%= link_to t('captions.back_to_dashboard'), dashboard_path %> <%= image_tag "lesson-editor-logo-footer.png" %>
     </div>
-    <div class="fltrt">
-      <% if controller_name != "dashboard" %>
-        <div class="fltrt dashboard">
-          <%= link_to t('captions.back_to_dashboard'), dashboard_path %> <%= image_tag "lesson-editor-logo-footer.png" %>
-        </div>
-
-      <%end%>
-
-      <div class="" style="padding-top:70px">
-        <%= t('captions.copyright') %>
-      </div>
+    <%end%>
+  </div>  
+  <div class="footer_logo_content">
+    <div class="fltlft" >
+      <img src="<%= asset_path 'logos_xueda.gif' %>"> 
     </div>
-  </div>
+    <div class="fltrt" style="padding-top:30px">
+      <%= t('captions.copyright') %>
+    </div>
+  </div>  
+
 </div>

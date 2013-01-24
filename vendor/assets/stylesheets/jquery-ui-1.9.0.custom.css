@@ -85,19 +85,22 @@ input.ui-button { padding: .4em 1em; }
 ul.ui-autocomplete{
   z-index: 1;
   display: block;
-  top: 242px;
-  left: 668px;
+  clear:both;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   background-color: #373737;
   opacity: 0.9;
   padding: 10px;
-  width: 300px;
+  width: 310px;
 }
 
 ul.ui-autocomplete, ul.ui-autocomplete li,ul.ui-autocomplete li:hover,ul.ui-autocomplete li a,ul.ui-autocomplete li a:hover{
   padding: 2px .4em;
   color: white;
+}
+
+.ui-helper-hidden-accessible{
+  display:none;
 }
 
 /* workarounds */
