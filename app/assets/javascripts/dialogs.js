@@ -188,6 +188,7 @@ function showLoadMediaElementPopUp() {
         $('#load-media-element #title_placeholder').val('');
         $('#load-media-element #description_placeholder').val('');
         $('#load-media-element #tags_placeholder').val('');
+        $('#load-media-element #new-media-element-tags span').remove();
         $('#media_element_media_show').text($('#load-media-element').data('placeholder-media'));
         $('#load-media-element .innerUploadFileButton').val('');
         $('#load-media-element .form_error').removeClass('form_error');

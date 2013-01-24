@@ -238,6 +238,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._change_info_to_pick.change_info', function() {
     $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').show('fade', {}, 500);
+    initTagsAutocomplete('tags','edit-media-element-tags');
     $(this).removeClass('change_info');
     $(this).addClass('change_info_light');
     $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').hide();

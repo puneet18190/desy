@@ -16,7 +16,10 @@
               <%= text_area_tag 'description', media_element.description, :class => "description" %>
             </div>
             <div class="cols fltrt">
-              <%= text_area_tag 'tags', media_element.tags, :class => "tags" %>
+              <div class="ui-widget pull-right" id="edit-media-element-tags">    
+                <%= text_field_tag 'tags', '' %><!-- FIX riempire con media_element.tags -->
+                <%= hidden_field_tag 'tags_placeholder', '' %>
+              </div>
               <br>
               <div class="fltrt">
                 <div class="fltlft" style="margin-top:5px"><a class="lower _cancel buttonForm" data-param="<%= media_element.id %>"><%= t('captions.cancel') %></a></div>
