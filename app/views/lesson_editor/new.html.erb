@@ -18,25 +18,10 @@
         <%= text_field_tag 'title', title_max, :class => 'pull-left', :onfocus =>"this.value=''" %>
         <%= select_tag 'subject', options_from_collection_for_select(@subjects, 'id', 'description'), :include_blank => false, :class => 'pull-right', :id => 'lesson_subject' %>
         <%= text_area_tag 'description', description_max, :class => 'pull-left', :onfocus =>"this.value=''"  %>
-        <div class="ui-widget">
-          <div id="autocomplete-selected"></div>
-          <%= text_area_tag 'tags', tags_max, :class => 'pull-right'  %>
+        <div class="ui-widget pull-right" id="new-lesson-tags">
+          <label for="tags"></label>
+          <%= text_field_tag 'tags', tags_max  %>
         </div>
-        <script type="text/javascript" charset="utf-8">
-          var pos = $("#tags").position();
-          $("#autocomplete-selected").css("left",pos.left+"px");
-          $("#autocomplete-selected").css("top",(pos.top+30)+"px");
-          $('#tags').bind('cut paste keyup',function(){
-            console.log("bind");
-            console.log($("#autocomplete-selected").outerHeight());
-            var h = $("#autocomplete-selected").outerHeight();
-            $('ul.ui-autocomplete').css('top',h+"px");
-            $("#autocomplete-selected").text($(this).val());
-          });
-          $('body').on('click','.ui-autocomplete li a', function(){
-
-          });
-        </script>
         <br style="clear:both" />
         <%= submit_tag t('captions.next').downcase, :class => 'lesson-create pull-right' %>
         <%= link_to t('captions.cancel').downcase, my_lessons_path,  :class => "buttonForm pull-right" %>
