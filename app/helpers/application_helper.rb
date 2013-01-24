@@ -1,7 +1,7 @@
 module ApplicationHelper
   
   def select_your_subjects(subjects)
-    "<option value=\"11\">#{t('captions.select_a_subject')}</option>#{options_from_collection_for_select(subjects, 'id', 'description')}".html_safe
+    "<option value=\"\">#{t('captions.select_a_subject')}</option>#{options_from_collection_for_select(subjects, 'id', 'description')}".html_safe
   end
   
   def standard_form_error_messages(errors)
