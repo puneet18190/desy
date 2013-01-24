@@ -5,6 +5,7 @@ function initMediaElementLoader() {
 }
 
 function uploadMediaElementLoaderError(errors) {
+  $('#load-media-element .form_error').removeClass('form_error');
   for (var i = 0; i < errors.length; i++) {
     var error = errors[i];
     if(error == 'media') {
