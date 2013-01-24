@@ -17,7 +17,7 @@
       <%= form_tag('/lessons/create', :remote => true, :id => "lesson-create") do %>
         <%= text_field_tag 'title', title_max, :class => 'pull-left' %>
         <%= hidden_field_tag 'title_placeholder', '' %>
-        <%= select_tag 'subject', options_from_collection_for_select(@subjects, 'id', 'description'), :include_blank => false, :class => 'pull-right', :id => 'lesson_subject' %>
+        <%= select_tag 'subject', select_your_subjects(@subjects), :include_blank => false, :class => 'pull-right', :id => 'lesson_subject' %>
         <%= text_area_tag 'description', description_max, :class => 'pull-left' %>
         <%= hidden_field_tag 'description_placeholder', '' %>
         <div class="ui-widget pull-right" id="new-lesson-tags">

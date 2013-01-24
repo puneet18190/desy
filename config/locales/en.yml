@@ -167,6 +167,7 @@ en:
     select_an_action: 'Select an action'
     selected: 'Selected'
     selected_for_you: 'Selected for you'
+    select_a_subject: 'Select a subject'
     select_audio: 'Select audio'
     select_component_to_add: 'Select component to add'
     select_file: 'Select a file to load'

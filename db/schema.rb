@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121130513) do
+ActiveRecord::Schema.define(:version => 20130123140753) do
 
   create_table "locations", :force => true do |t|
     t.string   "description", :null => false
@@ -36,8 +36,10 @@ ActiveRecord::Schema.define(:version => 20130121130513) do
     t.integer  "location_id",        :null => false
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "confirmation_token"
     t.index ["location_id"], :name => "fk__users_location_id", :order => {"location_id" => :asc}
     t.index ["school_level_id"], :name => "fk__users_school_level_id", :order => {"school_level_id" => :asc}
+    t.index ["confirmation_token"], :name => "index_users_on_confirmation_token", :order => {"confirmation_token" => :asc}
     t.index ["confirmed"], :name => "index_users_on_confirmed", :order => {"confirmed" => :asc}
     t.index ["email"], :name => "index_users_on_email", :unique => true, :order => {"email" => :asc}
     t.foreign_key ["location_id"], "locations", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "users_location_id_fkey"
