@@ -1,4 +1,4 @@
-function initTagsAutocomplete(div_id){
+function initTagsAutocomplete(div_id, container){
   function split( val ) {
     return val.split( /,\s*/ );
   }
@@ -38,8 +38,8 @@ function initTagsAutocomplete(div_id){
 				
 				//add friend to friend div
 				span.insertBefore("#"+div_id);
-				var container = $("#new-lesson-tags")[0];
-        container.scrollTop = container.scrollHeight;
+				var this_container = $("#"+container)[0];
+        this_container.scrollTop = this_container.scrollHeight;
 				$("#"+div_id).val("").css("top", 2);
 			},
 			
@@ -52,20 +52,20 @@ function initTagsAutocomplete(div_id){
 		});
 		
 		//add click handler to new-lesson-tags div
-		$("#new-lesson-tags").click(function(){
+		$("#"+container).click(function(){
 			
 			//focus 'to' field
 			$("#"+div_id).focus();
 		});
 		
 		//add live handler for clicks on remove links
-		$(".remove", document.getElementById("new-lesson-tags")).live("click", function(){
+		$(".remove", document.getElementById(container)).live("click", function(){
 		
 			//remove current friend
 			$(this).parent().remove();
 			
 			//correct 'to' field position
-			if($("#new-lesson-tags span").length === 0) {
+			if($("#"+container+" span").length === 0) {
 				$("#"+div_id).css("top", 0);
 			}				
 		});				
