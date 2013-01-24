@@ -656,7 +656,9 @@ $(document).ready(function() {
   $('body').on('click', '._virtual_classroom_lesson ._lesson_thumb', function() {
     var lesson_id = $(this).data('lesson-id');
     var redirect_to = $('#info_container').data('currenturl');
-    window.location.href = '/lessons/' + lesson_id + '/view?back=' + encodeURIComponent(redirect_to);
+    var parser = document.createElement('a');
+    parser.href = redirect_to;
+    window.location.href = '/lessons/' + lesson_id + '/view?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
   });
   
   $('body').on('click', '._remove_lesson_from_inside_virtual_classroom', function() {
