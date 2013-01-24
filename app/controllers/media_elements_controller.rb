@@ -18,7 +18,6 @@ class MediaElementsController < ApplicationController
       @page = @pages_amount
       get_own_media_elements
     end
-    @new_media_element = MediaElement.new(media_element_params)
     render_js_or_html_index
   end
   
@@ -27,19 +26,24 @@ class MediaElementsController < ApplicationController
   end
   
   def create
-    media_element = MediaElement.new(media_element_params) { |me| me.user = current_user }
-    if media_element.save
-      #render :formats => :js
-      #render json: { message: I18n.t('forms.media_element.messages.success') }, :status => :created
-      #redirect_to my_media_elements_path
-    else
-      @errors = media_element.errors.messages
-      #render :formats => :js
-      # TODO aggiungere visualizzazione errori
-      #puts media_element.errors.inspect
-      #render json: { errors: media_element.errors }
+    new_media_element = MediaElement.new :media => params[:media]
+    new_media_element.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    new_media_element.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    new_media_element.tags = params[:tags_placeholder] != '0' ? '' : params[:tags]
+    new_media_element.user_id = current_user.id
+    if !new_media_element.save
+      @errors = convert_media_element_uploader_messages new_media_element.errors.messages
+      fields = new_media_element.errors.messages.keys
+      if fields.include? :sti_type
+        fields << :media if !fields.include? :media
+        fields.delete :sti_type
+      end
+      @error_fields = []
+      fields.each do |f|
+        @error_fields << f.to_s
+      end
     end
-    render layout: false#, content_type: Mime::TEXT, text: media_element.inspect
+    render :layout => false
   end
   
   def add
@@ -111,10 +115,6 @@ class MediaElementsController < ApplicationController
   
   private
   
-  def media_element_params
-    Hash[ [:media, :title, :description, :tags].map{ |v| [ v, params[v] ] } ]
-  end
-
   def get_own_media_elements
     current_user_own_media_elements = current_user.own_media_elements(@page, @for_page, @filter)
     @media_elements = current_user_own_media_elements[:records]

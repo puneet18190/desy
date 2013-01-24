@@ -145,12 +145,13 @@ p {
   position:fixed;
   bottom:0;
   z-index:5000;
-  background: #373737;
+  background-color:white;
   color:#999;
-  font-size:85%;
-  text-transform:lowercase;
+  font-size:11px;
+  
   .footer_content{
-    padding: 26px 55px 34px 30px;
+    padding: 7px 41px 20px 0px;
+    background-color:#373737;
     a{
       color: #fff;
       &:hover{
@@ -160,6 +161,13 @@ p {
     .dashboard{
       text-transform:uppercase;
     }
+  }
+  .footer_logo_content{
+    width:96%; 
+    padding:0 2% 0 2%;
+    float:left;
+    
+    
   }
 }
 

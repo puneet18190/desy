@@ -49,6 +49,7 @@ class VideoEditorController < ApplicationController
     if parameters.nil?
       current_user.empty_video_editor_cache
       @redirect = true
+      render 'media_elements/info_form_in_editor/save'
       return
     end
     initial_video_test = Video.new
@@ -74,6 +75,7 @@ class VideoEditorController < ApplicationController
       @errors = convert_item_error_messages(errors)
       @error_fields = errors.keys
     end
+    render 'media_elements/info_form_in_editor/save'
   end
   
   def overwrite
@@ -82,7 +84,7 @@ class VideoEditorController < ApplicationController
     if parameters.nil?
       current_user.empty_video_editor_cache
       @redirect = true
-      render 'save'
+      render 'media_elements/info_form_in_editor/save'
       return
     end
     initial_video_test = Video.find_by_id parameters[:initial_video]
@@ -103,7 +105,7 @@ class VideoEditorController < ApplicationController
       @errors = convert_item_error_messages(initial_video_test.errors.messages)
       @error_fields = initial_video_test.errors.messages.keys
     end
-    render 'save'
+    render 'media_elements/info_form_in_editor/save'
   end
   
   private

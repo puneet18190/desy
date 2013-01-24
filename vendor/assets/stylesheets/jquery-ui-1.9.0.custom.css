@@ -80,6 +80,30 @@ input.ui-button { padding: .4em 1em; }
 .ui-buttonset { margin-right: 7px; }
 .ui-buttonset .ui-button { margin-left: 0; margin-right: -.3em; }
 
+/*autocomplete*/
+
+ul.ui-autocomplete{
+  z-index: 1;
+  display: block;
+  clear:both;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: #373737;
+  opacity: 0.9;
+  padding: 10px;
+  width: 300px;
+  left:394px;
+}
+
+ul.ui-autocomplete, ul.ui-autocomplete li,ul.ui-autocomplete li:hover,ul.ui-autocomplete li a,ul.ui-autocomplete li a:hover{
+  padding: 2px .4em;
+  color: white;
+}
+
+.ui-helper-hidden-accessible{
+  display:none;
+}
+
 /* workarounds */
 button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra padding in Firefox */
 .ui-datepicker { width: 17em; padding: .2em .2em 0; display: none; }

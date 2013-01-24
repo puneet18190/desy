@@ -44,13 +44,6 @@ en:
           problem_reporting: 'Your report could not be sent'
           lesson_already_reported: 'You already reported this lesson'
           media_element_already_reported: 'You already reported this element'
-        video:
-          attributes:
-            media:
-              unsupported_format: "The format of your video is not supported"
-              invalid_video: 'Your video could not be loaded'
-              invalid_duration: 'Your video has an invalid duration'
-              blank_video_streams: 'Your video does not have any video stream'
         virtual_classroom_lesson:
           cant_change_position_if_not_in_playlist: 'This lesson is not in the playlist'
           invalid_position_in_playlist: "This lesson's position is not valid"
@@ -62,6 +55,10 @@ en:
   error_captions:
     fill_all_the_fields_or_too_long: 'Fill all the fields without exceeding the max length'
     tags_are_not_enough: 'Tags are not enough'
+    media_blank: 'No file loaded'
+    media_unsupported_format: 'Format not supported'
+    media_invalid_filename: "File's name contains invalid characters"
+    media_generic_error: 'Invalid or damaged file'
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
   captions:
@@ -85,7 +82,7 @@ en:
     choose_video: 'Click here to add a video'
     choose_wich_item_and_go: 'Insert a word, choose the filters and go!'
     contact_us: 'Contact us'
-    copyright: '©2013 DESY'
+    copyright: '©2013 DESY. All rights reserved.'
     create: 'Create'
     create_new_lesson: 'Create a new lesson'
     create_new_lesson_now: 'Create a lesson now'
@@ -199,6 +196,8 @@ en:
     update_lesson: 'Are you making significant changes?'
     updating_media_element: 'Have you made significant changes?'
     upload: 'Upload'
+    upload_a_media_element: 'Upload a media element'
+    upload_completed: 'Upload completed!'
     use_the_form_below_for_lesson_information: "Update here the lesson's info according to its new content"
     video_editor_label: 'Edit video'
     virtual_classroom: 'Virtual classroom'
@@ -227,6 +226,8 @@ en:
     mailer_link_4: 'DESY - Digital Educational System'
     prelogin: "<b>DESY</b> is the new platform dedicated to the world of education. In <b>DESY</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and refine inside the application itself. Users take also advantage of our Community, sharing and receiving media elements ready to be re-used. <i>In <b>DESY</b> we guarantee high quality and care for details</i>."
     send_lesson_link_explanation: 'Write a list of emails and a message: clicking the button, you will send your contacts an email containing the public link of this lesson'
+    upload_media_element_instructions: 'Select a file clicking on the button on the left'
+    upload_media_element_success: 'The media element has been successfully created'
     user_mailer:
       account_confirmation_1: 'Greetings %{name} %{surname},'
       account_confirmation_2: 'Thank you for your registration into DESY!'

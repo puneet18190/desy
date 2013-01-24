@@ -14,11 +14,14 @@
         <%= t('captions.fill_in_form_for_new_lesson') %>
       </h3>
       <div class="_error_messages"><%= media_elements_error_messages(params[:errors]) if params[:errors] %></div>
-      <%= form_tag('/lessons/create', :remote => true) do -%>
+      <%= form_tag('/lessons/create', :remote => true, :id => "lesson-create") do -%>
         <%= text_field_tag 'title', title_max, :class => 'pull-left', :onfocus =>"this.value=''" %>
         <%= select_tag 'subject', options_from_collection_for_select(@subjects, 'id', 'description'), :include_blank => false, :class => 'pull-right', :id => 'lesson_subject' %>
         <%= text_area_tag 'description', description_max, :class => 'pull-left', :onfocus =>"this.value=''"  %>
-        <%= text_area_tag 'tags', tags_max, :class => 'pull-right', :onfocus =>"this.value=''"  %>
+        <div class="ui-widget pull-right" id="new-lesson-tags">
+          <label for="tags"></label>
+          <%= text_field_tag 'tags', tags_max  %>
+        </div>
         <br style="clear:both" />
         <%= submit_tag t('captions.next').downcase, :class => 'lesson-create pull-right' %>
         <%= link_to t('captions.cancel').downcase, my_lessons_path,  :class => "buttonForm pull-right" %>

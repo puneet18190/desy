@@ -1018,12 +1018,63 @@ html.lesson-editor-layout{
       select{
         width: 200px;
       }
+      .ui-widget{
+        position:relative;
+      }
+      
       textarea{
         width: 300px;
         height: 130px;
         resize: none; 
         line-height: 20px; /* Altezza di riga */
       }
+      
+      #new-lesson-tags{
+        width: 300px;
+        height: 130px;
+        display:block;
+        resize: none; 
+        line-height: 20px; /* Altezza di riga */
+        border-radius: 10px;
+        border: 3px solid #f29400;
+        padding: 0;
+        line-height: 30px;
+        box-shadow: 0px 2px 2px rgba(50, 50, 50, 0.1) inset;
+        color: #fff;
+        font-size: 13px;
+        font-family: Arial, sans-serif;
+        margin-top: 30px;
+        background-color: transparent;
+        outline: none;
+        background-color: #E48D1F;
+        overflow:auto;
+        span{
+          border: 1px solid #fff;
+          border-radius: 3px;
+          padding: 0 3px;
+          margin: 5px 3px;
+          background-color: #f29400;
+          float:left;
+          a{
+            color: #373737;
+            margin: auto 2px;
+            &:hover{
+              color: #999;
+            }
+          }
+        }
+        input#tags{
+          clear:both;
+          border: none;
+          margin-top: 5px; 
+          padding: 5px 10px;
+          box-shadow: none;
+          width: 250px;
+          height: auto;
+          
+        }
+      }
+      
       ._error_messages{
         height: 10px;
         padding-top: 10px;

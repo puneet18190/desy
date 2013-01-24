@@ -6,27 +6,36 @@
     font-family: Arial, sans-serif;
     font-size: 12px;
   }
+  .lower {
+    text-transform: lowercase;
+  }
 </style>
 
 <% if @errors %>
-  <p style="padding-left:20px"><%= media_elements_error_messages(@errors) %></p>
-  <% @err = [] %>
-  <% @errors.each do |key,val| %>
-    <% @err << key %>
-  <% end %>
+  
+  <p style="padding-left:20px"><%= standard_form_error_messages(@errors) %></p>
   <script type="text/javascript">
-  function init() {
-  	if(top.uploadError) top.uploadError("<%= @err %>"); //top means parent frame.
-  }
-  window.onload=init;
+    
+    function init() {
+      if(top.uploadMediaElementLoaderError) top.uploadMediaElementLoaderError(<%= @error_fields.to_json.html_safe %>); //top means parent frame.
+    }
+    
+    window.onload=init;
+    
   </script>
-<%else%>
+  
+<% else %>
   
   <script type="text/javascript">
-  function init() {
-  	if(top.uploadDoneRedirect) top.uploadDoneRedirect(); //top means parent frame.
-  }
-  window.onload=init;
+    
+    function init() {
+      if(top.uploadMediaElementLoadeDoneRedirect) top.uploadMediaElementLoadeDoneRedirect(); //top means parent frame.
+    }
+    
+    window.onload=init;
+    
   </script>
-  Upload completed!
+  
+  <%= t('captions.upload_completed') %>
+  
 <%end%>

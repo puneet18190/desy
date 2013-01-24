@@ -138,14 +138,11 @@ class ApplicationController < ActionController::Base
   
   def convert_item_error_messages(errors)
     resp = []
-    flag = true
-    errors.each do |k, v|
-      v.each do |single_error|
-        if flag && single_error == "can't be blank" || !(single_error =~ /is too long/).nil? || !(single_error =~ /is too short/).nil?
-          flag = false
-          resp << t('error_captions.fill_all_the_fields_or_too_long')
-        end
-      end
+    media_errors = errors.delete(:media)
+    sti_type_errors = errors.delete(:sti_type)
+    errors2 = errors.to_s
+    if !(/can't be blank/ =~ errors2).nil? || !(/is too long/ =~ errors2).nil? || !(/is too short/ =~ errors2).nil?
+      resp << t('error_captions.fill_all_the_fields_or_too_long')
     end
     flag = false
     if errors.has_key? :tags
@@ -156,7 +153,31 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+    errors[:media] = media_errors if !media_errors.nil?
+    errors[:sti_type] = sti_type_errors if !sti_type_errors.nil?
     resp
+  end
+  
+  def convert_media_element_uploader_messages(errors)
+    resp = convert_item_error_messages errors
+    if errors.has_key? :media
+      errors[:media].each do |em|
+        return ([t('error_captions.media_blank')] + resp) if em == "can't be blank"
+      end
+      if !(/unsupported format/ =~ errors[:media].to_s).nil? || !(/invalid extension/ =~ errors[:media].to_s).nil?
+        return [t('error_captions.media_unsupported_format')] + resp
+      end
+      if !(/invalid filename/ =~ errors[:media].to_s).nil?
+        return [t('error_captions.media_invalid_filename')] + resp
+      end
+      return [t('error_captions.media_generic_error')] + resp
+    else
+      if errors.has_key? :sti_type
+        return [t('error_captions.media_unsupported_format')] + resp
+      else
+        return resp
+      end
+    end
   end
   
   def logged_in?
