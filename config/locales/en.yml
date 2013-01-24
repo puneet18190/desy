@@ -157,6 +157,7 @@ en:
     save: 'Save'
     school_level: 'School level'
     search: 'Search'
+    search_again: 'Search again...'
     search_in_desy: 'Search in DESY'
     search_lesson_or_media_element: 'Are you looking for lessons or elements?'
     seconds_shortened: 'Sec'
