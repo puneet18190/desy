@@ -762,6 +762,28 @@ a.cerca.current {
   
   
 }
+
+
+$button-size: 5em;
+
+@mixin buttonUploadElement($font-size: 1em) {
+  
+  & {
+    float:left;
+    
+    width: $button-size;
+    height: $button-size;
+    background-image: url(<%= asset_path 'icone_piene.svg' %>);
+    background-repeat: no-repeat;
+    background-size: ($button-size*6) ($button-size);
+    padding:0;
+    font-size: $font-size;
+  }
+}
+
+
+
+
 .selectButton {
   width: 300px;
   height:80px;
@@ -793,12 +815,8 @@ a.cerca.current {
     left: 20px;
     top: 15px;
     z-index: 0;
-    width:56px;
-    height:56px;
-    background: url(<%= asset_path 'icone_piene.svg' %>)  no-repeat;
-    background-position: -16em 0; 
-    background-size: 32em 5em;
-    font-size:11px;
+    @include buttonUploadElement();
+    background-position: (-$button-size*3) 0;
     cursor:pointer;
     &::-moz-focus-inner {
       border: 0;
