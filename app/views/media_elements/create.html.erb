@@ -9,7 +9,7 @@
 </style>
 
 <% if @errors %>
-  <p style="padding-left:20px"><%= media_elements_error_messages(@errors) %></p>
+  <p style="padding-left:20px"><%= standard_form_error_messages(@errors) %></p>
   <% @err = [] %>
   <% @errors.each do |key,val| %>
     <% @err << key %>

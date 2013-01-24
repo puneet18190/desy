@@ -55,6 +55,10 @@ en:
   error_captions:
     fill_all_the_fields_or_too_long: 'Fill all the fields without exceeding the max length'
     tags_are_not_enough: 'Tags are not enough'
+    media_blank: 'Load a file'
+    media_unsupported_format: 'Format not supported'
+    media_invalid_filename: "File's name contains invalid characters"
+    media_generic_error: 'Invalid or damaged file'
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
   captions:

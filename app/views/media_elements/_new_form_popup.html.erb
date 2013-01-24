@@ -7,7 +7,7 @@
 <div id="load-media-element" class="mediaElementInfoPopUp" style="display:none;" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>" data-placeholder-media="<%= t('captions.select_file').downcase %>">
   <div class="_media_element_pop_up_container MediaElementPopUpContainer">
     <div class="_change_info_container ChangeInfoContainerLoading">
-      <form id="new_media_element" class="formModifyInfo" method="post" enctype="multipart/form-data" action="/media_elements" accept-charset="UTF-8">
+      <%= form_tag media_elements_path, :method => :post, :id => 'new_media_element', :class => 'formModifyInfo', :multipart => true do %>
         <div class="cols fltlft">
           <div class="selectButton">
             <a class="uploadFileButton submitButton" id="media_element_media_pick" title="<%= t('general_titles.add_element_title') %>"> </a>
@@ -32,7 +32,7 @@
             <%= submit_tag t('captions.upload').downcase, :id => 'new_media_element_submit' %>
          </div>
         </div>
-      </form>
+      <% end %>
       <iframe id="upload_target" width="680" height="40" frameborder="0" class="error_messages_iframe" name="upload_target" src="">
       </iframe>
     </div>
