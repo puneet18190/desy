@@ -5,10 +5,17 @@ function initMediaElementLoader() {
 }
 
 function uploadMediaElementLoaderError(errors) {
-  var errs = errors.replace(/[\[\:\] ]/g, '').split(',');
-  $.each(errs, function() {
-    $('#media_element_' + this).addClass('form_error');
-  });
+  for (var i = 0; i < errors.length; i++) {
+    var error = errors[i];
+    if(error == 'media') {
+      $('#load-media-element #media_element_media_show').addClass('form_error');
+    } else {
+      $('#load-media-element #' + error).addClass('form_error');
+      if($('#load-media-element #' + error + '_placeholder').val() == '') {
+        $('#load-media-element #' + error).val('');
+      }
+    }
+  }
   $('.barraLoading img').hide();
   $('.barraLoading img').attr('src', '');
 }

@@ -10,7 +10,7 @@
     } catch(err) {}
     $('.form_error').removeClass('form_error');
     $('#form_info_<%= @error_ids %>_media_element_in_editor .error_messages').html('<%= j standard_form_error_messages(@errors) %>');
-    <% @error_fields.each do |err|%>
+    <% @error_fields.each do |err| %>
       $('#<%= @error_ids %>_<%= err %>').addClass('form_error');
       if($('#<%= @error_ids %>_<%= err %>_placeholder').val() == '') {
         $('#<%= @error_ids %>_<%= err %>').val('');
