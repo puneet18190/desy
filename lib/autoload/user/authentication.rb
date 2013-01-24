@@ -1,6 +1,6 @@
 require 'bcrypt'
 
-module Authentication
+module User::Authentication
 
   PEPPER = '3e0e6d5ebaa86768a0a51be98fce6367e44352d31685debf797b9f6ccb7e2dd0f5139170376240945fcfae8222ff640756dd42645336f8b56cdfe634144dfa7d'
 
@@ -27,8 +27,8 @@ module Authentication
     def encrypt_password
       if password
         self.encrypted_password = BCrypt::Password.create("#{password}#{PEPPER}", cost: 10).to_s
-        self.password = nil
       end
+      true
     end
 
     def valid_password?(password)
@@ -44,6 +44,7 @@ module Authentication
 
     receiver.instance_eval do
       before_save :encrypt_password
+      after_save  { |record| record.password = nil }
     end
   end
 end

@@ -84,9 +84,19 @@ function likeLesson(lesson_id, destination) {
 }
 
 function previewLesson(lesson_id, redirect_to) {
-  var parser = document.createElement('a');
-  parser.href = redirect_to;
-  window.location.href = '/lessons/' + lesson_id + '/view?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+  var parser = UrlParser.parse(redirect_to);
+  var back = '';
+  if ( parser ) {
+    var pathname = parser.pathname || '';
+    var search = parser.search || '';
+    var hash = parser.hash || '';
+    var encodedBack = encodeURIComponent(pathname+search+hash);
+    if ( encodedBack) {
+      back = '?back=' + encodedBack;
+    }
+  }
+
+  window.location.href = '/lessons/' + lesson_id + '/view' + back;
 }
 
 function publishLesson(lesson_id, destination) {

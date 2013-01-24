@@ -1,10 +1,14 @@
 class User < ActiveRecord::Base
   
   include Authentication
+  include Confirmation
+
+  REGISTRATION_POLICIES = SETTINGS['user_registration_policies'].map(&:to_sym)
 
   attr_accessor :password
 
-  attr_accessible :password, :password_confirmation, :name, :surname, :school_level_id, :school, :location_id, :subject_ids
+  ATTR_ACCESSIBLE = [:password, :password_confirmation, :name, :surname, :school_level_id, :school, :location_id, :subject_ids] + REGISTRATION_POLICIES
+  attr_accessible *ATTR_ACCESSIBLE
   
   has_many :bookmarks
   has_many :notifications
@@ -12,7 +16,7 @@ class User < ActiveRecord::Base
   has_many :lessons
   has_many :media_elements
   has_many :reports
-  has_many :users_subjects
+  has_many :users_subjects, dependent: :destroy
   has_many :subjects, through: :users_subjects
   has_many :virtual_classroom_lessons
   belongs_to :school_level
@@ -22,34 +26,34 @@ class User < ActiveRecord::Base
   validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
+  validates_presence_of :users_subjects
   validates_uniqueness_of :email
   validates_length_of :name, :surname, :email, :school, :maximum => 255
   validates_length_of :password, :minimum => 8, :allow_nil => true
   validate :validate_associations, :validate_email, :validate_email_not_changed
+  REGISTRATION_POLICIES.each do |policy|
+    validates_acceptance_of policy, on: :create
+  end
   
   before_validation :init_validation
 
-  scope :confirmed, where(confirmed: true)
+  scope :confirmed,     where(confirmed: true)
+  scope :not_confirmed, where(confirmed: false)
 
   class << self
     def admin
       find_by_email SETTINGS['admin']['email']
     end
 
-    def create_user(email, password, password_confirmation, name, surname, school, school_level_id, location_id, subject_ids, confirmed = false, raise_exception_if_fail = false)
-      return nil if !subject_ids.instance_of?(Array) || subject_ids.empty?
-      new_user = new :name                  => name, 
-                     :surname               => surname, 
-                     :school_level_id       => school_level_id, 
-                     :school                => school, 
-                     :location_id           => location_id,
-                     :password              => password,
-                     :password_confirmation => password_confirmation
-      new_user.email = email
-      new_user.confirmed = confirmed
+    def create_user(attributes, email = nil, confirmed = false, raise_exception_if_fail = false)
+      subject_ids = attributes.delete(:subject_ids)
+      user = new(attributes) do |user|
+        user.email = email
+        user.confirmed = confirmed
+      end
       ActiveRecord::Base.transaction do
         begin
-          new_user.save!
+          user.save!
         rescue ActiveRecord::RecordInvalid => e
           if raise_exception_if_fail
             raise(e)
@@ -58,22 +62,38 @@ class User < ActiveRecord::Base
           end
         end
         subject_ids.each do |s|
-          new_users_subject = UsersSubject.new
-          new_users_subject.user_id = new_user.id
-          new_users_subject.subject_id = s
+          users_subject = UsersSubject.new
+          users_subject.user_id = user.id
+          users_subject.subject_id = s
           begin
-            new_users_subject.save!
+            users_subject.save!
           rescue ActiveRecord::RecordInvalid => e
             unless raise_exception_if_fail
-              new_user = nil
+              user.errors.add :subjects, :invalid
               raise ActiveRecord::Rollback
             end
             raise e
           end
         end
       end
-      new_user
+      user
     end
+  end
+
+  def registration_policies
+    self.class::REGISTRATION_POLICIES
+  end
+
+  def reset_password!
+    new_password = SecureRandom.urlsafe_base64(10)
+    update_attributes!(password: new_password, password_confirmation: new_password)
+    new_password
+  end
+
+  def subject_ids=(subject_ids)
+    users_subjects.reload.clear
+    subject_ids.each { |id| users_subjects.build user: self, subject_id: id } if subject_ids
+    subject_ids
   end
 
   def full_name
@@ -345,7 +365,19 @@ class User < ActiveRecord::Base
   
   def create_lesson(title, description, subject_id, tags)
     return nil if self.new_record?
-    return {:subject_id => "is not your subject"} if UsersSubject.where(:user_id => self.id, :subject_id => subject_id).empty?
+    if UsersSubject.where(:user_id => self.id, :subject_id => subject_id).empty?
+      lesson = Lesson.new :subject_id => subject_id, :school_level_id => self.school_level_id, :title => title, :description => description
+      lesson.copied_not_modified = false
+      lesson.user_id = self.id
+      lesson.tags = tags
+      if lesson.valid?
+        return {:subject_id => "is not your subject"}
+      else
+        resp = lesson.errors.messages
+        resp[:subject_id] = "is not your subject"
+        return resp
+      end
+    end
     lesson = Lesson.new :subject_id => subject_id, :school_level_id => self.school_level_id, :title => title, :description => description
     lesson.copied_not_modified = false
     lesson.user_id = self.id

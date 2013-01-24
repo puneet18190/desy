@@ -2,11 +2,13 @@ require 'spec_helper'
 
 describe Video, slow: true do
 
-  let(:media_folder)         { Rails.root.join('spec/support/samples') }
-  let(:valid_video_path)     { media_folder.join 'valid video.flv' }
-  let(:tmp_valid_video_path) { media_folder.join 'tmp.valid video.flv' }
-  let(:media)                { ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_video_path), tempfile: File.open(tmp_valid_video_path)) }
-  let(:user)                 { User.admin }
+  let(:media_folder)            { Rails.root.join('spec/support/samples') }
+  let(:media_without_extension) { media_folder.join('con verted').to_s }
+  let(:valid_video_path)        { media_folder.join 'valid video.flv' }
+  let(:tmp_valid_video_path)    { media_folder.join 'tmp.valid video.flv' }
+  let(:media_uploaded)          { ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_video_path), tempfile: File.open(tmp_valid_video_path)) }
+  let(:media_hash)              { { filename: 'tmp.valid video', mp4: "#{media_without_extension}.mp4", webm: "#{media_without_extension}.webm" } }
+  let(:user)                    { User.admin }
 
   def saved
     FileUtils.cp MESS::VALID_VIDEO, tmp_valid_video_path
@@ -15,22 +17,25 @@ describe Video, slow: true do
   end
 
   subject do
-    described_class.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media) do |video|
+    described_class.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_uploaded) do |video|
       video.user = User.admin
     end
   end
 
   describe '#save' do
-
     before(:all) { saved.reload }
 
     let(:video) { subject }
       
     include_examples 'after saving a video with a valid not converted media'
-
   end
 
   describe '#destroy' do
+    subject do
+      described_class.new(title: 'title', description: 'description', tags: 'a,b,c,d,e', media: media_hash) do |video|
+        video.user = User.admin
+      end
+    end
 
     before(:all) { saved.reload.destroy }
 
@@ -39,7 +44,6 @@ describe Video, slow: true do
     it 'destroys the video folder' do
       File.exists?(output_folder).should_not be_true
     end
-
   end
 
   after(:all) do

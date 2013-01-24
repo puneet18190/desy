@@ -10,7 +10,6 @@ $(document).ready(function() {
       $('html').addClass(name);
     }
   })();
-  
 
   // AFTER WINDOW RESIZE
   $(window).resize(function() {
@@ -1527,5 +1526,15 @@ $(document).ready(function() {
     cutter.find('._media_player_slider .ui-slider-handle').addClass('selected');
     selectVideoComponentCutterHandle(cutter, resp);
   });
+
+  
+  // NELLA HOMEPAGE APERTURA AUTOMATICA DELLA FINESTRA DI LOGIN 
+  // SE C'É L'ATTRIBUTO login NELLA PARTE DELLA QUERY DELL'URL
+  if ( currentPageIs('prelogin', 'home') ) {
+    var parsedLocation = UrlParser.parse(window.location.href);
+    if ( _.contains( _.keys(parsedLocation.searchObj), 'login') ) {
+      $('._show_login_form_container').click();
+    }
+  }
   
 });
