@@ -174,8 +174,20 @@ function showLoadMediaElementPopUp() {
       resizable: false,
       draggable: false,
       width: 760,
-      show: "fade",
-      hide: {effect: "fade"}
+      show: 'fade',
+      hide: {effect: 'fade'},
+      open: function(event, ui) {
+        $('input').blur();
+        $('#load-media-element #title').val($('#load-media-element').data('placeholder-title'));
+        $('#load-media-element #description').val($('#load-media-element').data('placeholder-description'));
+        $('#load-media-element #tags').val($('#load-media-element').data('placeholder-tags'));
+        $('#load-media-element #title_placeholder').val('');
+        $('#load-media-element #description_placeholder').val('');
+        $('#load-media-element #tags_placeholder').val('');
+        $('#media_element_media_show').text($('#load-media-element').data('placeholder-media'));
+        $('#load-media-element .form_error').removeClass('form_error');
+        $('#load-media-element iframe').attr('src', 'about:blank');
+      }
     });
   }
 }

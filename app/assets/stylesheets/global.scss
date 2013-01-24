@@ -145,13 +145,13 @@ p {
   position:fixed;
   bottom:0;
   z-index:5000;
-  /*background: #373737;*/
-  background: url('/assets/tile_footer.gif') top left repeat-x;
+  background-color:white;
   color:#999;
   font-size:85%;
   
   .footer_content{
-    padding: 26px 55px 80px 30px;
+    padding: 0.4% 2% 1% 0%;
+    background-color:#373737;
     a{
       color: #fff;
       &:hover{
@@ -161,5 +161,11 @@ p {
     .dashboard{
       text-transform:uppercase;
     }
+  }
+  .footer_logo_content{
+    width:96%; 
+    padding:0 2% 0 2%;
+    float:left;
+        
   }
 }
