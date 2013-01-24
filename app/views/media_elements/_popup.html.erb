@@ -19,8 +19,8 @@
               <%= text_area_tag 'tags', media_element.tags, :class => "tags" %>
               <br>
               <div class="fltrt">
-                <a class="lower _cancel buttonForm" data-param="<%= media_element.id %>"><%= t('captions.cancel') %></a>
-                <%= submit_tag t('captions.save'), :class => 'lower' %>
+                <div class="fltlft" style="margin-top:5px"><a class="lower _cancel buttonForm" data-param="<%= media_element.id %>"><%= t('captions.cancel') %></a></div>
+                <div class="fltrt"><%= submit_tag t('captions.save'), :class => 'lower' %></div>
               </div>
             </div>
           <% end %>
@@ -39,7 +39,7 @@
       </div>
       
       <% if media_element.audio? %>
-        <div class="contentAudioElement">
+        <div class="contentAudioElement _audio_preview_in_media_element_popup">
           <%= render :partial => "media_elements/previews/audio", :locals =>{:media_element => media_element} %>
         </div>
       <% end %>
