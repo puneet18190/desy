@@ -605,7 +605,8 @@ CREATE TABLE users (
     confirmed boolean NOT NULL,
     location_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    confirmation_token character varying(255)
 );
 
 
@@ -1188,6 +1189,13 @@ CREATE UNIQUE INDEX index_tags_on_word ON tags USING btree (word);
 
 
 --
+-- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_confirmation_token ON users USING btree (confirmation_token);
+
+
+--
 -- Name: index_users_on_confirmed; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1429,3 +1437,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121207091234');
 INSERT INTO schema_migrations (version) VALUES ('20130115155629');
 
 INSERT INTO schema_migrations (version) VALUES ('20130121130513');
+
+INSERT INTO schema_migrations (version) VALUES ('20130123140753');

@@ -81,6 +81,7 @@ GEM
     mini_magick (3.4)
       subexec (~> 0.2.1)
     multi_json (1.5.0)
+    oj (2.0.2)
     pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.4)
@@ -177,6 +178,7 @@ DEPENDENCIES
   letter_opener
   libv8 (~> 3.11.8)
   mini_magick
+  oj
   pg
   rails (= 3.2.11)
   rails-erd

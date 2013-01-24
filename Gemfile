@@ -17,7 +17,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'oj'
 gem 'schema_plus'
 
 group :development do

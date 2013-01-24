@@ -58,3 +58,5 @@ colors:
   black:
     pos: 1
     code: '#373737'
+# USER REGISTRATION POLICIES
+user_registration_policies: ['policy_1', 'policy_2']
