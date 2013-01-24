@@ -154,7 +154,7 @@ function add_keep_searching(form){
   f.animate({
     height: '15'
   }, 500, function() {
-    f.prepend("<a id='keep-searching'>Search again...</a>");
+    f.prepend($('#keep_searching_container').html());
     $('#keep-searching').siblings().hide();
   });
 }

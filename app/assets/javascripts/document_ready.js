@@ -835,6 +835,30 @@ $(document).ready(function() {
   });
   
   
+  // CREATE AND UPDATE LESSON INFO
+  
+  $('body').on('focus', '#slides #title', function() {
+    if($('#slides #title_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#slides #title_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#slides #description', function() {
+    if($('#slides #description_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#slides #description_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#slides #tags', function() {
+    if($('#slides #tags_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#slides #tags_placeholder').attr('value', '0');
+    }
+  });
+  
+  
   // PRELOGIN
   
   $('body').on('click', '._show_login_form_container', function() {
