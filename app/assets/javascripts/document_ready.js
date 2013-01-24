@@ -1495,5 +1495,13 @@ $(document).ready(function() {
   });
 
   
+  // NELLA HOMEPAGE APERTURA AUTOMATICA DELLA FINESTRA DI LOGIN 
+  // SE C'É L'ATTRIBUTO login NELLA PARTE DELLA QUERY DELL'URL
+  if ( currentPageIs('prelogin', 'home') ) {
+    var parsedLocation = UrlParser.parse(window.location.href);
+    if ( _.contains( _.keys(parsedLocation.searchObj), 'login') ) {
+      $('._show_login_form_container').click();
+    }
+  }
   
 });

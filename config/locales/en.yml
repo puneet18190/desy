@@ -507,5 +507,9 @@ en:
       subject: 'DESY - Account confirmation'
     new_password: 
       subject: 'DESY - New password'
+      body_1: 'Greetings %{name} %{surname},'
+      body_2: 'we received your password reset request; this is your new password'
+      body_3: 'You can login into DESY now using the new password, at the following URL'
+      body_4: "you will be able to set another password at your choice once logged in, in the 'Profile' section."
     see_my_lesson: 
       subject: 'DESY - Lesson link'

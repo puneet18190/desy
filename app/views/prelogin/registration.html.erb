@@ -21,12 +21,6 @@ Organize your lessons in your virtual classroom and discover a new way of teachi
 </div>
 
 <%= form_for @user do |f| %>
-  <% if @user.errors.present? -%>
-    <div class="errors"><%= t('forms.fields_with_errors') %></div>
-    <% if @user.errors.added? :users_subjects, :blank -%>
-      <div class="errors"><%= t('forms.sign_up.subjects_blank') %></div>
-    <% end -%>
-  <% end -%>
 
   <%= render partial: 'users/personal_info', :locals => { :f => f } %>
 
@@ -34,28 +28,39 @@ Organize your lessons in your virtual classroom and discover a new way of teachi
   <%= render partial: 'users/personal_subjects', :locals => { :f => f } %>
 
   <div class="contentForm">
-  <% @user.class::REGISTRATION_POLICIES.each do |policy| -%>
-    <p>
-      <strong><%= t("forms.sign_up.#{policy}.title") %></strong><br><br>
-      <%= t("forms.sign_up.#{policy}.description") %>
-    </p>
-    <div class="checkbox-content" style="float:none; padding-top:0">
-      <div class="checkboxElement">
-        <table>
-          <tr>
-            <td>
-              <%= f.check_box policy, class: 'regular-checkbox' %>
-              <%= f.label policy %>
-            </td>
-            <td>accept</td>
-          </tr>
-        </table>
+    <% @user.registration_policies.each do |policy| -%>
+      <p>
+        <strong><%= t("forms.sign_up.#{policy}.title") %></strong><br><br>
+        <%= t("forms.sign_up.#{policy}.description") %>
+      </p>
+      <div class="checkbox-content" style="float:none; padding-top:0">
+        <div class="checkboxElement">
+          <table>
+            <tr>
+              <td>
+                <%= f.check_box policy, class: 'regular-checkbox' %>
+                <%= f.label policy %>
+              </td>
+              <td>accept</td>
+            </tr>
+          </table>
+        </div>
       </div>
-    </div>
-    <br class="clearfloat">
-  <% end -%>
+      <br class="clearfloat">
+    <% end -%>
+    
+    <%# ERRORI %>
+    <% errors = @user.errors.select{ |k,_| @user.registration_policies.include? k } -%>
+    <ul>
+    <% errors.each do |k, v| -%>
+      <%# TODO usare l'icona di errore '!.png' %>
+      <li><%= @user.errors.full_message(k, v) %></li>
+    <% end if errors.present? -%>
+    </ul>
+
     <%= f.submit t('captions.register') %>
   </div>
+
 <% end %>
 
 <br class="clearfloat">

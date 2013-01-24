@@ -35,4 +35,15 @@
     <%= f.label :location_id %>
     <%= f.select :location_id, @location_ids %>
   </div>
+
+  <%# ERRORI %>
+  <% errors = @user.errors.select{ |k,_| [:name, :surname, :email, :password, :password_confirmation, :school, :school_level_id, :location_id].include? k } -%>
+  <ul>
+  <% errors.each do |k, v| -%>
+    <%# TODO usare l'icona di errore '!.png' %>
+    <li><%= @user.errors.full_message(k, v) %></li>
+  <% end if errors.present? -%>
+  </ul>
+
 </fieldset>
+

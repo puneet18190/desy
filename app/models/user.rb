@@ -80,6 +80,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def registration_policies
+    self.class::REGISTRATION_POLICIES
+  end
+
   def reset_password!
     new_password = SecureRandom.urlsafe_base64(10)
     update_attributes!(password: new_password, password_confirmation: new_password)

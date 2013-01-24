@@ -7,4 +7,13 @@
       <%= subject.to_s %>
     </div>
   <% end -%>
+
+  <%# ERRORI %>
+  <% errors = @user.errors.select{ |k,_| [:users_subjects].include? k } -%>
+  <ul>
+  <% errors.each do |k, v| -%>
+    <%# TODO usare l'icona di errore '!.png' %>
+    <li><%= @user.errors.full_message(k, v) %></li>
+  <% end if errors.present? -%>
+  </ul>
 </fieldset>
