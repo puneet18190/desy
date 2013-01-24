@@ -3,8 +3,6 @@ function initTagsAutocomplete(div_id){
     return val.split( /,\s*/ );
   }
   function extractLast( term ) {
-    $(".ui-autocomplete").css("left",0);
-    $(".ui-autocomplete").css("top",($("#tags").position().top+20)+"px");
     return split( term ).pop();
   }
   

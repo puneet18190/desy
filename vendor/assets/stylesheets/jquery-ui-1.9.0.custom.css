@@ -92,6 +92,7 @@ ul.ui-autocomplete{
   opacity: 0.9;
   padding: 10px;
   width: 300px;
+  left:394px;
 }
 
 ul.ui-autocomplete, ul.ui-autocomplete li,ul.ui-autocomplete li:hover,ul.ui-autocomplete li a,ul.ui-autocomplete li a:hover{

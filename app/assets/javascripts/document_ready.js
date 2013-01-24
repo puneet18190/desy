@@ -788,7 +788,11 @@ $(document).ready(function() {
   });
   
   $('body').on('change', 'input.innerUploadFileButton', function() {
-    $('#media_element_media_show').text($(this).val().replace("C:\\fakepath\\", ""));
+    var file_name = $(this).val().replace("C:\\fakepath\\", "");
+    if(file_name.length > 20){
+      file_name = file_name.substring(0,20)+"...";
+    }
+    $('#media_element_media_show').text(file_name);
   });
   
   $('body').on('click', '#load-media-element ._close', function() {
