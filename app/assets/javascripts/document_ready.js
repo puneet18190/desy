@@ -788,6 +788,7 @@ $(document).ready(function() {
   $('._load_media_element').click(function(e) {
     e.preventDefault();
     showLoadMediaElementPopUp();
+    initTagsAutocomplete("tags","new-media-element-tags");
   });
   
   $('body').on('click', '.uploadFileButton', function() {
