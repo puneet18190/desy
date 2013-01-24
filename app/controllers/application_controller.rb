@@ -165,18 +165,18 @@ class ApplicationController < ActionController::Base
     resp = convert_item_error_messages errors
     if errors.has_key? :media
       errors[:media].each do |em|
-        return (resp + [t('error_captions.media_blank')]) if em == "can't be blank"
+        return ([t('error_captions.media_blank')] + resp) if em == "can't be blank"
       end
       if !(/unsupported format/ =~ errors[:media].to_s).nil? || !(/invalid extension/ =~ errors[:media].to_s).nil?
-        return resp + [t('error_captions.media_unsupported_format')]
+        return [t('error_captions.media_unsupported_format')] + resp
       end
       if !(/invalid filename/ =~ errors[:media].to_s).nil?
-        return resp + [t('error_captions.media_invalid_filename')]
+        return [t('error_captions.media_invalid_filename')] + resp
       end
-      return resp + [t('error_captions.media_generic_error')]
+      return [t('error_captions.media_generic_error')] + resp
     else
       if errors.has_key? :sti_type
-        return resp + [t('error_captions.media_unsupported_format')]
+        return [t('error_captions.media_unsupported_format')] + resp
       else
         return resp
       end
