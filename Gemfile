@@ -17,7 +17,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'oj'
 gem 'schema_plus'
 
 group :development do
@@ -55,4 +55,3 @@ end
 gem 'daemons'
 gem 'delayed_job_active_record'
 gem "subexec", :github => "ProGNOMmers/subexec"
-gem 'oj'
