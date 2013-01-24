@@ -4,7 +4,7 @@
   tags_max = t('captions.tags_max', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
 
-<div class="mediaElementInfoPopUp"  id="load-media-element" style="display:none;">
+<div id="load-media-element" class="mediaElementInfoPopUp" style="display:none;" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>">
   <div class="_media_element_pop_up_container MediaElementPopUpContainer">
     <div class="_change_info_container ChangeInfoContainerLoading">
       <form id="new_media_element" class="formModifyInfo" method="post" enctype="multipart/form-data" action="/media_elements" accept-charset="UTF-8">
@@ -15,16 +15,16 @@
             <input type="file" name="media" class="innerUploadFileButton" />
           </div>
           <br class="clearfloat">
-          <%= text_field_tag 'title', title_max %>
+          <%= text_field_tag 'title', '' %>
           <%= hidden_field_tag 'title_placeholder', '' %>
           <br>
-          <%= text_area_tag 'description', description_max %>
+          <%= text_area_tag 'description', '' %>
           <%= hidden_field_tag 'description_placeholder', '' %>
         </div>
         <div class="cols fltrt">
           <h1><%= t('captions.upload_a_media_element') %></h1>
           <p style="padding-bottom:15px"><%= t('descriptions.upload_media_element_instructions') %></p>
-          <%= text_area_tag 'tags', tags_max %>
+          <%= text_area_tag 'tags', '' %>
           <%= hidden_field_tag 'tags_placeholder', '' %>
           <br>
           <div class="fltrt lower">
@@ -38,54 +38,12 @@
     </div>
   </div>
     <div class="barraLoading" style="overflow:hidden;">
-      <img src="" alt="loading" style="display:none"%>
+      <img src="" alt="loading" style="display:none">
     <div>
   </div></div>
   
 </div>
 
-
 <script type="text/javascript">
-  
-  $("input.innerUploadFileButton").change(function(){
-    $("#media_element_media_show").text($(this).val().replace("C:\\fakepath\\", ""));
-  });
-  
-  $("._close").click(function(){
-    $(this).parents("form")[0].reset();
-    $("#media_element_media_show").text("<%= t('captions.select_file').downcase%>");
-    $(".form_error").removeClass("form_error");
-    $("iframe").attr("src","about:blank");
-    
-  })
-  
-  $("body").on("click","#new_media_element_submit", function(){
-    $("input,textarea").removeClass("form_error");
-    $(".barraLoading img").show();
-    $(".barraLoading img").attr("src","/assets/loadingBar.gif");
-  });
-  
-  function init() {
-    document.getElementById('new_media_element').onsubmit=function() {
-      document.getElementById('new_media_element').target = 'upload_target'; //'upload_target' is the name of the iframe
-    }
-  }
-  window.onload=init;
-  
-  function uploadError(errors){
-    var errs = errors.replace(/[\[\:\] ]/g,"").split(",");
-    jQuery.each(errs, function() {
-      $("#media_element_" + this).addClass("form_error");
-    });
-    $(".barraLoading img").hide();
-    $(".barraLoading img").attr("src","");
-  }
-  
-  function uploadDoneRedirect(){
-    $(".barraLoading").css("background-color","#41A62A");
-    $(".barraLoading img").hide();
-    $(".barraLoading img").attr("src","");
-    window.location = "<%= my_media_elements_path %>";
-  }
-  
+  window.onload = initMediaElementLoader;
 </script>

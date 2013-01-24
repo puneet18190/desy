@@ -16,7 +16,7 @@
   <% end %>
   <script type="text/javascript">
   function init() {
-  	if(top.uploadError) top.uploadError("<%= @err %>"); //top means parent frame.
+  	if(top.uploadMediaElementLoaderError) top.uploadMediaElementLoaderError("<%= @err %>"); //top means parent frame.
   }
   window.onload=init;
   </script>
@@ -24,7 +24,7 @@
   
   <script type="text/javascript">
   function init() {
-  	if(top.uploadDoneRedirect) top.uploadDoneRedirect(); //top means parent frame.
+  	if(top.uploadMediaElementLoadeDoneRedirect) top.uploadMediaElementLoadeDoneRedirect(); //top means parent frame.
   }
   window.onload=init;
   </script>
