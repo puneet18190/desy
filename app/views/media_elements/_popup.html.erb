@@ -2,29 +2,32 @@
   
   <% if media_element.buttons.include? Buttons::PREVIEW %>
     
+    
     <div class="_media_element_pop_up_container MediaElementPopUpContainer" data-param="<%= media_element.id %>">
-     <% if media_element.info_changeable %>
-      <div class="_change_info_container ChangeInfoContainer" style="display:none;" data-param="<%= media_element.id %>">
-        <h1><%= t('captions.modify_info_element') %></h1>
-        <p><%= t('captions.change_media_element_info_in_popup') %></p>
-        <div class="_error_messages"></div>
-        <%= form_tag media_element_path(media_element.id), :remote => true, :class => "formModifyInfo" do %>
-          <div class="cols" style="float:left">
-            <input type="text" class="title" name="title" value="<%= media_element.title %>">
-            <br>
-            <%= text_area_tag 'description', media_element.description, :class => "description" %>
-          </div>
-          <div class="cols fltrt">
-            <%= text_area_tag 'tags', media_element.tags, :class => "tags" %>
-            <br>
-            <div class="fltrt">
-              <a class="lower _close_media_element_preview_popup buttonForm" data-param="<%= media_element.id %>"><%= t('captions.cancel') %></a>
-              <%= submit_tag t('captions.save'), :class => 'lower' %>
+      
+      <% if media_element.info_changeable %>
+        <div class="_change_info_container ChangeInfoContainer" style="display:none;" data-param="<%= media_element.id %>" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>" data-tags="<%= media_element.tags %>">
+          <h1><%= t('captions.modify_info_element') %></h1>
+          <p><%= t('captions.change_media_element_info_in_popup') %></p>
+          <div class="_error_messages"></div>
+          <%= form_tag media_element_path(media_element.id), :remote => true, :class => "formModifyInfo" do %>
+            <div class="cols" style="float:left">
+              <input id="title" type="text" class="title" name="title" value="<%= media_element.title %>">
+              <br>
+              <%= text_area_tag 'description', media_element.description, :class => "description" %>
             </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+            <div class="cols fltrt">
+              <%= text_area_tag 'tags', media_element.tags, :class => "tags" %>
+              <br>
+              <div class="fltrt">
+                <a class="lower _cancel buttonForm" data-param="<%= media_element.id %>"><%= t('captions.cancel') %></a>
+                <%= submit_tag t('captions.save'), :class => 'lower' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      
       <% if !media_element.audio? %>
         <%= render :partial => "media_elements/previews/#{media_element.sti_type.downcase}", :locals =>{:media_element => media_element} %>
       <% end %>
@@ -36,9 +39,14 @@
       </div>
       
       <% if media_element.audio? %>
-        <div class="contentAudioElement"><%= render :partial => "media_elements/previews/audio", :locals =>{:media_element => media_element} %></div>
+        <div class="contentAudioElement">
+          <%= render :partial => "media_elements/previews/audio", :locals =>{:media_element => media_element} %>
+        </div>
       <% end %>
+      
     </div>
+    
+    
     <div class="menuPopUp">
       <div class="menuIconButton" style="float:left;  padding-left:10px">
         <%= render :partial => "shared/buttons/#{Buttons::EDIT}", :locals => {:item => media_element} %>
@@ -53,6 +61,7 @@
         <a class="close _close_media_element_preview_popup" data-param="<%= media_element.id %>" title="<%= t('general_titles.close_title') %>"></a>
       </div>
     </div>
+    
     
   <% end %>
   

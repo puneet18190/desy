@@ -223,21 +223,22 @@ $(document).ready(function() {
     closePopUp('dialog-media-element-' + param);
   });
   
-  $('body').on('click', '._change_info_to_pick', function() {
-    var obj1 = $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container');
-    if(obj1.css('display') == 'none') {
-      obj1.show('fade', {}, 500, function() {
-        obj1.show();
-      });
-      $(this).removeClass('change_info');
-      $(this).addClass('change_info_light');
-    } else {
-      obj1.hide('fade', {}, 500, function() {
-        obj1.hide();
-      });
-      $(this).addClass('change_info');
-      $(this).removeClass('change_info_light');
-    }
+  $('body').on('click', '._change_info_container ._cancel, ._change_info_to_pick.change_info_light', function() {
+    $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').hide('fade', {}, 500, function() {
+      var icon = $(this);
+      if(!$(this).hasClass('_change_info_to_pick')) {
+        icon = $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_to_pick');
+      }
+      icon.addClass('change_info');
+      icon.removeClass('change_info_light');
+      resetMediaElementChangeInfo($(this).data('param'));
+    });
+  });
+  
+  $('body').on('click', '._change_info_to_pick.change_info', function() {
+    $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').show('fade', {}, 500);
+    $(this).removeClass('change_info');
+    $(this).addClass('change_info_light');
   });
   
   
