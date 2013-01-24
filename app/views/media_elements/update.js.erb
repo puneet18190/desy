@@ -1,10 +1,14 @@
-<% if @errors %>
-  $("#dialog-media-element-<%=@media_element.id %> ._error_messages").html("<%= j media_elements_error_messages(@errors) %>");
-  <% @errors.each do |err,val|%>
-    $("#dialog-media-element-<%=@media_element.id %> .<%=err%>").addClass("form_error");
+<% if @ok %>
+  
+  <% if @errors %>
+    $("#dialog-media-element-<%=@media_element.id %> ._error_messages").html("<%= j media_elements_error_messages(@errors) %>");
+    <% @errors.each do |err,val|%>
+      $("#dialog-media-element-<%=@media_element.id %> .<%=err%>").addClass("form_error");
+    <% end %>
+  <% else %>
+    $(".form_error").removeClass("form_error");
+    $("#dialog-media-element-<%=@media_element.id %> ._error_messages").html("");
+    closePopUp("dialog-media-element-<%=@media_element.id %>");
   <% end %>
-<% else %>
-  $(".form_error").removeClass("form_error");
-  $("#dialog-media-element-<%=@media_element.id %> ._error_messages").html("");
-  closePopUp("dialog-media-element-<%=@media_element.id %>");
+  
 <% end %>

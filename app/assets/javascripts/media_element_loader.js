@@ -33,4 +33,6 @@ function resetMediaElementChangeInfo(media_element_id) {
   container.find('#title').val(container.data('title'));
   container.find('#description').val(container.data('description'));
   container.find('#tags').val(container.data('tags'));
+  container.find('.form_error').removeClass('form_error');
+  // manca la rimozione dei msg di errore
 }
