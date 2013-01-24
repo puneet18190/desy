@@ -8,7 +8,6 @@ function initTagsAutocomplete(div_id){
   
   
   $(function(){
-		
 		//attach autocomplete
 		$("#"+div_id).autocomplete({
 			
@@ -35,11 +34,12 @@ function initTagsAutocomplete(div_id){
 					a = $("<a>").addClass("remove").attr({
 						href: "javascript:",
 						title: "Remove " + friend
-					}).text("x").appendTo(span);
+					}).appendTo(span);
 				
 				//add friend to friend div
-				console.log($("#"+div_id).val())
 				span.insertBefore("#"+div_id);
+				var container = $("#new-lesson-tags")[0];
+        container.scrollTop = container.scrollHeight;
 				$("#"+div_id).val("").css("top", 2);
 			},
 			
