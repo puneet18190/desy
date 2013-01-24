@@ -31,6 +31,6 @@ function uploadMediaElementLoadeDoneRedirect() {
 function resetMediaElementChangeInfo(media_element_id) {
   var container = $('#dialog-media-element-' + media_element_id + ' ._change_info_container');
   container.find('#title').val(container.data('title'));
-  container.find('#desscription').val(container.data('description'));
+  container.find('#description').val(container.data('description'));
   container.find('#tags').val(container.data('tags'));
 }
