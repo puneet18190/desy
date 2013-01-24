@@ -185,6 +185,7 @@ function showLoadMediaElementPopUp() {
         $('#load-media-element #description_placeholder').val('');
         $('#load-media-element #tags_placeholder').val('');
         $('#media_element_media_show').text($('#load-media-element').data('placeholder-media'));
+        $('#load-media-element .innerUploadFileButton').val('');
         $('#load-media-element .form_error').removeClass('form_error');
         $('#load-media-element iframe').attr('src', 'about:blank');
       }
