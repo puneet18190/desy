@@ -30,6 +30,7 @@ class LessonEditorController < ApplicationController
       @lesson = new_lesson
     else
       @errors = convert_lesson_editor_messages new_lesson
+      @error_fields = new_lesson.keys
     end
   end
   
