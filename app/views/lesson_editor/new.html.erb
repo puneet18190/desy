@@ -14,19 +14,24 @@
         <%= t('captions.fill_in_form_for_new_lesson') %>
       </h3>
       <div class="_error_messages"><%= media_elements_error_messages(params[:errors]) if params[:errors] %></div>
-      <%= form_tag('/lessons/create', :remote => true, :id => "lesson-create") do -%>
-        <%= text_field_tag 'title', title_max, :class => 'pull-left', :onfocus =>"this.value=''" %>
+      <%= form_tag('/lessons/create', :remote => true, :id => "lesson-create") do %>
+        <%= text_field_tag 'title', title_max, :class => 'pull-left' %>
+        <%= hidden_field_tag 'title_placeholder', '' %>
         <%= select_tag 'subject', options_from_collection_for_select(@subjects, 'id', 'description'), :include_blank => false, :class => 'pull-right', :id => 'lesson_subject' %>
-        <%= text_area_tag 'description', description_max, :class => 'pull-left', :onfocus =>"this.value=''"  %>
+        <%= text_area_tag 'description', description_max, :class => 'pull-left' %>
+        <%= hidden_field_tag 'description_placeholder', '' %>
         <div class="ui-widget pull-right" id="new-lesson-tags">
           <label for="tags"></label>
-          <%= text_field_tag 'tags', tags_max  %>
+          <%= text_field_tag 'tags', tags_max %>
+          <%= hidden_field_tag 'tags_placeholder', '' %>
         </div>
+
         
         <div class="fltrt" style="margin-top:30px">
           <div class="fltlft" style="margin-top:5px;"><%= link_to t('captions.cancel').downcase, my_lessons_path,  :class => "buttonForm" %></div>
           <div class="fltrt"><%= submit_tag t('captions.next').downcase, :class => 'lesson-create' %></div>
         </div>
+
       <% end -%>
     </div>
     <div class="info-slide-footer">

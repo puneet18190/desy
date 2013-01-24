@@ -39,7 +39,7 @@
       </div>
       
       <% if media_element.audio? %>
-        <div class="contentAudioElement">
+        <div class="contentAudioElement _audio_preview_in_media_element_popup">
           <%= render :partial => "media_elements/previews/audio", :locals =>{:media_element => media_element} %>
         </div>
       <% end %>

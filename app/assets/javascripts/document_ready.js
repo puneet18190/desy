@@ -224,6 +224,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._change_info_container ._cancel, ._change_info_to_pick.change_info_light', function() {
+    $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').show();
     $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').hide('fade', {}, 500, function() {
       var icon = $(this);
       if(!$(this).hasClass('_change_info_to_pick')) {
@@ -239,6 +240,7 @@ $(document).ready(function() {
     $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').show('fade', {}, 500);
     $(this).removeClass('change_info');
     $(this).addClass('change_info_light');
+    $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').hide();
   });
   
   
@@ -828,6 +830,30 @@ $(document).ready(function() {
     if($('#load-media-element #tags_placeholder').val() == '') {
       $(this).attr('value', '');
       $('#load-media-element #tags_placeholder').attr('value', '0');
+    }
+  });
+  
+  
+  // CREATE AND UPDATE LESSON INFO
+  
+  $('body').on('focus', '#slides #title', function() {
+    if($('#slides #title_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#slides #title_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#slides #description', function() {
+    if($('#slides #description_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#slides #description_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#slides #tags', function() {
+    if($('#slides #tags_placeholder').val() == '') {
+      $(this).attr('value', '');
+      $('#slides #tags_placeholder').attr('value', '0');
     }
   });
   

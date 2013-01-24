@@ -13,7 +13,7 @@ function initTagsAutocomplete(div_id, container){
 			
 			//define callback to format results
 			source: function( request, response ) {
-        $.getJSON( "/lessons_editor/get_tag_list", {
+        $.getJSON( "/tags/get_list", {
           term: extractLast( request.term )
         }, response );
       },

@@ -36,3 +36,7 @@ function resetMediaElementChangeInfo(media_element_id) {
   container.find('.form_error').removeClass('form_error');
   container.find('._error_messages').html('');
 }
+
+if($("#new-media-element-tags").length > 0){
+  initTagsAutocomplete("tags","new-media-element-tags");
+}
