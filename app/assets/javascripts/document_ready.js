@@ -792,10 +792,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#load-media-element ._close', function() {
-    //$(this).parents('form')[0].reset();
-    //$("#media_element_media_show").text("<%= t('captions.select_file').downcase%>");
-    //$(".form_error").removeClass("form_error");
-    //$("iframe").attr("src","about:blank");
+    closePopUp('load-media-element');
   })
 
   $('body').on('click', '#new_media_element_submit', function() {
