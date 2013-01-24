@@ -22,12 +22,14 @@ class LessonEditorController < ApplicationController
   end
   
   def create
-    # TODO controllare redirect
-    new_lesson = current_user.create_lesson params[:title], params[:description], params[:subject], params[:tags]
+    title = params[:title_placeholder] != '0' ? '' : params[:title]
+    description = params[:description_placeholder] != '0' ? '' : params[:description]
+    tags = params[:tags_placeholder] != '0' ? '' : params[:tags]
+    new_lesson = current_user.create_lesson title, description, params[:subject], tags
     if new_lesson.instance_of?(Lesson)
       @lesson = new_lesson
     else
-      @errors = new_lesson
+      @errors = convert_lesson_editor_messages new_lesson
     end
   end
   
