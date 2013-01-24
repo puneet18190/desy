@@ -23,14 +23,15 @@
         </div>
         <div class="cols fltrt">
           <h1><%= t('captions.upload_a_media_element') %></h1>
-          <p style="padding-bottom:15px"><%= t('descriptions.upload_media_element_instructions') %></p>
+          <p style="padding-bottom:32px"><%= t('descriptions.upload_media_element_instructions') %></p>
+          <br class="clearfloat">
           <%= text_area_tag 'tags', '' %>
           <%= hidden_field_tag 'tags_placeholder', '' %>
           <br>
           <div class="fltrt lower">
-            <a class="_close buttonForm" data-dialog-id="load-media-element"><%= t('captions.cancel') %></a>
-            <%= submit_tag t('captions.upload').downcase, :id => 'new_media_element_submit' %>
-         </div>
+            <div class="fltlft" style="margin-top:5px"><a class="_close buttonForm" data-dialog-id="load-media-element"><%= t('captions.cancel') %></a></div> 
+            <div class="fltrt"><%= submit_tag t('captions.upload').downcase, :id => 'new_media_element_submit', :style => 'padding:0px;' %></div>
+          </div>
         </div>
       <% end %>
       <iframe id="upload_target" width="680" height="40" frameborder="0" class="error_messages_iframe" name="upload_target" src="">
