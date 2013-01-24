@@ -108,6 +108,9 @@ class MediaElementsController < ApplicationController
       @media_element.tags = params[:tags]
       if !@media_element.save
         @errors = convert_item_error_messages @media_element.errors.messages
+        @error_fields = @media_element.errors.messages.keys
+      else
+        @media_element.set_status current_user.id
       end
     end
   end

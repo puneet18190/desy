@@ -9,7 +9,6 @@
         <div class="_change_info_container ChangeInfoContainer" style="display:none;" data-param="<%= media_element.id %>" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>" data-tags="<%= media_element.tags %>">
           <h1><%= t('captions.modify_info_element') %></h1>
           <p><%= t('captions.change_media_element_info_in_popup') %></p>
-          <div class="_error_messages"></div>
           <%= form_tag media_element_path(media_element.id), :remote => true, :class => "formModifyInfo" do %>
             <div class="cols" style="float:left">
               <input id="title" type="text" class="title" name="title" value="<%= media_element.title %>">
@@ -25,6 +24,7 @@
               </div>
             </div>
           <% end %>
+          <div class="_error_messages"></div>
         </div>
       <% end %>
       
