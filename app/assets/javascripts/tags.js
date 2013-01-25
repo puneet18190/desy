@@ -17,7 +17,10 @@ $(document).ready(function() {
   $('body').on('keydown', '#slides._new #tags', function(e) {
     if(e.which === 13 || e.which === 188 ) {
       e.preventDefault();
-      createTagSpan($(this).val()).insertBefore(this);
+      if($.trim($(this).val()).length >= $('#popup_parameters_container').data('min-tag-length')) {
+        createTagSpan($(this).val()).insertBefore(this);
+      }
+      $('.ui-autocomplete').hide();
       $(this).val('');
     }
   });
@@ -27,6 +30,7 @@ $(document).ready(function() {
     if($.trim($(this).val()).length >= $('#popup_parameters_container').data('min-tag-length')) {
       createTagSpan($(this).val()).insertBefore(this);
     }
+    $('.ui-autocomplete').hide();
     $(this).val('');
   });
   
@@ -34,6 +38,10 @@ $(document).ready(function() {
   initTagsAutocomplete('#slides._new');
   
 });
+
+function checkTagDuplicates(word, scope) {
+  
+}
 
 function createTagSpan(word) {
   var span = $('<span>').text(word);
