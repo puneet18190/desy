@@ -72,7 +72,7 @@ module Media
           MESS::AUDIO_FORMATS.each do |format|
             context "with #{format} format", format: format do
               let(:format) { format }
-              let(:info)   { Info.new(subject[format]).info }
+              let(:info)   { Info.new(subject[format]).to_hash }
   
               it 'creates a audio with the expected duration' do
                 duration = info[:duration]

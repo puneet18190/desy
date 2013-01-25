@@ -6,21 +6,23 @@ module Media
       describe Composer do
         self.use_transactional_fixtures = false
 
+        let(:user) { User.admin }
+
         let(:video) do
-          ::Video.create!(title: 'test', description: 'test', tags: 'a,b,c,d' ) do |v|
-            v.user  = User.admin
+          ::Video.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
+            v.user  = user
             v.media = MESS::CONVERTED_VIDEO_HASH
           end
         end
         let(:image) do
-          ::Image.create!(title: 'test', description: 'test', tags: 'a,b,c,d' ) do |v|
-            v.user  = User.admin
+          ::Image.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
+            v.user  = user
             v.media = File.open(MESS::VALID_JPG)
           end
         end
         let(:audio) do
-          ::Audio.create!(title: 'test', description: 'test', tags: 'a,b,c,d' ) do |v|
-            v.user  = User.admin
+          ::Audio.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
+            v.user  = user
             v.media = MESS::CONVERTED_AUDIO_HASH
           end
         end
@@ -45,40 +47,144 @@ module Media
               ]
             }
           end
+
           context 'without initial video' do
-            let(:initial_video) { { title: 'test', description: 'test', tags: 'a,b,c,d', user_id: User.admin.id } }
+
+            let(:initial_video) { { title: 'test', description: 'test', tags: 'a,b,c,d', user_id: user.id } }
+            
             context 'without audio track' do
-              let(:audio_track) { nil }
-              it 'works' do
-                expect{ described_class.new(params).run }.to_not raise_error
+              let(:audio_track)              { nil }
+              let(:user_notifications_count) { user.notifications.count }
+
+              before(:all) do 
+                user_notifications_count
+                described_class.new(params).run
+              end
+
+              MESS::VIDEO_FORMATS.each do |format|
+                context "with #{format} format", format: format do
+              
+                  let(:format) { format }
+                  def info(format)
+                    @info ||= {}
+                    @info[format] ||= Info.new(video.media.path(format)).to_hash.reject{ |k,_| k == :path }
+                  end
+
+                  it 'creates the correct video' do
+                    info(format).should == MESS::VIDEO_COMPOSING[format]
+                  end
+                end
+              end
+
+              it 'sends a notification to the user' do
+                video.user.notifications.count.should == user_notifications_count+1
               end
             end
+            
             context 'with audio track' do
               let(:audio_track) { audio }
-              it 'works' do
-                expect{ described_class.new(params).run }.to_not raise_error
+              let(:user_notifications_count) { user.notifications.count }
+
+              before(:all) do 
+                user_notifications_count
+                described_class.new(params).run
+              end
+
+              MESS::VIDEO_FORMATS.each do |format|
+                context "with #{format} format", format: format do
+              
+                  let(:format) { format }
+                  def info(format)
+                    @info ||= {}
+                    @info[format] ||= Info.new(video.media.path(format)).to_hash.reject{ |k,_| k == :path }
+                  end
+
+                  it 'creates the correct video' do
+                    info(format).should == MESS::VIDEO_COMPOSING[format]
+                  end
+                end
+              end
+
+              it 'sends a notification to the user' do
+                video.user.notifications.count.should == user_notifications_count+1
               end
             end
+
           end
 
           context 'with initial video' do
             let(:initial_video) do
-              video = ::Video.create!(title: 'title', description: 'description', tags: 'a,b,c,d' ) do |v|
-                v.user  = User.admin
-                v.media = MESS::CONVERTED_VIDEO_HASH
+              video = ::Video.create!(title: 'new title', description: 'new description', tags: 'e,f,g,h') do |v|
+                v.user                = user
+                v.media               = MESS::CONVERTED_VIDEO_HASH
+                v.metadata.old_fields = { title: 'old title', description: 'old description', tags: 'a,b,c,d' }
               end
               { id: video.id, title: 'title 2', description: 'description 2', tags: 'e,f,g,h' }
             end
+
             context 'without audio track' do
-              let(:audio_track) { nil }
-              it 'works' do
-                expect{ described_class.new(params).run }.to_not raise_error
+              let(:audio_track)              { nil }
+              let(:user_notifications_count) { user.notifications.count }
+
+              before(:all) do 
+                user_notifications_count
+                described_class.new(params).run
+              end
+
+              MESS::VIDEO_FORMATS.each do |format|
+                context "with #{format} format", format: format do
+              
+                  let(:format) { format }
+                  def info(format)
+                    @info ||= {}
+                    @info[format] ||= Info.new(video.media.path(format)).to_hash.reject{ |k,_| k == :path }
+                  end
+
+                  it 'creates the correct video' do
+                    info(format).should == MESS::VIDEO_COMPOSING[format]
+                  end
+                end
+              end
+
+              it 'deletes video.metadata.old_fields' do
+                video.metadata.old_fields.should be_nil
+              end
+
+              it 'sends a notification to the user' do
+                video.user.notifications.count.should == user_notifications_count+1
               end
             end
+
             context 'with audio track' do
-              let(:audio_track) { audio }
-              it 'works' do
-                expect{ described_class.new(params).run }.to_not raise_error
+              let(:audio_track)              { audio }
+              let(:user_notifications_count) { user.notifications.count }
+
+              before(:all) do 
+                user_notifications_count
+                described_class.new(params).run
+              end
+
+              MESS::VIDEO_FORMATS.each do |format|
+                context "with #{format} format", format: format do
+              
+                  let(:format) { format }
+                  def info(format)
+                    @info ||= {}
+                    @info[format] ||= Info.new(video.media.path(format)).to_hash.reject{ |k,_| k == :path }
+                  end
+
+                  it 'creates the correct video' do
+                    info(format).should == MESS::VIDEO_COMPOSING[format]
+                  end
+                end
+              end
+
+              it 'deletes video.metadata.old_fields' do
+                video.metadata.old_fields.should be_nil
+              end
+
+              it 'sends a notification to the user' do
+                video.user.notifications.count.should == user_notifications_count+1
               end
             end
           end
