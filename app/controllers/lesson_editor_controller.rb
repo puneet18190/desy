@@ -2,7 +2,7 @@ class LessonEditorController < ApplicationController
   
   before_filter :check_available_for_user
   before_filter :initialize_lesson_with_owner, :only => [:index, :update, :edit]
-  before_filter :initialize_subjects, :only => [:new, :edit]
+  before_filter :initialize_subjects, :only => :new
   before_filter :initialize_lesson_with_owner_and_slide, :only => [:add_slide, :save_slide, :delete_slide, :change_slide_position]
   before_filter :initialize_kind, :only => :add_slide
   before_filter :initialize_position, :only => :change_slide_position
@@ -22,12 +22,19 @@ class LessonEditorController < ApplicationController
   end
   
   def create
-    # TODO controllare redirect
-    new_lesson = current_user.create_lesson params[:title], params[:description], params[:subject], params[:tags]
+    title = params[:title_placeholder] != '0' ? '' : params[:title]
+    description = params[:description_placeholder] != '0' ? '' : params[:description]
+    tags = params['new-lesson-tags_placeholder'] != '0' ? '' : params[:tags]
+    new_lesson = current_user.create_lesson title, description, params[:subject], tags
     if new_lesson.instance_of?(Lesson)
       @lesson = new_lesson
     else
-      @errors = new_lesson
+      @errors = convert_lesson_editor_messages new_lesson
+      @error_fields = new_lesson.keys
+      if @error_fields.include? :tags
+        @error_fields.delete :tags
+        @error_fields << 'new-lesson-tags'
+      end
     end
   end
   
@@ -52,6 +59,7 @@ class LessonEditorController < ApplicationController
       redirect_to '/dashboard'
       return
     end
+    @subjects = Subject.order(:description)
   end
   
   def add_slide

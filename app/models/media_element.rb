@@ -250,6 +250,7 @@ class MediaElement < ActiveRecord::Base
     else
       errors[:sti_type] << "is not changeable" if @media_element.sti_type != self.sti_type
       if @media_element.is_public
+        errors[:media] << "is not changeable for a public record" if self.changed.include? 'media'
         errors[:title] << "is not changeable for a public record" if @media_element.title != self.title
         errors[:description] << "is not changeable for a public record" if @media_element.description != self.description
         errors[:is_public] << "is not changeable for a public record" if !self.is_public
