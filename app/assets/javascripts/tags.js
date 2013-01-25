@@ -38,6 +38,16 @@ function addTagWithoutSuggestion(input, container_selector) {
     } else {
       addToTagsValue(my_val, container_selector);
       createTagSpan(my_val, true).insertBefore(input);
+      $.ajax({
+        type: 'get',
+        url: '/tags/' + my_val + '/check_presence',
+        dataType: 'json',
+        success: function(data) {
+          if(data.ok) {
+            $(container_selector).find('span._' + my_val).removeClass('new_tag');
+          }
+        }
+      });
     }
   }
   $('.ui-autocomplete').hide();
@@ -73,7 +83,7 @@ function createTagSpan(word, new_tag) {
     title: 'Remove ' + word
   }).appendTo(span);
   if(new_tag) {
-    span.addClass('new_tag');
+    span.addClass('new_tag _' + word);
   }
   return span;
 }

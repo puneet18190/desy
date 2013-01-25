@@ -5,4 +5,8 @@ class TagsController < ApplicationController
     render :json => @tags
   end
   
+  def check_presence
+    render :json => {:ok => Tag.where(:word => params[:word]).any?}
+  end
+  
 end
