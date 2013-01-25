@@ -903,13 +903,6 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('focus', '#form_info_new_media_element_in_editor #new_tags', function() {
-    if($('#form_info_new_media_element_in_editor #new_tags_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#form_info_new_media_element_in_editor #new_tags_placeholder').attr('value', '0');
-    }
-  });
-  
   
   // VIDEO EDITOR
   
