@@ -140,6 +140,7 @@ class ApplicationController < ActionController::Base
     resp = []
     media_errors = errors.delete(:media)
     sti_type_errors = errors.delete(:sti_type)
+    subject_id_errors = errors.delete(:subject_id)
     errors2 = errors.to_s
     if !(/can't be blank/ =~ errors2).nil? || !(/is too long/ =~ errors2).nil? || !(/is too short/ =~ errors2).nil?
       resp << t('error_captions.fill_all_the_fields_or_too_long')
@@ -155,6 +156,13 @@ class ApplicationController < ActionController::Base
     end
     errors[:media] = media_errors if !media_errors.nil?
     errors[:sti_type] = sti_type_errors if !sti_type_errors.nil?
+    errors[:subject_id] = subject_id_errors if !subject_id_errors.nil?
+    resp
+  end
+  
+  def convert_lesson_editor_messages(errors)
+    resp = convert_item_error_messages errors
+    resp << t('error_captions.subject_missing_in_lesson') if errors.has_key? :subject_id
     resp
   end
   

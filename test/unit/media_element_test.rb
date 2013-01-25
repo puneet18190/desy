@@ -136,6 +136,17 @@ class MediaElementTest < ActiveSupport::TestCase
     assert_obj_saved @media_element
   end
   
+  test 'media_unchangeable' do
+    media_one = File.open(Rails.root.join("test/samples/two.jpg"))
+    media_two = File.open(Rails.root.join("test/samples/one.jpg"))
+    @media_element = MediaElement.find(6)
+    assert_invalid @media_element, :media, media_two, media_one, /is not changeable for a public record/
+    assert_obj_saved @media_element
+    @media_element = MediaElement.find(5)
+    @media_element.media = media_two
+    assert_obj_saved @media_element
+  end
+  
   test 'sti_types' do
     assert_equal 2, Audio.count
     assert_equal 2, Video.count
