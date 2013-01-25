@@ -4,8 +4,9 @@ $(document).ready(function() {
   $('body').on('click', '#slides._new .remove', function() {
     removeFromTagsValue($(this).parent().text(), '#slides._new ._tags_container');
     $(this).parent().remove();
-    if($('#slides._new ._tags_container span').length === 0) {
-      $('#slides._new #tags').css("top", 0);
+    if($('#slides._new #tags').not(':visible')) {
+      $('#slides._new #tags').show();
+      disableTagsInputTooHigh('#slides._new ._tags_container', '#slides._new #tags');
     }
   });
   
@@ -51,6 +52,7 @@ function addTagWithoutSuggestion(input, container_selector) {
         }
       });
     }
+    disableTagsInputTooHigh(container_selector, input);
   }
   $('.ui-autocomplete').hide();
   $(input).val('');
@@ -98,6 +100,12 @@ function createTagSpan(word, new_tag) {
   return span;
 }
 
+function disableTagsInputTooHigh(container_selector, input_selector) {
+  if($(container_selector)[0].scrollHeight > $(container_selector).height()) {
+    $(input_selector).hide();
+  }
+}
+
 function initTagsAutocomplete(scope) {
   var input_selector = scope + ' #tags';
   var container_selector = scope + ' ._tags_container';
@@ -117,6 +125,7 @@ function initTagsAutocomplete(scope) {
         $('#info_container').data('tag-just-selected', true);
         addToTagsValue(ui.item.value, container_selector);
         createTagSpan(ui.item.value, false).insertBefore(input_selector);
+        disableTagsInputTooHigh(container_selector, input_selector);
       }
       var this_container = $(container_selector)[0];
       this_container.scrollTop = this_container.scrollHeight;
