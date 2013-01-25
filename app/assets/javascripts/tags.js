@@ -18,6 +18,8 @@ $(document).ready(function() {
     if(e.which === 13 || e.which === 188 ) {
       e.preventDefault();
       addTagWithoutSuggestion(this, '#slides._new ._tags_container');
+    } else if(e.which == 8 && $(this).val() == '') {
+      $(this).prev().find('.remove').trigger('click');
     }
   });
   
