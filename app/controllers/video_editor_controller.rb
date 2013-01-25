@@ -98,7 +98,9 @@ class VideoEditorController < ApplicationController
         :description => params[:update_description],
         :tags => params[:update_tags]
       }
+      initial_video_test.update_attribute(:converted, nil)
       initial_video_test.disable_lessons_containing_me
+      Notification.send_to current_user.id, t('captions.video_in_conversion_warning')
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'update'
