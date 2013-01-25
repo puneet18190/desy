@@ -2,6 +2,7 @@
 $(document).ready(function() {
   
   $('body').on('click', '#slides._new .remove', function() {
+    removeFromTagsValue($(this).parent().text(), '#slides._new ._tags_container');
     $(this).parent().remove();
     if($('#slides._new ._tags_container span').length === 0) {
       $('#slides._new #tags').css("top", 0);
@@ -10,40 +11,50 @@ $(document).ready(function() {
   
   $('body').on('click', '#slides._new ._tags_container', function() {
     $('#slides._new #tags').focus();
+    $(this).find('._placeholder').hide();
   });
   
   $('body').on('keydown', '#slides._new #tags', function(e) {
     if(e.which === 13 || e.which === 188 ) {
       e.preventDefault();
-      var my_val = $.trim($(this).val());
-      if(my_val.length >= $('#popup_parameters_container').data('min-tag-length') && checkNoTagDuplicates(my_val, '#slides._new ._tags_container')) {
-        if($('.ui-autocomplete a').first().text() == my_val) {
-          createTagSpan(my_val, false).insertBefore(this);
-        } else {
-          createTagSpan(my_val, true).insertBefore(this);
-        }
-      }
-      $('.ui-autocomplete').hide();
-      $(this).val('');
+      addTagWithoutSuggestion(this, '#slides._new ._tags_container');
     }
   });
   
   $('body').on('blur', '#slides._new #tags', function(e) {
-    var my_val = $.trim($(this).val());
-    if(my_val.length >= $('#popup_parameters_container').data('min-tag-length') && checkNoTagDuplicates(my_val, '#slides._new ._tags_container')) {
-      if($('.ui-autocomplete a').first().text() == my_val) {
-        createTagSpan(my_val, false).insertBefore(this);
-      } else {
-        createTagSpan(my_val, true).insertBefore(this);
-      }
-    }
-    $('.ui-autocomplete').hide();
-    $(this).val('');
+     addTagWithoutSuggestion(this, '#slides._new ._tags_container');
   });
   
   initTagsAutocomplete('#slides._new');
   
 });
+
+function addTagWithoutSuggestion(input, container_selector) {
+  var my_val = $.trim($(input).val());
+  if(my_val.length >= $('#popup_parameters_container').data('min-tag-length') && checkNoTagDuplicates(my_val, container_selector)) {
+    if($('.ui-autocomplete a').first().text() == my_val) {
+      addToTagsValue(my_val, container_selector);
+      createTagSpan(my_val, false).insertBefore(input);
+    } else {
+      addToTagsValue(my_val, container_selector);
+      createTagSpan(my_val, true).insertBefore(input);
+    }
+  }
+  $('.ui-autocomplete').hide();
+  $(input).val('');
+}
+
+function addToTagsValue(word, container_selector) {
+  var old_value = $(container_selector + ' #tags_value').val();
+  old_value += (', ' + word);
+  $(container_selector + ' #tags_value').val(old_value);
+}
+
+function removeFromTagsValue(word, container_selector) {
+  var old_value = $(container_selector + ' #tags_value').val();
+  old_value = old_value.replace(word, '');
+  $(container_selector + ' #tags_value').val(old_value);
+}
 
 function checkNoTagDuplicates(word, container_selector) {
   var flag = true;
@@ -84,6 +95,7 @@ function initTagsAutocomplete(scope) {
     select: function(e, ui) {
       if(checkNoTagDuplicates(ui.item.value, container_selector)) {
         $('#info_container').data('tag-just-selected', true);
+        addToTagsValue(ui.item.value, container_selector);
         createTagSpan(ui.item.value, false).insertBefore(input_selector);
       }
       var this_container = $(container_selector)[0];

@@ -21,8 +21,11 @@
         <%= text_area_tag 'description', description_max, :class => 'pull-left' %>
         <%= hidden_field_tag 'description_placeholder', '' %>
         <div class="ui-widget pull-right _tags_container">
-          <%= text_field_tag 'tags', tags_max %>
-          <%= hidden_field_tag 'tags_placeholder', '' %>
+          <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'] %>
+          <div class="_placeholder">
+            <%= tags_max %>
+          </div>
+          <%= hidden_field_tag 'tags_value', '' %>
         </div>
         <div class="fltrt" style="margin-top:30px">
           <div class="fltlft" style="margin-top:5px;"><%= link_to t('captions.cancel').downcase, my_lessons_path, :class => "buttonForm" %></div>
