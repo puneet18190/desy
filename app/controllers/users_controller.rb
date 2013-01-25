@@ -50,6 +50,10 @@ class UsersController < ApplicationController
   end
   
   def edit
+    @user = current_user
+    @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
+    @location_ids     = Location.order(:description).map{ |l| [l.to_s, l.id] }
+    @subjects         = Subject.order(:description)
   end
 
   def update

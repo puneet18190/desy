@@ -9,7 +9,7 @@
   </div>
   <div class="inputElement">
     <%= f.label :email %><br>
-    <%= f.email_field :email, class: 'text' %>
+    <%= f.email_field :email, class: 'text', disabled: !@user.new_record? %>
   </div>
   <br class="clearfloat" />
   <div class="inputElement">
