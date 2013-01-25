@@ -15,6 +15,16 @@ class Tag < ActiveRecord::Base
   
   before_validation :init_validation
   
+  def self.get_tags_for_autocomplete(a_word)
+    return [] if a_word.blank?
+    a_word = a_word.to_s.strip.mb_chars.downcase.to_s
+    resp = []
+    curr_tag = Tag.find_by_word(a_word)
+    resp << {:id => curr_tag.id, :value => a_word} if !curr_tag.nil?
+    resp += Tag.select('id, word AS value, (SELECT COUNT(*) FROM taggings WHERE (taggings.tag_id = tags.id)) AS tags_count').where('word ILIKE ? AND word != ?', "#{a_word}%", a_word).limit(SETTINGS['how_many_tags_for_block_in_autocomplete']).order('tags_count DESC')
+    resp
+  end
+  
   def self.get_tags_for_item(item_id, kind)
     resp = []
     Tagging.includes(:tag).where(:taggable_type => kind, :taggable_id => item_id).each do |t|

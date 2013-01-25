@@ -48,6 +48,7 @@ Desy::Application.routes.draw do
   
   # TAGS
   get  'tags/get_list' => 'tags#get_list'
+  get  'tags/:word/check_presence' => 'tags#check_presence'
   
   # GALLERIES
   get  'lessons/galleries/image' => 'galleries#image_for_lesson_editor'
