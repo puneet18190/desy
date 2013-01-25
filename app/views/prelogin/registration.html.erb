@@ -38,20 +38,22 @@ Organize your lessons in your virtual classroom and discover a new way of teachi
           <table>
             <tr>
               <td>
-                <%= f.check_box policy, class: 'regular-checkbox' %>
+                <%= f.check_box policy, class: 'regular-checkbox' %><br>
                 <%= f.label policy %>
               </td>
               <td>accept</td>
             </tr>
           </table>
         </div>
+        
       </div>
+
       <br class="clearfloat">
     <% end -%>
     
     <%# ERRORI %>
     <% errors = @user.errors.select{ |k,_| @user.registration_policies.include? k } -%>
-    <ul>
+    <ul class="listaErrori3">
     <% errors.each do |k, v| -%>
       <%# TODO usare l'icona di errore '!.png' %>
       <li><%= @user.errors.full_message(k, v) %></li>

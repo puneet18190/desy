@@ -519,6 +519,10 @@ $(document).ready(function() {
   $("#filter_media_elements").selectbox();
   
   $("#filter_search_media_elements").selectbox();
+
+  $("#user_school_level_id").selectbox();
+
+  $("#user_location_id").selectbox();
   
   $('body').on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
     var myself = $(this);
