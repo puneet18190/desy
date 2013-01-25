@@ -21,7 +21,7 @@
         <%= text_area_tag 'description', description_max, :class => 'pull-left' %>
         <%= hidden_field_tag 'description_placeholder', '' %>
         <div class="ui-widget pull-right _tags_container">
-          <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'] %>
+          <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
           <div class="_placeholder">
             <%= tags_max %>
           </div>

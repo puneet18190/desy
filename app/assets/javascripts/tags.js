@@ -32,7 +32,7 @@ $(document).ready(function() {
 });
 
 function addTagWithoutSuggestion(input, container_selector) {
-  var my_val = $.trim($(input).val());
+  var my_val = $.trim($(input).val()).toLowerCase();
   if(my_val.length >= $('#popup_parameters_container').data('min-tag-length') && checkNoTagDuplicates(my_val, container_selector)) {
     if($('.ui-autocomplete a').first().text() == my_val) {
       addToTagsValue(my_val, container_selector);
