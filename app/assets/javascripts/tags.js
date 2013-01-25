@@ -1,74 +1,54 @@
-function initTagsAutocomplete(div_id, container){
-  console.log(container);
-  function split( val ) {
-    return val.split( /,\s*/ );
-  }
-  function extractLast( term ) {
-    return split( term ).pop();
-  }
+$(document).ready(function() {
   
+  // TODO COPIARLO PER ALTRI 5 CASI
+  $('body').on('click', '#slides._new .remove', function() {
+    $(this).parent().remove();
+    if($('#slides._new ._tags_container span').length === 0) {
+      $('#slides._new #tags').css("top", 0);
+    }
+  });
   
-  $(function(){
-		//attach autocomplete
-		$("#"+div_id).autocomplete({
-			
-			//define callback to format results
-			source: function( request, response ) {
-        $.getJSON( "/tags/get_list", {
-          term: extractLast( request.term )
-        }, response );
-      },
-      search: function() {
-        // custom minLength
-        var term = extractLast( this.value );
-        if ( term.length < 2 ) {
-          return false;
-        }
-      },
-						
-			//define select handler
-			select: function(e, ui) {
-				
-				//create formatted friend
-				var friend = ui.item.value,
-					span = $("<span>").text(friend),
-					a = $("<a>").addClass("remove").attr({
-						href: "javascript:",
-						title: "Remove " + friend
-					}).appendTo(span);
-				
-				//add friend to friend div
-				span.insertBefore("#"+div_id);
-				var this_container = $("#"+container)[0];
-        this_container.scrollTop = this_container.scrollHeight;
-				$("#"+div_id).val("").css("top", 2);
-			},
-			
-			//define select handler
-			change: function() {
-				
-				//prevent 'to' field being updated and correct position
-				$("#"+div_id).val("").css("top", 2);
-			}
-		});
-		
-		//add click handler to new-lesson-tags div
-		$("#"+container).click(function(){
-			
-			//focus 'to' field
-			$("#"+div_id).focus();
-		});
-		
-		//add live handler for clicks on remove links
-		$(".remove", document.getElementById(container)).live("click", function(){
-		
-			//remove current friend
-			$(this).parent().remove();
-			
-			//correct 'to' field position
-			if($("#"+container+" span").length === 0) {
-				$("#"+div_id).css("top", 0);
-			}				
-		});				
-	});
+  // TODO COPIARLO PER ALTRI 5 CASI
+  $('body').on('click', '#slides._new ._tags_container', function() {
+    $('#slides._new #tags').focus();
+  });
+  
+});
+
+function extractLastTag(term) {
+  return term.split(/,\s*/).pop();
+}
+
+function initTagsAutocomplete(scope) {
+  var input_selector = scope + ' #tags';
+  var container_selector = scope + ' ._tags_container';
+  $(input_selector).autocomplete({
+    source: function(request, response) {
+      $.getJSON( "/tags/get_list", {
+        term: extractLastTag(request.term)
+      }, response);
+    },
+    search: function() {
+      var term = extractLastTag(this.value);
+      if(term.length < $('#popup_parameters_container').data('min-length-search-tags')) {
+        return false;
+      }
+    },
+    select: function(e, ui) {
+      var tag = ui.item.value;
+      var span = $('<span>').text(tag);
+      var a = $('<a>').addClass('remove').attr({
+        href: 'javascript:',
+        title: 'Remove ' + tag
+      }).appendTo(span);
+      span.insertBefore(input_selector);
+      var this_container = $(container_selector)[0];
+      this_container.scrollTop = this_container.scrollHeight;
+      $(input_selector).val('').css('top', 2);
+    },
+    change: function() {
+      console.log('change tag??');
+      $(input_selector).val('').css('top', 2);
+    }
+  });
 }

@@ -4,7 +4,7 @@
   tags_max = t('captions.tags_max', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
 
-<ul id="slides" class="new">
+<ul id="slides" class="new _new">
   <li class="info slides">
     <div class="box">
       <span class="infoButtonWhite"></span>
@@ -20,10 +20,9 @@
         <%= select_tag 'subject', select_your_subjects(@subjects), :include_blank => false, :class => 'pull-right', :id => 'lesson_subject' %>
         <%= text_area_tag 'description', description_max, :class => 'pull-left' %>
         <%= hidden_field_tag 'description_placeholder', '' %>
-        <div class="ui-widget pull-right" id="new-lesson-tags">
-          <label for="tags"></label>
+        <div class="ui-widget pull-right _tags_container">
           <%= text_field_tag 'tags', tags_max %>
-          <%= hidden_field_tag 'new-lesson-tags_placeholder', '' %>
+          <%= hidden_field_tag 'tags_placeholder', '' %>
         </div>
         <div class="fltrt" style="margin-top:30px">
           <div class="fltlft" style="margin-top:5px;"><%= link_to t('captions.cancel').downcase, my_lessons_path, :class => "buttonForm" %></div>

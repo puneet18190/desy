@@ -41,6 +41,7 @@
   data_parameters = ''
   data_parameters = "#{data_parameters}data-timeout=\"#{SETTINGS['seconds_for_timeout_dialogs'].to_json}\""
   data_parameters = "#{data_parameters} data-cache-time=\"#{SETTINGS['seconds_for_saving_cache'].to_json}\""
+  data_parameters = "#{data_parameters} data-min-length-search-tags=\"#{SETTINGS['min_characters_to_search_tags'].to_json}\""
 %>
 
 <div class="timedPopUp" id="dialog-error" style="display:none"></div>

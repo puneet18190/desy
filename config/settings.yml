@@ -11,6 +11,7 @@ admin:
 min_tag_length: 1
 max_tag_length: 25
 min_tags_for_item: 4
+min_characters_to_search_tags: 2
 # APPLICATION LANGUAGE
 application_language: 'en'
 # TIMES
