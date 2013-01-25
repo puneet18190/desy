@@ -1,5 +1,6 @@
-// TODO COPIARLO PER ALTRI 5 CASI
 $(document).ready(function() {
+  
+  // FORM NEW LESSON
   
   $('body').on('click', '#slides._new .remove', function() {
     removeFromTagsValue($(this).parent().text(), '#slides._new ._tags_container');
@@ -16,7 +17,7 @@ $(document).ready(function() {
   });
   
   $('body').on('keydown', '#slides._new #tags', function(e) {
-    if(e.which === 13 || e.which === 188 ) {
+    if(e.which === 13 || e.which === 188) {
       e.preventDefault();
       addTagWithoutSuggestion(this, '#slides._new ._tags_container');
     } else if(e.which == 8 && $(this).val() == '') {
@@ -29,6 +30,41 @@ $(document).ready(function() {
   });
   
   initTagsAutocomplete('#slides._new');
+  
+  
+  // FORM UPDATE LESSON
+  
+  $('body').on('click', '#slides._update .remove', function() {
+    removeFromTagsValue($(this).parent().text(), '#slides._update ._tags_container');
+    $(this).parent().remove();
+    if($('#slides._update #tags').not(':visible')) {
+      $('#slides._update #tags').show();
+      disableTagsInputTooHigh('#slides._update ._tags_container', '#slides._update #tags');
+    }
+  });
+  
+  $('body').on('click', '#slides._update ._tags_container', function() {
+    $('#slides._update #tags').focus();
+  });
+  
+  $('body').on('keydown', '#slides._update #tags', function(e) {
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion(this, '#slides._update ._tags_container');
+    } else if(e.which == 8 && $(this).val() == '') {
+      $(this).prev().find('.remove').trigger('click');
+    }
+  });
+  
+  $('body').on('blur', '#slides._update #tags', function(e) {
+     addTagWithoutSuggestion(this, '#slides._update ._tags_container');
+  });
+  
+  initTagsAutocomplete('#slides._update');
+  
+  (function() {
+    disableTagsInputTooHigh('#slides._update ._tags_container', '#slides._update #tags');
+  });
   
 });
 

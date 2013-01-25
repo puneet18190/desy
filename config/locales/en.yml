@@ -154,6 +154,7 @@ en:
     problems_with_password: 'Problems with login?'
     profile: 'Profile'
     register: 'Sign up'
+    remove: 'Remove'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     report_abuse: 'Report abuse'
     sample_letter: 'A'

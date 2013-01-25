@@ -6,24 +6,29 @@
       <h2><%= t('captions.update_lesson') %></h2>
       <h3><%= t('captions.use_the_form_below_for_lesson_information') %></h3>
       <div class="_error_messages"><%= media_elements_error_messages(params[:errors]) if params[:errors] %></div>
-      <%= form_for(@lesson, :remote => true) do |f| %>
-        <%= f.text_field :title, :class=>"pull-left" %>
-        <%= select_tag "subject", options_from_collection_for_select(@subjects, "id", "description"), :include_blank => false, :class=>"pull-right", :id => "lesson_subject" %>
-        <%= f.text_area :description, :class=>"pull-left" %>
-        <div class="ui-widget pull-right" id="edit-lesson-tags">
-          <label for="tags"></label>
-          <%= text_field_tag 'tags'  %>
-          <!--<textarea id="lesson_tags" name="lesson[tags]" class="pull-right"><%#= @lesson.tags %></textarea>-->
+      <%= form_tag lesson_path, :remote => true, :method => :put do |f| %>
+        <%= text_field_tag 'title', @lesson.title, :class => 'pull-left' %>
+        <%= select_tag 'lesson_subject', options_from_collection_for_select(@subjects, 'id', 'description'), :include_blank => false, :class => 'pull-right' %>
+        <%= text_area_tag 'description', @lesson.description, :class => 'pull-left' %>
+        <div class="ui-widget pull-right _tags_container">
+          <% @lesson.tags.split(',').each do |t| %>
+            <span><%= t.strip %><a class="remove" href="javascript:" title="<%= "#{t('captions.remove')} #{t.strip}" %>"></a></span>
+          <% end %>
+          <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
+          <%= hidden_field_tag 'tags_value', @lesson.tags %>
         </div>
-        
-        <br style="clear:both" />
-        <%= f.submit t('captions.update').downcase, :class => "lesson-create pull-right" %>
-        <%= link_to t('captions.cancel').downcase, lesson_editor_path(@lesson),  :class => "buttonForm pull-right" %>
+        <br style="clear:both"/>
+        <div class="fltrt" style="margin-top:30px">
+          <div class="fltlft"><%= link_to t('captions.cancel').downcase, lesson_editor_path(@lesson),  :class => "buttonForm pull-right" %></div>
+          <div class="fltrt">
+            <%= submit_tag t('captions.update').downcase, :class => "lesson-create pull-right" %>
+          </div>
+        </div>
       <% end %>
     </div>
     <div class="info-slide-footer">
       <div class="school-level pull-left">
-        <%= t 'captions.school_level' %>: <%=  current_user.school_level.description %>
+        <%= t('captions.school_level') %>: <%=  current_user.school_level.description %>
       </div>
       <div class="author pull-right">
         <%= t('captions.author') %>: <span class="name"><%=  current_user.full_name %></span>
@@ -33,9 +38,11 @@
 </ul>
 
 <script type="text/javascript">
+  
   $('#lesson_subject option').each(function() {
     if($(this).val() == <%= @lesson.subject_id %>) {
       $(this).attr('selected', 'selected');
     }
   });
+  
 </script>
