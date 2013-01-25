@@ -46,7 +46,7 @@ function addTagWithoutSuggestion(input, container_selector) {
         dataType: 'json',
         success: function(data) {
           if(data.ok) {
-            $(container_selector).find('span._' + my_val).removeClass('new_tag');
+            $(container_selector).find('span.' + getUnivoqueClassForTag(my_val)).removeClass('new_tag');
           }
         }
       });
@@ -68,6 +68,14 @@ function removeFromTagsValue(word, container_selector) {
   $(container_selector + ' #tags_value').val(old_value);
 }
 
+function getUnivoqueClassForTag(word) {
+  var resp = '';
+  for(var i = 0; i < word.length; i++) {
+    resp += '_' + word.charCodeAt(i);
+  }
+  return resp
+}
+
 function checkNoTagDuplicates(word, container_selector) {
   var flag = true;
   $(container_selector + ' span').each(function() {
@@ -85,7 +93,7 @@ function createTagSpan(word, new_tag) {
     title: 'Remove ' + word
   }).appendTo(span);
   if(new_tag) {
-    span.addClass('new_tag _' + word);
+    span.addClass('new_tag ' + getUnivoqueClassForTag(word));
   }
   return span;
 }
