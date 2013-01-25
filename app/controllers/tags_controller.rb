@@ -1,10 +1,7 @@
 class TagsController < ApplicationController
   
   def get_list
-    @tags = []
-    if params[:term]
-      @tags = Tag.where("word ILIKE '#{params[:term]}%'").select("id, word AS value").limit(20).order(:word)
-    end
+    @tags = Tag.get_tags_for_autocomplete(params[:term]
     render :json => @tags
   end
   
