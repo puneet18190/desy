@@ -12,11 +12,12 @@
 //
 //= require underscore
 //= require jquery
+//= require jquery.browser
 //= require jquery_ujs
 //= require jquery.mousewheel
 //= require jquery.jscrollpane
 //= require jquery.fullscreen
-//= require jquery.selectbox-0.2.min
+//= require jquery.selectbox-0.2.custom
 //= require jquery-ui-1.9.0.custom
 //= require jquery.imgareaselect
 //= require jquery.peity

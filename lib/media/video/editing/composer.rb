@@ -109,10 +109,6 @@ module Media
 
         def compose_video(video_id, from, to, i)
           video = ::Video.find video_id
-
-          # TODO messaggio migliore
-          raise 'could not edit a video while converting' if video.converted.nil?
-
           inputs = Hash[ FORMATS.map{ |f| [f, video.media.path(f)] } ]
 
           if from == 0 && to == video.min_duration
