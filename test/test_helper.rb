@@ -10,19 +10,43 @@ class ActiveSupport::TestCase
   
   def initialize_media_path_for_media_elements
     [1, 2].each do |x|
+      was_public = false
       v = Video.find x
+      if v.is_public
+        MediaElement.where(:id => x).update_all(:is_public => false)
+        was_public = true
+      end
       v.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
       assert_obj_saved v
+      if was_public
+        MediaElement.where(:id => x).update_all(:is_public => true)
+      end
     end
     [3, 4].each do |x|
+      was_public = false
       a = Audio.find x
+      if a.is_public
+        MediaElement.where(:id => x).update_all(:is_public => false)
+        was_public = true
+      end
       a.media = {:mp3 => Rails.root.join("test/samples/one.mp3").to_s, :ogg => Rails.root.join("test/samples/one.ogg").to_s, :filename => "audio_test"}
       assert_obj_saved a
+      if was_public
+        MediaElement.where(:id => x).update_all(:is_public => true)
+      end
     end
     [5, 6].each do |x|
+      was_public = false
       i = Image.find x
+      if i.is_public
+        MediaElement.where(:id => x).update_all(:is_public => false)
+        was_public = true
+      end
       i.media = File.open(Rails.root.join("test/samples/one.jpg"))
       assert_obj_saved i
+      if was_public
+        MediaElement.where(:id => x).update_all(:is_public => true)
+      end
     end
   end
   
