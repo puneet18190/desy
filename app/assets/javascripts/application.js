@@ -12,6 +12,7 @@
 //
 //= require underscore
 //= require jquery
+//= require jquery.browser
 //= require jquery_ujs
 //= require jquery.mousewheel
 //= require jquery.jscrollpane
