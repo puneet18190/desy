@@ -44,9 +44,6 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#slides._update ._tags_container', function() {
-    
-    console.log('eccomi');
-    
     $('#slides._update #tags').focus();
   });
   

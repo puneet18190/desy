@@ -39,13 +39,18 @@ class LessonEditorController < ApplicationController
       redirect_to '/dashboard'
       return
     else
-      @lesson.title = params[:lesson][:title]
-      @lesson.description =  params[:lesson][:description]
+      @lesson.title = params[:title]
+      @lesson.description =  params[:description]
       @lesson.subject_id = params[:subject]
-      @lesson.tags = params[:lesson][:tags]
-      @lesson.modified
+      @lesson.tags = params[:tags_value]
       if !@lesson.save
-        @errors = @lesson.errors.messages
+        @errors = convert_item_error_messages @lesson.errors.messages
+        
+        logga @lesson.errors.messages
+        
+        @error_fields = @lesson.errors.messages.keys
+      else
+        @lesson.modified
       end
     end
   end
