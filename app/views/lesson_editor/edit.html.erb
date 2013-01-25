@@ -18,13 +18,17 @@
           <%= hidden_field_tag 'tags_value', @lesson.tags %>
         </div>
         <br style="clear:both"/>
-        <%= submit_tag t('captions.update').downcase, :class => "lesson-create pull-right" %>
-        <%= link_to t('captions.cancel').downcase, lesson_editor_path(@lesson),  :class => "buttonForm pull-right" %>
+        <div class="fltrt" style="margin-top:30px">
+          <div class="fltlft"><%= link_to t('captions.cancel').downcase, lesson_editor_path(@lesson),  :class => "buttonForm pull-right" %></div>
+          <div class="fltrt">
+            <%= submit_tag t('captions.update').downcase, :class => "lesson-create pull-right" %>
+          </div>
+        </div>
       <% end %>
     </div>
     <div class="info-slide-footer">
       <div class="school-level pull-left">
-        <%= t 'captions.school_level' %>: <%=  current_user.school_level.description %>
+        <%= t('captions.school_level') %>: <%=  current_user.school_level.description %>
       </div>
       <div class="author pull-right">
         <%= t('captions.author') %>: <span class="name"><%=  current_user.full_name %></span>

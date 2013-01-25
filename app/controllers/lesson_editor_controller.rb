@@ -41,13 +41,10 @@ class LessonEditorController < ApplicationController
     else
       @lesson.title = params[:title]
       @lesson.description =  params[:description]
-      @lesson.subject_id = params[:subject]
+      @lesson.subject_id = params[:lesson_subject]
       @lesson.tags = params[:tags_value]
       if !@lesson.save
         @errors = convert_item_error_messages @lesson.errors.messages
-        
-        logga @lesson.errors.messages
-        
         @error_fields = @lesson.errors.messages.keys
       else
         @lesson.modified
