@@ -14,7 +14,7 @@
         <h2>Personal Info</h2>
         <p>In this area you can update or modify all the parameters of your account</p>
       </header>
-      <%= form_for @user do |f| %>
+      <%= form_for @user, :url => user_path do |f| %>
         <%= render :partial => 'personal_info', :locals => {:f => f} %>
         <div class="form_submit">
           <%= f.submit "save" %>

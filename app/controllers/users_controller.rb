@@ -57,6 +57,19 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = current_user
+    if params[:user][:password].empty?
+      params[:user] = params[:user].delete_if {|key, value| (key == "password" || key == "password_confirmation") } 
+    end
+    if @user.update_attributes(params[:user])
+      redirect_to my_profile_path
+    else
+      @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
+      @location_ids     = Location.order(:description).map{ |l| [l.to_s, l.id] }
+      @subjects         = Subject.order(:description)
+
+      redirect_to my_profile_path
+    end
   end
   
   def subjects

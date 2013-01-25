@@ -107,7 +107,7 @@ Desy::Application.routes.draw do
   get  'profile' => 'users#edit', :as => :my_profile
   get  'profile/subjects' => 'users#subjects', :as => :my_subjects
   get  'profile/statistics' => 'users#statistics', :as => :my_statistics
-  post 'profile/update' => 'users#update', as: :user
+  put 'profile/update' => 'users#update', as: :user
   # get  'logout' => 'users#logout', :as => :logout
 
   # USER SESSION
