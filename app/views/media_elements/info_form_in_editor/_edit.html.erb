@@ -13,7 +13,13 @@
       <%= text_area_tag 'update_description', media_element.description %>
     </div>
     <div class="cols" style="float:right">
-      <%= text_area_tag 'update_tags', media_element.tags %>
+      <div class="ui-widget pull-right _tags_container">
+        <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
+        <div class="_placeholder">
+          <%= tags_max %>
+        </div>
+        <%= hidden_field_tag 'tags_value', '' %>
+      </div>
     </div>
     <br class="clearfloat">
     <div class="cols" style="float:right">

@@ -6,6 +6,8 @@ one:
   school_level_id: 1
   school: '33eer'
   location_id: 1
+  encrypted_password: '$2a$10$7wuLMfme2DuQ1QRW0mKF3eUMlKVoPbMOymEqI26udIjB2ZkfJrPiG'
+  confirmed: true
 
 two:
   id: 2
@@ -15,3 +17,5 @@ two:
   school_level_id: 2
   school: '33eer'
   location_id: 1
+  encrypted_password: '$2a$10$7wuLMfme2DuQ1QRW0mKF3eUMlKVoPbMOymEqI26udIjB2ZkfJrPiG'
+  confirmed: true

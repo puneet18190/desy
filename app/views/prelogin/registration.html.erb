@@ -33,25 +33,28 @@ Organize your lessons in your virtual classroom and discover a new way of teachi
         <strong><%= t("forms.sign_up.#{policy}.title") %></strong><br><br>
         <%= t("forms.sign_up.#{policy}.description") %>
       </p>
-      <div class="checkbox-content" style="float:none; padding-top:0">
+      <div class="checkbox-content">
         <div class="checkboxElement">
           <table>
             <tr>
               <td>
                 <%= f.check_box policy, class: 'regular-checkbox' %>
-                <%= f.label policy %>
+                <%= f.label policy, '&nbsp;'.html_safe %>
               </td>
               <td>accept</td>
             </tr>
           </table>
         </div>
+        
       </div>
+
       <br class="clearfloat">
     <% end -%>
     
     <%# ERRORI %>
     <% errors = @user.errors.select{ |k,_| @user.registration_policies.include? k } -%>
-    <ul>
+
+    <ul class="listaErrori">
     <% errors.each do |k, v| -%>
       <%# TODO usare l'icona di errore '!.png' %>
       <li><%= @user.errors.full_message(k, v) %></li>

@@ -140,8 +140,13 @@ class MediaElementTest < ActiveSupport::TestCase
     media_one = File.open(Rails.root.join("test/samples/two.jpg"))
     media_two = File.open(Rails.root.join("test/samples/one.jpg"))
     @media_element = MediaElement.find(6)
-    assert_invalid @media_element, :media, media_two, media_one, /is not changeable for a public record/
-    assert_obj_saved @media_element
+    @media_element.media = media_two
+    assert !@media_element.save, "Image erroneously saved - #{@media_element.inspect}"
+    assert_equal 1, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
+    assert_equal 1, @media_element.errors.messages[:media].length
+    assert_match /is not changeable for a public record/, @media_element.errors.messages[:media].first
+    @media_element.media = media_one
+    assert !@media_element.valid?
     @media_element = MediaElement.find(5)
     @media_element.media = media_two
     assert_obj_saved @media_element

@@ -1,48 +1,5 @@
 $(document).ready(function() {
 
-  // Limit scope pollution from any deprecated API
-  (function() {
-
-  var matched, browser;
-
-  // Use of jQuery.browser is frowned upon.
-  // More details: http://api.jquery.com/jQuery.browser
-  // jQuery.uaMatch maintained for back-compat
-  jQuery.uaMatch = function( ua ) {
-    ua = ua.toLowerCase();
-
-    var match = /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
-      /(webkit)[ \/]([\w.]+)/.exec( ua ) ||
-      /(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) ||
-      /(msie) ([\w.]+)/.exec( ua ) ||
-      ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec( ua ) ||
-      [];
-
-    return {
-      browser: match[ 1 ] || "",
-      version: match[ 2 ] || "0"
-    };
-  };
-
-  matched = jQuery.uaMatch( navigator.userAgent );
-  browser = {};
-
-  if ( matched.browser ) {
-    browser[ matched.browser ] = true;
-    browser.version = matched.version;
-  }
-
-  // Chrome is Webkit, but Webkit is also Safari.
-  if ( browser.chrome ) {
-    browser.webkit = true;
-  } else if ( browser.webkit ) {
-    browser.safari = true;
-  }
-
-  jQuery.browser = browser;
-
-  })();
-
   // BROWSER DETECTION: DECLARING BROWSER NAME AND VERSION AS HTML TAG CLASS
   (function(){
     var name = $.grep(_.keys($.browser), function(el, i) {
@@ -563,6 +520,10 @@ $(document).ready(function() {
   $("#filter_media_elements").selectbox();
   
   $("#filter_search_media_elements").selectbox();
+
+  $("#user_school_level_id").selectbox();
+
+  $("#user_location_id").selectbox();
   
   $('body').on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
     var myself = $(this);
@@ -880,24 +841,31 @@ $(document).ready(function() {
   
   // CREATE AND UPDATE LESSON INFO
   
-  $('body').on('focus', '#slides #title', function() {
-    if($('#slides #title_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#slides #title_placeholder').attr('value', '0');
+  $('body').on('focus', '#slides._new #title', function() {
+    if($('#slides._new #title_placeholder').val() == '') {
+      $(this).val('');
+      $('#slides._new #title_placeholder').attr('value', '0');
     }
   });
   
-  $('body').on('focus', '#slides #description', function() {
-    if($('#slides #description_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#slides #description_placeholder').attr('value', '0');
+  $('body').on('focus', '#slides._new #description', function() {
+    if($('#slides._new #description_placeholder').val() == '') {
+      $(this).val('');
+      $('#slides._new #description_placeholder').attr('value', '0');
     }
   });
   
-  $('body').on('focus', '#slides #tags', function() {
-    if($('#slides #tags_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#slides #tags_placeholder').attr('value', '0');
+  $('body').on('focus', '#slides._update #title', function() {
+    if($('#slides._update #title_placeholder').val() == '') {
+      $(this).val('');
+      $('#slides._update #title_placeholder').attr('value', '0');
+    }
+  });
+  
+  $('body').on('focus', '#slides._update #description', function() {
+    if($('#slides._update #description_placeholder').val() == '') {
+      $(this).val('');
+      $('#slides._update #description_placeholder').attr('value', '0');
     }
   });
   
@@ -932,13 +900,6 @@ $(document).ready(function() {
     if($('#form_info_new_media_element_in_editor #new_description_placeholder').val() == '') {
       $(this).attr('value', '');
       $('#form_info_new_media_element_in_editor #new_description_placeholder').attr('value', '0');
-    }
-  });
-  
-  $('body').on('focus', '#form_info_new_media_element_in_editor #new_tags', function() {
-    if($('#form_info_new_media_element_in_editor #new_tags_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#form_info_new_media_element_in_editor #new_tags_placeholder').attr('value', '0');
     }
   });
   

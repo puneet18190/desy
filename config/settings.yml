@@ -11,6 +11,8 @@ admin:
 min_tag_length: 1
 max_tag_length: 25
 min_tags_for_item: 4
+min_characters_to_search_tags: 2
+how_many_tags_for_block_in_autocomplete: 20
 # APPLICATION LANGUAGE
 application_language: 'en'
 # TIMES

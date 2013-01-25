@@ -59,7 +59,7 @@ en:
     media_unsupported_format: 'Format not supported'
     media_invalid_filename: "File's name contains invalid characters"
     media_generic_error: 'Invalid or damaged file'
-    subject_missing_in_lesson: 'Choose a lesson'
+    subject_missing_in_lesson: 'Choose a subject'
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
   captions:

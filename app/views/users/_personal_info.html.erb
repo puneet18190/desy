@@ -1,44 +1,46 @@
 <fieldset class="insert-content">
   <div class="inputElement">
-    <%= f.label :name %>
+    <%= f.label :name %><br>
     <%= f.text_field :name, class: 'text' %>
   </div>
   <div class="inputElement">
-    <%= f.label :surname %>
+    <%= f.label :surname %><br>
     <%= f.text_field :surname, class: 'text' %>
   </div>
   <div class="inputElement">
-    <%= f.label :email %>
+    <%= f.label :email %><br>
     <%= f.email_field :email, class: 'text' %>
   </div>
   <br class="clearfloat" />
   <div class="inputElement">
-    <%= f.label :password %>
+    <%= f.label :password %><br>
     <%= f.password_field :password, class: 'text' %>
   </div>
   <div class="inputElement" style="margin-right:0">
-    <%= f.label :password_confirmation %>
+    <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation, class: 'text' %>
   </div>
 </fieldset>
+<hr>
 <fieldset class="insert-content">
   <div class="inputElement">
-    <%= f.label :school %>
+    <%= f.label :school %><br>
     <%= f.text_field :school, class: 'text school' %>
   </div>
   <br class="clearfloat" />
   <div class="inputElement">
-    <%= f.label :school_level_id %>
+    <%= f.label :school_level_id %><br>
     <%= f.select :school_level_id, @school_level_ids %>
   </div>
   <div class="inputElement">
-    <%= f.label :location_id %>
+    <%= f.label :location_id %><br>
     <%= f.select :location_id, @location_ids %>
   </div>
-
+  <br class="clearfloat">
   <%# ERRORI %>
   <% errors = @user.errors.select{ |k,_| [:name, :surname, :email, :password, :password_confirmation, :school, :school_level_id, :location_id].include? k } -%>
-  <ul>
+
+  <ul class="listaErrori">
   <% errors.each do |k, v| -%>
     <%# TODO usare l'icona di errore '!.png' %>
     <li><%= @user.errors.full_message(k, v) %></li>
@@ -46,4 +48,4 @@
   </ul>
 
 </fieldset>
-
+<hr>

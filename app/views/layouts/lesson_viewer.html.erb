@@ -7,6 +7,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render :partial => "shared/popups" %>
+    <%= render :partial => "shared/loading" %>
   <a class="navLeft" title="<%= t('general_titles.back_in_slides') %>"></a>
   <div class="container">    
     <%= yield %>
