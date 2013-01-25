@@ -13,10 +13,35 @@ $(document).ready(function() {
     $('#slides._new #tags').focus();
   });
   
+  // TODO COPIARLO PER ALTRI 5 CASI
+  $('body').on('keydown', '#slides._new #tags', function(e) {
+    if(e.which === 13 || e.which === 188 ) {
+      e.preventDefault();
+      createTagSpan($(this).val()).insertBefore(this);
+      $(this).val('');
+    }
+  });
+  
+  // TODO COPIARLO PER ALTRI 5 CASI
+  $('body').on('blur', '#slides._new #tags', function(e) {
+    if($.trim($(this).val()).length >= $('#popup_parameters_container').data('min-tag-length')) {
+      createTagSpan($(this).val()).insertBefore(this);
+    }
+    $(this).val('');
+  });
+  
+  // TODO COPIARLO PER ALTRI 5 CASI
+  initTagsAutocomplete('#slides._new');
+  
 });
 
-function extractLastTag(term) {
-  return term.split(/,\s*/).pop();
+function createTagSpan(word) {
+  var span = $('<span>').text(word);
+  var a = $('<a>').addClass('remove').attr({
+    href: 'javascript:',
+    title: 'Remove ' + word
+  }).appendTo(span);
+  return span;
 }
 
 function initTagsAutocomplete(scope) {
@@ -25,30 +50,44 @@ function initTagsAutocomplete(scope) {
   $(input_selector).autocomplete({
     source: function(request, response) {
       $.getJSON( "/tags/get_list", {
-        term: extractLastTag(request.term)
+        term: request.term
       }, response);
     },
     search: function() {
-      var term = extractLastTag(this.value);
-      if(term.length < $('#popup_parameters_container').data('min-length-search-tags')) {
+      console.log('search');
+      if(this.value.length < $('#popup_parameters_container').data('min-length-search-tags')) {
         return false;
       }
     },
     select: function(e, ui) {
-      var tag = ui.item.value;
-      var span = $('<span>').text(tag);
-      var a = $('<a>').addClass('remove').attr({
-        href: 'javascript:',
-        title: 'Remove ' + tag
-      }).appendTo(span);
-      span.insertBefore(input_selector);
+      console.log('select');
+      createTagSpan(ui.item.value).insertBefore(input_selector);
       var this_container = $(container_selector)[0];
       this_container.scrollTop = this_container.scrollHeight;
+      
+
+      
       $(input_selector).val('').css('top', 2);
+      
+
+      
     },
     change: function() {
-      console.log('change tag??');
-      $(input_selector).val('').css('top', 2);
+      console.log('change');
+   //   $(input_selector).val('').css('top', 2);
+    },
+    close: function() {
+      var current_tag = $(input_selector).val('');
+      if(current_tag != $($('ui-autocomplete a')[0]).html()) {
+        $(input_selector).val('').css('top', 2);
+      }
+      console.log('close');
+    },
+    focus: function() {
+      console.log('focus');
+    },
+    open: function() {
+      console.log('open');
     }
   });
 }
