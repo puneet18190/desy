@@ -36,10 +36,11 @@
     <%= f.label :location_id %><br>
     <%= f.select :location_id, @location_ids %>
   </div>
-
+  <br class="clearfloat">
   <%# ERRORI %>
   <% errors = @user.errors.select{ |k,_| [:name, :surname, :email, :password, :password_confirmation, :school, :school_level_id, :location_id].include? k } -%>
-  <ul class="listaErrori1">
+
+  <ul class="listaErrori">
   <% errors.each do |k, v| -%>
     <%# TODO usare l'icona di errore '!.png' %>
     <li><%= @user.errors.full_message(k, v) %></li>

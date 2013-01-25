@@ -7,13 +7,15 @@
       <span><%= subject.to_s %></span>
     </div>
   <% end -%>
-
+  <br class="clearfloat">
   <%# ERRORI %>
   <% errors = @user.errors.select{ |k,_| [:users_subjects].include? k } -%>
-  <ul class="listaErrori2">
+  
+  <ul class="listaErrori">
   <% errors.each do |k, v| -%>
     <%# TODO usare l'icona di errore '!.png' %>
     <li><%= @user.errors.full_message(k, v) %></li>
   <% end if errors.present? -%>
   </ul>
 </fieldset>
+<hr>
