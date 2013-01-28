@@ -18,8 +18,8 @@
   background-color: #454343;
   overflow: auto;
   position: relative;
-  
 }
+
 .lesson-editor-layout ul#slides.new .info ._tags_container {
   width: 336px;
   height: 140px;
@@ -72,13 +72,37 @@
     }
   }
 }
-.media_element_editor-layout #form_info_update_media_element_in_editor.formInfoMediaElementEditor input#tags, 
-.media_element_editor-layout #form_info_new_media_element_in_editor.formInfoMediaElementEditor .contentFormInfoMediaElementEditor input#tags, 
-.lesson-editor-layout ul#slides.new .info ._tags_container input#tags {
+
+#load-media-element ._tags_container {
+  width: 336px;
+  height: 170px;
+  display: block;
+  resize: none;
+  line-height: 20px;
+  border-radius: 10px;
+  border: 3px solid #43a848;
+  padding: 0;
+  line-height: 15px;
+  box-shadow: 0px 2px 2px rgba(50, 50, 50, 0.1) inset;
+  color: #fff;
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+  outline: none;
+  background-color: #454343;
+  overflow: auto;
+  position: relative;
+}
+
+#form_info_update_media_element_in_editor #update_tags,
+#form_info_new_media_element_in_editor #new_tags,
+#slides._new #tags,
+#slides._update #tags,
+#load-media-element #tags {
   overflow: visible;
   clear: both;
   border: none;
   margin-top: 5px;
+  margin-bottom: 5px;
   padding: 0 10px;
   box-shadow: none;
   width: 295px;

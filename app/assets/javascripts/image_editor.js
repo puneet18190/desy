@@ -257,7 +257,7 @@ function getDragPosition(obj) {
 }
 
 function textAreaImageEditorContent(coords, textCount) {
-  var textarea_container = $($('#image_editor_empty_text_area_container').html());
+  var textarea_container = $($.trim($('#image_editor_empty_text_area_container').html()));
   textarea_container.addClass('_image_editor_text');
   textarea_container.find('#image_editor_textarea_without_id').attr('id', 'image_editor_textarea_' + textCount);
   textarea_container.find('#image_editor_textarea_tools_without_id').attr('id', 'image_editor_textarea_tools_' + textCount);
@@ -304,3 +304,12 @@ function resetImageEditorTexts() {
   $('._image_editor_text').remove();
   $('#image_editor_text_buttons ._do').addClass('disabled');
 }
+
+function centerThisInContainer(div,container) {
+  var contH = $(container).height();
+  var contW = $(container).width();
+  var centerDiv = $(div);
+  centerDiv.css('top', (contH/2-centerDiv.height()/2)+$(container).position().top);
+  centerDiv.css('left', (contW/2-centerDiv.width()/2)+$(container).position().left);
+}
+

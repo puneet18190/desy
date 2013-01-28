@@ -15,7 +15,13 @@
         </span>
       <% end %>
     </div>
-    <%= link_to "", dashboard_path, :class=>"esciButton", :title => t('general_titles.exit_title') %>
-    
+    <%= link_to "", my_media_elements_path, :class=>"esciButton _exit_url", :title => t('general_titles.exit_title') %>
+    <script type="text/javascript" charset="utf-8">
+      if("<%= @back %>".length > 0) {
+        var bb = $(".esciButton");
+        bb.attr("href","<%=@back%>");
+        bb.show();
+      }
+    </script>
   </div>
 </div>
