@@ -117,6 +117,7 @@ module Media
               video.save!
               video.enable_lessons_containing_me
               Notification.send_to video_user_id, I18n.t('captions.video_composing_successful') if video_user_id
+              video.user.try(:video_editor_cache!)
             end
           end
         end
