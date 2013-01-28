@@ -20,7 +20,7 @@
       </div>
       <div class="ui-widget pull-right _tags_container">
         <% media_element.tags.split(',').each do |t| %>
-          <span><%= t.strip %><a class="remove" href="javascript:" title="<%= "#{t('captions.remove')} #{t.strip}" %>"></a></span>
+          <span><%= t.strip %><a class="remove"></a></span>
         <% end %>
         <%= text_field_tag 'update_tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
         <%= hidden_field_tag 'update_tags_value', media_element.tags %>
