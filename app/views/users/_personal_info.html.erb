@@ -30,6 +30,16 @@
     <br>
     <%= f.password_field :password_confirmation, class: 'text' %>
   </div>
+  <br class="clearfloat">
+  
+  <%# ERRORI %>
+  <% errors = @user.errors.select{ |k,_| [:name, :surname, :email, :password, :password_confirmation].include? k } -%>
+
+  <ul class="listaErrori">
+  <% errors.each do |k, v| -%>
+    <li><%= @user.errors.full_message(k, v) %></li>
+  <% end if errors.present? -%>
+  </ul>
 </fieldset>
 <hr>
 <fieldset class="insert-content">
@@ -47,15 +57,14 @@
     <%= f.select :location_id, @location_ids %>
   </div>
   <br class="clearfloat">
+
   <%# ERRORI %>
-  <% errors = @user.errors.select{ |k,_| [:name, :surname, :email, :password, :password_confirmation, :school, :school_level_id, :location_id].include? k } -%>
+  <% errors = @user.errors.select{ |k,_| [:school, :school_level_id, :location_id].include? k } -%>
 
   <ul class="listaErrori">
   <% errors.each do |k, v| -%>
-    <%# TODO usare l'icona di errore '!.png' %>
     <li><%= @user.errors.full_message(k, v) %></li>
   <% end if errors.present? -%>
   </ul>
-
 </fieldset>
 <hr>

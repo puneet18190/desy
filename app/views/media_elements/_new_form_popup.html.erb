@@ -25,11 +25,13 @@
           <h1><%= t('captions.upload_a_media_element') %></h1>
           <p style="padding-bottom:32px"><%= t('descriptions.upload_media_element_instructions') %></p>
           <br class="clearfloat">
-          <div class="ui-widget pull-right" id="new-media-element-tags">    
-            <%= text_field_tag 'tags', ''  %>
-            <%= hidden_field_tag 'tags_placeholder', '' %>  
+          <div class="ui-widget pull-right _tags_container">
+            <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
+            <div class="_placeholder">
+              <%= tags_max %>
+            </div>
+            <%= hidden_field_tag 'tags_value', '' %>
           </div>
-          
           <br>
           <div class="fltrt lower">
             <div class="fltlft" style="margin-top:5px"><a class="_close buttonForm" data-dialog-id="load-media-element"><%= t('captions.cancel') %></a></div> 

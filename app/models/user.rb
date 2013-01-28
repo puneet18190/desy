@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 8, :allow_nil => true
   validate :validate_associations, :validate_email, :validate_email_not_changed
   REGISTRATION_POLICIES.each do |policy|
-    validates_acceptance_of policy, on: :create
+    validates_acceptance_of policy, on: :create#, allow_nil: false
   end
   
   before_validation :init_validation

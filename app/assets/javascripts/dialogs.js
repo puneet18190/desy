@@ -184,11 +184,11 @@ function showLoadMediaElementPopUp() {
         $('input').blur();
         $('#load-media-element #title').val($('#load-media-element').data('placeholder-title'));
         $('#load-media-element #description').val($('#load-media-element').data('placeholder-description'));
-        $('#load-media-element #tags').val($('#load-media-element').data('placeholder-tags'));
         $('#load-media-element #title_placeholder').val('');
         $('#load-media-element #description_placeholder').val('');
-        $('#load-media-element #tags_placeholder').val('');
-        $('#load-media-element #new-media-element-tags span').remove();
+        $('#load-media-element #tags_value').val('');
+        $('#load-media-element ._tags_container span').remove();
+        $('#load-media-element ._tags_container ._placeholder').show();
         $('#media_element_media_show').text($('#load-media-element').data('placeholder-media'));
         $('#load-media-element .innerUploadFileButton').val('');
         $('#load-media-element .form_error').removeClass('form_error');

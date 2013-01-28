@@ -92,7 +92,7 @@ class VideoEditorController < ApplicationController
     initial_video_test = Video.find_by_id parameters[:initial_video]
     initial_video_test.title = params[:update_title]
     initial_video_test.description = params[:update_description]
-    initial_video_test.tags = params[:update_tags]
+    initial_video_test.tags = params[:update_tags_value]
     if initial_video_test.valid?
       parameters[:initial_video] = {
         :id => parameters[:initial_video],

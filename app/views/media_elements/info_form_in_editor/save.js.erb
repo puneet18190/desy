@@ -13,7 +13,7 @@
     <% @error_fields.each do |err| %>
       <% if err.to_s == 'tags' %>
         $('#form_info_<%= @error_ids %>_media_element_in_editor ._tags_container').addClass('form_error');
-        $('#form_info_<%= @error_ids %>_media_element_in_editor ._placeholder').hide();
+        $('#form_info_new_media_element_in_editor ._tags_container ._placeholder').hide();
       <% else %>
         $('#<%= @error_ids %>_<%= err %>').addClass('form_error');
         if($('#<%= @error_ids %>_<%= err %>_placeholder').val() == '') {
