@@ -1,8 +1,45 @@
 $(document).ready(function() {
   
+  // FORM CHANGE INFO MEDIA ELEMENT
+  
+  // FORM UPLOAD NEW MEDIA ELEMENT
+  
+  // FORM OVERWRITE MEDIA ELEMENT
+  
+  // FORM SAVE AS NEW MEDIA ELEMENT
+  
+  $('body').on('click', '#form_info_new_media_element_in_editor ._tags_container .remove', function() {
+    removeFromTagsValue($(this).parent().text(), '#form_info_new_media_element_in_editor ._tags_container');
+    $(this).parent().remove();
+    if($('#form_info_new_media_element_in_editor #tags').not(':visible')) {
+      $('#form_info_new_media_element_in_editor #tags').show();
+      disableTagsInputTooHigh('#form_info_new_media_element_in_editor ._tags_container', '#form_info_new_media_element_in_editor #tags');
+    }
+  });
+  
+  $('body').on('click', '#form_info_new_media_element_in_editor ._tags_container', function() {
+    $('#form_info_new_media_element_in_editor #tags').focus();
+    $(this).find('._placeholder').hide();
+  });
+  
+  $('body').on('keydown', '#form_info_new_media_element_in_editor #tags', function(e) {
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion(this, '#form_info_new_media_element_in_editor ._tags_container');
+    } else if(e.which == 8 && $(this).val() == '') {
+      $(this).prev().find('.remove').trigger('click');
+    }
+  });
+  
+  $('body').on('blur', '#form_info_new_media_element_in_editor #tags', function(e) {
+     addTagWithoutSuggestion(this, '#form_info_new_media_element_in_editor ._tags_container');
+  });
+  
+  initTagsAutocomplete('#form_info_new_media_element_in_editor');
+  
   // FORM NEW LESSON
   
-  $('body').on('click', '#slides._new .remove', function() {
+  $('body').on('click', '#slides._new ._tags_container .remove', function() {
     removeFromTagsValue($(this).parent().text(), '#slides._new ._tags_container');
     $(this).parent().remove();
     if($('#slides._new #tags').not(':visible')) {
@@ -34,7 +71,7 @@ $(document).ready(function() {
   
   // FORM UPDATE LESSON
   
-  $('body').on('click', '#slides._update .remove', function() {
+  $('body').on('click', '#slides._update ._tags_container .remove', function() {
     removeFromTagsValue($(this).parent().text(), '#slides._update ._tags_container');
     $(this).parent().remove();
     if($('#slides._update #tags').not(':visible')) {
@@ -126,10 +163,7 @@ function checkNoTagDuplicates(word, container_selector) {
 
 function createTagSpan(word, new_tag) {
   var span = $('<span>').text(word);
-  var a = $('<a>').addClass('remove').attr({
-    href: 'javascript:',
-    title: 'Remove ' + word
-  }).appendTo(span);
+  var a = $('<a>').addClass('remove').appendTo(span);
   if(new_tag) {
     span.addClass('new_tag ' + getUnivoqueClassForTag(word));
   }
