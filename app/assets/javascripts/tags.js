@@ -4,6 +4,43 @@ $(document).ready(function() {
   
   // FORM UPLOAD NEW MEDIA ELEMENT
   
+  $('body').on('click', '#load-media-element ._tags_container .remove', function() {
+    removeFromTagsValue($(this).parent().text(), '#load-media-element ._tags_container #tags_value');
+    $(this).parent().remove();
+    if($('#load-media-element #tags').not(':visible')) {
+      $('#load-media-element #tags').show();
+      disableTagsInputTooHigh('#load-media-element ._tags_container', '#load-media-element #tags');
+    }
+  });
+  
+  $('body').on('focus', '#load-media-element ._tags_container', function() {
+    $(this).find('._placeholder').hide();
+  });
+  
+  $('body').on('click', '#load-media-element ._tags_container', function() {
+  
+  console.log('ti ho sentito');
+  
+    $('#load-media-element #tags').focus();
+    $(this).find('._placeholder').hide();
+  });
+  
+  $('body').on('keydown', '#load-media-element #tags', function(e) {
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion(this, '#load-media-element ._tags_container', '#tags_value');
+    } else if(e.which == 8 && $(this).val() == '') {
+      $(this).prev().find('.remove').trigger('click');
+    }
+  });
+  
+  $('body').on('blur', '#load-media-element #tags', function(e) {
+     addTagWithoutSuggestion(this, '#load-media-element ._tags_container', '#tags_value');
+  });
+  
+  initTagsAutocomplete('#load-media-element');
+  
+  
   // FORM OVERWRITE MEDIA ELEMENT
   
   $('body').on('click', '#form_info_update_media_element_in_editor ._tags_container .remove', function() {
@@ -39,6 +76,11 @@ $(document).ready(function() {
   
   initTagsAutocomplete('#form_info_update_media_element_in_editor');
   
+  (function() {
+    disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
+  });
+  
+  
   // FORM SAVE AS NEW MEDIA ELEMENT
   
   $('body').on('click', '#form_info_new_media_element_in_editor ._tags_container .remove', function() {
@@ -73,6 +115,7 @@ $(document).ready(function() {
   });
   
   initTagsAutocomplete('#form_info_new_media_element_in_editor');
+  
   
   // FORM NEW LESSON
   
