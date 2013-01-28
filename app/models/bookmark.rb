@@ -5,8 +5,8 @@ class Bookmark < ActiveRecord::Base
   
   validates_presence_of :user_id, :bookmarkable_id
   validates_numericality_of :user_id, :bookmarkable_id, :only_integer => true, :greater_than => 0
-  validates_inclusion_of :bookmarkable_type, :in => ['Lesson', 'MediaElement']
-  validate :validate_associations, :validate_availability, :validate_impossible_changes, :manual_validation_of_uniqueness
+  validates_inclusion_of :bookmarkable_type, :in => ['Lesson', 'MediaElement'], :if => :good_bookmarkable_type
+  validate :validate_associations, :validate_availability, :validate_impossible_changes
   
   before_validation :init_validation
   before_destroy :destroy_virtual_classroom
@@ -20,14 +20,8 @@ class Bookmark < ActiveRecord::Base
     @media_element = self.bookmarkable_type == 'MediaElement' ? Valid.get_association(self, :bookmarkable_id, MediaElement) : nil
   end
   
-  def manual_validation_of_uniqueness
-    if ['Lesson', 'MediaElement'].include? self.bookmarkable_type
-      if self.new_record?
-        errors[:bookmarkable_id] << 'has already been taken' if Bookmark.where(:bookmarkable_type => self.bookmarkable_type, :bookmarkable_id => self.bookmarkable_id, :user_id => self.user_id).any?
-      else
-        errors[:bookmarkable_id] << 'has already been taken' if Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND user_id = ? AND id != ?', self.bookmarkable_type, self.bookmarkable_id, self.user_id, self.id).any?
-      end
-    end
+  def good_bookmarkable_type
+    ['Lesson', 'MediaElement'].include? self.bookmarkable_type
   end
   
   def validate_associations
