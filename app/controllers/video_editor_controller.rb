@@ -55,7 +55,7 @@ class VideoEditorController < ApplicationController
     initial_video_test = Video.new
     initial_video_test.title = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
     initial_video_test.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
-    initial_video_test.tags = params[:tags_value]
+    initial_video_test.tags = params[:new_tags_value]
     initial_video_test.user_id = current_user.id
     # provo a validarlo per vedere se è ok
     initial_video_test.valid?

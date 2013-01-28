@@ -44,40 +44,6 @@ class User < ActiveRecord::Base
     def admin
       find_by_email SETTINGS['admin']['email']
     end
-
-    def create_user(attributes, email = nil, confirmed = false, raise_exception_if_fail = false)
-      subject_ids = attributes.delete(:subject_ids)
-      user = new(attributes) do |user|
-        user.email = email
-        user.confirmed = confirmed
-      end
-      ActiveRecord::Base.transaction do
-        begin
-          user.save!
-        rescue ActiveRecord::RecordInvalid => e
-          if raise_exception_if_fail
-            raise(e)
-          else
-            return nil
-          end
-        end
-        subject_ids.each do |s|
-          users_subject = UsersSubject.new
-          users_subject.user_id = user.id
-          users_subject.subject_id = s
-          begin
-            users_subject.save!
-          rescue ActiveRecord::RecordInvalid => e
-            unless raise_exception_if_fail
-              user.errors.add :subjects, :invalid
-              raise ActiveRecord::Rollback
-            end
-            raise e
-          end
-        end
-      end
-      user
-    end
   end
 
   def registration_policies
