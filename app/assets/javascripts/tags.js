@@ -3,7 +3,7 @@ $(document).ready(function() {
   // FORM CHANGE INFO MEDIA ELEMENT
   
   $('body').on('click', '._change_info_container ._tags_container .remove', function() {
-    var media_element_id = $(this).parent().parent().parent().parent().data('param');
+    var media_element_id = $(this).parent().parent().parent().parent().parent().data('param');
     removeFromTagsValue($(this).parent().text(), '#dialog-media-element-' + media_element_id + ' ._tags_container #tags_value');
     $(this).parent().remove();
     if($('#load-media-element #tags').not(':visible')) {
