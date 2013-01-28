@@ -1,5 +1,10 @@
 $(document).ready(function() {
   
+  // SEARCH TAGS 
+  initSearchTagsAutocomplete("#general_tag_reader_for_search");
+  initSearchTagsAutocomplete("#lessons_tag_reader_for_search");
+  initSearchTagsAutocomplete("#media_elements_tag_reader_for_search");
+  
   // FORM CHANGE INFO MEDIA ELEMENT
   
   $('body').on('click', '._change_info_container ._tags_container .remove', function() {
@@ -304,6 +309,31 @@ function disableTagsInputTooHigh(container_selector, input_selector) {
   if($(container_selector)[0].scrollHeight > $(container_selector).height()) {
     $(input_selector).hide();
   }
+}
+
+function initSearchTagsAutocomplete(input){
+  var cache = {};
+  $(input).autocomplete({
+    minLength: 2,
+    source: function( request, response ) {
+      var term = request.term;
+      if ( term in cache ) {
+        response( cache[ term ] );
+        return;
+      }
+
+      $.ajax({
+        dataType: "json",
+        beforeSend: unbindLoader(),
+        url: "/tags/get_list",
+        data: request,
+        success: function( data, status, xhr ) {
+          cache[ term ] = data;
+          response( data );
+        }
+      }).always(bindLoader);
+    }
+  });
 }
 
 function initTagsAutocomplete(scope) {
