@@ -5,7 +5,8 @@ class Bookmark < ActiveRecord::Base
   
   validates_presence_of :user_id, :bookmarkable_id
   validates_numericality_of :user_id, :bookmarkable_id, :only_integer => true, :greater_than => 0
-  validates_inclusion_of :bookmarkable_type, :in => ['Lesson', 'MediaElement'], :if => :good_bookmarkable_type
+  validates_inclusion_of :bookmarkable_type, :in => ['Lesson', 'MediaElement']
+  validates_uniqueness_of :bookmarkable_id, :scope => [:user_id, :bookmarkable_type], :if => :good_bookmarkable_type
   validate :validate_associations, :validate_availability, :validate_impossible_changes
   
   before_validation :init_validation
