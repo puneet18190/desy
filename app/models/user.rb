@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 8, :allow_nil => true
   validate :validate_associations, :validate_email, :validate_email_not_changed
   REGISTRATION_POLICIES.each do |policy|
-    validates_acceptance_of policy, on: :create#, allow_nil: false
+    validates_acceptance_of policy, on: :create, allow_nil: false
   end
   
   before_validation :init_validation
@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
     def admin
       find_by_email SETTINGS['admin']['email']
     end
+  end
+
+  def accept_policies
+    User::REGISTRATION_POLICIES.each{ |p| self.send("#{p}=", '1') }
   end
 
   def video_editor_cache!(cache = nil)

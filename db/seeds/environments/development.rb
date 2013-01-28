@@ -69,6 +69,7 @@ users = [
                      location_id:           location1.id,
                      subject_ids:           [subject1.id, subject2.id, subject3.id]) do |user|
     user.email = email
+    user.accept_policies
   end
 end
 

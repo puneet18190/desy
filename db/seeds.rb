@@ -25,6 +25,7 @@ def create_locations_school_levels_subjects_admin_user
                      location_id:           Location.first.id,
                      subject_ids:           subject_ids) do |user|
     user.email = SETTINGS['admin']['email']
+    user.accept_policies
   end.save!
 end
 
