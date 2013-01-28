@@ -53,26 +53,34 @@ class UsersController < ApplicationController
     @user = current_user
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
     @location_ids     = Location.order(:description).map{ |l| [l.to_s, l.id] }
-    @subjects         = Subject.order(:description)
   end
 
   def update
     @user = current_user
-    if params[:user][:password].empty?
+    if params[:user][:password] && params[:user][:password].empty?
       params[:user] = params[:user].delete_if {|key, value| (key == "password" || key == "password_confirmation") } 
     end
+    
+    go_to_page = ""
+    if params[:user][:subject_ids]
+      go_to_page = my_subjects_path
+    else 
+      go_to_page = my_profile_path
+    end
+    
     if @user.update_attributes(params[:user])
-      redirect_to my_profile_path
+      redirect_to go_to_page
     else
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
       @location_ids     = Location.order(:description).map{ |l| [l.to_s, l.id] }
       @subjects         = Subject.order(:description)
-
-      redirect_to my_profile_path
+      redirect_to go_to_page
     end
   end
   
   def subjects
+    @user = current_user
+    @subjects         = Subject.order(:description)
   end
 
   def statistics
