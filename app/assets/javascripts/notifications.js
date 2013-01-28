@@ -26,6 +26,7 @@ function initializeNotifications() {
     }
   });
   $('body').on('click', '._single_notification a', function() {
+
     var closest_li = $(this).closest('li');
     var my_own_id = closest_li.attr('id')
     var my_content = $('#' + my_own_id + ' ._expanded_notification').html();
@@ -37,9 +38,10 @@ function initializeNotifications() {
         my_expanded.show();
         if(!$(this).hasClass('current')) {
           $.ajax({
+            beforeSend: unbindLoader(),
             type: 'post',
             url: '/notifications/' + closest_li.data('param') + '/seen'
-          });
+          }).always(bindLoader);
         }
       });
     } else {
@@ -48,6 +50,7 @@ function initializeNotifications() {
         my_expanded.data('contentid', my_own_id);
         if(!$(this).hasClass('current')) {
           $.ajax({
+            beforeSend: unbindLoader(),
             type: 'post',
             url: '/notifications/' + closest_li.data('param') + '/seen'
           });
