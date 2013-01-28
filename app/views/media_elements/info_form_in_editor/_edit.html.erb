@@ -1,4 +1,4 @@
-<div id="form_info_update_media_element_in_editor" class="_<%= media_element.sti_type %> formInfoMediaElementEditor" style="display:none" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>" data-tags="<%= media_element.tags %>">
+<div id="form_info_update_media_element_in_editor" class="_<%= media_element.sti_type %> formInfoMediaElementEditor" style="display:none" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>">
   <div class="contentFormInfoMediaElementEditor">
      <div class="titleFormInfo">
       <div class="<%= media_element.sti_type.downcase %>Icon pull-left">&nbsp;</div>
@@ -13,12 +13,17 @@
       <%= text_area_tag 'update_description', media_element.description %>
     </div>
     <div class="cols" style="float:right">
+      <div class="_tags_placeholder" data-tags="<%= media_element.tags %>" style="display:none">
+        <% media_element.tags.reverse.split(',').each do |t| %>
+          <span><%= t.reverse.strip %><a class="remove"></a></span>
+        <% end %>
+      </div>
       <div class="ui-widget pull-right _tags_container">
         <% media_element.tags.split(',').each do |t| %>
           <span><%= t.strip %><a class="remove" href="javascript:" title="<%= "#{t('captions.remove')} #{t.strip}" %>"></a></span>
         <% end %>
-        <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
-        <%= hidden_field_tag 'tags_value', media_element.tags %>
+        <%= text_field_tag 'update_tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
+        <%= hidden_field_tag 'update_tags_value', media_element.tags %>
       </div>
     </div>
     <br class="clearfloat">

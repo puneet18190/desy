@@ -6,6 +6,39 @@ $(document).ready(function() {
   
   // FORM OVERWRITE MEDIA ELEMENT
   
+  $('body').on('click', '#form_info_update_media_element_in_editor ._tags_container .remove', function() {
+    removeFromTagsValue($(this).parent().text(), '#form_info_update_media_element_in_editor ._tags_container #update_tags_value');
+    $(this).parent().remove();
+    if($('#form_info_update_media_element_in_editor #update_tags').not(':visible')) {
+      $('#form_info_update_media_element_in_editor #update_tags').show();
+      disableTagsInputTooHigh('#form_info_update_media_element_in_editor ._tags_container', '#form_info_update_media_element_in_editor #update_tags');
+    }
+  });
+  
+  $('body').on('focus', '#form_info_update_media_element_in_editor ._tags_container', function() {
+    $(this).find('._placeholder').hide();
+  });
+  
+  $('body').on('click', '#form_info_update_media_element_in_editor ._tags_container', function() {
+    $('#form_info_update_media_element_in_editor #update_tags').focus();
+    $(this).find('._placeholder').hide();
+  });
+  
+  $('body').on('keydown', '#form_info_update_media_element_in_editor #update_tags', function(e) {
+    if(e.which === 13 || e.which === 188) {
+      e.preventDefault();
+      addTagWithoutSuggestion(this, '#form_info_update_media_element_in_editor ._tags_container', '#update_tags_value');
+    } else if(e.which == 8 && $(this).val() == '') {
+      $(this).prev().find('.remove').trigger('click');
+    }
+  });
+  
+  $('body').on('blur', '#form_info_update_media_element_in_editor #update_tags', function(e) {
+     addTagWithoutSuggestion(this, '#form_info_update_media_element_in_editor ._tags_container', '#update_tags_value');
+  });
+  
+  initTagsAutocomplete('#form_info_update_media_element_in_editor');
+  
   // FORM SAVE AS NEW MEDIA ELEMENT
   
   $('body').on('click', '#form_info_new_media_element_in_editor ._tags_container .remove', function() {
@@ -15,6 +48,10 @@ $(document).ready(function() {
       $('#form_info_new_media_element_in_editor #new_tags').show();
       disableTagsInputTooHigh('#form_info_new_media_element_in_editor ._tags_container', '#form_info_new_media_element_in_editor #new_tags');
     }
+  });
+  
+  $('body').on('focus', '#form_info_new_media_element_in_editor ._tags_container', function() {
+    $(this).find('._placeholder').hide();
   });
   
   $('body').on('click', '#form_info_new_media_element_in_editor ._tags_container', function() {
@@ -48,6 +85,10 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('focus', '#slides._new ._tags_container', function() {
+    $(this).find('._placeholder').hide();
+  });
+  
   $('body').on('click', '#slides._new ._tags_container', function() {
     $('#slides._new #tags').focus();
     $(this).find('._placeholder').hide();
@@ -78,6 +119,10 @@ $(document).ready(function() {
       $('#slides._update #tags').show();
       disableTagsInputTooHigh('#slides._update ._tags_container', '#slides._update #tags');
     }
+  });
+  
+  $('body').on('focus', '#slides._update ._tags_container', function() {
+    $(this).find('._placeholder').hide();
   });
   
   $('body').on('click', '#slides._update ._tags_container', function() {
