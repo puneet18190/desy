@@ -99,7 +99,7 @@ class AudioEditorController < ApplicationController
         :tags => params[:update_tags]
       }
       initial_audio_test.pre_overwriting
-      Notification.send_to current_user.id, t('captions.audio_in_conversion_warning')
+      Notification.send_to current_user.id, t('notifications.audio_in_conversion_warning')
       Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'update'
