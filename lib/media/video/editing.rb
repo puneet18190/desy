@@ -7,7 +7,7 @@ module Media
   module Video
     module Editing
       
-      AVPROBE_BIN             = CONFIG.avtools.avprobe.cmd.bin
+      AVPROBE_BIN = CONFIG.avtools.avprobe.cmd.bin
   
       AVCONV_CODECS            = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).codecs] } ]
       AVCONV_DEFAULT_BITRATES  = Hash[ FORMATS.map{ |f| [f, CONFIG.avtools.avconv.video.formats.send(f).default_bitrates] } ]
