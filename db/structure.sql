@@ -606,7 +606,8 @@ CREATE TABLE users (
     location_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    confirmation_token character varying(255)
+    confirmation_token character varying(255),
+    video_editor_cache text
 );
 
 
@@ -1439,3 +1440,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130115155629');
 INSERT INTO schema_migrations (version) VALUES ('20130121130513');
 
 INSERT INTO schema_migrations (version) VALUES ('20130123140753');
+
+INSERT INTO schema_migrations (version) VALUES ('20130128152817');

@@ -23,6 +23,9 @@ gem 'schema_plus'
 group :development do
   gem 'rails-erd'
   gem "letter_opener"
+  # Basta assets che monopolizzano il log dell'application server!
+  gem 'quiet_assets'
+  gem 'thin'
 end
 
 gem 'recursive-open-struct'

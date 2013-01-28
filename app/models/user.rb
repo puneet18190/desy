@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   REGISTRATION_POLICIES = SETTINGS['user_registration_policies'].map(&:to_sym)
 
   attr_accessor :password
+  serialize :video_editor_cache
 
   ATTR_ACCESSIBLE = [:password, :password_confirmation, :name, :surname, :school_level_id, :school, :location_id, :subject_ids] + REGISTRATION_POLICIES
   attr_accessible *ATTR_ACCESSIBLE
@@ -32,7 +33,7 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 8, :allow_nil => true
   validate :validate_associations, :validate_email, :validate_email_not_changed
   REGISTRATION_POLICIES.each do |policy|
-    validates_acceptance_of policy, on: :create
+    validates_acceptance_of policy, on: :create#, allow_nil: false
   end
   
   before_validation :init_validation
@@ -44,6 +45,11 @@ class User < ActiveRecord::Base
     def admin
       find_by_email SETTINGS['admin']['email']
     end
+  end
+
+  def video_editor_cache!(cache = nil)
+    update_attribute :video_editor_cache, cache
+    nil
   end
 
   def registration_policies
@@ -68,31 +74,6 @@ class User < ActiveRecord::Base
   
   def video_editor_available
     Video.where('converted IS NULL AND user_id = ?', self.id).empty?
-  end
-  
-  def empty_video_editor_cache # FIXME chiamare la sessione
-    return false if self.new_record?
-    cache = Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml")
-    if File.exists?(cache)
-      File.delete(cache)
-    end
-    true
-  end
-  
-  def video_editor_cache # FIXME chiamare la sessione
-    cache = Rails.root.join("tmp/cache/video_editor/#{self.id}/cache.yml")
-    return nil if self.new_record? || !File.exists?(cache)
-    YAML::load(File.open(cache))
-  end
-  
-  def save_video_editor_cache(hash) # FIXME chiamare la sessione
-    return false if self.new_record?
-    folder = Rails.root.join "tmp/cache/video_editor/#{self.id}"
-    FileUtils.mkdir_p folder if !Dir.exists? folder
-    x = File.open folder.join("cache.yml"), 'w'
-    x.write hash.to_yaml
-    x.close
-    true
   end
   
   def search_media_elements(word, page, for_page, order=nil, filter=nil)
