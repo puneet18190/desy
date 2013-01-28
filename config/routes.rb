@@ -85,8 +85,13 @@ Desy::Application.routes.draw do
   post 'videos/commit/overwrite' => 'video_editor#overwrite'
   
   # AUDIO EDITOR
-  get  'audios/:audio_id/edit' => 'audio_editor#index'
-  get  'audios/new' => 'audio_editor#index'
+  get  'audios/:audio_id/edit' => 'audio_editor#edit'
+  get  'audios/new' => 'audio_editor#new'
+  get  'audios/cache/restore' => 'audio_editor#restore_cache', :as => :audio_editor_restore_cache
+  post 'audios/cache/save' => 'audio_editor#save_cache', :as => :audio_editor_save_cache
+  post 'audios/cache/empty' => 'audio_editor#empty_cache', :as => :audio_editor_empty_cache
+  post 'audios/commit/new' => 'audio_editor#save'
+  post 'audios/commit/overwrite' => 'audio_editor#overwrite'
   
   # IMAGE EDITOR
   get  'images/:image_id/edit' => 'image_editor#edit'

@@ -473,7 +473,13 @@ $(document).ready(function() {
   
   $('body').on('click', '._Audio_button_edit', function(e) {
     if(!$(this).parent().hasClass('_disabled')) {
-      alert('ancora non abbiamo editor di audio');
+      e.preventDefault();
+      var audio_id = $(this).data('clickparam');
+      var redirect_back_to = $("#info_container").data('currenturl');
+      var parser = document.createElement('a');
+      parser.href = redirect_back_to;
+      window.location = '/audios/' + audio_id + '/edit?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
+      return false;
     }
   });
   
