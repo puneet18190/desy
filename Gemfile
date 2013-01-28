@@ -25,7 +25,7 @@ group :development do
   gem "letter_opener"
   # Basta assets che monopolizzano il log di WEBrick!
   gem 'quiet_assets'
-  gem 'webrick'
+  gem 'thin'
 end
 
 gem 'recursive-open-struct'
