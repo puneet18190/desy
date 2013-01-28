@@ -61,6 +61,11 @@ module MediaEditingSpecSupport
                     }
                   }
 
+  VIDEO_COMPOSING = { 
+                      mp4: {:duration=>38.19, :streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>193}], :audio=>[{:codec=>"mp3", :bitrate=>76}]}},
+                      webm: {:duration=>38.17, :streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[{:codec=>"vorbis", :bitrate=>nil}]}}
+                    }
+
   AVCONV_SH_VARS         = {}
   AVCONV_PRE_COMMAND     = 'avconv -v 9 -loglevel 99 -benchmark -y -timelimit 86400'
   AVCONV_SUBEXEC_OPTIONS = { sh_vars: AVCONV_SH_VARS, timeout: 86410 }

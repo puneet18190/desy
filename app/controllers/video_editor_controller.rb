@@ -57,7 +57,7 @@ class VideoEditorController < ApplicationController
     initial_video_test = Video.new
     initial_video_test.title = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
     initial_video_test.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
-    initial_video_test.tags = params[:tags_value]
+    initial_video_test.tags = params[:new_tags_value]
     initial_video_test.user_id = current_user.id
     # provo a validarlo per vedere se è ok
     initial_video_test.valid?
@@ -100,8 +100,7 @@ class VideoEditorController < ApplicationController
         :description => params[:update_description],
         :tags => params[:update_tags]
       }
-      initial_video_test.update_attribute(:converted, nil)
-      initial_video_test.disable_lessons_containing_me
+      initial_video_test.pre_overwriting
       Notification.send_to current_user.id, t('captions.video_in_conversion_warning')
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
     else

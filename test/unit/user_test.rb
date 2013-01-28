@@ -4,17 +4,17 @@ class UserTest < ActiveSupport::TestCase
   
   def setup
     begin
-      @user = User.new :name => 'Javier Ernesto', :surname => 'Chevanton', :school_level_id => 1,
-        :school => 'Scuola', :location_id => 1
-      @user.email = 'plutdsgso@pippo.it'
-    rescue ActiveModel::MassAssignmentSecurity::Error
+      @user = User.confirmed.new(:name => 'Javier Ernesto', :surname => 'Chevanton', :school_level_id => 1, :school => 'Scuola', :location_id => 1, :password => 'osososos', :password_confirmation => 'osososos', :subject_ids => [1]) do |user|
+        user.email = 'em1@em.em'
+      end
+    rescue ActiveModel::MassAssignmentSecurity::Error => err
       @user = nil
     end
   end
   
   test 'empty_and_defaults' do
     @user = User.new
-    assert_error_size 10, @user
+    assert_error_size 12, @user
   end
   
   test 'attr_accessible' do

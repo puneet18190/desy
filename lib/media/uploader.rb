@@ -145,14 +145,21 @@ module Media
       end
     end
 
+    def to_hash
+      Hash[ self.class::FORMATS.map{ |f| [f, path(f)] } ].merge(filename: filename_without_extension)
+    end
+
     private
     def copy
       FileUtils.mkdir_p output_folder unless Dir.exists? output_folder
       
       infos = {}
       @converted_files.each do |format, input_path|
-        FileUtils.cp input_path, output_path(format)
-        info = Info.new(input_path)
+        output_path = output_path(format)
+        # se il percorso del file è uguale a quello vecchio è lo stesso file; per cui non copio
+        # (è un caso che si verifica p.e. nel caso di un errore nel Composer, che ripristina il file vecchio)
+        FileUtils.cp input_path, output_path if input_path != output_path
+        info = Info.new(output_path)
         infos[format] = info
         model.send :"#{format}_duration=", info.duration
       end

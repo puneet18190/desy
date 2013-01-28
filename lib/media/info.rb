@@ -94,7 +94,7 @@ module Media
       streams[:audio]
     end
 
-    def info
+    def to_hash
       return nil unless valid?
       
       { path: path, duration: duration, streams: streams }

@@ -4,7 +4,7 @@
   tags_max = t('captions.tags_max', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
 
-<div id="form_info_new_media_element_in_editor" class="_<%= sti_type %> formInfoMediaElementEditor" style="display:none" data-title="<%= title_max %>" data-description="<%= description_max %>" data-tags="<%= tags_max %>">
+<div id="form_info_new_media_element_in_editor" class="_<%= sti_type %> formInfoMediaElementEditor" style="display:none" data-title="<%= title_max %>" data-description="<%= description_max %>">
   <div class="contentFormInfoMediaElementEditor">
     <div class="titleFormInfo">
       <div class="<%= sti_type.downcase %>Icon pull-left">&nbsp;</div>
@@ -22,11 +22,11 @@
     </div>
     <div class="cols" style="float:right">
       <div class="ui-widget pull-right _tags_container">
-        <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
+        <%= text_field_tag 'new_tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
         <div class="_placeholder">
           <%= tags_max %>
         </div>
-        <%= hidden_field_tag 'tags_value', '' %>
+        <%= hidden_field_tag 'new_tags_value', '' %>
       </div>
     </div>
     <br class="clearfloat">
