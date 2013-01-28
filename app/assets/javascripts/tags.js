@@ -245,6 +245,7 @@ function addTagWithoutSuggestion(input, container_selector, tags_value_selector)
       createTagSpan(my_val, true).insertBefore(input);
       $.ajax({
         type: 'get',
+        beforeSend: unbindLoader(),
         url: '/tags/' + my_val + '/check_presence',
         dataType: 'json',
         success: function(data) {
@@ -252,7 +253,7 @@ function addTagWithoutSuggestion(input, container_selector, tags_value_selector)
             $(container_selector).find('span.' + getUnivoqueClassForTag(my_val)).removeClass('new_tag');
           }
         }
-      });
+      }).always(bindLoader);
     }
     disableTagsInputTooHigh(container_selector, input);
   }
@@ -323,9 +324,13 @@ function initTagsAutocomplete(scope) {
   }
   $(input_selector).autocomplete({
     source: function(request, response) {
-      $.getJSON( "/tags/get_list", {
-        term: request.term
-      }, response);
+      $.ajax({
+        dataType: "json",
+        beforeSend: unbindLoader(),
+        url: "/tags/get_list",
+        data: {term: request.term},
+        success: response
+      }).always(bindLoader);
     },
     search: function() {
       if(this.value.length < $('#popup_parameters_container').data('min-length-search-tags')) {
