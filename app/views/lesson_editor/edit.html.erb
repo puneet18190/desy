@@ -12,7 +12,7 @@
         <%= text_area_tag 'description', @lesson.description, :class => 'pull-left' %>
         <div class="ui-widget pull-right _tags_container">
           <% @lesson.tags.split(',').each do |t| %>
-            <span><%= t.strip %><a class="remove" href="javascript:" title="<%= "#{t('captions.remove')} #{t.strip}" %>"></a></span>
+            <span><%= t.strip %><a class="remove"></a></span>
           <% end %>
           <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
           <%= hidden_field_tag 'tags_value', @lesson.tags %>

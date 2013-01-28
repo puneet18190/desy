@@ -35,6 +35,7 @@
  *= require msie
  *= require layouts/lesson_viewer
  *= require layouts/media_element_editor
+ *= require tags_container
  *= require layouts/header_home
  *= require layouts/home
  *= require layouts/prelogin
