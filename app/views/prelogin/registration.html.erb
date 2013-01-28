@@ -38,8 +38,17 @@ Organize your lessons in your virtual classroom and discover a new way of teachi
           <table>
             <tr>
               <td>
-                <%= f.check_box policy, class: 'regular-checkbox' %>
-                <%= f.label policy, '&nbsp;'.html_safe %>
+                <% if @user.errors.include?(policy) -%>
+                  <div class="field_with_errors">
+                <% end -%>
+
+                <%= f.hidden_field policy, value: '0', id: nil %>
+                <%= check_box_tag "user[#{policy}]", '1', @user.send(policy) == '1', class: 'regular-checkbox' %>
+                <%= label_tag "user[#{policy}]", '' %>
+
+                <% if @user.errors.include?(policy) -%>
+                  </div>
+                <% end -%>
               </td>
               <td>accept</td>
             </tr>
@@ -56,7 +65,6 @@ Organize your lessons in your virtual classroom and discover a new way of teachi
 
     <ul class="listaErrori">
     <% errors.each do |k, v| -%>
-      <%# TODO usare l'icona di errore '!.png' %>
       <li><%= @user.errors.full_message(k, v) %></li>
     <% end if errors.present? -%>
     </ul>

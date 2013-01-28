@@ -18,6 +18,8 @@ $(document).ready(function() {
     }
   });
   
+  // LOADER
+  bindLoader();
   
   // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
   

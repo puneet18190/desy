@@ -94,8 +94,9 @@ $(document).ready(function() {
     var slide_id = slide.data('slide-id');
     $.ajax({
       type: 'post',
+      beforeSend: unbindLoader(),
       url: '/lessons/' + lesson_id + '/slides/' + slide_id + '/kind/' + kind + '/create/'
-    });
+    }).always(bindLoader);
   });
   
   $('body').on('click', '._delete_slide', function() {
@@ -104,8 +105,9 @@ $(document).ready(function() {
     slide.prepend('<layer class="_not_current_slide_disabled"></layer>');
     $.ajax({
       type: 'post',
+      beforeSend: unbindLoader(),
       url: '/lessons/' + $('#info_container').data('lesson-id') + '/slides/' + slide.data('slide-id') + '/delete'
-    });
+    }).always(bindLoader);
   });
   
   $('body').on('click', '._show_image_gallery_in_lesson_editor', function() {
@@ -313,8 +315,9 @@ function showGalleryInLessonEditor(obj, sti_type) {
   } else {
     $.ajax({
       type: 'get',
+      beforeSend: unbindLoader(),
       url: '/lessons/galleries/' + sti_type
-    });
+    }).always(bindLoader);
   }
 }
 
@@ -458,6 +461,16 @@ function makeDraggable(place_id) {
   });
 }
 
+function submitCurrentSlideForm(){
+  $.ajax({
+    type: "POST",
+    url: $('._lesson_editor_current_slide form').attr('action'),
+    timeout:5000,
+    data: $('._lesson_editor_current_slide form').serialize(),
+    beforeSend: unbindLoader()
+	}).always(bindLoader);
+}
+
 function saveCurrentSlide() {
   tinyMCE.triggerSave();
   var temporary = new Array();
@@ -469,7 +482,7 @@ function saveCurrentSlide() {
       $(this).val('');
     }
   });
-  $('._lesson_editor_current_slide form').submit();
+  submitCurrentSlideForm();
   temp_counter = 0;
   $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
     if($(this).data('placeholder')) {

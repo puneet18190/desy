@@ -14,6 +14,9 @@ class LessonViewerController < ApplicationController
   
   def playlist
     @playlist = current_user.playlist
+    if @playlist.count == 0
+      redirect_to '/dashboard'
+    end
   end
   
   private

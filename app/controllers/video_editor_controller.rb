@@ -36,12 +36,12 @@ class VideoEditorController < ApplicationController
   end
   
   def empty_cache
-    current_user.empty_video_editor_cache
+    current_user.video_editor_cache!
     render :nothing => true
   end
   
   def save_cache
-    current_user.save_video_editor_cache(extract_form_parameters)
+    current_user.video_editor_cache! extract_form_parameters
     render :nothing => true
   end
   
@@ -49,7 +49,7 @@ class VideoEditorController < ApplicationController
     parameters = Video.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false
     if parameters.nil?
-      current_user.empty_video_editor_cache
+      current_user.video_editor_cache!
       @redirect = true
       render 'media_elements/info_form_in_editor/save'
       return
@@ -84,7 +84,7 @@ class VideoEditorController < ApplicationController
     parameters = Video.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false
     if parameters.nil?
-      current_user.empty_video_editor_cache
+      current_user.video_editor_cache = {}
       @redirect = true
       render 'media_elements/info_form_in_editor/save'
       return

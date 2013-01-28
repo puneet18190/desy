@@ -56,7 +56,8 @@ module Media
               let(:audio_track)              { nil }
               let(:user_notifications_count) { user.notifications.count }
 
-              before(:all) do 
+              before(:all) do
+                user.video_editor_cache!(params)
                 user_notifications_count
                 described_class.new(params).run
               end
@@ -78,6 +79,10 @@ module Media
 
               it 'sends a notification to the user' do
                 video.user.notifications.count.should == user_notifications_count+1
+              end
+
+              it 'deletes the video editor cache' do
+                video.user.reload.video_editor_cache.should be_nil
               end
             end
             
@@ -85,7 +90,8 @@ module Media
               let(:audio_track) { audio }
               let(:user_notifications_count) { user.notifications.count }
 
-              before(:all) do 
+              before(:all) do
+                user.video_editor_cache!(params)
                 user_notifications_count
                 described_class.new(params).run
               end
@@ -107,6 +113,9 @@ module Media
 
               it 'sends a notification to the user' do
                 video.user.notifications.count.should == user_notifications_count+1
+              end
+              it 'deletes the video editor cache' do
+                video.user.reload.video_editor_cache.should be_nil
               end
             end
 
@@ -126,7 +135,8 @@ module Media
               let(:audio_track)              { nil }
               let(:user_notifications_count) { user.notifications.count }
 
-              before(:all) do 
+              before(:all) do
+                user.video_editor_cache!(params)
                 user_notifications_count
                 described_class.new(params).run
               end
@@ -152,6 +162,10 @@ module Media
 
               it 'sends a notification to the user' do
                 video.user.notifications.count.should == user_notifications_count+1
+              end
+
+              it 'deletes the video editor cache' do
+                video.user.reload.video_editor_cache.should be_nil
               end
             end
 
@@ -159,7 +173,8 @@ module Media
               let(:audio_track)              { audio }
               let(:user_notifications_count) { user.notifications.count }
 
-              before(:all) do 
+              before(:all) do
+                user.video_editor_cache!(params)
                 user_notifications_count
                 described_class.new(params).run
               end
@@ -185,6 +200,10 @@ module Media
 
               it 'sends a notification to the user' do
                 video.user.notifications.count.should == user_notifications_count+1
+              end
+
+              it 'deletes the video editor cache' do
+                video.user.reload.video_editor_cache.should be_nil
               end
             end
           end
