@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123140753) do
+ActiveRecord::Schema.define(:version => 20130128152817) do
 
   create_table "locations", :force => true do |t|
     t.string   "description", :null => false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130123140753) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "confirmation_token"
+    t.text     "video_editor_cache"
     t.index ["location_id"], :name => "fk__users_location_id", :order => {"location_id" => :asc}
     t.index ["school_level_id"], :name => "fk__users_school_level_id", :order => {"school_level_id" => :asc}
     t.index ["confirmation_token"], :name => "index_users_on_confirmation_token", :order => {"confirmation_token" => :asc}
