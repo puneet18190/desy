@@ -23,11 +23,12 @@ class MediaElement < ActiveRecord::Base
   attr_accessible :title, :description, :media, :publication_date, :tags
   attr_reader :status, :is_reportable, :info_changeable
   attr_writer :tags
-  
+
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
   has_many :reports, :as => :reportable, :dependent => :destroy
   has_many :taggings, :as => :taggable, :dependent => :delete_all
+  has_many :taggings_tags, through: :taggings, source: :tag
   belongs_to :user
   
   validates_presence_of :user_id, :title, :description, :media
@@ -66,26 +67,26 @@ class MediaElement < ActiveRecord::Base
   end
   
   def disable_lessons_containing_me
-    MediaElementsSlide.where(:media_element_id => self.id).each do |mes|
+    MediaElementsSlide.where(:media_element_id => id).each do |mes|
       l = mes.slide.lesson
-      if self.video?
+      if video?
         l.metadata.available_video = false
-      elsif self.audio?
+      elsif audio?
         l.metadata.available_audio = false
       end
-      l.save
+      l.save!
     end
   end
   
   def enable_lessons_containing_me
-    MediaElementsSlide.where(:media_element_id => self.id).each do |mes|
+    MediaElementsSlide.where(:media_element_id => id).each do |mes|
       l = mes.slide.lesson
-      if self.video?
+      if video?
         l.metadata.available_video = true
-      elsif self.audio?
+      elsif audio?
         l.metadata.available_audio = true
       end
-      l.save
+      l.save!
     end
   end
   

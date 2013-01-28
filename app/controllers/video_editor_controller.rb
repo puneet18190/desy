@@ -12,6 +12,7 @@ class VideoEditorController < ApplicationController
       @parameters = convert_video_to_parameters
       @total_length = Video.total_prototype_time(@parameters)
       @used_in_private_lessons = used_in_private_lessons
+      @back = params[:back] if params[:back].present?
     else
       redirect_to dashboard_path
       return
@@ -22,6 +23,7 @@ class VideoEditorController < ApplicationController
     @parameters = empty_parameters
     @total_length = Video.total_prototype_time(@parameters)
     @used_in_private_lessons = used_in_private_lessons
+    @back = params[:back] if params[:back].present?
     render :edit
   end
   
@@ -98,8 +100,7 @@ class VideoEditorController < ApplicationController
         :description => params[:update_description],
         :tags => params[:update_tags]
       }
-      initial_video_test.update_attribute(:converted, nil)
-      initial_video_test.disable_lessons_containing_me
+      initial_video_test.pre_overwriting
       Notification.send_to current_user.id, t('captions.video_in_conversion_warning')
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
     else

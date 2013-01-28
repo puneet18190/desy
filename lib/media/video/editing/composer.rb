@@ -2,6 +2,7 @@ require 'media'
 require 'media/video'
 require 'media/video/editing'
 require 'media/in_tmp_dir'
+require 'media/error'
 require 'media/video/editing/parameters'
 require 'sensitive_thread'
 require 'media/video/editing/text_to_video'
@@ -16,8 +17,8 @@ module Media
         include InTmpDir
 
         VIDEO_COMPONENT = Parameters::VIDEO_COMPONENT
-        TEXT_COMPONENT  = Parameters::TEXT_COMPONENT
         IMAGE_COMPONENT = Parameters::IMAGE_COMPONENT
+        TEXT_COMPONENT  = Parameters::TEXT_COMPONENT
 
         #  {
         #    :initial_video => {
@@ -52,6 +53,27 @@ module Media
         end
 
         def run
+          old_media = !video.new_record? and video.media.to_hash
+          
+          begin
+            compose
+          rescue StandardError => e
+            if old_media
+              video.media     = old_media 
+              video.converted = true
+            end
+            if old_fields = video.try(:metadata).try(:old_fields)
+              video.title       = old_fields.title
+              video.description = old_fields.description
+              video.tags        = old_fields.tags
+            end
+            video.save! if old_media || old_fields
+            Notification.send_to video_user_id, I18n.t('captions.video_composing_failed') if video_user_id
+            raise e
+          end
+        end
+
+        def compose
           in_tmp_dir do
             concats = {}
 
@@ -66,8 +88,7 @@ module Media
                   when TEXT_COMPONENT
                     compose_text *component.values_at(:content, :duration, :text_color, :background_color), i
                   else
-                    # TODO messaggio migliore
-                    raise "unknown component type: #{component[:type].inspect}"
+                    raise Error.new("wrong component type", type: component[:type])
                   end
               end
             end.each(&:join)
@@ -90,8 +111,13 @@ module Media
               outputs = ReplaceAudio.new(outputs, audios, tmp_path('replace_audio')).run
             end
 
-            video.media = outputs.merge(filename: video.title)
-            video.save!
+            video.media               = outputs.merge(filename: video.title)
+            video.metadata.old_fields = nil
+            ActiveRecord::Base.transaction do
+              video.save!
+              video.enable_lessons_containing_me
+              Notification.send_to video_user_id, I18n.t('captions.video_composing_successful') if video_user_id
+            end
           end
         end
 
@@ -133,6 +159,10 @@ module Media
           end
         end
 
+        def video_user_id
+          video.user_id || video.user.try(:id)
+        end
+
         def output_without_extension(i)
           tmp_path i.to_s
         end
@@ -140,21 +170,18 @@ module Media
         def video
           @video ||= (
             id = @params[:initial_video][:id]
-            video =
-              if id
-                ::Video.find(id)
-              else
-                ::Video.new do |video|
-                  video.user_id = @params[:initial_video][:user_id]
+
+            if id
+              ::Video.find(id)
+            else
+              ::Video.new do |video|
+                video.user_id = @params[:initial_video][:user_id]
+                attributes = @params[:initial_video].select{ |k| [:title, :description, :tags].include? k }
+                attributes.each do |attribute, value|
+                  video.send :"#{attribute}=", value
                 end
               end
-
-            attributes = @params[:initial_video].select{ |k| [:title, :description, :tags].include? k }
-            attributes.each do |attribute, value|
-              video.send :"#{attribute}=", value
             end
-            
-            video
           )
         end
 

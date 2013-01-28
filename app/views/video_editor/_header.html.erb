@@ -10,5 +10,12 @@
       <% end %>
     </div>
     <div class="fltrt"><a class="esciButton _exit_video_editor"  title="<%= t('general_titles.exit_title') %>"></a></div>
+    <script type="text/javascript" charset="utf-8">
+      if("<%= @back %>".length > 0) {
+        var bb = $(".esciButton");
+        bb.attr("href","<%=@back%>");
+        bb.show();
+      }
+    </script>
   </div>
 </div>

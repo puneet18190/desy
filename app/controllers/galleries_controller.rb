@@ -10,6 +10,7 @@ class GalleriesController < ApplicationController
   
   def image_for_image_editor
     get_images
+    @back = params[:back] if params[:back].present?
     render :layout => 'media_element_editor'
   end
   
