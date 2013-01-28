@@ -1,6 +1,8 @@
 function bindLoader(){
-  $('#loading .containerLoading').css("top", (($(window).height()/2)-100)+"px");
-  $('#loading .containerLoading').css("left", (($(window).width()/2)-50)+"px");
+  var loader = $('#loading .containerLoading');
+  loader.css("top", (($(window).height()/2)-100)+"px");
+  loader.css("left", (($(window).width()/2)-50)+"px");
+
   $('#loading').show();
   var oldLoad = window.onload;
   var newLoad = function() {
@@ -16,8 +18,10 @@ function bindLoader(){
 
   $("#loading").bind({
     ajaxStart: function() {
-      $(this).find('.containerLoading').css("top", (($(window).height()/2)-100)+"px");
-      $(this).find('.containerLoading').css("left", (($(window).width()/2)-50)+"px");
+      var this_loader = $(this).find('.containerLoading');
+      this_loader.css("top", (($(window).height()/2)-100)+"px");
+      this_loader.css("left", (($(window).width()/2)-50)+"px");
+      
       $(this).show();
     },
     ajaxStop: function() {
