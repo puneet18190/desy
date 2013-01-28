@@ -27,14 +27,14 @@ class Tag < ActiveRecord::Base
   
   def self.get_tags_for_item(item_id, kind)
     resp = []
-    Tagging.includes(:tag).where(:taggable_type => kind, :taggable_id => item_id).each do |t|
+    Tagging.includes(:tag).where(:taggable_type => kind, :taggable_id => item_id).order(:tag_id).each do |t|
       resp << t.tag
     end
     resp
   end
   
   def self.get_friendly_tags(item_id, kind)
-    tags = Tagging.where(:taggable_id => item_id, :taggable_type => kind)
+    tags = Tagging.where(:taggable_id => item_id, :taggable_type => kind).order(:tag_id)
     return '' if tags.empty?
     resp = tags.first.tag.word
     count = 1
