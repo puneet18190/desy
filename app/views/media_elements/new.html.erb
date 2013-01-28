@@ -1,6 +1,6 @@
 <div class="header">
   <div class="contenitore" style="width: 960px; margin: 0 auto; display: inline-block;" >
-    <div class="fltrt"><a href="javascript:history.back();" class="esciButton" title="<%= t('general_titles.exit_title') %>"></a></div>
+    <div class="fltrt"><a href="/media_elements" class="esciButton" title="<%= t('general_titles.exit_title') %>"></a></div>
   </div>
 </div>
 <div class="mediaSelectEditorButtonContainer">
@@ -8,8 +8,8 @@
     <h1>Welcome editor desy!</h1>
     <h2>Want to create a new educational element? Choose the type of the new element.<br><br>Good work!</h2>
     <div class="contentSelectButton">
-      <%= link_to '', '/videos/new', :class => "videoButton", :title => t('general_titles.video_new_title') %>
-      <%= link_to '', '/images/galleries/image', :class => "photoButton", :title => t('general_titles.photo_new_title') %>
+      <%= link_to '', '/videos/new?back=%2Fmedia_elements', :class => "videoButton", :title => t('general_titles.video_new_title') %>
+      <%= link_to '', '/images/galleries/image?back=%2Fmedia_elements', :class => "photoButton", :title => t('general_titles.photo_new_title') %>
       <a class="audioButton" title="<%= t('general_titles.audio_new_title') %>"></a>
     </div>
   </div>

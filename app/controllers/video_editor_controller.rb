@@ -12,6 +12,7 @@ class VideoEditorController < ApplicationController
       @parameters = convert_video_to_parameters
       @total_length = Video.total_prototype_time(@parameters)
       @used_in_private_lessons = used_in_private_lessons
+      @back = params[:back] if params[:back].present?
     else
       redirect_to dashboard_path
       return
@@ -22,6 +23,7 @@ class VideoEditorController < ApplicationController
     @parameters = empty_parameters
     @total_length = Video.total_prototype_time(@parameters)
     @used_in_private_lessons = used_in_private_lessons
+    @back = params[:back] if params[:back].present?
     render :edit
   end
   
