@@ -64,7 +64,8 @@ function resetMediaElementEditorForms() {
   update_form.find('#update_description_placeholder').val('');
   update_form.find('._tags_container span').remove();
   update_form.find('._tags_placeholder span').each(function() {
-    update_form.find('._tags_container').prepend(this);
+    var copy = $(this)[0].outerHTML;
+    update_form.find('._tags_container').prepend(copy);
   });
   update_form.find('#update_tags_value').val(update_form.find('._tags_placeholder').data('tags'));
   update_form.find('._tags_container').removeClass('form_error');
