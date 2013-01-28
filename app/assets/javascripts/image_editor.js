@@ -304,3 +304,12 @@ function resetImageEditorTexts() {
   $('._image_editor_text').remove();
   $('#image_editor_text_buttons ._do').addClass('disabled');
 }
+
+function centerThisInContainer(div,container) {
+  var contH = $(container).height();
+  var contW = $(container).width();
+  var centerDiv = $(div);
+  centerDiv.css('top', (contH/2-centerDiv.height()/2)+$(container).position().top);
+  centerDiv.css('left', (contW/2-centerDiv.width()/2)+$(container).position().left);
+}
+

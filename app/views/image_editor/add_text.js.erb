@@ -4,7 +4,7 @@
   $('#image_editor_form input._additional').remove();
   $('#image_editor_empty_buttons ._undo').show();
   $('body').prepend('<span class="_saved"></span>');
-  centerThis('._saved');
+  centerThisInContainer('._saved','#image_wrapper');
   $('._saved').fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
 <% else %>
   slideError();
