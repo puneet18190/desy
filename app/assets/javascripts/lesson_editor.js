@@ -279,13 +279,6 @@ $(document).ready(function() {
     }
   });
   
-  if($("#new-lesson-tags").length > 0){
-    initTagsAutocomplete("tags","new-lesson-tags");
-  }
-  if($("#edit-lesson-tags").length > 0){
-    initTagsAutocomplete("tags","edit-lesson-tags");
-  }
-  
 });
 
 function scrollPaneUpdate(trigger_element){

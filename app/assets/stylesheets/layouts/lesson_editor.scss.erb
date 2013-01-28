@@ -1028,12 +1028,12 @@ html.lesson-editor-layout{
         line-height: 20px; /* Altezza di riga */
       }
       
-      #new-lesson-tags,#edit-lesson-tags{
+      /*._tags_container {
         width: 336px;
         height: 140px;
         display:block;
         resize: none; 
-        line-height: 20px; /* Altezza di riga */
+        line-height: 20px; 
         border-radius: 10px;
         border: 3px solid #f29400;
         padding: 0;
@@ -1046,14 +1046,21 @@ html.lesson-editor-layout{
         outline: none;
         background-color: #E48D1F;
         overflow:auto;
-
+        ._placeholder {
+          position: absolute;
+          top: 5px;
+          left: 10px;
+        }
         span{
           border-radius: 5px;
           padding: 0 3px;
-          margin: 3px;
+          margin: 5px 0 0 5px;
           background-color: #fff;
           float:left;
           color: #373737;
+          &.new_tag {
+            background-color: lime;
+          }
           a{
             display:block;
             float:right;
@@ -1077,14 +1084,14 @@ html.lesson-editor-layout{
           overflow:visible;
           clear:both;
           border: none;
-          margin-top: 5px; 
+          margin-top: 5px;
           padding: 0 10px;
           box-shadow: none;
           width: 295px;
           height: auto;
           
         }
-      }
+      }*/
       
       ._error_messages{
         height: 10px;
@@ -1093,7 +1100,7 @@ html.lesson-editor-layout{
         width: 700px;
         display:block;
       }
-      .form_error,input.form_error{
+      .form_error, input.form_error, .sbHolder.form_error {
         border-radius: 10px;
         border: 3px solid rgba(250, 0, 0, 0.5);
       }

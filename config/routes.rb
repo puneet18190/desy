@@ -48,6 +48,7 @@ Desy::Application.routes.draw do
   
   # TAGS
   get  'tags/get_list' => 'tags#get_list'
+  get  'tags/:word/check_presence' => 'tags#check_presence'
   
   # GALLERIES
   get  'lessons/galleries/image' => 'galleries#image_for_lesson_editor'
@@ -106,7 +107,7 @@ Desy::Application.routes.draw do
   get  'profile' => 'users#edit', :as => :my_profile
   get  'profile/subjects' => 'users#subjects', :as => :my_subjects
   get  'profile/statistics' => 'users#statistics', :as => :my_statistics
-  post 'profile/update' => 'users#update', as: :user
+  put 'profile/update' => 'users#update', as: :user
   # get  'logout' => 'users#logout', :as => :logout
 
   # USER SESSION

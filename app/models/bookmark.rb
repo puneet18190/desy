@@ -6,7 +6,7 @@ class Bookmark < ActiveRecord::Base
   validates_presence_of :user_id, :bookmarkable_id
   validates_numericality_of :user_id, :bookmarkable_id, :only_integer => true, :greater_than => 0
   validates_inclusion_of :bookmarkable_type, :in => ['Lesson', 'MediaElement']
-  validates_uniqueness_of :bookmarkable_id, :scope => [:user_id, :bookmarkable_type]
+  validates_uniqueness_of :bookmarkable_id, :scope => [:user_id, :bookmarkable_type], :if => :good_bookmarkable_type
   validate :validate_associations, :validate_availability, :validate_impossible_changes
   
   before_validation :init_validation
@@ -19,6 +19,10 @@ class Bookmark < ActiveRecord::Base
     @bookmark = Valid.get_association self, :id
     @lesson = self.bookmarkable_type == 'Lesson' ? Valid.get_association(self, :bookmarkable_id, Lesson) : nil
     @media_element = self.bookmarkable_type == 'MediaElement' ? Valid.get_association(self, :bookmarkable_id, MediaElement) : nil
+  end
+  
+  def good_bookmarkable_type
+    ['Lesson', 'MediaElement'].include? self.bookmarkable_type
   end
   
   def validate_associations

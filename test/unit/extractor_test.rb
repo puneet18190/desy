@@ -8,15 +8,42 @@ class ExtractorTest < ActiveSupport::TestCase
     Like.all.each do |l|
       l.destroy
     end
-    @liker1 = User.create_user('em1@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
-    @liker2 = User.create_user('em2@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
-    @liker3 = User.create_user('em3@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
-    @liker4 = User.create_user('em4@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
-    @liker5 = User.create_user('em5@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
-    @liker6 = User.create_user('em6@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
-    @liker7 = User.create_user('em7@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
-    @liker8 = User.create_user('em8@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
-    @liker9 = User.create_user('em9@em.em', 'dgdsg', 'sdgds', 'adgadg', 1, 1, [1])
+    @liker1 = User.confirmed.new(:password => 'em1@em.em', :password_confirmation => 'em1@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+      user.email = 'em1@em.em'
+    end
+    assert @liker1.save
+    @liker2 = User.confirmed.new(:password => 'em2@em.em', :password_confirmation => 'em2@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+      user.email = 'em2@em.em'
+    end
+    assert @liker2.save
+    @liker3 = User.confirmed.new(:password => 'em3@em.em', :password_confirmation => 'em3@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+      user.email = 'em3@em.em'
+    end
+    assert @liker3.save
+    @liker4 = User.confirmed.new(:password => 'em4@em.em', :password_confirmation => 'em4@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+      user.email = 'em4@em.em'
+    end
+    assert @liker4.save
+    @liker5 = User.confirmed.new(:password => 'em5@em.em', :password_confirmation => 'em5@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+      user.email = 'em5@em.em'
+    end
+    assert @liker5.save
+    @liker6 = User.confirmed.new(:password => 'em6@em.em', :password_confirmation => 'em6@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+      user.email = 'em6@em.em'
+    end
+    assert @liker6.save
+    @liker7 = User.confirmed.new(:password => 'em7@em.em', :password_confirmation => 'em7@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+      user.email = 'em7@em.em'
+    end
+    assert @liker7.save
+    @liker8 = User.confirmed.new(:password => 'em8@em.em', :password_confirmation => 'em8@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+      user.email = 'em8@em.em'
+    end
+    assert @liker8.save
+    @liker9 = User.confirmed.new(:password => 'em9@em.em', :password_confirmation => 'em9@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+      user.email = 'em9@em.em'
+    end
+    assert @liker9.save
     assert @liker1.like @les1.id
     assert @liker1.like @les3.id
     assert @liker1.like @les6.id
@@ -906,8 +933,10 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_obj_saved mee3
     @el2 = MediaElement.find @el2.id
     @el2.tags = 'di escrementi di usignolo, tonquinamento atmosferico, acquario, 拿, walter nudo, mare, tonquinamento, 加條聖, 條聖'
-    @el2.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
     assert_obj_saved @el2
+    MediaElement.where(:id => @el2.id).update_all(:is_public => false)
+    @el2.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
+    MediaElement.where(:id => @el2.id).update_all(:is_public => true)
     MediaElement.where(:id => 3).update_all(:updated_at => '2012-01-01 19:59:58')
     MediaElement.where(:id => @el2.id).update_all(:updated_at => '2011-10-01 19:59:59')
     MediaElement.where(:id => @el4.id).update_all(:updated_at => '2011-10-01 19:59:57')

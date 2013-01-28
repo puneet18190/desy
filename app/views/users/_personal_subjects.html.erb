@@ -4,16 +4,18 @@
     <div class="checkboxElement">
       <%= check_box_tag "user[subject_ids][]", subject.id, @user.users_subjects.map(&:subject_id).include?(subject.id), id: html_id, class: "regular-checkbox big-checkbox" %>
       <%= label_tag html_id, '' %>
-      <%= subject.to_s %>
+      <span><%= subject.to_s %></span>
     </div>
   <% end -%>
-
+  <br class="clearfloat">
   <%# ERRORI %>
   <% errors = @user.errors.select{ |k,_| [:users_subjects].include? k } -%>
-  <ul>
+  
+  <ul class="listaErrori">
   <% errors.each do |k, v| -%>
     <%# TODO usare l'icona di errore '!.png' %>
     <li><%= @user.errors.full_message(k, v) %></li>
   <% end if errors.present? -%>
   </ul>
 </fieldset>
+<hr>

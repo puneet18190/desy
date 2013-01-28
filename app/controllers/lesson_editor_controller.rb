@@ -24,17 +24,13 @@ class LessonEditorController < ApplicationController
   def create
     title = params[:title_placeholder] != '0' ? '' : params[:title]
     description = params[:description_placeholder] != '0' ? '' : params[:description]
-    tags = params['new-lesson-tags_placeholder'] != '0' ? '' : params[:tags]
+    tags = params[:tags_value]
     new_lesson = current_user.create_lesson title, description, params[:subject], tags
     if new_lesson.instance_of?(Lesson)
       @lesson = new_lesson
     else
       @errors = convert_lesson_editor_messages new_lesson
       @error_fields = new_lesson.keys
-      if @error_fields.include? :tags
-        @error_fields.delete :tags
-        @error_fields << 'new-lesson-tags'
-      end
     end
   end
   
@@ -43,13 +39,15 @@ class LessonEditorController < ApplicationController
       redirect_to '/dashboard'
       return
     else
-      @lesson.title = params[:lesson][:title]
-      @lesson.description =  params[:lesson][:description]
-      @lesson.subject_id = params[:subject]
-      @lesson.tags = params[:lesson][:tags]
-      @lesson.modified
+      @lesson.title = params[:title]
+      @lesson.description =  params[:description]
+      @lesson.subject_id = params[:lesson_subject]
+      @lesson.tags = params[:tags_value]
       if !@lesson.save
-        @errors = @lesson.errors.messages
+        @errors = convert_item_error_messages @lesson.errors.messages
+        @error_fields = @lesson.errors.messages.keys
+      else
+        @lesson.modified
       end
     end
   end

@@ -42,7 +42,7 @@
         float:left;
         width: auto;
         a{
-          font: 14px 'Nunito' sans-serif;
+          font: 14px 'Nunito', sans-serif;
           text-transform: lowercase;  
           background-color: #999;
           color: #fff;
@@ -66,7 +66,7 @@
   }
 }
 .contentForm {
-  padding:0;
+  padding-bottom:150px;
   float:left;
   width:100%;
   header{
@@ -74,7 +74,7 @@
   }
   
   h2{
-    font: 25px 'Nunito' sans-serif;
+    font: 25px 'Nunito', sans-serif;
     color:  #7d7d7d;
     text-transform: lowercase;
     text-shadow: #ccc 1px 1px 0px;
@@ -88,13 +88,16 @@
     margin: 20px 20px 20px 0;
     width: 96%;
     .inputElement {
-      font: 100% 'Nunito' sans-serif;
+      font: 100% 'Nunito', sans-serif;
       float:left; 
       width:227px;
       margin-right:5%;
       padding-bottom:30px;
       &:last-child {
         margin-right:0;
+      }
+      label{
+        padding-left: 10px;
       }
       p {
         font-weight: bold;
@@ -104,7 +107,7 @@
       }
     }
     .text, select, option {
-      font: 13px 'Nunito' sans-serif;
+      font: 13px 'Nunito', sans-serif;
       width: 216px;
       height: 29px;
       &.school{
@@ -114,7 +117,7 @@
     
     .sbHolder, .sbOptions, .sbSelector{  
       color: #7d7d7d; 
-      font: 13px 'Nunito' sans-serif;   
+      font: 13px 'Nunito', sans-serif;   
       width: 226px;
     }
     .sbOptions{
@@ -140,21 +143,22 @@
   
   input[type="text"], input[type="password"], select {
     background-color: #f5f5f5;
-    color:#7d7d7d;
-    font-size:120%;
-    margin-right:0px;
+    color: #7d7d7d;
+    font-size: 120%;
+    margin-right: 0px;
   }
   
   .form_submit{
     padding-left: 30px;
   }
   input[type="submit"]{
-     background:#555;
+     background: #555;
      color: #fff;
      text-transform: uppercase;
      padding: 10px 30px;
      font-family: Arial, sans-serif;
      margin: 0;
+     cursor: pointer;
      &:hover{
        background:#999;
      }
@@ -162,6 +166,10 @@
        color:#ccc;
        background:#999;
      }
+   }
+   
+   input:disabled{
+     color: #ccc;
    }
   
   table {
@@ -311,11 +319,10 @@
   padding:8px;
   width:211px;
   float:left;
-  font-size:110%;
   margin-right: 5%;
   margin-bottom: 30px;
   display:block;
-  font-family: 'Nunito' sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 16px;
   color: #7d7d7d;
   .regular-checkbox:checked + label, label{
@@ -323,6 +330,8 @@
     box-shadow: 0 1px 1px rgba(50,50,50,0.5) inset;
     border-radius: 10px;
     padding: 20px;
+    float:left;
+    width: auto;
   }
   &:last-child {
     margin-right: 0;
@@ -331,6 +340,12 @@
   .regular-checkbox:checked + label::after{
     color: #41A62A;
     padding: 3px;
+  }
+  
+  span{
+    width: auto;
+    float:left;
+    padding: 10px;
   }
 }
 
