@@ -140,5 +140,14 @@ module ApplicationHelper
       javascript_tag "console.log(#{object.inspect.to_json})"
     end
   end
+
+  # non funzia :-(
+  def content_tag_if(condition, name = :div, content_or_options_with_block = nil, options = nil, escape = true, &block)
+    if condition
+      content_tag name, content_or_options_with_block, options, escape, &block
+    else
+      yield if block_given?
+    end
+  end
   
 end
