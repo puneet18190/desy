@@ -1,4 +1,5 @@
 require 'media/audio/uploader'
+require 'media/audio/editing/parameters'
 
 class Audio < MediaElement
 

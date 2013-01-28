@@ -461,6 +461,16 @@ function makeDraggable(place_id) {
   });
 }
 
+function submitCurrentSlideForm(){
+  $.ajax({
+    type: "POST",
+    url: $('._lesson_editor_current_slide form').attr('action'),
+    timeout:5000,
+    data: $('._lesson_editor_current_slide form').serialize(),
+    beforeSend: unbindLoader()
+	}).always(bindLoader);
+}
+
 function saveCurrentSlide() {
   tinyMCE.triggerSave();
   var temporary = new Array();
@@ -472,7 +482,7 @@ function saveCurrentSlide() {
       $(this).val('');
     }
   });
-  $('._lesson_editor_current_slide form').submit();
+  submitCurrentSlideForm();
   temp_counter = 0;
   $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
     if($(this).data('placeholder')) {

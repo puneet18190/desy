@@ -214,7 +214,6 @@ en:
     users_more_likes: 'Users with more likes'
     value: 'Value'
     video_editor_label: 'Edit video'
-    video_in_conversion_warning: 'The video and the lessons related to it will be temporary unavailable until the conversion will finish'
     virtual_classroom: 'Virtual classroom'
     warning: 'Warning!'
     warning_search_lessons: "If you don't insert a keyword the search engine will find all the available lessons, according to the filters you selected"
@@ -447,6 +446,8 @@ en:
     lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
     lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
     sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
+    video_in_conversion_warning: 'The video and the lessons related to it will be temporary unavailable until the conversion will finish'
+    audio_in_conversion_warning: 'The audio and the lessons related to it will be temporary unavailable until the conversion will finish'
 
 # (4) labels for constant keywords defined in lib/autoload
   statuses:
