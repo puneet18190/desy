@@ -9,6 +9,7 @@ class ImageEditorController < ApplicationController
       redirect_to dashboard_path
       return
     end
+    @back = params[:back] if params[:back].present?
     @image.leave_edit_mode current_user.id
     @image.enter_edit_mode current_user.id
   end
