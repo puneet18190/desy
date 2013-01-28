@@ -53,7 +53,7 @@ function resetMediaElementEditorForms() {
   new_form.find('#new_description').removeClass('form_error');
   new_form.find('#new_description_placeholder').val('');
   $('#form_info_new_media_element_in_editor ._tags_container span').remove();
-  $('#form_info_new_media_element_in_editor ._tags_container ._placeholder').html(new_form.data('tags'));
+  $('#form_info_new_media_element_in_editor ._tags_container ._placeholder').show();
   update_form.find('#update_title').val(update_form.data('title'));
   update_form.find('#update_title').removeClass('form_error');
   update_form.find('#update_title_placeholder').val('');
