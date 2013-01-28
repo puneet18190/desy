@@ -92,6 +92,10 @@ class User < ActiveRecord::Base
     Video.where('converted IS NULL AND user_id = ?', self.id).empty?
   end
   
+  def audio_editor_available
+    Audio.where('converted IS NULL AND user_id = ?', self.id).empty?
+  end
+  
   def search_media_elements(word, page, for_page, order=nil, filter=nil)
     page = 1 if page.class != Fixnum || page <= 0
     for_page = 1 if for_page.class != Fixnum || for_page <= 0
