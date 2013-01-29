@@ -40,5 +40,6 @@
  *= require layouts/home
  *= require layouts/prelogin
  *= require layouts/virtualclassroom
+ *= require audio_editor
  
  */

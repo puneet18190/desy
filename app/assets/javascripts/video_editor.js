@@ -69,25 +69,6 @@ function calculateNewPositionGalleriesInVideoEditor() {
   $('#video_editor_audio_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
 }
 
-function startCacheLoop() {
-  $('#info_container').data('save-cache', true);
-  saveCacheLoop();
-}
-
-function stopCacheLoop() {
-  $('#info_container').data('save-cache', false);
-}
-
-function saveCacheLoop() {
-  var time = $('#popup_parameters_container').data('cache-time');
-  if($('#info_container').data('save-cache')) {
-    $('#video_editor_form').submit();
-    setTimeout(function() {
-      saveCacheLoop();
-    }, time);
-  }
-}
-
 function showGalleryInVideoEditor(type) {
   $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#video_editor_' + type + '_gallery_container').show();

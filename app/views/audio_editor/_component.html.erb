@@ -1,31 +1,41 @@
 <%
   external_div_attributes = "data-position=\"\" data-duration=\"\""
-  last = false
+  title = ''
+  total_length = 0
+  selected = 0
   if !empty
-    external_div_attributes = "id=\"video_component_#{position}\" data-position=\"#{position}\" data-duration=\"#{component[:to] - component[:from]}\""
-    last = component[:last]
+    external_div_attributes = "id=\"audio_component_#{identifier}\" data-position=\"#{identifier}\" data-duration=\"#{component[:to] - component[:from]}\""
+    title = component[:audio].title
+    total_length = seconds_to_time component[:audio].min_duration
+    selected = seconds_to_time(component[:to] - component[:from])
   end
 %>
 
-<div class="lista <%= empty ? '_video_editor_empty_component'.html_safe : '_video_editor_component'.html_safe %> _video" <%= external_div_attributes.html_safe %>  data-rolloverable="true" data-preview-selected="false" data-current-preview-time="0">
-  <div class="contatore _video_component_icon">
-    <div class="_left fltlft">
-      <%= empty ? '' : position %>
+<div class="<%= empty ? '_audio_editor_empty_component'.html_safe : '_audio_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-current-preview-time="0">
+  <div class="contatore _audio_component_icon">
+    <%= identifier %>
+  </div>
+  <div class="manigliaAudio _sort_handle"></div>
+  <div class="audioComponentContent _controls">
+    <div class="audioComponentTitle">
+      <%= title %>
     </div>
-    <div class="_right fltrt" style="color:#787575">
-      <%= empty ? '' : seconds_to_time(component[:to] - component[:from]) %>
+    <div class="audioComponentPlayer">
+      <!-- qui ci va il cutter -->
+    </div>
+    <div class="audioComponentBottom">
+      <div class="audioComponentDurations">
+        Total length: <span class="_total_length"><%= total_length %></span>
+        Selected: <span class="_selected_length"><%= selected %></span>
+      </div>
+      <div class="audioComponentControls">
+      </div>
     </div>
   </div>
-  <div class="boxMediaElement _video_editor_component_hover">
-    <% if !empty %>
-      <%= render :partial => 'video_editor/components/thumbs/video', :locals => {:video => component[:video]} %>
-      <%= hidden_field_tag "type_#{position}", component[:type], :class => '_video_component_input_type' %>
-      <%= hidden_field_tag "video_id_#{position}", component[:video].id, :class => '_video_component_input_video_id' %>
-      <%= hidden_field_tag "from_#{position}", component[:from], :class => '_video_component_input_from' %>
-      <%= hidden_field_tag "to_#{position}", component[:to], :class => '_video_component_input_to' %>
-      <%= hidden_field_tag "position_#{position}", position, :class => '_video_component_input_position' %>
-    <% end %>
-  </div>
-  <div class="_video_component_transition separatore <%= last ? 'current'.html_safe : '' %>">&nbsp;</div>
-  <div class="arrowUpCutter _video_component_cutter_arrow" style="display:none"></div>
+  <% if !empty %>
+    <%= hidden_field_tag "audio_id_#{identifier}", component[:audio].id, :class => '_audio_component_input_audio_id' %>
+    <%= hidden_field_tag "from_#{identifier}", component[:from], :class => '_audio_component_input_from' %>
+    <%= hidden_field_tag "to_#{identifier}", component[:to], :class => '_audio_component_input_to' %>
+    <%= hidden_field_tag "position_#{identifier}", identifier, :class => '_audio_component_input_position' %>
+  <% end %>
 </div>

@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
     folder = Rails.root.join "tmp/cache/audio_editor/#{self.id}"
     FileUtils.mkdir_p folder if !Dir.exists? folder
     x = File.open folder.join("cache.yml"), 'w'
-    x.write hash.to_yaml
+    x.write cache.to_yaml
     x.close
     true
   end

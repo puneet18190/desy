@@ -2,7 +2,9 @@ require 'media/audio/uploader'
 require 'media/audio/editing/parameters'
 
 class Audio < MediaElement
-
+  
+  extend Media::Audio::Editing::Parameters
+  
   EXTENSION_WHITE_LIST = Media::Audio::Uploader::EXTENSION_WHITE_LIST
 
   after_save :upload_or_copy
