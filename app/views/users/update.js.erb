@@ -1,0 +1,7 @@
+alert("<%= @errors %>");
+<% if @errors.length > 0 %>
+  showErrorPopUp("<%=@errors%>");
+  console.log("<%=@errors%>");
+<% elsif @success %>
+  showOkPopUp("<%= t('captions.update_successful')%>");
+<% end %>

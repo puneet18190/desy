@@ -57,7 +57,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    if params[:user][:password] && params[:user][:password].empty?
+    if params[:user].try(:[], :password).empty?
       params[:user] = params[:user].delete_if {|key, value| (key == "password" || key == "password_confirmation") } 
     end
     

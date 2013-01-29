@@ -26,11 +26,11 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :name, :surname, :school_level_id, :school, :location_id
   validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
   validates_confirmation_of :password
-  validates_presence_of :password, :on => :create
   validates_presence_of :users_subjects
   validates_uniqueness_of :email
   validates_length_of :name, :surname, :email, :school, :maximum => 255
-  validates_length_of :password, :minimum => 8, :allow_nil => true
+  validates_length_of :password, :minimum => 8, :on => :create
+  validates_length_of :password, :minimum => 8, :on => :update, :allow_nil => true, :allow_blank => true
   validate :validate_associations, :validate_email, :validate_email_not_changed
   REGISTRATION_POLICIES.each do |policy|
     validates_acceptance_of policy, on: :create, allow_nil: false
