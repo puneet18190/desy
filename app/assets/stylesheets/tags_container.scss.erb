@@ -64,6 +64,7 @@
   span.new_tag {
     color:#fff;
     background-color: #373636;
+
     a {
       background-position: -30px 0;
       &:hover {
@@ -122,9 +123,15 @@
   margin-bottom:5px;
   background-color: #454343;
   @include tagContainer;
+  span {
+    a {
+      background-position: -30px 0;  
+    }
+  }
   span.new_tag {
     color: #fff;
     background-color: #373636;
+    padding: 0 3px;
     a {
       background-position: -30px 0;
       &:hover {
