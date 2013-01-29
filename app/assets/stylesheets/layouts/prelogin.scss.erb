@@ -153,12 +153,7 @@ html.prelogin-layout {
         font-size:22px;
       }
     }
-    /*bordo bianco intorno ai checkbox*/
-    .field_with_errors {
-      .regular-checkbox + label  {
-        border: 2px solid #fff;
-      }
-    }
+    
     input[type="text"], input[type="password"], input[type="email"] {
       background-color: #248fba;
       color:#fff;
@@ -215,7 +210,6 @@ html.prelogin-layout {
       background-position: 0 .5em;
     }
   }  
-
 }
 
   &.registration-action, &.users-controller.create-action {
@@ -237,7 +231,7 @@ html.prelogin-layout {
     // stile dei campi del form di registrazione che hanno errori
     &.users-controller.create-action {
       .field_with_errors {
-        input, select, textarea {
+        input, select, textarea, .regular-checkbox + label  {
           border: 2px solid #fff;
         }
       }
