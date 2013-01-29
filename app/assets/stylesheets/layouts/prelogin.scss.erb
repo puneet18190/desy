@@ -67,7 +67,7 @@ html.prelogin-layout {
         padding: 0px;
       }
     }
-   .insert-content {
+    .insert-content {
       padding: 0px 90px 0px 90px;
       margin-top:20px;
       margin-bottom:20px;
@@ -211,46 +211,44 @@ html.prelogin-layout {
     }
   }  
 }
-
-  &.registration-action, &.users-controller.create-action {
-    .container {
-      background-color: #2eaadc;
-      .header .headerMenu {
-        background-color:#000;
-        a {
-          color: white;
-        }
-      }
-      .containerText {
-        background: url(<%= asset_path 'bg_register.png' %>) top right no-repeat;
-        padding:200px 90px 20px 90px;
-        font-family: 'Nunito', sans-serif;
-      }
-    }
-
-    // stile dei campi del form di registrazione che hanno errori
-    &.users-controller.create-action {
-      .field_with_errors {
-        input, select, textarea, .regular-checkbox + label  {
-          border: 2px solid #fff;
-        }
-      }
-    }
-    input[type="submit"] {
-      background-color: #2eaadc;
-      font-size:20px;
-      font-family: 'Nunito', sans-serif;
-      text-transform:none;
-      margin: 40px 0 0 0;
-      padding:0px;
-      cursor:pointer;
-    }
-  }
-  &.what_is_desy-action .container {
-    background-color: #fdb525;
-      
+&.registration-action, &.users-controller.create-action {
+  .container {
+    background-color: #2eaadc;
     .header .headerMenu {
       background-color:#000;
+      a {
+        color: white;
+      }
+    }
+    .containerText {
+      background: url(<%= asset_path 'bg_register.png' %>) top right no-repeat;
+      padding:200px 90px 20px 90px;
+      font-family: 'Nunito', sans-serif;
+    }
+  }
+  // stile dei campi del form di registrazione che hanno errori
+  &.users-controller.create-action {
+    .field_with_errors {
+      input, select, textarea, .regular-checkbox + label  {
+        border: 2px solid #fff;
+      }
+    }
+  }
+  input[type="submit"] {
+    background-color: #2eaadc;
+    font-size:20px;
+    font-family: 'Nunito', sans-serif;
+    text-transform:none;
+    margin: 40px 0 0 0;
+    padding:0px;
+    cursor:pointer;
+  }
+}
+  &.what_is_desy-action .container {
+    background-color: #fdb525;
+
+    .header .headerMenu {
+    background-color:#000;
       a {
         color: white;
       }
@@ -337,11 +335,8 @@ html.prelogin-layout {
           color: #fff;
           font-size: 120%;
         }  
-          
       }
     }
-    
   }
-
 }
 
