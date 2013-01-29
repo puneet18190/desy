@@ -3,7 +3,7 @@
   <div id="audio_editor_timeline">
       <% cont = 1 %>
       <% components.each do |p| %>
-        <%= render :partial => "audio_editor/component", :locals => {:audio => p, :identifier => cont, :empty => false} %>
+        <%= render :partial => "audio_editor/component", :locals => {:component => p, :identifier => cont, :empty => false} %>
         <% cont += 1 %>
       <% end %>
   </div>

@@ -1,7 +1,13 @@
 <%
   external_div_attributes = "data-position=\"\" data-duration=\"\""
+  title = ''
+  total_length = 0
+  selected = 0
   if !empty
-    external_div_attributes = "id=\"audio_component_#{identifier}\" data-position=\"#{identifier}\" data-duration=\"#{audio[:to] - audio[:from]}\""
+    external_div_attributes = "id=\"audio_component_#{identifier}\" data-position=\"#{identifier}\" data-duration=\"#{component[:to] - component[:from]}\""
+    title = component[:audio].title
+    total_length = seconds_to_time component[:audio].min_duration
+    selected = seconds_to_time(component[:to] - component[:from])
   end
 %>
 
@@ -9,10 +15,16 @@
   <div class="contatore _audio_component_icon">
     <%= identifier %>
   </div>
+  <div class="_sort_handle"></div>
+  <div class="_controls">
+    <%= title %>
+    Total length: <%= total_length %>
+    Selected: <%= selected %>
+  </div>
   <% if !empty %>
-    <%= hidden_field_tag "audio_id_#{identifier}", audio[:audio].id, :class => '_audio_component_input_audio_id' %>
-    <%= hidden_field_tag "from_#{identifier}", audio[:from], :class => '_audio_component_input_from' %>
-    <%= hidden_field_tag "to_#{identifier}", audio[:to], :class => '_audio_component_input_to' %>
+    <%= hidden_field_tag "audio_id_#{identifier}", component[:audio].id, :class => '_audio_component_input_audio_id' %>
+    <%= hidden_field_tag "from_#{identifier}", component[:from], :class => '_audio_component_input_from' %>
+    <%= hidden_field_tag "to_#{identifier}", component[:to], :class => '_audio_component_input_to' %>
     <%= hidden_field_tag "position_#{identifier}", identifier, :class => '_audio_component_input_position' %>
   <% end %>
   <!-- TODO manca cutter e controlli -->
