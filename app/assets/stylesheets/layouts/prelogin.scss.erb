@@ -80,7 +80,6 @@ html.prelogin-layout {
           color:#2f2e2e;
         }
       }
-      
     }
     .contentForm {
       padding: 30px 90px 0px 90px;
@@ -98,15 +97,13 @@ html.prelogin-layout {
               padding-left:10px;
             }
           }
-          .field_with_errors {
-            label {
-              border: 2px solid #fff;
-            }
-          }
+          
           .regular-checkbox + label, label {
             box-shadow: 0 1px 1px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
             padding: 3px 9px;
             border-radius: 3px;
+            height:15px;
+            width:4px;
           }
 
           .regular-checkbox + label:active, .regular-checkbox:checked + label:active {
@@ -124,6 +121,7 @@ html.prelogin-layout {
             top: -3px;
             left: 2px;
             color: #248fba;
+            
           }
         }
       }
@@ -155,6 +153,7 @@ html.prelogin-layout {
         font-size:22px;
       }
     }
+    
     input[type="text"], input[type="password"], input[type="email"] {
       background-color: #248fba;
       color:#fff;
@@ -211,14 +210,6 @@ html.prelogin-layout {
       background-position: 0 .5em;
     }
   }  
-  .footer {
-    padding:10px 150px 10px 40px;
-    background-color: transparent;
-    color: #fff;
-    font-size: 75%;
-    text-transform: lowercase;
-    text-align:right;
-  }
 }
 
   &.registration-action, &.users-controller.create-action {
@@ -240,7 +231,7 @@ html.prelogin-layout {
     // stile dei campi del form di registrazione che hanno errori
     &.users-controller.create-action {
       .field_with_errors {
-        input, select, textarea {
+        input, select, textarea, .regular-checkbox + label  {
           border: 2px solid #fff;
         }
       }
@@ -250,7 +241,8 @@ html.prelogin-layout {
       font-size:20px;
       font-family: 'Nunito', sans-serif;
       text-transform:none;
-      padding: 40px 0 0 0;
+      margin: 40px 0 0 0;
+      padding:0px;
       cursor:pointer;
     }
   }

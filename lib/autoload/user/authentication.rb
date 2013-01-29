@@ -25,7 +25,7 @@ module User::Authentication
   
   module InstanceMethods
     def encrypt_password
-      if password
+      if password and !password.empty?
         self.encrypted_password = BCrypt::Password.create("#{password}#{PEPPER}", cost: 10).to_s
       end
       true

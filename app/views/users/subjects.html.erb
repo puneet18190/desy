@@ -14,7 +14,7 @@
         <h2>Subjects</h2>
         <p>Choose the matters you want to stay connected</p>
       </header>
-      <%= form_for @user, :url => user_path do |f| %>
+      <%= form_for @user, :url => user_pathdo |f| %>
         <%= render :partial => 'personal_subjects', :locals => {:f => f} %>
         <div class="form_submit">
           <input type="submit" value="save" />
