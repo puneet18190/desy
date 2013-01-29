@@ -64,6 +64,7 @@
   span.new_tag {
     color:#fff;
     background-color: #373636;
+
     a {
       background-position: -30px 0;
       &:hover {
@@ -115,16 +116,22 @@
     color: #f29400;
   }
 }
-#load-media-element ._tags_container {
+.MediaElementPopUpContainer ._tags_container {
   width: 336px;
   height: 150px;
   border: 3px solid #373737;
   margin-bottom:5px;
   background-color: #454343;
   @include tagContainer;
+  span {
+    a {
+      background-position: -30px 0;  
+    }
+  }
   span.new_tag {
     color: #fff;
     background-color: #373636;
+    
     a {
       background-position: -30px 0;
       &:hover {
@@ -149,7 +156,7 @@
 #slides._new #tags,
 #slides._update #tags,
 #load-media-element #tags,
-.ChangeInfoContainerLoading #tags {
+.ChangeInfoContainerLoading #tags, .ChangeInfoContainer #tags {
   overflow: visible;
   clear: both;
   border: none;
@@ -157,7 +164,7 @@
   margin-bottom: 5px;
   padding: 0 10px;
   box-shadow: none;
-  width: 295px;
+  width: 92%;
   height: auto;
 
 }
