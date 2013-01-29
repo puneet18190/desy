@@ -10,10 +10,10 @@
     <%= identifier %>
   </div>
   <% if !empty %>
-    <%= hidden_field_tag "audio_id_#{position}", component[:video].id, :class => '_video_component_input_video_id' %>
-    <%= hidden_field_tag "from_#{position}", component[:from], :class => '_video_component_input_from' %>
-    <%= hidden_field_tag "to_#{position}", component[:to], :class => '_video_component_input_to' %>
-    <%= hidden_field_tag "position_#{position}", position, :class => '_video_component_input_position' %>
+    <%= hidden_field_tag "audio_id_#{identifier}", audio[:audio].id, :class => '_audio_component_input_audio_id' %>
+    <%= hidden_field_tag "from_#{identifier}", audio[:from], :class => '_audio_component_input_from' %>
+    <%= hidden_field_tag "to_#{identifier}", audio[:to], :class => '_audio_component_input_to' %>
+    <%= hidden_field_tag "position_#{identifier}", identifier, :class => '_audio_component_input_position' %>
   <% end %>
   <!-- TODO manca cutter e controlli -->
 </div>
