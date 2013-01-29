@@ -95,7 +95,12 @@ ul.ui-autocomplete{
   left:394px;
 }
 
-.ui-autocomplete-loading { background:url('/assets/autocomplete-loader.gif') no-repeat right center }
+.ui-autocomplete-loading { 
+	background:url('/assets/autocomplete-loader.gif') no-repeat right center;
+	-moz-background-origin: padding;
+	-webkit-background-origin: padding-box;
+	background-origin: padding-box;
+}
 
 
 ul.ui-autocomplete, ul.ui-autocomplete li,ul.ui-autocomplete li:hover,ul.ui-autocomplete li a,ul.ui-autocomplete li a:hover{
