@@ -15,20 +15,22 @@
   <div class="contatore _audio_component_icon">
     <%= identifier %>
   </div>
-  <div class="manigliaAudio _sort_handle"></div>
-  <div class="audioComponentContent _controls">
-    <div class="audioComponentTitle">
-      <%= title %>
-    </div>
-    <div class="audioComponentPlayer">
-      <!-- qui ci va il cutter -->
-    </div>
-    <div class="audioComponentBottom">
-      <div class="audioComponentDurations">
-        Total length: <span class="_total_length"><%= total_length %></span>
-        Selected: <span class="_selected_length"><%= selected %></span>
+  <div class="audioContent">
+    <div class="manigliaAudio _sort_handle"></div>
+    <div class="audioComponentContent _controls">
+      <div class="audioComponentTitle">
+        <%= title %>
       </div>
-      <div class="audioComponentControls">
+      <div class="audioComponentPlayer">
+        <!-- qui ci va il cutter -->
+      </div>
+      <div class="audioComponentBottom">
+        <div class="audioComponentDurations">
+          Total length: <span class="_total_length"><%= total_length %></span>
+          Selected: <span class="_selected_length"><%= selected %></span>
+        </div>
+        <div class="audioComponentControls">
+        </div>
       </div>
     </div>
   </div>
@@ -38,4 +40,5 @@
     <%= hidden_field_tag "to_#{identifier}", component[:to], :class => '_audio_component_input_to' %>
     <%= hidden_field_tag "position_#{identifier}", identifier, :class => '_audio_component_input_position' %>
   <% end %>
+  <br class="clearfloat">
 </div>

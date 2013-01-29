@@ -1,61 +1,92 @@
 html.audio_editor-controller {
   
-  #audio_editor {
-    
+ .mediaEditorAudioContainer {
+    .audioEditorTimeline {
+      margin-left:10px;
+      width:746px;
+      margin-left:30px;
+    }
+    .info {
+      width:77px;
+      background-color:#504f50;
+      text-align:center;
+      padding:20px;
+      top:0;
+      right: 29px;
+      background-image:url(<%= asset_path 'tile_colonna_info_audio.gif' %>);
+      background-repeat:repeat-x;
+      background-position: top left;
+    }
+    .addAudioandSave {
+      border-top: 10px solid #504f50;
+      margin-left:56px;
+    }
     .audioComponentContent {
       float: left;
-      width: 700px;
-      height: 100px;
-      background-color: aqua;
-      color: blue;
-      margin: 5px;
+      margin: 0px;
+      text-align:left;
+      width:617px;
     }
-    
-    .manigliaAudio {
-      float: left;
-      width: 100px;
-      height: 100px;
-      background-color: maroon;
-      margin: 5px;
+    .audioContent {
+      float:left;
+      padding:0px;
+      outline:1px solid #686969;
+      margin-left:10px;
+      -webkit-box-shadow: 0px 2px 6px rgba(22, 21, 21, 0.6);
+      box-shadow: 0px 2px 6px rgba(22, 21, 21, 0.6);
+      width:710px;
+      .manigliaAudio {
+        float: left;
+        width: 93px;
+        height: 103px;
+        margin: 0px;
+        cursor:pointer;
+        background-image:url(<%= asset_path 'maniglia_audio_off.gif' %>);
+        background-repeat:no-repeat;
+        background-position: top left;
+        &:hover {
+          background-image:url(<%= asset_path 'maniglia_audio_on.gif' %>);
+          background-repeat:no-repeat;
+          background-position: top left;
+        };
+      }
+      &.current {
+        outline:1px solid #fff; 
+      }
+      .audioComponentTitle {
+        width: auto;
+        background-color: #424343;
+        padding: 5px 0px 5px 20px;
+        color:white;
+        height:20px;
+      }
+      .audioComponentPlayer {
+        height: 46px;
+        background-color: #303030;
+      }
+      .audioComponentBottom {
+        padding:10px 20px;
+        background-color: #232323;
+        height:7px;
+        font-size:10px;
+        font-family:'Nunito', sans-serif;
+        color:#787575;
+        height: 7px;
+
+        .audioComponentDurations {
+          width: 260px;
+          float: left;
+        }
+        .audioComponentControls {
+          width: 200px;
+          float: right;
+        }
+      }
     }
     
     .contatore {
       float: left;
       margin: 5px;
     }
-    
-    .audioComponentDurations {
-      width: 260px;
-      height: 20px;
-      float: left;
-      background-color: purple;
-    }
-    
-    .audioComponentBottom {
-      width: 700px;
-      height: 20px;
-      background-color: black;
-    }
-    
-    .audioComponentTitle {
-      width: 700px;
-      height: 20px;
-      background-color: yellow;
-    }
-    
-    .audioComponentControls {
-      width: 200px;
-      height: 20px;
-      float: right;
-      background-color: green;
-    }
-    
-    .audioComponentPlayer {
-      width: 700px;
-      height: 60px;
-      background-color: red;
-    }
-    
   }
-  
 }
