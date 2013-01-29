@@ -70,3 +70,29 @@ function resetMediaElementEditorForms() {
   update_form.find('#update_tags_value').val(update_form.find('._tags_placeholder').data('tags'));
   update_form.find('._tags_container').removeClass('form_error');
 }
+
+function startCacheLoop() {
+  $('#info_container').data('save-cache', true);
+  saveCacheLoop();
+}
+
+function stopCacheLoop() {
+  $('#info_container').data('save-cache', false);
+}
+
+function saveCacheLoop() {
+  var cache_form = '';
+  if($('html').hasClass('video_editor-controller')) {
+    cache_form = $('#video_editor_form');
+  }
+  if($('html').hasClass('audio_editor-controller')) {
+    cache_form = $('#audio_editor_form');
+  }
+  var time = $('#popup_parameters_container').data('cache-time');
+  if(cache_form != '' && $('#info_container').data('save-cache')) {
+    cache_form.submit();
+    setTimeout(function() {
+      saveCacheLoop();
+    }, time);
+  }
+}
