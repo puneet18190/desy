@@ -8,6 +8,7 @@ namespace :migrations do
     Rake::Task["db:create"].execute
     Rake::Task["db:migrate"].execute
     Rake::Task["db:seed"].execute
+    Rake::Task["db:analyze"].execute
     Rake::Task["db:structure:dump"].execute
     Rake::Task["db:schema:dump"].execute
   end
