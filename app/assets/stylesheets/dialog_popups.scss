@@ -122,9 +122,13 @@
   input[type="text"],textarea,.fk_carica_elemento_file {
       border: 3px solid #373737;
   }
-  .form_error,textarea.form_error, input.form_error{
+  .form_error,textarea.form_error, input.form_error {
     border: 3px solid rgba(250, 0, 0, 0.5);
   }
+}
+
+#load-media-element ._tags_container.form_error {
+  border: 3px solid rgba(250, 0, 0, 0.5);
 }
 
 .imageInGalleryPopUp.ui-dialog-content{
