@@ -100,7 +100,7 @@ class AudioEditorController < ApplicationController
       }
       initial_audio_test.pre_overwriting
       Notification.send_to current_user.id, t('notifications.audio_in_conversion_warning')
-      Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
+      #Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'update'
       @errors = convert_item_error_messages(initial_audio_test.errors.messages)
@@ -124,7 +124,33 @@ class AudioEditorController < ApplicationController
   end
   
   def extract_form_parameters
-    # manca
+    unordered_resp = {}
+    ordered_resp = {}
+    resp = {
+      :initial_audio_id => params[:initial_audio_id].blank? ? nil : params[:initial_audio_id].to_i,
+      :components => []
+    }
+    params.each do |k, v|
+      if !(k =~ /_/).nil?
+        index = k.split('_').last.to_i
+        p = k.gsub("_#{index}", '')
+        if ['audio_id', 'from', 'to', 'position'].include?(p)
+          if unordered_resp.has_key? index
+            unordered_resp[index][:"#{p}"] = v.to_i
+          else
+            unordered_resp[index] = {:"#{p}" => v.to_i}
+          end
+        end
+      end
+    end
+    unordered_resp.each do |k, v|
+      ordered_resp[v[:position]] = v
+      ordered_resp[v[:position]].delete(:position)
+    end
+    ordered_resp.sort.each do |item|
+      resp[:components] << item[1]
+    end
+    resp
   end
   
   def convert_audio_to_parameters
