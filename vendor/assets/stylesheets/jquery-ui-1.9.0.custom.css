@@ -95,6 +95,9 @@ ul.ui-autocomplete{
   left:394px;
 }
 
+.ui-autocomplete-loading { background:url('/assets/autocomplete-loader.gif') no-repeat right center }
+
+
 ul.ui-autocomplete, ul.ui-autocomplete li,ul.ui-autocomplete li:hover,ul.ui-autocomplete li a,ul.ui-autocomplete li a:hover{
   padding: 2px .4em;
   color: white;
