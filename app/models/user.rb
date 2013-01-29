@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   end
 
   def accept_policies
-    REGISTRATION_POLICIES.each{ |p| send("#{p}=", '1') }
+    registration_policies.each{ |p| send("#{p}=", '1') }
   end
 
   def video_editor_cache!(cache = nil)
@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
   end
 
   def registration_policies
-    self.class::REGISTRATION_POLICIES
+    REGISTRATION_POLICIES
   end
 
   def reset_password!
