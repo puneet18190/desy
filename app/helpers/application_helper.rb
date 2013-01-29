@@ -4,8 +4,8 @@ module ApplicationHelper
     "<option value=\"\">#{t('captions.select_a_subject')}</option>#{options_from_collection_for_select(subjects, 'id', 'description')}".html_safe
   end
   
-  def standard_form_error_messages(errors)
-    msg = "<img src='/assets/puntoesclamativo.png' style='margin: 0 5px -3px 0' /><span class=\"lower\">"
+  def standard_form_error_messages(errors, color='white')
+    msg = "<img src='/assets/puntoesclamativo.png' style='margin: 0 5px -3px 0' /><span class=\"lower\" style=\"color:#{color}\">"
     errors.each do |val|
       msg << "#{val}; "
     end
