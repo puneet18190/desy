@@ -42,6 +42,11 @@ class Lesson < ActiveRecord::Base
     self.metadata.available_audio = true
   end
   
+  def not_notified?
+    return false if self.status.nil?
+    !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
+  end
+  
   def available?
     self.metadata.available_video && self.metadata.available_audio
   end
@@ -187,6 +192,7 @@ class Lesson < ActiveRecord::Base
   
   def modify
     self.copied_not_modified = false
+    self.notified = false
     self.save
   end
   

@@ -82,6 +82,7 @@ en:
     choose_image: 'Click here to add an image'
     choose_video: 'Click here to add a video'
     choose_wich_item_and_go: 'Insert a word, choose the filters and go!'
+    created_on: 'Created on'
     color: 'Color'
     contact_us: 'Contact us'
     copyright: '©2013 DESY. All rights reserved.'
@@ -212,6 +213,7 @@ en:
     upload_a_media_element: 'Upload a media element'
     upload_completed: 'Upload completed!'
     use_the_form_below_for_lesson_information: "Update here the lesson's info according to its new content"
+    users_like_this_lesson: 'Users like this lesson'
     users_more_likes: 'Users with more likes'
     value: 'Value'
     video_editor_label: 'Edit video'
