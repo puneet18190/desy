@@ -69,10 +69,7 @@
   }
   
   &.unpublish {
-		/*background-position: (-$button-size) (-$button-size*4);*/
-    background-image: url('/assets/lesson_modified_notice.gif');
-		background-position: center center;
-		background-size: 34px 35px;
+    background-position: (-$button-size) (-$button-size*4);
   }
   &.add {
     background-position: 0 (-$button-size*9);
@@ -1035,4 +1032,10 @@ $button-size: 5em;
 .ui-widget-overlay {
   position:fixed;
   top:0;
+}
+
+._lesson_change_not_notified .unpublish {
+  background-image: url('/assets/lesson_modified_notice.gif');
+  background-position: center center !important;
+  background-size: 34px 35px;
 }
