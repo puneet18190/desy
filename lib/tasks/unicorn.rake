@@ -1,11 +1,10 @@
-# Tasks for managing Unicorn instances of a Rails application. Compatible with Rails 2, 3, 3.1, 3.2 ...
-#
+# Tasks for managing Unicorn instances of a Rails application.
+# Compatible with Ruby >= 1.9.2 and Rails >= 2 .
 # Unicorn signals: http://unicorn.bogomips.org/SIGNALS.html
 
 namespace :unicorn do
 
-  class UnicornPIDError < StandardError
-  end
+  class UnicornPIDError < StandardError; end
 
   def rails_env
     Rails.env
@@ -59,7 +58,14 @@ namespace :unicorn do
     Rake::Task['unicorn:start'].execute
   end
 
-  desc 'reloads config file and gracefully restart all workers. If the "preload_app" directive is false (the default), then workers will also pick up any application code changes when restarted. If "preload_app" is true, then application code changes will have no effect; USR2 + QUIT (see below) must be used to load newer code in this case. When reloading the application, Gem.refresh will be called so updated code for your application can pick up newly installed RubyGems. It is not recommended that you uninstall libraries your application depends on while Unicorn is running, as respawned workers may enter a spawn loop when they fail to load an uninstalled dependency.'
+  desc 'reloads config file and gracefully restart all workers. If the "preload_app" directive '          <<
+       'is false (the default), then workers will also pick up any application code changes '             <<
+       'when restarted. If "preload_app" is true, then application code changes will have no effect; '    <<
+       'USR2 + QUIT (see below) must be used to load newer code in this case. When reloading '            << 
+       'the application, Gem.refresh will be called so updated code for your application can pick up '    <<
+       'newly installed RubyGems. It is not recommended that you uninstall libraries your application '   <<
+       'depends on while Unicorn is running, as respawned workers may enter a spawn loop when they fail ' <<
+       'to load an uninstalled dependency.'
   task :graceful_restart => :environment do
     kill_unicorn('HUP')
   end
