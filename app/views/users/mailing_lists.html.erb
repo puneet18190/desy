@@ -1,0 +1,75 @@
+<div class="griglia-contenuti">
+  <div class="profile-content">
+    <div class="title-bar">
+      <h1>profile</h1>
+      <ul class="navlist">
+        <li><%= link_to t('captions.personal_info'), my_profile_path%></li>
+        <li><%= link_to t('captions.subjects'), my_subjects_path %></li>
+				<li><%= link_to t('captions.mailing_lists'), my_mailing_lists_path, :class => 'current' %></li>
+        <li><%= link_to t('captions.statistics'), my_statistics_path %></li>
+      </ul>
+    </div>
+    <div class="contentForm">
+      <header>
+        <h2><%= t('captions.mailing_lists')%></h2>
+        <p><%= t('descriptions.mailing_lists')%></p>
+      </header>
+			<div id="mailing_lists">
+				<div id="add_new_group">
+					<a></a>
+					<span><%= t('captions.add_new_group')%></span>
+				</div>
+				<div id="mailing_lists_accordion">
+					<% (1..3).each_with_index do |group, index| %>
+					  <h3>
+							<a href="#" class="delete_group"><%= t('captions.delete_group')%></a>
+							<a class="selector"></a>
+							<span class="group-title" contenteditable="true">Group <%= index+1 %></span> 
+							<div style="clear:both"></div>
+						</h3>
+					  <div>
+							<form action="mailing_lists_submit" method="get" accept-charset="utf-8" class="new_email">
+								<p><%= t('captions.add_address_to_group')%></p>
+								<input type="text" name="name" value="Name" id="some_name">
+								<input type="text" name="email" value="Email" id="email">
+								<input type="submit" value="">
+							</form>
+					    <table width="100%">
+								<tbody>
+						    	<tr>
+										<td class="index">01</td>
+										<td class="name">Mauris mauris</td>
+										<td class="email">email <a href='#'></a></td>
+									</tr>
+							    <tr>
+										<td class="index">02</td>
+										<td class="name">Mauris mauris</td>
+										<td class="email">email <a href='#'></a></td>
+									</tr>
+							    <tr>
+										<td class="index">03</td>
+										<td class="name">Mauris mauris</td>
+										<td class="email">email <a href='#'></a></td>
+									</tr>
+							    <tr>
+										<td class="index">04</td>
+										<td class="name">Mauris mauris</td>
+										<td class="email">email <a href='#'></a></td>
+									</tr>
+								</tbody>
+					    </table>
+					  </div>
+					<% end%>
+				</div>
+			</div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  $.fn.peity.defaults.pie = {
+    colours: <%= Subject.chart_colors.to_json.html_safe %>,
+    diameter: 250
+  }
+  
+  $("span.pie").peity("pie");
+</script>

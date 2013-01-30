@@ -5,6 +5,7 @@
       <ul class="navlist">
         <li><%= link_to t('captions.personal_info'), my_profile_path %></li>
         <li><%= link_to t('captions.subjects'), my_subjects_path, :class => 'current' %></li>
+				<li><%= link_to t('captions.mailing_lists'), my_mailing_lists_path %></li>
         <li><%= link_to t('captions.statistics'), my_statistics_path %></li>
       </ul>
     </div>
@@ -14,7 +15,7 @@
         <h2>Subjects</h2>
         <p>Choose the matters you want to stay connected</p>
       </header>
-      <%= form_for @user, :url => user_pathdo |f| %>
+      <%= form_for @user, :url => user_path do |f| %>
         <%= render :partial => 'personal_subjects', :locals => {:f => f} %>
         <div class="form_submit">
           <input type="submit" value="save" />

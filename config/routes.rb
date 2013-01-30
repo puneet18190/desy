@@ -109,9 +109,10 @@ Desy::Application.routes.draw do
   get  'search' => 'search#index', :as => :search_items
   
   # LOGGED USER
-  get  'profile' => 'users#edit', :as => :my_profile
-  get  'profile/subjects' => 'users#subjects', :as => :my_subjects
-  get  'profile/statistics' => 'users#statistics', :as => :my_statistics
+  get 'profile' => 'users#edit', :as => :my_profile
+  get 'profile/subjects' => 'users#subjects', :as => :my_subjects
+  get 'profile/statistics' => 'users#statistics', :as => :my_statistics
+  get 'profile/mailing_lists' => 'users#mailing_lists', :as => :my_mailing_lists
   put 'profile/update' => 'users#update', as: :user
   # get  'logout' => 'users#logout', :as => :logout
 
