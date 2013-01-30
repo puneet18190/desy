@@ -43,9 +43,9 @@ class Lesson < ActiveRecord::Base
     self.metadata.available_audio = true
   end
   
-  def notify_changes
+  def notify_changes(msg)
     Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).each do |bo|
-      Notification.send_to bo.user_id, I18n.t('notifications.public_lesson_changed', :user_name => self.user.full_name, :lesson_title => self.title, :link => lesson_viewer_path(self.id))
+      Notification.send_to bo.user_id, I18n.t('notifications.public_lesson_changed', :user_name => self.user.full_name, :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => msg)
     end
     self.notified = true
     self.save

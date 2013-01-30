@@ -397,8 +397,13 @@ $(document).ready(function() {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
-      var destination = $(this).data('destination');
-      unpublishLesson(my_param, destination);
+      var lesson_parent = $('#found_lesson_' + my_param + ', #compact_lesson_' + my_param + ', #expanded_lesson_' + my_param);
+      if(lesson_parent.hasClass('_lesson_change_not_notified')) {
+        showOkPopUp('devi notificare bla bla bla');
+      } else {
+        var destination = $(this).data('destination');
+        unpublishLesson(my_param, destination);
+      }
     }
     return false;
   });
