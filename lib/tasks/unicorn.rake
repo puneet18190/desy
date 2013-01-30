@@ -61,7 +61,7 @@ namespace :unicorn do
   desc 'reloads config file and gracefully restart all workers. If the "preload_app" directive '          <<
        'is false (the default), then workers will also pick up any application code changes '             <<
        'when restarted. If "preload_app" is true, then application code changes will have no effect; '    <<
-       'USR2 + QUIT (see below) must be used to load newer code in this case. When reloading '            << 
+       'USR2 + QUIT (see below) must be used to load newer code in this case. When reloading '            <<
        'the application, Gem.refresh will be called so updated code for your application can pick up '    <<
        'newly installed RubyGems. It is not recommended that you uninstall libraries your application '   <<
        'depends on while Unicorn is running, as respawned workers may enter a spawn loop when they fail ' <<
