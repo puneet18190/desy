@@ -122,6 +122,10 @@
   input[type="text"],textarea,.fk_carica_elemento_file {
       border: 3px solid #373737;
   }
+  textarea.campoTesto {
+    border: 1px solid #f0e5e5;
+    
+  }
   .form_error,textarea.form_error, input.form_error {
     border: 3px solid rgba(250, 0, 0, 0.5);
   }
