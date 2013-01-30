@@ -24,7 +24,7 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description, :token
   validates_numericality_of :user_id, :school_level_id, :subject_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :parent_id, :only_integer => true, :greater_than => 0, :allow_nil => true
-  validates_inclusion_of :is_public, :copied_not_modified, :in => [true, false]
+  validates_inclusion_of :is_public, :copied_not_modified, :notified, :in => [true, false]
   validates_length_of :title, :maximum => I18n.t('language_parameters.lesson.length_title')
   validates_length_of :description, :maximum => I18n.t('language_parameters.lesson.length_description')
   validates_length_of :token, :is => 20
