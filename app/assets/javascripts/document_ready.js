@@ -532,7 +532,10 @@ $(document).ready(function() {
   $("#filter_search_lessons_subject").selectbox();
   
   $("#profile_school_level").selectbox();
+  
   $("#profile_region").selectbox();
+  
+  $('#mailing_lists_accordion').accordion();
   
   $("#for_page_media_elements").selectbox();
   

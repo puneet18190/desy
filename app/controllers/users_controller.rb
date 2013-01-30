@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   skip_before_filter :authenticate, only: [:create, :confirm, :request_reset_password, :reset_password]
-  before_filter :initialize_layout, :only => [:edit, :subjects, :statistics]
+  before_filter :initialize_layout, :only => [:edit, :subjects, :statistics, :mailing_lists]
   layout 'prelogin', only: [:create, :request_reset_password]
 
   def create
@@ -81,6 +81,10 @@ class UsersController < ApplicationController
   def subjects
     @user = current_user
     @subjects         = Subject.order(:description)
+  end
+  
+  def mailing_lists
+    @user = current_user
   end
 
   def statistics

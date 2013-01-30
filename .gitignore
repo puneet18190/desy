@@ -23,6 +23,7 @@
 /.rvmrc
 
 /config/database.yml
+/config/unicorn.rb
 
 # Media elements caricati
 /public/media_elements
@@ -32,3 +33,7 @@
 
 # Ignoro gli assets perché altrimenti si hanno effetti strani in sviluppo
 /public/assets
+
+# WIRIS
+/app/assets/javascripts/tinymce/plugins/tiny_mce_wiris/formulas/*
+/app/assets/javascripts/tinymce/plugins/tiny_mce_wiris/cache/*
