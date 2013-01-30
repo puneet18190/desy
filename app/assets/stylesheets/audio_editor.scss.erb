@@ -40,15 +40,10 @@ html.audio_editor-controller {
         width: 93px;
         height: 103px;
         margin: 0px;
-        cursor:pointer;
         background-image:url(<%= asset_path 'maniglia_audio_off.gif' %>);
         background-repeat:no-repeat;
         background-position: top left;
-        &:hover {
-          background-image:url(<%= asset_path 'maniglia_audio_on.gif' %>);
-          background-repeat:no-repeat;
-          background-position: top left;
-        }
+        
       }
       &.current {
         outline:1px solid #fff; 
@@ -83,10 +78,19 @@ html.audio_editor-controller {
         }
       }
     }
-    
     .contatore {
       float: left;
       margin: 5px;
     }
+  }
+  ._audio_editor_component .boxGhost {
+    height:103px; 
+    width:710px; 
+    position:absolute; 
+    z-index:102; 
+    top:0; 
+    left:60px; 
+    cursor:pointer;
+    display: none;
   }
 }

@@ -1,4 +1,5 @@
 class Lesson < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   
   statuses = ::STATUSES.lessons.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
@@ -24,7 +25,7 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description, :token
   validates_numericality_of :user_id, :school_level_id, :subject_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :parent_id, :only_integer => true, :greater_than => 0, :allow_nil => true
-  validates_inclusion_of :is_public, :copied_not_modified, :in => [true, false]
+  validates_inclusion_of :is_public, :copied_not_modified, :notified, :in => [true, false]
   validates_length_of :title, :maximum => I18n.t('language_parameters.lesson.length_title')
   validates_length_of :description, :maximum => I18n.t('language_parameters.lesson.length_description')
   validates_length_of :token, :is => 20
@@ -40,6 +41,19 @@ class Lesson < ActiveRecord::Base
   def initialize_metadata
     self.metadata.available_video = true
     self.metadata.available_audio = true
+  end
+  
+  def notify_changes(msg)
+    Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).each do |bo|
+      Notification.send_to bo.user_id, I18n.t('notifications.public_lesson_changed', :user_name => self.user.full_name, :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => msg)
+    end
+    self.notified = true
+    self.save
+  end
+  
+  def not_notified?
+    return false if self.status.nil?
+    !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
   end
   
   def available?
@@ -187,6 +201,7 @@ class Lesson < ActiveRecord::Base
   
   def modify
     self.copied_not_modified = false
+    self.notified = false
     self.save
   end
   

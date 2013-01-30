@@ -12,7 +12,8 @@
 %>
 
 <div class="<%= empty ? '_audio_editor_empty_component'.html_safe : '_audio_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-current-preview-time="0">
-  <div class="contatore _audio_component_icon">
+
+ <div class="contatore _audio_component_icon">
     <%= identifier %>
   </div>
   <div class="audioContent">
@@ -41,4 +42,5 @@
     <%= hidden_field_tag "position_#{identifier}", identifier, :class => '_audio_component_input_position' %>
   <% end %>
   <br class="clearfloat">
+  <div class="boxGhost"></div>
 </div>
