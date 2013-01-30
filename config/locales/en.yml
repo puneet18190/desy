@@ -451,6 +451,7 @@ en:
     sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
     video_in_conversion_warning: 'The video and the lessons related to it will be temporary unavailable until the conversion will finish'
     audio_in_conversion_warning: 'The audio and the lessons related to it will be temporary unavailable until the conversion will finish'
+    public_lesson_changed: "The user <b>%{user_name}</b> believes that you might be interested in his lesson's update (<i>%{lesson_title}</i>).<br/><br/><a href=\"%{link}\">Check it out</a>"
 
 # (4) labels for constant keywords defined in lib/autoload
   statuses:

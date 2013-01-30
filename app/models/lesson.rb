@@ -1,4 +1,5 @@
 class Lesson < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   
   statuses = ::STATUSES.lessons.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
@@ -40,6 +41,14 @@ class Lesson < ActiveRecord::Base
   def initialize_metadata
     self.metadata.available_video = true
     self.metadata.available_audio = true
+  end
+  
+  def notify_changes
+    Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).each do |bo|
+      Notification.send_to bo.user_id, I18n.t('notifications.public_lesson_changed', :user_name => self.user.full_name, :lesson_title => self.title, :link => lesson_viewer_path(self.id))
+    end
+    self.notified = true
+    self.save
   end
   
   def not_notified?
