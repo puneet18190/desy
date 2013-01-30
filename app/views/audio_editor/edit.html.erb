@@ -15,7 +15,7 @@
     <%= render :partial => 'audio_editor/timeline', :locals => {:components => @parameters[:components]} %>
   <% end %>
   
-  <div class="bottomBarAndSave _audio_editor_bottom_bar">
+  <div class="addAudioandSave _audio_editor_bottom_bar">
     <div class="fltrt">
       <a id="commit_audio_editor" class="nextButton <%= @parameters[:initial_audio].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('general_titles.save_element_title') %>" style="visibility:<%= @parameters[:components].any? ? 'visible'.html_safe : 'hidden'.html_safe %>">
       </a>
@@ -26,7 +26,7 @@
 
 
 <div id="empty_component_for_audio_editor" style="display:none">
-  <%= render :partial => "audio_editor/component", :locals => {:audio => {}, :position => 1, :empty => true} %>
+  <%= render :partial => "audio_editor/component", :locals => {:component => {}, :identifier => 1, :empty => true} %>
 </div>
 
 <div id="audio_editor_gallery_container" style="display:none" data-loaded="false"></div>

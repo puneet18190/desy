@@ -196,8 +196,10 @@ html.media_element_editor-layout {
         }
       }
       .error_messages {
-        padding:15px 0 15px 0;
+        padding:0;
+				margin-left: 87px;
         height:18px;
+				text-align:left;
       }
       .cols {
         padding-top:40px;
@@ -357,26 +359,7 @@ html.media_element_editor-layout {
       position:relative;
     }
     
-    .info {
-      padding:0px; 
-      position:absolute; 
-      top:10px; 
-      right:70px; 
-      text-align:left;
-      
-      p {
-        padding-left:10px;
-      }
-      .bottoniVerdi {
-        margin-top:10px; 
-        margin-bottom:30px;
-        a {
-          display:block;
-          
-        }
-        
-      }
-    }
+    
   }
   
   .mediaEditorVideoGalleryContainer {
@@ -1322,4 +1305,20 @@ html.media_element_editor-layout {
   border: 3px solid rgba(250, 0, 0, 0.5) !important;
 }*/
 
-
+.mediaEditorVideoContainer .info, .mediaEditorAudioContainer .info {
+  padding:0px; 
+  position:absolute; 
+  top:10px; 
+  right:70px; 
+  text-align:left;
+  p {
+    padding-left:10px;
+  }
+  .bottoniVerdi {
+    margin-top:10px; 
+    margin-bottom:30px;
+    a {
+      display:block;
+    }
+  }
+}

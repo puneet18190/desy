@@ -63,8 +63,10 @@ en:
 
 # (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
   captions:
+    add_address_to_group: 'Add address to group'
     add_audio_track: 'Add audio track'
     add_lesson_now: 'Add a lesson now'
+    add_new_group: 'Add new group'
     add_new_lesson: 'Add lessons'
     advanced_search: 'Advanced search'
     audio_editor_label: 'Edit audio'
@@ -82,6 +84,7 @@ en:
     choose_image: 'Click here to add an image'
     choose_video: 'Click here to add a video'
     choose_wich_item_and_go: 'Insert a word, choose the filters and go!'
+    created_on: 'Created on'
     color: 'Color'
     contact_us: 'Contact us'
     copyright: '©2013 DESY. All rights reserved.'
@@ -93,6 +96,7 @@ en:
     crop: 'Crop'
     current_time: 'Current time'
     dashboard: 'Dashboard'
+    delete_group: 'Delete group'
     description: 'Description'
     description_max_chars: 'Description (max %{num} characters)'
     desy: 'DESY'
@@ -139,6 +143,7 @@ en:
     load_new_media_element_now: 'Load a new element now'
     login: 'Login'
     logout: 'Logout'
+    mailing_lists: 'Mailing lists'
     media_elements: 'Elements'
     modify_info_element: "Element's information"
     next: "Next"
@@ -212,6 +217,7 @@ en:
     upload_a_media_element: 'Upload a media element'
     upload_completed: 'Upload completed!'
     use_the_form_below_for_lesson_information: "Update here the lesson's info according to its new content"
+    users_like_this_lesson: 'Users like this lesson'
     users_more_likes: 'Users with more likes'
     value: 'Value'
     video_editor_label: 'Edit video'
@@ -239,6 +245,7 @@ en:
     mailer_link_2: ' thinks that you might be interested in a lesson in DESY.'
     mailer_link_3: "Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):"
     mailer_link_4: 'DESY - Digital Educational System'
+    mailing_lists: 'Create one o more groups of email to send your lessons.'
     prelogin: "<b>DESY</b> is the new platform dedicated to the world of education. In <b>DESY</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and refine inside the application itself. Users take also advantage of our Community, sharing and receiving media elements ready to be re-used. <i>In <b>DESY</b> we guarantee high quality and care for details</i>."
     send_lesson_link_explanation: 'Write a list of emails and a message: clicking the button, you will send your contacts an email containing the public link of this lesson'
     upload_media_element_instructions: 'Select a file clicking on the button on the left'
@@ -449,6 +456,7 @@ en:
     sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
     video_in_conversion_warning: 'The video and the lessons related to it will be temporary unavailable until the conversion will finish'
     audio_in_conversion_warning: 'The audio and the lessons related to it will be temporary unavailable until the conversion will finish'
+    public_lesson_changed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', believes that you might be interested in his lesson's update.<br/><br/><a href=\"%{link}\">Check it out</a><br/><br/><i>\"%{message}\"</i>"
 
 # (4) labels for constant keywords defined in lib/autoload
   statuses:

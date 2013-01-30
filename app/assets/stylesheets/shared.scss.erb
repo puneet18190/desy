@@ -897,14 +897,18 @@ $button-size: 5em;
     text-align:center;
   }
   
-  .error_messages_iframe{
-    border: 0;
-    outline: 0;
-    padding-left: 20px;
-    display: block;
-    overflow:hidden;
-  }
+  
 }
+
+.error_messages_iframe{
+  border: 0;
+  outline: 0;
+  padding-left: 20px;
+  display: block;
+  overflow:hidden;
+	color:black;
+}
+
 .barraLoading {
     width:100%; 
     background-color:#fff;
@@ -1028,4 +1032,10 @@ $button-size: 5em;
 .ui-widget-overlay {
   position:fixed;
   top:0;
+}
+
+._lesson_change_not_notified .unpublish {
+  background-image: url('/assets/lesson_modified_notice.gif');
+  background-position: center center !important;
+  background-size: 34px 35px;
 }
