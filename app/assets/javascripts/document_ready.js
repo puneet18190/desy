@@ -239,7 +239,6 @@ $(document).ready(function() {
   
   $('body').on('click', '._change_info_to_pick.change_info', function() {
     $('#dialog-media-element-' + $(this).data('param') + ' ._change_info_container').show('fade', {}, 500);
-    initTagsAutocomplete('tags','edit-media-element-tags');
     $(this).removeClass('change_info');
     $(this).addClass('change_info_light');
     $('#dialog-media-element-' + $(this).data('param') + ' ._audio_preview_in_media_element_popup').hide();
@@ -816,7 +815,6 @@ $(document).ready(function() {
   $('._load_media_element').click(function(e) {
     e.preventDefault();
     showLoadMediaElementPopUp();
-    initTagsAutocomplete("tags","new-media-element-tags");
   });
   
   $('body').on('click', '.uploadFileButton', function() {
@@ -852,13 +850,6 @@ $(document).ready(function() {
     if($('#load-media-element #description_placeholder').val() == '') {
       $(this).attr('value', '');
       $('#load-media-element #description_placeholder').attr('value', '0');
-    }
-  });
-  
-  $('body').on('focus', '#load-media-element #tags', function() {
-    if($('#load-media-element #tags_placeholder').val() == '') {
-      $(this).attr('value', '');
-      $('#load-media-element #tags_placeholder').attr('value', '0');
     }
   });
   
