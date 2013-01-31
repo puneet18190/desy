@@ -6,6 +6,9 @@ en:
     login:
       missing_fields: 'Insert username and password'
       wrong_content: 'Wrong login data'
+    reports:
+      ok: 'The report was sent successfully'
+      problem: 'Your report could not be sent'
   activemodel:
     errors:
       messages:
@@ -150,6 +153,12 @@ en:
     not_available:
       title: 'Audio editor not available'
       description: 'Inserire qui altro testo'
+  
+  
+  reports:
+    title: 'Report abuse'
+    decription: 'Do you think that this item is offensive?'
+    placeholder: 'Write the reason for your report. Thank you for your cooperation!'
   
   
   video_editor:
@@ -346,8 +355,6 @@ en:
     dashboard: 'Dashboard'
     # this is what the acronym 'DESY' stands for
     desy_expanded_description: 'Digital Education System'
-
-   
     # the caption of the button which empties your Virtual Classroom playlist
     empty_playlist: 'Empty playlist'
     # the caption of the button which empties your Virtual Classroom
@@ -357,18 +364,12 @@ en:
     # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
     failed_confirmation: 'The link you submitted is not longer valid'
     # this is the title of the login form
-    
-    home: 'Home'
     insert: 'Insert'
     insert_emails_here: 'Insert emails separated by comma'
     insert_tag: 'Insert a tag'
     insert_text: 'Insert text'
-
-
     new_time: 'New time'
-
     password: 'Password'
-
     password_resetted_successfully: 'Password resetted successfully'
     pause: 'Pause'
     play: 'Play'
@@ -376,7 +377,6 @@ en:
     preview: 'Preview'
     remove: 'Remove'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
-    report_abuse: 'Report abuse'
     save: 'Save'
     search: 'Search'
     search_again: 'Search again...'
@@ -390,7 +390,6 @@ en:
     send_link_to_your_friends: 'Send a link to your friends'
     sent_to: 'Send to'
     slide_not_deleted: "This slide can't be deleted"
-
     sort_results_by: 'Sort results by'
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
@@ -410,8 +409,6 @@ en:
     what_are_you_looking_for: 'What are you looking for?'
     why_sign_up: 'Why to sign up?'
     write_a_message: 'Write a message'
-    write_reason_report: 'Write the reason for your report. Thank you for your cooperation!'
-    you_believe_content_unappropriate: 'Do you think that this item is offensive?'
     your_browser_does_not_support_video: 'Your browser does not support the video tag'
     your_browser_does_not_support_audio: 'Your browser does not support the audio tag'
     your_search_returned: 'Found %{num} results. To refine your search select between these tags'
@@ -550,8 +547,10 @@ en:
     media_elements_result_5: 'No element was found with the filters you chose'
     virtual_classroom: 'Your Virtual Classroom is empty'
     playlist: 'Your playlist is empty'
+ 
+ 
+ 
   popups: # ok = messaggio di successo, yes = caption confermo, no = caption non confermo, confirm = messaggio di conferma, error = messaggio di errore, title = titolo messaggio di conferma
-    report_ok: 'The report was sent successfully'
     publish_confirm: 'Every element contained in it will be automatically shared'
     publish_title: 'Publish this lesson'
     publish_yes: 'Publish the lesson'
