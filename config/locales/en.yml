@@ -104,7 +104,7 @@ en:
   # this section contains general captions of the application
   captions:
     # it is used in the process of creating a mailing list
-    add_address_to_group: 'Add email ddress to group'
+    add_address_to_group: 'Add email address to group'
     # it is used in the video editor, in order to open the selection of audio tracks
     add_audio_track: 'Add audio track'
     # it is used in the empty Virtual Classroom to invite the user to fill it immediately
