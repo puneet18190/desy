@@ -84,25 +84,7 @@ en:
           problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
   
   
-  # SECTION 2: error messages inside HTML forms (i.e. wrong name, surname, title, description, etc.)
-  error_captions:
-    # this is the standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
-    fill_all_the_fields_or_too_long: 'Fill in all the fields without exceeding the max length'
-    # this is when you don't write the minimum amount of tags
-    tags_are_not_enough: 'Not enough tags'
-    # this is when you didn't select a file to be loaded
-    media_blank: 'No file loaded'
-    # you tried to upload an attachment whose format is not supported
-    media_unsupported_format: 'Format not supported'
-    # you tried to upload a file whose name contained an invalid character
-    media_invalid_filename: "File's name contains invalid characters"
-    # you tried to upload a file which was damaged or invalid
-    media_generic_error: 'Invalid or damaged file'
-    # you didn't choose a subject for your lesson
-    subject_missing_in_lesson: 'Choose a subject'
-  
-  
-  # SECTION 3: general captions of the application
+  # SECTION 2: general captions of the application
   captions:
     # it is used in the process of creating a mailing list
     add_address_to_group: 'Add email address to group'
@@ -158,8 +140,6 @@ en:
     delete_group: 'Delete group'
     # this is used as a caption to describe a lesson
     description: 'Description'
-    # this is used as placeholder for the description text field: used for both lessons and elements
-    description_max_chars: 'Description (max %{num} characters)'
     # this is what the acronym 'DESY' stands for
     desy_expanded_description: 'Digital Education System'
     # this is the title of the application's presentation in the main page
@@ -255,10 +235,8 @@ en:
     select_an_action: 'Select an action'
     selected: 'Selected'
     selected_for_you: 'Selected for you'
-    select_a_subject: 'Select a subject'
     select_audio: 'Select audio'
     select_component_to_add: 'Select component to add'
-    select_file: 'Select a file to load'
     select_image: 'Select image'
     select_the_lessons_you_want_to_upload: 'Select the lessons to upload in the Virtual Classroom'
     select_the_scissors: 'Select the scissors to cut the image'
@@ -275,11 +253,9 @@ en:
     subject: 'Subject'
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
-    tags_max: 'Insert a minimum of %{items} tags (max %{num} characters each)'
     talk_with_desy: 'Want to talk with DESY?'
     text_color: 'Text color'
     time: 'Time'
-    title_max_chars: 'Title (max %{num} characters)'
     total_clip_length: 'Total clip length'
     total_length: 'Total length'
     total_users: 'Total users'
@@ -312,7 +288,7 @@ en:
     your_virtual_classroom_is_empty: 'Your Virtual Classroom is empty'
   
   
-  # SECTION 4: captions e titoli per i form generici
+  # SECTION 3: captions e titoli per i form generici -- error messages inside HTML forms (i.e. wrong name, surname, title, description, etc.)
   forms:
     # new empty lesson form
     new_lesson:
@@ -338,7 +314,28 @@ en:
     overwrite_media_element_in_editor:
       title: 'Have you made significant changes?'
       description: "Update here the element's info according to its new content"
-  
+    error_captions:
+      # this is the standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
+      fill_all_the_fields_or_too_long: 'Fill in all the fields without exceeding the max length'
+      # this is when you don't write the minimum amount of tags
+      tags_are_not_enough: 'Not enough tags'
+      # this is when you didn't select a file to be loaded
+      media_blank: 'No file loaded'
+      # you tried to upload an attachment whose format is not supported
+      media_unsupported_format: 'Format not supported'
+      # you tried to upload a file whose name contained an invalid character
+      media_invalid_filename: "File's name contains invalid characters"
+      # you tried to upload a file which was damaged or invalid
+      media_generic_error: 'Invalid or damaged file'
+      # you didn't choose a subject for your lesson
+      subject_missing_in_lesson: 'Choose a subject'
+    placeholders:
+      description: 'Description (max %{num} characters)'
+      media: 'Select a file to load'
+      subject_id: 'Select a subject'
+      tags: 'Insert a minimum of %{items} tags (max %{num} characters each)'
+      title: 'Title (max %{num} characters)'
+      
   
   descriptions:
     instructions_to_fill_playlist: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist.'

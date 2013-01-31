@@ -1,7 +1,7 @@
 <%
-  title_max = t('captions.title_max_chars', :num => t('language_parameters.media_element.length_title').to_s).downcase 
-  description_max = t('captions.description_max_chars', :num => t('language_parameters.media_element.length_description').to_s).downcase
-  tags_max = t('captions.tags_max', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
+  title_max = t('forms.placeholders.title', :num => t('language_parameters.media_element.length_title').to_s).downcase 
+  description_max = t('forms.placeholders.description', :num => t('language_parameters.media_element.length_description').to_s).downcase
+  tags_max = t('forms.placeholders.tags', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
 
 <div id="form_info_new_media_element_in_editor" class="_<%= sti_type %> formInfoMediaElementEditor" style="display:none" data-title="<%= title_max %>" data-description="<%= description_max %>">
