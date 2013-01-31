@@ -1,7 +1,7 @@
 <%
-  title_max = t('captions.title_max_chars', :num => t('language_parameters.lesson.length_title').to_s).downcase 
-  description_max = t('captions.description_max_chars', :num => t('language_parameters.lesson.length_description').to_s).downcase
-  tags_max = t('captions.tags_max', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
+  title_max = t('forms.placeholders.title', :num => t('language_parameters.lesson.length_title').to_s).downcase 
+  description_max = t('forms.placeholders.description', :num => t('language_parameters.lesson.length_description').to_s).downcase
+  tags_max = t('forms.placeholders.tags', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
 
 <ul id="slides" class="new _new">
@@ -9,9 +9,9 @@
     <div class="box">
       <span class="infoButtonWhite"></span>
       <br/>
-      <h2><%= t('captions.you_are_creating_a_new_lesson') %></h2>
+      <h2><%= t('forms.new_lesson.title') %></h2>
       <h3>
-        <%= t('captions.fill_in_form_for_new_lesson') %>
+        <%= t('forms.new_lesson.description') %>
       </h3>
       <div class="_error_messages"></div>
       <%= form_tag('/lessons/create', :remote => true, :id => "lesson-create") do %>

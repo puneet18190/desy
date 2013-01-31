@@ -3,8 +3,8 @@
     <div class="box">
       <span class="infoButtonWhite"></span>
       <br />
-      <h2><%= t('captions.update_lesson') %></h2>
-      <h3><%= t('captions.use_the_form_below_for_lesson_information') %></h3>
+      <h2><%= t('forms.update_lesson.title') %></h2>
+      <h3><%= t('forms.update_lesson.description') %></h3>
       <div class="_error_messages"><%= media_elements_error_messages(params[:errors]) if params[:errors] %></div>
       <%= form_tag lesson_path, :remote => true, :method => :put do |f| %>
         <%= text_field_tag 'title', @lesson.title, :class => 'pull-left' %>

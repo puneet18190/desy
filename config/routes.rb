@@ -115,7 +115,11 @@ Desy::Application.routes.draw do
   get 'profile/mailing_lists' => 'users#mailing_lists', :as => :my_mailing_lists
   put 'profile/update' => 'users#update', as: :user
   # get  'logout' => 'users#logout', :as => :logout
-
+  
+  # MAILING LIST
+  post 'mailing_lists/create_group' => 'mailing_lists#create_group'
+  delete 'mailing_lists/delete_group' => 'mailing_lists#delete_group'
+  
   # USER SESSION
   post 'users_sessions' => 'users/sessions#create'
   delete 'users_session' => 'users/sessions#destroy'
