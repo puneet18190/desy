@@ -1,3 +1,6 @@
+# APPLICATION NAME
+application_name: 'DESY'
+application_full_name: 'DESY - Digital Education System'
 # SEEDS
 locations: ['Shanghai', 'Guangzhou', 'Wuhan', 'Beijing', 'Tianjin', 'Shenzhen', 'Nanjing'] # possibly, link here an external file with the list of locations
 subjects: ['Mathematics', 'Natural Sciences', 'Geography', 'History', 'Visive Arts', 'Music', 'Phisycal Education', 'Computer Science', 'Languages', 'Literature', 'Chemistry']

@@ -1,5 +1,6 @@
 en:
   
+  # TODO controllare links
   # SECTION 1: error messages that the application uses to interface with the user
   activemodel:
     errors:
@@ -84,6 +85,28 @@ en:
           problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
   
   
+  # SECTION bla bla bla
+  dashboard:
+    # the caption of the link to open the contact page
+    contact_us: 'Contact us'
+    # caption of the link opening the lesson editor
+    create_new_lesson: 'Create a new lesson'
+    # caption of the link opening the lesson editor, containing a prompt for the user (this is used in the specific section of lessons)
+    create_new_lesson_now: 'Create a lesson now'
+    # caption of the link to download the user manual
+    download_manual: 'Download the user manual'
+    emptied_lessons: 'You chose all the suggested lessons'
+    empty_lessons: 'There are no suggested lessons for you'
+    emptied_media_elements: 'You chose all the suggested elements'
+    empty_media_elements: 'There are no suggested elements for you'
+    help_using_desy: 'Need help using %{desy}?'
+    load_new_media_element: 'Load a new element'
+    load_new_media_element_now: 'Load a new element now'
+    selected_for_you: 'Selected for you'
+    talk_with_desy: 'Want to talk with %{desy}?'
+  
+  
+  
   # SECTION 2: general captions of the application
   captions:
     # it is used in the process of creating a mailing list
@@ -126,12 +149,6 @@ en:
     created_on: 'Created on'
     # just the word 'color', it may be used when necessary
     color: 'Color'
-    # the caption of the link to open the contact page
-    contact_us: 'Contact us'
-    # caption of the link opening the lesson editor
-    create_new_lesson: 'Create a new lesson'
-    # caption of the link opening the lesson editor, containing a prompt for the user (this is used in the specific section of lessons)
-    create_new_lesson_now: 'Create a lesson now'
     # this is the caption of the 'crop' button (which allows you to make a square selection inside an image)
     crop: 'Crop'
     # the caption of the link to the dashboard (DESY's main page)
@@ -142,16 +159,12 @@ en:
     description: 'Description'
     # this is what the acronym 'DESY' stands for
     desy_expanded_description: 'Digital Education System'
-    # this is the title of the application's presentation in the main page
-    discover_a_new_way_of_teaching: 'A new way of teaching'
     # this is the caption, in your elements section, which allows you to choose between size display (compact or extended mode)
     display_mode: 'Display mode'
     # in the section of your elements, this is the caption which allows you to choose how many elements are to be displayed in a page
     display: 'Display'
     # used in the image editor, to save a group of texts above the image
     done: 'Done'
-    # caption of the link to download the user manual
-    download_manual: 'Download the user manual'
     # this is the tip which appears at the bottom of the image editor while in 'crop' mode
     drag_image_to_select: 'Drag on the image to make a selection'
     # used inside my profile's statistics: this is the title of specific statistics of the elements which I have loaded
@@ -174,8 +187,6 @@ en:
     fill_all_login_fields: 'Insert username and password'
     
     
-    find_out_the_benefits_of_desy: 'Find out the benefits of DESY'
-    help_using_desy: 'Need help using Desy?'
     home: 'Home'
     image_caption_placeholder: 'Write a caption'
     image_editor_label: 'Edit image'
@@ -186,20 +197,16 @@ en:
     insert_text: 'Insert text'
     institute: 'Institute'
     large: 'Large'
-    lessons: 'Lessons'
     lessons_copied_by: 'Lessons copied by other users'
     lessons_created: 'Lessons created'
     lessons_more_likes: 'Lessons with more likes'
     lessons_shared: 'Lessons shared'
     likes_on_content: 'Likes on your content'
-    load_new_media_element: 'Load a new element'
-    load_new_media_element_now: 'Load a new element now'
     login: 'Login'
     logout: 'Logout'
     mailing_lists: 'Mailing lists'
     # link to the general main page of elements editor (you can choose among image, audio and video editor)
     media_element_editor: 'Elements editor'
-    media_elements: 'Elements'
     next: "Next"
     new_element_untitled: 'New element - untitled'
     new_time: 'New time'
@@ -233,8 +240,9 @@ en:
     search_lesson_or_media_element: 'Are you looking for lessons or elements?'
     seconds_shortened: 'Sec'
     select_an_action: 'Select an action'
+    select_mailing_list: 'or select mailing list'
+    select_more_lesson: 'Select more lesson'
     selected: 'Selected'
-    selected_for_you: 'Selected for you'
     select_audio: 'Select audio'
     select_component_to_add: 'Select component to add'
     select_image: 'Select image'
@@ -243,7 +251,7 @@ en:
     select_video: 'Select video'
     send: 'Send'
     send_link_to_your_friends: 'Send a link to your friends'
-    share_lesson_public_link: 'Share the public link of this lesson'
+    sent_to: 'Send to'
     show: 'Show'
     slide_not_deleted: "This slide can't be deleted"
     small: 'Small'
@@ -253,7 +261,6 @@ en:
     subject: 'Subject'
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
-    talk_with_desy: 'Want to talk with DESY?'
     text_color: 'Text color'
     time: 'Time'
     total_clip_length: 'Total clip length'
@@ -273,10 +280,8 @@ en:
     warning: 'Warning!'
     warning_search_lessons: "If you don't insert a keyword the search engine will find all the available lessons, according to the filters you selected"
     warning_search_media_elements: "If you don't insert a keyword the search engine will find all the available elements, according to the filters you selected"
-    watch_the_video: 'Watch the video'
     welcome: 'Welcome'
     what_are_you_looking_for: 'What are you looking for?'
-    what_is_desy: 'What is DESY?'
     what_to_do: 'What to do?'
     why_sign_up: 'Why to sign up?'
     write_a_message: 'Write a message'
@@ -286,7 +291,11 @@ en:
     your_browser_does_not_support_audio: 'Your browser does not support the audio tag'
     your_search_returned: 'Found %{num} results. To refine your search select between these tags'
     your_virtual_classroom_is_empty: 'Your Virtual Classroom is empty'
-  
+    
+    # già trovate che vanno sharate in captions
+    lessons: 'Lessons'
+    media_elements: 'Elements'
+    
   
   # SECTION 3: captions e titoli per i form generici -- error messages inside HTML forms (i.e. wrong name, surname, title, description, etc.)
   forms:
@@ -335,7 +344,30 @@ en:
       subject_id: 'Select a subject'
       tags: 'Insert a minimum of %{items} tags (max %{num} characters each)'
       title: 'Title (max %{num} characters)'
+  
+  
+  # SECTION 4: pagine di prelogin
+  prelogin:
+    contact_us:
+      menu_link: 'Contact us'
+      title: 'Contact us!'
+      description: 'Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts'
+    main_page:
+      menu_link: 'Home'
+      title: 'A new way of teaching'
+      description: "<b>DESY</b> is the new platform dedicated to the world of education. With <b>DESY</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>DESY</b> we guarantee high quality and care for details</i>."
+      video: 'Watch the video'
+    sign_up:
+      menu_link: 'Sign up'
+    what_is_desy:
+      menu_link: 'What is DESY?'
+      title: 'What is DESY?'
+      subtitle: 'Find out the benefits of DESY'
+      description: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
+      right_column_title: 'Watch demo'
+      right_column: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
       
+  
   
   descriptions:
     instructions_to_fill_playlist: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist.'
@@ -344,9 +376,8 @@ en:
     mailer_link_3: "Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):"
     mailer_link_4: 'DESY - Digital Educational System'
     mailing_lists: 'Create one o more groups of email to send your lessons.'
-    # this is the presentation of the application in the main page
-    prelogin: "<b>DESY</b> is the new platform dedicated to the world of education. With <b>DESY</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>DESY</b> we guarantee high quality and care for details</i>."
     send_lesson_link_explanation: 'Write a list of emails and a message: clicking the button, you will send your contacts an email containing the public link of this lesson'
+
     upload_media_element_success: 'The media element has been successfully created'
     user_mailer:
       account_confirmation_1: 'Greetings %{name} %{surname},'
@@ -357,24 +388,10 @@ en:
       account_confirmation_6: "Sign in with the username and the password inserted during the registration phase in order to access to the system."
       account_confirmation_7: 'N.B.'
       account_confirmation_8: "The confirmation of the account can be done just one time."
-    # TODO sospeso!!!!!
-    what_is_desy_1: 'Created for ENI (the main energy company in Italy) - which has now spread its use to Italian schools following agreement with the Italian Education Ministry - the '
-    what_is_desy_2: ' (DESY) allows teachers to create, share and provide students with multimedia and interactive lessons: the system is made up of an archive of lessons and other didactic components which the teacher may access, use, modify or base new lessons.'
-    what_is_desy_3: 'The creation of a new lesson is simple and intuitive: drag the icon from the workpage to the lesson sheet and any type of file (video, audio, image, table, chart, etc) can be inserted. Videos can be easily cut and edited according to didactic needs.'
-    what_is_desy_4: 'This way each lesson created can be followed by students in the classroom using a video projector or a multimedia blackboard, or remotely using a tablet or pc.'
-    what_is_desy_5: 'The lesson is at the same time stored in the systems database for access by all other registered teachers, thus creating a professional community which uses and shares the same didactic message and modules. A dedicated social network between students and teachers enables the activation of a virtuous circle for exchanging knowledge and contents to the benefit of teaching processes.'
-    what_is_desy_6: ' also includes an on-line and interactive English language course ('
-    what_is_desy_7: ') offering dedicated pages and functionalities both for teachers and students.'
-    what_is_desy_8: 'The application can easily be used for learning other languages: a course is currently being planned for teaching Italian to foreigners.'
-    what_is_desy_right_column: 'What is DESY? Placeholder for right column description -- DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY '
-    # TODO fino a qui
+
 
 # (3) accessors: empty situations, popups, help, etc
   empty:
-    dashboard_lessons_emptied: 'You chose all the suggested lessons'
-    dashboard_lessons: 'There are no suggested lessons for you'
-    dashboard_media_elements_emptied: 'You chose all the suggested elements'
-    dashboard_media_elements: 'There are no suggested elements for you'
     my_lessons: 'You have no lessons in your section, create one'
     my_media_elements: 'You have no elements in your section, load one'
     my_lessons_filter: 'The lesson filter produced no result'
@@ -442,6 +459,9 @@ en:
     overwrite_media_element_editor_confirm: 'If you overwrite it, it will be replaced in any private lesson containing it'
     overwrite_media_element_editor_yes: 'Overwrite'
     overwrite_media_element_editor_no: 'Cancel'
+  
+  
+  # TODO vanno accorpati
   buttons:
     add: 'follow this item in your own section'
     add_virtual_classroom: 'add lesson to virtual classroom'
@@ -488,7 +508,9 @@ en:
     search: 'search'
     select_element_title: 'select new element'
     video_new_title: 'new video'
-    
+  
+  
+  
   help:
     dashboard:
       first:
@@ -550,6 +572,8 @@ en:
       third:
         title: "Send a link to your friends"
         content: "Even if a lesson is private, it's available a link to show it to people not logged in DESY. The link contains a crypted code, without which it's possible to view the lesson only if you are logged in and the lesson is public. To send the link, click on 'send link to your friends' and fill in the form with a list of emails and a message."
+  
+  
   notifications:
     lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
     lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
@@ -605,7 +629,7 @@ en:
       length_duration: 3
 
 # (6) forms
-  forms:
+  formsas:
     fields_with_errors: 'please compile the form correctly'
     media_element:
       title: 'upload new media element'
