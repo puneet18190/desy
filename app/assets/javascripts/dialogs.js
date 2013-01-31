@@ -289,6 +289,17 @@ function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_
   }
 }
 
+function removeCompletelyMediaElementPopup(media_element_id) {
+  var obj = $('#dialog-media-element-' + media_element_id);
+  if(obj.length == 0) {
+    return;
+  }
+  if(obj.data('dialog')) {
+    obj.dialog('destroy');
+  }
+  obj.remove();
+}
+
 function closePopUp(id) {
   $('#' + id).dialog('close');
 }

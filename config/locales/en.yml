@@ -1,43 +1,67 @@
 en:
 
-# (1) activerecord internal messages - warning: changing these values might affect the unit tests, always run them after making any change
+  # this section contains error messages that the application uses to interface with the user
   activerecord:
     errors:
       models:
         bookmark:
+          # there was an error while trying to add the lesson to your personal folder
           problem_creating_for_lesson: 'The lesson could not be added'
+          # there was an error while trying to add the element to your personal folder
           problem_creating_for_media_element: 'The element could not be added'
+          # there was an error while trying to remove the lesson from your personal folder
           problem_destroying_for_lesson: 'The lesson could not be removed'
+          # there was an error while trying to remove the element from your personal folder
           problem_destroying_for_media_element: 'The element could not be removed'
         lesson:
+          # there was an error while trying to copy the lesson
           problem_copying: 'The lesson could not be copied'
+          # the selected lesson has already been copied
           already_copied: 'You already have a copy of this lesson'
-          just_copied: 'You just copied this lesson'
-          already_published: 'This lesson is already public'
-          problem_publishing: 'The lesson could not be published'
-          problem_unpublishing: 'The lesson could not be unpublished'
-          already_unpublished: 'This lesson has not been published yet'
+          # the selected lesson is a copy of another lesson which has not been modified yet (until the copy has'nt been modifed, it is frozen)
+          just_copied: "You've just copied this lesson"
+          # the selected lesson is already shared, it can't be shared again
+          already_published: 'This lesson is already shared'
+          # there was an error while trying to share the lesson
+          problem_publishing: 'The lesson could not be shared'
+          # there was an error while trying to undo the sharing
+          problem_unpublishing: 'Lesson sharing could not be undone'
+          # the selected lesson is not shared, hence the sharing can't be undone
+          already_unpublished: 'This lesson has not been shared yet'
+          # there was an error while trying to delete the lesson
           problem_destroying: 'The lesson could not be deleted'
+          # TODO rimuoverlo
           problem_adding_slide: 'The slide could not be added'
+          # there was an error while trying to add the lesson to your Virtual Classroom
           problem_adding_to_virtual_classroom: 'The lesson could not be added to your Virtual Classroom'
+          # the selected lesson is already in your Virtual Classroom, hence you can't add it again
           lesson_already_in_virtual_classroom: 'This lesson is already in your Virtual Classroom'
-          lesson_not_available_for_virtual_classroom: "This lesson can't be added to your Virtual Classroom"
+          # for some reason, the selected lesson cannot be added to your Virtual Classroom
+          lesson_not_available_for_virtual_classroom: "This lesson cannot be added to your Virtual Classroom"
+          # there was an error while trying to remove the lesson from your Virtual Classroom
           problem_removing_from_virtual_classroom: 'The lesson could not be removed from your Virtual Classroom'
         like:
-          problem_destroying: 'Your like could not be removed'
-          problem_creating: 'Your like could not be registered'
+          # there was an error while you were trying to remove 'I like it' from a lesson
+          problem_destroying: "Your 'like' could not be removed"
+          # there was an error while you were trying to add 'I like it' to the selected lesson
+          problem_creating: "Your 'like' could not be registered"
         media_element:
+          # there was an error while trying to delete an element
           problem_destroying: 'The element could not be deleted'
+          # since the element is public, it's not possible to delete it
           cant_destroy_public: "This element is public, you can't delete it"
         notification:
+          # TODO rimuoverlo
           problem_destroying: 'The notification could not be deleted'
         slide:
+          # TODO rimuoverli tutti
           problems_changing_position: "The slide's position could not be changed"
           invalid_position: "This slide's position is not valid"
           cant_change_position_of_cover: "This slide is the cover, it can't be moved"
           problems_destroying: 'The slide could not be deleted'
           dont_destroy_cover: "This slide is the cover, it can't be deleted"
         user:
+          # TODO IN SOSPESO
           problems_updating: 'Your profile could not be updated'
           problems_destroying: 'The user could not be deleted'
           missing_subjects: 'Choose at least one subject'
@@ -45,82 +69,139 @@ en:
           lesson_already_reported: 'You already reported this lesson'
           media_element_already_reported: 'You already reported this element'
         virtual_classroom_lesson:
+          # TODO remove
           cant_change_position_if_not_in_playlist: 'This lesson is not in the playlist'
-          invalid_position_in_playlist: "This lesson's position is not valid"
+          # you tried to insert the lesson in an invalid position inside the playlist
+          invalid_position_in_playlist: "The position of the lesson is not valid"
+          # there was an error while trying to change the position of the lesson inside the playlist
           problems_changing_position_in_playlist: "The lesson's position could not be changed"
+          # there was an error while trying to add the lesson to the playlist
           problems_adding_to_playlist: 'The lesson could not be added to the playlist'
+          # there was an error while trying to empty the playlist inside your Virtual Classroom'
           problems_emptying_playlist: 'Your playlist could not be emptied'
+          # this happens when you try to add a lesson to a playlist which is already full
           playlist_full: 'Your playlist is full!'
+          # there was an error while trying to remove the lesson from the playlist
           problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
+  
+  # this section contains format error messages inside general information tables (i.e. name, surname, title, description, etc.)
   error_captions:
-    fill_all_the_fields_or_too_long: 'Fill all the fields without exceeding the max length'
-    tags_are_not_enough: 'Tags are not enough'
+    # this is the standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
+    fill_all_the_fields_or_too_long: 'Fill in all the fields without exceeding the max length'
+    # this is when you don't write the minimum amount of tags
+    tags_are_not_enough: 'Not enough tags'
+    # this is when you didn't select a file to be loaded
     media_blank: 'No file loaded'
+    # you tried to upload an attachment whose format is not supported
     media_unsupported_format: 'Format not supported'
+    # you tried to upload a file whose name contained an invalid character
     media_invalid_filename: "File's name contains invalid characters"
+    # you tried to upload a file which was damaged or invalid
     media_generic_error: 'Invalid or damaged file'
+    # you didn't choose a subject for your lesson
     subject_missing_in_lesson: 'Choose a subject'
 
-# (2) strings that might be re-used more than once in the application: in capital letters, small letters, and long descriptions
+  # this section contains general captions of the application
   captions:
-    add_address_to_group: 'Add address to group'
+    # it is used in the process of creating a mailing list
+    add_address_to_group: 'Add email address to group'
+    # it is used in the video editor, in order to open the selection of audio tracks
     add_audio_track: 'Add audio track'
+    # it is used in the empty Virtual Classroom to invite the user to fill it immediately
     add_lesson_now: 'Add a lesson now'
+    # it is used to add a new mailing list
     add_new_group: 'Add new group'
+    # used in the Virtual Classroom, to pick different lessons to be added
     add_new_lesson: 'Add lessons'
+    # it is a link to open the application search engine
     advanced_search: 'Advanced search'
+    # it is the title of the audio editor
     audio_editor_label: 'Edit audio'
+    # this is the description associated to the 'add audio track' button inside video editor
     audio_track_in_video_editor: 'You can upload an audio track: this will cover the original audio of all the chosen components'
+    # the caption used to indicate the name if the author of the lesson
     author: 'Author'
+    # this is used in the video editor, to choose a background color for a 'title' component
     background_color: 'Background color'
-    back_in_desy: 'Back in DESY'
+    # used in the general footer of the application, to redirect to the main page
     back_to_dashboard: 'Back to dashboard'
+    # only used inside the general information tables: it represents the option to reset all the fields and close the window
     cancel: 'Cancel'
+    # this is the tip which appears at the bottom of the image editor while in 'insert text' mode
     click_image_to_add_text: 'Click on the image to add text'
-    close: 'Close'
+    # this is used in the playlist: it's the caption of the button which closes the playlist's navigational bar
+    close_playlist_bar: 'Close playlist bar'
+    # at the end of image, audio, and video editing, it is possible to update the general information of the element: this is where you can make your updates
     change_media_element_info: "Update here the element's info according to its new content"
-    change_media_element_info_in_popup: 'Fill the form below to modify the data'
+    # this is the label of the shortcut to modify general information of an element, directly in your section
+    change_media_element_info_in_popup: 'Fill the form below to modify data'
+    # used in the lesson editor, where there is an empty space to add an audio
     choose_audio: 'Click here to add an audio'
+    # used in the lesson editor, where there is an empty space to add an image
     choose_image: 'Click here to add an image'
+    # used in the lesson editor, where there is an empty space to add a video
     choose_video: 'Click here to add a video'
+    # this is the prompt to use the application's search engine
     choose_wich_item_and_go: 'Insert a word, choose the filters and go!'
+    # caption which indicates the date in which a lesson is created
     created_on: 'Created on'
+    # just the word 'color', it may be used when necessary
     color: 'Color'
+    # the caption of the link to open the contact page
     contact_us: 'Contact us'
-    copyright: '©2013 DESY. All rights reserved.'
-    create: 'Create'
+    # caption of the link opening the lesson editor
     create_new_lesson: 'Create a new lesson'
+    # caption of the link opening the lesson editor, containing a prompt for the user (this is used in the specific section of lessons)
     create_new_lesson_now: 'Create a lesson now'
-    create_new_media_element: 'Elements editor'
+    # at the end of image, audio, and video editing, it is possible to save your work as a new element: this is the title of the form where you can insert general data
     creating_new_media_element: 'You are creating a new element'
+    # this is the caption of the 'crop' button (which allows you to make a square selection inside an image)
     crop: 'Crop'
-    current_time: 'Current time'
+    # the caption of the link to the dashboard (DESY's main page)
     dashboard: 'Dashboard'
+    # this is used as caption of the button which deletes a mailing list
     delete_group: 'Delete group'
+    # this is used as a caption to describe a lesson
     description: 'Description'
+    # this is used as placeholder for the description text field: used for both lessons and elements
     description_max_chars: 'Description (max %{num} characters)'
-    desy: 'DESY'
+    # this is what the acronym 'DESY' stands for
     desy_expanded_description: 'Digital Education System'
-    desy_full_description: 'DESY - Digital Education System'
+    # this is the title of the application's presentation in the main page
     discover_a_new_way_of_teaching: 'A new way of teaching'
+    # this is the caption, in your elements section, which allows you to choose between size display (compact or extended mode)
     display_mode: 'Display mode'
+    # in the section of your elements, this is the caption which allows you to choose how many elements are to be displayed in a page
     display: 'Display'
+    # used in the image editor, to save a group of texts above the image
     done: 'Done'
+    # caption of the link to download the user manual
     download_manual: 'Download the user manual'
+    # this is the tip which appears at the bottom of the image editor while in 'crop' mode
     drag_image_to_select: 'Drag on the image to make a selection'
-    edit: 'Edit'
+    # used inside my profile's statistics: this is the title of specific statistics of the elements which I have loaded
     elements_loaded: 'Didactic elements loaded'
-    elements_shared: 'Elements shared'
+    # used inside my profile's statistics: this is the title of specific statistics of the elements which I have loaded and shared
+    elements_shared: 'Didactic elements shared'
+    # this caption is used wherever you need to refer to your own ID inside the application
     email: 'Email'
+    # the caption of the button which empties your Virtual Classroom playlist
     empty_playlist: 'Empty playlist'
-    empty_virtual_classroom: 'Empty the Virtual Classroom'
+    # the caption of the button which empties your Virtual Classroom
+    empty_virtual_classroom: 'Empty your Virtual Classroom'
+    # this is the caption of the button to submit your email and password to login
     enter: 'Enter'
+    # at the end of image, audio, and video editing, it is possible to save your work as a new element: this is where you can make your updates
     enter_new_media_element_details: 'Enter all the details in the form below'
+    # this is only used to add a title to your slides
     enter_title: 'Enter title'
-    exit: 'Exit'
-    failed_confirmation: 'The link you submitted is not longer valid.'
+    # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
+    failed_confirmation: 'The link you submitted is not longer valid'
+    # this is the title of the login form
     fill_all_login_fields: 'Insert username and password'
+    # this is the title of the new empty lesson form 
     fill_in_form_for_new_lesson: 'Enter all the details in the form below'
+    
     find_out_the_benefits_of_desy: 'Find out the benefits of DESY'
     help_using_desy: 'Need help using Desy?'
     home: 'Home'
@@ -144,12 +225,16 @@ en:
     login: 'Login'
     logout: 'Logout'
     mailing_lists: 'Mailing lists'
+    # link to the general main page of elements editor (you can choose among image, audio and video editor)
+    media_element_editor: 'Elements editor'
     media_elements: 'Elements'
     modify_info_element: "Element's information"
     next: "Next"
     new_element_untitled: 'New element - untitled'
     new_time: 'New time'
     no_notifications: "You don't have any notifications"
+    # this is used in the playlist: it's the caption of the button which opens the playlist's navigational bar
+    open_playlist_bar: 'Open playlist bar'
     original_image_size: 'Original image size'
     original_size: 'Original size'
     password: 'Password'
@@ -246,7 +331,8 @@ en:
     mailer_link_3: "Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):"
     mailer_link_4: 'DESY - Digital Educational System'
     mailing_lists: 'Create one o more groups of email to send your lessons.'
-    prelogin: "<b>DESY</b> is the new platform dedicated to the world of education. In <b>DESY</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and refine inside the application itself. Users take also advantage of our Community, sharing and receiving media elements ready to be re-used. <i>In <b>DESY</b> we guarantee high quality and care for details</i>."
+    # this is the presentation of the application in the main page
+    prelogin: "<b>DESY</b> is the new platform dedicated to the world of education. With <b>DESY</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>DESY</b> we guarantee high quality and care for details</i>."
     send_lesson_link_explanation: 'Write a list of emails and a message: clicking the button, you will send your contacts an email containing the public link of this lesson'
     upload_media_element_instructions: 'Select a file clicking on the button on the left'
     upload_media_element_success: 'The media element has been successfully created'
@@ -259,7 +345,8 @@ en:
       account_confirmation_6: "Sign in with the username and the password inserted during the registration phase in order to access to the system."
       account_confirmation_7: 'N.B.'
       account_confirmation_8: "The confirmation of the account can be done just one time."
-    what_is_desy_1: 'Created for ENI - who has now spread its use to Italian schools following agreement with the Italian Education Ministry - the '
+    # TODO sospeso!!!!!
+    what_is_desy_1: 'Created for ENI (the main energy company in Italy) - which has now spread its use to Italian schools following agreement with the Italian Education Ministry - the '
     what_is_desy_2: ' (DESY) allows teachers to create, share and provide students with multimedia and interactive lessons: the system is made up of an archive of lessons and other didactic components which the teacher may access, use, modify or base new lessons.'
     what_is_desy_3: 'The creation of a new lesson is simple and intuitive: drag the icon from the workpage to the lesson sheet and any type of file (video, audio, image, table, chart, etc) can be inserted. Videos can be easily cut and edited according to didactic needs.'
     what_is_desy_4: 'This way each lesson created can be followed by students in the classroom using a video projector or a multimedia blackboard, or remotely using a tablet or pc.'
@@ -268,6 +355,7 @@ en:
     what_is_desy_7: ') offering dedicated pages and functionalities both for teachers and students.'
     what_is_desy_8: 'The application can easily be used for learning other languages: a course is currently being planned for teaching Italian to foreigners.'
     what_is_desy_right_column: 'What is DESY? Placeholder for right column description -- DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY DESY '
+    # TODO fino a qui
 
 # (3) accessors: empty situations, popups, help, etc
   empty:

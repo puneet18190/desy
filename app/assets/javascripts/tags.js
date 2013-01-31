@@ -268,13 +268,13 @@ function addTagWithoutSuggestion(input, container_selector, tags_value_selector)
 
 function addToTagsValue(word, value_selector) {
   var old_value = $(value_selector).val();
-  old_value += (', ' + word);
+  old_value += (word + ',');
   $(value_selector).val(old_value);
 }
 
 function removeFromTagsValue(word, value_selector) {
   var old_value = $(value_selector).val();
-  old_value = old_value.replace(word, '');
+  old_value = old_value.replace((',' + word + ','), ',');
   $(value_selector).val(old_value);
 }
 
