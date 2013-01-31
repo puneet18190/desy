@@ -534,8 +534,6 @@ $(document).ready(function() {
   
   $("#profile_region").selectbox();
   
-  $('#mailing_lists_accordion').accordion();
-  
   $("#for_page_media_elements").selectbox();
   
   $("#filter_media_elements").selectbox();

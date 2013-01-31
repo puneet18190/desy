@@ -233,6 +233,71 @@ ALTER SEQUENCE locations_id_seq OWNED BY locations.id;
 
 
 --
+-- Name: mailing_list_addresses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE mailing_list_addresses (
+    id integer NOT NULL,
+    mailing_list_group_id integer,
+    heading character varying(255),
+    email character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: mailing_list_addresses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE mailing_list_addresses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mailing_list_addresses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE mailing_list_addresses_id_seq OWNED BY mailing_list_addresses.id;
+
+
+--
+-- Name: mailing_list_groups; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE mailing_list_groups (
+    id integer NOT NULL,
+    user_id integer,
+    name character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: mailing_list_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE mailing_list_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mailing_list_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE mailing_list_groups_id_seq OWNED BY mailing_list_groups.id;
+
+
+--
 -- Name: media_elements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -735,6 +800,20 @@ ALTER TABLE ONLY locations ALTER COLUMN id SET DEFAULT nextval('locations_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY mailing_list_addresses ALTER COLUMN id SET DEFAULT nextval('mailing_list_addresses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY mailing_list_groups ALTER COLUMN id SET DEFAULT nextval('mailing_list_groups_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY media_elements ALTER COLUMN id SET DEFAULT nextval('media_elements_id_seq'::regclass);
 
 
@@ -860,6 +939,22 @@ ALTER TABLE ONLY likes
 
 ALTER TABLE ONLY locations
     ADD CONSTRAINT locations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: mailing_list_addresses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY mailing_list_addresses
+    ADD CONSTRAINT mailing_list_addresses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: mailing_list_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY mailing_list_groups
+    ADD CONSTRAINT mailing_list_groups_pkey PRIMARY KEY (id);
 
 
 --
@@ -1020,6 +1115,20 @@ CREATE INDEX fk__likes_lesson_id ON likes USING btree (lesson_id);
 --
 
 CREATE INDEX fk__likes_user_id ON likes USING btree (user_id);
+
+
+--
+-- Name: fk__mailing_list_addresses_mailing_list_group_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__mailing_list_addresses_mailing_list_group_id ON mailing_list_addresses USING btree (mailing_list_group_id);
+
+
+--
+-- Name: fk__mailing_list_groups_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX fk__mailing_list_groups_user_id ON mailing_list_groups USING btree (user_id);
 
 
 --
@@ -1275,6 +1384,22 @@ ALTER TABLE ONLY likes
 
 
 --
+-- Name: mailing_list_addresses_mailing_list_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY mailing_list_addresses
+    ADD CONSTRAINT mailing_list_addresses_mailing_list_group_id_fkey FOREIGN KEY (mailing_list_group_id) REFERENCES mailing_list_groups(id) ON DELETE CASCADE;
+
+
+--
+-- Name: mailing_list_groups_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY mailing_list_groups
+    ADD CONSTRAINT mailing_list_groups_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: media_elements_slides_media_element_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1445,3 +1570,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130123140753');
 INSERT INTO schema_migrations (version) VALUES ('20130128152817');
 
 INSERT INTO schema_migrations (version) VALUES ('20130130090239');
+
+INSERT INTO schema_migrations (version) VALUES ('20130131093624');
+
+INSERT INTO schema_migrations (version) VALUES ('20130131094635');

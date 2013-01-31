@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :users_subjects, dependent: :destroy
   has_many :subjects, through: :users_subjects
   has_many :virtual_classroom_lessons
+  has_many :mailing_list_groups, :dependent => :destroy
   belongs_to :school_level
   belongs_to :location
   
