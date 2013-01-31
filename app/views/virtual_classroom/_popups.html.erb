@@ -1,16 +1,33 @@
 <div class="virtualClassroomQuickSelectPopUp" id="dialog-virtual-classroom-quick-select" style="display:none" data-loaded="false" data-loaded-correctly="true" data-loaded-msg=""></div>
 
-<div class="virtualClassroomSentLessonLinkPopUp" id="dialog-virtual-classroom-send-link" style="display:none">
-  <h1><%= t('captions.share_lesson_public_link') %></h1>
-  <p><%= t('descriptions.send_lesson_link_explanation') %></p>
+<div class="virtualClassroomSentLessonLinkPopUp" id="dialog-virtual-classroom-send-link" style="display:none;">
+  <h1><%= t('captions.sent_to') %></h1>
+  
   <%= form_tag '/virtual_classroom/lesson_id/send_link', :remote => true do %>
     <input class="_send_link_form_text_area _emails campoEmail" type="text" value="" name="emails" data-not-yet-selected="true">
-    <br>
+    <p><%= t('captions.select_mailing_list') %></p>
+    <div class="boxSelectMailingList">
+      <select  id="select_mailing_list">
+        <option value="select">Select</option>
+        <option value="select2">Select2</option>
+        <option value="select3">Select3</option>
+      </select>
+    </div>
     <textarea class="_send_link_form_text_area _message campoMessaggio" value="" name="message" data-not-yet-selected="true">
     </textarea>
   <% end %>
+  
   <div class="colonnaCoverLesson">
     <div class="img_expanded _lesson_thumb"></div>
+    <br class="clearfloat">
+    <p><%= t('captions.select_more_lesson') %></p>
+    <div class="boxSelectLesson">
+      <select  id="select_lesson_list">
+        <option value="choose">Choose</option>
+        <option value="lesson1">lesson1</option>
+        <option value="lesson2">lesson2</option>
+      </select>
+    </div>
   </div>
   <br class="clearfloat">
   <div class="buttonRow">

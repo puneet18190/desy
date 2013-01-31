@@ -1,0 +1,14 @@
+<div id="mailing_lists">
+	<div id="add_new_group">
+    <%= link_to '', '/mailing_lists/create_group', :method => :post, :remote => true%>
+		<span><%= t('captions.add_new_group')%></span>
+	</div>
+	<div id="mailing_lists_accordion">
+		<% current_user.mailing_list_groups.each_with_index do |group, index| %>
+      <%= render :partial => 'mailing_lists/group', :locals => {:group => group}%>
+		<% end%>
+	</div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  $('#mailing_lists_accordion').accordion();
+</script>

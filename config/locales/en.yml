@@ -240,6 +240,8 @@ en:
     search_lesson_or_media_element: 'Are you looking for lessons or elements?'
     seconds_shortened: 'Sec'
     select_an_action: 'Select an action'
+    select_mailing_list: 'or select mailing list'
+    select_more_lesson: 'Select more lesson'
     selected: 'Selected'
     select_audio: 'Select audio'
     select_component_to_add: 'Select component to add'
@@ -249,7 +251,7 @@ en:
     select_video: 'Select video'
     send: 'Send'
     send_link_to_your_friends: 'Send a link to your friends'
-    share_lesson_public_link: 'Share the public link of this lesson'
+    sent_to: 'Send to'
     show: 'Show'
     slide_not_deleted: "This slide can't be deleted"
     small: 'Small'
@@ -374,9 +376,8 @@ en:
     mailer_link_3: "Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):"
     mailer_link_4: 'DESY - Digital Educational System'
     mailing_lists: 'Create one o more groups of email to send your lessons.'
-    # this is the presentation of the application in the main page
-    
     send_lesson_link_explanation: 'Write a list of emails and a message: clicking the button, you will send your contacts an email containing the public link of this lesson'
+
     upload_media_element_success: 'The media element has been successfully created'
     user_mailer:
       account_confirmation_1: 'Greetings %{name} %{surname},'

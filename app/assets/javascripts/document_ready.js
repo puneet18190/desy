@@ -521,7 +521,10 @@ $(document).ready(function() {
   $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });
-  
+  $("#select_mailing_list").selectbox();
+
+  $("#select_lesson_list").selectbox();
+
   $("#which_item_to_search").selectbox();
   
   $("#filter_lessons").selectbox();
@@ -533,8 +536,6 @@ $(document).ready(function() {
   $("#profile_school_level").selectbox();
   
   $("#profile_region").selectbox();
-  
-  $('#mailing_lists_accordion').accordion();
   
   $("#for_page_media_elements").selectbox();
   
