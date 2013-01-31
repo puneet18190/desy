@@ -184,6 +184,14 @@ en:
       title: 'Enter title'
   
   
+  lesson_viewer:
+    # this is used in the playlist: it's the caption of the button which closes the playlist's navigational bar
+    close_playlist_bar: 'Close playlist bar'
+    open_playlist_bar: 'Open playlist bar'
+        
+    
+  
+  
   galleries:
     audios:
       select: 'Select audio'
@@ -224,8 +232,7 @@ en:
     # only used inside the general information tables: it represents the option to reset all the fields and close the window
     cancel: 'Cancel'
     
-    # this is used in the playlist: it's the caption of the button which closes the playlist's navigational bar
-    close_playlist_bar: 'Close playlist bar'
+
     # this is the prompt to use the application's search engine
     choose_wich_item_and_go: 'Insert a word, choose the filters and go!'
     # just the word 'color', it may be used when necessary
@@ -279,8 +286,7 @@ en:
     media_element_editor: 'Elements editor'
     new_time: 'New time'
     no_notifications: "You don't have any notifications"
-    # this is used in the playlist: it's the caption of the button which opens the playlist's navigational bar
-    open_playlist_bar: 'Open playlist bar'
+
     password: 'Password'
     password_or_username_not_correct: 'Wrong login data'
     password_resetted_successfully: 'Password resetted successfully'

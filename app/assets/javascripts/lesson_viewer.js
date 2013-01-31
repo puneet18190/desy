@@ -26,24 +26,25 @@ $(document).ready(function() {
     
     $("._lesson_title_in_playlist:visible").hide();
     $("._lesson_title_in_playlist").eq(lessonPos - 1).show();
-
     
-    $('.playlistMenu').slideToggle('slow', function() {
-      $('#right_scroll a,#left_scroll a').toggle();
-    });
     $('#carousel_ul').animate({
       'left': -(goToPos*900)
     });
     
-    $('a._playlist span').toggle();
-    
   });
   
-  $('a._playlist').click(function() {
-    $('.playlistMenu').slideToggle('slow', function() {
-      $('#right_scroll a, #left_scroll a').toggle();
+  $('body').on('click', '.playlist_footer ._playlist_closed span', function() {
+    $('#playlist_menu').parent().parent().show('blind', {}, 500, function() {
+      $(this).hide();
+      $('.playlist_footer ._playlist span').show();
     });
-    $(this).find('span').toggle();
+  });
+  
+  $('body').on('click', '.playlist_footer ._playlist span', function() {
+    $('#playlist_menu').parent().parent().hide('blind', {}, 500, function() {
+      $(this).hide();
+      $('.playlist_footer ._playlist_closed span').show();
+    });
   });
   
   $(document.documentElement).keyup(function (event) {
