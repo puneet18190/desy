@@ -1,4 +1,4 @@
-<h3>
+<h3 id="accordion_group_<%=group.id%>">
   <%= link_to t('captions.delete_group'), { :controller => 'mailing_lists', :action => 'delete_group', :id => group.id }, {:method => :delete, :remote => true, :class=> 'delete_group'}%>
 	<a class="selector"></a>
 	<span class="group-title" contenteditable="true"><%= group.name ? group.name : t('captions.group')+" "+group.id.to_s %></span> 
