@@ -204,8 +204,10 @@ en:
   users:
     institute: 'Institute'
     mailing_list:
+      add: 'Add new group'
       add_address: 'Add email address to group'
       delete: 'Delete group'
+      label: 'Group'
       
     
     
