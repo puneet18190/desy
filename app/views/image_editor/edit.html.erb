@@ -3,7 +3,7 @@
 <div class="mediaEditorElementContainer image_editor_only" id="image_editor">
   
   <div class="menuLeftEditorElement">
-    <h2><%= t('captions.what_to_do') %></h2><p><%= t('captions.select_the_scissors') %></p>
+    <h2><%= t('image_editor.left_column.title') %></h2><p><%= t('image_editor.left_column.description') %></p>
     <div class="menuModifyImages">
       <ul>
         <li><a id="image_editor_crop_action" class="do_crop cutButton" title="<%= t('general_titles.crop_element_title') %>"></a></li>
@@ -31,32 +31,32 @@
   <div class="menuBottomEditorElement">
     
     <div id="image_editor_empty_buttons" class="menuTextImages upper">
-      <span><%= t('captions.select_an_action') %></span>
+      <span><%= t('image_editor.select_an_action') %></span>
       <div class="bottoniVerdi fltrt">
-        <a class="_undo upper" style="display:none"><%= t('captions.undo') %></a>
+        <a class="_undo upper" style="display:none"><%= t('image_editor.undo') %></a>
       </div>
     </div>
     
     <div id="image_editor_crop_buttons" class="menuServiceImages upper" style="display:none">
-      <span><%= t('captions.drag_image_to_select') %></span>
+      <span><%= t('image_editor.crop.instructions') %></span>
       <div class="bottoniVerdi fltrt">
-        <a class="_do disabled"><%= t('captions.crop') %></a>
-        <a class="_cancel"><%= t('captions.cancel') %></a>
+        <a class="_do disabled"><%= t('image_editor.crop.done') %></a>
+        <a class="_cancel"><%= t('image_editor.crop.cancel') %></a>
       </div>
     </div>
     
     <div id="image_editor_text_buttons" class="menuServiceImages upper" style="display:none">
-      <span><%= t('captions.click_image_to_add_text') %></span>
+      <span><%= t('image_editor.text.instructions') %></span>
       <div class="bottoniVerdi fltrt">
-        <a class="_do disabled"><%= t('captions.done') %></a>
-        <a class="_cancel"><%= t('captions.cancel') %></a>
+        <a class="_do disabled"><%= t('image_editor.text.done') %></a>
+        <a class="_cancel"><%= t('image_editor.text.cancel') %></a>
       </div>
     </div>
     
   </div>
   
   <div class="menuFooterEditorElement _image_editor_bottom_bar">
-    <p id="image_editor_real_dimensions"><%= t('captions.original_image_size') %>: <%= @image.width %>x<%= @image.height %>px</p>
+    <p id="image_editor_real_dimensions"><%= t('image_editor.original_size') %>: <%= @image.width %>x<%= @image.height %>px</p>
     <div class="fltrt">
       <div class="fltrt">
         <a id="commit_image_editor" class="nextButton <%= @image.is_public ? '' : '_with_choice'.html_safe %>" title="<%= t('general_titles.save_element_title') %>"></a>

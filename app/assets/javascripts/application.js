@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require underscore
+//= require url_parser
 //= require jquery
 //= require jquery.browser
 //= require jquery_ujs
