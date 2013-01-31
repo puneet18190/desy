@@ -905,6 +905,11 @@ $(document).ready(function() {
   // PROFILE
   $('body').on('blur','#mailing_lists_accordion .group-title', function(){
     // FIX ME - HANDLE TITLE UPDATE
+    var group = $(this); 
+    $.ajax({
+      type: 'put',
+      url: '/mailing_lists/update_group/' + group.data('param')+'/'+ group.text()
+    });
   });
   
   

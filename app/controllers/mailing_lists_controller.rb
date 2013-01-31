@@ -25,7 +25,7 @@ class MailingListsController < ApplicationController
   
   def update_group
     @mlg = MailingListGroup.find(params[:id])
-    @mlg.update_attributes(params[:mailing_list_group])
+    @mlg.update_attributes(name: params[:name])
   end
   
   def delete_group
