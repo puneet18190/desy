@@ -8,6 +8,20 @@ en:
         # TODO questi sono i messaggi per l'utente (parte 1)
         invalid_email_address: 'does not appear to be a valid email address'
   activerecord:
+    ######### IMPORTANTE: questa parte qui sotto appartiene alla stessa sezione di users [metti numero]
+    attributes:
+      user:
+        name: 'Name'
+        surname: 'Surname'
+        email: 'Email'
+        password: 'Password'
+        new_password: 'New password'
+        password_confirmation: 'Password confirmation'
+        new_password_confirmation: 'New password confirmation'
+        school: 'School'
+        school_level_id: 'School level'
+        location_id: 'City'
+    ########## fino a qui
     errors:
       messages:
         # TODO questi sono i messaggi per l'utente (parte 2)
@@ -207,6 +221,7 @@ en:
       menu_link: 'Personal info'
       title: 'Personal Info'
       description: 'In this area you can update or modify all the parameters of your account'
+      ######### IMPORTANTE: manca un pezzo che sta più in alto, vedi sopra nella sezione 1
     institute: 'Institute'
     mailing_list:
       add: 'Add new group'
