@@ -334,26 +334,126 @@ INSERT INTO subjects VALUES (11, 'Chemistry', '2012-12-20 10:31:31.55622', '2012
 -- Data for Name: lessons; Type: TABLE DATA; Schema: public; Owner: desy
 --
 
-INSERT INTO lessons VALUES (4, 7, 3, 3, 'The big apple', 'New York is the most populous city in the United States and the center of the New York Metropolitan Area, one of the most populous metropolitan areas in the world.', true, NULL, false, '2012-12-20 15:21:55.890031', '2012-12-20 16:18:30.573697', '44870738148570858524');
-INSERT INTO lessons VALUES (3, 2, 2, 2, '2012 phenomenon', 'The 2012 phenomenon comprises a range of eschatological beliefs according to which cataclysmic or transformative events will occur on 21 December 2012', true, NULL, false, '2012-12-20 14:59:28.72369', '2012-12-20 16:35:13.292022', '52974534581267844894');
-INSERT INTO lessons VALUES (6, 3, 3, 2, 'Egon Schiele', 'One of the major figurative painter of the early 20th century.', true, NULL, false, '2012-12-20 16:33:20.409091', '2012-12-21 09:35:37.607381', '66907608385189907260');
-INSERT INTO lessons VALUES (8, 7, 3, 2, 'Every man for himself ...', 'A lesson to learn about the animal world.', true, NULL, false, '2012-12-21 09:32:36.45282', '2012-12-21 09:46:30.614992', '61261424691130502672');
-INSERT INTO lessons VALUES (12, 3, 3, 11, 'Josef Koudelka', 'Josef Koudelka is a Czech photographer.', true, NULL, false, '2012-12-21 11:18:50.299214', '2012-12-21 13:11:57.424413', '71622718813711694885');
-INSERT INTO lessons VALUES (9, 3, 3, 11, 'Sebastião Salgado', 'Sebastião Salgado (born February 8, 1944) is a Brazilian social documentary photographer and photojournalist.', true, NULL, false, '2012-12-21 09:37:04.747247', '2012-12-21 13:12:03.808942', '00524541867610368634');
-INSERT INTO lessons VALUES (5, 7, 3, 5, 'Life is pop!', 'Pop art is an art movement that emerged in the mid 1950s in Britain and in the late 1950s in the United States.', true, NULL, false, '2012-12-20 16:23:57.759783', '2012-12-21 14:35:23.33996', '71207469104431787822');
-INSERT INTO lessons VALUES (7, 2, 2, 2, 'Rene Magritte and his paintings', 'Rene Magritte was born in Lessines, in the province of Hainaut, in 1898, the eldest son of Leopold Magritte, who was a tailor and textile merchant, and Regina (nee Bertinchamps), a milliner until her marriage.', true, NULL, false, '2012-12-21 09:30:00.445907', '2012-12-21 14:49:43.177126', '31715540526392318602');
-INSERT INTO lessons VALUES (1, 6, 1, 5, 'J.M.Basquiat-Plush safe he think..', 'Jean-Michel Basquiat, born in Brooklyn, New York after the death of his brother Max, was the second of four children of Matilda Andrades (July 28, 1934 – November 17, 2008) and Gerard Basquiat (born 1930).', true, NULL, false, '2012-12-20 13:42:17.750022', '2012-12-21 14:50:11.436702', '28939098499059098027');
-INSERT INTO lessons VALUES (2, 6, 1, 10, 'Welcome in London', 'The etymology of London is uncertain. It is an ancient name and can be found in sources from the 2nd century. It is recorded c. 121 as Londinium, which points to Romano-British origin.', true, NULL, false, '2012-12-20 14:55:07.531111', '2012-12-21 14:50:12.563575', '50572365536783370711');
-INSERT INTO lessons VALUES (14, 8, 1, 9, 'Chinese', 'it is ok', false, NULL, false, '2013-01-07 09:15:15.653534', '2013-01-07 09:15:15.653534', '13959958164025334817');
-INSERT INTO lessons VALUES (15, 8, 1, 9, 'Chinese', 'it is ok', false, NULL, false, '2013-01-07 09:18:27.796183', '2013-01-07 09:18:27.796183', '07572333623608283600');
-INSERT INTO lessons VALUES (16, 8, 1, 9, 'Chinese', 'it is ok', false, NULL, false, '2013-01-07 09:19:13.601777', '2013-01-07 09:19:13.601777', '15239086293687653752');
-INSERT INTO lessons VALUES (17, 8, 1, 9, 'Chinese', 'it is ok', false, NULL, false, '2013-01-07 09:19:53.931296', '2013-01-07 09:19:53.931296', '33273250434887143499');
-INSERT INTO lessons VALUES (19, 2, 2, 1, 'Lezione 1', 'description (max 280 characters)', false, NULL, false, '2013-01-07 09:57:04.138169', '2013-01-07 09:58:14.273133', '71530982926304548878');
-INSERT INTO lessons VALUES (11, 7, 3, 1, 'Maths', 'The word mathematics comes from the Greek μάθημα (máthēma), which, in the ancient Greek language, means "what one learns", "what one gets to know", hence also "study" and "science", and in modern Greek just "lesson".', false, NULL, false, '2012-12-21 10:55:07.51656', '2013-01-08 11:26:03.040405', '57922812017564990427');
-INSERT INTO lessons VALUES (20, 7, 3, 6, 'Lezione di prova', 'dkidjjehdjdhj edhjedhjehdje edhejdhe edhejhed edhjjed', false, NULL, false, '2013-01-08 11:29:35.990499', '2013-01-08 11:29:35.990499', '57235586725133425166');
-INSERT INTO lessons VALUES (21, 1, 1, 11, 'weref', 'sdsfdsdfsdf,affa', false, NULL, false, '2013-01-09 09:57:44.937486', '2013-01-09 09:57:44.937486', '10328708033264712815');
-INSERT INTO lessons VALUES (22, 5, 1, 5, 'J.M.Basquiat-Plush safe he think..', 'Jean-Michel Basquiat, born in Brooklyn, New York after the death of his brother Max, was the second of four children of Matilda Andrades (July 28, 1934 – November 17, 2008) and Gerard Basquiat (born 1930).', false, 1, false, '2013-01-09 11:20:37.813527', '2013-01-09 11:24:54.392315', '53962834489938627660');
-INSERT INTO lessons VALUES (23, 7, 3, 5, 'Visive arts', 'A virtual journey into the history of the visual arts.', false, NULL, false, '2013-01-09 13:28:41.410447', '2013-01-09 13:28:41.410447', '85149039689945388679');
+INSERT INTO lessons VALUES (4, 7, 3, 3, 'The big apple', 'New York is the most populous city in the United States and the center of the New York Metropolitan Area, one of the most populous metropolitan areas in the world.', true, NULL, false, '2012-12-20 15:21:55.890031', '2013-01-31 14:48:06.700678', '44870738148570858524', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (3, 2, 2, 2, '2012 phenomenon', 'The 2012 phenomenon comprises a range of eschatological beliefs according to which cataclysmic or transformative events will occur on 21 December 2012', true, NULL, false, '2012-12-20 14:59:28.72369', '2013-01-31 14:48:06.782672', '52974534581267844894', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (6, 3, 3, 2, 'Egon Schiele', 'One of the major figurative painter of the early 20th century.', true, NULL, false, '2012-12-20 16:33:20.409091', '2013-01-31 14:48:06.815877', '66907608385189907260', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (8, 7, 3, 2, 'Every man for himself ...', 'A lesson to learn about the animal world.', true, NULL, false, '2012-12-21 09:32:36.45282', '2013-01-31 14:48:06.848058', '61261424691130502672', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (12, 3, 3, 11, 'Josef Koudelka', 'Josef Koudelka is a Czech photographer.', true, NULL, false, '2012-12-21 11:18:50.299214', '2013-01-31 14:48:06.880127', '71622718813711694885', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (9, 3, 3, 11, 'Sebastião Salgado', 'Sebastião Salgado (born February 8, 1944) is a Brazilian social documentary photographer and photojournalist.', true, NULL, false, '2012-12-21 09:37:04.747247', '2013-01-31 14:48:06.911719', '00524541867610368634', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (5, 7, 3, 5, 'Life is pop!', 'Pop art is an art movement that emerged in the mid 1950s in Britain and in the late 1950s in the United States.', true, NULL, false, '2012-12-20 16:23:57.759783', '2013-01-31 14:48:06.938956', '71207469104431787822', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (7, 2, 2, 2, 'Rene Magritte and his paintings', 'Rene Magritte was born in Lessines, in the province of Hainaut, in 1898, the eldest son of Leopold Magritte, who was a tailor and textile merchant, and Regina (nee Bertinchamps), a milliner until her marriage.', true, NULL, false, '2012-12-21 09:30:00.445907', '2013-01-31 14:48:06.971213', '31715540526392318602', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (1, 6, 1, 5, 'J.M.Basquiat-Plush safe he think..', 'Jean-Michel Basquiat, born in Brooklyn, New York after the death of his brother Max, was the second of four children of Matilda Andrades (July 28, 1934 – November 17, 2008) and Gerard Basquiat (born 1930).', true, NULL, false, '2012-12-20 13:42:17.750022', '2013-01-31 14:48:07.004347', '28939098499059098027', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (2, 6, 1, 10, 'Welcome in London', 'The etymology of London is uncertain. It is an ancient name and can be found in sources from the 2nd century. It is recorded c. 121 as Londinium, which points to Romano-British origin.', true, NULL, false, '2012-12-20 14:55:07.531111', '2013-01-31 14:48:07.036693', '50572365536783370711', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (14, 8, 1, 9, 'Chinese', 'it is ok', false, NULL, false, '2013-01-07 09:15:15.653534', '2013-01-31 14:48:07.071612', '13959958164025334817', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (15, 8, 1, 9, 'Chinese', 'it is ok', false, NULL, false, '2013-01-07 09:18:27.796183', '2013-01-31 14:48:07.106619', '07572333623608283600', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (16, 8, 1, 9, 'Chinese', 'it is ok', false, NULL, false, '2013-01-07 09:19:13.601777', '2013-01-31 14:48:07.140684', '15239086293687653752', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (17, 8, 1, 9, 'Chinese', 'it is ok', false, NULL, false, '2013-01-07 09:19:53.931296', '2013-01-31 14:48:07.173451', '33273250434887143499', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (19, 2, 2, 1, 'Lezione 1', 'description (max 280 characters)', false, NULL, false, '2013-01-07 09:57:04.138169', '2013-01-31 14:48:07.20665', '71530982926304548878', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (11, 7, 3, 1, 'Maths', 'The word mathematics comes from the Greek μάθημα (máthēma), which, in the ancient Greek language, means "what one learns", "what one gets to know", hence also "study" and "science", and in modern Greek just "lesson".', false, NULL, false, '2012-12-21 10:55:07.51656', '2013-01-31 14:48:07.240236', '57922812017564990427', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (20, 7, 3, 6, 'Lezione di prova', 'dkidjjehdjdhj edhjedhjehdje edhejdhe edhejhed edhjjed', false, NULL, false, '2013-01-08 11:29:35.990499', '2013-01-31 14:48:07.270891', '57235586725133425166', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (21, 1, 1, 11, 'weref', 'sdsfdsdfsdf,affa', false, NULL, false, '2013-01-09 09:57:44.937486', '2013-01-31 14:48:07.303368', '10328708033264712815', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (22, 5, 1, 5, 'J.M.Basquiat-Plush safe he think..', 'Jean-Michel Basquiat, born in Brooklyn, New York after the death of his brother Max, was the second of four children of Matilda Andrades (July 28, 1934 – November 17, 2008) and Gerard Basquiat (born 1930).', false, 1, false, '2013-01-09 11:20:37.813527', '2013-01-31 14:48:07.387001', '53962834489938627660', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
+INSERT INTO lessons VALUES (23, 7, 3, 5, 'Visive arts', 'A virtual journey into the history of the visual arts.', false, NULL, false, '2013-01-09 13:28:41.410447', '2013-01-31 14:48:07.42054', '85149039689945388679', '--- !ruby/object:OpenStruct
+table:
+  :available_video: true
+  :available_audio: true
+modifiable: true
+', true);
 
 
 --
