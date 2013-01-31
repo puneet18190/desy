@@ -205,6 +205,8 @@ en:
     email: 'Email'
     info:
       menu_link: 'Personal info'
+      title: 'Personal Info'
+      description: 'In this area you can update or modify all the parameters of your account'
     institute: 'Institute'
     mailing_list:
       add: 'Add new group'

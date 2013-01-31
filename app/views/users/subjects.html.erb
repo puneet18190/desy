@@ -5,15 +5,15 @@
       <ul class="navlist">
         <li><%= link_to t('users.info.menu_link'), my_profile_path %></li>
         <li><%= link_to t('users.subjects.menu_link'), my_subjects_path, :class => 'current' %></li>
-        <li><%= link_to t('users.mailing_lists.menu_link'), my_mailing_lists_path %></li>
+        <li><%= link_to t('users.mailing_list.menu_link'), my_mailing_lists_path %></li>
         <li><%= link_to t('users.statistics.menu_link'), my_statistics_path %></li>
       </ul>
     </div>
     <br class="clearfloat">
     <div class="contentForm">
       <header>
-        <h2><%= t('users.profile.subjects.title') %></h2>
-        <p><%= t('users.profile.subjects.description') %></p>
+        <h2><%= t('users.subjects.title') %></h2>
+        <p><%= t('users.subjects.description') %></p>
       </header>
       <%= form_for @user, :url => user_path do |f| %>
         <%= render :partial => 'personal_subjects', :locals => {:f => f} %>

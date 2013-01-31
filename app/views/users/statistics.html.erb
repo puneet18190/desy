@@ -5,7 +5,7 @@
       <ul class="navlist">
         <li><%= link_to t('users.info.menu_link'), my_profile_path %></li>
         <li><%= link_to t('users.subjects.menu_link'), my_subjects_path %></li>
-        <li><%= link_to t('users.mailing_lists.menu_link'), my_mailing_lists_path %></li>
+        <li><%= link_to t('users.mailing_list.menu_link'), my_mailing_lists_path %></li>
         <li><%= link_to t('users.statistics.menu_link'), my_statistics_path, :class => 'current' %></li>
       </ul>
     </div>
@@ -41,7 +41,7 @@
       <div class="stats">
         <h2><%= t('users.statistics.general.title') %></h2>
         <ul class="col fltlft">
-          <li class="lesson_stat"><span><%= t('users.statistics.general.lesson_shared') %></span><div><%= @all_shared_lessons %></div></li>
+          <li class="lesson_stat"><span><%= t('users.statistics.general.lessons_shared') %></span><div><%= @all_shared_lessons %></div></li>
           <li class="element_stat"><span><%= t('users.statistics.general.media_elements_shared') %></span><div><%= @all_shared_elements %></div></li>
           <li class="generic_stat"><span><%= t('users.statistics.general.total_users') %></span><div><%= @all_users %></div></li>
           <li class="lesson_stat"><span><%= t('users.statistics.general.lessons_more_likes') %></span>
