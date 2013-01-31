@@ -2,6 +2,10 @@ en:
   
   # TODO controllare links
   # SECTION 1: error messages that the application uses to interface with the user
+  other_popup_messages:
+    login:
+      missing_fields: 'Insert username and password'
+      wrong_content: 'Wrong login data'
   activemodel:
     errors:
       messages:
@@ -179,7 +183,10 @@ en:
   
   
   media_elements_editor:
+    enjoy: 'Enjoy!'
     new_untitled: 'New element - untitled'
+    title: "Welcome to %{desy}'s element editor!"
+    description: 'Want to create a new educational element? Choose the type of the new element'
   
   
   lesson_editor:
@@ -214,6 +221,45 @@ en:
       select: 'Select image'
     videos:
       select: 'Select video'
+  
+  
+  media_elements:
+    display: 'Display'
+    # choose between size display (compact or extended mode)
+    display_mode:
+      title: 'Display mode'
+      large: 'Large'
+      small: 'Small'
+    empty: 'You have no elements in your section, load one'
+    empty_filter: 'The element filter produced no result'
+    load_new: 'Load a new element'
+    load_new_now: 'Load a new element now'
+    # link to the general main page of elements editor (you can choose among image, audio and video editor)
+    menu_link: 'Elements editor'
+  
+  
+  registration:
+    done: 'Sign up'
+    login:
+      email: 'Email'
+      done: 'Enter'
+      password: 'Password'
+      title: 'Login'
+    logout: 'Logout'
+    problems_with_password: 'Forgot your password?'
+    description: 'Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching.'
+    title: 'Register'
+    subtitle: 'Why register?'
+    subsubtitle: 'Discover the benefits of %{desy}'
+    subjects:
+      title: 'Choose the subjects you want to stay connected'
+    policy_1:
+      title: 'Title of policy 1'
+      description: 'Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1'
+    policy_2:
+      title: 'Title of policy 2'
+      description: 'Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2'
+  
   
   users:
     email: 'Email'
@@ -293,10 +339,8 @@ en:
     dashboard: 'Dashboard'
     # this is what the acronym 'DESY' stands for
     desy_expanded_description: 'Digital Education System'
-    # this is the caption, in your elements section, which allows you to choose between size display (compact or extended mode)
-    display_mode: 'Display mode'
-    # in the section of your elements, this is the caption which allows you to choose how many elements are to be displayed in a page
-    display: 'Display'
+
+   
     # the caption of the button which empties your Virtual Classroom playlist
     empty_playlist: 'Empty playlist'
     # the caption of the button which empties your Virtual Classroom
@@ -306,28 +350,23 @@ en:
     # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
     failed_confirmation: 'The link you submitted is not longer valid'
     # this is the title of the login form
-    fill_all_login_fields: 'Insert username and password'
+    
     home: 'Home'
     insert: 'Insert'
     insert_emails_here: 'Insert emails separated by comma'
     insert_tag: 'Insert a tag'
     insert_text: 'Insert text'
-    large: 'Large'
-    login: 'Login'
-    logout: 'Logout'
-    # link to the general main page of elements editor (you can choose among image, audio and video editor)
-    media_element_editor: 'Elements editor'
+
+
     new_time: 'New time'
     no_notifications: "You don't have any notifications"
     password: 'Password'
-    password_or_username_not_correct: 'Wrong login data'
+
     password_resetted_successfully: 'Password resetted successfully'
     pause: 'Pause'
     play: 'Play'
     playlist: 'Playlist'
     preview: 'Preview'
-    problems_with_password: 'Forgot your password?'
-    register: 'Sign up'
     remove: 'Remove'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     report_abuse: 'Report abuse'
@@ -344,7 +383,7 @@ en:
     send_link_to_your_friends: 'Send a link to your friends'
     sent_to: 'Send to'
     slide_not_deleted: "This slide can't be deleted"
-    small: 'Small'
+
     sort_results_by: 'Sort results by'
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
@@ -402,26 +441,26 @@ en:
     upload_media_element:
       title: 'Upload a media element'
       description: 'Select a file clicking on the button on the left'
-      cancel: 
-      done: 
+      cancel: 'Cancel'
+      done: 'Upload'
     # change info media element form
     change_info_media_element:
       title: "Element's information"
       description: 'Fill the form below to modify data'
-      cancel: 
-      done: 
+      cancel: 'Cancel'
+      done: 'Save'
     # new media element in editor form
     new_media_element_in_editor:
       title: 'You are creating a new element'
       description: 'Enter all the details in the form below'
-      cancel: 
-      done: 
+      cancel: 'Cancel'
+      done: 'Save'
     # overwrite media element in editor form
     overwrite_media_element_in_editor:
       title: 'Have you made significant changes?'
       description: "Update here the element's info according to its new content"
-      cancel: 
-      done: 
+      cancel: 'Cancel'
+      done: 'Update'
     error_captions:
       # this is the standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       fill_all_the_fields_or_too_long: 'Fill in all the fields without exceeding the max length'
@@ -491,8 +530,7 @@ en:
 
 # (3) accessors: empty situations, popups, help, etc
   empty:
-    my_media_elements: 'You have no elements in your section, load one'
-    my_media_elements_filter: 'The element filter produced no result'
+    
     lessons_result_1: 'No lessons were found associated to tags containing <'
     lessons_result_2: 'No lessons were found associated to the tag <'
     lessons_result_3: '>: try entering a smaller word, or changing your search parameters'
@@ -740,12 +778,7 @@ en:
         tags: 'tags'
     sign_up:
       subjects_blank: 'please check at least one subject'
-      policy_1:
-        title: 'Torem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tin'
-        description: 'Cidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.'
-      policy_2:
-        title: 'Torem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tin'
-        description: 'Cidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.'
+      
 
   # (7) emails
   emails:

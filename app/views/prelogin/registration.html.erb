@@ -12,43 +12,40 @@
 
 <br class="clearfloat">
 <div class="containerText">
-  <h1>Register</h1>
-  <h2>Why register?</h2>
-  <h3>Discover the benefits of desy.</h3>
-  <p>Create your own multimedia lessons with audio, video or images. Share them with other teachers desy.
-Use or modify to suit your needs the lessons of other teachers who use desy.
-Organize your lessons in your virtual classroom and discover a new way of teaching.</p>
+  <h1><%= t('registration.title') %></h1>
+  <h2><%= t('registration.subtitle') %></h2>
+  <h3><%= t('registration.subsubtitle', :desy => SETTINGS['application_name']) %></h3>
+  <p><%= t('registration.description', :desy => SETTINGS['application_name']) %></p>
 </div>
 
+
 <%= form_for @user do |f| %>
-
   <%= render partial: 'users/personal_info', :locals => { :f => f } %>
-
-  <h2>Choose the subjects you want to stay connected</h2>
+  <h2><%= t('registration.subjects.title') %></h2>
   <%= render partial: 'users/personal_subjects', :locals => { :f => f } %>
 
   <div class="contentForm">
-    <% @user.registration_policies.each do |policy| -%>
+    <% @user.registration_policies.each do |policy| %>
       <p>
-        <strong><%= t("forms.sign_up.#{policy}.title") %></strong><br><br>
-        <%= t("forms.sign_up.#{policy}.description") %>
+        <strong><%= t("registration.#{policy}.title") %></strong><br><br>
+        <%= t("registration.#{policy}.description") %>
       </p>
       <div class="checkbox-content">
         <div class="checkboxElement">
           <table>
             <tr>
               <td>
-                <% if @user.errors.include?(policy) -%>
+                <% if @user.errors.include?(policy) %>
                   <div class="field_with_errors">
-                <% end -%>
+                <% end %>
 
                 <%= f.hidden_field policy, value: '0', id: nil %>
                 <%= check_box_tag "user[#{policy}]", '1', @user.send(policy) == '1', class: 'regular-checkbox' %>
                 <%= label_tag "user[#{policy}]", '' %>
 
-                <% if @user.errors.include?(policy) -%>
+                <% if @user.errors.include?(policy) %>
                   </div>
-                <% end -%>
+                <% end %>
               </td>
               <td>accept</td>
             </tr>
@@ -58,18 +55,18 @@ Organize your lessons in your virtual classroom and discover a new way of teachi
       </div>
 
       <br class="clearfloat">
-    <% end -%>
+    <% end %>
     
     <%# ERRORI %>
-    <% errors = @user.errors.select{ |k,_| @user.registration_policies.include? k } -%>
+    <% errors = @user.errors.select{ |k,_| @user.registration_policies.include? k } %>
 
     <ul class="listaErrori">
-    <% errors.each do |k, v| -%>
+    <% errors.each do |k, v| %>
       <li><%= @user.errors.full_message(k, v) %></li>
-    <% end if errors.present? -%>
+    <% end if errors.present? %>
     </ul>
 
-    <%= f.submit t('captions.register') %>
+    <%= f.submit t('registration.done') %>
   </div>
 
 <% end %>
