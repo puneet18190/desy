@@ -57,6 +57,7 @@ class LessonEditorController < ApplicationController
       redirect_to '/dashboard'
       return
     end
+    @my_tags = Tagging.includes(:tag).where(:taggable_type => 'Lesson', :taggable_id => @lesson_id).order(:tag_id)
     @subjects = Subject.order(:description)
   end
   

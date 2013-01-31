@@ -105,7 +105,7 @@ class MediaElementsController < ApplicationController
     if @ok
       @media_element.title = params[:title]
       @media_element.description = params[:description]
-      @media_element.tags = params[:tags]
+      @media_element.tags = params[:tags_value]
       if !@media_element.save
         @errors = convert_item_error_messages @media_element.errors.messages
         @error_fields = @media_element.errors.messages.keys

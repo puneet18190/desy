@@ -13,14 +13,12 @@
 
 <% if @errors %>
   
-  <p style="padding: 10px 0 0 20px;"><%= standard_form_error_messages(@errors, 'black') %></p>
+  <p style="padding: 20px 0 0 20px;"><%= standard_form_error_messages(@errors, 'black') %></p>
   <script type="text/javascript">
     
-    function init() {
-      if(top.uploadMediaElementLoaderError) top.uploadMediaElementLoaderError(<%= @error_fields.to_json.html_safe %>); //top means parent frame.
+    window.onload = function() {
+      top.uploadMediaElementLoaderError(<%= @error_fields.to_json.html_safe %>);
     }
-    
-    window.onload=init;
     
   </script>
   
@@ -28,14 +26,10 @@
   
   <script type="text/javascript">
     
-    function init() {
-      if(top.uploadMediaElementLoadeDoneRedirect) top.uploadMediaElementLoadeDoneRedirect(); //top means parent frame.
+    window.onload = function() {
+      top.uploadMediaElementLoadeDoneRedirect();
     }
     
-    window.onload=init;
-    
   </script>
-  
-  <%= t('captions.upload_completed') %>
   
 <%end%>

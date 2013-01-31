@@ -559,6 +559,18 @@ function tinyMceCallbacks(inst,tiny_id){
   } else {
     $(inst.getBody()).parentsUntil("table.mceLayout").css("border","1px solid white");
   }
+  
+}
+
+function tinyMceKeyDownCallbacks(inst,tiny_id){
+  var spans = $(inst.getBody()).find("li span");
+  console.log("S: "+spans.length);
+  spans.each(function(){
+    var span = $(this);
+    span.parents('li').removeAttr('class');
+    span.parents('li').addClass(span.attr('class'));
+    span.parentsUntil('li').attr('style',span.attr('style'));
+  });
 }
 
 function reInitializeSlidePositionsInLessonEditor() {
@@ -586,6 +598,9 @@ function initTinymce(tiny_id) {
     setup: function(ed) {
       ed.onKeyUp.add(function(ed, e) {
         tinyMceCallbacks(ed,tiny_id);
+      });
+      ed.onKeyDown.add(function(ed, e) {
+        tinyMceKeyDownCallbacks(ed,tiny_id);
       });
       ed.onClick.add(function(ed, e) {
         var textarea = $('#' + tiny_id);

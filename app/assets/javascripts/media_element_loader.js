@@ -12,6 +12,7 @@ function uploadMediaElementLoaderError(errors) {
       $('#load-media-element #media_element_media_show').addClass('form_error');
     } else if(error == 'tags') {
       $('#load-media-element ._tags_container').addClass('form_error');
+      $('#load-media-element ._tags_container ._placeholder').hide();
     } else {
       $('#load-media-element #' + error).addClass('form_error');
       if($('#load-media-element #' + error + '_placeholder').val() == '') {
@@ -34,7 +35,12 @@ function resetMediaElementChangeInfo(media_element_id) {
   var container = $('#dialog-media-element-' + media_element_id + ' ._change_info_container');
   container.find('#title').val(container.data('title'));
   container.find('#description').val(container.data('description'));
-  container.find('#tags').val(container.data('tags'));
   container.find('.form_error').removeClass('form_error');
   container.find('._error_messages').html('');
+  container.find('._tags_container span').remove();
+  container.find('._tags_placeholder span').each(function() {
+    var copy = $(this)[0].outerHTML;
+    container.find('._tags_container').prepend(copy);
+  });
+  container.find('#tags_value').val(container.data('tags'));
 }
