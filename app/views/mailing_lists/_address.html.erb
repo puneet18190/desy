@@ -1,10 +1,10 @@
 <% group.addresses.each_with_index do |address, index| %>
   <tr>
-  	<td class="index"><%= index+1 %></td>
-  	<td class="name"><%= address.heading %></td>
-  	<td class="email">
+    <td class="index"><%= index + 1 %></td>
+    <td class="name"><%= address.heading %></td>
+    <td class="email">
       <%= address.email %>
-      <%= link_to '', { :controller => 'mailing_lists', :action => 'delete_address', :id => address.id }, {:method => :delete, :remote => true}%>
+      <%= link_to '', {:controller => 'mailing_lists', :action => 'delete_address', :id => address.id}, {:method => :delete, :remote => true} %>
     </td>
   </tr>
-<%end%>
+<% end %>

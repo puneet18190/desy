@@ -19,13 +19,13 @@
     <div class="lessons-expanded _lesson_expanded">
       <%= render :partial => "lessons/thumbnail", :locals => {:lesson => lesson} %>
       <div class="info-text">
-        <h1><%= t('captions.created_on') %></h1>
+        <h1><%= t('lessons.created_on') %></h1>
         <%= TimeConvert.to_string(lesson.created_at) %>
         <p>
           <span class="fltlft"><%= image_tag "star.png", :align => "left" %></span>
           <span class="fltlft" style="padding-top:2px"><%= lesson.likes.count %></span>
           <br class="clearfloat">
-          <span class="lower"><%= t('captions.users_like_this_lesson') %></span>
+          <span class="lower"><%= t('lessons.users_like_this') %></span>
         </p>
         <% if lesson.is_reportable %>
           <%= render :partial => "reports/lesson", :locals => {:lesson => lesson} %>
@@ -34,16 +34,16 @@
       <div class="description-text">
         <% if [:public, :linked].include?(lesson.status) %>
           <div class="intestazione">
-            <h1><%= t('captions.author') %>:</h1>
+            <h1><%= t('lessons.author') %>:</h1>
             <p><%= lesson.user.full_name %></p>
-            <h1><%= t('captions.institute') %>:</h1>
+            <h1><%= t('users.institute') %>:</h1>
             <p><%= lesson.user.school %></p>
-            <h1><%= t('captions.school_level') %>:</h1>
+            <h1><%= t('lessons.school_level') %>:</h1>
             <p class="fltlft"><%= lesson.school_level.description %></p>
           </div>
           <br class="clearfloat">
         <% end %>
-        <h1><%= t('captions.description') %></h1>
+        <h1><%= t('lessons.description') %></h1>
         <p><%= lesson.description %></p>
       </div>
     </div>

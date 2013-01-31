@@ -1,7 +1,7 @@
 <div id="mailing_lists">
 	<div id="add_new_group">
     <%= link_to '', '/mailing_lists/create_group', :method => :post, :remote => true%>
-		<span><%= t('captions.add_new_group')%></span>
+		<span><%= t('users.mailing_list.add')%></span>
 	</div>
 	<div id="mailing_lists_accordion">
 		<% current_user.mailing_list_groups.each_with_index do |group, index| %>

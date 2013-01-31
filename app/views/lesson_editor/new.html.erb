@@ -28,19 +28,19 @@
           <%= hidden_field_tag 'tags_value', '' %>
         </div>
         <div class="fltrt" style="margin-top:30px">
-          <div class="fltlft" style="margin-top:5px;"><%= link_to t('captions.cancel').downcase, my_lessons_path, :class => "buttonForm" %></div>
+          <div class="fltlft" style="margin-top:5px;"><%= link_to t('forms.new_lesson.cancel').downcase, my_lessons_path, :class => "buttonForm" %></div>
           <div class="fltrt">
-            <%= submit_tag t('captions.next').downcase, :class => 'lesson-create' %>
+            <%= submit_tag t('form.new_lesson.done').downcase, :class => 'lesson-create' %>
           </div>
         </div>
       <% end %>
     </div>
     <div class="info-slide-footer">
       <div class="school-level pull-left">
-        <%= t('captions.school_level') %>: <%= current_user.school_level.description %>
+        <%= t('lessons.school_level') %>: <%= current_user.school_level.description %>
       </div>
       <div class="author pull-right">
-        <%= t('captions.author') %>: <span class="name"><%=  current_user.full_name %></span>
+        <%= t('lessons.author') %>: <span class="name"><%=  current_user.full_name %></span>
       </div>
     </div>
     <div id="info_container" data-tag-just-selected="false"></div>

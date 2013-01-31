@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130090239) do
+ActiveRecord::Schema.define(:version => 20130131094635) do
 
   create_table "locations", :force => true do |t|
     t.string   "description", :null => false
@@ -106,6 +106,25 @@ ActiveRecord::Schema.define(:version => 20130130090239) do
     t.index ["user_id"], :name => "fk__likes_user_id", :order => {"user_id" => :asc}
     t.foreign_key ["lesson_id"], "lessons", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "likes_lesson_id_fkey"
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "likes_user_id_fkey"
+  end
+
+  create_table "mailing_list_groups", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.index ["user_id"], :name => "fk__mailing_list_groups_user_id", :order => {"user_id" => :asc}
+    t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "mailing_list_groups_user_id_fkey"
+  end
+
+  create_table "mailing_list_addresses", :force => true do |t|
+    t.integer  "mailing_list_group_id"
+    t.string   "heading"
+    t.string   "email"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.index ["mailing_list_group_id"], :name => "fk__mailing_list_addresses_mailing_list_group_id", :order => {"mailing_list_group_id" => :asc}
+    t.foreign_key ["mailing_list_group_id"], "mailing_list_groups", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "mailing_list_addresses_mailing_list_group_id_fkey"
   end
 
   create_table "media_elements", :force => true do |t|
