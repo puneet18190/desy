@@ -26,25 +26,34 @@ $(document).ready(function() {
     
     $("._lesson_title_in_playlist:visible").hide();
     $("._lesson_title_in_playlist").eq(lessonPos - 1).show();
+
     
+    $('.playlistMenu').slideToggle('slow', function() {
+      $('#right_scroll a,#left_scroll a').toggle();
+    });
     $('#carousel_ul').animate({
       'left': -(goToPos*900)
     });
     
+    $('a._open_playlist span').toggle();
+    $('a._close_playlist span').toggle();
+    
   });
   
-  $('body').on('click', '.playlist_footer ._playlist_closed span', function() {
-    $('#playlist_menu').parent().parent().show('blind', {}, 500, function() {
-      $(this).hide();
-      $('.playlist_footer ._playlist span').show();
+  $('a._open_playlist').click(function() {
+    $('.playlistMenu').slideToggle('slow', function() {
+      $('#right_scroll a, #left_scroll a').toggle();
     });
+    $(this).find('span').toggle();
+    $('a._close_playlist span').toggle();
   });
   
-  $('body').on('click', '.playlist_footer ._playlist span', function() {
-    $('#playlist_menu').parent().parent().hide('blind', {}, 500, function() {
-      $(this).hide();
-      $('.playlist_footer ._playlist_closed span').show();
+  $('a._close_playlist').click(function() {
+    $('.playlistMenu').slideToggle('slow', function() {
+      $('#right_scroll a, #left_scroll a').toggle();
     });
+    $(this).find('span').toggle();
+    $('a._open_playlist span').toggle();
   });
   
   $(document.documentElement).keyup(function (event) {
