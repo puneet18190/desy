@@ -202,20 +202,54 @@ en:
       select: 'Select video'
   
   users:
+    email: 'Email'
+    info:
+      menu_link: 'Personal info'
     institute: 'Institute'
     mailing_list:
       add: 'Add new group'
       add_address: 'Add email address to group'
       delete: 'Delete group'
+      description: 'Create one o more groups of email to send your lessons'
       label: 'Group'
-      
+      menu_link: 'Mailing lists'
+      title: 'Mailing lists'
+    reset_password:
+       title: 'Forgot your password?'
+       description: 'Insert your email, you will come another password to your e-mail address'
+       done: 'Reset password'
+    statistics:
+      title: 'Statistics'
+      description: 'Follow you numbers in DESY and statistics of the system'
+      general:
+        lessons_more_likes: 'Lessons with more likes'
+        lessons_shared: 'Lessons shared'
+        media_elements_shared: 'Didactic elements shared'
+        percentual_lessons_subject:
+          title: 'Percentual lessons/subject'
+          color: 'Color'
+          subject: 'Subject'
+          value: 'Value'
+        title: 'General'
+        total_users: 'Total users'
+        users_more_likes: 'Users with more likes'
+      menu_link: 'Statistics'
+      personal:
+        lessons_copied_by: 'Lessons copied by other users'
+        lessons_created: 'Lessons created'
+        lessons_more_likes: 'Lessons with more likes'
+        likes: 'Likes on your content'
+        media_elements_loaded: 'Didactic elements loaded'
+        title: 'Personal'
+    subjects:
+      menu_link: 'Subjects'
+    
     
     
     
   
   # SECTION 2: general captions of the application
   captions:
-
     # it is used in the video editor, in order to open the selection of audio tracks
     add_audio_track: 'Add audio track'
     # it is used in the empty Virtual Classroom to invite the user to fill it immediately
@@ -234,30 +268,16 @@ en:
     back_to_dashboard: 'Back to dashboard'
     # only used inside the general information tables: it represents the option to reset all the fields and close the window
     cancel: 'Cancel'
-    
-
     # this is the prompt to use the application's search engine
     choose_wich_item_and_go: 'Insert a word, choose the filters and go!'
-    # just the word 'color', it may be used when necessary
-    color: 'Color'
-
     # the caption of the link to the dashboard (DESY's main page)
     dashboard: 'Dashboard'
-
     # this is what the acronym 'DESY' stands for
     desy_expanded_description: 'Digital Education System'
     # this is the caption, in your elements section, which allows you to choose between size display (compact or extended mode)
     display_mode: 'Display mode'
     # in the section of your elements, this is the caption which allows you to choose how many elements are to be displayed in a page
     display: 'Display'
-
-
-    # used inside my profile's statistics: this is the title of specific statistics of the elements which I have loaded
-    elements_loaded: 'Didactic elements loaded'
-    # used inside my profile's statistics: this is the title of specific statistics of the elements which I have loaded and shared
-    elements_shared: 'Didactic elements shared'
-    # this caption is used wherever you need to refer to your own ID inside the application
-    email: 'Email'
     # the caption of the button which empties your Virtual Classroom playlist
     empty_playlist: 'Empty playlist'
     # the caption of the button which empties your Virtual Classroom
@@ -269,82 +289,60 @@ en:
     # this is the title of the login form
     fill_all_login_fields: 'Insert username and password'
     home: 'Home'
-
     insert: 'Insert'
     insert_emails_here: 'Insert emails separated by comma'
-
     insert_tag: 'Insert a tag'
     insert_text: 'Insert text'
     large: 'Large'
-    lessons_copied_by: 'Lessons copied by other users'
-    lessons_created: 'Lessons created'
-    lessons_more_likes: 'Lessons with more likes'
-    lessons_shared: 'Lessons shared'
-    likes_on_content: 'Likes on your content'
     login: 'Login'
     logout: 'Logout'
-    mailing_lists: 'Mailing lists'
     # link to the general main page of elements editor (you can choose among image, audio and video editor)
     media_element_editor: 'Elements editor'
     new_time: 'New time'
     no_notifications: "You don't have any notifications"
-
     password: 'Password'
     password_or_username_not_correct: 'Wrong login data'
     password_resetted_successfully: 'Password resetted successfully'
     pause: 'Pause'
-    percentual_lessons_subject: 'Percentual lessons/subject'
-    personal: 'Personal'
-    personal_info: 'Personal info'
     play: 'Play'
     playlist: 'Playlist'
     preview: 'Preview'
     problems_with_password: 'Forgot your password?'
-    profile: 'Profile'
     register: 'Sign up'
     remove: 'Remove'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     report_abuse: 'Report abuse'
-
     save: 'Save'
     search: 'Search'
     search_again: 'Search again...'
     search_in_desy: 'Search in DESY'
     search_lesson_or_media_element: 'Are you looking for lessons or elements?'
-
     select_mailing_list: 'or select mailing list'
     select_more_lesson: 'Select more lesson'
     selected: 'Selected'
     select_the_lessons_you_want_to_upload: 'Select the lessons to upload in the Virtual Classroom'
-
     send: 'Send'
     send_link_to_your_friends: 'Send a link to your friends'
     sent_to: 'Send to'
     slide_not_deleted: "This slide can't be deleted"
     small: 'Small'
     sort_results_by: 'Sort results by'
-    statistics: 'Statistics'
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
     text_color: 'Text color'
     time: 'Time'
     total_clip_length: 'Total clip length'
     total_length: 'Total length'
-    total_users: 'Total users'
-
     update: 'Update'
     update_successful: 'Update successful'
     upload: 'Upload'
     upload_completed: 'Upload completed!'
-    users_more_likes: 'Users with more likes'
-    value: 'Value'
     virtual_classroom: 'Virtual classroom'
     warning: 'Warning!'
     warning_search_lessons: "If you don't insert a keyword the search engine will find all the available lessons, according to the filters you selected"
     warning_search_media_elements: "If you don't insert a keyword the search engine will find all the available elements, according to the filters you selected"
     welcome: 'Welcome'
     what_are_you_looking_for: 'What are you looking for?'
-
     why_sign_up: 'Why to sign up?'
     write_a_message: 'Write a message'
     write_reason_report: 'Write the reason for your report. Thank you for your cooperation!'
@@ -359,6 +357,7 @@ en:
     description: 'Description'
     lessons: 'Lessons'
     media_elements: 'Elements'
+    profile: 'Profile'
     seconds_shortened: 'Sec'
     show: 'Show'
     
@@ -456,7 +455,7 @@ en:
     mailer_link_2: ' thinks that you might be interested in a lesson in DESY.'
     mailer_link_3: "Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):"
     mailer_link_4: 'DESY - Digital Educational System'
-    mailing_lists: 'Create one o more groups of email to send your lessons.'
+
     send_lesson_link_explanation: 'Write a list of emails and a message: clicking the button, you will send your contacts an email containing the public link of this lesson'
 
     upload_media_element_success: 'The media element has been successfully created'
@@ -553,7 +552,7 @@ en:
     publish: 'publish your lesson'
     remove: 'stop following this item'
     remove_virtual_classroom: 'click remove lesson from virtual classroom'
-    reset_password: 'reset password'
+
     unpublish: 'click to unpublish your lesson'
   general_titles:
     add_element_title: 'add element'

@@ -1,76 +1,76 @@
 <div class="griglia-contenuti">
   <div class="profile-content">
     <div class="title-bar">
-      <h1>profile</h1>
+      <h1><%= t('captions.profile') %></h1>
       <ul class="navlist">
-        <li><%= link_to t('captions.personal_info'), my_profile_path%></li>
-        <li><%= link_to t('captions.subjects'), my_subjects_path %></li>
-				<li><%= link_to t('captions.mailing_lists'), my_mailing_lists_path%></li>
-        <li><%= link_to t('captions.statistics'), my_statistics_path, :class => 'current' %></li>
+        <li><%= link_to t('users.info.menu_link'), my_profile_path %></li>
+        <li><%= link_to t('users.subjects.menu_link'), my_subjects_path %></li>
+        <li><%= link_to t('users.mailing_lists.menu_link'), my_mailing_lists_path %></li>
+        <li><%= link_to t('users.statistics.menu_link'), my_statistics_path, :class => 'current' %></li>
       </ul>
     </div>
     <div class="contentForm">
       <header>
-        <h2><%= t('captions.statistics')%></h2>
-        <p>Follow you numbers in DESY and statistics of the system.</p>
+        <h2><%= t('users.statistics.title') %></h2>
+        <p><%= t('users.statistics.description') %></p>
       </header>
       <div class="stats">
-        <h2><%= t('captions.personal')%></h2>
+        <h2><%= t('users.statistics.personal.title') %></h2>
         <ul class="col fltlft">
           <li class="lesson_stat">
-            <span class="fltlft"><%= t('captions.lessons_created')%></span><div><%= @my_created_lessons %></div>
+            <span class="fltlft"><%= t('users.statistics.personal.lessons_created') %></span><div><%= @my_created_lessons %></div>
           </li>
           <li class="lesson_stat">
-            <span class="fltlft"><%= t('captions.lessons_copied_by')%></span><div><%=@my_copied_lessons%></div>
+            <span class="fltlft"><%= t('users.statistics.personal.lessons_copied_by') %></span><div><%=@my_copied_lessons%></div>
           </li>
-          <li class="lesson_stat"><span class="fltlft"><%= t('captions.lessons_more_likes')%></span>
+          <li class="lesson_stat"><span class="fltlft"><%= t('users.statistics.personal.lessons_more_likes') %></span>
             <ul>
               <% @my_liked_lessons.each do |liked| %>
-                <li><span><%=liked.title%></span><div><%=liked.likes.count%></div></li>
+                <li><span><%= liked.title %></span><div><%= liked.likes.count %></div></li>
               <% end %>
             </ul>
           </li>
         </ul>
         <ul class="col fltrt">
-          <li class="element_stat"><span><%= t('captions.elements_loaded')%></span><div><%= @my_created_elements %></div></li>
-          <li class="generic_stat"><span><%= t('captions.likes_on_content')%></span><div><%= @my_likes_count %></div></li>
+          <li class="element_stat"><span><%= t('users.statistics.personal.media_elements_loaded') %></span><div><%= @my_created_elements %></div></li>
+          <li class="generic_stat"><span><%= t('users.statistics.personal.likes') %></span><div><%= @my_likes_count %></div></li>
         </ul>
         <br style="clear:both" />
       </div>
     
       <div class="stats">
-        <h2><%= t('captions.general')%></h2>
+        <h2><%= t('users.statistics.general.title') %></h2>
         <ul class="col fltlft">
-          <li class="lesson_stat"><span><%= t('captions.lesson_shared')%></span><div><%= @all_shared_lessons %></div></li>
-          <li class="element_stat"><span><%= t('captions.elements_shared')%></span><div><%= @all_shared_elements %></div></li>
-          <li class="generic_stat"><span><%= t('captions.total_users')%></span><div><%= @all_users %></div></li>
-          <li class="lesson_stat"><span><%= t('captions.lessons_more_like')%></span>
+          <li class="lesson_stat"><span><%= t('users.statistics.general.lesson_shared') %></span><div><%= @all_shared_lessons %></div></li>
+          <li class="element_stat"><span><%= t('users.statistics.general.media_elements_shared') %></span><div><%= @all_shared_elements %></div></li>
+          <li class="generic_stat"><span><%= t('users.statistics.general.total_users') %></span><div><%= @all_users %></div></li>
+          <li class="lesson_stat"><span><%= t('users.statistics.general.lessons_more_likes') %></span>
             <ul>
               <% @all_liked_lessons.each do |liked| %>
-                <li><span><%=liked.title%></span><div><%=liked.likes.count%></div></li>
+                <li><span><%= liked.title %></span><div><%= liked.likes.count %></div></li>
               <% end %>
             </ul>
           </li>
-          <li class="generic_stat"><span><%= t('captions.users_more_likes')%></span>
+          <li class="generic_stat"><span><%= t('users.statistics.general.users_more_likes') %></span>
             <ul>
               <% @all_users_like.first(3).each do |key,value| %>
                 <% u = User.find(key) %>
-                <li><span><%= u.name%> <%= u.surname %></span><div><%=value%></div></li>
+                <li><span><%= u.name %> <%= u.surname %></span><div><%= value %></div></li>
               <%end%>
             </ul>
           </li>
         </ul>
         <ul class="col fltrt">
           <li class="element_stat chart">
-            <%= t('captions.percentual_lessons_subject')%>
+            <%= t('users.statistics.general.percentual_lessons_subject.title') %>
             <br style="clear:both" />
             <table id="subjects-stats" width="100%" class="fltlft">
               <tr>
-                <th><%= t('captions.color')%></th>
-                <th><%= t('captions.subject')%></th>
-                <th><%= t('captions.value')%></th>
+                <th><%= t('users.statistics.general.percentual_lessons_subject.color') %></th>
+                <th><%= t('users.statistics.general.percentual_lessons_subject.subject') %></th>
+                <th><%= t('users.statistics.general.percentual_lessons_subject.value') %></th>
               </tr>
-              <% (0..@all_subjects_chart.count-1).each do |index|%>
+              <% (0..@all_subjects_chart.count - 1).each do |index| %>
                 <tr>
                   <td width="10%" border="1" style="background-color:<%=Subject.chart_colors[index]%>"></td>
                   <td width="70%"><%= @all_subjects_desc[index] %></td>
