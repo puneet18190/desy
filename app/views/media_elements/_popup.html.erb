@@ -16,7 +16,7 @@
               <%= text_area_tag 'description', media_element.description, :class => "description" %>
             </div>
             <div class="cols fltrt">
-              <div class="_tags_placeholder" data-tags="<%= media_element.tags %>" style="display:none">
+              <div class="_tags_placeholder" style="display:none">
                 <% media_element.tags.reverse.split(',').each do |t| %>
                   <span><%= t.reverse.strip %><a class="remove"></a></span>
                 <% end %>
