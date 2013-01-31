@@ -1,8 +1,19 @@
 en:
-
 # (1) activerecord internal messages - warning: changing these values might affect the unit tests, always run them after making any change
+  activemodel:
+    errors:
+      messages:  
+        invalid_email_address: 'does not appear to be a valid email address'
   activerecord:
     errors:
+      messages:
+        blank: "can't be blank"
+        confirmation: "doesn't match confirmation"
+        too_short: 'is too short (minimum is %{count} characters)'
+        too_long: 'is too long (maximum is %{count} characters)'
+        uniqueness: 'has already been taken'
+        changed: 'cannot be changed'
+        accepted: 'must be accepted'
       models:
         bookmark:
           problem_creating_for_lesson: 'The lesson could not be added'
@@ -38,6 +49,8 @@ en:
           problems_destroying: 'The slide could not be deleted'
           dont_destroy_cover: "This slide is the cover, it can't be deleted"
         user:
+          not_a_number: 'must be an integer greater than 0'
+          greater_than: 'must be an integer greater than 0'
           problems_updating: 'Your profile could not be updated'
           problems_destroying: 'The user could not be deleted'
           missing_subjects: 'Choose at least one subject'

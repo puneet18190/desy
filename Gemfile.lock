@@ -169,6 +169,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    validates_email_format_of (1.5.3)
     valuable (0.9.6)
 
 PLATFORMS
@@ -201,3 +202,4 @@ DEPENDENCIES
   tinymce-rails-langs
   uglifier (>= 1.0.3)
   unicorn
+  validates_email_format_of
