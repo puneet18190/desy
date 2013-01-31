@@ -1,5 +1,5 @@
 <h3 id="accordion_group_<%=group.id%>">
-  <%= link_to t('users.mailing_list.delete'), { :controller => 'mailing_lists', :action => 'delete_group', :id => group.id }, {:method => :delete, :remote => true, :class=> 'delete_group'}%>
+  <%= link_to t('users.mailing_list.delete'), { :controller => 'mailing_lists', :action => 'delete_group', :id => group.id }, {:method => :delete, :remote => true, :class=> 'delete_group _delete_mailing_list_group'}%>
   <a class="selector"></a>
   <span class="group-title" contenteditable="true"><%= group.name ? group.name : t('users.mailing_list.label') + ' ' + group.id.to_s %></span> 
   <div style="clear:both"></div>
@@ -12,11 +12,9 @@
     <input type="text" name="email" value="Email" id="email">
     <input type="submit" value="">
   <% end %>
-  <% unless group.addresses.empty? %>
-    <table width="100%" id="mailing_list_group<%=group.id%>">
-      <tbody>
-        <%= render :partial => 'mailing_lists/address', :locals => {:group => group}%>
-      </tbody>
-    </table>
-  <% end %>
+  <table width="100%" id="mailing_list_group<%=group.id%>">
+    <tbody>
+      <%= render :partial => 'mailing_lists/address', :locals => {:group => group}%>
+    </tbody>
+  </table>
 </div>

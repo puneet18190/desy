@@ -5,9 +5,9 @@ class MailingListsController < ApplicationController
   layout 'prelogin', only: [:create, :request_reset_password]
 
   def create_group
-    mlg = MailingListGroup.new
-    mlg.user = current_user
-    mlg.save
+    @mlg = MailingListGroup.new
+    @mlg.user = current_user
+    @mlg.save
     
     render 'update_list'
   end
@@ -24,8 +24,8 @@ class MailingListsController < ApplicationController
   end
   
   def update_group
-    mlg = MailingListGroup.find(params[:id])
-    mlg.update_attributes(params[:mailing_list_group])
+    @mlg = MailingListGroup.find(params[:id])
+    @mlg.update_attributes(params[:mailing_list_group])
   end
   
   def delete_group
