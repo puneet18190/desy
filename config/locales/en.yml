@@ -203,16 +203,17 @@ en:
   
   users:
     institute: 'Institute'
-    
-    
+    mailing_list:
+      add_address: 'Add email address to group'
+      delete: 'Delete group'
+      
     
     
     
   
   # SECTION 2: general captions of the application
   captions:
-    # it is used in the process of creating a mailing list
-    add_address_to_group: 'Add email address to group'
+
     # it is used in the video editor, in order to open the selection of audio tracks
     add_audio_track: 'Add audio track'
     # it is used in the empty Virtual Classroom to invite the user to fill it immediately
@@ -240,8 +241,7 @@ en:
 
     # the caption of the link to the dashboard (DESY's main page)
     dashboard: 'Dashboard'
-    # this is used as caption of the button which deletes a mailing list
-    delete_group: 'Delete group'
+
     # this is what the acronym 'DESY' stands for
     desy_expanded_description: 'Digital Education System'
     # this is the caption, in your elements section, which allows you to choose between size display (compact or extended mode)
