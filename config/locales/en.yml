@@ -1,8 +1,22 @@
 en:
   
   # SECTION 1: error messages that the application uses to interface with the user
+  activemodel:
+    errors:
+      messages:
+        # TODO questi sono i messaggi per l'utente (parte 1)
+        invalid_email_address: 'does not appear to be a valid email address'
   activerecord:
     errors:
+      messages:
+        # TODO questi sono i messaggi per l'utente (parte 2)
+        blank: "can't be blank"
+        confirmation: "doesn't match confirmation"
+        too_short: 'is too short (minimum is %{count} characters)'
+        too_long: 'is too long (maximum is %{count} characters)'
+        uniqueness: 'has already been taken'
+        changed: 'cannot be changed'
+        accepted: 'must be accepted'
       models:
         bookmark:
           # there was an error while trying to add the lesson to your personal folder
@@ -52,13 +66,9 @@ en:
           # there was an error while trying to delete a notification
           problem_destroying: 'The notification could not be deleted'
         user:
-          # TODO IN SOSPESO
-          problems_updating: 'Your profile could not be updated'
-          problems_destroying: 'The user could not be deleted'
-          missing_subjects: 'Choose at least one subject'
-          problem_reporting: 'Your report could not be sent'
-          lesson_already_reported: 'You already reported this lesson'
-          media_element_already_reported: 'You already reported this element'
+          # TODO questi sono i messaggi per l'utente (parte 3)
+          not_a_number: 'must be an integer greater than 0'
+          greater_than: 'must be an integer greater than 0'
         virtual_classroom_lesson:
           # you tried to insert the lesson in an invalid position inside the playlist
           invalid_position_in_playlist: "The position of the lesson is not valid"
