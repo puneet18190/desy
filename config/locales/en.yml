@@ -1,5 +1,6 @@
 en:
   
+  # TODO controllare links
   # SECTION 1: error messages that the application uses to interface with the user
   activemodel:
     errors:
@@ -84,6 +85,28 @@ en:
           problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
   
   
+  # SECTION bla bla bla
+  dashboard:
+    # the caption of the link to open the contact page
+    contact_us: 'Contact us'
+    # caption of the link opening the lesson editor
+    create_new_lesson: 'Create a new lesson'
+    # caption of the link opening the lesson editor, containing a prompt for the user (this is used in the specific section of lessons)
+    create_new_lesson_now: 'Create a lesson now'
+    # caption of the link to download the user manual
+    download_manual: 'Download the user manual'
+    emptied_lessons: 'You chose all the suggested lessons'
+    empty_lessons: 'There are no suggested lessons for you'
+    emptied_media_elements: 'You chose all the suggested elements'
+    empty_media_elements: 'There are no suggested elements for you'
+    help_using_desy: 'Need help using %{desy}?'
+    load_new_media_element: 'Load a new element'
+    load_new_media_element_now: 'Load a new element now'
+    selected_for_you: 'Selected for you'
+    talk_with_desy: 'Want to talk with %{desy}?'
+  
+  
+  
   # SECTION 2: general captions of the application
   captions:
     # it is used in the process of creating a mailing list
@@ -126,12 +149,6 @@ en:
     created_on: 'Created on'
     # just the word 'color', it may be used when necessary
     color: 'Color'
-    # the caption of the link to open the contact page
-    contact_us: 'Contact us'
-    # caption of the link opening the lesson editor
-    create_new_lesson: 'Create a new lesson'
-    # caption of the link opening the lesson editor, containing a prompt for the user (this is used in the specific section of lessons)
-    create_new_lesson_now: 'Create a lesson now'
     # this is the caption of the 'crop' button (which allows you to make a square selection inside an image)
     crop: 'Crop'
     # the caption of the link to the dashboard (DESY's main page)
@@ -148,8 +165,6 @@ en:
     display: 'Display'
     # used in the image editor, to save a group of texts above the image
     done: 'Done'
-    # caption of the link to download the user manual
-    download_manual: 'Download the user manual'
     # this is the tip which appears at the bottom of the image editor while in 'crop' mode
     drag_image_to_select: 'Drag on the image to make a selection'
     # used inside my profile's statistics: this is the title of specific statistics of the elements which I have loaded
@@ -172,7 +187,6 @@ en:
     fill_all_login_fields: 'Insert username and password'
     
     
-    help_using_desy: 'Need help using DESY?'
     home: 'Home'
     image_caption_placeholder: 'Write a caption'
     image_editor_label: 'Edit image'
@@ -183,20 +197,16 @@ en:
     insert_text: 'Insert text'
     institute: 'Institute'
     large: 'Large'
-    lessons: 'Lessons'
     lessons_copied_by: 'Lessons copied by other users'
     lessons_created: 'Lessons created'
     lessons_more_likes: 'Lessons with more likes'
     lessons_shared: 'Lessons shared'
     likes_on_content: 'Likes on your content'
-    load_new_media_element: 'Load a new element'
-    load_new_media_element_now: 'Load a new element now'
     login: 'Login'
     logout: 'Logout'
     mailing_lists: 'Mailing lists'
     # link to the general main page of elements editor (you can choose among image, audio and video editor)
     media_element_editor: 'Elements editor'
-    media_elements: 'Elements'
     next: "Next"
     new_element_untitled: 'New element - untitled'
     new_time: 'New time'
@@ -231,7 +241,6 @@ en:
     seconds_shortened: 'Sec'
     select_an_action: 'Select an action'
     selected: 'Selected'
-    selected_for_you: 'Selected for you'
     select_audio: 'Select audio'
     select_component_to_add: 'Select component to add'
     select_image: 'Select image'
@@ -250,7 +259,6 @@ en:
     subject: 'Subject'
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
-    talk_with_desy: 'Want to talk with DESY?'
     text_color: 'Text color'
     time: 'Time'
     total_clip_length: 'Total clip length'
@@ -281,7 +289,11 @@ en:
     your_browser_does_not_support_audio: 'Your browser does not support the audio tag'
     your_search_returned: 'Found %{num} results. To refine your search select between these tags'
     your_virtual_classroom_is_empty: 'Your Virtual Classroom is empty'
-  
+    
+    # già trovate che vanno sharate in captions
+    lessons: 'Lessons'
+    media_elements: 'Elements'
+    
   
   # SECTION 3: captions e titoli per i form generici -- error messages inside HTML forms (i.e. wrong name, surname, title, description, etc.)
   forms:
@@ -379,10 +391,6 @@ en:
 
 # (3) accessors: empty situations, popups, help, etc
   empty:
-    dashboard_lessons_emptied: 'You chose all the suggested lessons'
-    dashboard_lessons: 'There are no suggested lessons for you'
-    dashboard_media_elements_emptied: 'You chose all the suggested elements'
-    dashboard_media_elements: 'There are no suggested elements for you'
     my_lessons: 'You have no lessons in your section, create one'
     my_media_elements: 'You have no elements in your section, load one'
     my_lessons_filter: 'The lesson filter produced no result'
