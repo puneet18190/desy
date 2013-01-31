@@ -37,6 +37,7 @@ function resetMediaElementChangeInfo(media_element_id) {
   container.find('#description').val(container.data('description'));
   container.find('.form_error').removeClass('form_error');
   container.find('._error_messages').html('');
+  container.find('._tags_container span').remove();
   container.find('._tags_placeholder span').each(function() {
     var copy = $(this)[0].outerHTML;
     container.find('._tags_container').prepend(copy);
