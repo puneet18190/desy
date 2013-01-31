@@ -175,6 +175,9 @@ en:
     choose_image: 'Click here to add an image'
     # empty space to add a video
     choose_video: 'Click here to add a video'
+    not_available:
+      title: 'Lesson editor not available for this lesson'
+      description: 'Inserire altro testo qui'
     placeholders:
       image_caption: 'Write a caption'
       text: 'Write a text here'
@@ -274,7 +277,6 @@ en:
     mailing_lists: 'Mailing lists'
     # link to the general main page of elements editor (you can choose among image, audio and video editor)
     media_element_editor: 'Elements editor'
-    next: "Next"
     new_time: 'New time'
     no_notifications: "You don't have any notifications"
     # this is used in the playlist: it's the caption of the button which opens the playlist's navigational bar
@@ -362,26 +364,38 @@ en:
     new_lesson:
       title: 'You are creating a new lesson'
       description: 'Enter all the details in the form below'
+      cancel: 'Cancel'
+      done: 'Next'
     # edit lesson form
     update_lesson:
       title: 'Are you making significant changes?'
       description: "Update here the lesson's info according to its new content"
+      cancel: 'Cancel'
+      done: 'Update'
     # upload element form
     upload_media_element:
       title: 'Upload a media element'
       description: 'Select a file clicking on the button on the left'
+      cancel: 
+      done: 
     # change info media element form
     change_info_media_element:
       title: "Element's information"
       description: 'Fill the form below to modify data'
+      cancel: 
+      done: 
     # new media element in editor form
     new_media_element_in_editor:
       title: 'You are creating a new element'
       description: 'Enter all the details in the form below'
+      cancel: 
+      done: 
     # overwrite media element in editor form
     overwrite_media_element_in_editor:
       title: 'Have you made significant changes?'
       description: "Update here the element's info according to its new content"
+      cancel: 
+      done: 
     error_captions:
       # this is the standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       fill_all_the_fields_or_too_long: 'Fill in all the fields without exceeding the max length'
