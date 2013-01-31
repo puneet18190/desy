@@ -261,6 +261,13 @@ en:
       description: 'Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2'
   
   
+  
+  notifications:
+    empty: "You don't have any notifications"
+  
+  
+  
+  
   users:
     email: 'Email'
     info:
@@ -359,7 +366,7 @@ en:
 
 
     new_time: 'New time'
-    no_notifications: "You don't have any notifications"
+
     password: 'Password'
 
     password_resetted_successfully: 'Password resetted successfully'
