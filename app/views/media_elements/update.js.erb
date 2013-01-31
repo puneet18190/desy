@@ -12,6 +12,7 @@
     <% end %>
   <% else %>
     closePopUp("dialog-media-element-<%= @media_element_id %>");
+    removeCompletelyMediaElementPopup(<%= @media_element_id %>);
     var big_selector = '#media_element_menu_buttons_<%= @media_element_id %> ._Image_button_destroy,';
     big_selector += ' #media_element_menu_buttons_<%= @media_element_id %> ._Audio_button_destroy,';
     big_selector += ' #media_element_menu_buttons_<%= @media_element_id %> ._Video_button_destroy,';

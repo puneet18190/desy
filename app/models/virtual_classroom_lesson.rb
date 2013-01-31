@@ -93,7 +93,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
     end
     y = self.position
     if y.nil?
-      errors.add(:base, :cant_change_position_if_not_in_playlist)
+      errors.add(:base, :problems_changing_position_in_playlist)
       return false
     end
     return true if y == x

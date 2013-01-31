@@ -11,9 +11,9 @@ $(document).ready(function() {
     var media_element_id = $(this).parent().parent().parent().parent().parent().data('param');
     removeFromTagsValue($(this).parent().text(), '#dialog-media-element-' + media_element_id + ' ._tags_container #tags_value');
     $(this).parent().remove();
-    if($('#load-media-element #tags').not(':visible')) {
-      $('#load-media-element #tags').show();
-      disableTagsInputTooHigh('#load-media-element ._tags_container', '#load-media-element #tags');
+    if($('#dialog-media-element-' + media_element_id + ' #tags').not(':visible')) {
+      $('#dialog-media-element-' + media_element_id + ' #tags').show();
+      disableTagsInputTooHigh('#dialog-media-element-' + media_element_id + ' ._tags_container', '#dialog-media-element-' + media_element_id + ' #tags');
     }
   });
   
@@ -268,13 +268,13 @@ function addTagWithoutSuggestion(input, container_selector, tags_value_selector)
 
 function addToTagsValue(word, value_selector) {
   var old_value = $(value_selector).val();
-  old_value += (', ' + word);
+  old_value += (word + ',');
   $(value_selector).val(old_value);
 }
 
 function removeFromTagsValue(word, value_selector) {
   var old_value = $(value_selector).val();
-  old_value = old_value.replace(word, '');
+  old_value = old_value.replace((',' + word + ','), ',');
   $(value_selector).val(old_value);
 }
 
@@ -311,25 +311,24 @@ function disableTagsInputTooHigh(container_selector, input_selector) {
   }
 }
 
-function initSearchTagsAutocomplete(input){
+function initSearchTagsAutocomplete(input) {
   var cache = {};
   $(input).autocomplete({
     minLength: 2,
-    source: function( request, response ) {
+    source: function(request, response) {
       var term = request.term;
-      if ( term in cache ) {
-        response( cache[ term ] );
+      if(term in cache) {
+        response(cache[term]);
         return;
       }
-
       $.ajax({
-        dataType: "json",
+        dataType: 'json',
         beforeSend: unbindLoader(),
-        url: "/tags/get_list",
+        url: '/tags/get_list',
         data: request,
-        success: function( data, status, xhr ) {
-          cache[ term ] = data;
-          response( data );
+        success: function(data, status, xhr) {
+          cache[term] = data;
+          response(data);
         }
       }).always(bindLoader);
     }

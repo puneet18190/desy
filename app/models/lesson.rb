@@ -317,9 +317,7 @@ class Lesson < ActiveRecord::Base
   end
   
   def add_slide(kind, position)
-    errors.clear
     if self.new_record? || !Slide::KINDS_WITHOUT_COVER.include?(kind)
-      errors.add(:base, :problem_adding_slide)
       return nil
     end
     resp = nil
@@ -328,10 +326,7 @@ class Lesson < ActiveRecord::Base
       slide.kind = kind
       slide.lesson_id = self.id
       slide.position = Slide.order('position DESC').where(:lesson_id => self.id).limit(1).first.position + 1
-      if !slide.save || !slide.change_position(position) || !self.modify
-        errors.add(:base, :problem_adding_slide)
-        raise ActiveRecord::Rollback
-      end
+      raise ActiveRecord::Rollback if !slide.save || !slide.change_position(position) || !self.modify
       resp = slide
     end
     resp

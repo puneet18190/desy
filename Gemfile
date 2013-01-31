@@ -37,6 +37,7 @@ gem 'tinymce-rails-langs'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'validates_email_format_of'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

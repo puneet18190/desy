@@ -6,9 +6,10 @@
     <div class="_media_element_pop_up_container MediaElementPopUpContainer" data-param="<%= media_element.id %>">
       
       <% if media_element.info_changeable %>
+        <% my_tags = Tagging.includes(:tag).where(:taggable_type => 'MediaElement', :taggable_id => media_element.id).order(:tag_id) %>
         <div class="_change_info_container ChangeInfoContainer" style="display:none;" data-param="<%= media_element.id %>" data-title="<%= media_element.title %>" data-description="<%= media_element.description %>" data-tags="<%= media_element.tags %>">
-          <h1><%= t('captions.modify_info_element') %></h1>
-          <p><%= t('captions.change_media_element_info_in_popup') %></p>
+          <h1><%= t('forms.change_info_media_element.title') %></h1>
+          <p><%= t('forms.change_info_media_element.description') %></p>
           <%= form_tag media_element_path(media_element.id), :remote => true, :class => "formModifyInfo" do %>
             <div class="cols" style="float:left">
               <input id="title" type="text" class="title" name="title" value="<%= media_element.title %>">
@@ -17,13 +18,13 @@
             </div>
             <div class="cols fltrt">
               <div class="_tags_placeholder" style="display:none">
-                <% media_element.tags.reverse.split(',').each do |t| %>
-                  <span><%= t.reverse.strip %><a class="remove"></a></span>
+                <% my_tags.reverse.each do |t| %>
+                  <span><%= t.tag.word.strip %><a class="remove"></a></span>
                 <% end %>
               </div>
               <div class="ui-widget pull-right _tags_container">
-                <% media_element.tags.split(',').each do |t| %>
-                  <span><%= t.strip %><a class="remove"></a></span>
+                <% my_tags.each do |t| %>
+                  <span><%= t.tag.word.strip %><a class="remove"></a></span>
                 <% end %>
                 <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
                 <%= hidden_field_tag 'tags_value', media_element.tags %>
