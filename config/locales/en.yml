@@ -168,6 +168,19 @@ en:
     new_untitled: 'New element - untitled'
   
   
+  lesson_editor:
+    # empty space to add an audio
+    choose_audio: 'Click here to add an audio'
+    # empty space to add an image
+    choose_image: 'Click here to add an image'
+    # empty space to add a video
+    choose_video: 'Click here to add a video'
+    placeholders:
+      image_caption: 'Write a caption'
+      text: 'Write a text here'
+      title: 'Enter title'
+  
+  
   galleries:
     audios:
       select: 'Select audio'
@@ -210,12 +223,6 @@ en:
     
     # this is used in the playlist: it's the caption of the button which closes the playlist's navigational bar
     close_playlist_bar: 'Close playlist bar'
-    # used in the lesson editor, where there is an empty space to add an audio
-    choose_audio: 'Click here to add an audio'
-    # used in the lesson editor, where there is an empty space to add an image
-    choose_image: 'Click here to add an image'
-    # used in the lesson editor, where there is an empty space to add a video
-    choose_video: 'Click here to add a video'
     # this is the prompt to use the application's search engine
     choose_wich_item_and_go: 'Insert a word, choose the filters and go!'
     # just the word 'color', it may be used when necessary
@@ -245,17 +252,15 @@ en:
     empty_virtual_classroom: 'Empty your Virtual Classroom'
     # this is the caption of the button to submit your email and password to login
     enter: 'Enter'
-    # this is only used to add a title to your slides
-    enter_title: 'Enter title'
     # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
     failed_confirmation: 'The link you submitted is not longer valid'
     # this is the title of the login form
     fill_all_login_fields: 'Insert username and password'
     home: 'Home'
-    image_caption_placeholder: 'Write a caption'
+
     insert: 'Insert'
     insert_emails_here: 'Insert emails separated by comma'
-    insert_slide_content_here: 'Write a text here'
+
     insert_tag: 'Insert a tag'
     insert_text: 'Insert text'
     large: 'Large'
