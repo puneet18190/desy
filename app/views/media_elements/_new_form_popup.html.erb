@@ -1,10 +1,10 @@
 <%
-  title_max = t('captions.title_max_chars', :num => t('language_parameters.media_element.length_title').to_s).downcase 
-  description_max = t('captions.description_max_chars', :num => t('language_parameters.media_element.length_description').to_s).downcase
-  tags_max = t('captions.tags_max', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
+  title_max = t('forms.placeholders.title', :num => t('language_parameters.media_element.length_title').to_s).downcase 
+  description_max = t('forms.placeholders.description', :num => t('language_parameters.media_element.length_description').to_s).downcase
+  tags_max = t('forms.placeholders.tags', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
 
-<div id="load-media-element" class="mediaElementInfoPopUp" style="display:none;" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>" data-placeholder-media="<%= t('captions.select_file').downcase %>">
+<div id="load-media-element" class="mediaElementInfoPopUp" style="display:none;" data-placeholder-title="<%= title_max %>" data-placeholder-description="<%= description_max %>" data-placeholder-tags="<%= tags_max %>" data-placeholder-media="<%= t('forms.placeholders.media').downcase %>">
   <div class="_media_element_pop_up_container MediaElementPopUpContainer">
     <div class="ChangeInfoContainerLoading">
       <%= form_tag media_elements_path, :method => :post, :id => 'new_media_element', :class => 'formModifyInfo', :multipart => true do %>
@@ -24,8 +24,8 @@
         </div>
         
         <div class="cols fltrt">
-          <h1><%= t('captions.upload_a_media_element') %></h1>
-          <p style="padding-bottom:32px"><%= t('descriptions.upload_media_element_instructions') %></p>
+          <h1><%= t('forms.upload_media_element.title') %></h1>
+          <p style="padding-bottom:32px"><%= t('form.upload_media_element.description') %></p>
           <br class="clearfloat">
           <div class="ui-widget pull-right _tags_container">
             <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>

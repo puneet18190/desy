@@ -230,7 +230,7 @@ function wrs_createTableRow($test_name, $report_text, $solution_link, $condition
 					$test_name = 'Creating a random image';
 					$mathml='<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>' . rand(0,9999) . '</mn><mo>+</mo><mn>' . rand(0,9999) . '</mn></mrow></math>';
 					$api = new com_wiris_plugin_PluginAPI;
-					$src = $api->mathml2img($mathml, 'http://' . dirname($_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]));
+					$src = $api->mathml2img($mathml, 'http://' . dirname($_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]));
 					$query = parse_url($src, PHP_URL_QUERY);
 					$query_array = array();
 					parse_str($query, $query_array);

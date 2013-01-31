@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :users_subjects, dependent: :destroy
   has_many :subjects, through: :users_subjects
   has_many :virtual_classroom_lessons
+  has_many :mailing_list_groups, :dependent => :destroy
   belongs_to :school_level
   belongs_to :location
   
@@ -31,7 +32,9 @@ class User < ActiveRecord::Base
   validates_length_of :name, :surname, :email, :school, :maximum => 255
   validates_length_of :password, :minimum => 8, :on => :create
   validates_length_of :password, :minimum => 8, :on => :update, :allow_nil => true, :allow_blank => true
-  validate :validate_associations, :validate_email, :validate_email_not_changed
+  validate :validate_associations
+  validate :validate_email_not_changed, on: :update
+  validates :email, email_format: { :message => I18n.t(:invalid_email_address, :scope => [:activerecord, :errors, :messages], :default => 'does not appear to be valid') }
   REGISTRATION_POLICIES.each do |policy|
     validates_acceptance_of policy, on: :create, allow_nil: false
   end
@@ -669,30 +672,12 @@ class User < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:location_id] << "doesn't exist" if @location.nil?
-    errors[:school_level_id] << "doesn't exist" if @school_level.nil?
-  end
-  
-  def validate_email
-    return if self.email.blank?
-    flag = false
-    x = self.email.split('@')
-    if x.length == 2
-      x = x[1].split('.')
-      if x.length > 1
-        flag = true if x.last.length < 2
-      else
-        flag = true
-      end
-    else
-      flag = true
-    end
-    errors[:email] << 'is not in the correct format' if flag
+    errors.add :location_id, :blank if @location.nil?
+    errors.add :school_level_id, :blank if @school_level.nil?
   end
   
   def validate_email_not_changed
-    return if @user.nil?
-    errors[:email] << "can't change after having been initialized" if @user.email != self.email
+    errors.add :email, :changed if changed.include? 'email'
   end
   
 end

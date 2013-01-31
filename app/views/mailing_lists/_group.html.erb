@@ -1,0 +1,21 @@
+<h3>
+  <%= link_to t('captions.delete_group'), { :controller => 'mailing_lists', :action => 'delete_group', :id => group.id }, {:method => :delete, :remote => true, :class=> 'delete_group'}%>
+	<a class="selector"></a>
+	<span class="group-title" contenteditable="true"><%= group.name ? group.name : t('captions.group')+" "+group.id.to_s %></span> 
+	<div style="clear:both"></div>
+</h3>
+<div>
+	<form action="#" method="get" accept-charset="utf-8" class="new_email">
+		<p><%= t('captions.add_address_to_group')%></p>
+		<input type="text" name="name" value="Name" id="some_name">
+		<input type="text" name="email" value="Email" id="email">
+		<input type="submit" value="">
+	</form>
+  <table width="100%">
+		<tbody>
+      <%= group.addresses.each_with_index do |address, index| %>
+        <%= render :partial => 'mailing_lists/address', :locals => {:address => address}%>
+    	<% end %>
+		</tbody>
+  </table>
+</div>

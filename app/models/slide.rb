@@ -126,35 +126,21 @@ class Slide < ActiveRecord::Base
   end
   
   def destroy_with_positions
-    errors.clear
-    if self.new_record?
-      errors.add(:base, :problems_destroying)
-      return false
-    end
-    if self.kind == COVER
-      errors.add(:base, :dont_destroy_cover)
-      return false
-    end
+    return false if self.new_record?
+    return false if self.kind == COVER
     resp = false
     my_position = self.position
     my_lesson_id = self.lesson_id
     ActiveRecord::Base.transaction do
-      if !self.lesson.modify
-        errors.add(:base, :problems_destroying)
-        raise ActiveRecord::Rollback
-      end
+      raise ActiveRecord::Rollback if !self.lesson.modify
       begin
         self.destroy
       rescue Exception
-        errors.add(:base, :problems_destroying)
         raise ActiveRecord::Rollback
       end
       Slide.where('lesson_id = ? AND position > ?', my_lesson_id, my_position).order(:position).each do |s|
         s.position -= 1
-        if !s.save
-          errors.add(:base, :problems_destroying)
-          raise ActiveRecord::Rollback
-        end
+        raise ActiveRecord::Rollback if !s.save
       end
       resp = true
     end
@@ -162,54 +148,29 @@ class Slide < ActiveRecord::Base
   end
   
   def change_position(x)
-    errors.clear
-    if self.new_record?
-      errors.add(:base, :problems_changing_position)
-      return false
-    end
-    if x.class != Fixnum || x < 1
-      errors.add(:base, :invalid_position)
-      return false
-    end
+    return false if self.new_record?
+    return false if x.class != Fixnum || x < 1
     y = self.position
     return true if y == x
     desc = (y > x)
-    if self.kind == COVER
-      errors.add(:base, :cant_change_position_of_cover)
-      return false
-    end
+    return false if self.kind == COVER
     tot_slides = Slide.where(:lesson_id => self.lesson_id).count
-    if x > tot_slides || x == 1
-      errors.add(:base, :invalid_position)
-      return false
-    end
+    return false if x > tot_slides || x == 1
     resp = false
     ActiveRecord::Base.transaction do
-      if !self.lesson.modify
-        errors.add(:base, :problems_changing_position)
-        raise ActiveRecord::Rollback
-      end
+      raise ActiveRecord::Rollback if !self.lesson.modify
       self.position = tot_slides + 2
-      if !self.save
-        errors.add(:base, :problems_changing_position)
-        raise ActiveRecord::Rollback
-      end
+      raise ActiveRecord::Rollback if !self.save
       empty_pos = y
       while empty_pos != x
         curr_pos = (desc ? (empty_pos - 1) : (empty_pos + 1))
         curr_slide = Slide.where(:lesson_id => self.lesson_id, :position => curr_pos).first
         curr_slide.position = empty_pos
-        if !curr_slide.save
-          errors.add(:base, :problems_changing_position)
-          raise ActiveRecord::Rollback
-        end
+        raise ActiveRecord::Rollback if !curr_slide.save
         empty_pos = curr_pos
       end
       self.position = x
-      if !self.save
-        errors.add(:base, :problems_changing_position)
-        raise ActiveRecord::Rollback
-      end
+      raise ActiveRecord::Rollback if !self.save
       resp = true
     end
     resp

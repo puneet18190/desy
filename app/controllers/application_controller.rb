@@ -143,14 +143,14 @@ class ApplicationController < ActionController::Base
     subject_id_errors = errors.delete(:subject_id)
     errors2 = errors.to_s
     if !(/can't be blank/ =~ errors2).nil? || !(/is too long/ =~ errors2).nil? || !(/is too short/ =~ errors2).nil?
-      resp << t('error_captions.fill_all_the_fields_or_too_long')
+      resp << t('forms.error_captions.fill_all_the_fields_or_too_long')
     end
     flag = false
     if errors.has_key? :tags
       errors[:tags].each do |v|
         if !flag && v == 'are not enough'
           flag = true
-          resp << t('error_captions.tags_are_not_enough')
+          resp << t('forms.error_captions.tags_are_not_enough')
         end
       end
     end
@@ -162,7 +162,7 @@ class ApplicationController < ActionController::Base
   
   def convert_lesson_editor_messages(errors)
     resp = convert_item_error_messages errors
-    resp << t('error_captions.subject_missing_in_lesson') if errors.has_key? :subject_id
+    resp << t('forms.error_captions.subject_missing_in_lesson') if errors.has_key? :subject_id
     resp
   end
   
@@ -170,18 +170,18 @@ class ApplicationController < ActionController::Base
     resp = convert_item_error_messages errors
     if errors.has_key? :media
       errors[:media].each do |em|
-        return ([t('error_captions.media_blank')] + resp) if em == "can't be blank"
+        return ([t('forms.error_captions.media_blank')] + resp) if em == "can't be blank"
       end
       if !(/unsupported format/ =~ errors[:media].to_s).nil? || !(/invalid extension/ =~ errors[:media].to_s).nil?
-        return [t('error_captions.media_unsupported_format')] + resp
+        return [t('forms.error_captions.media_unsupported_format')] + resp
       end
       if !(/invalid filename/ =~ errors[:media].to_s).nil?
-        return [t('error_captions.media_invalid_filename')] + resp
+        return [t('forms.error_captions.media_invalid_filename')] + resp
       end
-      return [t('error_captions.media_generic_error')] + resp
+      return [t('forms.error_captions.media_generic_error')] + resp
     else
       if errors.has_key? :sti_type
-        return [t('error_captions.media_unsupported_format')] + resp
+        return [t('forms.error_captions.media_unsupported_format')] + resp
       else
         return resp
       end

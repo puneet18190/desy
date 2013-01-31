@@ -1,8 +1,22 @@
 en:
-
-  # this section contains error messages that the application uses to interface with the user
+  
+  # SECTION 1: error messages that the application uses to interface with the user
+  activemodel:
+    errors:
+      messages:
+        # TODO questi sono i messaggi per l'utente (parte 1)
+        invalid_email_address: 'does not appear to be a valid email address'
   activerecord:
     errors:
+      messages:
+        # TODO questi sono i messaggi per l'utente (parte 2)
+        blank: "can't be blank"
+        confirmation: "doesn't match confirmation"
+        too_short: 'is too short (minimum is %{count} characters)'
+        too_long: 'is too long (maximum is %{count} characters)'
+        uniqueness: 'has already been taken'
+        changed: 'cannot be changed'
+        accepted: 'must be accepted'
       models:
         bookmark:
           # there was an error while trying to add the lesson to your personal folder
@@ -30,8 +44,6 @@ en:
           already_unpublished: 'This lesson has not been shared yet'
           # there was an error while trying to delete the lesson
           problem_destroying: 'The lesson could not be deleted'
-          # TODO rimuoverlo
-          problem_adding_slide: 'The slide could not be added'
           # there was an error while trying to add the lesson to your Virtual Classroom
           problem_adding_to_virtual_classroom: 'The lesson could not be added to your Virtual Classroom'
           # the selected lesson is already in your Virtual Classroom, hence you can't add it again
@@ -51,26 +63,13 @@ en:
           # since the element is public, it's not possible to delete it
           cant_destroy_public: "This element is public, you can't delete it"
         notification:
-          # TODO rimuoverlo
+          # there was an error while trying to delete a notification
           problem_destroying: 'The notification could not be deleted'
-        slide:
-          # TODO rimuoverli tutti
-          problems_changing_position: "The slide's position could not be changed"
-          invalid_position: "This slide's position is not valid"
-          cant_change_position_of_cover: "This slide is the cover, it can't be moved"
-          problems_destroying: 'The slide could not be deleted'
-          dont_destroy_cover: "This slide is the cover, it can't be deleted"
         user:
-          # TODO IN SOSPESO
-          problems_updating: 'Your profile could not be updated'
-          problems_destroying: 'The user could not be deleted'
-          missing_subjects: 'Choose at least one subject'
-          problem_reporting: 'Your report could not be sent'
-          lesson_already_reported: 'You already reported this lesson'
-          media_element_already_reported: 'You already reported this element'
+          # TODO questi sono i messaggi per l'utente (parte 3)
+          not_a_number: 'must be an integer greater than 0'
+          greater_than: 'must be an integer greater than 0'
         virtual_classroom_lesson:
-          # TODO remove
-          cant_change_position_if_not_in_playlist: 'This lesson is not in the playlist'
           # you tried to insert the lesson in an invalid position inside the playlist
           invalid_position_in_playlist: "The position of the lesson is not valid"
           # there was an error while trying to change the position of the lesson inside the playlist
@@ -84,24 +83,8 @@ en:
           # there was an error while trying to remove the lesson from the playlist
           problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
   
-  # this section contains format error messages inside general information tables (i.e. name, surname, title, description, etc.)
-  error_captions:
-    # this is the standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
-    fill_all_the_fields_or_too_long: 'Fill in all the fields without exceeding the max length'
-    # this is when you don't write the minimum amount of tags
-    tags_are_not_enough: 'Not enough tags'
-    # this is when you didn't select a file to be loaded
-    media_blank: 'No file loaded'
-    # you tried to upload an attachment whose format is not supported
-    media_unsupported_format: 'Format not supported'
-    # you tried to upload a file whose name contained an invalid character
-    media_invalid_filename: "File's name contains invalid characters"
-    # you tried to upload a file which was damaged or invalid
-    media_generic_error: 'Invalid or damaged file'
-    # you didn't choose a subject for your lesson
-    subject_missing_in_lesson: 'Choose a subject'
-
-  # this section contains general captions of the application
+  
+  # SECTION 2: general captions of the application
   captions:
     # it is used in the process of creating a mailing list
     add_address_to_group: 'Add email address to group'
@@ -131,10 +114,6 @@ en:
     click_image_to_add_text: 'Click on the image to add text'
     # this is used in the playlist: it's the caption of the button which closes the playlist's navigational bar
     close_playlist_bar: 'Close playlist bar'
-    # at the end of image, audio, and video editing, it is possible to update the general information of the element: this is where you can make your updates
-    change_media_element_info: "Update here the element's info according to its new content"
-    # this is the label of the shortcut to modify general information of an element, directly in your section
-    change_media_element_info_in_popup: 'Fill the form below to modify data'
     # used in the lesson editor, where there is an empty space to add an audio
     choose_audio: 'Click here to add an audio'
     # used in the lesson editor, where there is an empty space to add an image
@@ -153,8 +132,6 @@ en:
     create_new_lesson: 'Create a new lesson'
     # caption of the link opening the lesson editor, containing a prompt for the user (this is used in the specific section of lessons)
     create_new_lesson_now: 'Create a lesson now'
-    # at the end of image, audio, and video editing, it is possible to save your work as a new element: this is the title of the form where you can insert general data
-    creating_new_media_element: 'You are creating a new element'
     # this is the caption of the 'crop' button (which allows you to make a square selection inside an image)
     crop: 'Crop'
     # the caption of the link to the dashboard (DESY's main page)
@@ -163,8 +140,6 @@ en:
     delete_group: 'Delete group'
     # this is used as a caption to describe a lesson
     description: 'Description'
-    # this is used as placeholder for the description text field: used for both lessons and elements
-    description_max_chars: 'Description (max %{num} characters)'
     # this is what the acronym 'DESY' stands for
     desy_expanded_description: 'Digital Education System'
     # this is the title of the application's presentation in the main page
@@ -191,16 +166,13 @@ en:
     empty_virtual_classroom: 'Empty your Virtual Classroom'
     # this is the caption of the button to submit your email and password to login
     enter: 'Enter'
-    # at the end of image, audio, and video editing, it is possible to save your work as a new element: this is where you can make your updates
-    enter_new_media_element_details: 'Enter all the details in the form below'
     # this is only used to add a title to your slides
     enter_title: 'Enter title'
     # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
     failed_confirmation: 'The link you submitted is not longer valid'
     # this is the title of the login form
     fill_all_login_fields: 'Insert username and password'
-    # this is the title of the new empty lesson form 
-    fill_in_form_for_new_lesson: 'Enter all the details in the form below'
+    
     
     find_out_the_benefits_of_desy: 'Find out the benefits of DESY'
     help_using_desy: 'Need help using Desy?'
@@ -228,7 +200,6 @@ en:
     # link to the general main page of elements editor (you can choose among image, audio and video editor)
     media_element_editor: 'Elements editor'
     media_elements: 'Elements'
-    modify_info_element: "Element's information"
     next: "Next"
     new_element_untitled: 'New element - untitled'
     new_time: 'New time'
@@ -266,10 +237,8 @@ en:
     select_more_lesson: 'Select more lesson'
     selected: 'Selected'
     selected_for_you: 'Selected for you'
-    select_a_subject: 'Select a subject'
     select_audio: 'Select audio'
     select_component_to_add: 'Select component to add'
-    select_file: 'Select a file to load'
     select_image: 'Select image'
     select_the_lessons_you_want_to_upload: 'Select the lessons to upload in the Virtual Classroom'
     select_the_scissors: 'Select the scissors to cut the image'
@@ -286,24 +255,18 @@ en:
     subject: 'Subject'
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
-    tags_max: 'Insert a minimum of %{items} tags (max %{num} characters each)'
     talk_with_desy: 'Want to talk with DESY?'
     text_color: 'Text color'
     time: 'Time'
-    title_max_chars: 'Title (max %{num} characters)'
     total_clip_length: 'Total clip length'
     total_length: 'Total length'
     total_users: 'Total users'
     undo: 'Undo'
     untitled_new_element: 'New element - untitled'
     update: 'Update'
-    update_lesson: 'Are you making significant changes?'
     update_successful: 'Update successful'
-    updating_media_element: 'Have you made significant changes?'
     upload: 'Upload'
-    upload_a_media_element: 'Upload a media element'
     upload_completed: 'Upload completed!'
-    use_the_form_below_for_lesson_information: "Update here the lesson's info according to its new content"
     users_like_this_lesson: 'Users like this lesson'
     users_more_likes: 'Users with more likes'
     value: 'Value'
@@ -320,12 +283,62 @@ en:
     why_sign_up: 'Why to sign up?'
     write_a_message: 'Write a message'
     write_reason_report: 'Write the reason for your report. Thank you for your cooperation!'
-    you_are_creating_a_new_lesson: 'You are creating a new lesson'
     you_believe_content_unappropriate: 'Do you think that this item is offensive?'
     your_browser_does_not_support_video: 'Your browser does not support the video tag'
     your_browser_does_not_support_audio: 'Your browser does not support the audio tag'
     your_search_returned: 'Found %{num} results. To refine your search select between these tags'
     your_virtual_classroom_is_empty: 'Your Virtual Classroom is empty'
+  
+  
+  # SECTION 3: captions e titoli per i form generici -- error messages inside HTML forms (i.e. wrong name, surname, title, description, etc.)
+  forms:
+    # new empty lesson form
+    new_lesson:
+      title: 'You are creating a new lesson'
+      description: 'Enter all the details in the form below'
+    # edit lesson form
+    update_lesson:
+      title: 'Are you making significant changes?'
+      description: "Update here the lesson's info according to its new content"
+    # upload element form
+    upload_media_element:
+      title: 'Upload a media element'
+      description: 'Select a file clicking on the button on the left'
+    # change info media element form
+    change_info_media_element:
+      title: "Element's information"
+      description: 'Fill the form below to modify data'
+    # new media element in editor form
+    new_media_element_in_editor:
+      title: 'You are creating a new element'
+      description: 'Enter all the details in the form below'
+    # overwrite media element in editor form
+    overwrite_media_element_in_editor:
+      title: 'Have you made significant changes?'
+      description: "Update here the element's info according to its new content"
+    error_captions:
+      # this is the standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
+      fill_all_the_fields_or_too_long: 'Fill in all the fields without exceeding the max length'
+      # this is when you don't write the minimum amount of tags
+      tags_are_not_enough: 'Not enough tags'
+      # this is when you didn't select a file to be loaded
+      media_blank: 'No file loaded'
+      # you tried to upload an attachment whose format is not supported
+      media_unsupported_format: 'Format not supported'
+      # you tried to upload a file whose name contained an invalid character
+      media_invalid_filename: "File's name contains invalid characters"
+      # you tried to upload a file which was damaged or invalid
+      media_generic_error: 'Invalid or damaged file'
+      # you didn't choose a subject for your lesson
+      subject_missing_in_lesson: 'Choose a subject'
+    placeholders:
+      description: 'Description (max %{num} characters)'
+      media: 'Select a file to load'
+      subject_id: 'Select a subject'
+      tags: 'Insert a minimum of %{items} tags (max %{num} characters each)'
+      title: 'Title (max %{num} characters)'
+      
+  
   descriptions:
     instructions_to_fill_playlist: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist.'
     mailer_link_1: 'The user '
@@ -335,7 +348,11 @@ en:
     mailing_lists: 'Create one o more groups of email to send your lessons.'
     # this is the presentation of the application in the main page
     prelogin: "<b>DESY</b> is the new platform dedicated to the world of education. With <b>DESY</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>DESY</b> we guarantee high quality and care for details</i>."
+
     upload_media_element_instructions: 'Select a file clicking on the button on the left'
+
+    send_lesson_link_explanation: 'Write a list of emails and a message: clicking the button, you will send your contacts an email containing the public link of this lesson'
+
     upload_media_element_success: 'The media element has been successfully created'
     user_mailer:
       account_confirmation_1: 'Greetings %{name} %{surname},'
