@@ -12,8 +12,8 @@
     <br class="clearfloat">
     <div class="contentForm">
       <header>
-        <h2>Subjects</h2>
-        <p>Choose the matters you want to stay connected</p>
+        <h2><%= t('users.profile.subjects.title') %></h2>
+        <p><%= t('users.profile.subjects.description') %></p>
       </header>
       <%= form_for @user, :url => user_path do |f| %>
         <%= render :partial => 'personal_subjects', :locals => {:f => f} %>

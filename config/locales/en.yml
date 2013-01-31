@@ -243,6 +243,8 @@ en:
         title: 'Personal'
     subjects:
       menu_link: 'Subjects'
+      title: 'Subjects'
+      description: 'Choose the subjects you want to stay connected'
     
     
     
