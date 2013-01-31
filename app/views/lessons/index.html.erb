@@ -7,8 +7,8 @@
   <div class="lessons-content">
     <div class="title-bar">
       <h1 class="lower"><%= t('captions.lessons') %></h1>
-      <p><%= t('captions.subject') %></p>
-      <p><%= t('captions.status') %></p>
+      <p><%= t('lessons.headers.subject') %></p>
+      <p><%= t('lessons.headers.status') %></p>
       <div style="float:right"><h2 style="padding-right:10px"><%= t('captions.show') %></h2>
         <select name="ricerca" id="filter_lessons">
           <% Filters::LESSONS_SET.each do |f| %>

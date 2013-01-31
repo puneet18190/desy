@@ -84,7 +84,6 @@ class UsersController < ApplicationController
   end
   
   def mailing_lists
-    @user = current_user
   end
 
   def statistics

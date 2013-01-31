@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="lesson-editor-layout <%= controller_html_class %> <%= action_html_class %>">
 <head>
-  <title>Desy</title>
+  <title><%= SETTINGS['application_name'] %></title>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>

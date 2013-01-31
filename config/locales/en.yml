@@ -85,7 +85,7 @@ en:
           problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
   
   
-  # SECTION bla bla bla
+  # SECTION 2: dashboard
   dashboard:
     # the caption of the link to open the contact page
     contact_us: 'Contact us'
@@ -106,11 +106,116 @@ en:
     talk_with_desy: 'Want to talk with %{desy}?'
   
   
+  # SECTION 3: lessons
+  lessons:
+    # the caption used to indicate the name if the author of the lesson
+    author: 'Author'
+    # caption which indicates the date in which a lesson is created
+    created_on: 'Created on'
+    create_new: 'Create a new lesson'
+    create_new_now: 'Create a lesson now'
+    empty: 'You have no lessons in your section, create one'
+    empty_filter: 'The lesson filter produced no result'
+    headers:
+      status: 'Status'
+      subject: 'Subject'
+    school_level: 'School level'
+    users_like_this: 'Users like this lesson'
+  
+  
+  # SECTION 4: audio editor
+  audio_editor:
+    selected_length: 'Selected'
+    total_length: 'Total length'
+    # it is the title of the audio editor
+    label: 'Edit audio'
+    not_available:
+      title: 'Audio editor not available'
+      description: 'Inserire qui altro testo'
+  
+  
+  video_editor:
+    image_components:
+      time: 'Time'
+    label: 'Edit video'
+    not_available:
+      title: 'Video editor not available'
+      description: 'Inserire qui altro testo'
+    select_component_to_add: 'Select component to add'
+  
+  
+  image_editor:
+    crop:
+      cancel: 'Cancel'
+      done: 'Crop'
+      instructions: 'Drag on the image to make a selection'
+    left_column:
+      title: 'What to do?'
+      description: 'Select the scissors to cut the image'
+    label: 'Edit image'
+    original_size: 'Original image size'
+    select_an_action: 'Select an action'
+    # to save a group of texts above the image
+    text:
+      cancel: 'Cancel'
+      done: 'Done'
+      instructions: 'Click on the image to add text'
+      sample_letter: 'A'
+    undo: 'Undo'
+  
+  
+  media_elements_editor:
+    new_untitled: 'New element - untitled'
+  
+  
+  lesson_editor:
+    # empty space to add an audio
+    choose_audio: 'Click here to add an audio'
+    # empty space to add an image
+    choose_image: 'Click here to add an image'
+    # empty space to add a video
+    choose_video: 'Click here to add a video'
+    not_available:
+      title: 'Lesson editor not available for this lesson'
+      description: 'Inserire altro testo qui'
+    placeholders:
+      image_caption: 'Write a caption'
+      text: 'Write a text here'
+      title: 'Enter title'
+  
+  
+  lesson_viewer:
+    # this is used in the playlist: it's the caption of the button which closes the playlist's navigational bar
+    close_playlist_bar: 'Close playlist bar'
+    open_playlist_bar: 'Open playlist bar'
+        
+    
+  
+  
+  galleries:
+    audios:
+      select: 'Select audio'
+    images:
+      original_size: 'Original size'
+      select: 'Select image'
+    videos:
+      select: 'Select video'
+  
+  users:
+    institute: 'Institute'
+    mailing_list:
+      add: 'Add new group'
+      add_address: 'Add email address to group'
+      delete: 'Delete group'
+      label: 'Group'
+      
+    
+    
+    
   
   # SECTION 2: general captions of the application
   captions:
-    # it is used in the process of creating a mailing list
-    add_address_to_group: 'Add email address to group'
+
     # it is used in the video editor, in order to open the selection of audio tracks
     add_audio_track: 'Add audio track'
     # it is used in the empty Virtual Classroom to invite the user to fill it immediately
@@ -121,52 +226,32 @@ en:
     add_new_lesson: 'Add lessons'
     # it is a link to open the application search engine
     advanced_search: 'Advanced search'
-    # it is the title of the audio editor
-    audio_editor_label: 'Edit audio'
     # this is the description associated to the 'add audio track' button inside video editor
     audio_track_in_video_editor: 'You can upload an audio track: this will cover the original audio of all the chosen components'
-    # the caption used to indicate the name if the author of the lesson
-    author: 'Author'
     # this is used in the video editor, to choose a background color for a 'title' component
     background_color: 'Background color'
     # used in the general footer of the application, to redirect to the main page
     back_to_dashboard: 'Back to dashboard'
     # only used inside the general information tables: it represents the option to reset all the fields and close the window
     cancel: 'Cancel'
-    # this is the tip which appears at the bottom of the image editor while in 'insert text' mode
-    click_image_to_add_text: 'Click on the image to add text'
-    # this is used in the playlist: it's the caption of the button which closes the playlist's navigational bar
-    close_playlist_bar: 'Close playlist bar'
-    # used in the lesson editor, where there is an empty space to add an audio
-    choose_audio: 'Click here to add an audio'
-    # used in the lesson editor, where there is an empty space to add an image
-    choose_image: 'Click here to add an image'
-    # used in the lesson editor, where there is an empty space to add a video
-    choose_video: 'Click here to add a video'
+    
+
     # this is the prompt to use the application's search engine
     choose_wich_item_and_go: 'Insert a word, choose the filters and go!'
-    # caption which indicates the date in which a lesson is created
-    created_on: 'Created on'
     # just the word 'color', it may be used when necessary
     color: 'Color'
-    # this is the caption of the 'crop' button (which allows you to make a square selection inside an image)
-    crop: 'Crop'
+
     # the caption of the link to the dashboard (DESY's main page)
     dashboard: 'Dashboard'
-    # this is used as caption of the button which deletes a mailing list
-    delete_group: 'Delete group'
-    # this is used as a caption to describe a lesson
-    description: 'Description'
+
     # this is what the acronym 'DESY' stands for
     desy_expanded_description: 'Digital Education System'
     # this is the caption, in your elements section, which allows you to choose between size display (compact or extended mode)
     display_mode: 'Display mode'
     # in the section of your elements, this is the caption which allows you to choose how many elements are to be displayed in a page
     display: 'Display'
-    # used in the image editor, to save a group of texts above the image
-    done: 'Done'
-    # this is the tip which appears at the bottom of the image editor while in 'crop' mode
-    drag_image_to_select: 'Drag on the image to make a selection'
+
+
     # used inside my profile's statistics: this is the title of specific statistics of the elements which I have loaded
     elements_loaded: 'Didactic elements loaded'
     # used inside my profile's statistics: this is the title of specific statistics of the elements which I have loaded and shared
@@ -179,23 +264,17 @@ en:
     empty_virtual_classroom: 'Empty your Virtual Classroom'
     # this is the caption of the button to submit your email and password to login
     enter: 'Enter'
-    # this is only used to add a title to your slides
-    enter_title: 'Enter title'
     # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
     failed_confirmation: 'The link you submitted is not longer valid'
     # this is the title of the login form
     fill_all_login_fields: 'Insert username and password'
-    
-    
     home: 'Home'
-    image_caption_placeholder: 'Write a caption'
-    image_editor_label: 'Edit image'
+
     insert: 'Insert'
     insert_emails_here: 'Insert emails separated by comma'
-    insert_slide_content_here: 'Write a text here'
+
     insert_tag: 'Insert a tag'
     insert_text: 'Insert text'
-    institute: 'Institute'
     large: 'Large'
     lessons_copied_by: 'Lessons copied by other users'
     lessons_created: 'Lessons created'
@@ -207,14 +286,9 @@ en:
     mailing_lists: 'Mailing lists'
     # link to the general main page of elements editor (you can choose among image, audio and video editor)
     media_element_editor: 'Elements editor'
-    next: "Next"
-    new_element_untitled: 'New element - untitled'
     new_time: 'New time'
     no_notifications: "You don't have any notifications"
-    # this is used in the playlist: it's the caption of the button which opens the playlist's navigational bar
-    open_playlist_bar: 'Open playlist bar'
-    original_image_size: 'Original image size'
-    original_size: 'Original size'
+
     password: 'Password'
     password_or_username_not_correct: 'Wrong login data'
     password_resetted_successfully: 'Password resetted successfully'
@@ -231,34 +305,25 @@ en:
     remove: 'Remove'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     report_abuse: 'Report abuse'
-    sample_letter: 'A'
+
     save: 'Save'
-    school_level: 'School level'
     search: 'Search'
     search_again: 'Search again...'
     search_in_desy: 'Search in DESY'
     search_lesson_or_media_element: 'Are you looking for lessons or elements?'
-    seconds_shortened: 'Sec'
-    select_an_action: 'Select an action'
+
     select_mailing_list: 'or select mailing list'
     select_more_lesson: 'Select more lesson'
     selected: 'Selected'
-    select_audio: 'Select audio'
-    select_component_to_add: 'Select component to add'
-    select_image: 'Select image'
     select_the_lessons_you_want_to_upload: 'Select the lessons to upload in the Virtual Classroom'
-    select_the_scissors: 'Select the scissors to cut the image'
-    select_video: 'Select video'
+
     send: 'Send'
     send_link_to_your_friends: 'Send a link to your friends'
     sent_to: 'Send to'
-    show: 'Show'
     slide_not_deleted: "This slide can't be deleted"
     small: 'Small'
     sort_results_by: 'Sort results by'
     statistics: 'Statistics'
-    status: 'Status'
-    subject: 'Subject'
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
     text_color: 'Text color'
@@ -266,23 +331,20 @@ en:
     total_clip_length: 'Total clip length'
     total_length: 'Total length'
     total_users: 'Total users'
-    undo: 'Undo'
-    untitled_new_element: 'New element - untitled'
+
     update: 'Update'
     update_successful: 'Update successful'
     upload: 'Upload'
     upload_completed: 'Upload completed!'
-    users_like_this_lesson: 'Users like this lesson'
     users_more_likes: 'Users with more likes'
     value: 'Value'
-    video_editor_label: 'Edit video'
     virtual_classroom: 'Virtual classroom'
     warning: 'Warning!'
     warning_search_lessons: "If you don't insert a keyword the search engine will find all the available lessons, according to the filters you selected"
     warning_search_media_elements: "If you don't insert a keyword the search engine will find all the available elements, according to the filters you selected"
     welcome: 'Welcome'
     what_are_you_looking_for: 'What are you looking for?'
-    what_to_do: 'What to do?'
+
     why_sign_up: 'Why to sign up?'
     write_a_message: 'Write a message'
     write_reason_report: 'Write the reason for your report. Thank you for your cooperation!'
@@ -292,9 +354,16 @@ en:
     your_search_returned: 'Found %{num} results. To refine your search select between these tags'
     your_virtual_classroom_is_empty: 'Your Virtual Classroom is empty'
     
+    
     # già trovate che vanno sharate in captions
+    description: 'Description'
     lessons: 'Lessons'
     media_elements: 'Elements'
+    seconds_shortened: 'Sec'
+    show: 'Show'
+    
+    
+    
     
   
   # SECTION 3: captions e titoli per i form generici -- error messages inside HTML forms (i.e. wrong name, surname, title, description, etc.)
@@ -303,26 +372,38 @@ en:
     new_lesson:
       title: 'You are creating a new lesson'
       description: 'Enter all the details in the form below'
+      cancel: 'Cancel'
+      done: 'Next'
     # edit lesson form
     update_lesson:
       title: 'Are you making significant changes?'
       description: "Update here the lesson's info according to its new content"
+      cancel: 'Cancel'
+      done: 'Update'
     # upload element form
     upload_media_element:
       title: 'Upload a media element'
       description: 'Select a file clicking on the button on the left'
+      cancel: 
+      done: 
     # change info media element form
     change_info_media_element:
       title: "Element's information"
       description: 'Fill the form below to modify data'
+      cancel: 
+      done: 
     # new media element in editor form
     new_media_element_in_editor:
       title: 'You are creating a new element'
       description: 'Enter all the details in the form below'
+      cancel: 
+      done: 
     # overwrite media element in editor form
     overwrite_media_element_in_editor:
       title: 'Have you made significant changes?'
       description: "Update here the element's info according to its new content"
+      cancel: 
+      done: 
     error_captions:
       # this is the standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       fill_all_the_fields_or_too_long: 'Fill in all the fields without exceeding the max length'
@@ -392,9 +473,7 @@ en:
 
 # (3) accessors: empty situations, popups, help, etc
   empty:
-    my_lessons: 'You have no lessons in your section, create one'
     my_media_elements: 'You have no elements in your section, load one'
-    my_lessons_filter: 'The lesson filter produced no result'
     my_media_elements_filter: 'The element filter produced no result'
     lessons_result_1: 'No lessons were found associated to tags containing <'
     lessons_result_2: 'No lessons were found associated to the tag <'

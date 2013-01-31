@@ -1,21 +1,22 @@
-<h3>
-  <%= link_to t('captions.delete_group'), { :controller => 'mailing_lists', :action => 'delete_group', :id => group.id }, {:method => :delete, :remote => true, :class=> 'delete_group'}%>
-	<a class="selector"></a>
-	<span class="group-title" contenteditable="true"><%= group.name ? group.name : t('captions.group')+" "+group.id.to_s %></span> 
-	<div style="clear:both"></div>
+<h3 id="accordion_group_<%=group.id%>">
+  <%= link_to t('users.mailing_list.delete'), { :controller => 'mailing_lists', :action => 'delete_group', :id => group.id }, {:method => :delete, :remote => true, :class=> 'delete_group'}%>
+  <a class="selector"></a>
+  <span class="group-title" contenteditable="true"><%= group.name ? group.name : t('users.mailing_list.label') + ' ' + group.id.to_s %></span> 
+  <div style="clear:both"></div>
 </h3>
+
 <div>
-	<form action="#" method="get" accept-charset="utf-8" class="new_email">
-		<p><%= t('captions.add_address_to_group')%></p>
-		<input type="text" name="name" value="Name" id="some_name">
-		<input type="text" name="email" value="Email" id="email">
-		<input type="submit" value="">
-	</form>
-  <table width="100%">
-		<tbody>
-      <%= group.addresses.each_with_index do |address, index| %>
-        <%= render :partial => 'mailing_lists/address', :locals => {:address => address}%>
-    	<% end %>
-		</tbody>
-  </table>
+  <%= form_tag({:controller => "mailing_lists", :action => "create_address", :mailing_list_group_id => group.id}, {:remote => true, :class => 'new_email'}) do %>
+    <p><%= t('users.mailing_list.add_address')%></p>
+    <input type="text" name="heading" value="Name" id="name">
+    <input type="text" name="email" value="Email" id="email">
+    <input type="submit" value="">
+  <% end %>
+  <% unless group.addresses.empty? %>
+    <table width="100%" id="mailing_list_group<%=group.id%>">
+      <tbody>
+        <%= render :partial => 'mailing_lists/address', :locals => {:group => group}%>
+      </tbody>
+    </table>
+  <% end %>
 </div>

@@ -28,51 +28,61 @@
     a{
       display:block;
       float:right;
-      $button-size: 10px;
+      $button-size: 15px;
       width: $button-size;
       height: $button-size;
-      background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
       background-repeat: no-repeat;
-      background-size: ($button-size*4) ($button-size*10);
-      background-position: -10px 0;
-      margin: 5px 2px 0px 5px;
+      margin: 2px 2px 0px 5px;
       color: #373737;
-      &:hover{
-        background-position: -20px 0;
-        opacity:0.8;
+      background-image: url(<%= asset_path 'grigia.png' %>);
+      
+
+      &:hover {
+        background-image: url(<%= asset_path 'bianca.png' %>);
+      };
+    }
+  }
+   span.new_tag {
+    
+    a {
+      background-image: url(<%= asset_path 'grigia.png' %>);
+      
+      
+      &:hover {
+       background-image: url(<%= asset_path 'bianca.png' %>);
       }
     }
   }
   #tags {
-  overflow: visible;
-  clear: both;
-  border: none;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding: 0 10px;
-  box-shadow: none;
-  width: 295px;
-  height: auto;
+    overflow: visible;
+    clear: both;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0 10px;
+    box-shadow: none;
+    width: 295px;
+    height: auto;
   }
 }
+
 .media_element_editor-layout .contentFormInfoMediaElementEditor ._tags_container {
   width: 336px;
   height: 170px;
   border: 3px solid #43a848;
   background-color: #454343;
   @include tagContainer;
+  
   span.new_tag {
     color:#fff;
     background-color: #373636;
-
-    a {
-      background-position: -30px 0;
-      &:hover {
-       background-position: 0px 0;  
-      }
-    }
   }
+
 }
+.video_editor-controller .ui-autocomplete {
+    text-align:left;
+    width:325px;
+  }
 .search-controller {
   .ui-autocomplete {
     background-color: #493f34;
@@ -95,6 +105,18 @@
     color: #43a848;
   }
 }
+.video_editor-controller {
+  .ui-autocomplete {
+    background-color: #fff;
+  }
+  ul.ui-autocomplete, ul.ui-autocomplete li, ul.ui-autocomplete li:hover, ul.ui-autocomplete li a, ul.ui-autocomplete li a:hover {
+    color: #30302f;
+  }
+  .ui-autocomplete.ui-menu .ui-menu-item a.ui-state-focus,
+  .ui-autocomplete.ui-menu .ui-menu-item a.ui-state-active { 
+    color: #43a848;
+  }
+}
 .lesson-editor-layout ul#slides.new .info ._tags_container {
   width: 336px;
   height: 140px;
@@ -104,13 +126,10 @@
   @include tagContainer;
   
   span.new_tag {
+    
+    background-repeat: no-repeat;
     background-color: #e9a44c;
-    a {
-      background-position: 0px 0;
-      &:hover {
-       background-position: -20px 0;  
-      }
-    }
+    
   }
 }
 .lesson-editor-layout {
@@ -130,28 +149,17 @@
   margin-bottom:5px;
   background-color: #454343;
   @include tagContainer;
-  span {
-    a {
-      background-position: -30px 0;  
-    }
-  }
+  
   span.new_tag {
     color: #fff;
     background-color: #373636;
-    
-    a {
-      background-position: -30px 0;
-      &:hover {
-       background-position: 0px 0;  
-      }
-    }
   }
 }
-.media_elements-controller {
+.media_elements-controller,.lessons-controller, .dashboard-controller {
   .ui-autocomplete {
     width: 325px;
-    background-color: rgb(31,31,31)
-    
+    background-color: rgb(31,31,31);
+    opacity: 0.9;
   }
   .ui-autocomplete.ui-menu .ui-menu-item a.ui-state-focus,
   .ui-autocomplete.ui-menu .ui-menu-item a.ui-state-active { 
