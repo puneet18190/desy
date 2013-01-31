@@ -49,7 +49,12 @@ Desy::Application.configure do
   config.assets.precompile += %w( tiny_mce_desy.css
                                   tinymce/themes/advanced/skins/desy/content.css
                                   tinymce/themes/advanced/skins/desy/dialog.css
-                                  tinymce/themes/advanced/skins/desy/ui.css )
+                                  tinymce/themes/advanced/skins/desy/ui.css
+                                  tinymce/plugins/tiny_mce_wiris/editor_plugin.js
+                                  tinymce/plugins/tiny_mce_wiris/core/core.js
+                                  tinymce/plugins/tiny_mce_wiris/core/editor.js
+                                  tinymce/plugins/tiny_mce_wiris/lang/en/strings.js 
+                                )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
