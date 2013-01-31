@@ -85,7 +85,7 @@ en:
           problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
   
   
-  # SECTION bla bla bla
+  # SECTION 2: dashboard
   dashboard:
     # the caption of the link to open the contact page
     contact_us: 'Contact us'
@@ -106,6 +106,32 @@ en:
     talk_with_desy: 'Want to talk with %{desy}?'
   
   
+  # SECTION 3: lessons
+  lessons:
+    # the caption used to indicate the name if the author of the lesson
+    author: 'Author'
+    # caption which indicates the date in which a lesson is created
+    created_on: 'Created on'
+    create_new: 'Create a new lesson'
+    create_new_now: 'Create a lesson now'
+    empty: 'You have no lessons in your section, create one'
+    empty_filter: 'The lesson filter produced no result'
+    headers:
+      status: 'Status'
+      subject: 'Subject'
+    school_level: 'School level'
+    users_like_this: 'Users like this lesson'
+  
+  
+  
+  
+  users:
+    institute: 'Institute'
+    
+    
+    
+    
+    
   
   # SECTION 2: general captions of the application
   captions:
@@ -125,8 +151,7 @@ en:
     audio_editor_label: 'Edit audio'
     # this is the description associated to the 'add audio track' button inside video editor
     audio_track_in_video_editor: 'You can upload an audio track: this will cover the original audio of all the chosen components'
-    # the caption used to indicate the name if the author of the lesson
-    author: 'Author'
+
     # this is used in the video editor, to choose a background color for a 'title' component
     background_color: 'Background color'
     # used in the general footer of the application, to redirect to the main page
@@ -145,8 +170,7 @@ en:
     choose_video: 'Click here to add a video'
     # this is the prompt to use the application's search engine
     choose_wich_item_and_go: 'Insert a word, choose the filters and go!'
-    # caption which indicates the date in which a lesson is created
-    created_on: 'Created on'
+    
     # just the word 'color', it may be used when necessary
     color: 'Color'
     # this is the caption of the 'crop' button (which allows you to make a square selection inside an image)
@@ -155,8 +179,6 @@ en:
     dashboard: 'Dashboard'
     # this is used as caption of the button which deletes a mailing list
     delete_group: 'Delete group'
-    # this is used as a caption to describe a lesson
-    description: 'Description'
     # this is what the acronym 'DESY' stands for
     desy_expanded_description: 'Digital Education System'
     # this is the caption, in your elements section, which allows you to choose between size display (compact or extended mode)
@@ -195,7 +217,7 @@ en:
     insert_slide_content_here: 'Write a text here'
     insert_tag: 'Insert a tag'
     insert_text: 'Insert text'
-    institute: 'Institute'
+
     large: 'Large'
     lessons_copied_by: 'Lessons copied by other users'
     lessons_created: 'Lessons created'
@@ -233,7 +255,7 @@ en:
     report_abuse: 'Report abuse'
     sample_letter: 'A'
     save: 'Save'
-    school_level: 'School level'
+
     search: 'Search'
     search_again: 'Search again...'
     search_in_desy: 'Search in DESY'
@@ -252,13 +274,12 @@ en:
     send: 'Send'
     send_link_to_your_friends: 'Send a link to your friends'
     sent_to: 'Send to'
-    show: 'Show'
+    
     slide_not_deleted: "This slide can't be deleted"
     small: 'Small'
     sort_results_by: 'Sort results by'
     statistics: 'Statistics'
-    status: 'Status'
-    subject: 'Subject'
+
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
     text_color: 'Text color'
@@ -272,7 +293,7 @@ en:
     update_successful: 'Update successful'
     upload: 'Upload'
     upload_completed: 'Upload completed!'
-    users_like_this_lesson: 'Users like this lesson'
+    
     users_more_likes: 'Users with more likes'
     value: 'Value'
     video_editor_label: 'Edit video'
@@ -293,8 +314,13 @@ en:
     your_virtual_classroom_is_empty: 'Your Virtual Classroom is empty'
     
     # già trovate che vanno sharate in captions
+    description: 'Description'
     lessons: 'Lessons'
     media_elements: 'Elements'
+    show: 'Show'
+    
+    
+    
     
   
   # SECTION 3: captions e titoli per i form generici -- error messages inside HTML forms (i.e. wrong name, surname, title, description, etc.)
@@ -392,9 +418,7 @@ en:
 
 # (3) accessors: empty situations, popups, help, etc
   empty:
-    my_lessons: 'You have no lessons in your section, create one'
     my_media_elements: 'You have no elements in your section, load one'
-    my_lessons_filter: 'The lesson filter produced no result'
     my_media_elements_filter: 'The element filter produced no result'
     lessons_result_1: 'No lessons were found associated to tags containing <'
     lessons_result_2: 'No lessons were found associated to the tag <'
