@@ -262,6 +262,8 @@ en:
     search_lesson_or_media_element: 'Are you looking for lessons or elements?'
     seconds_shortened: 'Sec'
     select_an_action: 'Select an action'
+    select_mailing_list: 'or select mailing list'
+    select_more_lesson: 'Select more lesson'
     selected: 'Selected'
     selected_for_you: 'Selected for you'
     select_a_subject: 'Select a subject'
@@ -274,7 +276,7 @@ en:
     select_video: 'Select video'
     send: 'Send'
     send_link_to_your_friends: 'Send a link to your friends'
-    share_lesson_public_link: 'Share the public link of this lesson'
+    sent_to: 'Send to'
     show: 'Show'
     slide_not_deleted: "This slide can't be deleted"
     small: 'Small'
@@ -333,7 +335,6 @@ en:
     mailing_lists: 'Create one o more groups of email to send your lessons.'
     # this is the presentation of the application in the main page
     prelogin: "<b>DESY</b> is the new platform dedicated to the world of education. With <b>DESY</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>DESY</b> we guarantee high quality and care for details</i>."
-    send_lesson_link_explanation: 'Write a list of emails and a message: clicking the button, you will send your contacts an email containing the public link of this lesson'
     upload_media_element_instructions: 'Select a file clicking on the button on the left'
     upload_media_element_success: 'The media element has been successfully created'
     user_mailer:
