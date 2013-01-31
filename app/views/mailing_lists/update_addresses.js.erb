@@ -1,6 +1,1 @@
-$('#mailing_lists_accordion').accordion('destroy');
 $('table#mailing_list_group'+<%=@mlg.id%>+' tbody').html("<%= j(render :partial => 'mailing_lists/address', :locals =>{:group => @mlg}) %>");
-$('#mailing_lists_accordion').accordion({ 
-  heightStyle: "fill",
-  activate: 2
-});

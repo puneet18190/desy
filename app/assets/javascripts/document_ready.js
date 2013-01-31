@@ -902,6 +902,16 @@ $(document).ready(function() {
     $('#new_users_session_form').submit();
   });
   
+  // PROFILE
+  $('body').on('blur','#mailing_lists_accordion .group-title', function(){
+    // FIX ME - HANDLE TITLE UPDATE
+    var group = $(this); 
+    $.ajax({
+      type: 'put',
+      url: '/mailing_lists/update_group/' + group.data('param')+'/'+ group.text()
+    });
+  });
+  
   
   // MEDIA ELEMENT EDITOR GENERAL FUNCTIONS
   
