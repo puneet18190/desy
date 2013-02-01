@@ -1,7 +1,7 @@
 class CreateMailingListAddresses < ActiveRecord::Migration
   def change
     create_table :mailing_list_addresses do |t|
-      t.references :mailing_list_group, :on_delete => :cascade
+      t.integer :group_id, foreign_key: { references: :mailing_list_groups }, :on_delete => :cascade
       t.string :heading
       t.string :email
 
