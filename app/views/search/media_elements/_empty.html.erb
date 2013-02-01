@@ -1,7 +1,7 @@
 <% if @tag.kind_of?(Tag) %>
-  <div class="emptyFilter"><h1><%= t('empty.media_elements_result_2') %><%= @tag.word %><%= t('empty.media_elements_result_4') %></h1></div>
+  <div class="emptyFilter"><h1><%= t('search.media_elements.empty_tag', :tag => @tag.word) %></h1></div>
 <% elsif !@tag.blank? %>
-  <div class="emptyFilter"><h1><%= t('empty.media_elements_result_1') %><%= @tag %><%= t('empty.media_elements_result_3') %></h1></div>
+  <div class="emptyFilter"><h1><%= t('search.media_elements.empty_word', :word => @tag) %></h1></div>
 <% else %>
-  <div class="emptyFilter"><h1><%= t('empty.media_elements_result_5') %></h1></div>
+  <div class="emptyFilter"><h1><%= t('search.media_elements.empty_filter') %></h1></div>
 <% end %>

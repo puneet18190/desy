@@ -161,6 +161,49 @@ en:
     placeholder: 'Write the reason for your report. Thank you for your cooperation!'
   
   
+  search:
+    # it is a link to open the application search engine
+    label: 'Advanced search'
+    short_label: 'Search'
+    long_label: 'Search in %{desy}'
+    title: 'What are you looking for?'
+    description_title: 'Are you looking for lessons or elements?'
+     # this is the prompt to use the application's search engine
+    description: 'Insert a word, choose the filters and go!'
+    again: 'Search again...'
+    lessons:
+      result: 'Found %{num} results. To refine your search select between these tags'
+      empty_word: 'No lessons were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters'
+      empty_tag: 'No lessons were found associated to the tag <%{tag}>: try filtering by a different tag, or changing your search parameters'
+      empty_filter: 'No lesson was found with the filters you chose'
+      keyword:
+        label: 'Keyword'
+        placeholder: 'Insert a tag'
+      filters:
+        author: 'Category'
+        subject: 'Subject'
+        all_subjects: 'All subjects'
+      sort: 'Sort results by'
+      suggestion:
+        title: 'Warning!'
+        description: "If you don't insert a keyword the search engine will find all the available lessons, according to the filters you selected"
+    media_elements:
+      result: 'Found %{num} results. To refine your search select between these tags'
+      empty_word: 'No elements were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters'
+      empty_tag: 'No elements were found associated to the tag <%{tag}>: try filtering by a different tag, or changing your search parameters'
+      empty_filter: 'No element was found with the filters you chose'
+      keyword:
+        label: 'Keyword'
+        placeholder: 'Insert a tag'
+      filters:
+        format: 'Format'
+      sort: 'Sort results by'
+      suggestion:
+        title: 'Warning!'
+        description: "If you don't insert a keyword the search engine will find all the available elements, according to the filters you selected"
+  
+  
+  
   video_editor:
     image_components:
       time: 'Time'
@@ -339,8 +382,7 @@ en:
     add_new_group: 'Add new group'
     # used in the Virtual Classroom, to pick different lessons to be added
     add_new_lesson: 'Add lessons'
-    # it is a link to open the application search engine
-    advanced_search: 'Advanced search'
+
     # this is the description associated to the 'add audio track' button inside video editor
     audio_track_in_video_editor: 'You can upload an audio track: this will cover the original audio of all the chosen components'
     # this is used in the video editor, to choose a background color for a 'title' component
@@ -349,8 +391,7 @@ en:
     back_to_dashboard: 'Back to dashboard'
     # only used inside the general information tables: it represents the option to reset all the fields and close the window
     cancel: 'Cancel'
-    # this is the prompt to use the application's search engine
-    choose_wich_item_and_go: 'Insert a word, choose the filters and go!'
+
     # the caption of the link to the dashboard (DESY's main page)
     dashboard: 'Dashboard'
     # this is what the acronym 'DESY' stands for
@@ -366,7 +407,7 @@ en:
     # this is the title of the login form
     insert: 'Insert'
     insert_emails_here: 'Insert emails separated by comma'
-    insert_tag: 'Insert a tag'
+
     insert_text: 'Insert text'
     new_time: 'New time'
     password: 'Password'
@@ -378,10 +419,7 @@ en:
     remove: 'Remove'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     save: 'Save'
-    search: 'Search'
-    search_again: 'Search again...'
-    search_in_desy: 'Search in DESY'
-    search_lesson_or_media_element: 'Are you looking for lessons or elements?'
+
     select_mailing_list: 'or select mailing list'
     select_more_lesson: 'Select more lesson'
     selected: 'Selected'
@@ -390,7 +428,7 @@ en:
     send_link_to_your_friends: 'Send a link to your friends'
     sent_to: 'Send to'
     slide_not_deleted: "This slide can't be deleted"
-    sort_results_by: 'Sort results by'
+
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
     text_color: 'Text color'
@@ -402,16 +440,14 @@ en:
     upload: 'Upload'
     upload_completed: 'Upload completed!'
     virtual_classroom: 'Virtual classroom'
-    warning: 'Warning!'
-    warning_search_lessons: "If you don't insert a keyword the search engine will find all the available lessons, according to the filters you selected"
-    warning_search_media_elements: "If you don't insert a keyword the search engine will find all the available elements, according to the filters you selected"
+  
+
     welcome: 'Welcome'
-    what_are_you_looking_for: 'What are you looking for?'
+
     why_sign_up: 'Why to sign up?'
     write_a_message: 'Write a message'
     your_browser_does_not_support_video: 'Your browser does not support the video tag'
     your_browser_does_not_support_audio: 'Your browser does not support the audio tag'
-    your_search_returned: 'Found %{num} results. To refine your search select between these tags'
     your_virtual_classroom_is_empty: 'Your Virtual Classroom is empty'
     
     
@@ -535,16 +571,8 @@ en:
 # (3) accessors: empty situations, popups, help, etc
   empty:
     
-    lessons_result_1: 'No lessons were found associated to tags containing <'
-    lessons_result_2: 'No lessons were found associated to the tag <'
-    lessons_result_3: '>: try entering a smaller word, or changing your search parameters'
-    lessons_result_4: '>: try filtering by a different tag, or changing your search parameters'
-    lessons_result_5: 'No lesson was found with the filters you chose'
-    media_elements_result_1: 'No elements were found associated to tags containing <'
-    media_elements_result_2: 'No elements were found associated to tags containing <'
-    media_elements_result_3: '>: try entering a smaller word, or changing your search parameters'
-    media_elements_result_4: '>: try filtering by a different tag, or changing your search parameters'
-    media_elements_result_5: 'No element was found with the filters you chose'
+    
+  
     virtual_classroom: 'Your Virtual Classroom is empty'
     playlist: 'Your playlist is empty'
  

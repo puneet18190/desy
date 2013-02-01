@@ -1,9 +1,9 @@
 <div class="gray-bar advancedSearch">
   <div class="cols fltlft">
-    <%= image_tag("ico_advanced_search.png", :align => "left", :style => "padding-top:5px; padding-right: 10px") %><%= t('captions.advanced_search') %><h1><%= t('captions.what_are_you_looking_for') %></h1>
+    <%= image_tag("ico_advanced_search.png", :align => "left", :style => "padding-top:5px; padding-right: 10px") %><%= t('search.label') %><h1><%= t('search.title') %></h1>
   </div>
   <div class="cols fltrt" style="width:240px">
-    <p><%= t('captions.search_lesson_or_media_element') %><br><%= t('captions.choose_wich_item_and_go') %></p>
+    <p><%= t('search.description_title') %><br><%= t('search.description') %></p>
   </div>
 </div>
 <br class="clearfloat">
@@ -28,7 +28,7 @@
     <%= render :partial => "search/lessons/main" %>
     <%= render :partial => "search/media_elements/main" %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
-    <div id="keep_searching_container" style="display:none"><a id="keep-searching"><%= t('captions.search_again') %></a></div>
+    <div id="keep_searching_container" style="display:none"><a id="keep-searching"><%= t('search.again') %></a></div>
     <br class="clearfloat">
     <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) %>
       <%= render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => remove_param_from_url(request.url, 'delete_item')} %>
