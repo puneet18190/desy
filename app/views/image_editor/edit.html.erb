@@ -6,8 +6,8 @@
     <h2><%= t('image_editor.left_column.title') %></h2><p><%= t('image_editor.left_column.description') %></p>
     <div class="menuModifyImages">
       <ul>
-        <li><a id="image_editor_crop_action" class="do_crop cutButton" title="<%= t('general_titles.crop_element_title') %>"></a></li>
-        <li><a id="image_editor_text_action" class="write_text abcButton" title="<%= t('general_titles.add_text_title') %>"></a></li>
+        <li><a id="image_editor_crop_action" class="do_crop cutButton" title="<%= t('titles.image_editor.crop') %>"></a></li>
+        <li><a id="image_editor_text_action" class="write_text abcButton" title="<%= t('titles.image_editor.text') %>"></a></li>
       </ul>
     </div>
   </div>
@@ -59,7 +59,7 @@
     <p id="image_editor_real_dimensions"><%= t('image_editor.original_size') %>: <%= @image.width %>x<%= @image.height %>px</p>
     <div class="fltrt">
       <div class="fltrt">
-        <a id="commit_image_editor" class="nextButton <%= @image.is_public ? '' : '_with_choice'.html_safe %>" title="<%= t('general_titles.save_element_title') %>"></a>
+        <a id="commit_image_editor" class="nextButton <%= @image.is_public ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.image_editor.commit') %>"></a>
       </div>
     </div>
     <br class="clearfloat">
