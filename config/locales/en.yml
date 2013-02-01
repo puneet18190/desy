@@ -454,9 +454,9 @@ en:
   
   # SECTION 1.5: titles
   titles:
-    add_slides: 'Add slide'
-    add_new_audio: 'Add new audio'
     add_text: 'Add text'
+    audio_editor:
+      commit: 'Go to next step'
     audios:
       new: 'Create new audio'
       pause: 'Pause audio'
@@ -474,12 +474,8 @@ en:
       remove: 'Stop following this item'
       remove_virtual_classroom: 'Click remove lesson from virtual classroom'
       unpublish: 'Click to unpublish your lesson'
-    change_information_slides: 'change information slides'
     close: 'Close'
-    crop_element: 'Crop element'
-    delete_slides: 'Celete slide'
     exit: 'Exit'
-    fullscreen: 'Fullscreen'
     galleries:
       add_audio: 'Add audio'
       add_image: 'Add image'
@@ -496,10 +492,14 @@ en:
       commit: 'Go to next step'
     images:
       new: 'Create new image'
-    info: 'Item information'
-    lesson_viewer:
-      back: 'Back'
-      forward: 'Forward'
+    lesson_editor:
+      add_slide: 'Add new slide'
+      change_audio: 'Change audio'
+      change_image: 'Change image'
+      change_info: 'Change lesson info'
+      change_video: 'Change video'
+      delete_slide: 'Delete slide'
+      save_slide: 'Save current slide'
     media_elements:
       select_file: 'Select file to upload'
       change_info: 'Change information'
@@ -508,17 +508,19 @@ en:
       remove: 'Remove notification'
     pause: 'Pause'
     play: 'Play'
-    refine_the_search: 'Refine the search'
-    remove_element: 'Remove element'
-    reports: 'Reports'
-    save_slides: 'Save slide'
-    save_element: 'Save element'
+    refine_search: 'Refine the search'
+    report: 'Report offensive content'
     search: 'Search'
-    select_element: 'Select new element'
+    slides:
+      back: 'Back'
+      forward: 'Forward'
     video_editor:
+      add_new_component: 'Add new component'
       audio_track:
         add: 'Select audio track'
         remove: 'Remove audio track'
+      close_preview: 'Close preview mode'
+      commit: 'Go to next step'
       cutter: 'Cut component'
       remove: 'Remove component'
       change: 'Substitute component'
