@@ -118,13 +118,13 @@ ActiveRecord::Schema.define(:version => 20130131094635) do
   end
 
   create_table "mailing_list_addresses", :force => true do |t|
-    t.integer  "mailing_list_group_id"
+    t.integer  "group_id"
     t.string   "heading"
     t.string   "email"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
-    t.index ["mailing_list_group_id"], :name => "fk__mailing_list_addresses_mailing_list_group_id", :order => {"mailing_list_group_id" => :asc}
-    t.foreign_key ["mailing_list_group_id"], "mailing_list_groups", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "mailing_list_addresses_mailing_list_group_id_fkey"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.index ["group_id"], :name => "fk__mailing_list_addresses_group_id", :order => {"group_id" => :asc}
+    t.foreign_key ["group_id"], "mailing_list_groups", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "mailing_list_addresses_group_id_fkey"
   end
 
   create_table "media_elements", :force => true do |t|

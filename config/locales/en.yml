@@ -604,63 +604,99 @@ en:
   help:
     dashboard:
       first:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Selected for you"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "In this dashboard you can find lessons and elments selected in our database according to your subjects of interests. If you click on the '+' icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The icon with a small eye opens a preview."
       second:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Create a lesson now"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "To create a new lesson click on the big button that you find on each page: you will be redirected to the Lesson Editor. You should collect some elements before, anyway, to have ready didactic material once you are in the editor."
       third:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Load a media element"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "You can load your own media elements directly from this section, clicking on the big button present on each page."
     lessons:
       first:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Status of lessons"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "In this section you find all your personal lessons. A lesson can be in the status: <b>private</b> (nobody can see it except for you); <b>shared</b> (other people may see it, copy or link it); <b>linked</b> (the lesson is not yours, you can view it and use it in your Virtual Classroom, but you can't modify it); <b>copied</b> (a lesson that you just copied, ready to be used as a draft to be personalized."
       second:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Action buttons"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "The icon with links is used to change the status of your lesson, from private to shared and viceversa. The 'X' deletes a lesson (available if the lesson is yours), while the '-' (available for linked lessons) removes it from your links. The icon with two circles overlapping copies the lesson, and the small pencil is a link to the Lesson Editor."
       third:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Virtual Classroom"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "Do you like a lesson? Add it to your Virtual Classroom by clicking on the 'eye in the box' icon"
     media_elements:
       first:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Public elements"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "When you load an element, its status is automatically set as 'private': you are the owner and nobody else can see your element. Once you share a lesson, all the elements contained in it are visible by everybody, so they are set as 'public'. A <b>public</b> element is not accessible by the owner anymore, it is moved in the shared repository of %{desy}, hence, you keep only a link of it and you can't modify it anymore."
       second:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Element Editors"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "There are three kinds of media elements: <b>images</b>, <b>audios</b> and <b>videos</b>. Depending on the extension of the file you loaded, %{desy} converts it in one of them. When you click on the little pencil on an element, you are automatically redirected to the corresponding editor. If the element you edit is public, you are forced to save the modifications you made as a new element, because a public element might be in use in other users' lessons. If the element is private, you have the choice to overwrite it or create a new one."
       third:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Element preview"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "The preview of an element appears in a popup: you can see the title, the description, and the full media content (a player if the element is of kind 'audio' or 'video'. If the element is private, you can click on the icon with small lines of text and modify title, descriptions, and tags."
     search:
       first:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Search engine"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "%{desy}'s <b>search engine</b> works with tags: enter the first letters of the word you are looking for, and %{desy} will pick all the tags that begin with those letters, with all associated items (lessons or media elements, depending on what you configured). Refine your search selecting one of the tags, or the available filters. Once you found something you like, add it to your section by clicking on the '+' icon."
       second:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Suggestions for a good search"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "Don't write too long words: it's better writing the first letter of the word you are looking for, since in any case you will be listed all the tags beginning with those letters."
       third:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Suggestions for a good tagging"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "When you share a lesson or a media element, if you want to make it visible to the community you have to choose good tags. The minimum of tags for each item is 4."
     users:
       first:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Profile"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "This section is not functional yet."
       second:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: ""
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "La Nazionale restituisce alla Roma un De Rossi rigenerato. Dopo essersi riposato in panchina contro l’Atalanta, nell’ultima partita di campionato prima della sosta, il centrocampista ha fornito due grandi prestazioni in azzurro, realizzando due reti che hanno un grande valore in chiave mondiale."
       third:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: ""
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
     virtual_classroom:
       first:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "%{desy}'s Virtual Classroom"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "Welcome to your Virtual Classroom. clicking on the '+' you open a popup with the list of your lessons: choose the ones you need and add them clicking 'upload'."
       second:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Playlist"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "Drag and drop a lesson to the area on the right to fill your playlist."
       third:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Send a link to your friends"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "Even if a lesson is private, it's available a link to show it to people not logged in %{desy}. The link contains a crypted code, without which it's possible to view the lesson only if you are logged in and the lesson is public. To send the link, click on 'send link to your friends' and fill in the form with a list of emails and a message."
   
   
@@ -670,115 +706,216 @@ en:
   # SECTION 2.1: general captions
   captions:
     # used in the general footer of the application, to redirect to the main page
+    # 1 - views/shared/_footer.html.erb
     back_to_dashboard: 'Back to dashboard'
-    description: 'Description'
+    # 1 - views/shared/players/_video.html.erb
+    # 2 - views/video_editor/previews/_video.html.erb
     dont_support_video: 'Your browser does not support the video tag'
+    # 1 - views/shared/players/_audio.html.erb
+    # 2 - views/video_editor/previews/_audio_track.html.erb
     dont_support_audio: 'Your browser does not support the audio tag'
+    # 1 - views/lessons/index.html.erb
+    # 2 - views/dashboard/_graybar_left.html.erb
+    # 3 - views/shared/_menu.html.erb
+    # 4 - views/shared/_search.html.erb
+    # 5 - views/search/index.html.erb
     lessons: 'Lessons'
+    # 1 - views/dashboard/_graybar_left.html.erb
+    # 2 - views/shared/_menu.html.erb
+    # 3 - views/shared/_search.html.erb
+    # 4 - views/media_elements/_title_bar.html.erb
+    # 5 - views/search/index.html.erb
     media_elements: 'Elements'
+    # 1 - views/shared/_menu.html.erb
+    # 2 - views/users/statistics.html.erb
+    # 3 - views/users/mailing_lists.html.erb
+    # 4 - views/users/edit.html.erb
+    # 5 - views/users/subjects.html.erb
     profile: 'Profile'
+    # 1 - views/galleries/mixed_for_video_editor.js.erb
+    # 2 - views/video_editor/cutters/_text.html.erb
+    # 3 - views/video_editor/cutters/_image.html.erb
+    # 4 - views/video_editor/_text_component_editor.html.erb
     seconds_shortened: 'Sec'
+    # 1 - views/lessons/index.html.erb
+    # 2 - views/media_elements/_title_bar.html.erb
     show: 'Show'
+    # 1 - views/shared/_menu.html.erb
+    # 2 - views/virtual_classroom/index.html.erb
     virtual_classroom: 'Virtual Classroom'
+    # 1 - views/shared/_logout.html.erb
     welcome: 'Welcome'
   
   
   # SECTION 2.2: audio editor
   audio_editor:
+    # 1 - views/audio_editor/_component.html.erb
     selected_length: 'Selected'
+    # 1 - views/audio_editor/_component.html.erb
     total_length: 'Total length'
     # it is the title of the audio editor
+    # 1 - views/audio_editor/_header.html.erb
     label: 'Edit audio'
     not_available:
+      # 1 - views/audio_editor/not_available.html.erb
       title: 'Audio editor not available'
+      # 1 - views/audio_editor/not_available.html.erb
       description: 'Inserire qui altro testo'
   
   
   # SECTION 2.3: dashboard
   dashboard:
     # the caption of the link to open the contact page
+    # 1 - views/dashboard/index.html.erb
     contact_us: 'Contact us'
     # caption of the link opening the lesson editor
+    # 1 - views/dashboard/_lessons_and_media_elements.html.erb
+    # 2 - views/dashboard/_lessons_and_media_elements.html.erb
     create_new_lesson: 'Create a new lesson'
     # caption of the link opening the lesson editor, containing a prompt for the user (this is used in the specific section of lessons)
+    # 1 - views/dashboard/_lessons_empty.html.erb
     create_new_lesson_now: 'Create a lesson now'
     # caption of the link to download the user manual
+    # 1 - views/dashboard/index.html.erb
     download_manual: 'Download the user manual'
+    # 1 - views/dashboard/_lessons_empty.html.erb
     emptied_lessons: 'You chose all the suggested lessons'
+    # 1 - views/dashboard/_lessons_empty.html.erb
     empty_lessons: 'There are no suggested lessons for you'
+    # 1 - views/dashboard/_media_elements_empty.html.erb
     emptied_media_elements: 'You chose all the suggested elements'
+    # 1 - views/dashboard/_media_elements_empty.html.erb
     empty_media_elements: 'There are no suggested elements for you'
+    # 1 - views/dashboard/index.html.erb
     help_using_desy: 'Need help using %{desy}?'
+    # 1 - views/dashboard/_lessons_and_media_elements.html.erb
     load_new_media_element: 'Load a new element'
+    # 1 - views/dashboard/_media_elements_empty.html.erb
     load_new_media_element_now: 'Load a new element now'
+    # 1 - views/dashboard/_graybar_left.html.erb
     selected_for_you: 'Selected for you'
+    # 1 - views/dashboard/index.html.erb
     talk_with_desy: 'Want to talk with %{desy}?'
   
   
   # SECTION 2.4: galleries
   galleries:
     audios:
+      # 1 - views/galleries/_audio.html.erb
       select: 'Select audio'
     images:
+      # 1 - views/galleries/popups/_image.html.erb
       original_size: 'Original size'
+      # 1 - views/galleries/_image.html.erb
       select: 'Select image'
     videos:
+      # 1 - views/galleries/_video.html.erb
       select: 'Select video'
   
   
   # SECTION 2.5: image_editor
   image_editor:
     crop:
+      # 1 - views/image_editor/edit.html.erb
       cancel: 'Cancel'
+      # 1 - views/image_editor/edit.html.erb
       done: 'Crop'
+      # 1 - views/image_editor/edit.html.erb
       instructions: 'Drag on the image to make a selection'
     left_column:
+      # 1 - views/image_editor/edit.html.erb
       title: 'What to do?'
+      # 1 - views/image_editor/edit.html.erb
       description: 'Select the scissors to cut the image'
+    # 1 - views/image_editor/_header.html.erb
     label: 'Edit image'
+    # 1 - views/image_editor/crop.js.erb
+    # 2 - views/image_editor/edit.html.erb
+    # 3 - views/image_editor/undo.js.erb
     original_size: 'Original image size'
+    # 1 - views/image_editor/edit.html.erb
     select_an_action: 'Select an action'
     # to save a group of texts above the image
     text:
+      # 1 - views/image_editor/edit.html.erb
       cancel: 'Cancel'
+      # 1 - views/image_editor/edit.html.erb
       done: 'Done'
+      # 1 - views/image_editor/edit.html.erb
       instructions: 'Click on the image to add text'
+      # 1 - views/image_editor/_text_area.html.erb
+      # 2 - views/image_editor/_text_area.html.erb
+      # 3 - views/image_editor/_text_area.html.erb
       sample_letter: 'A'
+    # 1 - views/image_editor/edit.html.erb
     undo: 'Undo'
   
   
   # SECTION 2.6: lesson_editor
   lesson_editor:
     # empty space to add an audio
+    # 1 - views/lesson_editor/slides/parts/_audio.html.erb
     choose_audio: 'Click here to add an audio'
     # empty space to add an image
+    # 1 - views/lesson_editor/slides/parts/_image.html.erb
     choose_image: 'Click here to add an image'
     # empty space to add a video
+    # 1 - views/lesson_editor/slides/parts/_video.html.erb
     choose_video: 'Click here to add a video'
     not_available:
+      # 1 - views/lesson_editor/not_available.html.erb
       title: 'Lesson editor not available for this lesson'
+      # 1 - views/lesson_editor/not_available.html.erb
       description: 'Inserire altro testo qui'
     placeholders:
+      # 1 - views/lesson_editor/slides/parts/_image.html.erb
       image_caption: 'Write a caption'
+      # 1 - views/lesson_editor/slides/_text.html.erb
+      # 2 - views/lesson_editor/slides/_video1.html.erb
+      # 3 - views/lesson_editor/slides/_image1.html.erb
+      # 4 - views/lesson_editor/slides/_audio.html.erb
       text: 'Write a text here'
+      # 1 - views/lesson_editor/slides/_text.html.erb
+      # 2 - views/lesson_editor/slides/_title.html.erb
+      # 3 - views/lesson_editor/slides/_video1.html.erb
+      # 4 - views/lesson_editor/slides/_image1.html.erb
+      # 5 - views/lesson_editor/slides/_audio.html.erb
       title: 'Enter title'
   
   
   # SECTION 2.7: lessons
   lessons:
     # the caption used to indicate the name if the author of the lesson
+    # 1 - views/lessons/_thumbnail.html.erb
+    # 2 - views/lessons/_view_single_compact.html.erb
+    # 3 - views/lesson_viewer/slides/_cover.html.erb
+    # 4 - views/lesson_editor/new.html.erb
+    # 5 - views/lesson_editor/slides/_cover.html.erb
+    # 6 - views/lesson_editor/slides/thumbnails/_cover.html.erb
+    # 7 - views/lesson_editor/edit.html.erb
     author: 'Author'
     # caption which indicates the date in which a lesson is created
+    # 1 - views/lessons/_view_single_compact.html.erb
     created_on: 'Created on'
+    # 1 - views/lessons/_graybar_left.html.erb
     create_new: 'Create a new lesson'
+    # 1 - views/lessons/_empty.html.erb
     create_new_now: 'Create a lesson now'
+    # 1 - views/lessons/_empty.html.erb
     empty: 'You have no lessons in your section, create one'
+    # 1 - views/lessons/_empty_filter.html.erb
     empty_filter: 'The lesson filter produced no result'
     headers:
+      # 1 - views/lessons/index.html.erb
       status: 'Status'
+      # 1 - views/lessons/index.html.erb
       subject: 'Subject'
+    # 1 - views/lessons/_view_single_compact.html.erb
+    # 2 - views/lesson_editor/new.html.erb
+    # 3 - views/lesson_editor/edit.html.erb
     school_level: 'School level'
-    users_like_this: 'Users like this lesson'
+    # 1 - views/lessons/_view_single_compact.html.erb
+    users_like_this: '%{likes} users like this lesson'
   
   
   # SECTION 2.8: lesson_viewer
