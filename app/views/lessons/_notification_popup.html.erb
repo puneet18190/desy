@@ -1,0 +1,10 @@
+<div class="notificationWrapper">
+  <h2>You edited this lessons!</h2>
+  <p>Do you wanto to notify...</p>
+  <form>
+    <textarea name='details'>Detail of changes</textarea>
+    <input type='submit' value='Send notification' class='_send_notification' />
+  </form>
+  <%= link_to "No, I'll not send Send notification", '#', :class=>"_dont_send_notification" %>
+  <div class="_lesson_notification_cover img_expanded"></div>
+</div>
