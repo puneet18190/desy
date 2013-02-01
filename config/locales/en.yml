@@ -332,13 +332,19 @@ en:
   # SECTION 1.3: mailer
   mailer:
     account_confirmation:
+      # 1 - mailers/user_mailer.rb
       subject: '%{desy} - Account confirmation'
+      # 1 - views/user_mailer/account_confirmation.html.erb
       message: '<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br>When the registration will be confirmed, the link will not be valid anymore.<br>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br><p>N.B.</p><p>The confirmation of the account can be done just one time.</p>'
     reset_password:
+      # 1 - mailers/user_mailer.rb
       subject: '%{desy} - New password'
+      # 1 - views/user_mailer/new_password.html.erb
       message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password at your choice once logged in, in the 'Profile' section.</p>"
-    see_my_lesson: 
+    see_my_lesson:
+      # 1 - mailers/user_mailer.rb
       subject: '%{desy} - Lesson link'
+      # 1 - views/user_mailer/see_my_lesson.html.erb
       message: "<p>The user %{name} thinks that you might be interested in a lesson in %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):</p></br>"
   
   
@@ -346,60 +352,103 @@ en:
   forms:
     # new empty lesson form
     new_lesson:
+      # 1 - views/lesson_editor/new.html.erb
       title: 'You are creating a new lesson'
+      # 1 - views/lesson_editor/new.html.erb
       description: 'Enter all the details in the form below'
+      # 1 - views/lesson_editor/new.html.erb
       cancel: 'Cancel'
+      # 1 - views/lesson_editor/new.html.erb
       done: 'Next'
     # edit lesson form
     update_lesson:
+      # 1 - views/lesson_editor/edit.html.erb
       title: 'Are you making significant changes?'
+      # 1 - views/lesson_editor/edit.html.erb
       description: "Update here the lesson's info according to its new content"
+      # 1 - views/lesson_editor/edit.html.erb
       cancel: 'Cancel'
+      # 1 - views/lesson_editor/edit.html.erb
       done: 'Update'
     # upload element form
     upload_media_element:
+      # 1 - views/media_elements/_new_form_popup.html.erb
       title: 'Upload a media element'
+      # 1 - views/media_elements/_new_form_popup.html.erb
       description: 'Select a file clicking on the button on the left'
+      # 1 - views/media_elements/_new_form_popup.html.erb
       cancel: 'Cancel'
+      # 1 - views/media_elements/_new_form_popup.html.erb
       done: 'Upload'
     # change info media element form
     change_info_media_element:
+      # 1 - views/media_elements/_popup.html.erb
       title: "Element's information"
+      # 1 - views/media_elements/_popup.html.erb
       description: 'Fill the form below to modify data'
+      # 1 - views/media_elements/_popup.html.erb
       cancel: 'Cancel'
+      # 1 - views/media_elements/_popup.html.erb
       done: 'Save'
     # new media element in editor form
     new_media_element_in_editor:
+      # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       title: 'You are creating a new element'
+      # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       description: 'Enter all the details in the form below'
+      # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       cancel: 'Cancel'
+      # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       done: 'Save'
     # overwrite media element in editor form
     overwrite_media_element_in_editor:
+      # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       title: 'Have you made significant changes?'
+      # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       description: "Update here the element's info according to its new content"
+      # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       cancel: 'Cancel'
+      # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       done: 'Update'
     error_captions:
       # this is the standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
+      # 1 - controllers/application_controller.rb
       fill_all_the_fields_or_too_long: 'Fill in all the fields without exceeding the max length'
       # this is when you don't write the minimum amount of tags
+      # 1 - controllers/application_controller.rb
       tags_are_not_enough: 'Not enough tags'
       # this is when you didn't select a file to be loaded
+      # 1 - controllers/application_controller.rb
       media_blank: 'No file loaded'
       # you tried to upload an attachment whose format is not supported
+      # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       media_unsupported_format: 'Format not supported'
       # you tried to upload a file whose name contained an invalid character
+      # 1 - controllers/application_controller.rb
       media_invalid_filename: "File's name contains invalid characters"
       # you tried to upload a file which was damaged or invalid
+      # 1 - controllers/application_controller.rb
       media_generic_error: 'Invalid or damaged file'
       # you didn't choose a subject for your lesson
+      # 1 - controllers/application_controller.rb
       subject_missing_in_lesson: 'Choose a subject'
     placeholders:
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      # 2 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 3 - views/lesson_editor/new.html.erb
       description: 'Description (max %{num} characters)'
+      # 1 - views/media_elements/_new_form_popup.html.erb
       media: 'Select a file to load'
+      # 1 - helpers/application_helper.rb
       subject_id: 'Select a subject'
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      # 2 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 3 - views/lesson_editor/new.html.erb
       tags: 'Insert a minimum of %{items} tags (max %{num} characters each)'
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      # 2 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 3 - views/lesson_editor/new.html.erb
       title: 'Title (max %{num} characters)'
   
   
