@@ -801,49 +801,85 @@ en:
   # SECTION 2.4: galleries
   galleries:
     audios:
+      # 1 - views/galleries/_audio.html.erb
       select: 'Select audio'
     images:
+      # 1 - views/galleries/popups/_image.html.erb
       original_size: 'Original size'
+      # 1 - views/galleries/_image.html.erb
       select: 'Select image'
     videos:
+      # 1 - views/galleries/_video.html.erb
       select: 'Select video'
   
   
   # SECTION 2.5: image_editor
   image_editor:
     crop:
+      # 1 - views/image_editor/edit.html.erb
       cancel: 'Cancel'
+      # 1 - views/image_editor/edit.html.erb
       done: 'Crop'
+      # 1 - views/image_editor/edit.html.erb
       instructions: 'Drag on the image to make a selection'
     left_column:
+      # 1 - views/image_editor/edit.html.erb
       title: 'What to do?'
+      # 1 - views/image_editor/edit.html.erb
       description: 'Select the scissors to cut the image'
+    # 1 - views/image_editor/_header.html.erb
     label: 'Edit image'
+    # 1 - views/image_editor/crop.js.erb
+    # 2 - views/image_editor/edit.html.erb
+    # 3 - views/image_editor/undo.js.erb
     original_size: 'Original image size'
+    # 1 - views/image_editor/edit.html.erb
     select_an_action: 'Select an action'
     # to save a group of texts above the image
     text:
+      # 1 - views/image_editor/edit.html.erb
       cancel: 'Cancel'
+      # 1 - views/image_editor/edit.html.erb
       done: 'Done'
+      # 1 - views/image_editor/edit.html.erb
       instructions: 'Click on the image to add text'
+      # 1 - views/image_editor/_text_area.html.erb
+      # 2 - views/image_editor/_text_area.html.erb
+      # 3 - views/image_editor/_text_area.html.erb
       sample_letter: 'A'
+    # 1 - views/image_editor/edit.html.erb
     undo: 'Undo'
   
   
   # SECTION 2.6: lesson_editor
   lesson_editor:
     # empty space to add an audio
+    # 1 - views/lesson_editor/slides/parts/_audio.html.erb
     choose_audio: 'Click here to add an audio'
     # empty space to add an image
+    # 1 - views/lesson_editor/slides/parts/_image.html.erb
     choose_image: 'Click here to add an image'
     # empty space to add a video
+    # 1 - views/lesson_editor/slides/parts/_video.html.erb
     choose_video: 'Click here to add a video'
     not_available:
+      # 1 - views/lesson_editor/not_available.html.erb
       title: 'Lesson editor not available for this lesson'
+      # 1 - views/lesson_editor/not_available.html.erb
       description: 'Inserire altro testo qui'
     placeholders:
+      # 1 - views/lesson_editor/slides/parts/_image.html.erb
       image_caption: 'Write a caption'
+      # 1 - views/lesson_editor/slides/_text.html.erb
+      # 2 - views/lesson_editor/slides/_video1.html.erb
+      # 3 - views/lesson_editor/slides/_image1.html.erb
+      # 4 - views/lesson_editor/slides/_audio.html.erb
       text: 'Write a text here'
+      # 1 - views/lesson_editor/slides/_text.html.erb
+      # 2 - views/lesson_editor/slides/_title.html.erb
+      # 3 - views/lesson_editor/slides/_video1.html.erb
+      # 4 - views/lesson_editor/slides/_image1.html.erb
+      # 5 - views/lesson_editor/slides/_audio.html.erb
       title: 'Enter title'
   
   
