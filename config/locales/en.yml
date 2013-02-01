@@ -921,29 +921,46 @@ en:
   # SECTION 2.8: lesson_viewer
   lesson_viewer:
     # this is used in the playlist: it's the caption of the button which closes the playlist's navigational bar
+    # 1 - views/lesson_viewer/playlist.html.erb
     close_playlist_bar: 'Close playlist bar'
+    # 1 - views/lesson_viewer/playlist.html.erb
     open_playlist_bar: 'Open playlist bar'
   
   
   # SECTION 2.9: media_elements
   media_elements:
+    # 1 - views/media_elements/_title_bar.html.erb
     display: 'Display'
     # choose between size display (compact or extended mode)
     display_mode:
+      # 1 - views/media_elements/_title_bar.html.erb
       title: 'Display mode'
+      # 1 - views/media_elements/_title_bar.html.erb
       large: 'Large'
+      # 1 - views/media_elements/_title_bar.html.erb
       small: 'Small'
     editor:
+      # 1 - views/media_elements/new.html.erb
       enjoy: 'Enjoy!'
+      # 1 - views/image_editor/_header.html.erb
+      # 2 - views/image_editor/_header.html.erb
+      # 3 - views/audio_editor/_header.html.erb
+      # 4 - views/audio_editor/_header.html.erb
+      # 5 - views/video_editor/_header.html.erb
+      # 6 - views/video_editor/_header.html.erb
       new_untitled: 'New element - untitled'
+      # 1 - views/media_elements/new.html.erb
       title: "Welcome to %{desy}'s element editor!"
+      # 1 - views/media_elements/new.html.erb
       description: 'Want to create a new educational element? Choose the type of the new element'
+    # 1 - views/media_elements/_empty.html.erb
     empty: 'You have no elements in your section, load one'
+    # 1 - views/media_elements/_empty_filter.html.erb
     empty_filter: 'The element filter produced no result'
+    # 1 - views/media_elements/_graybar_left.html.erb
     load_new: 'Load a new element'
+    # 1 - views/media_elements/_empty.html.erb
     load_new_now: 'Load a new element now'
-    # link to the general main page of elements editor (you can choose among image, audio and video editor)
-    menu_link: 'Elements editor'
   
   
   # SECTION 2.10: notifications
