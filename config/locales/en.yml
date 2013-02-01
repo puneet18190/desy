@@ -2,6 +2,13 @@ en:
   
   # TODO controllare links
   # SECTION 1: error messages that the application uses to interface with the user
+  flash: # solo per la registrazione
+    email_is_blank: 'Email is blank'
+    # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
+    failed_confirmation: 'The link you submitted is not longer valid'
+    password_reset_successfully: 'Password reset successfully'
+    successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
+    successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
   other_popup_messages:
     correct:
       add:
@@ -12,6 +19,7 @@ en:
         lesson: 'You removed the link of this lesson'
         media_element: 'You removed this media element'
       unpublish: 'The lesson has been unpublished'
+      user_update: 'Update successful'
     login:
       missing_fields: 'Insert username and password'
       wrong_content: 'Wrong login data'
@@ -434,8 +442,6 @@ en:
     empty: 'Your Virtual Classroom is empty'
     # the caption of the button which empties your Virtual Classroom
     make_it_empty: 'Empty your Virtual Classroom'
-    
-    
     playlist:
       instructions: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist'
       label: 'Playlist'
@@ -450,36 +456,7 @@ en:
         placeholder: 'no mailing list'
 
 
-
-
-
-
-    
-  
-  # SECTION 2: general captions of the application
   captions:
-    # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
-    failed_confirmation: 'The link you submitted is not longer valid'
-    password: 'Password'
-    password_resetted_successfully: 'Password resetted successfully'
-    remove: 'Remove'
-    remove_from_virtual_classroom: 'Remove from Virtual Classroom'
-    save: 'Save'
-    selected: 'Selected'
-
-    send_link_to_your_friends: 'Send a link to your friends'
-    successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
-    successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
-    update: 'Update'
-    update_successful: 'Update successful'
-    upload: 'Upload'
-    upload_completed: 'Upload completed!'
-    your_virtual_classroom_is_empty: 'Your Virtual Classroom is empty'
-    
-    
-    
-    
-    # già trovate che vanno sharate in captions
     # used in the general footer of the application, to redirect to the main page
     back_to_dashboard: 'Back to dashboard'
     description: 'Description'
