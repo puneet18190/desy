@@ -307,6 +307,70 @@ en:
     video_new: 'new video'
   
   
+  # SECTION 1.6: help tooltips
+  help:
+    dashboard:
+      first:
+        title: "Selected for you"
+        content: "In this dashboard you can find lessons and elments selected in our database according to your subjects of interests. If you click on the '+' icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The icon with a small eye opens a preview."
+      second:
+        title: "Create a lesson now"
+        content: "To create a new lesson click on the big button that you find on each page: you will be redirected to the Lesson Editor. You should collect some elements before, anyway, to have ready didactic material once you are in the editor."
+      third:
+        title: "Load a media element"
+        content: "You can load your own media elements directly from this section, clicking on the big button present on each page."
+    lessons:
+      first:
+        title: "Status of lessons"
+        content: "In this section you find all your personal lessons. A lesson can be in the status: <b>private</b> (nobody can see it except for you); <b>shared</b> (other people may see it, copy or link it); <b>linked</b> (the lesson is not yours, you can view it and use it in your Virtual Classroom, but you can't modify it); <b>copied</b> (a lesson that you just copied, ready to be used as a draft to be personalized."
+      second:
+        title: "Action buttons"
+        content: "The icon with links is used to change the status of your lesson, from private to shared and viceversa. The 'X' deletes a lesson (available if the lesson is yours), while the '-' (available for linked lessons) removes it from your links. The icon with two circles overlapping copies the lesson, and the small pencil is a link to the Lesson Editor."
+      third:
+        title: "Virtual Classroom"
+        content: "Do you like a lesson? Add it to your Virtual Classroom by clicking on the 'eye in the box' icon"
+    media_elements:
+      first:
+        title: "Public elements"
+        content: "When you load an element, its status is automatically set as 'private': you are the owner and nobody else can see your element. Once you share a lesson, all the elements contained in it are visible by everybody, so they are set as 'public'. A <b>public</b> element is not accessible by the owner anymore, it is moved in the shared repository of DESY, hence, you keep only a link of it and you can't modify it anymore."
+      second:
+        title: "Element Editors"
+        content: "There are three kinds of media elements: <b>images</b>, <b>audios</b> and <b>videos</b>. Depending on the extension of the file you loaded, DESY converts it in one of them. When you click on the little pencil on an element, you are automatically redirected to the corresponding editor. If the element you edit is public, you are forced to save the modifications you made as a new element, because a public element might be in use in other users' lessons. If the element is private, you have the choice to overwrite it or create a new one."
+      third:
+        title: "Element preview"
+        content: "The preview of an element appears in a popup: you can see the title, the description, and the full media content (a player if the element is of kind 'audio' or 'video'. If the element is private, you can click on the icon with small lines of text and modify title, descriptions, and tags."
+    search:
+      first:
+        title: "Search engine"
+        content: "DESY's <b>search engine</b> works with tags: enter the first letters of the word you are looking for, and DESY will pick all the tags that begin with those letters, with all associated items (lessons or media elements, depending on what you configured). Refine your search selecting one of the tags, or the available filters. Once you found something you like, add it to your section by clicking on the '+' icon."
+      second:
+        title: "Suggestions for a good search"
+        content: "Don't write too long words: it's better writing the first letter of the word you are looking for, since in any case you will be listed all the tags beginning with those letters."
+      third:
+        title: "Suggestions for a good tagging"
+        content: "When you share a lesson or a media element, if you want to make it visible to the community you have to choose good tags. The minimum of tags for each item is 4."
+    users:
+      first:
+        title: "Profile"
+        content: "This section is not functional yet."
+      second:
+        title: ""
+        content: "La Nazionale restituisce alla Roma un De Rossi rigenerato. Dopo essersi riposato in panchina contro l’Atalanta, nell’ultima partita di campionato prima della sosta, il centrocampista ha fornito due grandi prestazioni in azzurro, realizzando due reti che hanno un grande valore in chiave mondiale."
+      third:
+        title: ""
+        content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
+    virtual_classroom:
+      first:
+        title: "DESY's Virtual Classroom"
+        content: "Welcome to your Virtual Classroom. clicking on the '+' you open a popup with the list of your lessons: choose the ones you need and add them clicking 'upload'."
+      second:
+        title: "Playlist"
+        content: "Drag and drop a lesson to the area on the right to fill your playlist."
+      third:
+        title: "Send a link to your friends"
+        content: "Even if a lesson is private, it's available a link to show it to people not logged in DESY. The link contains a crypted code, without which it's possible to view the lesson only if you are logged in and the lesson is public. To send the link, click on 'send link to your friends' and fill in the form with a list of emails and a message."
+  
+  
   
   # PART 2 -- LABELS AND CAPTIONS
   
@@ -485,17 +549,38 @@ en:
       right_column: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
   
   
-  # SECTION 2.12: reports
+  # SECTION 2.12: registration and login
+  registration:
+    done: 'Sign up'
+    login:
+      email: 'Email'
+      done: 'Enter'
+      password: 'Password'
+      title: 'Login'
+    logout: 'Logout'
+    problems_with_password: 'Forgot your password?'
+    description: 'Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching.'
+    title: 'Register'
+    subtitle: 'Why register?'
+    subsubtitle: 'Discover the benefits of %{desy}'
+    subjects:
+      title: 'Choose the subjects you want to stay connected'
+    policy_1:
+      title: 'Title of policy 1'
+      description: 'Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1'
+    policy_2:
+      title: 'Title of policy 2'
+      description: 'Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2'
+  
+  
+  # SECTION 2.13: reports
   reports:
     title: 'Report abuse'
     decription: 'Do you think that this item is offensive?'
     placeholder: 'Write the reason for your report. Thank you for your cooperation!'
   
   
-  
-  
-  
-  
+  # SECTION 2.14: search engine
   search:
     # it is a link to open the application search engine
     label: 'Advanced search'
@@ -538,57 +623,7 @@ en:
         description: "If you don't insert a keyword the search engine will find all the available elements, according to the filters you selected"
   
   
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-
-        
-    
-  
-  
-
-  
-  
-
-  
-  
-  registration:
-    done: 'Sign up'
-    login:
-      email: 'Email'
-      done: 'Enter'
-      password: 'Password'
-      title: 'Login'
-    logout: 'Logout'
-    problems_with_password: 'Forgot your password?'
-    description: 'Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching.'
-    title: 'Register'
-    subtitle: 'Why register?'
-    subsubtitle: 'Discover the benefits of %{desy}'
-    subjects:
-      title: 'Choose the subjects you want to stay connected'
-    policy_1:
-      title: 'Title of policy 1'
-      description: 'Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1'
-    policy_2:
-      title: 'Title of policy 2'
-      description: 'Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2'
-  
-  
-  
-
-  
-  
-  
+  # SECTION 2.15: user profile
   users:
     email: 'Email'
     info:
@@ -638,7 +673,7 @@ en:
       description: 'Choose the subjects you want to stay connected'
   
   
-  
+  # SECTION 2.16: video_editor
   video_editor:
     # it is used in the video editor, in order to open the selection of audio tracks
     audio_track:
@@ -675,7 +710,7 @@ en:
     total_length: 'Total length'
   
   
-  
+  # SECTION 2.17: virtual classroom
   virtual_classroom:
     # it is used in the empty Virtual Classroom to invite the user to fill it immediately
     add_lesson_now: 'Add a lesson now'
@@ -700,80 +735,12 @@ en:
       mailing_list:
         title: 'or select mailing list'
         placeholder: 'no mailing list'
-
-
-
   
   
   
+  # PART 3 -- parameters and constants
   
-  
-  help:
-    dashboard:
-      first:
-        title: "Selected for you"
-        content: "In this dashboard you can find lessons and elments selected in our database according to your subjects of interests. If you click on the '+' icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The icon with a small eye opens a preview."
-      second:
-        title: "Create a lesson now"
-        content: "To create a new lesson click on the big button that you find on each page: you will be redirected to the Lesson Editor. You should collect some elements before, anyway, to have ready didactic material once you are in the editor."
-      third:
-        title: "Load a media element"
-        content: "You can load your own media elements directly from this section, clicking on the big button present on each page."
-    lessons:
-      first:
-        title: "Status of lessons"
-        content: "In this section you find all your personal lessons. A lesson can be in the status: <b>private</b> (nobody can see it except for you); <b>shared</b> (other people may see it, copy or link it); <b>linked</b> (the lesson is not yours, you can view it and use it in your Virtual Classroom, but you can't modify it); <b>copied</b> (a lesson that you just copied, ready to be used as a draft to be personalized."
-      second:
-        title: "Action buttons"
-        content: "The icon with links is used to change the status of your lesson, from private to shared and viceversa. The 'X' deletes a lesson (available if the lesson is yours), while the '-' (available for linked lessons) removes it from your links. The icon with two circles overlapping copies the lesson, and the small pencil is a link to the Lesson Editor."
-      third:
-        title: "Virtual Classroom"
-        content: "Do you like a lesson? Add it to your Virtual Classroom by clicking on the 'eye in the box' icon"
-    media_elements:
-      first:
-        title: "Public elements"
-        content: "When you load an element, its status is automatically set as 'private': you are the owner and nobody else can see your element. Once you share a lesson, all the elements contained in it are visible by everybody, so they are set as 'public'. A <b>public</b> element is not accessible by the owner anymore, it is moved in the shared repository of DESY, hence, you keep only a link of it and you can't modify it anymore."
-      second:
-        title: "Element Editors"
-        content: "There are three kinds of media elements: <b>images</b>, <b>audios</b> and <b>videos</b>. Depending on the extension of the file you loaded, DESY converts it in one of them. When you click on the little pencil on an element, you are automatically redirected to the corresponding editor. If the element you edit is public, you are forced to save the modifications you made as a new element, because a public element might be in use in other users' lessons. If the element is private, you have the choice to overwrite it or create a new one."
-      third:
-        title: "Element preview"
-        content: "The preview of an element appears in a popup: you can see the title, the description, and the full media content (a player if the element is of kind 'audio' or 'video'. If the element is private, you can click on the icon with small lines of text and modify title, descriptions, and tags."
-    search:
-      first:
-        title: "Search engine"
-        content: "DESY's <b>search engine</b> works with tags: enter the first letters of the word you are looking for, and DESY will pick all the tags that begin with those letters, with all associated items (lessons or media elements, depending on what you configured). Refine your search selecting one of the tags, or the available filters. Once you found something you like, add it to your section by clicking on the '+' icon."
-      second:
-        title: "Suggestions for a good search"
-        content: "Don't write too long words: it's better writing the first letter of the word you are looking for, since in any case you will be listed all the tags beginning with those letters."
-      third:
-        title: "Suggestions for a good tagging"
-        content: "When you share a lesson or a media element, if you want to make it visible to the community you have to choose good tags. The minimum of tags for each item is 4."
-    users:
-      first:
-        title: "Profile"
-        content: "This section is not functional yet."
-      second:
-        title: ""
-        content: "La Nazionale restituisce alla Roma un De Rossi rigenerato. Dopo essersi riposato in panchina contro l’Atalanta, nell’ultima partita di campionato prima della sosta, il centrocampista ha fornito due grandi prestazioni in azzurro, realizzando due reti che hanno un grande valore in chiave mondiale."
-      third:
-        title: ""
-        content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
-    virtual_classroom:
-      first:
-        title: "DESY's Virtual Classroom"
-        content: "Welcome to your Virtual Classroom. clicking on the '+' you open a popup with the list of your lessons: choose the ones you need and add them clicking 'upload'."
-      second:
-        title: "Playlist"
-        content: "Drag and drop a lesson to the area on the right to fill your playlist."
-      third:
-        title: "Send a link to your friends"
-        content: "Even if a lesson is private, it's available a link to show it to people not logged in DESY. The link contains a crypted code, without which it's possible to view the lesson only if you are logged in and the lesson is public. To send the link, click on 'send link to your friends' and fill in the form with a list of emails and a message."
-  
-  
-
-
-# (4) labels for constant keywords defined in lib/autoload
+  # SECTION 3.1 labels for constant keywords defined in lib/autoload
   statuses:
     lessons:
       private: 'Private'
@@ -801,8 +768,9 @@ en:
     updated_at: 'Date last modification'
     likes: 'Number of likes'
     title: 'Alphabetical'
-
-# (5) parameters not related to labels
+  
+  
+  # SECTION 3.2: language_parameters and time configurations
   time:
     format: 'english'
   language_parameters:
@@ -818,20 +786,3 @@ en:
     video_editor:
       length_text_component: 35 # for chinese it should be around 45
       length_duration: 3
-
-# (6) forms
-  formsas:
-    fields_with_errors: 'please compile the form correctly'
-    media_element:
-      title: 'upload new media element'
-      notes: 'Enter the required information when loading a new education element. Warning! You must enter at least 4 tags to properly load an item.'
-      submit: 'upload'
-      messages:
-        success: 'The media element has been successfully created'
-      labels:
-        title: 'title'
-        description: 'description'
-        tags: 'tags'
-    sign_up:
-      subjects_blank: 'please check at least one subject'
-      
