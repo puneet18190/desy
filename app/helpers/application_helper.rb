@@ -1,5 +1,11 @@
 module ApplicationHelper
   
+  def mailing_list_select_options(user)
+    resp = "<option value=\"select\">Select</option>"
+    <option value="select2">Select2</option>
+    <option value="select3">Select3</option>
+  end
+  
   def select_your_subjects(subjects)
     "<option value=\"\">#{t('forms.placeholders.subject_id')}</option>#{options_from_collection_for_select(subjects, 'id', 'description')}".html_safe
   end

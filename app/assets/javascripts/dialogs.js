@@ -51,7 +51,7 @@ function showSendLessonLinkPopUp(lesson_id) {
       resizable: false,
       draggable: false,
       width: 690,
-      height: 435,
+      height: 460,
       show: "fade",
       open: function() {
         initializeBlurTextFieldsSendLessonLink();

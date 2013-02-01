@@ -338,7 +338,12 @@ en:
   
   notifications:
     empty: "You don't have any notifications"
-  
+    lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
+    lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
+    sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
+    video_in_conversion_warning: 'The video and the lessons related to it will be temporary unavailable until the conversion will finish'
+    audio_in_conversion_warning: 'The audio and the lessons related to it will be temporary unavailable until the conversion will finish'
+    public_lesson_changed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', believes that you might be interested in his lesson's update.<br/><br/><a href=\"%{link}\">Check it out</a><br/><br/><i>\"%{message}\"</i>"
   
   
   
@@ -597,56 +602,53 @@ en:
     publish:
       confirm: 'Every element contained in it will be automatically shared'
       title: 'Publish this lesson'
-      yes: 'Publish the lesson'
-      no: 'Cancel'
+      do: 'Publish the lesson'
+      cancel: 'Cancel'
     unpublish:
       confirm: 'Every person who linked the lesson will lose it'
       title: 'Unpublish this lesson'
-      yes: 'Unpublish the lesson'
-      no: 'Cancel'
+      do: 'Unpublish the lesson'
+      cancel: 'Cancel'
     destroy:
       lesson:
         confirm: 'Every person who linked the lesson will lose it'
         title: 'Delete this lesson'
-        yes: 'Delete the lesson'
-        no: 'Cancel'
+        do: 'Delete the lesson'
+        cancel: 'Cancel'
       media_element:
         confirm: 'It will be deleted in each of its instances in your lessons'
         title: 'Delete this element?'
-        yes: 'Delete the element'
-        no: 'Cancel'
+        do: 'Delete the element'
+        cancel: 'Cancel'
     after_copy:
       title: 'You copied the lesson!'
       confirm: 'What would you like to do now?'
       stay_in_page: 'Stay in this page'
       go_to_editor: 'Edit the lesson now'
-    send_lesson_link:
-      yes: 'Send'
-      no: 'Or cancel'
     restore_cache_media_element_editor:
       message: 'A previous working session was closed unexpectedly!'
-      yes: 'Restore'
-      no: 'Clear'
+      do: 'Restore'
+      cancel: 'Clear'
     exit_video_editor:
       title: 'Leaving the video editor'
       confirm: 'Are you sure you want to leave?'
-      yes: 'Yes'
-      no: 'Stay on the page'
+      do: 'Yes'
+      cancel: 'Stay on the page'
     save_media_element_editor:
       title: 'Saving a private element'
       confirm: 'Since the element you modified is private, you can overwrite it'
-      yes: 'Overwrite'
-      no: 'Save as new element'
+      do: 'Overwrite'
+      cancel: 'Save as new element'
     overwrite_media_element_editor:
       title: 'This element is in use!'
       confirm: 'If you overwrite it, it will be replaced in any private lesson containing it'
-      yes: 'Overwrite'
-      no: 'Cancel'
+      do: 'Overwrite'
+      cancel: 'Cancel'
     send_lesson_link:
-      title:
-      confirm:
-      yes:
-      no:
+      title: 'Send a link to your friends'
+      confirm: 'Descrizione di send link bla bla bla bla bla bla bla bla'
+      do: 'Send'
+      cancel: 'Cancel'
     
   
   
@@ -765,13 +767,7 @@ en:
         content: "Even if a lesson is private, it's available a link to show it to people not logged in DESY. The link contains a crypted code, without which it's possible to view the lesson only if you are logged in and the lesson is public. To send the link, click on 'send link to your friends' and fill in the form with a list of emails and a message."
   
   
-  notifications:
-    lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
-    lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
-    sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
-    video_in_conversion_warning: 'The video and the lessons related to it will be temporary unavailable until the conversion will finish'
-    audio_in_conversion_warning: 'The audio and the lessons related to it will be temporary unavailable until the conversion will finish'
-    public_lesson_changed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', believes that you might be interested in his lesson's update.<br/><br/><a href=\"%{link}\">Check it out</a><br/><br/><i>\"%{message}\"</i>"
+
 
 # (4) labels for constant keywords defined in lib/autoload
   statuses:
