@@ -396,6 +396,13 @@ en:
       description: 'Choose the subjects you want to stay connected'
     
     
+    virtual_classroom:
+      send_link:
+        message: 'Write a message'
+        emails: 'Insert emails separated by comma'
+        mailing_list:
+          title: 'or select mailing list'
+          placeholder: 'no mailing list'
     
     
   
@@ -429,7 +436,7 @@ en:
     failed_confirmation: 'The link you submitted is not longer valid'
     # this is the title of the login form
     insert: 'Insert'
-    insert_emails_here: 'Insert emails separated by comma'
+
     new_time: 'New time'
     password: 'Password'
     password_resetted_successfully: 'Password resetted successfully'
@@ -440,8 +447,6 @@ en:
     remove: 'Remove'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     save: 'Save'
-    select_mailing_list: 'or select mailing list'
-    select_more_lesson: 'Select more lesson'
     selected: 'Selected'
     select_the_lessons_you_want_to_upload: 'Select the lessons to upload in the Virtual Classroom'
     send: 'Send'
@@ -458,9 +463,6 @@ en:
     update_successful: 'Update successful'
     upload: 'Upload'
     upload_completed: 'Upload completed!'
-    welcome: 'Welcome'
-    why_sign_up: 'Why to sign up?'
-    write_a_message: 'Write a message'
     your_virtual_classroom_is_empty: 'Your Virtual Classroom is empty'
     
     
@@ -478,6 +480,7 @@ en:
     seconds_shortened: 'Sec'
     show: 'Show'
     virtual_classroom: 'Virtual Classroom'
+    welcome: 'Welcome'
     
     
     
