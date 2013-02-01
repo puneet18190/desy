@@ -454,80 +454,149 @@ en:
   
   # SECTION 1.5: titles
   titles:
-    add_text: 'Add text'
     audio_editor:
+      # 1 - views/audio_editor/edit.html.erb
       commit: 'Go to next step'
     audios:
+      # 1 - views/media_elements/new.html.erb
       new: 'Create new audio'
+      # 1 - views/shared/players/_audio.html.erb
       pause: 'Pause audio'
+      # 1 - views/shared/players/_audio.html.erb
       play: 'Play audio'
     buttons:
+      # 1 - views/shared/buttons/_add.html.erb
       add: 'Follow this item in your own section'
+      # 1 - views/shared/buttons/_add_virtual_classroom.html.erb
       add_virtual_classroom: 'Add lesson to virtual classroom'
+      # 1 - views/shared/buttons/_copy.html.erb
       copy: 'Create your own copy of the lesson'
+      # 1 - views/shared/buttons/_destroy.html.erb
       destroy: 'Cancel this item'
+      # 1 - views/shared/buttons/_dislike.html.erb
       dislike: 'Click to cancel your like'
+      # 1 - views/shared/buttons/_edit.html.erb
       edit: 'Edit this item'
+      # 1 - views/shared/buttons/_like.html.erb
       like: 'Like this lesson'
+      # 1 - views/shared/buttons/_preview.html.erb
       preview: 'Open the preview'
+      # 1 - views/shared/buttons/_publish.html.erb
       publish: 'Publish your lesson'
+      # 1 - views/shared/buttons/_remove.html.erb
       remove: 'Stop following this item'
+      # 1 - views/shared/buttons/_remove_virtual_classroom.html.erb
       remove_virtual_classroom: 'Click remove lesson from virtual classroom'
+      # 1 - views/shared/buttons/_unpublish.html.erb
       unpublish: 'Click to unpublish your lesson'
+    # 1 - views/media_elements/_popup.html.erb
     close: 'Close'
+    # 1 - views/layouts/lesson_editor.html.erb
+    # 2 - views/media_elements/new.html.erb
+    # 3 - views/lesson_viewer/_lesson_slides.html.erb
+    # 4 - views/image_editor/_header.html.erb
+    # 5 - views/video_editor/not_available.html.erb
+    # 6 - views/video_editor/_header.html.erb
+    # 7 - views/audio_editor/not_available.html.erb
+    # 8 - views/audio_editor/_header.html.erb
     exit: 'Exit'
     galleries:
+      # 1 - views/galleries/contents/_audio.html.erb
       add_audio: 'Add audio'
+      # 1 - views/galleries/popups/_image.html.erb
       add_image: 'Add image'
+      # 1 - views/galleries/popups/_video.html.erb
       add_video: 'Add video'
+      # 1 - views/galleries/_video.html.erb
+      # 2 - views/galleries/_mixed_video_image_text.html.erb
+      # 3 - views/galleries/_image.html.erb
+      # 4 - views/galleries/_audio.html.erb
       close: 'Close gallery'
       mixed_for_video_editor:
+        # 1 - views/galleries/_mixed_video_image_text.html.erb
         image: 'Add image component'
+        # 1 - views/galleries/_mixed_video_image_text.html.erb
         text: 'Add text component'
+        # 1 - views/galleries/_mixed_video_image_text.html.erb
         video: 'Add video component'
+    # 1 - views/notifications/_main.html.erb
     help_tooltip: 'Help for you!'
     image_editor:
+      # 1 - views/image_editor/edit.html.erb
       crop: 'Crop image'
+      # 1 - views/image_editor/edit.html.erb
       text: 'Add texts to image'
+      # 1 - views/image_editor/edit.html.erb
       commit: 'Go to next step'
     images:
+      # 1 - views/media_elements/new.html.erb
       new: 'Create new image'
     lesson_editor:
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
       add_slide: 'Add new slide'
+      # 1 - views/lesson_editor/slides/parts/_audio.html.erb
       change_audio: 'Change audio'
+      # 1 - views/lesson_editor/slides/parts/_image.html.erb
       change_image: 'Change image'
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
       change_info: 'Change lesson info'
+      # 1 - views/lesson_editor/slides/parts/_video.html.erb
       change_video: 'Change video'
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
       delete_slide: 'Delete slide'
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
       save_slide: 'Save current slide'
     media_elements:
+      # 1 - views/media_elements/_new_form_popup.html.erb
       select_file: 'Select file to upload'
+      # 1 - views/media_elements/_popup.html.erb
       change_info: 'Change information'
     notifications:
+      # 1 - views/notifications/_main.html.erb
       label: 'Notifications'
+      # 1 - views/notifications/_notification.html.erb
       remove: 'Remove notification'
-    pause: 'Pause'
-    play: 'Play'
+    # 1 - views/search/lessons/_main.html.erb
+    # 2 - views/search/lessons/_main.html.erb
+    # 3 - views/search/media_elements/_main.html.erb
+    # 4 - views/search/media_elements/_main.html.erb
     refine_search: 'Refine the search'
+    # 1 - views/reports/_media_element.html.erb
     report: 'Report offensive content'
+    # 1 - views/shared/_search.html.erb
     search: 'Search'
     slides:
+      # 1 - views/layouts/lesson_viewer.html.erb
       back: 'Back'
+      # 1 - views/layouts/lesson_viewer.html.erb
       forward: 'Forward'
     video_editor:
+      # 1 - views/video_editor/_add_component.html.erb
       add_new_component: 'Add new component'
       audio_track:
+        # 1 - views/video_editor/_audio_track.html.erb
         add: 'Select audio track'
+        # 1 - views/video_editor/_audio_track.html.erb
         remove: 'Remove audio track'
+      # 1 - views/video_editor/edit.html.erb
       close_preview: 'Close preview mode'
+      # 1 - views/video_editor/edit.html.erb
       commit: 'Go to next step'
-      cutter: 'Cut component'
-      remove: 'Remove component'
-      change: 'Substitute component'
+      component_menu:
+        # 1 - views/video_editor/_component_menu.html.erb
+        cutter: 'Cut component'
+        # 1 - views/video_editor/_component_menu.html.erb
+        remove: 'Remove component'
+        # 1 - views/video_editor/_component_menu.html.erb
+        change: 'Substitute component'
     videos:
+      # 1 - views/shared/players/_video.html.erb
       fullscreen: 'Fullscreen'
+      # 1 - views/media_elements/new.html.erb
       new: 'Create new video'
+      # 1 - views/shared/players/_video.html.erb
       pause: 'Pause video'
+      # 1 - views/shared/players/_video.html.erb
       play: 'Play video'
   
   
