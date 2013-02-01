@@ -886,18 +886,36 @@ en:
   # SECTION 2.7: lessons
   lessons:
     # the caption used to indicate the name if the author of the lesson
+    # 1 - views/lessons/_thumbnail.html.erb
+    # 2 - views/lessons/_view_single_compact.html.erb
+    # 3 - views/lesson_viewer/slides/_cover.html.erb
+    # 4 - views/lesson_editor/new.html.erb
+    # 5 - views/lesson_editor/slides/_cover.html.erb
+    # 6 - views/lesson_editor/slides/thumbnails/_cover.html.erb
+    # 7 - views/lesson_editor/edit.html.erb
     author: 'Author'
     # caption which indicates the date in which a lesson is created
+    # 1 - views/lessons/_view_single_compact.html.erb
     created_on: 'Created on'
+    # 1 - views/lessons/_graybar_left.html.erb
     create_new: 'Create a new lesson'
+    # 1 - views/lessons/_empty.html.erb
     create_new_now: 'Create a lesson now'
+    # 1 - views/lessons/_empty.html.erb
     empty: 'You have no lessons in your section, create one'
+    # 1 - views/lessons/_empty_filter.html.erb
     empty_filter: 'The lesson filter produced no result'
     headers:
+      # 1 - views/lessons/index.html.erb
       status: 'Status'
+      # 1 - views/lessons/index.html.erb
       subject: 'Subject'
+    # 1 - views/lessons/_view_single_compact.html.erb
+    # 2 - views/lesson_editor/new.html.erb
+    # 3 - views/lesson_editor/edit.html.erb
     school_level: 'School level'
-    users_like_this: 'Users like this lesson'
+    # 1 - views/lessons/_view_single_compact.html.erb
+    users_like_this: '%{likes} users like this lesson'
   
   
   # SECTION 2.8: lesson_viewer
