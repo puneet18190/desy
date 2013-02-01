@@ -8,7 +8,7 @@
     <% if @next_notification %>
       $('#tooltip_content ul .jspPane').append("<%= j(render(:partial => "notifications/notification", :locals => {:notification => @next_notification})) %>");
     <% elsif @offset_notifications == 0 %>
-      $('#notifications_list').html('<%= j(render(:partial => 'notifications/empty')) %>');
+      $('#notifications_list').html('<%= j(render(:partial => "notifications/empty")) %>');
     <% end %>
     var my_expanded = $('#expanded_notification');
     if(my_expanded.css('display') == 'block' && my_expanded.data('contentid') == 'notification_<%= @notification_id %>') {

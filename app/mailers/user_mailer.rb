@@ -2,7 +2,9 @@ class UserMailer < ActionMailer::Base
 
   include MailerHelper
   helper MailerHelper
-
+  
+  APPLICATION_NAME = SETTINGS['application_name']
+  
   layout "user_mailer"
 
   default :from => SETTINGS['admin']['email']
@@ -10,7 +12,7 @@ class UserMailer < ActionMailer::Base
   def account_confirmation(user, host = nil, port = nil)
     host_and_port!(host, port)
     @user = user
-    mail to: @user.email, subject: t('emails.account_confirmation.subject')
+    mail to: @user.email, subject: t('mailer.account_confirmation.subject', :desy => APPLICATION_NAME)
   end
   
   def see_my_lesson(emails, sender, lesson, message, host = nil, port = nil)
@@ -18,13 +20,13 @@ class UserMailer < ActionMailer::Base
     @sender = sender
     @message = message
     @lesson_link = lesson_viewer_url(*host_and_port(lesson.id, token: lesson.token))
-    mail to: emails, subject: t('emails.see_my_lesson.subject')
+    mail to: emails, subject: t('mailer.see_my_lesson.subject', :desy => APPLICATION_NAME)
   end
 
   def new_password(user, password, host = nil, port = nil)
     host_and_port!(host, port)
     @user, @password = user, password
-    mail to: @user.email, subject: t('emails.new_password.subject')
+    mail to: @user.email, subject: t('mailer.reset_password.subject', :desy => APPLICATION_NAME)
   end
 
   private

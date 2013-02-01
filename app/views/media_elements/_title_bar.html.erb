@@ -1,10 +1,10 @@
 <div class="title-bar" id="media_elements_title_bar">
-  <h1 style="width:40%" class="lower"><%= t('captions.elements') %></h1>
+  <h1 style="width:40%" class="lower"><%= t('captions.media_elements') %></h1>
   <p id="format_media_elements">
-    <%= t('captions.display_mode') %>: <%= link_to t('captions.large'), '/media_elements?display=expanded', :class => (@display == MediaElement::DISPLAY_MODES[:expanded] ? 'current' : ''), :id => 'display_expanded_media_elements', :remote => true %> - <%= link_to t('captions.small'), '/media_elements?display=compact', :class => (@display == MediaElement::DISPLAY_MODES[:compact] ? 'current' : ''), :id => 'display_compact_media_elements', :remote => true %>
+    <%= t('media_elements.display_mode.title') %>: <%= link_to t('media_elements.display_mode.large'), '/media_elements?display=expanded', :class => (@display == MediaElement::DISPLAY_MODES[:expanded] ? 'current' : ''), :id => 'display_expanded_media_elements', :remote => true %> - <%= link_to t('media_elements.display_mode.small'), '/media_elements?display=compact', :class => (@display == MediaElement::DISPLAY_MODES[:compact] ? 'current' : ''), :id => 'display_compact_media_elements', :remote => true %>
   </p>
   <div style="padding-left:20px">
-    <h2 style="padding-right:10px" class="lower"><%= t('captions.display') %></h2>
+    <h2 style="padding-right:10px" class="lower"><%= t('media_elements.display') %></h2>
     <div class="selectDisplay">
       <select name="display" id="for_page_media_elements">
         <% @for_page_options.each do |f| %>

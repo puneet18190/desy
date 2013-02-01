@@ -2,7 +2,7 @@
   <div class="headerMenu">
   <ul>
     <li><%= link_to t('prelogin.main_page.menu_link'), root_path, :class => 'current' %></li>
-    <li><%= link_to t('prelogin.what_is_desy.menu_link'), what_is_desy_path %></li>
+    <li><%= link_to t('prelogin.what_is_desy.menu_link', :desy => SETTINGS['application_name']), what_is_desy_path %></li>
     <li><%= link_to t('prelogin.sign_up.menu_link'), sign_up_path %></li>
     <li><%= link_to t('prelogin.contact_us.menu_link'), contact_us_path %></li>
   </ul>
@@ -15,8 +15,8 @@
     <%= image_tag "logo_prelogin.png" %>
   </div>
   <div class="fltlft" style="width:26%">
-    <h1><%= t('prelogin.main_page.title') %></h1>
-    <p><%= t('prelogin.main_page.description').html_safe %></p>
+    <h1><%= t('prelogin.main_page.title', :desy => SETTINGS['application_name']) %></h1>
+    <p><%= t('prelogin.main_page.description', :desy => SETTINGS['application_name']).html_safe %></p>
     <p><a href="http://www.youtube.com/watch?v=DQr22YaTzbQ&feature=youtu.be" target="_blank"><%= t('prelogin.main_page.video') %></a></p>
   </div>
   <div class="fltrt">
@@ -25,5 +25,5 @@
 </div>
 <br class="clearfloat">
 <div class="footer">
-  ©2013 DESY. All rights reserved
+  <%= SETTINGS['application_copyright'] %>
 </div>

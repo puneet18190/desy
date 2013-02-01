@@ -8,14 +8,14 @@ class Users::SessionsController < ApplicationController
 
     redirect_args =
       if params[:email].blank? || params[:password].blank?
-        failed_authentication_redirect_args path_params, t('captions.fill_all_login_fields')
+        failed_authentication_redirect_args path_params, t('other_popup_messages.login.missing_fields')
       else
         self.current_user = User.authenticate(params[:email], params[:password])
 
         if current_user
           uri_path_and_query(redirect_to_param) || [dashboard_path]
         else
-          failed_authentication_redirect_args path_params, t('captions.password_or_username_not_correct')
+          failed_authentication_redirect_args path_params, t('other_popup_messages.login.wrong_content')
         end
       end
 

@@ -1,14 +1,14 @@
 <div class="virtualClassroomQuickSelectPopUp" id="dialog-virtual-classroom-quick-select" style="display:none" data-loaded="false" data-loaded-correctly="true" data-loaded-msg=""></div>
 
 <div class="virtualClassroomSentLessonLinkPopUp" id="dialog-virtual-classroom-send-link" style="display:none;">
-  <h1><%= t('captions.sent_to') %></h1>
-  
+  <h1><%= t('popups.send_lesson_link.title') %></h1>
+  <p><%= t('popups.send_lesson_link.confirm') %></p>
   <%= form_tag '/virtual_classroom/lesson_id/send_link', :remote => true do %>
     <input class="_send_link_form_text_area _emails campoEmail" type="text" value="" name="emails" data-not-yet-selected="true">
-    <p><%= t('captions.select_mailing_list') %></p>
+    <p><%= t('virtual_classroom.send_link.mailing_list.title') %></p>
     <div class="boxSelectMailingList">
-      <select  id="select_mailing_list">
-        <option value="select">Select</option>
+      <select id="select_mailing_list">
+        <option value="select"><%= t('virtual_classroom.send_link.mailing_list.placeholder') %></option>
         <option value="select2">Select2</option>
         <option value="select3">Select3</option>
       </select>
@@ -19,22 +19,12 @@
   
   <div class="colonnaCoverLesson">
     <div class="img_expanded _lesson_thumb"></div>
-    <br class="clearfloat">
-    <p><%= t('captions.select_more_lesson') %></p>
-    <div class="boxSelectLesson">
-      <select  id="select_lesson_list">
-        <option value="choose">Choose</option>
-        <option value="lesson1">lesson1</option>
-        <option value="lesson2">lesson2</option>
-      </select>
-    </div>
   </div>
   <br class="clearfloat">
   <div class="buttonRow">
-    <a class="_yes buttonForm"><%= t('popups.send_lesson_link_yes') %></a>
-    <a class="_no buttonForm"><%= t('popups.cancel') %></a>
-    
+    <a class="_yes buttonForm"><%= t('popups.send_lesson_link.do') %></a>
+    <a class="_no buttonForm"><%= t('popups.send_lesson_link.cancel') %></a>
   </div>
 </div>
 
-<div id="popup_captions_container_virtual_classroom" style="display:none" data-caption-emails="<%= t('captions.insert_emails_here') %>" data-caption-message="<%= t('captions.write_a_message') %>"></div>
+<div id="popup_captions_container_virtual_classroom" style="display:none" data-caption-emails="<%= t('virtual_classroom.send_link.emails') %>" data-caption-message="<%= t('virtual_classroom.send_link.message') %>"></div>

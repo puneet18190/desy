@@ -7,16 +7,16 @@
         <table summary="" cellpadding="0" cellspacing="0" style="width:100%;">
           <tr>
             <td width="20%">
-              <label><%= t('captions.keyword') %></label><br />
+              <label><%= t('search.lessons.keyword.label') %></label><br />
               <% if @search_item == 'lessons' %>
                 <input type="text" name="tag" value="<%= @tag_placeholder %>" class="text lower" id="lessons_tag_reader_for_search" style="color:<%= @did_you_search ? '#999'.html_safe : '#bbb'.html_safe %>">
               <% else %>
-                <input type="text" name="tag" value="<%= t('captions.insert_tag') %>" class="text lower" id="lessons_tag_reader_for_search" style="color:#999">
+                <input type="text" name="tag" value="<%= t('search.lessons.keyword.placeholder') %>" class="text lower" id="lessons_tag_reader_for_search" style="color:#999">
               <% end %>
               <%= hidden_field_tag 'tag_kind', (@tag.kind_of?(Tag) ? @tag.id : ''), :id => 'lessons_tag_kind_for_search' %>
             </td>
             <td width="20%">
-              <label><%= t('captions.category') %></label><br />
+              <label><%= t('search.lessons.filters.author') %></label><br />
               <select name="filter" id="filter_search_lessons">
                 <% Filters::LESSONS_SEARCH_SET.each do |f| %>
                   <option value="<%= f %>" <%= (f == @filter) ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
@@ -24,9 +24,9 @@
               </select>
             </td>
             <td width="20%">
-              <label><%= t('captions.subject') %></label><br />
+              <label><%= t('search.lessons.filters.subject') %></label><br />
               <select name="subject_id" id="filter_search_lessons_subject">
-                <option value="" <%= @subject_id.nil? ? "selected=\"selected\"".html_safe : '' %>><%= t('captions.all_subjects') %></option>
+                <option value="" <%= @subject_id.nil? ? "selected=\"selected\"".html_safe : '' %>><%= t('search.lessons.filters.all_subjects') %></option>
                 <% Subject.order(:description).each do |s| %>
                   <option value="<%= s.id %>" <%= (@subject_id == s.id) ? "selected=\"selected\"".html_safe : '' %>><%= s.description %></option>
                 <% end %>
@@ -34,14 +34,14 @@
             </td>
             <td width="20%"></td>
             <td width="20%">
-              <p  style="font-size:80%; padding-left:10px; padding-top:10px;"><%= t('captions.warning') %><br><%= t('captions.warning_search_lessons') %></p>
+              <p style="font-size:80%; padding-left:10px; padding-top:10px;"><%= t('search.lessons.suggestion.title') %><br><%= t('search.lessons.suggestion.description') %></p>
             </td>
             </tr>
             <tr>
             
           </tr>
           <tr>
-            <td><br /><h3><%= t('captions.sort_results_by') %></h3></td>
+            <td><br /><h3><%= t('search.lessons.sort') %></h3></td>
           </tr>
           <tr>
               <% SearchOrders::LESSONS_SET.each do |so| %>
@@ -56,9 +56,9 @@
             <td>
               <br /><br />
               <% if @search_item == 'lessons' && @did_you_search %>
-                <a id="search_lessons_submit" title="<%= t('general_titles.refine_the_search') %>" class="cerca current"><%= t('caption.search')%></a>
+                <a id="search_lessons_submit" title="<%= t('titles.refine_search') %>" class="cerca current"><%= t('search.short_label')%></a>
               <% else %>
-                <a id="search_lessons_submit" title="<%= t('general_titles.refine_the_search') %> " class="cerca"><%= t('caption.search')%></a>
+                <a id="search_lessons_submit" title="<%= t('titles.refine_search') %>" class="cerca"><%= t('search.short_label')%></a>
               <% end %>
             </td>
           </tr>

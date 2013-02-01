@@ -1,28 +1,35 @@
 <!DOCTYPE html>
+
 <html class="lesson-editor-layout <%= controller_html_class %> <%= action_html_class %>">
-<head>
-  <title><%= SETTINGS['application_name'] %></title>
-  <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  
+  
+  <head>
+    <title><%= SETTINGS['application_name'] %></title>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  
+  
+  <body>
     <%= render :partial => "shared/popups" %>
     <%= render :partial => "shared/loading" %>
-<div class="lesson-editor-container">
-  <div class="content">
-    <%= yield :nav %>
     
-    <%= yield %>
-    
-  </div>
-  <div id="footer">
-    <%= link_to '', my_lessons_path, :class => 'esciButton pull-right upper', :title => t('general_titles.exit_title') %>
-    <div id="lesson-title">
-      <%= image_tag "lesson-editor-logo-footer.png" %>
-      <p><%= @lesson.title if @lesson %></p>
+    <div class="lesson-editor-container">
+      <div class="content">
+        <%= yield :nav %>
+        <%= yield %>
+      </div>
+      <div id="footer">
+        <%= link_to '', my_lessons_path, :class => 'esciButton pull-right upper', :title => t('titles.exit') %>
+        <div id="lesson-title">
+          <%= image_tag "lesson-editor-logo-footer.png" %>
+          <p><%= @lesson.title if @lesson %></p>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-</body>
+    
+  </body>
+  
+  
 </html>

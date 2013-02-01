@@ -1,1 +1,4 @@
 $('#list').html("<%= j(render :partial => 'mailing_lists/list') %>");
+<% if @mlg.present? %>
+  $('h3#accordion_group_'+<%=@mlg.id%>).trigger('click');
+<% end %>
