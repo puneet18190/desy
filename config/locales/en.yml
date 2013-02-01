@@ -403,7 +403,13 @@ en:
         mailing_list:
           title: 'or select mailing list'
           placeholder: 'no mailing list'
-    
+#        instructions_to_fill_playlist: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist.'
+#    virtual_classroom: 'Your Virtual Classroom is empty'
+#    playlist: 'Your playlist is empty'
+
+
+
+
     
   
   # SECTION 2: general captions of the application
@@ -436,7 +442,6 @@ en:
     failed_confirmation: 'The link you submitted is not longer valid'
     # this is the title of the login form
     insert: 'Insert'
-
     new_time: 'New time'
     password: 'Password'
     password_resetted_successfully: 'Password resetted successfully'
@@ -481,10 +486,20 @@ en:
     show: 'Show'
     virtual_classroom: 'Virtual Classroom'
     welcome: 'Welcome'
-    
-    
-    
-    
+  
+  
+  mailer:
+    account_confirmation:
+      subject: '%{desy} - Account confirmation'
+      message: '<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br>When the registration will be confirmed, the link will not be valid anymore.<br>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br><p>N.B.</p><p>The confirmation of the account can be done just one time.</p>'
+    reset_password:
+      subject: '%{desy} - New password'
+      message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password at your choice once logged in, in the 'Profile' section.</p>"
+    see_my_lesson: 
+      subject: '%{desy} - Lesson link'
+      message: "<p>The user %{name} thinks that you might be interested in a lesson in %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):</p></br>"
+  
+  
   
   # SECTION 3: captions e titoli per i form generici -- error messages inside HTML forms (i.e. wrong name, surname, title, description, etc.)
   forms:
@@ -570,34 +585,7 @@ en:
       
   
   
-  descriptions:
-    instructions_to_fill_playlist: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist.'
-    mailer_link_1: 'The user '
-    mailer_link_2: ' thinks that you might be interested in a lesson in DESY.'
-    mailer_link_3: "Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):"
-    mailer_link_4: 'DESY - Digital Educational System'
 
-
-
-    upload_media_element_success: 'The media element has been successfully created'
-    user_mailer:
-      account_confirmation_1: 'Greetings %{name} %{surname},'
-      account_confirmation_2: 'Thank you for your registration into DESY!'
-      account_confirmation_3: 'In order to complete your registration click here:'
-      account_confirmation_4: 'If the link does not appear clickable copy it and paste it into your browser.'
-      account_confirmation_5: 'When the registration will be confirmed, the link will not be valid anymore.'
-      account_confirmation_6: "Sign in with the username and the password inserted during the registration phase in order to access to the system."
-      account_confirmation_7: 'N.B.'
-      account_confirmation_8: "The confirmation of the account can be done just one time."
-
-
-# (3) accessors: empty situations, popups, help, etc
-  empty:
-    
-    
-  
-    virtual_classroom: 'Your Virtual Classroom is empty'
-    playlist: 'Your playlist is empty'
  
  
   # ok = messaggio di successo, yes = caption confermo, no = caption non confermo, confirm = messaggio di conferma, error = messaggio di errore, title = titolo messaggio di conferma
@@ -834,16 +822,3 @@ en:
     sign_up:
       subjects_blank: 'please check at least one subject'
       
-
-  # (7) emails
-  emails:
-    account_confirmation: 
-      subject: 'DESY - Account confirmation'
-    new_password: 
-      subject: 'DESY - New password'
-      body_1: 'Greetings %{name} %{surname},'
-      body_2: 'we received your password reset request; this is your new password'
-      body_3: 'You can login into DESY now using the new password, at the following URL'
-      body_4: "you will be able to set another password at your choice once logged in, in the 'Profile' section."
-    see_my_lesson: 
-      subject: 'DESY - Lesson link'
