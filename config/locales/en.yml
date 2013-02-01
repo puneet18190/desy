@@ -965,12 +965,19 @@ en:
   
   # SECTION 2.10: notifications
   notifications:
+    # 1 - views/notifications/_empty.html.erb
     empty: "You don't have any notifications"
+    # 1 - models/lesson.rb
     lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
+    # 1 - models/lesson.rb
     lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
+    # 1 - controllers/virtual_classroom_controller.rb
     sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
+    # 1 - controllers/video_editor_controller.rb
     video_in_conversion_warning: 'The video and the lessons related to it will be temporary unavailable until the conversion will finish'
+    # 1 - controllers/audio_editor_controller.rb
     audio_in_conversion_warning: 'The audio and the lessons related to it will be temporary unavailable until the conversion will finish'
+    # 1 - models/lesson.rb
     public_lesson_changed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', believes that you might be interested in his lesson's update.<br/><br/><a href=\"%{link}\">Check it out</a><br/><br/><i>\"%{message}\"</i>"
   
   
