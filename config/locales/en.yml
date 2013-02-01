@@ -604,63 +604,99 @@ en:
   help:
     dashboard:
       first:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Selected for you"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "In this dashboard you can find lessons and elments selected in our database according to your subjects of interests. If you click on the '+' icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The icon with a small eye opens a preview."
       second:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Create a lesson now"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "To create a new lesson click on the big button that you find on each page: you will be redirected to the Lesson Editor. You should collect some elements before, anyway, to have ready didactic material once you are in the editor."
       third:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Load a media element"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "You can load your own media elements directly from this section, clicking on the big button present on each page."
     lessons:
       first:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Status of lessons"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "In this section you find all your personal lessons. A lesson can be in the status: <b>private</b> (nobody can see it except for you); <b>shared</b> (other people may see it, copy or link it); <b>linked</b> (the lesson is not yours, you can view it and use it in your Virtual Classroom, but you can't modify it); <b>copied</b> (a lesson that you just copied, ready to be used as a draft to be personalized."
       second:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Action buttons"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "The icon with links is used to change the status of your lesson, from private to shared and viceversa. The 'X' deletes a lesson (available if the lesson is yours), while the '-' (available for linked lessons) removes it from your links. The icon with two circles overlapping copies the lesson, and the small pencil is a link to the Lesson Editor."
       third:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Virtual Classroom"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "Do you like a lesson? Add it to your Virtual Classroom by clicking on the 'eye in the box' icon"
     media_elements:
       first:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Public elements"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "When you load an element, its status is automatically set as 'private': you are the owner and nobody else can see your element. Once you share a lesson, all the elements contained in it are visible by everybody, so they are set as 'public'. A <b>public</b> element is not accessible by the owner anymore, it is moved in the shared repository of %{desy}, hence, you keep only a link of it and you can't modify it anymore."
       second:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Element Editors"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "There are three kinds of media elements: <b>images</b>, <b>audios</b> and <b>videos</b>. Depending on the extension of the file you loaded, %{desy} converts it in one of them. When you click on the little pencil on an element, you are automatically redirected to the corresponding editor. If the element you edit is public, you are forced to save the modifications you made as a new element, because a public element might be in use in other users' lessons. If the element is private, you have the choice to overwrite it or create a new one."
       third:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Element preview"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "The preview of an element appears in a popup: you can see the title, the description, and the full media content (a player if the element is of kind 'audio' or 'video'. If the element is private, you can click on the icon with small lines of text and modify title, descriptions, and tags."
     search:
       first:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Search engine"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "%{desy}'s <b>search engine</b> works with tags: enter the first letters of the word you are looking for, and %{desy} will pick all the tags that begin with those letters, with all associated items (lessons or media elements, depending on what you configured). Refine your search selecting one of the tags, or the available filters. Once you found something you like, add it to your section by clicking on the '+' icon."
       second:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Suggestions for a good search"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "Don't write too long words: it's better writing the first letter of the word you are looking for, since in any case you will be listed all the tags beginning with those letters."
       third:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Suggestions for a good tagging"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "When you share a lesson or a media element, if you want to make it visible to the community you have to choose good tags. The minimum of tags for each item is 4."
     users:
       first:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Profile"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "This section is not functional yet."
       second:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: ""
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "La Nazionale restituisce alla Roma un De Rossi rigenerato. Dopo essersi riposato in panchina contro l’Atalanta, nell’ultima partita di campionato prima della sosta, il centrocampista ha fornito due grandi prestazioni in azzurro, realizzando due reti che hanno un grande valore in chiave mondiale."
       third:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: ""
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
     virtual_classroom:
       first:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "%{desy}'s Virtual Classroom"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "Welcome to your Virtual Classroom. clicking on the '+' you open a popup with the list of your lessons: choose the ones you need and add them clicking 'upload'."
       second:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Playlist"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "Drag and drop a lesson to the area on the right to fill your playlist."
       third:
+        # 1 - views/notifications/_tooltip_help.html.erb
         title: "Send a link to your friends"
+        # 1 - views/notifications/_tooltip_help.html.erb
         content: "Even if a lesson is private, it's available a link to show it to people not logged in %{desy}. The link contains a crypted code, without which it's possible to view the lesson only if you are logged in and the lesson is public. To send the link, click on 'send link to your friends' and fill in the form with a list of emails and a message."
   
   
