@@ -5,44 +5,69 @@ en:
   
   # SECTION 1.1: messages inside popups
   flash: # solo per la registrazione
+    # 1 - controllers/users_controller.rb
     email_is_blank: 'Email is blank'
     # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
+    # 1 - controllers/users_controller.rb
     failed_confirmation: 'The link you submitted is not longer valid'
+    # 1 - controllers/users_controller.rb
     password_reset_successfully: 'Password reset successfully'
+    # 1 - controllers/users_controller.rb
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
+    # 1 - controllers/users_controller.rb
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
   other_popup_messages:
     correct:
       add:
+        # 1 - controllers/lessons_controller.rb
         lesson: 'Now you have a link of this lesson'
+        # 1 - controllers/media_elements_controller.rb
         media_element: 'Now you can use this media element'
+      # 1 - controllers/lessons_controller.rb
       publish: 'The lesson has been published'
       remove:
+        # 1 - controllers/lessons_controller.rb
         lesson: 'You removed the link of this lesson'
+        # 1 - controllers/media_elements_controller.rb
         media_element: 'You removed this media element'
+      # 1 - controllers/lessons_controller.rb
       unpublish: 'The lesson has been unpublished'
+      # 1 - views/users/update.js.erb
       user_update: 'Update successful'
     login:
+      # 1 - controllers/users/sessions_controller.rb
       missing_fields: 'Insert username and password'
+      # 1 - controllers/users/sessions_controller.rb
       wrong_content: 'Wrong login data'
     reports:
+      # 1 - views/reports/media_element.js.erb
+      # 2 - views/reports/lesson.js.erb
       ok: 'The report was sent successfully'
+      # 1 - controllers/reports_controller.rb
+      # 2 - controllers/reports_controller.rb
       problem: 'Your report could not be sent'
     send_lesson_link:
+      # 1 - views/virtual_classroom/send_link.js.erb
       ok: 'Link sent successfully!'
+      # 1 - views/virtual_classroom/send_link.js.erb
       error: 'Link not sent: did you fill all the fields and write correct emails?'
     video_editor:
+      # 1 - views/shared/_popups.html.erb
       empty_text_component: 'Insert a text'
+      # 1 - views/shared/_popups.html.erb
       invalid_component_duration: 'You inserted a wrong duration, it must be a number greater than 0'
     virtual_classroom_lessons:
+      # 1 - views/virtual_classroom/load_lessons.js.erb
       loaded_ok: 'Correctly loaded your lessons!'
+      # 1 - views/virtual_classroom/load_lessons.js.erb
       loaded_error: 'There was a problem, #number of your lessons were not loaded'
   activemodel:
     errors:
       messages:
+        # 1 - models/user.rb
         invalid_email_address: 'does not appear to be a valid email address'
   activerecord:
-    ######### IMPORTANTE: questa parte qui sotto appartiene alla stessa sezione di users [metti numero]
+    ######### IMPORTANTE: questa parte qui sotto appartiene alla stessa sezione di users (2.15)
     attributes:
       user:
         name: 'Name'
@@ -57,77 +82,157 @@ en:
         location_id: 'City'
     ########## fino a qui
     errors:
+      # NOTA - SOLO IN USER VENGONO USATI, NEGLI ALTRI CASI SONO SOSTITUITI
       messages:
+        # 1 - models/user.rb
         blank: "can't be blank"
+        # 1 - models/user.rb
         confirmation: "doesn't match confirmation"
+        # 1 - models/user.rb
         too_short: 'is too short (minimum is %{count} characters)'
+        # 1 - models/user.rb
         too_long: 'is too long (maximum is %{count} characters)'
+        # 1 - models/user.rb
         uniqueness: 'has already been taken'
+        # 1 - models/user.rb
         changed: 'cannot be changed'
+        # 1 - models/user.rb
         accepted: 'must be accepted'
       models:
         bookmark:
           # there was an error while trying to add the lesson to your personal folder
+          # 1 - controllers/lessons_controller.rb
+          # 2 - controllers/lessons_controller.rb
           problem_creating_for_lesson: 'The lesson could not be added'
           # there was an error while trying to add the element to your personal folder
+          # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/media_elements_controller.rb
           problem_creating_for_media_element: 'The element could not be added'
           # there was an error while trying to remove the lesson from your personal folder
+          # 1 - controllers/lessons_controller.rb
+          # 2 - controllers/lessons_controller.rb
+          # 3 - controllers/lessons_controller.rb
           problem_destroying_for_lesson: 'The lesson could not be removed'
           # there was an error while trying to remove the element from your personal folder
+          # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/media_elements_controller.rb
+          # 3 - controllers/media_elements_controller.rb
           problem_destroying_for_media_element: 'The element could not be removed'
         lesson:
           # there was an error while trying to copy the lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
+          # 5 - models/lesson.rb
+          # 6 - models/lesson.rb
+          # 7 - models/lesson.rb
           problem_copying: 'The lesson could not be copied'
           # the selected lesson has already been copied
+          # 1 - models/lesson.rb
           already_copied: 'You already have a copy of this lesson'
           # the selected lesson is a copy of another lesson which has not been modified yet (until the copy has'nt been modifed, it is frozen)
+          # 1 - models/lesson.rb
           just_copied: "You've just copied this lesson"
           # the selected lesson is already shared, it can't be shared again
+          # 1 - models/lesson.rb
           already_published: 'This lesson is already shared'
           # there was an error while trying to share the lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
+          # 5 - models/lesson.rb
           problem_publishing: 'The lesson could not be shared'
           # there was an error while trying to undo the sharing
+          # 1 - controllers/lessons_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
+          # 5 - models/lesson.rb
           problem_unpublishing: 'Lesson sharing could not be undone'
           # the selected lesson is not shared, hence the sharing can't be undone
+          # 1 - models/lesson.rb
           already_unpublished: 'This lesson has not been shared yet'
           # there was an error while trying to delete the lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
           problem_destroying: 'The lesson could not be deleted'
           # there was an error while trying to add the lesson to your Virtual Classroom
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
           problem_adding_to_virtual_classroom: 'The lesson could not be added to your Virtual Classroom'
           # the selected lesson is already in your Virtual Classroom, hence you can't add it again
+          # 1 - models/lesson.rb
           lesson_already_in_virtual_classroom: 'This lesson is already in your Virtual Classroom'
           # for some reason, the selected lesson cannot be added to your Virtual Classroom
+          # 1 - models/lesson.rb
           lesson_not_available_for_virtual_classroom: "This lesson cannot be added to your Virtual Classroom"
           # there was an error while trying to remove the lesson from your Virtual Classroom
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - controllers/virtual_classroom_controller.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
+          # 5 - models/lesson.rb
+          # 6 - models/lesson.rb
           problem_removing_from_virtual_classroom: 'The lesson could not be removed from your Virtual Classroom'
         like:
           # there was an error while you were trying to remove 'I like it' from a lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - controllers/lessons_controller.rb
           problem_destroying: "Your 'like' could not be removed"
           # there was an error while you were trying to add 'I like it' to the selected lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - controllers/lessons_controller.rb
           problem_creating: "Your 'like' could not be registered"
         media_element:
           # there was an error while trying to delete an element
+          # 1 - controllers/media_elements_controller.rb
+          # 2 - models/media_element.rb
+          # 3 - models/media_element.rb
+          # 4 - models/media_element.rb
           problem_destroying: 'The element could not be deleted'
           # since the element is public, it's not possible to delete it
+          # 1 - models/media_element.rb
           cant_destroy_public: "This element is public, you can't delete it"
         notification:
           # there was an error while trying to delete a notification
+          # 1 - controllers/notifications_controller.rb
+          # 2 - controllers/notifications_controller.rb
           problem_destroying: 'The notification could not be deleted'
-        user:
-          not_a_number: 'must be an integer greater than 0'
-          greater_than: 'must be an integer greater than 0'
         virtual_classroom_lesson:
           # you tried to insert the lesson in an invalid position inside the playlist
+          # 1 - models/virtual_classroom_lesson.rb
+          # 2 - models/virtual_classroom_lesson.rb
           invalid_position_in_playlist: "The position of the lesson is not valid"
           # there was an error while trying to change the position of the lesson inside the playlist
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - models/virtual_classroom_lesson.rb
+          # 3 - models/virtual_classroom_lesson.rb
+          # 4 - models/virtual_classroom_lesson.rb
+          # 5 - models/virtual_classroom_lesson.rb
+          # 6 - models/virtual_classroom_lesson.rb
           problems_changing_position_in_playlist: "The lesson's position could not be changed"
           # there was an error while trying to add the lesson to the playlist
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - models/virtual_classroom_lesson.rb
+          # 3 - models/virtual_classroom_lesson.rb
+          # 4 - models/virtual_classroom_lesson.rb
           problems_adding_to_playlist: 'The lesson could not be added to the playlist'
           # there was an error while trying to empty the playlist inside your Virtual Classroom'
+          # 1 - controllers/virtual_classroom_controller.rb
           problems_emptying_playlist: 'Your playlist could not be emptied'
           # this happens when you try to add a lesson to a playlist which is already full
+          # 1 - models/virtual_classroom_lesson.rb
           playlist_full: 'Your playlist is full!'
           # there was an error while trying to remove the lesson from the playlist
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - models/virtual_classroom_lesson.rb
+          # 3 - models/virtual_classroom_lesson.rb
+          # 4 - models/virtual_classroom_lesson.rb
           problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
   
   
@@ -630,7 +735,7 @@ en:
       menu_link: 'Personal info'
       title: 'Personal Info'
       description: 'In this area you can update or modify all the parameters of your account'
-      ######### IMPORTANTE: manca un pezzo che sta più in alto, vedi sopra nella sezione 1
+      ######### IMPORTANTE: manca un pezzo che sta più in alto, vedi sopra nella sezione 1.1
     institute: 'Institute'
     mailing_list:
       add: 'Add new group'
