@@ -423,15 +423,33 @@ en:
   
   
   virtual_classroom:
+    # it is used in the empty Virtual Classroom to invite the user to fill it immediately
+    add_lesson_now: 'Add a lesson now'
+    # used in the Virtual Classroom, to pick different lessons to be added
+    select_lessons:
+      cancel: 'Cancel'
+      done: 'Upload'
+      label: 'Add lessons'
+      description: 'Select the lessons to upload in the Virtual Classroom'
+    empty: 'Your Virtual Classroom is empty'
+    # the caption of the button which empties your Virtual Classroom
+    make_it_empty: 'Empty your Virtual Classroom'
+    
+    
+    playlist:
+      instructions: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist'
+      label: 'Playlist'
+      # the caption of the button which empties your Virtual Classroom playlist
+      make_it_empty: 'Empty playlist'
+      play: 'Play'
     send_link:
       message: 'Write a message'
       emails: 'Insert emails separated by comma'
       mailing_list:
         title: 'or select mailing list'
         placeholder: 'no mailing list'
-#        instructions_to_fill_playlist: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist.'
-#    virtual_classroom: 'Your Virtual Classroom is empty'
-#    playlist: 'Your playlist is empty'
+
+
 
 
 
@@ -440,34 +458,15 @@ en:
   
   # SECTION 2: general captions of the application
   captions:
-    # it is used in the empty Virtual Classroom to invite the user to fill it immediately
-    add_lesson_now: 'Add a lesson now'
-    # it is used to add a new mailing list
-    add_new_group: 'Add new group'
-    # used in the Virtual Classroom, to pick different lessons to be added
-    add_new_lesson: 'Add lessons'
-    # only used inside the general information tables: it represents the option to reset all the fields and close the window
-    cancel: 'Cancel'
-    # the caption of the link to the dashboard (DESY's main page)
-    dashboard: 'Dashboard'
-    # this is what the acronym 'DESY' stands for
-    desy_expanded_description: 'Digital Education System'
-    # the caption of the button which empties your Virtual Classroom playlist
-    empty_playlist: 'Empty playlist'
-    # the caption of the button which empties your Virtual Classroom
-    empty_virtual_classroom: 'Empty your Virtual Classroom'
-    # this is the caption of the button to submit your email and password to login
-    enter: 'Enter'
     # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
     failed_confirmation: 'The link you submitted is not longer valid'
     password: 'Password'
     password_resetted_successfully: 'Password resetted successfully'
-    playlist: 'Playlist'
     remove: 'Remove'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     save: 'Save'
     selected: 'Selected'
-    select_the_lessons_you_want_to_upload: 'Select the lessons to upload in the Virtual Classroom'
+
     send_link_to_your_friends: 'Send a link to your friends'
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
