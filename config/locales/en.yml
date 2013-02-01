@@ -222,19 +222,7 @@ en:
   
   
   
-  video_editor:
-    components:
-      image:
-        time: 'Time'
-      text:
-        insert: 'Insert text'
-      video:
-    label: 'Edit video'
-    not_available:
-      title: 'Video editor not available'
-      description: 'Inserire qui altro testo'
-    select_component_to_add: 'Select component to add'
-  
+
   
   image_editor:
     crop:
@@ -394,15 +382,39 @@ en:
       menu_link: 'Subjects'
       title: 'Subjects'
       description: 'Choose the subjects you want to stay connected'
-    
-    
-    virtual_classroom:
-      send_link:
-        message: 'Write a message'
-        emails: 'Insert emails separated by comma'
-        mailing_list:
-          title: 'or select mailing list'
-          placeholder: 'no mailing list'
+  
+  
+  
+  video_editor:
+    components:
+      image:
+        time: 'Time'
+      text:
+        insert: 'Insert text'
+      video:
+    cutters:
+      done: 'Done'
+      old_time: 'Time'
+      play: 'Play'
+      pause: 'Pause'
+      time: 'New time'
+      total_length: 'Total clip length'
+      selected_length: 'Selected'
+    label: 'Edit video'
+    not_available:
+      title: 'Video editor not available'
+      description: 'Inserire qui altro testo'
+    select_component_to_add: 'Select component to add'
+  
+  
+  
+  virtual_classroom:
+    send_link:
+      message: 'Write a message'
+      emails: 'Insert emails separated by comma'
+      mailing_list:
+        title: 'or select mailing list'
+        placeholder: 'no mailing list'
 #        instructions_to_fill_playlist: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist.'
 #    virtual_classroom: 'Your Virtual Classroom is empty'
 #    playlist: 'Your playlist is empty'
@@ -442,11 +454,9 @@ en:
     failed_confirmation: 'The link you submitted is not longer valid'
     # this is the title of the login form
     insert: 'Insert'
-    new_time: 'New time'
     password: 'Password'
     password_resetted_successfully: 'Password resetted successfully'
     pause: 'Pause'
-    play: 'Play'
     playlist: 'Playlist'
     preview: 'Preview'
     remove: 'Remove'
@@ -461,8 +471,6 @@ en:
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
     text_color: 'Text color'
-    time: 'Time'
-    total_clip_length: 'Total clip length'
     total_length: 'Total length'
     update: 'Update'
     update_successful: 'Update successful'
