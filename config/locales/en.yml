@@ -706,48 +706,95 @@ en:
   # SECTION 2.1: general captions
   captions:
     # used in the general footer of the application, to redirect to the main page
+    # 1 - views/shared/_footer.html.erb
     back_to_dashboard: 'Back to dashboard'
-    description: 'Description'
+    # 1 - views/shared/players/_video.html.erb
+    # 2 - views/video_editor/previews/_video.html.erb
     dont_support_video: 'Your browser does not support the video tag'
+    # 1 - views/shared/players/_audio.html.erb
+    # 2 - views/video_editor/previews/_audio_track.html.erb
     dont_support_audio: 'Your browser does not support the audio tag'
+    # 1 - views/lessons/index.html.erb
+    # 2 - views/dashboard/_graybar_left.html.erb
+    # 3 - views/shared/_menu.html.erb
+    # 4 - views/shared/_search.html.erb
+    # 5 - views/search/index.html.erb
     lessons: 'Lessons'
+    # 1 - views/dashboard/_graybar_left.html.erb
+    # 2 - views/shared/_menu.html.erb
+    # 3 - views/shared/_search.html.erb
+    # 4 - views/media_elements/_title_bar.html.erb
+    # 5 - views/search/index.html.erb
     media_elements: 'Elements'
+    # 1 - views/shared/_menu.html.erb
+    # 2 - views/users/statistics.html.erb
+    # 3 - views/users/mailing_lists.html.erb
+    # 4 - views/users/edit.html.erb
+    # 5 - views/users/subjects.html.erb
     profile: 'Profile'
+    # 1 - views/galleries/mixed_for_video_editor.js.erb
+    # 2 - views/video_editor/cutters/_text.html.erb
+    # 3 - views/video_editor/cutters/_image.html.erb
+    # 4 - views/video_editor/_text_component_editor.html.erb
     seconds_shortened: 'Sec'
+    # 1 - views/lessons/index.html.erb
+    # 2 - views/media_elements/_title_bar.html.erb
     show: 'Show'
+    # 1 - views/shared/_menu.html.erb
+    # 2 - views/virtual_classroom/index.html.erb
     virtual_classroom: 'Virtual Classroom'
+    # 1 - views/shared/_logout.html.erb
     welcome: 'Welcome'
   
   
   # SECTION 2.2: audio editor
   audio_editor:
+    # 1 - views/audio_editor/_component.html.erb
     selected_length: 'Selected'
+    # 1 - views/audio_editor/_component.html.erb
     total_length: 'Total length'
     # it is the title of the audio editor
+    # 1 - views/audio_editor/_header.html.erb
     label: 'Edit audio'
     not_available:
+      # 1 - views/audio_editor/not_available.html.erb
       title: 'Audio editor not available'
+      # 1 - views/audio_editor/not_available.html.erb
       description: 'Inserire qui altro testo'
   
   
   # SECTION 2.3: dashboard
   dashboard:
     # the caption of the link to open the contact page
+    # 1 - views/dashboard/index.html.erb
     contact_us: 'Contact us'
     # caption of the link opening the lesson editor
+    # 1 - views/dashboard/_lessons_and_media_elements.html.erb
+    # 2 - views/dashboard/_lessons_and_media_elements.html.erb
     create_new_lesson: 'Create a new lesson'
     # caption of the link opening the lesson editor, containing a prompt for the user (this is used in the specific section of lessons)
+    # 1 - views/dashboard/_lessons_empty.html.erb
     create_new_lesson_now: 'Create a lesson now'
     # caption of the link to download the user manual
+    # 1 - views/dashboard/index.html.erb
     download_manual: 'Download the user manual'
+    # 1 - views/dashboard/_lessons_empty.html.erb
     emptied_lessons: 'You chose all the suggested lessons'
+    # 1 - views/dashboard/_lessons_empty.html.erb
     empty_lessons: 'There are no suggested lessons for you'
+    # 1 - views/dashboard/_media_elements_empty.html.erb
     emptied_media_elements: 'You chose all the suggested elements'
+    # 1 - views/dashboard/_media_elements_empty.html.erb
     empty_media_elements: 'There are no suggested elements for you'
+    # 1 - views/dashboard/index.html.erb
     help_using_desy: 'Need help using %{desy}?'
+    # 1 - views/dashboard/_lessons_and_media_elements.html.erb
     load_new_media_element: 'Load a new element'
+    # 1 - views/dashboard/_media_elements_empty.html.erb
     load_new_media_element_now: 'Load a new element now'
+    # 1 - views/dashboard/_graybar_left.html.erb
     selected_for_you: 'Selected for you'
+    # 1 - views/dashboard/index.html.erb
     talk_with_desy: 'Want to talk with %{desy}?'
   
   
