@@ -569,7 +569,7 @@ en:
     mailer_link_3: "Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):"
     mailer_link_4: 'DESY - Digital Educational System'
 
-    send_lesson_link_explanation: 'Write a list of emails and a message: clicking the button, you will send your contacts an email containing the public link of this lesson'
+
 
     upload_media_element_success: 'The media element has been successfully created'
     user_mailer:
@@ -642,6 +642,12 @@ en:
       confirm: 'If you overwrite it, it will be replaced in any private lesson containing it'
       yes: 'Overwrite'
       no: 'Cancel'
+    send_lesson_link:
+      title:
+      confirm:
+      yes:
+      no:
+    
   
   
   

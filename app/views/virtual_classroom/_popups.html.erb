@@ -1,7 +1,7 @@
 <div class="virtualClassroomQuickSelectPopUp" id="dialog-virtual-classroom-quick-select" style="display:none" data-loaded="false" data-loaded-correctly="true" data-loaded-msg=""></div>
 
 <div class="virtualClassroomSentLessonLinkPopUp" id="dialog-virtual-classroom-send-link" style="display:none;">
-  <h1><%= t('captions.sent_to') %></h1>
+  <h1><%= t('popups.send_lesson_link.title') %></h1>
   
   <%= form_tag '/virtual_classroom/lesson_id/send_link', :remote => true do %>
     <input class="_send_link_form_text_area _emails campoEmail" type="text" value="" name="emails" data-not-yet-selected="true">
@@ -22,7 +22,7 @@
     <br class="clearfloat">
     <p><%= t('captions.select_more_lesson') %></p>
     <div class="boxSelectLesson">
-      <select  id="select_lesson_list">
+      <select id="select_lesson_list">
         <option value="choose">Choose</option>
         <option value="lesson1">lesson1</option>
         <option value="lesson2">lesson2</option>
@@ -31,8 +31,8 @@
   </div>
   <br class="clearfloat">
   <div class="buttonRow">
-    <a class="_yes buttonForm"><%= t('popups.send_lesson_link_yes') %></a>
-    <a class="_no buttonForm"><%= t('popups.cancel') %></a>
+    <a class="_yes buttonForm"><%= t('popups.send_lesson_link.yes') %></a>
+    <a class="_no buttonForm"><%= t('popups.send_lesson_link.no') %></a>
     
   </div>
 </div>
