@@ -47,7 +47,7 @@
       })
       .autocomplete({
         source: function( request, response ) {
-          $.getJSON( "search.php", {
+          $.getJSON( "/mailing_lists/get_emails", {
             term: extractLast( request.term )
           }, response );
         },

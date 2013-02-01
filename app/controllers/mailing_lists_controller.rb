@@ -44,7 +44,7 @@ class MailingListsController < ApplicationController
   end
   
   def get_emails
-    @email = MailingListGroup.joins(:user,:addresses).select(:email).where(user_id: current_user.id)
+    @emails = MailingListGroup.get_emails(current_user.id)
     render :json => @emails
   end
   
