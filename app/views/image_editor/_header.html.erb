@@ -4,14 +4,14 @@
     <div id="image_editor_title" class="testo fltlft">
       <% if (image.nil? || image.is_public) %>
         <span class="_untitled">
-          <%= t('media_elements_editor.new_untitled') %>
+          <%= t('media_elements.editor.new_untitled') %>
         </span>
       <% else %>
         <span class="_titled">
           <%= image.title %>
         </span>
         <span class="_untitled" style="display:none">
-          <%= t('media_elements_editor.new_untitled') %>
+          <%= t('media_elements.editor.new_untitled') %>
         </span>
       <% end %>
     </div>

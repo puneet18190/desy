@@ -1,7 +1,9 @@
 en:
   
-  # TODO controllare links
-  # SECTION 1: error messages that the application uses to interface with the user
+  
+  # PART 1 -- ACCESSORIES
+  
+  # SECTION 1.1: messages inside popups
   flash: # solo per la registrazione
     email_is_blank: 'Email is blank'
     # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
@@ -38,7 +40,6 @@ en:
   activemodel:
     errors:
       messages:
-        # TODO questi sono i messaggi per l'utente (parte 1)
         invalid_email_address: 'does not appear to be a valid email address'
   activerecord:
     ######### IMPORTANTE: questa parte qui sotto appartiene alla stessa sezione di users [metti numero]
@@ -57,7 +58,6 @@ en:
     ########## fino a qui
     errors:
       messages:
-        # TODO questi sono i messaggi per l'utente (parte 2)
         blank: "can't be blank"
         confirmation: "doesn't match confirmation"
         too_short: 'is too short (minimum is %{count} characters)'
@@ -114,7 +114,6 @@ en:
           # there was an error while trying to delete a notification
           problem_destroying: 'The notification could not be deleted'
         user:
-          # TODO questi sono i messaggi per l'utente (parte 3)
           not_a_number: 'must be an integer greater than 0'
           greater_than: 'must be an integer greater than 0'
         virtual_classroom_lesson:
@@ -132,7 +131,213 @@ en:
           problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
   
   
-  # SECTION 2: dashboard
+  # SECTION 1.2: popups con messaggio dentro e due bottoni di scelta
+  popups:
+    publish:
+      confirm: 'Every element contained in it will be automatically shared'
+      title: 'Publish this lesson'
+      do: 'Publish the lesson'
+      cancel: 'Cancel'
+    unpublish:
+      confirm: 'Every person who linked the lesson will lose it'
+      title: 'Unpublish this lesson'
+      do: 'Unpublish the lesson'
+      cancel: 'Cancel'
+    destroy:
+      lesson:
+        confirm: 'Every person who linked the lesson will lose it'
+        title: 'Delete this lesson'
+        do: 'Delete the lesson'
+        cancel: 'Cancel'
+      media_element:
+        confirm: 'It will be deleted in each of its instances in your lessons'
+        title: 'Delete this element?'
+        do: 'Delete the element'
+        cancel: 'Cancel'
+    after_copy:
+      title: 'You copied the lesson!'
+      confirm: 'What would you like to do now?'
+      stay_in_page: 'Stay in this page'
+      go_to_editor: 'Edit the lesson now'
+    restore_cache_media_element_editor:
+      message: 'A previous working session was closed unexpectedly!'
+      do: 'Restore'
+      cancel: 'Clear'
+    exit_video_editor:
+      title: 'Leaving the video editor'
+      confirm: 'Are you sure you want to leave?'
+      do: 'Yes'
+      cancel: 'Stay on the page'
+    save_media_element_editor:
+      title: 'Saving a private element'
+      confirm: 'Since the element you modified is private, you can overwrite it'
+      do: 'Overwrite'
+      cancel: 'Save as new element'
+    overwrite_media_element_editor:
+      title: 'This element is in use!'
+      confirm: 'If you overwrite it, it will be replaced in any private lesson containing it'
+      do: 'Overwrite'
+      cancel: 'Cancel'
+    send_lesson_link:
+      title: 'Send a link to your friends'
+      confirm: 'Descrizione di send link bla bla bla bla bla bla bla bla'
+      do: 'Send'
+      cancel: 'Cancel'
+  
+  
+  # SECTION 1.3: mailer
+  mailer:
+    account_confirmation:
+      subject: '%{desy} - Account confirmation'
+      message: '<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br>When the registration will be confirmed, the link will not be valid anymore.<br>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br><p>N.B.</p><p>The confirmation of the account can be done just one time.</p>'
+    reset_password:
+      subject: '%{desy} - New password'
+      message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password at your choice once logged in, in the 'Profile' section.</p>"
+    see_my_lesson: 
+      subject: '%{desy} - Lesson link'
+      message: "<p>The user %{name} thinks that you might be interested in a lesson in %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):</p></br>"
+  
+  
+  # SECTION 1.4: standard forms
+  forms:
+    # new empty lesson form
+    new_lesson:
+      title: 'You are creating a new lesson'
+      description: 'Enter all the details in the form below'
+      cancel: 'Cancel'
+      done: 'Next'
+    # edit lesson form
+    update_lesson:
+      title: 'Are you making significant changes?'
+      description: "Update here the lesson's info according to its new content"
+      cancel: 'Cancel'
+      done: 'Update'
+    # upload element form
+    upload_media_element:
+      title: 'Upload a media element'
+      description: 'Select a file clicking on the button on the left'
+      cancel: 'Cancel'
+      done: 'Upload'
+    # change info media element form
+    change_info_media_element:
+      title: "Element's information"
+      description: 'Fill the form below to modify data'
+      cancel: 'Cancel'
+      done: 'Save'
+    # new media element in editor form
+    new_media_element_in_editor:
+      title: 'You are creating a new element'
+      description: 'Enter all the details in the form below'
+      cancel: 'Cancel'
+      done: 'Save'
+    # overwrite media element in editor form
+    overwrite_media_element_in_editor:
+      title: 'Have you made significant changes?'
+      description: "Update here the element's info according to its new content"
+      cancel: 'Cancel'
+      done: 'Update'
+    error_captions:
+      # this is the standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
+      fill_all_the_fields_or_too_long: 'Fill in all the fields without exceeding the max length'
+      # this is when you don't write the minimum amount of tags
+      tags_are_not_enough: 'Not enough tags'
+      # this is when you didn't select a file to be loaded
+      media_blank: 'No file loaded'
+      # you tried to upload an attachment whose format is not supported
+      media_unsupported_format: 'Format not supported'
+      # you tried to upload a file whose name contained an invalid character
+      media_invalid_filename: "File's name contains invalid characters"
+      # you tried to upload a file which was damaged or invalid
+      media_generic_error: 'Invalid or damaged file'
+      # you didn't choose a subject for your lesson
+      subject_missing_in_lesson: 'Choose a subject'
+    placeholders:
+      description: 'Description (max %{num} characters)'
+      media: 'Select a file to load'
+      subject_id: 'Select a subject'
+      tags: 'Insert a minimum of %{items} tags (max %{num} characters each)'
+      title: 'Title (max %{num} characters)'
+  
+  
+  # SECTION 1.5: titles
+  titles:
+    buttons:
+      add: 'follow this item in your own section'
+      add_virtual_classroom: 'add lesson to virtual classroom'
+      copy: 'create your own copy of the lesson'
+      destroy: 'cancel this item'
+      dislike: 'click to cancel your like'
+      edit: 'edit this item'
+      like: 'like this lesson'
+      preview: 'open the preview'
+      publish: 'publish your lesson'
+      remove: 'stop following this item'
+      remove_virtual_classroom: 'click remove lesson from virtual classroom'
+      unpublish: 'click to unpublish your lesson'
+    add_element: 'add element'
+    add_slides: 'add slide'
+    add_new_audio: 'add new audio'
+    add_text: 'add text'
+    audio_new: 'new audio'
+    back_in_slides: 'back'
+    change_information_slides: 'change information slides'
+    close_gallery: 'close gallery'
+    close: 'close'
+    crop_element: 'crop element'
+    delete_slides: 'delete slide'
+    exit: 'exit'
+    forward_in_slides: 'forward'
+    fullscreen: 'fullscreen'
+    go_to_video_gallery: 'go to video gallery'
+    go_to_photo_gallery: 'go to photo gallery'
+    go_to_insert_text: 'insert new text'
+    header_notification: 'notice'
+    header_help_for_me: 'help for me'
+    info: 'item information'
+    pause: 'pause'
+    photo_new: 'new photo'
+    play: 'play'
+    refine_the_search: 'refine the search'
+    remove_element: 'remove element'
+    reports: 'reports'
+    save_slides: 'save slide'
+    save_element: 'save element'
+    search: 'search'
+    select_element: 'select new element'
+    video_new: 'new video'
+  
+  
+  
+  # PART 2 -- LABELS AND CAPTIONS
+  
+  # SECTION 2.1: general captions
+  captions:
+    # used in the general footer of the application, to redirect to the main page
+    back_to_dashboard: 'Back to dashboard'
+    description: 'Description'
+    dont_support_video: 'Your browser does not support the video tag'
+    dont_support_audio: 'Your browser does not support the audio tag'
+    lessons: 'Lessons'
+    media_elements: 'Elements'
+    profile: 'Profile'
+    seconds_shortened: 'Sec'
+    show: 'Show'
+    virtual_classroom: 'Virtual Classroom'
+    welcome: 'Welcome'
+  
+  
+  # SECTION 2.2: audio editor
+  audio_editor:
+    selected_length: 'Selected'
+    total_length: 'Total length'
+    # it is the title of the audio editor
+    label: 'Edit audio'
+    not_available:
+      title: 'Audio editor not available'
+      description: 'Inserire qui altro testo'
+  
+  
+  # SECTION 2.3: dashboard
   dashboard:
     # the caption of the link to open the contact page
     contact_us: 'Contact us'
@@ -153,7 +358,56 @@ en:
     talk_with_desy: 'Want to talk with %{desy}?'
   
   
-  # SECTION 3: lessons
+  # SECTION 2.4: galleries
+  galleries:
+    audios:
+      select: 'Select audio'
+    images:
+      original_size: 'Original size'
+      select: 'Select image'
+    videos:
+      select: 'Select video'
+  
+  
+  # SECTION 2.5: image_editor
+  image_editor:
+    crop:
+      cancel: 'Cancel'
+      done: 'Crop'
+      instructions: 'Drag on the image to make a selection'
+    left_column:
+      title: 'What to do?'
+      description: 'Select the scissors to cut the image'
+    label: 'Edit image'
+    original_size: 'Original image size'
+    select_an_action: 'Select an action'
+    # to save a group of texts above the image
+    text:
+      cancel: 'Cancel'
+      done: 'Done'
+      instructions: 'Click on the image to add text'
+      sample_letter: 'A'
+    undo: 'Undo'
+  
+  
+  # SECTION 2.6: lesson_editor
+  lesson_editor:
+    # empty space to add an audio
+    choose_audio: 'Click here to add an audio'
+    # empty space to add an image
+    choose_image: 'Click here to add an image'
+    # empty space to add a video
+    choose_video: 'Click here to add a video'
+    not_available:
+      title: 'Lesson editor not available for this lesson'
+      description: 'Inserire altro testo qui'
+    placeholders:
+      image_caption: 'Write a caption'
+      text: 'Write a text here'
+      title: 'Enter title'
+  
+  
+  # SECTION 2.7: lessons
   lessons:
     # the caption used to indicate the name if the author of the lesson
     author: 'Author'
@@ -170,21 +424,76 @@ en:
     users_like_this: 'Users like this lesson'
   
   
-  # SECTION 4: audio editor
-  audio_editor:
-    selected_length: 'Selected'
-    total_length: 'Total length'
-    # it is the title of the audio editor
-    label: 'Edit audio'
-    not_available:
-      title: 'Audio editor not available'
-      description: 'Inserire qui altro testo'
+  # SECTION 2.8: lesson_viewer
+  lesson_viewer:
+    # this is used in the playlist: it's the caption of the button which closes the playlist's navigational bar
+    close_playlist_bar: 'Close playlist bar'
+    open_playlist_bar: 'Open playlist bar'
   
   
+  # SECTION 2.9: media_elements
+  media_elements:
+    display: 'Display'
+    # choose between size display (compact or extended mode)
+    display_mode:
+      title: 'Display mode'
+      large: 'Large'
+      small: 'Small'
+    editor:
+      enjoy: 'Enjoy!'
+      new_untitled: 'New element - untitled'
+      title: "Welcome to %{desy}'s element editor!"
+      description: 'Want to create a new educational element? Choose the type of the new element'
+    empty: 'You have no elements in your section, load one'
+    empty_filter: 'The element filter produced no result'
+    load_new: 'Load a new element'
+    load_new_now: 'Load a new element now'
+    # link to the general main page of elements editor (you can choose among image, audio and video editor)
+    menu_link: 'Elements editor'
+  
+  
+  # SECTION 2.10: notifications
+  notifications:
+    empty: "You don't have any notifications"
+    lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
+    lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
+    sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
+    video_in_conversion_warning: 'The video and the lessons related to it will be temporary unavailable until the conversion will finish'
+    audio_in_conversion_warning: 'The audio and the lessons related to it will be temporary unavailable until the conversion will finish'
+    public_lesson_changed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', believes that you might be interested in his lesson's update.<br/><br/><a href=\"%{link}\">Check it out</a><br/><br/><i>\"%{message}\"</i>"
+  
+  
+  # SECTION 2.11: pagine di prelogin
+  prelogin:
+    contact_us:
+      menu_link: 'Contact us'
+      title: 'Contact us!'
+      description: 'Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts'
+    main_page:
+      menu_link: 'Home'
+      title: 'A new way of teaching'
+      description: "<b>DESY</b> is the new platform dedicated to the world of education. With <b>DESY</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>DESY</b> we guarantee high quality and care for details</i>."
+      video: 'Watch the video'
+    sign_up:
+      menu_link: 'Sign up'
+    what_is_desy:
+      menu_link: 'What is DESY?'
+      title: 'What is DESY?'
+      subtitle: 'Find out the benefits of DESY'
+      description: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
+      right_column_title: 'Watch demo'
+      right_column: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
+  
+  
+  # SECTION 2.12: reports
   reports:
     title: 'Report abuse'
     decription: 'Do you think that this item is offensive?'
     placeholder: 'Write the reason for your report. Thank you for your cooperation!'
+  
+  
+  
+  
   
   
   search:
@@ -232,80 +541,24 @@ en:
   
 
   
-  image_editor:
-    crop:
-      cancel: 'Cancel'
-      done: 'Crop'
-      instructions: 'Drag on the image to make a selection'
-    left_column:
-      title: 'What to do?'
-      description: 'Select the scissors to cut the image'
-    label: 'Edit image'
-    original_size: 'Original image size'
-    select_an_action: 'Select an action'
-    # to save a group of texts above the image
-    text:
-      cancel: 'Cancel'
-      done: 'Done'
-      instructions: 'Click on the image to add text'
-      sample_letter: 'A'
-    undo: 'Undo'
+
   
   
-  media_elements_editor:
-    enjoy: 'Enjoy!'
-    new_untitled: 'New element - untitled'
-    title: "Welcome to %{desy}'s element editor!"
-    description: 'Want to create a new educational element? Choose the type of the new element'
   
   
-  lesson_editor:
-    # empty space to add an audio
-    choose_audio: 'Click here to add an audio'
-    # empty space to add an image
-    choose_image: 'Click here to add an image'
-    # empty space to add a video
-    choose_video: 'Click here to add a video'
-    not_available:
-      title: 'Lesson editor not available for this lesson'
-      description: 'Inserire altro testo qui'
-    placeholders:
-      image_caption: 'Write a caption'
-      text: 'Write a text here'
-      title: 'Enter title'
   
   
-  lesson_viewer:
-    # this is used in the playlist: it's the caption of the button which closes the playlist's navigational bar
-    close_playlist_bar: 'Close playlist bar'
-    open_playlist_bar: 'Open playlist bar'
+  
+  
+
         
     
   
   
-  galleries:
-    audios:
-      select: 'Select audio'
-    images:
-      original_size: 'Original size'
-      select: 'Select image'
-    videos:
-      select: 'Select video'
+
   
   
-  media_elements:
-    display: 'Display'
-    # choose between size display (compact or extended mode)
-    display_mode:
-      title: 'Display mode'
-      large: 'Large'
-      small: 'Small'
-    empty: 'You have no elements in your section, load one'
-    empty_filter: 'The element filter produced no result'
-    load_new: 'Load a new element'
-    load_new_now: 'Load a new element now'
-    # link to the general main page of elements editor (you can choose among image, audio and video editor)
-    menu_link: 'Elements editor'
+
   
   
   registration:
@@ -332,14 +585,7 @@ en:
   
   
   
-  notifications:
-    empty: "You don't have any notifications"
-    lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
-    lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
-    sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
-    video_in_conversion_warning: 'The video and the lessons related to it will be temporary unavailable until the conversion will finish'
-    audio_in_conversion_warning: 'The audio and the lessons related to it will be temporary unavailable until the conversion will finish'
-    public_lesson_changed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', believes that you might be interested in his lesson's update.<br/><br/><a href=\"%{link}\">Check it out</a><br/><br/><i>\"%{message}\"</i>"
+
   
   
   
@@ -456,225 +702,9 @@ en:
         placeholder: 'no mailing list'
 
 
-  captions:
-    # used in the general footer of the application, to redirect to the main page
-    back_to_dashboard: 'Back to dashboard'
-    description: 'Description'
-    dont_support_video: 'Your browser does not support the video tag'
-    dont_support_audio: 'Your browser does not support the audio tag'
-    lessons: 'Lessons'
-    media_elements: 'Elements'
-    profile: 'Profile'
-    seconds_shortened: 'Sec'
-    show: 'Show'
-    virtual_classroom: 'Virtual Classroom'
-    welcome: 'Welcome'
-  
-  
-  mailer:
-    account_confirmation:
-      subject: '%{desy} - Account confirmation'
-      message: '<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br>When the registration will be confirmed, the link will not be valid anymore.<br>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br><p>N.B.</p><p>The confirmation of the account can be done just one time.</p>'
-    reset_password:
-      subject: '%{desy} - New password'
-      message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password at your choice once logged in, in the 'Profile' section.</p>"
-    see_my_lesson: 
-      subject: '%{desy} - Lesson link'
-      message: "<p>The user %{name} thinks that you might be interested in a lesson in %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):</p></br>"
-  
-  
-  
-  # SECTION 3: captions e titoli per i form generici -- error messages inside HTML forms (i.e. wrong name, surname, title, description, etc.)
-  forms:
-    # new empty lesson form
-    new_lesson:
-      title: 'You are creating a new lesson'
-      description: 'Enter all the details in the form below'
-      cancel: 'Cancel'
-      done: 'Next'
-    # edit lesson form
-    update_lesson:
-      title: 'Are you making significant changes?'
-      description: "Update here the lesson's info according to its new content"
-      cancel: 'Cancel'
-      done: 'Update'
-    # upload element form
-    upload_media_element:
-      title: 'Upload a media element'
-      description: 'Select a file clicking on the button on the left'
-      cancel: 'Cancel'
-      done: 'Upload'
-    # change info media element form
-    change_info_media_element:
-      title: "Element's information"
-      description: 'Fill the form below to modify data'
-      cancel: 'Cancel'
-      done: 'Save'
-    # new media element in editor form
-    new_media_element_in_editor:
-      title: 'You are creating a new element'
-      description: 'Enter all the details in the form below'
-      cancel: 'Cancel'
-      done: 'Save'
-    # overwrite media element in editor form
-    overwrite_media_element_in_editor:
-      title: 'Have you made significant changes?'
-      description: "Update here the element's info according to its new content"
-      cancel: 'Cancel'
-      done: 'Update'
-    error_captions:
-      # this is the standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
-      fill_all_the_fields_or_too_long: 'Fill in all the fields without exceeding the max length'
-      # this is when you don't write the minimum amount of tags
-      tags_are_not_enough: 'Not enough tags'
-      # this is when you didn't select a file to be loaded
-      media_blank: 'No file loaded'
-      # you tried to upload an attachment whose format is not supported
-      media_unsupported_format: 'Format not supported'
-      # you tried to upload a file whose name contained an invalid character
-      media_invalid_filename: "File's name contains invalid characters"
-      # you tried to upload a file which was damaged or invalid
-      media_generic_error: 'Invalid or damaged file'
-      # you didn't choose a subject for your lesson
-      subject_missing_in_lesson: 'Choose a subject'
-    placeholders:
-      description: 'Description (max %{num} characters)'
-      media: 'Select a file to load'
-      subject_id: 'Select a subject'
-      tags: 'Insert a minimum of %{items} tags (max %{num} characters each)'
-      title: 'Title (max %{num} characters)'
-  
-  
-  # SECTION 4: pagine di prelogin
-  prelogin:
-    contact_us:
-      menu_link: 'Contact us'
-      title: 'Contact us!'
-      description: 'Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts'
-    main_page:
-      menu_link: 'Home'
-      title: 'A new way of teaching'
-      description: "<b>DESY</b> is the new platform dedicated to the world of education. With <b>DESY</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>DESY</b> we guarantee high quality and care for details</i>."
-      video: 'Watch the video'
-    sign_up:
-      menu_link: 'Sign up'
-    what_is_desy:
-      menu_link: 'What is DESY?'
-      title: 'What is DESY?'
-      subtitle: 'Find out the benefits of DESY'
-      description: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
-      right_column_title: 'Watch demo'
-      right_column: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
-      
-  
-  
 
- 
- 
-  # ok = messaggio di successo, yes = caption confermo, no = caption non confermo, confirm = messaggio di conferma, error = messaggio di errore, title = titolo messaggio di conferma
-  popups:
-    publish:
-      confirm: 'Every element contained in it will be automatically shared'
-      title: 'Publish this lesson'
-      do: 'Publish the lesson'
-      cancel: 'Cancel'
-    unpublish:
-      confirm: 'Every person who linked the lesson will lose it'
-      title: 'Unpublish this lesson'
-      do: 'Unpublish the lesson'
-      cancel: 'Cancel'
-    destroy:
-      lesson:
-        confirm: 'Every person who linked the lesson will lose it'
-        title: 'Delete this lesson'
-        do: 'Delete the lesson'
-        cancel: 'Cancel'
-      media_element:
-        confirm: 'It will be deleted in each of its instances in your lessons'
-        title: 'Delete this element?'
-        do: 'Delete the element'
-        cancel: 'Cancel'
-    after_copy:
-      title: 'You copied the lesson!'
-      confirm: 'What would you like to do now?'
-      stay_in_page: 'Stay in this page'
-      go_to_editor: 'Edit the lesson now'
-    restore_cache_media_element_editor:
-      message: 'A previous working session was closed unexpectedly!'
-      do: 'Restore'
-      cancel: 'Clear'
-    exit_video_editor:
-      title: 'Leaving the video editor'
-      confirm: 'Are you sure you want to leave?'
-      do: 'Yes'
-      cancel: 'Stay on the page'
-    save_media_element_editor:
-      title: 'Saving a private element'
-      confirm: 'Since the element you modified is private, you can overwrite it'
-      do: 'Overwrite'
-      cancel: 'Save as new element'
-    overwrite_media_element_editor:
-      title: 'This element is in use!'
-      confirm: 'If you overwrite it, it will be replaced in any private lesson containing it'
-      do: 'Overwrite'
-      cancel: 'Cancel'
-    send_lesson_link:
-      title: 'Send a link to your friends'
-      confirm: 'Descrizione di send link bla bla bla bla bla bla bla bla'
-      do: 'Send'
-      cancel: 'Cancel'
-    
   
   
-  
-  
-  
-  
-  titles:
-    buttons:
-      add: 'follow this item in your own section'
-      add_virtual_classroom: 'add lesson to virtual classroom'
-      copy: 'create your own copy of the lesson'
-      destroy: 'cancel this item'
-      dislike: 'click to cancel your like'
-      edit: 'edit this item'
-      like: 'like this lesson'
-      preview: 'open the preview'
-      publish: 'publish your lesson'
-      remove: 'stop following this item'
-      remove_virtual_classroom: 'click remove lesson from virtual classroom'
-      unpublish: 'click to unpublish your lesson'
-    add_element_title: 'add element'
-    add_slides_title: 'add slide'
-    add_new_audio: 'add new audio'
-    add_text_title: 'add text'
-    audio_new_title: 'new audio'
-    back_in_slides: 'back'
-    change_information_slides: 'change information slides'
-    close_gallery_title: 'close gallery'
-    close_title: 'close'
-    crop_element_title: 'crop element'
-    delete_slides_title: 'delete slide'
-    exit_title: 'exit'
-    forward_in_slides: 'forward'
-    fullscreen_title: 'fullscreen'
-    go_to_video_gallery: 'go to video gallery'
-    go_to_photo_gallery: 'go to photo gallery'
-    go_to_insert_text: 'insert new text'
-    header_notification: 'notice'
-    header_help_for_me: 'help for me'
-    info_title: 'item information'
-    pause_title: 'pause'
-    photo_new_title: 'new photo'
-    play_title: 'play'
-    refine_the_search: 'refine the search'
-    remove_element_title: 'remove element'
-    reports_title: 'reports'
-    save_slides_title: 'save slide'
-    save_element_title: 'save element'
-    search: 'search'
-    select_element_title: 'select new element'
-    video_new_title: 'new video'
   
   
   

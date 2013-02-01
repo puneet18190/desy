@@ -3,9 +3,9 @@
     <h1 class="fltlft upper"><%= t("video_editor.label") %></h1>
     <div id="video_editor_title" class="testo fltlft">
       <% if parameters[:initial_video].nil? %>
-        <span class="_untitled"><%= t('media_elements_editor.new_untitled') %></span>
+        <span class="_untitled"><%= t('media_elements.editor.new_untitled') %></span>
       <% else %>
-        <span class="_untitled" style="display:none"><%= t('media_elements_editor.new_untitled') %></span>
+        <span class="_untitled" style="display:none"><%= t('media_elements.editor.new_untitled') %></span>
         <span class="_titled"><%= parameters[:initial_video].title %></span>
       <% end %>
     </div>
