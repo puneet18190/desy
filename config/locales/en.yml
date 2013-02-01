@@ -239,54 +239,93 @@ en:
   # SECTION 1.2: popups con messaggio dentro e due bottoni di scelta
   popups:
     publish:
+      # 1 - views/shared/_popups.html.erb
       confirm: 'Every element contained in it will be automatically shared'
+      # 1 - views/shared/_popups.html.erb
       title: 'Publish this lesson'
+      # 1 - views/shared/_popups.html.erb
       do: 'Publish the lesson'
+      # 1 - views/shared/_popups.html.erb
       cancel: 'Cancel'
     unpublish:
+      # 1 - views/shared/_popups.html.erb
       confirm: 'Every person who linked the lesson will lose it'
+      # 1 - views/shared/_popups.html.erb
       title: 'Unpublish this lesson'
+      # 1 - views/shared/_popups.html.erb
       do: 'Unpublish the lesson'
+      # 1 - views/shared/_popups.html.erb
       cancel: 'Cancel'
     destroy:
       lesson:
+        # 1 - views/shared/_popups.html.erb
         confirm: 'Every person who linked the lesson will lose it'
+        # 1 - views/shared/_popups.html.erb
         title: 'Delete this lesson'
+        # 1 - views/shared/_popups.html.erb
         do: 'Delete the lesson'
+        # 1 - views/shared/_popups.html.erb
         cancel: 'Cancel'
       media_element:
+        # 1 - views/shared/_popups.html.erb
         confirm: 'It will be deleted in each of its instances in your lessons'
+        # 1 - views/shared/_popups.html.erb
         title: 'Delete this element?'
+        # 1 - views/shared/_popups.html.erb
         do: 'Delete the element'
+        # 1 - views/shared/_popups.html.erb
         cancel: 'Cancel'
     after_copy:
+      # 1 - views/lessons/copy.js.erb
       title: 'You copied the lesson!'
+      # 1 - views/lessons/copy.js.erb
       confirm: 'What would you like to do now?'
+      # 1 - views/lessons/copy.js.erb
       stay_in_page: 'Stay in this page'
+      # 1 - views/lessons/copy.js.erb
       go_to_editor: 'Edit the lesson now'
     restore_cache_media_element_editor:
+      # 1 - views/shared/_popups.html.erb
       message: 'A previous working session was closed unexpectedly!'
+      # 1 - views/shared/_popups.html.erb
       do: 'Restore'
+      # 1 - views/shared/_popups.html.erb
       cancel: 'Clear'
     exit_video_editor:
+      # 1 - views/shared/_popups.html.erb
       title: 'Leaving the video editor'
+      # 1 - views/shared/_popups.html.erb
       confirm: 'Are you sure you want to leave?'
+      # 1 - views/shared/_popups.html.erb
       do: 'Yes'
+      # 1 - views/shared/_popups.html.erb
       cancel: 'Stay on the page'
     save_media_element_editor:
+      # 1 - views/shared/_popups.html.erb
       title: 'Saving a private element'
+      # 1 - views/shared/_popups.html.erb
       confirm: 'Since the element you modified is private, you can overwrite it'
+      # 1 - views/shared/_popups.html.erb
       do: 'Overwrite'
+      # 1 - views/shared/_popups.html.erb
       cancel: 'Save as new element'
     overwrite_media_element_editor:
+      # 1 - views/shared/_popups.html.erb
       title: 'This element is in use!'
+      # 1 - views/shared/_popups.html.erb
       confirm: 'If you overwrite it, it will be replaced in any private lesson containing it'
+      # 1 - views/shared/_popups.html.erb
       do: 'Overwrite'
+      # 1 - views/shared/_popups.html.erb
       cancel: 'Cancel'
     send_lesson_link:
+      # 1 - views/virtual_classroom/_popups.html.erb
       title: 'Send a link to your friends'
+      # 1 - views/virtual_classroom/_popups.html.erb
       confirm: 'Descrizione di send link bla bla bla bla bla bla bla bla'
+      # 1 - views/virtual_classroom/_popups.html.erb
       do: 'Send'
+      # 1 - views/virtual_classroom/_popups.html.erb
       cancel: 'Cancel'
   
   
