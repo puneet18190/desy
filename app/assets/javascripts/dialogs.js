@@ -36,6 +36,30 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
   }
 }
 
+function showLessonNotificationPopUp(lesson_id) {
+  var obj = $('#lesson-notification');
+  $('#lesson-notification form').attr('action', ('/lessons/' + lesson_id + '/send_notification'));
+  var html_cover_content = $('._lesson_thumb._lesson_' + lesson_id).html();
+  $('._lesson_notification_cover').html(html_cover_content);
+  if(obj.data('dialog')) {
+    obj.dialog('open');
+    //initializeBlurTextFieldsSendLessonLink();
+  } else {
+    obj.show();
+    obj.dialog({
+      modal: true,
+      resizable: false,
+      draggable: false,
+      width: 690,
+      height: 435,
+      show: "fade",
+      open: function() {
+        //initializeBlurTextFieldsSendLessonLink();
+      }
+    });
+  }
+}
+
 function showSendLessonLinkPopUp(lesson_id) {
   var obj = $('#dialog-virtual-classroom-send-link');
   $('#dialog-virtual-classroom-send-link form').attr('action', ('/virtual_classroom/' + lesson_id + '/send_link'));
