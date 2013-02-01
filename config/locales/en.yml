@@ -3,12 +3,30 @@ en:
   # TODO controllare links
   # SECTION 1: error messages that the application uses to interface with the user
   other_popup_messages:
+    correct:
+      add:
+        lesson: 'Now you have a link of this lesson'
+        media_element: 'Now you can use this media element'
+      publish: 'The lesson has been published'
+      remove:
+        lesson: 'You removed the link of this lesson'
+        media_element: 'You removed this media element'
+      unpublish: 'The lesson has been unpublished'
     login:
       missing_fields: 'Insert username and password'
       wrong_content: 'Wrong login data'
     reports:
       ok: 'The report was sent successfully'
       problem: 'Your report could not be sent'
+    send_lesson_link:
+      ok: 'Link sent successfully!'
+      error: 'Link not sent: did you fill all the fields and write correct emails?'
+    video_editor:
+      empty_text_component: 'Insert a text'
+      invalid_component_duration: 'You inserted a wrong duration, it must be a number greater than 0'
+    virtual_classroom_lessons:
+      loaded_ok: 'Correctly loaded your lessons!'
+      loaded_error: 'There was a problem, #number of your lessons were not loaded'
   activemodel:
     errors:
       messages:
@@ -205,8 +223,12 @@ en:
   
   
   video_editor:
-    image_components:
-      time: 'Time'
+    components:
+      image:
+        time: 'Time'
+      text:
+        insert: 'Insert text'
+      video:
     label: 'Edit video'
     not_available:
       title: 'Video editor not available'
@@ -382,16 +404,12 @@ en:
     add_new_group: 'Add new group'
     # used in the Virtual Classroom, to pick different lessons to be added
     add_new_lesson: 'Add lessons'
-
     # this is the description associated to the 'add audio track' button inside video editor
     audio_track_in_video_editor: 'You can upload an audio track: this will cover the original audio of all the chosen components'
     # this is used in the video editor, to choose a background color for a 'title' component
     background_color: 'Background color'
-    # used in the general footer of the application, to redirect to the main page
-    back_to_dashboard: 'Back to dashboard'
     # only used inside the general information tables: it represents the option to reset all the fields and close the window
     cancel: 'Cancel'
-
     # the caption of the link to the dashboard (DESY's main page)
     dashboard: 'Dashboard'
     # this is what the acronym 'DESY' stands for
@@ -407,8 +425,6 @@ en:
     # this is the title of the login form
     insert: 'Insert'
     insert_emails_here: 'Insert emails separated by comma'
-
-    insert_text: 'Insert text'
     new_time: 'New time'
     password: 'Password'
     password_resetted_successfully: 'Password resetted successfully'
@@ -419,7 +435,6 @@ en:
     remove: 'Remove'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     save: 'Save'
-
     select_mailing_list: 'or select mailing list'
     select_more_lesson: 'Select more lesson'
     selected: 'Selected'
@@ -428,7 +443,6 @@ en:
     send_link_to_your_friends: 'Send a link to your friends'
     sent_to: 'Send to'
     slide_not_deleted: "This slide can't be deleted"
-
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
     text_color: 'Text color'
@@ -439,25 +453,26 @@ en:
     update_successful: 'Update successful'
     upload: 'Upload'
     upload_completed: 'Upload completed!'
-    virtual_classroom: 'Virtual classroom'
-  
-
     welcome: 'Welcome'
-
     why_sign_up: 'Why to sign up?'
     write_a_message: 'Write a message'
-    your_browser_does_not_support_video: 'Your browser does not support the video tag'
-    your_browser_does_not_support_audio: 'Your browser does not support the audio tag'
     your_virtual_classroom_is_empty: 'Your Virtual Classroom is empty'
     
     
+    
+    
     # già trovate che vanno sharate in captions
+    # used in the general footer of the application, to redirect to the main page
+    back_to_dashboard: 'Back to dashboard'
     description: 'Description'
+    dont_support_video: 'Your browser does not support the video tag'
+    dont_support_audio: 'Your browser does not support the audio tag'
     lessons: 'Lessons'
     media_elements: 'Elements'
     profile: 'Profile'
     seconds_shortened: 'Sec'
     show: 'Show'
+    virtual_classroom: 'Virtual Classroom'
     
     
     
@@ -577,75 +592,76 @@ en:
     playlist: 'Your playlist is empty'
  
  
- 
-  popups: # ok = messaggio di successo, yes = caption confermo, no = caption non confermo, confirm = messaggio di conferma, error = messaggio di errore, title = titolo messaggio di conferma
-    publish_confirm: 'Every element contained in it will be automatically shared'
-    publish_title: 'Publish this lesson'
-    publish_yes: 'Publish the lesson'
-    publish_no: 'Cancel'
-    publish_ok: 'The lesson has been published'
-    unpublish_confirm: 'Every person who linked the lesson will lose it'
-    unpublish_title: 'Unpublish this lesson'
-    unpublish_yes: 'Unpublish the lesson'
-    unpublish_no: 'Cancel'
-    unpublish_ok: 'The lesson has been unpublished'
-    destroy_lesson_confirm: 'Every person who linked the lesson will lose it'
-    destroy_lesson_title: 'Delete this lesson'
-    destroy_lesson_yes: 'Delete the lesson'
-    destroy_lesson_no: 'Cancel'
-    destroy_media_element_confirm: 'It will be deleted in each of its instances in your lessons'
-    destroy_media_element_title: 'Delete this element?'
-    destroy_media_element_yes: 'Delete the element'
-    destroy_media_element_no: 'Cancel'
-    add_lesson_ok: 'Now you have a link of this lesson'
-    add_media_element_ok: 'Now you can use this media element'
-    remove_lesson_ok: 'You removed the link of this lesson'
-    remove_media_element_ok: 'You removed this media element'
-    after_copy_title: 'You copied the lesson!'
-    after_copy_confirm: 'What would you like to do now?'
-    after_copy_stay_in_page: 'Stay in this page'
-    after_copy_go_to_editor: 'Edit the lesson now'
-    send_lesson_link_yes: 'Send'
-    send_lesson_link_no: 'Or cancel'
-    send_lesson_link_ok: 'Link sent successfully!'
-    send_lesson_link_error: 'Link not sent: did you fill all the fields and write correct emails?'
-    virtual_classroom_lessons_loaded_ok: 'Correctly loaded your lessons!'
-    virtual_classroom_lessons_loaded_error: 'There was a problem, #number of your lessons were not loaded'
-    invalid_component_duration_in_video_editor: 'You inserted a wrong duration, it must be a number greater than 0'
-    empty_text_component_in_video_editor: 'Insert a text'
-    restore_cache_media_element_editor_message: 'A previous working session was closed unexpectedly!'
-    restore_cache_media_element_editor_yes: 'Restore'
-    restore_cache_media_element_editor_no: 'Clear'
-    exit_video_editor_title: 'Leaving the video editor'
-    exit_video_editor_confirm: 'Are you sure you want to leave?'
-    exit_video_editor_yes: 'Yes'
-    exit_video_editor_no: 'Stay on the page'
-    save_media_element_editor_title: 'Saving a private element'
-    save_media_element_editor_confirm: 'Since the element you modified is private, you can overwrite it'
-    save_media_element_editor_yes: 'Overwrite'
-    save_media_element_editor_no: 'Save as new element'
-    overwrite_media_element_editor_title: 'This element is in use!'
-    overwrite_media_element_editor_confirm: 'If you overwrite it, it will be replaced in any private lesson containing it'
-    overwrite_media_element_editor_yes: 'Overwrite'
-    overwrite_media_element_editor_no: 'Cancel'
+  # ok = messaggio di successo, yes = caption confermo, no = caption non confermo, confirm = messaggio di conferma, error = messaggio di errore, title = titolo messaggio di conferma
+  popups:
+    publish:
+      confirm: 'Every element contained in it will be automatically shared'
+      title: 'Publish this lesson'
+      yes: 'Publish the lesson'
+      no: 'Cancel'
+    unpublish:
+      confirm: 'Every person who linked the lesson will lose it'
+      title: 'Unpublish this lesson'
+      yes: 'Unpublish the lesson'
+      no: 'Cancel'
+    destroy:
+      lesson:
+        confirm: 'Every person who linked the lesson will lose it'
+        title: 'Delete this lesson'
+        yes: 'Delete the lesson'
+        no: 'Cancel'
+      media_element:
+        confirm: 'It will be deleted in each of its instances in your lessons'
+        title: 'Delete this element?'
+        yes: 'Delete the element'
+        no: 'Cancel'
+    after_copy:
+      title: 'You copied the lesson!'
+      confirm: 'What would you like to do now?'
+      stay_in_page: 'Stay in this page'
+      go_to_editor: 'Edit the lesson now'
+    send_lesson_link:
+      yes: 'Send'
+      no: 'Or cancel'
+    restore_cache_media_element_editor:
+      message: 'A previous working session was closed unexpectedly!'
+      yes: 'Restore'
+      no: 'Clear'
+    exit_video_editor:
+      title: 'Leaving the video editor'
+      confirm: 'Are you sure you want to leave?'
+      yes: 'Yes'
+      no: 'Stay on the page'
+    save_media_element_editor:
+      title: 'Saving a private element'
+      confirm: 'Since the element you modified is private, you can overwrite it'
+      yes: 'Overwrite'
+      no: 'Save as new element'
+    overwrite_media_element_editor:
+      title: 'This element is in use!'
+      confirm: 'If you overwrite it, it will be replaced in any private lesson containing it'
+      yes: 'Overwrite'
+      no: 'Cancel'
   
   
-  # TODO vanno accorpati
-  buttons:
-    add: 'follow this item in your own section'
-    add_virtual_classroom: 'add lesson to virtual classroom'
-    copy: 'create your own copy of the lesson'
-    destroy: 'cancel this item'
-    dislike: 'click to cancel your like'
-    edit: 'edit this item'
-    like: 'like this lesson'
-    preview: 'open the preview'
-    publish: 'publish your lesson'
-    remove: 'stop following this item'
-    remove_virtual_classroom: 'click remove lesson from virtual classroom'
-
-    unpublish: 'click to unpublish your lesson'
-  general_titles:
+  
+  
+  
+  
+  titles:
+    buttons:
+      add: 'follow this item in your own section'
+      add_virtual_classroom: 'add lesson to virtual classroom'
+      copy: 'create your own copy of the lesson'
+      destroy: 'cancel this item'
+      dislike: 'click to cancel your like'
+      edit: 'edit this item'
+      like: 'like this lesson'
+      preview: 'open the preview'
+      publish: 'publish your lesson'
+      remove: 'stop following this item'
+      remove_virtual_classroom: 'click remove lesson from virtual classroom'
+      unpublish: 'click to unpublish your lesson'
     add_element_title: 'add element'
     add_slides_title: 'add slide'
     add_new_audio: 'add new audio'

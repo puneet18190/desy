@@ -15,7 +15,7 @@ class Users::SessionsController < ApplicationController
         if current_user
           uri_path_and_query(redirect_to_param) || [dashboard_path]
         else
-          failed_authentication_redirect_args path_params, t('other_popup_messages.login.wrong_data')
+          failed_authentication_redirect_args path_params, t('other_popup_messages.login.wrong_content')
         end
       end
 
