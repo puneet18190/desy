@@ -1,18 +1,27 @@
 <!DOCTYPE html>
+
 <html class="lesson-viewer-layout <%= controller_html_class %> <%= action_html_class %>">
-<head>
-  <title><%= SETTINGS['application_name'] %></title>
-  <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <%= render :partial => "shared/popups" %>
+  
+  
+  <head>
+    <title><%= SETTINGS['application_name'] %></title>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  
+  
+  <body>
+    <%= render :partial => "shared/popups" %>
     <%= render :partial => "shared/loading" %>
-  <a class="navLeft" title="<%= t('general_titles.back_in_slides') %>"></a>
-  <div class="container">    
-    <%= yield %>
-  </div>   
-   <a class="navRight" title="<%= t('general_titles.forward_in_slides') %>"></a>
-</body>
+    
+    <a class="navLeft" title="<%= t('titles.lesson_viewer.back') %>"></a>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <a class="navRight" title="<%= t('titles.lesson_viewer.forward') %>"></a>
+    
+  </body>
+  
+  
 </html>

@@ -454,50 +454,59 @@ en:
   
   # SECTION 1.5: titles
   titles:
+    add_element: 'Add element'
+    add_slides: 'Add slide'
+    add_new_audio: 'Add new audio'
+    add_text: 'Add text'
+    audios:
+      new: 'Create new audio'
+      pause: 'Pause audio'
+      play: 'Play audio'
     buttons:
-      add: 'follow this item in your own section'
-      add_virtual_classroom: 'add lesson to virtual classroom'
-      copy: 'create your own copy of the lesson'
-      destroy: 'cancel this item'
-      dislike: 'click to cancel your like'
-      edit: 'edit this item'
-      like: 'like this lesson'
-      preview: 'open the preview'
-      publish: 'publish your lesson'
-      remove: 'stop following this item'
-      remove_virtual_classroom: 'click remove lesson from virtual classroom'
-      unpublish: 'click to unpublish your lesson'
-    add_element: 'add element'
-    add_slides: 'add slide'
-    add_new_audio: 'add new audio'
-    add_text: 'add text'
-    audio_new: 'new audio'
-    back_in_slides: 'back'
+      add: 'Follow this item in your own section'
+      add_virtual_classroom: 'Add lesson to virtual classroom'
+      copy: 'Create your own copy of the lesson'
+      destroy: 'Cancel this item'
+      dislike: 'Click to cancel your like'
+      edit: 'Edit this item'
+      like: 'Like this lesson'
+      preview: 'Open the preview'
+      publish: 'Publish your lesson'
+      remove: 'Stop following this item'
+      remove_virtual_classroom: 'Click remove lesson from virtual classroom'
+      unpublish: 'Click to unpublish your lesson'
     change_information_slides: 'change information slides'
     close_gallery: 'close gallery'
-    close: 'close'
-    crop_element: 'crop element'
-    delete_slides: 'delete slide'
-    exit: 'exit'
-    forward_in_slides: 'forward'
-    fullscreen: 'fullscreen'
-    go_to_video_gallery: 'go to video gallery'
-    go_to_photo_gallery: 'go to photo gallery'
-    go_to_insert_text: 'insert new text'
-    header_notification: 'notice'
-    header_help_for_me: 'help for me'
-    info: 'item information'
-    pause: 'pause'
-    photo_new: 'new photo'
-    play: 'play'
-    refine_the_search: 'refine the search'
-    remove_element: 'remove element'
-    reports: 'reports'
-    save_slides: 'save slide'
-    save_element: 'save element'
-    search: 'search'
-    select_element: 'select new element'
-    video_new: 'new video'
+    close: 'Close'
+    crop_element: 'Crop element'
+    delete_slides: 'Celete slide'
+    exit: 'Exit'
+    fullscreen: 'Fullscreen'
+    go_to_video_gallery: 'Go to video gallery'
+    go_to_photo_gallery: 'Go to photo gallery'
+    go_to_insert_text: 'Insert new text'
+    header_notification: 'Notice'
+    header_help_for_me: 'Help for me'
+    images:
+      new: 'Create new image'
+    info: 'Item information'
+    lesson_viewer:
+      back: 'Back'
+      forward: 'Forward'
+    pause: 'Pause'
+    play: 'Play'
+    refine_the_search: 'Refine the search'
+    remove_element: 'Remove element'
+    reports: 'Reports'
+    save_slides: 'Save slide'
+    save_element: 'Save element'
+    search: 'Search'
+    select_element: 'Select new element'
+    videos:
+      fullscreen: 'Fullscreen'
+      new: 'Create new video'
+      pause: 'Pause video'
+      play: 'Play video'
   
   
   # SECTION 1.6: help tooltips
@@ -525,17 +534,17 @@ en:
     media_elements:
       first:
         title: "Public elements"
-        content: "When you load an element, its status is automatically set as 'private': you are the owner and nobody else can see your element. Once you share a lesson, all the elements contained in it are visible by everybody, so they are set as 'public'. A <b>public</b> element is not accessible by the owner anymore, it is moved in the shared repository of DESY, hence, you keep only a link of it and you can't modify it anymore."
+        content: "When you load an element, its status is automatically set as 'private': you are the owner and nobody else can see your element. Once you share a lesson, all the elements contained in it are visible by everybody, so they are set as 'public'. A <b>public</b> element is not accessible by the owner anymore, it is moved in the shared repository of %{desy}, hence, you keep only a link of it and you can't modify it anymore."
       second:
         title: "Element Editors"
-        content: "There are three kinds of media elements: <b>images</b>, <b>audios</b> and <b>videos</b>. Depending on the extension of the file you loaded, DESY converts it in one of them. When you click on the little pencil on an element, you are automatically redirected to the corresponding editor. If the element you edit is public, you are forced to save the modifications you made as a new element, because a public element might be in use in other users' lessons. If the element is private, you have the choice to overwrite it or create a new one."
+        content: "There are three kinds of media elements: <b>images</b>, <b>audios</b> and <b>videos</b>. Depending on the extension of the file you loaded, %{desy} converts it in one of them. When you click on the little pencil on an element, you are automatically redirected to the corresponding editor. If the element you edit is public, you are forced to save the modifications you made as a new element, because a public element might be in use in other users' lessons. If the element is private, you have the choice to overwrite it or create a new one."
       third:
         title: "Element preview"
         content: "The preview of an element appears in a popup: you can see the title, the description, and the full media content (a player if the element is of kind 'audio' or 'video'. If the element is private, you can click on the icon with small lines of text and modify title, descriptions, and tags."
     search:
       first:
         title: "Search engine"
-        content: "DESY's <b>search engine</b> works with tags: enter the first letters of the word you are looking for, and DESY will pick all the tags that begin with those letters, with all associated items (lessons or media elements, depending on what you configured). Refine your search selecting one of the tags, or the available filters. Once you found something you like, add it to your section by clicking on the '+' icon."
+        content: "%{desy}'s <b>search engine</b> works with tags: enter the first letters of the word you are looking for, and %{desy} will pick all the tags that begin with those letters, with all associated items (lessons or media elements, depending on what you configured). Refine your search selecting one of the tags, or the available filters. Once you found something you like, add it to your section by clicking on the '+' icon."
       second:
         title: "Suggestions for a good search"
         content: "Don't write too long words: it's better writing the first letter of the word you are looking for, since in any case you will be listed all the tags beginning with those letters."
@@ -554,14 +563,14 @@ en:
         content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
     virtual_classroom:
       first:
-        title: "DESY's Virtual Classroom"
+        title: "%{desy}'s Virtual Classroom"
         content: "Welcome to your Virtual Classroom. clicking on the '+' you open a popup with the list of your lessons: choose the ones you need and add them clicking 'upload'."
       second:
         title: "Playlist"
         content: "Drag and drop a lesson to the area on the right to fill your playlist."
       third:
         title: "Send a link to your friends"
-        content: "Even if a lesson is private, it's available a link to show it to people not logged in DESY. The link contains a crypted code, without which it's possible to view the lesson only if you are logged in and the lesson is public. To send the link, click on 'send link to your friends' and fill in the form with a list of emails and a message."
+        content: "Even if a lesson is private, it's available a link to show it to people not logged in %{desy}. The link contains a crypted code, without which it's possible to view the lesson only if you are logged in and the lesson is public. To send the link, click on 'send link to your friends' and fill in the form with a list of emails and a message."
   
   
   
@@ -729,14 +738,14 @@ en:
     main_page:
       menu_link: 'Home'
       title: 'A new way of teaching'
-      description: "<b>DESY</b> is the new platform dedicated to the world of education. With <b>DESY</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>DESY</b> we guarantee high quality and care for details</i>."
+      description: "<b>%{desy}</b> is the new platform dedicated to the world of education. With <b>%{desy}</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>%{desy}</b> we guarantee high quality and care for details</i>."
       video: 'Watch the video'
     sign_up:
       menu_link: 'Sign up'
     what_is_desy:
-      menu_link: 'What is DESY?'
-      title: 'What is DESY?'
-      subtitle: 'Find out the benefits of DESY'
+      menu_link: 'What is %{desy}?'
+      title: 'What is %{desy}?'
+      subtitle: 'Find out the benefits of %{desy}'
       description: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
       right_column_title: 'Watch demo'
       right_column: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
@@ -839,7 +848,7 @@ en:
        done: 'Reset password'
     statistics:
       title: 'Statistics'
-      description: 'Follow you numbers in DESY and statistics of the system'
+      description: 'Follow you numbers in %{desy} and statistics of the system'
       general:
         lessons_more_likes: 'Lessons with more likes'
         lessons_shared: 'Lessons shared'
