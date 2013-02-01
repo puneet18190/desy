@@ -61,14 +61,14 @@
       <div class="menuIconButton" style="float:left;  padding-left:10px">
         <%= render :partial => "shared/buttons/#{Buttons::EDIT}", :locals => {:item => media_element} %>
         <% if media_element.info_changeable %>
-          <a class="<%= Buttons::CHANGE_INFO %> _change_info_to_pick" data-param="<%= media_element.id %>" title="<%= t('general_titles.info_title') %>"></a>
+          <a class="<%= Buttons::CHANGE_INFO %> _change_info_to_pick" data-param="<%= media_element.id %>" title="<%= t('titles.media_elements.change_info') %>"></a>
         <% end %>
       </div>
       <div class="menuIconButton" style="float:right">
         <% if media_element.is_reportable %>
           <%= render :partial => "reports/media_element", :locals => {:media_element => media_element} %>
         <% end %>
-        <a class="close _close_media_element_preview_popup" data-param="<%= media_element.id %>" title="<%= t('general_titles.close_title') %>"></a>
+        <a class="close _close_media_element_preview_popup" data-param="<%= media_element.id %>" title="<%= t('titles.close') %>"></a>
       </div>
     </div>
     

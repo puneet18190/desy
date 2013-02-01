@@ -33,7 +33,7 @@
     <div class="_rolloverable" style="<%= style %>" data-slide-id="<%= slide.id %>" data-position="<%= position %>" data-rolloverable="true">
       <img src="<%= url %>" class="_slide_image <%= slide.kind %>-p<%= position %>" <%= orientation.nil? ? '' : orientation.html_safe %>/>
     </div>
-    <span class="add-image _show_image_gallery_in_lesson_editor _lesson_editor_rollover_content" data-position="<%= position %>" style="display:none"></span>
+    <span class="add-image _show_image_gallery_in_lesson_editor _lesson_editor_rollover_content" data-position="<%= position %>" style="display:none" title="<%= t('titles.lesson_editor.change_image') %>"></span>
     <%= text_field_tag "caption_#{position}", ((image.nil? || image.caption.blank?) ? t('lesson_editor.placeholders.image_caption') : image.caption), :class => 'caption _lesson_editor_placeholder', :maxlength => t('language_parameters.slide.length_caption'), :data => {:placeholder => (image.nil? || image.caption.blank?)} %>
   </div>
   

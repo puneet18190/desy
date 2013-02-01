@@ -5,44 +5,69 @@ en:
   
   # SECTION 1.1: messages inside popups
   flash: # solo per la registrazione
+    # 1 - controllers/users_controller.rb
     email_is_blank: 'Email is blank'
     # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
+    # 1 - controllers/users_controller.rb
     failed_confirmation: 'The link you submitted is not longer valid'
+    # 1 - controllers/users_controller.rb
     password_reset_successfully: 'Password reset successfully'
+    # 1 - controllers/users_controller.rb
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
+    # 1 - controllers/users_controller.rb
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
   other_popup_messages:
     correct:
       add:
+        # 1 - controllers/lessons_controller.rb
         lesson: 'Now you have a link of this lesson'
+        # 1 - controllers/media_elements_controller.rb
         media_element: 'Now you can use this media element'
+      # 1 - controllers/lessons_controller.rb
       publish: 'The lesson has been published'
       remove:
+        # 1 - controllers/lessons_controller.rb
         lesson: 'You removed the link of this lesson'
+        # 1 - controllers/media_elements_controller.rb
         media_element: 'You removed this media element'
+      # 1 - controllers/lessons_controller.rb
       unpublish: 'The lesson has been unpublished'
+      # 1 - views/users/update.js.erb
       user_update: 'Update successful'
     login:
+      # 1 - controllers/users/sessions_controller.rb
       missing_fields: 'Insert username and password'
+      # 1 - controllers/users/sessions_controller.rb
       wrong_content: 'Wrong login data'
     reports:
+      # 1 - views/reports/media_element.js.erb
+      # 2 - views/reports/lesson.js.erb
       ok: 'The report was sent successfully'
+      # 1 - controllers/reports_controller.rb
+      # 2 - controllers/reports_controller.rb
       problem: 'Your report could not be sent'
     send_lesson_link:
+      # 1 - views/virtual_classroom/send_link.js.erb
       ok: 'Link sent successfully!'
+      # 1 - views/virtual_classroom/send_link.js.erb
       error: 'Link not sent: did you fill all the fields and write correct emails?'
     video_editor:
+      # 1 - views/shared/_popups.html.erb
       empty_text_component: 'Insert a text'
+      # 1 - views/shared/_popups.html.erb
       invalid_component_duration: 'You inserted a wrong duration, it must be a number greater than 0'
     virtual_classroom_lessons:
+      # 1 - views/virtual_classroom/load_lessons.js.erb
       loaded_ok: 'Correctly loaded your lessons!'
+      # 1 - views/virtual_classroom/load_lessons.js.erb
       loaded_error: 'There was a problem, #number of your lessons were not loaded'
   activemodel:
     errors:
       messages:
+        # 1 - models/user.rb
         invalid_email_address: 'does not appear to be a valid email address'
   activerecord:
-    ######### IMPORTANTE: questa parte qui sotto appartiene alla stessa sezione di users [metti numero]
+    ######### IMPORTANTE: questa parte qui sotto appartiene alla stessa sezione di users (2.15)
     attributes:
       user:
         name: 'Name'
@@ -57,144 +82,269 @@ en:
         location_id: 'City'
     ########## fino a qui
     errors:
+      # NOTA - SOLO IN USER VENGONO USATI, NEGLI ALTRI CASI SONO SOSTITUITI
       messages:
+        # 1 - models/user.rb
         blank: "can't be blank"
+        # 1 - models/user.rb
         confirmation: "doesn't match confirmation"
+        # 1 - models/user.rb
         too_short: 'is too short (minimum is %{count} characters)'
+        # 1 - models/user.rb
         too_long: 'is too long (maximum is %{count} characters)'
+        # 1 - models/user.rb
         uniqueness: 'has already been taken'
+        # 1 - models/user.rb
         changed: 'cannot be changed'
+        # 1 - models/user.rb
         accepted: 'must be accepted'
       models:
         bookmark:
           # there was an error while trying to add the lesson to your personal folder
+          # 1 - controllers/lessons_controller.rb
+          # 2 - controllers/lessons_controller.rb
           problem_creating_for_lesson: 'The lesson could not be added'
           # there was an error while trying to add the element to your personal folder
+          # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/media_elements_controller.rb
           problem_creating_for_media_element: 'The element could not be added'
           # there was an error while trying to remove the lesson from your personal folder
+          # 1 - controllers/lessons_controller.rb
+          # 2 - controllers/lessons_controller.rb
+          # 3 - controllers/lessons_controller.rb
           problem_destroying_for_lesson: 'The lesson could not be removed'
           # there was an error while trying to remove the element from your personal folder
+          # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/media_elements_controller.rb
+          # 3 - controllers/media_elements_controller.rb
           problem_destroying_for_media_element: 'The element could not be removed'
         lesson:
           # there was an error while trying to copy the lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
+          # 5 - models/lesson.rb
+          # 6 - models/lesson.rb
+          # 7 - models/lesson.rb
           problem_copying: 'The lesson could not be copied'
           # the selected lesson has already been copied
+          # 1 - models/lesson.rb
           already_copied: 'You already have a copy of this lesson'
           # the selected lesson is a copy of another lesson which has not been modified yet (until the copy has'nt been modifed, it is frozen)
+          # 1 - models/lesson.rb
           just_copied: "You've just copied this lesson"
           # the selected lesson is already shared, it can't be shared again
+          # 1 - models/lesson.rb
           already_published: 'This lesson is already shared'
           # there was an error while trying to share the lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
+          # 5 - models/lesson.rb
           problem_publishing: 'The lesson could not be shared'
           # there was an error while trying to undo the sharing
+          # 1 - controllers/lessons_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
+          # 5 - models/lesson.rb
           problem_unpublishing: 'Lesson sharing could not be undone'
           # the selected lesson is not shared, hence the sharing can't be undone
+          # 1 - models/lesson.rb
           already_unpublished: 'This lesson has not been shared yet'
           # there was an error while trying to delete the lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
           problem_destroying: 'The lesson could not be deleted'
           # there was an error while trying to add the lesson to your Virtual Classroom
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
           problem_adding_to_virtual_classroom: 'The lesson could not be added to your Virtual Classroom'
           # the selected lesson is already in your Virtual Classroom, hence you can't add it again
+          # 1 - models/lesson.rb
           lesson_already_in_virtual_classroom: 'This lesson is already in your Virtual Classroom'
           # for some reason, the selected lesson cannot be added to your Virtual Classroom
+          # 1 - models/lesson.rb
           lesson_not_available_for_virtual_classroom: "This lesson cannot be added to your Virtual Classroom"
           # there was an error while trying to remove the lesson from your Virtual Classroom
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - controllers/virtual_classroom_controller.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
+          # 5 - models/lesson.rb
+          # 6 - models/lesson.rb
           problem_removing_from_virtual_classroom: 'The lesson could not be removed from your Virtual Classroom'
         like:
           # there was an error while you were trying to remove 'I like it' from a lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - controllers/lessons_controller.rb
           problem_destroying: "Your 'like' could not be removed"
           # there was an error while you were trying to add 'I like it' to the selected lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - controllers/lessons_controller.rb
           problem_creating: "Your 'like' could not be registered"
         media_element:
           # there was an error while trying to delete an element
+          # 1 - controllers/media_elements_controller.rb
+          # 2 - models/media_element.rb
+          # 3 - models/media_element.rb
+          # 4 - models/media_element.rb
           problem_destroying: 'The element could not be deleted'
           # since the element is public, it's not possible to delete it
+          # 1 - models/media_element.rb
           cant_destroy_public: "This element is public, you can't delete it"
         notification:
           # there was an error while trying to delete a notification
+          # 1 - controllers/notifications_controller.rb
+          # 2 - controllers/notifications_controller.rb
           problem_destroying: 'The notification could not be deleted'
-        user:
-          not_a_number: 'must be an integer greater than 0'
-          greater_than: 'must be an integer greater than 0'
         virtual_classroom_lesson:
           # you tried to insert the lesson in an invalid position inside the playlist
+          # 1 - models/virtual_classroom_lesson.rb
+          # 2 - models/virtual_classroom_lesson.rb
           invalid_position_in_playlist: "The position of the lesson is not valid"
           # there was an error while trying to change the position of the lesson inside the playlist
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - models/virtual_classroom_lesson.rb
+          # 3 - models/virtual_classroom_lesson.rb
+          # 4 - models/virtual_classroom_lesson.rb
+          # 5 - models/virtual_classroom_lesson.rb
+          # 6 - models/virtual_classroom_lesson.rb
           problems_changing_position_in_playlist: "The lesson's position could not be changed"
           # there was an error while trying to add the lesson to the playlist
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - models/virtual_classroom_lesson.rb
+          # 3 - models/virtual_classroom_lesson.rb
+          # 4 - models/virtual_classroom_lesson.rb
           problems_adding_to_playlist: 'The lesson could not be added to the playlist'
           # there was an error while trying to empty the playlist inside your Virtual Classroom'
+          # 1 - controllers/virtual_classroom_controller.rb
           problems_emptying_playlist: 'Your playlist could not be emptied'
           # this happens when you try to add a lesson to a playlist which is already full
+          # 1 - models/virtual_classroom_lesson.rb
           playlist_full: 'Your playlist is full!'
           # there was an error while trying to remove the lesson from the playlist
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - models/virtual_classroom_lesson.rb
+          # 3 - models/virtual_classroom_lesson.rb
+          # 4 - models/virtual_classroom_lesson.rb
           problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
   
   
   # SECTION 1.2: popups con messaggio dentro e due bottoni di scelta
   popups:
     publish:
+      # 1 - views/shared/_popups.html.erb
       confirm: 'Every element contained in it will be automatically shared'
+      # 1 - views/shared/_popups.html.erb
       title: 'Publish this lesson'
+      # 1 - views/shared/_popups.html.erb
       do: 'Publish the lesson'
+      # 1 - views/shared/_popups.html.erb
       cancel: 'Cancel'
     unpublish:
+      # 1 - views/shared/_popups.html.erb
       confirm: 'Every person who linked the lesson will lose it'
+      # 1 - views/shared/_popups.html.erb
       title: 'Unpublish this lesson'
+      # 1 - views/shared/_popups.html.erb
       do: 'Unpublish the lesson'
+      # 1 - views/shared/_popups.html.erb
       cancel: 'Cancel'
     destroy:
       lesson:
+        # 1 - views/shared/_popups.html.erb
         confirm: 'Every person who linked the lesson will lose it'
+        # 1 - views/shared/_popups.html.erb
         title: 'Delete this lesson'
+        # 1 - views/shared/_popups.html.erb
         do: 'Delete the lesson'
+        # 1 - views/shared/_popups.html.erb
         cancel: 'Cancel'
       media_element:
+        # 1 - views/shared/_popups.html.erb
         confirm: 'It will be deleted in each of its instances in your lessons'
+        # 1 - views/shared/_popups.html.erb
         title: 'Delete this element?'
+        # 1 - views/shared/_popups.html.erb
         do: 'Delete the element'
+        # 1 - views/shared/_popups.html.erb
         cancel: 'Cancel'
     after_copy:
+      # 1 - views/lessons/copy.js.erb
       title: 'You copied the lesson!'
+      # 1 - views/lessons/copy.js.erb
       confirm: 'What would you like to do now?'
+      # 1 - views/lessons/copy.js.erb
       stay_in_page: 'Stay in this page'
+      # 1 - views/lessons/copy.js.erb
       go_to_editor: 'Edit the lesson now'
     restore_cache_media_element_editor:
+      # 1 - views/shared/_popups.html.erb
       message: 'A previous working session was closed unexpectedly!'
+      # 1 - views/shared/_popups.html.erb
       do: 'Restore'
+      # 1 - views/shared/_popups.html.erb
       cancel: 'Clear'
     exit_video_editor:
+      # 1 - views/shared/_popups.html.erb
       title: 'Leaving the video editor'
+      # 1 - views/shared/_popups.html.erb
       confirm: 'Are you sure you want to leave?'
+      # 1 - views/shared/_popups.html.erb
       do: 'Yes'
+      # 1 - views/shared/_popups.html.erb
       cancel: 'Stay on the page'
     save_media_element_editor:
+      # 1 - views/shared/_popups.html.erb
       title: 'Saving a private element'
+      # 1 - views/shared/_popups.html.erb
       confirm: 'Since the element you modified is private, you can overwrite it'
+      # 1 - views/shared/_popups.html.erb
       do: 'Overwrite'
+      # 1 - views/shared/_popups.html.erb
       cancel: 'Save as new element'
     overwrite_media_element_editor:
+      # 1 - views/shared/_popups.html.erb
       title: 'This element is in use!'
+      # 1 - views/shared/_popups.html.erb
       confirm: 'If you overwrite it, it will be replaced in any private lesson containing it'
+      # 1 - views/shared/_popups.html.erb
       do: 'Overwrite'
+      # 1 - views/shared/_popups.html.erb
       cancel: 'Cancel'
     send_lesson_link:
+      # 1 - views/virtual_classroom/_popups.html.erb
       title: 'Send a link to your friends'
+      # 1 - views/virtual_classroom/_popups.html.erb
       confirm: 'Descrizione di send link bla bla bla bla bla bla bla bla'
+      # 1 - views/virtual_classroom/_popups.html.erb
       do: 'Send'
+      # 1 - views/virtual_classroom/_popups.html.erb
       cancel: 'Cancel'
   
   
   # SECTION 1.3: mailer
   mailer:
     account_confirmation:
+      # 1 - mailers/user_mailer.rb
       subject: '%{desy} - Account confirmation'
+      # 1 - views/user_mailer/account_confirmation.html.erb
       message: '<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br>When the registration will be confirmed, the link will not be valid anymore.<br>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br><p>N.B.</p><p>The confirmation of the account can be done just one time.</p>'
     reset_password:
+      # 1 - mailers/user_mailer.rb
       subject: '%{desy} - New password'
+      # 1 - views/user_mailer/new_password.html.erb
       message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password at your choice once logged in, in the 'Profile' section.</p>"
-    see_my_lesson: 
+    see_my_lesson:
+      # 1 - mailers/user_mailer.rb
       subject: '%{desy} - Lesson link'
+      # 1 - views/user_mailer/see_my_lesson.html.erb
       message: "<p>The user %{name} thinks that you might be interested in a lesson in %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):</p></br>"
   
   
@@ -202,109 +352,316 @@ en:
   forms:
     # new empty lesson form
     new_lesson:
+      # 1 - views/lesson_editor/new.html.erb
       title: 'You are creating a new lesson'
+      # 1 - views/lesson_editor/new.html.erb
       description: 'Enter all the details in the form below'
+      # 1 - views/lesson_editor/new.html.erb
       cancel: 'Cancel'
+      # 1 - views/lesson_editor/new.html.erb
       done: 'Next'
     # edit lesson form
     update_lesson:
+      # 1 - views/lesson_editor/edit.html.erb
       title: 'Are you making significant changes?'
+      # 1 - views/lesson_editor/edit.html.erb
       description: "Update here the lesson's info according to its new content"
+      # 1 - views/lesson_editor/edit.html.erb
       cancel: 'Cancel'
+      # 1 - views/lesson_editor/edit.html.erb
       done: 'Update'
     # upload element form
     upload_media_element:
+      # 1 - views/media_elements/_new_form_popup.html.erb
       title: 'Upload a media element'
+      # 1 - views/media_elements/_new_form_popup.html.erb
       description: 'Select a file clicking on the button on the left'
+      # 1 - views/media_elements/_new_form_popup.html.erb
       cancel: 'Cancel'
+      # 1 - views/media_elements/_new_form_popup.html.erb
       done: 'Upload'
     # change info media element form
     change_info_media_element:
+      # 1 - views/media_elements/_popup.html.erb
       title: "Element's information"
+      # 1 - views/media_elements/_popup.html.erb
       description: 'Fill the form below to modify data'
+      # 1 - views/media_elements/_popup.html.erb
       cancel: 'Cancel'
+      # 1 - views/media_elements/_popup.html.erb
       done: 'Save'
     # new media element in editor form
     new_media_element_in_editor:
+      # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       title: 'You are creating a new element'
+      # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       description: 'Enter all the details in the form below'
+      # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       cancel: 'Cancel'
+      # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       done: 'Save'
     # overwrite media element in editor form
     overwrite_media_element_in_editor:
+      # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       title: 'Have you made significant changes?'
+      # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       description: "Update here the element's info according to its new content"
+      # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       cancel: 'Cancel'
+      # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       done: 'Update'
     error_captions:
       # this is the standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
+      # 1 - controllers/application_controller.rb
       fill_all_the_fields_or_too_long: 'Fill in all the fields without exceeding the max length'
       # this is when you don't write the minimum amount of tags
+      # 1 - controllers/application_controller.rb
       tags_are_not_enough: 'Not enough tags'
       # this is when you didn't select a file to be loaded
+      # 1 - controllers/application_controller.rb
       media_blank: 'No file loaded'
       # you tried to upload an attachment whose format is not supported
+      # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       media_unsupported_format: 'Format not supported'
       # you tried to upload a file whose name contained an invalid character
+      # 1 - controllers/application_controller.rb
       media_invalid_filename: "File's name contains invalid characters"
       # you tried to upload a file which was damaged or invalid
+      # 1 - controllers/application_controller.rb
       media_generic_error: 'Invalid or damaged file'
       # you didn't choose a subject for your lesson
+      # 1 - controllers/application_controller.rb
       subject_missing_in_lesson: 'Choose a subject'
     placeholders:
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      # 2 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 3 - views/lesson_editor/new.html.erb
       description: 'Description (max %{num} characters)'
+      # 1 - views/media_elements/_new_form_popup.html.erb
       media: 'Select a file to load'
+      # 1 - helpers/application_helper.rb
       subject_id: 'Select a subject'
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      # 2 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 3 - views/lesson_editor/new.html.erb
       tags: 'Insert a minimum of %{items} tags (max %{num} characters each)'
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      # 2 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 3 - views/lesson_editor/new.html.erb
       title: 'Title (max %{num} characters)'
   
   
   # SECTION 1.5: titles
   titles:
+    audio_editor:
+      # 1 - views/audio_editor/edit.html.erb
+      commit: 'Go to next step'
+    audios:
+      # 1 - views/media_elements/new.html.erb
+      new: 'Create new audio'
+      # 1 - views/shared/players/_audio.html.erb
+      pause: 'Pause audio'
+      # 1 - views/shared/players/_audio.html.erb
+      play: 'Play audio'
     buttons:
-      add: 'follow this item in your own section'
-      add_virtual_classroom: 'add lesson to virtual classroom'
-      copy: 'create your own copy of the lesson'
-      destroy: 'cancel this item'
-      dislike: 'click to cancel your like'
-      edit: 'edit this item'
-      like: 'like this lesson'
-      preview: 'open the preview'
-      publish: 'publish your lesson'
-      remove: 'stop following this item'
-      remove_virtual_classroom: 'click remove lesson from virtual classroom'
-      unpublish: 'click to unpublish your lesson'
-    add_element: 'add element'
-    add_slides: 'add slide'
-    add_new_audio: 'add new audio'
-    add_text: 'add text'
-    audio_new: 'new audio'
-    back_in_slides: 'back'
-    change_information_slides: 'change information slides'
-    close_gallery: 'close gallery'
-    close: 'close'
-    crop_element: 'crop element'
-    delete_slides: 'delete slide'
-    exit: 'exit'
-    forward_in_slides: 'forward'
-    fullscreen: 'fullscreen'
-    go_to_video_gallery: 'go to video gallery'
-    go_to_photo_gallery: 'go to photo gallery'
-    go_to_insert_text: 'insert new text'
-    header_notification: 'notice'
-    header_help_for_me: 'help for me'
-    info: 'item information'
-    pause: 'pause'
-    photo_new: 'new photo'
-    play: 'play'
-    refine_the_search: 'refine the search'
-    remove_element: 'remove element'
-    reports: 'reports'
-    save_slides: 'save slide'
-    save_element: 'save element'
-    search: 'search'
-    select_element: 'select new element'
-    video_new: 'new video'
+      # 1 - views/shared/buttons/_add.html.erb
+      add: 'Follow this item in your own section'
+      # 1 - views/shared/buttons/_add_virtual_classroom.html.erb
+      add_virtual_classroom: 'Add lesson to virtual classroom'
+      # 1 - views/shared/buttons/_copy.html.erb
+      copy: 'Create your own copy of the lesson'
+      # 1 - views/shared/buttons/_destroy.html.erb
+      destroy: 'Cancel this item'
+      # 1 - views/shared/buttons/_dislike.html.erb
+      dislike: 'Click to cancel your like'
+      # 1 - views/shared/buttons/_edit.html.erb
+      edit: 'Edit this item'
+      # 1 - views/shared/buttons/_like.html.erb
+      like: 'Like this lesson'
+      # 1 - views/shared/buttons/_preview.html.erb
+      preview: 'Open the preview'
+      # 1 - views/shared/buttons/_publish.html.erb
+      publish: 'Publish your lesson'
+      # 1 - views/shared/buttons/_remove.html.erb
+      remove: 'Stop following this item'
+      # 1 - views/shared/buttons/_remove_virtual_classroom.html.erb
+      remove_virtual_classroom: 'Click remove lesson from virtual classroom'
+      # 1 - views/shared/buttons/_unpublish.html.erb
+      unpublish: 'Click to unpublish your lesson'
+    # 1 - views/media_elements/_popup.html.erb
+    close: 'Close'
+    # 1 - views/layouts/lesson_editor.html.erb
+    # 2 - views/media_elements/new.html.erb
+    # 3 - views/lesson_viewer/_lesson_slides.html.erb
+    # 4 - views/image_editor/_header.html.erb
+    # 5 - views/video_editor/not_available.html.erb
+    # 6 - views/video_editor/_header.html.erb
+    # 7 - views/audio_editor/not_available.html.erb
+    # 8 - views/audio_editor/_header.html.erb
+    exit: 'Exit'
+    galleries:
+      # 1 - views/galleries/contents/_audio.html.erb
+      add_audio: 'Add audio'
+      # 1 - views/galleries/popups/_image.html.erb
+      add_image: 'Add image'
+      # 1 - views/galleries/popups/_video.html.erb
+      add_video: 'Add video'
+      # 1 - views/galleries/_video.html.erb
+      # 2 - views/galleries/_mixed_video_image_text.html.erb
+      # 3 - views/galleries/_image.html.erb
+      # 4 - views/galleries/_audio.html.erb
+      close: 'Close gallery'
+      mixed_for_video_editor:
+        # 1 - views/galleries/_mixed_video_image_text.html.erb
+        image: 'Add image component'
+        # 1 - views/galleries/_mixed_video_image_text.html.erb
+        text: 'Add text component'
+        # 1 - views/galleries/_mixed_video_image_text.html.erb
+        video: 'Add video component'
+    # 1 - views/notifications/_main.html.erb
+    help_tooltip: 'Help for you!'
+    image_editor:
+      # 1 - views/image_editor/edit.html.erb
+      crop: 'Crop image'
+      # 1 - views/image_editor/edit.html.erb
+      text: 'Add texts to image'
+      # 1 - views/image_editor/edit.html.erb
+      commit: 'Go to next step'
+    images:
+      # 1 - views/media_elements/new.html.erb
+      new: 'Create new image'
+    lesson_editor:
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      add_slide: 'Add new slide'
+      # 1 - views/lesson_editor/slides/parts/_audio.html.erb
+      change_audio: 'Change audio'
+      # 1 - views/lesson_editor/slides/parts/_image.html.erb
+      change_image: 'Change image'
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      change_info: 'Change lesson info'
+      # 1 - views/lesson_editor/slides/parts/_video.html.erb
+      change_video: 'Change video'
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      delete_slide: 'Delete slide'
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      save_slide: 'Save current slide'
+    media_elements:
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      select_file: 'Select file to upload'
+      # 1 - views/media_elements/_popup.html.erb
+      change_info: 'Change information'
+    notifications:
+      # 1 - views/notifications/_main.html.erb
+      label: 'Notifications'
+      # 1 - views/notifications/_notification.html.erb
+      remove: 'Remove notification'
+    # 1 - views/search/lessons/_main.html.erb
+    # 2 - views/search/lessons/_main.html.erb
+    # 3 - views/search/media_elements/_main.html.erb
+    # 4 - views/search/media_elements/_main.html.erb
+    refine_search: 'Refine the search'
+    # 1 - views/reports/_media_element.html.erb
+    report: 'Report offensive content'
+    # 1 - views/shared/_search.html.erb
+    search: 'Search'
+    slides:
+      # 1 - views/layouts/lesson_viewer.html.erb
+      back: 'Back'
+      # 1 - views/layouts/lesson_viewer.html.erb
+      forward: 'Forward'
+    video_editor:
+      # 1 - views/video_editor/_add_component.html.erb
+      add_new_component: 'Add new component'
+      audio_track:
+        # 1 - views/video_editor/_audio_track.html.erb
+        add: 'Select audio track'
+        # 1 - views/video_editor/_audio_track.html.erb
+        remove: 'Remove audio track'
+      # 1 - views/video_editor/edit.html.erb
+      close_preview: 'Close preview mode'
+      # 1 - views/video_editor/edit.html.erb
+      commit: 'Go to next step'
+      component_menu:
+        # 1 - views/video_editor/_component_menu.html.erb
+        cutter: 'Cut component'
+        # 1 - views/video_editor/_component_menu.html.erb
+        remove: 'Remove component'
+        # 1 - views/video_editor/_component_menu.html.erb
+        change: 'Substitute component'
+    videos:
+      # 1 - views/shared/players/_video.html.erb
+      fullscreen: 'Fullscreen'
+      # 1 - views/media_elements/new.html.erb
+      new: 'Create new video'
+      # 1 - views/shared/players/_video.html.erb
+      pause: 'Pause video'
+      # 1 - views/shared/players/_video.html.erb
+      play: 'Play video'
+  
+  
+  # SECTION 1.6: help tooltips
+  help:
+    dashboard:
+      first:
+        title: "Selected for you"
+        content: "In this dashboard you can find lessons and elments selected in our database according to your subjects of interests. If you click on the '+' icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The icon with a small eye opens a preview."
+      second:
+        title: "Create a lesson now"
+        content: "To create a new lesson click on the big button that you find on each page: you will be redirected to the Lesson Editor. You should collect some elements before, anyway, to have ready didactic material once you are in the editor."
+      third:
+        title: "Load a media element"
+        content: "You can load your own media elements directly from this section, clicking on the big button present on each page."
+    lessons:
+      first:
+        title: "Status of lessons"
+        content: "In this section you find all your personal lessons. A lesson can be in the status: <b>private</b> (nobody can see it except for you); <b>shared</b> (other people may see it, copy or link it); <b>linked</b> (the lesson is not yours, you can view it and use it in your Virtual Classroom, but you can't modify it); <b>copied</b> (a lesson that you just copied, ready to be used as a draft to be personalized."
+      second:
+        title: "Action buttons"
+        content: "The icon with links is used to change the status of your lesson, from private to shared and viceversa. The 'X' deletes a lesson (available if the lesson is yours), while the '-' (available for linked lessons) removes it from your links. The icon with two circles overlapping copies the lesson, and the small pencil is a link to the Lesson Editor."
+      third:
+        title: "Virtual Classroom"
+        content: "Do you like a lesson? Add it to your Virtual Classroom by clicking on the 'eye in the box' icon"
+    media_elements:
+      first:
+        title: "Public elements"
+        content: "When you load an element, its status is automatically set as 'private': you are the owner and nobody else can see your element. Once you share a lesson, all the elements contained in it are visible by everybody, so they are set as 'public'. A <b>public</b> element is not accessible by the owner anymore, it is moved in the shared repository of %{desy}, hence, you keep only a link of it and you can't modify it anymore."
+      second:
+        title: "Element Editors"
+        content: "There are three kinds of media elements: <b>images</b>, <b>audios</b> and <b>videos</b>. Depending on the extension of the file you loaded, %{desy} converts it in one of them. When you click on the little pencil on an element, you are automatically redirected to the corresponding editor. If the element you edit is public, you are forced to save the modifications you made as a new element, because a public element might be in use in other users' lessons. If the element is private, you have the choice to overwrite it or create a new one."
+      third:
+        title: "Element preview"
+        content: "The preview of an element appears in a popup: you can see the title, the description, and the full media content (a player if the element is of kind 'audio' or 'video'. If the element is private, you can click on the icon with small lines of text and modify title, descriptions, and tags."
+    search:
+      first:
+        title: "Search engine"
+        content: "%{desy}'s <b>search engine</b> works with tags: enter the first letters of the word you are looking for, and %{desy} will pick all the tags that begin with those letters, with all associated items (lessons or media elements, depending on what you configured). Refine your search selecting one of the tags, or the available filters. Once you found something you like, add it to your section by clicking on the '+' icon."
+      second:
+        title: "Suggestions for a good search"
+        content: "Don't write too long words: it's better writing the first letter of the word you are looking for, since in any case you will be listed all the tags beginning with those letters."
+      third:
+        title: "Suggestions for a good tagging"
+        content: "When you share a lesson or a media element, if you want to make it visible to the community you have to choose good tags. The minimum of tags for each item is 4."
+    users:
+      first:
+        title: "Profile"
+        content: "This section is not functional yet."
+      second:
+        title: ""
+        content: "La Nazionale restituisce alla Roma un De Rossi rigenerato. Dopo essersi riposato in panchina contro l’Atalanta, nell’ultima partita di campionato prima della sosta, il centrocampista ha fornito due grandi prestazioni in azzurro, realizzando due reti che hanno un grande valore in chiave mondiale."
+      third:
+        title: ""
+        content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
+    virtual_classroom:
+      first:
+        title: "%{desy}'s Virtual Classroom"
+        content: "Welcome to your Virtual Classroom. clicking on the '+' you open a popup with the list of your lessons: choose the ones you need and add them clicking 'upload'."
+      second:
+        title: "Playlist"
+        content: "Drag and drop a lesson to the area on the right to fill your playlist."
+      third:
+        title: "Send a link to your friends"
+        content: "Even if a lesson is private, it's available a link to show it to people not logged in %{desy}. The link contains a crypted code, without which it's possible to view the lesson only if you are logged in and the lesson is public. To send the link, click on 'send link to your friends' and fill in the form with a list of emails and a message."
   
   
   
@@ -472,30 +829,51 @@ en:
     main_page:
       menu_link: 'Home'
       title: 'A new way of teaching'
-      description: "<b>DESY</b> is the new platform dedicated to the world of education. With <b>DESY</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>DESY</b> we guarantee high quality and care for details</i>."
+      description: "<b>%{desy}</b> is the new platform dedicated to the world of education. With <b>%{desy}</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>%{desy}</b> we guarantee high quality and care for details</i>."
       video: 'Watch the video'
     sign_up:
       menu_link: 'Sign up'
     what_is_desy:
-      menu_link: 'What is DESY?'
-      title: 'What is DESY?'
-      subtitle: 'Find out the benefits of DESY'
+      menu_link: 'What is %{desy}?'
+      title: 'What is %{desy}?'
+      subtitle: 'Find out the benefits of %{desy}'
       description: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
       right_column_title: 'Watch demo'
       right_column: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
   
   
-  # SECTION 2.12: reports
+  # SECTION 2.12: registration and login
+  registration:
+    done: 'Sign up'
+    login:
+      email: 'Email'
+      done: 'Enter'
+      password: 'Password'
+      title: 'Login'
+    logout: 'Logout'
+    problems_with_password: 'Forgot your password?'
+    description: 'Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching.'
+    title: 'Register'
+    subtitle: 'Why register?'
+    subsubtitle: 'Discover the benefits of %{desy}'
+    subjects:
+      title: 'Choose the subjects you want to stay connected'
+    policy_1:
+      title: 'Title of policy 1'
+      description: 'Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1'
+    policy_2:
+      title: 'Title of policy 2'
+      description: 'Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2'
+  
+  
+  # SECTION 2.13: reports
   reports:
     title: 'Report abuse'
     decription: 'Do you think that this item is offensive?'
     placeholder: 'Write the reason for your report. Thank you for your cooperation!'
   
   
-  
-  
-  
-  
+  # SECTION 2.14: search engine
   search:
     # it is a link to open the application search engine
     label: 'Advanced search'
@@ -538,64 +916,14 @@ en:
         description: "If you don't insert a keyword the search engine will find all the available elements, according to the filters you selected"
   
   
-  
-
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-
-        
-    
-  
-  
-
-  
-  
-
-  
-  
-  registration:
-    done: 'Sign up'
-    login:
-      email: 'Email'
-      done: 'Enter'
-      password: 'Password'
-      title: 'Login'
-    logout: 'Logout'
-    problems_with_password: 'Forgot your password?'
-    description: 'Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching.'
-    title: 'Register'
-    subtitle: 'Why register?'
-    subsubtitle: 'Discover the benefits of %{desy}'
-    subjects:
-      title: 'Choose the subjects you want to stay connected'
-    policy_1:
-      title: 'Title of policy 1'
-      description: 'Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1'
-    policy_2:
-      title: 'Title of policy 2'
-      description: 'Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2'
-  
-  
-  
-
-  
-  
-  
+  # SECTION 2.15: user profile
   users:
     email: 'Email'
     info:
       menu_link: 'Personal info'
       title: 'Personal Info'
       description: 'In this area you can update or modify all the parameters of your account'
-      ######### IMPORTANTE: manca un pezzo che sta più in alto, vedi sopra nella sezione 1
+      ######### IMPORTANTE: manca un pezzo che sta più in alto, vedi sopra nella sezione 1.1
     institute: 'Institute'
     mailing_list:
       add: 'Add new group'
@@ -611,7 +939,7 @@ en:
        done: 'Reset password'
     statistics:
       title: 'Statistics'
-      description: 'Follow you numbers in DESY and statistics of the system'
+      description: 'Follow you numbers in %{desy} and statistics of the system'
       general:
         lessons_more_likes: 'Lessons with more likes'
         lessons_shared: 'Lessons shared'
@@ -638,7 +966,7 @@ en:
       description: 'Choose the subjects you want to stay connected'
   
   
-  
+  # SECTION 2.16: video_editor
   video_editor:
     # it is used in the video editor, in order to open the selection of audio tracks
     audio_track:
@@ -675,7 +1003,7 @@ en:
     total_length: 'Total length'
   
   
-  
+  # SECTION 2.17: virtual classroom
   virtual_classroom:
     # it is used in the empty Virtual Classroom to invite the user to fill it immediately
     add_lesson_now: 'Add a lesson now'
@@ -700,80 +1028,12 @@ en:
       mailing_list:
         title: 'or select mailing list'
         placeholder: 'no mailing list'
-
-
-
   
   
   
+  # PART 3 -- parameters and constants
   
-  
-  help:
-    dashboard:
-      first:
-        title: "Selected for you"
-        content: "In this dashboard you can find lessons and elments selected in our database according to your subjects of interests. If you click on the '+' icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The icon with a small eye opens a preview."
-      second:
-        title: "Create a lesson now"
-        content: "To create a new lesson click on the big button that you find on each page: you will be redirected to the Lesson Editor. You should collect some elements before, anyway, to have ready didactic material once you are in the editor."
-      third:
-        title: "Load a media element"
-        content: "You can load your own media elements directly from this section, clicking on the big button present on each page."
-    lessons:
-      first:
-        title: "Status of lessons"
-        content: "In this section you find all your personal lessons. A lesson can be in the status: <b>private</b> (nobody can see it except for you); <b>shared</b> (other people may see it, copy or link it); <b>linked</b> (the lesson is not yours, you can view it and use it in your Virtual Classroom, but you can't modify it); <b>copied</b> (a lesson that you just copied, ready to be used as a draft to be personalized."
-      second:
-        title: "Action buttons"
-        content: "The icon with links is used to change the status of your lesson, from private to shared and viceversa. The 'X' deletes a lesson (available if the lesson is yours), while the '-' (available for linked lessons) removes it from your links. The icon with two circles overlapping copies the lesson, and the small pencil is a link to the Lesson Editor."
-      third:
-        title: "Virtual Classroom"
-        content: "Do you like a lesson? Add it to your Virtual Classroom by clicking on the 'eye in the box' icon"
-    media_elements:
-      first:
-        title: "Public elements"
-        content: "When you load an element, its status is automatically set as 'private': you are the owner and nobody else can see your element. Once you share a lesson, all the elements contained in it are visible by everybody, so they are set as 'public'. A <b>public</b> element is not accessible by the owner anymore, it is moved in the shared repository of DESY, hence, you keep only a link of it and you can't modify it anymore."
-      second:
-        title: "Element Editors"
-        content: "There are three kinds of media elements: <b>images</b>, <b>audios</b> and <b>videos</b>. Depending on the extension of the file you loaded, DESY converts it in one of them. When you click on the little pencil on an element, you are automatically redirected to the corresponding editor. If the element you edit is public, you are forced to save the modifications you made as a new element, because a public element might be in use in other users' lessons. If the element is private, you have the choice to overwrite it or create a new one."
-      third:
-        title: "Element preview"
-        content: "The preview of an element appears in a popup: you can see the title, the description, and the full media content (a player if the element is of kind 'audio' or 'video'. If the element is private, you can click on the icon with small lines of text and modify title, descriptions, and tags."
-    search:
-      first:
-        title: "Search engine"
-        content: "DESY's <b>search engine</b> works with tags: enter the first letters of the word you are looking for, and DESY will pick all the tags that begin with those letters, with all associated items (lessons or media elements, depending on what you configured). Refine your search selecting one of the tags, or the available filters. Once you found something you like, add it to your section by clicking on the '+' icon."
-      second:
-        title: "Suggestions for a good search"
-        content: "Don't write too long words: it's better writing the first letter of the word you are looking for, since in any case you will be listed all the tags beginning with those letters."
-      third:
-        title: "Suggestions for a good tagging"
-        content: "When you share a lesson or a media element, if you want to make it visible to the community you have to choose good tags. The minimum of tags for each item is 4."
-    users:
-      first:
-        title: "Profile"
-        content: "This section is not functional yet."
-      second:
-        title: ""
-        content: "La Nazionale restituisce alla Roma un De Rossi rigenerato. Dopo essersi riposato in panchina contro l’Atalanta, nell’ultima partita di campionato prima della sosta, il centrocampista ha fornito due grandi prestazioni in azzurro, realizzando due reti che hanno un grande valore in chiave mondiale."
-      third:
-        title: ""
-        content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
-    virtual_classroom:
-      first:
-        title: "DESY's Virtual Classroom"
-        content: "Welcome to your Virtual Classroom. clicking on the '+' you open a popup with the list of your lessons: choose the ones you need and add them clicking 'upload'."
-      second:
-        title: "Playlist"
-        content: "Drag and drop a lesson to the area on the right to fill your playlist."
-      third:
-        title: "Send a link to your friends"
-        content: "Even if a lesson is private, it's available a link to show it to people not logged in DESY. The link contains a crypted code, without which it's possible to view the lesson only if you are logged in and the lesson is public. To send the link, click on 'send link to your friends' and fill in the form with a list of emails and a message."
-  
-  
-
-
-# (4) labels for constant keywords defined in lib/autoload
+  # SECTION 3.1 labels for constant keywords defined in lib/autoload
   statuses:
     lessons:
       private: 'Private'
@@ -801,8 +1061,9 @@ en:
     updated_at: 'Date last modification'
     likes: 'Number of likes'
     title: 'Alphabetical'
-
-# (5) parameters not related to labels
+  
+  
+  # SECTION 3.2: language_parameters and time configurations
   time:
     format: 'english'
   language_parameters:
@@ -818,20 +1079,3 @@ en:
     video_editor:
       length_text_component: 35 # for chinese it should be around 45
       length_duration: 3
-
-# (6) forms
-  formsas:
-    fields_with_errors: 'please compile the form correctly'
-    media_element:
-      title: 'upload new media element'
-      notes: 'Enter the required information when loading a new education element. Warning! You must enter at least 4 tags to properly load an item.'
-      submit: 'upload'
-      messages:
-        success: 'The media element has been successfully created'
-      labels:
-        title: 'title'
-        description: 'description'
-        tags: 'tags'
-    sign_up:
-      subjects_blank: 'please check at least one subject'
-      

@@ -47,9 +47,9 @@
             <td>
               <br /><br />
               <% if @search_item == 'media_elements' && @did_you_search %>
-                <a id="search_media_elements_submit" class="cerca current"><%= t('search.short_label')%></a>
+                <a id="search_media_elements_submit" title="<%= t('titles.refine_search') %>" class="cerca current"><%= t('search.short_label')%></a>
               <% else %>
-                <a id="search_media_elements_submit" class="cerca"><%= t('search.short_label')%></a>
+                <a id="search_media_elements_submit" title="<%= t('titles.refine_search') %>" class="cerca"><%= t('search.short_label')%></a>
               <% end %>
             </td>
           </tr>
