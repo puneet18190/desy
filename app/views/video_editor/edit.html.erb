@@ -8,21 +8,21 @@
     
     <% if @parameters[:components].any? %>
       <div id="video_editor_global_preview" class="bottoniVerdi _enabled" data-current-component="0" data-current-time="0" data-in-use="false" data-arrows="true">
-        <a class="upper"><%= t('captions.preview') %></a>
+        <a class="upper"><%= t('video_editor.preview.label') %></a>
       </div>
     <% else %>
       <div id="video_editor_global_preview" class="bottoniVerdi" data-current-component="0" data-current-time="0" data-in-use="false" data-arrows="true">
-        <a class="upper disabled"><%= t('captions.preview') %></a>
+        <a class="upper disabled"><%= t('video_editor.preview.label') %></a>
       </div>
     <% end %>
     
     <div id="video_editor_global_preview_pause" class="bottoniVerdi" style="display:none">
-      <a class="upper"><%= t('captions.pause') %></a>
+      <a class="upper"><%= t('video_editor.preview.pause') %></a>
     </div>
     <div id="video_editor_global_preview_play" class="bottoniVerdi" style="display:none">
-      <a class="upper"><%= t('captions.play') %></a>
+      <a class="upper"><%= t('video_editor.preview.play') %></a>
     </div>
-    <p class="capitalize" style="color:#43a848"><%= t('captions.total_length') %>:</p>
+    <p class="capitalize" style="color:#43a848"><%= t('video_editor.total_length') %>:</p>
     <p>
       <span id="visual_video_editor_total_length"><%= seconds_to_time(@total_length) %></span>
       <br>

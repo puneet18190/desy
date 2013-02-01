@@ -386,11 +386,20 @@ en:
   
   
   video_editor:
+    # it is used in the video editor, in order to open the selection of audio tracks
+    audio_track:
+      title: 'Add audio track'
+      description: 'You can upload an audio track: this will cover the original audio of all the chosen components'
     components:
       image:
         time: 'Time'
       text:
+        # this is used in the video editor, to choose a background color for a 'title' component
+        background_color: 'Background color'
+        color: 'Text color'
+        done: 'Insert'
         insert: 'Insert text'
+        time: 'Time'
       video:
     cutters:
       done: 'Done'
@@ -404,7 +413,12 @@ en:
     not_available:
       title: 'Video editor not available'
       description: 'Inserire qui altro testo'
+    preview:
+      label: 'Preview'
+      pause: 'Pause'
+      play: 'Play'
     select_component_to_add: 'Select component to add'
+    total_length: 'Total length'
   
   
   
@@ -426,18 +440,12 @@ en:
   
   # SECTION 2: general captions of the application
   captions:
-    # it is used in the video editor, in order to open the selection of audio tracks
-    add_audio_track: 'Add audio track'
     # it is used in the empty Virtual Classroom to invite the user to fill it immediately
     add_lesson_now: 'Add a lesson now'
     # it is used to add a new mailing list
     add_new_group: 'Add new group'
     # used in the Virtual Classroom, to pick different lessons to be added
     add_new_lesson: 'Add lessons'
-    # this is the description associated to the 'add audio track' button inside video editor
-    audio_track_in_video_editor: 'You can upload an audio track: this will cover the original audio of all the chosen components'
-    # this is used in the video editor, to choose a background color for a 'title' component
-    background_color: 'Background color'
     # only used inside the general information tables: it represents the option to reset all the fields and close the window
     cancel: 'Cancel'
     # the caption of the link to the dashboard (DESY's main page)
@@ -452,26 +460,17 @@ en:
     enter: 'Enter'
     # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
     failed_confirmation: 'The link you submitted is not longer valid'
-    # this is the title of the login form
-    insert: 'Insert'
     password: 'Password'
     password_resetted_successfully: 'Password resetted successfully'
-    pause: 'Pause'
     playlist: 'Playlist'
-    preview: 'Preview'
     remove: 'Remove'
     remove_from_virtual_classroom: 'Remove from Virtual Classroom'
     save: 'Save'
     selected: 'Selected'
     select_the_lessons_you_want_to_upload: 'Select the lessons to upload in the Virtual Classroom'
-    send: 'Send'
     send_link_to_your_friends: 'Send a link to your friends'
-    sent_to: 'Send to'
-    slide_not_deleted: "This slide can't be deleted"
     successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
     successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
-    text_color: 'Text color'
-    total_length: 'Total length'
     update: 'Update'
     update_successful: 'Update successful'
     upload: 'Upload'
