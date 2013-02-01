@@ -739,6 +739,15 @@ $(document).ready(function() {
     });
   });
   
+  $('body').on('click', '#lesson-notification ._no', function(e) {
+    e.preventDefault();
+    var obj = $('#lesson-notification');
+    obj.dialog('option', 'hide', 'fade');
+    closePopUp('lesson-notification');
+    obj.dialog('option', 'hide', null);
+  });
+  
+  
   $('body').on('click', '._send_lesson_link', function() {
     var lesson_id = $(this).data('lesson-id');
     showSendLessonLinkPopUp(lesson_id);
