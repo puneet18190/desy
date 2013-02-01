@@ -238,7 +238,7 @@ ALTER SEQUENCE locations_id_seq OWNED BY locations.id;
 
 CREATE TABLE mailing_list_addresses (
     id integer NOT NULL,
-    mailing_list_group_id integer,
+    group_id integer,
     heading character varying(255),
     email character varying(255),
     created_at timestamp without time zone NOT NULL,
@@ -1118,10 +1118,10 @@ CREATE INDEX fk__likes_user_id ON likes USING btree (user_id);
 
 
 --
--- Name: fk__mailing_list_addresses_mailing_list_group_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: fk__mailing_list_addresses_group_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX fk__mailing_list_addresses_mailing_list_group_id ON mailing_list_addresses USING btree (mailing_list_group_id);
+CREATE INDEX fk__mailing_list_addresses_group_id ON mailing_list_addresses USING btree (group_id);
 
 
 --
@@ -1384,11 +1384,11 @@ ALTER TABLE ONLY likes
 
 
 --
--- Name: mailing_list_addresses_mailing_list_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: mailing_list_addresses_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY mailing_list_addresses
-    ADD CONSTRAINT mailing_list_addresses_mailing_list_group_id_fkey FOREIGN KEY (mailing_list_group_id) REFERENCES mailing_list_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT mailing_list_addresses_group_id_fkey FOREIGN KEY (group_id) REFERENCES mailing_list_groups(id) ON DELETE CASCADE;
 
 
 --
