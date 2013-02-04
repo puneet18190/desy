@@ -119,6 +119,7 @@ Desy::Application.routes.draw do
   # MAILING LIST
   post 'mailing_lists/create_group' => 'mailing_lists#create_group'
   put 'mailing_lists/update_group/:id/:name' => 'mailing_lists#update_group'
+  put 'mailing_lists/update_group/:id/' => 'mailing_lists#update_group'
   post '/mailing_lists/group/:group_id/new_address' => 'mailing_lists#create_address', :as => :add_new_address_to_group
   delete 'mailing_lists/delete_group' => 'mailing_lists#delete_group'
   delete 'mailing_lists/delete_address' => 'mailing_lists#delete_address'

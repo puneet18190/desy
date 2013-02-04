@@ -2,6 +2,7 @@ class MailingListAddress < ActiveRecord::Base
   belongs_to :group, class_name: MailingListGroup
   attr_accessible :email, :heading
   
+  validates_presence_of :email
   validates :email, email_format: { :message => I18n.t(:invalid_email_address, :scope => [:activerecord, :errors, :messages], :default => 'does not appear to be valid') }
 
   def self.get_emails(user_id, term)

@@ -1,1 +1,5 @@
-$('table#mailing_list_group_'+<%=@mlg.id%>+' tbody').html("<%= j(render :partial => 'mailing_lists/address', :locals =>{:group => @mlg}) %>");
+<% if @errors %>
+  $('table#mailing_list_group_'+<%=@mlg.id%>).prev('form').find('#email').effect('highlight', {color: '#cc0000'}, 500);
+<% else %>
+  $('table#mailing_list_group_'+<%=@mlg.id%>+' tbody').html("<%= j(render :partial => 'mailing_lists/address', :locals =>{:group => @mlg}) %>");
+<% end %>

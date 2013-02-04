@@ -18,14 +18,23 @@ class MailingListsController < ApplicationController
     mla.group_id = @mlg.id
     mla.heading = params[:heading]
     mla.email = params[:email]
-    mla.save
-    
+    if mla.save
+      @saved = true
+    else
+      @errors = true
+    end
     render 'update_addresses'
   end
   
   def update_group
     @mlg = MailingListGroup.find(params[:id])
-    @mlg.update_attributes(name: params[:name])
+    last_name = @mlg.name
+    if @mlg.update_attributes(name: params[:name])
+      @saved = true
+    else
+      @mlg.name = last_name
+      @errors = true
+    end
   end
   
   def delete_group

@@ -924,7 +924,7 @@ $(document).ready(function() {
   });
   
   // PROFILE
-  $('#mailing_lists_accordion .group-title').keypress(function(event){
+  $('body').on('keypress','#mailing_lists_accordion .group-title', function(event){
     if (event.keyCode == 10 || event.keyCode == 13) 
       event.preventDefault();
     });
