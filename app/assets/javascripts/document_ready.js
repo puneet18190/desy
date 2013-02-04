@@ -925,11 +925,10 @@ $(document).ready(function() {
   
   // PROFILE
   $('body').on('keypress','#mailing_lists_accordion .group-title', function(event){
-    if (event.keyCode == 10 || event.keyCode == 13) 
+    if (event.keyCode == 10 || event.keyCode == 13 || event.keyCode == 32) 
       event.preventDefault();
     });
   $('body').on('blur','#mailing_lists_accordion .group-title', function(){
-    // FIX ME - HANDLE TITLE UPDATE
     var group = $(this); 
     $.ajax({
       type: 'put',

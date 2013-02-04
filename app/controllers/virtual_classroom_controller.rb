@@ -178,19 +178,19 @@ class VirtualClassroomController < ApplicationController
   def initialize_mails
     @emails = []
     params[:emails].split(',').each do |email|
-      if(email.starts_with('[')
+      if(email.starts_with('['))
         mlg = MailingListGroup.where(name: email[1..-2])
-        if mlg.count > 0
+        if(mlg.count > 0)
           @emails << mlg.addresses.pluck('email')
         end
       else
         flag = false
-        unless ((/^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/ =~ email).nil?)
+        if(!(/^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/ =~ email).nil?)
           flag = true
         end
         @emails << email
-        update_ok(!flag)
       end
+      update_ok(!flag)
     end
     @message = params[:message]
     update_ok(@emails.any? && !@message.blank?)
