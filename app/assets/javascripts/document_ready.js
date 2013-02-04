@@ -924,12 +924,19 @@ $(document).ready(function() {
   });
   
   // PROFILE
-  $('#mailing_lists_accordion .group-title').keypress(function(event){
-    if (event.keyCode == 10 || event.keyCode == 13) 
+  $('body').on('keypress','#mailing_lists_accordion .group-title', function(event){
+    if (event.keyCode == 10 || event.keyCode == 13){
       event.preventDefault();
-    });
+    }
+  });
+  
+  $('body').on('keypress','#mailing_lists_accordion .group-title', function(event){
+     if(event.which === 32){
+       event.stopPropagation();
+     }
+  });
+  
   $('body').on('blur','#mailing_lists_accordion .group-title', function(){
-    // FIX ME - HANDLE TITLE UPDATE
     var group = $(this); 
     $.ajax({
       type: 'put',
