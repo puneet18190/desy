@@ -1,15 +1,5 @@
-<p><%= t('descriptions.user_mailer.account_confirmation_1', name: @user.name, surname: @user.surname) %></p>
+<%= t('mailer.account_confirmation.message', :name => @user.full_name, :desy => SETTINGS['application_name']).html_safe %>
 
-<p><%= t('descriptions.user_mailer.account_confirmation_2') %></p>
-
-<p><b><%= t('descriptions.user_mailer.account_confirmation_3') %></b></p>
-
-<p><%= link_to user_confirm_url(*host_and_port(@user.confirmation_token)), user_confirm_url(*host_and_port(@user.confirmation_token)) %></p>
 <p>
-  <%= t('descriptions.user_mailer.account_confirmation_4') %><br>
-  <%= t('descriptions.user_mailer.account_confirmation_5') %><br>
-  <%= t('descriptions.user_mailer.account_confirmation_6') %>
+  <%= link_to user_confirm_url(*host_and_port(@user.confirmation_token)), user_confirm_url(*host_and_port(@user.confirmation_token)) %>
 </p>
-<br>
-<p><%= t('descriptions.user_mailer.account_confirmation_7') %></p>
-<p><%= t('descriptions.user_mailer.account_confirmation_8') %></p>

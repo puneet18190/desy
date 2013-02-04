@@ -7,7 +7,7 @@
   image_alignment = image.alignment / 4.12 if !image.nil?
 %>
 
-<div class="img_expanded _lesson_thumb" data-lesson-id="<%= lesson.id %>">
+<div class="img_expanded _lesson_thumb _lesson_<%=lesson.id%>" data-lesson-id="<%= lesson.id %>">
   <% if !image %>
     <div style="width:247px; height:143px; background-color:white"></div>
   <% else %>

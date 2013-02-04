@@ -7,12 +7,12 @@
   <div class="cutter">
     <div class="elementoTime">
       <div class="tempo _duration_selector">
-        <p><%= t('captions.new_time') %></p>
+        <p><%= t('video_editor.cutters.time') %></p>
         <input class="numberTime" maxlength="<%= t('language_parameters.video_editor.length_duration') %>"/>
         <p class="lower"><%= t('captions.seconds_shortened') %></p>
       </div>
     </div>
-    <a class="done _media_player_done_other_component_in_video_editor_preview upper"><%= t('captions.done') %></a>
+    <a class="done _media_player_done_other_component_in_video_editor_preview upper"><%= t('video_editor.cutters.done') %></a>
   </div>
-  <p style="padding-left:10px"><%= t('captions.time') %> <span class="_old"><%= empty ? '' : seconds_to_time(component[:duration]) %></span></p>
+  <p style="padding-left:10px"><%= t('video_editor.cutters.old_time') %> <span class="_old"><%= empty ? '' : seconds_to_time(component[:duration]) %></span></p>
 </div>

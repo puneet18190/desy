@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      redirect_to root_path(login: true), { flash: { notice: t('captions.successful_registration') } }
+      redirect_to root_path(login: true), { flash: { notice: t('flash.successful_registration') } }
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
     else
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
@@ -25,9 +25,9 @@ class UsersController < ApplicationController
 
   def confirm
     if User.confirm!(params[:token])
-      redirect_to root_path(login: true), { flash: { notice: t('captions.successful_confirmation') } }
+      redirect_to root_path(login: true), { flash: { notice: t('flash.successful_confirmation') } }
     else
-      redirect_to root_path, { flash: { alert: t('captions.failed_confirmation') } }
+      redirect_to root_path, { flash: { alert: t('flash.failed_confirmation') } }
     end
   end
 
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def reset_password
     email = params[:email]
     if email.blank?
-      redirect_to user_request_reset_password_path, { flash: { alert: t('captions.email_is_blank') } } 
+      redirect_to user_request_reset_password_path, { flash: { alert: t('flash.email_is_blank') } } 
       return
     end
 
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
       UserMailer.new_password(user, new_password, request.host, request.port).deliver
     end
 
-    redirect_to root_path, { flash: { notice: t('captions.password_resetted_successfully') } }
+    redirect_to root_path, { flash: { notice: t('flash.password_reset_successfully') } }
   end
   
   def edit

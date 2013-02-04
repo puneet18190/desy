@@ -15,7 +15,7 @@
     <div class="_rolloverable" data-slide-id="<%= slide.id %>" data-position="<%= position %>" data-rolloverable="true">
       <%= render(:partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true}) %>
     </div>
-    <span class="add-video _show_video_gallery_in_lesson_editor _lesson_editor_rollover_content" data-position="<%= position %>" style="display:none"></span>
+    <span class="add-video _show_video_gallery_in_lesson_editor _lesson_editor_rollover_content" data-position="<%= position %>" style="display:none" title="<%= t('titles.lesson_editor.change_video') %>"></span>
   </div>
   
   <div class="<%= empty_mask_class.html_safe %>" style="display:<%= video.nil? ? 'block'.html_safe : 'none'.html_safe %>">

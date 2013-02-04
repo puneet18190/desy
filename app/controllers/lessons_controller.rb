@@ -19,7 +19,7 @@ class LessonsController < ApplicationController
   end
   
   def add
-    @ok_msg = t('popups.add_lesson_ok')
+    @ok_msg = t('other_popup_messages.correct.add.lesson')
     if @ok
       if !current_user.bookmark('Lesson', @lesson_id)
         @ok = false
@@ -95,7 +95,7 @@ class LessonsController < ApplicationController
   end
   
   def publish
-    @ok_msg = t('popups.publish_ok')
+    @ok_msg = t('other_popup_messages.correct.publish')
     if @ok
       if !@lesson.publish
         @ok = false
@@ -113,7 +113,7 @@ class LessonsController < ApplicationController
   end
   
   def unpublish
-    @ok_msg = t('popups.unpublish_ok')
+    @ok_msg = t('other_popup_messages.correct.unpublish')
     if @ok
       if !@lesson.unpublish
         @ok = false
@@ -131,7 +131,7 @@ class LessonsController < ApplicationController
   end
   
   def remove
-    @ok_msg = t('popups.remove_lesson_ok')
+    @ok_msg = t('other_popup_messages.correct.remove.lesson')
     if @ok
       bookmark = Bookmark.where(:user_id => current_user.id, :bookmarkable_type => 'Lesson', :bookmarkable_id => @lesson_id).first
       if bookmark.nil?

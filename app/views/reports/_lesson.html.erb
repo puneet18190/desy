@@ -3,19 +3,18 @@
     <a class="<%= Buttons::REPORT %> _reportable_icon" style="width: 2.4em;
 height: 3.5em;"></a>
   </div>
-  <span style="padding-top:1.2em; float:left"><%= t('captions.report_abuse') %></span>
+  <span style="padding-top:1.2em; float:left"><%= t('reports.title') %></span>
 </div>
 <span class="lesson_tooltipForm _report_form_content" id="lesson_report_form_<%= lesson.id %>">
   <%= image_tag("freccia_tooltip_form.png", :class => "calloutForm") %>
- <h3><%= t('captions.you_believe_content_unappropriate') %></h3>
- <p style="padding-top:0px"><%= t('captions.write_reason_report') %></p>
+ <h3><%= t('reports.description') %></h3>
+ <p style="padding-top:0px"><%= t('report.placeholder') %></p>
   <%= form_tag "/reports/lesson", :remote => true do %>
     <input type="hidden" value="<%= lesson.id %>" name="lesson_id">
     <table summary="" cellpadding="0" cellspacing="0">
       <tbody>
         <tr>
           <td>
-            <!--<input type="text" class="text" name="content">-->
             <textarea class="campoTesto" name="content"></textarea>
           </td>
         </tr>

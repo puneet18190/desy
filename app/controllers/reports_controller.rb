@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
     else
       @lesson_id = nil
       @resp = false
-      @error = I18n.t('activerecord.errors.models.user.problem_reporting')
+      @error = I18n.t('other_popup_messages.reports.problem')
     end
   end
   
@@ -20,7 +20,7 @@ class ReportsController < ApplicationController
     else
       @media_element_id = nil
       @resp = false
-      @error = I18n.t('activerecord.errors.models.user.problem_reporting')
+      @error = I18n.t('other_popup_messages.reports.problem')
     end
   end
   

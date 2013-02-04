@@ -4,18 +4,18 @@
     <div id="image_editor_title" class="testo fltlft">
       <% if (image.nil? || image.is_public) %>
         <span class="_untitled">
-          <%= t('media_elements_editor.new_untitled') %>
+          <%= t('media_elements.editor.new_untitled') %>
         </span>
       <% else %>
         <span class="_titled">
           <%= image.title %>
         </span>
         <span class="_untitled" style="display:none">
-          <%= t('media_elements_editor.new_untitled') %>
+          <%= t('media_elements.editor.new_untitled') %>
         </span>
       <% end %>
     </div>
-    <%= link_to '', my_media_elements_path, :class => 'esciButton _exit_url', :title => t('general_titles.exit_title') %>
+    <%= link_to '', my_media_elements_path, :class => 'esciButton _exit_url', :title => t('titles.exit') %>
     <script type="text/javascript" charset="utf-8">
       if('<%= @back %>'.length > 0) {
         var bb = $('.esciButton');

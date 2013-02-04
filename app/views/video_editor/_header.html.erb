@@ -1,15 +1,15 @@
 <div class="header">
   <div class="contenitore">
-    <h1 class="fltlft upper"><%= t("captions.video_editor_label") %></h1>
+    <h1 class="fltlft upper"><%= t("video_editor.label") %></h1>
     <div id="video_editor_title" class="testo fltlft">
       <% if parameters[:initial_video].nil? %>
-        <span class="_untitled"><%= t('captions.new_element_untitled') %></span>
+        <span class="_untitled"><%= t('media_elements.editor.new_untitled') %></span>
       <% else %>
-        <span class="_untitled" style="display:none"><%= t('captions.new_element_untitled') %></span>
+        <span class="_untitled" style="display:none"><%= t('media_elements.editor.new_untitled') %></span>
         <span class="_titled"><%= parameters[:initial_video].title %></span>
       <% end %>
     </div>
-    <div class="fltrt"><a class="esciButton _exit_video_editor"  title="<%= t('general_titles.exit_title') %>"></a></div>
+    <div class="fltrt"><a class="esciButton _exit_video_editor" title="<%= t('titles.exit') %>"></a></div>
     <script type="text/javascript" charset="utf-8">
       if("<%= @back %>".length > 0) {
         var bb = $(".esciButton");
