@@ -522,7 +522,18 @@ $(document).ready(function() {
   $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });
-  $("#select_mailing_list").selectbox();
+  $("#select_mailing_list").selectbox({
+    onChange: function (val, inst) {
+      var to_emails = $('._send_link_form_text_area._emails').val();
+      console.log(to_emails);
+      console.log(val);
+      if(to_emails.length > 0){
+        $('._send_link_form_text_area._emails').val(to_emails+',['+val+']');
+      }else{
+        $('._send_link_form_text_area._emails').val('['+val+']');
+      }
+    }
+  });
 
   $("#select_lesson_list").selectbox();
 

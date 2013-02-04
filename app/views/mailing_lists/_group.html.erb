@@ -6,13 +6,13 @@
 </h3>
 
 <div>
-  <%= form_tag({:controller => "mailing_lists", :action => "create_address", :mailing_list_group_id => group.id}, {:remote => true, :class => 'new_email'}) do %>
+  <%= form_tag({:controller => "mailing_lists", :action => "create_address", :group_id => group.id}, {:remote => true, :class => 'new_email'}) do %>
     <p><%= t('users.mailing_list.add_address')%></p>
     <input type="text" name="heading" value="Name" id="name">
     <input type="text" name="email" value="Email" id="email">
     <input type="submit" value="">
   <% end %>
-  <table width="100%" id="mailing_list_group<%=group.id%>">
+  <table width="100%" id="mailing_list_group_<%=group.id%>">
     <tbody>
       <%= render :partial => 'mailing_lists/address', :locals => {:group => group}%>
     </tbody>
