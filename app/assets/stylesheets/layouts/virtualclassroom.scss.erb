@@ -147,7 +147,49 @@ html.virtual_classroom-controller {
       }
           
     }
-    
+    $button-size: 3em;
+    @mixin buttonPlayer {
+      & {
+        width: $button-size;
+        height: $button-size;
+        background-image: url(<%= asset_path 'icone_lesson_virtualclassroom.svg' %>);
+        background-repeat: no-repeat;
+        background-size: ($button-size*2) ($button-size*3);
+        padding:0;
+      }
+    }
+    .menuLessonVirtualClassroom {
+      display:inline-block;
+      width:247px;
+      a {
+        float:left;
+        width:33px;
+        height: 33px;
+
+      }
+      .preview {
+        @include buttonPlayer;
+        background-position: 0 0;
+        &:hover {
+          background-position: (-$button-size) 0;  
+        };
+      };
+      .sendTo {
+        @include buttonPlayer;
+        background-position: 0 (-$button-size);
+        &:hover {
+          background-position: (-$button-size) (-$button-size);  
+        };
+      };  
+      .remove {
+        @include buttonPlayer;
+        background-position: 0 (-$button-size*2);
+        float:right;
+        &:hover {
+          background-position: (-$button-size) (-$button-size*2);  
+        };
+      }; 
+    }  
   }
   .playList {
     padding:10px; 
