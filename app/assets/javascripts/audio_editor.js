@@ -10,7 +10,9 @@ function selectAudioEditorComponent(component) {
 }
 
 function initializeAudioEditor() {
-  
+  $('#audio_editor_timeline').jscrollPane({
+    autoReinitialise: true
+  });
 }
 
 
