@@ -12,7 +12,10 @@
     <% if @parameters[:initial_audio] %>
       <%= hidden_field_tag 'initial_audio_id', @parameters[:initial_audio].id, :id => 'initial_audio_in_audio_editor_input' %>
     <% end %>
+    
+    <div id="audio_editor_box_ghost" style="display:none;"></div>
     <%= render :partial => 'audio_editor/timeline', :locals => {:components => @parameters[:components]} %>
+    
   <% end %>
   
   <div class="addAudioandSave _audio_editor_bottom_bar">

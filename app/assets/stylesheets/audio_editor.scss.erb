@@ -1,11 +1,6 @@
 html.audio_editor-controller {
   
  .mediaEditorAudioContainer {
-    .audioEditorTimeline {
-      margin-left:10px;
-      width:746px;
-      margin-left:30px;
-    }
     .info {
       width:77px;
       background-color:#504f50;
@@ -28,9 +23,9 @@ html.audio_editor-controller {
       width:617px;
     }
     .audioContent {
-      float:left;
-      padding:0px;
-      outline:1px solid #686969;
+      float: left;
+      padding: 0px;
+      border: 1px solid #686969;
       margin-left:10px;
       -webkit-box-shadow: 0px 2px 6px rgba(22, 21, 21, 0.6);
       box-shadow: 0px 2px 6px rgba(22, 21, 21, 0.6);
@@ -43,10 +38,16 @@ html.audio_editor-controller {
         background-image:url(<%= asset_path 'maniglia_audio_off.gif' %>);
         background-repeat:no-repeat;
         background-position: top left;
-        
+        &.current {
+          background-image:url(<%= asset_path 'maniglia_audio_on.gif' %>);
+        }
+        &:hover {
+          background-image:url(<%= asset_path 'maniglia_audio_on.gif' %>);
+          cursor: move;
+        }
       }
       &.current {
-        outline:1px solid #fff; 
+        border: 1px solid #fff;
       }
       .audioComponentTitle {
         width: auto;
@@ -81,16 +82,45 @@ html.audio_editor-controller {
     .contatore {
       float: left;
       margin: 5px;
+      width: 18px;
     }
   }
-  ._audio_editor_component .boxGhost {
-    height:103px; 
-    width:710px; 
-    position:absolute; 
-    z-index:102; 
-    top:0; 
-    left:60px; 
-    cursor:pointer;
-    display: none;
+  ._audio_editor_component {
+    position: relative;
+    width: 756px;
+    height: 113px;
+    &._last {
+      height: 109px;
+    }
+    .boxGhost {
+      height: 103px;
+      width: 617px;
+      position: absolute;
+      z-index: 102;
+      top: 1px;
+      left: 132px;
+      cursor: pointer;
+    }
   }
+  
+  #audio_editor_timeline {
+    margin-left: 30px;
+    margin-bottom: 30px;
+  }
+  
+  #audio_editor_box_ghost {
+    position: absolute;
+    z-index: 100;
+    left: 30px;
+  }
+  
+  #audio_editor_timeline, #audio_editor_box_ghost {
+    height: 448px;
+    width: 768px;
+  }
+  
+  .jspVerticalBar {
+    top: 0;
+  }
+  
 }
