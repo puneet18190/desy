@@ -2,7 +2,6 @@
   <% cont = 1 %>
   <% components.each do |p| %>
     <%= render :partial => "audio_editor/component", :locals => {:component => p, :identifier => cont, :empty => false} %>
-    <br class="clearfloat"/>
     <% cont += 1 %>
   <% end %>
 </div>

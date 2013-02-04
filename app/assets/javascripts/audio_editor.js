@@ -18,37 +18,24 @@ function initializeAudioEditor() {
     handle: '._sort_handle',
     axis: 'y',
     cursor: 'move',
-//    helper: function(event, ui) {
-//      var current_z_index = getMaximumZIndex('_lesson_in_playlist') + 1;
-//      var div_to_return = $($('#' + ui.attr('id'))[0].outerHTML);
-//      div_to_return.addClass('current');
-//      div_to_return = div_to_return[0].outerHTML;
-//      var my_index = div_to_return.indexOf('<div class="_remove_lesson_from_playlist');
-//      var second_half_string = div_to_return.substring(my_index, div_to_return.length);
-//      var my_second_index = my_index + second_half_string.indexOf('</div>') + 6;
-//      return div_to_return.substring(0, (my_index - 1)) + div_to_return.substring((my_second_index + 1), div_to_return.length);
-//    },
-//    stop: function(event, ui) {
-//      var previous = ui.item.prev();
-//      var new_position = 0;
-//      var old_position = ui.item.data('position');
-//      if(previous.length == 0) {
-//        new_position = 1;
-//      } else {
-//        var previous_item_position = previous.data('position');
-//        if(old_position > previous_item_position) {
-//          new_position = previous_item_position + 1;
-//        } else {
-//          new_position = previous_item_position;
-//        }
+    containment: 'parent',
+    start: function(event, ui) {
+      selectAudioEditorComponent($(ui.item));
+    },
+    stop: function(event, ui) {
+//      my_item = $(ui.item);
+//      my_item.data('rolloverable', true);
+//      my_item.find('._video_component_icon').removeClass('current');
+//      my_item.find('._video_component_thumb').removeClass('current');
+//      resetVisibilityOfVideoEditorTransitions();
+//      var boolean1 = (my_item.next().attr('id') == 'add_new_video_component');
+//      var boolean2 = (my_item.data('position') != $('._video_editor_component').length);
+//      var boolean3 = (my_item.next().data('position') != (my_item.data('position') + 1));
+//      if(boolean1 && boolean2 || !boolean1 && boolean3) {
+//        reloadVideoEditorComponentPositions();
+//        $('._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
 //      }
-//      if(old_position != new_position) {
-//        $.ajax({
-//          type: 'post',
-//          url: '/virtual_classroom/' + ui.item.data('lesson-id') + '/playlist/' + new_position + '/change_position'
-//        });
-//      }
-//    }
+    }
   });
 }
 
