@@ -7,11 +7,7 @@
     <input id="email_addresses" class="_send_link_form_text_area _emails campoEmail" type="text" value="" name="emails" data-not-yet-selected="true">
     <p><%= t('virtual_classroom.send_link.mailing_list.title') %></p>
     <div class="boxSelectMailingList">
-      <select id="select_mailing_list">
-        <option value="select"><%= t('virtual_classroom.send_link.mailing_list.placeholder') %></option>
-        <option value="select2">Select2</option>
-        <option value="select3">Select3</option>
-      </select>
+      <%=select_tag 'groups', options_from_collection_for_select(@mlg, 'name','name'), :prompt => t('virtual_classroom.send_link.mailing_list.placeholder'), :id=>"select_mailing_list"%>
     </div>
     <textarea class="_send_link_form_text_area _message campoMessaggio" value="" name="message" data-not-yet-selected="true">
     </textarea>

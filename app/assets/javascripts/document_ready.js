@@ -522,15 +522,15 @@ $(document).ready(function() {
   $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });
+  
   $("#select_mailing_list").selectbox({
     onChange: function (val, inst) {
-      var to_emails = $('._send_link_form_text_area._emails').val();
-      console.log(to_emails);
-      console.log(val);
-      if(to_emails.length > 0){
-        $('._send_link_form_text_area._emails').val(to_emails+',['+val+']');
+      var to_emails = $('._send_link_form_text_area._emails')
+      to_emails.trigger('focus');
+      if(to_emails.val().length > 0){
+        to_emails.val(to_emails.val()+'['+val+'],');
       }else{
-        $('._send_link_form_text_area._emails').val('['+val+']');
+        to_emails.val('['+val+'],');
       }
     }
   });
@@ -924,6 +924,10 @@ $(document).ready(function() {
   });
   
   // PROFILE
+  $('#mailing_lists_accordion .group-title').keypress(function(event){
+    if (event.keyCode == 10 || event.keyCode == 13) 
+      event.preventDefault();
+    });
   $('body').on('blur','#mailing_lists_accordion .group-title', function(){
     // FIX ME - HANDLE TITLE UPDATE
     var group = $(this); 
