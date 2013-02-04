@@ -3,8 +3,11 @@
   <p>Do you wanto to notify...</p>
   <form>
     <textarea name='details'>Detail of changes</textarea>
+    <br class="clearfloat">
     <input type='submit' value='Send notification' class='_yes' />
+    <%= link_to "No, I'll not send Send notification", '#', :class=>"_no" %>
   </form>
-  <%= link_to "No, I'll not send Send notification", '#', :class=>"_no" %>
+
+  
   <div class="_lesson_notification_cover img_expanded"></div>
 </div>
