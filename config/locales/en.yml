@@ -1341,27 +1341,42 @@ en:
   # SECTION 2.17: virtual classroom
   virtual_classroom:
     # it is used in the empty Virtual Classroom to invite the user to fill it immediately
+    # 1 - views/virtual_classroom/_empty.html.erb
     add_lesson_now: 'Add a lesson now'
     # used in the Virtual Classroom, to pick different lessons to be added
     select_lessons:
+      # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       cancel: 'Cancel'
+      # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       done: 'Upload'
+      # 1 - views/virtual_classroom/_header_buttons.html.erb
       label: 'Add lessons'
+      # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       description: 'Select the lessons to upload in the Virtual Classroom'
+    # 1 - views/virtual_classroom/_empty.html.erb
     empty: 'Your Virtual Classroom is empty'
     # the caption of the button which empties your Virtual Classroom
+    # 1 - views/virtual_classroom/_header_buttons.html.erb
     make_it_empty: 'Empty your Virtual Classroom'
     playlist:
+      # 1 - views/virtual_classroom/_empty_playlist.html.erb
       instructions: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist'
+      # 1 - views/virtual_classroom/_playlist.html.erb
       label: 'Playlist'
       # the caption of the button which empties your Virtual Classroom playlist
+      # 1 - views/virtual_classroom/_playlist.html.erb
       make_it_empty: 'Empty playlist'
+      # 1 - views/virtual_classroom/_playlist.html.erb
       play: 'Play'
     send_link:
+      # 1 - views/virtual_classroom/_popups.html.erb
       message: 'Write a message'
+      # 1 - views/virtual_classroom/_popups.html.erb
       emails: 'Insert emails separated by comma'
       mailing_list:
+        # 1 - views/virtual_classroom/_popups.html.erb
         title: 'or select mailing list'
+        # 1 - views/virtual_classroom/_popups.html.erb
         placeholder: 'no mailing list'
   
   
