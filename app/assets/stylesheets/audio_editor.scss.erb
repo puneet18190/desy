@@ -43,7 +43,9 @@ html.audio_editor-controller {
         background-image:url(<%= asset_path 'maniglia_audio_off.gif' %>);
         background-repeat:no-repeat;
         background-position: top left;
-        
+        &.current {
+          background-image:url(<%= asset_path 'maniglia_audio_on.gif' %>);
+        }
       }
       &.current {
         outline:1px solid #fff; 

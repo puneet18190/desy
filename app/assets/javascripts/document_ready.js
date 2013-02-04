@@ -1493,6 +1493,17 @@ $(document).ready(function() {
   initializeVideoEditor();
   
   
+  // AUDIO EDITOR
+  
+  $('body').on('mouseover', '._audio_component_hover', function() {
+    $(this).find('._sort_handle').addClass('current');
+  });
+  
+  $('body').on('mouseout', '._audio_component_hover', function() {
+    $(this).find('._sort_handle').removeClass('current');
+  });
+  
+  
   // PLAYERS
   
   $('body').on('click', '._media_player_play', function() {
