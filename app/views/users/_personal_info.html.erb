@@ -1,31 +1,31 @@
 <fieldset class="insert-content">
   <div class="inputElement">
-    <%= f.label :name %><br>
+    <%= t('users.info.attributes.name') %><br>
     <%= f.text_field :name, class: 'text' %>
   </div>
   <div class="inputElement">
-    <%= f.label :surname %><br>
+    <%= t('users.info.attributes.surname') %><br>
     <%= f.text_field :surname, class: 'text' %>
   </div>
   <div class="inputElement">
-    <%= f.label :email %><br>
+    <%= t('users.info.attributes.email') %><br>
     <%= f.email_field :email, class: 'text', disabled: !@user.new_record? %>
   </div>
   <br class="clearfloat" />
   <div class="inputElement">
     <% if @user.new_record? %>
-      <%= f.label :password %>
+      <%= t('users.info.attributes.password') %>
     <% else %>
-      <%= f.label :new_password %>
+      <%= t('users.info.attributes.new_password') %>
     <% end %>
     <br />
     <%= f.password_field :password, class: 'text' %>
   </div>
   <div class="inputElement" style="margin-right:0">
     <% if @user.new_record? %>
-      <%= f.label :password_confirmation %>
+      <%= t('users.info.attributes.password_confirmation') %>
     <% else %>
-      <%= f.label :new_password_confirmation %>
+      <%= t('users.info.attributes.new_password_confirmation') %>
     <% end %>
     <br>
     <%= f.password_field :password_confirmation, class: 'text' %>
@@ -44,16 +44,16 @@
 <hr>
 <fieldset class="insert-content">
   <div class="inputElement">
-    <%= f.label :school %><br>
+    <%= t('users.info.attributes.school') %><br>
     <%= f.text_field :school, class: 'text school' %>
   </div>
   <br class="clearfloat" />
   <div class="inputElement">
-    <%= f.label :school_level_id %><br>
+    <%= t('users.info.attributes.school_level_id') %><br>
     <%= f.select :school_level_id, @school_level_ids %>
   </div>
   <div class="inputElement">
-    <%= f.label :location_id %><br>
+    <%= t('users.info.attributes.location_id') %><br>
     <%= f.select :location_id, @location_ids %>
   </div>
   <br class="clearfloat">
