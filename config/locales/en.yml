@@ -1276,36 +1276,65 @@ en:
   video_editor:
     # it is used in the video editor, in order to open the selection of audio tracks
     audio_track:
+      # 1 - views/video_editor/_audio_track.html.erb
       title: 'Add audio track'
+      # 1 - views/video_editor/_audio_track.html.erb
       description: 'You can upload an audio track: this will cover the original audio of all the chosen components'
     components:
       image:
+        # 1 - views/galleries/mixed_for_video_editor.js.erb
         time: 'Time'
       text:
         # this is used in the video editor, to choose a background color for a 'title' component
+        # 1 - views/video_editor/_text_component_editor.html.erb
         background_color: 'Background color'
+        # 1 - views/video_editor/_text_component_editor.html.erb
         color: 'Text color'
+        # 1 - views/video_editor/_text_component_editor.html.erb
         done: 'Insert'
+        # 1 - views/video_editor/_text_component_editor.html.erb
+        # 2 - views/video_editor/_text_component_editor.html.erb
+        # 3 - views/video_editor/_text_component_editor.html.erb
         insert: 'Insert text'
+        # 1 - views/video_editor/_text_component_editor.html.erb
         time: 'Time'
-      video:
     cutters:
+      # 1 - views/video_editor/cutters/_video.html.erb
+      # 2 - views/video_editor/cutters/_text.html.erb
+      # 3 - views/video_editor/cutters/_image.html.erb
       done: 'Done'
+      # 1 - views/video_editor/cutters/_text.html.erb
+      # 2 - views/video_editor/cutters/_image.html.erb
       old_time: 'Time'
+      # 1 - views/video_editor/cutters/_video.html.erb
       play: 'Play'
+      # 1 - views/video_editor/cutters/_video.html.erb
       pause: 'Pause'
+      # 1 - views/video_editor/cutters/_text.html.erb
+      # 2 - views/video_editor/cutters/_image.html.erb
       time: 'New time'
+      # 1 - views/video_editor/cutters/_video.html.erb
       total_length: 'Total clip length'
+      # 1 - views/video_editor/cutters/_video.html.erb
       selected_length: 'Selected'
+    # 1 - views/video_editor/_header.html.erb
     label: 'Edit video'
     not_available:
+      # 1 - views/video_editor/not_available.html.erb
       title: 'Video editor not available'
+      # 1 - views/video_editor/not_available.html.erb
       description: 'Inserire qui altro testo'
     preview:
+      # 1 - views/video_editor/edit.html.erb
+      # 2 - views/video_editor/edit.html.erb
       label: 'Preview'
+      # 1 - views/video_editor/edit.html.erb
       pause: 'Pause'
+      # 1 - views/video_editor/edit.html.erb
       play: 'Play'
+    # 1 - views/galleries/_mixed_video_image_text.html.erb
     select_component_to_add: 'Select component to add'
+    # 1 - views/video_editor/edit.html.erb
     total_length: 'Total length'
   
   
