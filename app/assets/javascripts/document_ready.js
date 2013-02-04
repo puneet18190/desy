@@ -1506,8 +1506,8 @@ $(document).ready(function() {
     $(this).parent().find('._sort_handle').addClass('current');
   });
   
-  $('body').on('mouseout', '._audio_editor_component ._box_ghost', function() {
-    if($(this).css('display') == 'block') {
+  $('body').on('mouseout', '._audio_editor_component ._box_ghost', function(e) {
+    if($(this).css('display') == 'block' && !$(e.relatedTarget).hasClass('_remove')) {
       $(this).parent().find('._sort_handle').removeClass('current');
     }
   });
