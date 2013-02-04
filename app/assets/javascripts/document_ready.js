@@ -1495,12 +1495,22 @@ $(document).ready(function() {
   
   // AUDIO EDITOR
   
-  $('body').on('mouseover', '._audio_component_hover', function() {
-    $(this).find('._sort_handle').addClass('current');
+  $('body').on('mouseover', '._audio_editor_component ._box_ghost', function() {
+    $(this).parent().find('._sort_handle').addClass('current');
   });
   
-  $('body').on('mouseout', '._audio_component_hover', function() {
-    $(this).find('._sort_handle').removeClass('current');
+  $('body').on('mouseout', '._audio_editor_component ._box_ghost', function() {
+    if($(this).css('display') == 'block') {
+      $(this).parent().find('._sort_handle').removeClass('current');
+    }
+  });
+  
+  $('body').on('click', '._audio_editor_component ._sort_handle', function() {
+    selectAudioEditorComponent($(this).parent().parent());
+  });
+  
+  $('body').on('click', '._audio_editor_component ._box_ghost', function() {
+    selectAudioEditorComponent($(this).parent());
   });
   
   

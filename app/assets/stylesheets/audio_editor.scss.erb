@@ -46,6 +46,10 @@ html.audio_editor-controller {
         &.current {
           background-image:url(<%= asset_path 'maniglia_audio_on.gif' %>);
         }
+        &:hover {
+          background-image:url(<%= asset_path 'maniglia_audio_on.gif' %>);
+          cursor: move;
+        }
       }
       &.current {
         outline:1px solid #fff; 
@@ -85,14 +89,16 @@ html.audio_editor-controller {
       margin: 5px;
     }
   }
-  ._audio_editor_component .boxGhost {
-    height:103px; 
-    width:710px; 
-    position:absolute; 
-    z-index:102; 
-    top:0; 
-    left:60px; 
-    cursor:pointer;
-    display: none;
+  ._audio_editor_component {
+    position: relative;
+    .boxGhost {
+      height: 103px;
+      width: 617px;
+      position: absolute;
+      z-index: 102;
+      top: 0;
+      left: 121px;
+      cursor: pointer;
+    }
   }
 }

@@ -13,10 +13,10 @@
 
 <div class="<%= empty ? '_audio_editor_empty_component'.html_safe : '_audio_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-current-preview-time="0">
 
- <div class="contatore _audio_component_icon">
+  <div class="contatore _audio_component_icon">
     <%= identifier %>
   </div>
-  <div class="audioContent _audio_component_hover">
+  <div class="audioContent _content">
     <div class="manigliaAudio _sort_handle"></div>
     <div class="audioComponentContent">
       <div class="audioComponentTitle">
@@ -42,5 +42,5 @@
     <%= hidden_field_tag "position_#{identifier}", identifier, :class => '_audio_component_input_position' %>
   <% end %>
   <br class="clearfloat">
-  <div class="boxGhost"></div>
+  <div class="boxGhost _box_ghost"></div>
 </div>
