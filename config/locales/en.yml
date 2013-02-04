@@ -1386,46 +1386,99 @@ en:
   # SECTION 3.1 labels for constant keywords defined in lib/autoload
   statuses:
     lessons:
+      # 1 - ../lib/autoload/statuses.rb
       private: 'Private'
+      # 1 - ../lib/autoload/statuses.rb
       copied: 'Copied'
+      # 1 - ../lib/autoload/statuses.rb
       linked: 'Linked'
+      # 1 - ../lib/autoload/statuses.rb
       public: 'Public'
+      # 1 - ../lib/autoload/statuses.rb
       shared: 'Shared'
     media_elements:
+      # 1 - ../lib/autoload/statuses.rb
       private: 'Private'
+      # 1 - ../lib/autoload/statuses.rb
       public: 'Public'
+      # 1 - ../lib/autoload/statuses.rb
       linked: 'Linked'
   filters:
+    # 1 - ../lib/autoload/filters.rb
     all_lessons: 'All lessons'
+    # 1 - ../lib/autoload/filters.rb
     private: 'Private'
+    # 1 - ../lib/autoload/filters.rb
     public: 'Public'
+    # 1 - ../lib/autoload/filters.rb
     linked: 'Linked'
+    # 1 - ../lib/autoload/filters.rb
     only_mine: 'Your own'
+    # 1 - ../lib/autoload/filters.rb
     copied: 'Just copied'
+    # 1 - ../lib/autoload/filters.rb
     all_media_elements: 'All formats'
+    # 1 - ../lib/autoload/filters.rb
     video: 'Video'
+    # 1 - ../lib/autoload/filters.rb
     audio: 'Audio'
+    # 1 - ../lib/autoload/filters.rb
     image: 'Images'
+    # 1 - ../lib/autoload/filters.rb
     not_mine: 'Not created by you'
   orders:
+    # 1 - ../lib/autoload/search_orders.rb
     updated_at: 'Date last modification'
+    # 1 - ../lib/autoload/search_orders.rb
     likes: 'Number of likes'
+    # 1 - ../lib/autoload/search_orders.rb
     title: 'Alphabetical'
   
   
   # SECTION 3.2: language_parameters and time configurations
   time:
+    # 1 - ..lib/autoload/time_convert.rb
     format: 'english'
   language_parameters:
     lesson:
-      length_description: 280 # for chinese it should be around 180 - 200
-      length_title: 35 # for chinese it should be around 45
+      # for chinese it should be around 300 - 400
+      # 1 - models/lesson.rb
+      # 2 - views/lesson_editor/new.html.erb
+      length_description: 280
+      # for chinese it should be around 45
+      # 1 - models/lesson.rb
+      # 2 - views/lesson_editor/new.html.erb
+      length_title: 35
     media_element:
-      length_description: 280 # for chinese it should be around 180 - 200
-      length_title: 35 # for chinese it should be around 45
+      # for chinese it should be around 300 - 400
+      # 1 - models/media_element.rb
+      # 2 - views/media_elements/_new_form_popup.html.erb
+      # 3 - views/media_elements/info_form_in_editor/_new.html.erb
+      length_description: 280
+      # for chinese it should be around 45
+      # 1 - models/media_element.rb
+      # 2 - views/media_elements/_new_form_popup.html.erb
+      # 3 - views/media_elements/info_form_in_editor/_new.html.erb
+      length_title: 35
     slide:
-      length_title: 35 # for chinese it should be around 45
-      length_caption: 35 # for chinese it should be around 45
+      # for chinese it should be around 45
+      # 1 - models/slide.rb
+      # 2 - views/lesson_editor/slides/_text.html.erb
+      # 3 - views/lesson_editor/slides/_title.html.erb
+      # 4 - views/lesson_editor/slides/_video1.html.erb
+      # 5 - views/lesson_editor/slides/_image1.html.erb
+      # 6 - views/lesson_editor/slides/_audio.html.erb
+      length_title: 35
+      # for chinese it should be around 45
+      # 1 - models/media_elements_slide.rb
+      # 2 - views/lesson_editor/slides/parts/_image.html.erb
+      length_caption: 35
     video_editor:
-      length_text_component: 35 # for chinese it should be around 45
+      # for chinese it should be around 45
+      # 1 - views/video_editor/_text_component_editor.html.erb
+      length_text_component: 35
+      # 1 - views/galleries/mixed_for_video_editor.js.erb
+      # 2 - views/video_editor/cutters/_text.html.erb
+      # 3 - views/video_editor/cutters/_image.html.erb
+      # 4 - views/video_editor/_text_component_editor.html.erb
       length_duration: 3
