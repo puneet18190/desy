@@ -901,6 +901,8 @@ en:
     create_new: 'Create a new lesson'
     # 1 - views/lessons/_empty.html.erb
     create_new_now: 'Create a lesson now'
+    # 1 - views/lessons/_view_single_compact.html.erb
+    description: 'Description'
     # 1 - views/lessons/_empty.html.erb
     empty: 'You have no lessons in your section, create one'
     # 1 - views/lessons/_empty_filter.html.erb
@@ -984,53 +986,100 @@ en:
   # SECTION 2.11: pagine di prelogin
   prelogin:
     contact_us:
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/prelogin/home.html.erb
+      # 3 - views/prelogin/contact_us.html.erb
+      # 4 - views/prelogin/what_is_desy.html.erb
       menu_link: 'Contact us'
+      # 1 - views/prelogin/contact_us.html.erb
       title: 'Contact us!'
+      # 1 - views/prelogin/contact_us.html.erb
       description: 'Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts'
     main_page:
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/prelogin/home.html.erb
+      # 3 - views/prelogin/contact_us.html.erb
+      # 4 - views/prelogin/what_is_desy.html.erb
       menu_link: 'Home'
+      # 1 - views/prelogin/home.html.erb
       title: 'A new way of teaching'
+      # 1 - views/prelogin/home.html.erb
       description: "<b>%{desy}</b> is the new platform dedicated to the world of education. With <b>%{desy}</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>%{desy}</b> we guarantee high quality and care for details</i>."
+      # 1 - views/prelogin/home.html.erb
       video: 'Watch the video'
     sign_up:
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/prelogin/home.html.erb
+      # 3 - views/prelogin/contact_us.html.erb
+      # 4 - views/prelogin/what_is_desy.html.erb
       menu_link: 'Sign up'
     what_is_desy:
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/prelogin/home.html.erb
+      # 3 - views/prelogin/contact_us.html.erb
+      # 4 - views/prelogin/what_is_desy.html.erb
       menu_link: 'What is %{desy}?'
+      # 1- views/prelogin/what_is_desy.html.erb
       title: 'What is %{desy}?'
+      # 1- views/prelogin/what_is_desy.html.erb
       subtitle: 'Find out the benefits of %{desy}'
+      # 1- views/prelogin/what_is_desy.html.erb
       description: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
+      # 1- views/prelogin/what_is_desy.html.erb
       right_column_title: 'Watch demo'
+      # 1- views/prelogin/what_is_desy.html.erb
       right_column: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
   
   
   # SECTION 2.12: registration and login
   registration:
+    # 1 - views/prelogin/registration.html.erb
+    title: 'Register'
+    # 1 - views/prelogin/registration.html.erb
+    subtitle: 'Why register?'
+    # 1 - views/prelogin/registration.html.erb
+    subsubtitle: 'Discover the benefits of %{desy}'
+    # 1 - views/prelogin/registration.html.erb
+    description: 'Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching.'
+    # 1 - views/prelogin/registration.html.erb
     done: 'Sign up'
     login:
-      email: 'Email'
+      # 1 - views/prelogin/_login.html.erb
       done: 'Enter'
+      # 1 - views/prelogin/_login.html.erb
+      email: 'Email'
+      # 1 - views/prelogin/_login.html.erb
       password: 'Password'
+      # 1 - views/prelogin/_login.html.erb
       title: 'Login'
+    # 1 - views/shared/_logout.html.erb
     logout: 'Logout'
+    # 1 - views/prelogin/_login.html.erb
     problems_with_password: 'Forgot your password?'
-    description: 'Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching.'
-    title: 'Register'
-    subtitle: 'Why register?'
-    subsubtitle: 'Discover the benefits of %{desy}'
     subjects:
+      # 1 - views/prelogin/registration.html.erb
       title: 'Choose the subjects you want to stay connected'
     policy_1:
+      # 1 - views/prelogin/registration.html.erb
       title: 'Title of policy 1'
+      # 1 - views/prelogin/registration.html.erb
       description: 'Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1'
     policy_2:
+      # 1 - views/prelogin/registration.html.erb
       title: 'Title of policy 2'
+      # 1 - views/prelogin/registration.html.erb
       description: 'Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2'
   
   
   # SECTION 2.13: reports
   reports:
+    # 1 - views/reports/_lesson.html.erb
     title: 'Report abuse'
-    decription: 'Do you think that this item is offensive?'
+    # 1 - views/reports/_lesson.html.erb
+    # 2 - views/reports/_media_element.html.erb
+    description: 'Do you think that this item is offensive?'
+    # 1 - views/reports/_lesson.html.erb
+    # 2 - views/reports/_media_element.html.erb
     placeholder: 'Write the reason for your report. Thank you for your cooperation!'
   
   
