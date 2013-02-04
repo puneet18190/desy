@@ -24,27 +24,31 @@ function initializeAudioEditor() {
     handle: '._sort_handle',
     axis: 'y',
     cursor: 'move',
-    containment: 'parent',
     start: function(event, ui) {
       selectAudioEditorComponent($(ui.item));
     },
     stop: function(event, ui) {
-//      my_item = $(ui.item);
-//      my_item.data('rolloverable', true);
-//      my_item.find('._video_component_icon').removeClass('current');
-//      my_item.find('._video_component_thumb').removeClass('current');
-//      resetVisibilityOfVideoEditorTransitions();
-//      var boolean1 = (my_item.next().attr('id') == 'add_new_video_component');
-//      var boolean2 = (my_item.data('position') != $('._video_editor_component').length);
-//      var boolean3 = (my_item.next().data('position') != (my_item.data('position') + 1));
-//      if(boolean1 && boolean2 || !boolean1 && boolean3) {
-//        reloadVideoEditorComponentPositions();
-//        $('._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
-//      }
+      var my_item = $(ui.item);
+      resizeLastComponentInAudioEditor();
+      var boolean1 = (my_item.next().lengt == 0);
+      var boolean2 = (my_item.data('position') != $('._audio_editor_component').length);
+      var boolean3 = (my_item.next().data('position') != (my_item.data('position') + 1));
+      if(boolean1 && boolean2 || !boolean1 && boolean3) {
+        reloadAudioEditorComponentPositions();
+        $('#audio_editor_timeline').effect('highlight', {color: '#41A62A'}, 1000);
+      }
     }
   });
 }
 
+function reloadAudioEditorComponentPositions() {
+  var components = $('._audio_editor_component');
+  components.each(function(index) {
+    $(this).data('position', (index + 1));
+    $(this).find('._audio_component_input_position').val(index + 1);
+    $(this).find('._audio_component_icon').html(index + 1);
+  });
+}
 
 //function closeGenericVideoComponentCutter() {
 //  $('._video_component_cutter_arrow').hide('fade', {}, 250);
@@ -107,15 +111,6 @@ function initializeAudioEditor() {
 //    }
 //    $('#video_editor_mixed_gallery_container ' + type).show();
 //  }
-//}
-
-//function reloadVideoEditorComponentPositions() {
-//  var components = $('._video_editor_component');
-//  components.each(function(index) {
-//    $(this).data('position', (index + 1));
-//    $(this).find('._video_component_input_position').val(index + 1);
-//    $(this).find('._video_component_icon ._left').html(index + 1);
-//  });
 //}
 
 //function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration) {
