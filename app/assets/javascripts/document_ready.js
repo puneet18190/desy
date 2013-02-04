@@ -1513,6 +1513,8 @@ $(document).ready(function() {
     selectAudioEditorComponent($(this).parent());
   });
   
+  initializeAudioEditor();
+  
   
   // PLAYERS
   
