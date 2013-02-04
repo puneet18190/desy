@@ -1,1 +1,7 @@
-$('h3#accordion_group_'+<%=@mlg.id%>+' .group-title').effect('highlight', {color: '#41A62A'}, 1500);
+<% if @errors %>
+  $('h3#accordion_group_'+<%=@mlg.id%>).effect('highlight', {color: '#cc0000'}, 500);
+<% else %>
+  $('h3#accordion_group_'+<%=@mlg.id%>+' .group-title').effect('highlight', {color: '#41A62A'}, 1500);
+<% end %>
+
+$('h3#accordion_group_'+<%=@mlg.id%>+' .group-title').text("<%=@mlg.name%>");
