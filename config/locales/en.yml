@@ -30,6 +30,9 @@ en:
         lesson: 'You removed the link of this lesson'
         # 1 - controllers/media_elements_controller.rb
         media_element: 'You removed this media element'
+      # 1 - views/reports/media_element.js.erb
+      # 2 - views/reports/lesson.js.erb
+      report: 'The report was sent successfully'
       # 1 - controllers/lessons_controller.rb
       unpublish: 'The lesson has been unpublished'
       # 1 - views/users/update.js.erb
@@ -39,13 +42,6 @@ en:
       missing_fields: 'Insert username and password'
       # 1 - controllers/users/sessions_controller.rb
       wrong_content: 'Wrong login data'
-    reports:
-      # 1 - views/reports/media_element.js.erb
-      # 2 - views/reports/lesson.js.erb
-      ok: 'The report was sent successfully'
-      # 1 - controllers/reports_controller.rb
-      # 2 - controllers/reports_controller.rb
-      problem: 'Your report could not be sent'
     send_lesson_link:
       # 1 - views/virtual_classroom/send_link.js.erb
       ok: 'Link sent successfully!'
@@ -198,6 +194,18 @@ en:
           # since the element is public, it's not possible to delete it
           # 1 - models/media_element.rb
           cant_destroy_public: "This element is public, you can't delete it"
+        user:
+          # 1 - controllers/reports_controller.rb
+          # 2 - controllers/reports_controller.rb
+          # 3 - models/user.rb
+          # 4 - models/user.rb
+          # 5 - models/user.rb
+          # 6 - models/user.rb
+          problem_reporting: 'Your report could not be sent'
+          # 1 - models/user.rb
+          lesson_already_reported: 'You already reported this lesson'
+          # 1 - models/user.rb
+          media_element_already_reported: 'You already reported this element'
         notification:
           # there was an error while trying to delete a notification
           # 1 - controllers/notifications_controller.rb
