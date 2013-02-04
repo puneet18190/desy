@@ -63,20 +63,6 @@ en:
         # 1 - models/user.rb
         invalid_email_address: 'does not appear to be a valid email address'
   activerecord:
-    ######### IMPORTANTE: questa parte qui sotto appartiene alla stessa sezione di users (2.15)
-    attributes:
-      user:
-        name: 'Name'
-        surname: 'Surname'
-        email: 'Email'
-        password: 'Password'
-        new_password: 'New password'
-        password_confirmation: 'Password confirmation'
-        new_password_confirmation: 'New password confirmation'
-        school: 'School'
-        school_level_id: 'School level'
-        location_id: 'City'
-    ########## fino a qui
     errors:
       # NOTA - SOLO IN USER VENGONO USATI, NEGLI ALTRI CASI SONO SOSTITUITI
       messages:
@@ -1169,51 +1155,120 @@ en:
   
   # SECTION 2.15: user profile
   users:
+    # 1 - views/users/request_reset_password.html.erb
     email: 'Email'
+    # 1 - views/lessons/_view_single_compact.html.erb
+    school: 'Institute'
     info:
+      # 1 - views/users/statistics.html.erb
+      # 2 - views/users/mailing_lists.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/subjects.html.erb
       menu_link: 'Personal info'
+      # 1 - views/users/edit.html.erb
       title: 'Personal Info'
+      # 1 - views/users/edit.html.erb
       description: 'In this area you can update or modify all the parameters of your account'
-      ######### IMPORTANTE: manca un pezzo che sta più in alto, vedi sopra nella sezione 1.1
-    institute: 'Institute'
+      attributes:
+        # 1 - views/users/_personal_info.html.erb
+        name: 'Name'
+        # 1 - views/users/_personal_info.html.erb
+        surname: 'Surname'
+        # 1 - views/users/_personal_info.html.erb
+        email: 'Email'
+        # 1 - views/users/_personal_info.html.erb
+        password: 'Password'
+        # 1 - views/users/_personal_info.html.erb
+        new_password: 'New password'
+        # 1 - views/users/_personal_info.html.erb
+        password_confirmation: 'Password confirmation'
+        # 1 - views/users/_personal_info.html.erb
+        new_password_confirmation: 'New password confirmation'
+        # 1 - views/users/_personal_info.html.erb
+        school: 'School'
+        # 1 - views/users/_personal_info.html.erb
+        school_level_id: 'School level'
+        # 1 - views/users/_personal_info.html.erb
+        location_id: 'City'
     mailing_list:
-      add: 'Add new group'
-      add_address: 'Add email address to group'
-      delete: 'Delete group'
-      description: 'Create one o more groups of email to send your lessons'
-      label: 'Group'
+      # 1 - views/users/statistics.html.erb
+      # 2 - views/users/mailing_lists.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/subjects.html.erb
       menu_link: 'Mailing lists'
+      # 1 - views/users/mailing_lists.html.erb
       title: 'Mailing lists'
+      # 1 - views/users/mailing_lists.html.erb
+      description: 'Create one o more groups of email to send your lessons'
+      # 1 - views/mailing_lists/_list.html.erb
+      add: 'Add new group'
+      # 1 - views/mailing_lists/_group.html.erb
+      add_address: 'Add email address to group'
+      # 1 - views/mailing_lists/_group.html.erb
+      delete: 'Delete group'
+      # 1 - views/mailing_lists/_group.html.erb
+      label: 'Group'
     reset_password:
+       # 1 - views/users/request_reset_password.html.erb
        title: 'Forgot your password?'
+       # 1 - views/users/request_reset_password.html.erb
        description: 'Insert your email, you will come another password to your e-mail address'
+       # 1 - views/users/request_reset_password.html.erb
        done: 'Reset password'
     statistics:
+      # 1 - views/users/statistics.html.erb
+      # 2 - views/users/mailing_lists.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/subjects.html.erb
+      menu_link: 'Statistics'
+      # 1 - views/users/statistics.html.erb
       title: 'Statistics'
+      # 1 - views/users/statistics.html.erb
       description: 'Follow you numbers in %{desy} and statistics of the system'
       general:
+        # 1 - views/users/statistics.html.erb
         lessons_more_likes: 'Lessons with more likes'
+        # 1 - views/users/statistics.html.erb
         lessons_shared: 'Lessons shared'
+        # 1 - views/users/statistics.html.erb
         media_elements_shared: 'Didactic elements shared'
         percentual_lessons_subject:
+          # 1 - views/users/statistics.html.erb
           title: 'Percentual lessons/subject'
+          # 1 - views/users/statistics.html.erb
           color: 'Color'
+          # 1 - views/users/statistics.html.erb
           subject: 'Subject'
+          # 1 - views/users/statistics.html.erb
           value: 'Value'
+        # 1 - views/users/statistics.html.erb
         title: 'General'
+        # 1 - views/users/statistics.html.erb
         total_users: 'Total users'
+        # 1 - views/users/statistics.html.erb
         users_more_likes: 'Users with more likes'
-      menu_link: 'Statistics'
       personal:
+        # 1 - views/users/statistics.html.erb
         lessons_copied_by: 'Lessons copied by other users'
+        # 1 - views/users/statistics.html.erb
         lessons_created: 'Lessons created'
+        # 1 - views/users/statistics.html.erb
         lessons_more_likes: 'Lessons with more likes'
+        # 1 - views/users/statistics.html.erb
         likes: 'Likes on your content'
+        # 1 - views/users/statistics.html.erb
         media_elements_loaded: 'Didactic elements loaded'
+        # 1 - views/users/statistics.html.erb
         title: 'Personal'
     subjects:
+      # 1 - views/users/statistics.html.erb
+      # 2 - views/users/mailing_lists.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/subjects.html.erb
       menu_link: 'Subjects'
+      # 1 - views/users/subjects.html.erb
       title: 'Subjects'
+      # 1 - views/users/subjects.html.erb
       description: 'Choose the subjects you want to stay connected'
   
   
