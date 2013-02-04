@@ -925,9 +925,17 @@ $(document).ready(function() {
   
   // PROFILE
   $('body').on('keypress','#mailing_lists_accordion .group-title', function(event){
-    if (event.keyCode == 10 || event.keyCode == 13 || event.keyCode == 32) 
+    if (event.keyCode == 10 || event.keyCode == 13){
       event.preventDefault();
-    });
+    }
+  });
+  
+  $('body').on('keypress','#mailing_lists_accordion .group-title', function(event){
+     if(event.which === 32){
+       event.stopPropagation();
+     }
+  });
+  
   $('body').on('blur','#mailing_lists_accordion .group-title', function(){
     var group = $(this); 
     $.ajax({
