@@ -1520,6 +1520,10 @@ $(document).ready(function() {
     selectAudioEditorComponent($(this).parent());
   });
   
+  $('body').on('click', '._audio_editor_component ._remove', function() {
+    removeAudioEditorComponent($(this).parent());
+  });
+  
   initializeAudioEditor();
   
   

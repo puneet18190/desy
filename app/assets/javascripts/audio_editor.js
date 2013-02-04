@@ -4,14 +4,18 @@ function resizeLastComponentInAudioEditor() {
 }
 
 function selectAudioEditorComponent(component) {
-  $('._audio_editor_component._selected ._content').removeClass('current');
-  $('._audio_editor_component._selected ._box_ghost').show();
-  $('._audio_editor_component._selected ._sort_handle').removeClass('current');
-  $('._audio_editor_component._selected').removeClass('_selected');
+  deselectAllAudioEditorComponents();
   component.addClass('_selected');
   component.find('._content').addClass('current');
   component.find('._box_ghost').hide();
   component.find('._sort_handle').addClass('current');
+}
+
+function deselectAllAudioEditorComponents() {
+  $('._audio_editor_component._selected ._content').removeClass('current');
+  $('._audio_editor_component._selected ._box_ghost').show();
+  $('._audio_editor_component._selected ._sort_handle').removeClass('current');
+  $('._audio_editor_component._selected').removeClass('_selected');
 }
 
 function initializeAudioEditor() {
@@ -47,6 +51,27 @@ function reloadAudioEditorComponentPositions() {
     $(this).data('position', (index + 1));
     $(this).find('._audio_component_input_position').val(index + 1);
     $(this).find('._audio_component_icon').html(index + 1);
+  });
+}
+
+function changeDurationAudioEditorComponent(component, new_duration) {
+  var old_duration = component.data('duration');
+  var total_length = $('#info_container').data('total-length');
+  total_length -= old_duration;
+  total_length += new_duration;
+  component.data('duration', new_duration);
+  $('#info_container').data('total-length', total_length);
+  $('#visual_audio_editor_total_length').html(secondsToDateString(total_length));
+}
+
+function removeAudioEditorComponent(component) {
+  component.hide('fade', {}, 500, function() {
+    changeDurationAudioEditorComponent(component, 0);
+    $(this).remove();
+    reloadAudioEditorComponentPositions();
+    if($('._audio_editor_component').length == 0) {
+      $('#commit_audio_editor').css('visibility', 'hidden');
+    }
   });
 }
 
@@ -182,25 +207,6 @@ function reloadAudioEditorComponentPositions() {
 //  }, 1100);
 //}
 
-//function changeDurationVideoEditorComponent(component_id, new_duration) {
-//  var old_duration = $('#' + component_id).data('duration');
-//  var total_length = $('#info_container').data('total-length');
-//  total_length -= old_duration;
-//  total_length += new_duration;
-//  if($('._video_editor_component').length > 1) {
-//    if(old_duration == 0) {
-//      total_length += 1;
-//    }
-//    if(new_duration == 0) {
-//      total_length -= 1;
-//    }
-//  }
-//  $('#' + component_id).data('duration', new_duration);
-//  $('#' + component_id + ' ._video_component_icon ._right').html(secondsToDateString(new_duration));
-//  $('#info_container').data('total-length', total_length);
-//  $('#visual_video_editor_total_length').html(secondsToDateString(total_length));
-//}
-
 //function fillVideoEditorSingleParameter(input, identifier, value) {
 //  return '<input id="' + input + '_' + identifier + '" class="_video_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
 //}
@@ -259,10 +265,6 @@ function reloadAudioEditorComponentPositions() {
 //    highlightAndUpdateVideoComponentIcon('video_component_' + identifier);
 //    $('#video_component_' + identifier + '_cutter').data('changed', false);
 //  }
-//}
-
-//function videoEditorWithAudioTrack() {
-//  return $('#audio_track_in_video_editor_input').val() != '';
 //}
 
 //function cutVideoComponentLeftSide(identifier, pos) {
@@ -420,15 +422,6 @@ function reloadAudioEditorComponentPositions() {
 //    resp = $('#' + component.attr('id') + '_cutter').data('from');
 //  }
 //  return resp;
-//}
-
-//function getVideoComponentIdentifier(item_id) {
-//  var resp = item_id.split('_');
-//  if($('#' + item_id).hasClass('_video_editor_component')) {
-//    return resp[resp.length - 1];
-//  } else {
-//    return resp[resp.length - 2];
-//  }
 //}
 
 //function automaticIncreaseVideoEditorPreviewTimer(time, total_length, callback) {
