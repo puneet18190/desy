@@ -1524,6 +1524,17 @@ $(document).ready(function() {
     removeAudioEditorComponent($(this).parent());
   });
   
+  $('body').on('click', '#add_new_audio_component_in_audio_editor', function() {
+    if($('#audio_editor_gallery_container').data('loaded')) {
+      showGalleryInAudioEditor();
+    } else {
+      $.ajax({
+        type: 'get',
+        url: '/audios/galleries/audio'
+      });
+    }
+  });
+  
   initializeAudioEditor();
   
   

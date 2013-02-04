@@ -75,44 +75,22 @@ function removeAudioEditorComponent(component) {
   });
 }
 
-//function closeGenericVideoComponentCutter() {
-//  $('._video_component_cutter_arrow').hide('fade', {}, 250);
-//  $('._video_component_cutter').hide('fade', {}, 250, function() {
-//    $('#video_editor_global_preview a').removeClass('disabled');
-//    $('._video_editor_bottom_bar').css('visibility', 'visible');
-//    resetVisibilityOfVideoEditorTransitions();
-//    $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'visible');
-//    $('._video_editor_bottom_bar').show();
-//    $('#video_editor_box_ghost').hide();
-//    $('._video_editor_component_hover').removeClass('selected');
-//    $('._new_component_in_video_editor_hover').removeClass('selected');
-//    $('._video_component_icon').removeClass('selected');
-//  });
-//}
+// TODO DA SISTEMARE
 
-//function resetVisibilityOfVideoEditorTransitions() {
-//  var components = $('._video_editor_component');
-//  components.each(function(index) {
-//    if(index < (components.length - 1)) {
-//      $(this).find('._video_component_transition').removeClass('current');
-//    } else {
-//      $(this).find('._video_component_transition').addClass('current');
-//    }
-//  });
-//}
+function showGalleryInAudioEditor() {
+  $('._audio_editor_bottom_bar').hide();
+  $('#audio_editor_gallery_container').show();
+  calculateNewPositionGalleriesInVideoEditor();
+  $('._video_editor_component_menu').hide();
+}
 
-//function calculateNewPositionGalleriesInVideoEditor() {
-//  $('#video_editor_mixed_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
-//  $('#video_editor_audio_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
-//}
+function calculateNewPositionGalleriesInAudioEditor() {
+  $('#audio_editor_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
+}
 
-//function showGalleryInVideoEditor(type) {
-//  $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
-//  $('#video_editor_' + type + '_gallery_container').show();
-//  $('._video_editor_bottom_bar').hide();
-//  calculateNewPositionGalleriesInVideoEditor();
-//  $('._video_editor_component_menu').hide();
-//}
+// TODO FINO A QUI
+
+
 
 //function closeGalleryInVideoEditor(type) {
 //  $('#video_editor_' + type + '_gallery_container').hide('fade', {}, 250, function() {
