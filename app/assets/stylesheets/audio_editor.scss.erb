@@ -1,10 +1,6 @@
 html.audio_editor-controller {
   
  .mediaEditorAudioContainer {
-    .audioEditorTimelineContainer {
-      margin-left:10px;
-      margin-left:30px;
-    }
     .info {
       width:77px;
       background-color:#504f50;
@@ -93,6 +89,9 @@ html.audio_editor-controller {
     position: relative;
     width: 756px;
     height: 113px;
+    &._last {
+      height: 109px;
+    }
     .boxGhost {
       height: 103px;
       width: 617px;
@@ -104,9 +103,24 @@ html.audio_editor-controller {
     }
   }
   
-  #audio_editor_timeline, #audio_editor_box_ghost, .audioEditorTimelineContainer {
-    height: 452px;
+  #audio_editor_timeline {
+    margin-left: 30px;
+    margin-bottom: 30px;
+  }
+  
+  #audio_editor_box_ghost {
+    position: absolute;
+    z-index: 100;
+    left: 30px;
+  }
+  
+  #audio_editor_timeline, #audio_editor_box_ghost {
+    height: 448px;
     width: 768px;
+  }
+  
+  .jspVerticalBar {
+    top: 0;
   }
   
 }

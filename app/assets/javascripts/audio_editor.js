@@ -1,3 +1,8 @@
+function resizeLastComponentInAudioEditor() {
+  $('._audio_editor_component._last').last().removeClass('_last')
+  $('._audio_editor_component').last().addClass('_last');
+}
+
 function selectAudioEditorComponent(component) {
   $('._audio_editor_component._selected ._content').removeClass('current');
   $('._audio_editor_component._selected ._box_ghost').show();
@@ -10,6 +15,7 @@ function selectAudioEditorComponent(component) {
 }
 
 function initializeAudioEditor() {
+  resizeLastComponentInAudioEditor();
   $('#audio_editor_timeline').jScrollPane({
     autoReinitialise: true
   });
