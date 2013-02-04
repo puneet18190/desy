@@ -30,6 +30,9 @@ en:
         lesson: 'You removed the link of this lesson'
         # 1 - controllers/media_elements_controller.rb
         media_element: 'You removed this media element'
+      # 1 - views/reports/media_element.js.erb
+      # 2 - views/reports/lesson.js.erb
+      report: 'The report was sent successfully'
       # 1 - controllers/lessons_controller.rb
       unpublish: 'The lesson has been unpublished'
       # 1 - views/users/update.js.erb
@@ -39,13 +42,6 @@ en:
       missing_fields: 'Insert username and password'
       # 1 - controllers/users/sessions_controller.rb
       wrong_content: 'Wrong login data'
-    reports:
-      # 1 - views/reports/media_element.js.erb
-      # 2 - views/reports/lesson.js.erb
-      ok: 'The report was sent successfully'
-      # 1 - controllers/reports_controller.rb
-      # 2 - controllers/reports_controller.rb
-      problem: 'Your report could not be sent'
     send_lesson_link:
       # 1 - views/virtual_classroom/send_link.js.erb
       ok: 'Link sent successfully!'
@@ -67,20 +63,6 @@ en:
         # 1 - models/user.rb
         invalid_email_address: 'does not appear to be a valid email address'
   activerecord:
-    ######### IMPORTANTE: questa parte qui sotto appartiene alla stessa sezione di users (2.15)
-    attributes:
-      user:
-        name: 'Name'
-        surname: 'Surname'
-        email: 'Email'
-        password: 'Password'
-        new_password: 'New password'
-        password_confirmation: 'Password confirmation'
-        new_password_confirmation: 'New password confirmation'
-        school: 'School'
-        school_level_id: 'School level'
-        location_id: 'City'
-    ########## fino a qui
     errors:
       # NOTA - SOLO IN USER VENGONO USATI, NEGLI ALTRI CASI SONO SOSTITUITI
       messages:
@@ -198,6 +180,18 @@ en:
           # since the element is public, it's not possible to delete it
           # 1 - models/media_element.rb
           cant_destroy_public: "This element is public, you can't delete it"
+        user:
+          # 1 - controllers/reports_controller.rb
+          # 2 - controllers/reports_controller.rb
+          # 3 - models/user.rb
+          # 4 - models/user.rb
+          # 5 - models/user.rb
+          # 6 - models/user.rb
+          problem_reporting: 'Your report could not be sent'
+          # 1 - models/user.rb
+          lesson_already_reported: 'You already reported this lesson'
+          # 1 - models/user.rb
+          media_element_already_reported: 'You already reported this element'
         notification:
           # there was an error while trying to delete a notification
           # 1 - controllers/notifications_controller.rb
@@ -901,6 +895,8 @@ en:
     create_new: 'Create a new lesson'
     # 1 - views/lessons/_empty.html.erb
     create_new_now: 'Create a lesson now'
+    # 1 - views/lessons/_view_single_compact.html.erb
+    description: 'Description'
     # 1 - views/lessons/_empty.html.erb
     empty: 'You have no lessons in your section, create one'
     # 1 - views/lessons/_empty_filter.html.erb
@@ -984,146 +980,295 @@ en:
   # SECTION 2.11: pagine di prelogin
   prelogin:
     contact_us:
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/prelogin/home.html.erb
+      # 3 - views/prelogin/contact_us.html.erb
+      # 4 - views/prelogin/what_is_desy.html.erb
       menu_link: 'Contact us'
+      # 1 - views/prelogin/contact_us.html.erb
       title: 'Contact us!'
+      # 1 - views/prelogin/contact_us.html.erb
       description: 'Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts'
     main_page:
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/prelogin/home.html.erb
+      # 3 - views/prelogin/contact_us.html.erb
+      # 4 - views/prelogin/what_is_desy.html.erb
       menu_link: 'Home'
+      # 1 - views/prelogin/home.html.erb
       title: 'A new way of teaching'
+      # 1 - views/prelogin/home.html.erb
       description: "<b>%{desy}</b> is the new platform dedicated to the world of education. With <b>%{desy}</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>%{desy}</b> we guarantee high quality and care for details</i>."
+      # 1 - views/prelogin/home.html.erb
       video: 'Watch the video'
     sign_up:
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/prelogin/home.html.erb
+      # 3 - views/prelogin/contact_us.html.erb
+      # 4 - views/prelogin/what_is_desy.html.erb
       menu_link: 'Sign up'
     what_is_desy:
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/prelogin/home.html.erb
+      # 3 - views/prelogin/contact_us.html.erb
+      # 4 - views/prelogin/what_is_desy.html.erb
       menu_link: 'What is %{desy}?'
+      # 1- views/prelogin/what_is_desy.html.erb
       title: 'What is %{desy}?'
+      # 1- views/prelogin/what_is_desy.html.erb
       subtitle: 'Find out the benefits of %{desy}'
+      # 1- views/prelogin/what_is_desy.html.erb
       description: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
+      # 1- views/prelogin/what_is_desy.html.erb
       right_column_title: 'Watch demo'
+      # 1- views/prelogin/what_is_desy.html.erb
       right_column: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
   
   
   # SECTION 2.12: registration and login
   registration:
+    # 1 - views/prelogin/registration.html.erb
+    title: 'Register'
+    # 1 - views/prelogin/registration.html.erb
+    subtitle: 'Why register?'
+    # 1 - views/prelogin/registration.html.erb
+    subsubtitle: 'Discover the benefits of %{desy}'
+    # 1 - views/prelogin/registration.html.erb
+    description: 'Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching.'
+    # 1 - views/prelogin/registration.html.erb
     done: 'Sign up'
     login:
-      email: 'Email'
+      # 1 - views/prelogin/_login.html.erb
       done: 'Enter'
+      # 1 - views/prelogin/_login.html.erb
+      email: 'Email'
+      # 1 - views/prelogin/_login.html.erb
       password: 'Password'
+      # 1 - views/prelogin/_login.html.erb
       title: 'Login'
+    # 1 - views/shared/_logout.html.erb
     logout: 'Logout'
+    # 1 - views/prelogin/_login.html.erb
     problems_with_password: 'Forgot your password?'
-    description: 'Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching.'
-    title: 'Register'
-    subtitle: 'Why register?'
-    subsubtitle: 'Discover the benefits of %{desy}'
     subjects:
+      # 1 - views/prelogin/registration.html.erb
       title: 'Choose the subjects you want to stay connected'
     policy_1:
+      # 1 - views/prelogin/registration.html.erb
       title: 'Title of policy 1'
+      # 1 - views/prelogin/registration.html.erb
       description: 'Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1'
     policy_2:
+      # 1 - views/prelogin/registration.html.erb
       title: 'Title of policy 2'
+      # 1 - views/prelogin/registration.html.erb
       description: 'Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2'
   
   
   # SECTION 2.13: reports
   reports:
+    # 1 - views/reports/_lesson.html.erb
     title: 'Report abuse'
-    decription: 'Do you think that this item is offensive?'
+    # 1 - views/reports/_lesson.html.erb
+    # 2 - views/reports/_media_element.html.erb
+    description: 'Do you think that this item is offensive?'
+    # 1 - views/reports/_lesson.html.erb
+    # 2 - views/reports/_media_element.html.erb
     placeholder: 'Write the reason for your report. Thank you for your cooperation!'
   
   
   # SECTION 2.14: search engine
   search:
     # it is a link to open the application search engine
+    # 1 - views/shared/_search.html.erb
+    # 2 - views/search/index.html.erb
     label: 'Advanced search'
+    # 1 - views/search/lessons/_main.html.erb
+    # 2 - views/search/lessons/_main.html.erb
+    # 3 - views/search/media_elements/_main.html.erb
+    # 4 - views/search/media_elements/_main.html.erb
     short_label: 'Search'
+    # 1 - views/shared/_search.html.erb
     long_label: 'Search in %{desy}'
+    # 1 - views/search/index.html.erb
     title: 'What are you looking for?'
+    # 1 - views/search/index.html.erb
     description_title: 'Are you looking for lessons or elements?'
-     # this is the prompt to use the application's search engine
+    # this is the prompt to use the application's search engine
+    # 1 - views/search/index.html.erb
     description: 'Insert a word, choose the filters and go!'
+    # 1 - views/search/index.html.erb
     again: 'Search again...'
     lessons:
+      # 1 - views/search/lessons/_amount.html.erb
       result: 'Found %{num} results. To refine your search select between these tags'
+      # 1 - views/search/lessons/_empty.html.erb
       empty_word: 'No lessons were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters'
+      # 1 - views/search/lessons/_empty.html.erb
       empty_tag: 'No lessons were found associated to the tag <%{tag}>: try filtering by a different tag, or changing your search parameters'
+      # 1 - views/search/lessons/_empty.html.erb
       empty_filter: 'No lesson was found with the filters you chose'
       keyword:
+        # 1 - views/search/lessons/_main.html.erb
         label: 'Keyword'
+        # 1 - views/search/lessons/_main.html.erb
         placeholder: 'Insert a tag'
       filters:
+        # 1 - views/search/lessons/_main.html.erb
         author: 'Category'
+        # 1 - views/search/lessons/_main.html.erb
         subject: 'Subject'
+        # 1 - views/search/lessons/_main.html.erb
         all_subjects: 'All subjects'
+      # 1 - views/search/lessons/_main.html.erb
       sort: 'Sort results by'
       suggestion:
+        # 1 - views/search/lessons/_main.html.erb
         title: 'Warning!'
+        # 1 - views/search/lessons/_main.html.erb
         description: "If you don't insert a keyword the search engine will find all the available lessons, according to the filters you selected"
     media_elements:
+      # 1 - views/search/media_elements/_amount.html.erb
       result: 'Found %{num} results. To refine your search select between these tags'
+      # 1 - views/search/media_elements/_empty.html.erb
       empty_word: 'No elements were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters'
+      # 1 - views/search/media_elements/_empty.html.erb
       empty_tag: 'No elements were found associated to the tag <%{tag}>: try filtering by a different tag, or changing your search parameters'
+      # 1 - views/search/media_elements/_empty.html.erb
       empty_filter: 'No element was found with the filters you chose'
       keyword:
+        # 1 - views/search/media_elements/_main.html.erb
         label: 'Keyword'
+        # 1 - views/search/media_elements/_main.html.erb
         placeholder: 'Insert a tag'
       filters:
+        # 1 - views/search/media_elements/_main.html.erb
         format: 'Format'
+      # 1 - views/search/media_elements/_main.html.erb
       sort: 'Sort results by'
       suggestion:
+        # 1 - views/search/media_elements/_main.html.erb
         title: 'Warning!'
+        # 1 - views/search/media_elements/_main.html.erb
         description: "If you don't insert a keyword the search engine will find all the available elements, according to the filters you selected"
   
   
   # SECTION 2.15: user profile
   users:
+    # 1 - views/users/request_reset_password.html.erb
     email: 'Email'
+    # 1 - views/lessons/_view_single_compact.html.erb
+    school: 'Institute'
     info:
+      # 1 - views/users/statistics.html.erb
+      # 2 - views/users/mailing_lists.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/subjects.html.erb
       menu_link: 'Personal info'
+      # 1 - views/users/edit.html.erb
       title: 'Personal Info'
+      # 1 - views/users/edit.html.erb
       description: 'In this area you can update or modify all the parameters of your account'
-      ######### IMPORTANTE: manca un pezzo che sta più in alto, vedi sopra nella sezione 1.1
-    institute: 'Institute'
+      attributes:
+        # 1 - views/users/_personal_info.html.erb
+        name: 'Name'
+        # 1 - views/users/_personal_info.html.erb
+        surname: 'Surname'
+        # 1 - views/users/_personal_info.html.erb
+        email: 'Email'
+        # 1 - views/users/_personal_info.html.erb
+        password: 'Password'
+        # 1 - views/users/_personal_info.html.erb
+        new_password: 'New password'
+        # 1 - views/users/_personal_info.html.erb
+        password_confirmation: 'Password confirmation'
+        # 1 - views/users/_personal_info.html.erb
+        new_password_confirmation: 'New password confirmation'
+        # 1 - views/users/_personal_info.html.erb
+        school: 'School'
+        # 1 - views/users/_personal_info.html.erb
+        school_level_id: 'School level'
+        # 1 - views/users/_personal_info.html.erb
+        location_id: 'City'
     mailing_list:
-      add: 'Add new group'
-      add_address: 'Add email address to group'
-      delete: 'Delete group'
-      description: 'Create one o more groups of email to send your lessons'
-      label: 'Group'
+      # 1 - views/users/statistics.html.erb
+      # 2 - views/users/mailing_lists.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/subjects.html.erb
       menu_link: 'Mailing lists'
+      # 1 - views/users/mailing_lists.html.erb
       title: 'Mailing lists'
+      # 1 - views/users/mailing_lists.html.erb
+      description: 'Create one o more groups of email to send your lessons'
+      # 1 - views/mailing_lists/_list.html.erb
+      add: 'Add new group'
+      # 1 - views/mailing_lists/_group.html.erb
+      add_address: 'Add email address to group'
+      # 1 - views/mailing_lists/_group.html.erb
+      delete: 'Delete group'
+      # 1 - views/mailing_lists/_group.html.erb
+      label: 'Group'
     reset_password:
+       # 1 - views/users/request_reset_password.html.erb
        title: 'Forgot your password?'
+       # 1 - views/users/request_reset_password.html.erb
        description: 'Insert your email, you will come another password to your e-mail address'
+       # 1 - views/users/request_reset_password.html.erb
        done: 'Reset password'
     statistics:
+      # 1 - views/users/statistics.html.erb
+      # 2 - views/users/mailing_lists.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/subjects.html.erb
+      menu_link: 'Statistics'
+      # 1 - views/users/statistics.html.erb
       title: 'Statistics'
+      # 1 - views/users/statistics.html.erb
       description: 'Follow you numbers in %{desy} and statistics of the system'
       general:
+        # 1 - views/users/statistics.html.erb
         lessons_more_likes: 'Lessons with more likes'
+        # 1 - views/users/statistics.html.erb
         lessons_shared: 'Lessons shared'
+        # 1 - views/users/statistics.html.erb
         media_elements_shared: 'Didactic elements shared'
         percentual_lessons_subject:
+          # 1 - views/users/statistics.html.erb
           title: 'Percentual lessons/subject'
+          # 1 - views/users/statistics.html.erb
           color: 'Color'
+          # 1 - views/users/statistics.html.erb
           subject: 'Subject'
+          # 1 - views/users/statistics.html.erb
           value: 'Value'
+        # 1 - views/users/statistics.html.erb
         title: 'General'
+        # 1 - views/users/statistics.html.erb
         total_users: 'Total users'
+        # 1 - views/users/statistics.html.erb
         users_more_likes: 'Users with more likes'
-      menu_link: 'Statistics'
       personal:
+        # 1 - views/users/statistics.html.erb
         lessons_copied_by: 'Lessons copied by other users'
+        # 1 - views/users/statistics.html.erb
         lessons_created: 'Lessons created'
+        # 1 - views/users/statistics.html.erb
         lessons_more_likes: 'Lessons with more likes'
+        # 1 - views/users/statistics.html.erb
         likes: 'Likes on your content'
+        # 1 - views/users/statistics.html.erb
         media_elements_loaded: 'Didactic elements loaded'
+        # 1 - views/users/statistics.html.erb
         title: 'Personal'
     subjects:
+      # 1 - views/users/statistics.html.erb
+      # 2 - views/users/mailing_lists.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/subjects.html.erb
       menu_link: 'Subjects'
+      # 1 - views/users/subjects.html.erb
       title: 'Subjects'
+      # 1 - views/users/subjects.html.erb
       description: 'Choose the subjects you want to stay connected'
   
   
@@ -1131,63 +1276,107 @@ en:
   video_editor:
     # it is used in the video editor, in order to open the selection of audio tracks
     audio_track:
+      # 1 - views/video_editor/_audio_track.html.erb
       title: 'Add audio track'
+      # 1 - views/video_editor/_audio_track.html.erb
       description: 'You can upload an audio track: this will cover the original audio of all the chosen components'
     components:
       image:
+        # 1 - views/galleries/mixed_for_video_editor.js.erb
         time: 'Time'
       text:
         # this is used in the video editor, to choose a background color for a 'title' component
+        # 1 - views/video_editor/_text_component_editor.html.erb
         background_color: 'Background color'
+        # 1 - views/video_editor/_text_component_editor.html.erb
         color: 'Text color'
+        # 1 - views/video_editor/_text_component_editor.html.erb
         done: 'Insert'
+        # 1 - views/video_editor/_text_component_editor.html.erb
+        # 2 - views/video_editor/_text_component_editor.html.erb
+        # 3 - views/video_editor/_text_component_editor.html.erb
         insert: 'Insert text'
+        # 1 - views/video_editor/_text_component_editor.html.erb
         time: 'Time'
-      video:
     cutters:
+      # 1 - views/video_editor/cutters/_video.html.erb
+      # 2 - views/video_editor/cutters/_text.html.erb
+      # 3 - views/video_editor/cutters/_image.html.erb
       done: 'Done'
+      # 1 - views/video_editor/cutters/_text.html.erb
+      # 2 - views/video_editor/cutters/_image.html.erb
       old_time: 'Time'
+      # 1 - views/video_editor/cutters/_video.html.erb
       play: 'Play'
+      # 1 - views/video_editor/cutters/_video.html.erb
       pause: 'Pause'
+      # 1 - views/video_editor/cutters/_text.html.erb
+      # 2 - views/video_editor/cutters/_image.html.erb
       time: 'New time'
+      # 1 - views/video_editor/cutters/_video.html.erb
       total_length: 'Total clip length'
+      # 1 - views/video_editor/cutters/_video.html.erb
       selected_length: 'Selected'
+    # 1 - views/video_editor/_header.html.erb
     label: 'Edit video'
     not_available:
+      # 1 - views/video_editor/not_available.html.erb
       title: 'Video editor not available'
+      # 1 - views/video_editor/not_available.html.erb
       description: 'Inserire qui altro testo'
     preview:
+      # 1 - views/video_editor/edit.html.erb
+      # 2 - views/video_editor/edit.html.erb
       label: 'Preview'
+      # 1 - views/video_editor/edit.html.erb
       pause: 'Pause'
+      # 1 - views/video_editor/edit.html.erb
       play: 'Play'
+    # 1 - views/galleries/_mixed_video_image_text.html.erb
     select_component_to_add: 'Select component to add'
+    # 1 - views/video_editor/edit.html.erb
     total_length: 'Total length'
   
   
   # SECTION 2.17: virtual classroom
   virtual_classroom:
     # it is used in the empty Virtual Classroom to invite the user to fill it immediately
+    # 1 - views/virtual_classroom/_empty.html.erb
     add_lesson_now: 'Add a lesson now'
     # used in the Virtual Classroom, to pick different lessons to be added
     select_lessons:
+      # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       cancel: 'Cancel'
+      # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       done: 'Upload'
+      # 1 - views/virtual_classroom/_header_buttons.html.erb
       label: 'Add lessons'
+      # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       description: 'Select the lessons to upload in the Virtual Classroom'
+    # 1 - views/virtual_classroom/_empty.html.erb
     empty: 'Your Virtual Classroom is empty'
     # the caption of the button which empties your Virtual Classroom
+    # 1 - views/virtual_classroom/_header_buttons.html.erb
     make_it_empty: 'Empty your Virtual Classroom'
     playlist:
+      # 1 - views/virtual_classroom/_empty_playlist.html.erb
       instructions: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist'
+      # 1 - views/virtual_classroom/_playlist.html.erb
       label: 'Playlist'
       # the caption of the button which empties your Virtual Classroom playlist
+      # 1 - views/virtual_classroom/_playlist.html.erb
       make_it_empty: 'Empty playlist'
+      # 1 - views/virtual_classroom/_playlist.html.erb
       play: 'Play'
     send_link:
+      # 1 - views/virtual_classroom/_popups.html.erb
       message: 'Write a message'
+      # 1 - views/virtual_classroom/_popups.html.erb
       emails: 'Insert emails separated by comma'
       mailing_list:
+        # 1 - views/virtual_classroom/_popups.html.erb
         title: 'or select mailing list'
+        # 1 - views/virtual_classroom/_popups.html.erb
         placeholder: 'no mailing list'
   
   

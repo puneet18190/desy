@@ -94,7 +94,7 @@ function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
       }
     });
     $(big_selector).hide();
-    if(type == 'text') {
+    if(type == '._texts') {
       resetVideoEditorTextComponent();
     }
     $('#video_editor_mixed_gallery_container ' + type).show();
@@ -412,7 +412,7 @@ function replaceTextComponentInVideoEditor(component, content, position, duratio
 }
 
 function resetVideoEditorTextComponent() {
-  $('#text_component_preview textarea').val($('#popup_captions_container').data('text-component-placeholder-in-video-editor'));
+  $('#text_component_preview textarea').val($('#text_component_preview').data('placeholder-content'));
   $('#video_editor_mixed_gallery_container ._texts ._duration_selector input').val('');
   $('#text_component_preview').data('placeholder', true);
   var old_background_color = $('#text_component_preview').data('background-color');
