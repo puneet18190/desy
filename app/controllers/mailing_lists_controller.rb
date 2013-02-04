@@ -14,8 +14,8 @@ class MailingListsController < ApplicationController
   
   def create_address
     mla = MailingListAddress.new
-    @mlg = MailingListGroup.find(params[:mailing_list_group_id])
-    mla.mailing_list_group_id = @mlg.id
+    @mlg = MailingListGroup.find(params[:group_id])
+    mla.group_id = @mlg.id
     mla.heading = params[:heading]
     mla.email = params[:email]
     mla.save
@@ -37,14 +37,14 @@ class MailingListsController < ApplicationController
   
   def delete_address
     mla = MailingListAddress.find(params[:id])
-    @mlg = MailingListGroup.find(mla.mailing_list_group_id)
+    @mlg = MailingListGroup.find(mla.group_id)
     mla.destroy
     
     render 'update_addresses'
   end
   
   def get_emails
-    @emails = MailingListGroup.get_emails(current_user.id)
+    @emails = MailingListAddress.get_emails(current_user.id, params[:term])
     render :json => @emails
   end
   
