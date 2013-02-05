@@ -10,7 +10,9 @@ class CoreMethodsTest < ActiveSupport::TestCase
     resp = User.confirmed.new(:password => SETTINGS['admin']['password'], :password_confirmation => SETTINGS['admin']['password'], :name => 'oo', :surname => 'fsg', :school => 'asf', :school_level_id => 1, :location_id => 1, :subject_ids => [1, 2]) do |user|
       user.email = SETTINGS['admin']['email']
     end
-    assert resp.save
+    resp.policy_1 = '1'
+    resp.policy_2 = '1'
+    assert resp.save, resp.errors.inspect
     assert !resp.nil?
     x = User.find 1
     lessons = Lesson.where(:user_id => 1)
@@ -266,12 +268,8 @@ class CoreMethodsTest < ActiveSupport::TestCase
   test 'remove_slide_from_lesson' do
     x = Slide.new
     assert !x.destroy_with_positions
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /The slide could not be deleted/, x.errors.messages[:base].first
     x = Slide.where(:kind => 'cover').first
     assert !x.destroy_with_positions
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide is the cover, it can't be deleted/, x.errors.messages[:base].first
     x = Slide.find 3
     assert x.kind != 'cover'
     assert_equal 3, Slide.where(:lesson_id => x.lesson_id).count
