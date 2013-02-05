@@ -1,5 +1,7 @@
 html.audio_editor-controller {
-  
+  .dialog_opaco {
+    z-index:103;  
+  }  
  .mediaEditorAudioContainer {
     .info {
       width:97px;
@@ -72,14 +74,13 @@ html.audio_editor-controller {
         background-color: #303030;
       }
       .audioComponentBottom {
-        padding:10px 20px;
+        padding:7px 20px 13px 20px;
         background-color: #232323;
         height:7px;
         font-size:10px;
         font-family:'Nunito', sans-serif;
         color:#787575;
-        height: 7px;
-
+        
         .audioComponentDurations {
           width: 260px;
           float: left;
@@ -112,18 +113,16 @@ html.audio_editor-controller {
       left: 132px;
       cursor: pointer;
     }
-    a.removeAudioComponent {
+    a.exitButton {
       position: absolute;
       z-index: 103;
-      background-color: red;
       float:right;
-      height: 14px;
-      width: 14px;
+      background-position: 0em 0;
       top: 82px;
-      left: 720px;
+      right: 10px;
       &:hover {
-        background-color: blue;
-      }
+        opacity:1;
+      };
     }
   }
   
