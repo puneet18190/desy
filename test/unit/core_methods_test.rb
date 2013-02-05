@@ -137,11 +137,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.new
     assert !x.publish
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /The lesson could not be published/, x.errors.messages[:base].first
+    assert_match /The lesson could not be shared/, x.errors.messages[:base].first
     x = Lesson.find 2
     assert !x.publish
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /This lesson is already public/, x.errors.messages[:base].first
+    assert_match /This lesson is already shared/, x.errors.messages[:base].first
     x = Lesson.find 1
     new_slide = Slide.new :position => 2
     new_slide.lesson_id = 1
@@ -166,11 +166,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.new
     assert !x.unpublish
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /The lesson could not be unpublished/, x.errors.messages[:base].first
+    assert_match /Lesson sharing could not be undone/, x.errors.messages[:base].first
     x = Lesson.find 1
     assert !x.unpublish
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /This lesson has not been published yet/, x.errors.messages[:base].first
+    assert_match /This lesson has not been shared yet/, x.errors.messages[:base].first
     x = Lesson.find 2
     assert VirtualClassroomLesson.where(:lesson_id => 2).any?
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).any?
@@ -429,7 +429,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_match /The position of the lesson is not valid/, vc1.errors.messages[:base].first
     assert !vc5.change_position(1)
     assert_equal 1, vc5.errors.messages[:base].length
-    assert_match /This lesson is not in the playlist/, vc5.errors.messages[:base].first
+    assert_match /The lesson's position could not be changed/, vc5.errors.messages[:base].first
     assert vc2.change_position(2)
     assert_equal 1, VirtualClassroomLesson.find(vc1.id).position
     assert_equal 2, VirtualClassroomLesson.find(vc2.id).position
