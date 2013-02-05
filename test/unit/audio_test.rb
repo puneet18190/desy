@@ -47,18 +47,12 @@ class AudioTest < ActiveSupport::TestCase
     @parameters[:initial_audio_id] = 99
     assert_nil Audio.convert_parameters(@parameters, 2)
     reset_parameters
-#    MediaElement.where(:id => 1).update_all(:user_id => 2)
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    MediaElement.where(:id => 1).update_all(:user_id => 1)
-#    MediaElement.where(:id => 1).update_all(:is_public => true)
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    MediaElement.where(:id => 1).update_all(:is_public => false)
-#    @parameters[:audio_id] = 1
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    @parameters[:audio_id] = 99
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    @parameters[:audio_id] = 3
-#    assert_nil Video.convert_parameters(@parameters, 2)
+    MediaElement.where(:id => 3).update_all(:user_id => 1)
+    assert_nil Audio.convert_parameters(@parameters, 2)
+    MediaElement.where(:id => 3).update_all(:user_id => 2)
+    MediaElement.where(:id => 3).update_all(:is_public => true)
+    assert_nil Audio.convert_parameters(@parameters, 2)
+
 #    reset_parameters
 #    @parameters[:components] = '[]'
 #    assert_nil Video.convert_parameters(@parameters, 2)
