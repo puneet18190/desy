@@ -22,7 +22,7 @@ class SearchController < ApplicationController
           end
       end
     end
-    @tag_placeholder = @tag.blank? ? I18n.t('captions.insert_tag') : @tag
+    @tag_placeholder = @tag.blank? ? I18n.t("search.#{@search_item}.keyword.placeholder") : @tag
     if @tag.class == Fixnum
       @tag = Tag.find_by_id(@tag)
       @tag_placeholder = params[:tag]

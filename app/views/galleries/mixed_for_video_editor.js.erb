@@ -1,6 +1,6 @@
 showGalleryInVideoEditor('mixed');
 
-$('#video_editor_mixed_gallery_container').html('<%= j(render(:partial => 'galleries/mixed_video_image_text', :locals => {:images => @images, :videos => @videos})) %>');
+$('#video_editor_mixed_gallery_container').html('<%= j(render(:partial => "galleries/mixed_video_image_text", :locals => {:images => @images, :videos => @videos})) %>');
 $('#video_editor_mixed_gallery_container').data('loaded', true);
 $('._select_video_from_gallery').addClass('_add_video_component_to_video_editor');
 $('._select_image_from_gallery').addClass('_add_image_component_to_video_editor');
@@ -25,4 +25,4 @@ var temporary_invisible_div = '<div class="_temporary" style="display:none">';
   $('#dialog-video-gallery-<%= video.id %>').append(temporary_invisible_div + mini_video + '</div>');
 <% end %>
 
-initializeVideoEditorMixedGallery();
+initializeMixedGalleryInVideoEditor();
