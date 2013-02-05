@@ -527,9 +527,9 @@ $(document).ready(function() {
     onChange: function (val, inst) {
       var to_emails = $('._send_link_form_text_area._emails')
       to_emails.trigger('focus');
-      if(to_emails.val().length > 0){
+      if(to_emails.val().length > 0 && val.length > 0){
         to_emails.val(to_emails.val()+'['+val+'],');
-      }else{
+      }else if(val.length > 0){
         to_emails.val('['+val+'],');
       }
     }
