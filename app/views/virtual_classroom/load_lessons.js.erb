@@ -10,7 +10,7 @@ dialog.data('loaded', true);
   var msg = '<%= j t("other_popup_messages.virtual_classroom_lessons.loaded_ok") %>';
 <% else %>
   dialog.data('loaded-correctly', false);
-  var msg = '<%= j t("other_popup_messages.virtual_classroom_lessons.loaded_error").gsub('#number', (@load_lessons.length - @loaded).to_s) %>';
+  var msg = '<%= j t("other_popup_messages.virtual_classroom_lessons.loaded_error", :number => (@load_lessons.length - @loaded)) %>';
 <% end %>
 
 dialog.data('loaded-msg', msg);
