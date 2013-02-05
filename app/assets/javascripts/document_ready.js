@@ -1535,6 +1535,14 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('click', '._add_audio_component_to_audio_editor', function() {
+    alert('add audio component in audio editor');
+  });
+  
+  $('body').on('click', '._close_audio_gallery_in_audio_editor', function() {
+    alert('close audio gallery in audio editor');
+  });
+  
   initializeAudioEditor();
   
   

@@ -1,0 +1,7 @@
+showGalleryInAudioEditor();
+$('#audio_editor_gallery_container').html('<%= j(render(:partial => 'galleries/audio', :locals => {:audios => @audios})) %>');
+$('#audio_editor_gallery_container').data('loaded', true);
+$('._select_audio_from_gallery').addClass('_add_audio_component_to_audio_editor');
+$('._close_audio_gallery').addClass('_close_audio_gallery_in_audio_editor');
+
+initializeAudioGallery();

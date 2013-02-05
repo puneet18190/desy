@@ -75,20 +75,15 @@ function removeAudioEditorComponent(component) {
   });
 }
 
-// TODO DA SISTEMARE
-
 function showGalleryInAudioEditor() {
   $('._audio_editor_bottom_bar').hide();
   $('#audio_editor_gallery_container').show();
-  calculateNewPositionGalleriesInVideoEditor();
-  $('._video_editor_component_menu').hide();
+  calculateNewPositionGalleriesInAudioEditor();
 }
 
 function calculateNewPositionGalleriesInAudioEditor() {
   $('#audio_editor_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
 }
-
-// TODO FINO A QUI
 
 
 
