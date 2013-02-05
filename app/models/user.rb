@@ -413,7 +413,7 @@ class User < ActiveRecord::Base
   
   def destroy_with_dependencies
     if self.new_record?
-      errors.add(:base, :problems_destroying)
+      errors.add(:base, :problem_destroying)
       return false
     end
     resp = false
@@ -421,7 +421,7 @@ class User < ActiveRecord::Base
       begin
         Lesson.where(:user_id => self.id).each do |l|
           if !l.destroy_with_notifications
-            errors.add(:base, :problems_destroying)
+            errors.add(:base, :problem_destroying)
             raise ActiveRecord::Rollback
           end
         end
@@ -432,7 +432,7 @@ class User < ActiveRecord::Base
           if me.is_public
             me.user_id = self.class.admin.id
             if !me.save
-              errors.add(:base, :problems_destroying)
+              errors.add(:base, :problem_destroying)
               raise ActiveRecord::Rollback
             end
           else
@@ -453,7 +453,7 @@ class User < ActiveRecord::Base
         end
         self.destroy
       rescue ActiveRecord::InvalidForeignKey
-        errors.add(:base, :problems_destroying)
+        errors.add(:base, :problem_destroying)
         raise ActiveRecord::Rollback
       end
       resp = true

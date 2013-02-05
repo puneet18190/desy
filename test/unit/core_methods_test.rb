@@ -93,7 +93,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     # I try to copy the copy
     assert resp.copy(1).nil?
     assert_equal 1, resp.errors.messages[:base].length
-    assert_match /You just copied this lesson/, resp.errors.messages[:base].first
+    assert_match /You've just copied this lesson/, resp.errors.messages[:base].first
     # until here
     assert_equal 1, resp.school_level_id
     assert_equal 3, resp.subject_id
@@ -417,16 +417,16 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_match /The lesson's position could not be changed/, x.errors.messages[:base].first
     assert !vc1.change_position(-9)
     assert_equal 1, vc1.errors.messages[:base].length
-    assert_match /This lesson's position is not valid/, vc1.errors.messages[:base].first
+    assert_match /The position of the lesson is not valid/, vc1.errors.messages[:base].first
     assert !vc1.change_position(0)
     assert_equal 1, vc1.errors.messages[:base].length
-    assert_match /This lesson's position is not valid/, vc1.errors.messages[:base].first
+    assert_match /The position of the lesson is not valid/, vc1.errors.messages[:base].first
     assert !vc1.change_position(5)
     assert_equal 1, vc1.errors.messages[:base].length
-    assert_match /This lesson's position is not valid/, vc1.errors.messages[:base].first
+    assert_match /The position of the lesson is not valid/, vc1.errors.messages[:base].first
     assert !vc1.change_position('dvsdds')
     assert_equal 1, vc1.errors.messages[:base].length
-    assert_match /This lesson's position is not valid/, vc1.errors.messages[:base].first
+    assert_match /The position of the lesson is not valid/, vc1.errors.messages[:base].first
     assert !vc5.change_position(1)
     assert_equal 1, vc5.errors.messages[:base].length
     assert_match /This lesson is not in the playlist/, vc5.errors.messages[:base].first
@@ -553,7 +553,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.find 1
     assert !x.add_to_virtual_classroom(2)
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /This lesson can't be added to your Virtual Classroom/, x.errors.messages[:base].first
+    assert_match /This lesson cannot be added to your Virtual Classroom/, x.errors.messages[:base].first
     assert x.add_to_virtual_classroom(1)
     assert_equal 2, VirtualClassroomLesson.count
     vc = VirtualClassroomLesson.where(:lesson_id => 1, :user_id => 1).first
