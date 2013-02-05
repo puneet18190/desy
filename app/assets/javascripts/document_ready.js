@@ -399,7 +399,6 @@ $(document).ready(function() {
       var lesson_parent = $('#found_lesson_' + my_param + ', #compact_lesson_' + my_param + ', #expanded_lesson_' + my_param);
       if(lesson_parent.hasClass('_lesson_change_not_notified')) {
         showLessonNotificationPopUp(my_param);
-        //showOkPopUp('devi notificare bla bla bla');
       } else {
         var destination = $(this).data('destination');
         unpublishLesson(my_param, destination);
@@ -1536,11 +1535,28 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._add_audio_component_to_audio_editor', function() {
-    alert('add audio component in audio editor');
+    var audio_id = $(this).data('audio-id');
+    var duration = $(this).data('duration');
+    var ogg = $('#gallery_audio_' + audio_id + ' source[type="audio/ogg"]').attr('src');
+    var mp3 = $('#gallery_audio_' + audio_id + ' source[type="audio/mp3"]').attr('src');
+    closeGalleryInAudioEditor();
+    stopMedia('#gallery_audio_' + audio_id + ' audio');
+    $('#gallery_audio_' + audio_id + ' ._expanded').hide();
+    addComponentInAudioEditor(audio_id, ogg, mp3, duration);
   });
   
   $('body').on('click', '._close_audio_gallery_in_audio_editor', function() {
     closeGalleryInAudioEditor();
+    var audio_id = 0;
+    $('._audio_gallery_thumb').each(function() {
+      if($(this).find('._expanded').css('display') == 'block') {
+        audio_id = $(this).find('._add_audio_component_to_audio_editor').data('audio-id');
+      }
+    });
+    if(audio_id != 0) {
+      stopMedia('#gallery_audio_' + audio_id + ' audio');
+      $('#gallery_audio_' + audio_id + ' ._expanded').hide();
+    }
   });
   
   initializeAudioEditor();
