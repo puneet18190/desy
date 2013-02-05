@@ -11,38 +11,56 @@ class ExtractorTest < ActiveSupport::TestCase
     @liker1 = User.confirmed.new(:password => 'em1@em.em', :password_confirmation => 'em1@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em1@em.em'
     end
+    @liker1.policy_1 = '1'
+    @liker1.policy_2 = '1'
     assert @liker1.save
     @liker2 = User.confirmed.new(:password => 'em2@em.em', :password_confirmation => 'em2@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em2@em.em'
     end
+    @liker2.policy_1 = '1'
+    @liker2.policy_2 = '1'
     assert @liker2.save
     @liker3 = User.confirmed.new(:password => 'em3@em.em', :password_confirmation => 'em3@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em3@em.em'
     end
+    @liker3.policy_1 = '1'
+    @liker3.policy_2 = '1'
     assert @liker3.save
     @liker4 = User.confirmed.new(:password => 'em4@em.em', :password_confirmation => 'em4@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em4@em.em'
     end
+    @liker4.policy_1 = '1'
+    @liker4.policy_2 = '1'
     assert @liker4.save
     @liker5 = User.confirmed.new(:password => 'em5@em.em', :password_confirmation => 'em5@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em5@em.em'
     end
+    @liker5.policy_1 = '1'
+    @liker5.policy_2 = '1'
     assert @liker5.save
     @liker6 = User.confirmed.new(:password => 'em6@em.em', :password_confirmation => 'em6@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em6@em.em'
     end
+    @liker6.policy_1 = '1'
+    @liker6.policy_2 = '1'
     assert @liker6.save
     @liker7 = User.confirmed.new(:password => 'em7@em.em', :password_confirmation => 'em7@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em7@em.em'
     end
+    @liker7.policy_1 = '1'
+    @liker7.policy_2 = '1'
     assert @liker7.save
     @liker8 = User.confirmed.new(:password => 'em8@em.em', :password_confirmation => 'em8@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em8@em.em'
     end
+    @liker8.policy_1 = '1'
+    @liker8.policy_2 = '1'
     assert @liker8.save
     @liker9 = User.confirmed.new(:password => 'em9@em.em', :password_confirmation => 'em9@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em9@em.em'
     end
+    @liker9.policy_1 = '1'
+    @liker9.policy_2 = '1'
     assert @liker9.save
     assert @liker1.like @les1.id
     assert @liker1.like @les3.id
@@ -71,9 +89,45 @@ class ExtractorTest < ActiveSupport::TestCase
   
   def setup
     @user1 = User.find 1
-    assert @user1.edit_fields 'a_name', 'a_surname', 'a_school', @user1.school_level_id, @user1.location_id, [1, 2, 3, 4, 5, 6]
+    @user1.name = 'a_name'
+    @user1.surname = 'a_surname'
+    @user1.school = 'a_school'
+    assert_obj_saved @user1
+    us_sub_1_2 = UsersSubject.new
+    us_sub_1_2.user_id = 1
+    us_sub_1_2.subject_id = 2
+    assert_obj_saved us_sub_1_2
+    us_sub_1_4 = UsersSubject.new
+    us_sub_1_4.user_id = 1
+    us_sub_1_4.subject_id = 4
+    assert_obj_saved us_sub_1_4
+    us_sub_1_5 = UsersSubject.new
+    us_sub_1_5.user_id = 1
+    us_sub_1_5.subject_id = 5
+    assert_obj_saved us_sub_1_5
+    us_sub_1_6 = UsersSubject.new
+    us_sub_1_6.user_id = 1
+    us_sub_1_6.subject_id = 6
+    assert_obj_saved us_sub_1_6
     @user2 = User.find 2
-    assert @user2.edit_fields 'a_name', 'a_surname', 'a_school', @user2.school_level_id, @user2.location_id, [1, 2, 3, 4]
+    @user2.name = 'a_name'
+    @user2.surname = 'a_surname'
+    @user2.school = 'a_school'
+    assert_obj_saved @user2
+    us_sub_2_2 = UsersSubject.new
+    us_sub_2_2.user_id = 2
+    us_sub_2_2.subject_id = 2
+    assert_obj_saved us_sub_2_2
+    us_sub_2_3 = UsersSubject.new
+    us_sub_2_3.user_id = 2
+    us_sub_2_3.subject_id = 3
+    assert_obj_saved us_sub_2_3
+    us_sub_2_4 = UsersSubject.new
+    us_sub_2_4.user_id = 2
+    us_sub_2_4.subject_id = 4
+    assert_obj_saved us_sub_2_4
+    @user1 = User.find 1
+    @user2 = User.find 2
     Tagging.all.each do |t|
       ActiveRecord::Base.connection.execute "DELETE FROM taggings WHERE id = #{t.id}"
     end
