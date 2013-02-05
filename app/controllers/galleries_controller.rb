@@ -146,13 +146,13 @@ class GalleriesController < ApplicationController
   end
   
   def get_videos(page)
-    x = current_user.own_media_elements(page, VIDEOS_FOR_PAGE, Filters::VIDEO)[:records]
+    x = current_user.own_media_elements(page, VIDEOS_FOR_PAGE, Filters::VIDEO)
     @videos = x[:records]
     @tot_pages = x[:pages_amount]
   end
   
   def get_images(page)
-    x = current_user.own_media_elements(page, IMAGES_FOR_PAGE, Filters::IMAGE)[:records]
+    x = current_user.own_media_elements(page, IMAGES_FOR_PAGE, Filters::IMAGE)
     @images = x[:records]
     @tot_pages = x[:pages_amount]
   end
