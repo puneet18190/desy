@@ -24,5 +24,3 @@ var temporary_invisible_div = '<div class="_temporary" style="display:none">';
   var mini_video = '<%= j(render(:partial => "video_editor/components/thumbs/video", :locals => {:video => video})) %>';
   $('#dialog-video-gallery-<%= video.id %>').append(temporary_invisible_div + mini_video + '</div>');
 <% end %>
-
-initializeVideoEditorMixedGallery();
