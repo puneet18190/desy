@@ -36,6 +36,11 @@ module User::Authentication
       password = BCrypt::Engine.hash_secret("#{password}#{PEPPER}", bcrypt.salt)
       self.class.secure_compare(password, encrypted_password)
     end
+    
+    def clear_password_and_password_confirmation
+      self.password = nil
+      self.password_confirmation = nil
+    end
   end
   
   def self.included(receiver)
@@ -44,7 +49,7 @@ module User::Authentication
 
     receiver.instance_eval do
       before_save :encrypt_password
-      after_save  { |record| record.password = nil }
+      after_save  :clear_password_and_password_confirmation
     end
   end
 end
