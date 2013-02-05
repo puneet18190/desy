@@ -298,6 +298,20 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('click', '._close_audio_gallery_in_audio_editor', function() {
+    closeGalleryInAudioEditor();
+    var audio_id = 0;
+    $('._audio_gallery_thumb').each(function() {
+      if($(this).find('._expanded').css('display') == 'block') {
+        audio_id = $(this).find('._add_audio_component_to_audio_editor').data('audio-id');
+      }
+    });
+    if(audio_id != 0) {
+      stopMedia('#gallery_audio_' + audio_id + ' audio');
+      $('#gallery_audio_' + audio_id + ' ._expanded').hide();
+    }
+  });
+  
   $('body').on('click', "._close_on_click_out", function(){
     $(".ui-dialog-content:visible").each(function(){
       closePopUp($(this).attr("id"));
@@ -1543,20 +1557,6 @@ $(document).ready(function() {
     stopMedia('#gallery_audio_' + audio_id + ' audio');
     $('#gallery_audio_' + audio_id + ' ._expanded').hide();
     addComponentInAudioEditor(audio_id, ogg, mp3, duration);
-  });
-  
-  $('body').on('click', '._close_audio_gallery_in_audio_editor', function() {
-    closeGalleryInAudioEditor();
-    var audio_id = 0;
-    $('._audio_gallery_thumb').each(function() {
-      if($(this).find('._expanded').css('display') == 'block') {
-        audio_id = $(this).find('._add_audio_component_to_audio_editor').data('audio-id');
-      }
-    });
-    if(audio_id != 0) {
-      stopMedia('#gallery_audio_' + audio_id + ' audio');
-      $('#gallery_audio_' + audio_id + ' ._expanded').hide();
-    }
   });
   
   initializeAudioEditor();

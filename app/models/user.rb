@@ -359,61 +359,9 @@ class User < ActiveRecord::Base
     return lesson.save ? lesson : lesson.errors.messages
   end
   
-  def edit_fields(a_name, a_surname, a_school, a_school_level_id, a_location_id, subject_ids)
-    errors.clear
-    if subject_ids.class != Array || subject_ids.empty?
-      errors.add(:base, :missing_subjects)
-      return false
-    end
-    if self.new_record?
-      errors.add(:base, :problems_updating)
-      return false
-    end
-    resp = false
-    self.name = a_name
-    self.surname = a_surname
-    self.school_level_id = a_school_level_id
-    self.school = a_school
-    self.location_id = a_location_id
-    ActiveRecord::Base.transaction do
-      if !self.save
-        errors.add(:base, :problems_updating)
-        raise ActiveRecord::Rollback
-      end
-      begin
-        UsersSubject.where(:user_id => self.id).each do |us|
-          if !subject_ids.include?(us.subject_id)
-            us.destroy
-            subject_ids.delete us.subject_id
-          end
-        end
-        subject_ids.each do |s|
-          if UsersSubject.where(:user_id => self.id, :subject_id => s).empty?
-            us = UsersSubject.new
-            us.user_id = self.id
-            us.subject_id = s
-            if !us.save
-              raise ActiveRecord::Rollback
-              errors.add(:base, :problems_updating)
-            end
-          end
-        end
-        if !self.save
-          raise ActiveRecord::Rollback
-          errors.add(:base, :problems_updating)
-        end
-      rescue ActiveRecord::InvalidForeignKey
-        errors.add(:base, :problems_updating)
-        raise ActiveRecord::Rollback
-      end
-      resp = true
-    end
-    resp
-  end
-  
   def destroy_with_dependencies
     if self.new_record?
-      errors.add(:base, :problems_destroying)
+      errors.add(:base, :problem_destroying)
       return false
     end
     resp = false
@@ -421,7 +369,7 @@ class User < ActiveRecord::Base
       begin
         Lesson.where(:user_id => self.id).each do |l|
           if !l.destroy_with_notifications
-            errors.add(:base, :problems_destroying)
+            errors.add(:base, :problem_destroying)
             raise ActiveRecord::Rollback
           end
         end
@@ -432,7 +380,7 @@ class User < ActiveRecord::Base
           if me.is_public
             me.user_id = self.class.admin.id
             if !me.save
-              errors.add(:base, :problems_destroying)
+              errors.add(:base, :problem_destroying)
               raise ActiveRecord::Rollback
             end
           else
@@ -453,7 +401,7 @@ class User < ActiveRecord::Base
         end
         self.destroy
       rescue ActiveRecord::InvalidForeignKey
-        errors.add(:base, :problems_destroying)
+        errors.add(:base, :problem_destroying)
         raise ActiveRecord::Rollback
       end
       resp = true

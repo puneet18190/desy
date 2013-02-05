@@ -30,7 +30,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
   def remove_from_playlist
     errors.clear
     if self.new_record?
-      errors.add(:base, :problems_removing_from_playlist)
+      errors.add(:base, :problem_removing_from_playlist)
       return false
     end
     return true if !self.in_playlist?
@@ -39,13 +39,13 @@ class VirtualClassroomLesson < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       self.position = nil
       if !self.save
-        errors.add(:base, :problems_removing_from_playlist)
+        errors.add(:base, :problem_removing_from_playlist)
         raise ActiveRecord::Rollback
       end
       VirtualClassroomLesson.where('user_id = ? AND position > ?', self.user_id, my_position).order(:position).each do |vcl|
         vcl.position -= 1
         if !vcl.save
-          errors.add(:base, :problems_removing_from_playlist)
+          errors.add(:base, :problem_removing_from_playlist)
           raise ActiveRecord::Rollback
         end
       end
@@ -57,7 +57,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
   def add_to_playlist
     errors.clear
     if self.new_record?
-      errors.add(:base, :problems_adding_to_playlist)
+      errors.add(:base, :problem_adding_to_playlist)
       return false
     end
     user = User.find_by_id(self.user_id)
@@ -69,13 +69,13 @@ class VirtualClassroomLesson < ActiveRecord::Base
     VirtualClassroomLesson.where('user_id = ? AND position IS NOT NULL', self.user_id).order('position DESC').each do |vcl|
       vcl.position += 1
       if !vcl.save
-        errors.add(:base, :problems_adding_to_playlist)
+        errors.add(:base, :problem_adding_to_playlist)
         return false
       end
     end
     self.position = 1
     if !self.save
-      errors.add(:base, :problems_adding_to_playlist)
+      errors.add(:base, :problem_adding_to_playlist)
       return false
     end
     true
@@ -84,7 +84,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
   def change_position(x)
     errors.clear
     if self.new_record?
-      errors.add(:base, :problems_changing_position_in_playlist)
+      errors.add(:base, :problem_changing_position_in_playlist)
       return false
     end
     if x.class != Fixnum || x <= 0
@@ -93,7 +93,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
     end
     y = self.position
     if y.nil?
-      errors.add(:base, :problems_changing_position_in_playlist)
+      errors.add(:base, :problem_changing_position_in_playlist)
       return false
     end
     return true if y == x
@@ -107,7 +107,7 @@ class VirtualClassroomLesson < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       self.position = tot_playlists + 2
       if !self.save
-        errors.add(:base, :problems_changing_position_in_playlist)
+        errors.add(:base, :problem_changing_position_in_playlist)
         raise ActiveRecord::Rollback
       end
       empty_pos = y
@@ -116,14 +116,14 @@ class VirtualClassroomLesson < ActiveRecord::Base
         curr_playlist = VirtualClassroomLesson.where(:user_id => self.user_id, :position => curr_pos).first
         curr_playlist.position = empty_pos
         if !curr_playlist.save
-          errors.add(:base, :problems_changing_position_in_playlist)
+          errors.add(:base, :problem_changing_position_in_playlist)
           raise ActiveRecord::Rollback
         end
         empty_pos = curr_pos
       end
       self.position = x
       if !self.save
-        errors.add(:base, :problems_changing_position_in_playlist)
+        errors.add(:base, :problem_changing_position_in_playlist)
         raise ActiveRecord::Rollback
       end
       resp = true
