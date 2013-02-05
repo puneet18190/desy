@@ -39,25 +39,31 @@ class AudioTest < ActiveSupport::TestCase
     @parameters[:initial_audio_id] = nil
     assert_not_nil Audio.convert_parameters(@parameters, 2)
     reset_parameters
+    assert_not_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:initial_audio_id] = @parameters[:initial_audio_id].to_s
     assert_nil Audio.convert_parameters(@parameters, 2)
     reset_parameters
+    assert_not_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:initial_audio_id] = 6
     assert_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:initial_audio_id] = 99
     assert_nil Audio.convert_parameters(@parameters, 2)
     reset_parameters
+    assert_not_nil Audio.convert_parameters(@parameters, 2)
     MediaElement.where(:id => 3).update_all(:user_id => 1)
     assert_nil Audio.convert_parameters(@parameters, 2)
     MediaElement.where(:id => 3).update_all(:user_id => 2)
     MediaElement.where(:id => 3).update_all(:is_public => true)
     assert_nil Audio.convert_parameters(@parameters, 2)
+    MediaElement.where(:id => 3).update_all(:is_public => false)
     reset_parameters
+    assert_not_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:components] = '[]'
     assert_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:components] = []
     assert_nil Audio.convert_parameters(@parameters, 2)
     reset_parameters
+    assert_not_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:components][0].delete(:audio_id)
     assert_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:components][0][:audio_id] = '3'
@@ -67,25 +73,25 @@ class AudioTest < ActiveSupport::TestCase
     assert_nil Audio.convert_parameters(@parameters, 2)
     MediaElement.where(:id => 4).update_all(:is_public => true)
     reset_parameters
+    assert_not_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:components][0][:from] = 't'
     assert_nil Audio.convert_parameters(@parameters, 2)
     reset_parameters
+    assert_not_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:components][0][:to] = '1'
     assert_nil Audio.convert_parameters(@parameters, 2)
     reset_parameters
+    assert_not_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:components][0][:to] = 1
     assert_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:components][0][:from] = 2
     assert_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:components][0][:to] = 31
     assert_nil Audio.convert_parameters(@parameters, 2)
-    
-    
-    
-#    @parameters[:components][0][:to] = 30
-#    assert_not_nil Audio.convert_parameters(@parameters, 2)
-#    @parameters[:components][0][:from] = -1
-#    assert_nil Audio.convert_parameters(@parameters, 2)
+    @parameters[:components][0][:to] = 30
+    assert_not_nil Audio.convert_parameters(@parameters, 2)
+    @parameters[:components][0][:from] = -1
+    assert_nil Audio.convert_parameters(@parameters, 2)
     
     
     

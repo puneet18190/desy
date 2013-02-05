@@ -47,17 +47,20 @@ class VideoTest < ActiveSupport::TestCase
     @parameters[:audio_id] = nil
     assert_not_nil Video.convert_parameters(@parameters, 1)
     reset_parameters
+    assert_not_nil Video.convert_parameters(@parameters, 1)
     @parameters[:initial_video_id] = @parameters[:initial_video_id].to_s
     assert_nil Video.convert_parameters(@parameters, 1)
     @parameters[:initial_video_id] = @parameters[:initial_video_id].to_i
     @parameters[:audio_id] = @parameters[:audio_id].to_s
     assert_nil Video.convert_parameters(@parameters, 1)
     reset_parameters
+    assert_not_nil Video.convert_parameters(@parameters, 1)
     @parameters[:initial_video_id] = 6
     assert_nil Video.convert_parameters(@parameters, 1)
     @parameters[:initial_video_id] = 99
     assert_nil Video.convert_parameters(@parameters, 1)
     reset_parameters
+    assert_not_nil Video.convert_parameters(@parameters, 1)
     MediaElement.where(:id => 1).update_all(:user_id => 2)
     assert_nil Video.convert_parameters(@parameters, 1)
     MediaElement.where(:id => 1).update_all(:user_id => 1)
@@ -71,11 +74,13 @@ class VideoTest < ActiveSupport::TestCase
     @parameters[:audio_id] = 3
     assert_nil Video.convert_parameters(@parameters, 1)
     reset_parameters
+    assert_not_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components] = '[]'
     assert_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components] = []
     assert_nil Video.convert_parameters(@parameters, 1)
     reset_parameters
+    assert_not_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][0][:type] = 'viddeo'
     assert_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][0][:type] = 'video'
@@ -88,11 +93,13 @@ class VideoTest < ActiveSupport::TestCase
     assert_nil Video.convert_parameters(@parameters, 1)
     MediaElement.where(:id => 2).update_all(:user_id => 1, :is_public => true)
     reset_parameters
+    assert_not_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][0][:from] = 't'
     assert_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][0][:to] = '1'
     assert_nil Video.convert_parameters(@parameters, 1)
     reset_parameters
+    assert_not_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][0][:to] = 12
     assert_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][0][:to] = 11
@@ -104,12 +111,14 @@ class VideoTest < ActiveSupport::TestCase
     @parameters[:components][0][:from] = -1
     assert_nil Video.convert_parameters(@parameters, 1)
     reset_parameters
+    assert_not_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][1][:type] = 'sext'
     assert_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][1][:type] = 'text'
     @parameters[:components][1].delete(:content)
     assert_nil Video.convert_parameters(@parameters, 1)
     reset_parameters
+    assert_not_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][1][:duration] = 't'
     assert_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][1][:duration] = 0
@@ -117,6 +126,7 @@ class VideoTest < ActiveSupport::TestCase
     @parameters[:components][1][:duration] = -3
     assert_nil Video.convert_parameters(@parameters, 1)
     reset_parameters
+    assert_not_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][1][:text_color] = 'opoppp'
     assert_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][1][:text_color] = 'red'
@@ -126,6 +136,7 @@ class VideoTest < ActiveSupport::TestCase
     @parameters[:components][1][:background_color] = 'light_blue'
     assert_not_nil Video.convert_parameters(@parameters, 1)
     reset_parameters
+    assert_not_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][2].delete(:image_id)
     assert_nil Video.convert_parameters(@parameters, 1)
     MediaElement.where(:id => 6).update_all(:is_public => false)
@@ -133,6 +144,7 @@ class VideoTest < ActiveSupport::TestCase
     assert_nil Video.convert_parameters(@parameters, 1)
     MediaElement.where(:id => 6).update_all(:is_public => true)
     reset_parameters
+    assert_not_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][2][:duration] = 't'
     assert_nil Video.convert_parameters(@parameters, 1)
     @parameters[:components][2][:duration] = -6
