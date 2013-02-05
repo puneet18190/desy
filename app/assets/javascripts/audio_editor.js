@@ -97,22 +97,6 @@ function closeGalleryInAudioEditor() {
 
 
 
-//function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
-//  if($('#video_editor_mixed_gallery_container ' + type).css('display') == 'none') {
-//    var big_selector = '#video_editor_mixed_gallery_container ._videos, #video_editor_mixed_gallery_container ._images, #video_editor_mixed_gallery_container ._texts';
-//    $(big_selector).each(function() {
-//      if($(this).css('display') == 'block') {
-//        big_selector = this;
-//      }
-//    });
-//    $(big_selector).hide();
-//    if(type == 'text') {
-//      resetVideoEditorTextComponent();
-//    }
-//    $('#video_editor_mixed_gallery_container ' + type).show();
-//  }
-//}
-
 //function addVideoComponentInVideoEditor(video_id, webm, mp4, component, duration) {
 //  $('._new_component_in_video_editor_hover a').removeClass('current');
 //  var next_position = $('#info_container').data('last-component-id') + 1;
@@ -186,22 +170,6 @@ function closeGalleryInAudioEditor() {
 //  return '<input id="' + input + '_' + identifier + '" class="_video_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
 //}
 
-//function clearSpecificVideoEditorComponentParameters(component_id) {
-//  var huge_selector = '#' + component_id + ' ._video_component_input_content';
-//  huge_selector += ', #' + component_id + ' ._video_component_input_background_color';
-//  huge_selector += ', #' + component_id + ' ._video_component_input_text_color';
-//  huge_selector += ', #' + component_id + ' ._video_component_input_duration';
-//  huge_selector += ', #' + component_id + ' ._video_component_input_image_id';
-//  huge_selector += ', #' + component_id + ' ._video_component_input_video_id';
-//  huge_selector += ', #' + component_id + ' ._video_component_input_from';
-//  huge_selector += ', #' + component_id + ' ._video_component_input_to';
-//  $(huge_selector).remove();
-//}
-
-//function highlightAndUpdateVideoComponentIcon(component_id) {
-//  $('#' + component_id + ' ._video_component_icon').effect('highlight', {color: '#41A62A'}, 1500);
-//}
-
 //function startVideoEditorPreviewClipWithDelay(component_id) {
 //  setTimeout(function() {
 //    var obj = $('#' + component_id);
@@ -209,20 +177,6 @@ function closeGalleryInAudioEditor() {
 //      startVideoEditorPreviewClip(component_id);
 //    }
 //  }, 500);
-//}
-
-//function showVideoEditorCutter(component_id) {
-//  $('._video_editor_bottom_bar').css('visibility', 'hidden');
-//  $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
-//  $('#' + component_id + ' ._video_component_cutter_arrow').show('fade', {}, 250);
-//  $('#' + component_id + '_cutter').show('fade', {}, 250, function() {
-//    $('#video_editor_global_preview a').addClass('disabled');
-//    $('._video_component_transition').addClass('current');
-//    $('._video_editor_component:not(#' + component_id + ') ._video_editor_component_hover').addClass('selected');
-//    $('._video_component_icon').addClass('selected');
-//    $('#' + component_id + ' ._video_component_icon').removeClass('selected');
-//    $('._new_component_in_video_editor_hover').addClass('selected');
-//  });
 //}
 
 //function startVideoEditorPreviewClip(component_id) {
