@@ -35,6 +35,7 @@ class VideoTest < ActiveSupport::TestCase
   
   test 'convert_parameter_hash' do
     assert_not_nil Video.convert_parameters(@parameters, 1)
+    assert_equal 26, Video.total_prototype_time(@parameters)
     assert_nil Video.convert_parameters('o', 1)
     assert_nil Video.convert_parameters({}, 1)
     @parameters.delete :initial_video_id
