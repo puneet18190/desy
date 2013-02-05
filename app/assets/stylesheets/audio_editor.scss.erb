@@ -4,13 +4,15 @@ html.audio_editor-controller {
     .info {
       width:77px;
       background-color:#504f50;
-      text-align:center;
       padding:20px;
       top:0;
       right: 29px;
       background-image:url(<%= asset_path 'tile_colonna_info_audio.gif' %>);
       background-repeat:repeat-x;
       background-position: top left;
+      .creaNuovoButton {
+        font-size:1em;
+      }
     }
     .addAudioandSave {
       border-top: 10px solid #504f50;
@@ -144,10 +146,6 @@ html.audio_editor-controller {
     background-color: #43A848;
   }
   
-  #add_new_audio_component_in_audio_editor {
-    width: 200px;
-    height: 100px;
-    background-color: maroon;
-  }
+  
   
 }
