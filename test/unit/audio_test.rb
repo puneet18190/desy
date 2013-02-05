@@ -92,47 +92,6 @@ class AudioTest < ActiveSupport::TestCase
     assert_not_nil Audio.convert_parameters(@parameters, 2)
     @parameters[:components][0][:from] = -1
     assert_nil Audio.convert_parameters(@parameters, 2)
-    
-    
-    
-    
-    
-    
-    
-#    reset_parameters
-#    @parameters[:components][1][:type] = 'sext'
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    @parameters[:components][1][:type] = 'text'
-#    @parameters[:components][1].delete(:content)
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    reset_parameters
-#    @parameters[:components][1][:duration] = 't'
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    @parameters[:components][1][:duration] = 0
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    @parameters[:components][1][:duration] = -3
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    reset_parameters
-#    @parameters[:components][1][:text_color] = 'opoppp'
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    @parameters[:components][1][:text_color] = 'red'
-#    assert_not_nil Video.convert_parameters(@parameters, 2)
-#    @parameters[:components][1][:background_color] = 'pink'
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    @parameters[:components][1][:background_color] = 'light_blue'
-#    assert_not_nil Video.convert_parameters(@parameters, 2)
-#    reset_parameters
-#    @parameters[:components][2].delete(:image_id)
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    MediaElement.where(:id => 6).update_all(:is_public => false)
-#    @parameters[:components][2][:image_id] = 6
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    MediaElement.where(:id => 6).update_all(:is_public => true)
-#    reset_parameters
-#    @parameters[:components][2][:duration] = 't'
-#    assert_nil Video.convert_parameters(@parameters, 2)
-#    @parameters[:components][2][:duration] = -6
-#    assert_nil Video.convert_parameters(@parameters, 2)
   end
   
 end
