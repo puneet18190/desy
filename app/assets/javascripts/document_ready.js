@@ -1540,7 +1540,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._close_audio_gallery_in_audio_editor', function() {
-    alert('close audio gallery in audio editor');
+    closeGalleryInAudioEditor();
   });
   
   initializeAudioEditor();
