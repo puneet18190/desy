@@ -4,6 +4,13 @@ function initializeImageGalleryInLessonEditor() {
   $('#lesson_editor_image_gallery_container #image_gallery_content > div').jScrollPane({
     autoReinitialise: true
   });
+  $('#lesson_editor_image_gallery_container .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $('#lesson_editor_image_gallery_container').data('page');
+    var tot_pages = $('#lesson_editor_image_gallery_container').data('tot-pages');
+    if(isAtBottom && (page < tot_pages)) {
+      $.get('/lessons/galleries/image/new_block?page=' + (page + 1));
+    }
+  });
 }
 
 function initializeAudioGalleryInLessonEditor() {
