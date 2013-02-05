@@ -1118,6 +1118,7 @@ en:
         # 1 - views/search/lessons/_main.html.erb
         label: 'Keyword'
         # 1 - views/search/lessons/_main.html.erb
+        # 2 - controllers/search_controller.rb
         placeholder: 'Insert a tag'
       filters:
         # 1 - views/search/lessons/_main.html.erb
@@ -1146,6 +1147,7 @@ en:
         # 1 - views/search/media_elements/_main.html.erb
         label: 'Keyword'
         # 1 - views/search/media_elements/_main.html.erb
+        # 2 - controllers/search_controller.rb
         placeholder: 'Insert a tag'
       filters:
         # 1 - views/search/media_elements/_main.html.erb
