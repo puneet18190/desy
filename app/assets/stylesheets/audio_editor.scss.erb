@@ -2,21 +2,26 @@ html.audio_editor-controller {
   
  .mediaEditorAudioContainer {
     .info {
-      width:77px;
+      width:97px;
       background-color:#504f50;
-      padding:20px;
+      padding:20px 10px;
       top:0;
       right: 29px;
       background-image:url(<%= asset_path 'tile_colonna_info_audio.gif' %>);
       background-repeat:repeat-x;
       background-position: top left;
       font-size:12px;
+      text-align:center;
       a.addButtonContent {
         font-size:2.2em;
-        margin:0px 0px 30px 5px;
-        
+        margin-bottom:20px;
+        float:none;
+        padding:0.4em 1em;
       }
-      
+      p {
+        margin-top: 30px;
+        text-align:left;
+      }
     }
     .addAudioandSave {
       border-top: 10px solid #504f50;
