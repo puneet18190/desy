@@ -16,7 +16,7 @@ subject1 = Subject.find 1
 subject2 = Subject.find 2
 subject3 = Subject.find 3
 
-media_element_types = [ 'Video' ]*5 + [ 'Image', 'Audio' ] + ([ 'Video' ]*14 + [ 'Audio' ]*18 + [ 'Image' ] * 31).shuffle
+media_element_types = ['Video'] * 19 + ['Image'] * 32 + ['Audio'] * 19
 
 images = Dir.glob("#{Rails.root}/db/seeds/environments/#{Rails.env}/media_elements/images/*").grep(/\.jpe?g|png$/).shuffle
 videos = Dir.glob("#{Rails.root}/db/seeds/environments/#{Rails.env}/media_elements/videos/*.mp4").shuffle.map do |v|
@@ -282,7 +282,7 @@ end
 cont = 0
 tim = Time.zone.now
 MediaElement.all.each do |l|
-  if ![2, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40].include?(l.id)
+  if ![2, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 64, 58, 52].include?(l.id)
     l.is_public = true
     l.publication_date = tim - cont
     l.save

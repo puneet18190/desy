@@ -57,15 +57,12 @@ en:
       loaded_ok: 'Correctly loaded your lessons!'
       # 1 - views/virtual_classroom/load_lessons.js.erb
       loaded_error: 'There was a problem, #number of your lessons were not loaded'
-  activemodel:
-    errors:
-      messages:
-        # 1 - models/user.rb
-        invalid_email_address: 'does not appear to be a valid email address'
   activerecord:
     errors:
       # NOTA - SOLO IN USER VENGONO USATI, NEGLI ALTRI CASI SONO SOSTITUITI
       messages:
+        # 1 - models/user.rb
+        invalid_email_address: 'does not appear to be a valid email address'
         # 1 - models/user.rb
         blank: "can't be blank"
         # 1 - models/user.rb

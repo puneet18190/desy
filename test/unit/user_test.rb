@@ -16,7 +16,7 @@ class UserTest < ActiveSupport::TestCase
   
   test 'empty_and_defaults' do
     @user = User.new
-    assert_error_size 12, @user
+    assert_error_size 15, @user
   end
   
   test 'attr_accessible' do
@@ -81,16 +81,23 @@ class UserTest < ActiveSupport::TestCase
     assert_obj_saved @user
   end
   
-  test 'change_email' do
-    assert_obj_saved @user
-    assert !@user.new_record?
-    assert_invalid @user, :email, 'nuova@emai.il', 'plutdsgso@pippo.it', /can't change after having been initialized/
-    assert_obj_saved @user
-  end
-  
   test 'associations' do
-    assert_invalid @user, :location_id, 1900, 1, /doesn't exist/
-    assert_invalid @user, :school_level_id, 1900, 2, /doesn't exist/
+    @user.location_id = 1900
+    assert !@user.save, "User erroneously saved - #{@user.inspect}"
+    assert_equal [:email, :location_id], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
+    assert_equal 1, @user.errors.messages[:location_id].length
+    assert @user.errors.messages[:email].empty?
+    assert_match /can't be blank/, array_to_string(@user.errors.messages[:location_id]), @user.errors.messages.inspect
+    @user.location_id = 1
+    assert @user.valid?, "User not valid: #{@user.errors.inspect}"
+    @user.school_level_id = 1900
+    assert !@user.save, "User erroneously saved - #{@user.inspect}"
+    assert_equal [:email, :school_level_id], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
+    assert_equal 1, @user.errors.messages[:school_level_id].length
+    assert @user.errors.messages[:email].empty?
+    assert_match /can't be blank/, array_to_string(@user.errors.messages[:school_level_id])
+    @user.school_level_id = 2
+    assert @user.valid?, "User not valid: #{@user.errors.inspect}"
     assert_obj_saved @user
   end
   
