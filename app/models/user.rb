@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 8, :on => :update, :allow_nil => true, :allow_blank => true
   validate :validate_associations
   validate :validate_email_not_changed, on: :update
-  validates :email, email_format: { :message => I18n.t(:invalid_email_address, :scope => [:activerecord, :errors, :messages], :default => 'does not appear to be valid') }
+  validates :email, email_format: { :message => I18n.t(:invalid_email_address, :scope => [:activerecord, :errors, :messages]) }
   REGISTRATION_POLICIES.each do |policy|
     validates_acceptance_of policy, on: :create, allow_nil: false
   end
