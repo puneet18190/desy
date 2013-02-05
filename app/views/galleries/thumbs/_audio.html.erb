@@ -1,0 +1,11 @@
+<div id="gallery_audio_<%= audio.id %>" class="audioTrackCompact _audio_gallery_thumb">
+  <div class="audioTrackContent _compact">
+    <div class="titleTrack"><p><%= audio.title %></div>
+    <div class="fltrt">
+      <a class="addButtonContent _select_audio_from_gallery" data-audio-id="<%= audio.id %>" data-mp3="<%= audio.mp3_url %>" data-ogg="<%= audio.ogg_url %>" data-duration="<%= audio.min_duration %>" title="<%= t('titles.galleries.add_audio') %>"></a>
+    </div>
+  </div>
+  <div class="audioTrackExpanded _expanded" style="display:none">
+    <%= render :partial => 'shared/players/audio', :locals => {:audio => audio, :initialize_now => true} %>
+  </div>
+</div>
