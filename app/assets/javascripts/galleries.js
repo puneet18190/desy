@@ -18,7 +18,7 @@ function initializeVideoGalleryInLessonEditor() {
   });
 }
 
-function initializeVideoEditorMixedGallery() {
+function initializeMixedGalleryInVideoEditor() {
   $('#video_editor_mixed_gallery_container #video_gallery_content > div').jScrollPane({
     autoReinitialise: true
   });
