@@ -6,7 +6,7 @@
     <br class="clearfloat">
     <div class="menuLessonVirtualClassroom">
       <a class="_send_lesson_link preview" data-lesson-id="<%= lesson.id %>"></a> 
-      <a class="_send_lesson_link preview2" data-lesson-id="<%= lesson.id %>"></a>
+     
       <% if lesson.user_id == current_user.id %>
         <a class="_send_lesson_link sendTo" data-lesson-id="<%= lesson.id %>"></a>
       <% end %>
