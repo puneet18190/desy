@@ -81,7 +81,7 @@ class VirtualClassroomController < ApplicationController
         @error = @virtual_classroom_lesson.get_base_error
       end
     else
-      @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_adding_to_playlist')
+      @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problem_adding_to_playlist')
     end
   end
   
@@ -94,7 +94,7 @@ class VirtualClassroomController < ApplicationController
         @error = @virtual_classroom_lesson.get_base_error
       end
     else
-      @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_removing_from_playlist')
+      @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problem_removing_from_playlist')
     end
   end
   
@@ -105,14 +105,14 @@ class VirtualClassroomController < ApplicationController
         @error = @virtual_classroom_lesson.get_base_error
       end
     else
-      @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_changing_position_in_playlist')
+      @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problem_changing_position_in_playlist')
     end
     @playlist = current_user.playlist
   end
   
   def empty_playlist
     @ok = current_user.empty_playlist
-    @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problems_emptying_playlist') if !@ok
+    @error = I18n.t('activerecord.errors.models.virtual_classroom_lesson.problem_emptying_playlist') if !@ok
   end
   
   def empty_virtual_classroom

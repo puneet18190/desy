@@ -214,16 +214,16 @@ en:
           # 4 - models/virtual_classroom_lesson.rb
           # 5 - models/virtual_classroom_lesson.rb
           # 6 - models/virtual_classroom_lesson.rb
-          problems_changing_position_in_playlist: "The lesson's position could not be changed"
+          problem_changing_position_in_playlist: "The lesson's position could not be changed"
           # there was an error while trying to add the lesson to the playlist
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - models/virtual_classroom_lesson.rb
           # 3 - models/virtual_classroom_lesson.rb
           # 4 - models/virtual_classroom_lesson.rb
-          problems_adding_to_playlist: 'The lesson could not be added to the playlist'
+          problem_adding_to_playlist: 'The lesson could not be added to the playlist'
           # there was an error while trying to empty the playlist inside your Virtual Classroom'
           # 1 - controllers/virtual_classroom_controller.rb
-          problems_emptying_playlist: 'Your playlist could not be emptied'
+          problem_emptying_playlist: 'Your playlist could not be emptied'
           # this happens when you try to add a lesson to a playlist which is already full
           # 1 - models/virtual_classroom_lesson.rb
           playlist_full: 'Your playlist is full!'
@@ -232,7 +232,7 @@ en:
           # 2 - models/virtual_classroom_lesson.rb
           # 3 - models/virtual_classroom_lesson.rb
           # 4 - models/virtual_classroom_lesson.rb
-          problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
+          problem_removing_from_playlist: 'The lesson could not be removed from the playlist'
   
   
   # SECTION 1.2: popups con messaggio dentro e due bottoni di scelta
