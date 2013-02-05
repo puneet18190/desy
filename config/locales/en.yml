@@ -936,6 +936,8 @@ en:
       # 1 - views/media_elements/_title_bar.html.erb
       small: 'Small'
     editor:
+      # 1 - views/media_elements/_graybar_left.html.erb
+      menu_link: 'Elements editor'
       # 1 - views/media_elements/new.html.erb
       enjoy: 'Enjoy!'
       # 1 - views/image_editor/_header.html.erb

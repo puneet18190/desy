@@ -16,9 +16,6 @@ module Media
             sum += component[:to]
             sum -= component[:from]
           end
-          if hash[:components].any?
-            sum += (hash[:components].length - 1)
-          end
           sum
         end
         
