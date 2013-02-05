@@ -1506,8 +1506,8 @@ $(document).ready(function() {
     $(this).parent().find('._sort_handle').addClass('current');
   });
   
-  $('body').on('mouseout', '._audio_editor_component ._box_ghost', function() {
-    if($(this).css('display') == 'block') {
+  $('body').on('mouseout', '._audio_editor_component ._box_ghost', function(e) {
+    if($(this).css('display') == 'block' && !$(e.relatedTarget).hasClass('_remove')) {
       $(this).parent().find('._sort_handle').removeClass('current');
     }
   });
@@ -1518,6 +1518,21 @@ $(document).ready(function() {
   
   $('body').on('click', '._audio_editor_component ._box_ghost', function() {
     selectAudioEditorComponent($(this).parent());
+  });
+  
+  $('body').on('click', '._audio_editor_component ._remove', function() {
+    removeAudioEditorComponent($(this).parent());
+  });
+  
+  $('body').on('click', '#add_new_audio_component_in_audio_editor', function() {
+    if($('#audio_editor_gallery_container').data('loaded')) {
+      showGalleryInAudioEditor();
+    } else {
+      $.ajax({
+        type: 'get',
+        url: '/audios/galleries/audio'
+      });
+    }
   });
   
   initializeAudioEditor();
