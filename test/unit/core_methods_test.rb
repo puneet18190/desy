@@ -204,8 +204,6 @@ class CoreMethodsTest < ActiveSupport::TestCase
   test 'change_slide_position' do
     uu = Slide.new
     assert !uu.change_position(1)
-    assert_equal 1, uu.errors.messages[:base].length
-    assert_match /The slide's position could not be changed/, uu.errors.messages[:base].first
     s = Slide.new :position => 4, :title => 'Titolo', :text => 'Testo testo testo'
     s.lesson_id = 2
     s.kind = 'text'
@@ -220,24 +218,12 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Slide.find 1
     assert_equal 'cover', x.kind
     assert !x.change_position(2)
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide is the cover, it can't be moved/, x.errors.messages[:base].first
     x = Slide.find 3
     assert !x.change_position(1)
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide's position is not valid/, x.errors.messages[:base].first
     assert !x.change_position(20)
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide's position is not valid/, x.errors.messages[:base].first
     assert !x.change_position('sdgsg')
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide's position is not valid/, x.errors.messages[:base].first
     assert !x.change_position(-4)
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide's position is not valid/, x.errors.messages[:base].first
     assert !x.change_position(0)
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide's position is not valid/, x.errors.messages[:base].first
     s1 = Slide.where(:lesson_id => 2, :position => 1).first.id
     s2 = Slide.where(:lesson_id => 2, :position => 2).first.id
     s3 = Slide.where(:lesson_id => 2, :position => 3).first.id
