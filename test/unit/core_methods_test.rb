@@ -260,8 +260,6 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 1, x.slides.count
     assert Slide.where(:lesson_id => 1, :kind => 'image1').empty?
     assert x.add_slide('video4', 2).nil?
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /The slide could not be added/, x.errors.messages[:base].first
     ressp = x.add_slide('image1', 2)
     assert !ressp.nil?
     assert_equal 2, Slide.where(:lesson_id => 1).count
@@ -269,8 +267,6 @@ class CoreMethodsTest < ActiveSupport::TestCase
     new_added_slide = Slide.where(:lesson_id => 1, :kind => 'image1').first
     assert_equal ressp.id, new_added_slide.id
     assert x.add_slide('image2', 1).nil?
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /The slide could not be added/, x.errors.messages[:base].first
     assert_equal 2, Slide.where(:lesson_id => 1).count
     ressp = x.add_slide('image2', 2)
     assert !ressp.nil?
