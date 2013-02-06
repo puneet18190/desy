@@ -35,5 +35,5 @@
 /public/assets
 
 # WIRIS
-/app/assets/javascripts/tinymce/plugins/tiny_mce_wiris/formulas/*
-/app/assets/javascripts/tinymce/plugins/tiny_mce_wiris/cache/*
+/vendor/assets/javascripts/tinymce/plugins/tiny_mce_wiris/formulas/*
+/vendor/assets/javascripts/tinymce/plugins/tiny_mce_wiris/cache/*
