@@ -1,8 +1,7 @@
-function bindLoader(){
+function bindLoader() {
   var loader = $('#loading .containerLoading');
-  loader.css("top", (($(window).height()/2)-100)+"px");
-  loader.css("left", (($(window).width()/2)-50)+"px");
-
+  loader.css('top', (($(window).height() / 2) - 100) + 'px');
+  loader.css('left', (($(window).width() / 2) - 50) + 'px');
   $('#loading').show();
   var oldLoad = window.onload;
   var newLoad = function() {
@@ -15,13 +14,11 @@ function bindLoader(){
     };
   }
   window.onload = newLoad;
-
-  $("#loading").bind({
+  $('#loading').bind({
     ajaxStart: function() {
       var this_loader = $(this).find('.containerLoading');
-      this_loader.css("top", (($(window).height()/2)-100)+"px");
-      this_loader.css("left", (($(window).width()/2)-50)+"px");
-      
+      this_loader.css('top', (($(window).height() / 2) - 100) + 'px');
+      this_loader.css('left', (($(window).width() / 2) - 50) + 'px');
       $(this).show();
     },
     ajaxStop: function() {
@@ -30,6 +27,6 @@ function bindLoader(){
   });
 }
 
-function unbindLoader(){
-  $("#loading").unbind("ajaxStart ajaxStop");
+function unbindLoader() {
+  $('#loading').unbind('ajaxStart ajaxStop');
 }
