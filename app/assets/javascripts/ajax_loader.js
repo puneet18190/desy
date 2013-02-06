@@ -1,32 +1,37 @@
 function bindLoader() {
-  var loader = $('#loading .containerLoading');
-  loader.css('top', (($(window).height() / 2) - 100) + 'px');
-  loader.css('left', (($(window).width() / 2) - 50) + 'px');
-  $('#loading').show();
+  showLoader();
   var oldLoad = window.onload;
   var newLoad = function() {
-    $('#loading').hide();
+    hideLoader();
   };
   if(oldLoad) {
     newLoad = function() {
-      $('#loading').hide();
+      hideLoader();
       oldLoad.call(this);
     };
   }
   window.onload = newLoad;
   $('#loading').bind({
     ajaxStart: function() {
-      var this_loader = $(this).find('.containerLoading');
-      this_loader.css('top', (($(window).height() / 2) - 100) + 'px');
-      this_loader.css('left', (($(window).width() / 2) - 50) + 'px');
-      $(this).show();
+      showLoader();
     },
     ajaxStop: function() {
-      $(this).hide();
+      hideLoader();
     }
   });
 }
 
 function unbindLoader() {
   $('#loading').unbind('ajaxStart ajaxStop');
+}
+
+function showLoader() {
+  var loader = $('#loading .containerLoading');
+  loader.css('top', (($(window).height() / 2) - 100) + 'px');
+  loader.css('left', (($(window).width() / 2) - 50) + 'px');
+  $('#loading').show();
+}
+
+function hideLoader() {
+  $('#loading').hide();
 }
