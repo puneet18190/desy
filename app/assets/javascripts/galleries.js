@@ -79,6 +79,13 @@ function initializeAudioGalleryInAudioEditor() {
   $('#audio_editor_gallery_container #audio_gallery_content > div').jScrollPane({
     autoReinitialise: true
   });
+  $('#audio_editor_gallery_container .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $('#audio_editor_gallery_container').data('page');
+    var tot_pages = $('#audio_editor_gallery_container').data('tot-pages');
+    if(isAtBottom && (page < tot_pages)) {
+      $.get('/audios/galleries/audio/new_block?page=' + (page + 1));
+    }
+  });
 }
 
 function initializeImageGalleryInImageEditor() {

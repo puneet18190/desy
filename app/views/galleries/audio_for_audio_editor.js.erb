@@ -1,6 +1,9 @@
+var container = $('#audio_editor_gallery_container');
 showGalleryInAudioEditor();
-$('#audio_editor_gallery_container').html('<%= j(render(:partial => 'galleries/audio', :locals => {:audios => @audios})) %>');
-$('#audio_editor_gallery_container').data('loaded', true);
+container.html('<%= j(render(:partial => 'galleries/audio', :locals => {:audios => @audios})) %>');
+container.data('loaded', true);
+container.data('page', 1);
+container.data('tot-pages', 1);
 $('._select_audio_from_gallery').addClass('_add_audio_component_to_audio_editor');
 $('._close_audio_gallery').addClass('_close_audio_gallery_in_audio_editor');
 initializeAudioGalleryInAudioEditor();
