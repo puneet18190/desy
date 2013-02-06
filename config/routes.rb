@@ -143,5 +143,9 @@ Desy::Application.routes.draw do
   
   # APPLICATION ROOT
   root :to => 'prelogin#home'
+
+  namespace 'admin' do
+    resources :lessons
+  end
   
 end
