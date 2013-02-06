@@ -66,6 +66,13 @@ function initializeAudioGalleryInVideoEditor() {
   $('#video_editor_audio_gallery_container #audio_gallery_content > div').jScrollPane({
     autoReinitialise: true
   });
+  $('#video_editor_audio_gallery_container .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $('#video_editor_audio_gallery_container').data('page');
+    var tot_pages = $('#video_editor_audio_gallery_container').data('tot-pages');
+    if(isAtBottom && (page < tot_pages)) {
+      $.get('/videos/galleries/audio/new_block?page=' + (page + 1));
+    }
+  });
 }
 
 function initializeAudioGalleryInAudioEditor() {
