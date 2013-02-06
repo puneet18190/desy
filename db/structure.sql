@@ -1328,179 +1328,179 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
--- Name: bookmarks_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_bookmarks_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY bookmarks
-    ADD CONSTRAINT bookmarks_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+    ADD CONSTRAINT fk_bookmarks_user_id FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
--- Name: lessons_parent_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY lessons
-    ADD CONSTRAINT lessons_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES lessons(id) ON DELETE SET NULL;
-
-
---
--- Name: lessons_school_level_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_lessons_parent_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY lessons
-    ADD CONSTRAINT lessons_school_level_id_fkey FOREIGN KEY (school_level_id) REFERENCES school_levels(id);
+    ADD CONSTRAINT fk_lessons_parent_id FOREIGN KEY (parent_id) REFERENCES lessons(id) ON DELETE SET NULL;
 
 
 --
--- Name: lessons_subject_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY lessons
-    ADD CONSTRAINT lessons_subject_id_fkey FOREIGN KEY (subject_id) REFERENCES subjects(id);
-
-
---
--- Name: lessons_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_lessons_school_level_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY lessons
-    ADD CONSTRAINT lessons_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+    ADD CONSTRAINT fk_lessons_school_level_id FOREIGN KEY (school_level_id) REFERENCES school_levels(id);
 
 
 --
--- Name: likes_lesson_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_lessons_subject_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY lessons
+    ADD CONSTRAINT fk_lessons_subject_id FOREIGN KEY (subject_id) REFERENCES subjects(id);
+
+
+--
+-- Name: fk_lessons_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY lessons
+    ADD CONSTRAINT fk_lessons_user_id FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: fk_likes_lesson_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY likes
-    ADD CONSTRAINT likes_lesson_id_fkey FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_likes_lesson_id FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE;
 
 
 --
--- Name: likes_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_likes_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY likes
-    ADD CONSTRAINT likes_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+    ADD CONSTRAINT fk_likes_user_id FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
--- Name: mailing_list_addresses_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_mailing_list_addresses_group_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY mailing_list_addresses
-    ADD CONSTRAINT mailing_list_addresses_group_id_fkey FOREIGN KEY (group_id) REFERENCES mailing_list_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_mailing_list_addresses_group_id FOREIGN KEY (group_id) REFERENCES mailing_list_groups(id) ON DELETE CASCADE;
 
 
 --
--- Name: mailing_list_groups_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_mailing_list_groups_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY mailing_list_groups
-    ADD CONSTRAINT mailing_list_groups_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_mailing_list_groups_user_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
 
 
 --
--- Name: media_elements_slides_media_element_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY media_elements_slides
-    ADD CONSTRAINT media_elements_slides_media_element_id_fkey FOREIGN KEY (media_element_id) REFERENCES media_elements(id) ON DELETE CASCADE;
-
-
---
--- Name: media_elements_slides_slide_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_media_elements_slides_media_element_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY media_elements_slides
-    ADD CONSTRAINT media_elements_slides_slide_id_fkey FOREIGN KEY (slide_id) REFERENCES slides(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_media_elements_slides_media_element_id FOREIGN KEY (media_element_id) REFERENCES media_elements(id) ON DELETE CASCADE;
 
 
 --
--- Name: media_elements_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_media_elements_slides_slide_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY media_elements_slides
+    ADD CONSTRAINT fk_media_elements_slides_slide_id FOREIGN KEY (slide_id) REFERENCES slides(id) ON DELETE CASCADE;
+
+
+--
+-- Name: fk_media_elements_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY media_elements
-    ADD CONSTRAINT media_elements_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+    ADD CONSTRAINT fk_media_elements_user_id FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
--- Name: notifications_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_notifications_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY notifications
-    ADD CONSTRAINT notifications_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+    ADD CONSTRAINT fk_notifications_user_id FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
--- Name: reports_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_reports_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reports
-    ADD CONSTRAINT reports_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+    ADD CONSTRAINT fk_reports_user_id FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
--- Name: slides_lesson_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_slides_lesson_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY slides
-    ADD CONSTRAINT slides_lesson_id_fkey FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_slides_lesson_id FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE;
 
 
 --
--- Name: taggings_tag_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_taggings_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taggings
-    ADD CONSTRAINT taggings_tag_id_fkey FOREIGN KEY (tag_id) REFERENCES tags(id);
+    ADD CONSTRAINT fk_taggings_tag_id FOREIGN KEY (tag_id) REFERENCES tags(id);
 
 
 --
--- Name: users_location_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY users
-    ADD CONSTRAINT users_location_id_fkey FOREIGN KEY (location_id) REFERENCES locations(id);
-
-
---
--- Name: users_school_level_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_users_location_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users
-    ADD CONSTRAINT users_school_level_id_fkey FOREIGN KEY (school_level_id) REFERENCES school_levels(id);
+    ADD CONSTRAINT fk_users_location_id FOREIGN KEY (location_id) REFERENCES locations(id);
 
 
 --
--- Name: users_subjects_subject_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_users_school_level_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT fk_users_school_level_id FOREIGN KEY (school_level_id) REFERENCES school_levels(id);
+
+
+--
+-- Name: fk_users_subjects_subject_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users_subjects
-    ADD CONSTRAINT users_subjects_subject_id_fkey FOREIGN KEY (subject_id) REFERENCES subjects(id);
+    ADD CONSTRAINT fk_users_subjects_subject_id FOREIGN KEY (subject_id) REFERENCES subjects(id);
 
 
 --
--- Name: users_subjects_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_users_subjects_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users_subjects
-    ADD CONSTRAINT users_subjects_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+    ADD CONSTRAINT fk_users_subjects_user_id FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
--- Name: virtual_classroom_lessons_lesson_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY virtual_classroom_lessons
-    ADD CONSTRAINT virtual_classroom_lessons_lesson_id_fkey FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE;
-
-
---
--- Name: virtual_classroom_lessons_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_virtual_classroom_lessons_lesson_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY virtual_classroom_lessons
-    ADD CONSTRAINT virtual_classroom_lessons_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+    ADD CONSTRAINT fk_virtual_classroom_lessons_lesson_id FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE;
+
+
+--
+-- Name: fk_virtual_classroom_lessons_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY virtual_classroom_lessons
+    ADD CONSTRAINT fk_virtual_classroom_lessons_user_id FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
