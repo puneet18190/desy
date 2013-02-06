@@ -2,7 +2,7 @@
 
 <div id="audio_editor" class="mediaEditorAudioContainer">
   
-  <%= render :partial => 'audio_editor/lateral_controls', :locals => {:parameters => @parameters} %>
+  <%= render :partial => 'audio_editor/lateral_controls', :locals => {:parameters => @parameters, :total_length => @total_length} %>
   
   <%= form_tag audio_editor_save_cache_path, :id => 'audio_editor_form', :remote => true do %>
     <%= render :partial => 'media_elements/info_form_in_editor/new', :locals => {:sti_type => MediaElement::AUDIO_TYPE} %>
@@ -32,7 +32,7 @@
   <%= render :partial => "audio_editor/component", :locals => {:component => {}, :identifier => 1, :empty => true} %>
 </div>
 
-<div id="audio_editor_gallery_container" style="display:none" data-loaded="false"></div>
+<div id="audio_editor_gallery_container" class="mediaElementGalleryContainer" style="display:none" data-loaded="false"></div>
 
 <div id="info_container" data-last-component-id="<%= @parameters[:components].count %>" data-total-length="<%= @total_length %>" data-save-cache="false" data-cache-enabled-first-time="true" data-used-in-private-lessons="<%= @used_in_private_lessons %>" style="display:none"></div>
 

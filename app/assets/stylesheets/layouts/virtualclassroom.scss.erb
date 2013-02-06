@@ -147,7 +147,9 @@ html.virtual_classroom-controller {
       }
           
     }
-    $button-size: 40px;
+    /*QUESTI BOTTONI SONO DA RIVEDERE IN UN SECONDO MOMENTO C'E' UN PROBLEMA DI VISUALIZZAZIONE CON CHROME MA NON E' CHIARO IL MOTIVO VISTO CHE L'SVG E' PERFETTO NELLE MISURE E NELLA POSIZIONE DEGLI ELEMENTI
+    MAURIZIO APPENA HA UN PO' DI TEMPO VOLEVA FARE DELLE PROVE*/
+    $button-size: 4em;
     @mixin buttonPlayer {
       & {
         width: $button-size;
@@ -156,6 +158,8 @@ html.virtual_classroom-controller {
         background-repeat: no-repeat;
         background-size: ($button-size*2) ($button-size*3);
         padding:0;
+        font-size:0.688em;
+
       }
     }
     .menuLessonVirtualClassroom {
@@ -188,49 +192,7 @@ html.virtual_classroom-controller {
         };
       }; 
     }
-    /*prova da cancellare*/
-    $button-size2: 4em;
-    @mixin buttonPlayer {
-      & {
-        width: $button-size2;
-        height: $button-size2;
-        background-image: url(<%= asset_path 'icone_menu_virtua_prova_em.svg' %>);
-        background-repeat: no-repeat;
-        background-size: ($button-size2*2) ($button-size2*3);
-        padding:0;
-      }
-    }
-    .menuLessonVirtualClassroom {
-      display:inline-block;
-      width:247px;
-      a {
-        float:left;
-        
-      }
-      .preview2 {
-        @include buttonPlayer;
-        background-position: 0 0;
-        &:hover {
-          background-position: (-$button-size2) 0;  
-        };
-      };
-      .sendTo2 {
-        @include buttonPlayer;
-        background-position: 0 (-$button-size);
-        &:hover {
-          background-position: (-$button-size2) (-$button-size2);  
-        };
-      };  
-      .remove2 {
-        @include buttonPlayer;
-        background-position: 0 (-$button-size*2);
-        float:right;
-        &:hover {
-          background-position: (-$button-size2) (-$button-size2*2);  
-        };
-      }; 
-    }  
-    /*FINE*/
+    
   }
   .playList {
     padding:10px; 

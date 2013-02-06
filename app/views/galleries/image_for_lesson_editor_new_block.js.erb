@@ -1,0 +1,9 @@
+<% if @ok %>
+  
+  <% @images.each do |image| %>
+    $('#lesson_editor_image_gallery_container #image_gallery_content .jspPane').append('<%= j(render(:partial => "galleries/thumbs/image", :locals => {:image => image})) %>');
+  <% end %>
+  
+  $('#lesson_editor_image_gallery_container').data('page', <%= @page %>);
+  
+<% end %>

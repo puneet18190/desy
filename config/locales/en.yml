@@ -56,16 +56,13 @@ en:
       # 1 - views/virtual_classroom/load_lessons.js.erb
       loaded_ok: 'Correctly loaded your lessons!'
       # 1 - views/virtual_classroom/load_lessons.js.erb
-      loaded_error: 'There was a problem, #number of your lessons were not loaded'
-  activemodel:
-    errors:
-      messages:
-        # 1 - models/user.rb
-        invalid_email_address: 'does not appear to be a valid email address'
+      loaded_error: 'There was a problem, %{number} of your lessons were not loaded'
   activerecord:
     errors:
       # NOTA - SOLO IN USER VENGONO USATI, NEGLI ALTRI CASI SONO SOSTITUITI
       messages:
+        # 1 - models/user.rb
+        invalid_email_address: 'does not appear to be a valid email address'
         # 1 - models/user.rb
         blank: "can't be blank"
         # 1 - models/user.rb
@@ -181,6 +178,11 @@ en:
           # 1 - models/media_element.rb
           cant_destroy_public: "This element is public, you can't delete it"
         user:
+          # 1 - models/user.rb
+          # 1 - models/user.rb
+          # 1 - models/user.rb
+          # 1 - models/user.rb
+          problem_destroying: 'The user could not be deleted'
           # 1 - controllers/reports_controller.rb
           # 2 - controllers/reports_controller.rb
           # 3 - models/user.rb
@@ -209,16 +211,16 @@ en:
           # 4 - models/virtual_classroom_lesson.rb
           # 5 - models/virtual_classroom_lesson.rb
           # 6 - models/virtual_classroom_lesson.rb
-          problems_changing_position_in_playlist: "The lesson's position could not be changed"
+          problem_changing_position_in_playlist: "The lesson's position could not be changed"
           # there was an error while trying to add the lesson to the playlist
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - models/virtual_classroom_lesson.rb
           # 3 - models/virtual_classroom_lesson.rb
           # 4 - models/virtual_classroom_lesson.rb
-          problems_adding_to_playlist: 'The lesson could not be added to the playlist'
+          problem_adding_to_playlist: 'The lesson could not be added to the playlist'
           # there was an error while trying to empty the playlist inside your Virtual Classroom'
           # 1 - controllers/virtual_classroom_controller.rb
-          problems_emptying_playlist: 'Your playlist could not be emptied'
+          problem_emptying_playlist: 'Your playlist could not be emptied'
           # this happens when you try to add a lesson to a playlist which is already full
           # 1 - models/virtual_classroom_lesson.rb
           playlist_full: 'Your playlist is full!'
@@ -227,7 +229,7 @@ en:
           # 2 - models/virtual_classroom_lesson.rb
           # 3 - models/virtual_classroom_lesson.rb
           # 4 - models/virtual_classroom_lesson.rb
-          problems_removing_from_playlist: 'The lesson could not be removed from the playlist'
+          problem_removing_from_playlist: 'The lesson could not be removed from the playlist'
   
   
   # SECTION 1.2: popups con messaggio dentro e due bottoni di scelta
@@ -1060,11 +1062,13 @@ en:
       title: 'Title of policy 1'
       # 1 - views/prelogin/registration.html.erb
       description: 'Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1'
+      accept: 'Accept'
     policy_2:
       # 1 - views/prelogin/registration.html.erb
       title: 'Title of policy 2'
       # 1 - views/prelogin/registration.html.erb
       description: 'Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2'
+      accept: 'Accept'
   
   
   # SECTION 2.13: reports
@@ -1114,6 +1118,7 @@ en:
         # 1 - views/search/lessons/_main.html.erb
         label: 'Keyword'
         # 1 - views/search/lessons/_main.html.erb
+        # 2 - controllers/search_controller.rb
         placeholder: 'Insert a tag'
       filters:
         # 1 - views/search/lessons/_main.html.erb
@@ -1142,6 +1147,7 @@ en:
         # 1 - views/search/media_elements/_main.html.erb
         label: 'Keyword'
         # 1 - views/search/media_elements/_main.html.erb
+        # 2 - controllers/search_controller.rb
         placeholder: 'Insert a tag'
       filters:
         # 1 - views/search/media_elements/_main.html.erb

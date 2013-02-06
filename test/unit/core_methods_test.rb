@@ -2,28 +2,6 @@ require 'test_helper'
 
 class CoreMethodsTest < ActiveSupport::TestCase
   
-  test 'edit_user_fields' do
-    uu = User.new
-    assert !uu.edit_fields('oo', 'fsg', 'asf', 1, 1, [1, 2])
-    assert_equal 1, uu.errors.messages[:base].length
-    assert_match /Your profile could not be updated/, uu.errors.messages[:base].first
-    assert_equal 3, UsersSubject.count
-    x = User.find 1
-    assert x.name != 'oo' && x.surname != 'fsg' && x.school != 'asf'
-    assert !x.edit_fields('oo', 'fsg', 'asf', 1, 1, [])
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /Choose at least one subject/, x.errors.messages[:base].first
-    assert !x.edit_fields('oo', 'fsg', 'asf', 1, 1, 'sgdds')
-    assert !User.new.edit_fields('oo', 'fsg', 'asf', 1, 1, [1, 2])
-    assert UsersSubject.where(:user_id => 1, :subject_id => 3).any?
-    assert UsersSubject.where(:user_id => 1, :subject_id => 2).empty?
-    assert x.edit_fields('oo', 'fsg', 'asf', 1, 1, [1, 2])
-    x = User.find x.id
-    assert x.name == 'oo' && x.surname == 'fsg' && x.school == 'asf'
-    assert UsersSubject.where(:user_id => 1, :subject_id => 2).any?
-    assert UsersSubject.where(:user_id => 1, :subject_id => 3).empty?
-  end
-  
   test 'destroy_users_with_dependencies' do
     uu = User.new
     assert !uu.destroy_with_dependencies
@@ -32,7 +10,9 @@ class CoreMethodsTest < ActiveSupport::TestCase
     resp = User.confirmed.new(:password => SETTINGS['admin']['password'], :password_confirmation => SETTINGS['admin']['password'], :name => 'oo', :surname => 'fsg', :school => 'asf', :school_level_id => 1, :location_id => 1, :subject_ids => [1, 2]) do |user|
       user.email = SETTINGS['admin']['email']
     end
-    assert resp.save
+    resp.policy_1 = '1'
+    resp.policy_2 = '1'
+    assert resp.save, resp.errors.inspect
     assert !resp.nil?
     x = User.find 1
     lessons = Lesson.where(:user_id => 1)
@@ -93,7 +73,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     # I try to copy the copy
     assert resp.copy(1).nil?
     assert_equal 1, resp.errors.messages[:base].length
-    assert_match /You just copied this lesson/, resp.errors.messages[:base].first
+    assert_match /You've just copied this lesson/, resp.errors.messages[:base].first
     # until here
     assert_equal 1, resp.school_level_id
     assert_equal 3, resp.subject_id
@@ -137,11 +117,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.new
     assert !x.publish
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /The lesson could not be published/, x.errors.messages[:base].first
+    assert_match /The lesson could not be shared/, x.errors.messages[:base].first
     x = Lesson.find 2
     assert !x.publish
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /This lesson is already public/, x.errors.messages[:base].first
+    assert_match /This lesson is already shared/, x.errors.messages[:base].first
     x = Lesson.find 1
     new_slide = Slide.new :position => 2
     new_slide.lesson_id = 1
@@ -166,11 +146,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.new
     assert !x.unpublish
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /The lesson could not be unpublished/, x.errors.messages[:base].first
+    assert_match /Lesson sharing could not be undone/, x.errors.messages[:base].first
     x = Lesson.find 1
     assert !x.unpublish
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /This lesson has not been published yet/, x.errors.messages[:base].first
+    assert_match /This lesson has not been shared yet/, x.errors.messages[:base].first
     x = Lesson.find 2
     assert VirtualClassroomLesson.where(:lesson_id => 2).any?
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).any?
@@ -226,8 +206,6 @@ class CoreMethodsTest < ActiveSupport::TestCase
   test 'change_slide_position' do
     uu = Slide.new
     assert !uu.change_position(1)
-    assert_equal 1, uu.errors.messages[:base].length
-    assert_match /The slide's position could not be changed/, uu.errors.messages[:base].first
     s = Slide.new :position => 4, :title => 'Titolo', :text => 'Testo testo testo'
     s.lesson_id = 2
     s.kind = 'text'
@@ -242,24 +220,12 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Slide.find 1
     assert_equal 'cover', x.kind
     assert !x.change_position(2)
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide is the cover, it can't be moved/, x.errors.messages[:base].first
     x = Slide.find 3
     assert !x.change_position(1)
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide's position is not valid/, x.errors.messages[:base].first
     assert !x.change_position(20)
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide's position is not valid/, x.errors.messages[:base].first
     assert !x.change_position('sdgsg')
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide's position is not valid/, x.errors.messages[:base].first
     assert !x.change_position(-4)
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide's position is not valid/, x.errors.messages[:base].first
     assert !x.change_position(0)
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide's position is not valid/, x.errors.messages[:base].first
     s1 = Slide.where(:lesson_id => 2, :position => 1).first.id
     s2 = Slide.where(:lesson_id => 2, :position => 2).first.id
     s3 = Slide.where(:lesson_id => 2, :position => 3).first.id
@@ -282,8 +248,6 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 1, x.slides.count
     assert Slide.where(:lesson_id => 1, :kind => 'image1').empty?
     assert x.add_slide('video4', 2).nil?
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /The slide could not be added/, x.errors.messages[:base].first
     ressp = x.add_slide('image1', 2)
     assert !ressp.nil?
     assert_equal 2, Slide.where(:lesson_id => 1).count
@@ -291,8 +255,6 @@ class CoreMethodsTest < ActiveSupport::TestCase
     new_added_slide = Slide.where(:lesson_id => 1, :kind => 'image1').first
     assert_equal ressp.id, new_added_slide.id
     assert x.add_slide('image2', 1).nil?
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /The slide could not be added/, x.errors.messages[:base].first
     assert_equal 2, Slide.where(:lesson_id => 1).count
     ressp = x.add_slide('image2', 2)
     assert !ressp.nil?
@@ -306,12 +268,8 @@ class CoreMethodsTest < ActiveSupport::TestCase
   test 'remove_slide_from_lesson' do
     x = Slide.new
     assert !x.destroy_with_positions
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /The slide could not be deleted/, x.errors.messages[:base].first
     x = Slide.where(:kind => 'cover').first
     assert !x.destroy_with_positions
-    assert_equal 1, x.errors.messages[:base].length
-    assert_match /This slide is the cover, it can't be deleted/, x.errors.messages[:base].first
     x = Slide.find 3
     assert x.kind != 'cover'
     assert_equal 3, Slide.where(:lesson_id => x.lesson_id).count
@@ -417,19 +375,19 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_match /The lesson's position could not be changed/, x.errors.messages[:base].first
     assert !vc1.change_position(-9)
     assert_equal 1, vc1.errors.messages[:base].length
-    assert_match /This lesson's position is not valid/, vc1.errors.messages[:base].first
+    assert_match /The position of the lesson is not valid/, vc1.errors.messages[:base].first
     assert !vc1.change_position(0)
     assert_equal 1, vc1.errors.messages[:base].length
-    assert_match /This lesson's position is not valid/, vc1.errors.messages[:base].first
+    assert_match /The position of the lesson is not valid/, vc1.errors.messages[:base].first
     assert !vc1.change_position(5)
     assert_equal 1, vc1.errors.messages[:base].length
-    assert_match /This lesson's position is not valid/, vc1.errors.messages[:base].first
+    assert_match /The position of the lesson is not valid/, vc1.errors.messages[:base].first
     assert !vc1.change_position('dvsdds')
     assert_equal 1, vc1.errors.messages[:base].length
-    assert_match /This lesson's position is not valid/, vc1.errors.messages[:base].first
+    assert_match /The position of the lesson is not valid/, vc1.errors.messages[:base].first
     assert !vc5.change_position(1)
     assert_equal 1, vc5.errors.messages[:base].length
-    assert_match /This lesson is not in the playlist/, vc5.errors.messages[:base].first
+    assert_match /The lesson's position could not be changed/, vc5.errors.messages[:base].first
     assert vc2.change_position(2)
     assert_equal 1, VirtualClassroomLesson.find(vc1.id).position
     assert_equal 2, VirtualClassroomLesson.find(vc2.id).position
@@ -553,7 +511,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.find 1
     assert !x.add_to_virtual_classroom(2)
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /This lesson can't be added to your Virtual Classroom/, x.errors.messages[:base].first
+    assert_match /This lesson cannot be added to your Virtual Classroom/, x.errors.messages[:base].first
     assert x.add_to_virtual_classroom(1)
     assert_equal 2, VirtualClassroomLesson.count
     vc = VirtualClassroomLesson.where(:lesson_id => 1, :user_id => 1).first
