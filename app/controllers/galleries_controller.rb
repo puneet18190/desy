@@ -65,7 +65,9 @@ class GalleriesController < ApplicationController
   
   def mixed_for_video_editor
     get_images(1)
+    @image_tot_pages = @tot_pages
     get_videos(1)
+    @video_tot_pages = @tot_pages
   end
   
   def mixed_for_video_editor_image_new_block
