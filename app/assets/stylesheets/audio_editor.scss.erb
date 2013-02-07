@@ -78,13 +78,94 @@ html.audio_editor-controller {
       .audioComponentPlayer {
         height: 46px;
         background-color: #303030;
+
         .cutter {
-          outline:1px solid red;
-          padding: 27px 10px 0px 10px;
-          height: 40px;
-          
-          margin-bottom: 10px;
+          padding-top: 20px;
+          height:46px;
+          .audioSlider {
+            cursor: pointer;
+            z-index: 50;
+            margin-top: 0;
+      width:93.4%;
+      position: absolute;
+      left: 28px;
+            .ui-slider-handle {
+              cursor: default;
+              position: absolute;
+              background-color: #787575;
+              border-radius:0%;
+              height: 44px;
+              width: 0;
+              top: -30px;
+              margin-left: 0;
+              border:1px solid #787575;
+              &.selected {
+                background-color:#fff;
+                border:1px solid #fff;
+              }
+            }
+          }
+          .audioDoubleSlider {
+            cursor: pointer;
+            z-index: 80;
+            .ui-slider-handle {
+              cursor: pointer;
+              position: absolute;
+              background-color: #43A848;
+              border-radius: 0%;
+              height: 65px;
+              width: 0;
+              top: -27px;
+              margin-left: 0;
+              border-left: 1px solid rgb(20, 20, 20);
+              border-right: 7px solid rgb(70, 70, 70);
+              border-top: 1px solid rgb(70, 70, 70);
+              border-bottom: 1px solid rgb(70, 70, 70);
+              &:hover {
+                /*background-color: red;*/
+                border-left:4px solid rgb(141, 141, 141);
+                border-right:4px solid rgb(141, 141, 141);
+                border-top:1px solid rgb(141, 141, 141);
+                border-bottom:1px solid rgb(141, 141, 141);
+              }
+              &.selected {
+                /*background-color: red;*/
+                border-left:1px solid rgb(20, 20, 20);
+                border-right:7px solid #fff;
+                border-top:1px solid #fff;
+                border-bottom:1px solid #fff;
+              }
+            }
+            .ui-slider-range {
+              position: absolute;
+              background: url(<%= asset_path 'bg_ui_slider_horizontal.png' %>) top left repeat-x;
+            }
+          }
         }
+        .sliderDisabler, .underDoubleSlider {
+        position: absolute;
+        height: 67px;
+        bottom: 31px;
+      }
+      .sliderDisabler {
+        z-index: 100;
+        width: 100%;
+        left:0;
+      }
+      .underDoubleSlider {
+        z-index: 60;
+        width: 70%;
+        right: 12px;
+        outline: 1px solid red;
+      }
+      .ui-slider-horizontal {
+        height:13px;
+        background-color: #000;
+      }
+
+
+
+
       }
       .audioComponentBottom {
         padding:7px 20px 13px 20px;
