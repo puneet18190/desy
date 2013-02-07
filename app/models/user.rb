@@ -204,9 +204,8 @@ class User < ActiveRecord::Base
     pages_amount = Rational(relation.count, per_page).ceil
     resp = []
     relation.limit(per_page).offset(offset).each do |me|
-      media_element = me.media_element
-      media_element.set_status self.id
-      resp << media_element
+      me.set_status self.id
+      resp << me
     end
     { records: resp, pages_amount: pages_amount }
   end
