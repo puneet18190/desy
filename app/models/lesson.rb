@@ -37,6 +37,25 @@ class Lesson < ActiveRecord::Base
   before_validation :init_validation, :create_token
   
   before_create :initialize_metadata
+
+  # SELECT lessons.id, lessons.user_id, lessons.is_public, lessons.copied_not_modified, lessons.updated_at, GREATEST(bookmarks.created_at, lessons.updated_at) AS first_order, LEAST(bookmarks.created_at, lessons.updated_at) AS second_order FROM "lessons" LEFT JOIN bookmarks ON bookmarks.bookmarkable_type = 'Lesson' AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = 1 ORDER BY first_order DESC, second_order DESC;
+  scope :of, ->(user_or_user_id) do
+    user_id = user_or_user_id.instance_of?(User) ? user_or_user_id.id : user_or_user_id
+    
+    select('lessons.id, 
+            lessons.user_id, 
+            lessons.is_public, 
+            lessons.copied_not_modified, 
+            lessons.updated_at, 
+            GREATEST(bookmarks.created_at, lessons.updated_at) AS first_order, 
+            LEAST(bookmarks.created_at, lessons.updated_at) AS second_order').
+    joins(sanitize_sql ["LEFT JOIN bookmarks ON 
+                         bookmarks.bookmarkable_id = lessons.id AND 
+                         bookmarks.bookmarkable_type = 'Lesson' AND 
+                         bookmarks.user_id = %i", user_id] ).
+    order('first_order DESC, second_order DESC')
+  end
+
   
   def initialize_metadata
     self.metadata.available_video = true
