@@ -1305,8 +1305,9 @@ $(document).ready(function() {
     }
     var audio_id = $(this).data('audio-id');
     closeGalleryInVideoEditor('audio');
-    stopMedia('#gallery_audio_' + audio_id + ' audio');
-    $('#gallery_audio_' + audio_id + ' ._expanded').hide();
+    stopMedia('._audio_expanded_in_gallery audio');
+    $('._audio_expanded_in_gallery ._expanded').hide();
+    $('._audio_expanded_in_gallery').removeClass('_audio_expanded_in_gallery');
     $('#audio_track_in_video_editor_input').val(audio_id);
     $('#empty_audio_track_placeholder_in_video_editor').hide();
     $('#full_audio_track_placeholder_in_video_editor').show();
@@ -1554,14 +1555,14 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._add_audio_component_to_audio_editor', function() {
+    stopMedia('._audio_expanded_in_gallery audio');
+    $('._audio_expanded_in_gallery ._expanded').hide();
+    $('._audio_expanded_in_gallery').removeClass('_audio_expanded_in_gallery');
     var audio_id = $(this).data('audio-id');
-    var duration = $(this).data('duration');
-    var ogg = $('#gallery_audio_' + audio_id + ' source[type="audio/ogg"]').attr('src');
-    var mp3 = $('#gallery_audio_' + audio_id + ' source[type="audio/mp3"]').attr('src');
     closeGalleryInAudioEditor();
     stopMedia('#gallery_audio_' + audio_id + ' audio');
     $('#gallery_audio_' + audio_id + ' ._expanded').hide();
-    addComponentInAudioEditor(audio_id, ogg, mp3, duration);
+    addComponentInAudioEditor(audio_id, $(this).data('ogg'), $(this).data('mp3'), $(this).data('duration'), $(this).data('title'));
   });
   
   initializeAudioEditor();
