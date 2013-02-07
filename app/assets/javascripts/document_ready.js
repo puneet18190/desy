@@ -1672,12 +1672,16 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click', '._media_player_pause_in_video_editor_preview', function() {
-    // FIXME
-    console.log('pausa audio');
+  $('body').on('click', '._media_player_pause_in_audio_editor_preview', function() {
+    $(this).hide();
+    var cutter = $(this).parent().parent().prev();
+    cutter.find('._media_player_slider_disabler').show();
+    cutter.next().find('._media_player_play_in_audio_editor_preview').show();
+    cutter.find('._media_player_slider .ui-slider-handle').addClass('selected');
+    cutter.find('audio')[0].pause();
   });
   
-  $('body').on('click', '._video_component_cutter ._double_slider .ui-slider-range', function(e) {
+  $('body').on('click', '._audio_component_cutter ._double_slider .ui-slider-range', function(e) {
     // FIXME
     console.log('boh audio');
   });
