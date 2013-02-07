@@ -93,83 +93,42 @@ function closeGalleryInAudioEditor() {
   });
 }
 
-
-// TODO preparare questa funzione qui sotto meglio
-
-function addComponentInAudioEditor(audio_id, ogg, mp3, duration) {
-  $('._new_component_in_video_editor_hover a').removeClass('current');
+function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
   var next_position = $('#info_container').data('last-component-id') + 1;
-  var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) + 186;
-  $('#media_elements_list_in_video_editor').data('jsp').destroy();
-  $('#video_editor_timeline').css('width', new_timeline_width + 'px');
   $('#info_container').data('last-component-id', next_position);
-  // build preview
-  var empty_preview = $('#empty_video_preview_for_video_editor').html();
-  empty_preview = '<div id="temporary_empty_preview" ' + empty_preview.substr(empty_preview.indexOf('div') + 3, empty_preview.length);
-  $('#video_editor_preview_container').append(empty_preview);
-  // build cutter
-  var empty_cutter = $('#empty_video_cutter_for_video_editor').html();
-  empty_cutter = '<div id="temporary_empty_cutter" ' + empty_cutter.substr(empty_cutter.indexOf('div') + 3, empty_cutter.length);
-  $('#video_editor_cutters').append(empty_cutter);
-  // build component
-  var empty_component = $('#empty_video_component_for_video_editor').html();
-  empty_component = '<div id="temporary_empty_component" ' + empty_component.substr(empty_component.indexOf('div') + 3, empty_component.length);
-  $('#add_new_video_component').before(empty_component);
-  // edit preview
-  current_preview = $('#temporary_empty_preview');
-  if(videoEditorWithAudioTrack()) {
-    current_preview.find('video').prop('muted', true);
-  }
-  current_preview.attr('id', ('video_component_' + next_position + '_preview'));
-  current_preview.find('source[type="video/webm"]').attr('src', webm);
-  current_preview.find('source[type="video/mp4"]').attr('src', mp4);
-  current_preview.find('video').load();
-  // edit cutter
-  current_cutter = $('#temporary_empty_cutter');
-  current_cutter.attr('id', ('video_component_' + next_position + '_cutter'));
-  current_cutter.find('._video_editor_cutter_total_time').html(secondsToDateString(duration));
-  current_cutter.find('._video_editor_cutter_selected_time').html(secondsToDateString(duration));
-  current_cutter.data('to', duration);
-  current_cutter.data('max-to', duration);
-  initializeVideoInVideoEditorPreview(next_position);
-  // edit component
-  current_component = $('#temporary_empty_component');
-  current_component.attr('id', ('video_component_' + next_position));
-  current_component.removeClass('_video_editor_empty_component').addClass('_video_editor_component');
-  current_component.data('duration', 0);
-  current_component.data('position', next_position);
-  current_component.find('._video_component_icon ._left').html(next_position);
-  current_component.find('._video_editor_component_hover').append(component);
-  var to_be_appended = fillVideoEditorSingleParameter('type', next_position, 'video');
-  to_be_appended += fillVideoEditorSingleParameter('video_id', next_position, video_id);
-  to_be_appended += fillVideoEditorSingleParameter('from', next_position, 0);
-  to_be_appended += fillVideoEditorSingleParameter('to', next_position, duration);
-  to_be_appended += fillVideoEditorSingleParameter('position', next_position, next_position);
-  current_component.find('._video_editor_component_hover').append(to_be_appended);
-  // other things
-  changeDurationVideoEditorComponent(('video_component_' + next_position), duration);
-  reloadVideoEditorComponentPositions();
-  resetVisibilityOfVideoEditorTransitions();
-  if(!$('#video_editor_global_preview').hasClass('_enabled')) {
-    $('#video_editor_global_preview').addClass('_enabled');
-    $('#video_editor_global_preview a').removeClass('disabled');
-    $('#commit_video_editor').css('visibility', 'visible');
-  }
-  setTimeout(function() {
-    highlightAndUpdateVideoComponentIcon(('video_component_' + next_position));
-    $('#media_elements_list_in_video_editor').data('jsp').scrollToPercentX(100, true);
-  }, 1100);
+  var empty_component = $($('#empty_component_for_audio_editor').html());
+  empty_component.attr('id', ('audio_component_' + next_position));
+  empty_component.find('source[type="audio/ogg"]').attr('src', ogg);
+  empty_component.find('source[type="audio/mp3"]').attr('src', mp3);
+  empty_component.find('audio').load();
+  empty_component.data('duration', duration);
+  empty_component.data('from', 0);
+  empty_component.data('to', duration);
+  empty_component.data('max-to', duration);
+  empty_component.find('._title').html(title);
+  empty_component.removeClass('_audio_editor_empty_component').addClass('_audio_editor_component');
+  empty_component.find('._current_time').html(secondsToDateString(0));
+  empty_component.find('._total_length').html(secondsToDateString(duration));
+  empty_component.find('._cutter_from').html(secondsToDateString(0));
+  empty_component.find('._cutter_to').html(secondsToDateString(duration));
+  var to_be_appended = fillAudioEditorSingleParameter('audio_id', next_position, audio_id);
+  to_be_appended += fillAudioEditorSingleParameter('from', next_position, 0);
+  to_be_appended += fillAudioEditorSingleParameter('to', next_position, duration);
+  to_be_appended += fillAudioEditorSingleParameter('position', next_position, next_position);
+  empty_component.append(to_be_appended);
+  initializeAudioEditorCutter(next_position);
+  reloadAudioEditorComponentPositions();
+  changeDurationAudioEditorComponent(('audio_component_' + next_position), duration);
+  $('#audio_editor_timeline').append(empty_component);
+  // TODO manca scroll
+  // TODO manca highlights
 }
 
-// TODO fino a qui
+function fillAudioEditorSingleParameter(input, identifier, value) {
+  return '<input id="' + input + '_' + identifier + '" class="_audio_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
+}
 
 
-
-
-
-//function fillVideoEditorSingleParameter(input, identifier, value) {
-//  return '<input id="' + input + '_' + identifier + '" class="_video_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
-//}
 
 //function startVideoEditorPreviewClipWithDelay(component_id) {
 //  setTimeout(function() {
