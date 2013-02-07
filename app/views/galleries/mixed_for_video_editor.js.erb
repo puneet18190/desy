@@ -1,7 +1,13 @@
 showGalleryInVideoEditor('mixed');
 
-$('#video_editor_mixed_gallery_container').html('<%= j(render(:partial => "galleries/mixed_video_image_text", :locals => {:images => @images, :videos => @videos})) %>');
-$('#video_editor_mixed_gallery_container').data('loaded', true);
+var container = $('#video_editor_mixed_gallery_container');
+
+container.html('<%= j(render(:partial => "galleries/mixed_video_image_text", :locals => {:images => @images, :videos => @videos})) %>');
+container.data('loaded', true);
+container.data('video-page', 1);
+container.data('video-tot-pages', <%= @video_tot_pages %>);
+container.data('image-page', 1);
+container.data('image-tot-pages', <%= @image_tot_pages %>);
 $('._select_video_from_gallery').addClass('_add_video_component_to_video_editor');
 $('._select_image_from_gallery').addClass('_add_image_component_to_video_editor');
 $('._image_gallery_thumb').addClass('_image_gallery_thumb_in_mixed_gallery_video_editor').removeClass('_image_gallery_thumb');

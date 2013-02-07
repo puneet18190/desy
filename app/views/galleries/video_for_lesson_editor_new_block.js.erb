@@ -1,9 +1,5 @@
-var current_slide = $('li._lesson_editor_current_slide');
-$('#lesson_editor_video_gallery_container').html("<%= j(render :partial => 'galleries/video', :locals => {:videos => @videos}) %>");
-$('#lesson_editor_video_gallery_container').show();
-$('li._lesson_editor_current_slide .slide-content').children().hide();
-centerThis('#lesson_editor_video_gallery_container');
-current_slide.find('layer').remove();
-$('#lesson_editor_video_gallery_container').data('loaded', true);
-$('._close_video_gallery').addClass('_close_video_gallery_in_lesson_editor');
+<% @videos.each do |video| %>
+  $('#lesson_editor_video_gallery_container #video_gallery_content .jspPane').append('<%= j(render(:partial => "galleries/thumbs/video", :locals => {:video => video})) %>');
+<% end %>
+$('#lesson_editor_video_gallery_container').data('page', <%= @page %>);
 $('._select_video_from_gallery').addClass('_add_video_to_slide');

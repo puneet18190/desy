@@ -3,6 +3,7 @@ html.audio_editor-controller {
     z-index:103;  
   }  
  .mediaEditorAudioContainer {
+
     .info {
       width:97px;
       height: 407px;
@@ -49,6 +50,7 @@ html.audio_editor-controller {
       -webkit-box-shadow: 0px 2px 6px rgba(22, 21, 21, 0.6);
       box-shadow: 0px 2px 6px rgba(22, 21, 21, 0.6);
       width:710px;
+      background-color:#232323;
       .manigliaAudio {
         float: left;
         width: 93px;
@@ -78,6 +80,119 @@ html.audio_editor-controller {
       .audioComponentPlayer {
         height: 46px;
         background-color: #303030;
+        
+          .audioSlider, .audioDoubleSlider {
+            margin-top: 0;
+            width:93.4%;
+            position: absolute;
+            left: 28px;
+          }
+          
+          padding:0;
+          width:615px;
+          position:absolute;
+          top:31px;
+          
+          z-index:80;
+          font: 10px 'Nunito', sans-serif;
+          color:#787575;
+          text-align: left;
+          
+          
+          .cutter {
+            padding-top: 18px;
+            height:28px;
+            background-color:#303030;
+            margin-bottom:10px;
+            .audioSlider {
+              cursor: pointer;
+              z-index: 50;
+              .ui-slider-handle {
+                cursor: default;
+                position: absolute;
+                background-color: #787575;
+                border-radius:0%;
+                height: 46px;
+                width: 0;
+                top: -19px;
+                margin-left: 0;
+                border:1px solid #787575;
+                &.selected {
+                  background-color:#fff;
+                  border:1px solid #fff;
+                }
+              }
+            }
+            .audioDoubleSlider {
+              cursor: pointer;
+              z-index: 99;
+              .ui-slider-handle {
+                cursor: pointer;
+                position: absolute;
+                background-color: #43A848;
+                border-radius: 0%;
+                height: 46px;
+                width: 0;
+                top: -19px;
+                margin-left: 0;
+                border-left: 1px solid rgb(20, 20, 20);
+                border-right: 7px solid rgb(70, 70, 70);
+                border-top: 1px solid rgb(70, 70, 70);
+                border-bottom: 1px solid rgb(70, 70, 70);
+                &:hover {
+                  /*background-color: red;*/
+                  border-left:4px solid rgb(141, 141, 141);
+                  border-right:4px solid rgb(141, 141, 141);
+                  border-top:1px solid rgb(141, 141, 141);
+                  border-bottom:1px solid rgb(141, 141, 141);
+                }
+                &.selected {
+                  /*background-color: red;*/
+                  border-left:1px solid rgb(20, 20, 20);
+                  border-right:7px solid #fff;
+                  border-top:1px solid #fff;
+                  border-bottom:1px solid #fff;
+                }
+              }
+              .ui-slider-range {
+                position: absolute;
+                background: url(<%= asset_path 'bg_ui_slider_horizontal.png' %>) top left repeat-x;
+              }
+            }
+            .sliderDisabler, .underDoubleSlider {
+              position: absolute;
+              height: 46px;
+              top: 0px;
+              
+            }
+            .sliderDisabler {
+              z-index: 100;
+              width: 100%;
+              left:0;
+              outline:1px solid red;
+            }
+            .underDoubleSlider {
+              z-index: 98;
+              width: 93.4%;
+              left: 28px;
+            }
+            .ui-slider-horizontal {
+              height:13px;
+              background-color: #000;
+            }
+            .callout {
+              top: -11px;
+              z-index:20;
+              position:absolute;
+              border:0;
+              left:440px;
+            }
+          
+        }
+        
+
+
+
       }
       .audioComponentBottom {
         padding:7px 20px 13px 20px;
@@ -171,5 +286,13 @@ opacity: 1;
   }
   
   
+  
+  /* FIXME TEMPORANEI */
+  ._double_slider .ui-slider-handle {
+    background-color: red;
+  }
+  ._double_slider .ui-slider-range {
+    background-color: aqua;
+  }
   
 }

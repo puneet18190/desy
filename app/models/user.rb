@@ -197,7 +197,7 @@ class User < ActiveRecord::Base
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
-    relation = MyMediaElementsView.where('(media_element_user_id = ? AND is_public = false) OR bookmark_user_id = ?', self.id, self.id).includes(:media_element)
+    relation = MediaElement.of(self)
     if [ Filters::VIDEO, Filters::AUDIO, Filters::IMAGE ].include? filter
       relation = relation.where('sti_type = ?', filter.capitalize)
     end
@@ -211,30 +211,30 @@ class User < ActiveRecord::Base
     { records: resp, pages_amount: pages_amount }
   end
   
-  def own_lessons(page, per_page, filter = nil)
+  def own_lessons(page, per_page, filter = Filters::ALL_LESSONS)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
-    updated_at_order = 'updated_at DESC'
     relation = 
       case filter
       when Filters::PRIVATE
-        MyLessonsView.where("is_public = false AND lesson_user_id = ?", self.id).order(updated_at_order)
+        Lesson.where(user_id: self.id, is_public: false).order('updated_at DESC')
       when Filters::PUBLIC
-        MyLessonsView.where('is_public = true AND (lesson_user_id = ? OR bookmark_user_id = ?)', self.id, self.id)
+        Lesson.of(self).where(is_public: true)
       when Filters::LINKED
-        MyLessonsView.where('bookmark_user_id = ?', self.id)
+        Lesson.joins(:bookmarks).where(bookmarks: { user_id: self.id }).order('bookmarks.created_at DESC')
       when Filters::ONLY_MINE
-        MyLessonsView.where(:lesson_user_id => self.id).order(updated_at_order)
+        Lesson.where(user_id: self.id).order('updated_at DESC')
       when Filters::COPIED
-        MyLessonsView.where(:lesson_user_id => self.id, :copied_not_modified => true).order(updated_at_order)
-      else # Filter::ALL_LESSONS
-        MyLessonsView.where('lesson_user_id = ? OR bookmark_user_id = ?', self.id, self.id)
-      end.includes(:lesson)
+        Lesson.where(:user_id => self.id, :copied_not_modified => true).order('updated_at DESC')
+      when Filters::ALL_LESSONS
+        Lesson.of(self)
+      else
+        raise ArgumentError, 'filter not supported'
+      end
     pages_amount = Rational(relation.count, per_page).ceil
     resp = []
-    relation.limit(per_page).offset(offset).each do |l|
-      lesson = l.lesson
+    relation.limit(per_page).offset(offset).each do |lesson|
       lesson.set_status self.id
       resp << lesson
     end

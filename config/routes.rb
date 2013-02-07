@@ -116,10 +116,6 @@ Desy::Application.routes.draw do
   post 'images/:image_id/commit/new' => 'image_editor#save'
   post 'images/:image_id/commit/overwrite' => 'image_editor#overwrite'
   
-  # BASE64 TO IMAGE
-  post 'base64_to_image/' => "base64_to_image#create"
-  get  'base64_to_image_test' => "base64_to_image#test"
-  
   # SEARCH LESSONS OR MEDIA ELEMENTS
   get  'search' => 'search#index', :as => :search_items
   

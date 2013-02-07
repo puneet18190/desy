@@ -1,27 +1,13 @@
 <!DOCTYPE html>
-
 <html class="lesson-viewer-layout <%= controller_html_class %> <%= action_html_class %>">
-  
-  
-  <head>
-    <title><%= SETTINGS['application_name'] %></title>
-    <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-  </head>
-  
-  
+  <%= render :partial => "shared/head" %>
   <body>
     <%= render :partial => "shared/popups" %>
     <%= render :partial => "shared/loading" %>
-    
     <a class="navLeft" title="<%= t('titles.slides.back') %>"></a>
     <div class="container">
       <%= yield %>
     </div>
     <a class="navRight" title="<%= t('titles.slides.forward') %>"></a>
-    
   </body>
-  
-  
 </html>
