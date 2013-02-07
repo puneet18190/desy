@@ -46,6 +46,7 @@ class Lesson < ActiveRecord::Base
                          bookmarks.bookmarkable_id = lessons.id AND 
                          bookmarks.bookmarkable_type = 'Lesson' AND 
                          bookmarks.user_id = %i", user_id] ).
+    where('bookmarks.user_id IS NOT NULL OR lessons.user_id = ?', user_id).
     order('GREATEST(bookmarks.created_at, lessons.updated_at) DESC, LEAST(bookmarks.created_at, lessons.updated_at) DESC')
   end
 
