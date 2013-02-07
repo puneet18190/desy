@@ -34,8 +34,6 @@
           <%= t('captions.dont_support_audio') %>
         </audio>
         <a class="left _precision_arrow_left"></a>
-        <a class="play _media_player_play_in_audio_editor_preview upper"><%= t('audio_editor.cutters.play') %></a>
-        <a class="pause _media_player_pause_in_audio_editor_preview upper"><%= t('audio_editor.cutters.pause') %></a>
         <div class="videoSlider _media_player_slider"></div>
         <a class="right _precision_arrow_right"></a>
         <div class="sliderDisabler _media_player_slider_disabler" style="display: none;"></div>
@@ -48,7 +46,8 @@
           <%= t('audio_editor.selected_length') %>: <span class="_selected_length"><%= selected %></span>
         </div>
         <div class="audioComponentControls">
-          <a class="play upper"><%= t('video_editor.cutters.play') %></a>
+          <a class="play _media_player_play_in_audio_editor_preview upper"><%= t('audio_editor.cutters.play') %></a>
+          <a class="pause _media_player_pause_in_audio_editor_preview upper"><%= t('audio_editor.cutters.pause') %></a>
         </div>
       </div>
     </div>

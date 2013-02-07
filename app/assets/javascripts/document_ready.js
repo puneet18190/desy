@@ -1657,8 +1657,19 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._media_player_play_in_audio_editor_preview', function() {
-    // FIXME
-    console.log('play audio');
+    $(this).hide();
+    var cutter = $(this).parent().parent().prev();
+    cutter.find('._media_player_slider_disabler').show();
+    cutter.next().find('._media_player_pause_in_audio_editor_preview').show();
+    cutter.find('.ui-slider-handle').removeClass('selected');
+    var audio = cutter.find('audio');
+    if(audio.readyState != 0) {
+      audio[0].play();
+    } else {
+      audio.on('loadedmetadata', function() {
+        audio[0].play();
+      });
+    }
   });
   
   $('body').on('click', '._media_player_pause_in_video_editor_preview', function() {
