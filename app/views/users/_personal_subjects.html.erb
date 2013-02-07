@@ -1,4 +1,7 @@
 <fieldset class="insert-content">
+  <% unless @user.new_record? -%>
+    <%= hidden_field_tag :in_subjects, true %>
+  <% end -%>
   <% @subjects.each do |subject| -%>
     <% html_id = "users_subject_ids_#{subject.id}" -%>
     <div class="checkboxElement">

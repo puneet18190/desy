@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   skip_before_filter :authenticate, only: [:create, :confirm, :request_reset_password, :reset_password]
-  before_filter :initialize_layout, :only => [:edit, :subjects, :statistics, :mailing_lists]
+  before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
   layout 'prelogin', only: [:create, :request_reset_password]
 
   def create
@@ -55,32 +55,38 @@ class UsersController < ApplicationController
     @location_ids     = Location.order(:description).map{ |l| [l.to_s, l.id] }
   end
 
-  def update
-    @user = current_user
-    if params[:user].try(:[], :password).empty?
-      params[:user] = params[:user].delete_if {|key, value| (key == "password" || key == "password_confirmation") } 
-    end
-    
-    go_to_page = 
-      if params[:user][:subject_ids]
-        my_subjects_path
-      else 
-        my_profile_path
-      end
-    
-    if @user.update_attributes(params[:user])
-      redirect_to go_to_page
-    else
-      @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-      @location_ids     = Location.order(:description).map{ |l| [l.to_s, l.id] }
-      @subjects         = Subject.order(:description)
-      redirect_to go_to_page
-    end
-  end
-  
   def subjects
     @user = current_user
     @subjects = Subject.order(:description)
+  end
+
+  def update
+    @user = current_user
+    in_subjects = !!params[:in_subjects]
+
+    if in_subjects
+      params[:user] ||= HashWithIndifferentAccess.new
+      params[:user][:subject_ids] ||= []
+    else
+      password = params[:user].try(:[], :password)
+      if !password || password.empty?
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
+      end
+    end
+    
+    if @user.update_attributes(params[:user])
+      redirect_to in_subjects ? my_subjects_path : my_profile_path
+    else
+      if in_subjects
+        @subjects = Subject.order(:description)
+        render :subjects
+      else
+        @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
+        @location_ids     = Location.order(:description).map{ |l| [l.to_s, l.id] }
+        render :edit
+      end
+    end
   end
   
   def mailing_lists

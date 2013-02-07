@@ -51,7 +51,7 @@ class MediaElement < ActiveRecord::Base
                          bookmarks.bookmarkable_type = 'MediaElement' AND
                          bookmarks.user_id = %i", user_id] ).
     where('bookmarks.user_id IS NOT NULL OR (media_elements.is_public = false AND media_elements.user_id = ?)', user_id).
-    order('GREATEST(bookmarks.created_at, media_elements.updated_at) DESC, LEAST(bookmarks.created_at, media_elements.updated_at) DESC')
+    order('COALESCE(bookmarks.created_at, media_elements.updated_at)')
   end
   
   class << self
