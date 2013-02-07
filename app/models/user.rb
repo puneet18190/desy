@@ -96,11 +96,11 @@ class User < ActiveRecord::Base
   end
   
   def video_editor_available
-    Video.where('converted IS NULL AND user_id = ?', self.id).empty?
+    !Video.where(converted: nil, user_id: 1).exists?
   end
   
   def audio_editor_available
-    Audio.where('converted IS NULL AND user_id = ?', self.id).empty?
+    !Audio.where(converted: nil, user_id: 1).exists?
   end
   
   def search_media_elements(word, page, for_page, order=nil, filter=nil)

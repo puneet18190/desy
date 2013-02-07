@@ -61,12 +61,12 @@ class UsersController < ApplicationController
       params[:user] = params[:user].delete_if {|key, value| (key == "password" || key == "password_confirmation") } 
     end
     
-    go_to_page = ""
-    if params[:user][:subject_ids]
-      go_to_page = my_subjects_path
-    else 
-      go_to_page = my_profile_path
-    end
+    go_to_page = 
+      if params[:user][:subject_ids]
+        my_subjects_path
+      else 
+        my_profile_path
+      end
     
     if @user.update_attributes(params[:user])
       redirect_to go_to_page
@@ -80,7 +80,7 @@ class UsersController < ApplicationController
   
   def subjects
     @user = current_user
-    @subjects         = Subject.order(:description)
+    @subjects = Subject.order(:description)
   end
   
   def mailing_lists
