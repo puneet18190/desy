@@ -92,6 +92,13 @@ function initializeImageGalleryInImageEditor() {
   $('#image_gallery_for_image_editor #image_gallery_content > div').jScrollPane({
     autoReinitialise: true
   });
+  $('#image_gallery_for_image_editor .scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $('#image_gallery_for_image_editor').data('page');
+    var tot_pages = $('#image_gallery_for_image_editor').data('tot-pages');
+    if(isAtBottom && (page < tot_pages)) {
+      $.get('/images/galleries/image/new_block?page=' + (page + 1));
+    }
+  });
 }
 
 // fino a qui
