@@ -197,7 +197,7 @@ class User < ActiveRecord::Base
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page
-    relation = MyMediaElementsView.where('(media_element_user_id = ? AND is_public = false) OR bookmark_user_id = ?', self.id, self.id).includes(:media_element)
+    relation = MediaElement.of(self)
     if [ Filters::VIDEO, Filters::AUDIO, Filters::IMAGE ].include? filter
       relation = relation.where('sti_type = ?', filter.capitalize)
     end
@@ -211,7 +211,7 @@ class User < ActiveRecord::Base
     { records: resp, pages_amount: pages_amount }
   end
   
-  def own_lessons(page, per_page, filter = Filter::ALL_LESSONS)
+  def own_lessons(page, per_page, filter = Filters::ALL_LESSONS)
     page = 1 if !page.is_a?(Fixnum) || page <= 0
     for_page = 1 if !for_page.is_a?(Fixnum) || for_page <= 0
     offset = (page - 1) * per_page

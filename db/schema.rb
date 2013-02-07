@@ -162,7 +162,6 @@ ActiveRecord::Schema.define(:version => 20130131094635) do
     t.foreign_key ["slide_id"], "slides", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "fk_media_elements_slides_slide_id"
   end
 
-  create_view "my_media_elements_view", "SELECT media_elements.id, media_elements.user_id AS media_element_user_id, media_elements.sti_type, media_elements.is_public, bookmarks.user_id AS bookmark_user_id, GREATEST(bookmarks.created_at, media_elements.updated_at) AS first_order, LEAST(bookmarks.created_at, media_elements.updated_at) AS second_order FROM (media_elements LEFT JOIN bookmarks ON (((bookmarks.bookmarkable_id = media_elements.id) AND (bookmarks.bookmarkable_type = 'MediaElement'::teaching_object)))) ORDER BY GREATEST(bookmarks.created_at, media_elements.updated_at) DESC, LEAST(bookmarks.created_at, media_elements.updated_at) DESC", :force => true
   create_table "notifications", :force => true do |t|
     t.integer  "user_id",                       :null => false
     t.text     "message",                       :null => false

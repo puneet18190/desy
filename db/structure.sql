@@ -372,14 +372,6 @@ ALTER SEQUENCE media_elements_slides_id_seq OWNED BY media_elements_slides.id;
 
 
 --
--- Name: my_media_elements_view; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW my_media_elements_view AS
-    SELECT media_elements.id, media_elements.user_id AS media_element_user_id, media_elements.sti_type, media_elements.is_public, bookmarks.user_id AS bookmark_user_id, GREATEST(bookmarks.created_at, media_elements.updated_at) AS first_order, LEAST(bookmarks.created_at, media_elements.updated_at) AS second_order FROM (media_elements LEFT JOIN bookmarks ON (((bookmarks.bookmarkable_id = media_elements.id) AND (bookmarks.bookmarkable_type = 'MediaElement'::teaching_object)))) ORDER BY GREATEST(bookmarks.created_at, media_elements.updated_at) DESC, LEAST(bookmarks.created_at, media_elements.updated_at) DESC;
-
-
---
 -- Name: notifications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1536,8 +1528,6 @@ INSERT INTO schema_migrations (version) VALUES ('20120926153643');
 INSERT INTO schema_migrations (version) VALUES ('20120926160646');
 
 INSERT INTO schema_migrations (version) VALUES ('20120927141837');
-
-INSERT INTO schema_migrations (version) VALUES ('20121019091312');
 
 INSERT INTO schema_migrations (version) VALUES ('20121024101844');
 
