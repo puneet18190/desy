@@ -129,7 +129,6 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
         increaseVideoEditorPreviewTimer(true);
       }
     }
-    
   } else {
     if(parsed_int == (video_cut_to)) {
       var initial_time = $('#video_component_' + identifier + '_cutter').data('from');
@@ -234,6 +233,132 @@ function stopVideoInVideoEditorPreview(identifier) {
 
 function selectVideoComponentCutterHandle(cutter, val) {
   setCurrentTimeToMedia($('#' + cutter.attr('id').replace('cutter', 'preview') + ' video'), val);
+  cutter.find('._media_player_slider').slider('value', val);
+}
+
+
+// AUDIO PLAYERS IN AUDIO EDITOR
+
+function initializeMediaTimeUpdaterInAudioEditor(media, identifier) {
+  media = $(media);
+  if(media.readyState != 0) {
+    media[0].addEventListener('timeupdate', function() {
+      initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier);
+    }, false);
+  } else {
+    media.on('loadedmetadata', function() {
+      media[0].addEventListener('timeupdate', function() {
+        initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier);
+      }, false);
+    });
+  }
+}
+
+function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier) {
+  var audio_cut_to = $('#audio_component_' + identifier + '_cutter').data('to');
+  var parsed_int = parseInt(media.currentTime);
+  if(parsed_int == (audio_cut_to)) {
+    var initial_time = $('#audio_component_' + identifier + '_cutter').data('from');
+    $('#audio_component_' + identifier + '_cutter ._media_player_pause_in_audio_editor_preview').click();
+    $('#audio_component_' + identifier + '_cutter ._media_player_slider').slider('value', initial_time);
+    setCurrentTimeToMedia($(media), initial_time);
+  } else if($('#audio_component_' + identifier + '_cutter ._media_player_play_in_audio_editor_preview').css('display') == 'none') {
+    $('#audio_component_' + identifier + '_cutter ._media_player_slider').slider('value', parsed_int);
+  }
+}
+
+function initializeAudioEditorCutter(identifier) {
+  var my_cutter = $('#audio_component_' + identifier + '_cutter');
+  $('#audio_component_' + identifier + '_preview audio').on('loadeddata', function() {
+    setCurrentTimeToMedia($('#audio_component_' + identifier + '_preview audio'), my_cutter.data('from'));
+  });
+  var audio_max_to = my_cutter.data('max-to');
+  my_cutter.find('._media_player_slider').slider({
+    min: 0,
+    max: audio_max_to,
+    value: my_cutter.data('from'),
+    slide: function(event, ui) {
+      if(my_cutter.find('._media_player_play_in_audio_editor_preview').css('display') == 'block') {
+        setCurrentTimeToMedia($('#audio_component_' + identifier + '_preview audio'), ui.value);
+      }
+    }
+  });
+  my_cutter.find('._double_slider').slider({
+    min: 0,
+    max: audio_max_to,
+    range: true,
+    values: [my_cutter.data('from'), my_cutter.data('to')],
+    start: function(event, ui) {
+      my_cutter.find('.ui-slider-handle').removeClass('selected');
+      $(ui.handle).addClass('selected');
+    },
+    slide: function(event, ui) {
+      var left_val = ui.values[0];
+      var right_val = ui.values[1];
+      var cursor_val = my_cutter.find('._media_player_slider').slider('value');
+      if(left_val != my_cutter.data('from')) {
+        if(cursor_val < left_val) {
+          selectAudioComponentCutterHandle(my_cutter, left_val);
+        }
+      } else {
+        if(cursor_val > right_val) {
+          selectAudioComponentCutterHandle(my_cutter, right_val);
+        }
+      }
+    },
+    stop: function(event, ui) {
+      my_cutter.data('changed', true);
+      var left_val = ui.values[0];
+      var right_val = ui.values[1];
+      if(left_val != my_cutter.data('from')) {
+        if(left_val == right_val) {
+          my_cutter.find('._double_slider').slider('values', 0, left_val - 1);
+          left_val -= 1;
+        }
+        cutAudioComponentLeftSide(identifier, left_val);
+      }
+      if(right_val != my_cutter.data('to')) {
+        if(left_val == right_val) {
+          my_cutter.find('._double_slider').slider('values', 1, right_val + 1);
+          right_val += 1;
+        }
+        cutAudioComponentRightSide(identifier, right_val);
+      }
+    }
+  });
+  my_cutter.find('._double_slider .ui-slider-range').mousedown(function(e) {
+    return false;
+  });
+  $('#audio_component_' + identifier + '_cutter ._media_player_slider .ui-slider-handle').addClass('selected');
+  initializeMediaTimeUpdaterInAudioEditor('#audio_component_' + identifier + '_preview audio', identifier);
+  $('#audio_component_' + identifier + '_preview audio').bind('ended', function() {
+    stopAudioInAudioEditorPreview(identifier);
+  });
+}
+
+function stopAudioInAudioEditorPreview(identifier) {
+  try {
+    if($('#audio_component_' + identifier + '_preview audio').length != 0) {
+      var has_source = true;
+      $('#audio_component_' + identifier + '_preview audio').find('source').each(function() {
+        if($(this).attr('src') == '') {
+          has_source = false;
+        }
+      });
+      if(has_source) {
+        $('#audio_component_' + identifier + '_cutter ._media_player_pause_in_audio_editor_preview').click();
+        var initial_time = $('#audio_component_' + identifier + '_cutter').data('from');
+        $('#audio_component_' + identifier + '_cutter ._media_player_slider').slider('value', initial_time);
+        setCurrentTimeToMedia($('#audio_component_' + identifier + '_preview audio'), initial_time);
+      }
+    }
+  } catch(err) {
+    console.log('error stopping media: ' + err);
+  }
+}
+
+function selectAudioComponentCutterHandle(cutter, val) {
+  setCurrentTimeToMedia($('#' + cutter.attr('id').replace('cutter', 'preview') + ' audio'), val);
   cutter.find('._media_player_slider').slider('value', val);
 }
 
