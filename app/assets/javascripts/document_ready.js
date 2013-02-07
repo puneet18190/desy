@@ -297,29 +297,23 @@ $(document).ready(function() {
   
   $('body').on('click', '._close_audio_gallery_in_video_editor', function() {
     closeGalleryInVideoEditor('audio');
-    var audio_id = 0;
-    $('._audio_gallery_thumb').each(function() {
-      if($(this).find('._expanded').css('display') == 'block') {
-        audio_id = $(this).find('._add_audio_track_to_video_editor').data('audio-id');
-      }
-    });
-    if(audio_id != 0) {
-      stopMedia('#gallery_audio_' + audio_id + ' audio');
-      $('#gallery_audio_' + audio_id + ' ._expanded').hide();
+    var expanded_audio = $('._audio_expanded_in_gallery');
+    if(expanded_audio.length > 0) {
+      expanded_audio.removeClass('_audio_expanded_in_gallery');
+      var audio_id = expanded_audio.attr('id');
+      stopMedia('#' + audio_id + ' audio');
+      $('#' + audio_id + ' ._expanded').hide();
     }
   });
   
   $('body').on('click', '._close_audio_gallery_in_audio_editor', function() {
     closeGalleryInAudioEditor();
-    var audio_id = 0;
-    $('._audio_gallery_thumb').each(function() {
-      if($(this).find('._expanded').css('display') == 'block') {
-        audio_id = $(this).find('._add_audio_component_to_audio_editor').data('audio-id');
-      }
-    });
-    if(audio_id != 0) {
-      stopMedia('#gallery_audio_' + audio_id + ' audio');
-      $('#gallery_audio_' + audio_id + ' ._expanded').hide();
+    var expanded_audio = $('._audio_expanded_in_gallery');
+    if(expanded_audio.length > 0) {
+      expanded_audio.removeClass('_audio_expanded_in_gallery');
+      var audio_id = expanded_audio.attr('id');
+      stopMedia('#' + audio_id + ' audio');
+      $('#' + audio_id + ' ._expanded').hide();
     }
   });
   
@@ -1661,7 +1655,37 @@ $(document).ready(function() {
     cutter.find('._media_player_slider .ui-slider-handle').addClass('selected');
     selectVideoComponentCutterHandle(cutter, resp);
   });
-
+  
+  $('body').on('click', '._media_player_play_in_audio_editor_preview', function() {
+    $(this).hide();
+    var component = $(this).parent().parent().parent().parent().parent();
+    component.find('._media_player_slider_disabler').show();
+    component.find('._media_player_pause_in_audio_editor_preview').show();
+    component.find('.ui-slider-handle').removeClass('selected');
+    var audio = component.find('audio');
+    if(audio.readyState != 0) {
+      audio[0].play();
+    } else {
+      audio.on('loadedmetadata', function() {
+        audio[0].play();
+      });
+    }
+  });
+  
+  $('body').on('click', '._media_player_pause_in_audio_editor_preview', function() {
+    $(this).hide();
+    var component = $(this).parent().parent().parent().parent().parent();
+    component.find('._media_player_slider_disabler').show();
+    component.find('._media_player_play_in_audio_editor_preview').show();
+    component.find('._media_player_slider .ui-slider-handle').addClass('selected');
+    component.find('audio')[0].pause();
+  });
+  
+  $('body').on('click', '._audio_editor_component ._double_slider .ui-slider-range', function(e) {
+    // FIXME
+    console.log('boh audio');
+  });
+  
   
   // NELLA HOMEPAGE APERTURA AUTOMATICA DELLA FINESTRA DI LOGIN 
   // SE C'É L'ATTRIBUTO login NELLA PARTE DELLA QUERY DELL'URL
