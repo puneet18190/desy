@@ -285,7 +285,7 @@ function initializeAudioEditorCutter(identifier) {
     min: 0,
     max: audio_max_to,
     range: true,
-    values: [component.data('from'), component.data('to')],
+    values: [component.data('from'), component.data('to')]/*,
     start: function(event, ui) {
       component.find('.ui-slider-handle').removeClass('selected');
       $(ui.handle).addClass('selected');
@@ -325,7 +325,7 @@ function initializeAudioEditorCutter(identifier) {
         console.log('cut #audio_component_' + identifier + ' on the right with val = ' + right_val);
         //cutAudioComponentRightSide(identifier, right_val);
       }
-    }
+    }*/
   });
   cutter.find('._double_slider .ui-slider-range').mousedown(function(e) {
     return false;

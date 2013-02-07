@@ -1,5 +1,5 @@
 <%
-  external_div_attributes = "data-position=\"\" data-duration=\"\""
+  external_div_attributes = "data-position=\"\" data-duration=\"\" data-from=\"\" data-to=\"\""
   title = ''
   total_length = 0
   selected = 0
@@ -7,7 +7,7 @@
   ogg = ''
   mp3 = ''
   if !empty
-    external_div_attributes = "id=\"audio_component_#{identifier}\" data-position=\"#{identifier}\" data-duration=\"#{component[:to] - component[:from]}\""
+    external_div_attributes = "id=\"audio_component_#{identifier}\" data-position=\"#{identifier}\" data-duration=\"#{component[:to] - component[:from]}\" data-from=\"#{component[:from]}\" data-to=\"#{component[:to]}\""
     title = component[:audio].title
     total_length = seconds_to_time component[:audio].min_duration
     selected = seconds_to_time(component[:to] - component[:from])
@@ -27,24 +27,20 @@
       <div class="audioComponentTitle">
         <%= title %>
       </div>
-      <div class="audioComponentPlayer">
-        <div class="contentCutter _audio_component_cutter" data-max-to="<%= max_to %>" style="display:none">
-          <div class="cutter">
-            <audio>
-              <source src="<%= ogg %>" type="audio/ogg">
-              <source src="<%= mp3 %>" type="audio/mp3">
-              <%= t('captions.dont_support_audio') %>
-            </audio>
-            <a class="left _precision_arrow_left"></a>
-            <a class="play _media_player_play_in_audio_editor_preview upper"><%= t('audio_editor.cutters.play') %></a>
-            <a class="pause _media_player_pause_in_audio_editor_preview upper"><%= t('audio_editor.cutters.pause') %></a>
-            <div class="videoSlider _media_player_slider"></div>
-            <a class="right _precision_arrow_right"></a>
-            <div class="sliderDisabler _media_player_slider_disabler" style="display: none;"></div>
-            <div class="underDoubleSlider"></div>
-            <div class="videoDoubleSlider _double_slider"></div>
-          </div>
-        </div>
+      <div class="audioComponentPlayer cutter _audio_component_cutter" data-max-to="<%= max_to %>">
+        <audio>
+          <source src="<%= ogg %>" type="audio/ogg">
+          <source src="<%= mp3 %>" type="audio/mp3">
+          <%= t('captions.dont_support_audio') %>
+        </audio>
+        <a class="left _precision_arrow_left"></a>
+        <a class="play _media_player_play_in_audio_editor_preview upper"><%= t('audio_editor.cutters.play') %></a>
+        <a class="pause _media_player_pause_in_audio_editor_preview upper"><%= t('audio_editor.cutters.pause') %></a>
+        <div class="videoSlider _media_player_slider"></div>
+        <a class="right _precision_arrow_right"></a>
+        <div class="sliderDisabler _media_player_slider_disabler" style="display: none;"></div>
+        <div class="underDoubleSlider"></div>
+        <div class="videoDoubleSlider _double_slider"></div>
       </div>
       <div class="audioComponentBottom">
         <div class="audioComponentDurations">
