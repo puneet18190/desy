@@ -249,6 +249,31 @@ class ExtractorTest < ActiveSupport::TestCase
     end
   end
   
+  test 'ordered_own_items' do
+    assert Lesson.find(1).publish
+    assert @user2.bookmark 'Lesson', @les2.id
+    assert @user2.bookmark 'Lesson', @les5.id
+    assert @user2.bookmark 'Lesson', @les6.id
+    assert @user2.bookmark 'Lesson', 1
+    assert @user2.bookmark 'MediaElement', 2
+    assert @user2.bookmark 'MediaElement', @el2.id
+    assert @user2.bookmark 'MediaElement', @el5.id
+    # order lessons
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 1, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:03')
+    Lesson.where(:id => 2).update_all(:updated_at => '2012-01-01 10:00:04')
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => @les2.id, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:05')
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => @les5.id, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:01')
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => @les6.id, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:02')
+    # order media elements
+    Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => 2, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:01')
+    MediaElement.where(:id => 3).update_all(:updated_at => '2012-01-01 10:00:03')
+    Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => 4, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:05')
+    Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => @el2.id, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:04')
+    Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => @el5.id, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:02')
+    assert_ordered_item_extractor [@les2.id, 2, 1, @les6.id, @les5.id], @user2.own_lessons(1, 20)[:records]
+    assert_ordered_item_extractor [4, @el2.id, 3, @el5.id, 2], @user2.own_media_elements(1, 20)[:records]
+  end
+  
   test 'suggested_lessons' do
     l = Lesson.find 2
     assert_equal 2, l.user_id
