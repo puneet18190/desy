@@ -100,7 +100,6 @@ function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
   empty_component.attr('id', ('audio_component_' + next_position));
   empty_component.find('source[type="audio/ogg"]').attr('src', ogg);
   empty_component.find('source[type="audio/mp3"]').attr('src', mp3);
-  empty_component.find('audio').load();
   empty_component.data('duration', duration);
   empty_component.data('from', 0);
   empty_component.data('to', duration);
@@ -116,10 +115,11 @@ function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
   to_be_appended += fillAudioEditorSingleParameter('to', next_position, duration);
   to_be_appended += fillAudioEditorSingleParameter('position', next_position, next_position);
   empty_component.append(to_be_appended);
-  initializeAudioEditorCutter(next_position);
-  reloadAudioEditorComponentPositions();
-  changeDurationAudioEditorComponent(('audio_component_' + next_position), duration);
   $('#audio_editor_timeline').append(empty_component);
+  empty_component.find('audio').load();
+  initializeAudioEditorCutter(next_position);
+  reloadAudioEditorComponentPositions(empty_component);
+  changeDurationAudioEditorComponent(empty_component, duration);
   // TODO manca scroll
   // TODO manca highlights
 }
