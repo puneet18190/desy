@@ -270,9 +270,6 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier) {
 function initializeAudioEditorCutter(identifier) {
   var component = $('#audio_component_' + identifier);
   var cutter = component.find('._audio_component_cutter');
-  cutter.find('audio').on('loadeddata', function() {
-    setCurrentTimeToMedia(cutter.find('audio'), component.data('from'));
-  });
   var audio_max_to = cutter.data('max-to');
   cutter.find('._media_player_slider').slider({
     min: 0,
@@ -334,7 +331,7 @@ function initializeAudioEditorCutter(identifier) {
     return false;
   });
   cutter.find('._media_player_slider .ui-slider-handle').addClass('selected');
-  initializeMediaTimeUpdaterInAudioEditor('#audio_component_' + identifier + '_preview audio', identifier);
+  initializeMediaTimeUpdaterInAudioEditor('#audio_component_' + identifier + ' ._audio_component_cutter audio', identifier);
   cutter.find('audio').bind('ended', function() {
     stopAudioInAudioEditorPreview(identifier);
   });

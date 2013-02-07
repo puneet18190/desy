@@ -30,13 +30,11 @@
       <div class="audioComponentPlayer">
         <div class="contentCutter _audio_component_cutter" data-max-to="<%= max_to %>" style="display:none">
           <div class="cutter">
-            <div class="audioPlayer">
-              <audio>
-                <source src="<%= ogg %>" type="audio/ogg">
-                <source src="<%= mp3 %>" type="audio/mp3">
-                <%= t('captions.dont_support_audio') %>
-              </audio>
-            </div>
+            <audio>
+              <source src="<%= ogg %>" type="audio/ogg">
+              <source src="<%= mp3 %>" type="audio/mp3">
+              <%= t('captions.dont_support_audio') %>
+            </audio>
             <a class="left _precision_arrow_left"></a>
             <a class="play _media_player_play_in_audio_editor_preview upper"><%= t('audio_editor.cutters.play') %></a>
             <a class="pause _media_player_pause_in_audio_editor_preview upper"><%= t('audio_editor.cutters.pause') %></a>
