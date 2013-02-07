@@ -275,10 +275,17 @@ function showVideoInGalleryPopUp(video_id) {
         effect: "fade",
         duration: 500
       },
-      open: function(){
+      open: function() {
         customOverlayClose();
-        var instance_id = $('#dialog-video-gallery-' + video_id + ' ._instance_of_player').attr('id');
+        var instance_id = $('#dialog-video-gallery-' + video_id + ' ._empty_video_player').attr('id');
         if(!$('#' + instance_id).data('initialized')) {
+          var button = $(this).find('._select_video_from_gallery');
+          var duration = button.data('duration');
+          $('#' + instance_id + ' source[type="video/mp4"]').attr('src', button.data('mp4'));
+          $('#' + instance_id + ' source[type="video/webm"]').attr('src', button.data('webm'));
+          $('#' + instance_id + ' video').load();
+          $('#' + instance_id + ' ._media_player_total_time').html(secondsToDateString(duration));
+          $('#' + instance_id).data('duration', duration);
           initializeMedia(instance_id, 'video');
         }
       },

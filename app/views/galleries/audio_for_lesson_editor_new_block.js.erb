@@ -1,9 +1,5 @@
-var current_slide = $('li._lesson_editor_current_slide');
-$('#lesson_editor_audio_gallery_container').html("<%= j(render :partial => 'galleries/audio', :locals => {:audios => @audios}) %>");
-$('#lesson_editor_audio_gallery_container').show();
-$('li._lesson_editor_current_slide .slide-content').children().hide();
-centerThis('#lesson_editor_audio_gallery_container');
-current_slide.find('layer').remove();
-$('#lesson_editor_audio_gallery_container').data('loaded', true);
-$('._close_audio_gallery').addClass('_close_audio_gallery_in_lesson_editor');
+<% @audios.each do |audio| %>
+  $('#lesson_editor_audio_gallery_container #audio_gallery_content .jspPane').append('<%= j(render(:partial => "galleries/thumbs/audio", :locals => {:audio => audio})) %>');
+<% end %>
+$('#lesson_editor_audio_gallery_container').data('page', <%= @page %>);
 $('._select_audio_from_gallery').addClass('_add_audio_to_slide');
