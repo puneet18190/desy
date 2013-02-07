@@ -8,7 +8,8 @@ gem 'pg'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
+  gem 'bootstrap-sass', '~> 2.2.2.0'
+  
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'libv8', '~> 3.11.8'
   gem 'therubyracer', :platforms => :ruby
@@ -33,6 +34,8 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'tinymce-rails'
 gem 'tinymce-rails-langs'
+gem 'kaminari'
+gem 'sorted', '~> 0.4.3'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

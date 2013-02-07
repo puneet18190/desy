@@ -1,0 +1,21 @@
+<h3>Lessons (<%= @total_lessons.count%>)</h3>
+<%= render :partial => "search" %>
+<ul class="nav nav-pills">
+  <li>
+    <a href="#" id="expand-all">Expand all</a>
+  </li>
+  <li>
+    <a href="#" id="collapse-all">Close all</a>
+  </li>
+</ul>
+  <%= render :partial => "list", :locals => {:lessons => @lessons} %>
+<ul class="nav nav-pills">
+  <li>
+    <a href="#" id="expand-all">Expand all</a>
+  </li>
+  <li>
+    <a href="#" id="collapse-all">Close all</a>
+  </li>
+</ul>
+
+<%= paginate @lessons %>

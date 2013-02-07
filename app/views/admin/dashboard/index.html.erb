@@ -1,0 +1,143 @@
+<h2>Admin Dashboard</h2>
+<div class="row-fluid">
+  <div class="span6 well">
+    <table class="table table-striped">
+      <thead>
+        <th><b><%= t('users.statistics.general.title') %></b></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= t('users.statistics.general.lessons_shared') %></td>
+          <td><span class="badge badge-warning"><%= @all_shared_lessons %></span></td>
+        </tr>
+        
+        <tr>
+          <td><%= t('users.statistics.general.media_elements_shared') %></td>
+          <td><span class="badge badge-success"><%= @all_shared_elements %></span></td>
+        </tr>
+        
+        <tr>
+          <td><%= t('users.statistics.general.total_users') %></td>
+          <td><span class="badge"><%= @all_users %></span></td>
+        </tr>
+      
+
+        <tr>
+          <table class="table table-striped">
+            <thead>
+              <th><b><%= t('users.statistics.general.lessons_more_likes') %></b></th>
+              <th></th>
+            </thead>
+            <tbody>
+              <% @all_liked_lessons.each do |liked| %>
+                <tr>
+                  <td><%= liked.title %></td>
+                  <td><span class="badge"><%= liked.likes.count %></span></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </tr>
+
+        <tr>
+          <table class="table table-striped">
+            <thead>
+              <th><b><%= t('users.statistics.general.users_more_likes') %></b></th>
+              <th></th>
+            </thead>
+            <tbody>
+              <% @all_users_like.first(3).each do |key,value| %>
+                <% u = User.find(key) %>
+                <tr>
+                  <td><%= u.name %> <%= u.surname %></td>
+                  <td><span class="badge"><%= value %></span></td>
+                </tr>
+              <%end%>
+            </tbody>
+          </table>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span6 well">
+    <table class="table table-striped">
+      <thead>
+        <th><%= t('users.statistics.general.percentual_lessons_subject.title') %></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th><%= t('users.statistics.general.percentual_lessons_subject.color') %></th>
+                  <th><%= t('users.statistics.general.percentual_lessons_subject.subject') %></th>
+                  <th><%= t('users.statistics.general.percentual_lessons_subject.value') %></th>
+                </tr>
+                <% (0..@all_subjects_chart.count - 1).each do |index| %>
+                  <tr>
+                    <td width="10%" border="1" style="background-color:<%=Subject.chart_colors[index]%>"></td>
+                    <td width="70%"><%= @all_subjects_desc[index] %></td>
+                    <td width="20%"><%= @all_subjects_chart[index] %>%</td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </td>
+          <td><span class="pie" data-text="<%= @all_subjects_desc %>" data-diameter="250" class="fltrt"><%= @all_subjects_chart.to_s[1..-2].gsub('"','') %></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span3 well">
+    <h3>Utenti online</h3>
+    <ul class="list">
+      <% @users.each do |user| %>
+      <li><%= link_to user.name+' '+user.surname, admin_user_path(user) %> </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="span3 well">
+    <h3>Nuovi utenti</h3>
+    <ul class="list">
+      <% @users.each do |user| %>
+      <li><%= link_to user.name+' '+user.surname, admin_user_path(user) %> <span class="badge pull-right"><%= user.created_at.strftime('%d-%m-%Y')%></span></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="span3 well">
+    <h3>Elements reports</h3>
+    <ol class="list">
+      <% @elements_reports.each do |report| %>
+      <li>
+        <%= link_to report.user.name+' '+report.user.surname, admin_user_path(report.user) %><br />
+        <b>on:</b> <%=report.reportable.title %><br/ >
+        <b>report:</b> <i><%= report.comment %></i>
+      </li>
+      <% end %>
+    </ol>
+  </div>
+  <div class="span3 well">
+    <h3>Lessons reports</h3>
+    <ol class="list">
+      <% @lessons_reports.each do |report| %>
+        <li>
+          <%= link_to report.user.name+' '+report.user.surname, admin_user_path(report.user) %><br />
+          <b>on:</b> <%=report.reportable.title %><br/ >
+          <b>report:</b> <i><%= report.comment %></i>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  $.fn.peity.defaults.pie = {
+    colours: <%= Subject.chart_colors.to_json.html_safe %>,
+    diameter: 250
+  }
+  
+  $("span.pie").peity("pie");
+</script>

@@ -89,8 +89,8 @@ class UsersController < ApplicationController
   def statistics
     Statistics.user = current_user
 
-    @my_created_lessons  = Statistics.my_created_lessons
-    @my_created_elements = Statistics.my_created_elements
+    @my_created_lessons  = Statistics.my_created_lessons.count
+    @my_created_elements = Statistics.my_created_elements.count
     @my_copied_lessons   = Statistics.my_copied_lessons
     @my_liked_lessons    = Statistics.my_liked_lessons(3)
     @all_liked_lessons   = Statistics.all_liked_lessons(3)

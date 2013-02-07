@@ -160,7 +160,10 @@ Desy::Application.routes.draw do
   root :to => 'prelogin#home'
 
   namespace 'admin' do
-    resources :lessons
+    root :to => 'dashboard#index'
+    resources :lessons, :only => [:index, :destroy]
+    resources :elements, :only => [:index, :new, :create, :destroy]
+    resources :users, :only => [:index, :show, :create, :destroy]
   end
   
 end

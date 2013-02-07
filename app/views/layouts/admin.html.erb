@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html class="application-layout <%= controller_html_class %> <%= action_html_class %>">
+  <head>
+    <title><%= SETTINGS['application_name'] %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag 'admin', :media => 'all' %>
+    <%= javascript_include_tag 'admin' %>
+    <%= csrf_meta_tags %>
+  </head>
+  
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <%= render :partial => "admin/header" %>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        
+        <!--<div class="span3">
+          <%#= render :partial => "admin/sidebar" %>
+        </div>-->
+        
+        <div class="span12">
+          <%= yield %>
+        </div>
+      
+      </div>
+      
+      <hr>
+      
+      <footer>
+        <%= render :partial => "admin/footer"%>
+      </footer>
+    </div>
+    
+  </body>
+</html>

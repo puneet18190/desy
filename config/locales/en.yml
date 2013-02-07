@@ -1490,3 +1490,20 @@ en:
       # 3 - views/video_editor/cutters/_image.html.erb
       # 4 - views/video_editor/_text_component_editor.html.erb
       length_duration: 3
+      
+  # PART 4 -- admin
+  admin:
+    # SECTION 4.1 dashboard
+    dashboard:
+    # SECTION 4.2 administer lessons
+    lessons:
+      index:
+        not_found: 'No lessons found'
+    # SECTION 4.3 administer elements
+    elements:
+      index:
+        not_found: 'No elements found'
+    # SECTION 4.4 administer users
+    elements:
+      index:
+        not_found: 'No users found'
