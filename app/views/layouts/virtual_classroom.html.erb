@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html class="virtual_classroom-layout <%= controller_html_class %> <%= action_html_class %>">
-<head>
-  <title><%= SETTINGS['application_name'] %></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<%= render :partial => "shared/popups" %>
-<%= render :partial => "virtual_classroom/popups" %>
-<%= render :partial => "shared/loading" %>
-<div class="container">
-    
-    <%= yield %>
-    
-  <%= render :partial => "shared/footer" %>
-</div>
-</body>
+  <%= render :partial => "shared/head" %>
+  <body>
+    <%= render :partial => "shared/popups" %>
+    <%= render :partial => "virtual_classroom/popups" %>
+    <%= render :partial => "shared/loading" %>
+    <div class="container">
+      <%= yield %>
+      <%= render :partial => "shared/footer" %>
+    </div>
+  </body>
 </html>

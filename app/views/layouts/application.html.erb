@@ -1,32 +1,16 @@
 <!DOCTYPE html>
-
 <html class="application-layout <%= controller_html_class %> <%= action_html_class %>">
-  
-  
-  <head>
-    <title><%= SETTINGS['application_name'] %></title>
-    <%= stylesheet_link_tag 'application', :media => 'all' %>
-    <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tags %>
-  </head>
-  
-  
+  <%= render :partial => "shared/head" %>
   <body>
-    
     <%= render :partial => 'shared/popups' %>
     <%= render :partial => 'shared/loading' %>
     <div class="container">
       <%= render :partial => 'shared/header' %>
-      
       <div class="content">
         <%= yield %>
         <br class="clearfloat">
       </div>
-      
       <%= render :partial => 'shared/footer' %>
     </div>
-    
   </body>
-  
-  
 </html>
