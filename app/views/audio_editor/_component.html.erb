@@ -30,31 +30,36 @@
         <%= title %>
       </div>
       <div class="audioComponentPlayer">
+        
+        <span class="_current_time" style="float:left"><%= from %></span>
         <div class="cutter">
           <audio>
             <source src="<%= ogg %>" type="audio/ogg">
             <source src="<%= mp3 %>" type="audio/mp3">
             <%= t('captions.dont_support_audio') %>
           </audio>
-          <span class="left _current_time"><%= from %></span>
+          
           <a class="left _precision_arrow_left"></a>
           <div class="audioSlider _media_player_slider"></div>
           <a class="right _precision_arrow_right"></a>
-          <span class="right _total_length"><%= total_length %></span>
-          <div class="sliderDisabler _media_player_slider_disabler" style="display: none;"></div>
+          
           <div class="underDoubleSlider"></div>
           <div class="audioDoubleSlider _double_slider"></div>
         </div>
+
+          <div class="sliderDisabler _media_player_slider_disabler" style="display: none;"></div>
+        <span class="_total_length" style="float:right"><%= total_length %></span>
       </div>
-      <div class="audioComponentBottom">
-        <div class="audioComponentDurations">
-          <%= t('audio_editor.selected') %>: <span class="_cutter_from"><%= from %></span><%= ' - '.html_safe %><span class="_cutter_to"><%= to %></span>
+        <div class="audioComponentBottom">
+          <div class="audioComponentDurations">
+            <%= t('audio_editor.selected') %>: <span class="_cutter_from"><%= from %></span><%= ' - '.html_safe %><span class="_cutter_to"><%= to %></span>
+          </div>
+          <div class="audioComponentControls">
+            <a class="play _media_player_play_in_audio_editor_preview upper"><%= t('audio_editor.cutters.play') %></a>
+            <a class="pause _media_player_pause_in_audio_editor_preview upper"><%= t('audio_editor.cutters.pause') %></a>
+          </div>
         </div>
-        <div class="audioComponentControls">
-          <a class="play _media_player_play_in_audio_editor_preview upper"><%= t('audio_editor.cutters.play') %></a>
-          <a class="pause _media_player_pause_in_audio_editor_preview upper"><%= t('audio_editor.cutters.pause') %></a>
-        </div>
-      </div>
+      
     </div>
   </div>
   <% if !empty %>
