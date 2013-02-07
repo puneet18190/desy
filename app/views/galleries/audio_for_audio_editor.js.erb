@@ -6,4 +6,7 @@ container.data('page', 1);
 container.data('tot-pages', <%= @tot_pages %>);
 $('._select_audio_from_gallery').addClass('_add_audio_component_to_audio_editor');
 $('._close_audio_gallery').addClass('_close_audio_gallery_in_audio_editor');
+<% @audios.each do |audio| %>
+  $('#gallery_audio_<%= audio.id %> ._select_audio_from_gallery').data('title', '<%= j audio.title %>');
+<% end %>
 initializeAudioGalleryInAudioEditor();
