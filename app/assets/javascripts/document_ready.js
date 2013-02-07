@@ -1655,7 +1655,22 @@ $(document).ready(function() {
     cutter.find('._media_player_slider .ui-slider-handle').addClass('selected');
     selectVideoComponentCutterHandle(cutter, resp);
   });
-
+  
+  $('body').on('click', '._media_player_play_in_audio_editor_preview', function() {
+    // FIXME
+    console.log('play audio');
+  });
+  
+  $('body').on('click', '._media_player_pause_in_video_editor_preview', function() {
+    // FIXME
+    console.log('pausa audio');
+  });
+  
+  $('body').on('click', '._video_component_cutter ._double_slider .ui-slider-range', function(e) {
+    // FIXME
+    console.log('boh audio');
+  });
+  
   
   // NELLA HOMEPAGE APERTURA AUTOMATICA DELLA FINESTRA DI LOGIN 
   // SE C'É L'ATTRIBUTO login NELLA PARTE DELLA QUERY DELL'URL

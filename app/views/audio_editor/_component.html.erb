@@ -4,12 +4,16 @@
   total_length = 0
   selected = 0
   max_to = 0
+  ogg = ''
+  mp3 = ''
   if !empty
     external_div_attributes = "id=\"audio_component_#{identifier}\" data-position=\"#{identifier}\" data-duration=\"#{component[:to] - component[:from]}\""
     title = component[:audio].title
     total_length = seconds_to_time component[:audio].min_duration
     selected = seconds_to_time(component[:to] - component[:from])
     max_to = component[:audio].min_duration
+    ogg = component[:audio].ogg_url
+    mp3 = component[:audio].mp3_url
   end
 %>
 
@@ -26,6 +30,13 @@
       <div class="audioComponentPlayer">
         <div class="contentCutter _audio_component_cutter" data-max-to="<%= max_to %>" style="display:none">
           <div class="cutter">
+            <div class="audioPlayer">
+              <audio>
+                <source src="<%= ogg %>" type="audio/ogg">
+                <source src="<%= mp3 %>" type="audio/mp3">
+                <%= t('captions.dont_support_audio') %>
+              </audio>
+            </div>
             <a class="left _precision_arrow_left"></a>
             <a class="play _media_player_play_in_audio_editor_preview upper"><%= t('audio_editor.cutters.play') %></a>
             <a class="pause _media_player_pause_in_audio_editor_preview upper"><%= t('audio_editor.cutters.pause') %></a>
