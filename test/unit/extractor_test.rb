@@ -4,10 +4,7 @@ require 'test_helper'
 
 class ExtractorTest < ActiveSupport::TestCase
   
-  def load_likes
-    Like.all.each do |l|
-      l.destroy
-    end
+  def load_likers
     @liker1 = User.confirmed.new(:password => 'em1@em.em', :password_confirmation => 'em1@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em1@em.em'
     end
@@ -62,6 +59,13 @@ class ExtractorTest < ActiveSupport::TestCase
     @liker9.policy_1 = '1'
     @liker9.policy_2 = '1'
     assert @liker9.save
+  end
+  
+  def load_likes
+    load_likers
+    Like.all.each do |l|
+      l.destroy
+    end
     assert @liker1.like @les1.id
     assert @liker1.like @les3.id
     assert @liker1.like @les6.id
@@ -248,6 +252,30 @@ class ExtractorTest < ActiveSupport::TestCase
       date_now -= 1
     end
   end
+  
+  # FIXME da qui...
+  
+  test 'lesson_multiplicity' do
+    Lesson.where('id != 1').delete_all
+    assert Lesson.find(1).publish
+    Bookmark.delete_all
+    assert_equal 1, Lesson.count
+    assert_equal 0, Bookmark.count
+    load_likers
+    assert @liker1.bookmark 'Lesson', 1
+    assert @liker2.bookmark 'Lesson', 1
+    assert @liker3.bookmark 'Lesson', 1
+    assert @liker4.bookmark 'Lesson', 1
+    assert @liker5.bookmark 'Lesson', 1
+    assert @liker6.bookmark 'Lesson', 1
+    assert_equal 6, Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 1).count
+  end
+  
+  test 'media_element_multiplicity' do
+    
+  end
+  
+  # FIXME ...a qui!
   
   test 'ordered_own_items' do
     assert Lesson.find(1).publish
