@@ -80,6 +80,16 @@ function stopCacheLoop() {
   $('#info_container').data('save-cache', false);
 }
 
+function submitMediaElementEditorCacheForm(form) {
+  $.ajax({
+    type: "POST",
+    url: form.attr('action'),
+    timeout: 5000,
+    data: form.serialize(),
+    beforeSend: unbindLoader()
+  }).always(bindLoader);
+}
+
 function saveCacheLoop() {
   var cache_form = '';
   if($('html').hasClass('video_editor-controller')) {
@@ -90,7 +100,7 @@ function saveCacheLoop() {
   }
   var time = $('#popup_parameters_container').data('cache-time');
   if(cache_form != '' && $('#info_container').data('save-cache')) {
-    cache_form.submit();
+    submitMediaElementEditorCacheForm(cache_form);
     setTimeout(function() {
       saveCacheLoop();
     }, time);

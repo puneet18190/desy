@@ -17,9 +17,9 @@ function deselectAllAudioEditorComponents() {
   $('._audio_editor_component._selected ._content').removeClass('current');
   $('._audio_editor_component._selected ._box_ghost').show();
   $('._audio_editor_component._selected ._sort_handle').removeClass('current');
-  $('._audio_editor_component._selected').removeClass('_selected');
   $('._audio_editor_component._selected ._player_content').css('visibility', 'hidden');
   $('._audio_editor_component._selected ._controls').css('visibility', 'hidden');
+  $('._audio_editor_component._selected').removeClass('_selected');
 }
 
 function initializeAudioEditor() {
