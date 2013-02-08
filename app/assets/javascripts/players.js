@@ -129,7 +129,7 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
         increaseVideoEditorPreviewTimer(true);
       }
     }
-  } else {
+  } else if($('#video_component_' + identifier + '_cutter').data('playing')) {
     if(parsed_int == (video_cut_to)) {
       var initial_time = $('#video_component_' + identifier + '_cutter').data('from');
       $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').click();

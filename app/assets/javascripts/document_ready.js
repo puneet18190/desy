@@ -1465,7 +1465,7 @@ $(document).ready(function() {
     startCacheLoop();
   });
   
-  $('body').on('click', '._precision_arrow_left', function() {
+  $('body').on('click', '._video_component_cutter ._precision_arrow_left', function() {
     var cutter = $(this).parents('._video_component_cutter');
     var identifier = getVideoComponentIdentifier(cutter.attr('id'));
     var single_slider = cutter.find('._media_player_slider');
@@ -1493,7 +1493,7 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click', '._precision_arrow_right', function() {
+  $('body').on('click', '._video_component_cutter ._precision_arrow_right', function() {
     var cutter = $(this).parents('._video_component_cutter');
     var identifier = getVideoComponentIdentifier(cutter.attr('id'));
     var duration = cutter.data('max-to');
@@ -1707,6 +1707,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_play_in_video_editor_preview', function() {
     $(this).hide();
+    $(this).parents('._video_component_cutter').data('playing', true);
     var identifier = getVideoComponentIdentifier($(this).parents('._video_component_cutter').attr('id'));
     $('#video_component_' + identifier + '_cutter ._media_player_slider_disabler').show();
     $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').show();
@@ -1739,6 +1740,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_pause_in_video_editor_preview', function() {
     $(this).hide();
+    $(this).parents('._video_component_cutter').data('playing', false);
     var cutter_id = $(this).parents('._video_component_cutter').attr('id');
     var preview_id = cutter_id.replace('cutter', 'preview');
     $('#' + cutter_id + ' ._media_player_slider_disabler').hide();
