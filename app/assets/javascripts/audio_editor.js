@@ -155,6 +155,25 @@ function cutAudioComponentRightSide(identifier, pos) {
   changeDurationAudioEditorComponent(component, new_duration);
 }
 
+function deselectAllAudioEditorCursors(id) {
+  $('#audio_component_' + id + ' .ui-slider-handle').removeClass('selected');
+}
+
+function selectAudioEditorLeftHandle(id) {
+  deselectAllAudioEditorCursors(id);
+  $($('#audio_component_' + id + ' ._double_slider .ui-slider-handle')[0]).addClass('selected');
+}
+
+function selectAudioEditorRightHandle(id) {
+  deselectAllAudioEditorCursors(id);
+  $($('#audio_component_' + id + ' ._double_slider .ui-slider-handle')[1]).addClass('selected');
+}
+
+function selectAudioEditorCursor(id) {
+  deselectAllAudioEditorCursors(id);
+  $('#audio_component_' + id + ' ._media_player_slider .ui-slider-handle').addClass('selected');
+}
+
 // TODO da provare in profindità
 function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
   var next_position = $('#info_container').data('last-component-id') + 1;

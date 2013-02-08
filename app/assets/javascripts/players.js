@@ -295,8 +295,11 @@ function initializeAudioEditorCutter(identifier) {
     range: true,
     values: [component.data('from'), component.data('to')],
     start: function(event, ui) {
-      component.find('.ui-slider-handle').removeClass('selected');
-      $(ui.handle).addClass('selected');
+      if($(ui.handle).next('.ui-slider-handle').length == 0) {
+        selectAudioEditorRightHandle(identifier);
+      } else {
+        selectAudioEditorLeftHandle(identifier);
+      }
     },
     slide: function(event, ui) {
       var left_val = ui.values[0];
@@ -334,7 +337,7 @@ function initializeAudioEditorCutter(identifier) {
   double_slider.find('.ui-slider-range').mousedown(function(e) {
     return false;
   });
-  single_slider.find('.ui-slider-handle').addClass('selected');
+  selectAudioEditorCursor(identifier);
   initializeMediaTimeUpdaterInAudioEditor(identifier);
   component.find('audio').bind('ended', function() {
     stopAudioInAudioEditorPreview(identifier);
