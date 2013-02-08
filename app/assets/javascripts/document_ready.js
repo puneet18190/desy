@@ -1781,7 +1781,7 @@ $(document).ready(function() {
   $('body').on('click', '._media_player_pause_in_audio_editor_preview', function() {
     $(this).hide();
     var component = $(this).parent().parent().parent().parent().parent();
-    component.find('._media_player_slider_disabler').show();
+    component.find('._media_player_slider_disabler').hide();
     component.find('._media_player_play_in_audio_editor_preview').show();
     component.find('._media_player_slider .ui-slider-handle').addClass('selected');
     component.find('audio')[0].pause();

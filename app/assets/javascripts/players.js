@@ -283,10 +283,6 @@ function initializeAudioEditorCutter(identifier) {
     slide: function(event, ui) {
       if(play.css('display') == 'block') {
         component.find('._current_time').html(secondsToDateString(0));
-      }
-    },
-    stop: function() {
-      if(play.css('display') == 'block') {
         setCurrentTimeToMedia(component.find('audio'), ui.value);
       }
     }
@@ -295,11 +291,11 @@ function initializeAudioEditorCutter(identifier) {
     min: 0,
     max: audio_max_to,
     range: true,
-    values: [component.data('from'), component.data('to')]/*,
+    values: [component.data('from'), component.data('to')],
     start: function(event, ui) {
       component.find('.ui-slider-handle').removeClass('selected');
       $(ui.handle).addClass('selected');
-    },
+    }/*,
     slide: function(event, ui) {
       var left_val = ui.values[0];
       var right_val = ui.values[1];
