@@ -157,21 +157,25 @@ function cutAudioComponentRightSide(identifier, pos) {
 
 function deselectAllAudioEditorCursors(id) {
   $('#audio_component_' + id + ' .ui-slider-handle').removeClass('selected');
+  $('#audio_component_' + id + ' ._cutter_from, #audio_component_' + id + ' ._cutter_to, #audio_component_' + id + ' ._current_time').removeClass('selected');
 }
 
 function selectAudioEditorLeftHandle(id) {
   deselectAllAudioEditorCursors(id);
   $($('#audio_component_' + id + ' ._double_slider .ui-slider-handle')[0]).addClass('selected');
+  $('#audio_component_' + id + ' ._cutter_from').addClass('selected');
 }
 
 function selectAudioEditorRightHandle(id) {
   deselectAllAudioEditorCursors(id);
   $($('#audio_component_' + id + ' ._double_slider .ui-slider-handle')[1]).addClass('selected');
+  $('#audio_component_' + id + ' ._cutter_to').addClass('selected');
 }
 
 function selectAudioEditorCursor(id) {
   deselectAllAudioEditorCursors(id);
   $('#audio_component_' + id + ' ._media_player_slider .ui-slider-handle').addClass('selected');
+  $('#audio_component_' + id + ' ._current_time').addClass('selected');
 }
 
 // TODO da provare in profindità
