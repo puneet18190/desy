@@ -74,17 +74,19 @@ function removeAudioEditorComponent(component) {
     $(this).remove();
     reloadAudioEditorComponentPositions();
     if($('._audio_editor_component').length == 0) {
-      $('#commit_audio_editor').css('visibility', 'hidden');
+      disableCommitAndPreviewInAudioEditor();
     }
   });
 }
 
 function disableCommitAndPreviewInAudioEditor() {
-  
+  $('#commit_audio_editor').hide();
+  $('#start_audio_editor_preview').addClass('disabled');
 }
 
 function enableCommitAndPreviewInAudioEditor() {
-  
+  $('#commit_audio_editor').show();
+  $('#start_audio_editor_preview').removeClass('disabled');
 }
 
 function setToZeroAllZIndexesInAudioEditor() {
@@ -152,6 +154,7 @@ function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
   changeDurationAudioEditorComponent(empty_component, duration);
   // TODO manca scroll
   // TODO manca highlights
+  // TODO if ho appena aggiunto la prima componente --- enableCommitAndPreviewInAudioEditor
 }
 
 function fillAudioEditorSingleParameter(input, identifier, value) {
