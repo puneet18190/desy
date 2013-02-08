@@ -38,7 +38,7 @@ function initializeAudioEditor() {
     stop: function(event, ui) {
       var my_item = $(ui.item);
       resizeLastComponentInAudioEditor();
-      var boolean1 = (my_item.next().lengt == 0);
+      var boolean1 = (my_item.next().length == 0);
       var boolean2 = (my_item.data('position') != $('._audio_editor_component').length);
       var boolean3 = (my_item.next().data('position') != (my_item.data('position') + 1));
       if(boolean1 && boolean2 || !boolean1 && boolean3) {
