@@ -1071,7 +1071,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._video_component_cutter_button', function() {
-    var component_id = $(this).parent().parent().parent().parent().attr('id');
+    var component_id = $(this).parents('._video_editor_component').attr('id');
     if($('#' + component_id + '_preview').css('display') == 'none') {
       startVideoEditorPreviewClip(component_id);
     }
@@ -1096,7 +1096,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_done_video_component_in_video_editor_preview', function() {
     closeGenericVideoComponentCutter();
-    var component_id = $(this).parent().parent().attr('id');
+    var component_id = $(this).parents('._video_component_cutter').attr('id');
     var identifier = getVideoComponentIdentifier(component_id);
     $('#video_component_' + identifier + '_cutter ._double_slider .ui-slider-handle').removeClass('selected');
     stopVideoInVideoEditorPreview(identifier);
@@ -1105,7 +1105,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._media_player_done_other_component_in_video_editor_preview', function() {
-    var component_id = $(this).parent().parent().attr('id');
+    var component_id = $(this).parents('._video_component_cutter').attr('id');
     var identifier = getVideoComponentIdentifier(component_id);
     var duration = $('#' + component_id + ' ._duration_selector input').val();
     if(duration == '') {
@@ -1154,7 +1154,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._remove_component_from_video_editor_button', function() {
-    var component = $(this).parent().parent().parent().parent();
+    var component = $(this).parents('._video_editor_component');
     var identifier = getVideoComponentIdentifier(component.attr('id'));
     $('#video_component_' + identifier).hide('fade', {}, 500, function() {
       $('#video_component_' + identifier + '_preview').remove();
@@ -1466,7 +1466,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._precision_arrow_left', function() {
-    var cutter = $(this).parent().parent();
+    var cutter = $(this).parents('._video_component_cutter');
     var identifier = getVideoComponentIdentifier(cutter.attr('id'));
     var single_slider = cutter.find('._media_player_slider');
     var double_slider = cutter.find('._double_slider');
@@ -1494,7 +1494,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._precision_arrow_right', function() {
-    var cutter = $(this).parent().parent();
+    var cutter = $(this).parents('._video_component_cutter');
     var identifier = getVideoComponentIdentifier(cutter.attr('id'));
     var duration = cutter.data('max-to');
     var single_slider = cutter.find('._media_player_slider');
@@ -1707,7 +1707,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_play_in_video_editor_preview', function() {
     $(this).hide();
-    var identifier = getVideoComponentIdentifier($(this).parent().parent().attr('id'));
+    var identifier = getVideoComponentIdentifier($(this).parents('._video_component_cutter').attr('id'));
     $('#video_component_' + identifier + '_cutter ._media_player_slider_disabler').show();
     $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').show();
     $('#video_component_' + identifier + '_cutter .ui-slider-handle').removeClass('selected');
@@ -1739,7 +1739,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_pause_in_video_editor_preview', function() {
     $(this).hide();
-    var cutter_id = $(this).parent().parent().attr('id');
+    var cutter_id = $(this).parents('._video_component_cutter').attr('id');
     var preview_id = cutter_id.replace('cutter', 'preview');
     $('#' + cutter_id + ' ._media_player_slider_disabler').hide();
     $('#' + cutter_id + ' ._media_player_play_in_video_editor_preview').show();
@@ -1751,7 +1751,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._video_component_cutter ._double_slider .ui-slider-range', function(e) {
-    var cutter = $(this).parent().parent().parent();
+    var cutter = $(this).parents('._video_component_cutter');
     var percent = cutter.data('max-to') * (e.pageX - cutter.find('._double_slider').offset().left) / cutter.find('._double_slider').width();
     resp = parseInt(percent);
     if(percent - parseInt(percent) > 0.5) {
@@ -1764,7 +1764,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_play_in_audio_editor_preview', function() {
     $(this).hide();
-    var component = $(this).parent().parent().parent().parent().parent();
+    var component = $(this).parents('._audio_editor_component');
     component.find('._media_player_slider_disabler').show();
     component.find('._media_player_pause_in_audio_editor_preview').show();
     component.find('.ui-slider-handle').removeClass('selected');
@@ -1780,7 +1780,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._media_player_pause_in_audio_editor_preview', function() {
     $(this).hide();
-    var component = $(this).parent().parent().parent().parent().parent();
+    var component = $(this).parents('._audio_editor_component');
     component.find('._media_player_slider_disabler').hide();
     component.find('._media_player_play_in_audio_editor_preview').show();
     component.find('._media_player_slider .ui-slider-handle').addClass('selected');
@@ -1788,8 +1788,15 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._audio_editor_component ._double_slider .ui-slider-range', function(e) {
-    // FIXME
-    console.log('boh audio');
+    var component = $(this).parents('._audio_editor_component');
+//    var percent = cutter.data('max-to') * (e.pageX - cutter.find('._double_slider').offset().left) / cutter.find('._double_slider').width();
+//    resp = parseInt(percent);
+//    if(percent - parseInt(percent) > 0.5) {
+//      resp += 1;
+//    }
+//    cutter.find('.ui-slider-handle').removeClass('selected');
+//    cutter.find('._media_player_slider .ui-slider-handle').addClass('selected');
+//    selectVideoComponentCutterHandle(cutter, resp);
   });
   
   
