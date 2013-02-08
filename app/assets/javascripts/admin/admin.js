@@ -5,6 +5,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery_ujs
 //= require jquery.peity
 //= require bootstrap
 //= require bootstrap-tooltip
@@ -38,4 +39,7 @@ $(document).ready(function(){
    e.preventDefault();
    $('tr.collapsed').slideUp('slow');
   });
+  
+  $('#new-elements').fileupload();
+  
 });

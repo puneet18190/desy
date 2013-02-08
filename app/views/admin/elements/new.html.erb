@@ -5,7 +5,7 @@
 %>
 
 <h3>New elements</h3>
-<div id="new-elements" class="well">
+<div id="new_elements_preview" class="well">
   <% if @new_media_element %>
     <%= @errors_fields %>
     <%= image_tag @new_media_element.media, width: '200' %>
@@ -13,8 +13,8 @@
 </div>
 
 <div class="well">
-  <%= form_tag admin_elements_path, :method => :post, :id => 'new_media_element', :class => 'formModifyInfo', :multipart => true do %>
-    <input type="file" name="media" />
+  <%= form_tag admin_elements_path, :method => :post, :id => 'new-elements', :multipart => true do %>
+    <label for="file">File to Upload</label> <%= file_field_tag "media", multiple: true %>
     <br>
     <%= text_field_tag 'title', '' %>
     <br>

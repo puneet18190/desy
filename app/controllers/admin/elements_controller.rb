@@ -19,11 +19,11 @@ class Admin::ElementsController < ApplicationController
   
   def create
     @new_media_element = MediaElement.new :media => params[:media]
-    @new_media_element.title = params[:title]
-    @new_media_element.description = params[:description]
-    @new_media_element.tags = params[:tags]
+    @new_media_element.title = params[:title].blank? ? 'title' : params[:title]
+    @new_media_element.description = params[:description].blank? ? 'description' : params[:description]
+    @new_media_element.tags = params[:tags].split(',').count < 4 ? 'tag1,tag2,tag3,tag4' : params[:tags]
     @new_media_element.user_id = current_user.id
-    if !@new_media_element.save
+    if !@new_media_element.save!
       @errors = convert_media_element_uploader_messages @new_media_element.errors.messages
       fields = @new_media_element.errors.messages.keys
       if fields.include? :sti_type
@@ -35,8 +35,10 @@ class Admin::ElementsController < ApplicationController
         @error_fields << f.to_s
       end
     end
-    render :new
+    
+    render :js => @new_media_element
   end
+  
 
   def destroy
     @element.destroy

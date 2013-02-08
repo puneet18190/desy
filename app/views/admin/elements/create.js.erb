@@ -1,0 +1,6 @@
+console.log("newim");
+<% if @new_media_element.new_record? %>
+  $('#new-elements').html("<%= @errors_fields %>");
+<% else %>
+  $('#new-elements').append("<%= image_tag @new_media_element.media, width: '200' %>");
+<% end %>
