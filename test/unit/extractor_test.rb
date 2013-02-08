@@ -253,8 +253,6 @@ class ExtractorTest < ActiveSupport::TestCase
     end
   end
   
-  # FIXME da qui...
-  
   test 'lesson_multiplicity' do
     Lesson.where('id != 1').delete_all
     assert Lesson.find(1).publish
@@ -269,13 +267,8 @@ class ExtractorTest < ActiveSupport::TestCase
     assert @liker5.bookmark 'Lesson', 1
     assert @liker6.bookmark 'Lesson', 1
     assert_equal 6, Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 1).count
+    assert_equal 1, @user1.own_lessons(1, 20)[:records].length
   end
-  
-  test 'media_element_multiplicity' do
-    
-  end
-  
-  # FIXME ...a qui!
   
   test 'ordered_own_items' do
     assert Lesson.find(1).publish
