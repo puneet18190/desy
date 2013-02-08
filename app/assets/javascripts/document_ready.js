@@ -1136,12 +1136,18 @@ $(document).ready(function() {
         url: '/videos/cache/empty',
         beforeSend: unbindLoader(),
         success: function() {
-          window.location = '/dashboard';
+          window.location = '/media_elements';
         }
       }).always(bindLoader);
     }, function() {
-      if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_info_update_media_element_in_editor').css('display') == 'none') {
-        startCacheLoop();
+      if($('#form_info_update_media_element_in_editor').length == 0) {
+        if($('#form_info_new_media_element_in_editor').css('display') == 'none') {
+          startCacheLoop();
+        }
+      } else {
+        if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_update_new_media_element_in_editor').css('display') == 'none') {
+          startCacheLoop();
+        }
       }
       closePopUp('dialog-confirm');
     });
@@ -1390,7 +1396,6 @@ $(document).ready(function() {
   
   $('body').on('click', '#commit_video_editor', function() {
     stopCacheLoop();
-    $('#info_container').data('cache-enabled-first-time', false);
     $('#video_editor_form').submit();
     if($(this).hasClass('_with_choice')) {
       var captions = $('#popup_captions_container');

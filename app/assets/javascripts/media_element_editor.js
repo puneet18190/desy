@@ -77,6 +77,7 @@ function startCacheLoop() {
 }
 
 function stopCacheLoop() {
+  $('#info_container').data('cache-enabled-first-time', false);
   $('#info_container').data('save-cache', false);
 }
 
