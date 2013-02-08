@@ -1145,7 +1145,7 @@ $(document).ready(function() {
           startCacheLoop();
         }
       } else {
-        if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_update_new_media_element_in_editor').css('display') == 'none') {
+        if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_info_update_media_element_in_editor').css('display') == 'none') {
           startCacheLoop();
         }
       }
@@ -1569,6 +1569,39 @@ $(document).ready(function() {
     stopMedia('#gallery_audio_' + audio_id + ' audio');
     $('#gallery_audio_' + audio_id + ' ._expanded').hide();
     addComponentInAudioEditor(audio_id, $(this).data('ogg'), $(this).data('mp3'), $(this).data('duration'), $(this).data('title'));
+  });
+  
+  $('body').on('click', '._exit_audio_editor', function() {
+    stopCacheLoop();
+    var captions = $('#popup_captions_container');
+    showConfirmPopUp(captions.data('exit-audio-editor-title'), captions.data('exit-audio-editor-confirm'), captions.data('exit-audio-editor-yes'), captions.data('exit-audio-editor-no'), function() {
+      $('dialog-confirm').hide();
+      $.ajax({
+        type: 'post',
+        url: '/audios/cache/empty',
+        beforeSend: unbindLoader(),
+        success: function() {
+          window.location = '/media_elements';
+        }
+      }).always(bindLoader);
+    }, function() {
+      if($('#form_info_update_media_element_in_editor').length == 0) {
+        if($('#form_info_new_media_element_in_editor').css('display') == 'none') {
+          startCacheLoop();
+        }
+      } else {
+        if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_info_update_media_element_in_editor').css('display') == 'none') {
+          startCacheLoop();
+        }
+      }
+      closePopUp('dialog-confirm');
+    });
+  });
+  
+  $('body').on('click', '#start_audio_editor_preview', function() {
+    if(!$(this).hasClass('disabled')) {
+      alert('previewww');
+    }
   });
   
   initializeAudioEditor();

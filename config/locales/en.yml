@@ -296,6 +296,15 @@ en:
       do: 'Yes'
       # 1 - views/shared/_popups.html.erb
       cancel: 'Stay on the page'
+    exit_audio_editor:
+      # 1 - views/shared/_popups.html.erb
+      title: 'Leaving the audio editor'
+      # 1 - views/shared/_popups.html.erb
+      confirm: 'Are you sure you want to leave?'
+      # 1 - views/shared/_popups.html.erb
+      do: 'Yes'
+      # 1 - views/shared/_popups.html.erb
+      cancel: 'Stay on the page'
     save_media_element_editor:
       # 1 - views/shared/_popups.html.erb
       title: 'Saving a private element'

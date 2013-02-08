@@ -38,7 +38,7 @@ function initializeAudioEditor() {
     stop: function(event, ui) {
       var my_item = $(ui.item);
       resizeLastComponentInAudioEditor();
-      var boolean1 = (my_item.next().lengt == 0);
+      var boolean1 = (my_item.next().length == 0);
       var boolean2 = (my_item.data('position') != $('._audio_editor_component').length);
       var boolean3 = (my_item.next().data('position') != (my_item.data('position') + 1));
       if(boolean1 && boolean2 || !boolean1 && boolean3) {
@@ -79,10 +79,36 @@ function removeAudioEditorComponent(component) {
   });
 }
 
+function disableCommitAndPreviewInAudioEditor() {
+  
+}
+
+function enableCommitAndPreviewInAudioEditor() {
+  
+}
+
+function setToZeroAllZIndexesInAudioEditor() {
+  $('._audio_editor_component ._remove').css('z-index', 0);
+  $('._audio_editor_component ._box_ghost').css('z-index', 0);
+  $('._audio_editor_component ._media_player_slider_disabler').css('z-index', 0);
+  $('._audio_editor_component ._double_slider').css('z-index', 0);
+  $('._audio_editor_component ._under_double_slider').css('z-index', 0);
+  $('._audio_editor_component ._media_player_slider').css('z-index', 0);
+}
+
+function setBackAllZIndexesInAudioEditor() {
+  $('._audio_editor_component ._remove').css('z-index', 101);
+  $('._audio_editor_component ._box_ghost').css('z-index', 100);
+  $('._audio_editor_component ._media_player_slider_disabler').css('z-index', 99);
+  $('._audio_editor_component ._double_slider').css('z-index', 98);
+  $('._audio_editor_component ._under_double_slider').css('z-index', 97);
+  $('._audio_editor_component ._media_player_slider').css('z-index', 96);
+}
+
 function showGalleryInAudioEditor() {
   $('._audio_editor_bottom_bar').hide();
   $('#audio_editor_gallery_container').show();
-  $('._audio_editor_component ._remove').css('z-index', 0);
+  setToZeroAllZIndexesInAudioEditor();
   calculateNewPositionGalleriesInAudioEditor();
 }
 
@@ -93,7 +119,7 @@ function calculateNewPositionGalleriesInAudioEditor() {
 function closeGalleryInAudioEditor() {
   $('._audio_editor_bottom_bar').show();
   $('#audio_editor_gallery_container').hide('fade', {}, 250, function() {
-    $('._audio_editor_component ._remove').css('z-index', 103);
+    setBackAllZIndexesInAudioEditor();
   });
 }
 
