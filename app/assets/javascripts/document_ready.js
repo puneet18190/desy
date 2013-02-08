@@ -1396,7 +1396,7 @@ $(document).ready(function() {
   
   $('body').on('click', '#commit_video_editor', function() {
     stopCacheLoop();
-    $('#video_editor_form').submit();
+    submitMediaElementEditorCacheForm($('#video_editor_form'));
     if($(this).hasClass('_with_choice')) {
       var captions = $('#popup_captions_container');
       var title = captions.data('save-media-element-editor-title');
@@ -1603,6 +1603,79 @@ $(document).ready(function() {
       alert('previewww');
     }
   });
+  
+//  // FIXME a partire da qui!
+//  
+//  $('body').on('click', '#commit_audio_editor', function() {
+//    stopCacheLoop();
+//    submitMediaElementEditorCacheForm($('#audio_editor_form'));
+//    if($(this).hasClass('_with_choice')) {
+//      var captions = $('#popup_captions_container');
+//      var title = captions.data('save-media-element-editor-title');
+//      var confirm = captions.data('save-media-element-editor-confirm');
+//      var yes = captions.data('save-media-element-editor-yes');
+//      var no = captions.data('save-media-element-editor-no');
+//      showConfirmPopUp(title, confirm, yes, no, function() {
+//        closePopUp('dialog-confirm');
+//        $('._video_editor_bottom_bar').hide();
+//        $('#video_editor #form_info_update_media_element_in_editor').show();
+//      }, function() {
+//        closePopUp('dialog-confirm');
+//        $('#video_editor_title ._titled').hide();
+//        $('#video_editor_title ._untitled').show();
+//        $('._video_editor_bottom_bar').hide();
+//        $('#video_editor #form_info_new_media_element_in_editor').show();
+//      });
+//    } else {
+//      $('._video_editor_bottom_bar').hide();
+//      $('#video_editor #form_info_new_media_element_in_editor').show();
+//    }
+//  });
+//  
+//  $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._commit', function() {
+//    $('#video_editor_form').attr('action', '/videos/commit/new');
+//    $('#video_editor_form').submit();
+//  });
+//  
+//  $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._commit', function() {
+//    if($('#info_container').data('used-in-private-lessons')) {
+//      var captions = $('#popup_captions_container');
+//      var title = captions.data('overwrite-media-element-editor-title');
+//      var confirm = captions.data('overwrite-media-element-editor-confirm');
+//      var yes = captions.data('overwrite-media-element-editor-yes');
+//      var no = captions.data('overwrite-media-element-editor-no');
+//      showConfirmPopUp(title, confirm, yes, no, function() {
+//        $('dialog-confirm').hide();
+//        $('#video_editor_form').attr('action', '/videos/commit/overwrite');
+//        $('#video_editor_form').submit();
+//      }, function() {
+//        closePopUp('dialog-confirm');
+//      });
+//    } else {
+//      $('#video_editor_form').attr('action', '/videos/commit/overwrite');
+//      $('#video_editor_form').submit();
+//    }
+//  });
+//  
+//  $('body').on('click', '#video_editor #form_info_new_media_element_in_editor ._cancel', function() {
+//    $('#video_editor_form').attr('action', '/videos/cache/save');
+//    resetMediaElementEditorForms();
+//    if($('#video_editor_title ._titled').length > 0) {
+//      $('#video_editor_title ._titled').show();
+//      $('#video_editor_title ._untitled').hide();
+//    }
+//    $('._video_editor_bottom_bar').show();
+//    $('#video_editor #form_info_new_media_element_in_editor').hide();
+//    startCacheLoop();
+//  });
+//  
+//  $('body').on('click', '#video_editor #form_info_update_media_element_in_editor ._cancel', function() {
+//    $('#video_editor_form').attr('action', '/videos/cache/save');
+//    resetMediaElementEditorForms();
+//    $('._video_editor_bottom_bar').show();
+//    $('#video_editor #form_info_update_media_element_in_editor').hide();
+//    startCacheLoop();
+//  });
   
   initializeAudioEditor();
   
