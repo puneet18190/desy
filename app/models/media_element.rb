@@ -42,7 +42,7 @@ class MediaElement < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_public
 
-  #  SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id AND bookmarks.bookmarkable_type = 'MediaElement' AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY GREATEST(bookmarks.created_at, media_elements.updated_at) DESC, LEAST(bookmarks.created_at, media_elements.updated_at) DESC
+  #  SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id AND bookmarks.bookmarkable_type = 'MediaElement' AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY COALESCE(bookmarks.created_at, media_elements.updated_at) DESC
   scope :of, ->(user_or_user_id) do
     user_id = user_or_user_id.instance_of?(User) ? user_or_user_id.id : user_or_user_id
 
@@ -51,7 +51,7 @@ class MediaElement < ActiveRecord::Base
                          bookmarks.bookmarkable_type = 'MediaElement' AND
                          bookmarks.user_id = %i", user_id] ).
     where('bookmarks.user_id IS NOT NULL OR (media_elements.is_public = false AND media_elements.user_id = ?)', user_id).
-    order('COALESCE(bookmarks.created_at, media_elements.updated_at)')
+    order('COALESCE(bookmarks.created_at, media_elements.updated_at) DESC')
   end
   
   class << self
