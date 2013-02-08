@@ -1672,12 +1672,14 @@ $(document).ready(function() {
   
   $('body').on('click', '._audio_editor_component ._precision_arrow_left', function() {
     var component = $(this).parents('._audio_editor_component');
+    var identifier = component.attr('id');
+    identifier = identifier[identifier.length - 1];
     var single_slider = component.find('._media_player_slider');
     var double_slider = component.find('._double_slider');
     if(single_slider.find('.ui-slider-handle').hasClass('selected')) {
       var resp = single_slider.slider('value');
       if(resp > 0 && resp > double_slider.slider('values', 0)) {
-        selectAudioComponentCutterHandle(cutter, resp - 1);
+        selectAudioComponentCutterHandle(component, resp - 1);
       }
     } else if($(double_slider.find('.ui-slider-handle')[0]).hasClass('selected')) {
       var resp = double_slider.slider('values', 0);
@@ -1689,7 +1691,7 @@ $(document).ready(function() {
       var resp = double_slider.slider('values', 1);
       if(resp > double_slider.slider('values', 0) + 1) {
         if(single_slider.slider('value') == resp) {
-          selectAudioComponentCutterHandle(cutter, resp - 1);
+          selectAudioComponentCutterHandle(component, resp - 1);
         }
         double_slider.slider('values', 1, resp - 1);
         cutAudioComponentRightSide(identifier, resp - 1);
@@ -1699,19 +1701,21 @@ $(document).ready(function() {
   
   $('body').on('click', '._audio_editor_component ._precision_arrow_right', function() {
     var component = $(this).parents('._audio_editor_component');
+    var identifier = component.attr('id');
+    identifier = identifier[identifier.length - 1];
     var duration = component.data('max-to');
     var single_slider = component.find('._media_player_slider');
     var double_slider = component.find('._double_slider');
     if(single_slider.find('.ui-slider-handle').hasClass('selected')) {
       var resp = single_slider.slider('value');
       if(resp < duration && resp < double_slider.slider('values', 1)) {
-        selectAudioComponentCutterHandle(cutter, resp + 1);
+        selectAudioComponentCutterHandle(component, resp + 1);
       }
     } else if($(double_slider.find('.ui-slider-handle')[0]).hasClass('selected')) {
       var resp = double_slider.slider('values', 0);
       if(resp < double_slider.slider('values', 1) - 1) {
         if(single_slider.slider('value') == resp) {
-          selectAudioComponentCutterHandle(cutter, resp + 1);
+          selectAudioComponentCutterHandle(component, resp + 1);
         }
         double_slider.slider('values', 0, resp + 1);
         cutAudioComponentLeftSide(identifier, resp + 1);
