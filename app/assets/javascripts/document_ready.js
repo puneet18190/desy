@@ -1134,10 +1134,11 @@ $(document).ready(function() {
       $.ajax({
         type: 'post',
         url: '/videos/cache/empty',
+        beforeSend: unbindLoader(),
         success: function() {
           window.location = '/dashboard';
         }
-      });
+      }).always(bindLoader);
     }, function() {
       if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_info_update_media_element_in_editor').css('display') == 'none') {
         startCacheLoop();
