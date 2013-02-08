@@ -141,7 +141,8 @@ function cutAudioComponentLeftSide(identifier, pos) {
   var component = $('#audio_component_' + identifier);
   var new_duration = component.data('to') - pos;
   component.data('from', pos);
-  component.find('._audio_component_input_from').val(from);
+  component.find('._cutter_from').html(secondsToDateString(pos));
+  component.find('._audio_component_input_from').val(pos);
   changeDurationAudioEditorComponent(component, new_duration);
 }
 
@@ -149,7 +150,8 @@ function cutAudioComponentRightSide(identifier, pos) {
   var component = $('#audio_component_' + identifier);
   var new_duration = pos - component.data('from');
   component.data('to', pos);
-  component.find('._audio_component_input_ro').val(from);
+  component.find('._cutter_to').html(secondsToDateString(pos));
+  component.find('._audio_component_input_to').val(pos);
   changeDurationAudioEditorComponent(component, new_duration);
 }
 
