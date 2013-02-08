@@ -137,6 +137,23 @@ function closeGalleryInAudioEditor() {
   });
 }
 
+function cutAudioComponentLeftSide(identifier, pos) {
+  var component = $('#audio_component_' + identifier);
+  var new_duration = component.data('to') - pos;
+  component.data('from', pos);
+  component.find('._audio_component_input_from').val(from);
+  changeDurationAudioEditorComponent(component, new_duration);
+}
+
+function cutAudioComponentRightSide(identifier, pos) {
+  var component = $('#audio_component_' + identifier);
+  var new_duration = pos - component.data('from');
+  component.data('to', pos);
+  component.find('._audio_component_input_ro').val(from);
+  changeDurationAudioEditorComponent(component, new_duration);
+}
+
+// TODO da provare in profindità
 function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
   var next_position = $('#info_container').data('last-component-id') + 1;
   $('#info_container').data('last-component-id', next_position);
@@ -187,30 +204,6 @@ function fillAudioEditorSingleParameter(input, identifier, value) {
 //function startVideoEditorPreviewClip(component_id) {
 //  $('._video_component_preview').hide();
 //  $('#' + component_id + '_preview').show('fade', {}, 250);
-//}
-
-//function commitVideoComponentVideoCutter(identifier) {
-//  var from = $('#video_component_' + identifier + '_cutter').data('from');
-//  var to = $('#video_component_' + identifier + '_cutter').data('to');
-//  $('#video_component_' + identifier + ' ._video_component_input_from').val(from);
-//  $('#video_component_' + identifier + ' ._video_component_input_to').val(to);
-//  changeDurationVideoEditorComponent('video_component_' + identifier, to - from);
-//  if($('#video_component_' + identifier + '_cutter').data('changed')) {
-//    highlightAndUpdateVideoComponentIcon('video_component_' + identifier);
-//    $('#video_component_' + identifier + '_cutter').data('changed', false);
-//  }
-//}
-
-//function cutVideoComponentLeftSide(identifier, pos) {
-//  $('#video_component_' + identifier + '_cutter').data('from', pos);
-//  var new_duration = $('#video_component_' + identifier + '_cutter').data('to') - pos;
-//  $('#video_component_' + identifier + '_cutter ._video_editor_cutter_selected_time').html(secondsToDateString(new_duration));
-//}
-
-//function cutVideoComponentRightSide(identifier, pos) {
-//  $('#video_component_' + identifier + '_cutter').data('to', pos);
-//  var new_duration = pos - $('#video_component_' + identifier + '_cutter').data('from');
-//  $('#video_component_' + identifier + '_cutter ._video_editor_cutter_selected_time').html(secondsToDateString(new_duration));
 //}
 
 //function calculateVideoComponentStartSecondInVideoEditor(identifier) {

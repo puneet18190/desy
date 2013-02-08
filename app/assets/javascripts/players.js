@@ -295,7 +295,7 @@ function initializeAudioEditorCutter(identifier) {
     start: function(event, ui) {
       component.find('.ui-slider-handle').removeClass('selected');
       $(ui.handle).addClass('selected');
-    }/*,
+    },
     slide: function(event, ui) {
       var left_val = ui.values[0];
       var right_val = ui.values[1];
@@ -318,20 +318,16 @@ function initializeAudioEditorCutter(identifier) {
           component.find('._double_slider').slider('values', 0, left_val - 1);
           left_val -= 1;
         }
-        //FIXME
-        console.log('cut #audio_component_' + identifier + ' on the left with val = ' + left_val);
-        //cutAudioComponentLeftSide(identifier, left_val);
+        cutAudioComponentLeftSide(identifier, left_val);
       }
       if(right_val != component.data('to')) {
         if(left_val == right_val) {
           component.find('._double_slider').slider('values', 1, right_val + 1);
           right_val += 1;
         }
-        //FIXME
-        console.log('cut #audio_component_' + identifier + ' on the right with val = ' + right_val);
-        //cutAudioComponentRightSide(identifier, right_val);
+        cutAudioComponentRightSide(identifier, right_val);
       }
-    }*/
+    }
   });
   double_slider.find('.ui-slider-range').mousedown(function(e) {
     return false;
@@ -368,6 +364,7 @@ function stopAudioInAudioEditorPreview(identifier) {
 function selectAudioComponentCutterHandle(cutter, val) {
   setCurrentTimeToMedia(cutter.find('audio'), val);
   cutter.find('._media_player_slider').slider('value', val);
+  component.find('._current_time').html(secondsToDateString(val));
 }
 
 
