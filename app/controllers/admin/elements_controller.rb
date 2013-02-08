@@ -16,6 +16,27 @@ class Admin::ElementsController < ApplicationController
   def new
     @element = MediaElement.new
   end
+  
+  def create
+    new_media_element = MediaElement.new :media => params[:media]
+    new_media_element.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    new_media_element.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    new_media_element.tags = params[:tags_value]
+    new_media_element.user_id = current_user.id
+    if !new_media_element.save
+      @errors = convert_media_element_uploader_messages new_media_element.errors.messages
+      fields = new_media_element.errors.messages.keys
+      if fields.include? :sti_type
+        fields << :media if !fields.include? :media
+        fields.delete :sti_type
+      end
+      @error_fields = []
+      fields.each do |f|
+        @error_fields << f.to_s
+      end
+    end
+    render :new, :layout => false
+  end
 
   def destroy
     @element.destroy

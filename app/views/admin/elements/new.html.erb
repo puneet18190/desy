@@ -1,10 +1,23 @@
-<h3>New element</h3>
+<%
+  title_max = t('forms.placeholders.title', :num => t('language_parameters.media_element.length_title').to_s).downcase 
+  description_max = t('forms.placeholders.description', :num => t('language_parameters.media_element.length_description').to_s).downcase
+  tags_max = t('forms.placeholders.tags', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
+%>
+
+<h3>New elements</h3>
+<div id="new-elements" class="well">
+</div>
+
 <div class="well">
-  <form action="index_submit" method="get" accept-charset="utf-8">
-    <input type="file" />
-    <input type="text" />
-    <input type="textarea" />
-    <input type="textarea" />
-    <p><input type="submit" value="Continue &rarr;"></p>
-  </form>
+  <%= form_tag admin_elements_path, :method => :post, :id => 'new_media_element', :class => 'formModifyInfo', :multipart => true do %>
+    <input type="file" name="media" />
+    <br>
+    <%= text_field_tag 'title', '' %>
+    <br>
+    <%= text_area_tag 'description', '' %>    
+    <br>
+    <%= text_area_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
+    <br>
+    <%= submit_tag t('forms.upload_media_element.done').downcase, :class=>"btn" %>
+  <% end %>
 </div>

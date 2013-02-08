@@ -15,6 +15,7 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem "jquery-fileupload-rails"
 end
 
 gem 'jquery-rails', '~> 2.1.4'

@@ -10,6 +10,7 @@
 //= require bootstrap-tooltip
 //= require bootstrap-popover
 //= require bootstrap-datepicker
+//= require jquery-fileupload/basic
 
 $(document).ready(function(){
   $('#dp1').datepicker();
