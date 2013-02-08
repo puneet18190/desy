@@ -38,22 +38,16 @@ class Lesson < ActiveRecord::Base
   
   before_create :initialize_metadata
 
-  # SELECT lessons.id, lessons.user_id, lessons.is_public, lessons.copied_not_modified, lessons.updated_at, GREATEST(bookmarks.created_at, lessons.updated_at) AS first_order, LEAST(bookmarks.created_at, lessons.updated_at) AS second_order FROM "lessons" LEFT JOIN bookmarks ON bookmarks.bookmarkable_type = 'Lesson' AND bookmarks.bookmarkable_id = lessons.id AND bookmarks.user_id = 1 ORDER BY first_order DESC, second_order DESC;
+  # SELECT "lessons".* FROM "lessons" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = lessons.id AND bookmarks.bookmarkable_type = 'Lesson' AND bookmarks.user_id = 1 ORDER BY COALESCE(bookmarks.created_at, lessons.updated_at) DESC
   scope :of, ->(user_or_user_id) do
     user_id = user_or_user_id.instance_of?(User) ? user_or_user_id.id : user_or_user_id
     
-    select('lessons.id, 
-            lessons.user_id, 
-            lessons.is_public, 
-            lessons.copied_not_modified, 
-            lessons.updated_at, 
-            GREATEST(bookmarks.created_at, lessons.updated_at) AS first_order, 
-            LEAST(bookmarks.created_at, lessons.updated_at) AS second_order').
     joins(sanitize_sql ["LEFT JOIN bookmarks ON 
                          bookmarks.bookmarkable_id = lessons.id AND 
                          bookmarks.bookmarkable_type = 'Lesson' AND 
                          bookmarks.user_id = %i", user_id] ).
-    order('first_order DESC, second_order DESC')
+    where('bookmarks.user_id IS NOT NULL OR lessons.user_id = ?', user_id).
+    order('COALESCE(bookmarks.created_at, lessons.updated_at) DESC')
   end
 
   
@@ -76,7 +70,7 @@ class Lesson < ActiveRecord::Base
   end
   
   def available?
-    self.metadata.available_video && self.metadata.available_audio
+    metadata.available_video && metadata.available_audio
   end
   
   def tags

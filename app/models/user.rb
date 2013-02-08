@@ -96,11 +96,11 @@ class User < ActiveRecord::Base
   end
   
   def video_editor_available
-    Video.where('converted IS NULL AND user_id = ?', self.id).empty?
+    !Video.where(converted: nil, user_id: 1).exists?
   end
   
   def audio_editor_available
-    Audio.where('converted IS NULL AND user_id = ?', self.id).empty?
+    !Audio.where(converted: nil, user_id: 1).exists?
   end
   
   def search_media_elements(word, page, for_page, order=nil, filter=nil)
@@ -204,9 +204,8 @@ class User < ActiveRecord::Base
     pages_amount = Rational(relation.count, per_page).ceil
     resp = []
     relation.limit(per_page).offset(offset).each do |me|
-      media_element = me.media_element
-      media_element.set_status self.id
-      resp << media_element
+      me.set_status self.id
+      resp << me
     end
     { records: resp, pages_amount: pages_amount }
   end

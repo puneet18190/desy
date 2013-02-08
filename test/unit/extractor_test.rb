@@ -4,10 +4,7 @@ require 'test_helper'
 
 class ExtractorTest < ActiveSupport::TestCase
   
-  def load_likes
-    Like.all.each do |l|
-      l.destroy
-    end
+  def load_likers
     @liker1 = User.confirmed.new(:password => 'em1@em.em', :password_confirmation => 'em1@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em1@em.em'
     end
@@ -62,6 +59,13 @@ class ExtractorTest < ActiveSupport::TestCase
     @liker9.policy_1 = '1'
     @liker9.policy_2 = '1'
     assert @liker9.save
+  end
+  
+  def load_likes
+    load_likers
+    Like.all.each do |l|
+      l.destroy
+    end
     assert @liker1.like @les1.id
     assert @liker1.like @les3.id
     assert @liker1.like @les6.id
@@ -247,6 +251,48 @@ class ExtractorTest < ActiveSupport::TestCase
       Lesson.where(:id => l.id).update_all(:updated_at => date_now)
       date_now -= 1
     end
+  end
+  
+  test 'lesson_multiplicity' do
+    Lesson.where('id != 1').delete_all
+    assert Lesson.find(1).publish
+    Bookmark.delete_all
+    assert_equal 1, Lesson.count
+    assert_equal 0, Bookmark.count
+    load_likers
+    assert @liker1.bookmark 'Lesson', 1
+    assert @liker2.bookmark 'Lesson', 1
+    assert @liker3.bookmark 'Lesson', 1
+    assert @liker4.bookmark 'Lesson', 1
+    assert @liker5.bookmark 'Lesson', 1
+    assert @liker6.bookmark 'Lesson', 1
+    assert_equal 6, Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 1).count
+    assert_equal 1, @user1.own_lessons(1, 20)[:records].length
+  end
+  
+  test 'ordered_own_items' do
+    assert Lesson.find(1).publish
+    assert @user2.bookmark 'Lesson', @les2.id
+    assert @user2.bookmark 'Lesson', @les5.id
+    assert @user2.bookmark 'Lesson', @les6.id
+    assert @user2.bookmark 'Lesson', 1
+    assert @user2.bookmark 'MediaElement', 2
+    assert @user2.bookmark 'MediaElement', @el2.id
+    assert @user2.bookmark 'MediaElement', @el5.id
+    # order lessons
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 1, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:03')
+    Lesson.where(:id => 2).update_all(:updated_at => '2012-01-01 10:00:04')
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => @les2.id, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:05')
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => @les5.id, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:01')
+    Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => @les6.id, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:02')
+    # order media elements
+    Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => 2, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:01')
+    MediaElement.where(:id => 3).update_all(:updated_at => '2012-01-01 10:00:03')
+    Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => 4, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:05')
+    Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => @el2.id, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:04')
+    Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => @el5.id, :user_id => @user2.id).update_all(:created_at => '2012-01-01 10:00:02')
+    assert_ordered_item_extractor [@les2.id, 2, 1, @les6.id, @les5.id], @user2.own_lessons(1, 20)[:records]
+    assert_ordered_item_extractor [4, @el2.id, 3, @el5.id, 2], @user2.own_media_elements(1, 20)[:records]
   end
   
   test 'suggested_lessons' do
