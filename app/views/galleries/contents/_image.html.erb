@@ -1,7 +1,11 @@
 <ul id="image_gallery_content" class="scrollVerde">
   <div class="scroll-pane">
-    <% images.each do |image| %>
-      <%= render :partial => "galleries/thumbs/image", :locals => {:image => image} %>
+    <% if images.empty? %>
+      <%= t('galleries.empty.image') %>
+    <% else %>
+      <% images.each do |image| %>
+        <%= render :partial => "galleries/thumbs/image", :locals => {:image => image} %>
+      <% end %>
     <% end %>
   </div>
 </ul>
