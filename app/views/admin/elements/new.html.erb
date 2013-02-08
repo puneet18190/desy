@@ -6,6 +6,10 @@
 
 <h3>New elements</h3>
 <div id="new-elements" class="well">
+  <% if @new_media_element %>
+    <%= @errors_fields %>
+    <%= image_tag @new_media_element.media, width: '200' %>
+  <% end %>
 </div>
 
 <div class="well">

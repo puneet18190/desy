@@ -2,68 +2,8 @@
  * This is a manifest file that'll be compiled into admin.css, which will include all the files
  * listed below.
  *
- *= require_self
  *= require bootstrap
  *= require bootstrap-responsive
  *= require datepicker
+ *= require admin_overrides
  */
- 
-body {
- padding-top: 60px;
- padding-bottom: 40px;
-}
-.sidebar-nav {
- padding: 9px 0;
-}
- 
-a.action:hover{
- opacity: 0.5;
-}
-
-a.action.disabled{
-  opacity: 0.2;
-}
- 
-.table-hover tbody tr{
- cursor:pointer;
-}
-
-.collapsed{
-  display:none;
-}
-
-.lesson-thumbnail{
-  width:246px;
-  font-size: 12px;
-}
-
-.element-thumbnail{
-  width:200px;
-  font-size: 12px;
-}
-
-.element-thumbnail .bulletPointVideo{
-  position:absolute;
-  top: 60px;
-  left: 60px;
-  width: 200px;
-}
-
-ul.nav li.dropdown:hover > ul.dropdown-menu{
-    display: block;
-    margin-top: -5px;
-}
-
-a.menu:after, .dropdown-toggle:after {
-    content: none;
-}
-ul.list{
-  list-style:none;
-  margin:0;
-  padding:0;
-}
-
-ul.list li, ol.list li{
-  border-bottom: 1px solid #ccc;
-  padding: 3px;
-}
