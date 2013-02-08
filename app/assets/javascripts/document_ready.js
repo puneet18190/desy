@@ -1145,7 +1145,7 @@ $(document).ready(function() {
           startCacheLoop();
         }
       } else {
-        if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_update_new_media_element_in_editor').css('display') == 'none') {
+        if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_info_update_media_element_in_editor').css('display') == 'none') {
           startCacheLoop();
         }
       }
@@ -1590,7 +1590,7 @@ $(document).ready(function() {
           startCacheLoop();
         }
       } else {
-        if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_update_new_media_element_in_editor').css('display') == 'none') {
+        if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_info_update_media_element_in_editor').css('display') == 'none') {
           startCacheLoop();
         }
       }
