@@ -1,7 +1,11 @@
 <ul id="video_gallery_content" class="scrollVerde">
   <div class="scroll-pane">
-    <% videos.each do |video| %>
-      <%= render :partial => 'galleries/thumbs/video', :locals => {:video => video} %>
+    <% if videos.empty? %>
+      <%= t('galleries.empty.video') %>
+    <% else %>
+      <% videos.each do |video| %>
+        <%= render :partial => 'galleries/thumbs/video', :locals => {:video => video} %>
+      <% end %>
     <% end %>
   </div>
 </ul>
