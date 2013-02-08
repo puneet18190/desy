@@ -79,6 +79,14 @@ function removeAudioEditorComponent(component) {
   });
 }
 
+function disableCommitAndPreviewInAudioEditor() {
+  
+}
+
+function enableCommitAndPreviewInAudioEditor() {
+  
+}
+
 function setToZeroAllZIndexesInAudioEditor() {
   $('._audio_editor_component ._remove').css('z-index', 0);
   $('._audio_editor_component ._box_ghost').css('z-index', 0);

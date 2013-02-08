@@ -1598,6 +1598,12 @@ $(document).ready(function() {
     });
   });
   
+  $('body').on('click', '#start_audio_editor_preview', function() {
+    if(!$(this).hasClass('disabled')) {
+      alert('previewww');
+    }
+  });
+  
   initializeAudioEditor();
   
   
