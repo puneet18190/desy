@@ -98,11 +98,17 @@ html.audio_editor-controller {
           position:absolute;
           top:20px;
           left:10px;
+          &.selected {
+            color: #fff
+          }
         }
         span._total_length {
           position:absolute;
           top:20px;
           right:10px;
+          &.selected {
+            color: #fff
+          }
         }
         .cutter {
           padding-top: 18px;
@@ -182,6 +188,9 @@ html.audio_editor-controller {
         .audioComponentDurations {
           width: 260px;
           float: left;
+          span.selected {
+            color:#fff;
+          }
         }
         .audioComponentControls {
           float: right;
