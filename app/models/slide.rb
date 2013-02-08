@@ -43,14 +43,15 @@ class Slide < ActiveRecord::Base
   end
   
   def accepted_media_element_sti_type
-    if [COVER, IMAGE1, IMAGE2, IMAGE3, IMAGE4].include?(self.kind)
-      return MediaElement::IMAGE_TYPE
-    elsif [VIDEO1, VIDEO2].include?(self.kind)
-      return MediaElement::VIDEO_TYPE
-    elsif self.kind == AUDIO
-      return MediaElement::AUDIO_TYPE
+    case kind
+    when ->(k) { [COVER, IMAGE1, IMAGE2, IMAGE3, IMAGE4].include?(k) }
+      MediaElement::IMAGE_TYPE
+    when ->(k) { [VIDEO1, VIDEO2].include?(k) }
+      MediaElement::VIDEO_TYPE
+    when AUDIO
+      MediaElement::AUDIO_TYPE
     else
-      return ''
+      ''
     end
   end
   
@@ -135,7 +136,7 @@ class Slide < ActiveRecord::Base
       raise ActiveRecord::Rollback if !self.lesson.modify
       begin
         self.destroy
-      rescue Exception
+      rescue StandardError
         raise ActiveRecord::Rollback
       end
       Slide.where('lesson_id = ? AND position > ?', my_lesson_id, my_position).order(:position).each do |s|

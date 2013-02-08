@@ -285,7 +285,7 @@ class Lesson < ActiveRecord::Base
             raise ActiveRecord::Rollback
           end
           b.destroy
-        rescue Exception
+        rescue StandardError
           errors.add(:base, :problem_unpublishing)
           raise ActiveRecord::Rollback
         end
@@ -320,7 +320,7 @@ class Lesson < ActiveRecord::Base
       end
       begin
         self.destroy
-      rescue Exception
+      rescue StandardError
         errors.add(:base, :problem_destroying)
         raise ActiveRecord::Rollback
       end
