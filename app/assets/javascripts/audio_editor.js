@@ -79,10 +79,28 @@ function removeAudioEditorComponent(component) {
   });
 }
 
+function setToZeroAllZIndexesInAudioEditor() {
+  $('._audio_editor_component ._remove').css('z-index', 0);
+  $('._audio_editor_component ._box_ghost').css('z-index', 0);
+  $('._audio_editor_component ._media_player_slider_disabler').css('z-index', 0);
+  $('._audio_editor_component ._double_slider').css('z-index', 0);
+  $('._audio_editor_component ._under_double_slider').css('z-index', 0);
+  $('._audio_editor_component ._media_player_slider').css('z-index', 0);
+}
+
+function setBackAllZIndexesInAudioEditor() {
+  $('._audio_editor_component ._remove').css('z-index', 101);
+  $('._audio_editor_component ._box_ghost').css('z-index', 100);
+  $('._audio_editor_component ._media_player_slider_disabler').css('z-index', 99);
+  $('._audio_editor_component ._double_slider').css('z-index', 98);
+  $('._audio_editor_component ._under_double_slider').css('z-index', 97);
+  $('._audio_editor_component ._media_player_slider').css('z-index', 96);
+}
+
 function showGalleryInAudioEditor() {
   $('._audio_editor_bottom_bar').hide();
   $('#audio_editor_gallery_container').show();
-  $('._audio_editor_component ._remove').css('z-index', 0);
+  setToZeroAllZIndexesInAudioEditor();
   calculateNewPositionGalleriesInAudioEditor();
 }
 
@@ -93,7 +111,7 @@ function calculateNewPositionGalleriesInAudioEditor() {
 function closeGalleryInAudioEditor() {
   $('._audio_editor_bottom_bar').show();
   $('#audio_editor_gallery_container').hide('fade', {}, 250, function() {
-    $('._audio_editor_component ._remove').css('z-index', 103);
+    setBackAllZIndexesInAudioEditor();
   });
 }
 
