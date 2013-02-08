@@ -18,7 +18,7 @@ function deselectAllAudioEditorComponents() {
   if(selected_component.length > 0) {
     var pause = selected_component.find('._media_player_pause_in_audio_editor_preview');
     if(pause.css('display') == 'block') {
-      pause.trigger('click');
+      pause.click();
     }
     var identifier = selected_component.attr('id');
     identifier = identifier[identifier.length - 1];
