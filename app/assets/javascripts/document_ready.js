@@ -1670,6 +1670,61 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('click', '._audio_editor_component ._precision_arrow_left', function() {
+    var component = $(this).parents('._audio_editor_component');
+    var single_slider = component.find('._media_player_slider');
+    var double_slider = component.find('._double_slider');
+    if(single_slider.find('.ui-slider-handle').hasClass('selected')) {
+      var resp = single_slider.slider('value');
+      if(resp > 0 && resp > double_slider.slider('values', 0)) {
+        selectAudioComponentCutterHandle(cutter, resp - 1);
+      }
+    } else if($(double_slider.find('.ui-slider-handle')[0]).hasClass('selected')) {
+      var resp = double_slider.slider('values', 0);
+      if(resp > 0) {
+        double_slider.slider('values', 0, resp - 1);
+        cutAudioComponentLeftSide(identifier, resp - 1);
+      }
+    } else {
+      var resp = double_slider.slider('values', 1);
+      if(resp > double_slider.slider('values', 0) + 1) {
+        if(single_slider.slider('value') == resp) {
+          selectAudioComponentCutterHandle(cutter, resp - 1);
+        }
+        double_slider.slider('values', 1, resp - 1);
+        cutAudioComponentRightSide(identifier, resp - 1);
+      }
+    }
+  });
+  
+  $('body').on('click', '._audio_editor_component ._precision_arrow_right', function() {
+    var component = $(this).parents('._audio_editor_component');
+    var duration = component.data('max-to');
+    var single_slider = component.find('._media_player_slider');
+    var double_slider = component.find('._double_slider');
+    if(single_slider.find('.ui-slider-handle').hasClass('selected')) {
+      var resp = single_slider.slider('value');
+      if(resp < duration && resp < double_slider.slider('values', 1)) {
+        selectAudioComponentCutterHandle(cutter, resp + 1);
+      }
+    } else if($(double_slider.find('.ui-slider-handle')[0]).hasClass('selected')) {
+      var resp = double_slider.slider('values', 0);
+      if(resp < double_slider.slider('values', 1) - 1) {
+        if(single_slider.slider('value') == resp) {
+          selectAudioComponentCutterHandle(cutter, resp + 1);
+        }
+        double_slider.slider('values', 0, resp + 1);
+        cutAudioComponentLeftSide(identifier, resp + 1);
+      }
+    } else {
+      var resp = double_slider.slider('values', 1);
+      if(resp < duration) {
+        double_slider.slider('values', 1, resp + 1);
+        cutAudioComponentRightSide(identifier, resp + 1);
+      }
+    }
+  });
+  
   initializeAudioEditor();
   
   
@@ -1793,14 +1848,14 @@ $(document).ready(function() {
   
   $('body').on('click', '._audio_editor_component ._double_slider .ui-slider-range', function(e) {
     var component = $(this).parents('._audio_editor_component');
-//    var percent = cutter.data('max-to') * (e.pageX - cutter.find('._double_slider').offset().left) / cutter.find('._double_slider').width();
-//    resp = parseInt(percent);
-//    if(percent - parseInt(percent) > 0.5) {
-//      resp += 1;
-//    }
-//    cutter.find('.ui-slider-handle').removeClass('selected');
-//    cutter.find('._media_player_slider .ui-slider-handle').addClass('selected');
-//    selectVideoComponentCutterHandle(cutter, resp);
+    var percent = component.data('max-to') * (e.pageX - component.find('._double_slider').offset().left) / component.find('._double_slider').width();
+    resp = parseInt(percent);
+    if(percent - parseInt(percent) > 0.5) {
+      resp += 1;
+    }
+    component.find('.ui-slider-handle').removeClass('selected');
+    component.find('._media_player_slider .ui-slider-handle').addClass('selected');
+    selectAudioComponentCutterHandle(component, resp);
   });
   
   
