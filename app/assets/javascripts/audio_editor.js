@@ -14,6 +14,16 @@ function selectAudioEditorComponent(component) {
 }
 
 function deselectAllAudioEditorComponents() {
+  var selected_component = $('._audio_editor_component._selected');
+  if(selected_component.length > 0) {
+    var pause = selected_component.find('._media_player_pause_in_audio_editor_preview');
+    if(pause.css('display') == 'block') {
+      pause.trigger('click');
+    }
+    var identifier = selected_component.attr('id');
+    identifier = identifier[identifier.length - 1];
+    selectAudioEditorCursor(identifier);
+  }
   $('._audio_editor_component._selected ._content').removeClass('current');
   $('._audio_editor_component._selected ._box_ghost').show();
   $('._audio_editor_component._selected ._sort_handle').removeClass('current');
