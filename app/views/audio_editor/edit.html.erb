@@ -20,7 +20,7 @@
   
   <div class="addAudioandSave _audio_editor_bottom_bar">
     <div class="fltrt">
-      <a id="commit_audio_editor" class="nextButton <%= @parameters[:initial_audio].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.audio_editor.commit') %>" style="visibility:<%= @parameters[:components].any? ? 'visible'.html_safe : 'hidden'.html_safe %>">
+      <a id="commit_audio_editor" class="nextButton <%= @parameters[:initial_audio].nil? ? '' : '_with_choice'.html_safe %>" title="<%= t('titles.audio_editor.commit') %>" style="display:<%= @parameters[:components].empty? ? 'none'.html_safe : 'block'.html_safe %>">
       </a>
     </div>
   </div>
@@ -54,6 +54,7 @@
       $.ajax({
         type: 'post',
         url: '/audios/cache/empty',
+        beforeSend: unbindLoader(),
         success: function() {
           setTimeout(function() {
             if($('#info_container').data('cache-enabled-first-time')) {
@@ -61,7 +62,7 @@
             }
           }, $('#popup_parameters_container').data('cache-time'));
         }
-      });
+      }).always(bindLoader);
     });
   <% end %>
 </script>

@@ -1134,13 +1134,20 @@ $(document).ready(function() {
       $.ajax({
         type: 'post',
         url: '/videos/cache/empty',
+        beforeSend: unbindLoader(),
         success: function() {
-          window.location = '/dashboard';
+          window.location = '/media_elements';
         }
-      });
+      }).always(bindLoader);
     }, function() {
-      if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_info_update_media_element_in_editor').css('display') == 'none') {
-        startCacheLoop();
+      if($('#form_info_update_media_element_in_editor').length == 0) {
+        if($('#form_info_new_media_element_in_editor').css('display') == 'none') {
+          startCacheLoop();
+        }
+      } else {
+        if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_info_update_media_element_in_editor').css('display') == 'none') {
+          startCacheLoop();
+        }
       }
       closePopUp('dialog-confirm');
     });
@@ -1389,8 +1396,7 @@ $(document).ready(function() {
   
   $('body').on('click', '#commit_video_editor', function() {
     stopCacheLoop();
-    $('#info_container').data('cache-enabled-first-time', false);
-    $('#video_editor_form').submit();
+    submitMediaElementEditorCacheForm($('#video_editor_form'));
     if($(this).hasClass('_with_choice')) {
       var captions = $('#popup_captions_container');
       var title = captions.data('save-media-element-editor-title');
@@ -1563,6 +1569,105 @@ $(document).ready(function() {
     stopMedia('#gallery_audio_' + audio_id + ' audio');
     $('#gallery_audio_' + audio_id + ' ._expanded').hide();
     addComponentInAudioEditor(audio_id, $(this).data('ogg'), $(this).data('mp3'), $(this).data('duration'), $(this).data('title'));
+  });
+  
+  $('body').on('click', '._exit_audio_editor', function() {
+    stopCacheLoop();
+    var captions = $('#popup_captions_container');
+    showConfirmPopUp(captions.data('exit-audio-editor-title'), captions.data('exit-audio-editor-confirm'), captions.data('exit-audio-editor-yes'), captions.data('exit-audio-editor-no'), function() {
+      $('dialog-confirm').hide();
+      $.ajax({
+        type: 'post',
+        url: '/audios/cache/empty',
+        beforeSend: unbindLoader(),
+        success: function() {
+          window.location = '/media_elements';
+        }
+      }).always(bindLoader);
+    }, function() {
+      if($('#form_info_update_media_element_in_editor').length == 0) {
+        if($('#form_info_new_media_element_in_editor').css('display') == 'none') {
+          startCacheLoop();
+        }
+      } else {
+        if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_info_update_media_element_in_editor').css('display') == 'none') {
+          startCacheLoop();
+        }
+      }
+      closePopUp('dialog-confirm');
+    });
+  });
+  
+  $('body').on('click', '#start_audio_editor_preview', function() {
+    if(!$(this).hasClass('disabled')) {
+      alert('previewww');
+    }
+  });
+  
+  $('body').on('click', '#commit_audio_editor', function() {
+    stopCacheLoop();
+    submitMediaElementEditorCacheForm($('#audio_editor_form'));
+    if($(this).hasClass('_with_choice')) {
+      var captions = $('#popup_captions_container');
+      var title = captions.data('save-media-element-editor-title');
+      var confirm = captions.data('save-media-element-editor-confirm');
+      var yes = captions.data('save-media-element-editor-yes');
+      var no = captions.data('save-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        closePopUp('dialog-confirm');
+        showCommitAudioEditorForm('update');
+      }, function() {
+        closePopUp('dialog-confirm');
+        $('#audio_editor_title ._titled').hide();
+        $('#audio_editor_title ._untitled').show();
+        showCommitAudioEditorForm('new');
+      });
+    } else {
+      showCommitAudioEditorForm('new');
+    }
+  });
+  
+  $('body').on('click', '#audio_editor #form_info_new_media_element_in_editor ._cancel', function() {
+    $('#audio_editor_form').attr('action', '/audios/cache/save');
+    resetMediaElementEditorForms();
+    if($('#audio_editor_title ._titled').length > 0) {
+      $('#audio_editor_title ._titled').show();
+      $('#audio_editor_title ._untitled').hide();
+    }
+    hideCommitAudioEditorForm('new');
+    startCacheLoop();
+  });
+  
+  $('body').on('click', '#audio_editor #form_info_update_media_element_in_editor ._cancel', function() {
+    $('#audio_editor_form').attr('action', '/audios/cache/save');
+    resetMediaElementEditorForms();
+    hideCommitAudioEditorForm('update');
+    startCacheLoop();
+  });
+  
+  $('body').on('click', '#audio_editor #form_info_new_media_element_in_editor ._commit', function() {
+    $('#audio_editor_form').attr('action', '/audios/commit/new');
+    $('#audio_editor_form').submit();
+  });
+  
+  $('body').on('click', '#audio_editor #form_info_update_media_element_in_editor ._commit', function() {
+    if($('#info_container').data('used-in-private-lessons')) {
+      var captions = $('#popup_captions_container');
+      var title = captions.data('overwrite-media-element-editor-title');
+      var confirm = captions.data('overwrite-media-element-editor-confirm');
+      var yes = captions.data('overwrite-media-element-editor-yes');
+      var no = captions.data('overwrite-media-element-editor-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        $('dialog-confirm').hide();
+        $('#audio_editor_form').attr('action', '/audios/commit/overwrite');
+        $('#audio_editor_form').submit();
+      }, function() {
+        closePopUp('dialog-confirm');
+      });
+    } else {
+      $('#audio_editor_form').attr('action', '/audios/commit/overwrite');
+      $('#audio_editor_form').submit();
+    }
   });
   
   initializeAudioEditor();

@@ -9,12 +9,16 @@ function selectAudioEditorComponent(component) {
   component.find('._content').addClass('current');
   component.find('._box_ghost').hide();
   component.find('._sort_handle').addClass('current');
+  component.find('._player_content').css('visibility', 'visible');
+  component.find('._controls').css('visibility', 'visible');
 }
 
 function deselectAllAudioEditorComponents() {
   $('._audio_editor_component._selected ._content').removeClass('current');
   $('._audio_editor_component._selected ._box_ghost').show();
   $('._audio_editor_component._selected ._sort_handle').removeClass('current');
+  $('._audio_editor_component._selected ._player_content').css('visibility', 'hidden');
+  $('._audio_editor_component._selected ._controls').css('visibility', 'hidden');
   $('._audio_editor_component._selected').removeClass('_selected');
 }
 
@@ -34,7 +38,7 @@ function initializeAudioEditor() {
     stop: function(event, ui) {
       var my_item = $(ui.item);
       resizeLastComponentInAudioEditor();
-      var boolean1 = (my_item.next().lengt == 0);
+      var boolean1 = (my_item.next().length == 0);
       var boolean2 = (my_item.data('position') != $('._audio_editor_component').length);
       var boolean3 = (my_item.next().data('position') != (my_item.data('position') + 1));
       if(boolean1 && boolean2 || !boolean1 && boolean3) {
@@ -70,16 +74,56 @@ function removeAudioEditorComponent(component) {
     $(this).remove();
     reloadAudioEditorComponentPositions();
     if($('._audio_editor_component').length == 0) {
-      $('#commit_audio_editor').css('visibility', 'hidden');
+      disableCommitAndPreviewInAudioEditor();
     }
   });
+}
+
+function disableCommitAndPreviewInAudioEditor() {
+  $('#commit_audio_editor').hide();
+  $('#start_audio_editor_preview').addClass('disabled');
+}
+
+function enableCommitAndPreviewInAudioEditor() {
+  $('#commit_audio_editor').show();
+  $('#start_audio_editor_preview').removeClass('disabled');
+}
+
+function setToZeroAllZIndexesInAudioEditor() {
+  $('._audio_editor_component ._remove').css('z-index', 0);
+  $('._audio_editor_component ._box_ghost').css('z-index', 0);
+  $('._audio_editor_component ._media_player_slider_disabler').css('z-index', 0);
+  $('._audio_editor_component ._double_slider').css('z-index', 0);
+  $('._audio_editor_component ._under_double_slider').css('z-index', 0);
+  $('._audio_editor_component ._media_player_slider').css('z-index', 0);
+}
+
+function setBackAllZIndexesInAudioEditor() {
+  $('._audio_editor_component ._remove').css('z-index', 101);
+  $('._audio_editor_component ._box_ghost').css('z-index', 100);
+  $('._audio_editor_component ._media_player_slider_disabler').css('z-index', 99);
+  $('._audio_editor_component ._double_slider').css('z-index', 98);
+  $('._audio_editor_component ._under_double_slider').css('z-index', 97);
+  $('._audio_editor_component ._media_player_slider').css('z-index', 96);
 }
 
 function showGalleryInAudioEditor() {
   $('._audio_editor_bottom_bar').hide();
   $('#audio_editor_gallery_container').show();
-  $('._audio_editor_component ._remove').css('z-index', 0);
+  setToZeroAllZIndexesInAudioEditor();
   calculateNewPositionGalleriesInAudioEditor();
+}
+
+function showCommitAudioEditorForm(scope) {
+  $('._audio_editor_bottom_bar').hide();
+  $('#audio_editor #form_info_' + scope + '_media_element_in_editor').show();
+  setToZeroAllZIndexesInAudioEditor();
+}
+
+function hideCommitAudioEditorForm(scope) {
+  $('._audio_editor_bottom_bar').show();
+  $('#audio_editor #form_info_' + scope + '_media_element_in_editor').hide();
+  setBackAllZIndexesInAudioEditor();
 }
 
 function calculateNewPositionGalleriesInAudioEditor() {
@@ -89,7 +133,7 @@ function calculateNewPositionGalleriesInAudioEditor() {
 function closeGalleryInAudioEditor() {
   $('._audio_editor_bottom_bar').show();
   $('#audio_editor_gallery_container').hide('fade', {}, 250, function() {
-    $('._audio_editor_component ._remove').css('z-index', 103);
+    setBackAllZIndexesInAudioEditor();
   });
 }
 
@@ -122,6 +166,7 @@ function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
   changeDurationAudioEditorComponent(empty_component, duration);
   // TODO manca scroll
   // TODO manca highlights
+  // TODO if ho appena aggiunto la prima componente --- enableCommitAndPreviewInAudioEditor
 }
 
 function fillAudioEditorSingleParameter(input, identifier, value) {
