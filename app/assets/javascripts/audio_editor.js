@@ -114,6 +114,18 @@ function showGalleryInAudioEditor() {
   calculateNewPositionGalleriesInAudioEditor();
 }
 
+function showCommitAudioEditorForm(scope) {
+  $('._audio_editor_bottom_bar').hide();
+  $('#audio_editor #form_info_' + scope + '_media_element_in_editor').show();
+  setToZeroAllZIndexesInAudioEditor();
+}
+
+function hideCommitAudioEditorForm(scope) {
+  $('._audio_editor_bottom_bar').show();
+  $('#audio_editor #form_info_' + scope + '_media_element_in_editor').hide();
+  setBackAllZIndexesInAudioEditor();
+}
+
 function calculateNewPositionGalleriesInAudioEditor() {
   $('#audio_editor_gallery_container').css('left', (($(window).width() - 940) / 2) + 'px');
 }
