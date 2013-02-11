@@ -188,7 +188,6 @@ function selectAudioEditorCursor(id) {
   $('#audio_component_' + id + ' ._current_time').addClass('selected');
 }
 
-// TODO da provare in profindità
 function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
   var next_position = $('#info_container').data('last-component-id') + 1;
   var selected_component = $('._audio_editor_component._selected');
@@ -224,9 +223,14 @@ function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
   if(selected_component.length == 0) {
     resizeLastComponentInAudioEditor();
   }
+  if($('._audio_editor_component').length == 1) {
+    enableCommitAndPreviewInAudioEditor();
+  }
+  setTimeout(function() {
+    selectAudioEditorComponent(empty_component);
+    empty_component.find('._title').effect('highlight', {color: '#41A62A'}, 1000);
+  }, 500);
   // TODO manca scroll
-  // TODO manca highlights
-  // TODO if ho appena aggiunto la prima componente --- enableCommitAndPreviewInAudioEditor
 }
 
 function fillAudioEditorSingleParameter(input, identifier, value) {
