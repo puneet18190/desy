@@ -12,8 +12,12 @@
 //= require bootstrap-popover
 //= require bootstrap-datepicker
 //= require jquery-fileupload/basic
+//= require ajax_loader
 
 $(document).ready(function(){
+  // LOADER
+  bindLoader();
+  
   $('#dp1').datepicker();
   $('#dp2').datepicker();
   $('[rel=popover]').popover({ 

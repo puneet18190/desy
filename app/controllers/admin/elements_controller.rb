@@ -35,8 +35,6 @@ class Admin::ElementsController < ApplicationController
         @error_fields << f.to_s
       end
     end
-    
-    render :js => @new_media_element
   end
   
 

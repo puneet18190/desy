@@ -1,0 +1,14 @@
+<div class="element-update-form img-polaroid">
+  <%= form_tag admin_elements_path(element), :method => :put do %>
+    <%= image_tag element.thumb_url %>
+    <br>
+    <%= text_field_tag 'title', element.title %>
+    <br>
+    <%= text_area_tag 'description', element.description %>    
+    <br>
+    <%= text_area_tag 'tags', element.tags , :class => 'lower' %>
+    <br>
+    <button class="btn btn-small" type="button"><%= t('admin.elements.new.update') %></button>
+    <button class="btn btn-small btn-danger" type="button"><%= t('admin.elements.new.delete') %></button>
+  <% end %>
+</div>

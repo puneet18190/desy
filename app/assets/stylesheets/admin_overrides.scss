@@ -38,6 +38,16 @@
       width: 200px;
     }
   }
+  
+  .element-update-form{
+    img{
+      margin: 20px auto;
+    }
+    width: 250px;
+    float:left;
+    margin: 0 20px 20px 0;
+    text-align:center; 
+  }
 
   ul.nav li.dropdown:hover > ul.dropdown-menu{
       display: block;
@@ -56,5 +66,24 @@
   ul.list li, ol.list li{
     border-bottom: 1px solid #ccc;
     padding: 3px;
+  }
+  
+  #loading {
+    display: none;
+    z-index: 100000;
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%; /* funziona solo se prima lo hai assegnato al parent */
+    background: transparent;
+    opacity:0.8;  
+    text-align: center;
+  }
+  .containerLoading {
+    position: absolute;
+    z-index: 999999;
+    background-color: #fff;
+    border-radius: 20px;
   }
 }

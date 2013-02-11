@@ -3,25 +3,33 @@
   description_max = t('forms.placeholders.description', :num => t('language_parameters.media_element.length_description').to_s).downcase
   tags_max = t('forms.placeholders.tags', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
-
-<h3>New elements</h3>
-<div id="new_elements_preview" class="well">
-  <% if @new_media_element %>
-    <%= @errors_fields %>
-    <%= image_tag @new_media_element.media, width: '200' %>
+<div class="row-fluid">
+  <div class="well span12">
+  <%= form_tag admin_elements_path, :method => :post, :id => 'new-elements', :multipart => true do %>
+  <div class="span3">
+    <label for="title">Title</label>
+    <%= text_field_tag 'title', '' %>
+  </div>
+  <div class="span3">
+    <label for="description">Description</label>
+    <%= text_area_tag 'description', '' %>    
+  </div>
+  <div class="span3">
+    <label for="tags">Tags</label>
+    <%= text_area_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
+  </div>
+  <div class="span2">
+    <label for="file">File to Upload</label> <%= file_field_tag "media", multiple: true %><br />
+    <%= submit_tag t('forms.upload_media_element.done').downcase, :class=>"btn", :style=>"display:none" %>
+  </div>
   <% end %>
 </div>
-
-<div class="well">
-  <%= form_tag admin_elements_path, :method => :post, :id => 'new-elements', :multipart => true do %>
-    <label for="file">File to Upload</label> <%= file_field_tag "media", multiple: true %>
-    <br>
-    <%= text_field_tag 'title', '' %>
-    <br>
-    <%= text_area_tag 'description', '' %>    
-    <br>
-    <%= text_area_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
-    <br>
-    <%= submit_tag t('forms.upload_media_element.done').downcase, :class=>"btn" %>
-  <% end %>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+  <h3>New elements</h3>
+  <div id="new_elements_preview" class="well">
+    <div style="clear:both">
+  </div>
+</div>
 </div>
