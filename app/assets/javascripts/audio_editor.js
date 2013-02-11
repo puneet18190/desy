@@ -14,6 +14,16 @@ function selectAudioEditorComponent(component) {
 }
 
 function deselectAllAudioEditorComponents() {
+  var selected_component = $('._audio_editor_component._selected');
+  if(selected_component.length > 0) {
+    var pause = selected_component.find('._media_player_pause_in_audio_editor_preview');
+    if(pause.css('display') == 'block') {
+      pause.click();
+    }
+    var identifier = selected_component.attr('id');
+    identifier = identifier[identifier.length - 1];
+    selectAudioEditorCursor(identifier);
+  }
   $('._audio_editor_component._selected ._content').removeClass('current');
   $('._audio_editor_component._selected ._box_ghost').show();
   $('._audio_editor_component._selected ._sort_handle').removeClass('current');
@@ -157,21 +167,25 @@ function cutAudioComponentRightSide(identifier, pos) {
 
 function deselectAllAudioEditorCursors(id) {
   $('#audio_component_' + id + ' .ui-slider-handle').removeClass('selected');
+  $('#audio_component_' + id + ' ._cutter_from, #audio_component_' + id + ' ._cutter_to, #audio_component_' + id + ' ._current_time').removeClass('selected');
 }
 
 function selectAudioEditorLeftHandle(id) {
   deselectAllAudioEditorCursors(id);
   $($('#audio_component_' + id + ' ._double_slider .ui-slider-handle')[0]).addClass('selected');
+  $('#audio_component_' + id + ' ._cutter_from').addClass('selected');
 }
 
 function selectAudioEditorRightHandle(id) {
   deselectAllAudioEditorCursors(id);
   $($('#audio_component_' + id + ' ._double_slider .ui-slider-handle')[1]).addClass('selected');
+  $('#audio_component_' + id + ' ._cutter_to').addClass('selected');
 }
 
 function selectAudioEditorCursor(id) {
   deselectAllAudioEditorCursors(id);
   $('#audio_component_' + id + ' ._media_player_slider .ui-slider-handle').addClass('selected');
+  $('#audio_component_' + id + ' ._current_time').addClass('selected');
 }
 
 // TODO da provare in profindità
