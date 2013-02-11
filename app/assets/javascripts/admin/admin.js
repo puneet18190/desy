@@ -15,15 +15,54 @@
 //= require ajax_loader
 
 $(document).ready(function(){
+  
   // LOADER
   bindLoader();
   
-  $('#dp1').datepicker();
-  $('#dp2').datepicker();
-  $('[rel=popover]').popover({ 
-    html : true,
-    trigger : 'hover'
+  // FUNCTIONS
+  $('body').on('click','._update_new_element ', function(e){
+    $.ajax({
+      type: 'PUT',
+      url: '/admin/elements/'+$(this).data('param'),
+      timeout:5000,
+      data: $(this).parent('form').serialize(),
+      success: function(){
+        $(e.target).parents('.element-update-form').fadeOut('fast').fadeIn('fast');
+      }
+  	});
   });
+  
+  $('body').on('click','._delete_new_element ', function(e){
+    $.ajax({
+      type: 'DELETE',
+      url: '/admin/elements/'+$(this).data('param'),
+      timeout:5000,
+      success: function(){
+        $(e.target).parents('.element-update-form').fadeOut();
+      }
+  	});
+    
+  });
+  
+  $('body').on('click','._delete_list_element ', function(e){
+    e.preventDefault();
+    $.ajax({
+      type: 'DELETE',
+      url: '/admin/elements/'+$(this).data('param'),
+      timeout:5000,
+      success: function(){
+        var el = $(e.target).parents('.collapse')
+        el.next('collapsed').fadeOut();
+        el.fadeOut();
+      }
+  	});
+    
+  });
+  
+  // EFFECTS
+  
+  //$('#dp1').datepicker();
+  //$('#dp2').datepicker();
    
   $('.dropdown').click(function(e){
     e.stopPropagation();
@@ -44,6 +83,11 @@ $(document).ready(function(){
    $('tr.collapsed').slideUp('slow');
   });
   
-  $('#new-elements').fileupload();
+  // BROWSER DETECTION: IE CHECK
+  if(!$.browser.msie){
+    $('#new-elements').fileupload();
+  }else{
+    $('._new_element_form_submit').show();
+  }
   
 });

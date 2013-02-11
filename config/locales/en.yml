@@ -1504,6 +1504,7 @@ en:
   admin:
     # SECTION 4.1 dashboard
     dashboard:
+      link_name: 'Admin'
     # SECTION 4.2 administer lessons
     lessons:
       index:

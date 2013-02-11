@@ -1,5 +1,5 @@
 class Admin::ElementsController < ApplicationController
-  before_filter :find_element, :only => [:destroy]
+  before_filter :find_element, :only => [:destroy, :update]
   layout 'admin'
   def index
     #@elements = Element.order('id DESC').page params[:page] #to manage others search
@@ -35,21 +35,35 @@ class Admin::ElementsController < ApplicationController
         @error_fields << f.to_s
       end
     end
+    if params[:commit]
+      render :new
+    end
   end
   
+  
+  def update
+    @element.title = params[:title]
+    @element.description = params[:description]
+    @element.tags = params[:tags]
+    if !@element.save
+      @errors = convert_item_error_messages @element.errors.messages
+      @error_fields = @element.errors.messages.keys
+      render :nothing => true
+    else
+      render :nothing => true
+    end
+  end
 
   def destroy
-    @element.destroy
-
-    respond_to do |wants|
-      wants.html { redirect_to(elements_url) }
-      wants.xml  { head :ok }
+    if !@element.check_and_destroy
+      @error = @element.get_base_error
     end
+    render :nothing => true
   end
 
   private
     def find_element
-      @element = Element.find(params[:id])
+      @element = MediaElement.find(params[:id])
     end
 
 end

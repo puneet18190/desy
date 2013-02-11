@@ -16,23 +16,29 @@
   <tbody>
     <% elements.each do |element| %>
       <tr class="collapse">
-        <td><%=element.id %></td>
+        <td><%= element.id %></td>
         <td><%= element.title%></td>
         <td><%= element.sti_type%></td>
         <td><%= element.user.surname %> <%= element.user.name %></td>
         <td><%= element.user.location.description %> (<%= element.user.school %>)</td>
         <td><%= element.created_at.strftime('%d-%m-%Y')%></td>
         <td><%= element.updated_at.strftime('%d-%m-%Y')%></td>
-        <td><a href="#" class="action"><i class="icon-remove"></i></a></td>
+        <td>
+          <% if !element.is_public %>
+          <a href="#" class="_publish_list_element action" title="publish" data-param="<%= element.id %>"><i class="icon-globe"></i></a>
+          <% end %>
+        </td>
+        <td><a href="#" class="_delete_list_element action"  title="delete" data-param="<%= element.id %>"><i class="icon-remove"></i></a></td>
       </tr>
+      <div style="clear:both;"></div>
       <tr class="collapsed">
-        <td colspan="9">
-          <div class="pull-left span3">
+        <td colspan="8">
+          <div class="pull-left" style="width: 20%">
             <div class="img-polaroid element-thumbnail">
               <%= render :partial => "media_elements/thumbnails/#{element.sti_type.downcase}", :locals => {:item => element} %>
             </div>
           </div>
-          <div class="pull-right span9"><%= element.description %></div>
+          <div class="pull-left" style="width: 75%; padding: 0 20px;"><%= element.description %></div>
         <td>
       </tr>
     <% end %>

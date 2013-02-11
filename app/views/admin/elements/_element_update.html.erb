@@ -1,5 +1,5 @@
-<div class="element-update-form img-polaroid">
-  <%= form_tag admin_elements_path(element), :method => :put do %>
+<div class="element-update-form span4 img-polaroid">
+  <%= form_tag '/admin/elements/#{element.id}', :method => :put do %>
     <%= image_tag element.thumb_url %>
     <br>
     <%= text_field_tag 'title', element.title %>
@@ -8,7 +8,7 @@
     <br>
     <%= text_area_tag 'tags', element.tags , :class => 'lower' %>
     <br>
-    <button class="btn btn-small" type="button"><%= t('admin.elements.new.update') %></button>
-    <button class="btn btn-small btn-danger" type="button"><%= t('admin.elements.new.delete') %></button>
+    <button class="_update_new_element btn btn-small" type="button" data-param="<%= element.id %>">Update</button>
+    <button class="_delete_new_element btn btn-small btn-danger" type="button" data-param="<%= element.id %>">Delete</button>
   <% end %>
 </div>
