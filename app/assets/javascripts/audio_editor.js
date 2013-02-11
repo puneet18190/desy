@@ -373,5 +373,5 @@ function increaseAudioEditorPreviewTimer() {
   var data_container = $('#info_container');
   var global_time = data_container.data('current-preview-time');
   $('#visual_audio_editor_current_time').html(secondsToDateString(global_time + 1));
-  data_container.data('current-time', global_time + 1);
+  data_container.data('current-preview-time', global_time + 1);
 }
