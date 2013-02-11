@@ -1550,6 +1550,10 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#add_new_audio_component_in_audio_editor', function() {
+    var selected_component = $('._audio_editor_component._selected');
+    if(selected_component.length > 0) {
+      selected_component.find('._media_player_pause_in_audio_editor_preview').click();
+    }
     if($('#audio_editor_gallery_container').data('loaded')) {
       showGalleryInAudioEditor();
     } else {

@@ -191,6 +191,7 @@ function selectAudioEditorCursor(id) {
 // TODO da provare in profindità
 function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
   var next_position = $('#info_container').data('last-component-id') + 1;
+  var selected_component = $('._audio_editor_component._selected');
   $('#info_container').data('last-component-id', next_position);
   var empty_component = $($('#empty_component_for_audio_editor').html());
   empty_component.attr('id', ('audio_component_' + next_position));
@@ -210,12 +211,19 @@ function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
   to_be_appended += fillAudioEditorSingleParameter('from', next_position, 0);
   to_be_appended += fillAudioEditorSingleParameter('to', next_position, duration);
   to_be_appended += fillAudioEditorSingleParameter('position', next_position, next_position);
-  $('#audio_editor_timeline .jspPane').append(empty_component);
+  if(selected_component.length == 0) {
+    $('#audio_editor_timeline .jspPane').append(empty_component);
+  } else {
+    selected_component.after(empty_component);
+  }
   empty_component.append(to_be_appended);
   empty_component.find('audio').load();
   initializeAudioEditorCutter(next_position);
   reloadAudioEditorComponentPositions(empty_component);
   changeDurationAudioEditorComponent(empty_component, duration);
+  if(selected_component.length == 0) {
+    resizeLastComponentInAudioEditor();
+  }
   // TODO manca scroll
   // TODO manca highlights
   // TODO if ho appena aggiunto la prima componente --- enableCommitAndPreviewInAudioEditor
