@@ -15,9 +15,8 @@
     
     <div id="audio_editor_box_ghost" style="display:none;"></div>
     <div id="empty_audio_editor" style="display:<%= @parameters[:components].empty? ? 'block'.html_safe : 'none'.html_safe %>">
-
       <div class="emptyAudioEditor">
-        <p>parola parola parola parola parola parola parola parola parola</p>
+        <p><%= t('audio_editor.empty') %></p>
       </div> 
     </div>
     <%= render :partial => 'audio_editor/timeline', :locals => {:components => @parameters[:components]} %>

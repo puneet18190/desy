@@ -1606,7 +1606,11 @@ $(document).ready(function() {
   
   $('body').on('click', '#start_audio_editor_preview', function() {
     if(!$(this).hasClass('disabled')) {
-      alert('previewww');
+      var selected_component = $('._audio_editor_component._selected');
+      if(selected_component.length > 0) {
+        selected_component.find('._media_player_pause_in_audio_editor_preview').click();
+      }
+      enterAudioEditorPreviewMode();
     }
   });
   

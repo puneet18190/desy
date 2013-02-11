@@ -256,7 +256,7 @@ function scrollToFirstSelectedAudioEditorComponent() {
 function enterAudioEditorPreviewMode() {
   $('#commit_audio_editor').hide();
   $('#add_new_audio_component_in_audio_editor').addClass('disabled');
-  $('._audio_editor_component ._audio_component_icon').hide();
+  $('._audio_editor_component ._audio_component_icon').css('visibility', 'hidden');
   $('._audio_editor_component ._remove').hide();
   $('._audio_editor_component ._media_player_play_in_audio_editor_preview').hide();
   $('._audio_editor_component ._player_content').style('opacity', 1);
