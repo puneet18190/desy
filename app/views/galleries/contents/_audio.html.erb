@@ -1,7 +1,9 @@
 <ul id="audio_gallery_content" class="scrollVerde">
   <div class="scroll-pane">
     <% if audios.empty? %>
-      <%= t('galleries.empty.audio') %>
+      <div class="emptyGalleryAudioEditor">
+        <p><%= t('galleries.empty.audio') %></p>
+      </div>
     <% else %>
       <% audios.each do |audio| %>
         <%= render :partial => 'galleries/thumbs/audio', :locals => {:audio => audio} %>

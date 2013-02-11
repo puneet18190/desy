@@ -318,6 +318,7 @@ html.media_element_editor-layout {
         }
       }
     }
+
     .image_gallery {
       height: 486px;
       width:876px;
@@ -335,8 +336,6 @@ html.media_element_editor-layout {
         }
       }
       
-
-
     }
     
     .audio_gallery {
@@ -359,7 +358,30 @@ html.media_element_editor-layout {
       right:70px;
       text-align:left;
     }
-
+    .emptyGalleryAudioEditor {
+      background: url(<%= asset_path 'big_audio.jpg' %>) center center no-repeat;
+      margin-top:5px;
+      padding-top:180px;
+      p {
+        color:#727377;
+      }    
+    }
+    .emptyGalleryVideoEditor {
+      background: url(<%= asset_path 'big_video.jpg' %>) center center no-repeat;
+      margin-top:5px;
+      padding-top:180px;
+      p {
+        color:#727377;
+      }    
+    }
+    .emptyGalleryImageEditor {
+      background: url(<%= asset_path 'big_image.jpg' %>) center center no-repeat;
+      margin-top:54px;
+      padding-top:180px;
+      p {
+        color:#727377;
+      }    
+    }
   }
   
   $icon-size: 5.6em;
