@@ -86,6 +86,7 @@ function removeAudioEditorComponent(component) {
     if($('._audio_editor_component').length == 0) {
       disableCommitAndPreviewInAudioEditor();
     }
+    resizeLastComponentInAudioEditor();
   });
 }
 
