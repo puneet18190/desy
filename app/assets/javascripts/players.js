@@ -342,30 +342,16 @@ function initializeAudioEditorCutter(identifier) {
   selectAudioEditorCursor(identifier);
   initializeMediaTimeUpdaterInAudioEditor(identifier);
   component.find('audio').bind('ended', function() {
-    stopAudioInAudioEditorPreview(identifier);
-  });
-}
-
-function stopAudioInAudioEditorPreview(identifier) {
-  var component = $('#audio_component_' + identifier);
-  try {
-    if(component.find('audio').length != 0) {
-      var has_source = true;
-      component.find('source').each(function() {
-        if($(this).attr('src') == '') {
-          has_source = false;
-        }
-      });
-      if(has_source) {
-        component.find('._media_player_pause_in_audio_editor_preview').click();
-        var initial_time = component.data('from');
-        component.find('._media_player_slider').slider('value', initial_time);
-        setCurrentTimeToMedia(component.find('audio'), initial_time);
-      }
+    try {
+      var initial_time = component.data('from');
+      component.find('._media_player_pause_in_audio_editor_preview').click();
+      component.find('._media_player_slider').slider('value', initial_time);
+      component.find('._current_time').html(secondsToDateString(initial_time));
+      setCurrentTimeToMedia($(component.find('audio')), initial_time);
+    } catch(err) {
+      console.log('error stopping media: ' + err);
     }
-  } catch(err) {
-    console.log('error stopping media: ' + err);
-  }
+  });
 }
 
 function selectAudioComponentCutterHandle(component, val) {
