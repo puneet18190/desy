@@ -260,11 +260,15 @@ function scrollToFirstSelectedAudioEditorComponent(callback) {
 }
 
 function enterAudioEditorPreviewMode() {
+  $('#info_container').data('in-preview', true);
+  // blocco e disabilito tutta la pagina
   $('#audio_editor_box_ghost').show();
   $('#commit_audio_editor').hide();
   $('#add_new_audio_component_in_audio_editor').addClass('disabled');
   $('#start_audio_editor_preview').addClass('disabled');
+  // scrollo all'inizio e chiamo la callback
   scrollToFirstSelectedAudioEditorComponent(function() {
+    // memorizzo la componente selezionata al momento del play, e deselezionato tutto
     var selected_component = $('._audio_editor_component._selected');
     var selected_identifier = 0;
     if(selected_component.length > 0) {
@@ -272,20 +276,23 @@ function enterAudioEditorPreviewMode() {
       selected_identifier = selected_identifier[selected_identifier.length - 1];
     }
     deselectAllAudioEditorComponents();
-    $('#info_container').data('in-preview', true);
+    // passo tutte le componenti a modalità preview deselezionate
     $('._audio_editor_component ._audio_component_icon').css('visibility', 'hidden');
     $('._audio_editor_component ._remove').hide();
     $('._audio_editor_component ._media_player_play_in_audio_editor_preview').hide();
+    $('._audio_editor_component ._media_player_slider .ui-slider-handle').hide();
     $('._audio_editor_component').css('opacity', 0.2);
+    // mostro il loader e faccio partire il timeout
     showLoader();
     setTimeout(function() {
       hideLoader();
+      // faccio lo switch del bottone play a stop
       $('#start_audio_editor_preview').hide();
+      $('#start_audio_editor_preview').removeClass('disabled');
       $('#stop_audio_editor_preview').show();
       // DEVO PARTIRE!!!!!
     }, 1500);
   });
-  // MANCA LO SCROLL!!! prima si spengono tutte le componenti e poi si accende quella selezionata! devo rimuovere il bordino???? devo segnarmi l'id della componente selected???
 }
 
 function leaveAudioEditorPreviewMode() {
