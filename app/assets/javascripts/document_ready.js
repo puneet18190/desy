@@ -1833,8 +1833,9 @@ $(document).ready(function() {
     component.find('._media_player_pause_in_audio_editor_preview').show();
     deselectAllAudioEditorCursors(identifier);
     var audio = component.find('audio');
-    if(audio[0].currentTime < component.data('from')) {
-      setCurrentTimeToMedia(audio, component.data('from'));
+    var single_slider = component.find('._media_player_slider');
+    if(audio[0].currentTime < single_slider.slider('value')) {
+      setCurrentTimeToMedia(audio, single_slider.slider('value'));
     }
     if(audio.readyState != 0) {
       audio[0].play();
