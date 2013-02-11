@@ -94,11 +94,13 @@ function removeAudioEditorComponent(component) {
 }
 
 function disableCommitAndPreviewInAudioEditor() {
+  $('#empty_audio_editor').show();
   $('#commit_audio_editor').hide();
   $('#start_audio_editor_preview').addClass('disabled');
 }
 
 function enableCommitAndPreviewInAudioEditor() {
+  $('#empty_audio_editor').hide();
   $('#commit_audio_editor').show();
   $('#start_audio_editor_preview').removeClass('disabled');
 }
