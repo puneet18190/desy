@@ -339,7 +339,6 @@ function initializeAudioEditorCutter(identifier) {
   double_slider.find('.ui-slider-range').mousedown(function(e) {
     return false;
   });
-  selectAudioEditorCursor(identifier);
   initializeMediaTimeUpdaterInAudioEditor(identifier);
   component.find('audio').bind('ended', function() {
     try {
