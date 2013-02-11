@@ -260,8 +260,8 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier) {
   var parsed_int = parseInt(media.currentTime);
   if($('#info_container').data('in-preview')) {
     if(parsed_int > component.find('._media_player_slider').slider('value')) {
+      increaseAudioEditorPreviewTimer();
       if(parsed_int == audio_cut_to) {
-        increaseAudioEditorPreviewTimer();
         deselectAllAudioEditorComponentsInPreviewMode();
         var old_start = component.data('from');
         component.removeClass('_selected');
@@ -279,13 +279,13 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier) {
           startAudioEditorPreview(next_component);
         } else {
           $($('._audio_editor_component')[0]).addClass('_selected');
-          
+          leaveAudioEditorPreviewMode();
         }
       } else {
-        increaseAudioEditorPreviewTimer(true);
+        component.find('._current_time').html(secondsToDateString(parsed_int));
+        component.find('._media_player_slider').slider('value', parsed_int);
       }
     }
-  /////////////////////////////////////////////////////////////////////
   } else if(component.data('playing')) {
     if(parsed_int == (audio_cut_to)) {
       var initial_time = component.data('from');

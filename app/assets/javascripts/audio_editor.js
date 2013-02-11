@@ -311,6 +311,7 @@ function deselectAllAudioEditorComponentsInPreviewMode() {
   });
 }
 
+// questa funzione va chiamata con già presente la classe _selected nella componente di uscita
 function leaveAudioEditorPreviewMode() {
   // setta current-preview-time a zero in info_container
 }
