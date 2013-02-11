@@ -285,14 +285,18 @@ function enterAudioEditorPreviewMode() {
     $('._audio_editor_component ._media_player_play_in_audio_editor_preview').hide();
     $('._audio_editor_component ._media_player_slider .ui-slider-handle').hide();
     $('._audio_editor_component').css('opacity', 0.2);
-    // mostro il loader e faccio partire il timeout
+    // mostro il loader e il tempo attuale della preview, e faccio partire il timeout
     showLoader();
+    $('#visual_audio_editor_current_time').show();
     setTimeout(function() {
       hideLoader();
       // faccio lo switch del bottone play a stop
       $('#start_audio_editor_preview').hide();
       $('#start_audio_editor_preview').removeClass('disabled');
       $('#stop_audio_editor_preview').show();
+      // cambio i colori del current time
+      $('#visual_audio_editor_total_length').css('color', '#787575');
+      $('#visual_audio_editor_current_time').css('color', 'white');
       if(selected_identifer == 0) {
         startAudioEditorPreview($($('._audio_editor_component')[0]));
       } else {
