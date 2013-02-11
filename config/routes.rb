@@ -158,8 +158,9 @@ Desy::Application.routes.draw do
   namespace 'admin' do
     root :to => 'dashboard#index'
     resources :lessons, :only => [:index, :destroy]
-    resources :elements
+    resources :elements, :except => [:show, :edit]
     resources :users, :only => [:index, :show, :create, :destroy]
+    get 'elements/edit' => 'elements#edit'
   end
   
 end

@@ -32,6 +32,27 @@ $(document).ready(function(){
   	});
   });
   
+  $('body').on('click','._publish_private_element ', function(e){
+    $('<input />',{
+      type: 'hidden',
+      name: 'is_public' 
+    }).insertBefore($(this));
+    
+    $.ajax({
+      type: 'PUT',
+      url: '/admin/elements/'+$(this).data('param'),
+      timeout:5000,
+      data: $(this).parent('form').serialize(),
+      success: function(){
+        var btn = $(e.target);
+        btn.siblings('._update_new_element').remove();
+        btn.siblings('input').prop('disabled', true);
+        btn.siblings('textarea').prop('disabled', true);
+        btn.remove();
+      }
+  	});
+  });
+  
   $('body').on('click','._delete_new_element ', function(e){
     $.ajax({
       type: 'DELETE',

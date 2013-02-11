@@ -1,5 +1,5 @@
 class Admin::ElementsController < ApplicationController
-  before_filter :find_element, :only => [:destroy, :update]
+  before_filter :find_element, :only => [:destroy, :update, :publish]
   layout 'admin'
   def index
     #@elements = Element.order('id DESC').page params[:page] #to manage others search
@@ -15,6 +15,10 @@ class Admin::ElementsController < ApplicationController
   
   def new
     @element = MediaElement.new
+  end
+  
+  def edit
+    @private_elements = MediaElement.where(user_id: current_user.id, is_public: false);
   end
   
   def create
@@ -45,6 +49,10 @@ class Admin::ElementsController < ApplicationController
     @element.title = params[:title]
     @element.description = params[:description]
     @element.tags = params[:tags]
+    if params[:is_public]
+      @element.is_public = true
+    end
+    
     if !@element.save
       @errors = convert_item_error_messages @element.errors.messages
       @error_fields = @element.errors.messages.keys
@@ -53,7 +61,7 @@ class Admin::ElementsController < ApplicationController
       render :nothing => true
     end
   end
-
+  
   def destroy
     if !@element.check_and_destroy
       @error = @element.get_base_error

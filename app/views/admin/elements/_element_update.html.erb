@@ -1,6 +1,10 @@
-<div class="element-update-form span4 img-polaroid">
-  <%= form_tag '/admin/elements/#{element.id}', :method => :put do %>
-    <%= image_tag element.thumb_url %>
+<div class="element-update-form span3 img-polaroid">
+  <%= form_tag "/admin/elements/#{element.id}", :method => :put do %>
+    <% if element.sti_type.downcase == 'audio' %>
+      <%= image_tag 'simbolo-audio.svg', :width => '200' %>
+    <%else%>
+      <%= image_tag element.thumb_url %>
+    <%end%>
     <br>
     <%= text_field_tag 'title', element.title %>
     <br>
@@ -8,6 +12,7 @@
     <br>
     <%= text_area_tag 'tags', element.tags , :class => 'lower' %>
     <br>
+    <button class="_publish_private_element btn btn-small btn-success" type="button" data-param="<%= element.id %>">Publish</button>
     <button class="_update_new_element btn btn-small" type="button" data-param="<%= element.id %>">Update</button>
     <button class="_delete_new_element btn btn-small btn-danger" type="button" data-param="<%= element.id %>">Delete</button>
   <% end %>
