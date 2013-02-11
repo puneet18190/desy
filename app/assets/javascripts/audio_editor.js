@@ -228,17 +228,25 @@ function addComponentInAudioEditor(audio_id, ogg, mp3, duration, title) {
     enableCommitAndPreviewInAudioEditor();
   }
   setTimeout(function() {
+    scrollToFirstSelectedAudioEditorComponent();
     selectAudioEditorComponent(empty_component);
     empty_component.find('._title').effect('highlight', {color: '#41A62A'}, 1000);
   }, 500);
-  // TODO manca scroll
 }
 
 function fillAudioEditorSingleParameter(input, identifier, value) {
   return '<input id="' + input + '_' + identifier + '" class="_audio_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
 }
 
-
+function scrollToFirstSelectedAudioEditorComponent() {
+  var selected_component = $('._audio_editor_component._selected');
+  var scroll_pain = $('#audio_editor_timeline');
+  if(selected_component.length == 0) {
+    scroll_pain.data('jsp').scrollToPercentY(100, true)
+  } else {
+    scroll_pain.data('jsp').scrollToY((selected_component.data('position') - 1) * 113, true);
+  }
+}
 
 //function startVideoEditorPreviewClipWithDelay(component_id) {
 //  setTimeout(function() {
