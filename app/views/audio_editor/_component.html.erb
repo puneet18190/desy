@@ -19,7 +19,7 @@
   end
 %>
 
-<div class="<%= empty ? '_audio_editor_empty_component'.html_safe : '_audio_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-current-preview-time="0" data-max-to="<%= max_to %>" data-playing="false">
+<div class="<%= empty ? '_audio_editor_empty_component'.html_safe : '_audio_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-max-to="<%= max_to %>" data-playing="false">
   <div class="contatore _audio_component_icon">
     <%= identifier %>
   </div>
@@ -32,9 +32,7 @@
       </div>
       
       <div class="audioComponentPlayer">
-
         <div class="_player_content" style="opacity:0.2">
-
           <span class="_current_time" style="float:left"><%= from %></span>
           <div class="cutter">
             <audio>
