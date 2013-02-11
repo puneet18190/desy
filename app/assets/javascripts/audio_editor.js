@@ -249,27 +249,49 @@ function fillAudioEditorSingleParameter(input, identifier, value) {
 function scrollToFirstSelectedAudioEditorComponent(callback) {
   var selected_component = $('._audio_editor_component._selected');
   var scroll_pain = $('#audio_editor_timeline');
-  if(callback != undefined) {
-    scroll_pain.jScrollPane().bind('panescrollstop', function() {
-      callback();
-      scroll_pain.jScrollPane().unbind('panescrollstop');
-    });
-  }
   if(selected_component.length == 0) {
     if($('#info_container').data('in-preview')) {
-      scroll_pain.data('jsp').scrollToPercentY(0, true);
+      if(scroll_pain.data('jsp').getPercentScrolledY() != 0) {
+        if(callback != undefined) {
+          scroll_pain.jScrollPane().bind('panescrollstop', function() {
+            callback();
+            scroll_pain.jScrollPane().unbind('panescrollstop');
+          });
+        }
+        scroll_pain.data('jsp').scrollToPercentY(0, true);
+      } else if(callback != undefined) {
+        callback();
+      }
     } else {
-      scroll_pain.data('jsp').scrollToPercentY(100, true);
+      if(scroll_pain.data('jsp').getPercentScrolledY() != 1) {
+        if(callback != undefined) {
+          scroll_pain.jScrollPane().bind('panescrollstop', function() {
+            callback();
+            scroll_pain.jScrollPane().unbind('panescrollstop');
+          });
+        }
+        scroll_pain.data('jsp').scrollToPercentY(100, true);
+      } else if(callback != undefined) {
+        callback();
+      }
     }
   } else {
-    scroll_pain.data('jsp').scrollToY((selected_component.data('position') - 1) * 113, true);
+    var scroll_target = (selected_component.data('position') - 1) * 113;
+    if(scroll_pain.data('jsp').getContentPositionX() != scroll_target) {
+      if(callback != undefined) {
+        scroll_pain.jScrollPane().bind('panescrollstop', function() {
+          callback();
+          scroll_pain.jScrollPane().unbind('panescrollstop');
+        });
+      }
+      scroll_pain.data('jsp').scrollToY(scroll_target, true);
+    } else if(callback != undefined) {
+      callback();
+    }
   }
 }
 
 function enterAudioEditorPreviewMode() {
-  
-  // manca far scomparire la scroll FIXME TODO
-  
   $('#info_container').data('in-preview', true);
   // blocco e disabilito tutta la pagina
   $('#audio_editor_box_ghost').show();
@@ -278,6 +300,7 @@ function enterAudioEditorPreviewMode() {
   $('#start_audio_editor_preview').addClass('disabled');
   // scrollo all'inizio e chiamo la callback
   scrollToFirstSelectedAudioEditorComponent(function() {
+    $('#audio_editor_timeline .jspVerticalBar').css('visibility', 'hidden');
     var current_global_preview_time = getAudioEditorGlobalPreviewTime();
     // memorizzo la componente selezionata al momento del play, e deselezionato tutto
     var selected_component = $('._audio_editor_component._selected');
