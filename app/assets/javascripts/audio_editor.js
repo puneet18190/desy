@@ -79,6 +79,9 @@ function changeDurationAudioEditorComponent(component, new_duration) {
 }
 
 function removeAudioEditorComponent(component) {
+  if(component.hasClass('_selected')) {
+    component.find('._media_player_pause_in_audio_editor_preview').click();
+  }
   component.hide('fade', {}, 500, function() {
     changeDurationAudioEditorComponent(component, 0);
     $(this).remove();
