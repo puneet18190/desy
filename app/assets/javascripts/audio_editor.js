@@ -313,6 +313,7 @@ function enterAudioEditorPreviewMode() {
     deselectAllAudioEditorComponentsInPreviewMode();
     $('._audio_editor_component ._remove').hide();
     $('._audio_editor_component ._media_player_play_in_audio_editor_preview').hide();
+    $('._audio_editor_component ._player_content').css('opacity', 1);
     // mostro il loader e il tempo attuale della preview, e faccio partire il timeout
     showLoader();
     $('#visual_audio_editor_current_time').html(secondsToDateString(current_global_preview_time));
@@ -376,6 +377,7 @@ function leaveAudioEditorPreviewMode() {
 // questa funzione si chiama sulla componente deselezionata, e con currentTime già settato al secondo preciso dello slider
 function startAudioEditorPreview(component) {
   component.addClass('_selected');
+  component.find('._content').addClass('current');
   component.css('opacity', 1);
   component.find('._audio_component_icon').css('visibility', 'visible');
   component.find('._media_player_slider .ui-slider-handle').show();
