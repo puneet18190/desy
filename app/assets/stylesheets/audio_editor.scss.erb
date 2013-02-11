@@ -297,19 +297,10 @@ html.audio_editor-controller {
   .jspDrag {
     background-color: #43A848;
   }
-  .emptyAudioEditor {
-    background: url(<%= asset_path 'empty_audio_editor.png' %>) center center no-repeat;
-    padding:60px 290px;
-    position:absolute;
-    right: 190px;
-    
-    p {
-      padding: 200px 0px 0px 0px;
-      width:199px;
-      color:#727377;
-      text-align: right;
-      
-    }
-  }
   
+  #add_new_audio_component_in_audio_editor.disabled:hover {
+    background-position: -8em -4em;
+    opacity: 0.5;
+    cursor: default;
+  }
 }

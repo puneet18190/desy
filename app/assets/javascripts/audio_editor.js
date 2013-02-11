@@ -243,9 +243,15 @@ function fillAudioEditorSingleParameter(input, identifier, value) {
   return '<input id="' + input + '_' + identifier + '" class="_audio_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
 }
 
-function scrollToFirstSelectedAudioEditorComponent() {
+function scrollToFirstSelectedAudioEditorComponent(callback) {
   var selected_component = $('._audio_editor_component._selected');
   var scroll_pain = $('#audio_editor_timeline');
+  if(callback != undefined) {
+    scroll_pain.jScrollPane().bind('panescrollstop', function() {
+      callback();
+      scroll_pain.jScrollPane().unbind('panescrollstop');
+    });
+  }
   if(selected_component.length == 0) {
     scroll_pain.data('jsp').scrollToPercentY(100, true)
   } else {
@@ -254,7 +260,39 @@ function scrollToFirstSelectedAudioEditorComponent() {
 }
 
 function enterAudioEditorPreviewMode() {
-  
+  $('#info_container').data('in-preview', true);
+  // blocco e disabilito tutta la pagina
+  $('#audio_editor_box_ghost').show();
+  $('#commit_audio_editor').hide();
+  $('#add_new_audio_component_in_audio_editor').addClass('disabled');
+  $('#start_audio_editor_preview').addClass('disabled');
+  // scrollo all'inizio e chiamo la callback
+  scrollToFirstSelectedAudioEditorComponent(function() {
+    // memorizzo la componente selezionata al momento del play, e deselezionato tutto
+    var selected_component = $('._audio_editor_component._selected');
+    var selected_identifier = 0;
+    if(selected_component.length > 0) {
+      selected_identifier = selected_component.attr('id');
+      selected_identifier = selected_identifier[selected_identifier.length - 1];
+    }
+    deselectAllAudioEditorComponents();
+    // passo tutte le componenti a modalità preview deselezionate
+    $('._audio_editor_component ._audio_component_icon').css('visibility', 'hidden');
+    $('._audio_editor_component ._remove').hide();
+    $('._audio_editor_component ._media_player_play_in_audio_editor_preview').hide();
+    $('._audio_editor_component ._media_player_slider .ui-slider-handle').hide();
+    $('._audio_editor_component').css('opacity', 0.2);
+    // mostro il loader e faccio partire il timeout
+    showLoader();
+    setTimeout(function() {
+      hideLoader();
+      // faccio lo switch del bottone play a stop
+      $('#start_audio_editor_preview').hide();
+      $('#start_audio_editor_preview').removeClass('disabled');
+      $('#stop_audio_editor_preview').show();
+      // DEVO PARTIRE!!!!!
+    }, 1500);
+  });
 }
 
 function leaveAudioEditorPreviewMode() {
