@@ -309,10 +309,12 @@ function initializeAudioEditorCutter(identifier) {
         if(cursor_val < left_val) {
           selectAudioComponentCutterHandle(component, left_val);
         }
+        component.find('._cutter_from').html(secondsToDateString(left_val));
       } else {
         if(cursor_val > right_val) {
           selectAudioComponentCutterHandle(component, right_val);
         }
+        component.find('._cutter_to').html(secondsToDateString(right_val));
       }
     },
     stop: function(event, ui) {

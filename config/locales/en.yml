@@ -517,13 +517,6 @@ en:
       # 3 - views/galleries/_image.html.erb
       # 4 - views/galleries/_audio.html.erb
       close: 'Close gallery'
-      empty:
-        # 1 - views/galleries/contents/audio.html.erb
-        audio: 'Your audio gallery is empty!'
-        # 1 - views/galleries/contents/image.html.erb
-        image: 'Your image gallery is empty!'
-        # 1 - views/galleries/contents/video.html.erb
-        video: 'Your video gallery is empty!'
       mixed_for_video_editor:
         # 1 - views/galleries/_mixed_video_image_text.html.erb
         image: 'Add image component'
@@ -815,6 +808,13 @@ en:
     audios:
       # 1 - views/galleries/_audio.html.erb
       select: 'Select audio'
+    empty:
+      # 1 - views/galleries/contents/audio.html.erb
+      audio: 'Your audio gallery is empty!'
+      # 1 - views/galleries/contents/image.html.erb
+      image: 'Your image gallery is empty!'
+      # 1 - views/galleries/contents/video.html.erb
+      video: 'Your video gallery is empty!'
     images:
       # 1 - views/galleries/popups/_image.html.erb
       original_size: 'Original size'
