@@ -258,22 +258,28 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier) {
   var component = $('#audio_component_' + identifier);
   var audio_cut_to = component.data('to');
   var parsed_int = parseInt(media.currentTime);
-  /////////////////////////////////////////////////////////////////////
   if($('#info_container').data('in-preview')) {
     if(parsed_int > component.find('._media_player_slider').slider('value')) {
       if(parsed_int == audio_cut_to) {
-        $('#audio_component_' + identifier + '_preview audio')[0].pause();
+        increaseAudioEditorPreviewTimer();
+        deselectAllAudioEditorComponentsInPreviewMode();
+        var old_start = component.data('from');
+        component.removeClass('_selected');
+        component.find('audio')[0].pause();
+        component.find('._current_time').html(secondsToDateString(old_start));
+        component.find('._media_player_slider').slider('value', old_start);
+        setCurrentTimeToMedia(component.find('audio'), old_start);
         var next_component = component.next();
         if(next_component.length > 0) {
-          increaseAudioEditorPreviewTimer();
-          playVideoEditorComponent(next_component, true);
+          next_component.addClass('_selected');
+          var new_start = next_component.data('from');
+          next_component.find('._media_player_slider').slider('value', new_start);
+          next_component.find('._current_time').html(secondsToDateString(new_start));
+          setCurrentTimeToMedia(next_component.find('audio'), new_start);
+          startAudioEditorPreview(next_component);
         } else {
-          selectVideoComponentInPreview(getFirstVideoEditorComponent());
-          if(videoEditorWithAudioTrack()) {
-            $('#video_editor_preview_container audio')[0].pause();
-          }
-          $('#video_editor_global_preview_pause').trigger('click');
-          $('#media_elements_list_in_video_editor').data('jsp').scrollToX(0, true, 500);
+          $($('._audio_editor_component')[0]).addClass('_selected');
+          
         }
       } else {
         increaseAudioEditorPreviewTimer(true);

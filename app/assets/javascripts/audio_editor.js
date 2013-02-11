@@ -273,10 +273,9 @@ function enterAudioEditorPreviewMode() {
   scrollToFirstSelectedAudioEditorComponent(function() {
     // memorizzo la componente selezionata al momento del play, e deselezionato tutto
     var selected_component = $('._audio_editor_component._selected');
-    var selected_identifier = 0;
     if(selected_component.length > 0) {
-      selected_identifier = selected_component.attr('id');
-      selected_identifier = selected_identifier[selected_identifier.length - 1];
+      selected_component = $($('._audio_editor_component')[0]);
+      selected_component.addClass('_selected');
     }
     deselectAllAudioEditorComponents();
     // passo tutte le componenti a modalità preview deselezionate
@@ -295,14 +294,8 @@ function enterAudioEditorPreviewMode() {
       // cambio i colori del current time
       $('#visual_audio_editor_total_length').css('color', '#787575');
       $('#visual_audio_editor_current_time').css('color', 'white');
-      
-      // TODO TODO TODO manca settare al punto giusto current time!!!!
-      
-      if(selected_identifer == 0) {
-        startAudioEditorPreview($($('._audio_editor_component')[0]));
-      } else {
-        startAudioEditorPreview($('#audio_component_' + selected_identifier));
-      }
+      setCurrentTimeToMedia(selected_component.find('audio'), selected_component.find('._media_player_slider').slider('value'));
+      startAudioEditorPreview(selected_component);
     }, 1500);
   });
 }
@@ -311,13 +304,19 @@ function deselectAllAudioEditorComponentsInPreviewMode() {
   $('._audio_editor_component ._audio_component_icon').css('visibility', 'hidden');
   $('._audio_editor_component ._media_player_slider .ui-slider-handle').hide();
   $('._audio_editor_component').css('opacity', 0.2);
+  $('._audio_editor_component').each(function() {
+    var identifier = $(this).attr('id');
+    identifier = identifier[identifier.length - 1];
+    deselectAllAudioEditorCursors(identifier);
+  });
 }
 
 function leaveAudioEditorPreviewMode() {
   // setta current-preview-time a zero in info_container
 }
 
-// questa funzione si chiama sulla componente deselezionata, e con currentTime già settato
+// questa funzione si chiama sulla componente deselezionata, e con currentTime già settato al secondo preciso dello slider
+// suppone anche che la classe _selected sia già stata correttamente assegnata
 function startAudioEditorPreview(component) {
   component.css('opacity', 1);
   component.find('._audio_component_icon').css('visibility', 'visible');
@@ -326,8 +325,6 @@ function startAudioEditorPreview(component) {
   identifier = identifier[identifier.length - 1];
   selectAudioEditorCursor(identifier);
   var audio = component.find('audio');
-  // allineo il player con il cursore
-  setCurrentTimeToMedia(audio, component.find('._media_player_slider').slider('value'));
   if(audio.readyState != 0) {
     audio[0].play();
   } else {
