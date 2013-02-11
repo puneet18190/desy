@@ -256,13 +256,20 @@ function scrollToFirstSelectedAudioEditorComponent(callback) {
     });
   }
   if(selected_component.length == 0) {
-    scroll_pain.data('jsp').scrollToPercentY(100, true)
+    if($('#info_container').data('in-preview')) {
+      scroll_pain.data('jsp').scrollToPercentY(0, true);
+    } else {
+      scroll_pain.data('jsp').scrollToPercentY(100, true);
+    }
   } else {
     scroll_pain.data('jsp').scrollToY((selected_component.data('position') - 1) * 113, true);
   }
 }
 
 function enterAudioEditorPreviewMode() {
+  
+  // manca far scomparire la scroll FIXME TODO
+  
   $('#info_container').data('in-preview', true);
   // blocco e disabilito tutta la pagina
   $('#audio_editor_box_ghost').show();
@@ -273,9 +280,11 @@ function enterAudioEditorPreviewMode() {
   scrollToFirstSelectedAudioEditorComponent(function() {
     // memorizzo la componente selezionata al momento del play, e deselezionato tutto
     var selected_component = $('._audio_editor_component._selected');
-    if(selected_component.length > 0) {
+    if(selected_component.length == 0) {
       selected_component = $($('._audio_editor_component')[0]);
       selected_component.addClass('_selected');
+    } else {
+      selected_component = $('#' + selected_component.attr('id'));
     }
     deselectAllAudioEditorComponents();
     // passo tutte le componenti a modalità preview deselezionate
@@ -284,6 +293,9 @@ function enterAudioEditorPreviewMode() {
     $('._audio_editor_component ._media_player_play_in_audio_editor_preview').hide();
     // mostro il loader e il tempo attuale della preview, e faccio partire il timeout
     showLoader();
+    
+    // FIXME FIXME TODO TODO manca settare al punto giusto il tempo globale in data e anche scrivendolo
+    
     $('#visual_audio_editor_current_time').show();
     setTimeout(function() {
       hideLoader();
