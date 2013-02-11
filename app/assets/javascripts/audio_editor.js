@@ -243,9 +243,15 @@ function fillAudioEditorSingleParameter(input, identifier, value) {
   return '<input id="' + input + '_' + identifier + '" class="_audio_component_input_' + input + '" type="hidden" value="' + value + '" name="' + input + '_' + identifier + '">';
 }
 
-function scrollToFirstSelectedAudioEditorComponent() {
+function scrollToFirstSelectedAudioEditorComponent(callback) {
   var selected_component = $('._audio_editor_component._selected');
   var scroll_pain = $('#audio_editor_timeline');
+  if(callback != undefined) {
+    scroll_pain.jScrollPane().bind('panescrollstop', function() {
+      callback();
+      scroll_pain.jScrollPane().unbind('panescrollstop');
+    });
+  }
   if(selected_component.length == 0) {
     scroll_pain.data('jsp').scrollToPercentY(100, true)
   } else {
@@ -254,19 +260,32 @@ function scrollToFirstSelectedAudioEditorComponent() {
 }
 
 function enterAudioEditorPreviewMode() {
+  $('#audio_editor_box_ghost').show();
   $('#commit_audio_editor').hide();
   $('#add_new_audio_component_in_audio_editor').addClass('disabled');
-  $('._audio_editor_component ._audio_component_icon').css('visibility', 'hidden');
-  $('._audio_editor_component ._remove').hide();
-  $('._audio_editor_component ._media_player_play_in_audio_editor_preview').hide();
-  $('._audio_editor_component ._player_content').style('opacity', 1);
-  $('._audio_editor_component').style('opacity', 0.2);
   $('#start_audio_editor_preview').addClass('disabled');
-  showLoader();
-  setTimeout(function() {
-    // nascondi il loader
-    // switcha da play a stop e togli il disabled
-  }, 1500);
+  scrollToFirstSelectedAudioEditorComponent(function() {
+    var selected_component = $('._audio_editor_component._selected');
+    var selected_identifier = 0;
+    if(selected_component.length > 0) {
+      selected_identifier = selected_component.attr('id');
+      selected_identifier = selected_identifier[selected_identifier.length - 1];
+    }
+    deselectAllAudioEditorComponents();
+    $('#info_container').data('in-preview', true);
+    $('._audio_editor_component ._audio_component_icon').css('visibility', 'hidden');
+    $('._audio_editor_component ._remove').hide();
+    $('._audio_editor_component ._media_player_play_in_audio_editor_preview').hide();
+    $('._audio_editor_component').css('opacity', 0.2);
+    showLoader();
+    setTimeout(function() {
+      hideLoader();
+      $('#start_audio_editor_preview').hide();
+      $('#stop_audio_editor_preview').show();
+      // DEVO PARTIRE!!!!!
+    }, 1500);
+  });
+  // MANCA LO SCROLL!!! prima si spengono tutte le componenti e poi si accende quella selezionata! devo rimuovere il bordino???? devo segnarmi l'id della componente selected???
 }
 
 function leaveAudioEditorPreviewMode() {
