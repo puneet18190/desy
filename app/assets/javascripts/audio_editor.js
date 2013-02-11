@@ -278,14 +278,13 @@ function enterAudioEditorPreviewMode() {
   $('#start_audio_editor_preview').addClass('disabled');
   // scrollo all'inizio e chiamo la callback
   scrollToFirstSelectedAudioEditorComponent(function() {
+    var current_global_preview_time = getAudioEditorGlobalPreviewTime();
     // memorizzo la componente selezionata al momento del play, e deselezionato tutto
     var selected_component = $('._audio_editor_component._selected');
     if(selected_component.length == 0) {
       selected_component = $($('._audio_editor_component')[0]);
-      selected_component.addClass('_selected');
-    } else {
-      selected_component = $('#' + selected_component.attr('id'));
     }
+    selected_component = $('#' + selected_component.attr('id'));
     deselectAllAudioEditorComponents();
     // passo tutte le componenti a modalità preview deselezionate
     deselectAllAudioEditorComponentsInPreviewMode();
@@ -293,9 +292,8 @@ function enterAudioEditorPreviewMode() {
     $('._audio_editor_component ._media_player_play_in_audio_editor_preview').hide();
     // mostro il loader e il tempo attuale della preview, e faccio partire il timeout
     showLoader();
-    
-    // FIXME FIXME TODO TODO manca settare al punto giusto il tempo globale in data e anche scrivendolo
-    
+    $('#visual_audio_editor_current_time').html(secondsToDateString(current_global_preview_time));
+    $('#info_container').data('current-preview-time', current_global_preview_time);
     $('#visual_audio_editor_current_time').show();
     setTimeout(function() {
       hideLoader();
@@ -306,6 +304,11 @@ function enterAudioEditorPreviewMode() {
       // cambio i colori del current time
       $('#visual_audio_editor_total_length').css('color', '#787575');
       $('#visual_audio_editor_current_time').css('color', 'white');
+      if(current_global_preview_time == 0) {
+        var first_component_from = selected_component.data('from');
+        selected_component.find('._media_player_slider').slider('value', first_component_from);
+        selected_component.find('._current_time').html(secondsToDateString(first_component_from));
+      }
       setCurrentTimeToMedia(selected_component.find('audio'), selected_component.find('._media_player_slider').slider('value'));
       startAudioEditorPreview(selected_component);
     }, 1500);
@@ -323,14 +326,33 @@ function deselectAllAudioEditorComponentsInPreviewMode() {
   });
 }
 
+function getAudioEditorGlobalPreviewTime() {
+  var selected_component = $('._audio_editor_component._selected');
+  if(selected_component.length == 0) {
+    return 0;
+  } else {
+    var flag = true;
+    var tot = 0;
+    $('._audio_editor_component').each(function() {
+      if($(this).hasClass('_selected')) {
+        flag = false;
+        tot += ($(this).find('._media_player_slider').slider('value') - $(this).data('from'));
+      } else if(flag) {
+        tot += $(this).data('duration');
+      }
+    });
+    return tot;
+  }
+}
+
 // questa funzione va chiamata con già presente la classe _selected nella componente di uscita
 function leaveAudioEditorPreviewMode() {
   // setta current-preview-time a zero in info_container
 }
 
 // questa funzione si chiama sulla componente deselezionata, e con currentTime già settato al secondo preciso dello slider
-// suppone anche che la classe _selected sia già stata correttamente assegnata
 function startAudioEditorPreview(component) {
+  component.addClass('_selected');
   component.css('opacity', 1);
   component.find('._audio_component_icon').css('visibility', 'visible');
   component.find('._media_player_slider .ui-slider-handle').show();

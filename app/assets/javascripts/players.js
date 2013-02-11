@@ -271,7 +271,6 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier) {
         setCurrentTimeToMedia(component.find('audio'), old_start);
         var next_component = component.next();
         if(next_component.length > 0) {
-          next_component.addClass('_selected');
           var new_start = next_component.data('from');
           next_component.find('._media_player_slider').slider('value', new_start);
           next_component.find('._current_time').html(secondsToDateString(new_start));
