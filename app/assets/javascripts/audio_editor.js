@@ -352,18 +352,16 @@ function switchAudioComponentsToPreviewMode() {
 }
 
 function deselectAllAudioEditorComponentsInPreviewMode() {
-  var selected_component = $('._audio_editor_component._selected');
-  if(selected_component.length == 0) {
-    return;
-  }
-  selected_component.find('._audio_component_icon').css('visibility', 'hidden');
-  var identifier = selected_component.attr('id');
-  identifier = identifier[identifier.length - 1];
-  deselectAllAudioEditorCursors(identifier);
-  selected_component.find('._media_player_slider .ui-slider-handle').hide();
-  selected_component.css('opacity', 0.2);
-  selected_component.find('._content').removeClass('current');
-  selected_component.removeClass('_selected');
+  $('._audio_editor_component ._audio_component_icon').css('visibility', 'hidden');
+  $('._audio_editor_component').each(function() {
+    var identifier = $(this).attr('id');
+    identifier = identifier[identifier.length - 1];
+    deselectAllAudioEditorCursors(identifier);
+  });
+  $('._audio_editor_component ._media_player_slider .ui-slider-handle').hide();
+  $('._audio_editor_component').css('opacity', 0.2);
+  $('._audio_editor_component ._content').removeClass('current');
+  $('._audio_editor_component').removeClass('_selected');
 }
 
 function selectAudioEditorComponentInPreviewMode(component) {
