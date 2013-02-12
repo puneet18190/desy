@@ -312,7 +312,6 @@ function enterAudioEditorPreviewMode() {
     // passo tutte le componenti a modalità preview deselezionate
     deselectAllAudioEditorComponents();
     switchAudioComponentsToPreviewMode();
-    deselectAllAudioEditorComponentsInPreviewMode();
     // mostro il loader e il tempo attuale della preview, e faccio partire il timeout
     showLoader();
     $('#visual_audio_editor_current_time').show();
@@ -341,14 +340,20 @@ function enterAudioEditorPreviewMode() {
 
 // chiamare questa funzione solo con tutte le componenti deselezionate
 function switchBackAudioComponentsFromPreviewMode() {
+  $('._audio_editor_component').css('opacity', 1);
   $('._audio_editor_component ._player_content').css('opacity', 0.2);
   $('._audio_editor_component ._remove').show();
+  $('._audio_editor_component ._media_player_slider .ui-slider-handle').show();
+  $('._audio_editor_component ._audio_component_icon').css('visibility', 'visible');
 }
 
 // chiamare questa funzione solo con tutte le componenti deselezionate
 function switchAudioComponentsToPreviewMode() {
   $('._audio_editor_component ._player_content').css('opacity', 1);
+  $('._audio_editor_component').css('opacity', 0.2);
   $('._audio_editor_component ._remove').hide();
+  $('._audio_editor_component ._media_player_slider .ui-slider-handle').hide();
+  $('._audio_editor_component ._audio_component_icon').css('visibility', 'hidden');
 }
 
 function deselectAllAudioEditorComponentsInPreviewMode() {
