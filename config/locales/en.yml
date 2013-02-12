@@ -984,9 +984,9 @@ en:
     # 1 - views/notifications/_empty.html.erb
     empty: "You don't have any notifications"
     # 1 - models/lesson.rb
-    lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
+    lesson_unpublished: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson"
     # 1 - models/lesson.rb
-    lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
+    lesson_destroyed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', deleted his lesson: hence, you lost the link to that lesson"
     # 1 - controllers/virtual_classroom_controller.rb
     sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
     # 1 - controllers/video_editor_controller.rb

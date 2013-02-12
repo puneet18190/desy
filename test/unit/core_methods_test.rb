@@ -155,12 +155,12 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert VirtualClassroomLesson.where(:lesson_id => 2).any?
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).any?
     assert_equal 3, MediaElement.where(:is_public => true).count
-    assert Notification.where(:user_id => 2, :message => 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore').empty?
+    assert Notification.where(:user_id => 1, :message => "The user <b>eef fuu</b>, author of '<b>string</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson").empty?
     assert x.unpublish
     assert !Lesson.find(x.id).is_public
     assert VirtualClassroomLesson.where(:lesson_id => 2).empty?
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).empty?
-    assert Notification.where(:user_id => 1, :message => 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore').any?
+    assert Notification.where(:user_id => 1, :message => "The user <b>eef fuu</b>, author of '<b>string</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson").any?, Notification.where(:user_id => 1).inspect
     assert_equal 3, MediaElement.where(:is_public => true).count
     lesson = Lesson.find 1
     assert lesson.publish
@@ -196,9 +196,9 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert_equal 1, x.errors.messages[:base].length
     assert_match /The lesson could not be deleted/, x.errors.messages[:base].first
     x = Lesson.find 2
-    assert Notification.where(:message => 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner').empty?
+    assert Notification.where(:message => "The user <b>eef fuu</b>, author of '<b>string</b>', deleted his lesson: hence, you lost the link to that lesson").empty?
     assert x.destroy_with_notifications
-    x = Notification.where(:message => 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner').first
+    x = Notification.where(:message => "The user <b>eef fuu</b>, author of '<b>string</b>', deleted his lesson: hence, you lost the link to that lesson").first
     assert_equal 1, x.user_id
     assert !Lesson.exists?(2)
   end
