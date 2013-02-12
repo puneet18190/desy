@@ -276,11 +276,7 @@ class Lesson < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
         begin
-          n = Notification.new
-          n.user_id = b.user_id
-          n.message = I18n.t('notifications.lesson_unpublished')
-          n.seen = false
-          if !n.save
+          if !Notification.send_to b.user_id, I18n.t('notifications.lesson_unpublished', :user_name => self.user.full_name, :lesson_title => self.title)
             errors.add(:base, :problem_unpublishing)
             raise ActiveRecord::Rollback
           end
@@ -309,11 +305,7 @@ class Lesson < ActiveRecord::Base
     resp = false
     ActiveRecord::Base.transaction do
       Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
-        n = Notification.new
-        n.user_id = b.user_id
-        n.message = I18n.t('notifications.lesson_destroyed')
-        n.seen = false
-        if !n.save
+        if !Notification.send_to b.user_id, I18n.t('notifications.lesson_destroyed', :user_name => self.user.full_name, :lesson_title => self.title)
           errors.add(:base, :problem_destroying)
           raise ActiveRecord::Rollback
         end
