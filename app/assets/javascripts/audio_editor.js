@@ -11,9 +11,7 @@ function selectAudioEditorComponent(component) {
   component.find('._sort_handle').addClass('current');
   component.find('._player_content').css('opacity', '1');
   component.find('._controls').css('visibility', 'visible');
-  var identifier = component.attr('id');
-  identifier = identifier[identifier.length - 1];
-  selectAudioEditorCursor(identifier);
+  selectAudioEditorCursor(getAudioComponentIdentifier(component));
 }
 
 function deselectAllAudioEditorComponents() {
@@ -23,9 +21,7 @@ function deselectAllAudioEditorComponents() {
     if(pause.css('display') == 'block') {
       pause.click();
     }
-    var identifier = selected_component.attr('id');
-    identifier = identifier[identifier.length - 1];
-    deselectAllAudioEditorCursors(identifier);
+    deselectAllAudioEditorCursors(getAudioComponentIdentifier(selected_component));
   }
   $('._audio_editor_component._selected ._content').removeClass('current');
   $('._audio_editor_component._selected ._box_ghost').show();
@@ -365,9 +361,7 @@ function switchAudioComponentsToPreviewMode() {
 function deselectAllAudioEditorComponentsInPreviewMode() {
   $('._audio_editor_component ._audio_component_icon').css('visibility', 'hidden');
   $('._audio_editor_component').each(function() {
-    var identifier = $(this).attr('id');
-    identifier = identifier[identifier.length - 1];
-    deselectAllAudioEditorCursors(identifier);
+    deselectAllAudioEditorCursors(getAudioComponentIdentifier($(this)));
   });
   $('._audio_editor_component ._media_player_slider .ui-slider-handle').hide();
   $('._audio_editor_component').css('opacity', 0.2);
@@ -381,9 +375,7 @@ function selectAudioEditorComponentInPreviewMode(component) {
   component.css('opacity', 1);
   component.find('._audio_component_icon').css('visibility', 'visible');
   component.find('._media_player_slider .ui-slider-handle').show();
-  var identifier = component.attr('id');
-  identifier = identifier[identifier.length - 1];
-  selectAudioEditorCursor(identifier);
+  selectAudioEditorCursor(getAudioComponentIdentifier(component));
 }
 
 function getAudioEditorGlobalPreviewTime() {
@@ -444,4 +436,9 @@ function increaseAudioEditorPreviewTimer() {
   var global_time = data_container.data('current-preview-time');
   $('#visual_audio_editor_current_time').html(secondsToDateString(global_time + 1));
   data_container.data('current-preview-time', global_time + 1);
+}
+
+function getAudioComponentIdentifier(component) {
+  var id = component.attr('id').split('_');
+  return id[id.length - 1];
 }
