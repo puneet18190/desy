@@ -295,26 +295,21 @@ function scrollToFirstSelectedAudioEditorComponent(callback) {
 
 function enterAudioEditorPreviewMode() {
   $('#info_container').data('in-preview', true);
-  // blocco e disabilito tutta la pagina
   $('#audio_editor_box_ghost').show();
   $('#commit_audio_editor').hide();
   $('#add_new_audio_component_in_audio_editor').addClass('disabled');
   $('#start_audio_editor_preview').addClass('disabled');
-  // scrollo all'inizio e chiamo la callback
   scrollToFirstSelectedAudioEditorComponent(function() {
     $('#audio_editor_timeline .jspVerticalBar').css('visibility', 'hidden');
     var current_global_preview_time = getAudioEditorGlobalPreviewTime();
     $('#info_container').data('current-preview-time', current_global_preview_time);
-    // memorizzo la componente selezionata al momento del play, e deselezionato tutto
     var selected_component = $('._audio_editor_component._selected');
     if(selected_component.length == 0) {
       selected_component = $($('._audio_editor_component')[0]);
     }
     selected_component = $('#' + selected_component.attr('id'));
-    // passo tutte le componenti a modalità preview deselezionate
     deselectAllAudioEditorComponents();
     switchAudioComponentsToPreviewMode();
-    // mostro il loader e il tempo attuale della preview, e faccio partire il timeout
     showLoader();
     $('#visual_audio_editor_current_time').show();
     setTimeout(function() {
@@ -322,11 +317,9 @@ function enterAudioEditorPreviewMode() {
     }, 1000);
     setTimeout(function() {
       hideLoader();
-      // faccio lo switch del bottone play a stop
       $('#start_audio_editor_preview').hide();
       $('#start_audio_editor_preview').removeClass('disabled');
       $('#stop_audio_editor_preview').show();
-      // cambio i colori del current time
       $('#visual_audio_editor_total_length').css('color', '#787575');
       $('#visual_audio_editor_current_time').css('color', 'white');
       if(current_global_preview_time == 0) {
@@ -340,7 +333,6 @@ function enterAudioEditorPreviewMode() {
   });
 }
 
-// chiamare questa funzione solo con tutte le componenti deselezionate
 function switchBackAudioComponentsFromPreviewMode() {
   $('._audio_editor_component').css('opacity', 1);
   $('._audio_editor_component ._player_content').css('opacity', 0.2);
@@ -349,7 +341,6 @@ function switchBackAudioComponentsFromPreviewMode() {
   $('._audio_editor_component ._audio_component_icon').css('visibility', 'visible');
 }
 
-// chiamare questa funzione solo con tutte le componenti deselezionate
 function switchAudioComponentsToPreviewMode() {
   $('._audio_editor_component ._player_content').css('opacity', 1);
   $('._audio_editor_component').css('opacity', 0.2);
@@ -397,7 +388,6 @@ function getAudioEditorGlobalPreviewTime() {
   }
 }
 
-// questa funzione va chiamata con già presente la classe _selected nella componente di uscita
 function leaveAudioEditorPreviewMode(forced_component) {
   var selected_component = $('#' + $('._audio_editor_component._selected').attr('id'));
   selected_component.find('audio')[0].pause();
@@ -424,7 +414,6 @@ function leaveAudioEditorPreviewMode(forced_component) {
   $('#info_container').data('in-preview', false);
 }
 
-// questa funzione si chiama sulla componente deselezionata, e con currentTime già settato al secondo preciso dello slider
 function startAudioEditorPreview(component) {
   selectAudioEditorComponentInPreviewMode(component);
   followPreviewComponentsWithVerticalScrollInAudioEditor();
