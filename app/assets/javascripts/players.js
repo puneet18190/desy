@@ -262,23 +262,20 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier) {
     if(parsed_int > component.find('._media_player_slider').slider('value')) {
       increaseAudioEditorPreviewTimer();
       if(parsed_int == audio_cut_to) {
-        deselectAllAudioEditorComponentsInPreviewMode();
         var old_start = component.data('from');
-        component.removeClass('_selected');
-        component.find('._content').removeClass('current');
         component.find('audio')[0].pause();
         component.find('._current_time').html(secondsToDateString(old_start));
         component.find('._media_player_slider').slider('value', old_start);
         setCurrentTimeToMedia(component.find('audio'), old_start);
         var next_component = component.next();
         if(next_component.length > 0) {
+          deselectAllAudioEditorComponentsInPreviewMode();
           var new_start = next_component.data('from');
           next_component.find('._media_player_slider').slider('value', new_start);
           next_component.find('._current_time').html(secondsToDateString(new_start));
           setCurrentTimeToMedia(next_component.find('audio'), new_start);
           startAudioEditorPreview(next_component);
         } else {
-          selectAudioEditorComponent($($('._audio_editor_component')[0]));
           leaveAudioEditorPreviewMode();
         }
       } else {
