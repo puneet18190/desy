@@ -155,6 +155,14 @@ class LessonsController < ApplicationController
     end
   end
   
+  def notify_modification
+    
+  end
+  
+  def notify_modification_done
+    
+  end
+  
   private
   
   def check_available_for_user
