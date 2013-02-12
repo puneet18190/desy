@@ -58,7 +58,7 @@ class Lesson < ActiveRecord::Base
   
   def notify_changes(msg)
     Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).each do |bo|
-      Notification.send_to bo.user_id, I18n.t('notifications.public_lesson_changed', :user_name => self.user.full_name, :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => msg)
+      Notification.send_to bo.user_id, I18n.t('notifications.lessons.modified', :user_name => self.user.full_name, :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => msg)
     end
     self.notified = true
     self.save
@@ -276,7 +276,7 @@ class Lesson < ActiveRecord::Base
     ActiveRecord::Base.transaction do
       Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
         begin
-          if !Notification.send_to b.user_id, I18n.t('notifications.lesson_unpublished', :user_name => self.user.full_name, :lesson_title => self.title)
+          if !Notification.send_to b.user_id, I18n.t('notifications.lessons.unpublished', :user_name => self.user.full_name, :lesson_title => self.title)
             errors.add(:base, :problem_unpublishing)
             raise ActiveRecord::Rollback
           end
@@ -305,7 +305,7 @@ class Lesson < ActiveRecord::Base
     resp = false
     ActiveRecord::Base.transaction do
       Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).each do |b|
-        if !Notification.send_to b.user_id, I18n.t('notifications.lesson_destroyed', :user_name => self.user.full_name, :lesson_title => self.title)
+        if !Notification.send_to b.user_id, I18n.t('notifications.lessons.destroyed', :user_name => self.user.full_name, :lesson_title => self.title)
           errors.add(:base, :problem_destroying)
           raise ActiveRecord::Rollback
         end
