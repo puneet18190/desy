@@ -11,9 +11,7 @@ function selectAudioEditorComponent(component) {
   component.find('._sort_handle').addClass('current');
   component.find('._player_content').css('opacity', '1');
   component.find('._controls').css('visibility', 'visible');
-  var identifier = component.attr('id');
-  identifier = identifier[identifier.length - 1];
-  selectAudioEditorCursor(identifier);
+  selectAudioEditorCursor(getAudioComponentIdentifier(component));
 }
 
 function deselectAllAudioEditorComponents() {
@@ -23,9 +21,7 @@ function deselectAllAudioEditorComponents() {
     if(pause.css('display') == 'block') {
       pause.click();
     }
-    var identifier = selected_component.attr('id');
-    identifier = identifier[identifier.length - 1];
-    deselectAllAudioEditorCursors(identifier);
+    deselectAllAudioEditorCursors(getAudioComponentIdentifier(selected_component));
   }
   $('._audio_editor_component._selected ._content').removeClass('current');
   $('._audio_editor_component._selected ._box_ghost').show();
@@ -249,6 +245,12 @@ function fillAudioEditorSingleParameter(input, identifier, value) {
 function scrollToFirstSelectedAudioEditorComponent(callback) {
   var selected_component = $('._audio_editor_component._selected');
   var scroll_pain = $('#audio_editor_timeline');
+  if(scroll_pain.find('.jspVerticalBar').length == 0) {
+    if(callback != undefined) {
+      callback();
+    }
+    return;
+  }
   if(selected_component.length == 0) {
     if($('#info_container').data('in-preview')) {
       if(scroll_pain.data('jsp').getPercentScrolledY() != 0) {
@@ -277,7 +279,7 @@ function scrollToFirstSelectedAudioEditorComponent(callback) {
     }
   } else {
     var scroll_target = (selected_component.data('position') - 1) * 113;
-    if(scroll_pain.data('jsp').getContentPositionY() != scroll_target) {
+    if(scroll_pain.data('jsp').getContentPositionY() != scroll_target && scroll_pain.data('jsp').getPercentScrolledY() != 1) {
       if(callback != undefined) {
         scroll_pain.jScrollPane().bind('panescrollstop', function() {
           callback();
@@ -293,27 +295,21 @@ function scrollToFirstSelectedAudioEditorComponent(callback) {
 
 function enterAudioEditorPreviewMode() {
   $('#info_container').data('in-preview', true);
-  // blocco e disabilito tutta la pagina
   $('#audio_editor_box_ghost').show();
   $('#commit_audio_editor').hide();
   $('#add_new_audio_component_in_audio_editor').addClass('disabled');
   $('#start_audio_editor_preview').addClass('disabled');
-  // scrollo all'inizio e chiamo la callback
   scrollToFirstSelectedAudioEditorComponent(function() {
     $('#audio_editor_timeline .jspVerticalBar').css('visibility', 'hidden');
     var current_global_preview_time = getAudioEditorGlobalPreviewTime();
     $('#info_container').data('current-preview-time', current_global_preview_time);
-    // memorizzo la componente selezionata al momento del play, e deselezionato tutto
     var selected_component = $('._audio_editor_component._selected');
     if(selected_component.length == 0) {
       selected_component = $($('._audio_editor_component')[0]);
     }
     selected_component = $('#' + selected_component.attr('id'));
-    // passo tutte le componenti a modalità preview deselezionate
     deselectAllAudioEditorComponents();
     switchAudioComponentsToPreviewMode();
-    deselectAllAudioEditorComponentsInPreviewMode();
-    // mostro il loader e il tempo attuale della preview, e faccio partire il timeout
     showLoader();
     $('#visual_audio_editor_current_time').show();
     setTimeout(function() {
@@ -321,11 +317,9 @@ function enterAudioEditorPreviewMode() {
     }, 1000);
     setTimeout(function() {
       hideLoader();
-      // faccio lo switch del bottone play a stop
       $('#start_audio_editor_preview').hide();
       $('#start_audio_editor_preview').removeClass('disabled');
       $('#stop_audio_editor_preview').show();
-      // cambio i colori del current time
       $('#visual_audio_editor_total_length').css('color', '#787575');
       $('#visual_audio_editor_current_time').css('color', 'white');
       if(current_global_preview_time == 0) {
@@ -339,31 +333,31 @@ function enterAudioEditorPreviewMode() {
   });
 }
 
-// chiamare questa funzione solo con tutte le componenti deselezionate
 function switchBackAudioComponentsFromPreviewMode() {
+  $('._audio_editor_component').css('opacity', 1);
   $('._audio_editor_component ._player_content').css('opacity', 0.2);
   $('._audio_editor_component ._remove').show();
+  $('._audio_editor_component ._media_player_slider .ui-slider-handle').show();
+  $('._audio_editor_component ._audio_component_icon').css('visibility', 'visible');
 }
 
-// chiamare questa funzione solo con tutte le componenti deselezionate
 function switchAudioComponentsToPreviewMode() {
   $('._audio_editor_component ._player_content').css('opacity', 1);
+  $('._audio_editor_component').css('opacity', 0.2);
   $('._audio_editor_component ._remove').hide();
+  $('._audio_editor_component ._media_player_slider .ui-slider-handle').hide();
+  $('._audio_editor_component ._audio_component_icon').css('visibility', 'hidden');
 }
 
 function deselectAllAudioEditorComponentsInPreviewMode() {
-  var selected_component = $('._audio_editor_component._selected');
-  if(selected_component.length == 0) {
-    return;
-  }
-  selected_component.find('._audio_component_icon').css('visibility', 'hidden');
-  var identifier = selected_component.attr('id');
-  identifier = identifier[identifier.length - 1];
-  deselectAllAudioEditorCursors(identifier);
-  selected_component.find('._media_player_slider .ui-slider-handle').hide();
-  selected_component.css('opacity', 0.2);
-  selected_component.find('._content').removeClass('current');
-  selected_component.removeClass('_selected');
+  $('._audio_editor_component ._audio_component_icon').css('visibility', 'hidden');
+  $('._audio_editor_component').each(function() {
+    deselectAllAudioEditorCursors(getAudioComponentIdentifier($(this)));
+  });
+  $('._audio_editor_component ._media_player_slider .ui-slider-handle').hide();
+  $('._audio_editor_component').css('opacity', 0.2);
+  $('._audio_editor_component ._content').removeClass('current');
+  $('._audio_editor_component').removeClass('_selected');
 }
 
 function selectAudioEditorComponentInPreviewMode(component) {
@@ -372,9 +366,7 @@ function selectAudioEditorComponentInPreviewMode(component) {
   component.css('opacity', 1);
   component.find('._audio_component_icon').css('visibility', 'visible');
   component.find('._media_player_slider .ui-slider-handle').show();
-  var identifier = component.attr('id');
-  identifier = identifier[identifier.length - 1];
-  selectAudioEditorCursor(identifier);
+  selectAudioEditorCursor(getAudioComponentIdentifier(component));
 }
 
 function getAudioEditorGlobalPreviewTime() {
@@ -396,8 +388,11 @@ function getAudioEditorGlobalPreviewTime() {
   }
 }
 
-// questa funzione va chiamata con già presente la classe _selected nella componente di uscita
-function leaveAudioEditorPreviewMode() {
+function leaveAudioEditorPreviewMode(forced_component) {
+  var selected_component = $('#' + $('._audio_editor_component._selected').attr('id'));
+  selected_component.find('audio')[0].pause();
+  deselectAllAudioEditorComponentsInPreviewMode();
+  switchBackAudioComponentsFromPreviewMode();
   $('#info_container').data('current-preview-time', 0);
   $('#visual_audio_editor_current_time').html(secondsToDateString(0));
   $('#visual_audio_editor_current_time').css('color', '#787575');
@@ -408,48 +403,20 @@ function leaveAudioEditorPreviewMode() {
   $('#start_audio_editor_preview').show();
   $('#stop_audio_editor_preview').hide();
   $('#audio_editor_timeline .jspVerticalBar').css('visibility', 'visible');
-
-//    
-//    var current_global_preview_time = getAudioEditorGlobalPreviewTime();
-//    // memorizzo la componente selezionata al momento del play, e deselezionato tutto
-//    var selected_component = $('._audio_editor_component._selected');
-//    if(selected_component.length == 0) {
-//      selected_component = $($('._audio_editor_component')[0]);
-//    }
-//    selected_component = $('#' + selected_component.attr('id'));
-//    deselectAllAudioEditorComponents();
-//    // passo tutte le componenti a modalità preview deselezionate
-//    deselectAllAudioEditorComponentsInPreviewMode();
-//    $('._audio_editor_component ._remove').hide();
-//    $('._audio_editor_component ._media_player_play_in_audio_editor_preview').hide();
-//    $('._audio_editor_component ._player_content').css('opacity', 1);
-//    $('#visual_audio_editor_current_time').html(secondsToDateString(current_global_preview_time));
-//    $('#info_container').data('current-preview-time', current_global_preview_time);
-//    $('#visual_audio_editor_current_time').show();
-//      // faccio lo switch del bottone play a stop
-//      $('#start_audio_editor_preview').hide();
-//      $('#start_audio_editor_preview').removeClass('disabled');
-//      $('#stop_audio_editor_preview').show();
-//      // cambio i colori del current time
-//      $('#visual_audio_editor_total_length').css('color', '#787575');
-//      $('#visual_audio_editor_current_time').css('color', 'white');
-//      if(current_global_preview_time == 0) {
-//        var first_component_from = selected_component.data('from');
-//        selected_component.find('._media_player_slider').slider('value', first_component_from);
-//        selected_component.find('._current_time').html(secondsToDateString(first_component_from));
-//      }
-//      setCurrentTimeToMedia(selected_component.find('audio'), selected_component.find('._media_player_slider').slider('value'));
-//      startAudioEditorPreview(selected_component);
-//    }, 1500);
-//  });
-//  
+  if(forced_component != undefined) {
+    scrollToFirstSelectedAudioEditorComponent(function() {
+      selectAudioEditorComponent($('#' + forced_component));
+    });
+  } else {
+    selectAudioEditorComponent(selected_component);
+  }
   $('#audio_editor_box_ghost').hide();
   $('#info_container').data('in-preview', false);
 }
 
-// questa funzione si chiama sulla componente deselezionata, e con currentTime già settato al secondo preciso dello slider
 function startAudioEditorPreview(component) {
   selectAudioEditorComponentInPreviewMode(component);
+  followPreviewComponentsWithVerticalScrollInAudioEditor();
   var audio = component.find('audio');
   if(audio.readyState != 0) {
     audio[0].play();
@@ -465,4 +432,15 @@ function increaseAudioEditorPreviewTimer() {
   var global_time = data_container.data('current-preview-time');
   $('#visual_audio_editor_current_time').html(secondsToDateString(global_time + 1));
   data_container.data('current-preview-time', global_time + 1);
+}
+
+function getAudioComponentIdentifier(component) {
+  var id = component.attr('id').split('_');
+  return id[id.length - 1];
+}
+
+function followPreviewComponentsWithVerticalScrollInAudioEditor() {
+  if($('._audio_editor_component._selected').data('position') - parseInt($('#audio_editor_timeline').data('jsp').getContentPositionY() / 113) == 4) {
+    scrollToFirstSelectedAudioEditorComponent();
+  }
 }

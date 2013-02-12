@@ -1207,6 +1207,12 @@
 					reinitialise: function(s)
 					{
 						s = $.extend({}, settings, s);
+						
+						var infos = $('#info_container');
+					  if(infos.length > 0 && infos.data('force-kevin-luck-autoreinitialise') != undefined && infos.data('force-kevin-luck-autoreinitialise')) {
+					    s.autoReinitialise = true;
+					  }
+						
 						initialise(s);
 					},
 					// Scrolls the specified element (a jQuery object, DOM node or jQuery selector string) into view so
