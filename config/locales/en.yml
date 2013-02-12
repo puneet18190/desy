@@ -944,6 +944,18 @@ en:
       status: 'Status'
       # 1 - views/lessons/index.html.erb
       subject: 'Subject'
+    notify_modifications:
+      # 1 - views/lessons/_notification_popup.html.erb
+      title: 'You edited a publish lesson!'
+      # 1 - views/lessons/_notification_popup.html.erb
+      description: 'This lesson is followed by other users in %{desy}: would you like to inform them about the modifications you made?'
+      # 1 - views/lessons/_notification_popup.html.erb
+      # 2 - views/lessons/_notification_popup.html.erb
+      placeholder: 'Write the details of your changes'
+      # 1 - views/lessons/_notification_popup.html.erb
+      do: 'Send notification'
+      # 1 - views/lessons/_notification_popup.html.erb
+      cancel: "I don't want to notify"
     # 1 - views/lessons/_view_single_compact.html.erb
     # 2 - views/lesson_editor/new.html.erb
     # 3 - views/lesson_editor/edit.html.erb

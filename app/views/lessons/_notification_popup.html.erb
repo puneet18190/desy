@@ -1,13 +1,12 @@
 <div class="notificationWrapper">
-  <h2>You edited this lessons!</h2>
-  <p>Do you wanto to notify...</p>
-  <form>
-    <textarea name='details'>Detail of changes</textarea>
+  <h2><%= t('lessons.notify_modifications.title') %></h2>
+  <p><%= t('lessons.notify_modifications.description', :desy => SETTINGS['application_name']) %></p>
+  <form data-message-placeholder="<%= t('lessons.notify_modifications.placeholder') %>">
+    <textarea name='details'><%= t('lessons.notify_modifications.placeholder') %></textarea>
+    <%= hidden_field_tag 'details_placeholder', '' %>
     <br class="clearfloat">
-    <input type='submit' value='Send notification' class='_yes' />
-    <%= link_to "No, I'll not send Send notification", '#', :class=>"_no" %>
+    <%= submit_tag t('lessons.notify_modifications.do'), :class => '_yes' %>
+    <a class="_no"><%= t('lessons.notify_modifications.cancel') %></a>
   </form>
-
-  
   <div class="_lesson_notification_cover img_expanded"></div>
 </div>
