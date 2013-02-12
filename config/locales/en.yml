@@ -983,18 +983,59 @@ en:
   notifications:
     # 1 - views/notifications/_empty.html.erb
     empty: "You don't have any notifications"
-    # 1 - models/lesson.rb
-    lesson_unpublished: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson"
-    # 1 - models/lesson.rb
-    lesson_destroyed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', deleted his lesson: hence, you lost the link to that lesson"
-    # 1 - controllers/virtual_classroom_controller.rb
-    sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
-    # 1 - controllers/video_editor_controller.rb
-    video_in_conversion_warning: 'The video and the lessons related to it will be temporary unavailable until the conversion will finish'
-    # 1 - controllers/audio_editor_controller.rb
-    audio_in_conversion_warning: 'The audio and the lessons related to it will be temporary unavailable until the conversion will finish'
-    # 1 - models/lesson.rb
-    public_lesson_changed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', believes that you might be interested in his lesson's update.<br/><br/><a href=\"%{link}\">Check it out</a><br/><br/><i>\"%{message}\"</i>"
+    lessons:
+      # 1 - models/lesson.rb
+      destroyed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', deleted his lesson: hence, you lost the link to that lesson"
+      # 1 - controllers/virtual_classroom_controller.rb
+      link_sent: 'You sent the link of the lesson %{title}, with message %{message}, to the emails: %{emails}'
+      # 1 - models/lesson.rb
+      modified: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', believes that you might be interested in his lesson's update.<br/><br/><a href=\"%{link}\">Check it out</a><br/><br/><i>\"%{message}\"</i>"
+      # 1 - models/lesson.rb
+      unpublished: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson"
+    audios:
+      editing:
+        # 1 - controllers/audio_editor_controller.rb - TODO manca inserire titolo
+        started: 'Audio editing started! Audio editor temporarily not available, together with lessons where you used this audio.'
+        # TODO manca + inserire titolo
+        ok: 'Audio editing successfully ended! Audio editor and all lessons available.'
+        # TODO manca + inserire titolo
+        failed: 'Audio editing failed! Audio editor and all lessons available. You find <a>here</a> a saved copy of your work.'
+      new:
+        # TODO manca + inserire titolo
+        started: 'Audio composition started! Audio editor temporarily not available.'
+        # TODO manca + inserire titolo
+        ok: 'Audio composition successfully ended! Audio editor available.'
+        # TODO manca + inserire titolo
+        failed: 'Audio composition failed! Audio editor available. You find <a>here</a> a saved copy of your work.'
+      upload:
+        # TODO manca + inserire titolo
+        started: 'Audio upload started! Audio editor not available.'
+        # TODO manca + inserire titolo
+        ok: 'Audio upload successfully ended! Audio editor available'
+        # TODO manca + inserire titolo
+        failed: 'Audio upload failed! Try again'
+    videos:
+      editing:
+        # 1 - controllers/video_editor_controller.rb - TODO manca inserire titolo
+        started: 'Video editing started! Video editor temporarily not available, together with lessons where you used this video.'
+        # TODO manca + inserire titolo
+        ok: 'Video editing successfully ended! Video editor and all lessons available.'
+        # TODO manca + inserire titolo
+        failed: 'Video editing failed! Video editor and all lessons available. You find <a>here</a> a saved copy of your work.'
+      new:
+        # TODO manca + inserire titolo
+        started: 'Video composition started! Video editor temporarily not available.'
+        # TODO manca + inserire titolo
+        ok: 'Video composition successfully ended! Video editor available.'
+        # TODO manca + inserire titolo
+        failed: 'Video composition failed! Video editor available. You find <a>here</a> a saved copy of your work.'
+      upload:
+        # TODO manca + inserire titolo
+        started: 'Video upload started! Video editor not available.'
+        # TODO manca + inserire titolo
+        ok: 'Video upload successfully ended! Video editor available'
+        # TODO manca + inserire titolo
+        failed: 'Video upload failed! Try again'
   
   
   # SECTION 2.11: pagine di prelogin
