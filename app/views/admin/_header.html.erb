@@ -4,52 +4,52 @@
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
   </a>
-  <a class="brand" href="/admin">DESY - Admin</a>
+  <a class="brand" href="/admin"><%= SETTINGS['application_name']%> - <%= t('admin.dashboard.link_name')%></a>
   <div class="nav-collapse collapse">
     <p class="navbar-text pull-right">
-      Logged in as <a href="#" class="navbar-link"><%= current_user.name %></a>
+      <%= t('captions.welcome') %> <%= current_user.name %> <%= current_user.surname %>
+      | <%= link_to t('registration.logout'), users_session_path, method: :delete %>
     </p>
     <ul class="nav">
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lessons <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('admin.menu.lessons.link_name')%> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/admin/lessons">List</a></li>
+          <li><a href="/admin/lessons"><%= t('admin.menu.lessons.list')%></a></li>
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Elements <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('admin.menu.elements.link_name')%> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/admin/elements">List</a></li>
-          <li><a href="/admin/elements/new">Upload New Elements</a></li>
-          <li><a href="/admin/elements/edit">Publish Private Elements</a></li>
+          <li><a href="/admin/elements"><%= t('admin.menu.elements.list')%></a></li>
+          <li><a href="/admin/elements/new"><%= t('admin.menu.elements.upload')%></a></li>
+          <li><a href="/admin/elements/edit"><%= t('admin.menu.elements.publish')%></a></li>
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('admin.menu.users.link_name')%> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="/admin/users">List</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="/admin/users"><%= t('admin.menu.users.list')%></a></li>
+          <li><a href="#"><%= t('admin.menu.users.contact')%></a></li>
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Messages <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('admin.menu.messages.link_name')%> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Notifications</a></li>
-          <li><a href="#">Abuse reports</a></li>
-          <li><a href="#">HelpDesk</a></li>
+          <li><a href="#"><%= t('admin.menu.messages.notifications')%></a></li>
+          <li><a href="#"><%= t('admin.menu.messages.reports')%></a></li>
+          <li><a href="#"><%= t('admin.menu.messages.help')%></a></li>
         </ul>
       </li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('admin.menu.settings.link_name')%> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Configuration</a></li>
-          <li><a href="#">Messages</a></li>
+          <li><a href="#"><%= t('admin.menu.settings.configuration')%></a></li>
         </ul>
       </li>
     </ul>
     <ul class="nav pull-right nav-pills">
-      <li><a href="/admin">Dashboard</a></li>
-      <li><a href="/">Home</a></li>
+      <li><a href="/admin"><%= t('admin.menu.dashboard.link_name')%></a></li>
+      <li><a href="/"><%= t('admin.menu.home.link_name')%></a></li>
     </ul>
   </div><!--/.nav-collapse -->
 </div>
