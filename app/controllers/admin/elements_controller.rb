@@ -1,5 +1,5 @@
 class Admin::ElementsController < ApplicationController
-  before_filter :find_element, :only => [:destroy, :update, :publish]
+  before_filter :find_element, :only => [:destroy, :update]
   layout 'admin'
   def index
     #@elements = Element.order('id DESC').page params[:page] #to manage others search
@@ -46,11 +46,12 @@ class Admin::ElementsController < ApplicationController
   
   
   def update
-    @element.title = params[:title]
-    @element.description = params[:description]
-    @element.tags = params[:tags]
+    @element.title = params[:title] if params[:title]
+    @element.description = params[:description] if params[:description]
+    @element.tags = params[:tags] if params[:tags]
     if params[:is_public]
       @element.is_public = true
+      @element.publication_date = Time.zone.now
     end
     
     if !@element.save

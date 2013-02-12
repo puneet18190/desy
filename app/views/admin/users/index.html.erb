@@ -1,35 +1,4 @@
 <h3>Lessons (<%= @total_users.count%>)</h3>
 <%= render :partial => "search" %>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><b><%= link_to_sorted "id", :id %></b></th>
-      <th><b><%= link_to_sorted "email", :email %></b></th>
-      <th><b><%= link_to_sorted "name", :name %></b></th>
-      <th><b><%= link_to_sorted "surname", :surname %></b></th>
-      <th><b><%= link_to_sorted "school", :school %></b></th>
-      <th><b>location</b></th>
-      <th><b><%= link_to_sorted "created", :created_at %></b></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= link_to user.email, "mailto:#{user.email}"%></td>
-        <td><%= user.name %></td>
-        <td><%= user.surname %></td>
-        <td><%= user.school %> (<%= user.school_level.description %>)</td>
-        <td><%= user.location.description %></td>
-        <td><%= user.created_at.strftime('%d-%m-%Y')%></td>
-        <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user) ,:target => :blank, :class=>"action"%><a href="#" target="_blank" class="action"></a></td>
-        <td><%= link_to '<i class="icon-ok"></i>'.html_safe, "#", :class=>"action disabled"%></td>
-        <td><%= link_to '<i class="icon-ban-circle"></i>'.html_safe, "#", :class=>"action"%></td>
-        <td><%= link_to '<i class="icon-remove"></i>'.html_safe, "#", :class=>"action"%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render :partial => 'admin/users/list', :locals => {:users => @users}%>
 <%= paginate @users %>

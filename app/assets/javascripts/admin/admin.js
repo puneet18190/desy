@@ -32,7 +32,7 @@ $(document).ready(function(){
   	});
   });
   
-  $('body').on('click','._publish_private_element ', function(e){
+  $('body').on('click','._publish_private_element', function(e){
     $('<input />',{
       type: 'hidden',
       name: 'is_public' 
@@ -48,6 +48,19 @@ $(document).ready(function(){
         btn.siblings('._update_new_element').remove();
         btn.siblings('input').prop('disabled', true);
         btn.siblings('textarea').prop('disabled', true);
+        btn.remove();
+      }
+  	});
+  });
+  
+  $('body').on('click','.action._publish_list_element i', function(e){
+    e.preventDefault();
+    $.ajax({
+      type: 'PUT',
+      url: '/admin/elements/'+$(this).data('param')+'?is_public=true',
+      timeout:5000,
+      success: function(){
+        var btn = $(e.target);
         btn.remove();
       }
   	});
@@ -91,7 +104,7 @@ $(document).ready(function(){
    
   $('body').on('click','tr.collapse',function(e){
     var t = $(e.target);
-    if(!(t.hasClass('icon-eye-open') || t.hasClass('icon-remove'))){
+    if(!(t.hasClass('icon-eye-open') || t.hasClass('icon-remove') || t.hasClass('icon-globe'))){
       e.preventDefault();
     }
    $(this).next('tr.collapsed').slideToggle('slow');

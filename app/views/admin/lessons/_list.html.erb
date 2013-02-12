@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="span3">
-                <h5>Tags</h5>
+                <h5><%= t('admin.general.tags')%></h5>
                 <% lesson.tags.split(',').each do |tag| %>
                   <% if tag.length > 0%>
                     <%= tag %>, 
@@ -46,7 +46,7 @@
                 <% end %>
               </div>
               <div class="span6">
-                <h5>Description</h5>
+                <h5><%= t('admin.general.description')%></h5>
                 <%= lesson.description %>
               </div>
             </div>
