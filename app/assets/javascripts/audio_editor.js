@@ -427,6 +427,7 @@ function leaveAudioEditorPreviewMode(forced_component) {
 // questa funzione si chiama sulla componente deselezionata, e con currentTime già settato al secondo preciso dello slider
 function startAudioEditorPreview(component) {
   selectAudioEditorComponentInPreviewMode(component);
+  followPreviewComponentsWithVerticalScrollInAudioEditor();
   var audio = component.find('audio');
   if(audio.readyState != 0) {
     audio[0].play();
@@ -447,4 +448,10 @@ function increaseAudioEditorPreviewTimer() {
 function getAudioComponentIdentifier(component) {
   var id = component.attr('id').split('_');
   return id[id.length - 1];
+}
+
+function followPreviewComponentsWithVerticalScrollInAudioEditor() {
+  if($('._audio_editor_component._selected').data('position') - parseInt($('#audio_editor_timeline').data('jsp').getContentPositionY() / 113) == 4) {
+    scrollToFirstSelectedAudioEditorComponent();
+  }
 }
