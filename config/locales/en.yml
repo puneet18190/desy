@@ -462,6 +462,8 @@ en:
     audio_editor:
       # 1 - views/audio_editor/edit.html.erb
       commit: 'Go to next step'
+      # 1 - views/audio_editor/_lateral_controls.html.erb
+      add_component: 'Add an audio component'
     audios:
       # 1 - views/media_elements/new.html.erb
       new: 'Create new audio'
@@ -754,11 +756,15 @@ en:
   
   # SECTION 2.2: audio editor
   audio_editor:
-    # 1 - views/audio_editor/_component.html.erb
-    selected_length: 'Selected'
-    # 1 - views/audio_editor/_component.html.erb
-    total_length: 'Total length'
-    # it is the title of the audio editor
+    cutters:
+      # 1 - views/audio_editor/_component.html.erb
+      pause: 'Pause'
+      # 1 - views/audio_editor/_component.html.erb
+      play: 'Play'
+      # 1 - views/audio_editor/_component.html.erb
+      selected: 'Selected'
+    # 1 - views/audio_editor/edit.html.erb
+    empty: 'To start creating an audio, click on the button on the right and select from the gallery'
     # 1 - views/audio_editor/_header.html.erb
     label: 'Edit audio'
     not_available:
@@ -766,6 +772,13 @@ en:
       title: 'Audio editor not available'
       # 1 - views/audio_editor/not_available.html.erb
       description: 'Inserire qui altro testo'
+    preview:
+      # 1 - views/audio_editor/_lateral_controls.html.erb
+      play: 'Play'
+      # 1 - views/audio_editor/_lateral_controls.html.erb
+      stop: 'Stop'
+    # 1 - views/audio_editor/_lateral_controls.html.erb
+    total_length: 'Total length'
   
   
   # SECTION 2.3: dashboard
