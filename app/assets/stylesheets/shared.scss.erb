@@ -272,6 +272,7 @@ a.cerca.current {
     }
     
     .menuController {
+
       a {
         @include button-test;
         &:hover {
@@ -304,6 +305,7 @@ a.cerca.current {
     background-color:transparent;
     float:left;    
     text-align:left;
+
   }
   .lessons-expanded {
     display:none;
@@ -343,6 +345,15 @@ a.cerca.current {
       }
       ._report_lesson_click:hover {
         cursor:pointer;
+      }
+      ._report_lesson_click {
+        bottom: -39px;
+        left: 10px;
+        padding: 0;
+        position: absolute;
+      }
+      .lesson_tooltipForm {
+        bottom: -2px;
       }
     }
     .description-text {
