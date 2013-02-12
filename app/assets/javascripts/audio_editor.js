@@ -249,6 +249,12 @@ function fillAudioEditorSingleParameter(input, identifier, value) {
 function scrollToFirstSelectedAudioEditorComponent(callback) {
   var selected_component = $('._audio_editor_component._selected');
   var scroll_pain = $('#audio_editor_timeline');
+  if(scroll_pain.find('.jspVerticalBar').length == 0) {
+    if(callback != undefined) {
+      callback();
+    }
+    return;
+  }
   if(selected_component.length == 0) {
     if($('#info_container').data('in-preview')) {
       if(scroll_pain.data('jsp').getPercentScrolledY() != 0) {
@@ -277,7 +283,7 @@ function scrollToFirstSelectedAudioEditorComponent(callback) {
     }
   } else {
     var scroll_target = (selected_component.data('position') - 1) * 113;
-    if(scroll_pain.data('jsp').getContentPositionY() != scroll_target) {
+    if(scroll_pain.data('jsp').getContentPositionY() != scroll_target && scroll_pain.data('jsp').getPercentScrolledY() != 1) {
       if(callback != undefined) {
         scroll_pain.jScrollPane().bind('panescrollstop', function() {
           callback();
