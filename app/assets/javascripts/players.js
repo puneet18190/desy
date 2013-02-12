@@ -129,7 +129,7 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
         increaseVideoEditorPreviewTimer(true);
       }
     }
-  } else {
+  } else if($('#video_component_' + identifier + '_cutter').data('playing')) {
     if(parsed_int == (video_cut_to)) {
       var initial_time = $('#video_component_' + identifier + '_cutter').data('from');
       $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').click();
@@ -258,15 +258,42 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier) {
   var component = $('#audio_component_' + identifier);
   var audio_cut_to = component.data('to');
   var parsed_int = parseInt(media.currentTime);
-  if(parsed_int == (audio_cut_to)) {
-    var initial_time = component.data('from');
-    component.find('._media_player_pause_in_audio_editor_preview').click();
-    component.find('._media_player_slider').slider('value', initial_time);
-    component.find('._current_time').html(secondsToDateString(0));
-    setCurrentTimeToMedia($(media), initial_time);
-  } else if(component.find('._media_player_play_in_audio_editor_preview').css('display') == 'none') {
-    component.find('._current_time').html(secondsToDateString(parsed_int));
-    component.find('._media_player_slider').slider('value', parsed_int);
+  if($('#info_container').data('in-preview')) {
+    if(parsed_int > component.find('._media_player_slider').slider('value')) {
+      increaseAudioEditorPreviewTimer();
+      if(parsed_int == audio_cut_to) {
+        var old_start = component.data('from');
+        component.find('audio')[0].pause();
+        component.find('._current_time').html(secondsToDateString(old_start));
+        component.find('._media_player_slider').slider('value', old_start);
+        setCurrentTimeToMedia(component.find('audio'), old_start);
+        var next_component = component.next();
+        if(next_component.length > 0) {
+          deselectAllAudioEditorComponentsInPreviewMode();
+          var new_start = next_component.data('from');
+          next_component.find('._media_player_slider').slider('value', new_start);
+          next_component.find('._current_time').html(secondsToDateString(new_start));
+          setCurrentTimeToMedia(next_component.find('audio'), new_start);
+          startAudioEditorPreview(next_component);
+        } else {
+          leaveAudioEditorPreviewMode();
+        }
+      } else {
+        component.find('._current_time').html(secondsToDateString(parsed_int));
+        component.find('._media_player_slider').slider('value', parsed_int);
+      }
+    }
+  } else if(component.data('playing')) {
+    if(parsed_int == (audio_cut_to)) {
+      var initial_time = component.data('from');
+      component.find('._media_player_pause_in_audio_editor_preview').click();
+      component.find('._media_player_slider').slider('value', initial_time);
+      component.find('._current_time').html(secondsToDateString(initial_time));
+      setCurrentTimeToMedia($(media), initial_time);
+    } else if(component.find('._media_player_play_in_audio_editor_preview').css('display') == 'none') {
+      component.find('._current_time').html(secondsToDateString(parsed_int));
+      component.find('._media_player_slider').slider('value', parsed_int);
+    }
   }
 }
 
@@ -283,10 +310,6 @@ function initializeAudioEditorCutter(identifier) {
     slide: function(event, ui) {
       if(play.css('display') == 'block') {
         component.find('._current_time').html(secondsToDateString(0));
-      }
-    },
-    stop: function() {
-      if(play.css('display') == 'block') {
         setCurrentTimeToMedia(component.find('audio'), ui.value);
       }
     }
@@ -295,10 +318,13 @@ function initializeAudioEditorCutter(identifier) {
     min: 0,
     max: audio_max_to,
     range: true,
-    values: [component.data('from'), component.data('to')]/*,
+    values: [component.data('from'), component.data('to')],
     start: function(event, ui) {
-      component.find('.ui-slider-handle').removeClass('selected');
-      $(ui.handle).addClass('selected');
+      if($(ui.handle).next('.ui-slider-handle').length == 0) {
+        selectAudioEditorRightHandle(identifier);
+      } else {
+        selectAudioEditorLeftHandle(identifier);
+      }
     },
     slide: function(event, ui) {
       var left_val = ui.values[0];
@@ -308,10 +334,12 @@ function initializeAudioEditorCutter(identifier) {
         if(cursor_val < left_val) {
           selectAudioComponentCutterHandle(component, left_val);
         }
+        component.find('._cutter_from').html(secondsToDateString(left_val));
       } else {
         if(cursor_val > right_val) {
           selectAudioComponentCutterHandle(component, right_val);
         }
+        component.find('._cutter_to').html(secondsToDateString(right_val));
       }
     },
     stop: function(event, ui) {
@@ -322,56 +350,38 @@ function initializeAudioEditorCutter(identifier) {
           component.find('._double_slider').slider('values', 0, left_val - 1);
           left_val -= 1;
         }
-        //FIXME
-        console.log('cut #audio_component_' + identifier + ' on the left with val = ' + left_val);
-        //cutAudioComponentLeftSide(identifier, left_val);
+        cutAudioComponentLeftSide(identifier, left_val);
       }
       if(right_val != component.data('to')) {
         if(left_val == right_val) {
           component.find('._double_slider').slider('values', 1, right_val + 1);
           right_val += 1;
         }
-        //FIXME
-        console.log('cut #audio_component_' + identifier + ' on the right with val = ' + right_val);
-        //cutAudioComponentRightSide(identifier, right_val);
+        cutAudioComponentRightSide(identifier, right_val);
       }
-    }*/
+    }
   });
   double_slider.find('.ui-slider-range').mousedown(function(e) {
     return false;
   });
-  single_slider.find('.ui-slider-handle').addClass('selected');
   initializeMediaTimeUpdaterInAudioEditor(identifier);
   component.find('audio').bind('ended', function() {
-    stopAudioInAudioEditorPreview(identifier);
+    try {
+      var initial_time = component.data('from');
+      component.find('._media_player_pause_in_audio_editor_preview').click();
+      component.find('._media_player_slider').slider('value', initial_time);
+      component.find('._current_time').html(secondsToDateString(initial_time));
+      setCurrentTimeToMedia($(component.find('audio')), initial_time);
+    } catch(err) {
+      console.log('error stopping media: ' + err);
+    }
   });
 }
 
-function stopAudioInAudioEditorPreview(identifier) {
-  var component = $('#audio_component_' + identifier);
-  try {
-    if(component.find('audio').length != 0) {
-      var has_source = true;
-      component.find('source').each(function() {
-        if($(this).attr('src') == '') {
-          has_source = false;
-        }
-      });
-      if(has_source) {
-        component.find('._media_player_pause_in_audio_editor_preview').click();
-        var initial_time = component.data('from');
-        component.find('._media_player_slider').slider('value', initial_time);
-        setCurrentTimeToMedia(component.find('audio'), initial_time);
-      }
-    }
-  } catch(err) {
-    console.log('error stopping media: ' + err);
-  }
-}
-
-function selectAudioComponentCutterHandle(cutter, val) {
-  setCurrentTimeToMedia(cutter.find('audio'), val);
-  cutter.find('._media_player_slider').slider('value', val);
+function selectAudioComponentCutterHandle(component, val) {
+  setCurrentTimeToMedia(component.find('audio'), val);
+  component.find('._media_player_slider').slider('value', val);
+  component.find('._current_time').html(secondsToDateString(val));
 }
 
 

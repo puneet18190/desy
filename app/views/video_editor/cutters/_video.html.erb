@@ -5,7 +5,7 @@
   max_to = empty ? 0 : component[:video].min_duration
 %>
 
-<div class="contentCutter _video_component_cutter" data-from="<%= from %>" data-to="<%= to %>" data-max-to="<%= max_to %>" data-changed="false" style="display:none" <%= div_id.html_safe %>>
+<div class="contentCutter _video_component_cutter" data-playing="false" data-from="<%= from %>" data-to="<%= to %>" data-max-to="<%= max_to %>" data-changed="false" style="display:none" <%= div_id.html_safe %>>
   <div class="cutter">
     <a class="left _precision_arrow_left"></a>
     <a class="play _media_player_play_in_video_editor_preview upper"><%= t('video_editor.cutters.play') %></a>

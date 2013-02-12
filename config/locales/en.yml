@@ -808,6 +808,13 @@ en:
     audios:
       # 1 - views/galleries/_audio.html.erb
       select: 'Select audio'
+    empty:
+      # 1 - views/galleries/contents/audio.html.erb
+      audio: 'Your audio gallery is empty!'
+      # 1 - views/galleries/contents/image.html.erb
+      image: 'Your image gallery is empty!'
+      # 1 - views/galleries/contents/video.html.erb
+      video: 'Your video gallery is empty!'
     images:
       # 1 - views/galleries/popups/_image.html.erb
       original_size: 'Original size'
