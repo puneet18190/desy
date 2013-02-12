@@ -52,7 +52,7 @@ function initializeAudioEditor() {
       var boolean3 = (my_item.next().data('position') != (my_item.data('position') + 1));
       if(boolean1 && boolean2 || !boolean1 && boolean3) {
         reloadAudioEditorComponentPositions();
-        $('#audio_editor_timeline').effect('highlight', {color: '#41A62A'}, 1000);
+        $('._audio_editor_component ._title').effect('highlight', {color: '#41A62A'}, 1000);
       }
     }
   });
