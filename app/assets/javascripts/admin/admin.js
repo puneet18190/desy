@@ -82,15 +82,18 @@ $(document).ready(function(){
   
   // EFFECTS
   
-  //$('#dp1').datepicker();
-  //$('#dp2').datepicker();
+  $('#dp1').datepicker();
+  $('#dp2').datepicker();
    
   $('.dropdown').click(function(e){
     e.stopPropagation();
   });
    
   $('body').on('click','tr.collapse',function(e){
-   e.preventDefault();
+    var t = $(e.target);
+    if(!(t.hasClass('icon-eye-open') || t.hasClass('icon-remove'))){
+      e.preventDefault();
+    }
    $(this).next('tr.collapsed').slideToggle('slow');
   });
    

@@ -1,6 +1,6 @@
-<h3>Lessons (<%= @total_lessons.count%>)</h3>
 <%= render :partial => "search" %>
 <ul class="nav nav-pills">
+  <li class="pull-right"><h4>Lessons (<%= @total_lessons.count%>)</h4></li>
   <li>
     <a href="#" id="expand-all">Expand all</a>
   </li>
@@ -10,6 +10,7 @@
 </ul>
   <%= render :partial => "list", :locals => {:lessons => @lessons} %>
 <ul class="nav nav-pills">
+  <li class="pull-right"><h4>Lessons (<%= @total_lessons.count%>)</h4></li>
   <li>
     <a href="#" id="expand-all">Expand all</a>
   </li>

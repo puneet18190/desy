@@ -31,12 +31,25 @@
         </tr>
         <tr class="collapsed">
           <td colspan="9">
-            <div class="pull-left span3">
-              <div class="img-polaroid lesson-thumbnail">
-                <%= render :partial => "lessons/thumbnail", :locals => {:lesson => lesson} %>
+            <div class="row-fluid">
+              <div class="span3">
+                <div class="img-polaroid lesson-thumbnail">
+                  <%= render :partial => "lessons/thumbnail", :locals => {:lesson => lesson} %>
+                </div>
+              </div>
+              <div class="span3">
+                <h5>Tags</h5>
+                <% lesson.tags.split(',').each do |tag| %>
+                  <% if tag.length > 0%>
+                    <%= tag %>, 
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="span6">
+                <h5>Description</h5>
+                <%= lesson.description %>
               </div>
             </div>
-            <div class="pull-right span9"><%= lesson.description %></div>
           <td>
         </tr>
     <% end %>

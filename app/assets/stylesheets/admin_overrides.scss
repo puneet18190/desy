@@ -67,6 +67,17 @@
     padding: 3px;
   }
   
+  form{
+    label{
+      width: auto;
+    }
+    .control-group{
+      float:left;
+      width: auto;
+      margin-right: 20px;
+    }
+  }
+  
   #loading {
     display: none;
     z-index: 100000;
