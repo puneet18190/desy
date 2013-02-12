@@ -399,6 +399,7 @@ function getAudioEditorGlobalPreviewTime() {
 // questa funzione va chiamata con già presente la classe _selected nella componente di uscita
 function leaveAudioEditorPreviewMode() {
   var selected_component = $('#' + $('._audio_editor_component._selected').attr('id'));
+  selected_component.find('audio')[0].pause();
   deselectAllAudioEditorComponentsInPreviewMode();
   switchBackAudioComponentsFromPreviewMode();
   $('#info_container').data('current-preview-time', 0);
