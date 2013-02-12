@@ -276,7 +276,7 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier) {
           setCurrentTimeToMedia(next_component.find('audio'), new_start);
           startAudioEditorPreview(next_component);
         } else {
-          leaveAudioEditorPreviewMode();
+          leaveAudioEditorPreviewMode($($('._audio_editor_component')[0]).attr('id'));
         }
       } else {
         component.find('._current_time').html(secondsToDateString(parsed_int));

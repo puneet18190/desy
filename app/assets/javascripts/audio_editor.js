@@ -398,7 +398,7 @@ function getAudioEditorGlobalPreviewTime() {
 }
 
 // questa funzione va chiamata con già presente la classe _selected nella componente di uscita
-function leaveAudioEditorPreviewMode() {
+function leaveAudioEditorPreviewMode(forced_component) {
   var selected_component = $('#' + $('._audio_editor_component._selected').attr('id'));
   selected_component.find('audio')[0].pause();
   deselectAllAudioEditorComponentsInPreviewMode();
@@ -413,7 +413,13 @@ function leaveAudioEditorPreviewMode() {
   $('#start_audio_editor_preview').show();
   $('#stop_audio_editor_preview').hide();
   $('#audio_editor_timeline .jspVerticalBar').css('visibility', 'visible');
-  selectAudioEditorComponent(selected_component);
+  if(forced_component != undefined) {
+    scrollToFirstSelectedAudioEditorComponent(function() {
+      selectAudioEditorComponent($('#' + forced_component));
+    });
+  } else {
+    selectAudioEditorComponent(selected_component);
+  }
   $('#audio_editor_box_ghost').hide();
   $('#info_container').data('in-preview', false);
 }
