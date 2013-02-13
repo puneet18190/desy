@@ -1473,9 +1473,9 @@ en:
       emails: 'Insert emails separated by comma'
       mailing_list:
         # 1 - views/virtual_classroom/_popups.html.erb
-        title: 'or select mailing list'
+        title: 'Or select mailing list'
         # 1 - views/virtual_classroom/_popups.html.erb
-        placeholder: 'no mailing list'
+        placeholder: 'No mailing list'
   
   
   
