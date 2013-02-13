@@ -1,16 +1,17 @@
 $(document).ready(function() {
-
+  
+  
   // BROWSER DETECTION: DECLARING BROWSER NAME AND VERSION AS HTML TAG CLASS
   (function(){
     var name = $.grep(_.keys($.browser), function(el, i) {
       return el !== 'version';
     })[0];
-
-    if( name ) {
+    if(name) {
       $('html').addClass(name);
     }
   })();
-
+  
+  
   // AFTER WINDOW RESIZE
   $(window).resize(function() {
     if($('#my_media_elements').length > 0 || $('#media_elements_in_dashboard').length > 0){
@@ -18,8 +19,10 @@ $(document).ready(function() {
     }
   });
   
+  
   // LOADER
   bindLoader();
+  
   
   // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
   
@@ -831,7 +834,38 @@ $(document).ready(function() {
     }
   });
   
+  $("#select_mailing_list").selectbox({
+    onChange: function (val, inst) {
+      if(val != '') {
+        var to_emails = $('#virtual_classroom_send_link_email_addresses');
+        var hidden_emails = $('#virtual_classroom_send_link_hidden_mailing_lists');
+        var group_name = $(this).find('option[value=' + val + ']').html();
+        to_emails.trigger('focus');
+        if(hidden_emails.val() == '' || hidden_emails.val().indexOf('[' + val + ']') == -1) {
+          if(hidden_emails.val().length > 0) {
+            hidden_emails.val(hidden_emails.val() + '[' + val + '],');
+          } else {
+            hidden_emails.val('[' + val + '],');
+          }
+          if(to_emails.val().length > 0) {
+            to_emails.val(to_emails.val() + '[' + group_name + '],');
+          } else {
+            to_emails.val('[' + group_name + '],');
+          }
+        }
+      }
+    }
+  });
   
+  $('body').on('change', '#virtual_classroom_send_link_email_addresses', function() {
+    console.log('sono CAMBIATO');
+  });
+  
+
+
+
+
+
 
 
   // FIXME FIXME FIXME da qui
@@ -848,19 +882,6 @@ $(document).ready(function() {
     obj.dialog('option', 'hide', null);
   });
   
-
-  
-  $("#select_mailing_list").selectbox({
-    onChange: function (val, inst) {
-      var to_emails = $('#virtual_classroom_send_link_email_addresses')
-      to_emails.trigger('focus');
-      if(to_emails.val().length > 0 && val.length > 0){
-        to_emails.val(to_emails.val()+'['+val+'],');
-      }else if(val.length > 0){
-        to_emails.val('['+val+'],');
-      }
-    }
-  });
   
   $(function() {
     function split( val ) {
