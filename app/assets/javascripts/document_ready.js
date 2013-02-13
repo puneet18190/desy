@@ -834,7 +834,7 @@ $(document).ready(function() {
     }
   });
   
-  $("#select_mailing_list").selectbox({
+  $('#select_mailing_list').selectbox({
     onChange: function (val, inst) {
       if(val != '') {
         var to_emails = $('#virtual_classroom_send_link_email_addresses');
@@ -848,9 +848,9 @@ $(document).ready(function() {
             hidden_emails.val('[' + val + '],');
           }
           if(to_emails.val().length > 0) {
-            to_emails.val(to_emails.val() + '[' + group_name + '],');
+            to_emails.val(to_emails.val() + '[' + group_name + '], ');
           } else {
-            to_emails.val('[' + group_name + '],');
+            to_emails.val('[' + group_name + '], ');
           }
         }
       }
@@ -858,7 +858,10 @@ $(document).ready(function() {
   });
   
   $('body').on('change', '#virtual_classroom_send_link_email_addresses', function() {
-    console.log('sono CAMBIATO');
+    
+    console.log('sono cambiato');
+    
+    checkDifferencesBetweenTextAndHiddenFieldEmailsSendLinkLesson();
   });
   
 
@@ -871,8 +874,15 @@ $(document).ready(function() {
   // FIXME FIXME FIXME da qui
   
   $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function() {
-    closePopUp('dialog-virtual-classroom-send-link');
-    $('#dialog-virtual-classroom-send-link form').submit();
+  
+  // PREVENT DEFAULT E CONTROLLA QUANTE VOLTE SI CHIAMA LA FUNZIONE!!!!
+  
+  checkDifferencesBetweenTextAndHiddenFieldEmailsSendLinkLesson();
+  
+  console.log('submittando...');
+  
+//    closePopUp('dialog-virtual-classroom-send-link');
+//    $('#dialog-virtual-classroom-send-link form').submit();
   });
   
   $('body').on('click', '#dialog-virtual-classroom-send-link ._no', function() {
