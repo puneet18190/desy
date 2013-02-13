@@ -25,9 +25,18 @@
             <td><%= @user.created_at.strftime('%d-%m-%Y')%></td>
             <td>
               <div class="btn-group pull-right">
-                <button class="btn btn-small"><i class="icon-ok"></i> activate</button>
-                <button class="btn btn-small"><i class="icon-ban-circle"></i> ban</button>
-                <button class="btn btn-small"><i class="icon-remove"></i>delete</button>
+                <button class="btn btn-small">
+                  <i class="icon-ok"></i> <%= t('admin.users.show.activate').downcase%>
+                </button>
+                <button class="btn btn-small">
+                  <i class="icon-ban-circle"></i> <%= t('admin.users.show.ban').downcase%>
+                </button>
+                <button class="btn btn-small">
+                  <i class="icon-remove"></i> <%= t('admin.general.delete').downcase%>
+                </button>
+                <button class="btn btn-small">
+                  <i class="icon-envelope"></i> <%= link_to t('admin.users.show.message').downcase, "/admin/users/contact?users=#{@user.id.to_a}"%>
+                </button>
               </div>
             </td>
           </tr>

@@ -1564,6 +1564,12 @@ en:
       #1 - views/admin/users/index.html.erb
       index:
         not_found: 'No users found'
+        send_message_to_all: 'Send message to all'
+      #1 - views/admin/users/show.html.erb
+      show:
+        activate: 'Activate'
+        ban: 'Ban'
+        message: 'Message'
       #1 - views/admin/users/contact.html.erb
       contact:
         send_message: 'Send message'
@@ -1588,3 +1594,5 @@ en:
       description: 'Description'
       #1 - views/admin/elements/new.html.erb
       title: 'Title'
+      #1 - views/admin/users/show.html.erb
+      delete: 'Delete'

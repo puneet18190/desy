@@ -11,7 +11,10 @@
           <label for="user"><%= t('admin.users.contact.recipients')%></label>
           <div class="controls">
             <% if @users && @users.count > 0 %>
-              <input class="disabled" value="<%=@users.pluck('email')%>">
+              <div id="preset-recipients" class="alert alert-block">
+                <%= @users.map(&:email) %>
+              </div>
+              <h6>Add recipients</h6>
             <% end %>
             <input id="contact-recipients" type="text" class="input-xxlarge" name="recipients" placeholder="Recipients" />
           </div>
