@@ -857,6 +857,9 @@ $(document).ready(function() {
     }
   });
   
+  
+  // FIXME FIXME FIXME da qui
+  
   $('body').on('change', '#virtual_classroom_send_link_email_addresses', function() {
     
     console.log('sono cambiato');
@@ -864,34 +867,20 @@ $(document).ready(function() {
     checkDifferencesBetweenTextAndHiddenFieldEmailsSendLinkLesson();
   });
   
-
-
-
-
-
-
-
-  // FIXME FIXME FIXME da qui
-  
-  $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function() {
-  
-  // PREVENT DEFAULT E CONTROLLA QUANTE VOLTE SI CHIAMA LA FUNZIONE!!!!
-  
-  checkDifferencesBetweenTextAndHiddenFieldEmailsSendLinkLesson();
-  
-  console.log('submittando...');
-  
-//    closePopUp('dialog-virtual-classroom-send-link');
-//    $('#dialog-virtual-classroom-send-link form').submit();
+  $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function(e) {
+    e.preventDefault();
+    checkDifferencesBetweenTextAndHiddenFieldEmailsSendLinkLesson();
+    
+    console.log('submittando...');
+    
+    closePopUp('dialog-virtual-classroom-send-link');
+    $('#dialog-virtual-classroom-send-link form').submit();
   });
   
   $('body').on('click', '#dialog-virtual-classroom-send-link ._no', function() {
     var obj = $('#dialog-virtual-classroom-send-link');
-    obj.dialog('option', 'hide', 'fade');
     closePopUp('dialog-virtual-classroom-send-link');
-    obj.dialog('option', 'hide', null);
   });
-  
   
   $(function() {
     function split( val ) {
@@ -939,20 +928,13 @@ $(document).ready(function() {
         }
       });
   });
-
-    // FIXME FIXME FIXME a qui
   
-  
-  
-  
-  
-  
-  
+  // FIXME FIXME FIXME a qui
   
   
   // IMAGE EDITOR
-  $('.image_editor_only #form_info_new_media_element_in_editor, .image_editor_only #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
   
+  $('.image_editor_only #form_info_new_media_element_in_editor, .image_editor_only #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
   $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
   $('#image_gallery_for_image_editor .gallery-header').css("left",($(window).width()/2)-420);
   $('body').on('click', '._add_image_to_image_editor', function() {
