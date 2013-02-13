@@ -1,4 +1,6 @@
 class MediaElement < ActiveRecord::Base
+  self.inheritance_column = :sti_type
+  
   # Questa deve stare prima delle require dei submodels, perché
   # l'after_save delle tags deve venire prima di quella dell'uploader
   after_save :update_or_create_tags
@@ -16,7 +18,6 @@ class MediaElement < ActiveRecord::Base
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
   
-  self.inheritance_column = :sti_type
 
   serialize :metadata, OpenStruct
   

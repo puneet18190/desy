@@ -44,9 +44,6 @@ gem 'validates_email_format_of'
 # Use unicorn as the app server
 gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
 # To use debugger
 # gem 'debugger'
 
@@ -58,3 +55,4 @@ end
 gem 'daemons'
 gem 'delayed_job_active_record'
 gem "subexec", :github => "ProGNOMmers/subexec"
+gem 'ancestry'
