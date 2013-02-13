@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
     else
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-      @location_ids     = Location.order(:description).map{ |l| [l.to_s, l.id] }
+      @location_ids     = User.location_association_class.order(:name).map{ |l| [l.to_s, l.id] }
       @subjects         = Subject.order(:description)
 
       render 'prelogin/registration'
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-    @location_ids     = Location.order(:description).map{ |l| [l.to_s, l.id] }
+    @location_ids     = User.location_association_class.order(:name).map{ |l| [l.to_s, l.id] }
   end
 
   def subjects
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
         render :subjects
       else
         @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-        @location_ids     = Location.order(:description).map{ |l| [l.to_s, l.id] }
+        @location_ids     = User.location_association_class.order(:name).map{ |l| [l.to_s, l.id] }
         render :edit
       end
     end
