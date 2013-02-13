@@ -82,7 +82,7 @@ GEM
     mime-types (1.21)
     mini_magick (3.4)
       subexec (~> 0.2.1)
-    multi_json (1.5.1)
+    multi_json (1.6.0)
     oj (2.0.4)
     pg (0.14.1)
     polyglot (0.3.3)
