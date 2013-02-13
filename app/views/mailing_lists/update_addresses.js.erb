@@ -1,5 +1,7 @@
-<% if @errors %>
-  $('table#mailing_list_group_'+<%=@mlg.id%>).prev('form').find('#email').effect('highlight', {color: '#cc0000'}, 500);
+<% if @ok %>
+  $('table#mailing_list_group_' + <%= @mailing_list_group_id %> + ' tbody').html('<%= j(render :partial => "mailing_lists/address", :locals =>{:group => @mlg}) %>');
+<% elsif @mailing_list_group %>
+  $('table#mailing_list_group_' + <%= @mailing_list_group_id %>).prev('form').find('#email').effect('highlight', {color: '#cc0000'}, 500);
 <% else %>
-  $('table#mailing_list_group_'+<%=@mlg.id%>+' tbody').html("<%= j(render :partial => 'mailing_lists/address', :locals =>{:group => @mlg}) %>");
+  showErrorPopUp('azzo');
 <% end %>

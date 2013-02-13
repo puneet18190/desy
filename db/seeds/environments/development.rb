@@ -6,12 +6,6 @@ videos_folder = Media::Video::Uploader::FOLDER
 audios_folder = Media::Audio::Uploader::FOLDER
 [videos_folder, audios_folder].each { |d| FileUtils.rm_rf d if Dir.exists? d }
 
-location1 = Location.find 1
-location2 = Location.find 2
-location3 = Location.find 3
-school_level1 = SchoolLevel.find 1
-school_level2 = SchoolLevel.find 2
-school_level3 = SchoolLevel.find 3
 subject1 = Subject.find 1
 subject2 = Subject.find 2
 subject3 = Subject.find 3
@@ -65,8 +59,8 @@ users = [
                      name:                  name,
                      surname:               surname,
                      school:                'School',
-                     school_level_id:       school_level1.id,
-                     location_id:           location1.id,
+                     school_level_id:       SchoolLevel.find(1).id,
+                     location_id:           User.location_association_class.first.id,
                      subject_ids:           [subject1.id, subject2.id, subject3.id]) do |user|
     user.email = email
     user.accept_policies
@@ -276,7 +270,7 @@ Notification.limit(32).each do |n|
 end
 
 Lesson.all.each do |l|
-  raise Exception if !l.publish
+  raise '' if !l.publish
 end
 
 cont = 0
@@ -292,10 +286,10 @@ end
 
 Lesson.all.each do |l|
   if [2, 3].include? l.subject_id
-    raise Exception if !admin.bookmark('Lesson', l.id)
+    raise '' if !admin.bookmark('Lesson', l.id)
   end
   if l.subject_id == 3
-    raise Exception if !l.copy(admin.id)
+    raise '' if !l.copy(admin.id)
   end
 end
 
@@ -429,7 +423,7 @@ galliani.like(34)
 galliani.like(35)
 
 Lesson.last.modify
-raise Exception if !Lesson.last.copy(admin.id)
+raise '' if !Lesson.last.copy(admin.id)
 Lesson.last.modify
 
 admin.like(Bookmark.where(:user_id => admin.id, :bookmarkable_type => 'Lesson').first.id)

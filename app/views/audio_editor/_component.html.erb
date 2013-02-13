@@ -19,12 +19,12 @@
   end
 %>
 
-<div class="<%= empty ? '_audio_editor_empty_component'.html_safe : '_audio_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-current-preview-time="0" data-max-to="<%= max_to %>">
+<div class="<%= empty ? '_audio_editor_empty_component'.html_safe : '_audio_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-max-to="<%= max_to %>" data-playing="false">
   <div class="contatore _audio_component_icon">
     <%= identifier %>
   </div>
   <div class="audioContent _content">
-    <div class="manigliaAudio _sort_handle"></div>
+    <div class="manigliaAudio _sort_handle" title="<%= t('titles.audio_editor.components.sort') %>"></div>
     <div class="audioComponentContent">
       
       <div class="audioComponentTitle _title">
@@ -32,7 +32,7 @@
       </div>
       
       <div class="audioComponentPlayer">
-        <div class="_player_content" style="visibility:hidden">
+        <div class="_player_content" style="opacity:0.2">
           <span class="_current_time" style="float:left"><%= from %></span>
           <div class="cutter">
             <audio>
@@ -53,7 +53,7 @@
       
       <div class="audioComponentBottom">
         <div class="audioComponentDurations">
-          <%= t('audio_editor.selected') %>: <span class="_cutter_from"><%= from %></span><%= ' - '.html_safe %><span class="_cutter_to"><%= to %></span>
+          <%= t('audio_editor.cutters.selected') %>: <span class="_cutter_from"><%= from %></span><%= ' - '.html_safe %><span class="_cutter_to"><%= to %></span>
         </div>
         <div class="audioComponentControls _controls" style="visibility:hidden">
           <a class="play _media_player_play_in_audio_editor_preview upper"><%= t('audio_editor.cutters.play') %></a>
@@ -69,8 +69,8 @@
     <%= hidden_field_tag "to_#{identifier}", component[:to], :class => '_audio_component_input_to' %>
     <%= hidden_field_tag "position_#{identifier}", identifier, :class => '_audio_component_input_position' %>
   <% end %>
-  <a class="exitButton _remove"></a>
-  <div class="boxGhost _box_ghost"></div>
+  <a class="exitButton _remove" title="<%= t('titles.audio_editor.components.remove') %>"></a>
+  <div class="boxGhost _box_ghost" title="<%= t('titles.audio_editor.components.box_ghost') %>"></div>
 </div>
 
 

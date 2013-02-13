@@ -31,50 +31,51 @@
     text-align: left;
   }
 }
-.lessons-controller {
-  .lessonNotificationPopUp {
-    .notificationWrapper {
-      padding:30px;
-      font-size:12px;
-      form {
-        float:left;
-        textarea {
-          background-color:#fff;
-          font-family: Arial, sans-serif;
-          font-size:12px;
-          margin-bottom:25px;
-          padding:10px;
-          width:323px;
-          height:78px;
-          border-radius: 4px 4px 4px 4px;
-          box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
-          color: #999999;
-          clear:both;  
-        }
-        input[type="submit"] {
-          cursor:pointer;
-          background-color:#5d5c5c;
-          color:white;
-          padding:10px;
-          font-family:'Nunito', sans-serif;
-          font-size:12px;
-        }
-      } 
 
-      p {
-        padding-bottom:30px;
-      } 
-      .img_expanded {
-        float:right;
+.lessonNotificationPopUp {
+  .notificationWrapper {
+    padding:30px;
+    font-size:12px;
+    form {
+      float:left;
+      textarea {
+        background-color:#fff;
+        font-family: Arial, sans-serif;
+        font-size:12px;
+        margin-bottom:25px;
+        padding:10px;
+        width:323px;
+        height:78px;
+        border-radius: 4px 4px 4px 4px;
+        box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
+        color: #999999;
+        clear:both;  
       }
-      a {
+      input[type="submit"] {
+        cursor:pointer;
         background-color:#5d5c5c;
         color:white;
-        padding:10px;  
+        padding:10px;
+        height: 37px;
+        font-family:'Nunito', sans-serif;
+        font-size:12px;
       }
+    } 
+
+    p {
+      padding-bottom:30px;
+    } 
+    .img_expanded {
+      float:right;
+    }
+    a {
+      background-color:#5d5c5c;
+      color:white;
+      padding:10px;  
     }
   }
 }
+
 .virtual_classroom-layout {
   .virtualClassroomSentLessonLinkPopUp {
     overflow: hidden;
@@ -292,9 +293,10 @@
   z-index: 11;
 }
 
-#dialog-virtual-classroom-send-link .buttonRow {
+#dialog-virtual-classroom-send-link .colonnaCoverLesson .buttonRow {
   padding:1em; 
-  margin-top:1em;
+  margin-top:18em;
+  height: 3em;
   a {
     text-transform:lowercase;
     color:white;
@@ -308,6 +310,7 @@
     }
   }
 }
+
 .originalSize {
   font-size:10px;
   color:#fff;
