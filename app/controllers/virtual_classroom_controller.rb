@@ -22,7 +22,7 @@ class VirtualClassroomController < ApplicationController
       get_lessons
     end
     @playlist = current_user.playlist
-    @mailing_list_groups = current_user.mailing_list_groups
+    @mailing_list_groups = current_user.own_mailing_list_groups
     render_js_or_html_index
   end
   

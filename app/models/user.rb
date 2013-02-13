@@ -61,6 +61,10 @@ class User < ActiveRecord::Base
     nil
   end
   
+  def own_mailing_list_groups
+    MailingListGroup.where(:user_id => self.id).order(:name)
+  end
+  
   def new_mailing_list_name
     "Group #{MailingListGroup.where(:user_id => self.id).count + 1}"
   end
