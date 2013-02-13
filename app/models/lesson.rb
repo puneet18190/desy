@@ -58,8 +58,17 @@ class Lesson < ActiveRecord::Base
   
   def notify_changes(msg)
     Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).each do |bo|
-      Notification.send_to bo.user_id, I18n.t('notifications.lessons.modified', :user_name => self.user.full_name, :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => msg)
+      if msg.blank?
+        Notification.send_to bo.user_id, I18n.t('notifications.lessons.modified', :user_name => self.user.full_name, :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => I18n.t('lessons.notify_modifications.empty_message'))
+      else
+        Notification.send_to bo.user_id, I18n.t('notifications.lessons.modified', :user_name => self.user.full_name, :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => msg)
+      end
     end
+    self.notified = true
+    self.save
+  end
+  
+  def dont_notify_changes
     self.notified = true
     self.save
   end

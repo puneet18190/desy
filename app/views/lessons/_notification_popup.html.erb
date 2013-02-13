@@ -2,7 +2,7 @@
   <div class="notificationWrapper">
     <h2><%= t('lessons.notify_modifications.title') %></h2>
     <p><%= t('lessons.notify_modifications.description', :desy => SETTINGS['application_name']) %></p>
-    <form>
+    <form data-remote="true" method="post">
       <%= text_area_tag 'details', '', :id => 'lesson_notify_modification_details' %>
       <%= hidden_field_tag 'details_placeholder', '', :id => 'lesson_notify_modification_details_placeholder' %>
       <br class="clearfloat">

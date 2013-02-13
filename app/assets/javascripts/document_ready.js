@@ -771,12 +771,15 @@ $(document).ready(function() {
   $('body').on('click', '#lesson-notification ._no', function(e) {
     e.preventDefault();
     closePopUp('lesson-notification');
-    var id = $('#lesson-notification').data('lesson-id').split('_');
+    var lesson_id = $('#lesson-notification').data('lesson-id');
+    $('#' + lesson_id).removeClass('_lesson_change_not_notified');
+    var id = lesson_id.split('_');
     id = id[id.length - 1];
     $.ajax({
       type: 'post',
-      url: '/lessons/' + id + '/dont_notify_modification'
-    });
+      url: '/lessons/' + id + '/dont_notify_modification',
+      beforeSend: unbindLoader()
+    }).always(bindLoader);
   });
   
   $('body').on('focus', '#lesson-notification #lesson_notify_modification_details', function() {

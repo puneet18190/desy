@@ -955,6 +955,8 @@ en:
       do: 'Send notification'
       # 1 - views/lessons/_notification_popup.html.erb
       cancel: "I don't want to notify"
+      # 1 - models/lesson.rb
+      empty_message: '[no message given]'
     # 1 - views/lessons/_view_single_compact.html.erb
     # 2 - views/lesson_editor/new.html.erb
     # 3 - views/lesson_editor/edit.html.erb

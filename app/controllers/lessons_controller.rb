@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
   
   before_filter :check_available_for_user, :only => [:copy, :publish]
   before_filter :initialize_lesson, :only => [:add, :copy, :like, :remove, :dislike]
-  before_filter :initialize_lesson_with_owner, :only => [:destroy, :publish, :unpublish]
+  before_filter :initialize_lesson_with_owner, :only => [:destroy, :publish, :unpublish, :dont_notify_modification, :notify_modification]
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_lesson_destination, :only => [:add, :copy, :like, :remove, :dislike, :destroy, :publish, :unpublish]
   before_filter :reset_players_counter, :only => :index
@@ -156,11 +156,17 @@ class LessonsController < ApplicationController
   end
   
   def notify_modification
-    
+    if @ok
+      msg = params[:details_placeholder].blank? ? '' : params[:details]
+      @lesson.notify_changes msg
+    end
   end
   
   def dont_notify_modification
-    render :nothing => true
+    if @ok
+      @lesson.dont_notify_changes
+      render :nothing => true
+    end
   end
   
   private
