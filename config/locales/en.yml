@@ -1561,8 +1561,15 @@ en:
         update_and_publish: 'Update and publish private elements'
     # SECTION 4.5 administer users
     users:
+      #1 - views/admin/users/index.html.erb
       index:
         not_found: 'No users found'
+      #1 - views/admin/users/contact.html.erb
+      contact:
+        send_message: 'Send message'
+        recipients: 'Recipients'
+        message: 'Message'
+        send: 'Send'
     # SECTION 4.6 common captions
     general:
       #1 - views/admin/lessons/index.html.erb
