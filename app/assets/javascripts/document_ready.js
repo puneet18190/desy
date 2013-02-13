@@ -770,10 +770,8 @@ $(document).ready(function() {
   
   $('body').on('click', '#lesson-notification ._no', function(e) {
     e.preventDefault();
-//    var obj = $('#lesson-notification'); TODO TODO TODO
-//    obj.dialog('option', 'hide', 'fade');
-//    closePopUp('lesson-notification');
-//    obj.dialog('option', 'hide', null);
+    closePopUp('lesson-notification');
+    // TODO manca l'ajax
   });
   
   $('body').on('focus', '#lesson-notification #lesson_notify_modification_details', function() {
