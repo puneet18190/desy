@@ -950,7 +950,7 @@ en:
       # 1 - views/lessons/_notification_popup.html.erb
       description: 'This lesson is followed by other users in %{desy}: would you like to inform them about the modifications you made?'
       # 1 - views/lessons/_notification_popup.html.erb
-      placeholder: 'Write the details of your changes'
+      placeholder: 'Write the details of your changes (max %{max} characters)'
       # 1 - views/lessons/_notification_popup.html.erb
       do: 'Send notification'
       # 1 - views/lessons/_notification_popup.html.erb
@@ -1538,6 +1538,11 @@ en:
     # 1 - ..lib/autoload/time_convert.rb
     format: 'english'
   language_parameters:
+    notification:
+      # for chinese it should be around 300 - 400
+      # 1 - models/lesson.rb
+      # 2 - views/lessons/_notification_popup.html.erb
+      message_length_for_public_lesson_modification: 280
     lesson:
       # for chinese it should be around 300 - 400
       # 1 - models/lesson.rb

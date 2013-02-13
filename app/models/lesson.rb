@@ -61,7 +61,7 @@ class Lesson < ActiveRecord::Base
       if msg.blank?
         Notification.send_to bo.user_id, I18n.t('notifications.lessons.modified', :user_name => self.user.full_name, :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => I18n.t('lessons.notify_modifications.empty_message'))
       else
-        Notification.send_to bo.user_id, I18n.t('notifications.lessons.modified', :user_name => self.user.full_name, :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => msg)
+        Notification.send_to bo.user_id, I18n.t('notifications.lessons.modified', :user_name => self.user.full_name, :lesson_title => self.title, :link => lesson_viewer_path(self.id), :message => msg[0, I18n.t('language_parameters.notification.message_length_for_public_lesson_modification')])
       end
     end
     self.notified = true
