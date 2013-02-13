@@ -12,7 +12,7 @@ class PreloginController < ApplicationController
     @user = User.new(params[:user])
 
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-    @location_ids     = Location.order(:description).map{ |sl| [sl.to_s, sl.id] }
+    @location_ids     = User.location_association_class.order(:name).map{ |l| [l.to_s, l.id] }
     @subjects         = Subject.order(:description)
   end
   
