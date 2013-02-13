@@ -1022,7 +1022,7 @@ en:
       # 1 - controllers/virtual_classroom_controller.rb
       link_sent: 'You sent the link of the lesson %{title}, with message %{message}, to the emails: %{emails}'
       # 1 - models/lesson.rb
-      modified: "<h2>There are some news for you! </h2><p>La lezione \"%{lesson_title}\" che stai seguendo ha subito delle modifiche da parte dell’autore!<br><br><strong>Details of changes: </strong><br>%{message}</p><div style=\"display:inline-block; outline:1px solid; #f2f1f2; padding:10px\"><span style=\"color:#2eaadc; float:left\">%{lesson_title}</span><a href=\"%{link}\" style=\"float:right\">occhietto</a></div>"
+      modified: "<h2 style=\"font-size:126%; font-weight:bold\">There are some news for you! </h2><p>La lezione \"%{lesson_title}\" che stai seguendo ha subito delle modifiche da parte dell’autore!<br><br><strong>Details of changes: </strong><br>%{message}</p><div style=\"display:inline-block; outline:1px solid #f2f1f2; padding:10px; width:86%; height:19px; position:absolute; bottom:19px\"><span style=\"color:#2eaadc; float:left\">%{lesson_title}</span><a href=\"%{link}\" style=\"float:right\" class=\"preview\"></a></div>"
       # 1 - models/lesson.rb
       unpublished: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson"
     audios:
