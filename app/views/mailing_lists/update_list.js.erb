@@ -4,5 +4,5 @@
     $('h3#accordion_group_' + <%= @mailing_list_group.id %>).click();
   <% end %>
 <% else %>
-  showErrorPopUp('azzo!');
+  showErrorPopUp($('#popup_captions_container').data('mailing-list-general-error'));
 <% end %>

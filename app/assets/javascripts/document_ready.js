@@ -1,16 +1,17 @@
 $(document).ready(function() {
-
+  
+  
   // BROWSER DETECTION: DECLARING BROWSER NAME AND VERSION AS HTML TAG CLASS
   (function(){
     var name = $.grep(_.keys($.browser), function(el, i) {
       return el !== 'version';
     })[0];
-
-    if( name ) {
+    if(name) {
       $('html').addClass(name);
     }
   })();
-
+  
+  
   // AFTER WINDOW RESIZE
   $(window).resize(function() {
     if($('#my_media_elements').length > 0 || $('#media_elements_in_dashboard').length > 0){
@@ -18,8 +19,10 @@ $(document).ready(function() {
     }
   });
   
+  
   // LOADER
   bindLoader();
+  
   
   // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
   
@@ -831,35 +834,52 @@ $(document).ready(function() {
     }
   });
   
+  $('#select_mailing_list').selectbox({
+    onChange: function (val, inst) {
+      if(val != '') {
+        var to_emails = $('#virtual_classroom_send_link_email_addresses');
+        var hidden_emails = $('#virtual_classroom_send_link_hidden_mailing_lists');
+        var group_name = $(this).find('option[value=' + val + ']').html();
+        to_emails.trigger('focus');
+        if(hidden_emails.val() == '' || hidden_emails.val().indexOf('[' + val + ']') == -1) {
+          if(hidden_emails.val().length > 0) {
+            hidden_emails.val(hidden_emails.val() + '[' + val + '],');
+          } else {
+            hidden_emails.val('[' + val + '],');
+          }
+          if(to_emails.val().length > 0) {
+            to_emails.val(to_emails.val() + '[' + group_name + '], ');
+          } else {
+            to_emails.val('[' + group_name + '], ');
+          }
+        }
+      }
+    }
+  });
   
-
-
+  
   // FIXME FIXME FIXME da qui
   
-  $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function() {
+  $('body').on('change', '#virtual_classroom_send_link_email_addresses', function() {
+    
+    console.log('sono cambiato');
+    
+    checkDifferencesBetweenTextAndHiddenFieldEmailsSendLinkLesson();
+  });
+  
+  $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function(e) {
+    e.preventDefault();
+    checkDifferencesBetweenTextAndHiddenFieldEmailsSendLinkLesson();
+    
+    console.log('submittando...');
+    
     closePopUp('dialog-virtual-classroom-send-link');
     $('#dialog-virtual-classroom-send-link form').submit();
   });
   
   $('body').on('click', '#dialog-virtual-classroom-send-link ._no', function() {
     var obj = $('#dialog-virtual-classroom-send-link');
-    obj.dialog('option', 'hide', 'fade');
     closePopUp('dialog-virtual-classroom-send-link');
-    obj.dialog('option', 'hide', null);
-  });
-  
-
-  
-  $("#select_mailing_list").selectbox({
-    onChange: function (val, inst) {
-      var to_emails = $('#virtual_classroom_send_link_email_addresses')
-      to_emails.trigger('focus');
-      if(to_emails.val().length > 0 && val.length > 0){
-        to_emails.val(to_emails.val()+'['+val+'],');
-      }else if(val.length > 0){
-        to_emails.val('['+val+'],');
-      }
-    }
   });
   
   $(function() {
@@ -908,20 +928,13 @@ $(document).ready(function() {
         }
       });
   });
-
-    // FIXME FIXME FIXME a qui
   
-  
-  
-  
-  
-  
-  
+  // FIXME FIXME FIXME a qui
   
   
   // IMAGE EDITOR
-  $('.image_editor_only #form_info_new_media_element_in_editor, .image_editor_only #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
   
+  $('.image_editor_only #form_info_new_media_element_in_editor, .image_editor_only #form_info_update_media_element_in_editor').css("left",($(window).width()/2)-495);
   $('#image_gallery_for_image_editor ._select_image_from_gallery').addClass('_add_image_to_image_editor');
   $('#image_gallery_for_image_editor .gallery-header').css("left",($(window).width()/2)-420);
   $('body').on('click', '._add_image_to_image_editor', function() {
@@ -1022,7 +1035,9 @@ $(document).ready(function() {
     $('#new_users_session_form').submit();
   });
   
+  
   // PROFILE
+  
   $('body').on('keypress','#mailing_lists_accordion .group-title', function(event){
     if (event.keyCode == 10 || event.keyCode == 13){
       event.preventDefault();
@@ -1041,6 +1056,10 @@ $(document).ready(function() {
       type: 'put',
       url: '/mailing_lists/' + group.data('param') + '/update/' + group.text()
     });
+  });
+  
+  $('body').on('click', '#fake_save_mailing_list', function() {
+    $('.group-title').effect('highlight', {color: '#41A62A'}, 1500);
   });
   
   

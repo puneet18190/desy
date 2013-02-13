@@ -51,16 +51,24 @@ class User < ActiveRecord::Base
   def self.admin
     find_by_email SETTINGS['admin']['email']
   end
-
+  
   def accept_policies
     registration_policies.each{ |p| send("#{p}=", '1') }
   end
-
+  
   def video_editor_cache!(cache = nil)
     update_attribute :video_editor_cache, cache
     nil
   end
-
+  
+  def own_mailing_list_groups
+    MailingListGroup.where(:user_id => self.id).order(:name)
+  end
+  
+  def new_mailing_list_name
+    "Group #{MailingListGroup.where(:user_id => self.id).count + 1}"
+  end
+  
   def audio_editor_cache!(cache = nil)
     return false if self.new_record?
     folder = Rails.root.join "tmp/cache/audio_editor/#{self.id}"
