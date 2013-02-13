@@ -64,6 +64,11 @@ class Lesson < ActiveRecord::Base
     self.save
   end
   
+  def dont_notify_changes
+    self.notified = true
+    self.save
+  end
+  
   def not_notified?
     return false if self.status.nil?
     !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
