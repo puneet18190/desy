@@ -157,7 +157,8 @@ class LessonsController < ApplicationController
   
   def notify_modification
     if @ok
-      
+      msg = params[:details_placeholder].blank? ? '' : params[:details]
+      @lesson.notify_changes msg
     end
   end
   
