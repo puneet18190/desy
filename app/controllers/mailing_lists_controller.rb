@@ -35,10 +35,7 @@ class MailingListsController < ApplicationController
   end
   
   def delete_address
-    if @ok
-      @mailing_list_group = @mailing_list_address.group
-      @mailing_list_address.destroy
-    end
+    @mailing_list_address.destroy if @ok
     render 'update_addresses'
   end
   
@@ -62,7 +59,10 @@ class MailingListsController < ApplicationController
   
   def initialize_mailing_list_address_with_owner
     initialize_mailing_list_address
-    update_ok(@mailing_list_address && current_user.id == @mailing_list_address.user_id)
+    initialize_mailing_list_group
+    update_ok(@mailing_list_address && @mailing_list_group)
+    update_ok(current_user.id == @mailing_list_address.user_id && current_user.id == @mailing_list_group.user_id)
+    update_ok(@mailing_list_address.group_id == @mailing_list_group.id)
   end
   
   def initialize_mailing_list_address
