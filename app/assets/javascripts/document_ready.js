@@ -771,7 +771,12 @@ $(document).ready(function() {
   $('body').on('click', '#lesson-notification ._no', function(e) {
     e.preventDefault();
     closePopUp('lesson-notification');
-    // TODO manca l'ajax
+    var id = $('#lesson-notification').data('lesson-id').split('_');
+    id = id[id.length - 1];
+    $.ajax({
+      type: 'post',
+      url: '/lessons/' + id + '/dont_notify_modification'
+    });
   });
   
   $('body').on('focus', '#lesson-notification #lesson_notify_modification_details', function() {

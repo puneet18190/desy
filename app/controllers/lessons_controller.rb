@@ -159,8 +159,8 @@ class LessonsController < ApplicationController
     
   end
   
-  def notify_modification_done
-    
+  def dont_notify_modification
+    render :nothing => true
   end
   
   private

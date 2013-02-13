@@ -16,7 +16,7 @@ Desy::Application.routes.draw do
   post 'lessons/:lesson_id/remove' => 'lessons#remove'
   post 'lessons/:lesson_id/unpublish' => 'lessons#unpublish'
   post 'lessons/:lesson_id/notify_modification' => 'lessons#notify_modification'
-  post 'lessons/:lesson_id/notify_modification_done' => 'lessons#notify_modification_done'
+  post 'lessons/:lesson_id/dont_notify_modification' => 'lessons#dont_notify_modification'
   post 'virtual_classroom/:lesson_id/add_lesson' => 'virtual_classroom#add_lesson'
   post 'virtual_classroom/:lesson_id/remove_lesson' => 'virtual_classroom#remove_lesson'
   
