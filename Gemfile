@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 gem 'pg'
 
 # Gems used only for assets and not required
@@ -48,9 +48,6 @@ gem 'validates_email_format_of'
 # Use unicorn as the app server
 gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
 # To use debugger
 # gem 'debugger'
 
@@ -62,3 +59,4 @@ end
 gem 'daemons'
 gem 'delayed_job_active_record'
 gem "subexec", :github => "ProGNOMmers/subexec"
+gem 'ancestry'

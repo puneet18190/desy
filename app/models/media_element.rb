@@ -1,4 +1,6 @@
 class MediaElement < ActiveRecord::Base
+  self.inheritance_column = :sti_type
+  
   # Questa deve stare prima delle require dei submodels, perché
   # l'after_save delle tags deve venire prima di quella dell'uploader
   after_save :update_or_create_tags
@@ -16,7 +18,6 @@ class MediaElement < ActiveRecord::Base
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
   
-  self.inheritance_column = :sti_type
 
   serialize :metadata, OpenStruct
   
@@ -42,7 +43,7 @@ class MediaElement < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_public
 
-  #  SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id AND bookmarks.bookmarkable_type = 'MediaElement' AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY COALESCE(bookmarks.created_at, media_elements.updated_at) DESC
+  # SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id AND bookmarks.bookmarkable_type = 'MediaElement' AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY COALESCE(bookmarks.created_at, media_elements.updated_at) DESC
   scope :of, ->(user_or_user_id) do
     user_id = user_or_user_id.instance_of?(User) ? user_or_user_id.id : user_or_user_id
 
@@ -76,38 +77,22 @@ class MediaElement < ActiveRecord::Base
       inferred_sti_type.new_without_sti_type_inferring(attributes, options, &block)
     end
     alias_method_chain :new, :sti_type_inferring
+  
+    def extract(media_element_id, an_user_id, my_sti_type)
+      media_element = find_by_id media_element_id
+      return nil if media_element.nil? || media_element.sti_type != my_sti_type
+      media_element.set_status(an_user_id)
+      return nil if media_element.status.nil?
+      media_element
+    end
   end
   
   def disable_lessons_containing_me
-    MediaElementsSlide.where(:media_element_id => id).each do |mes|
-      l = mes.slide.lesson
-      if video?
-        l.metadata.available_video = false
-      elsif audio?
-        l.metadata.available_audio = false
-      end
-      l.save!
-    end
+    manage_lessons_containing_me(false)
   end
   
   def enable_lessons_containing_me
-    MediaElementsSlide.where(:media_element_id => id).each do |mes|
-      l = mes.slide.lesson
-      if video?
-        l.metadata.available_video = true
-      elsif audio?
-        l.metadata.available_audio = true
-      end
-      l.save!
-    end
-  end
-  
-  def self.extract(media_element_id, an_user_id, my_sti_type)
-    media_element = MediaElement.find_by_id media_element_id
-    return nil if media_element.nil? || media_element.sti_type != my_sti_type
-    media_element.set_status(an_user_id)
-    return nil if media_element.status.nil?
-    media_element
+    manage_lessons_containing_me(true)
   end
   
   def image?
@@ -186,7 +171,7 @@ class MediaElement < ActiveRecord::Base
     old_id = self.id
     begin
       self.destroy
-    rescue Exception
+    rescue StandardError
       errors.add(:base, :problem_destroying)
       return false
     end
@@ -289,4 +274,15 @@ class MediaElement < ActiveRecord::Base
     true
   end
   
+  def manage_lessons_containing_me(value)
+    MediaElementsSlide.where(:media_element_id => id).each do |mes|
+      l = mes.slide.lesson
+      if video?
+        l.metadata.available_video = value
+      elsif audio?
+        l.metadata.available_audio = value
+      end
+      l.save!
+    end
+  end  
 end

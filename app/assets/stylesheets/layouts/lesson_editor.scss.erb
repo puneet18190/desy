@@ -1,4 +1,5 @@
 html.lesson-editor-layout{
+
   height:auto;
   margin:0;
   min-height: 100%;
@@ -125,6 +126,31 @@ html.lesson-editor-layout{
     }
   }
   
+  .contentLessonNotAvailable{
+    width:600px;
+    height:550px;
+    margin: 0 auto;
+    text-align:center;
+    display:table;
+    .contentTitle {
+      display:table-cell; 
+      vertical-align:middle;
+      h1 {
+        text-align:left;
+        color:#F29400;
+        font-size:30px;
+        font-weight:normal;
+        margin:0px;
+      }
+      h2 {
+        text-align: left;
+        color: #fff;
+        font-size: 18px;
+        font-weight: normal;
+        margin:0px
+      }
+    }
+  }
   .add-small{
     position:absolute;
     top:10px;
@@ -417,21 +443,20 @@ html.lesson-editor-layout{
           /*roll-over span*/
 
           span.add-audio{
-            $button-sizeAudio: 2.2em;
+            $button-sizeAudio: 2.5rem;
             width: $button-sizeAudio;
             height: $button-sizeAudio;
-            background:url('/assets/add_audio.svg') 0  no-repeat transparent;
+            background:url('/assets/add_audio_plus.svg') 0  no-repeat transparent;
             background-size: ($button-sizeAudio*2);
             cursor: pointer;
             position:absolute;
-            top:15px;
-            right:19px;
+            top:20px;
+            right:25px;
             opacity:1;
             font-size:1.6em;
             &:hover {
-              background-position: -2.3em;
+              background-position: (-$button-sizeAudio);
             }
-
           }
           
         }
@@ -506,7 +531,8 @@ html.lesson-editor-layout{
               a.play {margin-left:10px}
               a.pause {margin-left:10px}
               a.fullScreen {margin-right:10px}
-              .videoSlider {width:60%}
+              .videoSlider {width:55%; margin-right:10px; margin-left:10px;}
+              
             }
             
           /*roll-over span*/
@@ -1027,72 +1053,6 @@ html.lesson-editor-layout{
         resize: none; 
         line-height: 20px; /* Altezza di riga */
       }
-      
-      /*._tags_container {
-        width: 336px;
-        height: 140px;
-        display:block;
-        resize: none; 
-        line-height: 20px; 
-        border-radius: 10px;
-        border: 3px solid #f29400;
-        padding: 0;
-        line-height: 15px;
-        box-shadow: 0px 2px 2px rgba(50, 50, 50, 0.1) inset;
-        color: #fff;
-        font-size: 13px;
-        font-family: Arial, sans-serif;
-        margin-top: 30px;
-        outline: none;
-        background-color: #E48D1F;
-        overflow:auto;
-        ._placeholder {
-          position: absolute;
-          top: 5px;
-          left: 10px;
-        }
-        span{
-          border-radius: 5px;
-          padding: 0 3px;
-          margin: 5px 0 0 5px;
-          background-color: #fff;
-          float:left;
-          color: #373737;
-          &.new_tag {
-            background-color: lime;
-          }
-          a{
-            display:block;
-            float:right;
-            $button-size: 10px;
-            width: $button-size;
-            height: $button-size;
-            background-image: url(<%= asset_path 'set-icone-editor.svg' %>);
-            background-repeat: no-repeat;
-            background-size: ($button-size*4) ($button-size*10);
-            background-position: -10px 0;
-            margin: 2px;
-            color: #373737;
-            
-            &:hover{
-              background-position: -20px 0;
-              opacity:0.8;
-            }
-          }
-        }
-        input#tags{
-          overflow:visible;
-          clear:both;
-          border: none;
-          margin-top: 5px;
-          padding: 0 10px;
-          box-shadow: none;
-          width: 295px;
-          height: auto;
-          
-        }
-      }*/
-      
       ._error_messages{
         height: 10px;
         padding-top: 10px;
@@ -1104,16 +1064,14 @@ html.lesson-editor-layout{
         border-radius: 10px;
         border: 3px solid rgba(250, 0, 0, 0.5);
       }
-      
-       .sbHolder{
+      .sbHolder{
          width: 200px;
          height: 30px;
-         margin-top: 30px;
+         margin-top: 33px;
          float:right;
          background-color: #E48D1F;
          border-radius: 10px;
          border: none;
-         box-shadow: 0px 2px 2px rgba(50, 50, 50, 0.1) inset;
          font-size: 11px;
          padding: 5px;
        }
@@ -1428,6 +1386,7 @@ html.lesson-editor-layout{
     cursor: pointer;
     background: url('/assets/not_current_slide_arrows.png') no-repeat center 264px;
   }
+
 }
 
 /** tinyMce style **/

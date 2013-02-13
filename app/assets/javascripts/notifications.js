@@ -25,8 +25,8 @@ function initializeNotifications() {
       }
     }
   });
+  
   $('body').on('click', '._single_notification .notification_gatto', function() {
-
     var closest_li = $(this).closest('li');
     var my_own_id = closest_li.attr('id')
     var my_content = $('#' + my_own_id + ' ._expanded_notification').html();

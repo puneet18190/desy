@@ -1,9 +1,14 @@
 <div class="info">
-  <a class="addButtonContent" id="add_new_audio_component_in_audio_editor"></a>
-  <p><%= t('audio_editor.total_length') %>: <br/>
-  <span id="visual_audio_editor_total_length"><%= seconds_to_time total_length %></span><br>
-  <span id="visual_audio_editor_current_time">00:00</span></p>
-  <div id="" class="bottoniVerdi">
+  <a class="addButtonContent" id="add_new_audio_component_in_audio_editor" title="<%= t('titles.audio_editor.components.add') %>"></a>
+  <div class="lateralContentGatto">
+    <p>
+      <%= t('audio_editor.total_length') %>: <br/>
+      <span id="visual_audio_editor_total_length"><%= seconds_to_time total_length %></span><br>
+      <span id="visual_audio_editor_current_time" style="display:none; color:#787575">00:00</span>
+    </p>
+  </div>
+  <div class="bottoniVerdi">
     <a id="start_audio_editor_preview" class="upper <%= parameters[:components].empty? ? 'disabled'.html_safe : '' %>"><%= t('audio_editor.preview.play') %></a>
+    <a id="stop_audio_editor_preview" class="upper" style="display:none"><%= t('audio_editor.preview.stop') %></a>
   </div>
 </div>

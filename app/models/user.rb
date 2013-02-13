@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
 
   ATTR_ACCESSIBLE = [:password, :password_confirmation, :name, :surname, :school_level_id, :school, :location_id, :subject_ids] + REGISTRATION_POLICIES
   attr_accessible *ATTR_ACCESSIBLE
+
+  def self.location_association_class
+    Location::SUBMODELS.last
+  end
   
   has_many :bookmarks
   has_many :notifications
@@ -22,7 +26,7 @@ class User < ActiveRecord::Base
   has_many :virtual_classroom_lessons
   has_many :mailing_list_groups, :dependent => :destroy
   belongs_to :school_level
-  belongs_to :location
+  belongs_to :location, class_name: location_association_class
   
   validates_presence_of :email, :name, :surname, :school_level_id, :school, :location_id
   validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
@@ -44,10 +48,8 @@ class User < ActiveRecord::Base
   scope :confirmed,     where(confirmed: true)
   scope :not_confirmed, where(confirmed: false)
 
-  class << self
-    def admin
-      find_by_email SETTINGS['admin']['email']
-    end
+  def self.admin
+    find_by_email SETTINGS['admin']['email']
   end
 
   def accept_policies
@@ -614,12 +616,10 @@ class User < ActiveRecord::Base
   
   def init_validation
     @user = Valid.get_association self, :id
-    @location = Valid.get_association self, :location_id
     @school_level = Valid.get_association self, :school_level_id
   end
   
   def validate_associations
-    errors.add :location_id, :blank if @location.nil?
     errors.add :school_level_id, :blank if @school_level.nil?
   end
   

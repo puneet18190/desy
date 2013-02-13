@@ -37,13 +37,15 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
 }
 
 function showLessonNotificationPopUp(lesson_id) {
+  var lesson_id_number = lesson_id.split('_');
+  lesson_id_number = lesson_id_number[lesson_id_number.length - 1];
   var obj = $('#lesson-notification');
-  $('#lesson-notification form').attr('action', ('/lessons/' + lesson_id + '/send_notification'));
-  var html_cover_content = $('._lesson_thumb._lesson_' + lesson_id).html();
+  $('#lesson-notification form').attr('action', ('/lessons/' + lesson_id_number + '/notify_modification'));
+  var html_cover_content = $('._lesson_thumb._lesson_' + lesson_id_number).html();
   $('._lesson_notification_cover').html(html_cover_content);
+  obj.data('lesson-id', lesson_id);
   if(obj.data('dialog')) {
     obj.dialog('open');
-    //initializeBlurTextFieldsSendLessonLink();
   } else {
     obj.show();
     obj.dialog({
@@ -52,9 +54,12 @@ function showLessonNotificationPopUp(lesson_id) {
       draggable: false,
       width: 710,
       height: 300,
+      hide: {effect: "fade"},
       show: "fade",
       open: function() {
-        //initializeBlurTextFieldsSendLessonLink();
+        $('#lesson-notification #lesson_notify_modification_details').blur();
+        $('#lesson-notification #lesson_notify_modification_details').val($('#lesson-notification').data('message-placeholder'));
+        $('#lesson-notification #lesson_notify_modification_details_placeholder').val('');
       }
     });
   }
@@ -67,7 +72,6 @@ function showSendLessonLinkPopUp(lesson_id) {
   $('#dialog-virtual-classroom-send-link ._lesson_thumb').html(html_cover_content);
   if(obj.data('dialog')) {
     obj.dialog('open');
-    initializeBlurTextFieldsSendLessonLink();
   } else {
     obj.show();
     obj.dialog({
@@ -77,8 +81,14 @@ function showSendLessonLinkPopUp(lesson_id) {
       width: 690,
       height: 460,
       show: "fade",
+      hide: {effect: "fade"},
       open: function() {
-        initializeBlurTextFieldsSendLessonLink();
+        $('#virtual_classroom_send_link_email_addresses').blur();
+        $('#virtual_classroom_send_link_message').blur();
+        $('#virtual_classroom_send_link_email_addresses').val(obj.data('emails-placeholder'));
+        $('#virtual_classroom_send_link_message').val(obj.data('message-placeholder'));
+        $('#virtual_classroom_send_link_email_addresses_placeholder').val('');
+        $('#virtual_classroom_send_link_message_placeholder').val('');
       }
     });
   }

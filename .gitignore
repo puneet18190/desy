@@ -14,6 +14,9 @@
 /log
 /tmp
 
+# bundle binstubs
+/bin
+
 # Comandi mac per Aurelia
 /mac_commands
 

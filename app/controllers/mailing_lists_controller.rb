@@ -1,54 +1,41 @@
 class MailingListsController < ApplicationController
   
-  skip_before_filter :authenticate, only: [:create, :confirm, :request_reset_password, :reset_password]
-  before_filter :initialize_layout, :only => [:edit, :subjects, :statistics, :mailing_lists]
-  layout 'prelogin', only: [:create, :request_reset_password]
-
+  before_filter :initialize_mailing_list_group_with_owner, :only => [:create_address, :update_group, :delete_group]
+  before_filter :initialize_mailing_list_address_with_owner, :only => :delete_address
+  
   def create_group
-    @mlg = MailingListGroup.new
-    @mlg.user = current_user
-    @mlg.save
-    
+    @mailing_list_group = MailingListGroup.new
+    @mailing_list_group.user = current_user
+    @ok = @mailing_list_group.save
     render 'update_list'
   end
   
   def create_address
-    mla = MailingListAddress.new
-    @mlg = MailingListGroup.find(params[:group_id])
-    mla.group_id = @mlg.id
-    mla.heading = params[:heading]
-    mla.email = params[:email]
-    if mla.save
-      @saved = true
-    else
-      @errors = true
+    if @ok
+      @mailing_list_address = MailingListAddress.new
+      @mailing_list_address.group_id = @mailing_list_group.id
+      @mailing_list_address.heading = params[:heading]
+      @mailing_list_address.email = params[:email]
+      @ok = @mailing_list_address.save
     end
     render 'update_addresses'
   end
   
   def update_group
-    @mlg = MailingListGroup.find(params[:id])
-    last_name = @mlg.name
-    if @mlg.update_attributes(name: params[:name])
-      @saved = true
-    else
-      @mlg.name = last_name
-      @errors = true
+    if @ok
+      @mailing_list_group.name = params[:name]
+      @ok = @mailing_list_group.save
+      @mailing_list_group = MailingListGroup.find @mailing_list_group_id if !@ok
     end
   end
   
   def delete_group
-    mlg = MailingListGroup.find(params[:id])
-    mlg.destroy
-    
+    @mailing_list_group.destroy if @ok
     render 'update_list'
   end
   
   def delete_address
-    mla = MailingListAddress.find(params[:id])
-    @mlg = MailingListGroup.find(mla.group_id)
-    mla.destroy
-    
+    @mailing_list_address.destroy if @ok
     render 'update_addresses'
   end
   
@@ -57,5 +44,31 @@ class MailingListsController < ApplicationController
     render :json => @emails
   end
   
+  private
+  
+  def initialize_mailing_list_group_with_owner
+    initialize_mailing_list_group
+    update_ok(@mailing_list_group && current_user.id == @mailing_list_group.user_id)
+  end
+  
+  def initialize_mailing_list_group
+    @mailing_list_group_id = correct_integer?(params[:group_id]) ? params[:group_id].to_i : 0
+    @mailing_list_group = MailingListGroup.find_by_id @mailing_list_group_id
+    update_ok(!@mailing_list_group.nil?)
+  end
+  
+  def initialize_mailing_list_address_with_owner
+    initialize_mailing_list_address
+    initialize_mailing_list_group
+    update_ok(@mailing_list_address && @mailing_list_group)
+    update_ok(current_user.id == @mailing_list_address.user_id && current_user.id == @mailing_list_group.user_id)
+    update_ok(@mailing_list_address.group_id == @mailing_list_group.id)
+  end
+  
+  def initialize_mailing_list_address
+    @mailing_list_address_id = correct_integer?(params[:address_id]) ? params[:address_id].to_i : 0
+    @mailing_list_address = MailingListAddress.find_by_id @mailing_list_address_id
+    update_ok(!@mailing_list_address.nil?)
+  end
   
 end

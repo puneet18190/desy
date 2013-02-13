@@ -462,6 +462,15 @@ en:
     audio_editor:
       # 1 - views/audio_editor/edit.html.erb
       commit: 'Go to next step'
+      components:
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+        add: 'Add an audio component'
+        # 1 - views/audio_editor/_component.html.erb
+        box_ghost: 'Click in this area to edit and play the component'
+        # 1 - views/audio_editor/_component.html.erb
+        remove: 'Remove audio component'
+        # 1 - views/audio_editor/_component.html.erb
+        sort: 'Drag me to sort the components'
     audios:
       # 1 - views/media_elements/new.html.erb
       new: 'Create new audio'
@@ -754,11 +763,15 @@ en:
   
   # SECTION 2.2: audio editor
   audio_editor:
-    # 1 - views/audio_editor/_component.html.erb
-    selected_length: 'Selected'
-    # 1 - views/audio_editor/_component.html.erb
-    total_length: 'Total length'
-    # it is the title of the audio editor
+    cutters:
+      # 1 - views/audio_editor/_component.html.erb
+      pause: 'Pause'
+      # 1 - views/audio_editor/_component.html.erb
+      play: 'Play'
+      # 1 - views/audio_editor/_component.html.erb
+      selected: 'Selected'
+    # 1 - views/audio_editor/edit.html.erb
+    empty: 'To start creating an audio, click on the button on the right and select from the gallery'
     # 1 - views/audio_editor/_header.html.erb
     label: 'Edit audio'
     not_available:
@@ -766,6 +779,13 @@ en:
       title: 'Audio editor not available'
       # 1 - views/audio_editor/not_available.html.erb
       description: 'Inserire qui altro testo'
+    preview:
+      # 1 - views/audio_editor/_lateral_controls.html.erb
+      play: 'Play'
+      # 1 - views/audio_editor/_lateral_controls.html.erb
+      stop: 'Stop'
+    # 1 - views/audio_editor/_lateral_controls.html.erb
+    total_length: 'Total length'
   
   
   # SECTION 2.3: dashboard
@@ -808,6 +828,13 @@ en:
     audios:
       # 1 - views/galleries/_audio.html.erb
       select: 'Select audio'
+    empty:
+      # 1 - views/galleries/contents/audio.html.erb
+      audio: 'Your audio gallery is empty!'
+      # 1 - views/galleries/contents/image.html.erb
+      image: 'Your image gallery is empty!'
+      # 1 - views/galleries/contents/video.html.erb
+      video: 'Your video gallery is empty!'
     images:
       # 1 - views/galleries/popups/_image.html.erb
       original_size: 'Original size'
@@ -917,6 +944,19 @@ en:
       status: 'Status'
       # 1 - views/lessons/index.html.erb
       subject: 'Subject'
+    notify_modifications:
+      # 1 - views/lessons/_notification_popup.html.erb
+      title: 'You edited a publish lesson!'
+      # 1 - views/lessons/_notification_popup.html.erb
+      description: 'This lesson is followed by other users in %{desy}: would you like to inform them about the modifications you made?'
+      # 1 - views/lessons/_notification_popup.html.erb
+      placeholder: 'Write the details of your changes (max %{max} characters)'
+      # 1 - views/lessons/_notification_popup.html.erb
+      do: 'Send notification'
+      # 1 - views/lessons/_notification_popup.html.erb
+      cancel: "I don't want to notify"
+      # 1 - models/lesson.rb
+      empty_message: '[no message given]'
     # 1 - views/lessons/_view_single_compact.html.erb
     # 2 - views/lesson_editor/new.html.erb
     # 3 - views/lesson_editor/edit.html.erb
@@ -976,18 +1016,59 @@ en:
   notifications:
     # 1 - views/notifications/_empty.html.erb
     empty: "You don't have any notifications"
-    # 1 - models/lesson.rb
-    lesson_unpublished: 'Your bookmark to this lesson has been cancelled - the lesson is not public anymore'
-    # 1 - models/lesson.rb
-    lesson_destroyed: 'Your bookmark to this lesson has been cancelled - the lesson has been removed by the owner'
-    # 1 - controllers/virtual_classroom_controller.rb
-    sent_the_link_of_lesson: 'You sent the link of the lesson #title, with message #message, to the emails: '
-    # 1 - controllers/video_editor_controller.rb
-    video_in_conversion_warning: 'The video and the lessons related to it will be temporary unavailable until the conversion will finish'
-    # 1 - controllers/audio_editor_controller.rb
-    audio_in_conversion_warning: 'The audio and the lessons related to it will be temporary unavailable until the conversion will finish'
-    # 1 - models/lesson.rb
-    public_lesson_changed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', believes that you might be interested in his lesson's update.<br/><br/><a href=\"%{link}\">Check it out</a><br/><br/><i>\"%{message}\"</i>"
+    lessons:
+      # 1 - models/lesson.rb
+      destroyed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', deleted his lesson: hence, you lost the link to that lesson"
+      # 1 - controllers/virtual_classroom_controller.rb
+      link_sent: 'You sent the link of the lesson %{title}, with message %{message}, to the emails: %{emails}'
+      # 1 - models/lesson.rb
+      modified: "<h2 style=\"font-size:126%; font-weight:bold\">There are some news for you! </h2><p>La lezione \"%{lesson_title}\" che stai seguendo ha subito delle modifiche da parte dell’autore!<br><br><strong>Details of changes: </strong><br>%{message}</p><div style=\"display:inline-block; outline:1px solid #f2f1f2; padding:10px; width:86%; height:19px; position:absolute; bottom:19px\"><span style=\"color:#2eaadc; float:left\">%{lesson_title}</span><a href=\"%{link}\" style=\"float:right\" class=\"preview\"></a></div>"
+      # 1 - models/lesson.rb
+      unpublished: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson"
+    audios:
+      editing:
+        # 1 - controllers/audio_editor_controller.rb - TODO manca inserire titolo
+        started: 'Audio editing started! Audio editor temporarily not available, together with lessons where you used this audio.'
+        # TODO manca + inserire titolo
+        ok: 'Audio editing successfully ended! Audio editor and all lessons available.'
+        # TODO manca + inserire titolo
+        failed: 'Audio editing failed! Audio editor and all lessons available. You find <a>here</a> a saved copy of your work.'
+      new:
+        # TODO manca + inserire titolo
+        started: 'Audio composition started! Audio editor temporarily not available.'
+        # TODO manca + inserire titolo
+        ok: 'Audio composition successfully ended! Audio editor available.'
+        # TODO manca + inserire titolo
+        failed: 'Audio composition failed! Audio editor available. You find <a>here</a> a saved copy of your work.'
+      upload:
+        # TODO manca + inserire titolo
+        started: 'Audio upload started! Audio editor not available.'
+        # TODO manca + inserire titolo
+        ok: 'Audio upload successfully ended! Audio editor available'
+        # TODO manca + inserire titolo
+        failed: 'Audio upload failed! Try again'
+    videos:
+      editing:
+        # 1 - controllers/video_editor_controller.rb - TODO manca inserire titolo
+        started: 'Video editing started! Video editor temporarily not available, together with lessons where you used this video.'
+        # TODO manca + inserire titolo
+        ok: 'Video editing successfully ended! Video editor and all lessons available.'
+        # TODO manca + inserire titolo
+        failed: 'Video editing failed! Video editor and all lessons available. You find <a>here</a> a saved copy of your work.'
+      new:
+        # TODO manca + inserire titolo
+        started: 'Video composition started! Video editor temporarily not available.'
+        # TODO manca + inserire titolo
+        ok: 'Video composition successfully ended! Video editor available.'
+        # TODO manca + inserire titolo
+        failed: 'Video composition failed! Video editor available. You find <a>here</a> a saved copy of your work.'
+      upload:
+        # TODO manca + inserire titolo
+        started: 'Video upload started! Video editor not available.'
+        # TODO manca + inserire titolo
+        ok: 'Video upload successfully ended! Video editor available'
+        # TODO manca + inserire titolo
+        failed: 'Video upload failed! Try again'
   
   
   # SECTION 2.11: pagine di prelogin
@@ -1392,9 +1473,9 @@ en:
       emails: 'Insert emails separated by comma'
       mailing_list:
         # 1 - views/virtual_classroom/_popups.html.erb
-        title: 'or select mailing list'
+        title: 'Or select mailing list'
         # 1 - views/virtual_classroom/_popups.html.erb
-        placeholder: 'no mailing list'
+        placeholder: 'No mailing list'
   
   
   
@@ -1457,6 +1538,11 @@ en:
     # 1 - ..lib/autoload/time_convert.rb
     format: 'english'
   language_parameters:
+    notification:
+      # for chinese it should be around 300 - 400
+      # 1 - models/lesson.rb
+      # 2 - views/lessons/_notification_popup.html.erb
+      message_length_for_public_lesson_modification: 280
     lesson:
       # for chinese it should be around 300 - 400
       # 1 - models/lesson.rb

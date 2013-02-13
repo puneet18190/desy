@@ -15,6 +15,8 @@ Desy::Application.routes.draw do
   post 'lessons/:lesson_id/publish' => 'lessons#publish'
   post 'lessons/:lesson_id/remove' => 'lessons#remove'
   post 'lessons/:lesson_id/unpublish' => 'lessons#unpublish'
+  post 'lessons/:lesson_id/notify_modification' => 'lessons#notify_modification'
+  post 'lessons/:lesson_id/dont_notify_modification' => 'lessons#dont_notify_modification'
   post 'virtual_classroom/:lesson_id/add_lesson' => 'virtual_classroom#add_lesson'
   post 'virtual_classroom/:lesson_id/remove_lesson' => 'virtual_classroom#remove_lesson'
   
@@ -125,16 +127,14 @@ Desy::Application.routes.draw do
   get 'profile/statistics' => 'users#statistics', :as => :my_statistics
   get 'profile/mailing_lists' => 'users#mailing_lists', :as => :my_mailing_lists
   put 'profile/update' => 'users#update', as: :user
-  # get  'logout' => 'users#logout', :as => :logout
   
   # MAILING LIST
-  post 'mailing_lists/create_group' => 'mailing_lists#create_group'
-  put 'mailing_lists/update_group/:id/:name' => 'mailing_lists#update_group'
-  put 'mailing_lists/update_group/:id/' => 'mailing_lists#update_group'
-  post '/mailing_lists/group/:group_id/new_address' => 'mailing_lists#create_address', :as => :add_new_address_to_group
-  delete 'mailing_lists/delete_group' => 'mailing_lists#delete_group'
-  delete 'mailing_lists/delete_address' => 'mailing_lists#delete_address'
-  get  'mailing_lists/get_emails' => 'mailing_lists#get_emails'
+  post   'mailing_lists/create' => 'mailing_lists#create_group'
+  put    'mailing_lists/:group_id/update/:name' => 'mailing_lists#update_group'
+  post   'mailing_lists/:group_id/addresses/create' => 'mailing_lists#create_address', :as => :add_new_address_to_group
+  delete 'mailing_lists/:group_id/delete' => 'mailing_lists#delete_group'
+  delete 'mailing_lists/:group_id/addresses/:address_id/delete' => 'mailing_lists#delete_address'
+  get    'mailing_lists/get_emails' => 'mailing_lists#get_emails'
   
   # USER SESSION
   post 'users_sessions' => 'users/sessions#create'
@@ -142,7 +142,6 @@ Desy::Application.routes.draw do
 
   # USER NOT LOGGED
   get  'home' => 'prelogin#home', :as => :home
-  # get  'login' => 'prelogin#login', :as => :login
   get  'sign_up' => 'prelogin#registration', :as => :sign_up
   post 'sign_up' => 'users#create', as: :users
   get  'users/confirm/:token' => 'users#confirm', as: :user_confirm
@@ -150,11 +149,10 @@ Desy::Application.routes.draw do
   post 'users/password' => 'users#reset_password', as: :user_reset_password
   get  'what_is_desy' => 'prelogin#what_is_desy', :as => :what_is_desy
   get  'contact_us' => 'prelogin#contact_us', :as => :contact_us
-  # post 'create_user' => 'prelogin#create_registration', :as => :create_user
   
   # APPLICATION ROOT
   root :to => 'prelogin#home'
-
+  
   namespace 'admin' do
     root :to => 'dashboard#index'
     resources :lessons, :only => [:index, :destroy]

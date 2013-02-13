@@ -1,9 +1,10 @@
 html.audio_editor-controller {
   .dialog_opaco {
     z-index:103;  
-  }  
+  }
+    
  .mediaEditorAudioContainer {
-
+  
     .info {
       width:97px;
       height: 407px;
@@ -26,10 +27,13 @@ html.audio_editor-controller {
         margin-top: 30px;
         text-align:left;
       }
-      .bottoniVerdi a {
-        width:auto;
-        margin-bottom:0px;
-        margin-top:270px;
+      .bottoniVerdi {
+        margin-top: 0;
+        margin-bottom: 0;
+        a {
+          width:auto;
+          margin:0;
+        }
       }
     }
     .addAudioandSave {
@@ -97,11 +101,17 @@ html.audio_editor-controller {
           position:absolute;
           top:20px;
           left:10px;
+          &.selected {
+            color: #fff
+          }
         }
         span._total_length {
           position:absolute;
           top:20px;
           right:10px;
+          &.selected {
+            color: #fff
+          }
         }
         .cutter {
           padding-top: 18px;
@@ -181,6 +191,9 @@ html.audio_editor-controller {
         .audioComponentDurations {
           width: 260px;
           float: left;
+          span.selected {
+            color:#fff;
+          }
         }
         .audioComponentControls {
           float: right;
@@ -286,6 +299,32 @@ html.audio_editor-controller {
   
   .jspDrag {
     background-color: #43A848;
+  }
+  
+  #add_new_audio_component_in_audio_editor.disabled:hover {
+    background-position: -8em -4em;
+    opacity: 0.5;
+    cursor: default;
+  }
+  
+  .emptyAudioEditor {
+    background: url(<%= asset_path 'empty_audio_editor.png' %>) center center no-repeat;
+    padding:60px 290px;
+    position:absolute;
+    right: 190px;
+    
+    p {
+      padding: 200px 0px 0px 0px;
+      width:199px;
+      color:#727377;
+      text-align: right;
+      
+    }
+  }
+  
+  .lateralContentGatto {
+    width: 98px;
+    height: 324px;
   }
   
 }
