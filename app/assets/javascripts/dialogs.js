@@ -72,7 +72,6 @@ function showSendLessonLinkPopUp(lesson_id) {
   $('#dialog-virtual-classroom-send-link ._lesson_thumb').html(html_cover_content);
   if(obj.data('dialog')) {
     obj.dialog('open');
-    // TODO manca il blur
   } else {
     obj.show();
     obj.dialog({
@@ -84,7 +83,12 @@ function showSendLessonLinkPopUp(lesson_id) {
       show: "fade",
       hide: {effect: "fade"},
       open: function() {
-        // TODO manca il blur
+        $('#virtual_classroom_send_link_email_addresses').blur();
+        $('#virtual_classroom_send_link_message').blur();
+        $('#virtual_classroom_send_link_email_addresses').val(obj.data('emails-placeholder'));
+        $('#virtual_classroom_send_link_message').val(obj.data('message-placeholder'));
+        $('#virtual_classroom_send_link_email_addresses_placeholder').val('');
+        $('#virtual_classroom_send_link_message_placeholder').val('');
       }
     });
   }

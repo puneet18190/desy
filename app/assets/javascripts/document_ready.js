@@ -541,20 +541,8 @@ $(document).ready(function() {
     autoReinitialise: true
   });
   
-  $("#select_mailing_list").selectbox({
-    onChange: function (val, inst) {
-      var to_emails = $('._send_link_form_text_area._emails')
-      to_emails.trigger('focus');
-      if(to_emails.val().length > 0 && val.length > 0){
-        to_emails.val(to_emails.val()+'['+val+'],');
-      }else if(val.length > 0){
-        to_emails.val('['+val+'],');
-      }
-    }
-  });
-
   $("#select_lesson_list").selectbox();
-
+  
   $("#which_item_to_search").selectbox();
   
   $("#filter_lessons").selectbox();
@@ -604,6 +592,27 @@ $(document).ready(function() {
     var my_id = $(this).data('param');
     var offset = $('#tooltip_content').data('offset');
     $.post('/notifications/' + my_id + '/destroy?offset=' + offset);
+  });
+  
+  $('body').on('click', '#lesson-notification ._no', function(e) {
+    e.preventDefault();
+    closePopUp('lesson-notification');
+    var lesson_id = $('#lesson-notification').data('lesson-id');
+    $('#' + lesson_id).removeClass('_lesson_change_not_notified');
+    var id = lesson_id.split('_');
+    id = id[id.length - 1];
+    $.ajax({
+      type: 'post',
+      url: '/lessons/' + id + '/dont_notify_modification',
+      beforeSend: unbindLoader()
+    }).always(bindLoader);
+  });
+  
+  $('body').on('focus', '#lesson-notification #lesson_notify_modification_details', function() {
+    if($('#lesson-notification #lesson_notify_modification_details_placeholder').val() === '') {
+      $(this).val('');
+      $('#lesson-notification #lesson_notify_modification_details_placeholder').val('0');
+    }
   });
   
   
@@ -714,14 +723,6 @@ $(document).ready(function() {
     window.location = '/lessons/view/playlist';
   });
   
-  $('body').on('click', '._virtual_classroom_lesson ._lesson_thumb', function() {
-    var lesson_id = $(this).data('lesson-id');
-    var redirect_to = $('#info_container').data('currenturl');
-    var parser = document.createElement('a');
-    parser.href = redirect_to;
-    window.location.href = '/lessons/' + lesson_id + '/view?back=' + encodeURIComponent(parser.pathname+parser.search+parser.hash);
-  });
-  
   $('body').on('click', '._remove_lesson_from_inside_virtual_classroom', function() {
     var lesson_id = $(this).data('clickparam');
     var current_url = $('#info_container').data('currenturl');
@@ -768,56 +769,6 @@ $(document).ready(function() {
     });
   });
   
-  $('body').on('click', '#lesson-notification ._no', function(e) {
-    e.preventDefault();
-    closePopUp('lesson-notification');
-    var lesson_id = $('#lesson-notification').data('lesson-id');
-    $('#' + lesson_id).removeClass('_lesson_change_not_notified');
-    var id = lesson_id.split('_');
-    id = id[id.length - 1];
-    $.ajax({
-      type: 'post',
-      url: '/lessons/' + id + '/dont_notify_modification',
-      beforeSend: unbindLoader()
-    }).always(bindLoader);
-  });
-  
-  $('body').on('focus', '#lesson-notification #lesson_notify_modification_details', function() {
-    if($('#lesson-notification #lesson_notify_modification_details_placeholder').val() === '') {
-      $(this).val('');
-      $('#lesson-notification #lesson_notify_modification_details_placeholder').val('0');
-    }
-  });
-  
-  $('body').on('click', '._send_lesson_link', function() {
-    var lesson_id = $(this).data('lesson-id');
-    showSendLessonLinkPopUp(lesson_id);
-  });
-  
-  $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function() {
-    closePopUp('dialog-virtual-classroom-send-link');
-    $('._send_link_form_text_area').each(function() {
-      if($(this).data('not-yet-selected')) {
-        $(this).attr('value', '');
-      }
-    });
-    $('#dialog-virtual-classroom-send-link form').submit();
-  });
-  
-  $('body').on('click', '#dialog-virtual-classroom-send-link ._no', function() {
-    var obj = $('#dialog-virtual-classroom-send-link');
-    obj.dialog('option', 'hide', 'fade');
-    closePopUp('dialog-virtual-classroom-send-link');
-    obj.dialog('option', 'hide', null);
-  });
-  
-  $('body').on('focus', '._send_link_form_text_area', function() {
-    if($(this).data('not-yet-selected')) {
-      $(this).attr('value', '');
-      $(this).data('not-yet-selected', false);
-    }
-  });
-  
   $('body').on('click', '._virtual_classroom_quick_loaded_lesson', function() {
     var cover = $('#' + this.id + ' ._lesson_thumb');
     if(!cover.hasClass('current')) {
@@ -848,6 +799,124 @@ $(document).ready(function() {
     $('.dialog_opaco').removeClass('dialog_opaco');
     closePopUp('dialog-virtual-classroom-quick-select');
   });
+  
+  $('body').on('click', '._virtual_classroom_preview', function(e) {
+    e.preventDefault();
+    if(!$(this).parent().hasClass('_disabled')) {
+      var my_param = $(this).data('lesson-id');
+      var redirect_back_to = $("#info_container").data('currenturl');
+      previewLesson(my_param, redirect_back_to);
+    }
+    return false;
+  });
+  
+  $('body').on('click', '._send_lesson_link', function() {
+    var lesson_id = $(this).data('lesson-id');
+    showSendLessonLinkPopUp(lesson_id);
+  });
+  
+  $('body').on('focus', '#virtual_classroom_send_link_email_addresses', function() {
+    var placeholder = $('#virtual_classroom_send_link_email_addresses_placeholder');
+    if(placeholder.val() === '') {
+      $(this).attr('value', '');
+      placeholder.val('0');
+    }
+  });
+  
+  $('body').on('focus', '#virtual_classroom_send_link_message', function() {
+    var placeholder = $('#virtual_classroom_send_link_message_placeholder');
+    if(placeholder.val() === '') {
+      $(this).attr('value', '');
+      placeholder.val('0');
+    }
+  });
+  
+  
+
+
+  // FIXME FIXME FIXME da qui
+  
+  $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function() {
+    closePopUp('dialog-virtual-classroom-send-link');
+    $('#dialog-virtual-classroom-send-link form').submit();
+  });
+  
+  $('body').on('click', '#dialog-virtual-classroom-send-link ._no', function() {
+    var obj = $('#dialog-virtual-classroom-send-link');
+    obj.dialog('option', 'hide', 'fade');
+    closePopUp('dialog-virtual-classroom-send-link');
+    obj.dialog('option', 'hide', null);
+  });
+  
+
+  
+  $("#select_mailing_list").selectbox({
+    onChange: function (val, inst) {
+      var to_emails = $('#virtual_classroom_send_link_email_addresses')
+      to_emails.trigger('focus');
+      if(to_emails.val().length > 0 && val.length > 0){
+        to_emails.val(to_emails.val()+'['+val+'],');
+      }else if(val.length > 0){
+        to_emails.val('['+val+'],');
+      }
+    }
+  });
+  
+  $(function() {
+    function split( val ) {
+      return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+ 
+    $( "#email_addresses" )
+      // don't navigate away from the field on tab when selecting an item
+      .bind( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).data( "autocomplete" ).menu.active ) {
+          event.preventDefault();
+        }
+      })
+      .autocomplete({
+        source: function( request, response ) {
+          $.getJSON( "/mailing_lists/get_emails", {
+            term: extractLast( request.term )
+          }, response );
+        },
+        search: function() {
+          // custom minLength
+          var term = extractLast( this.value );
+          if ( term.length < 2 ) {
+            return false;
+          }
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( ", " );
+          return false;
+        }
+      });
+  });
+
+    // FIXME FIXME FIXME a qui
+  
+  
+  
+  
+  
+  
+  
   
   
   // IMAGE EDITOR
@@ -966,11 +1035,11 @@ $(document).ready(function() {
      }
   });
   
-  $('body').on('blur','#mailing_lists_accordion .group-title', function(){
-    var group = $(this); 
+  $('body').on('blur', '#mailing_lists_accordion .group-title', function() {
+    var group = $(this);
     $.ajax({
       type: 'put',
-      url: '/mailing_lists/update_group/' + group.data('param')+'/'+ group.text()
+      url: '/mailing_lists/' + group.data('param') + '/update/' + group.text()
     });
   });
   

@@ -950,7 +950,7 @@ en:
       # 1 - views/lessons/_notification_popup.html.erb
       description: 'This lesson is followed by other users in %{desy}: would you like to inform them about the modifications you made?'
       # 1 - views/lessons/_notification_popup.html.erb
-      placeholder: 'Write the details of your changes'
+      placeholder: 'Write the details of your changes (max %{max} characters)'
       # 1 - views/lessons/_notification_popup.html.erb
       do: 'Send notification'
       # 1 - views/lessons/_notification_popup.html.erb
@@ -1022,7 +1022,7 @@ en:
       # 1 - controllers/virtual_classroom_controller.rb
       link_sent: 'You sent the link of the lesson %{title}, with message %{message}, to the emails: %{emails}'
       # 1 - models/lesson.rb
-      modified: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', believes that you might be interested in his lesson's update.<br/><br/><a href=\"%{link}\">Check it out</a><br/><br/><i>\"%{message}\"</i>"
+      modified: "<h2 style=\"font-size:126%; font-weight:bold\">There are some news for you! </h2><p>La lezione \"%{lesson_title}\" che stai seguendo ha subito delle modifiche da parte dell’autore!<br><br><strong>Details of changes: </strong><br>%{message}</p><div style=\"display:inline-block; outline:1px solid #f2f1f2; padding:10px; width:86%; height:19px; position:absolute; bottom:19px\"><span style=\"color:#2eaadc; float:left\">%{lesson_title}</span><a href=\"%{link}\" style=\"float:right\" class=\"preview\"></a></div>"
       # 1 - models/lesson.rb
       unpublished: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson"
     audios:
@@ -1473,9 +1473,9 @@ en:
       emails: 'Insert emails separated by comma'
       mailing_list:
         # 1 - views/virtual_classroom/_popups.html.erb
-        title: 'or select mailing list'
+        title: 'Or select mailing list'
         # 1 - views/virtual_classroom/_popups.html.erb
-        placeholder: 'no mailing list'
+        placeholder: 'No mailing list'
   
   
   
@@ -1538,6 +1538,11 @@ en:
     # 1 - ..lib/autoload/time_convert.rb
     format: 'english'
   language_parameters:
+    notification:
+      # for chinese it should be around 300 - 400
+      # 1 - models/lesson.rb
+      # 2 - views/lessons/_notification_popup.html.erb
+      message_length_for_public_lesson_modification: 280
     lesson:
       # for chinese it should be around 300 - 400
       # 1 - models/lesson.rb
