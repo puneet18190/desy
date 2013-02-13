@@ -62,8 +62,8 @@ class MailingListsController < ApplicationController
     initialize_mailing_list_address
     initialize_mailing_list_group
     update_ok(@mailing_list_address && @mailing_list_group)
-    update_ok(current_user.id == @mailing_list_address.user_id && current_user.id == @mailing_list_group.user_id)
     update_ok(@mailing_list_address.group_id == @mailing_list_group.id)
+    update_ok(current_user.id == @mailing_list_group.user_id)
   end
   
   def initialize_mailing_list_address

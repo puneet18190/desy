@@ -1,5 +1,5 @@
 <% if @ok %>
-  $('table#mailing_list_group_' + <%= @mailing_list_group_id %> + ' tbody').html('<%= j(render :partial => "mailing_lists/address", :locals =>{:group => @mlg}) %>');
+  $('table#mailing_list_group_' + <%= @mailing_list_group_id %> + ' tbody').html('<%= j(render :partial => "mailing_lists/address", :locals =>{:group => @mailing_list_group}) %>');
 <% elsif @mailing_list_group %>
   $('table#mailing_list_group_' + <%= @mailing_list_group_id %>).prev('form').find('#email').effect('highlight', {color: '#cc0000'}, 500);
 <% else %>

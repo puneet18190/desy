@@ -1022,7 +1022,9 @@ $(document).ready(function() {
     $('#new_users_session_form').submit();
   });
   
+  
   // PROFILE
+  
   $('body').on('keypress','#mailing_lists_accordion .group-title', function(event){
     if (event.keyCode == 10 || event.keyCode == 13){
       event.preventDefault();
@@ -1041,6 +1043,10 @@ $(document).ready(function() {
       type: 'put',
       url: '/mailing_lists/' + group.data('param') + '/update/' + group.text()
     });
+  });
+  
+  $('body').on('click', '#fake_save_mailing_list', function() {
+    $('.group-title').effect('highlight', {color: '#41A62A'}, 1500);
   });
   
   
