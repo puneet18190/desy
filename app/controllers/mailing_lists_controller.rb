@@ -6,6 +6,7 @@ class MailingListsController < ApplicationController
   def create_group
     @mailing_list_group = MailingListGroup.new
     @mailing_list_group.user = current_user
+    @mailing_list_group.name = current_user.new_mailing_list_name
     @ok = @mailing_list_group.save
     render 'update_list'
   end
