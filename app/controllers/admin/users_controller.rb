@@ -33,6 +33,15 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def get_emails
+    @users = User.get_emails(params[:term])
+    render :json => @users
+  end
+
+  def contact
+    @users = params[:users] if params[:users] #list of recipients
+  end
+
   private
     def find_user
       @user = User.find(params[:id])

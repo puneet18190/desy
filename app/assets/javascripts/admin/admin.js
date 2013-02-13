@@ -6,6 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui-1.9.0.custom
 //= require jquery.peity
 //= require bootstrap
 //= require bootstrap-tooltip
@@ -92,6 +93,62 @@ $(document).ready(function(){
   	});
     
   });
+  
+  $(function() {
+      function split( val ) {
+        return val.split( /,\s*/ );
+      }
+      function extractLast( term ) {
+        return split( term ).pop();
+      }
+ 
+      $('#contact-recipients')
+        // don't navigate away from the field on tab when selecting an item
+        .bind( "keydown", function( event ) {
+          if ( event.keyCode === $.ui.keyCode.TAB &&
+              $( this ).data( "autocomplete" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+        .autocomplete({
+          create: function(){
+            $('.ui-helper-hidden-accessible').wrap('<div class="autocomplete-suggest alert alert-info hide pull-right" />');
+          },
+          source: function( request, response ) {
+            $.getJSON( "/admin/users/get_emails", {
+              term: extractLast( request.term )
+            }, response );
+          },
+          search: function() {
+            // custom minLength
+            var term = extractLast( this.value );
+            if ( term.length < 2 ) {
+              return false;
+            }
+            $('.alert-info').show();
+          },
+          focus: function() {
+            // prevent value inserted on focus
+            return false;
+          },
+          select: function( event, ui ) {
+            var terms = split( this.value );
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push( ui.item.value );
+            // add placeholder to get the comma-and-space at the end
+            terms.push( "" );
+            this.value = terms.join( ", " );
+            return false;
+          },
+          messages: {
+            results: function() {
+
+            }
+          }
+        });
+    });
   
   // EFFECTS
   

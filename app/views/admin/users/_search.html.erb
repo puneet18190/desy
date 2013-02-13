@@ -9,25 +9,16 @@
         </div>
       </div>
     </div>
-    <div class="span2">
+    <div class="span3">
       <div class="control-group">
-        <label for="keyword">Keyword</label>
+        <label for="user">User</label>
         <div class="controls">
-          <input type="text" class="input-small" name="keyword" placeholder="Keyword">
+          <input type="text" class="input-large" name="user" placeholder="User">
         </div>
       </div>
     </div>
-    <div class="span3">
-      <div class="control-group">
-        <label for="subject">Subject</label>
-        <div class="controls">
-          <select>
-            <% Subject.all.each do |subject| %>
-              <option><%= subject.description %></option>
-            <%end%>
-          </select>
-        </div>
-      </div>
+    <div class="span2">
+      
     </div>
     <div class="span2">
       <div class="control-group">
@@ -46,12 +37,7 @@
       </div>
     </div>
     <div class="span2">
-      <div class="control-group">
-        <label for="user">User</label>
-        <div class="controls">
-          <input type="text" class="input-small" name="user" placeholder="User">
-        </div>
-      </div>
+      
     </div>
   </div>
   <div class="row-fluid">
@@ -87,6 +73,7 @@
     <div class="span12">
       <div class="form-actions">
         <button type="submit" class="btn">Search</button>
+        <button type="submit" class="btn btn-primary pull-right">Send Message</button>
       </div>
     </div>
   </div>

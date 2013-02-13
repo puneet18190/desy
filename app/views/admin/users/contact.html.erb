@@ -1,0 +1,33 @@
+<div class="row-fluid">
+  <div class="span12">
+    <h3>Send message</h3>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="hero-unit">
+      <form class="form-vertical">
+        <div class="control-group">
+          <label for="user">Recipients</label>
+          <div class="controls">
+            <% if @users && @users.count > 0 %>
+              <input class="disabled" value="<%=@users.pluck('email')%>">
+            <% end %>
+            <input id="contact-recipients" type="text" class="input-xxlarge" name="recipients" placeholder="Recipients" />
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="message">Mesage</label>
+          <div class="controls">
+            <textarea rows="10" class="input-xxlarge" type="text" name="message" placeholder="Message"></textarea>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+        <div class="clearfix"></div>
+      </form>
+    </div>
+  </div>
+</div>

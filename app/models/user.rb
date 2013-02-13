@@ -408,6 +408,10 @@ class User < ActiveRecord::Base
     resp
   end
   
+  def self.get_emails(term)
+    where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?',"%#{term}%","%#{term}%","%#{term}%").select('name, surname, email AS value')
+  end
+  
   private
   
   def search_media_elements_with_tag(word, offset, limit, filter, order_by)
