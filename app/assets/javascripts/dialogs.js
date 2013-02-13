@@ -89,6 +89,11 @@ function showSendLessonLinkPopUp(lesson_id) {
         $('#virtual_classroom_send_link_message').val(obj.data('message-placeholder'));
         $('#virtual_classroom_send_link_email_addresses_placeholder').val('');
         $('#virtual_classroom_send_link_message_placeholder').val('');
+        $('#virtual_classroom_send_link_hidden_mailing_lists').val('');
+        $('#select_mailing_list option[selected]').removeAttr('selected');
+        var placeholder_select_box = $('#select_mailing_list option').first();
+        placeholder_select_box.attr('selected', 'selected');
+        $($('#select_mailing_list').next().find('a')[1]).html(placeholder_select_box.html());
       }
     });
   }

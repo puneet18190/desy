@@ -207,7 +207,9 @@ ALTER SEQUENCE likes_id_seq OWNED BY likes.id;
 
 CREATE TABLE locations (
     id integer NOT NULL,
-    description character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    sti_type character varying(255),
+    ancestry character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -1225,6 +1227,13 @@ CREATE INDEX index_lessons_on_title ON lessons USING btree (title DESC);
 --
 
 CREATE INDEX index_lessons_on_updated_at ON lessons USING btree (updated_at DESC);
+
+
+--
+-- Name: index_locations_on_ancestry; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_locations_on_ancestry ON locations USING btree (ancestry);
 
 
 --

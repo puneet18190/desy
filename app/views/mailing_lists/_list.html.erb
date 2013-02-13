@@ -1,20 +1,21 @@
 <div id="mailing_lists">
-	<div id="add_new_group">
-    <%= link_to '', '/mailing_lists/create_group', :method => :post, :remote => true%>
-		<span><%= t('users.mailing_list.add')%></span>
-	</div>
-	<div id="mailing_lists_accordion">
-		<% current_user.mailing_list_groups.each_with_index do |group, index| %>
-      <%= render :partial => 'mailing_lists/group', :locals => {:group => group}%>
-		<% end%>
-	</div>
+  <div id="add_new_group">
+    <%= link_to '', '/mailing_lists/create', :method => :post, :remote => true %>
+    <span><%= t('users.mailing_list.add') %></span>
+  </div>
+  <div id="mailing_lists_accordion">
+    <% current_user.mailing_list_groups.each_with_index do |group, index| %>
+      <%= render :partial => 'mailing_lists/group', :locals => {:group => group} %>
+    <% end %>
+  </div>
 </div>
+
+
 <script type="text/javascript" charset="utf-8">
-  $('#mailing_lists_accordion').accordion({ 
+  $('#mailing_lists_accordion').accordion({
     heightStyle: "content"
   });
-  //delete($.ui.accordion.prototype._keydown);
-  $.ui.accordion.prototype._keydown = function( event ) {
+  $.ui.accordion.prototype._keydown = function(event) {
     return;
   };
 </script>

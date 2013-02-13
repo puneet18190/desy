@@ -14,9 +14,12 @@
 ActiveRecord::Schema.define(:version => 20130131094635) do
 
   create_table "locations", :force => true do |t|
-    t.string   "description", :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "name",       :null => false
+    t.string   "sti_type"
+    t.string   "ancestry"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.index ["ancestry"], :name => "index_locations_on_ancestry", :order => {"ancestry" => :asc}
   end
 
   create_table "school_levels", :force => true do |t|

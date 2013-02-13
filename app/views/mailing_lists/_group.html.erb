@@ -1,20 +1,20 @@
-<h3 id="accordion_group_<%=group.id%>">
-  <%= link_to t('users.mailing_list.delete'), { :controller => 'mailing_lists', :action => 'delete_group', :id => group.id }, {:method => :delete, :remote => true, :class=> 'delete_group _delete_mailing_list_group'}%>
+<h3 id="accordion_group_<%= group.id %>">
+  <%= link_to t('users.mailing_list.delete'), "/mailing_lists/#{group.id}/delete", {:method => :delete, :remote => true, :class => 'delete_group _delete_mailing_list_group'} %>
   <a class="selector"></a>
-  <span class="group-title" contenteditable="true" data-param="<%=group.id%>"><%= group.name ? group.name : t('users.mailing_list.label') + ' ' + group.id.to_s %></span>
+  <span class="group-title" contenteditable="true" data-param="<%= group.id %>"><%= group.name ? group.name : t('users.mailing_list.label') + ' ' + group.id.to_s %></span>
   <div style="clear:both"></div>
 </h3>
 
 <div>
   <%= form_tag({:controller => "mailing_lists", :action => "create_address", :group_id => group.id}, {:remote => true, :class => 'new_email'}) do %>
-    <p><%= t('users.mailing_list.add_address')%></p>
+    <p><%= t('users.mailing_list.add_address') %></p>
     <input type="text" name="heading" value="Name" id="name">
     <input type="text" name="email" value="Email" id="email">
     <input type="submit" value="">
   <% end %>
-  <table width="100%" id="mailing_list_group_<%=group.id%>">
+  <table width="100%" id="mailing_list_group_<%= group.id %>">
     <tbody>
-      <%= render :partial => 'mailing_lists/address', :locals => {:group => group}%>
+      <%= render :partial => 'mailing_lists/address', :locals => {:group => group} %>
     </tbody>
   </table>
 </div>
