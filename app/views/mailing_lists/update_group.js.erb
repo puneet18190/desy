@@ -1,7 +1,7 @@
-<% if @errors %>
+<% if @ok %>
+  $('h3#accordion_group_' + <%= @mailing_list_group_id %> + ' .group-title').text('<%= @mailing_list_group.name %>').effect('highlight', {color: '#41A62A'}, 1500);
+<% elsif @mailing_list_group %>
   $('h3#accordion_group_'+<%=@mlg.id%>).effect('highlight', {color: '#cc0000'}, 500);
 <% else %>
-  $('h3#accordion_group_'+<%=@mlg.id%>+' .group-title').effect('highlight', {color: '#41A62A'}, 1500);
+  showErrorPopUp('azzo');
 <% end %>
-
-$('h3#accordion_group_'+<%=@mlg.id%>+' .group-title').text("<%=@mlg.name%>");

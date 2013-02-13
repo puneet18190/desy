@@ -541,20 +541,8 @@ $(document).ready(function() {
     autoReinitialise: true
   });
   
-  $("#select_mailing_list").selectbox({
-    onChange: function (val, inst) {
-      var to_emails = $('._send_link_form_text_area._emails')
-      to_emails.trigger('focus');
-      if(to_emails.val().length > 0 && val.length > 0){
-        to_emails.val(to_emails.val()+'['+val+'],');
-      }else if(val.length > 0){
-        to_emails.val('['+val+'],');
-      }
-    }
-  });
-
   $("#select_lesson_list").selectbox();
-
+  
   $("#which_item_to_search").selectbox();
   
   $("#filter_lessons").selectbox();
@@ -822,24 +810,34 @@ $(document).ready(function() {
     return false;
   });
   
-  
-  
-  
-  
-  // FIXME FIXME FIXME da qui
-
   $('body').on('click', '._send_lesson_link', function() {
     var lesson_id = $(this).data('lesson-id');
     showSendLessonLinkPopUp(lesson_id);
   });
   
+  $('body').on('focus', '#virtual_classroom_send_link_email_addresses', function() {
+    var placeholder = $('#virtual_classroom_send_link_email_addresses_placeholder');
+    if(placeholder.val() === '') {
+      $(this).attr('value', '');
+      placeholder.val('0');
+    }
+  });
+  
+  $('body').on('focus', '#virtual_classroom_send_link_message', function() {
+    var placeholder = $('#virtual_classroom_send_link_message_placeholder');
+    if(placeholder.val() === '') {
+      $(this).attr('value', '');
+      placeholder.val('0');
+    }
+  });
+  
+  
+
+
+  // FIXME FIXME FIXME da qui
+  
   $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function() {
     closePopUp('dialog-virtual-classroom-send-link');
-    $('._send_link_form_text_area').each(function() {
-      if($(this).data('not-yet-selected')) {
-        $(this).attr('value', '');
-      }
-    });
     $('#dialog-virtual-classroom-send-link form').submit();
   });
   
@@ -850,13 +848,20 @@ $(document).ready(function() {
     obj.dialog('option', 'hide', null);
   });
   
-  $('body').on('focus', '._send_link_form_text_area', function() {
-    if($(this).data('not-yet-selected')) {
-      $(this).attr('value', '');
-      $(this).data('not-yet-selected', false);
+
+  
+  $("#select_mailing_list").selectbox({
+    onChange: function (val, inst) {
+      var to_emails = $('#virtual_classroom_send_link_email_addresses')
+      to_emails.trigger('focus');
+      if(to_emails.val().length > 0 && val.length > 0){
+        to_emails.val(to_emails.val()+'['+val+'],');
+      }else if(val.length > 0){
+        to_emails.val('['+val+'],');
+      }
     }
   });
-
+  
   $(function() {
     function split( val ) {
       return val.split( /,\s*/ );
