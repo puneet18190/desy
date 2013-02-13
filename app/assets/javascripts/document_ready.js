@@ -1035,11 +1035,11 @@ $(document).ready(function() {
      }
   });
   
-  $('body').on('blur','#mailing_lists_accordion .group-title', function(){
-    var group = $(this); 
+  $('body').on('blur', '#mailing_lists_accordion .group-title', function() {
+    var group = $(this);
     $.ajax({
       type: 'put',
-      url: '/mailing_lists/update_group/' + group.data('param')+'/'+ group.text()
+      url: '/mailing_lists/' + group.data('param') + '/update/' + group.text()
     });
   });
   
