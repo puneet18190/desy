@@ -37,10 +37,13 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
 }
 
 function showLessonNotificationPopUp(lesson_id) {
+  var lesson_id_number = lesson_id.split('_');
+  lesson_id_number = lesson_id_number[lesson_id_number.length - 1];
   var obj = $('#lesson-notification');
-  $('#lesson-notification form').attr('action', ('/lessons/' + lesson_id + '/notify_modification'));
-  var html_cover_content = $('._lesson_thumb._lesson_' + lesson_id).html();
+  $('#lesson-notification form').attr('action', ('/lessons/' + lesson_id_number + '/notify_modification'));
+  var html_cover_content = $('._lesson_thumb._lesson_' + lesson_id_number).html();
   $('._lesson_notification_cover').html(html_cover_content);
+  obj.data('lesson-id', lesson_id);
   if(obj.data('dialog')) {
     obj.dialog('open');
   } else {
@@ -52,7 +55,12 @@ function showLessonNotificationPopUp(lesson_id) {
       width: 710,
       height: 300,
       hide: {effect: "fade"},
-      show: "fade"
+      show: "fade",
+      open: function() {
+        $('#lesson-notification #lesson_notify_modification_details').blur();
+        $('#lesson-notification #lesson_notify_modification_details').val($('#lesson-notification').data('message-placeholder'));
+        $('#lesson-notification #lesson_notify_modification_details_placeholder').val('');
+      }
     });
   }
 }
@@ -64,7 +72,7 @@ function showSendLessonLinkPopUp(lesson_id) {
   $('#dialog-virtual-classroom-send-link ._lesson_thumb').html(html_cover_content);
   if(obj.data('dialog')) {
     obj.dialog('open');
-    initializeBlurTextFieldsSendLessonLink();
+    // TODO manca il blur
   } else {
     obj.show();
     obj.dialog({
@@ -76,7 +84,7 @@ function showSendLessonLinkPopUp(lesson_id) {
       show: "fade",
       hide: {effect: "fade"},
       open: function() {
-        initializeBlurTextFieldsSendLessonLink();
+        // TODO manca il blur
       }
     });
   }
