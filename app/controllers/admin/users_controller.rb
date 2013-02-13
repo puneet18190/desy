@@ -41,7 +41,7 @@ class Admin::UsersController < ApplicationController
   def contact
     if params[:users] #list of recipients
       @users = []
-      @users_ids = params[:users][1..-2].split(',')
+      @users_ids = params[:users].gsub(/[\[\]]/,'').split(',')
       @users_ids.each do |user_id|
         @users << User.find(user_id)
       end

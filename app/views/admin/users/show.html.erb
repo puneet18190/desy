@@ -35,7 +35,7 @@
                   <i class="icon-remove"></i> <%= t('admin.general.delete').downcase%>
                 </button>
                 <button class="btn btn-small">
-                  <i class="icon-envelope"></i> <%= link_to t('admin.users.show.message').downcase, "/admin/users/contact?users=#{@user.id.to_a}"%>
+                  <i class="icon-envelope"></i> <%= link_to t('admin.users.show.message').downcase, "/admin/users/contact?users=#{@user.id}"%>
                 </button>
               </div>
             </td>
