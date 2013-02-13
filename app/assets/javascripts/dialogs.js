@@ -38,12 +38,11 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
 
 function showLessonNotificationPopUp(lesson_id) {
   var obj = $('#lesson-notification');
-  $('#lesson-notification form').attr('action', ('/lessons/' + lesson_id + '/send_notification'));
+  $('#lesson-notification form').attr('action', ('/lessons/' + lesson_id + '/notify_modification'));
   var html_cover_content = $('._lesson_thumb._lesson_' + lesson_id).html();
   $('._lesson_notification_cover').html(html_cover_content);
   if(obj.data('dialog')) {
     obj.dialog('open');
-    //initializeBlurTextFieldsSendLessonLink();
   } else {
     obj.show();
     obj.dialog({
@@ -52,10 +51,8 @@ function showLessonNotificationPopUp(lesson_id) {
       draggable: false,
       width: 710,
       height: 300,
-      show: "fade",
-      open: function() {
-        //initializeBlurTextFieldsSendLessonLink();
-      }
+      hide: {effect: "fade"},
+      show: "fade"
     });
   }
 }
@@ -77,6 +74,7 @@ function showSendLessonLinkPopUp(lesson_id) {
       width: 690,
       height: 460,
       show: "fade",
+      hide: {effect: "fade"},
       open: function() {
         initializeBlurTextFieldsSendLessonLink();
       }
