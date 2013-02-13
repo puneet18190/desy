@@ -950,7 +950,6 @@ en:
       # 1 - views/lessons/_notification_popup.html.erb
       description: 'This lesson is followed by other users in %{desy}: would you like to inform them about the modifications you made?'
       # 1 - views/lessons/_notification_popup.html.erb
-      # 2 - views/lessons/_notification_popup.html.erb
       placeholder: 'Write the details of your changes'
       # 1 - views/lessons/_notification_popup.html.erb
       do: 'Send notification'

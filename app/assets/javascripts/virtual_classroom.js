@@ -1,10 +1,3 @@
-function initializeBlurTextFieldsSendLessonLink() {
-  $('._send_link_form_text_area').blur();
-  $('._send_link_form_text_area').data('not-yet-selected', true);
-  $('._send_link_form_text_area._emails').attr('value', $('#popup_captions_container_virtual_classroom').data('caption-emails'));
-  $('._send_link_form_text_area._message').attr('value', $('#popup_captions_container_virtual_classroom').data('caption-message'));
-}
-
 function initializeNotAvailableLessonsToLoadQuick() {
   $('._virtual_classroom_quick_loaded_lesson').each(function() {
     if(!$(this).data('available')) {

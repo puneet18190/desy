@@ -415,11 +415,11 @@ $(document).ready(function() {
     e.preventDefault();
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
+      var destination = $(this).data('destination');
       var lesson_parent = $('#found_lesson_' + my_param + ', #compact_lesson_' + my_param + ', #expanded_lesson_' + my_param);
       if(lesson_parent.hasClass('_lesson_change_not_notified')) {
-        showLessonNotificationPopUp(my_param);
+        showLessonNotificationPopUp(destination + '_' + my_param);
       } else {
-        var destination = $(this).data('destination');
         unpublishLesson(my_param, destination);
       }
     }
@@ -770,12 +770,18 @@ $(document).ready(function() {
   
   $('body').on('click', '#lesson-notification ._no', function(e) {
     e.preventDefault();
-    var obj = $('#lesson-notification');
-    obj.dialog('option', 'hide', 'fade');
-    closePopUp('lesson-notification');
-    obj.dialog('option', 'hide', null);
+//    var obj = $('#lesson-notification'); TODO TODO TODO
+//    obj.dialog('option', 'hide', 'fade');
+//    closePopUp('lesson-notification');
+//    obj.dialog('option', 'hide', null);
   });
   
+  $('body').on('focus', '#lesson-notification #lesson_notify_modification_details', function() {
+    if($('#lesson-notification #lesson_notify_modification_details_placeholder').val() === '') {
+      $(this).val('');
+      $('#lesson-notification #lesson_notify_modification_details_placeholder').val('0');
+    }
+  });
   
   $('body').on('click', '._send_lesson_link', function() {
     var lesson_id = $(this).data('lesson-id');
