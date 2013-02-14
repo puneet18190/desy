@@ -18,7 +18,6 @@ def create_locations_school_levels_subjects_admin_user
                      password_confirmation: SETTINGS['admin']['password'], 
                      name:                  SETTINGS['admin']['name'], 
                      surname:               SETTINGS['admin']['surname'], 
-                     school:                'School', 
                      school_level_id:       SchoolLevel.first.id, 
                      location_id:           User.location_association_class.first.id,
                      subject_ids:           subject_ids) do |user|

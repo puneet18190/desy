@@ -3,14 +3,34 @@ application_copyright: '©2013 DESY. All rights reserved'
 application_name: 'DESY'
 application_full_name: 'DESY - Digital Education System'
 # The order is important!!!
-location_types: ['Province', 'Town']
+location_types: ['Province', 'Town', 'School']
 
 # TODO spostarlo in un file esterno? tipo un CSV?
 locations:
   Lazio:
-    ['Frosinone', 'Latina', 'Rieti', 'Roma', 'Viterbo']
+    Frosinone:
+      ['Scuola 1', 'Scuola 2']
+    Latina:
+      ['Scuola 3', 'Scuola 4']
+    Rieti:
+      ['Scuola 5', 'Scuola 6']
+    Roma:
+      ['Scuola 7', 'Scuola 8']
+    Viterbo:
+      ['Scuola 9', 'Scuola 10']
   Puglia:
-    ['Bari', 'Barletta-Andria-Trani', 'Brindisi', 'Foggia', 'Lecce', 'Taranto']  
+    Bari:
+      ['Scuola 11', 'Scuola 12']
+    Barletta-Andria-Trani:
+      ['Scuola 13', 'Scuola 14']
+    Brindisi:
+      ['Scuola 15', 'Scuola 16']
+    Foggia:
+      ['Scuola 17', 'Scuola 18']
+    Lecce:
+      ['Scuola 19', 'Scuola 20']
+    Taranto:
+      ['Scuola 21', 'Scuola 22']
 
 # SEEDS
 # locations: ['Shanghai', 'Guangzhou', 'Wuhan', 'Beijing', 'Tianjin', 'Shenzhen', 'Nanjing'] # possibly, link here an external file with the list of locations

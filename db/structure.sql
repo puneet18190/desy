@@ -652,7 +652,6 @@ CREATE TABLE users (
     name character varying(255) NOT NULL,
     surname character varying(255) NOT NULL,
     school_level_id integer NOT NULL,
-    school character varying(255) NOT NULL,
     encrypted_password character varying(255) NOT NULL,
     confirmed boolean NOT NULL,
     location_id integer NOT NULL,

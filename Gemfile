@@ -27,6 +27,8 @@ group :development do
   gem "letter_opener"
   # Basta assets che monopolizzano il log dell'application server!
   gem 'quiet_assets'
+  gem 'irbtools'
+  gem 'irb-benchmark'
 end
 
 gem 'recursive-open-struct'

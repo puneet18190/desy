@@ -58,7 +58,6 @@ users = [
                      password_confirmation: 'password', 
                      name:                  name,
                      surname:               surname,
-                     school:                'School',
                      school_level_id:       SchoolLevel.find(1).id,
                      location_id:           User.location_association_class.first.id,
                      subject_ids:           [subject1.id, subject2.id, subject3.id]) do |user|

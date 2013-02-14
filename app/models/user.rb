@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
   serialize :video_editor_cache
 
-  ATTR_ACCESSIBLE = [:password, :password_confirmation, :name, :surname, :school_level_id, :school, :location_id, :subject_ids] + REGISTRATION_POLICIES
+  ATTR_ACCESSIBLE = [:password, :password_confirmation, :name, :surname, :school_level_id, :location_id, :subject_ids] + REGISTRATION_POLICIES
   attr_accessible *ATTR_ACCESSIBLE
 
   def self.location_association_class
@@ -28,12 +28,12 @@ class User < ActiveRecord::Base
   belongs_to :school_level
   belongs_to :location, class_name: location_association_class
   
-  validates_presence_of :email, :name, :surname, :school_level_id, :school, :location_id
+  validates_presence_of :email, :name, :surname, :school_level_id, :location_id
   validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
   validates_confirmation_of :password
   validates_presence_of :users_subjects
   validates_uniqueness_of :email
-  validates_length_of :name, :surname, :email, :school, :maximum => 255
+  validates_length_of :name, :surname, :email, :maximum => 255
   validates_length_of :password, :minimum => 8, :on => :create
   validates_length_of :password, :minimum => 8, :on => :update, :allow_nil => true, :allow_blank => true
   validate :validate_associations
@@ -48,19 +48,29 @@ class User < ActiveRecord::Base
   scope :confirmed,     where(confirmed: true)
   scope :not_confirmed, where(confirmed: false)
 
+  alias_attribute :school, :location
+
   def self.admin
     find_by_email SETTINGS['admin']['email']
   end
-
+  
   def accept_policies
     registration_policies.each{ |p| send("#{p}=", '1') }
   end
-
+  
   def video_editor_cache!(cache = nil)
     update_attribute :video_editor_cache, cache
     nil
   end
-
+  
+  def own_mailing_list_groups
+    MailingListGroup.where(:user_id => self.id).order(:name)
+  end
+  
+  def new_mailing_list_name
+    "Group #{MailingListGroup.where(:user_id => self.id).count + 1}"
+  end
+  
   def audio_editor_cache!(cache = nil)
     return false if self.new_record?
     folder = Rails.root.join "tmp/cache/audio_editor/#{self.id}"
