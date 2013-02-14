@@ -40,11 +40,6 @@ class MailingListsController < ApplicationController
     render 'update_addresses'
   end
   
-  def get_emails
-    @emails = MailingListAddress.get_emails(current_user.id, params[:term])
-    render :json => @emails
-  end
-  
   private
   
   def initialize_mailing_list_group_with_owner

@@ -814,9 +814,6 @@ $(document).ready(function() {
   });
   
   
-  
-  
-  
   // FIXME FIXME FIXME da qui
   
   $('body').on('click', '._send_lesson_link', function() {
@@ -845,41 +842,28 @@ $(document).ready(function() {
   $('body').on('click', '#virtual_classroom_emails_submitter', function() {
     var selector = $('#virtual_classroom_emails_selector');
     if(!selector.data('placeholdered') && selector.val() != '') {
-      $('#virtual_classroom_send_link_mails_box .jspPane').append('<div class="_email">' + selector.val() + '<a class="_remove"></a></div>');
+      $('#virtual_classroom_send_link_mails_box .jspPane').append('<div class="_email"><span class="_text">' + selector.val() + '</span><a class="_remove"></a></div>');
       selector.val('');
     }
   });
   
+  $('body').on('click', '#virtual_classroom_send_link_mails_box ._remove', function() {
+    $(this).parent().remove();
+  });
+  
   $('#select_mailing_list').selectbox({
-    onChange: function (val, inst) {
+    onChange: function(val, inst) {
       if(val != '') {
- 
-        var hidden_emails = $('#virtual_classroom_send_link_hidden_mailing_lists');
-        var group_name = $(this).find('option[value=' + val + ']').html();
-        to_emails.trigger('focus');
-        if(hidden_emails.val() == '' || hidden_emails.val().indexOf('[' + val + ']') == -1) {
-          if(hidden_emails.val().length > 0) {
-            hidden_emails.val(hidden_emails.val() + '[' + val + '],');
-          } else {
-            hidden_emails.val('[' + val + '],');
-          }
-          if(to_emails.val().length > 0) {
-            to_emails.val(to_emails.val() + '[' + group_name + '], ');
-          } else {
-            to_emails.val('[' + group_name + '], ');
-          }
+        var emails = $('#virtual_classroom_hidden_mailing_lists ._mailing_list_' + val + ' div');
+        for(var i = 0; i < emails.length; i++) {
+          $('#virtual_classroom_send_link_mails_box .jspPane').append(emails[i].outerHTML);
         }
       }
     }
   });
   
-  
-  
   $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function(e) {
     e.preventDefault();
-    
-    console.log('submittando...');
-    
     closePopUp('dialog-virtual-classroom-send-link');
     $('#dialog-virtual-classroom-send-link form').submit();
   });
@@ -887,53 +871,6 @@ $(document).ready(function() {
   $('body').on('click', '#dialog-virtual-classroom-send-link ._no', function() {
     var obj = $('#dialog-virtual-classroom-send-link');
     closePopUp('dialog-virtual-classroom-send-link');
-  });
-  
-  $(function() {
-    function split( val ) {
-      return val.split( /,\s*/ );
-    }
-    function extractLast( term ) {
-      return split( term ).pop();
-    }
- 
-    $( "#email_addresses" )
-      // don't navigate away from the field on tab when selecting an item
-      .bind( "keydown", function( event ) {
-        if ( event.keyCode === $.ui.keyCode.TAB &&
-            $( this ).data( "autocomplete" ).menu.active ) {
-          event.preventDefault();
-        }
-      })
-      .autocomplete({
-        source: function( request, response ) {
-          $.getJSON( "/mailing_lists/get_emails", {
-            term: extractLast( request.term )
-          }, response );
-        },
-        search: function() {
-          // custom minLength
-          var term = extractLast( this.value );
-          if ( term.length < 2 ) {
-            return false;
-          }
-        },
-        focus: function() {
-          // prevent value inserted on focus
-          return false;
-        },
-        select: function( event, ui ) {
-          var terms = split( this.value );
-          // remove the current input
-          terms.pop();
-          // add the selected item
-          terms.push( ui.item.value );
-          // add placeholder to get the comma-and-space at the end
-          terms.push( "" );
-          this.value = terms.join( ", " );
-          return false;
-        }
-      });
   });
   
   // FIXME FIXME FIXME a qui

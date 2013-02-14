@@ -318,15 +318,23 @@
 
 #virtual_classroom_send_link_mails_box {
   background-color: green;
-  width: 320px;
+  width: 350px;
   height: 80px;
   ._email {
     background-color: blue;
     height: 20px;
+    width: auto;
     ._remove {
-      width: 5px;
-      height: 5px;
-      background-color: purple;
+      width: 15px;
+      height: 15px;
+      background-color: aqua;
+      float: left;
+      &:hover {
+        background-color: red;
+      }
+    }
+    ._text {
+      float: left;
     }
   }
 }

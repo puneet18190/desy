@@ -13,9 +13,12 @@
       <%= select_tag 'groups', options_from_collection_for_select(@mailing_list_groups, 'id','name'), :prompt => t('virtual_classroom.send_link.mailing_lists'), :id => 'select_mailing_list' %>
       <div id="virtual_classroom_hidden_mailing_lists" style="display:none">
         <% @mailing_list_groups.each do |ma| %>
-          <div class="_mailing_list">
+          <div class="_mailing_list_<%= ma.id %>">
             <% ma.addresses.each do |addr| %>
-              
+              <div class="_email">
+                <span class="_text"><%= addr.email %></span>
+                <a class="_remove"></a>
+              </div>
             <% end %>
           </div>
         <% end %>
