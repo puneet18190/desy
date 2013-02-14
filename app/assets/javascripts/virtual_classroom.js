@@ -1,3 +1,11 @@
+function addEmailToVirtualClassroomSendLessonLinkSelector() {
+  var selector = $('#virtual_classroom_emails_selector');
+  if(!selector.data('placeholdered') && selector.val() != '') {
+    $('#virtual_classroom_send_link_mails_box .jspPane').append('<div class="_email"><span class="_text">' + selector.val() + '</span><a class="_remove"></a></div>');
+    selector.val('');
+  }
+}
+
 function initializeNotAvailableLessonsToLoadQuick() {
   $('._virtual_classroom_quick_loaded_lesson').each(function() {
     if(!$(this).data('available')) {

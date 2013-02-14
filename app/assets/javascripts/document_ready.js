@@ -813,9 +813,6 @@ $(document).ready(function() {
     return false;
   });
   
-  
-  // FIXME FIXME FIXME da qui
-  
   $('body').on('click', '._send_lesson_link', function() {
     var lesson_id = $(this).data('lesson-id');
     showSendLessonLinkPopUp(lesson_id);
@@ -840,10 +837,13 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#virtual_classroom_emails_submitter', function() {
-    var selector = $('#virtual_classroom_emails_selector');
-    if(!selector.data('placeholdered') && selector.val() != '') {
-      $('#virtual_classroom_send_link_mails_box .jspPane').append('<div class="_email"><span class="_text">' + selector.val() + '</span><a class="_remove"></a></div>');
-      selector.val('');
+    addEmailToVirtualClassroomSendLessonLinkSelector();
+  });
+  
+  $('body').on('keydown', '#virtual_classroom_emails_selector', function(e) {
+    if(e.which === 13) {
+      e.preventDefault();
+      addEmailToVirtualClassroomSendLessonLinkSelector();
     }
   });
   
@@ -862,18 +862,16 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function(e) {
-    e.preventDefault();
-    closePopUp('dialog-virtual-classroom-send-link');
-    $('#dialog-virtual-classroom-send-link form').submit();
-  });
-  
   $('body').on('click', '#dialog-virtual-classroom-send-link ._no', function() {
     var obj = $('#dialog-virtual-classroom-send-link');
     closePopUp('dialog-virtual-classroom-send-link');
   });
   
-  // FIXME FIXME FIXME a qui
+  $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function() {
+//    e.preventDefault();
+//    closePopUp('dialog-virtual-classroom-send-link'); TODO
+//    $('#dialog-virtual-classroom-send-link form').submit();
+  });
   
   
   // IMAGE EDITOR
