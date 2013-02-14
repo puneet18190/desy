@@ -18,7 +18,7 @@ class UserMailer < ActionMailer::Base
   def see_my_lesson(emails, sender, lesson, message, host = nil, port = nil)
     host_and_port!(host, port)
     @sender = sender
-    @message = message
+    @message = message.blank? ? I18n.t('virtual_classroom.send_link.empty_message') : message[0, I18n.t('language_parameters.notification.message_length_for_send_lesson_link')]
     @lesson_link = lesson_viewer_url(*host_and_port(lesson.id, token: lesson.token))
     mail to: emails, subject: t('mailer.see_my_lesson.subject', :desy => APPLICATION_NAME)
   end

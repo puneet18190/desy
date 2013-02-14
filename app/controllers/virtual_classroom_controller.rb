@@ -176,19 +176,14 @@ class VirtualClassroomController < ApplicationController
   end
   
   def initialize_mails
-    @emails = []
-    return if params[:emails_placeholer].blank?
-    params[:hidden_mailing_lists].split(',').each do |group|
-      mailing_list_group = MailingListGroup.find_by_id group.gsub('[', '').gsub(']', '')
-      if(!mailing_list_group.nil?)
-        @emails << mailing_list_group.addresses.pluck('email')
-      end
-    end
+    emails_hash = {}
+    @original_emalis_number = params[:emails].split(',').length
     params[:emails].split(',').each do |email|
-      @emails << email if(email[0, 1] != '[' && !(/^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/ =~ email).nil?)
+      emails_hash[email] = true if !(/^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/ =~ email).nil?
     end
+    @emails = emails_hash.keys
     @message = params[:message_placeholer].blank? ? '' : params[:message]
-    update_ok(@emails.any? && !@message.blank?)
+    update_ok(@emails.any?)
   end
   
   def initialize_virtual_classroom_lesson

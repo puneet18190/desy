@@ -868,9 +868,17 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function() {
-//    e.preventDefault();
-//    closePopUp('dialog-virtual-classroom-send-link'); TODO
-//    $('#dialog-virtual-classroom-send-link form').submit();
+    var obj = $('#dialog-virtual-classroom-send-link');
+    obj.dialog('option', 'hide', null);
+    var emails_input = '';
+    $('#virtual_classroom_send_link_mails_box .jspPane ._email ._text').each(function() {
+      emails_input += ($(this).html() + ',');
+    });
+    emails_input = emails_input.substr(0, emails_input.length - 1);
+    $('#virtual_classroom_send_link_hidden_emails').val(emails_input);
+    closePopUp('dialog-virtual-classroom-send-link');
+    obj.dialog('option', 'hide', {effect: "fade"});
+    $('#dialog-virtual-classroom-send-link form').submit();
   });
   
   
