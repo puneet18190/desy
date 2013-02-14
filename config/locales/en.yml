@@ -47,7 +47,7 @@ en:
       error: 'Error in mailing list!'
     send_lesson_link:
       # 1 - views/virtual_classroom/send_link.js.erb
-      ok: 'Link sent successfully!'
+      ok: 'Link sent successfully to %{success} out of %{total} emails inserted'
       # 1 - views/virtual_classroom/send_link.js.erb
       error: 'Link not sent: did you fill all the fields and write correct emails?'
     video_editor:
