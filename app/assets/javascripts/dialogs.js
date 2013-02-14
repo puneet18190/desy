@@ -82,6 +82,9 @@ function showSendLessonLinkPopUp(lesson_id) {
       height: 460,
       show: "fade",
       hide: {effect: "fade"},
+      beforeClose: function() {
+        $('#virtual_classroom_send_link_mails_box').data('jsp').destroy();
+      },
       open: function() {
         $('#virtual_classroom_emails_selector').blur();
         $('#virtual_classroom_send_link_message').blur();

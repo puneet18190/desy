@@ -822,6 +822,9 @@ $(document).ready(function() {
   $('body').on('click', '._send_lesson_link', function() {
     var lesson_id = $(this).data('lesson-id');
     showSendLessonLinkPopUp(lesson_id);
+    $('#virtual_classroom_send_link_mails_box').jScrollPane({
+      autoReinitialise: true
+    });
   });
   
   $('body').on('focus', '#virtual_classroom_emails_selector', function() {
@@ -839,7 +842,13 @@ $(document).ready(function() {
     }
   });
   
-  
+  $('body').on('click', '#virtual_classroom_emails_submitter', function() {
+    var selector = $('#virtual_classroom_emails_selector');
+    if(!selector.data('placeholdered') && selector.val() != '') {
+      $('#virtual_classroom_send_link_mails_box .jspPane').append('<div class="_email">' + selector.val() + '<a class="_remove"></a></div>');
+      selector.val('');
+    }
+  });
   
   $('#select_mailing_list').selectbox({
     onChange: function (val, inst) {
