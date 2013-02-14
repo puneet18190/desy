@@ -1542,32 +1542,26 @@ en:
     format: 'english'
   language_parameters:
     notification:
-      # for chinese it should be around 300 - 400
       # 1 - models/lesson.rb
       # 2 - views/lessons/_notification_popup.html.erb
       message_length_for_public_lesson_modification: 280
     lesson:
-      # for chinese it should be around 300 - 400
       # 1 - models/lesson.rb
       # 2 - views/lesson_editor/new.html.erb
       length_description: 280
-      # for chinese it should be around 45
       # 1 - models/lesson.rb
       # 2 - views/lesson_editor/new.html.erb
       length_title: 35
     media_element:
-      # for chinese it should be around 300 - 400
       # 1 - models/media_element.rb
       # 2 - views/media_elements/_new_form_popup.html.erb
       # 3 - views/media_elements/info_form_in_editor/_new.html.erb
       length_description: 280
-      # for chinese it should be around 45
       # 1 - models/media_element.rb
       # 2 - views/media_elements/_new_form_popup.html.erb
       # 3 - views/media_elements/info_form_in_editor/_new.html.erb
       length_title: 35
     slide:
-      # for chinese it should be around 45
       # 1 - models/slide.rb
       # 2 - views/lesson_editor/slides/_text.html.erb
       # 3 - views/lesson_editor/slides/_title.html.erb
@@ -1575,12 +1569,10 @@ en:
       # 5 - views/lesson_editor/slides/_image1.html.erb
       # 6 - views/lesson_editor/slides/_audio.html.erb
       length_title: 35
-      # for chinese it should be around 45
       # 1 - models/media_elements_slide.rb
       # 2 - views/lesson_editor/slides/parts/_image.html.erb
       length_caption: 35
     video_editor:
-      # for chinese it should be around 45
       # 1 - views/video_editor/_text_component_editor.html.erb
       length_text_component: 35
       # 1 - views/galleries/mixed_for_video_editor.js.erb
