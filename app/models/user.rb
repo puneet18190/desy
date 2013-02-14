@@ -48,6 +48,8 @@ class User < ActiveRecord::Base
   scope :confirmed,     where(confirmed: true)
   scope :not_confirmed, where(confirmed: false)
 
+  alias_attribute :school, :location
+
   def self.admin
     find_by_email SETTINGS['admin']['email']
   end
