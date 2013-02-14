@@ -9,7 +9,7 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :change_position_in_playlist]
   before_filter :initialize_position, :only => :change_position_in_playlist
   before_filter :initialize_lesson_for_sending_link, :only => :send_link
-  before_filter :initialize_mails, :only => :send_link
+  before_filter :initialize_emails, :only => :send_link
   before_filter :initialize_page, :only => :select_lessons_new_block
   before_filter :initialize_loaded_lessons, :only => :load_lessons
   before_filter :reset_players_counter, :only => :index
@@ -175,7 +175,7 @@ class VirtualClassroomController < ApplicationController
     update_ok(@page > 0)
   end
   
-  def initialize_mails
+  def initialize_emails
     emails_hash = {}
     @original_emalis_number = params[:emails].split(',').length
     params[:emails].split(',').each do |email|
@@ -183,6 +183,7 @@ class VirtualClassroomController < ApplicationController
     end
     @emails = emails_hash.keys
     @message = params[:message_placeholer].blank? ? '' : params[:message]
+    @message = @message.blank? ? I18n.t('virtual_classroom.send_link.empty_message') : @message[0, I18n.t('language_parameters.notification.message_length_for_send_lesson_link')]
     update_ok(@emails.any?)
   end
   
