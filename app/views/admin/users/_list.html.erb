@@ -20,7 +20,7 @@
         <td><%= user.name %></td>
         <td><%= user.surname %></td>
         <td><%= user.school %> (<%= user.school_level.description %>)</td>
-        <td><%= user.location.description %></td>
+        <td></td>
         <td><%= user.created_at.strftime('%d-%m-%Y')%></td>
         <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user) ,:target => :blank, :class=>"action"%><a href="#" target="_blank" class="action"></a></td>
         <td><%= link_to '<i class="icon-ok"></i>'.html_safe, "#", :class=>"action disabled"%></td>

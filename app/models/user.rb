@@ -51,6 +51,11 @@ class User < ActiveRecord::Base
   def self.admin
     find_by_email SETTINGS['admin']['email']
   end
+  
+  def admin?
+    admin =  self.class.admin
+    id == admin.id if admin.present?
+  end
 
   def accept_policies
     registration_policies.each{ |p| send("#{p}=", '1') }

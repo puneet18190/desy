@@ -9,16 +9,25 @@
         </div>
       </div>
     </div>
-    <div class="span3">
+    <div class="span2">
       <div class="control-group">
         <label for="user">User</label>
         <div class="controls">
-          <input type="text" class="input-large" name="user" placeholder="User">
+          <input type="text" class="input-medium" name="user" placeholder="User">
         </div>
       </div>
     </div>
-    <div class="span2">
-      
+    <div class="span3">
+      <div class="control-group">
+        <label for="subject">Subject</label>
+        <div class="controls">
+          <select>
+            <% Subject.all.each do |subject| %>
+              <option><%= subject.description %></option>
+            <%end%>
+          </select>
+        </div>
+      </div>
     </div>
     <div class="span2">
       <div class="control-group">

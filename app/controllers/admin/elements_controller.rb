@@ -1,4 +1,4 @@
-class Admin::ElementsController < ApplicationController
+class Admin::ElementsController < AdminController
   before_filter :find_element, :only => [:destroy, :update]
   layout 'admin'
   def index

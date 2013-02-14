@@ -22,7 +22,7 @@
           <td><%= lesson.title%></td>
           <td><%= lesson.subject.description %></td>
           <td><%= lesson.user.surname %> <%= lesson.user.name %></td>
-          <td><%= lesson.user.location.description %> (<%= lesson.user.school %>)</td>
+          <td> (<%= lesson.user.school %>)</td>
           <td><%= lesson.created_at.strftime('%d-%m-%Y')%></td>
           <td><%= lesson.updated_at.strftime('%d-%m-%Y')%></td>
           <td><%= lesson.likes.count%></td>

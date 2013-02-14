@@ -21,7 +21,7 @@
             <td><%= @user.id %></td>
             <td><%= link_to @user.email, "mailto:#{@user.email}"%></td>
             <td><%= @user.school %> (<%= @user.school_level.description %>)</td>
-            <td><%= @user.location.description %></td>
+            <td></td>
             <td><%= @user.created_at.strftime('%d-%m-%Y')%></td>
             <td>
               <div class="btn-group pull-right">

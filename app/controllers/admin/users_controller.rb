@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < AdminController
   before_filter :find_user, :only => [:show, :destroy]
   layout 'admin'
   def index    

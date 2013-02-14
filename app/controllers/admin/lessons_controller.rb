@@ -1,4 +1,4 @@
-class Admin::LessonsController < ApplicationController
+class Admin::LessonsController < AdminController
   before_filter :find_lesson, :only => [:destroy]
   layout 'admin'
   def index
