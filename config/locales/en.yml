@@ -1476,7 +1476,7 @@ en:
       emails: 'Add an email'
       # 1 - views/virtual_classroom/_popups.html.erb
       mailing_lists: 'Add a mailing list'
-      # 1 - mailers/user_mailer.rb
+      # 1 - controllers/virtual_classroom_controller.rb
       empty_message: '[no message given]'
   
   
@@ -1543,7 +1543,7 @@ en:
       # 1 - models/lesson.rb
       # 2 - views/lessons/_notification_popup.html.erb
       message_length_for_public_lesson_modification: 280
-      # 1 - mailers/user_mailer.rb
+      # 1 - controllers/virtual_classroom_controller.rb
       # 2 - views/virtual_classroom/_popups.html.erb
       message_length_for_send_lesson_link: 280
     lesson:
