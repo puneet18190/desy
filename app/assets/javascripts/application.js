@@ -25,4 +25,4 @@
 //= require tinymce-jquery
 //= require dots_pagination
 //= require jquery.formparams
-//= require_tree .
+//= require_directory .

@@ -786,11 +786,11 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('mouseover', '._current_inserted', function(){
+  $('body').on('mouseover', '._virtual_classroom_quick_loaded_lesson ._current_inserted', function() {
     $(this).children('a').css('background-position', '-10em -0.1em');
   });
   
-  $('body').on('mouseout', '._current_inserted', function(){
+  $('body').on('mouseout', '._virtual_classroom_quick_loaded_lesson ._current_inserted', function() {
     $(this).children('a').css('background-position', '-10em -15.2em');
   });
   
@@ -816,13 +816,15 @@ $(document).ready(function() {
   $('body').on('click', '._send_lesson_link', function() {
     var lesson_id = $(this).data('lesson-id');
     showSendLessonLinkPopUp(lesson_id);
+    $('#virtual_classroom_send_link_mails_box').jScrollPane({
+      autoReinitialise: true
+    });
   });
   
-  $('body').on('focus', '#virtual_classroom_send_link_email_addresses', function() {
-    var placeholder = $('#virtual_classroom_send_link_email_addresses_placeholder');
-    if(placeholder.val() === '') {
+  $('body').on('focus', '#virtual_classroom_emails_selector', function() {
+    if($(this).data('placeholdered')) {
       $(this).attr('value', '');
-      placeholder.val('0');
+      $(this).data('placeholdered', false);
     }
   });
   
@@ -834,47 +836,30 @@ $(document).ready(function() {
     }
   });
   
-  $('#select_mailing_list').selectbox({
-    onChange: function (val, inst) {
-      if(val != '') {
-        var to_emails = $('#virtual_classroom_send_link_email_addresses');
-        var hidden_emails = $('#virtual_classroom_send_link_hidden_mailing_lists');
-        var group_name = $(this).find('option[value=' + val + ']').html();
-        to_emails.trigger('focus');
-        if(hidden_emails.val() == '' || hidden_emails.val().indexOf('[' + val + ']') == -1) {
-          if(hidden_emails.val().length > 0) {
-            hidden_emails.val(hidden_emails.val() + '[' + val + '],');
-          } else {
-            hidden_emails.val('[' + val + '],');
-          }
-          if(to_emails.val().length > 0) {
-            to_emails.val(to_emails.val() + '[' + group_name + '], ');
-          } else {
-            to_emails.val('[' + group_name + '], ');
-          }
-        }
-      }
+  $('body').on('click', '#virtual_classroom_emails_submitter', function() {
+    addEmailToVirtualClassroomSendLessonLinkSelector();
+  });
+  
+  $('body').on('keydown', '#virtual_classroom_emails_selector', function(e) {
+    if(e.which === 13) {
+      e.preventDefault();
+      addEmailToVirtualClassroomSendLessonLinkSelector();
     }
   });
   
-  
-  // FIXME FIXME FIXME da qui
-  
-  $('body').on('change', '#virtual_classroom_send_link_email_addresses', function() {
-    
-    console.log('sono cambiato');
-    
-    checkDifferencesBetweenTextAndHiddenFieldEmailsSendLinkLesson();
+  $('body').on('click', '#virtual_classroom_send_link_mails_box ._remove', function() {
+    $(this).parent().remove();
   });
   
-  $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function(e) {
-    e.preventDefault();
-    checkDifferencesBetweenTextAndHiddenFieldEmailsSendLinkLesson();
-    
-    console.log('submittando...');
-    
-    closePopUp('dialog-virtual-classroom-send-link');
-    $('#dialog-virtual-classroom-send-link form').submit();
+  $('#select_mailing_list').selectbox({
+    onChange: function(val, inst) {
+      if(val != '') {
+        var emails = $('#virtual_classroom_hidden_mailing_lists ._mailing_list_' + val + ' div');
+        for(var i = 0; i < emails.length; i++) {
+          $('#virtual_classroom_send_link_mails_box .jspPane').append(emails[i].outerHTML);
+        }
+      }
+    }
   });
   
   $('body').on('click', '#dialog-virtual-classroom-send-link ._no', function() {
@@ -882,54 +867,19 @@ $(document).ready(function() {
     closePopUp('dialog-virtual-classroom-send-link');
   });
   
-  $(function() {
-    function split( val ) {
-      return val.split( /,\s*/ );
-    }
-    function extractLast( term ) {
-      return split( term ).pop();
-    }
- 
-    $( "#email_addresses" )
-      // don't navigate away from the field on tab when selecting an item
-      .bind( "keydown", function( event ) {
-        if ( event.keyCode === $.ui.keyCode.TAB &&
-            $( this ).data( "autocomplete" ).menu.active ) {
-          event.preventDefault();
-        }
-      })
-      .autocomplete({
-        source: function( request, response ) {
-          $.getJSON( "/mailing_lists/get_emails", {
-            term: extractLast( request.term )
-          }, response );
-        },
-        search: function() {
-          // custom minLength
-          var term = extractLast( this.value );
-          if ( term.length < 2 ) {
-            return false;
-          }
-        },
-        focus: function() {
-          // prevent value inserted on focus
-          return false;
-        },
-        select: function( event, ui ) {
-          var terms = split( this.value );
-          // remove the current input
-          terms.pop();
-          // add the selected item
-          terms.push( ui.item.value );
-          // add placeholder to get the comma-and-space at the end
-          terms.push( "" );
-          this.value = terms.join( ", " );
-          return false;
-        }
-      });
+  $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function() {
+    var obj = $('#dialog-virtual-classroom-send-link');
+    obj.dialog('option', 'hide', null);
+    var emails_input = '';
+    $('#virtual_classroom_send_link_mails_box .jspPane ._email ._text').each(function() {
+      emails_input += ($(this).html() + ',');
+    });
+    emails_input = emails_input.substr(0, emails_input.length - 1);
+    $('#virtual_classroom_send_link_hidden_emails').val(emails_input);
+    closePopUp('dialog-virtual-classroom-send-link');
+    obj.dialog('option', 'hide', {effect: "fade"});
+    $('#dialog-virtual-classroom-send-link form').submit();
   });
-  
-  // FIXME FIXME FIXME a qui
   
   
   // IMAGE EDITOR
@@ -971,6 +921,7 @@ $(document).ready(function() {
     $('input,textarea').removeClass('form_error');
     $('.barraLoading img').show();
     $('.barraLoading img').attr('src', '/assets/loadingBar.gif');
+    $(this).closest('#new_media_element').submit();
   });
   
   $('body').on('focus', '#load-media-element #title', function() {

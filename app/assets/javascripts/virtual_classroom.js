@@ -1,15 +1,9 @@
-function checkDifferencesBetweenTextAndHiddenFieldEmailsSendLinkLesson() {
-  var to_emails = $('#virtual_classroom_send_link_email_addresses').val();
-  var hidden_input = $('#virtual_classroom_send_link_hidden_mailing_lists').val();
-  var options = $('#select_mailing_list option');
-  for(var i = 1; i < options.length; i++) {
-    var caption = '[' + $.trim($(options[i]).html()) + ']';
-    var value = '[' + $.trim($(options[i]).val()) + ']';
-    if(to_emails.indexOf(caption) == -1) {
-      hidden_input = hidden_input.replace(value, '[]');
-    }
+function addEmailToVirtualClassroomSendLessonLinkSelector() {
+  var selector = $('#virtual_classroom_emails_selector');
+  if(!selector.data('placeholdered') && selector.val() != '') {
+    $('#virtual_classroom_send_link_mails_box .jspPane').append('<div class="_email"><span class="_text">' + selector.val() + '</span><a class="_remove"></a></div>');
+    selector.val('');
   }
-  $('#virtual_classroom_send_link_hidden_mailing_lists').val(hidden_input);
 }
 
 function initializeNotAvailableLessonsToLoadQuick() {

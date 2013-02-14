@@ -9,7 +9,7 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_virtual_classroom_lesson, :only => [:add_lesson_to_playlist, :remove_lesson_from_playlist, :change_position_in_playlist]
   before_filter :initialize_position, :only => :change_position_in_playlist
   before_filter :initialize_lesson_for_sending_link, :only => :send_link
-  before_filter :initialize_mails, :only => :send_link
+  before_filter :initialize_emails, :only => :send_link
   before_filter :initialize_page, :only => :select_lessons_new_block
   before_filter :initialize_loaded_lessons, :only => :load_lessons
   before_filter :reset_players_counter, :only => :index
@@ -175,20 +175,16 @@ class VirtualClassroomController < ApplicationController
     update_ok(@page > 0)
   end
   
-  def initialize_mails
-    @emails = []
-    return if params[:emails_placeholer].blank?
-    params[:hidden_mailing_lists].split(',').each do |group|
-      mailing_list_group = MailingListGroup.find_by_id group.gsub('[', '').gsub(']', '')
-      if(!mailing_list_group.nil?)
-        @emails << mailing_list_group.addresses.pluck('email')
-      end
-    end
+  def initialize_emails
+    emails_hash = {}
+    @original_emails_number = params[:emails].split(',').length
     params[:emails].split(',').each do |email|
-      @emails << email if(email[0, 1] != '[' && !(/^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/ =~ email).nil?)
+      emails_hash[email] = true if !(/^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/ =~ email).nil?
     end
+    @emails = emails_hash.keys
     @message = params[:message_placeholer].blank? ? '' : params[:message]
-    update_ok(@emails.any? && !@message.blank?)
+    @message = @message.blank? ? I18n.t('virtual_classroom.send_link.empty_message') : @message[0, I18n.t('language_parameters.notification.message_length_for_send_lesson_link')]
+    update_ok(@emails.any?)
   end
   
   def initialize_virtual_classroom_lesson

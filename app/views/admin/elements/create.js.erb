@@ -1,0 +1,5 @@
+<% if @new_media_element.new_record? %>
+  $('#new_elements_preview').html("<%= @errors_fields %>");
+<% else %>
+  $('#new_elements_preview').prepend("<%= j render :partial => 'element_update', :locals => {:element => @new_media_element, :colspan => 4} %>");
+<% end %>
