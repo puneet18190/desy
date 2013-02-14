@@ -1,5 +1,5 @@
-class Admin::ElementsController < ApplicationController
-  before_filter :find_element, :only => [:destroy]
+class Admin::ElementsController < AdminController
+  before_filter :find_element, :only => [:destroy, :update]
   layout 'admin'
   def index
     #@elements = Element.order('id DESC').page params[:page] #to manage others search
@@ -15,6 +15,10 @@ class Admin::ElementsController < ApplicationController
   
   def new
     @element = MediaElement.new
+  end
+  
+  def edit
+    @private_elements = MediaElement.where(user_id: current_user.id, is_public: false);
   end
   
   def create
@@ -35,23 +39,40 @@ class Admin::ElementsController < ApplicationController
         @error_fields << f.to_s
       end
     end
-    
-    render :js => @new_media_element
+    if params[:commit]
+      render :new
+    end
   end
   
-
-  def destroy
-    @element.destroy
-
-    respond_to do |wants|
-      wants.html { redirect_to(elements_url) }
-      wants.xml  { head :ok }
+  
+  def update
+    @element.title = params[:title] if params[:title]
+    @element.description = params[:description] if params[:description]
+    @element.tags = params[:tags] if params[:tags]
+    if params[:is_public]
+      @element.is_public = true
+      @element.publication_date = Time.zone.now
     end
+    
+    if !@element.save
+      @errors = convert_item_error_messages @element.errors.messages
+      @error_fields = @element.errors.messages.keys
+      render :nothing => true
+    else
+      render :nothing => true
+    end
+  end
+  
+  def destroy
+    if !@element.check_and_destroy
+      @error = @element.get_base_error
+    end
+    render :nothing => true
   end
 
   private
     def find_element
-      @element = Element.find(params[:id])
+      @element = MediaElement.find(params[:id])
     end
 
 end

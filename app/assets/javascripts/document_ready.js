@@ -971,6 +971,7 @@ $(document).ready(function() {
     $('input,textarea').removeClass('form_error');
     $('.barraLoading img').show();
     $('.barraLoading img').attr('src', '/assets/loadingBar.gif');
+    $(this).closest('#new_media_element').submit();
   });
   
   $('body').on('focus', '#load-media-element #title', function() {

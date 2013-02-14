@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < AdminController
   before_filter :find_user, :only => [:show, :destroy]
   layout 'admin'
   def index    
@@ -30,6 +30,21 @@ class Admin::UsersController < ApplicationController
     respond_to do |wants|
       wants.html { redirect_to(elements_url) }
       wants.xml  { head :ok }
+    end
+  end
+
+  def get_emails
+    @users = User.get_emails(params[:term])
+    render :json => @users
+  end
+
+  def contact
+    if params[:users] #list of recipients
+      @users = []
+      @users_ids = params[:users].gsub(/[\[\]]/,'').split(',')
+      @users_ids.each do |user_id|
+        @users << User.find(user_id)
+      end
     end
   end
 

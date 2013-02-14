@@ -155,8 +155,13 @@ Desy::Application.routes.draw do
   
   namespace 'admin' do
     root :to => 'dashboard#index'
+    
+    get 'users/contact' => 'users#contact'
+    get 'users/get_emails' => 'users#get_emails'
+    get 'elements/edit' => 'elements#edit'
+    
     resources :lessons, :only => [:index, :destroy]
-    resources :elements, :only => [:index, :new, :create, :destroy]
+    resources :elements, :except => [:show, :edit]
     resources :users, :only => [:index, :show, :create, :destroy]
   end
   

@@ -111,7 +111,11 @@ class ApplicationController < ActionController::Base
   end
   
   def authenticate
-    return redirect_to root_path(redirect_to: request.fullpath, login: true) if !logged_in?
+    return redirect_to root_path(redirect_to: request.fullpath, login: true) unless current_user
+  end
+  
+  def admin_authenticate
+    return redirect_to root_path(redirect_to: request.fullpath, login: true) if not current_user or not current_user.admin?
   end
 
   def current_user

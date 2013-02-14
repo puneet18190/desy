@@ -862,7 +862,12 @@ $button-size: 5em;
     -moz-opacity: 0;
   }
   
-  .uploadFileButton {
+  .uploadFileButton{
+    display:none;
+  }
+  
+  html:not(.msie) .uploadFileButton {
+    display:block;
     position: absolute;
     left: 20px;
     top: 15px;
@@ -879,7 +884,12 @@ $button-size: 5em;
     }
   }
   
-  .innerUploadFileButton {
+  .innerUploadFileButton{
+    width:40px;
+    height:40px;
+  }
+  
+  html:not(.msie) .innerUploadFileButton {
     opacity:0;
     width: 0;
     height: 0;
