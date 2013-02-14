@@ -155,19 +155,19 @@ INSERT INTO school_levels VALUES (3, 'Undergraduate', '2012-12-20 10:31:31.45832
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: desy
 --
 
-INSERT INTO users VALUES (1, 'desy@morganspa.com', 'DESY', 'Admin User', 1, 'School', '$2a$10$cYhg.56MyhynUwPpK16QGuQ1XtXcKvy/MfmsPIEJNylfWxo2DkCrq', true, 1, '2012-12-20 10:31:31.781634', '2012-12-20 10:31:31.781634');
-INSERT INTO users VALUES (2, 'toostrong@morganspa.com', 'Kassandra', 'Scarlet', 2, 'ITC BrokenTower', '$2a$10$zKKRTrJtz9s2Lm1SUbtE3uUvnqEpQ/FR9XzsNxlPy5tsEehWN/P5u', true, 6, '2012-12-20 10:31:31.963232', '2012-12-20 10:31:31.963232');
-INSERT INTO users VALUES (3, 'fupete@morganspa.com', 'Victor', 'Plum', 3, 'ISS Pro', '$2a$10$wiSN3Lw.ObyVw0QYT4gqYuusjh0ztk6kTn.4PKHHnoyn6C7l8FZhi', true, 1, '2012-12-20 10:31:31.985945', '2012-12-20 10:31:31.985945');
-INSERT INTO users VALUES (4, 'jeg@morganspa.com', 'Jack', 'Mustard', 2, 'ISA Carlocracco',  '$2a$10$qw4fD01rsHVwZoH67EhFc.dI91OT/hCH1Q5TnjJslhBymIxbrbWIC', true, 3, '2012-12-20 10:31:32.009968', '2012-12-20 10:31:32.009968');
-INSERT INTO users VALUES (5, 'holly@morganspa.com', 'Jacob', 'Green', 1, 'ITC Pocotopocoto', '$2a$10$tkynTNmKi8Nc5pTgvx0p2.7nW3HbphVK46YA96Zslvj26Akfhvqi6', true, 4, '2012-12-20 10:31:32.033923', '2012-12-20 10:31:32.033923');
-INSERT INTO users VALUES (6, 'benji@morganspa.com', 'Diane', 'White', 1, 'ITC Pocotopocoto', '$2a$10$dGxQFNf62d8iEji.d1xykuFKsskTHrAs4MY0Aq/oqpf2B3biD39I6', true, 5, '2012-12-20 10:31:32.057864', '2012-12-20 10:31:32.057864');
-INSERT INTO users VALUES (7, 'retlaw@morganspa.com', 'Eleanor', 'Peacock', 3, 'ISA Amor III', '$2a$10$dmoi7A5O7nbPHcLexvVfWeOk9avlG1GRT1Kc3juDFSOPrxJ85Jk0a', true, 6, '2012-12-20 10:31:32.087904', '2012-12-20 10:31:32.087904');
-INSERT INTO users VALUES (8, 'desy1@morganspa.com', 'DESY', 'Admin User 1', 1, 'School', '$2a$10$fqP/GluQPTCmmsBlVtR7MumjTfsLqbDRshZqFyaGl8KKxhxa56nva', true, 1, '2012-12-21 15:39:53.886583', '2012-12-21 15:39:53.886583');
-INSERT INTO users VALUES (9, 'desy2@morganspa.com', 'DESY', 'Admin User 2', 1, 'School', '$2a$10$JtAF2hKJbslxRbErnND82umN8sKyD1Crimv5DOqVIxL3TBLDWn..i', true, 1, '2012-12-21 15:39:54.026194', '2012-12-21 15:39:54.026194');
-INSERT INTO users VALUES (10, 'desy3@morganspa.com', 'DESY', 'Admin User 3', 1, 'School', '$2a$10$EuI9eayltXY8V7AaAHjZ0.p2.RWkN3PKZh.36z.0e.uaSIx6qT4LG', true, 1, '2012-12-21 15:39:54.084753', '2012-12-21 15:39:54.084753');
-INSERT INTO users VALUES (11, 'desy4@morganspa.com', 'DESY', 'Admin User 4', 1, 'School', '$2a$10$VW422MTOAs/YTF2xFURUXeqrJLd./8ZEpyZ2bH7ByY0GDtkWARPgO', true, 1, '2012-12-21 15:39:54.144766', '2012-12-21 15:39:54.144766');
-INSERT INTO users VALUES (12, 'desy5@morganspa.com', 'DESY', 'Admin User 5', 1, 'School', '$2a$10$Z4kECgkTbiO8hDPuWsypKuiER8Y0m50vM0oDhI129BcKB5OkzpH3C', true, 1, '2012-12-21 15:39:54.204831', '2012-12-21 15:39:54.204831');
-INSERT INTO users VALUES (13, 'desy6@morganspa.com', 'DESY', 'Admin User 6', 1, 'School', '$2a$10$YEreD9KygB0P7s02ByQTYOjGdSJdIw2BZt9htNjizqDSjqDcZSzla', true, 1, '2012-12-21 15:39:54.264916', '2012-12-21 15:39:54.264916');
+INSERT INTO users VALUES (1, 'desy@morganspa.com', 'DESY', 'Admin User', 1, 'School', '$2a$10$cYhg.56MyhynUwPpK16QGuQ1XtXcKvy/MfmsPIEJNylfWxo2DkCrq', true, true, 1, '2012-12-20 10:31:31.781634', '2012-12-20 10:31:31.781634');
+INSERT INTO users VALUES (2, 'toostrong@morganspa.com', 'Kassandra', 'Scarlet', 2, 'ITC BrokenTower', '$2a$10$zKKRTrJtz9s2Lm1SUbtE3uUvnqEpQ/FR9XzsNxlPy5tsEehWN/P5u', true, true, 6, '2012-12-20 10:31:31.963232', '2012-12-20 10:31:31.963232');
+INSERT INTO users VALUES (3, 'fupete@morganspa.com', 'Victor', 'Plum', 3, 'ISS Pro', '$2a$10$wiSN3Lw.ObyVw0QYT4gqYuusjh0ztk6kTn.4PKHHnoyn6C7l8FZhi', true, true, 1, '2012-12-20 10:31:31.985945', '2012-12-20 10:31:31.985945');
+INSERT INTO users VALUES (4, 'jeg@morganspa.com', 'Jack', 'Mustard', 2, 'ISA Carlocracco',  '$2a$10$qw4fD01rsHVwZoH67EhFc.dI91OT/hCH1Q5TnjJslhBymIxbrbWIC', true, true, 3, '2012-12-20 10:31:32.009968', '2012-12-20 10:31:32.009968');
+INSERT INTO users VALUES (5, 'holly@morganspa.com', 'Jacob', 'Green', 1, 'ITC Pocotopocoto', '$2a$10$tkynTNmKi8Nc5pTgvx0p2.7nW3HbphVK46YA96Zslvj26Akfhvqi6', true, true, 4, '2012-12-20 10:31:32.033923', '2012-12-20 10:31:32.033923');
+INSERT INTO users VALUES (6, 'benji@morganspa.com', 'Diane', 'White', 1, 'ITC Pocotopocoto', '$2a$10$dGxQFNf62d8iEji.d1xykuFKsskTHrAs4MY0Aq/oqpf2B3biD39I6', true, true, 5, '2012-12-20 10:31:32.057864', '2012-12-20 10:31:32.057864');
+INSERT INTO users VALUES (7, 'retlaw@morganspa.com', 'Eleanor', 'Peacock', 3, 'ISA Amor III', '$2a$10$dmoi7A5O7nbPHcLexvVfWeOk9avlG1GRT1Kc3juDFSOPrxJ85Jk0a', true, true, 6, '2012-12-20 10:31:32.087904', '2012-12-20 10:31:32.087904');
+INSERT INTO users VALUES (8, 'desy1@morganspa.com', 'DESY', 'Admin User 1', 1, 'School', '$2a$10$fqP/GluQPTCmmsBlVtR7MumjTfsLqbDRshZqFyaGl8KKxhxa56nva', true, true, 1, '2012-12-21 15:39:53.886583', '2012-12-21 15:39:53.886583');
+INSERT INTO users VALUES (9, 'desy2@morganspa.com', 'DESY', 'Admin User 2', 1, 'School', '$2a$10$JtAF2hKJbslxRbErnND82umN8sKyD1Crimv5DOqVIxL3TBLDWn..i', true, true, 1, '2012-12-21 15:39:54.026194', '2012-12-21 15:39:54.026194');
+INSERT INTO users VALUES (10, 'desy3@morganspa.com', 'DESY', 'Admin User 3', 1, 'School', '$2a$10$EuI9eayltXY8V7AaAHjZ0.p2.RWkN3PKZh.36z.0e.uaSIx6qT4LG', true, true, 1, '2012-12-21 15:39:54.084753', '2012-12-21 15:39:54.084753');
+INSERT INTO users VALUES (11, 'desy4@morganspa.com', 'DESY', 'Admin User 4', 1, 'School', '$2a$10$VW422MTOAs/YTF2xFURUXeqrJLd./8ZEpyZ2bH7ByY0GDtkWARPgO', true, true, 1, '2012-12-21 15:39:54.144766', '2012-12-21 15:39:54.144766');
+INSERT INTO users VALUES (12, 'desy5@morganspa.com', 'DESY', 'Admin User 5', 1, 'School', '$2a$10$Z4kECgkTbiO8hDPuWsypKuiER8Y0m50vM0oDhI129BcKB5OkzpH3C', true, true, 1, '2012-12-21 15:39:54.204831', '2012-12-21 15:39:54.204831');
+INSERT INTO users VALUES (13, 'desy6@morganspa.com', 'DESY', 'Admin User 6', 1, 'School', '$2a$10$YEreD9KygB0P7s02ByQTYOjGdSJdIw2BZt9htNjizqDSjqDcZSzla', true, true, 1, '2012-12-21 15:39:54.264916', '2012-12-21 15:39:54.264916');
 
 
 --

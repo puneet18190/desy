@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
 
   scope :confirmed,     where(confirmed: true)
   scope :not_confirmed, where(confirmed: false)
+  scope :active,        where(active: true)
 
   alias_attribute :school, :location
 

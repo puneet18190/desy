@@ -14,13 +14,13 @@ def create_locations_school_levels_subjects_admin_user
     subject_ids << subject.id
   end
 
-  User.confirmed.new(password:              SETTINGS['admin']['password'], 
-                     password_confirmation: SETTINGS['admin']['password'], 
-                     name:                  SETTINGS['admin']['name'], 
-                     surname:               SETTINGS['admin']['surname'], 
-                     school_level_id:       SchoolLevel.first.id, 
-                     location_id:           User.location_association_class.first.id,
-                     subject_ids:           subject_ids) do |user|
+  User.active.confirmed.new( password:              SETTINGS['admin']['password'], 
+                             password_confirmation: SETTINGS['admin']['password'], 
+                             name:                  SETTINGS['admin']['name'], 
+                             surname:               SETTINGS['admin']['surname'], 
+                             school_level_id:       SchoolLevel.first.id, 
+                             location_id:           User.location_association_class.first.id,
+                             subject_ids:           subject_ids ) do |user|
     user.email = SETTINGS['admin']['email']
     user.accept_policies
   end.save!
