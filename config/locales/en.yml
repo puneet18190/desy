@@ -1473,13 +1473,9 @@ en:
       # 1 - views/virtual_classroom/_popups.html.erb
       message: 'Write a message'
       # 1 - views/virtual_classroom/_popups.html.erb
-      emails: 'Insert emails separated by comma'
-      mailing_list:
-        # 1 - views/virtual_classroom/_popups.html.erb
-        title: 'Or select mailing list'
-        # 1 - views/virtual_classroom/_popups.html.erb
-        placeholder: 'No mailing list'
-  
+      emails: 'Add an email'
+      # 1 - views/virtual_classroom/_popups.html.erb
+      mailing_lists: 'Add a mailing list'
   
   
   # PART 3 -- parameters and constants

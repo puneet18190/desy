@@ -813,16 +813,21 @@ $(document).ready(function() {
     return false;
   });
   
+  
+  
+  
+  
+  // FIXME FIXME FIXME da qui
+  
   $('body').on('click', '._send_lesson_link', function() {
     var lesson_id = $(this).data('lesson-id');
     showSendLessonLinkPopUp(lesson_id);
   });
   
-  $('body').on('focus', '#virtual_classroom_send_link_email_addresses', function() {
-    var placeholder = $('#virtual_classroom_send_link_email_addresses_placeholder');
-    if(placeholder.val() === '') {
+  $('body').on('focus', '#virtual_classroom_emails_selector', function() {
+    if($(this).data('placeholdered')) {
       $(this).attr('value', '');
-      placeholder.val('0');
+      $(this).data('placeholdered', false);
     }
   });
   
@@ -834,10 +839,12 @@ $(document).ready(function() {
     }
   });
   
+  
+  
   $('#select_mailing_list').selectbox({
     onChange: function (val, inst) {
       if(val != '') {
-        var to_emails = $('#virtual_classroom_send_link_email_addresses');
+ 
         var hidden_emails = $('#virtual_classroom_send_link_hidden_mailing_lists');
         var group_name = $(this).find('option[value=' + val + ']').html();
         to_emails.trigger('focus');
@@ -858,18 +865,9 @@ $(document).ready(function() {
   });
   
   
-  // FIXME FIXME FIXME da qui
-  
-  $('body').on('change', '#virtual_classroom_send_link_email_addresses', function() {
-    
-    console.log('sono cambiato');
-    
-    checkDifferencesBetweenTextAndHiddenFieldEmailsSendLinkLesson();
-  });
   
   $('body').on('click', '#dialog-virtual-classroom-send-link ._yes', function(e) {
     e.preventDefault();
-    checkDifferencesBetweenTextAndHiddenFieldEmailsSendLinkLesson();
     
     console.log('submittando...');
     

@@ -83,13 +83,14 @@ function showSendLessonLinkPopUp(lesson_id) {
       show: "fade",
       hide: {effect: "fade"},
       open: function() {
-        $('#virtual_classroom_send_link_email_addresses').blur();
+        $('#virtual_classroom_emails_selector').blur();
         $('#virtual_classroom_send_link_message').blur();
-        $('#virtual_classroom_send_link_email_addresses').val(obj.data('emails-placeholder'));
+        $('#virtual_classroom_emails_selector').val(obj.data('emails-placeholder'));
         $('#virtual_classroom_send_link_message').val(obj.data('message-placeholder'));
-        $('#virtual_classroom_send_link_email_addresses_placeholder').val('');
+        $('#virtual_classroom_emails_selector').data('placeholdered', true);
         $('#virtual_classroom_send_link_message_placeholder').val('');
-        $('#virtual_classroom_send_link_hidden_mailing_lists').val('');
+        $('#virtual_classroom_send_link_hidden_emails').val('');
+        $('#virtual_classroom_send_link_mails_box').html('');
         $('#select_mailing_list option[selected]').removeAttr('selected');
         var placeholder_select_box = $('#select_mailing_list option').first();
         placeholder_select_box.attr('selected', 'selected');

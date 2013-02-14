@@ -160,7 +160,7 @@
     textarea {
       border:none;
       &.campoMessaggio {
-        height:138px;
+        height:85px;
         
       }
     }
@@ -309,6 +309,34 @@
      }; 
     }
   }
+}
+
+#virtual_classroom_send_link_mails_box {
+  background-color: green;
+  width: 25em;
+  height: 6em;
+}
+
+#virtual_classroom_emails_submitter {
+  background-color: red;
+  width: 2em;
+  height: 2em;
+  float: left;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 1em;
+  cursor: pointer;
+  &:hover {
+    background-color: yellow;
+  }
+}
+
+#virtual_classroom_emails_selector {
+  width: 22em;
+  height: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  float: left;
 }
 
 .originalSize {
