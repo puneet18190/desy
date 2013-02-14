@@ -177,7 +177,7 @@ class VirtualClassroomController < ApplicationController
   
   def initialize_emails
     emails_hash = {}
-    @original_emalis_number = params[:emails].split(',').length
+    @original_emails_number = params[:emails].split(',').length
     params[:emails].split(',').each do |email|
       emails_hash[email] = true if !(/^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/ =~ email).nil?
     end
