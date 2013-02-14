@@ -154,7 +154,15 @@ Desy::Application.routes.draw do
   root :to => 'prelogin#home'
   
   namespace 'admin' do
-    resources :lessons
+    root :to => 'dashboard#index'
+    
+    get 'users/contact' => 'users#contact'
+    get 'users/get_emails' => 'users#get_emails'
+    get 'elements/edit' => 'elements#edit'
+    
+    resources :lessons, :only => [:index, :destroy]
+    resources :elements, :except => [:show, :edit]
+    resources :users, :only => [:index, :show, :create, :destroy]
   end
   
 end

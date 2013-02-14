@@ -1576,3 +1576,100 @@ en:
       # 3 - views/video_editor/cutters/_image.html.erb
       # 4 - views/video_editor/_text_component_editor.html.erb
       length_duration: 3
+      
+  # PART 4 -- admin
+  admin:
+    # SECTION 4.1 menu
+    # 1 - views/admin/_header.html.erb
+    menu:
+      lessons:
+        link_name: 'Lessons'
+        list: 'List'
+      elements:
+        link_name: 'Elements'
+        list: 'List'
+        upload: 'Upload new elements'
+        publish: 'Publish private elements'
+      users:
+        link_name: 'Users'
+        list: 'List'
+        contact: 'Contact'
+      messages:
+        link_name: 'Messages'
+        notification: 'Notification'
+        report: 'Report Abuse'
+        help: 'Help Desk'
+      settings:
+        link_name: 'Settings'
+        configuration: 'Configuration'
+      dashboard:
+        link_name: 'Dashboard'
+      home:
+        link_name: 'Home'
+    # SECTION 4.2 dashboard
+    # 1 - views/admin/dashboard/index.html.erb
+    dashboard:
+      link_name: 'Admin dashboard'
+      online_users: 'Online users'
+      new_users: 'New users'
+      elements_reports: 'Elements reports'
+      lessons_reports: 'Lessons reports'
+    # SECTION 4.3 administer lessons
+    lessons:
+      #1 - views/admin/lessons/index.html.erb
+      index:
+        name: 'Lessons'
+        not_found: 'No lessons found'
+    # SECTION 4.4 administer elements
+    elements:
+      #1 - views/admin/elements/index.html.erb
+      index:
+        name: 'Elements'
+        not_found: 'No elements found'
+      #1 - views/admin/elements/new.html.erb  
+      new:
+        upload_caption: 'Upload elements'
+        upload_hint: 'You can upload one or more file. Data you fill in will be used for all the uploaded files, it will be possibile to update contents later'
+        upload_hint_msie: 'Fill in the form to upload a new element, you can update and publish element data later'
+        file_to_upload: 'File to upload'
+        new_elements: 'New elements'
+      #1 - views/admin/elements/edit.html.erb 
+      edit:
+        update_and_publish: 'Update and publish private elements'
+    # SECTION 4.5 administer users
+    users:
+      #1 - views/admin/users/index.html.erb
+      index:
+        not_found: 'No users found'
+        send_message_to_all: 'Send message to all'
+      #1 - views/admin/users/show.html.erb
+      show:
+        activate: 'Activate'
+        ban: 'Ban'
+        message: 'Message'
+      #1 - views/admin/users/contact.html.erb
+      contact:
+        send_message: 'Send message'
+        recipients: 'Recipients'
+        message: 'Message'
+        send: 'Send'
+    # SECTION 4.6 common captions
+    general:
+      #1 - views/admin/lessons/index.html.erb
+      #2 - views/admin/elements/index.html.erb
+      expand_all: 'Expand all'
+      #1 - views/admin/lessons/index.html.erb
+      #2 - views/admin/elements/index.html.erb
+      close_all: 'Close all'
+      #1 - views/admin/lessons/_list.html.erb
+      #2 - views/admin/elements/_list.html.erb
+      #3 - views/admin/elements/new.html.erb
+      tags: 'Tags'
+      #1 - views/admin/lessons/_list.html.erb
+      #2 - views/admin/elements/_list.html.erb
+      #3 - views/admin/elements/new.html.erb
+      description: 'Description'
+      #1 - views/admin/elements/new.html.erb
+      title: 'Title'
+      #1 - views/admin/users/show.html.erb
+      delete: 'Delete'

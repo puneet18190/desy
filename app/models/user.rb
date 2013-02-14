@@ -54,6 +54,11 @@ class User < ActiveRecord::Base
     find_by_email SETTINGS['admin']['email']
   end
   
+  def admin?
+    admin =  self.class.admin
+    id == admin.id if admin.present?
+  end
+
   def accept_policies
     registration_policies.each{ |p| send("#{p}=", '1') }
   end
@@ -418,6 +423,10 @@ class User < ActiveRecord::Base
       resp = true
     end
     resp
+  end
+  
+  def self.get_emails(term)
+    where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?',"%#{term}%","%#{term}%","%#{term}%").select('name, surname, email AS value')
   end
   
   private

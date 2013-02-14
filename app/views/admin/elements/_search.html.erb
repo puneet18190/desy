@@ -1,0 +1,93 @@
+<h4>Search</h4>
+<form class="form-vertical">
+  <div class="row-fluid">
+    <div class="span1">
+      <div class="control-group">
+        <label for="id">id</label>
+        <div class="controls">
+          <input type="text" class="input-mini" name="id" placeholder="id">
+        </div>
+      </div>
+    </div>
+    <div class="span2">
+      <div class="control-group">
+        <label for="keyword">Keyword</label>
+        <div class="controls">
+          <input type="text" class="input-small" name="keyword" placeholder="Keyword">
+        </div>
+      </div>
+    </div>
+    <div class="span3">
+      <div class="control-group">
+        <label for="subject">Type</label>
+        <div class="controls">
+          <select>
+            <option>audio</option>
+            <option>image</option>
+            <option>video</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="span2">
+      <div class="control-group">
+        <label for="region">Region</label>
+        <div class="controls">
+          <input type="text" class="input-small" name="region" placeholder="Region">
+        </div>
+      </div>
+    </div>
+    <div class="span2">
+      <div class="control-group">
+        <label for="school">School</label>
+        <div class="controls">
+          <input type="text" class="input-small" name="school" placeholder="School">
+        </div>
+      </div>
+    </div>
+    <div class="span2">
+      <div class="control-group">
+        <label for="user">User</label>
+        <div class="controls">
+          <input type="text" class="input-small" name="user" placeholder="User">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span3">
+      <div class="controls-group">
+        <label>Data range</label>
+        <div class="controls">
+          <select>
+            <option>created at</option>
+            <option>last update</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="span3">
+      <div class="control-group">
+        <label>From</label>
+        <div class="controls">
+          <input type="text" value="<%=Time.now.strftime('%d-%m-%Y')%>" id="dp1" data-date="<%=Time.now.strftime('%d-%m-%Y')%>" data-date-format="dd-mm-yyyy">
+        </div>
+      </div>
+    </div>
+    <div class="span3">
+      <div class="control-group">
+        <label>To</label>
+        <div class="controls">
+          <input type="text" value="<%=Time.now.strftime('%d-%m-%Y')%>" id="dp2" data-date="<%=Time.now.strftime('%d-%m-%Y')%>" data-date-format="dd-mm-yyyy">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="form-actions">
+        <button type="submit" class="btn">Search</button>
+      </div>
+    </div>
+  </div>
+</form>

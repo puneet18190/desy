@@ -1,0 +1,60 @@
+<% if lessons.count > 0 %>
+  <table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <td><b><%= link_to_sorted "id", :id %></b></td>
+      <td><b><%= link_to_sorted "title", :title %></b></td>
+      <td><b><%= link_to_sorted "subject", "subjects.description" %></b></td>
+      <td><b><%= link_to_sorted "user", "users.surname" %></b></td>
+      <td><b>location</b></td>
+      <td><b><%= link_to_sorted "created", :created_at %></b></td>
+      <td><b><%= link_to_sorted "last update", :updated_at %></b></td>
+      <td><b>likes</b></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% lessons.each do |lesson| %>
+
+        <tr class="collapse">
+          <td><%= lesson.id %></td>
+          <td><%= lesson.title%></td>
+          <td><%= lesson.subject.description %></td>
+          <td><%= lesson.user.surname %> <%= lesson.user.name %></td>
+          <td> (<%= lesson.user.school %>)</td>
+          <td><%= lesson.created_at.strftime('%d-%m-%Y')%></td>
+          <td><%= lesson.updated_at.strftime('%d-%m-%Y')%></td>
+          <td><%= lesson.likes.count%></td>
+          <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, "/lessons/#{lesson.id}/view",:target => :blank, :class=>"action"%><a href="#" target="_blank" class="action"></a></td>
+          <td><%= link_to '<i class="icon-remove"></i>'.html_safe, "#", :class=>"action"%></td>
+        </tr>
+        <tr class="collapsed">
+          <td colspan="9">
+            <div class="row-fluid">
+              <div class="span3">
+                <div class="img-polaroid lesson-thumbnail">
+                  <%= render :partial => "lessons/thumbnail", :locals => {:lesson => lesson} %>
+                </div>
+              </div>
+              <div class="span3">
+                <h5><%= t('admin.general.tags')%></h5>
+                <% lesson.tags.split(',').each do |tag| %>
+                  <% if tag.length > 0%>
+                    <%= tag %>, 
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="span6">
+                <h5><%= t('admin.general.description')%></h5>
+                <%= lesson.description %>
+              </div>
+            </div>
+          <td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <%= t('admin.lessons.index.not_found') %>
+<% end %>

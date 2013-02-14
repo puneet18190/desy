@@ -1,0 +1,9 @@
+/*
+ * This is a manifest file that'll be compiled into admin.css, which will include all the files
+ * listed below.
+ *
+ *= require bootstrap
+ *= require bootstrap-responsive
+ *= require datepicker
+ *= require admin_overrides
+ */
