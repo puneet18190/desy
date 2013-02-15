@@ -225,6 +225,7 @@ $(document).ready(function() {
   $('body').on('click', '._add_audio_to_slide', function(e) {
     e.preventDefault();
     var audio_id = $(this).data('audio-id');
+    var new_audio_title = $('#gallery_audio_' + audio_id+' .titleTrack').text();
     $('#gallery_audio_' + audio_id).removeClass('_audio_expanded_in_gallery');
     stopMedia('#gallery_audio_' + audio_id + ' audio');
     $('#gallery_audio_' + audio_id + ' ._expanded').hide();
@@ -245,6 +246,7 @@ $(document).ready(function() {
     $('#' + place_id + ' ._full_audio_in_slide source[type="audio/ogg"]').attr('src', audio_ogg);
     $('#' + place_id + ' audio').load();
     $('#' + place_id + ' ._media_player_total_time').html(secondsToDateString(duration));
+    $('#' + place_id + ' ._full_audio_in_slide .audio_title').text(new_audio_title);
     var audio_player = $('#' + place_id + ' ._empty_audio_player, #' + place_id + ' ._instance_of_player');
     if(audio_player.data('initialized')) {
       audio_player.data('duration', duration);
