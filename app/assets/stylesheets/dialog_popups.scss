@@ -160,7 +160,7 @@
     textarea {
       border:none;
       &.campoMessaggio {
-        height:138px;
+        height:85px;
         
       }
     }
@@ -309,6 +309,56 @@
      }; 
     }
   }
+}
+
+
+
+
+// FIXME FIXME FIXME PER AURELIA PROVVISORIO!!!!
+
+#virtual_classroom_send_link_mails_box {
+  background-color: green;
+  width: 350px;
+  height: 80px;
+  ._email {
+    background-color: blue;
+    height: 20px;
+    width: auto;
+    ._remove {
+      width: 15px;
+      height: 15px;
+      background-color: aqua;
+      float: left;
+      &:hover {
+        background-color: red;
+      }
+    }
+    ._text {
+      float: left;
+    }
+  }
+}
+
+#virtual_classroom_emails_submitter {
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: yellow;
+  }
+}
+
+#virtual_classroom_emails_selector {
+  width: 300px;
+  height: 10px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  float: left;
 }
 
 .originalSize {

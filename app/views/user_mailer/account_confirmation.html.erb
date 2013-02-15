@@ -1,5 +1,4 @@
-<%= t('mailer.account_confirmation.message', :name => @user.full_name, :desy => SETTINGS['application_name']).html_safe %>
-
+<%= @mail_content %>
 <p>
   <%= link_to user_confirm_url(*host_and_port(@user.confirmation_token)), user_confirm_url(*host_and_port(@user.confirmation_token)) %>
 </p>

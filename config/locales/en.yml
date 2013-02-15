@@ -47,7 +47,7 @@ en:
       error: 'Error in mailing list!'
     send_lesson_link:
       # 1 - views/virtual_classroom/send_link.js.erb
-      ok: 'Link sent successfully!'
+      ok: 'Link sent successfully to %{success} out of %{total} emails inserted'
       # 1 - views/virtual_classroom/send_link.js.erb
       error: 'Link not sent: did you fill all the fields and write correct emails?'
     video_editor:
@@ -330,7 +330,7 @@ en:
       # 1 - views/virtual_classroom/_popups.html.erb
       title: 'Send a link to your friends'
       # 1 - views/virtual_classroom/_popups.html.erb
-      confirm: 'Descrizione di send link bla bla bla bla bla bla bla bla'
+      confirm: 'With the link you are going to send, you share your lesson with your friends outside %{desy}!'
       # 1 - views/virtual_classroom/_popups.html.erb
       do: 'Send'
       # 1 - views/virtual_classroom/_popups.html.erb
@@ -342,17 +342,17 @@ en:
     account_confirmation:
       # 1 - mailers/user_mailer.rb
       subject: '%{desy} - Account confirmation'
-      # 1 - views/user_mailer/account_confirmation.html.erb
+      # 1 - mailers/user_mailer.rb
       message: '<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br>When the registration will be confirmed, the link will not be valid anymore.<br>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br><p>N.B.</p><p>The confirmation of the account can be done just one time.</p>'
     reset_password:
       # 1 - mailers/user_mailer.rb
       subject: '%{desy} - New password'
-      # 1 - views/user_mailer/new_password.html.erb
+      # 1 - mailers/user_mailer.rb
       message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password at your choice once logged in, in the 'Profile' section.</p>"
     see_my_lesson:
       # 1 - mailers/user_mailer.rb
       subject: '%{desy} - Lesson link'
-      # 1 - views/user_mailer/see_my_lesson.html.erb
+      # 1 - mailers/user_mailer.rb
       message: "<p>The user %{name} thinks that you might be interested in a lesson in %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):</p></br>"
   
   
@@ -615,6 +615,13 @@ en:
       pause: 'Pause video'
       # 1 - views/shared/players/_video.html.erb
       play: 'Play video'
+    virtual_classroom:
+      # 1 - views/virtual_classroom/_view_single.html.erb
+      preview: 'Open lesson viewer'
+      # 1 - views/virtual_classroom/_view_single.html.erb
+      remove: 'Remove from your Virtual Classroom'
+      # 1 - views/virtual_classroom/_view_single.html.erb
+      send_link: 'Send a link of this lesson to your friends'
   
   
   # SECTION 1.6: help tooltips
@@ -1045,9 +1052,9 @@ en:
         failed: 'Audio composition failed! Audio editor available. You find <a>here</a> a saved copy of your work.'
       upload:
         # TODO manca + inserire titolo
-        started: 'Audio upload started! Audio editor not available.'
+        started: 'Audio upload started!'
         # TODO manca + inserire titolo
-        ok: 'Audio upload successfully ended! Audio editor available'
+        ok: 'Audio upload successfully ended!'
         # TODO manca + inserire titolo
         failed: 'Audio upload failed! Try again'
     videos:
@@ -1067,9 +1074,9 @@ en:
         failed: 'Video composition failed! Video editor available. You find <a>here</a> a saved copy of your work.'
       upload:
         # TODO manca + inserire titolo
-        started: 'Video upload started! Video editor not available.'
+        started: 'Video upload started!'
         # TODO manca + inserire titolo
-        ok: 'Video upload successfully ended! Video editor available'
+        ok: 'Video upload successfully ended!'
         # TODO manca + inserire titolo
         failed: 'Video upload failed! Try again'
   
@@ -1473,15 +1480,13 @@ en:
       play: 'Play'
     send_link:
       # 1 - views/virtual_classroom/_popups.html.erb
-      message: 'Write a message'
+      message: 'Write a message (max %{max} characters)'
       # 1 - views/virtual_classroom/_popups.html.erb
-      emails: 'Insert emails separated by comma'
-      mailing_list:
-        # 1 - views/virtual_classroom/_popups.html.erb
-        title: 'Or select mailing list'
-        # 1 - views/virtual_classroom/_popups.html.erb
-        placeholder: 'No mailing list'
-  
+      emails: 'Add an email'
+      # 1 - views/virtual_classroom/_popups.html.erb
+      mailing_lists: 'Add a mailing list'
+      # 1 - controllers/virtual_classroom_controller.rb
+      empty_message: '[no message given]'
   
   
   # PART 3 -- parameters and constants
@@ -1547,6 +1552,9 @@ en:
       # 1 - models/lesson.rb
       # 2 - views/lessons/_notification_popup.html.erb
       message_length_for_public_lesson_modification: 280
+      # 1 - controllers/virtual_classroom_controller.rb
+      # 2 - views/virtual_classroom/_popups.html.erb
+      message_length_for_send_lesson_link: 280
     lesson:
       # 1 - models/lesson.rb
       # 2 - views/lesson_editor/new.html.erb
@@ -1582,7 +1590,8 @@ en:
       # 3 - views/video_editor/cutters/_image.html.erb
       # 4 - views/video_editor/_text_component_editor.html.erb
       length_duration: 3
-      
+  
+  
   # PART 4 -- admin
   admin:
     # SECTION 4.1 menu
