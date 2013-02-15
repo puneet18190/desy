@@ -1,6 +1,6 @@
 require 'csv'
 
-csv_dir = Rails.root.join('tmp/csv_production/new')
+csv_dir = Rails.root.join('db/seeds/environments/production/csv')
 
 ActiveRecord::Base.transaction do
 
