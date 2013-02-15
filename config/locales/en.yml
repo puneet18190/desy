@@ -330,7 +330,7 @@ en:
       # 1 - views/virtual_classroom/_popups.html.erb
       title: 'Send a link to your friends'
       # 1 - views/virtual_classroom/_popups.html.erb
-      confirm: 'Descrizione di send link bla bla bla bla bla bla bla bla'
+      confirm: 'With the link you are going to send, you share your lesson with your friends outside %{desy}!'
       # 1 - views/virtual_classroom/_popups.html.erb
       do: 'Send'
       # 1 - views/virtual_classroom/_popups.html.erb
