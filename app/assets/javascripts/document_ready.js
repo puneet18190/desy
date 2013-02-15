@@ -853,6 +853,9 @@ $(document).ready(function() {
   });
   
   $('body').on('keydown', '#virtual_classroom_emails_selector', function(e) {
+    if(e.which === 186) {
+      e.preventDefault();
+    }
     if(e.which === 13) {
       e.preventDefault();
       addEmailToVirtualClassroomSendLessonLinkSelector();
@@ -914,7 +917,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '.uploadFileButton', function() {
-    $('input.innerUploadFileButton').trigger('click');
+    $('._msie_file_uploader').trigger('click');
   });
   
   $('body').on('change', 'input.innerUploadFileButton', function() {
