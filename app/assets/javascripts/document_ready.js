@@ -914,7 +914,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '.uploadFileButton', function() {
-    $('input.innerUploadFileButton').trigger('click');
+    $('._msie_file_uploader').trigger('click');
   });
   
   $('body').on('change', 'input.innerUploadFileButton', function() {

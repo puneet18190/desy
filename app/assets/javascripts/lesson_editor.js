@@ -14,6 +14,8 @@ $(document).ready(function() {
   
   $(".slide-content.cover .title").css("margin-left", "auto");
   
+  $('html.lesson-editor-layout ul#slides input').attr('autocomplete','off');
+  
   initLessonEditorPositions();
   
   $(window).resize(function() {
