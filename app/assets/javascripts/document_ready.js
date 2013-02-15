@@ -914,13 +914,14 @@ $(document).ready(function() {
   $('._load_media_element').click(function(e) {
     e.preventDefault();
     showLoadMediaElementPopUp();
+    initFileUploads();
   });
   
-  $('body').on('click', '.uploadFileButton', function() {
-    $('._msie_file_uploader').trigger('click');
-  });
+  //$('body').on('click', '.uploadFileButton', function() {
+  //  $('._msie_file_uploader').trigger('click');
+  //});
   
-  $('body').on('change', 'input.innerUploadFileButton', function() {
+  $('body').on('change', 'input#new_media_element', function() {
     var file_name = $(this).val().replace("C:\\fakepath\\", "");
     if(file_name.length > 20){
       file_name = file_name.substring(0,20)+"...";
