@@ -841,6 +841,9 @@ $(document).ready(function() {
   });
   
   $('body').on('keydown', '#virtual_classroom_emails_selector', function(e) {
+    if(e.which === 186) {
+      e.preventDefault();
+    }
     if(e.which === 13) {
       e.preventDefault();
       addEmailToVirtualClassroomSendLessonLinkSelector();
