@@ -330,7 +330,7 @@ en:
       # 1 - views/virtual_classroom/_popups.html.erb
       title: 'Send a link to your friends'
       # 1 - views/virtual_classroom/_popups.html.erb
-      confirm: 'Descrizione di send link bla bla bla bla bla bla bla bla'
+      confirm: 'With the link you are going to send, you share your lesson with your friends outside %{desy}!'
       # 1 - views/virtual_classroom/_popups.html.erb
       do: 'Send'
       # 1 - views/virtual_classroom/_popups.html.erb
@@ -1297,7 +1297,9 @@ en:
         # 1 - views/users/_personal_info.html.erb
         school_level_id: 'School level'
         # 1 - views/users/_personal_info.html.erb
-        location_id: 'City'
+        town: 'Town'
+        # 1 - views/users/_personal_info.html.erb
+        province: 'Province'
     mailing_list:
       # 1 - views/users/statistics.html.erb
       # 2 - views/users/mailing_lists.html.erb

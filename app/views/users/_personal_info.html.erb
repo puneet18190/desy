@@ -43,23 +43,33 @@
 </fieldset>
 <hr>
 <fieldset class="insert-content">
-
-  <%# TODO %>
-  <% if false %>
+  
+  <div class="inputElement">
+    <%= t('users.info.attributes.province') %><br>
+    <select id="province_id">
+      <%= options_for_select(@provinces_ids, current_user.present? ? current_user.location.parent.parent.id : '') %>
+    </select>
+  </div>
+  <div class="inputElement">
+    <%= t('users.info.attributes.town') %><br>
+    <select id="town_id">
+      <% if current_user %>
+        <%= render :partial => 'users/locations_list', :locals => {:parent => current_user.location.parent.parent.id, :selected => current_user.location.parent.id} %>
+      <% end %>
+    </select>
+  </div>
   <div class="inputElement">
     <%= t('users.info.attributes.school') %><br>
-    <%= f.text_field :school, class: 'text school' %>
+    <select id="user_location_id" name="user[location_id]">
+      <% if current_user %>
+        <%= render :partial => 'users/locations_list', :locals => {:parent => current_user.location.parent.id, :selected => current_user.location.id} %>
+      <% end %>
+    </select>
   </div>
-  <% end %>
-  
   <br class="clearfloat" />
   <div class="inputElement">
     <%= t('users.info.attributes.school_level_id') %><br>
     <%= f.select :school_level_id, @school_level_ids %>
-  </div>
-  <div class="inputElement">
-    <%= t('users.info.attributes.location_id') %><br>
-    <%= f.select :location_id, @location_ids %>
   </div>
   <br class="clearfloat">
 
