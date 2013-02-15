@@ -559,8 +559,6 @@ en:
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
       subject_missing_in_lesson: "Choose a subject"
-      
-      
     # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
       # Description (the variable %{num} represents the maximum number of characters)
@@ -589,52 +587,76 @@ en:
   # SECTION 1.5: HTML titles (small tooltips appearing while passing with the mouse over icons of other items in the page)
   
   titles:
+    # Audio editor
     audio_editor:
+      # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new audio
       # 1 - views/audio_editor/edit.html.erb
-      commit: 'Go to next step'
+      commit: "Go to next step"
       components:
+        # Icon 'plus' on the top of the right column: it's used to add a new audio component
         # 1 - views/audio_editor/_lateral_controls.html.erb
-        add: 'Add an audio component'
+        add: "Add an audio component"
+        # This appears over a component which is not selected
         # 1 - views/audio_editor/_component.html.erb
-        box_ghost: 'Click in this area to edit and play the component'
+        box_ghost: "Click in this area to edit and play the component"
+        # The 'x' icon used to remove a component
         # 1 - views/audio_editor/_component.html.erb
-        remove: 'Remove audio component'
+        remove: "Remove audio component"
+        # The handle that the user can grab to drag a component and change its position inside the whole track
         # 1 - views/audio_editor/_component.html.erb
-        sort: 'Drag me to sort the components'
+        sort: "Drag to change the component's position"
     audios:
+      # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the audio editor
       # 1 - views/media_elements/new.html.erb
-      new: 'Create new audio'
+      new: "Create new audio"
+      # Icon 'play' inside an audio player'
       # 1 - views/shared/players/_audio.html.erb
-      pause: 'Pause audio'
+      pause: "Pause audio"
+      # Icon 'pause' inside an audio player
       # 1 - views/shared/players/_audio.html.erb
-      play: 'Play audio'
+      play: "Play audio"
+    # Icons of the general buttons menu for lessons and media elements
     buttons:
+      # To add a lesson or a media element to your personal folder
       # 1 - views/shared/buttons/_add.html.erb
-      add: 'Follow this item in your own section'
+      add: "Follow this item in your own section"
+      # To add a lesson to your Virtual Classroom
       # 1 - views/shared/buttons/_add_virtual_classroom.html.erb
-      add_virtual_classroom: 'Add lesson to virtual classroom'
+      add_virtual_classroom: "Add lesson to virtual classroom"
+      # To copy a lesson
       # 1 - views/shared/buttons/_copy.html.erb
-      copy: 'Create your own copy of the lesson'
+      copy: "Create your own copy of the lesson"
+      # To delete a lesson or a media element
       # 1 - views/shared/buttons/_destroy.html.erb
-      destroy: 'Cancel this item'
+      destroy: "Delete this item"
+      # To remove a 'I like it' from a lesson
       # 1 - views/shared/buttons/_dislike.html.erb
-      dislike: 'Click to cancel your like'
+      dislike: "Click to cancel your like"
+      # To edit a lesson or a media element (the little pencil)
       # 1 - views/shared/buttons/_edit.html.erb
-      edit: 'Edit this item'
+      edit: "Edit this item"
+      # To save a 'I like it' on a lesson (the little star)
       # 1 - views/shared/buttons/_like.html.erb
-      like: 'Like this lesson'
+      like: "Like this lesson"
+      # To open the preview of a lesson or a media element (the icon of an eye)
       # 1 - views/shared/buttons/_preview.html.erb
-      preview: 'Open the preview'
+      preview: "Open the preview"
+      # To share a lesson"
       # 1 - views/shared/buttons/_publish.html.erb
-      publish: 'Publish your lesson'
+      publish: "Share your lesson"
+      # To remove a lesson or a media element from your personal folder
       # 1 - views/shared/buttons/_remove.html.erb
-      remove: 'Stop following this item'
+      remove: "Remove this item"
+      # To remove a lesson from your Virtual Classroom
       # 1 - views/shared/buttons/_remove_virtual_classroom.html.erb
-      remove_virtual_classroom: 'Click remove lesson from virtual classroom'
+      remove_virtual_classroom: "Remove from your Cirtual Classroom"
+      # To turn back a shared lesson into private
       # 1 - views/shared/buttons/_unpublish.html.erb
-      unpublish: 'Click to unpublish your lesson'
+      unpublish: "Turn back your lesson into private"
+    # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
-    close: 'Close'
+    close: "Close"
+    # Icon of a small door with an arrow going out: it represents the exit from the current section, all over the application
     # 1 - views/layouts/lesson_editor.html.erb
     # 2 - views/media_elements/new.html.erb
     # 3 - views/lesson_viewer/_lesson_slides.html.erb
@@ -643,115 +665,164 @@ en:
     # 6 - views/video_editor/_header.html.erb
     # 7 - views/audio_editor/not_available.html.erb
     # 8 - views/audio_editor/_header.html.erb
-    exit: 'Exit'
+    exit: "Exit"
+    # Tooltips inside the media galleries (audio, image and video gallery)
     galleries:
+      # Icon 'plus' in audio gallery
       # 1 - views/galleries/contents/_audio.html.erb
-      add_audio: 'Add audio'
+      add_audio: "Add audio"
+      # Icon 'plus' in image gallery
       # 1 - views/galleries/popups/_image.html.erb
-      add_image: 'Add image'
+      add_image: "Add image"
+      # Icon 'plus' in video gallery
       # 1 - views/galleries/popups/_video.html.erb
-      add_video: 'Add video'
+      add_video: "Add video"
+      # Icon with small 'x' to close the gallery
       # 1 - views/galleries/_video.html.erb
       # 2 - views/galleries/_mixed_video_image_text.html.erb
       # 3 - views/galleries/_image.html.erb
       # 4 - views/galleries/_audio.html.erb
-      close: 'Close gallery'
+      close: "Close gallery"
+      # Three icons to switch between 'video component', 'image component' and 'text component' in video editor's gallery
       mixed_for_video_editor:
         # 1 - views/galleries/_mixed_video_image_text.html.erb
-        image: 'Add image component'
+        image: "Add image component"
         # 1 - views/galleries/_mixed_video_image_text.html.erb
-        text: 'Add text component'
+        text: "Add text component"
         # 1 - views/galleries/_mixed_video_image_text.html.erb
-        video: 'Add video component'
+        video: "Add video component"
+    # The icon with the '?', placed in all the sections, which opens the help tips
     # 1 - views/notifications/_main.html.erb
-    help_tooltip: 'Help for you!'
+    help_tooltip: "Help for you!"
+    # Tooltips in the image editor
     image_editor:
+      # Button to crop the image
       # 1 - views/image_editor/edit.html.erb
-      crop: 'Crop image'
+      crop: "Crop image"
+      # Button to add text inside the image
       # 1 - views/image_editor/edit.html.erb
-      text: 'Add texts to image'
+      text: "Add texts to image"
+      # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new image
       # 1 - views/image_editor/edit.html.erb
-      commit: 'Go to next step'
+      commit: "Go to next step"
     images:
+      # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the image editor
       # 1 - views/media_elements/new.html.erb
-      new: 'Create new image'
+      new: "Create new image"
+    # titles in lesson editor
     lesson_editor:
+      # Button '+' to add a new slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
-      add_slide: 'Add new slide'
+      add_slide: "Add new slide"
+      # Button '+' to replace an audio in the audio slide
       # 1 - views/lesson_editor/slides/parts/_audio.html.erb
-      change_audio: 'Change audio'
+      change_audio: "Replace audio"
+      # Button '+' to replace an image in the image slide
       # 1 - views/lesson_editor/slides/parts/_image.html.erb
-      change_image: 'Change image'
+      change_image: "Replace image"
+      # Button with three small lines, it opens the form to change title, description and tags of the selected lesson
       # 1 - views/lesson_editor/_slide_buttons.html.erb
-      change_info: 'Change lesson info'
+      change_info: "Change lesson info"
+      # Button '+' to replace an video in the video slide
       # 1 - views/lesson_editor/slides/parts/_video.html.erb
-      change_video: 'Change video'
+      change_video: "Change video"
+      # Button 'X' to remove the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
-      delete_slide: 'Delete slide'
+      delete_slide: "Remove slide"
+      # Button to save the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
-      save_slide: 'Save current slide'
+      save_slide: "Save current slide"
     media_elements:
+      # Icon to upload the file attached to a new media element
       # 1 - views/media_elements/_new_form_popup.html.erb
-      select_file: 'Select file to upload'
+      select_file: "Select file to upload"
+      # Icon with three small lines, inside the preview popup of a media element, which opens the form to change its title, description, tags
       # 1 - views/media_elements/_popup.html.erb
-      change_info: 'Change information'
+      change_info: "Change information"
     notifications:
+      # Icon that opens the notifications
       # 1 - views/notifications/_main.html.erb
-      label: 'Notifications'
+      label: "Notifications"
+      # Small 'x' that removes a notification
       # 1 - views/notifications/_notification.html.erb
-      remove: 'Remove notification'
+      remove: "Remove notification"
+    # Icon with a lens in the search engine: clicking on it the user searches again with the new parameters
     # 1 - views/search/lessons/_main.html.erb
     # 2 - views/search/lessons/_main.html.erb
     # 3 - views/search/media_elements/_main.html.erb
     # 4 - views/search/media_elements/_main.html.erb
-    refine_search: 'Refine the search'
+    refine_search: "Refine the search"
+    # Icon to report an offensive lesson or media element
     # 1 - views/reports/_media_element.html.erb
-    report: 'Report offensive content'
+    report: "Report offensive content"
+    # Icon with a lens in the main sections
     # 1 - views/shared/_search.html.erb
-    search: 'Search'
+    search: "Search"
     slides:
+      # Arrow to the left, pointing to the previous slide
       # 1 - views/layouts/lesson_viewer.html.erb
-      back: 'Back'
+      back: "Back"
+      # Arrow to the right, pointing to the next slide
       # 1 - views/layouts/lesson_viewer.html.erb
-      forward: 'Forward'
+      forward: "Forward"
+    # Tooltips inside the video editor
     video_editor:
+      # Big 'plus' icon to add a new component to the timeline
       # 1 - views/video_editor/_add_component.html.erb
-      add_new_component: 'Add new component'
+      add_new_component: "Add new component"
       audio_track:
+        # Button 'plus' to add an audio track (or replace the selected one)
         # 1 - views/video_editor/_audio_track.html.erb
-        add: 'Select audio track'
+        add: "Select audio track"
+        # Small 'x' to remove the current audio track
         # 1 - views/video_editor/_audio_track.html.erb
-        remove: 'Remove audio track'
+        remove: "Remove audio track"
+      # Big 'X' on the bottom right, to quit the preview mode
       # 1 - views/video_editor/edit.html.erb
-      close_preview: 'Close preview mode'
+      close_preview: "Close preview mode"
+      # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new video
       # 1 - views/video_editor/edit.html.erb
-      commit: 'Go to next step'
+      commit: "Go to next step"
+      # Three icons in the small menu of each video component
       component_menu:
+        # Scissors
         # 1 - views/video_editor/_component_menu.html.erb
-        cutter: 'Cut component'
+        cutter: "Cut component"
+        # Icon 'X' to remove the component
         # 1 - views/video_editor/_component_menu.html.erb
-        remove: 'Remove component'
+        remove: "Remove component"
+        # Icon 'plus' to replace the component
         # 1 - views/video_editor/_component_menu.html.erb
-        change: 'Substitute component'
+        change: "Substitute component"
     videos:
+      # Icon to switch to 'fullscreen' mode in a video player
       # 1 - views/shared/players/_video.html.erb
-      fullscreen: 'Fullscreen'
+      fullscreen: "Fullscreen"
+      # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the video editor
       # 1 - views/media_elements/new.html.erb
-      new: 'Create new video'
+      new: "Create new video"
+      # Pause inside a video player
       # 1 - views/shared/players/_video.html.erb
-      pause: 'Pause video'
+      pause: "Pause video"
+      # Play inside video player
       # 1 - views/shared/players/_video.html.erb
-      play: 'Play video'
+      play: "Play video"
+    # Icons inside a lesson in Virtual Classroom
     virtual_classroom:
+      # 'Eye' icon, to open preview
       # 1 - views/virtual_classroom/_view_single.html.erb
-      preview: 'Open lesson viewer'
+      preview: "Open lesson viewer"
+      # 'X' icon, to remove the lesson from Virtual Classroom
       # 1 - views/virtual_classroom/_view_single.html.erb
-      remove: 'Remove from your Virtual Classroom'
+      remove: "Remove from your Virtual Classroom"
+      # 'Mail' icon, to send the link of the lesson to your friends
       # 1 - views/virtual_classroom/_view_single.html.erb
-      send_link: 'Send a link of this lesson to your friends'
+      send_link: "Send a link of this lesson to your friends"
   
   
-  # SECTION 1.6: help tooltips
+  # SECTION 1.6: content of the 'Help' tips. Each 'Help' contains three subsections, with title and description. There is a different 'Help' tip for each of the following sections:
+  # 
+  
   help:
     dashboard:
       first:
