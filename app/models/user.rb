@@ -28,13 +28,13 @@ class User < ActiveRecord::Base
   belongs_to :school_level
   belongs_to :location, class_name: location_association_class
   
-  validates_presence_of :email, :name, :surname, :school_level_id, :location_id
+  validates_presence_of :email, :name, :surname, :school_level_id, :location_id, :active
   validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
   validates_confirmation_of :password
   validates_presence_of :users_subjects
   validates_uniqueness_of :email
   validates_length_of :name, :surname, :email, :maximum => 255
-  validates_length_of :password, :minimum => 8, :on => :create
+  validates_length_of :password, :minimum => 8, :on => :create, :unless => proc { |record| record.encrypted_password.present? }
   validates_length_of :password, :minimum => 8, :on => :update, :allow_nil => true, :allow_blank => true
   validate :validate_associations
   validate :validate_email_not_changed, on: :update

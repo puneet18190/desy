@@ -16,7 +16,7 @@ module Media
             error_message_for_converted_files
           elsif @original_file
             error_message_for_file_to_convert
-          elsif @value.instance_of? String
+          elsif @value.instance_of?(String)
             if column_changed? and not rename?
               'renaming denied'
             elsif process(@value).blank?
@@ -49,6 +49,8 @@ module Media
           mp4_path, webm_path = @converted_files[:mp4], @converted_files[:webm]
           if !@original_filename_without_extension.is_a?(String) || process(@original_filename_without_extension).blank?
             'invalid filename'
+          elsif !mp4_path.instance_of?(String) || !webm_path.instance_of?(String)
+            'invalid paths'
           elsif [mp4_path, webm_path].map{ |p| File.extname(p) } != %w(.mp4 .webm)
             'invalid extension'
           elsif !(mp4_info = Info.new(mp4_path, false)).valid? || !(webm_info = Info.new(webm_path, false)).valid?

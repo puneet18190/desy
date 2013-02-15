@@ -11,7 +11,7 @@ class Tagging < ActiveRecord::Base
   
   before_validation :init_validation
   before_destroy :stop_destruction_if_last
-  
+
   private
   
   def stop_destruction_if_last
