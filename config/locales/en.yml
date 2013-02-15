@@ -1,107 +1,146 @@
+# Instructions for the translator:
+# 1) don't remove or modify anything included between the signs %{} and <>
+# 2) don't insert the character " alone: always write it following a backslash, like \"
+# 3) don't modify anything outside the " --- "; especially, don't add nor delete spaces
+# 4) any time you find %{desy}, that will be replaced by the application's name configured in config/settings.yml
+
 en:
   
   
   # PART 1 -- ACCESSORIES
   
-  # SECTION 1.1: messages inside popups
+  
+  # SECTION 1.1: general messages shown by the application
+  
+  # Error messages shown in a small horizontal bar on the top of the application (this type of message is used only in the form that users use to sign up)
   flash: # solo per la registrazione
+    # The user forgot to insert an email
     # 1 - controllers/users_controller.rb
-    email_is_blank: 'Email is blank'
-    # this is the error message which appears if a user tries to click on a confirmation link which is no longer valid
+    email_is_blank: "Email is blank"
+    # This message appears if a user tries to click on a confirmation link which is no longer valid
     # 1 - controllers/users_controller.rb
-    failed_confirmation: 'The link you submitted is not longer valid'
+    failed_confirmation: "The link you submitted is not longer valid"
+    # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
     # 1 - controllers/users_controller.rb
-    password_reset_successfully: 'Password reset successfully'
+    password_reset_successfully: "Password reset successfully"
+    # The user filled his sign up form, and there were no errors: the application sent him an email with a link to confirm his account
     # 1 - controllers/users_controller.rb
-    successful_registration: 'Registration was completed successfully. Check your email address in order to confirm it'
+    successful_registration: "Registration was completed successfully. Check your email address in order to confirm it"
+    # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
     # 1 - controllers/users_controller.rb
-    successful_confirmation: 'Your account was confirmed successfully. Insert your username and password in order to sign in'
+    successful_confirmation: "Your account was confirmed successfully. Insert your username and password in order to sign in"
+  # Messages shown inside a popup, all over the application
   other_popup_messages:
     correct:
       add:
+        # The user successfully added a lesson to his personal folder
         # 1 - controllers/lessons_controller.rb
-        lesson: 'Now you have a link of this lesson'
+        lesson: "You added this lesson!"
+        # The user successfully added an element to his personal folder
         # 1 - controllers/media_elements_controller.rb
-        media_element: 'Now you can use this media element'
+        media_element: "You added this media element!"
+      # The user successfully shared a lesson
       # 1 - controllers/lessons_controller.rb
-      publish: 'The lesson has been published'
+      publish: "The lesson has been shared"
       remove:
+        # The user successfully removed a lesson from his personal folder
         # 1 - controllers/lessons_controller.rb
-        lesson: 'You removed the link of this lesson'
+        lesson: "You removed this lesson"
+        # The user successfully removed an element from his personal folder
         # 1 - controllers/media_elements_controller.rb
-        media_element: 'You removed this media element'
+        media_element: "You removed this media element"
+      # This message is associated to the form used to report an unappropriated content (both for lessons and elements)
       # 1 - views/reports/media_element.js.erb
       # 2 - views/reports/lesson.js.erb
-      report: 'The report was sent successfully'
+      report: "The report was sent successfully"
+      # A shared lesson was successfully turned back into private
       # 1 - controllers/lessons_controller.rb
-      unpublish: 'The lesson has been unpublished'
+      unpublish: "The lesson is not shared anymore"
+      # The user's personal profile has been successfully updated
       # 1 - views/users/update.js.erb
-      user_update: 'Update successful'
+      user_update: "Your profile has been successfully updated"
     login:
+      # While trying to login, the user forgot to fill both fields (username and password)
       # 1 - controllers/users/sessions_controller.rb
-      missing_fields: 'Insert username and password'
+      missing_fields: "Insert username and password"
+      # The user tried to login with wrong username or password
       # 1 - controllers/users/sessions_controller.rb
-      wrong_content: 'Wrong login data'
+      wrong_content: "Wrong username or password"
     mailing_list:
+      # An error occurred while updating the user's mailing list (general message for any kind of error)
       # 1 - views/shared/_popups.html.erb
-      error: 'Error in mailing list!'
+      error: "Error in mailing list!"
     send_lesson_link:
+      # The user sent to a list of friends an email containing a direct link to a lesson: using such a link anybody can see the lesson, even without being logged in. The variables %{success} and %{total} represent (a) the number of emails to which the link has been successfully sent, and (b) the original number of emails the user inserted (there might be emails containing wrong characters).
       # 1 - views/virtual_classroom/send_link.js.erb
-      ok: 'Link sent successfully to %{success} out of %{total} emails inserted'
+      ok: "Link sent successfully to %{success} out of %{total} emails inserted"
+      # The link (see above) couldn't be sent; the application suggests to check the correctness of the emails
       # 1 - views/virtual_classroom/send_link.js.erb
-      error: 'Link not sent: did you fill all the fields and write correct emails?'
+      error: "Link not sent: did you insert at least one correct email?"
     video_editor:
+      # Inside the video editor, the user tried to insert a text component inside the timeline without writing any text
       # 1 - views/shared/_popups.html.erb
-      empty_text_component: 'Insert a text'
+      empty_text_component: "Insert a text"
+      # Inside the video editor, the user tried to insert a text (or image) inside the timeline without specifying a correct duration (in seconds)
       # 1 - views/shared/_popups.html.erb
-      invalid_component_duration: 'You inserted a wrong duration, it must be a number greater than 0'
+      invalid_component_duration: "Insert a duration! (an integer greater than 0)"
     virtual_classroom_lessons:
+      # Inside the Virtual Classroom, it's possible to open a window for lesson multiple loading: this is the message shown when the user successfully loaded some lessons
       # 1 - views/virtual_classroom/load_lessons.js.erb
-      loaded_ok: 'Correctly loaded your lessons!'
+      loaded_ok: "Correctly loaded your lessons!"
+      # In the same situation, for some reason not all the selected lessons were loaded (the variable %{number} represents the number of lessons which couldn't be loaded)
       # 1 - views/virtual_classroom/load_lessons.js.erb
-      loaded_error: 'There was a problem, %{number} of your lessons were not loaded'
+      loaded_error: "A problem occurred, %{number} of your lessons were not loaded"
   activerecord:
     errors:
-      # NOTA - SOLO IN USER VENGONO USATI, NEGLI ALTRI CASI SONO SOSTITUITI
+      # The list of error messages below is used when the user doesn't fill properly a field in his personal profile
       messages:
+        # Invalid email address
         # 1 - models/user.rb
-        invalid_email_address: 'does not appear to be a valid email address'
+        invalid_email_address: "is not a valid email address"
+        # A field has not been filled
         # 1 - models/user.rb
         blank: "can't be blank"
+        # The password confirmation doesn't match
         # 1 - models/user.rb
         confirmation: "doesn't match confirmation"
+        # A field doesn't have enough characters (%{count} represents the minimum)
         # 1 - models/user.rb
-        too_short: 'is too short (minimum is %{count} characters)'
+        too_short: "is too short (minimum is %{count} characters)"
+        # A field has too many characters (%{count} represents the maximum)
         # 1 - models/user.rb
-        too_long: 'is too long (maximum is %{count} characters)'
+        too_long: "is too long (maximum is %{count} characters)"
+        # The email is already present in the database
         # 1 - models/user.rb
-        uniqueness: 'has already been taken'
+        uniqueness: "is already present in the database"
+        # A field can't be modified
         # 1 - models/user.rb
-        changed: 'cannot be changed'
+        changed: "can't be modified"
+        # The user must accept the policy of treatment of personal data (this message is used also for more customized policies)
         # 1 - models/user.rb
-        accepted: 'must be accepted'
+        accepted: "must be accepted"
       models:
         bookmark:
-          # there was an error while trying to add the lesson to your personal folder
+          # There was an error while trying to add the lesson to your personal folder
           # 1 - controllers/lessons_controller.rb
           # 2 - controllers/lessons_controller.rb
-          problem_creating_for_lesson: 'The lesson could not be added'
-          # there was an error while trying to add the element to your personal folder
+          problem_creating_for_lesson: "The lesson could not be added"
+          # There was an error while trying to add the element to your personal folder
           # 1 - controllers/media_elements_controller.rb
           # 2 - controllers/media_elements_controller.rb
-          problem_creating_for_media_element: 'The element could not be added'
-          # there was an error while trying to remove the lesson from your personal folder
+          problem_creating_for_media_element: "The element could not be added"
+          # There was an error while trying to remove the lesson from your personal folder
           # 1 - controllers/lessons_controller.rb
           # 2 - controllers/lessons_controller.rb
           # 3 - controllers/lessons_controller.rb
-          problem_destroying_for_lesson: 'The lesson could not be removed'
-          # there was an error while trying to remove the element from your personal folder
+          problem_destroying_for_lesson: "The lesson could not be removed"
+          # There was an error while trying to remove the element from your personal folder
           # 1 - controllers/media_elements_controller.rb
           # 2 - controllers/media_elements_controller.rb
           # 3 - controllers/media_elements_controller.rb
-          problem_destroying_for_media_element: 'The element could not be removed'
+          problem_destroying_for_media_element: "The element could not be removed"
         lesson:
-          # there was an error while trying to copy the lesson
+          # There was an error while trying to copy the lesson
           # 1 - controllers/lessons_controller.rb
           # 2 - models/lesson.rb
           # 3 - models/lesson.rb
@@ -109,105 +148,109 @@ en:
           # 5 - models/lesson.rb
           # 6 - models/lesson.rb
           # 7 - models/lesson.rb
-          problem_copying: 'The lesson could not be copied'
-          # the selected lesson has already been copied
+          problem_copying: "The lesson could not be copied"
+          # The selected lesson has already been copied
           # 1 - models/lesson.rb
-          already_copied: 'You already have a copy of this lesson'
-          # the selected lesson is a copy of another lesson which has not been modified yet (until the copy has'nt been modifed, it is frozen)
+          already_copied: "You already have a copy of this lesson"
+          # The selected lesson is a copy of another lesson which has not been modified yet (until the copy has'nt been modifed, it is frozen)
           # 1 - models/lesson.rb
           just_copied: "You've just copied this lesson"
-          # the selected lesson is already shared, it can't be shared again
+          # The selected lesson is already shared, it can't be shared again
           # 1 - models/lesson.rb
-          already_published: 'This lesson is already shared'
-          # there was an error while trying to share the lesson
+          already_published: "This lesson is already shared"
+          # There was an error while trying to share the lesson
           # 1 - controllers/lessons_controller.rb
           # 2 - models/lesson.rb
           # 3 - models/lesson.rb
           # 4 - models/lesson.rb
           # 5 - models/lesson.rb
-          problem_publishing: 'The lesson could not be shared'
-          # there was an error while trying to undo the sharing
+          problem_publishing: "The lesson could not be shared"
+          # There was an error while trying to undo the sharing
           # 1 - controllers/lessons_controller.rb
           # 2 - models/lesson.rb
           # 3 - models/lesson.rb
           # 4 - models/lesson.rb
           # 5 - models/lesson.rb
-          problem_unpublishing: 'Lesson sharing could not be undone'
-          # the selected lesson is not shared, hence the sharing can't be undone
+          problem_unpublishing: "Lesson sharing could not be undone"
+          # The selected lesson is not shared, hence the sharing can't be undone
           # 1 - models/lesson.rb
-          already_unpublished: 'This lesson has not been shared yet'
-          # there was an error while trying to delete the lesson
+          already_unpublished: "This lesson has not been shared yet"
+          # There was an error while trying to delete the lesson
           # 1 - controllers/lessons_controller.rb
           # 2 - models/lesson.rb
           # 3 - models/lesson.rb
           # 4 - models/lesson.rb
-          problem_destroying: 'The lesson could not be deleted'
-          # there was an error while trying to add the lesson to your Virtual Classroom
+          problem_destroying: "The lesson could not be deleted"
+          # There was an error while trying to add the lesson to your Virtual Classroom
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - models/lesson.rb
           # 3 - models/lesson.rb
-          problem_adding_to_virtual_classroom: 'The lesson could not be added to your Virtual Classroom'
-          # the selected lesson is already in your Virtual Classroom, hence you can't add it again
+          problem_adding_to_virtual_classroom: "The lesson could not be added to your Virtual Classroom"
+          # The selected lesson is already in your Virtual Classroom, hence you can't add it again
           # 1 - models/lesson.rb
-          lesson_already_in_virtual_classroom: 'This lesson is already in your Virtual Classroom'
-          # for some reason, the selected lesson cannot be added to your Virtual Classroom
+          lesson_already_in_virtual_classroom: "This lesson is already in your Virtual Classroom"
+          # For some reason, the selected lesson cannot be added to your Virtual Classroom
           # 1 - models/lesson.rb
           lesson_not_available_for_virtual_classroom: "This lesson cannot be added to your Virtual Classroom"
-          # there was an error while trying to remove the lesson from your Virtual Classroom
+          # There was an error while trying to remove the lesson from your Virtual Classroom
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - controllers/virtual_classroom_controller.rb
           # 3 - models/lesson.rb
           # 4 - models/lesson.rb
           # 5 - models/lesson.rb
           # 6 - models/lesson.rb
-          problem_removing_from_virtual_classroom: 'The lesson could not be removed from your Virtual Classroom'
+          problem_removing_from_virtual_classroom: "The lesson could not be removed from your Virtual Classroom"
         like:
-          # there was an error while you were trying to remove 'I like it' from a lesson
+          # There was an error while you were trying to remove 'I like it' from a lesson
           # 1 - controllers/lessons_controller.rb
           # 2 - controllers/lessons_controller.rb
           problem_destroying: "Your 'like' could not be removed"
-          # there was an error while you were trying to add 'I like it' to the selected lesson
+          # There was an error while you were trying to add 'I like it' to the selected lesson
           # 1 - controllers/lessons_controller.rb
           # 2 - controllers/lessons_controller.rb
           problem_creating: "Your 'like' could not be registered"
         media_element:
-          # there was an error while trying to delete an element
+          # There was an error while trying to delete an element
           # 1 - controllers/media_elements_controller.rb
           # 2 - models/media_element.rb
           # 3 - models/media_element.rb
           # 4 - models/media_element.rb
-          problem_destroying: 'The element could not be deleted'
-          # since the element is public, it's not possible to delete it
+          problem_destroying: "The element could not be deleted"
+          # Since the element is public, it's not possible to delete it
           # 1 - models/media_element.rb
           cant_destroy_public: "This element is public, you can't delete it"
         user:
+          # In the administration module, it's possible to delete a user from the database: this message appears if something wrong occurred during this process, and the user couldn't be deleted
           # 1 - models/user.rb
           # 1 - models/user.rb
           # 1 - models/user.rb
           # 1 - models/user.rb
-          problem_destroying: 'The user could not be deleted'
+          problem_destroying: "The user could not be deleted"
+          # This message is associated to the form used to report an unappropriated content (both for lessons and elements): a problem occurred, the report couldn't be sent
           # 1 - controllers/reports_controller.rb
           # 2 - controllers/reports_controller.rb
           # 3 - models/user.rb
           # 4 - models/user.rb
           # 5 - models/user.rb
           # 6 - models/user.rb
-          problem_reporting: 'Your report could not be sent'
+          problem_reporting: "Your report could not be sent"
+          # Same situation: the user is trying to report twice the same lesson
           # 1 - models/user.rb
-          lesson_already_reported: 'You already reported this lesson'
+          lesson_already_reported: "You already reported this lesson"
+          # Same situation: the user is trying to report twice the same media element
           # 1 - models/user.rb
-          media_element_already_reported: 'You already reported this element'
+          media_element_already_reported: "You already reported this element"
         notification:
-          # there was an error while trying to delete a notification
+          # There was an error while trying to delete a notification
           # 1 - controllers/notifications_controller.rb
           # 2 - controllers/notifications_controller.rb
-          problem_destroying: 'The notification could not be deleted'
+          problem_destroying: "The notification could not be deleted"
         virtual_classroom_lesson:
-          # you tried to insert the lesson in an invalid position inside the playlist
+          # You tried to insert the lesson in an invalid position inside the playlist
           # 1 - models/virtual_classroom_lesson.rb
           # 2 - models/virtual_classroom_lesson.rb
           invalid_position_in_playlist: "The position of the lesson is not valid"
-          # there was an error while trying to change the position of the lesson inside the playlist
+          # There was an error while trying to change the position of the lesson inside the playlist
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - models/virtual_classroom_lesson.rb
           # 3 - models/virtual_classroom_lesson.rb
@@ -215,252 +258,336 @@ en:
           # 5 - models/virtual_classroom_lesson.rb
           # 6 - models/virtual_classroom_lesson.rb
           problem_changing_position_in_playlist: "The lesson's position could not be changed"
-          # there was an error while trying to add the lesson to the playlist
+          # There was an error while trying to add the lesson to the playlist
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - models/virtual_classroom_lesson.rb
           # 3 - models/virtual_classroom_lesson.rb
           # 4 - models/virtual_classroom_lesson.rb
-          problem_adding_to_playlist: 'The lesson could not be added to the playlist'
-          # there was an error while trying to empty the playlist inside your Virtual Classroom'
+          problem_adding_to_playlist: "The lesson could not be added to the playlist"
+          # There was an error while trying to empty the playlist inside your Virtual Classroom'
           # 1 - controllers/virtual_classroom_controller.rb
-          problem_emptying_playlist: 'Your playlist could not be emptied'
-          # this happens when you try to add a lesson to a playlist which is already full
+          problem_emptying_playlist: "Your playlist could not be emptied"
+          # This happens when you try to add a lesson to a playlist which is already full
           # 1 - models/virtual_classroom_lesson.rb
-          playlist_full: 'Your playlist is full!'
-          # there was an error while trying to remove the lesson from the playlist
+          playlist_full: "Your playlist is full!"
+          # There was an error while trying to remove the lesson from the playlist
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - models/virtual_classroom_lesson.rb
           # 3 - models/virtual_classroom_lesson.rb
           # 4 - models/virtual_classroom_lesson.rb
-          problem_removing_from_playlist: 'The lesson could not be removed from the playlist'
+          problem_removing_from_playlist: "The lesson could not be removed from the playlist"
   
   
-  # SECTION 1.2: popups con messaggio dentro e due bottoni di scelta
+  # SECTION 1.2: small windows with title, description and two buttons (they are used in any occasion the application asks the user for confirmation of some action)
+  
   popups:
+    # The application asks for confirmation about sharing a lesson
     publish:
+      # Message (the application tells the user that any element contained in the lesson will be shared together with it)
       # 1 - views/shared/_popups.html.erb
-      confirm: 'Every element contained in it will be automatically shared'
+      confirm: "Every element contained in it will be automatically shared"
+      # Title
       # 1 - views/shared/_popups.html.erb
-      title: 'Publish this lesson'
+      title: "Publish this lesson"
+      # Button to confirm
       # 1 - views/shared/_popups.html.erb
-      do: 'Publish the lesson'
+      do: "Publish the lesson"
+      # Button to cancel
       # 1 - views/shared/_popups.html.erb
-      cancel: 'Cancel'
+      cancel: "Cancel"
+    # The application asks for confirmation about turning a shared lesson back into private
     unpublish:
+      # Message (the application tells the user that if he turns back the lesson into private any person who is following it will lose its link)
       # 1 - views/shared/_popups.html.erb
-      confirm: 'Every person who linked the lesson will lose it'
+      confirm: "Are you sure? Every person who linked the lesson will lose it"
+      # Title
       # 1 - views/shared/_popups.html.erb
-      title: 'Unpublish this lesson'
+      title: "Turn back a lesson into private"
+      # Button to confirm
       # 1 - views/shared/_popups.html.erb
-      do: 'Unpublish the lesson'
+      do: "Yes I am sure"
+      # Button to cancel
       # 1 - views/shared/_popups.html.erb
-      cancel: 'Cancel'
+      cancel: "Cancel"
     destroy:
+      # The application asks for confirmation about deleting a lesson
       lesson:
+        # Message (if anybody is following the lesson, he will lose its link)
         # 1 - views/shared/_popups.html.erb
-        confirm: 'Every person who linked the lesson will lose it'
+        confirm: "Every person who linked the lesson will lose it"
+        # Title
         # 1 - views/shared/_popups.html.erb
-        title: 'Delete this lesson'
+        title: "Delete this lesson"
+        # Button to confirm
         # 1 - views/shared/_popups.html.erb
-        do: 'Delete the lesson'
+        do: "Delete the lesson"
+        # Button to cancel
         # 1 - views/shared/_popups.html.erb
-        cancel: 'Cancel'
+        cancel: "Cancel"
+      # The application asks for confirmation about deleting an element
       media_element:
+        # Message (if you are using the element in some of your lessons, it will be removed from each of his instances)
         # 1 - views/shared/_popups.html.erb
-        confirm: 'It will be deleted in each of its instances in your lessons'
+        confirm: "It will be deleted in each of its instances in your lessons"
+        # Title
         # 1 - views/shared/_popups.html.erb
-        title: 'Delete this element?'
+        title: "Delete this element?"
+        # Button to confirm
         # 1 - views/shared/_popups.html.erb
-        do: 'Delete the element'
+        do: "Delete the element"
+        # Button to cancel
         # 1 - views/shared/_popups.html.erb
-        cancel: 'Cancel'
+        cancel: "Cancel"
+    # After having copied a lesson, the application asks the user what hw would like to do (go and edit immediately the lesson he copied, or stay on the page and do it later)
     after_copy:
+      # Title
       # 1 - views/lessons/copy.js.erb
-      title: 'You copied the lesson!'
+      title: "You copied the lesson!"
+      # Message
       # 1 - views/lessons/copy.js.erb
-      confirm: 'What would you like to do now?'
+      confirm: "What would you like to do now?"
+      # Button to stay in page
       # 1 - views/lessons/copy.js.erb
-      stay_in_page: 'Stay in this page'
+      stay_in_page: "Stay in this page"
+      # Button to edit the lesson now
       # 1 - views/lessons/copy.js.erb
-      go_to_editor: 'Edit the lesson now'
+      go_to_editor: "Edit the lesson now"
+    # When entering the audio or video editor, the application detects if the user left an uncompleted session; if this is the case, the application asks to the user if he wants to delete his old work or restore it
     restore_cache_media_element_editor:
+      # Message
       # 1 - views/shared/_popups.html.erb
-      message: 'A previous working session was closed unexpectedly!'
+      message: "A previous working session was closed unexpectedly!"
+      # Button to restore
       # 1 - views/shared/_popups.html.erb
-      do: 'Restore'
+      do: "Restore"
+      # Button to clear your session
       # 1 - views/shared/_popups.html.erb
-      cancel: 'Clear'
+      cancel: "Clear"
+    # When the user clicks on the 'exit' button inside the video editor, the application asks for confirmation (if the user confirms, the application deletes his current working session)
     exit_video_editor:
+      # Title
       # 1 - views/shared/_popups.html.erb
-      title: 'Leaving the video editor'
+      title: "Leaving the video editor"
+      # Message
       # 1 - views/shared/_popups.html.erb
-      confirm: 'Are you sure you want to leave?'
+      confirm: "Are you sure you want to leave?"
+      # Button to confirm
       # 1 - views/shared/_popups.html.erb
-      do: 'Yes'
+      do: "Yes"
+      # Button to cancel
       # 1 - views/shared/_popups.html.erb
-      cancel: 'Stay on the page'
+      cancel: "Stay on the page"
+    # When the user clicks on the 'exit' button inside the audio editor, the application asks for confirmation (if the user confirms, the application deletes his current working session)
     exit_audio_editor:
+      # Title
       # 1 - views/shared/_popups.html.erb
-      title: 'Leaving the audio editor'
+      title: "Leaving the audio editor"
+      # Message
       # 1 - views/shared/_popups.html.erb
-      confirm: 'Are you sure you want to leave?'
+      confirm: "Are you sure you want to leave?"
+      # Button to confirm
       # 1 - views/shared/_popups.html.erb
-      do: 'Yes'
+      do: "Yes"
+      # Button to cancel
       # 1 - views/shared/_popups.html.erb
-      cancel: 'Stay on the page'
+      cancel: "Stay on the page"
+    # If the user is editing a private element, when he clicks to the button 'commit changes' the application asks him if he wants to overwrite the element or save it as a new one
     save_media_element_editor:
+      # Title
       # 1 - views/shared/_popups.html.erb
-      title: 'Saving a private element'
+      title: "Saving a private element"
+      # Message
       # 1 - views/shared/_popups.html.erb
-      confirm: 'Since the element you modified is private, you can overwrite it'
+      confirm: "Since the element you modified is private, you can overwrite it"
+      # Button to overwrite
       # 1 - views/shared/_popups.html.erb
-      do: 'Overwrite'
+      do: "Overwrite"
+      # Button to cancel
       # 1 - views/shared/_popups.html.erb
-      cancel: 'Save as new element'
+      cancel: "Save as new element"
+    # If the user is overwriting a private element, and he used the same element in some of his lessons, the application asks him for confirmation (since the same element will automatically be modified in all of its instances)
     overwrite_media_element_editor:
+      # Title
       # 1 - views/shared/_popups.html.erb
-      title: 'This element is in use!'
+      title: "This element is in use!"
+      # Message
       # 1 - views/shared/_popups.html.erb
-      confirm: 'If you overwrite it, it will be replaced in any private lesson containing it'
+      confirm: "If you overwrite it, it will be replaced in any private lesson containing it"
+      # Button to confirm
       # 1 - views/shared/_popups.html.erb
-      do: 'Overwrite'
+      do: "Overwrite"
+      # Button to cancel
       # 1 - views/shared/_popups.html.erb
-      cancel: 'Cancel'
+      cancel: "Cancel"
+    # The user may send to a list of friends an email containing a direct link to a lesson
     send_lesson_link:
+      # Title
       # 1 - views/virtual_classroom/_popups.html.erb
-      title: 'Send a link to your friends'
+      title: "Send a link to your friends"
+      # Message (using such a link anybody can see the lesson, even without being logged in); the link contains a special token that doesn't allow other people to use it
       # 1 - views/virtual_classroom/_popups.html.erb
-      confirm: 'With the link you are going to send, you share your lesson with your friends outside %{desy}!'
+      confirm: "Share your lesson with your friends outside %{desy}!"
+      # Button to confirm
       # 1 - views/virtual_classroom/_popups.html.erb
-      do: 'Send'
+      do: "Send"
+      # Button to cancel
       # 1 - views/virtual_classroom/_popups.html.erb
-      cancel: 'Cancel'
+      cancel: "Cancel"
   
   
-  # SECTION 1.3: mailer
+  # SECTION 1.3: contents of emails automatically sent by the application
+  
   mailer:
+    # Mail containing the link to confirm a new account
     account_confirmation:
+      # Subject
       # 1 - mailers/user_mailer.rb
-      subject: '%{desy} - Account confirmation'
+      subject: "%{desy} - Account confirmation"
+      # Message
       # 1 - mailers/user_mailer.rb
-      message: '<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br>When the registration will be confirmed, the link will not be valid anymore.<br>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br><p>N.B.</p><p>The confirmation of the account can be done just one time.</p>'
+      message: "<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br>When the registration will be confirmed, the link will not be valid anymore.<br>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br><p>N.B.</p><p>The confirmation of the account can be done just one time.</p>"
+    # Mail containing the link to reset a forgotten password
     reset_password:
+      # Subject
       # 1 - mailers/user_mailer.rb
-      subject: '%{desy} - New password'
+      subject: "%{desy} - New password"
+      # Message
       # 1 - mailers/user_mailer.rb
       message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password at your choice once logged in, in the 'Profile' section.</p>"
+    # Email containing the public link of a lesson (when a user wants to share his lesson outside the application)
     see_my_lesson:
+      # Subject
       # 1 - mailers/user_mailer.rb
-      subject: '%{desy} - Lesson link'
+      subject: "%{desy} - Lesson link"
+      # Message
       # 1 - mailers/user_mailer.rb
       message: "<p>The user %{name} thinks that you might be interested in a lesson in %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):</p></br>"
   
   
-  # SECTION 1.4: standard forms
+  # SECTION 1.4: Standard forms to edit the general information of lessons or media elements. For 'general information' it's meant:
+  #   (a) title
+  #   (b) description
+  #   (c)tags
+  # Each of these forms contains:
+  #   1) a title
+  #   2) a message
+  #   3) three fields to fill (corresponding to title, description and tags above)
+  #   4) two buttons (confirm and cancel)
+  
   forms:
-    # new empty lesson form
+    # Form to create a new lesson
     new_lesson:
       # 1 - views/lesson_editor/new.html.erb
-      title: 'You are creating a new lesson'
+      title: "You are creating a new lesson"
       # 1 - views/lesson_editor/new.html.erb
-      description: 'Enter all the details in the form below'
+      description: "Enter all the details in the form below"
       # 1 - views/lesson_editor/new.html.erb
-      cancel: 'Cancel'
+      cancel: "Cancel"
       # 1 - views/lesson_editor/new.html.erb
-      done: 'Next'
-    # edit lesson form
+      done: "Next"
+    # Form to modify a lesson
     update_lesson:
       # 1 - views/lesson_editor/edit.html.erb
-      title: 'Are you making significant changes?'
+      title: "Are you making significant changes?"
       # 1 - views/lesson_editor/edit.html.erb
       description: "Update here the lesson's info according to its new content"
       # 1 - views/lesson_editor/edit.html.erb
-      cancel: 'Cancel'
+      cancel: "Cancel"
       # 1 - views/lesson_editor/edit.html.erb
-      done: 'Update'
-    # upload element form
+      done: "Update"
+    # Form to upload a new media element
     upload_media_element:
       # 1 - views/media_elements/_new_form_popup.html.erb
-      title: 'Upload a media element'
+      title: "Upload a media element"
       # 1 - views/media_elements/_new_form_popup.html.erb
-      description: 'Select a file clicking on the button on the left'
+      description: "Select a file clicking on the button on the left"
       # 1 - views/media_elements/_new_form_popup.html.erb
-      cancel: 'Cancel'
+      cancel: "Cancel"
       # 1 - views/media_elements/_new_form_popup.html.erb
-      done: 'Upload'
-    # change info media element form
+      done: "Upload"
+    # Form to modify a media element
     change_info_media_element:
       # 1 - views/media_elements/_popup.html.erb
       title: "Element's information"
       # 1 - views/media_elements/_popup.html.erb
-      description: 'Fill the form below to modify data'
+      description: "Fill the form below to modify data"
       # 1 - views/media_elements/_popup.html.erb
-      cancel: 'Cancel'
+      cancel: "Cancel"
       # 1 - views/media_elements/_popup.html.erb
-      done: 'Save'
-    # new media element in editor form
+      done: "Save"
+    # Form to create a new media element with one of the three editors (image / audio / video)
     new_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      title: 'You are creating a new element'
+      title: "You are creating a new element"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      description: 'Enter all the details in the form below'
+      description: "Enter all the details in the form below"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      cancel: 'Cancel'
+      cancel: "Cancel"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-      done: 'Save'
-    # overwrite media element in editor form
+      done: "Save"
+    # Form to edit general information of an element after having overwritten its content with one of the three editors (image / audio / video)
     overwrite_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      title: 'Have you made significant changes?'
+      title: "Have you made significant changes?"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       description: "Update here the element's info according to its new content"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      cancel: 'Cancel'
+      cancel: "Cancel"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-      done: 'Update'
+      done: "Update"
+    # Error messages shown in case the user doesn't fill correctly the form
     error_captions:
-      # this is the standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
+      # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb
-      fill_all_the_fields_or_too_long: 'Fill in all the fields without exceeding the max length'
-      # this is when you don't write the minimum amount of tags
+      fill_all_the_fields_or_too_long: "Fill in all the fields without exceeding the max length"
+      # The user didn't write the minimum amount of tags
       # 1 - controllers/application_controller.rb
-      tags_are_not_enough: 'Not enough tags'
-      # this is when you didn't select a file to be loaded
+      tags_are_not_enough: "Not enough tags"
+      # The user didn't select a file to be loaded
       # 1 - controllers/application_controller.rb
-      media_blank: 'No file loaded'
-      # you tried to upload an attachment whose format is not supported
+      media_blank: "No file loaded"
+      # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
-      media_unsupported_format: 'Format not supported'
-      # you tried to upload a file whose name contained an invalid character
+      media_unsupported_format: "Format not supported"
+      # The user tried to upload a file whose name contained an invalid character
       # 1 - controllers/application_controller.rb
       media_invalid_filename: "File's name contains invalid characters"
-      # you tried to upload a file which was damaged or invalid
+      # The user tried to upload a file which was damaged or invalid
       # 1 - controllers/application_controller.rb
-      media_generic_error: 'Invalid or damaged file'
-      # you didn't choose a subject for your lesson
+      media_generic_error: "Invalid or damaged file"
+      # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
-      subject_missing_in_lesson: 'Choose a subject'
+      subject_missing_in_lesson: "Choose a subject"
+      
+      
+    # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
+      # Description (the variable %{num} represents the maximum number of characters)
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
-      description: 'Description (max %{num} characters)'
+      description: "Description (max %{num} characters)"
+      # File to load (used only for media elements
       # 1 - views/media_elements/_new_form_popup.html.erb
-      media: 'Select a file to load'
+      media: "Select a file to load"
+      # Subject (used only for lessons)
       # 1 - helpers/application_helper.rb
-      subject_id: 'Select a subject'
+      subject_id: "Select a subject"
+      # Tags (the variable %{num} represents the maximum number of characters for each tags, the variable %{items} represents the minimum amount of tags)
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
-      tags: 'Insert a minimum of %{items} tags (max %{num} characters each)'
+      tags: "Insert a minimum of %{items} tags (max %{num} characters each)"
+      # Title (the variable %{num} represents the maximum number of characters)
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
-      title: 'Title (max %{num} characters)'
+      title: "Title (max %{num} characters)"
   
   
-  # SECTION 1.5: titles
+  # SECTION 1.5: HTML titles (small tooltips appearing while passing with the mouse over icons of other items in the page)
+  
   titles:
     audio_editor:
       # 1 - views/audio_editor/edit.html.erb
