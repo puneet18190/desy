@@ -1052,9 +1052,9 @@ en:
         failed: 'Audio composition failed! Audio editor available. You find <a>here</a> a saved copy of your work.'
       upload:
         # TODO manca + inserire titolo
-        started: 'Audio upload started! Audio editor not available.'
+        started: 'Audio upload started!'
         # TODO manca + inserire titolo
-        ok: 'Audio upload successfully ended! Audio editor available'
+        ok: 'Audio upload successfully ended!'
         # TODO manca + inserire titolo
         failed: 'Audio upload failed! Try again'
     videos:
@@ -1074,9 +1074,9 @@ en:
         failed: 'Video composition failed! Video editor available. You find <a>here</a> a saved copy of your work.'
       upload:
         # TODO manca + inserire titolo
-        started: 'Video upload started! Video editor not available.'
+        started: 'Video upload started!'
         # TODO manca + inserire titolo
-        ok: 'Video upload successfully ended! Video editor available'
+        ok: 'Video upload successfully ended!'
         # TODO manca + inserire titolo
         failed: 'Video upload failed! Try again'
   
@@ -1588,7 +1588,8 @@ en:
       # 3 - views/video_editor/cutters/_image.html.erb
       # 4 - views/video_editor/_text_component_editor.html.erb
       length_duration: 3
-      
+  
+  
   # PART 4 -- admin
   admin:
     # SECTION 4.1 menu
