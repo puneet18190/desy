@@ -568,6 +568,18 @@ $(document).ready(function() {
 
   $("#user_location_id").selectbox();
   
+  $("#town_id").selectbox();
+  
+  $("#province_id").selectbox();
+  
+  $("#province_id,#town_id").on('change',function(){
+    $.ajax({
+      url: "/location/"+$(this).val()+"/find",
+      type: "POST"
+    });
+  });
+  
+  
   $('body').on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
     var myself = $(this);
     var len = myself.val().length;
@@ -841,6 +853,12 @@ $(document).ready(function() {
   });
   
   $('body').on('keydown', '#virtual_classroom_emails_selector', function(e) {
+    if(e.which === 186) {
+      e.preventDefault();
+      var value = $(this).val();
+      value += '@';
+      $(this).val(value);
+    }
     if(e.which === 13) {
       e.preventDefault();
       addEmailToVirtualClassroomSendLessonLinkSelector();
@@ -899,13 +917,14 @@ $(document).ready(function() {
   $('._load_media_element').click(function(e) {
     e.preventDefault();
     showLoadMediaElementPopUp();
+    initFileUploads();
   });
   
-  $('body').on('click', '.uploadFileButton', function() {
-    $('input.innerUploadFileButton').trigger('click');
-  });
+  //$('body').on('click', '.uploadFileButton', function() {
+  //  $('._msie_file_uploader').trigger('click');
+  //});
   
-  $('body').on('change', 'input.innerUploadFileButton', function() {
+  $('body').on('change', 'input#new_media_element', function() {
     var file_name = $(this).val().replace("C:\\fakepath\\", "");
     if(file_name.length > 20){
       file_name = file_name.substring(0,20)+"...";

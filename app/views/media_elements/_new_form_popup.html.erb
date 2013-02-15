@@ -10,12 +10,14 @@
       <%= form_tag media_elements_path, :method => :post, :id => 'new_media_element', :class => 'formModifyInfo', :multipart => true do %>
         
         <div class="cols fltlft">
-          <div class="selectButton">
-            <a class="uploadFileButton submitButton" id="media_element_media_pick" title="<%= t('titles.media_elements.select_file') %>"> </a>
-            <div id="media_element_media_show" class="fk_carica_elemento_file"></div>
-            <input type="file" name="media" class="innerUploadFileButton" />
-          </div>
+          <div id="media_element_media_show" class="fk_carica_elemento_file fltrt"></div>
+          <label class="filebutton">
+            <span>
+              <input type="file" id="new_media_element" name="media">
+            </span>
+          </label>
           <br class="clearfloat">
+          <br><br>
           <%= text_field_tag 'title', '' %>
           <%= hidden_field_tag 'title_placeholder', '' %>
           <br>

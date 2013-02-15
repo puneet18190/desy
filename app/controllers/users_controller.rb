@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  skip_before_filter :authenticate, only: [:create, :confirm, :request_reset_password, :reset_password]
+  skip_before_filter :authenticate, only: [:create, :confirm, :request_reset_password, :reset_password, :find_location]
   before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
   layout 'prelogin', only: [:create, :request_reset_password]
 
@@ -52,6 +52,12 @@ class UsersController < ApplicationController
     @user = current_user
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
     @location_ids     = User.location_association_class.order(:name).map{ |l| [l.to_s, l.id] }
+    @provinces_ids    = Location.roots.order(:name).map{ |l| [l.to_s, l.id] }
+    @towns_ids        = current_user.location.parent.siblings.order(:name).map{ |l| [l.to_s, l.id] }
+  end
+  
+  def find_location
+    @parent = Location.find(params[:id])
   end
 
   def subjects
