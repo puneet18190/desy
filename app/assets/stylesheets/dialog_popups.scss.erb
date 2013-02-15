@@ -293,7 +293,7 @@
 
 #dialog-virtual-classroom-send-link .colonnaCoverLesson .buttonRow {
   padding:1em; 
-  margin-top:18em;
+  margin-top:19em;
   height: 3em;
   a {
     text-transform:lowercase;
@@ -319,6 +319,16 @@
   padding:10px;
   height: 82px;
   margin-bottom:8px;
+  
+  .jspContainer .jspVerticalBar {
+    top: 0em;
+    .jspTrack {
+      background-color:#b3b1b1;
+      .jspDrag {
+        background: #2eaadc;
+      }
+    }
+  }
   ._email {
     float:left;
     height: 20px;
@@ -328,35 +338,44 @@
       height: 15px;
       display:block;
       float:left;
-      $button-size: 15px;
-      width: $button-size;
-      height: $button-size;
       background-repeat: no-repeat;
-      margin: 2px 2px 0px 5px;
+      margin: 0px 0px 0px 5px;
       color: #373737;
-      background-image: url(<%= asset_path 'grigia.png' %>);
+      background-image: url(<%= asset_path 'azzurro.png' %>);
       &:hover {
         background-image: url(<%= asset_path 'bianca.png' %>);
       }
     }
     ._text {
       float: left;
+      padding-left:10px;
     }
   }
 }
 
 #virtual_classroom_emails_submitter {
-  background-color: red;
-  width: 20px;
-  height: 20px;
+ 
   float: left;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
+  margin-top: 7px;
+  margin-left: 4px;
   cursor: pointer;
-  &:hover {
-    background-color: yellow;
-  }
+  $button-size: 2.3em;
+  width: $button-size;
+  height: $button-size;
+  background-image: url(<%= asset_path 'icone-player.svg' %>);
+  background-repeat: no-repeat;
+  background-size: ($button-size*5) ($button-size*4);
+  background-position: (-$button-size*4) (-$button-size);
+  padding:0;
+  opacity:0.1;
+    &:hover {
+     cursor: pointer;
+     background-position: (-$button-size*4) (-$button-size);
+     opacity:0.4;
+   } 
+ 
+ 
+ 
 }
 
 #virtual_classroom_emails_selector {
