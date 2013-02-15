@@ -568,6 +568,18 @@ $(document).ready(function() {
 
   $("#user_location_id").selectbox();
   
+  $("#town_id").selectbox();
+  
+  $("#province_id").selectbox();
+  
+  $("#province_id,#town_id").on('change',function(){
+    $.ajax({
+      url: "/location/"+$(this).val()+"/find",
+      type: "POST"
+    });
+  });
+  
+  
   $('body').on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {
     var myself = $(this);
     var len = myself.val().length;
@@ -905,7 +917,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '.uploadFileButton', function() {
-    $('input.innerUploadFileButton').trigger('click');
+    $('._msie_file_uploader').trigger('click');
   });
   
   $('body').on('change', 'input.innerUploadFileButton', function() {

@@ -14,6 +14,8 @@ $(document).ready(function() {
   
   $(".slide-content.cover .title").css("margin-left", "auto");
   
+  $('html.lesson-editor-layout ul#slides input').attr('autocomplete','off');
+  
   initLessonEditorPositions();
   
   $(window).resize(function() {
@@ -364,8 +366,8 @@ function initializeSortableNavs() {
   var slides_amount = slides_numbers.find("li.navNumbers").length;
   slides_numbers.css('width', ''+((parseInt(slides_amount + 1) * 32)-28) + 'px');
   var add_last_button = $("._add_new_slide_options_in_last_position");
-  if(parseInt(slides_numbers.css('width')) < (parseInt($(window).outerWidth())-50)){
-    add_last_button.css("left", ""+(slides_numbers.find("li.navNumbers :last").position().left + 30)+"px"); 
+  if(parseInt(slides_numbers.css('width')) < (parseInt($(window).outerWidth())-100)){
+    add_last_button.css("left", ""+(slides_numbers.find("li.navNumbers").last().position().left + 40)+"px"); 
   }
   slides_numbers.sortable({
     items: '._slide_nav_sortable',
@@ -535,7 +537,7 @@ function initLessonEditorPositions() {
   WW = parseInt($(window).outerWidth());
   WH = parseInt($(window).outerHeight());
   $("#main").css("width", WW);
-  $("ul#slides").css("width",($("ul#slides li").length * 960) + (2 * WW) );
+  $("ul#slides").css("width",(($("ul#slides li").length + 2) * 1000) );
   $("ul#slides").css("top", ((WH / 2) - 295) + "px");
   $("ul#slides.new").css("top", ((WH / 2) - 335) + "px")
   $("#footer").css("top", (WH - 40) + "px").css("width", (WW - 24) + "px")
@@ -571,7 +573,7 @@ function tinyMceKeyDownCallbacks(inst,tiny_id){
 }
 
 function reInitializeSlidePositionsInLessonEditor() {
-  $("ul#slides").css("width",($("ul#slides li").length * 960) + (2 * parseInt($(window).outerWidth())) );
+  $("ul#slides").css("width",(($("ul#slides li").length+2) * 1000));
   $('ul#slides li').each(function(index){
     $(this).data('position', (index + 1));
   });
