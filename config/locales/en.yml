@@ -342,17 +342,17 @@ en:
     account_confirmation:
       # 1 - mailers/user_mailer.rb
       subject: '%{desy} - Account confirmation'
-      # 1 - views/user_mailer/account_confirmation.html.erb
+      # 1 - mailers/user_mailer.rb
       message: '<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br>When the registration will be confirmed, the link will not be valid anymore.<br>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br><p>N.B.</p><p>The confirmation of the account can be done just one time.</p>'
     reset_password:
       # 1 - mailers/user_mailer.rb
       subject: '%{desy} - New password'
-      # 1 - views/user_mailer/new_password.html.erb
+      # 1 - mailers/user_mailer.rb
       message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password at your choice once logged in, in the 'Profile' section.</p>"
     see_my_lesson:
       # 1 - mailers/user_mailer.rb
       subject: '%{desy} - Lesson link'
-      # 1 - views/user_mailer/see_my_lesson.html.erb
+      # 1 - mailers/user_mailer.rb
       message: "<p>The user %{name} thinks that you might be interested in a lesson in %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):</p></br>"
   
   

@@ -12,6 +12,7 @@ class UserMailer < ActionMailer::Base
   def account_confirmation(user, host = nil, port = nil)
     host_and_port!(host, port)
     @user = user
+    @mail_content = I18n.t('mailer.account_confirmation.message', :name => @user.full_name, :desy => SETTINGS['application_name']).html_safe
     mail to: @user.email, subject: t('mailer.account_confirmation.subject', :desy => APPLICATION_NAME)
   end
   
@@ -20,12 +21,14 @@ class UserMailer < ActionMailer::Base
     @sender = sender
     @message = message
     @lesson_link = lesson_viewer_url(*host_and_port(lesson.id, token: lesson.token))
+    @mail_content = I18n.t('mailer.see_my_lesson.message', :name => @sender.full_name, :message => @message, :desy => SETTINGS['application_name']).html_safe
     mail to: emails, subject: t('mailer.see_my_lesson.subject', :desy => APPLICATION_NAME)
   end
 
   def new_password(user, password, host = nil, port = nil)
     host_and_port!(host, port)
     @user, @password = user, password
+    @mail_content = I18n.t('mailer.reset_password.message', :password => @password, :name => @user.full_name, :desy => SETTINGS['application_name']).html_safe
     mail to: @user.email, subject: t('mailer.reset_password.subject', :desy => APPLICATION_NAME)
   end
 
