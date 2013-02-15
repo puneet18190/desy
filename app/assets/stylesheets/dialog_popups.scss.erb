@@ -315,20 +315,28 @@
   box-shadow: -1px -1px 1px 0 rgba(210, 210, 210, 0.6), -1px -1px 1px rgba(252, 252, 252, 0.8) inset;
   color: #999999;
   background-color:white;
-  width: 350px;
-  height: 102px;
+  width: 330px;
+  padding:10px;
+  height: 82px;
   margin-bottom:8px;
   ._email {
-    background-color: blue;
+    float:left;
     height: 20px;
     width: auto;
     ._remove {
       width: 15px;
       height: 15px;
-      background-color: aqua;
-      float: left;
+      display:block;
+      float:left;
+      $button-size: 15px;
+      width: $button-size;
+      height: $button-size;
+      background-repeat: no-repeat;
+      margin: 2px 2px 0px 5px;
+      color: #373737;
+      background-image: url(<%= asset_path 'grigia.png' %>);
       &:hover {
-        background-color: red;
+        background-image: url(<%= asset_path 'bianca.png' %>);
       }
     }
     ._text {
