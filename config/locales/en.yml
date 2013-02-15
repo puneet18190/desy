@@ -615,6 +615,13 @@ en:
       pause: 'Pause video'
       # 1 - views/shared/players/_video.html.erb
       play: 'Play video'
+    virtual_classroom:
+      # 1 - views/virtual_classroom/_view_single.html.erb
+      preview: 'Open lesson viewer'
+      # 1 - views/virtual_classroom/_view_single.html.erb
+      remove: 'Remove from your Virtual Classroom'
+      # 1 - views/virtual_classroom/_view_single.html.erb
+      send_link: 'Send a link of this lesson to your friends'
   
   
   # SECTION 1.6: help tooltips
