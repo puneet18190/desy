@@ -127,6 +127,7 @@ Desy::Application.routes.draw do
   get 'profile/statistics' => 'users#statistics', :as => :my_statistics
   get 'profile/mailing_lists' => 'users#mailing_lists', :as => :my_mailing_lists
   put 'profile/update' => 'users#update', as: :user
+  post 'location/:id/find' => 'users#find_location'
   
   # MAILING LIST
   post   'mailing_lists/create' => 'mailing_lists#create_group'

@@ -1290,7 +1290,9 @@ en:
         # 1 - views/users/_personal_info.html.erb
         school_level_id: 'School level'
         # 1 - views/users/_personal_info.html.erb
-        location_id: 'City'
+        town: 'Town'
+        # 1 - views/users/_personal_info.html.erb
+        province: 'Province'
     mailing_list:
       # 1 - views/users/statistics.html.erb
       # 2 - views/users/mailing_lists.html.erb
