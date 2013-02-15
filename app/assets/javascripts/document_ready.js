@@ -855,6 +855,9 @@ $(document).ready(function() {
   $('body').on('keydown', '#virtual_classroom_emails_selector', function(e) {
     if(e.which === 186) {
       e.preventDefault();
+      var value = $(this).val();
+      value += '@';
+      $(this).val(value);
     }
     if(e.which === 13) {
       e.preventDefault();
