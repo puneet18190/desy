@@ -7,7 +7,8 @@ module Media
 
     attr_reader :model, :column, :value
 
-    RAILS_PUBLIC = File.join Rails.root, 'public'
+    PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER = 'media_elements'
+    MEDIA_ELEMENTS_FOLDER                 = RAILS_PUBLIC_FOLDER.join PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER
 
     def initialize(model, column, value)
       @model, @column, @value = model, column, value

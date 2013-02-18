@@ -14,8 +14,8 @@ module Media
       include Validation
       include EnvRelativePath
 
-      PUBLIC_RELATIVE_FOLDER        = env_relative_path 'media_elements/audios'
-      FOLDER                        = File.join RAILS_PUBLIC, PUBLIC_RELATIVE_FOLDER
+      PUBLIC_RELATIVE_FOLDER        = env_relative_path File.join(PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER, 'audios')
+      FOLDER                        = File.join RAILS_PUBLIC_FOLDER, PUBLIC_RELATIVE_FOLDER
       EXTENSION_WHITE_LIST          = %w(mp3 ogg flac aiff wav wma aac)
       EXTENSION_WHITE_LIST_WITH_DOT = EXTENSION_WHITE_LIST.map{ |ext| ".#{ext}" }
       MIN_DURATION                  = 1

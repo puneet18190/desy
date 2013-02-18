@@ -3,7 +3,8 @@ module Media
   # Definisce CONFIG
   require 'media/config'
 
-  TMP_PREFIX = CONFIG.tmp_prefix
+  RAILS_PUBLIC_FOLDER = Rails.root.join 'public'
+  TMP_PREFIX          = CONFIG.tmp_prefix
 
   def self.ubuntu_packages
     # XXX postgresql-contrib-9.2 non dovrebbe stare qui!!!
