@@ -167,7 +167,7 @@ avconv -y -i _.tmp.webm -vf "scale=960:-1,crop=960:540:0:(ih-oh)/2" -b 3000k _.t
 
 avconv -y -i _.tmp.webm -vf "scale=lt(iw/ih\,16/9)*960+gte(iw/ih\,16/9)*-1:lt(iw/ih\,16/9)*-1+gte(iw/ih\,16/9)*540,crop=960:540:(iw-ow)/2:(ih-oh)/2" -b 3000k _.tmp.960x540.cropped.webm
 
-LD_LIBRARY_PATH=/opt/libav/lib /opt/libav/bin/avconv -v 9 -loglevel 99 -y -i /home/mau/web_apps/demos/video_editor/tmp/video_editing/conversions/test/77/in\ put.flv -threads 2 -benchmark -c:v libvpx -c:a libvorbis -q 1 -map 0:v:0 -map 0:a:0 -b:v 200k -b:a 176k -vf 'scale=lt(iw/ih\,16/9)*960+gte(iw/ih\,16/9)*-1:lt(iw/ih\,16/9)*-1+gte(iw/ih\,16/9)*540,crop=960:540:(iw-ow)/2:(ih-oh)/2' /home/mau/web_apps/demos/video_editor/public/media_elements/videos/test/77/in-put.webm
+LD_LIBRARY_PATH=/opt/libav/lib /opt/libav/bin/avconv -loglevel debug -y -i /home/mau/web_apps/demos/video_editor/tmp/video_editing/conversions/test/77/in\ put.flv -threads 2 -benchmark -c:v libvpx -c:a libvorbis -q 1 -map 0:v:0 -map 0:a:0 -b:v 200k -b:a 176k -vf 'scale=lt(iw/ih\,16/9)*960+gte(iw/ih\,16/9)*-1:lt(iw/ih\,16/9)*-1+gte(iw/ih\,16/9)*540,crop=960:540:(iw-ow)/2:(ih-oh)/2' /home/mau/web_apps/demos/video_editor/public/media_elements/videos/test/77/in-put.webm
 
 
 Avprobe, output in JSON:

@@ -67,7 +67,7 @@ module MediaEditingSpecSupport
                     }
 
   AVCONV_SH_VARS         = {}
-  AVCONV_PRE_COMMAND     = 'avconv -v 9 -loglevel 99 -benchmark -y -timelimit 86400'
+  AVCONV_PRE_COMMAND     = 'avconv -loglevel debug -benchmark -y -timelimit 86400'
   AVCONV_SUBEXEC_OPTIONS = { sh_vars: AVCONV_SH_VARS, timeout: 86410 }
   VBITRATE               = { mp4: '', webm: ' -b:v 2M' }
 

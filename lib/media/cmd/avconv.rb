@@ -40,7 +40,7 @@ module Media
       end
 
       def global_options(additional_options = [])
-        @global_options ||= %W( -v 9 -loglevel 99 -benchmark -y -timelimit #{TIMEOUT.to_s.shellescape} )
+        @global_options ||= %W( -loglevel debug -benchmark -y -timelimit #{TIMEOUT.to_s.shellescape} )
         @global_options.concat additional_options
       end
 
