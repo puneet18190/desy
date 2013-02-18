@@ -2,11 +2,13 @@ require 'csv'
 
 csv_dir = Rails.root.join('db/seeds/environments/production/csv')
 
+csv_options = { headers: true }
+
 ActiveRecord::Base.transaction do
 
-  puts 'locations...'
+  puts 'Locations...'
   records = csv_dir.join 'locations.csv'
-  CSV.foreach(records, headers: true) do |row|
+  CSV.foreach(records, csv_options) do |row|
     Location.new do |record|
       row.headers.each do |header|
         record.send :"#{header}=", row[header]
@@ -14,9 +16,9 @@ ActiveRecord::Base.transaction do
     end.save!
   end
 
-  puts 'school levels...'
+  puts 'School levels...'
   records = csv_dir.join 'school_levels.csv'
-  CSV.foreach(records, headers: true) do |row|
+  CSV.foreach(records, csv_options) do |row|
     SchoolLevel.new do |record|
       row.headers.each do |header|
         record.send :"#{header}=", row[header]
@@ -24,9 +26,9 @@ ActiveRecord::Base.transaction do
     end.save!
   end
 
-  puts 'subjects...'
+  puts 'Subjects...'
   records = csv_dir.join 'subjects.csv'
-  CSV.foreach(records, headers: true) do |row|
+  CSV.foreach(records, csv_options) do |row|
     Subject.new do |record|
       row.headers.each do |header|
         record.send :"#{header}=", row[header]
@@ -35,16 +37,16 @@ ActiveRecord::Base.transaction do
   end
 
   user_subjects = ->(id) do
-    CSV.open(csv_dir.join('users_subjects.csv'), headers: true).each.select do |row|
+    CSV.open(csv_dir.join('users_subjects.csv'), csv_options).each.select do |row|
       row['user_id'] == id.to_s
     end.map do |row|
       row['subject_id']
     end
   end
 
-  puts 'users...'
+  puts 'Users...'
   records = csv_dir.join 'users.csv'
-  CSV.foreach(records, headers: true) do |row|
+  CSV.foreach(records, csv_options) do |row|
     User.new do |record|
       row.headers.each do |header|
         record.send :"#{header}=", row[header]
@@ -53,17 +55,6 @@ ActiveRecord::Base.transaction do
       record.accept_policies
     end.save!
   end
-
-  puts 'tags...'
-  records = csv_dir.join 'tags.csv'
-  CSV.foreach(records, headers: true) do |row|
-    Tag.new do |record|
-      row.headers.each do |header|
-        record.send :"#{header}=", row[header]
-      end
-    end.save!
-  end
-
 
   audios_dir = Rails.root.join 'db/seeds/environments/production/media_elements/audios'
   videos_dir = Rails.root.join 'db/seeds/environments/production/media_elements/videos'
@@ -85,49 +76,41 @@ ActiveRecord::Base.transaction do
   end
 
   tags = ->(id, type) do
-    CSV.open(csv_dir.join('taggings.csv'), headers: true).each.select do |row|
+    CSV.open(csv_dir.join('taggings.csv'), csv_options).each.select do |row|
       row['taggable_type'] == type && row['taggable_id'] == id.to_s
-    end.map do |row|
-      Tag.find row['tag_id']
-    end
+    end.map do |taggable_row|
+      CSV.open(csv_dir.join('tags.csv'), csv_options).each.
+        detect{ |tags_row| taggable_row['tag_id'] == tags_row['id'] }['word']
+    end.join(',')
   end
 
-  puts 'media_elements...'
+  puts 'Media elements...'
   records = csv_dir.join 'media_elements.csv'
-  CSV.foreach(records, headers: true) do |row|
-    record = 
-      case row['sti_type']
-      when 'Audio'
-        Audio.new do |record|
-          row.headers.each do |header|
-            record.send :"#{header}=", row[header]
-          end
-          record.media = audio.call(record.id)
+  CSV.foreach(records, csv_options) do |row|
+    record =
+      row['sti_type'].constantize.new do |record|
+        row.headers.each do |header|
+          record.send :"#{header}=", row[header]
         end
-      when 'Video'
-        Video.new do |record|
-          row.headers.each do |header|
-            record.send :"#{header}=", row[header]
-          end
-          record.media = video.call(record.id)
-        end
-      when 'Image'
-        Image.new do |record|
-          row.headers.each do |header|
-            record.send :"#{header}=", row[header]
-          end
-          record.media = File.open(image.call(record.id))
-        end
-      else raise "unknown media element type; row: #{row}"
+      end
+    record.media = 
+      case record
+      when Audio
+        audio.call(record.id)
+      when Video
+        video.call(record.id)
+      when Image
+        File.open(image.call(record.id))
+      else raise "wrong media element type; row: #{row}"
       end
     record.skip_public_validations = true
     record.tags = tags.call(record.id, 'MediaElement')
     record.save!
   end
 
-  puts 'lessons...'
+  puts 'Lessons...'
   records = csv_dir.join 'lessons.csv'
-  CSV.foreach(records, headers: true) do |row|
+  CSV.foreach(records, csv_options) do |row|
     Lesson.new do |record|
       row.headers.each do |header|
         record.send :"#{header}=", row[header]
@@ -138,10 +121,10 @@ ActiveRecord::Base.transaction do
     end.save!
   end
 
-  puts 'slides...'
+  puts 'Slides...'
   records = csv_dir.join 'slides.csv'
   puts Slide.all
-  CSV.foreach(records, headers: true) do |row|
+  CSV.foreach(records, csv_options) do |row|
     Slide.new do |record|
       row.headers.each do |header|
         record.send :"#{header}=", row[header]
@@ -149,9 +132,9 @@ ActiveRecord::Base.transaction do
     end.save!
   end
 
-  puts 'media elements slides...'
+  puts 'Media elements slides...'
   records = csv_dir.join 'media_elements_slides.csv'
-  CSV.foreach(records, headers: true) do |row|
+  CSV.foreach(records, csv_options) do |row|
     MediaElementsSlide.new do |record|
       row.headers.each do |header|
         record.send :"#{header}=", row[header]
@@ -159,9 +142,9 @@ ActiveRecord::Base.transaction do
     end.save!
   end
 
-  puts 'likes...'
+  puts 'Likes...'
   records = csv_dir.join 'likes.csv'
-  CSV.foreach(records, headers: true) do |row|
+  CSV.foreach(records, csv_options) do |row|
     Like.new do |record|
       row.headers.each do |header|
         record.send :"#{header}=", row[header]
@@ -169,9 +152,9 @@ ActiveRecord::Base.transaction do
     end.save!
   end
 
-  puts 'bookmarks...'
+  puts 'Bookmarks...'
   records = csv_dir.join 'bookmarks.csv'
-  CSV.foreach(records, headers: true) do |row|
+  CSV.foreach(records, csv_options) do |row|
     Bookmark.new do |record|
       row.headers.each do |header|
         record.send :"#{header}=", row[header]
@@ -181,5 +164,4 @@ ActiveRecord::Base.transaction do
 
 end
 
-# TODO fare che le tags se le creano i media_elements e le lezioni
-#      spostare i csv in un posto consono
+puts 'Fine.'
