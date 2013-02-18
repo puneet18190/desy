@@ -97,38 +97,52 @@ class Seeding
     end
   end
 
+  def update_sequence(model)
+    query = "SELECT setval(%s, COALESCE( (SELECT MAX(id)+1 FROM %s), 1), true)"
+    model.connection.execute query % [ model.quote_value(model.sequence_name), model.quoted_table_name ]
+  end
+
   def locations!
+    model = Location
     puts 'locations...'
     CSV.foreach(csv_path('locations'), CSV_OPTIONS) do |row|
-      csv_row_to_record(Location, row).save!
+      csv_row_to_record(model, row).save!
     end
+    update_sequence model
   end
 
   def school_levels!
+    model = SchoolLevel
     puts 'school levels...'
     CSV.foreach(csv_path('school_levels'), CSV_OPTIONS) do |row|
-      csv_row_to_record(SchoolLevel, row).save!
+      csv_row_to_record(model, row).save!
     end
+    update_sequence model
   end
 
   def subjects!
+    model = Subject
     puts 'subjects...'
     CSV.foreach(csv_path('subjects'), CSV_OPTIONS) do |row|
-      csv_row_to_record(Subject, row).save!
+      csv_row_to_record(model, row).save!
     end
+    update_sequence model
   end
 
   def users!
+    model = User
     puts 'users...'
     CSV.foreach(csv_path('users'), CSV_OPTIONS) do |row|
-      record = csv_row_to_record(User, row)
+      record = csv_row_to_record(model, row)
       record.subject_ids = user_subjects(record.id)
       record.accept_policies
       record.save!
     end
+    update_sequence model
   end
 
   def media_elements!
+    model = MediaElement
     puts 'media elements...'
     CSV.foreach(csv_path('media_elements'), CSV_OPTIONS) do |row|
       record = csv_row_to_record(row['sti_type'].constantize, row)
@@ -137,45 +151,56 @@ class Seeding
       record.tags                    = tags(record.id, 'MediaElement')
       record.save!
     end
+    update_sequence model
   end
 
   def lessons!
+    model = Lesson
     puts 'lessons...'
     CSV.foreach(csv_path('lessons'), CSV_OPTIONS) do |row|
-      record = csv_row_to_record(Lesson, row)
+      record = csv_row_to_record(model, row)
       record.skip_public_validations = true
       record.skip_cover_creation     = true
       record.tags                    = tags(record.id, 'Lesson')
       record.save!
     end
+    update_sequence model
   end
 
   def slides!
+    model = Slide
     puts 'slides...'
     CSV.foreach(csv_path('slides'), CSV_OPTIONS) do |row|
-      csv_row_to_record(Slide, row).save!
+      csv_row_to_record(model, row).save!
     end
+    update_sequence model
   end
 
   def media_elements_slides!
+    model = MediaElementsSlide
     puts 'media elements slides...'
     CSV.foreach(csv_path('media_elements_slides'), CSV_OPTIONS) do |row|
-      csv_row_to_record(MediaElementsSlide, row).save!
+      csv_row_to_record(model, row).save!
     end
+    update_sequence model
   end
 
   def likes!
+    model = Like
     puts 'likes...'
     CSV.foreach(csv_path('likes'), CSV_OPTIONS) do |row|
-      csv_row_to_record(Like, row).save!
+      csv_row_to_record(model, row).save!
     end
+    update_sequence model
   end
 
   def bookmarks!
+    model = Bookmark
     puts 'bookmarks...'
     CSV.foreach(csv_path('bookmarks'), CSV_OPTIONS) do |row|
-      csv_row_to_record(Bookmark, row).save!
+      csv_row_to_record(model, row).save!
     end
+    update_sequence model
   end
 
 end
