@@ -5,25 +5,19 @@ class MediaElement < ActiveRecord::Base
   # l'after_save delle tags deve venire prima di quella dell'uploader
   after_save :update_or_create_tags
   
-  require 'image'
-  require 'video'
-  require 'audio'
-  
   # TODO estrarre da database sti_types
-  SUBMODELS = [::Image, ::Video, ::Audio]
-  IMAGE_TYPE, VIDEO_TYPE, AUDIO_TYPE = SUBMODELS.map(&:to_s)
+  IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE = %W(Image Audio Video)
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
   DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
 
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
-  
 
   serialize :metadata, OpenStruct
   
   attr_accessible :title, :description, :media, :publication_date, :tags
   attr_reader :status, :is_reportable, :info_changeable
-  attr_writer :tags
+  attr_accessor :skip_public_validations
 
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
@@ -109,6 +103,18 @@ class MediaElement < ActiveRecord::Base
   
   def tags
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'MediaElement')
+  end
+
+  def tags=(tags)
+    @tags = 
+      case tags
+      when String
+        tags
+      when Array
+        tags.map(&:to_s).join(',')
+      end
+    
+    @tags
   end
   
   def media_from_file_path=(file_path)
@@ -244,10 +250,10 @@ class MediaElement < ActiveRecord::Base
   
   def validate_impossible_changes
     if @media_element.nil?
-      errors[:is_public] << "must be false if new record" if self.is_public
+      errors[:is_public] << "must be false if new record" if self.is_public && !self.skip_public_validations
     else
       errors[:sti_type] << "is not changeable" if @media_element.sti_type != self.sti_type
-      if @media_element.is_public
+      if @media_element.is_public && !self.skip_public_validations
         errors[:media] << "is not changeable for a public record" if self.changed.include? 'media'
         errors[:title] << "is not changeable for a public record" if @media_element.title != self.title
         errors[:description] << "is not changeable for a public record" if @media_element.description != self.description

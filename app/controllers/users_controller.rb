@@ -6,9 +6,8 @@ class UsersController < ApplicationController
 
   def create
     email = params[:user].try(:delete, :email)
-    @user = User.new(params[:user]) do |user|
+    @user = User.active.not_confirmed.new(params[:user]) do |user|
       user.email = email
-      user.confirmed = false
     end
 
     if @user.save
@@ -41,7 +40,7 @@ class UsersController < ApplicationController
       return
     end
 
-    if user = User.confirmed.where(email: email).first
+    if user = User.active.confirmed.where(email: email).first
       new_password = user.reset_password!
       UserMailer.new_password(user, new_password, request.host, request.port).deliver
     end

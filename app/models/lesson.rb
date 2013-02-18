@@ -6,7 +6,7 @@ class Lesson < ActiveRecord::Base
   
   attr_accessible :subject_id, :school_level_id, :title, :description
   attr_reader :status, :is_reportable
-  attr_writer :tags
+  attr_accessor :skip_public_validations, :skip_cover_creation
   
   serialize :metadata, OpenStruct
   
@@ -84,6 +84,18 @@ class Lesson < ActiveRecord::Base
   
   def tags
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'Lesson')
+  end
+
+  def tags=(tags)
+    @tags = 
+      case tags
+      when String
+        tags
+      when Array
+        tags.map(&:to_s).join(',')
+      end
+    
+    @tags
   end
   
   def cover
@@ -479,6 +491,7 @@ class Lesson < ActiveRecord::Base
   
   def create_or_update_cover
     if @lesson.nil?
+      return true if skip_cover_creation
       slide = Slide.new :title => self.title, :position => 1
       slide.kind = Slide::COVER
       slide.lesson_id = self.id
@@ -491,7 +504,7 @@ class Lesson < ActiveRecord::Base
   end
   
   def validate_public
-    errors[:is_public] << "can't be true for new records" if @lesson.nil? && self.is_public
+    errors[:is_public] << "can't be true for new records" if @lesson.nil? && self.is_public && !self.skip_public_validations
   end
   
   def validate_copied_not_modified_and_public

@@ -16,8 +16,8 @@ class Slide < ActiveRecord::Base
   TITLE = 'title'
   VIDEO1 = 'video1'
   VIDEO2 = 'video2'
-  KINDS = [COVER, TITLE, TEXT, IMAGE1, IMAGE3, IMAGE2, IMAGE4, VIDEO2, VIDEO1, AUDIO]
   KINDS_WITHOUT_COVER = [TITLE, TEXT, IMAGE1, IMAGE3, IMAGE2, IMAGE4, VIDEO2, VIDEO1, AUDIO]
+  KINDS = KINDS_WITHOUT_COVER + [COVER]
   
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0
@@ -35,18 +35,24 @@ class Slide < ActiveRecord::Base
   end
   
   def allows_title?
-    [COVER, IMAGE1, AUDIO, VIDEO1, TITLE, TEXT].include?(self.kind)
+    case kind
+    when COVER, IMAGE1, AUDIO, VIDEO1, TITLE, TEXT then true
+    else false
+    end
   end
   
   def allows_text?
-    [TEXT, IMAGE1, AUDIO, VIDEO1].include?(self.kind)
+    case kind 
+    when TEXT, IMAGE1, AUDIO, VIDEO1 then true
+    else false
+    end
   end
   
   def accepted_media_element_sti_type
     case kind
-    when ->(k) { [COVER, IMAGE1, IMAGE2, IMAGE3, IMAGE4].include?(k) }
+    when COVER, IMAGE1, IMAGE2, IMAGE3, IMAGE4
       MediaElement::IMAGE_TYPE
-    when ->(k) { [VIDEO1, VIDEO2].include?(k) }
+    when VIDEO1, VIDEO2
       MediaElement::VIDEO_TYPE
     when AUDIO
       MediaElement::AUDIO_TYPE
