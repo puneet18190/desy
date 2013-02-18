@@ -48,6 +48,10 @@ class Tag < ActiveRecord::Base
   def word=(word)
     write_attribute(:word, word.present? ? word.to_s.strip.mb_chars.downcase.to_s : word)
   end
+
+  def to_s
+    word.to_s
+  end
   
   private
   

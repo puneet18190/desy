@@ -54,13 +54,13 @@ users = [
   ['galliani@figc.it', 'Adriano', 'Galliani'],
   ['assunzioni@pippo.it', 'Giorgio', 'Mastrota']
 ].map do |email, name, surname|
-  User.confirmed.new(password:              'password',
-                     password_confirmation: 'password', 
-                     name:                  name,
-                     surname:               surname,
-                     school_level_id:       SchoolLevel.find(1).id,
-                     location_id:           User.location_association_class.first.id,
-                     subject_ids:           [subject1.id, subject2.id, subject3.id]) do |user|
+  User.active.confirmed.new( password:              'password',
+                             password_confirmation: 'password', 
+                             name:                  name,
+                             surname:               surname,
+                             school_level_id:       SchoolLevel.find(1).id,
+                             location_id:           User.location_association_class.first.id,
+                             subject_ids:           [subject1.id, subject2.id, subject3.id] ) do |user|
     user.email = email
     user.accept_policies
   end

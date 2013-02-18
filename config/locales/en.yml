@@ -827,19 +827,19 @@ en:
     dashboard:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Selected for you"
+        title: "Welcome to %{desy}!"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this dashboard you can find lessons and elments selected in our database according to your subjects of interests. If you click on the '+' icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The icon with a small eye opens a preview."
+        content: "In this dashboard you find lessons and elments selected in our database according to your subjects of interests. If you click on the '+' icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The icon with a small eye opens a preview."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Create a lesson now"
+        title: "Selected for you - elements"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "To create a new lesson click on the big button that you find on each page: you will be redirected to the Lesson Editor. You should collect some elements before, anyway, to have ready didactic material once you are in the editor."
+        content: "Pick elements among the ones we propose you! If you don't find anything interesting for you, clicking on the <b>Load a new Element</b> button you can upload your own elements."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Load a media element"
+        title: "Selected for you - lessons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "You can load your own media elements directly from this section, clicking on the big button present on each page."
+        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If in this moment there are no new lessons available, you can create  To create a new lesson click on the <b>Create a new Lesson</b> button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make yourself sure to have enough didactic elements."
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb

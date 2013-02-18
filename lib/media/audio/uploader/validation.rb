@@ -16,7 +16,7 @@ module Media
             error_message_for_converted_files
           elsif @original_file
             error_message_for_file_to_convert
-          elsif @value.instance_of? String
+          elsif @value.instance_of?(String)
             if column_changed? and not rename?
               'renaming denied'
             elsif process(@value).blank?
@@ -47,6 +47,8 @@ module Media
           mp3_path, ogg_path = @converted_files[:mp3], @converted_files[:ogg]
           if !@original_filename_without_extension.is_a?(String) || process(@original_filename_without_extension).blank?
             'invalid filename'
+          elsif !mp3_path.instance_of?(String) || !ogg_path.instance_of?(String)
+            'invalid paths'
           elsif [mp3_path, ogg_path].map{ |p| File.extname(p) } != %w(.mp3 .ogg)
             'invalid extension'
           elsif !(mp3_info = Info.new(mp3_path, false)).valid? || !(ogg_info = Info.new(ogg_path, false)).valid?

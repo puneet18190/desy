@@ -654,6 +654,7 @@ CREATE TABLE users (
     school_level_id integer NOT NULL,
     encrypted_password character varying(255) NOT NULL,
     confirmed boolean NOT NULL,
+    active boolean NOT NULL,
     location_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -1289,6 +1290,13 @@ CREATE UNIQUE INDEX index_taggings_on_taggable_type_and_taggable_id_and_tag_id O
 --
 
 CREATE UNIQUE INDEX index_tags_on_word ON tags USING btree (word);
+
+
+--
+-- Name: index_users_on_active; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_active ON users USING btree (active);
 
 
 --

@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :school_level_id, :null => false
       t.string :encrypted_password, :null => false
       t.boolean :confirmed, :null => false, :index => true
+      t.boolean :active, :null => false, :index => true
       t.integer :location_id, :null => false
       t.timestamps
     end
