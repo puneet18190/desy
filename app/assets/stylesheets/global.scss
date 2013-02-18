@@ -13,9 +13,9 @@ body {
   padding: 0;
   color: #5d5c5c;
   direction:ltr;
-  @media (max-width: 1024px) {
-    font-size: 50%;
-  }
+  // @media (max-width: 1024px) {
+  //   font-size: 50%;
+  // }
 }
 input:-webkit-autofill {
   background-color: #888686 !important; 
