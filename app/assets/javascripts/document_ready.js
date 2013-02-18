@@ -1819,7 +1819,7 @@ $(document).ready(function() {
     $('#' + container_id + ' ._media_player_slider_disabler').show();
     $('#' + container_id + ' ._media_player_pause').show();
     var media = $('#' + container_id + ' ' + type);
-    if(media.readyState != 0) {
+    if(media[0].readyState != 0) {
       media[0].play();
     } else {
       media.on('loadedmetadata', function() {
