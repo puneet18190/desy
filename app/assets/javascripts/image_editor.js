@@ -238,11 +238,13 @@ $(document).ready(function() {
 function enlightTextarea(id) {
   $('#image_editor_textarea_' + id).css('background-color', 'rgba(230,230,230,0.5)');
   $('#image_editor_textarea_tools_' + id).css('visibility', 'visible');
+  $('#image_editor_textarea_' + id).parent('._image_editor_text').addClass('current');
 }
 
 function offlightTextareas() {
   $('.text_tools').css('visibility', 'hidden');
   $('._inner_textarea').css('background-color', 'rgba(255,255,255,0)');
+  $('._image_editor_text.current').removeClass('current');
 }
 
 function getDragPosition(obj) {
