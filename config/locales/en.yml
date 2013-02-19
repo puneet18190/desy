@@ -19,7 +19,7 @@ en:
     email_is_blank: "Email is blank"
     # This message appears if a user tries to click on a confirmation link which is no longer valid
     # 1 - controllers/users_controller.rb
-    failed_confirmation: "The link you submitted is not longer valid"
+    failed_confirmation: "The link you submitted is no longer valid"
     # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
     # 1 - controllers/users_controller.rb
     password_reset_successfully: "Password reset successfully"
@@ -49,7 +49,7 @@ en:
         # The user successfully removed an element from his personal folder
         # 1 - controllers/media_elements_controller.rb
         media_element: "You removed this media element"
-      # This message is associated to the form used to report an unappropriated content (both for lessons and elements)
+      # This message is associated to the form used to report an inappropriate content (both for lessons and elements)
       # 1 - views/reports/media_element.js.erb
       # 2 - views/reports/lesson.js.erb
       report: "The report was sent successfully"
@@ -71,10 +71,10 @@ en:
       # 1 - views/shared/_popups.html.erb
       error: "Error in mailing list!"
     send_lesson_link:
-      # The user sent to a list of friends an email containing a direct link to a lesson: using such a link anybody can see the lesson, even without being logged in. The variables %{success} and %{total} represent (a) the number of emails to which the link has been successfully sent, and (b) the original number of emails the user inserted (there might be emails containing wrong characters).
+      # The user sent an email to a list of friends containing a direct link to a lesson: using such a link anybody can see the lesson, even without being logged in. The variables %{success} and %{total} represent (a) the number of emails to which the link has been successfully sent, and (b) the original number of emails the user inserted (there might be emails containing wrong characters).
       # 1 - views/virtual_classroom/send_link.js.erb
       ok: "Link sent successfully to %{success} out of %{total} emails inserted"
-      # The link (see above) couldn't be sent; the application suggests to check the correctness of the emails
+      # The link (see above) couldn't be sent; the application suggests checking the correctness of the emails
       # 1 - views/virtual_classroom/send_link.js.erb
       error: "Link not sent: did you insert at least one correct email?"
     video_editor:
@@ -93,7 +93,7 @@ en:
       loaded_error: "A problem occurred, %{number} of your lessons were not loaded"
   activerecord:
     errors:
-      # The list of error messages below is used when the user doesn't fill properly a field in his personal profile
+      # The list of error messages below is used when the user doesn't properly fill a field in his personal profile
       messages:
         # Invalid email address
         # 1 - models/user.rb
@@ -116,7 +116,7 @@ en:
         # A field can't be modified
         # 1 - models/user.rb
         changed: "can't be modified"
-        # The user must accept the policy of treatment of personal data (this message is used also for more customized policies)
+        # The user must accept the personal data treatment policy (this message is used also for more customized policies)
         # 1 - models/user.rb
         accepted: "must be accepted"
       models:
@@ -155,9 +155,9 @@ en:
           # The selected lesson is a copy of another lesson which has not been modified yet (until the copy has'nt been modifed, it is frozen)
           # 1 - models/lesson.rb
           just_copied: "You've just copied this lesson"
-          # The selected lesson is already shared, it can't be shared again
+          # The selected lesson is already being shared, it can't be shared again
           # 1 - models/lesson.rb
-          already_published: "This lesson is already shared"
+          already_published: "This lesson is already being shared"
           # There was an error while trying to share the lesson
           # 1 - controllers/lessons_controller.rb
           # 2 - models/lesson.rb
@@ -204,11 +204,11 @@ en:
           # There was an error while you were trying to remove 'I like it' from a lesson
           # 1 - controllers/lessons_controller.rb
           # 2 - controllers/lessons_controller.rb
-          problem_destroying: "Your 'like' could not be removed"
+          problem_destroying: "Your 'I like it' could not be removed"
           # There was an error while you were trying to add 'I like it' to the selected lesson
           # 1 - controllers/lessons_controller.rb
           # 2 - controllers/lessons_controller.rb
-          problem_creating: "Your 'like' could not be registered"
+          problem_creating: "Your 'I like it' could not be registered"
         media_element:
           # There was an error while trying to delete an element
           # 1 - controllers/media_elements_controller.rb
@@ -226,7 +226,7 @@ en:
           # 1 - models/user.rb
           # 1 - models/user.rb
           problem_destroying: "The user could not be deleted"
-          # This message is associated to the form used to report an unappropriated content (both for lessons and elements): a problem occurred, the report couldn't be sent
+          # This message is associated with the form used to report an inappropriate content (both for lessons and elements): a problem occurred, the report couldn't be sent
           # 1 - controllers/reports_controller.rb
           # 2 - controllers/reports_controller.rb
           # 3 - models/user.rb
@@ -234,10 +234,10 @@ en:
           # 5 - models/user.rb
           # 6 - models/user.rb
           problem_reporting: "Your report could not be sent"
-          # Same situation: the user is trying to report twice the same lesson
+          # Same situation: the user is trying to report the same lesson twice
           # 1 - models/user.rb
           lesson_already_reported: "You already reported this lesson"
-          # Same situation: the user is trying to report twice the same media element
+          # Same situation: the user is trying to report the same media element twice
           # 1 - models/user.rb
           media_element_already_reported: "You already reported this element"
         notification:
@@ -278,7 +278,7 @@ en:
           problem_removing_from_playlist: "The lesson could not be removed from the playlist"
   
   
-  # SECTION 1.2: small windows with title, description and two buttons (they are used in any occasion the application asks the user for confirmation of some action)
+  # SECTION 1.2: small windows with title, description and two buttons (they are used in whenever the application asks the user for confirmation of an action)
   
   popups:
     # The application asks for confirmation about sharing a lesson
@@ -297,9 +297,9 @@ en:
       cancel: "Cancel"
     # The application asks for confirmation about turning a shared lesson back into private
     unpublish:
-      # Message (the application tells the user that if he turns back the lesson into private any person who is following it will lose its link)
+      # Message (the application tells the user that if he turns the lesson back into private anyone who is following it will lose its link)
       # 1 - views/shared/_popups.html.erb
-      confirm: "Are you sure? Every person who linked the lesson will lose it"
+      confirm: "Are you sure? Everyone who linked the lesson will lose it"
       # Title
       # 1 - views/shared/_popups.html.erb
       title: "Turn back a lesson into private"
@@ -314,7 +314,7 @@ en:
       lesson:
         # Message (if anybody is following the lesson, he will lose its link)
         # 1 - views/shared/_popups.html.erb
-        confirm: "Every person who linked the lesson will lose it"
+        confirm: "Everybody who linked the lesson will lose it"
         # Title
         # 1 - views/shared/_popups.html.erb
         title: "Delete this lesson"
@@ -338,7 +338,7 @@ en:
         # Button to cancel
         # 1 - views/shared/_popups.html.erb
         cancel: "Cancel"
-    # After having copied a lesson, the application asks the user what hw would like to do (go and edit immediately the lesson he copied, or stay on the page and do it later)
+    # After having copied a lesson, the application asks the user what hw would like to do (go and immediately edit the lesson he copied, or stay on the page and do it later)
     after_copy:
       # Title
       # 1 - views/lessons/copy.js.erb
@@ -346,7 +346,7 @@ en:
       # Message
       # 1 - views/lessons/copy.js.erb
       confirm: "What would you like to do now?"
-      # Button to stay in page
+      # Button to stay inside the page
       # 1 - views/lessons/copy.js.erb
       stay_in_page: "Stay in this page"
       # Button to edit the lesson now
@@ -391,7 +391,7 @@ en:
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
       cancel: "Stay on the page"
-    # If the user is editing a private element, when he clicks to the button 'commit changes' the application asks him if he wants to overwrite the element or save it as a new one
+    # If the user is editing a private element, when he clicks on the button 'commit changes' the application asks him if he wants to overwrite the element or save it as a new one
     save_media_element_editor:
       # Title
       # 1 - views/shared/_popups.html.erb
@@ -419,7 +419,7 @@ en:
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
       cancel: "Cancel"
-    # The user may send to a list of friends an email containing a direct link to a lesson
+    # The user may send an email to a list of friends containing a direct link to a lesson
     send_lesson_link:
       # Title
       # 1 - views/virtual_classroom/_popups.html.erb
@@ -435,7 +435,7 @@ en:
       cancel: "Cancel"
   
   
-  # SECTION 1.3: contents of emails automatically sent by the application
+  # SECTION 1.3: contents of emails automatically sent by the application; the variables %{name}, %{password}, %{message} and similar will be replaced by the application, depending on the user
   
   mailer:
     # Mail containing the link to confirm a new account
@@ -445,7 +445,7 @@ en:
       subject: "%{desy} - Account confirmation"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br>When the registration will be confirmed, the link will not be valid anymore.<br>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br><p>N.B.</p><p>The confirmation of the account can be done just one time.</p>"
+      message: "<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br>When the registration is confirmed, the link will not be valid anymore.<br>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br><p>N.B.</p><p>The confirmation of the account can only be made once.</p>"
     # Mail containing the link to reset a forgotten password
     reset_password:
       # Subject
@@ -453,7 +453,7 @@ en:
       subject: "%{desy} - New password"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password at your choice once logged in, in the 'Profile' section.</p>"
+      message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password of your choice once logged in, in the 'Profile' section.</p>"
     # Email containing the public link of a lesson (when a user wants to share his lesson outside the application)
     see_my_lesson:
       # Subject
@@ -464,7 +464,7 @@ en:
       message: "<p>The user %{name} thinks that you might be interested in a lesson in %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):</p></br>"
   
   
-  # SECTION 1.4: Standard forms to edit the general information of lessons or media elements. For 'general information' it's meant:
+  # SECTION 1.4: Standard forms for editing the general information of lessons or media elements. For 'general information' it's meant:
   #   (a) title
   #   (b) description
   #   (c)tags
@@ -495,17 +495,17 @@ en:
       cancel: "Cancel"
       # 1 - views/lesson_editor/edit.html.erb
       done: "Update"
-    # Form to upload a new media element
+    # Form for uploading a new media element
     upload_media_element:
       # 1 - views/media_elements/_new_form_popup.html.erb
       title: "Upload a media element"
       # 1 - views/media_elements/_new_form_popup.html.erb
-      description: "Select a file clicking on the button on the left"
+      description: "Select a file by clicking on the button on the left"
       # 1 - views/media_elements/_new_form_popup.html.erb
       cancel: "Cancel"
       # 1 - views/media_elements/_new_form_popup.html.erb
       done: "Upload"
-    # Form to modify a media element
+    # Form for modifying a media element
     change_info_media_element:
       # 1 - views/media_elements/_popup.html.erb
       title: "Element's information"
@@ -515,7 +515,7 @@ en:
       cancel: "Cancel"
       # 1 - views/media_elements/_popup.html.erb
       done: "Save"
-    # Form to create a new media element with one of the three editors (image / audio / video)
+    # Form for creating a new media element with one of the three editors (image / audio / video)
     new_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       title: "You are creating a new element"
@@ -525,7 +525,7 @@ en:
       cancel: "Cancel"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
       done: "Save"
-    # Form to edit general information of an element after having overwritten its content with one of the three editors (image / audio / video)
+    # Form for editing general information of an element after having overwritten its content with one of the three editors (image / audio / video)
     overwrite_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       title: "Have you made significant changes?"
@@ -535,7 +535,7 @@ en:
       cancel: "Cancel"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
       done: "Update"
-    # Error messages shown in case the user doesn't fill correctly the form
+    # Error messages shown in case the user doesn't fill the form correctly
     error_captions:
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb
@@ -723,7 +723,7 @@ en:
       # Button with three small lines, it opens the form to change title, description and tags of the selected lesson
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       change_info: "Change lesson info"
-      # Button '+' to replace an video in the video slide
+      # Button '+' to replace a video in the video slide
       # 1 - views/lesson_editor/slides/parts/_video.html.erb
       change_video: "Change video"
       # Button 'X' to remove the current slide
@@ -821,8 +821,23 @@ en:
   
   
   # SECTION 1.6: content of the 'Help' tips. Each 'Help' contains three subsections, with title and description. There is a different 'Help' tip for each of the following sections:
-  # 
-  
+  # 1) dashboard (you find it below the keyword 'dashboard')
+  # 2) my lessons (keyword 'lessons')
+  # 3) my media elements (keyword 'media_elements')
+  # 4) advanced search (keyword 'search')
+  # 5) user's personal profile (keyword 'users')
+  # 6) Virtual Classroom (keyword 'virtual_classroom')
+  # For each of these keywords, the texts are structured in the following way:
+  #  keyword:
+  #    first:
+  #      title:
+  #      description
+  #    second:
+  #      title:
+  #      description
+  #    third:
+  #      title:
+  #      description
   help:
     dashboard:
       first:
@@ -925,207 +940,264 @@ en:
   
   # PART 2 -- LABELS AND CAPTIONS
   
-  # SECTION 2.1: general captions
+  
+  # SECTION 2.1: captions which don't refer to any specific section
+  
   captions:
-    # used in the general footer of the application, to redirect to the main page
+    # Used in the general footer of the application, to redirect to the main page
     # 1 - views/shared/_footer.html.erb
-    back_to_dashboard: 'Back to dashboard'
+    back_to_dashboard: "Back to dashboard"
+    # Used as a placeholder in any <video> HTML tag, if the browser doesn't support either .webm or .mp4
     # 1 - views/shared/players/_video.html.erb
     # 2 - views/video_editor/previews/_video.html.erb
-    dont_support_video: 'Your browser does not support the video tag'
+    dont_support_video: "Your browser does not support videos"
+    # Used as a placeholder in any <audio> HTML tag, if the browser doesn't support either .ogg or .mp3
     # 1 - views/shared/players/_audio.html.erb
     # 2 - views/video_editor/previews/_audio_track.html.erb
-    dont_support_audio: 'Your browser does not support the audio tag'
+    dont_support_audio: "Your browser does not support audios"
+    # Used in any place the application makes a distinction between 'lessons' and 'media elements' (for instance, in the search engine when the application asks where to search, or in the main page to separate suggested lessons by suggested elements)
     # 1 - views/lessons/index.html.erb
     # 2 - views/dashboard/_graybar_left.html.erb
     # 3 - views/shared/_menu.html.erb
     # 4 - views/shared/_search.html.erb
     # 5 - views/search/index.html.erb
-    lessons: 'Lessons'
+    lessons: "Lessons"
+    # Used in any place the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
     # 1 - views/dashboard/_graybar_left.html.erb
     # 2 - views/shared/_menu.html.erb
     # 3 - views/shared/_search.html.erb
     # 4 - views/media_elements/_title_bar.html.erb
     # 5 - views/search/index.html.erb
-    media_elements: 'Elements'
+    media_elements: "Elements"
+    # Used to refer to the user's personal profile
     # 1 - views/shared/_menu.html.erb
     # 2 - views/users/statistics.html.erb
     # 3 - views/users/mailing_lists.html.erb
     # 4 - views/users/edit.html.erb
     # 5 - views/users/subjects.html.erb
-    profile: 'Profile'
+    profile: "Profile"
+    # Used in any place the user needs to insert a time duration in seconds: here goes the shortened form for the word 'seconds'
     # 1 - views/galleries/mixed_for_video_editor.js.erb
     # 2 - views/video_editor/cutters/_text.html.erb
     # 3 - views/video_editor/cutters/_image.html.erb
     # 4 - views/video_editor/_text_component_editor.html.erb
-    seconds_shortened: 'Sec'
+    seconds_shortened: "Sec"
+    # Used as a caption to select filters inside the sections 'my lessons' and 'my elements'
     # 1 - views/lessons/index.html.erb
     # 2 - views/media_elements/_title_bar.html.erb
-    show: 'Show'
+    show: "Show"
+    # Caption for Virtual Classroom
     # 1 - views/shared/_menu.html.erb
     # 2 - views/virtual_classroom/index.html.erb
-    virtual_classroom: 'Virtual Classroom'
+    virtual_classroom: "Virtual Classroom"
+    # Used in the login, before the logged user's name
     # 1 - views/shared/_logout.html.erb
-    welcome: 'Welcome'
+    welcome: "Welcome"
   
   
-  # SECTION 2.2: audio editor
+  # SECTION 2.2: Captions used inside the Audio Editor
+  
   audio_editor:
+    # The 'cutters' are the tools in Audio Editor to cut each audio track present inside the user's working space. Each cutter is provided of buttons 'play' and 'pause', and of three cursors: one to cut the left side of the track, another one to cut the right side; the last cursor is associated to the exact point of the track when it's playing
     cutters:
       # 1 - views/audio_editor/_component.html.erb
-      pause: 'Pause'
+      pause: "Pause"
       # 1 - views/audio_editor/_component.html.erb
-      play: 'Play'
+      play: "Play"
+      # This is the caption for the selected interval of the audio track (example: the track is 2 minutes long, and the user is making a selection from 00:40 to 01:50)
       # 1 - views/audio_editor/_component.html.erb
-      selected: 'Selected'
+      selected: "Selected"
+    # Caption visible in the middle of the Editor in the case it's empty (if this caption is visible, either the user opened the Editor empty, or he deleted the last component)
     # 1 - views/audio_editor/edit.html.erb
-    empty: 'To start creating an audio, click on the button on the right and select from the gallery'
+    empty: "To start creating an audio, click on the button on the right and select from the gallery"
+    # Label in the header
     # 1 - views/audio_editor/_header.html.erb
-    label: 'Edit audio'
+    label: "Edit audio"
+    # These two captions appear inside the page shown in the case the Audio Editor is temporarily not available (it's just a page with title and description): the editor is not available only while the user is editing another audio (it takes a few minutes for the server to complete the process and to enable the Editor again)
     not_available:
       # 1 - views/audio_editor/not_available.html.erb
-      title: 'Audio editor not available'
+      title: "Audio editor not available"
       # 1 - views/audio_editor/not_available.html.erb
-      description: 'Inserire qui altro testo'
+      description: "In this moment you are running the Editor for another audio track: until the process hasn't finished the Audio Editor will be temporarily disabled"
+    # The buttons to control the whole preview are located on the right column of Audio Editor
     preview:
+      # Button to start the preview
       # 1 - views/audio_editor/_lateral_controls.html.erb
-      play: 'Play'
+      play: "Play"
+      # Button to stop the preview
       # 1 - views/audio_editor/_lateral_controls.html.erb
-      stop: 'Stop'
+      stop: "Stop"
+    # Caption, inside the right column, for the total length of the audio in editing
     # 1 - views/audio_editor/_lateral_controls.html.erb
-    total_length: 'Total length'
+    total_length: "Total length"
   
   
-  # SECTION 2.3: dashboard
+  # SECTION 2.3: Captions used inside the Dashboard (main page)
+  
   dashboard:
-    # the caption of the link to open the contact page
+    # The caption of the link to open the 'contacts' page (the link is in the bottom left of the Dashboard)
     # 1 - views/dashboard/index.html.erb
-    contact_us: 'Contact us'
-    # caption of the link opening the lesson editor
+    contact_us: "Contact us"
+    # Caption of the link opening the lesson editor (in each page of lessons inside the Dashboard, after the last lesson there is a button with a 'plus' which opens the lesson editor)
     # 1 - views/dashboard/_lessons_and_media_elements.html.erb
     # 2 - views/dashboard/_lessons_and_media_elements.html.erb
-    create_new_lesson: 'Create a new lesson'
-    # caption of the link opening the lesson editor, containing a prompt for the user (this is used in the specific section of lessons)
+    create_new_lesson: "Create a new lesson"
+    # Caption of the link opening the lesson editor, containing a prompt for the user (this is used only in the case there are no suggested lessons in the Dashboard: in this case the application invites the user to create a lesson right now)
     # 1 - views/dashboard/_lessons_empty.html.erb
-    create_new_lesson_now: 'Create a lesson now'
-    # caption of the link to download the user manual
+    create_new_lesson_now: "Create a lesson now"
+    # Caption of the link to download the user manual (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
-    download_manual: 'Download the user manual'
+    download_manual: "Download the user manual"
+    # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
     # 1 - views/dashboard/_lessons_empty.html.erb
-    emptied_lessons: 'You chose all the suggested lessons'
+    emptied_lessons: "You chose all the suggested lessons"
+    # Caption which appears if for the user there are no suggested lessons inside the database
     # 1 - views/dashboard/_lessons_empty.html.erb
-    empty_lessons: 'There are no suggested lessons for you'
+    empty_lessons: "There are no suggested lessons for you"
+    # Caption which appears if there are no suggested elements inside the Dashboard, because the user picked all the elements the application suggested him
     # 1 - views/dashboard/_media_elements_empty.html.erb
-    emptied_media_elements: 'You chose all the suggested elements'
+    emptied_media_elements: "You chose all the suggested elements"
+    # Caption which appears if for the user there are no suggested elements inside the database
     # 1 - views/dashboard/_media_elements_empty.html.erb
-    empty_media_elements: 'There are no suggested elements for you'
+    empty_media_elements: "There are no suggested elements for you"
+    # Title of the link 'Download the user manual' (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
-    help_using_desy: 'Need help using %{desy}?'
+    help_using_desy: "Need help using %{desy}?"
+    # Caption of the link opening the window to load a new element (in each page of elements inside the Dashboard, after the last element there is a button with a 'plus' which opens the window)
     # 1 - views/dashboard/_lessons_and_media_elements.html.erb
-    load_new_media_element: 'Load a new element'
+    load_new_media_element: "Load a new element"
+    # Caption of the link opening the window to load new elements, containing a prompt for the user (this is used only in the case there are no suggested elements in the Dashboard: in this case the application invites the user to load an element right now)
     # 1 - views/dashboard/_media_elements_empty.html.erb
-    load_new_media_element_now: 'Load a new element now'
+    load_new_media_element_now: "Load a new element now"
+    # Caption of the buttons to switch between suggested lessons and elements ('selected for you': lessons - elements)
     # 1 - views/dashboard/_graybar_left.html.erb
-    selected_for_you: 'Selected for you'
+    selected_for_you: "Selected for you"
+    # Title of the link 'contact us' (bottom left in the page)
     # 1 - views/dashboard/index.html.erb
-    talk_with_desy: 'Want to talk with %{desy}?'
+    talk_with_desy: "Want to talk with %{desy}?"
   
   
-  # SECTION 2.4: galleries
+  # SECTION 2.4: Captions used in general media galleries. There are three kinds of galleries: Audio, Image and Video. They are used to pick quickly a media element and use it inside a lesson (or as a component to create a new media element, in Audio, Image and Video Editor)
+  # List of instances of the media galleries:
+  # Lesson Editor => Audio + Image + Video (to be used inside the slides of a lesson)
+  # Audio Editor => Audio (to add new tracks)
+  # Image Editor => Image (to pick the image to be modified)
+  # Video Editor => Image (to create an image component) + Video (to create a video component) + Audio (to select an audio track for the video)
   galleries:
     audios:
+      # Title of a generic audio gallery
       # 1 - views/galleries/_audio.html.erb
-      select: 'Select audio'
+      select: "Select audio"
+    # Captions for empty galleries, one for each kind
     empty:
       # 1 - views/galleries/contents/audio.html.erb
-      audio: 'Your audio gallery is empty!'
+      audio: "Your audio gallery is empty!"
       # 1 - views/galleries/contents/image.html.erb
-      image: 'Your image gallery is empty!'
+      image: "Your image gallery is empty!"
       # 1 - views/galleries/contents/video.html.erb
-      video: 'Your video gallery is empty!'
+      video: "Your video gallery is empty!"
     images:
+      # Caption for the size (in pixels) of the image inside the gallery
       # 1 - views/galleries/popups/_image.html.erb
-      original_size: 'Original size'
+      original_size: "Original size"
+      # Title of a generic image gallery
       # 1 - views/galleries/_image.html.erb
-      select: 'Select image'
+      select: "Select image"
     videos:
+      # Title of a generic video gallery
       # 1 - views/galleries/_video.html.erb
-      select: 'Select video'
+      select: "Select video"
   
   
-  # SECTION 2.5: image_editor
+  # SECTION 2.5: Captions used inside the Image Editor
+  
   image_editor:
+    # Captions when the user is in 'crop' mode: the instructions appear below the image in editing: on its right there is a button to do the action and another to cancel
     crop:
       # 1 - views/image_editor/edit.html.erb
-      cancel: 'Cancel'
+      cancel: "Cancel"
       # 1 - views/image_editor/edit.html.erb
-      done: 'Crop'
+      done: "Crop"
       # 1 - views/image_editor/edit.html.erb
-      instructions: 'Drag on the image to make a selection'
+      instructions: "Drag on the image to make a selection"
+    # Instructions on the left column (title plus description)
     left_column:
       # 1 - views/image_editor/edit.html.erb
-      title: 'What to do?'
+      title: "What to do?"
       # 1 - views/image_editor/edit.html.erb
-      description: 'Select the scissors to cut the image'
+      description: "Select the scissors to cut the image"
+    # Label for the header
     # 1 - views/image_editor/_header.html.erb
-    label: 'Edit image'
+    label: "Edit image"
+    # Label on the bottom of the editor, where the user can see step after step how the dimensions (in pixels) of the image change
     # 1 - views/image_editor/crop.js.erb
     # 2 - views/image_editor/edit.html.erb
     # 3 - views/image_editor/undo.js.erb
-    original_size: 'Original image size'
+    original_size: "Original image size"
+    # Label on the left column, it refers to the buttons associated to each possible action (crop, add text)
     # 1 - views/image_editor/edit.html.erb
-    select_an_action: 'Select an action'
-    # to save a group of texts above the image
+    select_an_action: "Select an action"
+    # Instructions and label of 'do' and 'cancel' buttons when the user is in 'add text' mode (same structure of 'crop', see above)
     text:
       # 1 - views/image_editor/edit.html.erb
-      cancel: 'Cancel'
+      cancel: "Cancel"
       # 1 - views/image_editor/edit.html.erb
-      done: 'Done'
+      done: "Done"
       # 1 - views/image_editor/edit.html.erb
-      instructions: 'Click on the image to add text'
+      instructions: "Click on the image to add text"
+      # This is the sample letter used to choose the font size
       # 1 - views/image_editor/_text_area.html.erb
       # 2 - views/image_editor/_text_area.html.erb
       # 3 - views/image_editor/_text_area.html.erb
-      sample_letter: 'A'
+      sample_letter: "A"
+    # Caption of the button 'undo'
     # 1 - views/image_editor/edit.html.erb
-    undo: 'Undo'
+    undo: "Undo"
   
   
-  # SECTION 2.6: lesson_editor
+  # SECTION 2.6: Captions used inside the Lesson Editor
+  
   lesson_editor:
-    # empty space to add an audio
+    # Placeholder to add an audio to a slide
     # 1 - views/lesson_editor/slides/parts/_audio.html.erb
-    choose_audio: 'Click here to add an audio'
-    # empty space to add an image
+    choose_audio: "Click here to add an audio"
+    # Placeholder to add an image to a slide
     # 1 - views/lesson_editor/slides/parts/_image.html.erb
-    choose_image: 'Click here to add an image'
-    # empty space to add a video
+    choose_image: "Click here to add an image"
+    # Placeholder to add a video to a slide
     # 1 - views/lesson_editor/slides/parts/_video.html.erb
-    choose_video: 'Click here to add a video'
+    choose_video: "Click here to add a video"
+    # The Lesson Editor is not available if the user started an audio (or video) editing process which overwrites an audio (or a video) used inside a lesson. The Editor is not avilable only to edit that particular lesson, in this case the application shows a page with title and description
     not_available:
+      # The variable %{lesson} is replaced with the name of the lesson
       # 1 - views/lesson_editor/not_available.html.erb
-      title: 'Lesson editor not available for this lesson'
+      title: "Lesson editor not available for your lesson %{lesson}"
       # 1 - views/lesson_editor/not_available.html.erb
-      description: 'Inserire altro testo qui'
+      description: "You are overwriting the content of a video or of an audio contained in this lesson: if wait a few minutes until the process ends you'll be able to edit this lesson again"
+    # These are the placeholders for all the text fields inside the editor
     placeholders:
+      # Placeholder for the caption of an image
       # 1 - views/lesson_editor/slides/parts/_image.html.erb
-      image_caption: 'Write a caption'
+      image_caption: "Write a caption"
+      # Placeholder for a text area (slide title + text, video + text, audio + text, image + text)
       # 1 - views/lesson_editor/slides/_text.html.erb
       # 2 - views/lesson_editor/slides/_video1.html.erb
       # 3 - views/lesson_editor/slides/_image1.html.erb
       # 4 - views/lesson_editor/slides/_audio.html.erb
-      text: 'Write a text here'
+      text: "Write a text here"
+      # Placeholder for the title of a slide
       # 1 - views/lesson_editor/slides/_text.html.erb
       # 2 - views/lesson_editor/slides/_title.html.erb
       # 3 - views/lesson_editor/slides/_video1.html.erb
       # 4 - views/lesson_editor/slides/_image1.html.erb
       # 5 - views/lesson_editor/slides/_audio.html.erb
-      title: 'Enter title'
+      title: "Enter title"
   
   
-  # SECTION 2.7: lessons
+  # SECTION 2.7: Caption of the section 'my lessons'
+  
   lessons:
-    # the caption used to indicate the name if the author of the lesson
+    # Caption used to indicate the name of the author of the lesson
     # 1 - views/lessons/_thumbnail.html.erb
     # 2 - views/lessons/_view_single_compact.html.erb
     # 3 - views/lesson_viewer/slides/_cover.html.erb
@@ -1133,643 +1205,873 @@ en:
     # 5 - views/lesson_editor/slides/_cover.html.erb
     # 6 - views/lesson_editor/slides/thumbnails/_cover.html.erb
     # 7 - views/lesson_editor/edit.html.erb
-    author: 'Author'
-    # caption which indicates the date in which a lesson is created
+    author: "Author"
+    # Caption which indicates the date in which a lesson is created
     # 1 - views/lessons/_view_single_compact.html.erb
-    created_on: 'Created on'
+    created_on: "Created on"
+    # Caption of the link to open the lesson editor (on the left of the bar above the lesson's list)
     # 1 - views/lessons/_graybar_left.html.erb
-    create_new: 'Create a new lesson'
+    create_new: "Create a new lesson"
+    # Caption which appears above a link to the lesson editor if your lesson's section is empty
     # 1 - views/lessons/_empty.html.erb
-    create_new_now: 'Create a lesson now'
+    create_new_now: "Create a lesson now"
+    # Caption shown before a lesson's description
     # 1 - views/lessons/_view_single_compact.html.erb
-    description: 'Description'
+    description: "Description"
+    # Message which appears in the middle of the page if your lesson's section is empty
     # 1 - views/lessons/_empty.html.erb
-    empty: 'You have no lessons in your section, create one'
+    empty: "You have no lessons in your section"
+    # Message which appears in the middle of the page if the filter you applied produced an empty result
     # 1 - views/lessons/_empty_filter.html.erb
-    empty_filter: 'The lesson filter produced no result'
+    empty_filter: "The lesson filter produced no result"
+    # Captions of the bar on top of the lesson's list
     headers:
+      # The status of a lesson (linked, private, shared, etc)
       # 1 - views/lessons/index.html.erb
-      status: 'Status'
+      status: "Status"
+      # The subject of the lesson
       # 1 - views/lessons/index.html.erb
-      subject: 'Subject'
+      subject: "Subject"
+    # Window used to notify your lesson's modification to all the users who linked it
     notify_modifications:
+      # Title of the window
       # 1 - views/lessons/_notification_popup.html.erb
-      title: 'You edited a publish lesson!'
+      title: "You edited a shared lesson!"
+      # Description of the window
       # 1 - views/lessons/_notification_popup.html.erb
-      description: 'This lesson is followed by other users in %{desy}: would you like to inform them about the modifications you made?'
+      description: "This lesson is followed by other users in %{desy}: would you like to inform them about the modifications you made?"
+      # Placeholder for the message (the variable %{max} is replaced by the maximum number of characters
       # 1 - views/lessons/_notification_popup.html.erb
-      placeholder: 'Write the details of your changes (max %{max} characters)'
+      placeholder: "Write the details of your changes (max %{max} characters)"
+      # Button to send the notification
       # 1 - views/lessons/_notification_popup.html.erb
-      do: 'Send notification'
+      do: "Send notification"
+      # Button to cancel
       # 1 - views/lessons/_notification_popup.html.erb
       cancel: "I don't want to notify"
+      # Placeholder that appears in the notification sent if the user didn't write any message
       # 1 - models/lesson.rb
-      empty_message: '[no message given]'
+      empty_message: "[no message given]"
+    # Caption for the scholar level of the author of a lesson
     # 1 - views/lessons/_view_single_compact.html.erb
     # 2 - views/lesson_editor/new.html.erb
     # 3 - views/lesson_editor/edit.html.erb
-    school_level: 'School level'
+    school_level: "School level"
+    # Caption to indicate how many users like the lesson (the variable %{likes} is replaced by the number of users who like the selected lesson)
     # 1 - views/lessons/_view_single_compact.html.erb
-    users_like_this: '%{likes} users like this lesson'
+    users_like_this: "%{likes} users like this lesson"
   
   
-  # SECTION 2.8: lesson_viewer
+  # SECTION 2.8: Captions used in the Lesson Viewer
+  
   lesson_viewer:
-    # this is used in the playlist: it's the caption of the button which closes the playlist's navigational bar
+    # Caption of the button which closes the playlist's navigational bar
     # 1 - views/lesson_viewer/playlist.html.erb
-    close_playlist_bar: 'Close playlist bar'
+    close_playlist_bar: "Close playlist bar"
+    # Caption of the button which opens the playlist's navigational bar
     # 1 - views/lesson_viewer/playlist.html.erb
-    open_playlist_bar: 'Open playlist bar'
+    open_playlist_bar: "Open playlist bar"
   
   
-  # SECTION 2.9: media_elements
+  # SECTION 2.9: Caption used in the section 'my elements'
+  
   media_elements:
+    # Used as a caption to select how many elements to show inside each page
     # 1 - views/media_elements/_title_bar.html.erb
-    display: 'Display'
-    # choose between size display (compact or extended mode)
+    display: "Display"
+    # Caption of the buttons used to choose between size display (compact or extended mode)
     display_mode:
       # 1 - views/media_elements/_title_bar.html.erb
-      title: 'Display mode'
+      title: "Display mode"
       # 1 - views/media_elements/_title_bar.html.erb
-      large: 'Large'
+      large: "Large"
       # 1 - views/media_elements/_title_bar.html.erb
-      small: 'Small'
+      small: "Small"
+    # Captions of the main page of the Element Editor (a page with three options: open the empty Audio Editor, open the empty Image Editor, open the empty Video Editor)
     editor:
+      # Link to the main page of the Element Editor from the section 'my elements'
       # 1 - views/media_elements/_graybar_left.html.erb
-      menu_link: 'Elements editor'
+      menu_link: "Elements editor"
+      # Above the three options in the main page of Element Editor
       # 1 - views/media_elements/new.html.erb
-      enjoy: 'Enjoy!'
+      enjoy: "Good work!"
+      # Title of the Element Editor in the case the user is creating a new element
       # 1 - views/image_editor/_header.html.erb
       # 2 - views/image_editor/_header.html.erb
       # 3 - views/audio_editor/_header.html.erb
       # 4 - views/audio_editor/_header.html.erb
       # 5 - views/video_editor/_header.html.erb
       # 6 - views/video_editor/_header.html.erb
-      new_untitled: 'New element - untitled'
+      new_untitled: "New element - untitled"
+      # Title of the main page of Element Editor
       # 1 - views/media_elements/new.html.erb
       title: "Welcome to %{desy}'s element editor!"
+      # Text of the main page of Element Editor
       # 1 - views/media_elements/new.html.erb
-      description: 'Want to create a new educational element? Choose the type of the new element'
+      description: "Do you want to create a new element? Choose the type of the new element"
+    # Message which appears in the middle of the page if your element's section is empty
     # 1 - views/media_elements/_empty.html.erb
-    empty: 'You have no elements in your section, load one'
+    empty: "You have no elements in your section"
+    # Message which appears in the middle of the page if the filter you applied produced an empty result
     # 1 - views/media_elements/_empty_filter.html.erb
-    empty_filter: 'The element filter produced no result'
+    empty_filter: "The element filter produced no result"
+    # Caption of the link to open the window to load a new element (on the left of the bar above the element's list)
     # 1 - views/media_elements/_graybar_left.html.erb
-    load_new: 'Load a new element'
+    load_new: "Load a new element"
+    # Caption which appears above a link to the window to load a new element if your element's section is empty
     # 1 - views/media_elements/_empty.html.erb
-    load_new_now: 'Load a new element now'
+    load_new_now: "Load a new element now"
   
   
-  # SECTION 2.10: notifications
+  # SECTION 2.10: Contents of automatic notifications sent by the application to the users
+  
   notifications:
+    # Caption of the user's notifications window if there are no notifications
     # 1 - views/notifications/_empty.html.erb
     empty: "You don't have any notifications"
     lessons:
+      # Message sent to a user who has the link of a lesson, in case the creator of that lesson deleted it
       # 1 - models/lesson.rb
       destroyed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', deleted his lesson: hence, you lost the link to that lesson"
+      # Notification received by an user who sent to his friends an email with the public link of a lesson: it's used as a memo of the list of emails to which the message was successfully sent
       # 1 - controllers/virtual_classroom_controller.rb
-      link_sent: 'You sent the link of the lesson %{title}, with message %{message}, to the emails: %{emails}'
+      link_sent: "You sent the link of the lesson %{title}, with message %{message}, to the emails: %{emails}"
+      # Notification sent by a user who modified a shared lesson, to inform all its followers about the nature of modifications made
       # 1 - models/lesson.rb
       modified: "<h2 style=\"font-size:126%; font-weight:bold\">There are some news for you! </h2><p>La lezione \"%{lesson_title}\" che stai seguendo ha subito delle modifiche da parte dell’autore!<br><br><strong>Details of changes: </strong><br>%{message}</p><div style=\"display:inline-block; outline:1px solid #f2f1f2; padding:10px; width:86%; height:19px; position:absolute; bottom:19px\"><span style=\"color:#2eaadc; float:left\">%{lesson_title}</span><a href=\"%{link}\" style=\"float:right\" class=\"preview\"></a></div>"
+      # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted)
       # 1 - models/lesson.rb
       unpublished: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson"
     audios:
       editing:
-        # 1 - controllers/audio_editor_controller.rb - TODO manca inserire titolo
-        started: 'Audio editing started! Audio editor temporarily not available, together with lessons where you used this audio.'
-        # TODO manca + inserire titolo
-        ok: 'Audio editing successfully ended! Audio editor and all lessons available.'
-        # TODO manca + inserire titolo
-        failed: 'Audio editing failed! Audio editor and all lessons available. You find <a>here</a> a saved copy of your work.'
+        # The process of audio editing started. The variable %{audio} is replaced by the name of the audio whose content is going to be modified
+        # 1 - controllers/audio_editor_controller.rb
+        started: "The editing of the audio %{audio} started! Audio editor is temporarily not available, together with lessons where you used this audio"
+        # The process of audio editing ended successfully. The variable %{audio} is replaced by the name of the audio whose content has been modified
+        # TODO manca
+        ok: "The editing of the audio %{audio} ended successfully! Now the audio editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing)."
+        # The process of audio editing ended with an error. The variable %{audio} is replaced by the name of the audio whose content has been modified, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+        # TODO manca
+        failed: "The editing of the audio %{audio} failed! Now the audio editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing). The audio was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
       new:
-        # TODO manca + inserire titolo
-        started: 'Audio composition started! Audio editor temporarily not available.'
-        # TODO manca + inserire titolo
-        ok: 'Audio composition successfully ended! Audio editor available.'
-        # TODO manca + inserire titolo
-        failed: 'Audio composition failed! Audio editor available. You find <a>here</a> a saved copy of your work.'
+        # The process of audio composition started. The variable %{audio} is replaced by the name of the audio which is going to be composed
+        # TODO manca
+        started: "The composition of the audio %{audio} started! Audio editor is temporarily not available"
+        # The process of audio composition ended successfully. The variable %{audio} is replaced by the name of the new audio
+        # TODO manca
+        ok: "The composition of the audio %{audio} ended successfully! Now the audio editor is available again."
+        # The process of audio composition ended with an error. The variable %{audio} is replaced by the name of the audio in composition, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+        # TODO manca
+        failed: "The composition of the audio %{audio} failed! Now the audio editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
       upload:
-        # TODO manca + inserire titolo
-        started: 'Audio upload started!'
-        # TODO manca + inserire titolo
-        ok: 'Audio upload successfully ended!'
-        # TODO manca + inserire titolo
-        failed: 'Audio upload failed! Try again'
+        # The process of audio uploading started. The variable %{audio} is replaced by the name of the audio which is going to be loaded
+        # TODO manca
+        started: "The uploading of the audio %{audio} started! Wait until it's over to be able to use the new audio"
+        # The process of audio uploading ended successfully. The variable %{audio} is replaced by the name of the new audio
+        # TODO manca
+        ok: "The uploading of the audio %{audio} ended successfully! Now you can use it in your lessons."
+        # The process of audio uploading ended with an error. The variable %{audio} is replaced by the name of the audio which the user tried to upload
+        # TODO manca
+        failed: "The uploading of the audio %{audio} failed! Pleas try again."
     videos:
       editing:
-        # 1 - controllers/video_editor_controller.rb - TODO manca inserire titolo
-        started: 'Video editing started! Video editor temporarily not available, together with lessons where you used this video.'
-        # TODO manca + inserire titolo
-        ok: 'Video editing successfully ended! Video editor and all lessons available.'
-        # TODO manca + inserire titolo
-        failed: 'Video editing failed! Video editor and all lessons available. You find <a>here</a> a saved copy of your work.'
+        # The process of video editing started. The variable %{video} is replaced by the name of the video whose content is going to be modified
+        # 1 - controllers/audio_editor_controller.rb
+        started: "The editing of the video %{video} started! Video editor is temporarily not available, together with lessons where you used this video"
+        # The process of video editing ended successfully. The variable %{video} is replaced by the name of the video whose content has been modified
+        # TODO manca
+        ok: "The editing of the video %{video} ended successfully! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing)."
+        # The process of video editing ended with an error. The variable %{video} is replaced by the name of the video whose content has been modified, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+        # TODO manca
+        failed: "The editing of the video %{video} failed! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing). The video was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
       new:
-        # TODO manca + inserire titolo
-        started: 'Video composition started! Video editor temporarily not available.'
-        # TODO manca + inserire titolo
-        ok: 'Video composition successfully ended! Video editor available.'
-        # TODO manca + inserire titolo
-        failed: 'Video composition failed! Video editor available. You find <a>here</a> a saved copy of your work.'
+        # The process of video composition started. The variable %{video} is replaced by the name of the video which is going to be composed
+        # TODO manca
+        started: "The composition of the video %{video} started! Video editor is temporarily not available"
+        # The process of video composition ended successfully. The variable %{video} is replaced by the name of the new video
+        # TODO manca
+        ok: "The composition of the video %{video} ended successfully! Now the video editor is available again."
+        # The process of video composition ended with an error. The variable %{video} is replaced by the name of the video in composition, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+        # TODO manca
+        failed: "The composition of the video %{video} failed! Now the video editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
       upload:
-        # TODO manca + inserire titolo
-        started: 'Video upload started!'
-        # TODO manca + inserire titolo
-        ok: 'Video upload successfully ended!'
-        # TODO manca + inserire titolo
-        failed: 'Video upload failed! Try again'
+        # The process of video uploading started. The variable %{video} is replaced by the name of the video which is going to be loaded
+        # TODO manca
+        started: "The uploading of the video %{video} started! Wait until it's over to be able to use the new video"
+        # The process of video uploading ended successfully. The variable %{video} is replaced by the name of the new video
+        # TODO manca
+        ok: "The uploading of the video %{video} ended successfully! Now you can use it in your lessons."
+        # The process of video uploading ended with an error. The variable %{video} is replaced by the name of the video which the user tried to upload
+        # TODO manca
+        failed: "The uploading of the video %{video} failed! Pleas try again."
   
   
-  # SECTION 2.11: pagine di prelogin
+  # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)
+  # Each section is provided of:
+  # (1) a caption for its link in the menu (keyword 'menu_link')
+  # (2) a title (keyword 'title')
+  # (3) a text (keyword 'description')
+  # (4) accessories (keywords 'subtitle', 'subsubtitle', etc)
+  
   prelogin:
+    # Secton of contacts
     contact_us:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
       # 3 - views/prelogin/contact_us.html.erb
       # 4 - views/prelogin/what_is_desy.html.erb
-      menu_link: 'Contact us'
+      menu_link: "Contact us"
       # 1 - views/prelogin/contact_us.html.erb
-      title: 'Contact us!'
+      title: "Contact us!"
       # 1 - views/prelogin/contact_us.html.erb
-      description: 'Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts'
+      description: "Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts"
+    # Home page
     main_page:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
       # 3 - views/prelogin/contact_us.html.erb
       # 4 - views/prelogin/what_is_desy.html.erb
-      menu_link: 'Home'
+      menu_link: "Home"
       # 1 - views/prelogin/home.html.erb
-      title: 'A new way of teaching'
+      title: "A new way of teaching"
       # 1 - views/prelogin/home.html.erb
-      description: "<b>%{desy}</b> is the new platform dedicated to the world of education. With <b>%{desy}</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>%{desy}</b> we guarantee high quality and care for details</i>."
+      description: "%{desy} è un sistema di didattica digitale che consente ai docenti di creare lezioni multimediali in piena autonomia e con grande facilità.<br><br>Non solo: la piattaforma su cui poggia consente la condivisione degli elementi didattici e la socializzazione dei contenuti, da cui discendono vantaggi e funzionalità aggiuntive, tra cui:<ul><li>la possibilità di costruire lezioni e percorsi didattici interdisciplinari;</li><li>la continuità del processo di affinamento e arricchimento dei contenuti;</li><li>la crescita del sistema grazie ad un meccanismo di autoalimentazione a zero costi;</li><li>il rafforzamento e la valorizzazione del ruolo dei docenti nella elaborazione degli strumenti didattici.</li></ul>Oltre che nella scuola e nelle università, %{desy} può essere utilizzato nella formazione professionale e aziendale, attraverso portali formativi autonomi installati all’interno delle  intranet delle imprese, che consentono di raccogliere in modo sicuro e riservato i saperi aziendali, e al tempo stesso di condividerli con i docenti chiamati a curare l’aggiornamento e l’innovazione."
+      # Caption of the link to the video explaining things about the application
       # 1 - views/prelogin/home.html.erb
-      video: 'Watch the video'
+      video: "Watch the video"
+    # Section where the user signs up
     sign_up:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
       # 3 - views/prelogin/contact_us.html.erb
       # 4 - views/prelogin/what_is_desy.html.erb
-      menu_link: 'Sign up'
+      menu_link: "Sign up"
+    # Section where it's explained more about the application
     what_is_desy:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
       # 3 - views/prelogin/contact_us.html.erb
       # 4 - views/prelogin/what_is_desy.html.erb
-      menu_link: 'What is %{desy}?'
+      menu_link: "What is %{desy}?"
       # 1- views/prelogin/what_is_desy.html.erb
-      title: 'What is %{desy}?'
+      title: "What is %{desy}?"
       # 1- views/prelogin/what_is_desy.html.erb
-      subtitle: 'Find out the benefits of %{desy}'
+      subtitle: "Find out the benefits of %{desy}"
       # 1- views/prelogin/what_is_desy.html.erb
-      description: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
+      description: "Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description"
       # 1- views/prelogin/what_is_desy.html.erb
-      right_column_title: 'Watch demo'
+      right_column_title: "Watch demo"
       # 1- views/prelogin/what_is_desy.html.erb
-      right_column: 'Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description'
+      right_column: "Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description"
   
   
-  # SECTION 2.12: registration and login
+  # SECTION 2.12: Captions used for registration and login
+  
   registration:
+    # Title of the registration form
     # 1 - views/prelogin/registration.html.erb
-    title: 'Register'
+    title: "Register"
+    # Subtitle of the registration form
     # 1 - views/prelogin/registration.html.erb
-    subtitle: 'Why register?'
+    subtitle: "Why register?"
+    # Another subtitle of the registration form
     # 1 - views/prelogin/registration.html.erb
-    subsubtitle: 'Discover the benefits of %{desy}'
+    subsubtitle: "Discover the benefits of %{desy}"
+    # Text describing the registration benefits
     # 1 - views/prelogin/registration.html.erb
-    description: 'Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching.'
+    description: "Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching."
+    # Button to submit the registration form
     # 1 - views/prelogin/registration.html.erb
-    done: 'Sign up'
+    done: "Sign up"
+    # Captions of the login window: title + two captions for email and password + button to submit
     login:
       # 1 - views/prelogin/_login.html.erb
-      done: 'Enter'
+      done: "Enter"
       # 1 - views/prelogin/_login.html.erb
-      email: 'Email'
+      email: "Email"
       # 1 - views/prelogin/_login.html.erb
-      password: 'Password'
+      password: "Password"
       # 1 - views/prelogin/_login.html.erb
-      title: 'Login'
+      title: "Login"
+    # Link to logout
     # 1 - views/shared/_logout.html.erb
-    logout: 'Logout'
+    logout: "Logout"
+    # Link to ask for help, in case the user forgot his password
     # 1 - views/prelogin/_login.html.erb
-    problems_with_password: 'Forgot your password?'
+    problems_with_password: "Forgot your password?"
     subjects:
+      # Caption for subjects selection
       # 1 - views/prelogin/registration.html.erb
-      title: 'Choose the subjects you want to stay connected'
+      title: "Choose the subjects you are interested in"
+    # List of customizable policies: for each there must be a title and a content (keyword 'description')
     policy_1:
       # 1 - views/prelogin/registration.html.erb
-      title: 'Title of policy 1'
+      title: "Title of policy 1"
       # 1 - views/prelogin/registration.html.erb
-      description: 'Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1'
-      accept: 'Accept'
+      description: "Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1"
+      accept: "Accept"
     policy_2:
       # 1 - views/prelogin/registration.html.erb
-      title: 'Title of policy 2'
+      title: "Title of policy 2"
       # 1 - views/prelogin/registration.html.erb
-      description: 'Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2'
-      accept: 'Accept'
+      description: "Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2"
+      accept: "Accept"
   
   
-  # SECTION 2.13: reports
+  # SECTION 2.13: Captions for reports of inappropriate contents
+  
   reports:
+    # Link to open the report form
     # 1 - views/reports/_lesson.html.erb
-    title: 'Report abuse'
+    title: "Report abuse"
+    # Title of the report form
     # 1 - views/reports/_lesson.html.erb
     # 2 - views/reports/_media_element.html.erb
-    description: 'Do you think that this item is offensive?'
+    description: "Do you think that this item is offensive?"
+    # Description of the report form
     # 1 - views/reports/_lesson.html.erb
     # 2 - views/reports/_media_element.html.erb
-    placeholder: 'Write the reason for your report. Thank you for your cooperation!'
+    placeholder: "Write the reason for your report. Thank you for your cooperation!"
   
   
-  # SECTION 2.14: search engine
+  # SECTION 2.14: Captions used in the search engine
+  
   search:
-    # it is a link to open the application search engine
+    # Link to open the search engine from the other sections
     # 1 - views/shared/_search.html.erb
     # 2 - views/search/index.html.erb
-    label: 'Advanced search'
+    label: "Advanced search"
+    # Button to start the research
     # 1 - views/search/lessons/_main.html.erb
     # 2 - views/search/lessons/_main.html.erb
     # 3 - views/search/media_elements/_main.html.erb
     # 4 - views/search/media_elements/_main.html.erb
-    short_label: 'Search'
+    short_label: "Search"
+    # Placeholder of the quick search present in all the sections
     # 1 - views/shared/_search.html.erb
-    long_label: 'Search in %{desy}'
+    long_label: "Search in %{desy}"
+    # Main title inside the search engine
     # 1 - views/search/index.html.erb
-    title: 'What are you looking for?'
+    title: "What are you looking for?"
+    # Subtitle inside the search engine
     # 1 - views/search/index.html.erb
-    description_title: 'Are you looking for lessons or elements?'
-    # this is the prompt to use the application's search engine
+    description_title: "Are you looking for lessons or elements?"
+    # General instructions about how to use the engine
     # 1 - views/search/index.html.erb
-    description: 'Insert a word, choose the filters and go!'
+    description: "Insert a word, choose the filters and go!"
+    # After the first search, the search parameters are hidden: to open them again and make another search, you click on this button
     # 1 - views/search/index.html.erb
-    again: 'Search again...'
+    again: "Search again..."
+    # Specific captions for lessons search engine (they can be configured to be different by the ones relative to media elements)
     lessons:
+      # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
       # 1 - views/search/lessons/_amount.html.erb
-      result: 'Found %{num} results. To refine your search select between these tags'
+      result: "Found %{num} results. To refine your search select between these tags"
+      # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/lessons/_empty.html.erb
-      empty_word: 'No lessons were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters'
+      empty_word: "No lessons were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters"
+      # Response if the user looked for a specific tag and there were no results (the variable %{tag} is replaced by the tag chosen by the user)
       # 1 - views/search/lessons/_empty.html.erb
-      empty_tag: 'No lessons were found associated to the tag <%{tag}>: try filtering by a different tag, or changing your search parameters'
+      empty_tag: "No lessons were found associated to the tag <%{tag}>: try filtering by a different tag, or changing your search parameters"
+      # Response if the filters the user applied are too strict and this makes the result to be empty
       # 1 - views/search/lessons/_empty.html.erb
-      empty_filter: 'No lesson was found with the filters you chose'
+      empty_filter: "No lesson was found with the filters you chose"
       keyword:
+        # Label for the space where the user inserts the word he searchs for
         # 1 - views/search/lessons/_main.html.erb
-        label: 'Keyword'
+        label: "Keyword"
+        # Placeholder for the space where the user inserts the word he searchs for
         # 1 - views/search/lessons/_main.html.erb
         # 2 - controllers/search_controller.rb
-        placeholder: 'Insert a tag'
+        placeholder: "Insert a tag"
+      # Captions for the set of available filters
       filters:
         # 1 - views/search/lessons/_main.html.erb
-        author: 'Category'
+        author: "Category"
         # 1 - views/search/lessons/_main.html.erb
-        subject: 'Subject'
+        subject: "Subject"
+        # Placeholder to select all the subjects
         # 1 - views/search/lessons/_main.html.erb
-        all_subjects: 'All subjects'
+        all_subjects: "All subjects"
+      # Caption for the possible orders of the result
       # 1 - views/search/lessons/_main.html.erb
-      sort: 'Sort results by'
+      sort: "Sort results by"
+      # Additional instructions and tips to search for lessons
       suggestion:
         # 1 - views/search/lessons/_main.html.erb
-        title: 'Warning!'
+        title: "Warning!"
         # 1 - views/search/lessons/_main.html.erb
         description: "If you don't insert a keyword the search engine will find all the available lessons, according to the filters you selected"
+    # Specific captions for media elements search engine (they can be configured to be different by the ones relative to lessons)
     media_elements:
+      # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
       # 1 - views/search/media_elements/_amount.html.erb
-      result: 'Found %{num} results. To refine your search select between these tags'
+      result: "Found %{num} results. To refine your search select between these tags"
+      # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/media_elements/_empty.html.erb
-      empty_word: 'No elements were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters'
+      empty_word: "No elements were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters"
+      # Response if the user looked for a specific tag and there were no results (the variable %{tag} is replaced by the tag chosen by the user)
       # 1 - views/search/media_elements/_empty.html.erb
-      empty_tag: 'No elements were found associated to the tag <%{tag}>: try filtering by a different tag, or changing your search parameters'
+      empty_tag: "No elements were found associated to the tag <%{tag}>: try filtering by a different tag, or changing your search parameters"
+      # Response if the filters the user applied are too strict and this makes the result to be empty
       # 1 - views/search/media_elements/_empty.html.erb
-      empty_filter: 'No element was found with the filters you chose'
+      empty_filter: "No element was found with the filters you chose"
       keyword:
+        # Label for the space where the user inserts the word he searchs for
         # 1 - views/search/media_elements/_main.html.erb
-        label: 'Keyword'
+        label: "Keyword"
+        # Placeholder for the space where the user inserts the word he searchs for
         # 1 - views/search/media_elements/_main.html.erb
         # 2 - controllers/search_controller.rb
-        placeholder: 'Insert a tag'
+        placeholder: "Insert a tag"
+      # Captions for the set of available filters
       filters:
         # 1 - views/search/media_elements/_main.html.erb
-        format: 'Format'
+        format: "Format"
+      # Caption for the possible orders of the result
       # 1 - views/search/media_elements/_main.html.erb
-      sort: 'Sort results by'
+      sort: "Sort results by"
+      # Additional instructions and tips to search for media elements
       suggestion:
         # 1 - views/search/media_elements/_main.html.erb
-        title: 'Warning!'
+        title: "Warning!"
         # 1 - views/search/media_elements/_main.html.erb
         description: "If you don't insert a keyword the search engine will find all the available elements, according to the filters you selected"
   
   
-  # SECTION 2.15: user profile
+  # SECTION 2.15: Captions used in the user's personal profile
+  
   users:
+    # Caption for the email which univoquely identifies the user
     # 1 - views/users/request_reset_password.html.erb
-    email: 'Email'
+    email: "Email"
+    # The school of the user
     # 1 - views/lessons/_view_single_compact.html.erb
-    school: 'Institute'
+    school: "Institute"
+    # Section 1: personal info
     info:
+      # Caption of the link inside the profile's menu
       # 1 - views/users/statistics.html.erb
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
-      menu_link: 'Personal info'
+      menu_link: "Personal info"
+      # Title of the section
       # 1 - views/users/edit.html.erb
-      title: 'Personal Info'
+      title: "Personal Info"
+      # Description of the section
       # 1 - views/users/edit.html.erb
-      description: 'In this area you can update or modify all the parameters of your account'
+      description: "In this area you can update or modify all the parameters of your account"
+      # Captions for each profile attribute that can be modified by the user
       attributes:
         # 1 - views/users/_personal_info.html.erb
-        name: 'Name'
+        name: "Name"
         # 1 - views/users/_personal_info.html.erb
-        surname: 'Surname'
+        surname: "Surname"
+        # Only this particular attribute can't be modified, being the identifier of the user
         # 1 - views/users/_personal_info.html.erb
-        email: 'Email'
+        email: "Email"
         # 1 - views/users/_personal_info.html.erb
-        password: 'Password'
+        password: "Password"
+        # This is in the case the user is writing his password for the first time
         # 1 - views/users/_personal_info.html.erb
-        new_password: 'New password'
+        new_password: "New password"
         # 1 - views/users/_personal_info.html.erb
-        password_confirmation: 'Password confirmation'
+        password_confirmation: "Password confirmation"
+        # This is in the case the user is writing his password for the first time
         # 1 - views/users/_personal_info.html.erb
-        new_password_confirmation: 'New password confirmation'
+        new_password_confirmation: "New password confirmation"
         # 1 - views/users/_personal_info.html.erb
-        school: 'School'
+        school: "School"
         # 1 - views/users/_personal_info.html.erb
-        school_level_id: 'School level'
+        school_level_id: "School level"
         # 1 - views/users/_personal_info.html.erb
-        town: 'Town'
+        town: "Town"
         # 1 - views/users/_personal_info.html.erb
-        province: 'Province'
+        province: "Province"
+    # Section 2: mailing lists
     mailing_list:
+      # Caption of the link inside the user's profile menu
       # 1 - views/users/statistics.html.erb
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
-      menu_link: 'Mailing lists'
+      menu_link: "Mailing lists"
+      # Title of the subsection
       # 1 - views/users/mailing_lists.html.erb
-      title: 'Mailing lists'
+      title: "Mailing lists"
+      # Description of the subsection
       # 1 - views/users/mailing_lists.html.erb
-      description: 'Create one o more groups of email to send your lessons'
+      description: "Create one o more groups of email to send your lessons"
+      # Caption of the link which adds a new mailing list
       # 1 - views/mailing_lists/_list.html.erb
-      add: 'Add new group'
+      add: "Add new group"
+      # Caption of the link which adds a new email address to the current mailing list
       # 1 - views/mailing_lists/_group.html.erb
-      add_address: 'Add email address to group'
+      add_address: "Add email address to group"
+      # Caption of the link which deletes a mailing list
       # 1 - views/mailing_lists/_group.html.erb
-      delete: 'Delete group'
+      delete: "Delete group"
+      # Label for a mailing list
       # 1 - views/mailing_lists/_group.html.erb
       label: 'Group'
+    # Page that is opened when the user clicks on the link 'Forgot your password?'
     reset_password:
+       # Title
        # 1 - views/users/request_reset_password.html.erb
-       title: 'Forgot your password?'
+       title: "Forgot your password?"
+       # Instructions
        # 1 - views/users/request_reset_password.html.erb
-       description: 'Insert your email, you will come another password to your e-mail address'
+       description: "Insert your email to receive receive a new password"
+       # Button to send reset
        # 1 - views/users/request_reset_password.html.erb
-       done: 'Reset password'
+       done: "Reset password"
+    # Section 3: user's personal and general statistics
     statistics:
+      # Link inside the user's profile menu
       # 1 - views/users/statistics.html.erb
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
-      menu_link: 'Statistics'
+      menu_link: "Statistics"
+      # Title
       # 1 - views/users/statistics.html.erb
-      title: 'Statistics'
+      title: "Statistics"
+      # Description
       # 1 - views/users/statistics.html.erb
-      description: 'Follow you numbers in %{desy} and statistics of the system'
+      description: "Follow your numbers in %{desy}, and more general statistics"
+      # General statistics
       general:
+        # Lessons with more 'I like you'
         # 1 - views/users/statistics.html.erb
-        lessons_more_likes: 'Lessons with more likes'
+        lessons_more_likes: "Lessons with more 'I like you'"
+        # How many lessons inside the application are shared
         # 1 - views/users/statistics.html.erb
-        lessons_shared: 'Lessons shared'
+        lessons_shared: "Lessons shared"
+        # How many elements inside the application are shared
         # 1 - views/users/statistics.html.erb
-        media_elements_shared: 'Didactic elements shared'
+        media_elements_shared: "Didactic elements shared"
+        # Statistics with graph about the distribution of lessons for each subject
         percentual_lessons_subject:
           # 1 - views/users/statistics.html.erb
-          title: 'Percentual lessons/subject'
+          title: "Percentual lessons/subject"
+          # Caption for the color which represents a particular subject inside the graph
           # 1 - views/users/statistics.html.erb
-          color: 'Color'
+          color: "Color"
           # 1 - views/users/statistics.html.erb
-          subject: 'Subject'
+          subject: "Subject"
           # 1 - views/users/statistics.html.erb
-          value: 'Value'
+          value: "Value"
+        # Title of general subjects
         # 1 - views/users/statistics.html.erb
-        title: 'General'
+        title: "General"
+        # How many users there are inside the application
         # 1 - views/users/statistics.html.erb
-        total_users: 'Total users'
+        total_users: "Total users"
+        # Which are the users whose lessons received more 'I like it'
         # 1 - views/users/statistics.html.erb
-        users_more_likes: 'Users with more likes'
+        users_more_likes: "Users with more likes"
+      # Captions for personal statistics
       personal:
+        # How many lessons other users in the application copied from you
         # 1 - views/users/statistics.html.erb
-        lessons_copied_by: 'Lessons copied by other users'
+        lessons_copied_by: "Lessons copied by other users"
+        # How many lessons you created
         # 1 - views/users/statistics.html.erb
-        lessons_created: 'Lessons created'
+        lessons_created: "Lessons created"
+        # Which are, among your lessons, the ones which received more 'I like it'
         # 1 - views/users/statistics.html.erb
-        lessons_more_likes: 'Lessons with more likes'
+        lessons_more_likes: "Lessons with more likes"
+        # How many 'I like it' in total your lessons received
         # 1 - views/users/statistics.html.erb
-        likes: 'Likes on your content'
+        likes: "Likes on your content"
+        # How many elements you created
         # 1 - views/users/statistics.html.erb
-        media_elements_loaded: 'Didactic elements loaded'
+        media_elements_loaded: "Didactic elements loaded"
+        # Title for personal statistics
         # 1 - views/users/statistics.html.erb
-        title: 'Personal'
+        title: "Personal"
+    # Section 4: list of the user's subjects
     subjects:
+      # Caption for the link inside the user's profile menu
       # 1 - views/users/statistics.html.erb
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
-      menu_link: 'Subjects'
+      menu_link: "Subjects"
+      # Title
       # 1 - views/users/subjects.html.erb
-      title: 'Subjects'
+      title: "Subjects"
+      # Description
       # 1 - views/users/subjects.html.erb
-      description: 'Choose the subjects you want to stay connected'
+      description: "Choose your subjects!"
   
   
-  # SECTION 2.16: video_editor
+  # SECTION 2.16: Captions used inside the Video Editor
+  
   video_editor:
-    # it is used in the video editor, in order to open the selection of audio tracks
+    # Button to choose the audio track
     audio_track:
       # 1 - views/video_editor/_audio_track.html.erb
-      title: 'Add audio track'
+      title: "Add audio track"
       # 1 - views/video_editor/_audio_track.html.erb
-      description: 'You can upload an audio track: this will cover the original audio of all the chosen components'
+      description: "You can upload an audio track: this will cover the original audio of all the chosen components"
+    # There are three possible components: image, video and text component
     components:
       image:
+        # Caption for the selector of duration of an image component
         # 1 - views/galleries/mixed_for_video_editor.js.erb
-        time: 'Time'
+        time: "Time"
+      # Captions for text components
       text:
-        # this is used in the video editor, to choose a background color for a 'title' component
+        # Choose a background color
         # 1 - views/video_editor/_text_component_editor.html.erb
-        background_color: 'Background color'
+        background_color: "Background color"
+        # Choose a color for the text
         # 1 - views/video_editor/_text_component_editor.html.erb
-        color: 'Text color'
+        color: "Text color"
+        # Button to insert the component, once color and text are chosen
         # 1 - views/video_editor/_text_component_editor.html.erb
-        done: 'Insert'
+        done: "Insert"
+        # Placeholder for the text field
         # 1 - views/video_editor/_text_component_editor.html.erb
         # 2 - views/video_editor/_text_component_editor.html.erb
         # 3 - views/video_editor/_text_component_editor.html.erb
-        insert: 'Insert text'
+        insert: "Insert text"
+        # Caption of the duration selector for a text component
         # 1 - views/video_editor/_text_component_editor.html.erb
-        time: 'Time'
+        time: "Time"
+    # Captions for 'cutters' of a component (the instruments used to modify the duration of a text / image component, or to cut a video component)
     cutters:
+      # Caption for the button that commits the modifications
       # 1 - views/video_editor/cutters/_video.html.erb
       # 2 - views/video_editor/cutters/_text.html.erb
       # 3 - views/video_editor/cutters/_image.html.erb
-      done: 'Done'
+      done: "Done"
+      # Caption to indicate the previous duration of a text / image component
       # 1 - views/video_editor/cutters/_text.html.erb
       # 2 - views/video_editor/cutters/_image.html.erb
-      old_time: 'Time'
+      old_time: "Time"
+      # Caption for the button 'play' of a video cutter
       # 1 - views/video_editor/cutters/_video.html.erb
-      play: 'Play'
+      play: "Play"
+      # Caption for the button 'pause' of a video cutter
       # 1 - views/video_editor/cutters/_video.html.erb
-      pause: 'Pause'
+      pause: "Pause"
+      # Caption for the field where the user inserts the new duration of a text / image component
       # 1 - views/video_editor/cutters/_text.html.erb
       # 2 - views/video_editor/cutters/_image.html.erb
-      time: 'New time'
+      time: "New time"
+      # Caption for the total length of the original video inside a video component
       # 1 - views/video_editor/cutters/_video.html.erb
-      total_length: 'Total clip length'
+      total_length: "Total clip length"
+      # Caption for the selected length of a video component
       # 1 - views/video_editor/cutters/_video.html.erb
-      selected_length: 'Selected'
+      selected_length: "Selected"
+    # Caption for the header of the Video Editor
     # 1 - views/video_editor/_header.html.erb
-    label: 'Edit video'
+    label: "Edit video"
+    # These two captions appear inside the page shown in the case the Video Editor is temporarily not available (it's just a page with title and description): the editor is not available only while the user is editing another video (it takes a few minutes for the server to complete the process and to enable the Editor again)
     not_available:
       # 1 - views/video_editor/not_available.html.erb
-      title: 'Video editor not available'
+      title: "Video editor not available"
       # 1 - views/video_editor/not_available.html.erb
-      description: 'Inserire qui altro testo'
+      description: "Inserire qui altro testo"
     preview:
+      # Caption for the button that opens the global preview mode
       # 1 - views/video_editor/edit.html.erb
       # 2 - views/video_editor/edit.html.erb
-      label: 'Preview'
+      label: "Preview"
+      # Pause the global preview
       # 1 - views/video_editor/edit.html.erb
-      pause: 'Pause'
+      pause: "Pause"
+      # Play the preview
       # 1 - views/video_editor/edit.html.erb
-      play: 'Play'
+      play: "Play"
+    # Inside Video Editor there is a special gallery where it's possible to choose between the three kinds of components (image, video, text): this is the caption for the buttons used to switch between these components
     # 1 - views/galleries/_mixed_video_image_text.html.erb
-    select_component_to_add: 'Select component to add'
+    select_component_to_add: "Select component to add"
+    # Caption for the overall length of the video that the user is composing
     # 1 - views/video_editor/edit.html.erb
-    total_length: 'Total length'
+    total_length: "Total length"
   
   
-  # SECTION 2.17: virtual classroom
+  # SECTION 2.17: Captions used inside the Virtual Classroom
+  
   virtual_classroom:
-    # it is used in the empty Virtual Classroom to invite the user to fill it immediately
+    # When the virtual classroom is empty, this is the caption of the 'plus' button used to add a lesson
     # 1 - views/virtual_classroom/_empty.html.erb
-    add_lesson_now: 'Add a lesson now'
-    # used in the Virtual Classroom, to pick different lessons to be added
+    add_lesson_now: "Add a lesson now"
+    # Captions used in the window where the user can pick different lessons to be added in his Virtual Classroom at the same time
     select_lessons:
+      # Button to close the window without adding lessons
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
-      cancel: 'Cancel'
+      cancel: "Cancel"
+      # Button to add the selected lessons
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
-      done: 'Upload'
+      done: "Upload"
+      # Button to open the window from the main bar inside Virtual Classroom
       # 1 - views/virtual_classroom/_header_buttons.html.erb
-      label: 'Add lessons'
+      label: "Add lessons"
+      # Instructions
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
-      description: 'Select the lessons to upload in the Virtual Classroom'
+      description: "Select the lessons to upload in the Virtual Classroom"
+    # Caption that appears when the Virtual Classroom is empty
     # 1 - views/virtual_classroom/_empty.html.erb
-    empty: 'Your Virtual Classroom is empty'
-    # the caption of the button which empties your Virtual Classroom
+    empty: "Your Virtual Classroom is empty"
+    # Caption of the button which empties your Virtual Classroom
     # 1 - views/virtual_classroom/_header_buttons.html.erb
-    make_it_empty: 'Empty your Virtual Classroom'
+    make_it_empty: "Empty your Virtual Classroom"
+    # Captions used for the composition of the playlist
     playlist:
+      # Placeholder and instructions when the playlist is empty
       # 1 - views/virtual_classroom/_empty_playlist.html.erb
-      instructions: 'After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist'
+      instructions: "After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist"
+      # Label for the playlist column on the right
       # 1 - views/virtual_classroom/_playlist.html.erb
-      label: 'Playlist'
-      # the caption of the button which empties your Virtual Classroom playlist
+      label: "Playlist"
+      # Caption of the button which empties the playlist
       # 1 - views/virtual_classroom/_playlist.html.erb
-      make_it_empty: 'Empty playlist'
+      make_it_empty: "Empty playlist"
+      # Link to open the playlist viewer
       # 1 - views/virtual_classroom/_playlist.html.erb
-      play: 'Play'
+      play: "Play"
+    # Window to send in an email the public link of a lesson
     send_link:
+      # Placeholder for the message (the variable %{max} is replaced by the maximum number of characters allowed)
       # 1 - views/virtual_classroom/_popups.html.erb
-      message: 'Write a message (max %{max} characters)'
+      message: "Write a message (max %{max} characters)"
+      # Label of the text field where the user inserts a single email
       # 1 - views/virtual_classroom/_popups.html.erb
-      emails: 'Add an email'
+      emails: "Add an email"
+      # Label of the select box that the user needs to add a mailing list to the destinatary
       # 1 - views/virtual_classroom/_popups.html.erb
-      mailing_lists: 'Add a mailing list'
+      mailing_lists: "Add a mailing list"
+      # Placeholder used in the email sent if the user doesn't write any message
       # 1 - controllers/virtual_classroom_controller.rb
-      empty_message: '[no message given]'
+      empty_message: "[no message given]"
   
   
-  # PART 3 -- parameters and constants
   
-  # SECTION 3.1 labels for constant keywords defined in lib/autoload
+  # PART 3 -- Parameters and constants
+  
+  
+  # SECTION 3.1 Labels for the application's keywords
+  
   statuses:
+    # The list of statuses for lessons
     lessons:
+      # A lesson is 'private' if only the owner may see it
       # 1 - ../lib/autoload/statuses.rb
-      private: 'Private'
+      private: "Private"
+      # A lesson is 'just copied' if the user copied from another lesson, but he hasn't yet personalized it
       # 1 - ../lib/autoload/statuses.rb
-      copied: 'Copied'
+      copied: "Copied"
+      # A lesson is 'linked' if the user doesn't own it, it's just a link to another user's lesson
       # 1 - ../lib/autoload/statuses.rb
-      linked: 'Linked'
+      linked: "Linked"
+      # A lesson is 'public' when you are not the creator and you haven't linked it yet
       # 1 - ../lib/autoload/statuses.rb
-      public: 'Public'
+      public: "Public"
+      # A lesson is 'shared' when you are the creator and it's visible to other users
       # 1 - ../lib/autoload/statuses.rb
-      shared: 'Shared'
+      shared: "Shared"
+    # The list of statuses for media elements
     media_elements:
+      # An element is 'private' if you are the owner and you didn't use it inside a public lesson
       # 1 - ../lib/autoload/statuses.rb
-      private: 'Private'
+      private: "Private"
+      # An element is 'public' if you are not the owner and you haven't linked it yet 
       # 1 - ../lib/autoload/statuses.rb
-      public: 'Public'
+      public: "Public"
+      # An element is 'linked' if the user doesn't own it, it's just a link to a public element
       # 1 - ../lib/autoload/statuses.rb
-      linked: 'Linked'
+      linked: "Linked"
+  # Filters for both lessons and media elements
   filters:
+    # All lessons without any filter
     # 1 - ../lib/autoload/filters.rb
-    all_lessons: 'All lessons'
+    all_lessons: "All lessons"
+    # Only private lessons
     # 1 - ../lib/autoload/filters.rb
-    private: 'Private'
+    private: "Private"
+    # Only public lessons (they can be either lessons that you shared, or public lessons created by somebody else)
     # 1 - ../lib/autoload/filters.rb
-    public: 'Public'
+    public: "Public"
+    # Lessons which don't belong to you but that you linked
     # 1 - ../lib/autoload/filters.rb
-    linked: 'Linked'
+    linked: "Linked"
+    # All your lessons (including both public and private)
     # 1 - ../lib/autoload/filters.rb
-    only_mine: 'Your own'
+    only_mine: "Your own"
+    # All the lessons that you just copied without personalizing them yet
     # 1 - ../lib/autoload/filters.rb
-    copied: 'Just copied'
+    copied: "Just copied"
+    # All the media elements, without any filter
     # 1 - ../lib/autoload/filters.rb
-    all_media_elements: 'All formats'
+    all_media_elements: "All formats"
+    # Only elements of kind 'video'
     # 1 - ../lib/autoload/filters.rb
-    video: 'Video'
+    video: "Video"
+    # Only elements of kind 'audio'
     # 1 - ../lib/autoload/filters.rb
-    audio: 'Audio'
+    audio: "Audio"
+    # Only elements of kind 'image'
     # 1 - ../lib/autoload/filters.rb
-    image: 'Images'
+    image: "Images"
     # 1 - ../lib/autoload/filters.rb
-    not_mine: 'Not created by you'
+    not_mine: "Not created by you"
+  # Possible parameters to sort lessons or media elements
   orders:
+    # Date of last modification
     # 1 - ../lib/autoload/search_orders.rb
-    updated_at: 'Date last modification'
+    updated_at: "Date last modification"
+    # Number of likes received (only available for lessons)
     # 1 - ../lib/autoload/search_orders.rb
-    likes: 'Number of likes'
+    likes: "Number of likes"
+    # Alphabetical order
     # 1 - ../lib/autoload/search_orders.rb
-    title: 'Alphabetical'
+    title: "Alphabetical"
   
   
-  # SECTION 3.2: language_parameters and time configurations
+  # SECTION 3.2: Numerical parameters which depend on the language: for instance the maximum number of characters allowed, it depends on the average space of a character in the chosen language
+  
   time:
+    # Time format
     # 1 - ..lib/autoload/time_convert.rb
-    format: 'english'
+    format: "english"
   language_parameters:
     notification:
+      # Maximum length of the message inserted by the user to notify the modification of a public lesson
       # 1 - models/lesson.rb
       # 2 - views/lessons/_notification_popup.html.erb
       message_length_for_public_lesson_modification: 280
+      # Maximum length of the message inserted by the user when he sends the public link of a lesson to his friends
       # 1 - controllers/virtual_classroom_controller.rb
       # 2 - views/virtual_classroom/_popups.html.erb
       message_length_for_send_lesson_link: 280
     lesson:
+      # Maximum number of characters allowed in the description of a lesson
       # 1 - models/lesson.rb
       # 2 - views/lesson_editor/new.html.erb
       length_description: 280
+      # Maximum number of characters allowed in the title of a lesson
       # 1 - models/lesson.rb
       # 2 - views/lesson_editor/new.html.erb
       length_title: 35
     media_element:
+      # Maximum number of characters allowed in the description of an element
       # 1 - models/media_element.rb
       # 2 - views/media_elements/_new_form_popup.html.erb
       # 3 - views/media_elements/info_form_in_editor/_new.html.erb
       length_description: 280
+      # Maximum number of characters allowed in the title of an element
       # 1 - models/media_element.rb
       # 2 - views/media_elements/_new_form_popup.html.erb
       # 3 - views/media_elements/info_form_in_editor/_new.html.erb
       length_title: 35
     slide:
+      # Maximum number of characters allowed in the title of a slide
       # 1 - models/slide.rb
       # 2 - views/lesson_editor/slides/_text.html.erb
       # 3 - views/lesson_editor/slides/_title.html.erb
@@ -1777,12 +2079,15 @@ en:
       # 5 - views/lesson_editor/slides/_image1.html.erb
       # 6 - views/lesson_editor/slides/_audio.html.erb
       length_title: 35
+      # Maximum number of characters allowed in the caption of an image inside a slide
       # 1 - models/media_elements_slide.rb
       # 2 - views/lesson_editor/slides/parts/_image.html.erb
       length_caption: 35
     video_editor:
+      # Maximum number of characters allowed in the text component of Video Editor
       # 1 - views/video_editor/_text_component_editor.html.erb
       length_text_component: 35
+      # Maximum number of characters allowed for the duration in seconds of a text or image component in Video Editor (hence, if this parameter is 3, the maximum is 999 seconds)
       # 1 - views/galleries/mixed_for_video_editor.js.erb
       # 2 - views/video_editor/cutters/_text.html.erb
       # 3 - views/video_editor/cutters/_image.html.erb
