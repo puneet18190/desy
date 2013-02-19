@@ -41,6 +41,7 @@ function initializeVideoEditor() {
 function closeGenericVideoComponentCutter() {
   $('._video_component_cutter_arrow').hide('fade', {}, 250);
   $('._video_component_cutter').hide('fade', {}, 250, function() {
+    $('#commit_video_editor').show();
     $('#video_editor_global_preview a').removeClass('disabled');
     $('._video_editor_bottom_bar').css('visibility', 'visible');
     resetVisibilityOfVideoEditorTransitions();
@@ -485,6 +486,7 @@ function startVideoEditorPreviewClipWithDelay(component_id) {
 
 function showVideoEditorCutter(component_id) {
   $('._video_editor_bottom_bar').css('visibility', 'hidden');
+  $('#commit_video_editor').hide();
   $('#media_elements_list_in_video_editor .jspHorizontalBar').css('visibility', 'hidden');
   $('#' + component_id + ' ._video_component_cutter_arrow').show('fade', {}, 250);
   $('#' + component_id + '_cutter').show('fade', {}, 250, function() {
