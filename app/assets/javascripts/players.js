@@ -384,15 +384,28 @@ function selectAudioComponentCutterHandle(component, val) {
   component.find('._current_time').html(secondsToDateString(val));
 }
 
+// IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO
+// TRA L'INIZIO E LA FINE DEI VALORI SEEKABLE
+function validSeek(media, seek) {
+  var confidence = 0.001;
+  var minStart = media[0].seekable.start(0);
+  var maxEnd = media[0].seekable.end(0);
+  if ( seek < minStart ) {
+    seek = minStart+confidence;
+  } else if ( seek > maxEnd ) {
+    seek = maxEnd-confidence;
+  }
+  return seek;
+}
 
 // FUNCTIONS WHICH ARE VALID IN ANY CASE
 
-function setCurrentTimeToMedia(media, x) {
-  if(media.readyState != 0) {
-    media[0].currentTime = x;
+function setCurrentTimeToMedia(media, seek) {
+  if(media[0].readyState != 0) {
+    media[0].currentTime = validSeek(media, seek);
   } else {
     media.on('loadedmetadata', function() {
-      media[0].currentTime = x;
+      media[0].currentTime = validSeek(media, seek);
     });
   }
 }

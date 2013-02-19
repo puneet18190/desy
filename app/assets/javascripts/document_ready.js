@@ -461,6 +461,10 @@ $(document).ready(function() {
   
   // MEDIA ELEMENT BUTTONS
   
+  $('body').on('click','._boxViewExpandedMediaElementWrapper img', function(){
+    $(this).parents('._boxViewExpandedMediaElementWrapper').find('.preview').trigger('click');
+  })
+  
   $('body').on('click', '._Video_button_add, ._Audio_button_add, ._Image_button_add', function(e) {
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -1819,7 +1823,7 @@ $(document).ready(function() {
     $('#' + container_id + ' ._media_player_slider_disabler').show();
     $('#' + container_id + ' ._media_player_pause').show();
     var media = $('#' + container_id + ' ' + type);
-    if(media.readyState != 0) {
+    if(media[0].readyState != 0) {
       media[0].play();
     } else {
       media.on('loadedmetadata', function() {
