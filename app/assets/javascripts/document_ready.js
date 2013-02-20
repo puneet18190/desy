@@ -222,6 +222,24 @@ $(document).ready(function() {
   
   // EXPANDED MEDIA ELEMENT
   
+  $('body').on('click', '#display_expanded_media_elements', function() {
+    if(!$(this).hasClass('current')) {
+      $.ajax({
+        type: 'get',
+        url: '/media_elements?display=expanded'
+      });
+    }
+  });
+  
+  $('body').on('click', '#display_compact_media_elements', function() {
+    if(!$(this).hasClass('current')) {
+      $.ajax({
+        type: 'get',
+        url: '/media_elements?display=compact'
+      });
+    }
+  });
+  
   $('body').on('click', '._close_media_element_preview_popup', function() {
     var param = $(this).data('param');
     closePopUp('dialog-media-element-' + param);
