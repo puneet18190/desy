@@ -123,7 +123,7 @@ class Image < MediaElement
   end
   
   def self.ratio_value(w, h, value)
-    to_ratio = 660 / 500
+    to_ratio = 660.to_f / 500.to_f
     origin_ratio = w.to_f / h.to_f
 
     if origin_ratio > to_ratio
