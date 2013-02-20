@@ -1806,7 +1806,6 @@ en:
       users:
         link_name: 'Users'
         list: 'List'
-        contact: 'Contact'
       messages:
         link_name: 'Messages'
         notification: 'Notification'
@@ -1855,6 +1854,11 @@ en:
       index:
         not_found: 'No users found'
         send_message_to_all: 'Send message to all'
+        show: 'Show user page'
+        delete: 'Delete user'
+        message: 'Send a message to this user'
+        ban: 'Ban'
+        activate: 'Activate'
       #1 - views/admin/users/show.html.erb
       show:
         activate: 'Activate'
@@ -1886,3 +1890,5 @@ en:
       title: 'Title'
       #1 - views/admin/users/show.html.erb
       delete: 'Delete'
+      #1 - views/admin/users/index.html.erb
+      ask_for_delete: 'Are you sure?'
