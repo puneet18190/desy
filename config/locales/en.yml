@@ -1938,6 +1938,9 @@ en:
       # Button to add the selected lessons
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       done: "Upload"
+      # Caption used when the user has no lessons to upload in his Virtual Classroom
+      # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
+      empty: "You don't have any lessons to add to your Virtual Classroom"
       # Button to open the window from the main bar inside Virtual Classroom
       # 1 - views/virtual_classroom/_header_buttons.html.erb
       label: "Add lessons"
