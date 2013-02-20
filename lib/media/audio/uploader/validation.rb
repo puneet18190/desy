@@ -19,8 +19,6 @@ module Media
           elsif @value.instance_of?(String)
             if column_changed? and not rename?
               'renaming denied'
-            elsif process(@value).blank?
-              'invalid filename'
             end
           else
             'unsupported upload'
@@ -29,8 +27,6 @@ module Media
 
         private
         def error_message_for_file_to_convert
-          return 'invalid filename' if processed_original_filename_without_extension.blank?
-            
           if not self.class::EXTENSION_WHITE_LIST_WITH_DOT.include?(original_filename_extension)
             'unsupported format'
           else
@@ -45,7 +41,7 @@ module Media
 
         def error_message_for_converted_files
           mp3_path, ogg_path = @converted_files[:mp3], @converted_files[:ogg]
-          if !@original_filename_without_extension.is_a?(String) || process(@original_filename_without_extension).blank?
+          if !@original_filename_without_extension.is_a?(String)
             'invalid filename'
           elsif !mp3_path.instance_of?(String) || !ogg_path.instance_of?(String)
             'invalid paths'
