@@ -829,11 +829,15 @@ $(document).ready(function() {
     if(!cover.hasClass('current')) {
       var appended = $('#' + this.id + ' ._current_inserted');
       if(appended.length == 0) {
+        $('#virtual_classroom_quick_select_submit').removeClass('current');
         $('#' + this.id + ' input').val('1');
         cover.append('<div class="currentInserted _current_inserted"><a></a></div>');
       } else {
         $('#' + this.id + ' input').val('0');
         appended.remove();
+        if($('#dialog-virtual-classroom-quick-select ._current_inserted').length == 0) {
+          $('#virtual_classroom_quick_select_submit').addClass('current');
+        }
       }
     }
   });
@@ -847,7 +851,9 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#virtual_classroom_quick_select_submit', function() {
-    $('#virtual_classroom_quick_select_container form').submit();
+    if(!$(this).hasClass('current')) {
+      $('#virtual_classroom_quick_select_container form').submit();
+    }
   });
   
   $('body').on('click', '#virtual_classroom_quick_select_close', function() {
