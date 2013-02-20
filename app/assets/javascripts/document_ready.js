@@ -287,6 +287,7 @@ $(document).ready(function() {
           $('#' + instance_id + ' audio').load();
           $('#' + instance_id + ' ._media_player_total_time').html(secondsToDateString(duration));
           $('#' + instance_id).data('duration', duration);
+          $('#' + instance_id).removeClass('_empty_audio_player').addClass('_instance_of_player');
           initializeMedia(instance_id, 'audio');
         }
         obj.show('blind', {}, 500);
