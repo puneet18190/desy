@@ -363,6 +363,20 @@ en:
       # Button to clear your session
       # 1 - views/shared/_popups.html.erb
       cancel: "Clear"
+    # Popup asking for confirmation to the user if he clicks on the button 'empty playlist' inside the Virtual Classroom
+    empty_playlist:
+      # Title
+      # 1 - views/shared/_popups.html.erb
+      title: "Empty your playlist"
+      # Message
+      # 1 - views/shared/_popups.html.erb
+      confirm: "Are you sure you want to empty it?"
+      # Button to confirm
+      # 1 - views/shared/_popups.html.erb
+      do: "Yes"
+      # Button to cancel
+      # 1 - views/shared/_popups.html.erb
+      cancel: "Cancel"
     # When the user clicks on the 'exit' button inside the video editor, the application asks for confirmation (if the user confirms, the application deletes his current working session)
     exit_video_editor:
       # Title

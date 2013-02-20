@@ -791,9 +791,19 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._empty_playlist_button', function() {
-    $.ajax({
-      type: 'post',
-      url: '/virtual_classroom/empty_playlist'
+    var captions = $('#popup_captions_container');
+    var title = captions.data('empty-virtual-classroom-playlist-title');
+    var confirm = captions.data('empty-virtual-classroom-playlist-confirm');
+    var yes = captions.data('empty-virtual-classroom-playlist-yes');
+    var no = captions.data('empty-virtual-classroom-playlist-no');
+    showConfirmPopUp(title, confirm, yes, no, function() {
+      closePopUp('dialog-confirm');
+      $.ajax({
+        type: 'post',
+        url: '/virtual_classroom/empty_playlist'
+      });
+    }, function() {
+      closePopUp('dialog-confirm');
     });
   });
   
