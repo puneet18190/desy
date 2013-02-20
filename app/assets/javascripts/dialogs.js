@@ -305,6 +305,7 @@ function showVideoInGalleryPopUp(video_id) {
           $('#' + instance_id + ' video').load();
           $('#' + instance_id + ' ._media_player_total_time').html(secondsToDateString(duration));
           $('#' + instance_id).data('duration', duration);
+          $('#' + instance_id).removeClass('_empty_video_player').addClass('_instance_of_player');
           initializeMedia(instance_id, 'video');
         }
       },
