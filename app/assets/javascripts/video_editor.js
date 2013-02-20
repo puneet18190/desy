@@ -642,7 +642,6 @@ function setVisualTimesVideoEditorPreview(component, time) {
   $('#visual_video_editor_current_time').html(secondsToDateString(global_time));
   $('#video_editor_global_preview').data('current-time', global_time);
   $('#video_editor_global_preview').data('current-component', identifier);
-  var start = false;
   $('._video_editor_component').each(function() {
     var my_identifier = getVideoComponentIdentifier($(this).attr('id'));
     if(my_identifier == identifier) {
@@ -651,19 +650,11 @@ function setVisualTimesVideoEditorPreview(component, time) {
       if($('#video_component_' + my_identifier + '_preview video').length > 0) {
         setCurrentTimeToMedia($('#video_component_' + my_identifier + '_preview video'), $('#video_component_' + my_identifier + '_cutter').data('from') + time);
       }
-      start = true;
-    } else if(start) {
+    } else {
       $(this).find('._video_component_icon ._right').html(secondsToDateString(0));
       $(this).data('current-preview-time', 0);
       if($('#video_component_' + my_identifier + '_preview video').length > 0) {
         setCurrentTimeToMedia($('#video_component_' + my_identifier + '_preview video'), $('#video_component_' + my_identifier + '_cutter').data('from'));
-      }
-    } else {
-      var own_duration = $(this).data('duration');
-      $(this).find('._video_component_icon ._right').html(secondsToDateString(own_duration));
-      $(this).data('current-preview-time', own_duration);
-      if($('#video_component_' + my_identifier + '_preview video').length > 0) {
-        setCurrentTimeToMedia($('#video_component_' + my_identifier + '_preview video'), $('#video_component_' + my_identifier + '_cutter').data('to'));
       }
     }
   });
