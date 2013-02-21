@@ -33,4 +33,4 @@ to_delete.hide('fade', {}, 500, function() {
   }
 });
 
-$('#info_container').data('currenturl', '<%= remove_param_from_url(request.url, 'delete_item') %>');
+$('#info_container').data('currenturl', '<%= manipulate_request_url(remove_query_param: 'delete_item') %>');
