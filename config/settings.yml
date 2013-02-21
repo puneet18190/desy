@@ -66,6 +66,8 @@ expanded_media_element_pagination: 14
 expanded_media_element_pagination_options: [14, 21, 28]
 # NOTIFICATIONS
 notifications_loaded_together: 8
+# SLIDES
+max_number_slides_in_a_lesson: 99
 # VIRTUAL CLASSROOM
 lessons_for_page_in_virtual_classroom: 10
 lessons_in_playlist: 20

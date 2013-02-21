@@ -73,17 +73,21 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._add_new_slide_options', function() {
-    saveCurrentSlide();
-    showNewSlideOptions();
+    if(!$(this).hasClass('disabled')) {
+      saveCurrentSlide();
+      showNewSlideOptions();
+    }
   });
   
   $('body').on('click', '._add_new_slide_options_in_last_position', function() {
-    saveCurrentSlide();
-    var last_slide_id = $("#slide-numbers li.navNumbers:last").find('a').data('slide-id');
-    if($("#slide_in_lesson_editor_"+last_slide_id).hasClass('_lesson_editor_current_slide')) {
-      showNewSlideOptions();
-    }else{
-      slideTo('' + last_slide_id, showNewSlideOptions);
+    if(!$(this).hasClass('disabled')) {
+      saveCurrentSlide();
+      var last_slide_id = $("#slide-numbers li.navNumbers:last").find('a').data('slide-id');
+      if($("#slide_in_lesson_editor_"+last_slide_id).hasClass('_lesson_editor_current_slide')) {
+        showNewSlideOptions();
+      }else{
+        slideTo('' + last_slide_id, showNewSlideOptions);
+      }
     }
   });
   

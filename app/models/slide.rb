@@ -25,7 +25,7 @@ class Slide < ActiveRecord::Base
   validates_inclusion_of :kind, :in => KINDS
   validates_uniqueness_of :position, :scope => :lesson_id
   validates_uniqueness_of :kind, :scope => :lesson_id, :if => :is_cover
-  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text, :validate_title
+  validate :validate_associations, :validate_impossible_changes, :validate_cover, :validate_text, :validate_title, :validate_max_number_slides
   
   before_validation :init_validation
   before_destroy :stop_if_cover
@@ -184,6 +184,10 @@ class Slide < ActiveRecord::Base
   end
   
   private
+  
+  def validate_max_number_slides
+    errors[:base] << 'too many slides' if @lesson && !@slide && Slide.where(:lesson_id => @lesson.id).count == SETTINGS['max_number_slides_in_a_lesson']
+  end
   
   def media_element_at(position)
     MediaElementsSlide.where(:slide_id => self.id, :position => position).first

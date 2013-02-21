@@ -14,6 +14,9 @@
   $('#nav_list_menu').jScrollPane({
     autoReinitialise: false
   });
+  if($('#slides li').length == <%= SETTINGS['max_number_slides_in_a_lesson'] %>) {
+    $('._add_new_slide_options, ._add_new_slide_options_in_last_position').addClass('disabled');
+  }
   slideTo(<%= @current_slide.id %>);
 <% else %>
   slideError();

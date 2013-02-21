@@ -358,6 +358,10 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  def reached_the_maximum_of_slides?
+    Slide.where(:lesson_id => self.id).count == SETTINGS['max_number_slides_in_a_lesson']
+  end
+  
   def add_to_virtual_classroom(an_user_id)
     errors.clear
     if self.new_record?
