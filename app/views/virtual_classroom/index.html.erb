@@ -4,7 +4,7 @@
 </div>
 <div class="bluBar">
   <h1 style="width:20%" class="lower"><%= t('captions.virtual_classroom') %></h1>
-  <%= render :partial => 'virtual_classroom/header_buttons' %>
+  <%= render :partial => 'virtual_classroom/header_buttons', :locals => {:empty => @lessons.empty?} %>
 </div>
 
 <br class="clearfloat">

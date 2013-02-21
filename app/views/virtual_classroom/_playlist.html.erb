@@ -1,7 +1,9 @@
 <div id="virtual_classroom_playlist" class="playList">
-  <span class="fltrt lower _empty_playlist_button emptyPlayListButton"><%= t('virtual_classroom.playlist.make_it_empty') %></span>
+  <% if lessons.any? %>
+    <span class="fltrt lower _empty_playlist_button emptyPlayListButton"><%= t('virtual_classroom.playlist.make_it_empty') %></span>
+  <% end %>
   <% if lessons.empty? %>
-    <%= render :partial => "virtual_classroom/empty_playlist" %> 
+    <%= render :partial => "virtual_classroom/empty_playlist" %>
   <% else %>
   <span class="fltlft" style="padding-top:8px"></span>
   <div class="titlePlaylist fltlft "  style="padding-left:0"><%= t('virtual_classroom.playlist.label') %><%= " (#{lessons.length} / #{SETTINGS['lessons_in_playlist']})".html_safe %></div>

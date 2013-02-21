@@ -28,4 +28,8 @@
   });
 <% end %>
 
+<% if @lessons.empty? %>
+  $('#empty_virtual_classroom').addClass('disabled');
+<% end %>
+
 $('#info_container').data('currenturl', '<%= j(my_current_url) %>');
