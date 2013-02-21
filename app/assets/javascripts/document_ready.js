@@ -826,20 +826,22 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#empty_virtual_classroom', function() {
-    var captions = $('#popup_captions_container');
-    var title = captions.data('empty-virtual-classroom-title');
-    var confirm = captions.data('empty-virtual-classroom-confirm');
-    var yes = captions.data('empty-virtual-classroom-yes');
-    var no = captions.data('empty-virtual-classroom-no');
-    showConfirmPopUp(title, confirm, yes, no, function() {
-      closePopUp('dialog-confirm');
-      $.ajax({
-        type: 'post',
-        url: '/virtual_classroom/empty_virtual_classroom'
+    if(!$(this).hasClass('disabled')) {
+      var captions = $('#popup_captions_container');
+      var title = captions.data('empty-virtual-classroom-title');
+      var confirm = captions.data('empty-virtual-classroom-confirm');
+      var yes = captions.data('empty-virtual-classroom-yes');
+      var no = captions.data('empty-virtual-classroom-no');
+      showConfirmPopUp(title, confirm, yes, no, function() {
+        closePopUp('dialog-confirm');
+        $.ajax({
+          type: 'post',
+          url: '/virtual_classroom/empty_virtual_classroom'
+        });
+      }, function() {
+        closePopUp('dialog-confirm');
       });
-    }, function() {
-      closePopUp('dialog-confirm');
-    });
+    }
   });
   
   $('body').on('click', '._virtual_classroom_quick_loaded_lesson', function() {

@@ -1,4 +1,4 @@
 <ul class="navlist">
   <li class="lower"><%= link_to t('virtual_classroom.select_lessons.label'), select_lessons_for_virtual_classroom_path, :remote => true %></li>
-  <li class="lower"><a id="empty_virtual_classroom"><%= t('virtual_classroom.make_it_empty') %></a></li>
+  <li class="lower"><a id="empty_virtual_classroom" class="<%= empty ? 'disabled'.html_safe : '' %>"><%= t('virtual_classroom.make_it_empty') %></a></li>
 </ul>
