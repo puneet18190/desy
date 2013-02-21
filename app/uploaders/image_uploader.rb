@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 require 'env_relative_path'
-require 'media/uploader/filename_token'
 
 class ImageUploader < CarrierWave::Uploader::Base
 
@@ -9,7 +8,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
   include EnvRelativePath
-  include Media::Uploader::FilenameToken
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   # include Sprockets::Helpers::RailsHelper
@@ -91,7 +89,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    "#{original_filename_without_extension.parameterize}_#{generate_filename_token}#{original_extension}" if original_filename
+    "#{original_filename_without_extension.parameterize}_#{model.filename_token}#{original_extension}" if original_filename
   end
 
 end

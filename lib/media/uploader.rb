@@ -4,10 +4,6 @@ require 'securerandom'
 
 module Media
   class Uploader < String
-
-    require 'media/uploader/filename_token'
-
-    include FilenameToken
     include AllowedDurationRange
 
     attr_reader :model, :column, :value
@@ -46,7 +42,7 @@ module Media
     end
 
     def process(filename, extension = nil)
-      filename = "#{filename.parameterize}_#{generate_filename_token}"
+      filename = "#{filename.parameterize}_#{model.filename_token}"
       filename << ".#{extension}" if extension
       filename
     end

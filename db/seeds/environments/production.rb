@@ -18,6 +18,8 @@ class Seeding
     str.chars.map{ |c| "[#{c}#{c.upcase}]" }.join('')
   end.join(',')
 
+  MODELS = [ Location, SchoolLevel, Subject, User, MediaElement, Lesson, Slide, MediaElementsSlide, Like, Bookmark ]
+
   def run
     puts "Applying #{Rails.env} seeds"
 
@@ -28,16 +30,12 @@ class Seeding
     end
 
     ActiveRecord::Base.transaction do
-      locations!
-      school_levels!
-      subjects!
-      users!
-      media_elements!
-      lessons!
-      slides!
-      media_elements_slides!
-      likes!
-      bookmarks!
+      MODELS.each do |model|
+        @model, @table_name = model, model.table_name
+        puts "#{@table_name.titleize}..."
+        send :"#{@table_name}!"
+        update_sequence
+      end
 
       FileUtils.cp_r VIDEOS_PLACEHOLDERS_FOLDER, Media::Video::Placeholder::ABSOLUTE_FOLDER
       FileUtils.rm_rf OLD_PUBLIC_MEDIA_ELEMENTS_FOLDER
@@ -56,7 +54,7 @@ class Seeding
 
   private
 
-  def csv_path(filename)
+  def csv_path(filename = @table_name)
     CSV_DIR.join "#{filename}.csv"
   end
 
@@ -91,115 +89,85 @@ class Seeding
     end.join(',')
   end
 
-  def csv_row_to_record(model, row)
+  def csv_row_to_record(row, model = @model)
     model.new do |record|
       row.headers.each { |header| record.send :"#{header}=", row[header] }
     end
   end
 
-  def update_sequence(model)
-    model.connection.reset_pk_sequence! model.table_name
+  def update_sequence
+    @model.connection.reset_pk_sequence! @table_name
   end
 
   def locations!
-    model = Location
-    puts 'locations...'
-    CSV.foreach(csv_path('locations'), CSV_OPTIONS) do |row|
-      csv_row_to_record(model, row).save!
+    CSV.foreach(csv_path, CSV_OPTIONS) do |row|
+      csv_row_to_record(row).save!
     end
-    update_sequence model
   end
 
   def school_levels!
-    model = SchoolLevel
-    puts 'school levels...'
-    CSV.foreach(csv_path('school_levels'), CSV_OPTIONS) do |row|
-      csv_row_to_record(model, row).save!
+    CSV.foreach(csv_path, CSV_OPTIONS) do |row|
+      csv_row_to_record(row).save!
     end
-    update_sequence model
   end
 
   def subjects!
-    model = Subject
-    puts 'subjects...'
-    CSV.foreach(csv_path('subjects'), CSV_OPTIONS) do |row|
-      csv_row_to_record(model, row).save!
+    CSV.foreach(csv_path, CSV_OPTIONS) do |row|
+      csv_row_to_record(row).save!
     end
-    update_sequence model
   end
 
   def users!
-    model = User
-    puts 'users...'
-    CSV.foreach(csv_path('users'), CSV_OPTIONS) do |row|
-      record = csv_row_to_record(model, row)
+    CSV.foreach(csv_path, CSV_OPTIONS) do |row|
+      record = csv_row_to_record(row)
       record.subject_ids = user_subjects(record.id)
       record.accept_policies
       record.save!
     end
-    update_sequence model
   end
 
   def media_elements!
-    model = MediaElement
-    puts 'media elements...'
-    CSV.foreach(csv_path('media_elements'), CSV_OPTIONS) do |row|
-      record = csv_row_to_record(row['sti_type'].constantize, row)
+    CSV.foreach(csv_path, CSV_OPTIONS) do |row|
+      record = csv_row_to_record(row, row['sti_type'].constantize)
       record.media                   = media(record)
       record.skip_public_validations = true
       record.tags                    = tags(record.id, 'MediaElement')
       record.save!
     end
-    update_sequence model
   end
 
   def lessons!
-    model = Lesson
-    puts 'lessons...'
-    CSV.foreach(csv_path('lessons'), CSV_OPTIONS) do |row|
-      record = csv_row_to_record(model, row)
+    CSV.foreach(csv_path, CSV_OPTIONS) do |row|
+      record = csv_row_to_record(row)
       record.skip_public_validations = true
       record.skip_cover_creation     = true
       record.tags                    = tags(record.id, 'Lesson')
       record.save!
     end
-    update_sequence model
   end
 
   def slides!
-    model = Slide
-    puts 'slides...'
-    CSV.foreach(csv_path('slides'), CSV_OPTIONS) do |row|
-      csv_row_to_record(model, row).save!
+    CSV.foreach(csv_path, CSV_OPTIONS) do |row|
+      csv_row_to_record(row).save!
     end
-    update_sequence model
   end
 
   def media_elements_slides!
-    model = MediaElementsSlide
-    puts 'media elements slides...'
-    CSV.foreach(csv_path('media_elements_slides'), CSV_OPTIONS) do |row|
-      csv_row_to_record(model, row).save!
+    CSV.foreach(csv_path, CSV_OPTIONS) do |row|
+      csv_row_to_record(row).save!
     end
-    update_sequence model
   end
 
   def likes!
-    model = Like
-    puts 'likes...'
-    CSV.foreach(csv_path('likes'), CSV_OPTIONS) do |row|
-      csv_row_to_record(model, row).save!
+    CSV.foreach(csv_path, CSV_OPTIONS) do |row|
+      csv_row_to_record(row).save!
     end
-    update_sequence model
   end
 
   def bookmarks!
-    model = Bookmark
-    puts 'bookmarks...'
-    CSV.foreach(csv_path('bookmarks'), CSV_OPTIONS) do |row|
-      csv_row_to_record(model, row).save!
+    CSV.foreach(csv_path, CSV_OPTIONS) do |row|
+      csv_row_to_record(row).save!
     end
-    update_sequence model
   end
 
 end
