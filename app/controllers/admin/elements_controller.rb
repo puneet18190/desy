@@ -6,7 +6,7 @@ class Admin::ElementsController < AdminController
     #@elements = Element.joins(:user,:subject,:likes).select('elements.*, users.name, subjects.description, count(likes) AS likes_count').group('elements.id').sorted(params[:sort], "elements.id DESC").page(params[:page])
     @total_elements = MediaElement.joins(:user).sorted(params[:sort], "media_elements.id DESC")
     @elements = @total_elements.page(params[:page])
-    
+    @location_root = Location.roots
     respond_to do |wants|
       wants.html # index.html.erb
       wants.xml  { render :xml => @elements }

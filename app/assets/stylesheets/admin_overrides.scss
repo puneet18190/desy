@@ -60,6 +60,13 @@
   a.menu:after, .dropdown-toggle:after {
       content: none;
   }
+  .navbar-inverse .nav li.dropdown.open > .dropdown-toggle, .navbar-inverse .nav li.dropdown.active a, .navbar-inverse .nav li.dropdown.active > .dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle{
+    background-color: #555555;
+  }
+  
+  .navbar-inverse .nav li.dropdown.open > .dropdown-toggle li , .navbar-inverse .nav li.dropdown.active > .dropdown-toggle li, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle li{
+    background-color: #ffffff;
+  }
   
   ul.list{
     list-style:none;

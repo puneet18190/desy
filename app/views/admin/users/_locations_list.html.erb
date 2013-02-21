@@ -1,0 +1,8 @@
+<% if parent %>
+  <% @children = Location.find(parent).children %>
+  <option>Select a <%=@children.first.sti_type%></option>
+  <%= options_for_select(@children.order(:name).map{ |l| [l.to_s, l.id] }) %>
+<% else %>
+  <option>Select a <%=@location_root.first.sti_type%></option>
+  <%= options_for_select(@location_root.order(:name).map{ |l| [l.to_s, l.id] }) %>
+<% end %>

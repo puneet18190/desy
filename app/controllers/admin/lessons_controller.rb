@@ -6,6 +6,7 @@ class Admin::LessonsController < AdminController
     #@lessons = Lesson.joins(:user,:subject,:likes).select('lessons.*, users.name, subjects.description, count(likes) AS likes_count').group('lessons.id').sorted(params[:sort], "lessons.id DESC").page(params[:page])
     @total_lessons = Lesson.joins(:user,:subject).sorted(params[:sort], "lessons.id DESC")
     @lessons = @total_lessons.page(params[:page])
+    @location_root = Location.roots
     
     respond_to do |wants|
       wants.html # index.html.erb
