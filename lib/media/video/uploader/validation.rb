@@ -19,8 +19,6 @@ module Media
           elsif @value.instance_of?(String)
             if column_changed? and not rename?
               'renaming denied'
-            elsif process(@value).blank?
-              'invalid filename'
             end
           else
             'unsupported upload'
@@ -29,8 +27,6 @@ module Media
 
         private
         def error_message_for_file_to_convert
-          return 'invalid filename' if processed_original_filename_without_extension.blank?
-            
           if not self.class::EXTENSION_WHITE_LIST_WITH_DOT.include?(original_filename_extension)
             'unsupported format'
           else
@@ -47,7 +43,7 @@ module Media
 
         def error_message_for_converted_files
           mp4_path, webm_path = @converted_files[:mp4], @converted_files[:webm]
-          if !@original_filename_without_extension.is_a?(String) || process(@original_filename_without_extension).blank?
+          if !@original_filename_without_extension.is_a?(String)
             'invalid filename'
           elsif !mp4_path.instance_of?(String) || !webm_path.instance_of?(String)
             'invalid paths'

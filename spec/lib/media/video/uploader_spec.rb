@@ -72,11 +72,6 @@ module Media
             it { should be_false }
           end
 
-          context 'when processed filename is blank' do
-            let(:path) { media_folder.join '%.flv' }
-            it { should be_false }
-          end
-
           context 'when the extension is not valid' do
             let(:path) { media_folder.join 'valid video.php' }
             it { should be_false }
@@ -153,11 +148,6 @@ module Media
               it { should be_false }
             end
 
-            context 'when the processed filename is blank' do
-              let(:media) { '%' }
-              it { should be_false }
-            end
-
             context 'when the name is valid' do
               let(:media) { 'asd' }
               it { should be_true }
@@ -174,11 +164,6 @@ module Media
 
           context 'when filename is blank' do
             let(:media) { media_hash.merge(filename: nil) }
-            it { should be_false }
-          end
-
-          context 'when the processed filename is blank' do
-            let(:media) { media_hash.merge(filename: '%') }
             it { should be_false }
           end
 

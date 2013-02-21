@@ -222,6 +222,24 @@ $(document).ready(function() {
   
   // EXPANDED MEDIA ELEMENT
   
+  $('body').on('click', '#display_expanded_media_elements', function() {
+    if(!$(this).hasClass('current')) {
+      $.ajax({
+        type: 'get',
+        url: '/media_elements?display=expanded'
+      });
+    }
+  });
+  
+  $('body').on('click', '#display_compact_media_elements', function() {
+    if(!$(this).hasClass('current')) {
+      $.ajax({
+        type: 'get',
+        url: '/media_elements?display=compact'
+      });
+    }
+  });
+  
   $('body').on('click', '._close_media_element_preview_popup', function() {
     var param = $(this).data('param');
     closePopUp('dialog-media-element-' + param);
@@ -287,6 +305,7 @@ $(document).ready(function() {
           $('#' + instance_id + ' audio').load();
           $('#' + instance_id + ' ._media_player_total_time').html(secondsToDateString(duration));
           $('#' + instance_id).data('duration', duration);
+          $('#' + instance_id).removeClass('_empty_audio_player').addClass('_instance_of_player');
           initializeMedia(instance_id, 'audio');
         }
         obj.show('blind', {}, 500);
@@ -487,6 +506,14 @@ $(document).ready(function() {
   $('body').on('click', '._Video_button_preview, ._Audio_button_preview, ._Image_button_preview', function(e) {
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
+      showMediaElementInfoPopUp(my_param);
+    }
+  });
+  
+  $('body').on('click', '._expanded_media_element_internal_container img', function() {
+    var me = $(this).parents('._expanded_media_element_internal_container');
+    if(!me.parent().hasClass('_disabled')) {
+      var my_param = me.parent().find('a._Video_button_preview, a._Audio_button_preview, a._Image_button_preview').data('clickparam');
       showMediaElementInfoPopUp(my_param);
     }
   });
@@ -782,9 +809,36 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._empty_playlist_button', function() {
-    $.ajax({
-      type: 'post',
-      url: '/virtual_classroom/empty_playlist'
+    var captions = $('#popup_captions_container');
+    var title = captions.data('empty-virtual-classroom-playlist-title');
+    var confirm = captions.data('empty-virtual-classroom-playlist-confirm');
+    var yes = captions.data('empty-virtual-classroom-playlist-yes');
+    var no = captions.data('empty-virtual-classroom-playlist-no');
+    showConfirmPopUp(title, confirm, yes, no, function() {
+      closePopUp('dialog-confirm');
+      $.ajax({
+        type: 'post',
+        url: '/virtual_classroom/empty_playlist'
+      });
+    }, function() {
+      closePopUp('dialog-confirm');
+    });
+  });
+  
+  $('body').on('click', '#empty_virtual_classroom', function() {
+    var captions = $('#popup_captions_container');
+    var title = captions.data('empty-virtual-classroom-title');
+    var confirm = captions.data('empty-virtual-classroom-confirm');
+    var yes = captions.data('empty-virtual-classroom-yes');
+    var no = captions.data('empty-virtual-classroom-no');
+    showConfirmPopUp(title, confirm, yes, no, function() {
+      closePopUp('dialog-confirm');
+      $.ajax({
+        type: 'post',
+        url: '/virtual_classroom/empty_virtual_classroom'
+      });
+    }, function() {
+      closePopUp('dialog-confirm');
     });
   });
   
@@ -793,11 +847,15 @@ $(document).ready(function() {
     if(!cover.hasClass('current')) {
       var appended = $('#' + this.id + ' ._current_inserted');
       if(appended.length == 0) {
+        $('#virtual_classroom_quick_select_submit').removeClass('current');
         $('#' + this.id + ' input').val('1');
         cover.append('<div class="currentInserted _current_inserted"><a></a></div>');
       } else {
         $('#' + this.id + ' input').val('0');
         appended.remove();
+        if($('#dialog-virtual-classroom-quick-select ._current_inserted').length == 0) {
+          $('#virtual_classroom_quick_select_submit').addClass('current');
+        }
       }
     }
   });
@@ -811,7 +869,9 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#virtual_classroom_quick_select_submit', function() {
-    $('#virtual_classroom_quick_select_container form').submit();
+    if(!$(this).hasClass('current')) {
+      $('#virtual_classroom_quick_select_container form').submit();
+    }
   });
   
   $('body').on('click', '#virtual_classroom_quick_select_close', function() {

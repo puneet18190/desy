@@ -98,8 +98,7 @@ class Seeding
   end
 
   def update_sequence(model)
-    query = "SELECT setval(%s, COALESCE( (SELECT MAX(id)+1 FROM %s), 1), true)"
-    model.connection.execute query % [ model.quote_value(model.sequence_name), model.quoted_table_name ]
+    model.connection.reset_pk_sequence! model.table_name
   end
 
   def locations!

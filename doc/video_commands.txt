@@ -172,3 +172,10 @@ LD_LIBRARY_PATH=/opt/libav/lib /opt/libav/bin/avconv -loglevel debug -y -i /home
 
 Avprobe, output in JSON:
   avprobe_opt -show_format -show_streams -of json ~/Video/video_editing/arbitro.flv
+
+
+HandBrake:
+  compilazione:
+    sudo aptitude install libfribidi-dev libbz2-dev intltool libglib2.0-dev
+
+  conversione: HandBrakeCLI -i sole.m4v -O -e x264 -w 960 -l 540 --x264-preset slow -o sole.hb.mp4

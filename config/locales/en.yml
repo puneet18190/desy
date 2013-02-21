@@ -363,6 +363,34 @@ en:
       # Button to clear your session
       # 1 - views/shared/_popups.html.erb
       cancel: "Clear"
+    # Popup asking for confirmation to the user if he clicks on the button 'empty playlist' inside the Virtual Classroom
+    empty_playlist:
+      # Title
+      # 1 - views/shared/_popups.html.erb
+      title: "Empty your playlist"
+      # Message
+      # 1 - views/shared/_popups.html.erb
+      confirm: "Are you sure you want to empty it?"
+      # Button to confirm
+      # 1 - views/shared/_popups.html.erb
+      do: "Yes"
+      # Button to cancel
+      # 1 - views/shared/_popups.html.erb
+      cancel: "Cancel"
+    # Popup asking for confirmation to the user if he clicks on the button 'empty virtual classroom' inside the Virtual Classroom
+    empty_virtual_classroom:
+      # Title
+      # 1 - views/shared/_popups.html.erb
+      title: "Empty your Virtual Classroom"
+      # Message
+      # 1 - views/shared/_popups.html.erb
+      confirm: "Are you sure you want to empty it?"
+      # Button to confirm
+      # 1 - views/shared/_popups.html.erb
+      do: "Yes"
+      # Button to cancel
+      # 1 - views/shared/_popups.html.erb
+      cancel: "Cancel"
     # When the user clicks on the 'exit' button inside the video editor, the application asks for confirmation (if the user confirms, the application deletes his current working session)
     exit_video_editor:
       # Title
@@ -1910,6 +1938,9 @@ en:
       # Button to add the selected lessons
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
       done: "Upload"
+      # Caption used when the user has no lessons to upload in his Virtual Classroom
+      # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
+      empty: "You don't have any lessons to add to your Virtual Classroom"
       # Button to open the window from the main bar inside Virtual Classroom
       # 1 - views/virtual_classroom/_header_buttons.html.erb
       label: "Add lessons"
