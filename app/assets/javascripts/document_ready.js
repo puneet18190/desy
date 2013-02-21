@@ -308,7 +308,11 @@ $(document).ready(function() {
           $('#' + instance_id).removeClass('_empty_audio_player').addClass('_instance_of_player');
           initializeMedia(instance_id, 'audio');
         }
-        obj.show('blind', {}, 500);
+        obj.show('blind', {}, 500, function() {
+          if($('#' + parent_id).next().length == 0) {
+            $('#audio_gallery_content > div').data('jsp').scrollToPercentY(100, true);
+          }
+        });
       }
     }
   });
