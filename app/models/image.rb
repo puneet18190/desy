@@ -10,7 +10,26 @@ class Image < MediaElement
   before_save :set_width_and_height
   
   attr_reader :edit_mode
-  
+
+  def self.test
+    i = new(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
+      v.user  = User.admin
+      v.media = File.open('/home/mau/Immagini/_.jpg')
+    end
+    i.save
+
+    p i.media.path
+    p i.media.thumb.path
+
+    i = find(i.id)
+
+    p i.media.path
+    p i.media.thumb.path
+
+    dir = File.dirname i.media.path
+    p Dir[File.join dir, '*']
+  end
+
   def url
     media.url
   end
