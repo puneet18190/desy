@@ -29,7 +29,7 @@
         <label for="subject"><%= t('admin.search.subject')%></label>
         <div class="controls">
           <select id="search_subject_id" name="search[subject_id]">
-            <option><%= t('admin.search.select_subject')%></option>
+            <option value=''><%= t('admin.search.select_subject')%></option>
             <% Subject.all.each do |subject| %>
             <% if params[:search].present? && (params[:search][:subject_id].to_i == subject.id.to_i) %>
               <option value="<%= subject.id %>" selected="selected">
@@ -48,7 +48,7 @@
         <label><%= t('admin.search.date_range')%></label>
         <div class="controls">
           <select id="search_date_range" name="search[date_range_field]" class="input-medium">
-            <option><%= t('admin.search.select_date_range')%></option>
+            <option value=''><%= t('admin.search.select_date_range')%></option>
             <% if params[:search].present? && (params[:search][:date_range_field].to_s == 'created_at') %>
               <option value='created_at' selected="selected"><%= t('admin.search.created_at')%></option>
               <option value='updated_at'><%= t('admin.search.updated_at')%></option>
@@ -94,7 +94,7 @@
         <label for="town_list"><%= t('admin.search.town')%></label>
         <div class="controls">
           <select id="town_list" name='search[town_id]'>
-            <% if params[:search][:province_id] && (params[:search][:province_id].to_i > 0)%>
+            <% if params[:search] && (params[:search][:province_id].to_i > 0)%>
               <%= render :partial => 'admin/users/locations_list', :locals => {:parent => params[:search][:province_id]} %>
             <% end %>
           </select>
@@ -104,7 +104,7 @@
         <label for="school_list"><%= t('admin.search.school')%></label>
         <div class="controls">
           <select id="school_list" name='search[school_id]'>
-            <% if params[:search][:town_id] && (params[:search][:town_id].to_i > 0)%>
+            <% if params[:search] && (params[:search][:town_id].to_i > 0)%>
               <%= render :partial => 'admin/users/locations_list', :locals => {:parent => params[:search][:town_id]} %>
             <% end %>
           </select>
