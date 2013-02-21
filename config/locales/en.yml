@@ -2228,3 +2228,26 @@ en:
       delete: 'Delete'
       #1 - views/admin/users/index.html.erb
       ask_for_delete: 'Are you sure?'
+    # SECTION 4.7 common search form
+    #1 - views/admin/lessons/index.html.erb
+    #2 - views/admin/elements/index.html.erb
+    #3 - views/admin/users/index.html.erb
+    search:
+      label: 'Search'
+      submit: 'Search'
+      id: 'Id'
+      keyword: 'Keyword'
+      user: 'User'
+      subject: 'Subject'
+      select_subject: 'Select a subject'
+      date_range: 'Date range'
+      select_date_range: 'Select range type'
+      date_from: 'From'
+      date_to: 'To'
+      start_more_then_end: 'The start date can not be bigger then the end date'
+      end_less_then_start: 'The end date can not be less then the start date'
+      province: 'Province'
+      town: 'Town'
+      school: 'School'
+      created_at: 'Created at'
+      updated_at: 'Last update'

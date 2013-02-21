@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table id="users_list" class="table table-striped">
   <thead>
     <tr>
       <th><b><%= link_to_sorted "id", :id %></b></th>
@@ -8,6 +8,8 @@
       <th><b><%= link_to_sorted "school", :school %></b></th>
       <th><b>location</b></th>
       <th><b><%= link_to_sorted "created", :created_at %></b></th>
+      <th></th>
+      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -22,10 +24,17 @@
         <td><%= user.school %> (<%= user.school_level.description %>)</td>
         <td></td>
         <td><%= user.created_at.strftime('%d-%m-%Y')%></td>
-        <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user) ,:target => :blank, :class=>"action"%><a href="#" target="_blank" class="action"></a></td>
-        <td><%= link_to '<i class="icon-ok"></i>'.html_safe, "#", :class=>"action disabled"%></td>
-        <td><%= link_to '<i class="icon-ban-circle"></i>'.html_safe, "#", :class=>"action"%></td>
-        <td><%= link_to '<i class="icon-remove"></i>'.html_safe, "#", :class=>"action"%></td>
+        <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user), :title=> t('admin.users.index.show'), :target => :blank, :class=>"action"%></td>
+        <td><%= link_to '<i class="icon-envelope"></i>'.html_safe, "/admin/users/contact?users=#{user.id}", :title=> t('admin.users.index.message'), :target => :blank, :class=>"action"%></td>
+        <td id="user_<%=user.id%>_status">
+          <%if user.active %>
+            <%= link_to '', "#", :title=> t('admin.users.index.ban'), :class=>"icon-ban-circle action _active_status ban", 'data-param'=>"#{user.id}"%>
+          <% else %>
+            <%= link_to '', "#", :title=> t('admin.users.index.activate'), :class=>"icon-ok action _active_status activate", 'data-param'=>"#{user.id}"%>  
+          <% end %>
+        </td>
+        
+        <td><%= link_to '<i class="icon-remove"></i>'.html_safe, "#", :confirm => t('admin.general.ask_for_delete'), :title=> t('admin.users.index.delete'), :class=>"action"%></td>
       </tr>
     <% end %>
   </tbody>

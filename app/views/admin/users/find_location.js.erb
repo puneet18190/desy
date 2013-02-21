@@ -1,0 +1,8 @@
+<% if @parent.sti_type == 'Province' %>
+  $('select#town_list').html("<%= j render :partial => 'admin/users/locations_list', :locals => {:parent => @parent} %>")
+  $('select#school_list').html("");
+<% end %>
+
+<% if @parent.sti_type == 'Town' %>
+  $('select#school_list').html("<%= j render :partial => 'admin/users/locations_list', :locals => {:parent => @parent} %>")
+<% end %>

@@ -4,7 +4,7 @@ class Admin::UsersController < AdminController
   def index    
     @total_users = User.sorted(params[:sort], "id DESC")
     @users = @total_users.page(params[:page])
-    
+    @location_root = Location.roots
     respond_to do |wants|
       wants.html # index.html.erb
       wants.xml  { render :xml => @elements }
@@ -36,6 +36,16 @@ class Admin::UsersController < AdminController
   def get_emails
     @users = User.get_emails(params[:term])
     render :json => @users
+  end
+
+  def find_location
+    @parent = Location.find(params[:id])
+  end
+  
+  def set_status
+    @user = User.find params[:id]
+    @user.active = params[:active]
+    @user.save
   end
 
   def contact

@@ -1,84 +1,113 @@
-<h4>Search</h4>
-<form class="form-vertical">
+<h4><%= t('admin.search.label')%></h4>
+<%= form_tag 'lessons', :method => :get, :class=>"form-vertical" do %>
+  <%= hidden_field_tag 'search[search_type]', 'lessons'%>
+  <div class="row-fluid">
+    <div id="alert" class="span12 alert alert-error" style="display:none">
+      <div class="start"><%= t('admin.search.start_more_then_end') %></div>
+      <div class="end"><%= t('admin.search.end_less_then_start') %></div>
+    </div>
+  </div>
   <div class="row-fluid">
     <div class="span1">
       <div class="control-group">
-        <label for="id">id</label>
+        <label for="id"><%= t('admin.search.id')%></label>
         <div class="controls">
-          <input type="text" class="input-mini" name="id" placeholder="id">
+          <%= text_field_tag 'search[id]', params[:search] ? params[:search][:id] : ''  ,:class=>'input-mini', :placeholder => t('admin.search.id')%>
         </div>
       </div>
     </div>
     <div class="span2">
       <div class="control-group">
-        <label for="keyword">Keyword</label>
+        <label for="keyword"><%= t('admin.search.keyword')%></label>
         <div class="controls">
-          <input type="text" class="input-small" name="keyword" placeholder="Keyword">
+          <%= text_field_tag 'search[keyword]',  params[:search] ? params[:search][:keyword] : '', :class=>'input-medium', :placeholder => t('admin.search.keyword')%>
         </div>
       </div>
     </div>
     <div class="span3">
       <div class="control-group">
-        <label for="subject">Subject</label>
+        <label for="subject"><%= t('admin.search.subject')%></label>
         <div class="controls">
-          <select>
+          <select id="search_subject_id" name="search[subject_id]">
+            <option><%= t('admin.search.select_subject')%></option>
             <% Subject.all.each do |subject| %>
-              <option><%= subject.description %></option>
+            <% if params[:search].present? && (params[:search][:subject_id].to_i == subject.id.to_i) %>
+              <option value="<%= subject.id %>" selected="selected">
+            <%else%>
+              <option value="<%= subject.id %>">
+            <%end%>
+                <%= subject.description %>
+              </option>
             <%end%>
           </select>
         </div>
       </div>
     </div>
     <div class="span2">
-      <div class="control-group">
-        <label for="region">Region</label>
+      <div class="controls-group">
+        <label><%= t('admin.search.date_range')%></label>
         <div class="controls">
-          <input type="text" class="input-small" name="region" placeholder="Region">
+          <select id="search_date_range" name="search[date_range_field]" class="input-medium">
+            <option><%= t('admin.search.select_date_range')%></option>
+            <% if params[:search].present? && (params[:search][:date_range_field].to_s == 'created_at') %>
+              <option value='created_at' selected="selected"><%= t('admin.search.created_at')%></option>
+              <option value='updated_at'><%= t('admin.search.updated_at')%></option>
+            <% elsif params[:search].present? && (params[:search][:date_range_field].to_s == 'updated_at') %>
+              <option value='created_at'><%= t('admin.search.created_at')%></option>
+              <option value='updated_at' selected="selected"><%= t('admin.search.updated_at')%></option>
+            <% else %>
+              <option value='created_at'><%= t('admin.search.created_at')%></option>
+              <option value='updated_at'><%= t('admin.search.updated_at')%></option>
+            <% end %>
+          </select>
         </div>
       </div>
     </div>
     <div class="span2">
       <div class="control-group">
-        <label for="school">School</label>
+        <label><%= t('admin.search.date_from')%></label>
         <div class="controls">
-          <input type="text" class="input-small" name="school" placeholder="School">
+          <%= text_field_tag 'search[from]', params[:search] ? params[:search][:from] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd1', :class=>"input input-medium datepick", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy' %>
         </div>
       </div>
     </div>
     <div class="span2">
       <div class="control-group">
-        <label for="user">User</label>
+        <label><%= t('admin.search.date_to')%></label>
         <div class="controls">
-          <input type="text" class="input-small" name="user" placeholder="User">
+          <%= text_field_tag 'search[to]', params[:search] ? params[:search][:to] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd2', :class=>"input input-medium datepick", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy' %>
         </div>
       </div>
     </div>
   </div>
   <div class="row-fluid">
-    <div class="span3">
-      <div class="controls-group">
-        <label>Data range</label>
+    <div class="span12">
+      <div class="control-group">
+        <label for="province_list"><%= t('admin.search.province')%></label>
         <div class="controls">
-          <select>
-            <option>created at</option>
-            <option>last update</option>
+          <select id="province_list" name='search[province_id]'>
+            <%= render :partial => 'admin/users/locations_list', :locals => {:parent => nil} %>
           </select>
         </div>
       </div>
-    </div>
-    <div class="span3">
       <div class="control-group">
-        <label>From</label>
+        <label for="town_list"><%= t('admin.search.town')%></label>
         <div class="controls">
-          <input type="text" value="<%=Time.now.strftime('%d-%m-%Y')%>" id="dp1" data-date="<%=Time.now.strftime('%d-%m-%Y')%>" data-date-format="dd-mm-yyyy">
+          <select id="town_list" name='search[town_id]'>
+            <% if params[:search][:province_id] && (params[:search][:province_id].to_i > 0)%>
+              <%= render :partial => 'admin/users/locations_list', :locals => {:parent => params[:search][:province_id]} %>
+            <% end %>
+          </select>
         </div>
       </div>
-    </div>
-    <div class="span3">
       <div class="control-group">
-        <label>To</label>
+        <label for="school_list"><%= t('admin.search.school')%></label>
         <div class="controls">
-          <input type="text" value="<%=Time.now.strftime('%d-%m-%Y')%>" id="dp2" data-date="<%=Time.now.strftime('%d-%m-%Y')%>" data-date-format="dd-mm-yyyy">
+          <select id="school_list" name='search[school_id]'>
+            <% if params[:search][:town_id] && (params[:search][:town_id].to_i > 0)%>
+              <%= render :partial => 'admin/users/locations_list', :locals => {:parent => params[:search][:town_id]} %>
+            <% end %>
+          </select>
         </div>
       </div>
     </div>
@@ -86,8 +115,8 @@
   <div class="row-fluid">
     <div class="span12">
       <div class="form-actions">
-        <button type="submit" class="btn">Search</button>
+        <button type="submit" class="btn"><%= t('admin.search.submit')%></button>
       </div>
     </div>
   </div>
-</form>
+<% end %>

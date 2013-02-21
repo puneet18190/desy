@@ -1,6 +1,8 @@
 <% if lessons.empty? %>
   <div class="EmptyQuickLoadVirtualClassroomLessons">
     <h3><%= t('virtual_classroom.select_lessons.empty') %></h3>
+    <div class="contentPopUp" style="outline:1px solid red">
+    </div>
   </div>
 <% else %>
   <h3><%= t('virtual_classroom.select_lessons.description') %></h3>
