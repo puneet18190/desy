@@ -1,4 +1,7 @@
 class MediaElement < ActiveRecord::Base
+
+  include FilenameToken
+
   self.inheritance_column = :sti_type
   
   # Questa deve stare prima delle require dei submodels, perché
