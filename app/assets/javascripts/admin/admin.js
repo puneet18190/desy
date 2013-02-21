@@ -21,6 +21,36 @@ $(document).ready(function(){
   bindLoader();
   
   // FUNCTIONS
+  $("#province_list,#town_list").on('change',function(){
+    $.ajax({
+      url: "/admin/location/"+$(this).val()+"/find",
+      type: "POST"
+    });
+  });
+  
+  //$('#search_date_range').on('change',function(){
+  //  var selected = $(this).find('option:selected').val();
+  //  if(selected.match(/(created_at|updated_at)/)){
+  //    $('.datepick').removeAttr('disabled');
+  //  }else{
+  //    $('.datepick').attr('disabled','disabled');
+  //  }
+  //  
+  //});
+  
+  $("body").on('click','._active_status',function(e){
+    e.preventDefault();
+    var link = $(this);
+    var status = true;
+    if(link.hasClass('ban')){
+      status = false;
+    }
+    $.ajax({
+      url: "/admin/users/"+link.data('param')+"/set_status?active="+status,
+      type: "PUT"
+    });
+  });
+  
   $('body').on('click','._update_new_element ', function(e){
     $.ajax({
       type: 'PUT',
@@ -150,10 +180,48 @@ $(document).ready(function(){
         });
     });
   
-  // EFFECTS
   
-  $('#dp1').datepicker();
-  $('#dp2').datepicker();
+  // EFFECTS
+    
+  // disabling dates
+  var nowTemp = new Date();
+  var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+  var checkin = $('#dpd1').datepicker({
+    onRender: function(date) {
+      return date.valueOf() < now.valueOf() || (checkout && date.valueOf() < checkout.date.valueOf()) ? 'disabled' : '';
+    }
+  }).on('changeDate', function(ev) {
+    if (ev.date.valueOf() > checkout.date.valueOf()) {
+      $('#alert').show();
+      $('#alert .start').show();
+      $('#alert .end').hide();
+    }else{
+      $('#alert').hide();
+    }
+    checkin.hide();
+    $('#dpd1')[0].blur();
+    $('#dpd2')[0].blur();
+  }).data('datepicker');
+    
+  var checkout = $('#dpd2').datepicker({
+    onRender: function(date) {
+      return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+    }
+  }).on('changeDate', function(ev) {
+    if (ev.date.valueOf() < checkin.date.valueOf()) {
+      $('#alert').show();
+      $('#alert .end').show();
+      $('#alert .start').hide();
+    }else{
+      $('#alert').hide();
+    }
+    checkout.hide();
+    $('#dpd1')[0].blur();
+    $('#dpd2')[0].blur();
+  }).data('datepicker');
+
+   
    
   $('.dropdown').click(function(e){
     e.stopPropagation();

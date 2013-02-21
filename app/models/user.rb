@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   belongs_to :school_level
   belongs_to :location, class_name: location_association_class
   
-  validates_presence_of :email, :name, :surname, :school_level_id, :location_id, :active
+  validates_presence_of :email, :name, :surname, :school_level_id, :location_id
   validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
   validates_confirmation_of :password
   validates_presence_of :users_subjects
@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   validates_length_of :name, :surname, :email, :maximum => 255
   validates_length_of :password, :minimum => 8, :on => :create, :unless => proc { |record| record.encrypted_password.present? }
   validates_length_of :password, :minimum => 8, :on => :update, :allow_nil => true, :allow_blank => true
+  validates_inclusion_of :active, :in => [true, false]
   validate :validate_associations
   validate :validate_email_not_changed, on: :update
   validates :email, email_format: { :message => I18n.t(:invalid_email_address, :scope => [:activerecord, :errors, :messages]) }
