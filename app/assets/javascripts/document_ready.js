@@ -310,7 +310,9 @@ $(document).ready(function() {
         }
         obj.show('blind', {}, 500, function() {
           if($('#' + parent_id).next().length == 0) {
-            $('#audio_gallery_content > div').data('jsp').scrollToPercentY(100, true);
+            setTimeout(function() {
+              $('#audio_gallery_content > div').data('jsp').scrollToPercentY(100, true);
+            }, 300);
           }
         });
       }
