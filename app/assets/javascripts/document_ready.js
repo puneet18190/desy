@@ -21,7 +21,13 @@ $(document).ready(function() {
   
   
   // LOADER
+  
   bindLoader();
+  
+  
+  // CHANGE TITLE TO LESSONS WHOSE CHANGES ARE TO BE NOTIFIED
+  
+  $('._lesson_change_not_notified .unpublish').attr('title', $('#popup_captions_container').data('title-lesson-modification-not-notified'));
   
   
   // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
@@ -652,6 +658,7 @@ $(document).ready(function() {
     closePopUp('lesson-notification');
     var lesson_id = $('#lesson-notification').data('lesson-id');
     $('#' + lesson_id).removeClass('_lesson_change_not_notified');
+    $('#' + lesson_id + ' .unpublish').attr('title', $('#popup_captions_container').data('title-unpublish'));
     var id = lesson_id.split('_');
     id = id[id.length - 1];
     $.ajax({
