@@ -499,7 +499,8 @@ $(document).ready(function() {
       var my_param = $(this).data('clickparam');
       var destination = $(this).data('destination');
       var current_url = $('#info_container').data('currenturl');
-      destroyMediaElement(my_param, destination, current_url);
+      var used_in_private_lessons = $(this).data('media-element-used-in-private-lessons');
+      destroyMediaElement(my_param, destination, current_url, used_in_private_lessons);
     }
   });
   

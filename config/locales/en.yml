@@ -326,9 +326,12 @@ en:
         cancel: "Cancel"
       # The application asks for confirmation about deleting an element
       media_element:
-        # Message (if you are using the element in some of your lessons, it will be removed from each of his instances)
+        # Message
         # 1 - views/shared/_popups.html.erb
-        confirm: "It will be deleted in each of its instances in your lessons"
+        confirm: "Are you sure you want to delete it?"
+        # Message if you are using the element in some of your lessons: it will be removed from each of his instances
+        # 1 - views/shared/_popups.html.erb
+        confirm_bis: "You are using it in some of your lessons, it will be deleted in each of its instances"
         # Title
         # 1 - views/shared/_popups.html.erb
         title: "Delete this element?"
