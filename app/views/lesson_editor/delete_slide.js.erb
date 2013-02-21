@@ -8,6 +8,7 @@
     $('#nav_list_menu').jScrollPane({
       autoReinitialise: false
     });
+    $('._add_new_slide_options, ._add_new_slide_options_in_last_position').removeClass('disabled');
     slideTo(<%= @current_slide.id %>);
   });
 <% else %>

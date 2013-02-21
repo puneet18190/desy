@@ -18,7 +18,7 @@ class Lesson < ActiveRecord::Base
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :likes
   has_many :reports, :as => :reportable, :dependent => :destroy
-  has_many :taggings, :as => :taggable, :dependent => :delete_all
+  has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :slides
   has_many :virtual_classroom_lessons
   
@@ -32,12 +32,10 @@ class Lesson < ActiveRecord::Base
   validates_uniqueness_of :parent_id, :scope => :user_id, :if => :present_parent_id
   validate :validate_associations, :validate_public, :validate_copied_not_modified_and_public, :validate_impossible_changes, :validate_tags_length
   
+  before_validation :init_validation, :create_token
+  before_create :initialize_metadata
   after_save :create_or_update_cover, :update_or_create_tags
   
-  before_validation :init_validation, :create_token
-  
-  before_create :initialize_metadata
-
   # SELECT "lessons".* FROM "lessons" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = lessons.id AND bookmarks.bookmarkable_type = 'Lesson' AND bookmarks.user_id = 1 ORDER BY COALESCE(bookmarks.created_at, lessons.updated_at) DESC
   scope :of, ->(user_or_user_id) do
     user_id = user_or_user_id.instance_of?(User) ? user_or_user_id.id : user_or_user_id
@@ -50,7 +48,6 @@ class Lesson < ActiveRecord::Base
     order('COALESCE(bookmarks.created_at, lessons.updated_at) DESC')
   end
 
-  
   def initialize_metadata
     self.metadata.available_video = true
     self.metadata.available_audio = true
@@ -358,6 +355,10 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  def reached_the_maximum_of_slides?
+    Slide.where(:lesson_id => self.id).count == SETTINGS['max_number_slides_in_a_lesson']
+  end
+  
   def add_to_virtual_classroom(an_user_id)
     errors.clear
     if self.new_record?
@@ -529,6 +530,25 @@ class Lesson < ActiveRecord::Base
       end
       self.token = tok
     end
+  end
+
+  # def set_orphan_tags
+  #   _d tags
+  #   _d taggings
+  #   _d taggings.map(&:tags)
+  # end  
+
+  # def destroy_orphan_tags
+  #   _d tags
+  #   _d taggings
+  #   _d taggings.map(&:tags)
+  # end
+
+  def self.test
+    l = User.admin.create_lesson('test title', 'test description', 1, "asd, o, mar, rio, mare, test")
+    l = find l.id
+    _d l
+    l.destroy
   end
   
 end

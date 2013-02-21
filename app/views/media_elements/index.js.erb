@@ -1,7 +1,4 @@
-<%
-  my_current_url = remove_param_from_url(request.url, 'delete_item')
-  my_current_url = add_page_parameter(@page, my_current_url)
-%>
+<% my_current_url = manipulate_request_url(remove_query_param: 'delete_item', page: @page) %>
 
 <% if @delete_item.blank? %>
   $('#my_media_elements').hide('fade', {}, 500, function() {

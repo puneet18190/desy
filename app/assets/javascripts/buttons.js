@@ -195,9 +195,16 @@ function addMediaElement(media_element_id, destination, current_url, reload) {
   }
 }
 
-function destroyMediaElement(media_element_id, destination, current_url) {
+function destroyMediaElement(media_element_id, destination, current_url, used_in_private_lessons) {
   var captions = $('#popup_captions_container');
-  showConfirmPopUp(captions.data('destroy-media-element-title'), captions.data('destroy-media-element-confirm'), captions.data('destroy-media-element-yes'), captions.data('destroy-media-element-no'), function() {
+  var title = captions.data('destroy-media-element-title');
+  var confirm = captions.data('destroy-media-element-confirm');
+  var yes = captions.data('destroy-media-element-yes');
+  var no = captions.data('destroy-media-element-no');
+  if(used_in_private_lessons) {
+    confirm = captions.data('destroy-media-element-confirm-bis');
+  }
+  showConfirmPopUp(title, confirm, yes, no, function() {
     $('#dialog-confirm').hide();
     var redirect_url = addDeleteItemToCurrentUrl(current_url, (destination + '_' + media_element_id));
     $.ajax({

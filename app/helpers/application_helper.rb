@@ -12,18 +12,8 @@ module ApplicationHelper
     return "#{msg[0..-3]}</span>".html_safe
   end
   
-  def seconds_to_time(secs)
-    mm = secs / 60
-    ss = secs % 60
-    hh = mm / 60
-    mm = mm % 60
-    resp = ''
-    resp = "#{hh}:" if hh > 0
-    resp = "#{resp}#{mm}:" if mm > 9
-    resp = "#{resp}0#{mm}:" if mm < 10
-    resp = "#{resp}#{ss}" if ss > 9
-    resp = "#{resp}0#{ss}" if ss < 10
-    resp
+  def seconds_to_time(seconds)
+    Time.at(seconds).utc.strftime(seconds >= 3600 ? '%T' : '%M:%S')
   end
   
   def controller_html_class
@@ -33,102 +23,57 @@ module ApplicationHelper
   def action_html_class
     "#{h action_name}-action"
   end
-  
-  def add_page_parameter(page, an_url)
-    an_url = an_url.html_safe
-    x = an_url.split('?')
-    return "#{an_url}?page=#{page}".html_safe if x.length == 1
-    x = x[1].split('&')
-    flag = false
-    old_page = 0
-    cont = 1
-    pivot = '&'
-    x.each do |xx|
-      yy = xx.split('=')
-      if yy[0] == 'page'
-        flag = true
-        old_page = yy[1]
-        pivot = '?' if cont == 1
-      end
-      cont += 1
-    end
-    return flag ? an_url.gsub("#{pivot}page=#{old_page}", "#{pivot}page=#{page}").html_safe : "#{an_url}&page=#{page}".html_safe
-  end
-  
-  def remove_param_from_url(url, param)
-    url = url.html_safe
-    return url if (url =~ /#{param}/).nil?
-    x = url.split("#{param}=")
-    pivot = "#{param}="
-    if x[0].last == '&'
-      pivot = "&#{pivot}"
-    end
-    if (x[1] =~ /&/).nil?
-      new_url = url.gsub("#{pivot}#{x[1]}", '')
-    else
-      new_url = url.gsub("#{pivot}#{x[1].split('&')[0]}", '')
-    end
-    new_url.chop! if new_url.last == '?'
-    new_url.gsub!('?&', '?') if !(new_url =~ /\?&/).nil?
-    return new_url.html_safe
+
+  def manipulate_request_url(options = {})
+    param_to_remove = options[:remove_query_param]
+    page            = options[:page]
+
+    query_params = request.query_parameters.deep_dup
+
+    query_params.delete(param_to_remove.to_s) if param_to_remove && query_params.present?
+
+    query_params[:page] = page if page
+
+    query_string = query_params.map{ |k, v| "#{k}=#{v}" }.join('&')
+
+    return request.path if query_string.blank?
+
+    "#{request.path}?#{query_string}"
   end
   
   def is_horizontal?(width, height, kind)
-    ratio = width.to_f / height.to_f
-    result = case kind
-      when 'cover'
-        ratio > 1.6
-      when 'image1'
-        ratio > 1
-      when 'image2'
-        ratio > 0.75
-      when 'image3'
-        ratio > 1.55
-      when 'image4'
-        ratio > 1.55
-      when 'video_component'
-        ratio > 1.77
-      when 'video_component_preview'
-        ratio > 1.77
-    end
+    # width.to_f / height.to_f : ratio
+    ( width.to_f / height.to_f ) >
+      case kind
+      when 'cover'                                      then 1.6
+      when 'image1'                                     then 1
+      when 'image2'                                     then 0.75
+      when 'image3', 'image4'                           then 1.55
+      when 'video_component', 'video_component_preview' then 1.77
+      end
   end
   
   def resize_width(width, height, kind)
-    result = case kind
-      when 'cover'
-        (width * 560) / height
-      when 'image1'
-        (width * 420) / height
-      when 'image2'
-        (width * 550) / height
-      when 'image3'
-        (width * 550) / height
-      when 'image4'
-        (width * 265) / height
-      when 'video_component'
-        (width * 88) / height
-      when 'video_component_preview'
-        (width * 360) / height
-    end
+    width *
+      case kind
+      when 'cover'                   then 560
+      when 'image1'                  then 420
+      when 'image2', 'image3'        then 550
+      when 'image4'                  then 265
+      when 'video_component'         then 88
+      when 'video_component_preview' then 360
+      end / height
   end
   
   def resize_height(width, height, kind)
-    result = case kind
-      when 'cover'
-        (height * 900) / width
-      when 'image1'
-        (height * 420) / width
-      when 'image2'
-        (height * 420) / width
-      when 'image3'
-        (height * 860) / width
-      when 'image4'
-        (height * 420) / width
-      when 'video_component'
-        (height * 156) / width
-      when 'video_component_preview'
-        (height * 640) / width
-    end
+    height *
+      case kind
+      when 'cover'                      then 900
+      when 'image1', 'image2', 'image4' then 420
+      when 'image3'                     then 860
+      when 'video_component'            then 156
+      when 'video_component_preview'    then 640
+      end / width
   end
   
   # Metodo per aiutare il debug nelle viste
@@ -138,15 +83,6 @@ module ApplicationHelper
   else
     def jsd(object)
       javascript_tag "console.log(#{object.inspect.to_json})"
-    end
-  end
-
-  # non funzia :-(
-  def content_tag_if(condition, name = :div, content_or_options_with_block = nil, options = nil, escape = true, &block)
-    if condition
-      content_tag name, content_or_options_with_block, options, escape, &block
-    else
-      yield if block_given?
     end
   end
   
