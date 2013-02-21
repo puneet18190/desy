@@ -159,6 +159,8 @@ Desy::Application.routes.draw do
     get 'users/contact' => 'users#contact'
     get 'users/get_emails' => 'users#get_emails'
     get 'elements/edit' => 'elements#edit'
+    post 'location/:id/find' => 'users#find_location'
+    put 'users/:id/set_status' => 'users#set_status'
     
     resources :lessons, :only => [:index, :destroy]
     resources :elements, :except => [:show, :edit]
