@@ -10,15 +10,25 @@ class Tagging < ActiveRecord::Base
   validate :validate_associations, :validate_impossible_changes
   
   before_validation :init_validation
+
+  # FIXME: questa è da rivedere; il controllo dovrebbe essere fatto dalla validazione
+  #   dell'associazione
   before_destroy :stop_destruction_if_last
 
+  after_destroy :destroy_orphan_tags
+
   private
-  
-  def stop_destruction_if_last
-    @tagging = Valid.get_association self, :id
-    return true if @tagging.nil?
-    return @tagging.taggable.taggings.count > SETTINGS['min_tags_for_item']
+
+  def destroy_orphan_tags
+    tag.destroy unless tag.taggings.exists?
+    true
   end
+  
+  # def stop_destruction_if_last
+  #   @tagging = Valid.get_association self, :id
+  #   return true if @tagging.nil?
+  #   @tagging.taggable.taggings.count > SETTINGS['min_tags_for_item']
+  # end
   
   def good_taggable_type
     ['Lesson', 'MediaElement'].include? self.taggable_type

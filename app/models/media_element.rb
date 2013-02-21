@@ -25,7 +25,7 @@ class MediaElement < ActiveRecord::Base
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
   has_many :reports, :as => :reportable, :dependent => :destroy
-  has_many :taggings, :as => :taggable, :dependent => :delete_all
+  has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :taggings_tags, through: :taggings, source: :tag
   belongs_to :user
   
