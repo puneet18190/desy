@@ -45,6 +45,7 @@ function initializeDraggableVirtualClassroomLesson(id) {
       revert: true,
       handle: '._lesson_thumb',
       cursor: 'move',
+      containment: '.griglia-contenuti',
       helper: function() {
         var current_z_index = getMaximumZIndex('_virtual_classroom_lesson') + 1;
         var div_to_return = $('#' + this.id + ' ._lesson_thumb')[0].outerHTML;
