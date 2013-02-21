@@ -12,18 +12,8 @@ module ApplicationHelper
     return "#{msg[0..-3]}</span>".html_safe
   end
   
-  def seconds_to_time(secs)
-    mm = secs / 60
-    ss = secs % 60
-    hh = mm / 60
-    mm = mm % 60
-    resp = ''
-    resp = "#{hh}:" if hh > 0
-    resp = "#{resp}#{mm}:" if mm > 9
-    resp = "#{resp}0#{mm}:" if mm < 10
-    resp = "#{resp}#{ss}" if ss > 9
-    resp = "#{resp}0#{ss}" if ss < 10
-    resp
+  def seconds_to_time(seconds)
+    Time.at(seconds).utc.strftime(seconds >= 3600 ? '%T' : '%M:%S')
   end
   
   def controller_html_class
