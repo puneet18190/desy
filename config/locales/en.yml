@@ -1477,6 +1477,9 @@ en:
       # 3 - views/prelogin/contact_us.html.erb
       # 4 - views/prelogin/what_is_desy.html.erb
       menu_link: "Sign up"
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/users/edit.html.erb
+      select_a: 'Select a'
     # Section where it's explained more about the application
     what_is_desy:
       # 1 - views/prelogin/registration.html.erb
