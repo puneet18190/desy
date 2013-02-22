@@ -22,21 +22,39 @@ $(document).ready(function(){
   
   // FUNCTIONS
   $("#province_list,#town_list").on('change',function(){
-    $.ajax({
-      url: "/admin/location/"+$(this).val()+"/find",
-      type: "POST"
-    });
+    var $this = $(this);
+    if($this.val().length > 0){
+      $.ajax({
+        url: "/admin/location/"+$(this).val()+"/find",
+        type: "POST"
+      });
+    }else{
+      if($this.attr('id') === 'town_list'){
+        $('#school_list').html('');
+      }
+      if($this.attr('id') === 'province_list'){
+        $('#school_list').html('');
+        $('#town_list').html('');
+      }
+    }
+    
   });
   
-  //$('#search_date_range').on('change',function(){
-  //  var selected = $(this).find('option:selected').val();
-  //  if(selected.match(/(created_at|updated_at)/)){
-  //    $('.datepick').removeAttr('disabled');
-  //  }else{
-  //    $('.datepick').attr('disabled','disabled');
-  //  }
-  //  
-  //});
+  
+  var selected = $('#search_date_range').find('option:selected').val();
+  if(selected.length > 0){
+    $('.datepick').removeAttr('disabled');
+  }
+  
+  $('#search_date_range').on('change',function(){
+    var selected = $(this).find('option:selected').val();
+    if(selected.length > 0){
+      $('.datepick').removeAttr('disabled');
+    }else{
+      $('.datepick').attr('disabled','disabled');
+    }
+    
+  });
   
   $("body").on('click','._active_status',function(e){
     e.preventDefault();

@@ -7,7 +7,7 @@ class Admin::LessonsController < AdminController
     if AdminSearchForm.search(params[:search],'lessons')
       @total_lessons = AdminSearchForm.search(params[:search],'lessons')
     else
-      @total_lessons = Lesson.all
+      @total_lessons = Lesson.order('id DESC')
     end
     @lessons = @total_lessons.page(params[:page])
     @location_root = Location.roots

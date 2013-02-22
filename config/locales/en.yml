@@ -2246,6 +2246,7 @@ en:
       label: 'Search'
       submit: 'Search'
       id: 'Id'
+      title: 'Title'
       keyword: 'Keyword'
       user: 'User'
       subject: 'Subject'

@@ -18,9 +18,9 @@
     </div>
     <div class="span2">
       <div class="control-group">
-        <label for="keyword"><%= t('admin.search.keyword')%></label>
+        <label for="keyword"><%= t('admin.search.title')%></label>
         <div class="controls">
-          <%= text_field_tag 'search[keyword]',  params[:search] ? params[:search][:keyword] : '', :class=>'input-medium', :placeholder => t('admin.search.keyword')%>
+          <%= text_field_tag 'search[title]',  params[:search] ? params[:search][:title] : '', :class=>'input-medium', :placeholder => t('admin.search.title')%>
         </div>
       </div>
     </div>
@@ -67,7 +67,7 @@
       <div class="control-group">
         <label><%= t('admin.search.date_from')%></label>
         <div class="controls">
-          <%= text_field_tag 'search[from]', params[:search] ? params[:search][:from] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd1', :class=>"input input-medium datepick", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy' %>
+          <%= text_field_tag 'search[from]', (params[:search] && params[:search][:from]) ? params[:search][:from] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd1', :class=>"input input-medium datepick disabled", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy', :disabled => :disabled %>
         </div>
       </div>
     </div>
@@ -75,7 +75,7 @@
       <div class="control-group">
         <label><%= t('admin.search.date_to')%></label>
         <div class="controls">
-          <%= text_field_tag 'search[to]', params[:search] ? params[:search][:to] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd2', :class=>"input input-medium datepick", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy' %>
+          <%= text_field_tag 'search[to]', (params[:search] && params[:search][:to]) ? params[:search][:to] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd2', :class=>"input input-medium datepick", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy', :disabled => :disabled %>
         </div>
       </div>
     </div>
@@ -108,6 +108,12 @@
               <%= render :partial => 'admin/users/locations_list', :locals => {:parent => params[:search][:town_id]} %>
             <% end %>
           </select>
+        </div>
+      </div>
+      <div class="control-group">
+        <label for="search_user"><%= t('admin.search.user')%></label>
+        <div class="controls">
+          <%= text_field_tag 'search[user]',  params[:search] ? params[:search][:user] : '', :class=>'input-medium', :placeholder => t('admin.search.user')%>
         </div>
       </div>
     </div>
