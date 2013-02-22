@@ -1,8 +1,9 @@
 class AdminSearchForm < Form
 
-  attr_accessor :search_type, :id, :title, :keyword, :user, :subject_id, :element_type, :date_range_field, :from, :to,:province_id, :town_id, :school_id
+  attr_accessor :search_type, :ordering, :id, :title, :keyword, :user, :subject_id, :element_type, :date_range_field, :from, :to,:province_id, :town_id, :school_id
   
   validates_numericality_of :id, :unless => Proc.new {|c| c.id.blank?}
+  validates_presence_of :ordering
   
   def self.search(params, search_type)
     if params
@@ -22,7 +23,7 @@ class AdminSearchForm < Form
   end
   
   def self.search_lessons(params)
-    lessons = Lesson.order('id DESC')
+    lessons = Lesson.order(params[:ordering])
     lessons = lessons.where(id: params[:id]) if params[:id].present?
     lessons = lessons.where('title ILIKE ?', "%#{params[:title]}%") if params[:title].present?
     lessons = lessons.where(subject_id: params[:subject_id]) if params[:subject_id].present?
@@ -35,6 +36,7 @@ class AdminSearchForm < Form
     end
     lessons = lessons.where('users.location_id' => params[:school_id]) if params[:school_id].present?
     lessons = lessons.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
+    #ADD SELF JOIN FOR LOCATION
     lessons
   end
     

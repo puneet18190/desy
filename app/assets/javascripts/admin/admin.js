@@ -20,7 +20,7 @@ $(document).ready(function(){
   // LOADER
   bindLoader();
   
-  // FUNCTIONS
+  // SEARCH
   $("#province_list,#town_list").on('change',function(){
     var $this = $(this);
     if($this.val().length > 0){
@@ -56,6 +56,17 @@ $(document).ready(function(){
     
   });
   
+  
+  $('body').on('click', 'table#lessons-list thead tr th a', function(e){
+    e.preventDefault();
+    $this = $(this)
+    var order_by = $this.attr('href');
+    $("input#search_ordering").val(order_by);
+    $('#admin-search-lessons').submit();
+  })
+  
+  // USERS ACTIONS
+  
   $("body").on('click','._active_status',function(e){
     e.preventDefault();
     var link = $(this);
@@ -69,6 +80,8 @@ $(document).ready(function(){
     });
   });
   
+  
+  // ELEMENTS ACTIONS
   $('body').on('click','._update_new_element ', function(e){
     $.ajax({
       type: 'PUT',

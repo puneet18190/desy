@@ -1,17 +1,30 @@
 <% if lessons.count > 0 %>
-  <table class="table table-striped table-hover">
+  <table id="lessons-list" class="table table-striped table-hover">
   <thead>
     <tr>
-      <td><b><%= link_to "id", "#" %></b></td>
-      <td><b><%= link_to "title", "#" %></b></td>
-      <td><b><%= link_to "subject", "#" %></b></td>
-      <td><b><%= link_to "user", "#" %></b></td>
-      <td><b>location</b></td>
-      <td><b><%= link_to "created", "#" %></b></td>
-      <td><b><%= link_to "last update", "#" %></b></td>
-      <td><b>likes</b></td>
-      <td></td>
-      <td></td>
+      <th>
+        <a class="icon-chevron-up" href="id ASC"></a><br>
+        id<br>
+        <a class="icon-chevron-down" href="id DESC"></a>
+      </th>
+      <th>
+        title <div class="badge"><a class="icon-chevron-up" href="title ASC"></a></div> <div class="badge"><a class="icon-chevron-down" href="title DESC"></a></div>
+      </th>
+      <th><%= link_to "subject", "subjects.name", :class=>'ASC' %></th>
+      <th><%= link_to "user", "users.name", :class=>'ASC' %></th>
+      <th><%= link_to "location", "locations.province_name", :class=>'ASC' %></th>
+      <th><%= link_to "school", "locations.school_name", :class=>'ASC' %></th>
+      <th>
+        <a class="icon-chevron-up" href="created_at ASC"></a> <a class="icon-chevron-down" href="created_at DESC"></a><br>
+        created_at
+      </th>
+      <th>
+        <a class="icon-chevron-up" href="updated_at ASC"></a> <a class="pull-right icon-chevron-down" href="updated_at DESC"></a><br>
+        updated_at
+      </th>
+      <th><%= link_to "likes", "count(likes)", :class=>'ASC' %></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -21,8 +34,9 @@
           <td><%= lesson.id %></td>
           <td><%= lesson.title%></td>
           <td><%= lesson.subject.description %></td>
-          <td><%= lesson.user.surname %> <%= lesson.user.name %></td>
-          <td> (<%= lesson.user.school %>)</td>
+          <td><%= lesson.user.full_name %></td>
+          <td><%= lesson.user.province %> - <%= lesson.user.town %></td>
+          <td><%= lesson.user.school %></td>
           <td><%= lesson.created_at.strftime('%d-%m-%Y')%></td>
           <td><%= lesson.updated_at.strftime('%d-%m-%Y')%></td>
           <td><%= lesson.likes.count%></td>
