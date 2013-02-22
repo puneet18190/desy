@@ -1,3 +1,5 @@
-<% @children = Location.find(parent).children %>
-<option>Select a <%=@children.first.sti_type%></option>
-<%= options_for_select(@children.order(:name).map{ |l| [l.to_s, l.id] }, selected.present? ? selected : '') %>
+<% if parent %>
+  <% @children = Location.find(parent).children %>
+  <option value=''><%= t('prelogin.sign_up.select_a')%> <%=@children.first.sti_type%></option>
+  <%= options_for_select(@children.order(:name).map{ |l| [l.to_s, l.id] }, selected.present? ? selected : '') %>
+<% end %>
