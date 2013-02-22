@@ -666,6 +666,9 @@ en:
       # To edit a lesson or a media element (the little pencil)
       # 1 - views/shared/buttons/_edit.html.erb
       edit: "Edit this item"
+      # Title of the icon which appears instead of 'unpublish' in the case the lesson has been modified and the followers don't know about it
+      # 1 - views/shared/_popups.html.erb
+      lesson_modification_not_notified: 'Notify about the modifications you made to this public lesson'
       # To save a 'I like it' on a lesson (the little star)
       # 1 - views/shared/buttons/_like.html.erb
       like: "Like this lesson"
@@ -683,6 +686,7 @@ en:
       remove_virtual_classroom: "Remove from your Cirtual Classroom"
       # To turn back a shared lesson into private
       # 1 - views/shared/buttons/_unpublish.html.erb
+      # 2 - views/shared/_popups.html.erb
       unpublish: "Turn back your lesson into private"
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb

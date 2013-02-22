@@ -21,7 +21,13 @@ $(document).ready(function() {
   
   
   // LOADER
+  
   bindLoader();
+  
+  
+  // CHANGE TITLE TO LESSONS WHOSE CHANGES ARE TO BE NOTIFIED
+  
+  $('._lesson_change_not_notified .unpublish').attr('title', $('#popup_captions_container').data('title-lesson-modification-not-notified'));
   
   
   // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
@@ -308,7 +314,13 @@ $(document).ready(function() {
           $('#' + instance_id).removeClass('_empty_audio_player').addClass('_instance_of_player');
           initializeMedia(instance_id, 'audio');
         }
-        obj.show('blind', {}, 500);
+        obj.show('blind', {}, 500, function() {
+          if($('#' + parent_id).next().length == 0) {
+            setTimeout(function() {
+              $('#audio_gallery_content > div').data('jsp').scrollToPercentY(100, true);
+            }, 300);
+          }
+        });
       }
     }
   });
@@ -646,6 +658,7 @@ $(document).ready(function() {
     closePopUp('lesson-notification');
     var lesson_id = $('#lesson-notification').data('lesson-id');
     $('#' + lesson_id).removeClass('_lesson_change_not_notified');
+    $('#' + lesson_id + ' .unpublish').attr('title', $('#popup_captions_container').data('title-unpublish'));
     var id = lesson_id.split('_');
     id = id[id.length - 1];
     $.ajax({
