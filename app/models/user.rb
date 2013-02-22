@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   belongs_to :location, class_name: location_association_class
   
   validates_presence_of :email, :name, :surname, :school_level_id, :location_id
-  validates_numericality_of :school_level_id, :location_id, :only_integer => true, :greater_than => 0
+  validates_numericality_of :school_level_id, :location_id, only_integer: true, greater_than: 0, allow_blank: true
   validates_confirmation_of :password
   validates_presence_of :users_subjects
   validates_uniqueness_of :email

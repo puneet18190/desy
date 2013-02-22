@@ -184,7 +184,6 @@ GEM
     schema_plus (1.0.1)
       rails (>= 3.2)
       valuable
-    sorted (0.4.3)
     spoon (0.0.1)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -247,7 +246,6 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   schema_plus
-  sorted (~> 0.4.3)
   subexec!
   therubyracer
   tinymce-rails

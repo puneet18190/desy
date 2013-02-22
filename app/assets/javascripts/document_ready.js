@@ -612,10 +612,27 @@ $(document).ready(function() {
   $("#province_id").selectbox();
   
   $("#province_id,#town_id").on('change',function(){
-    $.ajax({
-      url: "/location/"+$(this).val()+"/find",
-      type: "POST"
-    });
+    var $this = $(this);
+    if($this.val().length > 0){
+      $.ajax({
+        url: "/location/"+$(this).val()+"/find",
+        type: "POST"
+      });
+    }else{
+      if($this.attr('id') === 'town_id'){
+        $('#user_location_id').selectbox("detach");
+        $('#user_location_id').html('');
+        $('#user_location_id').selectbox();
+      }
+      if($this.attr('id') === 'province_id'){
+        $('#user_location_id').selectbox("detach");
+        $('#town_id').selectbox("detach");
+        $('#user_location_id').html('');
+        $('#town_id').html('');
+        $('#user_location_id').selectbox();
+        $('#town_id').selectbox();
+      }
+    }
   });
   
   
