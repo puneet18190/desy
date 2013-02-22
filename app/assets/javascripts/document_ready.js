@@ -25,11 +25,6 @@ $(document).ready(function() {
   bindLoader();
   
   
-  // CHANGE TITLE TO LESSONS WHOSE CHANGES ARE TO BE NOTIFIED
-  
-  $('._lesson_change_not_notified .unpublish').attr('title', $('#popup_captions_container').data('title-lesson-modification-not-notified'));
-  
-  
   // DEFAULT VALUE FOR JAVASCRIPT ANIMATIONS
   
   $('._which_item_to_search_switch[checked]').first().attr('checked', 'checked');
