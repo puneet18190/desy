@@ -38,7 +38,6 @@ gem 'carrierwave'
 gem 'tinymce-rails'
 gem 'tinymce-rails-langs'
 gem 'kaminari'
-gem 'sorted', '~> 0.4.3'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

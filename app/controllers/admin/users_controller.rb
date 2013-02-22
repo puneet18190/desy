@@ -2,7 +2,7 @@ class Admin::UsersController < AdminController
   before_filter :find_user, :only => [:show, :destroy]
   layout 'admin'
   def index    
-    @total_users = User.sorted(params[:sort], "id DESC")
+    @total_users = User.all
     @users = @total_users.page(params[:page])
     @location_root = Location.roots
     respond_to do |wants|

@@ -4,7 +4,11 @@ class Admin::LessonsController < AdminController
   def index
     #@lessons = Lesson.order('id DESC').page params[:page] #to manage others search
     #@lessons = Lesson.joins(:user,:subject,:likes).select('lessons.*, users.name, subjects.description, count(likes) AS likes_count').group('lessons.id').sorted(params[:sort], "lessons.id DESC").page(params[:page])
-    @total_lessons = Lesson.joins(:user,:subject).sorted(params[:sort], "lessons.id DESC")
+    if AdminSearchForm.search(params[:search],'lessons')
+      @total_lessons = AdminSearchForm.search(params[:search],'lessons')
+    else
+      @total_lessons = Lesson.all
+    end
     @lessons = @total_lessons.page(params[:page])
     @location_root = Location.roots
     
