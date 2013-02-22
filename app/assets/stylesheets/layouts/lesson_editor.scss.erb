@@ -162,11 +162,22 @@ html.lesson-editor-layout{
     width: 17px;
     background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
     z-index:100000;
+    
   }
   .add-small:hover{
     background-color:transparent;
     background-position: bottom center;
     border: none;
+  }
+  ._add_new_slide_options_in_last_position.disabled, ._add_new_slide_options.disabled{
+    background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
+    opacity:0.3;
+    cursor:default;
+    &:hover {
+      background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
+      opacity:0.3;
+      cursor:default;
+    }
   }
   
 /*THUMBNAILS*/
