@@ -43,15 +43,15 @@
 </fieldset>
 <hr>
 <fieldset class="insert-content">
-  
+  <% if @user %>
+    <% current_user = @user %>
+  <% end %>
   <div class="inputElement">
     <%= t('users.info.attributes.province') %><br>
     <select id="province_id">
-      <% unless current_user %>
-        <option value=''>
-          <%= t('prelogin.sign_up.select_a')%> <%= t('users.info.attributes.province')%>
-        </option>
-      <% end %>
+      <option value=''>
+        <%= t('prelogin.sign_up.select_a')%> <%= t('users.info.attributes.province')%>
+      </option>
       <%= options_for_select(@provinces_ids, current_user.present? ? current_user.location.try(:root_id) : '') %>
     </select>
   </div>
@@ -65,11 +65,17 @@
   </div>
   <div class="inputElement">
     <%= t('users.info.attributes.school') %><br>
-    <select id="user_location_id" name="user[location_id]">
-      <% if current_user %>
-        <%= render :partial => 'users/locations_list', :locals => {:parent => current_user.location.try(:parent_id), :selected => current_user.try(:location_id)} %>
-      <% end %>
-    </select>
+    <% if @user.errors.include? :location_id %>
+      <div class="field_with_errors">
+    <% end %>
+      <select id="user_location_id" name="user[location_id]">
+        <% if current_user %>
+          <%= render :partial => 'users/locations_list', :locals => {:parent => current_user.location.try(:parent_id), :selected => current_user.try(:location_id)} %>
+        <% end %>
+      </select>
+    <% if @user.errors.include? :location_id %>
+      </div>
+    <% end %>
   </div>
   <br class="clearfloat" />
   <div class="inputElement">
@@ -79,7 +85,7 @@
   <br class="clearfloat">
 
   <%# ERRORI %>
-  <% errors = @user.errors.select{ |k,_| [:school, :school_level_id, :location_id].include? k } -%>
+  <% errors = @user.errors.select{ |k,_| [:school_level_id, :location_id].include? k } -%>
 
   <ul class="listaErrori">
   <% errors.each do |k, v| -%>
