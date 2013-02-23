@@ -795,6 +795,15 @@ $(document).ready(function() {
     window.location = '/lessons/view/playlist';
   });
   
+  $('body').on('click', '#open_quick_load_lessons_popup_in_virtual_classroom', function() {
+    if(!$(this).hasClass('current')) {
+      $.ajax({
+        type: 'get',
+        url: '/virtual_classroom/select_lessons'
+      });
+    }
+  });
+  
   $('body').on('click', '._remove_lesson_from_inside_virtual_classroom', function() {
     var lesson_id = $(this).data('clickparam');
     var current_url = $('#info_container').data('currenturl');
