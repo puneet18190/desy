@@ -79,7 +79,7 @@ function showSendLessonLinkPopUp(lesson_id) {
       resizable: false,
       draggable: false,
       width: 690,
-      height: 460,
+      height: 410,
       show: "fade",
       hide: {effect: "fade"},
       beforeClose: function() {
