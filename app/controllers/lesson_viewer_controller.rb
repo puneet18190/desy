@@ -8,7 +8,9 @@ class LessonViewerController < ApplicationController
     if !@ok
       redirect_to '/dashboard'
     else
-      @back = params[:back] if params[:back]
+      @is_back = (!params[:back].nil? && !params[:back].empty?)
+      @back = params[:back]
+      @with_token = !params[:token].nil? && !params[:token].empty?
     end
   end
   
