@@ -585,12 +585,15 @@ class CoreMethodsTest < ActiveSupport::TestCase
   test 'update_slide' do
     lesson = User.find(1).create_lesson('titolo', 'desc', 1, 'pippo, paperoga, pluto, qui quo qua')
     assert !lesson.nil?
+    assert lesson.publish
     slide = lesson.add_slide('image1', 2)
     assert !slide.nil?
     assert !Slide.new.update_with_media_elements('titolo', 'testo', {1 => [0, 0, 'asdgs']})
     assert slide.title.blank?
     assert slide.text.blank?
+    assert !MediaElement.find(5).is_public
     assert slide.update_with_media_elements('titolo2', 'testo2', {1 => [5, 0, 'captionzz']})
+    assert MediaElement.find(5).is_public
     slide.reload
     assert_equal 'titolo2', slide.title
     assert_equal 'testo2', slide.text
