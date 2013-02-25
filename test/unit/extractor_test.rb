@@ -5,56 +5,65 @@ require 'test_helper'
 class ExtractorTest < ActiveSupport::TestCase
   
   def load_likers
-    @liker1 = User.confirmed.new(:password => 'em1@em.em', :password_confirmation => 'em1@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+    @liker1 = User.confirmed.new(:password => 'em1@em.em', :password_confirmation => 'em1@em.em', :name => 'dgdsg', :surname => 'sdgds', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em1@em.em'
+      user.active = true
     end
     @liker1.policy_1 = '1'
     @liker1.policy_2 = '1'
     assert @liker1.save
-    @liker2 = User.confirmed.new(:password => 'em2@em.em', :password_confirmation => 'em2@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+    @liker2 = User.confirmed.new(:password => 'em2@em.em', :password_confirmation => 'em2@em.em', :name => 'dgdsg', :surname => 'sdgds', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em2@em.em'
+      user.active = true
     end
     @liker2.policy_1 = '1'
     @liker2.policy_2 = '1'
     assert @liker2.save
-    @liker3 = User.confirmed.new(:password => 'em3@em.em', :password_confirmation => 'em3@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+    @liker3 = User.confirmed.new(:password => 'em3@em.em', :password_confirmation => 'em3@em.em', :name => 'dgdsg', :surname => 'sdgds', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em3@em.em'
+      user.active = true
     end
     @liker3.policy_1 = '1'
     @liker3.policy_2 = '1'
     assert @liker3.save
-    @liker4 = User.confirmed.new(:password => 'em4@em.em', :password_confirmation => 'em4@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+    @liker4 = User.confirmed.new(:password => 'em4@em.em', :password_confirmation => 'em4@em.em', :name => 'dgdsg', :surname => 'sdgds', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em4@em.em'
+      user.active = true
     end
     @liker4.policy_1 = '1'
     @liker4.policy_2 = '1'
     assert @liker4.save
-    @liker5 = User.confirmed.new(:password => 'em5@em.em', :password_confirmation => 'em5@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+    @liker5 = User.confirmed.new(:password => 'em5@em.em', :password_confirmation => 'em5@em.em', :name => 'dgdsg', :surname => 'sdgds', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em5@em.em'
+      user.active = true
     end
     @liker5.policy_1 = '1'
     @liker5.policy_2 = '1'
     assert @liker5.save
-    @liker6 = User.confirmed.new(:password => 'em6@em.em', :password_confirmation => 'em6@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+    @liker6 = User.confirmed.new(:password => 'em6@em.em', :password_confirmation => 'em6@em.em', :name => 'dgdsg', :surname => 'sdgds', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em6@em.em'
+      user.active = true
     end
     @liker6.policy_1 = '1'
     @liker6.policy_2 = '1'
     assert @liker6.save
-    @liker7 = User.confirmed.new(:password => 'em7@em.em', :password_confirmation => 'em7@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+    @liker7 = User.confirmed.new(:password => 'em7@em.em', :password_confirmation => 'em7@em.em', :name => 'dgdsg', :surname => 'sdgds', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em7@em.em'
+      user.active = true
     end
     @liker7.policy_1 = '1'
     @liker7.policy_2 = '1'
     assert @liker7.save
-    @liker8 = User.confirmed.new(:password => 'em8@em.em', :password_confirmation => 'em8@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+    @liker8 = User.confirmed.new(:password => 'em8@em.em', :password_confirmation => 'em8@em.em', :name => 'dgdsg', :surname => 'sdgds', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em8@em.em'
+      user.active = true
     end
     @liker8.policy_1 = '1'
     @liker8.policy_2 = '1'
     assert @liker8.save
-    @liker9 = User.confirmed.new(:password => 'em9@em.em', :password_confirmation => 'em9@em.em', :name => 'dgdsg', :surname => 'sdgds', :school => 'adgadg', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+    @liker9 = User.confirmed.new(:password => 'em9@em.em', :password_confirmation => 'em9@em.em', :name => 'dgdsg', :surname => 'sdgds', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
       user.email = 'em9@em.em'
+      user.active = true
     end
     @liker9.policy_1 = '1'
     @liker9.policy_2 = '1'
