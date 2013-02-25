@@ -23,6 +23,12 @@ class AdminSearchForm < Form
   end
   
   def self.search_lessons(params)
+    #ADD JOIN FOR LIKES ORDERING
+    ### Lesson.joins(:likes).count(group: 'lesson_id', order: 'count_all ASC')
+    #ADD JOIN FOR USER NAME ORDERING
+    #ADD JOIN FOR SUBJECT NAME ORDERING
+    #ADD SELF JOIN FOR LOCATION AND ORDERING
+    ### check split('/').include in ancestry field
     lessons = Lesson.order(params[:ordering])
     lessons = lessons.where(id: params[:id]) if params[:id].present?
     lessons = lessons.where('title ILIKE ?', "%#{params[:title]}%") if params[:title].present?
@@ -36,7 +42,6 @@ class AdminSearchForm < Form
     end
     lessons = lessons.where('users.location_id' => params[:school_id]) if params[:school_id].present?
     lessons = lessons.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
-    #ADD SELF JOIN FOR LOCATION
     lessons
   end
     
