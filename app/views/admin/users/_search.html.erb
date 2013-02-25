@@ -4,6 +4,7 @@
   <%= hidden_field_tag 'search[ordering]', 'id DESC'%>
   <div class="row-fluid">
     <div id="alert" class="span12 alert alert-error" style="display:none">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
       <div class="start"><%= t('admin.search.start_more_then_end') %></div>
       <div class="end"><%= t('admin.search.end_less_then_start') %></div>
     </div>
