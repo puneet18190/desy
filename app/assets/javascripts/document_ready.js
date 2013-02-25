@@ -297,7 +297,7 @@ $(document).ready(function() {
           $('#' + currently_open.attr('id') + ' ._expanded').hide('blind', {}, 500);
         }
         $('#' + parent_id).addClass('_audio_expanded_in_gallery');
-        var instance_id = $('#' + parent_id + ' ._empty_audio_player').attr('id');
+        var instance_id = $('#' + parent_id + ' ._empty_audio_player, #' + parent_id + ' ._instance_of_player').attr('id');
         if(!$('#' + instance_id).data('initialized')) {
           var button = $(this).find('._select_audio_from_gallery');
           var duration = button.data('duration');
@@ -310,11 +310,10 @@ $(document).ready(function() {
           initializeMedia(instance_id, 'audio');
         }
         obj.show('blind', {}, 500, function() {
-          if($('#' + parent_id).next().length == 0) {
-            setTimeout(function() {
-              $('#audio_gallery_content > div').data('jsp').scrollToPercentY(100, true);
-            }, 300);
-          }
+          setTimeout(function() {
+            var actual = $('#audio_gallery_content > div').data('jsp').getContentPositionY();
+            $('#audio_gallery_content > div').data('jsp').scrollToY(actual + 55, true);
+          }, 300);
         });
       }
     }
