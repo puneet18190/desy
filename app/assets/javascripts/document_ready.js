@@ -518,7 +518,7 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click', '._expanded_media_element_internal_container img', function() {
+  $('body').on('click', '._expanded_media_element_internal_container img, ._expanded_media_element_internal_container .bulletPointVideo', function() {
     var me = $(this).parents('._expanded_media_element_internal_container');
     if(!me.parent().hasClass('_disabled')) {
       var my_param = me.parent().find('a._Video_button_preview, a._Audio_button_preview, a._Image_button_preview').data('clickparam');
