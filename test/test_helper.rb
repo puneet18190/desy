@@ -50,6 +50,20 @@ class ActiveSupport::TestCase
     end
   end
   
+  def assert_words(hash_tags, words)
+    tags = []
+    hash_tags.each do |v|
+      tags << v[:value]
+    end
+    assert_equal tags.length, words.length
+    words = words.sort
+    index = 0
+    tags.sort.each do |t|
+      assert_equal t, words[index]
+      index += 1
+    end
+  end
+  
   def assert_tags(item, tags)
     tags2 = []
     item.taggings.each do |t|
