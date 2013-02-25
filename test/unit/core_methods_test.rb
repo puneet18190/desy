@@ -7,11 +7,12 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !uu.destroy_with_dependencies
     assert_equal 1, uu.errors.messages[:base].length
     assert_match /The user could not be deleted/, uu.errors.messages[:base].first
-    resp = User.confirmed.new(:password => SETTINGS['admin']['password'], :password_confirmation => SETTINGS['admin']['password'], :name => 'oo', :surname => 'fsg', :school => 'asf', :school_level_id => 1, :location_id => 1, :subject_ids => [1, 2]) do |user|
+    resp = User.confirmed.new(:password => SETTINGS['admin']['password'], :password_confirmation => SETTINGS['admin']['password'], :name => 'oo', :surname => 'fsg', :school_level_id => 1, :location_id => 1, :subject_ids => [1, 2]) do |user|
       user.email = SETTINGS['admin']['email']
     end
     resp.policy_1 = '1'
     resp.policy_2 = '1'
+    resp.active = true
     assert resp.save, resp.errors.inspect
     assert !resp.nil?
     x = User.find 1
@@ -121,7 +122,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.find 2
     assert !x.publish
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /This lesson is already shared/, x.errors.messages[:base].first
+    assert_match /This lesson is already being shared/, x.errors.messages[:base].first
     x = Lesson.find 1
     new_slide = Slide.new :position => 2
     new_slide.lesson_id = 1

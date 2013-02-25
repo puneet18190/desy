@@ -59,9 +59,13 @@ class LikeTest < ActiveSupport::TestCase
     @lesson.copied_not_modified = false
     @lesson.user_id = 1
     @lesson.save
-    @user = User.new :name => 'Javier Ernesto', :surname => 'Chevanton', :school_level_id => 1,
-      :school => 'Scuola', :location_id => 1
-    @user.email = 'plutdsgso@pippo.it'
+    @user = User.confirmed.new(:password => 'em1@em.em', :password_confirmation => 'em1@em.em', :name => 'dgdsg', :surname => 'sdgds', :school_level_id => 1, :location_id => 1, :subject_ids => [1]) do |user|
+      user.email = 'em1@em.em'
+      user.active = true
+    end
+    @user.policy_1 = '1'
+    @user.policy_2 = '1'
+    assert_obj_saved @user
     assert_invalid @like, :user_id, @user.id, 2, /can't be changed/
     assert_invalid @like, :lesson_id, @lesson.id, 1, /can't be changed/
     assert_obj_saved @like
