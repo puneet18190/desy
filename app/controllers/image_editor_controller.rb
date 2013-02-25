@@ -88,6 +88,11 @@ class ImageEditorController < ApplicationController
         @error_ids = 'update'
         @errors = convert_item_error_messages(@image.errors.messages)
         @error_fields = @image.errors.messages.keys
+      else
+        MediaElementsSlide.where(:media_element_id => @image.id).each do |mes|
+          mes.alignment = 0
+          mes.save
+        end
       end
     else
       @redirect = true
