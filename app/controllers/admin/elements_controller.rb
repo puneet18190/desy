@@ -4,7 +4,7 @@ class Admin::ElementsController < AdminController
   def index
     #@elements = Element.order('id DESC').page params[:page] #to manage others search
     #@elements = Element.joins(:user,:subject,:likes).select('elements.*, users.name, subjects.description, count(likes) AS likes_count').group('elements.id').sorted(params[:sort], "elements.id DESC").page(params[:page])
-    @total_elements = MediaElement.all
+    @total_elements = MediaElement
     @elements = @total_elements.page(params[:page])
     @location_root = Location.roots
     respond_to do |wants|
