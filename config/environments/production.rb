@@ -62,6 +62,7 @@ Desy::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.smtp_settings = { address: 'relay.uni.it' }
 
   # Enable threaded mode
   # config.threadsafe!
@@ -75,5 +76,18 @@ Desy::Application.configure do
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
-  # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  # ExceptionNotifier configuration
+  config.middleware.use ExceptionNotifier,
+                        email_prefix:         "[DESY] ",
+                        sender_address:       '"Error" <noreply@desy.morganspa.com>',
+                        exception_recipients: SETTINGS['application']['maintainer']['emails'],
+                        ignore_exceptions:    [],
+                        notifier_proc:        ->(env, exception) do
+                          md_env = EasyMarshalDumpableHash.easy_marshal_dumpable_hash(env)
+                          md_env['action_controller.instance'] = ControllerInfo.new(env['action_controller.instance'].controller_name, env['action_controller.instance'].action_name)
+
+                          Delayed::Job.enqueue ExceptionNotifierJob.new(md_env, exception)
+                        end
 end

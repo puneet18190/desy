@@ -1,7 +1,11 @@
 one:
   id: 1
-  description: 'Roma'
+  name: 'Roma'
+  sti_type: 'School'
+  ancestry: nil
 
 two:
   id: 2
-  description: 'Milano'
+  name: 'Milano'
+  sti_type: 'School'
+  ancestry: nil

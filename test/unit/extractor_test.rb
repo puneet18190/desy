@@ -95,7 +95,6 @@ class ExtractorTest < ActiveSupport::TestCase
     @user1 = User.find 1
     @user1.name = 'a_name'
     @user1.surname = 'a_surname'
-    @user1.school = 'a_school'
     assert_obj_saved @user1
     us_sub_1_2 = UsersSubject.new
     us_sub_1_2.user_id = 1
@@ -116,7 +115,6 @@ class ExtractorTest < ActiveSupport::TestCase
     @user2 = User.find 2
     @user2.name = 'a_name'
     @user2.surname = 'a_surname'
-    @user2.school = 'a_school'
     assert_obj_saved @user2
     us_sub_2_2 = UsersSubject.new
     us_sub_2_2.user_id = 2

@@ -154,6 +154,7 @@ Desy::Application.routes.draw do
   # APPLICATION ROOT
   root :to => 'prelogin#home'
   
+  # ADMINISTRATION SECTION
   namespace 'admin' do
     root :to => 'dashboard#index'
     
@@ -167,5 +168,8 @@ Desy::Application.routes.draw do
     resources :elements, :except => [:show, :edit]
     resources :users, :only => [:index, :show, :create, :destroy]
   end
+
+  # 404
+  match '*path', to: 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
   
 end
