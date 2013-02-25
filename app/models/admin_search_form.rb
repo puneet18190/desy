@@ -1,6 +1,6 @@
 class AdminSearchForm < Form
 
-  attr_accessor :search_type, :ordering, :id, :title, :keyword, :user, :subject_id, :element_type, :date_range_field, :from, :to,:province_id, :town_id, :school_id
+  attr_accessor :search_type, :ordering, :id, :title, :keyword, :user, :subject_id, :sti_type, :element_type, :date_range_field, :from, :to,:province_id, :town_id, :school_id
   
   validates_numericality_of :id, :unless => Proc.new {|c| c.id.blank?}
   validates_presence_of :ordering
@@ -22,6 +22,7 @@ class AdminSearchForm < Form
     end
   end
   
+  #LESSONS
   def self.search_lessons(params)
     #ADD JOIN FOR LIKES ORDERING
     ### Lesson.joins(:likes).count(group: 'lesson_id', order: 'count_all ASC')
@@ -42,6 +43,37 @@ class AdminSearchForm < Form
     end
     lessons = lessons.where('users.location_id' => params[:school_id]) if params[:school_id].present?
     lessons = lessons.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
+    lessons
+  end
+  
+  #ELEMENTS
+  def self.search_elements(params)
+    elements = MediaElement.order(params[:ordering])
+    elements = elements.where(id: params[:id]) if params[:id].present?
+    elements = elements.where('title ILIKE ?', "%#{params[:title]}%") if params[:title].present?
+    elements = elements.where(sti_type: params[:sti_type]) if params[:sti_type].present?
+    if params[:date_range_field].present? && params[:from].present? && params[:to].present?
+      date_range = (Date.strptime(params[:from], '%d-%m-%Y').beginning_of_day)..(Date.strptime(params[:to], '%d-%m-%Y').end_of_day)
+      elements = elements.where("#{params[:date_range_field]}" => date_range)
+    end
+    if params[:school_id] || params[:user]
+      elements = elements.joins(:user)
+    end
+    elements = elements.where('users.location_id' => params[:school_id]) if params[:school_id].present?
+    elements = elements.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
+    elements
+  end
+  
+  #USERS
+  def self.search_users(params)
+    lessons = User.order(params[:ordering])
+    lessons = lessons.where(id: params[:id]) if params[:id].present?
+    lessons = lessons.where('name ILIKE ? OR surname ILIKE ? OR email ILIKE ?', "%#{params[:user]}%" , "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
+    lessons = lessons.where('location_id' => params[:school_id]) if params[:school_id].present?
+    if params[:date_range_field].present? && params[:from].present? && params[:to].present?
+      date_range = (Date.strptime(params[:from], '%d-%m-%Y').beginning_of_day)..(Date.strptime(params[:to], '%d-%m-%Y').end_of_day)
+      lessons = lessons.where("#{params[:date_range_field]}" => date_range)
+    end
     lessons
   end
     

@@ -2198,6 +2198,7 @@ en:
     users:
       #1 - views/admin/users/index.html.erb
       index:
+        name: 'Users'
         not_found: 'No users found'
         send_message_to_all: 'Send message to all'
         show: 'Show user page'
@@ -2238,6 +2239,9 @@ en:
       delete: 'Delete'
       #1 - views/admin/users/index.html.erb
       ask_for_delete: 'Are you sure?'
+      #1 - views/admin/lessons/index.html.erb
+      #2 - views/admin/elements/index.html.erb
+      of_range: 'Of'
     # SECTION 4.7 common search form
     #1 - views/admin/lessons/index.html.erb
     #2 - views/admin/elements/index.html.erb
@@ -2250,6 +2254,8 @@ en:
       keyword: 'Keyword'
       user: 'User'
       subject: 'Subject'
+      media_type: 'Media type'
+      all_media_type: 'All'
       select_subject: 'Select a subject'
       date_range: 'Date range'
       select_date_range: 'Select range type'
