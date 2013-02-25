@@ -50,4 +50,31 @@ class TagTest < ActiveSupport::TestCase
     assert_obj_saved @tag
   end
   
+  test 'autocomplete' do
+    me = MediaElement.all
+    me[0].tags = 'pane, pagliaccio, cane, cagnaccio'
+    assert_obj_saved me[0]
+    me[1].tags = 'paglierino, pappardelle, cane, cagnaccio'
+    assert_obj_saved me[1]
+    me[2].tags = 'pappardelle, pagliaccio, cagnolino, candreva'
+    assert_obj_saved me[2]
+    me[3].tags = 'pane, paniere, paglierino, pagnotta'
+    assert_obj_saved me[3]
+    me[4].tags = 'cagnolino, cagnetto, cane, cagnaccio'
+    assert_obj_saved me[4]
+    me[5].tags = 'paniere, pagnotta, pane, pagliaccio'
+    assert_obj_saved me[5]
+    le = Lesson.all
+    le[0].tags = 'paniere, pane, cagnaccio, pagliaccio'
+    assert_obj_saved le[0]
+    le[1].tags = 'pane e salame, pagnotta, pane, cagnolino, pa, ca'
+    assert_obj_saved le[1]
+    assert_equal 14, Tag.count
+    assert_words Tag.get_tags_for_autocomplete('pa'), ['pa', 'pagliaccio', 'pane', 'pagnotta', 'paniere', 'paglierino', 'pappardelle', 'pane e salame']
+    assert_words Tag.get_tags_for_autocomplete('ca'), ['ca', 'cagnaccio', 'cane', 'cagnolino', 'cagnetto', 'candreva']
+    assert_words Tag.get_tags_for_autocomplete('can'), ['cane', 'candreva']
+    assert_words Tag.get_tags_for_autocomplete('pan'), ['pane', 'paniere', 'pane e salame']
+    x = Tag.get_tags_for_autocomplete('')
+  end
+  
 end
