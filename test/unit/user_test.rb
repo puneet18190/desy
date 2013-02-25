@@ -61,7 +61,7 @@ class UserTest < ActiveSupport::TestCase
     @user.location_id = 2.8
     assert !@user.save, "User erroneously saved - #{@user.inspect}"
     assert_equal [:email, :location_id], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
-    assert_equal 2, @user.errors.messages[:location_id].length
+    assert_equal 1, @user.errors.messages[:location_id].length, @user.errors.inspect
     assert @user.errors.messages[:email].empty?
     assert_match /must be an integer/, array_to_string(@user.errors.messages[:location_id])
     @user.location_id = 1
