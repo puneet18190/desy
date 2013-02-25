@@ -296,7 +296,7 @@ function showVideoInGalleryPopUp(video_id) {
       },
       open: function() {
         customOverlayClose();
-        var instance_id = $('#dialog-video-gallery-' + video_id + ' ._empty_video_player').attr('id');
+        var instance_id = $('#dialog-video-gallery-' + video_id + ' ._empty_video_player, #dialog-video-gallery-' + video_id + ' ._instance_of_player').attr('id');
         if(!$('#' + instance_id).data('initialized')) {
           var button = $(this).find('._select_video_from_gallery');
           var duration = button.data('duration');
