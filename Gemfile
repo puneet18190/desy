@@ -48,4 +48,4 @@ gem 'unicorn'
 gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'ancestry'
-gem 'exception_notification', :github => "ProGNOMmers/exception_notification"
+gem 'exception_notification', :github => "ProGNOMmers/exception_notification", :group => :production
