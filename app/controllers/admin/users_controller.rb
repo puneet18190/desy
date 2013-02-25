@@ -2,8 +2,13 @@ class Admin::UsersController < AdminController
   before_filter :find_user, :only => [:show, :destroy]
   layout 'admin'
   def index    
-    @total_users = User.all
-    @users = @total_users.page(params[:page])
+    if params[:search]
+      users = AdminSearchForm.search(params[:search],'users')
+    else
+      users = User.order('id DESC')
+    end
+    
+    @users = users.page(params[:page])
     @location_root = Location.roots
     respond_to do |wants|
       wants.html # index.html.erb
