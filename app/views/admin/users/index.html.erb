@@ -1,4 +1,5 @@
-<h3>Lessons (<%= @total_users.count%>)</h3>
 <%= render :partial => "search" %>
+<%= render :partial => "admin/list_heading", :locals => {:items => @users} %>
 <%= render :partial => 'admin/users/list', :locals => {:users => @users}%>
+<%= render :partial => "admin/list_heading", :locals => {:items => @users} %>
 <%= paginate @users %>

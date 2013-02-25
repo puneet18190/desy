@@ -1,22 +1,5 @@
 <%= render :partial => "search" %>
-<ul class="nav nav-pills">
-  <li class="pull-right"><h4><%= t('admin.lessons.index.name')%> (<%= @total_lessons.count%>)</h4></li>
-  <li>
-    <a href="#" id="expand-all"><%= t('admin.general.expand_all')%></a>
-  </li>
-  <li>
-    <a href="#" id="collapse-all"><%= t('admin.general.index.close_all')%></a>
-  </li>
-</ul>
-  <%= render :partial => "list", :locals => {:lessons => @lessons} %>
-<ul class="nav nav-pills">
-  <li class="pull-right"><h4><%= t('admin.lessons.index.name')%> (<%= @total_lessons.count%>)</h4></li>
-  <li>
-    <a href="#" id="expand-all"><%= t('admin.general.index.expand_all')%></a>
-  </li>
-  <li>
-    <a href="#" id="collapse-all"><%= t('admin.general.index.close_all')%></a>
-  </li>
-</ul>
-
+<%= render :partial => "admin/list_heading", :locals => {:items => @lessons} %>
+<%= render :partial => "list", :locals => {:lessons => @lessons} %>
+<%= render :partial => "admin/list_heading", :locals => {:items => @lessons} %>
 <%= paginate @lessons %>
