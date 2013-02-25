@@ -23,6 +23,7 @@ class VirtualClassroomController < ApplicationController
     end
     @playlist = current_user.playlist
     @mailing_list_groups = current_user.own_mailing_list_groups
+    @emptier = current_user.own_lessons(1, LESSONS_IN_QUICK_LOADER)[:records].empty?
     render_js_or_html_index
   end
   

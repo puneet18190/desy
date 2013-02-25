@@ -297,7 +297,7 @@ $(document).ready(function() {
           $('#' + currently_open.attr('id') + ' ._expanded').hide('blind', {}, 500);
         }
         $('#' + parent_id).addClass('_audio_expanded_in_gallery');
-        var instance_id = $('#' + parent_id + ' ._empty_audio_player').attr('id');
+        var instance_id = $('#' + parent_id + ' ._empty_audio_player, #' + parent_id + ' ._instance_of_player').attr('id');
         if(!$('#' + instance_id).data('initialized')) {
           var button = $(this).find('._select_audio_from_gallery');
           var duration = button.data('duration');
@@ -310,11 +310,10 @@ $(document).ready(function() {
           initializeMedia(instance_id, 'audio');
         }
         obj.show('blind', {}, 500, function() {
-          if($('#' + parent_id).next().length == 0) {
-            setTimeout(function() {
-              $('#audio_gallery_content > div').data('jsp').scrollToPercentY(100, true);
-            }, 300);
-          }
+          setTimeout(function() {
+            var actual = $('#audio_gallery_content > div').data('jsp').getContentPositionY();
+            $('#audio_gallery_content > div').data('jsp').scrollToY(actual + 55, true);
+          }, 300);
         });
       }
     }
@@ -518,7 +517,7 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click', '._expanded_media_element_internal_container img', function() {
+  $('body').on('click', '._expanded_media_element_internal_container img, ._expanded_media_element_internal_container .bulletPointVideo', function() {
     var me = $(this).parents('._expanded_media_element_internal_container');
     if(!me.parent().hasClass('_disabled')) {
       var my_param = me.parent().find('a._Video_button_preview, a._Audio_button_preview, a._Image_button_preview').data('clickparam');
@@ -793,6 +792,15 @@ $(document).ready(function() {
   
   $('body').on('click', '._playlist_play', function() {
     window.location = '/lessons/view/playlist';
+  });
+  
+  $('body').on('click', '#open_quick_load_lessons_popup_in_virtual_classroom', function() {
+    if(!$(this).hasClass('current')) {
+      $.ajax({
+        type: 'get',
+        url: '/virtual_classroom/select_lessons'
+      });
+    }
   });
   
   $('body').on('click', '._remove_lesson_from_inside_virtual_classroom', function() {
