@@ -497,12 +497,26 @@ function saveCurrentSlide() {
   });
 }
 
-function slideTo(slide_id, callback) {
-  console.log("to id: "+slide_id);
+function loadSlideInLessonEditor(slide) {
+  if(!slide.data('loaded')) {
+    $.ajax({
+      type: 'get',
+      url: '/lessons/' + $('#info_container').data('lesson-id') + '/slides/' + slide.data('slide-id') + '/load'
+    })
+  }
+}
+
+function loadSlideAndAdhiacentInLessonEditor(slide_id) {
   var slide = $('#slide_in_lesson_editor_' + slide_id);
-  console.log(slide.attr("class"));  
+  loadSlideInLessonEditor(slide);
+  loadSlideInLessonEditor(slide.prev());
+  loadSlideInLessonEditor(slide.next());
+}
+
+function slideTo(slide_id, callback) {
+  loadSlideAndAdhiacentInLessonEditor(slide_id);
+  var slide = $('#slide_in_lesson_editor_' + slide_id);
   var position = slide.data('position');
-  console.log("pos: "+position);
   if (position == 1) {
     marginReset = 0;
   } else {
@@ -569,7 +583,6 @@ function tinyMceCallbacks(inst,tiny_id){
 
 function tinyMceKeyDownCallbacks(inst,tiny_id){
   var spans = $(inst.getBody()).find("li span");
-  console.log("S: "+spans.length);
   spans.each(function(){
     var span = $(this);
     span.parents('li').removeAttr('class');

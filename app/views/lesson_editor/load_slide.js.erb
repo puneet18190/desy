@@ -1,5 +1,5 @@
 <% if @ok %>
-  
-<% else %>
-  slideError();
+  var slide = $('#slide_in_lesson_editor_<%= @slide_id %>');
+  slide.find('.slide-content').html('<%= j render(:partial => "lesson_editor/slides/#{@slide.kind}", :locals => {:slide => @slide}) %>');
+  slide.data('loaded', true);
 <% end %>
