@@ -11,9 +11,11 @@
         title <div class="badge"><a class="icon-chevron-up" href="title ASC"></a></div> <div class="badge"><a class="icon-chevron-down" href="title DESC"></a></div>
       </th>
       <th><%= link_to "subject", "subjects.name", :class=>'ASC' %></th>
-      <th><%= link_to "user", "users.name", :class=>'ASC' %></th>
-      <th><%= link_to "location", "locations.province_name", :class=>'ASC' %></th>
+      <th>user <div class="label"><a class="icon-chevron-up" href="title ASC"></a></div> 
+        <div class="label"><a class="icon-chevron-down" href="title DESC"></a></div>
+      </th>
       <th><%= link_to "school", "locations.school_name", :class=>'ASC' %></th>
+      <th><%= link_to "location", "locations.province_name", :class=>'ASC' %></th>
       <th>
         <a class="icon-chevron-up" href="created_at ASC"></a> <a class="icon-chevron-down" href="created_at DESC"></a><br>
         created_at
@@ -35,8 +37,8 @@
           <td><%= lesson.title%></td>
           <td><%= lesson.subject.description %></td>
           <td><%= lesson.user.full_name %></td>
-          <td><%= lesson.user.province %> - <%= lesson.user.town %></td>
           <td><%= lesson.user.school %></td>
+          <td><%= lesson.user.province %> - <%= lesson.user.town %></td>
           <td><%= lesson.created_at.strftime('%d-%m-%Y')%></td>
           <td><%= lesson.updated_at.strftime('%d-%m-%Y')%></td>
           <td><%= lesson.likes.count%></td>

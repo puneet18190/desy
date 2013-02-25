@@ -1,5 +1,5 @@
 <%= render :partial => "search" %>
-<%= render :partial => "admin/list_heading", :locals => {:items => @elements} %>
+<%= render :partial => "admin/list_heading", :locals => {:items => @elements, :expandable => true} %>
 <%= render :partial => 'admin/elements/list', :locals => {:elements => @elements} %>
-<%= render :partial => "admin/list_heading", :locals => {:items => @elements} %>
+<%= render :partial => "admin/list_heading", :locals => {:items => @elements, :expandable => true} %>
 <%= paginate @elements %>
