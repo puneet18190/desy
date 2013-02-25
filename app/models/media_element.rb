@@ -107,7 +107,23 @@ class MediaElement < ActiveRecord::Base
   def tags
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'MediaElement')
   end
-
+  
+  def delete_without_callbacks
+    return false if self.new_record?
+    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => self.id).each do |t|
+      t.destroyable = true
+      t.destroy
+    end
+    Report.where(:reportable_type => 'MediaElement', :reportable_id => self.id).each do |r|
+      r.destroy
+    end
+    Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => self.id).each do |b|
+      b.destroy
+    end
+    self.delete
+    true
+  end
+  
   def tags=(tags)
     @tags = 
       case tags
