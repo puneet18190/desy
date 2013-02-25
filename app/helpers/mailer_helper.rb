@@ -2,7 +2,8 @@ module MailerHelper
   def host_and_port(*url_for_args)
     return url_for_args unless @host
 
-    host_port = { host: @host, port: @port }
+    host_port = { host: @host }
+    host_port[:port] = @port if @port != 80
     last = url_for_args.last
     if last.instance_of? Hash
       
