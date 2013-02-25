@@ -112,6 +112,19 @@
         </div>
       </div>
     </div>
+    <div class="span4">
+      <div class="control-group">
+        <label for="school_level_id">School Level</label>
+        <div class="controls">
+          <select id="school_level" name="search[school_level_id]">
+            <option value=''>Select school level</option>
+            <% SchoolLevel.all.each do |level|%>
+              <option value="<%= level.id %>"><%= level.description %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="row-fluid">
     <div class="span12">
