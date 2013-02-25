@@ -25,7 +25,7 @@ class MediaElement < ActiveRecord::Base
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
   has_many :reports, :as => :reportable, :dependent => :destroy
-  has_many :taggings, :as => :taggable, :dependent => :destroy
+  has_many :taggings, :as => :taggable
   has_many :taggings_tags, through: :taggings, source: :tag
   belongs_to :user
   
@@ -38,7 +38,7 @@ class MediaElement < ActiveRecord::Base
   validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_tags_length
   
   before_validation :init_validation
-  before_destroy :stop_if_public
+  before_destroy :stop_if_public, :destroy_taggings
 
   # SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id AND bookmarks.bookmarkable_type = 'MediaElement' AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY COALESCE(bookmarks.created_at, media_elements.updated_at) DESC
   scope :of, ->(user_or_user_id) do
@@ -293,5 +293,13 @@ class MediaElement < ActiveRecord::Base
       end
       l.save!
     end
-  end  
+  end
+  
+  def destroy_taggings
+    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => self.id).each do |tagging|
+      tagging.destroyable = true
+      tagging.destroy
+    end
+  end
+  
 end
