@@ -13,7 +13,7 @@ class Tagging < ActiveRecord::Base
 
   # FIXME: questa è da rivedere; il controllo dovrebbe essere fatto dalla validazione
   #   dell'associazione
-  before_destroy :stop_destruction_if_last
+  # before_destroy :stop_destruction_if_last
 
   after_destroy :destroy_orphan_tags
 

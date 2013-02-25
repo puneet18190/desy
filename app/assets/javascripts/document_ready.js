@@ -151,7 +151,7 @@ $(document).ready(function() {
   
   function getMediaElementsFormat() {
     var param = 'display=compact';
-    if($('#format_media_elements .current').attr('href') == '/media_elements?display=expanded') {
+    if($('#display_expanded_media_elements').hasClass('current')) {
       param = 'display=expanded';
     }
     return param
