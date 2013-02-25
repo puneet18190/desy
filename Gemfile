@@ -32,10 +32,11 @@ group :development, :test do
   gem 'colorize'
 end
 
-gem 'jquery-rails', '~> 2.1.4'
 gem 'oj'
+gem 'jquery-rails', '~> 2.1.4'
 gem 'schema_plus'
 gem 'recursive-open-struct'
+gem "subexec", :github => "ProGNOMmers/subexec"
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'tinymce-rails'
@@ -46,5 +47,5 @@ gem 'validates_email_format_of'
 gem 'unicorn'
 gem 'daemons'
 gem 'delayed_job_active_record'
-gem "subexec", :github => "ProGNOMmers/subexec"
 gem 'ancestry'
+gem 'exception_notification', :github => "ProGNOMmers/exception_notification"

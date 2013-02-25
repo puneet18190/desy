@@ -1,15 +1,20 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
-  before_filter :authenticate, :initialize_location, :initialize_players_counter
-  
-  private
+
+  before_filter :authenticate, :initialize_location, :initialize_players_counter, except: :page_not_found
 
   attr_reader :current_user
   helper_method :current_user
+
+  def page_not_found
+    # In production pages with 404 status are catched by the web server,
+    # so we don't make the effort to render a 404 page
+    render text: '<h1>Page not found</h1>', status: 404, layout: false
+  end
+
+  private
   
   def initialize_players_counter
-    Dir.mkdir Rails.root.join('tmp') unless Dir.exists? Rails.root.join('tmp')
     if File.exists?(Rails.root.join('tmp/players_counter.yml'))
       file = YAML::load(File.open(Rails.root.join('tmp/players_counter.yml')))
       @video_counter = [file['video_counter'], 1]
@@ -195,9 +200,5 @@ class ApplicationController < ActionController::Base
   def logged_in?
     current_user
   end
-  
-  def logga(x)
-    logger.info "\n\n\n\nErrore loggato: #{x}\n\n\n\n"
-  end
-  
+
 end
