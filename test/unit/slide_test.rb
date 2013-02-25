@@ -183,4 +183,24 @@ class SlideTest < ActiveSupport::TestCase
     assert_equal 'buahuahua', cover.title
   end
   
+  test 'maximum_slides' do
+    l = Lesson.find 1
+    assert_equal 1, Slide.where(:lesson_id => l.id).count
+    (2...100).to_a.each do |i|
+      assert_not_nil l.add_slide('text', i)
+    end
+    s = Slide.new
+    s.position = 100
+    s.lesson_id = l.id
+    s.kind = 'text'
+    assert !s.save, "#Slide erroneously saved - #{s.inspect}"
+    assert_equal 1, s.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{s.errors.inspect}"
+    assert_equal 1, s.errors.messages[:base].length
+    assert_match /too many slides/, s.errors.messages[:base].first
+    s2 = Slide.where(:position => 80).first
+    assert s2.valid?
+    s2.destroy
+    assert_obj_saved s
+  end
+  
 end
