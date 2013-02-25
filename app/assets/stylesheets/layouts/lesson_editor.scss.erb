@@ -169,7 +169,7 @@ html.lesson-editor-layout{
     background-position: bottom center;
     border: none;
   }
-  ._add_new_slide_options_in_last_position.disabled, ._add_new_slide_options.disabled{
+  ._add_new_slide_options_in_last_position.disabled{
     background: url('/assets/add_small_on_off.png') top center no-repeat transparent;
     opacity:0.3;
     cursor:default;
@@ -179,7 +179,21 @@ html.lesson-editor-layout{
       cursor:default;
     }
   }
-  
+   ._add_new_slide_options.disabled {
+      opacity:0.070;
+      cursor:default;
+      &:hover {
+        float: left;
+        width: 6em;
+        height: 6em;
+        background-image: url(/assets/set-icone-editor.svg);
+        background-repeat: no-repeat;
+        background-size: 24em 60em;
+        padding: 0;
+        font-size: 0.75em;
+        background-position: 0 -6em;
+      };
+   }
 /*THUMBNAILS*/
   .slide-tooltip {
     width: 250px;
