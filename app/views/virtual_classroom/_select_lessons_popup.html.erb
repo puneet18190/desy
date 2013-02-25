@@ -1,20 +1,12 @@
-<% if lessons.empty? %>
-  <div class="EmptyQuickLoadVirtualClassroomLessons">
-    <h3><%= t('virtual_classroom.select_lessons.empty') %></h3>
-    <div class="contentPopUp" style="outline:1px solid red">
-    </div>
-  </div>
-<% else %>
-  <h3><%= t('virtual_classroom.select_lessons.description') %></h3>
-  <div id="virtual_classroom_quick_select_container" class="contentPopUp scroll-pane" data-tot-pages="<%= tot_pages %>" data-page="1">
-    <%= form_tag load_lessons_path, :remote => true do %>
-      <% lessons.each do |l| %>
-        <%= render :partial => 'virtual_classroom/view_single_in_quick_load', :locals => {:lesson => l} %>
-      <% end %>
+<h3><%= t('virtual_classroom.select_lessons.description') %></h3>
+<div id="virtual_classroom_quick_select_container" class="contentPopUp scroll-pane" data-tot-pages="<%= tot_pages %>" data-page="1">
+  <%= form_tag load_lessons_path, :remote => true do %>
+    <% lessons.each do |l| %>
+      <%= render :partial => 'virtual_classroom/view_single_in_quick_load', :locals => {:lesson => l} %>
     <% end %>
-  </div>
-<% end %>
-  
+  <% end %>
+</div>
+
 <div class="uploadButtonPopUpSelectLesson">
   <a id="virtual_classroom_quick_select_close" class="lower buttonForm"><%= t('virtual_classroom.select_lessons.cancel') %></a>  <div id="virtual_classroom_quick_select_submit" class="lower current"><a class="lower buttonForm"><%= t('virtual_classroom.select_lessons.done') %></a></div> 
 </div>

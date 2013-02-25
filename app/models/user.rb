@@ -114,6 +114,15 @@ class User < ActiveRecord::Base
     "#{self.name} #{self.surname}"
   end
   
+  def province
+    "#{self.location.root}"
+  end
+  
+  def town
+    "#{self.location.parent}"
+  end
+  
+  
   def video_editor_available
     !Video.where(converted: nil, user_id: 1).exists?
   end

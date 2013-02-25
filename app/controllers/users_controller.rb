@@ -14,9 +14,7 @@ class UsersController < ApplicationController
       redirect_to root_path(login: true), { flash: { notice: t('flash.successful_registration') } }
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
     else
-      @location_ids     = User.location_association_class.order(:name).map{ |l| [l.to_s, l.id] }
       @provinces_ids    = Location.roots.order(:name).map{ |l| [l.to_s, l.id] }
-      @towns_ids        = current_user.location.parent.siblings.order(:name).map{ |l| [l.to_s, l.id] }
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
       @subjects         = Subject.order(:description)
 
@@ -53,9 +51,7 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-    @location_ids     = User.location_association_class.order(:name).map{ |l| [l.to_s, l.id] }
     @provinces_ids    = Location.roots.order(:name).map{ |l| [l.to_s, l.id] }
-    @towns_ids        = current_user.location.parent.siblings.order(:name).map{ |l| [l.to_s, l.id] }
   end
   
   def find_location
@@ -89,9 +85,8 @@ class UsersController < ApplicationController
         @subjects = Subject.order(:description)
         render :subjects
       else
-        @location_ids     = User.location_association_class.order(:name).map{ |l| [l.to_s, l.id] }
         @provinces_ids    = Location.roots.order(:name).map{ |l| [l.to_s, l.id] }
-        @towns_ids        = current_user.location.parent.siblings.order(:name).map{ |l| [l.to_s, l.id] }
+        @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
         
         render :edit
       end

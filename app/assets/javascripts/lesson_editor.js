@@ -83,9 +83,10 @@ $(document).ready(function() {
     if(!$(this).hasClass('disabled')) {
       saveCurrentSlide();
       var last_slide_id = $("#slide-numbers li.navNumbers:last").find('a').data('slide-id');
+      $('#nav_list_menu').data('jsp').scrollToPercentX(100, true);
       if($("#slide_in_lesson_editor_"+last_slide_id).hasClass('_lesson_editor_current_slide')) {
         showNewSlideOptions();
-      }else{
+      } else {
         slideTo('' + last_slide_id, showNewSlideOptions);
       }
     }
@@ -392,13 +393,15 @@ function initializeSortableNavs() {
           new_position = previous_item_position;
         }
       }
+      saveCurrentSlide();
       if(old_position != new_position) {
         stopMediaInCurrentSlide();
-        saveCurrentSlide();
         $.ajax({
           type: 'post',
           url: '/lessons/' + $('#info_container').data('lesson-id') + '/slides/' + ui.item.find('a._slide_nav').data('slide-id') + '/move/' + new_position
         });
+      } else {
+        slideTo(ui.item.find('a._slide_nav').data('slide-id'));
       }
     }
   });
@@ -497,12 +500,26 @@ function saveCurrentSlide() {
   });
 }
 
-function slideTo(slide_id, callback) {
-  console.log("to id: "+slide_id);
+function loadSlideInLessonEditor(slide) {
+  if(slide.length > 0 && !slide.data('loaded')) {
+    $.ajax({
+      type: 'get',
+      url: '/lessons/' + $('#info_container').data('lesson-id') + '/slides/' + slide.data('slide-id') + '/load'
+    })
+  }
+}
+
+function loadSlideAndAdhiacentInLessonEditor(slide_id) {
   var slide = $('#slide_in_lesson_editor_' + slide_id);
-  console.log(slide.attr("class"));  
+  loadSlideInLessonEditor(slide);
+  loadSlideInLessonEditor(slide.prev());
+  loadSlideInLessonEditor(slide.next());
+}
+
+function slideTo(slide_id, callback) {
+  loadSlideAndAdhiacentInLessonEditor(slide_id);
+  var slide = $('#slide_in_lesson_editor_' + slide_id);
   var position = slide.data('position');
-  console.log("pos: "+position);
   if (position == 1) {
     marginReset = 0;
   } else {
@@ -569,7 +586,6 @@ function tinyMceCallbacks(inst,tiny_id){
 
 function tinyMceKeyDownCallbacks(inst,tiny_id){
   var spans = $(inst.getBody()).find("li span");
-  console.log("S: "+spans.length);
   spans.each(function(){
     var span = $(this);
     span.parents('li').removeAttr('class');

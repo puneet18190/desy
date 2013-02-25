@@ -48,3 +48,9 @@
   <% end %>
   
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#<%= destination %>_<%= lesson.id %>._lesson_change_not_notified .unpublish').attr('title', $('#popup_captions_container').data('title-lesson-modification-not-notified'));
+  });
+</script>

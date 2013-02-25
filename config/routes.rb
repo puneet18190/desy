@@ -47,6 +47,7 @@ Desy::Application.routes.draw do
   post 'lessons/:lesson_id/slides/:slide_id/delete' => 'lesson_editor#delete_slide', :as => :delete_slide
   post 'lessons/:lesson_id/slides/:slide_id/update' => 'lesson_editor#save_slide', :as => :save_slide
   post 'lessons/:lesson_id/slides/:slide_id/move/:position' => 'lesson_editor#change_slide_position', :as => :change_slide_position
+  get  'lessons/:lesson_id/slides/:slide_id/load' => 'lesson_editor#load_slide'
   
   # TAGS
   get  'tags/get_list' => 'tags#get_list'
