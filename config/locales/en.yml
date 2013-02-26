@@ -1407,7 +1407,7 @@ en:
         ok: "The uploading of the audio %{audio} ended successfully! Now you can use it in your lessons."
         # The process of audio uploading ended with an error. The variable %{audio} is replaced by the name of the audio which the user tried to upload
         # TODO manca
-        failed: "The uploading of the audio %{audio} failed! Pleas try again."
+        failed: "The uploading of the audio %{audio} failed! Please try again."
     videos:
       editing:
         # The process of video editing started. The variable %{video} is replaced by the name of the video whose content is going to be modified
@@ -1438,7 +1438,7 @@ en:
         ok: "The uploading of the video %{video} ended successfully! Now you can use it in your lessons."
         # The process of video uploading ended with an error. The variable %{video} is replaced by the name of the video which the user tried to upload
         # TODO manca
-        failed: "The uploading of the video %{video} failed! Pleas try again."
+        failed: "The uploading of the video %{video} failed! Please try again."
   
   
   # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)
