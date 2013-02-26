@@ -4,7 +4,7 @@
       <div class="scrollCane" style="width:<%= (vc_lessons.length * 307) - 60 %>px">
         <div class="playlistInnerMenu">
           <% vc_lessons.each_with_index do |vc_lesson, index| %>
-            <div class="playlistInnerMenuItem" data-lesson-id="<%= vc_lesson.lesson_id %>" <%= (index == vc_lessons.length - 1) ? "style=\"margin-right:0\"".html_safe : '' %>>
+            <div class="playlistInnerMenuItem _playlist_menu_item" data-lesson-id="<%= vc_lesson.lesson_id %>" <%= (index == vc_lessons.length - 1) ? "style=\"margin-right:0\"".html_safe : '' %>>
               <%= render :partial => "lessons/thumbnail", :locals => {:lesson => vc_lesson.lesson} %>
             </div>
           <% end %>

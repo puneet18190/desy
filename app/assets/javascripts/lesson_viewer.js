@@ -2,7 +2,7 @@ $(document).ready(function() {
   
   initializeLessonViewer();
   
-  $('body').on('click', '.playlistMenu ul li', function() {
+  $('body').on('click', '._playlist_menu_item', function() {
     $('.playlistMenu').slideToggle('slow', function() {
       showArrowsInLessonViewer();
       slideToInLessonViewer($('._cover_bookmark_for_lesson_viewer_' + $(this).data('lesson-id')));
@@ -48,7 +48,7 @@ $(document).ready(function() {
 });
 
 function getLessonViewerCurrentSlide() {
-  $('#' + $('._lesson_viewer_current_slide').attr('id'));
+  return $('#' + $('._lesson_viewer_current_slide').attr('id'));
 }
 
 function slideToInLessonViewer(to) {
