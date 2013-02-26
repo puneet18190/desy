@@ -4,10 +4,10 @@
   <body>
     <%= render :partial => "shared/popups" %>
     <%= render :partial => "shared/loading" %>
-    <a class="navLeft" title="<%= t('titles.slides.back') %>"></a>
+    <a id="left_scroll" class="navLeft" title="<%= t('titles.slides.back') %>"></a>
     <div class="container">
       <%= yield %>
     </div>
-    <a class="navRight" title="<%= t('titles.slides.forward') %>"></a>
+    <a id="right_scroll" class="navRight" title="<%= t('titles.slides.forward') %>"></a>
   </body>
 </html>
