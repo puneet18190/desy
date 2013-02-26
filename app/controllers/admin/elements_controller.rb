@@ -1,6 +1,7 @@
 class Admin::ElementsController < AdminController
-  before_filter :find_element, :only => [:destroy, :update]
+  before_filter :find_element, :only => [:destroy, :update, :load_element]
   layout 'admin'
+  
   def index
     #@elements = Element.order('id DESC').page params[:page] #to manage others search
     #@elements = Element.joins(:user,:subject,:likes).select('elements.*, users.name, subjects.description, count(likes) AS likes_count').group('elements.id').sorted(params[:sort], "elements.id DESC").page(params[:page])
@@ -69,10 +70,13 @@ class Admin::ElementsController < AdminController
   end
   
   def destroy
-    if !@element.check_and_destroy
+    if !@element.delete_without_callbacks
       @error = @element.get_base_error
     end
     render :nothing => true
+  end
+  
+  def load_element
   end
 
   private

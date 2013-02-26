@@ -1,44 +1,46 @@
+<%
+  class_current = '_lesson_viewer_current_slide'
+  overall_counter = 1
+  lesson_counter = 0
+%>
 
-<div id='carousel_container'>
-  <div id='left_scroll'><a></a></div>
-    <div id='carousel_inner'>
-      <ul id='carousel_ul'>
-        <% if @playlist %>
-          <% class_current = '_lesson_viewer_current_slide' %>
-          <% overall_counter = 1 %>
-          <% @playlist.each do |classroom| %>
-            <% classroom.lesson.slides.order(:position).each do |slide| %>
-              <% slide.text = "" if slide.text.blank? %>
-              <% class_cover = slide.cover? ? "_cover_bookmark_for_lesson_viewer_#{classroom.lesson_id}".html_safe : '' %>
-              <li id="slide_in_lesson_viewer_<%= overall_counter %>" class="cover slide lesson_<%= classroom.position%> <%= class_current %> <%= class_cover %>" data-overall-counter="<%= overall_counter %>" data-lesson-position="<%= classroom.position%>">
-                <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %>
-              </li>
-              <% class_current = '' %>
-              <% overall_counter += 1 %>
-            <% end %>
-          <% end %>
-        <% else %>
-          <% class_current = '_lesson_viewer_current_slide' %>
-          <% overall_counter = 1 %>
-          <% lesson.slides.order(:position).each do |slide| %>
-            <% slide.text = "" if slide.text.blank? %>
-            <li id="slide_in_lesson_viewer_<%= overall_counter %>" class="cover slide <%= class_current %>" data-overall-counter="<%= overall_counter %>">
-              <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %>
-            </li>
-            <% class_current = '' %>
-            <% overall_counter += 1 %>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
-  <div id='right_scroll'><a></a></div>
+
+<div id="carousel_container">
+  <div id='carousel_inner'>
+    <ul id='carousel_ul'>
+      <% slides.each do |slide| %>
+        <%
+          slide.text = '' if slide.text.blank?
+          class_cover = ''
+          if slide.cover?
+            class_cover = "_cover_bookmark_for_lesson_viewer_#{slide.lesson_id}".html_safe
+            lesson_counter += 1
+          end
+        %>
+        <li id="slide_in_lesson_viewer_<%= overall_counter %>" class="cover slide lesson_<%= lesson_counter %> <%= class_current %> <%= class_cover %>" data-overall-counter="<%= overall_counter %>" data-lesson-position="<%= lesson_counter %>">
+          <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %>
+        </li>
+        <%
+          class_current = ''
+          overall_counter += 1
+        %>
+      <% end %>
+    </ul>
+  </div>
 </div>
+
+
 <div id="info_container" data-slide-number="1" style="display:none"></div>
-<a class="esciButton fltrt"   title="<%= t('titles.exit') %>" href="#" style="margin-top:20px; display:none"></a>
-<script type="text/javascript" charset="utf-8">
-  if("<%= @back %>".length > 0) {
-    var bb = $(".esciButton");
-    bb.attr("href","<%=@back%>");
+<a class="esciButton fltrt" title="<%= t('titles.exit') %>" href="#" style="margin-top:20px; display:none"></a>
+
+<% if @with_exit %>
+  <script type="text/javascript" charset="utf-8">
+    var bb = $('.esciButton');
+    <% if @is_back %>
+      bb.attr('href', '<%= @back %>');
+    <% else %>
+      bb.attr('href', 'javascript:history.back()');
+    <% end %>
     bb.show();
-  }
-</script>
+  </script>
+<% end %>

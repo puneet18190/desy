@@ -4,6 +4,7 @@
   <%= hidden_field_tag 'search[ordering]', 'id DESC'%>
   <div class="row-fluid">
     <div id="alert" class="span12 alert alert-error" style="display:none">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
       <div class="start"><%= t('admin.search.start_more_then_end') %></div>
       <div class="end"><%= t('admin.search.end_less_then_start') %></div>
     </div>
@@ -107,6 +108,19 @@
           <select id="school_list" name='search[school_id]'>
             <% if params[:search] && (params[:search][:town_id].to_i > 0)%>
               <%= render :partial => 'admin/users/locations_list', :locals => {:parent => params[:search][:town_id]} %>
+            <% end %>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="control-group">
+        <label for="school_level_id">School Level</label>
+        <div class="controls">
+          <select id="school_level" name="search[school_level_id]">
+            <option value=''>Select school level</option>
+            <% SchoolLevel.all.each do |level|%>
+              <option value="<%= level.id %>"><%= level.description %></option>
             <% end %>
           </select>
         </div>
