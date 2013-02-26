@@ -23,7 +23,7 @@ group :development do
   gem 'mailcatcher'
   # Basta assets che monopolizzano il log dell'application server!
   gem 'quiet_assets'
-  gem 'irbtools'
+  gem 'irbtools', group: 'irbtools'
   gem 'irb-benchmark'
 end
 
