@@ -124,11 +124,12 @@ class User < ActiveRecord::Base
   
   
   def video_editor_available
-    !Video.where(converted: nil, user_id: 1).exists?
+    #Video.where(converted: nil, user_id: id).all?{ |record| record.metadata.inserting_mode == Video::INSERTING_MODES[:upload] && record.created_at == record.updated_at }
+    Video.where(converted: nil, user_id: id).exists?
   end
   
   def audio_editor_available
-    !Audio.where(converted: nil, user_id: 1).exists?
+    Audio.where(converted: nil, user_id: id).exists?
   end
   
   def search_media_elements(word, page, for_page, order=nil, filter=nil)
