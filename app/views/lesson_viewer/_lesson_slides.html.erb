@@ -34,9 +34,9 @@
   <div id='right_scroll'><a></a></div>
 </div>
 <div id="info_container" data-slide-number="1" style="display:none"></div>
-<a class="esciButton fltrt"   title="<%= t('titles.exit') %>" href="#" style="margin-top:20px; display:none"></a>
+<a class="esciButton fltrt" title="<%= t('titles.exit') %>" href="#" style="margin-top:20px; display:none"></a>
 
-<% if @is_back || @with_token %>
+<% if !@with_token %>
   <script type="text/javascript" charset="utf-8">
     var bb = $('.esciButton');
     <% if @is_back %>
