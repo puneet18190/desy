@@ -158,11 +158,12 @@ Desy::Application.routes.draw do
   namespace 'admin' do
     root :to => 'dashboard#index'
     
-    get 'users/contact' => 'users#contact'
-    get 'users/get_emails' => 'users#get_emails'
-    get 'elements/edit' => 'elements#edit'
+    get  'users/contact' => 'users#contact'
+    get  'users/get_emails' => 'users#get_emails'
+    get  'elements/edit' => 'elements#edit'
+    get  'elements/:id/load' => 'elements#load_element'
     post 'location/:id/find' => 'users#find_location'
-    put 'users/:id/set_status' => 'users#set_status'
+    put  'users/:id/set_status' => 'users#set_status'
     
     resources :lessons, :only => [:index, :destroy]
     resources :elements, :except => [:show, :edit]
