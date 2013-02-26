@@ -1,5 +1,5 @@
 class Admin::ElementsController < AdminController
-  before_filter :find_element, :only => [:destroy, :update]
+  before_filter :find_element, :only => [:destroy, :update, :load_element]
   layout 'admin'
   
   def index
@@ -74,6 +74,9 @@ class Admin::ElementsController < AdminController
       @error = @element.get_base_error
     end
     render :nothing => true
+  end
+  
+  def load_element
   end
 
   private

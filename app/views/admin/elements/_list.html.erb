@@ -1,27 +1,63 @@
 <% if elements.count > 0 %>
-  <table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <td><b><%= link_to "id", '#' %></b></td>
-      <td><b><%= link_to "title", '#' %></b></td>
-      <td><b><%= link_to "type", '#' %></b></td>
-      <td><b><%= link_to "user", '#' %></b></td>
-      <td><b>school</b></td>
-      <td><b>location</b></td>
-      <td><b><%= link_to "created", '#' %></b></td>
-      <td><b><%= link_to "last update", '#' %></b></td>
-      <td><b><%= link_to "public", '#' %></b></td>
-      <td></td>
-    </tr>
-  </thead>
-  <tbody>
+  <table id="elements-list" class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>
+          id<br> 
+          <a class="label" href="id ASC">▲</a>
+          <a class="label" href="id DESC">▼</a>
+        </th>
+        <th>
+          title<br>
+          <a class="label" href="title ASC">▲</a>
+          <a class="label" href="title DESC">▼</a>
+        </th>
+        <th>
+          media_type<br>
+          <a class="label" href="sti_type ASC">▲</a>
+          <a class="label" href="sti_type DESC">▼</a>
+        </th>
+        <th>user<br>
+          <a class="label" href="user_id ASC">▲</a>
+          <a class="label" href="user_id DESC">▼</a>
+        </th>
+        <th>
+          location<br>
+          <a class="label" href="location_id ASC">▲</a>
+          <a class="label" href="location_id DESC">▼</a>
+        </th>
+        <th>
+          school<br>
+          <a class="label" href="location_id ASC">▲</a>
+          <a class="label" href="location_id DESC">▼</a>
+        </th>
+        <th>
+          created_at<br>
+          <a class="label" href="created_at ASC">▲</a>
+          <a class="label" href="created_at DESC">▼</a>
+        </th>
+        <th>
+          updated_at<br>
+          <a class="label" href="updated_at ASC">▲</a>
+          <a class="label" href="updated_at DESC">▼</a>
+        </th>
+        <th>
+          public<br>
+          <a class="label" href="is_public ASC">▲</a>
+          <a class="label" href="is_public DESC">▼</a>
+        </th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
     <% elements.each do |element| %>
       <tr class="collapse">
         <td><%= element.id %></td>
         <td><%= element.title%></td>
         <td><%= element.sti_type%></td>
-        <td><%= element.user.surname %> <%= element.user.name %></td>
         <td><%= element.user.school %></td>
+        <td><%= element.user.surname %> <%= element.user.name %></td>
         <td><%= element.user.province %> - <%= element.user.town %></td>
         <td><%= element.created_at.strftime('%d-%m-%Y')%></td>
         <td><%= element.updated_at.strftime('%d-%m-%Y')%></td>
@@ -37,9 +73,7 @@
         <td colspan="9">
           <div class="row-fluid">
           <div class="span3">
-            <div class="element-thumbnail">
-              <%= render :partial => "admin/elements/previews/#{element.sti_type.downcase}", :locals => {:media_element => element} %>
-            </div>
+            <div id="element_<%=element.id%>_preview" class="element-thumbnail" data-param="<%=element.id%>"></div>
           </div>
           <div class="span3">
             <h5>Tags</h5>
@@ -56,8 +90,8 @@
         <td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 <% else %>
   <%= t('admin.elements.index.not_found') %>
 <% end %>
