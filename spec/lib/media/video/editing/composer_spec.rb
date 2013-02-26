@@ -53,7 +53,7 @@ module Media
             let(:initial_video) do
               record = ::Video.create!(title: 'new title', description: 'new description', tags: 'e,f,g,h') do |r|
                 r.user               = user
-                r.composing          = params
+                r.composing          = true
               end
               { id: record.id }
             end

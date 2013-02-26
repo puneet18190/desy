@@ -55,11 +55,11 @@ class VideoEditorController < ApplicationController
       return
     end
     initial_video_test = Video.new do |record|
-      record.title              = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
-      record.description        = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
-      record.tags               = params[:new_tags_value]
-      record.user_id            = current_user.id
-      record.composing          = parameters
+      record.title       = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
+      record.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
+      record.tags        = params[:new_tags_value]
+      record.user_id     = current_user.id
+      record.composing   = true
     end
     
     if initial_video_test.save

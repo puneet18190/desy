@@ -53,7 +53,8 @@ module Media
         end
 
         def run
-          old_media = video.composing.blank? && video.media.to_hash
+          @creation_mode = video.media.blank?
+          old_media = !@creation_mode && video.media.to_hash
           
           begin
             compose
@@ -68,7 +69,7 @@ module Media
               video.tags        = old_fields.tags
             end
             video.save! if old_media || old_fields
-            Notification.send_to video.user_id, I18n.t('captions.video_composing_failed')
+            Notification.send_to video.user_id, I18n.t("notifications.videos.#{notification_translation_key}.failed")
             raise e
           end
         end
@@ -118,7 +119,8 @@ module Media
             ActiveRecord::Base.transaction do
               video.save!
               video.enable_lessons_containing_me
-              Notification.send_to video.user_id, I18n.t('captions.video_composing_successful')
+              # new|editing
+              Notification.send_to video.user_id, I18n.t("notifications.videos.#{notification_translation_key}.ok", video: video.title)
               video.user.try(:video_editor_cache!)
             end
           end
@@ -151,6 +153,10 @@ module Media
             start, duration = from, to-from
             Crop.new(inputs, output_without_extension(i), start, duration).run
           end
+        end
+
+        def notification_translation_key
+          @creation_mode ? 'new' : 'editing'
         end
 
         def video_copy(input, output)

@@ -12,15 +12,35 @@ class Video < MediaElement
   
   EXTENSION_WHITE_LIST = Media::Video::Uploader::EXTENSION_WHITE_LIST
   PLACEHOLDER          = Media::Video::Placeholder
-
-  attr_accessor :skip_conversion, :rename_media
+  CREATION_MODES       = [:uploading, :composing]
+  UPLOADING_CREATION_MODE, COMPOSING_CREATION_MODE = CREATION_MODES
 
   after_save :upload_or_copy
   before_destroy :cannot_destroy_while_converting
   after_destroy :clean
+  before_create :set_creation_mode
 
   validates_presence_of :media, if: proc{ |record| record.composing.blank? }
   validate :media_validation
+
+  attr_accessor :skip_conversion, :rename_media
+
+  def set_creation_mode
+    self.metadata.creation_mode = composing.present? ? COMPOSING_CREATION_MODE : UPLOADING_CREATION_MODE
+    true
+  end
+
+  def uploaded?
+    metadata.creation_mode == UPLOADING_CREATION_MODE
+  end
+
+  def composed?
+    metadata.creation_mode == COMPOSING_CREATION_MODE
+  end
+
+  def modified?
+    created_at == updated_at
+  end
   
   def placeholders_url(key)
     PLACEHOLDER.url(key)
