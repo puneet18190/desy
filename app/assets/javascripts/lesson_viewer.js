@@ -98,7 +98,7 @@ function lessonViewerLessonsAmount() {
 }
 
 function updateLessonTitle() {
-  current_lesson = $('._lesson_viewer_current_slide').data('lesson-position');
+  var current_lesson = $('._lesson_viewer_current_slide').data('lesson-position');
   $('._lesson_title_in_playlist:visible').hide();
   $('._lesson_title_in_playlist').eq(current_lesson - 1).show();
 }
@@ -110,16 +110,16 @@ function stopMediaInLessonViewer() {
 }
 
 function scrollPlaylist(lesson_number) {
-  current_slide_number = $('#info_container').data("slide-number");
+  var current_slide_number = $('#info_container').data('slide-number');
+  var new_slide = $('li.lesson_' + lesson_number + ':first');
   $('#slide_in_lesson_viewer_' + current_slide_number).removeClass('_lesson_viewer_current_slide');
-  new_slide = $("li.lesson_"+lesson_number+":first");
   new_slide.addClass('_lesson_viewer_current_slide');
   $('#info_container').data('slide-number', new_slide.data('overall-counter'));
 }
 
 function scrollLesson(direction) {
   var slides_amount = lessonViewerSlidesAmount();
-  current_slide_number = $('#info_container').data('slide-number');
+  var current_slide_number = $('#info_container').data('slide-number');
   $('#slide_in_lesson_viewer_' + current_slide_number).removeClass('_lesson_viewer_current_slide');
   if(direction == 'right') {
     if(current_slide_number == slides_amount) {
