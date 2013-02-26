@@ -42,7 +42,7 @@ $(document).ready(function(){
   
   
   var selected = $('#search_date_range').find('option:selected').val();
-  if(selected.length > 0){
+  if(selected && (selected.length > 0)){
     $('.datepick').removeAttr('disabled');
   }
   
