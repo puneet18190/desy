@@ -6,7 +6,7 @@ module Media
     class Placeholder
       FOLDER                      = 'media_elements/videos/placeholder'
       ABSOLUTE_FOLDER             = RAILS_PUBLIC_FOLDER.join FOLDER
-      PUBLIC_RELATIVE_FOLDER_ROOT = File.join '/', 'media_elements/videos/placeholder'
+      PUBLIC_RELATIVE_FOLDER_ROOT = File.join '/', FOLDER
       FILENAME_WITHOUT_EXTENSION  = 'placeholder'
       FILENAME                    = Hash[ FORMATS.map{ |f| [f, "#{FILENAME_WITHOUT_EXTENSION}.#{f}"] } ]
       DURATION                    = 5
