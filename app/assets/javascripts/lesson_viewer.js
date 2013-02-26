@@ -14,16 +14,15 @@ $(document).ready(function() {
       showArrowsInLessonViewer();
     });
     $('#carousel_ul').animate({
-      'left': -(goToPos*900)
+      'left': -(goToPos * 900)
     });
     $('a._open_playlist span').toggle();
     $('a._close_playlist span').toggle();
   });
   
   $('body').on('click', 'a._open_playlist', function() {
-    $('.playlistMenu').slideToggle('slow', function() {
-      hideArrowsInLessonViewer();
-    });
+    hideArrowsInLessonViewer();
+    $('.playlistMenu').slideToggle('slow');
     $(this).find('span').toggle();
     $('a._close_playlist span').toggle();
   });
