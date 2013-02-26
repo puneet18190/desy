@@ -119,7 +119,6 @@ module Media
             ActiveRecord::Base.transaction do
               video.save!
               video.enable_lessons_containing_me
-              # new|editing
               Notification.send_to video.user_id, I18n.t("notifications.videos.#{notification_translation_key}.ok", video: video.title)
               video.user.try(:video_editor_cache!)
             end

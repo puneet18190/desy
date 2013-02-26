@@ -73,6 +73,14 @@ module Media
           rescue StandardError => e
             model.update_column(:converted, false) if model.present?
             FileUtils.rm_rf output_folder if Dir.exists? output_folder
+
+            if model.present? and model.user_id.present?
+              begin
+                Notification.send_to model.user_id, t("notifications.#{model.class.to_s.downcase}.uploading.failed", item: model.title.to_s)
+              rescue StandardError
+              end
+            end
+
             raise e
           end
   
@@ -83,8 +91,10 @@ module Media
           model.media         = output_filename_without_extension
           model[:media]       = output_filename_without_extension
           model.save!
-  
+
           FileUtils.rm temp_path
+
+          Notification.send_to model.user_id, t("notifications.#{model.class.to_s.downcase}.uploading.ok", item: model.title)
         end
   
         def extract_thumb(input, output, width, height)

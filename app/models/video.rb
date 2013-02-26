@@ -1,5 +1,4 @@
 require 'media/video/uploader'
-require 'media/video/placeholder'
 require 'media/video/editing/parameters'
 
 # converted
@@ -11,7 +10,6 @@ class Video < MediaElement
   extend Media::Video::Editing::Parameters
   
   EXTENSION_WHITE_LIST = Media::Video::Uploader::EXTENSION_WHITE_LIST
-  PLACEHOLDER          = Media::Video::Placeholder
   CREATION_MODES       = [:uploading, :composing]
   UPLOADING_CREATION_MODE, COMPOSING_CREATION_MODE = CREATION_MODES
 
@@ -42,28 +40,24 @@ class Video < MediaElement
     created_at == updated_at
   end
   
-  def placeholders_url(key)
-    PLACEHOLDER.url(key)
-  end
-  
   def min_duration
     [mp4_duration, webm_duration].map(&:to_i).min
   end
 
   def mp4_url
-    converted ? media.try(:url, :mp4) : PLACEHOLDER.url(:mp4)
+    media.try(:url, :mp4) if converted
   end
 
   def webm_url
-    converted ? media.try(:url, :webm) : PLACEHOLDER.url(:webm)
+    media.try(:url, :webm) if converted
   end
 
   def cover_url
-    converted ? media.try(:url, :cover) : PLACEHOLDER.url(:cover)
+    media.try(:url, :cover) if converted
   end
   
   def thumb_url
-    converted ? media.try(:url, :thumb) : PLACEHOLDER.url(:thumb)
+    converted ? media.try(:url, :thumb) : placeholder_url
   end
 
   def media
@@ -78,7 +72,7 @@ class Video < MediaElement
   end
 
   def mp4_duration
-    converted ? metadata.mp4_duration : PLACEHOLDER.mp4_duration
+    converted ? metadata.mp4_duration : nil
   end
 
   def mp4_duration=(mp4_duration)
@@ -86,7 +80,7 @@ class Video < MediaElement
   end
   
   def webm_duration
-    converted ? metadata.webm_duration : PLACEHOLDER.webm_duration
+    converted ? metadata.webm_duration : nil
   end
   
   def webm_duration=(webm_duration)

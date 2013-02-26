@@ -13,6 +13,8 @@ class MediaElement < ActiveRecord::Base
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
   DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
 
+  PLACEHOLDER_URL = '/assets/media_placeholder.gif'
+
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
 
@@ -82,6 +84,10 @@ class MediaElement < ActiveRecord::Base
       return nil if media_element.status.nil?
       media_element
     end
+  end
+
+  def placeholder_url
+    PLACEHOLDER_URL
   end
   
   def disable_lessons_containing_me

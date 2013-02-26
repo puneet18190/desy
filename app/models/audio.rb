@@ -7,6 +7,8 @@ class Audio < MediaElement
   
   EXTENSION_WHITE_LIST = Media::Audio::Uploader::EXTENSION_WHITE_LIST
 
+  THUMB_URL = '/assets/simbolo-audio.svg'
+
   after_save :upload_or_copy
   before_destroy :cannot_destroy_while_converting
   after_destroy :clean
@@ -16,11 +18,15 @@ class Audio < MediaElement
   validate :media_validation
   
   def mp3_url
-    media.try(:url, :mp3)
+    media.try(:url, :mp3) if converted
   end
 
   def ogg_url
-    media.try(:url, :ogg)
+    media.try(:url, :ogg) if converted
+  end
+  
+  def thumb_url
+    converted ? THUMB_URL : placeholder_url
   end
   
   def mp3_duration
