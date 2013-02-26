@@ -3,9 +3,10 @@ $(document).ready(function() {
   initializeLessonViewer();
   
   $('body').on('click', '._playlist_menu_item', function() {
+    var lesson_id = $(this).data('lesson-id');
     $('.playlistMenu').slideToggle('slow', function() {
       showArrowsInLessonViewer();
-      slideToInLessonViewer($('._cover_bookmark_for_lesson_viewer_' + $(this).data('lesson-id')));
+      slideToInLessonViewer($('._cover_bookmark_for_lesson_viewer_' + lesson_id));
       $('a._open_playlist span').toggle();
       $('a._close_playlist span').toggle();
     });
