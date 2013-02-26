@@ -4,7 +4,6 @@
   lesson_counter = 0
 %>
 
-
 <div id="carousel_container">
   <div id='carousel_inner'>
     <ul id='carousel_ul'>
@@ -17,7 +16,7 @@
             lesson_counter += 1
           end
         %>
-        <li id="slide_in_lesson_viewer_<%= overall_counter %>" class="cover slide lesson_<%= lesson_counter %> <%= class_current %> <%= class_cover %>" data-overall-counter="<%= overall_counter %>" data-lesson-position="<%= lesson_counter %>">
+        <li id="slide_in_lesson_viewer_<%= overall_counter %>" class="_slide_in_lesson_viewer cover slide lesson_<%= lesson_counter %> <%= class_current %> <%= class_cover %>" data-overall-counter="<%= overall_counter %>" data-lesson-position="<%= lesson_counter %>">
           <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %>
         </li>
         <%
@@ -29,8 +28,6 @@
   </div>
 </div>
 
-
-<div id="info_container" data-slide-number="1" style="display:none"></div>
 <a class="esciButton fltrt" title="<%= t('titles.exit') %>" href="#" style="margin-top:20px; display:none"></a>
 
 <% if @with_exit %>
