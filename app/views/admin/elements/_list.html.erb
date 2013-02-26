@@ -6,6 +6,7 @@
       <td><b><%= link_to "title", '#' %></b></td>
       <td><b><%= link_to "type", '#' %></b></td>
       <td><b><%= link_to "user", '#' %></b></td>
+      <td><b>school</b></td>
       <td><b>location</b></td>
       <td><b><%= link_to "created", '#' %></b></td>
       <td><b><%= link_to "last update", '#' %></b></td>
@@ -20,7 +21,8 @@
         <td><%= element.title%></td>
         <td><%= element.sti_type%></td>
         <td><%= element.user.surname %> <%= element.user.name %></td>
-        <td> (<%= element.user.school %>)</td>
+        <td><%= element.user.school %></td>
+        <td><%= element.user.province %> - <%= element.user.town %></td>
         <td><%= element.created_at.strftime('%d-%m-%Y')%></td>
         <td><%= element.updated_at.strftime('%d-%m-%Y')%></td>
         <td>
@@ -32,11 +34,11 @@
       </tr>
       <div style="clear:both;"></div>
       <tr class="collapsed">
-        <td colspan="8">
+        <td colspan="9">
           <div class="row-fluid">
           <div class="span3">
-            <div class="img-polaroid element-thumbnail">
-              <%= render :partial => "media_elements/thumbnails/#{element.sti_type.downcase}", :locals => {:item => element} %>
+            <div class="element-thumbnail">
+              <%= render :partial => "admin/elements/previews/#{element.sti_type.downcase}", :locals => {:media_element => element} %>
             </div>
           </div>
           <div class="span3">
