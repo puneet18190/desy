@@ -8,11 +8,12 @@
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th><b>id</b></th>
-          <th><b>email</b></th>
-          <th><b>school</b></th>
-          <th><b>location</b></th>
-          <th><b>created</b></th>
+          <th>id</th>
+          <th>email</th>
+          <th>school</th>
+          <th>location</th>
+          <th>created</th>
+          <th>last update</th>
           <th></th>
         </tr>
       </thead>
@@ -21,22 +22,18 @@
             <td><%= @user.id %></td>
             <td><%= link_to @user.email, "mailto:#{@user.email}"%></td>
             <td><%= @user.school %> (<%= @user.school_level.description %>)</td>
-            <td></td>
+            <td><%= @user.province %> - <%= @user.town %></td>
             <td><%= @user.created_at.strftime('%d-%m-%Y')%></td>
+            <td><%= @user.updated_at.strftime('%d-%m-%Y')%></td>
             <td>
               <div class="btn-group pull-right">
-                <button class="btn btn-small">
-                  <i class="icon-ok"></i> <%= t('admin.users.show.activate').downcase%>
-                </button>
-                <button class="btn btn-small">
-                  <i class="icon-ban-circle"></i> <%= t('admin.users.show.ban').downcase%>
-                </button>
-                <button class="btn btn-small">
-                  <i class="icon-remove"></i> <%= t('admin.general.delete').downcase%>
-                </button>
-                <button class="btn btn-small">
-                  <i class="icon-envelope"></i> <%= link_to t('admin.users.show.message').downcase, "/admin/users/contact?users=#{@user.id}"%>
-                </button>
+                <% if @user.active %>
+                  <%= link_to "<i class='icon-ban-circle _show_status _show_ban'></i> ".html_safe+t('admin.users.show.ban').downcase, "/admin/user/#{@user.id}/ban", :method => :put, :class=>"btn btn-small" %>    
+                <% else %>
+                  <%= link_to "<i class='icon-ok _show_status _show_active'></i> ".html_safe+t('admin.users.show.activate').downcase, "/admin/user/#{@user.id}/activate", :method => :put, :class=>"btn btn-small"%>
+                <% end %>
+                  <%= link_to "<i class='icon-remove'></i> ".html_safe+t('admin.general.delete').downcase, admin_user_path, :method => :delete, :confirm => t('admin.general.ask_for_delete'), :class=>"btn btn-small"%>
+                <%= link_to "<i class='icon-envelope'></i> ".html_safe+t('admin.users.show.message').downcase, "/admin/users/contact?users=#{@user.id}", :class=>"btn btn-small"%>
               </div>
             </td>
           </tr>

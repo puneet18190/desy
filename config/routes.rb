@@ -164,6 +164,8 @@ Desy::Application.routes.draw do
     get  'elements/:id/load' => 'elements#load_element'
     post 'location/:id/find' => 'users#find_location'
     put  'users/:id/set_status' => 'users#set_status'
+    put  'user/:id/activate' => 'users#activate'
+    put  'user/:id/ban' => 'users#ban'
     
     resources :lessons, :only => [:index, :destroy]
     resources :elements, :except => [:show, :edit]
