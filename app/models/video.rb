@@ -13,12 +13,13 @@ class Video < MediaElement
   EXTENSION_WHITE_LIST = Media::Video::Uploader::EXTENSION_WHITE_LIST
   PLACEHOLDER          = Media::Video::Placeholder
 
+  attr_accessor :skip_conversion, :rename_media
+
   after_save :upload_or_copy
   before_destroy :cannot_destroy_while_converting
   after_destroy :clean
 
-  attr_accessor :skip_conversion, :rename_media
-
+  validates_presence_of :media, if: proc{ |record| record.composing.blank? }
   validate :media_validation
   
   def placeholders_url(key)
@@ -59,17 +60,25 @@ class Video < MediaElement
   def mp4_duration
     converted ? metadata.mp4_duration : PLACEHOLDER.mp4_duration
   end
-  
-  def webm_duration
-    converted ? metadata.webm_duration : PLACEHOLDER.webm_duration
-  end
 
   def mp4_duration=(mp4_duration)
     metadata.mp4_duration = mp4_duration
   end
   
+  def webm_duration
+    converted ? metadata.webm_duration : PLACEHOLDER.webm_duration
+  end
+  
   def webm_duration=(webm_duration)
     metadata.webm_duration = webm_duration
+  end
+
+  def composing
+    metadata.composing
+  end
+  
+  def composing=(composing)
+    metadata.composing = composing
   end
 
   def reload

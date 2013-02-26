@@ -54,27 +54,20 @@ class VideoEditorController < ApplicationController
       render 'media_elements/info_form_in_editor/save'
       return
     end
-    initial_video_test = Video.new
-    initial_video_test.title = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
-    initial_video_test.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
-    initial_video_test.tags = params[:new_tags_value]
-    initial_video_test.user_id = current_user.id
-    # provo a validarlo per vedere se è ok
-    initial_video_test.valid?
-    errors = initial_video_test.errors.messages
-    errors.delete(:media)
-    if errors.empty?
-      parameters[:initial_video] = {
-        :id => nil,
-        :title => params[:new_title],
-        :description => params[:new_description],
-        :tags => params[:new_tags_value],
-        :user_id => current_user.id
-      }
+    initial_video_test = Video.new do |record|
+      record.title              = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
+      record.description        = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
+      record.tags               = params[:new_tags_value]
+      record.user_id            = current_user.id
+      record.composing          = parameters
+    end
+    
+    if initial_video_test.save
+      parameters[:initial_video] = { :id => initial_video_test.id }
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'new'
-      @errors = convert_item_error_messages(errors)
+      @errors = convert_item_error_messages(initial_video_test.errors.messages)
       @error_fields = errors.keys
     end
     render 'media_elements/info_form_in_editor/save'

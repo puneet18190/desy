@@ -29,8 +29,7 @@ module Media
 
         describe '#run' do
           let(:params) do
-            { initial_video: initial_video,
-              audio_track: audio_track,
+            { audio_track: audio_track,
               components: [
                 { type:  described_class::VIDEO_COMPONENT,
                   video: video.id              ,
@@ -47,19 +46,26 @@ module Media
               ]
             }
           end
+          let(:params_with_initial_video) { params.merge(initial_video: initial_video) }
 
           context 'without initial video' do
 
-            let(:initial_video) { { title: 'test', description: 'test', tags: 'a,b,c,d', user_id: user.id } }
+            let(:initial_video) do
+              record = ::Video.create!(title: 'new title', description: 'new description', tags: 'e,f,g,h') do |r|
+                r.user               = user
+                r.composing          = params
+              end
+              { id: record.id }
+            end
             
             context 'without audio track' do
               let(:audio_track)              { nil }
               let(:user_notifications_count) { user.notifications.count }
 
               before(:all) do
-                user.video_editor_cache!(params)
+                user.video_editor_cache!(params_with_initial_video)
                 user_notifications_count
-                described_class.new(params).run
+                described_class.new(params_with_initial_video).run
               end
 
               MESS::VIDEO_FORMATS.each do |format|
@@ -75,6 +81,10 @@ module Media
                     info(format).should == MESS::VIDEO_COMPOSING[format]
                   end
                 end
+              end
+
+              it 'deletes the video composing metadata' do
+                video.reload.composing.should be_nil
               end
 
               it 'sends a notification to the user' do
@@ -91,9 +101,9 @@ module Media
               let(:user_notifications_count) { user.notifications.count }
 
               before(:all) do
-                user.video_editor_cache!(params)
+                user.video_editor_cache!(params_with_initial_video)
                 user_notifications_count
-                described_class.new(params).run
+                described_class.new(params_with_initial_video).run
               end
 
               MESS::VIDEO_FORMATS.each do |format|
@@ -111,9 +121,14 @@ module Media
                 end
               end
 
+              it 'deletes the video composing metadata' do
+                video.reload.composing.should be_nil
+              end
+
               it 'sends a notification to the user' do
                 video.user.notifications.count.should == user_notifications_count+1
               end
+
               it 'deletes the video editor cache' do
                 video.user.reload.video_editor_cache.should be_nil
               end
@@ -136,9 +151,9 @@ module Media
               let(:user_notifications_count) { user.notifications.count }
 
               before(:all) do
-                user.video_editor_cache!(params)
+                user.video_editor_cache!(params_with_initial_video)
                 user_notifications_count
-                described_class.new(params).run
+                described_class.new(params_with_initial_video).run
               end
 
               MESS::VIDEO_FORMATS.each do |format|
@@ -156,7 +171,7 @@ module Media
                 end
               end
 
-              it 'deletes video.metadata.old_fields' do
+              it 'deletes the video old_fields metadata' do
                 video.metadata.old_fields.should be_nil
               end
 
@@ -174,9 +189,9 @@ module Media
               let(:user_notifications_count) { user.notifications.count }
 
               before(:all) do
-                user.video_editor_cache!(params)
+                user.video_editor_cache!(params_with_initial_video)
                 user_notifications_count
-                described_class.new(params).run
+                described_class.new(params_with_initial_video).run
               end
 
               MESS::VIDEO_FORMATS.each do |format|
@@ -194,7 +209,7 @@ module Media
                 end
               end
 
-              it 'deletes video.metadata.old_fields' do
+              it 'deletes the video old_fields metadata' do
                 video.metadata.old_fields.should be_nil
               end
 
