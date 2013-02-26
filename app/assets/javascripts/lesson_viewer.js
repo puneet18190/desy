@@ -2,6 +2,13 @@ $(document).ready(function() {
   
   initializeLessonViewer();
   
+  $('body').on('click', '#carousel_container a', function() {
+    var me = $(this);
+    if(!me.hasClass('esciButton') && !me.hasClass('_playlist_menu_item') && !me.hasClass('_open_playlist') && !me.hasClass('_close_playlist')) {
+      closePlaylistMenuInLessonViewer(function() {});
+    }
+  });
+  
   $('body').on('click', '._playlist_menu_item', function() {
     var lesson_id = $(this).data('lesson-id');
     closePlaylistMenuInLessonViewer(function() {
@@ -42,13 +49,13 @@ function openPlaylistMenuInLessonViewer(callback) {
   hideArrowsInLessonViewer();
   $('a._open_playlist span').hide();
   $('a._close_playlist span').show();
-  $('.playlistMenu').slideToggle('slow', function() {
+  $('.playlistMenu').slideDown('slow', function() {
     callback();
   });
 }
 
 function closePlaylistMenuInLessonViewer(callback) {
-  $('.playlistMenu').slideToggle('slow', function() {
+  $('.playlistMenu').slideUp('slow', function() {
     callback();
     showArrowsInLessonViewer();
     $('a._open_playlist span').show();

@@ -1,4 +1,4 @@
-<div class="playlistMenu">
+<div class="playlistMenu" <%= (vc_lessons.length < 4) ? "style=\"padding-bottom:2px\"".html_safe : '' %>>
   <div class="scrollBlu">
     <div id="playlist_menu" class="scroll-pane horizontal-only">
       <div class="scrollCane" style="width:<%= (vc_lessons.length * 307) - 60 %>px">
