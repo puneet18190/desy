@@ -574,10 +574,6 @@ $(document).ready(function() {
   
   // JAVASCRIPT ANIMATIONS
   
-  $('#playlist_menu').jScrollPane({
-    autoReinitialise: true
-  });
-  
   $('#notifications_list').jScrollPane({
     autoReinitialise: true
   });
