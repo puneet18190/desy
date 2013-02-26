@@ -140,19 +140,20 @@ html.lesson-viewer-layout{
     z-index:3;
     bottom:0;
     background-color:#141313;
-    ul {
+    .playlistInnerMenu {
       padding:0;
-      display:inline-block;
       height:168px;
       width:auto;
       margin: 0;
     }
-    li {
-      display: inline-block;
-      list-style-type: none;
-      margin: 0 55px 0 0;
+    .playlistInnerMenuItem {
+      margin: 0 60px 0 0;
+      float: left;
       cursor:pointer;
       width: 247px;
+    }
+    .jspHorizontalBar {
+      margin-top: 5px;
     }
   }
   
@@ -164,9 +165,9 @@ html.lesson-viewer-layout{
   .horizontal-only {
     height:180px;
   }
-  .scrollContent {
-    width:860px;
+  .scrollCane {
     text-align:left;
+    height: 162px;
     .img_expanded {
       &:hover {
       background-color:#373737;
@@ -644,4 +645,5 @@ html.lesson-viewer-layout{
    font-size: 400%;
    line-height: 160%;
   }
+  
 }
