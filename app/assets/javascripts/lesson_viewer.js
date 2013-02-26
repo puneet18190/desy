@@ -3,18 +3,16 @@ $(document).ready(function() {
   initializeLessonViewer();
   
   $('body').on('click', '.playlistMenu ul li', function() {
-    var lesson_id = $(this).data('lesson-id');
     $('.playlistMenu').slideToggle('slow', function() {
       showArrowsInLessonViewer();
-      slideToInLessonViewer($('._cover_bookmark_for_lesson_viewer_' + lesson_id));
-      $('._lesson_title_in_playlist').hide();
-      $('#lesson_viewer_playlist_title_' + lesson_id).show();
+      slideToInLessonViewer($('._cover_bookmark_for_lesson_viewer_' + $(this).data('lesson-id')));
       $('a._open_playlist span').toggle();
       $('a._close_playlist span').toggle();
     });
   });
   
   $('body').on('click', 'a._open_playlist', function() {
+    stopMediaInLessonViewer();
     hideArrowsInLessonViewer();
     $('.playlistMenu').slideToggle('slow');
     $(this).find('span').toggle();
@@ -31,27 +29,20 @@ $(document).ready(function() {
   
   $(document.documentElement).keyup(function(e) {
     if(e.keyCode == 37) {
-      stopMediaInLessonViewer();
       goToPrevSlideInLessonViewer();
     } else if(e.keyCode == 39) {
-      stopMediaInLessonViewer();
       goToNextSlideInLessonViewer();
     }
-    updateLessonTitle();
   });
   
   $('body').on('click', '#right_scroll', function(e) {
     e.preventDefault();
-    stopMediaInLessonViewer();
     goToNextSlideInLessonViewer();
-    updateLessonTitle();
   });
   
   $('body').on('click', '#left_scroll', function(e) {
     e.preventDefault();
-    stopMediaInLessonViewer();
     goToPrevSlideInLessonViewer();
-    updateLessonTitle();
   });
   
 });
@@ -61,12 +52,18 @@ function getLessonViewerCurrentSlide() {
 }
 
 function slideToInLessonViewer(to) {
+  stopMediaInLessonViewer();
   var from = getLessonViewerCurrentSlide();
   from.removeClass('_lesson_viewer_current_slide');
   to.addClass('_lesson_viewer_current_slide');
   from.hide('fade', {}, 500, function() {
     to.show();
   });
+  var lesson_id = to.data('lesson-id');
+  if($('._lesson_title_in_playlist').data('lesson-id') != lesson_id) {
+    $('._lesson_title_in_playlist').hide();
+    $('#lesson_viewer_playlist_title_' + lesson_id).show();
+  }
 }
 
 function hideArrowsInLessonViewer() {
@@ -85,12 +82,6 @@ function initializeLessonViewer() {
   $(window).resize(function() {
     $('html.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
   });
-}
-
-function updateLessonTitle() {
-  var current_lesson = $('._lesson_viewer_current_slide').data('lesson-position');
-  $('._lesson_title_in_playlist:visible').hide();
-  $('._lesson_title_in_playlist').eq(current_lesson - 1).show();
 }
 
 function stopMediaInLessonViewer() {

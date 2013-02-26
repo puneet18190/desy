@@ -2,7 +2,6 @@
   class_current = '_lesson_viewer_current_slide'.html_safe
   style_current = "style=\"display:block\"".html_safe
   overall_counter = 1
-  lesson_counter = 0
 %>
 
 <div id="carousel_container">
@@ -11,13 +10,9 @@
       <% slides.each do |slide| %>
         <%
           slide.text = '' if slide.text.blank?
-          class_cover = ''
-          if slide.cover?
-            class_cover = "_cover_bookmark_for_lesson_viewer_#{slide.lesson_id}".html_safe
-            lesson_counter += 1
-          end
+          class_cover = slide.cover? ? "_cover_bookmark_for_lesson_viewer_#{slide.lesson_id}".html_safe : ''
         %>
-        <li id="slide_in_lesson_viewer_<%= overall_counter %>" class="_slide_in_lesson_viewer cover slide lesson_<%= lesson_counter %> <%= class_current %> <%= class_cover %>" data-overall-counter="<%= overall_counter %>" data-lesson-position="<%= lesson_counter %>" <%= style_current %>>
+        <li id="slide_in_lesson_viewer_<%= overall_counter %>" class="_slide_in_lesson_viewer cover slide <%= class_current %> <%= class_cover %>" data-overall-counter="<%= overall_counter %>" data-lesson-id="<%= slide.lesson_id %>" <%= style_current %>>
           <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %>
         </li>
         <%
