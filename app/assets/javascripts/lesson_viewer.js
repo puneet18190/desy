@@ -40,14 +40,6 @@ $(document).ready(function() {
     updateLessonTitle();
   });
   
-  $('body').on('mouseover', '#right_scroll, #left_scroll', function() {
-    $(this).fadeTo('fast', 1);
-  });
-  
-  $('body').on('mouseout', '#right_scroll, #left_scroll', function() {
-    $(this).fadeTo('fast', 0.6);
-  });
-  
   $('body').on('click', '#right_scroll', function(e) {
     e.preventDefault();
     stopMediaInLessonViewer();
