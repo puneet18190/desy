@@ -9,13 +9,16 @@ class LessonViewerController < ApplicationController
       redirect_to '/dashboard'
     else
       @is_back = (!params[:back].nil? && !params[:back].empty?)
-      @with_token = !params[:token].nil? && !params[:token].empty?
+      @with_exit = params[:token].nil? || !params[:token].empty?
       @back = params[:back]
       @slides = @lesson.slides.order(:position)
     end
   end
   
   def playlist
+    @is_back = true
+    @with_exit = false
+    @back = '/virtual_classroom'
     @slides = current_user.playlist_for_viewer
     @vc_lessons = current_user.playlist
     if @vc_lessons.length == 0

@@ -44,7 +44,7 @@
 <div id="info_container" data-slide-number="1" style="display:none"></div>
 <a class="esciButton fltrt" title="<%= t('titles.exit') %>" href="#" style="margin-top:20px; display:none"></a>
 
-<% if !@with_token %>
+<% if @with_exit %>
   <script type="text/javascript" charset="utf-8">
     var bb = $('.esciButton');
     <% if @is_back %>
