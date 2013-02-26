@@ -12,8 +12,6 @@ class Seeding
   VIDEOS_FOLDER         = MEDIA_ELEMENTS_FOLDER.join 'videos'
   IMAGES_FOLDER         = MEDIA_ELEMENTS_FOLDER.join 'images'
 
-  VIDEOS_PLACEHOLDERS_FOLDER = VIDEOS_FOLDER.join 'placeholder'
-
   IMAGE_EXTENSIONS_GLOB = Image::EXTENSION_WHITE_LIST.map do |str| 
     str.chars.map{ |c| "[#{c}#{c.upcase}]" }.join('')
   end.join(',')
@@ -37,7 +35,6 @@ class Seeding
         update_sequence
       end
 
-      FileUtils.cp_r VIDEOS_PLACEHOLDERS_FOLDER, Media::Video::Placeholder::ABSOLUTE_FOLDER
       FileUtils.rm_rf OLD_PUBLIC_MEDIA_ELEMENTS_FOLDER
     end
 

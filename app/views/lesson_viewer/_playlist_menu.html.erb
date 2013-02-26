@@ -1,14 +1,14 @@
-<div class="playlistMenu">
+<div class="playlistMenu" <%= (vc_lessons.length < 4) ? "style=\"padding-bottom:2px\"".html_safe : '' %>>
   <div class="scrollBlu">
-    <div class="scroll-pane horizontal-only" id="playlist_menu">
-      <div class="scrollContent">
-        <ul>
-          <% vc_lessons.each do |vc_lesson| %>
-            <li data-param="<%= vc_lesson.position %>" data-lesson-id="<%= vc_lesson.lesson_id %>">
+    <div id="playlist_menu" class="scroll-pane horizontal-only">
+      <div class="scrollCane" style="width:<%= (vc_lessons.length * 307) - 60 %>px">
+        <div class="playlistInnerMenu">
+          <% vc_lessons.each_with_index do |vc_lesson, index| %>
+            <div class="playlistInnerMenuItem _playlist_menu_item" data-lesson-id="<%= vc_lesson.lesson_id %>" <%= (index == vc_lessons.length - 1) ? "style=\"margin-right:0\"".html_safe : '' %>>
               <%= render :partial => "lessons/thumbnail", :locals => {:lesson => vc_lesson.lesson} %>
-            </li>
+            </div>
           <% end %>
-        </ul>
+        </div>
       </div>
     </div>
   </div>

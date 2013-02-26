@@ -26,14 +26,16 @@ class MediaElementsController < ApplicationController
   end
   
   def create
-    new_media_element = MediaElement.new :media => params[:media]
-    new_media_element.title = params[:title_placeholder] != '0' ? '' : params[:title]
-    new_media_element.description = params[:description_placeholder] != '0' ? '' : params[:description]
-    new_media_element.tags = params[:tags_value]
-    new_media_element.user_id = current_user.id
-    if !new_media_element.save
-      @errors = convert_media_element_uploader_messages new_media_element.errors.messages
-      fields = new_media_element.errors.messages.keys
+    record = MediaElement.new :media => params[:media]
+    record.title = params[:title_placeholder] != '0' ? '' : params[:title]
+    record.description = params[:description_placeholder] != '0' ? '' : params[:description]
+    record.tags = params[:tags_value]
+    record.user_id = current_user.id
+    if record.save
+      Notification.send_to current_user.id, t("notifications.#{record.class.to_s.downcase}.uploading.started", item: record.title)
+    else
+      @errors = convert_media_element_uploader_messages record.errors.messages
+      fields = record.errors.messages.keys
       if fields.include? :sti_type
         fields << :media if !fields.include? :media
         fields.delete :sti_type

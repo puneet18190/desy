@@ -13,6 +13,8 @@ class MediaElement < ActiveRecord::Base
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
   DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
 
+  PLACEHOLDER_URL = '/assets/media_placeholder.gif'
+
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
 
@@ -29,7 +31,7 @@ class MediaElement < ActiveRecord::Base
   has_many :taggings_tags, through: :taggings, source: :tag
   belongs_to :user
   
-  validates_presence_of :user_id, :title, :description, :media
+  validates_presence_of :user_id, :title, :description
   validates_inclusion_of :is_public, :in => [true, false]
   validates_inclusion_of :sti_type, :in => STI_TYPES
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
@@ -82,6 +84,10 @@ class MediaElement < ActiveRecord::Base
       return nil if media_element.status.nil?
       media_element
     end
+  end
+
+  def placeholder_url
+    PLACEHOLDER_URL
   end
   
   def disable_lessons_containing_me
