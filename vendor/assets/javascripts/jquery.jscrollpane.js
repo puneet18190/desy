@@ -718,7 +718,7 @@
 				elem.trigger('jsp-scroll-y', [-destTop, isAtTop, isAtBottom]).trigger('scroll');
 			}
 
-			function positionDragX(destX, animate, duration)
+			function positionDragX(destX, animate, duration, callback)
 			{
 				if (!isScrollableH) {
 					return;
@@ -733,7 +733,7 @@
 					animate = settings.animateScroll;
 				}
 				if (animate) {
-					jsp.animate(horizontalDrag, 'left', destX,	_positionDragX, duration);
+					jsp.animate(horizontalDrag, 'left', destX,	_positionDragX, duration, callback);
 				} else {
 					horizontalDrag.css('left', destX);
 					_positionDragX(destX);
@@ -787,10 +787,10 @@
 				positionDragY(percentScrolled * dragMaxY, animate);
 			}
 
-			function scrollToX(destX, animate, duration)
+			function scrollToX(destX, animate, duration, callback)
 			{
 				var percentScrolled = destX / (contentWidth - paneWidth);
-				positionDragX(percentScrolled * dragMaxX, animate, duration);
+				positionDragX(percentScrolled * dragMaxX, animate, duration, callback);
 			}
 
 			function scrollToElement(ele, stickToTop, animate)
@@ -1235,9 +1235,9 @@
 					// Scrolls the pane so that the specified co-ordinate within the content is at the left of the
 					// viewport. animate is optional and if not passed then the value of animateScroll from the settings
 					// object this jScrollPane was initialised with is used.
-					scrollToX: function(destX, animate, duration)
+					scrollToX: function(destX, animate, duration, callback)
 					{
-						scrollToX(destX, animate, duration);
+						scrollToX(destX, animate, duration, callback);
 					},
 					// Scrolls the pane so that the specified co-ordinate within the content is at the top of the
 					// viewport. animate is optional and if not passed then the value of animateScroll from the settings
@@ -1249,9 +1249,9 @@
 					// Scrolls the pane to the specified percentage of its maximum horizontal scroll position. animate
 					// is optional and if not passed then the value of animateScroll from the settings object this
 					// jScrollPane was initialised with is used.
-					scrollToPercentX: function(destPercentX, animate)
+					scrollToPercentX: function(destPercentX, animate, callback)
 					{
-						scrollToX(destPercentX * (contentWidth - paneWidth), animate);
+						scrollToX(destPercentX * (contentWidth - paneWidth), animate, undefined, callback);
 					},
 					// Scrolls the pane to the specified percentage of its maximum vertical scroll position. animate
 					// is optional and if not passed then the value of animateScroll from the settings object this
@@ -1304,8 +1304,9 @@
 					//  * value        - the value it's being animated to
 					//  * stepCallback - a function that you must execute each time you update the value of the property
 					// You can use the default implementation (below) as a starting point for your own implementation.
-					animate: function(ele, prop, value, stepCallback, my_duration)
+					animate: function(ele, prop, value, stepCallback, my_duration, callback)
 					{
+						
 						var params = {};
 						var duration = my_duration;
 						if(typeof(duration) == 'undefined') {
@@ -1318,7 +1319,12 @@
 								'duration'	: duration,
 								'easing'	: settings.animateEase,
 								'queue'		: false,
-								'step'		: stepCallback
+								'step'		: stepCallback,
+								'complete': function() {
+								  if(callback != undefined) {
+								    callback();
+								  }
+								}
 							}
 						);
 					},
