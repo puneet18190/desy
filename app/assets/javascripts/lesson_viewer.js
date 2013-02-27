@@ -19,6 +19,13 @@ $(document).ready(function() {
   });
   
   $('body').on('click', 'a._open_playlist', function() {
+    if(!$(this).data('loaded') && $('._playlist_menu_item').length > 3) {
+      $(this).data('loaded', true);
+      $('#playlist_menu').jScrollPane({
+        autoReinitialise: true,
+        contentWidth: (($('._playlist_menu_item').length * 307) - 60)
+      });
+    }
     stopMediaInLessonViewer();
     openPlaylistMenuInLessonViewer(function() {});
   });
@@ -172,12 +179,7 @@ function showArrowsInLessonViewer() {
 
 function initializeLessonViewer() {
   selectComponentInLessonViewerPlaylistMenu($('._playlist_menu_item').first());
-  if($('._playlist_menu_item').length > 3) {
-    $('#playlist_menu').jScrollPane({
-      autoReinitialise: true,
-      contentWidth: (($('._playlist_menu_item').length * 307) - 60)
-    });
-  } else {
+  if($('._playlist_menu_item').length <= 3) {
     $('#playlist_menu').css('overflow', 'hidden');
   }
   $('html.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
