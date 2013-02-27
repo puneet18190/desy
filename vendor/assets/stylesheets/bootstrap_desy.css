@@ -5136,8 +5136,13 @@ a.thumbnail:focus {
   background-color: #eeeeee;
   color: #555555;
   padding: 20px;
-  border-radius: 6px;
   margin-bottom: 20px;
+  -webkit-border-radius: 10px;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius: 10px;
+  -moz-border-radius-bottomright: 0;
+  border-radius: 10px;
+  border-bottom-right-radius: 0;
 }
 
 .well {
