@@ -174,6 +174,13 @@ function slideToInLessonViewer(to) {
   to.addClass('_lesson_viewer_current_slide');
   from.hide('fade', {}, 500, function() {
     to.show();
+    if(!to.data('loaded')) {
+      $.ajax({
+        type: 'get',
+        beforeSend: unbindLoader(),
+        url: '/lessons/' + to.data('lesson-id') + '/view/slides/' + to.data('slide-id') + '/load?token=' + to.data('lesson-token')
+      }).always(bindLoader);
+    }
   });
 }
 

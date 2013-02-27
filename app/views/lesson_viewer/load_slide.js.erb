@@ -4,5 +4,6 @@
     document.location.reload();
   } else {
     slide.html('<%= j render(:partial => "lesson_viewer/slides/#{@slide.kind}", :locals => {:slide => @slide}) %>');
+    slide.data('loaded', true);
   }
 <% end %>
