@@ -71,6 +71,22 @@
     &.lessons{
       border-color: #f89406;
     }
+    &.legend{
+      padding: 5px 10px; 
+      height: 20px;
+      border-left: 10px solid gray;
+      margin-bottom: 5px;
+    }
+  }
+  
+  .counter-label{
+    &.elements{
+      color: #4bab36;
+    }
+    
+    &.lessons{
+      color: #f89406;
+    }
   }
   
   form{
@@ -128,8 +144,8 @@
   }
 
   ul.list li, ol.list li{
-    border-bottom: 1px solid #ccc;
-    padding: 3px;
+    margin-bottom: 3px;
+    padding: 5px 10px;
     background-color: #ffffff;
   }
   
