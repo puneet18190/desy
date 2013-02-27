@@ -747,7 +747,7 @@ $(document).ready(function() {
     if(!$(this).hasClass('current')) {
       $('#search_media_elements').submit();
       $(this).addClass('current');
-      add_keep_searching(this);
+      addKeepSearching(this);
     }
   });
   
@@ -755,7 +755,7 @@ $(document).ready(function() {
     if(!$(this).hasClass('current')) {
       $('#search_lessons').submit();
       $(this).addClass('current');
-      add_keep_searching(this);
+      addKeepSearching(this);
     }
   });
   
