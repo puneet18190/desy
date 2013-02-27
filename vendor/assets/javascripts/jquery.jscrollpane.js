@@ -219,26 +219,22 @@
                 }
 
                 if (settings.autoReinitialise && !reinitialiseInterval) {
-                    reinitialiseInterval = setInterval(
-                        function()
-                        {
-              var yes = false;
-              var infos = $('#info_container');
-                      if(infos.length > 0 && infos.data('reinitialise-scroll-pane-times') != undefined) {
-                        var counter = infos.data('baeh');
-                        if(counter > 0) {
-                            infos.data('reinitialise-scroll-pane-times', counter - 1);
-                            yes = true;
-                          }
-                      } else {
+                  reinitialiseInterval = setInterval(function() {
+                    var yes = false;
+                    var infos = $('#info_container');
+                    if(infos.length > 0 && infos.data('reinitialise-scroll-pane-times') != undefined) {
+                      var counter = infos.data('reinitialise-scroll-pane-times');
+                      if(counter > 0) {
+                        infos.data('reinitialise-scroll-pane-times', counter - 1);
                         yes = true;
                       }
-                          if(yes) {
-                            initialise(settings);
-                          }
-                        },
-                        settings.autoReinitialiseDelay
-                    );
+                    } else {
+                      yes = true;
+                    }
+                    if(yes) {
+                      initialise(settings);
+                    }
+                  }, settings.autoReinitialiseDelay);
                 } else if (!settings.autoReinitialise && reinitialiseInterval) {
                     clearInterval(reinitialiseInterval);
                 }
