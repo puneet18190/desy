@@ -8,11 +8,7 @@
           <tr>
             <td width="20%">
               <label><%= t('search.lessons.keyword.label') %></label><br />
-              <% if @search_item == 'lessons' %>
-                <input type="text" name="tag" value="<%= @tag_placeholder %>" class="text lower" id="lessons_tag_reader_for_search" style="color:<%= @did_you_search ? '#999'.html_safe : '#bbb'.html_safe %>">
-              <% else %>
-                <input type="text" name="tag" value="<%= t('search.lessons.keyword.placeholder') %>" class="text lower" id="lessons_tag_reader_for_search" style="color:#999">
-              <% end %>
+              <input type="text" name="tag" value="<%= t('search.lessons.keyword.placeholder') %>" class="text lower" id="lessons_tag_reader_for_search" style="color:#999">
               <%= hidden_field_tag 'tag_kind', (@tag.kind_of?(Tag) ? @tag.id : ''), :id => 'lessons_tag_kind_for_search' %>
             </td>
             <td width="20%">
