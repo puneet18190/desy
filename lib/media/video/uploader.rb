@@ -1,7 +1,7 @@
 require 'media'
 require 'media/video'
 require 'media/uploader'
-require 'media/allowed_duration_range'
+require 'media/similar_durations'
 require 'media/video/editing/cmd/extract_frame'
 require 'media/video/editing/conversion'
 require 'media/video/editing/conversion/job'
@@ -22,7 +22,7 @@ module Media
       EXTENSION_WHITE_LIST          = %w(avi divx flv h264 mkv mov mp4 mpe mpeg mpg ogm ogv webm wmv xvid)
       EXTENSION_WHITE_LIST_WITH_DOT = EXTENSION_WHITE_LIST.map{ |ext| ".#{ext}" }
       MIN_DURATION                  = 1
-      DURATION_THRESHOLD            = CONFIG.video.duration_threshold
+      DURATION_THRESHOLD            = CONFIG.duration_threshold
       FORMATS                       = FORMATS
       ALLOWED_KEYS                  = [:filename] + FORMATS
       VERSION_FORMATS               = VERSION_FORMATS

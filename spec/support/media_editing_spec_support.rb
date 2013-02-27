@@ -65,9 +65,20 @@ module MediaEditingSpecSupport
                     }
                   }
 
-  VIDEO_COMPOSING = { 
-                      mp4: {:duration=>38.19, :streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>193}], :audio=>[{:codec=>"mp3", :bitrate=>76}]}},
-                      webm: {:duration=>38.17, :streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[{:codec=>"vorbis", :bitrate=>nil}]}}
+  VIDEO_COMPOSING = { without_audio_track: 
+                      { 
+                        mp4: {:duration=>55.12, :streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>819}], :audio=>[{:codec=>"mp3", :bitrate=>63}]}},
+                        webm: {:duration=>55.16, :streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[{:codec=>"vorbis", :bitrate=>nil}]}}
+                      },
+                      with_audio_track:
+                      { 
+                        mp4: {:duration=>55.08, :streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>819}], :audio=>[{:codec=>"mp3", :bitrate=>149}]}},
+                        webm: {:duration=>55.13, :streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[{:codec=>"vorbis", :bitrate=>nil}]}}
+                      }
+                    }
+  AUDIO_COMPOSING = { 
+                      mp3: {:duration=>20.11, :streams=>{:video=>[], :audio=>[{:codec=>"mp3", :bitrate=>128}]}}, 
+                      ogg: {:duration=>19.99, :streams=>{:video=>[], :audio=>[{:codec=>"vorbis", :bitrate=>112}]}} 
                     }
 
   AVCONV_SH_VARS         = {}

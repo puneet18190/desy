@@ -1,10 +1,10 @@
 require 'media'
-require 'media/allowed_duration_range'
+require 'media/similar_durations'
 require 'securerandom'
 
 module Media
   class Uploader < String
-    include AllowedDurationRange
+    include SimilarDurations
 
     attr_reader :model, :column, :value
 
