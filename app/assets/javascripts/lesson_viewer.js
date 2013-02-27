@@ -13,6 +13,7 @@ $(document).ready(function() {
     var lesson_id = $(this).data('lesson-id');
     closePlaylistMenuInLessonViewer(function() {
       slideToInLessonViewer($('._cover_bookmark_for_lesson_viewer_' + lesson_id));
+      switchLessonInPlaylistMenuLessonViewer(lesson_id);
     });
   });
   
@@ -134,12 +135,6 @@ function slideToInLessonViewer(to) {
   from.hide('fade', {}, 500, function() {
     to.show();
   });
-  var lesson_id = to.data('lesson-id');
-  if($('._lesson_title_in_playlist').data('lesson-id') != lesson_id) {
-    $('._lesson_title_in_playlist').hide();
-    $('#lesson_viewer_playlist_title_' + lesson_id).show();
-    selectComponentInLessonViewerPlaylistMenu($('#playlist_menu_item_' + lesson_id));
-  }
 }
 
 function hideArrowsInLessonViewer() {
@@ -172,20 +167,33 @@ function stopMediaInLessonViewer() {
   stopMedia('#' + current_slide_id + ' video');
 }
 
+function switchLessonInPlaylistMenuLessonViewer(lesson_id) {
+  if($('._lesson_title_in_playlist').data('lesson-id') != lesson_id) {
+    $('._lesson_title_in_playlist').hide();
+    $('#lesson_viewer_playlist_title_' + lesson_id).show();
+    selectComponentInLessonViewerPlaylistMenu($('#playlist_menu_item_' + lesson_id));
+  }
+}
+
+function slideToInLessonViewerWithLessonSwitch(component) {
+  slideToInLessonViewer(component);
+  switchLessonInPlaylistMenuLessonViewer(component.data('lesson-id'));
+}
+
 function goToNextSlideInLessonViewer() {
   var next_slide = getLessonViewerCurrentSlide().next();
   if(next_slide.length == 0) {
-    slideToInLessonViewer($('#slide_in_lesson_viewer_1'));
+    slideToInLessonViewerWithLessonSwitch($('#slide_in_lesson_viewer_1'));
   } else {
-    slideToInLessonViewer(next_slide);
+    slideToInLessonViewerWithLessonSwitch(next_slide);
   }
 }
 
 function goToPrevSlideInLessonViewer() {
   var prev_slide = getLessonViewerCurrentSlide().prev();
   if(prev_slide.length == 0) {
-    slideToInLessonViewer($('._slide_in_lesson_viewer').last());
+    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').last());
   } else {
-    slideToInLessonViewer(prev_slide);
+    slideToInLessonViewerWithLessonSwitch(prev_slide);
   }
 }
