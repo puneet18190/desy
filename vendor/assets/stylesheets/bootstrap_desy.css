@@ -217,7 +217,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #a56500;
+  color: #F5A933;
   text-decoration: underline;
 }
 .img-rounded {
@@ -4855,36 +4855,7 @@ a.thumbnail:focus {
   color: #333333;
   white-space: nowrap;
 }
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus,
-.dropdown-submenu:hover > a,
-.dropdown-submenu:focus > a {
-  text-decoration: none;
-  color: #ffffff;
-  background-color: #e88e00;
-  background-image: -moz-linear-gradient(top, #f29400, #d98400);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f29400), to(#d98400));
-  background-image: -webkit-linear-gradient(top, #f29400, #d98400);
-  background-image: -o-linear-gradient(top, #f29400, #d98400);
-  background-image: linear-gradient(to bottom, #f29400, #d98400);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff29400', endColorstr='#ffd98400', GradientType=0);
-}
-.dropdown-menu > .active > a,
-.dropdown-menu > .active > a:hover,
-.dropdown-menu > .active > a:focus {
-  color: #ffffff;
-  text-decoration: none;
-  outline: 0;
-  background-color: #e88e00;
-  background-image: -moz-linear-gradient(top, #f29400, #d98400);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f29400), to(#d98400));
-  background-image: -webkit-linear-gradient(top, #f29400, #d98400);
-  background-image: -o-linear-gradient(top, #f29400, #d98400);
-  background-image: linear-gradient(to bottom, #f29400, #d98400);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff29400', endColorstr='#ffd98400', GradientType=0);
-}
+
 .dropdown-menu > .disabled > a,
 .dropdown-menu > .disabled > a:hover,
 .dropdown-menu > .disabled > a:focus {
@@ -5131,6 +5102,20 @@ a.thumbnail:focus {
 .carousel-caption p {
   margin-bottom: 0;
 }
+
+.widget {
+  background-color: #eeeeee;
+  color: #555555;
+  padding: 20px;
+  margin-bottom: 20px;
+  -webkit-border-radius: 10px;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius: 10px;
+  -moz-border-radius-bottomright: 0;
+  border-radius: 10px;
+  border-bottom-right-radius: 0;
+}
+
 .well {
   min-height: 20px;
   padding: 19px;

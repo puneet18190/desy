@@ -1,3 +1,11 @@
+/*
+  NOTA DI ADRIANO:
+    ci sono tre bug conosciuti e dovuti al malfunzionamento di JScrollPane:
+     (1) quando passo dalla prima slide della terza lezione all'ultima slide della seconda lezione, lo scroll non segue la selezione della lezione in basso
+     (2) quando passo dall'ultima slide dell'ultima lezione alla prima slide della prima lezione, idem
+     (3) se, dopo aver aperto la prima volta il menu delle lezioni, (SOLO LA PRIMA VOLTA), clicco su una delle lezioni entro due secondi, si rompe il menu
+*/
+
 $(document).ready(function() {
   
   initializeLessonViewer();
@@ -11,12 +19,21 @@ $(document).ready(function() {
   
   $('body').on('click', '._playlist_menu_item', function() {
     var lesson_id = $(this).data('lesson-id');
-    closePlaylistMenuInLessonViewer(function() {
-      slideToInLessonViewer($('._cover_bookmark_for_lesson_viewer_' + lesson_id));
+    switchLessonInPlaylistMenuLessonViewer(lesson_id, function() {
+      closePlaylistMenuInLessonViewer(function() {
+        slideToInLessonViewer($('._cover_bookmark_for_lesson_viewer_' + lesson_id));
+      });
     });
   });
   
   $('body').on('click', 'a._open_playlist', function() {
+    if(!$(this).data('loaded') && $('._playlist_menu_item').length > 3) {
+      $(this).data('loaded', true);
+      $('#playlist_menu').jScrollPane({
+        autoReinitialise: true,
+        contentWidth: (($('._playlist_menu_item').length * 307) - 60)
+      });
+    }
     stopMediaInLessonViewer();
     openPlaylistMenuInLessonViewer(function() {});
   });
@@ -63,7 +80,7 @@ function closePlaylistMenuInLessonViewer(callback) {
   });
 }
 
-function selectComponentInLessonViewerPlaylistMenu(component) {
+function selectComponentInLessonViewerPlaylistMenu(component, callback) {
   $('._playlist_menu_item').css('margin', '2px 60px 2px 0').css('border', 0);
   $('._playlist_menu_item').last().css('margin-right', 0);
   $('._playlist_menu_item._selected').removeClass('_selected');
@@ -102,7 +119,7 @@ function selectComponentInLessonViewerPlaylistMenu(component) {
     component.css('border', '2px solid white');
     prev.css('margin-right', '58px');
   }
-  if($('#playlist_menu').hasClass('jspScrollable')) {
+  if($('#playlist_menu').data('jsp') != undefined) {
     var flag = true;
     var tot_prev_components = 0;
     $('._playlist_menu_item').each(function() {
@@ -114,10 +131,34 @@ function selectComponentInLessonViewerPlaylistMenu(component) {
     });
     if(tot_prev_components > 1) {
       if(tot_prev_components == $('._playlist_menu_item').length - 1) {
-        $('#playlist_menu').data('jsp').scrollToPercentX(100);
+        if(callback == undefined) {
+          $('#playlist_menu').data('jsp').scrollToPercentX(100);
+        } else {
+          $('#playlist_menu').jScrollPane().bind('panescrollstop', function() {
+            callback();
+            $('#playlist_menu').jScrollPane().unbind('panescrollstop');
+          });
+          $('#playlist_menu').data('jsp').scrollToPercentX(100, true);
+        }
       } else {
-        $('#playlist_menu').data('jsp').scrollToX(307 * (tot_prev_components - 1));
+        if(callback == undefined) {
+          $('#playlist_menu').data('jsp').scrollToX(307 * (tot_prev_components - 1));
+        } else {
+          $('#playlist_menu').jScrollPane().bind('panescrollstop', function() {
+            callback();
+            $('#playlist_menu').jScrollPane().unbind('panescrollstop');
+          });
+          $('#playlist_menu').data('jsp').scrollToX(307 * (tot_prev_components - 1), true);
+        }
       }
+    } else {
+      if(callback != undefined) {
+        callback();
+      }
+    }
+  } else {
+    if(callback != undefined) {
+      callback();
     }
   }
 }
@@ -133,13 +174,14 @@ function slideToInLessonViewer(to) {
   to.addClass('_lesson_viewer_current_slide');
   from.hide('fade', {}, 500, function() {
     to.show();
+    if(!to.data('loaded')) {
+      $.ajax({
+        type: 'get',
+        beforeSend: unbindLoader(),
+        url: '/lessons/' + to.data('lesson-id') + '/view/slides/' + to.data('slide-id') + '/load?token=' + to.data('lesson-token')
+      }).always(bindLoader);
+    }
   });
-  var lesson_id = to.data('lesson-id');
-  if($('._lesson_title_in_playlist').data('lesson-id') != lesson_id) {
-    $('._lesson_title_in_playlist').hide();
-    $('#lesson_viewer_playlist_title_' + lesson_id).show();
-    selectComponentInLessonViewerPlaylistMenu($('#playlist_menu_item_' + lesson_id));
-  }
 }
 
 function hideArrowsInLessonViewer() {
@@ -152,11 +194,7 @@ function showArrowsInLessonViewer() {
 
 function initializeLessonViewer() {
   selectComponentInLessonViewerPlaylistMenu($('._playlist_menu_item').first());
-  if($('._playlist_menu_item').length > 3) {
-    $('#playlist_menu').jScrollPane({
-      autoReinitialise: true
-    });
-  } else {
+  if($('._playlist_menu_item').length <= 3) {
     $('#playlist_menu').css('overflow', 'hidden');
   }
   $('html.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
@@ -171,20 +209,33 @@ function stopMediaInLessonViewer() {
   stopMedia('#' + current_slide_id + ' video');
 }
 
+function switchLessonInPlaylistMenuLessonViewer(lesson_id, callback) {
+  if($('._lesson_title_in_playlist').data('lesson-id') != lesson_id) {
+    $('._lesson_title_in_playlist').hide();
+    $('#lesson_viewer_playlist_title_' + lesson_id).show();
+    selectComponentInLessonViewerPlaylistMenu($('#playlist_menu_item_' + lesson_id), callback);
+  }
+}
+
+function slideToInLessonViewerWithLessonSwitch(component) {
+  slideToInLessonViewer(component);
+  switchLessonInPlaylistMenuLessonViewer(component.data('lesson-id'));
+}
+
 function goToNextSlideInLessonViewer() {
   var next_slide = getLessonViewerCurrentSlide().next();
   if(next_slide.length == 0) {
-    slideToInLessonViewer($('#slide_in_lesson_viewer_1'));
+    slideToInLessonViewerWithLessonSwitch($($('._slide_in_lesson_viewer')[0]));
   } else {
-    slideToInLessonViewer(next_slide);
+    slideToInLessonViewerWithLessonSwitch(next_slide);
   }
 }
 
 function goToPrevSlideInLessonViewer() {
   var prev_slide = getLessonViewerCurrentSlide().prev();
   if(prev_slide.length == 0) {
-    slideToInLessonViewer($('._slide_in_lesson_viewer').last());
+    slideToInLessonViewerWithLessonSwitch($('._slide_in_lesson_viewer').last());
   } else {
-    slideToInLessonViewer(prev_slide);
+    slideToInLessonViewerWithLessonSwitch(prev_slide);
   }
 }
