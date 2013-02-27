@@ -5,12 +5,12 @@
     <span class="icon-bar"></span>
   </a>
   <a class="brand" href="/admin">
-    <%= image_tag 'logo.gif'%><br />
+    <%= image_tag 'admin-logo.png'%><br />
     <%= t('admin.dashboard.link_name')%>
   </a>
   <div class="nav-collapse collapse">
     <p class="navbar-text pull-right service-links">
-      <%= t('captions.welcome') %> <%= current_user.name %> <%= current_user.surname %><br />
+      <%= t('captions.welcome') %><br />
       <%= link_to t('registration.logout'), users_session_path, method: :delete %> | <%= link_to  SETTINGS['application_name'], "/" %>
     </p>
     <ul class="nav">
