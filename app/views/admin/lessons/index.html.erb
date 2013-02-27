@@ -1,4 +1,5 @@
 <%= render :partial => "search" %>
+<h3><%= t('admin.lessons.index.name')%></h3>
 <%= render :partial => "admin/list_heading", :locals => {:items => @lessons, :expandable => true} %>
 <%= render :partial => "list", :locals => {:lessons => @lessons} %>
 <%= render :partial => "admin/list_heading", :locals => {:items => @lessons, :expandable => true} %>

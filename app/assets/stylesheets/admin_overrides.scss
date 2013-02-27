@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Nunito);
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,200);
 .admin{
   body {
    padding-top: 60px;
@@ -22,6 +24,10 @@
   .collapsed{
     display:none;
   }
+  
+  audio{
+    width: 250px;
+  }
 
   .lesson-thumbnail{
     width:246px;
@@ -42,6 +48,16 @@
   .new_elements_well .row-fluid div:nth-child(3n+1) { 
     clear: left;
     margin-left:0;
+  }
+  
+  form.search-form{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #FAFAFA;
+    padding: 10px 0 0 15px;
+    .form-actions{
+      margin: 0 0 0 -15px;
+    }
   }
   
   .element-update-form{

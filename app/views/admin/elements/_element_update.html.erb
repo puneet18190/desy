@@ -12,7 +12,7 @@
     <br>
     <%= text_area_tag 'tags', element.tags , :class => 'lower' %>
     <br>
-    <button class="_publish_private_element btn btn-small btn-success" type="button" data-param="<%= element.id %>">Publish</button>
+    <button class="_publish_private_element btn btn-small btn-primary" type="button" data-param="<%= element.id %>">Publish</button>
     <button class="_update_new_element btn btn-small" type="button" data-param="<%= element.id %>">Update</button>
     <button class="_delete_new_element btn btn-small btn-danger" type="button" data-param="<%= element.id %>">Delete</button>
   <% end %>
