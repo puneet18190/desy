@@ -52,27 +52,20 @@ class AudioEditorController < ApplicationController
       render 'media_elements/info_form_in_editor/save'
       return
     end
-    initial_audio_test = Audio.new
-    initial_audio_test.title = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
-    initial_audio_test.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
-    initial_audio_test.tags = params[:new_tags_value]
-    initial_audio_test.user_id = current_user.id
-    # provo a validarlo per vedere se è ok
-    initial_audio_test.valid?
-    errors = initial_audio_test.errors.messages
-    errors.delete(:media)
-    if errors.empty?
-      parameters[:initial_audio] = {
-        :id => nil,
-        :title => params[:new_title],
-        :description => params[:new_description],
-        :tags => params[:new_tags_value],
-        :user_id => current_user.id
-      }
-      #Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
+    record = Audio.new do |r|
+      r.title       = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
+      r.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
+      r.tags        = params[:new_tags_value]
+      r.user_id     = current_user.id
+      r.composing   = true
+    end
+
+    if record.save
+      parameters[:initial_audio] = { :id => record.id }
+      Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'new'
-      @errors = convert_item_error_messages(errors)
+      @errors = convert_item_error_messages(record.errors.messages)
       @error_fields = errors.keys
     end
     render 'media_elements/info_form_in_editor/save'
@@ -87,24 +80,24 @@ class AudioEditorController < ApplicationController
       render 'media_elements/info_form_in_editor/save'
       return
     end
-    initial_audio_test = Audio.find_by_id parameters[:initial_audio]
-    initial_audio_test.title = params[:update_title]
-    initial_audio_test.description = params[:update_description]
-    initial_audio_test.tags = params[:update_tags_value]
-    if initial_audio_test.valid?
+    record = Audio.find_by_id parameters[:initial_audio]
+    record.title = params[:update_title]
+    record.description = params[:update_description]
+    record.tags = params[:update_tags_value]
+    if record.valid?
       parameters[:initial_audio] = {
         :id => parameters[:initial_audio],
         :title => params[:update_title],
         :description => params[:update_description],
         :tags => params[:update_tags_value]
       }
-      initial_audio_test.pre_overwriting
+      record.pre_overwriting
       Notification.send_to current_user.id, t('notifications.audio.editing.started')
-      #Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
+      Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'update'
-      @errors = convert_item_error_messages(initial_audio_test.errors.messages)
-      @error_fields = initial_audio_test.errors.messages.keys
+      @errors = convert_item_error_messages(record.errors.messages)
+      @error_fields = record.errors.messages.keys
     end
     render 'media_elements/info_form_in_editor/save'
   end

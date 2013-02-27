@@ -15,7 +15,7 @@ module MediaEditingSpecSupport
   VALID_PNG                 = SAMPLES_FOLDER.join('valid image.png').to_s
 
   FILENAME_RE = ->(prefix, postfix = nil) do
-    /\A#{Regexp.quote prefix.to_s}_[\w\-]{22}#{Regexp.quote postfix.to_s}\Z/
+    /\A#{Regexp.quote prefix.to_s}_[\w\-]{22}#{Regexp.quote postfix.to_s}\z/
   end
 
   CONVERTED_VIDEO_HASH = { mp4: SAMPLES_FOLDER.join('con verted.mp4').to_s, webm: SAMPLES_FOLDER.join('con verted.webm').to_s, filename: 'con verted' }

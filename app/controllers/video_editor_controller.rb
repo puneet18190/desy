@@ -54,20 +54,20 @@ class VideoEditorController < ApplicationController
       render 'media_elements/info_form_in_editor/save'
       return
     end
-    initial_video_test = Video.new do |record|
-      record.title       = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
-      record.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
-      record.tags        = params[:new_tags_value]
-      record.user_id     = current_user.id
-      record.composing   = true
+    record = Video.new do |r|
+      r.title       = params[:new_title_placeholder] != '0' ? '' : params[:new_title]
+      r.description = params[:new_description_placeholder] != '0' ? '' : params[:new_description]
+      r.tags        = params[:new_tags_value]
+      r.user_id     = current_user.id
+      r.composing   = true
     end
     
-    if initial_video_test.save
-      parameters[:initial_video] = { :id => initial_video_test.id }
+    if record.save
+      parameters[:initial_video] = { :id => record.id }
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'new'
-      @errors = convert_item_error_messages(initial_video_test.errors.messages)
+      @errors = convert_item_error_messages(record.errors.messages)
       @error_fields = errors.keys
     end
     render 'media_elements/info_form_in_editor/save'
@@ -82,24 +82,24 @@ class VideoEditorController < ApplicationController
       render 'media_elements/info_form_in_editor/save'
       return
     end
-    initial_video_test = Video.find_by_id parameters[:initial_video]
-    initial_video_test.title = params[:update_title]
-    initial_video_test.description = params[:update_description]
-    initial_video_test.tags = params[:update_tags_value]
-    if initial_video_test.valid?
+    record = Video.find_by_id parameters[:initial_video]
+    record.title = params[:update_title]
+    record.description = params[:update_description]
+    record.tags = params[:update_tags_value]
+    if record.valid?
       parameters[:initial_video] = {
         :id => parameters[:initial_video],
         :title => params[:update_title],
         :description => params[:update_description],
         :tags => params[:update_tags_value]
       }
-      initial_video_test.pre_overwriting
+      record.pre_overwriting
       Notification.send_to current_user.id, t('notifications.videos.editing.started')
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'update'
-      @errors = convert_item_error_messages(initial_video_test.errors.messages)
-      @error_fields = initial_video_test.errors.messages.keys
+      @errors = convert_item_error_messages(record.errors.messages)
+      @error_fields = record.errors.messages.keys
     end
     render 'media_elements/info_form_in_editor/save'
   end

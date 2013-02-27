@@ -76,7 +76,7 @@ module Media
 
             if model.present? and model.user_id.present?
               begin
-                Notification.send_to model.user_id, t("notifications.#{model.class.to_s.downcase}.uploading.failed", item: model.title.to_s)
+                Notification.send_to model.user_id, I18n.t("notifications.#{model.class.to_s.downcase}.uploading.failed", item: model.title.to_s)
               rescue StandardError
               end
             end
@@ -94,7 +94,7 @@ module Media
 
           FileUtils.rm temp_path
 
-          Notification.send_to model.user_id, t("notifications.#{model.class.to_s.downcase}.uploading.ok", item: model.title)
+          Notification.send_to model.user_id, I18n.t("notifications.#{model.class.to_s.downcase}.uploading.ok", item: model.title)
         end
   
         def extract_thumb(input, output, width, height)
