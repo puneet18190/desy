@@ -6,4 +6,8 @@
     slide.html('<%= j render(:partial => "lesson_viewer/slides/#{@slide.kind}", :locals => {:slide => @slide}) %>');
     slide.data('loaded', true);
   }
+<% elsif @slide.nil? %>
+  if(<%= @lesson.updated_at.to_i %> != slide.data('lesson-updated-at')) {
+    document.location.reload();
+  }
 <% end %>
