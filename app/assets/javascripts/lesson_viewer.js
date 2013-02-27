@@ -63,6 +63,101 @@ function closePlaylistMenuInLessonViewer(callback) {
   });
 }
 
+function selectComponentInLessonViewerPlaylistMenu(component) {
+  $('._playlist_menu_item').css('margin', '2px 60px 2px 0').css('border', 0);
+  $('._playlist_menu_item').last().css('margin-right', 0);
+  $('._playlist_menu_item._selected').removeClass('_selected');
+  component.addClass('_selected');
+  var prev = component.prev();
+  var next = component.next();
+  if(prev.length == 0 && next.length == 0) {
+  
+  console.log('caso 1');
+  
+    component.css('margin-top', 0);
+    component.css('margin-bottom', 0);
+    component.css('border', '2px solid white');
+  } else if(prev.length == 0) {
+  
+  console.log('caso 2');
+  
+    component.css('margin-top', 0);
+    component.css('margin-bottom', 0);
+    component.css('border', '2px solid white');
+    if(next.next().length == 0) {
+    
+    console.log('caso 3');
+    
+      component.css('margin-right', '56px');
+    } else {
+    
+    console.log('caso 4');
+    
+      component.css('margin-right', '58px');
+      next.css('margin-right', '58px');
+    }
+  } else if(next.length == 0) {
+  
+  console.log('caso 5');
+  
+    component.css('margin-top', 0);
+    component.css('margin-bottom', 0);
+    component.css('border', '2px solid white');
+    var prev_prev = prev.prev();
+    if(prev_prev.length == 0) {
+    
+    console.log('caso 6');
+    
+      prev.css('margin-right', '56px');
+    } else {
+    
+    console.log('caso 7');
+    
+      prev.css('margin-right', '58px');
+      prev_prev.css('margin-right', '58px');
+    }
+  } else {
+  
+  console.log('caso 8');
+  
+    component.css('margin-top', 0);
+    component.css('margin-bottom', 0);
+    component.css('margin-right', '58px');
+    component.css('border', '2px solid white');
+    prev.css('margin-right', '58px');
+  }
+  if($('#playlist_menu').hasClass('jspScrollable')) {
+  
+  console.log('caso 9');
+  
+    var flag = true;
+    var tot_prev_components = 0;
+    $('._playlist_menu_item').each(function() {
+      if(flag && !$(menu_items[i]).hasClass('_selected')) {
+        tot_prev_components += 1;
+      } else {
+        flag = false;
+      }
+    });
+    if(tot_prev_components > 1) {
+    
+    console.log('caso 10');
+    
+      if(tot_prev_components == $('._playlist_menu_item').length - 1) {
+      
+      console.log('caso 11');
+      
+        $('#playlist_menu').data('jsp').scrollToPercentX(100);
+      } else {
+      
+      console.log('caso 12');
+      
+        $('#playlist_menu').data('jsp').scrollToX(307 * (tot_prev_components - 1));
+      }
+    }
+  }
+}
+
 function getLessonViewerCurrentSlide() {
   return $('#' + $('._lesson_viewer_current_slide').attr('id'));
 }
@@ -91,9 +186,13 @@ function showArrowsInLessonViewer() {
 }
 
 function initializeLessonViewer() {
-  $('#playlist_menu').jScrollPane({
-    autoReinitialise: true
-  });
+  if($('._playlist_menu_item').length > 3) {
+    $('#playlist_menu').jScrollPane({
+      autoReinitialise: true
+    });
+  } else {
+    $('#playlist_menu').css('overflow', 'hidden');
+  }
   $('html.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
   $(window).resize(function() {
     $('html.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
