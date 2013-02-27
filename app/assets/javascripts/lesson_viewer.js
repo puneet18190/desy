@@ -121,6 +121,7 @@ function selectComponentInLessonViewerPlaylistMenu(component, callback) {
         } else {
           $('#playlist_menu').jScrollPane().bind('panescrollstop', function() {
             callback();
+            $('#playlist_menu').jScrollPane().unbind('panescrollstop');
           });
           $('#playlist_menu').data('jsp').scrollToPercentX(100, true);
         }
@@ -130,9 +131,14 @@ function selectComponentInLessonViewerPlaylistMenu(component, callback) {
         } else {
           $('#playlist_menu').jScrollPane().bind('panescrollstop', function() {
             callback();
+            $('#playlist_menu').jScrollPane().unbind('panescrollstop');
           });
           $('#playlist_menu').data('jsp').scrollToX(307 * (tot_prev_components - 1), true);
         }
+      }
+    } else {
+      if(callback != undefined) {
+        callback();
       }
     }
   }
