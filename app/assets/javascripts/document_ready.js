@@ -747,7 +747,7 @@ $(document).ready(function() {
     if(!$(this).hasClass('current')) {
       $('#search_media_elements').submit();
       $(this).addClass('current');
-      add_keep_searching(this);
+      addKeepSearching(this);
     }
   });
   
@@ -755,12 +755,12 @@ $(document).ready(function() {
     if(!$(this).hasClass('current')) {
       $('#search_lessons').submit();
       $(this).addClass('current');
-      add_keep_searching(this);
+      addKeepSearching(this);
     }
   });
   
   $('body').on('click','#keep-searching',function(){
-    remove_keep_searching(this);
+    removeKeepSearching(this);
   });
   
   $('body').on('change', '#filter_search_lessons_subject', function() {
