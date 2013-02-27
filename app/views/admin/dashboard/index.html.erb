@@ -3,7 +3,7 @@
   <div class="span6 well">
     <table class="table table-striped">
       <thead>
-        <th><b><%= t('users.statistics.general.title') %></b></th>
+        <th><h4><%= t('users.statistics.general.title') %></h4></th>
         <th></th>
       </thead>
       <tbody>
@@ -26,7 +26,7 @@
         <tr>
           <table class="table table-striped">
             <thead>
-              <th><b><%= t('users.statistics.general.lessons_more_likes') %></b></th>
+              <th><h4><%= t('users.statistics.general.lessons_more_likes') %></h4></th>
               <th></th>
             </thead>
             <tbody>
@@ -43,7 +43,7 @@
         <tr>
           <table class="table table-striped">
             <thead>
-              <th><b><%= t('users.statistics.general.users_more_likes') %></b></th>
+              <th><h4><%= t('users.statistics.general.users_more_likes') %></h4></th>
               <th></th>
             </thead>
             <tbody>
@@ -63,7 +63,7 @@
   <div class="span6 well">
     <table class="table table-striped">
       <thead>
-        <th><%= t('users.statistics.general.percentual_lessons_subject.title') %></th>
+        <th><h4><%= t('users.statistics.general.percentual_lessons_subject.title') %></h4></th>
       </thead>
       <tbody>
         <tr>
@@ -94,7 +94,7 @@
 <div class="row-fluid">
   <div class="span3 well">
     <h3><%= t('admin.dashboard.online_users')%></h3>
-    TODO (where login_time > logout_time)
+    <!--TODO (where login_time > logout_time)-->
     <ul class="list">
       <% @users.each do |user| %>
       <li><%= link_to user.name+' '+user.surname, admin_user_path(user) %> </li>

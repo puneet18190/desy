@@ -1,5 +1,5 @@
 <% if lessons.count > 0 %>
-  <table id="lessons-list" class="table table-striped table-hover">
+  <table id="lessons-list" class="table table-striped table-hover table-bordered table-rounded">
   <thead>
     <tr>
       <th>
@@ -67,7 +67,7 @@
           <td><%= link_to '<i class="icon-remove"></i>'.html_safe, "#", :class=>"action"%></td>
         </tr>
         <tr class="collapsed">
-          <td colspan="10">
+          <td colspan="11">
             <div class="row-fluid">
               <div class="span3">
                 <div class="img-polaroid lesson-thumbnail">
@@ -87,7 +87,7 @@
                 <%= lesson.description %>
               </div>
             </div>
-          <td>
+          </td>
         </tr>
     <% end %>
   </tbody>

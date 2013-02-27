@@ -1,5 +1,5 @@
 <h4><%= t('admin.search.label')%></h4>
-<%= form_tag 'users', :method => :get, :class=>"form-vertical", :id=>"admin-search-lessons" do %>
+<%= form_tag 'users', :method => :get, :class=>"form-vertical", :id=>"admin-search-lessons", :class => "search-form" do %>
   <%= hidden_field_tag 'search[search_type]', 'users'%>
   <%= hidden_field_tag 'search[ordering]', 'id DESC'%>
   <div class="row-fluid">
