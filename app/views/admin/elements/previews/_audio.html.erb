@@ -1,0 +1,13 @@
+<%
+  ogg = ''
+  mp3 = ''
+  if media_element
+    ogg = media_element.ogg_url
+    mp3 = media_element.mp3_url
+  end
+%>
+<audio width="250" controls="controls">
+  <source src="<%= ogg  %>" type="audio/ogg">
+  <source src="<%= mp3 %>" type="audio/mp3">
+  <%= t('captions.dont_support_audio') %>
+</audio>

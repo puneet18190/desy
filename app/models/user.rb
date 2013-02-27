@@ -124,11 +124,11 @@ class User < ActiveRecord::Base
   
   
   def video_editor_available
-    !Video.where(converted: nil, user_id: 1).exists?
+    Video.where(converted: nil, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
   end
   
   def audio_editor_available
-    !Audio.where(converted: nil, user_id: 1).exists?
+    !Audio.where(converted: nil, user_id: id).exists?
   end
   
   def search_media_elements(word, page, for_page, order=nil, filter=nil)
@@ -362,6 +362,14 @@ class User < ActiveRecord::Base
   
   def playlist
     VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position)
+  end
+  
+  def playlist_for_viewer
+    resp = []
+    VirtualClassroomLesson.includes(:lesson).where('user_id = ? AND position IS NOT NULL', self.id).order(:position).each do |vc|
+      resp += vc.lesson.slides.order(:position)
+    end
+    resp
   end
   
   def create_lesson(title, description, subject_id, tags)

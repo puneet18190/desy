@@ -22,7 +22,7 @@ module Media
 
         #  {
         #    :initial_video => {
-        #      :id => VIDEO ID or NIL,
+        #      :id => VIDEO ID,
         #      :title => 'title',
         #      :...
         #    },
@@ -53,7 +53,8 @@ module Media
         end
 
         def run
-          old_media = !video.new_record? and video.media.to_hash
+          @creation_mode = video.media.blank?
+          old_media = !@creation_mode && video.media.to_hash
           
           begin
             compose
@@ -68,7 +69,7 @@ module Media
               video.tags        = old_fields.tags
             end
             video.save! if old_media || old_fields
-            Notification.send_to video_user_id, I18n.t('captions.video_composing_failed') if video_user_id
+            Notification.send_to video.user_id, I18n.t("notifications.videos.#{notification_translation_key}.failed")
             raise e
           end
         end
@@ -112,11 +113,13 @@ module Media
             end
 
             video.media               = outputs.merge(filename: video.title)
+            video.composing           = nil
             video.metadata.old_fields = nil
+
             ActiveRecord::Base.transaction do
               video.save!
               video.enable_lessons_containing_me
-              Notification.send_to video_user_id, I18n.t('captions.video_composing_successful') if video_user_id
+              Notification.send_to video.user_id, I18n.t("notifications.videos.#{notification_translation_key}.ok", video: video.title)
               video.user.try(:video_editor_cache!)
             end
           end
@@ -125,7 +128,7 @@ module Media
         private
         def compose_text(text, duration, color, background_color, i)
           text_file = Pathname.new tmp_path "text_#{i}.txt"
-          File.open(text_file, 'w') { |f| f.write text }
+          text_file.open('w') { |f| f.write text }
           TextToVideo.new(text_file, output_without_extension(i), duration, color: color, background_color: background_color).run
         end
 
@@ -141,7 +144,7 @@ module Media
           if from == 0 && to == video.min_duration
             {}.tap do |outputs|
               inputs.map do |format, input|
-                outputs[format] = output = "#{output_without_extension(i)}.#{format}"
+                output = outputs[format] = "#{output_without_extension(i)}.#{format}"
                 SensitiveThread.new{ video_copy input, output }
               end.each(&:join)
             end
@@ -151,17 +154,17 @@ module Media
           end
         end
 
+        def notification_translation_key
+          @creation_mode ? 'new' : 'editing'
+        end
+
         def video_copy(input, output)
-          # se uso l'audio di sottofondo scarto gli stream audio, così poi non perdo tempo a processare le tracce audio inutilmente
           if audio
+            # scarto gli stream audio, così poi non perdo tempo a processare le tracce audio inutilmente
             Cmd::VideoStreamToFile.new(input, output).run!
           else
             FileUtils.cp(input, output)
           end
-        end
-
-        def video_user_id
-          video.user_id || video.user.try(:id)
         end
 
         def output_without_extension(i)
@@ -169,21 +172,7 @@ module Media
         end
 
         def video
-          @video ||= (
-            id = @params[:initial_video][:id]
-
-            if id
-              ::Video.find(id)
-            else
-              ::Video.new do |video|
-                video.user_id = @params[:initial_video][:user_id]
-                attributes = @params[:initial_video].select{ |k| [:title, :description, :tags].include? k }
-                attributes.each do |attribute, value|
-                  video.send :"#{attribute}=", value
-                end
-              end
-            end
-          )
+          @video ||= ::Video.find @params[:initial_video][:id]
         end
 
         def audio

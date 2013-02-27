@@ -8,8 +8,18 @@ class CascadeTest < ActiveSupport::TestCase
     @copied_lesson.copied_not_modified = false
     @copied_lesson.user_id = 1
     @copied_lesson.parent_id = 2
-    @copied_lesson.tags = 'pippo, pluto, paperino, topolino'
+    @copied_lesson.tags = 'a, b, c, topolino'
     assert_obj_saved @copied_lesson
+    assert_nil Tag.find_by_word('pippo')
+    assert_nil Tag.find_by_word('pluto')
+    assert_nil Tag.find_by_word('paperino')
+    assert_not_nil Tag.find_by_word('topolino')
+    @lesson.tags = 'pippo, pluto, paperino, topolino'
+    assert_obj_saved @lesson
+    assert_not_nil Tag.find_by_word('topolino')
+    assert_not_nil Tag.find_by_word('pippo')
+    assert_not_nil Tag.find_by_word('pluto')
+    assert_not_nil Tag.find_by_word('paperino')
     @lesson = Lesson.find @lesson.id
     ids = {Bookmark => [], Like => [], Slide => [], MediaElementsSlide => [], Tagging => [], Report => [], VirtualClassroomLesson => []}
     assert_equal @lesson.id, @copied_lesson.parent.id
@@ -49,6 +59,10 @@ class CascadeTest < ActiveSupport::TestCase
     ids.each do |k, v|
       assert k.where(:id => v).empty?, "Error, #{k.to_s} not deleted -- #{k.where(:id => v).inspect}"
     end
+    assert_nil Tag.find_by_word('pippo')
+    assert_nil Tag.find_by_word('pluto')
+    assert_nil Tag.find_by_word('paperino')
+    assert_not_nil Tag.find_by_word('topolino')
   end
   
   test 'media_element_cascade' do

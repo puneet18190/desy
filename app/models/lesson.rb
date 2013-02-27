@@ -18,7 +18,7 @@ class Lesson < ActiveRecord::Base
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :likes
   has_many :reports, :as => :reportable, :dependent => :destroy
-  has_many :taggings, :as => :taggable, :dependent => :destroy
+  has_many :taggings, :as => :taggable
   has_many :slides
   has_many :virtual_classroom_lessons
   
@@ -35,6 +35,7 @@ class Lesson < ActiveRecord::Base
   before_validation :init_validation, :create_token
   before_create :initialize_metadata
   after_save :create_or_update_cover, :update_or_create_tags
+  before_destroy :destroy_taggings
   
   # SELECT "lessons".* FROM "lessons" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = lessons.id AND bookmarks.bookmarkable_type = 'Lesson' AND bookmarks.user_id = 1 ORDER BY COALESCE(bookmarks.created_at, lessons.updated_at) DESC
   scope :of, ->(user_or_user_id) do
@@ -531,19 +532,14 @@ class Lesson < ActiveRecord::Base
       self.token = tok
     end
   end
-
-  # def set_orphan_tags
-  #   _d tags
-  #   _d taggings
-  #   _d taggings.map(&:tags)
-  # end  
-
-  # def destroy_orphan_tags
-  #   _d tags
-  #   _d taggings
-  #   _d taggings.map(&:tags)
-  # end
-
+  
+  def destroy_taggings
+    Tagging.where(:taggable_type => 'Lesson', :taggable_id => self.id).each do |tagging|
+      tagging.destroyable = true
+      tagging.destroy
+    end
+  end
+  
   def self.test
     l = User.admin.create_lesson('test title', 'test description', 1, "asd, o, mar, rio, mare, test")
     l = find l.id

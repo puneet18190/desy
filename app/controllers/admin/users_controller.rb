@@ -2,8 +2,13 @@ class Admin::UsersController < AdminController
   before_filter :find_user, :only => [:show, :destroy]
   layout 'admin'
   def index    
-    @total_users = User.all
-    @users = @total_users.page(params[:page])
+    if params[:search]
+      users = AdminSearchForm.search(params[:search],'users')
+    else
+      users = User.order('id DESC')
+    end
+    
+    @users = users.page(params[:page])
     @location_root = Location.roots
     respond_to do |wants|
       wants.html # index.html.erb
@@ -14,8 +19,8 @@ class Admin::UsersController < AdminController
   def show
     Statistics.user = @user
     
-    @user_lessons = Lesson.joins(:user,:subject).where(user_id: @user.id).sorted(params[:sort], "lessons.id DESC")
-    @user_elements = MediaElement.joins(:user).where(user_id: @user.id).sorted(params[:sort], "media_elements.id DESC")
+    @user_lessons = Lesson.joins(:user,:subject).where(user_id: @user.id)
+    @user_elements = MediaElement.joins(:user).where(user_id: @user.id)
     
     @my_created_lessons  = Statistics.my_created_lessons.count
     @my_created_elements = Statistics.my_created_elements.count
@@ -25,7 +30,7 @@ class Admin::UsersController < AdminController
   end
 
   def destroy
-    @user.destroy
+    @user.destroy_with_dependencies
 
     respond_to do |wants|
       wants.html { redirect_to(elements_url) }
@@ -46,6 +51,20 @@ class Admin::UsersController < AdminController
     @user = User.find params[:id]
     @user.active = params[:active]
     @user.save
+  end
+  
+  def ban
+    @user = User.find params[:id]
+    @user.active = false
+    @user.save
+    redirect_to admin_user_path(@user)
+  end
+  
+  def activate
+    @user = User.find params[:id]
+    @user.active = true
+    @user.save
+    redirect_to admin_user_path(@user)
   end
 
   def contact

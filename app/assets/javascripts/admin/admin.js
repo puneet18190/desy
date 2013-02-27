@@ -42,7 +42,7 @@ $(document).ready(function(){
   
   
   var selected = $('#search_date_range').find('option:selected').val();
-  if(selected.length > 0){
+  if(selected && (selected.length > 0)){
     $('.datepick').removeAttr('disabled');
   }
   
@@ -57,13 +57,23 @@ $(document).ready(function(){
   });
   
   
+  // SORTING
+  
   $('body').on('click', 'table#lessons-list thead tr th a', function(e){
     e.preventDefault();
     $this = $(this)
     var order_by = $this.attr('href');
     $("input#search_ordering").val(order_by);
     $('#admin-search-lessons').submit();
-  })
+  });
+  
+  $('body').on('click', 'table#elements-list thead tr th a', function(e){
+    e.preventDefault();
+    $this = $(this)
+    var order_by = $this.attr('href');
+    $("input#search_ordering").val(order_by);
+    $('#admin-search-elements').submit();
+  });
   
   // USERS ACTIONS
   
@@ -263,7 +273,16 @@ $(document).ready(function(){
     if(!(t.hasClass('icon-eye-open') || t.hasClass('icon-remove') || t.hasClass('icon-globe'))){
       e.preventDefault();
     }
-   $(this).next('tr.collapsed').slideToggle('slow');
+    var next_tr = $(this).next('tr.collapsed');
+    var thumb = next_tr.find('.element-thumbnail');
+    if((thumb.length > 0) && (thumb.html().length == 0)){
+      var el_id = next_tr.find('.element-thumbnail').data('param');
+      $.ajax({
+        url: "/admin/elements/"+el_id+"/load",
+        type: "get"
+      });
+    }
+    next_tr.slideToggle('slow');
   });
    
   $('body').on('click','#expand-all',function(e){

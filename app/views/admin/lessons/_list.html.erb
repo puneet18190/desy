@@ -3,26 +3,49 @@
   <thead>
     <tr>
       <th>
-        <a class="icon-chevron-up" href="id ASC"></a><br>
-        id<br>
-        <a class="icon-chevron-down" href="id DESC"></a>
+        id<br> 
+        <a class="label" href="id ASC">▲</a>
+        <a class="label" href="id DESC">▼</a>
       </th>
       <th>
-        title <div class="badge"><a class="icon-chevron-up" href="title ASC"></a></div> <div class="badge"><a class="icon-chevron-down" href="title DESC"></a></div>
-      </th>
-      <th><%= link_to "subject", "subjects.name", :class=>'ASC' %></th>
-      <th><%= link_to "user", "users.name", :class=>'ASC' %></th>
-      <th><%= link_to "location", "locations.province_name", :class=>'ASC' %></th>
-      <th><%= link_to "school", "locations.school_name", :class=>'ASC' %></th>
-      <th>
-        <a class="icon-chevron-up" href="created_at ASC"></a> <a class="icon-chevron-down" href="created_at DESC"></a><br>
-        created_at
+        title<br>
+        <a class="label" href="title ASC">▲</a>
+        <a class="label" href="title DESC">▼</a>
       </th>
       <th>
-        <a class="icon-chevron-up" href="updated_at ASC"></a> <a class="pull-right icon-chevron-down" href="updated_at DESC"></a><br>
-        updated_at
+        subject<br>
+        <a class="label" href="subject_id ASC">▲</a>
+        <a class="label" href="subject_id DESC">▼</a>
       </th>
-      <th><%= link_to "likes", "count(likes)", :class=>'ASC' %></th>
+      <th>user<br>
+        <a class="label" href="user_id ASC">▲</a>
+        <a class="label" href="user_id DESC">▼</a>
+      </th>
+      <th>
+        location<br>
+        <a class="label" href="location_id ASC">▲</a>
+        <a class="label" href="location_id DESC">▼</a>
+      </th>
+      <th>
+        school<br>
+        <a class="label" href="location_id ASC">▲</a>
+        <a class="label" href="location_id DESC">▼</a>
+      </th>
+      <th>
+        created_at<br>
+        <a class="label" href="created_at ASC">▲</a>
+        <a class="label" href="created_at DESC">▼</a>
+      </th>
+      <th>
+        updated_at<br>
+        <a class="label" href="updated_at ASC">▲</a>
+        <a class="label" href="updated_at DESC">▼</a>
+      </th>
+      <th>
+        likes<br>
+        <a class="label" href="likes_count_all ASC">▲</a>
+        <a class="label" href="likes_count_all DESC">▼</a>
+      </th>
       <th></th>
       <th></th>
     </tr>
@@ -35,8 +58,8 @@
           <td><%= lesson.title%></td>
           <td><%= lesson.subject.description %></td>
           <td><%= lesson.user.full_name %></td>
-          <td><%= lesson.user.province %> - <%= lesson.user.town %></td>
           <td><%= lesson.user.school %></td>
+          <td><%= lesson.user.province %> - <%= lesson.user.town %></td>
           <td><%= lesson.created_at.strftime('%d-%m-%Y')%></td>
           <td><%= lesson.updated_at.strftime('%d-%m-%Y')%></td>
           <td><%= lesson.likes.count%></td>
@@ -44,7 +67,7 @@
           <td><%= link_to '<i class="icon-remove"></i>'.html_safe, "#", :class=>"action"%></td>
         </tr>
         <tr class="collapsed">
-          <td colspan="9">
+          <td colspan="10">
             <div class="row-fluid">
               <div class="span3">
                 <div class="img-polaroid lesson-thumbnail">

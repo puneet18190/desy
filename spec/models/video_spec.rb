@@ -6,7 +6,7 @@ describe Video, slow: true do
   let(:media_without_extension) { media_folder.join('con verted').to_s }
   let(:valid_video_path)        { media_folder.join 'valid video.flv' }
   let(:tmp_valid_video_path)    { media_folder.join 'tmp.valid video.flv' }
-  let(:media_uploaded)          { ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_video_path), tempfile: File.open(tmp_valid_video_path)) }
+  let(:media_uploaded)          { ActionDispatch::Http::UploadedFile.new(filename: File.basename(tmp_valid_video_path), tempfile: tmp_valid_video_path.open) }
   let(:media_hash)              { { filename: 'tmp.valid video', mp4: "#{media_without_extension}.mp4", webm: "#{media_without_extension}.webm" } }
   let(:user)                    { User.admin }
 

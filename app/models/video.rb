@@ -1,5 +1,4 @@
 require 'media/video/uploader'
-require 'media/video/placeholder'
 require 'media/video/editing/parameters'
 
 # converted
@@ -11,18 +10,34 @@ class Video < MediaElement
   extend Media::Video::Editing::Parameters
   
   EXTENSION_WHITE_LIST = Media::Video::Uploader::EXTENSION_WHITE_LIST
-  PLACEHOLDER          = Media::Video::Placeholder
+  CREATION_MODES       = [:uploading, :composing]
+  UPLOADING_CREATION_MODE, COMPOSING_CREATION_MODE = CREATION_MODES
 
   after_save :upload_or_copy
   before_destroy :cannot_destroy_while_converting
   after_destroy :clean
+  before_create :set_creation_mode
+
+  validates_presence_of :media, if: proc{ |record| record.composing.blank? }
+  validate :media_validation
 
   attr_accessor :skip_conversion, :rename_media
 
-  validate :media_validation
-  
-  def placeholders_url(key)
-    PLACEHOLDER.url(key)
+  def set_creation_mode
+    self.metadata.creation_mode = composing.present? ? COMPOSING_CREATION_MODE : UPLOADING_CREATION_MODE
+    true
+  end
+
+  def uploaded?
+    metadata.creation_mode == UPLOADING_CREATION_MODE
+  end
+
+  def composed?
+    metadata.creation_mode == COMPOSING_CREATION_MODE
+  end
+
+  def modified?
+    created_at == updated_at
   end
   
   def min_duration
@@ -30,19 +45,19 @@ class Video < MediaElement
   end
 
   def mp4_url
-    converted ? media.try(:url, :mp4) : PLACEHOLDER.url(:mp4)
+    media.try(:url, :mp4) if converted
   end
 
   def webm_url
-    converted ? media.try(:url, :webm) : PLACEHOLDER.url(:webm)
+    media.try(:url, :webm) if converted
   end
 
   def cover_url
-    converted ? media.try(:url, :cover) : PLACEHOLDER.url(:cover)
+    media.try(:url, :cover) if converted
   end
   
   def thumb_url
-    converted ? media.try(:url, :thumb) : PLACEHOLDER.url(:thumb)
+    converted ? media.try(:url, :thumb) : placeholder_url
   end
 
   def media
@@ -57,19 +72,27 @@ class Video < MediaElement
   end
 
   def mp4_duration
-    converted ? metadata.mp4_duration : PLACEHOLDER.mp4_duration
-  end
-  
-  def webm_duration
-    converted ? metadata.webm_duration : PLACEHOLDER.webm_duration
+    converted ? metadata.mp4_duration : nil
   end
 
   def mp4_duration=(mp4_duration)
     metadata.mp4_duration = mp4_duration
   end
   
+  def webm_duration
+    converted ? metadata.webm_duration : nil
+  end
+  
   def webm_duration=(webm_duration)
     metadata.webm_duration = webm_duration
+  end
+
+  def composing
+    metadata.composing
+  end
+  
+  def composing=(composing)
+    metadata.composing = composing
   end
 
   def reload

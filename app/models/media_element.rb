@@ -13,6 +13,8 @@ class MediaElement < ActiveRecord::Base
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
   DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
 
+  PLACEHOLDER_URL = '/assets/media_placeholder.gif'
+
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
 
@@ -25,11 +27,11 @@ class MediaElement < ActiveRecord::Base
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
   has_many :reports, :as => :reportable, :dependent => :destroy
-  has_many :taggings, :as => :taggable, :dependent => :destroy
+  has_many :taggings, :as => :taggable
   has_many :taggings_tags, through: :taggings, source: :tag
   belongs_to :user
   
-  validates_presence_of :user_id, :title, :description, :media
+  validates_presence_of :user_id, :title, :description
   validates_inclusion_of :is_public, :in => [true, false]
   validates_inclusion_of :sti_type, :in => STI_TYPES
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
@@ -38,7 +40,7 @@ class MediaElement < ActiveRecord::Base
   validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_tags_length
   
   before_validation :init_validation
-  before_destroy :stop_if_public
+  before_destroy :stop_if_public, :destroy_taggings
 
   # SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id AND bookmarks.bookmarkable_type = 'MediaElement' AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY COALESCE(bookmarks.created_at, media_elements.updated_at) DESC
   scope :of, ->(user_or_user_id) do
@@ -83,6 +85,10 @@ class MediaElement < ActiveRecord::Base
       media_element
     end
   end
+
+  def placeholder_url
+    PLACEHOLDER_URL
+  end
   
   def disable_lessons_containing_me
     manage_lessons_containing_me(false)
@@ -107,7 +113,23 @@ class MediaElement < ActiveRecord::Base
   def tags
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'MediaElement')
   end
-
+  
+  def delete_without_callbacks
+    return false if self.new_record?
+    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => self.id).each do |t|
+      t.destroyable = true
+      t.destroy
+    end
+    Report.where(:reportable_type => 'MediaElement', :reportable_id => self.id).each do |r|
+      r.destroy
+    end
+    Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => self.id).each do |b|
+      b.destroy
+    end
+    self.delete
+    true
+  end
+  
   def tags=(tags)
     @tags = 
       case tags
@@ -293,5 +315,13 @@ class MediaElement < ActiveRecord::Base
       end
       l.save!
     end
-  end  
+  end
+  
+  def destroy_taggings
+    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => self.id).each do |tagging|
+      tagging.destroyable = true
+      tagging.destroy
+    end
+  end
+  
 end

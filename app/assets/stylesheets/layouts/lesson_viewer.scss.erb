@@ -135,23 +135,25 @@ html.lesson-viewer-layout{
   .playlistMenu {
     display:none;
     width:860px;
-    padding:20px;
+    padding: 20px 20px 10px 20px;
     position:absolute;
     z-index:3;
     bottom:0;
     background-color:#141313;
-    ul {
+    .playlistInnerMenu {
       padding:0;
-      display:inline-block;
       height:168px;
       width:auto;
       margin: 0;
     }
-    li {
-      display: inline-block;
-      list-style-type: none;
-      margin: 0 55px 0 0;
+    .playlistInnerMenuItem {
+      margin: 0 60px 0 0;
+      float: left;
       cursor:pointer;
+      width: 247px;
+    }
+    .jspHorizontalBar {
+      margin-top: 5px;
     }
   }
   
@@ -163,9 +165,9 @@ html.lesson-viewer-layout{
   .horizontal-only {
     height:180px;
   }
-  .scrollContent {
-    width:860px;
+  .scrollCane {
     text-align:left;
+    height: 162px;
     .img_expanded {
       &:hover {
       background-color:#373737;
@@ -592,59 +594,53 @@ html.lesson-viewer-layout{
   margin:0;
   }
 
-  #left_scroll, #right_scroll{
-  margin:0;
-  position: absolute;
-  z-index: 10;
-  opacity:0.2;
-  top:230px
+  #left_scroll, #right_scroll {
+    margin:0;
+    position: absolute;
+    z-index: 10;
+    opacity: 0.2;
+    &:hover {
+      opacity: 1;
+    }
   }
   
-  #right_scroll{
+  #right_scroll {
     right: 0;
-    
   }
   
-  #left_scroll a, #right_scroll a{
-    cursor: pointer;
-    height:150px;
-    width:130px;
-    display:block;
-    
+  .size1 {
+    font-size: 120%;
+    line-height: 100%;
   }
-    
-  .size1{
-   font-size: 120%;
-   line-height: 100%;
-  }              
-
-  .size2{        
-   font-size: 160%;
-   line-height: 110%;
-  }              
-
-  .size3{        
-   font-size: 200%;
-   line-height: 120%;
-  }              
-
-  .size4{        
-   font-size: 240%;
-   line-height: 130%;
-  }              
-
-  .size5{        
-   font-size: 280%;
-   line-height: 140%;
-  }              
-
-  .size6{        
-   font-size: 340%;
-   line-height: 150%;
-  }              
-
-  .size7{        
-   font-size: 400%;
-   line-height: 160%;
+  
+  .size2 {
+    font-size: 160%;
+    line-height: 110%;
   }
+  
+  .size3 {
+    font-size: 200%;
+    line-height: 120%;
+  }
+  
+  .size4 {
+    font-size: 240%;
+    line-height: 130%;
+  }
+  
+  .size5 {
+    font-size: 280%;
+    line-height: 140%;
+  }
+  
+  .size6 {
+    font-size: 340%;
+    line-height: 150%;
+  }
+  
+  .size7 {
+    font-size: 400%;
+    line-height: 160%;
+  }
+  
 }
