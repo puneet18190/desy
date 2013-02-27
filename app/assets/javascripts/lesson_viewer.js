@@ -102,7 +102,7 @@ function selectComponentInLessonViewerPlaylistMenu(component) {
     component.css('border', '2px solid white');
     prev.css('margin-right', '58px');
   }
-  if($('#playlist_menu').hasClass('jspScrollable')) {
+  if($('#playlist_menu').data('jsp') != undefined) {
     var flag = true;
     var tot_prev_components = 0;
     $('._playlist_menu_item').each(function() {
@@ -154,7 +154,8 @@ function initializeLessonViewer() {
   selectComponentInLessonViewerPlaylistMenu($('._playlist_menu_item').first());
   if($('._playlist_menu_item').length > 3) {
     $('#playlist_menu').jScrollPane({
-      autoReinitialise: true
+      autoReinitialise: true,
+      contentWidth: (($('._playlist_menu_item').length * 307) - 60)
     });
   } else {
     $('#playlist_menu').css('overflow', 'hidden');

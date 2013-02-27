@@ -1357,11 +1357,6 @@
 					{
 						return isScrollableH;
 					},
-					// SETS isScrollableH (FIXME patch di Adriano)
-					setIsScrollableH: function(x)
-					{
-						isScrollableH = x;
-					},
 					// Returns whether or not this scrollpane has a vertical scrollbar.
 					getIsScrollableV: function()
 					{
