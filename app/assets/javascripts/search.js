@@ -8,7 +8,7 @@ function addKeepSearching(form) {
   });
 }
 
-function remove_keep_searching(link) {
+function removeKeepSearching(link) {
   var f = $(link).parent('form');
   f.animate({
     height: '210'

@@ -760,7 +760,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click','#keep-searching',function(){
-    remove_keep_searching(this);
+    removeKeepSearching(this);
   });
   
   $('body').on('change', '#filter_search_lessons_subject', function() {
