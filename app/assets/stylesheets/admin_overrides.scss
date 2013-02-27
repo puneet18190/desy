@@ -2,20 +2,51 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,200);
 .admin{
   body {
-   padding-top: 60px;
-   padding-bottom: 40px;
+   padding-bottom: 50px;
    background-color: #F6F6F6;
   }
   
   .full-content{
-    margin: 20px;
+    margin: -80px 20px;
     padding: 20px;
     border-radius: 20px;
     background-color: #fff;
   }
   
-  .sidebar-nav {
-   padding: 9px 0;
+  .navbar-inner{
+    border-radius:0;
+    height: 160px;
+    padding-top:50px;
+    background-image: linear-gradient(bottom, rgb(0,0,0) 26%, rgb(91,91,91) 100%);
+    background-image: -o-linear-gradient(bottom, rgb(0,0,0) 26%, rgb(91,91,91) 100%);
+    background-image: -moz-linear-gradient(bottom, rgb(0,0,0) 26%, rgb(91,91,91) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(0,0,0) 26%, rgb(91,91,91) 100%);
+    background-image: -ms-linear-gradient(bottom, rgb(0,0,0) 26%, rgb(91,91,91) 100%);
+  }
+  
+  .brand{
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #F29400;
+    img{
+      width: 130px;
+      margin-bottom: 15px;
+    }
+  }
+  
+  .service-links{
+    padding-top:10px;
+    text-align:right;
+    a{
+      margin-top: 5px;
+    }
+  }
+  
+  footer{
+    clear:both;
+    margin-top: 100px;
   }
  
   a.action:hover{
@@ -56,7 +87,7 @@
   
   .new_elements_well .row-fluid div:nth-child(3n+1) { 
     clear: left;
-    margin-left:0;
+    margin-left:2%;
   }
   
   
@@ -123,18 +154,69 @@
 
   ul.nav li.dropdown:hover > ul.dropdown-menu{
       display: block;
-      margin-top: -5px;
+      margin-top: -3px;
   }
 
   a.menu:after, .dropdown-toggle:after {
       content: none;
   }
-  .navbar-inverse .nav li.dropdown.active > .dropdown-toggle, .navbar-inverse .nav .active > a{
-    background-color: #555555;
-  }
   
   .navbar-inverse .nav li.dropdown.open > .dropdown-toggle li , .navbar-inverse .nav li.dropdown.active > .dropdown-toggle li, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle li, .dropdown.active ul.dropdown li{
     background-color: #ffffff;
+  }
+  
+  .navbar-inverse .nav{
+    margin-left: 0;
+  }
+  
+  .navbar-inverse .nav li a.first-level{
+    width: 65px;
+    height: 15px;
+    padding: 60px 10px 10px;
+    margin-right: 15px;
+    background: url('/assets/admin-menu-icons.png') 0 0;
+    text-align:center;
+    
+    &:hover, &.active{
+      background-position: 0 -85px;
+      color: #2b2b2b;
+    }
+    
+    &.elements{
+      background-position: -85px 0;
+      &:hover, &.active{
+        background-position: -85px -85px;
+      }
+    }
+    
+    &.lessons{
+      background-position: -170px 0;
+      &:hover, &.active{
+        background-position: -170px -85px;
+      }
+    }
+    
+    &.messages{
+      background-position: -255px 0;
+      &:hover, &.active{
+        background-position: -255px -85px;
+      }
+    }
+    
+    &.users{
+      background-position: -340px 0;
+      &:hover, &.active{
+        background-position: -340px -85px;
+      }
+    }
+    
+    &.settings{
+      background-position: -425px 0;
+      margin-right: 0;
+      &:hover, &.active{
+        background-position: -425px -85px;
+      }
+    }
   }
   
   ul.list{
