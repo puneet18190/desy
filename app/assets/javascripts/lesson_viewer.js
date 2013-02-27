@@ -141,6 +141,10 @@ function selectComponentInLessonViewerPlaylistMenu(component, callback) {
         callback();
       }
     }
+  } else {
+    if(callback != undefined) {
+      callback();
+    }
   }
 }
 
