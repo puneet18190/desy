@@ -222,7 +222,20 @@
 					reinitialiseInterval = setInterval(
 						function()
 						{
-							initialise(settings);
+              var yes = false;
+              var infos = $('#info_container');
+				      if(infos.length > 0 && infos.data('reinitialise-scroll-pane-times') != undefined) {
+				        var counter = infos.data('baeh');
+				        if(counter > 0) {
+    					    infos.data('reinitialise-scroll-pane-times', counter - 1);
+    					    yes = true;
+    					  }
+				      } else {
+				        yes = true;
+				      }
+						  if(yes) {
+						    initialise(settings);
+						  }
 						},
 						settings.autoReinitialiseDelay
 					);
