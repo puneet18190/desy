@@ -218,7 +218,7 @@ function slideToInLessonViewerWithLessonSwitch(component) {
 function goToNextSlideInLessonViewer() {
   var next_slide = getLessonViewerCurrentSlide().next();
   if(next_slide.length == 0) {
-    slideToInLessonViewerWithLessonSwitch($('#slide_in_lesson_viewer_1'));
+    slideToInLessonViewerWithLessonSwitch($($('._slide_in_lesson_viewer')[0]));
   } else {
     slideToInLessonViewerWithLessonSwitch(next_slide);
   }

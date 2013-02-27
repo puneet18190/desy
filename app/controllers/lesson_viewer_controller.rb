@@ -2,6 +2,7 @@ class LessonViewerController < ApplicationController
   
   skip_before_filter :authenticate, :only => :index
   before_filter :skip_authenticate_user_if_token, :only => :index
+  before_filter :skip_authenticate_user_if_token_with_slide, :only => :load_slide
   before_filter :reset_players_counter, :only => :index
   
   def index
@@ -27,7 +28,17 @@ class LessonViewerController < ApplicationController
     end
   end
   
+  def load_slide
+  end
+  
   private
+  
+  def skip_authenticate_user_if_token_with_slide
+    skip_authenticate_user_if_token
+    @slide_id = correct_integer?(params[:slide_id]) ? params[:slide_id].to_i : 0
+    @slide = Slide.find_by_id @slide_id
+    update_ok(@slide && @lesson && @lesson.id == @slide.lesson_id)
+  end
   
   def skip_authenticate_user_if_token
     initialize_lesson

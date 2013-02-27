@@ -1,0 +1,8 @@
+<% if @ok %>
+  var slide = $('#slide_in_lesson_viewer_<%= @slide_id %>');
+  if(<%= @lesson.updated_at.to_i %> != slide.data('lesson-updated-at')) {
+    document.location.reload();
+  } else {
+    slide.html('<%= j render(:partial => "lesson_viewer/slides/#{@slide.kind}", :locals => {:slide => @slide}) %>');
+  }
+<% end %>
