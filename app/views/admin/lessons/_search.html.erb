@@ -10,24 +10,19 @@
     </div>
   </div>
   <div class="row-fluid">
-    <div class="span1">
-      <div class="control-group">
+    <div class="control-group">
         <label for="id"><%= t('admin.search.id')%></label>
         <div class="controls">
-          <%= text_field_tag 'search[id]', params[:search] ? params[:search][:id] : ''  ,:class=>'input-mini', :placeholder => t('admin.search.id')%>
+          <%= text_field_tag 'search[id]', params[:search] ? params[:search][:id] : ''  ,:class=>'input-small', :placeholder => t('admin.search.id')%>
         </div>
       </div>
-    </div>
-    <div class="span2">
-      <div class="control-group">
+    <div class="control-group">
         <label for="keyword"><%= t('admin.search.title')%></label>
         <div class="controls">
           <%= text_field_tag 'search[title]',  params[:search] ? params[:search][:title] : '', :class=>'input-medium', :placeholder => t('admin.search.title')%>
         </div>
       </div>
-    </div>
-    <div class="span3">
-      <div class="control-group">
+    <div class="control-group">
         <label for="subject"><%= t('admin.search.subject')%></label>
         <div class="controls">
           <select id="search_subject_id" name="search[subject_id]">
@@ -44,9 +39,7 @@
           </select>
         </div>
       </div>
-    </div>
-    <div class="span2">
-      <div class="controls-group">
+    <div class="control-group">
         <label><%= t('admin.search.date_range')%></label>
         <div class="controls">
           <select id="search_date_range" name="search[date_range_field]" class="input-medium">
@@ -64,35 +57,27 @@
           </select>
         </div>
       </div>
-    </div>
-    <div class="span2">
-      <div class="control-group">
+    <div class="control-group">
         <label><%= t('admin.search.date_from')%></label>
         <div class="controls">
           <%= text_field_tag 'search[from]', (params[:search] && params[:search][:from]) ? params[:search][:from] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd1', :class=>"input input-medium datepick disabled", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy', :disabled => :disabled %>
         </div>
       </div>
-    </div>
-    <div class="span2">
-      <div class="control-group">
+    <div class="control-group">
         <label><%= t('admin.search.date_to')%></label>
         <div class="controls">
           <%= text_field_tag 'search[to]', (params[:search] && params[:search][:to]) ? params[:search][:to] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd2', :class=>"input input-medium datepick", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy', :disabled => :disabled %>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="span8">
-      <div class="control-group">
-        <label for="province_list"><%= t('admin.search.province')%></label>
+    <div class="control-group">
+<label for="province_list"><%= t('admin.search.province')%></label>
         <div class="controls">
           <select id="province_list" name='search[province_id]'>
             <%= render :partial => 'admin/users/locations_list', :locals => {:parent => nil} %>
           </select>
         </div>
       </div>
-      <div class="control-group">
+    <div class="control-group">
         <label for="town_list"><%= t('admin.search.town')%></label>
         <div class="controls">
           <select id="town_list" name='search[town_id]'>
@@ -102,7 +87,7 @@
           </select>
         </div>
       </div>
-      <div class="control-group">
+    <div class="control-group">
         <label for="school_list"><%= t('admin.search.school')%></label>
         <div class="controls">
           <select id="school_list" name='search[school_id]'>
@@ -112,13 +97,10 @@
           </select>
         </div>
       </div>
-    </div>
-    <div class="span4">
-      <div class="control-group">
-        <label for="search_user"><%= t('admin.search.user')%></label>
-        <div class="controls">
-          <%= text_field_tag 'search[user]',  params[:search] ? params[:search][:user] : '', :class=>'input-medium', :placeholder => t('admin.search.user')%>
-        </div>
+    <div class="control-group">
+      <label for="search_user"><%= t('admin.search.user')%></label>
+      <div class="controls">
+        <%= text_field_tag 'search[user]',  params[:search] ? params[:search][:user] : '', :class=>'input-medium', :placeholder => t('admin.search.user')%>
       </div>
     </div>
   </div>
