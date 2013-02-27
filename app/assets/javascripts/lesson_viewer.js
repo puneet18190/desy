@@ -63,6 +63,43 @@ function closePlaylistMenuInLessonViewer(callback) {
   });
 }
 
+function selectComponentInLessonViewerPlaylistMenu(component) {
+  $('._playlist_menu_item').css('margin', '2px 60px 2px 0').css('border', 0);
+  var prev = component.prev();
+  var next = component.next();
+  if(prev.length == 0 && next.length == 0) {
+    component.css('margin-top', 0);
+    component.css('margin-bottom', 0);
+    component.css('border', '2px solid white');
+  } else if(prev.length == 0) {
+    component.css('margin-top', 0);
+    component.css('margin-bottom', 0);
+    component.css('margin-right', '58px');
+    component.css('border', '2px solid white');
+    next.css('margin-right', '58px');
+  } else if(next.length == 0) {
+    component.css('margin-top', 0);
+    component.css('margin-bottom', 0);
+    component.css('border', '2px solid white');
+    var prev_prev = prev.prev();
+    if(prev_prev.length == 0) {
+      prev.css('margin-right', '56px');
+    } else {
+      prev.css('margin-right', '58px');
+      prev_prev.css('margin-right', '58px');
+    }
+  } else {
+    component.css('margin-top', 0);
+    component.css('margin-bottom', 0);
+    component.css('margin-right', '58px');
+    component.css('border', '2px solid white');
+    prev.css('margin-right', '58px');
+  }
+  if($('#playlist_menu').hasClass('jspScrollable')) {
+    
+  }
+}
+
 function getLessonViewerCurrentSlide() {
   return $('#' + $('._lesson_viewer_current_slide').attr('id'));
 }
