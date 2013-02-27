@@ -52,6 +52,12 @@ function openPlaylistMenuInLessonViewer(callback) {
   $('a._open_playlist span').hide();
   $('a._close_playlist span').show();
   $('.playlistMenu').slideDown('slow', function() {
+    if($('._playlist_menu_item').length > 3) {
+      $('#playlist_menu').jScrollPane({
+        autoReinitialise: true,
+        contentWidth: (($('._playlist_menu_item').length * 307) - 60)
+      });
+    }
     callback();
   });
 }
@@ -120,8 +126,11 @@ function selectComponentInLessonViewerPlaylistMenu(component, callback) {
           $('#playlist_menu').data('jsp').scrollToPercentX(100);
         } else {
           $('#playlist_menu').jScrollPane().bind('panescrollstop', function() {
-            callback();
+            
+            console.log('sono per caso io che faccio danni? (1)');
+            
             $('#playlist_menu').jScrollPane().unbind('panescrollstop');
+            callback();
           });
           $('#playlist_menu').data('jsp').scrollToPercentX(100, true);
         }
@@ -130,8 +139,11 @@ function selectComponentInLessonViewerPlaylistMenu(component, callback) {
           $('#playlist_menu').data('jsp').scrollToX(307 * (tot_prev_components - 1));
         } else {
           $('#playlist_menu').jScrollPane().bind('panescrollstop', function() {
-            callback();
+          
+          console.log('sono per caso io che faccio danni? (2)');
+          
             $('#playlist_menu').jScrollPane().unbind('panescrollstop');
+            callback();
           });
           $('#playlist_menu').data('jsp').scrollToX(307 * (tot_prev_components - 1), true);
         }
@@ -140,6 +152,10 @@ function selectComponentInLessonViewerPlaylistMenu(component, callback) {
       if(callback != undefined) {
         callback();
       }
+    }
+  } else {
+    if(callback != undefined) {
+      callback();
     }
   }
 }
@@ -168,12 +184,7 @@ function showArrowsInLessonViewer() {
 
 function initializeLessonViewer() {
   selectComponentInLessonViewerPlaylistMenu($('._playlist_menu_item').first());
-  if($('._playlist_menu_item').length > 3) {
-    $('#playlist_menu').jScrollPane({
-      autoReinitialise: true,
-      contentWidth: (($('._playlist_menu_item').length * 307) - 60)
-    });
-  } else {
+  if($('._playlist_menu_item').length <= 3) {
     $('#playlist_menu').css('overflow', 'hidden');
   }
   $('html.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
