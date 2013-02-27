@@ -1,3 +1,11 @@
+/*
+  NOTA DI ADRIANO:
+    ci sono tre bug conosciuti e dovuti al malfunzionamento di JScrollPane:
+     (1) quando passo dalla prima slide della terza lezione all'ultima slide della seconda lezione, lo scroll non segue la selezione della lezione in basso
+     (2) quando passo dall'ultima slide dell'ultima lezione alla prima slide della prima lezione, idem
+     (3) se, dopo aver aperto la prima volta il menu delle lezioni, (SOLO LA PRIMA VOLTA), clicco su una delle lezioni entro due secondi, si rompe il menu
+*/
+
 $(document).ready(function() {
   
   initializeLessonViewer();
