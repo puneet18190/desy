@@ -91,9 +91,13 @@ function showArrowsInLessonViewer() {
 }
 
 function initializeLessonViewer() {
-  $('#playlist_menu').jScrollPane({
-    autoReinitialise: true
-  });
+  if($('._playlist_menu_item').length > 3) {
+    $('#playlist_menu').jScrollPane({
+      autoReinitialise: true
+    });
+  } else {
+    $('#playlist_menu').css('overflow', 'hidden');
+  }
   $('html.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
   $(window).resize(function() {
     $('html.lesson-viewer-layout .container').css('margin-top', ($(window).height() - 590) / 2 + 'px');
