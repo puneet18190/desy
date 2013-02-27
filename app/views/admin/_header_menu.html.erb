@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </a>
+  <a class="brand" href="/admin"><%= SETTINGS['application_name']%> - <%= t('admin.dashboard.link_name')%></a>
+  <div class="nav-collapse collapse">
+    <p class="navbar-text pull-right">
+      <%= t('captions.welcome') %> <%= current_user.name %> <%= current_user.surname %>
+      | <%= link_to t('registration.logout'), users_session_path, method: :delete %>
+    </p>
+    <ul class="nav">
+      <li class="dropdown <%= 'active' if controller_name == "lessons" %>">
+        <a href="/admin/lessons"><%= t('admin.menu.lessons.link_name')%></a>
+      </li>
+      <li class="dropdown <%= 'active' if controller_name == "elements" %>">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('admin.menu.elements.link_name')%> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/admin/elements"><%= t('admin.menu.elements.list')%></a></li>
+          <li><a href="/admin/elements/new"><%= t('admin.menu.elements.upload')%></a></li>
+          <li><a href="/admin/elements/edit"><%= t('admin.menu.elements.publish')%></a></li>
+        </ul>
+      </li>
+      <li class="dropdown <%= 'active' if controller_name == "users" %>">
+        <a href="/admin/users" class="dropdown-toggle" data-toggle="dropdown">
+          <%= t('admin.menu.users.link_name')%></a>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('admin.menu.messages.link_name')%> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#"><%= t('admin.menu.messages.notifications')%></a></li>
+          <li><a href="#"><%= t('admin.menu.messages.reports')%></a></li>
+          <li><a href="#"><%= t('admin.menu.messages.help')%></a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('admin.menu.settings.link_name')%> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#"><%= t('admin.menu.settings.configuration')%></a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav pull-right nav-pills">
+      <li><a href="/"><%= t('admin.menu.home.link_name')%></a></li>
+    </ul>
+  </div><!--/.nav-collapse -->
+</div>

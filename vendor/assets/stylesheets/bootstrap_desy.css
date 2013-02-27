@@ -217,7 +217,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #a56500;
+  color: #F5A933;
   text-decoration: underline;
 }
 .img-rounded {
@@ -5131,6 +5131,15 @@ a.thumbnail:focus {
 .carousel-caption p {
   margin-bottom: 0;
 }
+
+.widget {
+  background-color: #eeeeee;
+  color: #555555;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
 .well {
   min-height: 20px;
   padding: 19px;
