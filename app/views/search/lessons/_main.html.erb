@@ -8,14 +8,15 @@
           <tr>
             <td width="20%">
               <label><%= t('search.lessons.keyword.label') %></label><br />
-              <input type="text" name="tag" value="<%= t('search.lessons.keyword.placeholder') %>" class="text lower" id="lessons_tag_reader_for_search" style="color:#999">
-              <%= hidden_field_tag 'tag_kind', (@tag.kind_of?(Tag) ? @tag.id : ''), :id => 'lessons_tag_kind_for_search' %>
+              <input type="text" name="word" value="<%= t('search.lessons.keyword.placeholder') %>" class="text lower" id="lessons_tag_reader_for_search" style="color:#999">
+              <%= hidden_field_tag 'word_placeholder', '', :id => 'lessons_tag_kind_for_search' %>
             </td>
             <td width="20%">
               <label><%= t('search.lessons.filters.author') %></label><br />
               <select name="filter" id="filter_search_lessons">
+                <% filter = @filter.nil? Filters::ALL_LESSONS : @filter %>
                 <% Filters::LESSONS_SEARCH_SET.each do |f| %>
-                  <option value="<%= f %>" <%= (f == @filter) ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
+                  <option value="<%= f %>" <%= (f == filter) ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
                 <% end %>
               </select>
             </td>
@@ -32,25 +33,27 @@
             <td width="20%">
               <p style="font-size:80%; padding-left:10px; padding-top:10px;"><%= t('search.lessons.suggestion.title') %><br><%= t('search.lessons.suggestion.description') %></p>
             </td>
-            </tr>
-            <tr>
-            
+          </tr>
+          <tr>
           </tr>
           <tr>
             <td><br /><h3><%= t('search.lessons.sort') %></h3></td>
           </tr>
           <tr>
-              <% SearchOrders::LESSONS_SET.each do |so| %>
-                <% my_order_id = "#{so}_lessons_radio_input" %>
-                <td width="5%"><input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_lessons_radio_input" <%= (so == @order) ? "checked=\"checked\"".html_safe : '' %>><label for="<%= my_order_id %>"> </label>&nbsp;<%= SearchOrders::CAPTIONS[so] %></td>
-              <% end %>
-            </td>
+            <% order = @order.nil? SearchOrders::TITLE : @order %>
+            <% SearchOrders::LESSONS_SET.each do |so| %>
+              <% my_order_id = "#{so}_lessons_radio_input" %>
+              <td width="5%">
+                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_lessons_radio_input" <%= (so == order) ? "checked=\"checked\"".html_safe : '' %>>
+                <label for="<%= my_order_id %>"> </label>&nbsp;<%= SearchOrders::CAPTIONS[so] %>
+              </td>
+            <% end %>
             <td align="left" colspan="2" width="40%">
             </td>
           </tr>
           <tr>
             <td>
-              <br /><br />
+              <br/><br/>
               <% if @search_item == 'lessons' && @did_you_search %>
                 <a id="search_lessons_submit" title="<%= t('titles.refine_search') %>" class="cerca current"><%= t('search.short_label')%></a>
               <% else %>

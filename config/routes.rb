@@ -122,6 +122,7 @@ Desy::Application.routes.draw do
   
   # SEARCH LESSONS OR MEDIA ELEMENTS
   get  'search' => 'search#index', :as => :search_items
+  get  'search/:item/refine' => 'search#refine'
   
   # LOGGED USER
   get 'profile' => 'users#edit', :as => :my_profile
