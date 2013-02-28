@@ -2229,6 +2229,10 @@ en:
     #2 - views/admin/elements/index.html.erb
     #3 - views/admin/users/index.html.erb
     search:
+      heading:
+        general: 'General'
+        date: 'Date'
+        location: 'Location'
       label: 'Search'
       submit: 'Search'
       id: 'Id'
@@ -2238,7 +2242,7 @@ en:
       subject: 'Subject'
       media_type: 'Media type'
       all_media_type: 'All'
-      select_subject: 'Select a subject'
+      select_subject: 'All subjects'
       date_range: 'Date range'
       select_date_range: 'Select range type'
       date_from: 'From'

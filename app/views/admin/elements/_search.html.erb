@@ -1,5 +1,5 @@
 <h4><%= t('admin.search.label')%></h4>
-<%= form_tag 'elements', :method => :get, :class=>"form-vertical", :id=>"admin-search-elements", :class => "search-form" do %>
+<%= form_tag 'elements', :method => :get, :id=>"admin-search-elements", :class => "search-form" do %>
   <%= hidden_field_tag 'search[search_type]', 'elements'%>
   <%= hidden_field_tag 'search[ordering]', 'id DESC'%>
   <div class="row-fluid">
@@ -10,23 +10,23 @@
     </div>
   </div>
   <div class="row-fluid">
-    <div class="span1">
+    <div class="span4">
+      <div class="control-group heading">
+        <label><h5><%= t('admin.search.heading.general')%></h5></label>
+      </div>
       <div class="control-group">
         <label for="id"><%= t('admin.search.id')%></label>
         <div class="controls">
           <%= text_field_tag 'search[id]', params[:search] ? params[:search][:id] : ''  ,:class=>'input-mini', :placeholder => t('admin.search.id')%>
         </div>
       </div>
-    </div>
-    <div class="span2">
+
       <div class="control-group">
         <label for="keyword"><%= t('admin.search.title')%></label>
         <div class="controls">
           <%= text_field_tag 'search[title]',  params[:search] ? params[:search][:title] : '', :class=>'input-medium', :placeholder => t('admin.search.title')%>
         </div>
       </div>
-    </div>
-    <div class="span3">
       <div class="control-group">
         <label for="subject"><%= t('admin.search.media_type')%></label>
         <div class="controls">
@@ -38,9 +38,18 @@
           </select>
         </div>
       </div>
+      <div class="control-group">
+        <label for="search_user"><%= t('admin.search.user')%></label>
+        <div class="controls">
+          <%= text_field_tag 'search[user]',  params[:search] ? params[:search][:user] : '', :class=>'input-medium', :placeholder => t('admin.search.user')%>
+        </div>
+      </div>
     </div>
-    <div class="span2">
-      <div class="controls-group">
+    <div class="span4">
+      <div class="control-group heading">
+        <label><h5><%= t('admin.search.heading.date')%></h5></label>
+      </div>
+      <div class="control-group">
         <label><%= t('admin.search.date_range')%></label>
         <div class="controls">
           <select id="search_date_range" name="search[date_range_field]" class="input-medium">
@@ -58,16 +67,12 @@
           </select>
         </div>
       </div>
-    </div>
-    <div class="span2">
       <div class="control-group">
         <label><%= t('admin.search.date_from')%></label>
         <div class="controls">
           <%= text_field_tag 'search[from]', (params[:search] && params[:search][:from]) ? params[:search][:from] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd1', :class=>"input input-medium datepick disabled", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy', :disabled => :disabled %>
         </div>
       </div>
-    </div>
-    <div class="span2">
       <div class="control-group">
         <label><%= t('admin.search.date_to')%></label>
         <div class="controls">
@@ -75,9 +80,10 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="row-fluid">
-    <div class="span8">
+    <div class="span4">
+      <div class="control-group heading">
+        <label><h5><%= t('admin.search.heading.location')%></h5></label>
+      </div>
       <div class="control-group">
         <label for="province_list"><%= t('admin.search.province')%></label>
         <div class="controls">
@@ -107,19 +113,11 @@
         </div>
       </div>
     </div>
-    <div class="span4">
-      <div class="control-group">
-        <label for="search_user"><%= t('admin.search.user')%></label>
-        <div class="controls">
-          <%= text_field_tag 'search[user]',  params[:search] ? params[:search][:user] : '', :class=>'input-medium', :placeholder => t('admin.search.user')%>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="row-fluid">
     <div class="span12">
       <div class="form-actions">
-        <button type="submit" class="btn"><%= t('admin.search.submit')%></button>
+        <button type="submit" class="btn btn-block btn-success"><%= t('admin.search.submit').upcase%></button>
       </div>
     </div>
   </div>
