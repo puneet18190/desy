@@ -101,7 +101,7 @@ class AdminSearchForm < Form
       users = users.where("#{params[:date_range_field]}" => date_range)
     end
     
-    if params[:subject_id]
+    if params[:subject_id].present?
       users = users.joins(:subjects).where('users_subjects.subject_id' => params[:subject_id])
     end
     

@@ -1,11 +1,19 @@
-<ul class="nav nav-pills">
-  <li class="pull-right"><span class="label"><%= page_items_counter(items) %></span></li>
-  <% if expandable %>
-    <li>
-      <a href="#" id="expand-all"><%= t('admin.general.expand_all')%></a>
-    </li>
-    <li>
-      <a href="#" id="collapse-all"><%= t('admin.general.close_all')%></a>
-    </li>
-  <% end %>
-</ul>
+<div class="row-fluid">
+  <div class="span4">
+    <ul class="nav nav-pills">
+      <% if expandable %>
+        <li>
+          <a href="#" id="expand-all"><%= t('admin.general.expand_all')%></a>
+        </li>
+        <li>
+          <a href="#" id="collapse-all"><%= t('admin.general.close_all')%></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="span4" style="text-align:center">
+    <%= paginate items %>
+  </div>
+  <div class="span4">
+    <div class="pull-right"><span class="label"><%= page_items_counter(items) %></span></div>
+  </div>

@@ -1,0 +1,37 @@
+<div class="row-fluid">
+  <div class="span12">
+    <h3><%= t('admin.messages.reports.name')%></h3>
+  </div>
+</div>
+<div class="row-fluid reports">
+  <div class="span6 widget">
+    <h3><%= t('admin.dashboard.elements_reports')%></h3>
+    <% @elements_reports.each do |report| %>
+      <a href="/admin/elements?utf8=✓&search%5Bsearch_type%5D=elements&search%5Bordering%5D=id+DESC&search%5Bid%5D=<%=report.reportable.id%>&search%5Btitle%5D=&search%5Bsti_type%5D=&search%5Buser%5D=&search%5Bdate_range_field%5D=&search%5Bprovince_id%5D=">
+        <blockquote class="elements">
+          <div class="pull-right">
+            <%= report.created_at.strftime('%d %b %Y')%>
+          </div>
+          <%= report.user.name+' '+report.user.surname %><br />
+          <b>on:</b> <%=report.reportable.title %><br/ >
+          <b>report:</b> <i><%= report.comment %></i>
+        </blockquote>
+      </a>
+    <% end %>
+  </div>
+  <div class="span6 widget">
+    <h3><%= t('admin.dashboard.lessons_reports')%></h3>
+    <% @lessons_reports.each do |report| %>
+      <a href="/admin/lessons?utf8=✓&search%5Bsearch_type%5D=lessons&search%5Bordering%5D=id+DESC&search%5Bid%5D=<%=report.reportable.id%>&search%5Btitle%5D=&search%5Bsubject_id%5D=&search%5Buser%5D=&search%5Bdate_range_field%5D=&search%5Bprovince_id%5D=">
+        <blockquote class="lessons">
+          <div class="pull-right">
+            <%= report.created_at.strftime('%d %b %Y')%>
+          </div>
+          <%= report.user.name+' '+report.user.surname %><br />
+          <b>on:</b> <%=report.reportable.title %><br/ >
+          <b>report:</b> <i><%= report.comment %></i>
+        </blockquote>
+      </a>
+    <% end %>
+  </div>
+</div>

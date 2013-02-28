@@ -2,7 +2,7 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,200);
 .admin{
   body {
-   padding-bottom: 50px;
+   padding-bottom: 30px;
    background-color: #F6F6F6;
   }
   
@@ -57,7 +57,7 @@
   
   footer{
     clear:both;
-    margin-top: 100px;
+    margin-top: 30px;
   }
  
   a.action:hover{
@@ -119,6 +119,15 @@
       border-left: 10px solid gray;
       margin-bottom: 5px;
     }
+  }
+  
+  .reports a, .reports a:hover{
+    color: #2b2b2b;
+    text-decoration: none;
+  }
+  
+  .reports a blockquote:hover{
+    background-color: #f9f9f9;
   }
   
   .counter-label{
