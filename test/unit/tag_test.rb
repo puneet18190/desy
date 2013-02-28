@@ -4,6 +4,32 @@ require 'test_helper'
 
 class TagTest < ActiveSupport::TestCase
   
+  def load_tags
+    me = MediaElement.all
+    me[0].tags = 'pane, pagliaccio, cane, cagnaccio'
+    assert_obj_saved me[0]
+    me[1].tags = 'paglierino, pappardelle, cane, cagnaccio'
+    assert_obj_saved me[1]
+    me[2].tags = 'pappardelle, pagliaccio, cagnolino, candreva'
+    assert_obj_saved me[2]
+    me[3].tags = 'pane, paniere, paglierino, pagnotta'
+    assert_obj_saved me[3]
+    me[4].tags = 'cagnolino, cagnetto, cane, cagnaccio'
+    assert_obj_saved me[4]
+    me[5].tags = 'paniere, pagnotta, pane, pagliaccio'
+    assert_obj_saved me[5]
+    le = Lesson.all
+    le[0].tags = 'paniere, pane, cagnaccio, pagliaccio'
+    assert_obj_saved le[0]
+    le[1].tags = 'pane e salame, pagnotta, pane, cagnolino, pa, ca'
+    assert_obj_saved le[1]
+    assert_equal 14, Tag.count
+    tag_ca = Tag.find_by_word 'ca'
+    assert_equal 1, tag_ca.taggings.count
+    tag_pa = Tag.find_by_word 'pa'
+    assert_equal 1, tag_pa.taggings.count
+  end
+  
   def setup
     begin
       @tag = Tag.new :word => 'passerotto'
@@ -51,34 +77,28 @@ class TagTest < ActiveSupport::TestCase
   end
   
   test 'autocomplete' do
-    me = MediaElement.all
-    me[0].tags = 'pane, pagliaccio, cane, cagnaccio'
-    assert_obj_saved me[0]
-    me[1].tags = 'paglierino, pappardelle, cane, cagnaccio'
-    assert_obj_saved me[1]
-    me[2].tags = 'pappardelle, pagliaccio, cagnolino, candreva'
-    assert_obj_saved me[2]
-    me[3].tags = 'pane, paniere, paglierino, pagnotta'
-    assert_obj_saved me[3]
-    me[4].tags = 'cagnolino, cagnetto, cane, cagnaccio'
-    assert_obj_saved me[4]
-    me[5].tags = 'paniere, pagnotta, pane, pagliaccio'
-    assert_obj_saved me[5]
-    le = Lesson.all
-    le[0].tags = 'paniere, pane, cagnaccio, pagliaccio'
-    assert_obj_saved le[0]
-    le[1].tags = 'pane e salame, pagnotta, pane, cagnolino, pa, ca'
-    assert_obj_saved le[1]
-    assert_equal 14, Tag.count
-    tag_ca = Tag.find_by_word 'ca'
-    assert_equal 1, tag_ca.taggings.count
-    tag_pa = Tag.find_by_word 'pa'
-    assert_equal 1, tag_pa.taggings.count
+    load_tags
     assert_words_ordered Tag.get_tags_for_autocomplete('pa'), ['pa', 'pane', 'pagliaccio', 'pagnotta', 'paniere', 'paglierino', 'pappardelle', 'pane e salame']
     assert_words_ordered Tag.get_tags_for_autocomplete('ca'), ['ca', 'cagnaccio', 'cagnolino', 'cane', 'cagnetto', 'candreva']
     assert_words_ordered Tag.get_tags_for_autocomplete('can'), ['cane', 'candreva']
     assert_words_ordered Tag.get_tags_for_autocomplete('pan'), ['pane', 'paniere', 'pane e salame']
-    x = Tag.get_tags_for_autocomplete('')
+    assert Tag.get_tags_for_autocomplete('').empty?
+  end
+  
+  test 'for_search_engine' do
+    load_tags
+    MediaElement.where('id < 7').update_all(:user_id => 1, :is_public => false)
+    Lesson.where('id < 3').update_all(:user_id => 1, :is_public => false)
+    MediaElement.all.each do |me|
+      assert !me.is_public && me.user_id == 1
+    end
+    Lesson.all.each do |l|
+      assert !l.is_public && l.user_id == 1
+    end
+#    assert_words_ordered Tag.get_tags_for_autocomplete('pa'), ['pa', 'pane', 'pagliaccio', 'pagnotta', 'paniere', 'paglierino', 'pappardelle', 'pane e salame']
+#    assert_words_ordered Tag.get_tags_for_autocomplete('ca'), ['ca', 'cagnaccio', 'cagnolino', 'cane', 'cagnetto', 'candreva']
+#    assert_words_ordered Tag.get_tags_for_autocomplete('can'), ['cane', 'candreva']
+#    assert_words_ordered Tag.get_tags_for_autocomplete('pan'), ['pane', 'paniere', 'pane e salame']
   end
   
 end
