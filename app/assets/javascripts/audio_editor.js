@@ -10,7 +10,6 @@ function selectAudioEditorComponent(component) {
   component.find('._box_ghost').hide();
   component.find('._sort_handle').addClass('current');
   component.find('._player_content').css('opacity', '1');
-  component.find('.ui-slider-horizontal').css('opacity', '1');
   component.find('._controls').css('visibility', 'visible');
   selectAudioEditorCursor(getAudioComponentIdentifier(component));
 }
@@ -28,8 +27,6 @@ function deselectAllAudioEditorComponents() {
   $('._audio_editor_component._selected ._box_ghost').show();
   $('._audio_editor_component._selected ._sort_handle').removeClass('current');
   $('._audio_editor_component._selected ._player_content').css('opacity', '0.2');
-  $('.audioContent .current .ui-slider-horizontal').css('opacity', '0.9');
-
   $('._audio_editor_component._selected ._controls').css('visibility', 'hidden');
   $('._audio_editor_component._selected').removeClass('_selected');
 }
