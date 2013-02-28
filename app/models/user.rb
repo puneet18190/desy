@@ -496,27 +496,27 @@ class User < ActiveRecord::Base
     end
     curr_tag = false
     query = []
-    select = 'tags.id AS tag_id (SELECT COUNT(*) FROM taggings WHERE (taggings.tag_id = tags.id)) AS tags_count'
+    select = 'tags.id AS tag_id, (SELECT COUNT(*) FROM taggings WHERE (taggings.tag_id = tags.id)) AS tags_count'
     where_for_current_tag = where.gsub('tags.word LIKE ?', 'tags.word = ?')
     case params.length
       when 2
         curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1]).limit(1).length > 0)
         if curr_tag
-          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1]).order('tags_count DESC').limit(limit - 1)
+          query = Tagging.group('tags.id').select(select).joins(joins).where("tags.word != ? AND #{where}", word, params[0], params[1]).order('tags_count DESC').limit(limit - 1)
         else
           query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1]).order('tags_count DESC').limit(limit)
         end
       when 3
         curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2]).limit(1).length > 0)
         if curr_tag
-          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order('tags_count DESC').limit(limit - 1)
+          query = Tagging.group('tags.id').select(select).joins(joins).where("tags.word != ? AND #{where}", word, params[0], params[1], params[2]).order('tags_count DESC').limit(limit - 1)
         else
           query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order('tags_count DESC').limit(limit)
         end
       when 4
         curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2], params[3]).limit(1).length > 0)
         if curr_tag
-          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order('tags_count DESC').limit(limit - 1)
+          query = Tagging.group('tags.id').select(select).joins(joins).where("tags.word != ? AND #{where}", word, params[0], params[1], params[2], params[3]).order('tags_count DESC').limit(limit - 1)
         else
           query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order('tags_count DESC').limit(limit)
         end
