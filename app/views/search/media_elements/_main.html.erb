@@ -1,6 +1,8 @@
 <div id="search_media_elements_main_page" style="display:<%= @search_item == 'lessons' ? 'none'.html_safe : 'block'.html_safe %>">
   
-  <div class="contentSearch">
+  <a class="_keep_searching" style="display:<%= @did_you_search ? 'block'.html_safe : 'none'.html_safe %>"><%= t('search.again') %></a>
+  
+  <div class="contentSearch _search_engine_form" style="display:<%= @did_you_search ? 'none'.html_safe : 'block'.html_safe %>">
     <div class="boxCerca">
       <form id="search_media_elements" class="search-form" method="get" action="/search" data-remote="true">
         <%= hidden_field_tag 'item', 'media_elements' %>
@@ -12,7 +14,7 @@
               <%= hidden_field_tag 'word_placeholder', '', :id => 'media_elements_tag_kind_for_search' %>
             </td>
             <td width="20%">
-              <label><%= t('search.media_elements.filters.format') %></label><br />
+              <label><%= t('search.media_elements.filters.format') %></label><br/>
               <select name="filter" id="filter_search_media_elements">
                 <% filter = @filter.nil? Filters::ALL_MEDIA_ELEMENTS : @filter %>
                 <% Filters::MEDIA_ELEMENTS_SEARCH_SET.each do |f| %>
