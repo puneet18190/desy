@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+windows = RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/
+source windows ? 'http://rubygems.org' : 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
 gem 'pg'
@@ -11,7 +12,7 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.2.2.0'
   
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'libv8', '~> 3.11.8'
+  gem 'libv8', '~> 3.11.8', :platforms => :ruby
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
@@ -26,7 +27,7 @@ group :development do
   gem 'irb-benchmark'
 end
 
-gem 'irbtools', group: 'irbtools'
+gem 'irbtools', group: 'irbtools', platforms: :ruby
 
 group :development, :test do
   gem 'rspec-rails'
@@ -45,7 +46,7 @@ gem 'tinymce-rails-langs'
 gem 'kaminari'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'validates_email_format_of'
-gem 'unicorn'
+gem 'unicorn', :platforms => :ruby
 gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'ancestry'
