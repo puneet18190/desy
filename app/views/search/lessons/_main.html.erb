@@ -1,6 +1,8 @@
 <div id="search_lessons_main_page" style="display:<%= @search_item == 'lessons' ? 'block'.html_safe : 'none'.html_safe %>">
   
-  <div class="contentSearch">
+  <a class="_keep_searching" style="display:<%= @did_you_search ? 'block'.html_safe : 'none'.html_safe %>"><%= t('search.again') %></a>
+  
+  <div class="contentSearch _search_engine_form" style="display:<%= @did_you_search ? 'none'.html_safe : 'block'.html_safe %>">
     <div class="boxCerca">
       <form id="search_lessons" class="search-form" method="get" action="/search" data-remote="true">
         <%= hidden_field_tag 'item', 'lessons' %>
