@@ -94,7 +94,7 @@ class TagTest < ActiveSupport::TestCase
       assert !me.is_public && me.user_id == 1
       assert user.create_lesson(me.title, me.description, 1, me.tags)
     end
-    Lesson.all.each do |l|
+    Lesson.find([1, 2]).each do |l|
       assert !l.is_public && l.user_id == 1
       v = Video.new :title => l.title, :description => l.description
       v.user_id = 1

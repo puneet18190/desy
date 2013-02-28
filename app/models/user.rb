@@ -527,7 +527,7 @@ class User < ActiveRecord::Base
     where = 'tags.word != ? AND tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
     where_for_current_tag = 'tags.word = ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
-    select = 'tags.id AS tag_id, (SELECT COUNT(*) FROM taggings WHERE (taggings.tag_id = tags.id)) AS tags_count'
+    select = 'tags.id AS tag_id, COUNT(*) AS tags_count'
     case filter
       when Filters::VIDEO
         where = "#{where} AND media_elements.sti_type = 'Video'"
