@@ -1013,7 +1013,7 @@ class ExtractorTest < ActiveSupport::TestCase
     Tag.where(:word => ['加']).each do |t|
       tag_ids << t.id
     end
-    assert_extractor tag_ids, p1[:tags]
+    assert p1[:tags].empty?
     assert_equal 0, p1[:records_amount]
     assert_equal 0, p1[:pages_amount]
     @el4.is_public = true
@@ -1026,7 +1026,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('加', 1, 5, nil, 'image')
     assert p1[:records].empty?
-    assert_extractor tag_ids, p1[:tags]
+    assert p1[:tags].empty?
     assert_equal 0, p1[:records_amount]
     assert_equal 0, p1[:pages_amount]
     p1 = @user2.search_media_elements('加', 1, 5, nil, 'audio')
@@ -1065,12 +1065,12 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'audio')
     assert_ordered_item_extractor [3], p1[:records]
-    assert_extractor tag_ids, p1[:tags]
+    assert_extractor [Tag.find_by_word('條聖').id], p1[:tags]
     assert_equal 1, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'video')
     assert_ordered_item_extractor [@el2.id], p1[:records]
-    assert_extractor tag_ids, p1[:tags]
+    assert_extractor [Tag.find_by_word('條聖').id], p1[:tags]
     assert_equal 1, p1[:records_amount]
     assert_equal 1, p1[:pages_amount]
     p1 = @user2.search_media_elements('條聖', 1, 5, nil, 'image')
