@@ -496,30 +496,22 @@ class User < ActiveRecord::Base
     end
     curr_tag = false
     query = []
-    select = 'tags.id AS tag_id (SELECT COUNT(*) FROM taggings WHERE (taggings.tag_id = tags.id)) AS tags_count'
+    select = 'tags.id AS tag_id, COUNT(*) AS tags_count'
     where_for_current_tag = where.gsub('tags.word LIKE ?', 'tags.word = ?')
+    where = "tags.word != ? AND #{where}"
     case params.length
       when 2
         curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1]).limit(1).length > 0)
-        if curr_tag
-          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1]).order('tags_count DESC').limit(limit - 1)
-        else
-          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1]).order('tags_count DESC').limit(limit)
-        end
+        limit -= 1 if curr_tag
+        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1]).order('tags_count DESC, tags.word ASC').limit(limit)
       when 3
         curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2]).limit(1).length > 0)
-        if curr_tag
-          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order('tags_count DESC').limit(limit - 1)
-        else
-          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order('tags_count DESC').limit(limit)
-        end
+        limit -= 1 if curr_tag
+        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1], params[2]).order('tags_count DESC, tags.word ASC').limit(limit)
       when 4
         curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2], params[3]).limit(1).length > 0)
-        if curr_tag
-          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order('tags_count DESC').limit(limit - 1)
-        else
-          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order('tags_count DESC').limit(limit)
-        end
+        limit -= 1 if curr_tag
+        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1], params[2], params[3]).order('tags_count DESC, tags.word ASC').limit(limit)
     end
     resp = curr_tag ? [Tag.find_by_word(word)] : []
     query.each do |q|
@@ -532,16 +524,26 @@ class User < ActiveRecord::Base
     limit = SETTINGS['tags_limit_in_search_engine']
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
     resp = []
-    where = 'tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
+    where = 'tags.word != ? AND tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
+    where_for_current_tag = 'tags.word = ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
+    joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
+    select = 'tags.id AS tag_id, COUNT(*) AS tags_count'
     case filter
       when Filters::VIDEO
         where = "#{where} AND media_elements.sti_type = 'Video'"
+        where_for_current_tag = "#{where_for_current_tag} AND media_elements.sti_type = 'Video'"
       when Filters::AUDIO
         where = "#{where} AND media_elements.sti_type = 'Audio'"
+        where_for_current_tag = "#{where_for_current_tag} AND media_elements.sti_type = 'Audio'"
       when Filters::IMAGE
         where = "#{where} AND media_elements.sti_type = 'Image'"
+        where_for_current_tag = "#{where_for_current_tag} AND media_elements.sti_type = 'Image'"
     end
-    Tagging.group('tags.id').select('tags.id AS tag_id').joins("INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)").where(where, "#{word}%", true, self.id).order('tags.word ASC').limit(limit).each do |tagging|
+    if Tagging.joins(joins).where(where_for_current_tag, word, true, self.id).limit(1).length > 0
+      resp << Tag.find_by_word(word)
+      limit -= 1
+    end
+    Tagging.group('tags.id').select(select).joins(joins).where(where, word, "#{word}%", true, self.id).order('tags_count DESC, tags.word ASC').limit(limit).each do |tagging|
       resp << Tag.find(tagging.tag_id)
     end
     resp
