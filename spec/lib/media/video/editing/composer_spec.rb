@@ -27,6 +27,13 @@ module Media
           end
         end
 
+        let(:initial_video_attributes) { { title: 'new title', description: 'new description', tags: 'e,f,g,h' } }
+
+        def info(format)
+          @info ||= {}
+          @info[format] ||= Info.new(initial_video.media.path(format))
+        end
+
         describe '#run' do
           let(:params) do
             { audio_track: audio_track,
@@ -46,16 +53,15 @@ module Media
               ]
             }
           end
-          let(:params_with_initial_video) { params.merge(initial_video: initial_video) }
+          let(:params_with_initial_video) { params.merge(initial_video: { id: initial_video.id }) }
 
-          context 'without initial video' do
+          context 'without an uploaded initial video' do
 
             let(:initial_video) do
-              record = ::Video.create!(title: 'new title', description: 'new description', tags: 'e,f,g,h') do |r|
-                r.user               = user
-                r.composing          = true
+              ::Video.create!(initial_video_attributes) do |r|
+                r.user      = user
+                r.composing = true
               end
-              { id: record.id }
             end
             
             context 'without audio track' do
@@ -66,33 +72,30 @@ module Media
                 user.video_editor_cache!(params_with_initial_video)
                 user_notifications_count
                 described_class.new(params_with_initial_video).run
+                initial_video.reload
               end
 
               MESS::VIDEO_FORMATS.each do |format|
                 context "with #{format} format", format: format do
               
                   let(:format) { format }
-                  def info(format)
-                    @info ||= {}
-                    @info[format] ||= Info.new(video.media.path(format)).to_hash.reject{ |k,_| k == :path }
-                  end
 
                   it 'creates the correct video' do
-                    info(format).should == MESS::VIDEO_COMPOSING[format]
+                    info(format).similar_to?(MESS::VIDEO_COMPOSING[:without_audio_track][format]).should be_true
                   end
                 end
               end
 
               it 'deletes the video composing metadata' do
-                video.reload.composing.should be_nil
+                initial_video.composing.should be_nil
               end
 
               it 'sends a notification to the user' do
-                video.user.notifications.count.should == user_notifications_count+1
+                initial_video.user.notifications.count.should == user_notifications_count+1
               end
 
               it 'deletes the video editor cache' do
-                video.user.reload.video_editor_cache.should be_nil
+                initial_video.user.video_editor_cache.should be_nil
               end
             end
             
@@ -104,46 +107,42 @@ module Media
                 user.video_editor_cache!(params_with_initial_video)
                 user_notifications_count
                 described_class.new(params_with_initial_video).run
+                initial_video.reload
               end
 
               MESS::VIDEO_FORMATS.each do |format|
                 context "with #{format} format", format: format do
               
                   let(:format) { format }
-                  def info(format)
-                    @info ||= {}
-                    @info[format] ||= Info.new(video.media.path(format)).to_hash.reject{ |k,_| k == :path }
-                  end
 
                   it 'creates the correct video' do
-                    info(format).should == MESS::VIDEO_COMPOSING[format]
+                    info(format).similar_to?(MESS::VIDEO_COMPOSING[:with_audio_track][format]).should be_true
                   end
                 end
               end
 
               it 'deletes the video composing metadata' do
-                video.reload.composing.should be_nil
+                initial_video.composing.should be_nil
               end
 
               it 'sends a notification to the user' do
-                video.user.notifications.count.should == user_notifications_count+1
+                initial_video.user.notifications.count.should == user_notifications_count+1
               end
 
               it 'deletes the video editor cache' do
-                video.user.reload.video_editor_cache.should be_nil
+                initial_video.user.video_editor_cache.should be_nil
               end
             end
 
           end
 
-          context 'with initial video' do
+          context 'with an uploaded initial video' do
             let(:initial_video) do
-              video = ::Video.create!(title: 'new title', description: 'new description', tags: 'e,f,g,h') do |v|
+              ::Video.create!(initial_video_attributes) do |v|
                 v.user                = user
                 v.media               = MESS::CONVERTED_VIDEO_HASH
                 v.metadata.old_fields = { title: 'old title', description: 'old description', tags: 'a,b,c,d' }
               end
-              { id: video.id, title: 'title 2', description: 'description 2', tags: 'e,f,g,h' }
             end
 
             context 'without audio track' do
@@ -154,33 +153,30 @@ module Media
                 user.video_editor_cache!(params_with_initial_video)
                 user_notifications_count
                 described_class.new(params_with_initial_video).run
+                initial_video.reload
               end
 
               MESS::VIDEO_FORMATS.each do |format|
                 context "with #{format} format", format: format do
               
                   let(:format) { format }
-                  def info(format)
-                    @info ||= {}
-                    @info[format] ||= Info.new(video.media.path(format)).to_hash.reject{ |k,_| k == :path }
-                  end
 
                   it 'creates the correct video' do
-                    info(format).should == MESS::VIDEO_COMPOSING[format]
+                    info(format).similar_to?(MESS::VIDEO_COMPOSING[:without_audio_track][format]).should be_true
                   end
                 end
               end
 
               it 'deletes the video old_fields metadata' do
-                video.metadata.old_fields.should be_nil
+                initial_video.metadata.old_fields.should be_nil
               end
 
               it 'sends a notification to the user' do
-                video.user.notifications.count.should == user_notifications_count+1
+                initial_video.user.notifications.count.should == user_notifications_count+1
               end
 
               it 'deletes the video editor cache' do
-                video.user.reload.video_editor_cache.should be_nil
+                initial_video.user.video_editor_cache.should be_nil
               end
             end
 
@@ -192,33 +188,30 @@ module Media
                 user.video_editor_cache!(params_with_initial_video)
                 user_notifications_count
                 described_class.new(params_with_initial_video).run
+                initial_video.reload
               end
 
               MESS::VIDEO_FORMATS.each do |format|
                 context "with #{format} format", format: format do
               
                   let(:format) { format }
-                  def info(format)
-                    @info ||= {}
-                    @info[format] ||= Info.new(video.media.path(format)).to_hash.reject{ |k,_| k == :path }
-                  end
 
                   it 'creates the correct video' do
-                    info(format).should == MESS::VIDEO_COMPOSING[format]
+                    info(format).similar_to?(MESS::VIDEO_COMPOSING[:with_audio_track][format]).should be_true
                   end
                 end
               end
 
               it 'deletes the video old_fields metadata' do
-                video.metadata.old_fields.should be_nil
+                initial_video.metadata.old_fields.should be_nil
               end
 
               it 'sends a notification to the user' do
-                video.user.notifications.count.should == user_notifications_count+1
+                initial_video.user.notifications.count.should == user_notifications_count+1
               end
 
               it 'deletes the video editor cache' do
-                video.user.reload.video_editor_cache.should be_nil
+                initial_video.user.video_editor_cache.should be_nil
               end
             end
           end

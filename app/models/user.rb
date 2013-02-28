@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   REGISTRATION_POLICIES = SETTINGS['user_registration_policies'].map(&:to_sym)
 
   attr_accessor :password
-  serialize :video_editor_cache
+  serialize :metadata, OpenStruct
 
   ATTR_ACCESSIBLE = [:password, :password_confirmation, :name, :surname, :school_level_id, :location_id, :subject_ids] + REGISTRATION_POLICIES
   attr_accessible *ATTR_ACCESSIBLE
@@ -66,8 +66,21 @@ class User < ActiveRecord::Base
   end
   
   def video_editor_cache!(cache = nil)
-    update_attribute :video_editor_cache, cache
+    update_attribute :metadata, OpenStruct.new(metadata.marshal_dump.merge(video_editor_cache: cache))
     nil
+  end
+
+  def video_editor_cache
+    metadata.try(:video_editor_cache)
+  end
+
+  def audio_editor_cache!(cache = nil)
+    update_attribute :metadata, OpenStruct.new(metadata.marshal_dump.merge(audio_editor_cache: cache))
+    nil
+  end
+
+  def audio_editor_cache
+    metadata.try(:audio_editor_cache)
   end
   
   def own_mailing_list_groups
@@ -78,21 +91,21 @@ class User < ActiveRecord::Base
     "Group #{MailingListGroup.where(:user_id => self.id).count + 1}"
   end
   
-  def audio_editor_cache!(cache = nil)
-    return false if self.new_record?
-    folder = Rails.root.join "tmp/cache/audio_editor/#{self.id}"
-    FileUtils.mkdir_p folder if !Dir.exists? folder
-    x = File.open folder.join("cache.yml"), 'w'
-    x.write cache.to_yaml
-    x.close
-    true
-  end
+  # def audio_editor_cache!(cache = nil)
+  #   return false if self.new_record?
+  #   folder = Rails.root.join "tmp/cache/audio_editor/#{self.id}"
+  #   FileUtils.mkdir_p folder if !Dir.exists? folder
+  #   x = File.open folder.join("cache.yml"), 'w'
+  #   x.write cache.to_yaml
+  #   x.close
+  #   true
+  # end
   
-  def audio_editor_cache
-    cache = Rails.root.join("tmp/cache/audio_editor/#{self.id}/cache.yml")
-    return nil if self.new_record? || !File.exists?(cache)
-    YAML::load(File.open(cache))
-  end
+  # def audio_editor_cache
+  #   cache = Rails.root.join("tmp/cache/audio_editor/#{self.id}/cache.yml")
+  #   return nil if self.new_record? || !File.exists?(cache)
+  #   YAML::load(File.open(cache))
+  # end
 
   def registration_policies
     REGISTRATION_POLICIES
@@ -153,7 +166,16 @@ class User < ActiveRecord::Base
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
     offset = (page - 1) * for_page
     resp = []
-    Tagging.select('tags.id AS tag_id').group('tags.id').joins(:tag).where('taggings.taggable_type = ? AND taggings.taggable_id IN (?) AND tags.word LIKE ?', type, ids, "#{word}%").order('tags.word ASC').offset(offset).limit(for_page).each do |tagging|
+    where = 'tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
+    case filter
+      when Filters::VIDEO
+        where = "#{where} AND media_elements.sti_type = 'Video'"
+      when Filters::AUDIO
+        where = "#{where} AND media_elements.sti_type = 'Audio'"
+      when Filters::IMAGE
+        where = "#{where} AND media_elements.sti_type = 'Image'"
+    end
+    Tagging.group('tags.id').select('tags.id AS tag_id').joins("INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)").where(where, "#{word}%", true, self.id).order('tags.word ASC').offset(offset).limit(for_page).each do |tagging|
       resp << Tag.find(tagging.tag_id)
     end
     resp
@@ -183,8 +205,40 @@ class User < ActiveRecord::Base
     for_page = SETTINGS['tags_pagination_in_search_engine']
     offset = (page - 1) * for_page
     resp = []
-    Tagging.select('tags.id AS tag_id').group('tags.id').joins(:tag).where('taggings.taggable_type = ? AND taggings.taggable_id IN (?) AND tags.word LIKE ?', type, ids, "#{word}%").order('tags.word ASC').offset(offset).limit(for_page).each do |tagging|
-      resp << Tag.find(tagging.tag_id)
+    params = ["#{word}%"]
+    joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
+    where = 'tags.word LIKE ?'
+    if !subject_id.nil?
+      where = "#{where} AND lessons.subject_id = ?"
+      params << subject_id
+    end
+    case filter
+      when Filters::ALL_LESSONS
+        where = "#{where} AND (lessons.is_public = ? OR lessons.user_id = ?)"
+        params << true
+        params << self.id
+      when Filters::PUBLIC
+        where = "#{where} AND lessons.is_public = ?"
+        params << true
+      when Filters::ONLY_MINE
+        where = "#{where} AND lessons.user_id = ?"
+        params << self.id
+      when Filters::NOT_MINE
+        where = "#{where} AND lessons.is_public = ? AND lessons.user_id != ?"
+        params << true
+        params << self.id
+    end
+    query = []
+    case params.length
+      when 2
+        query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1]).order('tags.word ASC').offset(offset).limit(for_page)
+      when 3
+        query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1], params[2]).order('tags.word ASC').offset(offset).limit(for_page)
+      when 4
+        query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1], params[2], params[3]).order('tags.word ASC').offset(offset).limit(for_page)
+    end
+    query.each do |q|
+      resp << Tag.find(q.tag_id)
     end
     resp
   end

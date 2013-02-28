@@ -53,7 +53,7 @@ module Media
             'invalid video'
           elsif [mp4_info.duration, webm_info.duration].min < self.class::MIN_DURATION
             'invalid duration'
-          elsif not allowed_duration_range?(mp4_info.duration, webm_info.duration)
+          elsif not similar_durations?(mp4_info.duration, webm_info.duration)
             'invalid duration difference'
           end
         end

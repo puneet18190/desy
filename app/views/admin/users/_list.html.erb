@@ -1,4 +1,5 @@
-<table id="users_list" class="table table-striped table-bordered table-rounded">
+<% if users.count > 0 %>
+  <table id="users_list" class="table table-striped table-bordered table-rounded">
   <thead>
     <tr>
       <th>
@@ -67,3 +68,8 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+  <div class="widget">
+    <%= t('admin.users.index.not_found') %>
+  </div>
+<% end %>

@@ -1,7 +1,7 @@
 require 'media'
 require 'media/audio'
 require 'media/uploader'
-require 'media/allowed_duration_range'
+require 'media/similar_durations'
 require 'media/audio/editing/conversion/job'
 require 'env_relative_path'
 
@@ -19,7 +19,7 @@ module Media
       EXTENSION_WHITE_LIST          = %w(mp3 ogg flac aiff wav wma aac)
       EXTENSION_WHITE_LIST_WITH_DOT = EXTENSION_WHITE_LIST.map{ |ext| ".#{ext}" }
       MIN_DURATION                  = 1
-      DURATION_THRESHOLD            = CONFIG.audio.duration_threshold
+      DURATION_THRESHOLD            = CONFIG.duration_threshold
       FORMATS                       = FORMATS
       ALLOWED_KEYS                  = [:filename] + FORMATS
       VERSION_FORMATS               = VERSION_FORMATS
