@@ -8,7 +8,7 @@ class Admin::ElementsController < AdminController
     if params[:search]
       elements = AdminSearchForm.search(params[:search],'elements')
     else
-      elements = MediaElement.order('id DESC')
+      elements = MediaElement.where(converted: true).order('id DESC')
     end
     
     @elements = elements.page(params[:page])

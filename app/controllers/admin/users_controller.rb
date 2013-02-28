@@ -42,6 +42,11 @@ class Admin::UsersController < AdminController
     @users = User.get_emails(params[:term])
     render :json => @users
   end
+  
+  def full_name
+    @users = User.full_name(params[:term])
+    render :json => @users
+  end
 
   def find_location
     @parent = Location.find(params[:id])

@@ -60,7 +60,7 @@ class AdminSearchForm < Form
   
   #ELEMENTS
   def self.search_elements(params)
-    elements = MediaElement.order(params[:ordering])
+    elements = MediaElement.where(converted: true).order(params[:ordering])
     elements = elements.where(id: params[:id]) if params[:id].present?
     elements = elements.where('title ILIKE ?', "%#{params[:title]}%") if params[:title].present?
     elements = elements.where(sti_type: params[:sti_type]) if params[:sti_type].present?

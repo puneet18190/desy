@@ -160,7 +160,7 @@ Desy::Application.routes.draw do
     root :to => 'dashboard#index'
     
     get  'users/contact' => 'messages#contact'
-    get  'users/get_emails' => 'users#get_emails'
+    get  'users/full_name' => 'users#full_name'
     put  'users/:id/set_status' => 'users#set_status'
     put  'user/:id/activate' => 'users#activate'
     put  'user/:id/ban' => 'users#ban'

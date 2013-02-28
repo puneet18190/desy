@@ -465,6 +465,10 @@ class User < ActiveRecord::Base
     where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?',"%#{term}%","%#{term}%","%#{term}%").select('name, surname, email AS value')
   end
   
+  def self.full_name(term)
+    where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?',"%#{term}%","%#{term}%","%#{term}%").select("name || ' ' || surname AS value")
+  end
+  
   private
   
   def get_tags_associated_to_lesson_search(word, filter, subject_id)
