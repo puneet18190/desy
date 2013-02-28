@@ -142,16 +142,9 @@ class User < ActiveRecord::Base
     else
       word = word.to_s if word.class != Fixnum
       resp = search_media_elements_with_tag(word, offset, for_page, filter, order)
-      resp[:tags] = self.get_tags_associated_to_item_search(resp[:tags], 'MediaElement', 1) if resp.has_key? :tags
+      resp[:tags] = self.get_tags_associated_to_item_search(resp[:tags], word, 'MediaElement', 1) if resp.has_key? :tags
       resp
     end
-  end
-  
-  def get_tags_associated_to_item_search(ids, type, page)
-    page = 1 if page.class != Fixnum || page <= 0
-    for_page = SETTINGS['tags_pagination_in_search_engine']
-    offset = (page - 1) * for_page
-    Tagging.includes(:tag).where(:taggable_type => type, :taggable_id => ids).offset(offset).limit(for_page)
   end
   
   def search_lessons(word, page, for_page, order=nil, filter=nil, subject_id=nil)
@@ -166,9 +159,20 @@ class User < ActiveRecord::Base
     else
       word = word.to_s if word.class != Fixnum
       resp = search_lessons_with_tag(word, offset, for_page, filter, subject_id, order)
-      resp[:tags] = self.get_tags_associated_to_item_search(resp[:tags], 'Lesson', 1) if resp.has_key? :tags
+      resp[:tags] = self.get_tags_associated_to_item_search(resp[:tags], word, 'Lesson', 1) if resp.has_key? :tags
       resp
     end
+  end
+  
+  def get_tags_associated_to_item_search(ids, word, type, page)
+    page = 1 if page.class != Fixnum || page <= 0
+    for_page = SETTINGS['tags_pagination_in_search_engine']
+    offset = (page - 1) * for_page
+    resp = []
+    Tagging.select('tags.id AS tag_id').group('tags.id').joins(:tag).where('taggings.taggable_type = ? AND taggings.taggable_id IN (?) AND tags.word LIKE ?', type, ids, "#{word}%").order('tags.word ASC').offset(offset).limit(for_page).each do |tagging|
+      resp << Tag.find(tagging.tag_id)
+    end
+    resp
   end
   
   def report_lesson(lesson_id, msg)
