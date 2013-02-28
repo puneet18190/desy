@@ -141,7 +141,9 @@ class User < ActiveRecord::Base
       search_media_elements_without_tag(offset, for_page, filter, order)
     else
       word = word.to_s if word.class != Fixnum
-      search_media_elements_with_tag(word, offset, for_page, filter, order)
+      resp = search_media_elements_with_tag(word, offset, for_page, filter, order)
+      resp[:tags] = self.get_tags_associated_to_item_search(resp[:tags], word, 'MediaElement', 1) if resp.has_key? :tags
+      resp
     end
   end
   
@@ -156,8 +158,21 @@ class User < ActiveRecord::Base
       search_lessons_without_tag(offset, for_page, filter, subject_id, order)
     else
       word = word.to_s if word.class != Fixnum
-      search_lessons_with_tag(word, offset, for_page, filter, subject_id, order)
+      resp = search_lessons_with_tag(word, offset, for_page, filter, subject_id, order)
+      resp[:tags] = self.get_tags_associated_to_item_search(resp[:tags], word, 'Lesson', 1) if resp.has_key? :tags
+      resp
     end
+  end
+  
+  def get_tags_associated_to_item_search(ids, word, type, page)
+    page = 1 if page.class != Fixnum || page <= 0
+    for_page = SETTINGS['tags_pagination_in_search_engine']
+    offset = (page - 1) * for_page
+    resp = []
+    Tagging.select('tags.id AS tag_id').group('tags.id').joins(:tag).where('taggings.taggable_type = ? AND taggings.taggable_id IN (?) AND tags.word LIKE ?', type, ids, "#{word}%").order('tags.word ASC').offset(offset).limit(for_page).each do |tagging|
+      resp << Tag.find(tagging.tag_id)
+    end
+    resp
   end
   
   def report_lesson(lesson_id, msg)
@@ -476,12 +491,14 @@ class User < ActiveRecord::Base
         where = "#{where} AND media_elements.sti_type = 'Image'"
     end
     content = []
+    for_tags = []
     Tagging.group('media_elements.id').select('media_elements.id AS media_element_id').joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit).each do |q|
       media_element = MediaElement.find_by_id q.media_element_id
       media_element.set_status self.id
       content << media_element
+      for_tags << q.media_element_id
     end
-    resp[:tags] = Tag.where('word LIKE ?', "#{word}%") if word.class != Fixnum
+    resp[:tags] = for_tags if word.class != Fixnum
     resp[:records_amount] = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).count.length
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
     resp[:records] = content
@@ -579,12 +596,14 @@ class User < ActiveRecord::Base
         count = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2], params[3]).count.length
     end
     content = []
+    for_tags = []
     query.each do |q|
       lesson = Lesson.find_by_id q.lesson_id
       lesson.set_status self.id
       content << lesson
+      for_tags << q.lesson_id
     end
-    resp[:tags] = Tag.where('word LIKE ?', "#{word}%") if word.class != Fixnum
+    resp[:tags] = for_tags if word.class != Fixnum
     resp[:records_amount] = count
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
     resp[:records] = content
