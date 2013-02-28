@@ -13,8 +13,6 @@ class MediaElement < ActiveRecord::Base
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
   DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
 
-  PLACEHOLDER_URL = '/assets/media_placeholder.gif'
-
   statuses = ::STATUSES.media_elements.marshal_dump.keys
   STATUSES = Struct.new(*statuses).new(*statuses)
 
@@ -85,10 +83,6 @@ class MediaElement < ActiveRecord::Base
       media_element
     end
   end
-
-  def placeholder_url
-    PLACEHOLDER_URL
-  end
   
   def disable_lessons_containing_me
     manage_lessons_containing_me(false)
@@ -140,10 +134,6 @@ class MediaElement < ActiveRecord::Base
       end
     
     @tags
-  end
-  
-  def media_from_file_path=(file_path)
-    self.media = File.open(file_path)
   end
   
   def self.dashboard_emptied?(an_user_id)
@@ -295,10 +285,6 @@ class MediaElement < ActiveRecord::Base
     @media_element.nil? || !@media_element.is_public
   end
 
-  def cannot_destroy_while_converting
-    !converted.nil?
-  end
-
   def clean
     folder = media.try(:folder)
     FileUtils.rm_rf folder if folder and File.exists? folder
@@ -322,6 +308,7 @@ class MediaElement < ActiveRecord::Base
       tagging.destroyable = true
       tagging.destroy
     end
+    true
   end
   
 end

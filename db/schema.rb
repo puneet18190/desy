@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(:version => 20130131094635) do
     t.boolean  "confirmed",          :null => false
     t.boolean  "active",             :null => false
     t.integer  "location_id",        :null => false
+    t.string   "confirmation_token"
+    t.text     "metadata"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
-    t.string   "confirmation_token"
-    t.text     "video_editor_cache"
     t.index ["location_id"], :name => "fk__users_location_id", :order => {"location_id" => :asc}
     t.index ["school_level_id"], :name => "fk__users_school_level_id", :order => {"school_level_id" => :asc}
     t.index ["active"], :name => "index_users_on_active", :order => {"active" => :asc}

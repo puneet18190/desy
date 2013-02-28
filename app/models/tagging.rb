@@ -23,11 +23,10 @@ class Tagging < ActiveRecord::Base
   end
   
   def stop_destruction_if_last
-    if !@destroyable
-      @tagging = Valid.get_association self, :id
-      return true if @tagging.nil?
-      @tagging.taggable.taggings.count > SETTINGS['min_tags_for_item']
-    end
+    return true if @destroyable
+    @tagging = Valid.get_association self, :id
+    return true if @tagging.nil?
+    @tagging.taggable.taggings.count > SETTINGS['min_tags_for_item']
   end
   
   def good_taggable_type

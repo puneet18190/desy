@@ -17,7 +17,7 @@ shared_examples 'after saving a video with a valid not converted media' do
                                    thumb: [ "#{folder}/thumb_#{name}", ".jpg" ] } }
 
   let(:info)                   { Hash[ MESS::VIDEO_FORMATS.map{ |f| [f, Media::Info.new(video.media.path(f))] } ] }
-  let(:durations)              { Hash[ MESS::VIDEO_FORMATS.map{ |f| [:"#{f}_duration", info[f].duration] } ] }
+  let(:metadata)               { Hash[ MESS::VIDEO_FORMATS.map{ |f| [:"#{f}_duration", info[f].duration] } ].merge(creation_mode: :uploading) }
 
   it 'resets model rename_media attribute' do
     video.rename_media.should_not be_true
@@ -27,8 +27,8 @@ shared_examples 'after saving a video with a valid not converted media' do
     video.skip_conversion.should_not be_true
   end
 
-  it 'sets the expected duration' do
-    video.metadata.marshal_dump.should == durations
+  it 'sets the expected metadata' do
+    video.metadata.marshal_dump.should == metadata
   end
 
   it 'sets the expected [:media] value' do
@@ -49,6 +49,10 @@ shared_examples 'after saving a video with a valid not converted media' do
     paths.each do |format, filename_re_arguments|
       video.media.path(format).should match MESS::FILENAME_RE.call(*filename_re_arguments)
     end
+  end
+
+  it 'is marked as uploaded' do
+    video.uploaded?.should be_true
   end
 
   it 'creates valid videos' do

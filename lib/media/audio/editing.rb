@@ -16,7 +16,9 @@ module Media
   end
 end
 
-require 'media/audio/editing/conversion'
-require 'media/audio/editing/conversion/job'
 require 'media/audio/editing/concat'
 require 'media/audio/editing/crop'
+require 'media/audio/editing/conversion'
+require 'media/audio/editing/conversion/job'
+require 'media/audio/editing/composer'
+require 'media/audio/editing/composer/job'

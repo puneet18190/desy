@@ -259,8 +259,12 @@
     line-height: 1.3em;
   }
   
-  .dashboard table{
+  .dashboard table, &.show-action table, table.white{
     background-color: #ffffff;
+  }
+  
+  &.show-action table thead th a.label{
+    display:none;
   }
   
   /*AUTOCOMPLETE*/

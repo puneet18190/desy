@@ -2,7 +2,7 @@ require 'media'
 require 'media/audio'
 require 'media/audio/editing'
 require 'media/logging'
-require 'media/allowed_duration_range'
+require 'media/similar_durations'
 require 'media/info'
 require 'media/error'
 require 'media/audio/editing/cmd/conversion'
@@ -15,10 +15,10 @@ module Media
 
         include EnvRelativePath
         include Logging
-        include AllowedDurationRange
+        include SimilarDurations
 
         TEMP_FOLDER        = Rails.root.join(env_relative_path('tmp/media/audio/editing/conversions')).to_s
-        DURATION_THRESHOLD = CONFIG.audio.duration_threshold
+        DURATION_THRESHOLD = CONFIG.duration_threshold
 
         def self.log_folder
           super 'conversions'
@@ -58,7 +58,7 @@ module Media
             mp3_file_info = Info.new output_path(:mp3)
             ogg_file_info = Info.new output_path(:ogg)
 
-            unless allowed_duration_range?(mp3_file_info.duration, ogg_file_info.duration) 
+            unless similar_durations?(mp3_file_info.duration, ogg_file_info.duration) 
               raise Error.new( 'output audios have different duration', 
                                model_id: model_id, mp3_duration: mp3_file_info.duration, ogg_duration: ogg_file_info.duration )
             end
