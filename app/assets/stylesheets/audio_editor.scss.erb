@@ -41,10 +41,12 @@ html.audio_editor-controller {
       margin-left:56px;
     }
     .audioComponentContent {
-      float: left;
+      float:left;
       margin: 0px;
       text-align:left;
       width:617px;
+      height:103px;
+      
     }
     .audioContent {
       float: left;
@@ -127,9 +129,9 @@ html.audio_editor-controller {
               position: absolute;
               background-color: #787575;
               border-radius:0%;
-              height: 46px;
+              height: 44px;
               width: 0;
-              top: -19px;
+              top: -18px;
               margin-left: 0;
               border:1px solid #787575;
               &.selected {
@@ -146,9 +148,9 @@ html.audio_editor-controller {
               position: absolute;
               background-color: #43A848;
               border-radius: 0%;
-              height: 46px;
+              height: 44px;
               width: 0;
-              top: -19px;
+              top: -18px;
               margin-left: 0;
               border-left: 1px solid rgb(20, 20, 20);
               border-right: 7px solid rgb(70, 70, 70);
@@ -240,6 +242,8 @@ html.audio_editor-controller {
       top: 1px;
       left: 132px;
       cursor: pointer;
+      background-color:black;
+      opacity:0;
     }
     a.exitButton {
       position: absolute;
@@ -257,6 +261,8 @@ html.audio_editor-controller {
   
   .sliderDisabler, .underDoubleSlider {
     position: absolute;
+    background-color:#000;
+    opacity:0;
   }
   .sliderDisabler {
     z-index: 99;
@@ -264,6 +270,7 @@ html.audio_editor-controller {
     width: 617px;
     left: 0;
     top: 0;
+    
   }
   .underDoubleSlider {
     z-index: 97;
@@ -271,7 +278,9 @@ html.audio_editor-controller {
     height: 46px;
     left: 72px;
     top: 0;
-      }
+    
+
+  }
   
   #audio_editor_timeline {
     margin-left: 30px;
@@ -282,11 +291,14 @@ html.audio_editor-controller {
     position: absolute;
     z-index: 102;
     left: 30px;
+    background-color:#000;
+    opacity:0;
   }
   
   #audio_editor_timeline, #audio_editor_box_ghost {
     height: 448px;
     width: 768px;
+
   }
   
   .jspVerticalBar {

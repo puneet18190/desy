@@ -2,7 +2,7 @@ require 'media'
 require 'media/video'
 require 'media/video/editing'
 require 'media/logging'
-require 'media/allowed_duration_range'
+require 'media/similar_durations'
 require 'media/info'
 require 'media/error'
 require 'env_relative_path'
@@ -16,10 +16,10 @@ module Media
   
         include EnvRelativePath
         include Logging
-        include AllowedDurationRange
+        include SimilarDurations
   
         TEMP_FOLDER        = Rails.root.join(env_relative_path('tmp/media/video/editing/conversions')).to_s
-        DURATION_THRESHOLD = CONFIG.video.duration_threshold
+        DURATION_THRESHOLD = CONFIG.duration_threshold
   
         def self.log_folder
           super 'conversions'
@@ -59,7 +59,7 @@ module Media
             mp4_file_info  = Info.new output_path(:mp4)
             webm_file_info = Info.new output_path(:webm)
   
-            unless allowed_duration_range?(mp4_file_info.duration, webm_file_info.duration) 
+            unless similar_durations?(mp4_file_info.duration, webm_file_info.duration) 
               raise Error.new( 'output videos have different duration', 
                                model_id: model_id, mp4_duration: mp4_file_info.duration, webm_duration: webm_file_info.duration )
             end
@@ -76,7 +76,7 @@ module Media
 
             if model.present? and model.user_id.present?
               begin
-                Notification.send_to model.user_id, t("notifications.#{model.class.to_s.downcase}.uploading.failed", item: model.title.to_s)
+                Notification.send_to model.user_id, I18n.t("notifications.#{model.class.to_s.downcase}.uploading.failed", item: model.title.to_s)
               rescue StandardError
               end
             end
@@ -94,7 +94,7 @@ module Media
 
           FileUtils.rm temp_path
 
-          Notification.send_to model.user_id, t("notifications.#{model.class.to_s.downcase}.uploading.ok", item: model.title)
+          Notification.send_to model.user_id, I18n.t("notifications.#{model.class.to_s.downcase}.uploading.ok", item: model.title)
         end
   
         def extract_thumb(input, output, width, height)

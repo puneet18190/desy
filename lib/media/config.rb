@@ -71,14 +71,11 @@ module Media
       }
     },
     video: {
-      duration_threshold: 1,
       cover_format: 'cover_%s.jpg',
       thumb_format: 'thumb_%s.jpg',
       thumb_sizes:  [200, 200]
     },
-    audio: {
-      duration_threshold: 1
-    }
+    duration_threshold: 1
   })
 
 end

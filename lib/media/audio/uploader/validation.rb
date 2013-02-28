@@ -51,7 +51,7 @@ module Media
             'invalid audio'
           elsif [mp3_info.duration, ogg_info.duration].min < self.class::MIN_DURATION
             'invalid duration'
-          elsif not allowed_duration_range?(mp3_info.duration, ogg_info.duration)
+          elsif not similar_durations?(mp3_info.duration, ogg_info.duration)
             'invalid duration difference'
           end
         end

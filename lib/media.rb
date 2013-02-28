@@ -19,7 +19,7 @@ end
 require 'media/error'
 require 'media/in_tmp_dir'
 require 'media/info'
-require 'media/allowed_duration_range'
+require 'media/similar_durations'
 require 'media/uploader'
 require 'media/video'
 require 'media/audio'

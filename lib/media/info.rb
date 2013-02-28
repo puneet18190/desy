@@ -1,6 +1,7 @@
 require 'media'
 require 'media/error'
 require 'media/cmd/avprobe'
+require 'media/similar_durations'
 
 module Media
   class Info
@@ -11,6 +12,10 @@ module Media
     CODEC_MATCH_REGEX    = /^(?<codec>\w+)/
     BITRATE_MATCH_REGEX  = /, (?<bitrate>\d+) kb\/s(,|$)/
     SIZES_MATCH_REGEX    = /, (?<width>\w+)x(?<height>\w+)( \[PAR \w+:\w+ DAR \w+:\w+\])?(,|$)/
+    DURATION_THRESHOLD   = CONFIG.duration_threshold
+    BITRATE_THRESHOLD    = 5
+
+    include Media::SimilarDurations
 
     attr_reader :path
 
@@ -31,6 +36,31 @@ module Media
 
     def valid?
       not @invalid
+    end
+
+    def similar_to?(other_infos_hash)
+      return false unless other_infos_hash.is_a?(Hash)
+
+      infos_hash = to_hash.reject{ |k,_| k == :path }
+      return false if (infos_hash[:duration].blank? && other_infos_hash[:duration].present?) || (infos_hash[:duration].present? && other_infos_hash[:duration].blank?)
+      return false unless similar_durations?(infos_hash[:duration], other_infos_hash[:duration])
+
+      streams, other_streams = infos_hash[:streams], other_infos_hash[:streams]
+      return false unless streams.keys.sort == other_streams.keys.sort
+
+      streams.each do |k, _streams|
+        _streams.each_with_index do |stream, i|
+          other_stream = other_infos_hash[:streams][k][i]
+          bitrate, other_bitrate = stream[:bitrate], other_stream[:bitrate]
+
+          return false unless stream.reject{ |k,_| k == :bitrate } == other_stream.reject{ |k,_| k == :bitrate }
+          next if !bitrate && !other_bitrate
+          return false if (bitrate && !other_bitrate) || (!bitrate && other_bitrate)
+          return false unless (bitrate-BITRATE_THRESHOLD..bitrate+BITRATE_THRESHOLD).include? other_bitrate
+        end
+      end
+
+      true
     end
 
     def duration

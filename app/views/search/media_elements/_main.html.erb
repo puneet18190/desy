@@ -8,11 +8,7 @@
           <tr>
             <td style="width:20%">
               <label><%= t('search.media_elements.keyword.label') %></label><br />
-              <% if @search_item == 'media_elements' %>
-                <input type="text" name="tag" value="<%= @tag_placeholder %>" class="text lower" id="media_elements_tag_reader_for_search" style="color:<%= @did_you_search ? '#999'.html_safe : '#bbb'.html_safe %>">
-              <% else %>
-                <input type="text" name="tag" value="<%= t('search.media_elements.keyword.placeholder') %>" class="text lower" id="media_elements_tag_reader_for_search" style="color:#bbb">
-              <% end %>
+              <input type="text" name="tag" value="<%= t('search.media_elements.keyword.placeholder') %>" class="text lower" id="media_elements_tag_reader_for_search" style="color:#bbb">
               <%= hidden_field_tag 'tag_kind', (@tag.kind_of?(Tag) ? @tag.id : ''), :id => 'media_elements_tag_kind_for_search' %>
             <td width="20%">
               <label><%= t('search.media_elements.filters.format') %></label><br />

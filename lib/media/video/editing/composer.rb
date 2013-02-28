@@ -5,8 +5,10 @@ require 'media/in_tmp_dir'
 require 'media/error'
 require 'media/video/editing/parameters'
 require 'sensitive_thread'
+require 'media/video/editing/crop'
 require 'media/video/editing/text_to_video'
 require 'media/video/editing/image_to_video'
+require 'media/video/editing/concat'
 require 'media/audio'
 
 module Media
@@ -22,9 +24,7 @@ module Media
 
         #  {
         #    :initial_video => {
-        #      :id => VIDEO ID,
-        #      :title => 'title',
-        #      :...
+        #      :id => VIDEO ID
         #    },
         #    :audio_track_id => AUDIO ID or NIL,
         #    :components => [
@@ -62,6 +62,8 @@ module Media
             if old_media
               video.media     = old_media 
               video.converted = true
+            else
+              video.converted = false
             end
             if old_fields = video.try(:metadata).try(:old_fields)
               video.title       = old_fields.title
