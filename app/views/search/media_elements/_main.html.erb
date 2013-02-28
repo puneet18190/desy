@@ -18,9 +18,8 @@
             <td width="20%">
               <label><%= t('search.media_elements.filters.format') %></label><br/>
               <select name="filter" id="filter_search_media_elements">
-                <% filter = @filter.nil? ? Filters::ALL_MEDIA_ELEMENTS : @filter %>
                 <% Filters::MEDIA_ELEMENTS_SEARCH_SET.each do |f| %>
-                  <option value="<%= f %>" <%= (f == filter) ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
+                  <option value="<%= f %>" <%= (f == Filters::ALL_MEDIA_ELEMENTS) ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
                 <% end %>
               </select>
             </td>
@@ -37,11 +36,10 @@
             </td>
           </tr>
           <tr>
-            <% order = @order.nil? ? SearchOrders::TITLE : @order %>
             <% SearchOrders::MEDIA_ELEMENTS_SET.each do |so| %>
               <% my_order_id = "#{so}_media_elements_radio_input" %>
               <td width="5%">
-                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_media_elements_radio_input" <%= (so == order) ? "checked=\"checked\"".html_safe : '' %>>
+                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_media_elements_radio_input" <%= (so == SearchOrders::TITLE) ? "checked=\"checked\"".html_safe : '' %>>
                 <label for="<%= my_order_id %>"></label>
                 &nbsp;<%= SearchOrders::CAPTIONS[so] %>
               </td>
@@ -64,7 +62,9 @@
       </form>
     </div>
   </div>
+  
   <br class="clearfloat">
+  
   <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) %>
     <%= render :partial => "search/media_elements/amount", :locals => {:amount => @media_elements_amount} %>
   <% else %>
@@ -76,8 +76,6 @@
   <% else %>
     <div id="media_elements_tag_details" style="margin-bottom:0"></div>
   <% end %>
-  
-  <br class="clearfloat">
   
   <%= render :partial => "search/media_elements/results", :locals => {:media_elements => @media_elements} %>
   
