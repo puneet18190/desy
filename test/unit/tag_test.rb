@@ -74,10 +74,10 @@ class TagTest < ActiveSupport::TestCase
     assert_equal 1, tag_ca.taggings.count
     tag_pa = Tag.find_by_word 'pa'
     assert_equal 1, tag_pa.taggings.count
-    assert_words Tag.get_tags_for_autocomplete('pa'), ['pa', 'pagliaccio', 'pane', 'pagnotta', 'paniere', 'paglierino', 'pappardelle', 'pane e salame']
-    assert_words Tag.get_tags_for_autocomplete('ca'), ['ca', 'cagnaccio', 'cane', 'cagnolino', 'cagnetto', 'candreva']
-    assert_words Tag.get_tags_for_autocomplete('can'), ['cane', 'candreva']
-    assert_words Tag.get_tags_for_autocomplete('pan'), ['pane', 'paniere', 'pane e salame']
+    assert_words_ordered Tag.get_tags_for_autocomplete('pa'), ['pa', 'pane', 'pagliaccio', 'pagnotta', 'paniere', 'paglierino', 'pappardelle', 'pane e salame']
+    assert_words_ordered Tag.get_tags_for_autocomplete('ca'), ['ca', 'cagnaccio', 'cagnolino', 'cane', 'cagnetto', 'candreva']
+    assert_words_ordered Tag.get_tags_for_autocomplete('can'), ['cane', 'candreva']
+    assert_words_ordered Tag.get_tags_for_autocomplete('pan'), ['pane', 'paniere', 'pane e salame']
     x = Tag.get_tags_for_autocomplete('')
   end
   
