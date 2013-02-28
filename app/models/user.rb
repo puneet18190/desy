@@ -503,15 +503,15 @@ class User < ActiveRecord::Base
       when 2
         curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1]).limit(1).length > 0)
         limit -= 1 if curr_tag
-        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1]).order('tags_count DESC').limit(limit)
+        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1]).order('tags_count DESC, tags.word ASC').limit(limit)
       when 3
         curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2]).limit(1).length > 0)
         limit -= 1 if curr_tag
-        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1], params[2]).order('tags_count DESC').limit(limit)
+        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1], params[2]).order('tags_count DESC, tags.word ASC').limit(limit)
       when 4
         curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2], params[3]).limit(1).length > 0)
         limit -= 1 if curr_tag
-        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1], params[2], params[3]).order('tags_count DESC').limit(limit)
+        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1], params[2], params[3]).order('tags_count DESC, tags.word ASC').limit(limit)
     end
     resp = curr_tag ? [Tag.find_by_word(word)] : []
     query.each do |q|
