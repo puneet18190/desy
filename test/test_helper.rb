@@ -50,6 +50,15 @@ class ActiveSupport::TestCase
     end
   end
   
+  def assert_tags_ordered(tags, words)
+    assert_equal tags.length, words.length
+    index = 0
+    tags.each do |t|
+      assert_equal t.word, words[index]
+      index += 1
+    end
+  end
+  
   def assert_words_ordered(hash_tags, words)
     tags = []
     hash_tags.each do |v|

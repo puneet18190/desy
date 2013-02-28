@@ -89,16 +89,27 @@ class TagTest < ActiveSupport::TestCase
     load_tags
     MediaElement.where('id < 7').update_all(:user_id => 1, :is_public => false)
     Lesson.where('id < 3').update_all(:user_id => 1, :is_public => false)
+    user = User.find 1
     MediaElement.all.each do |me|
       assert !me.is_public && me.user_id == 1
+      assert user.create_lesson(me.title, me.description, 1, me.tags)
     end
     Lesson.all.each do |l|
       assert !l.is_public && l.user_id == 1
+      v = Video.new :title => l.title, :description => l.description
+      v.user_id = 1
+      v.tags = l.tags
+      v.media = {:mp4 => Rails.root.join("test/samples/one.mp4").to_s, :webm => Rails.root.join("test/samples/one.webm").to_s, :filename => "video_test"}
+      assert_obj_saved v
     end
-#    assert_words_ordered Tag.get_tags_for_autocomplete('pa'), ['pa', 'pane', 'pagliaccio', 'pagnotta', 'paniere', 'paglierino', 'pappardelle', 'pane e salame']
-#    assert_words_ordered Tag.get_tags_for_autocomplete('ca'), ['ca', 'cagnaccio', 'cagnolino', 'cane', 'cagnetto', 'candreva']
-#    assert_words_ordered Tag.get_tags_for_autocomplete('can'), ['cane', 'candreva']
-#    assert_words_ordered Tag.get_tags_for_autocomplete('pan'), ['pane', 'paniere', 'pane e salame']
+    assert_tags_ordered user.search_lessons('pa', 1, 20)[:tags], ['pa', 'pane', 'pagliaccio', 'pagnotta', 'paniere', 'paglierino', 'pappardelle', 'pane e salame']
+    assert_tags_ordered user.search_lessons('ca', 1, 20)[:tags], ['ca', 'cagnaccio', 'cagnolino', 'cane', 'cagnetto', 'candreva']
+    assert_tags_ordered user.search_lessons('can', 1, 20)[:tags], ['cane', 'candreva']
+    assert_tags_ordered user.search_lessons('pan', 1, 20)[:tags], ['pane', 'paniere', 'pane e salame']
+    assert_tags_ordered user.search_media_elements('pa', 1, 20)[:tags], ['pa', 'pane', 'pagliaccio', 'pagnotta', 'paniere', 'paglierino', 'pappardelle', 'pane e salame']
+    assert_tags_ordered user.search_media_elements('ca', 1, 20)[:tags], ['ca', 'cagnaccio', 'cagnolino', 'cane', 'cagnetto', 'candreva']
+    assert_tags_ordered user.search_media_elements('can', 1, 20)[:tags], ['cane', 'candreva']
+    assert_tags_ordered user.search_media_elements('pan', 1, 20)[:tags], ['pane', 'paniere', 'pane e salame']
   end
   
 end

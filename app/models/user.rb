@@ -496,7 +496,7 @@ class User < ActiveRecord::Base
     end
     curr_tag = false
     query = []
-    select = 'tags.id AS tag_id, (SELECT COUNT(*) FROM taggings WHERE (taggings.tag_id = tags.id)) AS tags_count'
+    select = 'tags.id AS tag_id, COUNT(*) AS tags_count'
     where_for_current_tag = where.gsub('tags.word LIKE ?', 'tags.word = ?')
     where = "tags.word != ? AND #{where}"
     case params.length
