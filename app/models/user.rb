@@ -471,7 +471,6 @@ class User < ActiveRecord::Base
     filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
     subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
     limit = SETTINGS['tags_limit_in_search_engine']
-    resp = []
     params = ["#{word}%"]
     joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
     where = 'tags.word LIKE ?'
@@ -495,15 +494,34 @@ class User < ActiveRecord::Base
         params << true
         params << self.id
     end
+    curr_tag = false
     query = []
+    select = 'tags.id AS tag_id (SELECT COUNT(*) FROM taggings WHERE (taggings.tag_id = tags.id)) AS tags_count'
+    where_for_current_tag = where.gsub('tags.word LIKE ?', 'tags.word = ?')
     case params.length
       when 2
-        query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1]).order('tags.word ASC').limit(limit)
+        curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1]).limit(1).length > 0)
+        if curr_tag
+          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1]).order('tags_count DESC').limit(limit - 1)
+        else
+          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1]).order('tags_count DESC').limit(limit)
+        end
       when 3
-        query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1], params[2]).order('tags.word ASC').limit(limit)
+        curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2]).limit(1).length > 0)
+        if curr_tag
+          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order('tags_count DESC').limit(limit - 1)
+        else
+          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order('tags_count DESC').limit(limit)
+        end
       when 4
-        query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1], params[2], params[3]).order('tags.word ASC').limit(limit)
+        curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2], params[3]).limit(1).length > 0)
+        if curr_tag
+          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order('tags_count DESC').limit(limit - 1)
+        else
+          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order('tags_count DESC').limit(limit)
+        end
     end
+    resp = curr_tag ? [Tag.find_by_word(word)] : []
     query.each do |q|
       resp << Tag.find(q.tag_id)
     end
