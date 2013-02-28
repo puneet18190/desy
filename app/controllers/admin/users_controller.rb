@@ -19,8 +19,8 @@ class Admin::UsersController < AdminController
   def show
     Statistics.user = @user
     
-    @user_lessons = Lesson.joins(:user,:subject).where(user_id: @user.id)
-    @user_elements = MediaElement.joins(:user).where(user_id: @user.id)
+    @user_lessons = Lesson.joins(:user,:subject).where(user_id: @user.id).order('id DESC')
+    @user_elements = MediaElement.joins(:user).where(user_id: @user.id).order('id DESC')
     
     @my_created_lessons  = Statistics.my_created_lessons.count
     @my_created_elements = Statistics.my_created_elements.count
