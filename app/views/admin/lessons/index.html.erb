@@ -7,5 +7,3 @@
 <% if @lessons.present? %>
   <%= render :partial => "admin/list_heading", :locals => {:items => @lessons, :expandable => true} %>
 <% end %>
-
-<%= paginate @lessons %>

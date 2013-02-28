@@ -2183,6 +2183,7 @@ en:
         name: 'Users'
         not_found: 'No users found'
         send_message_to_all: 'Send message to all'
+        send_message_to_these_users: 'Send message to these users'
         show: 'Show user page'
         delete: 'Delete user'
         message: 'Send a message to this user'
@@ -2193,13 +2194,22 @@ en:
         activate: 'Activate'
         ban: 'Ban'
         message: 'Message'
-      #1 - views/admin/users/contact.html.erb
+    # SECTION 4.6 administation messages
+    messages:
+      #1 - views/admin/messages/contact.html.erb
       contact:
         send_message: 'Send message'
         recipients: 'Recipients'
         message: 'Message'
         send: 'Send'
-    # SECTION 4.6 common captions
+      #1 - views/admin/messages/send_notifications.html.erb
+      notifications:
+        send_notifications: 'Send notifications'
+      #1 - views/admin/messages/reports.html.erb
+      reports:
+        name: 'Reports'
+    # SECTION 4.7 configuration
+    # SECTION 4.8 common captions
     general:
       #1 - views/admin/lessons/index.html.erb
       #2 - views/admin/elements/index.html.erb

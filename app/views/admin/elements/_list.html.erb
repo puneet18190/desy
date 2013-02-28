@@ -3,19 +3,25 @@
     <thead>
       <tr>
         <th>
-          id<br> 
-          <a class="label" href="id ASC">▲</a>
-          <a class="label" href="id DESC">▼</a>
+          <div class="pull-left" style="padding-top:10px">id</div>
+          <div class="pull-right">
+            <a href="id ASC"><i class="icon-chevron-up"></i></a><br>
+            <a href="id DESC"><i class="icon-chevron-down"></i></a>
+          </div>
         </th>
         <th>
-          title<br>
-          <a class="label" href="title ASC">▲</a>
-          <a class="label" href="title DESC">▼</a>
+          <div class="pull-left" style="padding-top:10px">title</div>
+          <div class="pull-right">
+            <a href="title ASC"><i class="icon-chevron-up"></i></a><br>
+            <a href="title DESC"><i class="icon-chevron-down"></i></a>
+          </div>
         </th>
         <th>
-          media_type<br>
-          <a class="label" href="sti_type ASC">▲</a>
-          <a class="label" href="sti_type DESC">▼</a>
+          <div class="pull-left" style="padding-top:10px">media type</div>
+          <div class="pull-right">
+            <a href="sti_type ASC"><i class="icon-chevron-up"></i></a><br>
+            <a href="sti_type DESC"><i class="icon-chevron-down"></i></a>
+          </div>
         </th>
         <th>user<br>
           <a class="label" href="user_id ASC">▲</a>
@@ -55,8 +61,8 @@
         <td><%= element.id %></td>
         <td><%= element.title%></td>
         <td><%= element.sti_type%></td>
-        <td><%= element.user.school %></td>
         <td><%= element.user.surname %> <%= element.user.name %></td>
+        <td><%= element.user.school %></td>
         <td><%= element.user.province %> - <%= element.user.town %></td>
         <td><%= element.created_at.strftime('%d-%m-%Y')%></td>
         <td><%= element.updated_at.strftime('%d-%m-%Y')%></td>
