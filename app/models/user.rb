@@ -153,7 +153,16 @@ class User < ActiveRecord::Base
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
     offset = (page - 1) * for_page
     resp = []
-    Tagging.select('tags.id AS tag_id').group('tags.id').joins(:tag).where('taggings.taggable_type = ? AND taggings.taggable_id IN (?) AND tags.word LIKE ?', type, ids, "#{word}%").order('tags.word ASC').offset(offset).limit(for_page).each do |tagging|
+    where = 'tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
+    case filter
+      when Filters::VIDEO
+        where = "#{where} AND media_elements.sti_type = 'Video'"
+      when Filters::AUDIO
+        where = "#{where} AND media_elements.sti_type = 'Audio'"
+      when Filters::IMAGE
+        where = "#{where} AND media_elements.sti_type = 'Image'"
+    end
+    Tagging.group('tags.id').select('tags.id AS tag_id').joins("INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)").where(where, "#{word}%", true, self.id).order('tags.word ASC').offset(offset).limit(for_page).each do |tagging|
       resp << Tag.find(tagging.tag_id)
     end
     resp
@@ -183,8 +192,40 @@ class User < ActiveRecord::Base
     for_page = SETTINGS['tags_pagination_in_search_engine']
     offset = (page - 1) * for_page
     resp = []
-    Tagging.select('tags.id AS tag_id').group('tags.id').joins(:tag).where('taggings.taggable_type = ? AND taggings.taggable_id IN (?) AND tags.word LIKE ?', type, ids, "#{word}%").order('tags.word ASC').offset(offset).limit(for_page).each do |tagging|
-      resp << Tag.find(tagging.tag_id)
+    params = ["#{word}%"]
+    joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
+    where = 'tags.word LIKE ?'
+    if !subject_id.nil?
+      where = "#{where} AND lessons.subject_id = ?"
+      params << subject_id
+    end
+    case filter
+      when Filters::ALL_LESSONS
+        where = "#{where} AND (lessons.is_public = ? OR lessons.user_id = ?)"
+        params << true
+        params << self.id
+      when Filters::PUBLIC
+        where = "#{where} AND lessons.is_public = ?"
+        params << true
+      when Filters::ONLY_MINE
+        where = "#{where} AND lessons.user_id = ?"
+        params << self.id
+      when Filters::NOT_MINE
+        where = "#{where} AND lessons.is_public = ? AND lessons.user_id != ?"
+        params << true
+        params << self.id
+    end
+    query = []
+    case params.length
+      when 2
+        query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1]).order('tags.word ASC').offset(offset).limit(for_page)
+      when 3
+        query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1], params[2]).order('tags.word ASC').offset(offset).limit(for_page)
+      when 4
+        query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1], params[2], params[3]).order('tags.word ASC').offset(offset).limit(for_page)
+    end
+    query.each do |q|
+      resp << Tag.find(q.tag_id)
     end
     resp
   end
