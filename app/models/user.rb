@@ -459,11 +459,6 @@ class User < ActiveRecord::Base
       params = [word, true, self.id]
       joins = "INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)"
       where = 'taggings.tag_id = ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
-    else
-      resp[:tags] = []
-      Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1], params[2]).order('tags.word ASC').limit(SETTINGS['tags_pagination_in_search_engine']).each do |t|
-        resp[:tags] << Tag.find t.tag_id
-      end
     end
     order = ''
     case order_by
@@ -570,20 +565,16 @@ class User < ActiveRecord::Base
         params << self.id
     end
     query = []
-    tags_query = []
     count = 0
     case params.length
       when 2
         query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
-        tags_query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1]).order('tags.word ASC').limit(SETTINGS['tags_pagination_in_search_engine']) if word.class != Fixnum
         count = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1]).count.length
       when 3
         query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
-        tags_query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1], params[2]).order('tags.word ASC').limit(SETTINGS['tags_pagination_in_search_engine']) if word.class != Fixnum
         count = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2]).count.length
       when 4
         query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order(order).offset(offset).limit(limit)
-        tags_query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1], params[2], params[3]).order('tags.word ASC').limit(SETTINGS['tags_pagination_in_search_engine']) if word.class != Fixnum
         count = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2], params[3]).count.length
     end
     content = []
@@ -591,12 +582,6 @@ class User < ActiveRecord::Base
       lesson = Lesson.find_by_id q.lesson_id
       lesson.set_status self.id
       content << lesson
-    end
-    if word.class != Fixnum
-      resp[:tags] = []
-      tags_query.each do |t|
-        resp[:tags] << Tag.find t.tag_id
-      end
     end
     resp[:records_amount] = count
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
