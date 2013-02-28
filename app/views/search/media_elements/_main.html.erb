@@ -1,20 +1,26 @@
 <div id="search_media_elements_main_page" style="display:<%= @search_item == 'lessons' ? 'none'.html_safe : 'block'.html_safe %>">
   
+  
   <div class="contentSearch">
     <div class="boxCerca">
-      <form id="search_media_elements" class="search-form" method="get" action="/search" data-remote="true">
+      <form id="search_media_elements" class="search-form" method="get" action="/search">
+        
+        <a class="_keep_searching" style="display:<%= @did_you_search ? 'block'.html_safe : 'none'.html_safe %>"><%= t('search.again') %></a>
+        
         <%= hidden_field_tag 'item', 'media_elements' %>
-        <table summary="" cellpadding="0" cellspacing="0" style="width:100%">
+        <table class="_search_engine_form" summary="" cellpadding="0" cellspacing="0" style="width:100%; display:<%= @did_you_search ? 'none'.html_safe : 'block'.html_safe %>">
           <tr>
             <td style="width:20%">
-              <label><%= t('search.media_elements.keyword.label') %></label><br />
-              <input type="text" name="tag" value="<%= t('search.media_elements.keyword.placeholder') %>" class="text lower" id="media_elements_tag_reader_for_search" style="color:#bbb">
-              <%= hidden_field_tag 'tag_kind', (@tag.kind_of?(Tag) ? @tag.id : ''), :id => 'media_elements_tag_kind_for_search' %>
+              <label><%= t('search.media_elements.keyword.label') %></label><br/>
+              <input type="text" name="word" value="<%= t('search.media_elements.keyword.placeholder') %>" class="text lower" id="media_elements_tag_reader_for_search" style="color:#bbb">
+              <%= hidden_field_tag 'word_placeholder', '', :id => 'media_elements_tag_kind_for_search' %>
+            </td>
             <td width="20%">
-              <label><%= t('search.media_elements.filters.format') %></label><br />
+              <label><%= t('search.media_elements.filters.format') %></label><br/>
               <select name="filter" id="filter_search_media_elements">
+                <% filter = @filter.nil? ? Filters::ALL_MEDIA_ELEMENTS : @filter %>
                 <% Filters::MEDIA_ELEMENTS_SEARCH_SET.each do |f| %>
-                  <option value="<%= f %>" <%= (f == @filter) ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
+                  <option value="<%= f %>" <%= (f == filter) ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
                 <% end %>
               </select>
             </td>
@@ -23,25 +29,29 @@
             <td width="20%">
               <p style="font-size:80%; padding-left:10px; padding-top:10px;"><%= t('search.media_elements.suggestion.title') %><br><%= t('search.media_elements.suggestion.description') %></p>
             </td>
-            </tr>
-            <tr>
-              <td><br /><h3><%= t('search.media_elements.sort') %></h3></td>
-            </tr>
-            <tr>
-              <% SearchOrders::MEDIA_ELEMENTS_SET.each do |so| %>
-                <% my_order_id = "#{so}_media_elements_radio_input" %>
-                <td width="5%">
-                  <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_media_elements_radio_input" <%= (so == @order) ? "checked=\"checked\"".html_safe : '' %>>
-                  <label for="<%= my_order_id %>"></label>
-                  &nbsp;<%= SearchOrders::CAPTIONS[so] %>
-                </td>
-              <% end %>
+          </tr>
+          <tr>
+            <td>
+              <br/>
+              <h3><%= t('search.media_elements.sort') %></h3>
+            </td>
+          </tr>
+          <tr>
+            <% order = @order.nil? ? SearchOrders::TITLE : @order %>
+            <% SearchOrders::MEDIA_ELEMENTS_SET.each do |so| %>
+              <% my_order_id = "#{so}_media_elements_radio_input" %>
+              <td width="5%">
+                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_media_elements_radio_input" <%= (so == order) ? "checked=\"checked\"".html_safe : '' %>>
+                <label for="<%= my_order_id %>"></label>
+                &nbsp;<%= SearchOrders::CAPTIONS[so] %>
+              </td>
+            <% end %>
             <td colspan="3" width="60%">
             </td>
           </tr>
           <tr>
             <td>
-              <br /><br />
+              <br/><br/>
               <% if @search_item == 'media_elements' && @did_you_search %>
                 <a id="search_media_elements_submit" title="<%= t('titles.refine_search') %>" class="cerca current"><%= t('search.short_label')%></a>
               <% else %>
@@ -50,6 +60,7 @@
             </td>
           </tr>
         </table>
+        
       </form>
     </div>
   </div>
