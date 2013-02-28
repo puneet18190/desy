@@ -155,30 +155,9 @@ class User < ActiveRecord::Base
     else
       word = word.to_s if word.class != Fixnum
       resp = search_media_elements_with_tag(word, offset, for_page, filter, order)
-      resp[:tags] = self.get_tags_associated_to_media_element_search(word, 1, filter) if word.class != Fixnum
+      resp[:tags] = get_tags_associated_to_media_element_search(word, filter) if word.class != Fixnum
       resp
     end
-  end
-  
-  def get_tags_associated_to_media_element_search(word, page, filter)
-    page = 1 if page.class != Fixnum || page <= 0
-    for_page = SETTINGS['tags_pagination_in_search_engine']
-    filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
-    offset = (page - 1) * for_page
-    resp = []
-    where = 'tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
-    case filter
-      when Filters::VIDEO
-        where = "#{where} AND media_elements.sti_type = 'Video'"
-      when Filters::AUDIO
-        where = "#{where} AND media_elements.sti_type = 'Audio'"
-      when Filters::IMAGE
-        where = "#{where} AND media_elements.sti_type = 'Image'"
-    end
-    Tagging.group('tags.id').select('tags.id AS tag_id').joins("INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)").where(where, "#{word}%", true, self.id).order('tags.word ASC').offset(offset).limit(for_page).each do |tagging|
-      resp << Tag.find(tagging.tag_id)
-    end
-    resp
   end
   
   def search_lessons(word, page, for_page, order=nil, filter=nil, subject_id=nil)
@@ -193,54 +172,9 @@ class User < ActiveRecord::Base
     else
       word = word.to_s if word.class != Fixnum
       resp = search_lessons_with_tag(word, offset, for_page, filter, subject_id, order)
-      resp[:tags] = self.get_tags_associated_to_lesson_search(word, 1, filter, subject_id) if word.class != Fixnum
+      resp[:tags] = get_tags_associated_to_lesson_search(word, filter, subject_id) if word.class != Fixnum
       resp
     end
-  end
-  
-  def get_tags_associated_to_lesson_search(word, page, filter, subject_id)
-    page = 1 if page.class != Fixnum || page <= 0
-    filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
-    subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
-    for_page = SETTINGS['tags_pagination_in_search_engine']
-    offset = (page - 1) * for_page
-    resp = []
-    params = ["#{word}%"]
-    joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
-    where = 'tags.word LIKE ?'
-    if !subject_id.nil?
-      where = "#{where} AND lessons.subject_id = ?"
-      params << subject_id
-    end
-    case filter
-      when Filters::ALL_LESSONS
-        where = "#{where} AND (lessons.is_public = ? OR lessons.user_id = ?)"
-        params << true
-        params << self.id
-      when Filters::PUBLIC
-        where = "#{where} AND lessons.is_public = ?"
-        params << true
-      when Filters::ONLY_MINE
-        where = "#{where} AND lessons.user_id = ?"
-        params << self.id
-      when Filters::NOT_MINE
-        where = "#{where} AND lessons.is_public = ? AND lessons.user_id != ?"
-        params << true
-        params << self.id
-    end
-    query = []
-    case params.length
-      when 2
-        query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1]).order('tags.word ASC').offset(offset).limit(for_page)
-      when 3
-        query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1], params[2]).order('tags.word ASC').offset(offset).limit(for_page)
-      when 4
-        query = Tagging.group('tags.id').select('tags.id AS tag_id').joins(joins).where(where, params[0], params[1], params[2], params[3]).order('tags.word ASC').offset(offset).limit(for_page)
-    end
-    query.each do |q|
-      resp << Tag.find(q.tag_id)
-    end
-    resp
   end
   
   def report_lesson(lesson_id, msg)
@@ -532,6 +466,86 @@ class User < ActiveRecord::Base
   end
   
   private
+  
+  def get_tags_associated_to_lesson_search(word, filter, subject_id)
+    filter = Filters::ALL_LESSONS if filter.nil? || !Filters::LESSONS_SEARCH_SET.include?(filter)
+    subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
+    limit = SETTINGS['tags_limit_in_search_engine']
+    params = ["#{word}%"]
+    joins = "INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN lessons ON (taggings.taggable_type = 'Lesson' AND taggings.taggable_id = lessons.id)"
+    where = 'tags.word LIKE ?'
+    if !subject_id.nil?
+      where = "#{where} AND lessons.subject_id = ?"
+      params << subject_id
+    end
+    case filter
+      when Filters::ALL_LESSONS
+        where = "#{where} AND (lessons.is_public = ? OR lessons.user_id = ?)"
+        params << true
+        params << self.id
+      when Filters::PUBLIC
+        where = "#{where} AND lessons.is_public = ?"
+        params << true
+      when Filters::ONLY_MINE
+        where = "#{where} AND lessons.user_id = ?"
+        params << self.id
+      when Filters::NOT_MINE
+        where = "#{where} AND lessons.is_public = ? AND lessons.user_id != ?"
+        params << true
+        params << self.id
+    end
+    curr_tag = false
+    query = []
+    select = 'tags.id AS tag_id (SELECT COUNT(*) FROM taggings WHERE (taggings.tag_id = tags.id)) AS tags_count'
+    where_for_current_tag = where.gsub('tags.word LIKE ?', 'tags.word = ?')
+    case params.length
+      when 2
+        curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1]).limit(1).length > 0)
+        if curr_tag
+          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1]).order('tags_count DESC').limit(limit - 1)
+        else
+          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1]).order('tags_count DESC').limit(limit)
+        end
+      when 3
+        curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2]).limit(1).length > 0)
+        if curr_tag
+          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order('tags_count DESC').limit(limit - 1)
+        else
+          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order('tags_count DESC').limit(limit)
+        end
+      when 4
+        curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2], params[3]).limit(1).length > 0)
+        if curr_tag
+          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order('tags_count DESC').limit(limit - 1)
+        else
+          query = Tagging.group('tags.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order('tags_count DESC').limit(limit)
+        end
+    end
+    resp = curr_tag ? [Tag.find_by_word(word)] : []
+    query.each do |q|
+      resp << Tag.find(q.tag_id)
+    end
+    resp
+  end
+  
+  def get_tags_associated_to_media_element_search(word, filter)
+    limit = SETTINGS['tags_limit_in_search_engine']
+    filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
+    resp = []
+    where = 'tags.word LIKE ? AND (media_elements.is_public = ? OR media_elements.user_id = ?)'
+    case filter
+      when Filters::VIDEO
+        where = "#{where} AND media_elements.sti_type = 'Video'"
+      when Filters::AUDIO
+        where = "#{where} AND media_elements.sti_type = 'Audio'"
+      when Filters::IMAGE
+        where = "#{where} AND media_elements.sti_type = 'Image'"
+    end
+    Tagging.group('tags.id').select('tags.id AS tag_id').joins("INNER JOIN tags ON (tags.id = taggings.tag_id) INNER JOIN media_elements ON (taggings.taggable_type = 'MediaElement' AND taggings.taggable_id = media_elements.id)").where(where, "#{word}%", true, self.id).order('tags.word ASC').limit(limit).each do |tagging|
+      resp << Tag.find(tagging.tag_id)
+    end
+    resp
+  end
   
   def search_media_elements_with_tag(word, offset, limit, filter, order_by)
     resp = {}

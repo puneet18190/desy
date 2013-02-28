@@ -20,8 +20,12 @@ class Tag < ActiveRecord::Base
     a_word = a_word.to_s.strip.mb_chars.downcase.to_s
     resp = []
     curr_tag = Tag.find_by_word(a_word)
-    resp << {:id => curr_tag.id, :value => a_word} if !curr_tag.nil?
-    resp += Tag.select('id, word AS value, (SELECT COUNT(*) FROM taggings WHERE (taggings.tag_id = tags.id)) AS tags_count').where('word ILIKE ? AND word != ?', "#{a_word}%", a_word).limit(SETTINGS['how_many_tags_for_block_in_autocomplete']).order('tags_count DESC, value ASC')
+    if !curr_tag.nil?
+      resp << {:id => curr_tag.id, :value => a_word}
+      resp += Tag.select('id, word AS value, (SELECT COUNT(*) FROM taggings WHERE (taggings.tag_id = tags.id)) AS tags_count').where('word ILIKE ? AND word != ?', "#{a_word}%", a_word).limit(SETTINGS['how_many_tags_for_block_in_autocomplete'] - 1).order('tags_count DESC, value ASC')
+    else
+      resp += Tag.select('id, word AS value, (SELECT COUNT(*) FROM taggings WHERE (taggings.tag_id = tags.id)) AS tags_count').where('word ILIKE ? AND word != ?', "#{a_word}%", a_word).limit(SETTINGS['how_many_tags_for_block_in_autocomplete']).order('tags_count DESC, value ASC')
+    end
     resp
   end
   
