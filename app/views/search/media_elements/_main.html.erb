@@ -1,10 +1,12 @@
 <div id="search_media_elements_main_page" style="display:<%= @search_item == 'lessons' ? 'none'.html_safe : 'block'.html_safe %>">
   
-  <a class="_keep_searching" style="display:<%= @did_you_search ? 'block'.html_safe : 'none'.html_safe %>"><%= t('search.again') %></a>
   
-  <div class="contentSearch _search_engine_form" style="display:<%= @did_you_search ? 'none'.html_safe : 'block'.html_safe %>">
+  <div class="contentSearch">
     <div class="boxCerca">
-      <form id="search_media_elements" class="search-form" method="get" action="/search" data-remote="true">
+      
+      <a class="_keep_searching" style="display:<%= @did_you_search ? 'block'.html_safe : 'none'.html_safe %>"><%= t('search.again') %></a>
+      
+      <form id="search_media_elements" class="search-form _search_engine_form" method="get" action="/search" style="display:<%= @did_you_search ? 'none'.html_safe : 'block'.html_safe %>">
         <%= hidden_field_tag 'item', 'media_elements' %>
         <table summary="" cellpadding="0" cellspacing="0" style="width:100%">
           <tr>
@@ -16,7 +18,7 @@
             <td width="20%">
               <label><%= t('search.media_elements.filters.format') %></label><br/>
               <select name="filter" id="filter_search_media_elements">
-                <% filter = @filter.nil? Filters::ALL_MEDIA_ELEMENTS : @filter %>
+                <% filter = @filter.nil? ? Filters::ALL_MEDIA_ELEMENTS : @filter %>
                 <% Filters::MEDIA_ELEMENTS_SEARCH_SET.each do |f| %>
                   <option value="<%= f %>" <%= (f == filter) ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
                 <% end %>
@@ -35,7 +37,7 @@
             </td>
           </tr>
           <tr>
-            <% order = @order.nil? SearchOrders::TITLE : @order %>
+            <% order = @order.nil? ? SearchOrders::TITLE : @order %>
             <% SearchOrders::MEDIA_ELEMENTS_SET.each do |so| %>
               <% my_order_id = "#{so}_media_elements_radio_input" %>
               <td width="5%">
