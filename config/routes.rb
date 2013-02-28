@@ -80,6 +80,7 @@ Desy::Application.routes.draw do
   # LESSON VIEWER
   get  'lessons/view/playlist' => 'lesson_viewer#playlist', :as => :lesson_viewer_playlist
   get  'lessons/:lesson_id/view' => 'lesson_viewer#index', :as => :lesson_viewer
+  get  'lessons/:lesson_id/view/slides/:slide_id/load' => 'lesson_viewer#load_slide'
   
   # VIRTUAL CLASSROOM
   post 'virtual_classroom/:lesson_id/remove_lesson_from_inside' => 'virtual_classroom#remove_lesson_from_inside'
@@ -164,6 +165,8 @@ Desy::Application.routes.draw do
     get  'elements/:id/load' => 'elements#load_element'
     post 'location/:id/find' => 'users#find_location'
     put  'users/:id/set_status' => 'users#set_status'
+    put  'user/:id/activate' => 'users#activate'
+    put  'user/:id/ban' => 'users#ban'
     
     resources :lessons, :only => [:index, :destroy]
     resources :elements, :except => [:show, :edit]

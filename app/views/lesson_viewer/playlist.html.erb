@@ -3,6 +3,8 @@
 <div class="playlist_footer">
   <%= link_to "", my_virtual_classroom_path, :class=> "esciButton fltrt" %>
   <%= render :partial => "playlist_lessons_title", :locals => {:vc_lessons => @vc_lessons} %>
-  <a class="_open_playlist fltlft"><span><%= t('lesson_viewer.open_playlist_bar') %></span></a>
+  <a class="_open_playlist fltlft" data-loaded="false"><span><%= t('lesson_viewer.open_playlist_bar') %></span></a>
   <a class="_close_playlist fltlft"><span style="display:none"><%= t('lesson_viewer.close_playlist_bar') %></span></a>
 </div>
+
+<div id="info_container" data-reinitialise-scroll-pane-times="4" style="display:none"></div>

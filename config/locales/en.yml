@@ -1377,68 +1377,50 @@ en:
       # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted)
       # 1 - models/lesson.rb
       unpublished: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson"
-    audios:
+    audio:
       editing:
-        # The process of audio editing started. The variable %{audio} is replaced by the name of the audio whose content is going to be modified
-        # 1 - controllers/audio_editor_controller.rb
-        started: "The editing of the audio %{audio} started! Audio editor is temporarily not available, together with lessons where you used this audio"
-        # The process of audio editing ended successfully. The variable %{audio} is replaced by the name of the audio whose content has been modified
-        # TODO manca
-        ok: "The editing of the audio %{audio} ended successfully! Now the audio editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing)."
-        # The process of audio editing ended with an error. The variable %{audio} is replaced by the name of the audio whose content has been modified, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
-        # TODO manca
-        failed: "The editing of the audio %{audio} failed! Now the audio editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing). The audio was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
-      new:
-        # The process of audio composition started. The variable %{audio} is replaced by the name of the audio which is going to be composed
-        # TODO manca
-        started: "The composition of the audio %{audio} started! Audio editor is temporarily not available"
-        # The process of audio composition ended successfully. The variable %{audio} is replaced by the name of the new audio
-        # TODO manca
-        ok: "The composition of the audio %{audio} ended successfully! Now the audio editor is available again."
-        # The process of audio composition ended with an error. The variable %{audio} is replaced by the name of the audio in composition, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
-        # TODO manca
-        failed: "The composition of the audio %{audio} failed! Now the audio editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
-      upload:
-        # The process of audio uploading started. The variable %{audio} is replaced by the name of the audio which is going to be loaded
-        # TODO manca
-        started: "The uploading of the audio %{audio} started! Wait until it's over to be able to use the new audio"
-        # The process of audio uploading ended successfully. The variable %{audio} is replaced by the name of the new audio
-        # TODO manca
-        ok: "The uploading of the audio %{audio} ended successfully! Now you can use it in your lessons."
-        # The process of audio uploading ended with an error. The variable %{audio} is replaced by the name of the audio which the user tried to upload
-        # TODO manca
-        failed: "The uploading of the audio %{audio} failed! Please try again."
-    videos:
+        # The process of audio editing started. The variable %{item} is replaced by the name of the audio whose content is going to be modified
+        started: "The editing of the audio %{item} started! Audio editor is temporarily not available, together with lessons where you used this audio"
+        # The process of audio editing ended successfully. The variable %{item} is replaced by the name of the audio whose content has been modified
+        ok: "The editing of the audio %{item} ended successfully! Now the audio editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing)."
+        # The process of audio editing ended with an error. The variable %{item} is replaced by the name of the audio whose content has been modified, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+        failed: "The editing of the audio %{item} failed! Now the audio editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing). The audio was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
+      composing:
+        # The process of audio composition started. The variable %{item} is replaced by the name of the audio which is going to be composed
+        started: "The composition of the audio %{item} started! Audio editor is temporarily not available"
+        # The process of audio composition ended successfully. The variable %{item} is replaced by the name of the new audio
+        ok: "The composition of the audio %{item} ended successfully! Now the audio editor is available again."
+        # The process of audio composition ended with an error. The variable %{item} is replaced by the name of the audio in composition, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+        failed: "The composition of the audio %{item} failed! Now the audio editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
+      uploading:
+        # The process of audio uploading started. The variable %{item} is replaced by the name of the audio which is going to be loaded
+        started: "The uploading of the audio %{item} started! Wait until it's over to be able to use the new audio"
+        # The process of audio uploading ended successfully. The variable %{item} is replaced by the name of the new audio
+        ok: "The uploading of the audio %{item} ended successfully! Now you can use it in your lessons."
+        # The process of audio uploading ended with an error. The variable %{item} is replaced by the name of the audio which the user tried to upload
+        failed: "The uploading of the audio %{item} failed! Please try again."
+    video:
       editing:
-        # The process of video editing started. The variable %{video} is replaced by the name of the video whose content is going to be modified
-        # 1 - controllers/audio_editor_controller.rb
-        started: "The editing of the video %{video} started! Video editor is temporarily not available, together with lessons where you used this video"
-        # The process of video editing ended successfully. The variable %{video} is replaced by the name of the video whose content has been modified
-        # TODO manca
-        ok: "The editing of the video %{video} ended successfully! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing)."
-        # The process of video editing ended with an error. The variable %{video} is replaced by the name of the video whose content has been modified, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
-        # TODO manca
-        failed: "The editing of the video %{video} failed! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing). The video was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
-      new:
-        # The process of video composition started. The variable %{video} is replaced by the name of the video which is going to be composed
-        # TODO manca
-        started: "The composition of the video %{video} started! Video editor is temporarily not available"
-        # The process of video composition ended successfully. The variable %{video} is replaced by the name of the new video
-        # TODO manca
-        ok: "The composition of the video %{video} ended successfully! Now the video editor is available again."
-        # The process of video composition ended with an error. The variable %{video} is replaced by the name of the video in composition, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
-        # TODO manca
-        failed: "The composition of the video %{video} failed! Now the video editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
-      upload:
-        # The process of video uploading started. The variable %{video} is replaced by the name of the video which is going to be loaded
-        # TODO manca
-        started: "The uploading of the video %{video} started! Wait until it's over to be able to use the new video"
-        # The process of video uploading ended successfully. The variable %{video} is replaced by the name of the new video
-        # TODO manca
-        ok: "The uploading of the video %{video} ended successfully! Now you can use it in your lessons."
-        # The process of video uploading ended with an error. The variable %{video} is replaced by the name of the video which the user tried to upload
-        # TODO manca
-        failed: "The uploading of the video %{video} failed! Please try again."
+        # The process of video editing started. The variable %{item} is replaced by the name of the video whose content is going to be modified
+        started: "The editing of the video %{item} started! Video editor is temporarily not available, together with lessons where you used this video"
+        # The process of video editing ended successfully. The variable %{item} is replaced by the name of the video whose content has been modified
+        ok: "The editing of the video %{item} ended successfully! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing)."
+        # The process of video editing ended with an error. The variable %{item} is replaced by the name of the video whose content has been modified, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+        failed: "The editing of the video %{item} failed! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing). The video was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
+      composing:
+        # The process of video composition started. The variable %{item} is replaced by the name of the video which is going to be composed
+        started: "The composition of the video %{item} started! Video editor is temporarily not available"
+        # The process of video composition ended successfully. The variable %{item} is replaced by the name of the new video
+        ok: "The composition of the video %{item} ended successfully! Now the video editor is available again."
+        # The process of video composition ended with an error. The variable %{item} is replaced by the name of the video in composition, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+        failed: "The composition of the video %{item} failed! Now the video editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
+      uploading:
+        # The process of video uploading started. The variable %{item} is replaced by the name of the video which is going to be loaded
+        started: "The uploading of the video %{item} started! Wait until it's over to be able to use the new video"
+        # The process of video uploading ended successfully. The variable %{item} is replaced by the name of the new video
+        ok: "The uploading of the video %{item} ended successfully! Now you can use it in your lessons."
+        # The process of video uploading ended with an error. The variable %{item} is replaced by the name of the video which the user tried to upload
+        failed: "The uploading of the video %{item} failed! Please try again."
   
   
   # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)
@@ -1604,7 +1586,7 @@ en:
     lessons:
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
       # 1 - views/search/lessons/_amount.html.erb
-      result: "Found %{num} results. To refine your search select between these tags"
+      result: "Found %{num} results"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/lessons/_empty.html.erb
       empty_word: "No lessons were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters"
@@ -1644,7 +1626,7 @@ en:
     media_elements:
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
       # 1 - views/search/media_elements/_amount.html.erb
-      result: "Found %{num} results. To refine your search select between these tags"
+      result: "Found %{num} results"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/media_elements/_empty.html.erb
       empty_word: "No elements were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters"
@@ -2268,3 +2250,4 @@ en:
       school: 'School'
       created_at: 'Created at'
       updated_at: 'Last update'
+      other: 'Other'

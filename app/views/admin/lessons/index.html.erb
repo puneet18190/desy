@@ -1,5 +1,11 @@
 <%= render :partial => "search" %>
-<%= render :partial => "admin/list_heading", :locals => {:items => @lessons, :expandable => true} %>
+<h3><%= t('admin.lessons.index.name')%></h3>
+<% if @lessons.present? %>
+  <%= render :partial => "admin/list_heading", :locals => {:items => @lessons, :expandable => true} %>
+<% end %>
 <%= render :partial => "list", :locals => {:lessons => @lessons} %>
-<%= render :partial => "admin/list_heading", :locals => {:items => @lessons, :expandable => true} %>
+<% if @lessons.present? %>
+  <%= render :partial => "admin/list_heading", :locals => {:items => @lessons, :expandable => true} %>
+<% end %>
+
 <%= paginate @lessons %>
