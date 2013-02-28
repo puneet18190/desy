@@ -40,6 +40,8 @@ module Media
             if old_media
               audio.media     = old_media 
               audio.converted = true
+            else
+              video.converted = false
             end
             if old_fields = audio.try(:metadata).try(:old_fields)
               audio.title       = old_fields.title

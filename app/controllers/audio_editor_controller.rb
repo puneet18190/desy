@@ -1,3 +1,5 @@
+require 'media/audio/editing/composer/job'
+
 class AudioEditorController < ApplicationController
   
   before_filter :check_available_for_user

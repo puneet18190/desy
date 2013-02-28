@@ -48,17 +48,5 @@ class Video < MediaElement
   def webm_duration=(webm_duration)
     metadata.webm_duration = webm_duration
   end
-
-  def pre_overwriting
-    # tags non è un attributo, per cui non risulta tra i cambi; 
-    # me lo prendo dall'associazione taggings_tags, visto che non è cambiata
-    old_fields = Hash[ v.changes.map{ |col, (old)| [col, old] } << ['tags', v.taggings_tags.map(&:word).join(', ')] ]
-    self.metadata.old_fields = old_fields
-    self.converted = nil
-    Base.transaction do
-      save!
-      disable_lessons_containing_me
-    end
-  end
   
 end

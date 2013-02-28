@@ -308,6 +308,7 @@ class MediaElement < ActiveRecord::Base
       tagging.destroyable = true
       tagging.destroy
     end
+    true
   end
   
 end

@@ -61,6 +61,18 @@ module Media
         PLACEHOLDER_URL
       end
 
+      def overwrite!
+        # tags non è un attributo, per cui non risulta tra i cambi; 
+        # me lo prendo dall'associazione taggings_tags, visto che non è cambiata
+        old_fields = Hash[ v.changes.map{ |col, (old)| [col, old] } << ['tags', v.taggings_tags.map(&:word).join(', ')] ]
+        self.metadata.old_fields = old_fields
+        self.converted = nil
+        self.class.transaction do
+          save!
+          disable_lessons_containing_me
+        end
+      end
+
       private
       def set_creation_mode
         self.metadata.creation_mode = composing.present? ? COMPOSING_CREATION_MODE : UPLOADING_CREATION_MODE

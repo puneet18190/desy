@@ -93,7 +93,7 @@ class VideoEditorController < ApplicationController
         :description => params[:update_description],
         :tags => params[:update_tags_value]
       }
-      record.pre_overwriting
+      record.overwrite!
       Notification.send_to current_user.id, t('notifications.videos.editing.started')
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
     else
