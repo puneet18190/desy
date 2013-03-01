@@ -82,27 +82,35 @@ class SearchController < ApplicationController
     @did_you_search = params.has_key? :word
     @search_item = ['lessons', 'media_elements'].include?(params[:item]) ? params[:item] : 'lessons'
     if @did_you_search
-      @word = params[:word_placeholder].blank? ? '' : params[:word]
-      @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
-      initialize_specific_tag
-      @word = @specific_tag.word if !@specific_tag.nil? && (@word.blank? || (/${@word}/ =~ @specific_tag) != 0)
+      initialize_word_and_specific_tag
       case @search_item
         when 'lessons'
-          @filter = Filters::LESSONS_SEARCH_SET.include?(params[:filter]) ? params[:filter] : Filters::ALL_LESSONS
-          @order = SearchOrders::LESSONS_SET.include?(params[:order]) ? params[:order] : SearchOrders::UPDATED_AT
-          @subject_id = correct_integer?(params[:subject_id]) ? params[:subject_id].to_i : nil
-          @for_page = LESSONS_FOR_PAGE
+          initialize_paginator_and_filters_for_lessons
         when 'media_elements'
-          @filter = Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(params[:filter]) ? params[:filter] : Filters::ALL_MEDIA_ELEMENTS
-          @order = SearchOrders::MEDIA_ELEMENTS_SET.include?(params[:order]) ? params[:order] : SearchOrders::UPDATED_AT
-          @for_page = MEDIA_ELEMENTS_FOR_PAGE
+          initialize_paginator_and_filters_for_media_elements
       end
     end
   end
   
-  def initialize_specific_tag
+  def initialize_paginator_and_filters_for_media_elements
+    @filter = Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(params[:filter]) ? params[:filter] : Filters::ALL_MEDIA_ELEMENTS
+    @order = SearchOrders::MEDIA_ELEMENTS_SET.include?(params[:order]) ? params[:order] : SearchOrders::UPDATED_AT
+    @for_page = MEDIA_ELEMENTS_FOR_PAGE
+  end
+  
+  def initialize_paginator_and_filters_for_lessons
+    @filter = Filters::LESSONS_SEARCH_SET.include?(params[:filter]) ? params[:filter] : Filters::ALL_LESSONS
+    @order = SearchOrders::LESSONS_SET.include?(params[:order]) ? params[:order] : SearchOrders::UPDATED_AT
+    @subject_id = correct_integer?(params[:subject_id]) ? params[:subject_id].to_i : nil
+    @for_page = LESSONS_FOR_PAGE
+  end
+  
+  def initialize_word_and_specific_tag
+    @word = params[:word_placeholder].blank? ? '' : params[:word]
+    @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
     @specific_tag_id = correct_integer?(params[:tag_id]) ? params[:tag_id].to_i : nil
     @specific_tag = Tag.find_by_id @specific_tag_id
+    @word = @specific_tag.word if !@specific_tag.nil? && (@word.blank? || (/${@word}/ =~ @specific_tag) != 0)
   end
   
 end
