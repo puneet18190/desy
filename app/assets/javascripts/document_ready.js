@@ -738,13 +738,6 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('focus', '#general_tag_reader_for_search', function() {
-    $(this).attr('value', '');
-    $(this).css('color', '#939393');
-    $('#general_tag_kind_for_search').attr('value', '0');
-    $('#search_general_submit').removeClass('current');
-  });
-  
   // FIXME FINO A QUI
   
   $('body').on('focus', '#lessons_tag_reader_for_search', function() {
@@ -761,6 +754,13 @@ $(document).ready(function() {
       $(this).css('color', '#939393');
       $('#media_elements_tag_kind_for_search').val('0');
     }
+  });
+  
+  $('body').on('focus', '#general_tag_reader_for_search', function() {
+    $(this).attr('value', '');
+    $(this).css('color', '#939393');
+    $('#general_tag_kind_for_search').attr('value', '0');
+    $('#search_general_submit').removeClass('current');
   });
   
   $('body').on('click', '#search_general_submit', function() {

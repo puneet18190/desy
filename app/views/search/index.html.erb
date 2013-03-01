@@ -1,3 +1,29 @@
+<%
+  
+  locals_lessons = {
+    :subjects => @subjects,
+    :active => @did_you_search && @search_item == 'lessons',
+    :pointed => @search_item == 'lessons',
+    :results => {
+      :records => @lessons,
+      :amount => @lessons_amount,
+      :tags => @tags
+    }
+  }
+  
+  locals_media_elements = {
+    :active => @did_you_search && @search_item == 'media_elements',
+    :pointed => @search_item == 'media_elements',
+    :results => {
+      :records => @media_elements,
+      :amount => @media_elements_amount,
+      :tags => @tags
+    }
+  }
+  
+%>
+
+
 <div class="gray-bar advancedSearch">
   <div class="cols fltlft">
     <%= image_tag("ico_advanced_search.png", :align => "left", :style => "padding-top:5px; padding-right: 10px") %><%= t('search.label') %><h1><%= t('search.title') %></h1>
@@ -25,8 +51,8 @@
         </tr>
       </table>
     </div>
-    <%= render :partial => "search/lessons/main" %>
-    <%= render :partial => "search/media_elements/main" %>
+    <%= render :partial => 'search/lessons/main', :locals => locals_lessons %>
+    <%= render :partial => 'search/media_elements/main', :locals => locals_media_elements %>
     <div id="info_container" style="display:none" data-currenturl="<%= request.url %>"></div>
     <br class="clearfloat">
     <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) %>

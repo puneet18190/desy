@@ -1,14 +1,20 @@
-<div id="search_lessons_main_page" style="display:<%= @search_item == 'lessons' ? 'block'.html_safe : 'none'.html_safe %>">
+<%
+  display = ['none'.html_safe, 'block'.html_safe]
+  display = ['block'.html_safe, 'none'.html_safe] if active
+%>
+
+
+<div id="search_lessons_main_page" style="display:<%= pointed ? 'block'.html_safe : 'none'.html_safe %>">
   
   
   <div class="contentSearch">
     <div class="boxCerca">
       <form id="search_lessons" class="search-form" method="get" action="/search">
         
-        <a class="_keep_searching" style="display:<%= @did_you_search ? 'block'.html_safe : 'none'.html_safe %>"><%= t('search.again') %></a>
+        <a class="_keep_searching" style="display:<%= display[0] %>"><%= t('search.again') %></a>
         
         <%= hidden_field_tag 'item', 'lessons' %>
-        <table class="_search_engine_form" summary="" cellpadding="0" cellspacing="0" style="width:100%; display:<%= @did_you_search ? 'none'.html_safe : 'block'.html_safe %>">
+        <table class="_search_engine_form" summary="" cellpadding="0" cellspacing="0" style="width:100%; display:<%= display[1] %>">
           <tr>
             <td width="20%">
               <label><%= t('search.lessons.keyword.label') %></label><br />
@@ -28,7 +34,7 @@
               <label><%= t('search.lessons.filters.subject') %></label><br />
               <select name="subject_id" id="filter_search_lessons_subject">
                 <option value="" selected="selected"><%= t('search.lessons.filters.all_subjects') %></option>
-                <% @subjects.each do |s| %>
+                <% subjects.each do |s| %>
                   <option value="<%= s.id %>"><%= s.description %></option>
                 <% end %>
               </select>
@@ -73,18 +79,15 @@
   
   <br class="clearfloat">
   
-  <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) %>
-    <%= render :partial => "search/lessons/amount", :locals => {:amount => @lessons_amount} %>
-  <% else %>
-    <div id="lessons_search_amount"></div>
+  <% if active %>
+    <% if results[:amount] > 0 %>
+      <%= render :partial => "search/lessons/amount", :locals => {:amount => results[:amount]} %>
+      <% if results[:tags].any? %>
+        <%= render :partial => "search/lessons/tag_details", :locals => {:tags => results[:tags]} %>
+      <% end %>
+    <% end %>
   <% end %>
   
-  <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) && @tags.any? %>
-    <%= render :partial => "search/lessons/tag_details", :locals => {:tags => @tags, :tag => @tag} %>
-  <% else %>
-    <div id="lessons_tag_details" style="margin-bottom:0"></div>
-  <% end %>
-  
-  <%= render :partial => "search/lessons/results", :locals => {:lessons => @lessons} %>
+  <%= render :partial => "search/lessons/results", :locals => {:lessons => results[:records]} %>
   
 </div>

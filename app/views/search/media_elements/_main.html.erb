@@ -1,14 +1,20 @@
-<div id="search_media_elements_main_page" style="display:<%= @search_item == 'lessons' ? 'none'.html_safe : 'block'.html_safe %>">
+<%
+  display = ['none'.html_safe, 'block'.html_safe]
+  display = ['block'.html_safe, 'none'.html_safe] if active
+%>
+
+
+<div id="search_media_elements_main_page" style="display:<%= pointed ? 'block'.html_safe : 'none'.html_safe %>">
   
   
   <div class="contentSearch">
     <div class="boxCerca">
       <form id="search_media_elements" class="search-form" method="get" action="/search">
         
-        <a class="_keep_searching" style="display:<%= @did_you_search ? 'block'.html_safe : 'none'.html_safe %>"><%= t('search.again') %></a>
+        <a class="_keep_searching" style="display:<%= display[0] %>"><%= t('search.again') %></a>
         
         <%= hidden_field_tag 'item', 'media_elements' %>
-        <table class="_search_engine_form" summary="" cellpadding="0" cellspacing="0" style="width:100%; display:<%= @did_you_search ? 'none'.html_safe : 'block'.html_safe %>">
+        <table class="_search_engine_form" summary="" cellpadding="0" cellspacing="0" style="width:100%; display:<%= display[1] %>">
           <tr>
             <td style="width:20%">
               <label><%= t('search.media_elements.keyword.label') %></label><br/>
@@ -68,18 +74,15 @@
   
   <br class="clearfloat">
   
-  <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) %>
-    <%= render :partial => "search/media_elements/amount", :locals => {:amount => @media_elements_amount} %>
-  <% else %>
-    <div id="media_elements_search_amount"></div>
+  <% if active %>
+    <% if results[:amount] > 0 %>
+      <%= render :partial => "search/media_elements/amount", :locals => {:amount => results[:amount]} %>
+      <% if results[:tags].any? %>
+        <%= render :partial => "search/media_elements/tag_details", :locals => {:tags => results[:tags]} %>
+      <% end %>
+    <% end %>
   <% end %>
   
-  <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) && @tags.any? %>
-    <%= render :partial => "search/media_elements/tag_details", :locals => {:tags => @tags, :tag => @tag} %>
-  <% else %>
-    <div id="media_elements_tag_details" style="margin-bottom:0"></div>
-  <% end %>
-  
-  <%= render :partial => "search/media_elements/results", :locals => {:media_elements => @media_elements} %>
+  <%= render :partial => "search/media_elements/results", :locals => {:media_elements => results[:records]} %>
   
 </div>
