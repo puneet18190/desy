@@ -1,10 +1,8 @@
-<% my_current_url = manipulate_request_url(remove_query_param: 'delete_item', page: @page) %>
-
 <% if @delete_item.blank? %>
   $('#my_virtual_classroom').hide('fade', {}, 500, function() {
-    $('#my_virtual_classroom').replaceWith("<%= j(render(:partial => "virtual_classroom/my_virtual_classroom")) %>");
+    $('#my_virtual_classroom').replaceWith('<%= j(render(:partial => "virtual_classroom/my_virtual_classroom")) %>');
     <% if @lessons.any? %>
-      $('#virtual_classroom_pagination').replaceWith("<%= j(render(:partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+      $('#virtual_classroom_pagination').replaceWith("<%= j(render(:partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount})) %>");
     <% else %>
       $('#virtual_classroom_pagination').html('');
     <% end %>
@@ -13,9 +11,9 @@
 <% else %>
   var to_delete = $('#<%= @delete_item %>');
   to_delete.hide('fade', {}, 500, function() {
-    $('#my_virtual_classroom').replaceWith("<%= j(render(:partial => "virtual_classroom/my_virtual_classroom")) %>");
+    $('#my_virtual_classroom').replaceWith('<%= j(render(:partial => "virtual_classroom/my_virtual_classroom")) %>');
     <% if @lessons.any? %>
-      $('#virtual_classroom_pagination').replaceWith("<%= j(render(:partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+      $('#virtual_classroom_pagination').replaceWith("<%= j(render(:partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount})) %>");
     <% else %>
       $('#virtual_classroom_pagination').html('');
     <% end %>
@@ -32,4 +30,4 @@
   $('#empty_virtual_classroom').addClass('disabled');
 <% end %>
 
-$('#info_container').data('currenturl', '<%= j(my_current_url) %>');
+$('#info_container').data('currenturl', '<%= j manipulate_request_url(remove_query_param: "delete_item", page: @page) %>');
