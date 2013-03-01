@@ -110,7 +110,6 @@ class SearchController < ApplicationController
     @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
     @specific_tag_id = correct_integer?(params[:tag_id]) ? params[:tag_id].to_i : nil
     @specific_tag = Tag.find_by_id @specific_tag_id
-    @word = @specific_tag.word if !@specific_tag.nil? && (@word.blank? || (/${@word}/ =~ @specific_tag) != 0)
   end
   
 end

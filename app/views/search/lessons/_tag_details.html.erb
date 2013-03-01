@@ -6,6 +6,8 @@
 
 <% if !specific_tag.nil? %>
   <script type="text/javascript">
-    $('#clickable_tag_<%= specific_tag.id %>').addClass('current');
+    $(document).ready(function() {
+      $('#clickable_tag_<%= specific_tag.id %>').addClass('current');
+    });
   </script>
 <% end %>

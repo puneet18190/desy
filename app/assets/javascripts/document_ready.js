@@ -2,6 +2,7 @@ $(document).ready(function() {
   
   
   // BROWSER DETECTION: DECLARING BROWSER NAME AND VERSION AS HTML TAG CLASS
+  
   (function(){
     var name = $.grep(_.keys($.browser), function(el, i) {
       return el !== 'version';
@@ -13,6 +14,7 @@ $(document).ready(function() {
   
   
   // AFTER WINDOW RESIZE
+  
   $(window).resize(function() {
     if($('#my_media_elements').length > 0 || $('#media_elements_in_dashboard').length > 0){
       recenterMyMediaElements();
