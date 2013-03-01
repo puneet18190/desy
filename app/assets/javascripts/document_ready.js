@@ -745,10 +745,6 @@ $(document).ready(function() {
     $('#search_general_submit').removeClass('current');
   });
   
-  $('body').on('click','#keep-searching',function(){
-    removeKeepSearching(this);
-  });
-  
   // FIXME FINO A QUI
   
   $('body').on('focus', '#lessons_tag_reader_for_search', function() {
@@ -774,6 +770,15 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('click', '._keep_searching', function() {
+    var form = $(this).parent();
+    form.animate({
+      height: '210'
+    }, 500, function() {
+      form.find('._search_engine_form').show();
+      form.find('._keep_searching').hide();
+    });
+  });
   
   
   
