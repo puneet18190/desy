@@ -84,17 +84,15 @@ ActiveRecord::Schema.define(:version => 20130131094635) do
     t.boolean  "is_public",                         :default => false, :null => false
     t.integer  "parent_id"
     t.boolean  "copied_not_modified",                                  :null => false
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
     t.string   "token",               :limit => 20
     t.text     "metadata"
     t.boolean  "notified",                          :default => true,  :null => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
     t.index ["parent_id"], :name => "fk__lessons_parent_id", :order => {"parent_id" => :asc}
     t.index ["school_level_id"], :name => "fk__lessons_school_level_id", :order => {"school_level_id" => :asc}
     t.index ["subject_id"], :name => "fk__lessons_subject_id", :order => {"subject_id" => :asc}
     t.index ["user_id"], :name => "fk__lessons_user_id", :order => {"user_id" => :asc}
-    t.index ["title"], :name => "index_lessons_on_title", :order => {"title" => :desc}
-    t.index ["updated_at"], :name => "index_lessons_on_updated_at", :order => {"updated_at" => :desc}
     t.foreign_key ["parent_id"], "lessons", ["id"], :on_update => :no_action, :on_delete => :set_null, :name => "fk_lessons_parent_id"
     t.foreign_key ["school_level_id"], "school_levels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_lessons_school_level_id"
     t.foreign_key ["subject_id"], "subjects", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_lessons_subject_id"
@@ -133,19 +131,17 @@ ActiveRecord::Schema.define(:version => 20130131094635) do
 
   create_table "media_elements", :force => true do |t|
     t.integer  "user_id",                             :null => false
+    t.string   "sti_type",                            :null => false
+    t.string   "media"
     t.string   "title",                               :null => false
     t.text     "description",                         :null => false
-    t.string   "sti_type",                            :null => false
-    t.boolean  "is_public",        :default => false, :null => false
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.datetime "publication_date"
-    t.string   "media"
     t.text     "metadata"
     t.boolean  "converted"
+    t.boolean  "is_public",        :default => false, :null => false
+    t.datetime "publication_date"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.index ["user_id"], :name => "fk__media_elements_user_id", :order => {"user_id" => :asc}
-    t.index ["title"], :name => "index_media_elements_on_title", :order => {"title" => :desc}
-    t.index ["updated_at"], :name => "index_media_elements_on_updated_at", :order => {"updated_at" => :desc}
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_media_elements_user_id"
   end
 
@@ -156,10 +152,10 @@ ActiveRecord::Schema.define(:version => 20130131094635) do
     t.integer  "media_element_id", :null => false
     t.integer  "slide_id",         :null => false
     t.integer  "position",         :null => false
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
     t.text     "caption"
     t.integer  "alignment"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.index ["media_element_id"], :name => "fk__media_elements_slides_media_element_id", :order => {"media_element_id" => :asc}
     t.index ["slide_id"], :name => "fk__media_elements_slides_slide_id", :order => {"slide_id" => :asc}
     t.foreign_key ["media_element_id"], "media_elements", ["id"], :on_update => :no_action, :on_delete => :cascade, :name => "fk_media_elements_slides_media_element_id"
