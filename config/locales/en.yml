@@ -800,6 +800,9 @@ en:
       # Arrow to the right, pointing to the next slide
       # 1 - views/layouts/lesson_viewer.html.erb
       forward: "Forward"
+    tags:
+      filter_by: "Filter by this tag"
+      cancel_filter: "Cancel the filter by tag and come back to the original result"
     # Tooltips inside the video editor
     video_editor:
       # Big 'plus' icon to add a new component to the timeline
