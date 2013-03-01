@@ -800,6 +800,9 @@ en:
       # Arrow to the right, pointing to the next slide
       # 1 - views/layouts/lesson_viewer.html.erb
       forward: "Forward"
+    tags:
+      filter_by: "Filter by this tag"
+      cancel_filter: "Cancel the filter by tag and come back to the original result"
     # Tooltips inside the video editor
     video_editor:
       # Big 'plus' icon to add a new component to the timeline
@@ -1587,6 +1590,12 @@ en:
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
       # 1 - views/search/lessons/_amount.html.erb
       result: "Found %{num} results"
+      # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
+      # 1 - views/search/lessons/_amount.html.erb
+      result_with_tags: "Found %{num} results (refine your search selecting among the tags below)"
+      # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found, spiegare %{tag})
+      # 1 - views/search/lessons/_amount.html.erb
+      result_filtered_by_tag: "Found %{num} results (only items associated to the tag <%{tag}>)"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/lessons/_empty.html.erb
       empty_word: "No lessons were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters"
@@ -1624,6 +1633,12 @@ en:
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
       # 1 - views/search/media_elements/_amount.html.erb
       result: "Found %{num} results"
+      # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
+      # 1 - views/search/lessons/_amount.html.erb
+      result_with_tags: "Found %{num} results (refine your search selecting among the tags below)"
+      # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found, spiegare %{tag})
+      # 1 - views/search/lessons/_amount.html.erb
+      result_filtered_by_tag: "Found %{num} results (only items associated to the tag <%{tag}>)"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/media_elements/_empty.html.erb
       empty_word: "No elements were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters"

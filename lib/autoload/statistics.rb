@@ -13,8 +13,7 @@ module Statistics
     end
     
     def my_copied_lessons
-      copied_id = Lesson.where('parent_id IS NOT NULL').pluck(:id)
-      return Lesson.where("user_id != ? AND id IN(?)", user.id, copied_id).count
+      Lesson.joins('INNER JOIN lessons AS parent_lessons ON (parent_lessons.id = lessons.parent_id)').where('lessons.user_id != ? AND parent_lessons.user_id = ?', user.id, user.id).count
     end
     
     def my_liked_lessons(first_n)
