@@ -76,9 +76,9 @@
   
   <% if active %>
     <% if results[:amount] > 0 %>
-      <%= render :partial => 'search/media_elements/amount', :locals => {:amount => results[:amount], :tags => results[:tags]} %>
+      <%= render :partial => 'search/media_elements/amount', :locals => {:amount => results[:amount], :tags => results[:tags], :specific_tag => results[:specific_tag]} %>
       <% if results[:tags].any? %>
-        <%= render :partial => 'search/media_elements/tag_details', :locals => {:tags => results[:tags]} %>
+        <%= render :partial => 'search/media_elements/tag_details', :locals => {:tags => results[:tags], :specific_tag => results[:specific_tag]} %>
       <% end %>
     <% end %>
     <%= render :partial => 'search/media_elements/results', :locals => {:media_elements => results[:records], :word => word} %>

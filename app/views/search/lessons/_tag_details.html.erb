@@ -3,3 +3,9 @@
     <a id="clickable_tag_<%= t.id %>" class="_clickable_tag_for_lessons" data-param="<%= t.id %>"><%= t.word %></a>
   <% end %>
 </div>
+
+<% if !specific_tag.nil? %>
+  <script type="text/javascript">
+    $('#clickable_tag_<%= specific_tag.id %>').addClass('current');
+  </script>
+<% end %>
