@@ -1,10 +1,8 @@
-<% my_current_url = manipulate_request_url(remove_query_param: 'delete_item', page: @page) %>
-
 <% if @delete_item.blank? %>
   $('#my_media_elements').hide('fade', {}, 500, function() {
-    $('#my_media_elements').replaceWith("<%= j(render(:partial => "media_elements/my_media_elements")) %>");
+    $('#my_media_elements').replaceWith("<%= j(render(:partial => 'media_elements/my_media_elements')) %>");
     <% if @media_elements.any? %>
-      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount)) %>");
     <% else %>
       $('#general_pagination').html('');
     <% end %>
@@ -17,16 +15,16 @@
       showOkPopUp(temporary_msg);
       $('#popup_captions_container').data('temporary-msg', '');
     }
-    $('#my_media_elements').replaceWith("<%= j(render(:partial => "media_elements/my_media_elements")) %>");
+    $('#my_media_elements').replaceWith("<%= j(render(:partial => 'media_elements/my_media_elements')) %>");
     <% if @media_elements.any? %>
-      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount)) %>");
     <% else %>
       $('#general_pagination').html('');
     <% end %>
   });
 <% end %>
 
-$('#info_container').data('currenturl', '<%= j(my_current_url) %>');
+$('#info_container').data('currenturl', '<%= j(manipulate_request_url(remove_query_param: "delete_item", page: @page)) %>');
 
 <% if @display == MediaElement::DISPLAY_MODES[:expanded] %>
   if($('#display_compact_media_elements').hasClass('current')) {

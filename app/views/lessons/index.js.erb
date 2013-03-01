@@ -1,10 +1,8 @@
-<% my_current_url = manipulate_request_url(remove_query_param: 'delete_item', page: @page) %>
-
 <% if @delete_item.blank? %>
   $('#my_lessons').hide('fade', {}, 500, function() {
-    $('#my_lessons').replaceWith("<%= j(render(:partial => "lessons/my_lessons")) %>");
+    $('#my_lessons').replaceWith("<%= j(render(:partial => 'lessons/my_lessons')) %>");
     <% if @lessons.any? %>
-      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount)) %>");
     <% else %>
       $('#general_pagination').html('');
     <% end %>
@@ -17,13 +15,13 @@
       showOkPopUp(temporary_msg);
       $('#popup_captions_container').data('temporary-msg', '');
     }
-    $('#my_lessons').replaceWith("<%= j(render(:partial => "lessons/my_lessons")) %>");
+    $('#my_lessons').replaceWith("<%= j(render(:partial => 'lessons/my_lessons')) %>");
     <% if @lessons.any? %>
-      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount)) %>");
     <% else %>
       $('#general_pagination').html('');
     <% end %>
   });
 <% end %>
 
-$('#info_container').data('currenturl', '<%= j(my_current_url) %>');
+$('#info_container').data('currenturl', '<%= j(manipulate_request_url(remove_query_param: "delete_item", page: @page)) %>');
