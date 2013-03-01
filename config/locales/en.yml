@@ -781,12 +781,6 @@ en:
       # Small 'x' that removes a notification
       # 1 - views/notifications/_notification.html.erb
       remove: "Remove notification"
-    # Icon with a lens in the search engine: clicking on it the user searches again with the new parameters
-    # 1 - views/search/lessons/_main.html.erb
-    # 2 - views/search/lessons/_main.html.erb
-    # 3 - views/search/media_elements/_main.html.erb
-    # 4 - views/search/media_elements/_main.html.erb
-    refine_search: "Refine the search"
     # Icon to report an offensive lesson or media element
     # 1 - views/reports/_media_element.html.erb
     report: "Report offensive content"
