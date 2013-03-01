@@ -4,6 +4,7 @@ require 'media/image/editing/crop'
 
 class Image < MediaElement
   EXTENSION_WHITE_LIST = ImageUploader::EXTENSION_WHITE_LIST
+  EXTENSIONS_GLOB      = "*.{#{EXTENSION_WHITE_LIST.join(',')}}"
   
   mount_uploader :media, ImageUploader
   
