@@ -8,27 +8,9 @@ class Image < MediaElement
   mount_uploader :media, ImageUploader
   
   before_save :set_width_and_height
+  before_create :set_converted_to_true
   
   attr_reader :edit_mode
-
-  def self.test
-    i = new(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
-      v.user  = User.admin
-      v.media = File.open('/home/mau/Immagini/_.jpg')
-    end
-    i.save
-
-    p i.media.path
-    p i.media.thumb.path
-
-    i = find(i.id)
-
-    p i.media.path
-    p i.media.thumb.path
-
-    dir = File.dirname i.media.path
-    p Dir[File.join dir, '*']
-  end
 
   def url
     media.url
@@ -48,7 +30,6 @@ class Image < MediaElement
   
   def editing_url
     return '' if !self.in_edit_mode?
-    url = self.url
     file_name = "/#{url.split('/').last}"
     "#{url.gsub(file_name, '')}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}"
   end
@@ -170,6 +151,11 @@ class Image < MediaElement
   
   def set_width_and_height
     self.width, self.height = media.width, media.height
+    true
+  end
+
+  def set_converted_to_true
+    self.converted = true
     true
   end
   
