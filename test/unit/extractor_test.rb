@@ -822,8 +822,9 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 1, p1[:pages_amount]
     # third case - it matches more tags - @les9 is not found because private
     assert Lesson.find(1).publish
-    p1 = @user2.search_lessons('to', 1, 5, nil, nil, nil)
-    p2 = @user2.search_lessons('to', 2, 5, nil, nil, nil)
+    p1 = @user2.search_lessons('to', 1, 5, nil, nil, nil, false)
+    p2 = @user2.search_lessons('to', 2, 5, nil, nil, nil, false)
+    p3 = @user2.search_lessons('to', 2, 5, nil, nil, nil, true)
     assert_ordered_item_extractor [1, @les1.id, @les2.id, @les3.id, @les4.id], p1[:records]
     tag_ids = []
     Tag.where(:word => ['togatto', 'torriere architettoniche', 'tonquinamento', 'tonquinamento atmosferico', 'tom cruise']).each do |t|
@@ -836,6 +837,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_extractor tag_ids, p2[:tags]
     assert_equal 7, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
+    assert_extractor tag_ids, p3
     # fourth case - filters and orders on the last search
     lees2 = Lesson.find 2
     lees2.tags = '個名, Tonio de curtis, acquazzone, zzzzaggiunta a caso'
@@ -992,8 +994,9 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_equal 6, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
     # third case - it matches more tags
-    p1 = @user2.search_media_elements('to', 1, 5, 'title', nil)
-    p2 = @user2.search_media_elements('to', 2, 5, 'title', nil)
+    p1 = @user2.search_media_elements('to', 1, 5, 'title', nil, false)
+    p2 = @user2.search_media_elements('to', 2, 5, 'title', nil, false)
+    p3 = @user2.search_media_elements('to', 2, 5, 'title', nil, true)
     assert_ordered_item_extractor [4, @el1.id, @el2.id, @el3.id, @el5.id], p1[:records]
     tag_ids = []
     Tag.where(:word => ['togatto', 'torriere architettoniche', 'tonquinamento', 'tonquinamento atmosferico', 'tom cruise']).each do |t|
@@ -1006,6 +1009,7 @@ class ExtractorTest < ActiveSupport::TestCase
     assert_extractor tag_ids, p2[:tags]
     assert_equal 8, p2[:records_amount]
     assert_equal 2, p2[:pages_amount]
+    assert_extractor tag_ids, p3
     # fourth case - chinese characters, and filters
     p1 = @user2.search_media_elements('加', 1, 5)
     assert p1[:records].empty?
