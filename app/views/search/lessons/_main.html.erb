@@ -86,8 +86,7 @@
         <%= render :partial => "search/lessons/tag_details", :locals => {:tags => results[:tags]} %>
       <% end %>
     <% end %>
+    <%= render :partial => "search/lessons/results", :locals => {:lessons => results[:records]} %>
   <% end %>
-  
-  <%= render :partial => "search/lessons/results", :locals => {:lessons => results[:records]} %>
   
 </div>

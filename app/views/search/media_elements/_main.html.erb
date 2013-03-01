@@ -81,8 +81,7 @@
         <%= render :partial => "search/media_elements/tag_details", :locals => {:tags => results[:tags]} %>
       <% end %>
     <% end %>
+    <%= render :partial => "search/media_elements/results", :locals => {:media_elements => results[:records]} %>
   <% end %>
-  
-  <%= render :partial => "search/media_elements/results", :locals => {:media_elements => results[:records]} %>
   
 </div>
