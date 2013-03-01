@@ -2,6 +2,7 @@
   
   locals_lessons = {
     :subjects => @subjects,
+    :word => @word,
     :active => @did_you_search && @search_item == 'lessons',
     :pointed => @search_item == 'lessons',
     :results => {
@@ -12,6 +13,7 @@
   }
   
   locals_media_elements = {
+    :word => @word,
     :active => @did_you_search && @search_item == 'media_elements',
     :pointed => @search_item == 'media_elements',
     :results => {
