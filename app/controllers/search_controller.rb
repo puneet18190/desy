@@ -85,6 +85,7 @@ class SearchController < ApplicationController
       @word = params[:word_placeholder].blank? ? '' : params[:word]
       @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
       initialize_specific_tag
+      @word = @specific_tag.word if !@specific_tag.nil? && (@word.blank? || (/${@word}/ =~ @specific_tag) != 0)
       case @search_item
         when 'lessons'
           @filter = Filters::LESSONS_SEARCH_SET.include?(params[:filter]) ? params[:filter] : Filters::ALL_LESSONS
@@ -102,7 +103,6 @@ class SearchController < ApplicationController
   def initialize_specific_tag
     @specific_tag_id = correct_integer?(params[:tag_id]) ? params[:tag_id].to_i : nil
     @specific_tag = Tag.find_by_id @specific_tag_id
-    # TODO qui manca aggiornare la word!!!! a seconda della tag id @word = ??
   end
   
 end
