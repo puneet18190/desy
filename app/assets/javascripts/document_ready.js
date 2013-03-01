@@ -187,18 +187,6 @@ $(document).ready(function() {
     $.get(redirect_url);
   });
   
-  $('body').on('click', '._clickable_tag_for_lessons', function() {
-    var param = $(this).data('param');
-    $('#lessons_tag_kind_for_search').attr('value', param);
-    $('#search_lessons').submit();
-  });
-  
-  $('body').on('click', '._clickable_tag_for_media_elements', function() {
-    var param = $(this).data('param');
-    $('#media_elements_tag_kind_for_search').attr('value', param);
-    $('#search_media_elements').submit();
-  });
-  
   
   // EXPAND LESSON
   
@@ -708,6 +696,24 @@ $(document).ready(function() {
       }
     });
   });
+  
+  
+  // FIXME DA QUI
+  
+  $('body').on('click', '._clickable_tag_for_lessons', function() {
+    var param = $(this).data('param');
+    $('#lessons_tag_kind_for_search').attr('value', param);
+    $('#search_lessons').submit();
+  });
+  
+  $('body').on('click', '._clickable_tag_for_media_elements', function() {
+    var param = $(this).data('param');
+    $('#media_elements_tag_kind_for_search').attr('value', param);
+    $('#search_media_elements').submit();
+  });
+  
+  // FIXME FINO A QUI
+  
   
   $('body').on('focus', '#lessons_tag_reader_for_search', function() {
     if($('#lessons_tag_kind_for_search').val() == '') {
