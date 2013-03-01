@@ -800,8 +800,15 @@ en:
       # Arrow to the right, pointing to the next slide
       # 1 - views/layouts/lesson_viewer.html.erb
       forward: "Forward"
+   # Titles for the tags used to refine a search
     tags:
+      # This title appears on a tag which is not selected
+      # 1 - views/search/lessons/_tag_details.html.erb
+      # 2 - views/search/media_elements/_tag_details.html.erb
       filter_by: "Filter by this tag"
+      # This title appears on the selected tag (clicking on this tag the user resets the tag filter and turns back to the original result)
+      # 1 - views/search/lessons/_tag_details.html.erb
+      # 2 - views/search/media_elements/_tag_details.html.erb
       cancel_filter: "Cancel the filter by tag and come back to the original result"
     # Tooltips inside the video editor
     video_editor:
@@ -998,14 +1005,14 @@ en:
     # 2 - views/dashboard/_graybar_left.html.erb
     # 3 - views/shared/_menu.html.erb
     # 4 - views/shared/_search.html.erb
-    # 5 - views/search/index.html.erb
+    # 5 - views/search/_item_selector.html.erb
     lessons: "Lessons"
     # Used in any place the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
     # 1 - views/dashboard/_graybar_left.html.erb
     # 2 - views/shared/_menu.html.erb
     # 3 - views/shared/_search.html.erb
     # 4 - views/media_elements/_title_bar.html.erb
-    # 5 - views/search/index.html.erb
+    # 5 - views/search/_item_selector.html.erb
     media_elements: "Elements"
     # Used to refer to the user's personal profile
     # 1 - views/shared/_menu.html.erb
