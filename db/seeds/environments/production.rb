@@ -12,10 +12,6 @@ class Seeding
   VIDEOS_FOLDER         = MEDIA_ELEMENTS_FOLDER.join 'videos'
   IMAGES_FOLDER         = MEDIA_ELEMENTS_FOLDER.join 'images'
 
-  IMAGE_EXTENSIONS_GLOB = Image::EXTENSION_WHITE_LIST.map do |str| 
-    str.chars.map{ |c| "[#{c}#{c.upcase}]" }.join('')
-  end.join(',')
-
   MODELS = [ Location, SchoolLevel, Subject, User, MediaElement, Lesson, Slide, MediaElementsSlide, Like, Bookmark ]
 
   def run
@@ -80,7 +76,7 @@ class Seeding
       v = Pathname.glob(VIDEOS_FOLDER.join record.id.to_s, '*.mp4').first
       { mp4: v.to_s, webm: v.sub(/\.mp4$/, '.webm').to_s, filename: v.basename(v.extname).to_s }
     when Image
-      File.open Pathname.glob(IMAGES_FOLDER.join(record.id.to_s, "*.{#{IMAGE_EXTENSIONS_GLOB}}")).first
+      File.open Pathname.glob(IMAGES_FOLDER.join(record.id.to_s, Image::EXTENSIONS_GLOB), File::FNM_CASEFOLD).first
     end
   end
 
