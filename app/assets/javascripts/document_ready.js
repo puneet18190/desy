@@ -683,29 +683,6 @@ $(document).ready(function() {
   });
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  // FIXME DA QUI
-  
   // SEARCH ITEMS
   
   $('body').on('click', '#which_item_to_search_switch_media_elements', function() {
@@ -718,9 +695,6 @@ $(document).ready(function() {
         $('#general_pagination').show();
       }
     });
-    if($('#search_lessons #keep-searching').length > 0){
-      $('#search_lessons #keep-searching').trigger('click');
-    }
   });
   
   $('body').on('click', '#which_item_to_search_switch_lessons', function() {
@@ -733,12 +707,7 @@ $(document).ready(function() {
         $('#general_pagination').show();
       }
     });
-    if($('#search_media_elements #keep-searching').length > 0){
-      $('#search_media_elements #keep-searching').trigger('click');
-    }
   });
-  
-  // FIXME FINO A QUI
   
   $('body').on('focus', '#lessons_tag_reader_for_search', function() {
     if($('#lessons_tag_kind_for_search').val() == '') {
@@ -779,24 +748,6 @@ $(document).ready(function() {
       form.find('._keep_searching').hide();
     });
   });
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   // VIRTUAL CLASSROOM
