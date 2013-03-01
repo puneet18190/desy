@@ -102,7 +102,7 @@ class SearchController < ApplicationController
   def initialize_specific_tag
     @specific_tag_id = correct_integer?(params[:tag_id]) ? params[:tag_id].to_i : nil
     @specific_tag = Tag.find_by_id @specific_tag_id
-    @word = # TODO qui manca aggiornare la word!!!! a seconda della tag id
+    # TODO qui manca aggiornare la word!!!! a seconda della tag id @word = ??
   end
   
 end
