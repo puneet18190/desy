@@ -142,11 +142,11 @@ CREATE TABLE lessons (
     is_public boolean DEFAULT false NOT NULL,
     parent_id integer,
     copied_not_modified boolean NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     token character varying(20),
     metadata text,
-    notified boolean DEFAULT true NOT NULL
+    notified boolean DEFAULT true NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -306,16 +306,16 @@ ALTER SEQUENCE mailing_list_groups_id_seq OWNED BY mailing_list_groups.id;
 CREATE TABLE media_elements (
     id integer NOT NULL,
     user_id integer NOT NULL,
+    sti_type character varying(255) NOT NULL,
+    media character varying(255),
     title character varying(255) NOT NULL,
     description text NOT NULL,
-    sti_type character varying(255) NOT NULL,
-    is_public boolean DEFAULT false NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    publication_date timestamp without time zone,
-    media character varying(255),
     metadata text,
-    converted boolean
+    converted boolean,
+    is_public boolean DEFAULT false NOT NULL,
+    publication_date timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -347,10 +347,10 @@ CREATE TABLE media_elements_slides (
     media_element_id integer NOT NULL,
     slide_id integer NOT NULL,
     "position" integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
     caption text,
-    alignment integer
+    alignment integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1216,38 +1216,10 @@ CREATE UNIQUE INDEX index_bookmarks_on_bookmarkable_type_bookmarkable_id_user_id
 
 
 --
--- Name: index_lessons_on_title; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_lessons_on_title ON lessons USING btree (title DESC);
-
-
---
--- Name: index_lessons_on_updated_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_lessons_on_updated_at ON lessons USING btree (updated_at DESC);
-
-
---
 -- Name: index_locations_on_ancestry; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_locations_on_ancestry ON locations USING btree (ancestry);
-
-
---
--- Name: index_media_elements_on_title; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_media_elements_on_title ON media_elements USING btree (title DESC);
-
-
---
--- Name: index_media_elements_on_updated_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_media_elements_on_updated_at ON media_elements USING btree (updated_at DESC);
 
 
 --
@@ -1541,27 +1513,11 @@ INSERT INTO schema_migrations (version) VALUES ('20120926153638');
 
 INSERT INTO schema_migrations (version) VALUES ('20120926153643');
 
-INSERT INTO schema_migrations (version) VALUES ('20120926160646');
-
 INSERT INTO schema_migrations (version) VALUES ('20120927141837');
-
-INSERT INTO schema_migrations (version) VALUES ('20121024101844');
-
-INSERT INTO schema_migrations (version) VALUES ('20121030094116');
-
-INSERT INTO schema_migrations (version) VALUES ('20121107172441');
-
-INSERT INTO schema_migrations (version) VALUES ('20121126140000');
 
 INSERT INTO schema_migrations (version) VALUES ('20121206140304');
 
-INSERT INTO schema_migrations (version) VALUES ('20121207091234');
-
 INSERT INTO schema_migrations (version) VALUES ('20130115155629');
-
-INSERT INTO schema_migrations (version) VALUES ('20130121130513');
-
-INSERT INTO schema_migrations (version) VALUES ('20130130090239');
 
 INSERT INTO schema_migrations (version) VALUES ('20130131093624');
 
