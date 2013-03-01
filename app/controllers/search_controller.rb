@@ -9,16 +9,34 @@ class SearchController < ApplicationController
     if @did_you_search
       case @search_item
         when 'lessons'
-          get_result_lessons
-          if @page > @pages_amount && @pages_amount != 0
-            @page = @pages_amount
+          if @specific_tag.nil?
             get_result_lessons
+            if @page > @pages_amount && @pages_amount != 0
+              @page = @pages_amount
+              get_result_lessons
+            end
+          else
+            get_result_lessons_by_specific_tag
+            if @page > @pages_amount && @pages_amount != 0
+              @page = @pages_amount
+              get_result_lessons_by_specific_tag
+            end
+            @tags = current_user.search_lessons(@word, 1, @for_page, SearchOrders::TITLE, @filter, @subject_id, true)
           end
         when 'media_elements'
-          get_result_media_elements
-          if @page > @pages_amount && @pages_amount != 0
-            @page = @pages_amount
+          if @specific_tag.nil?
             get_result_media_elements
+            if @page > @pages_amount && @pages_amount != 0
+              @page = @pages_amount
+              get_result_media_elements
+            end
+          else
+            get_result_media_elements_by_specific_tag
+            if @page > @pages_amount && @pages_amount != 0
+              @page = @pages_amount
+              get_result_media_elements_by_specific_tag
+            end
+            @tags = current_user.search_media_elements(@word, 1, @for_page, SearchOrders::TITLE, @filter, true)
           end
       end
     end
@@ -27,6 +45,20 @@ class SearchController < ApplicationController
   end
   
   private
+  
+  def get_result_media_elements_by_specific_tag
+    resp = current_user.search_media_elements(@specific_tag_id, @page, @for_page, @order, @filter)
+    @media_elements = resp[:records]
+    @pages_amount = resp[:pages_amount]
+    @media_elements_amount = resp[:records_amount]
+  end
+  
+  def get_result_lessons_by_specific_tag
+    resp = current_user.search_lessons(@specific_tag_id, @page, @for_page, @order, @filter, @subject_id)
+    @lessons = resp[:records]
+    @pages_amount = resp[:pages_amount]
+    @lessons_amount = resp[:records_amount]
+  end
   
   def get_result_media_elements
     resp = current_user.search_media_elements(@word, @page, @for_page, @order, @filter)
@@ -52,6 +84,7 @@ class SearchController < ApplicationController
     if @did_you_search
       @word = params[:word_placeholder].blank? ? '' : params[:word]
       @page = correct_integer?(params[:page]) ? params[:page].to_i : 1
+      initialize_specific_tag
       case @search_item
         when 'lessons'
           @filter = Filters::LESSONS_SEARCH_SET.include?(params[:filter]) ? params[:filter] : Filters::ALL_LESSONS
@@ -64,6 +97,12 @@ class SearchController < ApplicationController
           @for_page = MEDIA_ELEMENTS_FOR_PAGE
       end
     end
+  end
+  
+  def initialize_specific_tag
+    @specific_tag_id = correct_integer?(params[:tag_id]) ? params[:tag_id].to_i : nil
+    @specific_tag = Tag.find_by_id @specific_tag_id
+    @word = # TODO qui manca aggiornare la word!!!! a seconda della tag id
   end
   
 end
