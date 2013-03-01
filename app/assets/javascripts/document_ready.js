@@ -701,12 +701,18 @@ $(document).ready(function() {
   
   $('body').on('click', '._clickable_tag_for_lessons, ._clickable_tag_for_media_elements', function() {
     if(!$(this).hasClass('current')) {
-      window.location = updateURLParameter($('#info_container').data('currenturl'), 'tag_id', '' + $(this).data('param'));
+      var url = $('#info_container').data('currenturl');
+      url = updateURLParameter(url, 'tag_id', '' + $(this).data('param'));
+      url = updateURLParameter(url, 'page', '1');
+      window.location = url;
     }
   });
   
   $('body').on('click', '._clickable_tag_for_lessons.current, ._clickable_tag_for_media_elements.current', function() {
-    window.location = removeURLParameter($('#info_container').data('currenturl'), 'tag_id');
+    var url = $('#info_container').data('currenturl');
+    url = removeURLParameter(url, 'tag_id');
+    url = updateURLParameter(url, 'page', '1');
+    window.location = url;
   });
   
   $('body').on('focus', '#lessons_tag_reader_for_search', function() {
