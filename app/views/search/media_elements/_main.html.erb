@@ -12,17 +12,15 @@
           <tr>
             <td style="width:20%">
               <label><%= t('search.media_elements.keyword.label') %></label><br/>
-              <input type="text" name="word" value="<%= t('search.media_elements.keyword.placeholder') %>" class="text lower" id="media_elements_tag_reader_for_search" style="color:#bbb">
+              <input type="text" name="word" value="<%= t('search.media_elements.keyword.placeholder') %>" class="text lower" id="media_elements_tag_reader_for_search">
               <%= hidden_field_tag 'word_placeholder', '', :id => 'media_elements_tag_kind_for_search' %>
             </td>
             <td width="20%">
               <label><%= t('search.media_elements.filters.format') %></label><br/>
               <select name="filter" id="filter_search_media_elements">
                 <option value="<%= Filters::ALL_MEDIA_ELEMENTS %>" selected="selected"><%= Filters::CAPTIONS[Filters::ALL_MEDIA_ELEMENTS] %></option>
-                <% Filters::MEDIA_ELEMENTS_SEARCH_SET.each do |f| %>
-                  <% if f != Filters::ALL_MEDIA_ELEMENTS %>
-                    <option value="<%= f %>"><%= Filters::CAPTIONS[f] %></option>
-                  <% end %>
+                <% (Filters::MEDIA_ELEMENTS_SEARCH_SET - [Filters::ALL_MEDIA_ELEMENTS]).each do |f| %>
+                  <option value="<%= f %>"><%= Filters::CAPTIONS[f] %></option>
                 <% end %>
               </select>
             </td>
@@ -45,15 +43,13 @@
               <label for="<%= my_order_id %>"></label>
               &nbsp;<%= SearchOrders::CAPTIONS[SearchOrders::TITLE] %>
             </td>
-            <% SearchOrders::MEDIA_ELEMENTS_SET.each do |so| %>
-              <% if so != SearchOrders::TITLE %>
-                <% my_order_id = "#{so}_media_elements_radio_input" %>
-                <td width="5%">
-                  <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_media_elements_radio_input">
-                  <label for="<%= my_order_id %>"></label>
-                  &nbsp;<%= SearchOrders::CAPTIONS[so] %>
-                </td>
-              <% end %>
+            <% (SearchOrders::MEDIA_ELEMENTS_SET - [SearchOrders::TITLE]).each do |so| %>
+              <% my_order_id = "#{so}_media_elements_radio_input" %>
+              <td width="5%">
+                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_media_elements_radio_input">
+                <label for="<%= my_order_id %>"></label>
+                &nbsp;<%= SearchOrders::CAPTIONS[so] %>
+              </td>
             <% end %>
             <td colspan="3" width="60%">
             </td>
@@ -61,11 +57,7 @@
           <tr>
             <td>
               <br/><br/>
-              <% if @search_item == 'media_elements' && @did_you_search %>
-                <a id="search_media_elements_submit" title="<%= t('titles.refine_search') %>" class="cerca current"><%= t('search.short_label')%></a>
-              <% else %>
-                <a id="search_media_elements_submit" title="<%= t('titles.refine_search') %>" class="cerca"><%= t('search.short_label')%></a>
-              <% end %>
+              <%= submit_tag t('search.short_label'), :id => 'search_media_elements_submit', :title => t('titles.refine_search'), :class => 'cerca' %>
             </td>
           </tr>
         </table>
