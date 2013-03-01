@@ -3,54 +3,38 @@
   <thead>
     <tr>
       <th>
-        id<br> 
-        <a class="label" href="id ASC">▲</a>
-        <a class="label" href="id DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'id', :param=>'id'} %>
       </th>
       <th>
-        title<br>
-        <a class="label" href="title ASC">▲</a>
-        <a class="label" href="title DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'title', :param=>'title'} %>
       </th>
       <th>
-        subject<br>
-        <a class="label" href="subject_id ASC">▲</a>
-        <a class="label" href="subject_id DESC">▼</a>
-      </th>
-      <th>user<br>
-        <a class="label" href="user_id ASC">▲</a>
-        <a class="label" href="user_id DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'subject', :param=>'subject_id'} %>
       </th>
       <th>
-        location<br>
-        <a class="label" href="location_id ASC">▲</a>
-        <a class="label" href="location_id DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'user_id', :param=>'user_id'} %>
       </th>
       <th>
-        school<br>
-        <a class="label" href="location_id ASC">▲</a>
-        <a class="label" href="location_id DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'location', :param=>'location_id'} %>
       </th>
       <th>
-        created_at<br>
-        <a class="label" href="created_at ASC">▲</a>
-        <a class="label" href="created_at DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'school', :param=>'location_id'} %>
       </th>
       <th>
-        updated_at<br>
-        <a class="label" href="updated_at ASC">▲</a>
-        <a class="label" href="updated_at DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'created at', :param=>'created_at'} %>
       </th>
       <th>
-        likes<br>
-        <a class="label" href="likes_count_all ASC">▲</a>
-        <a class="label" href="likes_count_all DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'last update', :param=>'updated_at'} %>
+      </th>
+      <th>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'likes', :param=>'likes'} %>
       </th>
       <th></th>
       <th></th>
     </tr>
   </thead>
   <tbody>
+    <a name="list-anchor"></a>
     <% lessons.each do |lesson| %>
 
         <tr class="collapse">

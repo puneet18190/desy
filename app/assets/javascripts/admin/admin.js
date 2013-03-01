@@ -70,7 +70,7 @@ $(document).ready(function(){
   $('body').on('click', 'table#elements-list thead tr th a', function(e){
     e.preventDefault();
     $this = $(this)
-    var order_by = $this.attr('href');
+    var order_by = $this.data('ordering');
     $("input#search_ordering").val(order_by);
     $('#admin-search-elements').submit();
   });

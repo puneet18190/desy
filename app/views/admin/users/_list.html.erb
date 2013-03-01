@@ -3,39 +3,28 @@
   <thead>
     <tr>
       <th>
-        id<br> 
-        <a class="label" href="id ASC">▲</a>
-        <a class="label" href="id DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'id', :param=>'id'} %>
       </th>
       <th>
-        email<br>
-        <a class="label" href="email ASC">▲</a>
-        <a class="label" href="email DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'email', :param=>'email'} %>
       </th>
       <th>
-        name<br>
-        <a class="label" href="user_id ASC">▲</a>
-        <a class="label" href="user_id DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'name', :param=>'name'} %>
       </th>
       <th>
-        surname<br>
-        <a class="label" href="user_id ASC">▲</a>
-        <a class="label" href="user_id DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'surname', :param=>'surname'} %>
       </th>
       <th>
-        location<br>
-        <a class="label" href="location_id ASC">▲</a>
-        <a class="label" href="location_id DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'location', :param=>'location_id'} %>
       </th>
       <th>
-        school<br>
-        <a class="label" href="location_id ASC">▲</a>
-        <a class="label" href="location_id DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'school', :param=>'location_id'} %>
       </th>
       <th>
-        created_at<br>
-        <a class="label" href="created_at ASC">▲</a>
-        <a class="label" href="created_at DESC">▼</a>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'school level', :param=>'school_level_id'} %>
+      </th>
+      <th>
+        <%= render :partial => 'admin/ordering', :locals => {:name => 'created at', :param=>'created_at'} %>
       </th>
       <th></th>
       <th></th>
@@ -51,7 +40,8 @@
         <td><%= user.name %></td>
         <td><%= user.surname %></td>
         <td><%= user.province %> - <%= user.town %></td>
-        <td><%= user.school %> (<%= user.school_level.description %>)</td>
+        <td><%= user.school %></td>
+        <td><%= user.school_level.description %></td>
         <td><%= user.created_at.strftime('%d-%m-%Y')%></td>
         <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user), :title=> t('admin.users.index.show'), :target => :blank, :class=>"action"%></td>
         <td><%= link_to '<i class="icon-envelope"></i>'.html_safe, "/admin/users/contact?users=#{user.id}", :title=> t('admin.users.index.message'), :target => :blank, :class=>"action"%></td>
