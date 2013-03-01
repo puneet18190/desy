@@ -683,6 +683,29 @@ $(document).ready(function() {
   });
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  // FIXME DA QUI
+  
   // SEARCH ITEMS
   
   $('body').on('click', '#which_item_to_search_switch_media_elements', function() {
@@ -722,18 +745,26 @@ $(document).ready(function() {
     $('#search_general_submit').removeClass('current');
   });
   
+  $('body').on('click','#keep-searching',function(){
+    removeKeepSearching(this);
+  });
+  
+  // FIXME FINO A QUI
+  
   $('body').on('focus', '#lessons_tag_reader_for_search', function() {
-    $(this).attr('value', '');
-    $(this).css('color', '#939393');
-    $('#lessons_tag_kind_for_search').attr('value', '0');
-    $('#search_lessons_submit').removeClass('current');
+    if($('#lessons_tag_kind_for_search').val() == '') {
+      $(this).val('');
+      $(this).css('color', '#939393');
+      $('#lessons_tag_kind_for_search').val('0');
+    }
   });
   
   $('body').on('focus', '#media_elements_tag_reader_for_search', function() {
-    $(this).attr('value', '');
-    $(this).css('color', '#939393');
-    $('#media_elements_tag_kind_for_search').attr('value', '0');
-    $('#search_media_elements_submit').removeClass('current');
+    if($('#media_elements_tag_kind_for_search').val() == '') {
+      $(this).val('');
+      $(this).css('color', '#939393');
+      $('#media_elements_tag_kind_for_search').val('0');
+    }
   });
   
   $('body').on('click', '#search_general_submit', function() {
@@ -743,45 +774,24 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click', '#search_media_elements_submit', function() {
-    if(!$(this).hasClass('current')) {
-      $('#search_media_elements').submit();
-      $(this).addClass('current');
-      addKeepSearching(this);
-    }
-  });
   
-  $('body').on('click', '#search_lessons_submit', function() {
-    if(!$(this).hasClass('current')) {
-      $('#search_lessons').submit();
-      $(this).addClass('current');
-      addKeepSearching(this);
-    }
-  });
   
-  $('body').on('click','#keep-searching',function(){
-    removeKeepSearching(this);
-  });
   
-  $('body').on('change', '#filter_search_lessons_subject', function() {
-    $('#search_lessons_submit').removeClass('current');
-  });
   
-  $('body').on('change', '#filter_search_lessons', function() {
-    $('#search_lessons_submit').removeClass('current');
-  });
   
-  $('body').on('change', '#filter_search_media_elements', function() {
-    $('#search_media_elements_submit').removeClass('current');
-  });
   
-  $('body').on('change', '._order_media_elements_radio_input', function() {
-    $('#search_media_elements_submit').removeClass('current');
-  });
   
-  $('body').on('change', '._order_lessons_radio_input', function() {
-    $('#search_lessons_submit').removeClass('current');
-  });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   // VIRTUAL CLASSROOM
