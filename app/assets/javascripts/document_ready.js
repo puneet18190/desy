@@ -699,23 +699,15 @@ $(document).ready(function() {
     });
   });
   
-  
-  // FIXME DA QUI
-  
-  $('body').on('click', '._clickable_tag_for_lessons', function() {
-    var param = $(this).data('param');
-    $('#lessons_tag_kind_for_search').attr('value', param);
-    $('#search_lessons').submit();
+  $('body').on('click', '._clickable_tag_for_lessons, ._clickable_tag_for_media_elements', function() {
+    if(!$(this).hasClass('current')) {
+      window.location = updateURLParameter($('#info_container').data('currenturl'), 'tag_id', '' + $(this).data('param'));
+    }
   });
   
-  $('body').on('click', '._clickable_tag_for_media_elements', function() {
-    var param = $(this).data('param');
-    $('#media_elements_tag_kind_for_search').attr('value', param);
-    $('#search_media_elements').submit();
+  $('body').on('click', '._clickable_tag_for_lessons.current, ._clickable_tag_for_media_elements.current', function() {
+    window.location = removeURLParameter($('#info_container').data('currenturl'), 'tag_id');
   });
-  
-  // FIXME FINO A QUI
-  
   
   $('body').on('focus', '#lessons_tag_reader_for_search', function() {
     if($('#lessons_tag_kind_for_search').val() == '') {
