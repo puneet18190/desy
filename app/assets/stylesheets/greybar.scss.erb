@@ -119,6 +119,12 @@
   }
 }
 
+._keep_searching {
+  background: url('/assets/select-icons.png') 0 -123px no-repeat;
+  padding-left: 30px;
+  margin-left:-4px;
+}
+
 .advanced-search-content {
  .contentSearch {
    width: 100%;
@@ -138,6 +144,7 @@
      }
      .sbHolder{
        width: 170px;
+       font-size: 100%;
      }
      .sbOptions{
        width: 170px;
@@ -145,11 +152,13 @@
      
      .cerca{
        background:#555;
+       border-radius: 0;
        color: #fff;
        text-transform: uppercase;
        padding: 10px 30px;
        font-family: Arial, sans-serif;
        margin: 0;
+       cursor: pointer;
        &:hover{
          background:#999;
        }
@@ -159,11 +168,6 @@
        }
      }
      
-     #keep-searching{
-       background: url('/assets/select-icons.png') 0 -123px no-repeat;
-       padding-left: 30px;
-       margin-left:-4px;
-     }
    }
 
   }

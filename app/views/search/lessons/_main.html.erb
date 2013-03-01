@@ -1,31 +1,41 @@
-<div id="search_lessons_main_page" style="display:<%= @search_item == 'lessons' ? 'block'.html_safe : 'none'.html_safe %>">
+<%
+  display = ['none'.html_safe, 'block'.html_safe]
+  display = ['block'.html_safe, 'none'.html_safe] if active
+%>
+
+
+<div id="search_lessons_main_page" style="display:<%= pointed ? 'block'.html_safe : 'none'.html_safe %>">
+  
   
   <div class="contentSearch">
     <div class="boxCerca">
-      <form id="search_lessons" class="search-form" method="get" action="/search" data-remote="true">
+      <form id="search_lessons" class="search-form" method="get" action="/search">
+        
+        <a class="_keep_searching" style="display:<%= display[0] %>"><%= t('search.again') %></a>
+        
         <%= hidden_field_tag 'item', 'lessons' %>
-        <table summary="" cellpadding="0" cellspacing="0" style="width:100%;">
+        <table class="_search_engine_form" summary="" cellpadding="0" cellspacing="0" style="width:100%; display:<%= display[1] %>">
           <tr>
             <td width="20%">
               <label><%= t('search.lessons.keyword.label') %></label><br />
-              <input type="text" name="word" value="<%= t('search.lessons.keyword.placeholder') %>" class="text lower" id="lessons_tag_reader_for_search" style="color:#999">
+              <input type="text" name="word" value="<%= t('search.lessons.keyword.placeholder') %>" class="text lower" id="lessons_tag_reader_for_search">
               <%= hidden_field_tag 'word_placeholder', '', :id => 'lessons_tag_kind_for_search' %>
             </td>
             <td width="20%">
               <label><%= t('search.lessons.filters.author') %></label><br />
               <select name="filter" id="filter_search_lessons">
-                <% filter = @filter.nil? Filters::ALL_LESSONS : @filter %>
-                <% Filters::LESSONS_SEARCH_SET.each do |f| %>
-                  <option value="<%= f %>" <%= (f == filter) ? "selected=\"selected\"".html_safe : '' %>><%= Filters::CAPTIONS[f] %></option>
+                <option value="<%= Filters::ALL_LESSONS %>" selected="selected"><%= Filters::CAPTIONS[Filters::ALL_LESSONS] %></option>
+                <% (Filters::LESSONS_SEARCH_SET - [Filters::ALL_LESSONS]).each do |f| %>
+                  <option value="<%= f %>"><%= Filters::CAPTIONS[f] %></option>
                 <% end %>
               </select>
             </td>
             <td width="20%">
               <label><%= t('search.lessons.filters.subject') %></label><br />
               <select name="subject_id" id="filter_search_lessons_subject">
-                <option value="" <%= @subject_id.nil? ? "selected=\"selected\"".html_safe : '' %>><%= t('search.lessons.filters.all_subjects') %></option>
-                <% Subject.order(:description).each do |s| %>
-                  <option value="<%= s.id %>" <%= (@subject_id == s.id) ? "selected=\"selected\"".html_safe : '' %>><%= s.description %></option>
+                <option value="" selected="selected"><%= t('search.lessons.filters.all_subjects') %></option>
+                <% subjects.each do |s| %>
+                  <option value="<%= s.id %>"><%= s.description %></option>
                 <% end %>
               </select>
             </td>
@@ -37,14 +47,18 @@
           <tr>
           </tr>
           <tr>
-            <td><br /><h3><%= t('search.lessons.sort') %></h3></td>
+            <td><br/><h3><%= t('search.lessons.sort') %></h3></td>
           </tr>
           <tr>
-            <% order = @order.nil? SearchOrders::TITLE : @order %>
-            <% SearchOrders::LESSONS_SET.each do |so| %>
+            <% my_order_id = "#{SearchOrders::TITLE}_lessons_radio_input" %>
+            <td width="5%">
+              <input type="radio" name="order" id="<%= my_order_id %>" value="<%= SearchOrders::TITLE %>" class="regular-radio _order_lessons_radio_input" checked="checked">
+              <label for="<%= my_order_id %>"> </label>&nbsp;<%= SearchOrders::CAPTIONS[SearchOrders::TITLE] %>
+            </td>
+            <% (SearchOrders::LESSONS_SET - [SearchOrders::TITLE]).each do |so| %>
               <% my_order_id = "#{so}_lessons_radio_input" %>
               <td width="5%">
-                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_lessons_radio_input" <%= (so == order) ? "checked=\"checked\"".html_safe : '' %>>
+                <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_lessons_radio_input">
                 <label for="<%= my_order_id %>"> </label>&nbsp;<%= SearchOrders::CAPTIONS[so] %>
               </td>
             <% end %>
@@ -54,33 +68,25 @@
           <tr>
             <td>
               <br/><br/>
-              <% if @search_item == 'lessons' && @did_you_search %>
-                <a id="search_lessons_submit" title="<%= t('titles.refine_search') %>" class="cerca current"><%= t('search.short_label')%></a>
-              <% else %>
-                <a id="search_lessons_submit" title="<%= t('titles.refine_search') %>" class="cerca"><%= t('search.short_label')%></a>
-              <% end %>
+              <%= submit_tag t('search.short_label'), :id => 'search_lessons_submit', :title => t('titles.refine_search'), :class => 'cerca' %>
             </td>
           </tr>
         </table>
-        <div class="clearfloat"></div>
+        
       </form>
     </div>
   </div>
-  <br class="clearfloat">
-  <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) %>
-    <%= render :partial => "search/lessons/amount", :locals => {:amount => @lessons_amount} %>
-  <% else %>
-    <div id="lessons_search_amount"></div>
-  <% end %>
-  
-  <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) && @tags.any? %>
-    <%= render :partial => "search/lessons/tag_details", :locals => {:tags => @tags, :tag => @tag} %>
-  <% else %>
-    <div id="lessons_tag_details" style="margin-bottom:0"></div>
-  <% end %>
   
   <br class="clearfloat">
   
-  <%= render :partial => "search/lessons/results", :locals => {:lessons => @lessons} %>
+  <% if active %>
+    <% if results[:amount] > 0 %>
+      <%= render :partial => "search/lessons/amount", :locals => {:amount => results[:amount]} %>
+      <% if results[:tags].any? %>
+        <%= render :partial => "search/lessons/tag_details", :locals => {:tags => results[:tags]} %>
+      <% end %>
+    <% end %>
+    <%= render :partial => "search/lessons/results", :locals => {:lessons => results[:records], :word => word} %>
+  <% end %>
   
 </div>

@@ -1,7 +1,5 @@
-<% if @tag.kind_of?(Tag) %>
-  <div class="emptyFilter"><h1><%= t('search.lessons.empty_tag', :tag => @tag.word) %></h1></div>
-<% elsif !@tag.blank? %>
-  <div class="emptyFilter"><h1><%= t('search.lessons.empty_word', :word => @tag) %></h1></div>
-<% else %>
+<% if word.blank? %>
   <div class="emptyFilter"><h1><%= t('search.lessons.empty_filter') %></h1></div>
+<% else %>
+  <div class="emptyFilter"><h1><%= t('search.lessons.empty_word', :word => word) %></h1></div>
 <% end %>

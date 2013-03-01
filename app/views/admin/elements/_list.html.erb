@@ -3,59 +3,38 @@
     <thead>
       <tr>
         <th>
-          <div class="pull-left" style="padding-top:10px">id</div>
-          <div class="pull-right">
-            <a href="id ASC"><i class="icon-chevron-up"></i></a><br>
-            <a href="id DESC"><i class="icon-chevron-down"></i></a>
-          </div>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'id', :param=>'id'} %>
         </th>
         <th>
-          <div class="pull-left" style="padding-top:10px">title</div>
-          <div class="pull-right">
-            <a href="title ASC"><i class="icon-chevron-up"></i></a><br>
-            <a href="title DESC"><i class="icon-chevron-down"></i></a>
-          </div>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'title', :param=>'title'} %>
+        </div>
         </th>
         <th>
-          <div class="pull-left" style="padding-top:10px">media type</div>
-          <div class="pull-right">
-            <a href="sti_type ASC"><i class="icon-chevron-up"></i></a><br>
-            <a href="sti_type DESC"><i class="icon-chevron-down"></i></a>
-          </div>
-        </th>
-        <th>user<br>
-          <a class="label" href="user_id ASC">▲</a>
-          <a class="label" href="user_id DESC">▼</a>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'media_type', :param=>'sti_type'} %>
         </th>
         <th>
-          location<br>
-          <a class="label" href="location_id ASC">▲</a>
-          <a class="label" href="location_id DESC">▼</a>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'user', :param=>'user_id'} %>
         </th>
         <th>
-          school<br>
-          <a class="label" href="location_id ASC">▲</a>
-          <a class="label" href="location_id DESC">▼</a>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'location', :param=>'location_id'} %>
         </th>
         <th>
-          created_at<br>
-          <a class="label" href="created_at ASC">▲</a>
-          <a class="label" href="created_at DESC">▼</a>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'school', :param=>'location_id'} %>
         </th>
         <th>
-          updated_at<br>
-          <a class="label" href="updated_at ASC">▲</a>
-          <a class="label" href="updated_at DESC">▼</a>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'created at', :param=>'created_at'} %>
         </th>
         <th>
-          public<br>
-          <a class="label" href="is_public ASC">▲</a>
-          <a class="label" href="is_public DESC">▼</a>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'last update', :param=>'updated_at'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'public', :param=>'is_public'} %>
         </th>
         <th></th>
       </tr>
     </thead>
     <tbody>
+      <a name="list-anchor"></a>
     <% elements.each do |element| %>
       <tr class="collapse">
         <td><%= element.id %></td>
@@ -71,7 +50,9 @@
           <a href="#" class="_publish_list_element action" title="publish" data-param="<%= element.id %>"><i class="icon-globe"></i></a>
           <% end %>
         </td>
-        <td><a href="#" class="_delete_list_element action"  title="delete" data-param="<%= element.id %>"><i class="icon-remove"></i></a></td>
+        <td>
+          <%= link_to '<i class="icon-remove"></i>'.html_safe, '#',:confirm => t('admin.general.ask_for_delete'), :class=>"_delete_list_element action","data-param"=>element.id %>
+        </td>
       </tr>
       <div style="clear:both;"></div>
       <tr class="collapsed">

@@ -22,6 +22,7 @@ class SearchController < ApplicationController
           end
       end
     end
+    @subjects = Subject.order(:description)
     render_js_or_html_index
   end
   

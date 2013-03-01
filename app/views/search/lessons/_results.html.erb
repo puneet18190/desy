@@ -1,11 +1,9 @@
 <div id="found_lessons">
-  <% if @did_you_search && @search_item == 'lessons' %>
-    <% if @lessons.empty? %>
-      <%= render :partial => "search/lessons/empty" %>
-    <% else %>
-      <% @lessons.each do |l| %>
-        <%= render :partial => "lessons/view_single_compact", :locals => {:lesson => l, :destination => ButtonDestinations::FOUND_LESSON} %>
-      <% end %>
+  <% if lessons.empty? %>
+    <%= render :partial => 'search/lessons/empty', :locals => {:word => word} %>
+  <% else %>
+    <% lessons.each do |l| %>
+      <%= render :partial => 'lessons/view_single_compact', :locals => {:lesson => l, :destination => ButtonDestinations::FOUND_LESSON} %>
     <% end %>
   <% end %>
 </div>

@@ -181,6 +181,8 @@
     }
   }
   
+  .ui-helper-hidden-accessible { display:none; }
+  
   .element-update-form{
     img{
       margin: 20px auto;
@@ -297,6 +299,10 @@
   
   .dashboard table, &.show-action table, table.white{
     background-color: #ffffff;
+  }
+  
+  .list-heading{
+    padding-top: 10px;
   }
   
   &.show-action table thead th a.label{
