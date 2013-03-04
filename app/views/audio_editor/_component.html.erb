@@ -62,9 +62,9 @@
           <%= t('audio_editor.cutters.selected') %>: <span class="_cutter_from"><%= from %></span><%= ' - '.html_safe %><span class="_cutter_to"><%= to %></span>
         </div>
         <div class="audioComponentControls _controls" style="visibility:hidden">
-          <a class="rewind"></a>
-          <a class="play _media_player_play_in_audio_editor_preview upper"></a>
-          <a class="pause _media_player_pause_in_audio_editor_preview upper"><%= t('audio_editor.cutters.pause') %></a>
+          <a class="rewind _media_player_rewind_in_audio_editor_preview" title="<%= t('titles.audio_editor.audio_cutter.rewind') %>"></a>
+          <a class="play _media_player_play_in_audio_editor_preview" title="<%= t('titles.audio_editor.audio_cutter.play') %>"></a>
+          <a class="pause _media_player_pause_in_audio_editor_preview" title="<%= t('titles.audio_editor.audio_cutter.pause') %>">PAUSE</a>
         </div>
       </div>
       
