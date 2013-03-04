@@ -704,6 +704,7 @@ function increaseVideoEditorPreviewTimer(with_component) {
     var component_time = component.data('current-preview-time');
     component.find('._video_component_icon ._right').html(secondsToDateString(component_time + 1));
     component.data('current-preview-time', component_time + 1);
+    $('#video_editor_preview_slider').slider('value', component_time + 1);
   }
 }
 
