@@ -36,7 +36,7 @@
     <tbody>
       <a name="list-anchor"></a>
     <% elements.each do |element| %>
-      <tr class="collapse">
+      <tr class="collapse" id="<%= element.id %>">
         <td><%= element.id %></td>
         <td><%= element.title%></td>
         <td><%= element.sti_type%></td>
@@ -78,6 +78,11 @@
     <% end %>
     </tbody>
   </table>
+    <% if params[:search].present? && params[:search][:id].present?%>
+      <script type="text/javascript" charset="utf-8">
+        openAndLoadNextTr($('tr#<%=params[:search][:id] %>'));
+      </script>
+    <% end %>
 <% else %>
   <div class="widget">
     <%= t('admin.elements.index.not_found') %>

@@ -1,5 +1,9 @@
 <%= render :partial => "search" %>
 <h3><%= t('admin.users.index.name')%></h3>
-<%= render :partial => "admin/list_heading", :locals => {:items => @users, :expandable => false} %>
+<% if @users.count > 1 %>
+  <%= render :partial => "admin/list_heading", :locals => {:items => @users, :expandable => false} %>
+<% end %>
 <%= render :partial => 'admin/users/list', :locals => {:users => @users}%>
-<%= render :partial => "admin/list_heading", :locals => {:items => @users, :expandable => false} %>
+<% if @users.count > 1 %>
+  <%= render :partial => "admin/list_heading", :locals => {:items => @users, :expandable => false} %>
+<% end %>
