@@ -2,6 +2,7 @@ $(document).ready(function() {
   
   
   // BROWSER DETECTION: DECLARING BROWSER NAME AND VERSION AS HTML TAG CLASS
+  
   (function(){
     var name = $.grep(_.keys($.browser), function(el, i) {
       return el !== 'version';
@@ -13,6 +14,7 @@ $(document).ready(function() {
   
   
   // AFTER WINDOW RESIZE
+  
   $(window).resize(function() {
     if($('#my_media_elements').length > 0 || $('#media_elements_in_dashboard').length > 0){
       recenterMyMediaElements();
@@ -185,18 +187,6 @@ $(document).ready(function() {
     var for_page = $('#for_page_media_elements option:selected').val();
     var redirect_url = getCompleteMediaElementsUrlWithoutForPage() + '&for_page=' + for_page;
     $.get(redirect_url);
-  });
-  
-  $('body').on('click', '._clickable_tag_for_lessons', function() {
-    var param = $(this).data('param');
-    $('#lessons_tag_kind_for_search').attr('value', param);
-    $('#search_lessons').submit();
-  });
-  
-  $('body').on('click', '._clickable_tag_for_media_elements', function() {
-    var param = $(this).data('param');
-    $('#media_elements_tag_kind_for_search').attr('value', param);
-    $('#search_media_elements').submit();
   });
   
   
@@ -683,29 +673,6 @@ $(document).ready(function() {
   });
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  // FIXME DA QUI
-  
   // SEARCH ITEMS
   
   $('body').on('click', '#which_item_to_search_switch_media_elements', function() {
@@ -718,9 +685,6 @@ $(document).ready(function() {
         $('#general_pagination').show();
       }
     });
-    if($('#search_lessons #keep-searching').length > 0){
-      $('#search_lessons #keep-searching').trigger('click');
-    }
   });
   
   $('body').on('click', '#which_item_to_search_switch_lessons', function() {
@@ -733,19 +697,23 @@ $(document).ready(function() {
         $('#general_pagination').show();
       }
     });
-    if($('#search_media_elements #keep-searching').length > 0){
-      $('#search_media_elements #keep-searching').trigger('click');
+  });
+  
+  $('body').on('click', '._clickable_tag_for_lessons, ._clickable_tag_for_media_elements', function() {
+    if(!$(this).hasClass('current')) {
+      var url = $('#info_container').data('currenturl');
+      url = updateURLParameter(url, 'tag_id', '' + $(this).data('param'));
+      url = updateURLParameter(url, 'page', '1');
+      window.location = url;
     }
   });
   
-  $('body').on('focus', '#general_tag_reader_for_search', function() {
-    $(this).attr('value', '');
-    $(this).css('color', '#939393');
-    $('#general_tag_kind_for_search').attr('value', '0');
-    $('#search_general_submit').removeClass('current');
+  $('body').on('click', '._clickable_tag_for_lessons.current, ._clickable_tag_for_media_elements.current', function() {
+    var url = $('#info_container').data('currenturl');
+    url = removeURLParameter(url, 'tag_id');
+    url = updateURLParameter(url, 'page', '1');
+    window.location = url;
   });
-  
-  // FIXME FINO A QUI
   
   $('body').on('focus', '#lessons_tag_reader_for_search', function() {
     if($('#lessons_tag_kind_for_search').val() == '') {
@@ -761,6 +729,13 @@ $(document).ready(function() {
       $(this).css('color', '#939393');
       $('#media_elements_tag_kind_for_search').val('0');
     }
+  });
+  
+  $('body').on('focus', '#general_tag_reader_for_search', function() {
+    $(this).attr('value', '');
+    $(this).css('color', '#939393');
+    $('#general_tag_kind_for_search').attr('value', '0');
+    $('#search_general_submit').removeClass('current');
   });
   
   $('body').on('click', '#search_general_submit', function() {
@@ -779,24 +754,6 @@ $(document).ready(function() {
       form.find('._keep_searching').hide();
     });
   });
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   // VIRTUAL CLASSROOM
@@ -1167,6 +1124,7 @@ $(document).ready(function() {
     if($('#video_editor_global_preview').data('arrows')) {
       selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).prev());
       showVideoEditorPreviewArrowToComponents();
+      hideVideoEditorPreviewComponentProgressBar();
       followPreviewComponentsWithHorizontalScrollInVideoEditor();
     }
   });
@@ -1175,6 +1133,7 @@ $(document).ready(function() {
     if($('#video_editor_global_preview').data('arrows')) {
       selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).next());
       showVideoEditorPreviewArrowToComponents();
+      hideVideoEditorPreviewComponentProgressBar();
       followPreviewComponentsWithHorizontalScrollInVideoEditor();
     }
   });
@@ -1190,6 +1149,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#exit_video_editor_preview', function() {
+    hideVideoEditorPreviewComponentProgressBar();
     $('#info_container').data('forced-kevin-luck-style', '');
     $('#video_editor_global_preview_pause').removeClass('_enabled');
     $('#video_editor_preview_go_to_left_component, #video_editor_preview_go_to_right_component').hide();

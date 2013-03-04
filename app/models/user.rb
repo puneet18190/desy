@@ -144,23 +144,33 @@ class User < ActiveRecord::Base
     !Audio.where(converted: nil, user_id: id).exists?
   end
   
-  def search_media_elements(word, page, for_page, order=nil, filter=nil)
+  def search_media_elements(word, page, for_page, order=nil, filter=nil, only_tags=nil)
+    only_tags = false if only_tags.nil?
     page = 1 if page.class != Fixnum || page <= 0
     for_page = 1 if for_page.class != Fixnum || for_page <= 0
     filter = Filters::ALL_MEDIA_ELEMENTS if filter.nil? || !Filters::MEDIA_ELEMENTS_SEARCH_SET.include?(filter)
     order = SearchOrders::UPDATED_AT if order.nil? || !SearchOrders::MEDIA_ELEMENTS_SET.include?(order)
     offset = (page - 1) * for_page
     if word.blank?
-      search_media_elements_without_tag(offset, for_page, filter, order)
+      return search_media_elements_without_tag(offset, for_page, filter, order)
     else
-      word = word.to_s if word.class != Fixnum
-      resp = search_media_elements_with_tag(word, offset, for_page, filter, order)
-      resp[:tags] = get_tags_associated_to_media_element_search(word, filter) if word.class != Fixnum
-      resp
+      if word.class != Fixnum
+        word = word.to_s
+        if only_tags
+          return get_tags_associated_to_media_element_search(word, filter)
+        else
+          resp = search_media_elements_with_tag(word, offset, for_page, filter, order)
+          resp[:tags] = get_tags_associated_to_media_element_search(word, filter)
+          return resp
+        end
+      else
+        return search_media_elements_with_tag(word, offset, for_page, filter, order)
+      end
     end
   end
   
-  def search_lessons(word, page, for_page, order=nil, filter=nil, subject_id=nil)
+  def search_lessons(word, page, for_page, order=nil, filter=nil, subject_id=nil, only_tags=nil)
+    only_tags = false if only_tags.nil?
     page = 1 if page.class != Fixnum || page <= 0
     for_page = 1 if for_page.class != Fixnum || for_page <= 0
     subject_id = nil if ![NilClass, Fixnum].include?(subject_id.class)
@@ -168,12 +178,20 @@ class User < ActiveRecord::Base
     order = SearchOrders::UPDATED_AT if order.nil? || !SearchOrders::LESSONS_SET.include?(order)
     offset = (page - 1) * for_page
     if word.blank?
-      search_lessons_without_tag(offset, for_page, filter, subject_id, order)
+      return search_lessons_without_tag(offset, for_page, filter, subject_id, order)
     else
-      word = word.to_s if word.class != Fixnum
-      resp = search_lessons_with_tag(word, offset, for_page, filter, subject_id, order)
-      resp[:tags] = get_tags_associated_to_lesson_search(word, filter, subject_id) if word.class != Fixnum
-      resp
+      if word.class != Fixnum
+        word = word.to_s
+        if only_tags
+          return get_tags_associated_to_lesson_search(word, filter, subject_id)
+        else
+          resp = search_lessons_with_tag(word, offset, for_page, filter, subject_id, order)
+          resp[:tags] = get_tags_associated_to_lesson_search(word, filter, subject_id)
+          return resp
+        end
+      else
+        return search_lessons_with_tag(word, offset, for_page, filter, subject_id, order)
+      end
     end
   end
   

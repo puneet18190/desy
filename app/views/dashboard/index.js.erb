@@ -20,7 +20,7 @@ to_delete.hide('fade', {}, 500, function() {
     showOkPopUp(temporary_msg);
     $('#popup_captions_container').data('temporary-msg', '');
   }
-  $('#dashboard').replaceWith("<%= j(render(:partial => "dashboard/lessons_and_media_elements")) %>");
+  $('#dashboard').replaceWith("<%= j(render(:partial => 'dashboard/lessons_and_media_elements')) %>");
   reloadDashboardPages(lessons_page, media_elements_page);
   if('<%= @delete_item %>'.search('media_element') != -1) {
     $('#lessons_in_dashboard').hide();
@@ -33,4 +33,4 @@ to_delete.hide('fade', {}, 500, function() {
   }
 });
 
-$('#info_container').data('currenturl', '<%= manipulate_request_url(remove_query_param: 'delete_item') %>');
+$('#info_container').data('currenturl', <%= manipulate_request_url(remove_query_param: "delete_item", page: @page).to_json.html_safe %>);
