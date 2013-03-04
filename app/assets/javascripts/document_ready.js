@@ -1996,6 +1996,7 @@ $(document).ready(function() {
     var identifier = getAudioComponentIdentifier(component);
     component.data('playing', true);
     component.find('._media_player_slider_disabler').show();
+    component.find('._media_player_rewind_in_audio_editor_preview').hide();
     component.find('._media_player_pause_in_audio_editor_preview').show();
     deselectAllAudioEditorCursors(identifier);
     var audio = component.find('audio');
@@ -2019,9 +2020,18 @@ $(document).ready(function() {
     var identifier = getAudioComponentIdentifier(component);
     component.data('playing', false);
     component.find('._media_player_slider_disabler').hide();
+    component.find('._media_player_rewind_in_audio_editor_preview').show();
     component.find('._media_player_play_in_audio_editor_preview').show();
     selectAudioEditorCursor(identifier);
     component.find('audio')[0].pause();
+  });
+  
+  $('body').on('click', '._media_player_rewind_in_audio_editor_preview', function() {
+    var component = $(this).parents('._audio_editor_component');
+    var initial_time = component.data('from');
+    component.find('._media_player_slider').slider('value', initial_time);
+    setCurrentTimeToMedia(component.find('audio'), initial_time);
+    component.find('._current_time').html(secondsToDateString(initial_time));
   });
   
   $('body').on('click', '._audio_editor_component ._double_slider .ui-slider-range', function(e) {
