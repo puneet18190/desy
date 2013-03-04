@@ -568,6 +568,7 @@ function startVideoEditorGlobalPreview() {
   if(current_component.data('position') == getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186) + 1) {
     playVideoEditorComponent(current_component, false);
   } else {
+    hideVideoEditorPreviewComponentProgressBar();
     playVideoEditorComponent(current_component, true);
   }
 }
