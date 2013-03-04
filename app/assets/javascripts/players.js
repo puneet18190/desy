@@ -110,6 +110,7 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
           $('#video_component_' + next_identifier + '_preview').show('fade', {}, 1000, function() {
             hideVideoEditorPreviewComponentProgressBar();
             setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), $('#video_component_' + identifier + '_cutter').data('from'));
+            $('#video_component_' + identifier + ' ._video_component_icon ._right').html(secondsToDateString(0));
             if(!$('#video_editor_global_preview').data('in-use')) {
               $('._video_component_transition').addClass('current');
             }
