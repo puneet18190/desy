@@ -71,9 +71,8 @@ class Admin::ElementsController < AdminController
   
   def destroy
     if !@element.delete_without_callbacks
-      @error = @element.get_base_error
+      @errors = @element.get_base_error
     end
-    render :nothing => true
   end
   
   def load_element
