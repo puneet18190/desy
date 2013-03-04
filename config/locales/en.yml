@@ -1567,9 +1567,7 @@ en:
     label: "Advanced search"
     # Button to start the research
     # 1 - views/search/lessons/_main.html.erb
-    # 2 - views/search/lessons/_main.html.erb
-    # 3 - views/search/media_elements/_main.html.erb
-    # 4 - views/search/media_elements/_main.html.erb
+    # 2 - views/search/media_elements/_main.html.erb
     short_label: "Search"
     # Placeholder of the quick search present in all the sections
     # 1 - views/shared/_search.html.erb
@@ -1584,7 +1582,8 @@ en:
     # 1 - views/search/index.html.erb
     description: "Insert a word, choose the filters and go!"
     # After the first search, the search parameters are hidden: to open them again and make another search, you click on this button
-    # 1 - views/search/index.html.erb
+    # 1 - views/search/lessons/_main.html.erb
+    # 2 - views/search/media_elements/_main.html.erb
     again: "Search again..."
     # Specific captions for lessons search engine (they can be configured to be different by the ones relative to media elements)
     lessons:
@@ -1609,7 +1608,6 @@ en:
         label: "Keyword"
         # Placeholder for the space where the user inserts the word he searchs for
         # 1 - views/search/lessons/_main.html.erb
-        # 2 - controllers/search_controller.rb
         placeholder: "Insert a tag"
       # Captions for the set of available filters
       filters:
@@ -1652,7 +1650,6 @@ en:
         label: "Keyword"
         # Placeholder for the space where the user inserts the word he searchs for
         # 1 - views/search/media_elements/_main.html.erb
-        # 2 - controllers/search_controller.rb
         placeholder: "Insert a tag"
       # Captions for the set of available filters
       filters:
