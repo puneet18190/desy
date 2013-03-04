@@ -617,7 +617,9 @@ function playVideoEditorComponent(component, with_scroll) {
           }
         });
       } else {
-        selectVideoComponentInPreview(getFirstVideoEditorComponent());
+        var first_component = getFirstVideoEditorComponent();
+        selectVideoComponentInPreview(first_component);
+        showVideoEditorPreviewComponentProgressBar(getVideoComponentIdentifier(first_component.attr('id')), 1);
         if(videoEditorWithAudioTrack()) {
           $('#video_editor_preview_container audio')[0].pause();
         }
@@ -752,6 +754,7 @@ function openPreviewModeInVideoEditor() {
     $('#video_editor_global_preview_pause a').removeClass('disabled');
     $('#video_editor_preview_container ._loader').hide();
     $('#video_component_' + first_identifier + '_preview').show();
+    showVideoEditorPreviewComponentProgressBar(first_identifier, 1);
     first_component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
     startVideoEditorGlobalPreview();
   }, 1500);

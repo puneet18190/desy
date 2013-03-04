@@ -119,7 +119,9 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
             }
           });
         } else {
-          selectVideoComponentInPreview(getFirstVideoEditorComponent());
+          var first_component = getFirstVideoEditorComponent();
+          selectVideoComponentInPreview(first_component);
+          showVideoEditorPreviewComponentProgressBar(getVideoComponentIdentifier(first_component.attr('id')), 1);
           if(videoEditorWithAudioTrack()) {
             $('#video_editor_preview_container audio')[0].pause();
           }
