@@ -1919,6 +1919,7 @@ $(document).ready(function() {
     $(this).hide();
     $(this).parents('._video_component_cutter').data('playing', true);
     var identifier = getVideoComponentIdentifier($(this).parents('._video_component_cutter').attr('id'));
+    $('#video_component_' + identifier + '_cutter ._media_player_rewind_in_video_editor_preview').hide();
     $('#video_component_' + identifier + '_cutter ._media_player_slider_disabler').show();
     $('#video_component_' + identifier + '_cutter ._media_player_pause_in_video_editor_preview').show();
     $('#video_component_' + identifier + '_cutter .ui-slider-handle').removeClass('selected');
@@ -1953,6 +1954,7 @@ $(document).ready(function() {
     $(this).parents('._video_component_cutter').data('playing', false);
     var cutter_id = $(this).parents('._video_component_cutter').attr('id');
     var preview_id = cutter_id.replace('cutter', 'preview');
+    $('#' + cutter_id + ' ._media_player_rewind_in_video_editor_preview').show();
     $('#' + cutter_id + ' ._media_player_slider_disabler').hide();
     $('#' + cutter_id + ' ._media_player_play_in_video_editor_preview').show();
     $('#' + cutter_id + ' ._media_player_slider .ui-slider-handle').addClass('selected');
@@ -1960,6 +1962,13 @@ $(document).ready(function() {
     if(videoEditorWithAudioTrack()) {
       $('#video_editor_preview_container audio')[0].pause();
     }
+  });
+  
+  $('body').on('click', '._media_player_rewind_in_video_editor_preview', function() {
+    var identifier = getVideoComponentIdentifier($(this).parents('._video_component_cutter').attr('id'));
+    var initial_time = $('#video_component_' + identifier + '_cutter').data('from');
+    $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value', initial_time);
+    setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), initial_time);
   });
   
   $('body').on('click', '._video_component_cutter ._double_slider .ui-slider-range', function(e) {
