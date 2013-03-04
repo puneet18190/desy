@@ -71,6 +71,10 @@
   .table-hover tbody tr{
    cursor:pointer;
   }
+  
+  table thead tr th a:hover{
+    opacity: 0.7;
+  }
 
   .collapsed{
     display:none;

@@ -1,0 +1,45 @@
+<div class="row-fluid">
+  <div class="span12">
+    <h3><%= t('admin.messages.notifications.send_notifications')%></h3>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="hero-unit">
+      <form class="contact-form">
+        <div class="row-fluid">
+          <div class="span12">
+            <% if @users && @users.count > 0 %>
+              <h4><%= t('admin.messages.contact.recipients')%></h4>
+              <div id="preset-recipients" class="alert alert-block">
+                <%= @users.map(&:email) %>
+              </div>  
+            <% else %>
+            <div class="control-group">
+              <h4>Add recipients</h4>
+              <div class="controls">
+                <input id="contact-recipients" type="text" class="input-xxlarge" name="recipients" placeholder="Recipients" />
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span12">
+            <div class="control-group">
+              <h4><%= t('admin.messages.contact.message')%></h4>
+              <div class="controls">
+                <textarea rows="10" class="input-xxlarge" type="text" name="message" placeholder="Message"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary"><%= t('admin.messages.contact.send')%></button>
+        </div>
+        <div class="clearfix"></div>
+      </form>
+    </div>
+  </div>
+</div>

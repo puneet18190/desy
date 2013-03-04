@@ -30,11 +30,8 @@ class Admin::UsersController < AdminController
   end
 
   def destroy
-    @user.destroy_with_dependencies
-
-    respond_to do |wants|
-      wants.html { redirect_to(elements_url) }
-      wants.xml  { head :ok }
+    if !@user.destroy_with_dependencies
+      @errors = @element.get_base_error
     end
   end
 
