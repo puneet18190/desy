@@ -85,9 +85,12 @@ Desy::Application.configure do
                         exception_recipients: SETTINGS['application']['maintainer']['emails'],
                         ignore_exceptions:    [],
                         notifier_proc:        ->(env, exception) do
-                          md_env = EasyMarshalDumpableHash.easy_marshal_dumpable_hash(env)
-                          md_env['action_controller.instance'] = ControllerInfo.new(env['action_controller.instance'].controller_name, env['action_controller.instance'].action_name)
+                          md_env = Dumpable.hash(env)
+                          md_env['action_controller.instance'] = 
+                            ControllerInfo.new env['action_controller.instance'].try(:controller_name), 
+                                               env['action_controller.instance'].try(:action_name)
+                          md_exception = Dumpable.exception(exception)
 
-                          Delayed::Job.enqueue ExceptionNotifierJob.new(md_env, exception)
+                          Delayed::Job.enqueue ExceptionNotifierJob.new(md_env, md_exception)
                         end
 end
