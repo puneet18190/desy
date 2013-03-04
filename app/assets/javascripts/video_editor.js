@@ -762,7 +762,8 @@ function openPreviewModeInVideoEditor() {
 
 function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
   var jsp_handler = $('#media_elements_list_in_video_editor').data('jsp');
-  var pos = $('#video_component_' + $('#video_editor_global_preview').data('current-component')).data('position');
+  var identifier = $('#video_editor_global_preview').data('current-component');
+  var pos = $('#video_component_' + identifier).data('position');
   var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186);
   var movement = 0;
   var whole_movement = 0;
@@ -791,9 +792,12 @@ function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
     $('#video_editor_global_preview').data('arrows', false);
     $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
       $('#video_editor_global_preview').data('arrows', true);
+      showVideoEditorPreviewComponentProgressBar(identifier, pos - (whole_movement / 186));
       $('#media_elements_list_in_video_editor').jScrollPane().unbind('panescrollstop');
     });
     jsp_handler.scrollToX(whole_movement, true, (1000 * movement) / 4);
+  } else {
+    showVideoEditorPreviewComponentProgressBar(identifier, pos - how_many_hidden_to_left);
   }
 }
 
