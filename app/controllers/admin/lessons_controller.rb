@@ -19,11 +19,8 @@ class Admin::LessonsController < AdminController
   end
 
   def destroy
-    @lesson.destroy
-
-    respond_to do |wants|
-      wants.html { redirect_to(lessons_url) }
-      wants.xml  { head :ok }
+    if !@lesson.destroy
+      @errors = @element.get_base_error
     end
   end
 
