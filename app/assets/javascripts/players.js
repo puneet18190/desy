@@ -117,6 +117,9 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
             component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
             if($('#video_editor_global_preview').data('in-use')) {
               playVideoEditorComponent(next_component, true);
+            } else {
+              var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186);
+              showVideoEditorPreviewComponentProgressBar(next_identifier, next_component.data('position') - how_many_hidden_to_left);
             }
           });
         } else {
