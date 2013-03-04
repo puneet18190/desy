@@ -2275,3 +2275,10 @@ An element with the private status through the X may be cancelled, while an elem
       created_at: 'Created at'
       updated_at: 'Last update'
       other: 'Other'
+  #KAMINARI defaul override
+  views:
+    pagination:
+      previous: "&lt;"
+      next: "&gt;"
+      first: "&laquo;"
+      last: "&raquo;"

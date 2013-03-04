@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <div class="span4">
+  <div class="span3">
     <ul class="nav nav-pills">
       <% if expandable %>
         <li>
@@ -11,9 +11,9 @@
       <% end %>
     </ul>
   </div>
-  <div class="span4" style="text-align:center">
+  <div class="span6" style="text-align:center">
     <%= paginate items %>
   </div>
-  <div class="span4">
+  <div class="span3">
     <div class="pull-right"><span class="label"><%= page_items_counter(items) %></span></div>
   </div>
