@@ -106,6 +106,7 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
           $('#video_editor_global_preview').data('current-component', getVideoComponentIdentifier(next_component.attr('id')));
           $('#video_component_' + identifier + '_preview').hide('fade', {}, 1000);
           component.find('._video_component_transition').removeClass('current');
+          hideVideoEditorPreviewComponentProgressBar();
           next_component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
           $('#video_component_' + next_identifier + '_preview').show('fade', {}, 1000, function() {
             setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), $('#video_component_' + identifier + '_cutter').data('from'));
@@ -121,6 +122,7 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
         } else {
           var first_component = getFirstVideoEditorComponent();
           selectVideoComponentInPreview(first_component);
+          hideVideoEditorPreviewComponentProgressBar();
           showVideoEditorPreviewComponentProgressBar(getVideoComponentIdentifier(first_component.attr('id')), 1);
           if(videoEditorWithAudioTrack()) {
             $('#video_editor_preview_container audio')[0].pause();

@@ -1124,6 +1124,7 @@ $(document).ready(function() {
     if($('#video_editor_global_preview').data('arrows')) {
       selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).prev());
       showVideoEditorPreviewArrowToComponents();
+      hideVideoEditorPreviewComponentProgressBar();
       followPreviewComponentsWithHorizontalScrollInVideoEditor();
     }
   });
@@ -1132,6 +1133,7 @@ $(document).ready(function() {
     if($('#video_editor_global_preview').data('arrows')) {
       selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).next());
       showVideoEditorPreviewArrowToComponents();
+      hideVideoEditorPreviewComponentProgressBar();
       followPreviewComponentsWithHorizontalScrollInVideoEditor();
     }
   });
