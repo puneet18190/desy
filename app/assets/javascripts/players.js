@@ -126,11 +126,14 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
           var first_component = getFirstVideoEditorComponent();
           selectVideoComponentInPreview(first_component);
           hideVideoEditorPreviewComponentProgressBar();
-          showVideoEditorPreviewComponentProgressBar(getVideoComponentIdentifier(first_component.attr('id')), 1);
           if(videoEditorWithAudioTrack()) {
             $('#video_editor_preview_container audio')[0].pause();
           }
           $('#video_editor_global_preview_pause').trigger('click');
+          $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
+            showVideoEditorPreviewComponentProgressBar(getVideoComponentIdentifier(first_component.attr('id')), 1);
+            $('#media_elements_list_in_video_editor').jScrollPane().unbind('panescrollstop');
+          });
           $('#media_elements_list_in_video_editor').data('jsp').scrollToX(0, true, 500);
         }
       } else {
