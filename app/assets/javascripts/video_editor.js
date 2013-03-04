@@ -815,7 +815,8 @@ function showVideoEditorPreviewComponentProgressBar(identifier, position) {
     tool.slider({
       min: 0,
       max: component.data('duration'),
-      value: 0,
+      value: component.data('current-preview-time'),
+      range: 'min',
       stop: function(event, ui) {
         var my_value = ui.value;
         if(my_value == component.data('duration')) {
@@ -826,7 +827,7 @@ function showVideoEditorPreviewComponentProgressBar(identifier, position) {
       }
     });
     tool.show();
-    // TODO posizionare lo slider al punto giusto! (position in [1, 2, 3, 4, 5])
+    tool.css('left', (position - 1) * 186 + 3);
   }
 }
 
