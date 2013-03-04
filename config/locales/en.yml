@@ -476,7 +476,7 @@ en:
       subject: "%{desy} - Account confirmation"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br>When the registration is confirmed, the link will not be valid anymore.<br>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br><p>N.B.</p><p>The confirmation of the account can only be made once.</p>"
+      message: "<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br/>When the registration is confirmed, the link will not be valid anymore.<br/>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br/><p>N.B.</p><p>The confirmation of the account can only be made once.</p>"
     # Mail containing the link to reset a forgotten password
     reset_password:
       # Subject
@@ -492,7 +492,7 @@ en:
       subject: "%{desy} - Lesson link"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<p>The user %{name} thinks that you might be interested in a lesson in %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):</p></br>"
+      message: "<p>The user %{name} thinks that you might be interested in a lesson in %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):</p><br/>"
   
   
   # SECTION 1.4: Standard forms for editing the general information of lessons or media elements. For 'general information' it's meant:
@@ -877,103 +877,106 @@ en:
   #    third:
   #      title:
   #      description
+  
   help:
     dashboard:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Welcome to %{desy}!"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this dashboard you find lessons and elments selected in our database according to your subjects of interests. If you click on the '+' icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The icon with a small eye opens a preview."
+        content: "In this dashboard you'll  find lessons and elements selected in our database according to your subjects of interests. If you click on the \"+\" icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The icon with a small eye opens a preview."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Selected for you - elements"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Pick elements among the ones we propose you! If you don't find anything interesting for you, clicking on the <b>Load a new Element</b> button you can upload your own elements."
+        content: "Pick elements among the ones we propose to you! If you don't find anything interesting for you, by clicking on the <b>Load a new Element</b> button you can upload your own elements."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Selected for you - lessons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If in this moment there are no new lessons available, you can create  To create a new lesson click on the <b>Create a new Lesson</b> button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make yourself sure to have enough didactic elements."
+        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If at this moment there are no new lessons available, you can create To create a new lesson click on the <b>Create a new Lesson</b> button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make sure to have enough didactic elements."
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Status of lessons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this section you find all your personal lessons. A lesson can be in the status: <b>private</b> (nobody can see it except for you); <b>shared</b> (other people may see it, copy or link it); <b>linked</b> (the lesson is not yours, you can view it and use it in your Virtual Classroom, but you can't modify it); <b>copied</b> (a lesson that you just copied, ready to be used as a draft to be personalized."
+        content: "In this page you'll be able to  creat new lessons or manage the ones that are already present in your personal list. Pay attention to a lesson status and remember that:<br/><b>Private</b> corresponds to a lesson that only you can use and see, <b>Shared</b> identifies lessons which you have decided to share and that can also be used by other %{desy} subscribers and linked which indicates lessons created by other subscribers and that you also have decided to follow and use."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Action buttons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The icon with links is used to change the status of your lesson, from private to shared and viceversa. The 'X' deletes a lesson (available if the lesson is yours), while the '-' (available for linked lessons) removes it from your links. The icon with two circles overlapping copies the lesson, and the small pencil is a link to the Lesson Editor."
+        content: "Graphic icons identify all the actions you may carry out on the lessons present in the list.<br/>The eye allows you to see the selected lesson, the pencil permits you tomodify the lesson; be careful, this function is not allowed in the lessons which have a \"linked status\" where this icon is substituted by the copy one. In fact, it is not possible to modify lessons realized by other subscribers without first making a copy. The monitor with the eye uploads the lesson into the virtual classroom, the Share symbol, on or off, identifies the \"private\" or \"shared\" status of a lesson, the double circle creates a copy of the selected lesson while the X cancels the lesson.<br/>In the lessons which have the linked status the X is substituted by the icon less since you can't cancel a content which is not yours but only stop following it.  The star allows you to give an appreciation to the contents followed."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Virtual Classroom"
+        title: "Create a new lesson"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Do you like a lesson? Add it to your Virtual Classroom by clicking on the 'eye in the box' icon"
+        content: "After having added the didactic elements necessary to the creation of your lesson you can start using the %{desy} lesson editor. The \"create a new lesson\" button."
     media_elements:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Public elements"
+        title: "Your didactic elements"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "When you load an element, its status is automatically set as 'private': you are the owner and nobody else can see your element. Once you share a lesson, all the elements contained in it are visible by everybody, so they are set as 'public'. A <b>public</b> element is not accessible by the owner anymore, it is moved in the shared repository of %{desy}, hence, you keep only a link of it and you can't modify it anymore."
+        content: "In this page you'll be able to upload new didactic elements or visualize, modify or cancel those already present on the list.<br>After having been uploaded, a didactic element will acquire the \"private\" status which it won't loose until that element will be used inside a lesson shared among other %{desy} subscribers. 
+An element with the private status through the X may be cancelled, while an element with the linked status thanks to the less icon may only be removed from your personal list but will continue to be present in the %{desy} database. The pencil will allow you to modify the selected element."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Element Editors"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "There are three kinds of media elements: <b>images</b>, <b>audios</b> and <b>videos</b>. Depending on the extension of the file you loaded, %{desy} converts it in one of them. When you click on the little pencil on an element, you are automatically redirected to the corresponding editor. If the element you edit is public, you are forced to save the modifications you made as a new element, because a public element might be in use in other users' lessons. If the element is private, you have the choice to overwrite it or create a new one."
+        content: "It uses %{desy} editors to create new didactic elements or to modify those already present in your personal list. The pencil associated to each didactic element will open the specific editor (audio, image, or video) in order to modify the selected element. The Elements Editor button, instead, will allow you to select one of %{desy}'s editors in order to create a new didactic element."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Element preview"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The preview of an element appears in a popup: you can see the title, the description, and the full media content (a player if the element is of kind 'audio' or 'video'. If the element is private, you can click on the icon with small lines of text and modify title, descriptions, and tags."
+        content: "The Eye Icon opens the preview of a didactic element. Only for elements which have a Private Status inside the popup will it be possible to modify the information inserted during the actual element uploading (title, description and tags)."
     search:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Search engine"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "%{desy}'s <b>search engine</b> works with tags: enter the first letters of the word you are looking for, and %{desy} will pick all the tags that begin with those letters, with all associated items (lessons or media elements, depending on what you configured). Refine your search selecting one of the tags, or the available filters. Once you found something you like, add it to your section by clicking on the '+' icon."
+        content: "The %{desy} search engine uses the tags to look for lessons or didactic elements.<br/>A search result may be added to your personal contents by using the icon \"+\"."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Suggestions for a good search"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Don't write too long words: it's better writing the first letter of the word you are looking for, since in any case you will be listed all the tags beginning with those letters."
+        content: "In order to help you with your search the %{desy} Search will suggest all the tags already present which come closest to the word you are writing. This way you'll have a wider choice and a more complete search result."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Suggestions for a good tagging"
+        # Here the variable %{tags} is replaced by the minimum amount of tags for an item in the application
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "When you share a lesson or a media element, if you want to make it visible to the community you have to choose good tags. The minimum of tags for each item is 4."
+        content: "When you upload a new didactic element or create a new lesson it's important to insert the tags very carefully. A proper tagging of the element or of the lesson will allow the search engine to find the content more easily. You must insert a minimum of %{tags} tags."
     users:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Profile"
+        title: "Personal info & Subjects"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "This section is not functional yet."
+        content: "In this page you can modify your %{desy} access parameters. By clicking on the \"Subjects\" button you'll be able to increase or decrease the number of subjects to which you wish to be connected. Remember that %{desy} will only advise you about those contents related to the subjects which you have chosen inside this page."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: ""
+        title: "Mailing lists"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "La Nazionale restituisce alla Roma un De Rossi rigenerato. Dopo essersi riposato in panchina contro l’Atalanta, nell’ultima partita di campionato prima della sosta, il centrocampista ha fornito due grandi prestazioni in azzurro, realizzando due reti che hanno un grande valore in chiave mondiale."
+        content: "The \"Mailing list\" button allows you to create groups of e-mail addresses to which it will be possible to send your lesson links from inside the Virtual Classroom. Click \"Add new group\" and begin the creation of your personal mailing list."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: ""
+        title: "Statistics"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Francesco Totti è amareggiato dopo il rosso rimediato nel finale della partita dell'Olimpico. Un'espulsione per un brutto fallo di frustrazione ai danni di Balotelli"
+        content: "Consult %{desy} statistics to improve your user experience inside the application. Thanks to personal statistics you'll be able to monitor all the information related to the content which you have uploaded or produced on %{desy}. The general statistics will allow you to have a wider view on all contents present in the application database."
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "%{desy}'s Virtual Classroom"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Welcome to your Virtual Classroom. clicking on the '+' you open a popup with the list of your lessons: choose the ones you need and add them clicking 'upload'."
+        content: "Welcome to your virtual classroom. This is where you'll be able to upload the lessons you have created in order to get ready to relate them to your students. The \"add lessons\" button will allow you to choose which lessons among the ones on your list you wish to add to the virtual classroom."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Playlist"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Drag and drop a lesson to the area on the right to fill your playlist."
+        content: "One of the advantages offered by your virtual classroom is to let you organize your lessons in comfortable playlists so as to reproduce them in the sequence which is most suitable to your didactive objectives. Pull one or more lessons inside the box playlist and start creating your own personal sequence reproduction."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Send a link to your friends"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Even if a lesson is private, it's available a link to show it to people not logged in %{desy}. The link contains a crypted code, without which it's possible to view the lesson only if you are logged in and the lesson is public. To send the link, click on 'send link to your friends' and fill in the form with a list of emails and a message."
+        content: "By clicking on the envelope located below each lesson uploaded in virtual classroom you'll be able to send its link to one or more e-mail addresses in order to allow your students to visualize the lesson outside %{desy} too."
   
   
   
@@ -1377,7 +1380,7 @@ en:
       link_sent: "You sent the link of the lesson %{title}, with message %{message}, to the emails: %{emails}"
       # Notification sent by a user who modified a shared lesson, to inform all its followers about the nature of modifications made
       # 1 - models/lesson.rb
-      modified: "<h2 style=\"font-size:126%; font-weight:bold\">There are some news for you! </h2><p>La lezione \"%{lesson_title}\" che stai seguendo ha subito delle modifiche da parte dell’autore!<br><br><strong>Details of changes: </strong><br>%{message}</p><div style=\"display:inline-block; outline:1px solid #f2f1f2; padding:10px; width:86%; height:19px; position:absolute; bottom:19px\"><span style=\"color:#2eaadc; float:left\">%{lesson_title}</span><a href=\"%{link}\" style=\"float:right\" class=\"preview\"></a></div>"
+      modified: "<h2 style=\"font-size:126%; font-weight:bold\">There are some news for you! </h2><p>La lezione \"%{lesson_title}\" che stai seguendo ha subito delle modifiche da parte dell'autore!<br/><br/><strong>Details of changes: </strong><br/>%{message}</p><div style=\"display:inline-block; outline:1px solid #f2f1f2; padding:10px; width:86%; height:19px; position:absolute; bottom:19px\"><span style=\"color:#2eaadc; float:left\">%{lesson_title}</span><a href=\"%{link}\" style=\"float:right\" class=\"preview\"></a></div>"
       # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted)
       # 1 - models/lesson.rb
       unpublished: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson"
@@ -1482,7 +1485,7 @@ en:
       # 1- views/prelogin/what_is_desy.html.erb
       subtitle: "Find out the benefits of %{desy}"
       # 1- views/prelogin/what_is_desy.html.erb
-      description: "%{desy} è un sistema di didattica digitale che consente ai docenti di creare lezioni multimediali in piena autonomia e con grande facilità.<br><br>Non solo: la piattaforma su cui poggia consente la condivisione degli elementi didattici e la socializzazione dei contenuti, da cui discendono vantaggi e funzionalità aggiuntive, tra cui:<ul><li>la possibilità di costruire lezioni e percorsi didattici interdisciplinari;</li><li>la continuità del processo di affinamento e arricchimento dei contenuti;</li><li>la crescita del sistema grazie ad un meccanismo di autoalimentazione a zero costi;</li><li>il rafforzamento e la valorizzazione del ruolo dei docenti nella elaborazione degli strumenti didattici.</li></ul>Oltre che nella scuola e nelle università, %{desy} può essere utilizzato nella formazione professionale e aziendale, attraverso portali formativi autonomi installati all’interno delle  intranet delle imprese, che consentono di raccogliere in modo sicuro e riservato i saperi aziendali, e al tempo stesso di condividerli con i docenti chiamati a curare l’aggiornamento e l’innovazione."
+      description: "%{desy} è un sistema di didattica digitale che consente ai docenti di creare lezioni multimediali in piena autonomia e con grande facilità.<br/><br/>Non solo: la piattaforma su cui poggia consente la condivisione degli elementi didattici e la socializzazione dei contenuti, da cui discendono vantaggi e funzionalità aggiuntive, tra cui:<ul><li>la possibilità di costruire lezioni e percorsi didattici interdisciplinari;</li><li>la continuità del processo di affinamento e arricchimento dei contenuti;</li><li>la crescita del sistema grazie ad un meccanismo di autoalimentazione a zero costi;</li><li>il rafforzamento e la valorizzazione del ruolo dei docenti nella elaborazione degli strumenti didattici.</li></ul>Oltre che nella scuola e nelle università, %{desy} può essere utilizzato nella formazione professionale e aziendale, attraverso portali formativi autonomi installati all'interno delle  intranet delle imprese, che consentono di raccogliere in modo sicuro e riservato i saperi aziendali, e al tempo stesso di condividerli con i docenti chiamati a curare l'aggiornamento e l'innovazione."
       # 1- views/prelogin/what_is_desy.html.erb
       right_column_title: "Watch demo"
       # 1- views/prelogin/what_is_desy.html.erb
