@@ -1,5 +1,9 @@
 <%= render :partial => "search" %>
 <h3><%= t('admin.elements.index.name')%></h3>
-<%= render :partial => "admin/list_heading", :locals => {:items => @elements, :expandable => false} %>
+<% if @elements.count > 1 %>
+  <%= render :partial => "admin/list_heading", :locals => {:items => @elements, :expandable => false} %>
+<% end %>
 <%= render :partial => 'admin/elements/list', :locals => {:elements => @elements} %>
-<%= render :partial => "admin/list_heading", :locals => {:items => @elements, :expandable => false} %>
+<% if @elements.count > 1 %>
+  <%= render :partial => "admin/list_heading", :locals => {:items => @elements, :expandable => false} %>
+<% end %>

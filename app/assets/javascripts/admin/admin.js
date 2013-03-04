@@ -14,6 +14,7 @@
 //= require bootstrap-datepicker
 //= require jquery-fileupload/basic
 //= require ajax_loader
+//= require admin/admin_functions
 
 $(document).ready(function(){
   
@@ -62,12 +63,20 @@ $(document).ready(function(){
   $('body').on('click', 'table#lessons-list thead tr th a', function(e){
     e.preventDefault();
     $this = $(this)
-    var order_by = $this.attr('href');
+    var order_by = $this.data('ordering');
     $("input#search_ordering").val(order_by);
     $('#admin-search-lessons').submit();
   });
   
   $('body').on('click', 'table#elements-list thead tr th a', function(e){
+    e.preventDefault();
+    $this = $(this)
+    var order_by = $this.data('ordering');
+    $("input#search_ordering").val(order_by);
+    $('#admin-search-elements').submit();
+  });
+  
+  $('body').on('click', 'table#users-list thead tr th a', function(e){
     e.preventDefault();
     $this = $(this)
     var order_by = $this.data('ordering');
@@ -269,16 +278,7 @@ $(document).ready(function(){
     if(!(t.hasClass('icon-eye-open') || t.hasClass('icon-remove') || t.hasClass('icon-globe'))){
       e.preventDefault();
     }
-    var next_tr = $(this).next('tr.collapsed');
-    var thumb = next_tr.find('.element-thumbnail');
-    if((thumb.length > 0) && (thumb.html().length == 0)){
-      var el_id = next_tr.find('.element-thumbnail').data('param');
-      $.ajax({
-        url: "/admin/elements/"+el_id+"/load",
-        type: "get"
-      });
-    }
-    next_tr.slideToggle('slow');
+    openAndLoadNextTr($(this));
   });
    
   $('body').on('click','#expand-all',function(e){
