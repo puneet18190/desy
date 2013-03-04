@@ -804,13 +804,29 @@ html.media_element_editor-layout {
         background: url(<%= asset_path 'arrow_cutter_right_on.png' %>) top left  no-repeat;  
       };
     }
+     a.rewind {
+      position:absolute;
+      bottom:-3px;
+      right: 110px;
+      background-image: none;
+      /*font-size: 12px;*/
+      background: url(<%= asset_path 'rew.png' %>) top left  no-repeat;  
+      width: 2.4em;
+      height: 2.4em;
+      &:hover {
+        opacity:0.3;
+      };
+    }
     a.play {
       position:absolute;
-      bottom:-7px;
+      bottom:-3px;
       right: 80px;
-      background-image: none;
-      font-size: 12px;
-      
+      /*background-image: none;*/
+      /*font-size: 12px;*/
+      background: url(<%= asset_path 'play.png' %>) top left  no-repeat;
+      &:hover {
+        opacity:0.3;
+      };
     }
     a.pause {
       position:absolute;
