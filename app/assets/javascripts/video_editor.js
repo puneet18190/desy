@@ -802,6 +802,9 @@ function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
 }
 
 function showVideoEditorPreviewComponentProgressBar(identifier, position) {
+  if($('#video_editor_preview_slider').css('display') == 'block') {
+    hideVideoEditorPreviewComponentProgressBar();
+  }
   var component = $('#video_component_' + identifier);
   var tool = $('#video_editor_preview_slider');
   tool.slider({
