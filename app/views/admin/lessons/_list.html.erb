@@ -1,81 +1,86 @@
 <% if lessons.count > 0 %>
   <table id="lessons-list" class="table table-striped table-hover table-bordered table-rounded">
-  <thead>
-    <tr>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'id', :param=>'id'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'title', :param=>'title'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'subject', :param=>'subject_id'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'user_id', :param=>'user_id'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'location', :param=>'location_id'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'school', :param=>'location_id'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'created at', :param=>'created_at'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'last update', :param=>'updated_at'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'likes', :param=>'likes'} %>
-      </th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <a name="list-anchor"></a>
-    <% lessons.each do |lesson| %>
+    <thead>
+      <tr>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'id', :param=>'id'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'title', :param=>'title'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'subject', :param=>'subject_id'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'user_id', :param=>'user_id'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'location', :param=>'location_id'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'school', :param=>'location_id'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'created at', :param=>'created_at'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'last update', :param=>'updated_at'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'likes', :param=>'likes'} %>
+        </th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <a name="list-anchor"></a>
+      <% lessons.each do |lesson| %>
 
-        <tr class="collapse">
-          <td><%= lesson.id %></td>
-          <td><%= lesson.title%></td>
-          <td><%= lesson.subject.description %></td>
-          <td><%= lesson.user.full_name %></td>
-          <td><%= lesson.user.school %></td>
-          <td><%= lesson.user.province %> - <%= lesson.user.town %></td>
-          <td><%= lesson.created_at.strftime('%d-%m-%Y')%></td>
-          <td><%= lesson.updated_at.strftime('%d-%m-%Y')%></td>
-          <td><%= lesson.likes.count%></td>
-          <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, "/lessons/#{lesson.id}/view?token=#{lesson.token}",:target => :blank, :class=>"action"%><a href="#" target="_blank" class="action"></a></td>
-          <td><%= link_to '<i class="icon-remove"></i>'.html_safe, "#", :confirm => t('admin.general.ask_for_delete'), :class=>"action"%></td>
-        </tr>
-        <tr class="collapsed">
-          <td colspan="11">
-            <div class="row-fluid">
-              <div class="span3">
-                <div class="img-polaroid lesson-thumbnail">
-                  <%= render :partial => "lessons/thumbnail", :locals => {:lesson => lesson} %>
+          <tr class="collapse" id="<%= lesson.id %>">
+            <td><%= lesson.id %></td>
+            <td><%= lesson.title%></td>
+            <td><%= lesson.subject.description %></td>
+            <td><%= lesson.user.full_name %></td>
+            <td><%= lesson.user.school %></td>
+            <td><%= lesson.user.province %> - <%= lesson.user.town %></td>
+            <td><%= lesson.created_at.strftime('%d-%m-%Y')%></td>
+            <td><%= lesson.updated_at.strftime('%d-%m-%Y')%></td>
+            <td><%= lesson.likes.count%></td>
+            <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, "/lessons/#{lesson.id}/view?token=#{lesson.token}",:target => :blank, :class=>"action"%><a href="#" target="_blank" class="action"></a></td>
+            <td><%= link_to '<i class="icon-remove"></i>'.html_safe, "#", :confirm => t('admin.general.ask_for_delete'), :class=>"action"%></td>
+          </tr>
+          <tr class="collapsed">
+            <td colspan="11">
+              <div class="row-fluid">
+                <div class="span3">
+                  <div class="img-polaroid lesson-thumbnail">
+                    <%= render :partial => "lessons/thumbnail", :locals => {:lesson => lesson} %>
+                  </div>
+                </div>
+                <div class="span3">
+                  <h5><%= t('admin.general.tags')%></h5>
+                  <% lesson.tags.split(',').each do |tag| %>
+                    <% if tag.length > 0%>
+                      <%= tag %>, 
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="span6">
+                  <h5><%= t('admin.general.description')%></h5>
+                  <%= lesson.description %>
                 </div>
               </div>
-              <div class="span3">
-                <h5><%= t('admin.general.tags')%></h5>
-                <% lesson.tags.split(',').each do |tag| %>
-                  <% if tag.length > 0%>
-                    <%= tag %>, 
-                  <% end %>
-                <% end %>
-              </div>
-              <div class="span6">
-                <h5><%= t('admin.general.description')%></h5>
-                <%= lesson.description %>
-              </div>
-            </div>
-          </td>
-        </tr>
-    <% end %>
-  </tbody>
-</table>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if params[:search].present? && params[:search][:id].present?%>
+    <script type="text/javascript" charset="utf-8">
+      openAndLoadNextTr($('tr#<%=params[:search][:id] %>'));
+    </script>
+  <% end %>
 <% else %>
   <div class="widget">
     <%= t('admin.lessons.index.not_found') %>

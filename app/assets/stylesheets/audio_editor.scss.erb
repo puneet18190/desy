@@ -182,7 +182,7 @@ html.audio_editor-controller {
         }
       }
       .audioComponentBottom {
-        padding:7px 0px 13px 8px;
+        padding:0px 0px 13px 8px;
         height:5px;
         font-size:10px;
         font-family:'Nunito', sans-serif;
@@ -193,24 +193,38 @@ html.audio_editor-controller {
         .audioComponentDurations {
           width: 260px;
           float: left;
+          padding-top:7px;
           span.selected {
             color:#fff;
           }
         }
         .audioComponentControls {
+          padding-top:4px;
           float: right;
-          
+           a.rewind {
+            float: left;
+            background-image: none;
+            margin-right:12px;
+            background: url(<%= asset_path 'rew.png' %>) top left  no-repeat;  
+            width: 18px;
+            height: 18px;
+            &:hover {
+              opacity:0.3;
+            };
+          }
           a.play {
             float: right;
-            background-image: none;
-            font-size: 12px;
-            color: #787575;
-            opacity: 1;
-            width:auto;
-            height:auto;
+            background: url(<%= asset_path 'play.png' %>) top left  no-repeat;
+            width: 18px;
+            height: 18px;
+            opacity:1;
+            &:hover {
+              opacity:0.3;
+            };
+            
           }
           a.pause {
-            float: right;
+            float: left;
             background-image: none;
             font-size: 12px;
             color: #787575;

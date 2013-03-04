@@ -121,7 +121,7 @@
     }
   }
   
-  .reports a, .reports a:hover{
+  a blockquote,a blockquote:hover, .reports a, .reports a:hover{
     color: #2b2b2b;
     text-decoration: none;
   }
@@ -130,7 +130,7 @@
     background-color: #f9f9f9;
   }
   
-  .counter-label{
+  .counter-label, .date-label{
     &.elements{
       color: #4bab36;
     }

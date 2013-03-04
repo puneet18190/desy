@@ -1,56 +1,34 @@
 <%
-  my_current_url = manipulate_request_url(remove_query_param: 'delete_item', page: @page)
-  my_item = 'lessons'
-  my_other_item = 'media_elements'
-  my_objects = @lessons
-  my_objects_amount = @lessons_amount
-  if @search_item == 'media_elements'
-    my_item = 'media_elements'
-    my_other_item = 'lessons'
-    my_objects = @media_elements
-    my_objects_amount = @media_elements_amount
-  end
+  items = @search_item == 'lessons' ? @lessons : @media_elements
+  items_amount = @search_item == 'lessons' ? @lessons_amount : @media_elements_amount
+  pagination = render :partial => "shared/pagination", :locals => {:page => @page, :pages_amount => @pages_amount}
+  results = render :partial => "search/#{@search_item}/results", :locals => {:"#{@search_item}" => items, :word => @word}
+  amount = render :partial => "search/#{@search_item}/amount", :locals => {:amount => items_amount, :tags => @tags, :specific_tag => @specific_tag}
+  tag_details = render :partial => "search/#{@search_item}/tag_details", :locals => {:tags => @tags, :specific_tag => @specific_tag}
 %>
 
+
 <% if @delete_item.blank? %>
-  $('#found_<%= my_item %>').hide('fade', {}, 500, function() {
-    $('#found_<%= my_item %>').replaceWith("<%= j(render(:partial => "search/#{my_item}/results")) %>");
-    $('#found_<%= my_other_item %>').html('');
-    $('#<%= my_other_item %>_tag_details').html('');
-    $('#<%= my_other_item %>_search_amount').html('');
-    <% if my_objects.any? %>
-      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
-    <% else %>
-      $('#general_pagination').html('');
-    <% end %>
+  $('#found_<%= @search_item %>').hide('fade', {}, 500, function() {
+    $('#found_<%= @search_item %>').replaceWith('<%= j results %>');
+    $('#general_pagination').replaceWith('<%= j pagination %>');
   });
 <% else %>
   var to_delete = $('#<%= @delete_item %>');
   to_delete.hide('fade', {}, 500, function() {
-    $('#found_<%= my_item %>').replaceWith("<%= j(render(:partial => "search/#{my_item}/results")) %>");
-    $('#found_<%= my_other_item %>').html('');
-    <% if my_objects.any? %>
-      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => my_current_url})) %>");
+    $('#found_<%= @search_item %>').replaceWith('<%= j results %>');
+    $('#general_pagination').replaceWith('<%= j pagination %>');
+    <% if items_amount > 0 %>
+      $('#<%= @search_item %>_search_amount').replaceWith('<%= j amount %>');
+      <% if @tags.length > 0 %>
+        $('#<%= @search_item %>_tag_details').replaceWith('<%= j tag_details %>');
+      <% end %>
     <% else %>
+      $('#<%= @search_item %>_search_amount').remove();
+      $('#<%= @search_item %>_tag_details').remove();
       $('#general_pagination').html('');
     <% end %>
   });
 <% end %>
 
-<% if my_objects_amount > 0 || @tag.kind_of?(Tag) %>
-  $('#<%= my_item %>_search_amount').replaceWith("<%= j(render(:partial => "search/#{my_item}/amount", :locals => {:amount => my_objects_amount})) %>");
-<% else %>
-  $('#<%= my_item %>_search_amount').html('');
-<% end %>
-
-<% if (my_objects_amount > 0 && @tags.any?) %>
-  $('#<%= my_item %>_tag_details').replaceWith("<%= j(render(:partial => "search/#{my_item}/tag_details", :locals => {:tags => @tags, :tag => @tag})) %>");
-<% elsif @tag.kind_of?(Tag) %>
-  $('._clickable_tag_for_<%= my_item %>').removeClass('current');
-  $('#clickable_tag_<%= @tag.id %>').addClass('current');
-<% else %>
-  $('#<%= my_item %>_tag_details').html('');
-  $('#<%= my_item %>_tag_details').css('margin-bottom', '0');
-<% end %>
-
-$('#info_container').data('currenturl', '<%= manipulate_request_url({:remove_query_param => "delete_item"}) %>');
+$('#info_container').data('currenturl', <%= manipulate_request_url(remove_query_param: "delete_item", page: @page).to_json.html_safe %>);

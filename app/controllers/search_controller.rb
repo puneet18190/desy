@@ -21,7 +21,16 @@ class SearchController < ApplicationController
               @page = @pages_amount
               get_result_lessons_by_specific_tag
             end
-            @tags = current_user.search_lessons(@word, 1, @for_page, SearchOrders::TITLE, @filter, @subject_id, true)
+            if @pages_amount == 0
+              @specific_tag = nil
+              get_result_lessons
+              if @page > @pages_amount && @pages_amount != 0
+                @page = @pages_amount
+                get_result_lessons
+              end
+            else
+              @tags = current_user.search_lessons(@word, 1, @for_page, SearchOrders::TITLE, @filter, @subject_id, true)
+            end
           end
         when 'media_elements'
           if @specific_tag.nil?
@@ -36,7 +45,16 @@ class SearchController < ApplicationController
               @page = @pages_amount
               get_result_media_elements_by_specific_tag
             end
-            @tags = current_user.search_media_elements(@word, 1, @for_page, SearchOrders::TITLE, @filter, true)
+            if @pages_amount == 0
+              @specific_tag = nil
+              get_result_media_elements
+              if @page > @pages_amount && @pages_amount != 0
+                @page = @pages_amount
+                get_result_media_elements
+              end
+            else
+              @tags = current_user.search_media_elements(@word, 1, @for_page, SearchOrders::TITLE, @filter, true)
+            end
           end
       end
     end

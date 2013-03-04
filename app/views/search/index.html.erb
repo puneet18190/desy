@@ -52,7 +52,7 @@
     <div id="info_container" style="display:none" data-currenturl="<%= request.url.gsub('&amp;', '&') %>"></div>
     <br class="clearfloat">
     <% if @did_you_search && ((@search_item == 'media_elements' && @media_elements.any?) || (@search_item == 'lessons') && @lessons.any?) %>
-      <%= render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :pagination_url => manipulate_request_url(remove_query_param: 'delete_item') } %>
+      <%= render :partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount} %>
     <% end %>
   </div>
 </div>
