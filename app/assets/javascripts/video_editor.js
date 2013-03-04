@@ -793,10 +793,26 @@ function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
   }
 }
 
-function showVideoEditorPreviewComponentProgressBar(identifier) {
-  
+function showVideoEditorPreviewComponentProgressBar(identifier, position) {
+  var component = $('#video_component_' + identifier);
+  var tool = $('#video_editor_preview_slider');
+  tool.slider({
+    min: 0,
+    max: component.data('duration'),
+    value: 0,
+    stop: function(event, ui) {
+      var my_value = ui.value;
+      if(my_value == component.data('duration')) {
+        my_value = component.data('duration') - 1;
+        tool.slider('value', my_value);
+      }
+      setVisualTimesVideoEditorPreview(component, my_value);
+    }
+  }).show();
+  // TODO posizionare lo slider al punto giusto! (position in [1, 2, 3, 4, 5])
 }
 
-function hideVideoEditorPreviewComponentProgressBar(identifier) {
-  
+function hideVideoEditorPreviewComponentProgressBar() {
+  $('#video_editor_preview_slider').slider('destroy');
+  $('#video_editor_preview_slider').hide();
 }
