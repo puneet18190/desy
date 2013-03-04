@@ -12,6 +12,7 @@ class Admin::MessagesController < AdminController
   end
   
   def send_notifications
+    
   end
   
   def reports
