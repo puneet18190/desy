@@ -108,6 +108,7 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
           component.find('._video_component_transition').removeClass('current');
           next_component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
           $('#video_component_' + next_identifier + '_preview').show('fade', {}, 1000, function() {
+            hideVideoEditorPreviewComponentProgressBar();
             setCurrentTimeToMedia($('#video_component_' + identifier + '_preview video'), $('#video_component_' + identifier + '_cutter').data('from'));
             if(!$('#video_editor_global_preview').data('in-use')) {
               $('._video_component_transition').addClass('current');
@@ -116,14 +117,23 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier) {
             component.find('._video_editor_component_hover, ._video_component_icon').addClass('selected');
             if($('#video_editor_global_preview').data('in-use')) {
               playVideoEditorComponent(next_component, true);
+            } else {
+              var how_many_hidden_to_left = getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane('media_elements_list_in_video_editor', 186);
+              showVideoEditorPreviewComponentProgressBar(next_identifier, next_component.data('position') - how_many_hidden_to_left);
             }
           });
         } else {
-          selectVideoComponentInPreview(getFirstVideoEditorComponent());
+          var first_component = getFirstVideoEditorComponent();
+          selectVideoComponentInPreview(first_component);
+          hideVideoEditorPreviewComponentProgressBar();
           if(videoEditorWithAudioTrack()) {
             $('#video_editor_preview_container audio')[0].pause();
           }
           $('#video_editor_global_preview_pause').trigger('click');
+          $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
+            showVideoEditorPreviewComponentProgressBar(getVideoComponentIdentifier(first_component.attr('id')), 1);
+            $('#media_elements_list_in_video_editor').jScrollPane().unbind('panescrollstop');
+          });
           $('#media_elements_list_in_video_editor').data('jsp').scrollToX(0, true, 500);
         }
       } else {
