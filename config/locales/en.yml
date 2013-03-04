@@ -1060,10 +1060,6 @@ An element with the private status through the X may be cancelled, while an elem
   audio_editor:
     # The 'cutters' are the tools in Audio Editor to cut each audio track present inside the user's working space. Each cutter is provided of buttons 'play' and 'pause', and of three cursors: one to cut the left side of the track, another one to cut the right side; the last cursor is associated to the exact point of the track when it's playing
     cutters:
-      # 1 - views/audio_editor/_component.html.erb
-      pause: "Pause"
-      # 1 - views/audio_editor/_component.html.erb
-      play: "Play"
       # This is the caption for the selected interval of the audio track (example: the track is 2 minutes long, and the user is making a selection from 00:40 to 01:50)
       # 1 - views/audio_editor/_component.html.erb
       selected: "Selected"
