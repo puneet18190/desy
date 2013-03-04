@@ -833,6 +833,16 @@ en:
         # Icon 'plus' to replace the component
         # 1 - views/video_editor/_component_menu.html.erb
         change: "Substitute component"
+      # Titles for the icons used in the cutter of a video component
+      video_cutter:
+        # 1 - views/video_editor/cutters/_video.html.erb
+        play: "Play clip"
+        # 1 - views/video_editor/cutters/_video.html.erb
+        pause: "Pause clip"
+        # 1 - views/video_editor/cutters/_video.html.erb
+        rewind: "Rewind clip"
+        # 1 - views/video_editor/cutters/_video.html.erb
+        done: "Commit your changes"
     videos:
       # Icon to switch to 'fullscreen' mode in a video player
       # 1 - views/shared/players/_video.html.erb
@@ -1874,20 +1884,13 @@ An element with the private status through the X may be cancelled, while an elem
     # Captions for 'cutters' of a component (the instruments used to modify the duration of a text / image component, or to cut a video component)
     cutters:
       # Caption for the button that commits the modifications
-      # 1 - views/video_editor/cutters/_video.html.erb
-      # 2 - views/video_editor/cutters/_text.html.erb
-      # 3 - views/video_editor/cutters/_image.html.erb
+      # 1 - views/video_editor/cutters/_text.html.erb
+      # 2 - views/video_editor/cutters/_image.html.erb
       done: "Done"
       # Caption to indicate the previous duration of a text / image component
       # 1 - views/video_editor/cutters/_text.html.erb
       # 2 - views/video_editor/cutters/_image.html.erb
       old_time: "Time"
-      # Caption for the button 'play' of a video cutter
-      # 1 - views/video_editor/cutters/_video.html.erb
-      play: "Play"
-      # Caption for the button 'pause' of a video cutter
-      # 1 - views/video_editor/cutters/_video.html.erb
-      pause: "Pause"
       # Caption for the field where the user inserts the new duration of a text / image component
       # 1 - views/video_editor/cutters/_text.html.erb
       # 2 - views/video_editor/cutters/_image.html.erb
