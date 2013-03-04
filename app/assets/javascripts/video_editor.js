@@ -752,6 +752,7 @@ function openPreviewModeInVideoEditor() {
   $('#add_new_video_component').prev().css('width', '159');
   var new_timeline_width = parseInt($('#video_editor_timeline').css('width').replace('px', '')) - 184;
   $('#video_editor_timeline').css('width', new_timeline_width + 'px');
+  $('#video_editor_preview_slider_box_ghost').show();
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true,
     initialHorizontalStyles: 'visibility:hidden'
