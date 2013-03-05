@@ -13,7 +13,7 @@ shared_examples 'after saving an audio with a valid not converted media' do
                                    ogg:   [ path_without_extension, ".ogg" ] } }
 
   let(:info)                   { Hash[ MESS::AUDIO_FORMATS.map{ |f| [f, Media::Info.new(audio.media.path(f))] } ] }
-  let(:metadata)               { Hash[ MESS::AUDIO_FORMATS.map{ |f| [:"#{f}_duration", info[f].duration] } ].merge(creation_mode: :uploading) }
+  let(:metadata)               { Hash[ MESS::AUDIO_FORMATS.map{ |f| [:"#{f}_duration", info[f].duration] } ].merge(creation_mode: :uploaded) }
 
   it 'resets model rename_media attribute' do
     audio.rename_media.should_not be_true

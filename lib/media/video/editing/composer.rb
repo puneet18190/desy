@@ -75,7 +75,6 @@ module Media
         end
 
         def compose
-          raise 'ciao'
           in_tmp_dir do
             concats = {}
 
