@@ -12,7 +12,6 @@ class VirtualClassroomController < ApplicationController
   before_filter :initialize_emails, :only => :send_link
   before_filter :initialize_page, :only => :select_lessons_new_block
   before_filter :initialize_loaded_lessons, :only => :load_lessons
-  before_filter :reset_players_counter, :only => :index
   layout 'virtual_classroom'
   
   def index
