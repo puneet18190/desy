@@ -26,7 +26,7 @@
           <li class="lesson_stat"><span class="fltlft"><%= t('users.statistics.personal.lessons_more_likes') %></span>
             <ul>
               <% @my_liked_lessons.each do |liked| %>
-                <li><span><%= liked.title %></span><div><%= liked.likes.count %></div></li>
+                <li><span><%= liked.title %></span><div><%= liked.likes_count %></div></li>
               <% end %>
             </ul>
           </li>
@@ -47,7 +47,7 @@
           <li class="lesson_stat"><span><%= t('users.statistics.general.lessons_more_likes') %></span>
             <ul>
               <% @all_liked_lessons.each do |liked| %>
-                <li><span><%= liked.title %></span><div><%= liked.likes.count %></div></li>
+                <li><span><%= liked.title %></span><div><%= liked.likes_count %></div></li>
               <% end %>
             </ul>
           </li>
