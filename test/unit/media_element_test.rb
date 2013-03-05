@@ -63,7 +63,7 @@ class MediaElementTest < ActiveSupport::TestCase
     @media_element = MediaElement.new
     assert_equal false, @media_element.is_public
     @media_element.is_public = nil
-    assert_error_size 9, @media_element
+    assert_error_size 8, @media_element
   end
   
   test 'attr_accessible' do
@@ -203,6 +203,24 @@ class MediaElementTest < ActiveSupport::TestCase
       assert_nil Tagging.find_by_id t.id
     end
     assert_nil MediaElement.find_by_id me.id
+  end
+  
+  test 'empty_media' do
+    [Image, Video, Audio].each do |classe|
+      m = classe.new :description => 'Scuola Primaria', :title => 'Scuola'
+      m.user_id = 1
+      m.tags = 'ciao, come, stai, tu?'
+      assert !m.save
+      m.composing = true
+      assert m.save
+      m2 = MediaElement.new :description => 'Scuola Primaria', :title => 'Scuola'
+      m2.user_id = 1
+      m2.tags = 'ciao, come, stai, tu?'
+      m2.sti_type = classe.to_s
+      assert !m2.save
+      m2.composing = true
+      assert m2.save
+    end
   end
   
 end
