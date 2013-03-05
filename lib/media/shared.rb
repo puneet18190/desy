@@ -3,34 +3,21 @@ require 'media'
 module Media
   module Shared
     
-    CREATION_MODES = [:uploading, :composing]
+    CREATION_MODES = [:uploaded, :composed]
 
-    UPLOADING_CREATION_MODE, COMPOSING_CREATION_MODE = CREATION_MODES
+    UPLOADED, COMPOSED = CREATION_MODES
 
-    PLACEHOLDER_URL = '/assets/media_placeholder.gif'
-
-    # module ClassMethods  
-    # end
-    
     module InstanceMethods
       def uploaded?
-        metadata.creation_mode == UPLOADING_CREATION_MODE
+        metadata.creation_mode == UPLOADED
       end
 
       def composed?
-        metadata.creation_mode == COMPOSING_CREATION_MODE
+        metadata.creation_mode == COMPOSED
       end
 
       def modified?
-        created_at == updated_at
-      end
-
-      def composing
-        metadata.composing
-      end
-      
-      def composing=(composing)
-        metadata.composing = composing
+        created_at != updated_at
       end
 
       def media
@@ -57,10 +44,6 @@ module Media
         !converted.nil?
       end
 
-      def placeholder_url
-        PLACEHOLDER_URL
-      end
-
       def overwrite!
         # tags non è un attributo, per cui non risulta tra i cambi; 
         # me lo prendo dall'associazione taggings_tags, visto che non è cambiata
@@ -75,7 +58,7 @@ module Media
 
       private
       def set_creation_mode
-        self.metadata.creation_mode = composing.present? ? COMPOSING_CREATION_MODE : UPLOADING_CREATION_MODE
+        self.metadata.creation_mode = media.present? ? UPLOADED : COMPOSED
         true
       end
 
@@ -99,10 +82,10 @@ module Media
         before_destroy :cannot_destroy_while_converting
         after_destroy  :clean
 
-        validates_presence_of :media, if: proc{ |record| record.composing.blank? }
+        validates_presence_of :media, if: proc{ |record| !record.composing }
         validate :media_validation
 
-        attr_accessor :skip_conversion, :rename_media
+        attr_accessor :skip_conversion, :rename_media, :composing
       end
     end
   end

@@ -53,14 +53,14 @@ module Media
         end
 
         def run
-          @creation_mode = video.media.blank?
-          old_media = !@creation_mode && video.media.to_hash
+          @overwrite = video.media.present?
+          old_media = @overwrite && video.media.to_hash
           
           begin
             compose
           rescue StandardError => e
             if old_media
-              video.media     = old_media 
+              video.media     = old_media
               video.converted = true
             else
               video.converted = false
@@ -71,7 +71,7 @@ module Media
               video.tags        = old_fields.tags
             end
             video.save! if old_media || old_fields
-            Notification.send_to video.user_id, I18n.t("notifications.videos.#{notification_translation_key}.failed")
+            Notification.send_to video.user_id, I18n.t("notifications.video.compose.#{notification_translation_key}.failed")
             raise e
           end
         end
@@ -121,7 +121,7 @@ module Media
             ActiveRecord::Base.transaction do
               video.save!
               video.enable_lessons_containing_me
-              Notification.send_to video.user_id, I18n.t("notifications.videos.#{notification_translation_key}.ok", video: video.title)
+              Notification.send_to video.user_id, I18n.t("notifications.video.compose.#{notification_translation_key}.ok", video: video.title)
               video.user.try(:video_editor_cache!)
             end
           end
@@ -157,7 +157,7 @@ module Media
         end
 
         def notification_translation_key
-          @creation_mode ? 'new' : 'editing'
+          @overwrite ? 'update': 'create'
         end
 
         def video_copy(input, output)

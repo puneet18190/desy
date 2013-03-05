@@ -19,7 +19,11 @@ class Audio < MediaElement
   end
   
   def thumb_url
-    converted ? THUMB_URL : placeholder_url
+    converted ? THUMB_URL : placeholder_url(:thumb)
+  end
+
+  def placeholder_url(type)
+    "/assets/placeholders/audio_#{type}.gif"
   end
   
   def mp3_duration

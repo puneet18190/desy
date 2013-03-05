@@ -31,8 +31,8 @@ module Media
         end
 
         def run
-          @creation_mode = audio.media.blank?
-          old_media = !@creation_mode && audio.media.to_hash
+          @overwrite = audio.media.present?
+          old_media = @overwrite && audio.media.to_hash
           
           begin
             compose
@@ -49,7 +49,7 @@ module Media
               audio.tags        = old_fields.tags
             end
             audio.save! if old_media || old_fields
-            Notification.send_to audio.user_id, I18n.t("notifications.audios.#{notification_translation_key}.failed")
+            Notification.send_to audio.user_id, I18n.t("notifications.audio.compose.#{notification_translation_key}.failed")
             raise e
           end
         end
@@ -74,7 +74,7 @@ module Media
             ActiveRecord::Base.transaction do
               audio.save!
               audio.enable_lessons_containing_me
-              Notification.send_to audio.user_id, I18n.t("notifications.audios.#{notification_translation_key}.ok", audio: audio.title)
+              Notification.send_to audio.user_id, I18n.t("notifications.audio.compose.#{notification_translation_key}.ok", audio: audio.title)
               audio.user.try(:audio_editor_cache!)
             end
           end
@@ -99,7 +99,7 @@ module Media
         end
 
         def notification_translation_key
-          @creation_mode ? 'new' : 'editing'
+          @overwrite ? 'update': 'create'
         end
 
         def output_without_extension(i)

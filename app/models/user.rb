@@ -90,22 +90,6 @@ class User < ActiveRecord::Base
   def new_mailing_list_name
     "Group #{MailingListGroup.where(:user_id => self.id).count + 1}"
   end
-  
-  # def audio_editor_cache!(cache = nil)
-  #   return false if self.new_record?
-  #   folder = Rails.root.join "tmp/cache/audio_editor/#{self.id}"
-  #   FileUtils.mkdir_p folder if !Dir.exists? folder
-  #   x = File.open folder.join("cache.yml"), 'w'
-  #   x.write cache.to_yaml
-  #   x.close
-  #   true
-  # end
-  
-  # def audio_editor_cache
-  #   cache = Rails.root.join("tmp/cache/audio_editor/#{self.id}/cache.yml")
-  #   return nil if self.new_record? || !File.exists?(cache)
-  #   YAML::load(File.open(cache))
-  # end
 
   def registration_policies
     REGISTRATION_POLICIES
@@ -141,7 +125,7 @@ class User < ActiveRecord::Base
   end
   
   def audio_editor_available
-    !Audio.where(converted: nil, user_id: id).exists?
+    Audio.where(converted: nil, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
   end
   
   def search_media_elements(word, page, for_page, order=nil, filter=nil, only_tags=nil)
