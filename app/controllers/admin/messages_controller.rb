@@ -12,18 +12,34 @@ class Admin::MessagesController < AdminController
   end
   
   def new_notification
+    @location_root = Location.roots
   end
   
   def send_notifications
-    if params[:notification_ids] && params[:message]
-      msg = params[:message]
-      params[:notification_ids].split(',').each do |user_id|
-        Notification.send_to(user_id, msg)
+    if params[:all_users] && params[:message].present?
+      User.all.each do |user|
+        Notification.send_to(user.id, msg)
       end
     else
-      @errors = "errors to add"
+      
+      if params[:notification_ids] && params[:message]
+        msg = params[:message]
+        params[:notification_ids].split(',').each do |user_id|
+          Notification.send_to(user_id, msg)
+        end
+      else
+        @errors = "errors to add"
+      end
+      
     end
     redirect_to :back
+  end
+  
+  def filter_users
+    @users = User.all
+    if false
+      @users = AdminSearchForm.search(params[:search],'users')
+    end
   end
   
   def reports

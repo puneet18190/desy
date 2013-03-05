@@ -170,6 +170,7 @@ Desy::Application.routes.draw do
     get  'messages/new_notification' => 'messages#new_notification'
     post 'messages/send_notifications' => 'messages#send_notifications'
     get  'messages/reports' => 'messages#reports'
+    post 'messages/filter_users' => 'messages#filter_users'
     
     
     resources :lessons, :only => [:index, :destroy]

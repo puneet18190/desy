@@ -57,6 +57,22 @@ $(document).ready(function(){
     
   });
   
+  $('body').on('change','#filter-users select', function(){
+    $('#filter-users').submit();
+  });
+  
+  $("#notifications-form #all_users").change(function() {
+      if(this.checked) {
+        $("#notifications-form input").not('input[type=checkbox]').attr('disabled',true);
+        $("#filter-users select").attr('disabled',true);
+        $('.alert').hide();
+      }else{
+        $("#notifications-form input").attr('disabled',false);
+        $("#filter-users select").attr('disabled',false);
+        $('.alert').show();
+      }
+  });
+  
   
   // SORTING
   
