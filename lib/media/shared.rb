@@ -82,7 +82,6 @@ module Media
         before_destroy :cannot_destroy_while_converting
         after_destroy  :clean
 
-        validates_presence_of :media, if: proc{ |record| !record.composing }
         validate :media_validation
 
         attr_accessor :skip_conversion, :rename_media, :composing
