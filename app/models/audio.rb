@@ -5,6 +5,7 @@ require 'media/shared'
 class Audio < MediaElement
   UPLOADER = Media::Audio::Uploader
   EXTENSION_WHITE_LIST = UPLOADER::EXTENSION_WHITE_LIST
+  CACHE_RESTORE_PATH = '/audios/cache/restore'
   THUMB_URL = '/assets/simbolo-audio.svg'
 
   include Media::Shared
