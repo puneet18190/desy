@@ -71,10 +71,6 @@ module Media
               end
             end
 
-            it 'deletes the audio composing metadata' do
-              initial_audio.composing.should be_nil
-            end
-
             it 'sends a notification to the user' do
               initial_audio.user.notifications.count.should == user_notifications_count+1
             end

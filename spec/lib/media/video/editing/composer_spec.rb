@@ -86,10 +86,6 @@ module Media
                 end
               end
 
-              it 'deletes the video composing metadata' do
-                initial_video.composing.should be_nil
-              end
-
               it 'sends a notification to the user' do
                 initial_video.user.notifications.count.should == user_notifications_count+1
               end
@@ -119,10 +115,6 @@ module Media
                     info(format).similar_to?(MESS::VIDEO_COMPOSING[:with_audio_track][format]).should be_true
                   end
                 end
-              end
-
-              it 'deletes the video composing metadata' do
-                initial_video.composing.should be_nil
               end
 
               it 'sends a notification to the user' do
