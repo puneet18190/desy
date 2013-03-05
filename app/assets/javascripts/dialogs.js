@@ -357,11 +357,11 @@ function closePopUp(id) {
   $('#' + id).dialog('close');
 }
 
-function customOverlayClose(){
-  $(".ui-widget-overlay").css('display','block').css('height',(2*$(window).height())+"px");
-  $(".ui-widget-overlay").addClass("_close_on_click_out");
+function customOverlayClose() {
+  $('.ui-widget-overlay').show().css('height', (2 * $(window).height()) + 'px');
+  $('.ui-widget-overlay').addClass('_close_on_click_out');
 }
 
-function removeCustomOverlayClose(){
-  $(".ui-widget-overlay").removeClass("_close_on_click_out");
+function removeCustomOverlayClose() {
+  $('.ui-widget-overlay').removeClass('_close_on_click_out');
 }
