@@ -310,26 +310,20 @@ function enterAudioEditorPreviewMode() {
     selected_component = $('#' + selected_component.attr('id'));
     deselectAllAudioEditorComponents();
     switchAudioComponentsToPreviewMode();
-    showLoader();
     $('#visual_audio_editor_current_time').show();
-    setTimeout(function() {
-      $('#visual_audio_editor_current_time').html(secondsToDateString(current_global_preview_time));
-    }, 1000);
-    setTimeout(function() {
-      hideLoader();
-      $('#start_audio_editor_preview').hide();
-      $('#start_audio_editor_preview').removeClass('disabled');
-      $('#stop_audio_editor_preview').show();
-      $('#visual_audio_editor_total_length').css('color', '#787575');
-      $('#visual_audio_editor_current_time').css('color', 'white');
-      if(current_global_preview_time == 0) {
-        var first_component_from = selected_component.data('from');
-        selected_component.find('._media_player_slider').slider('value', first_component_from);
-        selected_component.find('._current_time').html(secondsToDateString(first_component_from));
-      }
-      setCurrentTimeToMedia(selected_component.find('audio'), selected_component.find('._media_player_slider').slider('value'));
-      startAudioEditorPreview(selected_component);
-    }, 1500);
+    $('#visual_audio_editor_current_time').html(secondsToDateString(current_global_preview_time));
+    $('#start_audio_editor_preview').hide();
+    $('#start_audio_editor_preview').removeClass('disabled');
+    $('#stop_audio_editor_preview').show();
+    $('#visual_audio_editor_total_length').css('color', '#787575');
+    $('#visual_audio_editor_current_time').css('color', 'white');
+    if(current_global_preview_time == 0) {
+      var first_component_from = selected_component.data('from');
+      selected_component.find('._media_player_slider').slider('value', first_component_from);
+      selected_component.find('._current_time').html(secondsToDateString(first_component_from));
+    }
+    setCurrentTimeToMedia(selected_component.find('audio'), selected_component.find('._media_player_slider').slider('value'));
+    startAudioEditorPreview(selected_component);
   });
 }
 
