@@ -192,7 +192,7 @@ $(document).ready(function(){
         })
         .autocomplete({
           source: function( request, response ) {
-            $.getJSON( "/admin/users/full_name", {
+            $.getJSON( "/admin/users/get_full_names", {
               term: extractLast( request.term )
             }, response );
           },
@@ -216,6 +216,8 @@ $(document).ready(function(){
             // add placeholder to get the comma-and-space at the end
             terms.push( "" );
             this.value = terms.join( ", " );
+            var $ids_input = $('input#notification_ids');
+            $ids_input.val($ids_input.val()+','+ui.item.id);
             return false;
           },
           messages: {

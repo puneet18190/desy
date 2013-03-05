@@ -309,14 +309,11 @@
     padding-top: 10px;
   }
   
-  &.show-action table thead th a.label{
+  &.show-action table thead th a{
     display:none;
   }
   
   /*AUTOCOMPLETE*/
-  .autocomplete-suggest{
-    margin: -10px 0 0 50px;
-  }
   .ui-autocomplete {
     position: absolute;
     top: 100%;
@@ -345,25 +342,9 @@
     background-clip: padding-box;
     *border-right-width: 2px;
     *border-bottom-width: 2px;
-
-    .ui-menu-item > a.ui-corner-all {
-      display: block;
-      padding: 3px 15px;
-      clear: both;
-      font-weight: normal;
-      line-height: 18px;
-      color: #555555;
-      white-space: nowrap;
-
-      &.ui-state-hover, &.ui-state-active {
-        color: #ffffff;
-        text-decoration: none;
-        background-color: #0088cc;
-        border-radius: 0px;
-        -webkit-border-radius: 0px;
-        -moz-border-radius: 0px;
-        background-image: none;
-      }
+    li a{
+      color: #f89406;
+      cursor:pointer;
     }
   }
   

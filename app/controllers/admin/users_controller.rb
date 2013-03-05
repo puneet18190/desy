@@ -40,8 +40,8 @@ class Admin::UsersController < AdminController
     render :json => @users
   end
   
-  def full_name
-    @users = User.full_name(params[:term])
+  def get_full_names
+    @users = User.get_full_names(params[:term])
     render :json => @users
   end
 
