@@ -849,8 +849,6 @@ en:
         pause: "Pause clip"
         # 1 - views/video_editor/cutters/_video.html.erb
         rewind: "Rewind clip"
-        # 1 - views/video_editor/cutters/_video.html.erb
-        done: "Commit your changes"
     videos:
       # Icon to switch to 'fullscreen' mode in a video player
       # 1 - views/shared/players/_video.html.erb
@@ -1888,8 +1886,9 @@ An element with the private status through the X may be cancelled, while an elem
     # Captions for 'cutters' of a component (the instruments used to modify the duration of a text / image component, or to cut a video component)
     cutters:
       # Caption for the button that commits the modifications
-      # 1 - views/video_editor/cutters/_text.html.erb
-      # 2 - views/video_editor/cutters/_image.html.erb
+      # 1 - views/video_editor/cutters/_video.html.erb
+      # 2 - views/video_editor/cutters/_text.html.erb
+      # 3 - views/video_editor/cutters/_image.html.erb
       done: "Done"
       # Caption to indicate the previous duration of a text / image component
       # 1 - views/video_editor/cutters/_text.html.erb
