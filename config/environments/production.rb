@@ -1,3 +1,5 @@
+require 'exception_notification'
+
 Desy::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -85,6 +87,8 @@ Desy::Application.configure do
                         exception_recipients: SETTINGS['application']['maintainer']['emails'],
                         ignore_exceptions:    [],
                         notifier_proc:        ->(env, exception) do
+                          ErrorsLogger.log(env, exception)
+
                           md_env = Dumpable.hash(env)
                           md_env['action_controller.instance'] = 
                             ControllerInfo.new env['action_controller.instance'].try(:controller_name), 

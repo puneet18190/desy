@@ -1,7 +1,8 @@
 require 'dumpable'
 require 'controller_info'
+require 'errors_logger'
 
-# Patch to Arel::Nodes:SqlLiteral which permits to dump it using Psych
+# Patch to Arel::Nodes:SqlLiteral which allows to dump it using Psych
 module Arel
   module Nodes
     class SqlLiteral < String

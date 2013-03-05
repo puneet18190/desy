@@ -20,7 +20,9 @@ module Dumpable
       case e.original_exception
       when ::NoMethodError
         template      = e.instance_variable_get(:@template)
-        assigns       = e.instance_variable_get(:@assigns)
+        # @assigns can contain active record relations and things that
+        # can break the YAML dumping, so we reset it
+        assigns       = ''
         sub_templates = e.instance_variable_get(:@sub_templates)
         e = ActionView::Template::Error.new(template, assigns, NoMethodError.new(e.original_exception))
         e.instance_variable_set :@sub_templates, sub_templates
