@@ -95,6 +95,10 @@ module Media
           end
         end
 
+        def audio_copy(input, output)
+          FileUtils.cp(input, output)
+        end
+
         def notification_translation_key
           @overwrite ? 'update': 'create'
         end
