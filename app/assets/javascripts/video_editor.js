@@ -574,7 +574,7 @@ function startVideoEditorGlobalPreview() {
 }
 
 function getFirstVideoEditorComponent() {
-  return $($('._video_editor_component')[0]);
+  return $('._video_editor_component').first();
 }
 
 function getLastVideoEditorComponent() {
