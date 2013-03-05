@@ -49,7 +49,6 @@ function resetMediaElementChangeInfo(media_element_id) {
 var W3CDOM = (document.createElement && document.getElementsByTagName);
 
 function initFileUploads() {
-  console.log('initfile');
 	if (!W3CDOM) return;
 	var fakeFileUpload = document.createElement('div');
 	fakeFileUpload.className = 'fakefile';
