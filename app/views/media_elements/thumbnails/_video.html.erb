@@ -1,6 +1,6 @@
 <div style="position:relative;">
   <% if item.converted.nil? %>
-    <%= image_tag item.placeholders_url(:thumb) %>
+    <%= image_tag item.placeholder_url(:thumb) %>
   <% else %>
     <%= image_tag item.thumb_url %>
     <div class="bulletPointVideo">

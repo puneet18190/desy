@@ -9,6 +9,7 @@ require 'media/shared'
 class Video < MediaElement
   UPLOADER = Media::Video::Uploader
   EXTENSION_WHITE_LIST = UPLOADER::EXTENSION_WHITE_LIST
+  CACHE_RESTORE_PATH = '/videos/cache/restore'
 
   include Media::Shared
   extend  Media::Video::Editing::Parameters
@@ -30,7 +31,11 @@ class Video < MediaElement
   end
   
   def thumb_url
-    converted ? media.try(:url, :thumb) : placeholder_url
+    converted ? media.try(:url, :thumb) : placeholder_url(:thumb)
+  end
+
+  def placeholder_url(type)
+    "/assets/placeholders/video_#{type}.gif"
   end
 
   def mp4_duration

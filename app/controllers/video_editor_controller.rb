@@ -64,6 +64,7 @@ class VideoEditorController < ApplicationController
     
     if record.save
       parameters[:initial_video] = { :id => record.id }
+      Notification.send_to current_user.id, t('notifications.video.compose.create.started', item: record.title)
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'new'
@@ -94,7 +95,7 @@ class VideoEditorController < ApplicationController
         :tags => params[:update_tags_value]
       }
       record.overwrite!
-      Notification.send_to current_user.id, t('notifications.videos.editing.started')
+      Notification.send_to current_user.id, t('notifications.video.compose.update.started', item: record.title)
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'update'

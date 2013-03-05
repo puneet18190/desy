@@ -35,10 +35,13 @@ class MediaElement < ActiveRecord::Base
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => I18n.t('language_parameters.media_element.length_title')
   validates_length_of :description, :maximum => I18n.t('language_parameters.media_element.length_description')
+  validates_presence_of :media, unless: proc{ |record| [Video, Audio].include?(record.class) && record.composing }
   validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_tags_length
   
   before_validation :init_validation
   before_destroy :stop_if_public, :destroy_taggings
+
+  scope :not_failed_conversion, where('converted != false')
 
   # SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id AND bookmarks.bookmarkable_type = 'MediaElement' AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY COALESCE(bookmarks.created_at, media_elements.updated_at) DESC
   scope :of, ->(user_or_user_id) do

@@ -64,6 +64,7 @@ class AudioEditorController < ApplicationController
 
     if record.save
       parameters[:initial_audio] = { :id => record.id }
+      Notification.send_to current_user.id, t('notifications.audio.compose.create.started', item: record.title)
       Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'new'
@@ -94,7 +95,7 @@ class AudioEditorController < ApplicationController
         :tags => params[:update_tags_value]
       }
       record.pre_overwriting
-      Notification.send_to current_user.id, t('notifications.audio.editing.started')
+      Notification.send_to current_user.id, t('notifications.audio.compose.update.started', item: record.title)
       Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'update'

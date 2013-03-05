@@ -15,29 +15,8 @@ class ApplicationController < ActionController::Base
   private
   
   def initialize_players_counter
-    if File.exists?(Rails.root.join('tmp/players_counter.yml'))
-      file = YAML::load(File.open(Rails.root.join('tmp/players_counter.yml')))
-      @video_counter = [file['video_counter'], 1]
-      @audio_counter = [file['audio_counter'], 1]
-      file['video_counter'] += 1
-      file['audio_counter'] += 1
-    else
-      @video_counter = [1, 1]
-      @audio_counter = [1, 1]
-      file = {'video_counter' => 2, 'audio_counter' => 2}
-    end
-    yaml = File.open(Rails.root.join('tmp/players_counter.yml'), 'w')
-    yaml.write file.to_yaml
-    yaml.close
-  end
-  
-  def reset_players_counter
-    @video_counter = [1, 1]
-    @audio_counter = [1, 1]
-    file = {'video_counter' => 2, 'audio_counter' => 2}
-    yaml = File.open(Rails.root.join('tmp/players_counter.yml'), 'w')
-    yaml.write file.to_yaml
-    yaml.close
+    @video_counter = [SecureRandom.urlsafe_base64(16), 1]
+    @audio_counter = [SecureRandom.urlsafe_base64(16), 1]
   end
   
   def prepare_lesson_for_js

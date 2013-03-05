@@ -4,7 +4,7 @@ function initializeNotifications() {
     showNotificationsButton();
   }
   $('body').on('click', '#notifications_button', function() {
-    if($('#tooltip_content').css('display') == 'none') {
+    if(!$('#tooltip_content').is(':visible')) {
       hideHelpTooltip();
       hideHelpButton();
       $('#tooltip_content').show('fade', {}, 500, function() {
@@ -25,13 +25,12 @@ function initializeNotifications() {
       }
     }
   });
-  
   $('body').on('click', '._single_notification .notification_gatto', function() {
     var closest_li = $(this).closest('li');
     var my_own_id = closest_li.attr('id')
     var my_content = $('#' + my_own_id + ' ._expanded_notification').html();
     var my_expanded = $('#expanded_notification');
-    if(my_expanded.css('display') == 'none') {
+    if(!my_expanded.is(':visible')) {
       my_expanded.html(my_content);
       my_expanded.data('contentid', my_own_id);
       my_expanded.show('fade', {}, 500, function() {
@@ -62,32 +61,28 @@ function initializeNotifications() {
       }
     }
   });
-  
-  //click outside notifications to close
   $(document).bind('click', function (e) {
-    var click_id = $(e.target).attr("id");
+    var click_id = $(e.target).attr('id');
     if($('#tooltip_content').length > 0){
-      if($('#tooltip_content').css('display') != 'none'){
+      if($('#tooltip_content').is(':visible')) {
         if(click_id != 'tooltip_content' && click_id != 'expanded_notification' && click_id != 'notifications_button' && $(e.target).parents('#tooltip_content').length == 0 && $(e.target).parents('#expanded_notification').length == 0){
           $('#notifications_button').trigger('click');
         }
       }
     }
-    
-    if($('#tooltip_help').length > 0){
-      if($('#tooltip_help').css('display') != 'none'){
+    if($('#tooltip_help').length > 0) {
+      if($('#tooltip_help').is(':visible')) {
         if(click_id != 'tooltip_help' && click_id != 'help' && $(e.target).parents('#tooltip_help').length == 0){
           $('#help').trigger('click');
         }
       }
     }
   });
-  
 }
 
 function initializeHelp() {
   $('#help').click(function() {
-    if($('#tooltip_help').css('display') == 'none') {
+    if(!$('#tooltip_help').is(':visible')) {
       hideNotificationsTooltip();
       hideNotificationsButton();
       hideNotificationsFumetto();

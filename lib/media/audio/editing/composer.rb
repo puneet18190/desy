@@ -31,27 +31,24 @@ module Media
         end
 
         def run
-          @creation_mode = audio.media.blank?
-          old_media = !@creation_mode && audio.media.to_hash
-          
-          begin
-            compose
-          rescue StandardError => e
-            if old_media
-              audio.media     = old_media 
-              audio.converted = true
-            else
-              video.converted = false
-            end
+          @overwrite = audio.media.present?
+          old_media = @overwrite && audio.media.to_hash
+          compose
+        rescue StandardError => e
+          if old_media
+            audio.media     = old_media 
+            audio.converted = true
             if old_fields = audio.try(:metadata).try(:old_fields)
               audio.title       = old_fields.title
               audio.description = old_fields.description
               audio.tags        = old_fields.tags
             end
-            audio.save! if old_media || old_fields
-            Notification.send_to audio.user_id, I18n.t("notifications.audios.#{notification_translation_key}.failed")
-            raise e
+          else
+            audio.converted = false
           end
+          audio.save!
+          Notification.send_to audio.user_id, I18n.t("notifications.audio.compose.#{notification_translation_key}.failed", item: audio.title, link: ::Audio::CACHE_RESTORE_PATH)
+          raise e
         end
 
         def compose
@@ -74,8 +71,8 @@ module Media
             ActiveRecord::Base.transaction do
               audio.save!
               audio.enable_lessons_containing_me
-              Notification.send_to audio.user_id, I18n.t("notifications.audios.#{notification_translation_key}.ok", audio: audio.title)
-              audio.user.try(:audio_editor_cache!)
+              Notification.send_to audio.user_id, I18n.t("notifications.audio.compose.#{notification_translation_key}.ok", item: audio.title)
+              audio.user.audio_editor_cache!
             end
           end
         end
@@ -98,8 +95,12 @@ module Media
           end
         end
 
+        def audio_copy(input, output)
+          FileUtils.cp(input, output)
+        end
+
         def notification_translation_key
-          @creation_mode ? 'new' : 'editing'
+          @overwrite ? 'update': 'create'
         end
 
         def output_without_extension(i)

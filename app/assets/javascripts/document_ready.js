@@ -100,7 +100,7 @@ $(document).ready(function() {
   $('body').on('click', '._report_lesson_click', function() {
     var param = $(this).data('param');
     var obj = $('#lesson_report_form_' + param);
-    if(obj.css('display') == 'none') {
+    if(!obj.is(':visible')) {
       var button = $('#' + this.id + ' a._reportable_icon');
       button.addClass('_report_selected');
       button.removeClass('report');
@@ -123,7 +123,7 @@ $(document).ready(function() {
   $('body').on('click', '._report_media_element_click', function() {
     var param = $(this).data('param');
     var obj = $('#media_element_report_form_' + param);
-    if(obj.css('display') == 'none') {
+    if(!obj.is(':visible')) {
       $(this).removeClass('report');
       $(this).addClass('report_light');
       obj.show('fade', {}, 500, function() {
@@ -196,7 +196,7 @@ $(document).ready(function() {
     if(!$(this).parent().hasClass('_disabled')) {
       var my_id = $(this).parent().attr('id');
       var my_expanded = $('#' + my_id + ' ._lesson_expanded');
-      if(my_expanded.css('display') == 'block') {
+      if(my_expanded.is(':visible')) {
         my_expanded.find('._report_form_content').hide();
         my_expanded.find('._reportable_icon').removeClass('report_light _report_selected').addClass('report');
         my_expanded.hide('blind', {}, 500, function() {
@@ -275,7 +275,7 @@ $(document).ready(function() {
     if(!$(e.target).hasClass('_select_audio_from_gallery')) {
       var parent_id = $(this).parent().attr('id');
       var obj = $('#' + parent_id + ' ._expanded');
-      if(obj.css('display') == 'block') {
+      if(obj.is(':visible')) {
         $('#' + parent_id).removeClass('_audio_expanded_in_gallery');
         stopMedia('#' + parent_id + ' audio');
         obj.hide('blind', {}, 500);
@@ -679,7 +679,7 @@ $(document).ready(function() {
     $('#search_lessons_main_page').hide('fade', {}, 500, function() {
       $('#search_media_elements_main_page').show();
       $('#search_lessons_main_page').hide();
-      if($('#general_pagination').css('display') == 'block') {
+      if($('#general_pagination').is(':visible')) {
         $('#general_pagination').hide();
       } else {
         $('#general_pagination').show();
@@ -691,7 +691,7 @@ $(document).ready(function() {
     $('#search_media_elements_main_page').hide('fade', {}, 500, function() {
       $('#search_media_elements_main_page').hide();
       $('#search_lessons_main_page').show();
-      if($('#general_pagination').css('display') == 'block') {
+      if($('#general_pagination').is(':visible')) {
         $('#general_pagination').hide();
       } else {
         $('#general_pagination').show();
@@ -1061,7 +1061,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._show_login_form_container', function() {
     var form = $('#login_form_container');
-    if(form.css('display') == 'none') {
+    if(!form.is(':visible')) {
       form.show('fade', {}, 500);
       $('#email').focus();
     } else {
@@ -1221,7 +1221,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._video_component_cutter_button', function() {
     var component_id = $(this).parents('._video_editor_component').attr('id');
-    if($('#' + component_id + '_preview').css('display') == 'none') {
+    if(!$('#' + component_id + '_preview').is(':visible')) {
       startVideoEditorPreviewClip(component_id);
     }
     $('#video_editor_box_ghost').show();
@@ -1290,11 +1290,11 @@ $(document).ready(function() {
       }).always(bindLoader);
     }, function() {
       if($('#form_info_update_media_element_in_editor').length == 0) {
-        if($('#form_info_new_media_element_in_editor').css('display') == 'none') {
+        if(!$('#form_info_new_media_element_in_editor').is(':visible')) {
           startCacheLoop();
         }
       } else {
-        if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_info_update_media_element_in_editor').css('display') == 'none') {
+        if(!$('#form_info_new_media_element_in_editor').is(':visible') && !$('#form_info_update_media_element_in_editor').is(':visible')) {
           startCacheLoop();
         }
       }
@@ -1624,7 +1624,7 @@ $(document).ready(function() {
       if(resp > 0 && resp > double_slider.slider('values', 0)) {
         selectVideoComponentCutterHandle(cutter, resp - 1);
       }
-    } else if($(double_slider.find('.ui-slider-handle')[0]).hasClass('selected')) {
+    } else if(double_slider.find('.ui-slider-handle').first().hasClass('selected')) {
       var resp = double_slider.slider('values', 0);
       if(resp > 0) {
         double_slider.slider('values', 0, resp - 1);
@@ -1653,7 +1653,7 @@ $(document).ready(function() {
       if(resp < duration && resp < double_slider.slider('values', 1)) {
         selectVideoComponentCutterHandle(cutter, resp + 1);
       }
-    } else if($(double_slider.find('.ui-slider-handle')[0]).hasClass('selected')) {
+    } else if(double_slider.find('.ui-slider-handle').first().hasClass('selected')) {
       var resp = double_slider.slider('values', 0);
       if(resp < double_slider.slider('values', 1) - 1) {
         if(single_slider.slider('value') == resp) {
@@ -1681,7 +1681,7 @@ $(document).ready(function() {
   });
   
   $('body').on('mouseout', '._audio_editor_component ._box_ghost', function(e) {
-    if($(this).css('display') == 'block' && !$(e.relatedTarget).hasClass('_remove')) {
+    if($(this).is(':visible') && !$(e.relatedTarget).hasClass('_remove')) {
       $(this).parent().find('._sort_handle').removeClass('current');
     }
   });
@@ -1741,11 +1741,11 @@ $(document).ready(function() {
       }).always(bindLoader);
     }, function() {
       if($('#form_info_update_media_element_in_editor').length == 0) {
-        if($('#form_info_new_media_element_in_editor').css('display') == 'none') {
+        if(!$('#form_info_new_media_element_in_editor').is(':visible')) {
           startCacheLoop();
         }
       } else {
-        if($('#form_info_new_media_element_in_editor').css('display') == 'none' && $('#form_info_update_media_element_in_editor').css('display') == 'none') {
+        if(!$('#form_info_new_media_element_in_editor').is(':visible') && !$('#form_info_update_media_element_in_editor').is(':visible')) {
           startCacheLoop();
         }
       }
@@ -1839,7 +1839,7 @@ $(document).ready(function() {
       if(resp > 0 && resp > double_slider.slider('values', 0)) {
         selectAudioComponentCutterHandle(component, resp - 1);
       }
-    } else if($(double_slider.find('.ui-slider-handle')[0]).hasClass('selected')) {
+    } else if(double_slider.find('.ui-slider-handle').first().hasClass('selected')) {
       var resp = double_slider.slider('values', 0);
       if(resp > 0) {
         double_slider.slider('values', 0, resp - 1);
@@ -1868,7 +1868,7 @@ $(document).ready(function() {
       if(resp < duration && resp < double_slider.slider('values', 1)) {
         selectAudioComponentCutterHandle(component, resp + 1);
       }
-    } else if($(double_slider.find('.ui-slider-handle')[0]).hasClass('selected')) {
+    } else if(double_slider.find('.ui-slider-handle').first().hasClass('selected')) {
       var resp = double_slider.slider('values', 0);
       if(resp < double_slider.slider('values', 1) - 1) {
         if(single_slider.slider('value') == resp) {
