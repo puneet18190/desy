@@ -34,7 +34,7 @@
   </thead>
   <tbody>
     <% users.each do |user| %>
-      <tr>
+      <tr id="<%=user.id%>">
         <td><%= user.id %></td>
         <td><%= link_to user.email, "mailto:#{user.email}"%></td>
         <td><%= user.name %></td>
@@ -53,7 +53,7 @@
           <% end %>
         </td>
         
-        <td><%= link_to '<i class="icon-remove"></i>'.html_safe, "#", :confirm => t('admin.general.ask_for_delete'), :title=> t('admin.users.index.delete'), :class=>"action"%></td>
+        <td><%= link_to '<i class="icon-remove"></i>'.html_safe, admin_user_path(user),:method => :delete, :remote => true, :confirm => t('admin.general.ask_for_delete'), :title=> t('admin.users.index.delete'), :class=>"action"%></td>
       </tr>
     <% end %>
   </tbody>

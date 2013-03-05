@@ -167,7 +167,8 @@ Desy::Application.routes.draw do
     get  'elements/edit' => 'elements#edit'
     get  'elements/:id/load' => 'elements#load_element'
     post 'location/:id/find' => 'users#find_location'
-    get  'messages/send_notifications' => 'messages#send_notifications'
+    get  'messages/new_notification' => 'messages#new_notification'
+    post 'messages/send_notifications' => 'messages#send_notifications'
     get  'messages/reports' => 'messages#reports'
     
     

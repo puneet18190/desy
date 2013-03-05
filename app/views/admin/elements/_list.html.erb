@@ -51,7 +51,7 @@
           <% end %>
         </td>
         <td>
-          <%= link_to '<i class="icon-remove"></i>'.html_safe, '#',:confirm => t('admin.general.ask_for_delete'), :class=>"_delete_list_element action","data-param"=>element.id %>
+          <%= link_to '<i class="icon-remove"></i>'.html_safe, admin_elements_path(element),:method => :delete , :confirm => t('admin.general.ask_for_delete'),:remote => true, :class=>"_delete_list_element action","data-param"=>element.id %>
         </td>
       </tr>
       <div style="clear:both;"></div>

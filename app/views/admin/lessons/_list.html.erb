@@ -48,7 +48,7 @@
             <td><%= lesson.updated_at.strftime('%d-%m-%Y')%></td>
             <td><%= lesson.likes.count%></td>
             <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, "/lessons/#{lesson.id}/view?token=#{lesson.token}",:target => :blank, :class=>"action"%><a href="#" target="_blank" class="action"></a></td>
-            <td><%= link_to '<i class="icon-remove"></i>'.html_safe, "#", :confirm => t('admin.general.ask_for_delete'), :class=>"action"%></td>
+            <td><%= link_to '<i class="icon-remove"></i>'.html_safe, admin_lesson_path(lesson),:method => :delete, :remote => true, :confirm => t('admin.general.ask_for_delete'), :class=>"action"%></td>
           </tr>
           <tr class="collapsed">
             <td colspan="11">

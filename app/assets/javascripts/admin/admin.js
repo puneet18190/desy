@@ -138,7 +138,7 @@ $(document).ready(function(){
     e.preventDefault();
     $.ajax({
       type: 'PUT',
-      url: '/admin/elements/'+$(this).data('param')+'?is_public=true',
+      url: '/admin/elements/'+$(this).parent('a').data('param')+'?is_public=true',
       timeout:5000,
       success: function(){
         var btn = $(e.target);

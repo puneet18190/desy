@@ -11,7 +11,11 @@ class Admin::MessagesController < AdminController
     end
   end
   
+  def new_notification
+  end
+  
   def send_notifications
+    Notification.send_to(an_user_id, msg)
   end
   
   def reports
