@@ -2,7 +2,7 @@
   $('#my_lessons').hide('fade', {}, 500, function() {
     $('#my_lessons').replaceWith("<%= j(render(:partial => 'lessons/my_lessons')) %>");
     <% if @lessons.any? %>
-      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount)) %>");
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount})) %>");
     <% else %>
       $('#general_pagination').html('');
     <% end %>
@@ -17,7 +17,7 @@
     }
     $('#my_lessons').replaceWith("<%= j(render(:partial => 'lessons/my_lessons')) %>");
     <% if @lessons.any? %>
-      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount)) %>");
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount})) %>");
     <% else %>
       $('#general_pagination').html('');
     <% end %>

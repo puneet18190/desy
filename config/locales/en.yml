@@ -1914,7 +1914,7 @@ An element with the private status through the X may be cancelled, while an elem
       # 1 - views/video_editor/not_available.html.erb
       title: "Video editor not available"
       # 1 - views/video_editor/not_available.html.erb
-      description: "Inserire qui altro testo"
+      description: "In this moment you are running the Editor for another video: until the process hasn't finished the Video Editor will be temporarily disabled"
     preview:
       # Caption for the button that opens the global preview mode
       # 1 - views/video_editor/edit.html.erb
