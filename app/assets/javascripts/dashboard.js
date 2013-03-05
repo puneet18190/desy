@@ -146,5 +146,4 @@ function asyncFormSubmit($form, resultDiv) {
 
     // This gets replaced by iframe content when ready
     // $(resultDiv).html("Uploading...");
-    console.log('uploading');
 }

@@ -5,5 +5,6 @@
  *= require bootstrap_desy
  *= require bootstrap-responsive
  *= require datepicker
+ *= require jquery-ui-1.9.0.custom
  *= require admin_overrides
  */

@@ -15,7 +15,15 @@ class Admin::MessagesController < AdminController
   end
   
   def send_notifications
-    Notification.send_to(an_user_id, msg)
+    if params[:notification_ids] && params[:message]
+      msg = params[:message]
+      params[:notification_ids].split(',').each do |user_id|
+        Notification.send_to(user_id, msg)
+      end
+    else
+      @errors = "errors to add"
+    end
+    redirect_to :back
   end
   
   def reports
