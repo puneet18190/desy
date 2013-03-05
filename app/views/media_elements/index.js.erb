@@ -2,7 +2,7 @@
   $('#my_media_elements').hide('fade', {}, 500, function() {
     $('#my_media_elements').replaceWith("<%= j(render(:partial => 'media_elements/my_media_elements')) %>");
     <% if @media_elements.any? %>
-      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount)) %>");
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount})) %>");
     <% else %>
       $('#general_pagination').html('');
     <% end %>
@@ -17,7 +17,7 @@
     }
     $('#my_media_elements').replaceWith("<%= j(render(:partial => 'media_elements/my_media_elements')) %>");
     <% if @media_elements.any? %>
-      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount)) %>");
+      $('#general_pagination').replaceWith("<%= j(render(:partial => 'shared/pagination', :locals => {:page => @page, :pages_amount => @pages_amount})) %>");
     <% else %>
       $('#general_pagination').html('');
     <% end %>
