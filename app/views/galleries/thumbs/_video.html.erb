@@ -2,7 +2,7 @@
   disabled = !video.converted?
   additional_class = disabled ? '_disabled'.html_safe : ''
 %>
-<li id="gallery_video_<%= video.id %>" class="_video_gallery_thumb <%= additional_class %>" data-video-id="<%= video.id %>">
+<li id="gallery_video_<%= video.id %>" class="_video_gallery_thumb <%= additional_class %>" data-video-id="<%= video.id %>" title="<%= video.title %>">
   <a><%= image_tag video.cover_url, :width => '250', :height => '140' %></a>
   <% unless disabled %>
     <div class="videoInGalleryPopUp" id="dialog-video-gallery-<%= video.id %>" data-video-id="<%= video.id %>">

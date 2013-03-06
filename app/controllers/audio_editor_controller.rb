@@ -94,7 +94,7 @@ class AudioEditorController < ApplicationController
         :description => params[:update_description],
         :tags => params[:update_tags_value]
       }
-      record.pre_overwriting
+      record.overwrite!
       Notification.send_to current_user.id, t('notifications.audio.compose.update.started', item: record.title)
       Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
     else
