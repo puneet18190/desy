@@ -20,11 +20,11 @@ module Media
       when File
         @original_file     = @value
         @original_filename = File.basename @value.path
-        model.converted    = nil
+        model.converted    = false
       when ActionDispatch::Http::UploadedFile
         @original_file     = @value.tempfile
         @original_filename = @value.original_filename
-        model.converted    = nil
+        model.converted    = false
       when Hash
         @converted_files                     = @value.select{ |k| self.class::FORMATS.include? k }
         @original_filename_without_extension = @value[:filename]

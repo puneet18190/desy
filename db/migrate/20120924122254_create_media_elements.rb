@@ -8,7 +8,7 @@ class CreateMediaElements < ActiveRecord::Migration
       t.string   :title,           :null => false
       t.text     :description,     :null => false
       t.text     :metadata
-      t.boolean  :converted
+      t.boolean  :converted,       :null => false, :default => false
       t.boolean  :is_public,       :null => false, :default => false
       t.datetime :publication_date
       t.timestamps

@@ -174,7 +174,7 @@ class MediaElementTest < ActiveSupport::TestCase
     assert !MediaElement.exists?(1)
   end
   
-  test 'delete_without_callbacks' do
+  test 'delete' do
     me = MediaElement.find(1)
     assert_equal 4, me.taggings.count
     assert me.bookmarks.empty?
@@ -185,14 +185,14 @@ class MediaElementTest < ActiveSupport::TestCase
     assert User.find(2).bookmark 'MediaElement', 1
     me = MediaElement.find me.id
     assert_equal 1, me.bookmarks.count
-    assert !MediaElement.new.delete_without_callbacks
+    assert !MediaElement.new.delete
     bookmarks = Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => me.id)
     assert_equal 1, bookmarks.length
     reports = Report.where(:reportable_type => 'MediaElement', :reportable_id => me.id)
     assert_equal 1, reports.length
     taggings = Tagging.where(:taggable_type => 'MediaElement', :taggable_id => me.id)
     assert_equal 4, taggings.length
-    assert me.delete_without_callbacks
+    assert me.delete
     bookmarks.each do |b|
       assert_nil Bookmark.find_by_id b.id
     end

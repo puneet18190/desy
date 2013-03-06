@@ -1,5 +1,5 @@
 <%
-  disabled = (!media_element.image? && media_element.converted.nil?)
+  disabled = (!media_element.image? && !media_element.converted?)
   additional_class = disabled ? '_disabled'.html_safe : ''
 %>
 
