@@ -10,10 +10,10 @@
       </div>
     <% else %>
       <div class="videoMedium" style="background-color: white" >
-        <% if video.converted.nil? %>
-          <%= image_tag video.placeholder_url(:cover) %>
-        <% else %>
+        <% if video.converted? %>
           <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true} %>
+        <% else %>
+          <%= image_tag video.placeholder_url(:cover) %>
         <% end %>
       </div>
     <% end %>

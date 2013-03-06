@@ -121,11 +121,11 @@ class User < ActiveRecord::Base
   
   
   def video_editor_available
-    Video.where(converted: nil, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
+    Video.where(converted: false, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
   end
   
   def audio_editor_available
-    Audio.where(converted: nil, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
+    Audio.where(converted: false, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
   end
   
   def search_media_elements(word, page, for_page, order=nil, filter=nil, only_tags=nil)

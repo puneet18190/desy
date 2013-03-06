@@ -41,6 +41,10 @@ describe Video, slow: true do
 
     let(:output_folder) { "#{Rails.root}/public/media_elements/videos/test/#{subject.id}" }
 
+    it 'should be destroyed' do
+      described_class.find_by_id(subject.id).should be_nil
+    end
+
     it 'destroys the video folder' do
       File.exists?(output_folder).should_not be_true
     end

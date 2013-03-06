@@ -3,13 +3,12 @@ class Admin::ElementsController < AdminController
   layout 'admin'
   
   def index
-    #@elements = Element.order('id DESC').page params[:page] #to manage others search
-    #@elements = Element.joins(:user,:subject,:likes).select('elements.*, users.name, subjects.description, count(likes) AS likes_count').group('elements.id').sorted(params[:sort], "elements.id DESC").page(params[:page])
-    if params[:search]
-      elements = AdminSearchForm.search(params[:search],'elements')
-    else
-      elements = MediaElement.where(converted: true).order('id DESC')
-    end
+    elements = 
+      if params[:search]
+        AdminSearchForm.search(params[:search],'elements')
+      else
+        MediaElement.where(converted: true).order('id DESC')
+      end
     
     @elements = elements.page(params[:page])
     @location_root = Location.roots
@@ -70,7 +69,8 @@ class Admin::ElementsController < AdminController
   end
   
   def destroy
-    if !@element.delete_without_callbacks
+    @element.destroyable_even_if_public = true
+    if !@element.destroy
       @errors = @element.get_base_error
     end
   end

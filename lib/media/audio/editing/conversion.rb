@@ -46,14 +46,7 @@ module Media
 
         def run
           begin
-            mp3_conversion = Thread.new { convert_to(:mp3) }
-            ogg_conversion = Thread.new { convert_to(:ogg) }
-
-            mp3_conversion.abort_on_exception = ogg_conversion.abort_on_exception = true
-
-            # Say to the parent thread (me) to wait the threads to finish before to continue
-            mp3_conversion.join
-            ogg_conversion.join
+            FORMATS.map{ |format| SensitiveThread.new { convert_to(format) } }.each(&:join)
 
             mp3_file_info = Info.new output_path(:mp3)
             ogg_file_info = Info.new output_path(:ogg)
@@ -64,8 +57,21 @@ module Media
             end
 
           rescue StandardError => e
-            model.update_column(:converted, false) if model.present?
             FileUtils.rm_rf output_folder if Dir.exists? output_folder
+            
+            input_path = 
+              if File.exists? temp_path
+                temp_path
+              elsif File.exists? uploaded_path
+                uploaded_path
+              end
+            FileUtils.cp input_path, create_log_folder if input_path
+
+            if model.present? and model.user_id.present?
+              Notification.send_to model.user_id, I18n.t("notifications.#{model.class.to_s.downcase}.uploading.failed", item: model.title)
+              model.destroy
+            end
+
             raise e
           end
 
