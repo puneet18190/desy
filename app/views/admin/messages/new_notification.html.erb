@@ -34,7 +34,7 @@
           </div>
           <div class="span1"></div>
           <div class="span7">
-            <%= form_tag('/admin/messages/send_notifications', :id=>"notifications-form") do %>
+            <%= form_tag('/admin/messages/send_notifications', :method => :post, :id=>"notifications-form") do %>
               <div class="row-fluid">
                 <div class="span6">
                   <div class="control-group">

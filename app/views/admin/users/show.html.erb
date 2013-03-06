@@ -71,7 +71,7 @@
               <% @my_liked_lessons.each do |liked| %>
                 <tr>
                   <td><%= liked.title %></td>
-                  <td width="50"><span class="counter-label lessons"><%= format('%02d', liked.likes.count) %></span></td>
+                  <td width="50"><span class="counter-label lessons"><%= format('%02d', liked.likes_count) %></span></td>
                 </tr>
               <% end %>
             </tbody>

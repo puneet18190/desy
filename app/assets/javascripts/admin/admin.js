@@ -63,11 +63,11 @@ $(document).ready(function(){
   
   $("#notifications-form #all_users").change(function() {
       if(this.checked) {
-        $("#notifications-form input").not('input[type=checkbox]').attr('disabled',true);
+        $("input#contact-recipients").attr('disabled',true);
         $("#filter-users select").attr('disabled',true);
         $('.alert').hide();
       }else{
-        $("#notifications-form input").attr('disabled',false);
+        $("input#contact-recipients").attr('disabled',false);
         $("#filter-users select").attr('disabled',false);
         if($('.alert').length > 0 && $('.alert').html() === ''){
           $('.alert').show();

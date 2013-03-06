@@ -18,7 +18,7 @@ class Admin::MessagesController < AdminController
   def send_notifications
     if params[:all_users] && params[:message].present?
       User.all.each do |user|
-        Notification.send_to(user.id, msg)
+        Notification.send_to(user.id, params[:message])
       end
     else
       
