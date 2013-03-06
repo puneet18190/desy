@@ -20,7 +20,7 @@ class MediaElement < ActiveRecord::Base
   
   attr_accessible :title, :description, :media, :publication_date, :tags
   attr_reader :status, :is_reportable, :info_changeable
-  attr_accessor :skip_public_validations
+  attr_accessor :skip_public_validations, :destroyable_even_if_public
 
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
@@ -41,7 +41,7 @@ class MediaElement < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_public, :destroy_taggings
 
-  scope :not_failed_conversion, where('converted != false')
+  scope :not_failed_conversion, -> { where('converted != false') }
 
   # SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id AND bookmarks.bookmarkable_type = 'MediaElement' AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY COALESCE(bookmarks.created_at, media_elements.updated_at) DESC
   scope :of, ->(user_or_user_id) do
@@ -85,6 +85,10 @@ class MediaElement < ActiveRecord::Base
       return nil if media_element.status.nil?
       media_element
     end
+
+    def dashboard_emptied?(an_user_id)
+      Bookmark.joins("INNER JOIN media_elements ON media_elements.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'MediaElement'").where('media_elements.is_public = ? AND media_elements.user_id != ? AND bookmarks.user_id = ?', true, an_user_id, an_user_id).any?
+    end
   end
   
   def disable_lessons_containing_me
@@ -111,22 +115,6 @@ class MediaElement < ActiveRecord::Base
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'MediaElement')
   end
   
-  def delete_without_callbacks
-    return false if self.new_record?
-    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => self.id).each do |t|
-      t.destroyable = true
-      t.destroy
-    end
-    Report.where(:reportable_type => 'MediaElement', :reportable_id => self.id).each do |r|
-      r.destroy
-    end
-    Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => self.id).each do |b|
-      b.destroy
-    end
-    self.delete
-    true
-  end
-  
   def tags=(tags)
     @tags = 
       case tags
@@ -137,10 +125,6 @@ class MediaElement < ActiveRecord::Base
       end
     
     @tags
-  end
-  
-  def self.dashboard_emptied?(an_user_id)
-    Bookmark.joins("INNER JOIN media_elements ON media_elements.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'MediaElement'").where('media_elements.is_public = ? AND media_elements.user_id != ? AND bookmarks.user_id = ?', true, an_user_id, an_user_id).any?
   end
   
   def set_status(an_user_id)
@@ -284,14 +268,14 @@ class MediaElement < ActiveRecord::Base
   end
   
   def stop_if_public
+    return true unless destroyable_even_if_public
     @media_element = Valid.get_association self, :id
-    @media_element.nil? || !@media_element.is_public
-  end
-
-  def clean
-    folder = media.try(:folder)
-    FileUtils.rm_rf folder if folder and File.exists? folder
-    true
+    if @media_element.try(:is_public)
+      errors.add :is_public, :undestroyable
+      false
+    else
+      true
+    end
   end
   
   def manage_lessons_containing_me(value)

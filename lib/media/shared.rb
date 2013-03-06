@@ -41,7 +41,7 @@ module Media
       end
 
       def cannot_destroy_while_converting
-        !converted.nil?
+        converted?
       end
 
       def overwrite!
@@ -49,7 +49,7 @@ module Media
         # me lo prendo dall'associazione taggings_tags, visto che non è cambiata
         old_fields = Hash[ v.changes.map{ |col, (old)| [col, old] } << ['tags', v.taggings_tags.map(&:word).join(', ')] ]
         self.metadata.old_fields = old_fields
-        self.converted = nil
+        self.converted = false
         self.class.transaction do
           save!
           disable_lessons_containing_me
@@ -68,6 +68,12 @@ module Media
 
       def upload_or_copy
         media.upload_or_copy if media
+        true
+      end
+
+      def clean
+        folder = media.try(:folder)
+        FileUtils.rm_rf folder if folder and Dir.exists? folder
         true
       end
     end

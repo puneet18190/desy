@@ -47,14 +47,7 @@ module Media
   
         def run
           begin
-            mp4_conversion  = Thread.new { convert_to(:mp4)  }
-            webm_conversion = Thread.new { convert_to(:webm) }
-  
-            mp4_conversion.abort_on_exception = webm_conversion.abort_on_exception = true
-  
-            # Say to the parent thread (me) to wait the threads to finish before to continue
-            mp4_conversion.join
-            webm_conversion.join
+            FORMATS.map{ |format| SensitiveThread.new { convert_to(format) } }.each(&:join)
   
             mp4_file_info  = Info.new output_path(:mp4)
             webm_file_info = Info.new output_path(:webm)
@@ -71,14 +64,19 @@ module Media
             extract_thumb cover_path, thumb_path, *THUMB_SIZES
   
           rescue StandardError => e
-            model.update_column(:converted, false) if model.present?
             FileUtils.rm_rf output_folder if Dir.exists? output_folder
+            
+            input_path = 
+              if File.exists? temp_path
+                temp_path
+              elsif File.exists? uploaded_path
+                uploaded_path
+              end
+            FileUtils.cp input_path, create_log_folder if input_path
 
             if model.present? and model.user_id.present?
-              begin
-                Notification.send_to model.user_id, I18n.t("notifications.#{model.class.to_s.downcase}.uploading.failed", item: model.title.to_s)
-              rescue StandardError
-              end
+              Notification.send_to model.user_id, I18n.t("notifications.#{model.class.to_s.downcase}.uploading.failed", item: model.title)
+              model.destroy
             end
 
             raise e
@@ -126,7 +124,7 @@ module Media
           
           begin
             output_path = output_path(format)
-  
+
             log_folder = create_log_folder
             stdout_log, stderr_log = stdout_log(format), stderr_log(format)
   
