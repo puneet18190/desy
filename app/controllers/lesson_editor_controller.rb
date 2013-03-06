@@ -95,8 +95,8 @@ class LessonEditorController < ApplicationController
   private
   
   def check_available_for_user
-    l = Lesson.find_by_id params[:lesson_id]
-    if l && !l.available?
+    @lesson = Lesson.find_by_id params[:lesson_id]
+    if @lesson && !@lesson.available?
       render 'not_available'
       return
     end
