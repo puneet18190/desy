@@ -1,5 +1,5 @@
 <div style="position:relative;">
-  <% if item.converted.nil? %>
+  <% if !item.converted? %>
     <%= image_tag item.placeholder_url(:thumb) %>
   <% else %>
     <%= image_tag item.thumb_url %>

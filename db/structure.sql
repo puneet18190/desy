@@ -311,7 +311,7 @@ CREATE TABLE media_elements (
     title character varying(255) NOT NULL,
     description text NOT NULL,
     metadata text,
-    converted boolean,
+    converted boolean DEFAULT false NOT NULL,
     is_public boolean DEFAULT false NOT NULL,
     publication_date timestamp without time zone,
     created_at timestamp without time zone NOT NULL,

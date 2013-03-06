@@ -8,6 +8,28 @@ class ActiveSupport::TestCase
   
   setup :initialize_media_path_for_media_elements
   
+  def assert_user_likes(likes, users)
+    assert_equal likes.length, users.length
+    index = 0
+    users.each do |u|
+      assert_equal u.id.to_i, likes[index][0]
+      assert_equal Like.joins(:lesson).where(:lessons => {:user_id => u.id}).count, likes[index][1]
+      assert_equal u.likes_count.to_i, likes[index][1]
+      index += 1
+    end
+  end
+  
+  def assert_lesson_likes(likes, lessons)
+    assert_equal likes.length, lessons.length
+    index = 0
+    lessons.each do |l|
+      assert_equal l.id.to_i, likes[index][0]
+      assert_equal Like.where(:lesson_id => l.id).count, likes[index][1]
+      assert_equal l.likes_count.to_i, likes[index][1]
+      index += 1
+    end
+  end
+  
   def initialize_media_path_for_media_elements
     [1, 2].each do |x|
       was_public = false

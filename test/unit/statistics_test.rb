@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'test_helper'
 
 class StatisticsTest < ActiveSupport::TestCase
@@ -69,7 +71,6 @@ class StatisticsTest < ActiveSupport::TestCase
   end
   
   def load_likes
-    load_likers
     Like.all.each do |l|
       l.destroy
     end
@@ -252,10 +253,87 @@ class StatisticsTest < ActiveSupport::TestCase
     MediaElement.where(:id => @el6.id).update_all(:updated_at => '2011-10-01 19:59:55')
     MediaElement.where(:id => @el7.id).update_all(:updated_at => '2011-10-01 19:59:54', :is_public => true, :publication_date => '2012-01-01 10:00:00')
     date_now = '2011-01-01 20:00:00'.to_time
-    Lesson.all.each do |l|
+    Lesson.order(:id).each do |l|
       Lesson.where(:id => l.id).update_all(:updated_at => date_now)
       date_now -= 1
     end
+  end
+  
+  def setup
+    Statistics.user = User.find(1)
+  end
+  
+  test 'my_liked_lessons' do
+    load_items
+    load_likers
+    load_likes
+    assert_lesson_likes [[@les1.id, 5], [@les8.id, 4], [@les3.id, 3], [@les6.id, 3]], Statistics.my_liked_lessons(4)
+    assert_lesson_likes [[@les1.id, 5], [@les8.id, 4], [@les3.id, 3], [@les6.id, 3], [@les4.id, 2], [@les5.id, 2], [@les7.id, 2], [@les2.id, 1], [@les9.id, 1]], Statistics.my_liked_lessons(9)
+  end
+  
+  test 'all_liked_lessons' do
+    load_items
+    load_likers
+    load_likes
+    Lesson.where(:id => [@les1.id, @les2.id, @les3.id, @les4.id]).update_all(:user_id => 2)
+    assert_equal 4, Lesson.where('user_id = 2 AND id NOT IN (?)', [1, 2]).count
+    assert_equal 5, Lesson.where('user_id = 1 AND id NOT IN (?)', [1, 2]).count
+    assert_lesson_likes [[@les8.id, 4], [@les6.id, 3], [@les5.id, 2], [@les7.id, 2]], Statistics.my_liked_lessons(4)
+    assert_lesson_likes [[@les1.id, 5], [@les8.id, 4], [@les3.id, 3], [@les6.id, 3]], Statistics.all_liked_lessons(4)
+    assert_lesson_likes [[@les1.id, 5], [@les8.id, 4], [@les3.id, 3], [@les6.id, 3], [@les4.id, 2], [@les5.id, 2], [@les7.id, 2], [@les2.id, 1], [@les9.id, 1]], Statistics.all_liked_lessons(9)
+  end
+  
+  test 'all_users_like' do
+    load_items
+    load_likers
+    load_likes
+    Lesson.where(:id => [@les1.id, @les6.id]).update_all(:user_id => 2)
+    Lesson.where(:id => [@les2.id, @les7.id, @les9.id]).update_all(:user_id => @liker1.id)
+    Lesson.where(:id => @les8.id).update_all(:user_id => @liker2.id)
+    Like.where(:user_id => [@liker1.id, @liker2.id]).update_all(:user_id => @liker3.id)
+    Lesson.where(:id => [1, 2]).delete_all
+    assert_equal 3, Lesson.where(:user_id => 1).count
+    assert_equal 2, Lesson.where(:user_id => 2).count
+    assert_equal 3, Lesson.where(:user_id => @liker1.id).count
+    assert_equal 1, Lesson.where(:user_id => @liker2.id).count
+    assert Like.where(:user_id => [1, 2, @liker1.id, @liker2.id]).empty?
+    User.where(:id => 1).update_all(:created_at => '2012-01-01 10:00:00')
+    User.where(:id => 2).update_all(:created_at => '2012-01-01 10:00:01')
+    User.where(:id => @liker1.id).update_all(:created_at => '2012-01-01 10:00:02')
+    User.where(:id => @liker2.id).update_all(:created_at => '2012-01-01 10:00:03')
+    assert_user_likes [[2, 8], [1, 7], [@liker2.id, 4]], Statistics.all_users_like(3)
+    assert_user_likes [[2, 8], [1, 7], [@liker2.id, 4], [@liker1.id, 4]], Statistics.all_users_like(5)
+    Statistics.user = User.find 1
+    assert_equal 7, Statistics.my_likes_count
+    Statistics.user = User.find 2
+    assert_equal 8, Statistics.my_likes_count
+    Statistics.user = User.find @liker1.id
+    assert_equal 4, Statistics.my_likes_count
+    Statistics.user = User.find @liker2.id
+    assert_equal 4, Statistics.my_likes_count
+    Lesson.where(:id => @les8.id).update_all(:user_id => @liker1.id)
+    assert_equal 0, Statistics.my_likes_count
+    Statistics.user = User.find @liker1.id
+    assert_equal 8, Statistics.my_likes_count
+  end
+  
+  test 'my_copied_lessons' do
+    load_items
+    load_likers
+    assert_equal 10, Lesson.where(:user_id => 1).count
+    assert_equal 1, Lesson.where(:user_id => 2).count
+    Lesson.where(:user_id => 1).update_all(:is_public => true)
+    Lesson.where(:user_id => 1).each do |l|
+      assert User.find(2).bookmark 'Lesson', l.id
+    end
+    assert !Lesson.find(@les1.id).copy(1).nil?
+    assert !Lesson.find(@les1.id).copy(2).nil?
+    assert !Lesson.find(@les2.id).copy(2).nil?
+    assert !Lesson.find(@les6.id).copy(2).nil?
+    assert !Lesson.find(@les7.id).copy(2).nil?
+    assert !Lesson.find(@les3.id).copy(1).nil?
+    assert_equal 4, Statistics.my_copied_lessons
+    assert_equal 6, Lesson.where('parent_id IS NOT NULL').count
   end
   
 end

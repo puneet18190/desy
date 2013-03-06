@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(:version => 20130131094635) do
     t.string   "title",                               :null => false
     t.text     "description",                         :null => false
     t.text     "metadata"
-    t.boolean  "converted"
+    t.boolean  "converted",        :default => false, :null => false
     t.boolean  "is_public",        :default => false, :null => false
     t.datetime "publication_date"
     t.datetime "created_at",                          :null => false
