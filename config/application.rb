@@ -1,8 +1,5 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'yaml'
-SETTINGS = YAML.load(File.read(File.expand_path('../settings.yml', __FILE__)))
-
 require 'rails/all'
 
 if defined?(Bundler)
@@ -14,6 +11,16 @@ end
 
 module Desy
   class Application < Rails::Application
+
+    # Loading settings or exit
+    require 'yaml'
+    settings_path = Rails.root.join('config/settings.yml')
+    unless settings_path.exist?
+      abort "The settings file #{settings_path} was not found; " << 
+            "you can create it copying #{settings_path}.example to it and customizing it."
+    end
+    ::SETTINGS = YAML.load(settings_path.read)
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

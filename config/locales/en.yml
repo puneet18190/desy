@@ -2223,6 +2223,7 @@ An element with the private status through the X may be cancelled, while an elem
       #1 - views/admin/messages/send_notifications.html.erb
       notifications:
         send_notifications: 'Send notifications'
+        add_recipients: 'Add recipients by name'
       #1 - views/admin/messages/reports.html.erb
       reports:
         name: 'Reports'
@@ -2280,6 +2281,7 @@ An element with the private status through the X may be cancelled, while an elem
       province: 'Province'
       town: 'Town'
       school: 'School'
+      school_level: 'School Level'
       created_at: 'Created at'
       updated_at: 'Last update'
       other: 'Other'

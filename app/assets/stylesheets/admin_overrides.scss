@@ -348,6 +348,10 @@
     }
   }
   
+  input[type="checkbox"]{
+    zoom: 150%;
+  }
+  
   @media (max-width: 960px) {
     .navbar-inner{
       margin: 0 -30px;

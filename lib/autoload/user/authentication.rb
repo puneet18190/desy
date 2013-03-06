@@ -2,8 +2,18 @@ require 'bcrypt'
 
 module User::Authentication
 
-  PEPPER = '3e0e6d5ebaa86768a0a51be98fce6367e44352d31685debf797b9f6ccb7e2dd0f5139170376240945fcfae8222ff640756dd42645336f8b56cdfe634144dfa7d'
-  COST   = 10
+  PEPPER_PATH = Rails.root.join('config/pepper')
+  PEPPER      = (PEPPER_PATH.exist? and PEPPER_PATH.read.chomp) or (
+    warn "The file #{PEPPER_PATH} does not exists or is empty."
+    warn "Generating a new pepper and writing to #{PEPPER_PATH}; this will invalidate the previous user passwords."
+    
+    require 'securerandom'
+    SecureRandom.hex(64).tap do |token|
+      PEPPER_PATH.open('w') { |io| io.write token }
+    end
+  )
+
+  COST = 10
 
   module ClassMethods
     def authenticate(email, password)
