@@ -271,4 +271,16 @@ class StatisticsTest < ActiveSupport::TestCase
     assert_likes [[@les1.id, 5], [@les8.id, 4], [@les3.id, 3], [@les6.id, 3], [@les4.id, 2], [@les5.id, 2], [@les7.id, 2], [@les2.id, 1], [@les9.id, 1]], Statistics.my_liked_lessons(9)
   end
   
+  test 'all_liked_lessons' do
+    load_items
+    load_likers
+    load_likes
+    Lesson.where(:id => [@les1.id, @les2.id, @les3.id, @les4.id]).update_all(:user_id => 2)
+    assert_equal 4, Lesson.where('user_id = 2 AND id NOT IN (?)', [1, 2]).count
+    assert_equal 5, Lesson.where('user_id = 1 AND id NOT IN (?)', [1, 2]).count
+    assert_likes [[@les8.id, 4], [@les6.id, 3], [@les5.id, 2], [@les7.id, 2]], Statistics.my_liked_lessons(4)
+    assert_likes [[@les1.id, 5], [@les8.id, 4], [@les3.id, 3], [@les6.id, 3]], Statistics.all_liked_lessons(4)
+    assert_likes [[@les1.id, 5], [@les8.id, 4], [@les3.id, 3], [@les6.id, 3], [@les4.id, 2], [@les5.id, 2], [@les7.id, 2], [@les2.id, 1], [@les9.id, 1]], Statistics.all_liked_lessons(9)
+  end
+  
 end
