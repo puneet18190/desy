@@ -39,11 +39,12 @@ module Media
             audio.media     = old_media
             audio.converted = true
             if old_fields = audio.try(:metadata).try(:old_fields)
-              audio.title       = old_fields.title
-              audio.description = old_fields.description
-              audio.tags        = old_fields.tags
+              audio.title       = old_fields[:title]
+              audio.description = old_fields[:description]
+              audio.tags        = old_fields[:tags]
             end
             audio.save!
+            audio.enable_lessons_containing_me
             Notification.send_to audio.user_id, I18n.t('notifications.audio.compose.update.failed', item: audio.title, link: ::Audio::CACHE_RESTORE_PATH)
           else
             audio.destroyable_even_if_not_converted = true

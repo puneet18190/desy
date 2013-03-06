@@ -61,11 +61,12 @@ module Media
             video.media     = old_media
             video.converted = true
             if old_fields = video.try(:metadata).try(:old_fields)
-              video.title       = old_fields.title
-              video.description = old_fields.description
-              video.tags        = old_fields.tags
+              video.title       = old_fields[:title]
+              video.description = old_fields[:description]
+              video.tags        = old_fields[:tags]
             end
             video.save!
+            video.enable_lessons_containing_me
             Notification.send_to video.user_id, I18n.t('notifications.video.compose.update.failed', item: video.title, link: ::Video::CACHE_RESTORE_PATH)
           else
             video.destroyable_even_if_not_converted = true
