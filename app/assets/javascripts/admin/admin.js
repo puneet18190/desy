@@ -69,7 +69,9 @@ $(document).ready(function(){
       }else{
         $("#notifications-form input").attr('disabled',false);
         $("#filter-users select").attr('disabled',false);
-        $('.alert').show();
+        if($('.alert').length > 0 && $('.alert').html() === ''){
+          $('.alert').show();
+        }
       }
   });
   
