@@ -19,7 +19,7 @@ module Statistics
     
     # The first n users who received more likes
     def all_users_like(first_n)
-      Like.joins(:lesson, :lesson => :user).group('users.id').select('users.id, users.name, users.surname, COUNT(*) AS likes_count').order('likes_count DESC, created_at DESC').limit(first_n)
+      Like.joins(:lesson, :lesson => :user).group('users.id').select('users.id, users.name, users.surname, COUNT(*) AS likes_count').order('likes_count DESC, users.created_at DESC').limit(first_n)
     end
     
     
