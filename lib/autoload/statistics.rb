@@ -9,22 +9,17 @@ module Statistics
     
     # The first n lessons of the current user, ordered by the number of likes received
     def my_liked_lessons(first_n)
-      
+      Lesson.select('id, title, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count').where(:user_id => user.id).order('likes_count DESC, updated_at DESC').limit(first_n)
     end
     
     # The first n lessons liked by users in all DESY
     def all_liked_lessons(first_n)
-      Lesson.joins(:likes).group('lessons.id').order('count(likes) DESC').limit(first_n)
+      Lesson.select('id, title, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count').order('likes_count DESC, updated_at DESC').limit(first_n)
     end
     
     # The first n users who received more likes
-    def all_liked_users(first_n)
-      Lesson.where(user_id: user.id).joins(:likes).group('lessons.id').order('count(likes) DESC').limit(first_n)
-    end
-    
-    # The first n users who received more likes throughout the application
     def all_users_like(first_n)
-      
+      Like.joins(:lesson, :lesson => :user).group('users.id').select('users.id, users.name, users.surname, COUNT(*) AS likes_count').order('likes_count DESC, created_at DESC').limit(first_n)
     end
     
     
@@ -47,7 +42,7 @@ module Statistics
     
     # The total amount of likes received by lessons created by the current user
     def my_likes_count
-      Like.joins(:lesson).where(:lesson => {:user_id => user.id}).count
+      Like.joins(:lesson).where(:lessons => {:user_id => user.id}).count
     end
     
     # The number of users in DESY
