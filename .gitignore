@@ -25,8 +25,11 @@
 
 /.rvmrc
 
+# Per-app configs out from repository
 /config/database.yml
 /config/unicorn.rb
+config/secret_token
+config/pepper
 
 # Media elements caricati
 /public/media_elements
