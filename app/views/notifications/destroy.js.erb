@@ -11,7 +11,7 @@
       $('#notifications_list').html('<%= j(render(:partial => "notifications/empty")) %>');
     <% end %>
     var my_expanded = $('#expanded_notification');
-    if(my_expanded.css('display') == 'block' && my_expanded.data('contentid') == 'notification_<%= @notification_id %>') {
+    if(my_expanded.is(':visible') && my_expanded.data('contentid') == 'notification_<%= @notification_id %>') {
       my_expanded.hide('fade', {}, 500, function() {
         hideExpandedNotification();
         my_expanded.html('');

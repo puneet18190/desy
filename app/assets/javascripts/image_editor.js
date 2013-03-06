@@ -9,7 +9,7 @@ $(document).ready(function() {
       $('input[name="y1"]').val(selection.y1);
       $('input[name="x2"]').val(selection.x2);
       $('input[name="y2"]').val(selection.y2);
-      if($($('.imgareaselect-outer')[0]).css('display') != 'none') {
+      if($('.imgareaselect-outer').first().is(':visible')) {
         $('#image_editor_crop_buttons ._do').removeClass('disabled');
       }
     }

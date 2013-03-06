@@ -12,7 +12,7 @@ function initializeVideoEditor() {
     containment: 'parent',
     start: function(event, ui) {
       my_item = $(ui.item);
-      if($('#' + my_item.attr('id') + '_preview').css('display') == 'none') {
+      if(!$('#' + my_item.attr('id') + '_preview').is(':visible')) {
         startVideoEditorPreviewClip(my_item.attr('id'));
       }
       my_item.find('._video_editor_component_menu').hide();
@@ -87,10 +87,10 @@ function closeGalleryInVideoEditor(type) {
 }
 
 function switchToOtherGalleryInMixedGalleryInVideoEditor(type) {
-  if($('#video_editor_mixed_gallery_container ' + type).css('display') == 'none') {
+  if(!$('#video_editor_mixed_gallery_container ' + type).is(':visible')) {
     var big_selector = '#video_editor_mixed_gallery_container ._videos, #video_editor_mixed_gallery_container ._images, #video_editor_mixed_gallery_container ._texts';
     $(big_selector).each(function() {
-      if($(this).css('display') == 'block') {
+      if($(this).is(':visible')) {
         big_selector = this;
       }
     });
@@ -478,7 +478,7 @@ function highlightAndUpdateVideoComponentIcon(component_id) {
 function startVideoEditorPreviewClipWithDelay(component_id) {
   setTimeout(function() {
     var obj = $('#' + component_id);
-    if(obj.data('preview-selected') && $('#' + component_id + '_preview').css('display') == 'none') {
+    if(obj.data('preview-selected') && !$('#' + component_id + '_preview').is(':visible')) {
       startVideoEditorPreviewClip(component_id);
     }
   }, 500);
@@ -574,7 +574,7 @@ function startVideoEditorGlobalPreview() {
 }
 
 function getFirstVideoEditorComponent() {
-  return $($('._video_editor_component')[0]);
+  return $('._video_editor_component').first();
 }
 
 function getLastVideoEditorComponent() {
@@ -716,7 +716,7 @@ function increaseVideoEditorPreviewTimer(with_component) {
     var component_time = component.data('current-preview-time');
     component.find('._video_component_icon ._right').html(secondsToDateString(component_time + 1));
     component.data('current-preview-time', component_time + 1);
-    if($('#video_editor_preview_slider').css('display') == 'block') {
+    if($('#video_editor_preview_slider').is(':visible')) {
       $('#video_editor_preview_slider').slider('value', component_time + 1);
     }
   }
@@ -817,7 +817,7 @@ function followPreviewComponentsWithHorizontalScrollInVideoEditor() {
 function showVideoEditorPreviewComponentProgressBar(identifier, position) {
   var component = $('#video_component_' + identifier);
   var tool = $('#video_editor_preview_slider');
-  if(tool.css('display') == 'none') {
+  if(!tool.is(':visible')) {
     tool.slider({
       min: 0,
       max: component.data('duration'),

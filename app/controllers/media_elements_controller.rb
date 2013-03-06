@@ -10,7 +10,6 @@ class MediaElementsController < ApplicationController
   before_filter :initialize_media_element_with_owner_and_private, :only => :update
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_media_element_destination, :only => [:add, :remove, :destroy]
-  before_filter :reset_players_counter, :only => :index
   
   def index
     get_own_media_elements

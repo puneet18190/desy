@@ -254,7 +254,7 @@ class ExtractorTest < ActiveSupport::TestCase
     MediaElement.where(:id => @el6.id).update_all(:updated_at => '2011-10-01 19:59:55')
     MediaElement.where(:id => @el7.id).update_all(:updated_at => '2011-10-01 19:59:54', :is_public => true, :publication_date => '2012-01-01 10:00:00')
     date_now = '2011-01-01 20:00:00'.to_time
-    Lesson.all.each do |l|
+    Lesson.order(:id).each do |l|
       Lesson.where(:id => l.id).update_all(:updated_at => date_now)
       date_now -= 1
     end
