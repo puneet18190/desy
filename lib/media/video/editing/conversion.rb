@@ -75,7 +75,7 @@ module Media
             FileUtils.cp input_path, create_log_folder if input_path
 
             if model.present? and model.user_id.present?
-              Notification.send_to model.user_id, I18n.t("notifications.#{model.class.to_s.downcase}.uploading.failed", item: model.title)
+              Notification.send_to model.user_id, I18n.t("notifications.#{model.class.to_s.downcase}.upload.failed", item: model.title)
               model.destroy
             end
 
@@ -92,7 +92,7 @@ module Media
 
           FileUtils.rm temp_path
 
-          Notification.send_to model.user_id, I18n.t("notifications.#{model.class.to_s.downcase}.uploading.ok", item: model.title)
+          Notification.send_to model.user_id, I18n.t("notifications.#{model.class.to_s.downcase}.upload.ok", item: model.title)
         end
   
         def extract_thumb(input, output, width, height)

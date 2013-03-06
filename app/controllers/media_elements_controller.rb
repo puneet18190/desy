@@ -31,7 +31,7 @@ class MediaElementsController < ApplicationController
     record.tags = params[:tags_value]
     record.user_id = current_user.id
     if record.save
-      Notification.send_to current_user.id, t("notifications.#{record.class.to_s.downcase}.uploading.started", item: record.title)
+      Notification.send_to current_user.id, t("notifications.#{record.class.to_s.downcase}.upload.started", item: record.title)
     else
       logger.info record.errors.messages.inspect
       raise 'ciao'
