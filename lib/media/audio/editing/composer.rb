@@ -39,9 +39,9 @@ module Media
             audio.media     = old_media
             audio.converted = true
             if old_fields = audio.try(:metadata).try(:old_fields)
-              audio.title       = old_fields[:title]
-              audio.description = old_fields[:description]
-              audio.tags        = old_fields[:tags]
+              audio.title       = old_fields['title']
+              audio.description = old_fields['description']
+              audio.tags        = old_fields['tags']
             end
             audio.save!
             audio.enable_lessons_containing_me
