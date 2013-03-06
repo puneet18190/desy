@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'test_helper'
 
 class StatisticsTest < ActiveSupport::TestCase
@@ -69,7 +71,6 @@ class StatisticsTest < ActiveSupport::TestCase
   end
   
   def load_likes
-    load_likers
     Like.all.each do |l|
       l.destroy
     end
@@ -252,10 +253,22 @@ class StatisticsTest < ActiveSupport::TestCase
     MediaElement.where(:id => @el6.id).update_all(:updated_at => '2011-10-01 19:59:55')
     MediaElement.where(:id => @el7.id).update_all(:updated_at => '2011-10-01 19:59:54', :is_public => true, :publication_date => '2012-01-01 10:00:00')
     date_now = '2011-01-01 20:00:00'.to_time
-    Lesson.all.each do |l|
+    Lesson.order(:id).each do |l|
       Lesson.where(:id => l.id).update_all(:updated_at => date_now)
       date_now -= 1
     end
+  end
+  
+  def setup
+    Statistics.user = User.find(1)
+  end
+  
+  test 'my_liked_lessons' do
+    load_items
+    load_likers
+    load_likes
+    assert_likes [[@les1.id, 5], [@les8.id, 4], [@les3.id, 3], [@les6.id, 3]], Statistics.my_liked_lessons(4)
+    assert_likes [[@les1.id, 5], [@les8.id, 4], [@les3.id, 3], [@les6.id, 3], [@les4.id, 2], [@les5.id, 2], [@les7.id, 2], [@les2.id, 1], [@les9.id, 1]], Statistics.my_liked_lessons(9)
   end
   
 end
