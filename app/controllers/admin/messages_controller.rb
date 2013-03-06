@@ -1,18 +1,16 @@
 class Admin::MessagesController < AdminController
   layout 'admin'
-
-  def contact
+  
+  def new_notification
+    @location_root = Location.roots
+    
     if params[:users] #list of recipients
       @users = []
-      @users_ids = params[:users].gsub(/[\[\]]/,'').split(',')
+      @users_ids = params[:users].gsub(/[\[\]\"]/,'').split(',')
       @users_ids.each do |user_id|
         @users << User.find(user_id)
       end
     end
-  end
-  
-  def new_notification
-    @location_root = Location.roots
   end
   
   def send_notifications
@@ -25,7 +23,8 @@ class Admin::MessagesController < AdminController
       if params[:notification_ids] && params[:message]
         msg = params[:message]
         params[:notification_ids].split(',').each do |user_id|
-          Notification.send_to(user_id, msg)
+          logger.info "\n\n\n into each \n\n\n"
+          Notification.send_to(user_id.gsub(/\s+/, ""), msg)
         end
       else
         @errors = "errors to add"

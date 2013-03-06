@@ -40,7 +40,13 @@
                   <div class="control-group">
                     <h4>Add recipients</h4>
                     <div class="controls">
-                      <%= text_field_tag :recipients, '', :placeholder => 'recipients', :class=>'input-xlarge', :id => 'contact-recipients' %>
+                      <% if @users.present? %>
+                        <%= text_field_tag :recipients, @users.map(&:full_name).to_s.gsub(/[\[\]\"]/,'') , :placeholder => 'recipients', :class=>'input-xlarge', :id => 'contact-recipients' %>
+                        <%= hidden_field_tag :notification_ids,  @users.map(&:id).to_s.gsub(/[\[\]\"]/,'')%>
+                      <% else %>
+                        <%= text_field_tag :recipients, '' , :placeholder => 'recipients', :class=>'input-xlarge', :id => 'contact-recipients' %>
+                        <%= hidden_field_tag :notification_ids %>
+                      <% end %>
                     </div>
                   </div>
                 </div>
@@ -57,7 +63,6 @@
                     <h4><%= t('admin.messages.contact.message')%></h4>
                     <div class="controls">
                       <%= text_area_tag :message, '', :placeholder => 'message', :rows => '10', :class => 'input-xxlarge' %>
-                      <%= hidden_field_tag :notification_ids %>
                     </div>
                   </div>
                 </div>

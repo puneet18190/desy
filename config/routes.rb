@@ -159,7 +159,6 @@ Desy::Application.routes.draw do
   namespace 'admin' do
     root :to => 'dashboard#index'
     
-    get  'users/contact' => 'messages#contact'
     get  'users/get_full_names' => 'users#get_full_names'
     put  'users/:id/set_status' => 'users#set_status'
     put  'user/:id/activate' => 'users#activate'

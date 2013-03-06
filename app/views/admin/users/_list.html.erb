@@ -44,7 +44,7 @@
         <td><%= user.school_level.description %></td>
         <td><%= user.created_at.strftime('%d-%m-%Y')%></td>
         <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user), :title=> t('admin.users.index.show'), :target => :blank, :class=>"action"%></td>
-        <td><%= link_to '<i class="icon-envelope"></i>'.html_safe, "/admin/users/contact?users=#{user.id}", :title=> t('admin.users.index.message'), :target => :blank, :class=>"action"%></td>
+        <td><%= link_to '<i class="icon-envelope"></i>'.html_safe, "/admin/messages/new_notification?users=#{user.id}", :title=> t('admin.users.index.message'), :target => :blank, :class=>"action"%></td>
         <td id="user_<%=user.id%>_status">
           <%if user.active %>
             <%= link_to '', "#", :title=> t('admin.users.index.ban'), :class=>"icon-ban-circle action _active_status ban", 'data-param'=>"#{user.id}"%>
