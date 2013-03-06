@@ -14,7 +14,7 @@ class Notification < ActiveRecord::Base
     x.user_id = an_user_id
     x.message = msg
     x.seen = false
-    !x.save
+    x.save
   end
   
   def has_been_seen
