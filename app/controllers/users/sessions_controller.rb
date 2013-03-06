@@ -4,7 +4,8 @@ class Users::SessionsController < ApplicationController
 
   def create
     redirect_to_param = params[:redirect_to]
-    path_params = redirect_to_param ? { redirect_to: redirect_to_param } : {}
+    path_params = { login: true }
+    path_params[:redirect_to] = redirect_to_param if redirect_to_param.present?
 
     redirect_args =
       if params[:email].blank? || params[:password].blank?
