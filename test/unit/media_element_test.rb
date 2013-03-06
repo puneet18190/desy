@@ -63,7 +63,7 @@ class MediaElementTest < ActiveSupport::TestCase
     @media_element = MediaElement.new
     assert_equal false, @media_element.is_public
     @media_element.is_public = nil
-    assert_error_size 8, @media_element
+    assert_error_size 9, @media_element
   end
   
   test 'attr_accessible' do
@@ -174,7 +174,7 @@ class MediaElementTest < ActiveSupport::TestCase
     assert !MediaElement.exists?(1)
   end
   
-  test 'delete' do
+  test 'destroy_without_callback_checking_if_public' do
     me = MediaElement.find(1)
     assert_equal 4, me.taggings.count
     assert me.bookmarks.empty?
@@ -185,14 +185,14 @@ class MediaElementTest < ActiveSupport::TestCase
     assert User.find(2).bookmark 'MediaElement', 1
     me = MediaElement.find me.id
     assert_equal 1, me.bookmarks.count
-    assert !MediaElement.new.delete
     bookmarks = Bookmark.where(:bookmarkable_type => 'MediaElement', :bookmarkable_id => me.id)
     assert_equal 1, bookmarks.length
     reports = Report.where(:reportable_type => 'MediaElement', :reportable_id => me.id)
     assert_equal 1, reports.length
     taggings = Tagging.where(:taggable_type => 'MediaElement', :taggable_id => me.id)
     assert_equal 4, taggings.length
-    assert me.delete
+    me.destroyable_even_if_public = true
+    me.destroy
     bookmarks.each do |b|
       assert_nil Bookmark.find_by_id b.id
     end
@@ -211,15 +211,15 @@ class MediaElementTest < ActiveSupport::TestCase
       m.user_id = 1
       m.tags = 'ciao, come, stai, tu?'
       assert !m.save
-      m.composing = true
-      assert m.save
+      if classe != Image
+        m.composing = true
+        assert m.save
+      end
       m2 = MediaElement.new :description => 'Scuola Primaria', :title => 'Scuola'
       m2.user_id = 1
       m2.tags = 'ciao, come, stai, tu?'
       m2.sti_type = classe.to_s
       assert !m2.save
-      m2.composing = true
-      assert m2.save
     end
   end
   

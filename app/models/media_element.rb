@@ -266,7 +266,7 @@ class MediaElement < ActiveRecord::Base
   end
   
   def stop_if_public
-    return true unless destroyable_even_if_public
+    return true if destroyable_even_if_public
     @media_element = Valid.get_association self, :id
     if @media_element.try(:is_public)
       errors.add :is_public, :undestroyable
