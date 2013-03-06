@@ -69,6 +69,7 @@ module Media
 
             if model.present? and model.user_id.present?
               Notification.send_to model.user_id, I18n.t("notifications.#{model.class.to_s.downcase}.upload.failed", item: model.title)
+              model.destroyable_even_if_not_converted = true
               model.destroy
             end
 

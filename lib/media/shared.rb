@@ -41,7 +41,7 @@ module Media
       end
 
       def cannot_destroy_while_converting
-        converted?
+        destroyable_even_if_not_converted || converted?
       end
 
       def overwrite!
@@ -90,7 +90,7 @@ module Media
 
         validate :media_validation
 
-        attr_accessor :skip_conversion, :rename_media, :composing
+        attr_accessor :skip_conversion, :rename_media, :composing, :destroyable_even_if_not_converted
       end
     end
   end
