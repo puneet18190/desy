@@ -317,4 +317,23 @@ class StatisticsTest < ActiveSupport::TestCase
     assert_equal 8, Statistics.my_likes_count
   end
   
+  test 'my_copied_lessons' do
+    load_items
+    load_likers
+    assert_equal 10, Lesson.where(:user_id => 1).count
+    assert_equal 1, Lesson.where(:user_id => 2).count
+    Lesson.where(:user_id => 1).update_all(:is_public => true)
+    Lesson.where(:user_id => 1).each do |l|
+      assert User.find(2).bookmark 'Lesson', l.id
+    end
+    assert !Lesson.find(@les1.id).copy(1).nil?
+    assert !Lesson.find(@les1.id).copy(2).nil?
+    assert !Lesson.find(@les2.id).copy(2).nil?
+    assert !Lesson.find(@les6.id).copy(2).nil?
+    assert !Lesson.find(@les7.id).copy(2).nil?
+    assert !Lesson.find(@les3.id).copy(1).nil?
+    assert_equal 4, Statistics.my_copied_lessons
+    assert_equal 6, Lesson.where('parent_id IS NOT NULL').count
+  end
+  
 end
