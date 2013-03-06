@@ -1414,10 +1414,13 @@ An element with the private status through the X may be cancelled, while an elem
           failed: "The composition of the audio %{item} failed! Now the audio editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
       upload:
         # The process of audio uploading started. The variable %{item} is replaced by the name of the audio which is going to be loaded
+        # 1 - controllers/media_elements_controller.rb
         started: "The uploading of the audio %{item} started! Wait until it's over to be able to use the new audio"
         # The process of audio uploading ended successfully. The variable %{item} is replaced by the name of the new audio
+        # 1 - ../lib/media/audio/editing/conversion.rb
         ok: "The uploading of the audio %{item} ended successfully! Now you can use it in your lessons."
         # The process of audio uploading ended with an error. The variable %{item} is replaced by the name of the audio which the user tried to upload
+        # 1 - ../lib/media/audio/editing/conversion.rb
         failed: "The uploading of the audio %{item} failed! Please try again."
     video:
       compose:
