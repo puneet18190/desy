@@ -2,19 +2,6 @@
   <label><h5><%= t('admin.search.heading.general')%></h5></label>
 </div>
 <div class="control-group">
-  <label for="id"><%= t('admin.search.id')%></label>
-        
-  <div class="controls">
-    <%= text_field_tag 'search[id]', params[:search] ? params[:search][:id] : ''  ,:class=>'input-mini', :placeholder => t('admin.search.id')%>
-  </div>
-</div>
-<div class="control-group">
-  <label for="keyword"><%= t('admin.search.user')%></label>
-  <div class="controls">
-    <%= text_field_tag 'search[user]',  params[:search] ? params[:search][:user] : '', :class=>'input-medium', :placeholder => t('admin.search.user')%>
-  </div>
-</div>
-<div class="control-group">
   <label for="subject"><%= t('admin.search.subject')%></label>
   <div class="controls">
     <select id="search_subject_id" name="search[subject_id]">
@@ -32,13 +19,25 @@
   </div>
 </div>
 <div class="control-group">
-  <label for="school_level_id"><%= t('admin.search.school_level')%></label>
+  <label for="school_level_id"><%= t('admin.search.school_level') %></label>
   <div class="controls">
     <select id="school_level" name="search[school_level_id]">
-      <option value=''>Select school level</option>
+      <option value=''><%= t('admin.search.select_school_level') %></option>
       <% SchoolLevel.all.each do |level|%>
         <option value="<%= level.id %>"><%= level.description %></option>
       <% end %>
+    </select>
+  </div>
+</div>
+<div class="control-group">
+  <label for="school_level_id">Registration date</label>
+  <div class="controls">
+    <select id="school_level" name="search[school_level_id]">
+      <option value=''>Select an option</option>
+      <option value='today'>today</option>
+      <option value='1.week.ago'>last week</option>
+      <option value='1.month.ago'>last month</option>
+      <option value='1.week.ago'>last year</option>
     </select>
   </div>
 </div>

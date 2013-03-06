@@ -35,7 +35,7 @@
               <% @all_liked_lessons.each do |liked| %>
                 <tr>
                   <td><%= liked.title %></td>
-                  <td width="50"><span class="counter-label"><%= format('%02d', liked.likes.count) %></span></td>
+                  <td width="50"><span class="counter-label lessons"><%= format('%02d', liked.likes_count) %></span></td>
                 </tr>
               <% end %>
             </tbody>
@@ -49,11 +49,10 @@
               <th></th>
             </thead>
             <tbody>
-              <% @all_users_like.first(3).each do |key,value| %>
-                <% u = User.find(key) %>
+              <% @all_users_like.each do |u| %>
                 <tr>
                   <td><%= u.name %> <%= u.surname %></td>
-                  <td width="50"><span class="counter-label"><%= format('%02d', value) %></span></td>
+                  <td width="50"><span class="counter-label"><%= format('%02d', u.likes_count) %></span></td>
                 </tr>
               <%end%>
             </tbody>

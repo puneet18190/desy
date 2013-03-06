@@ -32,8 +32,8 @@
                 <% else %>
                   <%= link_to "<i class='icon-ok _show_status _show_active'></i> ".html_safe+t('admin.users.show.activate').downcase, "/admin/user/#{@user.id}/activate", :method => :put, :class=>"btn btn-small"%>
                 <% end %>
-                  <%= link_to "<i class='icon-remove'></i> ".html_safe+t('admin.general.delete').downcase, admin_user_path, :method => :delete, :confirm => t('admin.general.ask_for_delete'), :class=>"btn btn-small"%>
                 <%= link_to "<i class='icon-envelope'></i> ".html_safe+t('admin.users.show.message').downcase, "/admin/messages/new_notification?users=#{@user.id}", :class=>"btn btn-small"%>
+                <%= link_to "<i class='icon-remove'></i> ".html_safe+t('admin.general.delete').downcase, admin_user_path, :method => :delete, :confirm => t('admin.general.ask_for_delete'), :class=>"btn btn-small"%>
               </div>
             </td>
           </tr>
@@ -71,7 +71,7 @@
               <% @my_liked_lessons.each do |liked| %>
                 <tr>
                   <td><%= liked.title %></td>
-                  <td width="50"><span class="counter-label lessons"><%= format('%02d', liked.likes.count) %></span></td>
+                  <td width="50"><span class="counter-label lessons"><%= format('%02d', liked.likes_count) %></span></td>
                 </tr>
               <% end %>
             </tbody>

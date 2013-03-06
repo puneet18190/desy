@@ -57,6 +57,25 @@ $(document).ready(function(){
     
   });
   
+  $('body').on('change','#filter-users select', function(){
+    $('#filter-users').submit();
+  });
+  
+  $("#notifications-form #all_users").change(function() {
+      if(this.checked) {
+        $("input#contact-recipients").val('');
+        $("input#contact-recipients").attr('disabled',true);
+        $("#filter-users select").attr('disabled',true);
+        $('.alert').hide();
+      }else{
+        $("input#contact-recipients").attr('disabled',false);
+        $("#filter-users select").attr('disabled',false);
+        if($('.alert').length > 0 && $('.alert').html() === ''){
+          $('.alert').show();
+        }
+      }
+  });
+  
   
   // SORTING
   
