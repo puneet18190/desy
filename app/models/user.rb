@@ -477,9 +477,18 @@ class User < ActiveRecord::Base
     where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?',"%#{term}%","%#{term}%","%#{term}%").select("id, name || ' ' || surname AS value")
   end
   
-# TODO def self.remove_from_admin_quick_uploading_cache(name)
-#    
-#  end
+  def remove_from_admin_quick_uploading_cache(name)
+    return false if !File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+    map = YAML::load(File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml")))
+    item = map[name]
+    return false if item.nil?
+    FileUtils.rm Rails.root.join("tmp/admin/#{self.id}/#{name}#{item[:ext]}")
+    map.delete name
+    yaml = File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"), 'w')
+    yaml.write map.to_yaml
+    yaml.close
+    true
+  end
   
   def save_in_admin_quick_uploading_cache(file, title=nil, description=nil, tags=nil)
     filetype = MediaElement.filetype(file.path)
