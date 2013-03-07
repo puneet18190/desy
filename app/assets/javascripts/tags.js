@@ -9,7 +9,7 @@ $(document).ready(function() {
   
   $('body').on('click', '._change_info_container ._tags_container .remove', function() {
     var media_element_id = $(this).parent().parent().parent().parent().parent().data('param');
-    removeFromTagsValue($(this).parent().text(), '#dialog-media-element-' + media_element_id + ' ._tags_container #tags_value');
+    removeFromTagsValue($(this).parent().text(), '#dialog-media-element-' + media_element_id + ' ._tags_container ._tags_value');
     $(this).parent().remove();
     if($('#dialog-media-element-' + media_element_id + ' #tags').not(':visible')) {
       $('#dialog-media-element-' + media_element_id + ' #tags').show();
@@ -31,7 +31,7 @@ $(document).ready(function() {
     var media_element_id = $(this).parent().parent().parent().parent().data('param');
     if(e.which === 13 || e.which === 188) {
       e.preventDefault();
-      addTagWithoutSuggestion(this, '#dialog-media-element-' + media_element_id + ' ._tags_container', '#tags_value');
+      addTagWithoutSuggestion(this, '#dialog-media-element-' + media_element_id + ' ._tags_container', '._tags_value');
     } else if(e.which == 8 && $(this).val() == '') {
       $(this).prev().find('.remove').trigger('click');
     }
@@ -39,7 +39,7 @@ $(document).ready(function() {
   
   $('body').on('blur', '._change_info_container #tags', function(e) {
     var media_element_id = $(this).parent().parent().parent().parent().data('param');
-    addTagWithoutSuggestion(this, '#dialog-media-element-' + media_element_id + ' ._tags_container', '#tags_value');
+    addTagWithoutSuggestion(this, '#dialog-media-element-' + media_element_id + ' ._tags_container', '._tags_value');
   });
   
   $('._change_info_container').each(function() {
