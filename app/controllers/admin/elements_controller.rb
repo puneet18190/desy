@@ -4,7 +4,7 @@ class Admin::ElementsController < AdminController
   layout 'admin'
   
   def index
-    elements = params[:search] ? AdminSearchForm.search(params[:search],'elements') : MediaElement.where(converted: true).order('id DESC')
+    elements = params[:search] ? AdminSearchForm.search(params[:search], 'elements') : MediaElement.where(converted: true).order('id DESC')
     @elements = elements.page(params[:page])
     @location_root = Location.roots
     respond_to do |wants|
@@ -27,7 +27,7 @@ class Admin::ElementsController < AdminController
     @new_media_element.description = params[:description].blank? ? 'description' : params[:description]
     @new_media_element.tags = params[:tags].split(',').count < 4 ? 'tag1,tag2,tag3,tag4' : params[:tags]
     @new_media_element.user_id = current_user.id
-    if !@new_media_element.save!
+    if !@new_media_element.save
       @errors = convert_media_element_uploader_messages @new_media_element.errors.messages
       fields = @new_media_element.errors.messages.keys
       if fields.include? :sti_type
