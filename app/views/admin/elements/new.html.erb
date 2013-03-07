@@ -6,7 +6,7 @@
 <div class="row-fluid">
   <div class="span3">
     <h3><%= t('admin.elements.new.upload_caption')%></h3>
-    <%= form_tag admin_elements_path, :method => :post, :id => 'new-elements', :multipart => true do %>
+    <%= form_tag '/admin/elements/quick_upload', :method => :post, :id => 'new-elements', :multipart => true do %>
       <label for="title"><%= t('admin.general.title')%></label>
       <%= text_field_tag 'title', '' %><br />
       <label for="description"><%= t('admin.general.description')%></label>

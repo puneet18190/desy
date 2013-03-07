@@ -121,7 +121,6 @@ class MediaElement < ActiveRecord::Base
       when Array
         tags.map(&:to_s).join(',')
       end
-    
     @tags
   end
   
