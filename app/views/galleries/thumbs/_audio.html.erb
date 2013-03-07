@@ -6,7 +6,9 @@
   <div class="audioTrackContent _compact" <%= disabled ? "title=\"#{t('titles.not_available.audio', :title => audio.title)}\"".html_safe : '' %>>
     <div class="titleTrack"><p><%= audio.title %></p></div>
     <div class="fltrt">
-      <a class="addButtonContent _select_audio_from_gallery <%= additional_class %>" data-audio-id="<%= audio.id %>" data-mp3="<%= audio.mp3_url %>" data-ogg="<%= audio.ogg_url %>" data-duration="<%= audio.min_duration %>" <%= disabled ? '' : "title=\"#{t('titles.galleries.add_audio')}\"".html_safe %>></a>
+      <% if !disabled %>
+        <a class="addButtonContent" data-audio-id="<%= audio.id %>" data-mp3="<%= audio.mp3_url %>" data-ogg="<%= audio.ogg_url %>" data-duration="<%= audio.min_duration %>" title="<%= t('titles.galleries.add_audio') %>"></a>
+      <% end %>
     </div>
   </div>
   <% if !disabled %>
