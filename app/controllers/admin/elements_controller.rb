@@ -14,7 +14,7 @@ class Admin::ElementsController < AdminController
   end
   
   def new
-    
+    @files = current_user.admin_quick_uploading_cache
   end
   
   def edit
