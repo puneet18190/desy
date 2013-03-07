@@ -488,7 +488,12 @@ class User < ActiveRecord::Base
     FileUtils.mkdir Rails.root.join("tmp/admin/#{self.id}") if !File.exists?(Rails.root.join("tmp/admin/#{self.id}"))
     extension = File.extname file.path
     map = {}
-    map = YAML::load(File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"))) if File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+    if File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+      map = YAML::load(File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml")))
+    else
+      FileUtils.rm_r Rails.root.join("tmp/admin/#{self.id}")
+      FileUtils.mkdir Rails.root.join("tmp/admin/#{self.id}")
+    end
     name = "a#{SecureRandom.urlsafe_base64(15)}"
     while map.has_key? :"#{name}"
       name = "a#{SecureRandom.urlsafe_base64(15)}"
