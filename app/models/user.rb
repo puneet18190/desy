@@ -482,20 +482,22 @@ class User < ActiveRecord::Base
 #  end
   
   def save_in_admin_quick_uploading_cache(file, title=nil, description=nil, tags=nil)
+    filetype = MediaElement.filetype(path)
+    return false if filetype.nil?
     FileUtils.mkdir Rails.root.join('tmp/admin') if !File.exists?(Rails.root.join('tmp/admin'))
     FileUtils.mkdir Rails.root.join("tmp/admin/#{self.id}") if !File.exists?(Rails.root.join("tmp/admin/#{self.id}"))
     extension = File.extname file.path
     map = {}
-    map = YAML::load(File.open(Rails.root.join('tmp/players_counter.yml'))) if File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+    map = YAML::load(File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"))) if File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
     name = "a#{SecureRandom.urlsafe_base64(15)}"
     while map.has_key? :"#{name}"
       name = "a#{SecureRandom.urlsafe_base64(15)}"
     end
-    map[:"#{name}"] = {:ext => extension}
+    map[:"#{name}"] = {:ext => extension, :type => filetype}
     map[:"#{name}"][:title] = title if !title.nil?
     map[:"#{name}"][:description] = description if !description.nil?
     map[:"#{name}"][:tags] = tags if !tags.nil?
-    yaml = File.open(Rails.root.join('tmp/players_counter.yml'), 'w')
+    yaml = File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"), 'w')
     yaml.write map.to_yaml
     yaml.close
     FileUtils.mv file.path, Rails.root.join("tmp/admin/#{self.id}/#{name}#{extension}")
