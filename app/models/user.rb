@@ -499,9 +499,9 @@ class User < ActiveRecord::Base
       name = "a#{SecureRandom.urlsafe_base64(15)}"
     end
     map[:"#{name}"] = {:ext => extension, :type => filetype}
-    map[:"#{name}"][:title] = title if !title.nil?
-    map[:"#{name}"][:description] = description if !description.nil?
-    map[:"#{name}"][:tags] = tags if !tags.nil?
+    map[:"#{name}"][:title] = title
+    map[:"#{name}"][:description] = description
+    map[:"#{name}"][:tags] = tags
     yaml = File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"), 'w')
     yaml.write map.to_yaml
     yaml.close
@@ -509,21 +509,10 @@ class User < ActiveRecord::Base
     true
   end
   
-#  def self.admin_quick_uploading_cache TODO
-#    return [] if !File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
-#    resp = []
-#    YAML::load File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml")).each do |el|
-#      if File.exists?(Rails.root.join("tmp/admin/#{self.id}/#{el[:name]}"))
-#        temp_hash = {}
-#        temp_hash[:filepath] = el[:name]
-#        temp_hash[:title] = el[:title] if el.has_key?(:title)
-#        temp_hash[:description] = el[:description] if el.has_key?(:description)
-#        temp_hash[:tags] = el[:tags] if el.has_key?(:tags)
-#        resp << temp_hash
-#      end
-#    end
-#    resp
-#  end
+  def admin_quick_uploading_cache
+    return {} if !File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+    YAML::load File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+  end
   
   private
   
