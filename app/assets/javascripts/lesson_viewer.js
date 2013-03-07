@@ -52,12 +52,18 @@ $(document).ready(function() {
   
   $('body').on('click', '#right_scroll', function(e) {
     e.preventDefault();
-    goToNextSlideInLessonViewer();
+    if(!$(this).hasClass('disabled')) {
+      $(this).addClass('disabled');
+      goToNextSlideInLessonViewer();
+    }
   });
   
   $('body').on('click', '#left_scroll', function(e) {
     e.preventDefault();
-    goToPrevSlideInLessonViewer();
+    if(!$(this).hasClass('disabled')) {
+      $(this).addClass('disabled');
+      goToPrevSlideInLessonViewer();
+    }
   });
   
 });
@@ -180,6 +186,7 @@ function slideToInLessonViewer(to) {
         beforeSend: unbindLoader(),
         url: '/lessons/' + to.data('lesson-id') + '/view/slides/' + to.data('slide-id') + '/load?token=' + to.data('lesson-token'),
         success: function() {
+          $('#left_scroll, #right_scroll').removeClass('disabled');
           var media = to.find('._instance_of_player');
           if(media.length > 0) {
             media.find('._media_player_play').click();
@@ -187,6 +194,7 @@ function slideToInLessonViewer(to) {
         }
       }).always(bindLoader);
     } else {
+      $('#left_scroll, #right_scroll').removeClass('disabled');
       var media = to.find('._instance_of_player');
       if(media.length > 0) {
         media.find('._media_player_play').click();
