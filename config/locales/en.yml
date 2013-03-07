@@ -785,6 +785,7 @@ en:
     # Titles appearing over the placeholders in lesson viewer, in the case a video or audio used is in conversion (in both, the variable %{title} is replaced by the title of the audio)
     not_available:
       # 1 - views/lesson_viewer/slides/_audio.html.erb
+      # 2 - views/galleries/thumbs/_audio.html.erb
       audio: "The audio %{title} is in conversion and not available now"
       # 1 - views/lesson_viewer/slides/_video1.html.erb
       # 2 - views/lesson_viewer/slides/_video2.html.erb

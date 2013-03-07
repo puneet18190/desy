@@ -227,7 +227,7 @@ $(document).ready(function() {
     $('#' + place_id + ' ._rolloverable').data('rolloverable', true);
   });
   
-  $('body').on('click', '._add_audio_to_slide', function(e) {
+  $('body').on('click', '._add_audio_to_slide._enabled', function(e) {
     e.preventDefault();
     var audio_id = $(this).data('audio-id');
     var new_audio_title = $('#gallery_audio_' + audio_id+' .titleTrack').text();
