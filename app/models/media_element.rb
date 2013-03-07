@@ -90,7 +90,7 @@ class MediaElement < ActiveRecord::Base
     end
     
     def filetype(path)
-      path = File.extname(path).inspect
+      path = File.extname(path)
       if Audio::EXTENSION_WHITE_LIST.include?(path[1, path.length])
         return 'audio'
       elsif Video::EXTENSION_WHITE_LIST.include?(path[1, path.length])
@@ -101,8 +101,6 @@ class MediaElement < ActiveRecord::Base
         return nil
       end
     end
-    
-  end
     
   end
   
