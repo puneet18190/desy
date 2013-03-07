@@ -1454,7 +1454,7 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click', '._add_audio_track_to_video_editor._enabled', function() {
+  $('body').on('click', '._add_audio_track_to_video_editor', function() {
     $('#video_editor_preview_container ._audio_track_preview').remove();
     if(!$('#video_editor_preview_container video').prop('muted')) {
       $('#video_editor_preview_container video').prop('muted', true);
@@ -1715,7 +1715,7 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click', '._add_audio_component_to_audio_editor._enabled', function() {
+  $('body').on('click', '._add_audio_component_to_audio_editor', function() {
     stopMedia('._audio_expanded_in_gallery audio');
     $('._audio_expanded_in_gallery ._expanded').hide();
     $('._audio_expanded_in_gallery').removeClass('_audio_expanded_in_gallery');
