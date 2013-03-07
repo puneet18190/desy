@@ -31,7 +31,7 @@ class Video < MediaElement
   end
   
   def thumb_url
-    converted ? media.try(:url, :thumb) : placeholder_url(:thumb)
+    media.try(:url, :thumb) if converted
   end
 
   def placeholder_url(type)

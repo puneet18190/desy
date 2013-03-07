@@ -25,7 +25,7 @@
                   <span><%= t.tag.word.strip %><a class="remove"></a></span>
                 <% end %>
                 <%= text_field_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %>
-                <%= hidden_field_tag 'tags_value', media_element.tags %>
+                <%= hidden_field_tag 'tags_value', media_element.tags, :id => "tags_value_#{media_element.id}", :class => '_tags_value' %>
               </div>
               <br>
               <div class="fltrt">

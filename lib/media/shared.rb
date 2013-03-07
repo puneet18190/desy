@@ -47,7 +47,7 @@ module Media
       def overwrite!
         # tags non è un attributo, per cui non risulta tra i cambi; 
         # me lo prendo dall'associazione taggings_tags, visto che non è cambiata
-        old_fields = Hash[ v.changes.map{ |col, (old)| [col, old] } << ['tags', v.taggings_tags.map(&:word).join(', ')] ]
+        old_fields = Hash[ self.changes.map{ |col, (old)| [col, old] } << ['tags', self.taggings_tags.map(&:word).join(', ')] ]
         self.metadata.old_fields = old_fields
         self.converted = false
         self.class.transaction do

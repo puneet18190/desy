@@ -630,7 +630,7 @@ en:
         rewind: "Rewind clip"
       # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new audio
       # 1 - views/audio_editor/edit.html.erb
-      commit: "Go to next step"
+      commit: "Save"
       components:
         # Icon 'plus' on the top of the right column: it's used to add a new audio component
         # 1 - views/audio_editor/_lateral_controls.html.erb
@@ -747,7 +747,7 @@ en:
       text: "Add texts to image"
       # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new image
       # 1 - views/image_editor/edit.html.erb
-      commit: "Go to next step"
+      commit: "Save"
     images:
       # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the image editor
       # 1 - views/media_elements/new.html.erb
@@ -782,6 +782,15 @@ en:
       # Icon with three small lines, inside the preview popup of a media element, which opens the form to change its title, description, tags
       # 1 - views/media_elements/_popup.html.erb
       change_info: "Change information"
+    # Titles appearing over the placeholders in lesson viewer, in the case a video or audio used is in conversion (in both, the variable %{title} is replaced by the title of the audio)
+    not_available:
+      # 1 - views/lesson_viewer/slides/_audio.html.erb
+      # 2 - views/galleries/thumbs/_audio.html.erb
+      audio: "The audio %{title} is in conversion and not available now"
+      # 1 - views/lesson_viewer/slides/_video1.html.erb
+      # 2 - views/lesson_viewer/slides/_video2.html.erb
+      # 3 - views/galleries/thumbs/_video.html.erb
+      video: "The video %{title} is in conversion and not available now"
     notifications:
       # Icon that opens the notifications
       # 1 - views/notifications/_main.html.erb
@@ -829,7 +838,7 @@ en:
       close_preview: "Close preview mode"
       # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new video
       # 1 - views/video_editor/edit.html.erb
-      commit: "Go to next step"
+      commit: "Save"
       # Three icons in the small menu of each video component
       component_menu:
         # Scissors
@@ -1196,7 +1205,7 @@ An element with the private status through the X may be cancelled, while an elem
       # 1 - views/image_editor/edit.html.erb
       cancel: "Cancel"
       # 1 - views/image_editor/edit.html.erb
-      done: "Done"
+      done: "Apply"
       # 1 - views/image_editor/edit.html.erb
       instructions: "Click on the image to add text"
       # This is the sample letter used to choose the font size
@@ -1384,63 +1393,81 @@ An element with the private status through the X may be cancelled, while an elem
     # 1 - views/notifications/_empty.html.erb
     empty: "You don't have any notifications"
     lessons:
-      # Message sent to a user who has the link of a lesson, in case the creator of that lesson deleted it
+      # Message sent to a user who has the link of a lesson, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb
       destroyed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', deleted his lesson: hence, you lost the link to that lesson"
-      # Notification received by an user who sent to his friends an email with the public link of a lesson: it's used as a memo of the list of emails to which the message was successfully sent
+      # Notification received by an user who sent to his friends an email with the public link of a lesson: it's used as a memo of the list of emails to which the message was successfully sent (the variable %{title} is replaced by the title of the lesson, %{message} by the message inserted by the sender, %{emails} by the list of emails separated by comma)
       # 1 - controllers/virtual_classroom_controller.rb
       link_sent: "You sent the link of the lesson %{title}, with message %{message}, to the emails: %{emails}"
-      # Notification sent by a user who modified a shared lesson, to inform all its followers about the nature of modifications made
+      # Notification sent by a user who modified a shared lesson, to inform all its followers about the nature of modifications made (the variable %{lesson_title} is replaced by the title of the lesson, %{message} by the message containing a better description of the modifications, and %{link} by the link to the lesson viewer for that lesson)
       # 1 - models/lesson.rb
-      modified: "<h2 style=\"font-size:126%; font-weight:bold\">There are some news for you! </h2><p>La lezione \"%{lesson_title}\" che stai seguendo ha subito delle modifiche da parte dell'autore!<br/><br/><strong>Details of changes: </strong><br/>%{message}</p><div style=\"display:inline-block; outline:1px solid #f2f1f2; padding:10px; width:86%; height:19px; position:absolute; bottom:19px\"><span style=\"color:#2eaadc; float:left\">%{lesson_title}</span><a href=\"%{link}\" style=\"float:right\" class=\"preview\"></a></div>"
-      # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted)
+      modified: "<h2 style=\"font-size:126%; font-weight:bold\">There are some news for you! </h2><p>The lesson that you are following \"%{lesson_title}\" has been modified by his author!<br/><br/><strong>Details of changes: </strong><br/>%{message}</p><div style=\"display:inline-block; outline:1px solid #f2f1f2; padding:10px; width:86%; height:19px; position:absolute; bottom:19px\"><span style=\"color:#2eaadc; float:left\">%{lesson_title}</span><a href=\"%{link}\" style=\"float:right\" class=\"preview\"></a></div>"
+      # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted) (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb
       unpublished: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson"
     audio:
       compose:
         update:
           # The process of audio editing started. The variable %{item} is replaced by the name of the audio whose content is going to be modified
+          # 1 - controllers/audio_editor_controller.rb
           started: "The editing of the audio %{item} started! Audio editor is temporarily not available, together with lessons where you used this audio"
           # The process of audio editing ended successfully. The variable %{item} is replaced by the name of the audio whose content has been modified
+          # 1 - ../lib/media/audio/editing/composer.rb
           ok: "The editing of the audio %{item} ended successfully! Now the audio editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing)."
           # The process of audio editing ended with an error. The variable %{item} is replaced by the name of the audio whose content has been modified, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+          # 1 - ../lib/media/audio/editing/composer.rb
           failed: "The editing of the audio %{item} failed! Now the audio editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing). The audio was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
         create:
           # The process of audio composition started. The variable %{item} is replaced by the name of the audio which is going to be composed
+          # 1 - controllers/audio_editor_controller.rb
           started: "The composition of the audio %{item} started! Audio editor is temporarily not available"
           # The process of audio composition ended successfully. The variable %{item} is replaced by the name of the new audio
+          # 1 - ../lib/media/audio/editing/composer.rb
           ok: "The composition of the audio %{item} ended successfully! Now the audio editor is available again."
           # The process of audio composition ended with an error. The variable %{item} is replaced by the name of the audio in composition, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+          # 1 - ../lib/media/audio/editing/composer.rb
           failed: "The composition of the audio %{item} failed! Now the audio editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
       upload:
         # The process of audio uploading started. The variable %{item} is replaced by the name of the audio which is going to be loaded
+        # 1 - controllers/media_elements_controller.rb
         started: "The uploading of the audio %{item} started! Wait until it's over to be able to use the new audio"
         # The process of audio uploading ended successfully. The variable %{item} is replaced by the name of the new audio
+        # 1 - ../lib/media/audio/editing/conversion.rb
         ok: "The uploading of the audio %{item} ended successfully! Now you can use it in your lessons."
         # The process of audio uploading ended with an error. The variable %{item} is replaced by the name of the audio which the user tried to upload
+        # 1 - ../lib/media/audio/editing/conversion.rb
         failed: "The uploading of the audio %{item} failed! Please try again."
     video:
       compose:
         update:
           # The process of video editing started. The variable %{item} is replaced by the name of the video whose content is going to be modified
+          # 1 - controllers/audio_editor_controller.rb
           started: "The editing of the video %{item} started! Video editor is temporarily not available, together with lessons where you used this video"
           # The process of video editing ended successfully. The variable %{item} is replaced by the name of the video whose content has been modified
+          # 1 - ../lib/media/audio/editing/composer.rb
           ok: "The editing of the video %{item} ended successfully! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing)."
           # The process of video editing ended with an error. The variable %{item} is replaced by the name of the video whose content has been modified, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+          # 1 - ../lib/media/audio/editing/composer.rb
           failed: "The editing of the video %{item} failed! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing). The video was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
         create:
           # The process of video composition started. The variable %{item} is replaced by the name of the video which is going to be composed
+          # 1 - controllers/video_editor_controller.rb
           started: "The composition of the video %{item} started! Video editor is temporarily not available"
           # The process of video composition ended successfully. The variable %{item} is replaced by the name of the new video
+          # 1 - ../lib/media/video/editing/composer.rb
           ok: "The composition of the video %{item} ended successfully! Now the video editor is available again."
           # The process of video composition ended with an error. The variable %{item} is replaced by the name of the video in composition, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+          # 1 - ../lib/media/video/editing/composer.rb
           failed: "The composition of the video %{item} failed! Now the video editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
       upload:
         # The process of video uploading started. The variable %{item} is replaced by the name of the video which is going to be loaded
+        # 1 - controllers/media_elements_controller.rb
         started: "The uploading of the video %{item} started! Wait until it's over to be able to use the new video"
         # The process of video uploading ended successfully. The variable %{item} is replaced by the name of the new video
+        # 1 - ../lib/media/video/editing/conversion.rb
         ok: "The uploading of the video %{item} ended successfully! Now you can use it in your lessons."
         # The process of video uploading ended with an error. The variable %{item} is replaced by the name of the video which the user tried to upload
+        # 1 - ../lib/media/video/editing/conversion.rb
         failed: "The uploading of the video %{item} failed! Please try again."
   
   
