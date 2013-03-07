@@ -506,27 +506,15 @@ class User < ActiveRecord::Base
         params << true
         params << self.id
     end
-    curr_tag = false
-    query = []
     select = 'tags.id AS tag_id, COUNT(*) AS tags_count'
     where_for_current_tag = where.gsub('tags.word LIKE ?', 'tags.word = ?')
     where = "tags.word != ? AND #{where}"
-    case params.length
-      when 2
-        curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1]).limit(1).length > 0)
-        limit -= 1 if curr_tag
-        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1]).order('tags_count DESC, tags.word ASC').limit(limit)
-      when 3
-        curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2]).limit(1).length > 0)
-        limit -= 1 if curr_tag
-        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1], params[2]).order('tags_count DESC, tags.word ASC').limit(limit)
-      when 4
-        curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2], params[3]).limit(1).length > 0)
-        limit -= 1 if curr_tag
-        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1], params[2], params[3]).order('tags_count DESC, tags.word ASC').limit(limit)
+    resp = []
+    if Tagging.joins(joins).where(where_for_current_tag, word, *params[1, params.length]).limit(1).length > 0
+      limit -= 1
+      resp << Tag.find_by_word(word)
     end
-    resp = curr_tag ? [Tag.find_by_word(word)] : []
-    query.each do |q|
+    Tagging.group('tags.id').select(select).joins(joins).where(where, word, *params).order('tags_count DESC, tags.word ASC').limit(limit).each do |q|
       resp << Tag.find(q.tag_id)
     end
     resp
@@ -586,15 +574,14 @@ class User < ActiveRecord::Base
       when Filters::IMAGE
         where = "#{where} AND media_elements.sti_type = 'Image'"
     end
-    content = []
+    resp[:records] = []
     Tagging.group('media_elements.id').select('media_elements.id AS media_element_id').joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit).each do |q|
       media_element = MediaElement.find_by_id q.media_element_id
       media_element.set_status self.id
-      content << media_element
+      resp[:records] << media_element
     end
     resp[:records_amount] = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).count.length
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
-    resp[:records] = content
     return resp
   end
   
@@ -623,14 +610,13 @@ class User < ActiveRecord::Base
         count = Image.where('is_public = ? OR user_id = ?', true, self.id).count
         query = Image.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
     end
-    content = []
+    resp[:records] = []
     query.each do |q|
       q.set_status self.id
-      content << q
+      resp[:records] << q
     end
     resp[:records_amount] = count
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
-    resp[:records] = content
     return resp
   end
   
@@ -675,28 +661,14 @@ class User < ActiveRecord::Base
         params << true
         params << self.id
     end
-    query = []
-    count = 0
-    case params.length
-      when 2
-        query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
-        count = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1]).count.length
-      when 3
-        query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
-        count = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2]).count.length
-      when 4
-        query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order(order).offset(offset).limit(limit)
-        count = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2], params[3]).count.length
-    end
-    content = []
-    query.each do |q|
+    resp[:records] = []
+    Tagging.group('lessons.id').select(select).joins(joins).where(where, *params).order(order).offset(offset).limit(limit).each do |q|
       lesson = Lesson.find_by_id q.lesson_id
       lesson.set_status self.id
-      content << lesson
+      resp[:records] << lesson
     end
-    resp[:records_amount] = count
+    resp[:records_amount] = Tagging.group('lessons.id').joins(joins).where(where, *params).count.length
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
-    resp[:records] = content
     return resp
   end
   
@@ -748,15 +720,14 @@ class User < ActiveRecord::Base
         query = Lesson.select(select).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
         count = Lesson.where(where, params[0], params[1], params[2]).count
     end
-    content = []
+    resp[:records] = []
     query.each do |q|
       lesson = Lesson.find_by_id q.lesson_id
       lesson.set_status self.id
-      content << lesson
+      resp[:records] << lesson
     end
     resp[:records_amount] = count
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
-    resp[:records] = content
     return resp
   end
   
