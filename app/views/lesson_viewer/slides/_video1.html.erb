@@ -13,7 +13,7 @@
         <% if video.converted? %>
           <%= render :partial => 'shared/players/video', :locals => {:video => video, :initialize_now => true} %>
         <% else %>
-          <%= image_tag video.placeholder_url(:lesson_viewer_small), :title => t('titles.not_available.video', :title => video.title %>
+          <%= image_tag video.placeholder_url(:lesson_viewer_small), :title => t('titles.not_available.video', :title => video.title) %>
         <% end %>
       </div>
     <% end %>
