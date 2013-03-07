@@ -482,7 +482,7 @@ class User < ActiveRecord::Base
 #  end
   
   def save_in_admin_quick_uploading_cache(file, title=nil, description=nil, tags=nil)
-    filetype = MediaElement.filetype(path)
+    filetype = MediaElement.filetype(file.path)
     return false if filetype.nil?
     FileUtils.mkdir Rails.root.join('tmp/admin') if !File.exists?(Rails.root.join('tmp/admin'))
     FileUtils.mkdir Rails.root.join("tmp/admin/#{self.id}") if !File.exists?(Rails.root.join("tmp/admin/#{self.id}"))

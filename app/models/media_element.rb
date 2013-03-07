@@ -89,6 +89,21 @@ class MediaElement < ActiveRecord::Base
       Bookmark.joins("INNER JOIN media_elements ON media_elements.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'MediaElement'").where('media_elements.is_public = ? AND media_elements.user_id != ? AND bookmarks.user_id = ?', true, an_user_id, an_user_id).any?
     end
     
+    def filetype(path)
+      path = File.extname(path).inspect
+      if Audio::EXTENSION_WHITE_LIST.include?(path[1, path.length])
+        return 'audio'
+      elsif Video::EXTENSION_WHITE_LIST.include?(path[1, path.length])
+        return 'video'
+      elsif Image::EXTENSION_WHITE_LIST.include?(path[1, path.length])
+        return 'image'
+      else
+        return nil
+      end
+    end
+    
+  end
+    
   end
   
   def disable_lessons_containing_me
@@ -157,15 +172,6 @@ class MediaElement < ActiveRecord::Base
        return [Buttons::PREVIEW, Buttons::EDIT, Buttons::REMOVE]
     else
       return []
-    end
-  end
-  
-  def self.filetype(path)
-    case File.extname(path)
-    when *Audio::EXTENSION_WHITE_LIST then 'audio'
-    when *Video::EXTENSION_WHITE_LIST then 'video'
-    when *Image::EXTENSION_WHITE_LIST then 'image'
-    else nil
     end
   end
   
