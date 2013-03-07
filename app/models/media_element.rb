@@ -54,6 +54,7 @@ class MediaElement < ActiveRecord::Base
   end
   
   class << self
+    
     def new_with_sti_type_inferring(attributes = nil, options = {}, &block)
       media = attributes.try :[], :media
       unless media.is_a?(ActionDispatch::Http::UploadedFile) || media.is_a?(File)
@@ -75,7 +76,7 @@ class MediaElement < ActiveRecord::Base
       inferred_sti_type.new_without_sti_type_inferring(attributes, options, &block)
     end
     alias_method_chain :new, :sti_type_inferring
-  
+    
     def extract(media_element_id, an_user_id, my_sti_type)
       media_element = find_by_id media_element_id
       return nil if media_element.nil? || media_element.sti_type != my_sti_type
@@ -83,10 +84,24 @@ class MediaElement < ActiveRecord::Base
       return nil if media_element.status.nil?
       media_element
     end
-
+    
     def dashboard_emptied?(an_user_id)
       Bookmark.joins("INNER JOIN media_elements ON media_elements.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'MediaElement'").where('media_elements.is_public = ? AND media_elements.user_id != ? AND bookmarks.user_id = ?', true, an_user_id, an_user_id).any?
     end
+    
+    def filetype(path)
+      path = File.extname(path)
+      if Audio::EXTENSION_WHITE_LIST.include?(path[1, path.length])
+        return 'audio'
+      elsif Video::EXTENSION_WHITE_LIST.include?(path[1, path.length])
+        return 'video'
+      elsif Image::EXTENSION_WHITE_LIST.include?(path[1, path.length])
+        return 'image'
+      else
+        return nil
+      end
+    end
+    
   end
   
   def disable_lessons_containing_me
@@ -121,7 +136,6 @@ class MediaElement < ActiveRecord::Base
       when Array
         tags.map(&:to_s).join(',')
       end
-    
     @tags
   end
   

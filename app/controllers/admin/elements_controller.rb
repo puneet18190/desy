@@ -14,11 +14,15 @@ class Admin::ElementsController < AdminController
   end
   
   def new
-    @element = MediaElement.new
+    
   end
   
   def edit
     @private_elements = MediaElement.where(user_id: current_user.id, is_public: false)
+  end
+  
+  def quick_upload
+    params[:media].tempfile
   end
   
   def create

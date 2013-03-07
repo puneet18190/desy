@@ -477,6 +477,52 @@ class User < ActiveRecord::Base
     where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?',"%#{term}%","%#{term}%","%#{term}%").select("id, name || ' ' || surname AS value")
   end
   
+  def remove_from_admin_quick_uploading_cache(name)
+    return false if !File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+    map = YAML::load(File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml")))
+    item = map[name]
+    return false if item.nil?
+    FileUtils.rm Rails.root.join("tmp/admin/#{self.id}/#{name}#{item[:ext]}")
+    map.delete name
+    yaml = File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"), 'w')
+    yaml.write map.to_yaml
+    yaml.close
+    true
+  end
+  
+  def save_in_admin_quick_uploading_cache(file, title=nil, description=nil, tags=nil)
+    filetype = MediaElement.filetype(file.path)
+    return false if filetype.nil?
+    FileUtils.mkdir Rails.root.join('tmp/admin') if !File.exists?(Rails.root.join('tmp/admin'))
+    FileUtils.mkdir Rails.root.join("tmp/admin/#{self.id}") if !File.exists?(Rails.root.join("tmp/admin/#{self.id}"))
+    extension = File.extname file.path
+    map = {}
+    if File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+      map = YAML::load(File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml")))
+    else
+      FileUtils.rm_r Rails.root.join("tmp/admin/#{self.id}")
+      FileUtils.mkdir Rails.root.join("tmp/admin/#{self.id}")
+    end
+    name = "a#{SecureRandom.urlsafe_base64(15)}"
+    while map.has_key? :"#{name}"
+      name = "a#{SecureRandom.urlsafe_base64(15)}"
+    end
+    map[:"#{name}"] = {:ext => extension, :type => filetype}
+    map[:"#{name}"][:title] = title
+    map[:"#{name}"][:description] = description
+    map[:"#{name}"][:tags] = tags
+    yaml = File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"), 'w')
+    yaml.write map.to_yaml
+    yaml.close
+    FileUtils.mv file.path, Rails.root.join("tmp/admin/#{self.id}/#{name}#{extension}")
+    true
+  end
+  
+  def admin_quick_uploading_cache
+    return {} if !File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+    YAML::load File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+  end
+  
   private
   
   def get_tags_associated_to_lesson_search(word, filter, subject_id)
