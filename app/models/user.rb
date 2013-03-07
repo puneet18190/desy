@@ -477,6 +477,47 @@ class User < ActiveRecord::Base
     where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?',"%#{term}%","%#{term}%","%#{term}%").select("id, name || ' ' || surname AS value")
   end
   
+# TODO def self.remove_from_admin_quick_uploading_cache(name)
+#    
+#  end
+  
+  def save_in_admin_quick_uploading_cache(file, title=nil, description=nil, tags=nil)
+    FileUtils.mkdir Rails.root.join('tmp/admin') if !File.exists?(Rails.root.join('tmp/admin'))
+    FileUtils.mkdir Rails.root.join("tmp/admin/#{self.id}") if !File.exists?(Rails.root.join("tmp/admin/#{self.id}"))
+    extension = File.extname file.path
+    map = {}
+    map = YAML::load(File.open(Rails.root.join('tmp/players_counter.yml'))) if File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+    name = "a#{SecureRandom.urlsafe_base64(15)}"
+    while map.has_key? :"#{name}"
+      name = "a#{SecureRandom.urlsafe_base64(15)}"
+    end
+    map[:"#{name}"] = {:ext => extension}
+    map[:"#{name}"][:title] = title if !title.nil?
+    map[:"#{name}"][:description] = description if !description.nil?
+    map[:"#{name}"][:tags] = tags if !tags.nil?
+    yaml = File.open(Rails.root.join('tmp/players_counter.yml'), 'w')
+    yaml.write map.to_yaml
+    yaml.close
+    FileUtils.mv file.path, Rails.root.join("tmp/admin/#{self.id}/#{name}#{extension}")
+    true
+  end
+  
+#  def self.admin_quick_uploading_cache TODO
+#    return [] if !File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+#    resp = []
+#    YAML::load File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml")).each do |el|
+#      if File.exists?(Rails.root.join("tmp/admin/#{self.id}/#{el[:name]}"))
+#        temp_hash = {}
+#        temp_hash[:filepath] = el[:name]
+#        temp_hash[:title] = el[:title] if el.has_key?(:title)
+#        temp_hash[:description] = el[:description] if el.has_key?(:description)
+#        temp_hash[:tags] = el[:tags] if el.has_key?(:tags)
+#        resp << temp_hash
+#      end
+#    end
+#    resp
+#  end
+  
   private
   
   def get_tags_associated_to_lesson_search(word, filter, subject_id)
