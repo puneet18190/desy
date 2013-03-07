@@ -1,20 +1,15 @@
 class Admin::ElementsController < AdminController
+  
   before_filter :find_element, :only => [:destroy, :update, :load_element]
   layout 'admin'
   
   def index
-    elements = 
-      if params[:search]
-        AdminSearchForm.search(params[:search],'elements')
-      else
-        MediaElement.where(converted: true).order('id DESC')
-      end
-    
+    elements = params[:search] ? AdminSearchForm.search(params[:search],'elements') : MediaElement.where(converted: true).order('id DESC')
     @elements = elements.page(params[:page])
     @location_root = Location.roots
     respond_to do |wants|
-      wants.html # index.html.erb
-      wants.xml  { render :xml => @elements }
+      wants.html
+      wants.xml {render :xml => @elements}
     end
   end
   
@@ -23,7 +18,7 @@ class Admin::ElementsController < AdminController
   end
   
   def edit
-    @private_elements = MediaElement.where(user_id: current_user.id, is_public: false);
+    @private_elements = MediaElement.where(user_id: current_user.id, is_public: false)
   end
   
   def create
@@ -49,7 +44,6 @@ class Admin::ElementsController < AdminController
     end
   end
   
-  
   def update
     @element.title = params[:title] if params[:title]
     @element.description = params[:description] if params[:description]
@@ -58,7 +52,6 @@ class Admin::ElementsController < AdminController
       @element.is_public = true
       @element.publication_date = Time.zone.now
     end
-    
     if !@element.save
       @errors = convert_item_error_messages @element.errors.messages
       @error_fields = @element.errors.messages.keys
@@ -77,10 +70,11 @@ class Admin::ElementsController < AdminController
   
   def load_element
   end
-
+  
   private
-    def find_element
-      @element = MediaElement.find(params[:id])
-    end
-
+  
+  def find_element
+    @element = MediaElement.find(params[:id])
+  end
+  
 end
