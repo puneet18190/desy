@@ -45,22 +45,28 @@ class User < ActiveRecord::Base
   end
   
   before_validation :init_validation
-
+  
   scope :confirmed,     where(confirmed: true)
   scope :not_confirmed, where(confirmed: false)
   scope :active,        where(active: true)
-
+  
   alias_attribute :school, :location
-
+  
   def self.admin
     find_by_email SETTINGS['admin']['email']
   end
   
   def admin?
-    admin =  self.class.admin
-    id == admin.id if admin.present?
+    # TODO importante: qui viene considerato solo l'utente amministratore per ora! Quando serviranno vari amministratori
+    # ad esempio se vogliamo configurare gli amministratori nel file di configurazione, ci sarà qualcosa del genere
+    # QUESTO METODO VA CAMBIATO MA SENZA CAMBIARGLI NOME
+    # super_admin =  self.class.admin
+    # id == super_admin.id || SETTINGS['grant_admin_privileges'].include?(self.email)
+    admin = User.admin
+    return false if admin.nil?
+    return admin.id == self.id
   end
-
+  
   def accept_policies
     registration_policies.each{ |p| send("#{p}=", '1') }
   end
@@ -69,11 +75,11 @@ class User < ActiveRecord::Base
     update_attribute :metadata, OpenStruct.new(metadata.marshal_dump.merge(video_editor_cache: cache))
     nil
   end
-
+  
   def video_editor_cache
     metadata.try(:video_editor_cache)
   end
-
+  
   def audio_editor_cache!(cache = nil)
     update_attribute :metadata, OpenStruct.new(metadata.marshal_dump.merge(audio_editor_cache: cache))
     nil
