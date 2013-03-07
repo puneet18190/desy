@@ -178,8 +178,19 @@ function slideToInLessonViewer(to) {
       $.ajax({
         type: 'get',
         beforeSend: unbindLoader(),
-        url: '/lessons/' + to.data('lesson-id') + '/view/slides/' + to.data('slide-id') + '/load?token=' + to.data('lesson-token')
+        url: '/lessons/' + to.data('lesson-id') + '/view/slides/' + to.data('slide-id') + '/load?token=' + to.data('lesson-token'),
+        success: function() {
+          var media = to.find('._instance_of_player');
+          if(media.length > 0) {
+            media.find('._media_player_play').click();
+          }
+        }
       }).always(bindLoader);
+    } else {
+      var media = to.find('._instance_of_player');
+      if(media.length > 0) {
+        media.find('._media_player_play').click();
+      }
     }
   });
 }
