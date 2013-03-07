@@ -68,7 +68,7 @@ class AudioEditorController < ApplicationController
     else
       @error_ids = 'new'
       @errors = convert_item_error_messages(record.errors.messages)
-      @error_fields = errors.keys
+      @error_fields = record.errors.messages.keys
     end
     render 'media_elements/info_form_in_editor/save'
   end
