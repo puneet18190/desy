@@ -120,15 +120,22 @@ $(document).ready(function(){
   
   
   // ELEMENTS ACTIONS
-  $('body').on('click','._create_new_element ', function(e) {
+  $('body').on('click','._create_new_element', function() {
     $.ajax({
-      type: 'PUT',
-      url: '/admin/elements/'+$(this).data('param'),
+      type: 'put',
+      url: '/admin/elements/' + $(this).data('param'),
       timeout:5000,
       data: $(this).parent('form').serialize(),
       success: function(){
         $(e.target).parents('.element-update-form').fadeOut('fast').fadeIn('fast');
       }
+    });
+  });
+  
+  $('body').on('click', '._delete_new_element', function() {
+    $.ajax({
+      type: 'delete',
+      url: '/admin/elements/quick_upload/' + $(this).data('param') + '/delete'
     });
   });
   
@@ -143,18 +150,6 @@ $(document).ready(function(){
         btn.remove();
       }
     });
-  });
-  
-  $('body').on('click','._delete_new_element ', function(e) {
-    $.ajax({
-      type: 'DELETE',
-      url: '/admin/elements/'+$(this).data('param'),
-      timeout:5000,
-      success: function(){
-        $(e.target).parents('.element-update-form').fadeOut();
-      }
-    });
-    
   });
   
   $('body').on('click','._delete_list_element ', function(e) {

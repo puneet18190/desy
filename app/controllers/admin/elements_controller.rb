@@ -25,6 +25,11 @@ class Admin::ElementsController < AdminController
     @file = current_user.save_in_admin_quick_uploading_cache params[:media], params[:title], params[:description], params[:tags]
   end
   
+  def quick_upload_delete
+    @key = :"#{params[:key]}"
+    @ok = current_user.remove_from_admin_quick_uploading_cache @key
+  end
+  
   def create
     @new_media_element = MediaElement.new :media => params[:media]
     @new_media_element.title = params[:title].blank? ? 'title' : params[:title]

@@ -1,0 +1,5 @@
+<% if @ok %>
+  $('#quick_load_element_<%= @key %>').hide('blind', {}, 500, function() {
+    $(this).remove();
+  });
+<% end %>

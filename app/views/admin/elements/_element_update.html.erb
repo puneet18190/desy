@@ -1,4 +1,4 @@
-<div class="element-update-form span<%= colspan %> img-polaroid">
+<div id="quick_load_element_<%= file[:name] %>" class="element-update-form span<%= colspan %> img-polaroid">
   <%= form_tag admin_elements_path, :method => :post do %>
     <div class="alert">
         <%= file[:original_name] %>
@@ -16,7 +16,7 @@
     <br><%= text_area_tag 'description', file[:description], :placeholder => 'description' %>
     <br><%= text_area_tag 'tags', file[:tags], :placeholder => 'tags' %><br>
     <%= check_box_tag 'publish', '1', true %><span style="margin-left:10px">publish now</span><br><br>
-    <button class="_create_new_element btn btn-small btn-success" type="button">Save</button>
-    <button class="_delete_new_element btn btn-small btn-danger" type="button">Delete</button>
+    <button class="_create_new_element btn btn-small btn-success" type="button" data-param="<%= file[:name] %>">Save</button>
+    <button class="_delete_new_element btn btn-small btn-danger" type="button" data-param="<%= file[:name] %>">Delete</button>
   <% end %>
 </div>
