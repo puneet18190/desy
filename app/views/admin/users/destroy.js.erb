@@ -1,7 +1,5 @@
-$tr = $('tr#<%=@user.id%>');
-
 <% if @errors %>
-  $tr.css("background-color","red");
+  $('tr#<%= @user.id %>');.css('background-color', 'red');
 <% else %>
-  $tr.remove();
+  $('tr#<%= @user.id %>');.remove();
 <% end %>

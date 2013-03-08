@@ -5,23 +5,23 @@
     <span class="icon-bar"></span>
   </a>
   <a class="brand" href="/admin">
-    <%= image_tag 'admin-logo.png'%><br />
-    <%= t('admin.dashboard.link_name')%>
+    <%= image_tag 'admin-logo.png'%><br/>
+    <%= t('admin.menu.dashboard.title')%>
   </a>
   <div class="nav-collapse collapse">
     <p class="navbar-text pull-right service-links">
-      <%= t('captions.welcome') %><br />
+      <%= t('captions.welcome') %><br/>
       <%= link_to t('registration.logout'), users_session_path, method: :delete %> | <%= link_to  SETTINGS['application_name'], "/" %>
     </p>
     <ul class="nav">
       <li class="dropdown">
         <a href="/admin" class="first-level <%= 'active' if controller_name == "dashboard" %>">
-          <%= t('admin.menu.dashboard.link_name')%>
+          <%= t('admin.menu.dashboard.link') %>
         </a>
       </li>
       <li class="dropdown">
         <a href="/admin/elements" class="dropdown-toggle first-level elements <%= 'active' if controller_name == "elements" %>" data-toggle="dropdown">
-          <%= t('admin.menu.elements.link_name')%>
+          <%= t('admin.menu.elements.link')%>
           </a>
         <ul class="dropdown-menu">
           <li><a href="/admin/elements"><%= t('admin.menu.elements.list')%></a></li>
@@ -30,17 +30,17 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a href="/admin/lessons" class="first-level lessons <%= 'active' if controller_name == "lessons" %>"><%= t('admin.menu.lessons.link_name')%></a>
+        <a href="/admin/lessons" class="first-level lessons <%= 'active' if controller_name == "lessons" %>"><%= t('admin.menu.lessons.link') %></a>
       </li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle first-level messages <%= 'active' if controller_name == "messages" %>" data-toggle="dropdown"><%= t('admin.menu.messages.link_name')%></a>
+        <a href="#" class="dropdown-toggle first-level messages <%= 'active' if controller_name == "messages" %>" data-toggle="dropdown"><%= t('admin.menu.messages.link') %></a>
         <ul class="dropdown-menu">
           <li><a href="/admin/messages/new_notification">
-            <%= t('admin.menu.messages.notifications')%></a>
+            <%= t('admin.menu.messages.notifications') %></a>
           </li>
           <li>
             <a href="/admin/messages/reports">
-              <%= t('admin.menu.messages.reports')%> 
+              <%= t('admin.menu.messages.reports') %>
               <div class="label"></div>
             </a>
           </li>
@@ -48,14 +48,14 @@
       </li>
       <li class="dropdown">
         <a href="/admin/users" class="dropdown-toggle first-level users <%= 'active' if controller_name == "users" %>" data-toggle="dropdown">
-          <%= t('admin.menu.users.link_name')%></a>
+          <%= t('admin.menu.users.link') %></a>
       </li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle first-level settings" data-toggle="dropdown"><%= t('admin.menu.settings.link_name')%></a>
+        <a href="#" class="dropdown-toggle first-level settings" data-toggle="dropdown"><%= t('admin.menu.settings.link') %></a>
         <ul class="dropdown-menu">
-          <li><a href="#"><%= t('admin.menu.settings.configuration')%></a></li>
+          <li><a href="#"><%= t('admin.menu.settings.configuration') %></a></li>
         </ul>
       </li>
     </ul>
-  </div><!--/.nav-collapse -->
+  </div>
 </div>

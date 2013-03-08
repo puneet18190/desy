@@ -2163,48 +2163,65 @@ An element with the private status through the X may be cancelled, while an elem
       length_duration: 3
   
   
-  # PART 4 -- admin
+  
+  # PART 4 -- Administrator section
+  
+  
+  # SECTION 4.1: Labels used in the section 'Administrator'
+  
   admin:
-    # SECTION 4.1 menu
-    # 1 - views/admin/_header.html.erb
+    
+    # Captions del menu
     menu:
       lessons:
-        link_name: 'Lessons'
-        list: 'List'
+        link: "Lessons"
+        list: "List"
       elements:
-        link_name: 'Elements'
-        list: 'List'
-        upload: 'Upload new elements'
-        publish: 'Publish private elements'
+        link: "Elements"
+        list: "List"
+        upload: "Upload new elements"
+        publish: "Publish private elements"
       users:
-        link_name: 'Users'
-        list: 'List'
+        link: "Users"
+        list: "List"
       messages:
-        link_name: 'Messages'
-        notification: 'Notification'
-        report: 'Report Abuse'
-        help: 'Help Desk'
+        link: "Messages"
+        notification: "Notification"
+        report: "Report Abuse"
+        help: "Help Desk"
       settings:
-        link_name: 'Settings'
-        configuration: 'Configuration'
+        link: "Settings"
+        configuration: "Configuration"
       dashboard:
-        link_name: 'Dashboard'
+        link: "Dashboard"
+        title: "Admin dashboard"
       home:
-        link_name: 'Home'
-    # SECTION 4.2 dashboard
-    # 1 - views/admin/dashboard/index.html.erb
+        link: "Home"
+    
+    # Captions della dashboard
     dashboard:
-      link_name: 'Admin dashboard'
-      online_users: 'Online users'
-      new_users: 'New users'
-      elements_reports: 'Elements reports'
-      lessons_reports: 'Lessons reports'
-    # SECTION 4.3 administer lessons
+      title: "Administration dashboard"
+      general:
+        title: "General statistics"
+        shared_lessons: "Shared lessons"
+        shared_media_elements: "Shared elements"
+        total_users: "Users in the database"
+      likes:
+        lessons: "Lessons with more 'I like you'"
+        users: "Users with more 'I like you'"
+      users:
+        online: "Users online"
+        new: "Last users"
+      subjects: "Subject distribution among lessons"
+      reports:
+        lessons: "Reported lessons"
+        media_elements: "Reported media elements"
+    
     lessons:
-      #1 - views/admin/lessons/index.html.erb
       index:
         name: 'Lessons'
         not_found: 'No lessons found'
+    
     # SECTION 4.4 administer elements
     elements:
       #1 - views/admin/elements/index.html.erb
@@ -2221,6 +2238,7 @@ An element with the private status through the X may be cancelled, while an elem
       #1 - views/admin/elements/edit.html.erb 
       edit:
         update_and_publish: 'Update and publish private elements'
+    
     # SECTION 4.5 administer users
     users:
       #1 - views/admin/users/index.html.erb
@@ -2239,6 +2257,7 @@ An element with the private status through the X may be cancelled, while an elem
         activate: 'Activate'
         ban: 'Ban'
         message: 'Message'
+    
     # SECTION 4.6 administation messages
     messages:
       #1 - views/admin/messages/contact.html.erb
@@ -2254,36 +2273,19 @@ An element with the private status through the X may be cancelled, while an elem
       #1 - views/admin/messages/reports.html.erb
       reports:
         name: 'Reports'
+    
     # SECTION 4.7 configuration
-    # SECTION 4.8 common captions
     general:
-      #1 - views/admin/lessons/index.html.erb
-      #2 - views/admin/elements/index.html.erb
-      expand_all: 'Expand all'
-      #1 - views/admin/lessons/index.html.erb
-      #2 - views/admin/elements/index.html.erb
-      close_all: 'Close all'
-      #1 - views/admin/lessons/_list.html.erb
-      #2 - views/admin/elements/_list.html.erb
-      #3 - views/admin/elements/new.html.erb
+      expand_all: "Expand all"
+      close_all: "Close all"
       tags: 'Tags'
-      #1 - views/admin/lessons/_list.html.erb
-      #2 - views/admin/elements/_list.html.erb
-      #3 - views/admin/elements/new.html.erb
       description: 'Description'
-      #1 - views/admin/elements/new.html.erb
       title: 'Title'
-      #1 - views/admin/users/show.html.erb
       delete: 'Delete'
-      #1 - views/admin/users/index.html.erb
       ask_for_delete: 'Are you sure?'
-      #1 - views/admin/lessons/index.html.erb
-      #2 - views/admin/elements/index.html.erb
       of_range: 'Of'
+    
     # SECTION 4.7 common search form
-    #1 - views/admin/lessons/index.html.erb
-    #2 - views/admin/elements/index.html.erb
-    #3 - views/admin/users/index.html.erb
     search:
       heading:
         general: 'General'
@@ -2312,6 +2314,8 @@ An element with the private status through the X may be cancelled, while an elem
       created_at: 'Created at'
       updated_at: 'Last update'
       other: 'Other'
+  
+  
   #KAMINARI defaul override
   views:
     pagination:
