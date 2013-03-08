@@ -42,7 +42,7 @@ class Admin::ElementsController < AdminController
       me.user_id = current_user.id
       @saved = me.save
       if !@saved
-        fields = @new_media_element.errors.messages.keys
+        fields = me.errors.messages.keys
         if fields.include? :sti_type
           fields << :media if !fields.include? :media
           fields.delete :sti_type
@@ -53,9 +53,11 @@ class Admin::ElementsController < AdminController
         end
         @ok = false if @error_fields.empty?
       else
-        me.is_public = true
-        me.publication_date = Time.zone.now
-        @ok = me.save
+        if params.has_key? :publish
+          me.is_public = true
+          me.publication_date = Time.zone.now
+          @ok = me.save
+        end
         current_user.remove_from_admin_quick_uploading_cache(@key)
       end
     else

@@ -8,7 +8,7 @@
       <% if field == :media %>
         $('#quick_load_element_<%= @key %> .alert').addClass('.alert-error');
       <% else %>
-        $('#quick_load_element_<%= @key %> input[name=<%= field %>]').css('outline', '1px solid red');
+        $('#quick_load_element_<%= @key %> ._form_input[name=<%= field %>]').css('border-color', '#B94A48');
       <% end %>
     <% end %>
   <% end %>

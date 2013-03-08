@@ -1,7 +1,7 @@
 <div id="quick_load_element_<%= file[:name] %>" class="element-update-form span<%= colspan %> img-polaroid">
   <form class="_quick_load_creation_form">
     <div class="alert">
-        <%= file[:original_name] %>
+      <%= file[:original_name] %>
     </div>
     <% if file[:type] == 'audio' %>
       <%= image_tag 'simbolo-audio.svg', :width => '200', :style => 'margin-top:0' %>
@@ -13,10 +13,10 @@
       <%= image_tag 'simbolo-audio.svg', :width => '200', :style => 'margin-top:0' %>
     <% end %>
     <%= hidden_field_tag 'media', "#{file[:name]}#{file[:ext]}" %>
-    <br><%= text_field_tag 'title', file[:title], :placeholder => 'title' %>
-    <br><%= text_area_tag 'description', file[:description], :placeholder => 'description' %>
-    <br><%= text_area_tag 'tags', file[:tags], :placeholder => 'tags' %><br>
-    <%= check_box_tag 'publish', '1', true %><span style="margin-left:10px">publish now</span><br><br>
+    <br><%= text_field_tag 'title', file[:title], :placeholder => 'title', :class => '_form_input' %>
+    <br><%= text_area_tag 'description', file[:description], :placeholder => 'description', :class => '_form_input' %>
+    <br><%= text_area_tag 'tags', file[:tags], :placeholder => 'tags', :class => '_form_input' %><br>
+    <%= check_box_tag 'publish', '1', (file[:type] == 'image'), :disabled => (file[:type] != 'image') %><span style="margin-left:10px">publish now</span><br><br>
     <button class="_create_new_element btn btn-small btn-success" type="button" data-param="<%= file[:name] %>">Save</button>
     <button class="_delete_new_element btn btn-small btn-danger" type="button" data-param="<%= file[:name] %>">Delete</button>
   </form>
