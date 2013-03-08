@@ -124,8 +124,9 @@ $(document).ready(function() {
   
   $('body').on('click', '._create_new_element', function() {
     $.ajax({
-      type: 'put',
-      url: '/admin/elements/' + $(this).data('param')
+      type: 'post',
+      data: $(this).parents('._quick_load_creation_form').serialize(),
+      url: '/admin/elements/quick_upload/' + $(this).data('param') + '/create'
     });
   });
   

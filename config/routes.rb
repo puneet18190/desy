@@ -165,6 +165,7 @@ Desy::Application.routes.draw do
     get  'elements/edit' => 'elements#edit'
     get  'elements/:id/load' => 'elements#load_element'
     post 'elements/quick_upload' => 'elements#quick_upload'
+    post 'elements/quick_upload/:key/create' => 'elements#quick_upload_create'
     delete 'elements/quick_upload/:key/delete' => 'elements#quick_upload_delete'
     post 'location/:id/find' => 'users#find_location'
     get  'messages/new_notification' => 'messages#new_notification'

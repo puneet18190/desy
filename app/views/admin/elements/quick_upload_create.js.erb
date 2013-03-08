@@ -1,0 +1,15 @@
+<% if @ok %>
+  <% if @saved %>
+    $('#quick_load_element_<%= @key %>').hide('fade', {}, 500, function() {
+      $(this).remove();
+    });
+  <% else %>
+    <% @error_fields.each do |field| %>
+      <% if field == :media %>
+        $('#quick_load_element_<%= @key %> .alert').addClass('.alert-error');
+      <% else %>
+        $('#quick_load_element_<%= @key %> input[name=<%= field %>]').css('outline', '1px solid red');
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

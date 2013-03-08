@@ -30,26 +30,36 @@ class Admin::ElementsController < AdminController
     @ok = current_user.remove_from_admin_quick_uploading_cache @key
   end
   
-  def create
-    @new_media_element = MediaElement.new :media => params[:media]
-    @new_media_element.title = params[:title].blank? ? 'title' : params[:title]
-    @new_media_element.description = params[:description].blank? ? 'description' : params[:description]
-    @new_media_element.tags = params[:tags].split(',').count < 4 ? 'tag1,tag2,tag3,tag4' : params[:tags]
-    @new_media_element.user_id = current_user.id
-    if !@new_media_element.save
-      @errors = convert_media_element_uploader_messages @new_media_element.errors.messages
-      fields = @new_media_element.errors.messages.keys
-      if fields.include? :sti_type
-        fields << :media if !fields.include? :media
-        fields.delete :sti_type
+  def quick_upload_create
+    @key = :"#{params[:key]}"
+    @ok = true
+    filename = File.basename(params[:media])
+    if !filename.nil?
+      me = MediaElement.new :media => File.open(Rails.root.join("public/admin/#{current_user.id}/#{filename}"))
+      me.title = params[:title]
+      me.description = params[:description]
+      me.tags = params[:tags]
+      me.user_id = current_user.id
+      @saved = me.save
+      if !@saved
+        fields = @new_media_element.errors.messages.keys
+        if fields.include? :sti_type
+          fields << :media if !fields.include? :media
+          fields.delete :sti_type
+        end
+        @error_fields = []
+        fields.each do |f|
+          @error_fields << f.to_s
+        end
+        @ok = false if @error_fields.empty?
+      else
+        me.is_public = true
+        me.publication_date = Time.zone.now
+        @ok = me.save
+        current_user.remove_from_admin_quick_uploading_cache(@key)
       end
-      @error_fields = []
-      fields.each do |f|
-        @error_fields << f.to_s
-      end
-    end
-    if params[:commit]
-      render :new
+    else
+      @ok = false
     end
   end
   
