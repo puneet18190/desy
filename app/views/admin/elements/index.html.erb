@@ -1,9 +1,9 @@
 <%= render :partial => "search" %>
-<h3><%= t('admin.elements.index.name')%></h3>
+<h3><%= t('admin.media_elements.title')%></h3>
 <% if @elements.count > 1 %>
-  <%= render :partial => "admin/list_heading", :locals => {:items => @elements, :expandable => false} %>
+  <%= render :partial => 'admin/list_heading', :locals => {:items => @elements, :expandable => false} %>
 <% end %>
 <%= render :partial => 'admin/elements/list', :locals => {:elements => @elements} %>
 <% if @elements.count > 1 %>
-  <%= render :partial => "admin/list_heading", :locals => {:items => @elements, :expandable => false} %>
+  <%= render :partial => 'admin/list_heading', :locals => {:items => @elements, :expandable => false} %>
 <% end %>

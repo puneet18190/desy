@@ -3,88 +3,92 @@
     <thead>
       <tr>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'id', :param=>'id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'id', :param => 'id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'title', :param=>'title'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'title', :param => 'title'} %>
         </div>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'media_type', :param=>'sti_type'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'media_type', :param => 'sti_type'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'user', :param=>'user_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'user', :param => 'user_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'school', :param=>'location_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'school', :param => 'location_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'location', :param=>'location_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'location', :param => 'location_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'created at', :param=>'created_at'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'created at', :param => 'created_at'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'last update', :param=>'updated_at'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'last update', :param => 'updated_at'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'public', :param=>'is_public'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => 'public', :param => 'is_public'} %>
         </th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <a name="list-anchor"></a>
-    <% elements.each do |element| %>
-      <tr class="collapse" id="<%= element.id %>">
-        <td><%= element.id %></td>
-        <td><%= element.title%></td>
-        <td><%= element.sti_type%></td>
-        <td><%= element.user.surname %> <%= element.user.name %></td>
-        <td><%= element.user.school %></td>
-        <td><%= element.user.province %> - <%= element.user.town %></td>
-        <td><%= element.created_at.strftime('%d-%m-%Y')%></td>
-        <td><%= element.updated_at.strftime('%d-%m-%Y')%></td>
-        <td>
-          <% if !element.is_public %>
-          <a href="#" class="_publish_list_element action" title="publish" data-param="<%= element.id %>"><i class="icon-globe"></i></a>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to '<i class="icon-remove"></i>'.html_safe, admin_elements_path(element),:method => :delete , :confirm => t('admin.general.ask_for_delete'),:remote => true, :class=>"_delete_list_element action","data-param"=>element.id %>
-        </td>
-      </tr>
-      <div style="clear:both;"></div>
-      <tr class="collapsed">
-        <td colspan="10">
-          <div class="row-fluid">
-          <div class="span3">
-            <div id="element_<%=element.id%>_preview" class="element-thumbnail" data-param="<%=element.id%>"></div>
-          </div>
-          <div class="span3">
-            <h5>Tags</h5>
-            <% element.tags.split(',').each do |tag| %>
-              <% if tag.length > 0%>
-                <%= tag %>, 
-              <% end %>
+      <% elements.each do |element| %>
+        <tr class="collapse" id="<%= element.id %>">
+          <td><%= element.id %></td>
+          <td><%= element.title %></td>
+          <td><%= element.sti_type %></td>
+          <td><%= element.user.surname %> <%= element.user.name %></td>
+          <td><%= element.user.school %></td>
+          <td><%= element.user.province %> - <%= element.user.town %></td>
+          <td><%= element.created_at.strftime('%d-%m-%Y') %></td>
+          <td><%= element.updated_at.strftime('%d-%m-%Y') %></td>
+          <td>
+            <% if !element.is_public %>
+              <a href="#" class="_publish_list_element action" title="publish" data-param="<%= element.id %>"><i class="icon-globe"></i></a>
             <% end %>
-          </div>
-          <div class="span6">
-            <h5>Description</h5>
-            <%= element.description %>
-          </div>
-        </td>
-      </tr>
-    <% end %>
+          </td>
+          <td>
+            <%= link_to '<i class="icon-remove"></i>'.html_safe, admin_elements_path(element), :method => :delete , :confirm => t('admin.general.ask_for_delete'), :remote => true, :class => '_delete_list_element action', :data => {:param => element.id} %>
+          </td>
+        </tr>
+        <div style="clear:both;"></div>
+        <tr class="collapsed">
+          <td colspan="10">
+            <div class="row-fluid">
+            <div class="span3">
+              <div id="element_<%=element.id%>_preview" class="element-thumbnail" data-param="<%= element.id %>"></div>
+            </div>
+            <div class="span3">
+              <h5><%= t('admin.media_elements.tags') %></h5>
+              <% element.tags.split(',').each do |tag| %>
+                <% if tag.length > 0%>
+                  <%= tag %>,
+                <% end %>
+              <% end %>
+            </div>
+            <div class="span6">
+              <h5><%= t('admin.media_elements.description') %></h5>
+              <%= element.description %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
-    <% if params[:search].present? && params[:search][:id].present?%>
-      <script type="text/javascript" charset="utf-8">
-        openAndLoadNextTr($('tr#<%=params[:search][:id] %>'));
-      </script>
-    <% end %>
+  
+  <% if params[:search].present? && params[:search][:id].present? %>
+    <script type="text/javascript" charset="utf-8">
+      openAndLoadNextTr($('tr#<%=params[:search][:id] %>'));
+    </script>
+  <% end %>
+  
 <% else %>
+  
   <div class="widget">
-    <%= t('admin.elements.index.not_found') %>
+    <%= t('admin.elements.empty') %>
   </div>
+  
 <% end %>

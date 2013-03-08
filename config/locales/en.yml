@@ -2218,17 +2218,17 @@ An element with the private status through the X may be cancelled, while an elem
         media_elements: "Reported media elements"
     
     lessons:
-      index:
-        name: 'Lessons'
-        not_found: 'No lessons found'
+      name: 'Lessons'
+      empty: 'No lessons found'
     
-    # SECTION 4.4 administer elements
-    elements:
-      #1 - views/admin/elements/index.html.erb
-      index:
-        name: 'Elements'
-        not_found: 'No elements found'
-      #1 - views/admin/elements/new.html.erb  
+    
+    media_elements:
+      name: "Elements"
+      title: "Elements"
+      empty: "No elements found"
+      description: "Description"
+      tags: "Tags"
+      #1 - views/admin/elements/new.html.erb
       new:
         upload_caption: 'Upload elements'
         upload_hint: 'You can upload one or more file. Data you fill in will be used for all the uploaded files, it will be possibile to update contents later'
@@ -2239,13 +2239,14 @@ An element with the private status through the X may be cancelled, while an elem
       edit:
         update_and_publish: 'Update and publish private elements'
     
-    # SECTION 4.5 administer users
+    
     users:
       activate: "Activate"
       ban: "Ban"
       delete: "Delete user"
       empty: "No users found"
       message: "Send a message to this user"
+      name: "Users"
       show: "Show user page"
       title: "Users in the database"
       fields:
