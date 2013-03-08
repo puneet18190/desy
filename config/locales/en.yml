@@ -2241,22 +2241,40 @@ An element with the private status through the X may be cancelled, while an elem
     
     # SECTION 4.5 administer users
     users:
-      #1 - views/admin/users/index.html.erb
-      index:
-        name: 'Users'
-        not_found: 'No users found'
-        send_message_to_all: 'Send message to all'
-        send_message_to_these_users: 'Send message to these users'
-        show: 'Show user page'
-        delete: 'Delete user'
-        message: 'Send a message to this user'
-        ban: 'Ban'
-        activate: 'Activate'
-      #1 - views/admin/users/show.html.erb
-      show:
-        activate: 'Activate'
-        ban: 'Ban'
-        message: 'Message'
+      activate: "Activate"
+      ban: "Ban"
+      delete: "Delete user"
+      empty: "No users found"
+      message: "Send a message to this user"
+      show: "Show user page"
+      title: "Users in the database"
+      fields:
+        id: "Id"
+        email: "Email"
+        school: "School"
+        location: "Location"
+        created: "Created"
+        update: "Last update"
+      statistics:
+        title: "Personal statistics"
+        lessons:
+          copied: "Copied by other users"
+          created: "Created"
+          title: "Lessons"
+        likes: "Lessons with more likes"
+        media_elements:
+          loaded: "Loaded"
+          title: "Media elements"
+        other:
+          likes: "Likes on your lessons"
+          title: "Other statistics"
+          
+          
+      
+      
+      
+      
+      
     
     # SECTION 4.6 administation messages
     messages:
@@ -2282,7 +2300,7 @@ An element with the private status through the X may be cancelled, while an elem
       description: 'Description'
       title: 'Title'
       delete: 'Delete'
-      ask_for_delete: 'Are you sure?'
+      ask_for_delete: "Are you sure?"
       of_range: 'Of'
     
     # SECTION 4.7 common search form
