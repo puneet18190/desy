@@ -30,11 +30,6 @@ class Admin::UsersController < AdminController
     end
   end
   
-  def get_emails
-    @users = User.get_emails(params[:term])
-    render :json => @users
-  end
-  
   def get_full_names
     @users = User.get_full_names(params[:term])
     render :json => @users
@@ -62,16 +57,6 @@ class Admin::UsersController < AdminController
     @user.active = true
     @user.save
     redirect_to admin_user_path(@user)
-  end
-  
-  def contact
-    if params[:users] #list of recipients
-      @users = []
-      @users_ids = params[:users].gsub(/[\[\]]/,'').split(',')
-      @users_ids.each do |user_id|
-        @users << User.find(user_id)
-      end
-    end
   end
   
   private

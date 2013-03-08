@@ -174,7 +174,7 @@ Desy::Application.routes.draw do
     post 'messages/filter_users' => 'messages#filter_users'
     resources :lessons, :only => [:index, :destroy]
     resources :elements, :except => [:show, :edit]
-    resources :users, :only => [:index, :show, :create, :destroy]
+    resources :users, :only => [:index, :show, :destroy]
   end
   
   # 404
