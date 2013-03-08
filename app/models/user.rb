@@ -509,7 +509,7 @@ class User < ActiveRecord::Base
       name = "a#{SecureRandom.urlsafe_base64(15)}"
     end
     if map.has_key? :index
-      map[:index] << :"#{name}"
+      map[:index].unshift :"#{name}"
     else
       map[:index] = [:"#{name}"]
     end
