@@ -484,6 +484,7 @@ class User < ActiveRecord::Base
     return false if item.nil?
     FileUtils.rm Rails.root.join("tmp/admin/#{self.id}/#{name}#{item[:ext]}")
     map.delete name
+    map[:index].delete name
     yaml = File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"), 'w')
     yaml.write map.to_yaml
     yaml.close
@@ -507,6 +508,11 @@ class User < ActiveRecord::Base
     while map.has_key? :"#{name}"
       name = "a#{SecureRandom.urlsafe_base64(15)}"
     end
+    if map.has_key? :index
+      map[:index] << :"#{name}"
+    else
+      map[:index] = [:"#{name}"]
+    end
     map[:"#{name}"] = {:ext => extension, :type => filetype}
     map[:"#{name}"][:title] = title
     map[:"#{name}"][:description] = description
@@ -519,8 +525,15 @@ class User < ActiveRecord::Base
   end
   
   def admin_quick_uploading_cache
-    return {} if !File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
-    YAML::load File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+    return [] if !File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+    map = YAML::load File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+    index = map[:index]
+    return [] if index.nil? || index.empty?
+    resp = []
+    index.each do |i|
+      resp << {i => map[i]}
+    end
+    resp
   end
   
   private
