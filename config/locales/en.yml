@@ -2186,8 +2186,8 @@ An element with the private status through the X may be cancelled, while an elem
         list: "List"
       messages:
         link: "Messages"
-        notification: "Notification"
-        report: "Report Abuse"
+        notifications: "Notifications"
+        reports: "Report Abuse"
         help: "Help Desk"
       settings:
         link: "Settings"
@@ -2245,9 +2245,6 @@ An element with the private status through the X may be cancelled, while an elem
         upload_hint_msie: 'Fill in the form to upload a new element, you can update and publish element data later'
         file_to_upload: 'File to upload'
         new_elements: 'New elements'
-      #1 - views/admin/elements/edit.html.erb 
-      edit:
-        update_and_publish: 'Update and publish private elements'
     
     
     users:
