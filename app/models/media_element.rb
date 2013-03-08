@@ -209,6 +209,7 @@ class MediaElement < ActiveRecord::Base
   end
   
   def update_or_create_tags
+    return true unless @inner_tags
     words = []
     @inner_tags.each do |t|
       raise ActiveRecord::Rollback if t.new_record? && !t.save

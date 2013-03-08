@@ -4,6 +4,7 @@ class MediaElementsSlide < ActiveRecord::Base
   
   belongs_to :media_element
   belongs_to :slide
+  has_one :lesson, through: :slide
   
   validates_presence_of :media_element_id, :slide_id
   validates_numericality_of :media_element_id, :slide_id, :only_integer => true, :greater_than => 0
@@ -14,8 +15,21 @@ class MediaElementsSlide < ActiveRecord::Base
   validate :validate_associations, :validate_type_in_slide, :validate_position, :validate_media_element, :validate_impossible_changes, :validate_image_properties
   
   before_validation :init_validation
+
+  after_destroy :restore_lesson_availability
   
   private
+
+  def restore_lesson_availability
+    if media_element && 
+       !media_element.converted? &&
+       lesson &&
+       !lesson.available?(media_element.sti_type) &&
+       !lesson.media_elements.where(converted: false, sti_type: media_element.sti_type).where('media_elements.id != ?', media_element.id).exists?
+      lesson.class.find(lesson.id).available!(media_element.class)
+    end
+    true
+  end
   
   def init_validation
     @media_elements_slide = Valid.get_association self, :id
