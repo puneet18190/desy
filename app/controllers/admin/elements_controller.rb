@@ -54,6 +54,7 @@ class Admin::ElementsController < AdminController
         @ok = false if @error_fields.empty?
       else
         if params.has_key? :publish
+          me = MediaElement.find me.id
           me.is_public = true
           me.publication_date = Time.zone.now
           @ok = me.save
