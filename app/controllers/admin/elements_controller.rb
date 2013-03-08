@@ -1,6 +1,7 @@
 class Admin::ElementsController < AdminController
   
   before_filter :find_element, :only => [:destroy, :update, :load_element]
+  before_filter :initialize_media_element_with_owner_and_private, :only => :update
   layout 'admin'
   
   def index
@@ -67,19 +68,14 @@ class Admin::ElementsController < AdminController
   end
   
   def update
-    @element.title = params[:title] if params[:title]
-    @element.description = params[:description] if params[:description]
-    @element.tags = params[:tags] if params[:tags]
-    if params[:is_public]
-      @element.is_public = true
-      @element.publication_date = Time.zone.now
-    end
-    if !@element.save
-      @errors = convert_item_error_messages @element.errors.messages
-      @error_fields = @element.errors.messages.keys
-      render :nothing => true
-    else
-      render :nothing => true
+    if @ok
+      @media_element.title = params[:title]
+      @media_element.description = params[:description]
+      @media_element.tags = params[:tags]
+      if !@media_element.save
+        @errors = convert_item_error_messages @element.errors.messages
+        @error_fields = @element.errors.messages.keys
+      end
     end
   end
   
