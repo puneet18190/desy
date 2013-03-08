@@ -492,11 +492,11 @@ class User < ActiveRecord::Base
   end
   
   def save_in_admin_quick_uploading_cache(file, title=nil, description=nil, tags=nil)
-    filetype = MediaElement.filetype(file.path)
+    filetype = MediaElement.filetype(file.original_filename)
     return false if filetype.nil?
     FileUtils.mkdir Rails.root.join('tmp/admin') if !File.exists?(Rails.root.join('tmp/admin'))
     FileUtils.mkdir Rails.root.join("tmp/admin/#{self.id}") if !File.exists?(Rails.root.join("tmp/admin/#{self.id}"))
-    extension = File.extname file.path
+    extension = File.extname file.original_filename
     map = {}
     if File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
       map = YAML::load(File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml")))
@@ -520,7 +520,7 @@ class User < ActiveRecord::Base
     yaml = File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"), 'w')
     yaml.write map.to_yaml
     yaml.close
-    FileUtils.mv file.path, Rails.root.join("tmp/admin/#{self.id}/#{name}#{extension}")
+    FileUtils.mv file.tempfile.path, Rails.root.join("tmp/admin/#{self.id}/#{name}#{extension}")
     true
   end
   
