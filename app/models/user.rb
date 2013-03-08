@@ -531,7 +531,8 @@ class User < ActiveRecord::Base
     return [] if index.nil? || index.empty?
     resp = []
     index.each do |i|
-      resp << {i => map[i]}
+      map[i][:name] = i
+      resp << map[i]
     end
     resp
   end

@@ -141,7 +141,7 @@ Desy::Application.routes.draw do
   # USER SESSION
   post 'users_sessions' => 'users/sessions#create'
   delete 'users_session' => 'users/sessions#destroy'
-
+  
   # USER NOT LOGGED
   get  'home' => 'prelogin#home', :as => :home
   get  'sign_up' => 'prelogin#registration', :as => :sign_up

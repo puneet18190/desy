@@ -3,29 +3,30 @@
   description_max = t('forms.placeholders.description', :num => t('language_parameters.media_element.length_description').to_s).downcase
   tags_max = t('forms.placeholders.tags', :items => SETTINGS['min_tags_for_item'].to_s, :num => SETTINGS['max_tag_length'].to_s).downcase
 %>
+
 <div class="row-fluid">
   <div class="span3">
     <h3><%= t('admin.elements.new.upload_caption')%></h3>
     <%= form_tag '/admin/elements/quick_upload', :method => :post, :id => 'new-elements', :multipart => true do %>
       <label for="title"><%= t('admin.general.title')%></label>
       <%= text_field_tag 'title', '' %><br />
-      <label for="description"><%= t('admin.general.description')%></label>
+      <label for="description"><%= t('admin.general.description') %></label>
       <%= text_area_tag 'description', '' %><br />
-      <label for="tags"><%= t('admin.general.tags')%></label>
+      <label for="tags"><%= t('admin.general.tags') %></label>
       <%= text_area_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %><br />
       <label for="file"><%= t('admin.elements.new.file_to_upload')%></label> <%= file_field_tag "media", multiple: true %><br />
       <%= submit_tag t('forms.upload_media_element.done').downcase, :class=>"btn _new_element_form_submit", :style=>"display:none" %>
     <% end %>
     <blockquote>
-      <%= t('admin.elements.new.upload_hint')%>
+      <%= t('admin.elements.new.upload_hint') %>
     </blockquote>
   </div>
   <div class="span9 new_elements_well">
     <div class="row-fluid">
-    <h3><%= t('admin.elements.new.new_elements')%></h3>
+    <h3><%= t('admin.elements.new.new_elements') %></h3>
     <div id="new_elements_preview" class="well">
-      <% if @new_media_element.present? %>
-        <%= render :partial => 'element_update', :locals => {:element => @new_media_element, :colspan => 4} %>
+      <% @files.each do |file| %>
+        <%= render :partial => 'element_update', :locals => {:file => @file, :colspan => 4} %>
       <% end %>
       <div style="clear:both">
     </div>

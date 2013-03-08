@@ -1,17 +1,15 @@
-<div class="element-update-form span<%=colspan%> img-polaroid">
-  <%= form_tag "/admin/elements/#{element.id}", :method => :put do %>
-    <% if element.sti_type.downcase == 'audio' %>
+<div class="element-update-form span<%= colspan %> img-polaroid">
+  <%= form_tag admin_elements_path, :method => :post do %>
+    <% if file[:type] == 'audio' %>
       <%= image_tag 'simbolo-audio.svg', :width => '200' %>
-    <%else%>
-      <%= image_tag element.thumb_url %>
-    <%end%>
-    <br>
-    <%= text_field_tag 'title', element.title %>
-    <br>
-    <%= text_area_tag 'description', element.description %>    
-    <br>
-    <%= text_area_tag 'tags', element.tags , :class => 'lower' %>
-    <br>
+    <% elsif file[:type] == 'image' %>
+      <%= image_tag Rails.root.join("tmp/admin/#{current_user.id}/#{file[:name]}#{file[:ext]}") %>
+    <% else %>
+      <%= image_tag 'simbolo-audio.svg', :width => '200' %>
+    <% end %>
+    <br><%= text_field_tag 'title', element.title %>
+    <br><%= text_area_tag 'description', element.description %>
+    <br><%= text_area_tag 'tags', element.tags, :class => 'lower' %><br>
     <button class="_publish_private_element btn btn-small btn-primary" type="button" data-param="<%= element.id %>">Publish</button>
     <button class="_update_new_element btn btn-small" type="button" data-param="<%= element.id %>">Update</button>
     <button class="_delete_new_element btn btn-small btn-danger" type="button" data-param="<%= element.id %>">Delete</button>
