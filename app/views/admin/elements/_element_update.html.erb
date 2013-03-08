@@ -3,9 +3,18 @@
   tags = tags[1, tags.length].chop.gsub(',', ', ')
 %>
 
-<div id="element_<%= element.id %>" class="element-update-form span<%= colspan %> img-polaroid">
+<div id="element_<%= element.id %>" class="element-update-form span<%= colspan %> img-polaroid adminExpandedMediaElement">
   <form class="_quick_load_creation_form">
-    <%= render :partial => "media_elements/thumbnails/#{element.sti_type.downcase}", :locals => {:item => element} %>
+    <% if element.video? %>
+      <div style="position:relative">
+        <%= image_tag element.thumb_url, :style => 'margin-bottom:0' %>
+        <div style="position:absolute; top:53px; left:80px">
+          <%= image_tag('bullet_video.svg', :style => 'width:40%;') %>
+        </div>
+      </div>
+    <% else %>
+      <%= image_tag element.thumb_url %>
+    <% end %>
     <br><%= text_field_tag 'title', element.title, :class => '_form_input' %>
     <br><%= text_area_tag 'description', element.description, :class => '_form_input' %>
     <br><%= text_area_tag 'tags', tags, :class => '_form_input' %><br>
