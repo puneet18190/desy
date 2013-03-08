@@ -478,14 +478,14 @@ class User < ActiveRecord::Base
   end
   
   def remove_from_admin_quick_uploading_cache(name)
-    return false if !File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
-    map = YAML::load(File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml")))
+    return false if !File.exists?(Rails.root.join("public/admin/#{self.id}/map.yml"))
+    map = YAML::load(File.open(Rails.root.join("public/admin/#{self.id}/map.yml")))
     item = map[name]
     return false if item.nil?
-    FileUtils.rm Rails.root.join("tmp/admin/#{self.id}/#{name}#{item[:ext]}")
+    FileUtils.rm Rails.root.join("public/admin/#{self.id}/#{name}#{item[:ext]}")
     map.delete name
     map[:index].delete name
-    yaml = File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"), 'w')
+    yaml = File.open(Rails.root.join("public/admin/#{self.id}/map.yml"), 'w')
     yaml.write map.to_yaml
     yaml.close
     true
@@ -493,16 +493,16 @@ class User < ActiveRecord::Base
   
   def save_in_admin_quick_uploading_cache(file, title=nil, description=nil, tags=nil)
     filetype = MediaElement.filetype(file.original_filename)
-    return false if filetype.nil?
-    FileUtils.mkdir Rails.root.join('tmp/admin') if !File.exists?(Rails.root.join('tmp/admin'))
-    FileUtils.mkdir Rails.root.join("tmp/admin/#{self.id}") if !File.exists?(Rails.root.join("tmp/admin/#{self.id}"))
+    return nil if filetype.nil?
+    FileUtils.mkdir Rails.root.join('public/admin') if !File.exists?(Rails.root.join('public/admin'))
+    FileUtils.mkdir Rails.root.join("public/admin/#{self.id}") if !File.exists?(Rails.root.join("public/admin/#{self.id}"))
     extension = File.extname file.original_filename
     map = {}
-    if File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
-      map = YAML::load(File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml")))
+    if File.exists?(Rails.root.join("public/admin/#{self.id}/map.yml"))
+      map = YAML::load(File.open(Rails.root.join("public/admin/#{self.id}/map.yml")))
     else
-      FileUtils.rm_r Rails.root.join("tmp/admin/#{self.id}")
-      FileUtils.mkdir Rails.root.join("tmp/admin/#{self.id}")
+      FileUtils.rm_r Rails.root.join("public/admin/#{self.id}")
+      FileUtils.mkdir Rails.root.join("public/admin/#{self.id}")
     end
     name = "a#{SecureRandom.urlsafe_base64(15)}"
     while map.has_key? :"#{name}"
@@ -517,16 +517,23 @@ class User < ActiveRecord::Base
     map[:"#{name}"][:title] = title
     map[:"#{name}"][:description] = description
     map[:"#{name}"][:tags] = tags
-    yaml = File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"), 'w')
+    yaml = File.open(Rails.root.join("public/admin/#{self.id}/map.yml"), 'w')
     yaml.write map.to_yaml
     yaml.close
-    FileUtils.mv file.tempfile.path, Rails.root.join("tmp/admin/#{self.id}/#{name}#{extension}")
-    true
+    FileUtils.mv file.tempfile.path, Rails.root.join("public/admin/#{self.id}/#{name}#{extension}")
+    {
+      :name => :"#{name}",
+      :ext => extension,
+      :type => filetype,
+      :title => title,
+      :description => description,
+      :tags => tags
+    }
   end
   
   def admin_quick_uploading_cache
-    return [] if !File.exists?(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
-    map = YAML::load File.open(Rails.root.join("tmp/admin/#{self.id}/map.yml"))
+    return [] if !File.exists?(Rails.root.join("public/admin/#{self.id}/map.yml"))
+    map = YAML::load File.open(Rails.root.join("public/admin/#{self.id}/map.yml"))
     index = map[:index]
     return [] if index.nil? || index.empty?
     resp = []
