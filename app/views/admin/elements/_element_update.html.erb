@@ -1,9 +1,14 @@
+<%
+  tags = element.tags
+  tags = tags[1, tags.length].chop.gsub(',', ', ')
+%>
+
 <div id="element_<%= element.id %>" class="element-update-form span<%= colspan %> img-polaroid">
   <form class="_quick_load_creation_form">
-    <%= render :partial => "media_elements/thumbs/#{element.sti_type.downcase}", :locals => {:item => element} %>
+    <%= render :partial => "media_elements/thumbnails/#{element.sti_type.downcase}", :locals => {:item => element} %>
     <br><%= text_field_tag 'title', element.title, :class => '_form_input' %>
     <br><%= text_area_tag 'description', element.description, :class => '_form_input' %>
-    <br><%= text_area_tag 'tags', element.tags, :class => '_form_input' %><br>
+    <br><%= text_area_tag 'tags', tags, :class => '_form_input' %><br>
     <button class="_publish_private_admin_element btn btn-small btn-warning" type="button" data-param="<%= element.id %>">
       <%= t('admin.media_elements.actions.publish') %>
     </button>
