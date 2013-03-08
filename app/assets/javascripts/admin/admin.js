@@ -120,7 +120,7 @@ $(document).ready(function(){
   
   
   // ELEMENTS ACTIONS
-  $('body').on('click','._update_new_element ', function(e){
+  $('body').on('click','._create_new_element ', function(e) {
     $.ajax({
       type: 'PUT',
       url: '/admin/elements/'+$(this).data('param'),
@@ -129,31 +129,10 @@ $(document).ready(function(){
       success: function(){
         $(e.target).parents('.element-update-form').fadeOut('fast').fadeIn('fast');
       }
-  	});
+    });
   });
   
-  $('body').on('click','._publish_private_element', function(e){
-    $('<input />',{
-      type: 'hidden',
-      name: 'is_public' 
-    }).insertBefore($(this));
-    
-    $.ajax({
-      type: 'PUT',
-      url: '/admin/elements/'+$(this).data('param'),
-      timeout:5000,
-      data: $(this).parent('form').serialize(),
-      success: function(){
-        var btn = $(e.target);
-        btn.siblings('._update_new_element').remove();
-        btn.siblings('input').prop('disabled', true);
-        btn.siblings('textarea').prop('disabled', true);
-        btn.remove();
-      }
-  	});
-  });
-  
-  $('body').on('click','.action._publish_list_element i', function(e){
+  $('body').on('click','.action._publish_list_element i', function(e) {
     e.preventDefault();
     $.ajax({
       type: 'PUT',
@@ -163,10 +142,10 @@ $(document).ready(function(){
         var btn = $(e.target);
         btn.remove();
       }
-  	});
+    });
   });
   
-  $('body').on('click','._delete_new_element ', function(e){
+  $('body').on('click','._delete_new_element ', function(e) {
     $.ajax({
       type: 'DELETE',
       url: '/admin/elements/'+$(this).data('param'),
@@ -174,11 +153,11 @@ $(document).ready(function(){
       success: function(){
         $(e.target).parents('.element-update-form').fadeOut();
       }
-  	});
+    });
     
   });
   
-  $('body').on('click','._delete_list_element ', function(e){
+  $('body').on('click','._delete_list_element ', function(e) {
     e.preventDefault();
     $.ajax({
       type: 'DELETE',
@@ -189,8 +168,7 @@ $(document).ready(function(){
         el.next('collapsed').fadeOut();
         el.fadeOut();
       }
-  	});
-    
+    });
   });
   
   $(function() {
