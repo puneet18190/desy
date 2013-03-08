@@ -514,6 +514,7 @@ class User < ActiveRecord::Base
       map[:index] = [:"#{name}"]
     end
     map[:"#{name}"] = {:ext => extension, :type => filetype}
+    map[:"#{name}"][:original_name] = file.original_filename
     map[:"#{name}"][:title] = title
     map[:"#{name}"][:description] = description
     map[:"#{name}"][:tags] = tags
@@ -527,7 +528,8 @@ class User < ActiveRecord::Base
       :type => filetype,
       :title => title,
       :description => description,
-      :tags => tags
+      :tags => tags,
+      :original_name => file.original_filename
     }
   end
   
