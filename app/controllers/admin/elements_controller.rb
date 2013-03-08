@@ -14,7 +14,7 @@ class Admin::ElementsController < AdminController
   end
   
   def new
-    
+    @files = current_user.admin_quick_uploading_cache
   end
   
   def edit
@@ -22,7 +22,7 @@ class Admin::ElementsController < AdminController
   end
   
   def quick_upload
-    params[:media].tempfile
+    @file = current_user.save_in_admin_quick_uploading_cache params[:media], params[:title], params[:description], params[:tags]
   end
   
   def create
