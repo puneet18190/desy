@@ -2225,9 +2225,19 @@ An element with the private status through the X may be cancelled, while an elem
     media_elements:
       name: "Elements"
       title: "Elements"
+      edit: "Edit and share loaded elements"
       empty: "No elements found"
-      description: "Description"
-      tags: "Tags"
+      fields:
+        description: "Description"
+        title: "Title"
+        is_public: "Publish now"
+        tags: "Tags"
+      actions:
+        delete: "Delete"
+        publish: "Publish"
+        save: "Save"
+        update: "Update"
+        
       #1 - views/admin/elements/new.html.erb
       new:
         upload_caption: 'Upload elements'

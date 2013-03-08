@@ -164,6 +164,18 @@ $(document).ready(function() {
     });
   });
   
+  $('body').on('click', '._publish_private_admin_element', function() {
+    alert('pubblico elemento id=' + $(this).data('param'));
+  });
+  
+  $('body').on('click', '._update_private_admin_element', function() {
+    alert('aggiorno elemento id=' + $(this).data('param'));
+  });
+  
+  $('body').on('click', '._delete_private_admin_element', function() {
+    alert('rimuovo elemento id=' + $(this).data('param'));
+  });
+  
   $(function() {
     function split(val) {
       return val.split(/,\s*/);

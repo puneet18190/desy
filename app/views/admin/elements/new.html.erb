@@ -14,7 +14,7 @@
       <%= text_area_tag 'description', '' %><br />
       <label for="tags"><%= tags_max %></label>
       <%= text_area_tag 'tags', '', :maxlength => SETTINGS['max_tag_length'], :class => 'lower' %><br />
-      <label for="file"><%= t('admin.elements.new.file_to_upload')%></label> <%= file_field_tag "media", multiple: true %><br />
+      <label for="file"><%= t('admin.elements.new.file_to_upload')%></label> <%= file_field_tag "media", multiple: true %><br/>
       <%= submit_tag t('forms.upload_media_element.done').downcase, :class=>"btn _new_element_form_submit", :style=>"display:none" %>
     <% end %>
     <blockquote>
@@ -26,7 +26,7 @@
     <h3><%= t('admin.elements.new.new_elements') %></h3>
     <div id="new_elements_preview" class="well">
       <% @files.each do |file| %>
-        <%= render :partial => 'element_update', :locals => {:file => file, :colspan => 4} %>
+        <%= render :partial => 'element_upload', :locals => {:file => file, :colspan => 4} %>
       <% end %>
       <div style="clear:both">
     </div>

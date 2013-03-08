@@ -62,7 +62,7 @@
               <div id="element_<%=element.id%>_preview" class="element-thumbnail" data-param="<%= element.id %>"></div>
             </div>
             <div class="span3">
-              <h5><%= t('admin.media_elements.tags') %></h5>
+              <h5><%= t('admin.media_elements.fields.tags') %></h5>
               <% element.tags.split(',').each do |tag| %>
                 <% if tag.length > 0%>
                   <%= tag %>,
@@ -70,7 +70,7 @@
               <% end %>
             </div>
             <div class="span6">
-              <h5><%= t('admin.media_elements.description') %></h5>
+              <h5><%= t('admin.media_elements.fields.description') %></h5>
               <%= element.description %>
             </div>
           </td>
