@@ -2255,6 +2255,8 @@ An element with the private status through the X may be cancelled, while an elem
         location: "Location"
         created: "Created"
         update: "Last update"
+      lessons: "Lessons of %{user}"
+      media_elements: "Media elements of %{user}"
       statistics:
         title: "Personal statistics"
         lessons:

@@ -107,13 +107,13 @@
 </div>
 <div class="row-fluid">
   <div class="span12">
-    <h4>User Lessons</h4>
-    <%= render :partial => 'admin/lessons/list', :locals =>{:lessons => @user_lessons}%>
+    <h4><%= t('admin.users.lessons', :user => @user.full_name) %></h4>
+    <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @user_lessons} %>
   </div>
 </div>
 <div class="row-fluid">
   <div class="span12">
-    <h4>User Elements</h4>
-    <%= render :partial => 'admin/elements/list', :locals =>{:elements => @user_elements}%>
+    <h4><%= t('admin.users.media_elements', :user => @user.full_name) %></h4>
+    <%= render :partial => 'admin/elements/list', :locals => {:elements => @user_elements} %>
   </div>
 </div>
