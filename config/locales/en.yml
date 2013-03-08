@@ -2170,7 +2170,6 @@ An element with the private status through the X may be cancelled, while an elem
   # SECTION 4.1: Labels used in the section 'Administrator'
   
   admin:
-    
     # Captions del menu
     menu:
       lessons:
@@ -2197,7 +2196,6 @@ An element with the private status through the X may be cancelled, while an elem
         title: "Admin dashboard"
       home:
         link: "Home"
-    
     # Captions della dashboard
     dashboard:
       title: "Administration dashboard"
@@ -2216,12 +2214,11 @@ An element with the private status through the X may be cancelled, while an elem
       reports:
         lessons: "Reported lessons"
         media_elements: "Reported media elements"
-    
+    # Section of lessons
     lessons:
       name: 'Lessons'
       empty: 'No lessons found'
-    
-    
+    # Section of media elements
     media_elements:
       name: "Elements"
       title: "Elements"
@@ -2237,16 +2234,7 @@ An element with the private status through the X may be cancelled, while an elem
         publish: "Publish"
         save: "Save"
         update: "Update"
-        
-      #1 - views/admin/elements/new.html.erb
-      new:
-        upload_caption: 'Upload elements'
-        upload_hint: 'You can upload one or more file. Data you fill in will be used for all the uploaded files, it will be possibile to update contents later'
-        upload_hint_msie: 'Fill in the form to upload a new element, you can update and publish element data later'
-        file_to_upload: 'File to upload'
-        new_elements: 'New elements'
-    
-    
+    # Section of users
     users:
       activate: "Activate"
       ban: "Ban"
@@ -2278,31 +2266,19 @@ An element with the private status through the X may be cancelled, while an elem
         other:
           likes: "Likes on your lessons"
           title: "Other statistics"
-          
-          
-      
-      
-      
-      
-      
-    
-    # SECTION 4.6 administation messages
+    # Section of messages, reports, etc
     messages:
-      #1 - views/admin/messages/contact.html.erb
       contact:
         send_message: 'Send message'
         recipients: 'Recipients'
         message: 'Message'
         send: 'Send'
-      #1 - views/admin/messages/send_notifications.html.erb
       notifications:
         send_notifications: 'Send notifications'
         add_recipients: 'Add recipients by name'
-      #1 - views/admin/messages/reports.html.erb
       reports:
         name: 'Reports'
-    
-    # SECTION 4.7 configuration
+    # Generali
     general:
       expand_all: "Expand all"
       close_all: "Close all"
@@ -2312,8 +2288,7 @@ An element with the private status through the X may be cancelled, while an elem
       delete: 'Delete'
       ask_for_delete: "Are you sure?"
       of_range: 'Of'
-    
-    # SECTION 4.7 common search form
+    # Motore di ricerca
     search:
       heading:
         general: 'General'

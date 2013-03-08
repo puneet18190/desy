@@ -169,7 +169,11 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._update_private_admin_element', function() {
-    alert('aggiorno elemento id=' + $(this).data('param'));
+    $.ajax({
+      type: 'put',
+      data: $(this).parents('._quick_load_creation_form').serialize(),
+      url: '/admin/elements/' + $(this).data('param')
+    });
   });
   
   $('body').on('click', '._delete_private_admin_element', function() {

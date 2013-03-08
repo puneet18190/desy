@@ -19,7 +19,7 @@ class Admin::ElementsController < AdminController
   end
   
   def edit
-    @private_elements = MediaElement.where(:user_id => current_user.id, :is_public => false, :converted => true)
+    @private_elements = MediaElement.order('created_at DESC').where(:user_id => current_user.id, :is_public => false, :converted => true)
   end
   
   def quick_upload
