@@ -2185,62 +2185,89 @@ An element with the private status through the X may be cancelled, while an elem
     # Captions used inside the common navigational menu
     menu:
       lessons:
+        # Link to the section 'Lessons'
         # 1 - views/admin/_header.html.erb
         link: "Lessons"
       media_elements:
+        # Link to the section 'Elements'
         # 1 - views/admin/_header.html.erb
         link: "Elements"
+        # Link to the subsection 'List of elements'
         # 1 - views/admin/_header.html.erb
         list: "List"
+        # Link to the subsection 'Multiple uploader of elements'
         # 1 - views/admin/_header.html.erb
         upload: "Upload new elements"
+        # Link to the subsection 'Edit and publication of uploaded elements'
         # 1 - views/admin/_header.html.erb
         publish: "Publish private elements"
       users:
+        # Link to the section 'Users'
         # 1 - views/admin/_header.html.erb
         link: "Users"
       messages:
+        # Link to the section 'Messages, notifications and abuses reported'
         # 1 - views/admin/_header.html.erb
         link: "Messages"
+        # Link to the subsection 'Notifications'
         # 1 - views/admin/_header.html.erb
         notifications: "Notifications"
+        # Link to the subsection 'Abuses reported'
         # 1 - views/admin/_header.html.erb
         reports: "Report Abuse"
       settings:
+        # Link to the section 'Settings'
         # 1 - views/admin/_header.html.erb
         link: "Settings"
+        # Link to the subsection 'Configuration settings'
         # 1 - views/admin/_header.html.erb
         configuration: "Configuration"
       dashboard:
+        # Link to the main page of 'Administration'
         # 1 - views/admin/_header.html.erb
         link: "Dashboard"
+        # Label of the administration main page, on the top left corner of each page inside 'Administration'
         # 1 - views/admin/_header.html.erb
         title: "Admin dashboard"
-    # Main page of administrator
+    # Main page of 'Administration'
     dashboard:
+      # Title of the page
       # 1 - views/admin/dashboard/index.html.erb
       title: "Administration dashboard"
+      # General statistics shown inside the main page
       general:
+        # Title of general statistics frame
         # 1 - views/admin/dashboard/index.html.erb
         title: "General statistics"
+        # Number of lessons shared in the application
         # 1 - views/admin/dashboard/index.html.erb
         shared_lessons: "Shared lessons"
+        # Number of elements shared in the application
         # 1 - views/admin/dashboard/index.html.erb
         shared_media_elements: "Shared elements"
+        # Number of users in the application's database
         # 1 - views/admin/dashboard/index.html.erb
         total_users: "Users in the database"
+      # Statistics about likes
       likes:
+        # Lessons with more 'I like you'
         # 1 - views/admin/dashboard/index.html.erb
         lessons: "Lessons with more 'I like you'"
+        # Users with highest sum of 'I like you' on their lessons
         # 1 - views/admin/dashboard/index.html.erb
         users: "Users with more 'I like you'"
+      # Statistics about users
       users:
+        # List of users on line
         # 1 - views/admin/dashboard/index.html.erb
         online: "Users online"
+        # List of the last users who signed up in the application
         # 1 - views/admin/dashboard/index.html.erb
         new: "Last users"
+      # statistics about subject distribution among lessons (a graph)
       # 1 - views/admin/dashboard/index.html.erb
       subjects: "Subject distribution among lessons"
+      # Shortcut to the newest reports of abuses (about lessons and media element)
       reports:
         # 1 - views/admin/dashboard/index.html.erb
         lessons: "Reported lessons"
@@ -2248,14 +2275,18 @@ An element with the private status through the X may be cancelled, while an elem
         media_elements: "Reported media elements"
     # General captions, used throughout the Administrator
     general:
+      # Link to switch all the items in a list to the compact status
       # 1 - views/admin/_list_heading.html.erb
       close_all: "Close all"
+      # Link to expand all the items of a list
       # 1 - views/admin/_list_heading.html.erb
       expand_all: "Expand all"
+      # Link used to enter in 'Administration' from outside (placed on the side of the link 'logout', only for administrators)
       # 1 - views/shared/_logout.html.erb
       link: "Administration"
     # Section of lessons
     lessons:
+      # Title of the section
       # 1 - views/admin/lessons/index.html.erb
       title: "Lessons"
       # 1 - views/admin/lessons/_list.html.erb
