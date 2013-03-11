@@ -2182,90 +2182,146 @@ An element with the private status through the X may be cancelled, while an elem
   # SECTION 4.1: Labels used in the section 'Administrator'
   
   admin:
-    # Captions del menu
+    # Captions used inside the common navigational menu
     menu:
       lessons:
+        # 1 - views/admin/_header.html.erb
         link: "Lessons"
-        list: "List"
-      elements:
+      media_elements:
+        # 1 - views/admin/_header.html.erb
         link: "Elements"
+        # 1 - views/admin/_header.html.erb
         list: "List"
+        # 1 - views/admin/_header.html.erb
         upload: "Upload new elements"
+        # 1 - views/admin/_header.html.erb
         publish: "Publish private elements"
       users:
+        # 1 - views/admin/_header.html.erb
         link: "Users"
-        list: "List"
       messages:
+        # 1 - views/admin/_header.html.erb
         link: "Messages"
+        # 1 - views/admin/_header.html.erb
         notifications: "Notifications"
+        # 1 - views/admin/_header.html.erb
         reports: "Report Abuse"
-        help: "Help Desk"
       settings:
+        # 1 - views/admin/_header.html.erb
         link: "Settings"
+        # 1 - views/admin/_header.html.erb
         configuration: "Configuration"
       dashboard:
+        # 1 - views/admin/_header.html.erb
         link: "Dashboard"
+        # 1 - views/admin/_header.html.erb
         title: "Admin dashboard"
-      home:
-        link: "Home"
-    # Captions della dashboard
+    # Main page of administrator
     dashboard:
+      # 1 - views/admin/dashboard/index.html.erb
       title: "Administration dashboard"
       general:
+        # 1 - views/admin/dashboard/index.html.erb
         title: "General statistics"
+        # 1 - views/admin/dashboard/index.html.erb
         shared_lessons: "Shared lessons"
+        # 1 - views/admin/dashboard/index.html.erb
         shared_media_elements: "Shared elements"
+        # 1 - views/admin/dashboard/index.html.erb
         total_users: "Users in the database"
       likes:
+        # 1 - views/admin/dashboard/index.html.erb
         lessons: "Lessons with more 'I like you'"
+        # 1 - views/admin/dashboard/index.html.erb
         users: "Users with more 'I like you'"
       users:
+        # 1 - views/admin/dashboard/index.html.erb
         online: "Users online"
+        # 1 - views/admin/dashboard/index.html.erb
         new: "Last users"
+      # 1 - views/admin/dashboard/index.html.erb
       subjects: "Subject distribution among lessons"
       reports:
+        # 1 - views/admin/dashboard/index.html.erb
         lessons: "Reported lessons"
+        # 1 - views/admin/dashboard/index.html.erb
         media_elements: "Reported media elements"
+    # General captions, used throughout the Administrator
+    general:
+      # 1 - views/admin/_list_heading.html.erb
+      close_all: "Close all"
+      # 1 - views/admin/_list_heading.html.erb
+      expand_all: "Expand all"
+      # 1 - views/shared/_logout.html.erb
+      link: "Administration"
     # Section of lessons
     lessons:
+      # 1 - views/admin/lessons/index.html.erb
+      title: "Lessons"
+      # 1 - views/admin/lessons/_list.html.erb
       delete_confirm: "Are you sure you want to delete this lesson?"
-      name: "Lessons"
+      # 1 - views/admin/lessons/_list.html.erb
       empty: "No lessons found"
       fields:
+        # 1 - views/admin/lessons/_list.html.erb
         tags: "Tags"
+        # 1 - views/admin/lessons/_list.html.erb
         description: "Description"
+      # 1 - helpers/admin_helper.rb
+      name: "Lessons"
       search:
+        # 1 - views/admin/lessons/_search.html.erb
         label: "Search lessons"
+        # 1 - views/admin/lessons/_search.html.erb
         submit: "Search"
     # Section of media elements
     media_elements:
-      delete_confirm: "Are you sure you want to delete this element?"
-      name: "Elements"
+      # 1 - views/admin/media_elements/index.html.erb
       title: "Elements"
+      actions:
+        # 1 - views/admin/media_elements/_media_element_upload.html.erb
+        # 2 - views/admin/media_elements/_media_element_update.html.erb
+        delete: "Delete"
+        # 1 - views/admin/media_elements/_media_element_update.html.erb
+        publish: "Publish"
+        # 1 - views/admin/media_elements/_media_element_upload.html.erb
+        save: "Save"
+        # 1 - views/admin/media_elements/_media_element_update.html.erb
+        update: "Update"
+      # 1 - views/admin/media_elements/_media_element_update.html.erb
+      # 2 - views/admin/media_elements/_list.html.erb
+      delete_confirm: "Are you sure you want to delete this element?"
+      # 1 - views/admin/media_elements/edit.html.erb
       edit: "Edit and share uploaded elements"
+      # 1 - views/admin/media_elements/_list.html.erb
       empty: "No elements found"
       fields:
+        # 1 - views/admin/media_elements/_media_element_upload.html.erb
+        # 2 - views/admin/media_elements/_list.html.erb
         description: "Description"
-        title: "Title"
+        # 1 - views/admin/media_elements/_media_element_upload.html.erb
         is_public: "Publish now"
+        # 1 - views/admin/media_elements/_media_element_upload.html.erb
+        # 2 - views/admin/media_elements/_list.html.erb
         tags: "Tags"
-      actions:
-        delete: "Delete"
-        publish: "Publish"
-        save: "Save"
-        update: "Update"
+        # 1 - views/admin/media_elements/_media_element_upload.html.erb
+        title: "Title"
+      # 1 - helpers/admin_helper.rb
+      name: "Elements"
       new:
+        # 1 - views/admin/media_elements/new.html.erb
         title: "Upload new elements"
+        # 1 - views/admin/media_elements/new.html.erb
         file_to_upload: "Choose a file to upload"
+        # 1 - views/admin/media_elements/new.html.erb
         upload_hint: "You can select more than a file, using CTRL: if you want to assign the same title / description / tags to the list of files, use the fields above"
+        # 1 - views/admin/media_elements/new.html.erb
         content_title: "Elements ready to be saved"
       search:
+        # 1 - views/admin/media_elements/_search.html.erb
         label: "Search elements"
+        # 1 - views/admin/media_elements/_search.html.erb
         submit: "Search"
-    # Generali
-    general:
-      expand_all: "Expand all"
-      close_all: "Close all"
     # Motore di ricerca
     search:
       date:
@@ -2319,11 +2375,9 @@ An element with the private status through the X may be cancelled, while an elem
         activate: "Activate"
         ban: "Ban"
         message: "Send a message to this user"
-        
       delete: "Delete user"
       delete_confirm: "Are you sure you want to delete this user?"
       empty: "No users found"
-      
       name: "Users"
       show: "Show user page"
       title: "Users in the database"
@@ -2361,3 +2415,4 @@ An element with the private status through the X may be cancelled, while an elem
       next: "&gt;"
       first: "&laquo;"
       last: "&raquo;"
+      of_range: "Of"

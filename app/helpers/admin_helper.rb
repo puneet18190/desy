@@ -18,7 +18,7 @@ module AdminHelper
       end
       label = "admin.#{items.first.class.name.pluralize.downcase}.name"
       label = 'admin.media_elements.name' if MediaElement::STI_TYPES.include?(items.first.class.name)
-      return "#{from} - #{to} #{t('admin.general.of_range')} #{items.total_count} #{t(label)}".downcase
+      return "#{from} - #{to} #{t('views.pagination.of_range')} #{items.total_count} #{t(label)}".downcase
     end
   end
   
