@@ -2349,23 +2349,6 @@ An element with the private status through the X may be cancelled, while an elem
           initial_follows_final: "The initial date can't follow the final date"
           # 1 - views/admin/search/_alerts.html.erb
           final_preceeds_initial: "The final date can't be before the initial date"
-      media_elements:
-        # 1 - views/admin/search/_elements_general.html.erb
-        title: "General"
-        fields:
-          # 1 - views/admin/search/_elements_general.html.erb
-          # 2 - views/admin/search/_elements_general.html.erb
-          id: "Id"
-          # 1 - views/admin/search/_elements_general.html.erb
-          # 2 - views/admin/search/_elements_general.html.erb
-          title: "Title"
-          # 1 - views/admin/search/_elements_general.html.erb
-          sti_type: "Media type"
-          # 1 - views/admin/search/_elements_general.html.erb
-          all_sti_types: "All"
-          # 1 - views/admin/search/_elements_general.html.erb
-          # 2 - views/admin/search/_elements_general.html.erb
-          user: "User"
       lessons:
         # 1 - views/admin/search/_lessons_general.html.erb
         title: "General"
@@ -2382,6 +2365,23 @@ An element with the private status through the X may be cancelled, while an elem
           select_subject: "Select a subject"
           # 1 - views/admin/search/_lessons_general.html.erb
           # 2 - views/admin/search/_lessons_general.html.erb
+          user: "User"
+      media_elements:
+        # 1 - views/admin/search/_elements_general.html.erb
+        title: "General"
+        fields:
+          # 1 - views/admin/search/_elements_general.html.erb
+          # 2 - views/admin/search/_elements_general.html.erb
+          id: "Id"
+          # 1 - views/admin/search/_elements_general.html.erb
+          # 2 - views/admin/search/_elements_general.html.erb
+          title: "Title"
+          # 1 - views/admin/search/_elements_general.html.erb
+          sti_type: "Media type"
+          # 1 - views/admin/search/_elements_general.html.erb
+          all_sti_types: "All"
+          # 1 - views/admin/search/_elements_general.html.erb
+          # 2 - views/admin/search/_elements_general.html.erb
           user: "User"
       notifications:
         # 1 - views/admin/search/_notifications_filter.html.erb
@@ -2420,44 +2420,74 @@ An element with the private status through the X may be cancelled, while an elem
             year: "Last year"
     # Section of users
     users:
-      actions:
-        activate: "Activate"
-        ban: "Ban"
-        message: "Send a message to this user"
-      delete: "Delete user"
-      delete_confirm: "Are you sure you want to delete this user?"
-      empty: "No users found"
-      name: "Users"
-      show: "Show user page"
+      # 1 - views/admin/users/index.html.erb
       title: "Users in the database"
+      actions:
+        # 1 - views/admin/users/show.html.erb
+        activate: "Activate"
+        # 1 - views/admin/users/show.html.erb
+        ban: "Ban"
+        # 1 - views/admin/users/show.html.erb
+        message: "Send a message to this user"
+      # 1 - views/admin/users/show.html.erb
+      # 2 - views/admin/users/_list.html.erb
+      delete: "Delete user"
+      # 1 - views/admin/users/_list.html.erb
+      delete_confirm: "Are you sure you want to delete this user?"
+      # 1 - views/admin/users/_list.html.erb
+      empty: "No users found"
       fields:
+        # 1 - views/admin/users/show.html.erb
         id: "Id"
+        # 1 - views/admin/users/show.html.erb
         email: "Email"
+        # 1 - views/admin/users/show.html.erb
         school: "School"
+        # 1 - views/admin/users/show.html.erb
         location: "Location"
+        # 1 - views/admin/users/show.html.erb
         created: "Created"
+        # 1 - views/admin/users/show.html.erb
         update: "Last update"
+      # 1 - views/admin/users/show.html.erb
       lessons: "Lessons of %{user}"
+      # 1 - views/admin/users/show.html.erb
       media_elements: "Media elements of %{user}"
+      # 1 - helpers/admin_helper.rb
+      name: "Users"
       search:
+        # 1 - views/admin/users/_search.html.erb
         label: "Search users"
+        # 1 - views/admin/users/_search.html.erb
         submit: "Search"
+      # 1 - views/admin/users/_list.html.erb
+      show: "Show user page"
       statistics:
+        # 1 - views/admin/users/_list.html.erb
         title: "Personal statistics"
         lessons:
+          # 1 - views/admin/users/_list.html.erb
           copied: "Copied by other users"
+          # 1 - views/admin/users/_list.html.erb
           created: "Created"
+          # 1 - views/admin/users/_list.html.erb
           title: "Lessons"
+        # 1 - views/admin/users/_list.html.erb
         likes: "Lessons with more likes"
         media_elements:
+          # 1 - views/admin/users/_list.html.erb
           loaded: "Uploaded"
+          # 1 - views/admin/users/_list.html.erb
           title: "Media elements"
         other:
+          # 1 - views/admin/users/_list.html.erb
           likes: "Likes on your lessons"
+          # 1 - views/admin/users/_list.html.erb
           title: "Other statistics"
   
   
-  #KAMINARI defaul override
+  # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'
+  
   views:
     pagination:
       previous: "&lt;"
