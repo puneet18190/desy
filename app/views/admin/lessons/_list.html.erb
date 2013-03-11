@@ -36,7 +36,6 @@
     <tbody>
       <a name="list-anchor"></a>
       <% lessons.each do |lesson| %>
-
           <tr class="collapse" id="<%= lesson.id %>">
             <td><%= lesson.id %></td>
             <td><%= lesson.title%></td>
@@ -48,7 +47,7 @@
             <td><%= lesson.updated_at.strftime('%d-%m-%Y')%></td>
             <td><%= lesson.likes.count%></td>
             <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, "/lessons/#{lesson.id}/view?token=#{lesson.token}",:target => :blank, :class=>"action"%><a href="#" target="_blank" class="action"></a></td>
-            <td><%= link_to '<i class="icon-remove"></i>'.html_safe, admin_lesson_path(lesson),:method => :delete, :remote => true, :confirm => t('admin.general.ask_for_delete'), :class=>"action"%></td>
+            <td><%= link_to '<i class="icon-remove"></i>'.html_safe, admin_lesson_path(lesson),:method => :delete, :remote => true, :confirm => t('admin.lessons.delete_confirm'), :class=>"action"%></td>
           </tr>
           <tr class="collapsed">
             <td colspan="11">
@@ -59,7 +58,7 @@
                   </div>
                 </div>
                 <div class="span3">
-                  <h5><%= t('admin.general.tags')%></h5>
+                  <h5><%= t('admin.lessons.fields.tags')%></h5>
                   <% lesson.tags.split(',').each do |tag| %>
                     <% if tag.length > 0%>
                       <%= tag %>, 
@@ -67,7 +66,7 @@
                   <% end %>
                 </div>
                 <div class="span6">
-                  <h5><%= t('admin.general.description')%></h5>
+                  <h5><%= t('admin.lessons.fields.description')%></h5>
                   <%= lesson.description %>
                 </div>
               </div>
@@ -83,6 +82,6 @@
   <% end %>
 <% else %>
   <div class="widget">
-    <%= t('admin.lessons.index.not_found') %>
+    <%= t('admin.lessons.empty') %>
   </div>
 <% end %>

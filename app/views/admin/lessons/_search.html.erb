@@ -1,7 +1,7 @@
-<h4><%= t('admin.search.label')%></h4>
-<%= form_tag 'lessons', :method => :get, :id=>"admin-search-lessons", :class => "search-form" do %>
-  <%= hidden_field_tag 'search[search_type]', 'lessons'%>
-  <%= hidden_field_tag 'search[ordering]', 'id DESC'%>
+<h4><%= t('admin.lessons.search.label') %></h4>
+<%= form_tag 'lessons', :method => :get, :id => 'admin-search-lessons', :class => 'search-form' do %>
+  <%= hidden_field_tag 'search[search_type]', 'lessons' %>
+  <%= hidden_field_tag 'search[ordering]', 'id DESC' %>
   <div class="row-fluid">
     <div class="span12">
       <%= render :partial => 'admin/search/alerts' %>
@@ -21,7 +21,7 @@
   <div class="row-fluid">
     <div class="span12">
       <div class="form-actions">
-        <button type="submit" class="btn btn-block btn-warning"><%= t('admin.search.submit').upcase%></button>
+        <button type="submit" class="btn btn-block btn-warning upper"><%= t('admin.lessons.search.submit') %></button>
       </div>
     </div>
   </div>

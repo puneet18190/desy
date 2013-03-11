@@ -1,5 +1,5 @@
 <%= render :partial => "search" %>
-<h3><%= t('admin.lessons.index.name')%></h3>
+<h3><%= t('admin.lessons.name')%></h3>
 <% if @lessons.count > 1 %>
   <%= render :partial => "admin/list_heading", :locals => {:items => @lessons, :expandable => true} %>
 <% end %>
