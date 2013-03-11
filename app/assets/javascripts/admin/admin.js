@@ -64,6 +64,7 @@ $(document).ready(function(){
   $("#notifications-form #all_users").change(function() {
       if(this.checked) {
         $("input#contact-recipients").val('');
+        $("input#notification_ids").val('');
         $("input#contact-recipients").attr('disabled',true);
         $("#filter-users select").attr('disabled',true);
         $('.alert').hide();
