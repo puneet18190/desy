@@ -585,9 +585,9 @@ en:
       # The user didn't write the minimum amount of tags
       # 1 - controllers/application_controller.rb
       tags_are_not_enough: "Not enough tags"
-      # The user didn't select a file to be loaded
+      # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
-      media_blank: "No file loaded"
+      media_blank: "No file uploaded"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
@@ -659,7 +659,7 @@ en:
       # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the audio editor
       # 1 - views/media_elements/new.html.erb
       new: "Create new audio"
-      # Icon 'play' inside an audio player'
+      # Icon 'play' inside an audio player
       # 1 - views/shared/players/_audio.html.erb
       pause: "Pause audio"
       # Icon 'pause' inside an audio player
@@ -687,7 +687,7 @@ en:
       edit: "Edit this item"
       # Title of the icon which appears instead of 'unpublish' in the case the lesson has been modified and the followers don't know about it
       # 1 - views/shared/_popups.html.erb
-      lesson_modification_not_notified: 'Notify about the modifications you made to this public lesson'
+      lesson_modification_not_notified: "Notify about the modifications you made to this public lesson"
       # To save a 'I like it' on a lesson (the little star)
       # 1 - views/shared/buttons/_like.html.erb
       like: "Like this lesson"
@@ -1439,7 +1439,7 @@ An element with the private status through the X may be cancelled, while an elem
           # 1 - ../lib/media/audio/editing/composer.rb
           failed: "The composition of the audio %{item} failed! Now the audio editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
       upload:
-        # The process of audio uploading started. The variable %{item} is replaced by the name of the audio which is going to be loaded
+        # The process of audio uploading started. The variable %{item} is replaced by the name of the audio which is going to be uploaded
         # 1 - controllers/media_elements_controller.rb
         started: "The uploading of the audio %{item} started! Wait until it's over to be able to use the new audio"
         # The process of audio uploading ended successfully. The variable %{item} is replaced by the name of the new audio
@@ -1471,7 +1471,7 @@ An element with the private status through the X may be cancelled, while an elem
           # 1 - ../lib/media/video/editing/composer.rb
           failed: "The composition of the video %{item} failed! Now the video editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
       upload:
-        # The process of video uploading started. The variable %{item} is replaced by the name of the video which is going to be loaded
+        # The process of video uploading started. The variable %{item} is replaced by the name of the video which is going to be uploaded
         # 1 - controllers/media_elements_controller.rb
         started: "The uploading of the video %{item} started! Wait until it's over to be able to use the new video"
         # The process of video uploading ended successfully. The variable %{item} is replaced by the name of the new video
@@ -1524,7 +1524,7 @@ An element with the private status through the X may be cancelled, while an elem
       menu_link: "Sign up"
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/users/edit.html.erb
-      select_a: 'Select a'
+      select_a: "Select a"
     # Section with further explanations about the application
     what_is_desy:
       # 1 - views/prelogin/registration.html.erb
@@ -1869,7 +1869,7 @@ An element with the private status through the X may be cancelled, while an elem
         likes: "Likes on your content"
         # How many elements you created
         # 1 - views/users/statistics.html.erb
-        media_elements_loaded: "Didactic elements loaded"
+        media_elements_loaded: "Didactic elements uploaded"
         # Title for personal statistics
         # 1 - views/users/statistics.html.erb
         title: "Personal"
@@ -2227,13 +2227,13 @@ An element with the private status through the X may be cancelled, while an elem
         media_elements: "Reported media elements"
     # Section of lessons
     lessons:
-      name: 'Lessons'
-      empty: 'No lessons found'
+      name: "Lessons"
+      empty: "No lessons found"
     # Section of media elements
     media_elements:
       name: "Elements"
       title: "Elements"
-      edit: "Edit and share loaded elements"
+      edit: "Edit and share uploaded elements"
       empty: "No elements found"
       fields:
         description: "Description"
@@ -2272,7 +2272,7 @@ An element with the private status through the X may be cancelled, while an elem
           title: "Lessons"
         likes: "Lessons with more likes"
         media_elements:
-          loaded: "Loaded"
+          loaded: "Uploaded"
           title: "Media elements"
         other:
           likes: "Likes on your lessons"
@@ -2280,54 +2280,54 @@ An element with the private status through the X may be cancelled, while an elem
     # Section of messages, reports, etc
     messages:
       contact:
-        send_message: 'Send message'
-        recipients: 'Recipients'
-        message: 'Message'
-        send: 'Send'
+        send_message: "Send message"
+        recipients: "Recipients"
+        message: "Message"
+        send: "Send"
       notifications:
-        send_notifications: 'Send notifications'
-        add_recipients: 'Add recipients by name'
+        send_notifications: "Send notifications"
+        add_recipients: "Add recipients by name"
       reports:
-        name: 'Reports'
+        name: "Reports"
     # Generali
     general:
       expand_all: "Expand all"
       close_all: "Close all"
-      tags: 'Tags'
-      description: 'Description'
-      title: 'Title'
-      delete: 'Delete'
+      tags: "Tags"
+      description: "Description"
+      title: "Title"
+      delete: "Delete"
       ask_for_delete: "Are you sure?"
-      of_range: 'Of'
+      of_range: "Of"
     # Motore di ricerca
     search:
       heading:
-        general: 'General'
-        date: 'Date'
-        location: 'Location'
-      label: 'Search'
-      submit: 'Search'
-      id: 'Id'
-      title: 'Title'
-      keyword: 'Keyword'
-      user: 'User'
-      subject: 'Subject'
-      media_type: 'Media type'
-      all_media_type: 'All'
-      select_subject: 'All subjects'
-      date_range: 'Date range'
-      select_date_range: 'Select range type'
-      date_from: 'From'
-      date_to: 'To'
-      start_more_then_end: 'The start date can not be bigger then the end date'
-      end_less_then_start: 'The end date can not be less then the start date'
-      province: 'Province'
-      town: 'Town'
-      school: 'School'
-      school_level: 'School Level'
-      created_at: 'Created at'
-      updated_at: 'Last update'
-      other: 'Other'
+        general: "General"
+        date: "Date"
+        location: "Location"
+      label: "Search"
+      submit: "Search"
+      id: "Id"
+      title: "Title"
+      keyword: "Keyword"
+      user: "User"
+      subject: "Subject"
+      media_type: "Media type"
+      all_media_type: "All"
+      select_subject: "All subjects"
+      date_range: "Date range"
+      select_date_range: "Select range type"
+      date_from: "From"
+      date_to: "To"
+      start_more_then_end: "The start date can not be bigger then the end date"
+      end_less_then_start: "The end date can not be less then the start date"
+      province: "Province"
+      town: "Town"
+      school: "School"
+      school_level: "School Level"
+      created_at: "Created at"
+      updated_at: "Last update"
+      other: "Other"
   
   
   #KAMINARI defaul override
