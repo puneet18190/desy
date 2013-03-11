@@ -1,6 +1,6 @@
 class Admin::MediaElementsController < AdminController
   
-  before_filter :find_element, :only => [:destroy, :update, :load_element]
+  before_filter :find_media_element, :only => [:destroy, :update, :load_media_element]
   before_filter :initialize_media_element_with_owner_and_private, :only => :update
   layout 'admin'
   
@@ -91,7 +91,7 @@ class Admin::MediaElementsController < AdminController
   
   private
   
-  def find_element
+  def find_media_element
     @element = MediaElement.find(params[:id])
   end
   
