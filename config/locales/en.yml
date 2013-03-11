@@ -2262,63 +2262,10 @@ An element with the private status through the X may be cancelled, while an elem
       search:
         label: "Search elements"
         submit: "Search"
-    # Section of users
-    users:
-      activate: "Activate"
-      ban: "Ban"
-      delete: "Delete user"
-      empty: "No users found"
-      message: "Send a message to this user"
-      name: "Users"
-      show: "Show user page"
-      title: "Users in the database"
-      fields:
-        id: "Id"
-        email: "Email"
-        school: "School"
-        location: "Location"
-        created: "Created"
-        update: "Last update"
-      lessons: "Lessons of %{user}"
-      media_elements: "Media elements of %{user}"
-      statistics:
-        title: "Personal statistics"
-        lessons:
-          copied: "Copied by other users"
-          created: "Created"
-          title: "Lessons"
-        likes: "Lessons with more likes"
-        media_elements:
-          loaded: "Uploaded"
-          title: "Media elements"
-        other:
-          likes: "Likes on your lessons"
-          title: "Other statistics"
-    # Section of messages, reports, etc
-    messages:
-      contact:
-        send_message: "Send message"
-        recipients: "Recipients"
-        message: "Message"
-        send: "Send"
-      notifications:
-        send_notifications: "Send notifications"
-        add_recipients: "Add recipients by name"
-      reports:
-        name: "Reports"
     # Generali
     general:
       expand_all: "Expand all"
       close_all: "Close all"
-      
-      
-      
-      tags: "Tags"
-      description: "Description"
-      title: "Title"
-      delete: "Delete"
-      ask_for_delete: "Are you sure?"
-      of_range: "Of"
     # Motore di ricerca
     search:
       date:
@@ -2366,25 +2313,45 @@ An element with the private status through the X may be cancelled, while an elem
             week: "Last week"
             month: "Last month"
             year: "Last year"
-
-      submit: "Search"
-      id: "Id"
-      title: "Title"
-      keyword: "Keyword"
-      user: "User"
-      subject: "Subject"
-      media_type: "Media type"
-      all_media_type: "All"
-      select_subject: "All subjects"
-      date_from: "From"
-      date_to: "To"
-      province: "Province"
-      town: "Town"
-      school: "School"
-      school_level: "School Level"
-      created_at: "Created at"
-      updated_at: "Last update"
-      other: "Other"
+    # Section of users
+    users:
+      actions:
+        activate: "Activate"
+        ban: "Ban"
+        message: "Send a message to this user"
+        
+      delete: "Delete user"
+      delete_confirm: "Are you sure you want to delete this user?"
+      empty: "No users found"
+      
+      name: "Users"
+      show: "Show user page"
+      title: "Users in the database"
+      fields:
+        id: "Id"
+        email: "Email"
+        school: "School"
+        location: "Location"
+        created: "Created"
+        update: "Last update"
+      lessons: "Lessons of %{user}"
+      media_elements: "Media elements of %{user}"
+      search:
+        label: "Search users"
+        submit: "Search"
+      statistics:
+        title: "Personal statistics"
+        lessons:
+          copied: "Copied by other users"
+          created: "Created"
+          title: "Lessons"
+        likes: "Lessons with more likes"
+        media_elements:
+          loaded: "Uploaded"
+          title: "Media elements"
+        other:
+          likes: "Likes on your lessons"
+          title: "Other statistics"
   
   
   #KAMINARI defaul override
