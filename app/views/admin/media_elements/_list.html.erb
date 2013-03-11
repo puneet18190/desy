@@ -3,32 +3,32 @@
     <thead>
       <tr>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'id', :param => 'id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.id'), :param => 'id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'title', :param => 'title'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.title'), :param => 'title'} %>
         </div>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'media_type', :param => 'sti_type'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.sti_type'), :param => 'sti_type'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'user', :param => 'user_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.user'), :param => 'user_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'school', :param => 'location_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => Location.base_label, :param => 'location_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'location', :param => 'location_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('locations.parents_label'), :param => 'location_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'created at', :param => 'created_at'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.created_at'), :param => 'created_at'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'last update', :param => 'updated_at'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.updated_at'), :param => 'updated_at'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'public', :param => 'is_public'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.is_public'), :param => 'is_public'} %>
         </th>
         <th></th>
       </tr>
@@ -47,8 +47,8 @@
           <td><%= element.title %></td>
           <td><%= element.sti_type %></td>
           <td><%= element.user.surname %> <%= element.user.name %></td>
-          <td><%= element.user.school %></td>
-          <td><%= element.user.province %> - <%= element.user.town %></td>
+          <td><%= element.user.base_location %></td>
+          <td><%= element.user.parent_locations %></td>
           <td><%= element.created_at.strftime('%d-%m-%Y') %></td>
           <td><%= element.updated_at.strftime('%d-%m-%Y') %></td>
           <td>

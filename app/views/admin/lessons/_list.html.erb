@@ -3,31 +3,31 @@
     <thead>
       <tr>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'id', :param=>'id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.id'), :param => 'id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'title', :param=>'title'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.title'), :param => 'title'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'subject', :param=>'subject_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.subject'), :param => 'subject_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'user_id', :param=>'user_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.user_id'), :param => 'user_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'location', :param=>'location_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => Location.base_label, :param => 'location_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'school', :param=>'location_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('locations.parents_label'), :param => 'location_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'created at', :param=>'created_at'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.created_at'), :param => 'created_at'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'last update', :param=>'updated_at'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.updated_at'), :param => 'updated_at'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'likes', :param=>'likes'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.likes'), :param => 'likes'} %>
         </th>
         <th></th>
         <th></th>
@@ -38,11 +38,11 @@
       <% lessons.each do |lesson| %>
           <tr class="collapse" id="<%= lesson.id %>">
             <td><%= lesson.id %></td>
-            <td><%= lesson.title%></td>
+            <td><%= lesson.title %></td>
             <td><%= lesson.subject.description %></td>
             <td><%= lesson.user.full_name %></td>
-            <td><%= lesson.user.school %></td>
-            <td><%= lesson.user.province %> - <%= lesson.user.town %></td>
+            <td><%= lesson.user.base_location %></td>
+            <td><%= lesson.user.parent_locations %></td>
             <td><%= lesson.created_at.strftime('%d-%m-%Y') %></td>
             <td><%= lesson.updated_at.strftime('%d-%m-%Y') %></td>
             <td><%= lesson.likes.count%></td>

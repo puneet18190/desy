@@ -34,11 +34,11 @@ class Location < ActiveRecord::Base
   end
   
   def self.base_label
-    I18n.t('locations').last
+    I18n.t('locations.labels').last
   end
   
   def self.label_at(index)
-    I18n.t('locations')[index]
+    I18n.t('locations.labels')[index]
   end
   
   def to_s

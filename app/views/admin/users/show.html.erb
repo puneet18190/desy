@@ -10,8 +10,9 @@
         <tr>
           <th><%= t('admin.users.fields.id') %></th>
           <th><%= t('admin.users.fields.email') %></th>
-          <th><%= t('admin.users.fields.school') %></th>
-          <th><%= t('admin.users.fields.location') %></th>
+          <th><%= t('admin.users.fields.school_level') %></th>
+          <th><%= Location.base_label %></th>
+          <th><%= t('locations.parents_label') %></th>
           <th><%= t('admin.users.fields.created') %></th>
           <th><%= t('admin.users.fields.update') %></th>
           <th></th>
@@ -21,8 +22,9 @@
           <tr>
             <td><%= @user.id %></td>
             <td><%= link_to @user.email, "mailto:#{@user.email}" %></td>
-            <td><%= @user.school %> (<%= @user.school_level.description %>)</td>
-            <td><%= @user.province %> - <%= @user.town %></td>
+            <td><%= @user.school_level.description %></td>
+            <td><%= @user.base_location %></td>
+            <td><%= @user.parent_locations %></td>
             <td><%= @user.created_at.strftime('%d-%m-%Y') %></td>
             <td><%= @user.updated_at.strftime('%d-%m-%Y') %></td>
             <td>

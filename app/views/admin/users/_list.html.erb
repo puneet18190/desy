@@ -4,28 +4,28 @@
     <thead>
       <tr>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'id', :param=>'id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.id'), :param => 'id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'email', :param=>'email'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.email'), :param => 'email'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'name', :param=>'name'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.name'), :param => 'name'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'surname', :param=>'surname'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.surname'), :param => 'surname'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'location', :param=>'location_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => Location.base_label, :param => 'location_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'school', :param=>'location_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('locations.parents_label'), :param => 'location_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'school level', :param=>'school_level_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.school_level'), :param => 'school_level_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => 'created at', :param=>'created_at'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.created_at'), :param => 'created_at'} %>
         </th>
         <th></th>
         <th></th>
@@ -40,8 +40,8 @@
           <td><%= link_to user.email, 'mailto:#{user.email}' %></td>
           <td><%= user.name %></td>
           <td><%= user.surname %></td>
-          <td><%= user.province %> - <%= user.town %></td>
-          <td><%= user.school %></td>
+          <td><%= user.base_location %></td>
+          <td><%= user.parent_locations %></td>
           <td><%= user.school_level.description %></td>
           <td><%= user.created_at.strftime('%d-%m-%Y')%></td>
           <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user), :title => t('admin.users.show'), :target => :blank, :class=>"action"%></td>

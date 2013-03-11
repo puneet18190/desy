@@ -2122,11 +2122,15 @@ An element with the private status through the X may be cancelled, while an elem
     # Time format
     # 1 - ..lib/autoload/time_convert.rb
     format: "english"
-  locations: [
-      'Province',
-      'Town',
-      'School'
-    ]
+  locations:
+    # 1 - app/models/location.rb
+    # 2 - app/models/location.rb
+    labels: [
+        'Province',
+        'Town',
+        'School'
+      ]
+    parents_label: "Town / province"
   language_parameters:
     notification:
       # Maximum length of the message inserted by the user to notify the modification of a public lesson
