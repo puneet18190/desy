@@ -160,13 +160,14 @@ Desy::Application.routes.draw do
     post      'media_elements/quick_upload'             => 'media_elements#quick_upload'
     post      'media_elements/:key/create'              => 'media_elements#create'
     delete    'media_elements/quick_upload/:key/delete' => 'media_elements#quick_upload_delete'
+    put       'media_elements/:media_element_id/update' => 'media_elements#update'
     post      'location/:id/find'                       => 'users#find_location'
     get       'messages/new_notification'               => 'messages#new_notification'
     post      'messages/send_notifications'             => 'messages#send_notifications'
     get       'messages/reports'                        => 'messages#reports'
     post      'messages/filter_users'                   => 'messages#filter_users'
     resources :lessons,                           :only => [:index, :destroy]
-    resources :media_elements,                  :except => [:show, :edit]
+    resources :media_elements,                    :only => [:new, :index, :destroy]
     resources :users,                             :only => [:index, :show, :destroy]
   end
   

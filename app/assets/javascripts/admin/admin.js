@@ -152,14 +152,18 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._publish_private_admin_element', function() {
-    alert('pubblico elemento id=' + $(this).data('param'));
+    $.ajax({
+      type: 'put',
+      data: $(this).parents('._quick_load_creation_form').serialize(),
+      url: '/admin/media_elements/' + $(this).data('param') + '/update?is_public=true'
+    });
   });
   
   $('body').on('click', '._update_private_admin_element', function() {
     $.ajax({
       type: 'put',
       data: $(this).parents('._quick_load_creation_form').serialize(),
-      url: '/admin/media_elements/' + $(this).data('param')
+      url: '/admin/media_elements/' + $(this).data('param') + '/update'
     });
   });
   

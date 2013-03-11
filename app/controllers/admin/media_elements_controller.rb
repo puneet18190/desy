@@ -1,6 +1,6 @@
 class Admin::MediaElementsController < AdminController
   
-  before_filter :find_media_element, :only => [:destroy, :update, :load_media_element]
+  before_filter :find_media_element, :only => [:destroy, :load_media_element]
   before_filter :initialize_media_element_with_owner_and_private, :only => :update
   layout 'admin'
   
@@ -72,9 +72,13 @@ class Admin::MediaElementsController < AdminController
       @media_element.title = params[:title]
       @media_element.description = params[:description]
       @media_element.tags = params[:tags]
+      if params[:is_public]
+        @media_element.is_public = true
+        @media_element.publication_date = Time.zone.now
+      end
       if !@media_element.save
-        @errors = convert_item_error_messages @element.errors.messages
-        @error_fields = @element.errors.messages.keys
+        @errors = convert_item_error_messages @media_element.errors.messages
+        @error_fields = @media_element.errors.messages.keys
       end
     end
   end
