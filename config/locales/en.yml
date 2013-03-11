@@ -607,6 +607,7 @@ en:
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
+      # 4 - views/admin/media_elements/new.html.erb
       description: "Description (max %{num} characters)"
       # File to load (used only for media elements
       # 1 - views/media_elements/_new_form_popup.html.erb
@@ -618,11 +619,13 @@ en:
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
+      # 4 - views/admin/media_elements/new.html.erb
       tags: "Insert a minimum of %{items} tags (max %{num} characters each)"
       # Title (the variable %{num} represents the maximum number of characters)
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
+      # 4 - views/admin/media_elements/new.html.erb
       title: "Title (max %{num} characters)"
   
   
@@ -1028,10 +1031,12 @@ An element with the private status through the X may be cancelled, while an elem
     # Used as a placeholder in any <video> HTML tag, if the browser doesn't support either .webm or .mp4
     # 1 - views/shared/players/_video.html.erb
     # 2 - views/video_editor/previews/_video.html.erb
+    # 3 - views/admin/media_elements/previews/_video.html.erb
     dont_support_video: "Your browser does not support videos"
     # Used as a placeholder in any <audio> HTML tag, if the browser doesn't support either .ogg or .mp3
     # 1 - views/shared/players/_audio.html.erb
     # 2 - views/video_editor/previews/_audio_track.html.erb
+    # 3 - views/admin/media_elements/previews/_audio.html.erb
     dont_support_audio: "Your browser does not support audios"
     # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for instance, in the search engine when the application asks where to search, or in the main page to separate suggested lessons by suggested elements)
     # 1 - views/lessons/index.html.erb
@@ -1070,6 +1075,7 @@ An element with the private status through the X may be cancelled, while an elem
     virtual_classroom: "Virtual Classroom"
     # Used in the login, before the logged user's name
     # 1 - views/shared/_logout.html.erb
+    # 2 - views/admin/_header.html.erb
     welcome: "Welcome"
   
   
@@ -1574,6 +1580,7 @@ An element with the private status through the X may be cancelled, while an elem
       title: "Login"
     # Link to logout
     # 1 - views/shared/_logout.html.erb
+    # 2 - views/admin/_header.html.erb
     logout: "Logout"
     # Link to ask for help, in case the user forgot his password
     # 1 - views/prelogin/_login.html.erb
@@ -2144,11 +2151,13 @@ An element with the private status through the X may be cancelled, while an elem
       # 1 - models/media_element.rb
       # 2 - views/media_elements/_new_form_popup.html.erb
       # 3 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 4 - views/admin/media_elements/new.html.erb
       length_description: 280
       # Maximum number of characters allowed in the title of an element
       # 1 - models/media_element.rb
       # 2 - views/media_elements/_new_form_popup.html.erb
       # 3 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 4 - views/admin/media_elements/new.html.erb
       length_title: 35
     slide:
       # Maximum number of characters allowed in the title of a slide
