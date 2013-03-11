@@ -5,18 +5,17 @@ class Location < ActiveRecord::Base
   
   validates_presence_of :name
   validates_length_of :name, :maximum => 255
-
+  
   has_ancestry
-
+  
   # I sottomodelli di Location sono creati dinamicamente prendendo
   # il valore di SETTINGS['location_types']
-  SUBMODELS = SETTINGS['location_types'].map do |type| 
+  SUBMODELS = SETTINGS['location_types'].map do |type|
     Object.const_set type, Class.new(self)
   end
-
+  
   def self.seed!(locations = SETTINGS['locations'], parent = nil, depth = 0)
     raise 'submodel does not exist' unless submodel = SUBMODELS[depth]
-
     # se è un array creo le locations per ogni valore di esso
     if locations.instance_of? Array
       locations.each do |location|
@@ -24,7 +23,6 @@ class Location < ActiveRecord::Base
       end
       return
     end
-
     # se non è un array assumo che sia un Hash; creo la location padre
     # e ricorro passandogliela ed aumentando la profondità
     locations.map do |name, sublocations|
@@ -32,10 +30,17 @@ class Location < ActiveRecord::Base
     end.each do |location, sublocations|
       send __method__, sublocations, location, depth+1
     end
-
     nil
   end
-
+  
+  def self.base_label
+    I18n.t('locations').last
+  end
+  
+  def self.label_at(index)
+    I18n.t('locations')[index]
+  end
+  
   def to_s
     name.to_s
   end
