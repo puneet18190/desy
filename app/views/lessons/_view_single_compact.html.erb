@@ -34,8 +34,8 @@
           <div class="intestazione">
             <h1><%= t('lessons.author') %>:</h1>
             <p><%= lesson.user.full_name %></p>
-            <h1><%= t('users.school') %>:</h1>
-            <p><%= lesson.user.school %></p>
+            <h1><%= Location.base_label %>:</h1>
+            <p><%= lesson.user.base_location %></p>
             <h1><%= t('lessons.school_level') %>:</h1>
             <p class="fltlft"><%= lesson.school_level.description %></p>
           </div>

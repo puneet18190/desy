@@ -1734,9 +1734,6 @@ An element with the private status through the X may be cancelled, while an elem
     # Caption for the email which univoquely identifies the user
     # 1 - views/users/request_reset_password.html.erb
     email: "Email"
-    # The school of the user
-    # 1 - views/lessons/_view_single_compact.html.erb
-    school: "Institute"
     # Section 1: personal info
     info:
       # Caption of the link inside the profile's menu
@@ -1770,8 +1767,6 @@ An element with the private status through the X may be cancelled, while an elem
         # This is in the case the user is writing his password for the first time
         # 1 - views/users/_personal_info.html.erb
         new_password_confirmation: "New password confirmation"
-        # 1 - views/users/_personal_info.html.erb
-        school: "School"
         # 1 - views/users/_personal_info.html.erb
         school_level_id: "School level"
         # 1 - views/users/_personal_info.html.erb
@@ -2127,6 +2122,11 @@ An element with the private status through the X may be cancelled, while an elem
     # Time format
     # 1 - ..lib/autoload/time_convert.rb
     format: "english"
+  locations: [
+      'Province',
+      'Town',
+      'School'
+    ]
   language_parameters:
     notification:
       # Maximum length of the message inserted by the user to notify the modification of a public lesson
@@ -2550,8 +2550,6 @@ An element with the private status through the X may be cancelled, while an elem
         id: "Id"
         # 1 - views/admin/users/show.html.erb
         email: "Email"
-        # 1 - views/admin/users/show.html.erb
-        school: "School"
         # 1 - views/admin/users/show.html.erb
         location: "Location"
         # 1 - views/admin/users/show.html.erb
