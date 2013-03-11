@@ -21,7 +21,7 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/:lesson_id/remove_lesson'  => 'virtual_classroom#remove_lesson'
   
   # MEDIA ELEMENTS
-  resources :media_elements, :only => :create
+  resources :media_elements,                     :only => :create
   get       'media_elements/new'                       => 'media_elements#new',    :as => :new_media_elements_editor
   post      'media_elements/:media_element_id'         => 'media_elements#update', :as => :media_element
   post      'media_elements/:media_element_id/add'     => 'media_elements#add'
@@ -156,7 +156,7 @@ Desy::Application.routes.draw do
     put       'user/:id/activate'                       => 'users#activate'
     put       'user/:id/ban'                            => 'users#ban'
     get       'media_elements/edit'                     => 'media_elements#edit'
-    get       'media_elements/:id/load'                 => 'media_elements#load_element'
+    get       'media_elements/:id/load'                 => 'media_elements#load_media_element'
     post      'media_elements/quick_upload'             => 'media_elements#quick_upload'
     post      'media_elements/:key/create'              => 'media_elements#create'
     delete    'media_elements/quick_upload/:key/delete' => 'media_elements#quick_upload_delete'
@@ -165,9 +165,9 @@ Desy::Application.routes.draw do
     post      'messages/send_notifications'             => 'messages#send_notifications'
     get       'messages/reports'                        => 'messages#reports'
     post      'messages/filter_users'                   => 'messages#filter_users'
-    resources :lessons, :only => [:index, :destroy]
-    resources :media_elements, :except => [:show, :edit]
-    resources :users, :only => [:index, :show, :destroy]
+    resources :lessons,                           :only => [:index, :destroy]
+    resources :media_elements,                  :except => [:show, :edit]
+    resources :users,                             :only => [:index, :show, :destroy]
   end
   
   # 404

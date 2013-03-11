@@ -86,7 +86,7 @@ class Admin::MediaElementsController < AdminController
     end
   end
   
-  def load_element
+  def load_media_element
   end
   
   private
