@@ -19,8 +19,8 @@
     <button class="_update_private_admin_element btn btn-small" type="button" data-param="<%= element.id %>">
       <%= t('admin.media_elements.actions.update') %>
     </button>
-    <button class="_delete_private_admin_element btn btn-small btn-danger" type="button" data-param="<%= element.id %>">
+    <a class="btn btn-small btn-danger" type="button" data-method="delete" data-confirm="<%= t('admin.general.ask_for_delete') %>" href="/admin/media_elements/<%= element.id %>?back_action=media_elements/edit&back_page=<%= 1 %>">
       <%= t('admin.media_elements.actions.delete') %>
-    </button>
+    </a>
   </form>
 </div>
