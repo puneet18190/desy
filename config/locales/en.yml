@@ -1,8 +1,19 @@
-# Instructions for the translator:
+# INSTRUCTIONS FOR THE TRANSLATOR:
+#
 # 1) don't remove or modify anything included between the signs %{} and <>
 # 2) don't insert the character " alone: always write it following a backslash, like \"
 # 3) don't modify anything outside the " --- "; especially, don't add nor delete spaces
 # 4) any time you find %{desy}, that will be replaced by the application's name configured in config/settings.yml
+
+
+# STRUCTURE OF THE FILE:
+#
+#   # Description of the functionality of the label
+#   # 1 - first occurrence of the translation inside the application (the path refers to the folder 'app/')
+#   # 2 - second occurrence (it might be in the same file)
+#   # 3 - third occurrence, etc.
+#   label: "English translation to be replaced in a different language"
+
 
 en:
   
@@ -635,7 +646,7 @@ en:
         # Icon 'plus' on the top of the right column: it's used to add a new audio component
         # 1 - views/audio_editor/_lateral_controls.html.erb
         add: "Add an audio component"
-        # This appears over a component which is not selected
+        # This appears above a component which is not selected
         # 1 - views/audio_editor/_component.html.erb
         box_ghost: "Click in this area to edit and play the component"
         # The 'x' icon used to remove a component
@@ -692,7 +703,7 @@ en:
       # To remove a lesson from your Virtual Classroom
       # 1 - views/shared/buttons/_remove_virtual_classroom.html.erb
       remove_virtual_classroom: "Remove from your Cirtual Classroom"
-      # To turn back a shared lesson into private
+      # To turn a shared lesson back into private
       # 1 - views/shared/buttons/_unpublish.html.erb
       # 2 - views/shared/_popups.html.erb
       unpublish: "Turn back your lesson into private"
@@ -1022,14 +1033,14 @@ An element with the private status through the X may be cancelled, while an elem
     # 1 - views/shared/players/_audio.html.erb
     # 2 - views/video_editor/previews/_audio_track.html.erb
     dont_support_audio: "Your browser does not support audios"
-    # Used in any place the application makes a distinction between 'lessons' and 'media elements' (for instance, in the search engine when the application asks where to search, or in the main page to separate suggested lessons by suggested elements)
+    # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for instance, in the search engine when the application asks where to search, or in the main page to separate suggested lessons by suggested elements)
     # 1 - views/lessons/index.html.erb
     # 2 - views/dashboard/_graybar_left.html.erb
     # 3 - views/shared/_menu.html.erb
     # 4 - views/shared/_search.html.erb
     # 5 - views/search/_item_selector.html.erb
     lessons: "Lessons"
-    # Used in any place the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
+    # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
     # 1 - views/dashboard/_graybar_left.html.erb
     # 2 - views/shared/_menu.html.erb
     # 3 - views/shared/_search.html.erb
@@ -1043,7 +1054,7 @@ An element with the private status through the X may be cancelled, while an elem
     # 4 - views/users/edit.html.erb
     # 5 - views/users/subjects.html.erb
     profile: "Profile"
-    # Used in any place the user needs to insert a time duration in seconds: here goes the shortened form for the word 'seconds'
+    # Used anywhere the user needs to insert a time duration in seconds: here goes the shortened form for the word 'seconds'
     # 1 - views/galleries/mixed_for_video_editor.js.erb
     # 2 - views/video_editor/cutters/_text.html.erb
     # 3 - views/video_editor/cutters/_image.html.erb
@@ -1081,7 +1092,7 @@ An element with the private status through the X may be cancelled, while an elem
       # 1 - views/audio_editor/not_available.html.erb
       title: "Audio editor not available"
       # 1 - views/audio_editor/not_available.html.erb
-      description: "In this moment you are running the Editor for another audio track: until the process hasn't finished the Audio Editor will be temporarily disabled"
+      description: "At this moment you are running the Editor for another audio track: until the process isn't finished the Audio Editor will be temporarily disabled"
     # The buttons to control the whole preview are located on the right column of Audio Editor
     preview:
       # Button to start the preview
@@ -1098,7 +1109,7 @@ An element with the private status through the X may be cancelled, while an elem
   # SECTION 2.3: Captions used inside the Dashboard (main page)
   
   dashboard:
-    # The caption of the link to open the 'contacts' page (the link is in the bottom left of the Dashboard)
+    # The caption of the link to open the 'contacts' page (the link is on the bottom left of the Dashboard)
     # 1 - views/dashboard/index.html.erb
     contact_us: "Contact us"
     # Caption of the link opening the lesson editor (in each page of lessons inside the Dashboard, after the last lesson there is a button with a 'plus' which opens the lesson editor)
@@ -1192,7 +1203,7 @@ An element with the private status through the X may be cancelled, while an elem
     # Label for the header
     # 1 - views/image_editor/_header.html.erb
     label: "Edit image"
-    # Label on the bottom of the editor, where the user can see step after step how the dimensions (in pixels) of the image change
+    # Label on the bottom of the editor, where the user can see step by step how the dimensions (in pixels) of the image change
     # 1 - views/image_editor/crop.js.erb
     # 2 - views/image_editor/edit.html.erb
     # 3 - views/image_editor/undo.js.erb
@@ -1232,11 +1243,11 @@ An element with the private status through the X may be cancelled, while an elem
     choose_video: "Click here to add a video"
     # The Lesson Editor is not available if the user started an audio (or video) editing process which overwrites an audio (or a video) used inside a lesson. The Editor is not avilable only to edit that particular lesson, in this case the application shows a page with title and description
     not_available:
-      # The variable %{lesson} is replaced with the name of the lesson
+      # The variable %{lesson} is replaced by the name of the lesson
       # 1 - views/lesson_editor/not_available.html.erb
       title: "Lesson editor not available for your lesson %{lesson}"
       # 1 - views/lesson_editor/not_available.html.erb
-      description: "You are overwriting the content of a video or of an audio contained in this lesson: if wait a few minutes until the process ends you'll be able to edit this lesson again"
+      description: "You are overwriting the content of a video or of an audio contained in this lesson: if you wait a few minutes until the process ends you'll be able to edit this lesson again"
     # These are the placeholders for all the text fields inside the editor
     placeholders:
       # Placeholder for the caption of an image
@@ -1378,12 +1389,12 @@ An element with the private status through the X may be cancelled, while an elem
     # Message which appears in the middle of the page if the filter you applied produced an empty result
     # 1 - views/media_elements/_empty_filter.html.erb
     empty_filter: "The element filter produced no result"
-    # Caption of the link to open the window to load a new element (on the left of the bar above the element's list)
+    # Caption of the link to open the window to upload a new element (on the left of the bar above the element's list)
     # 1 - views/media_elements/_graybar_left.html.erb
-    load_new: "Load a new element"
+    load_new: "Upload a new element"
     # Caption which appears above a link to the window to load a new element if your element's section is empty
     # 1 - views/media_elements/_empty.html.erb
-    load_new_now: "Load a new element now"
+    load_new_now: "Upload a new element now"
   
   
   # SECTION 2.10: Contents of automatic notifications sent by the application to the users
@@ -1393,7 +1404,7 @@ An element with the private status through the X may be cancelled, while an elem
     # 1 - views/notifications/_empty.html.erb
     empty: "You don't have any notifications"
     lessons:
-      # Message sent to a user who has the link of a lesson, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
+      # Message sent to a user who has the lesson link, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb
       destroyed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', deleted his lesson: hence, you lost the link to that lesson"
       # Notification received by an user who sent to his friends an email with the public link of a lesson: it's used as a memo of the list of emails to which the message was successfully sent (the variable %{title} is replaced by the title of the lesson, %{message} by the message inserted by the sender, %{emails} by the list of emails separated by comma)
@@ -1401,7 +1412,7 @@ An element with the private status through the X may be cancelled, while an elem
       link_sent: "You sent the link of the lesson %{title}, with message %{message}, to the emails: %{emails}"
       # Notification sent by a user who modified a shared lesson, to inform all its followers about the nature of modifications made (the variable %{lesson_title} is replaced by the title of the lesson, %{message} by the message containing a better description of the modifications, and %{link} by the link to the lesson viewer for that lesson)
       # 1 - models/lesson.rb
-      modified: "<h2 style=\"font-size:126%; font-weight:bold\">There are some news for you! </h2><p>The lesson that you are following \"%{lesson_title}\" has been modified by his author!<br/><br/><strong>Details of changes: </strong><br/>%{message}</p><div style=\"display:inline-block; outline:1px solid #f2f1f2; padding:10px; width:86%; height:19px; position:absolute; bottom:19px\"><span style=\"color:#2eaadc; float:left\">%{lesson_title}</span><a href=\"%{link}\" style=\"float:right\" class=\"preview\"></a></div>"
+      modified: "<h2 style=\"font-size:126%; font-weight:bold\">There are some news for you! </h2><p>The lesson \"%{lesson_title}\" has undergone some changes by the author!<br/><br/><strong>Details of changes: </strong><br/>%{message}</p><div style=\"display:inline-block; outline:1px solid #f2f1f2; padding:10px; width:86%; height:19px; position:absolute; bottom:19px\"><span style=\"color:#2eaadc; float:left\">%{lesson_title}</span><a href=\"%{link}\" style=\"float:right\" class=\"preview\"></a></div>"
       # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted) (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb
       unpublished: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson"
@@ -1414,7 +1425,7 @@ An element with the private status through the X may be cancelled, while an elem
           # The process of audio editing ended successfully. The variable %{item} is replaced by the name of the audio whose content has been modified
           # 1 - ../lib/media/audio/editing/composer.rb
           ok: "The editing of the audio %{item} ended successfully! Now the audio editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing)."
-          # The process of audio editing ended with an error. The variable %{item} is replaced by the name of the audio whose content has been modified, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+          # The process of audio editing ended with an error. The variable %{item} is replaced by the name of the audio whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
           # 1 - ../lib/media/audio/editing/composer.rb
           failed: "The editing of the audio %{item} failed! Now the audio editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing). The audio was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
         create:
@@ -1424,7 +1435,7 @@ An element with the private status through the X may be cancelled, while an elem
           # The process of audio composition ended successfully. The variable %{item} is replaced by the name of the new audio
           # 1 - ../lib/media/audio/editing/composer.rb
           ok: "The composition of the audio %{item} ended successfully! Now the audio editor is available again."
-          # The process of audio composition ended with an error. The variable %{item} is replaced by the name of the audio in composition, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+          # The process of audio composition ended with an error. The variable %{item} is replaced by the name of the audio in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
           # 1 - ../lib/media/audio/editing/composer.rb
           failed: "The composition of the audio %{item} failed! Now the audio editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
       upload:
@@ -1446,7 +1457,7 @@ An element with the private status through the X may be cancelled, while an elem
           # The process of video editing ended successfully. The variable %{item} is replaced by the name of the video whose content has been modified
           # 1 - ../lib/media/audio/editing/composer.rb
           ok: "The editing of the video %{item} ended successfully! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing)."
-          # The process of video editing ended with an error. The variable %{item} is replaced by the name of the video whose content has been modified, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+          # The process of video editing ended with an error. The variable %{item} is replaced by the name of the video whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
           # 1 - ../lib/media/audio/editing/composer.rb
           failed: "The editing of the video %{item} failed! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing). The video was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
         create:
@@ -1456,7 +1467,7 @@ An element with the private status through the X may be cancelled, while an elem
           # The process of video composition ended successfully. The variable %{item} is replaced by the name of the new video
           # 1 - ../lib/media/video/editing/composer.rb
           ok: "The composition of the video %{item} ended successfully! Now the video editor is available again."
-          # The process of video composition ended with an error. The variable %{item} is replaced by the name of the video in composition, and the variable %{link} is replaced by the link where it is conserved the copy of your working space
+          # The process of video composition ended with an error. The variable %{item} is replaced by the name of the video in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
           # 1 - ../lib/media/video/editing/composer.rb
           failed: "The composition of the video %{item} failed! Now the video editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
       upload:
@@ -1514,7 +1525,7 @@ An element with the private status through the X may be cancelled, while an elem
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/users/edit.html.erb
       select_a: 'Select a'
-    # Section where it's explained more about the application
+    # Section with further explanations about the application
     what_is_desy:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
@@ -1526,7 +1537,7 @@ An element with the private status through the X may be cancelled, while an elem
       # 1- views/prelogin/what_is_desy.html.erb
       subtitle: "Find out the benefits of %{desy}"
       # 1- views/prelogin/what_is_desy.html.erb
-      description: "%{desy} è un sistema di didattica digitale che consente ai docenti di creare lezioni multimediali in piena autonomia e con grande facilità.<br/><br/>Non solo: la piattaforma su cui poggia consente la condivisione degli elementi didattici e la socializzazione dei contenuti, da cui discendono vantaggi e funzionalità aggiuntive, tra cui:<ul><li>la possibilità di costruire lezioni e percorsi didattici interdisciplinari;</li><li>la continuità del processo di affinamento e arricchimento dei contenuti;</li><li>la crescita del sistema grazie ad un meccanismo di autoalimentazione a zero costi;</li><li>il rafforzamento e la valorizzazione del ruolo dei docenti nella elaborazione degli strumenti didattici.</li></ul>Oltre che nella scuola e nelle università, %{desy} può essere utilizzato nella formazione professionale e aziendale, attraverso portali formativi autonomi installati all'interno delle  intranet delle imprese, che consentono di raccogliere in modo sicuro e riservato i saperi aziendali, e al tempo stesso di condividerli con i docenti chiamati a curare l'aggiornamento e l'innovazione."
+      description: "%{desy} is a didactic digital system which allows teachers to create multimedia lessons in full autonomy and easily.<br><br>Not only: the platform where it lays allows for sharing didactic elements and socialization of contents, from which advantages and additional functionalities are derived among which:<ul><li>the possibility to build lessons and didactic interdisciplinary methods;</li><li>the continuity of the affinity process and enrichment of contents;</li><li>the growth of the system thanks to self feeding at 0 cost;</li><li>the reinforcement and evaluation of the teachers' role in elaborating didactic instruments.</li></ul>other than in schools and universities, %{desy} can be used in a company professional formation, through formative portals installed within companies' intranet, which allow to gather the company know how in a secure and reserve way and at the same time to share them with the teachers called to look after updating and innovation."
       # 1- views/prelogin/what_is_desy.html.erb
       right_column_title: "Watch demo"
       # 1- views/prelogin/what_is_desy.html.erb
@@ -1642,7 +1653,7 @@ An element with the private status through the X may be cancelled, while an elem
       result_filtered_by_tag: "Found %{num} results (only items associated to the tag <%{tag}>)"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/lessons/_empty.html.erb
-      empty_word: "No lessons were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters"
+      empty_word: "No lessons were found associated to tags containing <%{word}>: try entering a shorter word, or changing your search parameters"
       # Response if the filters the user applied are too strict and this makes the result to be empty
       # 1 - views/search/lessons/_empty.html.erb
       empty_filter: "No lesson was found with the filters you chose"
@@ -1684,7 +1695,7 @@ An element with the private status through the X may be cancelled, while an elem
       result_filtered_by_tag: "Found %{num} results (only items associated to the tag <%{tag}>)"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/media_elements/_empty.html.erb
-      empty_word: "No elements were found associated to tags containing <%{word}>: try entering a smaller word, or changing your search parameters"
+      empty_word: "No elements were found associated to tags containing <%{word}>: try entering a shorter word, or changing your search parameters"
       # Response if the filters the user applied are too strict and this makes the result to be empty
       # 1 - views/search/media_elements/_empty.html.erb
       empty_filter: "No element was found with the filters you chose"
@@ -1773,7 +1784,7 @@ An element with the private status through the X may be cancelled, while an elem
       title: "Mailing lists"
       # Description of the subsection
       # 1 - views/users/mailing_lists.html.erb
-      description: "Create one o more groups of email to send your lessons"
+      description: "Create one or more groups of email to send your lessons"
       # Caption of the link which adds a new mailing list
       # 1 - views/mailing_lists/_list.html.erb
       add: "Add new group"
@@ -1914,7 +1925,7 @@ An element with the private status through the X may be cancelled, while an elem
         time: "Time"
     # Captions for 'cutters' of a component (the instruments used to modify the duration of a text / image component, or to cut a video component)
     cutters:
-      # Caption for the button that commits the modifications
+      # Caption for the button that makes the modifications
       # 1 - views/video_editor/cutters/_video.html.erb
       # 2 - views/video_editor/cutters/_text.html.erb
       # 3 - views/video_editor/cutters/_image.html.erb
@@ -1941,7 +1952,7 @@ An element with the private status through the X may be cancelled, while an elem
       # 1 - views/video_editor/not_available.html.erb
       title: "Video editor not available"
       # 1 - views/video_editor/not_available.html.erb
-      description: "In this moment you are running the Editor for another video: until the process hasn't finished the Video Editor will be temporarily disabled"
+      description: "At this moment you are running the Editor for another video: until the process isn't finished the Video Editor will be temporarily disabled"
     preview:
       # Caption for the button that opens the global preview mode
       # 1 - views/video_editor/edit.html.erb
@@ -2004,7 +2015,7 @@ An element with the private status through the X may be cancelled, while an elem
       # Link to open the playlist viewer
       # 1 - views/virtual_classroom/_playlist.html.erb
       play: "Play"
-    # Window to send in an email the public link of a lesson
+    # Window to send the public link of a lesson by email
     send_link:
       # Placeholder for the message (the variable %{max} is replaced by the maximum number of characters allowed)
       # 1 - views/virtual_classroom/_popups.html.erb
@@ -2012,7 +2023,7 @@ An element with the private status through the X may be cancelled, while an elem
       # Label of the text field where the user inserts a single email
       # 1 - views/virtual_classroom/_popups.html.erb
       emails: "Add an email"
-      # Label of the select box that the user needs to add a mailing list to the destinatary
+      # Label of the select box where the user needs to add a mailing list to the destinatary
       # 1 - views/virtual_classroom/_popups.html.erb
       mailing_lists: "Add a mailing list"
       # Placeholder used in the email sent if the user doesn't write any message
@@ -2032,7 +2043,7 @@ An element with the private status through the X may be cancelled, while an elem
       # A lesson is 'private' if only the owner may see it
       # 1 - ../lib/autoload/statuses.rb
       private: "Private"
-      # A lesson is 'just copied' if the user copied from another lesson, but he hasn't yet personalized it
+      # A lesson is 'just copied' if the user copied from another lesson, but he hasn't personalized it yet
       # 1 - ../lib/autoload/statuses.rb
       copied: "Copied"
       # A lesson is 'linked' if the user doesn't own it, it's just a link to another user's lesson
@@ -2046,7 +2057,7 @@ An element with the private status through the X may be cancelled, while an elem
       shared: "Shared"
     # The list of statuses for media elements
     media_elements:
-      # An element is 'private' if you are the owner and you didn't use it inside a public lesson
+      # An element is 'private' if you are the owner and you haven't used it inside a public lesson
       # 1 - ../lib/autoload/statuses.rb
       private: "Private"
       # An element is 'public' if you are not the owner and you haven't linked it yet 
@@ -2057,7 +2068,7 @@ An element with the private status through the X may be cancelled, while an elem
       linked: "Linked"
   # Filters for both lessons and media elements
   filters:
-    # All lessons without any filter
+    # All lessons without any filters
     # 1 - ../lib/autoload/filters.rb
     all_lessons: "All lessons"
     # Only private lessons
