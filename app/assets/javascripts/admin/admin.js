@@ -121,20 +121,20 @@ $(document).ready(function() {
   });
   
   
-  // ELEMENTS ACTIONS
+  // MEDIA ELEMENTS ACTIONS
   
   $('body').on('click', '._create_new_element', function() {
     $.ajax({
       type: 'post',
       data: $(this).parents('._quick_load_creation_form').serialize(),
-      url: '/admin/elements/quick_upload/' + $(this).data('param') + '/create'
+      url: '/admin/media_elements/' + $(this).data('param') + '/create'
     });
   });
   
   $('body').on('click', '._delete_new_element', function() {
     $.ajax({
       type: 'delete',
-      url: '/admin/elements/quick_upload/' + $(this).data('param') + '/delete'
+      url: '/admin/media_elements/quick_upload/' + $(this).data('param') + '/delete'
     });
   });
   
@@ -142,7 +142,7 @@ $(document).ready(function() {
     e.preventDefault();
     $.ajax({
       type: 'PUT',
-      url: '/admin/elements/'+$(this).parent('a').data('param')+'?is_public=true',
+      url: '/admin/media_elements/' + $(this).parent('a').data('param') + '?is_public=true',
       timeout:5000,
       success: function(){
         var btn = $(e.target);
@@ -155,7 +155,7 @@ $(document).ready(function() {
     e.preventDefault();
     $.ajax({
       type: 'delete',
-      url: '/admin/elements/' + $(this).data('param'),
+      url: '/admin/media_elements/' + $(this).data('param'),
       timeout:5000,
       success: function() {
         var el = $(e.target).parents('.collapse');
@@ -173,7 +173,7 @@ $(document).ready(function() {
     $.ajax({
       type: 'put',
       data: $(this).parents('._quick_load_creation_form').serialize(),
-      url: '/admin/elements/' + $(this).data('param')
+      url: '/admin/media_elements/' + $(this).data('param')
     });
   });
   

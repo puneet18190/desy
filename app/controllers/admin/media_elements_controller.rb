@@ -1,4 +1,4 @@
-class Admin::ElementsController < AdminController
+class Admin::MediaElementsController < AdminController
   
   before_filter :find_element, :only => [:destroy, :update, :load_element]
   before_filter :initialize_media_element_with_owner_and_private, :only => :update
@@ -31,7 +31,7 @@ class Admin::ElementsController < AdminController
     @ok = current_user.remove_from_admin_quick_uploading_cache @key
   end
   
-  def quick_upload_create
+  def create
     @key = :"#{params[:key]}"
     @ok = true
     filename = File.basename(params[:media])
