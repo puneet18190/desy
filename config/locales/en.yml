@@ -2098,6 +2098,7 @@ An element with the private status through the X may be cancelled, while an elem
     # Only elements of kind 'image'
     # 1 - ../lib/autoload/filters.rb
     image: "Images"
+    # Only for lessons search engine, filters all the lessons not created by you
     # 1 - ../lib/autoload/filters.rb
     not_mine: "Not created by you"
   # Possible parameters to sort lessons or media elements
