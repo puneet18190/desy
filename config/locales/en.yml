@@ -2610,8 +2610,18 @@ An element with the private status through the X may be cancelled, while an elem
   
   views:
     pagination:
+      # Character for previous page (it might be replaced by a word)
+      # 1 - views/admin/_list_heading.html.erb
       previous: "&lt;"
+      # Character for next page (it might be replaced by a word)
+      # 1 - views/admin/_list_heading.html.erb
       next: "&gt;"
+      # Character for first page (it might be replaced by a word)
+      # 1 - views/admin/_list_heading.html.erb
       first: "&laquo;"
+      # Character for last page (it might be replaced by a word)
+      # 1 - views/admin/_list_heading.html.erb
       last: "&raquo;"
+      # Word used in the expression '1-10 <of> 300 items'
+      # 1 - helpers/admin_helper.rb
       of_range: "Of"
