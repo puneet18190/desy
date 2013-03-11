@@ -2289,20 +2289,27 @@ An element with the private status through the X may be cancelled, while an elem
       # Title of the section
       # 1 - views/admin/lessons/index.html.erb
       title: "Lessons"
+      # Popup which asks for confirmation before deleting a lesson
       # 1 - views/admin/lessons/_list.html.erb
       delete_confirm: "Are you sure you want to delete this lesson?"
+      # Placeholder used when there are no lessons associated to the selected filter
       # 1 - views/admin/lessons/_list.html.erb
       empty: "No lessons found"
+      # Labels for the fields of a lesson
       fields:
         # 1 - views/admin/lessons/_list.html.erb
         tags: "Tags"
         # 1 - views/admin/lessons/_list.html.erb
         description: "Description"
+      # Name used as label in the pagination (ex. '1-10 of 300 lessons')
       # 1 - helpers/admin_helper.rb
       name: "Lessons"
+      # Frame for the lessons search engine
       search:
+        # Title of the frame
         # 1 - views/admin/lessons/_search.html.erb
         label: "Search lessons"
+        # Button to start the search
         # 1 - views/admin/lessons/_search.html.erb
         submit: "Search"
     # Section of media elements
