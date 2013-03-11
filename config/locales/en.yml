@@ -2322,52 +2322,101 @@ An element with the private status through the X may be cancelled, while an elem
         label: "Search elements"
         # 1 - views/admin/media_elements/_search.html.erb
         submit: "Search"
-    # Motore di ricerca
+    # Search engine
     search:
       date:
+        # 1 - views/admin/search/_date.html.erb
         title: "Date"
         range:
+          # 1 - views/admin/search/_date.html.erb
           caption: "Date range"
+          # 1 - views/admin/search/_date.html.erb
           select: "Select the type of range"
+        # 1 - views/admin/search/_date.html.erb
+        # 2 - views/admin/search/_date.html.erb
+        # 3 - views/admin/search/_date.html.erb
         created_at: "Created at"
+        # 1 - views/admin/search/_date.html.erb
+        # 2 - views/admin/search/_date.html.erb
+        # 3 - views/admin/search/_date.html.erb
         updated_at: "Last update"
+        # 1 - views/admin/search/_date.html.erb
         from: "From"
+        # 1 - views/admin/search/_date.html.erb
         to: "To"
         errors:
+          # 1 - views/admin/search/_alerts.html.erb
           initial_follows_final: "The initial date can't follow the final date"
+          # 1 - views/admin/search/_alerts.html.erb
           final_preceeds_initial: "The final date can't be before the initial date"
       media_elements:
+        # 1 - views/admin/search/_elements_general.html.erb
         title: "General"
         fields:
+          # 1 - views/admin/search/_elements_general.html.erb
+          # 2 - views/admin/search/_elements_general.html.erb
           id: "Id"
+          # 1 - views/admin/search/_elements_general.html.erb
+          # 2 - views/admin/search/_elements_general.html.erb
           title: "Title"
+          # 1 - views/admin/search/_elements_general.html.erb
           sti_type: "Media type"
+          # 1 - views/admin/search/_elements_general.html.erb
           all_sti_types: "All"
+          # 1 - views/admin/search/_elements_general.html.erb
+          # 2 - views/admin/search/_elements_general.html.erb
           user: "User"
       lessons:
+        # 1 - views/admin/search/_lessons_general.html.erb
         title: "General"
         fields:
+          # 1 - views/admin/search/_lessons_general.html.erb
+          # 2 - views/admin/search/_lessons_general.html.erb
           id: "Id"
+          # 1 - views/admin/search/_lessons_general.html.erb
+          # 2 - views/admin/search/_lessons_general.html.erb
           title: "Title"
+          # 1 - views/admin/search/_lessons_general.html.erb
           subject: "Subject"
+          # 1 - views/admin/search/_lessons_general.html.erb
           select_subject: "Select a subject"
+          # 1 - views/admin/search/_lessons_general.html.erb
+          # 2 - views/admin/search/_lessons_general.html.erb
           user: "User"
       notifications:
+        # 1 - views/admin/search/_notifications_filter.html.erb
         title: "General"
       users:
+        # 1 - views/admin/search/_users_general.html.erb
         title: "General"
         fields:
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_users_general.html.erb
           name: "Name"
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_notifications_filter.html.erb
           subject: "Subject"
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_notifications_filter.html.erb
           select_subject: "Select a subject"
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_notifications_filter.html.erb
           school_level: "School level"
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_notifications_filter.html.erb
           select_school_level: "Select a school level"
           created_at:
+            # 1 - views/admin/search/_notifications_filter.html.erb
             title: "Registration date"
+            # 1 - views/admin/search/_notifications_filter.html.erb
             select: "Select an option"
+            # 1 - views/admin/search/_notifications_filter.html.erb
             today: "Today"
+            # 1 - views/admin/search/_notifications_filter.html.erb
             week: "Last week"
+            # 1 - views/admin/search/_notifications_filter.html.erb
             month: "Last month"
+            # 1 - views/admin/search/_notifications_filter.html.erb
             year: "Last year"
     # Section of users
     users:
