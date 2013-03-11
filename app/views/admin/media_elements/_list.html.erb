@@ -52,9 +52,7 @@
           <td><%= element.created_at.strftime('%d-%m-%Y') %></td>
           <td><%= element.updated_at.strftime('%d-%m-%Y') %></td>
           <td>
-            <% if !element.is_public %>
-              <a href="#" class="_publish_list_element action" title="publish" data-param="<%= element.id %>"><i class="icon-globe"></i></a>
-            <% end %>
+            <%= element.is_public.to_s %>
           </td>
           <td>
             <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.general.ask_for_delete') %>" href="/admin/media_elements/<%= element.id %>?back_page=<%= back_page %>">
@@ -67,11 +65,13 @@
           <td colspan="10">
             <div class="row-fluid">
             <div class="span3">
-              <div id="element_<%=element.id%>_preview" class="element-thumbnail" data-param="<%= element.id %>"></div>
+              <div id="element_<%= element.id %>_preview" class="element-thumbnail" data-param="<%= element.id %>">
+                <%= render :partial => "admin/media_elements/previews/#{element.sti_type.downcase}", :locals => {:media_element => element} %>
+              </div>
             </div>
             <div class="span3">
               <h5><%= t('admin.media_elements.fields.tags') %></h5>
-              <% element.visive_tags %>
+              <%= element.visive_tags %>
             </div>
             <div class="span6">
               <h5><%= t('admin.media_elements.fields.description') %></h5>
