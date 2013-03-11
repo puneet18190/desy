@@ -151,20 +151,6 @@ $(document).ready(function() {
     });
   });
   
-  $('body').on('click','._delete_list_element ', function(e) {
-    e.preventDefault();
-    $.ajax({
-      type: 'delete',
-      url: '/admin/media_elements/' + $(this).data('param'),
-      timeout:5000,
-      success: function() {
-        var el = $(e.target).parents('.collapse');
-        el.next('collapsed').fadeOut();
-        el.fadeOut();
-      }
-    });
-  });
-  
   $('body').on('click', '._publish_private_admin_element', function() {
     alert('pubblico elemento id=' + $(this).data('param'));
   });
@@ -268,9 +254,8 @@ $(document).ready(function() {
   $('body').on('click', 'tr.collapse', function(e) {
     var t = $(e.target);
     if(!(t.hasClass('icon-eye-open') || t.hasClass('icon-remove') || t.hasClass('icon-globe'))) {
-      e.preventDefault();
+      openAndLoadNextTr($(this));
     }
-    openAndLoadNextTr($(this));
   });
   
   $('body').on('click', '#expand-all', function(e) {

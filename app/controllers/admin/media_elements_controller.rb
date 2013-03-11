@@ -81,9 +81,8 @@ class Admin::MediaElementsController < AdminController
   
   def destroy
     @element.destroyable_even_if_public = true
-    if !@element.destroy
-      @errors = @element.get_base_error
-    end
+    @element.destroy
+    redirect_to "/admin/media_elements?page=#{params[:back_page]}"
   end
   
   def load_media_element
