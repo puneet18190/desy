@@ -1794,9 +1794,9 @@ An element with the private status through the X may be cancelled, while an elem
       # Caption of the link which deletes a mailing list
       # 1 - views/mailing_lists/_group.html.erb
       delete: "Delete group"
-      # Label for a mailing list
+      # Label for a new mailing list for which the user hasn't chosen a name yet; the variable %{number} is replaced by the number of the mailing list group
       # 1 - views/mailing_lists/_group.html.erb
-      label: 'Group'
+      label: "Group %{number}"
     # Page that is opened when the user clicks on the link 'Forgot your password?'
     reset_password:
        # Title
