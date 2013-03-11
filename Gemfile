@@ -1,5 +1,8 @@
-windows = RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/
-source windows ? 'http://rubygems.org' : 'https://rubygems.org'
+#https = RbConfig::CONFIG['host_os'] !~ /mswin|mingw|cygwin/
+
+# Problemi con l'https in alcune versioni recenti di rubygems
+https = false
+source https ? 'https://rubygems.org': 'http://rubygems.org'
 
 gem 'rails', '3.2.12'
 gem 'pg'

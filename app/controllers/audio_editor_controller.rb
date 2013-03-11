@@ -61,15 +61,14 @@ class AudioEditorController < ApplicationController
       r.user_id     = current_user.id
       r.composing   = true
     end
-
     if record.save
-      parameters[:initial_audio] = { :id => record.id }
+      parameters[:initial_audio] = {:id => record.id}
       Notification.send_to current_user.id, t('notifications.audio.compose.create.started', item: record.title)
       Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'new'
       @errors = convert_item_error_messages(record.errors.messages)
-      @error_fields = errors.keys
+      @error_fields = record.errors.messages.keys
     end
     render 'media_elements/info_form_in_editor/save'
   end
@@ -78,7 +77,7 @@ class AudioEditorController < ApplicationController
     parameters = Audio.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false
     if parameters.nil?
-      current_user.audio_editor_cache = {}
+      current_user.audio_editor_cache!
       @redirect = true
       render 'media_elements/info_form_in_editor/save'
       return
@@ -94,7 +93,7 @@ class AudioEditorController < ApplicationController
         :description => params[:update_description],
         :tags => params[:update_tags_value]
       }
-      record.pre_overwriting
+      record.overwrite!
       Notification.send_to current_user.id, t('notifications.audio.compose.update.started', item: record.title)
       Delayed::Job.enqueue Media::Audio::Editing::Composer::Job.new(parameters)
     else

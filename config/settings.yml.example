@@ -2,9 +2,11 @@ application_copyright: '©2013 DESY. All rights reserved'
 application_name: 'DESY'
 application_full_name: 'DESY - Digital Education System'
 application:
+  smtp:
+    address: 'smtp.example.com'
   email: 'noreply@desy.morganspa.com'
   maintainer:
-    emails: ['m.desantis@morganspa.com']
+    emails: ['maintainer@morganspa.com']
 
 # The order is important!!!
 location_types: ['Province', 'Town', 'School']

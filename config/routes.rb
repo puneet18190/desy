@@ -141,7 +141,7 @@ Desy::Application.routes.draw do
   # USER SESSION
   post 'users_sessions' => 'users/sessions#create'
   delete 'users_session' => 'users/sessions#destroy'
-
+  
   # USER NOT LOGGED
   get  'home' => 'prelogin#home', :as => :home
   get  'sign_up' => 'prelogin#registration', :as => :sign_up
@@ -158,25 +158,25 @@ Desy::Application.routes.draw do
   # ADMINISTRATION SECTION
   namespace 'admin' do
     root :to => 'dashboard#index'
-    
     get  'users/get_full_names' => 'users#get_full_names'
     put  'users/:id/set_status' => 'users#set_status'
     put  'user/:id/activate' => 'users#activate'
     put  'user/:id/ban' => 'users#ban'
     get  'elements/edit' => 'elements#edit'
     get  'elements/:id/load' => 'elements#load_element'
+    post 'elements/quick_upload' => 'elements#quick_upload'
+    post 'elements/quick_upload/:key/create' => 'elements#quick_upload_create'
+    delete 'elements/quick_upload/:key/delete' => 'elements#quick_upload_delete'
     post 'location/:id/find' => 'users#find_location'
     get  'messages/new_notification' => 'messages#new_notification'
     post 'messages/send_notifications' => 'messages#send_notifications'
     get  'messages/reports' => 'messages#reports'
     post 'messages/filter_users' => 'messages#filter_users'
-    
-    
     resources :lessons, :only => [:index, :destroy]
     resources :elements, :except => [:show, :edit]
-    resources :users, :only => [:index, :show, :create, :destroy]
+    resources :users, :only => [:index, :show, :destroy]
   end
-
+  
   # 404
   match '*path', to: 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
   

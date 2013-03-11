@@ -1,0 +1,23 @@
+<div id="quick_load_element_<%= file[:name] %>" class="element-update-form span<%= colspan %> img-polaroid">
+  <form class="_quick_load_creation_form">
+    <div class="alert">
+      <%= file[:original_name] %>
+    </div>
+    <% if file[:type] == 'audio' %>
+      <%= image_tag 'simbolo-audio.svg', :width => '200', :style => 'margin-top:0' %>
+    <% elsif file[:type] == 'image' %>
+      <div style="width:200px; height:200px; margin-top:20px; margin-left:auto; margin-bottom:0; margin-right:auto; vertical-align:middle; overflow:hidden">
+        <%= image_tag "/admin/#{current_user.id}/#{file[:name]}#{file[:ext]}", :width => 200, :height => 200, :style => 'margin:0' %>
+      </div>
+    <% else %>
+      <%= image_tag 'simbolo-audio.svg', :width => '200', :style => 'margin-top:0' %>
+    <% end %>
+    <%= hidden_field_tag 'media', "#{file[:name]}#{file[:ext]}" %>
+    <br><%= text_field_tag 'title', file[:title], :placeholder => t('admin.media_elements.fields.title').downcase, :class => '_form_input' %>
+    <br><%= text_area_tag 'description', file[:description], :placeholder => t('admin.media_elements.fields.description').downcase, :class => '_form_input' %>
+    <br><%= text_area_tag 'tags', file[:tags], :placeholder => t('admin.media_elements.fields.tags').downcase, :class => '_form_input' %><br>
+    <%= check_box_tag 'publish', '1', (file[:type] == 'image'), :disabled => (file[:type] != 'image') %><span style="margin-left:10px"><%= t('admin.media_elements.fields.is_public').downcase %></span><br><br>
+    <button class="_create_new_element btn btn-small btn-success" type="button" data-param="<%= file[:name] %>"><%= t('admin.media_elements.actions.save') %></button>
+    <button class="_delete_new_element btn btn-small btn-danger" type="button" data-param="<%= file[:name] %>"><%= t('admin.media_elements.actions.delete') %></button>
+  </form>
+</div>

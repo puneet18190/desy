@@ -1,6 +1,5 @@
-var replace_td = $("table#users-list tbody tr td#user_<%=@user.id%>_status");
 <% if @user.active %>
-  replace_td.html("<a href='' class='icon-ban-circle action _active_status ban' data-param='<%=@user.id%>' title='Ban'></a>");
+  $('#user_<%= @user.id %>_status').html('<a href="" class="icon-ban-circle action _active_status ban" data-param="<%= @user.id %>" title="<%= j t("admin.users.ban") %>"></a>');
 <% else %>
-  replace_td.html("<a href='' class='icon-ok action _active_status activate' data-param='<%=@user.id%>' title='Activate'></a>");
+  $('#user_<%= @user.id %>_status').html('<a href="" class="icon-ok action _active_status activate" data-param"<%= @user.id %>" title="<%= j t("admin.users.activate") %>"></a>');
 <% end %>

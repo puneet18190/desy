@@ -630,11 +630,15 @@ function playVideoEditorComponent(component, with_scroll) {
           $('#video_editor_preview_container audio')[0].pause();
         }
         $('#video_editor_global_preview_pause').trigger('click');
-        $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
+        if($('._video_editor_component').length > 5) {
+          $('#media_elements_list_in_video_editor').jScrollPane().bind('panescrollstop', function() {
+            showVideoEditorPreviewComponentProgressBar(getVideoComponentIdentifier(first_component.attr('id')), 1);
+            $('#media_elements_list_in_video_editor').jScrollPane().unbind('panescrollstop');
+          });
+          $('#media_elements_list_in_video_editor').data('jsp').scrollToX(0, true, 500);
+        } else {
           showVideoEditorPreviewComponentProgressBar(getVideoComponentIdentifier(first_component.attr('id')), 1);
-          $('#media_elements_list_in_video_editor').jScrollPane().unbind('panescrollstop');
-        });
-        $('#media_elements_list_in_video_editor').data('jsp').scrollToX(0, true, 500);
+        }
       }
     });
   }

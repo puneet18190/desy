@@ -45,22 +45,28 @@ class User < ActiveRecord::Base
   end
   
   before_validation :init_validation
-
+  
   scope :confirmed,     where(confirmed: true)
   scope :not_confirmed, where(confirmed: false)
   scope :active,        where(active: true)
-
+  
   alias_attribute :school, :location
-
+  
   def self.admin
     find_by_email SETTINGS['admin']['email']
   end
   
   def admin?
-    admin =  self.class.admin
-    id == admin.id if admin.present?
+    # TODO importante: qui viene considerato solo l'utente amministratore per ora! Quando serviranno vari amministratori
+    # ad esempio se vogliamo configurare gli amministratori nel file di configurazione, ci sarà qualcosa del genere
+    # QUESTO METODO VA CAMBIATO MA SENZA CAMBIARGLI NOME
+    # super_admin =  self.class.admin
+    # id == super_admin.id || SETTINGS['grant_admin_privileges'].include?(self.email)
+    admin = User.admin
+    return false if admin.nil?
+    return admin.id == self.id
   end
-
+  
   def accept_policies
     registration_policies.each{ |p| send("#{p}=", '1') }
   end
@@ -69,11 +75,11 @@ class User < ActiveRecord::Base
     update_attribute :metadata, OpenStruct.new(metadata.marshal_dump.merge(video_editor_cache: cache))
     nil
   end
-
+  
   def video_editor_cache
     metadata.try(:video_editor_cache)
   end
-
+  
   def audio_editor_cache!(cache = nil)
     update_attribute :metadata, OpenStruct.new(metadata.marshal_dump.merge(audio_editor_cache: cache))
     nil
@@ -471,6 +477,75 @@ class User < ActiveRecord::Base
     where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?',"%#{term}%","%#{term}%","%#{term}%").select("id, name || ' ' || surname AS value")
   end
   
+  def remove_from_admin_quick_uploading_cache(name)
+    return false if !File.exists?(Rails.root.join("public/admin/#{self.id}/map.yml"))
+    map = YAML::load(File.open(Rails.root.join("public/admin/#{self.id}/map.yml")))
+    item = map[name]
+    return false if item.nil?
+    FileUtils.rm Rails.root.join("public/admin/#{self.id}/#{name}#{item[:ext]}")
+    map.delete name
+    map[:index].delete name
+    yaml = File.open(Rails.root.join("public/admin/#{self.id}/map.yml"), 'w')
+    yaml.write map.to_yaml
+    yaml.close
+    true
+  end
+  
+  def save_in_admin_quick_uploading_cache(file, title=nil, description=nil, tags=nil)
+    filetype = MediaElement.filetype(file.original_filename)
+    return nil if filetype.nil?
+    FileUtils.mkdir Rails.root.join('public/admin') if !File.exists?(Rails.root.join('public/admin'))
+    FileUtils.mkdir Rails.root.join("public/admin/#{self.id}") if !File.exists?(Rails.root.join("public/admin/#{self.id}"))
+    extension = File.extname file.original_filename
+    map = {}
+    if File.exists?(Rails.root.join("public/admin/#{self.id}/map.yml"))
+      map = YAML::load(File.open(Rails.root.join("public/admin/#{self.id}/map.yml")))
+    else
+      FileUtils.rm_r Rails.root.join("public/admin/#{self.id}")
+      FileUtils.mkdir Rails.root.join("public/admin/#{self.id}")
+    end
+    name = "a#{SecureRandom.urlsafe_base64(15)}"
+    while map.has_key? :"#{name}"
+      name = "a#{SecureRandom.urlsafe_base64(15)}"
+    end
+    if map.has_key? :index
+      map[:index].unshift :"#{name}"
+    else
+      map[:index] = [:"#{name}"]
+    end
+    map[:"#{name}"] = {:ext => extension, :type => filetype}
+    map[:"#{name}"][:original_name] = file.original_filename
+    map[:"#{name}"][:title] = title
+    map[:"#{name}"][:description] = description
+    map[:"#{name}"][:tags] = tags
+    yaml = File.open(Rails.root.join("public/admin/#{self.id}/map.yml"), 'w')
+    yaml.write map.to_yaml
+    yaml.close
+    FileUtils.mv file.tempfile.path, Rails.root.join("public/admin/#{self.id}/#{name}#{extension}")
+    {
+      :name => :"#{name}",
+      :ext => extension,
+      :type => filetype,
+      :title => title,
+      :description => description,
+      :tags => tags,
+      :original_name => file.original_filename
+    }
+  end
+  
+  def admin_quick_uploading_cache
+    return [] if !File.exists?(Rails.root.join("public/admin/#{self.id}/map.yml"))
+    map = YAML::load File.open(Rails.root.join("public/admin/#{self.id}/map.yml"))
+    index = map[:index]
+    return [] if index.nil? || index.empty?
+    resp = []
+    index.each do |i|
+      map[i][:name] = i
+      resp << map[i]
+    end
+    resp
+  end
+  
   private
   
   def get_tags_associated_to_lesson_search(word, filter, subject_id)
@@ -500,27 +575,15 @@ class User < ActiveRecord::Base
         params << true
         params << self.id
     end
-    curr_tag = false
-    query = []
     select = 'tags.id AS tag_id, COUNT(*) AS tags_count'
     where_for_current_tag = where.gsub('tags.word LIKE ?', 'tags.word = ?')
     where = "tags.word != ? AND #{where}"
-    case params.length
-      when 2
-        curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1]).limit(1).length > 0)
-        limit -= 1 if curr_tag
-        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1]).order('tags_count DESC, tags.word ASC').limit(limit)
-      when 3
-        curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2]).limit(1).length > 0)
-        limit -= 1 if curr_tag
-        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1], params[2]).order('tags_count DESC, tags.word ASC').limit(limit)
-      when 4
-        curr_tag = (Tagging.joins(joins).where(where_for_current_tag, word, params[1], params[2], params[3]).limit(1).length > 0)
-        limit -= 1 if curr_tag
-        query = Tagging.group('tags.id').select(select).joins(joins).where(where, word, params[0], params[1], params[2], params[3]).order('tags_count DESC, tags.word ASC').limit(limit)
+    resp = []
+    if Tagging.joins(joins).where(where_for_current_tag, word, *params[1, params.length]).limit(1).length > 0
+      limit -= 1
+      resp << Tag.find_by_word(word)
     end
-    resp = curr_tag ? [Tag.find_by_word(word)] : []
-    query.each do |q|
+    Tagging.group('tags.id').select(select).joins(joins).where(where, word, *params).order('tags_count DESC, tags.word ASC').limit(limit).each do |q|
       resp << Tag.find(q.tag_id)
     end
     resp
@@ -580,15 +643,14 @@ class User < ActiveRecord::Base
       when Filters::IMAGE
         where = "#{where} AND media_elements.sti_type = 'Image'"
     end
-    content = []
+    resp[:records] = []
     Tagging.group('media_elements.id').select('media_elements.id AS media_element_id').joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit).each do |q|
       media_element = MediaElement.find_by_id q.media_element_id
       media_element.set_status self.id
-      content << media_element
+      resp[:records] << media_element
     end
     resp[:records_amount] = Tagging.group('media_elements.id').joins(joins).where(where, params[0], params[1], params[2]).count.length
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
-    resp[:records] = content
     return resp
   end
   
@@ -617,14 +679,13 @@ class User < ActiveRecord::Base
         count = Image.where('is_public = ? OR user_id = ?', true, self.id).count
         query = Image.where('is_public = ? OR user_id = ?', true, self.id).order(order).offset(offset).limit(limit)
     end
-    content = []
+    resp[:records] = []
     query.each do |q|
       q.set_status self.id
-      content << q
+      resp[:records] << q
     end
     resp[:records_amount] = count
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
-    resp[:records] = content
     return resp
   end
   
@@ -669,28 +730,14 @@ class User < ActiveRecord::Base
         params << true
         params << self.id
     end
-    query = []
-    count = 0
-    case params.length
-      when 2
-        query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1]).order(order).offset(offset).limit(limit)
-        count = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1]).count.length
-      when 3
-        query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
-        count = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2]).count.length
-      when 4
-        query = Tagging.group('lessons.id').select(select).joins(joins).where(where, params[0], params[1], params[2], params[3]).order(order).offset(offset).limit(limit)
-        count = Tagging.group('lessons.id').joins(joins).where(where, params[0], params[1], params[2], params[3]).count.length
-    end
-    content = []
-    query.each do |q|
+    resp[:records] = []
+    Tagging.group('lessons.id').select(select).joins(joins).where(where, *params).order(order).offset(offset).limit(limit).each do |q|
       lesson = Lesson.find_by_id q.lesson_id
       lesson.set_status self.id
-      content << lesson
+      resp[:records] << lesson
     end
-    resp[:records_amount] = count
+    resp[:records_amount] = Tagging.group('lessons.id').joins(joins).where(where, *params).count.length
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
-    resp[:records] = content
     return resp
   end
   
@@ -742,15 +789,14 @@ class User < ActiveRecord::Base
         query = Lesson.select(select).where(where, params[0], params[1], params[2]).order(order).offset(offset).limit(limit)
         count = Lesson.where(where, params[0], params[1], params[2]).count
     end
-    content = []
+    resp[:records] = []
     query.each do |q|
       lesson = Lesson.find_by_id q.lesson_id
       lesson.set_status self.id
-      content << lesson
+      resp[:records] << lesson
     end
     resp[:records_amount] = count
     resp[:pages_amount] = Rational(resp[:records_amount], limit).ceil
-    resp[:records] = content
     return resp
   end
   

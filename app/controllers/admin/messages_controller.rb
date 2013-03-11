@@ -1,9 +1,9 @@
 class Admin::MessagesController < AdminController
+  
   layout 'admin'
   
   def new_notification
     @location_root = Location.roots
-    
     if params[:users] #list of recipients
       @users = []
       @users_ids = params[:users].gsub(/[\[\]\"]/,'').split(',')
@@ -19,17 +19,14 @@ class Admin::MessagesController < AdminController
         Notification.send_to(user.id, params[:message])
       end
     else
-      
       if params[:notification_ids] && params[:message]
         msg = params[:message]
         params[:notification_ids].split(',').each do |user_id|
-          logger.info "\n\n\n into each \n\n\n"
           Notification.send_to(user_id.gsub(/\s+/, ""), msg)
         end
       else
         @errors = "errors to add"
       end
-      
     end
     redirect_to :back
   end
@@ -45,5 +42,5 @@ class Admin::MessagesController < AdminController
     @elements_reports = Report.order('created_at DESC').where(reportable_type: 'MediaElement')
     @lessons_reports = Report.order('created_at DESC').where(reportable_type: 'Lesson')
   end
-
+  
 end

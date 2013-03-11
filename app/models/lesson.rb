@@ -20,6 +20,8 @@ class Lesson < ActiveRecord::Base
   has_many :reports, :as => :reportable, :dependent => :destroy
   has_many :taggings, :as => :taggable
   has_many :slides
+  has_many :media_elements_slides, through: :slides
+  has_many :media_elements, through: :media_elements_slides
   has_many :virtual_classroom_lessons
   
   validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description, :token
@@ -75,9 +77,19 @@ class Lesson < ActiveRecord::Base
     return false if self.status.nil?
     !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
   end
+
+  def available?(type = nil)
+    case type = type.to_s.downcase
+    when 'video', 'audio'
+      metadata.send :"available_#{type}"
+    else
+      metadata.available_video && metadata.available_audio
+    end
+  end
   
-  def available?
-    metadata.available_video && metadata.available_audio
+  def available!(type, value = true)
+    metadata.send :"available_#{type.to_s.downcase}=", !!value
+    update_attribute(:metadata, metadata)
   end
   
   def tags
@@ -446,6 +458,7 @@ class Lesson < ActiveRecord::Base
   end
   
   def update_or_create_tags
+    return true unless @inner_tags
     words = []
     @inner_tags.each do |t|
       raise ActiveRecord::Rollback if t.new_record? && !t.save

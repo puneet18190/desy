@@ -271,7 +271,7 @@ $(document).ready(function() {
     }
   });
   
-  $('body').on('click', '._audio_gallery_thumb ._compact', function(e) {
+  $('body').on('click', '._audio_gallery_thumb._enabled ._compact', function(e) {
     if(!$(e.target).hasClass('_select_audio_from_gallery')) {
       var parent_id = $(this).parent().attr('id');
       var obj = $('#' + parent_id + ' ._expanded');

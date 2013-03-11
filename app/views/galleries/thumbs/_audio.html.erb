@@ -1,11 +1,19 @@
-<div id="gallery_audio_<%= audio.id %>" class="audioTrackCompact _audio_gallery_thumb">
-  <div class="audioTrackContent _compact">
+<%
+  disabled = !audio.converted?
+  additional_class = disabled ? '_disabled'.html_safe : '_enabled'.html_safe
+%>
+<div id="gallery_audio_<%= audio.id %>" class="audioTrackCompact _audio_gallery_thumb <%= additional_class %>">
+  <div class="audioTrackContent _compact" <%= disabled ? "title=\"#{t('titles.not_available.audio', :title => audio.title)}\"".html_safe : '' %>>
     <div class="titleTrack"><p><%= audio.title %></p></div>
     <div class="fltrt">
-      <a class="addButtonContent _select_audio_from_gallery" data-audio-id="<%= audio.id %>" data-mp3="<%= audio.mp3_url %>" data-ogg="<%= audio.ogg_url %>" data-duration="<%= audio.min_duration %>" title="<%= t('titles.galleries.add_audio') %>"></a>
+      <% if !disabled %>
+        <a class="addButtonContent _select_audio_from_gallery" data-audio-id="<%= audio.id %>" data-mp3="<%= audio.mp3_url %>" data-ogg="<%= audio.ogg_url %>" data-duration="<%= audio.min_duration %>" title="<%= t('titles.galleries.add_audio') %>"></a>
+      <% end %>
     </div>
   </div>
-  <div class="audioTrackExpanded _expanded" style="display:none">
-    <%= render :partial => 'shared/players/audio', :locals => {:audio => nil, :initialize_now => false} %>
-  </div>
+  <% if !disabled %>
+    <div class="audioTrackExpanded _expanded" style="display:none">
+      <%= render :partial => 'shared/players/audio', :locals => {:audio => nil, :initialize_now => false} %>
+    </div>
+  <% end %>
 </div>

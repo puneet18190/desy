@@ -18,10 +18,6 @@ module Media
 
         include InTmpDir
 
-        VIDEO_COMPONENT = Parameters::VIDEO_COMPONENT
-        IMAGE_COMPONENT = Parameters::IMAGE_COMPONENT
-        TEXT_COMPONENT  = Parameters::TEXT_COMPONENT
-
         #  {
         #    :initial_video => {
         #      :id => VIDEO ID
@@ -61,16 +57,18 @@ module Media
             video.media     = old_media
             video.converted = true
             if old_fields = video.try(:metadata).try(:old_fields)
-              video.title       = old_fields.title
-              video.description = old_fields.description
-              video.tags        = old_fields.tags
+              video.title       = old_fields['title']
+              video.description = old_fields['description']
+              video.tags        = old_fields['tags']
             end
+            video.save!
+            video.enable_lessons_containing_me
+            Notification.send_to video.user_id, I18n.t('notifications.video.compose.update.failed', item: video.title, link: ::Video::CACHE_RESTORE_PATH)
           else
-            video.composing = true
-            video.converted = false
+            video.destroyable_even_if_not_converted = true
+            video.destroy
+            Notification.send_to video.user_id, I18n.t('notifications.video.compose.create.failed', item: video.title, link: ::Video::CACHE_RESTORE_PATH)
           end
-          video.save!
-          Notification.send_to video.user_id, I18n.t("notifications.video.compose.#{notification_translation_key}.failed", item: video.title, link: ::Video::CACHE_RESTORE_PATH)
           raise e
         end
 
@@ -82,11 +80,11 @@ module Media
               SensitiveThread.new do
                 concats.store i,
                   case component[:type]
-                  when VIDEO_COMPONENT
+                  when Parameters::VIDEO_COMPONENT
                     compose_video *component.values_at(:video, :from, :to), i
-                  when IMAGE_COMPONENT
+                  when Parameters::IMAGE_COMPONENT
                     compose_image *component.values_at(:image, :duration), i
-                  when TEXT_COMPONENT
+                  when Parameters::TEXT_COMPONENT
                     compose_text *component.values_at(:content, :duration, :text_color, :background_color), i
                   else
                     raise Error.new("wrong component type", type: component[:type])

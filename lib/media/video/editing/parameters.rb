@@ -44,7 +44,11 @@ module Media
           resp[:components].each do |component|
             component[:video] = component[:video].id if component[:video]
             component[:image] = component[:image].id if component[:image]
-            component[:content] = component[:content].gsub('<br/>', "\n") if component[:type] == TEXT_COMPONENT
+            if component[:type] == TEXT_COMPONENT
+              component[:content] = component[:content].gsub('<br/>', "\n")
+              component[:background_color] = ::SETTINGS['colors'][component[:background_color]][:code]
+              component[:text_color] = ::SETTINGS['colors'][component[:text_color]][:code]
+            end
           end
           resp
         end

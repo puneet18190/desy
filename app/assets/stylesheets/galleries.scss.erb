@@ -126,7 +126,7 @@
     } 
   }
   
-  .audioTrackCompact {
+  .audioTrackCompact._enabled {
     width:820px;
     
     .audioTrackContent {
@@ -159,6 +159,42 @@
       
     }
   }
+  
+  
+  .audioTrackCompact._disabled {
+    width:820px;
+    opacity:0.2;
+    a {
+      cursor: default;
+    }
+    
+    .audioTrackContent {
+      background-color:#4a4a4a;
+      padding:5px 10px;
+      height:34px;
+      margin-top:8px;
+      
+      .infoTrack {
+        float:left; 
+        padding:5px 10px;
+        border-left:1px solid #2d2d2d;
+        height:26px;
+        a {
+          color:#fff;
+        }
+      }
+      
+    }
+    .audioTrackExpanded {
+      background-color:#3b3a3b;
+      text-align:left;
+      padding:10px 20px;
+      position:relative;
+      
+    }
+  }
+  
+  
   .titleTrack {
     text-align:left;
     padding:8px 8px;
@@ -239,9 +275,14 @@
         width: 250px;
         height: 140px;
         margin: 5px 20px 21px 6px;
+      }
+      li._enabled {
         img:hover {
           outline:1px solid white;
         };
+      }
+      li._disabled a {
+        cursor: default;
       }
     }
   }

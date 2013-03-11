@@ -61,15 +61,14 @@ class VideoEditorController < ApplicationController
       r.user_id     = current_user.id
       r.composing   = true
     end
-    
     if record.save
-      parameters[:initial_video] = { :id => record.id }
+      parameters[:initial_video] = {:id => record.id}
       Notification.send_to current_user.id, t('notifications.video.compose.create.started', item: record.title)
       Delayed::Job.enqueue Media::Video::Editing::Composer::Job.new(parameters)
     else
       @error_ids = 'new'
       @errors = convert_item_error_messages(record.errors.messages)
-      @error_fields = errors.keys
+      @error_fields = record.errors.messages.keys
     end
     render 'media_elements/info_form_in_editor/save'
   end
@@ -78,7 +77,7 @@ class VideoEditorController < ApplicationController
     parameters = Video.convert_to_primitive_parameters(extract_form_parameters, current_user.id)
     @redirect = false
     if parameters.nil?
-      current_user.video_editor_cache = {}
+      current_user.video_editor_cache!
       @redirect = true
       render 'media_elements/info_form_in_editor/save'
       return

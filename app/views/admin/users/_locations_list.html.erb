@@ -1,4 +1,4 @@
-<% if parent %>  
+<% if parent %>
   <% @children = Location.find(parent).children %>
   <option value=''>Select a <%=@children.first.sti_type%></option>
   <% if params[:search] %>
