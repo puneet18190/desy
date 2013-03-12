@@ -2122,15 +2122,6 @@ An element with the private status through the X may be cancelled, while an elem
     # Time format
     # 1 - ..lib/autoload/time_convert.rb
     format: "english"
-  locations:
-    # 1 - app/models/location.rb
-    # 2 - app/models/location.rb
-    labels: [
-        'Province',
-        'Town',
-        'School'
-      ]
-    parents_label: "Town / province"
   language_parameters:
     notification:
       # Maximum length of the message inserted by the user to notify the modification of a public lesson
@@ -2186,6 +2177,19 @@ An element with the private status through the X may be cancelled, while an elem
       # 3 - views/video_editor/cutters/_image.html.erb
       # 4 - views/video_editor/_text_component_editor.html.erb
       length_duration: 3
+  
+  
+  # SECTION 3.3: locations
+  
+  locations:
+    # 1 - app/models/location.rb
+    # 2 - app/models/location.rb
+    labels: [
+        'Province',
+        'Town',
+        'School'
+      ]
+    parents_label: "Town / province"
   
   
   
@@ -2531,12 +2535,15 @@ An element with the private status through the X may be cancelled, while an elem
       actions:
         # This buttons is used to activate a user
         # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
         activate: "Activate"
         # This button is used to block a user
         # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
         ban: "Ban"
         # Link to the automatic mailer, used to communicate with a user
         # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
         message: "Send a message to this user"
       # Caption to delete a user
       # 1 - views/admin/users/show.html.erb
