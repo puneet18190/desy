@@ -73,7 +73,7 @@ module Media
 
       def clean
         folder = media.try(:folder)
-        FileUtils.rm_rf folder if folder and Dir.exists? folder
+        FileUtils.rm_rf folder if folder
         true
       end
     end

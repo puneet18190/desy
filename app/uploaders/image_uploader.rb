@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'env_relative_path'
+require 'media'
 
 class ImageUploader < CarrierWave::Uploader::Base
 
@@ -19,6 +20,10 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   STORE_DIR            = env_relative_path "media_elements/images"
   EXTENSION_WHITE_LIST = %w(jpg jpeg png)
+
+  def self.remove_folder!
+    FileUtils.rm_rf Media::RAILS_PUBLIC_FOLDER.join STORE_DIR
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

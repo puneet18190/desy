@@ -17,8 +17,7 @@ module Media
         before(:all) do
           FileUtils.cp valid_audio_path, tmp_valid_audio_path
           ['public/media_elements/audios/test', 'tmp/media/audio/editing/conversions/test'].each do |folder|
-            f = Rails.root.join(folder)
-            FileUtils.rm_rf f if Dir.exists? f
+            FileUtils.rm_rf Rails.root.join(folder)
           end
         end
         
