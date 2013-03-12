@@ -62,9 +62,7 @@ class User < ActiveRecord::Base
     # QUESTO METODO VA CAMBIATO MA SENZA CAMBIARGLI NOME
     # super_admin =  self.class.admin
     # id == super_admin.id || SETTINGS['grant_admin_privileges'].include?(self.email)
-    admin = User.admin
-    return false if admin.nil?
-    return admin.id == self.id
+    self.super_admin?
   end
   
   def accept_policies
