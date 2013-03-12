@@ -34,7 +34,7 @@
             <td><%= lesson.id %></td>
             <td><%= lesson.title %></td>
             <td><%= lesson.subject.description %></td>
-            <td><%= lesson.user.full_name %></td>
+            <td><%= link_to lesson.user.full_name, admin_user_path(lesson.user_id), :target => :blank, :class => '_user_link_in_admin' %></td>
             <td><%= lesson.created_at.strftime('%d-%m-%Y') %></td>
             <td><%= lesson.updated_at.strftime('%d-%m-%Y') %></td>
             <td><%= lesson.likes.count%></td>
