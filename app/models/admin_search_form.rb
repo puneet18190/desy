@@ -2,8 +2,8 @@ class AdminSearchForm < Form
 
   attr_accessor :search_type, :ordering, :id, :title, :keyword, :user, 
                 :subject_id, :sti_type, :element_type, 
-                :date_range_field, :from, :to, :recency, 
-                :province_id, :town_id, :school_id, :school_level_id
+                :date_range_field, :from, :to, :recency, :school_level_id,
+                *SETTINGS['location_types'].map{|type| :"#{type.downcase}"}
   
   validates_numericality_of :id, :unless => Proc.new {|c| c.id.blank?}
   validates_presence_of :ordering

@@ -3,14 +3,14 @@
 </div>
 
 
-<% (0...SETTINGS['location_types'].length).to_a.each do |index| %>
+<% SETTINGS['location_types'].each_with_index do |location, index| %>
   
   <div class="control-group">
     <label for="locations_list_<%= index %>">
       <%= Location.label_at(index) %>
     </label>
     <div class="controls">
-      <select id="locations_list_<%= index %>" class="_select_locations_admin" name="search[location_<%= index %>]" data-is-last="<%= index == SETTINGS['location_types'].length - 1 %>">
+      <select id="locations_list_<%= index %>" class="_select_locations_admin" name="search[<%= location.downcase %>]" data-is-last="<%= index == SETTINGS['location_types'].length - 1 %>">
         <%= render :partial => 'admin/users/locations_list', :locals => {:locations => locations[index].to_a} %>
       </select>
     </div>
