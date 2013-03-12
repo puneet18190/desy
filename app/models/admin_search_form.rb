@@ -14,7 +14,7 @@ class AdminSearchForm < Form
       asf = new(params)
       if asf.valid?
         case search_type.to_s
-        when 'lessons', 'elements', 'users'
+        when 'lessons', 'media_elements', 'users'
           send :"search_#{search_type}", params
         else
           return false
@@ -62,7 +62,7 @@ class AdminSearchForm < Form
   end
   
   #ELEMENTS
-  def self.search_elements(params)
+  def self.search_media_elements(params)
     elements = MediaElement.where(converted: true).order(params[:ordering])
     elements = elements.where(id: params[:id]) if params[:id].present?
     elements = elements.where('title ILIKE ?', "%#{params[:title]}%") if params[:title].present?
