@@ -2577,12 +2577,14 @@ An element with the private status through the X may be cancelled, while an elem
       # Actions that may be applied on a single user
       actions:
         # This buttons is used to activate a user
-        # 1 - views/admin/users/show.html.erb
-        # 2 - views/admin/users/_list.html.erb
+        # 1- views/admin/users/set_status.js.erb
+        # 2 - views/admin/users/show.html.erb
+        # 3 - views/admin/users/_list.html.erb
         activate: "Activate"
         # This button is used to block a user
-        # 1 - views/admin/users/show.html.erb
-        # 2 - views/admin/users/_list.html.erb
+        # 1- views/admin/users/set_status.js.erb
+        # 2 - views/admin/users/show.html.erb
+        # 3 - views/admin/users/_list.html.erb
         ban: "Ban"
         # Link to the automatic mailer, used to communicate with a user
         # 1 - views/admin/users/show.html.erb
