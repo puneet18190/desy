@@ -37,17 +37,17 @@
       <% users.each do |user| %>
         <tr id="<%= user.id %>">
           <td><%= user.id %></td>
-          <td><%= link_to user.email, 'mailto:#{user.email}' %></td>
+          <td><%= link_to user.email, "mailto:#{user.email}" %></td>
           <td><%= user.name %></td>
           <td><%= user.surname %></td>
           <td><%= user.base_location %></td>
           <td><%= user.parent_locations %></td>
           <td><%= user.school_level.description %></td>
           <td><%= user.created_at.strftime('%d-%m-%Y')%></td>
-          <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user), :title => t('admin.users.show'), :target => :blank, :class=>"action"%></td>
+          <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user), :title => t('admin.users.show'), :target => :blank, :class => 'action' %></td>
           <td><%= link_to '<i class="icon-envelope"></i>'.html_safe, "/admin/messages/new_notification?users=#{user.id}", :title => t('admin.users.actions.message'), :target => :blank, :class => 'action' %></td>
           <td id="user_<%= user.id %>_status">
-            <%if user.active %>
+            <% if user.active %>
               <%= link_to '', '#', :title => t('admin.users.actions.ban'), :class => 'icon-ban-circle action _active_status ban', :data => {:param => user.id} %>
             <% else %>
               <%= link_to '', '#', :title => t('admin.users.actions.activate'), :class => 'icon-ok action _active_status activate', :data => {:param => user.id} %>

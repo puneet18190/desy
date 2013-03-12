@@ -2585,15 +2585,25 @@ An element with the private status through the X may be cancelled, while an elem
       # Fields of users
       fields:
         # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
+        created_at: "Created"
+        # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
         id: "Id"
         # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
         email: "Email"
         # 1 - views/admin/users/show.html.erb
         location: "Location"
+        # 1 - views/admin/users/_list.html.erb
+        name: "Name"
         # 1 - views/admin/users/show.html.erb
-        created: "Created"
+        # 2 - views/admin/users/_list.html.erb
+        school_level: "School level"
+        # 1 - views/admin/users/_list.html.erb
+        surname: "Surname"
         # 1 - views/admin/users/show.html.erb
-        update: "Last update"
+        updated_at: "Last update"
       # Caption of the frame containing all the lesson of a specific user
       # 1 - views/admin/users/show.html.erb
       lessons: "Lessons of %{user}"
