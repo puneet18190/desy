@@ -2315,9 +2315,23 @@ An element with the private status through the X may be cancelled, while an elem
       # Labels for the fields of a lesson
       fields:
         # 1 - views/admin/lessons/_list.html.erb
-        tags: "Tags"
+        created_at: "Creation date"
         # 1 - views/admin/lessons/_list.html.erb
         description: "Description"
+        # 1 - views/admin/lessons/_list.html.erb
+        id: "Id"
+        # 1 - views/admin/lessons/_list.html.erb
+        likes: "Likes"
+        # 1 - views/admin/lessons/_list.html.erb
+        subject: "Subject"
+        # 1 - views/admin/lessons/_list.html.erb
+        tags: "Tags"
+        # 1 - views/admin/lessons/_list.html.erb
+        title: "Title"
+        # 1 - views/admin/lessons/_list.html.erb
+        updated_at: "Last update"
+        # 1 - views/admin/lessons/_list.html.erb
+        user: "User"
       # Name used as label in the pagination (ex. '1-10 of 300 lessons')
       # 1 - helpers/admin_helper.rb
       name: "Lessons"
