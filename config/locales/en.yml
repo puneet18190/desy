@@ -2517,6 +2517,9 @@ An element with the private status through the X may be cancelled, while an elem
         fields:
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_users_general.html.erb
+          id: "Id"
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_users_general.html.erb
           name: "Name"
           # Unlike the lessons, a user may be associated to more than a subject
           # 1 - views/admin/search/_users_general.html.erb
