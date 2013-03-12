@@ -7,7 +7,7 @@ class Admin::MediaElementsController < AdminController
   def index
     elements = params[:search] ? AdminSearchForm.search(params[:search], 'elements') : MediaElement.where(converted: true).order('id DESC')
     @elements = elements.page(params[:page])
-    @location_root = Location.roots
+    @locations = [Location.roots]
     respond_to do |wants|
       wants.html
       wants.xml {render :xml => @elements}

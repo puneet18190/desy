@@ -6,7 +6,7 @@ class Admin::LessonsController < AdminController
   def index
     lessons = params[:search] ? AdminSearchForm.search(params[:search],'lessons') : Lesson.order('id DESC')
     @lessons = lessons.page(params[:page])
-    @location_root = Location.roots
+    @locations = [Location.roots]
     respond_to do |wants|
       wants.html
       wants.xml {render :xml => @lessons}
