@@ -2364,9 +2364,6 @@ An element with the private status through the X may be cancelled, while an elem
         # 1 - views/admin/media_elements/_media_element_upload.html.erb
         # 2 - views/admin/media_elements/_list.html.erb
         description: "Description"
-        # This label is used in a checkbox on the multiple upload form: when checked, the element will be saved and automatically published (this option is possible only for images, since audios and videos must be converted before they can be shared)
-        # 1 - views/admin/media_elements/_media_element_upload.html.erb
-        is_public: "Publish now"
         # 1 - views/admin/media_elements/_media_element_upload.html.erb
         # 2 - views/admin/media_elements/_list.html.erb
         tags: "Tags"
@@ -2389,6 +2386,9 @@ An element with the private status through the X may be cancelled, while an elem
         # Title of the frame which contains the list of uploaded files, ready to be saved as new elements
         # 1 - views/admin/media_elements/new.html.erb
         content_title: "Elements ready to be saved"
+      # This label is used in a checkbox on the multiple upload form: when checked, the element will be saved and automatically published (this option is possible only for images, since audios and videos must be converted before they can be shared)
+      # 1 - views/admin/media_elements/_media_element_upload.html.erb
+      publish_now: "Publish now"
       # Frame for the lessons search engine
       search:
         # Title of the form
