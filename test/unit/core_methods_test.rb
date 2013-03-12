@@ -43,6 +43,8 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !User.exists?(1)
     assert_equal 2, MediaElement.where(:user_id => resp.id).length
     assert_equal 2, Notification.where(:user_id => 2).count
+    assert !resp.destroy_with_dependencies
+    assert User.exists? resp.id
   end
   
   test 'copy_lesson' do

@@ -432,8 +432,13 @@ class User < ActiveRecord::Base
     return lesson.save ? lesson : lesson.errors.messages
   end
   
+  def super_admin?
+    super_admin = User.admin
+    !super_admin.nil? && self.id == super_admin.id
+  end
+  
   def destroy_with_dependencies
-    if self.new_record?
+    if self.new_record? || self.super_admin?
       errors.add(:base, :problem_destroying)
       return false
     end

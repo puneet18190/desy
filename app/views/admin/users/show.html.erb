@@ -41,9 +41,11 @@
                 <a class="btn btn-small" href="/admin/messages/new_notification?users=<%= @user.id %>" data-method="put">
                   <i class="icon-envelope"></i><%= t('admin.users.actions.message').downcase %>
                 </a>
-                <a class="btn btn-small" href="<%= admin_user_path %>" data-method="delete">
-                  <i class="icon-remove"></i><%= t('admin.users.delete').downcase %>
-                </a>
+                <% if !@user.super_admin? %>
+                  <a class="btn btn-small" href="<%= admin_user_path %>" data-method="delete">
+                    <i class="icon-remove"></i><%= t('admin.users.delete').downcase %>
+                  </a>
+                <% end %>
               </div>
             </td>
           </tr>

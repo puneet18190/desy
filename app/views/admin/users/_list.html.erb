@@ -53,7 +53,11 @@
               <%= link_to '', '#', :title => t('admin.users.actions.activate'), :class => 'icon-ok action _active_status activate', :data => {:param => user.id} %>
             <% end %>
           </td>
-          <td><%= link_to '<i class="icon-remove"></i>'.html_safe, admin_user_path(user), :method => :delete, :remote => true, :confirm => t('admin.users.delete_confirm'), :title=> t('admin.users.delete'), :class => 'action' %></td>
+          <td>
+            <% if !user.super_admin? %>
+              <%= link_to '<i class="icon-remove"></i>'.html_safe, admin_user_path(user), :method => :delete, :remote => true, :confirm => t('admin.users.delete_confirm'), :title=> t('admin.users.delete'), :class => 'action' %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
