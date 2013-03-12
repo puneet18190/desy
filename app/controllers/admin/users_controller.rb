@@ -6,7 +6,7 @@ class Admin::UsersController < AdminController
   def index
     users = params[:search] ? AdminSearchForm.search(params[:search],'users') : User.order('id DESC')
     @users = users.page(params[:page])
-    @location_root = Location.roots
+    @locations = [Location.roots]
     respond_to do |wants|
       wants.html
       wants.xml {render :xml => @elements}
@@ -35,8 +35,8 @@ class Admin::UsersController < AdminController
     render :json => @users
   end
   
-  def find_location
-    @parent = Location.find(params[:id])
+  def find_locations
+    @locations = Location.find(params[:id]).children
   end
   
   def set_status

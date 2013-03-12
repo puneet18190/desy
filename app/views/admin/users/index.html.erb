@@ -1,4 +1,32 @@
-<%= render :partial => "search" %>
+<h4><%= t('admin.users.search.label') %></h4>
+<%= form_tag 'users', :method => :get, :class => 'form-vertical', :id => 'admin-search-elements', :class => 'search-form' do %>
+  <%= hidden_field_tag 'search[search_type]', 'users'%>
+  <%= hidden_field_tag 'search[ordering]', 'id DESC'%>
+  <div class="row-fluid">
+    <div class="span12">
+      <%= render :partial => 'admin/search/alerts' %>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span4">
+      <%= render :partial => 'admin/search/users_general' %>
+    </div>
+    <div class="span4">
+      <%= render :partial => 'admin/search/date' %>
+    </div>
+    <div class="span4">
+      <%= render :partial => 'admin/search/location', :locals => {:locations => @locations} %>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="form-actions">
+        <button type="submit" class="btn btn-block upper"><%= t('admin.users.search.submit') %></button>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <h3><%= t('admin.users.title') %></h3>
 <% if @users.count > 1 %>
   <%= render :partial => "admin/list_heading", :locals => {:items => @users, :expandable => false} %>
