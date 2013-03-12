@@ -239,6 +239,10 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  def visive_tags
+    Tagging.visive_tags(self.tags)
+  end
+  
   def modified
     self.copied_not_modified = false
   end

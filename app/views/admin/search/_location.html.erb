@@ -1,29 +1,29 @@
 <div class="control-group heading">
-  <label><h5><%= t('admin.search.heading.location')%></h5></label>
+  <label><h5>LOCATION</h5></label>
 </div>
 <div class="control-group">
-  <label for="province_list"><%= t('admin.search.province')%></label>
+  <label for="province_list">Province</label>
   <div class="controls">
-    <select id="province_list" name='search[province_id]'>
+    <select id="province_list" name="search[province_id]">
       <%= render :partial => 'admin/users/locations_list', :locals => {:parent => nil} %>
     </select>
   </div>
 </div>
 <div class="control-group">
-  <label for="town_list"><%= t('admin.search.town')%></label>
+  <label for="town_list">Town</label>
   <div class="controls">
-    <select id="town_list" name='search[town_id]'>
-      <% if params[:search] && (params[:search][:province_id].to_i > 0)%>
+    <select id="town_list" name="search[town_id]">
+      <% if params[:search] && (params[:search][:province_id].to_i > 0) %>
         <%= render :partial => 'admin/users/locations_list', :locals => {:parent => params[:search][:province_id]} %>
       <% end %>
     </select>
   </div>
 </div>
 <div class="control-group">
-  <label for="school_list"><%= t('admin.search.school')%></label>
+  <label for="school_list">School</label>
   <div class="controls">
-    <select id="school_list" name='search[school_id]'>
-      <% if params[:search] && (params[:search][:town_id].to_i > 0)%>
+    <select id="school_list" name="search[school_id]">
+      <% if params[:search] && (params[:search][:town_id].to_i > 0) %>
         <%= render :partial => 'admin/users/locations_list', :locals => {:parent => params[:search][:town_id]} %>
       <% end %>
     </select>

@@ -4,7 +4,7 @@ function openAndLoadNextTr(prevTr) {
   if((thumb.length > 0) && (thumb.html().length == 0)){
     var el_id = next_tr.find('.element-thumbnail').data('param');
     $.ajax({
-      url: '/admin/elements/' + el_id + '/load',
+      url: '/admin/media_elements/' + el_id + '/load',
       type: 'get'
     });
   }

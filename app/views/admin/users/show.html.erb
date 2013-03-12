@@ -10,30 +10,40 @@
         <tr>
           <th><%= t('admin.users.fields.id') %></th>
           <th><%= t('admin.users.fields.email') %></th>
-          <th><%= t('admin.users.fields.school') %></th>
-          <th><%= t('admin.users.fields.location') %></th>
-          <th><%= t('admin.users.fields.created') %></th>
-          <th><%= t('admin.users.fields.update') %></th>
+          <th><%= t('admin.users.fields.school_level') %></th>
+          <th><%= Location.base_label %></th>
+          <th><%= t('locations.parents_label') %></th>
+          <th><%= t('admin.users.fields.created_at') %></th>
+          <th><%= t('admin.users.fields.updated_at') %></th>
           <th></th>
         </tr>
       </thead>
       <tbody>
           <tr>
             <td><%= @user.id %></td>
-            <td><%= link_to @user.email, "mailto:#{@user.email}"%></td>
-            <td><%= @user.school %> (<%= @user.school_level.description %>)</td>
-            <td><%= @user.province %> - <%= @user.town %></td>
-            <td><%= @user.created_at.strftime('%d-%m-%Y')%></td>
-            <td><%= @user.updated_at.strftime('%d-%m-%Y')%></td>
+            <td><%= link_to @user.email, "mailto:#{@user.email}" %></td>
+            <td><%= @user.school_level.description %></td>
+            <td><%= @user.base_location %></td>
+            <td><%= @user.parent_locations %></td>
+            <td><%= @user.created_at.strftime('%d-%m-%Y') %></td>
+            <td><%= @user.updated_at.strftime('%d-%m-%Y') %></td>
             <td>
               <div class="btn-group pull-right">
                 <% if @user.active %>
-                  <%= link_to "<i class='icon-ban-circle _show_status _show_ban'></i> ".html_safe + t('admin.users.ban').downcase, "/admin/user/#{@user.id}/ban", :method => :put, :class => 'btn btn-small' %>
+                  <a class="btn btn-small" href="/admin/user/<%= @user.id %>/ban" data-method="put">
+                    <i class="icon-ban-circle _show_status _show_ban"></i><%= t('admin.users.actions.ban').downcase %>
+                  </a>
                 <% else %>
-                  <%= link_to "<i class='icon-ok _show_status _show_active'></i> ".html_safe + t('admin.users.activate').downcase, "/admin/user/#{@user.id}/activate", :method => :put, :class => 'btn btn-small' %>
+                  <a class="btn btn-small" href="/admin/user/<%= @user.id %>/activate" data-method="put">
+                    <i class="icon-ok _show_status _show_active"></i><%= t('admin.users.actions.activate').downcase %>
+                  </a>
                 <% end %>
-                <%= link_to "<i class='icon-envelope'></i> ".html_safe + t('admin.users.message').downcase, "/admin/messages/new_notification?users=#{@user.id}", :class => 'btn btn-small' %>
-                <%= link_to "<i class='icon-remove'></i>".html_safe + t('admin.users.delete').downcase, admin_user_path, :method => :delete, :confirm => t('admin.general.ask_for_delete'), :class => 'btn btn-small' %>
+                <a class="btn btn-small" href="/admin/messages/new_notification?users=<%= @user.id %>" data-method="put">
+                  <i class="icon-envelope"></i><%= t('admin.users.actions.message').downcase %>
+                </a>
+                <a class="btn btn-small" href="<%= admin_user_path %>" data-method="delete">
+                  <i class="icon-remove"></i><%= t('admin.users.delete').downcase %>
+                </a>
               </div>
             </td>
           </tr>
@@ -114,6 +124,6 @@
 <div class="row-fluid">
   <div class="span12">
     <h4><%= t('admin.users.media_elements', :user => @user.full_name) %></h4>
-    <%= render :partial => 'admin/elements/list', :locals => {:elements => @user_elements} %>
+    <%= render :partial => 'admin/media_elements/list', :locals => {:elements => @user_elements} %>
   </div>
 </div>

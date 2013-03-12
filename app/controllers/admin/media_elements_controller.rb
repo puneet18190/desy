@@ -1,6 +1,6 @@
-class Admin::ElementsController < AdminController
+class Admin::MediaElementsController < AdminController
   
-  before_filter :find_element, :only => [:destroy, :update, :load_element]
+  before_filter :find_media_element, :only => [:destroy, :load_media_element]
   before_filter :initialize_media_element_with_owner_and_private, :only => :update
   layout 'admin'
   
@@ -31,7 +31,7 @@ class Admin::ElementsController < AdminController
     @ok = current_user.remove_from_admin_quick_uploading_cache @key
   end
   
-  def quick_upload_create
+  def create
     @key = :"#{params[:key]}"
     @ok = true
     filename = File.basename(params[:media])
@@ -72,26 +72,29 @@ class Admin::ElementsController < AdminController
       @media_element.title = params[:title]
       @media_element.description = params[:description]
       @media_element.tags = params[:tags]
+      if params[:is_public]
+        @media_element.is_public = true
+        @media_element.publication_date = Time.zone.now
+      end
       if !@media_element.save
-        @errors = convert_item_error_messages @element.errors.messages
-        @error_fields = @element.errors.messages.keys
+        @errors = convert_item_error_messages @media_element.errors.messages
+        @error_fields = @media_element.errors.messages.keys
       end
     end
   end
   
   def destroy
     @element.destroyable_even_if_public = true
-    if !@element.destroy
-      @errors = @element.get_base_error
-    end
+    @element.destroy
+    redirect_to "/admin/#{params[:back_action]}?page=#{params[:back_page]}"
   end
   
-  def load_element
+  def load_media_element
   end
   
   private
   
-  def find_element
+  def find_media_element
     @element = MediaElement.find(params[:id])
   end
   

@@ -16,7 +16,7 @@
     <br><%= text_field_tag 'title', file[:title], :placeholder => t('admin.media_elements.fields.title').downcase, :class => '_form_input' %>
     <br><%= text_area_tag 'description', file[:description], :placeholder => t('admin.media_elements.fields.description').downcase, :class => '_form_input' %>
     <br><%= text_area_tag 'tags', file[:tags], :placeholder => t('admin.media_elements.fields.tags').downcase, :class => '_form_input' %><br>
-    <%= check_box_tag 'publish', '1', (file[:type] == 'image'), :disabled => (file[:type] != 'image') %><span style="margin-left:10px"><%= t('admin.media_elements.fields.is_public').downcase %></span><br><br>
+    <%= check_box_tag 'publish', '1', (file[:type] == 'image'), :disabled => (file[:type] != 'image') %><span style="margin-left:10px"><%= t('admin.media_elements.publish_now').downcase %></span><br><br>
     <button class="_create_new_element btn btn-small btn-success" type="button" data-param="<%= file[:name] %>"><%= t('admin.media_elements.actions.save') %></button>
     <button class="_delete_new_element btn btn-small btn-danger" type="button" data-param="<%= file[:name] %>"><%= t('admin.media_elements.actions.delete') %></button>
   </form>

@@ -15,6 +15,10 @@ class Tagging < ActiveRecord::Base
   before_destroy :stop_destruction_if_last
   after_destroy :destroy_orphan_tags
   
+  def self.visive_tags(tags)
+    tags[1, tags.length].chop.gsub(',', ', ')
+  end
+  
   private
   
   def destroy_orphan_tags
