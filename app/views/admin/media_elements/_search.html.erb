@@ -1,6 +1,6 @@
-<h4><%= t('admin.media_elements.search.label')%></h4>
-<%= form_tag 'media_elements', :method => :get, :id => "admin-search-elements", :class => "search-form" do %>
-  <%= hidden_field_tag 'search[search_type]', 'elements'%>
+<h4><%= t('admin.media_elements.search.label') %></h4>
+<%= form_tag 'media_elements', :method => :get, :id => 'admin-search-elements', :class => 'search-form' do %>
+  <%= hidden_field_tag 'search[search_type]', 'elements' %>
   <%= hidden_field_tag 'search[ordering]', 'id DESC'%>
   <div class="row-fluid">
     <div class="span12">
@@ -21,7 +21,7 @@
   <div class="row-fluid">
     <div class="span12">
       <div class="form-actions">
-        <button type="submit" class="btn btn-block btn-success"><%= t('admin.media_elements.search.submit').upcase%></button>
+        <button type="submit" class="btn btn-block btn-success"><%= t('admin.media_elements.search.submit').upcase %></button>
       </div>
     </div>
   </div>
