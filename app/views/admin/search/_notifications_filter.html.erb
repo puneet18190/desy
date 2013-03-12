@@ -30,6 +30,16 @@
   </div>
 </div>
 <div class="control-group">
+<<<<<<< HEAD
+  <label for="recency">Registration date</label>
+  <div class="controls">
+    <select id="recency" name="search[recency]">
+      <option value=''>Select an option</option>
+      <option value='<%=1.day.ago%>'>today</option>
+      <option value='<%=1.week.ago%>'>last week</option>
+      <option value='<%=1.month.ago%>'>last month</option>
+      <option value='<%=1.year.ago%>'>last year</option>
+=======
   <label for="school_level_id"><%= t('admin.search.users.fields.created_at.title') %></label>
   <div class="controls">
     <select id="school_level" name="search[school_level_id]">
@@ -38,6 +48,7 @@
       <option value='1.week.ago'><%= t('admin.search.users.fields.created_at.week') %></option>
       <option value='1.month.ago'><%= t('admin.search.users.fields.created_at.month') %></option>
       <option value='1.week.ago'><%= t('admin.search.users.fields.created_at.year') %></option>
+>>>>>>> 413f91ab2737c6693b170e3d204a9d5901ddba67
     </select>
   </div>
 </div>
