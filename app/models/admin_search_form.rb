@@ -38,19 +38,14 @@ class AdminSearchForm < Form
     SETTINGS['location_types'].map{|type| type.downcase}.each do |type|
       with_joins = true if params[type].present? && params[type] != '0'
     end
-#    elements = elements.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
-#    if params[:school_id] || params[:user] || params[:province_id] || params[:town_id]
-#      elements = elements.joins(:user)
-#      if params[:school_id].present?
-#        elements = elements.where('users.location_id' => params[:school_id])
-#      elsif params[:town_id].present?
-#        town = Location.find(params[:town_id])
-#        elements = elements.where('users.location_id' => town.descendant_ids)
-#      elsif params[:province_id].present?
-#        province = Location.find(params[:province_id])
-#        elements = elements.where('users.location_id' => province.descendant_ids)
-#      end
-#    end
+    if with_joins
+      resp = resp.joins(:user)
+      resp = resp.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
+      location = Location.find_by_id get_location_param(params)
+      if location
+        # fare le cose qui
+      end
+    end
     resp
   end
   
@@ -77,6 +72,23 @@ class AdminSearchForm < Form
       users = users.where('location_id' => province.descendant_ids)
     end
     users
+  end
+  
+  private
+  
+  def get_location_param(params)
+    flag = true
+    index = SETTINGS['location_types'].length - 1
+    loc_param = params[SETTINGS['location_types'].last.downcase]
+    while flag && index >= 0
+      if loc_param.present? && loc_param != '0'
+        flag = false
+      else
+        index -= 1
+        loc_param = params[SETTINGS['location_types'][index].downcase]
+      end
+    end
+    loc_param
   end
   
 end
