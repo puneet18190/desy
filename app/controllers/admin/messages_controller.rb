@@ -32,8 +32,7 @@ class Admin::MessagesController < AdminController
   end
   
   def filter_users
-    @users = User.all
-    if false
+    if params[:search].present?
       @users = AdminSearchForm.search(params[:search],'users')
     end
   end

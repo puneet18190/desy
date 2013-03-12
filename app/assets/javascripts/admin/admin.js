@@ -66,7 +66,11 @@ $(document).ready(function() {
         $("input#contact-recipients").val('');
         $("input#notification_ids").val('');
         $("input#contact-recipients").attr('disabled',true);
-        $("#filter-users select").attr('disabled',true);
+        $("#filter-users select").each(function(){
+          $this = $(this);
+          $this.find('option:selected').removeAttr('selected');
+          $this.attr('disabled',true);
+        });
         $('.alert').hide();
       } else {
         $('input#contact-recipients').attr('disabled', false);

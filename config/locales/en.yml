@@ -2186,7 +2186,7 @@ An element with the private status through the X may be cancelled, while an elem
       messages:
         link: "Messages"
         notifications: "Notifications"
-        reports: "Report Abuse"
+        reports: "Abuse reports"
         help: "Help Desk"
       settings:
         link: "Settings"

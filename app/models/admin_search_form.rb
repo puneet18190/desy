@@ -1,6 +1,9 @@
 class AdminSearchForm < Form
 
-  attr_accessor :search_type, :ordering, :id, :title, :keyword, :user, :subject_id, :sti_type, :element_type, :date_range_field, :from, :to,:province_id, :town_id, :school_id, :school_level_id
+  attr_accessor :search_type, :ordering, :id, :title, :keyword, :user, 
+                :subject_id, :sti_type, :element_type, 
+                :date_range_field, :from, :to, :recency, 
+                :province_id, :town_id, :school_id, :school_level_id
   
   validates_numericality_of :id, :unless => Proc.new {|c| c.id.blank?}
   validates_presence_of :ordering
@@ -39,7 +42,7 @@ class AdminSearchForm < Form
     if params[:date_range_field].present? && params[:from].present? && params[:to].present?
       date_range = (Date.strptime(params[:from], '%d-%m-%Y').beginning_of_day)..(Date.strptime(params[:to], '%d-%m-%Y').end_of_day)
       lessons = lessons.where("#{params[:date_range_field]}" => date_range)
-    end
+    end    
     
     if params[:school_id] || params[:user] || params[:province_id] || params[:town_id]
       lessons = lessons.joins(:user)
@@ -100,6 +103,8 @@ class AdminSearchForm < Form
       date_range = (Date.strptime(params[:from], '%d-%m-%Y').beginning_of_day)..(Date.strptime(params[:to], '%d-%m-%Y').end_of_day)
       users = users.where("#{params[:date_range_field]}" => date_range)
     end
+    
+    users = users.where("users.created_at >= ?", params[:recency]) if params[:recency].present?
     
     if params[:subject_id].present?
       users = users.joins(:subjects).where('users_subjects.subject_id' => params[:subject_id])

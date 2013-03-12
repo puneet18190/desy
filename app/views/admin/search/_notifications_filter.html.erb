@@ -30,14 +30,14 @@
   </div>
 </div>
 <div class="control-group">
-  <label for="school_level_id">Registration date</label>
+  <label for="recency">Registration date</label>
   <div class="controls">
-    <select id="school_level" name="search[school_level_id]">
+    <select id="recency" name="search[recency]">
       <option value=''>Select an option</option>
-      <option value='today'>today</option>
-      <option value='1.week.ago'>last week</option>
-      <option value='1.month.ago'>last month</option>
-      <option value='1.week.ago'>last year</option>
+      <option value='<%=1.day.ago%>'>today</option>
+      <option value='<%=1.week.ago%>'>last week</option>
+      <option value='<%=1.month.ago%>'>last month</option>
+      <option value='<%=1.year.ago%>'>last year</option>
     </select>
   </div>
 </div>
