@@ -4,7 +4,7 @@ class Admin::LessonsController < AdminController
   layout 'admin'
   
   def index
-    lessons = params[:search] ? AdminSearchForm.search(params[:search],'lessons') : Lesson.order('id DESC')
+    lessons = params[:search] ? AdminSearchForm.search_lessons(params[:search]) : Lesson.order('id DESC')
     @lessons = lessons.page(params[:page])
     @locations = [Location.roots]
     respond_to do |wants|
