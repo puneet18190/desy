@@ -15,12 +15,6 @@
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.user'), :param => 'user_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => Location.base_label, :param => 'location_id'} %>
-        </th>
-        <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('locations.parents_label'), :param => 'location_id'} %>
-        </th>
-        <th>
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.created_at'), :param => 'created_at'} %>
         </th>
         <th>
@@ -46,8 +40,6 @@
           <td><%= element.title %></td>
           <td><%= element.sti_type %></td>
           <td><%= element.user.surname %> <%= element.user.name %></td>
-          <td><%= element.user.base_location %></td>
-          <td><%= element.user.parent_locations %></td>
           <td><%= element.created_at.strftime('%d-%m-%Y') %></td>
           <td><%= element.updated_at.strftime('%d-%m-%Y') %></td>
           <td>

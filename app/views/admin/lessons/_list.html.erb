@@ -15,12 +15,6 @@
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.user'), :param => 'user_id'} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => Location.base_label, :param => 'location_id'} %>
-        </th>
-        <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('locations.parents_label'), :param => 'location_id'} %>
-        </th>
-        <th>
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.created_at'), :param => 'created_at'} %>
         </th>
         <th>
@@ -41,8 +35,6 @@
             <td><%= lesson.title %></td>
             <td><%= lesson.subject.description %></td>
             <td><%= lesson.user.full_name %></td>
-            <td><%= lesson.user.base_location %></td>
-            <td><%= lesson.user.parent_locations %></td>
             <td><%= lesson.created_at.strftime('%d-%m-%Y') %></td>
             <td><%= lesson.updated_at.strftime('%d-%m-%Y') %></td>
             <td><%= lesson.likes.count%></td>

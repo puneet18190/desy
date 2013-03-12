@@ -16,13 +16,13 @@
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.surname'), :param => 'surname'} %>
         </th>
         <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.school_level'), :param => 'school_level_id'} %>
+        </th>
+        <th>
           <%= render :partial => 'admin/ordering', :locals => {:name => Location.base_label, :param => 'location_id'} %>
         </th>
         <th>
           <%= render :partial => 'admin/ordering', :locals => {:name => t('locations.parents_label'), :param => 'location_id'} %>
-        </th>
-        <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.school_level'), :param => 'school_level_id'} %>
         </th>
         <th>
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.created_at'), :param => 'created_at'} %>
