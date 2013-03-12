@@ -36,7 +36,8 @@ class Admin::UsersController < AdminController
   end
   
   def find_locations
-    @locations = Location.find(params[:id]).children
+    parent = Location.find_by_id params[:id]
+    @locations = parent.nil? ? [] : parent.children
   end
   
   def set_status
