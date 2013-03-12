@@ -6,18 +6,16 @@ module Media
       describe Composer do
         self.use_transactional_fixtures = false
 
-        let(:user) { User.admin }
+        let(:pools) { Rails.configuration.database_configuration[Rails.env]['pool'] }
 
-        let(:audio1) do
-          ::Audio.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
-            v.user  = user
-            v.media = MESS::CONVERTED_AUDIO_HASH
-          end
-        end
-        let(:audio2) do
-          ::Audio.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
-            v.user  = user
-            v.media = MESS::CONVERTED_AUDIO_HASH
+        let(:user) { User.admin }
+        
+        let(:components) do
+          (pools+1).times.map do
+            ::Audio.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
+              v.user  = user
+              v.media = MESS::CONVERTED_AUDIO_HASH
+            end
           end
         end
 
@@ -30,14 +28,11 @@ module Media
 
         describe '#run' do
           let(:params) do
-            { components: [
-                { audio: audio1.id              ,
-                  from:  10                     ,
-                  to:    20                    },
-                { audio: audio2.id              ,
-                  from:  10                     ,
-                  to:    20                    }
-              ]
+            { components: components.map do |record|
+              { audio: record.id,
+                from:  10       ,
+                to:    20      }
+              end
             }
           end
           let(:params_with_initial_audio) { params.merge(initial_audio: { id: initial_audio.id }) }

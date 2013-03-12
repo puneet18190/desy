@@ -11,6 +11,10 @@ module Media
     PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER = 'media_elements'
     MEDIA_ELEMENTS_FOLDER                 = RAILS_PUBLIC_FOLDER.join PUBLIC_RELATIVE_MEDIA_ELEMENTS_FOLDER
 
+    def self.remove_folder!
+      FileUtils.rm_rf self::FOLDER
+    end
+
     def initialize(model, column, value)
       @model, @column, @value = model, column, value
 

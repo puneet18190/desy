@@ -52,6 +52,7 @@ module Media
           @overwrite = video.media.present?
           old_media = @overwrite && video.media.to_hash
           compose
+          _d video.id
         rescue StandardError => e
           if old_media
             video.media     = old_media

@@ -2,9 +2,7 @@
 
 create_locations_school_levels_subjects_admin_user
 
-videos_folder = Media::Video::Uploader::FOLDER
-audios_folder = Media::Audio::Uploader::FOLDER
-[videos_folder, audios_folder].each { |d| FileUtils.rm_rf d if Dir.exists? d }
+[ Media::Video::Uploader, Media::Audio::Uploader, ImageUploader ].each{ |u| u.remove_folder! }
 
 subject1 = Subject.find 1
 subject2 = Subject.find 2

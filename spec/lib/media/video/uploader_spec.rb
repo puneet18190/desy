@@ -17,8 +17,7 @@ module Media
         before(:all) do
           FileUtils.cp valid_video_path, tmp_valid_video_path
           ['public/media_elements/videos/test', 'tmp/media/video/editing/conversions/test'].each do |folder|
-            f = Rails.root.join(folder)
-            FileUtils.rm_rf f if Dir.exists? f
+            FileUtils.rm_rf Rails.root.join(folder)
           end
         end
         

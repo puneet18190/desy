@@ -18,8 +18,9 @@ module MediaEditingSpecSupport
     /\A#{Regexp.quote prefix.to_s}_[\w\-]{22}#{Regexp.quote postfix.to_s}\z/
   end
 
-  CONVERTED_VIDEO_HASH = { mp4: SAMPLES_FOLDER.join('con verted.mp4').to_s, webm: SAMPLES_FOLDER.join('con verted.webm').to_s, filename: 'con verted' }
-  CONVERTED_AUDIO_HASH = { mp3: SAMPLES_FOLDER.join('con verted.mp3').to_s, ogg: SAMPLES_FOLDER.join('con verted.ogg').to_s, filename: 'con verted' }
+  CONVERTED_VIDEO_HASH      = { mp4: SAMPLES_FOLDER.join('con verted.mp4').to_s, webm: SAMPLES_FOLDER.join('con verted.webm').to_s, filename: 'con verted' }
+  CONVERTED_AUDIO_HASH      = { mp3: SAMPLES_FOLDER.join('con verted.mp3').to_s, ogg: SAMPLES_FOLDER.join('con verted.ogg').to_s, filename: 'con verted' }
+  CONVERTED_AUDIO_HASH_LONG = { mp3: SAMPLES_FOLDER.join('con verted long.mp3').to_s, ogg: SAMPLES_FOLDER.join('con verted long.ogg').to_s, filename: 'con verted long' }
   
   CROP_VIDEOS = CONVERTED_VIDEO_HASH.select{ |k| VIDEO_FORMATS.include? k }
   CROP_AUDIOS = CONVERTED_AUDIO_HASH.select{ |k| AUDIO_FORMATS.include? k }
@@ -67,18 +68,18 @@ module MediaEditingSpecSupport
 
   VIDEO_COMPOSING = { without_audio_track: 
                       { 
-                        mp4: {:duration=>55.12, :streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>819}], :audio=>[{:codec=>"mp3", :bitrate=>63}]}},
-                        webm: {:duration=>55.16, :streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[{:codec=>"vorbis", :bitrate=>nil}]}}
+                        mp4: {:streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>819}], :audio=>[{:codec=>"mp3", :bitrate=>63}]}},
+                        webm: {:streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[{:codec=>"vorbis", :bitrate=>nil}]}}
                       },
                       with_audio_track:
                       { 
-                        mp4: {:duration=>55.08, :streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>819}], :audio=>[{:codec=>"mp3", :bitrate=>149}]}},
-                        webm: {:duration=>55.13, :streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[{:codec=>"vorbis", :bitrate=>nil}]}}
+                        mp4: {:streams=>{:video=>[{:codec=>"h264", :width=>960, :height=>540, :bitrate=>819}], :audio=>[{:codec=>"mp3", :bitrate=>149}]}},
+                        webm: {:streams=>{:video=>[{:codec=>"vp8", :width=>960, :height=>540, :bitrate=>nil}], :audio=>[{:codec=>"vorbis", :bitrate=>nil}]}}
                       }
                     }
   AUDIO_COMPOSING = { 
-                      mp3: {:duration=>20.11, :streams=>{:video=>[], :audio=>[{:codec=>"mp3", :bitrate=>128}]}}, 
-                      ogg: {:duration=>19.99, :streams=>{:video=>[], :audio=>[{:codec=>"vorbis", :bitrate=>112}]}} 
+                      mp3: {:duration=>60, :streams=>{:video=>[], :audio=>[{:codec=>"mp3", :bitrate=>128}]}}, 
+                      ogg: {:duration=>60, :streams=>{:video=>[], :audio=>[{:codec=>"vorbis", :bitrate=>112}]}} 
                     }
 
   AVCONV_SH_VARS         = {}
