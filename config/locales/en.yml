@@ -2179,9 +2179,17 @@ An element with the private status through the X may be cancelled, while an elem
       length_duration: 3
   
   
-  # SECTION 3.3: locations
+  # SECTION 3.3: Locations
+  # 
+  # The structure of locations in the application is organized as follows:
+  #   1) in SETTINGS['location_types'] you can configure an array containing the different levels of locations (ordered from external to internal. A likely example of location configuration would be ['Province', 'District', 'City']
+  #   2) once the administrator has configured the location levels, in the database the table 'locations' is split with single table inheritance, and a model is generated for each location type configured
+  #   3) each time the application need to show data concerning the location of a user (or his lessons / media elements), two separate columns are generated:
+  #      (a) a column labelled with the name of the lower location (in the example above: 'City' : 'Shanghai')
+  #      (b) a column containing the chain the higher locations associated to the lower one (ordered from lower to higher, separated by '-', in our case would be something like 'Shanghai district - Shanghai province')
   
   locations:
+    # This array of labels corresponds to the ordered ist configured in SETTINGS['location_types']: the strings in that list are used to NAME THE MODELS, and for this reason they should use english characters, whereas this array specifies the local translation for each model.
     # 1 - app/models/location.rb
     # 2 - app/models/location.rb
     labels: [
@@ -2189,6 +2197,11 @@ An element with the private status through the X may be cancelled, while an elem
         'Town',
         'School'
       ]
+    # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'
+    # 1 - views/admin/lessons/_list.html.erb
+    # 2 - views/admin/media_elements/_list.html.erb
+    # 3 - views/admin/users/show.html.erb
+    # 4 - views/admin/users/_list.html.erb
     parents_label: "Town / province"
   
   
