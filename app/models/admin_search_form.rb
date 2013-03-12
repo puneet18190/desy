@@ -43,7 +43,17 @@ class AdminSearchForm < Form
       resp = resp.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
       location = Location.find_by_id get_location_param(params)
       if location
-        # fare le cose qui
+        if location.depth == SETTINGS['location_types'].length - 1
+          resp = resp.where(:users => {:location_id => location.id})
+        else
+          anc = location.ancestry
+          anc = '/' if anc.blank?
+          anc = "#{anc}/" if (/\// =~ anc).nil?
+          anc = "#{anc}/#{location.id}/"
+          
+          # TODO manca solo la join doppia finale! provare che funzioni in modo consecutivo
+          
+        end
       end
     end
     resp
