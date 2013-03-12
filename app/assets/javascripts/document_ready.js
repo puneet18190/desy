@@ -587,38 +587,9 @@ $(document).ready(function() {
   $("#filter_media_elements").selectbox();
   
   $("#filter_search_media_elements").selectbox();
-
+  
   $("#user_school_level_id").selectbox();
-
-  $("#user_location_id").selectbox();
   
-  $("#town_id").selectbox();
-  
-  $("#province_id").selectbox();
-  
-  $("#province_id,#town_id").on('change',function(){
-    var $this = $(this);
-    if($this.val().length > 0){
-      $.ajax({
-        url: "/location/"+$(this).val()+"/find",
-        type: "POST"
-      });
-    }else{
-      if($this.attr('id') === 'town_id'){
-        $('#user_location_id').selectbox("detach");
-        $('#user_location_id').html('');
-        $('#user_location_id').selectbox();
-      }
-      if($this.attr('id') === 'province_id'){
-        $('#user_location_id').selectbox("detach");
-        $('#town_id').selectbox("detach");
-        $('#user_location_id').html('');
-        $('#town_id').html('');
-        $('#user_location_id').selectbox();
-        $('#town_id').selectbox();
-      }
-    }
-  });
   
   
   $('body').on('keyup blur', 'input[maxlength], textarea[maxlength]', function () {

@@ -1,24 +1,24 @@
 <div class="control-group heading">
-  <label><h5><%= t('admin.search.heading.general')%></h5></label>
+  <label><h5><%= t('admin.search.media_elements.title') %></h5></label>
 </div>
 <div class="control-group">
-  <label for="id"><%= t('admin.search.id')%></label>
+  <label for="id"><%= t('admin.search.media_elements.fields.id') %></label>
   <div class="controls">
-    <%= text_field_tag 'search[id]', params[:search] ? params[:search][:id] : ''  ,:class=>'input-mini', :placeholder => t('admin.search.id')%>
+    <%= text_field_tag 'search[id]', params[:search] ? params[:search][:id] : ''  ,:class => 'input-mini', :placeholder => t('admin.search.media_elements.fields.id') %>
   </div>
 </div>
 
 <div class="control-group">
-  <label for="keyword"><%= t('admin.search.title')%></label>
+  <label for="keyword"><%= t('admin.search.media_elements.fields.title') %></label>
   <div class="controls">
-    <%= text_field_tag 'search[title]',  params[:search] ? params[:search][:title] : '', :class=>'input-medium', :placeholder => t('admin.search.title')%>
+    <%= text_field_tag 'search[title]',  params[:search] ? params[:search][:title] : '', :class=>'input-medium', :placeholder => t('admin.search.media_elements.fields.title') %>
   </div>
 </div>
 <div class="control-group">
-  <label for="subject"><%= t('admin.search.media_type')%></label>
+  <label for="subject"><%= t('admin.search.media_elements.fields.sti_type') %></label>
   <div class="controls">
     <select id="search_sti_type" name="search[sti_type]">
-      <option value=''><%= t('admin.search.all_media_type')%></option>
+      <option value=''><%= t('admin.search.media_elements.fields.all_sti_types') %></option>
       <% MediaElement::STI_TYPES.each do |sti_type| %>
         <option><%= sti_type %></option>
       <% end %>
@@ -26,8 +26,8 @@
   </div>
 </div>
 <div class="control-group">
-  <label for="search_user"><%= t('admin.search.user')%></label>
+  <label for="search_user"><%= t('admin.search.media_elements.fields.user') %></label>
   <div class="controls">
-    <%= text_field_tag 'search[user]',  params[:search] ? params[:search][:user] : '', :class=>'input-medium', :placeholder => t('admin.search.user')%>
+    <%= text_field_tag 'search[user]',  params[:search] ? params[:search][:user] : '', :class=>'input-medium', :placeholder => t('admin.search.media_elements.fields.user') %>
   </div>
 </div>

@@ -1,3 +1,0 @@
-<% if !@file.nil? %>
-  $('#new_elements_preview').prepend("<%= j render(:partial => 'element_update', :locals => {:file => @file, :colspan => 4}) %>");
-<% end %>

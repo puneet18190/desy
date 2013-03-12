@@ -1,65 +1,72 @@
-<% if users.count > 0 %>
+<% if users.length > 0 %>
+  
   <table id="users-list" class="table table-striped table-bordered table-rounded">
-  <thead>
-    <tr>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'id', :param=>'id'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'email', :param=>'email'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'name', :param=>'name'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'surname', :param=>'surname'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'location', :param=>'location_id'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'school', :param=>'location_id'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'school level', :param=>'school_level_id'} %>
-      </th>
-      <th>
-        <%= render :partial => 'admin/ordering', :locals => {:name => 'created at', :param=>'created_at'} %>
-      </th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% users.each do |user| %>
-      <tr id="<%=user.id%>">
-        <td><%= user.id %></td>
-        <td><%= link_to user.email, "mailto:#{user.email}"%></td>
-        <td><%= user.name %></td>
-        <td><%= user.surname %></td>
-        <td><%= user.province %> - <%= user.town %></td>
-        <td><%= user.school %></td>
-        <td><%= user.school_level.description %></td>
-        <td><%= user.created_at.strftime('%d-%m-%Y')%></td>
-        <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user), :title=> t('admin.users.index.show'), :target => :blank, :class=>"action"%></td>
-        <td><%= link_to '<i class="icon-envelope"></i>'.html_safe, "/admin/messages/new_notification?users=#{user.id}", :title=> t('admin.users.index.message'), :target => :blank, :class=>"action"%></td>
-        <td id="user_<%=user.id%>_status">
-          <%if user.active %>
-            <%= link_to '', "#", :title=> t('admin.users.index.ban'), :class=>"icon-ban-circle action _active_status ban", 'data-param'=>"#{user.id}"%>
-          <% else %>
-            <%= link_to '', "#", :title=> t('admin.users.index.activate'), :class=>"icon-ok action _active_status activate", 'data-param'=>"#{user.id}"%>  
-          <% end %>
-        </td>
-        
-        <td><%= link_to '<i class="icon-remove"></i>'.html_safe, admin_user_path(user),:method => :delete, :remote => true, :confirm => t('admin.general.ask_for_delete'), :title=> t('admin.users.index.delete'), :class=>"action"%></td>
+    <thead>
+      <tr>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.id'), :param => 'id'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.email'), :param => 'email'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.name'), :param => 'name'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.surname'), :param => 'surname'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.school_level'), :param => 'school_level_id'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => Location.base_label, :param => 'location_id'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('locations.parents_label'), :param => 'location_id'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.users.fields.created_at'), :param => 'created_at'} %>
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr id="<%= user.id %>">
+          <td><%= user.id %></td>
+          <td><%= link_to user.email, "mailto:#{user.email}" %></td>
+          <td><%= user.name %></td>
+          <td><%= user.surname %></td>
+          <td><%= user.base_location %></td>
+          <td><%= user.parent_locations %></td>
+          <td><%= user.school_level.description %></td>
+          <td><%= user.created_at.strftime('%d-%m-%Y')%></td>
+          <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, admin_user_path(user), :title => t('admin.users.show'), :target => :blank, :class => 'action' %></td>
+          <td><%= link_to '<i class="icon-envelope"></i>'.html_safe, "/admin/messages/new_notification?users=#{user.id}", :title => t('admin.users.actions.message'), :target => :blank, :class => 'action' %></td>
+          <td id="user_<%= user.id %>_status">
+            <% if user.active %>
+              <%= link_to '', '#', :title => t('admin.users.actions.ban'), :class => 'icon-ban-circle action _active_status ban', :data => {:param => user.id} %>
+            <% else %>
+              <%= link_to '', '#', :title => t('admin.users.actions.activate'), :class => 'icon-ok action _active_status activate', :data => {:param => user.id} %>
+            <% end %>
+          </td>
+          <td>
+            <% if !user.super_admin? %>
+              <%= link_to '<i class="icon-remove"></i>'.html_safe, admin_user_path(user), :method => :delete, :remote => true, :confirm => t('admin.users.delete_confirm'), :title=> t('admin.users.delete'), :class => 'action' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
 <% else %>
+  
   <div class="widget">
-    <%= t('admin.users.index.not_found') %>
+    <%= t('admin.users.empty') %>
   </div>
+  
 <% end %>

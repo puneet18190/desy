@@ -124,6 +124,10 @@ class MediaElement < ActiveRecord::Base
     self.sti_type == VIDEO_TYPE
   end
   
+  def visive_tags
+    Tagging.visive_tags(self.tags)
+  end
+  
   def tags
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'MediaElement')
   end

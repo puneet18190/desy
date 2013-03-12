@@ -1,7 +1,7 @@
 <h3 id="accordion_group_<%= group.id %>">
   <%= link_to t('users.mailing_list.delete'), "/mailing_lists/#{group.id}/delete", {:method => :delete, :remote => true, :class => 'delete_group _delete_mailing_list_group'} %>
   <a class="selector"></a>
-  <span class="group-title" contenteditable="true" data-param="<%= group.id %>"><%= group.name ? group.name : t('users.mailing_list.label') + ' ' + group.id.to_s %></span>
+  <span class="group-title" contenteditable="true" data-param="<%= group.id %>"><%= group.name ? group.name : t('users.mailing_list.label', :number => group.id.to_s).html_safe %></span>
   <div style="clear:both"></div>
 </h3>
 

@@ -276,7 +276,8 @@ html.media_element_editor-layout {
       .boxContentMediaElementText {
         text-align:center;
         height:100%;
-        font: 230% 'Nunito', sans-serif;
+        font: 230% 'Droid Sans', sans-serif;
+        
         display: table;
         p {
           line-height:40px;
@@ -589,6 +590,7 @@ html.media_element_editor-layout {
         height:48px;
         line-height:12px;
         overflow:hidden;
+        font-family: 'Droid Sans', sans-serif;
       }
       &.current {
       outline: 2px solid #fff;
@@ -847,6 +849,7 @@ html.media_element_editor-layout {
       right: 80px;
       
       background: url(<%= asset_path 'play.png' %>) top left  no-repeat;
+      background-size: 18px 18px;
       &:hover {
         opacity:0.3;
       };
@@ -856,7 +859,7 @@ html.media_element_editor-layout {
       bottom:-3px;
       right: 80px;
       background: url(<%= asset_path 'pause.png' %>) top left  no-repeat;
-      
+      background-size: 18px 18px;
     }
     a.done {
       position:absolute;

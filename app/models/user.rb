@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   scope :not_confirmed, where(confirmed: false)
   scope :active,        where(active: true)
   
-  alias_attribute :school, :location
+  alias_attribute :"#{SETTINGS['location_types'].last.downcase}", :location
   
   def self.admin
     find_by_email SETTINGS['admin']['email']
@@ -62,9 +62,7 @@ class User < ActiveRecord::Base
     # QUESTO METODO VA CAMBIATO MA SENZA CAMBIARGLI NOME
     # super_admin =  self.class.admin
     # id == super_admin.id || SETTINGS['grant_admin_privileges'].include?(self.email)
-    admin = User.admin
-    return false if admin.nil?
-    return admin.id == self.id
+    self.super_admin?
   end
   
   def accept_policies
@@ -117,14 +115,27 @@ class User < ActiveRecord::Base
     "#{self.name} #{self.surname}"
   end
   
-  def province
-    "#{self.location.root}"
+  def base_location
+    self.location.name
   end
   
-  def town
-    "#{self.location.parent}"
+  def parent_locations
+    resp = ''
+    first = true
+    current_location = self.location
+    (0...SETTINGS['location_types'].length).to_a.each do |index|
+      if current_location.class.to_s != SETTINGS['location_types'].last
+        if first
+          resp = "#{current_location.name}"
+          first = false
+        else
+          resp = "#{resp} - #{current_location.name}"
+        end
+      end
+      current_location = current_location.parent
+    end
+    resp
   end
-  
   
   def video_editor_available
     Video.where(converted: false, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
@@ -419,8 +430,13 @@ class User < ActiveRecord::Base
     return lesson.save ? lesson : lesson.errors.messages
   end
   
+  def super_admin?
+    super_admin = User.admin
+    !super_admin.nil? && self.id == super_admin.id
+  end
+  
   def destroy_with_dependencies
-    if self.new_record?
+    if self.new_record? || self.super_admin?
       errors.add(:base, :problem_destroying)
       return false
     end

@@ -6,7 +6,7 @@ class Admin::UsersController < AdminController
   def index
     users = params[:search] ? AdminSearchForm.search(params[:search],'users') : User.order('id DESC')
     @users = users.page(params[:page])
-    @location_root = Location.roots
+    @locations = [Location.roots]
     respond_to do |wants|
       wants.html
       wants.xml {render :xml => @elements}
@@ -15,8 +15,8 @@ class Admin::UsersController < AdminController
   
   def show
     Statistics.user = @user
-    @user_lessons = Lesson.joins(:user,:subject).where(user_id: @user.id).order('id DESC')
-    @user_elements = MediaElement.joins(:user).where(user_id: @user.id).order('id DESC')
+    @user_lessons        = Lesson.where(:user_id => @user.id).order('updated_at DESC').limit(10)
+    @user_elements       = MediaElement.where(:user_id => @user.id).order('updated_at DESC').limit(10)
     @my_created_lessons  = Statistics.my_created_lessons
     @my_created_elements = Statistics.my_created_elements
     @my_copied_lessons   = Statistics.my_copied_lessons
@@ -30,18 +30,14 @@ class Admin::UsersController < AdminController
     end
   end
   
-  def get_emails
-    @users = User.get_emails(params[:term])
-    render :json => @users
-  end
-  
   def get_full_names
     @users = User.get_full_names(params[:term])
     render :json => @users
   end
   
-  def find_location
-    @parent = Location.find(params[:id])
+  def find_locations
+    parent = Location.find_by_id params[:id]
+    @locations = parent.nil? ? [] : parent.children
   end
   
   def set_status
@@ -62,16 +58,6 @@ class Admin::UsersController < AdminController
     @user.active = true
     @user.save
     redirect_to admin_user_path(@user)
-  end
-  
-  def contact
-    if params[:users] #list of recipients
-      @users = []
-      @users_ids = params[:users].gsub(/[\[\]]/,'').split(',')
-      @users_ids.each do |user_id|
-        @users << User.find(user_id)
-      end
-    end
   end
   
   private

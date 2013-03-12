@@ -1,0 +1,89 @@
+<% if elements.count > 0 %>
+  <table id="elements-list" class="table table-striped table-hover table-bordered table-rounded">
+    <thead>
+      <tr>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.id'), :param => 'id'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.title'), :param => 'title'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.sti_type'), :param => 'sti_type'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.user'), :param => 'user_id'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.created_at'), :param => 'created_at'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.updated_at'), :param => 'updated_at'} %>
+        </th>
+        <th>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.is_public'), :param => 'is_public'} %>
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <a name="list-anchor"></a>
+      <%
+       back_page = 1
+       if params[:page]
+         back_page = (elements.length == 1) ? params[:page].to_i - 1 : params[:page].to_i
+       end
+      %>
+      <% elements.each do |element| %>
+        <tr class="collapse" id="<%= element.id %>">
+          <td><%= element.id %></td>
+          <td><%= element.title %></td>
+          <td><%= element.sti_type %></td>
+          <td><%= link_to element.user.full_name, admin_user_path(element.user_id), :target => :blank, :class => '_user_link_in_admin' %></td>
+          <td><%= element.created_at.strftime('%d-%m-%Y') %></td>
+          <td><%= element.updated_at.strftime('%d-%m-%Y') %></td>
+          <td>
+            <%= element.is_public.to_s %>
+          </td>
+          <td>
+            <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.media_elements.delete_confirm') %>" href="/admin/media_elements/<%= element.id %>?back_action=media_elements&back_page=<%= back_page %>">
+              <i class="icon-remove"></i>
+            </a>
+          </td>
+        </tr>
+        <div style="clear:both;"></div>
+        <tr class="collapsed">
+          <td colspan="10">
+            <div class="row-fluid">
+            <div class="span3">
+              <div id="element_<%= element.id %>_preview" class="element-thumbnail" data-param="<%= element.id %>">
+                <%= render :partial => "admin/media_elements/previews/#{element.sti_type.downcase}", :locals => {:media_element => element} %>
+              </div>
+            </div>
+            <div class="span3">
+              <h5><%= t('admin.media_elements.fields.tags') %></h5>
+              <%= element.visive_tags %>
+            </div>
+            <div class="span6">
+              <h5><%= t('admin.media_elements.fields.description') %></h5>
+              <%= element.description %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <% if params[:search].present? && params[:search][:id].present? %>
+    <script type="text/javascript" charset="utf-8">
+      openAndLoadNextTr($('tr#<%=params[:search][:id] %>'));
+    </script>
+  <% end %>
+  
+<% else %>
+  
+  <div class="widget">
+    <%= t('admin.media_elements.empty') %>
+  </div>
+  
+<% end %>

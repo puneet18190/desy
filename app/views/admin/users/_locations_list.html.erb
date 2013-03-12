@@ -1,17 +1,4 @@
-<% if parent %>  
-  <% @children = Location.find(parent).children %>
-  <option value=''>Select a <%=@children.first.sti_type%></option>
-  <% if params[:search] %>
-    <% selected = params[:search][(@children.first.sti_type.downcase+'_id').to_sym]%>
-    <%= options_for_select(@children.order(:name).map{ |l| [l.to_s, l.id] }, selected) %>
-  <% else %>
-    <%= options_for_select(@children.order(:name).map{ |l| [l.to_s, l.id] }) %>
-  <% end %>
-<% else %>
-  <option value=''>Select a <%=@location_root.first.sti_type%></option>
-  <% if params[:search]%>
-    <%= options_for_select(@location_root.order(:name).map{ |l| [l.to_s, l.id] }, params[:search][:province_id].present? ? params[:search][:province_id] : '') %>
-  <% else %>
-    <%= options_for_select(@location_root.order(:name).map{ |l| [l.to_s, l.id] }) %>
-  <% end %>
+<% if locations.any? %>
+  <option value="0">SELECT A TOWN</option>
+  <%= options_from_collection_for_select(locations, 'id', 'name') %>
 <% end %>
