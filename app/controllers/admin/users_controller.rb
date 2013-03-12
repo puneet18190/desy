@@ -4,7 +4,7 @@ class Admin::UsersController < AdminController
   layout 'admin'
   
   def index
-    users = params[:search] ? AdminSearchForm.search(params[:search],'users') : User.order('id DESC')
+    users = params[:search] ? AdminSearchForm.search_users(params[:search]) : User.order('id DESC')
     @users = users.page(params[:page])
     @locations = [Location.roots]
     respond_to do |wants|
