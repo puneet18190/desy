@@ -2375,14 +2375,27 @@ An element with the private status through the X may be cancelled, while an elem
       empty: "No elements found"
       # Labels for the fields of an element
       fields:
+        # 1 - views/admin/media_elements/_list.html.erb
+        created_at: "Creation date"
         # 1 - views/admin/media_elements/_media_element_upload.html.erb
         # 2 - views/admin/media_elements/_list.html.erb
         description: "Description"
+        # 1 - views/admin/media_elements/_list.html.erb
+        id: "Id"
+        # 1 - views/admin/media_elements/_list.html.erb
+        is_public: "Public"
+        # 1 - views/admin/media_elements/_list.html.erb
+        sti_type: "Media type"
         # 1 - views/admin/media_elements/_media_element_upload.html.erb
         # 2 - views/admin/media_elements/_list.html.erb
         tags: "Tags"
         # 1 - views/admin/media_elements/_media_element_upload.html.erb
+        # 2 - views/admin/media_elements/_list.html.erb
         title: "Title"
+        # 1 - views/admin/media_elements/_list.html.erb
+        updated_at: "Last update"
+        # 1 - views/admin/media_elements/_list.html.erb
+        user: "User"
       # Name used as label in the pagination (ex. '1-10 of 300 elements')
       # 1 - helpers/admin_helper.rb
       name: "Elements"
