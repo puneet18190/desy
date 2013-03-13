@@ -262,6 +262,7 @@ DEPENDENCIES
   colorize
   daemons
   delayed_job_active_record
+  eventmachine
   exception_notification!
   irb-benchmark
   irbtools
