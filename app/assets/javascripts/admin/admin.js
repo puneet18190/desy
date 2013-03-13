@@ -72,6 +72,7 @@ $(document).ready(function() {
     $this = $(this)
     var order_by = $this.data('ordering');
     $("input#search_ordering").val(order_by);
+    $("input#search_desc").val($this.data('desc'));
     $('#admin-search-lessons').submit();
   });
   
@@ -80,6 +81,7 @@ $(document).ready(function() {
     $this = $(this)
     var order_by = $this.data('ordering');
     $("input#search_ordering").val(order_by);
+    $("input#search_desc").val($this.data('desc'));
     $('#admin-search-elements').submit();
   });
   
@@ -88,6 +90,7 @@ $(document).ready(function() {
     $this = $(this)
     var order_by = $this.data('ordering');
     $("input#search_ordering").val(order_by);
+    $("input#search_desc").val($this.data('desc'));
     $('#admin-search-elements').submit();
   });
   

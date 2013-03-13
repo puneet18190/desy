@@ -1,5 +1,19 @@
 class AdminSearchForm < Form
   
+  ORDERINGS = {
+    :media_elements => [
+      'media_elements.id %{ord}',
+      'media_elements.title %{ord}',
+      'media_elements.sti_type %{ord}',
+      'users.surname %{ord}, users.name %{ord}',
+      'media_elements.created_at %{ord}',
+      'media_elements.updated_at %{ord}',
+      'media_elements.is_public %{ord}'
+    ],
+    :lessons => [],
+    :users => []
+  }
+  
   def self.search_lessons(params)
     lessons = Lesson.order(params[:ordering])
     lessons = lessons.where(id: params[:id]) if params[:id].present?
@@ -27,6 +41,15 @@ class AdminSearchForm < Form
   
   def self.search_media_elements(params)
     resp = MediaElement.where(:converted => true)
+    if params[:ordering].present
+      ord = ORDERINGS[:media_elements][params[:ordering].to_i]
+      if params[:desc] == 'true'
+        ord.gsub!('%{ord}', 'DESC')
+      else
+        ord.gsub!('%{ord}', 'ASC')
+      end
+      resp = resp.order(ord)
+    end
     resp = resp.where(:media_elements => {:id => params[:id]}) if params[:id].present?
     resp = resp.where('title ILIKE ?', "%#{params[:title]}%") if params[:title].present?
     resp = resp.where(:sti_type => params[:sti_type]) if params[:sti_type].present?

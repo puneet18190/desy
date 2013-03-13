@@ -1,7 +1,8 @@
 <h4><%= t('admin.media_elements.search.label') %></h4>
 <%= form_tag 'media_elements', :method => :get, :id => 'admin-search-elements', :class => 'search-form' do %>
   <%= hidden_field_tag 'search[search_type]', 'elements' %>
-  <%= hidden_field_tag 'search[ordering]', 'id DESC'%>
+  <%= hidden_field_tag 'search[ordering]', '' %>
+  <%= hidden_field_tag 'search[desc]', '' %>
   <div class="row-fluid">
     <div class="span12">
       <%= render :partial => 'admin/search/alerts' %>
