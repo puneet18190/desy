@@ -2452,7 +2452,7 @@ An element with the private status through the X may be cancelled, while an elem
         # 1 - views/admin/search/_date.html.erb
         # 2 - views/admin/search/_date.html.erb
         # 3 - views/admin/search/_date.html.erb
-        created_at: "Created at"
+        created_at: "Creation date"
         # Label for date of last modification
         # 1 - views/admin/search/_date.html.erb
         # 2 - views/admin/search/_date.html.erb

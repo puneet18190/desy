@@ -18,9 +18,17 @@
   <label for="subject"><%= t('admin.search.media_elements.fields.sti_type') %></label>
   <div class="controls">
     <select id="search_sti_type" name="search[sti_type]">
-      <option value=''><%= t('admin.search.media_elements.fields.all_sti_types') %></option>
+      <option value=""><%= t('admin.search.media_elements.fields.all_sti_types') %></option>
       <% MediaElement::STI_TYPES.each do |sti_type| %>
-        <option><%= sti_type %></option>
+        <% if params[:search] && params[:search][:sti_type] == sti_type %>
+          <option selected="selected">
+            <%= sti_type %>
+          </option>
+        <% else %>
+          <option>
+            <%= sti_type %>
+          </option>
+        <% end %>
       <% end %>
     </select>
   </div>
