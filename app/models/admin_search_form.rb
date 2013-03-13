@@ -24,6 +24,8 @@ class AdminSearchForm < Form
       'users.name %{ord}',
       'users.surname %{ord}',
       'school_levels.description %{ord}',
+      'locations.name %{ord}',
+      'locations.ancestry %{ord}',
       'users.created_at %{ord}'
     ]
   }
@@ -117,25 +119,19 @@ class AdminSearchForm < Form
     resp = User
     if params[:ordering].present?
       ord = ORDERINGS[:users][params[:ordering].to_i]
-      if ord.nil? && params[:ordering].to_i == 5
-        desc = params[:desc] == 'true' ? 'DESC' : 'ASC'
-        # TODO ordina per città
-      elsif ord.nil? && params[:ordering].to_i == 6
-        desc = params[:desc] == 'true' ? 'DESC' : 'ASC'
-        # TODO ordina per locations superiori
+      if params[:ordering].to_i == 4
+        resp = resp.joins(:school_level)
+      elsif [5, 6].include? params[:ordering].to_i
+        resp = resp.joins(:location)
       else
-        if params[:ordering].to_i == 4
-          resp = resp.joins(:school_level)
-        else
-          ord = ORDERINGS[:users][0] if ord.nil?
-        end
-        if params[:desc] == 'true'
-          ord = ord.gsub('%{ord}', 'DESC')
-        else
-          ord = ord.gsub('%{ord}', 'ASC')
-        end
-        resp = resp.order(ord)
+        ord = ORDERINGS[:users][0] if ord.nil?
       end
+      if params[:desc] == 'true'
+        ord = ord.gsub('%{ord}', 'DESC')
+      else
+        ord = ord.gsub('%{ord}', 'ASC')
+      end
+      resp = resp.order(ord)
     end
     resp = resp.where(:users => {:id => params[:id]}) if params[:id].present?
     resp = resp.where('users.name ILIKE ? OR surname ILIKE ? OR email ILIKE ?', "%#{params[:user]}%" , "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
