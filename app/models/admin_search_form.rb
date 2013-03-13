@@ -22,7 +22,8 @@ class AdminSearchForm < Form
   }
   
   def self.search_lessons(params)
-    resp = Lesson.select('lessons.id AS id, title, subject_id, user_id, lessons.created_at AS created_at, lessons.updated_at AS updated_at, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count')
+    resp = Lesson.select('lessons.id AS id, title, subject_id, user_id, lessons.created_at AS created_at, lessons.updated_at AS updated_at, token, lessons.description AS description, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count')
+    resp = resp.joins(:user)
     if params[:ordering].present?
       ord = ORDERINGS[:lessons][params[:ordering].to_i]
       if ord.nil? && params[:ordering].to_i == 6
@@ -49,23 +50,16 @@ class AdminSearchForm < Form
       date_range = (Date.strptime(params[:from], '%d-%m-%Y').beginning_of_day)..(Date.strptime(params[:to], '%d-%m-%Y').end_of_day)
       resp = resp.where(:lessons => {:"#{params[:date_range_field]}" => date_range})
     end
-    with_joins = params[:user].present?
-    SETTINGS['location_types'].map{|type| type.downcase}.each do |type|
-      with_joins = true if params[type].present? && params[type] != '0'
-    end
-    if with_joins
-      resp = resp.joins(:user)
-      resp = resp.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
-      location = Location.get_from_chain_params(params)
-      if location
-        if location.depth == SETTINGS['location_types'].length - 1
-          resp = resp.where(:users => {:location_id => location.id})
-        else
-          resp = resp.joins(:user => :location)
-          anc = location.ancestry_with_me
-          anc.chop! if location.depth == SETTINGS['location_types'].length - 2
-          resp = resp.where('ancestry LIKE ?', "#{anc}%")
-        end
+    resp = resp.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
+    location = Location.get_from_chain_params(params)
+    if location
+      if location.depth == SETTINGS['location_types'].length - 1
+        resp = resp.where(:users => {:location_id => location.id})
+      else
+        resp = resp.joins(:user => :location)
+        anc = location.ancestry_with_me
+        anc.chop! if location.depth == SETTINGS['location_types'].length - 2
+        resp = resp.where('ancestry LIKE ?', "#{anc}%")
       end
     end
     resp
