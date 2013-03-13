@@ -89,11 +89,11 @@ module ApplicationHelper
   private
   
   def get_recursive_array_from_params(params)
-    return params if params.kind_of?(String)
+    return params if !params.kind_of?(Hash)
     resp = []
     params.each do |k, v|
       rec_ar = get_recursive_array_from_params(v)
-      if rec_ar.kind_of?(String)
+      if !rec_ar.kind_of?(Array)
         resp << "#{k}=#{rec_ar}"
       else
         rec_ar.each do |r|
