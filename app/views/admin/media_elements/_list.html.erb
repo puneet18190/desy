@@ -56,9 +56,7 @@
           <td colspan="10">
             <div class="row-fluid">
             <div class="span3">
-              <div id="element_<%= element.id %>_preview" class="element-thumbnail" data-param="<%= element.id %>">
-                <%= render :partial => "admin/media_elements/previews/#{element.sti_type.downcase}", :locals => {:media_element => element} %>
-              </div>
+              <div id="element_<%= element.id %>_preview" class="element-thumbnail" data-param="<%= element.id %>" data-loaded="false"></div>
             </div>
             <div class="span3">
               <h5><%= t('admin.media_elements.fields.tags') %></h5>
