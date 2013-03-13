@@ -163,7 +163,7 @@ class AdminSearchForm < Form
   def self.search_notifications_users(params)
     resp = User
     resp = resp.where(:school_level_id => params[:school_level_id]) if params[:school_level_id].present?
-    rest = resp.where("users.created_at >= ?", params[:recency]) if params[:recency].present?
+    resp = resp.where("users.created_at >= ?", params[:recency]) if params[:recency].present?
     
     with_locations = false
     SETTINGS['location_types'].map{|type| type.downcase}.each do |type|
