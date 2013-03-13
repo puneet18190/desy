@@ -2383,7 +2383,12 @@ An element with the private status through the X may be cancelled, while an elem
       edit: "Edit and share uploaded elements"
       # Placeholder used when there are no media elements associated to the selected filter
       # 1 - views/admin/media_elements/_list.html.erb
+      # 2 - views/admin/media_elements/edit.html.erb
       empty: "No elements found"
+      # Caption if you didn't load any element in the multiple loader
+      # 1 - views/admin/media_elements/new.html.erb
+      # 2 - views/admin/media_elements/quick_upload_delete.js.erb
+      empty_files: "No files loaded"
       # Labels for the fields of an element
       fields:
         # 1 - views/admin/media_elements/_list.html.erb
