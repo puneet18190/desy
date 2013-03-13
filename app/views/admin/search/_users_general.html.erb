@@ -10,7 +10,7 @@
 <div class="control-group">
   <label for="keyword"><%= t('admin.search.users.fields.name') %></label>
   <div class="controls">
-    <%= text_field_tag 'search[user]',  params ? params[:user] : '', :class => 'input-medium', :placeholder => t('admin.search.users.fields.name') %>
+    <%= text_field_tag 'search[user]', params ? params[:user] : '', :class => 'input-medium', :placeholder => t('admin.search.users.fields.name') %>
   </div>
 </div>
 <div class="control-group">
@@ -19,13 +19,11 @@
     <select id="search_subject_id" name="search[subject_id]">
       <option value=''><%= t('admin.search.users.fields.select_subject')%></option>
       <% Subject.all.each do |subject| %>
-      <% if params.present? && (params[:subject_id].to_i == subject.id.to_i) %>
-        <option value="<%= subject.id %>" selected="selected">
-      <% else %>
-        <option value="<%= subject.id %>">
-      <% end %>
-          <%= subject.description %>
-        </option>
+        <% if params.present? && (params[:subject_id].to_i == subject.id.to_i) %>
+          <option value="<%= subject.id %>" selected="selected"><%= subject.description %></option>
+        <% else %>
+          <option value="<%= subject.id %>"><%= subject.description %></option>
+        <% end %>
       <% end %>
     </select>
   </div>
@@ -35,8 +33,12 @@
   <div class="controls">
     <select id="school_level" name="search[school_level_id]">
       <option value=''><%= t('admin.search.users.fields.select_school_level') %></option>
-      <% SchoolLevel.all.each do |level|%>
-        <option value="<%= level.id %>"><%= level.description %></option>
+      <% SchoolLevel.all.each do |level| %>
+        <% if params.present? && (params[:school_level_id].to_i == level.id.to_i) %>
+          <option value="<%= level.id %>" selected="selected"><%= level.description %></option>
+        <% else %>
+          <option value="<%= level.id %>"><%= level.description %></option>
+        <% end %>
       <% end %>
     </select>
   </div>
