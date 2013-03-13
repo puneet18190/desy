@@ -3,7 +3,13 @@ class Admin::MessagesController < AdminController
   layout 'admin'
   
   def new_notification
-    @location_root = Location.roots
+    
+    @locations = [Location.roots]
+    if params[:search]
+      location = Location.get_from_chain_params params[:search]
+      @locations = location.get_filled_select if location
+    end
+    
     if params[:users] #list of recipients
       @users = []
       @users_ids = params[:users].gsub(/[\[\]\"]/,'').split(',')
@@ -33,7 +39,7 @@ class Admin::MessagesController < AdminController
   
   def filter_users
     if params[:search].present?
-      @users = AdminSearchForm.search(params[:search],'users')
+      @users = AdminSearchForm.search_notifications_users(params[:search])
     end
   end
   

@@ -16,10 +16,9 @@
             <div class="row-fluid">
               <%= form_tag '/admin/messages/filter_users', :id => 'filter-users', :remote => true do%>
                 <div class="span12">
-                    <%= hidden_field_tag "search[ordering]", "id ASC"%>
-                    <%= render :partial => 'admin/search/notifications_filter' %>
+                    <%= render :partial => 'admin/search/notifications_filter', :locals => {:params => params[:search]} %>
                     <br />
-                    <%= render :partial => 'admin/search/location' %>
+                    <%= render :partial => 'admin/search/location', :locals => {:locations => @locations, :params => params[:search]} %>
                   
                 </div>
               <% end %>
