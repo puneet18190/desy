@@ -41,18 +41,15 @@ class AdminSearchForm < Form
     if with_joins
       resp = resp.joins(:user)
       resp = resp.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
-      location = Location.find_by_id get_location_param(params)
+      location = Location.find_by_id Location.get_chain_param(params)
       if location
         if location.depth == SETTINGS['location_types'].length - 1
           resp = resp.where(:users => {:location_id => location.id})
         else
-          anc = location.ancestry
-          anc = '/' if anc.blank?
-          anc = "#{anc}/" if (/\// =~ anc).nil?
-          anc = "#{anc}/#{location.id}/"
-          
-          # TODO manca solo la join doppia finale! provare che funzioni in modo consecutivo
-          
+          resp = resp.joins(:user => :location)
+          anc = location.ancestry_with_me
+          anc.chop! if location.depth == SETTINGS['location_types'].length - 2
+          resp = resp.where('ancestry LIKE ?', "#{anc}%")
         end
       end
     end
@@ -82,23 +79,6 @@ class AdminSearchForm < Form
       users = users.where('location_id' => province.descendant_ids)
     end
     users
-  end
-  
-  private
-  
-  def get_location_param(params)
-    flag = true
-    index = SETTINGS['location_types'].length - 1
-    loc_param = params[SETTINGS['location_types'].last.downcase]
-    while flag && index >= 0
-      if loc_param.present? && loc_param != '0'
-        flag = false
-      else
-        index -= 1
-        loc_param = params[SETTINGS['location_types'][index].downcase]
-      end
-    end
-    loc_param
   end
   
 end

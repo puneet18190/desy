@@ -33,6 +33,12 @@ class Location < ActiveRecord::Base
     nil
   end
   
+  def ancestry_with_me
+    anc = self.ancestry
+    anc = "#{anc}/" if anc.present? && (/\// =~ anc).nil?
+    "#{anc}#{self.id}/"
+  end
+  
   def self.base_label
     I18n.t('locations.labels').last
   end
@@ -43,6 +49,21 @@ class Location < ActiveRecord::Base
   
   def to_s
     name.to_s
+  end
+  
+  def self.get_chain_param(params)
+    flag = true
+    index = SETTINGS['location_types'].length - 1
+    loc_param = params[SETTINGS['location_types'].last.downcase]
+    while flag && index >= 0
+      if loc_param.present? && loc_param != '0'
+        flag = false
+      else
+        index -= 1
+        loc_param = params[SETTINGS['location_types'][index].downcase]
+      end
+    end
+    loc_param
   end
   
 end
