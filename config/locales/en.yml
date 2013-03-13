@@ -714,15 +714,14 @@ en:
     # 1 - views/media_elements/_popup.html.erb
     close: "Close"
     # Icon of a small door with an arrow going out: it represents the exit from the current section, all over the application
-    # 1 - views/layouts/lesson_editor.html.erb
-    # 2 - views/media_elements/new.html.erb
-    # 3 - views/lesson_viewer/_lesson_slides.html.erb
-    # 4 - views/image_editor/_header.html.erb
-    # 5 - views/video_editor/not_available.html.erb
-    # 6 - views/video_editor/_header.html.erb
-    # 7 - views/audio_editor/not_available.html.erb
-    # 8 - views/audio_editor/_header.html.erb
-    exit: "Exit"
+    # 1 - views/media_elements/new.html.erb
+    # 2 - views/lesson_viewer/_lesson_slides.html.erb
+    # 3 - views/image_editor/_header.html.erb
+    # 4 - views/video_editor/not_available.html.erb
+    # 5 - views/video_editor/_header.html.erb
+    # 6 - views/audio_editor/not_available.html.erb
+    # 7 - views/audio_editor/_header.html.erb
+    exit: "Exit without saving"
     # Tooltips inside the media galleries (audio, image and video gallery)
     galleries:
       # Icon 'plus' in audio gallery
@@ -789,6 +788,9 @@ en:
       # Button to save the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       save_slide: "Save current slide"
+      # Button to save and exit
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+      save_and_exit: "Save and exit"
     media_elements:
       # Icon to upload the file attached to a new media element
       # 1 - views/media_elements/_new_form_popup.html.erb
