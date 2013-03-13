@@ -2244,7 +2244,7 @@ An element with the private status through the X may be cancelled, while an elem
         notifications: "Notifications"
         # Link to the subsection 'Abuses reported'
         # 1 - views/admin/_header.html.erb
-        reports: "Report Abuse"
+        reports: "Abuse reports"
       settings:
         # Link to the section 'Settings'
         # 1 - views/admin/_header.html.erb
