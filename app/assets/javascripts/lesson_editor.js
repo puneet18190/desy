@@ -68,7 +68,16 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._save_slide', function(e) {
-    e.preventDefault();
+    if(!$(this).data('saved')){
+      e.preventDefault();
+    }
+    saveCurrentSlide();
+    $(this).data('saved', true);
+    $(this).trigger('click');
+  });
+  
+  $('body').on('click', '._save_slide_and_exit', function(e) {
+    
     saveCurrentSlide();
   });
   
