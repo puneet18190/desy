@@ -3,25 +3,25 @@
     <thead>
       <tr>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.id'), :param => 'id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.id'), :ordering => 0} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.title'), :param => 'title'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.title'), :ordering => 1} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.sti_type'), :param => 'sti_type'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.sti_type'), :ordering => 2} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.user'), :param => 'user_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.user'), :ordering => 3} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.created_at'), :param => 'created_at'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.created_at'), :ordering => 4} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.updated_at'), :param => 'updated_at'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.updated_at'), :ordering => 5} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.is_public'), :param => 'is_public'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.is_public'), :ordering => 6} %>
         </th>
         <th></th>
       </tr>
@@ -46,7 +46,7 @@
             <%= element.is_public.to_s %>
           </td>
           <td>
-            <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.media_elements.delete_confirm') %>" href="/admin/media_elements/<%= element.id %>?back_action=media_elements&back_page=<%= back_page %>">
+            <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.media_elements.delete_confirm') %>" href="/admin/media_elements/<%= element.id %>?back_url=<%= manipulate_request_url(:page => back_page, :escape => true).html_safe %>">
               <i class="icon-remove"></i>
             </a>
           </td>

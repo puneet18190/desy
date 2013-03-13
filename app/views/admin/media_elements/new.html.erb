@@ -7,7 +7,7 @@
 <div class="row-fluid">
   <div class="span3">
     <h3><%= t('admin.media_elements.new.title')%></h3>
-    <%= form_tag '/admin/elements/quick_upload', :method => :post, :id => 'new-elements', :multipart => true do %>
+    <%= form_tag '/admin/media_elements/quick_upload', :method => :post, :id => 'new-elements', :multipart => true do %>
       <label for="title"><%= title_max %></label>
       <%= text_field_tag 'title', '' %><br />
       <label for="description"><%= description_max %></label>
@@ -25,8 +25,14 @@
     <div class="row-fluid">
     <h3><%= t('admin.media_elements.new.content_title') %></h3>
     <div id="new_elements_preview" class="well">
-      <% @files.each do |file| %>
-        <%= render :partial => 'media_element_upload', :locals => {:file => file, :colspan => 4} %>
+      <% if @files.empty? %>
+        <div id="empty_files_in_admin_media_element_uploader">
+          <%= t('admin.media_elements.empty_files') %>
+        </div>
+      <% else %>
+        <% @files.each do |file| %>
+          <%= render :partial => 'media_element_upload', :locals => {:file => file, :colspan => 4} %>
+        <% end %>
       <% end %>
       <div style="clear:both">
     </div>

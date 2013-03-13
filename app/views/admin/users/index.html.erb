@@ -1,7 +1,8 @@
 <h4><%= t('admin.users.search.label') %></h4>
 <%= form_tag 'users', :method => :get, :class => 'form-vertical', :id => 'admin-search-elements', :class => 'search-form' do %>
-  <%= hidden_field_tag 'search[search_type]', 'users'%>
-  <%= hidden_field_tag 'search[ordering]', 'id DESC'%>
+  <%= hidden_field_tag 'search[search_type]', 'users' %>
+  <%= hidden_field_tag 'search[ordering]', '' %>
+  <%= hidden_field_tag 'search[desc]', '' %>
   <div class="row-fluid">
     <div class="span12">
       <%= render :partial => 'admin/search/alerts' %>
@@ -9,13 +10,13 @@
   </div>
   <div class="row-fluid">
     <div class="span4">
-      <%= render :partial => 'admin/search/users_general' %>
+      <%= render :partial => 'admin/search/users_general', :locals => {:params => params[:search]} %>
     </div>
     <div class="span4">
-      <%= render :partial => 'admin/search/date' %>
+      <%= render :partial => 'admin/search/date', :locals => {:params => params[:search]} %>
     </div>
     <div class="span4">
-      <%= render :partial => 'admin/search/location', :locals => {:locations => @locations} %>
+      <%= render :partial => 'admin/search/location', :locals => {:locations => @locations, :params => params[:search]} %>
     </div>
   </div>
   <div class="row-fluid">
@@ -28,10 +29,10 @@
 <% end %>
 
 <h3><%= t('admin.users.title') %></h3>
-<% if @users.count > 1 %>
+<% if @users.count > 0 %>
   <%= render :partial => "admin/list_heading", :locals => {:items => @users, :expandable => false} %>
 <% end %>
 <%= render :partial => 'admin/users/list', :locals => {:users => @users} %>
-<% if @users.count > 1 %>
+<% if @users.count > 0 %>
   <%= render :partial => "admin/list_heading", :locals => {:items => @users, :expandable => false} %>
 <% end %>

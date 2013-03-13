@@ -1,5 +1,19 @@
 class AdminSearchForm < Form
   
+  ORDERINGS = {
+    :media_elements => [
+      'media_elements.id %{ord}',
+      'media_elements.title %{ord}',
+      'media_elements.sti_type %{ord}',
+      'users.surname %{ord}, users.name %{ord}',
+      'media_elements.created_at %{ord}',
+      'media_elements.updated_at %{ord}',
+      'media_elements.is_public %{ord}'
+    ],
+    :lessons => [],
+    :users => []
+  }
+  
   def self.search_lessons(params)
     lessons = Lesson.order(params[:ordering])
     lessons = lessons.where(id: params[:id]) if params[:id].present?
@@ -27,6 +41,16 @@ class AdminSearchForm < Form
   
   def self.search_media_elements(params)
     resp = MediaElement.where(:converted => true)
+    if params[:ordering].present?
+      ord = ORDERINGS[:media_elements][params[:ordering].to_i]
+      ord = ORDERINGS[:media_elements][0] if ord.nil?
+      if params[:desc] == 'true'
+        ord = ord.gsub('%{ord}', 'DESC')
+      else
+        ord = ord.gsub('%{ord}', 'ASC')
+      end
+      resp = resp.order(ord)
+    end
     resp = resp.where(:media_elements => {:id => params[:id]}) if params[:id].present?
     resp = resp.where('title ILIKE ?', "%#{params[:title]}%") if params[:title].present?
     resp = resp.where(:sti_type => params[:sti_type]) if params[:sti_type].present?
@@ -41,18 +65,15 @@ class AdminSearchForm < Form
     if with_joins
       resp = resp.joins(:user)
       resp = resp.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
-      location = Location.find_by_id get_location_param(params)
+      location = Location.get_from_chain_params(params)
       if location
         if location.depth == SETTINGS['location_types'].length - 1
           resp = resp.where(:users => {:location_id => location.id})
         else
-          anc = location.ancestry
-          anc = '/' if anc.blank?
-          anc = "#{anc}/" if (/\// =~ anc).nil?
-          anc = "#{anc}/#{location.id}/"
-          
-          # TODO manca solo la join doppia finale! provare che funzioni in modo consecutivo
-          
+          resp = resp.joins(:user => :location)
+          anc = location.ancestry_with_me
+          anc.chop! if location.depth == SETTINGS['location_types'].length - 2
+          resp = resp.where('ancestry LIKE ?', "#{anc}%")
         end
       end
     end
@@ -82,23 +103,6 @@ class AdminSearchForm < Form
       users = users.where('location_id' => province.descendant_ids)
     end
     users
-  end
-  
-  private
-  
-  def get_location_param(params)
-    flag = true
-    index = SETTINGS['location_types'].length - 1
-    loc_param = params[SETTINGS['location_types'].last.downcase]
-    while flag && index >= 0
-      if loc_param.present? && loc_param != '0'
-        flag = false
-      else
-        index -= 1
-        loc_param = params[SETTINGS['location_types'][index].downcase]
-      end
-    end
-    loc_param
   end
   
 end

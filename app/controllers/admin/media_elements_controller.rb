@@ -8,6 +8,10 @@ class Admin::MediaElementsController < AdminController
     elements = params[:search] ? AdminSearchForm.search_media_elements(params[:search]) : MediaElement.where(converted: true).order('id DESC')
     @elements = elements.page(params[:page])
     @locations = [Location.roots]
+    if params[:search]
+      location = Location.get_from_chain_params params[:search]
+      @locations = location.get_filled_select if location
+    end
     respond_to do |wants|
       wants.html
       wants.xml {render :xml => @elements}
@@ -86,7 +90,7 @@ class Admin::MediaElementsController < AdminController
   def destroy
     @element.destroyable_even_if_public = true
     @element.destroy
-    redirect_to "/admin/#{params[:back_action]}?page=#{params[:back_page]}"
+    redirect_to params[:back_url]
   end
   
   def load_media_element
