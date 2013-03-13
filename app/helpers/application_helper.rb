@@ -27,6 +27,7 @@ module ApplicationHelper
   def manipulate_request_url(options = {})
     param_to_remove = options[:remove_query_param]
     page            = options[:page]
+    escape          = options[:escape]
 
     query_params = request.query_parameters.deep_dup
 
@@ -38,7 +39,9 @@ module ApplicationHelper
 
     return request.path if query_string.blank?
 
-    "#{request.path}?#{query_string}"
+    url = "#{request.path}?#{query_string}"
+    
+    escape ? CGI.escape(url) : url
   end
   
   def is_horizontal?(width, height, kind)
