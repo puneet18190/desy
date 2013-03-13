@@ -19,6 +19,7 @@ class Admin::LessonsController < AdminController
   
   def destroy
     @lesson.destroy
+    redirect_to params[:back_url]
   end
   
   private
