@@ -7,5 +7,5 @@
   $('select#locations_list_<%= depth %>').html('');
 <% end %>
 <% if @locations.any? %>
-  $('select#locations_list_<%= @locations.first.depth %>').html('<%= j render(:partial => "admin/users/locations_list", :locals => {:locations => @locations}) %>');
+  $('select#locations_list_<%= @locations.first.depth %>').html('<%= j render(:partial => "admin/users/locations_list", :locals => {:locations => @locations, :param => nil}) %>');
 <% end %>

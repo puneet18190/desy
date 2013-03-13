@@ -83,6 +83,8 @@ lessons_in_quick_loader: 18
 images_for_page_in_gallery: 42
 videos_for_page_in_gallery: 18
 audios_for_page_in_gallery: 12
+# ADMIN
+admin_general_pagination: 20
 # APP COLORS
 colors:
   red:
