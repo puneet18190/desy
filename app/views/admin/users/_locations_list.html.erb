@@ -1,4 +1,4 @@
 <% if locations.any? %>
-  <option value="0">SELECT A TOWN</option>
-  <%= options_from_collection_for_select(locations, 'id', 'name') %>
+  <option value="0"><%= t('admin.search.locations.caption', :location => locations.first.sti_type.downcase) %></option>
+  <%= options_from_collection_for_select(locations, 'id', 'name', param.to_i) %>
 <% end %>

@@ -9,7 +9,7 @@ class Admin::MediaElementsController < AdminController
     @elements = elements.page(params[:page])
     @locations = [Location.roots]
     if params[:search]
-      location = Location.get_from_chain_params params
+      location = Location.get_from_chain_params params[:search]
       @locations = location.get_filled_select if location
     end
     respond_to do |wants|

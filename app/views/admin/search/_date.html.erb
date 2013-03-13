@@ -6,10 +6,10 @@
   <div class="controls">
     <select id="search_date_range" name="search[date_range_field]" class="input-medium">
       <option value=''><%= t('admin.search.date.range.select') %></option>
-      <% if params[:search].present? && (params[:search][:date_range_field].to_s == 'created_at') %>
+      <% if params.present? && (params[:date_range_field].to_s == 'created_at') %>
         <option value='created_at' selected="selected"><%= t('admin.search.date.created_at') %></option>
         <option value='updated_at'><%= t('admin.search.date.updated_at') %></option>
-      <% elsif params[:search].present? && (params[:search][:date_range_field].to_s == 'updated_at') %>
+      <% elsif params.present? && (params[:date_range_field].to_s == 'updated_at') %>
         <option value='created_at'><%= t('admin.search.date.created_at') %></option>
         <option value='updated_at' selected="selected"><%= t('admin.search.date.updated_at') %></option>
       <% else %>
@@ -22,12 +22,12 @@
 <div class="control-group">
   <label><%= t('admin.search.date.from') %></label>
   <div class="controls">
-    <%= text_field_tag 'search[from]', (params[:search] && params[:search][:from]) ? params[:search][:from] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd1', :class=>"input input-medium datepick disabled", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy', :disabled => :disabled %>
+    <%= text_field_tag 'search[from]', (params && params[:from]) ? params[:from] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd1', :class=>"input input-medium datepick disabled", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy', :disabled => :disabled %>
   </div>
 </div>
 <div class="control-group">
   <label><%= t('admin.search.date.to') %></label>
   <div class="controls">
-    <%= text_field_tag 'search[to]', (params[:search] && params[:search][:to]) ? params[:search][:to] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd2', :class=>"input input-medium datepick", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy', :disabled => :disabled %>
+    <%= text_field_tag 'search[to]', (params && params[:to]) ? params[:to] : Time.now.strftime('%d-%m-%Y'), :id => 'dpd2', :class=>"input input-medium datepick", 'data-date'=>Time.now.strftime('%d-%m-%Y'), 'data-date-format' => 'dd-mm-yyyy', :disabled => :disabled %>
   </div>
 </div>
