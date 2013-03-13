@@ -50,7 +50,7 @@ class AdminSearchForm < Form
       date_range = (Date.strptime(params[:from], '%d-%m-%Y').beginning_of_day)..(Date.strptime(params[:to], '%d-%m-%Y').end_of_day)
       resp = resp.where(:lessons => {:"#{params[:date_range_field]}" => date_range})
     end
-    resp = resp.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
+    resp = resp.where('users.name ILIKE ? OR users.surname ILIKE ? OR email ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
     location = Location.get_from_chain_params(params)
     if location
       if location.depth == SETTINGS['location_types'].length - 1
@@ -90,7 +90,7 @@ class AdminSearchForm < Form
     end
     if with_joins
       resp = resp.joins(:user)
-      resp = resp.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
+      resp = resp.where('users.name ILIKE ? OR users.surname ILIKE ? OR email ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
       location = Location.get_from_chain_params(params)
       if location
         if location.depth == SETTINGS['location_types'].length - 1
@@ -107,28 +107,32 @@ class AdminSearchForm < Form
   end
   
   def self.search_users(params)
-    users = User.order(params[:ordering])
-    users = users.where(id: params[:id]) if params[:id].present?
-    users = users.where('name ILIKE ? OR surname ILIKE ? OR email ILIKE ?', "%#{params[:user]}%" , "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
-    users = users.where('school_level_id' => params[:school_level_id]) if params[:school_level_id].present?
+    resp = User
+    resp = resp.where(:users => {:id => params[:id]}) if params[:id].present?
+    resp = resp.where('users.name ILIKE ? OR surname ILIKE ? OR email ILIKE ?', "%#{params[:user]}%" , "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
+    resp = resp.where(:school_level_id => params[:school_level_id]) if params[:school_level_id].present?
     if params[:date_range_field].present? && params[:from].present? && params[:to].present?
       date_range = (Date.strptime(params[:from], '%d-%m-%Y').beginning_of_day)..(Date.strptime(params[:to], '%d-%m-%Y').end_of_day)
-      users = users.where("#{params[:date_range_field]}" => date_range)
+      resp = resp.where(:users => {:"#{params[:date_range_field]}" => date_range})
     end
-    users = users.where("users.created_at >= ?", params[:recency]) if params[:recency].present?
-    if params[:subject_id].present?
-      users = users.joins(:subjects).where('users_subjects.subject_id' => params[:subject_id])
+    with_locations = false
+    SETTINGS['location_types'].map{|type| type.downcase}.each do |type|
+      with_locations = true if params[type].present? && params[type] != '0'
     end
-    if params[:school_id].present?
-      users = users.where('location_id' => params[:school_id])
-    elsif params[:town_id].present?
-      town = Location.find(params[:town_id])
-      users = users.where('location_id' => town.descendant_ids)
-    elsif params[:province_id].present?
-      province = Location.find(params[:province_id])
-      users = users.where('location_id' => province.descendant_ids)
+    if with_locations
+      location = Location.get_from_chain_params(params)
+      if location
+        if location.depth == SETTINGS['location_types'].length - 1
+          resp = resp.where(:users => {:location_id => location.id})
+        else
+          resp = resp.joins(:location)
+          anc = location.ancestry_with_me
+          anc.chop! if location.depth == SETTINGS['location_types'].length - 2
+          resp = resp.where('ancestry LIKE ?', "#{anc}%")
+        end
+      end
     end
-    users
+    resp
   end
   
 end
