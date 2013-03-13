@@ -2689,6 +2689,9 @@ An element with the private status through the X may be cancelled, while an elem
           # Title of the subframe
           # 1 - views/admin/users/_list.html.erb
           title: "Other statistics"
+        # Statistics subjects label
+        # 1 - views/admin/users/show.html.erb
+        subjects: "Subjects"
   
   
   # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'

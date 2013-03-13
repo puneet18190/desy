@@ -115,6 +115,22 @@
         </tr>
       </tbody>
     </table>
+    <table class="table white">
+      <thead>
+        <th><h4><%= t('admin.users.statistics.subjects') %></h4></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <% @user.subjects.each do |subj| %>
+              <div class="label subjects">
+                <%= subj.description %>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 <div class="row-fluid">
