@@ -37,7 +37,7 @@
             <td><%= link_to lesson.user.full_name, admin_user_path(lesson.user_id), :target => :blank, :class => '_user_link_in_admin' %></td>
             <td><%= lesson.created_at.strftime('%d-%m-%Y') %></td>
             <td><%= lesson.updated_at.strftime('%d-%m-%Y') %></td>
-            <td><%= lesson.likes.count%></td>
+            <td><%= lesson.likes.count %></td>
             <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, "/lessons/#{lesson.id}/view?token=#{lesson.token}", :target => :blank, :class => 'action' %><a href="#" target="_blank" class="action"></a></td>
             <td><%= link_to '<i class="icon-remove"></i>'.html_safe, admin_lesson_path(lesson), :method => :delete, :remote => true, :confirm => t('admin.lessons.delete_confirm'), :class => "action" %></td>
           </tr>
@@ -51,11 +51,7 @@
                 </div>
                 <div class="span3">
                   <h5><%= t('admin.lessons.fields.tags') %></h5>
-                  <% lesson.tags.split(',').each do |tag| %>
-                    <% if tag.length > 0%>
-                      <%= tag %>, 
-                    <% end %>
-                  <% end %>
+                  <%= lesson.visive_tags %>
                 </div>
                 <div class="span6">
                   <h5><%= t('admin.lessons.fields.description') %></h5>

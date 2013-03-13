@@ -10,12 +10,38 @@ class AdminSearchForm < Form
       'media_elements.updated_at %{ord}',
       'media_elements.is_public %{ord}'
     ],
-    :lessons => [],
+    :lessons => [
+      'lessons.id %{ord}',
+      'lessons.title %{ord}',
+      'subjects.description %{ord}',
+      'users.surname %{ord}, users.name %{ord}',
+      'lessons.created_at %{ord}',
+      'lessons.updated_at %{ord}'
+    ],
     :users => []
   }
   
   def self.search_lessons(params)
-    resp = Lesson
+    resp = Lesson.select('lessons.id AS id, title, subject_id, user_id, lessons.created_at AS created_at, lessons.updated_at AS updated_at, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count')
+    if params[:ordering].present?
+      ord = ORDERINGS[:lessons][params[:ordering].to_i]
+      if ord.nil? && params[:ordering].to_i == 6
+        desc = params[:desc] == 'true' ? 'DESC' : 'ASC'
+        resp = resp.order("likes_count #{desc}")
+      else
+        if params[:ordering].to_i == 2
+          resp = resp.joins(:subject)
+        else
+          ord = ORDERINGS[:lessons][0] if ord.nil?
+        end
+        if params[:desc] == 'true'
+          ord = ord.gsub('%{ord}', 'DESC')
+        else
+          ord = ord.gsub('%{ord}', 'ASC')
+        end
+        resp = resp.order(ord)
+      end
+    end
     resp = resp.where(:lessons => {:id => params[:id]}) if params[:id].present?
     resp = resp.where('title ILIKE ?', "%#{params[:title]}%") if params[:title].present?
     resp = resp.where(:subject_id => params[:subject_id]) if params[:subject_id].present?
