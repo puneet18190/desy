@@ -104,7 +104,7 @@
       <div class="span6 widget">
         <h4><%= t('admin.dashboard.reports.lessons') %></h4>
         <% @elements_reports.each do |report| %>
-          <a href="/admin/elements?utf8=✓&search%5Bsearch_type%5D=elements&search%5Bordering%5D=id+DESC&search%5Bid%5D=<%=report.reportable.id%>&search%5Btitle%5D=&search%5Bsti_type%5D=&search%5Buser%5D=&search%5Bdate_range_field%5D=&search%5Bprovince_id%5D=#list-anchor">
+          <a href="/admin/media_elements?utf8=✓&search%5Bsearch_type%5D=elements&search%5Bordering%5D=id+DESC&search%5Bid%5D=<%=report.reportable.id%>&search%5Btitle%5D=&search%5Bsti_type%5D=&search%5Buser%5D=&search%5Bdate_range_field%5D=&search%5Bprovince_id%5D=#list-anchor">
             <blockquote class="elements">
               <div class="pull-right date-label elements">
                 <%= report.created_at.strftime('%d %b')%>
