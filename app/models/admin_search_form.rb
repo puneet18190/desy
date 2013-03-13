@@ -41,7 +41,7 @@ class AdminSearchForm < Form
     if with_joins
       resp = resp.joins(:user)
       resp = resp.where('users.name ILIKE ? OR users.surname ILIKE ?', "%#{params[:user]}%", "%#{params[:user]}%") if params[:user].present?
-      location = Location.find_by_id Location.get_chain_param(params)
+      location = Location.get_from_chain_params(params)
       if location
         if location.depth == SETTINGS['location_types'].length - 1
           resp = resp.where(:users => {:location_id => location.id})

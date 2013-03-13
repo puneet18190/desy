@@ -51,7 +51,15 @@ class Location < ActiveRecord::Base
     name.to_s
   end
   
-  def self.get_chain_param(params)
+  def get_filled_select
+    resp = []
+    self.ancestors.each do |anc|
+      resp << anc.siblings
+    end
+    resp + [self.siblings]
+  end
+  
+  def self.get_from_chain_params(params)
     flag = true
     index = SETTINGS['location_types'].length - 1
     loc_param = params[SETTINGS['location_types'].last.downcase]
@@ -63,7 +71,7 @@ class Location < ActiveRecord::Base
         loc_param = params[SETTINGS['location_types'][index].downcase]
       end
     end
-    loc_param
+    Location.find_by_id loc_param
   end
   
 end

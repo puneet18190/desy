@@ -2437,6 +2437,10 @@ An element with the private status through the X may be cancelled, while an elem
         submit: "Search"
     # Captions of the contents of the search engine inside the 'Administration' section. The content depends on the selected subsection, and appears inside the corresponding frame (see admin.[section].search)
     search:
+      # Section where the user filters by location
+      location:
+        # 1 - views/admin/search/_location.html.erb
+        title: "Location"
       # Search through dates (this option is available for any section)
       date:
         # Title of the frame containing date selection
