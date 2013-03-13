@@ -41,12 +41,13 @@ class AdminSearchForm < Form
   
   def self.search_media_elements(params)
     resp = MediaElement.where(:converted => true)
-    if params[:ordering].present
+    if params[:ordering].present?
       ord = ORDERINGS[:media_elements][params[:ordering].to_i]
+      ord = ORDERINGS[:media_elements][0] if ord.nil?
       if params[:desc] == 'true'
-        ord.gsub!('%{ord}', 'DESC')
+        ord = ord.gsub('%{ord}', 'DESC')
       else
-        ord.gsub!('%{ord}', 'ASC')
+        ord = ord.gsub('%{ord}', 'ASC')
       end
       resp = resp.order(ord)
     end

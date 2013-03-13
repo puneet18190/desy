@@ -3,25 +3,25 @@
     <thead>
       <tr>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.id'), :param => 'id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.id'), :ordering => 0} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.title'), :param => 'title'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.title'), :ordering => 1} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.subject'), :param => 'subject_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.subject'), :ordering => 2} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.user'), :param => 'user_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.user'), :ordering => 3} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.created_at'), :param => 'created_at'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.created_at'), :ordering => 4} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.updated_at'), :param => 'updated_at'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.updated_at'), :ordering => 5} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.likes'), :param => 'likes'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.lessons.fields.likes'), :ordering => 6} %>
         </th>
         <th></th>
         <th></th>
