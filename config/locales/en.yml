@@ -2349,10 +2349,10 @@ An element with the private status through the X may be cancelled, while an elem
       # Frame for the lessons search engine
       search:
         # Title of the frame
-        # 1 - views/admin/lessons/_search.html.erb
+        # 1 - views/admin/lessons/index.html.erb
         label: "Search lessons"
         # Button to start the search
-        # 1 - views/admin/lessons/_search.html.erb
+        # 1 - views/admin/lessons/index.html.erb
         submit: "Search"
     # Section of media elements
     media_elements:
@@ -2430,10 +2430,10 @@ An element with the private status through the X may be cancelled, while an elem
       # Frame for the lessons search engine
       search:
         # Title of the form
-        # 1 - views/admin/media_elements/_search.html.erb
+        # 1 - views/admin/media_elements/index.html.erb
         label: "Search elements"
         # Button to start the search
-        # 1 - views/admin/media_elements/_search.html.erb
+        # 1 - views/admin/media_elements/index.html.erb
         submit: "Search"
     # Captions of the contents of the search engine inside the 'Administration' section. The content depends on the selected subsection, and appears inside the corresponding frame (see admin.[section].search)
     search:
@@ -2632,10 +2632,10 @@ An element with the private status through the X may be cancelled, while an elem
       # Frame for the lessons search engine
       search:
         # Title of the frame
-        # 1 - views/admin/users/_search.html.erb
+        # 1 - views/admin/users/index.html.erb
         label: "Search users"
         # Button to start the search
-        # 1 - views/admin/users/_search.html.erb
+        # 1 - views/admin/users/index.html.erb
         submit: "Search"
       # Link to the personal page of each user
       # 1 - views/admin/users/_list.html.erb
