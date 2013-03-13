@@ -124,7 +124,7 @@ class AdminSearchForm < Form
         desc = params[:desc] == 'true' ? 'DESC' : 'ASC'
         # TODO ordina per locations superiori
       else
-        if params[:ordering].to_i == 2
+        if params[:ordering].to_i == 4
           resp = resp.joins(:school_level)
         else
           ord = ORDERINGS[:users][0] if ord.nil?
