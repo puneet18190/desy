@@ -62,9 +62,7 @@ class User < ActiveRecord::Base
     # QUESTO METODO VA CAMBIATO MA SENZA CAMBIARGLI NOME
     # super_admin =  self.class.admin
     # id == super_admin.id || SETTINGS['grant_admin_privileges'].include?(self.email)
-    admin = User.admin
-    return false if admin.nil?
-    return admin.id == self.id
+    self.super_admin?
   end
   
   def accept_policies
@@ -432,8 +430,13 @@ class User < ActiveRecord::Base
     return lesson.save ? lesson : lesson.errors.messages
   end
   
+  def super_admin?
+    super_admin = User.admin
+    !super_admin.nil? && self.id == super_admin.id
+  end
+  
   def destroy_with_dependencies
-    if self.new_record?
+    if self.new_record? || self.super_admin?
       errors.add(:base, :problem_destroying)
       return false
     end

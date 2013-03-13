@@ -4,9 +4,13 @@ class Admin::LessonsController < AdminController
   layout 'admin'
   
   def index
-    lessons = params[:search] ? AdminSearchForm.search(params[:search],'lessons') : Lesson.order('id DESC')
+    lessons = params[:search] ? AdminSearchForm.search_lessons(params[:search]) : Lesson.order('id DESC')
     @lessons = lessons.page(params[:page])
-    @location_root = Location.roots
+    @locations = [Location.roots]
+    if params[:search]
+      location = Location.get_from_chain_params params[:search]
+      @locations = location.get_filled_select if location
+    end
     respond_to do |wants|
       wants.html
       wants.xml {render :xml => @lessons}
@@ -14,9 +18,7 @@ class Admin::LessonsController < AdminController
   end
   
   def destroy
-    if !@lesson.destroy
-      @errors = @element.get_base_error
-    end
+    @lesson.destroy
   end
   
   private

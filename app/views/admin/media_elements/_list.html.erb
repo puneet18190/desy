@@ -3,31 +3,25 @@
     <thead>
       <tr>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.id'), :param => 'id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.id'), :ordering => 0} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.title'), :param => 'title'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.title'), :ordering => 1} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.sti_type'), :param => 'sti_type'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.sti_type'), :ordering => 2} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.user'), :param => 'user_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.user'), :ordering => 3} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => Location.base_label, :param => 'location_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.created_at'), :ordering => 4} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('locations.parents_label'), :param => 'location_id'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.updated_at'), :ordering => 5} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.created_at'), :param => 'created_at'} %>
-        </th>
-        <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.updated_at'), :param => 'updated_at'} %>
-        </th>
-        <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.is_public'), :param => 'is_public'} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.is_public'), :ordering => 6} %>
         </th>
         <th></th>
       </tr>
@@ -45,16 +39,14 @@
           <td><%= element.id %></td>
           <td><%= element.title %></td>
           <td><%= element.sti_type %></td>
-          <td><%= element.user.surname %> <%= element.user.name %></td>
-          <td><%= element.user.base_location %></td>
-          <td><%= element.user.parent_locations %></td>
+          <td><%= link_to element.user.full_name, admin_user_path(element.user_id), :target => :blank, :class => '_user_link_in_admin' %></td>
           <td><%= element.created_at.strftime('%d-%m-%Y') %></td>
           <td><%= element.updated_at.strftime('%d-%m-%Y') %></td>
           <td>
             <%= element.is_public.to_s %>
           </td>
           <td>
-            <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.media_elements.delete_confirm') %>" href="/admin/media_elements/<%= element.id %>?back_action=media_elements&back_page=<%= back_page %>">
+            <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.media_elements.delete_confirm') %>" href="/admin/media_elements/<%= element.id %>?back_url=<%= manipulate_request_url(:page => back_page, :escape => true).html_safe %>">
               <i class="icon-remove"></i>
             </a>
           </td>
@@ -64,9 +56,7 @@
           <td colspan="10">
             <div class="row-fluid">
             <div class="span3">
-              <div id="element_<%= element.id %>_preview" class="element-thumbnail" data-param="<%= element.id %>">
-                <%= render :partial => "admin/media_elements/previews/#{element.sti_type.downcase}", :locals => {:media_element => element} %>
-              </div>
+              <div id="element_<%= element.id %>_preview" class="element-thumbnail" data-param="<%= element.id %>" data-loaded="false"></div>
             </div>
             <div class="span3">
               <h5><%= t('admin.media_elements.fields.tags') %></h5>

@@ -2200,10 +2200,8 @@ An element with the private status through the X may be cancelled, while an elem
         'School'
       ]
     # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'
-    # 1 - views/admin/lessons/_list.html.erb
-    # 2 - views/admin/media_elements/_list.html.erb
-    # 3 - views/admin/users/show.html.erb
-    # 4 - views/admin/users/_list.html.erb
+    # 1 - views/admin/users/show.html.erb
+    # 2 - views/admin/users/_list.html.erb
     parents_label: "Town / province"
   
   
@@ -2353,10 +2351,10 @@ An element with the private status through the X may be cancelled, while an elem
       # Frame for the lessons search engine
       search:
         # Title of the frame
-        # 1 - views/admin/lessons/_search.html.erb
+        # 1 - views/admin/lessons/index.html.erb
         label: "Search lessons"
         # Button to start the search
-        # 1 - views/admin/lessons/_search.html.erb
+        # 1 - views/admin/lessons/index.html.erb
         submit: "Search"
     # Section of media elements
     media_elements:
@@ -2387,7 +2385,12 @@ An element with the private status through the X may be cancelled, while an elem
       edit: "Edit and share uploaded elements"
       # Placeholder used when there are no media elements associated to the selected filter
       # 1 - views/admin/media_elements/_list.html.erb
+      # 2 - views/admin/media_elements/edit.html.erb
       empty: "No elements found"
+      # Caption if you didn't load any element in the multiple loader
+      # 1 - views/admin/media_elements/new.html.erb
+      # 2 - views/admin/media_elements/quick_upload_delete.js.erb
+      empty_files: "No files loaded"
       # Labels for the fields of an element
       fields:
         # 1 - views/admin/media_elements/_list.html.erb
@@ -2434,13 +2437,20 @@ An element with the private status through the X may be cancelled, while an elem
       # Frame for the lessons search engine
       search:
         # Title of the form
-        # 1 - views/admin/media_elements/_search.html.erb
+        # 1 - views/admin/media_elements/index.html.erb
         label: "Search elements"
         # Button to start the search
-        # 1 - views/admin/media_elements/_search.html.erb
+        # 1 - views/admin/media_elements/index.html.erb
         submit: "Search"
     # Captions of the contents of the search engine inside the 'Administration' section. The content depends on the selected subsection, and appears inside the corresponding frame (see admin.[section].search)
     search:
+      # Section where the user filters by location
+      locations:
+        # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
+        # 1 - views/admin/users/_locations_list.html.erb
+        caption: "Select %{location}"
+        # 1 - views/admin/search/_location.html.erb
+        title: "Location"
       # Search through dates (this option is available for any section)
       date:
         # Title of the frame containing date selection
@@ -2456,7 +2466,7 @@ An element with the private status through the X may be cancelled, while an elem
         # 1 - views/admin/search/_date.html.erb
         # 2 - views/admin/search/_date.html.erb
         # 3 - views/admin/search/_date.html.erb
-        created_at: "Created at"
+        created_at: "Creation date"
         # Label for date of last modification
         # 1 - views/admin/search/_date.html.erb
         # 2 - views/admin/search/_date.html.erb
@@ -2636,10 +2646,10 @@ An element with the private status through the X may be cancelled, while an elem
       # Frame for the lessons search engine
       search:
         # Title of the frame
-        # 1 - views/admin/users/_search.html.erb
+        # 1 - views/admin/users/index.html.erb
         label: "Search users"
         # Button to start the search
-        # 1 - views/admin/users/_search.html.erb
+        # 1 - views/admin/users/index.html.erb
         submit: "Search"
       # Link to the personal page of each user
       # 1 - views/admin/users/_list.html.erb

@@ -27,6 +27,7 @@ module ApplicationHelper
   def manipulate_request_url(options = {})
     param_to_remove = options[:remove_query_param]
     page            = options[:page]
+    escape          = options[:escape]
 
     query_params = request.query_parameters.deep_dup
 
@@ -34,11 +35,13 @@ module ApplicationHelper
 
     query_params[:page] = page if page
 
-    query_string = query_params.map{ |k, v| "#{k}=#{v}" }.join('&')
+    query_string = get_recursive_array_from_params(query_params).join('&')
 
     return request.path if query_string.blank?
 
-    "#{request.path}?#{query_string}"
+    url = "#{request.path}?#{query_string}"
+    
+    escape ? CGI.escape(url) : url
   end
   
   def is_horizontal?(width, height, kind)
@@ -84,6 +87,29 @@ module ApplicationHelper
     def jsd(object)
       javascript_tag "console.log(#{object.inspect.to_json})"
     end
+  end
+  
+  private
+  
+  def get_recursive_array_from_params(params)
+    return params if !params.kind_of?(Hash)
+    resp = []
+    params.each do |k, v|
+      rec_ar = get_recursive_array_from_params(v)
+      if !rec_ar.kind_of?(Array)
+        resp << "#{k}=#{rec_ar}"
+      else
+        rec_ar.each do |r|
+          if (r =~ /\]/).nil?
+            resp << "#{k}[#{r.gsub('=', ']=')}"
+          else
+            temp_string = r[(r =~ /\[/) + 1, r.length]
+            resp << "#{k}[#{r[0, (r =~ /\[/)]}][#{temp_string}"
+          end
+        end
+      end
+    end
+    resp
   end
   
 end

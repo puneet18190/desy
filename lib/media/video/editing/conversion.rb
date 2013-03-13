@@ -64,7 +64,7 @@ module Media
             extract_thumb cover_path, thumb_path, *THUMB_SIZES
   
           rescue StandardError => e
-            FileUtils.rm_rf output_folder if Dir.exists? output_folder
+            FileUtils.rm_rf output_folder
             
             input_path = 
               if File.exists? temp_path
@@ -131,7 +131,7 @@ module Media
   
             Cmd::Conversion.new(temp_path, output_path, format).run! %W(#{stdout_log} a), %W(#{stderr_log} a)
           rescue StandardError => e
-            FileUtils.rm_rf output_folder if Dir.exists? output_folder
+            FileUtils.rm_rf output_folder
             raise e
           end
   

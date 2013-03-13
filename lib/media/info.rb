@@ -38,7 +38,7 @@ module Media
       not @invalid
     end
 
-    def similar_to?(other_infos_hash)
+    def similar_to?(other_infos_hash, ignore_bitrate = false)
       return false unless other_infos_hash.is_a?(Hash)
 
       infos_hash = to_hash.reject{ |k,_| k == :path }
@@ -47,6 +47,8 @@ module Media
 
       streams, other_streams = infos_hash[:streams], other_infos_hash[:streams]
       return false unless streams.keys.sort == other_streams.keys.sort
+
+      return true if ignore_bitrate
 
       streams.each do |k, _streams|
         _streams.each_with_index do |stream, i|

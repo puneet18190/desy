@@ -15,6 +15,7 @@
 //= require jquery-fileupload/basic
 //= require ajax_loader
 //= require admin/admin_functions
+//= require admin/locations
 
 $(document).ready(function() {
   
@@ -25,24 +26,6 @@ $(document).ready(function() {
   
   
   // SEARCH
-  
-  $('#province_list, #town_list').on('change', function() {
-    var $this = $(this);
-    if($this.val().length > 0) {
-      $.ajax({
-        url: '/admin/location/' + $(this).val() + '/find',
-        type: 'post'
-      });
-    } else {
-      if($this.attr('id') === 'town_list') {
-        $('#school_list').html('');
-      }
-      if($this.attr('id') === 'province_list') {
-        $('#school_list').html('');
-        $('#town_list').html('');
-      }
-    }
-  });
   
   if($('#search_date_range').find('option:selected').val() && ($('#search_date_range').find('option:selected').val().length > 0)) {
     $('.datepick').removeAttr('disabled');
@@ -89,6 +72,7 @@ $(document).ready(function() {
     $this = $(this)
     var order_by = $this.data('ordering');
     $("input#search_ordering").val(order_by);
+    $("input#search_desc").val($this.data('desc'));
     $('#admin-search-lessons').submit();
   });
   
@@ -97,6 +81,7 @@ $(document).ready(function() {
     $this = $(this)
     var order_by = $this.data('ordering');
     $("input#search_ordering").val(order_by);
+    $("input#search_desc").val($this.data('desc'));
     $('#admin-search-elements').submit();
   });
   
@@ -105,6 +90,7 @@ $(document).ready(function() {
     $this = $(this)
     var order_by = $this.data('ordering');
     $("input#search_ordering").val(order_by);
+    $("input#search_desc").val($this.data('desc'));
     $('#admin-search-elements').submit();
   });
   
@@ -257,7 +243,7 @@ $(document).ready(function() {
   
   $('body').on('click', 'tr.collapse', function(e) {
     var t = $(e.target);
-    if(!(t.hasClass('icon-eye-open') || t.hasClass('icon-remove') || t.hasClass('icon-globe'))) {
+    if(!(t.hasClass('icon-eye-open') || t.hasClass('icon-remove') || t.hasClass('icon-globe') || t.hasClass('_user_link_in_admin'))) {
       openAndLoadNextTr($(this));
     }
   });

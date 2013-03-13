@@ -4,13 +4,13 @@
 <div class="control-group">
   <label for="id"><%= t('admin.search.lessons.fields.id') %></label>
   <div class="controls">
-    <%= text_field_tag 'search[id]', params[:search] ? params[:search][:id] : ''  ,:class=>'input-small', :placeholder => t('admin.search.lessons.fields.id') %>
+    <%= text_field_tag 'search[id]', params ? params[:id] : ''  ,:class=>'input-small', :placeholder => t('admin.search.lessons.fields.id') %>
   </div>
 </div>
 <div class="control-group">
   <label for="keyword"><%= t('admin.search.lessons.fields.title') %></label>
   <div class="controls">
-    <%= text_field_tag 'search[title]',  params[:search] ? params[:search][:title] : '', :class=>'input-medium', :placeholder => t('admin.search.lessons.fields.title') %>
+    <%= text_field_tag 'search[title]',  params ? params[:title] : '', :class=>'input-medium', :placeholder => t('admin.search.lessons.fields.title') %>
   </div>
 </div>
 <div class="control-group">
@@ -19,7 +19,7 @@
     <select id="search_subject_id" name="search[subject_id]">
       <option value=''><%= t('admin.search.lessons.fields.select_subject') %></option>
       <% Subject.all.each do |subject| %>
-      <% if params[:search].present? && (params[:search][:subject_id].to_i == subject.id.to_i) %>
+      <% if params.present? && (params[:subject_id].to_i == subject.id.to_i) %>
         <option value="<%= subject.id %>" selected="selected">
       <%else%>
         <option value="<%= subject.id %>">
@@ -33,6 +33,6 @@
 <div class="control-group">
   <label for="search_user"><%= t('admin.search.lessons.fields.user') %></label>
   <div class="controls">
-    <%= text_field_tag 'search[user]',  params[:search] ? params[:search][:user] : '', :class=>'input-medium', :placeholder => t('admin.search.lessons.fields.user') %>
+    <%= text_field_tag 'search[user]',  params ? params[:user] : '', :class=>'input-medium', :placeholder => t('admin.search.lessons.fields.user') %>
   </div>
 </div>
