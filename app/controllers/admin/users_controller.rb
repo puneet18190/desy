@@ -7,9 +7,9 @@ class Admin::UsersController < AdminController
     users = params[:search] ? AdminSearchForm.search_users(params[:search]) : User.order('id DESC')
     @users = users.page(params[:page])
     @locations = [Location.roots]
-    respond_to do |wants|
-      wants.html
-      wants.xml {render :xml => @elements}
+    if params[:search]
+      location = Location.get_from_chain_params params[:search]
+      @locations = location.get_filled_select if location
     end
   end
   
@@ -25,9 +25,7 @@ class Admin::UsersController < AdminController
   end
   
   def destroy
-    if !@user.destroy_with_dependencies
-      @errors = @element.get_base_error
-    end
+    @user.destroy_with_dependencies
   end
   
   def get_full_names

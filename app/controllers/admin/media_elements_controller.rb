@@ -12,10 +12,6 @@ class Admin::MediaElementsController < AdminController
       location = Location.get_from_chain_params params[:search]
       @locations = location.get_filled_select if location
     end
-    respond_to do |wants|
-      wants.html
-      wants.xml {render :xml => @elements}
-    end
   end
   
   def new
