@@ -1531,19 +1531,13 @@ en:
     contact_us:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/contact_us.html.erb
-      # 4 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is_desy.html.erb
       menu_link: "Contact us"
-      # 1 - views/prelogin/contact_us.html.erb
-      title: "Contact us!"
-      # 1 - views/prelogin/contact_us.html.erb
-      description: "Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts"
     # Home page
     main_page:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/contact_us.html.erb
-      # 4 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is_desy.html.erb
       menu_link: "Home"
       # 1 - views/prelogin/home.html.erb
       title: "A new way of teaching"
@@ -1556,8 +1550,7 @@ en:
     sign_up:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/contact_us.html.erb
-      # 4 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is_desy.html.erb
       menu_link: "Sign up"
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/users/edit.html.erb
@@ -1566,8 +1559,7 @@ en:
     what_is_desy:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/contact_us.html.erb
-      # 4 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is_desy.html.erb
       menu_link: "What is %{desy}?"
       # 1- views/prelogin/what_is_desy.html.erb
       title: "What is %{desy}?"
