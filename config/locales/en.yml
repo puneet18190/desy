@@ -997,56 +997,56 @@ en:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Element preview"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The Eye Icon opens the preview of a didactic element. Only for elements which have a Private Status inside the popup will it be possible to modify the information inserted during the actual element uploading (title, description and tags)."
+        content: "The \"eye\" icon opens the preview of an element. In the preview of <b>private</b> elements you can find a button containing three small lines: clicking on it you open a form that you can use to modify the element's general information (title, description, and tags)."
     search:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Search engine"
+        title: "Search Engine"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The %{desy} search engine uses the tags to look for lessons or didactic elements.<br/>A search result may be added to your personal contents by using the icon \"+\"."
+        content: "%{desy}'s Search Engine may be used for both lessons and elements; the engine is based on tags.<br/>Any lesson or element found may be added to your corresponding personal folder by using the \"plus\" icon."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Suggestions for a good search"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In order to help you with your search the %{desy} Search will suggest all the tags already present which come closest to the word you are writing. This way you'll have a wider choice and a more complete search result."
+        content: "While you are typing the keyword for your search, %{desy}'s Search Engine suggests you the most used tags (beginning with your keyword) among the ones present in the database. This way you'll have a wider choice and a more complete search result."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Suggestions for a good tagging"
         # Here the variable %{tags} is replaced by the minimum amount of tags for an item in the application
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "When you upload a new didactic element or create a new lesson it's important to insert the tags very carefully. A proper tagging of the element or of the lesson will allow the search engine to find the content more easily. You must insert a minimum of %{tags} tags."
+        content: "When you upload a new element or create a new lesson it's important to insert the a good range of tags. A proper tagging allows the Search Engine to find more easily your lessons. You must insert a minimum of %{tags} tags."
     users:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Personal info & Subjects"
+        title: "Your profile page"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this page you can modify your %{desy} access parameters. By clicking on the \"Subjects\" button you'll be able to increase or decrease the number of subjects to which you wish to be connected. Remember that %{desy} will only advise you about those contents related to the subjects which you have chosen inside this page."
+        content: "In this page you can review and modify your profile. Have a look at the menu on the top of the page: each link redirects you to the corresponding section of your profile."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Mailing lists"
+        title: "Personal data, mailing lists"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The \"Mailing list\" button allows you to create groups of e-mail addresses to which it will be possible to send your lesson links from inside the Virtual Classroom. Click \"Add new group\" and begin the creation of your personal mailing list."
+        content: "The section \"subjects\" contains the list of your subjects: you can update this list at any time. Remember that %{desy} checks out your subjects to choose the suggested lessons that you find in the main page. The section \"mailing list\" contains a list of groups of e-mail addresses, that you can use to send your lesson links from inside your Virtual Classroom: click on the button \"add new group\" to create a new mailing list."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Statistics"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Consult %{desy} statistics to improve your user experience inside the application. Thanks to personal statistics you'll be able to monitor all the information related to the content which you have uploaded or produced on %{desy}. The general statistics will allow you to have a wider view on all contents present in the application database."
+        content: "The section \"statistics\" contains interesting statistics about your profile and about all %{desy}. The statistics are divided by categories and easy to consult."
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "%{desy}'s Virtual Classroom"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Welcome to your virtual classroom. This is where you'll be able to upload the lessons you have created in order to get ready to relate them to your students. The \"add lessons\" button will allow you to choose which lessons among the ones on your list you wish to add to the virtual classroom."
+        content: "Welcome to your Virtual Classroom! Here you may upload lessons from your personal folder and organize them into a playlist. The button \"add lessons\" opens a window to load quickly multiple lessons."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Playlist"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "One of the advantages offered by your virtual classroom is to let you organize your lessons in comfortable playlists so as to reproduce them in the sequence which is most suitable to your didactive objectives. Pull one or more lessons inside the box playlist and start creating your own personal sequence reproduction."
+        content: "One of the useful features of %{desy}'s Virtual Classroom is the playlist: to move a lesson inside the playlist, drag it to the zone on the right. To reproduce the playlist in the sequence which is most suitable to your didactive objectives, you can sort its elements by dragging them."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Send a link to your friends"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "By clicking on the envelope located below each lesson uploaded in virtual classroom you'll be able to send its link to one or more e-mail addresses in order to allow your students to visualize the lesson outside %{desy} too."
+        content: "The \"envelope\" icon located below each lesson opens a window where you can select a list of e-mail addresses: click on the button \"send\" to send an email containing the public link of your lessons (using this link your students are able to visualize the lesson without being registered in %{desy})."
   
   
   
