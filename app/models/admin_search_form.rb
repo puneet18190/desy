@@ -140,6 +140,10 @@ class AdminSearchForm < Form
       date_range = (Date.strptime(params[:from], '%d-%m-%Y').beginning_of_day)..(Date.strptime(params[:to], '%d-%m-%Y').end_of_day)
       resp = resp.where(:users => {:"#{params[:date_range_field]}" => date_range})
     end
+    if params[:subject_id].present?
+      resp = resp.joins(:users_subjects).group('users.id')
+      resp = resp.where(:users_subjects => {:subject_id => params[:subject_id]})
+    end
     with_locations = false
     SETTINGS['location_types'].map{|type| type.downcase}.each do |type|
       with_locations = true if params[type].present? && params[type] != '0'
