@@ -2,13 +2,13 @@
   <span class="dots_pagination">
     <span role="pages">
       <% if page <= 1 && page >= pages_amount %>
-        <a data-page="<%= page-1 %>" role="disabled"></a><a data-page="<%= page %>" role="current" title="<%= t('titles.pagination.this_page', :page => page) %>"></a><a data-page="<%= page+1 %>" role="disabled"></a>
+        <a data-page="<%= page-1 %>" role="disabled"></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" role="disabled"></a>
       <% elsif page <= 1 %>
-        <a data-page="<%= page-1 %>" role="disabled"></a><a data-page="<%= page %>" role="current" title="<%= t('titles.pagination.this_page', :page => page) %>"></a><a data-page="<%= page+1 %>" title="<%= t('titles.pagination.next_page', :page => page + 1) %>"></a>
+        <a data-page="<%= page-1 %>" role="disabled"></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" title="<%= t('titles.pagination.next') %>"></a>
       <% elsif page >= pages_amount %>
-        <a data-page="<%= page-1 %>" title="<%= t('titles.pagination.prev_page', :page => page - 1) %>"></a><a data-page="<%= page %>" role="current" title="<%= t('titles.pagination.this_page', :page => page) %>"></a><a data-page="<%= page+1 %>" role="disabled"></a>
+        <a data-page="<%= page-1 %>" title="<%= t('titles.pagination.prev') %>"></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" role="disabled"></a>
       <% else %>
-        <a data-page="<%= page-1 %>" title="<%= t('titles.pagination.prev_page', :page => page - 1) %>"></a><a data-page="<%= page %>" role="current" title="<%= t('titles.pagination.this_page', :page => page) %>"></a><a data-page="<%= page+1 %>" title="<%= t('titles.pagination.next_page', :page => page + 1) %>"></a>
+        <a data-page="<%= page-1 %>" title="<%= t('titles.pagination.prev') %>"></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" title="<%= t('titles.pagination.next') %>"></a>
       <% end %>
     </span>
   </span>
