@@ -17,6 +17,8 @@ function initNotificationsAutocomplete(){
       if($('#'+_id).length === 0){
         $( "<div class='label label-info' id="+_id+">" ).text( message ).prependTo( "#log" ).append("<a href='#' class='del'>x</a>");
         $( "#log" ).scrollTop( 0 );
+        $( '#users_ids').val($( '#users_ids').val()+','+_id);
+        $('#filter-users').submit();
         var dup = $("#contact-recipients").clone();
         $("#contact-recipients").remove();
         $(dup).appendTo('.recipients_input');
