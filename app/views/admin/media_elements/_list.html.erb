@@ -46,7 +46,7 @@
             <%= element.is_public.to_s %>
           </td>
           <td>
-            <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.media_elements.delete_confirm') %>" href="/admin/media_elements/<%= element.id %>?back_url=<%= manipulate_request_url(:page => back_page, :escape => true).html_safe %>">
+            <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.media_elements.delete_confirm') %>" href="/admin/media_elements/<%= element.id %>?back_url=<%= manipulate_url(:page => back_page, :escape => true).html_safe %>">
               <i class="icon-remove"></i>
             </a>
           </td>

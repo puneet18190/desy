@@ -24,10 +24,11 @@ module ApplicationHelper
     "#{h action_name}-action"
   end
 
-  def manipulate_request_url(options = {})
+  def manipulate_url(options = {})
     param_to_remove = options[:remove_query_param]
     page            = options[:page]
     escape          = options[:escape]
+    path            = options[:path] || request.path
 
     query_params = request.query_parameters.deep_dup
 
@@ -37,9 +38,9 @@ module ApplicationHelper
 
     query_string = get_recursive_array_from_params(query_params).join('&')
 
-    return request.path if query_string.blank?
+    return path if query_string.blank?
 
-    url = "#{request.path}?#{query_string}"
+    url = "#{path}?#{query_string}"
     
     escape ? CGI.escape(url) : url
   end
