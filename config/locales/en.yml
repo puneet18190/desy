@@ -814,6 +814,11 @@ en:
       # Small 'x' that removes a notification
       # 1 - views/notifications/_notification.html.erb
       remove: "Remove notification"
+    # Titles for pagination
+    pagination:
+      prev_page: 'Back to page %{page}'
+      this_page: 'Page %{page}'
+      next_page: 'Go to page %{page}'
     # Icon to report an offensive lesson or media element
     # 1 - views/reports/_media_element.html.erb
     report: "Report offensive content"
