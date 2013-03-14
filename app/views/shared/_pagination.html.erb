@@ -1,7 +1,15 @@
  <div class="dots_pagination_container" id="general_pagination" style="display:block">
   <span class="dots_pagination">
     <span role="pages">
-      <a data-page="<%= page-1 %>" <%= 'role="disabled"'.html_safe if page <= 1 %>></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" <%= 'role="disabled"'.html_safe if page >= pages_amount %>></a>
+      <% if page <= 1 && page >= pages_amount %>
+        <a data-page="<%= page-1 %>" role="disabled"></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" role="disabled"></a>
+      <% elsif page <= 1 %>
+        <a data-page="<%= page-1 %>" role="disabled"></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" title="<%= t('titles.pagination.next') %>"></a>
+      <% elsif page >= pages_amount %>
+        <a data-page="<%= page-1 %>" title="<%= t('titles.pagination.prev') %>"></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" role="disabled"></a>
+      <% else %>
+        <a data-page="<%= page-1 %>" title="<%= t('titles.pagination.prev') %>"></a><a data-page="<%= page %>" role="current"></a><a data-page="<%= page+1 %>" title="<%= t('titles.pagination.next') %>"></a>
+      <% end %>
     </span>
   </span>
   
@@ -12,12 +20,12 @@
   
   $(document).ready(function() {
     var prevPage = function(prevPage) {
-      var url = <%= manipulate_request_url(remove_query_param: 'delete_item', page: page - 1).to_json.html_safe %>;
+      var url = <%= manipulate_url(remove_query_param: 'delete_item', page: page - 1).to_json.html_safe %>;
       $.get(url);
       return true;
     }
     var nextPage = function(nextPage) {
-      var url = <%= manipulate_request_url(remove_query_param: 'delete_item', page: page + 1).to_json.html_safe %>;
+      var url = <%= manipulate_url(remove_query_param: 'delete_item', page: page + 1).to_json.html_safe %>;
       $.get(url);
       return true;
     }

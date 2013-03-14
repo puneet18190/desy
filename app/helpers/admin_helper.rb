@@ -3,10 +3,10 @@ module AdminHelper
   def page_items_counter(items)
     if items.length > 0
       from = 1
-      if items.count > SETTINGS['admin_general_pagination']
+      if items.length > SETTINGS['admin_general_pagination']
         to = SETTINGS['admin_general_pagination']
       else
-        to = items.count
+        to = items.length
       end
       if params[:page]
         from = (SETTINGS['admin_general_pagination'] * (params[:page].to_i - 1)) + 1

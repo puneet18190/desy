@@ -7,7 +7,7 @@
   <div class="span6 widget">
     <h3><%= t('admin.dashboard.elements_reports')%></h3>
     <% @elements_reports.each do |report| %>
-      <a href="/admin/elements?utf8=✓&search%5Bsearch_type%5D=elements&search%5Bordering%5D=id+DESC&search%5Bid%5D=<%=report.reportable.id%>&search%5Btitle%5D=&search%5Bsti_type%5D=&search%5Buser%5D=&search%5Bdate_range_field%5D=&search%5Bprovince_id%5D=#list-anchor">
+      <a href="/admin/media_elements?utf8=✓&search%5Bid%5D=<%=report.reportable.id%>#list-anchor">
         <blockquote class="elements">
           <div class="pull-right date-label elements">
             <%= report.created_at.strftime('%d %b %Y')%>
@@ -22,7 +22,7 @@
   <div class="span6 widget">
     <h3><%= t('admin.dashboard.lessons_reports')%></h3>
     <% @lessons_reports.each do |report| %>
-      <a href="/admin/lessons?utf8=✓&search%5Bsearch_type%5D=lessons&search%5Bordering%5D=id+DESC&search%5Bid%5D=<%=report.reportable.id%>&search%5Btitle%5D=&search%5Bsubject_id%5D=&search%5Buser%5D=&search%5Bdate_range_field%5D=&search%5Bprovince_id%5D=#list-anchor">
+      <a href="/admin/lessons?utf8=✓&search%5Bid%5D=<%=report.reportable.id%>#list-anchor">
         <blockquote class="lessons">
           <div class="pull-right date-label lessons">
             <%= report.created_at.strftime('%d %b %Y')%>

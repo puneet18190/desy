@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
   validates_presence_of :users_subjects
   validates_uniqueness_of :email
   validates_length_of :name, :surname, :email, :maximum => 255
-  validates_length_of :password, :minimum => 8, :on => :create, :unless => proc { |record| record.encrypted_password.present? }
-  validates_length_of :password, :minimum => 8, :on => :update, :allow_nil => true, :allow_blank => true
+  validates_length_of :password, :minimum => SETTINGS['minimum_password_length'], :maximum => SETTINGS['maximum_password_length'], :on => :create, :unless => proc { |record| record.encrypted_password.present? }
+  validates_length_of :password, :minimum => SETTINGS['minimum_password_length'], :maximum => SETTINGS['maximum_password_length'], :on => :update, :allow_nil => true, :allow_blank => true
   validates_inclusion_of :active, :in => [true, false]
   validate :validate_associations
   validate :validate_email_not_changed, on: :update

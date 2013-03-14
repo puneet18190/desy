@@ -107,3 +107,6 @@ colors:
     code: '#373737'
 # USER REGISTRATION POLICIES
 user_registration_policies: ['policy_1', 'policy_2']
+# USER PASSWORD CONSTRAINTS
+minimum_password_length: 8
+maximum_password_length: 20

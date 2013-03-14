@@ -21,12 +21,13 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/:lesson_id/remove_lesson'  => 'virtual_classroom#remove_lesson'
   
   # MEDIA ELEMENTS
-  resources :media_elements,                     :only => :create
-  get       'media_elements/new'                       => 'media_elements#new',    :as => :new_media_elements_editor
-  post      'media_elements/:media_element_id'         => 'media_elements#update', :as => :media_element
-  post      'media_elements/:media_element_id/add'     => 'media_elements#add'
-  post      'media_elements/:media_element_id/destroy' => 'media_elements#destroy'
-  post      'media_elements/:media_element_id/remove'  => 'media_elements#remove'
+  resources :media_elements,                          :only => :create
+  get       'media_elements/new'                            => 'media_elements#new',    :as => :new_media_elements_editor
+  post      'media_elements/:media_element_id'              => 'media_elements#update', :as => :media_element
+  post      'media_elements/:media_element_id/add'          => 'media_elements#add'
+  post      'media_elements/:media_element_id/destroy'      => 'media_elements#destroy'
+  post      'media_elements/:media_element_id/remove'       => 'media_elements#remove'
+  get       'media_elements/:media_element_id/preview/load' => 'media_elements#load_preview'
   
   # NOTIFICATIONS
   post 'notifications/:notification_id/seen'    => 'notifications#seen'
@@ -46,6 +47,7 @@ Desy::Application.routes.draw do
   post 'lessons/:lesson_id/slides/:slide_id/kind/:kind/create' => 'lesson_editor#add_slide'
   post 'lessons/:lesson_id/slides/:slide_id/delete'            => 'lesson_editor#delete_slide',          :as => :delete_slide
   post 'lessons/:lesson_id/slides/:slide_id/update'            => 'lesson_editor#save_slide',            :as => :save_slide
+  post 'lessons/:lesson_id/slides/:slide_id/update_and_exit'   => 'lesson_editor#save_slide_and_exit'
   post 'lessons/:lesson_id/slides/:slide_id/move/:position'    => 'lesson_editor#change_slide_position', :as => :change_slide_position
   get  'lessons/:lesson_id/slides/:slide_id/load'              => 'lesson_editor#load_slide'
   
@@ -143,7 +145,6 @@ Desy::Application.routes.draw do
   get  'users/password'       => 'users#request_reset_password', :as => :user_request_reset_password
   post 'users/password'       => 'users#reset_password',         :as => :user_reset_password
   get  'what_is_desy'         => 'prelogin#what_is_desy',        :as => :what_is_desy
-  get  'contact_us'           => 'prelogin#contact_us',          :as => :contact_us
   
   # APPLICATION ROOT
   root :to => 'prelogin#home'

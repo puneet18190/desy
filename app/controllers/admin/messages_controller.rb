@@ -3,7 +3,13 @@ class Admin::MessagesController < AdminController
   layout 'admin'
   
   def new_notification
-    @location_root = Location.roots
+    
+    @locations = [Location.roots]
+    if params[:search]
+      location = Location.get_from_chain_params params[:search]
+      @locations = location.get_filled_select if location
+    end
+    
     if params[:users] #list of recipients
       @users = []
       @users_ids = params[:users].gsub(/[\[\]\"]/,'').split(',')
@@ -14,26 +20,32 @@ class Admin::MessagesController < AdminController
   end
   
   def send_notifications
-    if params[:all_users] && params[:message].present?
-      User.all.each do |user|
-        Notification.send_to(user.id, params[:message])
-      end
-    else
-      if params[:notification_ids] && params[:message]
-        msg = params[:message]
-        params[:notification_ids].split(',').each do |user_id|
-          Notification.send_to(user_id.gsub(/\s+/, ""), msg)
+    if params[:message].present?
+      msg = params[:message]
+      if params[:all_users]
+        User.all.each do |user|
+          Notification.send_to(user.id, msg)
         end
       else
-        @errors = "errors to add"
+        if params[:notification_ids]
+          params[:notification_ids].split(',').each do |user_id|
+            Notification.send_to(user_id, msg)
+          end
+        else
+          @errors = "errors to add"##TODO
+          logger.info "\n\n\n\n #{@errors} \n\n\n\n"
+        end
       end
+    else
+      @errors = "message required"##TODO
+      logger.info "\n\n\n\n message error: #{@errors} \n\n\n\n"
     end
     redirect_to :back
   end
   
   def filter_users
     if params[:search].present?
-      @users = AdminSearchForm.search(params[:search],'users')
+      @users = AdminSearchForm.search_notifications_users(params[:search])
     end
   end
   

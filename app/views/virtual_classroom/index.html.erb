@@ -21,7 +21,7 @@
       <%= render :partial => 'virtual_classroom/my_virtual_classroom' %>
       <br class="clearfloat">
       <% if @lessons.any? %>
-        <%= render :partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount} %>
+        <%= render :partial => 'virtual_classroom/pagination', :locals => {:page => @page, :pages_amount => @pages_amount, :force_index_url => nil} %>
       <% else %>
         <div class="dots_pagination_container paginatoreCentrato" id="virtual_classroom_pagination"></div>
       <% end %>

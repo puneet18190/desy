@@ -7,7 +7,7 @@
     <select id="search_subject_id" name="search[subject_id]">
       <option value=''><%= t('admin.search.users.fields.select_subject') %></option>
       <% Subject.all.each do |subject| %>
-      <% if params[:search].present? && (params[:search][:subject_id].to_i == subject.id.to_i) %>
+      <% if params.present? && (params[:subject_id].to_i == subject.id.to_i) %>
         <option value="<%= subject.id %>" selected="selected">
       <% else %>
         <option value="<%= subject.id %>">

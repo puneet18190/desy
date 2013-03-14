@@ -39,12 +39,14 @@ function getHtmlPagination(pos, pages_amount) {
     $prev_attrs.role = 'disabled';
   } else {
     $prev_attrs.data = { page: pos-1 };
+    $prev_attrs.title = $('#popup_captions_container').data('title-pagination-left');
   }
 
   if(pos >= pages_amount) {
     $next_attrs.role = 'disabled';
   } else {
     $next_attrs.data = { page: pos+1 };
+    $next_attrs.title = $('#popup_captions_container').data('title-pagination-right');
   }
 
   var $pagination = $('<span/>', { 'class': 'dots_pagination' });

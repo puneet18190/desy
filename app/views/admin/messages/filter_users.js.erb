@@ -1,3 +1,1 @@
-//filter users
-$('#alert').html('<%= @users.count %> users selected');
-$('#alert').show();
+$('#alert').html("<%= t('admin.messages.notifications.users_selected', :user_count => @users.length) %>");

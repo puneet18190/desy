@@ -41,6 +41,25 @@ $(document).ready(function() {
   });
   
   $('body').on('change', '#filter-users select', function() {
+    var selected = $(this).find('option:selected').first();
+    var text = selected.text().replace(/\s+/g, ' ');
+    var select_id = $(this).attr('id');
+    if($('._filter_select.'+select_id).length > 0){
+      if(selected.val().length > 0){
+        if(selected.val() != 0){
+          $('.'+select_id+' span').text(text);
+        }else{
+          $('#'+select_id).parents('.control-group').nextAll().find('select').each(function(){
+            $('.'+$(this).attr('id')).remove();
+          });
+          $('.'+select_id).remove();
+        }
+      }else{
+        $('.'+select_id).remove();
+      }
+    }else{
+      $( "<div class='label _filter_select "+select_id+"'>" ).html( '<span>'+text+'</span>' ).prependTo( "#log" );
+    }
     $('#filter-users').submit();
   });
   
@@ -49,6 +68,7 @@ $(document).ready(function() {
         $("input#contact-recipients").val('');
         $("input#notification_ids").val('');
         $("input#contact-recipients").attr('disabled',true);
+        $("#log").html('');
         $("#filter-users select").each(function(){
           $this = $(this);
           $this.find('option:selected').removeAttr('selected');
@@ -157,47 +177,58 @@ $(document).ready(function() {
     });
   });
   
-  $(function() {
-    function split(val) {
-      return val.split(/,\s*/);
-    }
-    function extractLast(term) {
-      return split(term).pop();
-    }
-    $('#contact-recipients').bind('keydown', function(event) {
-      if(event.keyCode === $.ui.keyCode.TAB && $(this).data('autocomplete').menu.active) {
-        event.preventDefault();
-      }
-    }).autocomplete({
-      source: function(request, response) {
-        $.getJSON('/admin/users/get_full_names', {
-          term: extractLast(request.term)
-        }, response);
-      },
-      search: function() {
-        var term = extractLast(this.value);
-        if(term.length < 2) {
-          return false;
-        }
-      },
-      focus: function() {
-        return false;
-      },
-      select: function(event, ui) {
-        var terms = split(this.value);
-        terms.pop();
-        terms.push(ui.item.value);
-        terms.push('');
-        this.value = terms.join(', ');
-        var $ids_input = $('input#notification_ids');
-        $ids_input.val($ids_input.val() + ',' + ui.item.id);
-        return false;
-      },
-      messages: {
-        results: function() {}
-      }
-    });
+  initNotificationsAutocomplete();
+  
+  $('body').on('click', '#log .del', function(e) {
+    e.preventDefault();
+    var my_div = $(this).parent('div')
+    var ids_val = $('#notification_ids').val().split(',');
+    $('#notification_ids').val(ids_val.splice(ids_val.indexOf(my_div.attr('id')),1));
+    my_div.remove();
   });
+
+  
+  //$(function() {
+  //  function split(val) {
+  //    return val.split(/,\s*/);
+  //  }
+  //  function extractLast(term) {
+  //    return split(term).pop();
+  //  }
+  //  $('#contact-recipients').bind('keydown', function(event) {
+  //    if(event.keyCode === $.ui.keyCode.TAB && $(this).data('autocomplete').menu.active) {
+  //      event.preventDefault();
+  //    }
+  //  }).autocomplete({
+  //    source: function(request, response) {
+  //      $.getJSON('/admin/users/get_full_names', {
+  //        term: extractLast(request.term)
+  //      }, response);
+  //    },
+  //    search: function() {
+  //      var term = extractLast(this.value);
+  //      if(term.length < 2) {
+  //        return false;
+  //      }
+  //    },
+  //    focus: function() {
+  //      return false;
+  //    },
+  //    select: function(event, ui) {
+  //      var terms = split(this.value);
+  //      terms.pop();
+  //      terms.push(ui.item.value);
+  //      terms.push('');
+  //      this.value = terms.join(', ');
+  //      var $ids_input = $('input#notification_ids');
+  //      $ids_input.val($ids_input.val() + ',' + ui.item.id);
+  //      return false;
+  //    },
+  //    messages: {
+  //      results: function() {}
+  //    }
+  //  });
+  //});
   
   
   // EFFECTS
