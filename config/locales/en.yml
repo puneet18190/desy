@@ -971,7 +971,7 @@ en:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Status of lessons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this page you may create new lessons or manage the ones that are already present in your personal folder. Pay attention to the status of your lessons:<br/><b>private</b> corresponds to a lesson that only you can use and see, <b>shared</b> identifies lessons which you have decided to share and that can be seen by other %{desy} users; <b>linked</b> indicates lessons created by other users."
+        content: "This page contains your personal folder of lessons, together with a set of instruments to handle them and create new ones. Pay attention to the status of your lessons:<br/><b>private</b> corresponds to a lesson that only you can use and see, <b>shared</b> identifies lessons which you have decided to share and that can be seen by other %{desy} users; <b>linked</b> indicates lessons created by other users."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Action buttons"
@@ -981,19 +981,18 @@ en:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Create a new lesson"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "After having added the didactic elements necessary to the creation of your lesson you can start using the %{desy} lesson editor. The \"create a new lesson\" button."
+        content: "Once you added a sufficient amount of elements, you are ready to create your own lesson: click on the \"create a new lesson\" button, which will redirect you to %{desy}'s Lesson Editor."
     media_elements:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Your didactic elements"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this page you'll be able to upload new didactic elements or visualize, modify or cancel those already present on the list.<br>After having been uploaded, a didactic element will acquire the \"private\" status which it won't loose until that element will be used inside a lesson shared among other %{desy} subscribers. 
-An element with the private status through the X may be cancelled, while an element with the linked status thanks to the less icon may only be removed from your personal list but will continue to be present in the %{desy} database. The pencil will allow you to modify the selected element."
+        content: "This page contains your personal folder of elements, together with a set of instruments to handle them and create new ones.<br/>As soon as an element is uploaded %{desy} assigns it the status <b>private</b>. Unlike for lessons, you can't share directly your private elements: when you share a lesson, the application shares automaticly all the elements contained in it. When an element passes to status <b>public</b>, it is automaticly moved from your personal folder to %{desy}'s public one: in your folder you'll keep a link of it, which allows you to use it but not modify nor delete it."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Element Editors"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "It uses %{desy} editors to create new didactic elements or to modify those already present in your personal list. The pencil associated to each didactic element will open the specific editor (audio, image, or video) in order to modify the selected element. The Elements Editor button, instead, will allow you to select one of %{desy}'s editors in order to create a new didactic element."
+        content: "The \"pencil\" icon on each element opens that element's specific Editor (Audio, Image or Video). If the element containing the pencil is <b>public</b>, the Editor will force you to save your work as a new element (since you can't modify a public one), whereas if the element is <b>private</b> you can choose whether overwrite or not the original one. The button \"elements editor\" lets you choose a type of element and opens the corresponding empty Editor."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Element preview"
