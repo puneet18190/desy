@@ -41,16 +41,24 @@ $(document).ready(function() {
   });
   
   $('body').on('change', '#filter-users select', function() {
-    var text = $(this).find('option:selected').first().text().replace(/\s+/g, ' ');
+    var selected = $(this).find('option:selected').first();
+    var text = selected.text().replace(/\s+/g, ' ');
     var select_id = $(this).attr('id');
     if($('._filter_select.'+select_id).length > 0){
-      if($(this).find('option:selected').first().val().length > 0){
-        $('.'+select_id+' span').text(text);
+      if(selected.val().length > 0){
+        if(selected.val() != 0){
+          $('.'+select_id+' span').text(text);
+        }else{
+          $('#'+select_id).parents('.control-group').nextAll().find('select').each(function(){
+            $('.'+$(this).attr('id')).remove();
+          });
+          $('.'+select_id).remove();
+        }
       }else{
         $('.'+select_id).remove();
       }
     }else{
-      $( "<div class='label _filter_select "+select_id+"'>" ).html( '<span>'+text+'</span>' ).prependTo( "#log" ).append("<a href='#' class='del'>x</a>");
+      $( "<div class='label _filter_select "+select_id+"'>" ).html( '<span>'+text+'</span>' ).prependTo( "#log" );
     }
     $('#filter-users').submit();
   });
