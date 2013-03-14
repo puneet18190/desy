@@ -81,7 +81,7 @@
                     <button type="submit" class="btn"><%= t('admin.messages.notifications.send')%></button>
                   </div>
                   <div id="alert" class="span9 pagination-centered">
-                    <%= t('admin.messages.notifications.users_selected', :user_count => @users ? @users.count : 0) %>
+                    <%= t('admin.messages.notifications.users_selected', :user_count => @users ? @users.length : 0) %>
                   </div>            
                 </div>
               </div>

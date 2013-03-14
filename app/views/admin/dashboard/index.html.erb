@@ -87,7 +87,7 @@
       <tbody>
         <tr>
           <td>
-            <% (0..@all_subjects_chart.count - 1).each do |index| %>
+            <% (0..@all_subjects_chart.length - 1).each do |index| %>
               <blockquote class="legend" style="border-color: <%=Subject.chart_colors[index]%>">
                 <div class="pull-left"><%= @all_subjects_desc[index] %></div>
                 <div class="pull-right"><%= @all_subjects_chart[index] %></div>
