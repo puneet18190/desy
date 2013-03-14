@@ -301,6 +301,24 @@
     line-height: 1.3em;
   }
   
+  .everyone{
+    padding-top: 45px;
+    input{
+      margin-top: 0px;
+    }
+  }
+  
+  #log .label{
+    margin: 0 5px 5px 0;
+    font-weight: normal;
+    a{
+      margin: 0 3px;  
+      &:hover{
+        text-decoration:none;
+      }
+    }
+  }
+  
   .dashboard table, &.show-action table, table.white{
     background-color: #ffffff;
   }
@@ -355,6 +373,8 @@
   
   input[type="checkbox"]{
     zoom: 150%;
+    -moz-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
   }
   
   @media (max-width: 960px) {

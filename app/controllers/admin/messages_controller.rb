@@ -20,19 +20,25 @@ class Admin::MessagesController < AdminController
   end
   
   def send_notifications
-    if params[:all_users] && params[:message].present?
-      User.all.each do |user|
-        Notification.send_to(user.id, params[:message])
-      end
-    else
-      if params[:notification_ids] && params[:message]
-        msg = params[:message]
-        params[:notification_ids].split(',').each do |user_id|
-          Notification.send_to(user_id.gsub(/\s+/, ""), msg)
+    if params[:message].present?
+      msg = params[:message]
+      if params[:all_users]
+        User.all.each do |user|
+          Notification.send_to(user.id, msg)
         end
       else
-        @errors = "errors to add"
+        if params[:notification_ids]
+          params[:notification_ids].split(',').each do |user_id|
+            Notification.send_to(user_id, msg)
+          end
+        else
+          @errors = "errors to add"##TODO
+          logger.info "\n\n\n\n #{@errors} \n\n\n\n"
+        end
       end
+    else
+      @errors = "message required"##TODO
+      logger.info "\n\n\n\n message error: #{@errors} \n\n\n\n"
     end
     redirect_to :back
   end

@@ -10,3 +10,30 @@ function openAndLoadNextTr(prevTr) {
   }
   next_tr.slideToggle('slow');
 }
+
+function initNotificationsAutocomplete(){
+  $(function() {
+    function log( message, _id ) {
+      if($('#'+_id).length === 0){
+        $( "<div class='label label-info' id="+_id+">" ).text( message ).prependTo( "#log" ).append("<a href='#' class='del'>x</a>");
+        $( "#log" ).scrollTop( 0 );
+        var dup = $("#contact-recipients").clone();
+        $("#contact-recipients").remove();
+        $(dup).appendTo('.recipients_input');
+        $(dup).val('');
+        initNotificationsAutocomplete();
+        $("#contact-recipients").focus();
+      }
+    }
+ 
+    $( "#contact-recipients" ).autocomplete({
+      source: "/admin/users/get_full_names",
+      minLength: 2,
+      select: function( event, ui ) {
+        log( ui.item ?
+          ui.item.value :
+          "No match" , ui.item.id );
+      }
+    });
+  });
+}

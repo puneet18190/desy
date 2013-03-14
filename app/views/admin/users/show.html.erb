@@ -38,7 +38,7 @@
                     <i class="icon-ok _show_status _show_active"></i><%= t('admin.users.actions.activate').downcase %>
                   </a>
                 <% end %>
-                <a class="btn btn-small" href="/admin/messages/new_notification?users=<%= @user.id %>" data-method="put">
+                <a class="btn btn-small" href="/admin/messages/new_notification?users=<%= @user.id %>" data-method="get">
                   <i class="icon-envelope"></i><%= t('admin.users.actions.message').downcase %>
                 </a>
                 <% if !@user.super_admin? %>

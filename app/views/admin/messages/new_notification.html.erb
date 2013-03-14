@@ -6,11 +6,19 @@
 <div class="row-fluid">
   <div class="span12">
     <div class="hero-unit">
+      <% if @errors.present? %>
+        <div class="row-fluid">
+          <div class="span12 alter alter-error">
+            ERRORI
+            <%= @errors %>
+          </div>
+        </div>  
+      <% end %>
       <div class="row-fluid">
           <div class="span4">
             <div class="row-fluid">
               <div class="span12 pagination-centered">
-                <h4>Filter users to send notifications to</h4>
+                <h4><%= t('admin.messages.notifications.filter_users')%></h4>
               </div>
             </div>
             <div class="row-fluid">
@@ -23,13 +31,6 @@
                 </div>
               <% end %>
             </div>
-            <div class="row-fluid">
-              <div class"span12">
-                <div id="alert" class="alert alert-info pagination-centered" style="display:none">
-                  
-                </div>
-              </div>
-            </div>
           </div>
           <div class="span1"></div>
           <div class="span7">
@@ -37,23 +38,26 @@
               <div class="row-fluid">
                 <div class="span6">
                   <div class="control-group">
-                    <h4>Add recipients</h4>
-                    <div class="controls">
+                    <h4><%= t('admin.messages.notifications.add_recipients')%></h4>
+                    <div class="controls recipients_input">
                       <% if @users.present? %>
-                        <%= text_field_tag :recipients, @users.map(&:full_name).to_s.gsub(/[\[\]\"]/,'') , :placeholder => 'recipients', :class=>'input-xlarge', :id => 'contact-recipients' %>
-                        <%= hidden_field_tag :notification_ids,  @users.map(&:id).to_s.gsub(/[\[\]\"]/,'')%>
+                        <%= hidden_field_tag :notification_ids,  @users.map(&:id).join(',')%>
                       <% else %>
-                        <%= text_field_tag :recipients, '' , :placeholder => 'recipients', :class=>'input-xlarge', :id => 'contact-recipients' %>
                         <%= hidden_field_tag :notification_ids %>
                       <% end %>
+                      <%= text_field_tag :recipients, '' , :placeholder => 'recipients', :class=>'input-xlarge', :id => 'contact-recipients' %>
                     </div>
                   </div>
                 </div>
                 <div class="span6">
-                  <h4>_</h4>
-                  <label class="checkbox">
-                    <%= check_box_tag :all_users %> Send to everyone
+                  <label class="checkbox everyone">
+                    <%= check_box_tag :all_users %> <%= t('admin.messages.notifications.send_everyone')%>
                   </label>
+                </div>
+                <div id="log" class="span12">
+                  <% if @users %>
+                    <%= render :partial => 'recipients', :locals => {:users => @users} %> 
+                  <% end %>
                 </div>
               </div>
               <div class="row-fluid">
@@ -68,7 +72,14 @@
               </div>
               <div class="clearfix"></div>
               <div class="form-actions">
-                <button type="submit" class="btn"><%= t('admin.messages.contact.send')%></button>
+                <div class="row-fluid">
+                  <div class="span3">
+                    <button type="submit" class="btn"><%= t('admin.messages.notifications.send')%></button>
+                  </div>
+                  <div id="alert" class="span9 pagination-centered">
+                    <%= t('admin.messages.notifications.users_selected', :user_count => @users ? @users.count : 0) %>
+                  </div>            
+                </div>
               </div>
               <div class="clearfix"></div>
             <% end %>
