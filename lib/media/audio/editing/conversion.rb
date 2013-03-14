@@ -20,6 +20,11 @@ module Media
         TEMP_FOLDER        = Rails.root.join(env_relative_path('tmp/media/audio/editing/conversions')).to_s
         DURATION_THRESHOLD = CONFIG.duration_threshold
 
+
+        def self.remove_folder!
+          FileUtils.rm_rf TEMP_FOLDER
+        end
+
         def self.log_folder
           super 'conversions'
         end
@@ -46,7 +51,9 @@ module Media
 
         def run
           begin
-            FORMATS.map{ |format| SensitiveThread.new { convert_to(format) } }.each(&:join)
+            prepare_for_conversion
+
+            Thread.join *FORMATS.map{ |format| proc{ convert_to(format) } }
 
             mp3_file_info = Info.new output_path(:mp3)
             ogg_file_info = Info.new output_path(:ogg)
@@ -90,9 +97,24 @@ module Media
         end
 
         def convert_to(format)
-          if not File.exists? uploaded_path and not File.exists? temp_path
+          prepare_for_conversion unless @prepare_for_conversion
+
+          output_path = output_path(format)
+
+          log_folder = create_log_folder
+          stdout_log, stderr_log = stdout_log(format), stderr_log(format)
+
+          Cmd::Conversion.new(temp_path, output_path, format).run! %W(#{stdout_log} a), %W(#{stderr_log} a)
+        rescue StandardError => e
+          FileUtils.rm_rf output_folder
+          raise e
+        end
+
+        private
+        def prepare_for_conversion
+          if !File.exists?(uploaded_path) && !File.exists?(temp_path)
             raise Error.new( "at least one between uploaded_path and temp_path must exist", 
-                             temp_path: temp_path, uploaded_path: uploaded_path, format: format )
+                             temp_path: temp_path, uploaded_path: uploaded_path)
           end
 
           FileUtils.mkdir_p temp_folder unless Dir.exists? temp_folder
@@ -102,22 +124,10 @@ module Media
           FileUtils.mv uploaded_path, temp_path unless File.exists? temp_path
 
           FileUtils.mkdir_p output_folder unless Dir.exists? output_folder
-          
-          begin
-            output_path = output_path(format)
 
-            log_folder = create_log_folder
-            stdout_log, stderr_log = stdout_log(format), stderr_log(format)
-
-            Cmd::Conversion.new(temp_path, output_path, format).run! %W(#{stdout_log} a), %W(#{stderr_log} a)
-          rescue StandardError => e
-            FileUtils.rm_rf output_folder
-            raise e
-          end
-
+          @prepare_for_conversion = true
         end
 
-        private
         def output_path(format)
           "#{@output_path_without_extension}.#{format}"
         end

@@ -18,15 +18,16 @@ module Media
     
     module InstanceMethods
       def create_log_folder(folder_name = nil)
-        @log_folder = nil
-        @log_folder = log_folder(folder_name)
-        FileUtils.mkdir_p @log_folder unless Dir.exists? @log_folder
-        @log_folder
+        self.log_folder_instance_variable = nil
+        self.log_folder_instance_variable = log_folder(folder_name)
+        FileUtils.mkdir_p log_folder_instance_variable
+        log_folder_instance_variable
       end
 
+
       def log_folder(folder_name = nil)
-        @log_folder || (
-          folder_name ||= "#{Time.now.utc.strftime("%Y%m%d%H%M%S_%N")}_#{Thread.current.object_id}"
+        log_folder_instance_variable || (
+          folder_name ||= "#{Time.now.utc.strftime("%Y%m%d%H%M%S_%N")}_#{::Thread.current.object_id}"
           File.join self.class.log_folder, folder_name
         )
       end
@@ -41,6 +42,19 @@ module Media
 
       def logs(prefix = nil)
         [%W(#{stdout_log(prefix)} a), %W(#{stderr_log(prefix)} a)]
+      end
+
+      private
+      def log_folder_instance_variable_name
+        :"@log_folder_for_thread_#{Thread.current.object_id}"
+      end
+
+      def log_folder_instance_variable
+        instance_variable_get log_folder_instance_variable_name
+      end
+
+      def log_folder_instance_variable=(log_folder_instance_variable)
+        instance_variable_set log_folder_instance_variable_name, log_folder_instance_variable
       end
     end
     

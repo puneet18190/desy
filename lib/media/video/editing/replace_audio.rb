@@ -4,6 +4,7 @@ require 'media/video/editing'
 require 'media/logging'
 require 'media/in_tmp_dir'
 require 'media/info'
+require 'media/thread'
 require 'media/video/editing/cmd/video_stream_to_file'
 require 'media/video/editing/cmd/replace_audio'
 
@@ -39,15 +40,7 @@ module Media
   
         def run
           create_log_folder
-  
-          in_tmp_dir do
-            FORMATS.map do |format|
-              Thread.new do
-                replace_audio(format)
-              end.tap{ |t| t.abort_on_exception = true }
-            end.each(&:join)
-          end
-  
+          in_tmp_dir { Thread.join *FORMATS.map { |format| proc { replace_audio(format) } } }
           outputs
         end
   

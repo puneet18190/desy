@@ -3,6 +3,7 @@ require 'media/audio'
 require 'media/audio/editing'
 require 'media/logging'
 require 'media/in_tmp_dir'
+require 'media/thread'
 
 module Media
   module Audio
@@ -52,13 +53,7 @@ module Media
 
           create_log_folder
 
-          in_tmp_dir do
-            FORMATS.map do |format|
-              SensitiveThread.new do
-                concat(format)
-              end
-            end.each(&:join)
-          end
+          in_tmp_dir { Thread.join *FORMATS.map { |format| proc{ concat(format) } } }
 
           outputs
         end

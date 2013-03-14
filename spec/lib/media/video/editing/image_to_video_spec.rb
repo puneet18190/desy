@@ -25,7 +25,7 @@ module Media
         end
   
         describe '#run' do
-          let(:output_prefix) { Tempfile.new(Thread.current.object_id.to_s) }
+          let(:output_prefix) { Tempfile.new(::Thread.current.object_id.to_s) }
           let(:duration) { 10 }
           
           supported_image_formats.each do |image_format|

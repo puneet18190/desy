@@ -3,6 +3,7 @@ require 'media/video'
 require 'media/video/editing'
 require 'media/video/editing/cmd/crop'
 require 'media/logging'
+require 'media/thread'
 
 module Media
   module Video
@@ -39,13 +40,7 @@ module Media
   
         def run
           create_log_folder
-  
-          @inputs.map do |format, input|
-            SensitiveThread.new do
-              self.class::CROP_CMD.new(input, output(format), @start, @duration, format).run! *logs
-            end
-          end.each(&:join)
-  
+          Thread.join *@inputs.map { |format, input| proc{ self.class::CROP_CMD.new(input, output(format), @start, @duration, format).run! *logs } }
           outputs
         end
   

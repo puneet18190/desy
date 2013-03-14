@@ -4,7 +4,7 @@ require 'media/video/editing'
 require 'media/in_tmp_dir'
 require 'media/error'
 require 'media/video/editing/parameters'
-require 'sensitive_thread'
+require 'media/thread'
 require 'media/video/editing/crop'
 require 'media/video/editing/text_to_video'
 require 'media/video/editing/image_to_video'
@@ -57,9 +57,9 @@ module Media
             video.media     = old_media
             video.converted = true
             if old_fields = video.try(:metadata).try(:old_fields)
-              video.title       = old_fields['title']
-              video.description = old_fields['description']
-              video.tags        = old_fields['tags']
+              video.title       = old_fields['title'] if old_fields['title'].present?
+              video.description = old_fields['description'] if old_fields['description'].present?
+              video.tags        = old_fields['tags'] if old_fields['tags'].present?
             end
             video.save!
             video.enable_lessons_containing_me
@@ -76,8 +76,8 @@ module Media
           in_tmp_dir do
             concats = {}
 
-            @params[:components].each_with_index.map do |component, i|
-              SensitiveThread.new do
+            Thread.join *@params[:components].each_with_index.map { |component, i|
+              proc {
                 concats.store i,
                   case component[:type]
                   when Parameters::VIDEO_COMPONENT
@@ -89,18 +89,18 @@ module Media
                   else
                     raise Error.new("wrong component type", type: component[:type])
                   end
-              end
-            end.each(&:join)
+              }
+            }
 
             concats_sorted = concats.sort
-            concats_sorted[0, concats_sorted.size-1].map do |i, concat|
+            Thread.join *concats_sorted[0, concats_sorted.size-1].map { |i, concat|
               next_i = i+1
               next_concat = concats_sorted[next_i][1]
-              SensitiveThread.new do
+              proc {
                 transition_i = (i+next_i)/2.0
                 concats.store transition_i, Transition.new(concat, next_concat, tmp_path(transition_i.to_s)).run
-              end
-            end.each(&:join)
+              }
+            }
 
             concat = tmp_path 'concat'
             outputs = Concat.new(concats.sort.map{ |_,c| c }, concat).run
@@ -141,10 +141,10 @@ module Media
 
           if from == 0 && to == video.min_duration
             {}.tap do |outputs|
-              inputs.map do |format, input|
+              Thread.join *inputs.map { |format, input|
                 output = outputs[format] = "#{output_without_extension(i)}.#{format}"
-                SensitiveThread.new{ video_copy input, output }
-              end.each(&:join)
+                proc { video_copy input, output }
+              }
             end
           else
             start, duration = from, to-from
