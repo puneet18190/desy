@@ -1459,7 +1459,7 @@ An element with the private status through the X may be cancelled, while an elem
         update:
           # The process of audio editing started. The variable %{item} is replaced by the name of the audio whose content is going to be modified
           # 1 - controllers/audio_editor_controller.rb
-          started: "<div class=\"title\">Audio editing</div><div class=\"content\">The editing of the audio <span class=\"variable\">%{item}</span> started! Audio editor is temporarily not available, together with lessons where you used this audio.</div>"
+          started: "<div class=\"title\">Audio editing</div><div class=\"content\">The editing of the audio <span class=\"variable\">%{item}</span> started! Audio Editor is temporarily not available, together with lessons where you used this audio.</div>"
           # The process of audio editing ended successfully. The variable %{item} is replaced by the name of the audio whose content has been modified
           # 1 - ../lib/media/audio/editing/composer.rb
           ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The editing of the audio <span class=\"variable\">%{item}</span> ended successfully! Now the Audio Editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing).</div>"
@@ -1469,55 +1469,55 @@ An element with the private status through the X may be cancelled, while an elem
         create:
           # The process of audio composition started. The variable %{item} is replaced by the name of the audio which is going to be composed
           # 1 - controllers/audio_editor_controller.rb
-          started: "The composition of the audio %{item} started! Audio editor is temporarily not available"
+          started: "<div class=\"title\">Audio composition</div><div class=\"content\">The composition of the audio <span class=\"variable\">%{item}</span> started! Audio Editor is temporarily not available</div>"
           # The process of audio composition ended successfully. The variable %{item} is replaced by the name of the new audio
           # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "The composition of the audio %{item} ended successfully! Now the audio editor is available again."
+          ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The composition of the audio <span class=\"variable\">%{item}</span> ended successfully! Now the Audio Editor is available again.</div>"
           # The process of audio composition ended with an error. The variable %{item} is replaced by the name of the audio in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
           # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "The composition of the audio %{item} failed! Now the audio editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
+          failed: "<div class=\"title\">Error!</div><div class=\"content\">The composition of the audio <span class=\"variable\">%{item}</span> failed! Now the Audio Editor is available again. The draft you were working on hasn't been lost:<br/><br/><a href=\"%{link}\" class=\"link\">go to the draft</a></div>"
       upload:
         # The process of audio uploading started. The variable %{item} is replaced by the name of the audio which is going to be uploaded
         # 1 - controllers/media_elements_controller.rb
-        started: "The uploading of the audio %{item} started! Wait until it's over to be able to use the new audio"
+        started: "<div class=\"title\">Audio uploading</div><div class=\"content\">The uploading of the audio <span class=\"variable\">%{item}</span> started! Wait until it's over to be able to use the new audio.</div>"
         # The process of audio uploading ended successfully. The variable %{item} is replaced by the name of the new audio
         # 1 - ../lib/media/audio/editing/conversion.rb
-        ok: "The uploading of the audio %{item} ended successfully! Now you can use it in your lessons."
+        ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The uploading of the audio <span class=\"variable\">%{item}</span> ended successfully! Now you can use it in your lessons.</div>"
         # The process of audio uploading ended with an error. The variable %{item} is replaced by the name of the audio which the user tried to upload
         # 1 - ../lib/media/audio/editing/conversion.rb
-        failed: "The uploading of the audio %{item} failed! Please try again."
+        failed: "<div class=\"title\">Error!</div><div class=\"content\">The uploading of the audio <span class=\"variable\">%{item}</span> failed! Please try again.</div>"
     video:
       compose:
         update:
           # The process of video editing started. The variable %{item} is replaced by the name of the video whose content is going to be modified
           # 1 - controllers/audio_editor_controller.rb
-          started: "The editing of the video %{item} started! Video editor is temporarily not available, together with lessons where you used this video"
+          started: "The editing of the video <span class=\"variable\">%{item}</span> started! Video editor is temporarily not available, together with lessons where you used this video"
           # The process of video editing ended successfully. The variable %{item} is replaced by the name of the video whose content has been modified
           # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "The editing of the video %{item} ended successfully! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing)."
+          ok: "The editing of the video <span class=\"variable\">%{item}</span> ended successfully! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing)."
           # The process of video editing ended with an error. The variable %{item} is replaced by the name of the video whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
           # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "The editing of the video %{item} failed! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing). The video was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
+          failed: "The editing of the video <span class=\"variable\">%{item}</span> failed! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing). The video was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
         create:
           # The process of video composition started. The variable %{item} is replaced by the name of the video which is going to be composed
           # 1 - controllers/video_editor_controller.rb
-          started: "The composition of the video %{item} started! Video editor is temporarily not available"
+          started: "The composition of the video <span class=\"variable\">%{item}</span> started! Video editor is temporarily not available"
           # The process of video composition ended successfully. The variable %{item} is replaced by the name of the new video
           # 1 - ../lib/media/video/editing/composer.rb
-          ok: "The composition of the video %{item} ended successfully! Now the video editor is available again."
+          ok: "The composition of the video <span class=\"variable\">%{item}</span> ended successfully! Now the video editor is available again."
           # The process of video composition ended with an error. The variable %{item} is replaced by the name of the video in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
           # 1 - ../lib/media/video/editing/composer.rb
-          failed: "The composition of the video %{item} failed! Now the video editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
+          failed: "The composition of the video <span class=\"variable\">%{item}</span> failed! Now the video editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
       upload:
         # The process of video uploading started. The variable %{item} is replaced by the name of the video which is going to be uploaded
         # 1 - controllers/media_elements_controller.rb
-        started: "The uploading of the video %{item} started! Wait until it's over to be able to use the new video"
+        started: "The uploading of the video <span class=\"variable\">%{item}</span> started! Wait until it's over to be able to use the new video"
         # The process of video uploading ended successfully. The variable %{item} is replaced by the name of the new video
         # 1 - ../lib/media/video/editing/conversion.rb
-        ok: "The uploading of the video %{item} ended successfully! Now you can use it in your lessons."
+        ok: "The uploading of the video <span class=\"variable\">%{item}</span> ended successfully! Now you can use it in your lessons."
         # The process of video uploading ended with an error. The variable %{item} is replaced by the name of the video which the user tried to upload
         # 1 - ../lib/media/video/editing/conversion.rb
-        failed: "The uploading of the video %{item} failed! Please try again."
+        failed: "The uploading of the video <span class=\"variable\">%{item}</span> failed! Please try again."
   
   
   # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)
