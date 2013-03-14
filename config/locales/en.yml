@@ -1567,10 +1567,13 @@ en:
       subtitle: "Find out the benefits of %{desy}"
       # 1- views/prelogin/what_is_desy.html.erb
       description: "%{desy} is a didactic digital system which allows teachers to create multimedia lessons in full autonomy and easily.<br><br>Not only: the platform where it lays allows for sharing didactic elements and socialization of contents, from which advantages and additional functionalities are derived among which:<ul><li>the possibility to build lessons and didactic interdisciplinary methods;</li><li>the continuity of the affinity process and enrichment of contents;</li><li>the growth of the system thanks to self feeding at 0 cost;</li><li>the reinforcement and evaluation of the teachers' role in elaborating didactic instruments.</li></ul>other than in schools and universities, %{desy} can be used in a company professional formation, through formative portals installed within companies' intranet, which allow to gather the company know how in a secure and reserve way and at the same time to share them with the teachers called to look after updating and innovation."
-      # 1- views/prelogin/what_is_desy.html.erb
-      right_column_title: "Watch demo"
-      # 1- views/prelogin/what_is_desy.html.erb
-      right_column: "Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description"
+      right_column:
+        # 1 - views/prelogin/what_is_desy.html.erb
+        caption1: "bla 1"
+        # 1 - views/prelogin/what_is_desy.html.erb
+        caption2: "bla 2"
+        # 1 - views/prelogin/what_is_desy.html.erb
+        caption3: "bla 3"
   
   
   # SECTION 2.12: Captions used for registration and login
