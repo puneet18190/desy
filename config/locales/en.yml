@@ -822,20 +822,7 @@ en:
       # 3 - views/shared/_popups.html.erb
       # 4 - views/virtual_classroom/_pagination.html.erb
       # 5 - views/virtual_classroom/_pagination.html.erb
-      prev_page: 'Back to page %{page}'
-      # This page
-      # 1 - views/dashboard/_pagination.html.erb
-      # 2 - views/dashboard/_pagination.html.erb
-      # 3 - views/shared/_pagination.html.erb
-      # 4 - views/shared/_pagination.html.erb
-      # 5 - views/shared/_pagination.html.erb
-      # 6 - views/shared/_pagination.html.erb
-      # 7 - views/shared/_popups.html.erb
-      # 8 - views/virtual_classroom/_pagination.html.erb
-      # 9 - views/virtual_classroom/_pagination.html.erb
-      #10 - views/virtual_classroom/_pagination.html.erb
-      #11 - views/virtual_classroom/_pagination.html.erb
-      this_page: 'Page %{page}'
+      prev: "Go to previous page"
       # Go to next page
       # 1 - views/dashboard/_pagination.html.erb
       # 2 - views/shared/_pagination.html.erb
@@ -843,7 +830,7 @@ en:
       # 4 - views/shared/_popups.html.erb
       # 5 - views/virtual_classroom/_pagination.html.erb
       # 6 - views/virtual_classroom/_pagination.html.erb
-      next_page: 'Go to page %{page}'
+      next: "Go to next page"
     # Icon to report an offensive lesson or media element
     # 1 - views/reports/_media_element.html.erb
     report: "Report offensive content"

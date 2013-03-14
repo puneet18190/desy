@@ -2,9 +2,9 @@
   <span class="dots_pagination">
     <span role="pages">
       <% if l_tot <= 1 %>
-        <a data-page="0" role="disabled"></a><a data-page="1" role="current" title="<%= t('titles.pagination.this_page', :page => 1) %>"></a><a data-page="2" role="disabled"></a>
+        <a data-page="0" role="disabled"></a><a data-page="1" role="current"></a><a data-page="2" role="disabled"></a>
       <% else %>
-        <a data-page="0" role="disabled"></a><a data-page="1" role="current" title="<%= t('titles.pagination.this_page', :page => 1) %>"></a><a data-page="1" title="<%= t('titles.pagination.next_page', :page => 2) %>"></a>
+        <a data-page="0" role="disabled"></a><a data-page="1" role="current"></a><a data-page="1" title="<%= t('titles.pagination.next') %>"></a>
       <% end %>
     </span>
   </span>

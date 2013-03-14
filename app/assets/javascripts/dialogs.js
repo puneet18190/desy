@@ -173,40 +173,47 @@ function showOkPopUp(content) {
 
 function showMediaElementInfoPopUp(media_element_id) {
   var obj = $('#dialog-media-element-' + media_element_id);
-  if(obj.data('dialog')) {
-    obj.dialog('open');
-  } else {
-    obj.show();
-    obj.dialog({
-      modal: true,
-      resizable: false,
-      draggable: false,
-      width: 874,
-      show: "fade",
-      hide: {effect: "fade"},
-      open: function() {
-        customOverlayClose();
-      },
-      beforeClose: function() {
-        removeCustomOverlayClose();
-      },
-      close: function() {
-        resetMediaElementChangeInfo(media_element_id);
-        $(this).find('._report_form_content').hide();
-        $(this).find('._report_media_element_click').removeClass('report_light');
-        var player_container = $('#dialog-media-element-' + media_element_id + ' ._instance_of_player');
-        if(player_container.length > 0) {
-          stopMedia('#dialog-media-element-' + media_element_id + ' ' + player_container.data('media-type'));
-        }
-        $('#dialog-media-element-' + media_element_id + ' ._audio_preview_in_media_element_popup').show();
-        $('#dialog-media-element-' + media_element_id + ' ._change_info_container').hide();
-        var change_info_button = $('#dialog-media-element-' + media_element_id + ' ._change_info_to_pick');
-        if(change_info_button.hasClass('change_info_light')) {
-          change_info_button.addClass('change_info');
-          change_info_button.removeClass('change_info_light');
-        }
-      }
+  if(!obj.data('loaded')) {
+    $.ajax({
+      type: 'get',
+      url: '/media_elements/' + media_element_id + '/preview/load'
     });
+  } else {
+    if(obj.data('dialog')) {
+      obj.dialog('open');
+    } else {
+      obj.show();
+      obj.dialog({
+        modal: true,
+        resizable: false,
+        draggable: false,
+        width: 874,
+        show: "fade",
+        hide: {effect: "fade"},
+        open: function() {
+          customOverlayClose();
+        },
+        beforeClose: function() {
+          removeCustomOverlayClose();
+        },
+        close: function() {
+          resetMediaElementChangeInfo(media_element_id);
+          $(this).find('._report_form_content').hide();
+          $(this).find('._report_media_element_click').removeClass('report_light');
+          var player_container = $('#dialog-media-element-' + media_element_id + ' ._instance_of_player');
+          if(player_container.length > 0) {
+            stopMedia('#dialog-media-element-' + media_element_id + ' ' + player_container.data('media-type'));
+          }
+          $('#dialog-media-element-' + media_element_id + ' ._audio_preview_in_media_element_popup').show();
+          $('#dialog-media-element-' + media_element_id + ' ._change_info_container').hide();
+          var change_info_button = $('#dialog-media-element-' + media_element_id + ' ._change_info_to_pick');
+          if(change_info_button.hasClass('change_info_light')) {
+            change_info_button.addClass('change_info');
+            change_info_button.removeClass('change_info_light');
+          }
+        }
+      });
+    }
   }
 }
 

@@ -1,0 +1,4 @@
+<% if @ok %>
+  $('#dialog-media-element-<%= @media_element_id %>').replaceWith('<%= j render(:partial => "media_elements/popup", :locals => {:media_element => @media_element, :locked => false}) %>');
+  showMediaElementInfoPopUp(<%= @media_element_id %>);
+<% end %>

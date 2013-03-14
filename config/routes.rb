@@ -21,12 +21,13 @@ Desy::Application.routes.draw do
   post 'virtual_classroom/:lesson_id/remove_lesson'  => 'virtual_classroom#remove_lesson'
   
   # MEDIA ELEMENTS
-  resources :media_elements,                     :only => :create
-  get       'media_elements/new'                       => 'media_elements#new',    :as => :new_media_elements_editor
-  post      'media_elements/:media_element_id'         => 'media_elements#update', :as => :media_element
-  post      'media_elements/:media_element_id/add'     => 'media_elements#add'
-  post      'media_elements/:media_element_id/destroy' => 'media_elements#destroy'
-  post      'media_elements/:media_element_id/remove'  => 'media_elements#remove'
+  resources :media_elements,                          :only => :create
+  get       'media_elements/new'                            => 'media_elements#new',    :as => :new_media_elements_editor
+  post      'media_elements/:media_element_id'              => 'media_elements#update', :as => :media_element
+  post      'media_elements/:media_element_id/add'          => 'media_elements#add'
+  post      'media_elements/:media_element_id/destroy'      => 'media_elements#destroy'
+  post      'media_elements/:media_element_id/remove'       => 'media_elements#remove'
+  get       'media_elements/:media_element_id/preview/load' => 'media_elements#load_preview'
   
   # NOTIFICATIONS
   post 'notifications/:notification_id/seen'    => 'notifications#seen'

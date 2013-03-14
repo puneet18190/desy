@@ -12,7 +12,5 @@
     <p><%= STATUSES.media_elements.send(media_element.status) %></p>
     <%= render :partial => "media_elements/action_buttons", :locals => {:media_element => media_element, :destination => destination, :additional_class => additional_class} %>
   </div>
-  <% if !disabled %>
-    <%= render :partial => "media_elements/popup", :locals => {:media_element => media_element} %>
-  <% end %>
+  <%= render :partial => "media_elements/popup", :locals => {:media_element => media_element, :locked => true} %>
 </div>
