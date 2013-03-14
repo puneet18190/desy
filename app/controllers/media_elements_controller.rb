@@ -116,6 +116,17 @@ class MediaElementsController < ApplicationController
     end
   end
   
+  def load_preview
+    @media_element_id = correct_integer?(params[:media_element_id]) ? params[:media_element_id].to_i : 0
+    @media_element = MediaElement.find_by_id @media_element_id
+    if !@media_element.nil? && (@media_element.is_public || @media_element.user_id == current_user.id) && @media_element.converted
+      @ok = true
+      @media_element.set_status current_user.id
+    else
+      @ok = false
+    end
+  end
+  
   private
   
   def get_own_media_elements
