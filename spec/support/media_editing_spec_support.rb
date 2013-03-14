@@ -18,8 +18,8 @@ module MediaEditingSpecSupport
     /\A#{Regexp.quote prefix.to_s}_[\w\-]{22}#{Regexp.quote postfix.to_s}\z/
   end
 
-  CONVERTED_VIDEO_HASH      = { mp4: SAMPLES_FOLDER.join('con verted.mp4').to_s, webm: SAMPLES_FOLDER.join('con verted.webm').to_s, filename: 'con verted' }
-  CONVERTED_AUDIO_HASH      = { mp3: SAMPLES_FOLDER.join('con verted.mp3').to_s, ogg: SAMPLES_FOLDER.join('con verted.ogg').to_s, filename: 'con verted' }
+  CONVERTED_VIDEO_HASH      = { mp4: SAMPLES_FOLDER.join('con verted.mp4').to_s,      webm: SAMPLES_FOLDER.join('con verted.webm').to_s,    filename: 'con verted' }
+  CONVERTED_AUDIO_HASH      = { mp3: SAMPLES_FOLDER.join('con verted.mp3').to_s,      ogg: SAMPLES_FOLDER.join('con verted.ogg').to_s,      filename: 'con verted' }
   CONVERTED_AUDIO_HASH_LONG = { mp3: SAMPLES_FOLDER.join('con verted long.mp3').to_s, ogg: SAMPLES_FOLDER.join('con verted long.ogg').to_s, filename: 'con verted long' }
   
   CROP_VIDEOS = CONVERTED_VIDEO_HASH.select{ |k| VIDEO_FORMATS.include? k }
