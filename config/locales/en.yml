@@ -955,28 +955,28 @@ en:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Welcome to %{desy}!"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this dashboard you'll  find lessons and elements selected in our database according to your subjects of interests. If you click on the \"+\" icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The icon with a small eye opens a preview."
+        content: "In this dashboard you find lessons and elements selected in our database according to your subjects of interests. If you click on the \"plus\" icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The \"small eye\" icon opens a preview."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Selected for you - elements"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Pick elements among the ones we propose to you! If you don't find anything interesting for you, by clicking on the <b>Load a new Element</b> button you can upload your own elements."
+        content: "Pick elements among the ones we propose to you! If you don't find anything interesting, by clicking on the \"load a new element\" button you can upload your own elements."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Selected for you - lessons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If at this moment there are no new lessons available, you can create To create a new lesson click on the <b>Create a new Lesson</b> button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make sure to have enough didactic elements."
+        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If at this moment there are no new lessons available, you can create your own by clicking on the \"create a new Lesson\" button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make sure to have enough elements."
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Status of lessons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this page you'll be able to  creat new lessons or manage the ones that are already present in your personal list. Pay attention to a lesson status and remember that:<br/><b>Private</b> corresponds to a lesson that only you can use and see, <b>Shared</b> identifies lessons which you have decided to share and that can also be used by other %{desy} subscribers and linked which indicates lessons created by other subscribers and that you also have decided to follow and use."
+        content: "In this page you may create new lessons or manage the ones that are already present in your personal folder. Pay attention to the status of your lessons:<br/><b>private</b> corresponds to a lesson that only you can use and see, <b>shared</b> identifies lessons which you have decided to share and that can be seen by other %{desy} users; <b>linked</b> indicates lessons created by other users."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Action buttons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Graphic icons identify all the actions you may carry out on the lessons present in the list.<br/>The eye allows you to see the selected lesson, the pencil permits you tomodify the lesson; be careful, this function is not allowed in the lessons which have a \"linked status\" where this icon is substituted by the copy one. In fact, it is not possible to modify lessons realized by other subscribers without first making a copy. The monitor with the eye uploads the lesson into the virtual classroom, the Share symbol, on or off, identifies the \"private\" or \"shared\" status of a lesson, the double circle creates a copy of the selected lesson while the X cancels the lesson.<br/>In the lessons which have the linked status the X is substituted by the icon less since you can't cancel a content which is not yours but only stop following it.  The star allows you to give an appreciation to the contents followed."
+        content: "All the actions you may carry out on the lessons present in your folders are identified by graphic icons.<br/>The \"eye\" icon allows you to see the selected lesson, the \"pencil\" icon permits you to modify the lesson. This last function is not allowed for <b>linked</b> lessons, in this case you find only the \"copy\" icon (two circles overlapped): in fact, it's not possible to modify lessons realized by other users without first making a copy. The \"monitor with an eye\" icon uploads the lesson into your Virtual Classroom; the \"share\" icon (three small circles connected by two lines) is turned on if the lesson is shared; if you particularly like somebody else's lesson, click on the \"star\" icon. Finally, the icon with a \"x\" deletes the lesson (if the lesson is <b>linked</b> this icon is replaced by a \"minus\", which deletes the link)."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Create a new lesson"
