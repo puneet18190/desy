@@ -1,7 +1,11 @@
 <div class="dots_pagination_container" id="dashboard_pagination" data-lessons-tot="<%= l_tot %>" data-media-elements-tot="<%= me_tot %>" data-lessons-page="1" data-media-elements-page="1">
   <span class="dots_pagination">
     <span role="pages">
-      <a data-page="0" role="disabled"></a><a data-page="1" role="current"></a><a data-page="2" <%= 'role="disabled"'.html_safe if l_tot <= 1 %>></a>
+      <% if l_tot <= 1 %>
+        <a data-page="0" role="disabled"></a><a data-page="1" role="current" title="<%= t('titles.pagination.this_page', :page => 1) %>"></a><a data-page="2" role="disabled"></a>
+      <% else %>
+        <a data-page="0" role="disabled"></a><a data-page="1" role="current" title="<%= t('titles.pagination.this_page', :page => 1) %>"></a><a data-page="1" title="<%= t('titles.pagination.next_page', :page => 2) %>"></a>
+      <% end %>
     </span>
   </span>
 </div>

@@ -68,6 +68,11 @@ module ApplicationHelper
       end / height
   end
   
+  def remove_title_from_notification(notification)
+     x = (notification =~ /<\/div>/)
+     x.nil? ? notification : notification[x + 6, notification.length]
+  end
+  
   def resize_height(width, height, kind)
     height *
       case kind

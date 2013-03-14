@@ -39,12 +39,14 @@ function getHtmlPagination(pos, pages_amount) {
     $prev_attrs.role = 'disabled';
   } else {
     $prev_attrs.data = { page: pos-1 };
+    $prev_attrs.title = $('#popup_captions_container').data('title-pagination-left').replace('%{page}', '' + (pos - 1));
   }
 
   if(pos >= pages_amount) {
     $next_attrs.role = 'disabled';
   } else {
     $next_attrs.data = { page: pos+1 };
+    $next_attrs.title = $('#popup_captions_container').data('title-pagination-right').replace('%{page}', '' + (pos + 1));
   }
 
   var $pagination = $('<span/>', { 'class': 'dots_pagination' });
@@ -52,7 +54,7 @@ function getHtmlPagination(pos, pages_amount) {
   $pagination.append(
     $('<span/>', { role: 'pages' })
       .append( $('<a/>', $prev_attrs) )
-      .append( $('<a/>', { role: 'current', data: { page: pos } }) )
+      .append( $('<a/>', { role: 'current', data: { page: pos }, title: $('#popup_captions_container').data('title-pagination-central').replace('%{page}', '' + pos) }) )
       .append( $('<a/>', $next_attrs) )
   );
   return $pagination;

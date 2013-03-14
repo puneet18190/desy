@@ -814,6 +814,36 @@ en:
       # Small 'x' that removes a notification
       # 1 - views/notifications/_notification.html.erb
       remove: "Remove notification"
+    # Titles for pagination
+    pagination:
+      # Go to previous page
+      # 1 - views/shared/_pagination.html.erb
+      # 2 - views/shared/_pagination.html.erb
+      # 3 - views/shared/_popups.html.erb
+      # 4 - views/virtual_classroom/_pagination.html.erb
+      # 5 - views/virtual_classroom/_pagination.html.erb
+      prev_page: 'Back to page %{page}'
+      # This page
+      # 1 - views/dashboard/_pagination.html.erb
+      # 2 - views/dashboard/_pagination.html.erb
+      # 3 - views/shared/_pagination.html.erb
+      # 4 - views/shared/_pagination.html.erb
+      # 5 - views/shared/_pagination.html.erb
+      # 6 - views/shared/_pagination.html.erb
+      # 7 - views/shared/_popups.html.erb
+      # 8 - views/virtual_classroom/_pagination.html.erb
+      # 9 - views/virtual_classroom/_pagination.html.erb
+      #10 - views/virtual_classroom/_pagination.html.erb
+      #11 - views/virtual_classroom/_pagination.html.erb
+      this_page: 'Page %{page}'
+      # Go to next page
+      # 1 - views/dashboard/_pagination.html.erb
+      # 2 - views/shared/_pagination.html.erb
+      # 3 - views/shared/_pagination.html.erb
+      # 4 - views/shared/_popups.html.erb
+      # 5 - views/virtual_classroom/_pagination.html.erb
+      # 6 - views/virtual_classroom/_pagination.html.erb
+      next_page: 'Go to page %{page}'
     # Icon to report an offensive lesson or media element
     # 1 - views/reports/_media_element.html.erb
     report: "Report offensive content"
@@ -925,99 +955,98 @@ en:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Welcome to %{desy}!"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this dashboard you'll  find lessons and elements selected in our database according to your subjects of interests. If you click on the \"+\" icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The icon with a small eye opens a preview."
+        content: "In this dashboard you find lessons and elements selected in our database according to your subjects of interests. If you click on the \"plus\" icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The \"small eye\" icon opens a preview."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Selected for you - elements"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Pick elements among the ones we propose to you! If you don't find anything interesting for you, by clicking on the <b>Load a new Element</b> button you can upload your own elements."
+        content: "Pick elements among the ones we propose to you! If you don't find anything interesting, by clicking on the \"load a new element\" button you can upload your own elements."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Selected for you - lessons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If at this moment there are no new lessons available, you can create To create a new lesson click on the <b>Create a new Lesson</b> button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make sure to have enough didactic elements."
+        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If at this moment there are no new lessons available, you can create your own by clicking on the \"create a new Lesson\" button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make sure to have enough elements."
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Status of lessons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this page you'll be able to  creat new lessons or manage the ones that are already present in your personal list. Pay attention to a lesson status and remember that:<br/><b>Private</b> corresponds to a lesson that only you can use and see, <b>Shared</b> identifies lessons which you have decided to share and that can also be used by other %{desy} subscribers and linked which indicates lessons created by other subscribers and that you also have decided to follow and use."
+        content: "This page contains your personal folder of lessons, together with a set of instruments to handle them and create new ones. Pay attention to the status of your lessons:<br/><b>private</b> corresponds to a lesson that only you can use and see, <b>shared</b> identifies lessons which you have decided to share and that can be seen by other %{desy} users; <b>linked</b> indicates lessons created by other users."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Action buttons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Graphic icons identify all the actions you may carry out on the lessons present in the list.<br/>The eye allows you to see the selected lesson, the pencil permits you tomodify the lesson; be careful, this function is not allowed in the lessons which have a \"linked status\" where this icon is substituted by the copy one. In fact, it is not possible to modify lessons realized by other subscribers without first making a copy. The monitor with the eye uploads the lesson into the virtual classroom, the Share symbol, on or off, identifies the \"private\" or \"shared\" status of a lesson, the double circle creates a copy of the selected lesson while the X cancels the lesson.<br/>In the lessons which have the linked status the X is substituted by the icon less since you can't cancel a content which is not yours but only stop following it.  The star allows you to give an appreciation to the contents followed."
+        content: "All the actions you may carry out on the lessons present in your folders are identified by graphic icons.<br/>The \"eye\" icon allows you to see the selected lesson, the \"pencil\" icon permits you to modify the lesson. This last function is not allowed for <b>linked</b> lessons, in this case you find only the \"copy\" icon (two circles overlapped): in fact, it's not possible to modify lessons realized by other users without first making a copy. The \"monitor with an eye\" icon uploads the lesson into your Virtual Classroom; the \"share\" icon (three small circles connected by two lines) is turned on if the lesson is shared; if you particularly like somebody else's lesson, click on the \"star\" icon. Finally, the icon with a \"x\" deletes the lesson (if the lesson is <b>linked</b> this icon is replaced by a \"minus\", which deletes the link)."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Create a new lesson"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "After having added the didactic elements necessary to the creation of your lesson you can start using the %{desy} lesson editor. The \"create a new lesson\" button."
+        content: "Once you added a sufficient amount of elements, you are ready to create your own lesson: click on the \"create a new lesson\" button, which will redirect you to %{desy}'s Lesson Editor."
     media_elements:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Your didactic elements"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this page you'll be able to upload new didactic elements or visualize, modify or cancel those already present on the list.<br>After having been uploaded, a didactic element will acquire the \"private\" status which it won't loose until that element will be used inside a lesson shared among other %{desy} subscribers. 
-An element with the private status through the X may be cancelled, while an element with the linked status thanks to the less icon may only be removed from your personal list but will continue to be present in the %{desy} database. The pencil will allow you to modify the selected element."
+        content: "This page contains your personal folder of elements, together with a set of instruments to handle them and create new ones.<br/>As soon as an element is uploaded %{desy} assigns it the status <b>private</b>. Unlike for lessons, you can't share directly your private elements: when you share a lesson, the application shares automaticly all the elements contained in it. When an element passes to status <b>public</b>, it is automaticly moved from your personal folder to %{desy}'s public one: in your folder you'll keep a link of it, which allows you to use it but not modify nor delete it."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Element Editors"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "It uses %{desy} editors to create new didactic elements or to modify those already present in your personal list. The pencil associated to each didactic element will open the specific editor (audio, image, or video) in order to modify the selected element. The Elements Editor button, instead, will allow you to select one of %{desy}'s editors in order to create a new didactic element."
+        content: "The \"pencil\" icon on each element opens that element's specific Editor (Audio, Image or Video). If the element containing the pencil is <b>public</b>, the Editor will force you to save your work as a new element (since you can't modify a public one), whereas if the element is <b>private</b> you can choose whether overwrite or not the original one. The button \"elements editor\" lets you choose a type of element and opens the corresponding empty Editor."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Element preview"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The Eye Icon opens the preview of a didactic element. Only for elements which have a Private Status inside the popup will it be possible to modify the information inserted during the actual element uploading (title, description and tags)."
+        content: "The \"eye\" icon opens the preview of an element. In the preview of <b>private</b> elements you can find a button containing three small lines: clicking on it you open a form that you can use to modify the element's general information (title, description, and tags)."
     search:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Search engine"
+        title: "Search Engine"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The %{desy} search engine uses the tags to look for lessons or didactic elements.<br/>A search result may be added to your personal contents by using the icon \"+\"."
+        content: "%{desy}'s Search Engine may be used for both lessons and elements; the engine is based on tags.<br/>Any lesson or element found may be added to your corresponding personal folder by using the \"plus\" icon."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Suggestions for a good search"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In order to help you with your search the %{desy} Search will suggest all the tags already present which come closest to the word you are writing. This way you'll have a wider choice and a more complete search result."
+        content: "While you are typing the keyword for your search, %{desy}'s Search Engine suggests you the most used tags (beginning with your keyword) among the ones present in the database. This way you'll have a wider choice and a more complete search result."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Suggestions for a good tagging"
         # Here the variable %{tags} is replaced by the minimum amount of tags for an item in the application
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "When you upload a new didactic element or create a new lesson it's important to insert the tags very carefully. A proper tagging of the element or of the lesson will allow the search engine to find the content more easily. You must insert a minimum of %{tags} tags."
+        content: "When you upload a new element or create a new lesson it's important to insert the a good range of tags. A proper tagging allows the Search Engine to find more easily your lessons. You must insert a minimum of %{tags} tags."
     users:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Personal info & Subjects"
+        title: "Your profile page"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this page you can modify your %{desy} access parameters. By clicking on the \"Subjects\" button you'll be able to increase or decrease the number of subjects to which you wish to be connected. Remember that %{desy} will only advise you about those contents related to the subjects which you have chosen inside this page."
+        content: "In this page you can review and modify your profile. Have a look at the menu on the top of the page: each link redirects you to the corresponding section of your profile."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Mailing lists"
+        title: "Personal data, mailing lists"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "The \"Mailing list\" button allows you to create groups of e-mail addresses to which it will be possible to send your lesson links from inside the Virtual Classroom. Click \"Add new group\" and begin the creation of your personal mailing list."
+        content: "The section \"subjects\" contains the list of your subjects: you can update this list at any time. Remember that %{desy} checks out your subjects to choose the suggested lessons that you find in the main page. The section \"mailing list\" contains a list of groups of e-mail addresses, that you can use to send your lesson links from inside your Virtual Classroom: click on the button \"add new group\" to create a new mailing list."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Statistics"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Consult %{desy} statistics to improve your user experience inside the application. Thanks to personal statistics you'll be able to monitor all the information related to the content which you have uploaded or produced on %{desy}. The general statistics will allow you to have a wider view on all contents present in the application database."
+        content: "The section \"statistics\" contains interesting statistics about your profile and about all %{desy}. The statistics are divided by categories and easy to consult."
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "%{desy}'s Virtual Classroom"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "Welcome to your virtual classroom. This is where you'll be able to upload the lessons you have created in order to get ready to relate them to your students. The \"add lessons\" button will allow you to choose which lessons among the ones on your list you wish to add to the virtual classroom."
+        content: "Welcome to your Virtual Classroom! Here you may upload lessons from your personal folder and organize them into a playlist. The button \"add lessons\" opens a window to load quickly multiple lessons."
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Playlist"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "One of the advantages offered by your virtual classroom is to let you organize your lessons in comfortable playlists so as to reproduce them in the sequence which is most suitable to your didactive objectives. Pull one or more lessons inside the box playlist and start creating your own personal sequence reproduction."
+        content: "One of the useful features of %{desy}'s Virtual Classroom is the playlist: to move a lesson inside the playlist, drag it to the zone on the right. To reproduce the playlist in the sequence which is most suitable to your didactive objectives, you can sort its elements by dragging them."
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Send a link to your friends"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "By clicking on the envelope located below each lesson uploaded in virtual classroom you'll be able to send its link to one or more e-mail addresses in order to allow your students to visualize the lesson outside %{desy} too."
+        content: "The \"envelope\" icon located below each lesson opens a window where you can select a list of e-mail addresses: click on the button \"send\" to send an email containing the public link of your lessons (using this link your students are able to visualize the lesson without being registered in %{desy})."
   
   
   
@@ -1414,80 +1443,80 @@ An element with the private status through the X may be cancelled, while an elem
     lessons:
       # Message sent to a user who has the lesson link, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb
-      destroyed: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', deleted his lesson: hence, you lost the link to that lesson"
+      destroyed: "<div class=\"title\">Warning!</div><div class=\"content\">The user <span class=\"variable\">%{user_name}</span>, author of <span class=\"variable\">%{lesson_title}</span>, deleted his lesson: hence, you lost the link to that lesson.</div>"
       # Notification received by an user who sent to his friends an email with the public link of a lesson: it's used as a memo of the list of emails to which the message was successfully sent (the variable %{title} is replaced by the title of the lesson, %{message} by the message inserted by the sender, %{emails} by the list of emails separated by comma)
       # 1 - controllers/virtual_classroom_controller.rb
-      link_sent: "You sent the link of the lesson %{title}, with message %{message}, to the emails: %{emails}"
+      link_sent: "<div class=\"title\">Link sent!</div><div class=\"content\">You sent the link of the lesson <span class=\"variable\">%{title}</span> to the following emails: <br/><br/><span class=\"message\">%{emails}</span><br/><br/>The message you attached is<br/><br/><span class=\"message\">\"%{message}\"</div>"
       # Notification sent by a user who modified a shared lesson, to inform all its followers about the nature of modifications made (the variable %{lesson_title} is replaced by the title of the lesson, %{message} by the message containing a better description of the modifications, and %{link} by the link to the lesson viewer for that lesson)
       # 1 - models/lesson.rb
-      modified: "<h2 style=\"font-size:126%; font-weight:bold\">There are some news for you! </h2><p>The lesson \"%{lesson_title}\" has undergone some changes by the author!<br/><br/><strong>Details of changes: </strong><br/>%{message}</p><div style=\"display:inline-block; outline:1px solid #f2f1f2; padding:10px; width:86%; height:19px; position:absolute; bottom:19px\"><span style=\"color:#2eaadc; float:left\">%{lesson_title}</span><a href=\"%{link}\" style=\"float:right\" class=\"preview\"></a></div>"
+      modified: "<div class=\"title\">News for you!</div><div class=\"content\">The lesson <span class=\"variable\">%{lesson_title}</span> has undergone some changes by the author: the detail of the changes are<br/><br/><span class=\"message\">\"%{message}\"</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
       # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted) (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
       # 1 - models/lesson.rb
-      unpublished: "The user <b>%{user_name}</b>, author of '<b>%{lesson_title}</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson"
+      unpublished: "<div class=\"title\">Warning!</div><div class=\"content\">The user <span class=\"variable\">%{user_name}</span>, author of <span class=\"variable\">%{lesson_title}</span>, changed to private the status of his lesson: hence, you lost the link to that lesson.</div>"
     audio:
       compose:
         update:
           # The process of audio editing started. The variable %{item} is replaced by the name of the audio whose content is going to be modified
           # 1 - controllers/audio_editor_controller.rb
-          started: "The editing of the audio %{item} started! Audio editor is temporarily not available, together with lessons where you used this audio"
+          started: "<div class=\"title\">Audio editing</div><div class=\"content\">The editing of the audio <span class=\"variable\">%{item}</span> started! Audio Editor is temporarily not available, together with lessons where you used this audio.</div>"
           # The process of audio editing ended successfully. The variable %{item} is replaced by the name of the audio whose content has been modified
           # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "The editing of the audio %{item} ended successfully! Now the audio editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing)."
+          ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The editing of the audio <span class=\"variable\">%{item}</span> ended successfully! Now the Audio Editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing).</div>"
           # The process of audio editing ended with an error. The variable %{item} is replaced by the name of the audio whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
           # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "The editing of the audio %{item} failed! Now the audio editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing). The audio was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
+          failed: "<div class=\"title\">Error!</div><div class=\"content\">The editing of the audio <span class=\"variable\">%{item}</span> failed! Now the Audio Editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing). The draft you were working on hasn't been lost:<br/><br/><a href=\"%{link}\" class=\"link\">go to the draft</a></div>"
         create:
           # The process of audio composition started. The variable %{item} is replaced by the name of the audio which is going to be composed
           # 1 - controllers/audio_editor_controller.rb
-          started: "The composition of the audio %{item} started! Audio editor is temporarily not available"
+          started: "<div class=\"title\">Audio composition</div><div class=\"content\">The composition of the audio <span class=\"variable\">%{item}</span> started! Audio Editor is temporarily not available</div>"
           # The process of audio composition ended successfully. The variable %{item} is replaced by the name of the new audio
           # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "The composition of the audio %{item} ended successfully! Now the audio editor is available again."
+          ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The composition of the audio <span class=\"variable\">%{item}</span> ended successfully! Now the Audio Editor is available again.</div>"
           # The process of audio composition ended with an error. The variable %{item} is replaced by the name of the audio in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
           # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "The composition of the audio %{item} failed! Now the audio editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
+          failed: "<div class=\"title\">Error!</div><div class=\"content\">The composition of the audio <span class=\"variable\">%{item}</span> failed! Now the Audio Editor is available again. The draft you were working on hasn't been lost:<br/><br/><a href=\"%{link}\" class=\"link\">go to the draft</a></div>"
       upload:
         # The process of audio uploading started. The variable %{item} is replaced by the name of the audio which is going to be uploaded
         # 1 - controllers/media_elements_controller.rb
-        started: "The uploading of the audio %{item} started! Wait until it's over to be able to use the new audio"
+        started: "<div class=\"title\">Audio uploading</div><div class=\"content\">The uploading of the audio <span class=\"variable\">%{item}</span> started! Wait until it's over to be able to use the new audio.</div>"
         # The process of audio uploading ended successfully. The variable %{item} is replaced by the name of the new audio
         # 1 - ../lib/media/audio/editing/conversion.rb
-        ok: "The uploading of the audio %{item} ended successfully! Now you can use it in your lessons."
+        ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The uploading of the audio <span class=\"variable\">%{item}</span> ended successfully! Now you can use it in your lessons.</div>"
         # The process of audio uploading ended with an error. The variable %{item} is replaced by the name of the audio which the user tried to upload
         # 1 - ../lib/media/audio/editing/conversion.rb
-        failed: "The uploading of the audio %{item} failed! Please try again."
+        failed: "<div class=\"title\">Error!</div><div class=\"content\">The uploading of the audio <span class=\"variable\">%{item}</span> failed! Please try again.</div>"
     video:
       compose:
         update:
           # The process of video editing started. The variable %{item} is replaced by the name of the video whose content is going to be modified
           # 1 - controllers/audio_editor_controller.rb
-          started: "The editing of the video %{item} started! Video editor is temporarily not available, together with lessons where you used this video"
+          started: "<div class=\"title\">Video editing</div><div class=\"content\">The editing of the video <span class=\"variable\">%{item}</span> started! Video Editor is temporarily not available, together with lessons where you used this video.</div>"
           # The process of video editing ended successfully. The variable %{item} is replaced by the name of the video whose content has been modified
           # 1 - ../lib/media/audio/editing/composer.rb
-          ok: "The editing of the video %{item} ended successfully! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing)."
+          ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The editing of the video <span class=\"variable\">%{item}</span> ended successfully! Now the Video Editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing).</div>"
           # The process of video editing ended with an error. The variable %{item} is replaced by the name of the video whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
           # 1 - ../lib/media/audio/editing/composer.rb
-          failed: "The editing of the video %{item} failed! Now the video editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing). The video was set back to its old content, but you find <a href=\"%{link}\">here</a> a saved copy of your work."
+          failed: "<div class=\"title\">Error!</div><div class=\"content\">The editing of the video <span class=\"variable\">%{item}</span> failed! Now the Video Editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing). The draft you were working on hasn't been lost:<br/><br/><a href=\"%{link}\" class=\"link\">go to the draft</a></div>"
         create:
           # The process of video composition started. The variable %{item} is replaced by the name of the video which is going to be composed
           # 1 - controllers/video_editor_controller.rb
-          started: "The composition of the video %{item} started! Video editor is temporarily not available"
+          started: "<div class=\"title\">Video composition</div><div class=\"content\">The composition of the video <span class=\"variable\">%{item}</span> started! Video Editor is temporarily not available.</div>"
           # The process of video composition ended successfully. The variable %{item} is replaced by the name of the new video
           # 1 - ../lib/media/video/editing/composer.rb
-          ok: "The composition of the video %{item} ended successfully! Now the video editor is available again."
+          ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The composition of the video <span class=\"variable\">%{item}</span> ended successfully! Now the Video Editor is available again.</div>"
           # The process of video composition ended with an error. The variable %{item} is replaced by the name of the video in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
           # 1 - ../lib/media/video/editing/composer.rb
-          failed: "The composition of the video %{item} failed! Now the video editor is available again. You can find <a href=\"%{link}\">here</a> a saved copy of your work."
+          failed: "<div class=\"title\">Error!</div><div class=\"content\">The composition of the video <span class=\"variable\">%{item}</span> failed! Now the Video Editor is available again. The draft you were working on hasn't been lost:<br/><br/><a href=\"%{link}\" class=\"link\">go to the draft</a></div>"
       upload:
         # The process of video uploading started. The variable %{item} is replaced by the name of the video which is going to be uploaded
         # 1 - controllers/media_elements_controller.rb
-        started: "The uploading of the video %{item} started! Wait until it's over to be able to use the new video"
+        started: "<div class=\"title\">Video uploading!</div><div class=\"content\">The uploading of the video <span class=\"variable\">%{item}</span> started! Wait until it's over to be able to use the new video.</div>"
         # The process of video uploading ended successfully. The variable %{item} is replaced by the name of the new video
         # 1 - ../lib/media/video/editing/conversion.rb
-        ok: "The uploading of the video %{item} ended successfully! Now you can use it in your lessons."
+        ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The uploading of the video <span class=\"variable\">%{item}</span> ended successfully! Now you can use it in your lessons.</div>"
         # The process of video uploading ended with an error. The variable %{item} is replaced by the name of the video which the user tried to upload
         # 1 - ../lib/media/video/editing/conversion.rb
-        failed: "The uploading of the video %{item} failed! Please try again."
+        failed: "<div class=\"title\">Error!</div><div class=\"content\">The uploading of the video <span class=\"variable\">%{item}</span> failed! Please try again.</div>"
   
   
   # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)
@@ -1502,19 +1531,13 @@ An element with the private status through the X may be cancelled, while an elem
     contact_us:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/contact_us.html.erb
-      # 4 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is_desy.html.erb
       menu_link: "Contact us"
-      # 1 - views/prelogin/contact_us.html.erb
-      title: "Contact us!"
-      # 1 - views/prelogin/contact_us.html.erb
-      description: "Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts Here goes personalized description and contacts"
     # Home page
     main_page:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/contact_us.html.erb
-      # 4 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is_desy.html.erb
       menu_link: "Home"
       # 1 - views/prelogin/home.html.erb
       title: "A new way of teaching"
@@ -1527,8 +1550,7 @@ An element with the private status through the X may be cancelled, while an elem
     sign_up:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/contact_us.html.erb
-      # 4 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is_desy.html.erb
       menu_link: "Sign up"
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/users/edit.html.erb
@@ -1537,8 +1559,7 @@ An element with the private status through the X may be cancelled, while an elem
     what_is_desy:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
-      # 3 - views/prelogin/contact_us.html.erb
-      # 4 - views/prelogin/what_is_desy.html.erb
+      # 3 - views/prelogin/what_is_desy.html.erb
       menu_link: "What is %{desy}?"
       # 1- views/prelogin/what_is_desy.html.erb
       title: "What is %{desy}?"
@@ -1546,10 +1567,13 @@ An element with the private status through the X may be cancelled, while an elem
       subtitle: "Find out the benefits of %{desy}"
       # 1- views/prelogin/what_is_desy.html.erb
       description: "%{desy} is a didactic digital system which allows teachers to create multimedia lessons in full autonomy and easily.<br><br>Not only: the platform where it lays allows for sharing didactic elements and socialization of contents, from which advantages and additional functionalities are derived among which:<ul><li>the possibility to build lessons and didactic interdisciplinary methods;</li><li>the continuity of the affinity process and enrichment of contents;</li><li>the growth of the system thanks to self feeding at 0 cost;</li><li>the reinforcement and evaluation of the teachers' role in elaborating didactic instruments.</li></ul>other than in schools and universities, %{desy} can be used in a company professional formation, through formative portals installed within companies' intranet, which allow to gather the company know how in a secure and reserve way and at the same time to share them with the teachers called to look after updating and innovation."
-      # 1- views/prelogin/what_is_desy.html.erb
-      right_column_title: "Watch demo"
-      # 1- views/prelogin/what_is_desy.html.erb
-      right_column: "Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description Here goes a personalized description"
+      right_column:
+        # 1 - views/prelogin/what_is_desy.html.erb
+        caption1: "Participate in the community of %{desy} by sharing your lessons containing didactic videos, audios and images!"
+        # 1 - views/prelogin/what_is_desy.html.erb
+        caption2: "Create your high quality lesson with an easy and user-oriented lesson editor"
+        # 1 - views/prelogin/what_is_desy.html.erb
+        caption3: "Visualize other users' lessons and increase your cultural knowledge"
   
   
   # SECTION 2.12: Captions used for registration and login

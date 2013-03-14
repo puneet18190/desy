@@ -18,10 +18,8 @@ class PreloginController < ApplicationController
   def what_is_desy
   end
   
-  def contact_us
-  end
-  
   private
+  
   def redirect_to_dashboard_if_logged_in
     if logged_in?
       redirect_to dashboard_path
