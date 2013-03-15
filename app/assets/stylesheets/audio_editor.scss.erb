@@ -7,7 +7,7 @@ html.audio_editor-controller {
   
     .info {
       width:97px;
-      height: 407px;
+      height: 433px;
       background-color:#504f50;
       padding:20px 10px;
       top:0;
@@ -33,6 +33,42 @@ html.audio_editor-controller {
         a {
           width:auto;
           margin:0;
+        }
+      }
+      .audioLateralControls {
+        padding-top:14px;
+        display:inline-block;
+         a.rewind {
+          float: left;
+          background-image: none;
+          margin-right:12px;
+          background: url(<%= asset_path 'rew_laterale.png' %>) top left  no-repeat;  
+          width: 35px;
+          height: 35px;
+          &:hover {
+            opacity:0.3;
+          };
+        }
+        a.play {
+          float: right;
+          background: url(<%= asset_path 'play_lateral.png' %>) top left  no-repeat;
+          width: 35px;
+          height: 35px;
+          opacity:1;
+          background-size: 35px 35px;
+          &:hover {
+            opacity:0.3;
+          };
+          
+        }
+        a.pause {
+          float: left;
+          background: url(<%= asset_path 'pause_lateral.png' %>) top left  no-repeat;
+          width: 35px;
+          height: 35px;
+          opacity: 1;
+          background-size: 35px 35px;
+          
         }
       }
     }
@@ -234,6 +270,7 @@ html.audio_editor-controller {
             
           }
         }
+        
       }
     }
     .contatore {
@@ -351,7 +388,7 @@ html.audio_editor-controller {
   
   .lateralContentGatto {
     width: 98px;
-    height: 324px;
+    height: 295px;
   }
   
 }
