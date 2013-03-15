@@ -1963,6 +1963,7 @@ $(document).ready(function() {
   $('body').on('click', '._media_player_play_in_audio_editor_preview', function() {
     $(this).hide();
     $('#start_audio_editor_preview').addClass('disabled');
+    $('#rewind_audio_editor_preview').addClass('disabled');
     var component = $(this).parents('._audio_editor_component');
     var identifier = getAudioComponentIdentifier(component);
     component.data('playing', true);
@@ -1987,6 +1988,7 @@ $(document).ready(function() {
   $('body').on('click', '._media_player_pause_in_audio_editor_preview', function() {
     $(this).hide();
     $('#start_audio_editor_preview').removeClass('disabled');
+    $('#rewind_audio_editor_preview').removeClass('disabled');
     var component = $(this).parents('._audio_editor_component');
     var identifier = getAudioComponentIdentifier(component);
     component.data('playing', false);
