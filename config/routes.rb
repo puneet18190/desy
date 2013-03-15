@@ -126,7 +126,7 @@ Desy::Application.routes.draw do
   put 'profile/update'        => 'users#update',        :as => :user
   
   # LOCATIONS
-  get 'locations/:id/find'  => 'users#find_location'
+  get 'locations/:id/find'       => 'users#find_locations'
   get 'admin/locations/:id/find' => 'admin/users#find_locations'
   
   # MAILING LIST

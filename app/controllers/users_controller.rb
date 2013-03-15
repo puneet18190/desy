@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     fill_locations
   end
   
-  def find_location
+  def find_locations
     parent = Location.find_by_id params[:id]
     @locations = parent.nil? ? [] : parent.children
   end
