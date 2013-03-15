@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  skip_before_filter :authenticate, only: [:create, :confirm, :request_reset_password, :reset_password, :find_location]
+  skip_before_filter :authenticate, only: [:create, :confirm, :request_reset_password, :reset_password, :find_locations]
   before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
   layout 'prelogin', only: [:create, :request_reset_password]
   
@@ -13,7 +13,8 @@ class UsersController < ApplicationController
       redirect_to root_path(login: true), { flash: { notice: t('flash.successful_registration') } }
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
     else
-      @provinces_ids    = Location.roots.order(:name).map{ |l| [l.to_s, l.id] }
+      @locations = [Location.roots]
+      @user_location = {}
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
       @subjects         = Subject.order(:description)
       render 'prelogin/registration'
