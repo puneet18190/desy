@@ -51,17 +51,18 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-    user_location = {}
+    @user_location = {}
     prev_location = current_user.location
     SETTINGS['location_types'].reverse.each do |l|
-      user_location[l.downcase] = prev_location.id
+      @user_location[l.downcase] = prev_location.id
       prev_location = prev_location.parent
     end
-    @locations = Location.get_from_chain_params(user_location).get_filled_select
+    @locations = Location.get_from_chain_params(@user_location).get_filled_select
   end
   
   def find_location
-    @parent = Location.find(params[:id])
+    parent = Location.find_by_id params[:id]
+    @locations = parent.nil? ? [] : parent.children
   end
 
   def subjects

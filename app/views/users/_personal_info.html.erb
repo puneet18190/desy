@@ -45,17 +45,17 @@
   
   <% SETTINGS['location_types'].each_with_index do |location, index| %>
     <div class="inputElement">
-      <% if @user.errors.include? :location_id %>
+      <% if (index == SETTINGS['location_types'].length - 1) && @user.errors.include?(:location_id) %>
         <div class="field_with_errors">
           <%= Location.label_at(index) %><br>
-          <select id="<%= location.downcase %>_id">
-            <%= render :partial => 'users/locations_list', :locals => {:locations => @locations[index], :selected => ...} %>
+          <select id="<%= location.downcase %>_id" class="_location_select_box">
+            <%= render :partial => 'users/locations_list', :locals => {:locations => @locations[index], :selected => @user_location[location.downcase]} %>
           </select>
           </div>
       <% else %>
         <%= Location.label_at(index) %><br>
-        <select id="<%= location.downcase %>_id">
-          <%= render :partial => 'users/locations_list', :locals => {:locations => @locations[index], :selected => ...} %>
+        <select id="<%= location.downcase %>_id" class="_location_select_box">
+          <%= render :partial => 'users/locations_list', :locals => {:locations => @locations[index], :selected => @user_location[location.downcase]} %>
         </select>
       <% end %>
     </div>

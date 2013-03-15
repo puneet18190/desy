@@ -1,5 +1,4 @@
-<% if parent %>
-  <% @children = Location.find(parent).children %>
-  <option value=''><%= t('prelogin.sign_up.select_a')%> <%=@children.first.sti_type%></option>
-  <%= options_for_select(@children.order(:name).map{ |l| [l.to_s, l.id] }, selected.present? ? selected : '') %>
+<% if locations.any? %>
+  <option value="0">Select a <%= locations.first.sti_type.downcase %></option><!-- traduzzione -->
+  <%= options_from_collection_for_select(locations, 'id', 'name', selected.to_i) %>
 <% end %>
