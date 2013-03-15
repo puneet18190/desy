@@ -281,7 +281,7 @@ function scrollToFirstSelectedAudioEditorComponent(callback) {
     }
   } else {
     var scroll_target = (selected_component.data('position') - 1) * 113;
-    if(scroll_pain.data('jsp').getContentPositionY() != scroll_target && scroll_pain.data('jsp').getPercentScrolledY() != 1) {
+    if(scroll_pain.data('jsp').getContentPositionY() != scroll_target) {
       if(callback != undefined) {
         scroll_pain.jScrollPane().bind('panescrollstop', function() {
           callback();
