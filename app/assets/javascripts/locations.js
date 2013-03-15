@@ -4,26 +4,15 @@ $(document).ready(function() {
     $('#' + $(this).attr('id')).selectbox();
   });
   
-  $('#province_id, #town_id').on('change', function() {
-    var $this = $(this);
-    if($this.val().length > 0) {
-      $.ajax({
-        url: '/location/' + $(this).val() + '/find',
-        type: 'post'
-      });
-    } else {
-      if($this.attr('id') === 'town_id') {
-        $('#user_location_id').selectbox('detach');
-        $('#user_location_id').html('');
-        $('#user_location_id').selectbox();
-      }
-      if($this.attr('id') === 'province_id') {
-        $('#user_location_id').selectbox('detach');
-        $('#town_id').selectbox('detach');
-        $('#user_location_id').html('');
-        $('#town_id').html('');
-        $('#user_location_id').selectbox();
-        $('#town_id').selectbox();
+  $('._select_locations_admin').on('change', function() {
+    if(!$(this).data('is-last')) {
+      if($(this).val() == '0') {
+        $(this).parents('.control-group').nextAll().find('select').html('');
+      } else {
+        $.ajax({
+          url: '/locations/' + $(this).val() + '/find',
+          type: 'post'
+        });
       }
     }
   });
