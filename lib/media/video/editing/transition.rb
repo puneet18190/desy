@@ -66,18 +66,18 @@ module Media
             transitions = tmp_path TRANSITIONS
             Cmd::GenerateTransitionFrames.new(start_frame, end_frame, transitions, INNER_FRAMES_AMOUNT).run! *logs('3_generate_transition_frames') # 3.
   
-            transitions_format = tmp_path TRANSITIONS_FORMAT
-            Thread.join *FORMATS.map { |format|
-              proc {
-                Cmd::Transition.new(transitions_format, output(format), FRAME_RATE, format).run! *logs("4_#{format}") # 4.
-              }
-            }
+            Thread.join *FORMATS.map { |format| proc { transition(format) } } # 4.
           end
   
           outputs
         end
   
         private
+        def transition(format)
+          create_log_folder
+          Cmd::Transition.new(tmp_path(TRANSITIONS_FORMAT), output(format), FRAME_RATE, format).run! *logs("4_#{format}")
+        end
+
         def extract_start_input_frame(start_frame)
           video_no_audio = tmp_path VIDEO_NO_AUDIO
           Cmd::VideoStreamToFile.new(@start_inputs[:mp4], video_no_audio).run! *logs('0_video_stream_to_file')

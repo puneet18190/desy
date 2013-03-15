@@ -7,6 +7,10 @@ module Media
     STDOUT_LOG = 'stdout.log'
     STDERR_LOG = 'stderr.log'
 
+    def self.remove_folder!
+      FileUtils.rm_rf Rails.root.join('log', to_s.split('::').take(1).join('::').underscore)
+    end
+
     module ClassMethods
       def log_folder(folder_name = nil)
         nesting = folder_name ? 3 : 4
@@ -18,16 +22,16 @@ module Media
     
     module InstanceMethods
       def create_log_folder(folder_name = nil)
-        self.log_folder_instance_variable = nil
-        self.log_folder_instance_variable = log_folder(folder_name)
-        FileUtils.mkdir_p log_folder_instance_variable
-        log_folder_instance_variable
+        self.thread_relative_log_folder = nil
+        self.thread_relative_log_folder = log_folder(folder_name)
+        FileUtils.mkdir_p thread_relative_log_folder
+        thread_relative_log_folder
       end
 
 
       def log_folder(folder_name = nil)
-        log_folder_instance_variable || (
-          folder_name ||= "#{Time.now.utc.strftime("%Y%m%d%H%M%S_%N")}_#{::Thread.current.object_id}"
+        @log_folder || thread_relative_log_folder || (
+          folder_name ||= "#{Time.now.utc.strftime("%Y-%m-%d_%H-%M-%S_%N")}_#{::Thread.current.object_id}"
           File.join self.class.log_folder, folder_name
         )
       end
@@ -45,16 +49,20 @@ module Media
       end
 
       private
-      def log_folder_instance_variable_name
-        :"@log_folder_for_thread_#{Thread.current.object_id}"
+      def thread_relative_log_folder_name
+        if Thread.current == Thread.main
+          :@log_folder
+        else
+          :"@log_folder_for_thread_#{Thread.current.object_id}"
+        end
       end
 
-      def log_folder_instance_variable
-        instance_variable_get log_folder_instance_variable_name
+      def thread_relative_log_folder
+        instance_variable_get thread_relative_log_folder_name
       end
 
-      def log_folder_instance_variable=(log_folder_instance_variable)
-        instance_variable_set log_folder_instance_variable_name, log_folder_instance_variable
+      def thread_relative_log_folder=(thread_relative_log_folder)
+        instance_variable_set thread_relative_log_folder_name, thread_relative_log_folder
       end
     end
     

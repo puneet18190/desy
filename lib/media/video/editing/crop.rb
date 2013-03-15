@@ -16,7 +16,6 @@ module Media
         CROP_CMD = Cmd::Crop
   
         def initialize(inputs, output_without_extension, start, duration)
-          # _d FORMATS, self.class, self.class::FORMATS
           unless inputs.is_a?(Hash)                           and 
                  inputs.keys.sort == self.class::FORMATS.sort and
                  inputs.values.all?{ |v| v.is_a? String }
@@ -39,12 +38,16 @@ module Media
         end
   
         def run
-          create_log_folder
-          Thread.join *@inputs.map { |format, input| proc{ self.class::CROP_CMD.new(input, output(format), @start, @duration, format).run! *logs } }
+          Thread.join *self.class::FORMATS.map{ |format| proc{ crop(format) } }
           outputs
         end
   
         private
+        def crop(format)
+          create_log_folder
+          self.class::CROP_CMD.new(@inputs[format], output(format), @start, @duration, format).run! *logs
+        end
+
         def output(format)
           "#{@output_without_extension}.#{format}"
         end

@@ -40,4 +40,4 @@ RSpec.configure do |config|
   config.order = "random"
 end
 
-[ Media::Video::Uploader, Media::Audio::Uploader, ImageUploader, Media::Audio::Editing::Conversion, Media::Video::Editing::Conversion ].each{ |u| u.remove_folder! }
+[ Media::Video::Uploader, Media::Audio::Uploader, ImageUploader, Media::Audio::Editing::Conversion, Media::Video::Editing::Conversion, Media::Logging ].each{ |u| u.remove_folder! }

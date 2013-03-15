@@ -50,16 +50,14 @@ module Media
           # Posso controllare mp3_inputs per sapere quante coppie di video ho, perché ho già visto che mp3_inputs.size == webm_inputs.size
           # Caso speciale: se ho una sola coppia di input copio i due video nei rispettivi output e li ritorno
           return copy_first_inputs_to_outputs if mp3_inputs.size == 1
-
-          create_log_folder
-
+          
           in_tmp_dir { Thread.join *FORMATS.map { |format| proc{ concat(format) } } }
-
           outputs
         end
 
         private
         def concat(format)
+          create_log_folder
           Cmd::Concat.new(inputs[format], outputs[format]).run! *logs
         end
         

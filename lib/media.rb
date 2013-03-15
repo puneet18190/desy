@@ -6,9 +6,6 @@ module Media
   RAILS_PUBLIC_FOLDER = Rails.root.join 'public'
   TMP_PREFIX          = CONFIG.tmp_prefix
 
-  DATABASE_POOL       = Rails.configuration.database_configuration[Rails.env]['pool']
-
-
   def self.ubuntu_packages
     # XXX postgresql-contrib-9.2 non dovrebbe stare qui!!!
     %w(libav-tools libavcodec-extra-53 mkvtoolnix sox lame postgresql-contrib-9.2)
