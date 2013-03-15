@@ -1,14 +1,11 @@
-<% if @parent.sti_type == 'Province' %>
-  $('#town_id').selectbox("detach");
-  $('#user_location_id').selectbox("detach");
-  $('select#town_id').html("<%= j render :partial => 'users/locations_list', :locals => {:parent => @parent, :selected => nil} %>")
-  $('select#user_location_id').html("");
-  $('#town_id').selectbox();
-  $('#user_location_id').selectbox();
-<% end %>
+<%
+  first_depth = 0
+  first_depth = @locations.first.depth if @locations.any?
+%>
 
-<% if @parent.sti_type == 'Town' %>
-  $('#user_location_id').selectbox("detach");
-  $('select#user_location_id').html("<%= j render :partial => 'users/locations_list', :locals => {:parent => @parent, :selected => nil} %>")
-  $('#user_location_id').selectbox();
+<% ((first_depth + 1)...(SETTINGS['location_types'].length)).to_a.each do |depth| %>
+  $('select#<%= SETTINGS["location_types"][depth] %>_id').html('');
+<% end %>
+<% if @locations.any? %>
+  $('select#<%= @locations.first.sti_type.downcase %>_id').html('<%= j render(:partial => "users/locations_list", :locals => {:locations => @locations, :selected => nil}) %>');
 <% end %>

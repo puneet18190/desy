@@ -11,7 +11,7 @@ module Media
         let(:user) { User.admin }
         
         let(:components) do
-          (pools+1).times.map do
+          (pools+5).times.map do
             ::Audio.create!(title: 'test', description: 'test', tags: 'a,b,c,d') do |v|
               v.user  = user
               v.media = MESS::CONVERTED_AUDIO_HASH
@@ -34,6 +34,14 @@ module Media
                 to:    20      }
               end
             }
+          end
+          let!(:duration) do
+            params[:components].map do |c|
+              c[:to] - c[:from]
+            end.sum
+          end
+          def expected_infos(format)
+            MESS::AUDIO_COMPOSING[format].merge(duration: duration)
           end
           let(:params_with_initial_audio) { params.merge(initial_audio: { id: initial_audio.id }) }
 
@@ -58,10 +66,10 @@ module Media
             MESS::AUDIO_FORMATS.each do |format|
               context "with #{format} format", format: format do
             
-                let(:format) { format }
+                let!(:format) { format }
 
                 it 'creates the correct audio' do
-                  info(format).similar_to?(MESS::AUDIO_COMPOSING[format]).should be_true
+                  info(format).similar_to?(expected_infos(format), true).should be_true
                 end
               end
             end
@@ -100,7 +108,7 @@ module Media
                 let(:format) { format }
 
                 it 'creates the correct audio' do
-                  info(format).similar_to?(MESS::AUDIO_COMPOSING[format]).should be_true
+                  info(format).similar_to?(expected_infos(format), true).should be_true
                 end
               end
             end

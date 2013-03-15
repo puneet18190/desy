@@ -27,7 +27,7 @@ module Media
 
       if exitstatus != 0
         if raise_if_invalid
-          raise Error.new('avprobe failed', cmd: @cmd, exitstatus: exitstatus)
+          raise Error.new('avprobe failed', path: @path, cmd: @cmd, exitstatus: exitstatus)
         else
           @invalid = true
         end

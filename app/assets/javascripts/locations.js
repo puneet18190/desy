@@ -1,10 +1,8 @@
 $(document).ready(function() {
   
-  $('#user_location_id').selectbox();
-  
-  $('#town_id').selectbox();
-  
-  $('#province_id').selectbox();
+  $('._location_select_box').each(function() {
+    $('#' + $(this).attr('id')).selectbox();
+  });
   
   $('#province_id, #town_id').on('change', function() {
     var $this = $(this);

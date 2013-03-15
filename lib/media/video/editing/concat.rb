@@ -4,6 +4,7 @@ require 'media/video/editing'
 require 'media/logging'
 require 'media/in_tmp_dir'
 require 'media/info'
+require 'media/thread'
 require 'media/video/editing/cmd/audio_stream_to_file'
 require 'media/video/editing/cmd/mp3_to_wav'
 require 'media/audio/editing/cmd/concat'
@@ -110,12 +111,11 @@ module Media
   
           final_webm_no_audio_info = Info.new final_webm_no_audio
 
-          FORMATS.map do |format|
-            SensitiveThread.new do
-              output = outputs[format]
-              Cmd::Concat.new(final_webm_no_audio, final_wav, final_webm_no_audio_info.duration, output, format).run! *logs("4_#{format}") # 3.
-            end
-          end.each(&:join)
+          Thread.join *FORMATS.map { |format|
+            proc {
+              Cmd::Concat.new(final_webm_no_audio, final_wav, final_webm_no_audio_info.duration, outputs[format], format).run! *logs("4_#{format}") # 3.
+            }
+          }
   
           outputs
         end
@@ -128,24 +128,24 @@ module Media
         #   4. associo il wav ai paddings corrispondenti
         #   5. concateno i wavs aggiungendo i paddings
         def final_wav(mp4_inputs_infos, paddings)
-          wavs_with_paddings = {}
-  
-          mp4_inputs_infos.select{ |info| info.audio_streams.present? }.each_with_index.map do |video_info, i|
-            Thread.new do
-              mp3 = tmp_path(CONCAT_MP3_FORMAT % i)
-  
-              Cmd::AudioStreamToFile.new(video_info.path, mp3).run! *logs("0_audio_stream_to_file_#{i}") # 1.
-  
-              wav = tmp_path(CONCAT_WAV_FORMAT % i)
-              Cmd::Mp3ToWav.new(mp3, wav).run! *logs("1_mp3_to_wav_#{i}") # 2.
-              
-              # aumento l'rpadding nel caso che la traccia video sia sensibilmente più lunga della traccia audio
-              # tenendo in considerazione che l'operazione di encoding aggiunge un rpadding di suo
-              increase_rpadding_depending_on_video_overflow video_info, wav, paddings[i] # 3.
-  
-              wavs_with_paddings[wav] = paddings[i] # 4.
-            end.tap{ |t| t.abort_on_exception = true }
-          end.each(&:join)
+          wavs_with_paddings = {}.tap do |wavs_with_paddings|
+            Thread.join *mp4_inputs_infos.select{ |info| info.audio_streams.present? }.each_with_index.map { |video_info, i|
+              proc {
+                mp3 = tmp_path(CONCAT_MP3_FORMAT % i)
+    
+                Cmd::AudioStreamToFile.new(video_info.path, mp3).run! *logs("0_audio_stream_to_file_#{i}") # 1.
+    
+                wav = tmp_path(CONCAT_WAV_FORMAT % i)
+                Cmd::Mp3ToWav.new(mp3, wav).run! *logs("1_mp3_to_wav_#{i}") # 2.
+                
+                # aumento l'rpadding nel caso che la traccia video sia sensibilmente più lunga della traccia audio
+                # tenendo in considerazione che l'operazione di encoding aggiunge un rpadding di suo
+                increase_rpadding_depending_on_video_overflow video_info, wav, paddings[i] # 3.
+    
+                wavs_with_paddings[wav] = paddings[i] # 4.
+              }
+            }
+          end
   
           final_wav = tmp_path FINAL_WAV
           Audio::Editing::Cmd::Concat.new(wavs_with_paddings, final_wav).run! *logs('2_concat_with_paddings') # 5.

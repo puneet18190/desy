@@ -10,5 +10,13 @@
   <div class="bottoniVerdi">
     <a id="start_audio_editor_preview" class="upper <%= parameters[:components].empty? ? 'disabled'.html_safe : '' %>"><%= t('audio_editor.preview.play') %></a>
     <a id="stop_audio_editor_preview" class="upper" style="display:none"><%= t('audio_editor.preview.stop') %></a>
+  </div>  
+
+  <div class="audioLateralControls">
+    <a class="rewind" title="<%= t('titles.audio_editor.audio_cutter.rewind') %>"></a>
+    <a class="play" title="<%= t('titles.audio_editor.audio_cutter.play') %>"></a>
+    <a class="pause" title="<%= t('titles.audio_editor.audio_cutter.pause') %>"></a>
   </div>
+
+ 
 </div>

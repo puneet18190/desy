@@ -4,6 +4,7 @@ require 'media/video/editing'
 require 'media/logging'
 require 'media/in_tmp_dir'
 require 'media/info'
+require 'media/thread'
 require 'media/video/editing/cmd/video_stream_to_file'
 require 'media/video/editing/cmd/extract_frame'
 require 'media/video/editing/cmd/generate_transition_frames'
@@ -24,7 +25,7 @@ module Media
         END_FRAME            = 'end_frame.jpg'
         TRANSITIONS          = 'transition.jpg'
         INNER_FRAMES_AMOUNT  = 23
-        TRANSITIONS_FORMAT   = ->{ f = Pathname.new(TRANSITIONS); "#{f.basename(f.extname)}-%d#{f.extname}" }.call
+        TRANSITIONS_FORMAT   = proc{ f = Pathname.new(TRANSITIONS); "#{f.basename(f.extname)}-%d#{f.extname}" }.call
         FRAME_RATE           = 25
   
         def initialize(start_inputs, end_inputs, output_without_extension)
@@ -66,11 +67,11 @@ module Media
             Cmd::GenerateTransitionFrames.new(start_frame, end_frame, transitions, INNER_FRAMES_AMOUNT).run! *logs('3_generate_transition_frames') # 3.
   
             transitions_format = tmp_path TRANSITIONS_FORMAT
-            FORMATS.map do |format|
-              Thread.new do
+            Thread.join *FORMATS.map { |format|
+              proc {
                 Cmd::Transition.new(transitions_format, output(format), FRAME_RATE, format).run! *logs("4_#{format}") # 4.
-              end.tap{ |t| t.abort_on_exception = true }
-            end.each(&:join)
+              }
+            }
           end
   
           outputs

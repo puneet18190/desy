@@ -2,7 +2,7 @@ require 'media'
 require 'media/audio'
 require 'media/audio/editing'
 require 'media/in_tmp_dir'
-require 'sensitive_thread'
+require 'media/thread'
 require 'media/audio/editing/crop'
 require 'media/audio/editing/concat'
 
@@ -39,9 +39,9 @@ module Media
             audio.media     = old_media
             audio.converted = true
             if old_fields = audio.try(:metadata).try(:old_fields)
-              audio.title       = old_fields['title']
-              audio.description = old_fields['description']
-              audio.tags        = old_fields['tags']
+              audio.title       = old_fields['title'] if old_fields['title'].present?
+              audio.description = old_fields['description'] if old_fields['description'].present?
+              audio.tags        = old_fields['tags'] if old_fields['tags'].present?
             end
             audio.save!
             audio.enable_lessons_containing_me
@@ -56,13 +56,11 @@ module Media
 
         def compose
           in_tmp_dir do
-            concats = {}
-
-            @params[:components].each_with_index.map do |component, i|
-              SensitiveThread.new do
-                concats.store i, compose_audio(*component.values_at(:audio, :from, :to), i)
-              end
-            end.each(&:join)
+            concats = {}.tap do |concats|
+              Thread.join *@params[:components].each_with_index.map { |component, i|
+                proc{ concats.store i, compose_audio(*component.values_at(:audio, :from, :to), i) }
+              }
+            end
 
             concat = tmp_path 'concat'
             outputs = Concat.new(concats.sort.map{ |_,c| c }, concat).run
@@ -87,10 +85,10 @@ module Media
 
           if from == 0 && to == audio.min_duration
             {}.tap do |outputs|
-              inputs.map do |format, input|
+              Thread.join *inputs.map { |format, input|
                 output = outputs[format] = "#{output_without_extension(i)}.#{format}"
-                SensitiveThread.new{ audio_copy input, output }
-              end.each(&:join)
+                proc { audio_copy input, output }
+              }
             end
           else
             start, duration = from, to-from

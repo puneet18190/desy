@@ -4,7 +4,7 @@ require 'recursive_open_struct'
 module Media
 
   CONFIG = RecursiveOpenStruct.new({
-    tmp_prefix: "desy#{Thread.current.object_id}",
+    tmp_prefix: "desy#{::Thread.current.object_id}",
     avtools: {
       avprobe: {
         cmd: {

@@ -37,7 +37,7 @@ module Media
 
         def info(format)
           @info ||= {}
-          @info[format] ||= Info.new(initial_video.media.path(format)).tap{ |v| _d format, v.to_hash }
+          @info[format] ||= Info.new(initial_video.media.path(format))
         end
 
 
@@ -101,7 +101,6 @@ module Media
                   let!(:format) { format }
 
                   it 'creates the correct video' do
-                    _d info(format).to_hash, expected_infos(:without_audio_track, format)
                     info(format).similar_to?(expected_infos(:without_audio_track, format), true).should be_true
                   end
                 end
