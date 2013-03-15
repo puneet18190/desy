@@ -14,7 +14,7 @@ module Media
               end
             end
             let(:output)  { Rails.root.join('tmp/test.jpg').to_s }
-            let(:options) { { color: '"#41A62A"' } }
+            let(:options) { { color: '#2EAADC', background_color: '#373737' } }
 
             before(:all) do
               FileUtils.rm output if File.exists? output
@@ -27,7 +27,7 @@ module Media
             after(:all) do
               text.unlink
               begin
-                FileUtils.rm output
+                # FileUtils.rm output
               rescue Errno::ENOENT
               end
             end

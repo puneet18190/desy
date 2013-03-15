@@ -50,12 +50,12 @@ module Media
             %Q[ convert
                   -size       #{width.to_s.shellescape}x#{height.to_s.shellescape}
                   -background #{background_color.to_s.shellescape}
-                  -fill       "#{color.to_s.gsub('"','')}"
+                  -fill       #{color.to_s.shellescape}
                   -font       #{font.to_s.shellescape}
                   -pointsize  #{pointsize.to_s.shellescape}
                   -gravity    #{gravity.to_s.shellescape}
                   label:#{shellescaped_text}
-                  #{output.shellescape} ].squish
+                  #{output.shellescape} ].squish.tap{ |v| puts v }
           end
 
         end
