@@ -1,4 +1,8 @@
 <% if @ok %>
-  $('#dialog-media-element-<%= @media_element_id %>').replaceWith('<%= j render(:partial => "media_elements/popup", :locals => {:media_element => @media_element, :locked => false}) %>');
+  $('#dialog-media-element-<%= @media_element_id %>').data('loaded', true);
+  
+  console.log('eccomi nella chiamata');
+  
+  $('#dialog-media-element-<%= @media_element_id %>').html($('<%= j render(:partial => "media_elements/popup", :locals => {:media_element => @media_element, :locked => false}) %>').html());
   showMediaElementInfoPopUp(<%= @media_element_id %>);
 <% end %>
