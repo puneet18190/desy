@@ -182,54 +182,12 @@ $(document).ready(function() {
   $('body').on('click', '#log .del', function(e) {
     e.preventDefault();
     var my_div = $(this).parent('div')
-    var ids_val = $('#notification_ids').val().split(',');
-    $('#notification_ids').val(ids_val.splice(ids_val.indexOf(my_div.attr('id')),1));
+    var ids_val = $('#search_users_ids').val().split(',');
+    ids_val.splice(ids_val.indexOf(my_div.attr('id')),1);
+    $('#search_users_ids').val(ids_val);
     my_div.remove();
-  });
-
-  
-  //$(function() {
-  //  function split(val) {
-  //    return val.split(/,\s*/);
-  //  }
-  //  function extractLast(term) {
-  //    return split(term).pop();
-  //  }
-  //  $('#contact-recipients').bind('keydown', function(event) {
-  //    if(event.keyCode === $.ui.keyCode.TAB && $(this).data('autocomplete').menu.active) {
-  //      event.preventDefault();
-  //    }
-  //  }).autocomplete({
-  //    source: function(request, response) {
-  //      $.getJSON('/admin/users/get_full_names', {
-  //        term: extractLast(request.term)
-  //      }, response);
-  //    },
-  //    search: function() {
-  //      var term = extractLast(this.value);
-  //      if(term.length < 2) {
-  //        return false;
-  //      }
-  //    },
-  //    focus: function() {
-  //      return false;
-  //    },
-  //    select: function(event, ui) {
-  //      var terms = split(this.value);
-  //      terms.pop();
-  //      terms.push(ui.item.value);
-  //      terms.push('');
-  //      this.value = terms.join(', ');
-  //      var $ids_input = $('input#notification_ids');
-  //      $ids_input.val($ids_input.val() + ',' + ui.item.id);
-  //      return false;
-  //    },
-  //    messages: {
-  //      results: function() {}
-  //    }
-  //  });
-  //});
-  
+    $('#filter-users').submit();
+  });  
   
   // EFFECTS
   

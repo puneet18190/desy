@@ -165,10 +165,9 @@ class AdminSearchForm < Form
   end
   
   def self.search_notifications_users(params)
-    resp = User
+    resp = User.scoped
     resp = resp.where(:school_level_id => params[:school_level_id]) if params[:school_level_id].present?
     resp = resp.where("users.created_at >= ?", params[:recency]) if params[:recency].present?
-    
     with_locations = false
     SETTINGS['location_types'].map{|type| type.downcase}.each do |type|
       with_locations = true if params[type].present? && params[type] != '0'
@@ -179,14 +178,32 @@ class AdminSearchForm < Form
         if location.depth == SETTINGS['location_types'].length - 1
           resp = resp.where(:users => {:location_id => location.id})
         else
-          resp = resp.joins(:location)
           anc = location.ancestry_with_me
           anc.chop! if location.depth == SETTINGS['location_types'].length - 2
           resp = resp.where('ancestry LIKE ?', "#{anc}%")
         end
       end
     end
-    resp
+    
+    if params[:subject_id].present?
+      resp = resp.where(:users_subjects => {:subject_id => params[:subject_id]})
+    end
+    
+    if params[:users_ids].present?
+      resp = User.where([resp.wheres.map(&:to_sql).join(' AND '), "users.id IN (#{params[:users_ids]})"].select{ |s| s.present? }.join(' OR ') )
+    end
+    
+    if location
+      resp = resp.joins(:location)
+    end
+    
+    if params[:subject_id].present?
+      resp = resp.joins(:users_subjects).group('users.id')
+      return resp.count.length
+    else
+      return resp.count
+    end    
+    
   end
   
 end

@@ -28,9 +28,9 @@
                     <br />
                     <%= render :partial => 'admin/search/location', :locals => {:locations => @locations, :params => params[:search]} %>
                     <% if @users.present? %>
-                      <%= hidden_field_tag :users_ids,  @users.map(&:id).join(',')%>
+                      <%= hidden_field_tag 'search[users_ids]',  @users.map(&:id).join(',')%>
                     <% else %>
-                      <%= hidden_field_tag :users_ids %>
+                      <%= hidden_field_tag 'search[users_ids]' %>
                     <% end %>
                 </div>
               <% end %>
