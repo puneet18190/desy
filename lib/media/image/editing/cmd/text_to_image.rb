@@ -11,8 +11,8 @@ module Media
 
           OPTIONS_AND_DEFAULTS = { width:            960, 
                                    height:           540, 
-                                   color:            'black', 
-                                   background_color: 'white', 
+                                   color:            'black',
+                                   background_color: 'white',
                                    font:             Rails.root.join('vendor/fonts/DroidSansFallback.ttf'), 
                                    gravity:          'Center', 
                                    pointsize:        48        }
@@ -55,7 +55,7 @@ module Media
                   -pointsize  #{pointsize.to_s.shellescape}
                   -gravity    #{gravity.to_s.shellescape}
                   label:#{shellescaped_text}
-                  #{output.shellescape} ].squish.tap{ |v| puts v }
+                  #{output.shellescape} ].squish
           end
 
         end

@@ -7,8 +7,10 @@ module Media
     STDOUT_LOG = 'stdout.log'
     STDERR_LOG = 'stderr.log'
 
+    include EnvRelativePath
+
     def self.remove_folder!
-      FileUtils.rm_rf Rails.root.join('log', to_s.split('::').take(1).join('::').underscore)
+      FileUtils.rm_rf env_relative_path Rails.root.join('log', to_s.split('::').take(1).join('::').underscore).to_s
     end
 
     module ClassMethods
