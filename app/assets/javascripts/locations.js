@@ -4,14 +4,14 @@ $(document).ready(function() {
     $('#' + $(this).attr('id')).selectbox();
   });
   
-  $('._select_locations_admin').on('change', function() {
+  $('._location_select_box').on('change', function() {
     if(!$(this).data('is-last')) {
       if($(this).val() == '0') {
-        $(this).parents('.control-group').nextAll().find('select').html('');
+        $(this).parents('._location_selector').nextAll().find('select').html('');
       } else {
         $.ajax({
           url: '/locations/' + $(this).val() + '/find',
-          type: 'post'
+          type: 'get'
         });
       }
     }
