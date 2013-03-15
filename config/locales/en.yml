@@ -1782,10 +1782,6 @@ en:
         new_password_confirmation: "New password confirmation"
         # 1 - views/users/_personal_info.html.erb
         school_level_id: "School level"
-        # 1 - views/users/_personal_info.html.erb
-        town: "Town"
-        # 1 - views/users/_personal_info.html.erb
-        province: "Province"
     # Section 2: mailing lists
     mailing_list:
       # Caption of the link inside the user's profile menu

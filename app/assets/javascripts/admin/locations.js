@@ -7,7 +7,7 @@ $(document).ready(function() {
       } else {
         $.ajax({
           url: '/admin/locations/' + $(this).val() + '/find',
-          type: 'post'
+          type: 'get'
         });
       }
     }

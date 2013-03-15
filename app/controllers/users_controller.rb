@@ -1,27 +1,26 @@
 class UsersController < ApplicationController
   
-  skip_before_filter :authenticate, only: [:create, :confirm, :request_reset_password, :reset_password, :find_location]
+  skip_before_filter :authenticate, only: [:create, :confirm, :request_reset_password, :reset_password, :find_locations]
   before_filter :initialize_layout, :only => [:edit, :update, :subjects, :statistics, :mailing_lists]
   layout 'prelogin', only: [:create, :request_reset_password]
-
+  
   def create
     email = params[:user].try(:delete, :email)
     @user = User.active.not_confirmed.new(params[:user]) do |user|
       user.email = email
     end
-
     if @user.save
       redirect_to root_path(login: true), { flash: { notice: t('flash.successful_registration') } }
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
     else
-      @provinces_ids    = Location.roots.order(:name).map{ |l| [l.to_s, l.id] }
+      @locations = [Location.roots]
+      @user_location = {}
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
       @subjects         = Subject.order(:description)
-
       render 'prelogin/registration'
     end
   end
-
+  
   def confirm
     if User.confirm!(params[:token])
       redirect_to root_path(login: true), { flash: { notice: t('flash.successful_confirmation') } }
@@ -29,44 +28,42 @@ class UsersController < ApplicationController
       redirect_to root_path, { flash: { alert: t('flash.failed_confirmation') } }
     end
   end
-
+  
   def request_reset_password
   end
-
+  
   def reset_password
     email = params[:email]
     if email.blank?
       redirect_to user_request_reset_password_path, { flash: { alert: t('flash.email_is_blank') } } 
       return
     end
-
     if user = User.active.confirmed.where(email: email).first
       new_password = user.reset_password!
       UserMailer.new_password(user, new_password, request.host, request.port).deliver
     end
-
     redirect_to root_path, { flash: { notice: t('flash.password_reset_successfully') } }
   end
   
   def edit
     @user = current_user
     @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-    @provinces_ids    = Location.roots.order(:name).map{ |l| [l.to_s, l.id] }
+    fill_locations
   end
   
-  def find_location
-    @parent = Location.find(params[:id])
+  def find_locations
+    parent = Location.find_by_id params[:id]
+    @locations = parent.nil? ? [] : parent.children
   end
-
+  
   def subjects
     @user = current_user
     @subjects = Subject.order(:description)
   end
-
+  
   def update
     @user = current_user
     in_subjects = !!params[:in_subjects]
-
     if in_subjects
       params[:user] ||= HashWithIndifferentAccess.new
       params[:user][:subject_ids] ||= []
@@ -77,7 +74,6 @@ class UsersController < ApplicationController
         params[:user].delete(:password_confirmation)
       end
     end
-    
     if @user.update_attributes(params[:user])
       redirect_to in_subjects ? my_subjects_path : my_profile_path
     else
@@ -85,9 +81,8 @@ class UsersController < ApplicationController
         @subjects = Subject.order(:description)
         render :subjects
       else
-        @provinces_ids    = Location.roots.order(:name).map{ |l| [l.to_s, l.id] }
+        fill_locations
         @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
-        
         render :edit
       end
     end
@@ -115,6 +110,18 @@ class UsersController < ApplicationController
   def logout
     self.current_user = nil
     redirect_to root_path
+  end
+  
+  private
+  
+  def fill_locations
+    @user_location = {}
+    prev_location = User.find(current_user.id).location
+    SETTINGS['location_types'].reverse.each do |l|
+      @user_location[l.downcase] = prev_location.id
+      prev_location = prev_location.parent
+    end
+    @locations = Location.get_from_chain_params(@user_location).get_filled_select
   end
   
 end

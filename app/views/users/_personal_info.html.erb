@@ -32,7 +32,6 @@
   </div>
   <br class="clearfloat">
   
-  <%# ERRORI %>
   <% errors = @user.errors.select{ |k,_| [:name, :surname, :email, :password, :password_confirmation].include? k } -%>
 
   <ul class="listaErrori">
@@ -43,45 +42,34 @@
 </fieldset>
 <hr>
 <fieldset class="insert-content">
-  <div class="inputElement">
-    <%= t('users.info.attributes.province') %><br>
-    <select id="province_id">
-      <option value=''>
-        <%= t('prelogin.sign_up.select_a')%> <%= t('users.info.attributes.province')%>
-      </option>
-      <%= options_for_select(@provinces_ids, @user.present? ? @user.location.try(:root_id) : '') %>
-    </select>
-  </div>
-  <div class="inputElement">
-    <%= t('users.info.attributes.town') %><br>
-    <select id="town_id">
-      <% if @user %>
-        <%= render :partial => 'users/locations_list', :locals => {:parent => @user.location.try(:root_id), :selected => @user.location.try(:parent_id)} %>
+  
+  <% SETTINGS['location_types'].each_with_index do |location, index| %>
+    <div class="inputElement">
+      <% if (index == SETTINGS['location_types'].length - 1) %>
+        <div class="_location_selector <%= @user.errors.include?(:location_id) ? 'field_with_errors'.html_safe : '' %>">
+          <%= Location.label_at(index) %><br>
+          <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="true" name="user[location_id]">
+            <%= render :partial => 'users/locations_list', :locals => {:locations => @locations[index].to_a, :selected => @user_location[location.downcase]} %>
+          </select>
+        </div>
+      <% else %>
+        <div class="_location_selector">
+          <%= Location.label_at(index) %><br>
+          <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="false">
+            <%= render :partial => 'users/locations_list', :locals => {:locations => @locations[index].to_a, :selected => @user_location[location.downcase]} %>
+          </select>
+        </div>
       <% end %>
-    </select>
-  </div>
-  <div class="inputElement">
-    <%= Location.base_label %><br>
-    <% if @user.errors.include? :location_id %>
-      <div class="field_with_errors">
-    <% end %>
-      <select id="user_location_id" name="user[location_id]">
-        <% if @user %>
-          <%= render :partial => 'users/locations_list', :locals => {:parent => @user.location.try(:parent_id), :selected => @user.try(:location_id)} %>
-        <% end %>
-      </select>
-    <% if @user.errors.include? :location_id %>
-      </div>
-    <% end %>
-  </div>
-  <br class="clearfloat" />
+    </div>
+  <% end %>
+  
+  <br class="clearfloat"/>
   <div class="inputElement">
     <%= t('users.info.attributes.school_level_id') %><br>
     <%= f.select :school_level_id, @school_level_ids %>
   </div>
   <br class="clearfloat">
 
-  <%# ERRORI %>
   <% errors = @user.errors.select{ |k,_| [:school_level_id, :location_id].include? k } -%>
 
   <ul class="listaErrori">

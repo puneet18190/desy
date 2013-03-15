@@ -45,7 +45,7 @@ class Admin::MessagesController < AdminController
   
   def filter_users
     if params[:search].present?
-      @users = AdminSearchForm.search_notifications_users(params[:search])
+      @users_count = AdminSearchForm.search_notifications_users(params[:search])
     end
   end
   
