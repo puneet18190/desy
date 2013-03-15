@@ -476,10 +476,6 @@ $(document).ready(function() {
   
   // MEDIA ELEMENT BUTTONS
   
-  $('body').on('click','._boxViewExpandedMediaElementWrapper img', function(){
-    $(this).parents('._boxViewExpandedMediaElementWrapper').find('.preview').trigger('click');
-  })
-  
   $('body').on('click', '._Video_button_add, ._Audio_button_add, ._Image_button_add', function(e) {
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -501,16 +497,8 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._Video_button_preview, ._Audio_button_preview, ._Image_button_preview', function(e) {
-    if(!$(this).parent().hasClass('_disabled')) {
+    if(!$(this).parents('._media_element_item').hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
-      showMediaElementInfoPopUp(my_param);
-    }
-  });
-  
-  $('body').on('click', '._expanded_media_element_internal_container > div:first', function(e) { // TODO
-    var me = $(this).parents('._expanded_media_element_internal_container');
-    if(!me.parent().hasClass('_disabled')) {
-      var my_param = me.parent().find('a._Video_button_preview, a._Audio_button_preview, a._Image_button_preview').data('clickparam');
       showMediaElementInfoPopUp(my_param);
     }
   });
@@ -958,10 +946,6 @@ $(document).ready(function() {
     showLoadMediaElementPopUp();
     initFileUploads();
   });
-  
-  //$('body').on('click', '.uploadFileButton', function() {
-  //  $('._msie_file_uploader').trigger('click');
-  //});
   
   $('body').on('change', 'input#new_media_element', function() {
     var file_name = $(this).val().replace("C:\\fakepath\\", "");

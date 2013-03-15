@@ -1,5 +1,5 @@
 <% if @ok %>
-  $('#expanded_media_element_' + @media_element_id + ', #compact_media_element_' + @media_element_id + ', #found_media_element_' + @media_element_id).data('preview-loaded', true);
+  $('._media_element_item_id_<%= @media_element_id %>').data('preview-loaded', true);
   $('#dialog-media-element-<%= @media_element_id %>').replaceWith('<%= j render(:partial => "media_elements/popup", :locals => {:media_element => @media_element, :locked => false}) %>');
   showMediaElementInfoPopUp(<%= @media_element_id %>);
 <% end %>

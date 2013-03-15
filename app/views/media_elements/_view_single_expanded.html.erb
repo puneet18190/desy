@@ -3,7 +3,7 @@
   additional_class = disabled ? '_disabled'.html_safe : ''
 %>
 
-<div id="<%= destination %>_<%= media_element.id %>" class="boxViewExpandedMediaElement <%= additional_class %>" data-preview-loaded="false">
+<div id="<%= destination %>_<%= media_element.id %>" class="boxViewExpandedMediaElement <%= additional_class %> _media_element_item _media_element_item_id_<%= media_element.id %>" data-preview-loaded="false">
   <div class="contentInterno _expanded_media_element_internal_container">
     <%= render :partial => "media_elements/thumbnails/#{media_element.sti_type.downcase}", :locals => {:item => media_element} %>
     <div class="description">

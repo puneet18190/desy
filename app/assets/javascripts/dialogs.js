@@ -173,7 +173,7 @@ function showOkPopUp(content) {
 
 function showMediaElementInfoPopUp(media_element_id) {
   var obj = $('#dialog-media-element-' + media_element_id);
-  if(!$('#expanded_media_element_' + media_element_id + ', #compact_media_element_' + media_element_id + ', #found_media_element_' + media_element_id).data('preview-loaded')) {
+  if(!$('._media_element_item_id_' + media_element_id).data('preview-loaded')) {
     $.ajax({
       type: 'get',
       url: '/media_elements/' + media_element_id + '/preview/load'
