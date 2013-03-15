@@ -173,11 +173,6 @@ function showOkPopUp(content) {
 
 function showMediaElementInfoPopUp(media_element_id) {
   var obj = $('#dialog-media-element-' + media_element_id);
-  
-  
-  console.log('eccomi -- ' + obj.data('loaded'));
-  
-  
   if(!obj.data('loaded')) {
     $.ajax({
       type: 'get',
