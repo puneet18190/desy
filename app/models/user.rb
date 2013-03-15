@@ -11,6 +11,13 @@ class User < ActiveRecord::Base
   ATTR_ACCESSIBLE = [:password, :password_confirmation, :name, :surname, :school_level_id, :location_id, :subject_ids] + REGISTRATION_POLICIES
   attr_accessible *ATTR_ACCESSIBLE
 
+  PASSWORD_LENGTH_CONSTRAINTS = {}.tap do |hash|
+    [:minimum, :maximum].each do |key|
+      length = SETTINGS["#{key}_password_length"]
+      hash[key] = length if length
+    end
+  end
+
   def self.location_association_class
     Location::SUBMODELS.last
   end
@@ -34,8 +41,9 @@ class User < ActiveRecord::Base
   validates_presence_of :users_subjects
   validates_uniqueness_of :email
   validates_length_of :name, :surname, :email, :maximum => 255
-  validates_length_of :password, :minimum => SETTINGS['minimum_password_length'], :maximum => SETTINGS['maximum_password_length'], :on => :create, :unless => proc { |record| record.encrypted_password.present? }
-  validates_length_of :password, :minimum => SETTINGS['minimum_password_length'], :maximum => SETTINGS['maximum_password_length'], :on => :update, :allow_nil => true, :allow_blank => true
+
+  validates_length_of :password, PASSWORD_LENGTH_CONSTRAINTS.merge(:on => :create, :unless => proc { |record| record.encrypted_password.present? })
+  validates_length_of :password, PASSWORD_LENGTH_CONSTRAINTS.merge(:on => :update, :allow_nil => true, :allow_blank => true)
   validates_inclusion_of :active, :in => [true, false]
   validate :validate_associations
   validate :validate_email_not_changed, on: :update
