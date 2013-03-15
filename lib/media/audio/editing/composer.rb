@@ -85,10 +85,7 @@ module Media
 
           if from == 0 && to == audio.min_duration
             {}.tap do |outputs|
-              Thread.join *inputs.map { |format, input|
-                output = outputs[format] = "#{output_without_extension(i)}.#{format}"
-                proc { audio_copy input, output }
-              }
+              Thread.join *inputs.map { |format, input| proc { audio_copy input, (outputs[format] = "#{output_without_extension(i)}.#{format}") } }
             end
           else
             start, duration = from, to-from

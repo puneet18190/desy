@@ -57,7 +57,7 @@ module Media
                 { type:             described_class::parent::Parameters::IMAGE_COMPONENT,
                   image:            image.id              ,
                   duration:         10                    }
-              ]
+              ] * 2
             }
           end
           let!(:duration) do
