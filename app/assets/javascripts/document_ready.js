@@ -1730,6 +1730,21 @@ $(document).ready(function() {
     }
   });
   
+  $('body').on('click', '#rewind_audio_editor_preview', function() {
+    if(!$(this).hasClass('disabled')) {
+      var selected_component = $('._audio_editor_component').first();
+      selectAudioEditorComponent(selected_component);
+      disableCommitAndPreviewInAudioEditor();
+      scrollToFirstSelectedAudioEditorComponent(function() {
+        enableCommitAndPreviewInAudioEditor();
+        var from = selected_component.data('from');
+        selected_component.find('._media_player_slider').slider('value', from);
+        selected_component.find('._current_time').html(secondsToDateString(from));
+        setCurrentTimeToMedia(selected_component.find('audio'), selected_component.find('._media_player_slider').slider('value'));
+      });
+    }
+  });
+  
   $('body').on('click', '#stop_audio_editor_preview', function() {
     leaveAudioEditorPreviewMode();
   });
@@ -1963,6 +1978,7 @@ $(document).ready(function() {
   $('body').on('click', '._media_player_play_in_audio_editor_preview', function() {
     $(this).hide();
     $('#start_audio_editor_preview').addClass('disabled');
+    $('#rewind_audio_editor_preview').addClass('disabled');
     var component = $(this).parents('._audio_editor_component');
     var identifier = getAudioComponentIdentifier(component);
     component.data('playing', true);
@@ -1987,6 +2003,7 @@ $(document).ready(function() {
   $('body').on('click', '._media_player_pause_in_audio_editor_preview', function() {
     $(this).hide();
     $('#start_audio_editor_preview').removeClass('disabled');
+    $('#rewind_audio_editor_preview').removeClass('disabled');
     var component = $(this).parents('._audio_editor_component');
     var identifier = getAudioComponentIdentifier(component);
     component.data('playing', false);

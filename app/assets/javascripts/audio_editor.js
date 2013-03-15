@@ -96,12 +96,14 @@ function disableCommitAndPreviewInAudioEditor() {
   $('#empty_audio_editor').show();
   $('#commit_audio_editor').hide();
   $('#start_audio_editor_preview').addClass('disabled');
+  $('#rewind_audio_editor_preview').addClass('disabled');
 }
 
 function enableCommitAndPreviewInAudioEditor() {
   $('#empty_audio_editor').hide();
   $('#commit_audio_editor').show();
   $('#start_audio_editor_preview').removeClass('disabled');
+  $('#rewind_audio_editor_preview').removeClass('disabled');
 }
 
 function setToZeroAllZIndexesInAudioEditor() {
@@ -279,7 +281,7 @@ function scrollToFirstSelectedAudioEditorComponent(callback) {
     }
   } else {
     var scroll_target = (selected_component.data('position') - 1) * 113;
-    if(scroll_pain.data('jsp').getContentPositionY() != scroll_target && scroll_pain.data('jsp').getPercentScrolledY() != 1) {
+    if(scroll_pain.data('jsp').getContentPositionY() != scroll_target) {
       if(callback != undefined) {
         scroll_pain.jScrollPane().bind('panescrollstop', function() {
           callback();
@@ -299,6 +301,7 @@ function enterAudioEditorPreviewMode() {
   $('#commit_audio_editor').hide();
   $('#add_new_audio_component_in_audio_editor').addClass('disabled');
   $('#start_audio_editor_preview').addClass('disabled');
+  $('#rewind_audio_editor_preview').addClass('disabled');
   scrollToFirstSelectedAudioEditorComponent(function() {
     $('#audio_editor_timeline .jspVerticalBar').css('visibility', 'hidden');
     var current_global_preview_time = getAudioEditorGlobalPreviewTime();
@@ -396,6 +399,7 @@ function leaveAudioEditorPreviewMode(forced_component) {
   $('#add_new_audio_component_in_audio_editor').removeClass('disabled');
   $('#start_audio_editor_preview').show();
   $('#stop_audio_editor_preview').hide();
+  $('#rewind_audio_editor_preview').removeClass('disabled');
   $('#audio_editor_timeline .jspVerticalBar').css('visibility', 'visible');
   if(forced_component != undefined) {
     scrollToFirstSelectedAudioEditorComponent(function() {

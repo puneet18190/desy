@@ -1121,7 +1121,7 @@ en:
     preview:
       # Button to start the preview
       # 1 - views/audio_editor/_lateral_controls.html.erb
-      play: "Play"
+      play: "Preview"
       # Button to stop the preview
       # 1 - views/audio_editor/_lateral_controls.html.erb
       stop: "Stop"

@@ -268,7 +268,11 @@ function addTagWithoutSuggestion(input, container_selector, tags_value_selector)
 
 function addToTagsValue(word, value_selector) {
   var old_value = $(value_selector).val();
-  old_value += (word + ',');
+  if(old_value.indexOf(',') == -1) {
+    old_value = (',' + word + ',');
+  } else {
+    old_value += (word + ',');
+  }
   $(value_selector).val(old_value);
 }
 
