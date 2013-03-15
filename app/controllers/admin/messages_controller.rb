@@ -26,11 +26,11 @@ class Admin::MessagesController < AdminController
         if params[:all_users].present?
           users = :all
         else
-          users = AdminSearchForm.search_notifications_users(params[:search])
+          users = AdminSearchForm.search_notifications_users(params[:search]).pluck('users.id')
         end
         
         if users.present?
-          send_notifications(users.pluck('users.id'),params[:message])
+          send_notifications(users,params[:message])
         end
         @reset_form = true
       else
