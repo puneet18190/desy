@@ -14,20 +14,29 @@ module Media
               end
             end
             let(:output)  { Rails.root.join('tmp/test.jpg').to_s }
-            let(:options) { { color: '#2EAADC', background_color: '#373737' } }
 
             before(:all) do
               FileUtils.rm output if File.exists? output
             end
 
-            it 'works' do
-              expect{ described_class.new(text, output, options).run! $stdout, $stderr }.to_not raise_error
+            context 'with hex colors' do
+              let(:options) { { color: '#2EAADC', background_color: '#373737' } }
+              it 'works' do
+                expect{ described_class.new(text, output, options).run! $stdout, $stderr }.to_not raise_error
+              end
+            end
+
+            context 'text colors' do
+              let(:options) { { color: 'black', background_color: 'white' } }
+              it 'works' do
+                expect{ described_class.new(text, output, options).run! $stdout, $stderr }.to_not raise_error
+              end
             end
 
             after(:all) do
               text.unlink
               begin
-                # FileUtils.rm output
+                FileUtils.rm output
               rescue Errno::ENOENT
               end
             end

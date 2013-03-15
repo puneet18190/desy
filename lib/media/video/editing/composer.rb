@@ -141,10 +141,7 @@ module Media
 
           if from == 0 && to == video.min_duration
             {}.tap do |outputs|
-              Thread.join *inputs.map { |format, input|
-                output = outputs[format] = "#{output_without_extension(i)}.#{format}"
-                proc { video_copy input, output }
-              }
+              Thread.join *inputs.map { |format, input| proc { video_copy input, (outputs[format] = "#{output_without_extension(i)}.#{format}") } }
             end
           else
             start, duration = from, to-from

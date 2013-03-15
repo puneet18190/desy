@@ -19,33 +19,23 @@ class Admin::MessagesController < AdminController
     end
   end
   
-  def send_notifications
-    if params[:message].present?
-      msg = params[:message]
-      if params[:all_users]
-        User.all.each do |user|
-          Notification.send_to(user.id, msg)
-        end
-      else
-        if params[:notification_ids]
-          params[:notification_ids].split(',').each do |user_id|
-            Notification.send_to(user_id, msg)
-          end
-        else
-          @errors = "errors to add"##TODO
-          logger.info "\n\n\n\n #{@errors} \n\n\n\n"
-        end
-      end
-    else
-      @errors = "message required"##TODO
-      logger.info "\n\n\n\n message error: #{@errors} \n\n\n\n"
-    end
-    redirect_to :back
-  end
-  
   def filter_users
     if params[:search].present?
-      @users_count = AdminSearchForm.search_notifications_users(params[:search])
+      if params[:send_message].present? && params[:message].present?
+        
+        if params[:all_users].present?
+          users = :all
+        else
+          users = AdminSearchForm.search_notifications_users(params[:search])
+        end
+        
+        if users.present?
+          send_notifications(users.pluck('users.id'),params[:message])
+        end
+        @reset_form = true
+      else
+        @users_count = AdminSearchForm.search_notifications_users(params[:search], true)
+      end
     end
   end
   
@@ -53,5 +43,12 @@ class Admin::MessagesController < AdminController
     @elements_reports = Report.order('created_at DESC').where(reportable_type: 'MediaElement')
     @lessons_reports = Report.order('created_at DESC').where(reportable_type: 'Lesson')
   end
+  
+  private
+  
+  def send_notifications(users_ids, message)
+    ## TODO JOB TO SEND NOTIFICATIONS
+  end
+  
   
 end

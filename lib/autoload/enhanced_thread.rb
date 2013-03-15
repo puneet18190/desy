@@ -8,7 +8,7 @@ class EnhancedThread < Thread
   end
 
   def initialize(close_connection_before_execution = false, &block)
-    super(
+    thread_block = 
       if close_connection_before_execution
         proc {
           begin
@@ -29,7 +29,8 @@ class EnhancedThread < Thread
           end
         }
       end
-    )
+
+    super(&thread_block)
 
     self.abort_on_exception = true
   end

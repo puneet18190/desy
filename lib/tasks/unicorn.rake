@@ -10,12 +10,8 @@ namespace :unicorn do
     Rails.env
   end
 
-  def rails_root
-    Rails.root
-  end
-
   def unicorn_pid_file
-    "#{Rails.root}/shared/pids/unicorn.#{rails_env}.pid"
+    "#{Rails.root}/tmp/pids/unicorn.#{rails_env}.pid"
   end
 
   def unicorn_pid(quiet = false)
@@ -37,7 +33,7 @@ namespace :unicorn do
   desc 'start Unicorn server daemonized (config file: config/unicorn.rb)'
   task :start => :environment do
     puts 'Starting unicorn...'
-    Process.spawn *%W(bundle exec unicorn_rails -c #{rails_root}/config/unicorn.rb -E #{rails_env} -D)
+    Process.spawn *%W(bundle exec unicorn_rails -c #{Rails.root}/config/unicorn.rb -E #{rails_env} -D)
     Process.wait
   end
 
