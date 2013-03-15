@@ -63,24 +63,24 @@ $(document).ready(function() {
     $('#filter-users').submit();
   });
   
-  $('#notifications-form #all_users').change(function() {
+  $('#all_users').change(function() {
       if(this.checked) {
+        $('._filter_and_send').removeClass('disabled');
         $("input#contact-recipients").val('');
-        $("input#notification_ids").val('');
         $("input#contact-recipients").attr('disabled',true);
         $("#log").html('');
+        $("._users_count_label").text($("._users_count_label").data('all-selected'));
         $("#filter-users select").each(function(){
           $this = $(this);
           $this.find('option:selected').removeAttr('selected');
           $this.attr('disabled',true);
         });
-        $('.alert').hide();
+        $('#log').html('');
       } else {
+        $('._filter_and_send').addClass('disabled');
         $('input#contact-recipients').attr('disabled', false);
         $('#filter-users select').attr('disabled', false);
-        if($('.alert').length > 0 && $('.alert').html() === '') {
-          $('.alert').show();
-        }
+        $("._users_count_label").text($("._users_count_label").data('zero-selected'));
       }
   });
   
@@ -188,6 +188,16 @@ $(document).ready(function() {
     my_div.remove();
     $('#filter-users').submit();
   });  
+  
+  $('body').on('click','._filter_and_send',function(e){
+    e.preventDefault();
+    if(!$(this).hasClass('disabled')){
+      $form = $(this).parents('form');
+      $form.find('#send_message').val(true);
+      $form.submit();
+      $form.find('#send_message').val('');
+    }
+  });
   
   // EFFECTS
   
