@@ -1993,74 +1993,58 @@ en:
   virtual_classroom:
     # When the virtual classroom is empty, this is the caption of the 'plus' button used to add a lesson
     # 1 - views/virtual_classroom/_empty.html.erb
-	# add_lesson_now: 现在增加课程
-    add_lesson_now: "Add a lesson now"
+    add_lesson_now: "现在增加课程"
     # Captions used in the window where the user can pick different lessons to be added in his Virtual Classroom at the same time
     select_lessons:
       # Button to close the window without adding lessons
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
-	  # cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
       # Button to add the selected lessons
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
-	  # done: 上传
-      done: "Upload"
+      done: "上传"
       # Caption used when the user has no lessons to upload in his Virtual Classroom
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
-	  # empty: 没有任何的课程增加到你的虚拟教室
-      empty: "You don't have any lessons to add to your Virtual Classroom"
+      empty: "没有任何的课程增加到你的虚拟教室"
       # Button to open the window from the main bar inside Virtual Classroom
       # 1 - views/virtual_classroom/_header_buttons.html.erb
-	  # label: 增加课程
-      label: "Add lessons"
+      label: "增加课程"
       # Instructions
       # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
-	  # description: 选择课程上传到虚拟教室
-      description: "Select the lessons to upload in the Virtual Classroom"
+      description: "选择课程上传到虚拟教室"
     # Caption that appears when the Virtual Classroom is empty
     # 1 - views/virtual_classroom/_empty.html.erb
-	# empty: 你的虚拟教室是空的
-    empty: "Your Virtual Classroom is empty"
+    empty: "你的虚拟教室是空的"
     # Caption of the button which empties your Virtual Classroom
     # 1 - views/virtual_classroom/_header_buttons.html.erb
-	# make_it_empty: 清空你的虚拟教室
-    make_it_empty: "Empty your Virtual Classroom"
+    make_it_empty: "清空你的虚拟教室"
     # Captions used for the composition of the playlist
     playlist:
       # Placeholder and instructions when the playlist is empty
       # 1 - views/virtual_classroom/_empty_playlist.html.erb
-	  # instructions: 加载课程到虚拟教室，然后在这个区拖动建立播放列表
-      instructions: "After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist"
+      instructions: "加载课程到虚拟教室，然后在这个区拖动建立播放列表"
       # Label for the playlist column on the right
       # 1 - views/virtual_classroom/_playlist.html.erb
-	  # label:  播放列表
-      label: "Playlist"
+      label:  "播放列表"
       # Caption of the button which empties the playlist
       # 1 - views/virtual_classroom/_playlist.html.erb
-	  # make_it_empty: 清空播放列表
-      make_it_empty: "Empty playlist"
+      make_it_empty: "清空播放列表"
       # Link to open the playlist viewer
       # 1 - views/virtual_classroom/_playlist.html.erb
-	  # play: 播放
-      play: "Play"
+      play: "播放"
     # Window to send the public link of a lesson by email
     send_link:
       # Placeholder for the message (the variable %{max} is replaced by the maximum number of characters allowed)
       # 1 - views/virtual_classroom/_popups.html.erb
-	  # message: 写信息（最大%{max}字符）
-      message: "Write a message (max %{max} characters)"
+      message: "写信息（最大%{max}字符）"
       # Label of the text field where the user inserts a single email
       # 1 - views/virtual_classroom/_popups.html.erb
-	  # emails: 增加邮件地址
-      emails: "Add an email"
+      emails: "增加邮件地址"
       # Label of the select box where the user needs to add a mailing list to the destinatary
       # 1 - views/virtual_classroom/_popups.html.erb
-	  # mailing_lists:  增加邮件列表
-      mailing_lists: "Add a mailing list"
+      mailing_lists:  "增加邮件列表"
       # Placeholder used in the email sent if the user doesn't write any message
       # 1 - controllers/virtual_classroom_controller.rb
-	  # empty_message: [没有信息]
-      empty_message: "[no message given]"
+      empty_message: "[没有信息]"
   
   
   
@@ -2074,98 +2058,76 @@ en:
     lessons:
       # A lesson is 'private' if only the owner may see it
       # 1 - ../lib/autoload/statuses.rb
-	  # private: 私有
-      private: "Private"
+      private: "私有"
       # A lesson is 'just copied' if the user copied from another lesson, but he hasn't personalized it yet
       # 1 - ../lib/autoload/statuses.rb
-	  # copied: 已拷贝
-      copied: "Copied"
+      copied: "已拷贝"
       # A lesson is 'linked' if the user doesn't own it, it's just a link to another user's lesson
       # 1 - ../lib/autoload/statuses.rb
-	  # linked: 已连接
-      linked: "Linked"
+      linked: "已连接"
       # A lesson is 'public' when you are not the creator and you haven't linked it yet
       # 1 - ../lib/autoload/statuses.rb
-	  # public: 公有
-      public: "Public"
+      public: "公有"
       # A lesson is 'shared' when you are the creator and it's visible to other users
       # 1 - ../lib/autoload/statuses.rb
-	  # shared: 以分享
-      shared: "Shared"
+      shared: "以分享"
     # The list of statuses for media elements
     media_elements:
       # An element is 'private' if you are the owner and you haven't used it inside a public lesson
       # 1 - ../lib/autoload/statuses.rb
-	  # private: 私有
-      private: "Private"
+      private: "私有"
       # An element is 'public' if you are not the owner and you haven't linked it yet 
       # 1 - ../lib/autoload/statuses.rb
-	  # public: 公有
-      public: "Public"
+      public: "公有"
       # An element is 'linked' if the user doesn't own it, it's just a link to a public element
       # 1 - ../lib/autoload/statuses.rb
-	  # linked: 已连接
-      linked: "Linked"
+      linked: "已连接"
   # Filters for both lessons and media elements
   filters:
     # All lessons without any filters
     # 1 - ../lib/autoload/filters.rb
-	# all_lessons: 所有的课程
-    all_lessons: "All lessons"
+    all_lessons: "所有的课程"
     # Only private lessons
     # 1 - ../lib/autoload/filters.rb
-	# private: 私有
-    private: "Private"
+    private: "私有"
     # Only public lessons (they can be either lessons that you shared, or public lessons created by somebody else)
     # 1 - ../lib/autoload/filters.rb
-	# public: 公有
-    public: "Public"
+    public: "公有"
     # Lessons which don't belong to you but that you linked
     # 1 - ../lib/autoload/filters.rb
-	# linked: 已链接
-    linked: "Linked"
+    linked: "已链接"
     # All your lessons (including both public and private)
     # 1 - ../lib/autoload/filters.rb
-	# only_mine: 你自己的
-    only_mine: "Your own"
+    only_mine: "你自己的"
     # All the lessons that you just copied without personalizing them yet
     # 1 - ../lib/autoload/filters.rb
-	# copied: 刚拷贝
-    copied: "Just copied"
+    copied: "刚拷贝"
     # All the media elements, without any filter
     # 1 - ../lib/autoload/filters.rb
-	# all_media_elements: 所有的格式
-    all_media_elements: "All formats"
+    all_media_elements: "所有的格式"
     # Only elements of kind 'video'
     # 1 - ../lib/autoload/filters.rb
-	# video: 视频
-    video: "Video"
+    video: "视频"
     # Only elements of kind 'audio'
     # 1 - ../lib/autoload/filters.rb
-	# audio: 音频
-    audio: "Audio"
+    audio: "音频"
     # Only elements of kind 'image'
     # 1 - ../lib/autoload/filters.rb
-	# image: 图像
-    image: "Images"
+    image: "图像"
     # Only for lessons search engine, filters all the lessons not created by you
     # 1 - ../lib/autoload/filters.rb
-	# not_mine: 你还没有建立
-    not_mine: "Not created by you"
+    not_mine: "你还没有建立"
   # Possible parameters to sort lessons or media elements
   orders:
     # Date of last modification
     # 1 - ../lib/autoload/search_orders.rb
-	# updated_at: 日期列表修改
-    updated_at: "Date last modification"
+    updated_at: "日期列表修改"
     # Number of likes received (only available for lessons)
     # 1 - ../lib/autoload/search_orders.rb
-	# likes: 喜欢的数量
-    likes: "Number of likes"
+    likes: "喜欢的数量"
     # Alphabetical order
     # 1 - ../lib/autoload/search_orders.rb
-	# title: 按字母表顺序
-    title: "Alphabetical"
+    title: "按字母表顺序"
   
   
   # SECTION 3.2: Numerical parameters which depend on the language: for instance the maximum number of characters allowed, it depends on the average space of a character in the chosen language
