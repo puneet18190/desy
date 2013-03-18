@@ -1600,7 +1600,6 @@ cn:
     policy_1:
       # 1 - views/prelogin/registration.html.erb
       title: "政策1标题"
-      title: "Title of policy 1"
       # 1 - views/prelogin/registration.html.erb
       description: "政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容"
       accept: "接收"
@@ -2209,6 +2208,10 @@ cn:
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
     parents_label: "城镇/省份"
+    # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
+    # 1 - views/admin/users/_locations_list.html.erb
+    # 2 - views/users/_locations_list.html.erb
+    placeholder: "选择%{location}"
   
   
   # SECTION 3.4: Media formats
@@ -2464,9 +2467,6 @@ cn:
     search:
       # Section where the user filters by location
       locations:
-        # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
-        # 1 - views/admin/users/_locations_list.html.erb
-        caption: "选择%{location}"
         # 1 - views/admin/search/_location.html.erb
         title: "位置"
       # Search through dates (this option is available for any section)
