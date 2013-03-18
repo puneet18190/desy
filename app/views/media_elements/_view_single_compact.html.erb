@@ -6,7 +6,7 @@
 <div id="<%= destination %>_<%= media_element.id %>" class="boxViewCompactMediaElement <%= additional_class %> _media_element_item _media_element_item_id_<%= media_element.id %>" data-preview-loaded="false">
   <div class="contentInterno">
     <div class="<%= media_element.sti_type.downcase %>">
-      <h3><%= media_element.sti_type %></h3>
+      <h3><%= media_element.sti_type_to_s %></h3>
       <h4><%= media_element.title %></h4>
     </div>
     <p><%= STATUSES.media_elements.send(media_element.status) %></p>

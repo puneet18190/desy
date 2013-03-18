@@ -69,7 +69,10 @@ module TimeConvert
     end
     
     def convert_in_chinese(a_time)
-      a_time.to_s
+      day = a_time.day
+      month = a_time.month
+      year = a_time.year
+      return "#{english_month(month)} #{day}#{english_day_suffix(day)}, #{year}"
     end
     
     def conver_in_italian(a_time)
