@@ -941,7 +941,7 @@ $(document).ready(function() {
   
   // LOAD NEW ELEMENT
   
-  $('._load_media_element').click(function(e) {
+  $('body').on('click', '._load_media_element', function(e) {
     e.preventDefault();
     showLoadMediaElementPopUp();
     initFileUploads();
