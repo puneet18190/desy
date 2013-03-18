@@ -1623,18 +1623,15 @@ en:
   reports:
     # Link to open the report form
     # 1 - views/reports/_lesson.html.erb
-	# title: 报告滥用
-    title: "Report abuse"
+    title: "报告滥用"
     # Title of the report form
     # 1 - views/reports/_lesson.html.erb
     # 2 - views/reports/_media_element.html.erb
-	# description: 你认为这一项是带有攻击性的吗？
-    description: "Do you think that this item is offensive?"
+    description: "你认为这一项是带有攻击性的吗？"
     # Description of the report form
     # 1 - views/reports/_lesson.html.erb
     # 2 - views/reports/_media_element.html.erb
-	# placeholder: 记下你报告的原因。谢谢你的合作！
-    placeholder: "Write the reason for your report. Thank you for your cooperation!"
+    placeholder: "记下你报告的原因。谢谢你的合作！"
   
   
   # SECTION 2.14: Captions used in the search engine
@@ -1643,137 +1640,106 @@ en:
     # Link to open the search engine from the other sections
     # 1 - views/shared/_search.html.erb
     # 2 - views/search/index.html.erb
-	# label: 高级搜寻
-    label: "Advanced search"
+    label: "高级搜寻"
     # Button to start the research
     # 1 - views/search/lessons/_main.html.erb
     # 2 - views/search/media_elements/_main.html.erb
-	# short_label: 搜寻
-    short_label: "Search"
+    short_label: "搜寻"
     # Placeholder of the quick search present in all the sections
     # 1 - views/shared/_search.html.erb
-	# long_label: 在%{desy}中查找
-    long_label: "Search in %{desy}"
+    long_label: "在%{desy}中查找"
     # Main title inside the search engine
     # 1 - views/search/index.html.erb
-	# title: 你正在寻找什么？
-    title: "What are you looking for?"
+    title: "你正在寻找什么？"
     # Subtitle inside the search engine
     # 1 - views/search/index.html.erb
-	# description_title: 你正寻找课程或单元？
-    description_title: "Are you looking for lessons or elements?"
+    description_title: "你正寻找课程或单元？"
     # General instructions about how to use the engine
     # 1 - views/search/index.html.erb
-	# description: 插入一个字，选择过滤并查找！
-    description: "Insert a word, choose the filters and go!"
+    description: "插入一个字，选择过滤并查找！"
     # After the first search, the search parameters are hidden: to open them again and make another search, you click on this button
     # 1 - views/search/lessons/_main.html.erb
     # 2 - views/search/media_elements/_main.html.erb
-	# again: 重新查找... 
-    again: "Search again..."
+    again: "重新查找..."
     # Specific captions for lessons search engine (they can be configured to be different by the ones relative to media elements)
     lessons:
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
       # 1 - views/search/lessons/_amount.html.erb
-	  # result: 发现%{num}结果
-      result: "Found %{num} results"
+      result: "发现%{num}结果"
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
       # 1 - views/search/lessons/_amount.html.erb
-	  # result_with_tags: 发现%{num}结果（在以下标签中选择精准查找）
-      result_with_tags: "Found %{num} results (refine your search selecting among the tags below)"
+      result_with_tags: "发现%{num}结果（在以下标签中选择精准查找）"
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found, spiegare %{tag})
       # 1 - views/search/lessons/_amount.html.erb
-	  # result_filtered_by_tag: 发现%{num}结果（仅仅跟标签<%{tag}>相关）
-      result_filtered_by_tag: "Found %{num} results (only items associated to the tag <%{tag}>)"
+      result_filtered_by_tag: "发现%{num}结果（仅仅跟标签<%{tag}>相关）"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/lessons/_empty.html.erb
-	  # empty_word: 跟标签<%{word}>相关的课程没有发现：重新输入比较短的字符，或改变你的搜寻参数
-      empty_word: "No lessons were found associated to tags containing <%{word}>: try entering a shorter word, or changing your search parameters"
+      empty_word: "跟标签<%{word}>相关的课程没有发现：重新输入比较短的字符，或改变你的搜寻参数"
       # Response if the filters the user applied are too strict and this makes the result to be empty
       # 1 - views/search/lessons/_empty.html.erb
-	  # empty_filter: 用你选择的过滤器没有课程发现
-      empty_filter: "No lesson was found with the filters you chose"
+      empty_filter: "用你选择的过滤器没有课程发现"
       keyword:
         # Label for the space where the user inserts the word he searchs for
         # 1 - views/search/lessons/_main.html.erb
-		# label: 关键字
-        label: "Keyword"
+        label: "关键字"
         # Placeholder for the space where the user inserts the word he searchs for
         # 1 - views/search/lessons/_main.html.erb
-		# placeholder: 插入一个标签
-        placeholder: "Insert a tag"
+        placeholder: "插入一个标签"
       # Captions for the set of available filters
       filters:
         # 1 - views/search/lessons/_main.html.erb
-		# author: 目录
-        author: "Category"
+        author: "目录"
         # 1 - views/search/lessons/_main.html.erb
-		# subject: 科目
-        subject: "Subject"
+        subject: "科目"
         # Placeholder to select all the subjects
         # 1 - views/search/lessons/_main.html.erb
-		# all_subjects: 所有科目
-        all_subjects: "All subjects"
+        all_subjects: "所有科目"
       # Caption for the possible orders of the result
       # 1 - views/search/lessons/_main.html.erb
-	  # sort: 分类结果
-      sort: "Sort results by"
+      sort: "分类结果"
       # Additional instructions and tips to search for lessons
       suggestion:
         # 1 - views/search/lessons/_main.html.erb
-		# title: 警告
-        title: "Warning!"
+        title: "警告"
         # 1 - views/search/lessons/_main.html.erb
-		# description: 如果你不插入关键字，搜索引擎将基于你选择的过滤器查找所有课程
-        description: "If you don't insert a keyword the search engine will find all the available lessons, according to the filters you selected"
+        description: "如果你不插入关键字，搜索引擎将基于你选择的过滤器查找所有课程"
     # Specific captions for media elements search engine (they can be configured to be different by the ones relative to lessons)
     media_elements:
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
       # 1 - views/search/media_elements/_amount.html.erb
-	  # result: 发现%{num}结果
-      result: "Found %{num} results"
+      result: "发现%{num}结果"
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
       # 1 - views/search/lessons/_amount.html.erb
-	  # result_with_tags: 发现%{num}结果（在以下标签中精炼的查找）
-      result_with_tags: "Found %{num} results (refine your search selecting among the tags below)"
+      result_with_tags: "发现%{num}结果（在以下标签中精炼的查找）"
       # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found, spiegare %{tag})
       # 1 - views/search/lessons/_amount.html.erb
-	  # result_filtered_by_tag: 发现%{num}结果（仅跟标签<%{tag}>相关的项目）
-      result_filtered_by_tag: "Found %{num} results (only items associated to the tag <%{tag}>)"
+      result_filtered_by_tag: "发现%{num}结果（仅跟标签<%{tag}>相关的项目）"
       # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
       # 1 - views/search/media_elements/_empty.html.erb
-	  # empty_word: 没有发现包含<%{word}>标签的相关课程
-      empty_word: "No elements were found associated to tags containing <%{word}>: try entering a shorter word, or changing your search parameters"
+      empty_word: "没有发现包含<%{word}>标签的相关课程"
       # Response if the filters the user applied are too strict and this makes the result to be empty
       # 1 - views/search/media_elements/_empty.html.erb
-	  # empty_filter: 用你选择的过滤器没有发现单元
-      empty_filter: "No element was found with the filters you chose"
+      empty_filter: "用你选择的过滤器没有发现单元"
       keyword:
         # Label for the space where the user inserts the word he searchs for
         # 1 - views/search/media_elements/_main.html.erb
-		# label: 关键字
-        label: "Keyword"
+        label: "关键字"
         # Placeholder for the space where the user inserts the word he searchs for
         # 1 - views/search/media_elements/_main.html.erb
-		# placeholder: 插入一个标签
-        placeholder: "Insert a tag"
+        placeholder: "插入一个标签"
       # Captions for the set of available filters
       filters:
         # 1 - views/search/media_elements/_main.html.erb
-		# format: 格式
-        format: "Format"
+        format: "格式"
       # Caption for the possible orders of the result
       # 1 - views/search/media_elements/_main.html.erb
-	  # sort: 分类结果
-      sort: "Sort results by"
+      sort: "分类结果"
       # Additional instructions and tips to search for media elements
       suggestion:
         # 1 - views/search/media_elements/_main.html.erb
-		# title: 警告
-        title: "Warning!"
+        title: "警告"
         # 1 - views/search/media_elements/_main.html.erb
-		# description: 如果你没有插入关键字，搜索引擎基于你选择的过滤器查找所有的课程
-        description: "If you don't insert a keyword the search engine will find all the available elements, according to the filters you selected"
+        description: "如果你没有插入关键字，搜索引擎基于你选择的过滤器查找所有的课程"
   
   
   # SECTION 2.15: Captions used in the user's personal profile
@@ -1781,8 +1747,7 @@ en:
   users:
     # Caption for the email which univoquely identifies the user
     # 1 - views/users/request_reset_password.html.erb
-	# email: 邮件地址
-    email: "Email"
+    email: "邮件地址"
     # Section 1: personal info
     info:
       # Caption of the link inside the profile's menu
@@ -1790,51 +1755,38 @@ en:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
-	  # menu_link: 个人信息
-      menu_link: "Personal info"
+      menu_link: "个人信息"
       # Title of the section
       # 1 - views/users/edit.html.erb
-	  # title: 个人信息
-      title: "Personal Info"
+      title: "个人信息"
       # Description of the section
       # 1 - views/users/edit.html.erb
-	  # description: 在这个区中你能更新或修改你帐号所有的参数
-      description: "In this area you can update or modify all the parameters of your account"
+      description: "在这个区中你能更新或修改你帐号所有的参数"
       # Captions for each profile attribute that can be modified by the user
       attributes:
         # 1 - views/users/_personal_info.html.erb
-		# name: 名字
-        name: "Name"
+        name: "名字"
         # 1 - views/users/_personal_info.html.erb
-		# surname: 别名
-        surname: "Surname"
+        surname: "别名"
         # Only this particular attribute can't be modified, being the identifier of the user
         # 1 - views/users/_personal_info.html.erb
-		# email: 邮件地址
-        email: "Email"
+        email: "邮件地址"
         # 1 - views/users/_personal_info.html.erb
-		# password: 密码
-        password: "Password"
+        password: "密码"
         # This is in the case the user is writing his password for the first time
         # 1 - views/users/_personal_info.html.erb
-		# new_password: 新密码
-        new_password: "New password"
+        new_password: "新密码"
         # 1 - views/users/_personal_info.html.erb
-		# password_confirmation: 密码确认
-        password_confirmation: "Password confirmation"
+        password_confirmation: "密码确认"
         # This is in the case the user is writing his password for the first time
         # 1 - views/users/_personal_info.html.erb
-		# new_password_confirmation: 新密码确认
-        new_password_confirmation: "New password confirmation"
+        new_password_confirmation: "新密码确认"
         # 1 - views/users/_personal_info.html.erb
-		# school_level_id: 学校标准
-        school_level_id: "School level"
+        school_level_id: "学校标准"
         # 1 - views/users/_personal_info.html.erb
-		# town: 城镇
-        town: "Town"
+        town: "城镇"
         # 1 - views/users/_personal_info.html.erb
-		# province: 省份
-        province: "Province"
+        province: "省份"
     # Section 2: mailing lists
     mailing_list:
       # Caption of the link inside the user's profile menu
@@ -1842,46 +1794,36 @@ en:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
-	  # menu_link: 邮件列表
-      menu_link: "Mailing lists"
+      menu_link: "邮件列表"
       # Title of the subsection
       # 1 - views/users/mailing_lists.html.erb
-	  # title: 邮件列表
-      title: "Mailing lists"
+      title: "邮件列表"
       # Description of the subsection
       # 1 - views/users/mailing_lists.html.erb
-	  # description: 为了发送你的课程，请建立一个或更多的邮件群
-      description: "Create one or more groups of email to send your lessons"
+      description: "为了发送你的课程，请建立一个或更多的邮件群"
       # Caption of the link which adds a new mailing list
       # 1 - views/mailing_lists/_list.html.erb
-	  # add: 增加新群
-      add: "Add new group"
+      add: "增加新群"
       # Caption of the link which adds a new email address to the current mailing list
       # 1 - views/mailing_lists/_group.html.erb
-	  # add_address: 向群增加邮件地址
-      add_address: "Add email address to group"
+      add_address: "向群增加邮件地址"
       # Caption of the link which deletes a mailing list
       # 1 - views/mailing_lists/_group.html.erb
-	  # delete: 删除群
-      delete: "Delete group"
+      delete: "删除群"
       # Label for a new mailing list for which the user hasn't chosen a name yet; the variable %{number} is replaced by the number of the mailing list group
       # 1 - views/mailing_lists/_group.html.erb
-	  # label: 群%{number}
-      label: "Group %{number}"
+      label: "群%{number}"
     # Page that is opened when the user clicks on the link 'Forgot your password?'
     reset_password:
        # Title
        # 1 - views/users/request_reset_password.html.erb
-	   # title: 忘记你的密码
-       title: "Forgot your password?"
+       title: "忘记你的密码"
        # Instructions
        # 1 - views/users/request_reset_password.html.erb
-	   # description: 为了接收新密码，请插入你的邮件地址
-       description: "Insert your email to receive receive a new password"
+       description: "为了接收新密码，请插入你的邮件地址"
        # Button to send reset
        # 1 - views/users/request_reset_password.html.erb
-	   # done: 重置密码
-       done: "Reset password"
+       done: "重置密码"
     # Section 3: user's personal and general statistics
     statistics:
       # Link inside the user's profile menu
@@ -1889,83 +1831,64 @@ en:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
-	  # menu_link: 统计
-      menu_link: "Statistics"
+      menu_link: "统计"
       # Title
       # 1 - views/users/statistics.html.erb
-	  # title: 统计
-      title: "Statistics"
+      title: "统计"
       # Description
       # 1 - views/users/statistics.html.erb
-	  # description: 在%{desy}中跟着你的号码，有更一般的统计
-      description: "Follow your numbers in %{desy}, and more general statistics"
+      description: "在%{desy}中跟着你的号码，有更一般的统计"
       # General statistics
       general:
         # Lessons with more 'I like you'
         # 1 - views/users/statistics.html.erb
-		# lessons_more_likes: 有更多我喜欢你的课程
-        lessons_more_likes: "Lessons with more 'I like you'"
+        lessons_more_likes: "有更多我喜欢你的课程"
         # How many lessons inside the application are shared
         # 1 - views/users/statistics.html.erb
-		# lessons_shared: 已分享课程
-        lessons_shared: "Lessons shared"
+        lessons_shared: "已分享课程"
         # How many elements inside the application are shared
         # 1 - views/users/statistics.html.erb
-		# media_elements_shared: 已分享教学单元
-        media_elements_shared: "Didactic elements shared"
+        media_elements_shared: "已分享教学单元"
         # Statistics with graph about the distribution of lessons for each subject
         percentual_lessons_subject:
           # 1 - views/users/statistics.html.erb
-		  # title: 参量课程/科目
-          title: "Percentual lessons/subject"
+          title: "参量课程/科目"
           # Caption for the color which represents a particular subject inside the graph
           # 1 - views/users/statistics.html.erb
-		  # color: 颜色
-          color: "Color"
+          color: "颜色"
           # 1 - views/users/statistics.html.erb
-		  # subject: 科目
-          subject: "Subject"
+          subject: "科目"
           # 1 - views/users/statistics.html.erb
-		  # value: 值
-          value: "Value"
+          value: "值"
         # Title of general subjects
         # 1 - views/users/statistics.html.erb
-		# title: 一般
-        title: "General"
+        title: "一般"
         # How many users there are inside the application
         # 1 - views/users/statistics.html.erb
-		# total_users: 总用户数
-        total_users: "Total users"
+        total_users: "总用户数"
         # Which are the users whose lessons received more 'I like it'
         # 1 - views/users/statistics.html.erb
-		# users_more_likes: 更喜欢的用户
-        users_more_likes: "Users with more likes"
+        users_more_likes: "更喜欢的用户"
       # Captions for personal statistics
       personal:
         # How many lessons other users in the application copied from you
         # 1 - views/users/statistics.html.
-		# lessons_copied_by: 由其他用户拷贝的课程
-        lessons_copied_by: "Lessons copied by other users"
+        lessons_copied_by: "由其他用户拷贝的课程"
         # How many lessons you created
         # 1 - views/users/statistics.html.erb
-		# lessons_created: 课程已建立
-        lessons_created: "Lessons created"
+        lessons_created: "课程已建立"
         # Which are, among your lessons, the ones which received more 'I like it'
         # 1 - views/users/statistics.html.erb
-		# lessons_more_likes: 等喜欢的课程
-        lessons_more_likes: "Lessons with more likes"
+        lessons_more_likes: "等喜欢的课程"
         # How many 'I like it' in total your lessons received
         # 1 - views/users/statistics.html.erb
-		# likes: 喜欢你的课程
-        likes: "Likes on your lessons"
+        likes: "喜欢你的课程"
         # How many elements you created
         # 1 - views/users/statistics.html.erb
-		# media_elements_loaded: 教学单元已上传
-        media_elements_loaded: "Didactic elements uploaded"
+        media_elements_loaded: "教学单元已上传"
         # Title for personal statistics
         # 1 - views/users/statistics.html.erb
-		# title: 个人
-        title: "Personal"
+        title: "个人"
     # Section 4: list of the user's subjects
     subjects:
       # Caption for the link inside the user's profile menu
@@ -1973,16 +1896,13 @@ en:
       # 2 - views/users/mailing_lists.html.erb
       # 3 - views/users/edit.html.erb
       # 4 - views/users/subjects.html.erb
-	  # menu_link: 科目
-      menu_link: "Subjects"
+      menu_link: "科目"
       # Title
       # 1 - views/users/subjects.html.erb
-	  # title: 科目
-      title: "Subjects"
+      title: "科目"
       # Description
       # 1 - views/users/subjects.html.erb
-	  # description: 选择你的科目
-      description: "Choose your subjects!"
+      description: "选择你的科目"
   
   
   # SECTION 2.16: Captions used inside the Video Editor
@@ -1991,102 +1911,81 @@ en:
     # Button to choose the audio track
     audio_track:
       # 1 - views/video_editor/_audio_track.html.erb
-	  # title:增加音频
-      title: "Add audio track"
+      title: "增加音频"
       # 1 - views/video_editor/_audio_track.html.erb
-	  # description: 你能上传音频：这将覆盖所有的选择成分的原始音频
-      description: "You can upload an audio track: this will cover the original audio of all the chosen components"
+      description: "你能上传音频：这将覆盖所有的选择成分的原始音频"
     # There are three possible components: image, video and text component
     components:
       image:
         # Caption for the selector of duration of an image component
         # 1 - views/galleries/mixed_for_video_editor.js.erb
-		# time: 时间
-        time: "Time"
+        time: "时间"
       # Captions for text components
       text:
         # Choose a background color
         # 1 - views/video_editor/_text_component_editor.html.erb
-		# background_color: 背景颜色
-        background_color: "Background color"
+        background_color: "背景颜色"
         # Choose a color for the text
         # 1 - views/video_editor/_text_component_editor.html.erb
-		# color: 文本颜色
-        color: "Text color"
+        color: "文本颜色"
         # Button to insert the component, once color and text are chosen
         # 1 - views/video_editor/_text_component_editor.html.erb
-		# done: 插入
-        done: "Insert"
+        done: "插入"
         # Placeholder for the text field
         # 1 - views/video_editor/_text_component_editor.html.erb
         # 2 - views/video_editor/_text_component_editor.html.erb
         # 3 - views/video_editor/_text_component_editor.html.erb
-		# insert: 插入文本
-        insert: "Insert text"
+        insert: "插入文本"
         # Caption of the duration selector for a text component
         # 1 - views/video_editor/_text_component_editor.html.erb
-		# time: 时间
-        time: "Time"
+        time: "时间"
     # Captions for 'cutters' of a component (the instruments used to modify the duration of a text / image component, or to cut a video component)
     cutters:
       # Caption for the button that makes the modifications
       # 1 - views/video_editor/cutters/_video.html.erb
       # 2 - views/video_editor/cutters/_text.html.erb
       # 3 - views/video_editor/cutters/_image.html.erb
-	  # done: 完成
-      done: "Done"
+      done: "完成"
       # Caption to indicate the previous duration of a text / image component
       # 1 - views/video_editor/cutters/_text.html.erb
       # 2 - views/video_editor/cutters/_image.html.erb
-	  # old_time: 时间
-      old_time: "Time"
+      old_time: "时间"
       # Caption for the field where the user inserts the new duration of a text / image component
       # 1 - views/video_editor/cutters/_text.html.erb
       # 2 - views/video_editor/cutters/_image.html.erb
-	  # time: 新的时间
-      time: "New time"
+      time: "新的时间"
       # Caption for the total length of the original video inside a video component
       # 1 - views/video_editor/cutters/_video.html.erb
-	  # total_length: 总的剪辑长度
-      total_length: "Total clip length"
+      total_length: "总的剪辑长度"
       # Caption for the selected length of a video component
       # 1 - views/video_editor/cutters/_video.html.erb
-	  # selected_length: 已选择
-      selected_length: "Selected"
+      selected_length: "已选择"
     # Caption for the header of the Video Editor
     # 1 - views/video_editor/_header.html.erb
-	# label: 编辑视频
-    label: "Edit video"
+    label: "编辑视频"
     # These two captions appear inside the page shown in the case the Video Editor is temporarily not available (it's just a page with title and description): the editor is not available only while the user is editing another video (it takes a few minutes for the server to complete the process and to enable the Editor again)
     not_available:
       # 1 - views/video_editor/not_available.html.erb
-	  # title: 视频编辑没有提供
-      title: "Video editor not available"
+      title: "视频编辑没有提供"
       # 1 - views/video_editor/not_available.html.erb
-	  # description: "这时你正在编辑另一视频: 在没有完成之前视频编辑将临时中止"
-      description: "At this moment you are running the Editor for another video: until the process isn't finished the Video Editor will be temporarily disabled"
+      description: "这时你正在编辑另一视频: 在没有完成之前视频编辑将临时中止"
     preview:
       # Caption for the button that opens the global preview mode
       # 1 - views/video_editor/edit.html.erb
       # 2 - views/video_editor/edit.html.erb
-	  # label: 预览
-      label: "Preview"
+      label: "预览"
       # Pause the global preview
       # 1 - views/video_editor/edit.html.erb
-	  # pause: 暂停
-      pause: "Pause"
+      pause: "暂停"
       # Play the preview
       # 1 - views/video_editor/edit.html.erb
-	  # play: 播放
-      play: "Play"
+      play: "播放"
     # Inside Video Editor there is a special gallery where it's possible to choose between the three kinds of components (image, video, text): this is the caption for the buttons used to switch between these components
     # 1 - views/galleries/_mixed_video_image_text.html.erb
-	# select_component_to_add: 选择组件增加
-    select_component_to_add: "Select component to add"
+    select_component_to_add: "选择组件增加"
     # Caption for the overall length of the video that the user is composing
     # 1 - views/video_editor/edit.html.erb
-	# total_length: 总长度
-    total_length: "Total length"
+    total_length: "总长度"
   
   
   # SECTION 2.17: Captions used inside the Virtual Classroom
