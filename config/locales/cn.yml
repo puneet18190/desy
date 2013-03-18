@@ -2141,33 +2141,33 @@ en:
       # Maximum length of the message inserted by the user to notify the modification of a public lesson
       # 1 - models/lesson.rb
       # 2 - views/lessons/_notification_popup.html.erb
-      message_length_for_public_lesson_modification: 420
+      message_length_for_public_lesson_modification: 280
       # Maximum length of the message inserted by the user when he sends the public link of a lesson to his friends
       # 1 - controllers/virtual_classroom_controller.rb
       # 2 - views/virtual_classroom/_popups.html.erb
-      message_length_for_send_lesson_link: 420
+      message_length_for_send_lesson_link: 280
     lesson:
       # Maximum number of characters allowed in the description of a lesson
       # 1 - models/lesson.rb
       # 2 - views/lesson_editor/new.html.erb
-      length_description: 420
+      length_description: 280
       # Maximum number of characters allowed in the title of a lesson
       # 1 - models/lesson.rb
       # 2 - views/lesson_editor/new.html.erb
-      length_title: 52
+      length_title: 35
     media_element:
       # Maximum number of characters allowed in the description of an element
       # 1 - models/media_element.rb
       # 2 - views/media_elements/_new_form_popup.html.erb
       # 3 - views/media_elements/info_form_in_editor/_new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
-      length_description: 420
+      length_description: 280
       # Maximum number of characters allowed in the title of an element
       # 1 - models/media_element.rb
       # 2 - views/media_elements/_new_form_popup.html.erb
       # 3 - views/media_elements/info_form_in_editor/_new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
-      length_title: 52
+      length_title: 35
     slide:
       # Maximum number of characters allowed in the title of a slide
       # 1 - models/slide.rb
@@ -2176,15 +2176,15 @@ en:
       # 4 - views/lesson_editor/slides/_video1.html.erb
       # 5 - views/lesson_editor/slides/_image1.html.erb
       # 6 - views/lesson_editor/slides/_audio.html.erb
-      length_title: 52
+      length_title: 35
       # Maximum number of characters allowed in the caption of an image inside a slide
       # 1 - models/media_elements_slide.rb
       # 2 - views/lesson_editor/slides/parts/_image.html.erb
-      length_caption: 52
+      length_caption: 35
     video_editor:
       # Maximum number of characters allowed in the text component of Video Editor
       # 1 - views/video_editor/_text_component_editor.html.erb
-      length_text_component: 52
+      length_text_component: 35
       # Maximum number of characters allowed for the duration in seconds of a text or image component in Video Editor (hence, if this parameter is 3, the maximum is 999 seconds)
       # 1 - views/galleries/mixed_for_video_editor.js.erb
       # 2 - views/video_editor/cutters/_text.html.erb
@@ -2453,346 +2453,270 @@ en:
         label: "查找单元"
         # Button to start the search
         # 1 - views/admin/media_elements/index.html.erb
-		# submit: 查找
-        submit: "Search"
+        submit: "查找"
     # Captions of the contents of the search engine inside the 'Administration' section. The content depends on the selected subsection, and appears inside the corresponding frame (see admin.[section].search)
     search:
       # Section where the user filters by location
       locations:
         # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
         # 1 - views/admin/users/_locations_list.html.erb
-		# caption: 选择%{location}
-        caption: "Select %{location}"
+        caption: "选择%{location}"
         # 1 - views/admin/search/_location.html.erb
-		# title: 位置
-        title: "Location"
+        title: "位置"
       # Search through dates (this option is available for any section)
       date:
         # Title of the frame containing date selection
         # 1 - views/admin/search/_date.html.erb
-		# title: 日期
-        title: "Date"
+        title: "日期"
         # Range selection
         range:
           # 1 - views/admin/search/_date.html.erb
-		  # caption: 日期范围
-          caption: "Date range"
+          caption: "日期范围"
           # 1 - views/admin/search/_date.html.erb
-		  # select: 选择类别类型
-          select: "Select the type of range"
+          select: "选择类别类型"
         # Label for date of creation
         # 1 - views/admin/search/_date.html.erb
         # 2 - views/admin/search/_date.html.erb
         # 3 - views/admin/search/_date.html.erb
-		# created_at: 建立日期
-        created_at: "Creation date"
+        created_at: "建立日期"
         # Label for date of last modification
         # 1 - views/admin/search/_date.html.erb
         # 2 - views/admin/search/_date.html.erb
         # 3 - views/admin/search/_date.html.erb
-		# updated_at: 上次更新
-        updated_at: "Last update"
+        updated_at: "上次更新"
         # Label for the left side of the range to select
         # 1 - views/admin/search/_date.html.erb
-		# from: 从
-        from: "From"
+        from: "从"
         # Label for the right side of the range to select
         # 1 - views/admin/search/_date.html.erb
-		# to: 到
-        to: "To"
+        to: "到"
         # The two possible errors that may occur while selecting a range of dates
         errors:
           # Case 1: the initial date is after the final date
           # 1 - views/admin/search/_alerts.html.erb
-		  # initial_follows_final: 初始日期不能跟最后的日期
-          initial_follows_final: "The initial date can't follow the final date"
+          initial_follows_final: "初始日期不能跟最后的日期"
           # Case 2: the final date is before the initial date
           # 1 - views/admin/search/_alerts.html.erb
-		  # final_preceeds_initial: 初始日期之前最后的日期不能处理
-          final_preceeds_initial: "The final date can't be before the initial date"
+          final_preceeds_initial: "初始日期之前最后的日期不能处理"
       # Contents of search engine specific for lessons
       lessons:
         # Title of the frame
         # 1 - views/admin/search/_lessons_general.html.erb
-		# title: 一般
-        title: "General"
+        title: "一般"
         # Fields used in the research
         fields:
           # 1 - views/admin/search/_lessons_general.html.erb
           # 2 - views/admin/search/_lessons_general.html.erb
-		  # id: id
           id: "Id"
           # 1 - views/admin/search/_lessons_general.html.erb
           # 2 - views/admin/search/_lessons_general.html.erb
-		  # title: 标题
-          title: "Title"
+          title: "标题"
           # 1 - views/admin/search/_lessons_general.html.erb
-		  # subject: 科目
-          subject: "Subject"
+          subject: "科目"
           # Placeholder used when no subject is selected
           # 1 - views/admin/search/_lessons_general.html.erb
-		  # select_subject: 选择一个科目
-          select_subject: "Select a subject"
+          select_subject: "选择一个科目"
           # 1 - views/admin/search/_lessons_general.html.erb
           # 2 - views/admin/search/_lessons_general.html.erb
-		  # user: 用户
-          user: "User"
+          user: "用户"
       # Contents of search engine specific for elements
       media_elements:
         # Title of the frame
         # 1 - views/admin/search/_elements_general.html.erb
-		# title: 一般
-        title: "General"
+        title: "一般"
         # Fields used in the research
         fields:
           # 1 - views/admin/search/_elements_general.html.erb
           # 2 - views/admin/search/_elements_general.html.erb
-		  # id: Id
           id: "Id"
           # 1 - views/admin/search/_elements_general.html.erb
           # 2 - views/admin/search/_elements_general.html.erb
-		  # title: 标题
-          title: "Title"
+          title: "标题"
           # Media type (Image, Audio, Video)
           # 1 - views/admin/search/_elements_general.html.erb
-		  # sti_type: 媒体类型
-          sti_type: "Media type"
+          sti_type: "媒体类型"
           # Placeholder used when no media type is selected
           # 1 - views/admin/search/_elements_general.html.erb
-		  # all_sti_types: 所有
-          all_sti_types: "All"
+          all_sti_types: "所有"
           # 1 - views/admin/search/_elements_general.html.erb
           # 2 - views/admin/search/_elements_general.html.erb
-		  # user: 用户
-          user: "User"
+          user: "用户"
       notifications:
         # Title of the frame: since the labels contained in this frame are the same of the section 'Users', this title is the only caption which differs from the labels used in that section
         # 1 - views/admin/search/_notifications_filter.html.erb
-		# title: 一般
-        title: "General"
+        title: "一般"
       # Contents of search engine specific for users: this part is used to search both users and notifications / reports associated to users
       users:
         # Title of the frame
         # 1 - views/admin/search/_users_general.html.erb
-		# title: 一般
-        title: "General"
+        title: "一般"
         # Fields used in the research
         fields:
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_users_general.html.erb
-		  # id: Id
           id: "Id"
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_users_general.html.erb
-		  # name: 名字
-          name: "Name"
+          name: "名字"
           # Unlike the lessons, a user may be associated to more than a subject
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_notifications_filter.html.erb
-		  # subject: 科目
-          subject: "Subject"
+          subject: "科目"
           # Placeholder used when no subject is selected
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_notifications_filter.html.erb
-		  # select_subject: 选择科目
-          select_subject: "Select a subject"
+          select_subject: "选择科目"
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_notifications_filter.html.erb
-		  # school_level: 学校标准
-          school_level: "School level"
+          school_level: "学校标准"
           # Placeholder used when no school level is selected
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_notifications_filter.html.erb
-		  # select_school_level: 选择学校标准
-          select_school_level: "Select a school level"
+          select_school_level: "选择学校标准"
           # labels used to range users according to their sign up date
           created_at:
             # Title of the subframe
             # 1 - views/admin/search/_notifications_filter.html.erb
-			# title: 注册日期
-            title: "Registration date"
+            title: "注册日期"
             # Label for the selection
             # 1 - views/admin/search/_notifications_filter.html.erb
-			# select: 选择
-            select: "Select an option"
+            select: "选择"
             # Only users created today
             # 1 - views/admin/search/_notifications_filter.html.erb
-			# today: 今天
-            today: "Today"
+            today: "今天"
             # Only users created in the last week
             # 1 - views/admin/search/_notifications_filter.html.erb
-			# week: 上个周
-            week: "Last week"
+            week: "上个周"
             # Only users created in the last month
             # 1 - views/admin/search/_notifications_filter.html.erb
-			# month: 上个月
-            month: "Last month"
+            month: "上个月"
             # Only users creatd in the last year
             # 1 - views/admin/search/_notifications_filter.html.erb
-			# year: 去年
-            year: "Last year"
+            year: "去年"
     # Section 'Users' in the administration module
     users:
       # Title of the section
       # 1 - views/admin/users/index.html.erb
-	  # title: 数据库中的用户
-      title: "Users in the database"
+      title: "数据库中的用户"
       # Actions that may be applied on a single user
       actions:
         # This buttons is used to activate a user
         # 1- views/admin/users/set_status.js.erb
         # 2 - views/admin/users/show.html.erb
         # 3 - views/admin/users/_list.html.erb
-		# activate: 激活
-        activate: "Activate"
+        activate: "激活"
         # This button is used to block a user
         # 1- views/admin/users/set_status.js.erb
         # 2 - views/admin/users/show.html.erb
         # 3 - views/admin/users/_list.html.erb
-		# ban: Ban
         ban: "Ban"
         # Link to the automatic mailer, used to communicate with a user
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
-		# message: 发送信息给这个用户
-        message: "Send a message to this user"
+        message: "发送信息给这个用户"
       # Caption to delete a user
       # 1 - views/admin/users/show.html.erb
       # 2 - views/admin/users/_list.html.erb
-	  # delete: 删除用户
-      delete: "Delete user"
+      delete: "删除用户"
       # Popup which asks for confirmation before deleting a media_element
       # 1 - views/admin/users/_list.html.erb
-	  # delete_confirm: 确信你想删除这个用户吗？
-      delete_confirm: "Are you sure you want to delete this user?"
+      delete_confirm: "确信你想删除这个用户吗？"
       # Placeholder used when there are no media elements associated to the selected filter
       # 1 - views/admin/users/_list.html.erb
-	  # empty: 没有用户发现
-      empty: "No users found"
+      empty: "没有用户发现"
       # Fields of users
       fields:
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
-		# created_at: 已建立
-        created_at: "Created"
+        created_at: "已建立"
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
-		# id: Id
         id: "Id"
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
-		# email: 邮件地址
-        email: "Email"
+        email: "邮件地址"
         # 1 - views/admin/users/show.html.erb
-		# location: 位置
-        location: "Location"
+        location: "位置"
         # 1 - views/admin/users/_list.html.erb
-		# name: 名字
-        name: "Name"
+        name: "名字"
         # 1 - views/admin/users/show.html.erb
         # 2 - views/admin/users/_list.html.erb
-		# school_level: 学校标准
-        school_level: "School level"
+        school_level: "学校标准"
         # 1 - views/admin/users/_list.html.erb
-		# surname: 别名
-        surname: "Surname"
+        surname: "别名"
         # 1 - views/admin/users/show.html.erb
-		#  updated_at: 上次更新
-        updated_at: "Last update"
+        updated_at: "上次更新"
       # Caption of the frame containing all the lesson of a specific user
       # 1 - views/admin/users/show.html.erb
-	  # lessons: %{user}的课程
-      lessons: "Lessons of %{user}"
+      lessons: "%{user}的课程"
       # Caption of the frame containing all the elements of a specific user
       # 1 - views/admin/users/show.html.erb
-	  # media_elements: %{user}的多媒体单元
-      media_elements: "Media elements of %{user}"
+      media_elements: "%{user}的多媒体单元"
       # Name used as label in the pagination (ex. '1-10 of 300 users')
       # 1 - helpers/admin_helper.rb
-	  # name: 用户
-      name: "Users"
+      name: "用户"
       # Frame for the lessons search engine
       search:
         # Title of the frame
         # 1 - views/admin/users/index.html.erb
-		# label: 查找用户
-        label: "Search users"
+        label: "查找用户"
         # Button to start the search
         # 1 - views/admin/users/index.html.erb
-		# submit: 查找
-        submit: "Search"
+        submit: "查找"
       # Link to the personal page of each user
       # 1 - views/admin/users/_list.html.erb
-	  # show: 显示用户页
-      show: "Show user page"
+      show: "显示用户页"
       # Subframe containing statistics of the selected user
       statistics:
         # Title of the subframe
         # 1 - views/admin/users/_list.html.erb
-		# title: 个人统计
-        title: "Personal statistics"
+        title: "个人统计"
         # Statistics about lessons
         lessons:
           # Title of the subframe
           # 1 - views/admin/users/_list.html.erb
-		  # title: 课程
-          title: "Lessons"
+          title: "课程"
           # Number of lesson created by the selected user and copie by other user
           # 1 - views/admin/users/_list.html.erb
-		  # copied: 其他用户拷贝
-          copied: "Copied by other users"
+          copied: "其他用户拷贝"
           # Number of lessons created by the selected user
           # 1 - views/admin/users/_list.html.erb
-		  # created: 已建立
-          created: "Created"
+          created: "已建立"
         # Lessons which received more likes, among the ones created by the selected user
         # 1 - views/admin/users/_list.html.erb
-		# likes: 更多喜欢的课程
-        likes: "Lessons with more likes"
+        likes: "更多喜欢的课程"
         # Statistics about media elements
         media_elements:
           # Uploaded media elements
           # 1 - views/admin/users/_list.html.erb
-		  # loaded: 已上传
-          loaded: "Uploaded"
+          loaded: "已上传"
           # Title of the subframe
           # 1 - views/admin/users/_list.html.erb
-		  # title: 多媒体单元
-          title: "Media elements"
+          title: "多媒体单元"
         # Other statistics
         other:
           # Total amount of likes over the lessons of the selected user
           # 1 - views/admin/users/_list.html.erb
-		  # likes: 喜欢你的课程
-          likes: "Likes on your lessons"
+          likes: "喜欢你的课程"
           # Title of the subframe
           # 1 - views/admin/users/_list.html.erb
-		  # title: 其它的统计
-          title: "Other statistics"
+          title: "其它的统计"
         # Statistics subjects label
         # 1 - views/admin/users/show.html.erb
-		# subjects: 主题
-        subjects: "Subjects"
-
+        subjects: "主题"
     # Section 'Messages' in the administration module
     messages:
       # Section 'Nofitications'
       # 1 - views/admin/messages/new_notification.html.erb
       notifications:
-	     # send_notifications: 送通知
-        send_notifications: "Send notifications"
-		 # filter_users: 过滤用户送通知到
-        filter_users: "Filter users to send notifications to"
-		 # users_selected: %{user_count}用户已选择
-        users_selected: "%{user_count} users selected"
-		 # add_recipients: 选择接收者
-        add_recipients: "Select recipients"
-		 # send_everyone: 向所有人发送
-        send_everyone: "Send to everyone"
-		 # send: 发送
-        send: "Send"
-        
-        
+        send_notifications: "送通知"
+        filter_users: "过滤用户送通知到"
+        users_selected: "%{user_count}用户已选择"
+        add_recipients: "选择接收者"
+        send_everyone: "向所有人发送"
+        send: "发送"
+  
+  
   
   # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'
   
@@ -2800,21 +2724,16 @@ en:
     pagination:
       # Character for previous page (it might be replaced by a word)
       # 1 - views/admin/_list_heading.html.erb
-	  # previous: 上一页
-      previous: "&lt;"
+      previous: "上一页"
       # Character for next page (it might be replaced by a word)
       # 1 - views/admin/_list_heading.html.erb
-	  # next: 下一页
-      next: "&gt;"
+      next: "下一页"
       # Character for first page (it might be replaced by a word)
       # 1 - views/admin/_list_heading.html.erb
-	  # first: 第一页
-      first: "&laquo;"
+      first: "第一页"
       # Character for last page (it might be replaced by a word)
       # 1 - views/admin/_list_heading.html.erb
-	  # last: 最后一页
-      last: "&raquo;"
+      last: "最后一页"
       # Word used in the expression '1-10 <of> 300 items'
       # 1 - helpers/admin_helper.rb
-	  # of_range: 属于
-      of_range: "Of"
+      of_range: "属于"
