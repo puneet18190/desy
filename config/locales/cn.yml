@@ -2217,6 +2217,18 @@ cn:
     parents_label: "城镇/省份"
   
   
+  # SECTION 3.4: Media formats
+  
+  # General captions for the three media format: 'Audio', 'Image', 'Video'
+  sti_types:
+    # 1 - models/media_element.rb
+    audio: "音频"
+    # 1 - models/media_element.rb
+    image: "图像"
+    # 1 - models/media_element.rb
+    video: "视频"
+  
+  
   
   # PART 4 -- Administrator section
   

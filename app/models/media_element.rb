@@ -104,6 +104,10 @@ class MediaElement < ActiveRecord::Base
     
   end
   
+  def sti_type_to_s
+    I18n.t("sti_types.#{self.sti_type.downcase}")
+  end
+  
   def disable_lessons_containing_me
     manage_lessons_containing_me(false)
   end

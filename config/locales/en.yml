@@ -2212,6 +2212,18 @@ en:
     parents_label: "Town / province"
   
   
+  # SECTION 3.4: Media formats
+  
+  # General captions for the three media format: 'Audio', 'Image', 'Video'
+  sti_types:
+    # 1 - models/media_element.rb
+    audio: "Audio"
+    # 1 - models/media_element.rb
+    image: "Image"
+    # 1 - models/media_element.rb
+    video: "Video"
+  
+  
   
   # PART 4 -- Administrator section
   
