@@ -1571,10 +1571,7 @@ cn:
     title: "注册"
     # Subtitle of the registration form
     # 1 - views/prelogin/registration.html.erb
-    subtitle: "为什么要注册？"
-    # Another subtitle of the registration form
-    # 1 - views/prelogin/registration.html.erb
-    subsubtitle: "发现了%{desy}的益处"
+    subtitle: "发现了%{desy}的益处"
     # Text describing the registration benefits
     # 1 - views/prelogin/registration.html.erb
     description: "用音频、视频或图像建立你自己的多媒体课程. 与其他教师%{desy}分享课程. 使用或修改适合使用 %{desy}的其他教师课程的需求. 在虚拟教室组织你的课程并发现新教法"
