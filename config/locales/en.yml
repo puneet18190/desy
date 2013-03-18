@@ -952,7 +952,7 @@ en:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Selected for you - lessons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If at this moment there are no new lessons available, you can create your own by clicking on the \"create a new Lesson\" button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make sure to have enough elements."
+        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If at this moment there are no new lessons available, you can create your own by clicking on the \"create a new lesson\" button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make sure to have enough elements."
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
