@@ -24,18 +24,17 @@ class Lesson < ActiveRecord::Base
   has_many :media_elements, through: :media_elements_slides
   has_many :virtual_classroom_lessons
   
-  validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description, :token
+  validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description
   validates_numericality_of :user_id, :school_level_id, :subject_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :parent_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_inclusion_of :is_public, :copied_not_modified, :notified, :in => [true, false]
   validates_length_of :title, :maximum => I18n.t('language_parameters.lesson.length_title')
   validates_length_of :description, :maximum => I18n.t('language_parameters.lesson.length_description')
-  validates_length_of :token, :is => 20
   validates_uniqueness_of :parent_id, :scope => :user_id, :if => :present_parent_id
   validate :validate_associations, :validate_public, :validate_copied_not_modified_and_public, :validate_impossible_changes, :validate_tags_length
   
-  before_validation :init_validation, :create_token
-  before_create :initialize_metadata
+  before_validation :init_validation
+  before_create :initialize_metadata, :create_token
   after_save :create_or_update_cover, :update_or_create_tags
   before_destroy :destroy_taggings
   
@@ -539,15 +538,8 @@ class Lesson < ActiveRecord::Base
   end
   
   def create_token
-    if !@lesson
-      tok = ''
-      i = 0
-      while i < 20
-        tok = "#{tok}#{rand(10)}"
-        i += 1
-      end
-      self.token = tok
-    end
+    self.token = SecureRandom.urlsafe_base64(16)
+    true
   end
   
   def destroy_taggings

@@ -128,7 +128,7 @@ CREATE TABLE lessons (
     is_public boolean DEFAULT false NOT NULL,
     parent_id integer,
     copied_not_modified boolean NOT NULL,
-    token character varying(20),
+    token character varying(255) NOT NULL,
     metadata text,
     notified boolean DEFAULT true NOT NULL,
     created_at timestamp without time zone NOT NULL,
