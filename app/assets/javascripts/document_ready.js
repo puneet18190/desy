@@ -1908,10 +1908,6 @@ $(document).ready(function() {
       });
     }
     var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(identifier);
-    // fix per aggiornare all'interno del secondo in cui ho fatto pausa -- questo fix è stato messo qui invece che nella funzione
-    // calculateVideoComponentStartSecondInVideoEditor perché in tutti gli altri casi di pausa si ripristina il secondo intero precedente
-    actual_audio_track_time -= $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value');
-    actual_audio_track_time += $('#video_component_' + identifier + '_preview video')[0].currentTime;
     if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
       var audio_track = $('#video_editor_preview_container audio');
       setCurrentTimeToMedia(audio_track, actual_audio_track_time);
@@ -1938,6 +1934,7 @@ $(document).ready(function() {
     if(videoEditorWithAudioTrack()) {
       $('#video_editor_preview_container audio')[0].pause();
     }
+    setCurrentTimeToMedia($('#' + preview_id + ' video'), $('#' + cutter_id + ' ._media_player_slider').slider('value'));
   });
   
   $('body').on('click', '._media_player_rewind_in_video_editor_preview', function() {
