@@ -3,7 +3,7 @@
 namespace :migrations do
   
   desc "Rebuild database and schemas after a structural change, updating both schema.rb and structure.sql, regardless of the configuration"
-  task :rebuild => %w(db:drop db:create db:migrate db:seed db:analyze db:test:prepare db:structure:dump db:schema:dump)
+  task :rebuild => %w(db:drop db:create db:migrate db:seed db:analyze db:test:prepare db:schema:dump)
   
   desc "empties all notifications"
   task :empty_notifications => :environment do
