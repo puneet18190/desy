@@ -7,7 +7,7 @@
   <div class="contentInterno _expanded_media_element_internal_container">
     <%= render :partial => "media_elements/thumbnails/#{media_element.sti_type.downcase}", :locals => {:item => media_element} %>
     <div class="description">
-      <h3><%= media_element.sti_type %></h3>
+      <h3><%= media_element.sti_type_to_s %></h3>
       <h4><%= media_element.title %></h4>
     </div>
   </div>

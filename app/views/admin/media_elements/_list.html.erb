@@ -38,7 +38,7 @@
         <tr class="collapse" id="<%= element.id %>">
           <td><%= element.id %></td>
           <td><%= element.title %></td>
-          <td><%= element.sti_type %></td>
+          <td><%= element.sti_type_to_s %></td>
           <td><%= link_to element.user.full_name, admin_user_path(element.user_id), :target => :blank, :class => '_user_link_in_admin' %></td>
           <td><%= element.created_at.strftime('%d-%m-%Y') %></td>
           <td><%= element.updated_at.strftime('%d-%m-%Y') %></td>
