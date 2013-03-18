@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  
+
+  require 'user/authentication'  
+  require 'user/confirmation'  
   include Authentication
   include Confirmation
 

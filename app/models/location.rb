@@ -33,6 +33,14 @@ class Location < ActiveRecord::Base
     nil
   end
   
+  def label
+    index = 0
+    SETTINGS['location_types'].each_with_index do |t, i|
+      index = i if t == self.sti_type.to_s
+    end
+    Location.label_at index
+  end
+  
   def ancestry_with_me
     anc = self.ancestry
     anc = "#{anc}/" if anc.present? && (/\// =~ anc).nil?
