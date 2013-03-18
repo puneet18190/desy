@@ -267,21 +267,24 @@ function initializeMediaTimeUpdaterInAudioEditor(identifier) {
   media = $('#audio_component_' + identifier + ' audio');
   if(media.readyState != 0) {
     media[0].addEventListener('timeupdate', function() {
-      initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier);
+      initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
     }, false);
   } else {
     media.on('loadedmetadata', function() {
       media[0].addEventListener('timeupdate', function() {
-        initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier);
+        initializeActionOfMediaTimeUpdaterInAudioEditor(this, identifier, false);
       }, false);
     });
   }
 }
 
-function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier) {
+function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, force_parsed_int) {
   var component = $('#audio_component_' + identifier);
   var audio_cut_to = component.data('to');
   var parsed_int = parseInt(media.currentTime);
+  if(force_parsed_int) {
+    parsed_int = audio_cut_to;
+  }
   if($('#info_container').data('in-preview')) {
     if(parsed_int > component.find('._media_player_slider').slider('value')) {
       increaseAudioEditorPreviewTimer();
@@ -390,14 +393,18 @@ function initializeAudioEditorCutter(identifier) {
   });
   initializeMediaTimeUpdaterInAudioEditor(identifier);
   component.find('audio').bind('ended', function() {
-    try {
-      var initial_time = component.data('from');
-      component.find('._media_player_pause_in_audio_editor_preview').click();
-      component.find('._media_player_slider').slider('value', initial_time);
-      component.find('._current_time').html(secondsToDateString(initial_time));
-      setCurrentTimeToMedia($(component.find('audio')), initial_time);
-    } catch(err) {
-      console.log('error stopping media: ' + err);
+    if($('#info_container').data('in-preview')) {
+      initializeActionOfMediaTimeUpdaterInAudioEditor(component.find('audio')[0], identifier, true);
+    } else {
+      try {
+        var initial_time = component.data('from');
+        component.find('._media_player_pause_in_audio_editor_preview').click();
+        component.find('._media_player_slider').slider('value', initial_time);
+        component.find('._current_time').html(secondsToDateString(initial_time));
+        setCurrentTimeToMedia($(component.find('audio')), initial_time);
+      } catch(err) {
+        console.log('error stopping media: ' + err);
+      }
     }
   });
 }
