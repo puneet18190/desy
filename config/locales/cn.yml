@@ -1365,12 +1365,10 @@ en:
   lesson_viewer:
     # Caption of the button which closes the playlist's navigational bar
     # 1 - views/lesson_viewer/playlist.html.erb
-	# close_playlist_bar: 关闭播放列表栏
-    close_playlist_bar: "Close playlist bar"
+    close_playlist_bar: "关闭播放列表栏"
     # Caption of the button which opens the playlist's navigational bar
     # 1 - views/lesson_viewer/playlist.html.erb
-	# open_playlist_bar: 打开播放列表栏
-    open_playlist_bar: "Open playlist bar"
+    open_playlist_bar: "打开播放列表栏"
   
   
   # SECTION 2.9: Caption used in the section 'my elements'
@@ -1378,29 +1376,23 @@ en:
   media_elements:
     # Used as a caption to select how many elements to show inside each page
     # 1 - views/media_elements/_title_bar.html.erb
-	# display: 显示
-    display: "Display"
+    display: "显示"
     # Caption of the buttons used to choose between size display (compact or extended mode)
     display_mode:
       # 1 - views/media_elements/_title_bar.html.erb
-	  # title: 显示模式
-      title: "Display mode"
+      title: "显示模式"
       # 1 - views/media_elements/_title_bar.html.erb
-	  #  large: 放大
-      large: "Large"
+      large: "放大"
       # 1 - views/media_elements/_title_bar.html.erb
-	  # small: 宿小
-      small: "Small"
+      small: "宿小"
     # Captions of the main page of the Element Editor (a page with three options: open the empty Audio Editor, open the empty Image Editor, open the empty Video Editor)
     editor:
       # Link to the main page of the Element Editor from the section 'my elements'
       # 1 - views/media_elements/_graybar_left.html.erb
-	  # menu_link: 单元编辑
-      menu_link: "Elements editor"
+      menu_link: "单元编辑"
       # Above the three options in the main page of Element Editor
       # 1 - views/media_elements/new.html.erb
-	  # enjoy: 好作品
-      enjoy: "Good work!"
+      enjoy: "好作品"
       # Title of the Element Editor in the case the user is creating a new element
       # 1 - views/image_editor/_header.html.erb
       # 2 - views/image_editor/_header.html.erb
@@ -1408,32 +1400,25 @@ en:
       # 4 - views/audio_editor/_header.html.erb
       # 5 - views/video_editor/_header.html.erb
       # 6 - views/video_editor/_header.html.erb
-	  # new_untitled: 单元 - 无标题
-      new_untitled: "New element - untitled"
+      new_untitled: "单元 - 无标题"
       # Title of the main page of Element Editor
       # 1 - views/media_elements/new.html.erb
-	  # title: 欢迎到 %{desy}的单元编辑
-      title: "Welcome to %{desy}'s element editor!"
+      title: "欢迎到 %{desy}的单元编辑"
       # Text of the main page of Element Editor
       # 1 - views/media_elements/new.html.erb
-	  # description: 你想建立新单元吗？请选择新单元的类型
-      description: "Do you want to create a new element? Choose the type of the new element"
+      description: "你想建立新单元吗？请选择新单元的类型"
     # Message which appears in the middle of the page if your element's section is empty
     # 1 - views/media_elements/_empty.html.erb
-	# empty: 在你的区域没有单元
-    empty: "You have no elements in your section"
+    empty: "在你的区域没有单元"
     # Message which appears in the middle of the page if the filter you applied produced an empty result
     # 1 - views/media_elements/_empty_filter.html.erb
-	# empty_filter: 单元过滤器没有产生结果
-    empty_filter: "The element filter produced no result"
+    empty_filter: "单元过滤器没有产生结果"
     # Caption of the link to open the window to upload a new element (on the left of the bar above the element's list)
     # 1 - views/media_elements/_graybar_left.html.erb
-	# load_new: 上传新单元
-    load_new: "Upload a new element"
+    load_new: "上传新单元"
     # Caption which appears above a link to the window to load a new element if your element's section is empty
     # 1 - views/media_elements/_empty.html.erb
-	# load_new_now: 现在上传新单元
-    load_new_now: "Upload a new element now"
+    load_new_now: "现在上传新单元"
   
   
   # SECTION 2.10: Contents of automatic notifications sent by the application to the users
