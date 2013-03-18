@@ -1,5 +1,28 @@
 require 'csv'
 
+# These requires are needed by multithreading
+require 'filename_token'
+require 'statuses'
+require 'users_subject'
+require 'media_element'
+require 'audio'
+require 'video'
+require 'image_uploader'
+require 'image'
+require 'lesson'
+require 'tagging'
+require 'location'
+require 'school_level'
+require 'subject'
+require 'valid'
+require 'user'
+require 'slide'
+require 'media_elements_slide'
+require 'like'
+require 'bookmark'
+require 'tag'
+require 'report'
+
 class Seeding
   CSV_DIR     = Rails.root.join("db/seeds/environments/#{Rails.env}/csv")
   CSV_OPTIONS = { headers: true }
@@ -13,8 +36,11 @@ class Seeding
   IMAGES_FOLDER         = MEDIA_ELEMENTS_FOLDER.join 'images'
 
   MODELS = [ Location, SchoolLevel, Subject, User, MediaElement, Lesson, Slide, MediaElementsSlide, Like, Bookmark ]
+  # MODELS = [ MediaElement, Lesson, Slide, MediaElementsSlide, Like, Bookmark ]
 
   def run
+    
+
     puts "Applying #{Rails.env} seeds (#{MODELS.map{ |m| humanize_table_name(m.table_name) }.join(', ')})"
 
     FileUtils.rm_rf OLD_PUBLIC_MEDIA_ELEMENTS_FOLDER
@@ -23,16 +49,20 @@ class Seeding
     rescue Errno::ENOENT
     end
 
-    ActiveRecord::Base.transaction do
+    # FIXME la transazione non rollbackka (a causa dei thread probabilmente)
+    # ActiveRecord::Base.transaction do
       MODELS.each do |model|
         @model, @table_name = model, model.table_name
+        p @table_name
         set_rows_amount
         send :"#{@table_name}!"
         update_sequence
       end
 
+      # raise ActiveRecord::Rollback
+
       FileUtils.rm_rf OLD_PUBLIC_MEDIA_ELEMENTS_FOLDER
-    end
+    # end
 
     puts 'End.'
   rescue StandardError => e
@@ -60,11 +90,12 @@ class Seeding
   end
 
   def users_subjects(id)
-    csv_open(csv_path('users_subjects')).each.select do |row|
+    @each_users_subjects ||= CSV.read(csv_path('users_subjects'), CSV_OPTIONS).each
+    @each_users_subjects.select { |row|
       row['user_id'] == id.to_s
-    end.map do |row|
+    }.map { |row|
       row['subject_id']
-    end
+    }
   end
 
   def media(record)
@@ -90,9 +121,7 @@ class Seeding
   end
 
   def csv_row_to_record(row, model = @model)
-    model.new do |record|
-      row.headers.each { |header| record.send :"#{header}=", row[header] }
-    end
+    model.new { |record| row.headers.each { |header| record.send :"#{header}=", row[header] } }
   end
 
   def update_sequence
@@ -100,15 +129,15 @@ class Seeding
   end
 
   def progress(i)
-    n = i+1
+    # n = i+1
 
-    $stdout.print "  saving #{n.ordinalize} of #{@rows_amount} #{humanize_table_name}\r"
-    $stdout.flush
+    # $stdout.print "  saving #{n.ordinalize} of #{@rows_amount} #{humanize_table_name}\r"
+    # $stdout.flush
 
-    return if n != @rows_amount
+    # return if n != @rows_amount
 
-    $stdout.puts
-    $stdout.flush
+    # $stdout.puts
+    # $stdout.flush
   end
 
   def set_rows_amount
@@ -116,84 +145,149 @@ class Seeding
   end
 
   def locations!
-    csv_open.each.each_with_index do |row, i|
-      progress(i)
-      csv_row_to_record(row).save!
-    end
+    EnhancedThread.join *csv_open.each.each_with_index.map { |row, i|
+      proc {
+        progress(i)
+        csv_row_to_record(row).save!
+      }
+    }
   end
 
   def school_levels!
-    csv_open.each.each_with_index do |row, i|
-      progress(i)
-      csv_row_to_record(row).save!
-    end
+    EnhancedThread.join *csv_open.each.each_with_index.map { |row, i|
+      proc {
+        progress(i)
+        csv_row_to_record(row).save!
+      }
+    }
   end
 
   def subjects!
-    csv_open.each.each_with_index do |row, i|
-      progress(i)
-      csv_row_to_record(row).save!
-    end
+    EnhancedThread.join *csv_open.each.each_with_index.map { |row, i|
+      proc {
+        progress(i)
+        csv_row_to_record(row).save!
+      }
+    }
   end
 
   def users!
-    csv_open.each.each_with_index do |row, i|
-      progress(i)
-      record = csv_row_to_record(row)
-      record.subject_ids = users_subjects(record.id)
-      record.accept_policies
-      record.save!
-    end
+    EnhancedThread.join *csv_open.each.each_with_index.map { |row, i|
+      proc {
+        progress(i)
+        record = csv_row_to_record(row)
+        record.subject_ids = users_subjects(record.id)
+        record.accept_policies
+        record.save!
+      }
+    }
   end
 
   def media_elements!
-    csv_open.each.each_with_index do |row, i|
-      progress(i)
-      record = csv_row_to_record(row, row['sti_type'].constantize)
-      record.media                   = media(record)
-      record.skip_public_validations = true
-      record.tags                    = tags(record.id, 'MediaElement')
-      record.save!
-    end
+    MediaElement.destroy_all
+    EnhancedThread.join *csv_open.each.each_with_index.map { |row, i|
+      proc {
+        progress(i)
+        begin
+          record = csv_row_to_record(row, row['sti_type'].constantize)
+          str = "media_element #{record.id}..."
+          record.media                   = media(record)
+          record.skip_public_validations = true
+          record.tags                    = tags(record.id, 'MediaElement')
+          record.save!
+          str << " saved. id: #{record.id}"
+          puts str
+        rescue ActiveRecord::StatementInvalid, Errno::ENOENT => e
+          Thread.current[:attempts] ||= 0
+          Thread.current[:attempts] += 1
+          str << " :-( retrying... #{Thread.current[:attempts]} exception: #{e.inspect}"
+          puts str
+          Thread.current[:attempts] == 10 ? raise(e) : retry
+        end
+      }
+    }
+    p MediaElement.order(:id).pluck(:id)
   end
 
   def lessons!
-    csv_open.each.each_with_index do |row, i|
-      progress(i)
-      record = csv_row_to_record(row)
-      record.skip_public_validations = true
-      record.skip_cover_creation     = true
-      record.tags                    = tags(record.id, 'Lesson')
-      record.save!
-    end
+    Lesson.destroy_all
+    # not_saved_records = {}
+    EnhancedThread.join *csv_open.each.each_with_index.map { |row, i|
+      proc {
+        progress(i)
+        begin
+          # p 'a'
+          record = csv_row_to_record(row)
+          record.skip_public_validations = true
+          record.skip_cover_creation     = true
+          record.tags                    = tags(record.id, 'Lesson')
+          # until Lesson.find_by_id record.parent_id
+          #   p record.parent
+          #   p record.parent_id
+          #   p "record #{record.id}: sleeping..."
+          #   sleep 0.1
+          # end if record.parent_id
+          # p 'b'
+          record.save!
+          # p 'c'
+        rescue ActiveRecord::StatementInvalid, Errno::ENOENT => e
+          Thread.current[:attempts] ||= 0
+          Thread.current[:attempts] += 1
+          p ":-( retrying... #{Thread.current[:attempts]}"
+          Thread.current[:attempts] == 10 ? raise(e) : retry
+        end
+        # rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordInvalid => e
+        #   p "exception: #{e.class}"
+        #   not_saved_records[Thread.current.object_id] = e.record.id
+        #   p 'd'
+        # end
+      }
+    }
   end
 
   def slides!
-    csv_open.each.each_with_index do |row, i|
-      progress(i)
-      csv_row_to_record(row).save!
-    end
+    EnhancedThread.join *csv_open.each.each_with_index.map { |row, i|
+      proc {
+        progress(i)
+        csv_row_to_record(row).save!
+      }
+    }
   end
 
   def media_elements_slides!
-    csv_open.each.each_with_index do |row, i|
-      progress(i)
-      csv_row_to_record(row).save!
-    end
+    MediaElementsSlide.destroy_all
+    EnhancedThread.join *csv_open.each.each_with_index.map { |row, i|
+      proc {
+        progress(i)
+        begin
+          csv_row_to_record(row).save!
+        rescue => e
+          if r = e.record
+            p r.media_element_id
+            p MediaElement.find_by_id(r.media_element_id)
+          end
+          raise e
+        end
+      }
+    }
   end
 
   def likes!
-    csv_open.each.each_with_index do |row, i|
-      progress(i)
-      csv_row_to_record(row).save!
-    end
+    EnhancedThread.join *csv_open.each.each_with_index.map { |row, i|
+      proc {
+        progress(i)
+        csv_row_to_record(row).save!
+      }
+    }
   end
 
   def bookmarks!
-    csv_open.each.each_with_index do |row, i|
-      progress(i)
-      csv_row_to_record(row).save!
-    end
+    EnhancedThread.join *csv_open.each.each_with_index.map { |row, i|
+      proc {
+        progress(i)
+        csv_row_to_record(row).save!
+      }
+    }
   end
 
 end
