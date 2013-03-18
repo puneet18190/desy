@@ -1568,13 +1568,10 @@ en:
   registration:
     # Title of the registration form
     # 1 - views/prelogin/registration.html.erb
-    title: "Register"
+    title: "Sign up"
     # Subtitle of the registration form
     # 1 - views/prelogin/registration.html.erb
-    subtitle: "Why register?"
-    # Another subtitle of the registration form
-    # 1 - views/prelogin/registration.html.erb
-    subsubtitle: "Discover the benefits of %{desy}"
+    subtitle: "Discover the benefits of %{desy}"
     # Text describing the registration benefits
     # 1 - views/prelogin/registration.html.erb
     description: "Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching."
