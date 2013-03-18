@@ -34,8 +34,9 @@ namespace :db do
                                        ) TO #{model.quote_value(csv_path.to_s)}
                                        WITH (FORMAT csv, HEADER true)"
       end
+      FileUtils.mkdir_p output_folder
       FileUtils.rm_rf output_folder
-      FileUtils.cp_r dir, Rails.root.join("db/seeds/environments/#{Rails.env}/csv")
+      FileUtils.cp_r dir, output_folder
     end
   end
 

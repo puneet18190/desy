@@ -7,8 +7,10 @@ class Seeding
   CSV_DIR     = Rails.root.join("db/seeds/environments/#{Rails.env}/csv")
   CSV_OPTIONS = { headers: true }
 
-  PUBLIC_MEDIA_ELEMENTS_FOLDER     = Media::Uploader::MEDIA_ELEMENTS_FOLDER
-  OLD_PUBLIC_MEDIA_ELEMENTS_FOLDER = "#{PUBLIC_MEDIA_ELEMENTS_FOLDER}.old"
+  # PUBLIC_MEDIA_ELEMENTS_FOLDER     = Media::Uploader::MEDIA_ELEMENTS_FOLDER
+  # OLD_PUBLIC_MEDIA_ELEMENTS_FOLDER = "#{PUBLIC_MEDIA_ELEMENTS_FOLDER}.old"
+  PUBLIC_MEDIA_ELEMENTS_FOLDERS     = [ Media::Video::Uploader, Media::Audio::Uploader, ImageUploader ].map{ |u| u.const_get(:FOLDER) }
+  OLD_PUBLIC_MEDIA_ELEMENTS_FOLDERS = Hash[ PUBLIC_MEDIA_ELEMENTS_FOLDERS.map{ |f| [ f, "#{f}.old" ] } ]
 
   MEDIA_ELEMENTS_FOLDER = Rails.root.join "db/seeds/environments/#{Rails.env}/media_elements"
   # AUDIOS_FOLDER, VIDEOS_FOLDER, IMAGES_FOLDER
@@ -21,11 +23,7 @@ class Seeding
   def run
     puts "Applying #{Rails.env} seeds (#{MODELS.map{ |m| humanize_table_name(m.table_name) }.join(', ')})"
 
-    FileUtils.rm_rf OLD_PUBLIC_MEDIA_ELEMENTS_FOLDER
-    begin
-      FileUtils.mv PUBLIC_MEDIA_ELEMENTS_FOLDER, OLD_PUBLIC_MEDIA_ELEMENTS_FOLDER
-    rescue Errno::ENOENT
-    end
+    backup_old_media_elements_folders
 
     ActiveRecord::Base.transaction do
       MODELS.each do |model|
@@ -35,21 +33,40 @@ class Seeding
         update_sequence
       end
 
-      FileUtils.rm_rf OLD_PUBLIC_MEDIA_ELEMENTS_FOLDER
+      remove_old_media_elements_folders
     end
 
     puts 'End.'
   rescue StandardError => e
-    FileUtils.rm_rf PUBLIC_MEDIA_ELEMENTS_FOLDER
-    begin
-      FileUtils.mv OLD_PUBLIC_MEDIA_ELEMENTS_FOLDER, PUBLIC_MEDIA_ELEMENTS_FOLDER
-    rescue Errno::ENOENT
-    end
+    restore_old_media_elements_folders
 
     raise e
   end
 
   private
+  def backup_old_media_elements_folders
+    remove_old_media_elements_folders
+    
+    PUBLIC_MEDIA_ELEMENTS_FOLDERS.each_with_index do |f|
+      begin
+        FileUtils.mv f, OLD_PUBLIC_MEDIA_ELEMENTS_FOLDERS[f]
+      rescue Errno::ENOENT
+      end
+    end
+  end
+
+  def remove_old_media_elements_folders
+    OLD_PUBLIC_MEDIA_ELEMENTS_FOLDERS.values.each{ |of| FileUtils.rm_rf of }
+  end
+
+  def restore_old_media_elements_folders
+    OLD_PUBLIC_MEDIA_ELEMENTS_FOLDERS.each do |f, of|
+      begin
+        FileUtils.mv of, f
+      rescue Errno::ENOENT
+      end
+    end
+  end
 
   def humanize_table_name(table_name = @table_name)
     table_name.tr('_', ' ')

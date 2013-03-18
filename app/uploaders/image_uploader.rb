@@ -19,10 +19,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   # storage :fog
 
   STORE_DIR            = env_relative_path "media_elements/images"
+  FOLDER               = Media::RAILS_PUBLIC_FOLDER.join(STORE_DIR).to_s
   EXTENSION_WHITE_LIST = %w(jpg jpeg png)
 
   def self.remove_folder!
-    FileUtils.rm_rf Media::RAILS_PUBLIC_FOLDER.join STORE_DIR
+    FileUtils.rm_rf FOLDER
   end
 
   # Override the directory where uploaded files will be stored.
