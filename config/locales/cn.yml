@@ -1519,62 +1519,48 @@ en:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
       # 3 - views/prelogin/what_is_desy.html.erb
-	  # menu_link: 联系我们
-      menu_link: "Contact us"
+      menu_link: "联系我们"
     # Home page
     main_page:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
       # 3 - views/prelogin/what_is_desy.html.erb
-	  # menu_link: 主页
-      menu_link: "Home"
+      menu_link: "主页"
       # 1 - views/prelogin/home.html.erb
-	  # title: 新教法
-      title: "A new way of teaching"
+      title: "新教法"
       # 1 - views/prelogin/home.html.erb
-	  # description: "<b>%{desy}</b>是奉献教育界的新平台. 使用<b>%{desy}</b>你能轻松地建立职业在线课程, 好的用户界面和好的平台设计. 课程可以包含图像、音频和视频, 它能上传,剪切和提升自己. 用户也能利用我们的社区, 分享和接收媒体单元并准备重用.<i>使用<b>%{desy}</b>我们能保证高质量平台和注重细节</i>."
-      description: "<b>%{desy}</b> is the new platform dedicated to the world of education. With <b>%{desy}</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>%{desy}</b> we guarantee high quality and care for details</i>."
+      description: "<b>%{desy}</b>是奉献教育界的新平台. 使用<b>%{desy}</b>你能轻松地建立职业在线课程, 好的用户界面和好的平台设计. 课程可以包含图像、音频和视频, 它能上传,剪切和提升自己. 用户也能利用我们的社区, 分享和接收媒体单元并准备重用.<i>使用<b>%{desy}</b>我们能保证高质量平台和注重细节</i>."
       # Caption of the link to the video explaining things about the application
       # 1 - views/prelogin/home.html.erb
-	  # video: 观看视频
-      video: "Watch the video"
+      video: "观看视频"
     # Section where the user signs up
     sign_up:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
       # 3 - views/prelogin/what_is_desy.html.erb
-	  # menu_link: 签到
-      menu_link: "Sign up"
+      menu_link: "签到"
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/users/edit.html.erb
-	  # select_a: 选择一个
-      select_a: "Select a"
+      select_a: "选择一个"
     # Section with further explanations about the application
     what_is_desy:
       # 1 - views/prelogin/registration.html.erb
       # 2 - views/prelogin/home.html.erb
       # 3 - views/prelogin/what_is_desy.html.erb
-	  # menu_link: %{desy}是什么？
-      menu_link: "What is %{desy}?"
+      menu_link: "%{desy}是什么？"
       # 1- views/prelogin/what_is_desy.html.erb
-	  # title: %{desy}是什么？
-      title: "What is %{desy}?"
+      title: "%{desy}是什么？"
       # 1- views/prelogin/what_is_desy.html.erb
-	  # subtitle: 找出%{desy}的益处
-      subtitle: "Find out the benefits of %{desy}"
+      subtitle: "找出%{desy}的益处"
       # 1- views/prelogin/what_is_desy.html.erb
-	  # description: "%{desy}是教学数字系统，它充许教师非常自由和容易地建立多媒体课程<br><br>不仅仅是: 它所处的平台充许分享教育单元和社会内容, 优点和额外的功能源于:<ul><li>建立课程和教学跨学科的可能性;</li><li>亲和力和丰富内容的连续性;</li><li>系统的增长感谢是零费用;</li><li>利用教学工具来加强与改善教学.</li></ul>与学校与大学相比, %{desy}能用于公司, 安装在公司局域网内通过门户网站。
-      description: "%{desy} is a didactic digital system which allows teachers to create multimedia lessons in full autonomy and easily.<br><br>Not only: the platform where it lays allows for sharing didactic elements and socialization of contents, from which advantages and additional functionalities are derived among which:<ul><li>the possibility to build lessons and didactic interdisciplinary methods;</li><li>the continuity of the affinity process and enrichment of contents;</li><li>the growth of the system thanks to self feeding at 0 cost;</li><li>the reinforcement and evaluation of the teachers' role in elaborating didactic instruments.</li></ul>other than in schools and universities, %{desy} can be used in a company professional formation, through formative portals installed within companies' intranet, which allow to gather the company know how in a secure and reserve way and at the same time to share them with the teachers called to look after updating and innovation."
+      description: "%{desy}是教学数字系统，它充许教师非常自由和容易地建立多媒体课程<br><br>不仅仅是: 它所处的平台充许分享教育单元和社会内容, 优点和额外的功能源于:<ul><li>建立课程和教学跨学科的可能性;</li><li>亲和力和丰富内容的连续性;</li><li>系统的增长感谢是零费用;</li><li>利用教学工具来加强与改善教学.</li></ul>与学校与大学相比, %{desy}能用于公司, 安装在公司局域网内通过门户网站。"
       right_column:
         # 1 - views/prelogin/what_is_desy.html.erb
-		# caption1: 通过分享你的包括视频、音频和图像课程来加入%{desy}社区
-        caption1: "Participate in the community of %{desy} by sharing your lessons containing didactic videos, audios and images!"
+        caption1: "通过分享你的包括视频、音频和图像课程来加入%{desy}社区"
         # 1 - views/prelogin/what_is_desy.html.erb
-		# caption2: 用容易和面向用户的课程编辑来建立高质量的课程
-        caption2: "Create your high quality lesson with an easy and user-oriented lesson editor"
+        caption2: "用容易和面向用户的课程编辑来建立高质量的课程"
         # 1 - views/prelogin/what_is_desy.html.erb
-		# caption3: 可视化其他用户的课程，增加你的知识点
-        caption3: "Visualize other users' lessons and increase your cultural knowledge"
+        caption3: "可视化其他用户的课程，增加你的知识点"
   
   
   # SECTION 2.12: Captions used for registration and login
@@ -1582,71 +1568,54 @@ en:
   registration:
     # Title of the registration form
     # 1 - views/prelogin/registration.html.erb
-	# title: 注册
-    title: "Register"
+    title: "注册"
     # Subtitle of the registration form
     # 1 - views/prelogin/registration.html.erb
-	# subtitle: 为什么要注册？
-    subtitle: "Why register?"
+    subtitle: "为什么要注册？"
     # Another subtitle of the registration form
     # 1 - views/prelogin/registration.html.erb
-	# subsubtitle: 发现了%{desy}的益处
-    subsubtitle: "Discover the benefits of %{desy}"
+    subsubtitle: "发现了%{desy}的益处"
     # Text describing the registration benefits
     # 1 - views/prelogin/registration.html.erb
-	# description: 用音频、视频或图像建立你自己的多媒体课程. 与其他教师%{desy}分享课程. 使用或修改适合使用 %{desy}的其他教师课程的需求. 在虚拟教室组织你的课程并发现新教法"
-    description: "Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching."
+    description: "用音频、视频或图像建立你自己的多媒体课程. 与其他教师%{desy}分享课程. 使用或修改适合使用 %{desy}的其他教师课程的需求. 在虚拟教室组织你的课程并发现新教法"
     # Button to submit the registration form
     # 1 - views/prelogin/registration.html.erb
-	# done: 签到
-    done: "Sign up"
+    done: "签到"
     # Captions of the login window: title + two captions for email and password + button to submit
     login:
       # 1 - views/prelogin/_login.html.erb
-	  # done: 进入
-      done: "Enter"
+      done: "进入"
       # 1 - views/prelogin/_login.html.erb
-	  # email: 邮件地址
-      email: "Email"
+      email: "邮件地址"
       # 1 - views/prelogin/_login.html.erb
-	  # password: 口令
-      password: "Password"
+      password: "口令"
       # 1 - views/prelogin/_login.html.erb
-	  # title: 登陆
-      title: "Login"
+      title: "登陆"
     # Link to logout
     # 1 - views/shared/_logout.html.erb
     # 2 - views/admin/_header.html.erb
-	# logout: 退出
-    logout: "Logout"
+    logout: "退出"
     # Link to ask for help, in case the user forgot his password
     # 1 - views/prelogin/_login.html.erb
-	# problems_with_password: 忘记你的口令
-    problems_with_password: "Forgot your password?"
+    problems_with_password: "忘记你的口令"
     subjects:
       # Caption for subjects selection
       # 1 - views/prelogin/registration.html.erb
-	  # title: 选择你感兴趣的科目
-      title: "Choose the subjects you are interested in"
+      title: "选择你感兴趣的科目"
     # List of customizable policies: for each there must be a title and a content (keyword 'description')
     policy_1:
       # 1 - views/prelogin/registration.html.erb
-	  # title: 政策1标题
+      title: "政策1标题"
       title: "Title of policy 1"
       # 1 - views/prelogin/registration.html.erb
-	  # description: "政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容"
-      description: "Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1"
-	  # accept: 接收
-	  accept: "Accept"
+      description: "政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容"
+      accept: "接收"
     policy_2:
       # 1 - views/prelogin/registration.html.erb
-	  # title: 政策2标题
-      title: "Title of policy 2"
+      title: "政策2标题"
       # 1 - views/prelogin/registration.html.erb
-	  # description: "政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策1内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容"
-      description: "Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2"
-      # accept: 接收
-	  accept: "Accept"
+      description: "政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策1内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容"
+      accept: "接收"
   
   
   # SECTION 2.13: Captions for reports of inappropriate contents
