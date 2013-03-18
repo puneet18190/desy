@@ -637,107 +637,82 @@ en:
       # Titles for the icons used in the cutter of a component
       audio_cutter:
         # 1 - views/audio_editor/_component.html.erb
-		# play: 播放片段
-        play: "Play clip"
+        play: "播放片段"
         # 1 - views/audio_editor/_component.html.erb
-		# pause: 暂停片段
-        pause: "Pause clip"
+        pause: "暂停片段"
         # 1 - views/audio_editor/_component.html.erb
-		# rewind: 倒回片段
-        rewind: "Rewind clip"
+        rewind: "倒回片段"
       # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new audio
       # 1 - views/audio_editor/edit.html.erb
-	  # commit: 保存
-      commit: "Save"
+      commit: "保存"
       components:
         # Icon 'plus' on the top of the right column: it's used to add a new audio component
         # 1 - views/audio_editor/_lateral_controls.html.erb
-		#  add: 增加音频部件
-        add: "Add an audio component"
+        add: "增加音频部件"
         # This appears above a component which is not selected
         # 1 - views/audio_editor/_component.html.erb
-		# box_ghost: 编辑和播放部件，请点击这里
-        box_ghost: "Click in this area to edit and play the component"
+        box_ghost: "编辑和播放部件，请点击这里"
         # The 'x' icon used to remove a component
         # 1 - views/audio_editor/_component.html.erb
-		# remove: 移去音频部件
-        remove: "Remove audio component"
+        remove: "移去音频部件"
         # The handle that the user can grab to drag a component and change its position inside the whole track
         # 1 - views/audio_editor/_component.html.erb
-		# sort: 拖动改变部件的位置
-        sort: "Drag to change the component's position"
+        sort: "拖动改变部件的位置"
     audios:
       # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the audio editor
       # 1 - views/media_elements/new.html.erb
-	  # new: 建立新音频
-      new: "Create new audio"
+      new: "建立新音频"
       # Icon 'play' inside an audio player
       # 1 - views/shared/players/_audio.html.erb
-	  # pause: 暂停音频
-      pause: "Pause audio"
+      pause: "暂停音频"
       # Icon 'pause' inside an audio player
       # 1 - views/shared/players/_audio.html.erb
-	  # play: 播放音频
-      play: "Play audio"
+      play: "播放音频"
     # Icons of the general buttons menu for lessons and media elements
     buttons:
       # To add a lesson or a media element to your personal folder
       # 1 - views/shared/buttons/_add.html.erb
-	  # add: 将这个项目增加到你的部分
-      add: "Follow this item in your own section"
+      add: "将这个项目增加到你的部分"
       # To add a lesson to your Virtual Classroom
       # 1 - views/shared/buttons/_add_virtual_classroom.html.erb
-	  # add_virtual_classroom: 增加课程到虚拟教室
-      add_virtual_classroom: "Add lesson to virtual classroom"
+      add_virtual_classroom: "增加课程到虚拟教室"
       # To copy a lesson
       # 1 - views/shared/buttons/_copy.html.erb
-	  # copy: 建立你自己的课程拷贝
-      copy: "Create your own copy of the lesson"
+      copy: "建立你自己的课程拷贝"
       # To delete a lesson or a media element
       # 1 - views/shared/buttons/_destroy.html.erb
-	  # destroy: 删去这个项目
-      destroy: "Delete this item"
+      destroy: "删去这个项目"
       # To remove a 'I like it' from a lesson
       # 1 - views/shared/buttons/_dislike.html.erb
-	  # dislike: 点击终止你的嗜好
-      dislike: "Click to cancel your like"
+      dislike: "点击终止你的嗜好"
       # To edit a lesson or a media element (the little pencil)
       # 1 - views/shared/buttons/_edit.html.erb
-	  # edit: 编辑这个项目
-      edit: "Edit this item"
+      edit: "编辑这个项目"
       # Title of the icon which appears instead of 'unpublish' in the case the lesson has been modified and the followers don't know about it
       # 1 - views/shared/_popups.html.erb
-	  # lesson_modification_not_notified: 向这个公共课程发出通知你已经作了修改
-      lesson_modification_not_notified: "Notify about the modifications you made to this public lesson"
+      lesson_modification_not_notified: "向这个公共课程发出通知你已经作了修改"
       # To save a 'I like it' on a lesson (the little star)
       # 1 - views/shared/buttons/_like.html.erb
-	  # like: 喜欢这个课程
-      like: "Like this lesson"
+      like: "喜欢这个课程"
       # To open the preview of a lesson or a media element (the icon of an eye)
       # 1 - views/shared/buttons/_preview.html.erb
-	  # preview: 打开这个预览
-      preview: "Open the preview"
+      preview: "打开这个预览"
       # To share a lesson"
       # 1 - views/shared/buttons/_publish.html.erb
-	  # publish: 分享你的课程
-      publish: "Share your lesson"
+      publish: "分享你的课程"
       # To remove a lesson or a media element from your personal folder
       # 1 - views/shared/buttons/_remove.html.erb
-	  # remove: 移除这个项目
-      remove: "Remove this item"
+      remove: "移除这个项目"
       # To remove a lesson from your Virtual Classroom
       # 1 - views/shared/buttons/_remove_virtual_classroom.html.erb
-	  # remove_virtual_classroom: 从你的虚拟教室中移除
-      remove_virtual_classroom: "Remove from your Cirtual Classroom"
+      remove_virtual_classroom: "从你的虚拟教室中移除"
       # To turn a shared lesson back into private
       # 1 - views/shared/buttons/_unpublish.html.erb
       # 2 - views/shared/_popups.html.erb
-	  # unpublish: 将你的课程变为私有
-      unpublish: "Turn back your lesson into private"
+      unpublish: "将你的课程变为私有"
     # To close the preview of a media element (big 'x' on the bottom right of the preview)
     # 1 - views/media_elements/_popup.html.erb
-	# close: 关闭
-    close: "Close"
+    close: "关闭"
     # Icon of a small door with an arrow going out: it represents the exit from the current section, all over the application
     # 1 - views/media_elements/new.html.erb
     # 2 - views/lesson_viewer/_lesson_slides.html.erb
@@ -746,126 +721,99 @@ en:
     # 5 - views/video_editor/_header.html.erb
     # 6 - views/audio_editor/not_available.html.erb
     # 7 - views/audio_editor/_header.html.erb
-	# exit: 不保存退出
-    exit: "Exit without saving"
+    exit: "不保存退出"
     # Tooltips inside the media galleries (audio, image and video gallery)
     galleries:
       # Icon 'plus' in audio gallery
       # 1 - views/galleries/contents/_audio.html.erb
-	  # add_audio: 增加音频
-      add_audio: "Add audio"
+      add_audio: "增加音频"
       # Icon 'plus' in image gallery
       # 1 - views/galleries/popups/_image.html.erb
-	  # add_image: 增加图像
-      add_image: "Add image"
+      add_image: "增加图像"
       # Icon 'plus' in video gallery
       # 1 - views/galleries/popups/_video.html.erb
-	  # add_video: 增加视频
-      add_video: "Add video"
+      add_video: "增加视频"
       # Icon with small 'x' to close the gallery
       # 1 - views/galleries/_video.html.erb
       # 2 - views/galleries/_mixed_video_image_text.html.erb
       # 3 - views/galleries/_image.html.erb
       # 4 - views/galleries/_audio.html.erb
-	  # close: 关闭库
-      close: "Close gallery"
+      close: "关闭库"
       # Three icons to switch between 'video component', 'image component' and 'text component' in video editor's gallery
       mixed_for_video_editor:
         # 1 - views/galleries/_mixed_video_image_text.html.erb
-		# image: 增加图像组件
-        image: "Add image component"
+        image: "增加图像组件"
         # 1 - views/galleries/_mixed_video_image_text.html.erb
-		# text: 增加文本组件
-        text: "Add text component"
+        text: "增加文本组件"
         # 1 - views/galleries/_mixed_video_image_text.html.erb
-		# video: 增加视频组件
-        video: "Add video component"
+        video: "增加视频组件"
     # The icon with the '?', placed in all the sections, which opens the help tips
     # 1 - views/notifications/_main.html.erb
-	# help_tooltip: 帮助你！
-    help_tooltip: "Help for you!"
+    help_tooltip: "帮助你！"
     # Tooltips in the image editor
     image_editor:
       # Button to crop the image
       # 1 - views/image_editor/edit.html.erb
-	  # crop: 修剪图像
-      crop: "Crop image"
+      crop: "修剪图像"
       # Button to add text inside the image
       # 1 - views/image_editor/edit.html.erb
-	  # text: 在图像中增加文本
-      text: "Add texts to image"
+      text: "在图像中增加文本"
       # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new image
       # 1 - views/image_editor/edit.html.erb
-	  # commit: 保存
-      commit: "Save"
+      commit: "保存"
     images:
       # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the image editor
       # 1 - views/media_elements/new.html.erb
-	  # new: 建立新图像
-      new: "Create new image"
+      new: "建立新图像"
     # titles in lesson editor
     lesson_editor:
       # Button '+' to add a new slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
-	  # add_slide: 增加新幻灯片
-      add_slide: "Add new slide"
+      add_slide: "增加新幻灯片"
       # Button '+' to replace an audio in the audio slide
       # 1 - views/lesson_editor/slides/parts/_audio.html.erb
-	  # change_audio: 替换音频
-      change_audio: "Replace audio"
+      change_audio: "替换音频"
       # Button '+' to replace an image in the image slide
       # 1 - views/lesson_editor/slides/parts/_image.html.erb
-	  # change_image: 替换图像
-      change_image: "Replace image"
+      change_image: "替换图像"
       # Button with three small lines, it opens the form to change title, description and tags of the selected lesson
       # 1 - views/lesson_editor/_slide_buttons.html.erb
-	  # change_info: 改变课程信息
-      change_info: "Change lesson info"
+      change_info: "改变课程信息"
       # Button '+' to replace a video in the video slide
       # 1 - views/lesson_editor/slides/parts/_video.html.erb
-	  # change_video: 改变视频
-      change_video: "Change video"
+      change_video: "改变视频"
       # Button 'X' to remove the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
-	  # delete_slide: 移除幻灯片
-      delete_slide: "Remove slide"
+      delete_slide: "移除幻灯片"
       # Button to save the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
-	  #  save_slide: 保存目前的幻灯片
-      save_slide: "Save current slide"
+      save_slide: "保存目前的幻灯片"
       # Button to save and exit
       # 1 - views/lesson_editor/_slide_buttons.html.erb
-	  # save_and_exit: 保存并退出
-      save_and_exit: "Save and exit"
+      save_and_exit: "保存并退出"
     media_elements:
       # Icon to upload the file attached to a new media element
       # 1 - views/media_elements/_new_form_popup.html.erb
-	  # select_file: 选择文件上传
-      select_file: "Select file to upload"
+      select_file: "选择文件上传"
       # Icon with three small lines, inside the preview popup of a media element, which opens the form to change its title, description, tags
       # 1 - views/media_elements/_popup.html.erb
-	  # change_info: 改变信息
-      change_info: "Change information"
+      change_info: "改变信息"
     # Titles appearing over the placeholders in lesson viewer, in the case a video or audio used is in conversion (in both, the variable %{title} is replaced by the title of the audio)
     not_available:
       # 1 - views/lesson_viewer/slides/_audio.html.erb
       # 2 - views/galleries/thumbs/_audio.html.erb
-	  # audio: 音频%{title}正在转换，现在不能提供
-      audio: "The audio %{title} is in conversion and not available now"
+      audio: "音频%{title}正在转换，现在不能提供"
       # 1 - views/lesson_viewer/slides/_video1.html.erb
       # 2 - views/lesson_viewer/slides/_video2.html.erb
       # 3 - views/galleries/thumbs/_video.html.erb
-	  # video: 视频%{title}正在转换，现在不能提供
-      video: "The video %{title} is in conversion and not available now"
+      video: "视频%{title}正在转换，现在不能提供"
     notifications:
       # Icon that opens the notifications
       # 1 - views/notifications/_main.html.erb
-	  # label: 通知
-      label: "Notifications"
+      label: "通知"
       # Small 'x' that removes a notification
       # 1 - views/notifications/_notification.html.erb
-	  # remove: 移除通知 
-      remove: "Remove notification"
+      remove: "移除通知"
     # Titles for pagination
     pagination:
       # Go to previous page
@@ -874,8 +822,7 @@ en:
       # 3 - views/shared/_popups.html.erb
       # 4 - views/virtual_classroom/_pagination.html.erb
       # 5 - views/virtual_classroom/_pagination.html.erb
-	  # prev: 到之前的页面
-      prev: "Go to previous page"
+      prev: "到之前的页面"
       # Go to next page
       # 1 - views/dashboard/_pagination.html.erb
       # 2 - views/shared/_pagination.html.erb
@@ -883,116 +830,91 @@ en:
       # 4 - views/shared/_popups.html.erb
       # 5 - views/virtual_classroom/_pagination.html.erb
       # 6 - views/virtual_classroom/_pagination.html.erb
-	  # next: 到下一页
-      next: "Go to next page"
+      next: "到下一页"
     # Icon to report an offensive lesson or media element
     # 1 - views/reports/_media_element.html.erb
-	# report: 报告有攻击性的内容
-    report: "Report offensive content"
+    report: "报告有攻击性的内容"
     # Icon with a lens in the main sections
     # 1 - views/shared/_search.html.erb
-	# search: 查找
-    search: "Search"
+    search: "查找"
     slides:
       # Arrow to the left, pointing to the previous slide
       # 1 - views/layouts/lesson_viewer.html.erb
-	  # back: 向后
-      back: "Back"
+      back: "向后"
       # Arrow to the right, pointing to the next slide
       # 1 - views/layouts/lesson_viewer.html.erb
-	  # forward: 向前
-      forward: "Forward"
+      forward: "向前"
    # Titles for the tags used to refine a search
     tags:
       # This title appears on a tag which is not selected
       # 1 - views/search/lessons/_tag_details.html.erb
       # 2 - views/search/media_elements/_tag_details.html.erb
-	  # filter_by: 标签过滤
-      filter_by: "Filter by this tag"
+      filter_by: "标签过滤"
       # This title appears on the selected tag (clicking on this tag the user resets the tag filter and turns back to the original result)
       # 1 - views/search/lessons/_tag_details.html.erb
       # 2 - views/search/media_elements/_tag_details.html.erb
-	  # cancel_filter: 终止标签过滤，回到原处
-      cancel_filter: "Cancel the filter by tag and come back to the original result"
+      cancel_filter: "终止标签过滤，回到原处"
     # Tooltips inside the video editor
     video_editor:
       # Big 'plus' icon to add a new component to the timeline
       # 1 - views/video_editor/_add_component.html.erb
-	  # add_new_component: 增加新组件
-      add_new_component: "Add new component"
+      add_new_component: "增加新组件"
       audio_track:
         # Button 'plus' to add an audio track (or replace the selected one)
         # 1 - views/video_editor/_audio_track.html.erb
-		# add: 选择音频曲目
-        add: "Select audio track"
+        add: "选择音频曲目"
         # Small 'x' to remove the current audio track
         # 1 - views/video_editor/_audio_track.html.erb
-		# remove: 移除音频曲目
-        remove: "Remove audio track"
+        remove: "移除音频曲目"
       # Big 'X' on the bottom right, to quit the preview mode
       # 1 - views/video_editor/edit.html.erb
-	  # close_preview: 关闭之前的模式
-      close_preview: "Close preview mode"
+      close_preview: "关闭之前的模式"
       # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new video
       # 1 - views/video_editor/edit.html.erb
-	  # commit: 保存
-      commit: "Save"
+      commit: "保存"
       # Three icons in the small menu of each video component
       component_menu:
         # Scissors
         # 1 - views/video_editor/_component_menu.html.erb
-		# cutter: 剪辑部件
-        cutter: "Cut component"
+        cutter: "剪辑部件"
         # Icon 'X' to remove the component
         # 1 - views/video_editor/_component_menu.html.erb
-		# remove: 移除组件
-        remove: "Remove component"
+        remove: "移除组件"
         # Icon 'plus' to replace the component
         # 1 - views/video_editor/_component_menu.html.erb
-		# change: 退换组件
-        change: "Substitute component"
+        change: "退换组件"
       # Titles for the icons used in the cutter of a video component
       video_cutter:
         # 1 - views/video_editor/cutters/_video.html.erb
-		# play: 播放剪辑
-        play: "Play clip"
+        play: "播放剪辑"
         # 1 - views/video_editor/cutters/_video.html.erb
-		# pause: 暂停剪辑
-        pause: "Pause clip"
+        pause: "暂停剪辑"
         # 1 - views/video_editor/cutters/_video.html.erb
-		# rewind: 倒回剪辑
-        rewind: "Rewind clip"
+        rewind: "倒回剪辑"
     videos:
       # Icon to switch to 'fullscreen' mode in a video player
       # 1 - views/shared/players/_video.html.erb
-	  # fullscreen: 满屏
-      fullscreen: "Fullscreen"
+      fullscreen: "满屏"
       # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the video editor
       # 1 - views/media_elements/new.html.erb
-	  # new: 建立新视频
-      new: "Create new video"
+      new: "建立新视频"
       # Pause inside a video player
       # 1 - views/shared/players/_video.html.erb
-	  # pause: 暂停视频
-      pause: "Pause video"
+      pause: "暂停视频"
       # Play inside video player
       # 1 - views/shared/players/_video.html.erb
-	  # play: 播放视频
-      play: "Play video"
+      play: "播放视频"
     # Icons inside a lesson in Virtual Classroom
     virtual_classroom:
       # 'Eye' icon, to open preview
       # 1 - views/virtual_classroom/_view_single.html.erb
-	  # preview: 打开课程预览器
-      preview: "Open lesson viewer"
+      preview: "打开课程预览器"
       # 'X' icon, to remove the lesson from Virtual Classroom
       # 1 - views/virtual_classroom/_view_single.html.erb
-	  # remove: 从你的虚拟教室中移除
-      remove: "Remove from your Virtual Classroom"
+      remove: "从你的虚拟教室中移除"
       # 'Mail' icon, to send the link of the lesson to your friends
       # 1 - views/virtual_classroom/_view_single.html.erb
-	  # send_link: 送一个课程链接给你的朋友
-      send_link: "Send a link of this lesson to your friends"
+      send_link: "送一个课程链接给你的朋友"
   
   
   # SECTION 1.6: content of the 'Help' tips. Each 'Help' contains three subsections, with title and description. There is a different 'Help' tip for each of the following sections:
@@ -1018,136 +940,100 @@ en:
     dashboard:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 欢迎到%{desy}！
-        title: "Welcome to %{desy}!"
+        title: "欢迎到%{desy}！"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 基于你感兴趣的主题，在我们的数据库中，在这个栏目中你能发现课程和单元。如果你点击课程或单元\"plus\"图标，你将把它增加到你个人部分，在那里你能修改和使用它。那个 \"small eye\"图标打开预览。
-        content: "In this dashboard you find lessons and elements selected in our database according to your subjects of interests. If you click on the \"plus\" icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The \"small eye\" icon opens a preview."
+        content: "基于你感兴趣的主题，在我们的数据库中，在这个栏目中你能发现课程和单元。如果你点击课程或单元\"plus\"图标，你将把它增加到你个人部分，在那里你能修改和使用它。那个 \"small eye\"图标打开预览。"
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 为你选择 - 单元
-        title: "Selected for you - elements"
+        title: "为你选择 - 单元"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 请选择我们为你推荐的课程单元！如果你没有找到任何感兴趣的课程单元，点击\"load a new element\"按钮，你能上传你自己的课程单元。
-        content: "Pick elements among the ones we propose to you! If you don't find anything interesting, by clicking on the \"load a new element\" button you can upload your own elements."
+        content: "请选择我们为你推荐的课程单元！如果你没有找到任何感兴趣的课程单元，点击\"load a new element\"按钮，你能上传你自己的课程单元。"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 为你选择 - 课程
-        title: "Selected for you - lessons"
+        title: "为你选择 - 课程"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 在这个栏目中，%{desy}保存你感兴趣的所有新课程。在这时，如果没有新课程提供，你能点击在每一页发现的那个 \"create a new Lesson\"按钮建立你自己的新课程：你将重定向到那个课程编辑器。在使用课程编辑器之前，确保有足够的课程单元。
-        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If at this moment there are no new lessons available, you can create your own by clicking on the \"create a new Lesson\" button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make sure to have enough elements."
+        content: "在这个栏目中，%{desy}保存你感兴趣的所有新课程。在这时，如果没有新课程提供，你能点击在每一页发现的那个 \"create a new Lesson\"按钮建立你自己的新课程：你将重定向到那个课程编辑器。在使用课程编辑器之前，确保有足够的课程单元。"
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-        title: "Status of lessons"
-		# 课程的状态
+        title: "课程的状态"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 这一页包括你个人课程文件夹，还有一套处理和建立新课程的指令。请注意你的新课程的状态：那个<br/><b>私有的</b>仅仅跟你看到与使用的课程相关，<b>已经分享</b>确认被其它的%{desy}用户看见和你已决定分享的课程；<b>已链接</b>指示其他用户建立的课程。
-        content: "This page contains your personal folder of lessons, together with a set of instruments to handle them and create new ones. Pay attention to the status of your lessons:<br/><b>private</b> corresponds to a lesson that only you can use and see, <b>shared</b> identifies lessons which you have decided to share and that can be seen by other %{desy} users; <b>linked</b> indicates lessons created by other users."
+        content: "这一页包括你个人课程文件夹，还有一套处理和建立新课程的指令。请注意你的新课程的状态：那个<br/><b>私有的</b>仅仅跟你看到与使用的课程相关，<b>已经分享</b>确认被其它的%{desy}用户看见和你已决定分享的课程；<b>已链接</b>指示其他用户建立的课程。"
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 动作按钮
-        title: "Action buttons"
+        title: "动作按钮"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 你能执行的出现在你的文件夹中所有的课程的动作按钮都是通过图像图标来识别的。<br/>那个\"eye\"图标充许你看到被选择的课程，那个\"pencil\"图标充许你修改课程。最后一个功能是不充许<b>被链接的</b>课程，在这个案例中，你只能发现\"copy\" 图标（两个圆重叠）：实际上，没有经过第一次拷贝的其他用户的实现，要想修改那个课程是不可能的。那个\"monitor with an eye\"图标上传课程到你的虚拟教室；如果课程分享，那个\"share\"图标（由两条线连接的三个小圆）被打开。如果你特别喜欢某人的其他课程，请点击\"star\"图标。最后，带有\"x\"那个图标删除那个课程（如果这个课程是已链接，那么这个图标被\"minus\"替换，它删除那个链接）
-        content: "All the actions you may carry out on the lessons present in your folders are identified by graphic icons.<br/>The \"eye\" icon allows you to see the selected lesson, the \"pencil\" icon permits you to modify the lesson. This last function is not allowed for <b>linked</b> lessons, in this case you find only the \"copy\" icon (two circles overlapped): in fact, it's not possible to modify lessons realized by other users without first making a copy. The \"monitor with an eye\" icon uploads the lesson into your Virtual Classroom; the \"share\" icon (three small circles connected by two lines) is turned on if the lesson is shared; if you particularly like somebody else's lesson, click on the \"star\" icon. Finally, the icon with a \"x\" deletes the lesson (if the lesson is <b>linked</b> this icon is replaced by a \"minus\", which deletes the link)."
+        content: "你能执行的出现在你的文件夹中所有的课程的动作按钮都是通过图像图标来识别的。<br/>那个\"eye\"图标充许你看到被选择的课程，那个\"pencil\"图标充许你修改课程。最后一个功能是不充许<b>被链接的</b>课程，在这个案例中，你只能发现\"copy\" 图标（两个圆重叠）：实际上，没有经过第一次拷贝的其他用户的实现，要想修改那个课程是不可能的。那个\"monitor with an eye\"图标上传课程到你的虚拟教室；如果课程分享，那个\"share\"图标（由两条线连接的三个小圆）被打开。如果你特别喜欢某人的其他课程，请点击\"star\"图标。最后，带有\"x\"那个图标删除那个课程（如果这个课程是已链接，那么这个图标被\"minus\"替换，它删除那个链接）"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 建立一个新课程
-        title: "Create a new lesson"
+        title: "建立一个新课程"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 一旦你增加了足够多的单元，就准备建立你自己的课程：点击\"create a new lesson\"按钮，它将把你带到 %{desy}的课程编辑器。
-        content: "Once you added a sufficient amount of elements, you are ready to create your own lesson: click on the \"create a new lesson\" button, which will redirect you to %{desy}'s Lesson Editor."
+        content: "一旦你增加了足够多的单元，就准备建立你自己的课程：点击\"create a new lesson\"按钮，它将把你带到 %{desy}的课程编辑器。"
     media_elements:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 你的教学单元
-        title: "Your didactic elements"
+        title: "你的教学单元"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 这一页包含你个人单元文件夹，还有一套建立和处理新课程的指令。<br/>只要有一个单元上传，%{desy}就分配一个 <b>私有的</b>状态给它。对于不喜欢的课程，你不能直接与你的私有单元共享：当你分享时，应用自动分享所有的单元。当单元转换<b>公共</b>状态时，它将从你的个人文件夹移到%{desy}的公共文件夹：在你的文件夹中，你将保持它的一个链接，当那个链接充许你使用，但既不能修改也不能删除。
-        content: "This page contains your personal folder of elements, together with a set of instruments to handle them and create new ones.<br/>As soon as an element is uploaded %{desy} assigns it the status <b>private</b>. Unlike for lessons, you can't share directly your private elements: when you share a lesson, the application shares automaticly all the elements contained in it. When an element passes to status <b>public</b>, it is automaticly moved from your personal folder to %{desy}'s public one: in your folder you'll keep a link of it, which allows you to use it but not modify nor delete it."
+        content: "这一页包含你个人单元文件夹，还有一套建立和处理新课程的指令。<br/>只要有一个单元上传，%{desy}就分配一个 <b>私有的</b>状态给它。对于不喜欢的课程，你不能直接与你的私有单元共享：当你分享时，应用自动分享所有的单元。当单元转换<b>公共</b>状态时，它将从你的个人文件夹移到%{desy}的公共文件夹：在你的文件夹中，你将保持它的一个链接，当那个链接充许你使用，但既不能修改也不能删除。"
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 单元编辑器
-        title: "Element Editors"
+        title: "单元编辑器"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 在每一个单元的那个 \"pencil\"图标打开那个单元的特别编辑器（音频，图像或视频）。如果包含 \"pencil\"的单元是<b>公共的</b>，那么这个编辑器将迫使你作为一个新单元保存你的工作（你不能修改公共单元），反之，如果那个单元是<b>私有的</b>，你能选择要么重写或不是原有的那个。\"elements editor\"按钮让你选择某种类型的单元并打开相应的空的编辑器。
-        content: "The \"pencil\" icon on each element opens that element's specific Editor (Audio, Image or Video). If the element containing the pencil is <b>public</b>, the Editor will force you to save your work as a new element (since you can't modify a public one), whereas if the element is <b>private</b> you can choose whether overwrite or not the original one. The button \"elements editor\" lets you choose a type of element and opens the corresponding empty Editor."
+        content: "在每一个单元的那个 \"pencil\"图标打开那个单元的特别编辑器（音频，图像或视频）。如果包含 \"pencil\"的单元是<b>公共的</b>，那么这个编辑器将迫使你作为一个新单元保存你的工作（你不能修改公共单元），反之，如果那个单元是<b>私有的</b>，你能选择要么重写或不是原有的那个。\"elements editor\"按钮让你选择某种类型的单元并打开相应的空的编辑器。"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title:  单元预览
-        title: "Element preview"
+        title:  "单元预览"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 那个 \"eye\"图标打开预览单元。在预览<b>私有的</b>单元时，你能发现包含有三条小的线段的按钮：点击它，你能打开用于修改单元的一般信息格式（标题，描述，和标签）。
-        content: "The \"eye\" icon opens the preview of an element. In the preview of <b>private</b> elements you can find a button containing three small lines: clicking on it you open a form that you can use to modify the element's general information (title, description, and tags)."
+        content: "那个 \"eye\"图标打开预览单元。在预览<b>私有的</b>单元时，你能发现包含有三条小的线段的按钮：点击它，你能打开用于修改单元的一般信息格式（标题，描述，和标签）。"
     search:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 搜索引擎
-        title: "Search Engine"
+        title: "搜索引擎"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: %{desy}的搜索引擎可用于课程和单元；引擎是基于标签。<br/>通过使用\"plus\"图标任意被发现的课程或单元可增加到你相应个人文件夹中。
-        content: "%{desy}'s Search Engine may be used for both lessons and elements; the engine is based on tags.<br/>Any lesson or element found may be added to your corresponding personal folder by using the \"plus\" icon."
+        content: "%{desy}的搜索引擎可用于课程和单元；引擎是基于标签。<br/>通过使用\"plus\"图标任意被发现的课程或单元可增加到你相应个人文件夹中。"
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 推荐一个好的搜索
-        title: "Suggestions for a good search"
+        title: "推荐一个好的搜索"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 当你打你的搜索关键字时，%{desy}搜索引擎建议你大部分被使用的在数据库中的标签（开始你的关键字）。这种方式你将有一个范围比较广的选择并能进一步完成搜寻结果。
-        content: "While you are typing the keyword for your search, %{desy}'s Search Engine suggests you the most used tags (beginning with your keyword) among the ones present in the database. This way you'll have a wider choice and a more complete search result."
+        content: "当你打你的搜索关键字时，%{desy}搜索引擎建议你大部分被使用的在数据库中的标签（开始你的关键字）。这种方式你将有一个范围比较广的选择并能进一步完成搜寻结果。"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 推荐一个好的标签
-        title: "Suggestions for a good tagging"
+        title: "推荐一个好的标签"
         # Here the variable %{tags} is replaced by the minimum amount of tags for an item in the application
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 当你上传一个新的单元或建立一个新的课程时，插入一排好的标签是非常的重要的。适合的标签充许搜索引擎更容易找到你的课程。你必须插入最小的 %{tags}标签。
-        content: "When you upload a new element or create a new lesson it's important to insert the a good range of tags. A proper tagging allows the Search Engine to find more easily your lessons. You must insert a minimum of %{tags} tags."
+        content: "当你上传一个新的单元或建立一个新的课程时，插入一排好的标签是非常的重要的。适合的标签充许搜索引擎更容易找到你的课程。你必须插入最小的 %{tags}标签。"
     users:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 你的个人资料页
-        title: "Your profile page"
+        title: "你的个人资料页"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 在这一页你能显示和修改你的个人资料。看一看这页顶部的菜单栏：每一链接引导你到相应页面。
-        content: "In this page you can review and modify your profile. Have a look at the menu on the top of the page: each link redirects you to the corresponding section of your profile."
+        content: "在这一页你能显示和修改你的个人资料。看一看这页顶部的菜单栏：每一链接引导你到相应页面。"
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 个人资料，邮件列表
-        title: "Personal data, mailing lists"
+        title: "个人资料，邮件列表"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 这部分\"subjects\"包括你的科目列表：任何时候你能更新这个列表。记得%{desy}检查你在主页中选择发现被建议课程的科目。那部分\"mailing list\"包含一组Email地址的列表，它用于从虚拟教室发送你的课程链接：点击那个按钮\"add new group\"建立新的邮件列表。
-        content: "The section \"subjects\" contains the list of your subjects: you can update this list at any time. Remember that %{desy} checks out your subjects to choose the suggested lessons that you find in the main page. The section \"mailing list\" contains a list of groups of e-mail addresses, that you can use to send your lesson links from inside your Virtual Classroom: click on the button \"add new group\" to create a new mailing list."
+        content: "这部分\"subjects\"包括你的科目列表：任何时候你能更新这个列表。记得%{desy}检查你在主页中选择发现被建议课程的科目。那部分\"mailing list\"包含一组Email地址的列表，它用于从虚拟教室发送你的课程链接：点击那个按钮\"add new group\"建立新的邮件列表。"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 统计
-        title: "Statistics"
+        title: "统计"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 这部分\"statistics\"包括关于你个人资料和所有的 %{desy}有趣的统计。统计通过目录划分，容易查询。
-        content: "The section \"statistics\" contains interesting statistics about your profile and about all %{desy}. The statistics are divided by categories and easy to consult."
+        content: "这部分\"statistics\"包括关于你个人资料和所有的 %{desy}有趣的统计。统计通过目录划分，容易查询。"
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: %{desy}的虚拟教室
-        title: "%{desy}'s Virtual Classroom"
+        title: "%{desy}的虚拟教室"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 欢迎到你的虚拟教室！这里离可以从个人文件夹中上传课程并且组织它们进入播放列表。按钮\"add lessons\"打开一个窗口快速加载多个课程。
-        content: "Welcome to your Virtual Classroom! Here you may upload lessons from your personal folder and organize them into a playlist. The button \"add lessons\" opens a window to load quickly multiple lessons."
+        content: "欢迎到你的虚拟教室！这里离可以从个人文件夹中上传课程并且组织它们进入播放列表。按钮\"add lessons\"打开一个窗口快速加载多个课程。"
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 播放列表
-        title: "Playlist"
+        title: "播放列表"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: %{desy}的虚拟教室的有用特征之一是播放列表：在播放内移除课程，拖它到右边的区域。在更适合你的教学目标的序列中重新产生那个播放列表，你能拖动它们将单元分类。
-        content: "One of the useful features of %{desy}'s Virtual Classroom is the playlist: to move a lesson inside the playlist, drag it to the zone on the right. To reproduce the playlist in the sequence which is most suitable to your didactive objectives, you can sort its elements by dragging them."
+        content: "%{desy}的虚拟教室的有用特征之一是播放列表：在播放内移除课程，拖它到右边的区域。在更适合你的教学目标的序列中重新产生那个播放列表，你能拖动它们将单元分类。"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
-		# title: 送链接给你的朋友
-        title: "Send a link to your friends"
+        title: "送链接给你的朋友"
         # 1 - views/notifications/_tooltip_help.html.erb
-		# content: 位于每一课程下边的那个\"envelope\"图标打开一个窗口，在那里你能选择e-mail地址列表：点击那个按钮\"send\"发送包含你课程的公共链接的邮件（使用这个链接，你的学生能可视化不用在%{desy}中注册的课程）。
-        content: "The \"envelope\" icon located below each lesson opens a window where you can select a list of e-mail addresses: click on the button \"send\" to send an email containing the public link of your lessons (using this link your students are able to visualize the lesson without being registered in %{desy})."
+        content: "位于每一课程下边的那个\"envelope\"图标打开一个窗口，在那里你能选择e-mail地址列表：点击那个按钮\"send\"发送包含你课程的公共链接的邮件（使用这个链接，你的学生能可视化不用在%{desy}中注册的课程）。"
   
   
   
