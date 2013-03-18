@@ -11,7 +11,11 @@ $('._location_select_box').each(function() {
   $('select#<%= SETTINGS["location_types"][depth].downcase %>_id').html('');
 <% end %>
 <% if @locations.any? %>
-  $('select#<%= @locations.first.sti_type.downcase %>_id').html('<%= j render(:partial => "users/locations_list", :locals => {:locations => @locations, :selected => nil}) %>');
+  if($('html').hasClass('prelogin-controller')) {
+    $('select#<%= @locations.first.sti_type.downcase %>_id').html('<%= j render(:partial => "users/locations_list", :locals => {:locations => @locations, :selected => nil, :edit => false}) %>');
+  } else {
+    $('select#<%= @locations.first.sti_type.downcase %>_id').html('<%= j render(:partial => "users/locations_list", :locals => {:locations => @locations, :selected => nil, :edit => true}) %>');
+  }
 <% end %>
 
 $('._location_select_box').each(function() {
