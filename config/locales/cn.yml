@@ -1,0 +1,3384 @@
+# INSTRUCTIONS FOR THE TRANSLATOR:
+#
+# 1) don't remove or modify anything included between the signs %{} and <>
+# 2) don't insert the character " alone: always write it following a backslash, like \"
+# 3) don't modify anything outside the " --- "; especially, don't add nor delete spaces
+# 4) any time you find %{desy}, that will be replaced by the application's name configured in config/settings.yml
+
+
+# STRUCTURE OF THE FILE:
+#
+#   # Description of the functionality of the label
+#   # 1 - first occurrence of the translation inside the application (the path refers to the folder 'app/')
+#   # 2 - second occurrence (it might be in the same file)
+#   # 3 - third occurrence, etc.
+#   label: "English translation to be replaced in a different language"
+
+
+en:
+  
+  
+  # PART 1 -- ACCESSORIES
+  
+  
+  # SECTION 1.1: general messages shown by the application
+  
+  # Error messages shown in a small horizontal bar on the top of the application (this type of message is used only in the form that users use to sign up)
+  flash: # solo per la registrazione
+    # The user forgot to insert an email
+    # 1 - controllers/users_controller.rb
+    email_is_blank: "邮件地址是空的"
+    # This message appears if a user tries to click on a confirmation link which is no longer valid
+    # 1 - controllers/users_controller.rb
+    failed_confirmation: "你提交的链接不再合法"
+    # The user lost the password and asked for a new one: this message appears when the password has been successfully reset
+    # 1 - controllers/users_controller.rb
+    password_reset_successfully: "口令重置成功"
+    # The user filled his sign up form, and there were no errors: the application sent him an email with a link to confirm his account
+    # 1 - controllers/users_controller.rb
+    successful_registration: "注册已完成。为了确认，请检查你的邮件。"
+    # The user clicked on the confirmation link he received by email: he is redirected to the main page of the application, with this message (to log in he still needs to write username and password, he is not automatically logged in)
+    # 1 - controllers/users_controller.rb
+    successful_confirmation: "你的账号成功确认。输入你的用户名及密码登陆"
+  # Messages shown inside a popup, all over the application
+  other_popup_messages:
+    correct:
+      add:
+        # The user successfully added a lesson to his personal folder
+        # 1 - controllers/lessons_controller.rb
+        lesson: "你已增加这个课程"
+        # The user successfully added an element to his personal folder
+        # 1 - controllers/media_elements_controller.rb
+        media_element: "你已增加这个多媒体单元"
+      # The user successfully shared a lesson
+      # 1 - controllers/lessons_controller.rb
+      publish: "这个课程已分享"
+      remove:
+        # The user successfully removed a lesson from his personal folder
+        # 1 - controllers/lessons_controller.rb
+        lesson: "你已删除此课程"
+        # The user successfully removed an element from his personal folder
+        # 1 - controllers/media_elements_controller.rb
+        media_element: "你已删除此媒体单元"
+      # This message is associated to the form used to report an inappropriate content (both for lessons and elements)
+      # 1 - views/reports/media_element.js.erb
+      # 2 - views/reports/lesson.js.erb
+      report: "报告成功发送"
+      # A shared lesson was successfully turned back into private
+      # 1 - controllers/lessons_controller.rb
+      unpublish: "课程不再分享"
+      # The user's personal profile has been successfully updated
+      # 1 - views/users/update.js.erb
+      user_update: "你的基本资料成功更新"
+    login:
+      # While trying to login, the user forgot to fill both fields (username and password)
+      # 1 - controllers/users/sessions_controller.rb
+      missing_fields: "插入用户名和密码"
+      # The user tried to login with wrong username or password
+      # 1 - controllers/users/sessions_controller.rb
+      wrong_content: "错误的用户名或密码"
+    mailing_list:
+      # An error occurred while updating the user's mailing list (general message for any kind of error)
+      # 1 - views/shared/_popups.html.erb
+      error: "邮件列表错误"
+    send_lesson_link:
+      # The user sent an email to a list of friends containing a direct link to a lesson: using such a link anybody can see the lesson, even without being logged in. The variables %{success} and %{total} represent (a) the number of emails to which the link has been successfully sent, and (b) the original number of emails the user inserted (there might be emails containing wrong characters).
+      # 1 - views/virtual_classroom/send_link.js.erb
+      ok: "链接从插入的邮件%{total}中，成功送到%{success}"
+      # The link (see above) couldn't be sent; the application suggests checking the correctness of the emails
+      # 1 - views/virtual_classroom/send_link.js.erb
+      error: "链接没有发送：你想插入至少一个正确的邮件地址吗？"
+    video_editor:
+      # Inside the video editor, the user tried to insert a text component inside the timeline without writing any text
+      # 1 - views/shared/_popups.html.erb
+      empty_text_component: "插入文本"
+      # Inside the video editor, the user tried to insert a text (or image) inside the timeline without specifying a correct duration (in seconds)
+      # 1 - views/shared/_popups.html.erb
+      invalid_component_duration: "插入时长！（大于零的整数）"
+    virtual_classroom_lessons:
+      # Inside the Virtual Classroom, it's possible to open a window for lesson multiple loading: this is the message shown when the user successfully loaded some lessons
+      # 1 - views/virtual_classroom/load_lessons.js.erb
+      loaded_ok: "正确加载了课程"
+      # In the same situation, for some reason not all the selected lessons were loaded (the variable %{number} represents the number of lessons which couldn't be loaded)
+      # 1 - views/virtual_classroom/load_lessons.js.erb
+      loaded_error: "错误，你课程的%{number}没有被加载"
+  activerecord:
+    errors:
+      # The list of error messages below is used when the user doesn't properly fill a field in his personal profile
+      messages:
+        # Invalid email address
+        # 1 - models/user.rb
+        invalid_email_address: "不是合法的邮件地址"
+        # A field has not been filled
+        # 1 - models/user.rb
+        blank: "不能为空"
+        # The password confirmation doesn't match
+        # 1 - models/user.rb
+        confirmation: "确认不匹配"
+        # A field doesn't have enough characters (%{count} represents the minimum)
+        # 1 - models/user.rb
+        too_short: "太短(最短是 %{count} 字符)"
+        # A field has too many characters (%{count} represents the maximum)
+        # 1 - models/user.rb
+        too_long: "太长(最长是 %{count} 字符)"
+        # The email is already present in the database
+        # 1 - models/user.rb
+        uniqueness: "在数据库中已经存在"
+        # A field can't be modified
+        # 1 - models/user.rb
+        changed: "不能修改"
+        # The user must accept the personal data treatment policy (this message is used also for more customized policies)
+        # 1 - models/user.rb
+        accepted: "必须接收"
+      models:
+        bookmark:
+          # There was an error while trying to add the lesson to your personal folder
+          # 1 - controllers/lessons_controller.rb
+          # 2 - controllers/lessons_controller.rb
+          problem_creating_for_lesson: "不能增加课程"
+          # There was an error while trying to add the element to your personal folder
+          # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/media_elements_controller.rb
+          problem_creating_for_media_element: "不能增加单元"
+          # There was an error while trying to remove the lesson from your personal folder
+          # 1 - controllers/lessons_controller.rb
+          # 2 - controllers/lessons_controller.rb
+          # 3 - controllers/lessons_controller.rb
+          problem_destroying_for_lesson: "不能移去课程"
+          # There was an error while trying to remove the element from your personal folder
+          # 1 - controllers/media_elements_controller.rb
+          # 2 - controllers/media_elements_controller.rb
+          # 3 - controllers/media_elements_controller.rb
+          problem_destroying_for_media_element: "不能移去单元"
+        lesson:
+          # There was an error while trying to copy the lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
+          # 5 - models/lesson.rb
+          # 6 - models/lesson.rb
+          # 7 - models/lesson.rb
+          problem_copying: "不能拷贝课程"
+          # The selected lesson has already been copied
+          # 1 - models/lesson.rb
+          already_copied: "你已经有了这个课程的拷贝"
+          # The selected lesson is a copy of another lesson which has not been modified yet (until the copy has'nt been modifed, it is frozen)
+          # 1 - models/lesson.rb
+          just_copied: "你已经拷贝了这个课程"
+          # The selected lesson is already being shared, it can't be shared again
+          # 1 - models/lesson.rb
+          already_published: "已经分享这个课程"
+          # There was an error while trying to share the lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
+          # 5 - models/lesson.rb
+          problem_publishing: "没有分享此课程"
+          # There was an error while trying to undo the sharing
+          # 1 - controllers/lessons_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
+          # 5 - models/lesson.rb
+          problem_unpublishing: "分享的课程不能解除"
+          # The selected lesson is not shared, hence the sharing can't be undone
+          # 1 - models/lesson.rb
+          already_unpublished: "还没有分享这个课程"
+          # There was an error while trying to delete the lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
+          problem_destroying: "不能删除这个课程"
+          # There was an error while trying to add the lesson to your Virtual Classroom
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - models/lesson.rb
+          # 3 - models/lesson.rb
+          problem_adding_to_virtual_classroom: "这个课程不能增加到你的虚拟教室"
+          # The selected lesson is already in your Virtual Classroom, hence you can't add it again
+          # 1 - models/lesson.rb
+          lesson_already_in_virtual_classroom: "这个课程已经在你的虚拟教室中"
+          # For some reason, the selected lesson cannot be added to your Virtual Classroom
+          # 1 - models/lesson.rb
+          lesson_not_available_for_virtual_classroom: "这个课程不能增加到你的虚拟教室"
+          # There was an error while trying to remove the lesson from your Virtual Classroom
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - controllers/virtual_classroom_controller.rb
+          # 3 - models/lesson.rb
+          # 4 - models/lesson.rb
+          # 5 - models/lesson.rb
+          # 6 - models/lesson.rb
+          problem_removing_from_virtual_classroom: "这个课程不能从你的虚拟教室中移去"
+        like:
+          # There was an error while you were trying to remove 'I like it' from a lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - controllers/lessons_controller.rb
+          problem_destroying: "不能移去你的'我喜欢它'"
+          # There was an error while you were trying to add 'I like it' to the selected lesson
+          # 1 - controllers/lessons_controller.rb
+          # 2 - controllers/lessons_controller.rb
+          problem_creating: "不能注册你的'我喜欢它'"
+        media_element:
+          # There was an error while trying to delete an element
+          # 1 - controllers/media_elements_controller.rb
+          # 2 - models/media_element.rb
+          # 3 - models/media_element.rb
+          # 4 - models/media_element.rb
+          problem_destroying: "不能删除这个单元"
+          # Since the element is public, it's not possible to delete it
+          # 1 - models/media_element.rb
+          cant_destroy_public: "这个单元是公用的，你不能删除它"
+        user:
+          # In the administration module, it's possible to delete a user from the database: this message appears if something wrong occurred during this process, and the user couldn't be deleted
+          # 1 - models/user.rb
+          # 1 - models/user.rb
+          # 1 - models/user.rb
+          # 1 - models/user.rb
+          problem_destroying: "不能删除这个用户"
+          # This message is associated with the form used to report an inappropriate content (both for lessons and elements): a problem occurred, the report couldn't be sent
+          # 1 - controllers/reports_controller.rb
+          # 2 - controllers/reports_controller.rb
+          # 3 - models/user.rb
+          # 4 - models/user.rb
+          # 5 - models/user.rb
+          # 6 - models/user.rb
+          problem_reporting: "不能发送你的内容"
+          # Same situation: the user is trying to report the same lesson twice
+          # 1 - models/user.rb
+          lesson_already_reported: "你已经记录了这个课程"
+          # Same situation: the user is trying to report the same media element twice
+          # 1 - models/user.rb
+          media_element_already_reported: "你已经记录了这个单元"
+        notification:
+          # There was an error while trying to delete a notification
+          # 1 - controllers/notifications_controller.rb
+          # 2 - controllers/notifications_controller.rb
+          problem_destroying: "不能删除这个通知"
+        virtual_classroom_lesson:
+          # You tried to insert the lesson in an invalid position inside the playlist
+          # 1 - models/virtual_classroom_lesson.rb
+          # 2 - models/virtual_classroom_lesson.rb
+          invalid_position_in_playlist: "非法的课程位置"
+          # There was an error while trying to change the position of the lesson inside the playlist
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - models/virtual_classroom_lesson.rb
+          # 3 - models/virtual_classroom_lesson.rb
+          # 4 - models/virtual_classroom_lesson.rb
+          # 5 - models/virtual_classroom_lesson.rb
+          # 6 - models/virtual_classroom_lesson.rb
+          problem_changing_position_in_playlist: "不能改变课程的位置"
+          # There was an error while trying to add the lesson to the playlist
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - models/virtual_classroom_lesson.rb
+          # 3 - models/virtual_classroom_lesson.rb
+          # 4 - models/virtual_classroom_lesson.rb
+          problem_adding_to_playlist: "不能增加课程到播放列表"
+          # There was an error while trying to empty the playlist inside your Virtual Classroom'
+          # 1 - controllers/virtual_classroom_controller.rb
+		  # problem_emptying_playlist: 你的播放列表不能为空
+          problem_emptying_playlist: "Your playlist could not be emptied"
+          # This happens when you try to add a lesson to a playlist which is already full
+          # 1 - models/virtual_classroom_lesson.rb
+		  # playlist_full: 播放列表已满
+          playlist_full: "Your playlist is full!"
+          # There was an error while trying to remove the lesson from the playlist
+          # 1 - controllers/virtual_classroom_controller.rb
+          # 2 - models/virtual_classroom_lesson.rb
+          # 3 - models/virtual_classroom_lesson.rb
+          # 4 - models/virtual_classroom_lesson.rb
+		  # problem_removing_from_playlist: 课程不能从播放列表中移去
+          problem_removing_from_playlist: "The lesson could not be removed from the playlist"
+  
+  
+  # SECTION 1.2: small windows with title, description and two buttons (they are used in whenever the application asks the user for confirmation of an action)
+  
+  popups:
+    # The application asks for confirmation about sharing a lesson
+    publish:
+      # Message (the application tells the user that any element contained in the lesson will be shared together with it)
+      # 1 - views/shared/_popups.html.erb
+	  # confirm: 自动分享包括在课程中的每一个单元
+      confirm: "Every element contained in it will be automatically shared"
+      # Title
+      # 1 - views/shared/_popups.html.erb
+	  # title: 发布这个课程
+      title: "Publish this lesson"
+      # Button to confirm
+      # 1 - views/shared/_popups.html.erb
+	  # do: 发布这个课程
+      do: "Publish the lesson"
+      # Button to cancel
+      # 1 - views/shared/_popups.html.erb
+	  # cancel: 终止
+      cancel: "Cancel"
+    # The application asks for confirmation about turning a shared lesson back into private
+    unpublish:
+      # Message (the application tells the user that if he turns the lesson back into private anyone who is following it will lose its link)
+      # 1 - views/shared/_popups.html.erb
+	  # confirm: 你确认吗？已链到这个课程的每个人将失去它
+      confirm: "Are you sure? Everyone who linked the lesson will lose it"
+      # Title
+      # 1 - views/shared/_popups.html.erb
+	  # title: 将课程转换成私有
+      title: "Turn back a lesson into private"
+      # Button to confirm
+      # 1 - views/shared/_popups.html.erb
+	  # do: 是的，我确认
+      do: "Yes I am sure"
+      # Button to cancel
+      # 1 - views/shared/_popups.html.erb
+	  # cancel: 终止
+      cancel: "Cancel"
+    destroy:
+      # The application asks for confirmation about deleting a lesson
+      lesson:
+        # Message (if anybody is following the lesson, he will lose its link)
+        # 1 - views/shared/_popups.html.erb
+		# confirm: 已链到这个课程的每个人将失去它
+        confirm: "Everybody who linked the lesson will lose it"
+        # Title
+        # 1 - views/shared/_popups.html.erb
+		# title: 删去这个课程
+        title: "Delete this lesson"
+        # Button to confirm
+        # 1 - views/shared/_popups.html.erb
+		do: 删去这个课程
+        do: "Delete the lesson"
+        # Button to cancel
+        # 1 - views/shared/_popups.html.erb
+		# cancel: 终止
+        cancel: "Cancel"
+      # The application asks for confirmation about deleting an element
+      media_element:
+        # Message
+        # 1 - views/shared/_popups.html.erb
+		# confirm: 你确信要删去它吗？
+        confirm: "Are you sure you want to delete it?"
+        # Message if you are using the element in some of your lessons: it will be removed from each of his instances
+        # 1 - views/shared/_popups.html.erb
+		# confirm_bis: 在一些课程中，你正在使用单元：它将从每一例子中删去
+        confirm_bis: "You are using it in some of your lessons, it will be deleted in each of its instances"
+        # Title
+        # 1 - views/shared/_popups.html.erb
+		title: 删去这个单元
+        title: "Delete this element?"
+        # Button to confirm
+        # 1 - views/shared/_popups.html.erb
+		do: 删去这个单元
+        do: "Delete the element"
+        # Button to cancel
+        # 1 - views/shared/_popups.html.erb
+		# cancel: 终止
+        cancel: "Cancel"
+    # After having copied a lesson, the application asks the user what hw would like to do (go and immediately edit the lesson he copied, or stay on the page and do it later)
+    after_copy:
+      # Title
+      # 1 - views/lessons/copy.js.erb
+	  # title: 你已拷贝了这个课程
+      title: "You copied the lesson!"
+      # Message
+      # 1 - views/lessons/copy.js.erb
+	  # confirm: 现在你想做什么？
+      confirm: "What would you like to do now?"
+      # Button to stay inside the page
+      # 1 - views/lessons/copy.js.erb
+	  stay_in_page: 在这一页
+      stay_in_page: "Stay in this page"
+      # Button to edit the lesson now
+      # 1 - views/lessons/copy.js.erb
+	  # go_to_editor: 现在编辑这一页
+      go_to_editor: "Edit the lesson now"
+    # When entering the audio or video editor, the application detects if the user left an uncompleted session; if this is the case, the application asks to the user if he wants to delete his old work or restore it
+    restore_cache_media_element_editor:
+      # Message
+      # 1 - views/shared/_popups.html.erb
+	  # message: 之前正在上的课程不期望关闭！
+      message: "A previous working session was closed unexpectedly!"
+      # Button to restore
+      # 1 - views/shared/_popups.html.erb
+	  # do: 恢复
+      do: "Restore"
+      # Button to clear your session
+      # 1 - views/shared/_popups.html.erb
+	  # cancel: 清除
+      cancel: "Clear"
+    # Popup asking for confirmation to the user if he clicks on the button 'empty playlist' inside the Virtual Classroom
+    empty_playlist:
+      # Title
+      # 1 - views/shared/_popups.html.erb
+	  # title: 使你的播放列表清空
+      title: "Empty your playlist"
+      # Message
+      # 1 - views/shared/_popups.html.erb
+	  # confirm: 确认你想把它清空吗？
+      confirm: "Are you sure you want to empty it?"
+      # Button to confirm
+      # 1 - views/shared/_popups.html.erb
+	  # do:是的
+      do: "Yes"
+      # Button to cancel
+      # 1 - views/shared/_popups.html.erb
+	  # cancel: 终止
+      cancel: "Cancel"
+    # Popup asking for confirmation to the user if he clicks on the button 'empty virtual classroom' inside the Virtual Classroom
+    empty_virtual_classroom:
+      # Title
+      # 1 - views/shared/_popups.html.erb
+	  # title: 清空你的虚拟教室
+      title: "Empty your Virtual Classroom"
+      # Message
+      # 1 - views/shared/_popups.html.erb
+	  # confirm: 确认你想把它清空吗？
+      confirm: "Are you sure you want to empty it?"
+      # Button to confirm
+      # 1 - views/shared/_popups.html.erb
+	  # do: 是的
+      do: "Yes"
+      # Button to cancel
+      # 1 - views/shared/_popups.html.erb
+	  # cancel: 终止
+      cancel: "Cancel"
+    # When the user clicks on the 'exit' button inside the video editor, the application asks for confirmation (if the user confirms, the application deletes his current working session)
+    exit_video_editor:
+      # Title
+      # 1 - views/shared/_popups.html.erb
+	  # title: 退出视频编辑器
+      title: "Leaving the video editor"
+      # Message
+      # 1 - views/shared/_popups.html.erb
+	  # confirm: 确认你想退出吗？
+      confirm: "Are you sure you want to leave?"
+      # Button to confirm
+      # 1 - views/shared/_popups.html.erb
+	  # do: 是的
+      do: "Yes"
+      # Button to cancel
+      # 1 - views/shared/_popups.html.erb
+	  # cancel: 保持这一页
+      cancel: "Stay on the page"
+    # When the user clicks on the 'exit' button inside the audio editor, the application asks for confirmation (if the user confirms, the application deletes his current working session)
+    exit_audio_editor:
+      # Title
+      # 1 - views/shared/_popups.html.erb
+	  # title: 退出视频编辑器
+      title: "Leaving the audio editor"
+      # Message
+      # 1 - views/shared/_popups.html.erb
+	  # confirm: 确认你想退出吗？
+      confirm: "Are you sure you want to leave?"
+      # Button to confirm
+      # 1 - views/shared/_popups.html.erb
+	  # do: 是的
+      do: "Yes"
+      # Button to cancel
+      # 1 - views/shared/_popups.html.erb
+	  # cancel: 保持这一页
+      cancel: "Stay on the page"
+    # If the user is editing a private element, when he clicks on the button 'commit changes' the application asks him if he wants to overwrite the element or save it as a new one
+    save_media_element_editor:
+      # Title
+      # 1 - views/shared/_popups.html.erb
+	  # title: 保存私有单元
+      title: "Saving a private element"
+      # Message
+      # 1 - views/shared/_popups.html.erb
+	  # confirm: 当修改的单元是私有时，你能覆盖它
+      confirm: "Since the element you modified is private, you can overwrite it"
+      # Button to overwrite
+      # 1 - views/shared/_popups.html.erb
+	  # do: 覆盖
+      do: "Overwrite"
+      # Button to cancel
+      # 1 - views/shared/_popups.html.erb
+	  # cancel: 作为新单元保存
+      cancel: "Save as new element"
+    # If the user is overwriting a private element, and he used the same element in some of his lessons, the application asks him for confirmation (since the same element will automatically be modified in all of its instances)
+    overwrite_media_element_editor:
+      # Title
+      # 1 - views/shared/_popups.html.erb
+	  # title: 这个单元在使用
+      title: "This element is in use!"
+      # Message
+      # 1 - views/shared/_popups.html.erb
+	  # confirm: 如果覆盖，在任意私有课程中它将被退换
+      confirm: "If you overwrite it, it will be replaced in any private lesson containing it"
+      # Button to confirm
+      # 1 - views/shared/_popups.html.erb
+	  #  do: 覆盖
+      do: "Overwrite"
+      # Button to cancel
+      # 1 - views/shared/_popups.html.erb
+	  # cancel: 终止
+      cancel: "Cancel"
+    # The user may send an email to a list of friends containing a direct link to a lesson
+    send_lesson_link:
+      # Title
+      # 1 - views/virtual_classroom/_popups.html.erb
+	  # title: 送一个连接给你的朋友
+      title: "Send a link to your friends"
+      # Message (using such a link anybody can see the lesson, even without being logged in); the link contains a special token that doesn't allow other people to use it
+      # 1 - views/virtual_classroom/_popups.html.erb
+	  # confirm: 在 %{desy}外面，跟你的朋友分享你的课程
+      confirm: "Share your lesson with your friends outside %{desy}!"
+      # Button to confirm
+      # 1 - views/virtual_classroom/_popups.html.erb
+	  # do: 送
+      do: "Send"
+      # Button to cancel
+      # 1 - views/virtual_classroom/_popups.html.erb
+	  # cancel: 终止
+      cancel: "Cancel"
+  
+  
+  # SECTION 1.3: contents of emails automatically sent by the application; the variables %{name}, %{password}, %{message} and similar will be replaced by the application, depending on the user
+  
+  mailer:
+    # Mail containing the link to confirm a new account
+    account_confirmation:
+      # Subject
+      # 1 - mailers/user_mailer.rb
+	  # subject: %{desy} - 账号确认
+      subject: "%{desy} - Account confirmation"
+      # Message
+      # 1 - mailers/user_mailer.rb
+	  # message: "<p>恭喜%{name}</p>,<p>谢谢你的注册%{desy}!</p><p><b>为了完成你的注册，请点击以下链接:</b></p><p>如果此链接没有出现，请拷贝和粘贴到你的浏览器.<br/>当确认注册, 此链接不再是合法.<br/>为了进入系统，请用用户名与密码.</p><br/><p>N.B.</p><p>只能确认那个账号一次.</p>"
+      message: "<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br/>When the registration is confirmed, the link will not be valid anymore.<br/>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br/><p>N.B.</p><p>The confirmation of the account can only be made once.</p>"
+    # Mail containing the link to reset a forgotten password
+    reset_password:
+      # Subject
+      # 1 - mailers/user_mailer.rb
+	  # subject: %{desy} - 新密码
+      subject: "%{desy} - New password"
+      # Message
+      # 1 - mailers/user_mailer.rb
+	  # message: "<h1>恭喜%{name},</h1><p>我们已接收你重置了的密码; 这是你的新密码: <b>%{password}</b></p><p>在以下URL,现在用新的密码你能登陆%{desy}.</p><p>在“个人资料”里，当已登录，你能设置另一个密码.</p>"
+      message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password of your choice once logged in, in the 'Profile' section.</p>"
+    # Email containing the public link of a lesson (when a user wants to share his lesson outside the application)
+    see_my_lesson:
+      # Subject
+      # 1 - mailers/user_mailer.rb
+	  # subject: %{desy} - 课程链接
+      subject: "%{desy} - Lesson link"
+      # Message
+      # 1 - mailers/user_mailer.rb
+	  # message: "<p>在%{desy}中，客户%{name}认为你可能对课程感兴趣.</p><div class=\"messageContent\">%{message}</div><p>点击链接显示课程(如果不能打开这个链接, 请你拷贝和粘贴到你的浏览器):</p><br/>"
+      message: "<p>The user %{name} thinks that you might be interested in a lesson in %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):</p><br/>"
+  
+  
+  # SECTION 1.4: Standard forms for editing the general information of lessons or media elements. For 'general information' it's meant:
+  #   (a) title
+  #   (b) description
+  #   (c)tags
+  # Each of these forms contains:
+  #   1) a title
+  #   2) a message
+  #   3) three fields to fill (corresponding to title, description and tags above)
+  #   4) two buttons (confirm and cancel)
+  
+  forms:
+    # Form to create a new lesson
+    new_lesson:
+      # 1 - views/lesson_editor/new.html.erb
+	  # title: 你正在建立新课程
+      title: "You are creating a new lesson"
+      # 1 - views/lesson_editor/new.html.erb
+	  # description: 在以下表格中，请输入所有详细
+      description: "Enter all the details in the form below"
+      # 1 - views/lesson_editor/new.html.erb
+	  # cancel: 终止
+      cancel: "Cancel"
+      # 1 - views/lesson_editor/new.html.erb
+	  # done: 下一个
+      done: "Next"
+    # Form to modify a lesson
+    update_lesson:
+      # 1 - views/lesson_editor/edit.html.erb
+	  # title: 你要做出重要改变吗？
+      title: "Are you making significant changes?"
+      # 1 - views/lesson_editor/edit.html.erb
+	  # description: 基于新内容，在这里添加课程信息
+      description: "Update here the lesson's info according to its new content"
+      # 1 - views/lesson_editor/edit.html.erb
+	  # cancel: 终止
+      cancel: "Cancel"
+      # 1 - views/lesson_editor/edit.html.erb
+	  # done: 添加
+      done: "Update"
+    # Form for uploading a new media element
+    upload_media_element:
+      # 1 - views/media_elements/_new_form_popup.html.erb
+	  # title: 上传媒体单元
+      title: "Upload a media element"
+      # 1 - views/media_elements/_new_form_popup.html.erb
+	  # description: 通过点击左边的按钮选择一个文件
+      description: "Select a file by clicking on the button on the left"
+      # 1 - views/media_elements/_new_form_popup.html.erb
+	  # cancel: 终止
+      cancel: "Cancel"
+      # 1 - views/media_elements/_new_form_popup.html.erb
+	  # done: 上传
+      done: "Upload"
+    # Form for modifying a media element
+    change_info_media_element:
+      # 1 - views/media_elements/_popup.html.erb
+	  # title: 单元信息
+      title: "Element's information"
+      # 1 - views/media_elements/_popup.html.erb
+	  # description: 修改数据填写以下表格
+      description: "Fill the form below to modify data"
+      # 1 - views/media_elements/_popup.html.erb
+	  # cancel:终止
+      cancel: "Cancel"
+      # 1 - views/media_elements/_popup.html.erb
+	  # done: 保存
+      done: "Save"
+    # Form for creating a new media element with one of the three editors (image / audio / video)
+    new_media_element_in_editor:
+      # 1 - views/media_elements/info_form_in_editor/_new.html.erb
+	  # title: 你正在建立一新课程
+      title: "You are creating a new element"
+      # 1 - views/media_elements/info_form_in_editor/_new.html.erb
+	  # description: 在以下表格输入所有的详细
+      description: "Enter all the details in the form below"
+      # 1 - views/media_elements/info_form_in_editor/_new.html.erb
+	  cancel: 终止
+      cancel: "Cancel"
+      # 1 - views/media_elements/info_form_in_editor/_new.html.erb
+	  # done: 保存
+      done: "Save"
+    # Form for editing general information of an element after having overwritten its content with one of the three editors (image / audio / video)
+    overwrite_media_element_in_editor:
+      # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
+	  # title: 你已经发生重要改变吗?
+      title: "Have you made significant changes?"
+      # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
+	  # description: 基于新账号，在这里上传单元信息
+      description: "Update here the element's info according to its new content"
+      # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
+	  # cancel: 终止
+      cancel: "Cancel"
+      # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
+	  # done: 上传
+      done: "Update"
+    # Error messages shown in case the user doesn't fill the form correctly
+    error_captions:
+      # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
+      # 1 - controllers/application_controller.rb
+	  # fill_all_the_fields_or_too_long: 不要超出最大长度，填写所有的栏目
+      fill_all_the_fields_or_too_long: "Fill in all the fields without exceeding the max length"
+      # The user didn't write the minimum amount of tags
+      # 1 - controllers/application_controller.rb
+	  # tags_are_not_enough: 标签不够
+      tags_are_not_enough: "Not enough tags"
+      # The user didn't select a file to be uploaded
+      # 1 - controllers/application_controller.rb
+	  # media_blank: 没有文件上传
+      media_blank: "No file uploaded"
+      # The user tried to upload an attachment whose format is not supported
+      # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
+	  # media_unsupported_format: 格式不支持
+      media_unsupported_format: "Format not supported"
+      # The user tried to upload a file whose name contained an invalid character
+      # 1 - controllers/application_controller.rb
+	  #  media_invalid_filename: 文件名包含非法字符
+      media_invalid_filename: "File's name contains invalid characters"
+      # The user tried to upload a file which was damaged or invalid
+      # 1 - controllers/application_controller.rb
+	  # media_generic_error: 非法或文件损坏
+      media_generic_error: "Invalid or damaged file"
+      # The user didn't choose a subject for a new lesson
+      # 1 - controllers/application_controller.rb
+	  # subject_missing_in_lesson: 选择主题
+      subject_missing_in_lesson: "Choose a subject"
+    # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
+    placeholders:
+      # Description (the variable %{num} represents the maximum number of characters)
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      # 2 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 3 - views/lesson_editor/new.html.erb
+      # 4 - views/admin/media_elements/new.html.erb
+	  # description: 描述（最大%{num}字符）
+      description: "Description (max %{num} characters)"
+      # File to load (used only for media elements
+      # 1 - views/media_elements/_new_form_popup.html.erb
+	  # media: 选择文件上传
+      media: "Select a file to load"
+      # Subject (used only for lessons)
+      # 1 - helpers/application_helper.rb
+	  # subject_id: 选择主题
+      subject_id: "Select a subject"
+      # Tags (the variable %{num} represents the maximum number of characters for each tags, the variable %{items} represents the minimum amount of tags)
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      # 2 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 3 - views/lesson_editor/new.html.erb
+      # 4 - views/admin/media_elements/new.html.erb
+	  # tags: 插入最小%{items}标签（每个字符最大 %{num}）
+      tags: "Insert a minimum of %{items} tags (max %{num} characters each)"
+      # Title (the variable %{num} represents the maximum number of characters)
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      # 2 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 3 - views/lesson_editor/new.html.erb
+      # 4 - views/admin/media_elements/new.html.erb
+	  # title: 标题（最大%{num}字符）
+      title: "Title (max %{num} characters)"
+  
+  
+  # SECTION 1.5: HTML titles (small tooltips appearing while passing with the mouse over icons of other items in the page)
+  
+  titles:
+    # Audio editor
+    audio_editor:
+      # Titles for the icons used in the cutter of a component
+      audio_cutter:
+        # 1 - views/audio_editor/_component.html.erb
+		# play: 播放片段
+        play: "Play clip"
+        # 1 - views/audio_editor/_component.html.erb
+		# pause: 暂停片段
+        pause: "Pause clip"
+        # 1 - views/audio_editor/_component.html.erb
+		# rewind: 倒回片段
+        rewind: "Rewind clip"
+      # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new audio
+      # 1 - views/audio_editor/edit.html.erb
+	  # commit: 保存
+      commit: "Save"
+      components:
+        # Icon 'plus' on the top of the right column: it's used to add a new audio component
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+		#  add: 增加音频部件
+        add: "Add an audio component"
+        # This appears above a component which is not selected
+        # 1 - views/audio_editor/_component.html.erb
+		# box_ghost: 编辑和播放部件，请点击这里
+        box_ghost: "Click in this area to edit and play the component"
+        # The 'x' icon used to remove a component
+        # 1 - views/audio_editor/_component.html.erb
+		# remove: 移去音频部件
+        remove: "Remove audio component"
+        # The handle that the user can grab to drag a component and change its position inside the whole track
+        # 1 - views/audio_editor/_component.html.erb
+		# sort: 拖动改变部件的位置
+        sort: "Drag to change the component's position"
+    audios:
+      # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the audio editor
+      # 1 - views/media_elements/new.html.erb
+	  # new: 建立新音频
+      new: "Create new audio"
+      # Icon 'play' inside an audio player
+      # 1 - views/shared/players/_audio.html.erb
+	  # pause: 暂停音频
+      pause: "Pause audio"
+      # Icon 'pause' inside an audio player
+      # 1 - views/shared/players/_audio.html.erb
+	  # play: 播放音频
+      play: "Play audio"
+    # Icons of the general buttons menu for lessons and media elements
+    buttons:
+      # To add a lesson or a media element to your personal folder
+      # 1 - views/shared/buttons/_add.html.erb
+	  # add: 将这个项目增加到你的部分
+      add: "Follow this item in your own section"
+      # To add a lesson to your Virtual Classroom
+      # 1 - views/shared/buttons/_add_virtual_classroom.html.erb
+	  # add_virtual_classroom: 增加课程到虚拟教室
+      add_virtual_classroom: "Add lesson to virtual classroom"
+      # To copy a lesson
+      # 1 - views/shared/buttons/_copy.html.erb
+	  # copy: 建立你自己的课程拷贝
+      copy: "Create your own copy of the lesson"
+      # To delete a lesson or a media element
+      # 1 - views/shared/buttons/_destroy.html.erb
+	  # destroy: 删去这个项目
+      destroy: "Delete this item"
+      # To remove a 'I like it' from a lesson
+      # 1 - views/shared/buttons/_dislike.html.erb
+	  # dislike: 点击终止你的嗜好
+      dislike: "Click to cancel your like"
+      # To edit a lesson or a media element (the little pencil)
+      # 1 - views/shared/buttons/_edit.html.erb
+	  # edit: 编辑这个项目
+      edit: "Edit this item"
+      # Title of the icon which appears instead of 'unpublish' in the case the lesson has been modified and the followers don't know about it
+      # 1 - views/shared/_popups.html.erb
+	  # lesson_modification_not_notified: 向这个公共课程发出通知你已经作了修改
+      lesson_modification_not_notified: "Notify about the modifications you made to this public lesson"
+      # To save a 'I like it' on a lesson (the little star)
+      # 1 - views/shared/buttons/_like.html.erb
+	  # like: 喜欢这个课程
+      like: "Like this lesson"
+      # To open the preview of a lesson or a media element (the icon of an eye)
+      # 1 - views/shared/buttons/_preview.html.erb
+	  # preview: 打开这个预览
+      preview: "Open the preview"
+      # To share a lesson"
+      # 1 - views/shared/buttons/_publish.html.erb
+	  # publish: 分享你的课程
+      publish: "Share your lesson"
+      # To remove a lesson or a media element from your personal folder
+      # 1 - views/shared/buttons/_remove.html.erb
+	  # remove: 移除这个项目
+      remove: "Remove this item"
+      # To remove a lesson from your Virtual Classroom
+      # 1 - views/shared/buttons/_remove_virtual_classroom.html.erb
+	  # remove_virtual_classroom: 从你的虚拟教室中移除
+      remove_virtual_classroom: "Remove from your Cirtual Classroom"
+      # To turn a shared lesson back into private
+      # 1 - views/shared/buttons/_unpublish.html.erb
+      # 2 - views/shared/_popups.html.erb
+	  # unpublish: 将你的课程变为私有
+      unpublish: "Turn back your lesson into private"
+    # To close the preview of a media element (big 'x' on the bottom right of the preview)
+    # 1 - views/media_elements/_popup.html.erb
+	# close: 关闭
+    close: "Close"
+    # Icon of a small door with an arrow going out: it represents the exit from the current section, all over the application
+    # 1 - views/media_elements/new.html.erb
+    # 2 - views/lesson_viewer/_lesson_slides.html.erb
+    # 3 - views/image_editor/_header.html.erb
+    # 4 - views/video_editor/not_available.html.erb
+    # 5 - views/video_editor/_header.html.erb
+    # 6 - views/audio_editor/not_available.html.erb
+    # 7 - views/audio_editor/_header.html.erb
+	# exit: 不保存退出
+    exit: "Exit without saving"
+    # Tooltips inside the media galleries (audio, image and video gallery)
+    galleries:
+      # Icon 'plus' in audio gallery
+      # 1 - views/galleries/contents/_audio.html.erb
+	  # add_audio: 增加音频
+      add_audio: "Add audio"
+      # Icon 'plus' in image gallery
+      # 1 - views/galleries/popups/_image.html.erb
+	  # add_image: 增加图像
+      add_image: "Add image"
+      # Icon 'plus' in video gallery
+      # 1 - views/galleries/popups/_video.html.erb
+	  # add_video: 增加视频
+      add_video: "Add video"
+      # Icon with small 'x' to close the gallery
+      # 1 - views/galleries/_video.html.erb
+      # 2 - views/galleries/_mixed_video_image_text.html.erb
+      # 3 - views/galleries/_image.html.erb
+      # 4 - views/galleries/_audio.html.erb
+	  # close: 关闭库
+      close: "Close gallery"
+      # Three icons to switch between 'video component', 'image component' and 'text component' in video editor's gallery
+      mixed_for_video_editor:
+        # 1 - views/galleries/_mixed_video_image_text.html.erb
+		# image: 增加图像组件
+        image: "Add image component"
+        # 1 - views/galleries/_mixed_video_image_text.html.erb
+		# text: 增加文本组件
+        text: "Add text component"
+        # 1 - views/galleries/_mixed_video_image_text.html.erb
+		# video: 增加视频组件
+        video: "Add video component"
+    # The icon with the '?', placed in all the sections, which opens the help tips
+    # 1 - views/notifications/_main.html.erb
+	# help_tooltip: 帮助你！
+    help_tooltip: "Help for you!"
+    # Tooltips in the image editor
+    image_editor:
+      # Button to crop the image
+      # 1 - views/image_editor/edit.html.erb
+	  # crop: 修剪图像
+      crop: "Crop image"
+      # Button to add text inside the image
+      # 1 - views/image_editor/edit.html.erb
+	  # text: 在图像中增加文本
+      text: "Add texts to image"
+      # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new image
+      # 1 - views/image_editor/edit.html.erb
+	  # commit: 保存
+      commit: "Save"
+    images:
+      # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the image editor
+      # 1 - views/media_elements/new.html.erb
+	  # new: 建立新图像
+      new: "Create new image"
+    # titles in lesson editor
+    lesson_editor:
+      # Button '+' to add a new slide
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+	  # add_slide: 增加新幻灯片
+      add_slide: "Add new slide"
+      # Button '+' to replace an audio in the audio slide
+      # 1 - views/lesson_editor/slides/parts/_audio.html.erb
+	  # change_audio: 替换音频
+      change_audio: "Replace audio"
+      # Button '+' to replace an image in the image slide
+      # 1 - views/lesson_editor/slides/parts/_image.html.erb
+	  # change_image: 替换图像
+      change_image: "Replace image"
+      # Button with three small lines, it opens the form to change title, description and tags of the selected lesson
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+	  # change_info: 改变课程信息
+      change_info: "Change lesson info"
+      # Button '+' to replace a video in the video slide
+      # 1 - views/lesson_editor/slides/parts/_video.html.erb
+	  # change_video: 改变视频
+      change_video: "Change video"
+      # Button 'X' to remove the current slide
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+	  # delete_slide: 移除幻灯片
+      delete_slide: "Remove slide"
+      # Button to save the current slide
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+	  #  save_slide: 保存目前的幻灯片
+      save_slide: "Save current slide"
+      # Button to save and exit
+      # 1 - views/lesson_editor/_slide_buttons.html.erb
+	  # save_and_exit: 保存并退出
+      save_and_exit: "Save and exit"
+    media_elements:
+      # Icon to upload the file attached to a new media element
+      # 1 - views/media_elements/_new_form_popup.html.erb
+	  # select_file: 选择文件上传
+      select_file: "Select file to upload"
+      # Icon with three small lines, inside the preview popup of a media element, which opens the form to change its title, description, tags
+      # 1 - views/media_elements/_popup.html.erb
+	  # change_info: 改变信息
+      change_info: "Change information"
+    # Titles appearing over the placeholders in lesson viewer, in the case a video or audio used is in conversion (in both, the variable %{title} is replaced by the title of the audio)
+    not_available:
+      # 1 - views/lesson_viewer/slides/_audio.html.erb
+      # 2 - views/galleries/thumbs/_audio.html.erb
+	  # audio: 音频%{title}正在转换，现在不能提供
+      audio: "The audio %{title} is in conversion and not available now"
+      # 1 - views/lesson_viewer/slides/_video1.html.erb
+      # 2 - views/lesson_viewer/slides/_video2.html.erb
+      # 3 - views/galleries/thumbs/_video.html.erb
+	  # video: 视频%{title}正在转换，现在不能提供
+      video: "The video %{title} is in conversion and not available now"
+    notifications:
+      # Icon that opens the notifications
+      # 1 - views/notifications/_main.html.erb
+	  # label: 通知
+      label: "Notifications"
+      # Small 'x' that removes a notification
+      # 1 - views/notifications/_notification.html.erb
+	  # remove: 移除通知 
+      remove: "Remove notification"
+    # Titles for pagination
+    pagination:
+      # Go to previous page
+      # 1 - views/shared/_pagination.html.erb
+      # 2 - views/shared/_pagination.html.erb
+      # 3 - views/shared/_popups.html.erb
+      # 4 - views/virtual_classroom/_pagination.html.erb
+      # 5 - views/virtual_classroom/_pagination.html.erb
+	  # prev: 到之前的页面
+      prev: "Go to previous page"
+      # Go to next page
+      # 1 - views/dashboard/_pagination.html.erb
+      # 2 - views/shared/_pagination.html.erb
+      # 3 - views/shared/_pagination.html.erb
+      # 4 - views/shared/_popups.html.erb
+      # 5 - views/virtual_classroom/_pagination.html.erb
+      # 6 - views/virtual_classroom/_pagination.html.erb
+	  # next: 到下一页
+      next: "Go to next page"
+    # Icon to report an offensive lesson or media element
+    # 1 - views/reports/_media_element.html.erb
+	# report: 报告有攻击性的内容
+    report: "Report offensive content"
+    # Icon with a lens in the main sections
+    # 1 - views/shared/_search.html.erb
+	# search: 查找
+    search: "Search"
+    slides:
+      # Arrow to the left, pointing to the previous slide
+      # 1 - views/layouts/lesson_viewer.html.erb
+	  # back: 向后
+      back: "Back"
+      # Arrow to the right, pointing to the next slide
+      # 1 - views/layouts/lesson_viewer.html.erb
+	  # forward: 向前
+      forward: "Forward"
+   # Titles for the tags used to refine a search
+    tags:
+      # This title appears on a tag which is not selected
+      # 1 - views/search/lessons/_tag_details.html.erb
+      # 2 - views/search/media_elements/_tag_details.html.erb
+	  # filter_by: 标签过滤
+      filter_by: "Filter by this tag"
+      # This title appears on the selected tag (clicking on this tag the user resets the tag filter and turns back to the original result)
+      # 1 - views/search/lessons/_tag_details.html.erb
+      # 2 - views/search/media_elements/_tag_details.html.erb
+	  # cancel_filter: 终止标签过滤，回到原处
+      cancel_filter: "Cancel the filter by tag and come back to the original result"
+    # Tooltips inside the video editor
+    video_editor:
+      # Big 'plus' icon to add a new component to the timeline
+      # 1 - views/video_editor/_add_component.html.erb
+	  # add_new_component: 增加新组件
+      add_new_component: "Add new component"
+      audio_track:
+        # Button 'plus' to add an audio track (or replace the selected one)
+        # 1 - views/video_editor/_audio_track.html.erb
+		# add: 选择音频曲目
+        add: "Select audio track"
+        # Small 'x' to remove the current audio track
+        # 1 - views/video_editor/_audio_track.html.erb
+		# remove: 移除音频曲目
+        remove: "Remove audio track"
+      # Big 'X' on the bottom right, to quit the preview mode
+      # 1 - views/video_editor/edit.html.erb
+	  # close_preview: 关闭之前的模式
+      close_preview: "Close preview mode"
+      # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new video
+      # 1 - views/video_editor/edit.html.erb
+	  # commit: 保存
+      commit: "Save"
+      # Three icons in the small menu of each video component
+      component_menu:
+        # Scissors
+        # 1 - views/video_editor/_component_menu.html.erb
+		# cutter: 剪辑部件
+        cutter: "Cut component"
+        # Icon 'X' to remove the component
+        # 1 - views/video_editor/_component_menu.html.erb
+		# remove: 移除组件
+        remove: "Remove component"
+        # Icon 'plus' to replace the component
+        # 1 - views/video_editor/_component_menu.html.erb
+		# change: 退换组件
+        change: "Substitute component"
+      # Titles for the icons used in the cutter of a video component
+      video_cutter:
+        # 1 - views/video_editor/cutters/_video.html.erb
+		# play: 播放剪辑
+        play: "Play clip"
+        # 1 - views/video_editor/cutters/_video.html.erb
+		# pause: 暂停剪辑
+        pause: "Pause clip"
+        # 1 - views/video_editor/cutters/_video.html.erb
+		# rewind: 倒回剪辑
+        rewind: "Rewind clip"
+    videos:
+      # Icon to switch to 'fullscreen' mode in a video player
+      # 1 - views/shared/players/_video.html.erb
+	  # fullscreen: 满屏
+      fullscreen: "Fullscreen"
+      # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the video editor
+      # 1 - views/media_elements/new.html.erb
+	  # new: 建立新视频
+      new: "Create new video"
+      # Pause inside a video player
+      # 1 - views/shared/players/_video.html.erb
+	  # pause: 暂停视频
+      pause: "Pause video"
+      # Play inside video player
+      # 1 - views/shared/players/_video.html.erb
+	  # play: 播放视频
+      play: "Play video"
+    # Icons inside a lesson in Virtual Classroom
+    virtual_classroom:
+      # 'Eye' icon, to open preview
+      # 1 - views/virtual_classroom/_view_single.html.erb
+	  # preview: 打开课程预览器
+      preview: "Open lesson viewer"
+      # 'X' icon, to remove the lesson from Virtual Classroom
+      # 1 - views/virtual_classroom/_view_single.html.erb
+	  # remove: 从你的虚拟教室中移除
+      remove: "Remove from your Virtual Classroom"
+      # 'Mail' icon, to send the link of the lesson to your friends
+      # 1 - views/virtual_classroom/_view_single.html.erb
+	  # send_link: 送一个课程链接给你的朋友
+      send_link: "Send a link of this lesson to your friends"
+  
+  
+  # SECTION 1.6: content of the 'Help' tips. Each 'Help' contains three subsections, with title and description. There is a different 'Help' tip for each of the following sections:
+  # 1) dashboard (you find it below the keyword 'dashboard')
+  # 2) my lessons (keyword 'lessons')
+  # 3) my media elements (keyword 'media_elements')
+  # 4) advanced search (keyword 'search')
+  # 5) user's personal profile (keyword 'users')
+  # 6) Virtual Classroom (keyword 'virtual_classroom')
+  # For each of these keywords, the texts are structured in the following way:
+  #  keyword:
+  #    first:
+  #      title:
+  #      description
+  #    second:
+  #      title:
+  #      description
+  #    third:
+  #      title:
+  #      description
+  
+  help:
+    dashboard:
+      first:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 欢迎到%{desy}！
+        title: "Welcome to %{desy}!"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 基于你感兴趣的主题，在我们的数据库中，在这个栏目中你能发现课程和单元。如果你点击课程或单元\"plus\"图标，你将把它增加到你个人部分，在那里你能修改和使用它。那个 \"small eye\"图标打开预览。
+        content: "In this dashboard you find lessons and elements selected in our database according to your subjects of interests. If you click on the \"plus\" icon of a lesson or an element, you'll add it to your personal section, where you can modify it and use it. The \"small eye\" icon opens a preview."
+      second:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 为你选择 - 单元
+        title: "Selected for you - elements"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 请选择我们为你推荐的课程单元！如果你没有找到任何感兴趣的课程单元，点击\"load a new element\"按钮，你能上传你自己的课程单元。
+        content: "Pick elements among the ones we propose to you! If you don't find anything interesting, by clicking on the \"load a new element\" button you can upload your own elements."
+      third:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 为你选择 - 课程
+        title: "Selected for you - lessons"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 在这个栏目中，%{desy}保存你感兴趣的所有新课程。在这时，如果没有新课程提供，你能点击在每一页发现的那个 \"create a new Lesson\"按钮建立你自己的新课程：你将重定向到那个课程编辑器。在使用课程编辑器之前，确保有足够的课程单元。
+        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If at this moment there are no new lessons available, you can create your own by clicking on the \"create a new Lesson\" button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make sure to have enough elements."
+    lessons:
+      first:
+        # 1 - views/notifications/_tooltip_help.html.erb
+        title: "Status of lessons"
+		# 课程的状态
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 这一页包括你个人课程文件夹，还有一套处理和建立新课程的指令。请注意你的新课程的状态：那个<br/><b>私有的</b>仅仅跟你看到与使用的课程相关，<b>已经分享</b>确认被其它的%{desy}用户看见和你已决定分享的课程；<b>已链接</b>指示其他用户建立的课程。
+        content: "This page contains your personal folder of lessons, together with a set of instruments to handle them and create new ones. Pay attention to the status of your lessons:<br/><b>private</b> corresponds to a lesson that only you can use and see, <b>shared</b> identifies lessons which you have decided to share and that can be seen by other %{desy} users; <b>linked</b> indicates lessons created by other users."
+      second:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 动作按钮
+        title: "Action buttons"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 你能执行的出现在你的文件夹中所有的课程的动作按钮都是通过图像图标来识别的。<br/>那个\"eye\"图标充许你看到被选择的课程，那个\"pencil\"图标充许你修改课程。最后一个功能是不充许<b>被链接的</b>课程，在这个案例中，你只能发现\"copy\" 图标（两个圆重叠）：实际上，没有经过第一次拷贝的其他用户的实现，要想修改那个课程是不可能的。那个\"monitor with an eye\"图标上传课程到你的虚拟教室；如果课程分享，那个\"share\"图标（由两条线连接的三个小圆）被打开。如果你特别喜欢某人的其他课程，请点击\"star\"图标。最后，带有\"x\"那个图标删除那个课程（如果这个课程是已链接，那么这个图标被\"minus\"替换，它删除那个链接）
+        content: "All the actions you may carry out on the lessons present in your folders are identified by graphic icons.<br/>The \"eye\" icon allows you to see the selected lesson, the \"pencil\" icon permits you to modify the lesson. This last function is not allowed for <b>linked</b> lessons, in this case you find only the \"copy\" icon (two circles overlapped): in fact, it's not possible to modify lessons realized by other users without first making a copy. The \"monitor with an eye\" icon uploads the lesson into your Virtual Classroom; the \"share\" icon (three small circles connected by two lines) is turned on if the lesson is shared; if you particularly like somebody else's lesson, click on the \"star\" icon. Finally, the icon with a \"x\" deletes the lesson (if the lesson is <b>linked</b> this icon is replaced by a \"minus\", which deletes the link)."
+      third:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 建立一个新课程
+        title: "Create a new lesson"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 一旦你增加了足够多的单元，就准备建立你自己的课程：点击\"create a new lesson\"按钮，它将把你带到 %{desy}的课程编辑器。
+        content: "Once you added a sufficient amount of elements, you are ready to create your own lesson: click on the \"create a new lesson\" button, which will redirect you to %{desy}'s Lesson Editor."
+    media_elements:
+      first:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 你的教学单元
+        title: "Your didactic elements"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 这一页包含你个人单元文件夹，还有一套建立和处理新课程的指令。<br/>只要有一个单元上传，%{desy}就分配一个 <b>私有的</b>状态给它。对于不喜欢的课程，你不能直接与你的私有单元共享：当你分享时，应用自动分享所有的单元。当单元转换<b>公共</b>状态时，它将从你的个人文件夹移到%{desy}的公共文件夹：在你的文件夹中，你将保持它的一个链接，当那个链接充许你使用，但既不能修改也不能删除。
+        content: "This page contains your personal folder of elements, together with a set of instruments to handle them and create new ones.<br/>As soon as an element is uploaded %{desy} assigns it the status <b>private</b>. Unlike for lessons, you can't share directly your private elements: when you share a lesson, the application shares automaticly all the elements contained in it. When an element passes to status <b>public</b>, it is automaticly moved from your personal folder to %{desy}'s public one: in your folder you'll keep a link of it, which allows you to use it but not modify nor delete it."
+      second:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 单元编辑器
+        title: "Element Editors"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 在每一个单元的那个 \"pencil\"图标打开那个单元的特别编辑器（音频，图像或视频）。如果包含 \"pencil\"的单元是<b>公共的</b>，那么这个编辑器将迫使你作为一个新单元保存你的工作（你不能修改公共单元），反之，如果那个单元是<b>私有的</b>，你能选择要么重写或不是原有的那个。\"elements editor\"按钮让你选择某种类型的单元并打开相应的空的编辑器。
+        content: "The \"pencil\" icon on each element opens that element's specific Editor (Audio, Image or Video). If the element containing the pencil is <b>public</b>, the Editor will force you to save your work as a new element (since you can't modify a public one), whereas if the element is <b>private</b> you can choose whether overwrite or not the original one. The button \"elements editor\" lets you choose a type of element and opens the corresponding empty Editor."
+      third:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title:  单元预览
+        title: "Element preview"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 那个 \"eye\"图标打开预览单元。在预览<b>私有的</b>单元时，你能发现包含有三条小的线段的按钮：点击它，你能打开用于修改单元的一般信息格式（标题，描述，和标签）。
+        content: "The \"eye\" icon opens the preview of an element. In the preview of <b>private</b> elements you can find a button containing three small lines: clicking on it you open a form that you can use to modify the element's general information (title, description, and tags)."
+    search:
+      first:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 搜索引擎
+        title: "Search Engine"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: %{desy}的搜索引擎可用于课程和单元；引擎是基于标签。<br/>通过使用\"plus\"图标任意被发现的课程或单元可增加到你相应个人文件夹中。
+        content: "%{desy}'s Search Engine may be used for both lessons and elements; the engine is based on tags.<br/>Any lesson or element found may be added to your corresponding personal folder by using the \"plus\" icon."
+      second:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 推荐一个好的搜索
+        title: "Suggestions for a good search"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 当你打你的搜索关键字时，%{desy}搜索引擎建议你大部分被使用的在数据库中的标签（开始你的关键字）。这种方式你将有一个范围比较广的选择并能进一步完成搜寻结果。
+        content: "While you are typing the keyword for your search, %{desy}'s Search Engine suggests you the most used tags (beginning with your keyword) among the ones present in the database. This way you'll have a wider choice and a more complete search result."
+      third:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 推荐一个好的标签
+        title: "Suggestions for a good tagging"
+        # Here the variable %{tags} is replaced by the minimum amount of tags for an item in the application
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 当你上传一个新的单元或建立一个新的课程时，插入一排好的标签是非常的重要的。适合的标签充许搜索引擎更容易找到你的课程。你必须插入最小的 %{tags}标签。
+        content: "When you upload a new element or create a new lesson it's important to insert the a good range of tags. A proper tagging allows the Search Engine to find more easily your lessons. You must insert a minimum of %{tags} tags."
+    users:
+      first:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 你的个人资料页
+        title: "Your profile page"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 在这一页你能显示和修改你的个人资料。看一看这页顶部的菜单栏：每一链接引导你到相应页面。
+        content: "In this page you can review and modify your profile. Have a look at the menu on the top of the page: each link redirects you to the corresponding section of your profile."
+      second:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 个人资料，邮件列表
+        title: "Personal data, mailing lists"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 这部分\"subjects\"包括你的科目列表：任何时候你能更新这个列表。记得%{desy}检查你在主页中选择发现被建议课程的科目。那部分\"mailing list\"包含一组Email地址的列表，它用于从虚拟教室发送你的课程链接：点击那个按钮\"add new group\"建立新的邮件列表。
+        content: "The section \"subjects\" contains the list of your subjects: you can update this list at any time. Remember that %{desy} checks out your subjects to choose the suggested lessons that you find in the main page. The section \"mailing list\" contains a list of groups of e-mail addresses, that you can use to send your lesson links from inside your Virtual Classroom: click on the button \"add new group\" to create a new mailing list."
+      third:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 统计
+        title: "Statistics"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 这部分\"statistics\"包括关于你个人资料和所有的 %{desy}有趣的统计。统计通过目录划分，容易查询。
+        content: "The section \"statistics\" contains interesting statistics about your profile and about all %{desy}. The statistics are divided by categories and easy to consult."
+    virtual_classroom:
+      first:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: %{desy}的虚拟教室
+        title: "%{desy}'s Virtual Classroom"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 欢迎到你的虚拟教室！这里离可以从个人文件夹中上传课程并且组织它们进入播放列表。按钮\"add lessons\"打开一个窗口快速加载多个课程。
+        content: "Welcome to your Virtual Classroom! Here you may upload lessons from your personal folder and organize them into a playlist. The button \"add lessons\" opens a window to load quickly multiple lessons."
+      second:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 播放列表
+        title: "Playlist"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: %{desy}的虚拟教室的有用特征之一是播放列表：在播放内移除课程，拖它到右边的区域。在更适合你的教学目标的序列中重新产生那个播放列表，你能拖动它们将单元分类。
+        content: "One of the useful features of %{desy}'s Virtual Classroom is the playlist: to move a lesson inside the playlist, drag it to the zone on the right. To reproduce the playlist in the sequence which is most suitable to your didactive objectives, you can sort its elements by dragging them."
+      third:
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# title: 送链接给你的朋友
+        title: "Send a link to your friends"
+        # 1 - views/notifications/_tooltip_help.html.erb
+		# content: 位于每一课程下边的那个\"envelope\"图标打开一个窗口，在那里你能选择e-mail地址列表：点击那个按钮\"send\"发送包含你课程的公共链接的邮件（使用这个链接，你的学生能可视化不用在%{desy}中注册的课程）。
+        content: "The \"envelope\" icon located below each lesson opens a window where you can select a list of e-mail addresses: click on the button \"send\" to send an email containing the public link of your lessons (using this link your students are able to visualize the lesson without being registered in %{desy})."
+  
+  
+  
+  # PART 2 -- LABELS AND CAPTIONS
+  
+  
+  # SECTION 2.1: captions which don't refer to any specific section
+  
+  captions:
+    # Used in the general footer of the application, to redirect to the main page
+    # 1 - views/shared/_footer.html.erb
+	# back_to_dashboard: 回到版面
+    back_to_dashboard: "Back to dashboard"
+    # Used as a placeholder in any <video> HTML tag, if the browser doesn't support either .webm or .mp4
+    # 1 - views/shared/players/_video.html.erb
+    # 2 - views/video_editor/previews/_video.html.erb
+    # 3 - views/admin/media_elements/previews/_video.html.erb
+	# dont_support_video: 你的浏览器不支持视频
+    dont_support_video: "Your browser does not support videos"
+    # Used as a placeholder in any <audio> HTML tag, if the browser doesn't support either .ogg or .mp3
+    # 1 - views/shared/players/_audio.html.erb
+    # 2 - views/video_editor/previews/_audio_track.html.erb
+    # 3 - views/admin/media_elements/previews/_audio.html.erb
+	# dont_support_audio: 你的浏览器不支持音频
+    dont_support_audio: "Your browser does not support audios"
+    # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for instance, in the search engine when the application asks where to search, or in the main page to separate suggested lessons by suggested elements)
+    # 1 - views/lessons/index.html.erb
+    # 2 - views/dashboard/_graybar_left.html.erb
+    # 3 - views/shared/_menu.html.erb
+    # 4 - views/shared/_search.html.erb
+    # 5 - views/search/_item_selector.html.erb
+	# lessons: 课程
+    lessons: "Lessons"
+    # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
+    # 1 - views/dashboard/_graybar_left.html.erb
+    # 2 - views/shared/_menu.html.erb
+    # 3 - views/shared/_search.html.erb
+    # 4 - views/media_elements/_title_bar.html.erb
+    # 5 - views/search/_item_selector.html.erb
+	# media_elements: 单元
+    media_elements: "Elements"
+    # Used to refer to the user's personal profile
+    # 1 - views/shared/_menu.html.erb
+    # 2 - views/users/statistics.html.erb
+    # 3 - views/users/mailing_lists.html.erb
+    # 4 - views/users/edit.html.erb
+    # 5 - views/users/subjects.html.erb
+	# profile: 个人资料
+    profile: "Profile"
+    # Used anywhere the user needs to insert a time duration in seconds: here goes the shortened form for the word 'seconds'
+    # 1 - views/galleries/mixed_for_video_editor.js.erb
+    # 2 - views/video_editor/cutters/_text.html.erb
+    # 3 - views/video_editor/cutters/_image.html.erb
+    # 4 - views/video_editor/_text_component_editor.html.erb
+	# seconds_shortened: 秒
+    seconds_shortened: "Sec"
+    # Used as a caption to select filters inside the sections 'my lessons' and 'my elements'
+    # 1 - views/lessons/index.html.erb
+    # 2 - views/media_elements/_title_bar.html.erb
+	# show: 显示
+    show: "Show"
+    # Caption for Virtual Classroom
+    # 1 - views/shared/_menu.html.erb
+    # 2 - views/virtual_classroom/index.html.erb
+	virtual_classroom: 虚拟教室
+    virtual_classroom: "Virtual Classroom"
+    # Used in the login, before the logged user's name
+    # 1 - views/shared/_logout.html.erb
+    # 2 - views/admin/_header.html.erb
+	# welcome: 欢迎
+    welcome: "Welcome"
+  
+  
+  # SECTION 2.2: Captions used inside the Audio Editor
+  
+  audio_editor:
+    # The 'cutters' are the tools in Audio Editor to cut each audio track present inside the user's working space. Each cutter is provided of buttons 'play' and 'pause', and of three cursors: one to cut the left side of the track, another one to cut the right side; the last cursor is associated to the exact point of the track when it's playing
+    cutters:
+      # This is the caption for the selected interval of the audio track (example: the track is 2 minutes long, and the user is making a selection from 00:40 to 01:50)
+      # 1 - views/audio_editor/_component.html.erb
+	  # selected: 已选择
+      selected: "Selected"
+    # Caption visible in the middle of the Editor in the case it's empty (if this caption is visible, either the user opened the Editor empty, or he deleted the last component)
+    # 1 - views/audio_editor/edit.html.erb
+	# empty: 开始建立音频，点击右边的按钮并从库中选择
+    empty: "To start creating an audio, click on the button on the right and select from the gallery"
+    # Label in the header
+    # 1 - views/audio_editor/_header.html.erb
+	# label: 编辑音频
+    label: "Edit audio"
+    # These two captions appear inside the page shown in the case the Audio Editor is temporarily not available (it's just a page with title and description): the editor is not available only while the user is editing another audio (it takes a few minutes for the server to complete the process and to enable the Editor again)
+    not_available:
+      # 1 - views/audio_editor/not_available.html.erb
+	  # title: 无法提供音频编辑
+      title: "Audio editor not available"
+      # 1 - views/audio_editor/not_available.html.erb
+	  # description: 在这个时候，你能运行另一个音频曲目编辑：进程还没完成之前，音频编辑将被临时关闭。
+      description: "At this moment you are running the Editor for another audio track: until the process isn't finished the Audio Editor will be temporarily disabled"
+    # The buttons to control the whole preview are located on the right column of Audio Editor
+    preview:
+      # Button to start the preview
+      # 1 - views/audio_editor/_lateral_controls.html.erb
+	  # play: 播放
+      play: "Play"
+      # Button to stop the preview
+      # 1 - views/audio_editor/_lateral_controls.html.erb
+	  # stop: 停止
+      stop: "Stop"
+    # Caption, inside the right column, for the total length of the audio in editing
+    # 1 - views/audio_editor/_lateral_controls.html.erb
+	# total_length: 总长度
+    total_length: "Total length"
+  
+  
+  # SECTION 2.3: Captions used inside the Dashboard (main page)
+  
+  dashboard:
+    # The caption of the link to open the 'contacts' page (the link is on the bottom left of the Dashboard)
+    # 1 - views/dashboard/index.html.erb
+	# contact_us: 联系我们
+    contact_us: "Contact us"
+    # Caption of the link opening the lesson editor (in each page of lessons inside the Dashboard, after the last lesson there is a button with a 'plus' which opens the lesson editor)
+    # 1 - views/dashboard/_lessons_and_media_elements.html.erb
+    # 2 - views/dashboard/_lessons_and_media_elements.html.erb
+	# create_new_lesson: 建立新课程
+    create_new_lesson: "Create a new lesson"
+    # Caption of the link opening the lesson editor, containing a prompt for the user (this is used only in the case there are no suggested lessons in the Dashboard: in this case the application invites the user to create a lesson right now)
+    # 1 - views/dashboard/_lessons_empty.html.erb
+	# create_new_lesson_now: 现在建立课程
+    create_new_lesson_now: "Create a lesson now"
+    # Caption of the link to download the user manual (bottom right in the page)
+    # 1 - views/dashboard/index.html.erb
+	# download_manual: 下载用户手册
+    download_manual: "Download the user manual"
+    # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
+    # 1 - views/dashboard/_lessons_empty.html.erb
+	# emptied_lessons: 你已选择所有被推荐的课程
+    emptied_lessons: "You chose all the suggested lessons"
+    # Caption which appears if for the user there are no suggested lessons inside the database
+    # 1 - views/dashboard/_lessons_empty.html.erb
+	# empty_lessons: 这里没有推荐的课程给你
+    empty_lessons: "There are no suggested lessons for you"
+    # Caption which appears if there are no suggested elements inside the Dashboard, because the user picked all the elements the application suggested him
+    # 1 - views/dashboard/_media_elements_empty.html.erb
+	# emptied_media_elements: 你已选择所有被推荐的单元
+    emptied_media_elements: "You chose all the suggested elements"
+    # Caption which appears if for the user there are no suggested elements inside the database
+    # 1 - views/dashboard/_media_elements_empty.html.erb
+	# empty_media_elements: 这里没有推荐的单元给你
+    empty_media_elements: "There are no suggested elements for you"
+    # Title of the link 'Download the user manual' (bottom right in the page)
+    # 1 - views/dashboard/index.html.erb
+	# help_using_desy: 需要%{desy}帮助吗？
+    help_using_desy: "Need help using %{desy}?"
+    # Caption of the link opening the window to load a new element (in each page of elements inside the Dashboard, after the last element there is a button with a 'plus' which opens the window)
+    # 1 - views/dashboard/_lessons_and_media_elements.html.erb
+	# load_new_media_element: 加载新单元
+    load_new_media_element: "Load a new element"
+    # Caption of the link opening the window to load new elements, containing a prompt for the user (this is used only in the case there are no suggested elements in the Dashboard: in this case the application invites the user to load an element right now)
+    # 1 - views/dashboard/_media_elements_empty.html.erb
+	# load_new_media_element_now: 现在加载新单元
+    load_new_media_element_now: "Load a new element now"
+    # Caption of the buttons to switch between suggested lessons and elements ('selected for you': lessons - elements)
+    # 1 - views/dashboard/_graybar_left.html.erb
+	# selected_for_you: 已为你选择
+    selected_for_you: "Selected for you"
+    # Title of the link 'contact us' (bottom left in the page)
+    # 1 - views/dashboard/index.html.erb
+	# talk_with_desy: 你想与%{desy}交谈吗？
+    talk_with_desy: "Want to talk with %{desy}?"
+  
+  
+  # SECTION 2.4: Captions used in general media galleries. There are three kinds of galleries: Audio, Image and Video. They are used to pick quickly a media element and use it inside a lesson (or as a component to create a new media element, in Audio, Image and Video Editor)
+  # List of instances of the media galleries:
+  # Lesson Editor => Audio + Image + Video (to be used inside the slides of a lesson)
+  # Audio Editor => Audio (to add new tracks)
+  # Image Editor => Image (to pick the image to be modified)
+  # Video Editor => Image (to create an image component) + Video (to create a video component) + Audio (to select an audio track for the video)
+  galleries:
+    audios:
+      # Title of a generic audio gallery
+      # 1 - views/galleries/_audio.html.erb
+	  # select: 选择音频
+      select: "Select audio"
+    # Captions for empty galleries, one for each kind
+    empty:
+      # 1 - views/galleries/contents/audio.html.erb
+	  # audio: 你的音频库是空的
+      audio: "Your audio gallery is empty!"
+      # 1 - views/galleries/contents/image.html.erb
+	  # image: 你的图像库是空的
+      image: "Your image gallery is empty!"
+      # 1 - views/galleries/contents/video.html.erb
+	  # video: 你的视频库是空的
+      video: "Your video gallery is empty!"
+    images:
+      # Caption for the size (in pixels) of the image inside the gallery
+      # 1 - views/galleries/popups/_image.html.erb
+	  # original_size: 原始大小
+      original_size: "Original size"
+      # Title of a generic image gallery
+      # 1 - views/galleries/_image.html.erb
+	  # select: 选择图像
+      select: "Select image"
+    videos:
+      # Title of a generic video gallery
+      # 1 - views/galleries/_video.html.erb
+	  # select: 选择视频
+      select: "Select video"
+  
+  
+  # SECTION 2.5: Captions used inside the Image Editor
+  
+  image_editor:
+    # Captions when the user is in 'crop' mode: the instructions appear below the image in editing: on its right there is a button to do the action and another to cancel
+    crop:
+      # 1 - views/image_editor/edit.html.erb
+	  # cancel: 终止
+      cancel: "Cancel"
+      # 1 - views/image_editor/edit.html.erb
+	  # done: 修剪
+      done: "Crop"
+      # 1 - views/image_editor/edit.html.erb
+	  # instructions: 拖动图像选择
+      instructions: "Drag on the image to make a selection"
+    # Instructions on the left column (title plus description)
+    left_column:
+      # 1 - views/image_editor/edit.html.erb
+	  # title: 做什么？
+      title: "What to do?"
+      # 1 - views/image_editor/edit.html.erb
+	  # description: 选择剪刀剪切图像
+      description: "Select the scissors to cut the image"
+    # Label for the header
+    # 1 - views/image_editor/_header.html.erb
+	# label: 编辑图像
+    label: "Edit image"
+    # Label on the bottom of the editor, where the user can see step by step how the dimensions (in pixels) of the image change
+    # 1 - views/image_editor/crop.js.erb
+    # 2 - views/image_editor/edit.html.erb
+    # 3 - views/image_editor/undo.js.erb
+	# original_size: 原始图像大小
+    original_size: "Original image size"
+    # Label on the left column, it refers to the buttons associated to each possible action (crop, add text)
+    # 1 - views/image_editor/edit.html.erb
+	# select_an_action: 选择一个动作
+    select_an_action: "Select an action"
+    # Instructions and label of 'do' and 'cancel' buttons when the user is in 'add text' mode (same structure of 'crop', see above)
+    text:
+      # 1 - views/image_editor/edit.html.erb
+	  # cancel: 终止
+      cancel: "Cancel"
+      # 1 - views/image_editor/edit.html.erb
+	  # done: 应用
+      done: "Apply"
+      # 1 - views/image_editor/edit.html.erb
+	  # instructions: 点击图像增加文本
+      instructions: "Click on the image to add text"
+      # This is the sample letter used to choose the font size
+      # 1 - views/image_editor/_text_area.html.erb
+      # 2 - views/image_editor/_text_area.html.erb
+      # 3 - views/image_editor/_text_area.html.erb
+	  # sample_letter: A
+      sample_letter: "A"
+    # Caption of the button 'undo'
+    # 1 - views/image_editor/edit.html.erb
+	# undo: 撤销
+    undo: "Undo"
+  
+  
+  # SECTION 2.6: Captions used inside the Lesson Editor
+  
+  lesson_editor:
+    # Placeholder to add an audio to a slide
+    # 1 - views/lesson_editor/slides/parts/_audio.html.erb
+	# choose_audio: 这里点击增加音频
+    choose_audio: "Click here to add an audio"
+    # Placeholder to add an image to a slide
+    # 1 - views/lesson_editor/slides/parts/_image.html.erb
+	# choose_image: 这里点击增加图像
+    choose_image: "Click here to add an image"
+    # Placeholder to add a video to a slide
+    # 1 - views/lesson_editor/slides/parts/_video.html.erb
+	# choose_video: 这里点击增加视频
+    choose_video: "Click here to add a video"
+    # The Lesson Editor is not available if the user started an audio (or video) editing process which overwrites an audio (or a video) used inside a lesson. The Editor is not avilable only to edit that particular lesson, in this case the application shows a page with title and description
+    not_available:
+      # The variable %{lesson} is replaced by the name of the lesson
+      # 1 - views/lesson_editor/not_available.html.erb
+	  # title: 课程编辑器不能提供给你的课程%{lesson}
+      title: "Lesson editor not available for your lesson %{lesson}"
+      # 1 - views/lesson_editor/not_available.html.erb
+	  # description: 你正在覆盖视频内容或包含在课程中的音频内容：如果等待几分钟处理完成，你就能重新编辑这个课程。
+      description: "You are overwriting the content of a video or of an audio contained in this lesson: if you wait a few minutes until the process ends you'll be able to edit this lesson again"
+    # These are the placeholders for all the text fields inside the editor
+    placeholders:
+      # Placeholder for the caption of an image
+      # 1 - views/lesson_editor/slides/parts/_image.html.erb
+	  # image_caption: 写标题
+      image_caption: "Write a caption"
+      # Placeholder for a text area (slide title + text, video + text, audio + text, image + text)
+      # 1 - views/lesson_editor/slides/_text.html.erb
+      # 2 - views/lesson_editor/slides/_video1.html.erb
+      # 3 - views/lesson_editor/slides/_image1.html.erb
+      # 4 - views/lesson_editor/slides/_audio.html.erb
+	  # text: 在这里写文本
+      text: "Write a text here"
+      # Placeholder for the title of a slide
+      # 1 - views/lesson_editor/slides/_text.html.erb
+      # 2 - views/lesson_editor/slides/_title.html.erb
+      # 3 - views/lesson_editor/slides/_video1.html.erb
+      # 4 - views/lesson_editor/slides/_image1.html.erb
+      # 5 - views/lesson_editor/slides/_audio.html.erb
+	  # title: 输入标题
+      title: "Enter title"
+  
+  
+  # SECTION 2.7: Caption of the section 'my lessons'
+  
+  lessons:
+    # Caption used to indicate the name of the author of the lesson
+    # 1 - views/lessons/_thumbnail.html.erb
+    # 2 - views/lessons/_view_single_compact.html.erb
+    # 3 - views/lesson_viewer/slides/_cover.html.erb
+    # 4 - views/lesson_editor/new.html.erb
+    # 5 - views/lesson_editor/slides/_cover.html.erb
+    # 6 - views/lesson_editor/slides/thumbnails/_cover.html.erb
+    # 7 - views/lesson_editor/edit.html.erb
+	# author: 作者
+    author: "Author"
+    # Caption which indicates the date in which a lesson is created
+    # 1 - views/lessons/_view_single_compact.html.erb
+	# created_on: 建立
+    created_on: "Created on"
+    # Caption of the link to open the lesson editor (on the left of the bar above the lesson's list)
+    # 1 - views/lessons/_graybar_left.html.erb
+	# create_new: 建立新课程
+    create_new: "Create a new lesson"
+    # Caption which appears above a link to the lesson editor if your lesson's section is empty
+    # 1 - views/lessons/_empty.html.erb
+	# create_new_now: 现在建立课程
+    create_new_now: "Create a lesson now"
+    # Caption shown before a lesson's description
+    # 1 - views/lessons/_view_single_compact.html.erb
+	# description: 描述
+    description: "Description"
+    # Message which appears in the middle of the page if your lesson's section is empty
+    # 1 - views/lessons/_empty.html.erb
+	# empty: 在你的区域没有课程
+    empty: "You have no lessons in your section"
+    # Message which appears in the middle of the page if the filter you applied produced an empty result
+    # 1 - views/lessons/_empty_filter.html.erb
+	# empty_filter: 课程过滤不产生结果
+    empty_filter: "The lesson filter produced no result"
+    # Captions of the bar on top of the lesson's list
+    headers:
+      # The status of a lesson (linked, private, shared, etc)
+      # 1 - views/lessons/index.html.erb
+	  # status: 状态
+      status: "Status"
+      # The subject of the lesson
+      # 1 - views/lessons/index.html.erb
+	  # subject: 科目
+      subject: "Subject"
+    # Window used to notify your lesson's modification to all the users who linked it
+    notify_modifications:
+      # Title of the window
+      # 1 - views/lessons/_notification_popup.html.erb
+	  # title: 你编辑了已分享的课程
+      title: "You edited a shared lesson!"
+      # Description of the window
+      # 1 - views/lessons/_notification_popup.html.erb
+	  # description: 在%{desy}中，这个课程紧跟着其他用户：作出修改，你喜欢通知她们吗？
+      description: "This lesson is followed by other users in %{desy}: would you like to inform them about the modifications you made?"
+      # Placeholder for the message (the variable %{max} is replaced by the maximum number of characters
+      # 1 - views/lessons/_notification_popup.html.erb
+	  # placeholder: 记下你修改的详细（最大%{max}字符）
+      placeholder: "Write the details of your changes (max %{max} characters)"
+      # Button to send the notification
+      # 1 - views/lessons/_notification_popup.html.erb
+	  # do: 发送通知
+      do: "Send notification"
+      # Button to cancel
+      # 1 - views/lessons/_notification_popup.html.erb
+	  # cancel: 我不要通知
+      cancel: "I don't want to notify"
+      # Placeholder that appears in the notification sent if the user didn't write any message
+      # 1 - models/lesson.rb
+	  # empty_message: [没有信息给出]
+      empty_message: "[no message given]"
+    # Caption for the scholar level of the author of a lesson
+    # 1 - views/lessons/_view_single_compact.html.erb
+    # 2 - views/lesson_editor/new.html.erb
+    # 3 - views/lesson_editor/edit.html.erb
+	# school_level: 学校标准
+    school_level: "School level"
+    # Caption to indicate how many users like the lesson (the variable %{likes} is replaced by the number of users who like the selected lesson)
+    # 1 - views/lessons/_view_single_compact.html.erb
+	# users_like_this: %{likes}用户喜欢这个课程
+    users_like_this: "%{likes} users like this lesson"
+  
+  
+  # SECTION 2.8: Captions used in the Lesson Viewer
+  
+  lesson_viewer:
+    # Caption of the button which closes the playlist's navigational bar
+    # 1 - views/lesson_viewer/playlist.html.erb
+	# close_playlist_bar: 关闭播放列表栏
+    close_playlist_bar: "Close playlist bar"
+    # Caption of the button which opens the playlist's navigational bar
+    # 1 - views/lesson_viewer/playlist.html.erb
+	# open_playlist_bar: 打开播放列表栏
+    open_playlist_bar: "Open playlist bar"
+  
+  
+  # SECTION 2.9: Caption used in the section 'my elements'
+  
+  media_elements:
+    # Used as a caption to select how many elements to show inside each page
+    # 1 - views/media_elements/_title_bar.html.erb
+	# display: 显示
+    display: "Display"
+    # Caption of the buttons used to choose between size display (compact or extended mode)
+    display_mode:
+      # 1 - views/media_elements/_title_bar.html.erb
+	  # title: 显示模式
+      title: "Display mode"
+      # 1 - views/media_elements/_title_bar.html.erb
+	  #  large: 放大
+      large: "Large"
+      # 1 - views/media_elements/_title_bar.html.erb
+	  # small: 宿小
+      small: "Small"
+    # Captions of the main page of the Element Editor (a page with three options: open the empty Audio Editor, open the empty Image Editor, open the empty Video Editor)
+    editor:
+      # Link to the main page of the Element Editor from the section 'my elements'
+      # 1 - views/media_elements/_graybar_left.html.erb
+	  # menu_link: 单元编辑
+      menu_link: "Elements editor"
+      # Above the three options in the main page of Element Editor
+      # 1 - views/media_elements/new.html.erb
+	  # enjoy: 好作品
+      enjoy: "Good work!"
+      # Title of the Element Editor in the case the user is creating a new element
+      # 1 - views/image_editor/_header.html.erb
+      # 2 - views/image_editor/_header.html.erb
+      # 3 - views/audio_editor/_header.html.erb
+      # 4 - views/audio_editor/_header.html.erb
+      # 5 - views/video_editor/_header.html.erb
+      # 6 - views/video_editor/_header.html.erb
+	  # new_untitled: 单元 - 无标题
+      new_untitled: "New element - untitled"
+      # Title of the main page of Element Editor
+      # 1 - views/media_elements/new.html.erb
+	  # title: 欢迎到 %{desy}的单元编辑
+      title: "Welcome to %{desy}'s element editor!"
+      # Text of the main page of Element Editor
+      # 1 - views/media_elements/new.html.erb
+	  # description: 你想建立新单元吗？请选择新单元的类型
+      description: "Do you want to create a new element? Choose the type of the new element"
+    # Message which appears in the middle of the page if your element's section is empty
+    # 1 - views/media_elements/_empty.html.erb
+	# empty: 在你的区域没有单元
+    empty: "You have no elements in your section"
+    # Message which appears in the middle of the page if the filter you applied produced an empty result
+    # 1 - views/media_elements/_empty_filter.html.erb
+	# empty_filter: 单元过滤器没有产生结果
+    empty_filter: "The element filter produced no result"
+    # Caption of the link to open the window to upload a new element (on the left of the bar above the element's list)
+    # 1 - views/media_elements/_graybar_left.html.erb
+	# load_new: 上传新单元
+    load_new: "Upload a new element"
+    # Caption which appears above a link to the window to load a new element if your element's section is empty
+    # 1 - views/media_elements/_empty.html.erb
+	# load_new_now: 现在上传新单元
+    load_new_now: "Upload a new element now"
+  
+  
+  # SECTION 2.10: Contents of automatic notifications sent by the application to the users
+  
+  notifications:
+    # Caption of the user's notifications window if there are no notifications
+    # 1 - views/notifications/_empty.html.erb
+	# empty: 你没有得到任何的通知
+    empty: "You don't have any notifications"
+    lessons:
+      # Message sent to a user who has the lesson link, in case the creator of that lesson deleted it (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
+      # 1 - models/lesson.rb
+	  # destroyed: "<div class=\"title\">警告!</div><div class=\"content\">用户<span class=\"variable\">%{user_name}</span>, <span class=\"variable\">的作者 %{lesson_title}</span>, 已删除这个课程: 因此，你失去了这个课程的链接.</div>"
+      destroyed: "<div class=\"title\">Warning!</div><div class=\"content\">The user <span class=\"variable\">%{user_name}</span>, author of <span class=\"variable\">%{lesson_title}</span>, deleted his lesson: hence, you lost the link to that lesson.</div>"
+      # Notification received by an user who sent to his friends an email with the public link of a lesson: it's used as a memo of the list of emails to which the message was successfully sent (the variable %{title} is replaced by the title of the lesson, %{message} by the message inserted by the sender, %{emails} by the list of emails separated by comma)
+      # 1 - controllers/virtual_classroom_controller.rb
+	  # link_sent: "<div class=\"title\">链接已送!</div><div class=\"content\">你已发送课程链接<span class=\"variable\">%{title}</span>到以下邮箱地址:<br/><br/><span class=\"message\">%{emails}</span><br/><br/>你链接的信息是<br/><br/><span class=\"message\">\"%{message}\"</div>"
+      link_sent: "<div class=\"title\">Link sent!</div><div class=\"content\">You sent the link of the lesson <span class=\"variable\">%{title}</span> to the following emails: <br/><br/><span class=\"message\">%{emails}</span><br/><br/>The message you attached is<br/><br/><span class=\"message\">\"%{message}\"</div>"
+      # Notification sent by a user who modified a shared lesson, to inform all its followers about the nature of modifications made (the variable %{lesson_title} is replaced by the title of the lesson, %{message} by the message containing a better description of the modifications, and %{link} by the link to the lesson viewer for that lesson)
+      # 1 - models/lesson.rb
+	  # modified: "<div class=\"title\">你的消息!</div><div class=\"content\">这个课程<span class=\"variable\">%{lesson_title}</span>作者作了一些改变: 改变的详细是：<br/><br/><span class=\"message\">\"%{message}\"</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
+      modified: "<div class=\"title\">News for you!</div><div class=\"content\">The lesson <span class=\"variable\">%{lesson_title}</span> has undergone some changes by the author: the detail of the changes are<br/><br/><span class=\"message\">\"%{message}\"</span></div><div class=\"basement\"><span>%{lesson_title}</span><a href=\"%{link}\" class=\"preview\"></a></div>"
+      # Message sent to a user who has the link of a lesson, in case the creator of that lesson turned it back into private (in this case the follower loses his link as if the lesson was deleted) (the variable %{user_name} is replaced by the name of the author of the lesson, %{lesson_title} by the title of the lesson)
+      # 1 - models/lesson.rb
+	  # unpublished: "<div class=\"title\">警告!</div><div class=\"content\">用户<span class=\"variable\">%{user_name}</span>, <span class=\"variable\">的作者%{lesson_title}</span>, 把这篇课程变成私有状态: 因此，你已失去了那篇课程的链接.</div>"
+      unpublished: "<div class=\"title\">Warning!</div><div class=\"content\">The user <span class=\"variable\">%{user_name}</span>, author of <span class=\"variable\">%{lesson_title}</span>, changed to private the status of his lesson: hence, you lost the link to that lesson.</div>"
+    audio:
+      compose:
+        update:
+          # The process of audio editing started. The variable %{item} is replaced by the name of the audio whose content is going to be modified
+          # 1 - controllers/audio_editor_controller.rb
+		  #  started: "<div class=\"title\">音频正在编辑</div><div class=\"content\">音频编辑 <span class=\"variable\">%{item}</span> 已开始! 视频编辑临时不能提供, 还有你使用这篇视频的课程.</div>"
+          started: "<div class=\"title\">Audio editing</div><div class=\"content\">The editing of the audio <span class=\"variable\">%{item}</span> started! Audio Editor is temporarily not available, together with lessons where you used this audio.</div>"
+          # The process of audio editing ended successfully. The variable %{item} is replaced by the name of the audio whose content has been modified
+          # 1 - ../lib/media/audio/editing/composer.rb
+		  # ok: "<div class=\"title\">恭喜!</div><div class=\"content\">音频编辑<span class=\"variable\">%{item}</span> 成功完成! 现在音频编辑能提供, 还有用于音频的所有的课程 (除非在编辑中包含任何其它的课程).</div>"
+          ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The editing of the audio <span class=\"variable\">%{item}</span> ended successfully! Now the Audio Editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing).</div>"
+          # The process of audio editing ended with an error. The variable %{item} is replaced by the name of the audio whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
+          # 1 - ../lib/media/audio/editing/composer.rb
+		  # failed: "<div class=\"title\">错误!</div><div class=\"content\">音频编辑<span class=\"variable\">%{item}</span>失败!
+          failed: "<div class=\"title\">Error!</div><div class=\"content\">The editing of the audio <span class=\"variable\">%{item}</span> failed! Now the Audio Editor is available again, together with all the lessons where the audio was used (unless they contain any other element in editing). The draft you were working on hasn't been lost:<br/><br/><a href=\"%{link}\" class=\"link\">go to the draft</a></div>"
+        create:
+          # The process of audio composition started. The variable %{item} is replaced by the name of the audio which is going to be composed
+          # 1 - controllers/audio_editor_controller.rb
+		  # started: "<div class=\"title\">音频制作</div><div class=\"content\">音频制作<span class=\"variable\">%{item}</span>开始了! 音频编辑临时不能提供</div>"
+          started: "<div class=\"title\">Audio composition</div><div class=\"content\">The composition of the audio <span class=\"variable\">%{item}</span> started! Audio Editor is temporarily not available</div>"
+          # The process of audio composition ended successfully. The variable %{item} is replaced by the name of the new audio
+          # 1 - ../lib/media/audio/editing/composer.rb
+		  # ok: "<div class=\"title\">恭喜!</div><div class=\"content\">音频制作<span class=\"variable\">%{item}</span>成功完成! 现在音频编辑可重新提供.</div>"
+          ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The composition of the audio <span class=\"variable\">%{item}</span> ended successfully! Now the Audio Editor is available again.</div>"
+          # The process of audio composition ended with an error. The variable %{item} is replaced by the name of the audio in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
+          # 1 - ../lib/media/audio/editing/composer.rb
+		  # failed: "<div class=\"title\">错误!</div><div class=\"content\">音频制作<span class=\"variable\">%{item}</span> 失败! 现在音频编辑可重新提供. 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">去草稿编辑</a></div>"
+          failed: "<div class=\"title\">Error!</div><div class=\"content\">The composition of the audio <span class=\"variable\">%{item}</span> failed! Now the Audio Editor is available again. The draft you were working on hasn't been lost:<br/><br/><a href=\"%{link}\" class=\"link\">go to the draft</a></div>"
+      upload:
+        # The process of audio uploading started. The variable %{item} is replaced by the name of the audio which is going to be uploaded
+        # 1 - controllers/media_elements_controller.rb
+		# started: "<div class=\"title\">音频正在上传</div><div class=\"content\">音频上传<span class=\"variable\">%{item}</span>已开始! 请等待，知道完成并能使用新音频.</div>"
+        started: "<div class=\"title\">Audio uploading</div><div class=\"content\">The uploading of the audio <span class=\"variable\">%{item}</span> started! Wait until it's over to be able to use the new audio.</div>"
+        # The process of audio uploading ended successfully. The variable %{item} is replaced by the name of the new audio
+        # 1 - ../lib/media/audio/editing/conversion.rb
+		# ok: "<div class=\"title\">恭喜!</div><div class=\"content\">音频上传<span class=\"variable\">%{item}</span>成功完成! 现在你能在你的课程中使用它.</div>"
+        ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The uploading of the audio <span class=\"variable\">%{item}</span> ended successfully! Now you can use it in your lessons.</div>"
+        # The process of audio uploading ended with an error. The variable %{item} is replaced by the name of the audio which the user tried to upload
+        # 1 - ../lib/media/audio/editing/conversion.rb
+		# failed: "<div class=\"title\">错误!</div><div class=\"content\">音频上传<span class=\"variable\">%{item}</span>失败! 请重新再来.</div>"
+        failed: "<div class=\"title\">Error!</div><div class=\"content\">The uploading of the audio <span class=\"variable\">%{item}</span> failed! Please try again.</div>"
+    video:
+      compose:
+        update:
+          # The process of video editing started. The variable %{item} is replaced by the name of the video whose content is going to be modified
+          # 1 - controllers/audio_editor_controller.rb
+		  # started: "<div class=\"title\">正在编辑视频</div><div class=\"content\">视频编辑<span class=\"variable\">%{item}</span>已开始! 视频编辑临时不能提供, 还有你使用这个视频的课程.</div>"
+          started: "<div class=\"title\">Video editing</div><div class=\"content\">The editing of the video <span class=\"variable\">%{item}</span> started! Video Editor is temporarily not available, together with lessons where you used this video.</div>"
+          # The process of video editing ended successfully. The variable %{item} is replaced by the name of the video whose content has been modified
+          # 1 - ../lib/media/audio/editing/composer.rb
+		  # ok: "<div class=\"title\">恭喜!</div><div class=\"content\">编辑视频<span class=\"variable\">%{item}</span>成功完成! 现在视频能重新提供, 还有使用视频的所有的课程 (除非在编辑中包含任何其它的单元).</div>"
+          ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The editing of the video <span class=\"variable\">%{item}</span> ended successfully! Now the Video Editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing).</div>"
+          # The process of video editing ended with an error. The variable %{item} is replaced by the name of the video whose content has been modified, and the variable %{link} is replaced by the link where the copy of your working space is stored
+          # 1 - ../lib/media/audio/editing/composer.rb
+		  # failed: "<div class=\"title\">错误!</div><div class=\"content\">编辑视频<span class=\"variable\">%{item}</span>失败! 现在视频编辑能在提供, 还有用于视频的所有的课程 (除非在编辑中包含任何其它的单元). 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">请去草稿编辑</a></div>"
+          failed: "<div class=\"title\">Error!</div><div class=\"content\">The editing of the video <span class=\"variable\">%{item}</span> failed! Now the Video Editor is available again, together with all the lessons where the video was used (unless they contain any other element in editing). The draft you were working on hasn't been lost:<br/><br/><a href=\"%{link}\" class=\"link\">go to the draft</a></div>"
+        create:
+          # The process of video composition started. The variable %{item} is replaced by the name of the video which is going to be composed
+          # 1 - controllers/video_editor_controller.rb
+		  # started: "<div class=\"title\">音频制作</div><div class=\"content\">视频制作<span class=\"variable\">%{item}</span>已开始! 视频编辑临时不能提供.</div>"
+          started: "<div class=\"title\">Video composition</div><div class=\"content\">The composition of the video <span class=\"variable\">%{item}</span> started! Video Editor is temporarily not available.</div>"
+          # The process of video composition ended successfully. The variable %{item} is replaced by the name of the new video
+          # 1 - ../lib/media/video/editing/composer.rb
+		  # ok: "<div class=\"title\">恭喜!</div><div class=\"content\">视频制作<span class=\"variable\">%{item}</span>成功完成! 现在编辑能重新提供.</div>"
+          ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The composition of the video <span class=\"variable\">%{item}</span> ended successfully! Now the Video Editor is available again.</div>"
+          # The process of video composition ended with an error. The variable %{item} is replaced by the name of the video in composition, and the variable %{link} is replaced by the link where the copy of your working space is stored
+          # 1 - ../lib/media/video/editing/composer.rb
+		  # failed: "<div class=\"title\">错误!</div><div class=\"content\">视频制作<span class=\"variable\">%{item}</span>失败! 现在视频编辑能在提供. 你编辑的草稿还没有失去:<br/><br/><a href=\"%{link}\" class=\"link\">请去草稿编辑</a></div>"
+          failed: "<div class=\"title\">Error!</div><div class=\"content\">The composition of the video <span class=\"variable\">%{item}</span> failed! Now the Video Editor is available again. The draft you were working on hasn't been lost:<br/><br/><a href=\"%{link}\" class=\"link\">go to the draft</a></div>"
+      upload:
+        # The process of video uploading started. The variable %{item} is replaced by the name of the video which is going to be uploaded
+        # 1 - controllers/media_elements_controller.rb
+		# started: "<div class=\"title\">视频正在上传!</div><div class=\"content\">视频上传<span class=\"variable\">%{item}</span>已开始! 请等待直到完成并能使用新视频.</div>"
+        started: "<div class=\"title\">Video uploading!</div><div class=\"content\">The uploading of the video <span class=\"variable\">%{item}</span> started! Wait until it's over to be able to use the new video.</div>"
+        # The process of video uploading ended successfully. The variable %{item} is replaced by the name of the new video
+        # 1 - ../lib/media/video/editing/conversion.rb
+		# ok: "<div class=\"title\">恭喜!</div><div class=\"content\">视频上传<span class=\"variable\">%{item}</span>成功完成! 现在你能在课程中使用它.</div>"
+        ok: "<div class=\"title\">Congratulations!</div><div class=\"content\">The uploading of the video <span class=\"variable\">%{item}</span> ended successfully! Now you can use it in your lessons.</div>"
+        # The process of video uploading ended with an error. The variable %{item} is replaced by the name of the video which the user tried to upload
+        # 1 - ../lib/media/video/editing/conversion.rb
+		# failed: "<div class=\"title\">错误!</div><div class=\"content\">视频上传<span class=\"variable\">%{item}</span>失败! 请重新试一次.</div>"
+        failed: "<div class=\"title\">Error!</div><div class=\"content\">The uploading of the video <span class=\"variable\">%{item}</span> failed! Please try again.</div>"
+  
+  
+  # SECTION 2.11: Captions and texts inside the presentation pages (which are shown when the user is not logged in)
+  # Each section is provided of:
+  # (1) a caption for its link in the menu (keyword 'menu_link')
+  # (2) a title (keyword 'title')
+  # (3) a text (keyword 'description')
+  # (4) accessories (keywords 'subtitle', 'subsubtitle', etc)
+  
+  prelogin:
+    # Secton of contacts
+    contact_us:
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/prelogin/home.html.erb
+      # 3 - views/prelogin/what_is_desy.html.erb
+	  # menu_link: 联系我们
+      menu_link: "Contact us"
+    # Home page
+    main_page:
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/prelogin/home.html.erb
+      # 3 - views/prelogin/what_is_desy.html.erb
+	  # menu_link: 主页
+      menu_link: "Home"
+      # 1 - views/prelogin/home.html.erb
+	  # title: 新教法
+      title: "A new way of teaching"
+      # 1 - views/prelogin/home.html.erb
+	  # description: "<b>%{desy}</b>是奉献教育界的新平台. 使用<b>%{desy}</b>你能轻松地建立职业在线课程, 好的用户界面和好的平台设计. 课程可以包含图像、音频和视频, 它能上传,剪切和提升自己. 用户也能利用我们的社区, 分享和接收媒体单元并准备重用.<i>使用<b>%{desy}</b>我们能保证高质量平台和注重细节</i>."
+      description: "<b>%{desy}</b> is the new platform dedicated to the world of education. With <b>%{desy}</b> you can easily create professional online lessons, good looking and designed in every detail. A lesson may contain images, audio tracks and videos, which you can upload, cut and improve inside the application itself. Users also take advantage of our Community, sharing and receiving media elements ready to be re-used. <i>With <b>%{desy}</b> we guarantee high quality and care for details</i>."
+      # Caption of the link to the video explaining things about the application
+      # 1 - views/prelogin/home.html.erb
+	  # video: 观看视频
+      video: "Watch the video"
+    # Section where the user signs up
+    sign_up:
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/prelogin/home.html.erb
+      # 3 - views/prelogin/what_is_desy.html.erb
+	  # menu_link: 签到
+      menu_link: "Sign up"
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/users/edit.html.erb
+	  # select_a: 选择一个
+      select_a: "Select a"
+    # Section with further explanations about the application
+    what_is_desy:
+      # 1 - views/prelogin/registration.html.erb
+      # 2 - views/prelogin/home.html.erb
+      # 3 - views/prelogin/what_is_desy.html.erb
+	  # menu_link: %{desy}是什么？
+      menu_link: "What is %{desy}?"
+      # 1- views/prelogin/what_is_desy.html.erb
+	  # title: %{desy}是什么？
+      title: "What is %{desy}?"
+      # 1- views/prelogin/what_is_desy.html.erb
+	  # subtitle: 找出%{desy}的益处
+      subtitle: "Find out the benefits of %{desy}"
+      # 1- views/prelogin/what_is_desy.html.erb
+	  # description: "%{desy}是教学数字系统，它充许教师非常自由和容易地建立多媒体课程<br><br>不仅仅是: 它所处的平台充许分享教育单元和社会内容, 优点和额外的功能源于:<ul><li>建立课程和教学跨学科的可能性;</li><li>亲和力和丰富内容的连续性;</li><li>系统的增长感谢是零费用;</li><li>利用教学工具来加强与改善教学.</li></ul>与学校与大学相比, %{desy}能用于公司, 安装在公司局域网内通过门户网站。
+      description: "%{desy} is a didactic digital system which allows teachers to create multimedia lessons in full autonomy and easily.<br><br>Not only: the platform where it lays allows for sharing didactic elements and socialization of contents, from which advantages and additional functionalities are derived among which:<ul><li>the possibility to build lessons and didactic interdisciplinary methods;</li><li>the continuity of the affinity process and enrichment of contents;</li><li>the growth of the system thanks to self feeding at 0 cost;</li><li>the reinforcement and evaluation of the teachers' role in elaborating didactic instruments.</li></ul>other than in schools and universities, %{desy} can be used in a company professional formation, through formative portals installed within companies' intranet, which allow to gather the company know how in a secure and reserve way and at the same time to share them with the teachers called to look after updating and innovation."
+      right_column:
+        # 1 - views/prelogin/what_is_desy.html.erb
+		# caption1: 通过分享你的包括视频、音频和图像课程来加入%{desy}社区
+        caption1: "Participate in the community of %{desy} by sharing your lessons containing didactic videos, audios and images!"
+        # 1 - views/prelogin/what_is_desy.html.erb
+		# caption2: 用容易和面向用户的课程编辑来建立高质量的课程
+        caption2: "Create your high quality lesson with an easy and user-oriented lesson editor"
+        # 1 - views/prelogin/what_is_desy.html.erb
+		# caption3: 可视化其他用户的课程，增加你的知识点
+        caption3: "Visualize other users' lessons and increase your cultural knowledge"
+  
+  
+  # SECTION 2.12: Captions used for registration and login
+  
+  registration:
+    # Title of the registration form
+    # 1 - views/prelogin/registration.html.erb
+	# title: 注册
+    title: "Register"
+    # Subtitle of the registration form
+    # 1 - views/prelogin/registration.html.erb
+	# subtitle: 为什么要注册？
+    subtitle: "Why register?"
+    # Another subtitle of the registration form
+    # 1 - views/prelogin/registration.html.erb
+	# subsubtitle: 发现了%{desy}的益处
+    subsubtitle: "Discover the benefits of %{desy}"
+    # Text describing the registration benefits
+    # 1 - views/prelogin/registration.html.erb
+	# description: 用音频、视频或图像建立你自己的多媒体课程. 与其他教师%{desy}分享课程. 使用或修改适合使用 %{desy}的其他教师课程的需求. 在虚拟教室组织你的课程并发现新教法"
+    description: "Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching."
+    # Button to submit the registration form
+    # 1 - views/prelogin/registration.html.erb
+	# done: 签到
+    done: "Sign up"
+    # Captions of the login window: title + two captions for email and password + button to submit
+    login:
+      # 1 - views/prelogin/_login.html.erb
+	  # done: 进入
+      done: "Enter"
+      # 1 - views/prelogin/_login.html.erb
+	  # email: 邮件地址
+      email: "Email"
+      # 1 - views/prelogin/_login.html.erb
+	  # password: 口令
+      password: "Password"
+      # 1 - views/prelogin/_login.html.erb
+	  # title: 登陆
+      title: "Login"
+    # Link to logout
+    # 1 - views/shared/_logout.html.erb
+    # 2 - views/admin/_header.html.erb
+	# logout: 退出
+    logout: "Logout"
+    # Link to ask for help, in case the user forgot his password
+    # 1 - views/prelogin/_login.html.erb
+	# problems_with_password: 忘记你的口令
+    problems_with_password: "Forgot your password?"
+    subjects:
+      # Caption for subjects selection
+      # 1 - views/prelogin/registration.html.erb
+	  # title: 选择你感兴趣的科目
+      title: "Choose the subjects you are interested in"
+    # List of customizable policies: for each there must be a title and a content (keyword 'description')
+    policy_1:
+      # 1 - views/prelogin/registration.html.erb
+	  # title: 政策1标题
+      title: "Title of policy 1"
+      # 1 - views/prelogin/registration.html.erb
+	  # description: "政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容"
+      description: "Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1"
+	  # accept: 接收
+	  accept: "Accept"
+    policy_2:
+      # 1 - views/prelogin/registration.html.erb
+	  # title: 政策2标题
+      title: "Title of policy 2"
+      # 1 - views/prelogin/registration.html.erb
+	  # description: "政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策1内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容"
+      description: "Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2"
+      # accept: 接收
+	  accept: "Accept"
+  
+  
+  # SECTION 2.13: Captions for reports of inappropriate contents
+  
+  reports:
+    # Link to open the report form
+    # 1 - views/reports/_lesson.html.erb
+	# title: 报告滥用
+    title: "Report abuse"
+    # Title of the report form
+    # 1 - views/reports/_lesson.html.erb
+    # 2 - views/reports/_media_element.html.erb
+	# description: 你认为这一项是带有攻击性的吗？
+    description: "Do you think that this item is offensive?"
+    # Description of the report form
+    # 1 - views/reports/_lesson.html.erb
+    # 2 - views/reports/_media_element.html.erb
+	# placeholder: 记下你报告的原因。谢谢你的合作！
+    placeholder: "Write the reason for your report. Thank you for your cooperation!"
+  
+  
+  # SECTION 2.14: Captions used in the search engine
+  
+  search:
+    # Link to open the search engine from the other sections
+    # 1 - views/shared/_search.html.erb
+    # 2 - views/search/index.html.erb
+	# label: 高级搜寻
+    label: "Advanced search"
+    # Button to start the research
+    # 1 - views/search/lessons/_main.html.erb
+    # 2 - views/search/media_elements/_main.html.erb
+	# short_label: 搜寻
+    short_label: "Search"
+    # Placeholder of the quick search present in all the sections
+    # 1 - views/shared/_search.html.erb
+	# long_label: 在%{desy}中查找
+    long_label: "Search in %{desy}"
+    # Main title inside the search engine
+    # 1 - views/search/index.html.erb
+	# title: 你正在寻找什么？
+    title: "What are you looking for?"
+    # Subtitle inside the search engine
+    # 1 - views/search/index.html.erb
+	# description_title: 你正寻找课程或单元？
+    description_title: "Are you looking for lessons or elements?"
+    # General instructions about how to use the engine
+    # 1 - views/search/index.html.erb
+	# description: 插入一个字，选择过滤并查找！
+    description: "Insert a word, choose the filters and go!"
+    # After the first search, the search parameters are hidden: to open them again and make another search, you click on this button
+    # 1 - views/search/lessons/_main.html.erb
+    # 2 - views/search/media_elements/_main.html.erb
+	# again: 重新查找... 
+    again: "Search again..."
+    # Specific captions for lessons search engine (they can be configured to be different by the ones relative to media elements)
+    lessons:
+      # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
+      # 1 - views/search/lessons/_amount.html.erb
+	  # result: 发现%{num}结果
+      result: "Found %{num} results"
+      # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
+      # 1 - views/search/lessons/_amount.html.erb
+	  # result_with_tags: 发现%{num}结果（在以下标签中选择精准查找）
+      result_with_tags: "Found %{num} results (refine your search selecting among the tags below)"
+      # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found, spiegare %{tag})
+      # 1 - views/search/lessons/_amount.html.erb
+	  # result_filtered_by_tag: 发现%{num}结果（仅仅跟标签<%{tag}>相关）
+      result_filtered_by_tag: "Found %{num} results (only items associated to the tag <%{tag}>)"
+      # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
+      # 1 - views/search/lessons/_empty.html.erb
+	  # empty_word: 跟标签<%{word}>相关的课程没有发现：重新输入比较短的字符，或改变你的搜寻参数
+      empty_word: "No lessons were found associated to tags containing <%{word}>: try entering a shorter word, or changing your search parameters"
+      # Response if the filters the user applied are too strict and this makes the result to be empty
+      # 1 - views/search/lessons/_empty.html.erb
+	  # empty_filter: 用你选择的过滤器没有课程发现
+      empty_filter: "No lesson was found with the filters you chose"
+      keyword:
+        # Label for the space where the user inserts the word he searchs for
+        # 1 - views/search/lessons/_main.html.erb
+		# label: 关键字
+        label: "Keyword"
+        # Placeholder for the space where the user inserts the word he searchs for
+        # 1 - views/search/lessons/_main.html.erb
+		# placeholder: 插入一个标签
+        placeholder: "Insert a tag"
+      # Captions for the set of available filters
+      filters:
+        # 1 - views/search/lessons/_main.html.erb
+		# author: 目录
+        author: "Category"
+        # 1 - views/search/lessons/_main.html.erb
+		# subject: 科目
+        subject: "Subject"
+        # Placeholder to select all the subjects
+        # 1 - views/search/lessons/_main.html.erb
+		# all_subjects: 所有科目
+        all_subjects: "All subjects"
+      # Caption for the possible orders of the result
+      # 1 - views/search/lessons/_main.html.erb
+	  # sort: 分类结果
+      sort: "Sort results by"
+      # Additional instructions and tips to search for lessons
+      suggestion:
+        # 1 - views/search/lessons/_main.html.erb
+		# title: 警告
+        title: "Warning!"
+        # 1 - views/search/lessons/_main.html.erb
+		# description: 如果你不插入关键字，搜索引擎将基于你选择的过滤器查找所有课程
+        description: "If you don't insert a keyword the search engine will find all the available lessons, according to the filters you selected"
+    # Specific captions for media elements search engine (they can be configured to be different by the ones relative to lessons)
+    media_elements:
+      # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
+      # 1 - views/search/media_elements/_amount.html.erb
+	  # result: 发现%{num}结果
+      result: "Found %{num} results"
+      # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found)
+      # 1 - views/search/lessons/_amount.html.erb
+	  # result_with_tags: 发现%{num}结果（在以下标签中精炼的查找）
+      result_with_tags: "Found %{num} results (refine your search selecting among the tags below)"
+      # General captions for the results that the engine retrieved (the variable %{num} is replaced by the number of results found, spiegare %{tag})
+      # 1 - views/search/lessons/_amount.html.erb
+	  # result_filtered_by_tag: 发现%{num}结果（仅跟标签<%{tag}>相关的项目）
+      result_filtered_by_tag: "Found %{num} results (only items associated to the tag <%{tag}>)"
+      # Response if the result was empty (%{word} is replaced by the search word inserted by the user)
+      # 1 - views/search/media_elements/_empty.html.erb
+	  # empty_word: 没有发现包含<%{word}>标签的相关课程
+      empty_word: "No elements were found associated to tags containing <%{word}>: try entering a shorter word, or changing your search parameters"
+      # Response if the filters the user applied are too strict and this makes the result to be empty
+      # 1 - views/search/media_elements/_empty.html.erb
+	  # empty_filter: 用你选择的过滤器没有发现单元
+      empty_filter: "No element was found with the filters you chose"
+      keyword:
+        # Label for the space where the user inserts the word he searchs for
+        # 1 - views/search/media_elements/_main.html.erb
+		# label: 关键字
+        label: "Keyword"
+        # Placeholder for the space where the user inserts the word he searchs for
+        # 1 - views/search/media_elements/_main.html.erb
+		# placeholder: 插入一个标签
+        placeholder: "Insert a tag"
+      # Captions for the set of available filters
+      filters:
+        # 1 - views/search/media_elements/_main.html.erb
+		# format: 格式
+        format: "Format"
+      # Caption for the possible orders of the result
+      # 1 - views/search/media_elements/_main.html.erb
+	  # sort: 分类结果
+      sort: "Sort results by"
+      # Additional instructions and tips to search for media elements
+      suggestion:
+        # 1 - views/search/media_elements/_main.html.erb
+		# title: 警告
+        title: "Warning!"
+        # 1 - views/search/media_elements/_main.html.erb
+		# description: 如果你没有插入关键字，搜索引擎基于你选择的过滤器查找所有的课程
+        description: "If you don't insert a keyword the search engine will find all the available elements, according to the filters you selected"
+  
+  
+  # SECTION 2.15: Captions used in the user's personal profile
+  
+  users:
+    # Caption for the email which univoquely identifies the user
+    # 1 - views/users/request_reset_password.html.erb
+	# email: 邮件地址
+    email: "Email"
+    # Section 1: personal info
+    info:
+      # Caption of the link inside the profile's menu
+      # 1 - views/users/statistics.html.erb
+      # 2 - views/users/mailing_lists.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/subjects.html.erb
+	  # menu_link: 个人信息
+      menu_link: "Personal info"
+      # Title of the section
+      # 1 - views/users/edit.html.erb
+	  # title: 个人信息
+      title: "Personal Info"
+      # Description of the section
+      # 1 - views/users/edit.html.erb
+	  # description: 在这个区中你能更新或修改你帐号所有的参数
+      description: "In this area you can update or modify all the parameters of your account"
+      # Captions for each profile attribute that can be modified by the user
+      attributes:
+        # 1 - views/users/_personal_info.html.erb
+		# name: 名字
+        name: "Name"
+        # 1 - views/users/_personal_info.html.erb
+		# surname: 别名
+        surname: "Surname"
+        # Only this particular attribute can't be modified, being the identifier of the user
+        # 1 - views/users/_personal_info.html.erb
+		# email: 邮件地址
+        email: "Email"
+        # 1 - views/users/_personal_info.html.erb
+		# password: 密码
+        password: "Password"
+        # This is in the case the user is writing his password for the first time
+        # 1 - views/users/_personal_info.html.erb
+		# new_password: 新密码
+        new_password: "New password"
+        # 1 - views/users/_personal_info.html.erb
+		# password_confirmation: 密码确认
+        password_confirmation: "Password confirmation"
+        # This is in the case the user is writing his password for the first time
+        # 1 - views/users/_personal_info.html.erb
+		# new_password_confirmation: 新密码确认
+        new_password_confirmation: "New password confirmation"
+        # 1 - views/users/_personal_info.html.erb
+		# school_level_id: 学校标准
+        school_level_id: "School level"
+        # 1 - views/users/_personal_info.html.erb
+		# town: 城镇
+        town: "Town"
+        # 1 - views/users/_personal_info.html.erb
+		# province: 省份
+        province: "Province"
+    # Section 2: mailing lists
+    mailing_list:
+      # Caption of the link inside the user's profile menu
+      # 1 - views/users/statistics.html.erb
+      # 2 - views/users/mailing_lists.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/subjects.html.erb
+	  # menu_link: 邮件列表
+      menu_link: "Mailing lists"
+      # Title of the subsection
+      # 1 - views/users/mailing_lists.html.erb
+	  # title: 邮件列表
+      title: "Mailing lists"
+      # Description of the subsection
+      # 1 - views/users/mailing_lists.html.erb
+	  # description: 为了发送你的课程，请建立一个或更多的邮件群
+      description: "Create one or more groups of email to send your lessons"
+      # Caption of the link which adds a new mailing list
+      # 1 - views/mailing_lists/_list.html.erb
+	  # add: 增加新群
+      add: "Add new group"
+      # Caption of the link which adds a new email address to the current mailing list
+      # 1 - views/mailing_lists/_group.html.erb
+	  # add_address: 向群增加邮件地址
+      add_address: "Add email address to group"
+      # Caption of the link which deletes a mailing list
+      # 1 - views/mailing_lists/_group.html.erb
+	  # delete: 删除群
+      delete: "Delete group"
+      # Label for a new mailing list for which the user hasn't chosen a name yet; the variable %{number} is replaced by the number of the mailing list group
+      # 1 - views/mailing_lists/_group.html.erb
+	  # label: 群%{number}
+      label: "Group %{number}"
+    # Page that is opened when the user clicks on the link 'Forgot your password?'
+    reset_password:
+       # Title
+       # 1 - views/users/request_reset_password.html.erb
+	   # title: 忘记你的密码
+       title: "Forgot your password?"
+       # Instructions
+       # 1 - views/users/request_reset_password.html.erb
+	   # description: 为了接收新密码，请插入你的邮件地址
+       description: "Insert your email to receive receive a new password"
+       # Button to send reset
+       # 1 - views/users/request_reset_password.html.erb
+	   # done: 重置密码
+       done: "Reset password"
+    # Section 3: user's personal and general statistics
+    statistics:
+      # Link inside the user's profile menu
+      # 1 - views/users/statistics.html.erb
+      # 2 - views/users/mailing_lists.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/subjects.html.erb
+	  # menu_link: 统计
+      menu_link: "Statistics"
+      # Title
+      # 1 - views/users/statistics.html.erb
+	  # title: 统计
+      title: "Statistics"
+      # Description
+      # 1 - views/users/statistics.html.erb
+	  # description: 在%{desy}中跟着你的号码，有更一般的统计
+      description: "Follow your numbers in %{desy}, and more general statistics"
+      # General statistics
+      general:
+        # Lessons with more 'I like you'
+        # 1 - views/users/statistics.html.erb
+		# lessons_more_likes: 有更多我喜欢你的课程
+        lessons_more_likes: "Lessons with more 'I like you'"
+        # How many lessons inside the application are shared
+        # 1 - views/users/statistics.html.erb
+		# lessons_shared: 已分享课程
+        lessons_shared: "Lessons shared"
+        # How many elements inside the application are shared
+        # 1 - views/users/statistics.html.erb
+		# media_elements_shared: 已分享教学单元
+        media_elements_shared: "Didactic elements shared"
+        # Statistics with graph about the distribution of lessons for each subject
+        percentual_lessons_subject:
+          # 1 - views/users/statistics.html.erb
+		  # title: 参量课程/科目
+          title: "Percentual lessons/subject"
+          # Caption for the color which represents a particular subject inside the graph
+          # 1 - views/users/statistics.html.erb
+		  # color: 颜色
+          color: "Color"
+          # 1 - views/users/statistics.html.erb
+		  # subject: 科目
+          subject: "Subject"
+          # 1 - views/users/statistics.html.erb
+		  # value: 值
+          value: "Value"
+        # Title of general subjects
+        # 1 - views/users/statistics.html.erb
+		# title: 一般
+        title: "General"
+        # How many users there are inside the application
+        # 1 - views/users/statistics.html.erb
+		# total_users: 总用户数
+        total_users: "Total users"
+        # Which are the users whose lessons received more 'I like it'
+        # 1 - views/users/statistics.html.erb
+		# users_more_likes: 更喜欢的用户
+        users_more_likes: "Users with more likes"
+      # Captions for personal statistics
+      personal:
+        # How many lessons other users in the application copied from you
+        # 1 - views/users/statistics.html.
+		# lessons_copied_by: 由其他用户拷贝的课程
+        lessons_copied_by: "Lessons copied by other users"
+        # How many lessons you created
+        # 1 - views/users/statistics.html.erb
+		# lessons_created: 课程已建立
+        lessons_created: "Lessons created"
+        # Which are, among your lessons, the ones which received more 'I like it'
+        # 1 - views/users/statistics.html.erb
+		# lessons_more_likes: 等喜欢的课程
+        lessons_more_likes: "Lessons with more likes"
+        # How many 'I like it' in total your lessons received
+        # 1 - views/users/statistics.html.erb
+		# likes: 喜欢你的课程
+        likes: "Likes on your lessons"
+        # How many elements you created
+        # 1 - views/users/statistics.html.erb
+		# media_elements_loaded: 教学单元已上传
+        media_elements_loaded: "Didactic elements uploaded"
+        # Title for personal statistics
+        # 1 - views/users/statistics.html.erb
+		# title: 个人
+        title: "Personal"
+    # Section 4: list of the user's subjects
+    subjects:
+      # Caption for the link inside the user's profile menu
+      # 1 - views/users/statistics.html.erb
+      # 2 - views/users/mailing_lists.html.erb
+      # 3 - views/users/edit.html.erb
+      # 4 - views/users/subjects.html.erb
+	  # menu_link: 科目
+      menu_link: "Subjects"
+      # Title
+      # 1 - views/users/subjects.html.erb
+	  # title: 科目
+      title: "Subjects"
+      # Description
+      # 1 - views/users/subjects.html.erb
+	  # description: 选择你的科目
+      description: "Choose your subjects!"
+  
+  
+  # SECTION 2.16: Captions used inside the Video Editor
+  
+  video_editor:
+    # Button to choose the audio track
+    audio_track:
+      # 1 - views/video_editor/_audio_track.html.erb
+	  # title:增加音频
+      title: "Add audio track"
+      # 1 - views/video_editor/_audio_track.html.erb
+	  # description: 你能上传音频：这将覆盖所有的选择成分的原始音频
+      description: "You can upload an audio track: this will cover the original audio of all the chosen components"
+    # There are three possible components: image, video and text component
+    components:
+      image:
+        # Caption for the selector of duration of an image component
+        # 1 - views/galleries/mixed_for_video_editor.js.erb
+		# time: 时间
+        time: "Time"
+      # Captions for text components
+      text:
+        # Choose a background color
+        # 1 - views/video_editor/_text_component_editor.html.erb
+		# background_color: 背景颜色
+        background_color: "Background color"
+        # Choose a color for the text
+        # 1 - views/video_editor/_text_component_editor.html.erb
+		# color: 文本颜色
+        color: "Text color"
+        # Button to insert the component, once color and text are chosen
+        # 1 - views/video_editor/_text_component_editor.html.erb
+		# done: 插入
+        done: "Insert"
+        # Placeholder for the text field
+        # 1 - views/video_editor/_text_component_editor.html.erb
+        # 2 - views/video_editor/_text_component_editor.html.erb
+        # 3 - views/video_editor/_text_component_editor.html.erb
+		# insert: 插入文本
+        insert: "Insert text"
+        # Caption of the duration selector for a text component
+        # 1 - views/video_editor/_text_component_editor.html.erb
+		# time: 时间
+        time: "Time"
+    # Captions for 'cutters' of a component (the instruments used to modify the duration of a text / image component, or to cut a video component)
+    cutters:
+      # Caption for the button that makes the modifications
+      # 1 - views/video_editor/cutters/_video.html.erb
+      # 2 - views/video_editor/cutters/_text.html.erb
+      # 3 - views/video_editor/cutters/_image.html.erb
+	  # done: 完成
+      done: "Done"
+      # Caption to indicate the previous duration of a text / image component
+      # 1 - views/video_editor/cutters/_text.html.erb
+      # 2 - views/video_editor/cutters/_image.html.erb
+	  # old_time: 时间
+      old_time: "Time"
+      # Caption for the field where the user inserts the new duration of a text / image component
+      # 1 - views/video_editor/cutters/_text.html.erb
+      # 2 - views/video_editor/cutters/_image.html.erb
+	  # time: 新的时间
+      time: "New time"
+      # Caption for the total length of the original video inside a video component
+      # 1 - views/video_editor/cutters/_video.html.erb
+	  # total_length: 总的剪辑长度
+      total_length: "Total clip length"
+      # Caption for the selected length of a video component
+      # 1 - views/video_editor/cutters/_video.html.erb
+	  # selected_length: 已选择
+      selected_length: "Selected"
+    # Caption for the header of the Video Editor
+    # 1 - views/video_editor/_header.html.erb
+	# label: 编辑视频
+    label: "Edit video"
+    # These two captions appear inside the page shown in the case the Video Editor is temporarily not available (it's just a page with title and description): the editor is not available only while the user is editing another video (it takes a few minutes for the server to complete the process and to enable the Editor again)
+    not_available:
+      # 1 - views/video_editor/not_available.html.erb
+	  # title: 视频编辑没有提供
+      title: "Video editor not available"
+      # 1 - views/video_editor/not_available.html.erb
+	  # description: "这时你正在编辑另一视频: 在没有完成之前视频编辑将临时中止"
+      description: "At this moment you are running the Editor for another video: until the process isn't finished the Video Editor will be temporarily disabled"
+    preview:
+      # Caption for the button that opens the global preview mode
+      # 1 - views/video_editor/edit.html.erb
+      # 2 - views/video_editor/edit.html.erb
+	  # label: 预览
+      label: "Preview"
+      # Pause the global preview
+      # 1 - views/video_editor/edit.html.erb
+	  # pause: 暂停
+      pause: "Pause"
+      # Play the preview
+      # 1 - views/video_editor/edit.html.erb
+	  # play: 播放
+      play: "Play"
+    # Inside Video Editor there is a special gallery where it's possible to choose between the three kinds of components (image, video, text): this is the caption for the buttons used to switch between these components
+    # 1 - views/galleries/_mixed_video_image_text.html.erb
+	# select_component_to_add: 选择组件增加
+    select_component_to_add: "Select component to add"
+    # Caption for the overall length of the video that the user is composing
+    # 1 - views/video_editor/edit.html.erb
+	# total_length: 总长度
+    total_length: "Total length"
+  
+  
+  # SECTION 2.17: Captions used inside the Virtual Classroom
+  
+  virtual_classroom:
+    # When the virtual classroom is empty, this is the caption of the 'plus' button used to add a lesson
+    # 1 - views/virtual_classroom/_empty.html.erb
+	# add_lesson_now: 现在增加课程
+    add_lesson_now: "Add a lesson now"
+    # Captions used in the window where the user can pick different lessons to be added in his Virtual Classroom at the same time
+    select_lessons:
+      # Button to close the window without adding lessons
+      # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
+	  # cancel: 终止
+      cancel: "Cancel"
+      # Button to add the selected lessons
+      # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
+	  # done: 上传
+      done: "Upload"
+      # Caption used when the user has no lessons to upload in his Virtual Classroom
+      # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
+	  # empty: 没有任何的课程增加到你的虚拟教室
+      empty: "You don't have any lessons to add to your Virtual Classroom"
+      # Button to open the window from the main bar inside Virtual Classroom
+      # 1 - views/virtual_classroom/_header_buttons.html.erb
+	  # label: 增加课程
+      label: "Add lessons"
+      # Instructions
+      # 1 - views/virtual_classroom/_select_lessons_popup.html.erb
+	  # description: 选择课程上传到虚拟教室
+      description: "Select the lessons to upload in the Virtual Classroom"
+    # Caption that appears when the Virtual Classroom is empty
+    # 1 - views/virtual_classroom/_empty.html.erb
+	# empty: 你的虚拟教室是空的
+    empty: "Your Virtual Classroom is empty"
+    # Caption of the button which empties your Virtual Classroom
+    # 1 - views/virtual_classroom/_header_buttons.html.erb
+	# make_it_empty: 清空你的虚拟教室
+    make_it_empty: "Empty your Virtual Classroom"
+    # Captions used for the composition of the playlist
+    playlist:
+      # Placeholder and instructions when the playlist is empty
+      # 1 - views/virtual_classroom/_empty_playlist.html.erb
+	  # instructions: 加载课程到虚拟教室，然后在这个区拖动建立播放列表
+      instructions: "After having loaded lessons in the Virtual Classroom, drag them in this area to create a playlist"
+      # Label for the playlist column on the right
+      # 1 - views/virtual_classroom/_playlist.html.erb
+	  # label:  播放列表
+      label: "Playlist"
+      # Caption of the button which empties the playlist
+      # 1 - views/virtual_classroom/_playlist.html.erb
+	  # make_it_empty: 清空播放列表
+      make_it_empty: "Empty playlist"
+      # Link to open the playlist viewer
+      # 1 - views/virtual_classroom/_playlist.html.erb
+	  # play: 播放
+      play: "Play"
+    # Window to send the public link of a lesson by email
+    send_link:
+      # Placeholder for the message (the variable %{max} is replaced by the maximum number of characters allowed)
+      # 1 - views/virtual_classroom/_popups.html.erb
+	  # message: 写信息（最大%{max}字符）
+      message: "Write a message (max %{max} characters)"
+      # Label of the text field where the user inserts a single email
+      # 1 - views/virtual_classroom/_popups.html.erb
+	  # emails: 增加邮件地址
+      emails: "Add an email"
+      # Label of the select box where the user needs to add a mailing list to the destinatary
+      # 1 - views/virtual_classroom/_popups.html.erb
+	  # mailing_lists:  增加邮件列表
+      mailing_lists: "Add a mailing list"
+      # Placeholder used in the email sent if the user doesn't write any message
+      # 1 - controllers/virtual_classroom_controller.rb
+	  # empty_message: [没有信息]
+      empty_message: "[no message given]"
+  
+  
+  
+  # PART 3 -- Parameters and constants
+  
+  
+  # SECTION 3.1 Labels for the application's keywords
+  
+  statuses:
+    # The list of statuses for lessons
+    lessons:
+      # A lesson is 'private' if only the owner may see it
+      # 1 - ../lib/autoload/statuses.rb
+	  # private: 私有
+      private: "Private"
+      # A lesson is 'just copied' if the user copied from another lesson, but he hasn't personalized it yet
+      # 1 - ../lib/autoload/statuses.rb
+	  # copied: 已拷贝
+      copied: "Copied"
+      # A lesson is 'linked' if the user doesn't own it, it's just a link to another user's lesson
+      # 1 - ../lib/autoload/statuses.rb
+	  # linked: 已连接
+      linked: "Linked"
+      # A lesson is 'public' when you are not the creator and you haven't linked it yet
+      # 1 - ../lib/autoload/statuses.rb
+	  # public: 公有
+      public: "Public"
+      # A lesson is 'shared' when you are the creator and it's visible to other users
+      # 1 - ../lib/autoload/statuses.rb
+	  # shared: 以分享
+      shared: "Shared"
+    # The list of statuses for media elements
+    media_elements:
+      # An element is 'private' if you are the owner and you haven't used it inside a public lesson
+      # 1 - ../lib/autoload/statuses.rb
+	  # private: 私有
+      private: "Private"
+      # An element is 'public' if you are not the owner and you haven't linked it yet 
+      # 1 - ../lib/autoload/statuses.rb
+	  # public: 公有
+      public: "Public"
+      # An element is 'linked' if the user doesn't own it, it's just a link to a public element
+      # 1 - ../lib/autoload/statuses.rb
+	  # linked: 已连接
+      linked: "Linked"
+  # Filters for both lessons and media elements
+  filters:
+    # All lessons without any filters
+    # 1 - ../lib/autoload/filters.rb
+	# all_lessons: 所有的课程
+    all_lessons: "All lessons"
+    # Only private lessons
+    # 1 - ../lib/autoload/filters.rb
+	# private: 私有
+    private: "Private"
+    # Only public lessons (they can be either lessons that you shared, or public lessons created by somebody else)
+    # 1 - ../lib/autoload/filters.rb
+	# public: 公有
+    public: "Public"
+    # Lessons which don't belong to you but that you linked
+    # 1 - ../lib/autoload/filters.rb
+	# linked: 已链接
+    linked: "Linked"
+    # All your lessons (including both public and private)
+    # 1 - ../lib/autoload/filters.rb
+	# only_mine: 你自己的
+    only_mine: "Your own"
+    # All the lessons that you just copied without personalizing them yet
+    # 1 - ../lib/autoload/filters.rb
+	# copied: 刚拷贝
+    copied: "Just copied"
+    # All the media elements, without any filter
+    # 1 - ../lib/autoload/filters.rb
+	# all_media_elements: 所有的格式
+    all_media_elements: "All formats"
+    # Only elements of kind 'video'
+    # 1 - ../lib/autoload/filters.rb
+	# video: 视频
+    video: "Video"
+    # Only elements of kind 'audio'
+    # 1 - ../lib/autoload/filters.rb
+	# audio: 音频
+    audio: "Audio"
+    # Only elements of kind 'image'
+    # 1 - ../lib/autoload/filters.rb
+	# image: 图像
+    image: "Images"
+    # Only for lessons search engine, filters all the lessons not created by you
+    # 1 - ../lib/autoload/filters.rb
+	# not_mine: 你还没有建立
+    not_mine: "Not created by you"
+  # Possible parameters to sort lessons or media elements
+  orders:
+    # Date of last modification
+    # 1 - ../lib/autoload/search_orders.rb
+	# updated_at: 日期列表修改
+    updated_at: "Date last modification"
+    # Number of likes received (only available for lessons)
+    # 1 - ../lib/autoload/search_orders.rb
+	# likes: 喜欢的数量
+    likes: "Number of likes"
+    # Alphabetical order
+    # 1 - ../lib/autoload/search_orders.rb
+	# title: 按字母表顺序
+    title: "Alphabetical"
+  
+  
+  # SECTION 3.2: Numerical parameters which depend on the language: for instance the maximum number of characters allowed, it depends on the average space of a character in the chosen language
+  
+  time:
+    # Time format
+    # 1 - ..lib/autoload/time_convert.rb
+    format: "english"
+  language_parameters:
+    notification:
+      # Maximum length of the message inserted by the user to notify the modification of a public lesson
+      # 1 - models/lesson.rb
+      # 2 - views/lessons/_notification_popup.html.erb
+      message_length_for_public_lesson_modification: 280
+      # Maximum length of the message inserted by the user when he sends the public link of a lesson to his friends
+      # 1 - controllers/virtual_classroom_controller.rb
+      # 2 - views/virtual_classroom/_popups.html.erb
+      message_length_for_send_lesson_link: 280
+    lesson:
+      # Maximum number of characters allowed in the description of a lesson
+      # 1 - models/lesson.rb
+      # 2 - views/lesson_editor/new.html.erb
+      length_description: 280
+      # Maximum number of characters allowed in the title of a lesson
+      # 1 - models/lesson.rb
+      # 2 - views/lesson_editor/new.html.erb
+      length_title: 35
+    media_element:
+      # Maximum number of characters allowed in the description of an element
+      # 1 - models/media_element.rb
+      # 2 - views/media_elements/_new_form_popup.html.erb
+      # 3 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 4 - views/admin/media_elements/new.html.erb
+      length_description: 280
+      # Maximum number of characters allowed in the title of an element
+      # 1 - models/media_element.rb
+      # 2 - views/media_elements/_new_form_popup.html.erb
+      # 3 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 4 - views/admin/media_elements/new.html.erb
+      length_title: 35
+    slide:
+      # Maximum number of characters allowed in the title of a slide
+      # 1 - models/slide.rb
+      # 2 - views/lesson_editor/slides/_text.html.erb
+      # 3 - views/lesson_editor/slides/_title.html.erb
+      # 4 - views/lesson_editor/slides/_video1.html.erb
+      # 5 - views/lesson_editor/slides/_image1.html.erb
+      # 6 - views/lesson_editor/slides/_audio.html.erb
+      length_title: 35
+      # Maximum number of characters allowed in the caption of an image inside a slide
+      # 1 - models/media_elements_slide.rb
+      # 2 - views/lesson_editor/slides/parts/_image.html.erb
+      length_caption: 35
+    video_editor:
+      # Maximum number of characters allowed in the text component of Video Editor
+      # 1 - views/video_editor/_text_component_editor.html.erb
+      length_text_component: 35
+      # Maximum number of characters allowed for the duration in seconds of a text or image component in Video Editor (hence, if this parameter is 3, the maximum is 999 seconds)
+      # 1 - views/galleries/mixed_for_video_editor.js.erb
+      # 2 - views/video_editor/cutters/_text.html.erb
+      # 3 - views/video_editor/cutters/_image.html.erb
+      # 4 - views/video_editor/_text_component_editor.html.erb
+      length_duration: 3
+  
+  
+  # SECTION 3.3: Locations
+  # 
+  # The structure of locations in the application is organized as follows:
+  #   1) in SETTINGS['location_types'] you can configure an array containing the different levels of locations (ordered from external to internal. A likely example of location configuration would be ['Province', 'District', 'City']
+  #   2) once the administrator has configured the location levels, in the database the table 'locations' is split with single table inheritance, and a model is generated for each location type configured
+  #   3) each time the application need to show data concerning the location of a user (or his lessons / media elements), two separate columns are generated:
+  #      (a) a column labelled with the name of the lower location (in the example above: 'City' : 'Shanghai')
+  #      (b) a column containing the chain the higher locations associated to the lower one (ordered from lower to higher, separated by '-', in our case would be something like 'Shanghai district - Shanghai province')
+  
+  locations:
+    # This array of labels corresponds to the ordered ist configured in SETTINGS['location_types']: the strings in that list are used to NAME THE MODELS, and for this reason they should use english characters, whereas this array specifies the local translation for each model.
+    # 1 - app/models/location.rb
+    # 2 - app/models/location.rb
+    labels: [
+        'Province',
+        'Town',
+        'School'
+      ]
+    # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'
+    # 1 - views/admin/users/show.html.erb
+    # 2 - views/admin/users/_list.html.erb
+	# parents_label: 城镇/省份
+    parents_label: "Town / province"
+  
+  
+  
+  # PART 4 -- Administrator section
+  
+  
+  # SECTION 4.1: Labels used in the section 'Administrator'
+  
+  admin:
+    # Captions used inside the common navigational menu
+    menu:
+      lessons:
+        # Link to the section 'Lessons'
+        # 1 - views/admin/_header.html.erb
+		# link: 课程
+        link: "Lessons"
+      media_elements:
+        # Link to the section 'Elements'
+        # 1 - views/admin/_header.html.erb
+		# link: 单元
+        link: "Elements"
+        # Link to the subsection 'List of elements'
+        # 1 - views/admin/_header.html.erb
+		# list: 列表
+        list: "List"
+        # Link to the subsection 'Multiple uploader of elements'
+        # 1 - views/admin/_header.html.erb
+		# upload: 上传新单元
+        upload: "Upload new elements"
+        # Link to the subsection 'Edit and publication of uploaded elements'
+        # 1 - views/admin/_header.html.erb
+		# publish: 发布私人单元
+        publish: "Publish private elements"
+      users:
+        # Link to the section 'Users'
+        # 1 - views/admin/_header.html.erb
+		# link: 用户
+        link: "Users"
+      messages:
+        # Link to the section 'Messages, notifications and abuses reported'
+        # 1 - views/admin/_header.html.erb
+		# link: 消息
+        link: "Messages"
+        # Link to the subsection 'Notifications'
+        # 1 - views/admin/_header.html.erb
+		# notifications: 通知
+        notifications: "Notifications"
+        # Link to the subsection 'Abuses reported'
+        # 1 - views/admin/_header.html.erb
+		# reports: 滥用报告
+        reports: "Abuse reports"
+      settings:
+        # Link to the section 'Settings'
+        # 1 - views/admin/_header.html.erb
+		# link: 设置
+        link: "Settings"
+        # Link to the subsection 'Configuration settings'
+        # 1 - views/admin/_header.html.erb
+		# configuration: 恭喜
+        configuration: "Configuration"
+      dashboard:
+        # Link to the main page of 'Administration'
+        # 1 - views/admin/_header.html.erb
+		3 link: 版面
+        link: "Dashboard"
+        # Label of the administration main page, on the top left corner of each page inside 'Administration'
+        # 1 - views/admin/_header.html.erb
+		# title: 管理版面
+        title: "Admin dashboard"
+    # Main page of 'Administration'
+    dashboard:
+      # Title of the page
+      # 1 - views/admin/dashboard/index.html.erb
+	  # title: 管理版面
+      title: "Administration dashboard"
+      # General statistics shown inside the main page
+      general:
+        # Title of general statistics frame
+        # 1 - views/admin/dashboard/index.html.erb
+		# title: 一般的统计
+        title: "General statistics"
+        # Number of lessons shared in the application
+        # 1 - views/admin/dashboard/index.html.erb
+		# shared_lessons: 已分享课程
+        shared_lessons: "Shared lessons"
+        # Number of elements shared in the application
+        # 1 - views/admin/dashboard/index.html.erb
+		# shared_media_elements: 以分享单元
+        shared_media_elements: "Shared elements"
+        # Number of users in the application's database
+        # 1 - views/admin/dashboard/index.html.erb
+		# total_users: 在数据库中的用户
+        total_users: "Users in the database"
+      # Statistics about likes
+      likes:
+        # Lessons with more 'I like you'
+        # 1 - views/admin/dashboard/index.html.erb
+		# lessons: 有更多我喜欢你的课程
+        lessons: "Lessons with more 'I like you'"
+        # Users with highest sum of 'I like you' on their lessons
+        # 1 - views/admin/dashboard/index.html.erb
+		# users: 有更多我喜欢你的用户
+        users: "Users with more 'I like you'"
+      # Statistics about users
+      users:
+        # List of users on line
+        # 1 - views/admin/dashboard/index.html.erb
+		# online: 用户上线
+        online: "Users online"
+        # List of the last users who signed up in the application
+        # 1 - views/admin/dashboard/index.html.erb
+		# new: 上一用户
+        new: "Last users"
+      # statistics about subject distribution among lessons (a graph)
+      # 1 - views/admin/dashboard/index.html.erb
+	  #  subjects: 课程中科目分配
+      subjects: "Subject distribution among lessons"
+      # Shortcut to the newest reports of abuses (about lessons and media element)
+      reports:
+        # 1 - views/admin/dashboard/index.html.erb
+		# lessons: 已发布课程
+        lessons: "Reported lessons"
+        # 1 - views/admin/dashboard/index.html.erb
+		# media_elements: 已发布媒体单元
+        media_elements: "Reported media elements"
+    # General captions, used throughout the Administrator
+    general:
+      # Link to switch all the items in a list to the compact status
+      # 1 - views/admin/_list_heading.html.erb
+	  # close_all: 关闭所有
+      close_all: "Close all"
+      # Link to expand all the items of a list
+      # 1 - views/admin/_list_heading.html.erb
+	  # expand_all: 展开所有
+      expand_all: "Expand all"
+      # Link used to enter in 'Administration' from outside (placed on the side of the link 'logout', only for administrators)
+      # 1 - views/shared/_logout.html.erb
+	  # link: 管理
+      link: "Administration"
+    # Section of lessons
+    lessons:
+      # Title of the section
+      # 1 - views/admin/lessons/index.html.erb
+	  # title: 课程
+      title: "Lessons"
+      # Popup which asks for confirmation before deleting a lesson
+      # 1 - views/admin/lessons/_list.html.erb
+	  # delete_confirm: 确信你想删除这个课程吗？
+      delete_confirm: "Are you sure you want to delete this lesson?"
+      # Placeholder used when there are no lessons associated to the selected filter
+      # 1 - views/admin/lessons/_list.html.erb
+	  # empty: 没有课程发现
+      empty: "No lessons found"
+      # Labels for the fields of a lesson
+      fields:
+        # 1 - views/admin/lessons/_list.html.erb
+		# created_at: 建立日期
+        created_at: "Creation date"
+        # 1 - views/admin/lessons/_list.html.erb
+		# description: 描述
+        description: "Description"
+        # 1 - views/admin/lessons/_list.html.erb
+		# id: Id
+        id: "Id"
+        # 1 - views/admin/lessons/_list.html.erb
+		# likes: 喜欢
+        likes: "Likes"
+        # 1 - views/admin/lessons/_list.html.erb
+		# subject: 科目
+        subject: "Subject"
+        # 1 - views/admin/lessons/_list.html.erb
+		# tags: 标签
+        tags: "Tags"
+        # 1 - views/admin/lessons/_list.html.erb
+		# title: 标题
+        title: "Title"
+        # 1 - views/admin/lessons/_list.html.erb
+		# updated_at: 上一次更新
+        updated_at: "Last update"
+        # 1 - views/admin/lessons/_list.html.erb
+		# user: 用户
+        user: "User"
+      # Name used as label in the pagination (ex. '1-10 of 300 lessons')
+      # 1 - helpers/admin_helper.rb
+	  # name: 课程
+      name: "Lessons"
+      # Frame for the lessons search engine
+      search:
+        # Title of the frame
+        # 1 - views/admin/lessons/index.html.erb
+		# label: 查找课程
+        label: "Search lessons"
+        # Button to start the search
+        # 1 - views/admin/lessons/index.html.erb
+		# submit: 查找
+        submit: "Search"
+    # Section of media elements
+    media_elements:
+      # Title of the section
+      # 1 - views/admin/media_elements/index.html.erb
+	  # title: 单元
+      title: "Elements"
+      # Captions of the buttons available on a single element
+      actions:
+        # Remove the element
+        # 1 - views/admin/media_elements/_media_element_upload.html.erb
+        # 2 - views/admin/media_elements/_media_element_update.html.erb
+		# delete: 删除
+        delete: "Delete"
+        # Publish an element previously uploaded by the administrator
+        # 1 - views/admin/media_elements/_media_element_update.html.erb
+		# publish: 发布
+        publish: "Publish"
+        # Update an element, after having chosen title and description
+        # 1 - views/admin/media_elements/_media_element_upload.html.erb
+		# save: 保存
+        save: "Save"
+        # Update an element which has been uploaded by the administrator but is still not public
+        # 1 - views/admin/media_elements/_media_element_update.html.erb
+		# update: 上传
+        update: "Update"
+      # Popup which asks for confirmation before deleting a media_element
+      # 1 - views/admin/media_elements/_media_element_update.html.erb
+      # 2 - views/admin/media_elements/_list.html.erb
+	  # delete_confirm: 确认你想删除这个单元吗？
+      delete_confirm: "Are you sure you want to delete this element?"
+      # Title of the subsection where the administrator can edit and publish the elements he uploaded which are not public yet
+      # 1 - views/admin/media_elements/edit.html.erb
+	  # edit: 编辑和分享已上传的单元
+      edit: "Edit and share uploaded elements"
+      # Placeholder used when there are no media elements associated to the selected filter
+      # 1 - views/admin/media_elements/_list.html.erb
+      # 2 - views/admin/media_elements/edit.html.erb
+	  # empty: 没有单元发现
+      empty: "No elements found"
+      # Caption if you didn't load any element in the multiple loader
+      # 1 - views/admin/media_elements/new.html.erb
+      # 2 - views/admin/media_elements/quick_upload_delete.js.erb
+	  # empty_files: 没有文件加载
+      empty_files: "No files loaded"
+      # Labels for the fields of an element
+      fields:
+        # 1 - views/admin/media_elements/_list.html.erb
+		# created_at: 建立日期
+        created_at: "Creation date"
+        # 1 - views/admin/media_elements/_media_element_upload.html.erb
+        # 2 - views/admin/media_elements/_list.html.erb
+		# description:描述
+        description: "Description"
+        # 1 - views/admin/media_elements/_list.html.erb
+		#  id: Id
+        id: "Id"
+        # 1 - views/admin/media_elements/_list.html.erb
+		# is_public: 公共
+        is_public: "Public"
+        # 1 - views/admin/media_elements/_list.html.erb
+		# sti_type: 媒体类型
+        sti_type: "Media type"
+        # 1 - views/admin/media_elements/_media_element_upload.html.erb
+        # 2 - views/admin/media_elements/_list.html.erb
+		# tags: 标签
+        tags: "Tags"
+        # 1 - views/admin/media_elements/_media_element_upload.html.erb
+        # 2 - views/admin/media_elements/_list.html.erb
+		# title: 标题
+        title: "Title"
+        # 1 - views/admin/media_elements/_list.html.erb
+		# updated_at: 上次更新
+        updated_at: "Last update"
+        # 1 - views/admin/media_elements/_list.html.erb
+		# user:用户
+        user: "User"
+      # Name used as label in the pagination (ex. '1-10 of 300 elements')
+      # 1 - helpers/admin_helper.rb
+	  # name: 单元
+      name: "Elements"
+      # The labels below are used in the section where the administrator can upload and save multiple elements
+      new:
+        # Title
+        # 1 - views/admin/media_elements/new.html.erb
+		# title: 上传新单元
+        title: "Upload new elements"
+        # Caption for the file uploader
+        # 1 - views/admin/media_elements/new.html.erb
+		# file_to_upload: 选择一文件上传
+        file_to_upload: "Choose a file to upload"
+        # Instructions to upload
+        # 1 - views/admin/media_elements/new.html.erb
+		# upload_hint: 你能使用CTRL选择更多的文件：如果你想分配同样的标题/描述/给文件列表，请使用以上域
+        upload_hint: "You can select more than a file, using CTRL: if you want to assign the same title / description / tags to the list of files, use the fields above"
+        # Title of the frame which contains the list of uploaded files, ready to be saved as new elements
+        # 1 - views/admin/media_elements/new.html.erb
+		# content_title: 单元准备保存
+        content_title: "Elements ready to be saved"
+      # This label is used in a checkbox on the multiple upload form: when checked, the element will be saved and automatically published (this option is possible only for images, since audios and videos must be converted before they can be shared)
+      # 1 - views/admin/media_elements/_media_element_upload.html.erb
+	  # publish_now: 现在发布
+      publish_now: "Publish now"
+      # Frame for the lessons search engine
+      search:
+        # Title of the form
+        # 1 - views/admin/media_elements/index.html.erb
+		# label: 查找单元
+        label: "Search elements"
+        # Button to start the search
+        # 1 - views/admin/media_elements/index.html.erb
+		# submit: 查找
+        submit: "Search"
+    # Captions of the contents of the search engine inside the 'Administration' section. The content depends on the selected subsection, and appears inside the corresponding frame (see admin.[section].search)
+    search:
+      # Section where the user filters by location
+      locations:
+        # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
+        # 1 - views/admin/users/_locations_list.html.erb
+		# caption: 选择%{location}
+        caption: "Select %{location}"
+        # 1 - views/admin/search/_location.html.erb
+		# title: 位置
+        title: "Location"
+      # Search through dates (this option is available for any section)
+      date:
+        # Title of the frame containing date selection
+        # 1 - views/admin/search/_date.html.erb
+		# title: 日期
+        title: "Date"
+        # Range selection
+        range:
+          # 1 - views/admin/search/_date.html.erb
+		  # caption: 日期范围
+          caption: "Date range"
+          # 1 - views/admin/search/_date.html.erb
+		  # select: 选择类别类型
+          select: "Select the type of range"
+        # Label for date of creation
+        # 1 - views/admin/search/_date.html.erb
+        # 2 - views/admin/search/_date.html.erb
+        # 3 - views/admin/search/_date.html.erb
+		# created_at: 建立日期
+        created_at: "Creation date"
+        # Label for date of last modification
+        # 1 - views/admin/search/_date.html.erb
+        # 2 - views/admin/search/_date.html.erb
+        # 3 - views/admin/search/_date.html.erb
+		# updated_at: 上次更新
+        updated_at: "Last update"
+        # Label for the left side of the range to select
+        # 1 - views/admin/search/_date.html.erb
+		# from: 从
+        from: "From"
+        # Label for the right side of the range to select
+        # 1 - views/admin/search/_date.html.erb
+		# to: 到
+        to: "To"
+        # The two possible errors that may occur while selecting a range of dates
+        errors:
+          # Case 1: the initial date is after the final date
+          # 1 - views/admin/search/_alerts.html.erb
+		  # initial_follows_final: 初始日期不能跟最后的日期
+          initial_follows_final: "The initial date can't follow the final date"
+          # Case 2: the final date is before the initial date
+          # 1 - views/admin/search/_alerts.html.erb
+		  # final_preceeds_initial: 初始日期之前最后的日期不能处理
+          final_preceeds_initial: "The final date can't be before the initial date"
+      # Contents of search engine specific for lessons
+      lessons:
+        # Title of the frame
+        # 1 - views/admin/search/_lessons_general.html.erb
+		# title: 一般
+        title: "General"
+        # Fields used in the research
+        fields:
+          # 1 - views/admin/search/_lessons_general.html.erb
+          # 2 - views/admin/search/_lessons_general.html.erb
+		  # id: id
+          id: "Id"
+          # 1 - views/admin/search/_lessons_general.html.erb
+          # 2 - views/admin/search/_lessons_general.html.erb
+		  # title: 标题
+          title: "Title"
+          # 1 - views/admin/search/_lessons_general.html.erb
+		  # subject: 科目
+          subject: "Subject"
+          # Placeholder used when no subject is selected
+          # 1 - views/admin/search/_lessons_general.html.erb
+		  # select_subject: 选择一个科目
+          select_subject: "Select a subject"
+          # 1 - views/admin/search/_lessons_general.html.erb
+          # 2 - views/admin/search/_lessons_general.html.erb
+		  # user: 用户
+          user: "User"
+      # Contents of search engine specific for elements
+      media_elements:
+        # Title of the frame
+        # 1 - views/admin/search/_elements_general.html.erb
+		# title: 一般
+        title: "General"
+        # Fields used in the research
+        fields:
+          # 1 - views/admin/search/_elements_general.html.erb
+          # 2 - views/admin/search/_elements_general.html.erb
+		  # id: Id
+          id: "Id"
+          # 1 - views/admin/search/_elements_general.html.erb
+          # 2 - views/admin/search/_elements_general.html.erb
+		  # title: 标题
+          title: "Title"
+          # Media type (Image, Audio, Video)
+          # 1 - views/admin/search/_elements_general.html.erb
+		  # sti_type: 媒体类型
+          sti_type: "Media type"
+          # Placeholder used when no media type is selected
+          # 1 - views/admin/search/_elements_general.html.erb
+		  # all_sti_types: 所有
+          all_sti_types: "All"
+          # 1 - views/admin/search/_elements_general.html.erb
+          # 2 - views/admin/search/_elements_general.html.erb
+		  # user: 用户
+          user: "User"
+      notifications:
+        # Title of the frame: since the labels contained in this frame are the same of the section 'Users', this title is the only caption which differs from the labels used in that section
+        # 1 - views/admin/search/_notifications_filter.html.erb
+		# title: 一般
+        title: "General"
+      # Contents of search engine specific for users: this part is used to search both users and notifications / reports associated to users
+      users:
+        # Title of the frame
+        # 1 - views/admin/search/_users_general.html.erb
+		# title: 一般
+        title: "General"
+        # Fields used in the research
+        fields:
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_users_general.html.erb
+		  # id: Id
+          id: "Id"
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_users_general.html.erb
+		  # name: 名字
+          name: "Name"
+          # Unlike the lessons, a user may be associated to more than a subject
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_notifications_filter.html.erb
+		  # subject: 科目
+          subject: "Subject"
+          # Placeholder used when no subject is selected
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_notifications_filter.html.erb
+		  # select_subject: 选择科目
+          select_subject: "Select a subject"
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_notifications_filter.html.erb
+		  # school_level: 学校标准
+          school_level: "School level"
+          # Placeholder used when no school level is selected
+          # 1 - views/admin/search/_users_general.html.erb
+          # 2 - views/admin/search/_notifications_filter.html.erb
+		  # select_school_level: 选择学校标准
+          select_school_level: "Select a school level"
+          # labels used to range users according to their sign up date
+          created_at:
+            # Title of the subframe
+            # 1 - views/admin/search/_notifications_filter.html.erb
+			# title: 注册日期
+            title: "Registration date"
+            # Label for the selection
+            # 1 - views/admin/search/_notifications_filter.html.erb
+			# select: 选择
+            select: "Select an option"
+            # Only users created today
+            # 1 - views/admin/search/_notifications_filter.html.erb
+			# today: 今天
+            today: "Today"
+            # Only users created in the last week
+            # 1 - views/admin/search/_notifications_filter.html.erb
+			# week: 上个周
+            week: "Last week"
+            # Only users created in the last month
+            # 1 - views/admin/search/_notifications_filter.html.erb
+			# month: 上个月
+            month: "Last month"
+            # Only users creatd in the last year
+            # 1 - views/admin/search/_notifications_filter.html.erb
+			# year: 去年
+            year: "Last year"
+    # Section 'Users' in the administration module
+    users:
+      # Title of the section
+      # 1 - views/admin/users/index.html.erb
+	  # title: 数据库中的用户
+      title: "Users in the database"
+      # Actions that may be applied on a single user
+      actions:
+        # This buttons is used to activate a user
+        # 1- views/admin/users/set_status.js.erb
+        # 2 - views/admin/users/show.html.erb
+        # 3 - views/admin/users/_list.html.erb
+		# activate: 激活
+        activate: "Activate"
+        # This button is used to block a user
+        # 1- views/admin/users/set_status.js.erb
+        # 2 - views/admin/users/show.html.erb
+        # 3 - views/admin/users/_list.html.erb
+		# ban: Ban
+        ban: "Ban"
+        # Link to the automatic mailer, used to communicate with a user
+        # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
+		# message: 发送信息给这个用户
+        message: "Send a message to this user"
+      # Caption to delete a user
+      # 1 - views/admin/users/show.html.erb
+      # 2 - views/admin/users/_list.html.erb
+	  # delete: 删除用户
+      delete: "Delete user"
+      # Popup which asks for confirmation before deleting a media_element
+      # 1 - views/admin/users/_list.html.erb
+	  # delete_confirm: 确信你想删除这个用户吗？
+      delete_confirm: "Are you sure you want to delete this user?"
+      # Placeholder used when there are no media elements associated to the selected filter
+      # 1 - views/admin/users/_list.html.erb
+	  # empty: 没有用户发现
+      empty: "No users found"
+      # Fields of users
+      fields:
+        # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
+		# created_at: 已建立
+        created_at: "Created"
+        # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
+		# id: Id
+        id: "Id"
+        # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
+		# email: 邮件地址
+        email: "Email"
+        # 1 - views/admin/users/show.html.erb
+		# location: 位置
+        location: "Location"
+        # 1 - views/admin/users/_list.html.erb
+		# name: 名字
+        name: "Name"
+        # 1 - views/admin/users/show.html.erb
+        # 2 - views/admin/users/_list.html.erb
+		# school_level: 学校标准
+        school_level: "School level"
+        # 1 - views/admin/users/_list.html.erb
+		# surname: 别名
+        surname: "Surname"
+        # 1 - views/admin/users/show.html.erb
+		#  updated_at: 上次更新
+        updated_at: "Last update"
+      # Caption of the frame containing all the lesson of a specific user
+      # 1 - views/admin/users/show.html.erb
+	  # lessons: %{user}的课程
+      lessons: "Lessons of %{user}"
+      # Caption of the frame containing all the elements of a specific user
+      # 1 - views/admin/users/show.html.erb
+	  # media_elements: %{user}的多媒体单元
+      media_elements: "Media elements of %{user}"
+      # Name used as label in the pagination (ex. '1-10 of 300 users')
+      # 1 - helpers/admin_helper.rb
+	  # name: 用户
+      name: "Users"
+      # Frame for the lessons search engine
+      search:
+        # Title of the frame
+        # 1 - views/admin/users/index.html.erb
+		# label: 查找用户
+        label: "Search users"
+        # Button to start the search
+        # 1 - views/admin/users/index.html.erb
+		# submit: 查找
+        submit: "Search"
+      # Link to the personal page of each user
+      # 1 - views/admin/users/_list.html.erb
+	  # show: 显示用户页
+      show: "Show user page"
+      # Subframe containing statistics of the selected user
+      statistics:
+        # Title of the subframe
+        # 1 - views/admin/users/_list.html.erb
+		# title: 个人统计
+        title: "Personal statistics"
+        # Statistics about lessons
+        lessons:
+          # Title of the subframe
+          # 1 - views/admin/users/_list.html.erb
+		  # title: 课程
+          title: "Lessons"
+          # Number of lesson created by the selected user and copie by other user
+          # 1 - views/admin/users/_list.html.erb
+		  # copied: 其他用户拷贝
+          copied: "Copied by other users"
+          # Number of lessons created by the selected user
+          # 1 - views/admin/users/_list.html.erb
+		  # created: 已建立
+          created: "Created"
+        # Lessons which received more likes, among the ones created by the selected user
+        # 1 - views/admin/users/_list.html.erb
+		# likes: 更多喜欢的课程
+        likes: "Lessons with more likes"
+        # Statistics about media elements
+        media_elements:
+          # Uploaded media elements
+          # 1 - views/admin/users/_list.html.erb
+		  # loaded: 已上传
+          loaded: "Uploaded"
+          # Title of the subframe
+          # 1 - views/admin/users/_list.html.erb
+		  # title: 多媒体单元
+          title: "Media elements"
+        # Other statistics
+        other:
+          # Total amount of likes over the lessons of the selected user
+          # 1 - views/admin/users/_list.html.erb
+		  # likes: 喜欢你的课程
+          likes: "Likes on your lessons"
+          # Title of the subframe
+          # 1 - views/admin/users/_list.html.erb
+		  # title: 其它的统计
+          title: "Other statistics"
+        # Statistics subjects label
+        # 1 - views/admin/users/show.html.erb
+		# subjects: 主题
+        subjects: "Subjects"
+
+    # Section 'Messages' in the administration module
+    messages:
+      # Section 'Nofitications'
+      # 1 - views/admin/messages/new_notification.html.erb
+      notifications:
+	     # send_notifications: 送通知
+        send_notifications: "Send notifications"
+		 # filter_users: 过滤用户送通知到
+        filter_users: "Filter users to send notifications to"
+		 # users_selected: %{user_count}用户已选择
+        users_selected: "%{user_count} users selected"
+		 # add_recipients: 选择接收者
+        add_recipients: "Select recipients"
+		 # send_everyone: 向所有人发送
+        send_everyone: "Send to everyone"
+		 # send: 发送
+        send: "Send"
+        
+        
+  
+  # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'
+  
+  views:
+    pagination:
+      # Character for previous page (it might be replaced by a word)
+      # 1 - views/admin/_list_heading.html.erb
+	  # previous: 上一页
+      previous: "&lt;"
+      # Character for next page (it might be replaced by a word)
+      # 1 - views/admin/_list_heading.html.erb
+	  # next: 下一页
+      next: "&gt;"
+      # Character for first page (it might be replaced by a word)
+      # 1 - views/admin/_list_heading.html.erb
+	  # first: 第一页
+      first: "&laquo;"
+      # Character for last page (it might be replaced by a word)
+      # 1 - views/admin/_list_heading.html.erb
+	  # last: 最后一页
+      last: "&raquo;"
+      # Word used in the expression '1-10 <of> 300 items'
+      # 1 - helpers/admin_helper.rb
+	  # of_range: 属于
+      of_range: "Of"
