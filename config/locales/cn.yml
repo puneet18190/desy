@@ -1045,66 +1045,56 @@ en:
   captions:
     # Used in the general footer of the application, to redirect to the main page
     # 1 - views/shared/_footer.html.erb
-	# back_to_dashboard: 回到版面
-    back_to_dashboard: "Back to dashboard"
+    back_to_dashboard: "回到版面"
     # Used as a placeholder in any <video> HTML tag, if the browser doesn't support either .webm or .mp4
     # 1 - views/shared/players/_video.html.erb
     # 2 - views/video_editor/previews/_video.html.erb
     # 3 - views/admin/media_elements/previews/_video.html.erb
-	# dont_support_video: 你的浏览器不支持视频
-    dont_support_video: "Your browser does not support videos"
+    dont_support_video: "你的浏览器不支持视频"
     # Used as a placeholder in any <audio> HTML tag, if the browser doesn't support either .ogg or .mp3
     # 1 - views/shared/players/_audio.html.erb
     # 2 - views/video_editor/previews/_audio_track.html.erb
     # 3 - views/admin/media_elements/previews/_audio.html.erb
-	# dont_support_audio: 你的浏览器不支持音频
-    dont_support_audio: "Your browser does not support audios"
+    dont_support_audio: "你的浏览器不支持音频"
     # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for instance, in the search engine when the application asks where to search, or in the main page to separate suggested lessons by suggested elements)
     # 1 - views/lessons/index.html.erb
     # 2 - views/dashboard/_graybar_left.html.erb
     # 3 - views/shared/_menu.html.erb
     # 4 - views/shared/_search.html.erb
     # 5 - views/search/_item_selector.html.erb
-	# lessons: 课程
-    lessons: "Lessons"
+    lessons: "课程"
     # Used anywhere the application makes a distinction between 'lessons' and 'media elements' (for examples, see 'lessons')
     # 1 - views/dashboard/_graybar_left.html.erb
     # 2 - views/shared/_menu.html.erb
     # 3 - views/shared/_search.html.erb
     # 4 - views/media_elements/_title_bar.html.erb
     # 5 - views/search/_item_selector.html.erb
-	# media_elements: 单元
-    media_elements: "Elements"
+    media_elements: "单元"
     # Used to refer to the user's personal profile
     # 1 - views/shared/_menu.html.erb
     # 2 - views/users/statistics.html.erb
     # 3 - views/users/mailing_lists.html.erb
     # 4 - views/users/edit.html.erb
     # 5 - views/users/subjects.html.erb
-	# profile: 个人资料
-    profile: "Profile"
+    profile: "个人资料"
     # Used anywhere the user needs to insert a time duration in seconds: here goes the shortened form for the word 'seconds'
     # 1 - views/galleries/mixed_for_video_editor.js.erb
     # 2 - views/video_editor/cutters/_text.html.erb
     # 3 - views/video_editor/cutters/_image.html.erb
     # 4 - views/video_editor/_text_component_editor.html.erb
-	# seconds_shortened: 秒
-    seconds_shortened: "Sec"
+    seconds_shortened: "秒"
     # Used as a caption to select filters inside the sections 'my lessons' and 'my elements'
     # 1 - views/lessons/index.html.erb
     # 2 - views/media_elements/_title_bar.html.erb
-	# show: 显示
-    show: "Show"
+    show: "显示"
     # Caption for Virtual Classroom
     # 1 - views/shared/_menu.html.erb
     # 2 - views/virtual_classroom/index.html.erb
-	virtual_classroom: 虚拟教室
-    virtual_classroom: "Virtual Classroom"
+    virtual_classroom: "虚拟教室"
     # Used in the login, before the logged user's name
     # 1 - views/shared/_logout.html.erb
     # 2 - views/admin/_header.html.erb
-	# welcome: 欢迎
-    welcome: "Welcome"
+    welcome: "欢迎"
   
   
   # SECTION 2.2: Captions used inside the Audio Editor
@@ -1114,38 +1104,30 @@ en:
     cutters:
       # This is the caption for the selected interval of the audio track (example: the track is 2 minutes long, and the user is making a selection from 00:40 to 01:50)
       # 1 - views/audio_editor/_component.html.erb
-	  # selected: 已选择
-      selected: "Selected"
+      selected: "已选择"
     # Caption visible in the middle of the Editor in the case it's empty (if this caption is visible, either the user opened the Editor empty, or he deleted the last component)
     # 1 - views/audio_editor/edit.html.erb
-	# empty: 开始建立音频，点击右边的按钮并从库中选择
-    empty: "To start creating an audio, click on the button on the right and select from the gallery"
+    empty: "开始建立音频，点击右边的按钮并从库中选择"
     # Label in the header
     # 1 - views/audio_editor/_header.html.erb
-	# label: 编辑音频
-    label: "Edit audio"
+    label: "编辑音频"
     # These two captions appear inside the page shown in the case the Audio Editor is temporarily not available (it's just a page with title and description): the editor is not available only while the user is editing another audio (it takes a few minutes for the server to complete the process and to enable the Editor again)
     not_available:
       # 1 - views/audio_editor/not_available.html.erb
-	  # title: 无法提供音频编辑
-      title: "Audio editor not available"
+      title: "无法提供音频编辑"
       # 1 - views/audio_editor/not_available.html.erb
-	  # description: 在这个时候，你能运行另一个音频曲目编辑：进程还没完成之前，音频编辑将被临时关闭。
-      description: "At this moment you are running the Editor for another audio track: until the process isn't finished the Audio Editor will be temporarily disabled"
+      description: "在这个时候，你能运行另一个音频曲目编辑：进程还没完成之前，音频编辑将被临时关闭。"
     # The buttons to control the whole preview are located on the right column of Audio Editor
     preview:
       # Button to start the preview
       # 1 - views/audio_editor/_lateral_controls.html.erb
-	  # play: 播放
-      play: "Play"
+      play: "播放"
       # Button to stop the preview
       # 1 - views/audio_editor/_lateral_controls.html.erb
-	  # stop: 停止
-      stop: "Stop"
+      stop: "停止"
     # Caption, inside the right column, for the total length of the audio in editing
     # 1 - views/audio_editor/_lateral_controls.html.erb
-	# total_length: 总长度
-    total_length: "Total length"
+    total_length: "总长度"
   
   
   # SECTION 2.3: Captions used inside the Dashboard (main page)
@@ -1153,57 +1135,44 @@ en:
   dashboard:
     # The caption of the link to open the 'contacts' page (the link is on the bottom left of the Dashboard)
     # 1 - views/dashboard/index.html.erb
-	# contact_us: 联系我们
-    contact_us: "Contact us"
+    contact_us: "联系我们"
     # Caption of the link opening the lesson editor (in each page of lessons inside the Dashboard, after the last lesson there is a button with a 'plus' which opens the lesson editor)
     # 1 - views/dashboard/_lessons_and_media_elements.html.erb
     # 2 - views/dashboard/_lessons_and_media_elements.html.erb
-	# create_new_lesson: 建立新课程
-    create_new_lesson: "Create a new lesson"
+    create_new_lesson: "建立新课程"
     # Caption of the link opening the lesson editor, containing a prompt for the user (this is used only in the case there are no suggested lessons in the Dashboard: in this case the application invites the user to create a lesson right now)
     # 1 - views/dashboard/_lessons_empty.html.erb
-	# create_new_lesson_now: 现在建立课程
-    create_new_lesson_now: "Create a lesson now"
+    create_new_lesson_now: "现在建立课程"
     # Caption of the link to download the user manual (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
-	# download_manual: 下载用户手册
-    download_manual: "Download the user manual"
+    download_manual: "下载用户手册"
     # Caption which appears if there are no suggested lessons inside the Dashboard, because the user picked all the lessons the application suggested him
     # 1 - views/dashboard/_lessons_empty.html.erb
-	# emptied_lessons: 你已选择所有被推荐的课程
-    emptied_lessons: "You chose all the suggested lessons"
+    emptied_lessons: "你已选择所有被推荐的课程"
     # Caption which appears if for the user there are no suggested lessons inside the database
     # 1 - views/dashboard/_lessons_empty.html.erb
-	# empty_lessons: 这里没有推荐的课程给你
-    empty_lessons: "There are no suggested lessons for you"
+    empty_lessons: "这里没有推荐的课程给你"
     # Caption which appears if there are no suggested elements inside the Dashboard, because the user picked all the elements the application suggested him
     # 1 - views/dashboard/_media_elements_empty.html.erb
-	# emptied_media_elements: 你已选择所有被推荐的单元
-    emptied_media_elements: "You chose all the suggested elements"
+    emptied_media_elements: "你已选择所有被推荐的单元"
     # Caption which appears if for the user there are no suggested elements inside the database
     # 1 - views/dashboard/_media_elements_empty.html.erb
-	# empty_media_elements: 这里没有推荐的单元给你
-    empty_media_elements: "There are no suggested elements for you"
+    empty_media_elements: "这里没有推荐的单元给你"
     # Title of the link 'Download the user manual' (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
-	# help_using_desy: 需要%{desy}帮助吗？
-    help_using_desy: "Need help using %{desy}?"
+    help_using_desy: "需要%{desy}帮助吗？"
     # Caption of the link opening the window to load a new element (in each page of elements inside the Dashboard, after the last element there is a button with a 'plus' which opens the window)
     # 1 - views/dashboard/_lessons_and_media_elements.html.erb
-	# load_new_media_element: 加载新单元
-    load_new_media_element: "Load a new element"
+    load_new_media_element: "加载新单元"
     # Caption of the link opening the window to load new elements, containing a prompt for the user (this is used only in the case there are no suggested elements in the Dashboard: in this case the application invites the user to load an element right now)
     # 1 - views/dashboard/_media_elements_empty.html.erb
-	# load_new_media_element_now: 现在加载新单元
-    load_new_media_element_now: "Load a new element now"
+    load_new_media_element_now: "现在加载新单元"
     # Caption of the buttons to switch between suggested lessons and elements ('selected for you': lessons - elements)
     # 1 - views/dashboard/_graybar_left.html.erb
-	# selected_for_you: 已为你选择
-    selected_for_you: "Selected for you"
+    selected_for_you: "已为你选择"
     # Title of the link 'contact us' (bottom left in the page)
     # 1 - views/dashboard/index.html.erb
-	# talk_with_desy: 你想与%{desy}交谈吗？
-    talk_with_desy: "Want to talk with %{desy}?"
+    talk_with_desy: "你想与%{desy}交谈吗？"
   
   
   # SECTION 2.4: Captions used in general media galleries. There are three kinds of galleries: Audio, Image and Video. They are used to pick quickly a media element and use it inside a lesson (or as a component to create a new media element, in Audio, Image and Video Editor)
@@ -1216,33 +1185,26 @@ en:
     audios:
       # Title of a generic audio gallery
       # 1 - views/galleries/_audio.html.erb
-	  # select: 选择音频
-      select: "Select audio"
+      select: "选择音频"
     # Captions for empty galleries, one for each kind
     empty:
       # 1 - views/galleries/contents/audio.html.erb
-	  # audio: 你的音频库是空的
-      audio: "Your audio gallery is empty!"
+      audio: "你的音频库是空的"
       # 1 - views/galleries/contents/image.html.erb
-	  # image: 你的图像库是空的
-      image: "Your image gallery is empty!"
+      image: "你的图像库是空的"
       # 1 - views/galleries/contents/video.html.erb
-	  # video: 你的视频库是空的
-      video: "Your video gallery is empty!"
+      video: "你的视频库是空的"
     images:
       # Caption for the size (in pixels) of the image inside the gallery
       # 1 - views/galleries/popups/_image.html.erb
-	  # original_size: 原始大小
-      original_size: "Original size"
+      original_size: "原始大小"
       # Title of a generic image gallery
       # 1 - views/galleries/_image.html.erb
-	  # select: 选择图像
-      select: "Select image"
+      select: "选择图像"
     videos:
       # Title of a generic video gallery
       # 1 - views/galleries/_video.html.erb
-	  # select: 选择视频
-      select: "Select video"
+      select: "选择视频"
   
   
   # SECTION 2.5: Captions used inside the Image Editor
@@ -1251,57 +1213,44 @@ en:
     # Captions when the user is in 'crop' mode: the instructions appear below the image in editing: on its right there is a button to do the action and another to cancel
     crop:
       # 1 - views/image_editor/edit.html.erb
-	  # cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
       # 1 - views/image_editor/edit.html.erb
-	  # done: 修剪
-      done: "Crop"
+      done: "修剪"
       # 1 - views/image_editor/edit.html.erb
-	  # instructions: 拖动图像选择
-      instructions: "Drag on the image to make a selection"
+      instructions: "拖动图像选择"
     # Instructions on the left column (title plus description)
     left_column:
       # 1 - views/image_editor/edit.html.erb
-	  # title: 做什么？
-      title: "What to do?"
+      title: "做什么？"
       # 1 - views/image_editor/edit.html.erb
-	  # description: 选择剪刀剪切图像
-      description: "Select the scissors to cut the image"
+      description: "选择剪刀剪切图像"
     # Label for the header
     # 1 - views/image_editor/_header.html.erb
-	# label: 编辑图像
-    label: "Edit image"
+    label: "编辑图像"
     # Label on the bottom of the editor, where the user can see step by step how the dimensions (in pixels) of the image change
     # 1 - views/image_editor/crop.js.erb
     # 2 - views/image_editor/edit.html.erb
     # 3 - views/image_editor/undo.js.erb
-	# original_size: 原始图像大小
-    original_size: "Original image size"
+    original_size: "原始图像大小"
     # Label on the left column, it refers to the buttons associated to each possible action (crop, add text)
     # 1 - views/image_editor/edit.html.erb
-	# select_an_action: 选择一个动作
-    select_an_action: "Select an action"
+    select_an_action: "选择一个动作"
     # Instructions and label of 'do' and 'cancel' buttons when the user is in 'add text' mode (same structure of 'crop', see above)
     text:
       # 1 - views/image_editor/edit.html.erb
-	  # cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
       # 1 - views/image_editor/edit.html.erb
-	  # done: 应用
-      done: "Apply"
+      done: "应用"
       # 1 - views/image_editor/edit.html.erb
-	  # instructions: 点击图像增加文本
-      instructions: "Click on the image to add text"
+      instructions: "点击图像增加文本"
       # This is the sample letter used to choose the font size
       # 1 - views/image_editor/_text_area.html.erb
       # 2 - views/image_editor/_text_area.html.erb
       # 3 - views/image_editor/_text_area.html.erb
-	  # sample_letter: A
       sample_letter: "A"
     # Caption of the button 'undo'
     # 1 - views/image_editor/edit.html.erb
-	# undo: 撤销
-    undo: "Undo"
+    undo: "撤销"
   
   
   # SECTION 2.6: Captions used inside the Lesson Editor
@@ -1309,46 +1258,38 @@ en:
   lesson_editor:
     # Placeholder to add an audio to a slide
     # 1 - views/lesson_editor/slides/parts/_audio.html.erb
-	# choose_audio: 这里点击增加音频
-    choose_audio: "Click here to add an audio"
+    choose_audio: "这里点击增加音频"
     # Placeholder to add an image to a slide
     # 1 - views/lesson_editor/slides/parts/_image.html.erb
-	# choose_image: 这里点击增加图像
-    choose_image: "Click here to add an image"
+    choose_image: "这里点击增加图像"
     # Placeholder to add a video to a slide
     # 1 - views/lesson_editor/slides/parts/_video.html.erb
-	# choose_video: 这里点击增加视频
-    choose_video: "Click here to add a video"
+    choose_video: "这里点击增加视频"
     # The Lesson Editor is not available if the user started an audio (or video) editing process which overwrites an audio (or a video) used inside a lesson. The Editor is not avilable only to edit that particular lesson, in this case the application shows a page with title and description
     not_available:
       # The variable %{lesson} is replaced by the name of the lesson
       # 1 - views/lesson_editor/not_available.html.erb
-	  # title: 课程编辑器不能提供给你的课程%{lesson}
-      title: "Lesson editor not available for your lesson %{lesson}"
+      title: "课程编辑器不能提供给你的课程%{lesson}"
       # 1 - views/lesson_editor/not_available.html.erb
-	  # description: 你正在覆盖视频内容或包含在课程中的音频内容：如果等待几分钟处理完成，你就能重新编辑这个课程。
-      description: "You are overwriting the content of a video or of an audio contained in this lesson: if you wait a few minutes until the process ends you'll be able to edit this lesson again"
+      description: "你正在覆盖视频内容或包含在课程中的音频内容：如果等待几分钟处理完成，你就能重新编辑这个课程。"
     # These are the placeholders for all the text fields inside the editor
     placeholders:
       # Placeholder for the caption of an image
       # 1 - views/lesson_editor/slides/parts/_image.html.erb
-	  # image_caption: 写标题
-      image_caption: "Write a caption"
+      image_caption: "写标题"
       # Placeholder for a text area (slide title + text, video + text, audio + text, image + text)
       # 1 - views/lesson_editor/slides/_text.html.erb
       # 2 - views/lesson_editor/slides/_video1.html.erb
       # 3 - views/lesson_editor/slides/_image1.html.erb
       # 4 - views/lesson_editor/slides/_audio.html.erb
-	  # text: 在这里写文本
-      text: "Write a text here"
+      text: "在这里写文本"
       # Placeholder for the title of a slide
       # 1 - views/lesson_editor/slides/_text.html.erb
       # 2 - views/lesson_editor/slides/_title.html.erb
       # 3 - views/lesson_editor/slides/_video1.html.erb
       # 4 - views/lesson_editor/slides/_image1.html.erb
       # 5 - views/lesson_editor/slides/_audio.html.erb
-	  # title: 输入标题
-      title: "Enter title"
+      title: "输入标题"
   
   
   # SECTION 2.7: Caption of the section 'my lessons'
@@ -1362,78 +1303,61 @@ en:
     # 5 - views/lesson_editor/slides/_cover.html.erb
     # 6 - views/lesson_editor/slides/thumbnails/_cover.html.erb
     # 7 - views/lesson_editor/edit.html.erb
-	# author: 作者
-    author: "Author"
+    author: "作者"
     # Caption which indicates the date in which a lesson is created
     # 1 - views/lessons/_view_single_compact.html.erb
-	# created_on: 建立
-    created_on: "Created on"
+    created_on: "建立"
     # Caption of the link to open the lesson editor (on the left of the bar above the lesson's list)
     # 1 - views/lessons/_graybar_left.html.erb
-	# create_new: 建立新课程
-    create_new: "Create a new lesson"
+    create_new: "建立新课程"
     # Caption which appears above a link to the lesson editor if your lesson's section is empty
     # 1 - views/lessons/_empty.html.erb
-	# create_new_now: 现在建立课程
-    create_new_now: "Create a lesson now"
+    create_new_now: "现在建立课程"
     # Caption shown before a lesson's description
     # 1 - views/lessons/_view_single_compact.html.erb
-	# description: 描述
-    description: "Description"
+    description: "描述"
     # Message which appears in the middle of the page if your lesson's section is empty
     # 1 - views/lessons/_empty.html.erb
-	# empty: 在你的区域没有课程
-    empty: "You have no lessons in your section"
+    empty: "在你的区域没有课程"
     # Message which appears in the middle of the page if the filter you applied produced an empty result
     # 1 - views/lessons/_empty_filter.html.erb
-	# empty_filter: 课程过滤不产生结果
-    empty_filter: "The lesson filter produced no result"
+    empty_filter: "课程过滤不产生结果"
     # Captions of the bar on top of the lesson's list
     headers:
       # The status of a lesson (linked, private, shared, etc)
       # 1 - views/lessons/index.html.erb
-	  # status: 状态
-      status: "Status"
+      status: "状态"
       # The subject of the lesson
       # 1 - views/lessons/index.html.erb
-	  # subject: 科目
-      subject: "Subject"
+      subject: "科目"
     # Window used to notify your lesson's modification to all the users who linked it
     notify_modifications:
       # Title of the window
       # 1 - views/lessons/_notification_popup.html.erb
-	  # title: 你编辑了已分享的课程
-      title: "You edited a shared lesson!"
+      title: "你编辑了已分享的课程"
       # Description of the window
       # 1 - views/lessons/_notification_popup.html.erb
-	  # description: 在%{desy}中，这个课程紧跟着其他用户：作出修改，你喜欢通知她们吗？
-      description: "This lesson is followed by other users in %{desy}: would you like to inform them about the modifications you made?"
+      description: "在%{desy}中，这个课程紧跟着其他用户：作出修改，你喜欢通知她们吗？"
       # Placeholder for the message (the variable %{max} is replaced by the maximum number of characters
       # 1 - views/lessons/_notification_popup.html.erb
-	  # placeholder: 记下你修改的详细（最大%{max}字符）
-      placeholder: "Write the details of your changes (max %{max} characters)"
+      placeholder: "记下你修改的详细（最大%{max}字符）"
       # Button to send the notification
       # 1 - views/lessons/_notification_popup.html.erb
-	  # do: 发送通知
-      do: "Send notification"
+      do: "发送通知"
       # Button to cancel
       # 1 - views/lessons/_notification_popup.html.erb
-	  # cancel: 我不要通知
-      cancel: "I don't want to notify"
+      cancel: "我不要通知"
       # Placeholder that appears in the notification sent if the user didn't write any message
       # 1 - models/lesson.rb
-	  # empty_message: [没有信息给出]
-      empty_message: "[no message given]"
+      empty_message: "[没有信息给出]"
     # Caption for the scholar level of the author of a lesson
     # 1 - views/lessons/_view_single_compact.html.erb
     # 2 - views/lesson_editor/new.html.erb
     # 3 - views/lesson_editor/edit.html.erb
-	# school_level: 学校标准
-    school_level: "School level"
+    school_level: "学校标准"
     # Caption to indicate how many users like the lesson (the variable %{likes} is replaced by the number of users who like the selected lesson)
     # 1 - views/lessons/_view_single_compact.html.erb
-	# users_like_this: %{likes}用户喜欢这个课程
-    users_like_this: "%{likes} users like this lesson"
+    users_like_this: "%{likes}用户喜欢这个课程"
   
   
   # SECTION 2.8: Captions used in the Lesson Viewer
