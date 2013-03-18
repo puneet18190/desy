@@ -15,7 +15,7 @@
 #   label: "English translation to be replaced in a different language"
 
 
-en:
+cn:
   
   
   # PART 1 -- ACCESSORIES
@@ -387,7 +387,7 @@ en:
       confirm: "确认你想把它清空吗？"
       # Button to confirm
       # 1 - views/shared/_popups.html.erb
-      do:"是的"
+      do: "是的"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
       cancel: "终止"
