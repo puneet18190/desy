@@ -277,19 +277,16 @@ en:
           problem_adding_to_playlist: "不能增加课程到播放列表"
           # There was an error while trying to empty the playlist inside your Virtual Classroom'
           # 1 - controllers/virtual_classroom_controller.rb
-		  # problem_emptying_playlist: 你的播放列表不能为空
-          problem_emptying_playlist: "Your playlist could not be emptied"
+          problem_emptying_playlist: "你的播放列表不能为空"
           # This happens when you try to add a lesson to a playlist which is already full
           # 1 - models/virtual_classroom_lesson.rb
-		  # playlist_full: 播放列表已满
-          playlist_full: "Your playlist is full!"
+          playlist_full: "播放列表已满"
           # There was an error while trying to remove the lesson from the playlist
           # 1 - controllers/virtual_classroom_controller.rb
           # 2 - models/virtual_classroom_lesson.rb
           # 3 - models/virtual_classroom_lesson.rb
           # 4 - models/virtual_classroom_lesson.rb
-		  # problem_removing_from_playlist: 课程不能从播放列表中移去
-          problem_removing_from_playlist: "The lesson could not be removed from the playlist"
+          problem_removing_from_playlist: "课程不能从播放列表中移去"
   
   
   # SECTION 1.2: small windows with title, description and two buttons (they are used in whenever the application asks the user for confirmation of an action)
@@ -299,237 +296,185 @@ en:
     publish:
       # Message (the application tells the user that any element contained in the lesson will be shared together with it)
       # 1 - views/shared/_popups.html.erb
-	  # confirm: 自动分享包括在课程中的每一个单元
-      confirm: "Every element contained in it will be automatically shared"
+      confirm: "自动分享包括在课程中的每一个单元"
       # Title
       # 1 - views/shared/_popups.html.erb
-	  # title: 发布这个课程
-      title: "Publish this lesson"
+      title: "发布这个课程"
       # Button to confirm
       # 1 - views/shared/_popups.html.erb
-	  # do: 发布这个课程
-      do: "Publish the lesson"
+      do: "发布这个课程"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-	  # cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
     # The application asks for confirmation about turning a shared lesson back into private
     unpublish:
       # Message (the application tells the user that if he turns the lesson back into private anyone who is following it will lose its link)
       # 1 - views/shared/_popups.html.erb
-	  # confirm: 你确认吗？已链到这个课程的每个人将失去它
-      confirm: "Are you sure? Everyone who linked the lesson will lose it"
+      confirm: "你确认吗？已链到这个课程的每个人将失去它"
       # Title
       # 1 - views/shared/_popups.html.erb
-	  # title: 将课程转换成私有
-      title: "Turn back a lesson into private"
+      title: "将课程转换成私有"
       # Button to confirm
       # 1 - views/shared/_popups.html.erb
-	  # do: 是的，我确认
-      do: "Yes I am sure"
+      do: "是的，我确认"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-	  # cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
     destroy:
       # The application asks for confirmation about deleting a lesson
       lesson:
         # Message (if anybody is following the lesson, he will lose its link)
         # 1 - views/shared/_popups.html.erb
-		# confirm: 已链到这个课程的每个人将失去它
-        confirm: "Everybody who linked the lesson will lose it"
+        confirm: "已链到这个课程的每个人将失去它"
         # Title
         # 1 - views/shared/_popups.html.erb
-		# title: 删去这个课程
-        title: "Delete this lesson"
+        title: "删去这个课程"
         # Button to confirm
         # 1 - views/shared/_popups.html.erb
-		do: 删去这个课程
-        do: "Delete the lesson"
+        do: "删去这个课程"
         # Button to cancel
         # 1 - views/shared/_popups.html.erb
-		# cancel: 终止
-        cancel: "Cancel"
+        cancel: "终止"
       # The application asks for confirmation about deleting an element
       media_element:
         # Message
         # 1 - views/shared/_popups.html.erb
-		# confirm: 你确信要删去它吗？
-        confirm: "Are you sure you want to delete it?"
+        confirm: "你确信要删去它吗？"
         # Message if you are using the element in some of your lessons: it will be removed from each of his instances
         # 1 - views/shared/_popups.html.erb
-		# confirm_bis: 在一些课程中，你正在使用单元：它将从每一例子中删去
-        confirm_bis: "You are using it in some of your lessons, it will be deleted in each of its instances"
+        confirm_bis: "在一些课程中，你正在使用单元：它将从每一例子中删去"
         # Title
         # 1 - views/shared/_popups.html.erb
-		title: 删去这个单元
-        title: "Delete this element?"
+        title: "删去这个单元"
         # Button to confirm
         # 1 - views/shared/_popups.html.erb
-		do: 删去这个单元
-        do: "Delete the element"
+        do: "删去这个单元"
         # Button to cancel
         # 1 - views/shared/_popups.html.erb
-		# cancel: 终止
-        cancel: "Cancel"
+        cancel: "终止"
     # After having copied a lesson, the application asks the user what hw would like to do (go and immediately edit the lesson he copied, or stay on the page and do it later)
     after_copy:
       # Title
       # 1 - views/lessons/copy.js.erb
-	  # title: 你已拷贝了这个课程
-      title: "You copied the lesson!"
+      title: "你已拷贝了这个课程"
       # Message
       # 1 - views/lessons/copy.js.erb
-	  # confirm: 现在你想做什么？
-      confirm: "What would you like to do now?"
+      confirm: "现在你想做什么？"
       # Button to stay inside the page
       # 1 - views/lessons/copy.js.erb
-	  stay_in_page: 在这一页
-      stay_in_page: "Stay in this page"
+      stay_in_page: "在这一页"
       # Button to edit the lesson now
       # 1 - views/lessons/copy.js.erb
-	  # go_to_editor: 现在编辑这一页
-      go_to_editor: "Edit the lesson now"
+      go_to_editor: "现在编辑这一页"
     # When entering the audio or video editor, the application detects if the user left an uncompleted session; if this is the case, the application asks to the user if he wants to delete his old work or restore it
     restore_cache_media_element_editor:
       # Message
       # 1 - views/shared/_popups.html.erb
-	  # message: 之前正在上的课程不期望关闭！
-      message: "A previous working session was closed unexpectedly!"
+      message: "之前正在上的课程不期望关闭！"
       # Button to restore
       # 1 - views/shared/_popups.html.erb
-	  # do: 恢复
-      do: "Restore"
+      do: "恢复"
       # Button to clear your session
       # 1 - views/shared/_popups.html.erb
-	  # cancel: 清除
-      cancel: "Clear"
+      cancel: "清除"
     # Popup asking for confirmation to the user if he clicks on the button 'empty playlist' inside the Virtual Classroom
     empty_playlist:
       # Title
       # 1 - views/shared/_popups.html.erb
-	  # title: 使你的播放列表清空
-      title: "Empty your playlist"
+      title: "使你的播放列表清空"
       # Message
       # 1 - views/shared/_popups.html.erb
-	  # confirm: 确认你想把它清空吗？
-      confirm: "Are you sure you want to empty it?"
+      confirm: "确认你想把它清空吗？"
       # Button to confirm
       # 1 - views/shared/_popups.html.erb
-	  # do:是的
-      do: "Yes"
+      do:"是的"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-	  # cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
     # Popup asking for confirmation to the user if he clicks on the button 'empty virtual classroom' inside the Virtual Classroom
     empty_virtual_classroom:
       # Title
       # 1 - views/shared/_popups.html.erb
-	  # title: 清空你的虚拟教室
-      title: "Empty your Virtual Classroom"
+      title: "清空你的虚拟教室"
       # Message
       # 1 - views/shared/_popups.html.erb
-	  # confirm: 确认你想把它清空吗？
-      confirm: "Are you sure you want to empty it?"
+      confirm: "确认你想把它清空吗？"
       # Button to confirm
       # 1 - views/shared/_popups.html.erb
-	  # do: 是的
-      do: "Yes"
+      do: "是的"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-	  # cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
     # When the user clicks on the 'exit' button inside the video editor, the application asks for confirmation (if the user confirms, the application deletes his current working session)
     exit_video_editor:
       # Title
       # 1 - views/shared/_popups.html.erb
-	  # title: 退出视频编辑器
-      title: "Leaving the video editor"
+      title: "退出视频编辑器"
       # Message
       # 1 - views/shared/_popups.html.erb
-	  # confirm: 确认你想退出吗？
-      confirm: "Are you sure you want to leave?"
+      confirm: "确认你想退出吗？"
       # Button to confirm
       # 1 - views/shared/_popups.html.erb
-	  # do: 是的
-      do: "Yes"
+      do: "是的"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-	  # cancel: 保持这一页
-      cancel: "Stay on the page"
+      cancel: "保持这一页"
     # When the user clicks on the 'exit' button inside the audio editor, the application asks for confirmation (if the user confirms, the application deletes his current working session)
     exit_audio_editor:
       # Title
       # 1 - views/shared/_popups.html.erb
-	  # title: 退出视频编辑器
-      title: "Leaving the audio editor"
+      title: "退出视频编辑器"
       # Message
       # 1 - views/shared/_popups.html.erb
-	  # confirm: 确认你想退出吗？
-      confirm: "Are you sure you want to leave?"
+      confirm: "确认你想退出吗？"
       # Button to confirm
       # 1 - views/shared/_popups.html.erb
-	  # do: 是的
-      do: "Yes"
+      do: "是的"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-	  # cancel: 保持这一页
-      cancel: "Stay on the page"
+      cancel: "保持这一页"
     # If the user is editing a private element, when he clicks on the button 'commit changes' the application asks him if he wants to overwrite the element or save it as a new one
     save_media_element_editor:
       # Title
       # 1 - views/shared/_popups.html.erb
-	  # title: 保存私有单元
-      title: "Saving a private element"
+      title: "保存私有单元"
       # Message
       # 1 - views/shared/_popups.html.erb
-	  # confirm: 当修改的单元是私有时，你能覆盖它
-      confirm: "Since the element you modified is private, you can overwrite it"
+      confirm: "当修改的单元是私有时，你能覆盖它"
       # Button to overwrite
       # 1 - views/shared/_popups.html.erb
-	  # do: 覆盖
-      do: "Overwrite"
+      do: "覆盖"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-	  # cancel: 作为新单元保存
-      cancel: "Save as new element"
+      cancel: "作为新单元保存"
     # If the user is overwriting a private element, and he used the same element in some of his lessons, the application asks him for confirmation (since the same element will automatically be modified in all of its instances)
     overwrite_media_element_editor:
       # Title
       # 1 - views/shared/_popups.html.erb
-	  # title: 这个单元在使用
-      title: "This element is in use!"
+      title: "这个单元在使用"
       # Message
       # 1 - views/shared/_popups.html.erb
-	  # confirm: 如果覆盖，在任意私有课程中它将被退换
-      confirm: "If you overwrite it, it will be replaced in any private lesson containing it"
+      confirm: "如果覆盖，在任意私有课程中它将被退换"
       # Button to confirm
       # 1 - views/shared/_popups.html.erb
-	  #  do: 覆盖
-      do: "Overwrite"
+      do: "覆盖"
       # Button to cancel
       # 1 - views/shared/_popups.html.erb
-	  # cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
     # The user may send an email to a list of friends containing a direct link to a lesson
     send_lesson_link:
       # Title
       # 1 - views/virtual_classroom/_popups.html.erb
-	  # title: 送一个连接给你的朋友
-      title: "Send a link to your friends"
+      title: "送一个连接给你的朋友"
       # Message (using such a link anybody can see the lesson, even without being logged in); the link contains a special token that doesn't allow other people to use it
       # 1 - views/virtual_classroom/_popups.html.erb
-	  # confirm: 在 %{desy}外面，跟你的朋友分享你的课程
-      confirm: "Share your lesson with your friends outside %{desy}!"
+      confirm: "在 %{desy}外面，跟你的朋友分享你的课程"
       # Button to confirm
       # 1 - views/virtual_classroom/_popups.html.erb
-	  # do: 送
-      do: "Send"
+      do: "送"
       # Button to cancel
       # 1 - views/virtual_classroom/_popups.html.erb
-	  # cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
   
   
   # SECTION 1.3: contents of emails automatically sent by the application; the variables %{name}, %{password}, %{message} and similar will be replaced by the application, depending on the user
@@ -539,32 +484,26 @@ en:
     account_confirmation:
       # Subject
       # 1 - mailers/user_mailer.rb
-	  # subject: %{desy} - 账号确认
-      subject: "%{desy} - Account confirmation"
+      subject: "%{desy} - 账号确认"
       # Message
       # 1 - mailers/user_mailer.rb
-	  # message: "<p>恭喜%{name}</p>,<p>谢谢你的注册%{desy}!</p><p><b>为了完成你的注册，请点击以下链接:</b></p><p>如果此链接没有出现，请拷贝和粘贴到你的浏览器.<br/>当确认注册, 此链接不再是合法.<br/>为了进入系统，请用用户名与密码.</p><br/><p>N.B.</p><p>只能确认那个账号一次.</p>"
-      message: "<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br/>When the registration is confirmed, the link will not be valid anymore.<br/>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br/><p>N.B.</p><p>The confirmation of the account can only be made once.</p>"
+      message: "<p>恭喜%{name}</p>,<p>谢谢你的注册%{desy}!</p><p><b>为了完成你的注册，请点击以下链接:</b></p><p>如果此链接没有出现，请拷贝和粘贴到你的浏览器.<br/>当确认注册, 此链接不再是合法.<br/>为了进入系统，请用用户名与密码.</p><br/><p>N.B.</p><p>只能确认那个账号一次.</p>"
     # Mail containing the link to reset a forgotten password
     reset_password:
       # Subject
       # 1 - mailers/user_mailer.rb
-	  # subject: %{desy} - 新密码
-      subject: "%{desy} - New password"
+      subject: "%{desy} - 新密码"
       # Message
       # 1 - mailers/user_mailer.rb
-	  # message: "<h1>恭喜%{name},</h1><p>我们已接收你重置了的密码; 这是你的新密码: <b>%{password}</b></p><p>在以下URL,现在用新的密码你能登陆%{desy}.</p><p>在“个人资料”里，当已登录，你能设置另一个密码.</p>"
-      message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password of your choice once logged in, in the 'Profile' section.</p>"
+      message: "<h1>恭喜%{name},</h1><p>我们已接收你重置了的密码; 这是你的新密码: <b>%{password}</b></p><p>在以下URL,现在用新的密码你能登陆%{desy}.</p><p>在“个人资料”里，当已登录，你能设置另一个密码.</p>"
     # Email containing the public link of a lesson (when a user wants to share his lesson outside the application)
     see_my_lesson:
       # Subject
       # 1 - mailers/user_mailer.rb
-	  # subject: %{desy} - 课程链接
-      subject: "%{desy} - Lesson link"
+      subject: "%{desy} - 课程链接"
       # Message
       # 1 - mailers/user_mailer.rb
-	  # message: "<p>在%{desy}中，客户%{name}认为你可能对课程感兴趣.</p><div class=\"messageContent\">%{message}</div><p>点击链接显示课程(如果不能打开这个链接, 请你拷贝和粘贴到你的浏览器):</p><br/>"
-      message: "<p>The user %{name} thinks that you might be interested in a lesson in %{desy}.</p><div class=\"messageContent\">%{message}</div><p>Follow this link to view the lesson (if the link doesn't appear as active, you can copy it and paste it in your browser):</p><br/>"
+      message: "<p>在%{desy}中，客户%{name}认为你可能对课程感兴趣.</p><div class=\"messageContent\">%{message}</div><p>点击链接显示课程(如果不能打开这个链接, 请你拷贝和粘贴到你的浏览器):</p><br/>"
   
   
   # SECTION 1.4: Standard forms for editing the general information of lessons or media elements. For 'general information' it's meant:
@@ -581,118 +520,87 @@ en:
     # Form to create a new lesson
     new_lesson:
       # 1 - views/lesson_editor/new.html.erb
-	  # title: 你正在建立新课程
-      title: "You are creating a new lesson"
+      title: "你正在建立新课程"
       # 1 - views/lesson_editor/new.html.erb
-	  # description: 在以下表格中，请输入所有详细
-      description: "Enter all the details in the form below"
+      description: "在以下表格中，请输入所有详细"
       # 1 - views/lesson_editor/new.html.erb
-	  # cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
       # 1 - views/lesson_editor/new.html.erb
-	  # done: 下一个
-      done: "Next"
+      done: "下一个"
     # Form to modify a lesson
     update_lesson:
       # 1 - views/lesson_editor/edit.html.erb
-	  # title: 你要做出重要改变吗？
-      title: "Are you making significant changes?"
+      title: "你要做出重要改变吗？"
       # 1 - views/lesson_editor/edit.html.erb
-	  # description: 基于新内容，在这里添加课程信息
-      description: "Update here the lesson's info according to its new content"
+      description: "基于新内容，在这里添加课程信息"
       # 1 - views/lesson_editor/edit.html.erb
-	  # cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
       # 1 - views/lesson_editor/edit.html.erb
-	  # done: 添加
-      done: "Update"
+      done: "添加"
     # Form for uploading a new media element
     upload_media_element:
       # 1 - views/media_elements/_new_form_popup.html.erb
-	  # title: 上传媒体单元
-      title: "Upload a media element"
+      title: "上传媒体单元"
       # 1 - views/media_elements/_new_form_popup.html.erb
-	  # description: 通过点击左边的按钮选择一个文件
-      description: "Select a file by clicking on the button on the left"
+      description: "通过点击左边的按钮选择一个文件"
       # 1 - views/media_elements/_new_form_popup.html.erb
-	  # cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
       # 1 - views/media_elements/_new_form_popup.html.erb
-	  # done: 上传
-      done: "Upload"
+      done: "上传"
     # Form for modifying a media element
     change_info_media_element:
       # 1 - views/media_elements/_popup.html.erb
-	  # title: 单元信息
-      title: "Element's information"
+      title: "单元信息"
       # 1 - views/media_elements/_popup.html.erb
-	  # description: 修改数据填写以下表格
-      description: "Fill the form below to modify data"
+      description: "修改数据填写以下表格"
       # 1 - views/media_elements/_popup.html.erb
-	  # cancel:终止
-      cancel: "Cancel"
+      cancel: "终止"
       # 1 - views/media_elements/_popup.html.erb
-	  # done: 保存
-      done: "Save"
+      done: "保存"
     # Form for creating a new media element with one of the three editors (image / audio / video)
     new_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-	  # title: 你正在建立一新课程
-      title: "You are creating a new element"
+      title: "你正在建立一新课程"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-	  # description: 在以下表格输入所有的详细
-      description: "Enter all the details in the form below"
+      description: "在以下表格输入所有的详细"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-	  cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
       # 1 - views/media_elements/info_form_in_editor/_new.html.erb
-	  # done: 保存
-      done: "Save"
+      done: "保存"
     # Form for editing general information of an element after having overwritten its content with one of the three editors (image / audio / video)
     overwrite_media_element_in_editor:
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-	  # title: 你已经发生重要改变吗?
-      title: "Have you made significant changes?"
+      title: "你已经发生重要改变吗?"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-	  # description: 基于新账号，在这里上传单元信息
-      description: "Update here the element's info according to its new content"
+      description: "基于新账号，在这里上传单元信息"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-	  # cancel: 终止
-      cancel: "Cancel"
+      cancel: "终止"
       # 1 - views/media_elements/info_form_in_editor/_edit.html.erb
-	  # done: 上传
-      done: "Update"
+      done: "上传"
     # Error messages shown in case the user doesn't fill the form correctly
     error_captions:
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb
-	  # fill_all_the_fields_or_too_long: 不要超出最大长度，填写所有的栏目
-      fill_all_the_fields_or_too_long: "Fill in all the fields without exceeding the max length"
+      fill_all_the_fields_or_too_long: "不要超出最大长度，填写所有的栏目"
       # The user didn't write the minimum amount of tags
       # 1 - controllers/application_controller.rb
-	  # tags_are_not_enough: 标签不够
-      tags_are_not_enough: "Not enough tags"
+      tags_are_not_enough: "标签不够"
       # The user didn't select a file to be uploaded
       # 1 - controllers/application_controller.rb
-	  # media_blank: 没有文件上传
-      media_blank: "No file uploaded"
+      media_blank: "没有文件上传"
       # The user tried to upload an attachment whose format is not supported
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
-	  # media_unsupported_format: 格式不支持
-      media_unsupported_format: "Format not supported"
+      media_unsupported_format: "格式不支持"
       # The user tried to upload a file whose name contained an invalid character
       # 1 - controllers/application_controller.rb
-	  #  media_invalid_filename: 文件名包含非法字符
-      media_invalid_filename: "File's name contains invalid characters"
+      media_invalid_filename: "文件名包含非法字符"
       # The user tried to upload a file which was damaged or invalid
       # 1 - controllers/application_controller.rb
-	  # media_generic_error: 非法或文件损坏
-      media_generic_error: "Invalid or damaged file"
+      media_generic_error: "非法或文件损坏"
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
-	  # subject_missing_in_lesson: 选择主题
-      subject_missing_in_lesson: "Choose a subject"
+      subject_missing_in_lesson: "选择主题"
     # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
       # Description (the variable %{num} represents the maximum number of characters)
@@ -700,30 +608,25 @@ en:
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
-	  # description: 描述（最大%{num}字符）
-      description: "Description (max %{num} characters)"
+      description: "描述（最大%{num}字符）"
       # File to load (used only for media elements
       # 1 - views/media_elements/_new_form_popup.html.erb
-	  # media: 选择文件上传
-      media: "Select a file to load"
+      media: "选择文件上传"
       # Subject (used only for lessons)
       # 1 - helpers/application_helper.rb
-	  # subject_id: 选择主题
-      subject_id: "Select a subject"
+      subject_id: "选择主题"
       # Tags (the variable %{num} represents the maximum number of characters for each tags, the variable %{items} represents the minimum amount of tags)
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
-	  # tags: 插入最小%{items}标签（每个字符最大 %{num}）
-      tags: "Insert a minimum of %{items} tags (max %{num} characters each)"
+      tags: "插入最小%{items}标签（每个字符最大 %{num}）"
       # Title (the variable %{num} represents the maximum number of characters)
       # 1 - views/media_elements/_new_form_popup.html.erb
       # 2 - views/media_elements/info_form_in_editor/_new.html.erb
       # 3 - views/lesson_editor/new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
-	  # title: 标题（最大%{num}字符）
-      title: "Title (max %{num} characters)"
+      title: "标题（最大%{num}字符）"
   
   
   # SECTION 1.5: HTML titles (small tooltips appearing while passing with the mouse over icons of other items in the page)
