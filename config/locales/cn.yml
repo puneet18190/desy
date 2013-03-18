@@ -2141,33 +2141,33 @@ en:
       # Maximum length of the message inserted by the user to notify the modification of a public lesson
       # 1 - models/lesson.rb
       # 2 - views/lessons/_notification_popup.html.erb
-      message_length_for_public_lesson_modification: 280
+      message_length_for_public_lesson_modification: 420
       # Maximum length of the message inserted by the user when he sends the public link of a lesson to his friends
       # 1 - controllers/virtual_classroom_controller.rb
       # 2 - views/virtual_classroom/_popups.html.erb
-      message_length_for_send_lesson_link: 280
+      message_length_for_send_lesson_link: 420
     lesson:
       # Maximum number of characters allowed in the description of a lesson
       # 1 - models/lesson.rb
       # 2 - views/lesson_editor/new.html.erb
-      length_description: 280
+      length_description: 420
       # Maximum number of characters allowed in the title of a lesson
       # 1 - models/lesson.rb
       # 2 - views/lesson_editor/new.html.erb
-      length_title: 35
+      length_title: 52
     media_element:
       # Maximum number of characters allowed in the description of an element
       # 1 - models/media_element.rb
       # 2 - views/media_elements/_new_form_popup.html.erb
       # 3 - views/media_elements/info_form_in_editor/_new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
-      length_description: 280
+      length_description: 420
       # Maximum number of characters allowed in the title of an element
       # 1 - models/media_element.rb
       # 2 - views/media_elements/_new_form_popup.html.erb
       # 3 - views/media_elements/info_form_in_editor/_new.html.erb
       # 4 - views/admin/media_elements/new.html.erb
-      length_title: 35
+      length_title: 52
     slide:
       # Maximum number of characters allowed in the title of a slide
       # 1 - models/slide.rb
@@ -2176,15 +2176,15 @@ en:
       # 4 - views/lesson_editor/slides/_video1.html.erb
       # 5 - views/lesson_editor/slides/_image1.html.erb
       # 6 - views/lesson_editor/slides/_audio.html.erb
-      length_title: 35
+      length_title: 52
       # Maximum number of characters allowed in the caption of an image inside a slide
       # 1 - models/media_elements_slide.rb
       # 2 - views/lesson_editor/slides/parts/_image.html.erb
-      length_caption: 35
+      length_caption: 52
     video_editor:
       # Maximum number of characters allowed in the text component of Video Editor
       # 1 - views/video_editor/_text_component_editor.html.erb
-      length_text_component: 35
+      length_text_component: 52
       # Maximum number of characters allowed for the duration in seconds of a text or image component in Video Editor (hence, if this parameter is 3, the maximum is 999 seconds)
       # 1 - views/galleries/mixed_for_video_editor.js.erb
       # 2 - views/video_editor/cutters/_text.html.erb
@@ -2207,15 +2207,14 @@ en:
     # 1 - app/models/location.rb
     # 2 - app/models/location.rb
     labels: [
-        'Province',
-        'Town',
-        'School'
+        '省份',
+        '城镇',
+        '學校'
       ]
     # This is the label used when the application needs to resume the chain of higher locations corresponding to a lower one: if for instance for a user we have the field 'Shanghai district - Shanghai province', an appropriate label for it (to be configured here) would be 'District / province'
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
-	# parents_label: 城镇/省份
-    parents_label: "Town / province"
+    parents_label: "城镇/省份"
   
   
   
@@ -2230,296 +2229,228 @@ en:
       lessons:
         # Link to the section 'Lessons'
         # 1 - views/admin/_header.html.erb
-		# link: 课程
-        link: "Lessons"
+        link: "课程"
       media_elements:
         # Link to the section 'Elements'
         # 1 - views/admin/_header.html.erb
-		# link: 单元
-        link: "Elements"
+        link: "单元"
         # Link to the subsection 'List of elements'
         # 1 - views/admin/_header.html.erb
-		# list: 列表
-        list: "List"
+        list: "列表"
         # Link to the subsection 'Multiple uploader of elements'
         # 1 - views/admin/_header.html.erb
-		# upload: 上传新单元
-        upload: "Upload new elements"
+        upload: "上传新单元"
         # Link to the subsection 'Edit and publication of uploaded elements'
         # 1 - views/admin/_header.html.erb
-		# publish: 发布私人单元
-        publish: "Publish private elements"
+        publish: "发布私人单元"
       users:
         # Link to the section 'Users'
         # 1 - views/admin/_header.html.erb
-		# link: 用户
-        link: "Users"
+        link: "用户"
       messages:
         # Link to the section 'Messages, notifications and abuses reported'
         # 1 - views/admin/_header.html.erb
-		# link: 消息
-        link: "Messages"
+        link: "消息"
         # Link to the subsection 'Notifications'
         # 1 - views/admin/_header.html.erb
-		# notifications: 通知
-        notifications: "Notifications"
+        notifications: "通知"
         # Link to the subsection 'Abuses reported'
         # 1 - views/admin/_header.html.erb
-		# reports: 滥用报告
-        reports: "Abuse reports"
+        reports: "滥用报告"
       settings:
         # Link to the section 'Settings'
         # 1 - views/admin/_header.html.erb
-		# link: 设置
-        link: "Settings"
+        link: "设置"
         # Link to the subsection 'Configuration settings'
         # 1 - views/admin/_header.html.erb
-		# configuration: 恭喜
-        configuration: "Configuration"
+        configuration: "恭喜"
       dashboard:
         # Link to the main page of 'Administration'
         # 1 - views/admin/_header.html.erb
-		3 link: 版面
-        link: "Dashboard"
+        link: "版面"
         # Label of the administration main page, on the top left corner of each page inside 'Administration'
         # 1 - views/admin/_header.html.erb
-		# title: 管理版面
-        title: "Admin dashboard"
+        title: "管理版面"
     # Main page of 'Administration'
     dashboard:
       # Title of the page
       # 1 - views/admin/dashboard/index.html.erb
-	  # title: 管理版面
-      title: "Administration dashboard"
+      title: "管理版面"
       # General statistics shown inside the main page
       general:
         # Title of general statistics frame
         # 1 - views/admin/dashboard/index.html.erb
-		# title: 一般的统计
-        title: "General statistics"
+        title: "一般的统计"
         # Number of lessons shared in the application
         # 1 - views/admin/dashboard/index.html.erb
-		# shared_lessons: 已分享课程
-        shared_lessons: "Shared lessons"
+        shared_lessons: "已分享课程"
         # Number of elements shared in the application
         # 1 - views/admin/dashboard/index.html.erb
-		# shared_media_elements: 以分享单元
-        shared_media_elements: "Shared elements"
+        shared_media_elements: "以分享单元"
         # Number of users in the application's database
         # 1 - views/admin/dashboard/index.html.erb
-		# total_users: 在数据库中的用户
-        total_users: "Users in the database"
+        total_users: "在数据库中的用户"
       # Statistics about likes
       likes:
         # Lessons with more 'I like you'
         # 1 - views/admin/dashboard/index.html.erb
-		# lessons: 有更多我喜欢你的课程
-        lessons: "Lessons with more 'I like you'"
+        lessons: "有更多我喜欢你的课程"
         # Users with highest sum of 'I like you' on their lessons
         # 1 - views/admin/dashboard/index.html.erb
-		# users: 有更多我喜欢你的用户
-        users: "Users with more 'I like you'"
+        users: "有更多我喜欢你的用户"
       # Statistics about users
       users:
         # List of users on line
         # 1 - views/admin/dashboard/index.html.erb
-		# online: 用户上线
-        online: "Users online"
+        online: "用户上线"
         # List of the last users who signed up in the application
         # 1 - views/admin/dashboard/index.html.erb
-		# new: 上一用户
-        new: "Last users"
+        new: "上一用户"
       # statistics about subject distribution among lessons (a graph)
       # 1 - views/admin/dashboard/index.html.erb
-	  #  subjects: 课程中科目分配
-      subjects: "Subject distribution among lessons"
+      subjects: "课程中科目分配"
       # Shortcut to the newest reports of abuses (about lessons and media element)
       reports:
         # 1 - views/admin/dashboard/index.html.erb
-		# lessons: 已发布课程
-        lessons: "Reported lessons"
+        lessons: "已发布课程"
         # 1 - views/admin/dashboard/index.html.erb
-		# media_elements: 已发布媒体单元
-        media_elements: "Reported media elements"
+        media_elements: "已发布媒体单元"
     # General captions, used throughout the Administrator
     general:
       # Link to switch all the items in a list to the compact status
       # 1 - views/admin/_list_heading.html.erb
-	  # close_all: 关闭所有
-      close_all: "Close all"
+      close_all: "关闭所有"
       # Link to expand all the items of a list
       # 1 - views/admin/_list_heading.html.erb
-	  # expand_all: 展开所有
-      expand_all: "Expand all"
+      expand_all: "展开所有"
       # Link used to enter in 'Administration' from outside (placed on the side of the link 'logout', only for administrators)
       # 1 - views/shared/_logout.html.erb
-	  # link: 管理
-      link: "Administration"
+      link: "管理"
     # Section of lessons
     lessons:
       # Title of the section
       # 1 - views/admin/lessons/index.html.erb
-	  # title: 课程
-      title: "Lessons"
+      title: "课程"
       # Popup which asks for confirmation before deleting a lesson
       # 1 - views/admin/lessons/_list.html.erb
-	  # delete_confirm: 确信你想删除这个课程吗？
-      delete_confirm: "Are you sure you want to delete this lesson?"
+      delete_confirm: "确信你想删除这个课程吗？"
       # Placeholder used when there are no lessons associated to the selected filter
       # 1 - views/admin/lessons/_list.html.erb
-	  # empty: 没有课程发现
-      empty: "No lessons found"
+      empty: "没有课程发现"
       # Labels for the fields of a lesson
       fields:
         # 1 - views/admin/lessons/_list.html.erb
-		# created_at: 建立日期
-        created_at: "Creation date"
+        created_at: "建立日期"
         # 1 - views/admin/lessons/_list.html.erb
-		# description: 描述
-        description: "Description"
+        description: "描述"
         # 1 - views/admin/lessons/_list.html.erb
-		# id: Id
         id: "Id"
         # 1 - views/admin/lessons/_list.html.erb
-		# likes: 喜欢
-        likes: "Likes"
+        likes: "喜欢"
         # 1 - views/admin/lessons/_list.html.erb
-		# subject: 科目
-        subject: "Subject"
+        subject: "科目"
         # 1 - views/admin/lessons/_list.html.erb
-		# tags: 标签
-        tags: "Tags"
+        tags: "标签"
         # 1 - views/admin/lessons/_list.html.erb
-		# title: 标题
-        title: "Title"
+        title: "标题"
         # 1 - views/admin/lessons/_list.html.erb
-		# updated_at: 上一次更新
-        updated_at: "Last update"
+        updated_at: "上一次更新"
         # 1 - views/admin/lessons/_list.html.erb
-		# user: 用户
-        user: "User"
+        user: "用户"
       # Name used as label in the pagination (ex. '1-10 of 300 lessons')
       # 1 - helpers/admin_helper.rb
-	  # name: 课程
-      name: "Lessons"
+      name: "课程"
       # Frame for the lessons search engine
       search:
         # Title of the frame
         # 1 - views/admin/lessons/index.html.erb
-		# label: 查找课程
-        label: "Search lessons"
+        label: "查找课程"
         # Button to start the search
         # 1 - views/admin/lessons/index.html.erb
-		# submit: 查找
-        submit: "Search"
+        submit: "查找"
     # Section of media elements
     media_elements:
       # Title of the section
       # 1 - views/admin/media_elements/index.html.erb
-	  # title: 单元
-      title: "Elements"
+      title: "单元"
       # Captions of the buttons available on a single element
       actions:
         # Remove the element
         # 1 - views/admin/media_elements/_media_element_upload.html.erb
         # 2 - views/admin/media_elements/_media_element_update.html.erb
-		# delete: 删除
-        delete: "Delete"
+        delete: "删除"
         # Publish an element previously uploaded by the administrator
         # 1 - views/admin/media_elements/_media_element_update.html.erb
-		# publish: 发布
-        publish: "Publish"
+        publish: "发布"
         # Update an element, after having chosen title and description
         # 1 - views/admin/media_elements/_media_element_upload.html.erb
-		# save: 保存
-        save: "Save"
+        save: "保存"
         # Update an element which has been uploaded by the administrator but is still not public
         # 1 - views/admin/media_elements/_media_element_update.html.erb
-		# update: 上传
-        update: "Update"
+        update: "上传"
       # Popup which asks for confirmation before deleting a media_element
       # 1 - views/admin/media_elements/_media_element_update.html.erb
       # 2 - views/admin/media_elements/_list.html.erb
-	  # delete_confirm: 确认你想删除这个单元吗？
-      delete_confirm: "Are you sure you want to delete this element?"
+      delete_confirm: "确认你想删除这个单元吗？"
       # Title of the subsection where the administrator can edit and publish the elements he uploaded which are not public yet
       # 1 - views/admin/media_elements/edit.html.erb
-	  # edit: 编辑和分享已上传的单元
-      edit: "Edit and share uploaded elements"
+      edit: "编辑和分享已上传的单元"
       # Placeholder used when there are no media elements associated to the selected filter
       # 1 - views/admin/media_elements/_list.html.erb
       # 2 - views/admin/media_elements/edit.html.erb
-	  # empty: 没有单元发现
-      empty: "No elements found"
+      empty: "没有单元发现"
       # Caption if you didn't load any element in the multiple loader
       # 1 - views/admin/media_elements/new.html.erb
       # 2 - views/admin/media_elements/quick_upload_delete.js.erb
-	  # empty_files: 没有文件加载
-      empty_files: "No files loaded"
+      empty_files: "没有文件加载"
       # Labels for the fields of an element
       fields:
         # 1 - views/admin/media_elements/_list.html.erb
-		# created_at: 建立日期
-        created_at: "Creation date"
+        created_at: "建立日期"
         # 1 - views/admin/media_elements/_media_element_upload.html.erb
         # 2 - views/admin/media_elements/_list.html.erb
-		# description:描述
-        description: "Description"
+        description: "描述"
         # 1 - views/admin/media_elements/_list.html.erb
-		#  id: Id
         id: "Id"
         # 1 - views/admin/media_elements/_list.html.erb
-		# is_public: 公共
-        is_public: "Public"
+        is_public: "公共"
         # 1 - views/admin/media_elements/_list.html.erb
-		# sti_type: 媒体类型
-        sti_type: "Media type"
+        sti_type: "媒体类型"
         # 1 - views/admin/media_elements/_media_element_upload.html.erb
         # 2 - views/admin/media_elements/_list.html.erb
-		# tags: 标签
-        tags: "Tags"
+        tags: "标签"
         # 1 - views/admin/media_elements/_media_element_upload.html.erb
         # 2 - views/admin/media_elements/_list.html.erb
-		# title: 标题
-        title: "Title"
+        title: "标题"
         # 1 - views/admin/media_elements/_list.html.erb
-		# updated_at: 上次更新
-        updated_at: "Last update"
+        updated_at: "上次更新"
         # 1 - views/admin/media_elements/_list.html.erb
-		# user:用户
-        user: "User"
+        user: "用户"
       # Name used as label in the pagination (ex. '1-10 of 300 elements')
       # 1 - helpers/admin_helper.rb
-	  # name: 单元
-      name: "Elements"
+      name: "单元"
       # The labels below are used in the section where the administrator can upload and save multiple elements
       new:
         # Title
         # 1 - views/admin/media_elements/new.html.erb
-		# title: 上传新单元
-        title: "Upload new elements"
+        title: "上传新单元"
         # Caption for the file uploader
         # 1 - views/admin/media_elements/new.html.erb
-		# file_to_upload: 选择一文件上传
-        file_to_upload: "Choose a file to upload"
+        file_to_upload: "选择一文件上传"
         # Instructions to upload
         # 1 - views/admin/media_elements/new.html.erb
-		# upload_hint: 你能使用CTRL选择更多的文件：如果你想分配同样的标题/描述/给文件列表，请使用以上域
-        upload_hint: "You can select more than a file, using CTRL: if you want to assign the same title / description / tags to the list of files, use the fields above"
+        upload_hint: "你能使用CTRL选择更多的文件：如果你想分配同样的标题/描述/给文件列表，请使用以上域"
         # Title of the frame which contains the list of uploaded files, ready to be saved as new elements
         # 1 - views/admin/media_elements/new.html.erb
-		# content_title: 单元准备保存
-        content_title: "Elements ready to be saved"
+        content_title: "单元准备保存"
       # This label is used in a checkbox on the multiple upload form: when checked, the element will be saved and automatically published (this option is possible only for images, since audios and videos must be converted before they can be shared)
       # 1 - views/admin/media_elements/_media_element_upload.html.erb
-	  # publish_now: 现在发布
-      publish_now: "Publish now"
+      publish_now: "现在发布"
       # Frame for the lessons search engine
       search:
         # Title of the form
         # 1 - views/admin/media_elements/index.html.erb
-		# label: 查找单元
-        label: "Search elements"
+        label: "查找单元"
         # Button to start the search
         # 1 - views/admin/media_elements/index.html.erb
 		# submit: 查找
