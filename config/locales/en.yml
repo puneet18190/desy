@@ -592,9 +592,6 @@ en:
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
       media_unsupported_format: "Format not supported"
-      # The user tried to upload a file whose name contained an invalid character
-      # 1 - controllers/application_controller.rb
-      media_invalid_filename: "File's name contains invalid characters"
       # The user tried to upload a file which was damaged or invalid
       # 1 - controllers/application_controller.rb
       media_generic_error: "Invalid or damaged file"
