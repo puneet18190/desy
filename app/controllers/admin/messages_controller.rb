@@ -30,7 +30,7 @@ class Admin::MessagesController < AdminController
         end
         
         if users.present?
-          send_notifications(users,params[:message])
+          send_notifications(users, params[:message].to_s)
         end
         @reset_form = true
       else
@@ -47,7 +47,7 @@ class Admin::MessagesController < AdminController
   private
   
   def send_notifications(users_ids, message)
-    ## TODO JOB TO SEND NOTIFICATIONS
+    Notification.send_to(users_ids, message)
   end
   
   

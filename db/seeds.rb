@@ -1,7 +1,7 @@
 require 'csv'
 require 'env_relative_path'
 
-class Seeding
+class Seeds
   include EnvRelativePath
 
   CSV_DIR     = Rails.root.join("db/seeds/environments/#{Rails.env}/csv")
@@ -219,4 +219,4 @@ class Seeding
 
 end
 
-Seeding.new.run
+Seeds.new.run

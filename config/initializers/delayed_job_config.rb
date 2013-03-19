@@ -2,6 +2,7 @@
 require 'media'
 require 'exception_notifier/notifier'
 require 'exception_notifier_job'
+require 'notifications_job'
 require 'eventmachine'
 
 # Delayed Jobs configuration
