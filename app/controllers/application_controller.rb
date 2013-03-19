@@ -200,8 +200,8 @@ class ApplicationController < ActionController::Base
     }
     resp[:general] << t('forms.error_captions.fill_all_the_fields_or_too_long') if (errors.messages.keys & [:name, :surname]).any?
     resp[:general] << t('forms.error_captions.not_valid_email') if errors.messages.has_key? :email
-    resp[:location] << t('forms.error_captions.choose_a_location', :location => Location.base_label.downcase) if errors.message.has_key? :location_id
-    resp[:subjects] << t('forms.error_captions.select_at_least_a_subject') if errors.message.has_key? :users_subjects
+    resp[:location] << t('forms.error_captions.choose_a_location', :location => Location.base_label.downcase) if errors.messages.has_key? :location_id
+    resp[:subjects] << t('forms.error_captions.select_at_least_a_subject') if errors.messages.has_key? :users_subjects
     if errors.messages.has_key? :password
       if errors.added?(:password, :too_short, {:count => pas_min}) || errors.added?(:password, :too_long, {:count => pas_max})
         if pas_max.nil?
@@ -217,7 +217,7 @@ class ApplicationController < ActionController::Base
     end
     SETTINGS['user_registration_policies'].each_with_index do |policy, index|
       if errors.messages.has_key? :"#{policy}"
-        resp[:policies] << t('forms.error_captions.policy_not_accepted', :policy => t('registration.policies')[index])
+        resp[:policies] << t('forms.error_captions.policy_not_accepted', :policy => t('registration.policies')[index]['title'])
       end
     end
     resp

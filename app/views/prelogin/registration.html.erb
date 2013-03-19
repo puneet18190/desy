@@ -49,8 +49,8 @@
         <%
           my_policy = t('registration.policies')[index]
         %>
-        <strong><%= my_policy[:title] %></strong><br><br>
-        <%= my_policy[:description] %>
+        <strong><%= my_policy['title'] %></strong><br><br>
+        <%= my_policy['description'] %>
       </p>
       <div class="checkbox-content">
         <div class="checkboxElement">
@@ -69,17 +69,16 @@
                   <%= label_tag "user[#{policy}]", '' %>
                 <% end %>
               </td>
-              <td><%= my_policy[:accept] %></td>
+              <td><%= my_policy['accept'] %></td>
             </tr>
           </table>
         </div>
-        
       </div>
       <br class="clearfloat">
     <% end %>
     
     <ul class="listaErrori">
-      <% @errors[:policies].each do |err| %>
+      <% (@errors.nil? ? [] : @errors[:policies]).each do |err| %>
         <li><%= err %></li>
       <% end %>
     </ul>
