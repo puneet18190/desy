@@ -16,9 +16,17 @@
         <p><%= t('users.subjects.description') %></p>
       </header>
       <%= form_for @user, :url => user_path do |f| %>
-        <%= render :partial => 'personal_subjects', :locals => {:f => f} %>
+        <%
+          locals_for_personal_subjects = {
+            :f => f,
+            :user => @user,
+            :errors => (@errors.nil? ? [] : @errors[:subjects]),
+            :subjects => @subjects
+          }
+        %>
+        <%= render :partial => 'personal_subjects', :locals => locals_for_personal_subjects %>
         <div class="form_submit">
-          <input type="submit" value="save" />
+          <input type="submit" value="save"/>
         </div>
       <% end %>
     </div>

@@ -58,14 +58,14 @@
           <div class="_location_selector <%= user.errors.include?(:location_id) ? 'field_with_errors'.html_safe : '' %>">
             <%= Location.label_at(index) %><br>
             <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="true" name="user[location_id]">
-              <%= render :partial => 'users/locations_list', :locals => {:locations => @locations[index].to_a, :selected => @user_location[location.downcase], :edit => edit} %>
+              <%= render :partial => 'users/locations_list', :locals => {:locations => locations[index].to_a, :selected => user_location[location.downcase], :edit => edit} %>
             </select>
           </div>
         <% else %>
           <div class="_location_selector">
             <%= Location.label_at(index) %><br>
             <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="false">
-              <%= render :partial => 'users/locations_list', :locals => {:locations => @locations[index].to_a, :selected => @user_location[location.downcase], :edit => edit} %>
+              <%= render :partial => 'users/locations_list', :locals => {:locations => locations[index].to_a, :selected => user_location[location.downcase], :edit => edit} %>
             </select>
           </div>
         <% end %>
@@ -75,7 +75,7 @@
     <br class="clearfloat"/>
     <div class="inputElement">
       <%= t('users.info.attributes.school_level_id') %><br>
-      <%= f.select :school_level_id, @school_level_ids %>
+      <%= f.select :school_level_id, school_level_ids %>
     </div>
     <br class="clearfloat">
     
