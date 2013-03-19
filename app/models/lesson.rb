@@ -4,6 +4,7 @@ class Lesson < ActiveRecord::Base
   
   attr_accessible :subject_id, :school_level_id, :title, :description
   attr_reader :is_reportable
+  attr_writer :validating_in_form
   attr_accessor :skip_public_validations, :skip_cover_creation
   
   serialize :metadata, OpenStruct
@@ -437,7 +438,7 @@ class Lesson < ActiveRecord::Base
   private
   
   def validate_tags_length
-    errors[:tags] << "are not enough" if @inner_tags.length < SETTINGS['min_tags_for_item']
+    errors[:tags] << "are not enough" if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
   end
   
   def virtual_classroom_button
@@ -544,7 +545,6 @@ class Lesson < ActiveRecord::Base
   
   def destroy_taggings
     Tagging.where(:taggable_type => 'Lesson', :taggable_id => self.id).each do |tagging|
-      tagging.destroyable = true
       tagging.destroy
     end
   end
