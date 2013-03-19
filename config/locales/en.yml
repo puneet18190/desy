@@ -581,6 +581,7 @@ en:
     error_captions:
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       fill_all_the_fields_or_too_long: "Fill in all the fields without exceeding the max length"
       # The user didn't write the minimum amount of tags
       # 1 - controllers/application_controller.rb
@@ -598,6 +599,24 @@ en:
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
       subject_missing_in_lesson: "Choose a subject"
+      # The user's email is not valid or already present in the database
+      # 1 - controllers/application_controller.rb
+      not_valid_email: "The email you inserted is not valid or already present in our database"
+      # The user's didn't choose a location (the variable %{location} is replaced by the label which corresponds to the lowest kind of location (for instance, Town)
+      # 1 - controllers/application_controller.rb
+      choose_a_location: "Choose a %{location}"
+      # The user hasn't selected any subject
+      # 1 - controllers/application_controller.rb
+      select_at_least_a_subject: "Select at least one subject"
+      # The user inserted a short or blank password (the variable %{min} is replaced by the configured minimum length for a password)
+      # 1 - controllers/application_controller.rb
+      password_too_short: "Insert a password of at least %{min} characters"
+      # The user inserted a short or long password (the variables %{min} and %{max} are replaced by the configured minimum and maximum length for a password)
+      # 1 - controllers/application_controller.rb
+      password_not_in_range: "Insert a password of at least %{min} characters, not exceeding %{max} characters"
+      # The password doesn't match confirmation
+      # 1 - controllers/application_controller.rb
+      password_doesnt_match_confirmation: "The password doesn't match confirmation"
     # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
       # Description (the variable %{num} represents the maximum number of characters)
