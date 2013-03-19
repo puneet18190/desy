@@ -1,19 +1,24 @@
 <fieldset class="insert-content">
+  
   <div class="inputElement">
     <%= t('users.info.attributes.name') %><br>
     <%= f.text_field :name, class: 'text' %>
   </div>
+  
   <div class="inputElement">
     <%= t('users.info.attributes.surname') %><br>
     <%= f.text_field :surname, class: 'text' %>
   </div>
+  
   <div class="inputElement">
     <%= t('users.info.attributes.email') %><br>
-    <%= f.email_field :email, class: 'text', disabled: !@user.new_record? %>
+    <%= f.email_field :email, class: 'text', disabled: !user.new_record? %>
   </div>
-  <br class="clearfloat" />
+  
+  <br class="clearfloat"/>
+  
   <div class="inputElement">
-    <% if @user.new_record? %>
+    <% if user.new_record? %>
       <%= t('users.info.attributes.password') %>
     <% else %>
       <%= t('users.info.attributes.new_password') %>
@@ -21,8 +26,9 @@
     <br />
     <%= f.password_field :password, class: 'text' %>
   </div>
+  
   <div class="inputElement" style="margin-right:0">
-    <% if @user.new_record? %>
+    <% if user.new_record? %>
       <%= t('users.info.attributes.password_confirmation') %>
     <% else %>
       <%= t('users.info.attributes.new_password_confirmation') %>
@@ -30,52 +36,55 @@
     <br>
     <%= f.password_field :password_confirmation, class: 'text' %>
   </div>
-  <br class="clearfloat">
-  
-  <% errors = @user.errors.select{ |k,_| [:name, :surname, :email, :password, :password_confirmation].include? k } -%>
-
-  <ul class="listaErrori">
-  <% errors.each do |k, v| -%>
-    <li><%= @user.errors.full_message(k, v) %></li>
-  <% end if errors.present? -%>
-  </ul>
-</fieldset>
-<hr>
-<fieldset class="insert-content">
-  
-  <% SETTINGS['location_types'].each_with_index do |location, index| %>
-    <div class="inputElement">
-      <% if (index == SETTINGS['location_types'].length - 1) %>
-        <div class="_location_selector <%= @user.errors.include?(:location_id) ? 'field_with_errors'.html_safe : '' %>">
-          <%= Location.label_at(index) %><br>
-          <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="true" name="user[location_id]">
-            <%= render :partial => 'users/locations_list', :locals => {:locations => @locations[index].to_a, :selected => @user_location[location.downcase], :edit => edit} %>
-          </select>
-        </div>
-      <% else %>
-        <div class="_location_selector">
-          <%= Location.label_at(index) %><br>
-          <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="false">
-            <%= render :partial => 'users/locations_list', :locals => {:locations => @locations[index].to_a, :selected => @user_location[location.downcase], :edit => edit} %>
-          </select>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
   
   <br class="clearfloat"/>
-  <div class="inputElement">
-    <%= t('users.info.attributes.school_level_id') %><br>
-    <%= f.select :school_level_id, @school_level_ids %>
-  </div>
-  <br class="clearfloat">
-
-  <% errors = @user.errors.select{ |k,_| [:school_level_id, :location_id].include? k } -%>
-
+  
   <ul class="listaErrori">
-  <% errors.each do |k, v| -%>
-    <li><%= @user.errors.full_message(k, v) %></li>
-  <% end if errors.present? -%>
+    <% general_errors.each do |err| %>
+      <li><%= err %></li>
+    <% end %>
   </ul>
+  
 </fieldset>
+
+
+<hr>
+  
+  <fieldset class="insert-content">
+    
+    <% SETTINGS['location_types'].each_with_index do |location, index| %>
+      <div class="inputElement">
+        <% if (index == SETTINGS['location_types'].length - 1) %>
+          <div class="_location_selector <%= user.errors.include?(:location_id) ? 'field_with_errors'.html_safe : '' %>">
+            <%= Location.label_at(index) %><br>
+            <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="true" name="user[location_id]">
+              <%= render :partial => 'users/locations_list', :locals => {:locations => locations[index].to_a, :selected => user_location[location.downcase], :edit => edit} %>
+            </select>
+          </div>
+        <% else %>
+          <div class="_location_selector">
+            <%= Location.label_at(index) %><br>
+            <select id="<%= location.downcase %>_id" class="_location_select_box" data-is-last="false">
+              <%= render :partial => 'users/locations_list', :locals => {:locations => locations[index].to_a, :selected => user_location[location.downcase], :edit => edit} %>
+            </select>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    
+    <br class="clearfloat"/>
+    <div class="inputElement">
+      <%= t('users.info.attributes.school_level_id') %><br>
+      <%= f.select :school_level_id, school_level_ids %>
+    </div>
+    <br class="clearfloat">
+    
+    <ul class="listaErrori">
+      <% location_errors.each do |err| %>
+        <li><%= err %></li>
+      <% end %>
+    </ul>
+    
+  </fieldset>
+  
 <hr>

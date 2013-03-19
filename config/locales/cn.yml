@@ -617,6 +617,12 @@ cn:
       # The password doesn't match confirmation
       # 1 - controllers/application_controller.rb
       password_doesnt_match_confirmation: "The password doesn't match confirmation" # TODO
+      # The password is invalid for other reasons than the ones specified above
+      # 1 - controllers/application_controller.rb
+      invalid_password: "The password inserted is invalid" # TODO
+      # The user didn't accept a policy (the variable %{policy} is replaced by the name of the policy)
+      # 1 - controllers/application_controller.rb
+      policy_not_accepted: "You must accept %{policy}" # TODO
     # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
       # Description (the variable %{num} represents the maximum number of characters)
@@ -674,6 +680,14 @@ cn:
         # The handle that the user can grab to drag a component and change its position inside the whole track
         # 1 - views/audio_editor/_component.html.erb
         sort: "拖动改变部件的位置"
+      # Buttons to handle global preview
+      preview:
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+        pause: "Pause preview" # TODO
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+        rewind: "Rewind preview" # TODO
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+        start: "Start preview" # TODO
     audios:
       # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the audio editor
       # 1 - views/media_elements/new.html.erb
@@ -1133,14 +1147,9 @@ cn:
       title: "无法提供音频编辑"
       # 1 - views/audio_editor/not_available.html.erb
       description: "在这个时候，你能运行另一个音频曲目编辑：进程还没完成之前，音频编辑将被临时关闭。"
-    # The buttons to control the whole preview are located on the right column of Audio Editor
-    preview:
-      # Button to start the preview
-      # 1 - views/audio_editor/_lateral_controls.html.erb
-      play: "播放"
-      # Button to stop the preview
-      # 1 - views/audio_editor/_lateral_controls.html.erb
-      stop: "停止"
+    # Caption of the area containig the buttons which control the preview
+    # 1 - views/audio_editor/_lateral_controls.html.erb
+    preview: "Preview" # TODO
     # Caption, inside the right column, for the total length of the audio in editing
     # 1 - views/audio_editor/_lateral_controls.html.erb
     total_length: "总长度"
@@ -1614,20 +1623,25 @@ cn:
     subjects:
       # Caption for subjects selection
       # 1 - views/prelogin/registration.html.erb
+      # 2 - controllers/application_controller.rb
       title: "选择你感兴趣的科目"
     # List of customizable policies: for each there must be a title and a content (keyword 'description')
-    policy_1:
-      # 1 - views/prelogin/registration.html.erb
-      title: "政策1标题"
-      # 1 - views/prelogin/registration.html.erb
-      description: "政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容"
-      accept: "接收"
-    policy_2:
-      # 1 - views/prelogin/registration.html.erb
-      title: "政策2标题"
-      # 1 - views/prelogin/registration.html.erb
-      description: "政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策1内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容"
-      accept: "接收"
+    # Example of usage:
+    #  - title: "title of first policy"
+    #    description: "description of first policy"
+    #    accept: "acceptance caption of first policy"
+    #  - title: "title of second policy"
+    #    description: "description of first policy"
+    #    accept: "acceptance caption of first policy"
+    # and so on. Remember to insert an item for each policy configured in settings.yml
+    # 1 - views/prelogin/registration.html.erb
+    policies:
+      - title: "政策1标题"
+        description: "政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容"
+        accept: "接收"
+      - title: "政策2标题"
+        description: "政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策1内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容 政策2内容"
+        accept: "接收"
   
   
   # SECTION 2.13: Captions for reports of inappropriate contents

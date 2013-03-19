@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       redirect_to root_path(login: true), { flash: { notice: t('flash.successful_registration') } }
       UserMailer.account_confirmation(@user, request.host, request.port).deliver
     else
+      @errors = convert_user_error_messages @user.errors
       @locations = [Location.roots]
       @user_location = {}
       @school_level_ids = SchoolLevel.order(:description).map{ |sl| [sl.to_s, sl.id] }
@@ -77,6 +78,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       redirect_to in_subjects ? my_subjects_path : my_profile_path
     else
+      @errors = convert_user_error_messages @user.errors
       if in_subjects
         @subjects = Subject.order(:description)
         render :subjects

@@ -8,11 +8,11 @@
     </p>
   </div>
   <div class="bottoniVerdi">
-    <a class="upper disabled"><%= t('audio_editor.preview.play') %></a>
+    <a class="upper disabled"><%= t('audio_editor.preview') %></a>
   </div>
   <div class="audioLateralControls">
-    <a id="rewind_audio_editor_preview" class="rewind <%= parameters[:components].empty? ? 'disabled'.html_safe : '' %>" title="Rewind preview"></a><!-- traduzzione -->
-    <a id="start_audio_editor_preview" class="play <%= parameters[:components].empty? ? 'disabled'.html_safe : '' %>" title="Start preview"></a><!-- traduzzione -->
-    <a id="stop_audio_editor_preview" class="pause" title="Pause preview" style="display:none"></a><!-- traduzzione -->
+    <a id="rewind_audio_editor_preview" class="rewind <%= parameters[:components].empty? ? 'disabled'.html_safe : '' %>" title="<%= t('titles.audio_editor.preview.rewind') %>"></a>
+    <a id="start_audio_editor_preview" class="play <%= parameters[:components].empty? ? 'disabled'.html_safe : '' %>" title="<%= t('titles.audio_editor.preview.start') %>"></a>
+    <a id="stop_audio_editor_preview" class="pause" title="<%= t('titles.audio_editor.preview.pause') %>" style="display:none"></a>
   </div>
 </div>
