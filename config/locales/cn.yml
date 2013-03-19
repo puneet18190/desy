@@ -581,6 +581,7 @@ cn:
     error_captions:
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       fill_all_the_fields_or_too_long: "不要超出最大长度，填写所有的栏目"
       # The user didn't write the minimum amount of tags
       # 1 - controllers/application_controller.rb
@@ -592,15 +593,30 @@ cn:
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
       media_unsupported_format: "格式不支持"
-      # The user tried to upload a file whose name contained an invalid character
-      # 1 - controllers/application_controller.rb
-      media_invalid_filename: "文件名包含非法字符"
       # The user tried to upload a file which was damaged or invalid
       # 1 - controllers/application_controller.rb
       media_generic_error: "非法或文件损坏"
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
       subject_missing_in_lesson: "选择主题"
+      # The user's email is not valid or already present in the database
+      # 1 - controllers/application_controller.rb
+      not_valid_email: "The email you inserted is not valid or already present in our database" # TODO
+      # The user's didn't choose a location (the variable %{location} is replaced by the label which corresponds to the lowest kind of location (for instance, Town)
+      # 1 - controllers/application_controller.rb
+      choose_a_location: "Choose a %{location}" # TODO
+      # The user hasn't selected any subject
+      # 1 - controllers/application_controller.rb
+      select_at_least_a_subject: "Select at least one subject" # TODO
+      # The user inserted a short or blank password (the variable %{min} is replaced by the configured minimum length for a password)
+      # 1 - controllers/application_controller.rb
+      password_too_short: "Insert a password of at least %{min} characters" # TODO
+      # The user inserted a short or long password (the variables %{min} and %{max} are replaced by the configured minimum and maximum length for a password)
+      # 1 - controllers/application_controller.rb
+      password_not_in_range: "Insert a password of at least %{min} characters, not exceeding %{max} characters" # TODO
+      # The password doesn't match confirmation
+      # 1 - controllers/application_controller.rb
+      password_doesnt_match_confirmation: "The password doesn't match confirmation" # TODO
     # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
       # Description (the variable %{num} represents the maximum number of characters)
@@ -1603,7 +1619,6 @@ cn:
     policy_1:
       # 1 - views/prelogin/registration.html.erb
       title: "政策1标题"
-      title: "Title of policy 1"
       # 1 - views/prelogin/registration.html.erb
       description: "政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容 政策1内容"
       accept: "接收"
@@ -2212,6 +2227,10 @@ cn:
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
     parents_label: "城镇/省份"
+    # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
+    # 1 - views/admin/users/_locations_list.html.erb
+    # 2 - views/users/_locations_list.html.erb
+    placeholder: "选择%{location}"
   
   
   # SECTION 3.4: Media formats
@@ -2467,9 +2486,6 @@ cn:
     search:
       # Section where the user filters by location
       locations:
-        # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
-        # 1 - views/admin/users/_locations_list.html.erb
-        caption: "选择%{location}"
         # 1 - views/admin/search/_location.html.erb
         title: "位置"
       # Search through dates (this option is available for any section)

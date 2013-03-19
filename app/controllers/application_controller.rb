@@ -148,8 +148,7 @@ class ApplicationController < ActionController::Base
     media_errors = errors.delete(:media)
     sti_type_errors = errors.delete(:sti_type)
     subject_id_errors = errors.delete(:subject_id)
-    errors2 = errors.to_s
-    if !(/can't be blank/ =~ errors2).nil? || !(/is too long/ =~ errors2).nil? || !(/is too short/ =~ errors2).nil?
+    if errors.has_key?(:title) || errors.has_key?(:description)
       resp << t('forms.error_captions.fill_all_the_fields_or_too_long')
     end
     flag = false
@@ -174,25 +173,45 @@ class ApplicationController < ActionController::Base
   end
   
   def convert_media_element_uploader_messages(errors)
-    resp = convert_item_error_messages errors
-    if errors.has_key? :media
-      errors[:media].each do |em|
-        return ([t('forms.error_captions.media_blank')] + resp) if em == "can't be blank"
-      end
-      if !(/unsupported format/ =~ errors[:media].to_s).nil? || !(/invalid extension/ =~ errors[:media].to_s).nil?
+    resp = convert_item_error_messages errors.messages
+    if errors.messages.has_key? :media
+      return ([t('forms.error_captions.media_blank')] + resp) if errors.added? :media, :blank
+      if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil?
         return [t('forms.error_captions.media_unsupported_format')] + resp
-      end
-      if !(/invalid filename/ =~ errors[:media].to_s).nil?
-        return [t('forms.error_captions.media_invalid_filename')] + resp
       end
       return [t('forms.error_captions.media_generic_error')] + resp
     else
-      if errors.has_key? :sti_type
+      if errors.messages.has_key? :sti_type
         return [t('forms.error_captions.media_unsupported_format')] + resp
       else
         return resp
       end
     end
+  end
+  
+  def convert_user_error_messages(errors)
+    pas_min = SETTINGS['minimum_password_length']
+    pas_max = SETTINGS['maximum_password_length']
+    resp = []
+    resp << t('forms.error_captions.fill_all_the_fields_or_too_long') if (errors.messages.keys & [:name, :surname]).any?
+    resp << t('forms.error_captions.not_valid_email') if errors.messages.has_key? :email
+    resp << t('forms.error_captions.choose_a_location', :location => Location.base_label.downcase) if errors.message.has_key? :location_id
+    resp << t('forms.error_captions.select_at_least_a_subject') if errors.message.has_key? :users_subjects
+    if errors.messages.has_key? :password
+      if errors.added?(:password, :too_short, {:count => pas_min}) || errors.added?(:password, :too_long, {:count => pas_max})
+        if pas_max.nil?
+          resp << t('forms.error_captions.password_too_short', :min => pas_min)
+        else
+          resp << t('forms.error_captions.password_not_in_range', :min => pas_min, :max => pas_max)
+        end
+      elsif errors.added? :password, :confirmation
+        resp << t('forms.error_captions.password_doesnt_match_confirmation')
+      else
+        # manca errore generico password
+      end
+    end
+    # mancano le policies
+    resp
   end
   
   def logged_in?

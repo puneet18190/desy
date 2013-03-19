@@ -16,7 +16,7 @@
         <p><%= t('users.info.description') %></p>
       </header>
       <%= form_for @user, :url => user_path do |f| %>
-        <%= render :partial => 'personal_info', :locals => { :f => f } %>
+        <%= render :partial => 'personal_info', :locals => {:f => f, :edit => true} %>
         <div class="form_submit">
           <%= f.submit "save" %>
         </div>
