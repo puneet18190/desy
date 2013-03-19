@@ -24,9 +24,9 @@
             <td width="20%">
               <label><%= t('search.media_elements.filters.format') %></label><br/>
               <select name="filter" id="filter_search_media_elements">
-                <option value="<%= Filters::ALL_MEDIA_ELEMENTS %>" selected="selected"><%= Filters::CAPTIONS[Filters::ALL_MEDIA_ELEMENTS] %></option>
+                <option value="<%= Filters::ALL_MEDIA_ELEMENTS %>" selected="selected"><%= MediaElement.filter(Filters::ALL_MEDIA_ELEMENTS) %></option>
                 <% (Filters::MEDIA_ELEMENTS_SEARCH_SET - [Filters::ALL_MEDIA_ELEMENTS]).each do |f| %>
-                  <option value="<%= f %>"><%= Filters::CAPTIONS[f] %></option>
+                  <option value="<%= f %>"><%= MediaElement.filter(f) %></option>
                 <% end %>
               </select>
             </td>
@@ -47,14 +47,14 @@
             <td width="5%">
               <input type="radio" name="order" id="<%= my_order_id %>" value="<%= SearchOrders::TITLE %>" class="regular-radio _order_media_elements_radio_input" checked="checked">
               <label for="<%= my_order_id %>"></label>
-              &nbsp;<%= SearchOrders::CAPTIONS[SearchOrders::TITLE] %>
+              &nbsp;<%= MediaElement.search_order(SearchOrders::TITLE) %>
             </td>
             <% (SearchOrders::MEDIA_ELEMENTS_SET - [SearchOrders::TITLE]).each do |so| %>
               <% my_order_id = "#{so}_media_elements_radio_input" %>
               <td width="5%">
                 <input type="radio" name="order" id="<%= my_order_id %>" value="<%= so %>" class="regular-radio _order_media_elements_radio_input">
                 <label for="<%= my_order_id %>"></label>
-                &nbsp;<%= SearchOrders::CAPTIONS[so] %>
+                &nbsp;<%= MediaElement.search_order(so) %>
               </td>
             <% end %>
             <td colspan="3" width="60%">

@@ -1,5 +1,5 @@
 <%
-  current_class = (lesson.status == :copied) ? 'current'.html_safe : ''
+  current_class = (lesson.status == Statuses::COPIED) ? 'current'.html_safe : ''
   disabled = !lesson.available?
   additional_class = disabled ? '_disabled'.html_safe : ''
   current_class = "#{current_class} _lesson_change_not_notified" if lesson.not_notified?
@@ -11,7 +11,7 @@
   <div class="contentInterno _lesson_compact">
     <h3><%= lesson.title %></h3>
     <p><%= lesson.subject.description %></p>
-    <p><%= STATUSES.lessons.send(lesson.status) %></p>
+    <p><%= lesson.status(true) %></p>
     <%= render :partial => "lessons/action_buttons", :locals => {:lesson => lesson, :destination => destination, :additional_class => additional_class} %>
   </div>
   
@@ -30,7 +30,7 @@
         <% end %>
       </div>
       <div class="description-text">
-        <% if [:public, :linked].include?(lesson.status) %>
+        <% if [Statuses::PUBLIC, Statuses::LINKED].include?(lesson.status) %>
           <div class="intestazione">
             <h1><%= t('lessons.author') %>:</h1>
             <p><%= lesson.user.full_name %></p>

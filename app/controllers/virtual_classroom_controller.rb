@@ -117,7 +117,6 @@ class VirtualClassroomController < ApplicationController
   
   def empty_virtual_classroom
     current_user.empty_virtual_classroom
-    redirect_to :action => :index
   end
   
   def select_lessons

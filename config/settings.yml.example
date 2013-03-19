@@ -59,8 +59,6 @@ tags_limit_in_search_engine: 20
 languages:
 - :en
 - :cn
-# APPLICATION LANGUAGE
-application_language: 'en'
 # TIMES
 seconds_for_timeout_dialogs: 2500
 seconds_for_saving_cache: 60000

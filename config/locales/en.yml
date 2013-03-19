@@ -104,32 +104,6 @@ en:
       loaded_error: "A problem occurred, %{number} of your lessons were not loaded"
   activerecord:
     errors:
-      # The list of error messages below is used when the user doesn't properly fill a field in his personal profile
-      messages:
-        # Invalid email address
-        # 1 - models/user.rb
-        invalid_email_address: "is not a valid email address"
-        # A field has not been filled
-        # 1 - models/user.rb
-        blank: "can't be blank"
-        # The password confirmation doesn't match
-        # 1 - models/user.rb
-        confirmation: "doesn't match confirmation"
-        # A field doesn't have enough characters (%{count} represents the minimum)
-        # 1 - models/user.rb
-        too_short: "is too short (minimum is %{count} characters)"
-        # A field has too many characters (%{count} represents the maximum)
-        # 1 - models/user.rb
-        too_long: "is too long (maximum is %{count} characters)"
-        # The email is already present in the database
-        # 1 - models/user.rb
-        uniqueness: "is already present in the database"
-        # A field can't be modified
-        # 1 - models/user.rb
-        changed: "can't be modified"
-        # The user must accept the personal data treatment policy (this message is used also for more customized policies)
-        # 1 - models/user.rb
-        accepted: "must be accepted"
       models:
         bookmark:
           # There was an error while trying to add the lesson to your personal folder
@@ -735,7 +709,7 @@ en:
       remove: "Remove this item"
       # To remove a lesson from your Virtual Classroom
       # 1 - views/shared/buttons/_remove_virtual_classroom.html.erb
-      remove_virtual_classroom: "Remove from your Cirtual Classroom"
+      remove_virtual_classroom: "Remove from your Virtual Classroom"
       # To turn a shared lesson back into private
       # 1 - views/shared/buttons/_unpublish.html.erb
       # 2 - views/shared/_popups.html.erb
@@ -2079,76 +2053,76 @@ en:
     # The list of statuses for lessons
     lessons:
       # A lesson is 'private' if only the owner may see it
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       private: "Private"
       # A lesson is 'just copied' if the user copied from another lesson, but he hasn't personalized it yet
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       copied: "Copied"
       # A lesson is 'linked' if the user doesn't own it, it's just a link to another user's lesson
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       linked: "Linked"
       # A lesson is 'public' when you are not the creator and you haven't linked it yet
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       public: "Public"
       # A lesson is 'shared' when you are the creator and it's visible to other users
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       shared: "Shared"
     # The list of statuses for media elements
     media_elements:
       # An element is 'private' if you are the owner and you haven't used it inside a public lesson
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       private: "Private"
       # An element is 'public' if you are not the owner and you haven't linked it yet 
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       public: "Public"
       # An element is 'linked' if the user doesn't own it, it's just a link to a public element
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       linked: "Linked"
   # Filters for both lessons and media elements
   filters:
     # All lessons without any filters
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     all_lessons: "All lessons"
     # Only private lessons
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     private: "Private"
     # Only public lessons (they can be either lessons that you shared, or public lessons created by somebody else)
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     public: "Public"
     # Lessons which don't belong to you but that you linked
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     linked: "Linked"
     # All your lessons (including both public and private)
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     only_mine: "Your own"
     # All the lessons that you just copied without personalizing them yet
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     copied: "Just copied"
     # All the media elements, without any filter
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     all_media_elements: "All formats"
     # Only elements of kind 'video'
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     video: "Video"
     # Only elements of kind 'audio'
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     audio: "Audio"
     # Only elements of kind 'image'
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     image: "Images"
     # Only for lessons search engine, filters all the lessons not created by you
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     not_mine: "Not created by you"
   # Possible parameters to sort lessons or media elements
   orders:
     # Date of last modification
-    # 1 - ../lib/autoload/search_orders.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     updated_at: "Date last modification"
     # Number of likes received (only available for lessons)
-    # 1 - ../lib/autoload/search_orders.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     likes: "Number of likes"
     # Alphabetical order
-    # 1 - ../lib/autoload/search_orders.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     title: "Alphabetical"
   
   
@@ -2347,12 +2321,6 @@ en:
       # statistics about subject distribution among lessons (a graph)
       # 1 - views/admin/dashboard/index.html.erb
       subjects: "Subject distribution among lessons"
-      # Shortcut to the newest reports of abuses (about lessons and media element)
-      reports:
-        # 1 - views/admin/dashboard/index.html.erb
-        lessons: "Reported lessons"
-        # 1 - views/admin/dashboard/index.html.erb
-        media_elements: "Reported media elements"
     # General captions, used throughout the Administrator
     general:
       # Link to switch all the items in a list to the compact status
@@ -2739,20 +2707,67 @@ en:
         # Statistics subjects label
         # 1 - views/admin/users/show.html.erb
         subjects: "Subjects"
-
     # Section 'Messages' in the administration module
     messages:
-      # Section 'Nofitications'
-      # 1 - views/admin/messages/new_notification.html.erb
+      # Section where the administrator may send a notification to many users
       notifications:
-        send_notifications: "Send notifications"
+        # Title of the section
+        # 1 - views/admin/messages/new_notification.html.erb
+        title: "Send notifications"
+        # Caption which appears if all the users in the database will receive the notification
+        # 1 - views/admin/messages/new_notification.html.erb
+        all_users_selected: "All users selected"
+        # Title of the part where the administrator may filter the users
+        # 1 - views/admin/messages/new_notification.html.erb
         filter_users: "Filter users to send notifications to"
+        # Caption which appears if not all users are selected (the variable %{user_count} is replaced by the number of users resulted by the filter)
+        # 1 - views/admin/messages/new_notification.html.erb
+        # 2 - views/admin/messages/new_notification.html.erb
         users_selected: "%{user_count} users selected"
+        # Caption of the input where the administrator can select single users to be added to the list of recipients
+        # 1 - views/admin/messages/new_notification.html.erb
         add_recipients: "Select recipients"
+        # Placeholder of the input where the administrator can select single users to be added to the list of recipients
+        # 1 - views/admin/messages/new_notification.html.erb
+        recipients_placeholder: "Add recipients"
+        # Caption of the checkbox that resets the filters, and selects back all the users
+        # 1 - views/admin/messages/new_notification.html.erb
         send_everyone: "Send to everyone"
+        # Button to submit and send the notification
+        # 1 - views/admin/messages/new_notification.html.erb
         send: "Send"
-        
-        
+        # Title of the text area where the user types the content of the notification
+        # 1 - views/admin/messages/new_notification.html.erb
+        message: "Message"
+        # Placeholder of the text area where the user types the content of the notification
+        # 1 - views/admin/messages/new_notification.html.erb
+        message_placeholder: "Insert a message"
+      # Section where the administrator checks out the reports about unproper content sent by the users
+      reports:
+        # Title of the section
+        # 1 - views/admin/messages/reports.html.erb
+        name: "Abuse reports"
+        # Label for the item on which the report was sent (it may be lesson or media element)
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/dashboard/index.html.erb
+        # 3 - views/admin/messages/reports.html.erb
+        # 4 - views/admin/messages/reports.html.erb
+        item: "On:"
+        # Label for the message attached to a report
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/dashboard/index.html.erb
+        # 3 - views/admin/messages/reports.html.erb
+        # 4 - views/admin/messages/reports.html.erb
+        report: "Report:"
+        # Title of the list of reports for lessons
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/messages/reports.html.erb
+        lessons: "Reported lessons"
+        # Title of the list of reports for media elements
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/messages/reports.html.erb
+        media_elements: "Reported media elements"
+  
   
   # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'
   

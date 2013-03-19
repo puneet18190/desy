@@ -169,13 +169,18 @@ Desy::Application.routes.draw do
     post      'messages/send_notifications'             => 'messages#send_notifications'
     get       'messages/reports'                        => 'messages#reports'
     post      'messages/filter_users'                   => 'messages#filter_users'
+    get       'settings'                                => 'settings#index'
+    get       'settings/subjects'                       => 'settings#subjects'
+    get       'settings/school_levels'                  => 'settings#school_levels'
+    get       'settings/locations'                      => 'settings#locations'
+    get       'settings/tags'                           => 'settings#tags'
     resources :lessons,                           :only => [:index, :destroy]
     resources :media_elements,                    :only => [:new, :index, :destroy]
     resources :users,                             :only => [:index, :show, :destroy]
   end
 
   get ':locale' => 'application#set_locale', constraints: { locale: /(en|cn)/ } if Desy::MORE_THAN_ONE_LANGUAGE
-  
+
   # 404
   match '*path', to: 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
   
