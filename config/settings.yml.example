@@ -55,6 +55,10 @@ min_tags_for_item: 4
 min_characters_to_search_tags: 2
 how_many_tags_for_block_in_autocomplete: 20
 tags_limit_in_search_engine: 20
+# AVAILABLE LANGUAGES - THE FIRST IS THE DEFAULT ONE
+languages:
+- :en
+- :cn
 # APPLICATION LANGUAGE
 application_language: 'en'
 # TIMES
