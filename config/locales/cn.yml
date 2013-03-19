@@ -104,32 +104,6 @@ cn:
       loaded_error: "错误，你课程的%{number}没有被加载"
   activerecord:
     errors:
-      # The list of error messages below is used when the user doesn't properly fill a field in his personal profile
-      messages:
-        # Invalid email address
-        # 1 - models/user.rb
-        invalid_email_address: "不是合法的邮件地址"
-        # A field has not been filled
-        # 1 - models/user.rb
-        blank: "不能为空"
-        # The password confirmation doesn't match
-        # 1 - models/user.rb
-        confirmation: "确认不匹配"
-        # A field doesn't have enough characters (%{count} represents the minimum)
-        # 1 - models/user.rb
-        too_short: "太短(最短是 %{count} 字符)"
-        # A field has too many characters (%{count} represents the maximum)
-        # 1 - models/user.rb
-        too_long: "太长(最长是 %{count} 字符)"
-        # The email is already present in the database
-        # 1 - models/user.rb
-        uniqueness: "在数据库中已经存在"
-        # A field can't be modified
-        # 1 - models/user.rb
-        changed: "不能修改"
-        # The user must accept the personal data treatment policy (this message is used also for more customized policies)
-        # 1 - models/user.rb
-        accepted: "必须接收"
       models:
         bookmark:
           # There was an error while trying to add the lesson to your personal folder

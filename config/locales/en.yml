@@ -104,32 +104,6 @@ en:
       loaded_error: "A problem occurred, %{number} of your lessons were not loaded"
   activerecord:
     errors:
-      # The list of error messages below is used when the user doesn't properly fill a field in his personal profile
-      messages:
-        # Invalid email address
-        # 1 - models/user.rb
-        invalid_email_address: "is not a valid email address"
-        # A field has not been filled
-        # 1 - models/user.rb
-        blank: "can't be blank"
-        # The password confirmation doesn't match
-        # 1 - models/user.rb
-        confirmation: "doesn't match confirmation"
-        # A field doesn't have enough characters (%{count} represents the minimum)
-        # 1 - models/user.rb
-        too_short: "is too short (minimum is %{count} characters)"
-        # A field has too many characters (%{count} represents the maximum)
-        # 1 - models/user.rb
-        too_long: "is too long (maximum is %{count} characters)"
-        # The email is already present in the database
-        # 1 - models/user.rb
-        uniqueness: "is already present in the database"
-        # A field can't be modified
-        # 1 - models/user.rb
-        changed: "can't be modified"
-        # The user must accept the personal data treatment policy (this message is used also for more customized policies)
-        # 1 - models/user.rb
-        accepted: "must be accepted"
       models:
         bookmark:
           # There was an error while trying to add the lesson to your personal folder
