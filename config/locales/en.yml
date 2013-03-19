@@ -709,7 +709,7 @@ en:
       remove: "Remove this item"
       # To remove a lesson from your Virtual Classroom
       # 1 - views/shared/buttons/_remove_virtual_classroom.html.erb
-      remove_virtual_classroom: "Remove from your Cirtual Classroom"
+      remove_virtual_classroom: "Remove from your Virtual Classroom"
       # To turn a shared lesson back into private
       # 1 - views/shared/buttons/_unpublish.html.erb
       # 2 - views/shared/_popups.html.erb
