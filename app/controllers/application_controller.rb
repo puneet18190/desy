@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
+  OUT_OF_AUTHENTICATION_ACTIONS = [:page_not_found]
+  OUT_OF_AUTHENTICATION_ACTIONS << :set_locale if Desy::MORE_THAN_ONE_LANGUAGE
+
   protect_from_forgery
 
-  before_filter :authenticate, :initialize_location, :initialize_players_counter, except: :page_not_found
+  before_filter :get_locale if Desy::MORE_THAN_ONE_LANGUAGE
+  before_filter :authenticate, :initialize_location, :initialize_players_counter, except: OUT_OF_AUTHENTICATION_ACTIONS
 
   attr_reader :current_user
   helper_method :current_user
@@ -12,7 +16,22 @@ class ApplicationController < ActionController::Base
     render text: '<h1>Page not found</h1>', status: 404, layout: false
   end
 
+  if Desy::MORE_THAN_ONE_LANGUAGE
+    def set_locale
+      available_languages = SETTINGS['languages']
+      if i = available_languages.map(&:to_s).index(params[:locale])
+        session[:locale] = available_languages[i]
+      end
+      redirect_to root_path
+    end
+  end
+
   private
+  if Desy::MORE_THAN_ONE_LANGUAGE
+    def get_locale
+      I18n.locale = session[:locale] || I18n.default_locale
+    end
+  end
   
   def initialize_players_counter
     @video_counter = [SecureRandom.urlsafe_base64(16), 1]
