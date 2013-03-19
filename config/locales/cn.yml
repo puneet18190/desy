@@ -680,6 +680,14 @@ cn:
         # The handle that the user can grab to drag a component and change its position inside the whole track
         # 1 - views/audio_editor/_component.html.erb
         sort: "拖动改变部件的位置"
+      # Buttons to handle global preview
+      preview:
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+        pause: "Pause preview" # TODO
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+        rewind: "Rewind preview" # TODO
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+        start: "Start preview" # TODO
     audios:
       # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the audio editor
       # 1 - views/media_elements/new.html.erb
@@ -1139,14 +1147,9 @@ cn:
       title: "无法提供音频编辑"
       # 1 - views/audio_editor/not_available.html.erb
       description: "在这个时候，你能运行另一个音频曲目编辑：进程还没完成之前，音频编辑将被临时关闭。"
-    # The buttons to control the whole preview are located on the right column of Audio Editor
-    preview:
-      # Button to start the preview
-      # 1 - views/audio_editor/_lateral_controls.html.erb
-      play: "播放"
-      # Button to stop the preview
-      # 1 - views/audio_editor/_lateral_controls.html.erb
-      stop: "停止"
+    # Caption of the area containig the buttons which control the preview
+    # 1 - views/audio_editor/_lateral_controls.html.erb
+    preview: "Preview" # TODO
     # Caption, inside the right column, for the total length of the audio in editing
     # 1 - views/audio_editor/_lateral_controls.html.erb
     total_length: "总长度"

@@ -680,6 +680,14 @@ en:
         # The handle that the user can grab to drag a component and change its position inside the whole track
         # 1 - views/audio_editor/_component.html.erb
         sort: "Drag to change the component's position"
+      # Buttons to handle global preview
+      preview:
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+        pause: "Pause preview"
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+        rewind: "Rewind preview"
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+        start: "Start preview"
     audios:
       # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the audio editor
       # 1 - views/media_elements/new.html.erb
@@ -1139,14 +1147,9 @@ en:
       title: "Audio editor not available"
       # 1 - views/audio_editor/not_available.html.erb
       description: "At this moment you are running the Editor for another audio track: until the process isn't finished the Audio Editor will be temporarily disabled"
-    # The buttons to control the whole preview are located on the right column of Audio Editor
-    preview:
-      # Button to start the preview
-      # 1 - views/audio_editor/_lateral_controls.html.erb
-      play: "Preview"
-      # Button to stop the preview
-      # 1 - views/audio_editor/_lateral_controls.html.erb
-      stop: "Stop"
+    # Caption of the area containig the buttons which control the preview
+    # 1 - views/audio_editor/_lateral_controls.html.erb
+    preview: "Preview"
     # Caption, inside the right column, for the total length of the audio in editing
     # 1 - views/audio_editor/_lateral_controls.html.erb
     total_length: "Total length"
