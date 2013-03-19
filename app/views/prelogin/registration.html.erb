@@ -25,12 +25,14 @@
   <%= render partial: 'users/personal_info', :locals => {:f => f, :edit => false} %>
   <h2><%= t('registration.subjects.title') %></h2>
   <%= render partial: 'users/personal_subjects', :locals => { :f => f } %>
-
   <div class="contentForm">
-    <% @user.registration_policies.each do |policy| %>
+    <% @user.registration_policies.each_with_index do |policy, index| %>
       <p>
-        <strong><%= t("registration.#{policy}.title") %></strong><br><br>
-        <%= t("registration.#{policy}.description") %>
+        <%
+          my_policy = t('registration.policies')[index]
+        %>
+        <strong><%= my_policy[:title] %></strong><br><br>
+        <%= my_policy[:description] %>
       </p>
       <div class="checkbox-content">
         <div class="checkboxElement">
@@ -39,43 +41,36 @@
               <td>
                 <% if @user.errors.include?(policy) %>
                   <div class="field_with_errors">
-                <% end %>
-
-                <%= f.hidden_field policy, value: '0', id: nil %>
-                <%= check_box_tag "user[#{policy}]", '1', @user.send(policy) == '1', class: 'regular-checkbox' %>
-                <%= label_tag "user[#{policy}]", '' %>
-
-                <% if @user.errors.include?(policy) %>
+                    <%= f.hidden_field policy, value: '0', id: nil %>
+                    <%= check_box_tag "user[#{policy}]", '1', @user.send(policy) == '1', class: 'regular-checkbox' %>
+                    <%= label_tag "user[#{policy}]", '' %>
                   </div>
+                <% else %>
+                  <%= f.hidden_field policy, value: '0', id: nil %>
+                  <%= check_box_tag "user[#{policy}]", '1', @user.send(policy) == '1', class: 'regular-checkbox' %>
+                  <%= label_tag "user[#{policy}]", '' %>
                 <% end %>
               </td>
-              <td><%= t("registration.#{policy}.accept") %></td>
+              <td><%= my_policy[:accept] %></td>
             </tr>
           </table>
         </div>
         
       </div>
-
       <br class="clearfloat">
-
-
-
     <% end %>
     
-    <%# ERRORI %>
-    <% errors = @user.errors.select{ |k,_| @user.registration_policies.include? k } %>
-
     <ul class="listaErrori">
-    <% errors.each do |k, v| %>
-      <li><%= @user.errors.full_message(k, v) %></li>
-    <% end if errors.present? %>
+      <% @errors[:policies].each do |err| %>
+        <li><%= err %></li>
+      <% end %>
     </ul>
-
+    
     <%= f.submit t('registration.done') %>
-
   </div>
-
+  
 <% end %>
+
   <br class="clearfloat">
   <div class="footer">
     <div class="fltlft" >

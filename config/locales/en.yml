@@ -617,6 +617,12 @@ en:
       # The password doesn't match confirmation
       # 1 - controllers/application_controller.rb
       password_doesnt_match_confirmation: "The password doesn't match confirmation"
+      # The password is invalid for other reasons than the ones specified above
+      # 1 - controllers/application_controller.rb
+      invalid_password: "The password inserted is invalid"
+      # The user didn't accept a policy (the variable %{policy} is replaced by the name of the policy)
+      # 1 - controllers/application_controller.rb
+      policy_not_accepted: "You must accept %{policy}"
     # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
       # Description (the variable %{num} represents the maximum number of characters)
@@ -1614,20 +1620,25 @@ en:
     subjects:
       # Caption for subjects selection
       # 1 - views/prelogin/registration.html.erb
+      # 2 - controllers/application_controller.rb
       title: "Choose the subjects you are interested in"
     # List of customizable policies: for each there must be a title and a content (keyword 'description')
-    policy_1:
-      # 1 - views/prelogin/registration.html.erb
-      title: "Title of policy 1"
-      # 1 - views/prelogin/registration.html.erb
-      description: "Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1"
-      accept: "Accept"
-    policy_2:
-      # 1 - views/prelogin/registration.html.erb
-      title: "Title of policy 2"
-      # 1 - views/prelogin/registration.html.erb
-      description: "Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2"
-      accept: "Accept"
+    # Example of usage:
+    #  - title: "title of first policy"
+    #    description: "description of first policy"
+    #    accept: "acceptance caption of first policy"
+    #  - title: "title of second policy"
+    #    description: "description of first policy"
+    #    accept: "acceptance caption of first policy"
+    # and so on. Remember to insert an item for each policy configured in settings.yml
+    # 1 - views/prelogin/registration.html.erb
+    policies:
+      - title: "Title of policy 1"
+        description: "Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1"
+        accept: "Accept"
+      - title: "Title of policy 2"
+        description: "Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2"
+        accept: "Accept"
   
   
   # SECTION 2.13: Captions for reports of inappropriate contents
