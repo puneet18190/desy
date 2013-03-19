@@ -2739,20 +2739,63 @@ cn:
         subjects: "主题"
     # Section 'Messages' in the administration module
     messages:
+      # Section where the administrator may send a notification to many users
       notifications:
-        send_notifications: "送通知"
+        # Title of the section
+        # 1 - views/admin/messages/new_notification.html.erb
+        title: "送通知"
+        # Caption which appears if all the users in the database will receive the notification
+        # 1 - views/admin/messages/new_notification.html.erb
         all_users_selected: "All users selected" # TODO
+        # Title of the part where the administrator may filter the users
+        # 1 - views/admin/messages/new_notification.html.erb
         filter_users: "过滤用户送通知到"
+        # Caption which appears if not all users are selected (the variable %{user_count} is replaced by the number of users resulted by the filter)
+        # 1 - views/admin/messages/new_notification.html.erb
+        # 2 - views/admin/messages/new_notification.html.erb
         users_selected: "%{user_count}用户已选择"
+        # Caption of the input where the administrator can select single users to be added to the list of recipients
+        # 1 - views/admin/messages/new_notification.html.erb
         add_recipients: "选择接收者"
+        # Placeholder of the input where the administrator can select single users to be added to the list of recipients
+        # 1 - views/admin/messages/new_notification.html.erb
+        recipients_placeholder: "Add recipients" # TODO
+        # Caption of the checkbox that resets the filters, and selects back all the users
+        # 1 - views/admin/messages/new_notification.html.erb
         send_everyone: "向所有人发送"
+        # Button to submit and send the notification
+        # 1 - views/admin/messages/new_notification.html.erb
         send: "发送"
+        # Title of the text area where the user types the content of the notification
+        # 1 - views/admin/messages/new_notification.html.erb
         message: "Message" # TODO
+        # Placeholder of the text area where the user types the content of the notification
+        # 1 - views/admin/messages/new_notification.html.erb
+        message_placeholder: "Insert a message" # TODO
+      # Section where the administrator checks out the reports about unproper content sent by the users
       reports:
+        # Title of the section
+        # 1 - views/admin/messages/reports.html.erb
         name: "Abuse reports" # TODO
+        # Label for the item on which the report was sent (it may be lesson or media element)
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/dashboard/index.html.erb
+        # 3 - views/admin/messages/reports.html.erb
+        # 4 - views/admin/messages/reports.html.erb
         item: "On:" # TODO
+        # Label for the message attached to a report
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/dashboard/index.html.erb
+        # 3 - views/admin/messages/reports.html.erb
+        # 4 - views/admin/messages/reports.html.erb
         report: "Report:" # TODO
+        # Title of the list of reports for lessons
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/messages/reports.html.erb
         lessons: "已发布课程"
+        # Title of the list of reports for media elements
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/messages/reports.html.erb
         media_elements: "已发布媒体单元"
   
   

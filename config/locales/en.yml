@@ -2735,20 +2735,63 @@ en:
         subjects: "Subjects"
     # Section 'Messages' in the administration module
     messages:
+      # Section where the administrator may send a notification to many users
       notifications:
-        send_notifications: "Send notifications"
+        # Title of the section
+        # 1 - views/admin/messages/new_notification.html.erb
+        title: "Send notifications"
+        # Caption which appears if all the users in the database will receive the notification
+        # 1 - views/admin/messages/new_notification.html.erb
         all_users_selected: "All users selected"
+        # Title of the part where the administrator may filter the users
+        # 1 - views/admin/messages/new_notification.html.erb
         filter_users: "Filter users to send notifications to"
+        # Caption which appears if not all users are selected (the variable %{user_count} is replaced by the number of users resulted by the filter)
+        # 1 - views/admin/messages/new_notification.html.erb
+        # 2 - views/admin/messages/new_notification.html.erb
         users_selected: "%{user_count} users selected"
+        # Caption of the input where the administrator can select single users to be added to the list of recipients
+        # 1 - views/admin/messages/new_notification.html.erb
         add_recipients: "Select recipients"
+        # Placeholder of the input where the administrator can select single users to be added to the list of recipients
+        # 1 - views/admin/messages/new_notification.html.erb
+        recipients_placeholder: "Add recipients"
+        # Caption of the checkbox that resets the filters, and selects back all the users
+        # 1 - views/admin/messages/new_notification.html.erb
         send_everyone: "Send to everyone"
+        # Button to submit and send the notification
+        # 1 - views/admin/messages/new_notification.html.erb
         send: "Send"
+        # Title of the text area where the user types the content of the notification
+        # 1 - views/admin/messages/new_notification.html.erb
         message: "Message"
+        # Placeholder of the text area where the user types the content of the notification
+        # 1 - views/admin/messages/new_notification.html.erb
+        message_placeholder: "Insert a message"
+      # Section where the administrator checks out the reports about unproper content sent by the users
       reports:
+        # Title of the section
+        # 1 - views/admin/messages/reports.html.erb
         name: "Abuse reports"
+        # Label for the item on which the report was sent (it may be lesson or media element)
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/dashboard/index.html.erb
+        # 3 - views/admin/messages/reports.html.erb
+        # 4 - views/admin/messages/reports.html.erb
         item: "On:"
+        # Label for the message attached to a report
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/dashboard/index.html.erb
+        # 3 - views/admin/messages/reports.html.erb
+        # 4 - views/admin/messages/reports.html.erb
         report: "Report:"
+        # Title of the list of reports for lessons
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/messages/reports.html.erb
         lessons: "Reported lessons"
+        # Title of the list of reports for media elements
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/messages/reports.html.erb
         media_elements: "Reported media elements"
   
   
