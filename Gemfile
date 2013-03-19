@@ -4,7 +4,7 @@ https = RbConfig::CONFIG['host_os'] !~ /mswin|mingw|cygwin/
 #https = false
 source https ? 'https://rubygems.org': 'http://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 gem 'pg'
 
 # Gems used only for assets and not required
