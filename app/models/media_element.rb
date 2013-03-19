@@ -143,8 +143,8 @@ class MediaElement < ActiveRecord::Base
     @tags
   end
   
-  def status
-    @status.nil? ? nil : MediaElement.status(@status)
+  def status(with_captions=false)
+    @status.nil? ? nil : (with_captions ? MediaElement.status(@status) : @status)
   end
   
   def set_status(an_user_id)

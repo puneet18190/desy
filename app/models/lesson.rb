@@ -116,8 +116,8 @@ class Lesson < ActiveRecord::Base
     Bookmark.joins("INNER JOIN lessons ON lessons.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'Lesson'").where('lessons.is_public = ? AND lessons.user_id != ? AND lessons.subject_id IN (?) AND bookmarks.user_id = ?', true, an_user_id, subject_ids, an_user_id).any?
   end
   
-  def status
-    @status.nil? ? nil : Lesson.status(@status)
+  def status(with_captions=false)
+    @status.nil? ? nil : (with_captions ? Lesson.status(@status) : @status)
   end
   
   def set_status(an_user_id)

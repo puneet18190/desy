@@ -5,11 +5,11 @@ module LessonsMediaElementsShared
   end
   
   def filter(f)
-    I18n.t("statuses.#{table_name}.#{f}")
+    I18n.t("filters.#{f}")
   end
   
   def search_order(so)
-    I18n.t("statuses.#{table_name}.#{so}")
+    I18n.t("orders.#{so}")
   end
   
 end

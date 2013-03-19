@@ -11,7 +11,7 @@
   <div class="contentInterno _lesson_compact">
     <h3><%= lesson.title %></h3>
     <p><%= lesson.subject.description %></p>
-    <p><%= STATUSES.lessons.send(lesson.status) %></p>
+    <p><%= lesson.status(true) %></p>
     <%= render :partial => "lessons/action_buttons", :locals => {:lesson => lesson, :destination => destination, :additional_class => additional_class} %>
   </div>
   

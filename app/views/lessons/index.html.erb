@@ -12,8 +12,7 @@
       <div style="float:right"><h2 style="padding-right:10px"><%= t('captions.show') %></h2>
         <select name="ricerca" id="filter_lessons">
           <% Filters::LESSONS_SET.each do |f| %>
-            <% caption = Filters::CAPTIONS[f] %>
-            <option value="<%= f %>" <%= (@filter == f) ? "selected=\"selected\"".html_safe : '' %>><%= caption %></option>
+            <option value="<%= f %>" <%= (@filter == f) ? "selected=\"selected\"".html_safe : '' %>><%= Lesson.filter(f) %></option>
           <% end %>
         </select>
       </div>
