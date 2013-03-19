@@ -1,11 +1,9 @@
 class Lesson < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  
-  statuses = ::STATUSES.lessons.marshal_dump.keys
-  STATUSES = Struct.new(*statuses).new(*statuses)
+  extend LessonsMediaElementsShared
   
   attr_accessible :subject_id, :school_level_id, :title, :description
-  attr_reader :status, :is_reportable
+  attr_reader :is_reportable
   attr_accessor :skip_public_validations, :skip_cover_creation
   
   serialize :metadata, OpenStruct
@@ -41,7 +39,6 @@ class Lesson < ActiveRecord::Base
   # SELECT "lessons".* FROM "lessons" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = lessons.id AND bookmarks.bookmarkable_type = 'Lesson' AND bookmarks.user_id = 1 ORDER BY COALESCE(bookmarks.created_at, lessons.updated_at) DESC
   scope :of, ->(user_or_user_id) do
     user_id = user_or_user_id.instance_of?(User) ? user_or_user_id.id : user_or_user_id
-    
     joins(sanitize_sql ["LEFT JOIN bookmarks ON 
                          bookmarks.bookmarkable_id = lessons.id AND 
                          bookmarks.bookmarkable_type = 'Lesson' AND 
@@ -49,7 +46,7 @@ class Lesson < ActiveRecord::Base
     where('bookmarks.user_id IS NOT NULL OR lessons.user_id = ?', user_id).
     order('COALESCE(bookmarks.created_at, lessons.updated_at) DESC')
   end
-
+  
   def initialize_metadata
     self.metadata.available_video = true
     self.metadata.available_audio = true
@@ -76,7 +73,7 @@ class Lesson < ActiveRecord::Base
     return false if self.status.nil?
     !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
   end
-
+  
   def available?(type = nil)
     case type = type.to_s.downcase
     when 'video', 'audio'
@@ -94,7 +91,7 @@ class Lesson < ActiveRecord::Base
   def tags
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'Lesson')
   end
-
+  
   def tags=(tags)
     @tags = 
       case tags
@@ -103,7 +100,6 @@ class Lesson < ActiveRecord::Base
       when Array
         tags.map(&:to_s).join(',')
       end
-    
     @tags
   end
   
@@ -120,22 +116,26 @@ class Lesson < ActiveRecord::Base
     Bookmark.joins("INNER JOIN lessons ON lessons.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'Lesson'").where('lessons.is_public = ? AND lessons.user_id != ? AND lessons.subject_id IN (?) AND bookmarks.user_id = ?', true, an_user_id, subject_ids, an_user_id).any?
   end
   
+  def status
+    @status.nil? ? nil : Lesson.status(@status)
+  end
+  
   def set_status(an_user_id)
     return if self.new_record?
     if !self.is_public && !self.copied_not_modified && an_user_id == self.user_id
-      @status = STATUSES.private
+      @status = Statuses::PRIVATE
       @is_reportable = false
     elsif !self.is_public && self.copied_not_modified && an_user_id == self.user_id
-      @status = STATUSES.copied
+      @status = Statuses::COPIED
       @is_reportable = false
     elsif self.is_public && an_user_id != self.user_id && self.bookmarked?(an_user_id)
-      @status = STATUSES.linked
+      @status = Statuses::LINKED
       @is_reportable = true
     elsif self.is_public && an_user_id != self.user_id && !self.bookmarked?(an_user_id)
-      @status = STATUSES.public
+      @status = Statuses::PUBLIC
       @is_reportable = true
     elsif self.is_public && an_user_id == self.user_id
-      @status = STATUSES.shared
+      @status = Statuses::SHARED
       @is_reportable = false
     else
       @status = nil
@@ -148,15 +148,15 @@ class Lesson < ActiveRecord::Base
   def buttons
     return [] if [@status, @in_vc, @liked, @is_reportable].include?(nil)
     case @status
-    when STATUSES.private
+    when Statuses::PRIVATE
       [Buttons::PREVIEW, Buttons::EDIT, virtual_classroom_button, Buttons::PUBLISH, Buttons::COPY, Buttons::DESTROY]
-    when STATUSES.copied
+    when Statuses::COPIED
       [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
-    when STATUSES.linked
+    when Statuses::LINKED
       [Buttons::PREVIEW, Buttons::COPY, virtual_classroom_button, like_button, Buttons::REMOVE]
-    when STATUSES.public
+    when Statuses::PUBLIC
       [Buttons::PREVIEW, Buttons::ADD, like_button]
-    when STATUSES.shared
+    when Statuses::SHARED
       [Buttons::PREVIEW, Buttons::EDIT, virtual_classroom_button, Buttons::UNPUBLISH, Buttons::COPY, Buttons::DESTROY]
     else
       []

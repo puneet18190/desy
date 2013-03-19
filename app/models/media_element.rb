@@ -1,7 +1,7 @@
 class MediaElement < ActiveRecord::Base
-
   include FilenameToken
-
+  extend LessonsMediaElementsShared
+  
   self.inheritance_column = :sti_type
   
   # Questa deve stare prima delle require dei submodels, perché
@@ -12,16 +12,13 @@ class MediaElement < ActiveRecord::Base
   IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE = %W(Image Audio Video)
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
   DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
-
-  statuses = ::STATUSES.media_elements.marshal_dump.keys
-  STATUSES = Struct.new(*statuses).new(*statuses)
-
+  
   serialize :metadata, OpenStruct
   
   attr_accessible :title, :description, :media, :publication_date, :tags
-  attr_reader :status, :is_reportable, :info_changeable
+  attr_reader :is_reportable, :info_changeable
   attr_accessor :skip_public_validations, :destroyable_even_if_public
-
+  
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
   has_many :reports, :as => :reportable, :dependent => :destroy
@@ -40,11 +37,10 @@ class MediaElement < ActiveRecord::Base
   
   before_validation :init_validation
   before_destroy :stop_if_public, :destroy_taggings
-
+  
   # SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id AND bookmarks.bookmarkable_type = 'MediaElement' AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY COALESCE(bookmarks.created_at, media_elements.updated_at) DESC
   scope :of, ->(user_or_user_id) do
     user_id = user_or_user_id.instance_of?(User) ? user_or_user_id.id : user_or_user_id
-
     joins(sanitize_sql ["LEFT JOIN bookmarks ON 
                          bookmarks.bookmarkable_id = media_elements.id AND
                          bookmarks.bookmarkable_type = 'MediaElement' AND
@@ -147,18 +143,22 @@ class MediaElement < ActiveRecord::Base
     @tags
   end
   
+  def status
+    @status.nil? ? nil : MediaElement.status(@status)
+  end
+  
   def set_status(an_user_id)
     return if self.new_record?
     if !self.is_public && an_user_id == self.user_id
-      @status = STATUSES.private
+      @status = Statuses::PRIVATE
       @is_reportable = false
       @info_changeable = true
     elsif self.is_public && !self.bookmarked?(an_user_id)
-      @status = STATUSES.public
+      @status = Statuses::PUBLIC
       @is_reportable = true
       @info_changeable = false
     elsif self.is_public && self.bookmarked?(an_user_id)
-      @status = STATUSES.linked
+      @status = Statuses::LINKED
       @is_reportable = true
       @info_changeable = false
     else
@@ -170,11 +170,11 @@ class MediaElement < ActiveRecord::Base
   
   def buttons
     return [] if [@status, @is_reportable, @info_changeable].include?(nil)
-    if @status == STATUSES.private
+    if @status == Statuses::PRIVATE
       return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
-    elsif @status == STATUSES.public
+    elsif @status == Statuses::PUBLIC
        return [Buttons::PREVIEW, Buttons::ADD]
-    elsif @status == STATUSES.linked
+    elsif @status == Statuses::LINKED
        return [Buttons::PREVIEW, Buttons::EDIT, Buttons::REMOVE]
     else
       return []
