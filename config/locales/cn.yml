@@ -2351,12 +2351,6 @@ cn:
       # statistics about subject distribution among lessons (a graph)
       # 1 - views/admin/dashboard/index.html.erb
       subjects: "课程中科目分配"
-      # Shortcut to the newest reports of abuses (about lessons and media element)
-      reports:
-        # 1 - views/admin/dashboard/index.html.erb
-        lessons: "已发布课程"
-        # 1 - views/admin/dashboard/index.html.erb
-        media_elements: "已发布媒体单元"
     # General captions, used throughout the Administrator
     general:
       # Link to switch all the items in a list to the compact status
@@ -2745,16 +2739,21 @@ cn:
         subjects: "主题"
     # Section 'Messages' in the administration module
     messages:
-      # Section 'Nofitications'
-      # 1 - views/admin/messages/new_notification.html.erb
       notifications:
         send_notifications: "送通知"
+        all_users_selected: "All users selected" # TODO
         filter_users: "过滤用户送通知到"
         users_selected: "%{user_count}用户已选择"
         add_recipients: "选择接收者"
         send_everyone: "向所有人发送"
         send: "发送"
-  
+        message: "Message" # TODO
+      reports:
+        name: "Abuse reports" # TODO
+        item: "On:" # TODO
+        report: "Report:" # TODO
+        lessons: "已发布课程"
+        media_elements: "已发布媒体单元"
   
   
   # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'

@@ -2347,12 +2347,6 @@ en:
       # statistics about subject distribution among lessons (a graph)
       # 1 - views/admin/dashboard/index.html.erb
       subjects: "Subject distribution among lessons"
-      # Shortcut to the newest reports of abuses (about lessons and media element)
-      reports:
-        # 1 - views/admin/dashboard/index.html.erb
-        lessons: "Reported lessons"
-        # 1 - views/admin/dashboard/index.html.erb
-        media_elements: "Reported media elements"
     # General captions, used throughout the Administrator
     general:
       # Link to switch all the items in a list to the compact status
@@ -2739,20 +2733,24 @@ en:
         # Statistics subjects label
         # 1 - views/admin/users/show.html.erb
         subjects: "Subjects"
-
     # Section 'Messages' in the administration module
     messages:
-      # Section 'Nofitications'
-      # 1 - views/admin/messages/new_notification.html.erb
       notifications:
         send_notifications: "Send notifications"
+        all_users_selected: "All users selected"
         filter_users: "Filter users to send notifications to"
         users_selected: "%{user_count} users selected"
         add_recipients: "Select recipients"
         send_everyone: "Send to everyone"
         send: "Send"
-        
-        
+        message: "Message"
+      reports:
+        name: "Abuse reports"
+        item: "On:"
+        report: "Report:"
+        lessons: "Reported lessons"
+        media_elements: "Reported media elements"
+  
   
   # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'
   
