@@ -7,6 +7,7 @@ namespace :db do
 
   # Warning: the config/pepper file must be the same of the one used when passwords are dumped; otherwise
   # users authentication will not work
+  desc 'dumps the current database to CSV files for seeding usage'
   task :csv_dump => :environment do
     models_with_columns = {
       Bookmark           => %w( id user_id bookmarkable_id bookmarkable_type ),

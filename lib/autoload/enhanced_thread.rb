@@ -1,12 +1,18 @@
 class EnhancedThread < Thread
 
   DATABASE_POOL = Rails.configuration.database_configuration[Rails.env]['pool']
+  MAX_THREADS   = 8
+  MIN_THREADS   = 1
 
   def self.join(*procs, close_connection_before_execution: false)
-    # p procs
     n = DATABASE_POOL-1
-    n = 8 if n > 8
-    n = 1 if n < 1
+
+    if n > MAX_THREADS
+      n = MAX_THREADS 
+    elsif n < MIN_THREADS
+      n = MIN_THREADS
+    end
+    
     procs.each_slice(n) { |slice| slice.map { |s| new(close_connection_before_execution, &s) }.each(&:join) }
     nil
   end
