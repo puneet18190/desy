@@ -22,9 +22,18 @@
 
 
 <%= form_for @user do |f| %>
-  <%= render partial: 'users/personal_info', :locals => {:f => f, :edit => false} %>
+  <%
+    locals_for_general_info = {
+      :f => f,
+      :edit => false,
+      :user => @user,
+      :general_errors => (@errors.nil? ? [] : @errors[:general]),
+      :location_errors => (@errors.nil? ? [] : @errors[:location]),
+    }
+  %>
+  <%= render partial: 'users/personal_info', :locals => locals_for_general_info %>
   <h2><%= t('registration.subjects.title') %></h2>
-  <%= render partial: 'users/personal_subjects', :locals => { :f => f } %>
+  <%= render partial: 'users/personal_subjects', :locals => {:f => f} %>
   <div class="contentForm">
     <% @user.registration_policies.each_with_index do |policy, index| %>
       <p>
