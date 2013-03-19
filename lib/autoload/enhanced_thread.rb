@@ -1,19 +1,26 @@
 class EnhancedThread < Thread
 
   DATABASE_POOL = Rails.configuration.database_configuration[Rails.env]['pool']
-  MAX_THREADS   = 8
   MIN_THREADS   = 1
+  MAX_THREADS   = Facter.fact(:processorcount).value.to_i * 2
 
-  def self.join(*procs, close_connection_before_execution: false)
-    n = DATABASE_POOL-1
+  def self.join(*thread_blocks, close_connection_before_execution: false)
+    n = DATABASE_POOL-Thread.list.count
 
     if n > MAX_THREADS
       n = MAX_THREADS 
     elsif n < MIN_THREADS
       n = MIN_THREADS
     end
-    
-    procs.each_slice(n) { |slice| slice.map { |s| new(close_connection_before_execution, &s) }.each(&:join) }
+
+    if n == 1
+      thread_blocks.shift.try(:call)
+      return thread_blocks.present? ? EnhancedThread.join(*thread_blocks, close_connection_before_execution: close_connection_before_execution) : nil
+    end
+
+    thread_blocks.each_slice(n).each_with_index { |slice, i|
+      slice.map { |s| new(close_connection_before_execution, &s) }.each(&:join) 
+    }
     nil
   end
 

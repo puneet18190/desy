@@ -78,6 +78,7 @@ GEM
     every_day_irb (1.4.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    facter (1.6.18)
     fancy_irb (0.7.3)
       paint (>= 0.8.1)
       unicode-display_width (>= 0.1.1)
@@ -264,6 +265,7 @@ DEPENDENCIES
   delayed_job_active_record
   eventmachine
   exception_notification!
+  facter
   irb-benchmark
   irbtools
   jquery-fileupload-rails
