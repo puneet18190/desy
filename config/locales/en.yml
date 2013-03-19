@@ -2079,76 +2079,76 @@ en:
     # The list of statuses for lessons
     lessons:
       # A lesson is 'private' if only the owner may see it
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       private: "Private"
       # A lesson is 'just copied' if the user copied from another lesson, but he hasn't personalized it yet
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       copied: "Copied"
       # A lesson is 'linked' if the user doesn't own it, it's just a link to another user's lesson
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       linked: "Linked"
       # A lesson is 'public' when you are not the creator and you haven't linked it yet
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       public: "Public"
       # A lesson is 'shared' when you are the creator and it's visible to other users
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       shared: "Shared"
     # The list of statuses for media elements
     media_elements:
       # An element is 'private' if you are the owner and you haven't used it inside a public lesson
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       private: "Private"
       # An element is 'public' if you are not the owner and you haven't linked it yet 
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       public: "Public"
       # An element is 'linked' if the user doesn't own it, it's just a link to a public element
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       linked: "Linked"
   # Filters for both lessons and media elements
   filters:
     # All lessons without any filters
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     all_lessons: "All lessons"
     # Only private lessons
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     private: "Private"
     # Only public lessons (they can be either lessons that you shared, or public lessons created by somebody else)
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     public: "Public"
     # Lessons which don't belong to you but that you linked
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     linked: "Linked"
     # All your lessons (including both public and private)
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     only_mine: "Your own"
     # All the lessons that you just copied without personalizing them yet
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     copied: "Just copied"
     # All the media elements, without any filter
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     all_media_elements: "All formats"
     # Only elements of kind 'video'
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     video: "Video"
     # Only elements of kind 'audio'
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     audio: "Audio"
     # Only elements of kind 'image'
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     image: "Images"
     # Only for lessons search engine, filters all the lessons not created by you
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     not_mine: "Not created by you"
   # Possible parameters to sort lessons or media elements
   orders:
     # Date of last modification
-    # 1 - ../lib/autoload/search_orders.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     updated_at: "Date last modification"
     # Number of likes received (only available for lessons)
-    # 1 - ../lib/autoload/search_orders.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     likes: "Number of likes"
     # Alphabetical order
-    # 1 - ../lib/autoload/search_orders.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     title: "Alphabetical"
   
   
