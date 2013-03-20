@@ -25,17 +25,17 @@ class Report < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if @user.nil?
-    errors[:reportable_id] << "lesson doesn't exist" if self.reportable_type == 'Lesson' && @lesson.nil?
-    errors[:reportable_id] << "media element doesn't exist" if self.reportable_type == 'MediaElement' && @media_element.nil?
+    errors.add(:user_id, :doesnt_exist) if @user.nil?
+    errors.add(:reportable_id, :lesson_doesnt_exist) if self.reportable_type == 'Lesson' && @lesson.nil?
+    errors.add(:reportable_id, :media_element_doesnt_exist) if self.reportable_type == 'MediaElement' && @media_element.nil?
   end
   
   def validate_impossible_changes
     if @report
-      errors[:user_id] << "can't be changed" if self.user_id != @report.user_id
-      errors[:reportable_id] << "can't be changed" if self.reportable_id != @report.reportable_id
-      errors[:reportable_type] << "can't be changed" if self.reportable_type != @report.reportable_type
-      errors[:comment] << "can't be changed" if self.comment != @report.comment
+      errors.add(:user_id, :cant_be_changed) if self.user_id != @report.user_id
+      errors.add(:reportable_id, :cant_be_changed) if self.reportable_id != @report.reportable_id
+      errors.add(:reportable_type, :cant_be_changed) if self.reportable_type != @report.reportable_type
+      errors.add(:comment, :cant_be_changed) if self.comment != @report.comment
     end
   end
   

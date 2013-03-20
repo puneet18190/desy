@@ -19,9 +19,9 @@ class LikeTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @like, :user_id, '3r4', 2, /is not a number/
-    assert_invalid @like, :user_id, -4, 2, /must be greater than 0/
-    assert_invalid @like, :lesson_id, 2.111, 1, /must be an integer/
+    assert_invalid @like, :user_id, '3r4', 2, :not_a_number
+    assert_invalid @like, :user_id, -4, 2, :greater_than
+    assert_invalid @like, :lesson_id, 2.111, 1, :not_an_integer
     assert_obj_saved @like
   end
   
@@ -36,20 +36,20 @@ class LikeTest < ActiveSupport::TestCase
     assert !@like.save, "Like erroneously saved - #{@like.inspect}"
     assert_equal 1, @like.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@like.errors.inspect}"
     assert_equal 1, @like.errors.size
-    assert_match /has already been taken/, @like.errors.messages[:lesson_id].first
+    assert @like.errors.added? :lesson_id, :taken
     @like.user_id = 2
     @like.lesson_id = 1
     assert_obj_saved @like
   end
   
   test 'associations' do
-    assert_invalid @like, :user_id, 1000, 2, /doesn't exist/
-    assert_invalid @like, :lesson_id, 1000, 1, /doesn't exist/
+    assert_invalid @like, :user_id, 1000, 2, :doesnt_exist
+    assert_invalid @like, :lesson_id, 1000, 1, :doesnt_exist
     assert_obj_saved @like
   end
   
   test 'validity' do
-    assert_invalid @like, :lesson_id, 2, 1, /can't be liked/
+    assert_invalid @like, :lesson_id, 2, 1, :cant_be_liked
     assert_obj_saved @like
   end
   
@@ -66,8 +66,8 @@ class LikeTest < ActiveSupport::TestCase
     @user.policy_1 = '1'
     @user.policy_2 = '1'
     assert_obj_saved @user
-    assert_invalid @like, :user_id, @user.id, 2, /can't be changed/
-    assert_invalid @like, :lesson_id, @lesson.id, 1, /can't be changed/
+    assert_invalid @like, :user_id, @user.id, 2, :cant_be_changed
+    assert_invalid @like, :lesson_id, @lesson.id, 1, :cant_be_changed
     assert_obj_saved @like
   end
   

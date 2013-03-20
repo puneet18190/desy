@@ -39,18 +39,18 @@ class Notification < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if @user.nil?
+    errors.add(:user_id, :doesnt_exist) if @user.nil?
   end
   
   def validate_seen
-    errors[:seen] << 'must be false when new record' if !@notification && self.seen
+    errors.add(:seen, :must_be_false_if_new_record) if !@notification && self.seen
   end
   
   def validate_impossible_changes
     if @notification
-      errors[:seen] << "can't be switched from true to false" if @notification.seen && !self.seen
-      errors[:user_id] << "can't be changed" if @notification.user_id != self.user_id
-      errors[:message] << "can't be changed" if @notification.message != self.message
+      errors.add(:seen, :cant_be_switched_from_true_to_false) if @notification.seen && !self.seen
+      errors.add(:user_id, :cant_be_changed) if @notification.user_id != self.user_id
+      errors.add(:message, :cant_be_changed) if @notification.message != self.message
     end
   end
   

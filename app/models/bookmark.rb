@@ -26,14 +26,14 @@ class Bookmark < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if @user.nil?
-    errors[:bookmarkable_id] << "lesson doesn't exist" if self.bookmarkable_type == 'Lesson' && @lesson.nil?
-    errors[:bookmarkable_id] << "media element doesn't exist" if self.bookmarkable_type == 'MediaElement' && @media_element.nil?
+    errors.add(:user_id, :doesnt_exist) if @user.nil?
+    errors.add(:bookmarkable_id, :lesson_doesnt_exist) if self.bookmarkable_type == 'Lesson' && @lesson.nil?
+    errors.add(:bookmarkable_id, :media_element_doesnt_exist) if self.bookmarkable_type == 'MediaElement' && @media_element.nil?
   end
   
   def validate_availability
-    errors[:bookmarkable_id] << "lesson not available for bookmarks" if @lesson && (@lesson.user_id == self.user_id || !@lesson.is_public)
-    errors[:bookmarkable_id] << "media element not available for bookmarks" if @media_element && !@media_element.is_public
+    errors.add(:bookmarkable_id, :lesson_not_available_for_bookmarks) if @lesson && (@lesson.user_id == self.user_id || !@lesson.is_public)
+    errors.add(:bookmarkable_id, :media_element_not_available_for_bookmarks) if @media_element && !@media_element.is_public
   end
   
   def destroy_virtual_classroom
@@ -48,9 +48,9 @@ class Bookmark < ActiveRecord::Base
   
   def validate_impossible_changes
     if @bookmark
-      errors[:user_id] << "can't be changed" if self.user_id != @bookmark.user_id
-      errors[:bookmarkable_id] << "can't be changed" if self.bookmarkable_id != @bookmark.bookmarkable_id
-      errors[:bookmarkable_type] << "can't be changed" if self.bookmarkable_type != @bookmark.bookmarkable_type
+      errors.add(:user_id, :cant_be_changed) if self.user_id != @bookmark.user_id
+      errors.add(:bookmarkable_id, :cant_be_changed) if self.bookmarkable_id != @bookmark.bookmarkable_id
+      errors.add(:bookmarkable_type, :cant_be_changed) if self.bookmarkable_type != @bookmark.bookmarkable_type
     end
   end
   

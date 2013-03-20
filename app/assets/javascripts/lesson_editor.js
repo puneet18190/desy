@@ -60,7 +60,7 @@ $(document).ready(function() {
     saveCurrentSlide();
     stopMediaInCurrentSlide();
     slideTo($(this).parent().data('slide-id'));
-		scrollPaneUpdate(this);
+    scrollPaneUpdate(this);
   });
   
   $('body').on('click', '._hide_add_new_slide_options', function() {
@@ -68,12 +68,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._save_slide', function(e) {
-    if(!$(this).data('saved')){
-      e.preventDefault();
-    }
     saveCurrentSlide();
-    $(this).data('saved', true);
-    $(this).trigger('click');
   });
   
   $('body').on('click', '._save_slide_and_exit', function() {
@@ -499,7 +494,7 @@ function makeDraggable(place_id) {
   });
 }
 
-function submitCurrentSlideForm(){
+function submitCurrentSlideForm() {
   $.ajax({
     type: "POST",
     url: $('._lesson_editor_current_slide form').attr('action'),
