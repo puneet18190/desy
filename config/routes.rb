@@ -171,7 +171,11 @@ Desy::Application.routes.draw do
     post      'messages/filter_users'                   => 'messages#filter_users'
     get       'settings'                                => 'settings#index'
     get       'settings/subjects'                       => 'settings#subjects'
+    post      'settings/subjects/new'                   => 'settings#new_subject'
+    delete    'settings/subjects/:id/delete'            => 'settings#delete_subject'
     get       'settings/school_levels'                  => 'settings#school_levels'
+    post      'settings/school_levels/new'              => 'settings#new_school_level'
+    delete    'settings/school_levels/:id/delete'       => 'settings#delete_school_level'
     get       'settings/locations'                      => 'settings#locations'
     get       'settings/tags'                           => 'settings#tags'
     resources :lessons,                           :only => [:index, :destroy]

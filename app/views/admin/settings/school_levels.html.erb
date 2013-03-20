@@ -7,10 +7,10 @@
   <li><a href="/admin/settings/tags">Tags</a></li>
 </ul>
 
-<ul class="nav nav-tabs nav-stacked">
+<ul class="nav nav-tabs nav-stacked school_levels">
   <% @school_levels.each do |level| %>
-  <li>
-    <a href="#">
+  <li id="level-<%=level.id%>" data-param="<%=level.id%>">
+    <a>
       <%= level.description %>
       <% if level.is_deletable? %>
         <i class="pull-right icon-remove"></i>
@@ -20,7 +20,7 @@
   <% end %>
 </ul>
 
-<%= form_tag 'admin/settings/school_level/new', :class=>"form-inline" do %>
+<%= form_tag '/admin/settings/school_levels/new', :class=>"form-inline" do %>
   <%= text_field_tag :description, '',:class=>"input-xlarge", :placeholder => "school level description" %>
   <%= submit_tag "Add new school level", :class=>"btn"%>
 <% end %>
