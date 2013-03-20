@@ -36,39 +36,6 @@ class TaggingTest < ActiveSupport::TestCase
     assert_obj_saved @tagging
   end
   
-  test 'stop_destruction' do
-    # MEDIA ELEMENTS
-    t1 = Tagging.find 1
-    assert (t1.taggable.kind_of?(MediaElement) && t1.taggable_id == 1)
-    t1.destroy
-    t1 = Tagging.where(:id => 1).first
-    assert !t1.nil?
-    me = MediaElement.find 1
-    me.tags = "elefante, cane, topo, squalo, #{t1.tag.word}"
-    assert_obj_saved me
-    me = MediaElement.find me.id
-    assert_tags me, ['elefante', 'cane', 'topo', 'squalo', 'gatto']
-    t1 = Tagging.find 1
-    t1.destroy
-    t1 = Tagging.where(:id => 1).first
-    assert t1.nil?
-    # LESSONS
-    t2 = Tagging.find 25
-    assert (t2.taggable.kind_of?(Lesson) && t2.taggable_id == 1)
-    t2.destroy
-    t2 = Tagging.where(:id => 25).first
-    assert !t2.nil?
-    l = Lesson.find 1
-    l.tags = "panda, pappagallo, ornitorinco, elefante, #{t2.tag.word}"
-    assert_obj_saved l
-    l = Lesson.find l.id
-    assert_tags l, ['squalo', 'pappagallo', 'ornitorinco', 'elefante', 'panda']
-    t2 = Tagging.find 25
-    t2.destroy
-    t2 = Tagging.where(:id => 25).first
-    assert t2.nil?
-  end
-  
   test 'association_methods' do
     assert_nothing_raised {@tagging.tag}
     assert_nothing_raised {@tagging.taggable}
