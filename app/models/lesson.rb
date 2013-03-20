@@ -437,7 +437,7 @@ class Lesson < ActiveRecord::Base
   private
   
   def validate_tags_length
-    errors[:tags] << "are not enough" if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
+    errors.add(:tags, :are_not_enough) if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
   end
   
   def virtual_classroom_button
@@ -453,11 +453,11 @@ class Lesson < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if @user.nil?
-    errors[:subject_id] << "doesn't exist" if @subject.nil?
-    errors[:school_level_id] << "doesn't exist" if @school_level.nil?
-    errors[:parent_id] << "doesn't exist" if self.parent_id && @parent.nil?
-    errors[:parent_id] << "can't be the lesson itself" if @lesson && self.parent_id == @lesson.id
+    errors.add(:user_id, :doesnt_exist) if @user.nil?
+    errors.add(:subject_id, :doesnt_exist) if @subject.nil?
+    errors.add(:school_level_id, :doesnt_exist) if @school_level.nil?
+    errors.add(:parent_id, :doesnt_exist) if self.parent_id && @parent.nil?
+    errors.add(:parent_id, :cant_be_the_lesson_itself) if @lesson && self.parent_id == @lesson.id
   end
   
   def update_or_create_tags
@@ -522,18 +522,18 @@ class Lesson < ActiveRecord::Base
   end
   
   def validate_public
-    errors[:is_public] << "can't be true for new records" if @lesson.nil? && self.is_public && !self.skip_public_validations
+    errors.add(:is_public, :cant_be_true_for_new_records) if @lesson.nil? && self.is_public && !self.skip_public_validations
   end
   
   def validate_copied_not_modified_and_public
-    errors[:copied_not_modified] << "can't be true if public" if self.is_public && self.copied_not_modified
+    errors.add(:copied_not_modified, :cant_be_true_if_public) if self.is_public && self.copied_not_modified
   end
   
   def validate_impossible_changes
     if @lesson
-      errors[:token] << "can't be changed" if @lesson.token != self.token
-      errors[:user_id] << "can't be changed" if @lesson.user_id != self.user_id
-      errors[:parent_id] << "can't be changed" if self.parent_id && @lesson.parent_id != self.parent_id
+      errors.add(:token, :cant_be_changed) if @lesson.token != self.token
+      errors.add(:user_id, :cant_be_changed) if @lesson.user_id != self.user_id
+      errors.add(:parent_id, :cant_be_changed) if self.parent_id && @lesson.parent_id != self.parent_id
     end
   end
   
