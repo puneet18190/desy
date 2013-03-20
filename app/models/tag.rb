@@ -14,6 +14,7 @@ class Tag < ActiveRecord::Base
   validate :word_not_changed
   
   before_validation :init_validation
+  before_destroy :destroy_taggings
   
   def self.get_tags_for_autocomplete(a_word)
     return [] if a_word.blank?
@@ -65,6 +66,13 @@ class Tag < ActiveRecord::Base
   
   def word_not_changed
     errors[:word] << "can't be changed" if @tag && @tag.word != self.word
+  end
+  
+  def destroy_taggings
+    Tagging.where(:tag_id => self.id).each do |tagging|
+      tagging.not_orphans = true
+      tagging.destroy
+    end
   end
   
 end

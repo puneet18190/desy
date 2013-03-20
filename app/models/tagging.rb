@@ -1,5 +1,7 @@
 class Tagging < ActiveRecord::Base
   
+  attr_writer :not_orphans
+  
   belongs_to :tag
   belongs_to :taggable, :polymorphic => true
   
@@ -19,7 +21,8 @@ class Tagging < ActiveRecord::Base
   private
   
   def destroy_orphan_tags
-    tag.destroy unless tag.taggings.exists?
+    return true if @not_orphans
+    tag.destroy if !tag.taggings.exists?
     true
   end
   
