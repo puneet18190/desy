@@ -26,12 +26,12 @@ class MediaElementTest < ActiveSupport::TestCase
     assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect} -- #{@media_element.tags.inspect}"
     assert_equal 1, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
     assert_equal 1, @media_element.errors.messages[:tags].length
-    assert_match /are not enough/, @media_element.errors.messages[:tags].first
+    assert @media_element.errors.added? :tags, :are_not_enough
     @media_element.tags = 'gatto, gatto  ,   , cane, topo'
     assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect} -- #{@media_element.tags.inspect}"
     assert_equal 1, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
     assert_equal 1, @media_element.errors.messages[:tags].length
-    assert_match /are not enough/, @media_element.errors.messages[:tags].first
+    assert @media_element.errors.added? :tags, :are_not_enough
     assert_equal 7, Tag.count
     @media_element.tags = '  gatto, oRnitOrinco,   , cane, panda  '
     assert_obj_saved @media_element
@@ -48,7 +48,7 @@ class MediaElementTest < ActiveSupport::TestCase
     assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect} -- #{@media_element.tags.inspect}"
     assert_equal 1, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
     assert_equal 1, @media_element.errors.messages[:tags].length
-    assert_match /are not enough/, @media_element.errors.messages[:tags].first
+    assert @media_element.errors.added? :tags, :are_not_enough
     @media_element.reload
     assert_tags @media_element, ['gattaccio', 'cane', 'panda', 'ornitorinco']
     @media_element = MediaElement.find @media_element.id
@@ -74,13 +74,13 @@ class MediaElementTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @media_element, :title, long_string(36), long_string(35), /is too long/
-    assert_invalid @media_element, :description, long_string(281), long_string(280), /is too long/
-    assert_invalid @media_element, :user_id, 'po', 1, /is not a number/
-    assert_invalid @media_element, :user_id, -3, 1, /must be greater than 0/
-    assert_invalid @media_element, :user_id, 3.4, 1, /must be an integer/
-    assert_invalid @media_element, :is_public, nil, false, /is not included in the list/
-    assert_invalid @media_element, :sti_type, 'Film', 'Video', /is not included in the list/
+    assert_invalid @media_element, :title, long_string(36), long_string(35), :too_long
+    assert_invalid @media_element, :description, long_string(281), long_string(280), :too_long
+    assert_invalid @media_element, :user_id, 'po', 1, :not_a_number
+    assert_invalid @media_element, :user_id, -3, 1, :greater_than
+    assert_invalid @media_element, :user_id, 3.4, 1, :not_an_integer
+    assert_invalid @media_element, :is_public, nil, false, :inclusion
+    assert_invalid @media_element, :sti_type, 'Film', 'Video', :inclusion
     assert_obj_saved @media_element
   end
   
@@ -93,7 +93,7 @@ class MediaElementTest < ActiveSupport::TestCase
   end
   
   test 'associations' do
-    assert_invalid @media_element, :user_id, 900, 1, /doesn't exist/
+    assert_invalid @media_element, :user_id, 900, 1, :doesnt_exist
     assert_obj_saved @media_element
   end
   
@@ -110,13 +110,13 @@ class MediaElementTest < ActiveSupport::TestCase
     # here ends assert_invalid
     assert_obj_saved @media_element
     # now it's not a new_record anymore
-    assert_invalid @media_element, :sti_type, 'Audio', 'Video', /is not changeable/
-    assert_invalid @media_element, :user_id, 2, 1, /can't be changed/
+    assert_invalid @media_element, :sti_type, 'Audio', 'Video', :cant_be_changed
+    assert_invalid @media_element, :user_id, 2, 1, :cant_be_changed
     @media_element.title = 'Squola'
     @media_element.description = 'Squola Primaria'
-    assert_invalid @media_element, :publication_date, '2011-10-10 10:10:19', nil, /must be blank if private/
+    assert_invalid @media_element, :publication_date, '2011-10-10 10:10:19', nil, :must_be_blank_if_private
     @media_element.is_public = true
-    assert_invalid @media_element, :publication_date, 1, '2011-11-11 10:00:00', /is not a date/
+    assert_invalid @media_element, :publication_date, 1, '2011-11-11 10:00:00', :is_not_a_date
     assert_obj_saved @media_element
     # again, I simulate assert_invalid - I verify that publication_date and is_public are not editable anymore after having set is_public = true
     @media_element.publication_date = nil
@@ -129,8 +129,8 @@ class MediaElementTest < ActiveSupport::TestCase
     @media_element.publication_date = '2011-11-11 10:00:00'
     assert @media_element.valid?, "MediaElement not valid - #{@media_element.errors.inspect}"
     # fino a qui
-    assert_invalid @media_element, :title, 'Scuola', 'Squola', /is not changeable for a public record/
-    assert_invalid @media_element, :description, 'Scuola Primaria', 'Squola Primaria', /is not changeable for a public record/
+    assert_invalid @media_element, :title, 'Scuola', 'Squola', :cant_be_changed_if_public
+    assert_invalid @media_element, :description, 'Scuola Primaria', 'Squola Primaria', :cant_be_changed_if_public
     @media_element.user_id = 2
     assert_equal 1, MediaElement.find(@media_element.id).user_id
     assert_obj_saved @media_element
@@ -144,7 +144,7 @@ class MediaElementTest < ActiveSupport::TestCase
     assert !@media_element.save, "Image erroneously saved - #{@media_element.inspect}"
     assert_equal 1, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
     assert_equal 1, @media_element.errors.messages[:media].length
-    assert_match /is not changeable for a public record/, @media_element.errors.messages[:media].first
+    assert @media_element.errors.added? :media, :cant_be_changed_if_public
     @media_element.media = media_one
     assert !@media_element.valid?
     @media_element = MediaElement.find(5)
