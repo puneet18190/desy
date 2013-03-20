@@ -199,6 +199,25 @@ $(document).ready(function() {
     }
   });
   
+  // SETTINGS ACTION
+  
+  $('body').on('click', 'ul.subjects li a i.icon-remove', function() {
+    var _id = $(this).parents('li').data('param');
+    $.ajax({
+      type: 'delete',
+      url: '/admin/settings/subjects/' + _id + '/delete'
+    });
+  });
+  
+  $('body').on('click', 'ul.school_levels li a i.icon-remove', function() {
+    var _id = $(this).parents('li').data('param');
+    $.ajax({
+      type: 'delete',
+      url: '/admin/settings/school_levels/' + _id + '/delete'
+    });
+  });
+  
+  
   // EFFECTS
   
   var nowTemp = new Date();
