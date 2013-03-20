@@ -13,8 +13,8 @@ class Like < ActiveRecord::Base
   private
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if @user.nil?
-    errors[:lesson_id] << "doesn't exist" if @lesson.nil?
+    errors.add(:user_id, :doesnt_exist) if @user.nil?
+    errors.add(:lesson_id, :doesnt_exist) if @lesson.nil?
   end
   
   def init_validation
@@ -25,13 +25,13 @@ class Like < ActiveRecord::Base
   
   def validate_impossible_changes
     if @like
-      errors[:user_id] << "can't be changed" if @like.user_id != self.user_id
-      errors[:lesson_id] << "can't be changed" if @like.lesson_id != self.lesson_id
+      errors.add(:user_id, :cant_be_changed) if @like.user_id != self.user_id
+      errors.add(:lesson_id, :cant_be_changed) if @like.lesson_id != self.lesson_id
     end
   end
   
   def validate_availability
-    errors[:lesson_id] << "can't be liked" if @lesson && @user && @lesson.user_id == @user.id
+    errors.add(:lesson_id, :cant_be_liked) if @lesson && @user && @lesson.user_id == @user.id
   end
   
 end

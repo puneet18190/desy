@@ -214,7 +214,7 @@ class MediaElement < ActiveRecord::Base
   private
   
   def validate_tags_length
-    errors[:tags] << "are not enough" if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
+    errors.add(:tags, :are_not_enough) if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
   end
   
   def update_or_create_tags
@@ -261,30 +261,30 @@ class MediaElement < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if @user.nil?
+    errors.add(:user_id, :doesnt_exist) if @user.nil?
   end
   
   def validate_publication_date
     if self.is_public
-      errors[:publication_date] << "is not a date" if self.publication_date.blank? || !self.publication_date.kind_of?(Time)
+      errors.add(:publication_date, :is_not_a_date) if self.publication_date.blank? || !self.publication_date.kind_of?(Time)
     else
-      errors[:publication_date] << "must be blank if private" if !self.publication_date.blank?
+      errors.add(:publication_date, :must_be_blank_if_private) if !self.publication_date.blank?
     end
   end
   
   def validate_impossible_changes
     if @media_element.nil?
-      errors[:is_public] << "must be false if new record" if self.is_public && !self.skip_public_validations
+      errors.add(:is_public, :must_be_false_if_new_record) if self.is_public && !self.skip_public_validations
     else
-      errors[:sti_type] << "is not changeable" if @media_element.sti_type != self.sti_type
+      errors.add(:sti_type, :cant_be_changed) if @media_element.sti_type != self.sti_type
       if @media_element.is_public && !self.skip_public_validations
-        errors[:media] << "is not changeable for a public record" if self.changed.include? 'media'
-        errors[:title] << "is not changeable for a public record" if @media_element.title != self.title
-        errors[:description] << "is not changeable for a public record" if @media_element.description != self.description
-        errors[:is_public] << "is not changeable for a public record" if !self.is_public
-        errors[:publication_date] << "is not changeable for a public record" if @media_element.publication_date != self.publication_date
+        errors.add(:media, :cant_be_changed_if_public) if self.changed.include? 'media'
+        errors.add(:title, :cant_be_changed_if_public) if @media_element.title != self.title
+        errors.add(:description, :cant_be_changed_if_public) if @media_element.description != self.description
+        errors.add(:is_public, :cant_be_changed_if_public) if !self.is_public
+        errors.add(:publication_date, :cant_be_changed_if_public) if @media_element.publication_date != self.publication_date
       else
-        errors[:user_id] << "can't be changed" if @media_element.user_id != self.user_id
+        errors.add(:user_id, :cant_be_changed) if @media_element.user_id != self.user_id
       end
     end
   end

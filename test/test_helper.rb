@@ -139,21 +139,11 @@ class ActiveSupport::TestCase
     assert_equal ids.sort, my_ids.sort
   end
   
-  def array_to_string(array)
-    resp = ''
-    if !array.nil?
-      array.each do |a|
-        resp = "#{resp}#{a.to_s}"
-      end
-    end
-    resp
-  end
-  
-  def assert_invalid(obj, field, before, after, match)
+  def assert_invalid(obj, field, before, after, error)
     obj[field] = before
     assert !obj.save, "#{obj.class} erroneously saved - #{obj.inspect}"
     assert_equal 1, obj.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{obj.errors.inspect}"
-    assert_match match, array_to_string(obj.errors.messages[field])
+    assert obj.errors.added? field, error
     obj[field] = after
     assert obj.valid?, "#{obj.class} not valid: #{obj.errors.inspect}"
   end
