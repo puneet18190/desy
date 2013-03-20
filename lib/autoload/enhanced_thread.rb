@@ -15,12 +15,10 @@ class EnhancedThread < Thread
 
     if n == 1
       thread_blocks.shift.try(:call)
-      return thread_blocks.present? ? EnhancedThread.join(*thread_blocks, close_connection_before_execution: close_connection_before_execution) : nil
+      return thread_blocks.present? ? join(*thread_blocks, close_connection_before_execution: close_connection_before_execution) : nil
     end
 
-    thread_blocks.each_slice(n).each_with_index { |slice, i|
-      slice.map { |s| new(close_connection_before_execution, &s) }.each(&:join) 
-    }
+    thread_blocks.each_slice(n){ |slice| slice.map { |s| new(close_connection_before_execution, &s) }.each(&:join) }
     nil
   end
 
