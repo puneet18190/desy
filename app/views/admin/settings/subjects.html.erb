@@ -6,3 +6,21 @@
   <li><a href="/admin/settings/locations">Locations</a></li>
   <li><a href="/admin/settings/tags">Tags</a></li>
 </ul>
+
+<ul class="nav nav-tabs nav-stacked">
+  <% @subjects.each do |subject| %>
+  <li>
+    <a href="#">
+      <%= subject.description %>
+      <% if subject.is_deletable? %>
+        <i class="pull-right icon-remove"></i>
+      <% end %>
+    </a>
+  </li>
+  <% end %>
+</ul>
+
+<%= form_tag 'admin/settings/subjects/new', :class=>"form-inline" do %>
+  <%= text_field_tag :description, '',:class=>"input-xlarge", :placeholder => "subject description" %>
+  <%= submit_tag "Add new subject", :class=>"btn"%>
+<% end %>
