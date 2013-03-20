@@ -57,27 +57,6 @@ class Tag < ActiveRecord::Base
     word.to_s
   end
   
-  def rename_or_replace(new_word)
-    ActiveRecord::Base.transaction do
-      old_tag = Tag.find_by_word new_word
-      if old_tag
-        Tagging.where(:tag_id => self.id).each do |tagging|
-          new_tagging = Tagging.new
-          new_tagging.taggable_id = tagging.taggable_id
-          new_tagging.taggable_type = tagging.taggable_type
-          new_tagging.tag_id = old_tag.id
-          raise ActiveRecord::Rollback if !new_tagging.save
-          tagging.destroy
-        end
-        self.destroy
-      else
-        self.word = new_word
-        @word_changeable = true
-        self.save
-      end
-    end
-  end
-  
   private
   
   def init_validation
@@ -85,7 +64,7 @@ class Tag < ActiveRecord::Base
   end
   
   def word_not_changed
-    errors[:word] << "can't be changed" if !@word_changeable && @tag && @tag.word != self.word
+    errors[:word] << "can't be changed" if @tag && @tag.word != self.word
   end
   
 end
