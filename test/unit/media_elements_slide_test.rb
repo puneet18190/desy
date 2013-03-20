@@ -40,22 +40,22 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @media_elements_slide, :position, 5, 1, /is not included in the list/
+    assert_invalid @media_elements_slide, :position, 5, 1, :inclusion
     @media_elements_slide.alignment = nil
     assert @media_elements_slide.valid?
     get_new_slide 'image1'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 6
-    assert_invalid @media_elements_slide, :alignment, 'r', 1, /is not a number/
-    assert_invalid @media_elements_slide, :alignment, 5.5, 1, /must be an integer/
-    assert_invalid @media_elements_slide, :caption, long_string(36), long_string(35), /is too long/
+    assert_invalid @media_elements_slide, :alignment, 'r', 1, :not_a_number
+    assert_invalid @media_elements_slide, :alignment, 5.5, 1, :not_an_integer
+    assert_invalid @media_elements_slide, :caption, long_string(36), long_string(35), :too_long
     @media_elements_slide.alignment = 0
     assert @media_elements_slide.valid?
     @media_elements_slide.alignment = -8
     assert @media_elements_slide.valid?
-    assert_invalid @media_elements_slide, :media_element_id, 'y3', 6, /is not a number/
-    assert_invalid @media_elements_slide, :slide_id, 3.4, @new_slide.id, /must be an integer/
-    assert_invalid @media_elements_slide, :slide_id, -3, @new_slide.id, /must be greater than 0/
+    assert_invalid @media_elements_slide, :media_element_id, 'y3', 6, :not_a_number
+    assert_invalid @media_elements_slide, :slide_id, 3.4, @new_slide.id, :not_an_integer
+    assert_invalid @media_elements_slide, :slide_id, -3, @new_slide.id, :greater_than
     assert_obj_saved @media_elements_slide
   end
   
@@ -65,12 +65,12 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
   end
   
   test 'alignment_and_caption' do
-    assert_invalid @media_elements_slide, :caption, 'dgsbkj', ' ', /must be null if the element is not an image/
-    assert_invalid @media_elements_slide, :alignment, 10, nil, /must be null if the element is not an image/
+    assert_invalid @media_elements_slide, :caption, 'dgsbkj', ' ', :must_be_null_if_not_image
+    assert_invalid @media_elements_slide, :alignment, 10, nil, :must_be_null_if_not_image
     get_new_slide 'image3'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 6
-    assert_invalid @media_elements_slide, :alignment, nil, -1, /can't be null if the element is an image/
+    assert_invalid @media_elements_slide, :alignment, nil, -1, :cant_be_null_if_image
     assert_obj_saved @media_elements_slide
   end
   
@@ -81,7 +81,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.size
-    assert_match /has already been taken/, @media_elements_slide.errors.messages[:position].first
+    assert @media_elements_slide.errors.added? :position, :taken
     @media_elements_slide.slide_id = @new_slide.id
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
     # until here
@@ -89,8 +89,8 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
   end
   
   test 'associations' do
-    assert_invalid @media_elements_slide, :slide_id, 1000, @new_slide.id, /doesn't exist/
-    assert_invalid @media_elements_slide, :media_element_id, 1000, 2, /doesn't exist/
+    assert_invalid @media_elements_slide, :slide_id, 1000, @new_slide.id, :doesnt_exist
+    assert_invalid @media_elements_slide, :media_element_id, 1000, 2, :doesnt_exist
     assert_obj_saved @media_elements_slide
   end
   
@@ -100,7 +100,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 2
     @media_elements_slide.alignment = nil
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -109,7 +109,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 2
     @media_elements_slide.alignment = nil
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -120,7 +120,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 2
     @media_elements_slide.alignment = nil
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -129,7 +129,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 2
     @media_elements_slide.alignment = nil
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -148,7 +148,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -157,7 +157,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -168,7 +168,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -177,7 +177,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -188,7 +188,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -197,7 +197,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -209,7 +209,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -218,7 +218,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -230,7 +230,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -239,7 +239,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -250,7 +250,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 4
     @media_elements_slide.alignment = nil
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -259,7 +259,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages[:media_element_id].length
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 4
     @media_elements_slide.alignment = nil
     assert @media_elements_slide.valid?, "MediaElementsSlide not valid: #{@media_elements_slide.errors.inspect}"
@@ -270,19 +270,19 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.size
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 4
     @media_elements_slide.alignment = nil
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.size
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.size
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     get_new_slide 'title'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 2
@@ -290,19 +290,19 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.size
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 4
     @media_elements_slide.alignment = nil
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.size
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert !@media_elements_slide.save, "MediaElementsSlide erroneously saved - #{@media_elements_slide.inspect}"
     assert_equal 1, @media_elements_slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_elements_slide.errors.inspect}"
     assert_equal 1, @media_elements_slide.errors.size
-    assert_match /is not compatible with the kind of slide/, @media_elements_slide.errors.messages[:media_element_id].first
+    assert @media_elements_slide.errors.added? :media_element_id, :is_not_compatible_with_slide
     get_new_slide 'video1'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 2
@@ -315,37 +315,37 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
-    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
-    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
-    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 2, 1, :cant_have_two_elements_in_this_slide
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
     get_new_slide 'image3'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
-    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
-    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
-    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 2, 1, :cant_have_two_elements_in_this_slide
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
     get_new_slide 'audio'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 4
     @media_elements_slide.alignment = nil
-    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
-    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
-    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 2, 1, :cant_have_two_elements_in_this_slide
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
     get_new_slide 'video1'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 2
     @media_elements_slide.alignment = nil
-    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
-    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
-    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 2, 1, :cant_have_two_elements_in_this_slide
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
     get_new_slide 'video2'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 2
     @media_elements_slide.alignment = nil
-    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
-    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
-    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 2, 1, :cant_have_two_elements_in_this_slide
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
     # Here I have to create a new cover slide
     @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
     @lesson.copied_not_modified = false
@@ -357,14 +357,14 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
-    assert_invalid @media_elements_slide, :position, 2, 1, /can't have two media elements if slide is not of the kinds 'image2', 'image4'/
-    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
-    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 2, 1, :cant_have_two_elements_in_this_slide
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
     # until here
     get_new_slide 'image2'
     @media_elements_slide.slide_id = @new_slide.id
-    assert_invalid @media_elements_slide, :position, 3, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
-    assert_invalid @media_elements_slide, :position, 4, 1, /can't have more than two media elements if slide is not of the kind 'image4'/
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
     @media_elements_slide.position = 2
     assert @media_elements_slide.valid?
     get_new_slide 'image4'
@@ -388,7 +388,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     get_new_slide 'audio'
     assert_equal 1, @new_slide.lesson.user_id
     @media_elements_slide.slide_id = @new_slide.id
-    assert_invalid @media_elements_slide, :media_element_id, 3, 4, /is not available/
+    assert_invalid @media_elements_slide, :media_element_id, 3, 4, :is_not_available
     assert_obj_saved @media_elements_slide
   end
   
@@ -396,7 +396,7 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     assert_obj_saved @media_elements_slide
     old_slide_id = @new_slide.id
     get_new_slide 'video1'
-    assert_invalid @media_elements_slide, :slide_id, @new_slide.id, old_slide_id, /can't be changed/
+    assert_invalid @media_elements_slide, :slide_id, @new_slide.id, old_slide_id, :cant_be_changed
   end
   
 end
