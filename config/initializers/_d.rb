@@ -4,7 +4,7 @@ when 'development', 'test'
   begin
     require 'colorize'
     def _d(*args)
-      puts "#{caller.first}: #{args.map(&:inspect).join(', ')}".yellow
+      puts "#{caller.first}: #{args.map(&:inspect).join(', ')}".yellow#, caller.join("\n")
     end
     def _d!(*args)
       _d *args

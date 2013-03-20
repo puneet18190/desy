@@ -40,3 +40,4 @@ RSpec.configure do |config|
 end
 
 [ Media::Video::Uploader, Media::Audio::Uploader, ImageUploader, Media::Audio::Editing::Conversion, Media::Video::Editing::Conversion, Media::Logging ].each{ |u| u.remove_folder! }
+# $VERBOSE = nil

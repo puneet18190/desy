@@ -13,7 +13,7 @@ module Media
     end
 
     def tmp_path(path)
-      raise Error.new('@tmp_dir must be present') if @tmp_dir.blank?
+      raise Error.new('@tmp_dir must be present', path: path) unless @tmp_dir
       File.join(@tmp_dir, path)
     end
 
