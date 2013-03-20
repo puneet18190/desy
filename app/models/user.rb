@@ -425,11 +425,12 @@ class User < ActiveRecord::Base
       lesson.copied_not_modified = false
       lesson.user_id = self.id
       lesson.tags = tags
+      lesson.validating_in_form = true
       if lesson.valid?
-        return {:subject_id => "is not your subject"}
+        return {:subject_id => ["is not your subject"]}
       else
         resp = lesson.errors.messages
-        resp[:subject_id] = "is not your subject"
+        resp[:subject_id] = ["is not your subject"]
         return resp
       end
     end
@@ -437,6 +438,7 @@ class User < ActiveRecord::Base
     lesson.copied_not_modified = false
     lesson.user_id = self.id
     lesson.tags = tags
+    lesson.validating_in_form = true
     return lesson.save ? lesson : lesson.errors.messages
   end
   
