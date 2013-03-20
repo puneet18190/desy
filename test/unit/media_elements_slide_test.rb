@@ -316,36 +316,36 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert_invalid @media_elements_slide, :position, 2, 1, :cant_have_two_elements_in_this_slide
-    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
-    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide
     get_new_slide 'image3'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert_invalid @media_elements_slide, :position, 2, 1, :cant_have_two_elements_in_this_slide
-    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
-    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide
     get_new_slide 'audio'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 4
     @media_elements_slide.alignment = nil
     assert_invalid @media_elements_slide, :position, 2, 1, :cant_have_two_elements_in_this_slide
-    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
-    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide
     get_new_slide 'video1'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 2
     @media_elements_slide.alignment = nil
     assert_invalid @media_elements_slide, :position, 2, 1, :cant_have_two_elements_in_this_slide
-    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
-    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide
     get_new_slide 'video2'
     @media_elements_slide.slide_id = @new_slide.id
     @media_elements_slide.media_element_id = 2
     @media_elements_slide.alignment = nil
     assert_invalid @media_elements_slide, :position, 2, 1, :cant_have_two_elements_in_this_slide
-    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
-    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide
     # Here I have to create a new cover slide
     @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
     @lesson.copied_not_modified = false
@@ -358,13 +358,13 @@ class MediaElementsSlideTest < ActiveSupport::TestCase
     @media_elements_slide.media_element_id = 6
     @media_elements_slide.alignment = 0
     assert_invalid @media_elements_slide, :position, 2, 1, :cant_have_two_elements_in_this_slide
-    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
-    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide
     # until here
     get_new_slide 'image2'
     @media_elements_slide.slide_id = @new_slide.id
-    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide,
-    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide,
+    assert_invalid @media_elements_slide, :position, 3, 1, :cant_have_more_than_two_elements_in_this_slide
+    assert_invalid @media_elements_slide, :position, 4, 1, :cant_have_more_than_two_elements_in_this_slide
     @media_elements_slide.position = 2
     assert @media_elements_slide.valid?
     get_new_slide 'image4'
