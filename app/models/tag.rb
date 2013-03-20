@@ -65,7 +65,7 @@ class Tag < ActiveRecord::Base
   end
   
   def word_not_changed
-    errors[:word] << "can't be changed" if @tag && @tag.word != self.word
+    errors.add(:word, :cant_be_changed) if @tag && @tag.word != self.word
   end
   
   def destroy_taggings

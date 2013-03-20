@@ -186,7 +186,7 @@ class Slide < ActiveRecord::Base
   private
   
   def validate_max_number_slides
-    errors[:base] << 'too many slides' if @lesson && !@slide && Slide.where(:lesson_id => @lesson.id).count == SETTINGS['max_number_slides_in_a_lesson']
+    errors.add(:base, :too_many_slides) if @lesson && !@slide && Slide.where(:lesson_id => @lesson.id).count == SETTINGS['max_number_slides_in_a_lesson']
   end
   
   def media_element_at(position)
@@ -194,11 +194,11 @@ class Slide < ActiveRecord::Base
   end
   
   def validate_title
-    errors[:title] << 'must be null for this kind of slide' if !self.allows_title? && !self.title.nil?
+    errors.add(:title, :must_be_null_in_this_slide) if !self.allows_title? && !self.title.nil?
   end
   
   def validate_text
-    errors[:text] << 'must be null for this kind of slide' if !self.allows_text? && !self.text.nil?
+    errors.add(:text, :must_be_null_in_this_slide) if !self.allows_text? && !self.text.nil?
   end
   
   def is_cover
@@ -211,20 +211,20 @@ class Slide < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:lesson_id] << "doesn't exist" if @lesson.nil?
+    errors.add(:lesson_id, :doesnt_exist) if @lesson.nil?
   end
   
   def validate_impossible_changes
     if @slide
-      errors[:lesson_id] << "can't be changed" if @slide.lesson_id != self.lesson_id
-      errors[:kind] << "can't be changed" if @slide.kind != self.kind
-      errors[:title] << "if cover it can't be different by lesson's title" if @lesson && self.cover? && @slide.title != self.title && @lesson.title != self.title
+      errors.add(:lesson_id, :cant_be_changed) if @slide.lesson_id != self.lesson_id
+      errors.add(:kind, :cant_be_changed) if @slide.kind != self.kind
+      errors.add(:title, :in_cover_it_cant_be_different_by_lessons_title) if @lesson && self.cover? && @slide.title != self.title && @lesson.title != self.title
     end
   end
   
   def validate_cover
-    errors[:position] << "cover must be the first slide" if self.kind == COVER && self.position != 1
-    errors[:position] << "if not cover can't be the first slide" if self.kind != COVER && self.position == 1
+    errors.add(:position, :cover_must_be_first_slide) if self.kind == COVER && self.position != 1
+    errors.add(:position, :if_not_cover_cant_be_first_slide) if self.kind != COVER && self.position == 1
   end
   
   def stop_if_cover
