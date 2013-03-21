@@ -41,7 +41,15 @@ class Admin::SettingsController < AdminController
     end
   end
   
-  def load_more_tags
+  def select_tags
+    @tag = Tag.find_by_id params[:id]
+    if @tag
+      @lessons = @tag.get_lessons(1) if @tag.present?
+      @media_elements = @tag.get_media_elements(1) if @tag.present?
+    end
+  end
+  
+  def tags_new_block
     @tags = Tag.limit(40).offset(params[:offset])
   end
   
