@@ -41,7 +41,7 @@ class Admin::SettingsController < AdminController
     end
   end
   
-  def select_tags
+  def select_tag
     @tag = Tag.find_by_id params[:id]
     if @tag
       @lessons = @tag.get_lessons(1) if @tag.present?
