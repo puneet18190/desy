@@ -12,7 +12,7 @@ class UsersSubjectTest < ActiveSupport::TestCase
   
   test 'empty_and_defaults' do
     @users_subject = UsersSubject.new
-    assert_error_size 2, @users_subject
+    assert_error_size 4, @users_subject
   end
   
   test 'attr_accessible' do
