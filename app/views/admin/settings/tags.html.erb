@@ -5,19 +5,13 @@
     <h4>MANAGE TAGS</h4>
     
     <% @tags.each do |tag| %>
-      <% if @tag.present? && (@tag.id == tag.id) %>
-        <span id="tag_in_admin_<%= @tag.id %>" class="label tags label-info">
-          <%= tag.word %>
-          <%= link_to '', "/admin/settings/tags/#{tag.id}/delete", :method => :delete, :confirm => 'sicuro?', :class=>"icon-remove icon-white", :remote => true %>
-        </span>
-      <% else %>
-        <span id="tag_in_admin_<%= tag.id %>" class="label tags">
-          <%= link_to tag.word, "/admin/settings/tags?id=#{tag.id}" %>
-          <%= link_to '', "/admin/settings/tags/#{tag.id}/delete", :method => :delete, :confirm => 'sicuro?', :class=>"icon-remove icon-white", :remote => true %>
-        </span>
-      <% end %>
+      <span id="tag_in_admin_<%= tag.id %>" class="label tags">
+        <%= link_to tag.word, "/admin/settings/tags/#{tag.id}/select", :remote => true %>
+        <%= link_to '', "/admin/settings/tags/#{tag.id}/delete", :method => :delete, :confirm => 'sicuro?', :class=>"icon-remove icon-white", :remote => true %>
+      </span>
     <% end %>
   </div>
 </div>
 
-<%= render :partial => "tag_items", :locals => {:lessons => @lessons, :media_elements => @media_elements, :tag => @tag} %>
+<div id="items_associated_to_tag">
+</div>

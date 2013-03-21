@@ -1,0 +1,5 @@
+<% if !@tag.nil? %>
+  $('.label-info').removeClass('label-info');
+  $('#tag_in_admin_<%= @tag.id %>').addClass('label-info');
+  $('#items_associated_to_tag').html('<%= j render(:partial => "tags_items", :locals => {:lessons => @lessons, :media_elements => @media_elements, :tag => @tag}) %>');
+<% end %>
