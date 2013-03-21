@@ -10,6 +10,13 @@ class MediaElementsController < ApplicationController
   before_filter :initialize_media_element_with_owner_and_private, :only => :update
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_media_element_destination, :only => [:add, :remove, :destroy]
+
+  skip_before_filter :authenticate, :initialize_location, :initialize_players_counter, only: :videos_test
+  before_filter :admin_authenticate, only: :videos_test
+  layout false, only: :videos_test
+
+  def videos_test
+  end
   
   def index
     get_own_media_elements
