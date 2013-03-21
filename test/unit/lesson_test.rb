@@ -61,10 +61,8 @@ class LessonTest < ActiveSupport::TestCase
     @lesson = Lesson.new
     assert_equal false, @lesson.is_public
     @lesson.is_public = nil
-    @lesson.token = 'prova'
+    @lesson.notified = nil
     assert_error_size 14, @lesson
-    assert @lesson.token != 'prova'
-    assert_equal 20, @lesson.token.length
   end
   
   test 'attr_accessible' do

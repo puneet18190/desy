@@ -103,7 +103,7 @@ class MediaElementTest < ActiveSupport::TestCase
     @media_element.is_public = true
     assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect}"
     assert_equal 1, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
-    assert @media_element.errors.messages[:is_public].include?("must be false if new record")
+    assert @media_element.errors.added? :is_public, :must_be_false_if_new_record
     @media_element.is_public = false
     @media_element.publication_date = nil
     assert @media_element.valid?, "MediaElement not valid - #{@media_element.errors.inspect}"
@@ -123,8 +123,8 @@ class MediaElementTest < ActiveSupport::TestCase
     @media_element.is_public = false
     assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect}"
     assert_equal 2, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
-    assert @media_element.errors.messages[:is_public].include?("is not changeable for a public record")
-    assert @media_element.errors.messages[:publication_date].include?("is not changeable for a public record")
+    assert @media_element.errors.added? :is_public, :cant_be_changed_if_public
+    assert @media_element.errors.added? :publication_date, :cant_be_changed_if_public
     @media_element.is_public = true
     @media_element.publication_date = '2011-11-11 10:00:00'
     assert @media_element.valid?, "MediaElement not valid - #{@media_element.errors.inspect}"
