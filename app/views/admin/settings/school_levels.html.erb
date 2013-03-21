@@ -1,5 +1,7 @@
 <%= render :partial => 'menu', :locals => {:current => 'school_levels'} %>
 
+<h4>MANAGE SCHOOL LEVELS</h4>
+
 <ul class="nav nav-tabs nav-stacked school_levels">
   <% @school_levels.each do |level| %>
   <li id="level-<%=level.id%>" data-param="<%=level.id%>">
