@@ -15,8 +15,8 @@
 
 <div id="instance_<%= @audio_counter[0] %>_<%= @audio_counter[1] %>_of_audio_player" class="audioPlayer <%= audio_class %>" data-media-type="audio" data-initialized="false" data-duration="<%= duration %>">
   <audio>
-    <source src="<%= ogg  %>" type="audio/ogg">
     <source src="<%= mp3 %>" type="audio/mp3">
+    <source src="<%= ogg  %>" type="audio/ogg">
     <%= t('captions.dont_support_audio') %>
   </audio>
   <a class="play _media_player_play" title="<%= t('titles.audios.play') %>"></a>

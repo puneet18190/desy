@@ -461,7 +461,7 @@ en:
       subject: "%{desy} - Account confirmation"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br/>When the registration is confirmed, the link will not be valid anymore.<br/>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br/><p>N.B.</p><p>The confirmation of the account can only be made once.</p>"
+      message: "<p>Welcome %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br/>When the registration is confirmed, the link will not be valid anymore.<br/>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br/><p>N.B.</p><p>The confirmation of the account can only be made once.</p>"
     # Mail containing the link to reset a forgotten password
     reset_password:
       # Subject
@@ -469,7 +469,7 @@ en:
       subject: "%{desy} - New password"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password of your choice once logged in, in the 'Profile' section.</p>"
+      message: "<h1>%{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password of your choice once logged in, in the 'Profile' section.</p>"
     # Email containing the public link of a lesson (when a user wants to share his lesson outside the application)
     see_my_lesson:
       # Subject
