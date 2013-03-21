@@ -49,4 +49,12 @@ class Admin::SettingsController < AdminController
     end
   end
   
+  def delete_tag
+    @id = params[:id]
+    tag = Tag.find(@id)
+    tag.destroy
+    
+    redirect_to '/admin/settings/tags'
+  end
+  
 end
