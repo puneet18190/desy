@@ -42,6 +42,19 @@ class Admin::SettingsController < AdminController
   
   def tags
     @tags = Tag.order('word ASC')
+    if params[:id]
+      @tag = Tag.where(id: params[:id]).first
+      @lessons = @tag.get_lessons if @tag.present?
+      @media_elements = @tag.get_media_elements if @tag.present?
+    end
+  end
+  
+  def delete_tag
+    @id = params[:id]
+    tag = Tag.find(@id)
+    tag.destroy
+    
+    redirect_to '/admin/settings/tags'
   end
   
 end
