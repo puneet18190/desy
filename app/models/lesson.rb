@@ -1,3 +1,5 @@
+require 'lessons_media_elements_shared'
+
 class Lesson < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   extend LessonsMediaElementsShared
