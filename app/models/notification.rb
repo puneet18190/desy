@@ -16,7 +16,7 @@ class Notification < ActiveRecord::Base
     when Array
       user_id_or_user_ids.each_slice(SENDING_SLICES_AMOUNT) { |slice| Delayed::Job.enqueue NotificationsJob.new(slice, message) }
     else
-      new do |n|
+      return new do |n|
         n.user_id = user_id_or_user_ids
         n.message = message
         n.seen = false

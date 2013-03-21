@@ -186,6 +186,8 @@ Desy::Application.routes.draw do
 
   get ':locale' => 'application#set_locale', constraints: { locale: /(en|cn)/ } if Desy::MORE_THAN_ONE_LANGUAGE
 
+  get 'videos_test' => 'media_elements#videos_test'
+
   # 404
   match '*path', to: 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
   

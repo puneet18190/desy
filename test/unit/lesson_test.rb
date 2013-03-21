@@ -20,7 +20,20 @@ class LessonTest < ActiveSupport::TestCase
     end
   end
   
+  test 'token_creation' do
+    assert_nil @lesson.token
+    assert @lesson.save
+    assert_not_nil @lesson.token
+    assert @lesson.token.length > 16
+    old_token = @lesson.token
+    @lesson.title = 'bah'
+    assert @lesson.save
+    @lesson = Lesson.find @lesson.id
+    assert_equal old_token, @lesson.token
+  end
+  
   test 'tags' do
+    @lesson.validating_in_form = true
     @lesson.tags = 'gatto, gatto, gatto  ,   , cane, topo'
     assert !@lesson.save, "Lesson erroneously saved - #{@lesson.inspect} -- #{@lesson.tags.inspect}"
     assert_equal 1, @lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@lesson.errors.inspect}"
@@ -61,10 +74,8 @@ class LessonTest < ActiveSupport::TestCase
     @lesson = Lesson.new
     assert_equal false, @lesson.is_public
     @lesson.is_public = nil
-    @lesson.token = 'prova'
+    @lesson.notified = nil
     assert_error_size 14, @lesson
-    assert @lesson.token != 'prova'
-    assert_equal 20, @lesson.token.length
   end
   
   test 'attr_accessible' do
@@ -137,22 +148,13 @@ class LessonTest < ActiveSupport::TestCase
     assert_obj_saved @lesson
   end
   
-  test 'token_length' do
-    assert_obj_saved @lesson
-    old_token = @lesson.token
-    assert_invalid @lesson, :token, long_string(21), old_token, :wrong_length
-    assert_invalid @lesson, :token, long_string(19), old_token, :wrong_length
-    assert_obj_saved @lesson
-  end
-  
   test 'impossible_changes' do
     @lesson.parent_id = 1
     assert_obj_saved @lesson
     assert_invalid @lesson, :user_id, 2, 1, :cant_be_changed
     old_token = @lesson.token
     last_char = old_token.split(old_token.chop)[1]
-    different_token = last_char == 'a' ? "#{old_token.chop}b" : "#{old_token.chop}b"
-    assert_equal 20, different_token.length
+    different_token = last_char == 'a' ? "#{old_token.chop}b" : "#{old_token.chop}a"
     assert different_token != old_token
     assert_invalid @lesson, :token, different_token, old_token, :cant_be_changed
     assert_invalid @lesson, :parent_id, 2, 1, :cant_be_changed

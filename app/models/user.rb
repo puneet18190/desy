@@ -830,7 +830,9 @@ class User < ActiveRecord::Base
   end
   
   def validate_associations
-    errors.add :school_level_id, :blank if @school_level.nil?
+    errors.add :school_level_id, :doesnt_exist if @school_level.nil?
+    @location = Valid.get_association self, :location_id
+    errors.add :location_id, :doesnt_exist if @location.nil? || @location.sti_type != SETTINGS['location_types'].last
   end
   
   def validate_email_not_changed
