@@ -657,11 +657,11 @@ cn:
       # Buttons to handle global preview
       preview:
         # 1 - views/audio_editor/_lateral_controls.html.erb
-        pause: "Pause preview" # TODO
+        pause: "暂停预览"
         # 1 - views/audio_editor/_lateral_controls.html.erb
-        rewind: "Rewind preview" # TODO
+        rewind: "重新预览"
         # 1 - views/audio_editor/_lateral_controls.html.erb
-        start: "Start preview" # TODO
+        start: "开始预览"
     audios:
       # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the audio editor
       # 1 - views/media_elements/new.html.erb
@@ -1123,7 +1123,7 @@ cn:
       description: "在这个时候，你能运行另一个音频曲目编辑：进程还没完成之前，音频编辑将被临时关闭。"
     # Caption of the area containig the buttons which control the preview
     # 1 - views/audio_editor/_lateral_controls.html.erb
-    preview: "Preview" # TODO
+    preview: "预览"
     # Caption, inside the right column, for the total length of the audio in editing
     # 1 - views/audio_editor/_lateral_controls.html.erb
     total_length: "总长度"
@@ -2720,7 +2720,7 @@ cn:
         title: "送通知"
         # Caption which appears if all the users in the database will receive the notification
         # 1 - views/admin/messages/new_notification.html.erb
-        all_users_selected: "All users selected" # TODO
+        all_users_selected: "选择所有的用户"
         # Title of the part where the administrator may filter the users
         # 1 - views/admin/messages/new_notification.html.erb
         filter_users: "过滤用户送通知到"
@@ -2733,7 +2733,7 @@ cn:
         add_recipients: "选择接收者"
         # Placeholder of the input where the administrator can select single users to be added to the list of recipients
         # 1 - views/admin/messages/new_notification.html.erb
-        recipients_placeholder: "Add recipients" # TODO
+        recipients_placeholder: "增加接受者"
         # Caption of the checkbox that resets the filters, and selects back all the users
         # 1 - views/admin/messages/new_notification.html.erb
         send_everyone: "向所有人发送"
@@ -2742,27 +2742,27 @@ cn:
         send: "发送"
         # Title of the text area where the user types the content of the notification
         # 1 - views/admin/messages/new_notification.html.erb
-        message: "Message" # TODO
+        message: "信息"
         # Placeholder of the text area where the user types the content of the notification
         # 1 - views/admin/messages/new_notification.html.erb
-        message_placeholder: "Insert a message" # TODO
+        message_placeholder: "插入一条信息"
       # Section where the administrator checks out the reports about unproper content sent by the users
       reports:
         # Title of the section
         # 1 - views/admin/messages/reports.html.erb
-        name: "Abuse reports" # TODO
+        name: "报告滥用"
         # Label for the item on which the report was sent (it may be lesson or media element)
         # 1 - views/admin/dashboard/index.html.erb
         # 2 - views/admin/dashboard/index.html.erb
         # 3 - views/admin/messages/reports.html.erb
         # 4 - views/admin/messages/reports.html.erb
-        item: "On:" # TODO
+        item: "项"
         # Label for the message attached to a report
         # 1 - views/admin/dashboard/index.html.erb
         # 2 - views/admin/dashboard/index.html.erb
         # 3 - views/admin/messages/reports.html.erb
         # 4 - views/admin/messages/reports.html.erb
-        report: "Report:" # TODO
+        report: "报告"
         # Title of the list of reports for lessons
         # 1 - views/admin/dashboard/index.html.erb
         # 2 - views/admin/messages/reports.html.erb
