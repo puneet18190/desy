@@ -176,7 +176,6 @@ Desy::Application.routes.draw do
     get       'settings/school_levels'                  => 'settings#school_levels'
     post      'settings/school_levels/new'              => 'settings#new_school_level'
     delete    'settings/school_levels/:id/delete'       => 'settings#delete_school_level'
-    get       'settings/locations'                      => 'settings#locations'
     get       'settings/tags'                           => 'settings#tags'
     delete    'settings/tags/:id/delete'                => 'settings#delete_tag'
     resources :lessons,                           :only => [:index, :destroy]

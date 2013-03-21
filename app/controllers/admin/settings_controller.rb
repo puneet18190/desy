@@ -31,15 +31,7 @@ class Admin::SettingsController < AdminController
     level = SchoolLevel.find(@id)
     level.destroy if level.is_deletable?
   end
-  
-  def locations
-    @locations = [Location.roots]
-    if params[:search]
-      location = Location.get_from_chain_params params[:search]
-      @locations = location.get_filled_select if location
-    end
-  end
-  
+    
   def tags
     @tags = Tag.order('word ASC')
     if params[:id]
