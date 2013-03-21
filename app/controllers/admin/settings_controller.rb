@@ -36,8 +36,8 @@ class Admin::SettingsController < AdminController
     @tags = Tag.order('word ASC').limit(40)
     if params[:id]
       @tag = Tag.where(id: params[:id]).first
-      @lessons = @tag.get_lessons(1) if @tag.present?
-      @media_elements = @tag.get_media_elements(1) if @tag.present?
+      @lessons = @tag.get_lessons(params[:lessons_page]) if @tag.present?
+      @media_elements = @tag.get_media_elements(params[:elements_page]) if @tag.present?
     end
   end
   

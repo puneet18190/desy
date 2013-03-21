@@ -13,22 +13,4 @@
   </div>
 </div>
 
-<div id="items_associated_to_tag">
-  <% if @tag.present? %>
-    <h3><%= @tag.word %></h3>
-    <div class="row-fluid">
-      <div class="span12">
-        <h4>Lessons</h4>
-        <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @lessons} %>
-        <%= paginate @lessons, :remote => true %>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="span12">
-        <h4>Elements</h4>
-        <%= render :partial => 'admin/media_elements/list', :locals => {:elements => @media_elements} %>
-        <%= paginate @media_elements, :remote => true %>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= render :partial => "tag_items", :locals => {:lessons => @lessons, :media_elements => @media_elements, :tag => @tag} %>
