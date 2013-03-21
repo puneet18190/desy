@@ -6,32 +6,36 @@
     
     <% @tags.each do |tag| %>
       <% if @tag.present? && (@tag.id == tag.id) %>
-        <span class="label tags label-info">
+        <span id="tag_in_admin_<%= @tag.id %>" class="label tags label-info">
           <%= tag.word %>
-          <%= link_to '', "/admin/settings/tags/#{tag.id}/delete", :method => :delete, :confirm => "are you sure?", :class=>"icon-remove icon-white"%>
+          <%= link_to '', "/admin/settings/tags/#{tag.id}/delete", :method => :delete, :confirm => 'sicuro?', :class=>"icon-remove icon-white", :remote => true %>
         </span>
       <% else %>
-        <span class="label tags">
+        <span id="tag_in_admin_<%= @tag.id %>" class="label tags">
           <%= link_to tag.word, "/admin/settings/tags?id=#{tag.id}" %>
-          <%= link_to '', "/admin/settings/tags/#{tag.id}/delete", :method => :delete, :confirm => "are you sure?", :class=>"icon-remove icon-white"%>
+          <%= link_to '', "/admin/settings/tags/#{tag.id}/delete", :method => :delete, :confirm => 'sicuro?', :class=>"icon-remove icon-white", :remote => true %>
         </span>
       <% end %>
     <% end %>
   </div>
 </div>
 
-<% if @tag.present? %>
-  <h3><%= @tag.word %></h3>
-  <div class="row-fluid">
-    <div class="span12">
-      <h4>Lessons</h4>
-      <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @lessons} %>
+<div id="items_associated_to_tag">
+  <% if @tag.present? %>
+    <h3><%= @tag.word %></h3>
+    <div class="row-fluid">
+      <div class="span12">
+        <h4>Lessons</h4>
+        <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @lessons} %>
+        <%= paginate @lessons, :remote => true %>
+      </div>
     </div>
-  </div>
-  <div class="row-fluid">
-    <div class="span12">
-      <h4>Elements</h4>
-      <%= render :partial => 'admin/media_elements/list', :locals => {:elements => @media_elements} %>
+    <div class="row-fluid">
+      <div class="span12">
+        <h4>Elements</h4>
+        <%= render :partial => 'admin/media_elements/list', :locals => {:elements => @media_elements} %>
+        <%= paginate @media_elements, :remote => true %>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
