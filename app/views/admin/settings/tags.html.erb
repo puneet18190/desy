@@ -8,7 +8,7 @@
       <% if @tag.present? && (@tag.id == tag.id) %>
         <span class="label tags label-info">
           <%= tag.word %>
-          <%= link_to '', "/admin/settings/tags/#{tag.id}/delete", :method => :delete, :class=>"icon-remove icon-white"%>
+          <%= link_to '', "/admin/settings/tags/#{tag.id}/delete", :method => :delete, :confirm => :class=>"icon-remove icon-white"%>
         </span>
       <% else %>
         <span class="label tags">
