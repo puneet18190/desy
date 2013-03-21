@@ -41,6 +41,7 @@ class Admin::MediaElementsController < AdminController
       me.description = params[:description]
       me.tags = params[:tags]
       me.user_id = current_user.id
+      me.validating_in_form = true
       @saved = me.save
       if !@saved
         fields = me.errors.messages.keys
@@ -72,6 +73,7 @@ class Admin::MediaElementsController < AdminController
       @media_element.title = params[:title]
       @media_element.description = params[:description]
       @media_element.tags = params[:tags]
+      @media_element.validating_in_form = true
       if params[:is_public]
         @media_element.is_public = true
         @media_element.publication_date = Time.zone.now

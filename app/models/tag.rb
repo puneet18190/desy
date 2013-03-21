@@ -58,14 +58,12 @@ class Tag < ActiveRecord::Base
     word.to_s
   end
   
-  def get_lessons
-    ids = Tagging.where(tag_id: self.id, taggable_type: 'Lesson').pluck(:taggable_id)
-    return Lesson.find(ids)
+  def get_lessons(page)
+    Lesson.joins(:taggings).where(:taggings => {:tag_id => self.id}).page(page)
   end
   
-  def get_media_elements
-    ids = Tagging.where(tag_id: self.id, taggable_type: 'MediaElement').pluck(:taggable_id)
-    return MediaElement.find(ids)
+  def get_media_elements(page)
+    MediaElement.joins(:taggings).where(:taggings => {:tag_id => self.id}).page(page)
   end
   
   private

@@ -31,30 +31,32 @@ class Admin::SettingsController < AdminController
     level = SchoolLevel.find(@id)
     level.destroy if level.is_deletable?
   end
-  
-  def locations
-    @locations = [Location.roots]
-    if params[:search]
-      location = Location.get_from_chain_params params[:search]
-      @locations = location.get_filled_select if location
+    
+  def tags
+    @tags = Tag.order('word ASC').limit(40)
+    if params[:id]
+      @tag = Tag.where(id: params[:id]).first
+      @lessons = @tag.get_lessons(params[:lessons_page]) if @tag.present?
+      @media_elements = @tag.get_media_elements(params[:elements_page]) if @tag.present?
     end
   end
   
-  def tags
-    @tags = Tag.order('word ASC')
-    if params[:id]
-      @tag = Tag.where(id: params[:id]).first
-      @lessons = @tag.get_lessons if @tag.present?
-      @media_elements = @tag.get_media_elements if @tag.present?
+  def select_tag
+    @tag = Tag.find_by_id params[:id]
+    if @tag
+      @lessons = @tag.get_lessons(1) if @tag.present?
+      @media_elements = @tag.get_media_elements(1) if @tag.present?
     end
+  end
+  
+  def tags_new_block
+    @tags = Tag.limit(40).offset(params[:offset])
   end
   
   def delete_tag
     @id = params[:id]
     tag = Tag.find(@id)
     tag.destroy
-    
-    redirect_to '/admin/settings/tags'
   end
   
 end
