@@ -2,10 +2,6 @@ class Admin::SettingsController < AdminController
   
   layout 'admin'
   
-  def index
-    
-  end
-  
   def subjects
     @subjects = Subject.all
   end
