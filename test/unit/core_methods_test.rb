@@ -179,8 +179,8 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !User.new.create_lesson('te', 'dsf', 1, 'gatto, cane, topo, orso')
     @user = User.find 1
     assert UsersSubject.where(:user_id => 1, :subject_id => 2).empty?
-    assert @user.create_lesson('te', 'dsf', 2, 'gatto, cane, topo, orso').kind_of?(Hash)
-    assert @user.create_lesson('te', 'dsf', 2, 'gatto, cane, topo').kind_of?(Hash)
+    assert_equal ActiveModel::Errors, @user.create_lesson('te', 'dsf', 2, 'gatto, cane, topo, orso').class
+    assert_equal ActiveModel::Errors, @user.create_lesson('te', 'dsf', 2, 'gatto, cane, topo').class
     resp = @user.create_lesson('gs', 'gshsf', 3, 'gatto, cane, topo, orso')
     assert !resp.kind_of?(Hash)
     assert_equal 'gs', resp.title
