@@ -185,6 +185,19 @@
     }
   }
   
+  #settings-locations{
+    .control-group.heading{
+      width: 100%;
+      display:block;
+    }
+    
+    #new-location{
+      clear:both;
+      padding: 30px 40px;
+      width: 100%;
+    }
+  }
+  
   .ui-helper-hidden-accessible { display:none; }
   
   .element-update-form{
