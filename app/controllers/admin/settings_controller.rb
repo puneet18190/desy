@@ -37,7 +37,11 @@ class Admin::SettingsController < AdminController
   end
   
   def locations
-    
+    @locations = [Location.roots]
+    if params[:search]
+      location = Location.get_from_chain_params params[:search]
+      @locations = location.get_filled_select if location
+    end
   end
   
   def tags
