@@ -11,11 +11,7 @@ class Admin::MessagesController < AdminController
     end
     
     if params[:users] #list of recipients
-      @users = []
-      @users_ids = params[:users].gsub(/[\[\]\"]/,'').split(',')
-      @users_ids.each do |user_id|
-        @users << User.find(user_id)
-      end
+      @users = User.find(params[:users].gsub(/[\[\]\"]/, '').split(','))
     end
   end
   
@@ -49,6 +45,5 @@ class Admin::MessagesController < AdminController
   def send_notifications(users_ids, message)
     Notification.send_to(users_ids, message)
   end
-  
   
 end
