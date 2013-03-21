@@ -58,12 +58,12 @@ class Tag < ActiveRecord::Base
     word.to_s
   end
   
-  def get_lessons
-    Lesson.joins(:taggings).where(:taggings => {:tag_id => self.id})
+  def get_lessons(page)
+    Lesson.joins(:taggings).where(:taggings => {:tag_id => self.id}).page(page)
   end
   
-  def get_media_elements
-    MediaElement.joins(:taggings).where(:taggings => {:tag_id => self.id})
+  def get_media_elements(page)
+    MediaElement.joins(:taggings).where(:taggings => {:tag_id => self.id}).page(page)
   end
   
   private

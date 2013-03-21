@@ -33,20 +33,22 @@ class Admin::SettingsController < AdminController
   end
     
   def tags
-    @tags = Tag.order('word ASC')
+    @tags = Tag.order('word ASC').limit(40)
     if params[:id]
       @tag = Tag.where(id: params[:id]).first
-      @lessons = @tag.get_lessons if @tag.present?
-      @media_elements = @tag.get_media_elements if @tag.present?
+      @lessons = @tag.get_lessons(1) if @tag.present?
+      @media_elements = @tag.get_media_elements(1) if @tag.present?
     end
+  end
+  
+  def load_more_tags
+    @tags = Tag.limit(40).offset(params[:offset])
   end
   
   def delete_tag
     @id = params[:id]
     tag = Tag.find(@id)
     tag.destroy
-    
-    redirect_to '/admin/settings/tags'
   end
   
 end
