@@ -29,7 +29,7 @@ class LessonEditorController < ApplicationController
     if new_lesson.instance_of?(Lesson)
       @lesson = new_lesson
     else
-      @errors = convert_lesson_editor_messages new_lesson
+      @errors = convert_lesson_editor_messages new_lesson.messages
       @error_fields = new_lesson.keys
     end
   end

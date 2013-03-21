@@ -426,20 +426,16 @@ class User < ActiveRecord::Base
       lesson.user_id = self.id
       lesson.tags = tags
       lesson.validating_in_form = true
-      if lesson.valid?
-        return {:subject_id => ["is not your subject"]}
-      else
-        resp = lesson.errors.messages
-        resp[:subject_id] = ["is not your subject"]
-        return resp
-      end
+      lesson.valid?
+      lesson.errors.add(:subject_id, :is_not_your_subject)
+      return lesson.errors
     end
     lesson = Lesson.new :subject_id => subject_id, :school_level_id => self.school_level_id, :title => title, :description => description
     lesson.copied_not_modified = false
     lesson.user_id = self.id
     lesson.tags = tags
     lesson.validating_in_form = true
-    return lesson.save ? lesson : lesson.errors.messages
+    return lesson.save ? lesson : lesson.errors
   end
   
   def super_admin?

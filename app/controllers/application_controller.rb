@@ -143,6 +143,7 @@ class ApplicationController < ActionController::Base
     @ok = @ok && condition
   end
   
+  # riceve errors.messages
   def convert_item_error_messages(errors)
     resp = []
     media_errors = errors.delete(:media)
@@ -166,12 +167,14 @@ class ApplicationController < ActionController::Base
     resp
   end
   
+  # riceve errors.messages
   def convert_lesson_editor_messages(errors)
     resp = convert_item_error_messages errors
     resp << t('forms.error_captions.subject_missing_in_lesson') if errors.has_key? :subject_id
     resp
   end
   
+  # riceve errors
   def convert_media_element_uploader_messages(errors)
     resp = convert_item_error_messages errors.messages
     if errors.messages.has_key? :media
@@ -189,6 +192,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  # riceve errors
   def convert_user_error_messages(errors)
     pas_min = SETTINGS['minimum_password_length']
     pas_max = SETTINGS['maximum_password_length']
