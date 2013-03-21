@@ -1,7 +1,9 @@
 <div class="row-fluid">
   <div class="span12">
     <%= render :partial => 'menu', :locals => {:current => 'tags'} %>
-
+    
+    <h4>MANAGE TAGS</h4>
+    
     <% @tags.each do |tag| %>
       <% if @tag.present? && (@tag.id == tag.id) %>
         <span class="label tags label-info">
