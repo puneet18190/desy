@@ -1,27 +1,23 @@
-<div id="items_associated_to_tag">
-  <% if tag.present? %>
-    <h3><%= tag.word %></h3>
-    <div class="row-fluid">
-      <div class="span12">
-        <h4>Lessons</h4>
-        <div class="lessons_items">
-          <%= render :partial => 'admin/lessons/list', :locals => {:lessons => lessons} %>
-        </div>
-        <div class="lessons_pagination">
-          <%= paginate lessons, :remote => true, :param_name => "lessons_page" %>
-        </div>
-      </div>
+<h3><%= tag.word %></h3>
+<div class="row-fluid">
+  <div class="span12">
+    <h4>Lessons</h4>
+    <div class="lessons_items">
+      <%= render :partial => 'admin/lessons/list', :locals => {:lessons => lessons} %>
     </div>
-    <div class="row-fluid">
-      <div class="span12">
-        <h4>Elements</h4>
-        <div class="elements_items">
-          <%= render :partial => 'admin/media_elements/list', :locals => {:elements => media_elements} %>
-        </div>
-        <div class="elements_pagination">
-          <%= paginate media_elements, :remote => true, :param_name => "elements_page" %>
-        </div>
-      </div>
+    <div class="lessons_pagination">
+      <%= paginate lessons, :remote => true, :param_name => "lessons_page" %>
     </div>
-  <% end %>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+    <h4>Elements</h4>
+    <div class="elements_items">
+      <%= render :partial => 'admin/media_elements/list', :locals => {:elements => media_elements} %>
+    </div>
+    <div class="elements_pagination">
+      <%= paginate media_elements, :remote => true, :param_name => "elements_page" %>
+    </div>
+  </div>
 </div>
