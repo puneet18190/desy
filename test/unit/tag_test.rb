@@ -48,13 +48,13 @@ class TagTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @tag, :word, long_string(26), long_string(25), /is too long/
-    assert_invalid @tag, :word, '', 'uu', /is too short/
+    assert_invalid @tag, :word, long_string(26), long_string(25), :too_long
+    assert_invalid @tag, :word, '', 'uu', :too_short
     assert_obj_saved @tag
   end
   
   test 'uniqueness' do
-    assert_invalid @tag, :word, 'squalo', 'passerotto', /has already been taken/
+    assert_invalid @tag, :word, 'squalo', 'passerotto', :taken
     assert_obj_saved @tag
   end
   
@@ -72,7 +72,7 @@ class TagTest < ActiveSupport::TestCase
   test 'impossible_changes' do
     @tag.word = 'ciao'
     assert_obj_saved @tag
-    assert_invalid @tag, :word, 'cia', 'ciao', /can't be changed/
+    assert_invalid @tag, :word, 'cia', 'ciao', :cant_be_changed
     assert_obj_saved @tag
   end
   
