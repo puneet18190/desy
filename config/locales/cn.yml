@@ -946,17 +946,17 @@ cn:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "欢迎到%{desy}！"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "基于你感兴趣的主题，在我们的数据库中，在这个栏目中你能发现课程和单元。如果你点击课程或单元\"plus\"图标，你将把它增加到你个人部分，在那里你能修改和使用它。那个 \"small eye\"图标打开预览。"
+        content: "基于你感兴趣的主题，在我们的数据库中，在这个栏目中你能发现课程和单元。如果你点击课程或单元\"加号\"图标，你将把它增加到你个人部分，在那里你能修改和使用它。那个 \"小眼睛\"图标打开预览。"
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "为你选择 - 单元"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "请选择我们为你推荐的课程单元！如果你没有找到任何感兴趣的课程单元，点击\"load a new element\"按钮，你能上传你自己的课程单元。"
+        content: "请选择我们为你推荐的课程单元！如果你没有找到任何感兴趣的课程单元，点击\"加载新单元\"按钮，你能上传你自己的课程单元。"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "为你选择 - 课程"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "在这个栏目中，%{desy}保存你感兴趣的所有新课程。在这时，如果没有新课程提供，你能点击在每一页发现的那个 \"create a new lesson\"按钮建立你自己的新课程：你将重定向到那个课程编辑器。在使用课程编辑器之前，确保有足够的课程单元。"
+        content: "在这个栏目中，%{desy}保存你感兴趣的所有新课程。在这时，如果没有新课程提供，你能点击在每一页发现的那个 \"建立新课程\"按钮建立你自己的新课程：你将重定向到那个课程编辑器。在使用课程编辑器之前，确保有足够的课程单元。"
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
@@ -967,12 +967,12 @@ cn:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "动作按钮"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "你能执行的出现在你的文件夹中所有的课程的动作按钮都是通过图像图标来识别的。<br/>那个\"eye\"图标充许你看到被选择的课程，那个\"pencil\"图标充许你修改课程。最后一个功能是不充许<b>被链接的</b>课程，在这个案例中，你只能发现\"copy\" 图标（两个圆重叠）：实际上，没有经过第一次拷贝的其他用户的实现，要想修改那个课程是不可能的。那个\"monitor with an eye\"图标上传课程到你的虚拟教室；如果课程分享，那个\"share\"图标（由两条线连接的三个小圆）被打开。如果你特别喜欢某人的其他课程，请点击\"star\"图标。最后，带有\"x\"那个图标删除那个课程（如果这个课程是已链接，那么这个图标被\"minus\"替换，它删除那个链接）"
+        content: "你能执行的出现在你的文件夹中所有的课程的动作按钮都是通过图像图标来识别的。<br/>那个\"眼睛\"图标充许你看到被选择的课程，那个\"铅笔\"图标充许你修改课程。最后一个功能是不充许<b>被链接的</b>课程，在这个案例中，你只能发现\"拷贝\" 图标（两个圆重叠）：实际上，没有经过第一次拷贝的其他用户的实现，要想修改那个课程是不可能的。那个\"用眼睛看\"图标上传课程到你的虚拟教室；如果课程分享，那个\"分享\"图标（由两条线连接的三个小圆）被打开。如果你特别喜欢某人的其他课程，请点击\"开始\"图标。最后，带有\"x\"那个图标删除那个课程（如果这个课程是已链接，那么这个图标被\"减号\"替换，它删除那个链接）"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "建立一个新课程"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "一旦你增加了足够多的单元，就准备建立你自己的课程：点击\"create a new lesson\"按钮，它将把你带到 %{desy}的课程编辑器。"
+        content: "一旦你增加了足够多的单元，就准备建立你自己的课程：点击\"建立一新课程\"按钮，它将把你带到 %{desy}的课程编辑器。"
     media_elements:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
@@ -983,18 +983,18 @@ cn:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "单元编辑器"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "在每一个单元的那个 \"pencil\"图标打开那个单元的特别编辑器（音频，图像或视频）。如果包含 \"pencil\"的单元是<b>公共的</b>，那么这个编辑器将迫使你作为一个新单元保存你的工作（你不能修改公共单元），反之，如果那个单元是<b>私有的</b>，你能选择要么重写或不是原有的那个。\"elements editor\"按钮让你选择某种类型的单元并打开相应的空的编辑器。"
+        content: "在每一个单元的那个 \"铅笔\"图标打开那个单元的特别编辑器（音频，图像或视频）。如果包含 \"铅笔\"的单元是<b>公共的</b>，那么这个编辑器将迫使你作为一个新单元保存你的工作（你不能修改公共单元），反之，如果那个单元是<b>私有的</b>，你能选择要么重写或不是原有的那个。\"单元编辑\"按钮让你选择某种类型的单元并打开相应的空的编辑器。"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title:  "单元预览"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "那个 \"eye\"图标打开预览单元。在预览<b>私有的</b>单元时，你能发现包含有三条小的线段的按钮：点击它，你能打开用于修改单元的一般信息格式（标题，描述，和标签）。"
+        content: "那个 \"眼睛\"图标打开预览单元。在预览<b>私有的</b>单元时，你能发现包含有三条小的线段的按钮：点击它，你能打开用于修改单元的一般信息格式（标题，描述，和标签）。"
     search:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "搜索引擎"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "%{desy}的搜索引擎可用于课程和单元；引擎是基于标签。<br/>通过使用\"plus\"图标任意被发现的课程或单元可增加到你相应个人文件夹中。"
+        content: "%{desy}的搜索引擎可用于课程和单元；引擎是基于标签。<br/>通过使用\"加号\"图标任意被发现的课程或单元可增加到你相应个人文件夹中。"
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "推荐一个好的搜索"
@@ -1016,18 +1016,18 @@ cn:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "个人资料，邮件列表"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "这部分\"subjects\"包括你的科目列表：任何时候你能更新这个列表。记得%{desy}检查你在主页中选择发现被建议课程的科目。那部分\"mailing list\"包含一组Email地址的列表，它用于从虚拟教室发送你的课程链接：点击那个按钮\"add new group\"建立新的邮件列表。"
+        content: "这部分\"科目\"包括你的科目列表：任何时候你能更新这个列表。记得%{desy}检查你在主页中选择发现被建议课程的科目。那部分\"邮件\"包含一组Email地址的列表，它用于从虚拟教室发送你的课程链接：点击那个按钮\"增加新组\"建立新的邮件列表。"
       third:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "统计"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "这部分\"statistics\"包括关于你个人资料和所有的 %{desy}有趣的统计。统计通过目录划分，容易查询。"
+        content: "这部分\"统计\"包括关于你个人资料和所有的 %{desy}有趣的统计。统计通过目录划分，容易查询。"
     virtual_classroom:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "%{desy}的虚拟教室"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "欢迎到你的虚拟教室！这里离可以从个人文件夹中上传课程并且组织它们进入播放列表。按钮\"add lessons\"打开一个窗口快速加载多个课程。"
+        content: "欢迎到你的虚拟教室！这里离可以从个人文件夹中上传课程并且组织它们进入播放列表。按钮\"增加\"打开一个窗口快速加载多个课程。"
       second:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "播放列表"
@@ -1037,7 +1037,7 @@ cn:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "送链接给你的朋友"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "位于每一课程下边的那个\"envelope\"图标打开一个窗口，在那里你能选择e-mail地址列表：点击那个按钮\"send\"发送包含你课程的公共链接的邮件（使用这个链接，你的学生能可视化不用在%{desy}中注册的课程）。"
+        content: "位于每一课程下边的那个\"信箱\"图标打开一个窗口，在那里你能选择e-mail地址列表：点击那个按钮\"发送\"包含你课程的公共链接的邮件（使用这个链接，你的学生能可视化不用在%{desy}中注册课程）。"
   
   
   
