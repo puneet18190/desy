@@ -74,7 +74,7 @@ class SlideTest < ActiveSupport::TestCase
     @slide.lesson_id = 2
     assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
     assert_equal 1, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
-    assert_match /can't be changed/, @slide.errors.messages[:lesson_id].first
+    assert @slide.errors.added? :lesson_id, :cant_be_changed
     @slide.lesson_id = 1
     @slide.position = 2
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"

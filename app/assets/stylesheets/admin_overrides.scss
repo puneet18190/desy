@@ -335,6 +335,10 @@
     i.icon-remove{
       margin: 3px 0 0 5px;
     }
+    a{
+      color:white;
+      font-weight: normal;
+    }
   }
   
   .dashboard table, &.show-action table, table.white{
@@ -345,7 +349,7 @@
     padding-top: 10px;
   }
   
-  &.show-action table thead th a{
+  &.show-action table thead th a, &.tags-action table thead th a{
     display:none;
   }
   

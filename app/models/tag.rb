@@ -58,6 +58,16 @@ class Tag < ActiveRecord::Base
     word.to_s
   end
   
+  def get_lessons
+    ids = Tagging.where(tag_id: self.id, taggable_type: 'Lesson').pluck(:taggable_id)
+    return Lesson.find(ids)
+  end
+  
+  def get_media_elements
+    ids = Tagging.where(tag_id: self.id, taggable_type: 'MediaElement').pluck(:taggable_id)
+    return MediaElement.find(ids)
+  end
+  
   private
   
   def init_validation
