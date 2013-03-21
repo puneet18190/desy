@@ -42,7 +42,7 @@ namespace :db do
   end
 
   desc "Rebuild database and schemas after a structural change, updating schema.rb, regardless of the configuration"
-  task :rebuild => %w( db:drop db:create db:structure:load db:seed db:analyze tmp:clear db:test:prepare )
+  task :rebuild => %w( db:drop db:create db:migrate db:seed db:analyze tmp:clear db:test:prepare db:structure:dump db:schema:dump )
   
   desc "empties all notifications"
   task :empty_notifications => :environment do
