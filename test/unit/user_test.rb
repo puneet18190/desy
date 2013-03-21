@@ -31,7 +31,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal [:email, :name], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
     assert_equal 1, @user.errors.messages[:name].length
     assert @user.errors.messages[:email].empty?
-    assert_match /is too long/, array_to_string(@user.errors.messages[:name])
+    assert @user.errors.added? :name, :too_long
     @user.name = long_string(255)
     assert @user.valid?, "User not valid: #{@user.errors.inspect}"
     @user.surname = long_string(256)
@@ -39,7 +39,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal [:email, :surname], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
     assert_equal 1, @user.errors.messages[:surname].length
     assert @user.errors.messages[:email].empty?
-    assert_match /is too long/, array_to_string(@user.errors.messages[:surname])
+    assert @user.errors.added? :surname, :too_long
     @user.surname = long_string(255)
     assert @user.valid?, "User not valid: #{@user.errors.inspect}"
     @user.school_level_id = 'er'
@@ -47,7 +47,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal [:email, :school_level_id], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
     assert_equal 2, @user.errors.messages[:school_level_id].length
     assert @user.errors.messages[:email].empty?
-    assert_match /is not a number/, array_to_string(@user.errors.messages[:school_level_id])
+    assert @user.errors.added? :school_level_id, :not_a_number
     @user.school_level_id = 1
     assert @user.valid?, "User not valid: #{@user.errors.inspect}"
     @user.location_id = -2
@@ -55,7 +55,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal [:email, :location_id], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
     assert_equal 1, @user.errors.messages[:location_id].length, @user.errors.inspect
     assert @user.errors.messages[:email].empty?
-    assert_match /must be greater than 0/, array_to_string(@user.errors.messages[:location_id])
+    assert @user.errors.added? :location_id, :greater_than
     @user.location_id = 1
     assert @user.valid?, "User not valid: #{@user.errors.inspect}"
     @user.location_id = 2.8
@@ -63,14 +63,14 @@ class UserTest < ActiveSupport::TestCase
     assert_equal [:email, :location_id], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
     assert_equal 1, @user.errors.messages[:location_id].length, @user.errors.inspect
     assert @user.errors.messages[:email].empty?
-    assert_match /must be an integer/, array_to_string(@user.errors.messages[:location_id])
+    assert @user.errors.added? :location_id, :not_an_integer
     @user.location_id = 1
     assert @user.valid?, "User not valid: #{@user.errors.inspect}"
     assert_obj_saved @user
   end
   
   test 'uniqueness' do
-    assert_invalid @user, :email, 'pluto@pippo.it', 'reer@dsigs.nz', /has already been taken/
+    assert_invalid @user, :email, 'pluto@pippo.it', 'reer@dsigs.nz', :taken
     assert_obj_saved @user
   end
   
@@ -84,7 +84,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal [:email, :school_level_id], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
     assert_equal 1, @user.errors.messages[:school_level_id].length
     assert @user.errors.messages[:email].empty?
-    assert_match /can't be blank/, array_to_string(@user.errors.messages[:school_level_id])
+    assert @user.errors.added? :school_level_id, :blank
     @user.school_level_id = 2
     assert @user.valid?, "User not valid: #{@user.errors.inspect}"
     assert_obj_saved @user

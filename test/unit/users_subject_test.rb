@@ -20,7 +20,7 @@ class UsersSubjectTest < ActiveSupport::TestCase
   end
   
   test 'uniqueness' do
-    assert_invalid @users_subject, :subject_id, 1, 4, /has already been taken/
+    assert_invalid @users_subject, :subject_id, 1, 4, :taken
     assert_obj_saved @users_subject
   end
   

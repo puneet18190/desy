@@ -12,4 +12,10 @@ class SchoolLevel < ActiveRecord::Base
     description.to_s
   end
   
+  def is_deletable?
+    flag = true
+    flag = false if User.where(school_level_id: self.id).count > 0
+    return flag
+  end
+  
 end

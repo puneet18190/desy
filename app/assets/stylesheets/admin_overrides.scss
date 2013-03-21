@@ -320,6 +320,23 @@
     }
   }
   
+  i.icon-remove{
+    cursor:pointer;
+    &:hover{
+      opacity: 0.5;
+    }
+  }
+  
+  .label.tags{
+    margin: 0 10px 10px 0;
+    padding: 7px;
+    font-size: 14px;
+    font-weight: normal;
+    i.icon-remove{
+      margin: 3px 0 0 5px;
+    }
+  }
+  
   .dashboard table, &.show-action table, table.white{
     background-color: #ffffff;
   }

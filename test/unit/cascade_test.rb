@@ -118,4 +118,25 @@ class CascadeTest < ActiveSupport::TestCase
     assert Bookmark.where(:id => 1).empty?
   end
   
+  test 'tag_cascade' do
+    x = Tag.new
+    x.word = 'ruby'
+    assert_obj_saved x
+    tagging1 = Tagging.new
+    tagging1.taggable_type = 'MediaElement'
+    tagging1.taggable_id = 1
+    tagging1.tag_id = x.id
+    assert_obj_saved tagging1
+    tagging2 = Tagging.new
+    tagging2.taggable_type = 'Lesson'
+    tagging2.taggable_id = 1
+    tagging2.tag_id = x.id
+    assert_obj_saved tagging2
+    tag_id = x.id
+    tagging_ids = [tagging1.id, tagging2.id]
+    x.destroy
+    assert Tag.find_by_id(tag_id).nil?
+    assert Tagging.where(:id => tagging_ids).empty?
+  end
+  
 end
