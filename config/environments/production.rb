@@ -33,7 +33,7 @@ Desy::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags
   # config.log_tags = [ :subdomain, :uuid ]
@@ -67,7 +67,7 @@ Desy::Application.configure do
   config.action_mailer.smtp_settings = SETTINGS['application']['smtp']
 
   # Enable threaded mode
-  # config.threadsafe!
+  config.allow_concurrency = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)

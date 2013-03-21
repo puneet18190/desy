@@ -1,3 +1,6 @@
+require 'filename_token'
+require 'lessons_media_elements_shared'
+
 class MediaElement < ActiveRecord::Base
   include FilenameToken
   extend LessonsMediaElementsShared
