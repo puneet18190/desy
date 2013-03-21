@@ -1,4 +1,4 @@
-<div class="mediaElementInfoPopUp" id="dialog-media-element-<%= media_element.id %>" data-loaded="<%= !locked %>" style="display:none">
+<div class="mediaElementInfoPopUp" id="dialog-media-element-<%= media_element.id %>" style="display:none">
   
   <% if !locked %>
     
@@ -45,7 +45,7 @@
         <% end %>
         
         <div <%= media_element.audio? ? "style=\"max-width:800px;\"".html_safe : "class=\"fltlft\" style=\"max-width:210px;\"".html_safe %>>
-          <h2><%= media_element.sti_type %></h2>
+          <h2><%= media_element.sti_type_to_s %></h2>
           <h3><%= media_element.title %></h3>
           <p><%= media_element.description %></p>
         </div>

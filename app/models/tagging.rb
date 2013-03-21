@@ -1,6 +1,6 @@
 class Tagging < ActiveRecord::Base
   
-  attr_writer :destroyable
+  attr_writer :not_orphans
   
   belongs_to :tag
   belongs_to :taggable, :polymorphic => true
@@ -12,7 +12,6 @@ class Tagging < ActiveRecord::Base
   validate :validate_associations, :validate_impossible_changes
   
   before_validation :init_validation
-  before_destroy :stop_destruction_if_last
   after_destroy :destroy_orphan_tags
   
   def self.visive_tags(tags)
@@ -22,15 +21,9 @@ class Tagging < ActiveRecord::Base
   private
   
   def destroy_orphan_tags
-    tag.destroy unless tag.taggings.exists?
+    return true if @not_orphans
+    tag.destroy if !tag.taggings.exists?
     true
-  end
-  
-  def stop_destruction_if_last
-    return true if @destroyable
-    @tagging = Valid.get_association self, :id
-    return true if @tagging.nil?
-    @tagging.taggable.taggings.count > SETTINGS['min_tags_for_item']
   end
   
   def good_taggable_type
@@ -44,16 +37,16 @@ class Tagging < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:tag_id] << "doesn't exist" if !Tag.exists?(self.tag_id)
-    errors[:taggable_id] << "lesson doesn't exist" if self.taggable_type == 'Lesson' && @lesson.nil?
-    errors[:taggable_id] << "media element doesn't exist" if self.taggable_type == 'MediaElement' && @media_element.nil?
+    errors.add(:tag_id, :doesnt_exist) if !Tag.exists?(self.tag_id)
+    errors.add(:taggable_id, :lesson_doesnt_exist) if self.taggable_type == 'Lesson' && @lesson.nil?
+    errors.add(:taggable_id, :media_element_doesnt_exist) if self.taggable_type == 'MediaElement' && @media_element.nil?
   end
   
   def validate_impossible_changes
     if @tagging
-      errors[:tag_id] << "can't be changed" if self.tag_id != @tagging.tag_id
-      errors[:taggable_id] << "can't be changed" if self.taggable_id != @tagging.taggable_id
-      errors[:taggable_type] << "can't be changed" if self.taggable_type != @tagging.taggable_type
+      errors.add(:tag_id, :cant_be_changed) if self.tag_id != @tagging.tag_id
+      errors.add(:taggable_id, :cant_be_changed) if self.taggable_id != @tagging.taggable_id
+      errors.add(:taggable_type, :cant_be_changed) if self.taggable_type != @tagging.taggable_type
     end
   end
   

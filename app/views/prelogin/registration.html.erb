@@ -1,34 +1,56 @@
 <div class="header">
   <div class="headerMenu">
-  <ul>
-    <li><%= link_to t('prelogin.main_page.menu_link'), root_path %></li>
-    <li><%= link_to t('prelogin.what_is_desy.menu_link', :desy => SETTINGS['application_name']), what_is_desy_path %></li>
-    <li><%= link_to t('prelogin.sign_up.menu_link'), sign_up_path, :class => 'current' %></li>
-    <li><a href="mailto:<%= SETTINGS['application']['maintainer']['emails'][0] %>"><%= t('prelogin.contact_us.menu_link') %></a></li>
-  </ul>
-  <%= render :partial => "/prelogin/logo" %>
+    <ul>
+      <li><%= link_to t('prelogin.main_page.menu_link'), root_path %></li>
+      <li><%= link_to t('prelogin.what_is_desy.menu_link', :desy => SETTINGS['application_name']), what_is_desy_path %></li>
+      <li><%= link_to t('prelogin.sign_up.menu_link'), sign_up_path, :class => 'current' %></li>
+      <li><a href="mailto:<%= SETTINGS['application']['maintainer']['emails'][0] %>"><%= t('prelogin.contact_us.menu_link') %></a></li>
+    </ul>
+    <div class="logoDesyPrelogin fltrt">
+    <%= image_tag "logo_prelogin_small.png" %>
+    <p style="color:white" class="upper"><%= SETTINGS['application_extended_name'] %></p>
+    </div> 
   </div>
 </div>
 
 <br class="clearfloat">
 <div class="containerText">
   <h1><%= t('registration.title') %></h1>
-  <h2><%= t('registration.subtitle') %></h2>
-  <h3><%= t('registration.subsubtitle', :desy => SETTINGS['application_name']) %></h3>
+  <h2><%= t('registration.subtitle', :desy => SETTINGS['application_name']) %></h2>
   <p><%= t('registration.description', :desy => SETTINGS['application_name']) %></p>
 </div>
 
 
 <%= form_for @user do |f| %>
-  <%= render partial: 'users/personal_info', :locals => { :f => f } %>
+  <%
+    locals_for_general_info = {
+      :f => f,
+      :edit => false,
+      :user => @user,
+      :general_errors => (@errors.nil? ? [] : @errors[:general]),
+      :location_errors => (@errors.nil? ? [] : @errors[:location]),
+      :locations => @locations,
+      :user_location => @user_location,
+      :school_level_ids => @school_level_ids
+    }
+    locals_for_personal_subjects = {
+      :f => f,
+      :user => @user,
+      :errors => (@errors.nil? ? [] : @errors[:subjects]),
+      :subjects => @subjects
+    }
+  %>
+  <%= render partial: 'users/personal_info', :locals => locals_for_general_info %>
   <h2><%= t('registration.subjects.title') %></h2>
-  <%= render partial: 'users/personal_subjects', :locals => { :f => f } %>
-
+  <%= render partial: 'users/personal_subjects', :locals => locals_for_personal_subjects %>
   <div class="contentForm">
-    <% @user.registration_policies.each do |policy| %>
+    <% @user.registration_policies.each_with_index do |policy, index| %>
       <p>
-        <strong><%= t("registration.#{policy}.title") %></strong><br><br>
-        <%= t("registration.#{policy}.description") %>
+        <%
+          my_policy = t('registration.policies')[index]
+        %>
+        <strong><%= my_policy['title'] %></strong><br><br>
+        <%= my_policy['description'] %>
       </p>
       <div class="checkbox-content">
         <div class="checkboxElement">
@@ -37,38 +59,41 @@
               <td>
                 <% if @user.errors.include?(policy) %>
                   <div class="field_with_errors">
-                <% end %>
-
-                <%= f.hidden_field policy, value: '0', id: nil %>
-                <%= check_box_tag "user[#{policy}]", '1', @user.send(policy) == '1', class: 'regular-checkbox' %>
-                <%= label_tag "user[#{policy}]", '' %>
-
-                <% if @user.errors.include?(policy) %>
+                    <%= f.hidden_field policy, value: '0', id: nil %>
+                    <%= check_box_tag "user[#{policy}]", '1', @user.send(policy) == '1', class: 'regular-checkbox' %>
+                    <%= label_tag "user[#{policy}]", '' %>
                   </div>
+                <% else %>
+                  <%= f.hidden_field policy, value: '0', id: nil %>
+                  <%= check_box_tag "user[#{policy}]", '1', @user.send(policy) == '1', class: 'regular-checkbox' %>
+                  <%= label_tag "user[#{policy}]", '' %>
                 <% end %>
               </td>
-              <td><%= t("registration.#{policy}.accept") %></td>
+              <td><%= my_policy['accept'] %></td>
             </tr>
           </table>
         </div>
-        
       </div>
-
       <br class="clearfloat">
     <% end %>
     
-    <%# ERRORI %>
-    <% errors = @user.errors.select{ |k,_| @user.registration_policies.include? k } %>
-
     <ul class="listaErrori">
-    <% errors.each do |k, v| %>
-      <li><%= @user.errors.full_message(k, v) %></li>
-    <% end if errors.present? %>
+      <% (@errors.nil? ? [] : @errors[:policies]).each do |err| %>
+        <li><%= err %></li>
+      <% end %>
     </ul>
-
+    
     <%= f.submit t('registration.done') %>
   </div>
-
+  
 <% end %>
 
-
+  <br class="clearfloat">
+  <div class="footer">
+    <div class="fltlft" >
+      <img src="<%= asset_path 'partner_logo.jpg' %>">
+    </div>
+    <div class="fltrt" style="padding-top:20px">
+      <%= SETTINGS['application_copyright'] %>
+    </div>
+  </div>

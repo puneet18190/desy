@@ -1,12 +1,16 @@
+
 <div class="header">
   <div class="headerMenu">
-  <ul>
-    <li><%= link_to t('prelogin.main_page.menu_link'), root_path %></li>
-    <li><%= link_to t('prelogin.what_is_desy.menu_link', :desy => SETTINGS['application_name']), what_is_desy_path, :class => 'current' %></li>
-    <li><%= link_to t('prelogin.sign_up.menu_link'), sign_up_path %></li>
-    <li><a href="mailto:<%= SETTINGS['application']['maintainer']['emails'][0] %>"><%= t('prelogin.contact_us.menu_link') %></a></li>
-  </ul>
-  <%= render :partial => "/prelogin/logo" %>
+    <ul>
+      <li><%= link_to t('prelogin.main_page.menu_link'), root_path %></li>
+      <li><%= link_to t('prelogin.what_is_desy.menu_link', :desy => SETTINGS['application_name']), what_is_desy_path, :class => 'current' %></li>
+      <li><%= link_to t('prelogin.sign_up.menu_link'), sign_up_path %></li>
+      <li><a href="mailto:<%= SETTINGS['application']['maintainer']['emails'][0] %>"><%= t('prelogin.contact_us.menu_link') %></a></li>
+    </ul>
+    <div class="logoDesyPrelogin fltrt">
+      <%= image_tag "logo_desy_gray.png" %>
+      <p class="upper"><%= SETTINGS['application_extended_name'] %></p>
+    </div> 
   </div>
 </div>
 
@@ -19,8 +23,17 @@
 </div>
 
 <div class="colDx">
-  <div class="contentSnapshotVideo"></div>
-  <%= t('prelogin.what_is_desy.right_column.caption1', :desy => SETTINGS['application_name']).html_safe %>
-  <%= t('prelogin.what_is_desy.right_column.caption2', :desy => SETTINGS['application_name']).html_safe %>
-  <%= t('prelogin.what_is_desy.right_column.caption3', :desy => SETTINGS['application_name']).html_safe %>
+  <p style="margin-bottom:150px;"><%= t('prelogin.what_is_desy.right_column.caption3', :desy => SETTINGS['application_name']).html_safe %></p>
+  <p style="margin-bottom:125px;"><%= t('prelogin.what_is_desy.right_column.caption2', :desy => SETTINGS['application_name']).html_safe %></p>
+  <p style="margin-bottom:80px;"><%= t('prelogin.what_is_desy.right_column.caption1', :desy => SETTINGS['application_name']).html_safe %></p>
+</div>
+
+<br class="clearfloat">
+<div class="footer">
+ <div class="fltlft" >
+      <img src="<%= asset_path 'partner_logo.jpg' %>">
+    </div>
+    <div class="fltrt" style="padding-top:20px">
+      <%= SETTINGS['application_copyright'] %>
+    </div>
 </div>

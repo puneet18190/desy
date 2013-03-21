@@ -1,7 +1,7 @@
 class MediaElement < ActiveRecord::Base
-
   include FilenameToken
-
+  extend LessonsMediaElementsShared
+  
   self.inheritance_column = :sti_type
   
   # Questa deve stare prima delle require dei submodels, perché
@@ -12,20 +12,18 @@ class MediaElement < ActiveRecord::Base
   IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE = %W(Image Audio Video)
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
   DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
-
-  statuses = ::STATUSES.media_elements.marshal_dump.keys
-  STATUSES = Struct.new(*statuses).new(*statuses)
-
+  
   serialize :metadata, OpenStruct
   
   attr_accessible :title, :description, :media, :publication_date, :tags
-  attr_reader :status, :is_reportable, :info_changeable
+  attr_reader :is_reportable, :info_changeable
+  attr_writer :validating_in_form
   attr_accessor :skip_public_validations, :destroyable_even_if_public
-
+  
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
   has_many :reports, :as => :reportable, :dependent => :destroy
-  has_many :taggings, :as => :taggable
+  has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :taggings_tags, through: :taggings, source: :tag
   belongs_to :user
   
@@ -39,12 +37,11 @@ class MediaElement < ActiveRecord::Base
   validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_tags_length
   
   before_validation :init_validation
-  before_destroy :stop_if_public, :destroy_taggings
-
+  before_destroy :stop_if_public
+  
   # SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id AND bookmarks.bookmarkable_type = 'MediaElement' AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY COALESCE(bookmarks.created_at, media_elements.updated_at) DESC
   scope :of, ->(user_or_user_id) do
     user_id = user_or_user_id.instance_of?(User) ? user_or_user_id.id : user_or_user_id
-
     joins(sanitize_sql ["LEFT JOIN bookmarks ON 
                          bookmarks.bookmarkable_id = media_elements.id AND
                          bookmarks.bookmarkable_type = 'MediaElement' AND
@@ -104,6 +101,10 @@ class MediaElement < ActiveRecord::Base
     
   end
   
+  def sti_type_to_s
+    I18n.t("sti_types.#{self.sti_type.downcase}")
+  end
+  
   def disable_lessons_containing_me
     manage_lessons_containing_me(false)
   end
@@ -143,18 +144,22 @@ class MediaElement < ActiveRecord::Base
     @tags
   end
   
+  def status(with_captions=false)
+    @status.nil? ? nil : (with_captions ? MediaElement.status(@status) : @status)
+  end
+  
   def set_status(an_user_id)
     return if self.new_record?
     if !self.is_public && an_user_id == self.user_id
-      @status = STATUSES.private
+      @status = Statuses::PRIVATE
       @is_reportable = false
       @info_changeable = true
     elsif self.is_public && !self.bookmarked?(an_user_id)
-      @status = STATUSES.public
+      @status = Statuses::PUBLIC
       @is_reportable = true
       @info_changeable = false
     elsif self.is_public && self.bookmarked?(an_user_id)
-      @status = STATUSES.linked
+      @status = Statuses::LINKED
       @is_reportable = true
       @info_changeable = false
     else
@@ -166,11 +171,11 @@ class MediaElement < ActiveRecord::Base
   
   def buttons
     return [] if [@status, @is_reportable, @info_changeable].include?(nil)
-    if @status == STATUSES.private
+    if @status == Statuses::PRIVATE
       return [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
-    elsif @status == STATUSES.public
+    elsif @status == Statuses::PUBLIC
        return [Buttons::PREVIEW, Buttons::ADD]
-    elsif @status == STATUSES.linked
+    elsif @status == Statuses::LINKED
        return [Buttons::PREVIEW, Buttons::EDIT, Buttons::REMOVE]
     else
       return []
@@ -209,7 +214,7 @@ class MediaElement < ActiveRecord::Base
   private
   
   def validate_tags_length
-    errors[:tags] << "are not enough" if @inner_tags.length < SETTINGS['min_tags_for_item']
+    errors.add(:tags, :are_not_enough) if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
   end
   
   def update_or_create_tags
@@ -256,30 +261,30 @@ class MediaElement < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if @user.nil?
+    errors.add(:user_id, :doesnt_exist) if @user.nil?
   end
   
   def validate_publication_date
     if self.is_public
-      errors[:publication_date] << "is not a date" if self.publication_date.blank? || !self.publication_date.kind_of?(Time)
+      errors.add(:publication_date, :is_not_a_date) if self.publication_date.blank? || !self.publication_date.kind_of?(Time)
     else
-      errors[:publication_date] << "must be blank if private" if !self.publication_date.blank?
+      errors.add(:publication_date, :must_be_blank_if_private) if !self.publication_date.blank?
     end
   end
   
   def validate_impossible_changes
     if @media_element.nil?
-      errors[:is_public] << "must be false if new record" if self.is_public && !self.skip_public_validations
+      errors.add(:is_public, :must_be_false_if_new_record) if self.is_public && !self.skip_public_validations
     else
-      errors[:sti_type] << "is not changeable" if @media_element.sti_type != self.sti_type
+      errors.add(:sti_type, :cant_be_changed) if @media_element.sti_type != self.sti_type
       if @media_element.is_public && !self.skip_public_validations
-        errors[:media] << "is not changeable for a public record" if self.changed.include? 'media'
-        errors[:title] << "is not changeable for a public record" if @media_element.title != self.title
-        errors[:description] << "is not changeable for a public record" if @media_element.description != self.description
-        errors[:is_public] << "is not changeable for a public record" if !self.is_public
-        errors[:publication_date] << "is not changeable for a public record" if @media_element.publication_date != self.publication_date
+        errors.add(:media, :cant_be_changed_if_public) if self.changed.include? 'media'
+        errors.add(:title, :cant_be_changed_if_public) if @media_element.title != self.title
+        errors.add(:description, :cant_be_changed_if_public) if @media_element.description != self.description
+        errors.add(:is_public, :cant_be_changed_if_public) if !self.is_public
+        errors.add(:publication_date, :cant_be_changed_if_public) if @media_element.publication_date != self.publication_date
       else
-        errors[:user_id] << "can't be changed" if @media_element.user_id != self.user_id
+        errors.add(:user_id, :cant_be_changed) if @media_element.user_id != self.user_id
       end
     end
   end
@@ -305,14 +310,6 @@ class MediaElement < ActiveRecord::Base
       end
       l.save!
     end
-  end
-  
-  def destroy_taggings
-    Tagging.where(:taggable_type => 'MediaElement', :taggable_id => self.id).each do |tagging|
-      tagging.destroyable = true
-      tagging.destroy
-    end
-    true
   end
   
 end

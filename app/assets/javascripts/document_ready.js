@@ -476,10 +476,6 @@ $(document).ready(function() {
   
   // MEDIA ELEMENT BUTTONS
   
-  $('body').on('click','._boxViewExpandedMediaElementWrapper img', function(){
-    $(this).parents('._boxViewExpandedMediaElementWrapper').find('.preview').trigger('click');
-  })
-  
   $('body').on('click', '._Video_button_add, ._Audio_button_add, ._Image_button_add', function(e) {
     if(!$(this).parent().hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
@@ -501,16 +497,8 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._Video_button_preview, ._Audio_button_preview, ._Image_button_preview', function(e) {
-    if(!$(this).parent().hasClass('_disabled')) {
+    if(!$(this).parents('._media_element_item').hasClass('_disabled')) {
       var my_param = $(this).data('clickparam');
-      showMediaElementInfoPopUp(my_param);
-    }
-  });
-  
-  $('body').on('click', '._expanded_media_element_internal_container img, ._expanded_media_element_internal_container .bulletPointVideo', function() {
-    var me = $(this).parents('._expanded_media_element_internal_container');
-    if(!me.parent().hasClass('_disabled')) {
-      var my_param = me.parent().find('a._Video_button_preview, a._Audio_button_preview, a._Image_button_preview').data('clickparam');
       showMediaElementInfoPopUp(my_param);
     }
   });
@@ -953,15 +941,11 @@ $(document).ready(function() {
   
   // LOAD NEW ELEMENT
   
-  $('._load_media_element').click(function(e) {
+  $('body').on('click', '._load_media_element', function(e) {
     e.preventDefault();
     showLoadMediaElementPopUp();
     initFileUploads();
   });
-  
-  //$('body').on('click', '.uploadFileButton', function() {
-  //  $('._msie_file_uploader').trigger('click');
-  //});
   
   $('body').on('change', 'input#new_media_element', function() {
     var file_name = $(this).val().replace("C:\\fakepath\\", "");
@@ -1924,10 +1908,6 @@ $(document).ready(function() {
       });
     }
     var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(identifier);
-    // fix per aggiornare all'interno del secondo in cui ho fatto pausa -- questo fix è stato messo qui invece che nella funzione
-    // calculateVideoComponentStartSecondInVideoEditor perché in tutti gli altri casi di pausa si ripristina il secondo intero precedente
-    actual_audio_track_time -= $('#video_component_' + identifier + '_cutter ._media_player_slider').slider('value');
-    actual_audio_track_time += $('#video_component_' + identifier + '_preview video')[0].currentTime;
     if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
       var audio_track = $('#video_editor_preview_container audio');
       setCurrentTimeToMedia(audio_track, actual_audio_track_time);
@@ -1954,6 +1934,7 @@ $(document).ready(function() {
     if(videoEditorWithAudioTrack()) {
       $('#video_editor_preview_container audio')[0].pause();
     }
+    setCurrentTimeToMedia($('#' + preview_id + ' video'), $('#' + cutter_id + ' ._media_player_slider').slider('value'));
   });
   
   $('body').on('click', '._media_player_rewind_in_video_editor_preview', function() {
@@ -2012,6 +1993,7 @@ $(document).ready(function() {
     component.find('._media_player_play_in_audio_editor_preview').show();
     selectAudioEditorCursor(identifier);
     component.find('audio')[0].pause();
+    setCurrentTimeToMedia(component.find('audio'), component.find('._media_player_slider').slider('value'));
   });
   
   $('body').on('click', '._media_player_rewind_in_audio_editor_preview', function() {

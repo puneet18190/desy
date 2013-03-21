@@ -76,19 +76,19 @@ ActiveRecord::Schema.define(:version => 20130131094635) do
   end
 
   create_table "lessons", :force => true do |t|
-    t.integer  "user_id",                                              :null => false
-    t.integer  "school_level_id",                                      :null => false
-    t.integer  "subject_id",                                           :null => false
-    t.string   "title",                                                :null => false
-    t.text     "description",                                          :null => false
-    t.boolean  "is_public",                         :default => false, :null => false
+    t.integer  "user_id",                                :null => false
+    t.integer  "school_level_id",                        :null => false
+    t.integer  "subject_id",                             :null => false
+    t.string   "title",                                  :null => false
+    t.text     "description",                            :null => false
+    t.boolean  "is_public",           :default => false, :null => false
     t.integer  "parent_id"
-    t.boolean  "copied_not_modified",                                  :null => false
-    t.string   "token",               :limit => 20
+    t.boolean  "copied_not_modified",                    :null => false
+    t.string   "token",                                  :null => false
     t.text     "metadata"
-    t.boolean  "notified",                          :default => true,  :null => false
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
+    t.boolean  "notified",            :default => true,  :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.index ["parent_id"], :name => "fk__lessons_parent_id", :order => {"parent_id" => :asc}
     t.index ["school_level_id"], :name => "fk__lessons_school_level_id", :order => {"school_level_id" => :asc}
     t.index ["subject_id"], :name => "fk__lessons_subject_id", :order => {"subject_id" => :asc}

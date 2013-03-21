@@ -10,7 +10,7 @@ class CreateLessons < ActiveRecord::Migration
       t.boolean :is_public,           :null => false, :default => false
       t.integer :parent_id,           :on_delete => :set_null
       t.boolean :copied_not_modified, :null => false
-      t.string  :token,               :limit => 20
+      t.string  :token,               :null => false
       t.text    :metadata
       t.boolean :notified,            :null => false, :default => true
       t.timestamps

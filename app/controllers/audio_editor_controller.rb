@@ -60,6 +60,7 @@ class AudioEditorController < ApplicationController
       r.tags        = params[:new_tags_value]
       r.user_id     = current_user.id
       r.composing   = true
+      r.validating_in_form = true
     end
     if record.save
       parameters[:initial_audio] = {:id => record.id}
@@ -86,6 +87,7 @@ class AudioEditorController < ApplicationController
     record.title = params[:update_title]
     record.description = params[:update_description]
     record.tags = params[:update_tags_value]
+    record.validating_in_form = true
     if record.valid?
       parameters[:initial_audio] = {
         :id => parameters[:initial_audio],

@@ -1,4 +1,6 @@
 <% if locations.any? %>
-  <option value="0">Select a <%= locations.first.sti_type.downcase %></option><!-- traduzzione -->
+  <% if !edit %>
+    <option value="0"><%= t('locations.placeholder', :location => locations.first.label) %></option>
+  <% end %>
   <%= options_from_collection_for_select(locations, 'id', 'name', selected.to_i) %>
 <% end %>

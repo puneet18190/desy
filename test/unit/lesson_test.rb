@@ -20,17 +20,30 @@ class LessonTest < ActiveSupport::TestCase
     end
   end
   
+  test 'token_creation' do
+    assert_nil @lesson.token
+    assert @lesson.save
+    assert_not_nil @lesson.token
+    assert @lesson.token.length > 16
+    old_token = @lesson.token
+    @lesson.title = 'bah'
+    assert @lesson.save
+    @lesson = Lesson.find @lesson.id
+    assert_equal old_token, @lesson.token
+  end
+  
   test 'tags' do
+    @lesson.validating_in_form = true
     @lesson.tags = 'gatto, gatto, gatto  ,   , cane, topo'
     assert !@lesson.save, "Lesson erroneously saved - #{@lesson.inspect} -- #{@lesson.tags.inspect}"
     assert_equal 1, @lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@lesson.errors.inspect}"
     assert_equal 1, @lesson.errors.messages[:tags].length
-    assert_match /are not enough/, @lesson.errors.messages[:tags].first
+    assert @lesson.errors.added? :tags, :are_not_enough
     @lesson.tags = 'gatto, gatto  ,   , cane, topo'
     assert !@lesson.save, "Lesson erroneously saved - #{@lesson.inspect} -- #{@lesson.tags.inspect}"
     assert_equal 1, @lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@lesson.errors.inspect}"
     assert_equal 1, @lesson.errors.messages[:tags].length
-    assert_match /are not enough/, @lesson.errors.messages[:tags].first
+    assert @lesson.errors.added? :tags, :are_not_enough
     assert_equal 7, Tag.count
     @lesson.tags = '  gatto, oRnitOrinco,   , cane, panda  '
     assert_obj_saved @lesson
@@ -47,7 +60,7 @@ class LessonTest < ActiveSupport::TestCase
     assert !@lesson.save, "Lesson erroneously saved - #{@lesson.inspect} -- #{@lesson.tags.inspect}"
     assert_equal 1, @lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@lesson.errors.inspect}"
     assert_equal 1, @lesson.errors.messages[:tags].length
-    assert_match /are not enough/, @lesson.errors.messages[:tags].first
+    assert @lesson.errors.added? :tags, :are_not_enough
     @lesson.reload
     assert_tags @lesson, ['gattaccio', 'cane', 'panda', 'ornitorinco']
     @lesson = Lesson.find @lesson.id
@@ -61,10 +74,8 @@ class LessonTest < ActiveSupport::TestCase
     @lesson = Lesson.new
     assert_equal false, @lesson.is_public
     @lesson.is_public = nil
-    @lesson.token = 'prova'
+    @lesson.notified = nil
     assert_error_size 14, @lesson
-    assert @lesson.token != 'prova'
-    assert_equal 20, @lesson.token.length
   end
   
   test 'attr_accessible' do
@@ -76,29 +87,29 @@ class LessonTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @lesson, :user_id, 'er', 1, /is not a number/
-    assert_invalid @lesson, :school_level_id, 0, 2, /must be greater than 0/
-    assert_invalid @lesson, :subject_id, 0.6, 1, /must be an integer/
-    assert_invalid @lesson, :parent_id, 'oip', nil, /is not a number/
-    assert_invalid @lesson, :parent_id, -6, nil, /must be greater than 0/
-    assert_invalid @lesson, :parent_id, 5.5, nil, /must be an integer/
-    assert_invalid @lesson, :is_public, nil, false, /is not included in the list/
-    assert_invalid @lesson, :copied_not_modified, nil, false, /is not included in the list/
-    assert_invalid @lesson, :title, long_string(36), long_string(35), /is too long/
-    assert_invalid @lesson, :description, long_string(281), long_string(280), /is too long/
-    assert_invalid @lesson, :notified, nil, false, /is not included in the list/
+    assert_invalid @lesson, :user_id, 'er', 1, :not_a_number
+    assert_invalid @lesson, :school_level_id, 0, 2, :greater_than
+    assert_invalid @lesson, :subject_id, 0.6, 1, :not_an_integer
+    assert_invalid @lesson, :parent_id, 'oip', nil, :not_a_number
+    assert_invalid @lesson, :parent_id, -6, nil, :greater_than
+    assert_invalid @lesson, :parent_id, 5.5, nil, :not_an_integer
+    assert_invalid @lesson, :is_public, nil, false, :inclusion
+    assert_invalid @lesson, :copied_not_modified, nil, false, :inclusion
+    assert_invalid @lesson, :title, long_string(36), long_string(35), :too_long
+    assert_invalid @lesson, :description, long_string(281), long_string(280), :too_long
+    assert_invalid @lesson, :notified, nil, false, :inclusion
     assert_obj_saved @lesson
   end
   
   test 'parent_id' do
-    assert_invalid @lesson, :parent_id, 1000, 1, /doesn't exist/
+    assert_invalid @lesson, :parent_id, 1000, 1, :doesnt_exist
     assert_obj_saved @lesson
-    assert_invalid @lesson, :parent_id, @lesson.id, 1, /can't be the lesson itself/
+    assert_invalid @lesson, :parent_id, @lesson.id, 1, :cant_be_the_lesson_itself
     @lesson2 = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
     @lesson2.copied_not_modified = false
     @lesson2.user_id = 1
     @lesson2.tags = 'ehilà, ohilà, ehi, ciao'
-    assert_invalid @lesson2, :parent_id, 1, @lesson.id, /has already been taken/
+    assert_invalid @lesson2, :parent_id, 1, @lesson.id, :taken
     assert_obj_saved @lesson2
   end
   
@@ -122,40 +133,31 @@ class LessonTest < ActiveSupport::TestCase
   end
   
   test 'associations' do
-    assert_invalid @lesson, :user_id, 1000, 1, /doesn't exist/
-    assert_invalid @lesson, :school_level_id, 1000, 2, /doesn't exist/
-    assert_invalid @lesson, :subject_id, 1000, 1, /doesn't exist/
+    assert_invalid @lesson, :user_id, 1000, 1, :doesnt_exist
+    assert_invalid @lesson, :school_level_id, 1000, 2, :doesnt_exist
+    assert_invalid @lesson, :subject_id, 1000, 1, :doesnt_exist
     assert_obj_saved @lesson
   end
   
   test 'booleans' do
-    assert_invalid @lesson, :is_public, true, false, /can't be true for new records/
+    assert_invalid @lesson, :is_public, true, false, :cant_be_true_for_new_records
     assert_obj_saved @lesson
     @lesson.is_public = true
     assert @lesson.valid?
-    assert_invalid @lesson, :copied_not_modified, true, false, /can't be true if public/
-    assert_obj_saved @lesson
-  end
-  
-  test 'token_length' do
-    assert_obj_saved @lesson
-    old_token = @lesson.token
-    assert_invalid @lesson, :token, long_string(21), old_token, /is the wrong length/
-    assert_invalid @lesson, :token, long_string(19), old_token, /is the wrong length/
+    assert_invalid @lesson, :copied_not_modified, true, false, :cant_be_true_if_public
     assert_obj_saved @lesson
   end
   
   test 'impossible_changes' do
     @lesson.parent_id = 1
     assert_obj_saved @lesson
-    assert_invalid @lesson, :user_id, 2, 1, /can't be changed/
+    assert_invalid @lesson, :user_id, 2, 1, :cant_be_changed
     old_token = @lesson.token
     last_char = old_token.split(old_token.chop)[1]
-    different_token = last_char == 'a' ? "#{old_token.chop}b" : "#{old_token.chop}b"
-    assert_equal 20, different_token.length
+    different_token = last_char == 'a' ? "#{old_token.chop}b" : "#{old_token.chop}a"
     assert different_token != old_token
-    assert_invalid @lesson, :token, different_token, old_token, /can't be changed/
-    assert_invalid @lesson, :parent_id, 2, 1, /can't be changed/
+    assert_invalid @lesson, :token, different_token, old_token, :cant_be_changed
+    assert_invalid @lesson, :parent_id, 2, 1, :cant_be_changed
     assert_obj_saved @lesson
   end
   

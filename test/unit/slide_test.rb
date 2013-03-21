@@ -24,17 +24,17 @@ class SlideTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @slide, :position, 'ret', 2, /is not a number/
-    assert_invalid @slide, :position, -9, 2, /must be greater than 0/
-    assert_invalid @slide, :lesson_id, 1.1, 1, /must be an integer/
+    assert_invalid @slide, :position, 'ret', 2, :not_a_number
+    assert_invalid @slide, :position, -9, 2, :greater_than
+    assert_invalid @slide, :lesson_id, 1.1, 1, :not_an_integer
     @slide.kind = 'audio3'
     assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
     assert_equal 3, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
     assert_equal 1, @slide.errors.messages[:kind].length
-    assert_match /is not included in the list/, @slide.errors.messages[:kind].first
+    assert @slide.errors.added? :kind, :inclusion
     @slide.kind = 'video1'
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
-    assert_invalid @slide, :title, long_string(36), long_string(35), /is too long/
+    assert_invalid @slide, :title, long_string(36), long_string(35), :too_long
     @slide.title = nil
     assert_obj_saved @slide
   end
@@ -46,14 +46,14 @@ class SlideTest < ActiveSupport::TestCase
   
   test 'uniqueness' do
     @slide.lesson_id = 2
-    assert_invalid @slide, :position, 2, 4, /has already been taken/
+    assert_invalid @slide, :position, 2, 4, :taken
     # I rewrite manually assert_invalid
     @slide.kind = 'cover'
     old_text = @slide.text
     @slide.text = nil
     assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
     assert_equal 2, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
-    assert_match /has already been taken/, @slide.errors.messages[:kind].first
+    assert @slide.errors.added? :kind, :taken
     @slide.kind = 'video1'
     @slide.text = old_text
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
@@ -63,7 +63,7 @@ class SlideTest < ActiveSupport::TestCase
   end
   
   test 'associations' do
-    assert_invalid @slide, :lesson_id, 1000, 1, /doesn't exist/
+    assert_invalid @slide, :lesson_id, 1000, 1, :doesnt_exist
     assert_obj_saved @slide
   end
   
@@ -74,21 +74,21 @@ class SlideTest < ActiveSupport::TestCase
     @slide.lesson_id = 2
     assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
     assert_equal 1, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
-    assert_match /can't be changed/, @slide.errors.messages[:lesson_id].first
+    assert @slide.errors.added? :lesson_id, :cant_be_changed
     @slide.lesson_id = 1
     @slide.position = 2
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
     # until here
-    assert_invalid @slide, :kind, 'audio', 'video1', /can't be changed/
+    assert_invalid @slide, :kind, 'audio', 'video1', :cant_be_changed
     assert_obj_saved @slide
   end
   
   test 'cover' do
-    assert_invalid @slide, :position, 1, 2, /if not cover can't be the first slide/
+    assert_invalid @slide, :position, 1, 2, :if_not_cover_cant_be_first_slide
     assert_obj_saved @slide
     @slide = Slide.find 1
     assert_equal 'cover', @slide.kind
-    assert_invalid @slide, :position, 3, 1, /cover must be the first slide/
+    assert_invalid @slide, :position, 3, 1, :cover_must_be_first_slide
     assert_obj_saved @slide
   end
   
@@ -109,8 +109,8 @@ class SlideTest < ActiveSupport::TestCase
     assert_equal 2, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
     assert_equal 1, @slide.errors.messages[:title].length
     assert_equal 1, @slide.errors.messages[:text].length
-    assert_match /must be null for this kind of slide/, @slide.errors.messages[:title].first
-    assert_match /must be null for this kind of slide/, @slide.errors.messages[:text].first
+    assert @slide.errors.added? :title, :must_be_null_in_this_slide
+    assert @slide.errors.added? :text, :must_be_null_in_this_slide
     @slide.text = nil
     @slide.title = nil
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
@@ -121,8 +121,8 @@ class SlideTest < ActiveSupport::TestCase
     assert_equal 2, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
     assert_equal 1, @slide.errors.messages[:title].length
     assert_equal 1, @slide.errors.messages[:text].length
-    assert_match /must be null for this kind of slide/, @slide.errors.messages[:title].first
-    assert_match /must be null for this kind of slide/, @slide.errors.messages[:text].first
+    assert @slide.errors.added? :title, :must_be_null_in_this_slide
+    assert @slide.errors.added? :text, :must_be_null_in_this_slide
     @slide.text = nil
     @slide.title = nil
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
@@ -133,8 +133,8 @@ class SlideTest < ActiveSupport::TestCase
     assert_equal 2, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
     assert_equal 1, @slide.errors.messages[:title].length
     assert_equal 1, @slide.errors.messages[:text].length
-    assert_match /must be null for this kind of slide/, @slide.errors.messages[:title].first
-    assert_match /must be null for this kind of slide/, @slide.errors.messages[:text].first
+    assert @slide.errors.added? :title, :must_be_null_in_this_slide
+    assert @slide.errors.added? :text, :must_be_null_in_this_slide
     @slide.text = nil
     @slide.title = nil
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
@@ -145,8 +145,8 @@ class SlideTest < ActiveSupport::TestCase
     assert_equal 2, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
     assert_equal 1, @slide.errors.messages[:title].length
     assert_equal 1, @slide.errors.messages[:text].length
-    assert_match /must be null for this kind of slide/, @slide.errors.messages[:title].first
-    assert_match /must be null for this kind of slide/, @slide.errors.messages[:text].first
+    assert @slide.errors.added? :title, :must_be_null_in_this_slide
+    assert @slide.errors.added? :text, :must_be_null_in_this_slide
     @slide.text = nil
     @slide.title = nil
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
@@ -156,7 +156,7 @@ class SlideTest < ActiveSupport::TestCase
     assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
     assert_equal 1, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
     assert_equal 1, @slide.errors.messages[:text].length
-    assert_match /must be null for this kind of slide/, @slide.errors.messages[:text].first
+    assert @slide.errors.added? :text, :must_be_null_in_this_slide
     @slide.text = nil
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
     temmmporary_lesson = Lesson.first
@@ -166,7 +166,7 @@ class SlideTest < ActiveSupport::TestCase
     assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
     assert_equal 1, @slide.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@slide.errors.inspect}"
     assert_equal 1, @slide.errors.messages[:text].length
-    assert_match /must be null for this kind of slide/, @slide.errors.messages[:text].first
+    assert @slide.errors.added? :text, :must_be_null_in_this_slide
     @slide.text = nil
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
     assert_obj_saved @slide
@@ -176,7 +176,7 @@ class SlideTest < ActiveSupport::TestCase
     lesson = Lesson.find(1)
     cover = lesson.cover
     assert_equal cover.title, lesson.title
-    assert_invalid cover, :title, 'tstrong', 'tstring', /if cover it can't be different by lesson's title/
+    assert_invalid cover, :title, 'tstrong', 'tstring', :in_cover_it_cant_be_different_by_lessons_title
     lesson.title = 'buahuahua'
     assert_obj_saved lesson
     cover = Slide.find cover.id
@@ -196,7 +196,7 @@ class SlideTest < ActiveSupport::TestCase
     assert !s.save, "#Slide erroneously saved - #{s.inspect}"
     assert_equal 1, s.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{s.errors.inspect}"
     assert_equal 1, s.errors.messages[:base].length
-    assert_match /too many slides/, s.errors.messages[:base].first
+    assert s.errors.added? :base, :too_many_slides
     s2 = Slide.where(:position => 80).first
     assert s2.valid?
     s2.destroy

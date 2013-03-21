@@ -17,8 +17,7 @@
     <h2 style="padding-right:10px"><%= t('captions.show') %></h2>
     <select name="ricerca" id="filter_media_elements">
       <% Filters::MEDIA_ELEMENTS_SET.each do |f| %>
-        <% caption = Filters::CAPTIONS[f] %>
-        <option value="<%= f %>" <%= (@filter == f) ? "selected=\"selected\"".html_safe : '' %>><%= caption %></option>
+        <option value="<%= f %>" <%= (@filter == f) ? "selected=\"selected\"".html_safe : '' %>><%= MediaElement.filter(f) %></option>
       <% end %>
     </select>
   </div>

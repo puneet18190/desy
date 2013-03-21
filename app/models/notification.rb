@@ -8,45 +8,27 @@ class Notification < ActiveRecord::Base
   validate :validate_associations, :validate_seen, :validate_impossible_changes
   
   before_validation :init_validation
+
+  SENDING_SLICES_AMOUNT = 1_000
   
-  def self.send_to(an_user_id, msg)
-    x = Notification.new
-    x.user_id = an_user_id
-    x.message = msg
-    x.seen = false
-    x.save
+  def self.send_to(user_id_or_user_ids, message)
+    case user_id_or_user_ids
+    when Array
+      user_id_or_user_ids.each_slice(SENDING_SLICES_AMOUNT) { |slice| Delayed::Job.enqueue NotificationsJob.new(slice, message) }
+    else
+      return new do |n|
+        n.user_id = user_id_or_user_ids
+        n.message = message
+        n.seen = false
+      end.save
+    end
+    nil
   end
   
   def has_been_seen
     return false if self.new_record?
     self.seen = true
     self.save
-  end
-  
-  def self.test_all_to(an_user_id)
-    Notification.delete_all
-    Notification.send_to an_user_id, I18n.t('notifications.lessons.destroyed', :user_name => 'Luciano Moggi', :lesson_title => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.lessons.link_sent', :title => 'Gelato al cioccolato', :message => 'Guardate che bella lezione!', :emails => 'moggi@figc.it, carraro@figc.it')
-    Notification.send_to an_user_id, I18n.t('notifications.lessons.modified', :lesson_title => 'Gelato al cioccolato', :message => 'Ho aggiornato le ultime slides', :link => 'www.google.com')
-    Notification.send_to an_user_id, I18n.t('notifications.lessons.unpublished', :user_name => 'Luciano Moggi', :lesson_title => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.update.started', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.update.ok', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.update.failed', :item => 'Gelato al cioccolato', :link => 'www.google.com')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.create.started', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.create.ok', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.compose.create.failed', :item => 'Gelato al cioccolato', :link => 'www.google.com')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.upload.started', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.upload.ok', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.audio.upload.failed', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.compose.update.started', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.compose.update.ok', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.compose.update.failed', :item => 'Gelato al cioccolato', :link => 'www.google.com')
-    Notification.send_to an_user_id, I18n.t('notifications.video.compose.create.started', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.compose.create.ok', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.compose.create.failed', :item => 'Gelato al cioccolato', :link => 'www.google.com')
-    Notification.send_to an_user_id, I18n.t('notifications.video.upload.started', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.upload.ok', :item => 'Gelato al cioccolato')
-    Notification.send_to an_user_id, I18n.t('notifications.video.upload.failed', :item => 'Gelato al cioccolato')
   end
   
   private
@@ -57,18 +39,18 @@ class Notification < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if @user.nil?
+    errors.add(:user_id, :doesnt_exist) if @user.nil?
   end
   
   def validate_seen
-    errors[:seen] << 'must be false when new record' if !@notification && self.seen
+    errors.add(:seen, :must_be_false_if_new_record) if !@notification && self.seen
   end
   
   def validate_impossible_changes
     if @notification
-      errors[:seen] << "can't be switched from true to false" if @notification.seen && !self.seen
-      errors[:user_id] << "can't be changed" if @notification.user_id != self.user_id
-      errors[:message] << "can't be changed" if @notification.message != self.message
+      errors.add(:seen, :cant_be_switched_from_true_to_false) if @notification.seen && !self.seen
+      errors.add(:user_id, :cant_be_changed) if @notification.user_id != self.user_id
+      errors.add(:message, :cant_be_changed) if @notification.message != self.message
     end
   end
   

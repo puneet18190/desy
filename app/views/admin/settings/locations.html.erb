@@ -1,0 +1,29 @@
+<%= render :partial => 'menu', :locals => {:current => 'locations'} %>
+
+<h4>ADD A NEW SCHOOL</h4>
+
+<div class="row-fluid">
+  <div class="alert alert-info span12">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    Select the parent location you want to add a new one into it.
+  </div>
+</div>
+
+
+<%= form_tag '/admin/settings/locations', :method => :post, :id  => 'settings-locations',:class => 'search-form form-inline' do %>
+
+  <%= render :partial => 'admin/search/location', :locals => {:locations => @locations, :params => params[:search]} %>
+  
+  <div id="new-location">  
+
+    <h5 class="new-location-info">
+      Create a new province
+    </h5>
+
+    <%= text_field_tag :name, '',:class=>"input-xlarge", :placeholder => "new location" %>
+    <%= submit_tag "Add new location", :class=>"btn"%>
+
+  </div>  
+  
+  <div style="clear:both"></div>
+<% end %>

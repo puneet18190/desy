@@ -13,7 +13,7 @@ module Media
         end
         let(:dir)                      { Dir.mktmpdir('desy_spec') }
         let(:output_without_extension) { Rails.root.join('tmp/output').to_s }
-        let(:options)                  { { color: '"#41A62A"' } }
+        let(:options)                  { { color: '#41A62A', background_color: '#373737' } }
         let(:duration)                 { 5 }
 
         it 'works' do

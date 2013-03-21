@@ -29,7 +29,7 @@ class LessonEditorController < ApplicationController
     if new_lesson.instance_of?(Lesson)
       @lesson = new_lesson
     else
-      @errors = convert_lesson_editor_messages new_lesson
+      @errors = convert_lesson_editor_messages new_lesson.messages
       @error_fields = new_lesson.keys
     end
   end
@@ -43,6 +43,7 @@ class LessonEditorController < ApplicationController
       @lesson.description =  params[:description]
       @lesson.subject_id = params[:lesson_subject]
       @lesson.tags = params[:tags_value]
+      @lesson.validating_in_form = true
       if !@lesson.save
         @errors = convert_item_error_messages @lesson.errors.messages
         @error_fields = @lesson.errors.messages.keys

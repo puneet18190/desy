@@ -6,7 +6,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     uu = User.new
     assert !uu.destroy_with_dependencies
     assert_equal 1, uu.errors.messages[:base].length
-    assert_match /The user could not be deleted/, uu.errors.messages[:base].first
+    assert uu.errors.added? :base, :problem_destroying
     resp = User.confirmed.new(:password => SETTINGS['admin']['password'], :password_confirmation => SETTINGS['admin']['password'], :name => 'oo', :surname => 'fsg', :school_level_id => 1, :location_id => 1, :subject_ids => [1, 2]) do |user|
       user.email = SETTINGS['admin']['email']
     end
@@ -52,13 +52,13 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.find(1)
     assert x.copy(100).nil?
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /The lesson could not be copied/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_copying
     assert x.copy(2).nil?
     resp = x.copy(1)
     assert !resp.nil?
     assert x.copy(1).nil?
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /You already have a copy of this lesson/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :already_copied
     x = Lesson.find(2)
     cccount_slides = x.slides.count
     assert x.add_slide('image2', cccount_slides + 1)
@@ -76,7 +76,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     # I try to copy the copy
     assert resp.copy(1).nil?
     assert_equal 1, resp.errors.messages[:base].length
-    assert_match /You've just copied this lesson/, resp.errors.messages[:base].first
+    assert resp.errors.added? :base, :just_copied
     # until here
     assert_equal 1, resp.school_level_id
     assert_equal 3, resp.subject_id
@@ -120,11 +120,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.new
     assert !x.publish
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /The lesson could not be shared/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_publishing
     x = Lesson.find 2
     assert !x.publish
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /This lesson is already being shared/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :already_published
     x = Lesson.find 1
     new_slide = Slide.new :position => 2
     new_slide.lesson_id = 1
@@ -149,21 +149,21 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.new
     assert !x.unpublish
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /Lesson sharing could not be undone/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_unpublishing
     x = Lesson.find 1
     assert !x.unpublish
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /This lesson has not been shared yet/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :already_unpublished
     x = Lesson.find 2
     assert VirtualClassroomLesson.where(:lesson_id => 2).any?
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).any?
     assert_equal 3, MediaElement.where(:is_public => true).count
-    assert Notification.where(:user_id => 1, :message => "The user <b>eef fuu</b>, author of '<b>string</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson").empty?
+    assert Notification.where(:user_id => 1, :message => I18n.t('notifications.lessons.unpublished', :lesson_title => 'string', :user_name => 'eef fuu')).empty?
     assert x.unpublish
     assert !Lesson.find(x.id).is_public
     assert VirtualClassroomLesson.where(:lesson_id => 2).empty?
     assert Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => 2).empty?
-    assert Notification.where(:user_id => 1, :message => "The user <b>eef fuu</b>, author of '<b>string</b>', changed to <i>private</i> the status of his lesson: hence, you lost the link to that lesson").any?, Notification.where(:user_id => 1).inspect
+    assert Notification.where(:user_id => 1, :message => I18n.t('notifications.lessons.unpublished', :lesson_title => 'string', :user_name => 'eef fuu')).any?, Notification.where(:user_id => 1).inspect
     assert_equal 3, MediaElement.where(:is_public => true).count
     lesson = Lesson.find 1
     assert lesson.publish
@@ -179,8 +179,8 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert !User.new.create_lesson('te', 'dsf', 1, 'gatto, cane, topo, orso')
     @user = User.find 1
     assert UsersSubject.where(:user_id => 1, :subject_id => 2).empty?
-    assert @user.create_lesson('te', 'dsf', 2, 'gatto, cane, topo, orso').kind_of?(Hash)
-    assert @user.create_lesson('te', 'dsf', 2, 'gatto, cane, topo').kind_of?(Hash)
+    assert_equal ActiveModel::Errors, @user.create_lesson('te', 'dsf', 2, 'gatto, cane, topo, orso').class
+    assert_equal ActiveModel::Errors, @user.create_lesson('te', 'dsf', 2, 'gatto, cane, topo').class
     resp = @user.create_lesson('gs', 'gshsf', 3, 'gatto, cane, topo, orso')
     assert !resp.kind_of?(Hash)
     assert_equal 'gs', resp.title
@@ -197,11 +197,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.new
     assert !x.destroy_with_notifications
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /The lesson could not be deleted/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_destroying
     x = Lesson.find 2
-    assert Notification.where(:message => "The user <b>eef fuu</b>, author of '<b>string</b>', deleted his lesson: hence, you lost the link to that lesson").empty?
+    assert Notification.where(:message => I18n.t('notifications.lessons.destroyed', :lesson_title => 'string', :user_name => 'eef fuu')).empty?
     assert x.destroy_with_notifications
-    x = Notification.where(:message => "The user <b>eef fuu</b>, author of '<b>string</b>', deleted his lesson: hence, you lost the link to that lesson").first
+    x = Notification.where(:message => I18n.t('notifications.lessons.destroyed', :lesson_title => 'string', :user_name => 'eef fuu')).first
     assert_equal 1, x.user_id
     assert !Lesson.exists?(2)
   end
@@ -290,11 +290,11 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = MediaElement.new
     assert !x.check_and_destroy
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /The element could not be deleted/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_destroying
     x = MediaElement.where(:is_public => true).first
     assert !x.check_and_destroy
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /This element is public, you can't delete it/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :cant_destroy_public
     x = MediaElement.find(3)
     assert_equal 2, x.user_id
     assert_equal false, x.is_public
@@ -375,22 +375,22 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = VirtualClassroomLesson.new
     assert !x.change_position(10)
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /The lesson's position could not be changed/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_changing_position_in_playlist
     assert !vc1.change_position(-9)
     assert_equal 1, vc1.errors.messages[:base].length
-    assert_match /The position of the lesson is not valid/, vc1.errors.messages[:base].first
+    assert vc1.errors.added? :base, :invalid_position_in_playlist
     assert !vc1.change_position(0)
     assert_equal 1, vc1.errors.messages[:base].length
-    assert_match /The position of the lesson is not valid/, vc1.errors.messages[:base].first
+    assert vc1.errors.added? :base, :invalid_position_in_playlist
     assert !vc1.change_position(5)
     assert_equal 1, vc1.errors.messages[:base].length
-    assert_match /The position of the lesson is not valid/, vc1.errors.messages[:base].first
+    assert vc1.errors.added? :base, :invalid_position_in_playlist
     assert !vc1.change_position('dvsdds')
     assert_equal 1, vc1.errors.messages[:base].length
-    assert_match /The position of the lesson is not valid/, vc1.errors.messages[:base].first
+    assert vc1.errors.added? :base, :invalid_position_in_playlist
     assert !vc5.change_position(1)
     assert_equal 1, vc5.errors.messages[:base].length
-    assert_match /The lesson's position could not be changed/, vc5.errors.messages[:base].first
+    assert vc5.errors.added? :base, :problem_changing_position_in_playlist
     assert vc2.change_position(2)
     assert_equal 1, VirtualClassroomLesson.find(vc1.id).position
     assert_equal 2, VirtualClassroomLesson.find(vc2.id).position
@@ -415,7 +415,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = VirtualClassroomLesson.new
     assert !x.add_to_playlist
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /The lesson could not be added to the playlist/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_adding_to_playlist
     x = VirtualClassroomLesson.last
     assert x.in_playlist?
     assert_equal 1, VirtualClassroomLesson.count
@@ -467,14 +467,14 @@ class CoreMethodsTest < ActiveSupport::TestCase
     assert user.playlist_full?
     assert !vc.add_to_playlist
     assert_equal 1, vc.errors.messages[:base].length
-    assert_match /Your playlist is full!/, vc.errors.messages[:base].first
+    assert vc.errors.added? :base, :playlist_full
   end
   
   test 'remove_from_playlist' do
     x = VirtualClassroomLesson.new
     assert !x.remove_from_playlist
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /The lesson could not be removed from the playlist/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_removing_from_playlist
     lesson1 = User.find(1).create_lesson 'lesson1', 'lesson1', 1, 'gatto, cane, topo, orso'
     xx = VirtualClassroomLesson.new
     xx.lesson_id = lesson1.id
@@ -503,18 +503,18 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.new
     assert !x.add_to_virtual_classroom(1)
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /The lesson could not be added to your Virtual Classroom/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_adding_to_virtual_classroom
     x = Lesson.find 1
     assert !x.add_to_virtual_classroom(0)
     assert !x.add_to_virtual_classroom(100)
     x = Lesson.find 2
     assert !x.add_to_virtual_classroom(1)
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /This lesson is already in your Virtual Classroom/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :lesson_already_in_virtual_classroom
     x = Lesson.find 1
     assert !x.add_to_virtual_classroom(2)
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /This lesson cannot be added to your Virtual Classroom/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :lesson_not_available_for_virtual_classroom
     assert x.add_to_virtual_classroom(1)
     assert_equal 2, VirtualClassroomLesson.count
     vc = VirtualClassroomLesson.where(:lesson_id => 1, :user_id => 1).first
@@ -529,7 +529,7 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = Lesson.new
     assert !x.remove_from_virtual_classroom(1)
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /The lesson could not be removed from your Virtual Classroom/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_removing_from_virtual_classroom
     x = Lesson.find 2
     assert !x.remove_from_virtual_classroom(100)
     assert !x.remove_from_virtual_classroom('sbsg')
@@ -559,29 +559,29 @@ class CoreMethodsTest < ActiveSupport::TestCase
     x = User.new
     assert !x.report_lesson(1, 'ciao')
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /Your report could not be sent/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_reporting
     assert !x.report_media_element(1, 'ciao')
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /Your report could not be sent/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_reporting
     x = User.find(2)
     assert !x.report_media_element(100, 'ciao')
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /Your report could not be sent/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_reporting
     assert !x.report_lesson(100, 'ciao')
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /Your report could not be sent/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :problem_reporting
     assert Report.where(:reportable_id => 1, :reportable_type => 'Lesson', :user_id => 2).empty?
     assert x.report_lesson 1, 'ciao'
     assert Report.where(:reportable_id => 1, :reportable_type => 'Lesson', :user_id => 2).any?
     assert !x.report_lesson(1, 'ciao')
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /You already reported this lesson/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :lesson_already_reported
     assert Report.where(:reportable_id => 1, :reportable_type => 'MediaElement', :user_id => 2).empty?
     assert x.report_media_element 1, 'ciao'
     assert Report.where(:reportable_id => 1, :reportable_type => 'MediaElement', :user_id => 2).any?
     assert !x.report_media_element(1, 'ciao')
     assert_equal 1, x.errors.messages[:base].length
-    assert_match /You already reported this element/, x.errors.messages[:base].first
+    assert x.errors.added? :base, :media_element_already_reported
   end
   
   test 'update_slide' do

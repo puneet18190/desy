@@ -29,12 +29,12 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @virtual_classroom_lesson, :user_id, 'ty', 2, /is not a number/
-    assert_invalid @virtual_classroom_lesson, :user_id, -1, 2, /must be greater than 0/
-    assert_invalid @virtual_classroom_lesson, :lesson_id, 1.5, @lesson.id, /must be an integer/
-    assert_invalid @virtual_classroom_lesson, :position, 'iii', nil, /is not a number/
-    assert_invalid @virtual_classroom_lesson, :position, -5, nil, /must be greater than 0/
-    assert_invalid @virtual_classroom_lesson, :position, 1.5, nil, /must be an integer/
+    assert_invalid @virtual_classroom_lesson, :user_id, 'ty', 2, :not_a_number
+    assert_invalid @virtual_classroom_lesson, :user_id, -1, 2, :greater_than
+    assert_invalid @virtual_classroom_lesson, :lesson_id, 1.5, @lesson.id, :not_an_integer
+    assert_invalid @virtual_classroom_lesson, :position, 'iii', nil, :not_a_number
+    assert_invalid @virtual_classroom_lesson, :position, -5, nil, :greater_than
+    assert_invalid @virtual_classroom_lesson, :position, 1.5, nil, :not_an_integer
     assert_obj_saved @virtual_classroom_lesson
   end
   
@@ -44,8 +44,8 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
   end
   
   test 'associations' do
-    assert_invalid @virtual_classroom_lesson, :user_id, 1000, 2, /doesn't exist/
-    assert_invalid @virtual_classroom_lesson, :lesson_id, 1000, @lesson.id, /doesn't exist/
+    assert_invalid @virtual_classroom_lesson, :user_id, 1000, 2, :doesnt_exist
+    assert_invalid @virtual_classroom_lesson, :lesson_id, 1000, @lesson.id, :doesnt_exist
     assert_obj_saved @virtual_classroom_lesson
   end
   
@@ -56,7 +56,7 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert !@virtual_classroom_lesson.save, "VirtualClassroomLesson erroneously saved - #{@virtual_classroom_lesson.inspect}"
     assert_equal 1, @virtual_classroom_lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@virtual_classroom_lesson.errors.inspect}"
     assert_equal 1, @virtual_classroom_lesson.errors.size
-    assert_match /has already been taken/, @virtual_classroom_lesson.errors.messages[:lesson_id].first
+    assert @virtual_classroom_lesson.errors.added? :lesson_id, :taken
     @virtual_classroom_lesson.lesson_id = @lesson.id
     @virtual_classroom_lesson.user_id = 2
     assert @virtual_classroom_lesson.valid?, "VirtualClassroomLesson not valid: #{@virtual_classroom_lesson.errors.inspect}"
@@ -75,19 +75,19 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert !@virtual_classroom_lesson.save, "VirtualClassroomLesson erroneously saved - #{@virtual_classroom_lesson.inspect}"
     assert_equal 1, @virtual_classroom_lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@virtual_classroom_lesson.errors.inspect}"
     assert_equal 1, @virtual_classroom_lesson.errors.size
-    assert_match /has already been taken/, @virtual_classroom_lesson.errors.messages[:position].first
+    assert @virtual_classroom_lesson.errors.added? :position, :taken
     @virtual_classroom_lesson.position = 2
     assert @virtual_classroom_lesson.valid?, "VirtualClassroomLesson not valid: #{@virtual_classroom_lesson.errors.inspect}"
     assert_obj_saved @virtual_classroom_lesson
   end
   
   test 'availability' do
-    assert_invalid @virtual_classroom_lesson, :lesson_id, 1, @lesson.id, /is not available/
+    assert_invalid @virtual_classroom_lesson, :lesson_id, 1, @lesson.id, :is_not_available
     lesson1 = Lesson.find(1)
     assert !lesson1.is_public
     lesson1.is_public = true
     assert_obj_saved lesson1
-    assert_invalid @virtual_classroom_lesson, :lesson_id, 1, @lesson.id, /is not available/
+    assert_invalid @virtual_classroom_lesson, :lesson_id, 1, @lesson.id, :is_not_available
     assert_obj_saved @virtual_classroom_lesson
   end
   
@@ -97,14 +97,14 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert !@virtual_classroom_lesson.save, "VirtualClassroomLesson erroneously saved - #{@virtual_classroom_lesson.inspect}"
     assert_equal 1, @virtual_classroom_lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@virtual_classroom_lesson.errors.inspect}"
     assert_equal 1, @virtual_classroom_lesson.errors.size
-    assert_match /has just been copied/, @virtual_classroom_lesson.errors.messages[:lesson_id].first
+    assert @virtual_classroom_lesson.errors.added? :lesson_id, :just_been_copied
     @lesson.copied_not_modified = false
     assert_obj_saved @lesson
     assert @virtual_classroom_lesson.valid?, "VirtualClassroomLesson not valid: #{@virtual_classroom_lesson.errors.inspect}"
   end
   
   test 'positions' do
-    assert_invalid @virtual_classroom_lesson, :position, 1, nil, /must be null if new record/
+    assert_invalid @virtual_classroom_lesson, :position, 1, nil, :must_be_null_if_new_record
     assert_obj_saved @virtual_classroom_lesson
   end
   
@@ -114,10 +114,10 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert !@virtual_classroom_lesson.save, "VirtualClassroomLesson erroneously saved - #{@virtual_classroom_lesson.inspect}"
     assert_equal 2, @virtual_classroom_lesson.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@virtual_classroom_lesson.errors.inspect}"
     assert_equal 2, @virtual_classroom_lesson.errors.size
-    assert_match /can't be changed/, @virtual_classroom_lesson.errors.messages[:user_id].first
+    assert @virtual_classroom_lesson.errors.added? :user_id, :cant_be_changed
     @virtual_classroom_lesson.user_id = 2
     assert @virtual_classroom_lesson.valid?, "VirtualClassroomLesson not valid: #{@virtual_classroom_lesson.errors.inspect}"
-    assert_invalid @virtual_classroom_lesson, :lesson_id, 1, @lesson.id, /can't be changed/
+    assert_invalid @virtual_classroom_lesson, :lesson_id, 1, @lesson.id, :cant_be_changed
     assert_obj_saved @virtual_classroom_lesson
   end
   
@@ -146,7 +146,7 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
     assert x.add_to_virtual_classroom 1
     vc = VirtualClassroomLesson.where(:user_id => 1, :lesson_id => x.id).first
     assert vc.position.nil?
-    assert_invalid vc, :position, 21, nil, /already reached the maximum number of lessons in playlist/
+    assert_invalid vc, :position, 21, nil, :reached_maximum_in_playlist
     assert_obj_saved vc
   end
   

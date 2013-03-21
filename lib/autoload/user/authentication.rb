@@ -8,9 +8,7 @@ module User::Authentication
     warn "Generating a new pepper and writing to #{PEPPER_PATH}; this will invalidate the previous user passwords."
     
     require 'securerandom'
-    SecureRandom.hex(64).tap do |token|
-      PEPPER_PATH.open('w') { |io| io.write token }
-    end
+    SecureRandom.hex(64).tap{ |token| PEPPER_PATH.open('w'){ |io| io.write token } }
   )
 
   COST = 10

@@ -10,4 +10,5 @@ class UsersSubject < ActiveRecord::Base
   validates_presence_of :user_id, if: proc{ |r| r.user.blank? }
   validates_presence_of :subject_id, if: proc{ |r| r.subject.blank? }
   validates_uniqueness_of :subject_id, :scope => :user_id
+  
 end

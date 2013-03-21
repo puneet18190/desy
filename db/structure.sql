@@ -7,6 +7,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+
 SET search_path = public, pg_catalog;
 
 --
@@ -127,7 +128,7 @@ CREATE TABLE lessons (
     is_public boolean DEFAULT false NOT NULL,
     parent_id integer,
     copied_not_modified boolean NOT NULL,
-    token character varying(20),
+    token character varying(255) NOT NULL,
     metadata text,
     notified boolean DEFAULT true NOT NULL,
     created_at timestamp without time zone NOT NULL,

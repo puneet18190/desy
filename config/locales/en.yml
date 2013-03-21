@@ -104,32 +104,6 @@ en:
       loaded_error: "A problem occurred, %{number} of your lessons were not loaded"
   activerecord:
     errors:
-      # The list of error messages below is used when the user doesn't properly fill a field in his personal profile
-      messages:
-        # Invalid email address
-        # 1 - models/user.rb
-        invalid_email_address: "is not a valid email address"
-        # A field has not been filled
-        # 1 - models/user.rb
-        blank: "can't be blank"
-        # The password confirmation doesn't match
-        # 1 - models/user.rb
-        confirmation: "doesn't match confirmation"
-        # A field doesn't have enough characters (%{count} represents the minimum)
-        # 1 - models/user.rb
-        too_short: "is too short (minimum is %{count} characters)"
-        # A field has too many characters (%{count} represents the maximum)
-        # 1 - models/user.rb
-        too_long: "is too long (maximum is %{count} characters)"
-        # The email is already present in the database
-        # 1 - models/user.rb
-        uniqueness: "is already present in the database"
-        # A field can't be modified
-        # 1 - models/user.rb
-        changed: "can't be modified"
-        # The user must accept the personal data treatment policy (this message is used also for more customized policies)
-        # 1 - models/user.rb
-        accepted: "must be accepted"
       models:
         bookmark:
           # There was an error while trying to add the lesson to your personal folder
@@ -487,7 +461,7 @@ en:
       subject: "%{desy} - Account confirmation"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<p>Greetings %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br/>When the registration is confirmed, the link will not be valid anymore.<br/>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br/><p>N.B.</p><p>The confirmation of the account can only be made once.</p>"
+      message: "<p>Welcome %{name}</p>,<p>Thank you for your registration into %{desy}!</p><p><b>In order to complete your registration click on the link below:</b></p><p>If the link does not appear clickable copy it and paste it into your browser.<br/>When the registration is confirmed, the link will not be valid anymore.<br/>Sign in with the username and the password inserted during the registration phase in order to access to the system.</p><br/><p>N.B.</p><p>The confirmation of the account can only be made once.</p>"
     # Mail containing the link to reset a forgotten password
     reset_password:
       # Subject
@@ -495,7 +469,7 @@ en:
       subject: "%{desy} - New password"
       # Message
       # 1 - mailers/user_mailer.rb
-      message: "<h1>Greetings %{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password of your choice once logged in, in the 'Profile' section.</p>"
+      message: "<h1>%{name},</h1><p>we received your password reset request; this is your new password: <b>%{password}</b></p><p>You can login into %{desy} now using the new password, at the URL below.</p><p>you will be able to set another password of your choice once logged in, in the 'Profile' section.</p>"
     # Email containing the public link of a lesson (when a user wants to share his lesson outside the application)
     see_my_lesson:
       # Subject
@@ -581,6 +555,7 @@ en:
     error_captions:
       # Standard error for a text field which hasn't been filled properly (i.e. exceeded max number of characters, not filled, etc.)
       # 1 - controllers/application_controller.rb
+      # 2 - controllers/application_controller.rb
       fill_all_the_fields_or_too_long: "Fill in all the fields without exceeding the max length"
       # The user didn't write the minimum amount of tags
       # 1 - controllers/application_controller.rb
@@ -592,15 +567,36 @@ en:
       # 1 - controllers/application_controller.rb
       # 2 - controllers/application_controller.rb
       media_unsupported_format: "Format not supported"
-      # The user tried to upload a file whose name contained an invalid character
-      # 1 - controllers/application_controller.rb
-      media_invalid_filename: "File's name contains invalid characters"
       # The user tried to upload a file which was damaged or invalid
       # 1 - controllers/application_controller.rb
       media_generic_error: "Invalid or damaged file"
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
       subject_missing_in_lesson: "Choose a subject"
+      # The user's email is not valid or already present in the database
+      # 1 - controllers/application_controller.rb
+      not_valid_email: "The email you inserted is not valid or already present in our database"
+      # The user's didn't choose a location (the variable %{location} is replaced by the label which corresponds to the lowest kind of location (for instance, Town)
+      # 1 - controllers/application_controller.rb
+      choose_a_location: "Choose a %{location}"
+      # The user hasn't selected any subject
+      # 1 - controllers/application_controller.rb
+      select_at_least_a_subject: "Select at least one subject"
+      # The user inserted a short or blank password (the variable %{min} is replaced by the configured minimum length for a password)
+      # 1 - controllers/application_controller.rb
+      password_too_short: "Insert a password of at least %{min} characters"
+      # The user inserted a short or long password (the variables %{min} and %{max} are replaced by the configured minimum and maximum length for a password)
+      # 1 - controllers/application_controller.rb
+      password_not_in_range: "Insert a password of at least %{min} characters, not exceeding %{max} characters"
+      # The password doesn't match confirmation
+      # 1 - controllers/application_controller.rb
+      password_doesnt_match_confirmation: "The password doesn't match confirmation"
+      # The password is invalid for other reasons than the ones specified above
+      # 1 - controllers/application_controller.rb
+      invalid_password: "The password inserted is invalid"
+      # The user didn't accept a policy (the variable %{policy} is replaced by the name of the policy)
+      # 1 - controllers/application_controller.rb
+      policy_not_accepted: "You must accept %{policy}"
     # Placeholders for the fields (they are used only when the lesson / element is new: if the lesson / element is being updated, the application fills the fields with the current data)
     placeholders:
       # Description (the variable %{num} represents the maximum number of characters)
@@ -658,6 +654,14 @@ en:
         # The handle that the user can grab to drag a component and change its position inside the whole track
         # 1 - views/audio_editor/_component.html.erb
         sort: "Drag to change the component's position"
+      # Buttons to handle global preview
+      preview:
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+        pause: "Pause preview"
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+        rewind: "Rewind preview"
+        # 1 - views/audio_editor/_lateral_controls.html.erb
+        start: "Start preview"
     audios:
       # Index of the element editor: there are three icons, each of them is a link to the specific editor of audio, image and video: the caption below appears over the 'note' icon representing the audio editor
       # 1 - views/media_elements/new.html.erb
@@ -705,7 +709,7 @@ en:
       remove: "Remove this item"
       # To remove a lesson from your Virtual Classroom
       # 1 - views/shared/buttons/_remove_virtual_classroom.html.erb
-      remove_virtual_classroom: "Remove from your Cirtual Classroom"
+      remove_virtual_classroom: "Remove from your Virtual Classroom"
       # To turn a shared lesson back into private
       # 1 - views/shared/buttons/_unpublish.html.erb
       # 2 - views/shared/_popups.html.erb
@@ -952,7 +956,7 @@ en:
         # 1 - views/notifications/_tooltip_help.html.erb
         title: "Selected for you - lessons"
         # 1 - views/notifications/_tooltip_help.html.erb
-        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If at this moment there are no new lessons available, you can create your own by clicking on the \"create a new Lesson\" button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make sure to have enough elements."
+        content: "In this dashboard %{desy} stores all the new lessons that might interest you. If at this moment there are no new lessons available, you can create your own by clicking on the \"create a new lesson\" button that you find on each page: you will be redirected to the Lesson Editor. Before using the Lesson Editor make sure to have enough elements."
     lessons:
       first:
         # 1 - views/notifications/_tooltip_help.html.erb
@@ -1117,14 +1121,9 @@ en:
       title: "Audio editor not available"
       # 1 - views/audio_editor/not_available.html.erb
       description: "At this moment you are running the Editor for another audio track: until the process isn't finished the Audio Editor will be temporarily disabled"
-    # The buttons to control the whole preview are located on the right column of Audio Editor
-    preview:
-      # Button to start the preview
-      # 1 - views/audio_editor/_lateral_controls.html.erb
-      play: "Preview"
-      # Button to stop the preview
-      # 1 - views/audio_editor/_lateral_controls.html.erb
-      stop: "Stop"
+    # Caption of the area containig the buttons which control the preview
+    # 1 - views/audio_editor/_lateral_controls.html.erb
+    preview: "Preview"
     # Caption, inside the right column, for the total length of the audio in editing
     # 1 - views/audio_editor/_lateral_controls.html.erb
     total_length: "Total length"
@@ -1568,13 +1567,10 @@ en:
   registration:
     # Title of the registration form
     # 1 - views/prelogin/registration.html.erb
-    title: "Register"
+    title: "Sign up"
     # Subtitle of the registration form
     # 1 - views/prelogin/registration.html.erb
-    subtitle: "Why register?"
-    # Another subtitle of the registration form
-    # 1 - views/prelogin/registration.html.erb
-    subsubtitle: "Discover the benefits of %{desy}"
+    subtitle: "Discover the benefits of %{desy}"
     # Text describing the registration benefits
     # 1 - views/prelogin/registration.html.erb
     description: "Create your own multimedia lessons with audio, video or images. Share them with other teachers %{desy}. Use or modify to suit your needs the lessons of other teachers who use %{desy}. Organize your lessons in your virtual classroom and discover a new way of teaching."
@@ -1601,20 +1597,25 @@ en:
     subjects:
       # Caption for subjects selection
       # 1 - views/prelogin/registration.html.erb
+      # 2 - controllers/application_controller.rb
       title: "Choose the subjects you are interested in"
     # List of customizable policies: for each there must be a title and a content (keyword 'description')
-    policy_1:
-      # 1 - views/prelogin/registration.html.erb
-      title: "Title of policy 1"
-      # 1 - views/prelogin/registration.html.erb
-      description: "Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1"
-      accept: "Accept"
-    policy_2:
-      # 1 - views/prelogin/registration.html.erb
-      title: "Title of policy 2"
-      # 1 - views/prelogin/registration.html.erb
-      description: "Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2"
-      accept: "Accept"
+    # Example of usage:
+    #  - title: "title of first policy"
+    #    description: "description of first policy"
+    #    accept: "acceptance caption of first policy"
+    #  - title: "title of second policy"
+    #    description: "description of first policy"
+    #    accept: "acceptance caption of first policy"
+    # and so on. Remember to insert an item for each policy configured in settings.yml
+    # 1 - views/prelogin/registration.html.erb
+    policies:
+      - title: "Title of policy 1"
+        description: "Content of polocy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1 content of policy 1"
+        accept: "Accept"
+      - title: "Title of policy 2"
+        description: "Content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2 content of policy 2"
+        accept: "Accept"
   
   
   # SECTION 2.13: Captions for reports of inappropriate contents
@@ -2052,76 +2053,76 @@ en:
     # The list of statuses for lessons
     lessons:
       # A lesson is 'private' if only the owner may see it
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       private: "Private"
       # A lesson is 'just copied' if the user copied from another lesson, but he hasn't personalized it yet
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       copied: "Copied"
       # A lesson is 'linked' if the user doesn't own it, it's just a link to another user's lesson
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       linked: "Linked"
       # A lesson is 'public' when you are not the creator and you haven't linked it yet
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       public: "Public"
       # A lesson is 'shared' when you are the creator and it's visible to other users
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       shared: "Shared"
     # The list of statuses for media elements
     media_elements:
       # An element is 'private' if you are the owner and you haven't used it inside a public lesson
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       private: "Private"
       # An element is 'public' if you are not the owner and you haven't linked it yet 
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       public: "Public"
       # An element is 'linked' if the user doesn't own it, it's just a link to a public element
-      # 1 - ../lib/autoload/statuses.rb
+      # 1 - ../lib/autoload/lessons_media_elements_shared.rb
       linked: "Linked"
   # Filters for both lessons and media elements
   filters:
     # All lessons without any filters
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     all_lessons: "All lessons"
     # Only private lessons
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     private: "Private"
     # Only public lessons (they can be either lessons that you shared, or public lessons created by somebody else)
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     public: "Public"
     # Lessons which don't belong to you but that you linked
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     linked: "Linked"
     # All your lessons (including both public and private)
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     only_mine: "Your own"
     # All the lessons that you just copied without personalizing them yet
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     copied: "Just copied"
     # All the media elements, without any filter
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     all_media_elements: "All formats"
     # Only elements of kind 'video'
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     video: "Video"
     # Only elements of kind 'audio'
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     audio: "Audio"
     # Only elements of kind 'image'
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     image: "Images"
     # Only for lessons search engine, filters all the lessons not created by you
-    # 1 - ../lib/autoload/filters.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     not_mine: "Not created by you"
   # Possible parameters to sort lessons or media elements
   orders:
     # Date of last modification
-    # 1 - ../lib/autoload/search_orders.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     updated_at: "Date last modification"
     # Number of likes received (only available for lessons)
-    # 1 - ../lib/autoload/search_orders.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     likes: "Number of likes"
     # Alphabetical order
-    # 1 - ../lib/autoload/search_orders.rb
+    # 1 - ../lib/autoload/lessons_media_elements_shared.rb
     title: "Alphabetical"
   
   
@@ -2210,6 +2211,22 @@ en:
     # 1 - views/admin/users/show.html.erb
     # 2 - views/admin/users/_list.html.erb
     parents_label: "Town / province"
+    # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
+    # 1 - views/admin/users/_locations_list.html.erb
+    # 2 - views/users/_locations_list.html.erb
+    placeholder: "Select %{location}"
+  
+  
+  # SECTION 3.4: Media formats
+  
+  # General captions for the three media format: 'Audio', 'Image', 'Video'
+  sti_types:
+    # 1 - models/media_element.rb
+    audio: "Audio"
+    # 1 - models/media_element.rb
+    image: "Image"
+    # 1 - models/media_element.rb
+    video: "Video"
   
   
   
@@ -2304,12 +2321,6 @@ en:
       # statistics about subject distribution among lessons (a graph)
       # 1 - views/admin/dashboard/index.html.erb
       subjects: "Subject distribution among lessons"
-      # Shortcut to the newest reports of abuses (about lessons and media element)
-      reports:
-        # 1 - views/admin/dashboard/index.html.erb
-        lessons: "Reported lessons"
-        # 1 - views/admin/dashboard/index.html.erb
-        media_elements: "Reported media elements"
     # General captions, used throughout the Administrator
     general:
       # Link to switch all the items in a list to the compact status
@@ -2453,9 +2464,6 @@ en:
     search:
       # Section where the user filters by location
       locations:
-        # Caption inside the select of each location type (the variable %{location} is replaced by the name of the location type, ex City, Province, District)
-        # 1 - views/admin/users/_locations_list.html.erb
-        caption: "Select %{location}"
         # 1 - views/admin/search/_location.html.erb
         title: "Location"
       # Search through dates (this option is available for any section)
@@ -2699,20 +2707,67 @@ en:
         # Statistics subjects label
         # 1 - views/admin/users/show.html.erb
         subjects: "Subjects"
-
     # Section 'Messages' in the administration module
     messages:
-      # Section 'Nofitications'
-      # 1 - views/admin/messages/new_notification.html.erb
+      # Section where the administrator may send a notification to many users
       notifications:
-        send_notifications: "Send notifications"
+        # Title of the section
+        # 1 - views/admin/messages/new_notification.html.erb
+        title: "Send notifications"
+        # Caption which appears if all the users in the database will receive the notification
+        # 1 - views/admin/messages/new_notification.html.erb
+        all_users_selected: "All users selected"
+        # Title of the part where the administrator may filter the users
+        # 1 - views/admin/messages/new_notification.html.erb
         filter_users: "Filter users to send notifications to"
+        # Caption which appears if not all users are selected (the variable %{user_count} is replaced by the number of users resulted by the filter)
+        # 1 - views/admin/messages/new_notification.html.erb
+        # 2 - views/admin/messages/new_notification.html.erb
         users_selected: "%{user_count} users selected"
+        # Caption of the input where the administrator can select single users to be added to the list of recipients
+        # 1 - views/admin/messages/new_notification.html.erb
         add_recipients: "Select recipients"
+        # Placeholder of the input where the administrator can select single users to be added to the list of recipients
+        # 1 - views/admin/messages/new_notification.html.erb
+        recipients_placeholder: "Add recipients"
+        # Caption of the checkbox that resets the filters, and selects back all the users
+        # 1 - views/admin/messages/new_notification.html.erb
         send_everyone: "Send to everyone"
+        # Button to submit and send the notification
+        # 1 - views/admin/messages/new_notification.html.erb
         send: "Send"
-        
-        
+        # Title of the text area where the user types the content of the notification
+        # 1 - views/admin/messages/new_notification.html.erb
+        message: "Message"
+        # Placeholder of the text area where the user types the content of the notification
+        # 1 - views/admin/messages/new_notification.html.erb
+        message_placeholder: "Insert a message"
+      # Section where the administrator checks out the reports about unproper content sent by the users
+      reports:
+        # Title of the section
+        # 1 - views/admin/messages/reports.html.erb
+        name: "Abuse reports"
+        # Label for the item on which the report was sent (it may be lesson or media element)
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/dashboard/index.html.erb
+        # 3 - views/admin/messages/reports.html.erb
+        # 4 - views/admin/messages/reports.html.erb
+        item: "On:"
+        # Label for the message attached to a report
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/dashboard/index.html.erb
+        # 3 - views/admin/messages/reports.html.erb
+        # 4 - views/admin/messages/reports.html.erb
+        report: "Report:"
+        # Title of the list of reports for lessons
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/messages/reports.html.erb
+        lessons: "Reported lessons"
+        # Title of the list of reports for media elements
+        # 1 - views/admin/dashboard/index.html.erb
+        # 2 - views/admin/messages/reports.html.erb
+        media_elements: "Reported media elements"
+  
   
   # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'
   

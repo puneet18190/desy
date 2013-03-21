@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
+  OUT_OF_AUTHENTICATION_ACTIONS = [:page_not_found]
+  OUT_OF_AUTHENTICATION_ACTIONS << :set_locale if Desy::MORE_THAN_ONE_LANGUAGE
+
   protect_from_forgery
 
-  before_filter :authenticate, :initialize_location, :initialize_players_counter, except: :page_not_found
+  before_filter :get_locale if Desy::MORE_THAN_ONE_LANGUAGE
+  before_filter :authenticate, :initialize_location, :initialize_players_counter, except: OUT_OF_AUTHENTICATION_ACTIONS
 
   attr_reader :current_user
   helper_method :current_user
@@ -12,7 +16,22 @@ class ApplicationController < ActionController::Base
     render text: '<h1>Page not found</h1>', status: 404, layout: false
   end
 
+  if Desy::MORE_THAN_ONE_LANGUAGE
+    def set_locale
+      available_languages = SETTINGS['languages']
+      if i = available_languages.map(&:to_s).index(params[:locale])
+        session[:locale] = available_languages[i]
+      end
+      redirect_to root_path
+    end
+  end
+
   private
+  if Desy::MORE_THAN_ONE_LANGUAGE
+    def get_locale
+      I18n.locale = session[:locale] || I18n.default_locale
+    end
+  end
   
   def initialize_players_counter
     @video_counter = [SecureRandom.urlsafe_base64(16), 1]
@@ -124,13 +143,13 @@ class ApplicationController < ActionController::Base
     @ok = @ok && condition
   end
   
+  # riceve errors.messages
   def convert_item_error_messages(errors)
     resp = []
     media_errors = errors.delete(:media)
     sti_type_errors = errors.delete(:sti_type)
     subject_id_errors = errors.delete(:subject_id)
-    errors2 = errors.to_s
-    if !(/can't be blank/ =~ errors2).nil? || !(/is too long/ =~ errors2).nil? || !(/is too short/ =~ errors2).nil?
+    if errors.has_key?(:title) || errors.has_key?(:description)
       resp << t('forms.error_captions.fill_all_the_fields_or_too_long')
     end
     flag = false
@@ -148,32 +167,64 @@ class ApplicationController < ActionController::Base
     resp
   end
   
+  # riceve errors.messages
   def convert_lesson_editor_messages(errors)
     resp = convert_item_error_messages errors
     resp << t('forms.error_captions.subject_missing_in_lesson') if errors.has_key? :subject_id
     resp
   end
   
+  # riceve errors
   def convert_media_element_uploader_messages(errors)
-    resp = convert_item_error_messages errors
-    if errors.has_key? :media
-      errors[:media].each do |em|
-        return ([t('forms.error_captions.media_blank')] + resp) if em == "can't be blank"
-      end
-      if !(/unsupported format/ =~ errors[:media].to_s).nil? || !(/invalid extension/ =~ errors[:media].to_s).nil?
+    resp = convert_item_error_messages errors.messages
+    if errors.messages.has_key? :media
+      return ([t('forms.error_captions.media_blank')] + resp) if errors.added? :media, :blank
+      if !(/unsupported format/ =~ errors.messages[:media].to_s).nil? || !(/invalid extension/ =~ errors.messages[:media].to_s).nil?
         return [t('forms.error_captions.media_unsupported_format')] + resp
-      end
-      if !(/invalid filename/ =~ errors[:media].to_s).nil?
-        return [t('forms.error_captions.media_invalid_filename')] + resp
       end
       return [t('forms.error_captions.media_generic_error')] + resp
     else
-      if errors.has_key? :sti_type
+      if errors.messages.has_key? :sti_type
         return [t('forms.error_captions.media_unsupported_format')] + resp
       else
         return resp
       end
     end
+  end
+  
+  # riceve errors
+  def convert_user_error_messages(errors)
+    pas_min = SETTINGS['minimum_password_length']
+    pas_max = SETTINGS['maximum_password_length']
+    resp = {
+      :general => [],
+      :subjects => [],
+      :policies => [],
+      :location => []
+    }
+    resp[:general] << t('forms.error_captions.fill_all_the_fields_or_too_long') if (errors.messages.keys & [:name, :surname]).any?
+    resp[:general] << t('forms.error_captions.not_valid_email') if errors.messages.has_key? :email
+    resp[:location] << t('forms.error_captions.choose_a_location', :location => Location.base_label.downcase) if errors.messages.has_key? :location_id
+    resp[:subjects] << t('forms.error_captions.select_at_least_a_subject') if errors.messages.has_key? :users_subjects
+    if errors.messages.has_key? :password
+      if errors.added?(:password, :too_short, {:count => pas_min}) || errors.added?(:password, :too_long, {:count => pas_max})
+        if pas_max.nil?
+          resp[:general] << t('forms.error_captions.password_too_short', :min => pas_min)
+        else
+          resp[:general] << t('forms.error_captions.password_not_in_range', :min => pas_min, :max => pas_max)
+        end
+      elsif errors.added? :password, :confirmation
+        resp[:general] << t('forms.error_captions.password_doesnt_match_confirmation')
+      else
+        resp[:general] << t('forms.error_captions.invalid_password')
+      end
+    end
+    SETTINGS['user_registration_policies'].each_with_index do |policy, index|
+      if errors.messages.has_key? :"#{policy}"
+        resp[:policies] << t('forms.error_captions.policy_not_accepted', :policy => t('registration.policies')[index]['title'])
+      end
+    end
+    resp
   end
   
   def logged_in?

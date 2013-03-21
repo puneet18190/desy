@@ -10,6 +10,13 @@ class MediaElementsController < ApplicationController
   before_filter :initialize_media_element_with_owner_and_private, :only => :update
   before_filter :initialize_layout, :initialize_paginator, :only => :index
   before_filter :initialize_media_element_destination, :only => [:add, :remove, :destroy]
+
+  skip_before_filter :authenticate, :initialize_location, :initialize_players_counter, only: :videos_test
+  before_filter :admin_authenticate, only: :videos_test
+  layout false, only: :videos_test
+
+  def videos_test
+  end
   
   def index
     get_own_media_elements
@@ -30,10 +37,11 @@ class MediaElementsController < ApplicationController
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
     record.tags = params[:tags_value]
     record.user_id = current_user.id
+    record.validating_in_form = true
     if record.save
       Notification.send_to current_user.id, t("notifications.#{record.class.to_s.downcase}.upload.started", item: record.title)
     else
-      @errors = convert_media_element_uploader_messages record.errors.messages
+      @errors = convert_media_element_uploader_messages record.errors
       fields = record.errors.messages.keys
       if fields.include? :sti_type
         fields << :media if !fields.include? :media
@@ -107,6 +115,7 @@ class MediaElementsController < ApplicationController
       @media_element.title = params[:title]
       @media_element.description = params[:description]
       @media_element.tags = params[:tags_value]
+      @media_element.validating_in_form = true
       if !@media_element.save
         @errors = convert_item_error_messages @media_element.errors.messages
         @error_fields = @media_element.errors.messages.keys

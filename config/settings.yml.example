@@ -1,6 +1,7 @@
 application_copyright: '©2013 DESY. All rights reserved'
 application_name: 'DESY'
 application_full_name: 'DESY - Digital Education System'
+application_extended_name: 'Digital Education System'
 application:
   smtp:
     address: 'smtp.example.com'
@@ -54,8 +55,10 @@ min_tags_for_item: 4
 min_characters_to_search_tags: 2
 how_many_tags_for_block_in_autocomplete: 20
 tags_limit_in_search_engine: 20
-# APPLICATION LANGUAGE
-application_language: 'en'
+# AVAILABLE LANGUAGES - THE FIRST IS THE DEFAULT ONE
+languages:
+- :en
+- :cn
 # TIMES
 seconds_for_timeout_dialogs: 2500
 seconds_for_saving_cache: 60000

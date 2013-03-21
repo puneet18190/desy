@@ -218,7 +218,7 @@ class User < ActiveRecord::Base
     r.reportable_id = lesson_id
     r.comment = msg
     if !r.save
-      if r.errors.messages.has_key?(:reportable_id) && r.errors.messages[:reportable_id].first == "has already been taken"
+      if r.errors.added? :reportable_id, :taken
         errors.add(:base, :lesson_already_reported)
       else
         errors.add(:base, :problem_reporting)
@@ -240,7 +240,7 @@ class User < ActiveRecord::Base
     r.reportable_id = media_element_id
     r.comment = msg
     if !r.save
-      if r.errors.messages.has_key?(:reportable_id) && r.errors.messages[:reportable_id].first == "has already been taken"
+      if r.errors.added? :reportable_id, :taken
         errors.add(:base, :media_element_already_reported)
       else
         errors.add(:base, :problem_reporting)
@@ -425,19 +425,17 @@ class User < ActiveRecord::Base
       lesson.copied_not_modified = false
       lesson.user_id = self.id
       lesson.tags = tags
-      if lesson.valid?
-        return {:subject_id => "is not your subject"}
-      else
-        resp = lesson.errors.messages
-        resp[:subject_id] = "is not your subject"
-        return resp
-      end
+      lesson.validating_in_form = true
+      lesson.valid?
+      lesson.errors.add(:subject_id, :is_not_your_subject)
+      return lesson.errors
     end
     lesson = Lesson.new :subject_id => subject_id, :school_level_id => self.school_level_id, :title => title, :description => description
     lesson.copied_not_modified = false
     lesson.user_id = self.id
     lesson.tags = tags
-    return lesson.save ? lesson : lesson.errors.messages
+    lesson.validating_in_form = true
+    return lesson.save ? lesson : lesson.errors
   end
   
   def super_admin?
@@ -832,7 +830,9 @@ class User < ActiveRecord::Base
   end
   
   def validate_associations
-    errors.add :school_level_id, :blank if @school_level.nil?
+    errors.add :school_level_id, :doesnt_exist if @school_level.nil?
+    @location = Valid.get_association self, :location_id
+    errors.add :location_id, :doesnt_exist if @location.nil? || @location.sti_type != SETTINGS['location_types'].last
   end
   
   def validate_email_not_changed

@@ -16,7 +16,19 @@
         <p><%= t('users.info.description') %></p>
       </header>
       <%= form_for @user, :url => user_path do |f| %>
-        <%= render :partial => 'personal_info', :locals => { :f => f } %>
+        <%
+          locals_for_general_info = {
+            :f => f,
+            :edit => true,
+            :user => @user,
+            :general_errors => (@errors.nil? ? [] : @errors[:general]),
+            :location_errors => (@errors.nil? ? [] : @errors[:location]),
+            :locations => @locations,
+            :user_location => @user_location,
+            :school_level_ids => @school_level_ids
+          }
+        %>
+        <%= render :partial => 'personal_info', :locals => locals_for_general_info %>
         <div class="form_submit">
           <%= f.submit "save" %>
         </div>

@@ -102,31 +102,31 @@
     </div>
     <div class="row-fluid">
       <div class="span6 widget">
-        <h4><%= t('admin.dashboard.reports.lessons') %></h4>
+        <h4><%= t('admin.messages.reports.lessons') %></h4>
         <% @elements_reports.each do |report| %>
           <a href="/admin/media_elements?utf8=✓&search%5Bid%5D=<%=report.reportable.id%>#list-anchor">
             <blockquote class="elements">
               <div class="pull-right date-label elements">
                 <%= report.created_at.strftime('%d %b')%>
               </div>
-              <%= report.user.name+' '+report.user.surname %><br />
-              <b>on:</b> <%=report.reportable.title %><br/ >
-              <b>report:</b> <i><%= report.comment %></i>
+              <%= report.user.full_name %><br/>
+              <b><%= t('admin.messages.reports.item') %></b> <%= report.reportable.title %><br/>
+              <b><%= t('admin.messages.reports.report') %></b> <i><%= report.comment %></i>
             </blockquote>
           </a>
         <% end %>
       </div>
       <div class="span6 widget">
-        <h4><%= t('admin.dashboard.reports.media_elements') %></h4>
+        <h4><%= t('admin.messages.reports.media_elements') %></h4>
         <% @lessons_reports.each do |report| %>
           <a href="/admin/lessons?utf8=✓&search%5Bid%5D=<%=report.reportable.id%>#list-anchor">
             <blockquote class="lessons">
               <div class="pull-right date-label lessons">
-                <%= report.created_at.strftime('%d %b')%>
+                <%= report.created_at.strftime('%d %b') %>
               </div>
-              <%= report.user.name+' '+report.user.surname %><br />
-              <b>on:</b> <%=report.reportable.title %><br/ >
-              <b>report:</b> <i><%= report.comment %></i>
+              <%= report.user.full_name %><br/>
+              <b><%= t('admin.messages.reports.item') %></b> <%= report.reportable.title %><br/>
+              <b><%= t('admin.messages.reports.report') %></b> <i><%= report.comment %></i>
             </blockquote>
           </a>
         <% end %>

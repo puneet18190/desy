@@ -4,7 +4,6 @@ require File.expand_path("../../config/environment", __FILE__)
 
 require 'rspec/rails'
 require 'rspec/autorun'
-require 'media/video/uploader'
 # require 'sidekiq/testing'
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -41,3 +40,4 @@ RSpec.configure do |config|
 end
 
 [ Media::Video::Uploader, Media::Audio::Uploader, ImageUploader, Media::Audio::Editing::Conversion, Media::Video::Editing::Conversion, Media::Logging ].each{ |u| u.remove_folder! }
+# $VERBOSE = nil

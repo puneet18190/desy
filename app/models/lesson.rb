@@ -1,11 +1,10 @@
 class Lesson < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  
-  statuses = ::STATUSES.lessons.marshal_dump.keys
-  STATUSES = Struct.new(*statuses).new(*statuses)
+  extend LessonsMediaElementsShared
   
   attr_accessible :subject_id, :school_level_id, :title, :description
-  attr_reader :status, :is_reportable
+  attr_reader :is_reportable
+  attr_writer :validating_in_form
   attr_accessor :skip_public_validations, :skip_cover_creation
   
   serialize :metadata, OpenStruct
@@ -18,31 +17,28 @@ class Lesson < ActiveRecord::Base
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :likes
   has_many :reports, :as => :reportable, :dependent => :destroy
-  has_many :taggings, :as => :taggable
+  has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :slides
   has_many :media_elements_slides, through: :slides
   has_many :media_elements, through: :media_elements_slides
   has_many :virtual_classroom_lessons
   
-  validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description, :token
+  validates_presence_of :user_id, :school_level_id, :subject_id, :title, :description
   validates_numericality_of :user_id, :school_level_id, :subject_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :parent_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_inclusion_of :is_public, :copied_not_modified, :notified, :in => [true, false]
   validates_length_of :title, :maximum => I18n.t('language_parameters.lesson.length_title')
   validates_length_of :description, :maximum => I18n.t('language_parameters.lesson.length_description')
-  validates_length_of :token, :is => 20
   validates_uniqueness_of :parent_id, :scope => :user_id, :if => :present_parent_id
   validate :validate_associations, :validate_public, :validate_copied_not_modified_and_public, :validate_impossible_changes, :validate_tags_length
   
-  before_validation :init_validation, :create_token
-  before_create :initialize_metadata
+  before_validation :init_validation
+  before_create :initialize_metadata, :create_token
   after_save :create_or_update_cover, :update_or_create_tags
-  before_destroy :destroy_taggings
   
   # SELECT "lessons".* FROM "lessons" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = lessons.id AND bookmarks.bookmarkable_type = 'Lesson' AND bookmarks.user_id = 1 ORDER BY COALESCE(bookmarks.created_at, lessons.updated_at) DESC
   scope :of, ->(user_or_user_id) do
     user_id = user_or_user_id.instance_of?(User) ? user_or_user_id.id : user_or_user_id
-    
     joins(sanitize_sql ["LEFT JOIN bookmarks ON 
                          bookmarks.bookmarkable_id = lessons.id AND 
                          bookmarks.bookmarkable_type = 'Lesson' AND 
@@ -50,7 +46,7 @@ class Lesson < ActiveRecord::Base
     where('bookmarks.user_id IS NOT NULL OR lessons.user_id = ?', user_id).
     order('COALESCE(bookmarks.created_at, lessons.updated_at) DESC')
   end
-
+  
   def initialize_metadata
     self.metadata.available_video = true
     self.metadata.available_audio = true
@@ -77,7 +73,7 @@ class Lesson < ActiveRecord::Base
     return false if self.status.nil?
     !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
   end
-
+  
   def available?(type = nil)
     case type = type.to_s.downcase
     when 'video', 'audio'
@@ -95,7 +91,7 @@ class Lesson < ActiveRecord::Base
   def tags
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'Lesson')
   end
-
+  
   def tags=(tags)
     @tags = 
       case tags
@@ -104,7 +100,6 @@ class Lesson < ActiveRecord::Base
       when Array
         tags.map(&:to_s).join(',')
       end
-    
     @tags
   end
   
@@ -121,22 +116,26 @@ class Lesson < ActiveRecord::Base
     Bookmark.joins("INNER JOIN lessons ON lessons.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'Lesson'").where('lessons.is_public = ? AND lessons.user_id != ? AND lessons.subject_id IN (?) AND bookmarks.user_id = ?', true, an_user_id, subject_ids, an_user_id).any?
   end
   
+  def status(with_captions=false)
+    @status.nil? ? nil : (with_captions ? Lesson.status(@status) : @status)
+  end
+  
   def set_status(an_user_id)
     return if self.new_record?
     if !self.is_public && !self.copied_not_modified && an_user_id == self.user_id
-      @status = STATUSES.private
+      @status = Statuses::PRIVATE
       @is_reportable = false
     elsif !self.is_public && self.copied_not_modified && an_user_id == self.user_id
-      @status = STATUSES.copied
+      @status = Statuses::COPIED
       @is_reportable = false
     elsif self.is_public && an_user_id != self.user_id && self.bookmarked?(an_user_id)
-      @status = STATUSES.linked
+      @status = Statuses::LINKED
       @is_reportable = true
     elsif self.is_public && an_user_id != self.user_id && !self.bookmarked?(an_user_id)
-      @status = STATUSES.public
+      @status = Statuses::PUBLIC
       @is_reportable = true
     elsif self.is_public && an_user_id == self.user_id
-      @status = STATUSES.shared
+      @status = Statuses::SHARED
       @is_reportable = false
     else
       @status = nil
@@ -149,15 +148,15 @@ class Lesson < ActiveRecord::Base
   def buttons
     return [] if [@status, @in_vc, @liked, @is_reportable].include?(nil)
     case @status
-    when STATUSES.private
+    when Statuses::PRIVATE
       [Buttons::PREVIEW, Buttons::EDIT, virtual_classroom_button, Buttons::PUBLISH, Buttons::COPY, Buttons::DESTROY]
-    when STATUSES.copied
+    when Statuses::COPIED
       [Buttons::PREVIEW, Buttons::EDIT, Buttons::DESTROY]
-    when STATUSES.linked
+    when Statuses::LINKED
       [Buttons::PREVIEW, Buttons::COPY, virtual_classroom_button, like_button, Buttons::REMOVE]
-    when STATUSES.public
+    when Statuses::PUBLIC
       [Buttons::PREVIEW, Buttons::ADD, like_button]
-    when STATUSES.shared
+    when Statuses::SHARED
       [Buttons::PREVIEW, Buttons::EDIT, virtual_classroom_button, Buttons::UNPUBLISH, Buttons::COPY, Buttons::DESTROY]
     else
       []
@@ -438,7 +437,7 @@ class Lesson < ActiveRecord::Base
   private
   
   def validate_tags_length
-    errors[:tags] << "are not enough" if @inner_tags.length < SETTINGS['min_tags_for_item']
+    errors.add(:tags, :are_not_enough) if @validating_in_form && @inner_tags.length < SETTINGS['min_tags_for_item']
   end
   
   def virtual_classroom_button
@@ -454,11 +453,11 @@ class Lesson < ActiveRecord::Base
   end
   
   def validate_associations
-    errors[:user_id] << "doesn't exist" if @user.nil?
-    errors[:subject_id] << "doesn't exist" if @subject.nil?
-    errors[:school_level_id] << "doesn't exist" if @school_level.nil?
-    errors[:parent_id] << "doesn't exist" if self.parent_id && @parent.nil?
-    errors[:parent_id] << "can't be the lesson itself" if @lesson && self.parent_id == @lesson.id
+    errors.add(:user_id, :doesnt_exist) if @user.nil?
+    errors.add(:subject_id, :doesnt_exist) if @subject.nil?
+    errors.add(:school_level_id, :doesnt_exist) if @school_level.nil?
+    errors.add(:parent_id, :doesnt_exist) if self.parent_id && @parent.nil?
+    errors.add(:parent_id, :cant_be_the_lesson_itself) if @lesson && self.parent_id == @lesson.id
   end
   
   def update_or_create_tags
@@ -523,38 +522,24 @@ class Lesson < ActiveRecord::Base
   end
   
   def validate_public
-    errors[:is_public] << "can't be true for new records" if @lesson.nil? && self.is_public && !self.skip_public_validations
+    errors.add(:is_public, :cant_be_true_for_new_records) if @lesson.nil? && self.is_public && !self.skip_public_validations
   end
   
   def validate_copied_not_modified_and_public
-    errors[:copied_not_modified] << "can't be true if public" if self.is_public && self.copied_not_modified
+    errors.add(:copied_not_modified, :cant_be_true_if_public) if self.is_public && self.copied_not_modified
   end
   
   def validate_impossible_changes
     if @lesson
-      errors[:token] << "can't be changed" if @lesson.token != self.token
-      errors[:user_id] << "can't be changed" if @lesson.user_id != self.user_id
-      errors[:parent_id] << "can't be changed" if self.parent_id && @lesson.parent_id != self.parent_id
+      errors.add(:token, :cant_be_changed) if @lesson.token != self.token
+      errors.add(:user_id, :cant_be_changed) if @lesson.user_id != self.user_id
+      errors.add(:parent_id, :cant_be_changed) if self.parent_id && @lesson.parent_id != self.parent_id
     end
   end
   
   def create_token
-    if !@lesson
-      tok = ''
-      i = 0
-      while i < 20
-        tok = "#{tok}#{rand(10)}"
-        i += 1
-      end
-      self.token = tok
-    end
-  end
-  
-  def destroy_taggings
-    Tagging.where(:taggable_type => 'Lesson', :taggable_id => self.id).each do |tagging|
-      tagging.destroyable = true
-      tagging.destroy
-    end
+    self.token = SecureRandom.urlsafe_base64(16)
+    true
   end
   
   def self.test

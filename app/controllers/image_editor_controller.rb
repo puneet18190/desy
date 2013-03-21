@@ -65,6 +65,7 @@ class ImageEditorController < ApplicationController
       new_image.tags = params[:new_tags_value]
       new_image.user_id = current_user.id
       new_image.media = File.open @image.current_editing_image
+      new_image.validating_in_form = true
       if !new_image.save
         @error_ids = 'new'
         @errors = convert_item_error_messages(new_image.errors.messages)
@@ -84,6 +85,7 @@ class ImageEditorController < ApplicationController
       @image.description = params[:update_description]
       @image.tags = params[:update_tags_value]
       @image.media = File.open @image.current_editing_image
+      @image.validating_in_form = true
       if !@image.save
         @error_ids = 'update'
         @errors = convert_item_error_messages(@image.errors.messages)
