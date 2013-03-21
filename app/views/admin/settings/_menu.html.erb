@@ -6,22 +6,6 @@
   <li class="<%= (current == 'school_levels') ? 'active' : ''%>">
     <a href="/admin/settings/school_levels">School Levels</a>
   </li>
-  <li class="dropdown <%= (current == 'locations') ? 'active' : ''%>">
-      <a class="dropdown-toggle"
-         data-toggle="dropdown"
-         href="#">
-          Schools
-          <b class="caret"></b>
-        </a>
-      <ul class="dropdown-menu">
-        <li>
-          <a href="/admin/settings/locations">New</a>
-        </li>
-        <li>
-          <a href="/admin/settings/locations/edit">Edit</a>
-        </li>
-      </ul>
-    </li>
   <li class="<%= (current == 'tags') ? 'active' : ''%>">
     <a href="/admin/settings/tags">Tags</a>
   </li>

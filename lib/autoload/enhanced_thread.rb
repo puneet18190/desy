@@ -3,6 +3,12 @@ class EnhancedThread < Thread
   DATABASE_POOL = Rails.configuration.database_configuration[Rails.env]['pool']
   MIN_THREADS   = 1
   MAX_THREADS   = Facter.fact(:processorcount).value.to_i * 2
+  CLOSE_CONNECTION_PROC = proc {
+    begin
+      ActiveRecord::Base.connection.close
+    rescue ActiveRecord::ConnectionTimeoutError
+    end
+  }
 
   def self.join(*thread_blocks, close_connection_before_execution: false)
     n = DATABASE_POOL-Thread.list.count
@@ -26,10 +32,7 @@ class EnhancedThread < Thread
     thread_block = 
       if close_connection_before_execution
         proc {
-          begin
-            ActiveRecord::Base.connection.close
-          rescue ActiveRecord::ConnectionTimeoutError
-          end
+          CLOSE_CONNECTION_PROC.call
           block.call
         }
       else
@@ -37,10 +40,7 @@ class EnhancedThread < Thread
           begin
             block.call
           ensure
-            begin
-              ActiveRecord::Base.connection.close
-            rescue ActiveRecord::ConnectionTimeoutError
-            end
+            CLOSE_CONNECTION_PROC.call
           end
         }
       end
