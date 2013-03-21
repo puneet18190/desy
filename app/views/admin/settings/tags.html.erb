@@ -8,12 +8,12 @@
       <% if @tag.present? && (@tag.id == tag.id) %>
         <span class="label tags label-info">
           <%= tag.word %>
-          <%= link_to '', "/admin/settings/tags/#{tag.id}/delete", :method => :delete, :confirm => :class=>"icon-remove icon-white"%>
+          <%= link_to '', "/admin/settings/tags/#{tag.id}/delete", :method => :delete, :confirm => "are you sure?", :class=>"icon-remove icon-white"%>
         </span>
       <% else %>
         <span class="label tags">
           <%= link_to tag.word, "/admin/settings/tags?id=#{tag.id}" %>
-          <%= link_to '', "/admin/settings/tags/#{tag.id}/delete", :method => :delete, :class=>"icon-remove icon-white"%>
+          <%= link_to '', "/admin/settings/tags/#{tag.id}/delete", :method => :delete, :confirm => "are you sure?", :class=>"icon-remove icon-white"%>
         </span>
       <% end %>
     <% end %>
