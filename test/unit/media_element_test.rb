@@ -22,6 +22,7 @@ class MediaElementTest < ActiveSupport::TestCase
   end
   
   test 'tags' do
+    @media_element.validating_in_form = true
     @media_element.tags = 'gatto, gatto, gatto  ,   , cane, topo'
     assert !@media_element.save, "MediaElement erroneously saved - #{@media_element.inspect} -- #{@media_element.tags.inspect}"
     assert_equal 1, @media_element.errors.messages.length, "A field which wasn't supposed to be affected returned error - #{@media_element.errors.inspect}"
@@ -63,7 +64,7 @@ class MediaElementTest < ActiveSupport::TestCase
     @media_element = MediaElement.new
     assert_equal false, @media_element.is_public
     @media_element.is_public = nil
-    assert_error_size 9, @media_element
+    assert_error_size 8, @media_element
   end
   
   test 'attr_accessible' do
