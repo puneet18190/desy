@@ -15,8 +15,8 @@
 
 <div id="instance_<%= @video_counter[0] %>_<%= @video_counter[1] %>_of_video_player" class="videoPlayer <%= video_class %>" data-media-type="video" data-initialized="false" data-duration="<%= duration %>">
   <video>
-    <source src="<%= webm %>" type="video/webm">
     <source src="<%= mp4 %>" type="video/mp4">
+    <source src="<%= webm %>" type="video/webm">
     <%= t('captions.dont_support_video') %>
   </video>
   <a class="play _media_player_play"  title="<%= t('titles.videos.play') %>"></a>
