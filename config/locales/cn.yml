@@ -2748,6 +2748,17 @@ cn:
         # Title of the section
         # 1 - views/admin/messages/reports.html.erb
         title: "报告滥用"
+        # Name used as label in the pagination (ex. '1-10 of 300 users')
+        # 1 - helpers/admin_helper.rb
+        name: "Reports" # TODO
+        # Captions used when there are no reports
+        empty:
+          # 1 - views/admin/dashboard/index.html.erb
+          # 2 - views/admin/messages/reports.html.erb
+          lessons: "There are no reports for lessons" # TODO
+          # 1 - views/admin/dashboard/index.html.erb
+          # 2 - views/admin/messages/reports.html.erb
+          media_elements: "There are no reports for elements" # TODO
         # Label for the item on which the report was sent (it may be lesson or media element)
         # 1 - views/admin/dashboard/index.html.erb
         # 2 - views/admin/dashboard/index.html.erb

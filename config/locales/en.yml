@@ -2760,12 +2760,17 @@ en:
         # Title of the section
         # 1 - views/admin/messages/reports.html.erb
         title: "Abuse reports"
-        name: "Reports" # TODO
-        # TODO DA QUI
+        # Name used as label in the pagination (ex. '1-10 of 300 users')
+        # 1 - helpers/admin_helper.rb
+        name: "Reports"
+        # Captions used when there are no reports
         empty:
+          # 1 - views/admin/dashboard/index.html.erb
+          # 2 - views/admin/messages/reports.html.erb
           lessons: "There are no reports for lessons"
+          # 1 - views/admin/dashboard/index.html.erb
+          # 2 - views/admin/messages/reports.html.erb
           media_elements: "There are no reports for elements"
-        # TODO A QUI
         # Label for the item on which the report was sent (it may be lesson or media element)
         # 1 - views/admin/dashboard/index.html.erb
         # 2 - views/admin/dashboard/index.html.erb
