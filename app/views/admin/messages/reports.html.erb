@@ -28,7 +28,7 @@
             <%= report.created_at.strftime('%d %b %Y') %>
           </div>
           <%= report.user.full_name %><br/>
-          <b><%= t('admin.messages.reports.item') %></b> <%= report.reportable.title %><br/>
+          <b><%= t('admin.messages.reports.item') %></b><%= report.reportable.title %><br/>
           <b><%= t('admin.messages.reports.report') %></b> <i><%= report.comment %></i>
         </blockquote>
       </a>
