@@ -785,7 +785,7 @@ en:
       change_info: "Change lesson info"
       # Button '+' to replace a video in the video slide
       # 1 - views/lesson_editor/slides/parts/_video.html.erb
-      change_video: "Change video"
+      change_video: "Replace video"
       # Button 'X' to remove the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       delete_slide: "Remove slide"

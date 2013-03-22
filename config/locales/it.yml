@@ -785,7 +785,7 @@ it:
       change_info: "Modifica le informazioni sulla lezione"
       # Button '+' to replace a video in the video slide
       # 1 - views/lesson_editor/slides/parts/_video.html.erb
-      change_video: "Modifica il video"
+      change_video: "Sostituisci il video"
       # Button 'X' to remove the current slide
       # 1 - views/lesson_editor/_slide_buttons.html.erb
       delete_slide: "Rimuovi la diapositiva"
@@ -1114,7 +1114,7 @@ it:
     empty: "Per avviare la creazione di un audio, fare clic sul pulsante a destra e selezionare dalla galleria"
     # Label in the header
     # 1 - views/audio_editor/_header.html.erb
-    label: "Modifica audio"
+    label: "Audio editor"
     # These two captions appear inside the page shown in the case the Audio Editor is temporarily not available (it's just a page with title and description): the editor is not available only while the user is editing another audio (it takes a few minutes for the server to complete the process and to enable the Editor again)
     not_available:
       # 1 - views/audio_editor/not_available.html.erb
@@ -1225,7 +1225,7 @@ it:
       description: "Seleziona le forbici per tagliare l'immagine"
     # Label for the header
     # 1 - views/image_editor/_header.html.erb
-    label: "Modifica l'immagine"
+    label: "Image editor"
     # Label on the bottom of the editor, where the user can see step by step how the dimensions (in pixels) of the image change
     # 1 - views/image_editor/crop.js.erb
     # 2 - views/image_editor/edit.html.erb
@@ -1958,7 +1958,7 @@ it:
       selected_length: "Selezionato"
     # Caption for the header of the Video Editor
     # 1 - views/video_editor/_header.html.erb
-    label: "Modifica il video"
+    label: "Video editor"
     # These two captions appear inside the page shown in the case the Video Editor is temporarily not available (it's just a page with title and description): the editor is not available only while the user is editing another video (it takes a few minutes for the server to complete the process and to enable the Editor again)
     not_available:
       # 1 - views/video_editor/not_available.html.erb
@@ -1969,7 +1969,7 @@ it:
       # Caption for the button that opens the global preview mode
       # 1 - views/video_editor/edit.html.erb
       # 2 - views/video_editor/edit.html.erb
-      label: "Anteprima"
+      label: "Preview"
       # Pause the global preview
       # 1 - views/video_editor/edit.html.erb
       pause: "Pausa"
@@ -1981,7 +1981,7 @@ it:
     select_component_to_add: "Seleziona un componente da aggiungere"
     # Caption for the overall length of the video that the user is composing
     # 1 - views/video_editor/edit.html.erb
-    total_length: "Lunghezza totale"
+    total_length: "Durata"
   
   
   # SECTION 2.17: Captions used inside the Virtual Classroom
