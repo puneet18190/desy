@@ -2545,6 +2545,39 @@ it:
         # Title of the frame: since the labels contained in this frame are the same of the section 'Users', this title is the only caption which differs from the labels used in that section
         # 1 - views/admin/search/_notifications_filter.html.erb
         title: "Generale"
+      # Contents of search engine specific for elements
+      tags:
+        # Fields used in the research
+        fields:
+          # 1 - views/admin/search/_tags_general.html.erb
+          # 2 - views/admin/search/_tags_general.html.erb
+          id: "Id"
+          # 1 - views/admin/search/_tags_general.html.erb
+          # 2 - views/admin/search/_tags_general.html.erb
+          word: "Parola"
+          # Labels used to range tags according to their creation date
+          created_at:
+            # 1 - views/admin/search/_tags_general.html.erb
+            select: "Seleziona un'opzione"
+            # 1 - views/admin/search/_tags_general.html.erb
+            today: "Oggi"
+            # 1 - views/admin/search/_tags_general.html.erb
+            week: "Ultima settimana"
+            # 1 - views/admin/search/_tags_general.html.erb
+            month: "Ultimo mese"
+            # 1 - views/admin/search/_tags_general.html.erb
+            year: "Ultimo anno"
+        # Titles of the subframe
+        titles:
+          # Search by id
+          # 1 - views/admin/search/_tags_general.html.erb
+          id: "Ricerca per id"
+          # Search by word
+          # 1 - views/admin/search/_tags_general.html.erb
+          word: "Ricerca per parola"
+          # Search bt creation date
+          # 1 - views/admin/search/_tags_general.html.erb
+          created_at: "Ricerca per data di creazione"
       # Contents of search engine specific for users: this part is used to search both users and notifications / reports associated to users
       users:
         # Title of the frame
@@ -2573,7 +2606,7 @@ it:
           # 1 - views/admin/search/_users_general.html.erb
           # 2 - views/admin/search/_notifications_filter.html.erb
           select_school_level: "Seleziona un livello scolastico"
-          # labels used to range users according to their sign up date
+          # Labels used to range users according to their sign up date
           created_at:
             # Title of the subframe
             # 1 - views/admin/search/_notifications_filter.html.erb
@@ -2586,13 +2619,13 @@ it:
             today: "Oggi"
             # Only users created in the last week
             # 1 - views/admin/search/_notifications_filter.html.erb
-            week: "Scorsa settimana"
+            week: "Ultima settimana"
             # Only users created in the last month
             # 1 - views/admin/search/_notifications_filter.html.erb
-            month: "Scorso mese"
+            month: "Ultimo mese"
             # Only users creatd in the last year
             # 1 - views/admin/search/_notifications_filter.html.erb
-            year: "Scorso anno"
+            year: "Ultimo anno"
     # Section 'Users' in the administration module
     users:
       # Title of the section
