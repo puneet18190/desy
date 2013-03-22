@@ -1,0 +1,37 @@
+<div class="span4">
+  <div class="control-group heading">
+    <label><h5><%= t('admin.search.tags.titles.id') %></h5></label>
+  </div>
+  <div class="control-group">
+    <label for="id"><%= t('admin.search.tags.fields.id') %></label>
+    <div class="controls">
+      <%= text_field_tag 'search[id]', params ? params[:id] : ''  ,:class => 'input-mini', :placeholder => t('admin.search.tags.fields.id') %>
+    </div>
+  </div>
+<div class="span4">
+  <div class="control-group heading">
+    <label><h5><%= t('admin.search.tags.titles.word') %></h5></label>
+  </div>
+  <div class="control-group">
+    <label for="keyword"><%= t('admin.search.tags.fields.word') %></label>
+    <div class="controls">
+      <%= text_field_tag 'search[user]', params ? params[:user] : '', :class => 'input-medium', :placeholder => t('admin.search.tags.fields.word') %>
+    </div>
+  </div>
+</div>
+<div class="span4">
+  <div class="control-group heading">
+    <label><h5><%= t('admin.search.tags.titles.created_at') %></h5></label>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <select id="recency" name="search[recency]">
+        <option value=""><%= t('admin.search.tags.fields.created_at.select') %></option>
+        <option value="<%= 1.day.ago %>"><%= t('admin.search.tags.fields.created_at.today') %></option>
+        <option value="<%= 1.week.ago %>"><%= t('admin.search.tags.fields.created_at.week') %></option>
+        <option value="<%= 1.month.ago %>"><%= t('admin.search.tags.fields.created_at.month') %></option>
+        <option value="<%= 1.week.ago %>"><%= t('admin.search.tags.fields.created_at.year') %></option>
+      </select>
+    </div>
+  </div>
+</div>

@@ -164,7 +164,7 @@ class AdminSearchForm < Form
     resp
   end
   
-  def self.search_notifications_users(params, count_only=false )
+  def self.search_notifications_users(params, count_only=false)
     resp = User.scoped
     resp = resp.where(:school_level_id => params[:school_level_id]) if params[:school_level_id].present?
     resp = resp.where("users.created_at >= ?", params[:recency]) if params[:recency].present?
@@ -184,30 +184,24 @@ class AdminSearchForm < Form
         end
       end
     end
-    
     if params[:subject_id].present?
       resp = resp.where(:users_subjects => {:subject_id => params[:subject_id]})
     end
-    
     if params[:users_ids].present?
       resp = User.where([resp.wheres.map(&:to_sql).join(' AND '), "users.id IN (#{params[:users_ids]})"].select{ |s| s.present? }.join(' OR ') )
     end
-    
     if location
       resp = resp.joins(:location)
     end
-    
     if resp.wheres.count == 0 && params[:users_ids].blank?
       empty = true
     end
-    
     if params[:subject_id].present?
       resp = resp.joins(:users_subjects).group('users.id')
       count_resp = resp.count.length
     else
       count_resp = resp.count
     end
-    
     if count_only
       if empty
         return 0
@@ -221,7 +215,6 @@ class AdminSearchForm < Form
         return resp
       end
     end
-    
   end
   
 end

@@ -9,15 +9,7 @@
     </div>
   </div>
   <div class="row-fluid">
-    <div class="span4">
-      <%= render :partial => 'admin/search/tags_general', :locals => {:params => params[:search]} %>
-    </div>
-    <div class="span4">
-      <%= render :partial => 'admin/search/date', :locals => {:params => params[:search]} %>
-    </div>
-    <div class="span4">
-      <%= render :partial => 'admin/search/location', :locals => {:locations => @locations, :params => params[:search]} %>
-    </div>
+    <%= render :partial => 'admin/search/tags_general', :locals => {:params => params[:search]} %>
   </div>
   <div class="row-fluid">
     <div class="span12">

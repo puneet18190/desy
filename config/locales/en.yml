@@ -2545,6 +2545,22 @@ en:
         # Title of the frame: since the labels contained in this frame are the same of the section 'Users', this title is the only caption which differs from the labels used in that section
         # 1 - views/admin/search/_notifications_filter.html.erb
         title: "General"
+      # TODO NUOVO
+      tags:
+        fields:
+          id: "Id"
+          word: "Word"
+          created_at:
+            select: "Select an option"
+            today: "Today"
+            week: "Last week"
+            month: "Last month"
+            year: "Last year"
+        titles:
+          id: "Search by id"
+          word: "Search by word"
+          created_at: "Search by date of creation"
+      # TODO FINO A QUI
       # Contents of search engine specific for users: this part is used to search both users and notifications / reports associated to users
       users:
         # Title of the frame
@@ -2786,7 +2802,7 @@ en:
         empty: "No tags found"
         fields:
           id: "Id"
-          name: "Name"
+          word: "Word"
           created_at: "Date of creation"
           lessons_number: "Number of tagged lessons"
           media_elements_number: "Number of tagged elements"

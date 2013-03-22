@@ -6,7 +6,7 @@
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.settings.tags.fields.id'), :ordering => 0} %>
         </th>
         <th>
-          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.settings.tags.fields.name'), :ordering => 1} %>
+          <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.settings.tags.fields.word'), :ordering => 1} %>
         </th>
         <th>
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.settings.tags.fields.created_at'), :ordering => 2} %>
@@ -31,7 +31,7 @@
       <% tags.each do |tag| %>
         <tr id="<%= tag.id %>">
           <td><%= tag.id %></td>
-          <td><%= tag.name %></td>
+          <td><%= tag.word %></td>
           <td><%= tag.created_at.strftime('%d-%m-%Y') %></td>
           <td><%= link_to tag.lessons_count, "/admin/settings/tags/#{tag.id}/show/lessons", :target => :blank %></td>
           <td><%= link_to tag.media_elements_count, "/admin/settings/tags/#{tag.id}/show/media_elements", :target => :blank %></td>
