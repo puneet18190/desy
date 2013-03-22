@@ -1,3 +1,8 @@
+<%
+  options = ['', "<option value=\"1\">", "<option value=\"2\">", "<option value=\"3\">", "<option value=\"4\">"]
+  options[params[:recency].to_i] = options[params[:recency].to_i].gsub('>', " selected=\"selected\">") if params.present? && params[:recency].present?
+%>
+
 <div class="span4">
   <div class="control-group for_tags heading">
     <label class="for_title"><h5><%= t('admin.search.tags.titles.id') %></h5></label>
@@ -28,10 +33,10 @@
     <div class="controls">
       <select id="recency" name="search[recency]">
         <option value=""><%= t('admin.search.tags.fields.created_at.select') %></option>
-        <option value="<%= 1.day.ago %>"><%= t('admin.search.tags.fields.created_at.today') %></option>
-        <option value="<%= 1.week.ago %>"><%= t('admin.search.tags.fields.created_at.week') %></option>
-        <option value="<%= 1.month.ago %>"><%= t('admin.search.tags.fields.created_at.month') %></option>
-        <option value="<%= 1.week.ago %>"><%= t('admin.search.tags.fields.created_at.year') %></option>
+        <%= options[1].html_safe %><%= t('admin.search.tags.fields.created_at.today') %></option>
+        <%= options[2].html_safe %><%= t('admin.search.tags.fields.created_at.week') %></option>
+        <%= options[3].html_safe %><%= t('admin.search.tags.fields.created_at.month') %></option>
+        <%= options[4].html_safe %><%= t('admin.search.tags.fields.created_at.year') %></option>
       </select>
     </div>
   </div>

@@ -1,5 +1,7 @@
 class AdminSearchForm < Form
   
+  RECENCIES = [1.day.ago, 1.week.ago, 1.month.ago, 1.year.ago]
+  
   ORDERINGS = {
     :media_elements => [
       'media_elements.id %{ord}',
@@ -185,7 +187,7 @@ class AdminSearchForm < Form
     end
     resp = resp.where(:id => params[:id]) if params[:id].present?
     resp = resp.where('word ILIKE ?', "%#{params[:word]}%") if params[:word].present?
-    resp = resp.where('created_at >= ?', params[:recency]) if params[:recency].present?
+    resp = resp.where('created_at >= ?', RECENCIES[params[:recency].to_i - 1]) if params[:recency].present?
     resp
   end
   
