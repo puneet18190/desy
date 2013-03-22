@@ -24,6 +24,9 @@
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.is_public'), :ordering => 6} %>
         </th>
         <th></th>
+        <% if from_reporting %>
+          <th></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -45,11 +48,20 @@
           <td>
             <%= element.is_public.to_s %>
           </td>
-          <td>
-            <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.media_elements.delete_confirm') %>" href="/admin/media_elements/<%= element.id %>?back_url=<%= manipulate_url(:page => back_page, :escape => true).html_safe %>">
-              <i class="icon-remove"></i>
-            </a>
-          </td>
+          <% if from_reporting %>
+            <td>
+              <a class="_report_media_element" data-lesson-id="<%= element.id %>"><%= t('admin.messages.reports.actions.delete') %></a>
+            </td>
+            <td>
+              <a class="_dont_report_media_element" data-lesson-id="<%= element.id %>"><%= t('admin.messages.reports.actions.ok') %></a>
+            </td>
+          <% else %>
+            <td>
+              <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.media_elements.delete_confirm') %>" href="/admin/media_elements/<%= element.id %>?back_url=<%= manipulate_url(:page => back_page, :escape => true).html_safe %>">
+                <i class="icon-remove"></i>
+              </a>
+            </td>
+          <% end %>
         </tr>
         <div style="clear:both;"></div>
         <tr class="collapsed">

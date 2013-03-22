@@ -31,7 +31,7 @@
 <% if @elements.length > 0 %>
   <%= render :partial => 'admin/list_heading', :locals => {:items => @elements, :expandable => false} %>
 <% end %>
-<%= render :partial => 'admin/media_elements/list', :locals => {:elements => @elements, :from_reporting => params[:from_reporting].present?} %>
+<%= render :partial => 'admin/media_elements/list', :locals => {:elements => @elements, :from_reporting => @from_reporting} %>
 <% if @elements.length > 0 %>
   <%= render :partial => 'admin/list_heading', :locals => {:items => @elements, :expandable => false} %>
 <% end %>

@@ -22,7 +22,7 @@
       </div>
     <% end %>
     <% @elements_reports.each do |report| %>
-      <a href="/admin/media_elements?utf8=✓&search%5Bid%5D=<%=report.reportable.id%>#list-anchor&from_reporting=true">
+      <a href="/admin/media_elements?utf8=✓&from_reporting=true&search%5Bid%5D=<%=report.reportable.id%>">
         <blockquote class="elements">
           <div class="pull-right date-label elements">
             <%= report.created_at.strftime('%d %b %Y') %>
@@ -67,7 +67,7 @@
       </div>
     <% end %>
     <% @lessons_reports.each do |report| %>
-      <a href="/admin/lessons?utf8=✓&search%5Bid%5D=<%=report.reportable.id%>#list-anchor&from_reporting=true">
+      <a href="/admin/lessons?utf8=✓&from_reporting=true&search%5Bid%5D=<%=report.reportable.id%>">
         <blockquote class="lessons">
           <div class="pull-right date-label lessons">
             <%= report.created_at.strftime('%d %b %Y') %>

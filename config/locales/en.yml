@@ -2782,6 +2782,9 @@ en:
         # 2 - views/admin/messages/reports.html.erb
         media_elements: "Reported media elements"
     # TODO TODO TODO da qui in giù
+        actions:
+          delete: "Delete now!"
+          ok: "Ignore the report"
     settings:
       title: "Application settings"
       school_levels:

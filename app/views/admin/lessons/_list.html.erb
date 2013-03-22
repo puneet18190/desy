@@ -25,6 +25,9 @@
         </th>
         <th></th>
         <th></th>
+        <% if from_reporting %>
+          <th></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -45,11 +48,20 @@
           <td><%= lesson.updated_at.strftime('%d-%m-%Y') %></td>
           <td><%= lesson.likes.count %></td>
           <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, "/lessons/#{lesson.id}/view?token=#{lesson.token}", :target => :blank, :class => 'action' %><a href="#" target="_blank" class="action"></a></td>
-          <td>
-            <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.lessons.delete_confirm') %>" href="/admin/lessons/<%= lesson.id %>?back_url=<%= manipulate_url(:page => back_page, :escape => true).html_safe %>">
-              <i class="icon-remove"></i>
-            </a>
-          </td>
+          <% if from_reporting %>
+            <td>
+              <a class="_report_lesson" data-lesson-id="<%= lesson.id %>"><%= t('admin.messages.reports.actions.delete') %></a>
+            </td>
+            <td>
+              <a class="_dont_report_lesson" data-lesson-id="<%= lesson.id %>"><%= t('admin.messages.reports.actions.ok') %></a>
+            </td>
+          <% else %>
+            <td>
+              <a rel="nofollow" data-method="delete" data-confirm="<%= t('admin.lessons.delete_confirm') %>" href="/admin/lessons/<%= lesson.id %>?back_url=<%= manipulate_url(:page => back_page, :escape => true).html_safe %>">
+                <i class="icon-remove"></i>
+              </a>
+            </td>
+          <% end %>
         </tr>
         <tr class="collapsed">
           <td colspan="11">
