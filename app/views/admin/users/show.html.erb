@@ -30,11 +30,11 @@
             <td>
               <div class="btn-group pull-right">
                 <% if @user.active %>
-                  <a class="btn btn-small" href="/admin/user/<%= @user.id %>/ban" data-method="put">
+                  <a class="btn btn-small" href="/admin/users/<%= @user.id %>/ban" data-method="put">
                     <i class="icon-ban-circle _show_status _show_ban"></i><%= t('admin.users.actions.ban').downcase %>
                   </a>
                 <% else %>
-                  <a class="btn btn-small" href="/admin/user/<%= @user.id %>/activate" data-method="put">
+                  <a class="btn btn-small" href="/admin/users/<%= @user.id %>/activate" data-method="put">
                     <i class="icon-ok _show_status _show_active"></i><%= t('admin.users.actions.activate').downcase %>
                   </a>
                 <% end %>

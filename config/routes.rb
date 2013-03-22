@@ -157,8 +157,8 @@ Desy::Application.routes.draw do
     root      :to                                       => 'dashboard#index'
     get       'users/get_full_names'                    => 'users#get_full_names'
     put       'users/:id/set_status'                    => 'users#set_status'
-    put       'user/:id/activate'                       => 'users#activate'
-    put       'user/:id/ban'                            => 'users#ban'
+    put       'users/:id/activate'                      => 'users#activate'
+    put       'users/:id/ban'                           => 'users#ban'
     get       'media_elements/edit'                     => 'media_elements#edit'
     get       'media_elements/:id/load'                 => 'media_elements#load_media_element'
     post      'media_elements/quick_upload'             => 'media_elements#quick_upload'
@@ -168,8 +168,6 @@ Desy::Application.routes.draw do
     get       'messages/new_notification'               => 'messages#new_notification'
     get       'messages/reports'                        => 'messages#reports'
     post      'messages/filter_users'                   => 'messages#filter_users'
-
-    get       'settings'                                => 'settings#subjects' ## TODO
     get       'settings/subjects'                       => 'settings#subjects'
     post      'settings/subjects/new'                   => 'settings#new_subject'
     delete    'settings/subjects/:id/delete'            => 'settings#delete_subject'
@@ -178,19 +176,16 @@ Desy::Application.routes.draw do
     delete    'settings/school_levels/:id/delete'       => 'settings#delete_school_level'
     get       'settings/tags'                           => 'settings#tags'
     delete    'settings/tags/:id/delete'                => 'settings#delete_tag'
-    get       'settings/tags/:id/select'                => 'settings#select_tag'
-    get       'settings/tags/new_block'                 => 'settings#tags_new_block'
-
+    get       'settings/tags/:id/show/lessons'          => 'settings#lessons_for_tag'
+    get       'settings/tags/:id/show/media_elements'   => 'settings#media_elements_for_tag'
     resources :lessons,                           :only => [:index, :destroy]
     resources :media_elements,                    :only => [:new, :index, :destroy]
     resources :users,                             :only => [:index, :show, :destroy]
   end
-
-  get ':locale' => 'application#set_locale', constraints: { locale: /(en|cn)/ } if Desy::MORE_THAN_ONE_LANGUAGE
-
-  get 'videos_test' => 'media_elements#videos_test'
-
-  # 404
-  match '*path', to: 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
+  
+  # UTILITIES
+  get   ':locale'     => 'application#set_locale', constraints: { locale: /(en|cn)/ } if Desy::MORE_THAN_ONE_LANGUAGE
+  get   'videos_test' => 'media_elements#videos_test'
+  match '*path',  :to => 'application#page_not_found' unless Rails.application.config.consider_all_requests_local
   
 end
