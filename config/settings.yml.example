@@ -58,6 +58,7 @@ tags_limit_in_search_engine: 20
 # AVAILABLE LANGUAGES - THE FIRST IS THE DEFAULT ONE
 languages:
 - :en
+- :it
 - :cn
 # TIMES
 seconds_for_timeout_dialogs: 2500
