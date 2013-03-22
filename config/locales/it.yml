@@ -2276,7 +2276,7 @@ it:
       dashboard:
         # Link to the main page of 'Administration'
         # 1 - views/admin/_header.html.erb
-        link: "Pannello di controllo"
+        link: "Dashboard"
         # Label of the administration main page, on the top left corner of each page inside 'Administration'
         # 1 - views/admin/_header.html.erb
         title: "Pannello di controllo Amministratore"
