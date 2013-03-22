@@ -70,7 +70,7 @@
           <h4><%= t('admin.dashboard.users.new') %></h4>
           <ul class="list">
             <% @users.each do |user| %>
-              <li><%= link_to "#{user.name} #{user.surname}", admin_user_path(user) %><span class=" pull-right"><%= user.created_at.strftime('%d/%m/%y') %></span></li>
+              <li><%= link_to "#{user.name} #{user.surname}", admin_user_path(user) %><span class=" pull-right"><%= TimeConvert.to_string user.created_at %></span></li>
             <% end %>
           </ul>
         </div>
@@ -107,7 +107,7 @@
           <a href="/admin/media_elements?utf8=✓&search%5Bid%5D=<%= report.reportable.id %>#list-anchor">
             <blockquote class="elements">
               <div class="pull-right date-label elements">
-                <%= report.created_at.strftime('%d %b')%>
+                <%= TimeConvert.to_string report.created_at %>
               </div>
               <%= report.user.full_name %><br/>
               <b><%= t('admin.messages.reports.item') %></b> <%= report.reportable.title %><br/>
@@ -122,7 +122,7 @@
           <a href="/admin/lessons?utf8=✓&search%5Bid%5D=<%= report.reportable.id %>#list-anchor">
             <blockquote class="lessons">
               <div class="pull-right date-label lessons">
-                <%= report.created_at.strftime('%d %b') %>
+                <%= TimeConvert.to_string report.created_at %>
               </div>
               <%= report.user.full_name %><br/>
               <b><%= t('admin.messages.reports.item') %></b> <%= report.reportable.title %><br/>

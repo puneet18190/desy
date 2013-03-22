@@ -32,7 +32,7 @@
         <tr id="<%= tag.id %>">
           <td><%= tag.id %></td>
           <td><%= tag.word %></td>
-          <td><%= tag.created_at.strftime('%d-%m-%Y') %></td>
+          <td><%= TimeConvert.to_string tag.created_at %></td>
           <td><%= link_to tag.lessons_count, "/admin/settings/tags/#{tag.id}/show/lessons", :target => :blank %></td>
           <td><%= link_to tag.media_elements_count, "/admin/settings/tags/#{tag.id}/show/media_elements", :target => :blank %></td>
           <td>

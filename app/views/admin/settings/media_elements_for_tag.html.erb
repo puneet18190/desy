@@ -18,7 +18,7 @@
         <tr>
           <td><%= @tag.id %></td>
           <td><%= @tag.word %></td>
-          <td><%= @tag.created_at.strftime('%d-%m-%Y') %></td>
+          <td><%= TimeConvert.to_string @tag.created_at %></td>
           <td>
             <div class="btn-group pull-right">
               <a class="btn btn-small" data-method="delete" data-confirm="<%= t('admin.settings.tags.delete_confirm') %>" href="/admin/settings/tags/<%= @tag.id %>/delete?back_url=<%= '/admin/settings/tags'.html_safe %>">

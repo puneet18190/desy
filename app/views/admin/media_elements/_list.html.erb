@@ -43,8 +43,8 @@
           <td><%= element.title %></td>
           <td><%= element.sti_type_to_s %></td>
           <td><%= link_to element.user.full_name, admin_user_path(element.user_id), :target => :blank, :class => '_user_link_in_admin' %></td>
-          <td><%= element.created_at.strftime('%d-%m-%Y') %></td>
-          <td><%= element.updated_at.strftime('%d-%m-%Y') %></td>
+          <td><%= TimeConvert.to_string element.created_at %></td>
+          <td><%= TimeConvert.to_string element.updated_at %></td>
           <td>
             <%= element.is_public.to_s %>
           </td>
