@@ -2766,9 +2766,22 @@ en:
         media_elements: "Reported media elements"
     # TODO TODO TODO da qui in giù
     settings:
-      title: 
+      title: "Application settings"
       school_levels:
+        menu_link: "School levels"
         title: "School levels"
+        add:
+          description: "Insert a new school level"
+          button: "Add"
+      subjects:
+        menu_link: "Subjects"
+        title: "Subjects"
+        add:
+          description: "Insert a new subject"
+          button: "Add"
+      tags:
+        menu_link: "Tags"
+        title: "Tags"
   
   
   # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'

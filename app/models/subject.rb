@@ -23,10 +23,7 @@ class Subject < ActiveRecord::Base
   end
   
   def is_deletable?
-    flag = true
-    flag = false if UsersSubject.where(subject_id: self.id).count > 0
-    flag = false if Lesson.where(subject_id: self.id).count > 0
-    return flag
+    UsersSubject.where(:subject_id => self.id).empty? && Lesson.where(:subject_id => self.id).empty?
   end
   
 end

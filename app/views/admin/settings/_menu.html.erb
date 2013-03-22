@@ -1,12 +1,12 @@
-<h3>SETTINGS</h3>
+<h3><%= t('admin.settings.title').upcase %></h3>
 <ul class="nav nav-tabs">
   <li class="<%= (current == 'subjects') ? 'active' : ''%>">
-    <a href="/admin/settings/subjects">Subjects</a>
+    <a href="/admin/settings/subjects"><%= t('admin.settings.subjects.menu_link') %></a>
   </li>
   <li class="<%= (current == 'school_levels') ? 'active' : ''%>">
-    <a href="/admin/settings/school_levels">School Levels</a>
+    <a href="/admin/settings/school_levels"><%= t('admin.settings.school_levels.menu_link') %></a>
   </li>
   <li class="<%= (current == 'tags') ? 'active' : ''%>">
-    <a href="/admin/settings/tags">Tags</a>
+    <a href="/admin/settings/tags"><%= t('admin.settings.tags.menu_link') %></a>
   </li>
 </ul>

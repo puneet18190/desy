@@ -210,10 +210,9 @@ $(document).ready(function() {
   });
   
   $('body').on('click', 'ul.school_levels li a i.icon-remove', function() {
-    var _id = $(this).parents('li').data('param');
     $.ajax({
       type: 'delete',
-      url: '/admin/settings/school_levels/' + _id + '/delete'
+      url: '/admin/settings/school_levels/' + $(this).parents('li').data('param') + '/delete'
     });
   });
   

@@ -1,6 +1,6 @@
 <%= render :partial => 'menu', :locals => {:current => 'subjects'} %>
 
-<h4>MANAGE SUBJECTS</h4>
+<h4><%= t('admin.settings.subjects.title') %></h4>
 
 <ul class="nav nav-tabs nav-stacked subjects">
   <% @subjects.each do |subject| %>
@@ -15,7 +15,7 @@
   <% end %>
 </ul>
 
-<%= form_tag '/admin/settings/subjects/new', :class=>"form-inline" do %>
-  <%= text_field_tag :description, '',:class=>"input-xlarge", :placeholder => "subject description" %>
-  <%= submit_tag "Add new subject", :class=>"btn"%>
+<%= form_tag '/admin/settings/subjects/new', :class => 'form-inline' do %>
+  <%= text_field_tag :description, '', :class => 'input-xlarge', :placeholder => t('admin.settings.subjects.add.desccription') %>
+  <%= submit_tag t('admin.settings.subjects.add.button'), :class => 'btn' %>
 <% end %>
