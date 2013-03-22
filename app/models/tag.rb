@@ -66,6 +66,14 @@ class Tag < ActiveRecord::Base
     MediaElement.joins(:taggings).where(:taggings => {:tag_id => self.id}).page(page)
   end
   
+  def media_elements_count
+    Tagging.where(:taggable_type => 'MediaElement', :tag_id => self.id).count
+  end
+  
+  def lessons_count
+    Tagging.where(:taggable_type => 'Lesson', :tag_id => self.id).count
+  end
+  
   private
   
   def init_validation

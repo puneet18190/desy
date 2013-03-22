@@ -260,7 +260,7 @@ $(document).ready(function() {
   
   $('body').on('click', 'tr.collapse', function(e) {
     var t = $(e.target);
-    if(!(t.hasClass('icon-eye-open') || t.hasClass('icon-remove') || t.hasClass('icon-globe') || t.hasClass('_user_link_in_admin'))) {
+    if(!(t.hasClass('icon-eye-open') || t.hasClass('icon-remove') || t.hasClass('icon-globe') || t.hasClass('_user_link_in_admin') || t.hasClass('_link_in_admin'))) {
       openAndLoadNextTr($(this));
     }
   });
