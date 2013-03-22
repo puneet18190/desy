@@ -514,7 +514,7 @@ it:
     # Form for uploading a new media element
     upload_media_element:
       # 1 - views/media_elements/_new_form_popup.html.erb
-      title: "Aggiorna un elemento"
+      title: "Carica un elemento"
       # 1 - views/media_elements/_new_form_popup.html.erb
       description: "Selezionare un file facendo clic sul pulsante a sinistra"
       # 1 - views/media_elements/_new_form_popup.html.erb
@@ -1141,7 +1141,7 @@ it:
     create_new_lesson: "Crea una nuova lezione"
     # Caption of the link opening the lesson editor, containing a prompt for the user (this is used only in the case there are no suggested lessons in the Dashboard: in this case the application invites the user to create a lesson right now)
     # 1 - views/dashboard/_lessons_empty.html.erb
-    create_new_lesson_now: "Crea adesso una lezione"
+    create_new_lesson_now: "Crea una lezione ora"
     # Caption of the link to download the user manual (bottom right in the page)
     # 1 - views/dashboard/index.html.erb
     download_manual: "Scarica il manuale utente"
@@ -1165,7 +1165,7 @@ it:
     load_new_media_element: "Carica un nuovo elemento"
     # Caption of the link opening the window to load new elements, containing a prompt for the user (this is used only in the case there are no suggested elements in the Dashboard: in this case the application invites the user to load an element right now)
     # 1 - views/dashboard/_media_elements_empty.html.erb
-    load_new_media_element_now: "Adesso carica un nuovo elemento"
+    load_new_media_element_now: "Carica un elemento"
     # Caption of the buttons to switch between suggested lessons and elements ('selected for you': lessons - elements)
     # 1 - views/dashboard/_graybar_left.html.erb
     selected_for_you: "Selezionati per te"
@@ -1311,7 +1311,7 @@ it:
     create_new: "Crea una nuova lezione"
     # Caption which appears above a link to the lesson editor if your lesson's section is empty
     # 1 - views/lessons/_empty.html.erb
-    create_new_now: "Adesso crea una lezione"
+    create_new_now: "Crea una lezione ora"
     # Caption shown before a lesson's description
     # 1 - views/lessons/_view_single_compact.html.erb
     description: "Descrizione"
@@ -1417,7 +1417,7 @@ it:
     load_new: "Carica un nuovo elemento"
     # Caption which appears above a link to the window to load a new element if your element's section is empty
     # 1 - views/media_elements/_empty.html.erb
-    load_new_now: "Adesso carica un nuovo elemento"
+    load_new_now: "Carica un nuovo elemento"
   
   
   # SECTION 2.10: Contents of automatic notifications sent by the application to the users
