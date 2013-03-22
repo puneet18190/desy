@@ -89,29 +89,30 @@ $(document).ready(function() {
   
   $('body').on('click', 'table#lessons-list thead tr th a', function(e) {
     e.preventDefault();
-    $this = $(this)
-    var order_by = $this.data('ordering');
-    $("input#search_ordering").val(order_by);
-    $("input#search_desc").val($this.data('desc'));
+    $("input#search_ordering").val($(this).data('ordering'));
+    $("input#search_desc").val($(this).data('desc'));
     $('#admin-search-lessons').submit();
   });
   
   $('body').on('click', 'table#elements-list thead tr th a', function(e) {
     e.preventDefault();
-    $this = $(this)
-    var order_by = $this.data('ordering');
-    $("input#search_ordering").val(order_by);
-    $("input#search_desc").val($this.data('desc'));
+    $("input#search_ordering").val($(this).data('ordering'));
+    $("input#search_desc").val($(this).data('desc'));
     $('#admin-search-elements').submit();
   });
   
   $('body').on('click', 'table#users-list thead tr th a', function(e) {
     e.preventDefault();
-    $this = $(this)
-    var order_by = $this.data('ordering');
-    $("input#search_ordering").val(order_by);
-    $("input#search_desc").val($this.data('desc'));
-    $('#admin-search-elements').submit();
+    $("input#search_ordering").val($(this).data('ordering'));
+    $("input#search_desc").val($(this).data('desc'));
+    $('#admin-search-users').submit();
+  });
+  
+  $('body').on('click', 'table#tags-list thead tr th a', function(e) {
+    e.preventDefault();
+    $("input#search_ordering").val($(this).data('ordering'));
+    $("input#search_desc").val($(this).data('desc'));
+    $('#admin-search-tags').submit();
   });
   
   
