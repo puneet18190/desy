@@ -3,7 +3,7 @@
     <a class ="deleteButtonOrange _delete_slide" title="<%= t('titles.lesson_editor.delete_slide') %>"></a>
   <% end %>
   <a class="addButtonOrange _add_new_slide_options <%= @max_slides ? 'disabled'.html_safe : '' %>" title="<%= t('titles.lesson_editor.add_slide') %>"></a>
-  <%= link_to "", edit_lesson_path(@lesson), :title => t('titles.lesson_editor.change_info'), :class => "infoButtonOrange"%>
+  <a class="_save_slide_and_edit infoButtonOrange" title="<%= t('titles.lesson_editor.change_info') %>"></a>
   <a href="#" data-param="form-<%= slide.id %>" class="_save_slide saveButtonOrange"  title="<%= t('titles.lesson_editor.save_slide') %>"></a>
   <a class="_save_slide_and_exit exitButtonOrange" title="<%= t('titles.lesson_editor.save_and_exit') %>"></a>
 </div>

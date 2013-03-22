@@ -97,6 +97,32 @@ $(document).ready(function() {
     });
   });
   
+  $('body').on('click', '._save_slide_and_edit', function() {
+    tinyMCE.triggerSave();
+    var temporary = new Array();
+    var temp_counter = 0;
+    $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
+      if($(this).data('placeholder')) {
+        temporary[temp_counter] = $(this).val();
+        temp_counter++;
+        $(this).val('');
+      }
+    });
+    $.ajax({
+      type: 'post',
+      url: $('._lesson_editor_current_slide form').attr('action') + '_and_edit',
+      timeout:5000,
+      data: $('._lesson_editor_current_slide form').serialize()
+    });
+    temp_counter = 0;
+    $('._lesson_editor_current_slide ._lesson_editor_placeholder').each(function() {
+      if($(this).data('placeholder')) {
+        $(this).val(temporary[temp_counter]);
+        temp_counter++;
+      }
+    });
+  });
+  
   $('body').on('click', '._add_new_slide_options', function() {
     if(!$(this).hasClass('disabled')) {
       saveCurrentSlide();

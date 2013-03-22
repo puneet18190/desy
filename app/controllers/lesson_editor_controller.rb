@@ -3,7 +3,15 @@ class LessonEditorController < ApplicationController
   before_filter :check_available_for_user
   before_filter :initialize_lesson_with_owner, :only => [:index, :update, :edit]
   before_filter :initialize_subjects, :only => :new
-  before_filter :initialize_lesson_with_owner_and_slide, :only => [:add_slide, :save_slide, :delete_slide, :change_slide_position, :load_slide, :save_slide_and_exit]
+  before_filter :initialize_lesson_with_owner_and_slide, :only => [
+    :add_slide,
+    :save_slide,
+    :delete_slide,
+    :change_slide_position,
+    :load_slide,
+    :save_slide_and_exit,
+    :save_slide_and_edit
+  ]
   before_filter :initialize_kind, :only => :add_slide
   before_filter :initialize_position, :only => :change_slide_position
   layout 'lesson_editor'
@@ -74,6 +82,10 @@ class LessonEditorController < ApplicationController
   end
   
   def save_slide_and_exit
+    save_current_slide if @ok
+  end
+  
+  def save_slide_and_edit
     save_current_slide if @ok
   end
   
