@@ -27,6 +27,13 @@ class AdminSearchForm < Form
       'locations.name %{ord}',
       'locations.ancestry %{ord}',
       'users.created_at %{ord}'
+    ],
+    :tags => [
+      'id %{ord}',
+      'word %{ord}',
+      'created_at %{ord}',
+      'lessons_count %{ord}',
+      'media_elements_count %{ord}'
     ]
   }
   
@@ -164,10 +171,28 @@ class AdminSearchForm < Form
     resp
   end
   
+  def self.search_tags(params)
+    resp = Tag.select("id, word, created_at, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = 'MediaElement') AS media_elements_count, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = 'Lesson') AS lessons_count")
+    if params[:ordering].present?
+      ord = ORDERINGS[:tags][params[:ordering].to_i]
+      ord = ORDERINGS[:tags][0] if ord.nil?
+      if params[:desc] == 'true'
+        ord = ord.gsub('%{ord}', 'DESC')
+      else
+        ord = ord.gsub('%{ord}', 'ASC')
+      end
+      resp = resp.order(ord)
+    end
+    resp = resp.where(:id => params[:id]) if params[:id].present?
+    resp = resp.where('word ILIKE ?', "%#{params[:word]}%") if params[:word].present?
+    resp = resp.where('created_at >= ?', params[:recency]) if params[:recency].present?
+    resp
+  end
+  
   def self.search_notifications_users(params, count_only=false)
     resp = User.scoped
     resp = resp.where(:school_level_id => params[:school_level_id]) if params[:school_level_id].present?
-    resp = resp.where("users.created_at >= ?", params[:recency]) if params[:recency].present?
+    resp = resp.where('users.created_at >= ?', params[:recency]) if params[:recency].present?
     with_locations = false
     SETTINGS['location_types'].map{|type| type.downcase}.each do |type|
       with_locations = true if params[type].present? && params[type] != '0'
