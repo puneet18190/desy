@@ -1833,7 +1833,7 @@ en:
       title: "Statistics"
       # Description
       # 1 - views/users/statistics.html.erb
-      description: "Follow your numbers in %{desy}, and more general statistics"
+      description: "Your statistics in %{desy}"
       # General statistics
       general:
         # Lessons with more 'I like you'
