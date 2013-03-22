@@ -182,6 +182,29 @@
       select{
         width: 165px;
       }
+      &.for_tags {
+        float:left;
+        width: 350px;
+        margin-right: 20px;
+        &.heading,&.heading h5{
+          padding: 0;
+          margin:0 0 5px 0;
+        }
+        label.for_title{
+          float:left;
+          text-align:right;
+          padding: 5px 15px 0 0;
+          width: 200px;
+        }
+        controls{
+          float:right;
+          width: 165px;
+        }
+        
+        select{
+          width: 165px;
+        }
+      }
     }
   }
   
