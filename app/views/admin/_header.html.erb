@@ -33,7 +33,7 @@
         <a href="/admin/lessons" class="first-level lessons <%= 'active' if controller_name == "lessons" %>"><%= t('admin.menu.lessons.link') %></a>
       </li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle first-level messages <%= 'active' if controller_name == "messages" %>" data-toggle="dropdown"><%= t('admin.menu.messages.link') %></a>
+        <a href="/admin/messages/new_notification" class="dropdown-toggle first-level messages <%= 'active' if controller_name == "messages" %>" data-toggle="dropdown"><%= t('admin.menu.messages.link') %></a>
         <ul class="dropdown-menu">
           <li><a href="/admin/messages/new_notification">
             <%= t('admin.menu.messages.notifications') %></a>
