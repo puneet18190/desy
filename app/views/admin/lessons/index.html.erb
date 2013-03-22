@@ -31,7 +31,7 @@
 <% if @lessons.length > 0 %>
   <%= render :partial => "admin/list_heading", :locals => {:items => @lessons, :expandable => true} %>
 <% end %>
-<%= render :partial => "list", :locals => {:lessons => @lessons} %>
+<%= render :partial => "list", :locals => {:lessons => @lessons, :from_reporting => params[:from_reporting].present?} %>
 <% if @lessons.length > 0 %>
   <%= render :partial => "admin/list_heading", :locals => {:items => @lessons, :expandable => true} %>
 <% end %>

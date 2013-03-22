@@ -38,7 +38,7 @@
     <% if @lessons.length > 0 %>
       <%= render :partial => 'admin/list_heading', :locals => {:items => @lessons, :expandable => false} %>
     <% end %>
-    <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @lessons} %>
+    <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @lessons, :from_reporting => false} %>
     <% if @lessons.length > 0 %>
       <%= render :partial => 'admin/list_heading', :locals => {:items => @lessons, :expandable => false} %>
     <% end %>

@@ -136,12 +136,12 @@
 <div class="row-fluid">
   <div class="span12">
     <h4><%= t('admin.users.lessons', :user => @user.full_name) %></h4>
-    <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @user_lessons} %>
+    <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @user_lessons, :from_reporting => false} %>
   </div>
 </div>
 <div class="row-fluid">
   <div class="span12">
     <h4><%= t('admin.users.media_elements', :user => @user.full_name) %></h4>
-    <%= render :partial => 'admin/media_elements/list', :locals => {:elements => @user_elements} %>
+    <%= render :partial => 'admin/media_elements/list', :locals => {:elements => @user_elements, :from_reporting => false} %>
   </div>
 </div>
