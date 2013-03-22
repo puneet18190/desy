@@ -42,12 +42,8 @@ class Admin::SettingsController < AdminController
   # TAGS
   
   def tags
-    @tags = Tag.order('word ASC').limit(40)
-    if params[:id]
-      @tag = Tag.where(id: params[:id]).first
-      @lessons = @tag.get_lessons(params[:lessons_page]) if @tag.present?
-      @media_elements = @tag.get_media_elements(params[:elements_page]) if @tag.present?
-    end
+    tags = params[:search] ? AdminSearchForm.search_tags(params[:search]) : Tag.order('created_at DESC')
+    @tags = tags.page(params[:page])
   end
   
   def delete_tag

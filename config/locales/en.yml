@@ -2782,6 +2782,16 @@ en:
       tags:
         menu_link: "Tags"
         title: "Tags"
+        # Frame for the tags search engine
+        search:
+          # Title of the frame
+          label: "Search tags"
+          # Button to start the search
+          submit: "Search"
+  
+  
+  
+  
   
   
   # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'
