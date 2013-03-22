@@ -103,32 +103,40 @@
     <div class="row-fluid">
       <div class="span6 widget">
         <h4><%= t('admin.messages.reports.media_elements') %></h4>
-        <% @elements_reports.each do |report| %>
-          <a href="/admin/media_elements?utf8=✓&search%5Bid%5D=<%= report.reportable.id %>#list-anchor">
-            <blockquote class="elements">
-              <div class="pull-right date-label elements">
-                <%= TimeConvert.to_string report.created_at %>
-              </div>
-              <%= report.user.full_name %><br/>
-              <b><%= t('admin.messages.reports.item') %></b> <%= report.reportable.title %><br/>
-              <b><%= t('admin.messages.reports.report') %></b> <i><%= report.comment %></i>
-            </blockquote>
-          </a>
+        <% if @elements_reports.any? %>
+          <% @elements_reports.each do |report| %>
+            <a href="/admin/media_elements?utf8=✓&search%5Bid%5D=<%= report.reportable.id %>#list-anchor">
+              <blockquote class="elements">
+                <div class="pull-right date-label elements">
+                  <%= TimeConvert.to_string report.created_at %>
+                </div>
+                <%= report.user.full_name %><br/>
+                <b><%= t('admin.messages.reports.item') %></b> <%= report.reportable.title %><br/>
+                <b><%= t('admin.messages.reports.report') %></b> <i><%= report.comment %></i>
+              </blockquote>
+            </a>
+          <% end %>
+        <% else %>
+          <%= t('admin.messages.reports.empty.media_elements') %>
         <% end %>
       </div>
       <div class="span6 widget">
         <h4><%= t('admin.messages.reports.lessons') %></h4>
-        <% @lessons_reports.each do |report| %>
-          <a href="/admin/lessons?utf8=✓&search%5Bid%5D=<%= report.reportable.id %>#list-anchor">
-            <blockquote class="lessons">
-              <div class="pull-right date-label lessons">
-                <%= TimeConvert.to_string report.created_at %>
-              </div>
-              <%= report.user.full_name %><br/>
-              <b><%= t('admin.messages.reports.item') %></b> <%= report.reportable.title %><br/>
-              <b><%= t('admin.messages.reports.report') %></b> <i><%= report.comment %></i>
-            </blockquote>
-          </a>
+        <% if @lessons_reports.any? %>
+          <% @lessons_reports.each do |report| %>
+            <a href="/admin/lessons?utf8=✓&search%5Bid%5D=<%= report.reportable.id %>#list-anchor">
+              <blockquote class="lessons">
+                <div class="pull-right date-label lessons">
+                  <%= TimeConvert.to_string report.created_at %>
+                </div>
+                <%= report.user.full_name %><br/>
+                <b><%= t('admin.messages.reports.item') %></b> <%= report.reportable.title %><br/>
+                <b><%= t('admin.messages.reports.report') %></b> <i><%= report.comment %></i>
+              </blockquote>
+            </a>
+          <% end %>
+        <% else %>
+          <%= t('admin.messages.reports.empty.lessons') %>
         <% end %>
       </div>
     </div>
