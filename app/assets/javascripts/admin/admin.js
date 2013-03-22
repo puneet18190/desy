@@ -221,9 +221,17 @@ $(document).ready(function() {
   // REPORTS
   
   $('body').on('click', '._dont_report_item', function() {
+    $.ajax({
+      type: 'delete',
+      url: 'reports/' + $(this).data('report-id') + '/decline'
+    });
   });
   
   $('body').on('click', '._report_item', function() {
+    $.ajax({
+      type: 'delete',
+      url: 'reports/' + $(this).data('report-id') + '/accept'
+    });
   });
   
   
@@ -270,7 +278,7 @@ $(document).ready(function() {
   
   $('body').on('click', 'tr.collapse', function(e) {
     var t = $(e.target);
-    if(!(t.hasClass('icon-eye-open') || t.hasClass('icon-remove') || t.hasClass('icon-globe') || t.hasClass('_user_link_in_admin') || t.hasClass('_link_in_admin'))) {
+    if(!(t.hasClass('icon-eye-open') || t.hasClass('icon-remove') || t.hasClass('icon-globe') || t.hasClass('_user_link_in_admin') || t.hasClass('_link_in_admin') || t.hasClass('_report_item') || t.hasClass('_dont_report_item'))) {
       openAndLoadNextTr($(this));
     }
   });

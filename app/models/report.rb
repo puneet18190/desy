@@ -11,6 +11,17 @@ class Report < ActiveRecord::Base
   
   before_validation :init_validation
   
+  def accept
+    to_be_destroyed = self.reportable
+    to_be_destroyed.destroyable_even_if_public = true if self.reportable_type == 'MediaElement'
+    to_be_destroyed.destroy
+    self.destroy
+  end
+  
+  def decline
+    self.destroy
+  end
+  
   private
   
   def good_reportable_type
