@@ -1,7 +1,7 @@
 <%= render :partial => 'menu', :locals => {:current => 'tags'} %>
 
 <h4><%= t('admin.settings.tags.search.label') %></h4>
-<%= form_tag 'settings/tags', :method => :get, :id => 'admin-search-tags', :class => 'search-form' do %>
+<%= form_tag 'tags', :method => :get, :id => 'admin-search-tags', :class => 'search-form' do %>
   <%= hidden_field_tag 'search[search_type]', 'tags' %>
   <%= hidden_field_tag 'search[ordering]', '' %>
   <%= hidden_field_tag 'search[desc]', '' %>
