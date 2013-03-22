@@ -2759,7 +2759,8 @@ en:
       reports:
         # Title of the section
         # 1 - views/admin/messages/reports.html.erb
-        name: "Abuse reports"
+        title: "Abuse reports"
+        name: "Reports" # TODO
         # Label for the item on which the report was sent (it may be lesson or media element)
         # 1 - views/admin/dashboard/index.html.erb
         # 2 - views/admin/dashboard/index.html.erb

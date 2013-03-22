@@ -2268,7 +2268,7 @@ it:
         notifications: "Notifiche"
         # Link to the subsection 'Abuses reported'
         # 1 - views/admin/_header.html.erb
-        reports: "Segnalazione materiali non inappropriati"
+        reports: "Segnalazioni"
       settings:
         # Link to the section 'Settings'
         # 1 - views/admin/_header.html.erb
@@ -2743,7 +2743,7 @@ it:
       reports:
         # Title of the section
         # 1 - views/admin/messages/reports.html.erb
-        name: "Segnalazioni di materiale inappropriato"
+        title: "Segnalazioni di materiale inappropriato"
         # Label for the item on which the report was sent (it may be lesson or media element)
         # 1 - views/admin/dashboard/index.html.erb
         # 2 - views/admin/dashboard/index.html.erb

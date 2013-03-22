@@ -2747,7 +2747,7 @@ cn:
       reports:
         # Title of the section
         # 1 - views/admin/messages/reports.html.erb
-        name: "报告滥用"
+        title: "报告滥用"
         # Label for the item on which the report was sent (it may be lesson or media element)
         # 1 - views/admin/dashboard/index.html.erb
         # 2 - views/admin/dashboard/index.html.erb
