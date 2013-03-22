@@ -50,10 +50,10 @@
           <td><%= link_to '<i class="icon-eye-open"></i>'.html_safe, "/lessons/#{lesson.id}/view?token=#{lesson.token}", :target => :blank, :class => 'action' %><a href="#" target="_blank" class="action"></a></td>
           <% if from_reporting %>
             <td>
-              <a class="_report_lesson" data-lesson-id="<%= lesson.id %>"><%= t('admin.messages.reports.actions.delete') %></a>
+              <a class="_report_item" data-lesson-id="<%= lesson.id %>"><%= t('admin.messages.reports.actions.delete') %></a>
             </td>
             <td>
-              <a class="_dont_report_lesson" data-lesson-id="<%= lesson.id %>"><%= t('admin.messages.reports.actions.ok') %></a>
+              <a class="_dont_report_item" data-lesson-id="<%= lesson.id %>"><%= t('admin.messages.reports.actions.ok') %></a>
             </td>
           <% else %>
             <td>

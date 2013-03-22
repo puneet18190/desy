@@ -218,6 +218,15 @@ $(document).ready(function() {
   });
   
   
+  // REPORTS
+  
+  $('body').on('click', '._dont_report_item', function() {
+  });
+  
+  $('body').on('click', '._report_item', function() {
+  });
+  
+  
   // EFFECTS
   
   var nowTemp = new Date();

@@ -168,6 +168,8 @@ Desy::Application.routes.draw do
     get       'messages/new_notification'               => 'messages#new_notification'
     get       'messages/reports'                        => 'messages#reports'
     post      'messages/filter_users'                   => 'messages#filter_users'
+    delete    'reports/:id/accept'                      => 'reports#accept'
+    delete    'reports/:id/decline'                     => 'reports#decline'
     get       'settings/subjects'                       => 'settings#subjects'
     post      'settings/subjects/new'                   => 'settings#new_subject'
     delete    'settings/subjects/:id/delete'            => 'settings#delete_subject'
