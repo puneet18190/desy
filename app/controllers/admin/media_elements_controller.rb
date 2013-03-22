@@ -12,7 +12,7 @@ class Admin::MediaElementsController < AdminController
       location = Location.get_from_chain_params params[:search]
       @locations = location.get_filled_select if location
     end
-    @from_reporting = params[:from_reporting].present?
+    @from_reporting = params[:from_reporting]
   end
   
   def new

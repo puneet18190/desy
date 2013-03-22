@@ -24,7 +24,7 @@
           <%= render :partial => 'admin/ordering', :locals => {:name => t('admin.media_elements.fields.is_public'), :ordering => 6} %>
         </th>
         <th></th>
-        <% if from_reporting %>
+        <% if from_reporting.present? %>
           <th></th>
         <% end %>
       </tr>
@@ -48,12 +48,12 @@
           <td>
             <%= element.is_public.to_s %>
           </td>
-          <% if from_reporting %>
+          <% if from_reporting.present? %>
             <td>
-              <a class="_report_item" data-media-element-id="<%= element.id %>"><%= t('admin.messages.reports.actions.delete') %></a>
+              <a class="_report_item" data-report-id="<%= from_reporting %>"><%= t('admin.messages.reports.actions.delete') %></a>
             </td>
             <td>
-              <a class="_dont_report_item" data-media-element-id="<%= element.id %>"><%= t('admin.messages.reports.actions.ok') %></a>
+              <a class="_dont_report_item" data-report-id="<%= from_reporting %>"><%= t('admin.messages.reports.actions.ok') %></a>
             </td>
           <% else %>
             <td>
