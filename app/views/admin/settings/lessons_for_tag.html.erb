@@ -21,7 +21,7 @@
           <td><%= @tag.created_at.strftime('%d-%m-%Y') %></td>
           <td>
             <div class="btn-group pull-right">
-              <a class="btn btn-small" data-method="delete" data-confirm="<%= t('admin.settings.tags.delete_confirm') %>" href="/admin/settings/tags/<%= tag.id %>/delete?back_url=<%= '/admin/settings/tags'.html_safe %>">
+              <a class="btn btn-small" data-method="delete" data-confirm="<%= t('admin.settings.tags.delete_confirm') %>" href="/admin/settings/tags/<%= @tag.id %>/delete?back_url=<%= '/admin/settings/tags'.html_safe %>">
                 <i class="icon-remove"></i><%= t('admin.settings.tags.show.delete').downcase %>
               </a>
             </div>
@@ -34,13 +34,13 @@
 
 <div class="row-fluid">
   <div class="span12">
-    <h4><%= t('admin.users.lessons', :user => @user.full_name) %></h4>
-    <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @user_lessons} %>
-  </div>
-</div>
-<div class="row-fluid">
-  <div class="span12">
-    <h4><%= t('admin.users.media_elements', :user => @user.full_name) %></h4>
-    <%= render :partial => 'admin/media_elements/list', :locals => {:elements => @user_elements} %>
+    <h4><%= t('admin.settings.tags.show.lessons_title', :tag => @tag.word) %></h4>
+    <% if @lessons.length > 0 %>
+      <%= render :partial => 'admin/list_heading', :locals => {:items => @lessons, :expandable => false} %>
+    <% end %>
+    <%= render :partial => 'admin/lessons/list', :locals => {:lessons => @lessons} %>
+    <% if @lessons.length > 0 %>
+      <%= render :partial => 'admin/list_heading', :locals => {:items => @lessons, :expandable => false} %>
+    <% end %>
   </div>
 </div>

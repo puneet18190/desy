@@ -59,11 +59,11 @@ class Tag < ActiveRecord::Base
   end
   
   def get_lessons(page)
-    Lesson.joins(:taggings).where(:taggings => {:tag_id => self.id}).page(page)
+    Lesson.joins(:taggings).where(:taggings => {:tag_id => self.id}).order('lessons.updated_at DESC').page(page)
   end
   
   def get_media_elements(page)
-    MediaElement.joins(:taggings).where(:taggings => {:tag_id => self.id}).page(page)
+    MediaElement.joins(:taggings).where(:taggings => {:tag_id => self.id}).order('media_elements.updated_at DESC').page(page)
   end
   
   def media_elements_count
