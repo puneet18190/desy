@@ -68,6 +68,37 @@ module TimeConvert
       end
     end
     
+    def italian_month(x)
+      case x
+        when 1
+          return 'Gennaio'
+        when 2
+          return 'Febbraio'
+        when 3
+          return 'Marzo'
+        when 4
+          return 'Aprile'
+        when 5
+          return 'Maggio'
+        when 6
+          return 'Giugno'
+        when 7
+          return 'Luglio'
+        when 8
+          return 'Agosto'
+        when 9
+          return 'Settembre'
+        when 10
+          return 'Ottobre'
+        when 11
+          return 'Novembre'
+        when 12
+          return 'Dicembre'
+        else
+          return ''
+      end
+    end
+    
     def convert_in_chinese(a_time)
       day = a_time.day
       month = a_time.month
@@ -75,8 +106,11 @@ module TimeConvert
       return "#{english_month(month)} #{day}#{english_day_suffix(day)}, #{year}"
     end
     
-    def conver_in_italian(a_time)
-      a_time.to_s
+    def convert_in_italian(a_time)
+      day = a_time.day
+      month = a_time.month
+      year = a_time.year
+      return "#{(day)} #{italian_month(month)} #{year}"
     end
     
   end

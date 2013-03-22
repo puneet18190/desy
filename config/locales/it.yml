@@ -2131,7 +2131,7 @@ it:
   time:
     # Time format
     # 1 - ..lib/autoload/time_convert.rb
-    format: "Inglese"
+    format: "italian"
   language_parameters:
     notification:
       # Maximum length of the message inserted by the user to notify the modification of a public lesson
