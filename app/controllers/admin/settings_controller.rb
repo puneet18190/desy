@@ -56,11 +56,13 @@ class Admin::SettingsController < AdminController
   end
   
   def lessons_for_tag
-    
+    @tag = Tag.find(params[:id])
+    @lessons = @tag.get_lessons(params[:page])
   end
   
   def media_elements_for_tag
-    
+    @tag = Tag.find(params[:id])
+    @media_elements = @tag.get_media_elements(params[:page])
   end
   
 end

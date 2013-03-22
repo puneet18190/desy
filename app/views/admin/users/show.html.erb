@@ -1,6 +1,6 @@
 <div class="row-fluid">
   <div class="span12">
-    <h3><%= @user.name %> <%= @user.surname %></h3>
+    <h3><%= @user.full_name %></h3>
   </div>
 </div>
 <div class="row-fluid">
@@ -19,36 +19,36 @@
         </tr>
       </thead>
       <tbody>
-          <tr>
-            <td><%= @user.id %></td>
-            <td><%= link_to @user.email, "mailto:#{@user.email}" %></td>
-            <td><%= @user.school_level.description %></td>
-            <td><%= @user.base_location %></td>
-            <td><%= @user.parent_locations %></td>
-            <td><%= @user.created_at.strftime('%d-%m-%Y') %></td>
-            <td><%= @user.updated_at.strftime('%d-%m-%Y') %></td>
-            <td>
-              <div class="btn-group pull-right">
-                <% if @user.active %>
-                  <a class="btn btn-small" href="/admin/users/<%= @user.id %>/ban" data-method="put">
-                    <i class="icon-ban-circle _show_status _show_ban"></i><%= t('admin.users.actions.ban').downcase %>
-                  </a>
-                <% else %>
-                  <a class="btn btn-small" href="/admin/users/<%= @user.id %>/activate" data-method="put">
-                    <i class="icon-ok _show_status _show_active"></i><%= t('admin.users.actions.activate').downcase %>
-                  </a>
-                <% end %>
-                <a class="btn btn-small" href="/admin/messages/new_notification?users=<%= @user.id %>" data-method="get">
-                  <i class="icon-envelope"></i><%= t('admin.users.actions.message').downcase %>
+        <tr>
+          <td><%= @user.id %></td>
+          <td><%= link_to @user.email, "mailto:#{@user.email}" %></td>
+          <td><%= @user.school_level.description %></td>
+          <td><%= @user.base_location %></td>
+          <td><%= @user.parent_locations %></td>
+          <td><%= @user.created_at.strftime('%d-%m-%Y') %></td>
+          <td><%= @user.updated_at.strftime('%d-%m-%Y') %></td>
+          <td>
+            <div class="btn-group pull-right">
+              <% if @user.active %>
+                <a class="btn btn-small" href="/admin/users/<%= @user.id %>/ban" data-method="put">
+                  <i class="icon-ban-circle _show_status _show_ban"></i><%= t('admin.users.actions.ban').downcase %>
                 </a>
-                <% if !@user.super_admin? %>
-                  <a class="btn btn-small" href="<%= admin_user_path %>" data-method="delete">
-                    <i class="icon-remove"></i><%= t('admin.users.delete').downcase %>
-                  </a>
-                <% end %>
-              </div>
-            </td>
-          </tr>
+              <% else %>
+                <a class="btn btn-small" href="/admin/users/<%= @user.id %>/activate" data-method="put">
+                  <i class="icon-ok _show_status _show_active"></i><%= t('admin.users.actions.activate').downcase %>
+                </a>
+              <% end %>
+              <a class="btn btn-small" href="/admin/messages/new_notification?users=<%= @user.id %>" data-method="get">
+                <i class="icon-envelope"></i><%= t('admin.users.actions.message').downcase %>
+              </a>
+              <% if !@user.super_admin? %>
+                <a class="btn btn-small" href="<%= admin_user_path %>" data-method="delete">
+                  <i class="icon-remove"></i><%= t('admin.users.delete').downcase %>
+                </a>
+              <% end %>
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
