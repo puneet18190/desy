@@ -47,7 +47,12 @@ class Admin::SettingsController < AdminController
   end
   
   def delete_tag
-    
+    if correct_integer? params[:id]
+      @id = params[:id].to_i
+      tag = Tag.find_by_id @id
+      tag.destroy if !tag.nil?
+    end
+    redirect_to params[:back_url]
   end
   
   def lessons_for_tag
