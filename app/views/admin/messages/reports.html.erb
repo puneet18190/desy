@@ -1,11 +1,26 @@
 <div class="row-fluid">
   <div class="span12">
-    <h3><%= t('admin.messages.reports.name') %></h3>
+    <h3><%= t('admin.messages.reports.title') %></h3>
   </div>
 </div>
 <div class="row-fluid reports">
   <div class="span6 widget">
     <h3><%= t('admin.messages.reports.media_elements') %></h3>
+    <% if @elements_reports.length > 0 %>
+      <div class="row-fluid">
+        <div class="span3">
+          <ul class="nav nav-pills"></ul>
+        </div>
+        <div class="span6" style="text-align:center">
+          <%= paginate @elements_reports, :param_name => :elements_page %>
+        </div>
+        <div class="span3">
+          <div class="pull-right">
+            <span class="label"><%= page_items_counter(@elements_reports) %></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
     <% @elements_reports.each do |report| %>
       <a href="/admin/media_elements?utf8=✓&search%5Bid%5D=<%=report.reportable.id%>#list-anchor">
         <blockquote class="elements">
@@ -18,9 +33,39 @@
         </blockquote>
       </a>
     <% end %>
+    <% if @elements_reports.length > 0 %>
+      <div class="row-fluid">
+        <div class="span3">
+          <ul class="nav nav-pills"></ul>
+        </div>
+        <div class="span6" style="text-align:center">
+          <%= paginate @elements_reports, :param_name => :elements_page %>
+        </div>
+        <div class="span3">
+          <div class="pull-right">
+            <span class="label"><%= page_items_counter(@elements_reports) %></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
   <div class="span6 widget">
     <h3><%= t('admin.messages.reports.lessons') %></h3>
+    <% if @lessons_reports.length > 0 %>
+      <div class="row-fluid">
+        <div class="span3">
+          <ul class="nav nav-pills"></ul>
+        </div>
+        <div class="span6" style="text-align:center">
+          <%= paginate @lessons_reports, :param_name => :lessons_page %>
+        </div>
+        <div class="span3">
+          <div class="pull-right">
+            <span class="label"><%= page_items_counter(@lessons_reports) %></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
     <% @lessons_reports.each do |report| %>
       <a href="/admin/lessons?utf8=✓&search%5Bid%5D=<%=report.reportable.id%>#list-anchor">
         <blockquote class="lessons">
@@ -32,6 +77,21 @@
           <b><%= t('admin.messages.reports.report') %></b> <i><%= report.comment %></i>
         </blockquote>
       </a>
+    <% end %>
+    <% if @lessons_reports.length > 0 %>
+      <div class="row-fluid">
+        <div class="span3">
+          <ul class="nav nav-pills"></ul>
+        </div>
+        <div class="span6" style="text-align:center">
+          <%= paginate @lessons_reports, :param_name => :lessons_page %>
+        </div>
+        <div class="span3">
+          <div class="pull-right">
+            <span class="label"><%= page_items_counter(@lessons_reports) %></span>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

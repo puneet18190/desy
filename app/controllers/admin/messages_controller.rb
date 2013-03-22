@@ -32,8 +32,8 @@ class Admin::MessagesController < AdminController
   end
   
   def reports
-    @elements_reports = Report.order('created_at DESC').where(:reportable_type => 'MediaElement')
-    @lessons_reports = Report.order('created_at DESC').where(:reportable_type => 'Lesson')
+    @elements_reports = Report.order('created_at DESC').where(:reportable_type => 'MediaElement').page(params[:elements_page])
+    @lessons_reports = Report.order('created_at DESC').where(:reportable_type => 'Lesson').page(params[:lessons_page])
   end
   
   private
