@@ -2815,8 +2815,11 @@ en:
           label: "Search tags"
           # Button to start the search
           submit: "Search"
-  
-  
+        show:
+          title: "Tag <b>\"%{tag}\"</b>"
+          delete: "Delete this tag"
+          lessons: "Lessons associated to the tag <b>\"%{tag}\"</b>"
+          media_elements: "Elements associated to the tag <b>\"%{tag}\"</b>"
   
   
   

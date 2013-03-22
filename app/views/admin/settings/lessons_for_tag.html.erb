@@ -1,6 +1,6 @@
 <div class="row-fluid">
   <div class="span12">
-    <h3><%= t('admin.settings.tags.show.lessons', :tag => @tag.word) %></h3>
+    <h3><%= t('admin.settings.tags.show.title', :tag => @tag.word).html_safe %></h3>
   </div>
 </div>
 <div class="row-fluid">
@@ -34,7 +34,7 @@
 
 <div class="row-fluid">
   <div class="span12">
-    <h4><%= t('admin.settings.tags.show.lessons_title', :tag => @tag.word) %></h4>
+    <h4><%= t('admin.settings.tags.show.lessons', :tag => @tag.word).html_safe %></h4>
     <% if @lessons.length > 0 %>
       <%= render :partial => 'admin/list_heading', :locals => {:items => @lessons, :expandable => false} %>
     <% end %>
