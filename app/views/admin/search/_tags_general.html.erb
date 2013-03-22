@@ -1,18 +1,19 @@
 <div class="span4">
-  <div class="control-group heading">
+  <div class="control-group for_tags heading">
     <label><h5><%= t('admin.search.tags.titles.id') %></h5></label>
   </div>
-  <div class="control-group">
+  <div class="control-group for_tags">
     <label for="id"><%= t('admin.search.tags.fields.id') %></label>
     <div class="controls">
       <%= text_field_tag 'search[id]', params ? params[:id] : ''  ,:class => 'input-mini', :placeholder => t('admin.search.tags.fields.id') %>
     </div>
   </div>
+</div>
 <div class="span4">
-  <div class="control-group heading">
+  <div class="control-group for_tags heading">
     <label><h5><%= t('admin.search.tags.titles.word') %></h5></label>
   </div>
-  <div class="control-group">
+  <div class="control-group for_tags">
     <label for="keyword"><%= t('admin.search.tags.fields.word') %></label>
     <div class="controls">
       <%= text_field_tag 'search[user]', params ? params[:user] : '', :class => 'input-medium', :placeholder => t('admin.search.tags.fields.word') %>
@@ -20,10 +21,10 @@
   </div>
 </div>
 <div class="span4">
-  <div class="control-group heading">
+  <div class="control-group for_tags heading">
     <label><h5><%= t('admin.search.tags.titles.created_at') %></h5></label>
   </div>
-  <div class="control-group">
+  <div class="control-group for_tags">
     <div class="controls">
       <select id="recency" name="search[recency]">
         <option value=""><%= t('admin.search.tags.fields.created_at.select') %></option>
