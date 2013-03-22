@@ -2809,50 +2809,112 @@ en:
         # 2 - views/admin/messages/reports.html.erb
         media_elements: "Reported media elements"
     # TODO TODO TODO da qui in giù
+        # Labels of the two actions associated to a report
         actions:
+          # Accept the report as justified and remove the reported item
+          # 1 - views/admin/lessons/_list.html.erb
+          # 2 - views/admin/media_elements/_list.html.erb
           delete: "Delete now!"
+          # Discard the report
+          # 1 - views/admin/lessons/_list.html.erb
+          # 2 - views/admin/media_elements/_list.html.erb
           ok: "Ignore the report"
+    # Section 'Messages' in the administration module
     settings:
+      # Title of the section
+      # 1 - views/admin/settings/_menu.html.erb
       title: "Application settings"
+      # Subsection, list of school levels
       school_levels:
+        # Link inside the settings menu
+        # 1 - views/admin/settings/_menu.html.erb
         menu_link: "School levels"
+        # Title of the subsection
+        # 1 - views/admin/settings/school_levels.html.erb
         title: "School levels"
+        # Form to create a new school level
         add:
+          # Placeholder for description
+          # 1 - views/admin/settings/school_levels.html.erb
           description: "Insert a new school level"
+          # Caption of the button
+          # 1 - views/admin/settings/school_levels.html.erb
           button: "Add"
+      # Subsection, list of subjects
       subjects:
+        # Link inside the settings menu
+        # 1 - views/admin/settings/_menu.html.erb
         menu_link: "Subjects"
+        # Title of the subsection
+        # 1 - views/admin/settings/subjects.html.erb
         title: "Subjects"
+        # Form to create a new subject
         add:
+          # Placeholder for description
+          # 1 - views/admin/settings/subjects.html.erb
           description: "Insert a new subject"
+          # Caption of the button
+          # 1 - views/admin/settings/subjects.html.erb
           button: "Add"
+      # Subsection, list of tags
       tags:
+        # Link inside the settings menu
+        # 1 - views/admin/settings/_menu.html.erb
         menu_link: "Tags"
+        # Title of the subsection
+        # 1 - views/admin/settings/tags.html.erb
         title: "Tags"
         # Name used as label in the pagination (ex. '1-10 of 300 tags')
         # 1 - helpers/admin_helper.rb
         name: "Tags"
+        # Popup which asks for confirmation before deleting a tag
+        # 1 - views/admin/settings/lessons_for_tag.html.erb
+        # 2 - views/admin/settings/_tags_list.html.erb
+        # 3 - views/admin/settings/media_elements_for_tag.html.erb
         delete_confirm: "Do you want to delete this tag?"
+        # Placeholder when there are no tags
+        # 1 - views/admin/settings/_tags_list.html.erb
         empty: "No tags found"
+        # Fields of tags
         fields:
+          # 1 - views/admin/settings/lessons_for_tag.html.erb
+          # 2 - views/admin/settings/_tags_list.html.erb
+          # 3 - views/admin/settings/media_elements_for_tag.html.erb
           id: "Id"
+          # 1 - views/admin/settings/lessons_for_tag.html.erb
+          # 2 - views/admin/settings/_tags_list.html.erb
+          # 3 - views/admin/settings/media_elements_for_tag.html.erb
           word: "Word"
+          # 1 - views/admin/settings/lessons_for_tag.html.erb
+          # 2 - views/admin/settings/_tags_list.html.erb
+          # 3 - views/admin/settings/media_elements_for_tag.html.erb
           created_at: "Date of creation"
+          # How many lessons are associated to the selected tag
+          # 1 - views/admin/settings/_tags_list.html.erb
           lessons_number: "Lessons"
+          # How many elements are associated to the selected tag
+          # 1 - views/admin/settings/_tags_list.html.erb
           media_elements_number: "Elements"
         # Frame for the tags search engine
         search:
           # Title of the frame
+          # 1 - views/admin/settings/tags.html.erb
           label: "Search tags"
           # Button to start the search
+          # 1 - views/admin/settings/tags.html.erb
           submit: "Search"
+        # List of lessons / media elements associated to a particular tag
         show:
+          # 1 - views/admin/settings/lessons_for_tag.html.erb
+          # 2 - views/admin/settings/media_elements_for_tag.html.erb
           title: "Tag <b>\"%{tag}\"</b>"
+          # 1 - views/admin/settings/lessons_for_tag.html.erb
+          # 2 - views/admin/settings/media_elements_for_tag.html.erb
           delete: "Delete this tag"
+          # 1 - views/admin/settings/lessons_for_tag.html.erb
           lessons: "Lessons associated to the tag <b>\"%{tag}\"</b>"
+          # 1 - views/admin/settings/media_elements_for_tag.html.erb
           media_elements: "Elements associated to the tag <b>\"%{tag}\"</b>"
-  
-  
   
   
   # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'
