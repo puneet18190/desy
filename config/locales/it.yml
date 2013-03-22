@@ -1909,7 +1909,7 @@ it:
       # 1 - views/video_editor/_audio_track.html.erb
       title: "Aggiungi una traccia audio"
       # 1 - views/video_editor/_audio_track.html.erb
-      description: "È possibile caricare una traccia audio: questa sostituirà l'audio originale di tutti i componenti scelti"
+      description: "È possibile caricare una traccia audio: questa sostituirà l'audio originale di tutte le componenti scelti"
     # There are three possible components: image, video and text component
     components:
       image:
