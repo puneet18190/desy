@@ -2277,9 +2277,6 @@ cn:
         # Link to the section 'Settings'
         # 1 - views/admin/_header.html.erb
         link: "设置"
-        # Link to the subsection 'Configuration settings'
-        # 1 - views/admin/_header.html.erb
-        configuration: "恭喜"
       dashboard:
         # Link to the main page of 'Administration'
         # 1 - views/admin/_header.html.erb

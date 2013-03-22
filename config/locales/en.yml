@@ -2273,9 +2273,6 @@ en:
         # Link to the section 'Settings'
         # 1 - views/admin/_header.html.erb
         link: "Settings"
-        # Link to the subsection 'Configuration settings'
-        # 1 - views/admin/_header.html.erb
-        configuration: "Configuration"
       dashboard:
         # Link to the main page of 'Administration'
         # 1 - views/admin/_header.html.erb
@@ -2767,6 +2764,11 @@ en:
         # 1 - views/admin/dashboard/index.html.erb
         # 2 - views/admin/messages/reports.html.erb
         media_elements: "Reported media elements"
+    # TODO TODO TODO da qui in giù
+    settings:
+      title: 
+      school_levels:
+        title: "School levels"
   
   
   # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'
