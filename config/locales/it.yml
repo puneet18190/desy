@@ -383,10 +383,10 @@ it:
     exit_video_editor:
       # Title
       # 1 - views/shared/_popups.html.erb
-      title: "Abbandona il video editor"
+      title: "Uscita dal Video Editor"
       # Message
       # 1 - views/shared/_popups.html.erb
-      confirm: "Sei sicuro di volerlo abbandonare?"
+      confirm: "Sei sicuro di voler uscire?"
       # Button to confirm
       # 1 - views/shared/_popups.html.erb
       do: "Si"
@@ -397,7 +397,7 @@ it:
     exit_audio_editor:
       # Title
       # 1 - views/shared/_popups.html.erb
-      title: "Abbandona l'audio editor"
+      title: "Uscita dall'Audio Editor"
       # Message
       # 1 - views/shared/_popups.html.erb
       confirm: "Sei sicuro di voler uscire?"
