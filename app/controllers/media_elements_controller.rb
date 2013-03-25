@@ -4,7 +4,7 @@ class MediaElementsController < ApplicationController
   FOR_PAGE_COMPACT_OPTIONS = SETTINGS['compact_media_element_pagination_options']
   FOR_PAGE_EXPANDED = SETTINGS['expanded_media_element_pagination']
   FOR_PAGE_EXPANDED_OPTIONS = SETTINGS['expanded_media_element_pagination_options']
-  MAX_MEDIA_SIZE = 20.megabytes
+  MAX_MEDIA_SIZE = 50.megabytes
   
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
