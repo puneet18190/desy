@@ -10,7 +10,9 @@ function selectAudioEditorComponent(component) {
   component.find('._box_ghost').hide();
   component.find('._sort_handle').addClass('current');
   component.find('._player_content').css('opacity', 1);
-  $('.msie #' + component.attr('id') + ' ._double_slider .ui-slider-range').css('opacity', 1);
+  if($('html').hasClass('msie')) {
+    component.find('._double_slider .ui-slider-range').css('opacity', 1);
+  }
   component.find('._controls').css('visibility', 'visible');
   selectAudioEditorCursor(getAudioComponentIdentifier(component));
 }
