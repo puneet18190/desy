@@ -18,7 +18,7 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
       modal: true,
       resizable: false,
       draggable: false,
-      width: 490,
+      width: 520,
       show: "fade",
       hide: {effect: "fade"},
       buttons: dialog_buttons,
