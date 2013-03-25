@@ -1,5 +1,6 @@
 function initMediaElementLoader() {
   document.getElementById('new_media_element').onsubmit=function() {
+    $('.form_error').removeClass('form_error');
     document.getElementById('new_media_element').target = 'upload_target'; //'upload_target' is the name of the iframe
     document.getElementById("upload_target").onload = uploadDone;
   }
@@ -7,11 +8,15 @@ function initMediaElementLoader() {
 
 function uploadDone(){
   var ret = document.getElementById("upload_target").contentWindow.document.title;
-  alert(ret);
+  if(ret && ret.match(/413/g)){
+    $('.barraLoading img').hide();
+    $('form#new_media_element')[0].reset();
+    $('#media_element_media_show').text('select a file to load');
+  }
+  return false;
 }
 
 function uploadMediaElementLoaderError(errors) {
-  $('#load-media-element .form_error').removeClass('form_error');
   for (var i = 0; i < errors.length; i++) {
     var error = errors[i];
     if(error == 'media') {

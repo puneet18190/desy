@@ -959,7 +959,7 @@ $(document).ready(function() {
     initFileUploads();
   });
   
-  $('body').on('change', 'input#new_media_element', function() {
+  $('body').on('change', 'input#new_media_element_input', function() {
     var file_name = $(this).val().replace("C:\\fakepath\\", "");
     if(file_name.length > 20){
       file_name = file_name.substring(0,20)+"...";

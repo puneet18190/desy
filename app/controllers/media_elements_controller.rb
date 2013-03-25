@@ -38,7 +38,7 @@ class MediaElementsController < ApplicationController
 
     # TODO spostarlo in una validazione
     if media.is_a?(ActionDispatch::Http::UploadedFile) && media.tempfile.size > MAX_MEDIA_SIZE
-      return render :nothing => true, :layout => false, :status => 413
+      return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
     end
 
     record = MediaElement.new :media => media
@@ -51,6 +51,9 @@ class MediaElementsController < ApplicationController
       Notification.send_to current_user.id, t("notifications.#{record.class.to_s.downcase}.upload.started", item: record.title)
     else
       @errors = convert_media_element_uploader_messages record.errors
+      puts record.errors.inspect
+      puts @errors.inspect
+      
       fields = record.errors.messages.keys
       if fields.include? :sti_type
         fields << :media if !fields.include? :media
