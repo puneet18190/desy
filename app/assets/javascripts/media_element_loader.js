@@ -1,6 +1,7 @@
 function initMediaElementLoader() {
   document.getElementById('new_media_element').onsubmit=function() {
     $('.form_error').removeClass('form_error');
+    $('.too_large').remove();
     document.getElementById('new_media_element').target = 'upload_target'; //'upload_target' is the name of the iframe
     document.getElementById("upload_target").onload = uploadDone;
   }
@@ -10,7 +11,11 @@ function uploadDone(){
   var ret = document.getElementById("upload_target").contentWindow.document.title;
   if(ret && ret.match(/413/g)){
     $('.barraLoading img').hide();
+    // traduzzione file to large
+    $('iframe').before("<p class='too_large' style='padding: 20px 0 0 40px;'><img src='/assets/puntoesclamativo.png' style='margin: 20px 5px 0 20px;'><span class='lower' style='color:black'>File Too Large</span></p>");
     $('form#new_media_element')[0].reset();
+    
+    // traduzzione select a file to load
     $('#media_element_media_show').text('select a file to load');
   }
   return false;
