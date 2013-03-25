@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
   end
   
   def new_mailing_list_name
-    "Group #{MailingListGroup.where(:user_id => self.id).count + 1}"
+    I18n.t('users.mailing_list.label', :number => (MailingListGroup.where(:user_id => self.id).count + 1))
   end
 
   def registration_policies
