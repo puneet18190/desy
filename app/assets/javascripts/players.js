@@ -407,6 +407,24 @@ function initializeAudioEditorCutter(identifier) {
       }
     }
   });
+  
+  
+  
+  console.log('eccomi!!!!!! --- --- --- ');
+  
+  console.log( $('html'));
+  
+  
+  if($('html').hasClass('msie')) {
+  
+  console.log('eccomi!!!!!! SONO DENTRO');
+  
+    component.find('._double_slider .ui-slider-range').css('opacity', 0.4);
+  }
+  
+  
+  
+  
 }
 
 function selectAudioComponentCutterHandle(component, val) {

@@ -119,33 +119,3 @@ function changePageDashboardLessons(old_pos, pos, pages_amount) {
     reloadLessonsDashboardPagination(pos, pages_amount);
   });
 }
-
-function asyncFormSubmit($form, resultDiv) {
-    // Create the iframe…
-    var $iframe = $('<iframe/>')
-            .attr("name", "upload_iframe")
-            .attr("id", "upload_iframe")
-            .hide();
-
-    $("body").append($iframe);
-
-    // When iframe loads, copy content back to target
-    var copyIframe = function() {
-        var contents = $iframe.contents().find("body").html();
-        $(resultDiv).html(contents);
-        // Delete the iframe
-        setTimeout(function () { $iframe.remove(); }, 250);
-    }
-    $iframe.one("load", copyIframe);
-
-    // Set properties of form
-    $form.attr("target", "upload_iframe");
-
-    // Submit the form. This triggers the iframe to "load" the
-    // response from the server. Once loaded we can then do other
-    // stuff.
-    $form.submit();
-
-    // This gets replaced by iframe content when ready
-    // $(resultDiv).html("Uploading...");
-}
