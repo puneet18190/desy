@@ -9,7 +9,8 @@ function selectAudioEditorComponent(component) {
   component.find('._content').addClass('current');
   component.find('._box_ghost').hide();
   component.find('._sort_handle').addClass('current');
-  component.find('._player_content').css('opacity', '1');
+  component.find('._player_content').css('opacity', 1);
+  component.find('._media_player_slider').css('opacity', 1);
   component.find('._controls').css('visibility', 'visible');
   selectAudioEditorCursor(getAudioComponentIdentifier(component));
 }
@@ -26,7 +27,8 @@ function deselectAllAudioEditorComponents() {
   $('._audio_editor_component._selected ._content').removeClass('current');
   $('._audio_editor_component._selected ._box_ghost').show();
   $('._audio_editor_component._selected ._sort_handle').removeClass('current');
-  $('._audio_editor_component._selected ._player_content').css('opacity', '0.2');
+  $('._audio_editor_component._selected ._player_content').css('opacity', 0.2);
+  $('._audio_editor_component._selected ._media_player_slider').css('opacity', 0.2);
   $('._audio_editor_component._selected ._controls').css('visibility', 'hidden');
   $('._audio_editor_component._selected').removeClass('_selected');
 }
@@ -333,6 +335,7 @@ function enterAudioEditorPreviewMode() {
 function switchBackAudioComponentsFromPreviewMode() {
   $('._audio_editor_component').css('opacity', 1);
   $('._audio_editor_component ._player_content').css('opacity', 0.2);
+  $('._audio_editor_component ._media_player_slider').css('opacity', 0.2);
   $('._audio_editor_component ._remove').show();
   $('._audio_editor_component ._media_player_slider .ui-slider-handle').show();
   $('._audio_editor_component ._audio_component_icon').css('visibility', 'visible');
@@ -340,6 +343,7 @@ function switchBackAudioComponentsFromPreviewMode() {
 
 function switchAudioComponentsToPreviewMode() {
   $('._audio_editor_component ._player_content').css('opacity', 1);
+  $('._audio_editor_component ._media_player_slider').css('opacity', 1);
   $('._audio_editor_component').css('opacity', 0.2);
   $('._audio_editor_component ._remove').hide();
   $('._audio_editor_component ._media_player_slider .ui-slider-handle').hide();
