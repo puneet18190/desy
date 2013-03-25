@@ -153,14 +153,7 @@ class ApplicationController < ActionController::Base
       resp << t('forms.error_captions.fill_all_the_fields_or_too_long')
     end
     flag = false
-    if errors.has_key? :tags
-      errors[:tags].each do |v|
-        if !flag && v == 'are not enough'
-          flag = true
-          resp << t('forms.error_captions.tags_are_not_enough')
-        end
-      end
-    end
+    resp << t('forms.error_captions.tags_are_not_enough') if errors.has_key? :tags
     errors[:media] = media_errors if !media_errors.nil?
     errors[:sti_type] = sti_type_errors if !sti_type_errors.nil?
     errors[:subject_id] = subject_id_errors if !subject_id_errors.nil?

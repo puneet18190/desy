@@ -51,6 +51,9 @@ class MediaElementsController < ApplicationController
       Notification.send_to current_user.id, t("notifications.#{record.class.to_s.downcase}.upload.started", item: record.title)
     else
       @errors = convert_media_element_uploader_messages record.errors
+      puts record.errors.inspect
+      puts @errors.inspect
+      
       fields = record.errors.messages.keys
       if fields.include? :sti_type
         fields << :media if !fields.include? :media
