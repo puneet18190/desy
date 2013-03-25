@@ -46,8 +46,8 @@ module Media
             component[:image] = component[:image].id if component[:image]
             if component[:type] == TEXT_COMPONENT
               component[:content] = component[:content].gsub('<br/>', "\n")
-              component[:background_color] = ::SETTINGS['colors'][component[:background_color]][:code]
-              component[:text_color] = ::SETTINGS['colors'][component[:text_color]][:code]
+              component[:background_color] = ::SETTINGS['colors'][component[:background_color]]['code']
+              component[:text_color] = ::SETTINGS['colors'][component[:text_color]]['code']
             end
           end
           resp
