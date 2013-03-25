@@ -1814,6 +1814,12 @@ cn:
       # 1 - views/mailing_lists/_group.html.erb
       # 2 - models/user.rb
       label: "群%{number}"
+      # Placeholders used to fill the inputs to create a new address in a group
+      placeholders:
+        # 1 - views/mailing_lists/_group.html.erb
+        email: "邮件地址"
+        # 1 - views/mailing_lists/_group.html.erb
+        name: "名字"
     # Page that is opened when the user clicks on the link 'Forgot your password?'
     reset_password:
        # Title

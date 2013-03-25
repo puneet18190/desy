@@ -1055,6 +1055,13 @@ $(document).ready(function() {
     $('.group-title').effect('highlight', {color: '#41A62A'}, 1500);
   });
   
+  $('body').on('focus', '._input_in_mailing_list', function() {
+    if($(this).data('placeholder')) {
+      $(this).val('');
+      $(this).data('placeholder', false);
+    }
+  });
+  
   
   // MEDIA ELEMENT EDITOR GENERAL FUNCTIONS
   

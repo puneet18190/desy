@@ -1810,6 +1810,12 @@ it:
       # 1 - views/mailing_lists/_group.html.erb
       # 2 - models/user.rb
       label: "Gruppo %{number}"
+      # Placeholders used to fill the inputs to create a new address in a group
+      placeholders:
+        # 1 - views/mailing_lists/_group.html.erb
+        email: "Indirizzo email"
+        # 1 - views/mailing_lists/_group.html.erb
+        name: "Nome"
     # Page that is opened when the user clicks on the link 'Forgot your password?'
     reset_password:
        # Title
