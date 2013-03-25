@@ -412,7 +412,16 @@ function initializeAudioEditorCutter(identifier) {
   
   console.log('eccomi!!!!!! --- --- --- ');
   
-  console.log( $('html'));
+  console.log($('html'));
+  
+  var x = $('html')
+  console.log(x);
+  
+  console.log(x.attr('class'));
+  
+  
+  $('html').hasClass('msie')
+  
   
   
   if($('html').hasClass('msie')) {
