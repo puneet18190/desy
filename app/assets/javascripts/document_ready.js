@@ -28,8 +28,6 @@ $(document).ready(function() {
   var widc = $('.what_is_desy-action .container');
   if($(window).height()>hac.height()){
     hac.css('margin-top',($(window).height() - hac.height())/2 + 'px');
-    console.log(hac.height());
-     console.log($(window).height());
   }
 
   if($(window).height()>widc.height()){

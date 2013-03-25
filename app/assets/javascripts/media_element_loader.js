@@ -6,7 +6,8 @@ function initMediaElementLoader() {
 }
 
 function uploadDone(){
-  alert('what?!');
+  var ret = document.getElementById("upload_target").contentWindow.document.title;
+  alert(ret);
 }
 
 function uploadMediaElementLoaderError(errors) {
