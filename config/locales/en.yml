@@ -1300,8 +1300,7 @@ en:
     # 3 - views/lesson_viewer/slides/_cover.html.erb
     # 4 - views/lesson_editor/new.html.erb
     # 5 - views/lesson_editor/slides/_cover.html.erb
-    # 6 - views/lesson_editor/slides/thumbnails/_cover.html.erb
-    # 7 - views/lesson_editor/edit.html.erb
+    # 6 - views/lesson_editor/edit.html.erb
     author: "Author"
     # Caption which indicates the date in which a lesson is created
     # 1 - views/lessons/_view_single_compact.html.erb
