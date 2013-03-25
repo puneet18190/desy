@@ -2,7 +2,9 @@
 <html class="videos_test-layout <%= controller_html_class %> <%= action_html_class %>">
   <%= render :partial => "shared/head" %>
   <body>
-    <% videos = Video.where(converted: true).order(:id) %>
+    <% conditions = { converted: true } -%>
+    <% conditions[:id] = params[:id] if params[:id] -%>
+    <% videos = Video.where(conditions).order(:id) -%>
 
     <% if params[:format] != 'webm' -%>
       <% videos.each do |record| -%>
