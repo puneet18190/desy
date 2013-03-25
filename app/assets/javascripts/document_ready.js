@@ -10,6 +10,9 @@ $(document).ready(function() {
     if(name) {
       $('html').addClass(name);
     }
+    if($('html').hasClass('msie')) {
+      $('._audio_editor_component ._double_slider .ui-slider-range').css('opacity', 0.4);
+    }
   })();
   
   
