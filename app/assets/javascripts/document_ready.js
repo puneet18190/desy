@@ -20,7 +20,18 @@ $(document).ready(function() {
       recenterMyMediaElements();
     }
   });
-  
+
+  var hac = $('.home-action .container');
+  var widc = $('.what_is_desy-action .container');
+  if($(window).height()>hac.height()){
+    hac.css('margin-top',($(window).height() - hac.height())/2 + 'px');
+    console.log(hac.height());
+     console.log($(window).height());
+  }
+
+  if($(window).height()>widc.height()){
+    widc.css('margin-top',($(window).height() - widc.height())/2 + 'px');
+  }
   
   // LOADER
   
