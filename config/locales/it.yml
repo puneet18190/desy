@@ -872,7 +872,7 @@ it:
         remove: "Rimuovi la traccia audio"
       # Big 'X' on the bottom right, to quit the preview mode
       # 1 - views/video_editor/edit.html.erb
-      close_preview: "Chiudi la modalità anteprima"
+      close_preview: "Chiudi la modalità preview"
       # Arrow on the bottom - right of the screen: it's used to commit the user's work and decide title and description of the new video
       # 1 - views/video_editor/edit.html.erb
       commit: "Salva"
@@ -1123,7 +1123,7 @@ it:
       description: "In questo momento l'Editor sta elaborando un'altra traccia audio: fino a quando questo processo non sarà completato, l'Editor audio è temporaneamente disattivato"
     # Caption of the area containig the buttons which control the preview
     # 1 - views/audio_editor/_lateral_controls.html.erb
-    preview: "Anteprima"
+    preview: "Preview"
     # Caption, inside the right column, for the total length of the audio in editing
     # 1 - views/audio_editor/_lateral_controls.html.erb
     total_length: "Lunghezza totale"
@@ -1808,7 +1808,14 @@ it:
       delete: "Cancella gruppo"
       # Label for a new mailing list for which the user hasn't chosen a name yet; the variable %{number} is replaced by the number of the mailing list group
       # 1 - views/mailing_lists/_group.html.erb
+      # 2 - models/user.rb
       label: "Gruppo %{number}"
+      # Placeholders used to fill the inputs to create a new address in a group
+      placeholders:
+        # 1 - views/mailing_lists/_group.html.erb
+        email: "Indirizzo email"
+        # 1 - views/mailing_lists/_group.html.erb
+        name: "Nome"
     # Page that is opened when the user clicks on the link 'Forgot your password?'
     reset_password:
        # Title

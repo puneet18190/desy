@@ -1808,7 +1808,14 @@ en:
       delete: "Delete group"
       # Label for a new mailing list for which the user hasn't chosen a name yet; the variable %{number} is replaced by the number of the mailing list group
       # 1 - views/mailing_lists/_group.html.erb
+      # 2 - models/user.rb
       label: "Group %{number}"
+      # Placeholders used to fill the inputs to create a new address in a group
+      placeholders:
+        # 1 - views/mailing_lists/_group.html.erb
+        email: "Email"
+        # 1 - views/mailing_lists/_group.html.erb
+        name: "Name"
     # Page that is opened when the user clicks on the link 'Forgot your password?'
     reset_password:
        # Title

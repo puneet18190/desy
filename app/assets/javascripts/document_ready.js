@@ -10,6 +10,9 @@ $(document).ready(function() {
     if(name) {
       $('html').addClass(name);
     }
+    if($('html').hasClass('msie')) {
+      $('._audio_editor_component ._double_slider .ui-slider-range').css('opacity', 0.4);
+    }
   })();
   
   
@@ -20,7 +23,18 @@ $(document).ready(function() {
       recenterMyMediaElements();
     }
   });
-  
+
+  var hac = $('.home-action .container');
+  var widc = $('.what_is_desy-action .container');
+  if($(window).height()>hac.height()){
+    hac.css('margin-top',($(window).height() - hac.height())/2 + 'px');
+    console.log(hac.height());
+     console.log($(window).height());
+  }
+
+  if($(window).height()>widc.height()){
+    widc.css('margin-top',($(window).height() - widc.height())/2 + 'px');
+  }
   
   // LOADER
   
@@ -1053,6 +1067,13 @@ $(document).ready(function() {
   
   $('body').on('click', '#fake_save_mailing_list', function() {
     $('.group-title').effect('highlight', {color: '#41A62A'}, 1500);
+  });
+  
+  $('body').on('focus', '._input_in_mailing_list', function() {
+    if($(this).data('placeholder')) {
+      $(this).val('');
+      $(this).data('placeholder', false);
+    }
   });
   
   

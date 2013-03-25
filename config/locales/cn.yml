@@ -1812,7 +1812,14 @@ cn:
       delete: "删除群"
       # Label for a new mailing list for which the user hasn't chosen a name yet; the variable %{number} is replaced by the number of the mailing list group
       # 1 - views/mailing_lists/_group.html.erb
+      # 2 - models/user.rb
       label: "群%{number}"
+      # Placeholders used to fill the inputs to create a new address in a group
+      placeholders:
+        # 1 - views/mailing_lists/_group.html.erb
+        email: "邮件地址"
+        # 1 - views/mailing_lists/_group.html.erb
+        name: "名字"
     # Page that is opened when the user clicks on the link 'Forgot your password?'
     reset_password:
        # Title
@@ -2555,22 +2562,22 @@ cn:
         fields:
           # 1 - views/admin/search/_tags_general.html.erb
           # 2 - views/admin/search/_tags_general.html.erb
-          id: "Id" # TODO
+          id: "Id"
           # 1 - views/admin/search/_tags_general.html.erb
           # 2 - views/admin/search/_tags_general.html.erb
           word: "Word" # TODO
           # Labels used to range tags according to their creation date
           created_at:
             # 1 - views/admin/search/_tags_general.html.erb
-            select: "Select an option" # TODO
+            select: "选择"
             # 1 - views/admin/search/_tags_general.html.erb
-            today: "Today" # TODO
+            today: "今天"
             # 1 - views/admin/search/_tags_general.html.erb
-            week: "Last week" # TODO
+            week: "上个周"
             # 1 - views/admin/search/_tags_general.html.erb
-            month: "Last month" # TODO
+            month: "上个月"
             # 1 - views/admin/search/_tags_general.html.erb
-            year: "Last year" # TODO
+            year: "去年"
         # Titles of the subframe
         titles:
           # Search by id
