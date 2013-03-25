@@ -1,11 +1,11 @@
 function initMediaElementLoader() {
   document.getElementById('new_media_element').onsubmit=function() {
     document.getElementById('new_media_element').target = 'upload_target'; //'upload_target' is the name of the iframe
-    //document.getElementById("upload_target").onload = uploadDone; 
+    document.getElementById("upload_target").onload = uploadDone;
   }
 }
 
-function uploadDone() {
+function uploadDone(){
   alert('what?!');
 }
 
