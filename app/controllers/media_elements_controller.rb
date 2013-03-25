@@ -4,6 +4,7 @@ class MediaElementsController < ApplicationController
   FOR_PAGE_COMPACT_OPTIONS = SETTINGS['compact_media_element_pagination_options']
   FOR_PAGE_EXPANDED = SETTINGS['expanded_media_element_pagination']
   FOR_PAGE_EXPANDED_OPTIONS = SETTINGS['expanded_media_element_pagination_options']
+  MAX_MEDIA_SIZE = 20.megabytes
   
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
@@ -13,6 +14,7 @@ class MediaElementsController < ApplicationController
 
   skip_before_filter :authenticate, :initialize_location, :initialize_players_counter, only: :videos_test
   before_filter :admin_authenticate, only: :videos_test
+
   layout false, only: :videos_test
 
   def videos_test
@@ -32,7 +34,14 @@ class MediaElementsController < ApplicationController
   end
   
   def create
-    record = MediaElement.new :media => params[:media]
+    media = params[:media]
+
+    # TODO spostarlo in una validazione
+    if media.is_a?(ActionDispatch::Http::UploadedFile) && media.tempfile.size > MAX_MEDIA_SIZE
+      return render :nothing => true, :layout => false, :status => 413
+    end
+
+    record = MediaElement.new :media => media
     record.title = params[:title_placeholder] != '0' ? '' : params[:title]
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
     record.tags = params[:tags_value]
