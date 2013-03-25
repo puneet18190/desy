@@ -407,7 +407,7 @@ function initializeAudioEditorCutter(identifier) {
       }
     }
   });
-  component.find('._double_slider .ui-slider-range').css('opacity', 0.2);
+  $('.msie #' + component.attr('id') + ' ._double_slider .ui-slider-range').css('opacity', 0.4);
 }
 
 function selectAudioComponentCutterHandle(component, val) {
