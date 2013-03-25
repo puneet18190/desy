@@ -38,7 +38,7 @@ class MediaElementsController < ApplicationController
 
     # TODO spostarlo in una validazione
     if media.is_a?(ActionDispatch::Http::UploadedFile) && media.tempfile.size > MAX_MEDIA_SIZE
-      return render :nothing => true, :layout => false, :status => 413
+      return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
     end
 
     record = MediaElement.new :media => media
