@@ -1815,6 +1815,9 @@ en:
       # 1 - views/mailing_lists/_group.html.erb
       # 2 - models/user.rb
       label: "Group %{number}"
+      # Button to save
+      # 1 - views/users/mailing_lists.html.erb
+      save: "Save"
       # Placeholders used to fill the inputs to create a new address in a group
       placeholders:
         # 1 - views/mailing_lists/_group.html.erb
