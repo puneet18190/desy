@@ -1,3 +1,19 @@
+/**
+Provides the base Widget class...
+
+@module VideoEditor
+**/
+
+/**
+Video Editor initialization
+
+@method initializeVideoEditor
+@for initializeVideoEditor
+@param {String} name An 
+  Attribute name or 
+  object property path.
+@return {String} Unique clientId.
+**/
 function initializeVideoEditor() {
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true
@@ -38,6 +54,18 @@ function initializeVideoEditor() {
   });
 }
 
+/**
+Video Editor generic video component cutter.
+
+Also see [initializeVideoEditor](../classes/initializeVideoEditor.html#method_initializeVideoEditor)
+
+@method closeGenericVideoComponentCutter
+@for closeGenericVideoComponentCutter
+@param {String} name An 
+  Attribute name or 
+  object property path.
+@return {String} Unique clientId.
+**/
 function closeGenericVideoComponentCutter() {
   $('._video_component_cutter_arrow').hide('fade', {}, 250);
   $('._video_component_cutter').hide('fade', {}, 250, function() {
