@@ -501,6 +501,14 @@ function showVideoEditorCutter(component_id) {
 
 function startVideoEditorPreviewClip(component_id) {
   $('._video_component_preview').hide();
+  if(!$('#' + component_id + '_preview').data('loaded')) {
+    var mp4 = $('#' + component_id + '_preview').data('mp4');
+    var webm = $('#' + component_id + '_preview').data('webm');
+    $('#' + component_id + '_preview video source[type="video/mp4"]').attr('src', mp4);
+    $('#' + component_id + '_preview video source[type="video/webm"]').attr('src', webm);
+    $('#' + component_id + '_preview video').load();
+    $('#' + component_id + '_preview').data('loaded', true);
+  }
   $('#' + component_id + '_preview').show('fade', {}, 250);
 }
 

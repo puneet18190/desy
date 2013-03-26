@@ -13,12 +13,12 @@
 %>
 
 
-<div style="display:none" class="boxContentMediaElementVideo _video_component_preview" <%= div_id.html_safe %>>
+<div style="display:none" data-loaded="<%= empty %>" data-mp4="<%= mp4 %>" data-webm="<%= webm %>" class="boxContentMediaElementVideo _video_component_preview" <%= div_id.html_safe %>>
   
   <div class="videoPlayer">
     <video width="640" height="360" <%= mute ? "muted=\"muted\"".html_safe : '' %>>
-      <source src="<%= mp4 %>" type="video/mp4">
-      <source src="<%= webm %>" type="video/webm">
+      <source src="" type="video/mp4">
+      <source src="" type="video/webm">
       <%= t('captions.dont_support_video') %>
     </video>
   </div>
