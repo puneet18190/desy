@@ -1,0 +1,218 @@
+{
+    "project": {},
+    "files": {
+        "app/assets/javascripts/ajax_loader.js": {
+            "name": "app/assets/javascripts/ajax_loader.js",
+            "modules": {
+                "AjaxLoader": 1
+            },
+            "classes": {},
+            "fors": {
+                "bindLoader": 1,
+                "unbindLoader": 1,
+                "showLoader": 1,
+                "hideLoader": 1
+            },
+            "namespaces": {}
+        },
+        "app/assets/javascripts/video_editor.js": {
+            "name": "app/assets/javascripts/video_editor.js",
+            "modules": {
+                "VideoEditor": 1
+            },
+            "classes": {},
+            "fors": {
+                "initializeVideoEditor": 1,
+                "closeGenericVideoComponentCutter": 1
+            },
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "AjaxLoader": {
+            "name": "AjaxLoader",
+            "submodules": {},
+            "classes": {
+                "bindLoader": 1,
+                "unbindLoader": 1,
+                "showLoader": 1,
+                "hideLoader": 1
+            },
+            "fors": {
+                "bindLoader": 1,
+                "unbindLoader": 1,
+                "showLoader": 1,
+                "hideLoader": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/ajax_loader.js",
+            "line": 1,
+            "description": "Show a loading image while page is loading, \nit handles ajax calls too."
+        },
+        "VideoEditor": {
+            "name": "VideoEditor",
+            "submodules": {},
+            "classes": {
+                "initializeVideoEditor": 1,
+                "closeGenericVideoComponentCutter": 1
+            },
+            "fors": {
+                "initializeVideoEditor": 1,
+                "closeGenericVideoComponentCutter": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/video_editor.js",
+            "line": 1,
+            "description": "Provides the base Widget class..."
+        }
+    },
+    "classes": {
+        "bindLoader": {
+            "name": "bindLoader",
+            "shortname": "bindLoader",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "AjaxLoader",
+            "namespace": ""
+        },
+        "unbindLoader": {
+            "name": "unbindLoader",
+            "shortname": "unbindLoader",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "AjaxLoader",
+            "namespace": ""
+        },
+        "showLoader": {
+            "name": "showLoader",
+            "shortname": "showLoader",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "AjaxLoader",
+            "namespace": ""
+        },
+        "hideLoader": {
+            "name": "hideLoader",
+            "shortname": "hideLoader",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "AjaxLoader",
+            "namespace": ""
+        },
+        "initializeVideoEditor": {
+            "name": "initializeVideoEditor",
+            "shortname": "initializeVideoEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "VideoEditor",
+            "namespace": ""
+        },
+        "closeGenericVideoComponentCutter": {
+            "name": "closeGenericVideoComponentCutter",
+            "shortname": "closeGenericVideoComponentCutter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "VideoEditor",
+            "namespace": ""
+        }
+    },
+    "classitems": [
+        {
+            "file": "app/assets/javascripts/ajax_loader.js",
+            "line": 8,
+            "description": "Bind Loader, show loader on ajaxStart and hide loader on ajaxStop.",
+            "itemtype": "method",
+            "name": "bindLoader",
+            "class": "bindLoader",
+            "module": "AjaxLoader"
+        },
+        {
+            "file": "app/assets/javascripts/ajax_loader.js",
+            "line": 37,
+            "description": "Unbind Loader, unbind loader for ajaxStart and ajaxStop.",
+            "itemtype": "method",
+            "name": "unbindLoader",
+            "class": "unbindLoader",
+            "module": "AjaxLoader"
+        },
+        {
+            "file": "app/assets/javascripts/ajax_loader.js",
+            "line": 47,
+            "description": "Show Loader, force loader to show.\ncomes with timeout (default=5000) to force loader to hide [hideLoader](../classes/hideLoader.html#method_hideLoader)",
+            "itemtype": "method",
+            "name": "showLoader",
+            "class": "showLoader",
+            "module": "AjaxLoader"
+        },
+        {
+            "file": "app/assets/javascripts/ajax_loader.js",
+            "line": 62,
+            "description": "Hide Loader, force loader to hide.",
+            "itemtype": "method",
+            "name": "hideLoader",
+            "class": "hideLoader",
+            "module": "AjaxLoader"
+        },
+        {
+            "file": "app/assets/javascripts/video_editor.js",
+            "line": 7,
+            "description": "Video Editor initialization",
+            "itemtype": "method",
+            "name": "initializeVideoEditor",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "An \n  Attribute name or \n  object property path.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Unique clientId.",
+                "type": "String"
+            },
+            "class": "initializeVideoEditor",
+            "module": "VideoEditor"
+        },
+        {
+            "file": "app/assets/javascripts/video_editor.js",
+            "line": 57,
+            "description": "Video Editor generic video component cutter.\n\nAlso see [initializeVideoEditor](../classes/initializeVideoEditor.html#method_initializeVideoEditor)",
+            "itemtype": "method",
+            "name": "closeGenericVideoComponentCutter",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "An \n  Attribute name or \n  object property path.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Unique clientId.",
+                "type": "String"
+            },
+            "class": "closeGenericVideoComponentCutter",
+            "module": "VideoEditor"
+        }
+    ],
+    "warnings": []
+}
