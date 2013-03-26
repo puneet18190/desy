@@ -300,6 +300,7 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, forc
           var new_start = next_component.data('from');
           next_component.find('._media_player_slider').slider('value', new_start);
           next_component.find('._current_time').html(secondsToDateString(new_start));
+          loadAudioComponentIfNotLoadedYet(next_component);
           setCurrentTimeToMedia(next_component.find('audio'), new_start);
           startAudioEditorPreview(next_component);
         } else {
