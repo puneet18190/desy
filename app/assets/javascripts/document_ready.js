@@ -1890,8 +1890,7 @@ $(document).ready(function() {
     var type = $(this).parent().data('media-type');
     var media = $('#' + container_id + ' ' + type);
     if(media[0].error) {
-      //traduzzione
-      showErrorPopUp('Media Error code: '+ media[0].error.code);
+      showLoadingMediaErrorPopup(media[0].error.code, type);
     } else {
       $('#' + container_id + ' ._media_player_slider_disabler').show();
       $('#' + container_id + ' ._media_player_pause').show();
@@ -1924,8 +1923,7 @@ $(document).ready(function() {
     var identifier = getVideoComponentIdentifier($(this).parents('._video_component_cutter').attr('id'));
     var video = $('#video_component_' + identifier + '_preview video');
     if(video[0].error){
-      //traduzzione
-      showErrorPopUp('Media Error code: '+ media[0].error.code);
+      showLoadingMediaErrorPopup(video[0].error.code, 'video');
     } else {
       $(this).hide();
       $(this).parents('._video_component_cutter').data('playing', true);
@@ -1945,8 +1943,7 @@ $(document).ready(function() {
     if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
       var audio_track = $('#video_editor_preview_container audio');
       if(audio_track[0].error) {
-        //traduzzione
-        showErrorPopUp('Media Error code: '+ media[0].error.code);
+        showLoadingMediaErrorPopup(audio_track[0].error.code, 'audio');
       } else {
         setCurrentTimeToMedia(audio_track, actual_audio_track_time);
         if(audio_track.readyState != 0) {
@@ -2000,8 +1997,7 @@ $(document).ready(function() {
     var identifier = getAudioComponentIdentifier(component);
     var audio = component.find('audio');
     if(audio[0].error) {
-      //traduzzione
-      showErrorPopUp('Media Error code: '+ media[0].error.code);
+      showLoadingMediaErrorPopup(audio[0].error.code, 'audio');
     } else {
       $(this).hide();
       $('#start_audio_editor_preview').addClass('disabled');
@@ -2061,11 +2057,11 @@ $(document).ready(function() {
   });
   
   
-  // NELLA HOMEPAGE APERTURA AUTOMATICA DELLA FINESTRA DI LOGIN 
-  // SE C'É L'ATTRIBUTO login NELLA PARTE DELLA QUERY DELL'URL
-  if ( currentPageIs('prelogin', 'home') ) {
+  // NELLA HOMEPAGE APERTURA AUTOMATICA DELLA FINESTRA DI LOGIN SE C'É L'ATTRIBUTO login NELLA PARTE DELLA QUERY DELL'URL
+  
+  if(currentPageIs('prelogin', 'home')) {
     var parsedLocation = UrlParser.parse(window.location.href);
-    if ( _.contains( _.keys(parsedLocation.searchObj), 'login') ) {
+    if(_.contains(_.keys(parsedLocation.searchObj), 'login') ) {
       $('._show_login_form_container').click();
     }
   }

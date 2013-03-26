@@ -81,6 +81,12 @@ cn:
       # An error occurred while updating the user's mailing list (general message for any kind of error)
       # 1 - views/shared/_popups.html.erb
       error: "邮件列表错误"
+    # Error messages used when an exceptional error occurs while playing a media (the variable %{code} is replaced by the error code, the variable %{message} by the standard english error message associated to the code)
+    media_loading_errors:
+      # 1 - views/shared/_popups.html.erb
+      audio: "The audio you tried to play couldn't be loaded: error code %{code} (%{message})" # TODO
+      # 1 - views/shared/_popups.html.erb
+      video: "The video you tried to play couldn't be loaded: error code %{code} (%{message})" # TODO
     send_lesson_link:
       # The user sent an email to a list of friends containing a direct link to a lesson: using such a link anybody can see the lesson, even without being logged in. The variables %{success} and %{total} represent (a) the number of emails to which the link has been successfully sent, and (b) the original number of emails the user inserted (there might be emails containing wrong characters).
       # 1 - views/virtual_classroom/send_link.js.erb
