@@ -1180,6 +1180,7 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '#video_editor_global_preview._enabled', function() {
+    loadVideoComponentIfNotLoadedYet(getFirstVideoEditorComponent().attr('id'));
     $('#info_container').data('forced-kevin-luck-style', 'visibility:hidden');
     var jsp_handler = $('#media_elements_list_in_video_editor').data('jsp');
     if(jsp_handler.getContentPositionX() > 0) {

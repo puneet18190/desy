@@ -501,6 +501,11 @@ function showVideoEditorCutter(component_id) {
 
 function startVideoEditorPreviewClip(component_id) {
   $('._video_component_preview').hide();
+  loadVideoComponentIfNotLoadedYet(component_id);
+  $('#' + component_id + '_preview').show('fade', {}, 250);
+}
+
+function loadVideoComponentIfNotLoadedYet(component_id) {
   if(!$('#' + component_id + '_preview').data('loaded')) {
     var mp4 = $('#' + component_id + '_preview').data('mp4');
     var webm = $('#' + component_id + '_preview').data('webm');
@@ -509,7 +514,6 @@ function startVideoEditorPreviewClip(component_id) {
     $('#' + component_id + '_preview video').load();
     $('#' + component_id + '_preview').data('loaded', true);
   }
-  $('#' + component_id + '_preview').show('fade', {}, 250);
 }
 
 function commitVideoComponentVideoCutter(identifier) {
@@ -610,6 +614,7 @@ function playVideoEditorComponent(component, with_scroll) {
       var next_component = component.next();
       var next_identifier = getVideoComponentIdentifier(next_component.attr('id'));
       if(next_component.hasClass('_video_editor_component')) {
+        loadVideoComponentIfNotLoadedYet(next_component.attr('id'));
         increaseVideoEditorPreviewTimer(true);
         $('#video_editor_global_preview').data('current-component', getVideoComponentIdentifier(next_component.attr('id')));
         $('#video_component_' + identifier + '_preview').hide('fade', {}, 1000);
