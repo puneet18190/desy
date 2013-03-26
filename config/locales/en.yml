@@ -576,6 +576,9 @@ en:
       # The user tried to upload a file which was damaged or invalid
       # 1 - controllers/application_controller.rb
       media_generic_error: "Invalid or damaged file"
+      # The user tried to load a file exceeding the maximum size
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      media_file_too_large: "File too large"
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
       subject_missing_in_lesson: "Choose a subject"

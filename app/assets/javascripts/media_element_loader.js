@@ -11,10 +11,8 @@ function uploadDone(){
   var ret = document.getElementById("upload_target").contentWindow.document.title;
   if(ret && ret.match(/413/g)){
     $('.barraLoading img').hide();
-    // traduzzione file to large
-    $('iframe').before("<p class='too_large' style='padding: 20px 0 0 40px;'><img src='/assets/puntoesclamativo.png' style='margin: 20px 5px 0 20px;'><span class='lower' style='color:black'>File Too Large</span></p>");
-    // traduzzione select a file to load
-    $('#media_element_media_show').text('select a file to load');
+    $('iframe').before("<p class='too_large' style='padding: 20px 0 0 40px;'><img src='/assets/puntoesclamativo.png' style='margin: 20px 5px 0 20px;'><span class='lower' style='color:black'>" + $('#load-media-element').data('media-file-too-large') + "</span></p>");
+    $('#media_element_media_show').text($('#load-media-element').data('placeholder-media'));
   }
   return false;
 }
@@ -59,27 +57,26 @@ function resetMediaElementChangeInfo(media_element_id) {
   container.find('#tags_value').val(container.data('tags'));
 }
 
-
 var W3CDOM = (document.createElement && document.getElementsByTagName);
 
 function initFileUploads() {
-	if (!W3CDOM) return;
-	var fakeFileUpload = document.createElement('div');
-	fakeFileUpload.className = 'fakefile';
-	fakeFileUpload.appendChild(document.createElement('input'));
-	var image = document.createElement('img');
-	image.src='/assets/ico_advanced_search.png';
-	fakeFileUpload.appendChild(image);
-	var x = document.getElementsByTagName('input');
-	for (var i=0;i<x.length;i++) {
-		if (x[i].type != 'file') continue;
-		if (x[i].parentNode.className != 'fileinputs') continue;
-		x[i].className = 'file hidden';
-		var clone = fakeFileUpload.cloneNode(true);
-		x[i].parentNode.appendChild(clone);
-		x[i].relatedElement = clone.getElementsByTagName('input')[0];
-		x[i].onchange = x[i].onmouseout = function () {
-			this.relatedElement.value = this.value;
-		}
-	}
+  if (!W3CDOM) return;
+  var fakeFileUpload = document.createElement('div');
+  fakeFileUpload.className = 'fakefile';
+  fakeFileUpload.appendChild(document.createElement('input'));
+  var image = document.createElement('img');
+  image.src='/assets/ico_advanced_search.png';
+  fakeFileUpload.appendChild(image);
+  var x = document.getElementsByTagName('input');
+  for (var i=0;i<x.length;i++) {
+    if (x[i].type != 'file') continue;
+    if (x[i].parentNode.className != 'fileinputs') continue;
+    x[i].className = 'file hidden';
+    var clone = fakeFileUpload.cloneNode(true);
+    x[i].parentNode.appendChild(clone);
+    x[i].relatedElement = clone.getElementsByTagName('input')[0];
+    x[i].onchange = x[i].onmouseout = function () {
+      this.relatedElement.value = this.value;
+    }
+  }
 }
