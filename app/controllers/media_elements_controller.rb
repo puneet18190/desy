@@ -35,12 +35,10 @@ class MediaElementsController < ApplicationController
   
   def create
     media = params[:media]
-
     # TODO spostarlo in una validazione
     if media.is_a?(ActionDispatch::Http::UploadedFile) && media.tempfile.size > MAX_MEDIA_SIZE
       return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
     end
-
     record = MediaElement.new :media => media
     record.title = params[:title_placeholder] != '0' ? '' : params[:title]
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
@@ -48,7 +46,7 @@ class MediaElementsController < ApplicationController
     record.user_id = current_user.id
     record.validating_in_form = true
     if record.save
-      Notification.send_to current_user.id, t("notifications.#{record.class.to_s.downcase}.upload.started", item: record.title)
+      Notification.send_to current_user.id, t("notifications.#{record.class.to_s.downcase}.upload.started", item: record.title) if !record.image?
     else
       @errors = convert_media_element_uploader_messages record.errors
       puts record.errors.inspect

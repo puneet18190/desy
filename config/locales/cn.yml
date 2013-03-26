@@ -1300,8 +1300,7 @@ cn:
     # 3 - views/lesson_viewer/slides/_cover.html.erb
     # 4 - views/lesson_editor/new.html.erb
     # 5 - views/lesson_editor/slides/_cover.html.erb
-    # 6 - views/lesson_editor/slides/thumbnails/_cover.html.erb
-    # 7 - views/lesson_editor/edit.html.erb
+    # 6 - views/lesson_editor/edit.html.erb
     author: "作者"
     # Caption which indicates the date in which a lesson is created
     # 1 - views/lessons/_view_single_compact.html.erb
@@ -2565,7 +2564,7 @@ cn:
           id: "Id"
           # 1 - views/admin/search/_tags_general.html.erb
           # 2 - views/admin/search/_tags_general.html.erb
-          word: "Word" # TODO
+          word: "关键字"
           # Labels used to range tags according to their creation date
           created_at:
             # 1 - views/admin/search/_tags_general.html.erb
@@ -2582,13 +2581,13 @@ cn:
         titles:
           # Search by id
           # 1 - views/admin/search/_tags_general.html.erb
-          id: "Search by id" # TODO
+          id: "Id"
           # Search by word
           # 1 - views/admin/search/_tags_general.html.erb
-          word: "Search by word" # TODO
+          word: "通过关键字查找"
           # Search bt creation date
           # 1 - views/admin/search/_tags_general.html.erb
-          created_at: "Search by date of creation" # TODO
+          created_at: "通过建立日期查找"
       # Contents of search engine specific for users: this part is used to search both users and notifications / reports associated to users
       users:
         # Title of the frame
@@ -2790,15 +2789,15 @@ cn:
         title: "报告滥用"
         # Name used as label in the pagination (ex. '1-10 of 300 users')
         # 1 - helpers/admin_helper.rb
-        name: "Reports" # TODO
+        name: "报告"
         # Captions used when there are no reports
         empty:
           # 1 - views/admin/dashboard/index.html.erb
           # 2 - views/admin/messages/reports.html.erb
-          lessons: "There are no reports for lessons" # TODO
+          lessons: "没有课程报告"
           # 1 - views/admin/dashboard/index.html.erb
           # 2 - views/admin/messages/reports.html.erb
-          media_elements: "There are no reports for elements" # TODO
+          media_elements: "没有单元报告"
         # Label for the item on which the report was sent (it may be lesson or media element)
         # 1 - views/admin/dashboard/index.html.erb
         # 2 - views/admin/dashboard/index.html.erb
@@ -2824,107 +2823,107 @@ cn:
           # Accept the report as justified and remove the reported item
           # 1 - views/admin/lessons/_list.html.erb
           # 2 - views/admin/media_elements/_list.html.erb
-          delete: "Delete now!" # TODO
+          delete: "现在删除!"
           # Discard the report
           # 1 - views/admin/lessons/_list.html.erb
           # 2 - views/admin/media_elements/_list.html.erb
-          ok: "Ignore the report" # TODO
+          ok: "忽略报告"
     # Section 'Messages' in the administration module
     settings:
       # Title of the section
       # 1 - views/admin/settings/_menu.html.erb
-      title: "Application settings" # TODO
+      title: "应用设置"
       # Subsection, list of school levels
       school_levels:
         # Link inside the settings menu
         # 1 - views/admin/settings/_menu.html.erb
-        menu_link: "School levels" # TODO
+        menu_link: "学校标准"
         # Title of the subsection
         # 1 - views/admin/settings/school_levels.html.erb
-        title: "School levels" # TODO
+        title: "学校标准"
         # Form to create a new school level
         add:
           # Placeholder for description
           # 1 - views/admin/settings/school_levels.html.erb
-          description: "Insert a new school level" # TODO
+          description: "插入一个新学校标准"
           # Caption of the button
           # 1 - views/admin/settings/school_levels.html.erb
-          button: "Add" # TODO
+          button: "增加"
       # Subsection, list of subjects
       subjects:
         # Link inside the settings menu
         # 1 - views/admin/settings/_menu.html.erb
-        menu_link: "Subjects" # TODO
+        menu_link: "科目"
         # Title of the subsection
         # 1 - views/admin/settings/subjects.html.erb
-        title: "Subjects" # TODO
+        title: "科目"
         # Form to create a new subject
         add:
           # Placeholder for description
           # 1 - views/admin/settings/subjects.html.erb
-          description: "Insert a new subject" # TODO
+          description: "插入一个新学校标准"
           # Caption of the button
           # 1 - views/admin/settings/subjects.html.erb
-          button: "Add" # TODO
+          button: "增加"
       # Subsection, list of tags
       tags:
         # Link inside the settings menu
         # 1 - views/admin/settings/_menu.html.erb
-        menu_link: "Tags" # TODO
+        menu_link: "标签"
         # Title of the subsection
         # 1 - views/admin/settings/tags.html.erb
-        title: "Tags" # TODO
+        title: "标签"
         # Name used as label in the pagination (ex. '1-10 of 300 tags')
         # 1 - helpers/admin_helper.rb
-        name: "Tags" # TODO
+        name: "标签"
         # Popup which asks for confirmation before deleting a tag
         # 1 - views/admin/settings/lessons_for_tag.html.erb
         # 2 - views/admin/settings/_tags_list.html.erb
         # 3 - views/admin/settings/media_elements_for_tag.html.erb
-        delete_confirm: "Do you want to delete this tag?" # TODO
+        delete_confirm: "你要删除这个标签吗?"
         # Placeholder when there are no tags
         # 1 - views/admin/settings/_tags_list.html.erb
-        empty: "No tags found" # TODO
+        empty: "没有发现标签"
         # Fields of tags
         fields:
           # 1 - views/admin/settings/lessons_for_tag.html.erb
           # 2 - views/admin/settings/_tags_list.html.erb
           # 3 - views/admin/settings/media_elements_for_tag.html.erb
-          id: "Id" # TODO
+          id: "Id"
           # 1 - views/admin/settings/lessons_for_tag.html.erb
           # 2 - views/admin/settings/_tags_list.html.erb
           # 3 - views/admin/settings/media_elements_for_tag.html.erb
-          word: "Word" # TODO
+          word: "关键字"
           # 1 - views/admin/settings/lessons_for_tag.html.erb
           # 2 - views/admin/settings/_tags_list.html.erb
           # 3 - views/admin/settings/media_elements_for_tag.html.erb
-          created_at: "Date of creation" # TODO
+          created_at: "建立日期"
           # How many lessons are associated to the selected tag
           # 1 - views/admin/settings/_tags_list.html.erb
-          lessons_number: "Lessons" # TODO
+          lessons_number: "课程"
           # How many elements are associated to the selected tag
           # 1 - views/admin/settings/_tags_list.html.erb
-          media_elements_number: "Elements" # TODO
+          media_elements_number: "单元"
         # Frame for the tags search engine
         search:
           # Title of the frame
           # 1 - views/admin/settings/tags.html.erb
-          label: "Search tags" # TODO
+          label: "查找标签"
           # Button to start the search
           # 1 - views/admin/settings/tags.html.erb
-          submit: "Search" # TODO
+          submit: "查找"
         # List of lessons / media elements associated to a particular tag
         show:
           # 1 - views/admin/settings/lessons_for_tag.html.erb
           # 2 - views/admin/settings/media_elements_for_tag.html.erb
-          title: "Tag <b>\"%{tag}\"</b>" # TODO
+          title: "标签 <b>\"%{tag}\"</b>"
           # 1 - views/admin/settings/lessons_for_tag.html.erb
           # 2 - views/admin/settings/media_elements_for_tag.html.erb
-          delete: "Delete this tag" # TODO
+          delete: "删除这个标签"
           # 1 - views/admin/settings/lessons_for_tag.html.erb
-          lessons: "Lessons associated to the tag <b>\"%{tag}\"</b>" # TODO
+          lessons: "与这个标签相关的课程 <b>\"%{tag}\"</b>"
           # 1 - views/admin/settings/media_elements_for_tag.html.erb
-          media_elements: "Elements associated to the tag <b>\"%{tag}\"</b>" # TODO
+          media_elements: "与这个标签相关的单元 <b>\"%{tag}\"</b>"
   
   
   # SECTION 4.2: characters and words used in automatic pagination inside the section 'Administrator'
