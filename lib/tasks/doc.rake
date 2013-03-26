@@ -1,9 +1,8 @@
 namespace :doc do
-
   desc "Generates the javascript documentation"
   task :js do
-    js_src_dir = File.expand_path '../../app/assets/javascripts/',  __dir__
-    js_doc_dir = File.expand_path '../../doc/js', __dir__
+    js_src_dir = 'app/assets/javascripts/'
+    js_doc_dir = 'doc/js'
 
     command = "yuidoc -o #{js_doc_dir.shellescape} #{js_src_dir.shellescape}"
 
