@@ -600,6 +600,10 @@ function playVideoEditorComponent(component, with_scroll) {
   }
   var identifier = getVideoComponentIdentifier(component.attr('id'));
   $('._video_component_transition').addClass('current');
+  var next_component_to_load = component.next();
+  if(next_component_to_load.hasClass('_video_editor_component')) {
+    loadVideoComponentIfNotLoadedYet(next_component_to_load.attr('id'));
+  }
   if(component.hasClass('_video')) {
     var video = $('#video_component_' + identifier + '_preview video');
     if(video.readyState != 0) {
@@ -614,7 +618,6 @@ function playVideoEditorComponent(component, with_scroll) {
       var next_component = component.next();
       var next_identifier = getVideoComponentIdentifier(next_component.attr('id'));
       if(next_component.hasClass('_video_editor_component')) {
-        loadVideoComponentIfNotLoadedYet(next_component.attr('id'));
         increaseVideoEditorPreviewTimer(true);
         $('#video_editor_global_preview').data('current-component', getVideoComponentIdentifier(next_component.attr('id')));
         $('#video_component_' + identifier + '_preview').hide('fade', {}, 1000);
@@ -679,13 +682,13 @@ function setVisualTimesVideoEditorPreview(component, time) {
     if(my_identifier == identifier) {
       $(this).find('._video_component_icon ._right').html(secondsToDateString(time));
       $(this).data('current-preview-time', time);
-      if($('#video_component_' + my_identifier + '_preview video').length > 0) {
+      if($('#video_component_' + my_identifier + '_preview video').length > 0 && $('#video_component_' + my_identifier + '_preview').data('loaded')) {
         setCurrentTimeToMedia($('#video_component_' + my_identifier + '_preview video'), $('#video_component_' + my_identifier + '_cutter').data('from') + time);
       }
     } else {
       $(this).find('._video_component_icon ._right').html(secondsToDateString(0));
       $(this).data('current-preview-time', 0);
-      if($('#video_component_' + my_identifier + '_preview video').length > 0) {
+      if($('#video_component_' + my_identifier + '_preview video').length > 0 && $('#video_component_' + my_identifier + '_preview').data('loaded')) {
         setCurrentTimeToMedia($('#video_component_' + my_identifier + '_preview video'), $('#video_component_' + my_identifier + '_cutter').data('from'));
       }
     }

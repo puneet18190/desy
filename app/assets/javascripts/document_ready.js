@@ -1096,7 +1096,9 @@ $(document).ready(function() {
   
   $('body').on('click', '#video_editor_preview_go_to_left_component', function() {
     if($('#video_editor_global_preview').data('arrows')) {
-      selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).prev());
+      var prev_component = $('#video_component_' + $('#video_editor_global_preview').data('current-component')).prev();
+      loadVideoComponentIfNotLoadedYet(prev_component.attr('id'));
+      selectVideoComponentInPreview(prev_component);
       showVideoEditorPreviewArrowToComponents();
       hideVideoEditorPreviewComponentProgressBar();
       followPreviewComponentsWithHorizontalScrollInVideoEditor();
@@ -1105,7 +1107,9 @@ $(document).ready(function() {
   
   $('body').on('click', '#video_editor_preview_go_to_right_component', function() {
     if($('#video_editor_global_preview').data('arrows')) {
-      selectVideoComponentInPreview($('#video_component_' + $('#video_editor_global_preview').data('current-component')).next());
+      var next_component = $('#video_component_' + $('#video_editor_global_preview').data('current-component')).next();
+      loadVideoComponentIfNotLoadedYet(next_component.attr('id'));
+      selectVideoComponentInPreview(next_component);
       showVideoEditorPreviewArrowToComponents();
       hideVideoEditorPreviewComponentProgressBar();
       followPreviewComponentsWithHorizontalScrollInVideoEditor();

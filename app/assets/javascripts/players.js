@@ -105,7 +105,6 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, forc
         var next_component = component.next();
         var next_identifier = getVideoComponentIdentifier(next_component.attr('id'));
         if(next_component.hasClass('_video_editor_component')) {
-          loadVideoComponentIfNotLoadedYet(next_component.attr('id'));
           increaseVideoEditorPreviewTimer(true);
           $('#video_editor_global_preview').data('current-component', next_identifier);
           $('#video_component_' + identifier + '_preview').hide('fade', {}, 1000);
