@@ -529,7 +529,19 @@ function showVideoEditorCutter(component_id) {
 
 function startVideoEditorPreviewClip(component_id) {
   $('._video_component_preview').hide();
+  loadVideoComponentIfNotLoadedYet(component_id);
   $('#' + component_id + '_preview').show('fade', {}, 250);
+}
+
+function loadVideoComponentIfNotLoadedYet(component_id) {
+  if(!$('#' + component_id + '_preview').data('loaded')) {
+    var mp4 = $('#' + component_id + '_preview').data('mp4');
+    var webm = $('#' + component_id + '_preview').data('webm');
+    $('#' + component_id + '_preview video source[type="video/mp4"]').attr('src', mp4);
+    $('#' + component_id + '_preview video source[type="video/webm"]').attr('src', webm);
+    $('#' + component_id + '_preview video').load();
+    $('#' + component_id + '_preview').data('loaded', true);
+  }
 }
 
 function commitVideoComponentVideoCutter(identifier) {
@@ -616,6 +628,10 @@ function playVideoEditorComponent(component, with_scroll) {
   }
   var identifier = getVideoComponentIdentifier(component.attr('id'));
   $('._video_component_transition').addClass('current');
+  var next_component_to_load = component.next();
+  if(next_component_to_load.hasClass('_video_editor_component')) {
+    loadVideoComponentIfNotLoadedYet(next_component_to_load.attr('id'));
+  }
   if(component.hasClass('_video')) {
     var video = $('#video_component_' + identifier + '_preview video');
     if(video.readyState != 0) {
@@ -694,13 +710,13 @@ function setVisualTimesVideoEditorPreview(component, time) {
     if(my_identifier == identifier) {
       $(this).find('._video_component_icon ._right').html(secondsToDateString(time));
       $(this).data('current-preview-time', time);
-      if($('#video_component_' + my_identifier + '_preview video').length > 0) {
+      if($('#video_component_' + my_identifier + '_preview video').length > 0 && $('#video_component_' + my_identifier + '_preview').data('loaded')) {
         setCurrentTimeToMedia($('#video_component_' + my_identifier + '_preview video'), $('#video_component_' + my_identifier + '_cutter').data('from') + time);
       }
     } else {
       $(this).find('._video_component_icon ._right').html(secondsToDateString(0));
       $(this).data('current-preview-time', 0);
-      if($('#video_component_' + my_identifier + '_preview video').length > 0) {
+      if($('#video_component_' + my_identifier + '_preview video').length > 0 && $('#video_component_' + my_identifier + '_preview').data('loaded')) {
         setCurrentTimeToMedia($('#video_component_' + my_identifier + '_preview video'), $('#video_component_' + my_identifier + '_cutter').data('from'));
       }
     }

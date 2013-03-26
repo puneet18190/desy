@@ -106,7 +106,7 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, forc
         var next_identifier = getVideoComponentIdentifier(next_component.attr('id'));
         if(next_component.hasClass('_video_editor_component')) {
           increaseVideoEditorPreviewTimer(true);
-          $('#video_editor_global_preview').data('current-component', getVideoComponentIdentifier(next_component.attr('id')));
+          $('#video_editor_global_preview').data('current-component', next_identifier);
           $('#video_component_' + identifier + '_preview').hide('fade', {}, 1000);
           component.find('._video_component_transition').removeClass('current');
           next_component.find('._video_editor_component_hover, ._video_component_icon').removeClass('selected');
@@ -300,6 +300,7 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, forc
           var new_start = next_component.data('from');
           next_component.find('._media_player_slider').slider('value', new_start);
           next_component.find('._current_time').html(secondsToDateString(new_start));
+          loadAudioComponentIfNotLoadedYet(next_component);
           setCurrentTimeToMedia(next_component.find('audio'), new_start);
           startAudioEditorPreview(next_component);
         } else {

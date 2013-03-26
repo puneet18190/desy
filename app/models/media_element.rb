@@ -15,6 +15,7 @@ class MediaElement < ActiveRecord::Base
   IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE = %W(Image Audio Video)
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
   DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
+  MAX_MEDIA_SIZE = 50.megabytes
   
   serialize :metadata, OpenStruct
   
@@ -37,7 +38,7 @@ class MediaElement < ActiveRecord::Base
   validates_length_of :title, :maximum => I18n.t('language_parameters.media_element.length_title')
   validates_length_of :description, :maximum => I18n.t('language_parameters.media_element.length_description')
   validates_presence_of :media, unless: proc{ |record| [Video, Audio].include?(record.class) && record.composing }
-  validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_tags_length
+  validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_tags_length, :validate_size
   
   before_validation :init_validation
   before_destroy :stop_if_public
@@ -261,6 +262,18 @@ class MediaElement < ActiveRecord::Base
         end
         resp_tags
       end
+  end
+  
+  def validate_size
+    if self.image?
+      if media.present? && media.file.size > MAX_MEDIA_SIZE
+        errors.add(:media, :too_large)
+      end
+    else
+      if media.value.try(:is_a?, ActionDispatch::Http::UploadedFile) && media.value.tempfile.size > MAX_MEDIA_SIZE
+        errors.add(:media, :too_large)
+      end
+    end
   end
   
   def validate_associations

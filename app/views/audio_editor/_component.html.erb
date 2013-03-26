@@ -19,16 +19,12 @@
   end
 %>
 
-<div class="<%= empty ? '_audio_editor_empty_component'.html_safe : '_audio_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-max-to="<%= max_to %>" data-playing="false">
-
-
+<div data-loaded="<%= empty %>" data-mp3="<%= mp3 %>" data-ogg="<%= ogg %>" class="<%= empty ? '_audio_editor_empty_component'.html_safe : '_audio_editor_component'.html_safe %>" <%= external_div_attributes.html_safe %> data-max-to="<%= max_to %>" data-playing="false">
   
   <div class="contatore _audio_component_icon">
     <%= identifier %>
   </div>
   <div class="audioContent _content">
-    
-
     
     <div class="manigliaAudio _sort_handle" title="<%= t('titles.audio_editor.components.sort') %>"></div>
     <div class="audioComponentContent">
@@ -70,12 +66,14 @@
       
     </div>
   </div>
+  
   <% if !empty %>
     <%= hidden_field_tag "audio_id_#{identifier}", component[:audio].id, :class => '_audio_component_input_audio_id' %>
     <%= hidden_field_tag "from_#{identifier}", component[:from], :class => '_audio_component_input_from' %>
     <%= hidden_field_tag "to_#{identifier}", component[:to], :class => '_audio_component_input_to' %>
     <%= hidden_field_tag "position_#{identifier}", identifier, :class => '_audio_component_input_position' %>
   <% end %>
+  
   <a class="exitButton _remove" title="<%= t('titles.audio_editor.components.remove') %>"></a>
   <div class="boxGhost _box_ghost" title="<%= t('titles.audio_editor.components.box_ghost') %>"></div>
 </div>

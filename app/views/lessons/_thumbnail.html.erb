@@ -2,27 +2,27 @@
   image = lesson.cover.image_at(1)
   author = lesson.user
   subject = lesson.subject
-  image_height = resize_height(image.media_element.width, image.media_element.height, "cover") if !image.nil?
-  image_width = resize_width(image.media_element.width, image.media_element.height, "cover") if !image.nil?
-  image_alignment = image.alignment / 4.12 if !image.nil?
+  image_height = resize_height(image.media_element.width, image.media_element.height, 'cover') / 3.64 if !image.nil?
+  image_width = resize_width(image.media_element.width, image.media_element.height, 'cover') / 3.64 if !image.nil?
+  image_alignment = image.alignment / 3.64 if !image.nil?
 %>
 
-<div class="img_expanded _lesson_thumb _lesson_<%=lesson.id%>" data-lesson-id="<%= lesson.id %>">
+<div class="img_expanded _lesson_thumb _lesson_<%= lesson.id %>" data-lesson-id="<%= lesson.id %>" style="width:247px; height:162px">
   <% if !image %>
-    <div style="width:247px; height:143px; background-color:white"></div>
+    <div style="width:247px; height:144px; background-color:white"></div>
   <% else %>
-    <div class="cover">
+    <div class="cover" style="height:144px">
       <% if is_horizontal?(image.media_element.width, image.media_element.height, "cover") %>
-        <%= image_tag image.media_element.url, :style => "left:#{image_alignment}px; height: 143px; width: #{image_width /4.12}px" %>
+        <%= image_tag image.media_element.url, :style => "left:#{image_alignment}px; height: 153px; width: #{image_width}px" %>
       <% else %>
-        <%= image_tag image.media_element.url, :style => "top:#{image_alignment}px; width: 247px; height: #{image_height /4.12}px" %>
+        <%= image_tag image.media_element.url, :style => "top:#{image_alignment}px; width: 247px; height: #{image_height}px" %>
       <% end %>
     </div>
   <% end %>
-  <div class="bg_text">
+  <div class="bg_text" style="height:30px">
     <div class="lessonTitle"><%= lesson.title %></div>
   </div>
-  <div class="lessonSubject">
+  <div class="lessonSubject" style="height:12px">
     <%= lesson.subject.description %>
     <span>
       <%= t('lessons.author') %>: <strong><%= lesson.user.full_name %></strong>

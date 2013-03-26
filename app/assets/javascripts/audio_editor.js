@@ -3,7 +3,19 @@ function resizeLastComponentInAudioEditor() {
   $('._audio_editor_component').last().addClass('_last');
 }
 
+function loadAudioComponentIfNotLoadedYet(component) {
+  if(!component.data('loaded')) {
+    var mp3 = component.data('mp3');
+    var ogg = component.data('ogg');
+    component.find('source[type="video/mp3"]').attr('src', mp3);
+    component.find('source[type="video/ogg"]').attr('src', ogg);
+    component.find('audio').load();
+    component.data('loaded', true);
+  }
+}
+
 function selectAudioEditorComponent(component) {
+  loadAudioComponentIfNotLoadedYet(component);
   deselectAllAudioEditorComponents();
   component.addClass('_selected');
   component.find('._content').addClass('current');
@@ -332,6 +344,7 @@ function enterAudioEditorPreviewMode() {
       selected_component.find('._media_player_slider').slider('value', first_component_from);
       selected_component.find('._current_time').html(secondsToDateString(first_component_from));
     }
+    loadAudioComponentIfNotLoadedYet(selected_component);
     setCurrentTimeToMedia(selected_component.find('audio'), selected_component.find('._media_player_slider').slider('value'));
     startAudioEditorPreview(selected_component);
   });

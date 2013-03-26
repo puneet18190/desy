@@ -4,7 +4,6 @@ class MediaElementsController < ApplicationController
   FOR_PAGE_COMPACT_OPTIONS = SETTINGS['compact_media_element_pagination_options']
   FOR_PAGE_EXPANDED = SETTINGS['expanded_media_element_pagination']
   FOR_PAGE_EXPANDED_OPTIONS = SETTINGS['expanded_media_element_pagination_options']
-  MAX_MEDIA_SIZE = 50.megabytes
   
   before_filter :initialize_media_element, :only => [:add, :remove]
   before_filter :initialize_media_element_with_owner, :only => :destroy
@@ -35,12 +34,7 @@ class MediaElementsController < ApplicationController
   
   def create
     media = params[:media]
-
-    # TODO spostarlo in una validazione
-    if media.is_a?(ActionDispatch::Http::UploadedFile) && media.tempfile.size > MAX_MEDIA_SIZE
-      return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
-    end
-
+    
     record = MediaElement.new :media => media
     record.title = params[:title_placeholder] != '0' ? '' : params[:title]
     record.description = params[:description_placeholder] != '0' ? '' : params[:description]
@@ -48,8 +42,11 @@ class MediaElementsController < ApplicationController
     record.user_id = current_user.id
     record.validating_in_form = true
     if record.save
-      Notification.send_to current_user.id, t("notifications.#{record.class.to_s.downcase}.upload.started", item: record.title)
+      Notification.send_to current_user.id, t("notifications.#{record.class.to_s.downcase}.upload.started", item: record.title) if !record.image?
     else
+      if record.errors.added? :media, :too_large
+        return render :file => Rails.root.join('public/413.html'), :layout => false, :status => 413
+      end
       @errors = convert_media_element_uploader_messages record.errors
       puts record.errors.inspect
       puts @errors.inspect
