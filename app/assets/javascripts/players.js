@@ -442,6 +442,15 @@ function setCurrentTimeToMedia(media, seek) {
   }
 }
 
+function showLoadingMediaErrorPopup(code, type) {
+  var captions = $('#popup_captions_container');
+  var message = captions.data('media-error-code-' + code);
+  var popup = captions.data('media-error-' + type);
+  popup = popup.replace('%{code}', '' + code);
+  popup = popup.replace('%{message}', message);
+  showErrorPopUp(popup);
+}
+
 function stopAllMedia() {
   $('audio, video').each(function() {
     stopMedia(this);
