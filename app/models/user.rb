@@ -155,6 +155,36 @@ class User < ActiveRecord::Base
     Audio.where(converted: false, user_id: id).all?{ |record| record.uploaded? && !record.modified? }
   end
   
+  # == Description
+  #
+  # Creates one of the URI's subclasses instance from the string.
+  #
+  # == Args
+  #
+  # +uri_str+::
+  #   String with URI.
+  #
+  # == Returns
+  #
+  # An array of the media elements found.
+  #
+  # == Raises
+  #
+  # <tt>URI::InvalidURIError</tt>::
+  #   Raised if URI given is not a correct one.
+  #
+  # == Usage
+  #
+  #   require 'uri'
+  #
+  #   uri = URI.parse("http://www.ruby-lang.org/")
+  #   p uri
+  #   # => #<URI::HTTP:0x202281be URL:http://www.ruby-lang.org/>
+  #   p uri.scheme
+  #   # => "http"
+  #   p uri.host
+  #   # => "www.ruby-lang.org"
+  #
   def search_media_elements(word, page, for_page, order=nil, filter=nil, only_tags=nil)
     only_tags = false if only_tags.nil?
     page = 1 if page.class != Fixnum || page <= 0
