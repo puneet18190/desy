@@ -1885,18 +1885,14 @@ $(document).ready(function() {
   
   // PLAYERS
   
-  
-  
   $('body').on('click', '._media_player_play', function() {
-    
     var container_id = $(this).parent().attr('id');
-    var type = $(this).parent().data('media-type');      
+    var type = $(this).parent().data('media-type');
     var media = $('#' + container_id + ' ' + type);
-    
-    if(media[0].error){
+    if(media[0].error) {
       //traduzzione
       showErrorPopUp('Media Error code: '+ media[0].error.code);
-    }else{
+    } else {
       $('#' + container_id + ' ._media_player_slider_disabler').show();
       $('#' + container_id + ' ._media_player_pause').show();
       $(this).hide();
@@ -1909,7 +1905,6 @@ $(document).ready(function() {
       }
     }
   });
-
   
   $('body').on('click', '._media_player_pause', function() {
     $(this).hide();
@@ -1926,14 +1921,12 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._media_player_play_in_video_editor_preview', function() {
-
     var identifier = getVideoComponentIdentifier($(this).parents('._video_component_cutter').attr('id'));
     var video = $('#video_component_' + identifier + '_preview video');
-    
     if(video[0].error){
       //traduzzione
       showErrorPopUp('Media Error code: '+ media[0].error.code);
-    }else{
+    } else {
       $(this).hide();
       $(this).parents('._video_component_cutter').data('playing', true);
       $('#video_component_' + identifier + '_cutter ._media_player_rewind_in_video_editor_preview').hide();
@@ -1948,17 +1941,13 @@ $(document).ready(function() {
         });
       }
     }
-    
-    
     var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(identifier);
-    
     if(videoEditorWithAudioTrack() && actual_audio_track_time < $('#full_audio_track_placeholder_in_video_editor').data('duration')) {
       var audio_track = $('#video_editor_preview_container audio');
-      if(audio_track[0].error){
+      if(audio_track[0].error) {
         //traduzzione
         showErrorPopUp('Media Error code: '+ media[0].error.code);
-      }else{
-      
+      } else {
         setCurrentTimeToMedia(audio_track, actual_audio_track_time);
         if(audio_track.readyState != 0) {
           audio_track[0].play();
@@ -2007,14 +1996,13 @@ $(document).ready(function() {
   });
   
   $('body').on('click', '._media_player_play_in_audio_editor_preview', function() {
-
     var component = $(this).parents('._audio_editor_component');
     var identifier = getAudioComponentIdentifier(component);
     var audio = component.find('audio');
-    if(audio[0].error){
+    if(audio[0].error) {
       //traduzzione
       showErrorPopUp('Media Error code: '+ media[0].error.code);
-    }else{
+    } else {
       $(this).hide();
       $('#start_audio_editor_preview').addClass('disabled');
       $('#rewind_audio_editor_preview').addClass('disabled');

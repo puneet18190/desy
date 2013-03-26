@@ -265,8 +265,14 @@ class MediaElement < ActiveRecord::Base
   end
   
   def validate_size
-    if media.value.try(:is_a?, ActionDispatch::Http::UploadedFile) && media.value.tempfile.size > MAX_MEDIA_SIZE
-      errors.add(:media, :too_large)
+    if self.image?
+      if media.present? && media.file.size > MAX_MEDIA_SIZE
+        errors.add(:media, :too_large)
+      end
+    else
+      if media.value.try(:is_a?, ActionDispatch::Http::UploadedFile) && media.value.tempfile.size > MAX_MEDIA_SIZE
+        errors.add(:media, :too_large)
+      end
     end
   end
   
