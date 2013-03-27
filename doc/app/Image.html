@@ -444,6 +444,12 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>This class inherits from <a href="MediaElement.html">MediaElement</a>, and
+contains the specific methods needed for media elements of type
+<code>image</code>.</p>
+
   </div><!-- description -->
 
   
@@ -518,16 +524,15 @@
 
           
           <div class="method-source-code" id="ratio_value-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 126</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 173</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ratio_value</span>(<span class="ruby-identifier">w</span>, <span class="ruby-identifier">h</span>, <span class="ruby-identifier">value</span>)
   <span class="ruby-identifier">to_ratio</span> = <span class="ruby-value">660</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-value">500</span>.<span class="ruby-identifier">to_f</span>
   <span class="ruby-identifier">origin_ratio</span> = <span class="ruby-identifier">w</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">h</span>.<span class="ruby-identifier">to_f</span>
-
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">origin_ratio</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">to_ratio</span>
-    <span class="ruby-identifier">h</span> = <span class="ruby-identifier">w</span> 
-    <span class="ruby-identifier">w</span> = <span class="ruby-value">660</span> <span class="ruby-comment">#solo questo</span>
+    <span class="ruby-identifier">h</span> = <span class="ruby-identifier">w</span>
+    <span class="ruby-identifier">w</span> = <span class="ruby-value">660</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">w</span> = <span class="ruby-value">500</span> <span class="ruby-comment">#h=500</span>
+    <span class="ruby-identifier">w</span> = <span class="ruby-value">500</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">if</span> (<span class="ruby-identifier">h</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">w</span>.<span class="ruby-identifier">to_i</span> )
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_f</span> * (<span class="ruby-identifier">h</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">w</span>.<span class="ruby-identifier">to_f</span>)
@@ -567,7 +572,7 @@
 
           
           <div class="method-source-code" id="add_text-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 96</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 143</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_text</span>(<span class="ruby-identifier">texts</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-identifier">img</span> = <span class="ruby-constant">MiniMagick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_editing_image</span>
@@ -612,7 +617,7 @@
 
           
           <div class="method-source-code" id="crop-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 115</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 162</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">crop</span>(<span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-identifier">img</span> = <span class="ruby-constant">MiniMagick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_editing_image</span>
@@ -649,7 +654,7 @@
 
           
           <div class="method-source-code" id="current_editing_image-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 43</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">current_editing_image</span>
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}&quot;</span>
@@ -675,12 +680,14 @@
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-editing_url-label-Description">Description</h2>
+
+<p>Returns the temporary url where it&#39;s conserved</p>
           
 
           
           <div class="method-source-code" id="editing_url-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">editing_url</span>
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">file_name</span> = <span class="ruby-node">&quot;/#{url.split(&#39;/&#39;).last}&quot;</span>
@@ -712,7 +719,7 @@
 
           
           <div class="method-source-code" id="enter_edit_mode-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 52</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">enter_edit_mode</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-ivar">@edit_mode</span> = <span class="ruby-identifier">user_id</span>
   <span class="ruby-identifier">ed_dir</span> = <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{@edit_mode}&quot;</span>
@@ -742,12 +749,18 @@
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-height-label-Description">Description</h2>
+
+<p>Returns the height in pixels.</p>
+
+<h2 id="method-i-height-label-Returns">Returns</h2>
+
+<p>A float.</p>
           
 
           
           <div class="method-source-code" id="height-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 28</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">height</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">height</span>
 <span class="ruby-keyword">end</span></pre>
@@ -777,7 +790,7 @@
 
           
           <div class="method-source-code" id="in_edit_mode-3F-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 48</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-operator">!</span><span class="ruby-ivar">@edit_mode</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -807,7 +820,7 @@
 
           
           <div class="method-source-code" id="leave_edit_mode-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 61</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 108</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">leave_edit_mode</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">ed_dir</span> = <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{user_id}&quot;</span>
   <span class="ruby-keyword">begin</span>
@@ -844,7 +857,7 @@
 
           
           <div class="method-source-code" id="prev_editing_image-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">prev_editing_image</span>
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{@edit_mode}/prev.#{self.media.file.extension}&quot;</span>
@@ -875,7 +888,7 @@
 
           
           <div class="method-source-code" id="save_editing_prev-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 72</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">prev_path</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prev_editing_image</span>
@@ -909,12 +922,22 @@
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-thumb_url-label-Description">Description</h2>
+
+<p>Returns the url of the 200x200 thumb of the attached image.</p>
+
+<h2 id="method-i-thumb_url-label-Returns">Returns</h2>
+
+<p>An url</p>
+
+<h2 id="method-i-thumb_url-label-Usage">Usage</h2>
+
+<pre>&lt;%= image_tag image.thumb_url %&gt;</pre>
           
 
           
           <div class="method-source-code" id="thumb_url-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">thumb_url</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">thumb</span>.<span class="ruby-identifier">url</span>
 <span class="ruby-keyword">end</span></pre>
@@ -944,7 +967,7 @@
 
           
           <div class="method-source-code" id="undo-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 85</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">undo</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">prev_path</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prev_editing_image</span>
@@ -976,12 +999,22 @@
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-url-label-Description">Description</h2>
+
+<p>Returns the url of the attached image.</p>
+
+<h2 id="method-i-url-label-Returns">Returns</h2>
+
+<p>An url</p>
+
+<h2 id="method-i-url-label-Usage">Usage</h2>
+
+<pre>&lt;%= image_tag image.url %&gt;</pre>
           
 
           
           <div class="method-source-code" id="url-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">url</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">url</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1006,12 +1039,18 @@
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-width-label-Description">Description</h2>
+
+<p>Returns the width in pixels.</p>
+
+<h2 id="method-i-width-label-Returns">Returns</h2>
+
+<p>A float.</p>
           
 
           
           <div class="method-source-code" id="width-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">width</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">width</span>
 <span class="ruby-keyword">end</span></pre>
