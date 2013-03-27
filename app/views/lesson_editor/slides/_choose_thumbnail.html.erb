@@ -1,4 +1,4 @@
-<% if ["cover","audio","video1","video2"].include?(slide.kind)%>
+<% if ['audio', 'video1', 'video2'].include?(slide.kind) %>
   <%= render :partial => "lesson_editor/slides/thumbnails/#{slide.kind}", :locals => {:slide => slide} %>
 <% else %>
   <%= render :partial => "lesson_viewer/slides/#{slide.kind}", :locals => {:slide => slide} %>

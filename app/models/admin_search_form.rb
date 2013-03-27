@@ -1,3 +1,8 @@
+# == Description
+#
+# This class contains the list of search methods used in the administrator.
+# Unlike the methods used in the application's search engine (see User#search_lessons, User#search_media_elements), these search methods are not optimized and indicized.
+#
 class AdminSearchForm < Form
   
   RECENCIES = [1.day.ago, 1.week.ago, 1.month.ago, 1.year.ago]
@@ -39,6 +44,29 @@ class AdminSearchForm < Form
     ]
   }
   
+  # == Description
+  #
+  # Search for lessons
+  #
+  # == Args
+  #
+  # +params+::
+  #   Url subparams, under the scope of the keyword 'search': the options are
+  #   * +id+: if present the methods filters by id
+  #   * +title+: if present the methods filters by title
+  #   * +subject_id+: if present the methods filters by subject
+  #   * +date_range_field+: if present, it specifies which date field is used to filter by date (+created_at+ or +updated_at+)
+  #   * +from+: if the parameter +date_range_field+ is present, this parameter specifies the left border of the date range
+  #   * +to+: if the parameter +date_range_field+ is present, this parameter specifies the right border of the date range
+  #   * +user+: if present the methods filters by user name (the keyword is matched against +name+, +surname+ and +email+)
+  #   * +location_id+: if present the methods filters by location of the user (see settings.yml for the possible names of this parameter)
+  #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
+  #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
+  #
+  # == Returns
+  #
+  # An array, not paginated yet, of the lessons found
+  #
   def self.search_lessons(params)
     resp = Lesson.select('lessons.id AS id, title, subject_id, user_id, lessons.created_at AS created_at, lessons.updated_at AS updated_at, token, lessons.description AS description, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count')
     resp = resp.joins(:user)
@@ -83,6 +111,29 @@ class AdminSearchForm < Form
     resp
   end
   
+  # == Description
+  #
+  # Search for media elements
+  #
+  # == Args
+  #
+  # +params+::
+  #   Url subparams, under the scope of the keyword 'search': the options are
+  #   * +id+: if present the methods filters by id
+  #   * +title+: if present the methods filters by title
+  #   * +sti_type+: if present the methods filters by media type (audio, image or video)
+  #   * +date_range_field+: if present, it specifies which date field is used to filter by date (+created_at+ or +updated_at+)
+  #   * +from+: if the parameter +date_range_field+ is present, this parameter specifies the left border of the date range
+  #   * +to+: if the parameter +date_range_field+ is present, this parameter specifies the right border of the date range
+  #   * +user+: if present the methods filters by user name (the keyword is matched against +name+, +surname+ and +email+)
+  #   * +location_id+: if present the methods filters by location of the user (see settings.yml for the possible names of this parameter)
+  #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
+  #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
+  #
+  # == Returns
+  #
+  # An array, not paginated yet, of the media elements found
+  #
   def self.search_media_elements(params)
     resp = MediaElement.where(:converted => true)
     if params[:ordering].present?
@@ -124,6 +175,29 @@ class AdminSearchForm < Form
     resp
   end
   
+  # == Description
+  #
+  # Search for users
+  #
+  # == Args
+  #
+  # +params+::
+  #   Url subparams, under the scope of the keyword 'search': the options are
+  #   * +id+: if present the methods filters by id
+  #   * +user+: if present the keyword is matched against +name+, +surname+ and +email+ and the result is filtered
+  #   * +school_level_id+: if present the methods filters by school_level
+  #   * +date_range_field+: if present, it specifies which date field is used to filter by date (+created_at+ or +updated_at+)
+  #   * +from+: if the parameter +date_range_field+ is present, this parameter specifies the left border of the date range
+  #   * +to+: if the parameter +date_range_field+ is present, this parameter specifies the right border of the date range
+  #   * +subject_id+: if present, the method filters by subject_id, using the relation UsersSubject
+  #   * +location_id+: if present the methods filters by location of the user (see settings.yml for the possible names of this parameter)
+  #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
+  #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
+  #
+  # == Returns
+  #
+  # An array, not paginated yet, of the users found
+  #
   def self.search_users(params)
     resp = User
     if params[:ordering].present?
@@ -173,6 +247,24 @@ class AdminSearchForm < Form
     resp
   end
   
+  # == Description
+  #
+  # Search for tags
+  #
+  # == Args
+  #
+  # +params+::
+  #   Url subparams, under the scope of the keyword 'search': the options are
+  #   * +id+: if present the methods filters by id
+  #   * +recency+: if present, it filters by +created_at+ greater than one year ago, one month ago, a week ago, or a day ago
+  #   * +word+: it present, it matches the keyword with the tag content, and filters the result
+  #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
+  #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
+  #
+  # == Returns
+  #
+  # An array, not paginated yet, of the tags found
+  #
   def self.search_tags(params)
     resp = Tag.select("id, word, created_at, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = 'MediaElement') AS media_elements_count, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = 'Lesson') AS lessons_count")
     if params[:ordering].present?
@@ -191,6 +283,28 @@ class AdminSearchForm < Form
     resp
   end
   
+  # == Description
+  #
+  # Search for users who are going to receive a massive notification: this method is used to update asynchronously the form to send a massive notification from the administrator
+  #
+  # == Args
+  #
+  # +params+::
+  #   Url subparams, under the scope of the keyword 'search': the options are
+  #   * +id+: if present the methods filters by id
+  #   * +user+: if present the keyword is matched against +name+, +surname+ and +email+ and the result is filtered
+  #   * +school_level_id+: if present the methods filters by school_level
+  #   * +recency+: if present, it filters by +created_at+ greater than one year ago, one month ago, a week ago, or a day ago
+  #   * +subject_id+: if present, the method filters by subject_id, using the relation UsersSubject
+  #   * +location_id+: if present the methods filters by location of the user (see settings.yml for the possible names of this parameter)
+  #   * +user_ids+: list of users added manually to the list of recipients
+  # +count_only+::
+  #   If set to true, the method returns only the number of users
+  #
+  # == Returns
+  #
+  # Depending on the value of +count_only+, either the number of records found, or a not paginated array of the users found
+  #
   def self.search_notifications_users(params, count_only=false)
     resp = User.scoped
     resp = resp.where(:school_level_id => params[:school_level_id]) if params[:school_level_id].present?

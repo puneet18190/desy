@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>module Statistics - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/autoload/statistics.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-all_liked_lessons">::all_liked_lessons</a>
+    
+    <li><a href="#method-c-all_shared_elements">::all_shared_elements</a>
+    
+    <li><a href="#method-c-all_shared_lessons">::all_shared_lessons</a>
+    
+    <li><a href="#method-c-all_subjects_chart">::all_subjects_chart</a>
+    
+    <li><a href="#method-c-all_users">::all_users</a>
+    
+    <li><a href="#method-c-all_users_like">::all_users_like</a>
+    
+    <li><a href="#method-c-my_copied_lessons">::my_copied_lessons</a>
+    
+    <li><a href="#method-c-my_created_elements">::my_created_elements</a>
+    
+    <li><a href="#method-c-my_created_lessons">::my_created_lessons</a>
+    
+    <li><a href="#method-c-my_liked_lessons">::my_liked_lessons</a>
+    
+    <li><a href="#method-c-my_likes_count">::my_likes_count</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Media.html">Media</a>
+  
+    <li><a href="./Media/Audio.html">Media::Audio</a>
+  
+    <li><a href="./Media/Audio/Editing.html">Media::Audio::Editing</a>
+  
+    <li><a href="./Media/Audio/Editing/Cmd.html">Media::Audio::Editing::Cmd</a>
+  
+    <li><a href="./Media/Audio/Editing/Cmd/Avconv.html">Media::Audio::Editing::Cmd::Avconv</a>
+  
+    <li><a href="./Media/Audio/Editing/Cmd/Concat.html">Media::Audio::Editing::Cmd::Concat</a>
+  
+    <li><a href="./Media/Audio/Editing/Cmd/Conversion.html">Media::Audio::Editing::Cmd::Conversion</a>
+  
+    <li><a href="./Media/Audio/Editing/Cmd/Crop.html">Media::Audio::Editing::Cmd::Crop</a>
+  
+    <li><a href="./Media/Audio/Editing/Cmd/Sox.html">Media::Audio::Editing::Cmd::Sox</a>
+  
+    <li><a href="./Media/Audio/Editing/Composer.html">Media::Audio::Editing::Composer</a>
+  
+    <li><a href="./Media/Audio/Editing/Composer/Job.html">Media::Audio::Editing::Composer::Job</a>
+  
+    <li><a href="./Media/Audio/Editing/Concat.html">Media::Audio::Editing::Concat</a>
+  
+    <li><a href="./Media/Audio/Editing/Conversion.html">Media::Audio::Editing::Conversion</a>
+  
+    <li><a href="./Media/Audio/Editing/Conversion/Job.html">Media::Audio::Editing::Conversion::Job</a>
+  
+    <li><a href="./Media/Audio/Editing/Crop.html">Media::Audio::Editing::Crop</a>
+  
+    <li><a href="./Media/Audio/Editing/Parameters.html">Media::Audio::Editing::Parameters</a>
+  
+    <li><a href="./Media/Audio/Uploader.html">Media::Audio::Uploader</a>
+  
+    <li><a href="./Media/Audio/Uploader/Validation.html">Media::Audio::Uploader::Validation</a>
+  
+    <li><a href="./Media/Cmd.html">Media::Cmd</a>
+  
+    <li><a href="./Media/Cmd/Avconv.html">Media::Cmd::Avconv</a>
+  
+    <li><a href="./Media/Cmd/Avprobe.html">Media::Cmd::Avprobe</a>
+  
+    <li><a href="./Media/Error.html">Media::Error</a>
+  
+    <li><a href="./Media/Image.html">Media::Image</a>
+  
+    <li><a href="./Media/Image/Editing.html">Media::Image::Editing</a>
+  
+    <li><a href="./Media/Image/Editing/AddTextToImage.html">Media::Image::Editing::AddTextToImage</a>
+  
+    <li><a href="./Media/Image/Editing/Cmd.html">Media::Image::Editing::Cmd</a>
+  
+    <li><a href="./Media/Image/Editing/Cmd/TextToImage.html">Media::Image::Editing::Cmd::TextToImage</a>
+  
+    <li><a href="./Media/Image/Editing/Crop.html">Media::Image::Editing::Crop</a>
+  
+    <li><a href="./Media/Image/Editing/ResizeToFill.html">Media::Image::Editing::ResizeToFill</a>
+  
+    <li><a href="./Media/InTmpDir.html">Media::InTmpDir</a>
+  
+    <li><a href="./Media/Info.html">Media::Info</a>
+  
+    <li><a href="./Media/Logging.html">Media::Logging</a>
+  
+    <li><a href="./Media/Logging/ClassMethods.html">Media::Logging::ClassMethods</a>
+  
+    <li><a href="./Media/Logging/InstanceMethods.html">Media::Logging::InstanceMethods</a>
+  
+    <li><a href="./Media/Shared.html">Media::Shared</a>
+  
+    <li><a href="./Media/Shared/InstanceMethods.html">Media::Shared::InstanceMethods</a>
+  
+    <li><a href="./Media/SimilarDurations.html">Media::SimilarDurations</a>
+  
+    <li><a href="./Media/Thread.html">Media::Thread</a>
+  
+    <li><a href="./Media/Uploader.html">Media::Uploader</a>
+  
+    <li><a href="./Media/Video.html">Media::Video</a>
+  
+    <li><a href="./Media/Video/Editing.html">Media::Video::Editing</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd.html">Media::Video::Editing::Cmd</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/AudioStreamToFile.html">Media::Video::Editing::Cmd::AudioStreamToFile</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Avconv.html">Media::Video::Editing::Cmd::Avconv</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Concat.html">Media::Video::Editing::Cmd::Concat</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Concat/Mp4.html">Media::Video::Editing::Cmd::Concat::Mp4</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Concat/Webm.html">Media::Video::Editing::Cmd::Concat::Webm</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Conversion.html">Media::Video::Editing::Cmd::Conversion</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Crop.html">Media::Video::Editing::Cmd::Crop</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/ExtractFrame.html">Media::Video::Editing::Cmd::ExtractFrame</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/GenerateTransitionFrames.html">Media::Video::Editing::Cmd::GenerateTransitionFrames</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/ImageToVideo.html">Media::Video::Editing::Cmd::ImageToVideo</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/MergeWebmVideoStreams.html">Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Mp3ToWav.html">Media::Video::Editing::Cmd::Mp3ToWav</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/ReplaceAudio.html">Media::Video::Editing::Cmd::ReplaceAudio</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Transition.html">Media::Video::Editing::Cmd::Transition</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/TrimAudioFile.html">Media::Video::Editing::Cmd::TrimAudioFile</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/VideoStreamToFile.html">Media::Video::Editing::Cmd::VideoStreamToFile</a>
+  
+    <li><a href="./Media/Video/Editing/Composer.html">Media::Video::Editing::Composer</a>
+  
+    <li><a href="./Media/Video/Editing/Composer/Job.html">Media::Video::Editing::Composer::Job</a>
+  
+    <li><a href="./Media/Video/Editing/Concat.html">Media::Video::Editing::Concat</a>
+  
+    <li><a href="./Media/Video/Editing/Conversion.html">Media::Video::Editing::Conversion</a>
+  
+    <li><a href="./Media/Video/Editing/Conversion/Job.html">Media::Video::Editing::Conversion::Job</a>
+  
+    <li><a href="./Media/Video/Editing/Crop.html">Media::Video::Editing::Crop</a>
+  
+    <li><a href="./Media/Video/Editing/ImageToVideo.html">Media::Video::Editing::ImageToVideo</a>
+  
+    <li><a href="./Media/Video/Editing/Parameters.html">Media::Video::Editing::Parameters</a>
+  
+    <li><a href="./Media/Video/Editing/ReplaceAudio.html">Media::Video::Editing::ReplaceAudio</a>
+  
+    <li><a href="./Media/Video/Editing/TextToVideo.html">Media::Video::Editing::TextToVideo</a>
+  
+    <li><a href="./Media/Video/Editing/Transition.html">Media::Video::Editing::Transition</a>
+  
+    <li><a href="./Media/Video/Uploader.html">Media::Video::Uploader</a>
+  
+    <li><a href="./Media/Video/Uploader/Validation.html">Media::Video::Uploader::Validation</a>
+  
+    <li><a href="./Admin.html">Admin</a>
+  
+    <li><a href="./Admin/DashboardController.html">Admin::DashboardController</a>
+  
+    <li><a href="./Admin/LessonsController.html">Admin::LessonsController</a>
+  
+    <li><a href="./Admin/MediaElementsController.html">Admin::MediaElementsController</a>
+  
+    <li><a href="./Admin/MessagesController.html">Admin::MessagesController</a>
+  
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
+  
+    <li><a href="./Admin/SettingsController.html">Admin::SettingsController</a>
+  
+    <li><a href="./Admin/UsersController.html">Admin::UsersController</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./User/Authentication.html">User::Authentication</a>
+  
+    <li><a href="./User/Authentication/ClassMethods.html">User::Authentication::ClassMethods</a>
+  
+    <li><a href="./User/Authentication/InstanceMethods.html">User::Authentication::InstanceMethods</a>
+  
+    <li><a href="./User/Confirmation.html">User::Confirmation</a>
+  
+    <li><a href="./User/Confirmation/ClassMethods.html">User::Confirmation::ClassMethods</a>
+  
+    <li><a href="./User/Confirmation/InstanceMethods.html">User::Confirmation::InstanceMethods</a>
+  
+    <li><a href="./Dumpable.html">Dumpable</a>
+  
+    <li><a href="./Dumpable/NoMethodError.html">Dumpable::NoMethodError</a>
+  
+    <li><a href="./EnvRelativePath.html">EnvRelativePath</a>
+  
+    <li><a href="./EnvRelativePath/ClassMethods.html">EnvRelativePath::ClassMethods</a>
+  
+    <li><a href="./FilenameToken.html">FilenameToken</a>
+  
+    <li><a href="./FilenameToken/InstanceMethods.html">FilenameToken::InstanceMethods</a>
+  
+    <li><a href="./TimeConvert.html">TimeConvert</a>
+  
+    <li><a href="./TimeConvert/TimeConverter.html">TimeConvert::TimeConverter</a>
+  
+    <li><a href="./Users.html">Users</a>
+  
+    <li><a href="./Users/SessionsController.html">Users::SessionsController</a>
+  
+    <li><a href="./Valid.html">Valid</a>
+  
+    <li><a href="./Valid/Validness.html">Valid::Validness</a>
+  
+    <li><a href="./AdminController.html">AdminController</a>
+  
+    <li><a href="./AdminHelper.html">AdminHelper</a>
+  
+    <li><a href="./AdminSearchForm.html">AdminSearchForm</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Audio.html">Audio</a>
+  
+    <li><a href="./AudioEditorController.html">AudioEditorController</a>
+  
+    <li><a href="./Bookmark.html">Bookmark</a>
+  
+    <li><a href="./ButtonDestinations.html">ButtonDestinations</a>
+  
+    <li><a href="./Buttons.html">Buttons</a>
+  
+    <li><a href="./ControllerInfo.html">ControllerInfo</a>
+  
+    <li><a href="./DashboardController.html">DashboardController</a>
+  
+    <li><a href="./EnhancedThread.html">EnhancedThread</a>
+  
+    <li><a href="./ErrorsLogger.html">ErrorsLogger</a>
+  
+    <li><a href="./ExceptionNotifierJob.html">ExceptionNotifierJob</a>
+  
+    <li><a href="./Filters.html">Filters</a>
+  
+    <li><a href="./Form.html">Form</a>
+  
+    <li><a href="./GalleriesController.html">GalleriesController</a>
+  
+    <li><a href="./Image.html">Image</a>
+  
+    <li><a href="./ImageEditorController.html">ImageEditorController</a>
+  
+    <li><a href="./ImageUploader.html">ImageUploader</a>
+  
+    <li><a href="./Lesson.html">Lesson</a>
+  
+    <li><a href="./LessonEditorController.html">LessonEditorController</a>
+  
+    <li><a href="./LessonViewerController.html">LessonViewerController</a>
+  
+    <li><a href="./LessonsController.html">LessonsController</a>
+  
+    <li><a href="./LessonsMediaElementsShared.html">LessonsMediaElementsShared</a>
+  
+    <li><a href="./Like.html">Like</a>
+  
+    <li><a href="./Location.html">Location</a>
+  
+    <li><a href="./MailerHelper.html">MailerHelper</a>
+  
+    <li><a href="./MailingListAddress.html">MailingListAddress</a>
+  
+    <li><a href="./MailingListGroup.html">MailingListGroup</a>
+  
+    <li><a href="./MailingListsController.html">MailingListsController</a>
+  
+    <li><a href="./MediaElement.html">MediaElement</a>
+  
+    <li><a href="./MediaElementsController.html">MediaElementsController</a>
+  
+    <li><a href="./MediaElementsSlide.html">MediaElementsSlide</a>
+  
+    <li><a href="./Notification.html">Notification</a>
+  
+    <li><a href="./NotificationsController.html">NotificationsController</a>
+  
+    <li><a href="./NotificationsJob.html">NotificationsJob</a>
+  
+    <li><a href="./PreloginController.html">PreloginController</a>
+  
+    <li><a href="./Report.html">Report</a>
+  
+    <li><a href="./ReportsController.html">ReportsController</a>
+  
+    <li><a href="./SchoolLevel.html">SchoolLevel</a>
+  
+    <li><a href="./SearchController.html">SearchController</a>
+  
+    <li><a href="./SearchOrders.html">SearchOrders</a>
+  
+    <li><a href="./Slide.html">Slide</a>
+  
+    <li><a href="./Statistics.html">Statistics</a>
+  
+    <li><a href="./Statuses.html">Statuses</a>
+  
+    <li><a href="./Subject.html">Subject</a>
+  
+    <li><a href="./Tag.html">Tag</a>
+  
+    <li><a href="./Tagging.html">Tagging</a>
+  
+    <li><a href="./TagsController.html">TagsController</a>
+  
+    <li><a href="./UserMailer.html">UserMailer</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersSubject.html">UsersSubject</a>
+  
+    <li><a href="./Video.html">Video</a>
+  
+    <li><a href="./VideoEditorController.html">VideoEditorController</a>
+  
+    <li><a href="./VirtualClassroomController.html">VirtualClassroomController</a>
+  
+    <li><a href="./VirtualClassroomLesson.html">VirtualClassroomLesson</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module Statistics</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-c-user" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">user</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-all_liked_lessons" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_liked_lessons</span><span
+            class="method-args">(first_n)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The first n lessons liked by users in all DESY</p>
+          
+
+          
+          <div class="method-source-code" id="all_liked_lessons-source">
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">all_liked_lessons</span>(<span class="ruby-identifier">first_n</span>)
+  <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;id, title, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count&#39;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;likes_count DESC, updated_at DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">first_n</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- all_liked_lessons-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- all_liked_lessons-method -->
+
+    
+      <div id="method-c-all_shared_elements" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_shared_elements</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The number of shared media elements in the application</p>
+          
+
+          
+          <div class="method-source-code" id="all_shared_elements-source">
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">all_shared_elements</span>
+  <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:is_public</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- all_shared_elements-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- all_shared_elements-method -->
+
+    
+      <div id="method-c-all_shared_lessons" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_shared_lessons</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The number of shared lessons in the application</p>
+          
+
+          
+          <div class="method-source-code" id="all_shared_lessons-source">
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">all_shared_lessons</span>
+  <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:is_public</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- all_shared_lessons-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- all_shared_lessons-method -->
+
+    
+      <div id="method-c-all_subjects_chart" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_subjects_chart</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Chart representing the distribution of subjects among lessons</p>
+          
+
+          
+          <div class="method-source-code" id="all_subjects_chart-source">
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">all_subjects_chart</span>
+  <span class="ruby-identifier">amt</span> = <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-identifier">desc</span> = <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-constant">Subject</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sbj</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">sbj</span>.<span class="ruby-identifier">lessons</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">amt</span> = <span class="ruby-identifier">amt</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">sbj_to_percentage</span>(<span class="ruby-identifier">sbj</span>.<span class="ruby-identifier">lessons</span>.<span class="ruby-identifier">count</span>).<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;,&#39;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">desc</span> = <span class="ruby-identifier">desc</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">sbj</span>.<span class="ruby-identifier">description</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;,&#39;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> [<span class="ruby-identifier">amt</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">-2</span>], <span class="ruby-identifier">desc</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">-2</span>]]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- all_subjects_chart-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- all_subjects_chart-method -->
+
+    
+      <div id="method-c-all_users" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_users</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The number of users in DESY</p>
+          
+
+          
+          <div class="method-source-code" id="all_users-source">
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">all_users</span>
+  <span class="ruby-constant">User</span>.<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- all_users-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- all_users-method -->
+
+    
+      <div id="method-c-all_users_like" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_users_like</span><span
+            class="method-args">(first_n)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The first n users who received more likes</p>
+          
+
+          
+          <div class="method-source-code" id="all_users_like-source">
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">all_users_like</span>(<span class="ruby-identifier">first_n</span>)
+  <span class="ruby-constant">Like</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:lesson</span>, <span class="ruby-value">:lesson</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:user</span>).<span class="ruby-identifier">group</span>(<span class="ruby-string">&#39;users.id&#39;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;users.id, users.name, users.surname, COUNT(*) AS likes_count&#39;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;likes_count DESC, users.created_at DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">first_n</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- all_users_like-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- all_users_like-method -->
+
+    
+      <div id="method-c-my_copied_lessons" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">my_copied_lessons</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Lessons created by the current user, and copied by other users</p>
+          
+
+          
+          <div class="method-source-code" id="my_copied_lessons-source">
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">my_copied_lessons</span>
+  <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-string">&#39;INNER JOIN lessons AS parent_lessons ON (parent_lessons.id = lessons.parent_id)&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;lessons.user_id != ? AND parent_lessons.user_id = ?&#39;</span>, <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- my_copied_lessons-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- my_copied_lessons-method -->
+
+    
+      <div id="method-c-my_created_elements" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">my_created_elements</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p><a href="Media.html">Media</a> Elements loaded or created by the current
+user (including the public ones, that might not be anymore in the
+user&#39;s section)</p>
+          
+
+          
+          <div class="method-source-code" id="my_created_elements-source">
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">my_created_elements</span>
+  <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- my_created_elements-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- my_created_elements-method -->
+
+    
+      <div id="method-c-my_created_lessons" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">my_created_lessons</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Lessons created by the current user (not including the lessons he copied
+and still not modified)</p>
+          
+
+          
+          <div class="method-source-code" id="my_created_lessons-source">
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">my_created_lessons</span>
+  <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:copied_not_modified</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- my_created_lessons-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- my_created_lessons-method -->
+
+    
+      <div id="method-c-my_liked_lessons" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">my_liked_lessons</span><span
+            class="method-args">(first_n)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The first n lessons of the current user, ordered by the number of likes
+received</p>
+          
+
+          
+          <div class="method-source-code" id="my_liked_lessons-source">
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">my_liked_lessons</span>(<span class="ruby-identifier">first_n</span>)
+  <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;id, title, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;likes_count DESC, updated_at DESC&#39;</span>).<span class="ruby-identifier">limit</span>(<span class="ruby-identifier">first_n</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- my_liked_lessons-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- my_liked_lessons-method -->
+
+    
+      <div id="method-c-my_likes_count" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">my_likes_count</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The total amount of likes received by lessons created by the current user</p>
+          
+
+          
+          <div class="method-source-code" id="my_likes_count-source">
+            <pre><span class="ruby-comment"># File lib/autoload/statistics.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">my_likes_count</span>
+  <span class="ruby-constant">Like</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:lesson</span>).<span class="ruby-identifier">where</span>(<span class="ruby-value">:lessons</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>}).<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- my_likes_count-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- my_likes_count-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
