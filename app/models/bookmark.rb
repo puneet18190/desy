@@ -8,7 +8,7 @@
 # * *bookmarkable_type*: contains the string description of the classes Lesson or MediaElement
 # * *user_id*: id of the user associated to the bookmark
 #
-# == References
+# == Associations
 #
 # * *user*: User who bookmarked (*belongs_to*)
 # * *bookmarkable*: Lesson or MediaElement bookmarked (polymorphic association) (*belongs_to*)

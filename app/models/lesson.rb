@@ -20,7 +20,7 @@ require 'lessons_media_elements_shared'
 #   * +available_audio+: true if the lesson doesn't contain any audio in conversion
 # * *notified*: boolean, set to false only if the lesson has been modified and its modification not notified to users who have a link of the lesson
 #
-# == References
+# == Associations
 #
 # * *user*: reference to the User who created the lesson (*belongs_to*).
 # * *subject*: Subject associated to the lesson(*belongs_to*).
@@ -62,10 +62,10 @@ require 'lessons_media_elements_shared'
 #
 # == Database callbacks
 #
-# 1. likes
-# 2. slides
-# 3. virtual classroom lessons
-# 4. parent nil
+# 1. *cascade* *destruction* for the associated table Like
+# 2. *cascade* *destruction* for the associated table Slide
+# 3. *cascade* *destruction* for the associated table VirtualClassroomLesson
+# 4. *set* *null* *on* *destruction* on the column +parent_id+ of all the lessons copied by the current lessons
 #
 class Lesson < ActiveRecord::Base
   include Rails.application.routes.url_helpers
@@ -115,6 +115,18 @@ class Lesson < ActiveRecord::Base
     order('COALESCE(bookmarks.created_at, lessons.updated_at) DESC')
   end
   
+  # == Description
+  #
+  # Send a notification (containing the details of modifications) to all the users who have a link of the lesson. This method is called only if the link was created *before* that the lesson was modified. The method also sets +notified+ as +true+.
+  #
+  # == Args
+  #
+  # * *msg*: details of the modifications
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
   def notify_changes(msg)
     Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).each do |bo|
       if msg.blank?
@@ -127,16 +139,40 @@ class Lesson < ActiveRecord::Base
     self.save
   end
   
+  # == Description
+  #
+  # Sets +notified+ as +true+ without sending the notification of modifications (see Lesson#notify_changes).
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
   def dont_notify_changes
     self.notified = true
     self.save
   end
   
+  # == Description
+  #
+  # Checks whether the user needs to notify modifications to other users who have a link of the lesson.
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
   def not_notified?
     return false if self.status.nil?
     !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
   end
   
+  # == Description
+  #
+  # Checks whether the lesson is available for editing in the Lesson Editor (if at least one between +metadata+.+available_audio+ and +metadata+.+available_video+ is false, the lesson is not available)
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
   def available?(type = nil)
     case type = type.to_s.downcase
     when 'video', 'audio'
@@ -146,6 +182,14 @@ class Lesson < ActiveRecord::Base
     end
   end
   
+  # == Description
+  #
+  # Checks whether the lesson is available for editing in the Lesson Editor (if at least one between +metadata+.+available_audio+ and +metadata+.+available_video+ is false, the lesson is not available)
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
   def available!(type, value = true)
     metadata.send :"available_#{type.to_s.downcase}=", !!value
     update_attribute(:metadata, metadata)
