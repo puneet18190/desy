@@ -1,5 +1,5 @@
 /**
-* Show a loading image while page is loading, 
+* Shows a loading image while page is loading, 
 * it handles ajax calls too.
 * 
 * @module AjaxLoader
