@@ -6,59 +6,35 @@ require 'lessons_media_elements_shared'
 #
 # == Fields
 #
-# +user_id+::
-#   Id of the creator of the lesson.
-# +school_level_id+::
-#   Id of the school level of the lesson (which corresponds to the school level of its creator).
-# +subject_id+::
-#   Id of the subject of the lesson.
-# +title+::
-#   Title.
-# +description+::
-#   Description.
-# +is_public+::
-#   True if the lesson is visible by other users.
-# +parent_id+::
-#   Reference to another lesson, from which the current lesson has been copied. The value is +nil+ if the lesson hasn't been copied.
-# +copied_not_modified+::
-#   Boolean, set to true only for lessons just copied and not modified yet.
-# +token+::
-#   Token used in the public url of the lesson. Without this token, if the lesson is private, the only user who can see it is the creator.
-# +metadata+::
-#   Contains two keys:
+# *user_id*: id of the creator of the lesson
+# *school_level_id*: id of the school level of the lesson (which corresponds to the school level of its creator)
+# *subject_id*: id of the subject of the lesson
+# *title*: title
+# *description*: description
+# *is_public*: +true+ if the lesson is visible by other users
+# *parent_id*: reference to another lesson, from which the current lesson has been copied. The value is +nil+ if the lesson hasn't been copied
+# *copied_not_modified*: boolean, set to +true+ only for lessons just copied and not modified yet
+# *token*: token used in the public url of the lesson. Without this token, if the lesson is private, the only user who can see it is the creator
+# *metadata*: contains two keys:
 #   * +available_video+: true if the lesson doesn't contain any video in conversion
 #   * +available_audio+: true if the lesson doesn't contain any audio in conversion
-# +notified+::
-#   Boolean, set to false only if the lesson has been modified and its modification not notified to users who have a link of the lesson.
+# *notified*: boolean, set to false only if the lesson has been modified and its modification not notified to users who have a link of the lesson
 #
 # == References
 #
-# +user+::
-#   Reference to the User who created the lesson (*belongs_to*).
-# +subject+::
-#   Subject associated to the lesson(*belongs_to*).
-# +school_level+::
-#   SchoolLevel associated to the creator of the lesson and for transitivity to the lesson (*belongs_to*).
-# +parent+::
-#   Original lesson from which the lesson was copied (*belongs_to*).
-# +copies+::
-#   Lessons copied by this lesson (*has_many*).
-# +bookmarks+::
-#   Links created by other users to this lesson (see Bookmark) (*has_many*).
-# +likes+::
-#   Likes on the lesson (see Like) (*has_many*).
-# +reports+::
-#   Reports on the lesson (see Report) (*has_many*).
-# +taggings+::
-#   Tags associated to the lesson (see Tagging, Tag) (*has_many*).
-# +slides+::
-#   Slides composing the lesson (see Slide) (*has_many*).
-# +media_elements_slides+::
-#   List of instances of media elements inside slides of this lesson (see MediaElementsSlide) (through the class Slide) (*has_many*).
-# +media_elements+::
-#   List of media elements attached to slides of this lesson (see MediaElement) (through the class Slide and MediaElementsSlide) (*has_many*).
-# +virtual_classroom_lessons+::
-#   Copies of this lesson into the Virtual Classroom of the creator or other users (see VirtualClassroomLesson) (*has_many*).
+# *user*: reference to the User who created the lesson (*belongs_to*).
+# *subject*: Subject associated to the lesson(*belongs_to*).
+# *school_level*: SchoolLevel associated to the creator of the lesson and for transitivity to the lesson (*belongs_to*).
+# *parent*: original lesson from which the lesson was copied (*belongs_to*).
+# *copies*: lessons copied by this lesson (*has_many*).
+# *bookmarks*: links created by other users to this lesson (see Bookmark) (*has_many*).
+# *likes*: likes on the lesson (see Like) (*has_many*).
+# *reports*: reports on the lesson (see Report) (*has_many*).
+# *taggings*: tags associated to the lesson (see Tagging, Tag) (*has_many*).
+# *slides*: slides composing the lesson (see Slide) (*has_many*).
+# *media_elements_slides*: list of instances of media elements inside slides of this lesson (see MediaElementsSlide) (through the class Slide) (*has_many*).
+# *media_elements*: list of media elements attached to slides of this lesson (see MediaElement) (through the class Slide and MediaElementsSlide) (*has_many*).
+# *virtual_classroom_lessons*: copies of this lesson into the Virtual Classroom of the creator or other users (see VirtualClassroomLesson) (*has_many*).
 #
 # == Validations
 #
@@ -70,10 +46,16 @@ require 'lessons_media_elements_shared'
 # * *uniqueness* of the couple [+parent_id+, +user_id+] <b>if +parent_id+ is not null</b>
 # * *if* *new* *record* +is_public+ must be false
 # * *if* *public* +copied_not_modified+ must be false
+# * *modifications* *not* *available* for the +user_id+, +parent_id+, +token+
+# * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
 #
 # == Callbacks
 #
-# * *before_destroy*: destroy (not directly) associated VirtualClassroomLesson, if there are any.
+# 1. *before_destroy* destroyes associated bookmarks (see Bookmark)
+# 2. *before_destroy* destroyes associated likes (see Like)
+# 3. *before_destroy* destroyes associated reports (see Report)
+# 4. *before_destroy* destroyes associated taggings (see Tagging)
+# TODO in after save tags menzionare l'attributo tags riempito in before validation
 #
 # == Database callbacks
 #
