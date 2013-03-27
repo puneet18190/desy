@@ -707,7 +707,9 @@ parameter is present it&#39;s turned to <code>DESC</code></p>
           
           <h2 id="method-c-search_notifications_users-label-Description">Description</h2>
 
-<p>Search for users</p>
+<p>Search for users who are going to receive a massive notification: this
+method is used to update asynchronously the form to send a massive
+notification from the administrator</p>
 
 <h2 id="method-c-search_notifications_users-label-Args">Args</h2>
 <dl class="rdoc-list note-list"><dt><code>params</code>
@@ -724,14 +726,8 @@ result is filtered</p>
 <p><code>school_level_id</code>: if present the methods filters by
 school_level</p>
 </li><li>
-<p><code>date_range_field</code>: if present, it specifies which date field is
-used to filter by date (<code>created_at</code> or <code>updated_at</code>)</p>
-</li><li>
-<p><code>from</code>: if the parameter <code>date_range_field</code> is
-present, this parameter specifies the left border of the date range</p>
-</li><li>
-<p><code>to</code>: if the parameter <code>date_range_field</code> is present,
-this parameter specifies the right border of the date range</p>
+<p><code>recency</code>: if present, it filters by <code>created_at</code>
+greater than one year ago, one month ago, a week ago, or a day ago</p>
 </li><li>
 <p><code>subject_id</code>: if present, the method filters by subject_id,
 using the relation <a href="UsersSubject.html">UsersSubject</a></p>
@@ -739,26 +735,23 @@ using the relation <a href="UsersSubject.html">UsersSubject</a></p>
 <p><code>location_id</code>: if present the methods filters by location of the
 user (see settings.yml for the possible names of this parameter)</p>
 </li><li>
-<p><code>ordering</code>: if present the methods sorts the results: the
-content of this parameter is a code, used to extract the required ordering
-from the constant <a href="AdminSearchForm.html#ORDERINGS">ORDERINGS</a></p>
-</li><li>
-<p><code>desc</code>: for default the ordering is <code>ASC</code>, if this
-parameter is present it&#39;s turned to <code>DESC</code></p>
+<p><code>user_ids</code>: list of users added manually to the list of
+recipients</p>
 </li></ul>
 </dd><dt><code>count_only</code>
 <dd>
-<p>prova prova prova</p>
+<p>If set to true, the method returns only the number of users</p>
 </dd></dl>
 
 <h2 id="method-c-search_notifications_users-label-Returns">Returns</h2>
 
-<p>An array, not paginated yet, of the users found</p>
+<p>Depending on the value of <code>count_only</code>, either the number of
+records found, or a not paginated array of the users found</p>
           
 
           
           <div class="method-source-code" id="search_notifications_users-source">
-            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 311</span>
+            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 308</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search_notifications_users</span>(<span class="ruby-identifier">params</span>, <span class="ruby-identifier">count_only</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">scoped</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:school_level_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:school_level_id</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:school_level_id</span>].<span class="ruby-identifier">present?</span>

@@ -444,6 +444,14 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>This class inherits from <a href="MediaElement.html">MediaElement</a>, and
+contains the specific methods needed for media elements of type
+<code>audio</code>. For methods shared by elements of type
+<code>audio</code> and <code>video</code>, see <a
+href="Media/Shared.html">Media::Shared</a>.</p>
+
   </div><!-- description -->
 
   
@@ -508,7 +516,7 @@
 
           
           <div class="method-source-code" id="min_duration-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">min_duration</span>
   [<span class="ruby-identifier">mp3_duration</span>, <span class="ruby-identifier">ogg_duration</span>].<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_i</span>).<span class="ruby-identifier">min</span>
 <span class="ruby-keyword">end</span></pre>
@@ -538,7 +546,7 @@
 
           
           <div class="method-source-code" id="mp3_duration-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 30</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mp3_duration</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">mp3_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -568,7 +576,7 @@
 
           
           <div class="method-source-code" id="mp3_duration-3D-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mp3_duration=</span>(<span class="ruby-identifier">mp3_duration</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">mp3_duration</span> = <span class="ruby-identifier">mp3_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -593,12 +601,28 @@
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-mp3_url-label-Description">Description</h2>
+
+<p>Returns the url for the audio in format <code>mp3</code></p>
+
+<h2 id="method-i-mp3_url-label-Args">Args</h2>
+
+<p>No args required</p>
+
+<h2 id="method-i-mp3_url-label-Returns">Returns</h2>
+
+<p>The url of the mp3 file attached to this audio</p>
+
+<h2 id="method-i-mp3_url-label-Usage">Usage</h2>
+
+<pre>&lt;audio&gt;
+  &lt;source src=&quot;&lt;%= audio.mp3_url %&gt;&quot; type=&quot;audio/mp3&quot;&gt;
+&lt;/audio&gt;</pre>
           
 
           
           <div class="method-source-code" id="mp3_url-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 14</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mp3_url</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:mp3</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
 <span class="ruby-keyword">end</span></pre>
@@ -628,7 +652,7 @@
 
           
           <div class="method-source-code" id="ogg_duration-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ogg_duration</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">ogg_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -658,7 +682,7 @@
 
           
           <div class="method-source-code" id="ogg_duration-3D-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ogg_duration=</span>(<span class="ruby-identifier">ogg_duration</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">ogg_duration</span> = <span class="ruby-identifier">ogg_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -688,7 +712,7 @@
 
           
           <div class="method-source-code" id="ogg_url-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 18</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ogg_url</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:ogg</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
 <span class="ruby-keyword">end</span></pre>
@@ -718,7 +742,7 @@
 
           
           <div class="method-source-code" id="placeholder_url-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">placeholder_url</span>(<span class="ruby-identifier">type</span>)
   <span class="ruby-node">&quot;/assets/placeholders/audio_#{type}.gif&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -748,7 +772,7 @@
 
           
           <div class="method-source-code" id="thumb_url-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 22</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">thumb_url</span>
   <span class="ruby-identifier">converted</span> <span class="ruby-operator">?</span> <span class="ruby-constant">THUMB_URL</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">placeholder_url</span>(<span class="ruby-value">:thumb</span>)
 <span class="ruby-keyword">end</span></pre>
