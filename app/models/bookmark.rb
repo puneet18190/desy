@@ -14,9 +14,9 @@
 # == References
 #
 # +user+::
-#   User who bookmarked
+#   User who bookmarked (+belongs_to+)
 # +bookmarkable+::
-#   Lesson or MediaElement bookmarked (polymorphic association)
+#   Lesson or MediaElement bookmarked (polymorphic association) (+belongs_to+)
 #
 # == Validations
 #
