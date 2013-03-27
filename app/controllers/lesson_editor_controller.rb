@@ -56,7 +56,7 @@ class LessonEditorController < ApplicationController
         @errors = convert_item_error_messages @lesson.errors.messages
         @error_fields = @lesson.errors.messages.keys
       else
-        @lesson.modified
+        @lesson.modify
       end
     end
   end

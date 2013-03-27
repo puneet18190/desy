@@ -1,5 +1,81 @@
 require 'lessons_media_elements_shared'
 
+# == Description
+#
+# ActiveRecord class that corresponds to the table +lessons+.
+#
+# == Fields
+#
+# +user_id+::
+#   Id of the creator of the lesson.
+# +school_level_id+::
+#   Id of the school level of the lesson (which corresponds to the school level of its creator).
+# +subject_id+::
+#   Id of the subject of the lesson.
+# +title+::
+#   Title.
+# +description+::
+#   Description.
+# +is_public+::
+#   True if the lesson is visible by other users.
+# +parent_id+::
+#   Reference to another lesson, from which the current lesson has been copied. The value is +nil+ if the lesson hasn't been copied.
+# +copied_not_modified+::
+#   Boolean, set to true only for lessons just copied and not modified yet.
+# +token+::
+#   Token used in the public url of the lesson. Without this token, if the lesson is private, the only user who can see it is the creator.
+# +metadata+::
+#   Contains two keys:
+#   * +available_video+: true if the lesson doesn't contain any video in conversion
+#   * +available_audio+: true if the lesson doesn't contain any audio in conversion
+# +notified+::
+#   Boolean, set to false only if the lesson has been modified and its modification not notified to users who have a link of the lesson.
+#
+# == References
+#
+# +user+::
+#   Reference to the User who created the lesson (+belongs_to+).
+# +subject+::
+#   Subject associated to the lesson(+belongs_to+).
+# +school_level+::
+#   (+belongs_to+).
+# +parent+::
+#   (+belongs_to+).
+# +copies+::
+#   (+has_many+).
+# +bookmarks+::
+#   (+has_many+).
+# +likes+::
+#   (+has_many+).
+# +reports+::
+#   (+has_many+).
+# +taggings+::
+#   (+has_many+).
+# +slides+::
+#   (+has_many+).
+# +media_elements_slides+::
+#   (through the class Slide) (+has_many+).
+# +media_elements+::
+#   (through the class Slide and MediaElementsSlide) (+has_many+).
+# +virtual_classroom_lessons+::
+#   (+has_many+).
+#
+# == Validations
+#
+# * *presence* with numericality and existence of associated record for +user_id+ and +bookmarkable_id+
+# * *inclusion* of +bookmarkable_type+ between 'Lesson' and 'MediaElement'
+# * *uniqueness* of the triple [+user_id+, +bookmarkable_type+, +bookmarkable_id+] (only if +bookmarkable_type+ is correct)
+# * *availability* of the associated item (for lessons it can't be public and it can't belong to the user who bookmarks, for media elements it can't be public)
+# * *modifications* *not* *available* for the three fields, if the record is not new
+#
+# == Callbacks
+#
+# * *before_destroy*: destroy (not directly) associated VirtualClassroomLesson, if there are any.
+#
+# == Database callbacks
+#
+# None.
+#
 class Lesson < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   extend LessonsMediaElementsShared
@@ -242,10 +318,6 @@ class Lesson < ActiveRecord::Base
   
   def visive_tags
     Tagging.visive_tags(self.tags)
-  end
-  
-  def modified
-    self.copied_not_modified = false
   end
   
   def modify
