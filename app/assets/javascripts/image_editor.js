@@ -276,7 +276,7 @@ function offlightTextareas() {
 * @param obj {Object} textarea container
 * @return {Array} two items array with X,Y coords in px
 * @example 
-    getDragPosition($(#image_editor_text_1));
+      `getDragPosition($(#image_editor_text_1));`
 */
 function getDragPosition(obj) {
   var imgOff = $('#image_wrapper').children('img').offset();
@@ -298,11 +298,9 @@ function getDragPosition(obj) {
 * @param textCount {Number} textarea container id
 * @return {Object} new textarea container
 * @example 
-    `var coords = getRelativePositionInImageEditor($(#image_editor_container._text_enabled img), event);`
-
-    `var textCount = $('#info_container').data('current-textarea-identifier');`
-
-    `$('#image_editor_container').append(textAreaImageEditorContent(coords, textCount));`
+      `var coords = getRelativePositionInImageEditor($(#image_editor_container._text_enabled img), event);`
+      `var textCount = $('#info_container').data('current-textarea-identifier');`
+      `$('#image_editor_container').append(textAreaImageEditorContent(coords, textCount));`
 */
 function textAreaImageEditorContent(coords, textCount) {
   var textarea_container = $($.trim($('#image_editor_empty_text_area_container').html()));

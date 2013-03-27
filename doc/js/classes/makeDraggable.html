@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>getDragPosition - DESY</title>
+    <title>makeDraggable - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -164,7 +164,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>getDragPosition Class</h1>
+                        <h1>makeDraggable Class</h1>
 <div class="box meta">
     
 
@@ -174,7 +174,7 @@
 
     
         
-            Module: <a href="../modules/ImageEditor.html">ImageEditor</a>
+            Module: <a href="../modules/LessonEditor.html">LessonEditor</a>
         
     
 
@@ -212,7 +212,7 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_getDragPosition">getDragPosition</a>
+                                <a href="#method_makeDraggable">makeDraggable</a>
 
                                 
                                 
@@ -234,8 +234,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_getDragPosition" class="method item">
-    <h3 class="name"><code>getDragPosition</code></h3>
+                    <div id="method_makeDraggable" class="method item">
+    <h3 class="name"><code>makeDraggable</code></h3>
 
     
         <div class="args">
@@ -243,7 +243,7 @@
             
                 <li class="arg">
                     
-                        <code>obj</code>
+                        <code>place_id</code>
                     
                 </li>
             
@@ -251,10 +251,6 @@
         </div>
     
 
-    
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-        </span>
     
 
     
@@ -280,7 +276,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l271"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:271</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l531"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:531</code></a>
         
         </p>
 
@@ -291,7 +287,7 @@
     </div>
 
     <div class="description">
-        <p>Get textarea coordinates while dragging</p>
+        <p>Inizialize jQueryUI <em>draggable</em> function on slide image containers.</p>
     </div>
 
     
@@ -302,14 +298,14 @@
             
                 <li class="param">
                     
-                        <code class="param-name">obj</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <code class="param-name">place_id</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>textarea container</p>
+                        <p>media element id</p>
                     </div>
 
                     
@@ -320,26 +316,13 @@
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
-                    
-                    two items array with X,Y coords in px
-                
-            </div>
-        </div>
-    
 
     
         <div class="example">
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code> <code>getDragPosition($(#image_editor_text_1));</code>
+                <pre class="code prettyprint"><code> <code>makeDraggable(&#x27;media_element_1_in_slide_43&#x27;);</code>
 </code></pre>
             </div>
         </div>
