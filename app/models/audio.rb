@@ -19,13 +19,9 @@ class Audio < MediaElement
   #
   # Returns the url for the audio in format +mp3+
   #
-  # == Args
-  #
-  # No args required
-  #
   # == Returns
   #
-  # The url of the mp3 file attached to this audio
+  # An url.
   #
   # == Usage
   #
@@ -41,13 +37,9 @@ class Audio < MediaElement
   #
   # Returns the url for the audio in format +ogg+
   #
-  # == Args
-  #
-  # No args required
-  #
   # == Returns
   #
-  # The url of the ogg file attached to this audio
+  # An url.
   #
   # == Usage
   #
@@ -61,15 +53,11 @@ class Audio < MediaElement
   
   # == Description
   #
-  # Returns the url of the thumb image used in the section "elements" (a musical note on grey bottom).
-  #
-  # == Args
-  #
-  # No args required
+  # Returns the url of the thumb image used in the section "elements" (a musical note on grey bottom). If the audio is not converted, returns the animated gif from Audio#placeholder_url with +type+=+thumb+.
   #
   # == Returns
   #
-  # The url of the thumb (an image). If the audio is not converted, returns the animated gif from Audio#placeholder_url with +type+=+thumb+
+  # An url.
   #
   # == Usage
   #
@@ -92,7 +80,7 @@ class Audio < MediaElement
   #
   # == Returns
   #
-  # The url of the placeholder (a gif).
+  # An url.
   #
   # == Usage
   #
@@ -110,13 +98,9 @@ class Audio < MediaElement
   #
   # Returns the float duration in seconds of the mp3 track;
   #
-  # == Args
-  #
-  # No args required
-  #
   # == Returns
   #
-  # A float number.
+  # A float.
   #
   def mp3_duration
     metadata.mp3_duration
@@ -126,13 +110,9 @@ class Audio < MediaElement
   #
   # Returns the float duration in seconds of the ogg track;
   #
-  # == Args
-  #
-  # No args required
-  #
   # == Returns
   #
-  # A float number.
+  # A float.
   #
   def ogg_duration
     metadata.ogg_duration
@@ -147,10 +127,6 @@ class Audio < MediaElement
   # +mp3_duration+::
   #   The duration to be set
   #
-  # == Returns
-  #
-  # Nothing
-  #
   def mp3_duration=(mp3_duration)
     metadata.mp3_duration = mp3_duration
   end
@@ -164,10 +140,6 @@ class Audio < MediaElement
   # +ogg_duration+::
   #   The duration to be set
   #
-  # == Returns
-  #
-  # Nothing
-  #
   def ogg_duration=(ogg_duration)
     metadata.ogg_duration = ogg_duration
   end
@@ -175,10 +147,6 @@ class Audio < MediaElement
   # == Description
   #
   # Returns the lower integer approximation of the minimum between +ogg_duration+ and +mp3_duration+. This is necessary to insert in the html players an integer duration in seconds that can be used without risks.
-  #
-  # == Args
-  #
-  # No args required
   #
   # == Returns
   #

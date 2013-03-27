@@ -2,6 +2,10 @@ require 'shellwords'
 require 'media/image/editing/add_text_to_image'
 require 'media/image/editing/crop'
 
+# == Description
+#
+# This class inherits from MediaElement, and contains the specific methods needed for media elements of type +image+.
+# 
 class Image < MediaElement
   EXTENSION_WHITE_LIST = ImageUploader::EXTENSION_WHITE_LIST
   EXTENSIONS_GLOB      = "*.{#{EXTENSION_WHITE_LIST.join(',')}}"
@@ -12,23 +16,66 @@ class Image < MediaElement
   before_create :set_converted_to_true
   
   attr_reader :edit_mode
-
+  
+  # == Description
+  #
+  # Returns the url of the attached image.
+  #
+  # == Returns
+  #
+  # An url
+  #
+  # == Usage
+  #
+  #   <%= image_tag image.url %>
+  #
   def url
     media.url
   end
   
+  # == Description
+  #
+  # Returns the url of the 200x200 thumb of the attached image.
+  #
+  # == Returns
+  #
+  # An url
+  #
+  # == Usage
+  #
+  #   <%= image_tag image.thumb_url %>
+  #
   def thumb_url
     media.thumb.url
   end
   
+  # == Description
+  #
+  # Returns the width in pixels.
+  #
+  # == Returns
+  #
+  # A float.
+  #
   def width
     metadata.width
   end
   
+  # == Description
+  #
+  # Returns the height in pixels.
+  #
+  # == Returns
+  #
+  # A float.
+  #
   def height
     metadata.height
   end
   
+  # == Description
+  #
+  # Returns the temporary url where it's conserved 
   def editing_url
     return '' if !self.in_edit_mode?
     file_name = "/#{url.split('/').last}"
@@ -126,12 +173,11 @@ class Image < MediaElement
   def self.ratio_value(w, h, value)
     to_ratio = 660.to_f / 500.to_f
     origin_ratio = w.to_f / h.to_f
-
     if origin_ratio > to_ratio
-      h = w 
-      w = 660 #solo questo
+      h = w
+      w = 660
     else
-      w = 500 #h=500
+      w = 500
     end
     if (h.to_i > w.to_i )
       return value.to_f * (h.to_f / w.to_f)
