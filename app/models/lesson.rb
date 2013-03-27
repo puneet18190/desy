@@ -51,24 +51,29 @@ require 'lessons_media_elements_shared'
 #
 # == Callbacks
 #
-# 1. *before_destroy* destroyes associated bookmarks (see Bookmark)
-# 2. *before_destroy* destroyes associated likes (see Like)
-# 3. *before_destroy* destroyes associated reports (see Report)
-# 4. *before_destroy* destroyes associated taggings (see Tagging)
-# TODO in after save tags menzionare l'attributo tags riempito in before validation
+# 1. *before_destroy* destroys associated bookmarks (see Bookmark)
+# 2. *before_destroy* destroys associated likes (see Like)
+# 3. *before_destroy* destroys associated reports (see Report)
+# 4. *before_destroy* destroys associated taggings (see Tagging)
+# 5. *before_create* initializes both metadata values to +true+
+# 6. *before_create* creates a random encoded string and writes it in +token+
+# 7. *after_save* creates or updates the cover slide
+# 8. *after_save* updates taggings associated to the lesson (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+
 #
 # == Database callbacks
 #
-# None.
+# 1. likes
+# 2. slides
+# 3. virtual classroom lessons
+# 4. parent nil
 #
 class Lesson < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   extend LessonsMediaElementsShared
   
   attr_accessible :subject_id, :school_level_id, :title, :description
-  attr_reader :is_reportable
+  attr_reader :is_reportable, :status
   attr_writer :validating_in_form
-  attr_accessor :skip_cover_creation
   
   serialize :metadata, OpenStruct
   
@@ -108,11 +113,6 @@ class Lesson < ActiveRecord::Base
                          bookmarks.user_id = %i", user_id] ).
     where('bookmarks.user_id IS NOT NULL OR lessons.user_id = ?', user_id).
     order('COALESCE(bookmarks.created_at, lessons.updated_at) DESC')
-  end
-  
-  def initialize_metadata
-    self.metadata.available_video = true
-    self.metadata.available_audio = true
   end
   
   def notify_changes(msg)
@@ -568,7 +568,6 @@ class Lesson < ActiveRecord::Base
   
   def create_or_update_cover
     if @lesson.nil?
-      return true if skip_cover_creation
       slide = Slide.new :title => self.title, :position => 1
       slide.kind = Slide::COVER
       slide.lesson_id = self.id
@@ -606,6 +605,11 @@ class Lesson < ActiveRecord::Base
     l = find l.id
     _d l
     l.destroy
+  end
+  
+  def initialize_metadata
+    self.metadata.available_video = true
+    self.metadata.available_audio = true
   end
   
 end
