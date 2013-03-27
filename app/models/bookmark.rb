@@ -14,21 +14,21 @@
 # == References
 #
 # +user+::
-#   User who bookmarked (+belongs_to+)
+#   User who bookmarked (*belongs_to*)
 # +bookmarkable+::
-#   Lesson or MediaElement bookmarked (polymorphic association) (+belongs_to+)
+#   Lesson or MediaElement bookmarked (polymorphic association) (*belongs_to*)
 #
 # == Validations
 #
 # * *presence* with numericality and existence of associated record for +user_id+ and +bookmarkable_id+
 # * *inclusion* of +bookmarkable_type+ between 'Lesson' and 'MediaElement'
-# * *uniqueness* of the triple [+user_id+, +bookmarkable_type+, +bookmarkable_id+] (only if +bookmarkable_type+ is correct)
+# * *uniqueness* of the triple [+user_id+, +bookmarkable_type+, +bookmarkable_id+] <b>only if +bookmarkable_type+ is correct</b>
 # * *availability* of the associated item (for lessons it can't be public and it can't belong to the user who bookmarks, for media elements it can't be public)
 # * *modifications* *not* *available* for the three fields, if the record is not new
 #
 # == Callbacks
 #
-# * *before_destroy*: destroy (not directly) associated VirtualClassroomLesson, if there are any.
+# 1. *before_destroy*: destroy (not directly) associated VirtualClassroomLesson, if there are any.
 #
 # == Database callbacks
 #

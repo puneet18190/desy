@@ -34,39 +34,42 @@ require 'lessons_media_elements_shared'
 # == References
 #
 # +user+::
-#   Reference to the User who created the lesson (+belongs_to+).
+#   Reference to the User who created the lesson (*belongs_to*).
 # +subject+::
-#   Subject associated to the lesson(+belongs_to+).
+#   Subject associated to the lesson(*belongs_to*).
 # +school_level+::
-#   (+belongs_to+).
+#   SchoolLevel associated to the creator of the lesson and for transitivity to the lesson (*belongs_to*).
 # +parent+::
-#   (+belongs_to+).
+#   Original lesson from which the lesson was copied (*belongs_to*).
 # +copies+::
-#   (+has_many+).
+#   Lessons copied by this lesson (*has_many*).
 # +bookmarks+::
-#   (+has_many+).
+#   Links created by other users to this lesson (see Bookmark) (*has_many*).
 # +likes+::
-#   (+has_many+).
+#   Likes on the lesson (see Like) (*has_many*).
 # +reports+::
-#   (+has_many+).
+#   Reports on the lesson (see Report) (*has_many*).
 # +taggings+::
-#   (+has_many+).
+#   Tags associated to the lesson (see Tagging, Tag) (*has_many*).
 # +slides+::
-#   (+has_many+).
+#   Slides composing the lesson (see Slide) (*has_many*).
 # +media_elements_slides+::
-#   (through the class Slide) (+has_many+).
+#   List of instances of media elements inside slides of this lesson (see MediaElementsSlide) (through the class Slide) (*has_many*).
 # +media_elements+::
-#   (through the class Slide and MediaElementsSlide) (+has_many+).
+#   List of media elements attached to slides of this lesson (see MediaElement) (through the class Slide and MediaElementsSlide) (*has_many*).
 # +virtual_classroom_lessons+::
-#   (+has_many+).
+#   Copies of this lesson into the Virtual Classroom of the creator or other users (see VirtualClassroomLesson) (*has_many*).
 #
 # == Validations
 #
-# * *presence* with numericality and existence of associated record for +user_id+ and +bookmarkable_id+
-# * *inclusion* of +bookmarkable_type+ between 'Lesson' and 'MediaElement'
-# * *uniqueness* of the triple [+user_id+, +bookmarkable_type+, +bookmarkable_id+] (only if +bookmarkable_type+ is correct)
-# * *availability* of the associated item (for lessons it can't be public and it can't belong to the user who bookmarks, for media elements it can't be public)
-# * *modifications* *not* *available* for the three fields, if the record is not new
+# * *presence* with numericality and existence of associated record for +user_id+, +subject_id+, +school_level_id+
+# * *presence* for +title+ and +description+
+# * *presence* of associated element, numericality for +parent_id+ and +parent_id+ must different by +id+, <b>only if different by nil</b>
+# * *inclusion* of +is_public+, +copied_not_modified+, +notified+ in [+true+, +false+]
+# * *length* of +title+ and +description+ (values configured in the I18n translation file)
+# * *uniqueness* of the couple [+parent_id+, +user_id+] <b>if +parent_id+ is not null</b>
+# * *if* *new* *record* +is_public+ must be false
+# * *if* *public* +copied_not_modified+ must be false
 #
 # == Callbacks
 #
@@ -83,7 +86,7 @@ class Lesson < ActiveRecord::Base
   attr_accessible :subject_id, :school_level_id, :title, :description
   attr_reader :is_reportable
   attr_writer :validating_in_form
-  attr_accessor :skip_public_validations, :skip_cover_creation
+  attr_accessor :skip_cover_creation
   
   serialize :metadata, OpenStruct
   
@@ -596,7 +599,7 @@ class Lesson < ActiveRecord::Base
   end
   
   def validate_public
-    errors.add(:is_public, :cant_be_true_for_new_records) if @lesson.nil? && self.is_public && !self.skip_public_validations
+    errors.add(:is_public, :cant_be_true_for_new_records) if @lesson.nil? && self.is_public
   end
   
   def validate_copied_not_modified_and_public
