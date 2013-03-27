@@ -1,11 +1,19 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "addDeleteItemToCurrentUrl",
         "addEmailToVirtualClassroomSendLessonLinkSelector",
+        "addLesson",
+        "addLessonToVirtualClassroom",
+        "addMediaElement",
         "bindLoader",
         "changePageDashboardLessons",
         "changePageDashboardMediaElements",
         "closeGenericVideoComponentCutter",
+        "copyLesson",
+        "destroyLesson",
+        "destroyMediaElement",
+        "dislikeLesson",
         "enlightTextarea",
         "getDragPosition",
         "getHtmlPagination",
@@ -19,15 +27,21 @@ YUI.add("yuidoc-meta", function(Y) {
         "initializeSortableNavs",
         "initializeVideoEditor",
         "isHorizontalMask",
+        "likeLesson",
         "loadSlideAndAdhiacentInLessonEditor",
         "loadSlideInLessonEditor",
         "makeDraggable",
         "offlightTextarea",
+        "previewLesson",
+        "publishLesson",
         "reInitializeSlidePositionsInLessonEditor",
         "reloadDashboardPages",
         "reloadLessonsDashboardPagination",
         "reloadMediaElementsDashboardPagination",
         "removeGalleryInLessonEditor",
+        "removeLesson",
+        "removeLessonFromVirtualClassroom",
+        "removeMediaElement",
         "resetImageEditorCrop",
         "resetImageEditorOperationsChoice",
         "resetImageEditorTexts",
@@ -49,10 +63,12 @@ YUI.add("yuidoc-meta", function(Y) {
         "textAreaImageEditorContent",
         "tinyMceCallbacks",
         "tinyMceKeyDownCallbacks",
-        "unbindLoader"
+        "unbindLoader",
+        "unpublishLesson"
     ],
     "modules": [
         "AjaxLoader",
+        "Buttons",
         "Dashboard",
         "ImageEditor",
         "LessonEditor",
@@ -65,6 +81,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "AjaxLoader",
             "name": "AjaxLoader",
             "description": "Shows a loading image while page is loading, \nit handles ajax calls too."
+        },
+        {
+            "displayName": "Buttons",
+            "name": "Buttons",
+            "description": "Lessons and Elements actions triggered via buttons."
         },
         {
             "displayName": "Dashboard",

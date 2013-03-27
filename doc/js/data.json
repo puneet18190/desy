@@ -20,6 +20,31 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/buttons.js": {
+            "name": "app/assets/javascripts/buttons.js",
+            "modules": {
+                "Buttons": 1
+            },
+            "classes": {},
+            "fors": {
+                "addDeleteItemToCurrentUrl": 1,
+                "addLesson": 1,
+                "copyLesson": 1,
+                "destroyLesson": 1,
+                "dislikeLesson": 1,
+                "likeLesson": 1,
+                "previewLesson": 1,
+                "publishLesson": 1,
+                "removeLesson": 1,
+                "unpublishLesson": 1,
+                "addLessonToVirtualClassroom": 1,
+                "removeLessonFromVirtualClassroom": 1,
+                "addMediaElement": 1,
+                "destroyMediaElement": 1,
+                "removeMediaElement": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/dashboard.js": {
             "name": "app/assets/javascripts/dashboard.js",
             "modules": {
@@ -147,6 +172,49 @@
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 1,
             "description": "Shows a loading image while page is loading, \nit handles ajax calls too."
+        },
+        "Buttons": {
+            "name": "Buttons",
+            "submodules": {},
+            "classes": {
+                "addDeleteItemToCurrentUrl": 1,
+                "addLesson": 1,
+                "copyLesson": 1,
+                "destroyLesson": 1,
+                "dislikeLesson": 1,
+                "likeLesson": 1,
+                "previewLesson": 1,
+                "publishLesson": 1,
+                "removeLesson": 1,
+                "unpublishLesson": 1,
+                "addLessonToVirtualClassroom": 1,
+                "removeLessonFromVirtualClassroom": 1,
+                "addMediaElement": 1,
+                "destroyMediaElement": 1,
+                "removeMediaElement": 1
+            },
+            "fors": {
+                "addDeleteItemToCurrentUrl": 1,
+                "addLesson": 1,
+                "copyLesson": 1,
+                "destroyLesson": 1,
+                "dislikeLesson": 1,
+                "likeLesson": 1,
+                "previewLesson": 1,
+                "publishLesson": 1,
+                "removeLesson": 1,
+                "unpublishLesson": 1,
+                "addLessonToVirtualClassroom": 1,
+                "removeLessonFromVirtualClassroom": 1,
+                "addMediaElement": 1,
+                "destroyMediaElement": 1,
+                "removeMediaElement": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 1,
+            "description": "Lessons and Elements actions triggered via buttons."
         },
         "Dashboard": {
             "name": "Dashboard",
@@ -360,6 +428,171 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "AjaxLoader",
+            "namespace": ""
+        },
+        "addDeleteItemToCurrentUrl": {
+            "name": "addDeleteItemToCurrentUrl",
+            "shortname": "addDeleteItemToCurrentUrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "addLesson": {
+            "name": "addLesson",
+            "shortname": "addLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "copyLesson": {
+            "name": "copyLesson",
+            "shortname": "copyLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "destroyLesson": {
+            "name": "destroyLesson",
+            "shortname": "destroyLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "dislikeLesson": {
+            "name": "dislikeLesson",
+            "shortname": "dislikeLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "likeLesson": {
+            "name": "likeLesson",
+            "shortname": "likeLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "previewLesson": {
+            "name": "previewLesson",
+            "shortname": "previewLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "publishLesson": {
+            "name": "publishLesson",
+            "shortname": "publishLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "removeLesson": {
+            "name": "removeLesson",
+            "shortname": "removeLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "unpublishLesson": {
+            "name": "unpublishLesson",
+            "shortname": "unpublishLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "addLessonToVirtualClassroom": {
+            "name": "addLessonToVirtualClassroom",
+            "shortname": "addLessonToVirtualClassroom",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "removeLessonFromVirtualClassroom": {
+            "name": "removeLessonFromVirtualClassroom",
+            "shortname": "removeLessonFromVirtualClassroom",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "addMediaElement": {
+            "name": "addMediaElement",
+            "shortname": "addMediaElement",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "destroyMediaElement": {
+            "name": "destroyMediaElement",
+            "shortname": "destroyMediaElement",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "removeMediaElement": {
+            "name": "removeMediaElement",
+            "shortname": "removeMediaElement",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
             "namespace": ""
         },
         "reloadDashboardPages": {
@@ -894,6 +1127,368 @@
             "name": "hideLoader",
             "class": "hideLoader",
             "module": "AjaxLoader"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 7,
+            "description": "Add item removed from a view to the current destination url",
+            "itemtype": "method",
+            "name": "addDeleteItemToCurrentUrl",
+            "return": {
+                "description": "updated url",
+                "type": "String"
+            },
+            "class": "addDeleteItemToCurrentUrl",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 25,
+            "description": "Add lessons from dashboard to my lessons\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "itemtype": "method",
+            "name": "addLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                },
+                {
+                    "name": "current_url",
+                    "description": "url where the lesson is added from",
+                    "type": "String"
+                },
+                {
+                    "name": "reload",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "addLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 65,
+            "description": "Create user own copy of the lesson",
+            "itemtype": "method",
+            "name": "copyLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "copyLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 80,
+            "description": "Destroy lessons lesson\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "itemtype": "method",
+            "name": "destroyLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                },
+                {
+                    "name": "current_url",
+                    "description": "url where the lesson is added from",
+                    "type": "String"
+                }
+            ],
+            "class": "destroyLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 119,
+            "description": "Remove like from a lesson",
+            "itemtype": "method",
+            "name": "dislikeLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "dislikeLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 134,
+            "description": "Add like to a lesson",
+            "itemtype": "method",
+            "name": "likeLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "likeLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 149,
+            "description": "View lesson link",
+            "itemtype": "method",
+            "name": "previewLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "redirect_to",
+                    "description": "link url to come back from lesson viewer",
+                    "type": "String"
+                }
+            ],
+            "class": "previewLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 173,
+            "description": "Make a lesson public\n\nUses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp)\nand [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "itemtype": "method",
+            "name": "publishLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "publishLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 198,
+            "description": "Remove a lesson from yours (unlink).\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "itemtype": "method",
+            "name": "removeLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                },
+                {
+                    "name": "current_url",
+                    "description": "url where the lesson is added from",
+                    "type": "String"
+                },
+                {
+                    "name": "reload",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "removeLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 238,
+            "description": "Make a lesson private\n\nUses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp)\nand [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "itemtype": "method",
+            "name": "unpublishLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "unpublishLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 263,
+            "description": "Make the lesson available in the virtual classroom",
+            "itemtype": "method",
+            "name": "addLessonToVirtualClassroom",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "addLessonToVirtualClassroom",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 278,
+            "description": "Remove lesson availability in the virtual classroom",
+            "itemtype": "method",
+            "name": "removeLessonFromVirtualClassroom",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson_id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "removeLessonFromVirtualClassroom",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 293,
+            "description": "Add media element from dashboard to my lessons\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "itemtype": "method",
+            "name": "addMediaElement",
+            "params": [
+                {
+                    "name": "media_element_id",
+                    "description": "media_element id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                },
+                {
+                    "name": "current_url",
+                    "description": "url where the lesson is added from",
+                    "type": "String"
+                },
+                {
+                    "name": "reload",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "addMediaElement",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 333,
+            "description": "Destroy Media Element\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)\nand [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "itemtype": "method",
+            "name": "destroyMediaElement",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson_id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                },
+                {
+                    "name": "current_url",
+                    "description": "url where the lesson is added from",
+                    "type": "String"
+                },
+                {
+                    "name": "used_in_private_lessons",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "destroyMediaElement",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 381,
+            "description": "Remove a media element from yours (unlink).\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "itemtype": "method",
+            "name": "removeMediaElement",
+            "params": [
+                {
+                    "name": "media_element_id",
+                    "description": "media element id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                },
+                {
+                    "name": "current_url",
+                    "description": "url where the lesson is added from",
+                    "type": "String"
+                },
+                {
+                    "name": "reload",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "removeMediaElement",
+            "module": "Buttons"
         },
         {
             "file": "app/assets/javascripts/dashboard.js",
