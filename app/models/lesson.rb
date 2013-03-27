@@ -16,8 +16,8 @@ require 'lessons_media_elements_shared'
 # * *copied_not_modified*: boolean, set to +true+ only for lessons just copied and not modified yet
 # * *token*: token used in the public url of the lesson. Without this token, if the lesson is private, the only user who can see it is the creator
 # * *metadata*: contains two keys:
-# * * +available_video+: true if the lesson doesn't contain any video in conversion
-# * * +available_audio+: true if the lesson doesn't contain any audio in conversion
+#   * +available_video+: true if the lesson doesn't contain any video in conversion
+#   * +available_audio+: true if the lesson doesn't contain any audio in conversion
 # * *notified*: boolean, set to false only if the lesson has been modified and its modification not notified to users who have a link of the lesson
 #
 # == References

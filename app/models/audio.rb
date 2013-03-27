@@ -73,8 +73,7 @@ class Audio < MediaElement
   #
   # == Args
   #
-  # +type+::
-  #   The type of placeholder required: it can be
+  # * *type*: the type of placeholder required: it can be
   #   * +:thumb+: used in the expanded media element
   #   * +:lesson_viewer+: used in the lesson viewer
   #
@@ -124,8 +123,7 @@ class Audio < MediaElement
   #
   # == Args
   #
-  # +mp3_duration+::
-  #   The duration to be set
+  # * *mp3_duration*: the duration to be set
   #
   def mp3_duration=(mp3_duration)
     metadata.mp3_duration = mp3_duration
@@ -137,8 +135,7 @@ class Audio < MediaElement
   #
   # == Args
   #
-  # +ogg_duration+::
-  #   The duration to be set
+  # * *ogg_duration*: the duration to be set
   #
   def ogg_duration=(ogg_duration)
     metadata.ogg_duration = ogg_duration

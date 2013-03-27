@@ -1,4 +1,4 @@
-Wed, 27 Mar 2013 17:08:09 +0100
+Wed, 27 Mar 2013 17:17:50 +0100
 doc/README_FOR_APP	Fri, 08 Feb 2013 11:44:15 +0100
 app/controllers/admin/dashboard_controller.rb	Fri, 22 Mar 2013 09:52:00 +0100
 app/controllers/admin/lessons_controller.rb	Fri, 22 Mar 2013 16:43:21 +0100
@@ -31,11 +31,11 @@ app/helpers/admin_helper.rb	Fri, 22 Mar 2013 16:05:45 +0100
 app/helpers/application_helper.rb	Mon, 25 Mar 2013 17:36:58 +0100
 app/helpers/mailer_helper.rb	Thu, 14 Mar 2013 16:47:55 +0100
 app/mailers/user_mailer.rb	Thu, 14 Mar 2013 16:47:55 +0100
-app/models/admin_search_form.rb	Wed, 27 Mar 2013 12:50:21 +0100
-app/models/audio.rb	Wed, 27 Mar 2013 15:30:47 +0100
-app/models/bookmark.rb	Wed, 27 Mar 2013 16:49:19 +0100
-app/models/image.rb	Wed, 27 Mar 2013 16:01:40 +0100
-app/models/lesson.rb	Wed, 27 Mar 2013 17:08:06 +0100
+app/models/admin_search_form.rb	Wed, 27 Mar 2013 17:16:45 +0100
+app/models/audio.rb	Wed, 27 Mar 2013 17:17:15 +0100
+app/models/bookmark.rb	Wed, 27 Mar 2013 17:16:10 +0100
+app/models/image.rb	Wed, 27 Mar 2013 17:16:04 +0100
+app/models/lesson.rb	Wed, 27 Mar 2013 17:09:45 +0100
 app/models/like.rb	Wed, 20 Mar 2013 16:28:50 +0100
 app/models/location.rb	Mon, 18 Mar 2013 16:19:34 +0100
 app/models/mailing_list_address.rb	Wed, 20 Mar 2013 16:29:16 +0100

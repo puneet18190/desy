@@ -4,19 +4,14 @@
 #
 # == Fields
 #
-# +bookmarkable_id+::
-#   Id of the item (lesson or media element) to which the bookmark is associated
-# +bookmarkable_type+::
-#   Contains the string description of the classes Lesson or MediaElement
-# +user_id+::
-#   Id of the user associated to the bookmark
+# * *bookmarkable_id*: id of the item (lesson or media element) to which the bookmark is associated
+# * *bookmarkable_type*: contains the string description of the classes Lesson or MediaElement
+# * *user_id*: id of the user associated to the bookmark
 #
 # == References
 #
-# +user+::
-#   User who bookmarked (*belongs_to*)
-# +bookmarkable+::
-#   Lesson or MediaElement bookmarked (polymorphic association) (*belongs_to*)
+# * *user*: User who bookmarked (*belongs_to*)
+# * *bookmarkable*: Lesson or MediaElement bookmarked (polymorphic association) (*belongs_to*)
 #
 # == Validations
 #

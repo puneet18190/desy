@@ -529,7 +529,7 @@ used without risks.</p>
 
           
           <div class="method-source-code" id="min_duration-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 159</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">min_duration</span>
   [<span class="ruby-identifier">mp3_duration</span>, <span class="ruby-identifier">ogg_duration</span>].<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_i</span>).<span class="ruby-identifier">min</span>
 <span class="ruby-keyword">end</span></pre>
@@ -565,7 +565,7 @@ used without risks.</p>
 
           
           <div class="method-source-code" id="mp3_duration-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 105</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mp3_duration</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">mp3_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -595,15 +595,16 @@ used without risks.</p>
 <p>Sets the float duration in seconds of the mp3 track;</p>
 
 <h2 id="method-i-mp3_duration-3D-label-Args">Args</h2>
-<dl class="rdoc-list note-list"><dt><code>mp3_duration</code>
-<dd>
-<p>The duration to be set</p>
-</dd></dl>
+<ul><li>
+<p><strong><a
+href="Audio.html#method-i-mp3_duration">#mp3_duration</a></strong>: the
+duration to be set</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="mp3_duration-3D-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 130</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 128</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mp3_duration=</span>(<span class="ruby-identifier">mp3_duration</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">mp3_duration</span> = <span class="ruby-identifier">mp3_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -681,7 +682,7 @@ used without risks.</p>
 
           
           <div class="method-source-code" id="ogg_duration-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 117</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ogg_duration</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">ogg_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -711,15 +712,16 @@ used without risks.</p>
 <p>Sets the float duration in seconds of the ogg track;</p>
 
 <h2 id="method-i-ogg_duration-3D-label-Args">Args</h2>
-<dl class="rdoc-list note-list"><dt><code>ogg_duration</code>
-<dd>
-<p>The duration to be set</p>
-</dd></dl>
+<ul><li>
+<p><strong><a
+href="Audio.html#method-i-ogg_duration">#ogg_duration</a></strong>: the
+duration to be set</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="ogg_duration-3D-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 143</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 140</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ogg_duration=</span>(<span class="ruby-identifier">ogg_duration</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">ogg_duration</span> = <span class="ruby-identifier">ogg_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -792,15 +794,14 @@ used without risks.</p>
 converted (an animated gif).</p>
 
 <h2 id="method-i-placeholder_url-label-Args">Args</h2>
-<dl class="rdoc-list note-list"><dt><code>type</code>
-<dd>
-<p>The type of placeholder required: it can be</p>
+<ul><li>
+<p><strong>type</strong>: the type of placeholder required: it can be</p>
 <ul><li>
 <p><code>:thumb</code>: used in the expanded media element</p>
 </li><li>
 <p><code>:lesson_viewer</code>: used in the lesson viewer</p>
 </li></ul>
-</dd></dl>
+</li></ul>
 
 <h2 id="method-i-placeholder_url-label-Returns">Returns</h2>
 
@@ -817,7 +818,7 @@ converted (an animated gif).</p>
 
           
           <div class="method-source-code" id="placeholder_url-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 93</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">placeholder_url</span>(<span class="ruby-identifier">type</span>)
   <span class="ruby-node">&quot;/assets/placeholders/audio_#{type}.gif&quot;</span>
 <span class="ruby-keyword">end</span></pre>

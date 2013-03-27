@@ -50,8 +50,7 @@ class AdminSearchForm < Form
   #
   # == Args
   #
-  # +params+::
-  #   Url subparams, under the scope of the keyword 'search': the options are
+  # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
   #   * +title+: if present the methods filters by title
   #   * +subject_id+: if present the methods filters by subject
@@ -117,8 +116,7 @@ class AdminSearchForm < Form
   #
   # == Args
   #
-  # +params+::
-  #   Url subparams, under the scope of the keyword 'search': the options are
+  # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
   #   * +title+: if present the methods filters by title
   #   * +sti_type+: if present the methods filters by media type (audio, image or video)
@@ -181,8 +179,7 @@ class AdminSearchForm < Form
   #
   # == Args
   #
-  # +params+::
-  #   Url subparams, under the scope of the keyword 'search': the options are
+  # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
   #   * +user+: if present the keyword is matched against +name+, +surname+ and +email+ and the result is filtered
   #   * +school_level_id+: if present the methods filters by school_level
@@ -253,8 +250,7 @@ class AdminSearchForm < Form
   #
   # == Args
   #
-  # +params+::
-  #   Url subparams, under the scope of the keyword 'search': the options are
+  # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
   #   * +recency+: if present, it filters by +created_at+ greater than one year ago, one month ago, a week ago, or a day ago
   #   * +word+: it present, it matches the keyword with the tag content, and filters the result
@@ -289,8 +285,7 @@ class AdminSearchForm < Form
   #
   # == Args
   #
-  # +params+::
-  #   Url subparams, under the scope of the keyword 'search': the options are
+  # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
   #   * +user+: if present the keyword is matched against +name+, +surname+ and +email+ and the result is filtered
   #   * +school_level_id+: if present the methods filters by school_level
@@ -298,8 +293,7 @@ class AdminSearchForm < Form
   #   * +subject_id+: if present, the method filters by subject_id, using the relation UsersSubject
   #   * +location_id+: if present the methods filters by location of the user (see settings.yml for the possible names of this parameter)
   #   * +user_ids+: list of users added manually to the list of recipients
-  # +count_only+::
-  #   If set to true, the method returns only the number of users
+  # * *count_only*: if set to +true+, the method returns only the number of users
   #
   # == Returns
   #

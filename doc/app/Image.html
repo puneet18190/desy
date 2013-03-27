@@ -525,16 +525,13 @@ contains the specific methods needed for media elements of type
 size of the image</p>
 
 <h2 id="method-c-ratio_value-label-Arguments">Arguments</h2>
-<dl class="rdoc-list note-list"><dt><code>w</code>
-<dd>
-<p>Width of the image</p>
-</dd><dt><code>h</code>
-<dd>
-<p>Height of the image</p>
-</dd><dt><code>value</code>
-<dd>
-<p>Value to be scaled</p>
-</dd></dl>
+<ul><li>
+<p><strong>w</strong>: width of the image</p>
+</li><li>
+<p><strong>h</strong>: height of the image</p>
+</li><li>
+<p><strong>value</strong>: value to be scaled</p>
+</li></ul>
 
 <h2 id="method-c-ratio_value-label-Returns">Returns</h2>
 
@@ -543,7 +540,7 @@ size of the image</p>
 
           
           <div class="method-source-code" id="ratio_value-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 296</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 286</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ratio_value</span>(<span class="ruby-identifier">w</span>, <span class="ruby-identifier">h</span>, <span class="ruby-identifier">value</span>)
   <span class="ruby-identifier">to_ratio</span> = <span class="ruby-value">660</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-value">500</span>.<span class="ruby-identifier">to_f</span>
   <span class="ruby-identifier">origin_ratio</span> = <span class="ruby-identifier">w</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">h</span>.<span class="ruby-identifier">to_f</span>
@@ -591,9 +588,9 @@ size of the image</p>
 <p>Adds multiple texts in the temporary image.</p>
 
 <h2 id="method-i-add_text-label-Arguments">Arguments</h2>
-<dl class="rdoc-list note-list"><dt><code>texts</code>
-<dd>
-<p>An array of hashes, one for each text added. Each hash has the keys</p>
+<ul><li>
+<p><strong>texts</strong>: an array of hashes, one for each text added. Each
+hash has the keys</p>
 <ul><li>
 <p><code>font_size</code>: the font size</p>
 </li><li>
@@ -605,7 +602,7 @@ text</p>
 </li><li>
 <p><code>color</code>: hexagonal color of the text</p>
 </li></ul>
-</dd></dl>
+</li></ul>
 
 <h2 id="method-i-add_text-label-Returns">Returns</h2>
 
@@ -614,7 +611,7 @@ text</p>
 
           
           <div class="method-source-code" id="add_text-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 230</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 227</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_text</span>(<span class="ruby-identifier">texts</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-identifier">img</span> = <span class="ruby-constant">MiniMagick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_editing_image</span>
@@ -659,19 +656,18 @@ text</p>
 <p>Crops the temporary image</p>
 
 <h2 id="method-i-crop-label-Arguments">Arguments</h2>
-<dl class="rdoc-list note-list"><dt><code>x1</code>
-<dd>
-<p>Horizontal coordinate of the top left corner of the crop.</p>
-</dd><dt><code>y1</code>
-<dd>
-<p>Vertical coordinate of the top left corner of the crop.</p>
-</dd><dt><code>x2</code>
-<dd>
-<p>Horizontal coordinate of the bottom right corner of the crop.</p>
-</dd><dt><code>y2</code>
-<dd>
-<p>Vertical coordinate of the bottom right corner of the crop.</p>
-</dd></dl>
+<ul><li>
+<p><strong>x1</strong>: horizontal coordinate of the top left corner of the
+crop</p>
+</li><li>
+<p><strong>y1</strong>: vertical coordinate of the top left corner of the crop</p>
+</li><li>
+<p><strong>x2</strong>: horizontal coordinate of the bottom right corner of
+the crop</p>
+</li><li>
+<p><strong>y2</strong>: vertical coordinate of the bottom right corner of the
+crop</p>
+</li></ul>
 
 <h2 id="method-i-crop-label-Returns">Returns</h2>
 
@@ -680,7 +676,7 @@ text</p>
 
           
           <div class="method-source-code" id="crop-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 268</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 261</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">crop</span>(<span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-identifier">img</span> = <span class="ruby-constant">MiniMagick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_editing_image</span>
@@ -795,15 +791,14 @@ particular user (who is not necessarily the creator of the image, this is
 checked in the controller)</p>
 
 <h2 id="method-i-enter_edit_mode-label-Arguments">Arguments</h2>
-<dl class="rdoc-list note-list"><dt><code>user_id</code>
-<dd>
-<p>Id of the user who is editing the image.</p>
-</dd></dl>
+<ul><li>
+<p><strong>user_id</strong>: id of the user who is editing the image</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="enter_edit_mode-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 140</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 139</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">enter_edit_mode</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-ivar">@edit_mode</span> = <span class="ruby-identifier">user_id</span>
   <span class="ruby-identifier">ed_dir</span> = <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{@edit_mode}&quot;</span>
@@ -919,10 +914,9 @@ the access to specific methods if the image is not in editing.</p>
 particular user</p>
 
 <h2 id="method-i-leave_edit_mode-label-Arguments">Arguments</h2>
-<dl class="rdoc-list note-list"><dt><code>user_id</code>
-<dd>
-<p>Id of the user who is editing the image.</p>
-</dd></dl>
+<ul><li>
+<p><strong>user_id</strong>: id of the user who is editing the image</p>
+</li></ul>
 
 <h2 id="method-i-leave_edit_mode-label-Returns">Returns</h2>
 
@@ -931,7 +925,7 @@ particular user</p>
 
           
           <div class="method-source-code" id="leave_edit_mode-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 162</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 160</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">leave_edit_mode</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">ed_dir</span> = <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{user_id}&quot;</span>
   <span class="ruby-keyword">begin</span>
@@ -1012,7 +1006,7 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
 
           
           <div class="method-source-code" id="save_editing_prev-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 181</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 179</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">prev_path</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prev_editing_image</span>
@@ -1097,7 +1091,7 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
 
           
           <div class="method-source-code" id="undo-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 202</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 200</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">undo</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">prev_path</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prev_editing_image</span>
