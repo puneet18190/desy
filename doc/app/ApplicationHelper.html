@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>module ApplicationHelper - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/helpers/application_helper.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-action_html_class">#action_html_class</a>
+    
+    <li><a href="#method-i-controller_html_class">#controller_html_class</a>
+    
+    <li><a href="#method-i-is_horizontal-3F">#is_horizontal?</a>
+    
+    <li><a href="#method-i-jsd">#jsd</a>
+    
+    <li><a href="#method-i-manipulate_url">#manipulate_url</a>
+    
+    <li><a href="#method-i-remove_title_from_notification">#remove_title_from_notification</a>
+    
+    <li><a href="#method-i-resize_height">#resize_height</a>
+    
+    <li><a href="#method-i-resize_width">#resize_width</a>
+    
+    <li><a href="#method-i-seconds_to_time">#seconds_to_time</a>
+    
+    <li><a href="#method-i-select_your_subjects">#select_your_subjects</a>
+    
+    <li><a href="#method-i-standard_form_error_messages">#standard_form_error_messages</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Media.html">Media</a>
+  
+    <li><a href="./Media/Audio.html">Media::Audio</a>
+  
+    <li><a href="./Media/Audio/Editing.html">Media::Audio::Editing</a>
+  
+    <li><a href="./Media/Audio/Editing/Cmd.html">Media::Audio::Editing::Cmd</a>
+  
+    <li><a href="./Media/Audio/Editing/Cmd/Avconv.html">Media::Audio::Editing::Cmd::Avconv</a>
+  
+    <li><a href="./Media/Audio/Editing/Cmd/Concat.html">Media::Audio::Editing::Cmd::Concat</a>
+  
+    <li><a href="./Media/Audio/Editing/Cmd/Conversion.html">Media::Audio::Editing::Cmd::Conversion</a>
+  
+    <li><a href="./Media/Audio/Editing/Cmd/Crop.html">Media::Audio::Editing::Cmd::Crop</a>
+  
+    <li><a href="./Media/Audio/Editing/Cmd/Sox.html">Media::Audio::Editing::Cmd::Sox</a>
+  
+    <li><a href="./Media/Audio/Editing/Composer.html">Media::Audio::Editing::Composer</a>
+  
+    <li><a href="./Media/Audio/Editing/Composer/Job.html">Media::Audio::Editing::Composer::Job</a>
+  
+    <li><a href="./Media/Audio/Editing/Concat.html">Media::Audio::Editing::Concat</a>
+  
+    <li><a href="./Media/Audio/Editing/Conversion.html">Media::Audio::Editing::Conversion</a>
+  
+    <li><a href="./Media/Audio/Editing/Conversion/Job.html">Media::Audio::Editing::Conversion::Job</a>
+  
+    <li><a href="./Media/Audio/Editing/Crop.html">Media::Audio::Editing::Crop</a>
+  
+    <li><a href="./Media/Audio/Editing/Parameters.html">Media::Audio::Editing::Parameters</a>
+  
+    <li><a href="./Media/Audio/Uploader.html">Media::Audio::Uploader</a>
+  
+    <li><a href="./Media/Audio/Uploader/Validation.html">Media::Audio::Uploader::Validation</a>
+  
+    <li><a href="./Media/Cmd.html">Media::Cmd</a>
+  
+    <li><a href="./Media/Cmd/Avconv.html">Media::Cmd::Avconv</a>
+  
+    <li><a href="./Media/Cmd/Avprobe.html">Media::Cmd::Avprobe</a>
+  
+    <li><a href="./Media/Error.html">Media::Error</a>
+  
+    <li><a href="./Media/Image.html">Media::Image</a>
+  
+    <li><a href="./Media/Image/Editing.html">Media::Image::Editing</a>
+  
+    <li><a href="./Media/Image/Editing/AddTextToImage.html">Media::Image::Editing::AddTextToImage</a>
+  
+    <li><a href="./Media/Image/Editing/Cmd.html">Media::Image::Editing::Cmd</a>
+  
+    <li><a href="./Media/Image/Editing/Cmd/TextToImage.html">Media::Image::Editing::Cmd::TextToImage</a>
+  
+    <li><a href="./Media/Image/Editing/Crop.html">Media::Image::Editing::Crop</a>
+  
+    <li><a href="./Media/Image/Editing/ResizeToFill.html">Media::Image::Editing::ResizeToFill</a>
+  
+    <li><a href="./Media/InTmpDir.html">Media::InTmpDir</a>
+  
+    <li><a href="./Media/Info.html">Media::Info</a>
+  
+    <li><a href="./Media/Logging.html">Media::Logging</a>
+  
+    <li><a href="./Media/Logging/ClassMethods.html">Media::Logging::ClassMethods</a>
+  
+    <li><a href="./Media/Logging/InstanceMethods.html">Media::Logging::InstanceMethods</a>
+  
+    <li><a href="./Media/Shared.html">Media::Shared</a>
+  
+    <li><a href="./Media/Shared/InstanceMethods.html">Media::Shared::InstanceMethods</a>
+  
+    <li><a href="./Media/SimilarDurations.html">Media::SimilarDurations</a>
+  
+    <li><a href="./Media/Thread.html">Media::Thread</a>
+  
+    <li><a href="./Media/Uploader.html">Media::Uploader</a>
+  
+    <li><a href="./Media/Video.html">Media::Video</a>
+  
+    <li><a href="./Media/Video/Editing.html">Media::Video::Editing</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd.html">Media::Video::Editing::Cmd</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/AudioStreamToFile.html">Media::Video::Editing::Cmd::AudioStreamToFile</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Avconv.html">Media::Video::Editing::Cmd::Avconv</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Concat.html">Media::Video::Editing::Cmd::Concat</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Concat/Mp4.html">Media::Video::Editing::Cmd::Concat::Mp4</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Concat/Webm.html">Media::Video::Editing::Cmd::Concat::Webm</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Conversion.html">Media::Video::Editing::Cmd::Conversion</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Crop.html">Media::Video::Editing::Cmd::Crop</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/ExtractFrame.html">Media::Video::Editing::Cmd::ExtractFrame</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/GenerateTransitionFrames.html">Media::Video::Editing::Cmd::GenerateTransitionFrames</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/ImageToVideo.html">Media::Video::Editing::Cmd::ImageToVideo</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/MergeWebmVideoStreams.html">Media::Video::Editing::Cmd::MergeWebmVideoStreams</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Mp3ToWav.html">Media::Video::Editing::Cmd::Mp3ToWav</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/ReplaceAudio.html">Media::Video::Editing::Cmd::ReplaceAudio</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/Transition.html">Media::Video::Editing::Cmd::Transition</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/TrimAudioFile.html">Media::Video::Editing::Cmd::TrimAudioFile</a>
+  
+    <li><a href="./Media/Video/Editing/Cmd/VideoStreamToFile.html">Media::Video::Editing::Cmd::VideoStreamToFile</a>
+  
+    <li><a href="./Media/Video/Editing/Composer.html">Media::Video::Editing::Composer</a>
+  
+    <li><a href="./Media/Video/Editing/Composer/Job.html">Media::Video::Editing::Composer::Job</a>
+  
+    <li><a href="./Media/Video/Editing/Concat.html">Media::Video::Editing::Concat</a>
+  
+    <li><a href="./Media/Video/Editing/Conversion.html">Media::Video::Editing::Conversion</a>
+  
+    <li><a href="./Media/Video/Editing/Conversion/Job.html">Media::Video::Editing::Conversion::Job</a>
+  
+    <li><a href="./Media/Video/Editing/Crop.html">Media::Video::Editing::Crop</a>
+  
+    <li><a href="./Media/Video/Editing/ImageToVideo.html">Media::Video::Editing::ImageToVideo</a>
+  
+    <li><a href="./Media/Video/Editing/Parameters.html">Media::Video::Editing::Parameters</a>
+  
+    <li><a href="./Media/Video/Editing/ReplaceAudio.html">Media::Video::Editing::ReplaceAudio</a>
+  
+    <li><a href="./Media/Video/Editing/TextToVideo.html">Media::Video::Editing::TextToVideo</a>
+  
+    <li><a href="./Media/Video/Editing/Transition.html">Media::Video::Editing::Transition</a>
+  
+    <li><a href="./Media/Video/Uploader.html">Media::Video::Uploader</a>
+  
+    <li><a href="./Media/Video/Uploader/Validation.html">Media::Video::Uploader::Validation</a>
+  
+    <li><a href="./Admin.html">Admin</a>
+  
+    <li><a href="./Admin/DashboardController.html">Admin::DashboardController</a>
+  
+    <li><a href="./Admin/LessonsController.html">Admin::LessonsController</a>
+  
+    <li><a href="./Admin/MediaElementsController.html">Admin::MediaElementsController</a>
+  
+    <li><a href="./Admin/MessagesController.html">Admin::MessagesController</a>
+  
+    <li><a href="./Admin/ReportsController.html">Admin::ReportsController</a>
+  
+    <li><a href="./Admin/SettingsController.html">Admin::SettingsController</a>
+  
+    <li><a href="./Admin/UsersController.html">Admin::UsersController</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./User/Authentication.html">User::Authentication</a>
+  
+    <li><a href="./User/Authentication/ClassMethods.html">User::Authentication::ClassMethods</a>
+  
+    <li><a href="./User/Authentication/InstanceMethods.html">User::Authentication::InstanceMethods</a>
+  
+    <li><a href="./User/Confirmation.html">User::Confirmation</a>
+  
+    <li><a href="./User/Confirmation/ClassMethods.html">User::Confirmation::ClassMethods</a>
+  
+    <li><a href="./User/Confirmation/InstanceMethods.html">User::Confirmation::InstanceMethods</a>
+  
+    <li><a href="./Dumpable.html">Dumpable</a>
+  
+    <li><a href="./Dumpable/NoMethodError.html">Dumpable::NoMethodError</a>
+  
+    <li><a href="./EnvRelativePath.html">EnvRelativePath</a>
+  
+    <li><a href="./EnvRelativePath/ClassMethods.html">EnvRelativePath::ClassMethods</a>
+  
+    <li><a href="./FilenameToken.html">FilenameToken</a>
+  
+    <li><a href="./FilenameToken/InstanceMethods.html">FilenameToken::InstanceMethods</a>
+  
+    <li><a href="./TimeConvert.html">TimeConvert</a>
+  
+    <li><a href="./TimeConvert/TimeConverter.html">TimeConvert::TimeConverter</a>
+  
+    <li><a href="./Users.html">Users</a>
+  
+    <li><a href="./Users/SessionsController.html">Users::SessionsController</a>
+  
+    <li><a href="./Valid.html">Valid</a>
+  
+    <li><a href="./Valid/Validness.html">Valid::Validness</a>
+  
+    <li><a href="./AdminController.html">AdminController</a>
+  
+    <li><a href="./AdminHelper.html">AdminHelper</a>
+  
+    <li><a href="./AdminSearchForm.html">AdminSearchForm</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Audio.html">Audio</a>
+  
+    <li><a href="./AudioEditorController.html">AudioEditorController</a>
+  
+    <li><a href="./Bookmark.html">Bookmark</a>
+  
+    <li><a href="./ButtonDestinations.html">ButtonDestinations</a>
+  
+    <li><a href="./Buttons.html">Buttons</a>
+  
+    <li><a href="./ControllerInfo.html">ControllerInfo</a>
+  
+    <li><a href="./DashboardController.html">DashboardController</a>
+  
+    <li><a href="./EnhancedThread.html">EnhancedThread</a>
+  
+    <li><a href="./ErrorsLogger.html">ErrorsLogger</a>
+  
+    <li><a href="./ExceptionNotifierJob.html">ExceptionNotifierJob</a>
+  
+    <li><a href="./Filters.html">Filters</a>
+  
+    <li><a href="./Form.html">Form</a>
+  
+    <li><a href="./GalleriesController.html">GalleriesController</a>
+  
+    <li><a href="./Image.html">Image</a>
+  
+    <li><a href="./ImageEditorController.html">ImageEditorController</a>
+  
+    <li><a href="./ImageUploader.html">ImageUploader</a>
+  
+    <li><a href="./Lesson.html">Lesson</a>
+  
+    <li><a href="./LessonEditorController.html">LessonEditorController</a>
+  
+    <li><a href="./LessonViewerController.html">LessonViewerController</a>
+  
+    <li><a href="./LessonsController.html">LessonsController</a>
+  
+    <li><a href="./LessonsMediaElementsShared.html">LessonsMediaElementsShared</a>
+  
+    <li><a href="./Like.html">Like</a>
+  
+    <li><a href="./Location.html">Location</a>
+  
+    <li><a href="./MailerHelper.html">MailerHelper</a>
+  
+    <li><a href="./MailingListAddress.html">MailingListAddress</a>
+  
+    <li><a href="./MailingListGroup.html">MailingListGroup</a>
+  
+    <li><a href="./MailingListsController.html">MailingListsController</a>
+  
+    <li><a href="./MediaElement.html">MediaElement</a>
+  
+    <li><a href="./MediaElementsController.html">MediaElementsController</a>
+  
+    <li><a href="./MediaElementsSlide.html">MediaElementsSlide</a>
+  
+    <li><a href="./Notification.html">Notification</a>
+  
+    <li><a href="./NotificationsController.html">NotificationsController</a>
+  
+    <li><a href="./NotificationsJob.html">NotificationsJob</a>
+  
+    <li><a href="./PreloginController.html">PreloginController</a>
+  
+    <li><a href="./Report.html">Report</a>
+  
+    <li><a href="./ReportsController.html">ReportsController</a>
+  
+    <li><a href="./SchoolLevel.html">SchoolLevel</a>
+  
+    <li><a href="./SearchController.html">SearchController</a>
+  
+    <li><a href="./SearchOrders.html">SearchOrders</a>
+  
+    <li><a href="./Slide.html">Slide</a>
+  
+    <li><a href="./Statistics.html">Statistics</a>
+  
+    <li><a href="./Statuses.html">Statuses</a>
+  
+    <li><a href="./Subject.html">Subject</a>
+  
+    <li><a href="./Tag.html">Tag</a>
+  
+    <li><a href="./Tagging.html">Tagging</a>
+  
+    <li><a href="./TagsController.html">TagsController</a>
+  
+    <li><a href="./UserMailer.html">UserMailer</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersSubject.html">UsersSubject</a>
+  
+    <li><a href="./Video.html">Video</a>
+  
+    <li><a href="./VideoEditorController.html">VideoEditorController</a>
+  
+    <li><a href="./VirtualClassroomController.html">VirtualClassroomController</a>
+  
+    <li><a href="./VirtualClassroomLesson.html">VirtualClassroomLesson</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module ApplicationHelper</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-action_html_class" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">action_html_class</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="action_html_class-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">action_html_class</span>
+  <span class="ruby-node">&quot;#{h action_name}-action&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- action_html_class-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- action_html_class-method -->
+
+    
+      <div id="method-i-controller_html_class" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">controller_html_class</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="controller_html_class-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">controller_html_class</span>
+  <span class="ruby-node">&quot;#{h controller_path}-controller&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- controller_html_class-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- controller_html_class-method -->
+
+    
+      <div id="method-i-is_horizontal-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_horizontal?</span><span
+            class="method-args">(width, height, kind)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_horizontal-3F-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_horizontal?</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">kind</span>)
+  <span class="ruby-comment"># width.to_f / height.to_f : ratio</span>
+  ( <span class="ruby-identifier">width</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">height</span>.<span class="ruby-identifier">to_f</span> ) <span class="ruby-operator">&gt;</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;cover&#39;</span>                                      <span class="ruby-keyword">then</span> <span class="ruby-value">1.6</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;image1&#39;</span>                                     <span class="ruby-keyword">then</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;image2&#39;</span>                                     <span class="ruby-keyword">then</span> <span class="ruby-value">0.75</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;image3&#39;</span>, <span class="ruby-string">&#39;image4&#39;</span>                           <span class="ruby-keyword">then</span> <span class="ruby-value">1.55</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;video_component&#39;</span>, <span class="ruby-string">&#39;video_component_preview&#39;</span> <span class="ruby-keyword">then</span> <span class="ruby-value">1.77</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_horizontal-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_horizontal-3F-method -->
+
+    
+      <div id="method-i-jsd" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">jsd</span><span
+            class="method-args">(object)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="jsd-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">jsd</span>(<span class="ruby-identifier">object</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- jsd-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- jsd-method -->
+
+    
+      <div id="method-i-manipulate_url" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">manipulate_url</span><span
+            class="method-args">(options = {})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="manipulate_url-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">manipulate_url</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">param_to_remove</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:remove_query_param</span>]
+  <span class="ruby-identifier">page</span>            = <span class="ruby-identifier">options</span>[<span class="ruby-value">:page</span>]
+  <span class="ruby-identifier">escape</span>          = <span class="ruby-identifier">options</span>[<span class="ruby-value">:escape</span>]
+  <span class="ruby-identifier">path</span>            = <span class="ruby-identifier">options</span>[<span class="ruby-value">:path</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">path</span>
+
+  <span class="ruby-identifier">query_params</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">query_parameters</span>.<span class="ruby-identifier">deep_dup</span>
+
+  <span class="ruby-identifier">query_params</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">param_to_remove</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">param_to_remove</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">query_params</span>.<span class="ruby-identifier">present?</span>
+
+  <span class="ruby-identifier">query_params</span>[<span class="ruby-value">:page</span>] = <span class="ruby-identifier">page</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">page</span>
+
+  <span class="ruby-identifier">query_string</span> = <span class="ruby-identifier">get_recursive_array_from_params</span>(<span class="ruby-identifier">query_params</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;&amp;&#39;</span>)
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">path</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">query_string</span>.<span class="ruby-identifier">blank?</span>
+
+  <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#{path}?#{query_string}&quot;</span>
+  
+  <span class="ruby-identifier">escape</span> <span class="ruby-operator">?</span> <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">url</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">url</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- manipulate_url-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- manipulate_url-method -->
+
+    
+      <div id="method-i-remove_title_from_notification" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_title_from_notification</span><span
+            class="method-args">(notification)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="remove_title_from_notification-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_title_from_notification</span>(<span class="ruby-identifier">notification</span>)
+   <span class="ruby-identifier">x</span> = (<span class="ruby-identifier">notification</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/&lt;\/div&gt;/</span>)
+   <span class="ruby-identifier">x</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">notification</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">notification</span>[<span class="ruby-identifier">x</span> <span class="ruby-operator">+</span> <span class="ruby-value">6</span>, <span class="ruby-identifier">notification</span>.<span class="ruby-identifier">length</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- remove_title_from_notification-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- remove_title_from_notification-method -->
+
+    
+      <div id="method-i-resize_height" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">resize_height</span><span
+            class="method-args">(width, height, kind)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="resize_height-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">resize_height</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">kind</span>)
+  <span class="ruby-identifier">height</span> *
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;cover&#39;</span>                      <span class="ruby-keyword">then</span> <span class="ruby-value">900</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;image1&#39;</span>, <span class="ruby-string">&#39;image2&#39;</span>, <span class="ruby-string">&#39;image4&#39;</span> <span class="ruby-keyword">then</span> <span class="ruby-value">420</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;image3&#39;</span>                     <span class="ruby-keyword">then</span> <span class="ruby-value">860</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;video_component&#39;</span>            <span class="ruby-keyword">then</span> <span class="ruby-value">156</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;video_component_preview&#39;</span>    <span class="ruby-keyword">then</span> <span class="ruby-value">640</span>
+    <span class="ruby-keyword">end</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">width</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- resize_height-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- resize_height-method -->
+
+    
+      <div id="method-i-resize_width" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">resize_width</span><span
+            class="method-args">(width, height, kind)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="resize_width-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">resize_width</span>(<span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">kind</span>)
+  <span class="ruby-identifier">width</span> *
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;cover&#39;</span>                   <span class="ruby-keyword">then</span> <span class="ruby-value">560</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;image1&#39;</span>                  <span class="ruby-keyword">then</span> <span class="ruby-value">420</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;image2&#39;</span>, <span class="ruby-string">&#39;image3&#39;</span>        <span class="ruby-keyword">then</span> <span class="ruby-value">550</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;image4&#39;</span>                  <span class="ruby-keyword">then</span> <span class="ruby-value">265</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;video_component&#39;</span>         <span class="ruby-keyword">then</span> <span class="ruby-value">88</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;video_component_preview&#39;</span> <span class="ruby-keyword">then</span> <span class="ruby-value">360</span>
+    <span class="ruby-keyword">end</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">height</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- resize_width-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- resize_width-method -->
+
+    
+      <div id="method-i-seconds_to_time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">seconds_to_time</span><span
+            class="method-args">(seconds)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="seconds_to_time-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">seconds_to_time</span>(<span class="ruby-identifier">seconds</span>)
+  <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">seconds</span>).<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-identifier">seconds</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">3600</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;%T&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;%M:%S&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- seconds_to_time-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- seconds_to_time-method -->
+
+    
+      <div id="method-i-select_your_subjects" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">select_your_subjects</span><span
+            class="method-args">(subjects)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="select_your_subjects-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">select_your_subjects</span>(<span class="ruby-identifier">subjects</span>)
+  <span class="ruby-node">&quot;&lt;option value=\&quot;\&quot;&gt;#{t(&#39;forms.placeholders.subject_id&#39;)}&lt;/option&gt;#{options_from_collection_for_select(subjects, &#39;id&#39;, &#39;description&#39;)}&quot;</span>.<span class="ruby-identifier">html_safe</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- select_your_subjects-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- select_your_subjects-method -->
+
+    
+      <div id="method-i-standard_form_error_messages" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">standard_form_error_messages</span><span
+            class="method-args">(errors, color='white')</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="standard_form_error_messages-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">standard_form_error_messages</span>(<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">color</span>=<span class="ruby-string">&#39;white&#39;</span>)
+  <span class="ruby-identifier">msg</span> = <span class="ruby-node">&quot;&lt;img src=&#39;/assets/puntoesclamativo.png&#39; style=&#39;margin: 0 5px -3px 0&#39; /&gt;&lt;span class=\&quot;lower\&quot; style=\&quot;color:#{color}\&quot;&gt;&quot;</span>
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{val}; &quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;#{msg[0..-3]}&lt;/span&gt;&quot;</span>.<span class="ruby-identifier">html_safe</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- standard_form_error_messages-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- standard_form_error_messages-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
