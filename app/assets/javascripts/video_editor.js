@@ -1,19 +1,19 @@
 /**
-Provides the base Widget class...
-
-@module VideoEditor
-**/
+* Provides the base Widget class...
+* 
+* @module VideoEditor
+*/
 
 /**
-Video Editor initialization
-
-@method initializeVideoEditor
-@for initializeVideoEditor
-@param {String} name An 
-  Attribute name or 
-  object property path.
-@return {String} Unique clientId.
-**/
+* Video Editor initialization
+* 
+* @method initializeVideoEditor
+* @for initializeVideoEditor
+* @param {String} name An 
+*   Attribute name or 
+*   object property path.
+* @return {String} Unique clientId.
+*/
 function initializeVideoEditor() {
   $('#media_elements_list_in_video_editor').jScrollPane({
     autoReinitialise: true

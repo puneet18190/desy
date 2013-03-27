@@ -1,3 +1,16 @@
+/**
+* Shows a loading image while page is loading, 
+* it handles ajax calls too.
+* 
+* @module AjaxLoader
+*/
+
+/**
+* Bind Loader, show loader on ajaxStart and hide loader on ajaxStop.
+* 
+* @method bindLoader
+* @for bindLoader
+*/
 function bindLoader() {
   showLoader();
   var oldLoad = window.onload;
@@ -21,10 +34,23 @@ function bindLoader() {
   });
 }
 
+/**
+* Unbind Loader, unbind loader for ajaxStart and ajaxStop.
+* 
+* @method unbindLoader
+* @for unbindLoader
+*/
 function unbindLoader() {
   $('#loading').unbind('ajaxStart ajaxStop');
 }
 
+/**
+* Show Loader, force loader to show.
+* comes with timeout (default=5000) to force loader to hide [hideLoader](../classes/hideLoader.html#method_hideLoader)
+* 
+* @method showLoader
+* @for showLoader
+*/
 function showLoader() {
   var loader = $('#loading .containerLoading');
   loader.css('top', (($(window).height() / 2) - 100) + 'px');
@@ -33,6 +59,12 @@ function showLoader() {
   setTimeout('hideLoader()', 5000);
 }
 
+/**
+* Hide Loader, force loader to hide.
+* 
+* @method hideLoader
+* @for hideLoader
+*/
 function hideLoader() {
   $('#loading').hide();
 }
