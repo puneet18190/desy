@@ -483,62 +483,97 @@
 <p>ActiveRecord class that corresponds to the table <code>lessons</code>.</p>
 
 <h2 id="label-Fields">Fields</h2>
-
-<p><strong>user_id</strong>: id of the creator of the lesson
-<strong>school_level_id</strong>: id of the school level of the lesson
-(which corresponds to the school level of its creator)
-<strong>subject_id</strong>: id of the subject of the lesson
-<strong>title</strong>: title <strong>description</strong>: description
-<strong>is_public</strong>: <code>true</code> if the lesson is visible by
-other users <strong>parent_id</strong>: reference to another lesson, from
-which the current lesson has been copied. The value is <code>nil</code> if
-the lesson hasn&#39;t been copied <strong>copied_not_modified</strong>:
-boolean, set to <code>true</code> only for lessons just copied and not
-modified yet <strong>token</strong>: token used in the public url of the
-lesson. Without this token, if the lesson is private, the only user who can
-see it is the creator <strong>metadata</strong>: contains two keys:</p>
-
-<pre>* +available_video+: true if the lesson doesn&#39;t contain any video in conversion
-* +available_audio+: true if the lesson doesn&#39;t contain any audio in conversion</pre>
-
+<ul><li>
+<p><strong>user_id</strong>: id of the creator of the lesson</p>
+</li><li>
+<p><strong>school_level_id</strong>: id of the school level of the lesson
+(which corresponds to the school level of its creator)</p>
+</li><li>
+<p><strong>subject_id</strong>: id of the subject of the lesson</p>
+</li><li>
+<p><strong>title</strong>: title</p>
+</li><li>
+<p><strong>description</strong>: description</p>
+</li><li>
+<p><strong>is_public</strong>: <code>true</code> if the lesson is visible by
+other users</p>
+</li><li>
+<p><strong>parent_id</strong>: reference to another lesson, from which the
+current lesson has been copied. The value is <code>nil</code> if the lesson
+hasn&#39;t been copied</p>
+</li><li>
+<p><strong>copied_not_modified</strong>: boolean, set to <code>true</code>
+only for lessons just copied and not modified yet</p>
+</li><li>
+<p><strong>token</strong>: token used in the public url of the lesson. Without
+this token, if the lesson is private, the only user who can see it is the
+creator</p>
+</li><li>
+<p><strong>metadata</strong>: contains two keys:</p>
+</li><li><ul><li>
+<p><code>available_video</code>: true if the lesson doesn&#39;t contain any
+video in conversion</p>
+</li></ul>
+</li><li><ul><li>
+<p><code>available_audio</code>: true if the lesson doesn&#39;t contain any
+audio in conversion</p>
+</li></ul>
+</li><li>
 <p><strong>notified</strong>: boolean, set to false only if the lesson has
 been modified and its modification not notified to users who have a link of
 the lesson</p>
+</li></ul>
 
 <h2 id="label-References">References</h2>
-
+<ul><li>
 <p><strong>user</strong>: reference to the <a href="User.html">User</a> who
-created the lesson (<strong>belongs_to</strong>). <strong>subject</strong>:
-<a href="Subject.html">Subject</a> associated to the
-lesson(<strong>belongs_to</strong>). <strong>school_level</strong>: <a
-href="SchoolLevel.html">SchoolLevel</a> associated to the creator of the
-lesson and for transitivity to the lesson (<strong>belongs_to</strong>).
-<strong>parent</strong>: original lesson from which the lesson was copied
-(<strong>belongs_to</strong>). <strong>copies</strong>: lessons copied by
-this lesson (<strong>has_many</strong>). <strong>bookmarks</strong>: links
-created by other users to this lesson (see <a
-href="Bookmark.html">Bookmark</a>) (<strong>has_many</strong>).
-<strong>likes</strong>: likes on the lesson (see <a
-href="Like.html">Like</a>) (<strong>has_many</strong>).
-<strong>reports</strong>: reports on the lesson (see <a
-href="Report.html">Report</a>) (<strong>has_many</strong>).
-<strong>taggings</strong>: tags associated to the lesson (see <a
+created the lesson (<strong>belongs_to</strong>).</p>
+</li><li>
+<p><strong>subject</strong>: <a href="Subject.html">Subject</a> associated to
+the lesson(<strong>belongs_to</strong>).</p>
+</li><li>
+<p><strong>school_level</strong>: <a href="SchoolLevel.html">SchoolLevel</a>
+associated to the creator of the lesson and for transitivity to the lesson
+(<strong>belongs_to</strong>).</p>
+</li><li>
+<p><strong>parent</strong>: original lesson from which the lesson was copied
+(<strong>belongs_to</strong>).</p>
+</li><li>
+<p><strong>copies</strong>: lessons copied by this lesson
+(<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>bookmarks</strong>: links created by other users to this lesson
+(see <a href="Bookmark.html">Bookmark</a>) (<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>likes</strong>: likes on the lesson (see <a
+href="Like.html">Like</a>) (<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>reports</strong>: reports on the lesson (see <a
+href="Report.html">Report</a>) (<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>taggings</strong>: tags associated to the lesson (see <a
 href="Tagging.html">Tagging</a>, <a href="Tag.html">Tag</a>)
-(<strong>has_many</strong>). <strong>slides</strong>: slides composing the
-lesson (see <a href="Slide.html">Slide</a>) (<strong>has_many</strong>).
-<strong>media_elements_slides</strong>: list of instances of media elements
+(<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>slides</strong>: slides composing the lesson (see <a
+href="Slide.html">Slide</a>) (<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>media_elements_slides</strong>: list of instances of media elements
 inside slides of this lesson (see <a
 href="MediaElementsSlide.html">MediaElementsSlide</a>) (through the class
-<a href="Slide.html">Slide</a>) (<strong>has_many</strong>).
-<strong>media_elements</strong>: list of media elements attached to slides
+<a href="Slide.html">Slide</a>) (<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>media_elements</strong>: list of media elements attached to slides
 of this lesson (see <a href="MediaElement.html">MediaElement</a>) (through
 the class <a href="Slide.html">Slide</a> and <a
 href="MediaElementsSlide.html">MediaElementsSlide</a>)
-(<strong>has_many</strong>). <strong>virtual_classroom_lessons</strong>:
-copies of this lesson into the Virtual Classroom of the creator or other
-users (see <a
+(<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>virtual_classroom_lessons</strong>: copies of this lesson into the
+Virtual Classroom of the creator or other users (see <a
 href="VirtualClassroomLesson.html">VirtualClassroomLesson</a>)
 (<strong>has_many</strong>).</p>
+</li></ul>
 
 <h2 id="label-Validations">Validations</h2>
 <ul><li>
