@@ -1,3 +1,16 @@
+/**
+* Dashboard is the welcome page of DESY where you find shared lessons and elements. 
+* This handles elements interaction events.
+* 
+* @module Dashboard
+*/
+
+/**
+* Reload Dashboard content on page change, using bottom pagination.
+* 
+* @method reloadDashboardPages
+* @for reloadDashboardPages
+*/
 function reloadDashboardPages(lessons_page, media_elements_page) {
   $('#suggested_media_elements_1').hide();
   $('#suggested_media_elements_' + media_elements_page).show();
@@ -5,6 +18,14 @@ function reloadDashboardPages(lessons_page, media_elements_page) {
   $('#suggested_lessons_' + lessons_page).show();
 }
 
+/**
+* Switch to suggested elements page in dashboard.
+* 
+* Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
+*
+* @method switchToSuggestedMediaElements
+* @for switchToSuggestedMediaElements
+*/
 function switchToSuggestedMediaElements() {
   $('#lessons_in_dashboard').hide('fade', {}, 500, function() {
     $(this).hide();
@@ -18,6 +39,14 @@ function switchToSuggestedMediaElements() {
   });
 }
 
+/**
+* Switch to suggested lessons page in dashboard.
+* 
+* Uses: [reloadMediaLessonsDashboardPagination](../classes/reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)
+*
+* @method switchToSuggestedLessons
+* @for switchToSuggestedLessons
+*/
 function switchToSuggestedLessons() {
   $('#media_elements_in_dashboard').hide('fade', {}, 500, function() {
     $(this).hide();
@@ -31,6 +60,15 @@ function switchToSuggestedLessons() {
   });
 }
 
+/**
+* Pagination html generator
+* 
+* @method getHtmlPagination
+* @for getHtmlPagination
+* @param pos {Number} current position
+* @param pages_amount {Number} number of pages
+* @return {Object} pagination html elements  
+*/
 function getHtmlPagination(pos, pages_amount) {
   var $prev_attrs = {};
   var $next_attrs = {};
@@ -60,6 +98,16 @@ function getHtmlPagination(pos, pages_amount) {
   return $pagination;
 }
 
+/**
+* Realod pagination html for media elements.
+* 
+* Uses: [changePageDashboardMediaElements](../classes/changePageDashboardMediaElements.html#method_changePageDashboardMediaElements)
+*
+* @method reloadMediaElementsDashboardPagination
+* @for reloadMediaElementsDashboardPagination
+* @param pos {Number} pagination position
+* @param poges_amount {Number} pagination pages amount
+*/
 function reloadMediaElementsDashboardPagination(pos, pages_amount) {
   if(pages_amount == 0) {
     $('#dashboard_pagination').html('');
@@ -83,6 +131,16 @@ function reloadMediaElementsDashboardPagination(pos, pages_amount) {
   });
 }
 
+/**
+* Realod pagination html for lessons.
+* 
+* Uses: [changePageDashboardLessons](../classes/changePageDashboardLessons.html#method_changePageDashboardLessons)
+*
+* @method reloadLessonsDashboardPagination
+* @for reloadLessonsDashboardPagination
+* @param pos {Number} pagination position
+* @param poges_amount {Number} pagination pages amount
+*/
 function reloadLessonsDashboardPagination(pos, pages_amount) {
   if(pages_amount == 0) {
     $('#dashboard_pagination').empty().data({ 'lessons-tot': 0, 'lessons-page': 0 });
@@ -104,6 +162,17 @@ function reloadLessonsDashboardPagination(pos, pages_amount) {
   });
 }
 
+/**
+* Change media elements page in dashboard.
+* 
+* Uses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
+*
+* @method changePageDashboardMediaElements
+* @for changePageDashboardMediaElements
+* @param old_pos {Number} pagination old position
+* @param pos {Number} pagination position
+* @param poges_amount {Number} pagination pages amount
+*/
 function changePageDashboardMediaElements(old_pos, pos, pages_amount) {
   $('#suggested_media_elements_' + (old_pos)).hide('fade', {}, 500, function() {
     $(this).hide();
@@ -112,6 +181,17 @@ function changePageDashboardMediaElements(old_pos, pos, pages_amount) {
   });
 }
 
+/**
+* Change lessons page in dashboard.
+* 
+* Uses: [reloadLessonsDashboardPagination](../classes/reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination)
+*
+* @method changePageDashboardLessons
+* @for changePageDashboardLessons
+* @param old_pos {Number} pagination old position
+* @param pos {Number} pagination position
+* @param poges_amount {Number} pagination pages amount
+*/
 function changePageDashboardLessons(old_pos, pos, pages_amount) {
   $('#suggested_lessons_' + (old_pos)).hide('fade', {}, 500, function() {
     $(this).hide();

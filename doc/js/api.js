@@ -2,9 +2,12 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "bindLoader",
+        "changePageDashboardLessons",
+        "changePageDashboardMediaElements",
         "closeGenericVideoComponentCutter",
         "enlightTextarea",
         "getDragPosition",
+        "getHtmlPagination",
         "getRelativePositionInImageEditor",
         "hideEverythingOutCurrentSlide",
         "hideLoader",
@@ -19,6 +22,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "makeDraggable",
         "offlightTextarea",
         "reInitializeSlidePositionsInLessonEditor",
+        "reloadDashboardPages",
+        "reloadLessonsDashboardPagination",
+        "reloadMediaElementsDashboardPagination",
         "removeGalleryInLessonEditor",
         "resetImageEditorCrop",
         "resetImageEditorOperationsChoice",
@@ -35,6 +41,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "slideTo",
         "stopMediaInCurrentSlide",
         "submitCurrentSlideForm",
+        "switchToSuggestedLessons",
+        "switchToSuggestedMediaElements",
         "textAreaImageEditorContent",
         "tinyMceCallbacks",
         "tinyMceKeyDownCallbacks",
@@ -42,6 +50,7 @@ YUI.add("yuidoc-meta", function(Y) {
     ],
     "modules": [
         "AjaxLoader",
+        "Dashboard",
         "ImageEditor",
         "LessonEditor",
         "VideoEditor"
@@ -51,6 +60,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "AjaxLoader",
             "name": "AjaxLoader",
             "description": "Shows a loading image while page is loading, \nit handles ajax calls too."
+        },
+        {
+            "displayName": "Dashboard",
+            "name": "Dashboard",
+            "description": "Dashboard is the welcome page of DESY where you find shared lessons and elements. \nThis handles elements interaction events."
         },
         {
             "displayName": "ImageEditor",
