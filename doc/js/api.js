@@ -1,6 +1,7 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "addEmailToVirtualClassroomSendLessonLinkSelector",
         "bindLoader",
         "changePageDashboardLessons",
         "changePageDashboardMediaElements",
@@ -14,6 +15,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "hideNewSlideChoice",
         "initLessonEditorPositions",
         "initTinymce",
+        "initializeNotAvailableLessonsToLoadQuick",
         "initializeSortableNavs",
         "initializeVideoEditor",
         "isHorizontalMask",
@@ -33,6 +35,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "resizeWidth",
         "saveCurrentSlide",
         "scrollPaneUpdate",
+        "secondsToDateString",
         "showEverythingOutCurrentSlide",
         "showGalleryInLessonEditor",
         "showLoader",
@@ -53,7 +56,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "Dashboard",
         "ImageEditor",
         "LessonEditor",
-        "VideoEditor"
+        "Times",
+        "VideoEditor",
+        "VirtualClassroom"
     ],
     "allModules": [
         {
@@ -77,9 +82,19 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Lesson editor functions, \nit handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too."
         },
         {
+            "displayName": "Times",
+            "name": "Times",
+            "description": "Shows a loading image while page is loading, \nit handles ajax calls too."
+        },
+        {
             "displayName": "VideoEditor",
             "name": "VideoEditor",
             "description": "Provides the base Widget class..."
+        },
+        {
+            "displayName": "VirtualClassroom",
+            "name": "VirtualClassroom",
+            "description": "It's where users can share their lessons.\nIt handles share lessons link and add to playlist actions."
         }
     ]
 } };
