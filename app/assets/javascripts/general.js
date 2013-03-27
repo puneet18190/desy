@@ -34,3 +34,19 @@ function removeURLParameter(url, param) {
   }
   return baseURL + '?' + newAdditionalURL;
 }
+
+function centerThisInContainer(div,container) {
+  var contH = $(container).height();
+  var contW = $(container).width();
+  var centerDiv = $(div);
+  centerDiv.css('top', (contH/2-centerDiv.height()/2)+$(container).position().top);
+  centerDiv.css('left', (contW/2-centerDiv.width()/2)+$(container).position().left);
+}
+
+function centerThis(div) {
+  var winH = $(window).height();
+  var winW = $(window).width();
+  var centerDiv = $(div);
+  centerDiv.css('top', winH/2-centerDiv.height()/2);
+  centerDiv.css('left', winW/2-centerDiv.width()/2);
+}

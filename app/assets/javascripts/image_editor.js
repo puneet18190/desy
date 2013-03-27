@@ -1,3 +1,9 @@
+/**
+* Image editor functions, 
+* crop and textarea management.
+* 
+* @module ImageEditor
+*/
 $(document).ready(function() {
   
   $('#cropped_image').imgAreaSelect({
@@ -235,18 +241,43 @@ $(document).ready(function() {
   
 });
 
+/**
+* Sets current textarea to active.
+* 
+* @method enlightTextarea
+* @for enlightTextarea
+* @param id {Number} identifier for textarea to set current 
+*/
 function enlightTextarea(id) {
   $('#image_editor_textarea_' + id).css('background-color', 'rgba(230,230,230,0.5)');
   $('#image_editor_textarea_tools_' + id).css('visibility', 'visible');
   $('#image_editor_textarea_' + id).parent('._image_editor_text').addClass('current');
 }
 
+/**
+* Disable textareas,
+* typically applied to all textareas,
+* removes the current flag to active textarea.
+* 
+* @method offlightTextarea
+* @for offlightTextarea
+*/
 function offlightTextareas() {
   $('.text_tools').css('visibility', 'hidden');
   $('._inner_textarea').css('background-color', 'rgba(255,255,255,0)');
   $('._image_editor_text.current').removeClass('current');
 }
 
+/**
+* Get textarea coordinates while dragging
+* 
+* @method getDragPosition
+* @for getDragPosition
+* @param obj {Object} textarea container
+* @return {Array} two items array with X,Y coords in px
+* @example 
+    getDragPosition($(#image_editor_text_1));
+*/
 function getDragPosition(obj) {
   var imgOff = $('#image_wrapper').children('img').offset();
   var imgOffX = imgOff.left;
@@ -258,6 +289,21 @@ function getDragPosition(obj) {
   return coords;
 }
 
+/**
+* Append new textarea to image editor container
+* 
+* @method textAreaImageEditorContent
+* @for textAreaImageEditorContent
+* @param coords {Array} textarea coordinates
+* @param textCount {Number} textarea container id
+* @return {Object} new textarea container
+* @example 
+    `var coords = getRelativePositionInImageEditor($(#image_editor_container._text_enabled img), event);`
+
+    `var textCount = $('#info_container').data('current-textarea-identifier');`
+
+    `$('#image_editor_container').append(textAreaImageEditorContent(coords, textCount));`
+*/
 function textAreaImageEditorContent(coords, textCount) {
   var textarea_container = $($.trim($('#image_editor_empty_text_area_container').html()));
   textarea_container.addClass('_image_editor_text');
@@ -272,6 +318,15 @@ function textAreaImageEditorContent(coords, textCount) {
   return textarea_container[0];
 }
 
+/**
+* Get image relative position into editor container
+* 
+* @method getRelativePositionInImageEditor
+* @for getRelativePositionInImageEditor
+* @param obj {Object} image
+* @param event {Object} click event
+* @return {Array} image relative position coordinates
+*/
 function getRelativePositionInImageEditor(obj, event) {
   var posX = obj.offset().left, posY = obj.offset().top;
   coords = []
@@ -282,6 +337,12 @@ function getRelativePositionInImageEditor(obj, event) {
   return coords;
 }
 
+/**
+* Reset image editor functions, reset image editor to initial state
+* 
+* @method resetImageEditorOperationsChoice
+* @for resetImageEditorOperationsChoice
+*/
 function resetImageEditorOperationsChoice() {
   $('#image_editor_crop_buttons').hide();
   $('#image_editor_text_buttons').hide();
@@ -290,6 +351,12 @@ function resetImageEditorOperationsChoice() {
   $('#image_editor_text_action').removeClass('current');
 }
 
+/**
+* Reset image editor crop, disable crop state for image
+* 
+* @method resetImageEditorCrop
+* @for resetImageEditorCrop
+*/
 function resetImageEditorCrop() {
   $('#image_wrapper img').removeClass('forCrop');
   $('#cropped_image').imgAreaSelect({
@@ -300,18 +367,15 @@ function resetImageEditorCrop() {
   $('#image_editor_crop_buttons ._do').addClass('disabled');
 }
 
+/**
+* Reset image editor textareas, disable text state for image
+* 
+* @method resetImageEditorTexts
+* @for resetImageEditorTexts
+*/
 function resetImageEditorTexts() {
   $('#image_wrapper img').removeClass('forText');
   $('#image_editor_container').removeClass('_text_enabled');
   $('._image_editor_text').remove();
   $('#image_editor_text_buttons ._do').addClass('disabled');
 }
-
-function centerThisInContainer(div,container) {
-  var contH = $(container).height();
-  var contW = $(container).width();
-  var centerDiv = $(div);
-  centerDiv.css('top', (contH/2-centerDiv.height()/2)+$(container).position().top);
-  centerDiv.css('left', (contW/2-centerDiv.width()/2)+$(container).position().left);
-}
-

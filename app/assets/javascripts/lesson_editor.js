@@ -708,14 +708,6 @@ function slideError() {
   $("._slide_error").fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
 }
 
-function centerThis(div) {
-  var winH = $(window).height();
-  var winW = $(window).width();
-  var centerDiv = $(div);
-  centerDiv.css('top', winH/2-centerDiv.height()/2);
-  centerDiv.css('left', winW/2-centerDiv.width()/2);
-}
-
 function isHorizontalMask(image_width, image_height, kind){
   var ratio = image_width/image_height;
   var slideRatio = 0;

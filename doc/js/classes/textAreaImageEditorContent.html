@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>showLoader - DESY</title>
+    <title>textAreaImageEditorContent - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -114,7 +114,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>showLoader Class</h1>
+                        <h1>textAreaImageEditorContent Class</h1>
 <div class="box meta">
     
 
@@ -124,7 +124,7 @@
 
     
         
-            Module: <a href="../modules/AjaxLoader.html">AjaxLoader</a>
+            Module: <a href="../modules/ImageEditor.html">ImageEditor</a>
         
     
 
@@ -162,7 +162,7 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_showLoader">showLoader</a>
+                                <a href="#method_textAreaImageEditorContent">textAreaImageEditorContent</a>
 
                                 
                                 
@@ -184,13 +184,33 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_showLoader" class="method item">
-    <h3 class="name"><code>showLoader</code></h3>
+                    <div id="method_textAreaImageEditorContent" class="method item">
+    <h3 class="name"><code>textAreaImageEditorContent</code></h3>
 
     
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>coords</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>textCount</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
 
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        </span>
     
 
     
@@ -216,7 +236,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_ajax_loader.js.html#l47"><code>app&#x2F;assets&#x2F;javascripts&#x2F;ajax_loader.js:47</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_image_editor.js.html#l292"><code>app&#x2F;assets&#x2F;javascripts&#x2F;image_editor.js:292</code></a>
         
         </p>
 
@@ -227,14 +247,76 @@
     </div>
 
     <div class="description">
-        <p>Show Loader, force loader to show.
-comes with timeout (default=5000) to force loader to hide <a href="../classes/hideLoader.html#method_hideLoader">hideLoader</a></p>
+        <p>Append new textarea to image editor container</p>
     </div>
 
     
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">coords</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>textarea coordinates</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">textCount</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>textarea container id</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
 
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                    
+                    new textarea container
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <p><code>var coords = getRelativePositionInImageEditor($(#image_editor_container._text_enabled img), event);</code></p>
+
+<p><code>var textCount = $('#info_container').data('current-textarea-identifier');</code></p>
+
+<p><code>$('#image_editor_container').append(textAreaImageEditorContent(coords, textCount));</code></p>
+            </div>
+        </div>
     
 </div>
 

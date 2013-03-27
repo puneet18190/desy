@@ -1,5 +1,10 @@
 {
-    "project": {},
+    "project": {
+        "name": "DESY",
+        "description": "Digital Education SYstem",
+        "version": "1.0.0",
+        "url": "http://desy.morganspa.com/"
+    },
     "files": {
         "app/assets/javascripts/ajax_loader.js": {
             "name": "app/assets/javascripts/ajax_loader.js",
@@ -12,6 +17,24 @@
                 "unbindLoader": 1,
                 "showLoader": 1,
                 "hideLoader": 1
+            },
+            "namespaces": {}
+        },
+        "app/assets/javascripts/image_editor.js": {
+            "name": "app/assets/javascripts/image_editor.js",
+            "modules": {
+                "ImageEditor": 1
+            },
+            "classes": {},
+            "fors": {
+                "enlightTextarea": 1,
+                "offlightTextarea": 1,
+                "getDragPosition": 1,
+                "textAreaImageEditorContent": 1,
+                "getRelativePositionInImageEditor": 1,
+                "resetImageEditorOperationsChoice": 1,
+                "resetImageEditorCrop": 1,
+                "resetImageEditorTexts": 1
             },
             "namespaces": {}
         },
@@ -48,7 +71,36 @@
             "tag": "module",
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 1,
-            "description": "Show a loading image while page is loading, \nit handles ajax calls too."
+            "description": "Shows a loading image while page is loading, \nit handles ajax calls too."
+        },
+        "ImageEditor": {
+            "name": "ImageEditor",
+            "submodules": {},
+            "classes": {
+                "enlightTextarea": 1,
+                "offlightTextarea": 1,
+                "getDragPosition": 1,
+                "textAreaImageEditorContent": 1,
+                "getRelativePositionInImageEditor": 1,
+                "resetImageEditorOperationsChoice": 1,
+                "resetImageEditorCrop": 1,
+                "resetImageEditorTexts": 1
+            },
+            "fors": {
+                "enlightTextarea": 1,
+                "offlightTextarea": 1,
+                "getDragPosition": 1,
+                "textAreaImageEditorContent": 1,
+                "getRelativePositionInImageEditor": 1,
+                "resetImageEditorOperationsChoice": 1,
+                "resetImageEditorCrop": 1,
+                "resetImageEditorTexts": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 1,
+            "description": "Image editor functions, \ncrop and textarea management."
         },
         "VideoEditor": {
             "name": "VideoEditor",
@@ -113,6 +165,94 @@
             "module": "AjaxLoader",
             "namespace": ""
         },
+        "enlightTextarea": {
+            "name": "enlightTextarea",
+            "shortname": "enlightTextarea",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ImageEditor",
+            "namespace": ""
+        },
+        "offlightTextarea": {
+            "name": "offlightTextarea",
+            "shortname": "offlightTextarea",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ImageEditor",
+            "namespace": ""
+        },
+        "getDragPosition": {
+            "name": "getDragPosition",
+            "shortname": "getDragPosition",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ImageEditor",
+            "namespace": ""
+        },
+        "textAreaImageEditorContent": {
+            "name": "textAreaImageEditorContent",
+            "shortname": "textAreaImageEditorContent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ImageEditor",
+            "namespace": ""
+        },
+        "getRelativePositionInImageEditor": {
+            "name": "getRelativePositionInImageEditor",
+            "shortname": "getRelativePositionInImageEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ImageEditor",
+            "namespace": ""
+        },
+        "resetImageEditorOperationsChoice": {
+            "name": "resetImageEditorOperationsChoice",
+            "shortname": "resetImageEditorOperationsChoice",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ImageEditor",
+            "namespace": ""
+        },
+        "resetImageEditorCrop": {
+            "name": "resetImageEditorCrop",
+            "shortname": "resetImageEditorCrop",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ImageEditor",
+            "namespace": ""
+        },
+        "resetImageEditorTexts": {
+            "name": "resetImageEditorTexts",
+            "shortname": "resetImageEditorTexts",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ImageEditor",
+            "namespace": ""
+        },
         "initializeVideoEditor": {
             "name": "initializeVideoEditor",
             "shortname": "initializeVideoEditor",
@@ -172,6 +312,134 @@
             "name": "hideLoader",
             "class": "hideLoader",
             "module": "AjaxLoader"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 244,
+            "description": "Sets current textarea to active.",
+            "itemtype": "method",
+            "name": "enlightTextarea",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "identifier for textarea to set current",
+                    "type": "Number"
+                }
+            ],
+            "class": "enlightTextarea",
+            "module": "ImageEditor"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 257,
+            "description": "Disable textareas,\ntypically applied to all textareas,\nremoves the current flag to active textarea.",
+            "itemtype": "method",
+            "name": "offlightTextarea",
+            "class": "offlightTextarea",
+            "module": "ImageEditor"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 271,
+            "description": "Get textarea coordinates while dragging",
+            "itemtype": "method",
+            "name": "getDragPosition",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "textarea container",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "two items array with X,Y coords in px",
+                "type": "Array"
+            },
+            "example": [
+                " \n   getDragPosition($(#image_editor_text_1));"
+            ],
+            "class": "getDragPosition",
+            "module": "ImageEditor"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 292,
+            "description": "Append new textarea to image editor container",
+            "itemtype": "method",
+            "name": "textAreaImageEditorContent",
+            "params": [
+                {
+                    "name": "coords",
+                    "description": "textarea coordinates",
+                    "type": "Array"
+                },
+                {
+                    "name": "textCount",
+                    "description": "textarea container id",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "new textarea container",
+                "type": "Object"
+            },
+            "example": [
+                " \n   `var coords = getRelativePositionInImageEditor($(#image_editor_container._text_enabled img), event);`\n\n   `var textCount = $('#info_container').data('current-textarea-identifier');`\n\n   `$('#image_editor_container').append(textAreaImageEditorContent(coords, textCount));`"
+            ],
+            "class": "textAreaImageEditorContent",
+            "module": "ImageEditor"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 321,
+            "description": "Get image relative position into editor container",
+            "itemtype": "method",
+            "name": "getRelativePositionInImageEditor",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "image",
+                    "type": "Object"
+                },
+                {
+                    "name": "event",
+                    "description": "click event",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "image relative position coordinates",
+                "type": "Array"
+            },
+            "class": "getRelativePositionInImageEditor",
+            "module": "ImageEditor"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 340,
+            "description": "Reset image editor functions, reset image editor to initial state",
+            "itemtype": "method",
+            "name": "resetImageEditorOperationsChoice",
+            "class": "resetImageEditorOperationsChoice",
+            "module": "ImageEditor"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 354,
+            "description": "Reset image editor crop, disable crop state for image",
+            "itemtype": "method",
+            "name": "resetImageEditorCrop",
+            "class": "resetImageEditorCrop",
+            "module": "ImageEditor"
+        },
+        {
+            "file": "app/assets/javascripts/image_editor.js",
+            "line": 370,
+            "description": "Reset image editor textareas, disable text state for image",
+            "itemtype": "method",
+            "name": "resetImageEditorTexts",
+            "class": "resetImageEditorTexts",
+            "module": "ImageEditor"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",

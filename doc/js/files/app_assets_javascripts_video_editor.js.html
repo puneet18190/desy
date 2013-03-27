@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js</title>
+    <title>app&#x2F;assets&#x2F;javascripts&#x2F;video_editor.js - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..&#x2F;assets/css/logo.png" title=""></h1>
+                <h1><img src="..&#x2F;assets/css/logo.png" title="DESY"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: </em>
+            <em>API Docs for: 1.0.0</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -45,11 +45,27 @@
             
                 <li><a href="..&#x2F;classes/closeGenericVideoComponentCutter.html">closeGenericVideoComponentCutter</a></li>
             
+                <li><a href="..&#x2F;classes/enlightTextarea.html">enlightTextarea</a></li>
+            
+                <li><a href="..&#x2F;classes/getDragPosition.html">getDragPosition</a></li>
+            
+                <li><a href="..&#x2F;classes/getRelativePositionInImageEditor.html">getRelativePositionInImageEditor</a></li>
+            
                 <li><a href="..&#x2F;classes/hideLoader.html">hideLoader</a></li>
             
                 <li><a href="..&#x2F;classes/initializeVideoEditor.html">initializeVideoEditor</a></li>
             
+                <li><a href="..&#x2F;classes/offlightTextarea.html">offlightTextarea</a></li>
+            
+                <li><a href="..&#x2F;classes/resetImageEditorCrop.html">resetImageEditorCrop</a></li>
+            
+                <li><a href="..&#x2F;classes/resetImageEditorOperationsChoice.html">resetImageEditorOperationsChoice</a></li>
+            
+                <li><a href="..&#x2F;classes/resetImageEditorTexts.html">resetImageEditorTexts</a></li>
+            
                 <li><a href="..&#x2F;classes/showLoader.html">showLoader</a></li>
+            
+                <li><a href="..&#x2F;classes/textAreaImageEditorContent.html">textAreaImageEditorContent</a></li>
             
                 <li><a href="..&#x2F;classes/unbindLoader.html">unbindLoader</a></li>
             
@@ -58,6 +74,8 @@
             <ul id="api-modules" class="apis modules">
             
                 <li><a href="..&#x2F;modules/AjaxLoader.html">AjaxLoader</a></li>
+            
+                <li><a href="..&#x2F;modules/ImageEditor.html">ImageEditor</a></li>
             
                 <li><a href="..&#x2F;modules/VideoEditor.html">VideoEditor</a></li>
             
@@ -698,13 +716,17 @@ function startVideoEditorGlobalPreview() {
   var actual_audio_track_time = calculateVideoComponentStartSecondInVideoEditor(current_identifier) + current_component.data(&#x27;current-preview-time&#x27;);
   if(videoEditorWithAudioTrack() &amp;&amp; actual_audio_track_time &lt; $(&#x27;#full_audio_track_placeholder_in_video_editor&#x27;).data(&#x27;duration&#x27;)) {
     var audio_track = $(&#x27;#video_editor_preview_container audio&#x27;);
-    setCurrentTimeToMedia(audio_track, actual_audio_track_time);
-    if(audio_track.readyState != 0) {
-      audio_track[0].play();
+    if(media[0].error) {
+      showLoadingMediaErrorPopup(audio_track[0].error.code, &#x27;audio&#x27;);
     } else {
-      audio_track.on(&#x27;loadedmetadata&#x27;, function() {
+      setCurrentTimeToMedia(audio_track, actual_audio_track_time);
+      if(audio_track.readyState != 0) {
         audio_track[0].play();
-      });
+      } else {
+        audio_track.on(&#x27;loadedmetadata&#x27;, function() {
+          audio_track[0].play();
+        });
+      }
     }
   }
   if(current_component.data(&#x27;position&#x27;) == getHowManyComponentsHiddenToLeftTimelineHorizontalScrollPane(&#x27;media_elements_list_in_video_editor&#x27;, 186) + 1) {
@@ -736,12 +758,17 @@ function playVideoEditorComponent(component, with_scroll) {
   }
   if(component.hasClass(&#x27;_video&#x27;)) {
     var video = $(&#x27;#video_component_&#x27; + identifier + &#x27;_preview video&#x27;);
-    if(video.readyState != 0) {
-      video[0].play();
+    if(video[0].error) {
+      showLoadingMediaErrorPopup(video[0].error.code, &#x27;video&#x27;);
+      $(&#x27;#video_editor_global_preview_pause&#x27;).click();
     } else {
-      video.on(&#x27;loadedmetadata&#x27;, function() {
+      if(video.readyState != 0) {
         video[0].play();
-      });
+      } else {
+        video.on(&#x27;loadedmetadata&#x27;, function() {
+          video[0].play();
+        });
+      }
     }
   } else {
     automaticIncreaseVideoEditorPreviewTimer(component.data(&#x27;current-preview-time&#x27;) + 1, component.data(&#x27;duration&#x27;), function() {
