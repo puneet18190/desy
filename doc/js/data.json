@@ -20,6 +20,24 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/dashboard.js": {
+            "name": "app/assets/javascripts/dashboard.js",
+            "modules": {
+                "Dashboard": 1
+            },
+            "classes": {},
+            "fors": {
+                "reloadDashboardPages": 1,
+                "switchToSuggestedMediaElements": 1,
+                "switchToSuggestedLessons": 1,
+                "getHtmlPagination": 1,
+                "reloadMediaElementsDashboardPagination": 1,
+                "reloadLessonsDashboardPagination": 1,
+                "changePageDashboardMediaElements": 1,
+                "changePageDashboardLessons": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/image_editor.js": {
             "name": "app/assets/javascripts/image_editor.js",
             "modules": {
@@ -106,6 +124,35 @@
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 1,
             "description": "Shows a loading image while page is loading, \nit handles ajax calls too."
+        },
+        "Dashboard": {
+            "name": "Dashboard",
+            "submodules": {},
+            "classes": {
+                "reloadDashboardPages": 1,
+                "switchToSuggestedMediaElements": 1,
+                "switchToSuggestedLessons": 1,
+                "getHtmlPagination": 1,
+                "reloadMediaElementsDashboardPagination": 1,
+                "reloadLessonsDashboardPagination": 1,
+                "changePageDashboardMediaElements": 1,
+                "changePageDashboardLessons": 1
+            },
+            "fors": {
+                "reloadDashboardPages": 1,
+                "switchToSuggestedMediaElements": 1,
+                "switchToSuggestedLessons": 1,
+                "getHtmlPagination": 1,
+                "reloadMediaElementsDashboardPagination": 1,
+                "reloadLessonsDashboardPagination": 1,
+                "changePageDashboardMediaElements": 1,
+                "changePageDashboardLessons": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 1,
+            "description": "Dashboard is the welcome page of DESY where you find shared lessons and elements. \nThis handles elements interaction events."
         },
         "ImageEditor": {
             "name": "ImageEditor",
@@ -258,6 +305,94 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "AjaxLoader",
+            "namespace": ""
+        },
+        "reloadDashboardPages": {
+            "name": "reloadDashboardPages",
+            "shortname": "reloadDashboardPages",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "switchToSuggestedMediaElements": {
+            "name": "switchToSuggestedMediaElements",
+            "shortname": "switchToSuggestedMediaElements",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "switchToSuggestedLessons": {
+            "name": "switchToSuggestedLessons",
+            "shortname": "switchToSuggestedLessons",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "getHtmlPagination": {
+            "name": "getHtmlPagination",
+            "shortname": "getHtmlPagination",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "reloadMediaElementsDashboardPagination": {
+            "name": "reloadMediaElementsDashboardPagination",
+            "shortname": "reloadMediaElementsDashboardPagination",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "reloadLessonsDashboardPagination": {
+            "name": "reloadLessonsDashboardPagination",
+            "shortname": "reloadLessonsDashboardPagination",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "changePageDashboardMediaElements": {
+            "name": "changePageDashboardMediaElements",
+            "shortname": "changePageDashboardMediaElements",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "changePageDashboardLessons": {
+            "name": "changePageDashboardLessons",
+            "shortname": "changePageDashboardLessons",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
             "namespace": ""
         },
         "enlightTextarea": {
@@ -671,6 +806,152 @@
             "name": "hideLoader",
             "class": "hideLoader",
             "module": "AjaxLoader"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 8,
+            "description": "Reload Dashboard content on page change, using bottom pagination.",
+            "itemtype": "method",
+            "name": "reloadDashboardPages",
+            "class": "reloadDashboardPages",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 21,
+            "description": "Switch to suggested elements page in dashboard.\n\nUses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)",
+            "itemtype": "method",
+            "name": "switchToSuggestedMediaElements",
+            "class": "switchToSuggestedMediaElements",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 42,
+            "description": "Switch to suggested lessons page in dashboard.\n\nUses: [reloadMediaLessonsDashboardPagination](../classes/reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)",
+            "itemtype": "method",
+            "name": "switchToSuggestedLessons",
+            "class": "switchToSuggestedLessons",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 63,
+            "description": "Pagination html generator",
+            "itemtype": "method",
+            "name": "getHtmlPagination",
+            "params": [
+                {
+                    "name": "pos",
+                    "description": "current position",
+                    "type": "Number"
+                },
+                {
+                    "name": "pages_amount",
+                    "description": "number of pages",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "pagination html elements",
+                "type": "Object"
+            },
+            "class": "getHtmlPagination",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 101,
+            "description": "Realod pagination html for media elements.\n\nUses: [changePageDashboardMediaElements](../classes/changePageDashboardMediaElements.html#method_changePageDashboardMediaElements)",
+            "itemtype": "method",
+            "name": "reloadMediaElementsDashboardPagination",
+            "params": [
+                {
+                    "name": "pos",
+                    "description": "pagination position",
+                    "type": "Number"
+                },
+                {
+                    "name": "poges_amount",
+                    "description": "pagination pages amount",
+                    "type": "Number"
+                }
+            ],
+            "class": "reloadMediaElementsDashboardPagination",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 134,
+            "description": "Realod pagination html for lessons.\n\nUses: [changePageDashboardLessons](../classes/changePageDashboardLessons.html#method_changePageDashboardLessons)",
+            "itemtype": "method",
+            "name": "reloadLessonsDashboardPagination",
+            "params": [
+                {
+                    "name": "pos",
+                    "description": "pagination position",
+                    "type": "Number"
+                },
+                {
+                    "name": "poges_amount",
+                    "description": "pagination pages amount",
+                    "type": "Number"
+                }
+            ],
+            "class": "reloadLessonsDashboardPagination",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 165,
+            "description": "Change media elements page in dashboard.\n\nUses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)",
+            "itemtype": "method",
+            "name": "changePageDashboardMediaElements",
+            "params": [
+                {
+                    "name": "old_pos",
+                    "description": "pagination old position",
+                    "type": "Number"
+                },
+                {
+                    "name": "pos",
+                    "description": "pagination position",
+                    "type": "Number"
+                },
+                {
+                    "name": "poges_amount",
+                    "description": "pagination pages amount",
+                    "type": "Number"
+                }
+            ],
+            "class": "changePageDashboardMediaElements",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 184,
+            "description": "Change lessons page in dashboard.\n\nUses: [reloadLessonsDashboardPagination](../classes/reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination)",
+            "itemtype": "method",
+            "name": "changePageDashboardLessons",
+            "params": [
+                {
+                    "name": "old_pos",
+                    "description": "pagination old position",
+                    "type": "Number"
+                },
+                {
+                    "name": "pos",
+                    "description": "pagination position",
+                    "type": "Number"
+                },
+                {
+                    "name": "poges_amount",
+                    "description": "pagination pages amount",
+                    "type": "Number"
+                }
+            ],
+            "class": "changePageDashboardLessons",
+            "module": "Dashboard"
         },
         {
             "file": "app/assets/javascripts/image_editor.js",

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>initLessonEditorPositions - DESY</title>
+    <title>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -182,139 +182,213 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>initLessonEditorPositions Class</h1>
-<div class="box meta">
-    
+                        <h1 class="file-heading">File: app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+* Dashboard is the welcome page of DESY where you find shared lessons and elements. 
+* This handles elements interaction events.
+* 
+* @module Dashboard
+*&#x2F;
 
-    
+&#x2F;**
+* Reload Dashboard content on page change, using bottom pagination.
+* 
+* @method reloadDashboardPages
+* @for reloadDashboardPages
+*&#x2F;
+function reloadDashboardPages(lessons_page, media_elements_page) {
+  $(&#x27;#suggested_media_elements_1&#x27;).hide();
+  $(&#x27;#suggested_media_elements_&#x27; + media_elements_page).show();
+  $(&#x27;#suggested_lessons_1&#x27;).hide();
+  $(&#x27;#suggested_lessons_&#x27; + lessons_page).show();
+}
 
-    
-        
-            Module: <a href="../modules/LessonEditor.html">LessonEditor</a>
-        
-    
+&#x2F;**
+* Switch to suggested elements page in dashboard.
+* 
+* Uses: [reloadMediaElementsDashboardPagination](..&#x2F;classes&#x2F;reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
+*
+* @method switchToSuggestedMediaElements
+* @for switchToSuggestedMediaElements
+*&#x2F;
+function switchToSuggestedMediaElements() {
+  $(&#x27;#lessons_in_dashboard&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
+    $(this).hide();
+    $(&#x27;#media_elements_in_dashboard&#x27;).show();
+    $(&#x27;#switch_to_media_elements&#x27;).addClass(&#x27;current&#x27;);
+    $(&#x27;#switch_to_lessons&#x27;).removeClass(&#x27;current&#x27;);
+    var pagination_div = $(&#x27;#dashboard_pagination&#x27;);
+    var media_elements_page = pagination_div.data(&#x27;media-elements-page&#x27;);
+    var media_elements_tot = pagination_div.data(&#x27;media-elements-tot&#x27;);
+    reloadMediaElementsDashboardPagination(media_elements_page, media_elements_tot);
+  });
+}
 
-    
-</div>
+&#x2F;**
+* Switch to suggested lessons page in dashboard.
+* 
+* Uses: [reloadMediaLessonsDashboardPagination](..&#x2F;classes&#x2F;reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)
+*
+* @method switchToSuggestedLessons
+* @for switchToSuggestedLessons
+*&#x2F;
+function switchToSuggestedLessons() {
+  $(&#x27;#media_elements_in_dashboard&#x27;).hide(&#x27;fade&#x27;, {}, 500, function() {
+    $(this).hide();
+    $(&#x27;#lessons_in_dashboard&#x27;).show();
+    $(&#x27;#switch_to_lessons&#x27;).addClass(&#x27;current&#x27;);
+    $(&#x27;#switch_to_media_elements&#x27;).removeClass(&#x27;current&#x27;);
+    var pagination_div = $(&#x27;#dashboard_pagination&#x27;);
+    var lessons_page = pagination_div.data(&#x27;lessons-page&#x27;);
+    var lessons_tot = pagination_div.data(&#x27;lessons-tot&#x27;);
+    reloadLessonsDashboardPagination(lessons_page, lessons_tot);
+  });
+}
 
+&#x2F;**
+* Pagination html generator
+* 
+* @method getHtmlPagination
+* @for getHtmlPagination
+* @param pos {Number} current position
+* @param pages_amount {Number} number of pages
+* @return {Object} pagination html elements  
+*&#x2F;
+function getHtmlPagination(pos, pages_amount) {
+  var $prev_attrs = {};
+  var $next_attrs = {};
 
+  if(pos &lt;= 1) {
+    $prev_attrs.role = &#x27;disabled&#x27;;
+  } else {
+    $prev_attrs.data = { page: pos-1 };
+    $prev_attrs.title = $(&#x27;#popup_captions_container&#x27;).data(&#x27;title-pagination-left&#x27;);
+  }
 
-<div class="box intro">
-    
-</div>
+  if(pos &gt;= pages_amount) {
+    $next_attrs.role = &#x27;disabled&#x27;;
+  } else {
+    $next_attrs.data = { page: pos+1 };
+    $next_attrs.title = $(&#x27;#popup_captions_container&#x27;).data(&#x27;title-pagination-right&#x27;);
+  }
 
+  var $pagination = $(&#x27;&lt;span&#x2F;&gt;&#x27;, { &#x27;class&#x27;: &#x27;dots_pagination&#x27; });
 
+  $pagination.append(
+    $(&#x27;&lt;span&#x2F;&gt;&#x27;, { role: &#x27;pages&#x27; })
+      .append( $(&#x27;&lt;a&#x2F;&gt;&#x27;, $prev_attrs) )
+      .append( $(&#x27;&lt;a&#x2F;&gt;&#x27;, { role: &#x27;current&#x27;, data: { page: pos } }) )
+      .append( $(&#x27;&lt;a&#x2F;&gt;&#x27;, $next_attrs) )
+  );
+  return $pagination;
+}
 
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
+&#x2F;**
+* Realod pagination html for media elements.
+* 
+* Uses: [changePageDashboardMediaElements](..&#x2F;classes&#x2F;changePageDashboardMediaElements.html#method_changePageDashboardMediaElements)
+*
+* @method reloadMediaElementsDashboardPagination
+* @for reloadMediaElementsDashboardPagination
+* @param pos {Number} pagination position
+* @param poges_amount {Number} pagination pages amount
+*&#x2F;
+function reloadMediaElementsDashboardPagination(pos, pages_amount) {
+  if(pages_amount == 0) {
+    $(&#x27;#dashboard_pagination&#x27;).html(&#x27;&#x27;);
+    $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-tot&#x27;, 0);
+    $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-page&#x27;, 0);
+    return;
+  }
+  $(&#x27;#dashboard_pagination&#x27;).html(getHtmlPagination(pos, pages_amount));
+  $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-tot&#x27;, pages_amount);
+  $(&#x27;#dashboard_pagination&#x27;).data(&#x27;media-elements-page&#x27;, pos);
+  $(document).ready(function() {
+    var prevPage = function(prevPage) {
+      changePageDashboardMediaElements(pos, (pos - 1), pages_amount);
+      return true;
+    }
+    var nextPage = function(nextPage) {
+      changePageDashboardMediaElements(pos, (pos + 1), pages_amount);
+      return true;
+    }
+    new DotsPagination($(&#x27;[role=pages]&#x27;), pages_amount, prevPage, nextPage);
+  });
+}
 
-        
-            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
-        
-        
-        
-        
-    </ul>
+&#x2F;**
+* Realod pagination html for lessons.
+* 
+* Uses: [changePageDashboardLessons](..&#x2F;classes&#x2F;changePageDashboardLessons.html#method_changePageDashboardLessons)
+*
+* @method reloadLessonsDashboardPagination
+* @for reloadLessonsDashboardPagination
+* @param pos {Number} pagination position
+* @param poges_amount {Number} pagination pages amount
+*&#x2F;
+function reloadLessonsDashboardPagination(pos, pages_amount) {
+  if(pages_amount == 0) {
+    $(&#x27;#dashboard_pagination&#x27;).empty().data({ &#x27;lessons-tot&#x27;: 0, &#x27;lessons-page&#x27;: 0 });
+    return;
+  }
+  $(&#x27;#dashboard_pagination&#x27;)
+    .html(getHtmlPagination(pos, pages_amount))
+    .data({ &#x27;lessons-tot&#x27;: pages_amount,&#x27;lessons-page&#x27;: pos });
+  $(document).ready(function() {
+    var prevPage = function(prevPage) {
+      changePageDashboardLessons(pos, (pos - 1), pages_amount);
+      return true;
+    }
+    var nextPage = function(nextPage) {
+      changePageDashboardLessons(pos, (pos + 1), pages_amount);
+      return true;
+    }
+    new DotsPagination($(&#x27;[role=pages]&#x27;), pages_amount, prevPage, nextPage);
+  });
+}
 
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
+&#x2F;**
+* Change media elements page in dashboard.
+* 
+* Uses: [reloadMediaElementsDashboardPagination](..&#x2F;classes&#x2F;reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)
+*
+* @method changePageDashboardMediaElements
+* @for changePageDashboardMediaElements
+* @param old_pos {Number} pagination old position
+* @param pos {Number} pagination position
+* @param poges_amount {Number} pagination pages amount
+*&#x2F;
+function changePageDashboardMediaElements(old_pos, pos, pages_amount) {
+  $(&#x27;#suggested_media_elements_&#x27; + (old_pos)).hide(&#x27;fade&#x27;, {}, 500, function() {
+    $(this).hide();
+    $(&#x27;#suggested_media_elements_&#x27; + (pos)).show();
+    reloadMediaElementsDashboardPagination(pos, pages_amount);
+  });
+}
 
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
+&#x2F;**
+* Change lessons page in dashboard.
+* 
+* Uses: [reloadLessonsDashboardPagination](..&#x2F;classes&#x2F;reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination)
+*
+* @method changePageDashboardLessons
+* @for changePageDashboardLessons
+* @param old_pos {Number} pagination old position
+* @param pos {Number} pagination position
+* @param poges_amount {Number} pagination pages amount
+*&#x2F;
+function changePageDashboardLessons(old_pos, pos, pages_amount) {
+  $(&#x27;#suggested_lessons_&#x27; + (old_pos)).hide(&#x27;fade&#x27;, {}, 500, function() {
+    $(this).hide();
+    $(&#x27;#suggested_lessons_&#x27; + (pos)).show();
+    reloadLessonsDashboardPagination(pos, pages_amount);
+  });
+}
 
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method">
-                                <a href="#method_initLessonEditorPositions">initLessonEditorPositions</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_initLessonEditorPositions" class="method item">
-    <h3 class="name"><code>initLessonEditorPositions</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l733"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:733</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Initialize slides position to center</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-
-        
-    </div>
+    </pre>
 </div>
 
                     </div>
