@@ -51,11 +51,33 @@
             
                 <li><a href="..&#x2F;classes/getRelativePositionInImageEditor.html">getRelativePositionInImageEditor</a></li>
             
+                <li><a href="..&#x2F;classes/hideEverythingOutCurrentSlide.html">hideEverythingOutCurrentSlide</a></li>
+            
                 <li><a href="..&#x2F;classes/hideLoader.html">hideLoader</a></li>
+            
+                <li><a href="..&#x2F;classes/hideNewSlideChoice.html">hideNewSlideChoice</a></li>
+            
+                <li><a href="..&#x2F;classes/initializeSortableNavs.html">initializeSortableNavs</a></li>
             
                 <li><a href="..&#x2F;classes/initializeVideoEditor.html">initializeVideoEditor</a></li>
             
+                <li><a href="..&#x2F;classes/initLessonEditorPositions.html">initLessonEditorPositions</a></li>
+            
+                <li><a href="..&#x2F;classes/initTinymce.html">initTinymce</a></li>
+            
+                <li><a href="..&#x2F;classes/isHorizontalMask.html">isHorizontalMask</a></li>
+            
+                <li><a href="..&#x2F;classes/loadSlideAndAdhiacentInLessonEditor.html">loadSlideAndAdhiacentInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/loadSlideInLessonEditor.html">loadSlideInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/makeDraggable.html">makeDraggable</a></li>
+            
                 <li><a href="..&#x2F;classes/offlightTextarea.html">offlightTextarea</a></li>
+            
+                <li><a href="..&#x2F;classes/reInitializeSlidePositionsInLessonEditor.html">reInitializeSlidePositionsInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/removeGalleryInLessonEditor.html">removeGalleryInLessonEditor</a></li>
             
                 <li><a href="..&#x2F;classes/resetImageEditorCrop.html">resetImageEditorCrop</a></li>
             
@@ -63,9 +85,35 @@
             
                 <li><a href="..&#x2F;classes/resetImageEditorTexts.html">resetImageEditorTexts</a></li>
             
+                <li><a href="..&#x2F;classes/resizeHeight.html">resizeHeight</a></li>
+            
+                <li><a href="..&#x2F;classes/resizeWidth.html">resizeWidth</a></li>
+            
+                <li><a href="..&#x2F;classes/saveCurrentSlide.html">saveCurrentSlide</a></li>
+            
+                <li><a href="..&#x2F;classes/scrollPaneUpdate.html">scrollPaneUpdate</a></li>
+            
+                <li><a href="..&#x2F;classes/showEverythingOutCurrentSlide.html">showEverythingOutCurrentSlide</a></li>
+            
+                <li><a href="..&#x2F;classes/showGalleryInLessonEditor.html">showGalleryInLessonEditor</a></li>
+            
                 <li><a href="..&#x2F;classes/showLoader.html">showLoader</a></li>
             
+                <li><a href="..&#x2F;classes/showNewSlideChoice.html">showNewSlideChoice</a></li>
+            
+                <li><a href="..&#x2F;classes/slideError.html">slideError</a></li>
+            
+                <li><a href="..&#x2F;classes/slideTo.html">slideTo</a></li>
+            
+                <li><a href="..&#x2F;classes/stopMediaInCurrentSlide.html">stopMediaInCurrentSlide</a></li>
+            
+                <li><a href="..&#x2F;classes/submitCurrentSlideForm.html">submitCurrentSlideForm</a></li>
+            
                 <li><a href="..&#x2F;classes/textAreaImageEditorContent.html">textAreaImageEditorContent</a></li>
+            
+                <li><a href="..&#x2F;classes/tinyMceCallbacks.html">tinyMceCallbacks</a></li>
+            
+                <li><a href="..&#x2F;classes/tinyMceKeyDownCallbacks.html">tinyMceKeyDownCallbacks</a></li>
             
                 <li><a href="..&#x2F;classes/unbindLoader.html">unbindLoader</a></li>
             
@@ -76,6 +124,8 @@
                 <li><a href="..&#x2F;modules/AjaxLoader.html">AjaxLoader</a></li>
             
                 <li><a href="..&#x2F;modules/ImageEditor.html">ImageEditor</a></li>
+            
+                <li><a href="..&#x2F;modules/LessonEditor.html">LessonEditor</a></li>
             
                 <li><a href="..&#x2F;modules/VideoEditor.html">VideoEditor</a></li>
             
@@ -310,11 +360,10 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <p><code>var coords = getRelativePositionInImageEditor($(#image_editor_container._text_enabled img), event);</code></p>
-
-<p><code>var textCount = $('#info_container').data('current-textarea-identifier');</code></p>
-
-<p><code>$('#image_editor_container').append(textAreaImageEditorContent(coords, textCount));</code></p>
+                <pre class="code prettyprint"><code> <code>var coords = getRelativePositionInImageEditor($(#image_editor_container._text_enabled img), event);</code>
+ <code>var textCount = $(&#x27;#info_container&#x27;).data(&#x27;current-textarea-identifier&#x27;);</code>
+ <code>$(&#x27;#image_editor_container&#x27;).append(textAreaImageEditorContent(coords, textCount));</code>
+</code></pre>
             </div>
         </div>
     

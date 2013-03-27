@@ -1,3 +1,9 @@
+/**
+* Lesson editor functions, 
+* it handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too.
+* 
+* @module LessonEditor
+*/
 $(document).ready(function() {
   
   $("html.lesson-editor-layout ul#slides").css("margin-top", ((($(window).height() - 590)/2)-40) + "px");
@@ -341,6 +347,13 @@ $(document).ready(function() {
   
 });
 
+/**
+* Update top scrollPane when moving to another slide
+* 
+* @method scrollPaneUpdate
+* @for scrollPaneUpdate
+* @param trigger_element {Object} element which triggers the scroll
+*/
 function scrollPaneUpdate(trigger_element){
   //TODO Control if moving right or left and when to scroll
   // better activate it on last visible in focus
@@ -354,12 +367,31 @@ function scrollPaneUpdate(trigger_element){
 	return false;
 }
 
+/**
+* Hide media gallery for selected type
+* 
+* @method removeGalleryInLessonEditor
+* @for removeGalleryInLessonEditor
+* @param sty_type {String} gallery type
+* @example 
+      `removeGalleryInLessonEditor('audio');`
+*/
 function removeGalleryInLessonEditor(sti_type) {
   $('#lesson_editor_' + sti_type + '_gallery_container').hide();
   $('li._lesson_editor_current_slide .slide-content').children().show();
   showEverythingOutCurrentSlide();
 }
 
+/**
+* Show media gallery for selected type clicking on slide green plus button
+* 
+* @method showGalleryInLessonEditor
+* @for showGalleryInLessonEditor
+* @param obj {Object} gallery type
+* @param sty_type {String} gallery type
+* @example 
+      `showGalleryInLessonEditor('._show_video_gallery_in_lesson_editor','video');`
+*/
 function showGalleryInLessonEditor(obj, sti_type) {
   $('#info_container').data('current-media-element-position', $(obj).data('position'));
   var current_slide = $('li._lesson_editor_current_slide');
@@ -378,6 +410,12 @@ function showGalleryInLessonEditor(obj, sti_type) {
   }
 }
 
+/**
+* Restore page elements around current slide after new slide selection
+* 
+* @method showEverythingOutCurrentSlide
+* @for showEverythingOutCurrentSlide
+*/
 function showEverythingOutCurrentSlide() {
   var current_slide = $('li._lesson_editor_current_slide');
   $('#heading').children().show();
@@ -386,6 +424,12 @@ function showEverythingOutCurrentSlide() {
   current_slide.find('.buttons a').css('visibility', 'visible');
 }
 
+/**
+* Hide page elements around current slide on new slide selection
+* 
+* @method hideEverythingOutCurrentSlide
+* @for hideEverythingOutCurrentSlide
+*/
 function hideEverythingOutCurrentSlide() {
   var current_slide = $('li._lesson_editor_current_slide');
   $('#heading').children().hide();
@@ -394,6 +438,12 @@ function hideEverythingOutCurrentSlide() {
   current_slide.find('.buttons a:not(._hide_add_slide)').css('visibility', 'hidden');
 }
 
+/**
+* Hide new slide selection
+* 
+* @method showNewSlideChoice
+* @for showNewSlideChoice
+*/
 function showNewSlideOptions() {
   stopMediaInCurrentSlide();
   var current_slide_content = $('li._lesson_editor_current_slide .slide-content');
@@ -404,6 +454,12 @@ function showNewSlideOptions() {
   hideEverythingOutCurrentSlide();
 }
 
+/**
+* Hide new slide selection
+* 
+* @method hideNewSlideChoice
+* @for hideNewSlideChoice
+*/
 function hideNewSlideChoice() {
   var current_slide = $('li._lesson_editor_current_slide');
   current_slide.find('div.slide-content').addClass(current_slide.data('kind'));
@@ -412,12 +468,26 @@ function hideNewSlideChoice() {
   showEverythingOutCurrentSlide();
 }
 
+/**
+* Stop video and audio playing into current slide, 
+* usually only one kind of media is present into current slide
+* 
+* @method stopMediaInCurrentSlide
+* @for stopMediaInCurrentSlide
+*/
 function stopMediaInCurrentSlide() {
   var current_slide_id = $('li._lesson_editor_current_slide').attr('id');
   stopMedia('#' + current_slide_id + ' audio');
   stopMedia('#' + current_slide_id + ' video');
 }
 
+/**
+* Inizialize jQueryUI _sortable_ function on top navigation numbers,
+* so that they can be sorted
+* 
+* @method initializeSortableNavs
+* @for initializeSortableNavs
+*/
 function initializeSortableNavs() {
   $("#heading, #heading .scroll-pane").css("width", (parseInt($(window).outerWidth())-50) + "px");
   var slides_numbers = $('#slide-numbers');
@@ -458,6 +528,15 @@ function initializeSortableNavs() {
   });
 }
 
+/**
+* Inizialize jQueryUI _draggable_ function on slide image containers.
+* 
+* @method makeDraggable
+* @for makeDraggable
+* @param place_id {Number} media element id
+* @example
+      `makeDraggable('media_element_1_in_slide_43');`
+*/
 function makeDraggable(place_id) {
   var full_place = $('#' + place_id + ' ._full_image_in_slide');
   var axe = 'x';
@@ -520,6 +599,12 @@ function makeDraggable(place_id) {
   });
 }
 
+/**
+* Submit serialized form data for current slide
+* 
+* @method submitCurrentSlideForm
+* @for submitCurrentSlideForm
+*/
 function submitCurrentSlideForm() {
   $.ajax({
     type: "POST",
@@ -530,6 +615,15 @@ function submitCurrentSlideForm() {
   }).always(bindLoader);
 }
 
+/**
+* Save current slide. It sends tinyMCE editor content to form data to be serialized, 
+* it handles form placeholders.
+*
+* Uses: [submitCurrentSlideForm](../classes/submitCurrentSlideForm.html#method_submitCurrentSlideForm)
+* 
+* @method saveCurrentSlide
+* @for saveCurrentSlide
+*/
 function saveCurrentSlide() {
   tinyMCE.triggerSave();
   var temporary = new Array();
@@ -551,6 +645,16 @@ function saveCurrentSlide() {
   });
 }
 
+/**
+* Asynchronous slide loading. 
+* It is called when the current slide is not loaded yet.
+* 
+* @method loadSlideInLessonEditor
+* @for loadSlideInLessonEditor
+* @param slide {String} slide object id
+* @example
+      `loadSlideInLessonEditor($('#slide_in_lesson_editor_33'));`
+*/
 function loadSlideInLessonEditor(slide) {
   if(slide.length > 0 && !slide.data('loaded')) {
     $.ajax({
@@ -560,6 +664,15 @@ function loadSlideInLessonEditor(slide) {
   }
 }
 
+/**
+* Asynchronously loads current slide, previous and following if any of these aren't loaded yet.
+*
+* Uses: [loadSlideInLessonEditor](../classes/loadSlideInLessonEditor.html#method_loadSlideInLessonEditor)
+* 
+* @method loadSlideAndAdhiacentInLessonEditor
+* @for loadSlideAndAdhiacentInLessonEditor
+* @param slide_id {Number} slide id
+*/
 function loadSlideAndAdhiacentInLessonEditor(slide_id) {
   var slide = $('#slide_in_lesson_editor_' + slide_id);
   loadSlideInLessonEditor(slide);
@@ -567,6 +680,16 @@ function loadSlideAndAdhiacentInLessonEditor(slide_id) {
   loadSlideInLessonEditor(slide.next());
 }
 
+/**
+* Slide to current slide, update current slide in top navigation.
+*
+* Uses: [loadSlideAndAdhiacentInLessonEditor](../classes/loadSlideAndAdhiacentInLessonEditor.html#method_loadSlideAndAdhiacentInLessonEditor)
+* 
+* @method slideTo
+* @for slideTo
+* @param slide_id {Number} slide id
+* @param callback {Object} callback function
+*/
 function slideTo(slide_id, callback) {
   loadSlideAndAdhiacentInLessonEditor(slide_id);
   var slide = $('#slide_in_lesson_editor_' + slide_id);
@@ -607,6 +730,12 @@ function slideTo(slide_id, callback) {
   });
 }
 
+/**
+* Initialize slides position to center
+*
+* @method initLessonEditorPositions
+* @for initLessonEditorPositions
+*/
 function initLessonEditorPositions() {
   WW = parseInt($(window).outerWidth());
   WH = parseInt($(window).outerHeight());
@@ -621,6 +750,23 @@ function initLessonEditorPositions() {
   }
 }
 
+/**
+* TinyMCE callback to show warning when texearea content exceeds the available space.
+* Add a red border to the textarea
+*
+* Add this function on tinyMCE setup.
+*
+* @method tinyMceCallbacks
+* @for tinyMceCallbacks
+* @param inst {Object} tinyMCE body instance
+* @param tiny_id {Number} tinyMCE textarea id
+* @example
+      setup: function(ed) {
+        ed.onKeyUp.add(function(ed, e) {
+          tinyMceCallbacks(ed,tiny_id);
+        });
+      }
+*/
 function tinyMceCallbacks(inst,tiny_id){
   var maxH = 422;
   if($("textarea#"+tiny_id).parent('.audio-content').length > 0){
@@ -635,6 +781,23 @@ function tinyMceCallbacks(inst,tiny_id){
   
 }
 
+/**
+* TinyMCE keyDown callback to fix list item style.
+* It adds same style of list item text to list numbers or dots.
+*
+* Add this function on tinyMCE setup.
+*
+* @method tinyMceKeyDownCallbacks
+* @for tinyMceKeyDownCallbacks
+* @param inst {Object} tinyMCE body instance
+* @param tiny_id {Number} tinyMCE textarea id
+* @example
+      setup: function(ed) {
+        ed.onKeyDown.add(function(ed, e) {
+          tinyMceKeyDownCallbacks(ed,tiny_id);
+        });
+      }
+*/
 function tinyMceKeyDownCallbacks(inst,tiny_id){
   var spans = $(inst.getBody()).find("li span");
   spans.each(function(){
@@ -645,6 +808,12 @@ function tinyMceKeyDownCallbacks(inst,tiny_id){
   });
 }
 
+/**
+* Re-initialize slides position to center after ajax events
+*
+* @method reInitializeSlidePositionsInLessonEditor
+* @for reInitializeSlidePositionsInLessonEditor
+*/
 function reInitializeSlidePositionsInLessonEditor() {
   $("ul#slides").css("width",(($("ul#slides li").length+2) * 1000));
   $('ul#slides li').each(function(index){
@@ -652,6 +821,16 @@ function reInitializeSlidePositionsInLessonEditor() {
   });
 }
 
+/**
+* Initialize tinyMCE editor for a single textarea
+*
+* Uses: [tinyMceKeyDownCallbacks](../classes/tinyMceKeyDownCallbacks.html#method_tinyMceKeyDownCallbacks) 
+* and [tinyMceCallbacks](../classes/tinyMceCallbacks.html#method_tinyMceCallbacks) 
+* 
+* @method initTinymce
+* @for initTinymce
+* @param tiny_id {Number} tinyMCE textarea id
+*/
 function initTinymce(tiny_id) {
   tinyMCE.init({
     mode: 'exact',
@@ -692,22 +871,28 @@ function initTinymce(tiny_id) {
   //});
 }
 
-function imgRealSize(img) {
-  var $img = $(img);
-  if ($img.prop('naturalWidth') == undefined) {
-    var $tmpImg = $('<img/>').attr('src', $img.attr('src'));
-    $img.prop('naturalWidth', $tmpImg[0].width);
-    $img.prop('naturalHeight', $tmpImg[0].height);
-  }
-  return { 'width': $img.prop('naturalWidth'), 'height': $img.prop('naturalHeight') }
-}
-
+/**
+* Show error message when somethings goes wrong
+*
+* @method slideError
+* @for slideError
+*/
 function slideError() {
   $("body").prepend("<span class='_slide_error'></span>");
   centerThis("._slide_error");
   $("._slide_error").fadeTo('fast', 0).fadeTo('fast', 0.7).fadeTo('fast', 0.3).fadeOut();
 }
 
+/**
+* Check if image ratio is bigger then kind ratio
+*
+* @method isHorizontalMask
+* @for isHorizontalMask
+* @param image_width {Number}
+* @param image_height {Number}
+* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+* @return {Boolean} true if image ratio is bigger then kind ratio
+*/
 function isHorizontalMask(image_width, image_height, kind){
   var ratio = image_width/image_height;
   var slideRatio = 0;
@@ -727,6 +912,16 @@ function isHorizontalMask(image_width, image_height, kind){
   return (ratio >= slideRatio);
 }
 
+/**
+* Sets scaled width to slide images
+*
+* @method resizeWidth
+* @for resizeWidth
+* @param image_width {Number}
+* @param image_height {Number}
+* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+* @return {Number} scaled width
+*/
 function resizeWidth(width, height, kind){
   switch(kind) {
    case "cover": slideHeight = 560;
@@ -743,7 +938,17 @@ function resizeWidth(width, height, kind){
   }
   return (width*slideHeight)/height;
 }
-  
+ 
+/**
+* Sets scaled height to slide images
+*
+* @method resizeHeight
+* @for resizeHeight
+* @param image_width {Number}
+* @param image_height {Number}
+* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+* @return {Number} scaled height
+*/ 
 function resizeHeight(width,height,kind){
   switch(kind) {
    case "cover": slideWidth = 900;
