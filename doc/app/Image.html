@@ -519,12 +519,31 @@ contains the specific methods needed for media elements of type
 
         <div class="method-description">
           
-          
+          <h2 id="method-c-ratio_value-label-Description">Description</h2>
+
+<p>Returns the original value of a coordinate, given the actual value and the
+size of the image</p>
+
+<h2 id="method-c-ratio_value-label-Arguments">Arguments</h2>
+<dl class="rdoc-list note-list"><dt><code>w</code>
+<dd>
+<p>Width of the image</p>
+</dd><dt><code>h</code>
+<dd>
+<p>Height of the image</p>
+</dd><dt><code>value</code>
+<dd>
+<p>Value to be scaled</p>
+</dd></dl>
+
+<h2 id="method-c-ratio_value-label-Returns">Returns</h2>
+
+<p>A float.</p>
           
 
           
           <div class="method-source-code" id="ratio_value-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 260</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 296</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ratio_value</span>(<span class="ruby-identifier">w</span>, <span class="ruby-identifier">h</span>, <span class="ruby-identifier">value</span>)
   <span class="ruby-identifier">to_ratio</span> = <span class="ruby-value">660</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-value">500</span>.<span class="ruby-identifier">to_f</span>
   <span class="ruby-identifier">origin_ratio</span> = <span class="ruby-identifier">w</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">h</span>.<span class="ruby-identifier">to_f</span>
@@ -635,12 +654,33 @@ text</p>
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-crop-label-Description">Description</h2>
+
+<p>Crops the temporary image</p>
+
+<h2 id="method-i-crop-label-Arguments">Arguments</h2>
+<dl class="rdoc-list note-list"><dt><code>x1</code>
+<dd>
+<p>Horizontal coordinate of the top left corner of the crop.</p>
+</dd><dt><code>y1</code>
+<dd>
+<p>Vertical coordinate of the top left corner of the crop.</p>
+</dd><dt><code>x2</code>
+<dd>
+<p>Horizontal coordinate of the bottom right corner of the crop.</p>
+</dd><dt><code>y2</code>
+<dd>
+<p>Vertical coordinate of the bottom right corner of the crop.</p>
+</dd></dl>
+
+<h2 id="method-i-crop-label-Returns">Returns</h2>
+
+<p>A boolean.</p>
           
 
           
           <div class="method-source-code" id="crop-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 249</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 268</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">crop</span>(<span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-identifier">img</span> = <span class="ruby-constant">MiniMagick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_editing_image</span>

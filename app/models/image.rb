@@ -246,6 +246,25 @@ class Image < MediaElement
     true
   end
   
+  # == Description
+  #
+  # Crops the temporary image
+  #
+  # == Arguments
+  #
+  # +x1+::
+  #   Horizontal coordinate of the top left corner of the crop.
+  # +y1+::
+  #   Vertical coordinate of the top left corner of the crop.
+  # +x2+::
+  #   Horizontal coordinate of the bottom right corner of the crop.
+  # +y2+::
+  #   Vertical coordinate of the bottom right corner of the crop.
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
   def crop(x1, y1, x2, y2)
     return false if !self.in_edit_mode? || !self.save_editing_prev
     img = MiniMagick::Image.open self.current_editing_image
@@ -257,6 +276,23 @@ class Image < MediaElement
     true
   end
   
+  # == Description
+  #
+  # Returns the original value of a coordinate, given the actual value and the size of the image
+  #
+  # == Arguments
+  #
+  # +w+::
+  #   Width of the image
+  # +h+::
+  #   Height of the image
+  # +value+::
+  #   Value to be scaled
+  #
+  # == Returns
+  #
+  # A float.
+  #
   def self.ratio_value(w, h, value)
     to_ratio = 660.to_f / 500.to_f
     origin_ratio = w.to_f / h.to_f
