@@ -519,12 +519,31 @@ contains the specific methods needed for media elements of type
 
         <div class="method-description">
           
-          
+          <h2 id="method-c-ratio_value-label-Description">Description</h2>
+
+<p>Returns the original value of a coordinate, given the actual value and the
+size of the image</p>
+
+<h2 id="method-c-ratio_value-label-Arguments">Arguments</h2>
+<dl class="rdoc-list note-list"><dt><code>w</code>
+<dd>
+<p>Width of the image</p>
+</dd><dt><code>h</code>
+<dd>
+<p>Height of the image</p>
+</dd><dt><code>value</code>
+<dd>
+<p>Value to be scaled</p>
+</dd></dl>
+
+<h2 id="method-c-ratio_value-label-Returns">Returns</h2>
+
+<p>A float.</p>
           
 
           
           <div class="method-source-code" id="ratio_value-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 173</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 296</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ratio_value</span>(<span class="ruby-identifier">w</span>, <span class="ruby-identifier">h</span>, <span class="ruby-identifier">value</span>)
   <span class="ruby-identifier">to_ratio</span> = <span class="ruby-value">660</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-value">500</span>.<span class="ruby-identifier">to_f</span>
   <span class="ruby-identifier">origin_ratio</span> = <span class="ruby-identifier">w</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">h</span>.<span class="ruby-identifier">to_f</span>
@@ -567,12 +586,35 @@ contains the specific methods needed for media elements of type
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-add_text-label-Description">Description</h2>
+
+<p>Adds multiple texts in the temporary image.</p>
+
+<h2 id="method-i-add_text-label-Arguments">Arguments</h2>
+<dl class="rdoc-list note-list"><dt><code>texts</code>
+<dd>
+<p>An array of hashes, one for each text added. Each hash has the keys</p>
+<ul><li>
+<p><code>font_size</code>: the font size</p>
+</li><li>
+<p><code>coord_x</code>: horizontal coordinates of the top left corner of the
+text</p>
+</li><li>
+<p><code>coord_y</code>: vertical coordinates of the top left corner of the
+text</p>
+</li><li>
+<p><code>color</code>: hexagonal color of the text</p>
+</li></ul>
+</dd></dl>
+
+<h2 id="method-i-add_text-label-Returns">Returns</h2>
+
+<p>A boolean.</p>
           
 
           
           <div class="method-source-code" id="add_text-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 143</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 230</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_text</span>(<span class="ruby-identifier">texts</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-identifier">img</span> = <span class="ruby-constant">MiniMagick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_editing_image</span>
@@ -612,12 +654,33 @@ contains the specific methods needed for media elements of type
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-crop-label-Description">Description</h2>
+
+<p>Crops the temporary image</p>
+
+<h2 id="method-i-crop-label-Arguments">Arguments</h2>
+<dl class="rdoc-list note-list"><dt><code>x1</code>
+<dd>
+<p>Horizontal coordinate of the top left corner of the crop.</p>
+</dd><dt><code>y1</code>
+<dd>
+<p>Vertical coordinate of the top left corner of the crop.</p>
+</dd><dt><code>x2</code>
+<dd>
+<p>Horizontal coordinate of the bottom right corner of the crop.</p>
+</dd><dt><code>y2</code>
+<dd>
+<p>Vertical coordinate of the bottom right corner of the crop.</p>
+</dd></dl>
+
+<h2 id="method-i-crop-label-Returns">Returns</h2>
+
+<p>A boolean.</p>
           
 
           
           <div class="method-source-code" id="crop-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 162</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 268</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">crop</span>(<span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-identifier">img</span> = <span class="ruby-constant">MiniMagick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">current_editing_image</span>
@@ -649,12 +712,18 @@ contains the specific methods needed for media elements of type
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-current_editing_image-label-Description">Description</h2>
+
+<p>Returns the path of the current step conserved in image editor.</p>
+
+<h2 id="method-i-current_editing_image-label-Returns">Returns</h2>
+
+<p>A path.</p>
           
 
           
           <div class="method-source-code" id="current_editing_image-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 90</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">current_editing_image</span>
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}&quot;</span>
@@ -682,12 +751,17 @@ contains the specific methods needed for media elements of type
           
           <h2 id="method-i-editing_url-label-Description">Description</h2>
 
-<p>Returns the temporary url where it&#39;s conserved</p>
+<p>Returns the url of the folder where it&#39;s conserved the temporary image
+during editing.</p>
+
+<h2 id="method-i-editing_url-label-Returns">Returns</h2>
+
+<p>An url.</p>
           
 
           
           <div class="method-source-code" id="editing_url-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 79</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 83</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">editing_url</span>
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">file_name</span> = <span class="ruby-node">&quot;/#{url.split(&#39;/&#39;).last}&quot;</span>
@@ -714,12 +788,22 @@ contains the specific methods needed for media elements of type
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-enter_edit_mode-label-Description">Description</h2>
+
+<p>The image enters in <strong>edit</strong> <strong>mode</strong> for a
+particular user (who is not necessarily the creator of the image, this is
+checked in the controller)</p>
+
+<h2 id="method-i-enter_edit_mode-label-Arguments">Arguments</h2>
+<dl class="rdoc-list note-list"><dt><code>user_id</code>
+<dd>
+<p>Id of the user who is editing the image.</p>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="enter_edit_mode-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 99</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 140</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">enter_edit_mode</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-ivar">@edit_mode</span> = <span class="ruby-identifier">user_id</span>
   <span class="ruby-identifier">ed_dir</span> = <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{@edit_mode}&quot;</span>
@@ -785,12 +869,26 @@ contains the specific methods needed for media elements of type
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-in_edit_mode-3F-label-Description">Description</h2>
+
+<p>Used to check if the image is in <strong>edit</strong>
+<strong>mode</strong>: the image enters in edit mode when the image editor
+is opened, this implies that a temporary folder is automaticly created to
+contain the progressive steps of the editing. This method is useful to deny
+the access to specific methods if the image is not in editing.</p>
+
+<h2 id="method-i-in_edit_mode-3F-label-Returns">Returns</h2>
+
+<p>A boolean.</p>
+
+<h2 id="method-i-in_edit_mode-3F-label-Usage">Usage</h2>
+
+<pre>return &#39;&#39; if !self.in_edit_mode?</pre>
           
 
           
           <div class="method-source-code" id="in_edit_mode-3F-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 95</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-operator">!</span><span class="ruby-ivar">@edit_mode</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -815,12 +913,25 @@ contains the specific methods needed for media elements of type
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-leave_edit_mode-label-Description">Description</h2>
+
+<p>The image leaves the <strong>edit</strong> <strong>mode</strong> for a
+particular user</p>
+
+<h2 id="method-i-leave_edit_mode-label-Arguments">Arguments</h2>
+<dl class="rdoc-list note-list"><dt><code>user_id</code>
+<dd>
+<p>Id of the user who is editing the image.</p>
+</dd></dl>
+
+<h2 id="method-i-leave_edit_mode-label-Returns">Returns</h2>
+
+<p>True if the user was in editing mode, false otherwise.</p>
           
 
           
           <div class="method-source-code" id="leave_edit_mode-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 108</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 162</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">leave_edit_mode</span>(<span class="ruby-identifier">user_id</span>)
   <span class="ruby-identifier">ed_dir</span> = <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{user_id}&quot;</span>
   <span class="ruby-keyword">begin</span>
@@ -852,12 +963,19 @@ contains the specific methods needed for media elements of type
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-prev_editing_image-label-Description">Description</h2>
+
+<p>Returns the path of the previous step conserved in image editor: this
+replaces the current step if the user clicks on &#39;undo&#39;</p>
+
+<h2 id="method-i-prev_editing_image-label-Returns">Returns</h2>
+
+<p>A path.</p>
           
 
           
           <div class="method-source-code" id="prev_editing_image-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 85</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">prev_editing_image</span>
   <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-node">&quot;#{self.media.folder}/editing/user_#{@edit_mode}/prev.#{self.media.file.extension}&quot;</span>
@@ -883,12 +1001,18 @@ contains the specific methods needed for media elements of type
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-save_editing_prev-label-Description">Description</h2>
+
+<p>Copies the current temporary image into the previous temporary image.</p>
+
+<h2 id="method-i-save_editing_prev-label-Returns">Returns</h2>
+
+<p>A boolean.</p>
           
 
           
           <div class="method-source-code" id="save_editing_prev-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 119</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 181</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_editing_prev</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">prev_path</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prev_editing_image</span>
@@ -962,12 +1086,18 @@ contains the specific methods needed for media elements of type
 
         <div class="method-description">
           
-          
+          <h2 id="method-i-undo-label-Description">Description</h2>
+
+<p>Copies the previous temporary image into the current temporary image.</p>
+
+<h2 id="method-i-undo-label-Returns">Returns</h2>
+
+<p>A boolean.</p>
           
 
           
           <div class="method-source-code" id="undo-source">
-            <pre><span class="ruby-comment"># File app/models/image.rb, line 132</span>
+            <pre><span class="ruby-comment"># File app/models/image.rb, line 202</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">undo</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_edit_mode?</span>
   <span class="ruby-identifier">prev_path</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prev_editing_image</span>
