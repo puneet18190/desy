@@ -69,7 +69,7 @@ class Audio < MediaElement
   #
   # == Returns
   #
-  # The url of the thumb (an image).
+  # The url of the thumb (an image). If the audio is not converted, returns the animated gif from Audio#placeholder_url with +type+=+thumb+
   #
   # == Usage
   #
@@ -86,36 +86,108 @@ class Audio < MediaElement
   # == Args
   #
   # +type+::
-  #   TODO
+  #   The type of placeholder required: it can be
+  #   * +:thumb+: used in the expanded media element
+  #   * +:lesson_viewer+: used in the lesson viewer
   #
   # == Returns
   #
-  # The url of the thumb (an image).
+  # The url of the placeholder (a gif).
   #
   # == Usage
   #
-  #   <%= image_tag audio.thumb_url %>
+  #   <% if audio.converted? %>
+  #     <%= render :partial => 'shared/players/audio', :locals => {:audio => audio} %>
+  #   <% else %>
+  #     <%= image_tag audio.placeholder_url(:lesson_viewer) %>
+  #   <% end %>
   #
   def placeholder_url(type)
     "/assets/placeholders/audio_#{type}.gif"
   end
   
+  # == Description
+  #
+  # Returns the float duration in seconds of the mp3 track;
+  #
+  # == Args
+  #
+  # No args required
+  #
+  # == Returns
+  #
+  # A float number.
+  #
   def mp3_duration
     metadata.mp3_duration
   end
   
+  # == Description
+  #
+  # Returns the float duration in seconds of the ogg track;
+  #
+  # == Args
+  #
+  # No args required
+  #
+  # == Returns
+  #
+  # A float number.
+  #
   def ogg_duration
     metadata.ogg_duration
   end
   
+  # == Description
+  #
+  # Sets the float duration in seconds of the mp3 track;
+  #
+  # == Args
+  #
+  # +mp3_duration+::
+  #   The duration to be set
+  #
+  # == Returns
+  #
+  # Nothing
+  #
   def mp3_duration=(mp3_duration)
     metadata.mp3_duration = mp3_duration
   end
   
+  # == Description
+  #
+  # Sets the float duration in seconds of the ogg track;
+  #
+  # == Args
+  #
+  # +ogg_duration+::
+  #   The duration to be set
+  #
+  # == Returns
+  #
+  # Nothing
+  #
   def ogg_duration=(ogg_duration)
     metadata.ogg_duration = ogg_duration
   end
   
+  # == Description
+  #
+  # Returns the lower integer approximation of the minimum between +ogg_duration+ and +mp3_duration+. This is necessary to insert in the html players an integer duration in seconds that can be used without risks.
+  #
+  # == Args
+  #
+  # No args required
+  #
+  # == Returns
+  #
+  # An integer.
+  #
+  # == Usage
+  #
+  #   <div class="audioPlayer _instance_of_player" data-media-type="audio" data-initialized="false" data-duration="<%= audio.min_duration %>">
+  #
   def min_duration
     [mp3_duration, ogg_duration].map(&:to_i).min
   end
