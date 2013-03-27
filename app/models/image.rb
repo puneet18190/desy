@@ -75,27 +75,68 @@ class Image < MediaElement
   
   # == Description
   #
-  # Returns the temporary url where it's conserved 
+  # Returns the url of the folder where it's conserved the temporary image during editing.
+  #
+  # == Returns
+  # An url.
+  #
   def editing_url
     return '' if !self.in_edit_mode?
     file_name = "/#{url.split('/').last}"
     "#{url.gsub(file_name, '')}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}"
   end
   
+  # == Description
+  #
+  # Returns the path of the previous step conserved in image editor: this replaces the current step if the user clicks on 'undo'
+  #
+  # == Returns
+  #
+  # A path.
+  #
   def prev_editing_image
     return '' if !self.in_edit_mode?
     "#{self.media.folder}/editing/user_#{@edit_mode}/prev.#{self.media.file.extension}"
   end
   
+  # == Description
+  #
+  # Returns the path of the current step conserved in image editor.
+  #
+  # == Returns
+  #
+  # A path.
+  #
   def current_editing_image
     return '' if !self.in_edit_mode?
     "#{self.media.folder}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}"
   end
   
+  # == Description
+  #
+  # Used to check if the image is in *edit* *mode*: the image enters in edit mode when the image editor is opened, this implies that a temporary folder is automaticly created to contain the progressive steps of the editing. This method is useful to deny the access to specific methods if the image is not in editing.
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
+  # == Usage
+  #
+  #   return '' if !self.in_edit_mode?
+  #
   def in_edit_mode?
     !@edit_mode.nil?
   end
   
+  # == Description
+  #
+  # The image enters in *edit* *mode* for a particular user (who is not necessarily the creator of the image, this is checked in the controller)
+  #
+  # == Arguments
+  #
+  # +user_id+::
+  #   Id of the user who is editing the image.
+  #
   def enter_edit_mode(user_id)
     @edit_mode = user_id
     ed_dir = "#{self.media.folder}/editing/user_#{@edit_mode}"
@@ -105,6 +146,19 @@ class Image < MediaElement
     true
   end
   
+  # == Description
+  #
+  # The image leaves the *edit* *mode* for a particular user
+  #
+  # == Arguments
+  #
+  # +user_id+::
+  #   Id of the user who is editing the image.
+  #
+  # == Returns
+  #
+  # True if the user was in editing mode, false otherwise.
+  #
   def leave_edit_mode(user_id)
     ed_dir = "#{self.media.folder}/editing/user_#{user_id}"
     begin
@@ -116,6 +170,14 @@ class Image < MediaElement
     true
   end
   
+  # == Description
+  #
+  # Copies the current temporary image into the previous temporary image.
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
   def save_editing_prev
     return false if !self.in_edit_mode?
     prev_path = self.prev_editing_image
@@ -129,6 +191,14 @@ class Image < MediaElement
     true
   end
   
+  # == Description
+  #
+  # Copies the previous temporary image into the current temporary image.
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
   def undo
     return false if !self.in_edit_mode?
     prev_path = self.prev_editing_image
@@ -140,6 +210,23 @@ class Image < MediaElement
     true
   end
   
+  # == Description
+  #
+  # Adds multiple texts in the temporary image.
+  #
+  # == Arguments
+  #
+  # +texts+::
+  #   An array of hashes, one for each text added. Each hash has the keys
+  #   * +font_size+: the font size
+  #   * +coord_x+: horizontal coordinates of the top left corner of the text
+  #   * +coord_y+: vertical coordinates of the top left corner of the text
+  #   * +color+: hexagonal color of the text
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
   def add_text(texts)
     return false if !self.in_edit_mode? || !self.save_editing_prev
     img = MiniMagick::Image.open self.current_editing_image
