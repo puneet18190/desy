@@ -297,13 +297,13 @@ class AdminSearchForm < Form
   #   * +recency+: if present, it filters by +created_at+ greater than one year ago, one month ago, a week ago, or a day ago
   #   * +subject_id+: if present, the method filters by subject_id, using the relation UsersSubject
   #   * +location_id+: if present the methods filters by location of the user (see settings.yml for the possible names of this parameter)
-  #   * +user_ids+: TODO
+  #   * +user_ids+: list of users added manually to the list of recipients
   # +count_only+::
-  #   prova prova prova
+  #   If set to true, the method returns only the number of users
   #
   # == Returns
   #
-  # An array, not paginated yet, of the users found
+  # Depending on the value of +count_only+, either the number of records found, or a not paginated array of the users found
   #
   def self.search_notifications_users(params, count_only=false)
     resp = User.scoped
