@@ -169,11 +169,15 @@ class Lesson < ActiveRecord::Base
   #
   # Checks whether the lesson is available for editing in the Lesson Editor (if at least one between +metadata+.+available_audio+ and +metadata+.+available_video+ is false, the lesson is not available)
   #
+  # == Args
+  #
+  # * *type*: if the parameter is inserted explicitly, the methods returns only the value for the specific type; otherwise it returns +available_video+ && +available_audio+.
+  #
   # == Returns
   #
   # A boolean.
   #
-  def available?(type = nil)
+  def available?(type=nil)
     case type = type.to_s.downcase
     when 'video', 'audio'
       metadata.send :"available_#{type}"
@@ -182,15 +186,7 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  # == Description
-  #
-  # Checks whether the lesson is available for editing in the Lesson Editor (if at least one between +metadata+.+available_audio+ and +metadata+.+available_video+ is false, the lesson is not available)
-  #
-  # == Returns
-  #
-  # A boolean.
-  #
-  def available!(type, value = true)
+  def available!(type, value=true)
     metadata.send :"available_#{type.to_s.downcase}=", !!value
     update_attribute(:metadata, metadata)
   end

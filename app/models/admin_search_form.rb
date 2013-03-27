@@ -293,7 +293,7 @@ class AdminSearchForm < Form
   #   * +subject_id+: if present, the method filters by subject_id, using the relation UsersSubject
   #   * +location_id+: if present the methods filters by location of the user (see settings.yml for the possible names of this parameter)
   #   * +user_ids+: list of users added manually to the list of recipients
-  # * *count_only*: if set to +true+, the method returns only the number of users
+  # * *count_only*: if set to +true+, the method returns only the number of users; if not otherwise specified, it's set to +false+
   #
   # == Returns
   #
