@@ -90,6 +90,17 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/times.js": {
+            "name": "app/assets/javascripts/times.js",
+            "modules": {
+                "Times": 1
+            },
+            "classes": {},
+            "fors": {
+                "secondsToDateString": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/video_editor.js": {
             "name": "app/assets/javascripts/video_editor.js",
             "modules": {
@@ -99,6 +110,18 @@
             "fors": {
                 "initializeVideoEditor": 1,
                 "closeGenericVideoComponentCutter": 1
+            },
+            "namespaces": {}
+        },
+        "app/assets/javascripts/virtual_classroom.js": {
+            "name": "app/assets/javascripts/virtual_classroom.js",
+            "modules": {
+                "VirtualClassroom": 1
+            },
+            "classes": {},
+            "fors": {
+                "addEmailToVirtualClassroomSendLessonLinkSelector": 1,
+                "initializeNotAvailableLessonsToLoadQuick": 1
             },
             "namespaces": {}
         }
@@ -244,6 +267,21 @@
             "line": 1,
             "description": "Lesson editor functions, \nit handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too."
         },
+        "Times": {
+            "name": "Times",
+            "submodules": {},
+            "classes": {
+                "secondsToDateString": 1
+            },
+            "fors": {
+                "secondsToDateString": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/times.js",
+            "line": 1,
+            "description": "Shows a loading image while page is loading, \nit handles ajax calls too."
+        },
         "VideoEditor": {
             "name": "VideoEditor",
             "submodules": {},
@@ -260,6 +298,23 @@
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1,
             "description": "Provides the base Widget class..."
+        },
+        "VirtualClassroom": {
+            "name": "VirtualClassroom",
+            "submodules": {},
+            "classes": {
+                "addEmailToVirtualClassroomSendLessonLinkSelector": 1,
+                "initializeNotAvailableLessonsToLoadQuick": 1
+            },
+            "fors": {
+                "addEmailToVirtualClassroomSendLessonLinkSelector": 1,
+                "initializeNotAvailableLessonsToLoadQuick": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 1,
+            "description": "It's where users can share their lessons.\nIt handles share lessons link and add to playlist actions."
         }
     },
     "classes": {
@@ -747,6 +802,17 @@
             "module": "LessonEditor",
             "namespace": ""
         },
+        "secondsToDateString": {
+            "name": "secondsToDateString",
+            "shortname": "secondsToDateString",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Times",
+            "namespace": ""
+        },
         "initializeVideoEditor": {
             "name": "initializeVideoEditor",
             "shortname": "initializeVideoEditor",
@@ -767,6 +833,28 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "VideoEditor",
+            "namespace": ""
+        },
+        "addEmailToVirtualClassroomSendLessonLinkSelector": {
+            "name": "addEmailToVirtualClassroomSendLessonLinkSelector",
+            "shortname": "addEmailToVirtualClassroomSendLessonLinkSelector",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "VirtualClassroom",
+            "namespace": ""
+        },
+        "initializeNotAvailableLessonsToLoadQuick": {
+            "name": "initializeNotAvailableLessonsToLoadQuick",
+            "shortname": "initializeNotAvailableLessonsToLoadQuick",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "VirtualClassroom",
             "namespace": ""
         }
     },
@@ -1469,6 +1557,26 @@
             "module": "LessonEditor"
         },
         {
+            "file": "app/assets/javascripts/times.js",
+            "line": 8,
+            "description": "Get seconds amount formatted as datetime",
+            "itemtype": "method",
+            "name": "secondsToDateString",
+            "params": [
+                {
+                    "name": "seconds",
+                    "description": "amount of seconds",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "formatted seconds",
+                "type": "String"
+            },
+            "class": "secondsToDateString",
+            "module": "Times"
+        },
+        {
             "file": "app/assets/javascripts/video_editor.js",
             "line": 7,
             "description": "Video Editor initialization",
@@ -1507,6 +1615,24 @@
             },
             "class": "closeGenericVideoComponentCutter",
             "module": "VideoEditor"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 8,
+            "description": "Add email to recipients list on email add button (+).",
+            "itemtype": "method",
+            "name": "addEmailToVirtualClassroomSendLessonLinkSelector",
+            "class": "addEmailToVirtualClassroomSendLessonLinkSelector",
+            "module": "VirtualClassroom"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 22,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "initializeNotAvailableLessonsToLoadQuick",
+            "class": "initializeNotAvailableLessonsToLoadQuick",
+            "module": "VirtualClassroom"
         }
     ],
     "warnings": []

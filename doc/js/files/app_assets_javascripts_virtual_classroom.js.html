@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>showNewSlideChoice - DESY</title>
+    <title>app&#x2F;assets&#x2F;javascripts&#x2F;virtual_classroom.js - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -192,139 +192,169 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>showNewSlideChoice Class</h1>
-<div class="box meta">
-    
+                        <h1 class="file-heading">File: app&#x2F;assets&#x2F;javascripts&#x2F;virtual_classroom.js</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+* It&#x27;s where users can share their lessons.
+* It handles share lessons link and add to playlist actions.
+* 
+* @module VirtualClassroom
+*&#x2F;
 
-    
+&#x2F;**
+* Add email to recipients list on email add button (+).
+* 
+* @method addEmailToVirtualClassroomSendLessonLinkSelector
+* @for addEmailToVirtualClassroomSendLessonLinkSelector
+*&#x2F;
+function addEmailToVirtualClassroomSendLessonLinkSelector() {
+  var selector = $(&#x27;#virtual_classroom_emails_selector&#x27;);
+  if(!selector.data(&#x27;placeholdered&#x27;) &amp;&amp; selector.val() != &#x27;&#x27;) {
+    $(&#x27;#virtual_classroom_send_link_mails_box .jspPane&#x27;).append(&#x27;&lt;div class=&quot;_email&quot;&gt;&lt;span class=&quot;_text&quot;&gt;&#x27; + selector.val() + &#x27;&lt;&#x2F;span&gt;&lt;a class=&quot;_remove&quot;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;div&gt;&#x27;);
+    selector.val(&#x27;&#x27;);
+  }
+}
 
-    
-        
-            Module: <a href="../modules/LessonEditor.html">LessonEditor</a>
-        
-    
+&#x2F;**
+* JS-TODO
+* 
+* @method initializeNotAvailableLessonsToLoadQuick
+* @for initializeNotAvailableLessonsToLoadQuick
+*&#x2F;
+function initializeNotAvailableLessonsToLoadQuick() {
+  $(&#x27;._virtual_classroom_quick_loaded_lesson&#x27;).each(function() {
+    if(!$(this).data(&#x27;available&#x27;)) {
+      $(&#x27;#&#x27; + this.id + &#x27; ._lesson_thumb&#x27;).addClass(&#x27;current&#x27;);
+    }
+  });
+}
 
-    
-</div>
+function initializeScrollPaneQuickLessonSelector() {
+  $(&#x27;#virtual_classroom_quick_select_container.scroll-pane&#x27;).bind(&#x27;jsp-arrow-change&#x27;, function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
+    var page = $(&#x27;#virtual_classroom_quick_select_container&#x27;).data(&#x27;page&#x27;);
+    var tot_pages = $(&#x27;#virtual_classroom_quick_select_container&#x27;).data(&#x27;tot-pages&#x27;);
+    if(isAtBottom &amp;&amp; (page &lt; tot_pages)) {
+      $.get(&#x27;&#x2F;virtual_classroom&#x2F;select_lessons_new_block?page=&#x27; + (page + 1));
+    }
+  });
+}
 
+function initializeVirtualClassroom() {
+  $(&#x27;._virtual_classroom_lesson&#x27;).each(function() {
+    if($(this).data(&#x27;in-playlist&#x27;)) {
+      $(&#x27;#&#x27; + this.id + &#x27; ._lesson_thumb&#x27;).addClass(&#x27;current&#x27;);
+    } else {
+      initializeDraggableVirtualClassroomLesson(this.id);
+    }
+  });
+  initializePlaylist();
+}
 
+function initializeDraggableVirtualClassroomLesson(id) {
+  var lesson_cover = $(&#x27;#&#x27; + id + &#x27; ._lesson_thumb&#x27;);
+  var object = $(&#x27;#&#x27; + id);
+  if(object.hasClass(&#x27;ui-draggable&#x27;)) {
+    object.draggable(&#x27;enable&#x27;);
+  } else {
+    object.draggable({
+      revert: true,
+      handle: &#x27;._lesson_thumb&#x27;,
+      cursor: &#x27;move&#x27;,
+      containment: &#x27;.griglia-contenuti&#x27;,
+      helper: function() {
+        var current_z_index = getMaximumZIndex(&#x27;_virtual_classroom_lesson&#x27;) + 1;
+        var div_to_return = $(&#x27;#&#x27; + this.id + &#x27; ._lesson_thumb&#x27;)[0].outerHTML;
+        div_to_return = &#x27;&lt;div &#x27; + &#x27;style=&quot;&#x27; + current_z_index + &#x27;;outline:1px solid white&quot; &#x27; + div_to_return.substr(5,div_to_return.length);
+        return div_to_return;
+      },
+      start: function() {
+        lesson_cover.addClass(&#x27;current&#x27;);
+      },
+      stop: function(event, ui) {
+        if(!ui.helper.hasClass(&#x27;_lesson_dropped&#x27;)) {
+          lesson_cover.removeClass(&#x27;current&#x27;);
+        }
+      }
+    });
+  }
+  if(lesson_cover.hasClass(&#x27;current&#x27;)) {
+    lesson_cover.removeClass(&#x27;current&#x27;);
+  }
+  if(object.data(&#x27;in-playlist&#x27;)) {
+    object.data(&#x27;in-playlist&#x27;, false);
+  }
+}
 
-<div class="box intro">
-    
-</div>
+function initializePlaylist() {
+  $(&#x27;#lessons_list_in_playlist&#x27;).jScrollPane({
+    autoReinitialise: true
+  });
+  $(&#x27;#virtual_classroom_playlist&#x27;).droppable({
+    accept: &#x27;._virtual_classroom_lesson&#x27;,
+    drop: function(event, ui) {
+      ui.helper.hide();
+      ui.helper.addClass(&#x27;_lesson_dropped&#x27;);
+      $.ajax({
+        type: &#x27;post&#x27;,
+        url: &#x27;&#x2F;virtual_classroom&#x2F;&#x27; + ui.draggable.data(&#x27;lesson-id&#x27;) + &#x27;&#x2F;add_lesson_to_playlist&#x27;
+      });
+    },
+    hoverClass: &#x27;current&#x27;
+  });
+  $(&#x27;#virtual_classroom_playlist .jspPane&#x27;).sortable({
+    scroll: true,
+    handle: &#x27;._lesson_in_playlist&#x27;,
+    axis: &#x27;y&#x27;,
+    cursor: &#x27;move&#x27;,
+    cancel: &#x27;._remove_lesson_from_playlist&#x27;,
+    helper: function(event, ui) {
+      var current_z_index = getMaximumZIndex(&#x27;_lesson_in_playlist&#x27;) + 1;
+      var div_to_return = $($(&#x27;#&#x27; + ui.attr(&#x27;id&#x27;))[0].outerHTML);
+      div_to_return.addClass(&#x27;current&#x27;);
+      div_to_return = div_to_return[0].outerHTML;
+      var my_index = div_to_return.indexOf(&#x27;&lt;div class=&quot;_remove_lesson_from_playlist&#x27;);
+      var second_half_string = div_to_return.substring(my_index, div_to_return.length);
+      var my_second_index = my_index + second_half_string.indexOf(&#x27;&lt;&#x2F;div&gt;&#x27;) + 6;
+      return div_to_return.substring(0, (my_index - 1)) + div_to_return.substring((my_second_index + 1), div_to_return.length);
+    },
+    stop: function(event, ui) {
+      var previous = ui.item.prev();
+      var new_position = 0;
+      var old_position = ui.item.data(&#x27;position&#x27;);
+      if(previous.length == 0) {
+        new_position = 1;
+      } else {
+        var previous_item_position = previous.data(&#x27;position&#x27;);
+        if(old_position &gt; previous_item_position) {
+          new_position = previous_item_position + 1;
+        } else {
+          new_position = previous_item_position;
+        }
+      }
+      if(old_position != new_position) {
+        $.ajax({
+          type: &#x27;post&#x27;,
+          url: &#x27;&#x2F;virtual_classroom&#x2F;&#x27; + ui.item.data(&#x27;lesson-id&#x27;) + &#x27;&#x2F;playlist&#x2F;&#x27; + new_position + &#x27;&#x2F;change_position&#x27;
+        });
+      }
+    }
+  });
+}
 
+function getMaximumZIndex(a_class) {
+  var index_highest = 0;
+  $(&#x27;.&#x27; + a_class).each(function() {
+    var index_current = parseInt($(this).css(&quot;zIndex&quot;), 10);
+    if(index_current &gt; index_highest) {
+      index_highest = index_current;
+    }
+  });
+  return index_highest;
+}
 
-
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-
-        
-            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
-        
-        
-        
-        
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method">
-                                <a href="#method_showNewSlideChoice">showNewSlideChoice</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_showNewSlideChoice" class="method item">
-    <h3 class="name"><code>showNewSlideChoice</code></h3>
-
-    
-        <span class="paren">()</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l441"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:441</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Hide new slide selection</p>
-    </div>
-
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-
-        
-    </div>
+    </pre>
 </div>
 
                     </div>
