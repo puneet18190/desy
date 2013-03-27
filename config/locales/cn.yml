@@ -84,9 +84,9 @@ cn:
     # Error messages used when an exceptional error occurs while playing a media (the variable %{code} is replaced by the error code, the variable %{message} by the standard english error message associated to the code)
     media_loading_errors:
       # 1 - views/shared/_popups.html.erb
-      audio: "The audio you tried to play couldn't be loaded: error code %{code} (%{message})" # TODO
+      audio: "Couldn't load audio: error code %{code} (%{message})" # TODO
       # 1 - views/shared/_popups.html.erb
-      video: "The video you tried to play couldn't be loaded: error code %{code} (%{message})" # TODO
+      video: "Couldn't load video: error code %{code} (%{message})" # TODO
     send_lesson_link:
       # The user sent an email to a list of friends containing a direct link to a lesson: using such a link anybody can see the lesson, even without being logged in. The variables %{success} and %{total} represent (a) the number of emails to which the link has been successfully sent, and (b) the original number of emails the user inserted (there might be emails containing wrong characters).
       # 1 - views/virtual_classroom/send_link.js.erb
@@ -576,6 +576,9 @@ cn:
       # The user tried to upload a file which was damaged or invalid
       # 1 - controllers/application_controller.rb
       media_generic_error: "非法或文件损坏"
+      # The user tried to load a file exceeding the maximum size
+      # 1 - views/media_elements/_new_form_popup.html.erb
+      media_file_too_large: "File too large" # TODO
       # The user didn't choose a subject for a new lesson
       # 1 - controllers/application_controller.rb
       subject_missing_in_lesson: "选择主题"
@@ -1819,6 +1822,9 @@ cn:
       # 1 - views/mailing_lists/_group.html.erb
       # 2 - models/user.rb
       label: "群%{number}"
+      # Button to save
+      # 1 - views/users/mailing_lists.html.erb
+      save: "Save" # TODO
       # Placeholders used to fill the inputs to create a new address in a group
       placeholders:
         # 1 - views/mailing_lists/_group.html.erb

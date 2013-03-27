@@ -438,12 +438,17 @@ function startAudioEditorPreview(component) {
   selectAudioEditorComponentInPreviewMode(component);
   followPreviewComponentsWithVerticalScrollInAudioEditor();
   var audio = component.find('audio');
-  if(audio.readyState != 0) {
-    audio[0].play();
+  if(audio[0].error) {
+    showLoadingMediaErrorPopup(audio[0].error.code, 'audio');
+    $('#stop_audio_editor_preview').click();
   } else {
-    audio.on('loadedmetadata', function() {
+    if(audio.readyState != 0) {
       audio[0].play();
-    });
+    } else {
+      audio.on('loadedmetadata', function() {
+        audio[0].play();
+      });
+    }
   }
 }
 

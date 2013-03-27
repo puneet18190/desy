@@ -448,7 +448,7 @@ function showLoadingMediaErrorPopup(code, type) {
   var popup = captions.data('media-error-' + type);
   popup = popup.replace('%{code}', '' + code);
   popup = popup.replace('%{message}', message);
-  showErrorPopUp(popup);
+  alert(popup);
 }
 
 function stopAllMedia() {
