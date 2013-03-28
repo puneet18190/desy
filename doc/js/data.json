@@ -101,6 +101,22 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/galleries.js": {
+            "name": "app/assets/javascripts/galleries.js",
+            "modules": {
+                "Galleries": 1
+            },
+            "classes": {},
+            "fors": {
+                "initializeImageGalleryInLessonEditor": 1,
+                "initializeAudioGalleryInLessonEditor": 1,
+                "initializeVideoGalleryInLessonEditor": 1,
+                "initializeAudioGalleryInAudioEditor": 1,
+                "initializeImageGalleryInImageEditor": 1,
+                "resizedWidthForImageGallery": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/general.js": {
             "name": "app/assets/javascripts/general.js",
             "modules": {
@@ -435,6 +451,31 @@
             "file": "app/assets/javascripts/dialogs.js",
             "line": 1,
             "description": "Dialogs, model and popup interaction. \nOpen, close content management.\nUses jQueryUI _dialog_"
+        },
+        "Galleries": {
+            "name": "Galleries",
+            "submodules": {},
+            "classes": {
+                "initializeImageGalleryInLessonEditor": 1,
+                "initializeAudioGalleryInLessonEditor": 1,
+                "initializeVideoGalleryInLessonEditor": 1,
+                "initializeAudioGalleryInAudioEditor": 1,
+                "initializeImageGalleryInImageEditor": 1,
+                "resizedWidthForImageGallery": 1
+            },
+            "fors": {
+                "initializeImageGalleryInLessonEditor": 1,
+                "initializeAudioGalleryInLessonEditor": 1,
+                "initializeVideoGalleryInLessonEditor": 1,
+                "initializeAudioGalleryInAudioEditor": 1,
+                "initializeImageGalleryInImageEditor": 1,
+                "resizedWidthForImageGallery": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/galleries.js",
+            "line": 1,
+            "description": "Media element galleries, initialization."
         },
         "General": {
             "name": "General",
@@ -1217,6 +1258,72 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "Dialogs",
+            "namespace": ""
+        },
+        "initializeImageGalleryInLessonEditor": {
+            "name": "initializeImageGalleryInLessonEditor",
+            "shortname": "initializeImageGalleryInLessonEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Galleries",
+            "namespace": ""
+        },
+        "initializeAudioGalleryInLessonEditor": {
+            "name": "initializeAudioGalleryInLessonEditor",
+            "shortname": "initializeAudioGalleryInLessonEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Galleries",
+            "namespace": ""
+        },
+        "initializeVideoGalleryInLessonEditor": {
+            "name": "initializeVideoGalleryInLessonEditor",
+            "shortname": "initializeVideoGalleryInLessonEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Galleries",
+            "namespace": ""
+        },
+        "initializeAudioGalleryInAudioEditor": {
+            "name": "initializeAudioGalleryInAudioEditor",
+            "shortname": "initializeAudioGalleryInAudioEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Galleries",
+            "namespace": ""
+        },
+        "initializeImageGalleryInImageEditor": {
+            "name": "initializeImageGalleryInImageEditor",
+            "shortname": "initializeImageGalleryInImageEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Galleries",
+            "namespace": ""
+        },
+        "resizedWidthForImageGallery": {
+            "name": "resizedWidthForImageGallery",
+            "shortname": "resizedWidthForImageGallery",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Galleries",
             "namespace": ""
         },
         "updateURLParameter": {
@@ -2922,6 +3029,90 @@
             "name": "removeCustomOverlayClose",
             "class": "removeCustomOverlayClose",
             "module": "Dialogs"
+        },
+        {
+            "file": "app/assets/javascripts/galleries.js",
+            "line": 7,
+            "description": "Initialize image gallery in lesson editor.\nInit jScrollPane and get images block.",
+            "itemtype": "method",
+            "name": "initializeImageGalleryInLessonEditor",
+            "class": "initializeImageGalleryInLessonEditor",
+            "module": "Galleries"
+        },
+        {
+            "file": "app/assets/javascripts/galleries.js",
+            "line": 27,
+            "description": "Initialize audio gallery in lesson editor.\nInit jScrollPane and get audios block.",
+            "itemtype": "method",
+            "name": "initializeAudioGalleryInLessonEditor",
+            "class": "initializeAudioGalleryInLessonEditor",
+            "module": "Galleries"
+        },
+        {
+            "file": "app/assets/javascripts/galleries.js",
+            "line": 47,
+            "description": "Initialize video gallery in lesson editor.\nInit jScrollPane and get videos block.",
+            "itemtype": "method",
+            "name": "initializeVideoGalleryInLessonEditor",
+            "class": "initializeVideoGalleryInLessonEditor",
+            "module": "Galleries"
+        },
+        {
+            "file": "app/assets/javascripts/galleries.js",
+            "line": 67,
+            "description": "Initialize all media mixed gallery in video editor.\nInit jScrollPane and get mixed media block.",
+            "itemtype": "method",
+            "name": "initializeImageGalleryInLessonEditor",
+            "class": "initializeImageGalleryInLessonEditor",
+            "module": "Galleries"
+        },
+        {
+            "file": "app/assets/javascripts/galleries.js",
+            "line": 97,
+            "description": "Initialize audio gallery in video editor.\nInit jScrollPane and audios block.",
+            "itemtype": "method",
+            "name": "initializeImageGalleryInLessonEditor",
+            "class": "initializeImageGalleryInLessonEditor",
+            "module": "Galleries"
+        },
+        {
+            "file": "app/assets/javascripts/galleries.js",
+            "line": 117,
+            "description": "Initialize audio gallery in audio editor.\nInit jScrollPane and get audios block.",
+            "itemtype": "method",
+            "name": "initializeAudioGalleryInAudioEditor",
+            "class": "initializeAudioGalleryInAudioEditor",
+            "module": "Galleries"
+        },
+        {
+            "file": "app/assets/javascripts/galleries.js",
+            "line": 137,
+            "description": "Initialize image gallery in image editor.\nInit jScrollPane and get images block.",
+            "itemtype": "method",
+            "name": "initializeImageGalleryInImageEditor",
+            "class": "initializeImageGalleryInImageEditor",
+            "module": "Galleries"
+        },
+        {
+            "file": "app/assets/javascripts/galleries.js",
+            "line": 157,
+            "description": "Scale image size form image gallery popup",
+            "itemtype": "method",
+            "name": "resizedWidthForImageGallery",
+            "params": [
+                {
+                    "name": "width",
+                    "description": "image original width",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "image original height",
+                    "type": "Number"
+                }
+            ],
+            "class": "resizedWidthForImageGallery",
+            "module": "Galleries"
         },
         {
             "file": "app/assets/javascripts/general.js",

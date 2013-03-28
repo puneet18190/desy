@@ -1,5 +1,16 @@
-// funzioni di inizializzazione standard
+/**
+* Media element galleries, initialization.
+* 
+* @module Galleries
+*/
 
+/**
+* Initialize image gallery in lesson editor.
+* Init jScrollPane and get images block.
+* 
+* @method initializeImageGalleryInLessonEditor
+* @for initializeImageGalleryInLessonEditor
+*/
 function initializeImageGalleryInLessonEditor() {
   $('#lesson_editor_image_gallery_container #image_gallery_content > div').jScrollPane({
     autoReinitialise: true
@@ -13,6 +24,13 @@ function initializeImageGalleryInLessonEditor() {
   });
 }
 
+/**
+* Initialize audio gallery in lesson editor.
+* Init jScrollPane and get audios block.
+* 
+* @method initializeAudioGalleryInLessonEditor
+* @for initializeAudioGalleryInLessonEditor
+*/
 function initializeAudioGalleryInLessonEditor() {
   $('#lesson_editor_audio_gallery_container #audio_gallery_content > div').jScrollPane({
     autoReinitialise: true
@@ -26,6 +44,13 @@ function initializeAudioGalleryInLessonEditor() {
   });
 }
 
+/**
+* Initialize video gallery in lesson editor.
+* Init jScrollPane and get videos block.
+* 
+* @method initializeVideoGalleryInLessonEditor
+* @for initializeVideoGalleryInLessonEditor
+*/
 function initializeVideoGalleryInLessonEditor() {
   $('#lesson_editor_video_gallery_container #video_gallery_content > div').jScrollPane({
     autoReinitialise: true
@@ -39,6 +64,13 @@ function initializeVideoGalleryInLessonEditor() {
   });
 }
 
+/**
+* Initialize all media mixed gallery in video editor.
+* Init jScrollPane and get mixed media block.
+* 
+* @method initializeImageGalleryInLessonEditor
+* @for initializeImageGalleryInLessonEditor
+*/
 function initializeMixedGalleryInVideoEditor() {
   $('#video_editor_mixed_gallery_container #video_gallery_content > div').jScrollPane({
     autoReinitialise: true
@@ -62,6 +94,13 @@ function initializeMixedGalleryInVideoEditor() {
   });
 }
 
+/**
+* Initialize audio gallery in video editor.
+* Init jScrollPane and audios block.
+* 
+* @method initializeImageGalleryInLessonEditor
+* @for initializeImageGalleryInLessonEditor
+*/
 function initializeAudioGalleryInVideoEditor() {
   $('#video_editor_audio_gallery_container #audio_gallery_content > div').jScrollPane({
     autoReinitialise: true
@@ -75,6 +114,13 @@ function initializeAudioGalleryInVideoEditor() {
   });
 }
 
+/**
+* Initialize audio gallery in audio editor.
+* Init jScrollPane and get audios block.
+* 
+* @method initializeAudioGalleryInAudioEditor
+* @for initializeAudioGalleryInAudioEditor
+*/
 function initializeAudioGalleryInAudioEditor() {
   $('#audio_editor_gallery_container #audio_gallery_content > div').jScrollPane({
     autoReinitialise: true
@@ -88,6 +134,13 @@ function initializeAudioGalleryInAudioEditor() {
   });
 }
 
+/**
+* Initialize image gallery in image editor.
+* Init jScrollPane and get images block.
+* 
+* @method initializeImageGalleryInImageEditor
+* @for initializeImageGalleryInImageEditor
+*/
 function initializeImageGalleryInImageEditor() {
   $('#image_gallery_for_image_editor #image_gallery_content > div').jScrollPane({
     autoReinitialise: true
@@ -101,9 +154,14 @@ function initializeImageGalleryInImageEditor() {
   });
 }
 
-// fino a qui
-
-
+/**
+* Scale image size form image gallery popup
+* 
+* @method resizedWidthForImageGallery
+* @for resizedWidthForImageGallery
+* @param width {Number} image original width
+* @param height {Number} image original height
+*/
 function resizedWidthForImageGallery(width, height) {
   if(height > width) {
     return (420 * width / height) + 20;
