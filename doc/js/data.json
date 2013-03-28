@@ -200,6 +200,24 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/tags.js": {
+            "name": "app/assets/javascripts/tags.js",
+            "modules": {
+                "Tags": 1
+            },
+            "classes": {},
+            "fors": {
+                "addTagWithoutSuggestion": 1,
+                "addToTagsValue": 1,
+                "removeFromTagsValue": 1,
+                "getUnivoqueClassForTag": 1,
+                "checkNoTagDuplicates": 1,
+                "createTagSpan": 1,
+                "disableTagsInputTooHigh": 1,
+                "initSearchTagsAutocomplete": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/times.js": {
             "name": "app/assets/javascripts/times.js",
             "modules": {
@@ -554,6 +572,35 @@
             "file": "app/assets/javascripts/notifications.js",
             "line": 1,
             "description": "Notification info and help assistant messages handler."
+        },
+        "Tags": {
+            "name": "Tags",
+            "submodules": {},
+            "classes": {
+                "addTagWithoutSuggestion": 1,
+                "addToTagsValue": 1,
+                "removeFromTagsValue": 1,
+                "getUnivoqueClassForTag": 1,
+                "checkNoTagDuplicates": 1,
+                "createTagSpan": 1,
+                "disableTagsInputTooHigh": 1,
+                "initSearchTagsAutocomplete": 1
+            },
+            "fors": {
+                "addTagWithoutSuggestion": 1,
+                "addToTagsValue": 1,
+                "removeFromTagsValue": 1,
+                "getUnivoqueClassForTag": 1,
+                "checkNoTagDuplicates": 1,
+                "createTagSpan": 1,
+                "disableTagsInputTooHigh": 1,
+                "initSearchTagsAutocomplete": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/tags.js",
+            "line": 1,
+            "description": "Tags autocomplete, _add_ and _remove_ from list."
         },
         "Times": {
             "name": "Times",
@@ -1638,6 +1685,94 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "Notifications",
+            "namespace": ""
+        },
+        "addTagWithoutSuggestion": {
+            "name": "addTagWithoutSuggestion",
+            "shortname": "addTagWithoutSuggestion",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "addToTagsValue": {
+            "name": "addToTagsValue",
+            "shortname": "addToTagsValue",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "removeFromTagsValue": {
+            "name": "removeFromTagsValue",
+            "shortname": "removeFromTagsValue",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "getUnivoqueClassForTag": {
+            "name": "getUnivoqueClassForTag",
+            "shortname": "getUnivoqueClassForTag",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "checkNoTagDuplicates": {
+            "name": "checkNoTagDuplicates",
+            "shortname": "checkNoTagDuplicates",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "createTagSpan": {
+            "name": "createTagSpan",
+            "shortname": "createTagSpan",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "disableTagsInputTooHigh": {
+            "name": "disableTagsInputTooHigh",
+            "shortname": "disableTagsInputTooHigh",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "initSearchTagsAutocomplete": {
+            "name": "initSearchTagsAutocomplete",
+            "shortname": "initSearchTagsAutocomplete",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
             "namespace": ""
         },
         "secondsToDateString": {
@@ -3223,6 +3358,197 @@
             "name": "showHelpButton",
             "class": "showHelpButton",
             "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 247,
+            "description": "Handle adding tag not in the autocomplete data list\n\nUses: [checkNoTagDuplicates](../classes/checkNoTagDuplicates.html#method_checkNoTagDuplicates)\nand [addToTagsValue](../classes/addToTagsValue.html#method_addToTagsValue)\nand [createTagSpan](../classes/createTagSpan.html#method_createTagSpan)\nand [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [getUnivoqueClassForTag](../classes/getUnivoqueClassForTag.html#method_getUnivoqueClassForTag)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)\nand [disableTagsInputTooHigh](../classes/disableTagsInputTooHigh.html#method_disableTagsInputTooHigh)",
+            "itemtype": "method",
+            "name": "addTagWithoutSuggestion",
+            "params": [
+                {
+                    "name": "input",
+                    "description": "input selector for tag, class or id",
+                    "type": "String"
+                },
+                {
+                    "name": "container_selector",
+                    "description": "addes tags container selector, class or id",
+                    "type": "String"
+                },
+                {
+                    "name": "tags_value_selector",
+                    "description": "hidden input field for tags value selector",
+                    "type": "String"
+                }
+            ],
+            "class": "addTagWithoutSuggestion",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 291,
+            "description": "Add tag word to hidden field with tags values",
+            "itemtype": "method",
+            "name": "addToTagsValue",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "tag name",
+                    "type": "String"
+                },
+                {
+                    "name": "value_selector",
+                    "description": "hidden input field for tags value selector",
+                    "type": "String"
+                }
+            ],
+            "class": "addToTagsValue",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 309,
+            "description": "Remove tag word to hidden field with tags values",
+            "itemtype": "method",
+            "name": "removeFromTagsValue",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "tag name",
+                    "type": "String"
+                },
+                {
+                    "name": "value_selector",
+                    "description": "hidden input field for tags value selector",
+                    "type": "String"
+                }
+            ],
+            "class": "removeFromTagsValue",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 323,
+            "description": "Generates a name_aware class for a given tag",
+            "itemtype": "method",
+            "name": "getUnivoqueClassForTag",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "tag name",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "i.e. w_a_t_e_r_",
+                "type": "String"
+            },
+            "class": "getUnivoqueClassForTag",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 339,
+            "description": "Checks if a tag word is present in the tags container.",
+            "itemtype": "method",
+            "name": "checkNoTagDuplicates",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "tag name",
+                    "type": "String"
+                },
+                {
+                    "name": "container_selector",
+                    "description": "tags container selector",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "checkNoTagDuplicates",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 358,
+            "description": "Creates a new span element for a new tag.",
+            "itemtype": "method",
+            "name": "createTagSpan",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "tag name",
+                    "type": "String"
+                },
+                {
+                    "name": "new_tag",
+                    "description": "flag true if it's a new tag, false otherwise",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "span element",
+                "type": "Object"
+            },
+            "class": "createTagSpan",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 376,
+            "description": "Disable insert new tag when tags container is full.",
+            "itemtype": "method",
+            "name": "disableTagsInputTooHigh",
+            "params": [
+                {
+                    "name": "container_selector",
+                    "description": "tags container selector, class or id",
+                    "type": "String"
+                },
+                {
+                    "name": "input_selector",
+                    "description": "new tag input selector, class or id",
+                    "type": "String"
+                }
+            ],
+            "class": "disableTagsInputTooHigh",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 390,
+            "description": "Initialize jQueryUI _autocomplete_ for tags in search input\n\nUses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)",
+            "itemtype": "method",
+            "name": "initSearchTagsAutocomplete",
+            "params": [
+                {
+                    "name": "input",
+                    "description": "search by tag input selector, class or id",
+                    "type": "String"
+                }
+            ],
+            "class": "initSearchTagsAutocomplete",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 424,
+            "description": "Initialize jQueryUI _autocomplete_ for tags in lessons and elements form\n\nUses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)\nand [checkNoTagDuplicates](../classes/checkNoTagDuplicates.html#method_checkNoTagDuplicates)\nand [addToTagsValue](../classes/addToTagsValue.html#method_addToTagsValue)\nand [createTagSpan](../classes/createTagSpan.html#method_createTagSpan)\nand [disableTagsInputTooHigh](../classes/disableTagsInputTooHigh.html#method_disableTagsInputTooHigh)",
+            "itemtype": "method",
+            "name": "initSearchTagsAutocomplete",
+            "params": [
+                {
+                    "name": "scope",
+                    "description": "tags container scope, class or id",
+                    "type": "String"
+                }
+            ],
+            "class": "initSearchTagsAutocomplete",
+            "module": "Tags"
         },
         {
             "file": "app/assets/javascripts/times.js",

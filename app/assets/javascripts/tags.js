@@ -1,3 +1,8 @@
+/**
+* Tags autocomplete, _add_ and _remove_ from list.
+* 
+* @module Tags
+*/
 $(document).ready(function() {
   
   // SEARCH TAGS 
@@ -239,6 +244,23 @@ $(document).ready(function() {
   
 });
 
+/**
+* Handle adding tag not in the autocomplete data list
+*
+* Uses: [checkNoTagDuplicates](../classes/checkNoTagDuplicates.html#method_checkNoTagDuplicates)
+* and [addToTagsValue](../classes/addToTagsValue.html#method_addToTagsValue)
+* and [createTagSpan](../classes/createTagSpan.html#method_createTagSpan)
+* and [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)
+* and [getUnivoqueClassForTag](../classes/getUnivoqueClassForTag.html#method_getUnivoqueClassForTag)
+* and [bindLoader](../classes/bindLoader.html#method_bindLoader)
+* and [disableTagsInputTooHigh](../classes/disableTagsInputTooHigh.html#method_disableTagsInputTooHigh)
+* 
+* @method addTagWithoutSuggestion
+* @for addTagWithoutSuggestion
+* @param input {String} input selector for tag, class or id
+* @param container_selector {String} addes tags container selector, class or id
+* @param tags_value_selector {String} hidden input field for tags value selector
+*/
 function addTagWithoutSuggestion(input, container_selector, tags_value_selector) {
   var my_val = $.trim($(input).val()).toLowerCase();
   if(my_val.length >= $('#popup_parameters_container').data('min-tag-length') && checkNoTagDuplicates(my_val, container_selector)) {
@@ -266,6 +288,14 @@ function addTagWithoutSuggestion(input, container_selector, tags_value_selector)
   $(input).val('');
 }
 
+/**
+* Add tag word to hidden field with tags values
+* 
+* @method addToTagsValue
+* @for addToTagsValue
+* @param word {String} tag name
+* @param value_selector {String} hidden input field for tags value selector
+*/
 function addToTagsValue(word, value_selector) {
   var old_value = $(value_selector).val();
   if(old_value.indexOf(',') == -1) {
@@ -276,12 +306,28 @@ function addToTagsValue(word, value_selector) {
   $(value_selector).val(old_value);
 }
 
+/**
+* Remove tag word to hidden field with tags values
+* 
+* @method removeFromTagsValue
+* @for removeFromTagsValue
+* @param word {String} tag name
+* @param value_selector {String} hidden input field for tags value selector
+*/
 function removeFromTagsValue(word, value_selector) {
   var old_value = $(value_selector).val();
   old_value = old_value.replace((',' + word + ','), ',');
   $(value_selector).val(old_value);
 }
 
+/**
+* Generates a name_aware class for a given tag
+* 
+* @method getUnivoqueClassForTag
+* @for getUnivoqueClassForTag
+* @param word {String} tag name
+* @return {String} i.e. w_a_t_e_r_
+*/
 function getUnivoqueClassForTag(word) {
   var resp = '';
   for(var i = 0; i < word.length; i++) {
@@ -290,6 +336,15 @@ function getUnivoqueClassForTag(word) {
   return resp
 }
 
+/**
+* Checks if a tag word is present in the tags container.
+* 
+* @method checkNoTagDuplicates
+* @for checkNoTagDuplicates
+* @param word {String} tag name
+* @param container_selector {String} tags container selector
+* @return {Boolean}
+*/
 function checkNoTagDuplicates(word, container_selector) {
   var flag = true;
   $(container_selector + ' span').each(function() {
@@ -300,6 +355,15 @@ function checkNoTagDuplicates(word, container_selector) {
   return flag;
 }
 
+/**
+* Creates a new span element for a new tag.
+* 
+* @method createTagSpan
+* @for createTagSpan
+* @param word {String} tag name
+* @param new_tag {Boolean} flag true if it's a new tag, false otherwise
+* @return {Object} span element
+*/
 function createTagSpan(word, new_tag) {
   var span = $('<span>').text(word);
   var a = $('<a>').addClass('remove').appendTo(span);
@@ -309,12 +373,30 @@ function createTagSpan(word, new_tag) {
   return span;
 }
 
+/**
+* Disable insert new tag when tags container is full.
+* 
+* @method disableTagsInputTooHigh
+* @for disableTagsInputTooHigh
+* @param container_selector {String} tags container selector, class or id
+* @param input_selector {String} new tag input selector, class or id
+*/
 function disableTagsInputTooHigh(container_selector, input_selector) {
   if($(container_selector)[0].scrollHeight > $(container_selector).height()) {
     $(input_selector).hide();
   }
 }
 
+/**
+* Initialize jQueryUI _autocomplete_ for tags in search input
+*
+* Uses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)
+* and [bindLoader](../classes/bindLoader.html#method_bindLoader)
+* 
+* @method initSearchTagsAutocomplete
+* @for initSearchTagsAutocomplete
+* @param input {String} search by tag input selector, class or id
+*/
 function initSearchTagsAutocomplete(input) {
   var cache = {};
   $(input).autocomplete({
@@ -339,6 +421,20 @@ function initSearchTagsAutocomplete(input) {
   });
 }
 
+/**
+* Initialize jQueryUI _autocomplete_ for tags in lessons and elements form
+*
+* Uses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)
+* and [bindLoader](../classes/bindLoader.html#method_bindLoader)
+* and [checkNoTagDuplicates](../classes/checkNoTagDuplicates.html#method_checkNoTagDuplicates)
+* and [addToTagsValue](../classes/addToTagsValue.html#method_addToTagsValue)
+* and [createTagSpan](../classes/createTagSpan.html#method_createTagSpan)
+* and [disableTagsInputTooHigh](../classes/disableTagsInputTooHigh.html#method_disableTagsInputTooHigh)
+* 
+* @method initSearchTagsAutocomplete
+* @for initSearchTagsAutocomplete
+* @param scope {String} tags container scope, class or id
+*/
 function initTagsAutocomplete(scope) {
   var input_selector = scope + ' #tags';
   if(scope == '#form_info_new_media_element_in_editor') {
