@@ -519,12 +519,12 @@ contains the specific methods needed for media elements of type
 
         <div class="method-description">
           
-          <h2 id="method-c-ratio_value-label-Description">Description</h2>
+          <h3 id="method-c-ratio_value-label-Description">Description</h3>
 
 <p>Returns the original value of a coordinate, given the actual value and the
 size of the image</p>
 
-<h2 id="method-c-ratio_value-label-Arguments">Arguments</h2>
+<h3 id="method-c-ratio_value-label-Arguments">Arguments</h3>
 <ul><li>
 <p><strong>w</strong>: width of the image</p>
 </li><li>
@@ -533,7 +533,7 @@ size of the image</p>
 <p><strong>value</strong>: value to be scaled</p>
 </li></ul>
 
-<h2 id="method-c-ratio_value-label-Returns">Returns</h2>
+<h3 id="method-c-ratio_value-label-Returns">Returns</h3>
 
 <p>A float.</p>
           
@@ -583,11 +583,11 @@ size of the image</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-add_text-label-Description">Description</h2>
+          <h3 id="method-i-add_text-label-Description">Description</h3>
 
 <p>Adds multiple texts in the temporary image.</p>
 
-<h2 id="method-i-add_text-label-Arguments">Arguments</h2>
+<h3 id="method-i-add_text-label-Arguments">Arguments</h3>
 <ul><li>
 <p><strong>texts</strong>: an array of hashes, one for each text added. Each
 hash has the keys</p>
@@ -604,7 +604,7 @@ text</p>
 </li></ul>
 </li></ul>
 
-<h2 id="method-i-add_text-label-Returns">Returns</h2>
+<h3 id="method-i-add_text-label-Returns">Returns</h3>
 
 <p>A boolean.</p>
           
@@ -651,11 +651,11 @@ text</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-crop-label-Description">Description</h2>
+          <h3 id="method-i-crop-label-Description">Description</h3>
 
 <p>Crops the temporary image</p>
 
-<h2 id="method-i-crop-label-Arguments">Arguments</h2>
+<h3 id="method-i-crop-label-Arguments">Arguments</h3>
 <ul><li>
 <p><strong>x1</strong>: horizontal coordinate of the top left corner of the
 crop</p>
@@ -669,7 +669,7 @@ the crop</p>
 crop</p>
 </li></ul>
 
-<h2 id="method-i-crop-label-Returns">Returns</h2>
+<h3 id="method-i-crop-label-Returns">Returns</h3>
 
 <p>A boolean.</p>
           
@@ -708,11 +708,11 @@ crop</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-current_editing_image-label-Description">Description</h2>
+          <h3 id="method-i-current_editing_image-label-Description">Description</h3>
 
 <p>Returns the path of the current step conserved in image editor.</p>
 
-<h2 id="method-i-current_editing_image-label-Returns">Returns</h2>
+<h3 id="method-i-current_editing_image-label-Returns">Returns</h3>
 
 <p>A path.</p>
           
@@ -745,12 +745,12 @@ crop</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-editing_url-label-Description">Description</h2>
+          <h3 id="method-i-editing_url-label-Description">Description</h3>
 
 <p>Returns the url of the folder where it&#39;s conserved the temporary image
 during editing.</p>
 
-<h2 id="method-i-editing_url-label-Returns">Returns</h2>
+<h3 id="method-i-editing_url-label-Returns">Returns</h3>
 
 <p>An url.</p>
           
@@ -784,13 +784,13 @@ during editing.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-enter_edit_mode-label-Description">Description</h2>
+          <h3 id="method-i-enter_edit_mode-label-Description">Description</h3>
 
 <p>The image enters in <strong>edit</strong> <strong>mode</strong> for a
 particular user (who is not necessarily the creator of the image, this is
 checked in the controller)</p>
 
-<h2 id="method-i-enter_edit_mode-label-Arguments">Arguments</h2>
+<h3 id="method-i-enter_edit_mode-label-Arguments">Arguments</h3>
 <ul><li>
 <p><strong>user_id</strong>: id of the user who is editing the image</p>
 </li></ul>
@@ -828,11 +828,11 @@ checked in the controller)</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-height-label-Description">Description</h2>
+          <h3 id="method-i-height-label-Description">Description</h3>
 
 <p>Returns the height in pixels.</p>
 
-<h2 id="method-i-height-label-Returns">Returns</h2>
+<h3 id="method-i-height-label-Returns">Returns</h3>
 
 <p>A float.</p>
           
@@ -864,7 +864,7 @@ checked in the controller)</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-in_edit_mode-3F-label-Description">Description</h2>
+          <h3 id="method-i-in_edit_mode-3F-label-Description">Description</h3>
 
 <p>Used to check if the image is in <strong>edit</strong>
 <strong>mode</strong>: the image enters in edit mode when the image editor
@@ -872,11 +872,11 @@ is opened, this implies that a temporary folder is automaticly created to
 contain the progressive steps of the editing. This method is useful to deny
 the access to specific methods if the image is not in editing.</p>
 
-<h2 id="method-i-in_edit_mode-3F-label-Returns">Returns</h2>
+<h3 id="method-i-in_edit_mode-3F-label-Returns">Returns</h3>
 
 <p>A boolean.</p>
 
-<h2 id="method-i-in_edit_mode-3F-label-Usage">Usage</h2>
+<h3 id="method-i-in_edit_mode-3F-label-Usage">Usage</h3>
 
 <pre>return &#39;&#39; if !self.in_edit_mode?</pre>
           
@@ -908,17 +908,17 @@ the access to specific methods if the image is not in editing.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-leave_edit_mode-label-Description">Description</h2>
+          <h3 id="method-i-leave_edit_mode-label-Description">Description</h3>
 
 <p>The image leaves the <strong>edit</strong> <strong>mode</strong> for a
 particular user</p>
 
-<h2 id="method-i-leave_edit_mode-label-Arguments">Arguments</h2>
+<h3 id="method-i-leave_edit_mode-label-Arguments">Arguments</h3>
 <ul><li>
 <p><strong>user_id</strong>: id of the user who is editing the image</p>
 </li></ul>
 
-<h2 id="method-i-leave_edit_mode-label-Returns">Returns</h2>
+<h3 id="method-i-leave_edit_mode-label-Returns">Returns</h3>
 
 <p>True if the user was in editing mode, false otherwise.</p>
           
@@ -957,12 +957,12 @@ particular user</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-prev_editing_image-label-Description">Description</h2>
+          <h3 id="method-i-prev_editing_image-label-Description">Description</h3>
 
 <p>Returns the path of the previous step conserved in image editor: this
 replaces the current step if the user clicks on &#39;undo&#39;</p>
 
-<h2 id="method-i-prev_editing_image-label-Returns">Returns</h2>
+<h3 id="method-i-prev_editing_image-label-Returns">Returns</h3>
 
 <p>A path.</p>
           
@@ -995,11 +995,11 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-save_editing_prev-label-Description">Description</h2>
+          <h3 id="method-i-save_editing_prev-label-Description">Description</h3>
 
 <p>Copies the current temporary image into the previous temporary image.</p>
 
-<h2 id="method-i-save_editing_prev-label-Returns">Returns</h2>
+<h3 id="method-i-save_editing_prev-label-Returns">Returns</h3>
 
 <p>A boolean.</p>
           
@@ -1040,15 +1040,15 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-thumb_url-label-Description">Description</h2>
+          <h3 id="method-i-thumb_url-label-Description">Description</h3>
 
 <p>Returns the url of the 200x200 thumb of the attached image.</p>
 
-<h2 id="method-i-thumb_url-label-Returns">Returns</h2>
+<h3 id="method-i-thumb_url-label-Returns">Returns</h3>
 
 <p>An url</p>
 
-<h2 id="method-i-thumb_url-label-Usage">Usage</h2>
+<h3 id="method-i-thumb_url-label-Usage">Usage</h3>
 
 <pre>&lt;%= image_tag image.thumb_url %&gt;</pre>
           
@@ -1080,11 +1080,11 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-undo-label-Description">Description</h2>
+          <h3 id="method-i-undo-label-Description">Description</h3>
 
 <p>Copies the previous temporary image into the current temporary image.</p>
 
-<h2 id="method-i-undo-label-Returns">Returns</h2>
+<h3 id="method-i-undo-label-Returns">Returns</h3>
 
 <p>A boolean.</p>
           
@@ -1123,15 +1123,15 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-url-label-Description">Description</h2>
+          <h3 id="method-i-url-label-Description">Description</h3>
 
 <p>Returns the url of the attached image.</p>
 
-<h2 id="method-i-url-label-Returns">Returns</h2>
+<h3 id="method-i-url-label-Returns">Returns</h3>
 
 <p>An url</p>
 
-<h2 id="method-i-url-label-Usage">Usage</h2>
+<h3 id="method-i-url-label-Usage">Usage</h3>
 
 <pre>&lt;%= image_tag image.url %&gt;</pre>
           
@@ -1163,11 +1163,11 @@ replaces the current step if the user clicks on &#39;undo&#39;</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-width-label-Description">Description</h2>
+          <h3 id="method-i-width-label-Description">Description</h3>
 
 <p>Returns the width in pixels.</p>
 
-<h2 id="method-i-width-label-Returns">Returns</h2>
+<h3 id="method-i-width-label-Returns">Returns</h3>
 
 <p>A float.</p>
           

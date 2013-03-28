@@ -21,7 +21,7 @@
 # * *availability* of the associated item (for lessons it can't be public and it can't belong to the user who bookmarks, for media elements it can't be public)
 # * *modifications* *not* *available* for the three fields, if the record is not new
 #
-# == Callbacks
+# === Callbacks
 #
 # 1. *before_destroy*: destroy (not directly) associated VirtualClassroomLesson, if there are any.
 #
