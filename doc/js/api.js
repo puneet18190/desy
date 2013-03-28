@@ -28,6 +28,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "getDragPosition",
         "getHtmlPagination",
         "getLessonViewerCurrentSlide",
+        "getMaximumZIndex",
         "getRelativePositionInImageEditor",
         "getUnivoqueClassForTag",
         "goToNextSlideInLessonViewer",
@@ -46,17 +47,30 @@ YUI.add("yuidoc-meta", function(Y) {
         "initNotificationsAutocomplete",
         "initSearchTagsAutocomplete",
         "initTinymce",
+        "initializeActionOfMediaTimeUpdater",
+        "initializeActionOfMediaTimeUpdaterInAudioEditor",
+        "initializeActionOfMediaTimeUpdaterInVideoEditor",
+        "initializeAudioEditorCutter",
         "initializeAudioGalleryInAudioEditor",
         "initializeAudioGalleryInLessonEditor",
+        "initializeDraggableVirtualClassroomLesson",
         "initializeHelp",
         "initializeImageGalleryInImageEditor",
         "initializeImageGalleryInLessonEditor",
         "initializeLessonViewer",
+        "initializeMedia",
+        "initializeMediaTimeUpdater",
+        "initializeMediaTimeUpdaterInAudioEditor",
+        "initializeMediaTimeUpdaterInVideoEditor",
         "initializeNotAvailableLessonsToLoadQuick",
         "initializeNotifications",
+        "initializePlaylist",
+        "initializeScrollPaneQuickLessonSelector",
         "initializeSortableNavs",
         "initializeVideoEditor",
         "initializeVideoGalleryInLessonEditor",
+        "initializeVideoInVideoEditorPreview",
+        "initializeVirtualClassroom",
         "isHorizontalMask",
         "likeLesson",
         "loadSlideAndAdhiacentInLessonEditor",
@@ -89,7 +103,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "saveCurrentSlide",
         "scrollPaneUpdate",
         "secondsToDateString",
+        "selectAudioComponentCutterHandle",
         "selectComponentInLessonViewerPlaylistMenu",
+        "selectVideoComponentCutterHandle",
+        "setCurrentTimeToMedia",
         "showConfirmPopUp",
         "showErrorPopUp",
         "showEverythingOutCurrentSlide",
@@ -100,6 +117,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "showLessonNotificationPopUp",
         "showLoadMediaElementPopUp",
         "showLoader",
+        "showLoadingMediaErrorPopup",
         "showMediaElementInfoPopUp",
         "showNewSlideChoice",
         "showNotificationsButton",
@@ -115,8 +133,11 @@ YUI.add("yuidoc-meta", function(Y) {
         "slideTo",
         "slideToInLessonViewer",
         "slideToInLessonViewerWithLessonSwitch",
+        "stopAllMedia",
+        "stopMedia",
         "stopMediaInCurrentSlide",
         "stopMediaInLessonViewer",
+        "stopVideoInVideoEditorPreview",
         "submitCurrentSlideForm",
         "switchLessonInPlaylistMenuLessonViewer",
         "switchToSuggestedLessons",
@@ -129,7 +150,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "updateURLParameter",
         "uploadDone",
         "uploadMediaElementLoadeDoneRedirect",
-        "uploadMediaElementLoaderError"
+        "uploadMediaElementLoaderError",
+        "validSeek"
     ],
     "modules": [
         "Administration",
@@ -144,6 +166,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "LessonViewer",
         "MediaElementLoader",
         "Notifications",
+        "Players",
         "Tags",
         "Times",
         "VideoEditor",
@@ -211,6 +234,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Notification info and help assistant messages handler."
         },
         {
+            "displayName": "Players",
+            "name": "Players",
+            "description": "Media elements players: initializer, play, stop, update frame."
+        },
+        {
             "displayName": "Tags",
             "name": "Tags",
             "description": "Tags autocomplete, _add_ and _remove_ from list."
@@ -223,7 +251,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "VideoEditor",
             "name": "VideoEditor",
-            "description": "Provides the base Widget class..."
+            "description": "Provides video editor ajax actions."
         },
         {
             "displayName": "VirtualClassroom",
