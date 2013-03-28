@@ -11,7 +11,7 @@ class MailingListAddressTest < ActiveSupport::TestCase
   
   test 'empty_and_defaults' do
     @mailing_list_address = MailingListAddress.new
-    assert_error_size 6, @mailing_list_address
+    assert_error_size 5, @mailing_list_address
   end
   
   test 'attr_accessible' do
@@ -19,6 +19,7 @@ class MailingListAddressTest < ActiveSupport::TestCase
   end
   
   test 'types' do
+    assert_invalid_email @mailing_list_address
     assert_invalid @mailing_list_address, :group_id, '3r4', 2, :not_a_number
     assert_invalid @mailing_list_address, :group_id, -4, 2, :greater_than, {:count => 0}
     assert_invalid @mailing_list_address, :group_id, 2.111, 1, :not_an_integer
