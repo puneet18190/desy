@@ -242,6 +242,33 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/players.js": {
+            "name": "app/assets/javascripts/players.js",
+            "modules": {
+                "Players": 1
+            },
+            "classes": {},
+            "fors": {
+                "initializeMediaTimeUpdater": 1,
+                "initializeActionOfMediaTimeUpdater": 1,
+                "initializeMedia": 1,
+                "stopMedia": 1,
+                "initializeMediaTimeUpdaterInVideoEditor": 1,
+                "initializeActionOfMediaTimeUpdaterInVideoEditor": 1,
+                "initializeVideoInVideoEditorPreview": 1,
+                "stopVideoInVideoEditorPreview": 1,
+                "selectVideoComponentCutterHandle": 1,
+                "initializeMediaTimeUpdaterInAudioEditor": 1,
+                "initializeActionOfMediaTimeUpdaterInAudioEditor": 1,
+                "initializeAudioEditorCutter": 1,
+                "selectAudioComponentCutterHandle": 1,
+                "validSeek": 1,
+                "setCurrentTimeToMedia": 1,
+                "showLoadingMediaErrorPopup": 1,
+                "stopAllMedia": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/tags.js": {
             "name": "app/assets/javascripts/tags.js",
             "modules": {
@@ -291,7 +318,12 @@
             "classes": {},
             "fors": {
                 "addEmailToVirtualClassroomSendLessonLinkSelector": 1,
-                "initializeNotAvailableLessonsToLoadQuick": 1
+                "initializeNotAvailableLessonsToLoadQuick": 1,
+                "initializeScrollPaneQuickLessonSelector": 1,
+                "initializeVirtualClassroom": 1,
+                "initializeDraggableVirtualClassroomLesson": 1,
+                "initializePlaylist": 1,
+                "getMaximumZIndex": 1
             },
             "namespaces": {}
         }
@@ -685,6 +717,53 @@
             "line": 1,
             "description": "Notification info and help assistant messages handler."
         },
+        "Players": {
+            "name": "Players",
+            "submodules": {},
+            "classes": {
+                "initializeMediaTimeUpdater": 1,
+                "initializeActionOfMediaTimeUpdater": 1,
+                "initializeMedia": 1,
+                "stopMedia": 1,
+                "initializeMediaTimeUpdaterInVideoEditor": 1,
+                "initializeActionOfMediaTimeUpdaterInVideoEditor": 1,
+                "initializeVideoInVideoEditorPreview": 1,
+                "stopVideoInVideoEditorPreview": 1,
+                "selectVideoComponentCutterHandle": 1,
+                "initializeMediaTimeUpdaterInAudioEditor": 1,
+                "initializeActionOfMediaTimeUpdaterInAudioEditor": 1,
+                "initializeAudioEditorCutter": 1,
+                "selectAudioComponentCutterHandle": 1,
+                "validSeek": 1,
+                "setCurrentTimeToMedia": 1,
+                "showLoadingMediaErrorPopup": 1,
+                "stopAllMedia": 1
+            },
+            "fors": {
+                "initializeMediaTimeUpdater": 1,
+                "initializeActionOfMediaTimeUpdater": 1,
+                "initializeMedia": 1,
+                "stopMedia": 1,
+                "initializeMediaTimeUpdaterInVideoEditor": 1,
+                "initializeActionOfMediaTimeUpdaterInVideoEditor": 1,
+                "initializeVideoInVideoEditorPreview": 1,
+                "stopVideoInVideoEditorPreview": 1,
+                "selectVideoComponentCutterHandle": 1,
+                "initializeMediaTimeUpdaterInAudioEditor": 1,
+                "initializeActionOfMediaTimeUpdaterInAudioEditor": 1,
+                "initializeAudioEditorCutter": 1,
+                "selectAudioComponentCutterHandle": 1,
+                "validSeek": 1,
+                "setCurrentTimeToMedia": 1,
+                "showLoadingMediaErrorPopup": 1,
+                "stopAllMedia": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/players.js",
+            "line": 1,
+            "description": "Media elements players: initializer, play, stop, update frame."
+        },
         "Tags": {
             "name": "Tags",
             "submodules": {},
@@ -751,11 +830,21 @@
             "submodules": {},
             "classes": {
                 "addEmailToVirtualClassroomSendLessonLinkSelector": 1,
-                "initializeNotAvailableLessonsToLoadQuick": 1
+                "initializeNotAvailableLessonsToLoadQuick": 1,
+                "initializeScrollPaneQuickLessonSelector": 1,
+                "initializeVirtualClassroom": 1,
+                "initializeDraggableVirtualClassroomLesson": 1,
+                "initializePlaylist": 1,
+                "getMaximumZIndex": 1
             },
             "fors": {
                 "addEmailToVirtualClassroomSendLessonLinkSelector": 1,
-                "initializeNotAvailableLessonsToLoadQuick": 1
+                "initializeNotAvailableLessonsToLoadQuick": 1,
+                "initializeScrollPaneQuickLessonSelector": 1,
+                "initializeVirtualClassroom": 1,
+                "initializeDraggableVirtualClassroomLesson": 1,
+                "initializePlaylist": 1,
+                "getMaximumZIndex": 1
             },
             "namespaces": {},
             "tag": "module",
@@ -2041,6 +2130,193 @@
             "module": "Notifications",
             "namespace": ""
         },
+        "initializeMediaTimeUpdater": {
+            "name": "initializeMediaTimeUpdater",
+            "shortname": "initializeMediaTimeUpdater",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "initializeActionOfMediaTimeUpdater": {
+            "name": "initializeActionOfMediaTimeUpdater",
+            "shortname": "initializeActionOfMediaTimeUpdater",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "initializeMedia": {
+            "name": "initializeMedia",
+            "shortname": "initializeMedia",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "stopMedia": {
+            "name": "stopMedia",
+            "shortname": "stopMedia",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "initializeMediaTimeUpdaterInVideoEditor": {
+            "name": "initializeMediaTimeUpdaterInVideoEditor",
+            "shortname": "initializeMediaTimeUpdaterInVideoEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "initializeActionOfMediaTimeUpdaterInVideoEditor": {
+            "name": "initializeActionOfMediaTimeUpdaterInVideoEditor",
+            "shortname": "initializeActionOfMediaTimeUpdaterInVideoEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "initializeVideoInVideoEditorPreview": {
+            "name": "initializeVideoInVideoEditorPreview",
+            "shortname": "initializeVideoInVideoEditorPreview",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "stopVideoInVideoEditorPreview": {
+            "name": "stopVideoInVideoEditorPreview",
+            "shortname": "stopVideoInVideoEditorPreview",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "selectVideoComponentCutterHandle": {
+            "name": "selectVideoComponentCutterHandle",
+            "shortname": "selectVideoComponentCutterHandle",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "initializeMediaTimeUpdaterInAudioEditor": {
+            "name": "initializeMediaTimeUpdaterInAudioEditor",
+            "shortname": "initializeMediaTimeUpdaterInAudioEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "initializeActionOfMediaTimeUpdaterInAudioEditor": {
+            "name": "initializeActionOfMediaTimeUpdaterInAudioEditor",
+            "shortname": "initializeActionOfMediaTimeUpdaterInAudioEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "initializeAudioEditorCutter": {
+            "name": "initializeAudioEditorCutter",
+            "shortname": "initializeAudioEditorCutter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "selectAudioComponentCutterHandle": {
+            "name": "selectAudioComponentCutterHandle",
+            "shortname": "selectAudioComponentCutterHandle",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "validSeek": {
+            "name": "validSeek",
+            "shortname": "validSeek",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "setCurrentTimeToMedia": {
+            "name": "setCurrentTimeToMedia",
+            "shortname": "setCurrentTimeToMedia",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "showLoadingMediaErrorPopup": {
+            "name": "showLoadingMediaErrorPopup",
+            "shortname": "showLoadingMediaErrorPopup",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
+        "stopAllMedia": {
+            "name": "stopAllMedia",
+            "shortname": "stopAllMedia",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Players",
+            "namespace": ""
+        },
         "addTagWithoutSuggestion": {
             "name": "addTagWithoutSuggestion",
             "shortname": "addTagWithoutSuggestion",
@@ -2176,6 +2452,61 @@
         "initializeNotAvailableLessonsToLoadQuick": {
             "name": "initializeNotAvailableLessonsToLoadQuick",
             "shortname": "initializeNotAvailableLessonsToLoadQuick",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "VirtualClassroom",
+            "namespace": ""
+        },
+        "initializeScrollPaneQuickLessonSelector": {
+            "name": "initializeScrollPaneQuickLessonSelector",
+            "shortname": "initializeScrollPaneQuickLessonSelector",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "VirtualClassroom",
+            "namespace": ""
+        },
+        "initializeVirtualClassroom": {
+            "name": "initializeVirtualClassroom",
+            "shortname": "initializeVirtualClassroom",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "VirtualClassroom",
+            "namespace": ""
+        },
+        "initializeDraggableVirtualClassroomLesson": {
+            "name": "initializeDraggableVirtualClassroomLesson",
+            "shortname": "initializeDraggableVirtualClassroomLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "VirtualClassroom",
+            "namespace": ""
+        },
+        "initializePlaylist": {
+            "name": "initializePlaylist",
+            "shortname": "initializePlaylist",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "VirtualClassroom",
+            "namespace": ""
+        },
+        "getMaximumZIndex": {
+            "name": "getMaximumZIndex",
+            "shortname": "getMaximumZIndex",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -4073,6 +4404,171 @@
             "module": "Notifications"
         },
         {
+            "file": "app/assets/javascripts/players.js",
+            "line": 9,
+            "description": "[JS-TODO]",
+            "itemtype": "method",
+            "name": "initializeMediaTimeUpdater",
+            "params": [
+                {
+                    "name": "media",
+                    "description": "media element selector class or id",
+                    "type": "String"
+                },
+                {
+                    "name": "reference_id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "initializeMediaTimeUpdater",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 32,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "initializeActionOfMediaTimeUpdater",
+            "class": "initializeActionOfMediaTimeUpdater",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 53,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "initializeMedia",
+            "class": "initializeMedia",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 80,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "stopMedia",
+            "class": "stopMedia",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 111,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "initializeMediaTimeUpdaterInVideoEditor",
+            "class": "initializeMediaTimeUpdaterInVideoEditor",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 132,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "initializeActionOfMediaTimeUpdaterInVideoEditor",
+            "class": "initializeActionOfMediaTimeUpdaterInVideoEditor",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 207,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "initializeVideoInVideoEditorPreview",
+            "class": "initializeVideoInVideoEditorPreview",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 287,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "stopVideoInVideoEditorPreview",
+            "class": "stopVideoInVideoEditorPreview",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 314,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "selectVideoComponentCutterHandle",
+            "class": "selectVideoComponentCutterHandle",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 328,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "initializeMediaTimeUpdaterInAudioEditor",
+            "class": "initializeMediaTimeUpdaterInAudioEditor",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 349,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "initializeActionOfMediaTimeUpdaterInAudioEditor",
+            "class": "initializeActionOfMediaTimeUpdaterInAudioEditor",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 402,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "initializeAudioEditorCutter",
+            "class": "initializeAudioEditorCutter",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 493,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "selectAudioComponentCutterHandle",
+            "class": "selectAudioComponentCutterHandle",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 505,
+            "description": "JS-TODO\n\nIE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO\nTRA L'INIZIO E LA FINE DEI VALORI SEEKABLE",
+            "itemtype": "method",
+            "name": "validSeek",
+            "class": "validSeek",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 526,
+            "description": "JS-TODO\n\nFUNCTIONS WHICH ARE VALID IN ANY CASE",
+            "itemtype": "method",
+            "name": "setCurrentTimeToMedia",
+            "class": "setCurrentTimeToMedia",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 544,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "showLoadingMediaErrorPopup",
+            "class": "showLoadingMediaErrorPopup",
+            "module": "Players"
+        },
+        {
+            "file": "app/assets/javascripts/players.js",
+            "line": 559,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "stopAllMedia",
+            "class": "stopAllMedia",
+            "module": "Players"
+        },
+        {
             "file": "app/assets/javascripts/tags.js",
             "line": 247,
             "description": "Handle adding tag not in the autocomplete data list\n\nUses: [checkNoTagDuplicates](../classes/checkNoTagDuplicates.html#method_checkNoTagDuplicates)\nand [addToTagsValue](../classes/addToTagsValue.html#method_addToTagsValue)\nand [createTagSpan](../classes/createTagSpan.html#method_createTagSpan)\nand [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [getUnivoqueClassForTag](../classes/getUnivoqueClassForTag.html#method_getUnivoqueClassForTag)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)\nand [disableTagsInputTooHigh](../classes/disableTagsInputTooHigh.html#method_disableTagsInputTooHigh)",
@@ -4339,6 +4835,62 @@
             "itemtype": "method",
             "name": "initializeNotAvailableLessonsToLoadQuick",
             "class": "initializeNotAvailableLessonsToLoadQuick",
+            "module": "VirtualClassroom"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 36,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "initializeScrollPaneQuickLessonSelector",
+            "class": "initializeScrollPaneQuickLessonSelector",
+            "module": "VirtualClassroom"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 52,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "initializeVirtualClassroom",
+            "class": "initializeVirtualClassroom",
+            "module": "VirtualClassroom"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 69,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "initializeDraggableVirtualClassroomLesson",
+            "class": "initializeDraggableVirtualClassroomLesson",
+            "module": "VirtualClassroom"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 110,
+            "description": "Initialize playlist container and jScrollPane\n\nUses: [getMaximumZIndex](../classes/getMaximumZIndex.html#method_getMaximumZIndex)",
+            "itemtype": "method",
+            "name": "initializePlaylist",
+            "class": "initializePlaylist",
+            "module": "VirtualClassroom"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 174,
+            "description": "Get highest zIndex value, among elements of a given class",
+            "itemtype": "method",
+            "name": "getMaximumZIndex",
+            "params": [
+                {
+                    "name": "a_class",
+                    "description": "css class name",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "highest zIndex value",
+                "type": "Number"
+            },
+            "class": "getMaximumZIndex",
             "module": "VirtualClassroom"
         }
     ],

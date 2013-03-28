@@ -1,5 +1,19 @@
+/**
+* Media elements players: initializer, play, stop, update frame.
+* 
+* @module Players
+*/
+
 // GENERAL PLAYERS
 
+/**
+* [JS-TODO]
+* 
+* @method initializeMediaTimeUpdater
+* @for initializeMediaTimeUpdater
+* @param media {String} media element selector class or id
+* @param reference_id {String} 
+*/
 function initializeMediaTimeUpdater(media, reference_id) {
   media = $(media);
   if(media.readyState != 0) {
@@ -15,6 +29,12 @@ function initializeMediaTimeUpdater(media, reference_id) {
   }
 }
 
+/**
+* JS-TODO
+* 
+* @method initializeActionOfMediaTimeUpdater
+* @for initializeActionOfMediaTimeUpdater
+*/
 function initializeActionOfMediaTimeUpdater(media, reference_id) {
   var duration = $('#' + reference_id).data('duration');
   var container_id = $(media).parent().attr('id');
@@ -30,6 +50,12 @@ function initializeActionOfMediaTimeUpdater(media, reference_id) {
   }
 }
 
+/**
+* JS-TODO
+* 
+* @method initializeMedia
+* @for initializeMedia
+*/
 function initializeMedia(content_id, type) {
   var duration = $('#' + content_id).data('duration');
   $('#' + content_id + ' ._media_player_slider').slider({
@@ -51,6 +77,12 @@ function initializeMedia(content_id, type) {
   $('#' + content_id).data('initialized', true);
 }
 
+/**
+* JS-TODO
+* 
+* @method stopMedia
+* @for stopMedia
+*/
 function stopMedia(media) {
   try {
     if($(media).length != 0) {
@@ -76,6 +108,12 @@ function stopMedia(media) {
 
 // VIDEO PLAYERS IN VIDEO EDITOR
 
+/**
+* JS-TODO
+* 
+* @method initializeMediaTimeUpdaterInVideoEditor
+* @for initializeMediaTimeUpdaterInVideoEditor
+*/
 function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
   media = $(media);
   if(media.readyState != 0) {
@@ -91,6 +129,12 @@ function initializeMediaTimeUpdaterInVideoEditor(media, identifier) {
   }
 }
 
+/**
+* JS-TODO
+* 
+* @method initializeActionOfMediaTimeUpdaterInVideoEditor
+* @for initializeActionOfMediaTimeUpdaterInVideoEditor
+*/
 function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, force_parsed_int) {
   var video_cut_to = $('#video_component_' + identifier + '_cutter').data('to');
   var parsed_int = parseInt(media.currentTime);
@@ -160,6 +204,12 @@ function initializeActionOfMediaTimeUpdaterInVideoEditor(media, identifier, forc
   }
 }
 
+/**
+* JS-TODO
+* 
+* @method initializeVideoInVideoEditorPreview
+* @for initializeVideoInVideoEditorPreview
+*/
 function initializeVideoInVideoEditorPreview(identifier) {
   var my_cutter = $('#video_component_' + identifier + '_cutter');
   $('#video_component_' + identifier + '_preview video').on('loadeddata', function() {
@@ -234,6 +284,12 @@ function initializeVideoInVideoEditorPreview(identifier) {
   });
 }
 
+/**
+* JS-TODO
+* 
+* @method stopVideoInVideoEditorPreview
+* @for stopVideoInVideoEditorPreview
+*/
 function stopVideoInVideoEditorPreview(identifier) {
   try {
     if($('#video_component_' + identifier + '_preview video').length != 0) {
@@ -255,6 +311,12 @@ function stopVideoInVideoEditorPreview(identifier) {
   }
 }
 
+/**
+* JS-TODO
+* 
+* @method selectVideoComponentCutterHandle
+* @for selectVideoComponentCutterHandle
+*/
 function selectVideoComponentCutterHandle(cutter, val) {
   setCurrentTimeToMedia($('#' + cutter.attr('id').replace('cutter', 'preview') + ' video'), val);
   cutter.find('._media_player_slider').slider('value', val);
@@ -263,6 +325,12 @@ function selectVideoComponentCutterHandle(cutter, val) {
 
 // AUDIO PLAYERS IN AUDIO EDITOR
 
+/**
+* JS-TODO
+* 
+* @method initializeMediaTimeUpdaterInAudioEditor
+* @for initializeMediaTimeUpdaterInAudioEditor
+*/
 function initializeMediaTimeUpdaterInAudioEditor(identifier) {
   media = $('#audio_component_' + identifier + ' audio');
   if(media.readyState != 0) {
@@ -278,6 +346,12 @@ function initializeMediaTimeUpdaterInAudioEditor(identifier) {
   }
 }
 
+/**
+* JS-TODO
+* 
+* @method initializeActionOfMediaTimeUpdaterInAudioEditor
+* @for initializeActionOfMediaTimeUpdaterInAudioEditor
+*/
 function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, force_parsed_int) {
   var component = $('#audio_component_' + identifier);
   var audio_cut_to = component.data('to');
@@ -325,6 +399,12 @@ function initializeActionOfMediaTimeUpdaterInAudioEditor(media, identifier, forc
   }
 }
 
+/**
+* JS-TODO
+* 
+* @method initializeAudioEditorCutter
+* @for initializeAudioEditorCutter
+*/
 function initializeAudioEditorCutter(identifier) {
   var component = $('#audio_component_' + identifier);
   var single_slider = component.find('._media_player_slider');
@@ -410,14 +490,27 @@ function initializeAudioEditorCutter(identifier) {
   });
 }
 
+/**
+* JS-TODO
+* 
+* @method selectAudioComponentCutterHandle
+* @for selectAudioComponentCutterHandle
+*/
 function selectAudioComponentCutterHandle(component, val) {
   setCurrentTimeToMedia(component.find('audio'), val);
   component.find('._media_player_slider').slider('value', val);
   component.find('._current_time').html(secondsToDateString(val));
 }
 
-// IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO
-// TRA L'INIZIO E LA FINE DEI VALORI SEEKABLE
+/**
+* JS-TODO
+*
+* IE SI ARRABBIA SE GLI SETTI UN VALORE DI SEEK NON COMPRESO
+* TRA L'INIZIO E LA FINE DEI VALORI SEEKABLE
+* 
+* @method validSeek
+* @for validSeek
+*/
 function validSeek(media, seek) {
   var confidence = 0.001;
   var minStart = media[0].seekable.start(0);
@@ -430,8 +523,14 @@ function validSeek(media, seek) {
   return seek;
 }
 
-// FUNCTIONS WHICH ARE VALID IN ANY CASE
-
+/**
+* JS-TODO
+*
+* FUNCTIONS WHICH ARE VALID IN ANY CASE
+* 
+* @method setCurrentTimeToMedia
+* @for setCurrentTimeToMedia
+*/
 function setCurrentTimeToMedia(media, seek) {
   if(media[0].readyState != 0) {
     media[0].currentTime = validSeek(media, seek);
@@ -442,6 +541,12 @@ function setCurrentTimeToMedia(media, seek) {
   }
 }
 
+/**
+* JS-TODO
+* 
+* @method showLoadingMediaErrorPopup
+* @for showLoadingMediaErrorPopup
+*/
 function showLoadingMediaErrorPopup(code, type) {
   var captions = $('#popup_captions_container');
   var message = captions.data('media-error-code-' + code);
@@ -451,6 +556,12 @@ function showLoadingMediaErrorPopup(code, type) {
   alert(popup);
 }
 
+/**
+* JS-TODO
+* 
+* @method stopAllMedia
+* @for stopAllMedia
+*/
 function stopAllMedia() {
   $('audio, video').each(function() {
     stopMedia(this);

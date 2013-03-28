@@ -33,6 +33,12 @@ function initializeNotAvailableLessonsToLoadQuick() {
   });
 }
 
+/**
+* JS-TODO
+* 
+* @method initializeScrollPaneQuickLessonSelector
+* @for initializeScrollPaneQuickLessonSelector
+*/
 function initializeScrollPaneQuickLessonSelector() {
   $('#virtual_classroom_quick_select_container.scroll-pane').bind('jsp-arrow-change', function(event, isAtTop, isAtBottom, isAtLeft, isAtRight) {
     var page = $('#virtual_classroom_quick_select_container').data('page');
@@ -43,6 +49,12 @@ function initializeScrollPaneQuickLessonSelector() {
   });
 }
 
+/**
+* JS-TODO
+* 
+* @method initializeVirtualClassroom
+* @for initializeVirtualClassroom
+*/
 function initializeVirtualClassroom() {
   $('._virtual_classroom_lesson').each(function() {
     if($(this).data('in-playlist')) {
@@ -54,6 +66,12 @@ function initializeVirtualClassroom() {
   initializePlaylist();
 }
 
+/**
+* JS-TODO
+* 
+* @method initializeDraggableVirtualClassroomLesson
+* @for initializeDraggableVirtualClassroomLesson
+*/
 function initializeDraggableVirtualClassroomLesson(id) {
   var lesson_cover = $('#' + id + ' ._lesson_thumb');
   var object = $('#' + id);
@@ -89,6 +107,14 @@ function initializeDraggableVirtualClassroomLesson(id) {
   }
 }
 
+/**
+* Initialize playlist container and jScrollPane
+*
+* Uses: [getMaximumZIndex](../classes/getMaximumZIndex.html#method_getMaximumZIndex)
+* 
+* @method initializePlaylist
+* @for initializePlaylist
+*/
 function initializePlaylist() {
   $('#lessons_list_in_playlist').jScrollPane({
     autoReinitialise: true
@@ -145,6 +171,14 @@ function initializePlaylist() {
   });
 }
 
+/**
+* Get highest zIndex value, among elements of a given class
+* 
+* @method getMaximumZIndex
+* @for getMaximumZIndex
+* @param a_class {String} css class name
+* @return {Number} highest zIndex value
+*/
 function getMaximumZIndex(a_class) {
   var index_highest = 0;
   $('.' + a_class).each(function() {
