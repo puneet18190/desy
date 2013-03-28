@@ -13,15 +13,17 @@ require 'lessons_media_elements_shared'
 # * *title*: title
 # * *description*: description
 # * *metadata*: can contain different keys, depending on +sti_type+
-#   audio:: bla bla bla
-#           * bla 1
-#           * bla 2
-#   video:: bla bla bla
-#           * bla 1
-#           * bla 2
-#   image:: bla bla bla
-#           * bla 1
-#           * bla 2
+#   1. *audio*
+#      * +creation_mode+: it can be *uploaded* (if the element was originally uploaded), or *composed* (if it was created inside the application using other elements)
+#      * +mp3_duration+
+#      * +ogg_duration+
+#   2. *image*
+#      * +width+
+#      * +height+
+#   3. *video*
+#      * +creation_mode+
+#      * +mp4_duration+
+#      * +webm_duration+
 # * *converted*:
 # * *is_public*:
 # * *publication_date*:
