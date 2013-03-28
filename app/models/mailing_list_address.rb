@@ -18,6 +18,7 @@
 # * *presence* with numericality and existence of associated record for +group_id+
 # * *length* of +heading+, maximum is 255
 # * *correctness* of +email+ as an e-mail address
+# * *modifications* *not* *available* for +group_id+, if the record is not new
 #
 # == Callbacks
 #
@@ -37,7 +38,7 @@ class MailingListAddress < ActiveRecord::Base
   validates_numericality_of :group_id, :greater_than => 0, :only_integer => true
   validates_length_of :heading, :maximum => 255
   validates :email, email_format: { :message => I18n.t(:invalid_email_address, :scope => [:activerecord, :errors, :messages], :default => 'does not appear to be valid') }
-  validate :validate_associations
+  validate :validate_associations, :validate_impossible_changes
   
   before_validation :init_validation
   
@@ -50,6 +51,10 @@ class MailingListAddress < ActiveRecord::Base
   
   def validate_associations
     errors.add(:group_id, :doesnt_exist) if @group.nil?
+  end
+  
+  def validate_impossible_changes
+    errors.add(:user_id, :cant_be_changed) if @mailing_list_address && @mailing_list_address.group_id != self.group_id
   end
   
 end
