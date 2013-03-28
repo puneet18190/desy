@@ -50,8 +50,8 @@ class TagTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @tag, :word, long_string(@max_word), long_string(@max_word), :too_long, {:count => @max_word}
-    assert_invalid @tag, :word, long_string(@min_word), long_string(@min_word), :too_short, {:count => @min_word}
+    assert_invalid @tag, :word, long_string(@max_word + 1), long_string(@max_word), :too_long, {:count => @max_word}
+    assert_invalid @tag, :word, long_string(@min_word - 1), long_string(@min_word), :too_short, {:count => @min_word}
     assert_obj_saved @tag
   end
   

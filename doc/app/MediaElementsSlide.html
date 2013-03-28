@@ -406,6 +406,98 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>ActiveRecord class that corresponds to the table
+<code>media_elements_slides</code>: this table contains all the instances
+of media elements inside a slide.</p>
+
+<h2 id="label-Fields">Fields</h2>
+<ul><li>
+<p><strong>media_element_id</strong>: the id that references <a
+href="MediaElement.html">MediaElement</a></p>
+</li><li>
+<p><strong>slide_id</strong>: the id that references <a
+href="Slide.html">Slide</a></p>
+</li><li>
+<p><strong>position</strong>: the position of the media element inside the
+slide, (if there is only one element available, the position is 1)</p>
+</li><li>
+<p><strong>caption</strong>: the caption to put below the media element, if
+it&#39;s an image</p>
+</li><li>
+<p><strong>alignment</strong>: the alignment of the media element, if it&#39;s
+an image</p>
+</li></ul>
+
+<h2 id="label-Associations">Associations</h2>
+<ul><li>
+<p><strong>media_element</strong>: reference to the <a
+href="MediaElement.html">MediaElement</a> of which the slide contains an
+instance (<strong>belongs_to</strong>)</p>
+</li><li>
+<p><strong>slide</strong>: reference to the <a href="Slide.html">Slide</a> in
+which the media element is saved (<strong>belongs_to</strong>)</p>
+</li><li>
+<p><strong>lesson</strong>: reference to the <a href="Lesson.html">Lesson</a>
+containing the <a href="Slide.html">Slide</a> in which the media element is
+saved (<strong>has_one</strong>)</p>
+</li></ul>
+
+<h2 id="label-Validations">Validations</h2>
+<ul><li>
+<p><strong>presence</strong> with numericality and existence of associated
+record for <code>media_element_id</code> and <code>slide_id</code></p>
+</li><li>
+<p><strong>numericality</strong> allowing <code>nil</code> values for
+<code>alignment</code></p>
+</li><li>
+<p><strong>inclusion</strong> of <code>position</code> in [1, 2, 3, 4]</p>
+</li><li>
+<p><strong>length</strong> of <code>caption</code>, with maximum configured in
+the translation file; allows <code>nil</code> values</p>
+</li><li>
+<p><strong>uniqueness</strong> of the triple [<code>position</code>,
+<code>media_element_id</code>, <code>slide_id</code>]</p>
+</li><li>
+<p><strong>coherence</strong> of the type of the <a
+href="Slide.html">Slide</a> with the <a
+href="MediaElement.html">MediaElement</a></p>
+</li><li>
+<p><strong>coherence</strong> of the <code>position</code> with the type of
+the <a href="Slide.html">Slide</a> (if the slide is of kind image1 it may
+have for instance only position = 1)</p>
+</li><li>
+<p><strong>availability</strong> of the <a
+href="MediaElement.html">MediaElement</a> (it must be public or belongs to
+the <a href="User.html">User</a> who created the <a
+href="Lesson.html">Lesson</a> in which the <a href="Slide.html">Slide</a>
+is contained)</p>
+</li><li>
+<p><strong>modifications</strong> <strong>not</strong>
+<strong>available</strong> for the field <code>slide_id</code></p>
+</li><li>
+<p><strong>properties</strong> <strong>specific</strong> <strong>for</strong>
+<strong>images</strong>, such as <code>alignment</code> and
+<code>caption</code> are checked to be present only if the <a
+href="MediaElement.html">MediaElement</a> is an <a
+href="Image.html">Image</a></p>
+</li></ul>
+
+<h2 id="label-Callbacks">Callbacks</h2>
+<ol><li>
+<p><strong>after_destroy</strong> if the element is an <a
+href="Audio.html">Audio</a> or <a href="Video.html">Video</a> in
+conversion, and it was the last present on the <a
+href="Lesson.html">Lesson</a> containing the referenced <a
+href="Slide.html">Slide</a>, the lesson is turned available using <a
+href="Lesson.html#method-i-available-21">Lesson#available!</a></p>
+</li></ol>
+
+<h2 id="label-Database+callbacks">Database callbacks</h2>
+
+<p>None</p>
+
   </div><!-- description -->
 
   
