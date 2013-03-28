@@ -78,10 +78,10 @@ module Media
           context 'without an uploaded initial video' do
 
             let(:initial_video) do
-              ::Video.create!(initial_video_attributes) do |r|
+              ::Video.find ::Video.create!(initial_video_attributes) { |r|
                 r.user      = user
                 r.composing = true
-              end
+              }.id
             end
             
             context 'without audio track' do
@@ -181,18 +181,20 @@ module Media
 
           context 'with an uploaded initial video' do
             let(:initial_video) do
-              ::Video.create!(initial_video_attributes) do |v|
+              ::Video.find ::Video.create!(initial_video_attributes) { |v|
                 v.user                = user
                 v.media               = MESS::CONVERTED_VIDEO_HASH
                 v.metadata.old_fields = { title: 'old title', description: 'old description', tags: 'a,b,c,d' }
-              end
+              }.id
             end
+            let(:old_files)     { initial_video.media.paths.values.dup }
 
             context 'without audio track' do
               let(:audio_track)              { nil }
               let(:user_notifications_count) { user.notifications.count }
 
               before(:all) do
+                old_files
                 user.video_editor_cache!(params_with_initial_video)
                 user_notifications_count
                 described_class.new(params_with_initial_video).run
@@ -221,6 +223,10 @@ module Media
               it 'deletes the video editor cache' do
                 initial_video.user.video_editor_cache.should be_nil
               end
+
+              it 'deletes the old files' do
+                old_files.each{ |f| File.exists?(f).should be_false }
+              end
             end
 
             context 'with audio track' do
@@ -228,6 +234,7 @@ module Media
               let(:user_notifications_count) { user.notifications.count }
 
               before(:all) do
+                old_files
                 user.video_editor_cache!(params_with_initial_video)
                 user_notifications_count
                 described_class.new(params_with_initial_video).run
@@ -255,6 +262,10 @@ module Media
 
               it 'deletes the video editor cache' do
                 initial_video.user.video_editor_cache.should be_nil
+              end
+
+              it 'deletes the old files' do
+                old_files.each{ |f| File.exists?(f).should be_false }
               end
             end
           end
