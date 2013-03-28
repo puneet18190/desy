@@ -591,9 +591,7 @@ per stare sicuri di non tagliare troppo</p>
   <span class="ruby-identifier">paddings</span> = <span class="ruby-identifier">paddings</span> <span class="ruby-identifier">mp4_inputs_infos</span>
   <span class="ruby-identifier">final_videos</span> = <span class="ruby-keyword">nil</span>
   
-  <span class="ruby-identifier">in_tmp_dir</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">final_videos</span> = <span class="ruby-identifier">concat</span>(<span class="ruby-identifier">mp4_inputs_infos</span>, <span class="ruby-identifier">paddings</span>)
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">in_tmp_dir</span> { <span class="ruby-identifier">final_videos</span> = <span class="ruby-identifier">concat</span>(<span class="ruby-identifier">mp4_inputs_infos</span>, <span class="ruby-identifier">paddings</span>) }
   
   <span class="ruby-identifier">final_videos</span>
 <span class="ruby-keyword">end</span></pre>

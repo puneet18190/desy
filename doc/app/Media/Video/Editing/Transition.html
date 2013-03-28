@@ -465,7 +465,12 @@
         <dd class="description">
         
       
-        <dt id="LAST_FRAME_SKIP_STEP">LAST_FRAME_SKIP_STEP
+        <dt id="LAST_FRAME_SKIP">LAST_FRAME_SKIP
+        
+        <dd class="description">
+        
+      
+        <dt id="LAST_FRAME_STEP">LAST_FRAME_STEP
         
         <dd class="description">
         
@@ -518,7 +523,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 31</span>
+            <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">start_inputs</span>, <span class="ruby-identifier">end_inputs</span>, <span class="ruby-identifier">output_without_extension</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">start_inputs</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)                       <span class="ruby-keyword">and</span> 
          <span class="ruby-identifier">start_inputs</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span> <span class="ruby-operator">==</span> <span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">sort</span>         <span class="ruby-keyword">and</span>
@@ -578,21 +583,21 @@
 
           
           <div class="method-source-code" id="run-source">
-            <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 56</span>
+            <pre><span class="ruby-comment"># File lib/media/video/editing/transition.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>
   <span class="ruby-identifier">create_log_folder</span>
   
   <span class="ruby-identifier">in_tmp_dir</span> <span class="ruby-keyword">do</span>
     <span class="ruby-identifier">start_frame</span> = <span class="ruby-identifier">tmp_path</span> <span class="ruby-constant">START_FRAME</span>
-    <span class="ruby-identifier">extract_start_input_frame</span>(<span class="ruby-identifier">start_frame</span>) <span class="ruby-comment"># 1.</span>
+    <span class="ruby-identifier">extract_start_transition_frame</span>(<span class="ruby-identifier">start_frame</span>) <span class="ruby-comment"># 1.</span>
   
     <span class="ruby-identifier">end_frame</span> = <span class="ruby-identifier">tmp_path</span> <span class="ruby-constant">END_FRAME</span>
-    <span class="ruby-identifier">extract_end_input_frame</span>(<span class="ruby-identifier">end_frame</span>) <span class="ruby-comment"># 2.</span>
+    <span class="ruby-identifier">extract_end_transition_frame</span>(<span class="ruby-identifier">end_frame</span>) <span class="ruby-comment"># 2.</span>
   
     <span class="ruby-identifier">transitions</span> = <span class="ruby-identifier">tmp_path</span> <span class="ruby-constant">TRANSITIONS</span>
     <span class="ruby-constant">Cmd</span><span class="ruby-operator">::</span><span class="ruby-constant">GenerateTransitionFrames</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_frame</span>, <span class="ruby-identifier">end_frame</span>, <span class="ruby-identifier">transitions</span>, <span class="ruby-constant">INNER_FRAMES_AMOUNT</span>).<span class="ruby-identifier">run!</span> *<span class="ruby-identifier">logs</span>(<span class="ruby-string">&#39;3_generate_transition_frames&#39;</span>) <span class="ruby-comment"># 3.</span>
   
-    <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span> { <span class="ruby-identifier">transition</span>(<span class="ruby-identifier">format</span>) } } <span class="ruby-comment"># 4.</span>
+    <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">join</span> *<span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proc</span>{ <span class="ruby-identifier">transition</span>(<span class="ruby-identifier">format</span>) } } <span class="ruby-comment"># 4.</span>
   <span class="ruby-keyword">end</span>
   
   <span class="ruby-identifier">outputs</span>
