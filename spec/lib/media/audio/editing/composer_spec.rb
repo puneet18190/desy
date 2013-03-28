@@ -86,16 +86,18 @@ module Media
 
           context 'with an uploaded initial audio' do
             let(:initial_audio) do
-              ::Audio.create!(initial_audio_attributes) do |v|
+              ::Audio.find ::Audio.create!(initial_audio_attributes) { |v|
                 v.user                = user
                 v.media               = MESS::CONVERTED_AUDIO_HASH
                 v.metadata.old_fields = { title: 'old title', description: 'old description', tags: 'a,b,c,d' }
-              end
+              }
             end
 
             let(:user_notifications_count) { user.notifications.count }
+            let(:old_files)                { initial_audio.media.paths.values.dup }
 
             before(:all) do
+              old_files
               user.audio_editor_cache!(params_with_initial_audio)
               user_notifications_count
               described_class.new(params_with_initial_audio).run
@@ -123,6 +125,10 @@ module Media
 
             it 'deletes the audio editor cache' do
               initial_audio.user.audio_editor_cache.should be_nil
+            end
+
+            it 'deletes the old files' do
+              old_files.each{ |f| File.exists?(f).should be_false }
             end
 
           end

@@ -49,12 +49,12 @@ module Media
         end
 
         def run
-          @overwrite = video.media.present?
-          old_media = @overwrite && video.media.to_hash
+          @old_media = video.media.try(:dup)
           compose
+          @old_media.paths.values.each{ |p| FileUtils.rm_f p } if @old_media
         rescue StandardError => e
-          if old_media
-            video.media     = old_media
+          if @old_media
+            video.media     = @old_media.to_hash
             video.converted = true
             if old_fields = video.try(:metadata).try(:old_fields)
               video.title       = old_fields['title'] if old_fields['title'].present?
@@ -151,7 +151,7 @@ module Media
         end
 
         def notification_translation_key
-          @overwrite ? 'update': 'create'
+          @old_media ? 'update' : 'create'
         end
 
         def video_copy(input, output)

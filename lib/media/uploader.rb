@@ -149,6 +149,10 @@ module Media
       end
     end
 
+    def paths
+      Hash[ (self.class::FORMATS + self.class::VERSION_FORMATS.keys).map{ |f| [f, path(f)] } ]
+    end
+
     def to_hash
       Hash[ self.class::FORMATS.map{ |f| [f, path(f)] } ].merge(filename: filename_without_extension)
     end
