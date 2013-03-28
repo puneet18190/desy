@@ -3,7 +3,7 @@
 # ActiveRecord class that corresponds to the table +media_elements_slides+: this table contains all the instances of media elements inside a slide.
 #
 # == Fields
-# 
+#
 # * *media_element_id*: the id that references MediaElement
 # * *slide_id*: the id that references Slide
 # * *position*: the position of the media element inside the slide, (if there is only one element available, the position is 1)

@@ -1,3 +1,33 @@
+# == Description
+#
+# ActiveRecord class that corresponds to the table +notifications+: this table contains messages sent by the application to the users.
+#
+# == Fields
+#
+# * *user_id*: reference to the User who received the notification
+# * *message*: message
+# * *seen*: boolean, +true+ if the User has already seen the notification
+#
+# == Associations
+#
+# * *user*: reference to the User who received the notification (*belongs_to*)
+#
+# == Validations
+#
+# * *presence* with numericality and existence of associated record for +user_id+
+# * *presence* for +message+
+# * *inclusion* of +seen+ in [+true+, +false+]
+# * *if* *new* *record*, +seen+ must be false
+# * *modifications* *not* *available* for the three fields
+#
+# == Callbacks
+#
+# None
+#
+# == Database callbacks
+#
+# None
+#
 class Notification < ActiveRecord::Base
   
   belongs_to :user
