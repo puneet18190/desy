@@ -30,7 +30,7 @@ class BookmarkTest < ActiveSupport::TestCase
   test 'types' do
     assert_invalid @bookmark, :user_id, 'rt', 1, :not_a_number
     assert_invalid @bookmark, :user_id, 9.9, 1, :not_an_integer
-    assert_invalid @bookmark, :bookmarkable_id, -8, @lesson.id, :greater_than
+    assert_invalid @bookmark, :bookmarkable_id, -8, @lesson.id, :greater_than, {:count => 0}
     assert_invalid @bookmark, :bookmarkable_type, 'Lessen', 'Lesson', :inclusion
     assert_obj_saved @bookmark
   end
