@@ -720,17 +720,17 @@ the lessons copied by the current lessons</p>
 
         <div class="method-description">
           
-          <h2 id="method-c-dashboard_emptied-3F-label-Description">Description</h2>
+          <h3 id="method-c-dashboard_emptied-3F-label-Description">Description</h3>
 
 <p>Checks whether the dashboard of a particular user is empty because he
 picked all the suggested lessons and not because the database is empty.</p>
 
-<h2 id="method-c-dashboard_emptied-3F-label-Args">Args</h2>
+<h3 id="method-c-dashboard_emptied-3F-label-Args">Args</h3>
 <ul><li>
 <p><strong>user_id</strong>: the id of a <a href="User.html">User</a></p>
 </li></ul>
 
-<h2 id="method-c-dashboard_emptied-3F-label-Returns">Returns</h2>
+<h3 id="method-c-dashboard_emptied-3F-label-Returns">Returns</h3>
 
 <p>A boolean</p>
           
@@ -772,11 +772,11 @@ picked all the suggested lessons and not because the database is empty.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-add_slide-label-Description">Description</h2>
+          <h3 id="method-i-add_slide-label-Description">Description</h3>
 
 <p>Adds a slide of a specific type.</p>
 
-<h2 id="method-i-add_slide-label-Args">Args</h2>
+<h3 id="method-i-add_slide-label-Args">Args</h3>
 <ul><li>
 <p><strong>kind</strong>: the template chosen for the new slide</p>
 </li><li>
@@ -784,7 +784,7 @@ picked all the suggested lessons and not because the database is empty.</p>
 inserted</p>
 </li></ul>
 
-<h2 id="method-i-add_slide-label-Returns">Returns</h2>
+<h3 id="method-i-add_slide-label-Returns">Returns</h3>
 
 <p>A boolean</p>
           
@@ -828,7 +828,7 @@ inserted</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-add_to_virtual_classroom-label-Description">Description</h2>
+          <h3 id="method-i-add_to_virtual_classroom-label-Description">Description</h3>
 
 <p>Creates a record of <a
 href="VirtualClassroomLesson.html">VirtualClassroomLesson</a> for this
@@ -836,13 +836,13 @@ lesson. First it checks whether the record can be created or not (for
 instance, it is not possible if the user is not owner of the lesson and
 doesn&#39;t have a bookmark for it)</p>
 
-<h2 id="method-i-add_to_virtual_classroom-label-Args">Args</h2>
+<h3 id="method-i-add_to_virtual_classroom-label-Args">Args</h3>
 <ul><li>
 <p><strong>an_user_id</strong>: the id of the <a href="User.html">User</a> who
 is adding the lesson to his Virtual Classroom</p>
 </li></ul>
 
-<h2 id="method-i-add_to_virtual_classroom-label-Returns">Returns</h2>
+<h3 id="method-i-add_to_virtual_classroom-label-Returns">Returns</h3>
 
 <p>A boolean</p>
           
@@ -894,12 +894,12 @@ is adding the lesson to his Virtual Classroom</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-available-21-label-Description">Description</h2>
+          <h3 id="method-i-available-21-label-Description">Description</h3>
 
 <p>Sets the value of one of the two metadata (<code>available_video</code> or
 <code>available_audio</code>).</p>
 
-<h2 id="method-i-available-21-label-Args">Args</h2>
+<h3 id="method-i-available-21-label-Args">Args</h3>
 <ul><li>
 <p><strong>type</strong>: used to select which of the two metadata is going to
 be set</p>
@@ -936,7 +936,7 @@ be set</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-available-3F-label-Description">Description</h2>
+          <h3 id="method-i-available-3F-label-Description">Description</h3>
 
 <p>Checks whether the lesson is available for editing in the <a
 href="Lesson.html">Lesson</a> Editor (if at least one between
@@ -944,14 +944,14 @@ href="Lesson.html">Lesson</a> Editor (if at least one between
 <code>metadata</code>.<code>available_video</code> is false, the lesson is
 not available)</p>
 
-<h2 id="method-i-available-3F-label-Args">Args</h2>
+<h3 id="method-i-available-3F-label-Args">Args</h3>
 <ul><li>
 <p><strong>type</strong>: if the parameter is inserted explicitly, the methods
 returns only the value for the specific type; otherwise it returns
 <code>available_video</code> &amp;&amp; <code>available_audio</code>.</p>
 </li></ul>
 
-<h2 id="method-i-available-3F-label-Returns">Returns</h2>
+<h3 id="method-i-available-3F-label-Returns">Returns</h3>
 
 <p>A boolean.</p>
           
@@ -988,16 +988,16 @@ returns only the value for the specific type; otherwise it returns
 
         <div class="method-description">
           
-          <h2 id="method-i-bookmarked-3F-label-Description">Description</h2>
+          <h3 id="method-i-bookmarked-3F-label-Description">Description</h3>
 
 <p>Checks if the lesson has a bookmark for a particular user</p>
 
-<h2 id="method-i-bookmarked-3F-label-Args">Args</h2>
+<h3 id="method-i-bookmarked-3F-label-Args">Args</h3>
 <ul><li>
 <p><strong>an_user_id</strong>: the id of the <a href="User.html">User</a></p>
 </li></ul>
 
-<h2 id="method-i-bookmarked-3F-label-Returns">Returns</h2>
+<h3 id="method-i-bookmarked-3F-label-Returns">Returns</h3>
 
 <p>A boolean</p>
           
@@ -1030,13 +1030,13 @@ returns only the value for the specific type; otherwise it returns
 
         <div class="method-description">
           
-          <h2 id="method-i-buttons-label-Description">Description</h2>
+          <h3 id="method-i-buttons-label-Description">Description</h3>
 
 <p>Returns the list of buttons available for the user who wants to see this
 lesson. If the lesson status hasn&#39;t been set yet for that user, or the
 lesson is not visible for him, it returns an empty array.</p>
 
-<h2 id="method-i-buttons-label-Returns">Returns</h2>
+<h3 id="method-i-buttons-label-Returns">Returns</h3>
 
 <p>An array of keywords representing buttons (see <a
 href="Buttons.html">Buttons</a>)</p>
@@ -1083,7 +1083,7 @@ href="Buttons.html">Buttons</a>)</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-copy-label-Description">Description</h2>
+          <h3 id="method-i-copy-label-Description">Description</h3>
 
 <p>Creates a copy of the lesson for a particular user. First, it checks if
 that user is allowed to copy the lesson (he must be the owner of the
@@ -1101,13 +1101,13 @@ href="MediaElementsSlide.html">MediaElementsSlide</a>)</p>
 <p>the tags (see <a href="Tagging.html">Tagging</a>)</p>
 </li></ol>
 
-<h2 id="method-i-copy-label-Args">Args</h2>
+<h3 id="method-i-copy-label-Args">Args</h3>
 <ul><li>
 <p><strong>an_user_id</strong>: the id of the <a href="User.html">User</a> who
 is copying the lesson</p>
 </li></ul>
 
-<h2 id="method-i-copy-label-Returns">Returns</h2>
+<h3 id="method-i-copy-label-Returns">Returns</h3>
 
 <p>If the process ended correctly, the object of the new lesson,  otherwise
 <code>nil</code></p>
@@ -1206,11 +1206,11 @@ is copying the lesson</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-cover-label-Description">Description</h2>
+          <h3 id="method-i-cover-label-Description">Description</h3>
 
 <p>Returns the cover slide of the lesson.</p>
 
-<h2 id="method-i-cover-label-Returns">Returns</h2>
+<h3 id="method-i-cover-label-Returns">Returns</h3>
 
 <p>An object of type <a href="Slide.html">Slide</a>, or <code>nil</code> if
 the lesson is new_record</p>
@@ -1244,13 +1244,13 @@ the lesson is new_record</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-destroy_with_notifications-label-Description">Description</h2>
+          <h3 id="method-i-destroy_with_notifications-label-Description">Description</h3>
 
 <p>Destroys the lesson and sends notifications to the users who had a <a
 href="Bookmark.html">Bookmark</a> of it (the bookmarks are destroyed by the
 <code>before_destroy</code> callback).</p>
 
-<h2 id="method-i-destroy_with_notifications-label-Returns">Returns</h2>
+<h3 id="method-i-destroy_with_notifications-label-Returns">Returns</h3>
 
 <p>A boolean</p>
           
@@ -1303,13 +1303,13 @@ href="Bookmark.html">Bookmark</a> of it (the bookmarks are destroyed by the
 
         <div class="method-description">
           
-          <h2 id="method-i-dont_notify_changes-label-Description">Description</h2>
+          <h3 id="method-i-dont_notify_changes-label-Description">Description</h3>
 
 <p>Sets <code>notified</code> as <code>true</code> without sending the
 notification of modifications (see <a
 href="Lesson.html#method-i-notify_changes">#notify_changes</a>).</p>
 
-<h2 id="method-i-dont_notify_changes-label-Returns">Returns</h2>
+<h3 id="method-i-dont_notify_changes-label-Returns">Returns</h3>
 
 <p>A boolean.</p>
           
@@ -1404,14 +1404,14 @@ href="Lesson.html#method-i-notify_changes">#notify_changes</a>).</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-modify-label-Description">Description</h2>
+          <h3 id="method-i-modify-label-Description">Description</h3>
 
 <p>A method that sets all the fields that must be updated at any time the
 lesson or one of its slides is modified (that is, this method is related to
 the models <a href="Lesson.html">Lesson</a>, <a href="Slide.html">Slide</a>
 and <a href="MediaElementsSlide.html">MediaElementsSlide</a>).</p>
 
-<h2 id="method-i-modify-label-Returns">Returns</h2>
+<h3 id="method-i-modify-label-Returns">Returns</h3>
 
 <p>A boolean</p>
           
@@ -1445,12 +1445,12 @@ and <a href="MediaElementsSlide.html">MediaElementsSlide</a>).</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-not_notified-3F-label-Description">Description</h2>
+          <h3 id="method-i-not_notified-3F-label-Description">Description</h3>
 
 <p>Checks whether the user needs to notify modifications to other users who
 have a link of the lesson.</p>
 
-<h2 id="method-i-not_notified-3F-label-Returns">Returns</h2>
+<h3 id="method-i-not_notified-3F-label-Returns">Returns</h3>
 
 <p>A boolean.</p>
           
@@ -1483,19 +1483,19 @@ have a link of the lesson.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-notify_changes-label-Description">Description</h2>
+          <h3 id="method-i-notify_changes-label-Description">Description</h3>
 
 <p>Send a notification (containing the details of modifications) to all the
 users who have a link of the lesson. This method is called only if the link
 was created <strong>before</strong> that the lesson was modified. The
 method also sets <code>notified</code> as <code>true</code>.</p>
 
-<h2 id="method-i-notify_changes-label-Args">Args</h2>
+<h3 id="method-i-notify_changes-label-Args">Args</h3>
 <ul><li>
 <p><strong>msg</strong>: details of the modifications</p>
 </li></ul>
 
-<h2 id="method-i-notify_changes-label-Returns">Returns</h2>
+<h3 id="method-i-notify_changes-label-Returns">Returns</h3>
 
 <p>A boolean.</p>
           
@@ -1535,14 +1535,14 @@ method also sets <code>notified</code> as <code>true</code>.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-publish-label-Description">Description</h2>
+          <h3 id="method-i-publish-label-Description">Description</h3>
 
 <p>Sets <code>is_public</code> as <code>true</code> for the lesson and for
 each private <a href="MediaElement.html">MediaElement</a> attached to the
 lesson through <a href="MediaElementsSlide.html">MediaElementsSlide</a> and
 <a href="Slide.html">Slide</a>.</p>
 
-<h2 id="method-i-publish-label-Returns">Returns</h2>
+<h3 id="method-i-publish-label-Returns">Returns</h3>
 
 <p>A boolean</p>
           
@@ -1614,12 +1614,12 @@ lesson through <a href="MediaElementsSlide.html">MediaElementsSlide</a> and
 
         <div class="method-description">
           
-          <h2 id="method-i-reached_the_maximum_of_slides-3F-label-Description">Description</h2>
+          <h3 id="method-i-reached_the_maximum_of_slides-3F-label-Description">Description</h3>
 
 <p>Checks if the maximum number of slides has been reached by this lesson
 (this number is configured in settings.yml)</p>
 
-<h2 id="method-i-reached_the_maximum_of_slides-3F-label-Returns">Returns</h2>
+<h3 id="method-i-reached_the_maximum_of_slides-3F-label-Returns">Returns</h3>
 
 <p>A boolean</p>
           
@@ -1702,7 +1702,7 @@ lesson through <a href="MediaElementsSlide.html">MediaElementsSlide</a> and
 
         <div class="method-description">
           
-          <h2 id="method-i-set_status-label-Description">Description</h2>
+          <h3 id="method-i-set_status-label-Description">Description</h3>
 
 <p>This function fills the attributes <a
 href="Lesson.html#attribute-i-is_reportable">#is_reportable</a>, status,
@@ -1712,7 +1712,7 @@ has a status and the application knows which functionalities are available
 for the user who requested the lesson. If the status is <code>nil</code>,
 it means that the user can&#39;t see that lesson.</p>
 
-<h2 id="method-i-set_status-label-Args">Args</h2>
+<h3 id="method-i-set_status-label-Args">Args</h3>
 <ul><li>
 <p><strong>an_user_id</strong>: the id of the user who is asking permission to
 see the lesson.</p>
@@ -1768,19 +1768,19 @@ see the lesson.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-status-label-Description">Description</h2>
+          <h3 id="method-i-status-label-Description">Description</h3>
 
 <p>Substitute for the attr_reader relative to the attribute
 <code>status</code>.</p>
 
-<h2 id="method-i-status-label-Args">Args</h2>
+<h3 id="method-i-status-label-Args">Args</h3>
 <ul><li>
 <p><strong>with_captions</strong>: if <code>true</code> returns the translated
 caption of the status (this means that it&#39;s used in the front-end),
 otherwise it returns the status keyword (for default).</p>
 </li></ul>
 
-<h2 id="method-i-status-label-Returns">Returns</h2>
+<h3 id="method-i-status-label-Returns">Returns</h3>
 
 <p>A string, or a keyword representing the status (see <a
 href="Statuses.html">Statuses</a>)</p>
@@ -1813,12 +1813,12 @@ href="Statuses.html">Statuses</a>)</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-tags-label-Description">Description</h2>
+          <h3 id="method-i-tags-label-Description">Description</h3>
 
 <p>Used as (unproper) substitute for the attr_reader relative to the attribute
 <code>tags</code>: it extracts the tags directly from the database</p>
 
-<h2 id="method-i-tags-label-Returns">Returns</h2>
+<h3 id="method-i-tags-label-Returns">Returns</h3>
 
 <p>An array of <a href="Tag.html">Tag</a> objects.</p>
           
@@ -1850,7 +1850,7 @@ href="Statuses.html">Statuses</a>)</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-tags-3D-label-Description">Description</h2>
+          <h3 id="method-i-tags-3D-label-Description">Description</h3>
 
 <p>Used as (unproper) substitute for the attribute writer relative to the
 attribute <code>tags</code>: the attribute <code>tags</code> is filled with
@@ -1861,7 +1861,7 @@ href="Tag.html">Tag</a> (if the tag doesn&#39;t exist yet, the object is
 new_record) ready to be saved together with their taggings in the
 <code>after_save</code> validation.</p>
 
-<h2 id="method-i-tags-3D-label-Args">Args</h2>
+<h3 id="method-i-tags-3D-label-Args">Args</h3>
 
 <p>Either an array of strings, or a string of words separated by comma</p>
           
@@ -1900,7 +1900,7 @@ new_record) ready to be saved together with their taggings in the
 
         <div class="method-description">
           
-          <h2 id="method-i-unpublish-label-Description">Description</h2>
+          <h3 id="method-i-unpublish-label-Description">Description</h3>
 
 <p>Sets <code>is_public</code> as <code>false</code>, deletes all bookmarks
 (see <a href="Bookmark.html">Bookmark</a>) and copies in Virtual Classroom
@@ -1908,7 +1908,7 @@ new_record) ready to be saved together with their taggings in the
 associated to the present lesson. Also, sends a notification to all the
 user who lost a bookmark of the lesson.</p>
 
-<h2 id="method-i-unpublish-label-Returns">Returns</h2>
+<h3 id="method-i-unpublish-label-Returns">Returns</h3>
 
 <p>A boolean</p>
           
@@ -1970,7 +1970,7 @@ user who lost a bookmark of the lesson.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-visive_tags-label-Description">Description</h2>
+          <h3 id="method-i-visive_tags-label-Description">Description</h3>
 
 <p>Returns a string of tags separated by comma and space (“tag1, tag2, tag3”),
 by calling a class method of <a href="Tag.html">Tag</a>. This is necessary
@@ -1978,7 +1978,7 @@ for the front end, since in the backend tags are managed without spaces and
 with two additional commas in the beginning and in the end of the string
 (“,tag1,tag2,tag3,”)</p>
 
-<h2 id="method-i-visive_tags-label-Returns">Returns</h2>
+<h3 id="method-i-visive_tags-label-Returns">Returns</h3>
 
 <p>A string</p>
           

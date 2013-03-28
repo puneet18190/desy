@@ -17,15 +17,15 @@ class Image < MediaElement
   
   attr_reader :edit_mode
   
-  # == Description
+  # === Description
   #
   # Returns the url of the attached image.
   #
-  # == Returns
+  # === Returns
   #
   # An url
   #
-  # == Usage
+  # === Usage
   #
   #   <%= image_tag image.url %>
   #
@@ -33,15 +33,15 @@ class Image < MediaElement
     media.url
   end
   
-  # == Description
+  # === Description
   #
   # Returns the url of the 200x200 thumb of the attached image.
   #
-  # == Returns
+  # === Returns
   #
   # An url
   #
-  # == Usage
+  # === Usage
   #
   #   <%= image_tag image.thumb_url %>
   #
@@ -49,11 +49,11 @@ class Image < MediaElement
     media.thumb.url
   end
   
-  # == Description
+  # === Description
   #
   # Returns the width in pixels.
   #
-  # == Returns
+  # === Returns
   #
   # A float.
   #
@@ -61,11 +61,11 @@ class Image < MediaElement
     metadata.width
   end
   
-  # == Description
+  # === Description
   #
   # Returns the height in pixels.
   #
-  # == Returns
+  # === Returns
   #
   # A float.
   #
@@ -73,11 +73,11 @@ class Image < MediaElement
     metadata.height
   end
   
-  # == Description
+  # === Description
   #
   # Returns the url of the folder where it's conserved the temporary image during editing.
   #
-  # == Returns
+  # === Returns
   # An url.
   #
   def editing_url
@@ -86,11 +86,11 @@ class Image < MediaElement
     "#{url.gsub(file_name, '')}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}"
   end
   
-  # == Description
+  # === Description
   #
   # Returns the path of the previous step conserved in image editor: this replaces the current step if the user clicks on 'undo'
   #
-  # == Returns
+  # === Returns
   #
   # A path.
   #
@@ -99,11 +99,11 @@ class Image < MediaElement
     "#{self.media.folder}/editing/user_#{@edit_mode}/prev.#{self.media.file.extension}"
   end
   
-  # == Description
+  # === Description
   #
   # Returns the path of the current step conserved in image editor.
   #
-  # == Returns
+  # === Returns
   #
   # A path.
   #
@@ -112,15 +112,15 @@ class Image < MediaElement
     "#{self.media.folder}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}"
   end
   
-  # == Description
+  # === Description
   #
   # Used to check if the image is in *edit* *mode*: the image enters in edit mode when the image editor is opened, this implies that a temporary folder is automaticly created to contain the progressive steps of the editing. This method is useful to deny the access to specific methods if the image is not in editing.
   #
-  # == Returns
+  # === Returns
   #
   # A boolean.
   #
-  # == Usage
+  # === Usage
   #
   #   return '' if !self.in_edit_mode?
   #
@@ -128,11 +128,11 @@ class Image < MediaElement
     !@edit_mode.nil?
   end
   
-  # == Description
+  # === Description
   #
   # The image enters in *edit* *mode* for a particular user (who is not necessarily the creator of the image, this is checked in the controller)
   #
-  # == Arguments
+  # === Arguments
   #
   # * *user_id*: id of the user who is editing the image
   #
@@ -145,15 +145,15 @@ class Image < MediaElement
     true
   end
   
-  # == Description
+  # === Description
   #
   # The image leaves the *edit* *mode* for a particular user
   #
-  # == Arguments
+  # === Arguments
   #
   # * *user_id*: id of the user who is editing the image
   #
-  # == Returns
+  # === Returns
   #
   # True if the user was in editing mode, false otherwise.
   #
@@ -168,11 +168,11 @@ class Image < MediaElement
     true
   end
   
-  # == Description
+  # === Description
   #
   # Copies the current temporary image into the previous temporary image.
   #
-  # == Returns
+  # === Returns
   #
   # A boolean.
   #
@@ -189,11 +189,11 @@ class Image < MediaElement
     true
   end
   
-  # == Description
+  # === Description
   #
   # Copies the previous temporary image into the current temporary image.
   #
-  # == Returns
+  # === Returns
   #
   # A boolean.
   #
@@ -208,11 +208,11 @@ class Image < MediaElement
     true
   end
   
-  # == Description
+  # === Description
   #
   # Adds multiple texts in the temporary image.
   #
-  # == Arguments
+  # === Arguments
   #
   # * *texts*: an array of hashes, one for each text added. Each hash has the keys
   #   * +font_size+: the font size
@@ -220,7 +220,7 @@ class Image < MediaElement
   #   * +coord_y+: vertical coordinates of the top left corner of the text
   #   * +color+: hexagonal color of the text
   #
-  # == Returns
+  # === Returns
   #
   # A boolean.
   #
@@ -243,18 +243,18 @@ class Image < MediaElement
     true
   end
   
-  # == Description
+  # === Description
   #
   # Crops the temporary image
   #
-  # == Arguments
+  # === Arguments
   #
   # * *x1*: horizontal coordinate of the top left corner of the crop
   # * *y1*: vertical coordinate of the top left corner of the crop
   # * *x2*: horizontal coordinate of the bottom right corner of the crop
   # * *y2*: vertical coordinate of the bottom right corner of the crop
   #
-  # == Returns
+  # === Returns
   #
   # A boolean.
   #
@@ -269,17 +269,17 @@ class Image < MediaElement
     true
   end
   
-  # == Description
+  # === Description
   #
   # Returns the original value of a coordinate, given the actual value and the size of the image
   #
-  # == Arguments
+  # === Arguments
   #
   # * *w*: width of the image
   # * *h*: height of the image
   # * *value*: value to be scaled
   #
-  # == Returns
+  # === Returns
   #
   # A float.
   #

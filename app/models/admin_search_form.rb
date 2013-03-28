@@ -44,11 +44,11 @@ class AdminSearchForm < Form
     ]
   }
   
-  # == Description
+  # === Description
   #
   # Search for lessons
   #
-  # == Args
+  # === Args
   #
   # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
@@ -62,7 +62,7 @@ class AdminSearchForm < Form
   #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
   #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
   #
-  # == Returns
+  # === Returns
   #
   # An array, not paginated yet, of records of type Lesson
   #
@@ -110,11 +110,11 @@ class AdminSearchForm < Form
     resp
   end
   
-  # == Description
+  # === Description
   #
   # Search for media elements
   #
-  # == Args
+  # === Args
   #
   # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
@@ -128,7 +128,7 @@ class AdminSearchForm < Form
   #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
   #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
   #
-  # == Returns
+  # === Returns
   #
   # An array, not paginated yet, of records of type MediaElement
   #
@@ -173,11 +173,11 @@ class AdminSearchForm < Form
     resp
   end
   
-  # == Description
+  # === Description
   #
   # Search for users
   #
-  # == Args
+  # === Args
   #
   # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
@@ -191,7 +191,7 @@ class AdminSearchForm < Form
   #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
   #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
   #
-  # == Returns
+  # === Returns
   #
   # An array, not paginated yet, of records of type User.
   #
@@ -244,11 +244,11 @@ class AdminSearchForm < Form
     resp
   end
   
-  # == Description
+  # === Description
   #
   # Search for tags
   #
-  # == Args
+  # === Args
   #
   # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
@@ -257,7 +257,7 @@ class AdminSearchForm < Form
   #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
   #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
   #
-  # == Returns
+  # === Returns
   #
   # An array, not paginated yet, of objects of type Tag
   #
@@ -279,11 +279,11 @@ class AdminSearchForm < Form
     resp
   end
   
-  # == Description
+  # === Description
   #
   # Search for users who are going to receive a massive notification: this method is used to update asynchronously the form to send a massive notification from the administrator
   #
-  # == Args
+  # === Args
   #
   # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
@@ -295,7 +295,7 @@ class AdminSearchForm < Form
   #   * +user_ids+: list of users added manually to the list of recipients
   # * *count_only*: if set to +true+, the method returns only the number of users; if not otherwise specified, it's set to +false+
   #
-  # == Returns
+  # === Returns
   #
   # Depending on the value of +count_only+, either the number of records found, or a not paginated array of records of kind User
   #

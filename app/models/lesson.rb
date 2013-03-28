@@ -115,15 +115,15 @@ class Lesson < ActiveRecord::Base
     order('COALESCE(bookmarks.created_at, lessons.updated_at) DESC')
   end
   
-  # == Description
+  # === Description
   #
   # Send a notification (containing the details of modifications) to all the users who have a link of the lesson. This method is called only if the link was created *before* that the lesson was modified. The method also sets +notified+ as +true+.
   #
-  # == Args
+  # === Args
   #
   # * *msg*: details of the modifications
   #
-  # == Returns
+  # === Returns
   #
   # A boolean.
   #
@@ -139,11 +139,11 @@ class Lesson < ActiveRecord::Base
     self.save
   end
   
-  # == Description
+  # === Description
   #
   # Sets +notified+ as +true+ without sending the notification of modifications (see Lesson#notify_changes).
   #
-  # == Returns
+  # === Returns
   #
   # A boolean.
   #
@@ -152,11 +152,11 @@ class Lesson < ActiveRecord::Base
     self.save
   end
   
-  # == Description
+  # === Description
   #
   # Checks whether the user needs to notify modifications to other users who have a link of the lesson.
   #
-  # == Returns
+  # === Returns
   #
   # A boolean.
   #
@@ -165,15 +165,15 @@ class Lesson < ActiveRecord::Base
     !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
   end
   
-  # == Description
+  # === Description
   #
   # Checks whether the lesson is available for editing in the Lesson Editor (if at least one between +metadata+.+available_audio+ and +metadata+.+available_video+ is false, the lesson is not available)
   #
-  # == Args
+  # === Args
   #
   # * *type*: if the parameter is inserted explicitly, the methods returns only the value for the specific type; otherwise it returns +available_video+ && +available_audio+.
   #
-  # == Returns
+  # === Returns
   #
   # A boolean.
   #
@@ -186,11 +186,11 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  # == Description
+  # === Description
   #
   # Sets the value of one of the two metadata (+available_video+ or +available_audio+).
   #
-  # == Args
+  # === Args
   #
   # * *type*: used to select which of the two metadata is going to be set
   # * *value*: +true+ for default.
@@ -200,11 +200,11 @@ class Lesson < ActiveRecord::Base
     update_attribute(:metadata, metadata)
   end
   
-  # == Description
+  # === Description
   #
   # Used as (unproper) substitute for the attr_reader relative to the attribute +tags+: it extracts the tags directly from the database
   #
-  # == Returns
+  # === Returns
   #
   # An array of Tag objects.
   #
@@ -212,11 +212,11 @@ class Lesson < ActiveRecord::Base
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'Lesson')
   end
   
-  # == Description
+  # === Description
   #
   # Used as (unproper) substitute for the attribute writer relative to the attribute +tags+: the attribute +tags+ is filled with a string of words separated by comma. During the validation, +tags+ is converted in another attribute called +inner_tags+: this attribute is an array of objects of type Tag (if the tag doesn't exist yet, the object is new_record) ready to be saved together with their taggings in the +after_save+ validation.
   #
-  # == Args
+  # === Args
   #
   # Either an array of strings, or a string of words separated by comma
   #
@@ -231,11 +231,11 @@ class Lesson < ActiveRecord::Base
     @tags
   end
   
-  # == Description
+  # === Description
   #
   # Returns the cover slide of the lesson.
   #
-  # == Returns
+  # === Returns
   #
   # An object of type Slide, or +nil+ if the lesson is new_record
   #
@@ -244,15 +244,15 @@ class Lesson < ActiveRecord::Base
     Slide.where(:kind => Slide::COVER, :lesson_id => self.id).first
   end
   
-  # == Description
+  # === Description
   #
   # Checks whether the dashboard of a particular user is empty because he picked all the suggested lessons and not because the database is empty.
   #
-  # == Args
+  # === Args
   #
   # * *user_id*: the id of a User
   #
-  # == Returns
+  # === Returns
   #
   # A boolean
   #
@@ -264,15 +264,15 @@ class Lesson < ActiveRecord::Base
     Bookmark.joins("INNER JOIN lessons ON lessons.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'Lesson'").where('lessons.is_public = ? AND lessons.user_id != ? AND lessons.subject_id IN (?) AND bookmarks.user_id = ?', true, an_user_id, subject_ids, an_user_id).any?
   end
   
-  # == Description
+  # === Description
   #
   # Substitute for the attr_reader relative to the attribute +status+.
   #
-  # == Args
+  # === Args
   #
   # * *with_captions*: if +true+ returns the translated caption of the status (this means that it's used in the front-end), otherwise it returns the status keyword (for default).
   #
-  # == Returns
+  # === Returns
   #
   # A string, or a keyword representing the status (see Statuses)
   #
@@ -280,11 +280,11 @@ class Lesson < ActiveRecord::Base
     @status.nil? ? nil : (with_captions ? Lesson.status(@status) : @status)
   end
   
-  # == Description
+  # === Description
   #
   # This function fills the attributes is_reportable, status, in_vc and linked (the last three being private). If the model has the four of these attributes different by +nil+, it means that the lesson has a status and the application knows which functionalities are available for the user who requested the lesson. If the status is +nil+, it means that the user can't see that lesson.
   #
-  # == Args
+  # === Args
   #
   # * *an_user_id*: the id of the user who is asking permission to see the lesson.
   #
@@ -314,11 +314,11 @@ class Lesson < ActiveRecord::Base
     true
   end
   
-  # == Description
+  # === Description
   #
   # Returns the list of buttons available for the user who wants to see this lesson. If the lesson status hasn't been set yet for that user, or the lesson is not visible for him, it returns an empty array.
   #
-  # == Returns
+  # === Returns
   #
   # An array of keywords representing buttons (see Buttons)
   #
@@ -340,15 +340,15 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  # == Description
+  # === Description
   #
   # Checks if the lesson has a bookmark for a particular user
   #
-  # == Args
+  # === Args
   #
   # * *an_user_id*: the id of the User
   #
-  # == Returns
+  # === Returns
   #
   # A boolean
   #
@@ -357,7 +357,7 @@ class Lesson < ActiveRecord::Base
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).any?
   end
   
-  # == Description
+  # === Description
   #
   # Creates a copy of the lesson for a particular user. First, it checks if that user is allowed to copy the lesson (he must be the owner of the lesson, or alternatively he must have a bookmark for that lesson). Then the method checks if the user hasn't already copied the lesson. Then it copies, in sequence:
   # 1. the lesson with the cover
@@ -365,11 +365,11 @@ class Lesson < ActiveRecord::Base
   # 3. the media elements attached (see MediaElementsSlide)
   # 4. the tags (see Tagging)
   #
-  # == Args
+  # === Args
   #
   # * *an_user_id*: the id of the User who is copying the lesson
   #
-  # == Returns
+  # === Returns
   #
   # If the process ended correctly, the object of the new lesson,  otherwise +nil+
   #
@@ -443,11 +443,11 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
-  # == Description
+  # === Description
   #
   # Returns a string of tags separated by comma and space ("tag1, tag2, tag3"), by calling a class method of Tag. This is necessary for the front end, since in the backend tags are managed without spaces and with two additional commas in the beginning and in the end of the string (",tag1,tag2,tag3,")
   #
-  # == Returns
+  # === Returns
   #
   # A string
   #
@@ -455,11 +455,11 @@ class Lesson < ActiveRecord::Base
     Tagging.visive_tags(self.tags)
   end
   
-  # == Description
+  # === Description
   #
   # A method that sets all the fields that must be updated at any time the lesson or one of its slides is modified (that is, this method is related to the models Lesson, Slide and MediaElementsSlide).
   #
-  # == Returns
+  # === Returns
   #
   # A boolean
   #
@@ -469,11 +469,11 @@ class Lesson < ActiveRecord::Base
     self.save
   end
   
-  # == Description
+  # === Description
   #
   # Sets +is_public+ as +true+ for the lesson and for each private MediaElement attached to the lesson through MediaElementsSlide and Slide.
   #
-  # == Returns
+  # === Returns
   #
   # A boolean
   #
@@ -521,11 +521,11 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
-  # == Description
+  # === Description
   #
   # Sets +is_public+ as +false+, deletes all bookmarks (see Bookmark) and copies in Virtual Classroom (see VirtualClassroomLesson) associated to the present lesson. Also, sends a notification to all the user who lost a bookmark of the lesson.
   #
-  # == Returns
+  # === Returns
   #
   # A boolean
   #
@@ -563,11 +563,11 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
-  # == Description
+  # === Description
   #
   # Destroys the lesson and sends notifications to the users who had a Bookmark of it (the bookmarks are destroyed by the +before_destroy+ callback).
   #
-  # == Returns
+  # === Returns
   #
   # A boolean
   #
@@ -596,16 +596,16 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
-  # == Description
+  # === Description
   #
   # Adds a slide of a specific type.
   #
-  # == Args
+  # === Args
   #
   # * *kind*: the template chosen for the new slide
   # * *position*: the position in which the new slide must be inserted
   #
-  # == Returns
+  # === Returns
   #
   # A boolean
   #
@@ -625,11 +625,11 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
-  # == Description
+  # === Description
   #
   # Checks if the maximum number of slides has been reached by this lesson (this number is configured in settings.yml)
   #
-  # == Returns
+  # === Returns
   #
   # A boolean
   #
@@ -637,15 +637,15 @@ class Lesson < ActiveRecord::Base
     Slide.where(:lesson_id => self.id).count == SETTINGS['max_number_slides_in_a_lesson']
   end
   
-  # == Description
+  # === Description
   #
   # Creates a record of VirtualClassroomLesson for this lesson. First it checks whether the record can be created or not (for instance, it is not possible if the user is not owner of the lesson and doesn't have a bookmark for it)
   #
-  # == Args
+  # === Args
   #
   # * *an_user_id*: the id of the User who is adding the lesson to his Virtual Classroom
   #
-  # == Returns
+  # === Returns
   #
   # A boolean
   #
