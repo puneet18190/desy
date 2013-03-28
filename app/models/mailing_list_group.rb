@@ -16,6 +16,7 @@
 #
 # * *presence* for +name+
 # * *presence* with numericality and existence of associated record for +user_id+
+# * *length* of +name+, maximum is 255
 # * *uniqueness* for +name+
 #
 # == Callbacks
@@ -34,6 +35,7 @@ class MailingListGroup < ActiveRecord::Base
   has_many :addresses, :class_name => MailingListAddress, :foreign_key => 'group_id', :dependent => :destroy
   
   validates_presence_of :name, :user_id
+  validates_length_of :name, :maximum => 255
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_uniqueness_of :name
   validate :validate_associations
