@@ -72,7 +72,7 @@ class Lesson < ActiveRecord::Base
   extend LessonsMediaElementsShared
   
   attr_accessible :subject_id, :school_level_id, :title, :description
-  attr_reader :is_reportable, :status
+  attr_reader :is_reportable
   attr_writer :validating_in_form
   
   serialize :metadata, OpenStruct
@@ -186,15 +186,40 @@ class Lesson < ActiveRecord::Base
     end
   end
   
+  # == Description
+  #
+  # Sets the value of one of the two metadata (+available_video+ or +available_audio+).
+  #
+  # == Args
+  #
+  # * *type*: used to select which of the two metadata is going to be set
+  # * *value*: +true+ for default.
+  #
   def available!(type, value=true)
     metadata.send :"available_#{type.to_s.downcase}=", !!value
     update_attribute(:metadata, metadata)
   end
   
+  # == Description
+  #
+  # Used as (unproper) substitute for the attr_reader relative to the attribute +tags+: it extracts the tags directly from the database
+  #
+  # == Returns
+  #
+  # An array of Tag objects.
+  #
   def tags
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'Lesson')
   end
   
+  # == Description
+  #
+  # Used as (unproper) substitute for the attribute writer relative to the attribute +tags+: the attribute +tags+ is filled with a string of words separated by comma. During the validation, +tags+ is converted in another attribute called +inner_tags+: this attribute is an array of objects of type Tag (if the tag doesn't exist yet, the object is new_record) ready to be saved together with their taggings in the +after_save+ validation.
+  #
+  # == Args
+  #
+  # Either an array of strings, or a string of words separated by comma
+  #
   def tags=(tags)
     @tags = 
       case tags
@@ -206,11 +231,31 @@ class Lesson < ActiveRecord::Base
     @tags
   end
   
+  # == Description
+  #
+  # Returns the cover slide of the lesson.
+  #
+  # == Returns
+  #
+  # An object of type Slide, or +nil+ if the lesson is new_record
+  #
   def cover
     return nil if self.new_record?
     Slide.where(:kind => Slide::COVER, :lesson_id => self.id).first
   end
   
+  # == Description
+  #
+  # Checks whether the dashboard of a particular user is empty because he picked all the suggested lessons and not because the database is empty.
+  #
+  # == Args
+  #
+  # * *user_id*: the id of a User
+  #
+  # == Returns
+  #
+  # A boolean
+  #
   def self.dashboard_emptied?(an_user_id)
     subject_ids = []
     UsersSubject.where(:user_id => an_user_id).each do |us|
@@ -219,10 +264,30 @@ class Lesson < ActiveRecord::Base
     Bookmark.joins("INNER JOIN lessons ON lessons.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'Lesson'").where('lessons.is_public = ? AND lessons.user_id != ? AND lessons.subject_id IN (?) AND bookmarks.user_id = ?', true, an_user_id, subject_ids, an_user_id).any?
   end
   
+  # == Description
+  #
+  # Substitute for the attr_reader relative to the attribute +status+.
+  #
+  # == Args
+  #
+  # * *with_captions*: if +true+ returns the translated caption of the status (this means that it's used in the front-end), otherwise it returns the status keyword (for default).
+  #
+  # == Returns
+  #
+  # A string, or a keyword representing the status (see Statuses)
+  #
   def status(with_captions=false)
     @status.nil? ? nil : (with_captions ? Lesson.status(@status) : @status)
   end
   
+  # == Description
+  #
+  # This function fills the attributes is_reportable, status, in_vc and linked (the last three being private). If the model has the four of these attributes different by +nil+, it means that the lesson has a status and the application knows which functionalities are available for the user who requested the lesson. If the status is +nil+, it means that the user can't see that lesson.
+  #
+  # == Args
+  #
+  # * *an_user_id*: the id of the user who is asking permission to see the lesson.
+  #
   def set_status(an_user_id)
     return if self.new_record?
     if !self.is_public && !self.copied_not_modified && an_user_id == self.user_id
@@ -246,8 +311,17 @@ class Lesson < ActiveRecord::Base
     end
     @in_vc = self.in_virtual_classroom?(an_user_id)
     @liked = self.liked?(an_user_id)
+    true
   end
   
+  # == Description
+  #
+  # Returns the list of buttons available for the user who wants to see this lesson. If the lesson status hasn't been set yet for that user, or the lesson is not visible for him, it returns an empty array.
+  #
+  # == Returns
+  #
+  # An array of keywords representing buttons (see Buttons)
+  #
   def buttons
     return [] if [@status, @in_vc, @liked, @is_reportable].include?(nil)
     case @status
@@ -266,11 +340,39 @@ class Lesson < ActiveRecord::Base
     end
   end
   
+  # == Description
+  #
+  # Checks if the lesson has a bookmark for a particular user
+  #
+  # == Args
+  #
+  # * *an_user_id*: the id of the User
+  #
+  # == Returns
+  #
+  # A boolean
+  #
   def bookmarked?(an_user_id)
     return false if self.new_record?
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).any?
   end
   
+  # == Description
+  #
+  # Creates a copy of the lesson for a particular user. First, it checks if that user is allowed to copy the lesson (he must be the owner of the lesson, or alternatively he must have a bookmark for that lesson). Then the method checks if the user hasn't already copied the lesson. Then it copies, in sequence:
+  # 1. the lesson with the cover
+  # 2. the slides (see Slide)
+  # 3. the media elements attached (see MediaElementsSlide)
+  # 4. the tags (see Tagging)
+  #
+  # == Args
+  #
+  # * *an_user_id*: the id of the User who is copying the lesson
+  #
+  # == Returns
+  #
+  # If the process ended correctly, the object of the new lesson,  otherwise +nil+
+  #
   def copy(an_user_id)
     errors.clear
     if self.new_record? || User.where(:id => an_user_id).empty? || (!self.is_public && self.user_id != an_user_id) || (self.is_public && self.user_id != an_user_id && Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id, :user_id => an_user_id).empty?)
@@ -341,10 +443,26 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  # == Description
+  #
+  # Returns a string of tags separated by comma and space ("tag1, tag2, tag3"), by calling a class method of Tag. This is necessary for the front end, since in the backend tags are managed without spaces and with two additional commas in the beginning and in the end of the string (",tag1,tag2,tag3,")
+  #
+  # == Returns
+  #
+  # A string
+  #
   def visive_tags
     Tagging.visive_tags(self.tags)
   end
   
+  # == Description
+  #
+  # A method that sets all the fields that must be updated at any time the lesson or one of its slides is modified (that is, this method is related to the models Lesson, Slide and MediaElementsSlide).
+  #
+  # == Returns
+  #
+  # A boolean
+  #
   def modify
     self.copied_not_modified = false
     self.notified = false
