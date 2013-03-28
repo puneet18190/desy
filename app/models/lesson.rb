@@ -673,6 +673,18 @@ class Lesson < ActiveRecord::Base
     true
   end
   
+  # === Description
+  #
+  # Removes the associated record of VirtualClassroomLesson for a particular User, if any
+  #
+  # === Args
+  #
+  # * *an_user_id*: the id of the User
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def remove_from_virtual_classroom(an_user_id)
     errors.clear
     if self.new_record?
@@ -698,11 +710,35 @@ class Lesson < ActiveRecord::Base
     true
   end
   
+  # === Description
+  #
+  # Checks if the lesson has a corresponding VirtualClassroomLesson for a specific USer
+  #
+  # === Args
+  #
+  # * *an_user_id*: the id of the User
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def in_virtual_classroom?(an_user_id)
     return false if self.new_record?
     VirtualClassroomLesson.where(:user_id => an_user_id, :lesson_id => self.id).any?
   end
   
+  # === Description
+  #
+  # Checks if there is a record of Like for a particular User
+  #
+  # === Args
+  #
+  # * *an_user_id*: the id of the User
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def liked?(an_user_id)
     return false if self.new_record?
     Like.where(:user_id => an_user_id, :lesson_id => self.id).any?
