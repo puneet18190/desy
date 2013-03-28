@@ -4,6 +4,8 @@ require 'test_helper'
 class MediaElementTest < ActiveSupport::TestCase
   
   def setup
+    @max_title = I18n.t('language_parameters.media_element.length_title')
+    @max_description = I18n.t('language_parameters.media_element.length_description')
     begin
       @media_element = MediaElement.new :description => 'Scuola Primaria', :title => 'Scuola'
       @media_element.user_id = 1
@@ -75,10 +77,10 @@ class MediaElementTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @media_element, :title, long_string(36), long_string(35), :too_long
-    assert_invalid @media_element, :description, long_string(281), long_string(280), :too_long
+    assert_invalid @media_element, :title, long_string(36), long_string(35), :too_long, {:count => @max_title}
+    assert_invalid @media_element, :description, long_string(281), long_string(280), :too_long, {:count => @max_description}
     assert_invalid @media_element, :user_id, 'po', 1, :not_a_number
-    assert_invalid @media_element, :user_id, -3, 1, :greater_than
+    assert_invalid @media_element, :user_id, -3, 1, :greater_than, {:count => 0}
     assert_invalid @media_element, :user_id, 3.4, 1, :not_an_integer
     assert_invalid @media_element, :is_public, nil, false, :inclusion
     assert_invalid @media_element, :sti_type, 'Film', 'Video', :inclusion

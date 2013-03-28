@@ -3,6 +3,7 @@ require 'test_helper'
 class SlideTest < ActiveSupport::TestCase
   
   def setup
+    @max_title = I18n.t('language_parameters.slide.length_title')
     begin
       @slide = Slide.new :position => 2, :title => 'Titolo', :text => 'Testo testo testo'
       @slide.lesson_id = 1
@@ -25,7 +26,7 @@ class SlideTest < ActiveSupport::TestCase
   
   test 'types' do
     assert_invalid @slide, :position, 'ret', 2, :not_a_number
-    assert_invalid @slide, :position, -9, 2, :greater_than
+    assert_invalid @slide, :position, -9, 2, :greater_than, {:count => 0}
     assert_invalid @slide, :lesson_id, 1.1, 1, :not_an_integer
     @slide.kind = 'audio3'
     assert !@slide.save, "Slide erroneously saved - #{@slide.inspect}"
@@ -34,7 +35,7 @@ class SlideTest < ActiveSupport::TestCase
     assert @slide.errors.added? :kind, :inclusion
     @slide.kind = 'video1'
     assert @slide.valid?, "Slide not valid: #{@slide.errors.inspect}"
-    assert_invalid @slide, :title, long_string(36), long_string(35), :too_long
+    assert_invalid @slide, :title, long_string(@max_title + 1), long_string(@max_title), :too_long, {:count => @max_title}
     @slide.title = nil
     assert_obj_saved @slide
   end
