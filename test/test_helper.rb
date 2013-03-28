@@ -8,6 +8,21 @@ class ActiveSupport::TestCase
   
   setup :initialize_media_path_for_media_elements
   
+  def assert_invalid_email(object)
+    valid_long_email = "#{long_string(249)}@uo.it"
+    valid_email = object.email
+    valid_email_with_dots = 'fdsfdssf.ds@can.e.it'
+    assert !object.class.pluck(:id).include?(valid_email_with_dots)
+    assert !object.class.pluck(:id).include?(valid_long_email)
+    assert_invalid object, :email, "#{long_string(250)}@uo.it", valid_long_email, :too_long, {:count => 255}
+    assert_invalid object, :email, 'askgfjbdsgkdjsbgdskgjbdsk@.it', valid_email, :not_a_valid_email
+    assert_invalid object, :email, '@ldsfihdslgfidshfldsih.it', valid_email, :not_a_valid_email
+    assert_invalid object, :email, '@.it', valid_email, :not_a_valid_email
+    assert_invalid object, :email, 'ciao ciao@ciao.it', valid_email, :not_a_valid_email
+    assert_invalid object, :email, 'fdsfds@sfds@cane.it', valid_email_with_dots, :not_a_valid_email
+    assert_invalid object, :email, 'fdsfdssfds@cane.i', valid_email, :not_a_valid_email
+  end
+  
   def assert_user_likes(likes, users)
     assert_equal likes.length, users.length
     index = 0

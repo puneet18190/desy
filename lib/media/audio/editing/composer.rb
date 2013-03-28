@@ -31,12 +31,12 @@ module Media
         end
 
         def run
-          @overwrite = audio.media.present?
-          old_media = @overwrite && audio.media.to_hash
+          @old_media = audio.media.try(:dup)
           compose
+          @old_media.paths.values.each{ |p| FileUtils.rm_f p } if @old_media
         rescue StandardError => e
-          if old_media
-            audio.media     = old_media
+          if @old_media
+            audio.media     = @old_media.to_hash
             audio.converted = true
             if old_fields = audio.try(:metadata).try(:old_fields)
               audio.title       = old_fields['title'] if old_fields['title'].present?
@@ -98,7 +98,7 @@ module Media
         end
 
         def notification_translation_key
-          @overwrite ? 'update': 'create'
+          @old_media ? 'update' : 'create'
         end
 
         def output_without_extension(i)

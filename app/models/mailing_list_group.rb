@@ -26,7 +26,7 @@
 #
 # == Database callbacks
 #
-# TODO qui ne manca una
+# 1. *cascade* *destruction* for the associated table MailingListAddress
 #
 class MailingListGroup < ActiveRecord::Base
   
