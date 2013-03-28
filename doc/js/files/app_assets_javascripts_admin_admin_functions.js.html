@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>dislikeLesson - DESY</title>
+    <title>app&#x2F;assets&#x2F;javascripts&#x2F;admin&#x2F;admin_functions.js - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -230,193 +230,76 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>dislikeLesson Class</h1>
-<div class="box meta">
-    
+                        <h1 class="file-heading">File: app&#x2F;assets&#x2F;javascripts&#x2F;admin&#x2F;admin_functions.js</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+* Administration graphic events and flagging options.
+* 
+* @module Administration
+*&#x2F;
 
-    
+&#x2F;**
+* Open a collapsed table row with extra content,
+* tipically clicking on previous collapsable table row.
+* 
+* @method openAndLoadNextTr
+* @for openAndLoadNextTr
+* @param prevTr {Object}
+*&#x2F;
+function openAndLoadNextTr(prevTr) {
+  var next_tr = prevTr.next(&#x27;tr.collapsed&#x27;);
+  var thumb = next_tr.find(&#x27;.element-thumbnail&#x27;);
+  if((thumb.length &gt; 0) &amp;&amp; !thumb.data(&#x27;loaded&#x27;)) {
+    var el_id = next_tr.find(&#x27;.element-thumbnail&#x27;).data(&#x27;param&#x27;);
+    $.ajax({
+      url: &#x27;&#x2F;admin&#x2F;media_elements&#x2F;&#x27; + el_id + &#x27;&#x2F;load&#x27;,
+      type: &#x27;get&#x27;
+    });
+  }
+  next_tr.slideToggle(&#x27;slow&#x27;);
+}
 
-    
-        
-            Module: <a href="../modules/Buttons.html">Buttons</a>
-        
-    
-
-    
-</div>
-
-
-
-<div class="box intro">
-    
-</div>
-
-
-
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-
-        
-            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
-        
-        
-        
-        
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method">
-                                <a href="#method_dislikeLesson">dislikeLesson</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_dislikeLesson" class="method item">
-    <h3 class="name"><code>dislikeLesson</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>lessons_id</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>destination</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_buttons.js.html#l119"><code>app&#x2F;assets&#x2F;javascripts&#x2F;buttons.js:119</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Remove like from a lesson</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">lessons_id</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>lesson id</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">destination</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>destination view</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-
-        
-    </div>
+&#x2F;**
+* Initializer for jQueryUI autocomplete on users serch into Admin Notifications.
+* 
+* @method initNotificationsAutocomplete
+* @for initNotificationsAutocomplete
+*&#x2F;
+function initNotificationsAutocomplete(){
+  $(function() {
+    function log( message, _id ) {
+      if($(&#x27;#&#x27;+_id).length === 0){
+        $( &quot;&lt;div class=&#x27;label label-info&#x27; id=&quot;+_id+&quot;&gt;&quot; ).text( message ).prependTo( &quot;#log&quot; ).append(&quot;&lt;a href=&#x27;#&#x27; class=&#x27;del&#x27;&gt;x&lt;&#x2F;a&gt;&quot;);
+        $( &quot;#log&quot; ).scrollTop( 0 );
+        if($(&#x27;#search_users_ids&#x27;).val().length &gt; 0){
+          $(&#x27;#search_users_ids&#x27;).val($( &#x27;#search_users_ids&#x27;).val()+&#x27;,&#x27;+_id);
+        }else{
+          $(&#x27;#search_users_ids&#x27;).val(_id);
+        }
+        $(&#x27;#filter-users&#x27;).submit();
+        var dup = $(&quot;#contact-recipients&quot;).clone();
+        $(&quot;#contact-recipients&quot;).remove();
+        $(dup).appendTo(&#x27;.recipients_input&#x27;);
+        $(dup).val(&#x27;&#x27;);
+        initNotificationsAutocomplete();
+        $(&quot;#contact-recipients&quot;).focus();
+      }
+    }
+ 
+    $( &quot;#contact-recipients&quot; ).autocomplete({
+      source: &quot;&#x2F;admin&#x2F;users&#x2F;get_full_names&quot;,
+      minLength: 2,
+      select: function( event, ui ) {
+        log( ui.item ?
+          ui.item.value :
+          &quot;No match&quot; , ui.item.id );
+      }
+    });
+  });
+}
+    </pre>
 </div>
 
                     </div>

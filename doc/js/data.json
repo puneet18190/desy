@@ -6,6 +6,18 @@
         "url": "http://desy.morganspa.com/"
     },
     "files": {
+        "app/assets/javascripts/admin/admin_functions.js": {
+            "name": "app/assets/javascripts/admin/admin_functions.js",
+            "modules": {
+                "Administration": 1
+            },
+            "classes": {},
+            "fors": {
+                "openAndLoadNextTr": 1,
+                "initNotificationsAutocomplete": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/ajax_loader.js": {
             "name": "app/assets/javascripts/ajax_loader.js",
             "modules": {
@@ -152,6 +164,23 @@
         }
     },
     "modules": {
+        "Administration": {
+            "name": "Administration",
+            "submodules": {},
+            "classes": {
+                "openAndLoadNextTr": 1,
+                "initNotificationsAutocomplete": 1
+            },
+            "fors": {
+                "openAndLoadNextTr": 1,
+                "initNotificationsAutocomplete": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 1,
+            "description": "Administration graphic events and flagging options."
+        },
         "AjaxLoader": {
             "name": "AjaxLoader",
             "submodules": {},
@@ -386,6 +415,28 @@
         }
     },
     "classes": {
+        "openAndLoadNextTr": {
+            "name": "openAndLoadNextTr",
+            "shortname": "openAndLoadNextTr",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Administration",
+            "namespace": ""
+        },
+        "initNotificationsAutocomplete": {
+            "name": "initNotificationsAutocomplete",
+            "shortname": "initNotificationsAutocomplete",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Administration",
+            "namespace": ""
+        },
         "bindLoader": {
             "name": "bindLoader",
             "shortname": "bindLoader",
@@ -1092,6 +1143,31 @@
         }
     },
     "classitems": [
+        {
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 7,
+            "description": "Open a collapsed table row with extra content,\ntipically clicking on previous collapsable table row.",
+            "itemtype": "method",
+            "name": "openAndLoadNextTr",
+            "params": [
+                {
+                    "name": "prevTr",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "openAndLoadNextTr",
+            "module": "Administration"
+        },
+        {
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 28,
+            "description": "Initializer for jQueryUI autocomplete on users serch into Admin Notifications.",
+            "itemtype": "method",
+            "name": "initNotificationsAutocomplete",
+            "class": "initNotificationsAutocomplete",
+            "module": "Administration"
+        },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 8,

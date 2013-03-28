@@ -22,6 +22,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "hideLoader",
         "hideNewSlideChoice",
         "initLessonEditorPositions",
+        "initNotificationsAutocomplete",
         "initTinymce",
         "initializeNotAvailableLessonsToLoadQuick",
         "initializeSortableNavs",
@@ -32,6 +33,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "loadSlideInLessonEditor",
         "makeDraggable",
         "offlightTextarea",
+        "openAndLoadNextTr",
         "previewLesson",
         "publishLesson",
         "reInitializeSlidePositionsInLessonEditor",
@@ -67,6 +69,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "unpublishLesson"
     ],
     "modules": [
+        "Administration",
         "AjaxLoader",
         "Buttons",
         "Dashboard",
@@ -77,6 +80,11 @@ YUI.add("yuidoc-meta", function(Y) {
         "VirtualClassroom"
     ],
     "allModules": [
+        {
+            "displayName": "Administration",
+            "name": "Administration",
+            "description": "Administration graphic events and flagging options."
+        },
         {
             "displayName": "AjaxLoader",
             "name": "AjaxLoader",
