@@ -64,7 +64,7 @@ class AdminSearchForm < Form
   #
   # == Returns
   #
-  # An array, not paginated yet, of the lessons found
+  # An array, not paginated yet, of records of type Lesson
   #
   def self.search_lessons(params)
     resp = Lesson.select('lessons.id AS id, title, subject_id, user_id, lessons.created_at AS created_at, lessons.updated_at AS updated_at, token, lessons.description AS description, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count')
@@ -130,7 +130,7 @@ class AdminSearchForm < Form
   #
   # == Returns
   #
-  # An array, not paginated yet, of the media elements found
+  # An array, not paginated yet, of records of type MediaElement
   #
   def self.search_media_elements(params)
     resp = MediaElement.where(:converted => true)
@@ -193,7 +193,7 @@ class AdminSearchForm < Form
   #
   # == Returns
   #
-  # An array, not paginated yet, of the users found
+  # An array, not paginated yet, of records of type User.
   #
   def self.search_users(params)
     resp = User
@@ -259,7 +259,7 @@ class AdminSearchForm < Form
   #
   # == Returns
   #
-  # An array, not paginated yet, of the tags found
+  # An array, not paginated yet, of objects of type Tag
   #
   def self.search_tags(params)
     resp = Tag.select("id, word, created_at, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = 'MediaElement') AS media_elements_count, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = 'Lesson') AS lessons_count")
@@ -297,7 +297,7 @@ class AdminSearchForm < Form
   #
   # == Returns
   #
-  # Depending on the value of +count_only+, either the number of records found, or a not paginated array of the users found
+  # Depending on the value of +count_only+, either the number of records found, or a not paginated array of records of kind User
   #
   def self.search_notifications_users(params, count_only=false)
     resp = User.scoped
