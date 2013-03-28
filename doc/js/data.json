@@ -75,6 +75,20 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/general.js": {
+            "name": "app/assets/javascripts/general.js",
+            "modules": {
+                "General": 1
+            },
+            "classes": {},
+            "fors": {
+                "updateURLParameter": 1,
+                "removeURLParameter": 1,
+                "centerThisInContainer": 1,
+                "centerThis": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/image_editor.js": {
             "name": "app/assets/javascripts/image_editor.js",
             "modules": {
@@ -273,6 +287,27 @@
             "file": "app/assets/javascripts/dashboard.js",
             "line": 1,
             "description": "Dashboard is the welcome page of DESY where you find shared lessons and elements. \nThis handles elements interaction events."
+        },
+        "General": {
+            "name": "General",
+            "submodules": {},
+            "classes": {
+                "updateURLParameter": 1,
+                "removeURLParameter": 1,
+                "centerThisInContainer": 1,
+                "centerThis": 1
+            },
+            "fors": {
+                "updateURLParameter": 1,
+                "removeURLParameter": 1,
+                "centerThisInContainer": 1,
+                "centerThis": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/general.js",
+            "line": 1,
+            "description": "Generic shared javascript functions"
         },
         "ImageEditor": {
             "name": "ImageEditor",
@@ -732,6 +767,50 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "Dashboard",
+            "namespace": ""
+        },
+        "updateURLParameter": {
+            "name": "updateURLParameter",
+            "shortname": "updateURLParameter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "General",
+            "namespace": ""
+        },
+        "removeURLParameter": {
+            "name": "removeURLParameter",
+            "shortname": "removeURLParameter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "General",
+            "namespace": ""
+        },
+        "centerThisInContainer": {
+            "name": "centerThisInContainer",
+            "shortname": "centerThisInContainer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "General",
+            "namespace": ""
+        },
+        "centerThis": {
+            "name": "centerThis",
+            "shortname": "centerThis",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "General",
             "namespace": ""
         },
         "enlightTextarea": {
@@ -1711,6 +1790,104 @@
             ],
             "class": "changePageDashboardLessons",
             "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 7,
+            "description": "Add new parameters to an url",
+            "itemtype": "method",
+            "name": "updateURLParameter",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "starting url",
+                    "type": "String"
+                },
+                {
+                    "name": "param",
+                    "description": "new param",
+                    "type": "String"
+                },
+                {
+                    "name": "paramVal",
+                    "description": "new param value",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "updated url",
+                "type": "String"
+            },
+            "class": "updateURLParameter",
+            "module": "General"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 36,
+            "description": "Remove a param from url",
+            "itemtype": "method",
+            "name": "removeURLParameter",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "starting url",
+                    "type": "String"
+                },
+                {
+                    "name": "param",
+                    "description": "param to remove",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "update url",
+                "type": "String"
+            },
+            "class": "removeURLParameter",
+            "module": "General"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 63,
+            "description": "Center a div into a given container",
+            "itemtype": "method",
+            "name": "centerThisInContainer",
+            "params": [
+                {
+                    "name": "div",
+                    "description": "div selector to center, class or id",
+                    "type": "String"
+                },
+                {
+                    "name": "container",
+                    "description": "container selector to center div into, class or id",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n     centerThisInContainer('._saved','#image_wrapper');"
+            ],
+            "class": "centerThisInContainer",
+            "module": "General"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 81,
+            "description": "Center a div into current window",
+            "itemtype": "method",
+            "name": "centerThis",
+            "params": [
+                {
+                    "name": "div",
+                    "description": "div selector to center, class or id",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n     centerThis(\"._slide_error\");"
+            ],
+            "class": "centerThis",
+            "module": "General"
         },
         {
             "file": "app/assets/javascripts/image_editor.js",

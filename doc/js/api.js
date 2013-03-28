@@ -7,6 +7,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "addLessonToVirtualClassroom",
         "addMediaElement",
         "bindLoader",
+        "centerThis",
+        "centerThisInContainer",
         "changePageDashboardLessons",
         "changePageDashboardMediaElements",
         "closeGenericVideoComponentCutter",
@@ -44,6 +46,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "removeLesson",
         "removeLessonFromVirtualClassroom",
         "removeMediaElement",
+        "removeURLParameter",
         "resetImageEditorCrop",
         "resetImageEditorOperationsChoice",
         "resetImageEditorTexts",
@@ -66,13 +69,15 @@ YUI.add("yuidoc-meta", function(Y) {
         "tinyMceCallbacks",
         "tinyMceKeyDownCallbacks",
         "unbindLoader",
-        "unpublishLesson"
+        "unpublishLesson",
+        "updateURLParameter"
     ],
     "modules": [
         "Administration",
         "AjaxLoader",
         "Buttons",
         "Dashboard",
+        "General",
         "ImageEditor",
         "LessonEditor",
         "Times",
@@ -99,6 +104,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "Dashboard",
             "name": "Dashboard",
             "description": "Dashboard is the welcome page of DESY where you find shared lessons and elements. \nThis handles elements interaction events."
+        },
+        {
+            "displayName": "General",
+            "name": "General",
+            "description": "Generic shared javascript functions"
         },
         {
             "displayName": "ImageEditor",
