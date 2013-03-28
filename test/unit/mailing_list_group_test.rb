@@ -14,7 +14,7 @@ class MailingListGroupTest < ActiveSupport::TestCase
   end
   
   test 'attr_accessible' do
-    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {mailing_list_group.new(:user_id => 1)}
+    assert_raise(ActiveModel::MassAssignmentSecurity::Error) {MailingListGroup.new(:user_id => 1)}
   end
   
   test 'types' do
