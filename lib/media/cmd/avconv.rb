@@ -70,6 +70,10 @@ module Media
         "-q:a #{self.class.output_qa[@format].to_s.shellescape}" if @format
       end
 
+      def ar
+        '-ar 44100'
+      end
+
       def codecs
         self.class.codecs[@format] if @format
       end
