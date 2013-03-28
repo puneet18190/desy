@@ -3373,7 +3373,7 @@
                 },
                 {
                     "name": "container_selector",
-                    "description": "addes tags container selector, class or id",
+                    "description": "added tags container selector, class or id",
                     "type": "String"
                 },
                 {
