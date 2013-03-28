@@ -20,7 +20,7 @@ class SchoolLevelTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @school_level, :description, long_string(256), long_string(255), :too_long
+    assert_invalid @school_level, :description, long_string(256), long_string(255), :too_long, {:count => 255}
     assert_obj_saved @school_level
   end
   

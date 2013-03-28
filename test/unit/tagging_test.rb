@@ -31,7 +31,7 @@ class TaggingTest < ActiveSupport::TestCase
   test 'types' do
     assert_invalid @tagging, :tag_id, 'rt', @tag.id, :not_a_number
     assert_invalid @tagging, :tag_id, 9.9, @tag.id, :not_an_integer
-    assert_invalid @tagging, :taggable_id, -8, 2, :greater_than
+    assert_invalid @tagging, :taggable_id, -8, 2, :greater_than, {:count => 0}
     assert_invalid @tagging, :taggable_type, 'MidiaElement', 'MediaElement', :inclusion
     assert_obj_saved @tagging
   end

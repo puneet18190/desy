@@ -24,7 +24,7 @@ class NotificationTest < ActiveSupport::TestCase
   test 'types' do
     assert_invalid @notification, :user_id, 'erw', 1, :not_a_number
     assert_invalid @notification, :user_id, 11.1, 1, :not_an_integer
-    assert_invalid @notification, :user_id, 0, 1, :greater_than
+    assert_invalid @notification, :user_id, 0, 1, :greater_than, {:count => 0}
     assert_invalid @notification, :seen, nil, false, :inclusion
     assert_obj_saved @notification
   end

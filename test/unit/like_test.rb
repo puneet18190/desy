@@ -20,7 +20,7 @@ class LikeTest < ActiveSupport::TestCase
   
   test 'types' do
     assert_invalid @like, :user_id, '3r4', 2, :not_a_number
-    assert_invalid @like, :user_id, -4, 2, :greater_than
+    assert_invalid @like, :user_id, -4, 2, :greater_than, {:count => 0}
     assert_invalid @like, :lesson_id, 2.111, 1, :not_an_integer
     assert_obj_saved @like
   end
