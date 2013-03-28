@@ -1,3 +1,17 @@
+/**
+* New media element popup handler, form validation errors handling.
+* 
+* @module MediaElementLoader
+*/
+
+/**
+* Set iframe as target for form submit, added a callback function to control 413 status error.
+*
+* Uses: [uploadDone](../classes/uploadDone.html#method_uploadDone)
+* 
+* @method initMediaElementLoader
+* @for initMediaElementLoader
+*/
 function initMediaElementLoader() {
   document.getElementById('new_media_element').onsubmit=function() {
     $('.form_error').removeClass('form_error');
@@ -7,6 +21,12 @@ function initMediaElementLoader() {
   }
 }
 
+/**
+* Handle 413 status error, file too large
+* 
+* @method uploadDone
+* @for uploadDone
+*/
 function uploadDone(){
   var ret = document.getElementById("upload_target").contentWindow.document.title;
   if(ret && ret.match(/413/g)){
@@ -17,6 +37,13 @@ function uploadDone(){
   return false;
 }
 
+/**
+* Update form fields with error labels
+* 
+* @method uploadMediaElementLoaderError
+* @for uploadMediaElementLoaderError
+* @param errors {Object} errors list
+*/
 function uploadMediaElementLoaderError(errors) {
   for (var i = 0; i < errors.length; i++) {
     var error = errors[i];
@@ -36,6 +63,12 @@ function uploadMediaElementLoaderError(errors) {
   $('.barraLoading img').attr('src', '');
 }
 
+/**
+* Reload media elements page after new media element is successfully loaded.
+* 
+* @method uploadMediaElementLoadeDoneRedirect
+* @for uploadMediaElementLoadeDoneRedirect
+*/
 function uploadMediaElementLoadeDoneRedirect() {
   $('.barraLoading').css('background-color', '#41A62A');
   $('.barraLoading img').hide();
@@ -43,6 +76,13 @@ function uploadMediaElementLoadeDoneRedirect() {
   window.location = '/media_elements';
 }
 
+/**
+* Fill in media element update form with media element values.
+* 
+* @method resetMediaElementChangeInfo
+* @for resetMediaElementChangeInfo
+* @param media_element_id {Number} media element id
+*/
 function resetMediaElementChangeInfo(media_element_id) {
   var container = $('#dialog-media-element-' + media_element_id + ' ._change_info_container');
   container.find('#title').val(container.data('title'));
@@ -55,28 +95,4 @@ function resetMediaElementChangeInfo(media_element_id) {
     container.find('._tags_container').prepend(copy);
   });
   container.find('#tags_value').val(container.data('tags'));
-}
-
-var W3CDOM = (document.createElement && document.getElementsByTagName);
-
-function initFileUploads() {
-  if (!W3CDOM) return;
-  var fakeFileUpload = document.createElement('div');
-  fakeFileUpload.className = 'fakefile';
-  fakeFileUpload.appendChild(document.createElement('input'));
-  var image = document.createElement('img');
-  image.src='/assets/ico_advanced_search.png';
-  fakeFileUpload.appendChild(image);
-  var x = document.getElementsByTagName('input');
-  for (var i=0;i<x.length;i++) {
-    if (x[i].type != 'file') continue;
-    if (x[i].parentNode.className != 'fileinputs') continue;
-    x[i].className = 'file hidden';
-    var clone = fakeFileUpload.cloneNode(true);
-    x[i].parentNode.appendChild(clone);
-    x[i].relatedElement = clone.getElementsByTagName('input')[0];
-    x[i].onchange = x[i].onmouseout = function () {
-      this.relatedElement.value = this.value;
-    }
-  }
 }
