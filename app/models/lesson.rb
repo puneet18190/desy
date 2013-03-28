@@ -65,7 +65,7 @@ require 'lessons_media_elements_shared'
 # 1. *cascade* *destruction* for the associated table Like
 # 2. *cascade* *destruction* for the associated table Slide
 # 3. *cascade* *destruction* for the associated table VirtualClassroomLesson
-# 4. *set* *null* *on* *destruction* on the column +parent_id+ of all the lessons copied by the current lessons
+# 4. *set* *null* *on* *destruction* on the column +parent_id+ of all the lessons copied by the current lesson
 #
 class Lesson < ActiveRecord::Base
   include Rails.application.routes.url_helpers
