@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>loadSlideInLessonEditor - DESY</title>
+    <title>centerThis - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -240,7 +240,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>loadSlideInLessonEditor Class</h1>
+                        <h1>centerThis Class</h1>
 <div class="box meta">
     
 
@@ -250,7 +250,7 @@
 
     
         
-            Module: <a href="../modules/LessonEditor.html">LessonEditor</a>
+            Module: <a href="../modules/General.html">General</a>
         
     
 
@@ -288,7 +288,7 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_loadSlideInLessonEditor">loadSlideInLessonEditor</a>
+                                <a href="#method_centerThis">centerThis</a>
 
                                 
                                 
@@ -310,8 +310,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_loadSlideInLessonEditor" class="method item">
-    <h3 class="name"><code>loadSlideInLessonEditor</code></h3>
+                    <div id="method_centerThis" class="method item">
+    <h3 class="name"><code>centerThis</code></h3>
 
     
         <div class="args">
@@ -319,7 +319,7 @@
             
                 <li class="arg">
                     
-                        <code>slide</code>
+                        <code>div</code>
                     
                 </li>
             
@@ -352,7 +352,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_lesson_editor.js.html#l648"><code>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js:648</code></a>
+        <a href="..&#x2F;files&#x2F;app_assets_javascripts_general.js.html#l81"><code>app&#x2F;assets&#x2F;javascripts&#x2F;general.js:81</code></a>
         
         </p>
 
@@ -363,8 +363,7 @@
     </div>
 
     <div class="description">
-        <p>Asynchronous slide loading. 
-It is called when the current slide is not loaded yet.</p>
+        <p>Center a div into current window</p>
     </div>
 
     
@@ -375,14 +374,14 @@ It is called when the current slide is not loaded yet.</p>
             
                 <li class="param">
                     
-                        <code class="param-name">slide</code>
+                        <code class="param-name">div</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
 
                     <div class="param-description">
-                        <p>slide object id</p>
+                        <p>div selector to center, class or id</p>
                     </div>
 
                     
@@ -399,7 +398,7 @@ It is called when the current slide is not loaded yet.</p>
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code> <code>loadSlideInLessonEditor($(&#x27;#slide_in_lesson_editor_33&#x27;));</code>
+                <pre class="code prettyprint"><code> centerThis("._slide_error");
 </code></pre>
             </div>
         </div>
