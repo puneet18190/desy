@@ -469,6 +469,14 @@ class Lesson < ActiveRecord::Base
     self.save
   end
   
+  # == Description
+  #
+  # Sets +is_public+ as +true+ for the lesson and for each private MediaElement attached to the lesson through MediaElementsSlide and Slide.
+  #
+  # == Returns
+  #
+  # A boolean
+  #
   def publish
     errors.clear
     pub_date = Time.zone.now
@@ -513,6 +521,14 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  # == Description
+  #
+  # Sets +is_public+ as +false+, deletes all bookmarks (see Bookmark) and copies in Virtual Classroom (see VirtualClassroomLesson) associated to the present lesson. Also, sends a notification to all the user who lost a bookmark of the lesson.
+  #
+  # == Returns
+  #
+  # A boolean
+  #
   def unpublish
     errors.clear
     if self.new_record?
@@ -547,6 +563,14 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  # == Description
+  #
+  # Destroys the lesson and sends notifications to the users who had a Bookmark of it (the bookmarks are destroyed by the +before_destroy+ callback).
+  #
+  # == Returns
+  #
+  # A boolean
+  #
   def destroy_with_notifications
     errors.clear
     if self.new_record?
@@ -572,6 +596,19 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  # == Description
+  #
+  # Adds a slide of a specific type.
+  #
+  # == Args
+  #
+  # * *kind*: the template chosen for the new slide
+  # * *position*: the position in which the new slide must be inserted
+  #
+  # == Returns
+  #
+  # A boolean
+  #
   def add_slide(kind, position)
     if self.new_record? || !Slide::KINDS_WITHOUT_COVER.include?(kind)
       return nil
@@ -588,10 +625,30 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  # == Description
+  #
+  # Checks if the maximum number of slides has been reached by this lesson (this number is configured in settings.yml)
+  #
+  # == Returns
+  #
+  # A boolean
+  #
   def reached_the_maximum_of_slides?
     Slide.where(:lesson_id => self.id).count == SETTINGS['max_number_slides_in_a_lesson']
   end
   
+  # == Description
+  #
+  # Creates a record of VirtualClassroomLesson for this lesson. First it checks whether the record can be created or not (for instance, it is not possible if the user is not owner of the lesson and doesn't have a bookmark for it)
+  #
+  # == Args
+  #
+  # * *an_user_id*: the id of the User who is adding the lesson to his Virtual Classroom
+  #
+  # == Returns
+  #
+  # A boolean
+  #
   def add_to_virtual_classroom(an_user_id)
     errors.clear
     if self.new_record?

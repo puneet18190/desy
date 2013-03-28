@@ -1,4 +1,4 @@
-Thu, 28 Mar 2013 10:06:08 +0100
+Thu, 28 Mar 2013 10:17:20 +0100
 doc/README_FOR_APP	Fri, 08 Feb 2013 11:44:15 +0100
 app/controllers/admin/dashboard_controller.rb	Fri, 22 Mar 2013 09:52:00 +0100
 app/controllers/admin/lessons_controller.rb	Fri, 22 Mar 2013 16:43:21 +0100
@@ -35,7 +35,7 @@ app/models/admin_search_form.rb	Thu, 28 Mar 2013 09:25:49 +0100
 app/models/audio.rb	Wed, 27 Mar 2013 17:17:15 +0100
 app/models/bookmark.rb	Wed, 27 Mar 2013 17:48:30 +0100
 app/models/image.rb	Wed, 27 Mar 2013 17:16:04 +0100
-app/models/lesson.rb	Thu, 28 Mar 2013 10:06:03 +0100
+app/models/lesson.rb	Thu, 28 Mar 2013 10:17:13 +0100
 app/models/like.rb	Wed, 20 Mar 2013 16:28:50 +0100
 app/models/location.rb	Mon, 18 Mar 2013 16:19:34 +0100
 app/models/mailing_list_address.rb	Wed, 20 Mar 2013 16:29:16 +0100
