@@ -823,7 +823,7 @@
             "tag": "module",
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1,
-            "description": "Provides the base Widget class..."
+            "description": "Provides video editor ajax actions."
         },
         "VirtualClassroom": {
             "name": "VirtualClassroom",
@@ -4406,7 +4406,7 @@
         {
             "file": "app/assets/javascripts/players.js",
             "line": 9,
-            "description": "[JS-TODO]",
+            "description": "JS-TODO",
             "itemtype": "method",
             "name": "initializeMediaTimeUpdater",
             "params": [

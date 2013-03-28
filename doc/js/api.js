@@ -251,7 +251,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "VideoEditor",
             "name": "VideoEditor",
-            "description": "Provides the base Widget class..."
+            "description": "Provides video editor ajax actions."
         },
         {
             "displayName": "VirtualClassroom",

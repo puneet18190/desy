@@ -7,7 +7,7 @@
 // GENERAL PLAYERS
 
 /**
-* [JS-TODO]
+* JS-TODO
 * 
 * @method initializeMediaTimeUpdater
 * @for initializeMediaTimeUpdater
