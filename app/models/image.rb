@@ -134,8 +134,7 @@ class Image < MediaElement
   #
   # == Arguments
   #
-  # +user_id+::
-  #   Id of the user who is editing the image.
+  # * *user_id*: id of the user who is editing the image
   #
   def enter_edit_mode(user_id)
     @edit_mode = user_id
@@ -152,8 +151,7 @@ class Image < MediaElement
   #
   # == Arguments
   #
-  # +user_id+::
-  #   Id of the user who is editing the image.
+  # * *user_id*: id of the user who is editing the image
   #
   # == Returns
   #
@@ -216,8 +214,7 @@ class Image < MediaElement
   #
   # == Arguments
   #
-  # +texts+::
-  #   An array of hashes, one for each text added. Each hash has the keys
+  # * *texts*: an array of hashes, one for each text added. Each hash has the keys
   #   * +font_size+: the font size
   #   * +coord_x+: horizontal coordinates of the top left corner of the text
   #   * +coord_y+: vertical coordinates of the top left corner of the text
@@ -252,14 +249,10 @@ class Image < MediaElement
   #
   # == Arguments
   #
-  # +x1+::
-  #   Horizontal coordinate of the top left corner of the crop.
-  # +y1+::
-  #   Vertical coordinate of the top left corner of the crop.
-  # +x2+::
-  #   Horizontal coordinate of the bottom right corner of the crop.
-  # +y2+::
-  #   Vertical coordinate of the bottom right corner of the crop.
+  # * *x1*: horizontal coordinate of the top left corner of the crop
+  # * *y1*: vertical coordinate of the top left corner of the crop
+  # * *x2*: horizontal coordinate of the bottom right corner of the crop
+  # * *y2*: vertical coordinate of the bottom right corner of the crop
   #
   # == Returns
   #
@@ -282,12 +275,9 @@ class Image < MediaElement
   #
   # == Arguments
   #
-  # +w+::
-  #   Width of the image
-  # +h+::
-  #   Height of the image
-  # +value+::
-  #   Value to be scaled
+  # * *w*: width of the image
+  # * *h*: height of the image
+  # * *value*: value to be scaled
   #
   # == Returns
   #

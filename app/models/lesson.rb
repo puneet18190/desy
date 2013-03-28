@@ -6,84 +6,74 @@ require 'lessons_media_elements_shared'
 #
 # == Fields
 #
-# +user_id+::
-#   Id of the creator of the lesson.
-# +school_level_id+::
-#   Id of the school level of the lesson (which corresponds to the school level of its creator).
-# +subject_id+::
-#   Id of the subject of the lesson.
-# +title+::
-#   Title.
-# +description+::
-#   Description.
-# +is_public+::
-#   True if the lesson is visible by other users.
-# +parent_id+::
-#   Reference to another lesson, from which the current lesson has been copied. The value is +nil+ if the lesson hasn't been copied.
-# +copied_not_modified+::
-#   Boolean, set to true only for lessons just copied and not modified yet.
-# +token+::
-#   Token used in the public url of the lesson. Without this token, if the lesson is private, the only user who can see it is the creator.
-# +metadata+::
-#   Contains two keys:
+# * *user_id*: id of the creator of the lesson
+# * *school_level_id*: id of the school level of the lesson (which corresponds to the school level of its creator)
+# * *subject_id*: id of the subject of the lesson
+# * *title*: title
+# * *description*: description
+# * *is_public*: +true+ if the lesson is visible by other users
+# * *parent_id*: reference to another lesson, from which the current lesson has been copied. The value is +nil+ if the lesson hasn't been copied
+# * *copied_not_modified*: boolean, set to +true+ only for lessons just copied and not modified yet
+# * *token*: token used in the public url of the lesson. Without this token, if the lesson is private, the only user who can see it is the creator
+# * *metadata*: contains two keys:
 #   * +available_video+: true if the lesson doesn't contain any video in conversion
 #   * +available_audio+: true if the lesson doesn't contain any audio in conversion
-# +notified+::
-#   Boolean, set to false only if the lesson has been modified and its modification not notified to users who have a link of the lesson.
+# * *notified*: boolean, set to false only if the lesson has been modified and its modification not notified to users who have a link of the lesson
 #
-# == References
+# == Associations
 #
-# +user+::
-#   Reference to the User who created the lesson (+belongs_to+).
-# +subject+::
-#   Subject associated to the lesson(+belongs_to+).
-# +school_level+::
-#   (+belongs_to+).
-# +parent+::
-#   (+belongs_to+).
-# +copies+::
-#   (+has_many+).
-# +bookmarks+::
-#   (+has_many+).
-# +likes+::
-#   (+has_many+).
-# +reports+::
-#   (+has_many+).
-# +taggings+::
-#   (+has_many+).
-# +slides+::
-#   (+has_many+).
-# +media_elements_slides+::
-#   (through the class Slide) (+has_many+).
-# +media_elements+::
-#   (through the class Slide and MediaElementsSlide) (+has_many+).
-# +virtual_classroom_lessons+::
-#   (+has_many+).
+# * *user*: reference to the User who created the lesson (*belongs_to*).
+# * *subject*: Subject associated to the lesson(*belongs_to*).
+# * *school_level*: SchoolLevel associated to the creator of the lesson and for transitivity to the lesson (*belongs_to*).
+# * *parent*: original lesson from which the lesson was copied (*belongs_to*).
+# * *copies*: lessons copied by this lesson (*has_many*).
+# * *bookmarks*: links created by other users to this lesson (see Bookmark) (*has_many*).
+# * *likes*: likes on the lesson (see Like) (*has_many*).
+# * *reports*: reports on the lesson (see Report) (*has_many*).
+# * *taggings*: tags associated to the lesson (see Tagging, Tag) (*has_many*).
+# * *slides*: slides composing the lesson (see Slide) (*has_many*).
+# * *media_elements_slides*: list of instances of media elements inside slides of this lesson (see MediaElementsSlide) (through the class Slide) (*has_many*).
+# * *media_elements*: list of media elements attached to slides of this lesson (see MediaElement) (through the class Slide and MediaElementsSlide) (*has_many*).
+# * *virtual_classroom_lessons*: copies of this lesson into the Virtual Classroom of the creator or other users (see VirtualClassroomLesson) (*has_many*).
 #
 # == Validations
 #
-# * *presence* with numericality and existence of associated record for +user_id+ and +bookmarkable_id+
-# * *inclusion* of +bookmarkable_type+ between 'Lesson' and 'MediaElement'
-# * *uniqueness* of the triple [+user_id+, +bookmarkable_type+, +bookmarkable_id+] (only if +bookmarkable_type+ is correct)
-# * *availability* of the associated item (for lessons it can't be public and it can't belong to the user who bookmarks, for media elements it can't be public)
-# * *modifications* *not* *available* for the three fields, if the record is not new
+# * *presence* with numericality and existence of associated record for +user_id+, +subject_id+, +school_level_id+
+# * *presence* for +title+ and +description+
+# * *presence* of associated element, numericality for +parent_id+ and +parent_id+ must different by +id+, <b>only if different by nil</b>
+# * *inclusion* of +is_public+, +copied_not_modified+, +notified+ in [+true+, +false+]
+# * *length* of +title+ and +description+ (values configured in the I18n translation file)
+# * *uniqueness* of the couple [+parent_id+, +user_id+] <b>if +parent_id+ is not null</b>
+# * *if* *new* *record* +is_public+ must be false
+# * *if* *public* +copied_not_modified+ must be false
+# * *modifications* *not* *available* for the +user_id+, +parent_id+, +token+
+# * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
 #
 # == Callbacks
 #
-# * *before_destroy*: destroy (not directly) associated VirtualClassroomLesson, if there are any.
+# 1. *before_destroy* destroys associated bookmarks (see Bookmark)
+# 2. *before_destroy* destroys associated likes (see Like)
+# 3. *before_destroy* destroys associated reports (see Report)
+# 4. *before_destroy* destroys associated taggings (see Tagging)
+# 5. *before_create* initializes both metadata values to +true+
+# 6. *before_create* creates a random encoded string and writes it in +token+
+# 7. *after_save* creates or updates the cover slide
+# 8. *after_save* updates taggings associated to the lesson (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+
 #
 # == Database callbacks
 #
-# None.
+# 1. *cascade* *destruction* for the associated table Like
+# 2. *cascade* *destruction* for the associated table Slide
+# 3. *cascade* *destruction* for the associated table VirtualClassroomLesson
+# 4. *set* *null* *on* *destruction* on the column +parent_id+ of all the lessons copied by the current lessons
 #
 class Lesson < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   extend LessonsMediaElementsShared
   
   attr_accessible :subject_id, :school_level_id, :title, :description
-  attr_reader :is_reportable
+  attr_reader :is_reportable, :status
   attr_writer :validating_in_form
-  attr_accessor :skip_public_validations, :skip_cover_creation
   
   serialize :metadata, OpenStruct
   
@@ -125,11 +115,18 @@ class Lesson < ActiveRecord::Base
     order('COALESCE(bookmarks.created_at, lessons.updated_at) DESC')
   end
   
-  def initialize_metadata
-    self.metadata.available_video = true
-    self.metadata.available_audio = true
-  end
-  
+  # == Description
+  #
+  # Send a notification (containing the details of modifications) to all the users who have a link of the lesson. This method is called only if the link was created *before* that the lesson was modified. The method also sets +notified+ as +true+.
+  #
+  # == Args
+  #
+  # * *msg*: details of the modifications
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
   def notify_changes(msg)
     Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).each do |bo|
       if msg.blank?
@@ -142,17 +139,45 @@ class Lesson < ActiveRecord::Base
     self.save
   end
   
+  # == Description
+  #
+  # Sets +notified+ as +true+ without sending the notification of modifications (see Lesson#notify_changes).
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
   def dont_notify_changes
     self.notified = true
     self.save
   end
   
+  # == Description
+  #
+  # Checks whether the user needs to notify modifications to other users who have a link of the lesson.
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
   def not_notified?
     return false if self.status.nil?
     !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
   end
   
-  def available?(type = nil)
+  # == Description
+  #
+  # Checks whether the lesson is available for editing in the Lesson Editor (if at least one between +metadata+.+available_audio+ and +metadata+.+available_video+ is false, the lesson is not available)
+  #
+  # == Args
+  #
+  # * *type*: if the parameter is inserted explicitly, the methods returns only the value for the specific type; otherwise it returns +available_video+ && +available_audio+.
+  #
+  # == Returns
+  #
+  # A boolean.
+  #
+  def available?(type=nil)
     case type = type.to_s.downcase
     when 'video', 'audio'
       metadata.send :"available_#{type}"
@@ -161,7 +186,7 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  def available!(type, value = true)
+  def available!(type, value=true)
     metadata.send :"available_#{type.to_s.downcase}=", !!value
     update_attribute(:metadata, metadata)
   end
@@ -583,7 +608,6 @@ class Lesson < ActiveRecord::Base
   
   def create_or_update_cover
     if @lesson.nil?
-      return true if skip_cover_creation
       slide = Slide.new :title => self.title, :position => 1
       slide.kind = Slide::COVER
       slide.lesson_id = self.id
@@ -596,7 +620,7 @@ class Lesson < ActiveRecord::Base
   end
   
   def validate_public
-    errors.add(:is_public, :cant_be_true_for_new_records) if @lesson.nil? && self.is_public && !self.skip_public_validations
+    errors.add(:is_public, :cant_be_true_for_new_records) if @lesson.nil? && self.is_public
   end
   
   def validate_copied_not_modified_and_public
@@ -621,6 +645,11 @@ class Lesson < ActiveRecord::Base
     l = find l.id
     _d l
     l.destroy
+  end
+  
+  def initialize_metadata
+    self.metadata.available_video = true
+    self.metadata.available_audio = true
   end
   
 end

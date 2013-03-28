@@ -413,30 +413,26 @@ bookmark can be associated to either a <a href="Lesson.html">Lesson</a> or
 a <a href="MediaElement.html">MediaElement</a>.</p>
 
 <h2 id="label-Fields">Fields</h2>
-<dl class="rdoc-list note-list"><dt><code>bookmarkable_id</code>
-<dd>
-<p>Id of the item (lesson or media element) to which the bookmark is
-associated</p>
-</dd><dt><code>bookmarkable_type</code>
-<dd>
-<p>Contains the string description of the classes <a
-href="Lesson.html">Lesson</a> or <a
+<ul><li>
+<p><strong>bookmarkable_id</strong>: id of the item (lesson or media element)
+to which the bookmark is associated</p>
+</li><li>
+<p><strong>bookmarkable_type</strong>: contains the string description of the
+classes <a href="Lesson.html">Lesson</a> or <a
 href="MediaElement.html">MediaElement</a></p>
-</dd><dt><code>user_id</code>
-<dd>
-<p>Id of the user associated to the bookmark</p>
-</dd></dl>
+</li><li>
+<p><strong>user_id</strong>: id of the user associated to the bookmark</p>
+</li></ul>
 
-<h2 id="label-References">References</h2>
-<dl class="rdoc-list note-list"><dt><code>user</code>
-<dd>
-<p><a href="User.html">User</a> who bookmarked (<code>belongs_to</code>)</p>
-</dd><dt><code>bookmarkable</code>
-<dd>
-<p><a href="Lesson.html">Lesson</a> or <a
+<h2 id="label-Associations">Associations</h2>
+<ul><li>
+<p><strong>user</strong>: <a href="User.html">User</a> who bookmarked
+(<strong>belongs_to</strong>)</p>
+</li><li>
+<p><strong>bookmarkable</strong>: <a href="Lesson.html">Lesson</a> or <a
 href="MediaElement.html">MediaElement</a> bookmarked (polymorphic
-association) (<code>belongs_to</code>)</p>
-</dd></dl>
+association) (<strong>belongs_to</strong>)</p>
+</li></ul>
 
 <h2 id="label-Validations">Validations</h2>
 <ul><li>
@@ -447,8 +443,8 @@ record for <code>user_id</code> and <code>bookmarkable_id</code></p>
 &#39;Lesson&#39; and &#39;MediaElement&#39;</p>
 </li><li>
 <p><strong>uniqueness</strong> of the triple [<code>user_id</code>,
-<code>bookmarkable_type</code>, <code>bookmarkable_id</code>] (only if
-<code>bookmarkable_type</code> is correct)</p>
+<code>bookmarkable_type</code>, <code>bookmarkable_id</code>] <strong>only
+if <code>bookmarkable_type</code> is correct</strong></p>
 </li><li>
 <p><strong>availability</strong> of the associated item (for lessons it
 can&#39;t be public and it can&#39;t belong to the user who bookmarks, for
@@ -459,11 +455,11 @@ media elements it can&#39;t be public)</p>
 </li></ul>
 
 <h2 id="label-Callbacks">Callbacks</h2>
-<ul><li>
+<ol><li>
 <p><strong>before_destroy</strong>: destroy (not directly) associated <a
 href="VirtualClassroomLesson.html">VirtualClassroomLesson</a>, if there are
 any.</p>
-</li></ul>
+</li></ol>
 
 <h2 id="label-Database+callbacks">Database callbacks</h2>
 

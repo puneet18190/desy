@@ -22,7 +22,7 @@ class MediaElement < ActiveRecord::Base
   attr_accessible :title, :description, :media, :publication_date, :tags
   attr_reader :is_reportable, :info_changeable
   attr_writer :validating_in_form
-  attr_accessor :skip_public_validations, :destroyable_even_if_public
+  attr_accessor :destroyable_even_if_public
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
   has_many :media_elements_slides
@@ -290,10 +290,10 @@ class MediaElement < ActiveRecord::Base
   
   def validate_impossible_changes
     if @media_element.nil?
-      errors.add(:is_public, :must_be_false_if_new_record) if self.is_public && !self.skip_public_validations
+      errors.add(:is_public, :must_be_false_if_new_record) if self.is_public
     else
       errors.add(:sti_type, :cant_be_changed) if @media_element.sti_type != self.sti_type
-      if @media_element.is_public && !self.skip_public_validations
+      if @media_element.is_public
         errors.add(:media, :cant_be_changed_if_public) if self.changed.include? 'media'
         errors.add(:title, :cant_be_changed_if_public) if @media_element.title != self.title
         errors.add(:description, :cant_be_changed_if_public) if @media_element.description != self.description
