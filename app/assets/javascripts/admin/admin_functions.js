@@ -1,3 +1,17 @@
+/**
+* Administration graphic events and flagging options.
+* 
+* @module Administration
+*/
+
+/**
+* Open a collapsed table row with extra content,
+* tipically clicking on previous collapsable table row.
+* 
+* @method openAndLoadNextTr
+* @for openAndLoadNextTr
+* @param prevTr {Object}
+*/
 function openAndLoadNextTr(prevTr) {
   var next_tr = prevTr.next('tr.collapsed');
   var thumb = next_tr.find('.element-thumbnail');
@@ -11,6 +25,12 @@ function openAndLoadNextTr(prevTr) {
   next_tr.slideToggle('slow');
 }
 
+/**
+* Initializer for jQueryUI autocomplete on users serch into Admin Notifications.
+* 
+* @method initNotificationsAutocomplete
+* @for initNotificationsAutocomplete
+*/
 function initNotificationsAutocomplete(){
   $(function() {
     function log( message, _id ) {
