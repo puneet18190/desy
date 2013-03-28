@@ -54,7 +54,7 @@ class MailingListAddress < ActiveRecord::Base
   end
   
   def validate_impossible_changes
-    errors.add(:user_id, :cant_be_changed) if @mailing_list_address && @mailing_list_address.group_id != self.group_id
+    errors.add(:group_id, :cant_be_changed) if @mailing_list_address && @mailing_list_address.group_id != self.group_id
   end
   
 end

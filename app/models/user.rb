@@ -867,10 +867,15 @@ class User < ActiveRecord::Base
   def validate_email
     return if self.email.blank?
     flag = false
+    flag = true if !(/ / =~ self.email).nil?
     x = self.email.split('@')
     if x.length == 2
+      flag = true if x[0].blank?
       x = x[1].split('.')
       if x.length > 1
+        x.each do |comp|
+          flag = true if comp.blank?
+        end
         flag = true if x.last.length < 2
       else
         flag = true
