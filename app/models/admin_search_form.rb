@@ -44,14 +44,13 @@ class AdminSearchForm < Form
     ]
   }
   
-  # == Description
+  # === Description
   #
   # Search for lessons
   #
-  # == Args
+  # === Args
   #
-  # +params+::
-  #   Url subparams, under the scope of the keyword 'search': the options are
+  # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
   #   * +title+: if present the methods filters by title
   #   * +subject_id+: if present the methods filters by subject
@@ -63,9 +62,9 @@ class AdminSearchForm < Form
   #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
   #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
   #
-  # == Returns
+  # === Returns
   #
-  # An array, not paginated yet, of the lessons found
+  # An array, not paginated yet, of records of type Lesson
   #
   def self.search_lessons(params)
     resp = Lesson.select('lessons.id AS id, title, subject_id, user_id, lessons.created_at AS created_at, lessons.updated_at AS updated_at, token, lessons.description AS description, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count')
@@ -111,14 +110,13 @@ class AdminSearchForm < Form
     resp
   end
   
-  # == Description
+  # === Description
   #
   # Search for media elements
   #
-  # == Args
+  # === Args
   #
-  # +params+::
-  #   Url subparams, under the scope of the keyword 'search': the options are
+  # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
   #   * +title+: if present the methods filters by title
   #   * +sti_type+: if present the methods filters by media type (audio, image or video)
@@ -130,9 +128,9 @@ class AdminSearchForm < Form
   #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
   #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
   #
-  # == Returns
+  # === Returns
   #
-  # An array, not paginated yet, of the media elements found
+  # An array, not paginated yet, of records of type MediaElement
   #
   def self.search_media_elements(params)
     resp = MediaElement.where(:converted => true)
@@ -175,14 +173,13 @@ class AdminSearchForm < Form
     resp
   end
   
-  # == Description
+  # === Description
   #
   # Search for users
   #
-  # == Args
+  # === Args
   #
-  # +params+::
-  #   Url subparams, under the scope of the keyword 'search': the options are
+  # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
   #   * +user+: if present the keyword is matched against +name+, +surname+ and +email+ and the result is filtered
   #   * +school_level_id+: if present the methods filters by school_level
@@ -194,9 +191,9 @@ class AdminSearchForm < Form
   #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
   #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
   #
-  # == Returns
+  # === Returns
   #
-  # An array, not paginated yet, of the users found
+  # An array, not paginated yet, of records of type User.
   #
   def self.search_users(params)
     resp = User
@@ -247,23 +244,22 @@ class AdminSearchForm < Form
     resp
   end
   
-  # == Description
+  # === Description
   #
   # Search for tags
   #
-  # == Args
+  # === Args
   #
-  # +params+::
-  #   Url subparams, under the scope of the keyword 'search': the options are
+  # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
   #   * +recency+: if present, it filters by +created_at+ greater than one year ago, one month ago, a week ago, or a day ago
   #   * +word+: it present, it matches the keyword with the tag content, and filters the result
   #   * +ordering+: if present the methods sorts the results: the content of this parameter is a code, used to extract the required ordering from the constant ORDERINGS
   #   * +desc+: for default the ordering is +ASC+, if this parameter is present it's turned to +DESC+
   #
-  # == Returns
+  # === Returns
   #
-  # An array, not paginated yet, of the tags found
+  # An array, not paginated yet, of objects of type Tag
   #
   def self.search_tags(params)
     resp = Tag.select("id, word, created_at, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = 'MediaElement') AS media_elements_count, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = 'Lesson') AS lessons_count")
@@ -283,14 +279,13 @@ class AdminSearchForm < Form
     resp
   end
   
-  # == Description
+  # === Description
   #
   # Search for users who are going to receive a massive notification: this method is used to update asynchronously the form to send a massive notification from the administrator
   #
-  # == Args
+  # === Args
   #
-  # +params+::
-  #   Url subparams, under the scope of the keyword 'search': the options are
+  # * *params*: url subparams, under the scope of the keyword 'search': the options are
   #   * +id+: if present the methods filters by id
   #   * +user+: if present the keyword is matched against +name+, +surname+ and +email+ and the result is filtered
   #   * +school_level_id+: if present the methods filters by school_level
@@ -298,12 +293,11 @@ class AdminSearchForm < Form
   #   * +subject_id+: if present, the method filters by subject_id, using the relation UsersSubject
   #   * +location_id+: if present the methods filters by location of the user (see settings.yml for the possible names of this parameter)
   #   * +user_ids+: list of users added manually to the list of recipients
-  # +count_only+::
-  #   If set to true, the method returns only the number of users
+  # * *count_only*: if set to +true+, the method returns only the number of users; if not otherwise specified, it's set to +false+
   #
-  # == Returns
+  # === Returns
   #
-  # Depending on the value of +count_only+, either the number of records found, or a not paginated array of the users found
+  # Depending on the value of +count_only+, either the number of records found, or a not paginated array of records of kind User
   #
   def self.search_notifications_users(params, count_only=false)
     resp = User.scoped

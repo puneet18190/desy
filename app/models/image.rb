@@ -2,6 +2,10 @@ require 'shellwords'
 require 'media/image/editing/add_text_to_image'
 require 'media/image/editing/crop'
 
+# == Description
+#
+# This class inherits from MediaElement, and contains the specific methods needed for media elements of type +image+.
+# 
 class Image < MediaElement
   EXTENSION_WHITE_LIST = ImageUploader::EXTENSION_WHITE_LIST
   EXTENSIONS_GLOB      = "*.{#{EXTENSION_WHITE_LIST.join(',')}}"
@@ -12,43 +16,126 @@ class Image < MediaElement
   before_create :set_converted_to_true
   
   attr_reader :edit_mode
-
+  
+  # === Description
+  #
+  # Returns the url of the attached image.
+  #
+  # === Returns
+  #
+  # An url
+  #
+  # === Usage
+  #
+  #   <%= image_tag image.url %>
+  #
   def url
     media.url
   end
   
+  # === Description
+  #
+  # Returns the url of the 200x200 thumb of the attached image.
+  #
+  # === Returns
+  #
+  # An url
+  #
+  # === Usage
+  #
+  #   <%= image_tag image.thumb_url %>
+  #
   def thumb_url
     media.thumb.url
   end
   
+  # === Description
+  #
+  # Returns the width in pixels.
+  #
+  # === Returns
+  #
+  # A float.
+  #
   def width
     metadata.width
   end
   
+  # === Description
+  #
+  # Returns the height in pixels.
+  #
+  # === Returns
+  #
+  # A float.
+  #
   def height
     metadata.height
   end
   
+  # === Description
+  #
+  # Returns the url of the folder where it's conserved the temporary image during editing.
+  #
+  # === Returns
+  # An url.
+  #
   def editing_url
     return '' if !self.in_edit_mode?
     file_name = "/#{url.split('/').last}"
     "#{url.gsub(file_name, '')}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}"
   end
   
+  # === Description
+  #
+  # Returns the path of the previous step conserved in image editor: this replaces the current step if the user clicks on 'undo'
+  #
+  # === Returns
+  #
+  # A path.
+  #
   def prev_editing_image
     return '' if !self.in_edit_mode?
     "#{self.media.folder}/editing/user_#{@edit_mode}/prev.#{self.media.file.extension}"
   end
   
+  # === Description
+  #
+  # Returns the path of the current step conserved in image editor.
+  #
+  # === Returns
+  #
+  # A path.
+  #
   def current_editing_image
     return '' if !self.in_edit_mode?
     "#{self.media.folder}/editing/user_#{@edit_mode}/tmp.#{self.media.file.extension}"
   end
   
+  # === Description
+  #
+  # Used to check if the image is in *edit* *mode*: the image enters in edit mode when the image editor is opened, this implies that a temporary folder is automaticly created to contain the progressive steps of the editing. This method is useful to deny the access to specific methods if the image is not in editing.
+  #
+  # === Returns
+  #
+  # A boolean.
+  #
+  # === Usage
+  #
+  #   return '' if !self.in_edit_mode?
+  #
   def in_edit_mode?
     !@edit_mode.nil?
   end
   
+  # === Description
+  #
+  # The image enters in *edit* *mode* for a particular user (who is not necessarily the creator of the image, this is checked in the controller)
+  #
+  # === Arguments
+  #
+  # * *user_id*: id of the user who is editing the image
+  #
   def enter_edit_mode(user_id)
     @edit_mode = user_id
     ed_dir = "#{self.media.folder}/editing/user_#{@edit_mode}"
@@ -58,6 +145,18 @@ class Image < MediaElement
     true
   end
   
+  # === Description
+  #
+  # The image leaves the *edit* *mode* for a particular user
+  #
+  # === Arguments
+  #
+  # * *user_id*: id of the user who is editing the image
+  #
+  # === Returns
+  #
+  # True if the user was in editing mode, false otherwise.
+  #
   def leave_edit_mode(user_id)
     ed_dir = "#{self.media.folder}/editing/user_#{user_id}"
     begin
@@ -69,6 +168,14 @@ class Image < MediaElement
     true
   end
   
+  # === Description
+  #
+  # Copies the current temporary image into the previous temporary image.
+  #
+  # === Returns
+  #
+  # A boolean.
+  #
   def save_editing_prev
     return false if !self.in_edit_mode?
     prev_path = self.prev_editing_image
@@ -82,6 +189,14 @@ class Image < MediaElement
     true
   end
   
+  # === Description
+  #
+  # Copies the previous temporary image into the current temporary image.
+  #
+  # === Returns
+  #
+  # A boolean.
+  #
   def undo
     return false if !self.in_edit_mode?
     prev_path = self.prev_editing_image
@@ -93,6 +208,22 @@ class Image < MediaElement
     true
   end
   
+  # === Description
+  #
+  # Adds multiple texts in the temporary image.
+  #
+  # === Arguments
+  #
+  # * *texts*: an array of hashes, one for each text added. Each hash has the keys
+  #   * +font_size+: the font size
+  #   * +coord_x+: horizontal coordinates of the top left corner of the text
+  #   * +coord_y+: vertical coordinates of the top left corner of the text
+  #   * +color+: hexagonal color of the text
+  #
+  # === Returns
+  #
+  # A boolean.
+  #
   def add_text(texts)
     return false if !self.in_edit_mode? || !self.save_editing_prev
     img = MiniMagick::Image.open self.current_editing_image
@@ -112,6 +243,21 @@ class Image < MediaElement
     true
   end
   
+  # === Description
+  #
+  # Crops the temporary image
+  #
+  # === Arguments
+  #
+  # * *x1*: horizontal coordinate of the top left corner of the crop
+  # * *y1*: vertical coordinate of the top left corner of the crop
+  # * *x2*: horizontal coordinate of the bottom right corner of the crop
+  # * *y2*: vertical coordinate of the bottom right corner of the crop
+  #
+  # === Returns
+  #
+  # A boolean.
+  #
   def crop(x1, y1, x2, y2)
     return false if !self.in_edit_mode? || !self.save_editing_prev
     img = MiniMagick::Image.open self.current_editing_image
@@ -123,15 +269,28 @@ class Image < MediaElement
     true
   end
   
+  # === Description
+  #
+  # Returns the original value of a coordinate, given the actual value and the size of the image
+  #
+  # === Arguments
+  #
+  # * *w*: width of the image
+  # * *h*: height of the image
+  # * *value*: value to be scaled
+  #
+  # === Returns
+  #
+  # A float.
+  #
   def self.ratio_value(w, h, value)
     to_ratio = 660.to_f / 500.to_f
     origin_ratio = w.to_f / h.to_f
-
     if origin_ratio > to_ratio
-      h = w 
-      w = 660 #solo questo
+      h = w
+      w = 660
     else
-      w = 500 #h=500
+      w = 500
     end
     if (h.to_i > w.to_i )
       return value.to_f * (h.to_f / w.to_f)

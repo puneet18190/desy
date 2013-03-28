@@ -1,13 +1,53 @@
+# == Description
+#
+# ActiveRecord class that corresponds to the table +mailing_list_addresses+.
+#
+# == Fields
+# 
+# * *group_id*: the reference to MailingListGroup
+# * *heading*: the name that the user associates to the e-mail address
+# * *email*: eht email address
+#
+# == Associations
+#
+# * *group*: reference to the MailingListGroup to which the address belongs (*belongs_to*)
+#
+# == Validations
+#
+# * *presence* for +email+ and +heading+
+# * *presence* with numericality and existence of associated record for +group_id+
+# * *correctness* of +email+ as an e-mail address
+#
+# == Callbacks
+#
+# None
+#
+# == Database callbacks
+#
+# None
+#
 class MailingListAddress < ActiveRecord::Base
   
-  belongs_to :group, class_name: MailingListGroup
   attr_accessible :email, :heading
   
-  validates_presence_of :email
-  validates :email, email_format: { :message => I18n.t(:invalid_email_address, :scope => [:activerecord, :errors, :messages], :default => 'does not appear to be valid') }
+  belongs_to :group, class_name: MailingListGroup
   
-  def self.get_emails(user_id, term)
-    joins(:group).where(mailing_list_groups: { user_id: user_id }).where('mailing_list_addresses.email ILIKE ? OR mailing_list_addresses.heading ILIKE ?',"%#{term}%","%#{term}%").select('mailing_list_addresses.email AS value')
+  validates_presence_of :email, :heading, :group_id
+  validates_numericality_of :group_id, :greater_than => 0, :only_integer => true
+  validates :email, email_format: { :message => I18n.t(:invalid_email_address, :scope => [:activerecord, :errors, :messages], :default => 'does not appear to be valid') }
+  validate :validate_associations
+  
+  before_validation :init_validation
+  
+  private
+  
+  def init_validation
+    @group = Valid.get_association(self, :group_id, MailingListGroup)
+    @mailing_list_address = Valid.get_association self, :id
+  end
+  
+  def validate_associations
+    errors.add(:group_id, :doesnt_exist) if @group.nil?
   end
   
 end

@@ -1,3 +1,16 @@
+/**
+* It's where users can share their lessons.
+* It handles share lessons link and add to playlist actions.
+* 
+* @module VirtualClassroom
+*/
+
+/**
+* Add email to recipients list on email add button (+).
+* 
+* @method addEmailToVirtualClassroomSendLessonLinkSelector
+* @for addEmailToVirtualClassroomSendLessonLinkSelector
+*/
 function addEmailToVirtualClassroomSendLessonLinkSelector() {
   var selector = $('#virtual_classroom_emails_selector');
   if(!selector.data('placeholdered') && selector.val() != '') {
@@ -6,6 +19,12 @@ function addEmailToVirtualClassroomSendLessonLinkSelector() {
   }
 }
 
+/**
+* JS-TODO
+* 
+* @method initializeNotAvailableLessonsToLoadQuick
+* @for initializeNotAvailableLessonsToLoadQuick
+*/
 function initializeNotAvailableLessonsToLoadQuick() {
   $('._virtual_classroom_quick_loaded_lesson').each(function() {
     if(!$(this).data('available')) {

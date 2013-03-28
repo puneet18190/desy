@@ -106,11 +106,7 @@
     
     <li><a href="#method-i-in_virtual_classroom-3F">#in_virtual_classroom?</a>
     
-    <li><a href="#method-i-initialize_metadata">#initialize_metadata</a>
-    
     <li><a href="#method-i-liked-3F">#liked?</a>
-    
-    <li><a href="#method-i-modified">#modified</a>
     
     <li><a href="#method-i-modify">#modify</a>
     
@@ -480,6 +476,186 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>ActiveRecord class that corresponds to the table <code>lessons</code>.</p>
+
+<h2 id="label-Fields">Fields</h2>
+<ul><li>
+<p><strong>user_id</strong>: id of the creator of the lesson</p>
+</li><li>
+<p><strong>school_level_id</strong>: id of the school level of the lesson
+(which corresponds to the school level of its creator)</p>
+</li><li>
+<p><strong>subject_id</strong>: id of the subject of the lesson</p>
+</li><li>
+<p><strong>title</strong>: title</p>
+</li><li>
+<p><strong>description</strong>: description</p>
+</li><li>
+<p><strong>is_public</strong>: <code>true</code> if the lesson is visible by
+other users</p>
+</li><li>
+<p><strong>parent_id</strong>: reference to another lesson, from which the
+current lesson has been copied. The value is <code>nil</code> if the lesson
+hasn&#39;t been copied</p>
+</li><li>
+<p><strong>copied_not_modified</strong>: boolean, set to <code>true</code>
+only for lessons just copied and not modified yet</p>
+</li><li>
+<p><strong>token</strong>: token used in the public url of the lesson. Without
+this token, if the lesson is private, the only user who can see it is the
+creator</p>
+</li><li>
+<p><strong>metadata</strong>: contains two keys:</p>
+<ul><li>
+<p><code>available_video</code>: true if the lesson doesn&#39;t contain any
+video in conversion</p>
+</li><li>
+<p><code>available_audio</code>: true if the lesson doesn&#39;t contain any
+audio in conversion</p>
+</li></ul>
+</li><li>
+<p><strong>notified</strong>: boolean, set to false only if the lesson has
+been modified and its modification not notified to users who have a link of
+the lesson</p>
+</li></ul>
+
+<h2 id="label-Associations">Associations</h2>
+<ul><li>
+<p><strong>user</strong>: reference to the <a href="User.html">User</a> who
+created the lesson (<strong>belongs_to</strong>).</p>
+</li><li>
+<p><strong>subject</strong>: <a href="Subject.html">Subject</a> associated to
+the lesson (<strong>belongs_to</strong>).</p>
+</li><li>
+<p><strong>school_level</strong>: <a href="SchoolLevel.html">SchoolLevel</a>
+associated to the creator of the lesson and for transitivity to the lesson
+(<strong>belongs_to</strong>).</p>
+</li><li>
+<p><strong>parent</strong>: original lesson from which the lesson was copied
+(<strong>belongs_to</strong>).</p>
+</li><li>
+<p><strong>copies</strong>: lessons copied by this lesson
+(<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>bookmarks</strong>: links created by other users to this lesson
+(see <a href="Bookmark.html">Bookmark</a>) (<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>likes</strong>: likes on the lesson (see <a
+href="Like.html">Like</a>) (<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>reports</strong>: reports on the lesson (see <a
+href="Report.html">Report</a>) (<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>taggings</strong>: tags associated to the lesson (see <a
+href="Tagging.html">Tagging</a>, <a href="Tag.html">Tag</a>)
+(<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>slides</strong>: slides composing the lesson (see <a
+href="Slide.html">Slide</a>) (<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>media_elements_slides</strong>: list of instances of media elements
+inside slides of this lesson (see <a
+href="MediaElementsSlide.html">MediaElementsSlide</a>) (through the class
+<a href="Slide.html">Slide</a>) (<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>media_elements</strong>: list of media elements attached to slides
+of this lesson (see <a href="MediaElement.html">MediaElement</a>) (through
+the class <a href="Slide.html">Slide</a> and <a
+href="MediaElementsSlide.html">MediaElementsSlide</a>)
+(<strong>has_many</strong>).</p>
+</li><li>
+<p><strong>virtual_classroom_lessons</strong>: copies of this lesson into the
+Virtual Classroom of the creator or other users (see <a
+href="VirtualClassroomLesson.html">VirtualClassroomLesson</a>)
+(<strong>has_many</strong>).</p>
+</li></ul>
+
+<h2 id="label-Validations">Validations</h2>
+<ul><li>
+<p><strong>presence</strong> with numericality and existence of associated
+record for <code>user_id</code>, <code>subject_id</code>,
+<code>school_level_id</code></p>
+</li><li>
+<p><strong>presence</strong> for <code>title</code> and
+<code>description</code></p>
+</li><li>
+<p><strong>presence</strong> of associated element, numericality for
+<code>parent_id</code> and <code>parent_id</code> must different by
+<code>id</code>, <strong>only if different by nil</strong></p>
+</li><li>
+<p><strong>inclusion</strong> of <code>is_public</code>,
+<code>copied_not_modified</code>, <code>notified</code> in
+[<code>true</code>, <code>false</code>]</p>
+</li><li>
+<p><strong>length</strong> of <code>title</code> and <code>description</code>
+(values configured in the I18n translation file)</p>
+</li><li>
+<p><strong>uniqueness</strong> of the couple [<code>parent_id</code>,
+<code>user_id</code>] <strong>if <code>parent_id</code> is not
+null</strong></p>
+</li><li>
+<p><strong>if</strong> <strong>new</strong> <strong>record</strong>
+<code>is_public</code> must be false</p>
+</li><li>
+<p><strong>if</strong> <strong>public</strong>
+<code>copied_not_modified</code> must be false</p>
+</li><li>
+<p><strong>modifications</strong> <strong>not</strong>
+<strong>available</strong> for the <code>user_id</code>,
+<code>parent_id</code>, <code>token</code></p>
+</li><li>
+<p><strong>minimum</strong> <strong>number</strong> of tags (configurated in
+settings.yml), <strong>only if the attribute <a
+href="Lesson.html#attribute-i-validating_in_form">#validating_in_form</a>
+is set as <code>true</code></strong></p>
+</li></ul>
+
+<h2 id="label-Callbacks">Callbacks</h2>
+<ol><li>
+<p><strong>before_destroy</strong> destroys associated bookmarks (see <a
+href="Bookmark.html">Bookmark</a>)</p>
+</li><li>
+<p><strong>before_destroy</strong> destroys associated likes (see <a
+href="Like.html">Like</a>)</p>
+</li><li>
+<p><strong>before_destroy</strong> destroys associated reports (see <a
+href="Report.html">Report</a>)</p>
+</li><li>
+<p><strong>before_destroy</strong> destroys associated taggings (see <a
+href="Tagging.html">Tagging</a>)</p>
+</li><li>
+<p><strong>before_create</strong> initializes both metadata values to
+<code>true</code></p>
+</li><li>
+<p><strong>before_create</strong> creates a random encoded string and writes
+it in <code>token</code></p>
+</li><li>
+<p><strong>after_save</strong> creates or updates the cover slide</p>
+</li><li>
+<p><strong>after_save</strong> updates taggings associated to the lesson (see
+<a href="Tagging.html">Tagging</a>). If a <a href="Tag.html">Tag</a>
+doesn&#39;t exist yet, it is created too. The tags are stored before the
+validation in the private attribute <code>inner_tags</code></p>
+</li></ol>
+
+<h2 id="label-Database+callbacks">Database callbacks</h2>
+<ol><li>
+<p><strong>cascade</strong> <strong>destruction</strong> for the associated
+table <a href="Like.html">Like</a></p>
+</li><li>
+<p><strong>cascade</strong> <strong>destruction</strong> for the associated
+table <a href="Slide.html">Slide</a></p>
+</li><li>
+<p><strong>cascade</strong> <strong>destruction</strong> for the associated
+table <a href="VirtualClassroomLesson.html">VirtualClassroomLesson</a></p>
+</li><li>
+<p><strong>set</strong> <strong>null</strong> <strong>on</strong>
+<strong>destruction</strong> on the column <code>parent_id</code> of all
+the lessons copied by the current lesson</p>
+</li></ol>
+
   </div><!-- description -->
 
   
@@ -502,32 +678,6 @@
         <div class="method-heading attribute-method-heading">
           <span class="method-name">is_reportable</span><span
             class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-skip_cover_creation" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">skip_cover_creation</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-skip_public_validations" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">skip_public_validations</span><span
-            class="attribute-access-type">[RW]</span>
         </div>
 
         <div class="method-description">
@@ -570,12 +720,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-c-dashboard_emptied-3F-label-Description">Description</h3>
+
+<p>Checks whether the dashboard of a particular user is empty because he
+picked all the suggested lessons and not because the database is empty.</p>
+
+<h3 id="method-c-dashboard_emptied-3F-label-Args">Args</h3>
+<ul><li>
+<p><strong>user_id</strong>: the id of a <a href="User.html">User</a></p>
+</li></ul>
+
+<h3 id="method-c-dashboard_emptied-3F-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="dashboard_emptied-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 113</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 259</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">dashboard_emptied?</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-identifier">subject_ids</span> = []
   <span class="ruby-constant">UsersSubject</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">us</span><span class="ruby-operator">|</span>
@@ -610,12 +772,26 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-add_slide-label-Description">Description</h3>
+
+<p>Adds a slide of a specific type.</p>
+
+<h3 id="method-i-add_slide-label-Args">Args</h3>
+<ul><li>
+<p><strong>kind</strong>: the template chosen for the new slide</p>
+</li><li>
+<p><strong>position</strong>: the position in which the new slide must be
+inserted</p>
+</li></ul>
+
+<h3 id="method-i-add_slide-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="add_slide-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 360</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 612</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_slide</span>(<span class="ruby-identifier">kind</span>, <span class="ruby-identifier">position</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-constant">Slide</span><span class="ruby-operator">::</span><span class="ruby-constant">KINDS_WITHOUT_COVER</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">kind</span>)
     <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
@@ -652,12 +828,28 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-add_to_virtual_classroom-label-Description">Description</h3>
+
+<p>Creates a record of <a
+href="VirtualClassroomLesson.html">VirtualClassroomLesson</a> for this
+lesson. First it checks whether the record can be created or not (for
+instance, it is not possible if the user is not owner of the lesson and
+doesn&#39;t have a bookmark for it)</p>
+
+<h3 id="method-i-add_to_virtual_classroom-label-Args">Args</h3>
+<ul><li>
+<p><strong>an_user_id</strong>: the id of the <a href="User.html">User</a> who
+is adding the lesson to his Virtual Classroom</p>
+</li></ul>
+
+<h3 id="method-i-add_to_virtual_classroom-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="add_to_virtual_classroom-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 380</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 652</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_to_virtual_classroom</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -695,20 +887,31 @@
         
         <div class="method-heading">
           <span class="method-name">available!</span><span
-            class="method-args">(type, value = true)</span>
+            class="method-args">(type, value=true)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-available-21-label-Description">Description</h3>
+
+<p>Sets the value of one of the two metadata (<code>available_video</code> or
+<code>available_audio</code>).</p>
+
+<h3 id="method-i-available-21-label-Args">Args</h3>
+<ul><li>
+<p><strong>type</strong>: used to select which of the two metadata is going to
+be set</p>
+</li><li>
+<p><strong>value</strong>: <code>true</code> for default.</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="available-21-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 88</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">available!</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">value</span> = <span class="ruby-keyword">true</span>)
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 198</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">available!</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">value</span>=<span class="ruby-keyword">true</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:&quot;available_#{type.to_s.downcase}=&quot;</span>, <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-identifier">value</span>
   <span class="ruby-identifier">update_attribute</span>(<span class="ruby-value">:metadata</span>, <span class="ruby-identifier">metadata</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -726,20 +929,37 @@
         
         <div class="method-heading">
           <span class="method-name">available?</span><span
-            class="method-args">(type = nil)</span>
+            class="method-args">(type=nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-available-3F-label-Description">Description</h3>
+
+<p>Checks whether the lesson is available for editing in the <a
+href="Lesson.html">Lesson</a> Editor (if at least one between
+<code>metadata</code>.<code>available_audio</code> and
+<code>metadata</code>.<code>available_video</code> is false, the lesson is
+not available)</p>
+
+<h3 id="method-i-available-3F-label-Args">Args</h3>
+<ul><li>
+<p><strong>type</strong>: if the parameter is inserted explicitly, the methods
+returns only the value for the specific type; otherwise it returns
+<code>available_video</code> &amp;&amp; <code>available_audio</code>.</p>
+</li></ul>
+
+<h3 id="method-i-available-3F-label-Returns">Returns</h3>
+
+<p>A boolean.</p>
           
 
           
           <div class="method-source-code" id="available-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 79</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">available?</span>(<span class="ruby-identifier">type</span> = <span class="ruby-keyword">nil</span>)
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 180</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">available?</span>(<span class="ruby-identifier">type</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span> = <span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;video&#39;</span>, <span class="ruby-string">&#39;audio&#39;</span>
     <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:&quot;available_#{type}&quot;</span>
@@ -768,12 +988,23 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-bookmarked-3F-label-Description">Description</h3>
+
+<p>Checks if the lesson has a bookmark for a particular user</p>
+
+<h3 id="method-i-bookmarked-3F-label-Args">Args</h3>
+<ul><li>
+<p><strong>an_user_id</strong>: the id of the <a href="User.html">User</a></p>
+</li></ul>
+
+<h3 id="method-i-bookmarked-3F-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="bookmarked-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 168</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 355</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">bookmarked?</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-constant">Bookmark</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-value">:bookmarkable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Lesson&#39;</span>, <span class="ruby-value">:bookmarkable_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">any?</span>
@@ -799,12 +1030,21 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-buttons-label-Description">Description</h3>
+
+<p>Returns the list of buttons available for the user who wants to see this
+lesson. If the lesson status hasn&#39;t been set yet for that user, or the
+lesson is not visible for him, it returns an empty array.</p>
+
+<h3 id="method-i-buttons-label-Returns">Returns</h3>
+
+<p>An array of keywords representing buttons (see <a
+href="Buttons.html">Buttons</a>)</p>
           
 
           
           <div class="method-source-code" id="buttons-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 150</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 325</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">buttons</span>
   <span class="ruby-keyword">return</span> [] <span class="ruby-keyword">if</span> [<span class="ruby-ivar">@status</span>, <span class="ruby-ivar">@in_vc</span>, <span class="ruby-ivar">@liked</span>, <span class="ruby-ivar">@is_reportable</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-keyword">nil</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-ivar">@status</span>
@@ -843,12 +1083,39 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-copy-label-Description">Description</h3>
+
+<p>Creates a copy of the lesson for a particular user. First, it checks if
+that user is allowed to copy the lesson (he must be the owner of the
+lesson, or alternatively he must have a bookmark for that lesson). Then the
+method checks if the user hasn&#39;t already copied the lesson. Then it
+copies, in sequence:</p>
+<ol><li>
+<p>the lesson with the cover</p>
+</li><li>
+<p>the slides (see <a href="Slide.html">Slide</a>)</p>
+</li><li>
+<p>the media elements attached (see <a
+href="MediaElementsSlide.html">MediaElementsSlide</a>)</p>
+</li><li>
+<p>the tags (see <a href="Tagging.html">Tagging</a>)</p>
+</li></ol>
+
+<h3 id="method-i-copy-label-Args">Args</h3>
+<ul><li>
+<p><strong>an_user_id</strong>: the id of the <a href="User.html">User</a> who
+is copying the lesson</p>
+</li></ul>
+
+<h3 id="method-i-copy-label-Returns">Returns</h3>
+
+<p>If the process ended correctly, the object of the new lesson,  otherwise
+<code>nil</code></p>
           
 
           
           <div class="method-source-code" id="copy-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 173</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 376</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">copy</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">||</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>).<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> (<span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">an_user_id</span>) <span class="ruby-operator">||</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">an_user_id</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Bookmark</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:bookmarkable_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Lesson&#39;</span>, <span class="ruby-value">:bookmarkable_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>).<span class="ruby-identifier">empty?</span>)
@@ -939,12 +1206,19 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-cover-label-Description">Description</h3>
+
+<p>Returns the cover slide of the lesson.</p>
+
+<h3 id="method-i-cover-label-Returns">Returns</h3>
+
+<p>An object of type <a href="Slide.html">Slide</a>, or <code>nil</code> if
+the lesson is new_record</p>
           
 
           
           <div class="method-source-code" id="cover-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 108</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 242</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cover</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:kind</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Slide</span><span class="ruby-operator">::</span><span class="ruby-constant">COVER</span>, <span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">first</span>
@@ -970,12 +1244,20 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-destroy_with_notifications-label-Description">Description</h3>
+
+<p>Destroys the lesson and sends notifications to the users who had a <a
+href="Bookmark.html">Bookmark</a> of it (the bookmarks are destroyed by the
+<code>before_destroy</code> callback).</p>
+
+<h3 id="method-i-destroy_with_notifications-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="destroy_with_notifications-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 335</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 574</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy_with_notifications</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -1021,12 +1303,20 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-dont_notify_changes-label-Description">Description</h3>
+
+<p>Sets <code>notified</code> as <code>true</code> without sending the
+notification of modifications (see <a
+href="Lesson.html#method-i-notify_changes">#notify_changes</a>).</p>
+
+<h3 id="method-i-dont_notify_changes-label-Returns">Returns</h3>
+
+<p>A boolean.</p>
           
 
           
           <div class="method-source-code" id="dont_notify_changes-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 69</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dont_notify_changes</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">notified</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
@@ -1052,12 +1342,25 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-in_virtual_classroom-3F-label-Description">Description</h3>
+
+<p>Checks if the lesson has a corresponding <a
+href="VirtualClassroomLesson.html">VirtualClassroomLesson</a> for a
+specific USer</p>
+
+<h3 id="method-i-in_virtual_classroom-3F-label-Args">Args</h3>
+<ul><li>
+<p><strong>an_user_id</strong>: the id of the <a href="User.html">User</a></p>
+</li></ul>
+
+<h3 id="method-i-in_virtual_classroom-3F-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="in_virtual_classroom-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 429</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 725</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">in_virtual_classroom?</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-constant">VirtualClassroomLesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">any?</span>
@@ -1072,37 +1375,6 @@
       </div><!-- in_virtual_classroom-3F-method -->
 
     
-      <div id="method-i-initialize_metadata" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">initialize_metadata</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="initialize_metadata-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 52</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_metadata</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">available_video</span> = <span class="ruby-keyword">true</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">available_audio</span> = <span class="ruby-keyword">true</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- initialize_metadata-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- initialize_metadata-method -->
-
-    
       <div id="method-i-liked-3F" class="method-detail ">
         
         <div class="method-heading">
@@ -1114,12 +1386,24 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-liked-3F-label-Description">Description</h3>
+
+<p>Checks if there is a record of <a href="Like.html">Like</a> for a
+particular <a href="User.html">User</a></p>
+
+<h3 id="method-i-liked-3F-label-Args">Args</h3>
+<ul><li>
+<p><strong>an_user_id</strong>: the id of the <a href="User.html">User</a></p>
+</li></ul>
+
+<h3 id="method-i-liked-3F-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="liked-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 434</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 742</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">liked?</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-constant">Like</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">an_user_id</span>, <span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">any?</span>
@@ -1134,36 +1418,6 @@
       </div><!-- liked-3F-method -->
 
     
-      <div id="method-i-modified" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">modified</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="modified-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 247</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">modified</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">copied_not_modified</span> = <span class="ruby-keyword">false</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- modified-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- modified-method -->
-
-    
       <div id="method-i-modify" class="method-detail ">
         
         <div class="method-heading">
@@ -1175,12 +1429,21 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-modify-label-Description">Description</h3>
+
+<p>A method that sets all the fields that must be updated at any time the
+lesson or one of its slides is modified (that is, this method is related to
+the models <a href="Lesson.html">Lesson</a>, <a href="Slide.html">Slide</a>
+and <a href="MediaElementsSlide.html">MediaElementsSlide</a>).</p>
+
+<h3 id="method-i-modify-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="modify-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 251</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 466</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">modify</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">copied_not_modified</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">notified</span> = <span class="ruby-keyword">false</span>
@@ -1207,12 +1470,19 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-not_notified-3F-label-Description">Description</h3>
+
+<p>Checks whether the user needs to notify modifications to other users who
+have a link of the lesson.</p>
+
+<h3 id="method-i-not_notified-3F-label-Returns">Returns</h3>
+
+<p>A boolean.</p>
           
 
           
           <div class="method-source-code" id="not_notified-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 74</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 163</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">not_notified?</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">notified</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Bookmark</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;bookmarkable_type = ? AND bookmarkable_id = ? AND created_at &lt; ?&#39;</span>, <span class="ruby-string">&#39;Lesson&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">updated_at</span>).<span class="ruby-identifier">any?</span>
@@ -1238,12 +1508,26 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-notify_changes-label-Description">Description</h3>
+
+<p>Send a notification (containing the details of modifications) to all the
+users who have a link of the lesson. This method is called only if the link
+was created <strong>before</strong> that the lesson was modified. The
+method also sets <code>notified</code> as <code>true</code>.</p>
+
+<h3 id="method-i-notify_changes-label-Args">Args</h3>
+<ul><li>
+<p><strong>msg</strong>: details of the modifications</p>
+</li></ul>
+
+<h3 id="method-i-notify_changes-label-Returns">Returns</h3>
+
+<p>A boolean.</p>
           
 
           
           <div class="method-source-code" id="notify_changes-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 57</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 130</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">notify_changes</span>(<span class="ruby-identifier">msg</span>)
   <span class="ruby-constant">Bookmark</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;bookmarkable_type = ? AND bookmarkable_id = ? AND created_at &lt; ?&#39;</span>, <span class="ruby-string">&#39;Lesson&#39;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">updated_at</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">bo</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">blank?</span>
@@ -1276,12 +1560,21 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-publish-label-Description">Description</h3>
+
+<p>Sets <code>is_public</code> as <code>true</code> for the lesson and for
+each private <a href="MediaElement.html">MediaElement</a> attached to the
+lesson through <a href="MediaElementsSlide.html">MediaElementsSlide</a> and
+<a href="Slide.html">Slide</a>.</p>
+
+<h3 id="method-i-publish-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="publish-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 257</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 480</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">publish</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-identifier">pub_date</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">zone</span>.<span class="ruby-identifier">now</span>
@@ -1346,12 +1639,19 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-reached_the_maximum_of_slides-3F-label-Description">Description</h3>
+
+<p>Checks if the maximum number of slides has been reached by this lesson
+(this number is configured in settings.yml)</p>
+
+<h3 id="method-i-reached_the_maximum_of_slides-3F-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="reached_the_maximum_of_slides-3F-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 376</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 636</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reached_the_maximum_of_slides?</span>
   <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;max_number_slides_in_a_lesson&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -1376,12 +1676,25 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-remove_from_virtual_classroom-label-Description">Description</h3>
+
+<p>Removes the associated record of <a
+href="VirtualClassroomLesson.html">VirtualClassroomLesson</a> for a
+particular <a href="User.html">User</a>, if any</p>
+
+<h3 id="method-i-remove_from_virtual_classroom-label-Args">Args</h3>
+<ul><li>
+<p><strong>an_user_id</strong>: the id of the <a href="User.html">User</a></p>
+</li></ul>
+
+<h3 id="method-i-remove_from_virtual_classroom-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="remove_from_virtual_classroom-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 404</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 688</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_from_virtual_classroom</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -1427,12 +1740,26 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-set_status-label-Description">Description</h3>
+
+<p>This function fills the attributes <a
+href="Lesson.html#attribute-i-is_reportable">#is_reportable</a>, status,
+in_vc and linked (the last three being private). If the model has the four
+of these attributes different by <code>nil</code>, it means that the lesson
+has a status and the application knows which functionalities are available
+for the user who requested the lesson. If the status is <code>nil</code>,
+it means that the user can&#39;t see that lesson.</p>
+
+<h3 id="method-i-set_status-label-Args">Args</h3>
+<ul><li>
+<p><strong>an_user_id</strong>: the id of the user who is asking permission to
+see the lesson.</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="set_status-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 125</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 291</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_status</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_public</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">copied_not_modified</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">an_user_id</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>
@@ -1456,6 +1783,7 @@
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@in_vc</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">in_virtual_classroom?</span>(<span class="ruby-identifier">an_user_id</span>)
   <span class="ruby-ivar">@liked</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">liked?</span>(<span class="ruby-identifier">an_user_id</span>)
+  <span class="ruby-keyword">true</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- set_status-source -->
           
@@ -1478,12 +1806,27 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-status-label-Description">Description</h3>
+
+<p>Substitute for the attr_reader relative to the attribute
+<code>status</code>.</p>
+
+<h3 id="method-i-status-label-Args">Args</h3>
+<ul><li>
+<p><strong>with_captions</strong>: if <code>true</code> returns the translated
+caption of the status (this means that it&#39;s used in the front-end),
+otherwise it returns the status keyword (for default).</p>
+</li></ul>
+
+<h3 id="method-i-status-label-Returns">Returns</h3>
+
+<p>A string, or a keyword representing the status (see <a
+href="Statuses.html">Statuses</a>)</p>
           
 
           
           <div class="method-source-code" id="status-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 121</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 279</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">status</span>(<span class="ruby-identifier">with_captions</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-ivar">@status</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> (<span class="ruby-identifier">with_captions</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">status</span>(<span class="ruby-ivar">@status</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@status</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1508,12 +1851,19 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-tags-label-Description">Description</h3>
+
+<p>Used as (unproper) substitute for the attr_reader relative to the attribute
+<code>tags</code>: it extracts the tags directly from the database</p>
+
+<h3 id="method-i-tags-label-Returns">Returns</h3>
+
+<p>An array of <a href="Tag.html">Tag</a> objects.</p>
           
 
           
           <div class="method-source-code" id="tags-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 93</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 211</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tags</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">get_friendly_tags</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-string">&#39;Lesson&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1538,12 +1888,25 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-tags-3D-label-Description">Description</h3>
+
+<p>Used as (unproper) substitute for the attribute writer relative to the
+attribute <code>tags</code>: the attribute <code>tags</code> is filled with
+a string of words separated by comma. During the validation,
+<code>tags</code> is converted in another attribute called
+<code>inner_tags</code>: this attribute is an array of objects of type <a
+href="Tag.html">Tag</a> (if the tag doesn&#39;t exist yet, the object is
+new_record) ready to be saved together with their taggings in the
+<code>after_save</code> validation.</p>
+
+<h3 id="method-i-tags-3D-label-Args">Args</h3>
+
+<p>Either an array of strings, or a string of words separated by comma</p>
           
 
           
           <div class="method-source-code" id="tags-3D-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 97</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 223</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tags=</span>(<span class="ruby-identifier">tags</span>)
   <span class="ruby-ivar">@tags</span> = 
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">tags</span>
@@ -1575,12 +1938,22 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-unpublish-label-Description">Description</h3>
+
+<p>Sets <code>is_public</code> as <code>false</code>, deletes all bookmarks
+(see <a href="Bookmark.html">Bookmark</a>) and copies in Virtual Classroom
+(see <a href="VirtualClassroomLesson.html">VirtualClassroomLesson</a>)
+associated to the present lesson. Also, sends a notification to all the
+user who lost a bookmark of the lesson.</p>
+
+<h3 id="method-i-unpublish-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="unpublish-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 301</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 532</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">unpublish</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
@@ -1635,12 +2008,22 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-visive_tags-label-Description">Description</h3>
+
+<p>Returns a string of tags separated by comma and space (“tag1, tag2, tag3”),
+by calling a class method of <a href="Tag.html">Tag</a>. This is necessary
+for the front end, since in the backend tags are managed without spaces and
+with two additional commas in the beginning and in the end of the string
+(“,tag1,tag2,tag3,”)</p>
+
+<h3 id="method-i-visive_tags-label-Returns">Returns</h3>
+
+<p>A string</p>
           
 
           
           <div class="method-source-code" id="visive_tags-source">
-            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 243</span>
+            <pre><span class="ruby-comment"># File app/models/lesson.rb, line 454</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">visive_tags</span>
   <span class="ruby-constant">Tagging</span>.<span class="ruby-identifier">visive_tags</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">tags</span>)
 <span class="ruby-keyword">end</span></pre>

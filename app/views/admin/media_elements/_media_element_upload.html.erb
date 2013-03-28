@@ -5,6 +5,8 @@
     </div>
     <% if file[:type] == 'audio' %>
       <%= image_tag 'simbolo-audio.svg', :width => '200', :style => 'margin-top:0' %>
+    <% elsif file[:type] == 'video' %>
+      <%= image_tag 'thumb_video.jpg', :width => '200', :style => 'margin-top:0' %>
     <% elsif file[:type] == 'image' %>
       <div style="width:200px; height:200px; margin-top:20px; margin-left:auto; margin-bottom:0; margin-right:auto; vertical-align:middle; overflow:hidden">
         <%= image_tag "/admin/#{current_user.id}/#{file[:name]}#{file[:ext]}", :width => 200, :height => 200, :style => 'margin:0' %>

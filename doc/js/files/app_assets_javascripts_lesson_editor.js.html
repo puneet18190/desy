@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js - DESY</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.8.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..&#x2F;assets/css/logo.png" title="DESY"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/addDeleteItemToCurrentUrl.html">addDeleteItemToCurrentUrl</a></li>
+            
+                <li><a href="..&#x2F;classes/addEmailToVirtualClassroomSendLessonLinkSelector.html">addEmailToVirtualClassroomSendLessonLinkSelector</a></li>
+            
+                <li><a href="..&#x2F;classes/addLesson.html">addLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/addLessonToVirtualClassroom.html">addLessonToVirtualClassroom</a></li>
+            
+                <li><a href="..&#x2F;classes/addMediaElement.html">addMediaElement</a></li>
+            
+                <li><a href="..&#x2F;classes/addTagWithoutSuggestion.html">addTagWithoutSuggestion</a></li>
+            
+                <li><a href="..&#x2F;classes/addToTagsValue.html">addToTagsValue</a></li>
+            
+                <li><a href="..&#x2F;classes/bindLoader.html">bindLoader</a></li>
+            
+                <li><a href="..&#x2F;classes/centerThis.html">centerThis</a></li>
+            
+                <li><a href="..&#x2F;classes/centerThisInContainer.html">centerThisInContainer</a></li>
+            
+                <li><a href="..&#x2F;classes/changePageDashboardLessons.html">changePageDashboardLessons</a></li>
+            
+                <li><a href="..&#x2F;classes/changePageDashboardMediaElements.html">changePageDashboardMediaElements</a></li>
+            
+                <li><a href="..&#x2F;classes/checkNoTagDuplicates.html">checkNoTagDuplicates</a></li>
+            
+                <li><a href="..&#x2F;classes/closeGenericVideoComponentCutter.html">closeGenericVideoComponentCutter</a></li>
+            
+                <li><a href="..&#x2F;classes/closePlaylistMenuInLessonViewer.html">closePlaylistMenuInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/copyLesson.html">copyLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/createTagSpan.html">createTagSpan</a></li>
+            
+                <li><a href="..&#x2F;classes/destroyLesson.html">destroyLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/destroyMediaElement.html">destroyMediaElement</a></li>
+            
+                <li><a href="..&#x2F;classes/disableTagsInputTooHigh.html">disableTagsInputTooHigh</a></li>
+            
+                <li><a href="..&#x2F;classes/dislikeLesson.html">dislikeLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/enlightTextarea.html">enlightTextarea</a></li>
+            
+                <li><a href="..&#x2F;classes/getDragPosition.html">getDragPosition</a></li>
+            
+                <li><a href="..&#x2F;classes/getHtmlPagination.html">getHtmlPagination</a></li>
+            
+                <li><a href="..&#x2F;classes/getLessonViewerCurrentSlide.html">getLessonViewerCurrentSlide</a></li>
+            
+                <li><a href="..&#x2F;classes/getRelativePositionInImageEditor.html">getRelativePositionInImageEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/getUnivoqueClassForTag.html">getUnivoqueClassForTag</a></li>
+            
+                <li><a href="..&#x2F;classes/goToNextSlideInLessonViewer.html">goToNextSlideInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/goToPrevSlideInLessonViewer.html">goToPrevSlideInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/hideArrowsInLessonViewer.html">hideArrowsInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/hideEverythingOutCurrentSlide.html">hideEverythingOutCurrentSlide</a></li>
+            
+                <li><a href="..&#x2F;classes/hideExpandedNotification.html">hideExpandedNotification</a></li>
+            
+                <li><a href="..&#x2F;classes/hideHelpButton.html">hideHelpButton</a></li>
+            
+                <li><a href="..&#x2F;classes/hideHelpTooltip.html">hideHelpTooltip</a></li>
+            
+                <li><a href="..&#x2F;classes/hideLoader.html">hideLoader</a></li>
+            
+                <li><a href="..&#x2F;classes/hideNewSlideChoice.html">hideNewSlideChoice</a></li>
+            
+                <li><a href="..&#x2F;classes/hideNotificationsButton.html">hideNotificationsButton</a></li>
+            
+                <li><a href="..&#x2F;classes/hideNotificationsFumetto.html">hideNotificationsFumetto</a></li>
+            
+                <li><a href="..&#x2F;classes/initializeHelp.html">initializeHelp</a></li>
+            
+                <li><a href="..&#x2F;classes/initializeLessonViewer.html">initializeLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/initializeNotAvailableLessonsToLoadQuick.html">initializeNotAvailableLessonsToLoadQuick</a></li>
+            
+                <li><a href="..&#x2F;classes/initializeNotifications.html">initializeNotifications</a></li>
+            
+                <li><a href="..&#x2F;classes/initializeSortableNavs.html">initializeSortableNavs</a></li>
+            
+                <li><a href="..&#x2F;classes/initializeVideoEditor.html">initializeVideoEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/initLessonEditorPositions.html">initLessonEditorPositions</a></li>
+            
+                <li><a href="..&#x2F;classes/initMediaElementLoader.html">initMediaElementLoader</a></li>
+            
+                <li><a href="..&#x2F;classes/initNotificationsAutocomplete.html">initNotificationsAutocomplete</a></li>
+            
+                <li><a href="..&#x2F;classes/initSearchTagsAutocomplete.html">initSearchTagsAutocomplete</a></li>
+            
+                <li><a href="..&#x2F;classes/initTinymce.html">initTinymce</a></li>
+            
+                <li><a href="..&#x2F;classes/isHorizontalMask.html">isHorizontalMask</a></li>
+            
+                <li><a href="..&#x2F;classes/likeLesson.html">likeLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/loadSlideAndAdhiacentInLessonEditor.html">loadSlideAndAdhiacentInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/loadSlideInLessonEditor.html">loadSlideInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/makeDraggable.html">makeDraggable</a></li>
+            
+                <li><a href="..&#x2F;classes/offlightTextarea.html">offlightTextarea</a></li>
+            
+                <li><a href="..&#x2F;classes/openAndLoadNextTr.html">openAndLoadNextTr</a></li>
+            
+                <li><a href="..&#x2F;classes/openPlaylistMenuInLessonViewer.html">openPlaylistMenuInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/previewLesson.html">previewLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/publishLesson.html">publishLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/reInitializeSlidePositionsInLessonEditor.html">reInitializeSlidePositionsInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/reloadDashboardPages.html">reloadDashboardPages</a></li>
+            
+                <li><a href="..&#x2F;classes/reloadLessonsDashboardPagination.html">reloadLessonsDashboardPagination</a></li>
+            
+                <li><a href="..&#x2F;classes/reloadMediaElementsDashboardPagination.html">reloadMediaElementsDashboardPagination</a></li>
+            
+                <li><a href="..&#x2F;classes/removeFromTagsValue.html">removeFromTagsValue</a></li>
+            
+                <li><a href="..&#x2F;classes/removeGalleryInLessonEditor.html">removeGalleryInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/removeLesson.html">removeLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/removeLessonFromVirtualClassroom.html">removeLessonFromVirtualClassroom</a></li>
+            
+                <li><a href="..&#x2F;classes/removeMediaElement.html">removeMediaElement</a></li>
+            
+                <li><a href="..&#x2F;classes/removeURLParameter.html">removeURLParameter</a></li>
+            
+                <li><a href="..&#x2F;classes/resetImageEditorCrop.html">resetImageEditorCrop</a></li>
+            
+                <li><a href="..&#x2F;classes/resetImageEditorOperationsChoice.html">resetImageEditorOperationsChoice</a></li>
+            
+                <li><a href="..&#x2F;classes/resetImageEditorTexts.html">resetImageEditorTexts</a></li>
+            
+                <li><a href="..&#x2F;classes/resetMediaElementChangeInfo.html">resetMediaElementChangeInfo</a></li>
+            
+                <li><a href="..&#x2F;classes/resizeHeight.html">resizeHeight</a></li>
+            
+                <li><a href="..&#x2F;classes/resizeWidth.html">resizeWidth</a></li>
+            
+                <li><a href="..&#x2F;classes/saveCurrentSlide.html">saveCurrentSlide</a></li>
+            
+                <li><a href="..&#x2F;classes/scrollPaneUpdate.html">scrollPaneUpdate</a></li>
+            
+                <li><a href="..&#x2F;classes/secondsToDateString.html">secondsToDateString</a></li>
+            
+                <li><a href="..&#x2F;classes/selectComponentInLessonViewerPlaylistMenu.html">selectComponentInLessonViewerPlaylistMenu</a></li>
+            
+                <li><a href="..&#x2F;classes/showEverythingOutCurrentSlide.html">showEverythingOutCurrentSlide</a></li>
+            
+                <li><a href="..&#x2F;classes/showGalleryInLessonEditor.html">showGalleryInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/showHelpButton.html">showHelpButton</a></li>
+            
+                <li><a href="..&#x2F;classes/showHelpTooltip.html">showHelpTooltip</a></li>
+            
+                <li><a href="..&#x2F;classes/showLoader.html">showLoader</a></li>
+            
+                <li><a href="..&#x2F;classes/showNewSlideChoice.html">showNewSlideChoice</a></li>
+            
+                <li><a href="..&#x2F;classes/showNotificationsButton.html">showNotificationsButton</a></li>
+            
+                <li><a href="..&#x2F;classes/showNotificationsFumetto.html">showNotificationsFumetto</a></li>
+            
+                <li><a href="..&#x2F;classes/showNotificationsTooltip.html">showNotificationsTooltip</a></li>
+            
+                <li><a href="..&#x2F;classes/slideError.html">slideError</a></li>
+            
+                <li><a href="..&#x2F;classes/slideTo.html">slideTo</a></li>
+            
+                <li><a href="..&#x2F;classes/slideToInLessonViewer.html">slideToInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/slideToInLessonViewerWithLessonSwitch.html">slideToInLessonViewerWithLessonSwitch</a></li>
+            
+                <li><a href="..&#x2F;classes/stopMediaInCurrentSlide.html">stopMediaInCurrentSlide</a></li>
+            
+                <li><a href="..&#x2F;classes/stopMediaInLessonViewer.html">stopMediaInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/submitCurrentSlideForm.html">submitCurrentSlideForm</a></li>
+            
+                <li><a href="..&#x2F;classes/switchLessonInPlaylistMenuLessonViewer.html">switchLessonInPlaylistMenuLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/switchToSuggestedLessons.html">switchToSuggestedLessons</a></li>
+            
+                <li><a href="..&#x2F;classes/switchToSuggestedMediaElements.html">switchToSuggestedMediaElements</a></li>
+            
+                <li><a href="..&#x2F;classes/textAreaImageEditorContent.html">textAreaImageEditorContent</a></li>
+            
+                <li><a href="..&#x2F;classes/tinyMceCallbacks.html">tinyMceCallbacks</a></li>
+            
+                <li><a href="..&#x2F;classes/tinyMceKeyDownCallbacks.html">tinyMceKeyDownCallbacks</a></li>
+            
+                <li><a href="..&#x2F;classes/unbindLoader.html">unbindLoader</a></li>
+            
+                <li><a href="..&#x2F;classes/unpublishLesson.html">unpublishLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/updateURLParameter.html">updateURLParameter</a></li>
+            
+                <li><a href="..&#x2F;classes/uploadDone.html">uploadDone</a></li>
+            
+                <li><a href="..&#x2F;classes/uploadMediaElementLoadeDoneRedirect.html">uploadMediaElementLoadeDoneRedirect</a></li>
+            
+                <li><a href="..&#x2F;classes/uploadMediaElementLoaderError.html">uploadMediaElementLoaderError</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/Administration.html">Administration</a></li>
+            
+                <li><a href="..&#x2F;modules/AjaxLoader.html">AjaxLoader</a></li>
+            
+                <li><a href="..&#x2F;modules/Buttons.html">Buttons</a></li>
+            
+                <li><a href="..&#x2F;modules/Dashboard.html">Dashboard</a></li>
+            
+                <li><a href="..&#x2F;modules/General.html">General</a></li>
+            
+                <li><a href="..&#x2F;modules/ImageEditor.html">ImageEditor</a></li>
+            
+                <li><a href="..&#x2F;modules/LessonEditor.html">LessonEditor</a></li>
+            
+                <li><a href="..&#x2F;modules/LessonViewer.html">LessonViewer</a></li>
+            
+                <li><a href="..&#x2F;modules/MediaElementLoader.html">MediaElementLoader</a></li>
+            
+                <li><a href="..&#x2F;modules/Notifications.html">Notifications</a></li>
+            
+                <li><a href="..&#x2F;modules/Tags.html">Tags</a></li>
+            
+                <li><a href="..&#x2F;modules/Times.html">Times</a></li>
+            
+                <li><a href="..&#x2F;modules/VideoEditor.html">VideoEditor</a></li>
+            
+                <li><a href="..&#x2F;modules/VirtualClassroom.html">VirtualClassroom</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: app&#x2F;assets&#x2F;javascripts&#x2F;lesson_editor.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+* Lesson editor functions, 
+* it handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too.
+* 
+* @module LessonEditor
+*&#x2F;
+$(document).ready(function() {
+  
+  $(&quot;html.lesson-editor-layout ul#slides&quot;).css(&quot;margin-top&quot;, ((($(window).height() - 590)&#x2F;2)-40) + &quot;px&quot;);
+  $(&quot;html.lesson-editor-layout ul#slides.new&quot;).css(&quot;margin-top&quot;, ((($(window).height() - 590)&#x2F;2)) + &quot;px&quot;);
+  
+  $(&#x27;._image_container_in_lesson_editor&#x27;).each(function() {
+    makeDraggable($(this).attr(&#x27;id&#x27;));
+  });
+  
+  initializeSortableNavs();
+  $(&#x27;#nav_list_menu&#x27;).jScrollPane({
+    autoReinitialise: false
+  });
+  
+  $(&quot;.slide-content.cover .title&quot;).css(&quot;margin-left&quot;, &quot;auto&quot;);
+  
+  $(&#x27;html.lesson-editor-layout ul#slides input&#x27;).attr(&#x27;autocomplete&#x27;,&#x27;off&#x27;);
+  
+  initLessonEditorPositions();
+  
+  $(window).resize(function() {
+    $(&quot;html.lesson-editor-layout ul#slides&quot;).css(&quot;margin-top&quot;, ((($(window).height() - 590)&#x2F;2)-40) + &quot;px&quot;);
+    $(&quot;html.lesson-editor-layout ul#slides.new&quot;).css(&quot;margin-top&quot;, ((($(window).height() - 590)&#x2F;2)) + &quot;px&quot;);
+    if(WW &gt; 1000) {
+      $(&quot;ul#slides li:first&quot;).css(&quot;margin-left&quot;, (($(window).width() - 900) &#x2F; 2) + &quot;px&quot;)
+      $(&quot;ul#slides.new li:first&quot;).css(&quot;margin-left&quot;, (($(window).width() - 900) &#x2F; 2) + &quot;px&quot;);
+    }
+    $(&quot;#footer&quot;).css(&quot;top&quot;, ($(window).height() - 40) + &quot;px&quot;).css(&quot;width&quot;, ($(window).width() - 24) + &quot;px&quot;);
+  });
+  
+  $(&#x27;#lesson_subject&#x27;).selectbox();
+  
+  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)&#x27;, function(e) {
+    var tip = $(this);
+    var this_tooltip = tip.children(&#x27;.slide-tooltip&#x27;);
+    if(e.pageX &lt; ($(window).width()&#x2F;2)){
+      this_tooltip.show();  
+    }else{
+      this_tooltip.addClass(&quot;slide-tooltip-to-left&quot;);
+      tip.children(&#x27;.slide-tooltip-to-left&#x27;).show();
+    }
+    
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;#slide-numbers li.navNumbers:not(._add_new_slide_options_in_last_position)&#x27;, function(e) {
+    var this_tooltip =$(this).children(&#x27;.slide-tooltip&#x27;);
+    this_tooltip.removeClass(&quot;slide-tooltip-to-left&quot;);
+    this_tooltip.hide();
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._slide_nav:not(._lesson_editor_current_slide_nav)&#x27;, function(e) {
+    e.preventDefault();
+    stopMediaInCurrentSlide();
+    saveCurrentSlide();
+    slideTo($(this).data(&#x27;slide-id&#x27;));
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._not_current_slide&#x27;, function(e) {
+    e.preventDefault();
+    saveCurrentSlide();
+    stopMediaInCurrentSlide();
+    slideTo($(this).parent().data(&#x27;slide-id&#x27;));
+    scrollPaneUpdate(this);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._hide_add_new_slide_options&#x27;, function() {
+    hideNewSlideChoice();
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._save_slide&#x27;, function(e) {
+    saveCurrentSlide();
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._save_slide_and_exit&#x27;, function() {
+    tinyMCE.triggerSave();
+    var temporary = new Array();
+    var temp_counter = 0;
+    $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
+      if($(this).data(&#x27;placeholder&#x27;)) {
+        temporary[temp_counter] = $(this).val();
+        temp_counter++;
+        $(this).val(&#x27;&#x27;);
+      }
+    });
+    $.ajax({
+      type: &#x27;post&#x27;,
+      url: $(&#x27;._lesson_editor_current_slide form&#x27;).attr(&#x27;action&#x27;) + &#x27;_and_exit&#x27;,
+      timeout:5000,
+      data: $(&#x27;._lesson_editor_current_slide form&#x27;).serialize()
+    });
+    temp_counter = 0;
+    $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
+      if($(this).data(&#x27;placeholder&#x27;)) {
+        $(this).val(temporary[temp_counter]);
+        temp_counter++;
+      }
+    });
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._save_slide_and_edit&#x27;, function() {
+    tinyMCE.triggerSave();
+    var temporary = new Array();
+    var temp_counter = 0;
+    $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
+      if($(this).data(&#x27;placeholder&#x27;)) {
+        temporary[temp_counter] = $(this).val();
+        temp_counter++;
+        $(this).val(&#x27;&#x27;);
+      }
+    });
+    $.ajax({
+      type: &#x27;post&#x27;,
+      url: $(&#x27;._lesson_editor_current_slide form&#x27;).attr(&#x27;action&#x27;) + &#x27;_and_edit&#x27;,
+      timeout:5000,
+      data: $(&#x27;._lesson_editor_current_slide form&#x27;).serialize()
+    });
+    temp_counter = 0;
+    $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
+      if($(this).data(&#x27;placeholder&#x27;)) {
+        $(this).val(temporary[temp_counter]);
+        temp_counter++;
+      }
+    });
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_new_slide_options&#x27;, function() {
+    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
+      saveCurrentSlide();
+      showNewSlideOptions();
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_new_slide_options_in_last_position&#x27;, function() {
+    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
+      saveCurrentSlide();
+      var last_slide_id = $(&quot;#slide-numbers li.navNumbers:last&quot;).find(&#x27;a&#x27;).data(&#x27;slide-id&#x27;);
+      $(&#x27;#nav_list_menu&#x27;).data(&#x27;jsp&#x27;).scrollToPercentX(100, true);
+      if($(&quot;#slide_in_lesson_editor_&quot;+last_slide_id).hasClass(&#x27;_lesson_editor_current_slide&#x27;)) {
+        showNewSlideOptions();
+      } else {
+        slideTo(&#x27;&#x27; + last_slide_id, showNewSlideOptions);
+      }
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_new_slide&#x27;, function() {
+    hideNewSlideChoice();
+    var slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
+    slide.prepend(&#x27;&lt;layer class=&quot;_not_current_slide_disabled&quot;&gt;&lt;&#x2F;layer&gt;&#x27;);
+    var kind = $(this).data(&#x27;kind&#x27;);
+    var lesson_id = $(&#x27;#info_container&#x27;).data(&#x27;lesson-id&#x27;);
+    var slide_id = slide.data(&#x27;slide-id&#x27;);
+    $.ajax({
+      type: &#x27;post&#x27;,
+      url: &#x27;&#x2F;lessons&#x2F;&#x27; + lesson_id + &#x27;&#x2F;slides&#x2F;&#x27; + slide_id + &#x27;&#x2F;kind&#x2F;&#x27; + kind + &#x27;&#x2F;create&#x2F;&#x27;
+    });
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._delete_slide&#x27;, function() {
+    stopMediaInCurrentSlide();
+    var slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
+    slide.prepend(&#x27;&lt;layer class=&quot;_not_current_slide_disabled&quot;&gt;&lt;&#x2F;layer&gt;&#x27;);
+    $.ajax({
+      type: &#x27;post&#x27;,
+      url: &#x27;&#x2F;lessons&#x2F;&#x27; + $(&#x27;#info_container&#x27;).data(&#x27;lesson-id&#x27;) + &#x27;&#x2F;slides&#x2F;&#x27; + slide.data(&#x27;slide-id&#x27;) + &#x27;&#x2F;delete&#x27;
+    });
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._show_image_gallery_in_lesson_editor&#x27;, function() {
+    showGalleryInLessonEditor(this, &#x27;image&#x27;);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._show_audio_gallery_in_lesson_editor&#x27;, function() {
+    stopMediaInCurrentSlide();
+    showGalleryInLessonEditor(this, &#x27;audio&#x27;);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._show_video_gallery_in_lesson_editor&#x27;, function() {
+    stopMediaInCurrentSlide();
+    showGalleryInLessonEditor(this, &#x27;video&#x27;);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_image_gallery_in_lesson_editor&#x27;, function(e) {
+    e.preventDefault();
+    removeGalleryInLessonEditor(&#x27;image&#x27;);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_video_gallery_in_lesson_editor&#x27;, function(e) {
+    e.preventDefault();
+    removeGalleryInLessonEditor(&#x27;video&#x27;);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._close_audio_gallery_in_lesson_editor&#x27;, function(e) {
+    e.preventDefault();
+    var current_playing_audio = $(&#x27;._audio_expanded_in_gallery&#x27;);
+    if(current_playing_audio.length != 0) {
+      current_playing_audio.removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
+      stopMedia(&#x27;#&#x27; + current_playing_audio.attr(&#x27;id&#x27;) + &#x27; audio&#x27;);
+      $(&#x27;#&#x27; + current_playing_audio.attr(&#x27;id&#x27;) + &#x27; ._expanded&#x27;).hide();
+    }
+    removeGalleryInLessonEditor(&#x27;audio&#x27;);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_image_to_slide&#x27;, function(e) {
+    e.preventDefault();
+    var image_id = $(this).data(&#x27;image-id&#x27;);
+    closePopUp(&#x27;dialog-image-gallery-&#x27; + image_id);
+    removeGalleryInLessonEditor(&#x27;image&#x27;);
+    var current_slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
+    var position = $(&#x27;#info_container&#x27;).data(&#x27;current-media-element-position&#x27;);
+    var place_id = &#x27;media_element_&#x27; + position + &#x27;_in_slide_&#x27; + current_slide.data(&#x27;slide-id&#x27;);
+    $(&#x27;#&#x27; + place_id + &#x27; ._input_image_id&#x27;).val(image_id);
+    $(&#x27;#&#x27; + place_id + &#x27; ._input_align&#x27;).val(&#x27;0&#x27;);
+    var image_url = $(this).data(&#x27;url&#x27;);
+    var image_width = $(this).data(&#x27;width&#x27;);
+    var image_height = $(this).data(&#x27;height&#x27;);
+    var full_place = $(&#x27;#&#x27; + place_id + &#x27; ._full_image_in_slide&#x27;);
+    if(!full_place.is(&#x27;:visible&#x27;)) {
+      full_place.show();
+      $(&#x27;#&#x27; + place_id + &#x27; ._empty_image_in_slide&#x27;).hide();
+    }
+    var old_mask = &#x27;_mask_x&#x27;;
+    var new_mask = &#x27;_mask_y&#x27;;
+    var old_orientation = &#x27;width&#x27;;
+    var orientation = &#x27;height&#x27;;
+    var orientation_val = resizeHeight(image_width, image_height, current_slide.data(&#x27;kind&#x27;));
+    var to_make_draggable = &#x27;y&#x27;;
+    if(isHorizontalMask(image_width, image_height, current_slide.data(&#x27;kind&#x27;))) {
+      old_mask = &#x27;_mask_y&#x27;;
+      new_mask = &#x27;_mask_x&#x27;;
+      old_orientation = &#x27;height&#x27;;
+      orientation = &#x27;width&#x27;;
+      orientation_val = resizeWidth(image_width, image_height, current_slide.data(&#x27;kind&#x27;));
+      to_make_draggable = &#x27;x&#x27;;
+    }
+    full_place.addClass(new_mask).removeClass(old_mask);
+    var img_tag = $(&#x27;#&#x27; + place_id + &#x27; ._full_image_in_slide img&#x27;);
+    img_tag.attr(&#x27;src&#x27;, image_url);
+    &#x2F;&#x2F;reset position on image change
+    img_tag.parent().css(&quot;left&quot;,0);
+    img_tag.parent().css(&quot;top&quot;,0);
+
+    img_tag.removeAttr(old_orientation);
+    img_tag.attr(orientation, orientation_val);
+    makeDraggable(place_id);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_video_to_slide&#x27;, function(e) {
+    e.preventDefault();
+    var video_id = $(this).data(&#x27;video-id&#x27;);
+    closePopUp(&#x27;dialog-video-gallery-&#x27; + video_id);
+    removeGalleryInLessonEditor(&#x27;video&#x27;);
+    var current_slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
+    var position = $(&#x27;#info_container&#x27;).data(&#x27;current-media-element-position&#x27;);
+    var place_id = &#x27;media_element_&#x27; + position + &#x27;_in_slide_&#x27; + current_slide.data(&#x27;slide-id&#x27;);
+    $(&#x27;#&#x27; + place_id + &#x27; ._input_video_id&#x27;).val(video_id);
+    var video_mp4 = $(this).data(&#x27;mp4&#x27;);
+    var video_webm = $(this).data(&#x27;webm&#x27;);
+    var duration = $(this).data(&#x27;duration&#x27;);
+    var full_place = $(&#x27;#&#x27; + place_id + &#x27; ._full_video_in_slide&#x27;);
+    if(!full_place.is(&#x27;:visible&#x27;)) {
+      full_place.show();
+      $(&#x27;#&#x27; + place_id + &#x27; ._empty_video_in_slide&#x27;).hide();
+    }
+    $(&#x27;#&#x27; + place_id + &#x27; ._full_video_in_slide source[type=&quot;video&#x2F;mp4&quot;]&#x27;).attr(&#x27;src&#x27;, video_mp4);
+    $(&#x27;#&#x27; + place_id + &#x27; ._full_video_in_slide source[type=&quot;video&#x2F;webm&quot;]&#x27;).attr(&#x27;src&#x27;, video_webm);
+    $(&#x27;#&#x27; + place_id + &#x27; video&#x27;).load();
+    $(&#x27;#&#x27; + place_id + &#x27; ._media_player_total_time&#x27;).html(secondsToDateString(duration));
+    var video_player = $(&#x27;#&#x27; + place_id + &#x27; ._empty_video_player, #&#x27; + place_id + &#x27; ._instance_of_player&#x27;);
+    if(video_player.data(&#x27;initialized&#x27;)) {
+      video_player.data(&#x27;duration&#x27;, duration);
+      $(&#x27;#&#x27; + video_player.attr(&#x27;id&#x27;) + &#x27; ._media_player_slider&#x27;).slider(&#x27;option&#x27;, &#x27;max&#x27;, duration);
+    } else {
+      video_player.removeClass(&#x27;_empty_video_player&#x27;).addClass(&#x27;_instance_of_player&#x27;);
+      video_player.data(&#x27;duration&#x27;, duration);
+      initializeMedia(video_player.attr(&#x27;id&#x27;), &#x27;video&#x27;);
+    }
+    $(&#x27;#&#x27; + place_id + &#x27; ._rolloverable&#x27;).data(&#x27;rolloverable&#x27;, true);
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._add_audio_to_slide&#x27;, function(e) {
+    e.preventDefault();
+    var audio_id = $(this).data(&#x27;audio-id&#x27;);
+    var new_audio_title = $(&#x27;#gallery_audio_&#x27; + audio_id+&#x27; .titleTrack&#x27;).text();
+    $(&#x27;#gallery_audio_&#x27; + audio_id).removeClass(&#x27;_audio_expanded_in_gallery&#x27;);
+    stopMedia(&#x27;#gallery_audio_&#x27; + audio_id + &#x27; audio&#x27;);
+    $(&#x27;#gallery_audio_&#x27; + audio_id + &#x27; ._expanded&#x27;).hide();
+    removeGalleryInLessonEditor(&#x27;audio&#x27;);
+    var current_slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
+    var position = $(&#x27;#info_container&#x27;).data(&#x27;current-media-element-position&#x27;);
+    var place_id = &#x27;media_element_&#x27; + position + &#x27;_in_slide_&#x27; + current_slide.data(&#x27;slide-id&#x27;);
+    $(&#x27;#&#x27; + place_id + &#x27; ._input_audio_id&#x27;).val(audio_id);
+    var audio_mp3 = $(this).data(&#x27;mp3&#x27;);
+    var audio_ogg = $(this).data(&#x27;ogg&#x27;);
+    var duration = $(this).data(&#x27;duration&#x27;);
+    var full_place = $(&#x27;#&#x27; + place_id + &#x27; ._full_audio_in_slide&#x27;);
+    if(!full_place.is(&#x27;:visible&#x27;)) {
+      full_place.show();
+      $(&#x27;#&#x27; + place_id + &#x27; ._empty_audio_in_slide&#x27;).hide();
+    }
+    $(&#x27;#&#x27; + place_id + &#x27; ._full_audio_in_slide source[type=&quot;audio&#x2F;mp3&quot;]&#x27;).attr(&#x27;src&#x27;, audio_mp3);
+    $(&#x27;#&#x27; + place_id + &#x27; ._full_audio_in_slide source[type=&quot;audio&#x2F;ogg&quot;]&#x27;).attr(&#x27;src&#x27;, audio_ogg);
+    $(&#x27;#&#x27; + place_id + &#x27; audio&#x27;).load();
+    $(&#x27;#&#x27; + place_id + &#x27; ._media_player_total_time&#x27;).html(secondsToDateString(duration));
+    $(&#x27;#&#x27; + place_id + &#x27; ._full_audio_in_slide .audio_title&#x27;).text(new_audio_title);
+    var audio_player = $(&#x27;#&#x27; + place_id + &#x27; ._empty_audio_player, #&#x27; + place_id + &#x27; ._instance_of_player&#x27;);
+    if(audio_player.data(&#x27;initialized&#x27;)) {
+      audio_player.data(&#x27;duration&#x27;, duration);
+      $(&#x27;#&#x27; + audio_player.attr(&#x27;id&#x27;) + &#x27; ._media_player_slider&#x27;).slider(&#x27;option&#x27;, &#x27;max&#x27;, duration);
+    } else {
+      audio_player.removeClass(&#x27;_empty_audio_player&#x27;).addClass(&#x27;_instance_of_player&#x27;);
+      audio_player.data(&#x27;duration&#x27;, duration);
+      initializeMedia(audio_player.attr(&#x27;id&#x27;), &#x27;audio&#x27;);
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;mouseover&#x27;, &#x27;._full_image_in_slide, ._full_video_in_slide&#x27;, function() {
+    var obj = $(&#x27;#&#x27; + $(this).parent().attr(&#x27;id&#x27;) + &#x27; ._rolloverable&#x27;);
+    var slide_id = obj.data(&#x27;slide-id&#x27;);
+    var position = obj.data(&#x27;position&#x27;);
+    if(obj.data(&#x27;rolloverable&#x27;)) {
+      $(&#x27;#media_element_&#x27; + position + &#x27;_in_slide_&#x27; + slide_id + &#x27; ._lesson_editor_rollover_content&#x27;).show();
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;mouseout&#x27;, &#x27;._full_image_in_slide, ._full_video_in_slide&#x27;, function() {
+    var obj = $(&#x27;#&#x27; + $(this).parent().attr(&#x27;id&#x27;) + &#x27; ._rolloverable&#x27;);
+    var slide_id = obj.data(&#x27;slide-id&#x27;);
+    var position = obj.data(&#x27;position&#x27;);
+    if(obj.data(&#x27;rolloverable&#x27;)) {
+      $(&#x27;#media_element_&#x27; + position + &#x27;_in_slide_&#x27; + slide_id + &#x27; ._lesson_editor_rollover_content&#x27;).hide();
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;focus&#x27;, &#x27;._lesson_editor_placeholder&#x27;, function() {
+    if($(this).data(&#x27;placeholder&#x27;)) {
+      $(this).val(&#x27;&#x27;);
+      $(this).data(&#x27;placeholder&#x27;, false);
+    }
+  });
+  
+});
+
+&#x2F;**
+* Update top scrollPane when moving to another slide
+* 
+* @method scrollPaneUpdate
+* @for scrollPaneUpdate
+* @param trigger_element {String} element which triggers the scroll, class or id
+* @example
+      scrollPaneUpdate(&#x27;._not_current_slide&#x27;);
+*&#x2F;
+function scrollPaneUpdate(trigger_element){
+  &#x2F;&#x2F;TODO Control if moving right or left and when to scroll
+  &#x2F;&#x2F; better activate it on last visible in focus
+  &#x2F;&#x2F; trigger element is _not_current_slide
+  var not_current = $(trigger_element);
+  if($(&quot;.slides.active&quot;).data(&quot;position&quot;) &lt; not_current.parent(&quot;li&quot;).data(&quot;position&quot;)){
+    $(&#x27;#nav_list_menu&#x27;).data(&#x27;jsp&#x27;).scrollByX(30);
+  }else{
+	  $(&#x27;#nav_list_menu&#x27;).data(&#x27;jsp&#x27;).scrollByX(-30);
+  }
+	return false;
+}
+
+&#x2F;**
+* Hide media gallery for selected type
+* 
+* @method removeGalleryInLessonEditor
+* @for removeGalleryInLessonEditor
+* @param sty_type {String} gallery type
+* @example 
+      &#x60;removeGalleryInLessonEditor(&#x27;audio&#x27;);&#x60;
+*&#x2F;
+function removeGalleryInLessonEditor(sti_type) {
+  $(&#x27;#lesson_editor_&#x27; + sti_type + &#x27;_gallery_container&#x27;).hide();
+  $(&#x27;li._lesson_editor_current_slide .slide-content&#x27;).children().show();
+  showEverythingOutCurrentSlide();
+}
+
+&#x2F;**
+* Show media gallery for selected type clicking on slide green plus button
+* 
+* @method showGalleryInLessonEditor
+* @for showGalleryInLessonEditor
+* @param obj {String} gallery type
+* @param sty_type {String} gallery type
+* @example 
+      &#x60;showGalleryInLessonEditor(&#x27;._show_video_gallery_in_lesson_editor&#x27;,&#x27;video&#x27;);&#x60;
+*&#x2F;
+function showGalleryInLessonEditor(obj, sti_type) {
+  $(&#x27;#info_container&#x27;).data(&#x27;current-media-element-position&#x27;, $(obj).data(&#x27;position&#x27;));
+  var current_slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
+  current_slide.prepend(&#x27;&lt;layer class=&quot;_not_current_slide_disabled&quot;&gt;&lt;&#x2F;layer&gt;&#x27;);
+  hideEverythingOutCurrentSlide();
+  var gallery_container = $(&#x27;#lesson_editor_&#x27; + sti_type + &#x27;_gallery_container&#x27;);
+  if(gallery_container.data(&#x27;loaded&#x27;)) {
+    gallery_container.show();
+    $(&#x27;li._lesson_editor_current_slide .slide-content&#x27;).children().hide();
+    current_slide.find(&#x27;layer&#x27;).remove();
+  } else {
+    $.ajax({
+      type: &#x27;get&#x27;,
+      url: &#x27;&#x2F;lessons&#x2F;galleries&#x2F;&#x27; + sti_type
+    });
+  }
+}
+
+&#x2F;**
+* Restore page elements around current slide after new slide selection
+* 
+* @method showEverythingOutCurrentSlide
+* @for showEverythingOutCurrentSlide
+*&#x2F;
+function showEverythingOutCurrentSlide() {
+  var current_slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
+  $(&#x27;#heading&#x27;).children().show();
+  $(&#x27;._add_new_slide_options_in_last_position&#x27;).show();
+  $(&#x27;._not_current_slide_disabled&#x27;).addClass(&#x27;_not_current_slide&#x27;).removeClass(&#x27;_not_current_slide_disabled&#x27;);
+  current_slide.find(&#x27;.buttons a&#x27;).css(&#x27;visibility&#x27;, &#x27;visible&#x27;);
+}
+
+&#x2F;**
+* Hide page elements around current slide on new slide selection
+* 
+* @method hideEverythingOutCurrentSlide
+* @for hideEverythingOutCurrentSlide
+*&#x2F;
+function hideEverythingOutCurrentSlide() {
+  var current_slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
+  $(&#x27;#heading&#x27;).children().hide();
+  $(&#x27;._add_new_slide_options_in_last_position&#x27;).hide();
+  $(&#x27;._not_current_slide&#x27;).removeClass(&#x27;_not_current_slide&#x27;).addClass(&#x27;_not_current_slide_disabled&#x27;);
+  current_slide.find(&#x27;.buttons a:not(._hide_add_slide)&#x27;).css(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+}
+
+&#x2F;**
+* Hide new slide selection
+* 
+* @method showNewSlideChoice
+* @for showNewSlideChoice
+*&#x2F;
+function showNewSlideOptions() {
+  stopMediaInCurrentSlide();
+  var current_slide_content = $(&#x27;li._lesson_editor_current_slide .slide-content&#x27;);
+  current_slide_content.removeClass(&#x27;cover title video1 video2 audio image1 image2 image3 image4 text&#x27;);
+  var html_to_be_replaced = $(&#x27;#new_slide_option_list&#x27;).html();
+  current_slide_content.prepend(html_to_be_replaced);
+  current_slide_content.siblings(&#x27;.buttons&#x27;).find(&#x27;._add_new_slide_options&#x27;).removeAttr(&#x27;class&#x27;).addClass(&#x27;minusButtonOrange _hide_add_slide _hide_add_new_slide_options&#x27;);
+  hideEverythingOutCurrentSlide();
+}
+
+&#x2F;**
+* Hide new slide selection
+* 
+* @method hideNewSlideChoice
+* @for hideNewSlideChoice
+*&#x2F;
+function hideNewSlideChoice() {
+  var current_slide = $(&#x27;li._lesson_editor_current_slide&#x27;);
+  current_slide.find(&#x27;div.slide-content&#x27;).addClass(current_slide.data(&#x27;kind&#x27;));
+  current_slide.find(&#x27;.box.new_slide&#x27;).remove();
+  current_slide.find(&#x27;._hide_add_new_slide_options&#x27;).removeAttr(&#x27;class&#x27;).addClass(&#x27;addButtonOrange _add_new_slide_options&#x27;);
+  showEverythingOutCurrentSlide();
+}
+
+&#x2F;**
+* Stop video and audio playing into current slide, 
+* usually only one kind of media is present into current slide
+* 
+* @method stopMediaInCurrentSlide
+* @for stopMediaInCurrentSlide
+*&#x2F;
+function stopMediaInCurrentSlide() {
+  var current_slide_id = $(&#x27;li._lesson_editor_current_slide&#x27;).attr(&#x27;id&#x27;);
+  stopMedia(&#x27;#&#x27; + current_slide_id + &#x27; audio&#x27;);
+  stopMedia(&#x27;#&#x27; + current_slide_id + &#x27; video&#x27;);
+}
+
+&#x2F;**
+* Inizialize jQueryUI _sortable_ function on top navigation numbers,
+* so that they can be sorted
+* 
+* @method initializeSortableNavs
+* @for initializeSortableNavs
+*&#x2F;
+function initializeSortableNavs() {
+  $(&quot;#heading, #heading .scroll-pane&quot;).css(&quot;width&quot;, (parseInt($(window).outerWidth())-50) + &quot;px&quot;);
+  var slides_numbers = $(&#x27;#slide-numbers&#x27;);
+  var slides_amount = slides_numbers.find(&quot;li.navNumbers&quot;).length;
+  slides_numbers.css(&#x27;width&#x27;, &#x27;&#x27;+((parseInt(slides_amount + 1) * 32)-28) + &#x27;px&#x27;);
+  var add_last_button = $(&quot;._add_new_slide_options_in_last_position&quot;);
+  if(parseInt(slides_numbers.css(&#x27;width&#x27;)) &lt; (parseInt($(window).outerWidth())-100)){
+    add_last_button.css(&quot;left&quot;, &quot;&quot;+(slides_numbers.find(&quot;li.navNumbers&quot;).last().position().left + 40)+&quot;px&quot;); 
+  }
+  slides_numbers.sortable({
+    items: &#x27;._slide_nav_sortable&#x27;,
+    axis: &#x27;x&#x27;,
+    stop: function(event, ui) {
+      var previous = ui.item.prev();
+      var new_position = 0;
+      var old_position = parseInt(ui.item.find(&#x27;a._slide_nav&#x27;).html());
+      if(parseInt(previous.find(&#x27;a._slide_nav&#x27;).html()) == 1) {
+        new_position = 2;
+      } else {
+        var previous_item_position = parseInt(previous.find(&#x27;a._slide_nav&#x27;).html());
+        if(old_position &gt; previous_item_position) {
+          new_position = previous_item_position + 1;
+        } else {
+          new_position = previous_item_position;
+        }
+      }
+      saveCurrentSlide();
+      if(old_position != new_position) {
+        stopMediaInCurrentSlide();
+        $.ajax({
+          type: &#x27;post&#x27;,
+          url: &#x27;&#x2F;lessons&#x2F;&#x27; + $(&#x27;#info_container&#x27;).data(&#x27;lesson-id&#x27;) + &#x27;&#x2F;slides&#x2F;&#x27; + ui.item.find(&#x27;a._slide_nav&#x27;).data(&#x27;slide-id&#x27;) + &#x27;&#x2F;move&#x2F;&#x27; + new_position
+        });
+      } else {
+        slideTo(ui.item.find(&#x27;a._slide_nav&#x27;).data(&#x27;slide-id&#x27;));
+      }
+    }
+  });
+}
+
+&#x2F;**
+* Inizialize jQueryUI _draggable_ function on slide image containers.
+* 
+* @method makeDraggable
+* @for makeDraggable
+* @param place_id {Number} media element id
+* @example
+      &#x60;makeDraggable(&#x27;media_element_1_in_slide_43&#x27;);&#x60;
+*&#x2F;
+function makeDraggable(place_id) {
+  var full_place = $(&#x27;#&#x27; + place_id + &#x27; ._full_image_in_slide&#x27;);
+  var axe = &#x27;x&#x27;;
+  if(full_place.hasClass(&#x27;_mask_y&#x27;)) {
+    axe = &#x27;y&#x27;;
+  }
+  var image = $(&#x27;#&#x27; + place_id + &#x27;  ._full_image_in_slide img&#x27;);
+  var side = &quot;&quot;;
+  var maskedImgWidth;
+  var maskedImgHeight;
+  var dist;
+  if(axe == &quot;x&quot;) {
+    maskedImgWidth = image.attr(&#x27;width&#x27;);
+    dist = maskedImgWidth - full_place.width();
+    side = &quot;left&quot;;
+  } else {
+    maskedImgHeight = image.attr(&#x27;height&#x27;);
+    side = &quot;top&quot;;
+    dist = maskedImgHeight - full_place.height();
+  }
+  $(&#x27;#&#x27; + place_id + &#x27; ._full_image_in_slide ._rolloverable&#x27;).draggable({
+    axis: axe,
+    distance: 10,
+    start: function() {
+      $(&#x27;#&#x27; + place_id + &#x27; ._rolloverable&#x27;).data(&#x27;rolloverable&#x27;, false);
+      $(&#x27;#&#x27; + place_id + &#x27; span&#x27;).hide();
+    },
+    stop: function() {
+      $(&#x27;#&#x27; + place_id + &#x27; ._rolloverable&#x27;).data(&#x27;rolloverable&#x27;, true);
+      $(&#x27;#&#x27; + place_id + &#x27; span&#x27;).show();
+      var thisDrag = $(this);
+      var offset = thisDrag.css(side);
+      if(parseInt(offset) &gt; 0) {
+        offset = 0;
+        if(side==&quot;left&quot;) {
+          thisDrag.animate({
+            left: &quot;0&quot;
+          }, 100);
+        } else {
+          thisDrag.animate({
+            top: &quot;0&quot;
+          }, 100);
+        }
+      } else {
+        if(parseInt(offset) &lt; -(parseInt(dist))) {
+          offset = -parseInt(dist);
+          if(side==&quot;left&quot;) {
+            thisDrag.animate({
+              left: &quot;-&quot; + dist + &quot;px&quot;
+            }, 100);
+          } else {
+            thisDrag.animate({
+              top: &quot;-&quot; + dist + &quot;px&quot;
+            }, 100);
+          }
+        }
+      }
+      $(&#x27;#&#x27; + place_id + &#x27; ._input_align&#x27;).val(parseInt(offset));
+    }
+  });
+}
+
+&#x2F;**
+* Submit serialized form data for current slide
+* 
+* @method submitCurrentSlideForm
+* @for submitCurrentSlideForm
+*&#x2F;
+function submitCurrentSlideForm() {
+  $.ajax({
+    type: &quot;POST&quot;,
+    url: $(&#x27;._lesson_editor_current_slide form&#x27;).attr(&#x27;action&#x27;),
+    timeout:5000,
+    data: $(&#x27;._lesson_editor_current_slide form&#x27;).serialize(),
+    beforeSend: unbindLoader()
+  }).always(bindLoader);
+}
+
+&#x2F;**
+* Save current slide. It sends tinyMCE editor content to form data to be serialized, 
+* it handles form placeholders.
+*
+* Uses: [submitCurrentSlideForm](..&#x2F;classes&#x2F;submitCurrentSlideForm.html#method_submitCurrentSlideForm)
+* 
+* @method saveCurrentSlide
+* @for saveCurrentSlide
+*&#x2F;
+function saveCurrentSlide() {
+  tinyMCE.triggerSave();
+  var temporary = new Array();
+  var temp_counter = 0;
+  $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
+    if($(this).data(&#x27;placeholder&#x27;)) {
+      temporary[temp_counter] = $(this).val();
+      temp_counter++;
+      $(this).val(&#x27;&#x27;);
+    }
+  });
+  submitCurrentSlideForm();
+  temp_counter = 0;
+  $(&#x27;._lesson_editor_current_slide ._lesson_editor_placeholder&#x27;).each(function() {
+    if($(this).data(&#x27;placeholder&#x27;)) {
+      $(this).val(temporary[temp_counter]);
+      temp_counter++;
+    }
+  });
+}
+
+&#x2F;**
+* Asynchronous slide loading. 
+* It is called when the current slide is not loaded yet.
+* 
+* @method loadSlideInLessonEditor
+* @for loadSlideInLessonEditor
+* @param slide {String} slide object id
+* @example
+      &#x60;loadSlideInLessonEditor($(&#x27;#slide_in_lesson_editor_33&#x27;));&#x60;
+*&#x2F;
+function loadSlideInLessonEditor(slide) {
+  if(slide.length &gt; 0 &amp;&amp; !slide.data(&#x27;loaded&#x27;)) {
+    $.ajax({
+      type: &#x27;get&#x27;,
+      url: &#x27;&#x2F;lessons&#x2F;&#x27; + $(&#x27;#info_container&#x27;).data(&#x27;lesson-id&#x27;) + &#x27;&#x2F;slides&#x2F;&#x27; + slide.data(&#x27;slide-id&#x27;) + &#x27;&#x2F;load&#x27;
+    })
+  }
+}
+
+&#x2F;**
+* Asynchronously loads current slide, previous and following if any of these aren&#x27;t loaded yet.
+*
+* Uses: [loadSlideInLessonEditor](..&#x2F;classes&#x2F;loadSlideInLessonEditor.html#method_loadSlideInLessonEditor)
+* 
+* @method loadSlideAndAdhiacentInLessonEditor
+* @for loadSlideAndAdhiacentInLessonEditor
+* @param slide_id {Number} slide id
+*&#x2F;
+function loadSlideAndAdhiacentInLessonEditor(slide_id) {
+  var slide = $(&#x27;#slide_in_lesson_editor_&#x27; + slide_id);
+  loadSlideInLessonEditor(slide);
+  loadSlideInLessonEditor(slide.prev());
+  loadSlideInLessonEditor(slide.next());
+}
+
+&#x2F;**
+* Slide to current slide, update current slide in top navigation.
+*
+* Uses: [loadSlideAndAdhiacentInLessonEditor](..&#x2F;classes&#x2F;loadSlideAndAdhiacentInLessonEditor.html#method_loadSlideAndAdhiacentInLessonEditor)
+* 
+* @method slideTo
+* @for slideTo
+* @param slide_id {Number} slide id
+* @param callback {Object} callback function
+*&#x2F;
+function slideTo(slide_id, callback) {
+  loadSlideAndAdhiacentInLessonEditor(slide_id);
+  var slide = $(&#x27;#slide_in_lesson_editor_&#x27; + slide_id);
+  var position = slide.data(&#x27;position&#x27;);
+  if (position == 1) {
+    marginReset = 0;
+  } else {
+    marginReset = (-((position - 1) * 1010)) + &quot;px&quot;;
+  }
+  $(&quot;ul#slides&quot;).animate({
+    marginLeft: marginReset
+  }, 1500, function() {
+    if(typeof(callback) != &#x27;undefined&#x27;) {
+      callback();
+    }
+  });
+  $(&quot;ul#slides li&quot;).animate({
+    opacity: 0.4,
+  }, 150, function() {
+    $(this).find(&#x27;.buttons&#x27;).fadeOut();
+    if($(this).find(&#x27;layer&#x27;).length == 0) {
+      $(this).prepend(&#x27;&lt;layer class=&quot;_not_current_slide&quot;&gt;&lt;&#x2F;layer&gt;&#x27;);
+    } else {
+      if($(this).find(&#x27;layer._not_current_slide_disabled&#x27;).length &gt; 0) {
+        $(this).find(&#x27;layer._not_current_slide_disabled&#x27;).removeClass(&#x27;_not_current_slide_disabled&#x27;).addClass(&#x27;_not_current_slide&#x27;);
+      }
+    }
+    $(&#x27;a._lesson_editor_current_slide_nav&#x27;).removeClass(&#x27;_lesson_editor_current_slide_nav active&#x27;);
+    $(&#x27;#slide_in_nav_lesson_editor_&#x27; + slide_id).addClass(&#x27;_lesson_editor_current_slide_nav active&#x27;);
+  });
+  $(&#x27;ul#slides li:eq(&#x27; + (position - 1) + &#x27;)&#x27;).animate({
+    opacity: 1,
+  }, 500, function() {
+    $(this).find(&quot;.buttons&quot;).fadeIn();
+    $(this).find(&#x27;layer&#x27;).remove();
+    $(&#x27;li._lesson_editor_current_slide&#x27;).removeClass(&#x27;_lesson_editor_current_slide active&#x27;);
+    $(&#x27;#slide_in_lesson_editor_&#x27; + slide_id).addClass(&#x27;_lesson_editor_current_slide active&#x27;);
+  });
+}
+
+&#x2F;**
+* Initialize slides position to center
+*
+* @method initLessonEditorPositions
+* @for initLessonEditorPositions
+*&#x2F;
+function initLessonEditorPositions() {
+  WW = parseInt($(window).outerWidth());
+  WH = parseInt($(window).outerHeight());
+  $(&quot;#main&quot;).css(&quot;width&quot;, WW);
+  $(&quot;ul#slides&quot;).css(&quot;width&quot;,(($(&quot;ul#slides li&quot;).length + 2) * 1000) );
+  $(&quot;ul#slides&quot;).css(&quot;top&quot;, ((WH &#x2F; 2) - 295) + &quot;px&quot;);
+  $(&quot;ul#slides.new&quot;).css(&quot;top&quot;, ((WH &#x2F; 2) - 335) + &quot;px&quot;)
+  $(&quot;#footer&quot;).css(&quot;top&quot;, (WH - 40) + &quot;px&quot;).css(&quot;width&quot;, (WW - 24) + &quot;px&quot;)
+  if(WW &gt; 1000) {
+    $(&quot;ul#slides li:first&quot;).css(&quot;margin-left&quot;, ((WW - 900) &#x2F; 2) + &quot;px&quot;)
+    $(&quot;ul#slides.new li:first&quot;).css(&quot;margin-left&quot;, ((WW - 900) &#x2F; 2) + &quot;px&quot;);
+  }
+}
+
+&#x2F;**
+* TinyMCE callback to show warning when texearea content exceeds the available space.
+* Add a red border to the textarea
+*
+* Add this function on tinyMCE setup.
+*
+* @method tinyMceCallbacks
+* @for tinyMceCallbacks
+* @param inst {Object} tinyMCE body instance
+* @param tiny_id {Number} tinyMCE textarea id
+* @example
+      setup: function(ed) {
+        ed.onKeyUp.add(function(ed, e) {
+          tinyMceCallbacks(ed,tiny_id);
+        });
+      }
+*&#x2F;
+function tinyMceCallbacks(inst,tiny_id){
+  var maxH = 422;
+  if($(&quot;textarea#&quot;+tiny_id).parent(&#x27;.audio-content&#x27;).length &gt; 0){
+    maxH = 324;
+  }
+  
+  if (inst.getBody().scrollHeight &gt; maxH) {
+    $(inst.getBody()).parentsUntil(&quot;table.mceLayout&quot;).css(&quot;border&quot;,&quot;1px solid red&quot;);
+  } else {
+    $(inst.getBody()).parentsUntil(&quot;table.mceLayout&quot;).css(&quot;border&quot;,&quot;1px solid white&quot;);
+  }
+  
+}
+
+&#x2F;**
+* TinyMCE keyDown callback to fix list item style.
+* It adds same style of list item text to list numbers or dots.
+*
+* Add this function on tinyMCE setup.
+*
+* @method tinyMceKeyDownCallbacks
+* @for tinyMceKeyDownCallbacks
+* @param inst {Object} tinyMCE body instance
+* @param tiny_id {Number} tinyMCE textarea id
+* @example
+      setup: function(ed) {
+        ed.onKeyDown.add(function(ed, e) {
+          tinyMceKeyDownCallbacks(ed,tiny_id);
+        });
+      }
+*&#x2F;
+function tinyMceKeyDownCallbacks(inst,tiny_id){
+  var spans = $(inst.getBody()).find(&quot;li span&quot;);
+  spans.each(function(){
+    var span = $(this);
+    span.parents(&#x27;li&#x27;).removeAttr(&#x27;class&#x27;);
+    span.parents(&#x27;li&#x27;).addClass(span.attr(&#x27;class&#x27;));
+    span.parentsUntil(&#x27;li&#x27;).attr(&#x27;style&#x27;,span.attr(&#x27;style&#x27;));
+  });
+}
+
+&#x2F;**
+* Re-initialize slides position to center after ajax events
+*
+* @method reInitializeSlidePositionsInLessonEditor
+* @for reInitializeSlidePositionsInLessonEditor
+*&#x2F;
+function reInitializeSlidePositionsInLessonEditor() {
+  $(&quot;ul#slides&quot;).css(&quot;width&quot;,(($(&quot;ul#slides li&quot;).length+2) * 1000));
+  $(&#x27;ul#slides li&#x27;).each(function(index){
+    $(this).data(&#x27;position&#x27;, (index + 1));
+  });
+}
+
+&#x2F;**
+* Initialize tinyMCE editor for a single textarea
+*
+* Uses: [tinyMceKeyDownCallbacks](..&#x2F;classes&#x2F;tinyMceKeyDownCallbacks.html#method_tinyMceKeyDownCallbacks) 
+* and [tinyMceCallbacks](..&#x2F;classes&#x2F;tinyMceCallbacks.html#method_tinyMceCallbacks) 
+* 
+* @method initTinymce
+* @for initTinymce
+* @param tiny_id {Number} tinyMCE textarea id
+*&#x2F;
+function initTinymce(tiny_id) {
+  tinyMCE.init({
+    mode: &#x27;exact&#x27;,
+    elements: tiny_id,
+    theme: &quot;advanced&quot;,
+    editor_selector: &quot;tinymce&quot;,
+    skin: &quot;desy&quot;,
+    content_css: &quot;&#x2F;assets&#x2F;tiny_mce_desy.css&quot;,
+    plugins: &quot;pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,tiny_mce_wiris&quot;,
+    theme_advanced_buttons1: &quot;fontsizeselect,forecolor,justifyleft,justifycenter,justifyright,justifyfull,bold,italic,underline,numlist,bullist,link,unlink,tiny_mce_wiris_formulaEditor&quot;,
+    theme_advanced_toolbar_location: &quot;external&quot;,
+    theme_advanced_toolbar_align: &quot;left&quot;,
+    theme_advanced_statusbar_location: false,
+    theme_advanced_resizing: true,
+    theme_advanced_font_sizes: &quot;1em=.size1,2em=.size2,3em=.size3,4em=.size4,5em=.size5,6em=.size6,7em=.size7&quot;,
+    setup: function(ed) {
+      ed.onKeyUp.add(function(ed, e) {
+        tinyMceCallbacks(ed,tiny_id);
+      });
+      ed.onKeyDown.add(function(ed, e) {
+        tinyMceKeyDownCallbacks(ed,tiny_id);
+      });
+      ed.onClick.add(function(ed, e) {
+        var textarea = $(&#x27;#&#x27; + tiny_id);
+        if(textarea.data(&#x27;placeholder&#x27;)) {
+          ed.setContent(&#x27;&#x27;);
+          textarea.data(&#x27;placeholder&#x27;, false);
+        }
+      });
+    }
+  });
+  &#x2F;&#x2F;TODO Make this work without closing on toolbar click
+  &#x2F;&#x2F;$(&#x27;body&#x27;).on(&quot;click&quot;,&quot;.slides.active .slide-content&quot;, function(e){
+  &#x2F;&#x2F;  $(&#x27;.mceExternalToolbar&#x27;).hide();
+  &#x2F;&#x2F;});
+  &#x2F;&#x2F;$(&#x27;body&#x27;).on(&quot;click&quot;,&#x27;textarea.tinymce&#x27;,function(){
+  &#x2F;&#x2F;  $(&#x27;.mceExternalToolbar&#x27;).show();
+  &#x2F;&#x2F;});
+}
+
+&#x2F;**
+* Show error message when somethings goes wrong
+*
+* @method slideError
+* @for slideError
+*&#x2F;
+function slideError() {
+  $(&quot;body&quot;).prepend(&quot;&lt;span class=&#x27;_slide_error&#x27;&gt;&lt;&#x2F;span&gt;&quot;);
+  centerThis(&quot;._slide_error&quot;);
+  $(&quot;._slide_error&quot;).fadeTo(&#x27;fast&#x27;, 0).fadeTo(&#x27;fast&#x27;, 0.7).fadeTo(&#x27;fast&#x27;, 0.3).fadeOut();
+}
+
+&#x2F;**
+* Check if image ratio is bigger then kind ratio
+*
+* @method isHorizontalMask
+* @for isHorizontalMask
+* @param image_width {Number}
+* @param image_height {Number}
+* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+* @return {Boolean} true if image ratio is bigger then kind ratio
+*&#x2F;
+function isHorizontalMask(image_width, image_height, kind){
+  var ratio = image_width&#x2F;image_height;
+  var slideRatio = 0;
+  switch(kind) {
+    case &quot;cover&quot;: slideRatio = 1.6;
+    break;
+    case &quot;image1&quot;: slideRatio = 1;
+    break;
+    case &quot;image2&quot;: slideRatio = 0.75;
+    break;
+    case &quot;image3&quot;: slideRatio = 1.55;
+    break;
+    case &quot;image4&quot;: slideRatio = 1.55;
+    break;
+    default: slideRatio = 1.5;
+  }
+  return (ratio &gt;= slideRatio);
+}
+
+&#x2F;**
+* Sets scaled width to slide images
+*
+* @method resizeWidth
+* @for resizeWidth
+* @param image_width {Number}
+* @param image_height {Number}
+* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+* @return {Number} scaled width
+*&#x2F;
+function resizeWidth(width, height, kind){
+  switch(kind) {
+   case &quot;cover&quot;: slideHeight = 560;
+   break;
+   case &quot;image1&quot;: slideHeight = 420;
+   break;
+   case &quot;image2&quot;: slideHeight = 550;
+   break;
+   case &quot;image3&quot;: slideHeight = 550;
+   break;
+   case &quot;image4&quot;: slideHeight = 265;
+   break;
+   default: slideHeight = 590;
+  }
+  return (width*slideHeight)&#x2F;height;
+}
+ 
+&#x2F;**
+* Sets scaled height to slide images
+*
+* @method resizeHeight
+* @for resizeHeight
+* @param image_width {Number}
+* @param image_height {Number}
+* @param kind {String} type image into slide, acceptes values: cover, image1, image2, image3, image4
+* @return {Number} scaled height
+*&#x2F; 
+function resizeHeight(width,height,kind){
+  switch(kind) {
+   case &quot;cover&quot;: slideWidth = 900;
+   break;
+   case &quot;image1&quot;: slideWidth = 420;
+   break;
+   case &quot;image2&quot;: slideWidth = 420;
+   break;
+   case &quot;image3&quot;: slideWidth = 860;
+   break;
+   case &quot;image4&quot;: slideWidth = 420;
+   break;
+   default: slideWidth = 900;
+  }
+  return (height*slideWidth)&#x2F;width;
+}
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

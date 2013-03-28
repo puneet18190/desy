@@ -1,5 +1,72 @@
 require 'lessons_media_elements_shared'
 
+# == Description
+#
+# ActiveRecord class that corresponds to the table +lessons+.
+#
+# == Fields
+#
+# * *user_id*: id of the creator of the lesson
+# * *school_level_id*: id of the school level of the lesson (which corresponds to the school level of its creator)
+# * *subject_id*: id of the subject of the lesson
+# * *title*: title
+# * *description*: description
+# * *is_public*: +true+ if the lesson is visible by other users
+# * *parent_id*: reference to another lesson, from which the current lesson has been copied. The value is +nil+ if the lesson hasn't been copied
+# * *copied_not_modified*: boolean, set to +true+ only for lessons just copied and not modified yet
+# * *token*: token used in the public url of the lesson. Without this token, if the lesson is private, the only user who can see it is the creator
+# * *metadata*: contains two keys:
+#   * +available_video+: true if the lesson doesn't contain any video in conversion
+#   * +available_audio+: true if the lesson doesn't contain any audio in conversion
+# * *notified*: boolean, set to false only if the lesson has been modified and its modification not notified to users who have a link of the lesson
+#
+# == Associations
+#
+# * *user*: reference to the User who created the lesson (*belongs_to*).
+# * *subject*: Subject associated to the lesson (*belongs_to*).
+# * *school_level*: SchoolLevel associated to the creator of the lesson and for transitivity to the lesson (*belongs_to*).
+# * *parent*: original lesson from which the lesson was copied (*belongs_to*).
+# * *copies*: lessons copied by this lesson (*has_many*).
+# * *bookmarks*: links created by other users to this lesson (see Bookmark) (*has_many*).
+# * *likes*: likes on the lesson (see Like) (*has_many*).
+# * *reports*: reports on the lesson (see Report) (*has_many*).
+# * *taggings*: tags associated to the lesson (see Tagging, Tag) (*has_many*).
+# * *slides*: slides composing the lesson (see Slide) (*has_many*).
+# * *media_elements_slides*: list of instances of media elements inside slides of this lesson (see MediaElementsSlide) (through the class Slide) (*has_many*).
+# * *media_elements*: list of media elements attached to slides of this lesson (see MediaElement) (through the class Slide and MediaElementsSlide) (*has_many*).
+# * *virtual_classroom_lessons*: copies of this lesson into the Virtual Classroom of the creator or other users (see VirtualClassroomLesson) (*has_many*).
+#
+# == Validations
+#
+# * *presence* with numericality and existence of associated record for +user_id+, +subject_id+, +school_level_id+
+# * *presence* for +title+ and +description+
+# * *presence* of associated element, numericality for +parent_id+ and +parent_id+ must different by +id+, <b>only if different by nil</b>
+# * *inclusion* of +is_public+, +copied_not_modified+, +notified+ in [+true+, +false+]
+# * *length* of +title+ and +description+ (values configured in the I18n translation file)
+# * *uniqueness* of the couple [+parent_id+, +user_id+] <b>if +parent_id+ is not null</b>
+# * *if* *new* *record* +is_public+ must be false
+# * *if* *public* +copied_not_modified+ must be false
+# * *modifications* *not* *available* for the +user_id+, +parent_id+, +token+
+# * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
+#
+# == Callbacks
+#
+# 1. *before_destroy* destroys associated bookmarks (see Bookmark)
+# 2. *before_destroy* destroys associated likes (see Like)
+# 3. *before_destroy* destroys associated reports (see Report)
+# 4. *before_destroy* destroys associated taggings (see Tagging)
+# 5. *before_create* initializes both metadata values to +true+
+# 6. *before_create* creates a random encoded string and writes it in +token+
+# 7. *after_save* creates or updates the cover slide
+# 8. *after_save* updates taggings associated to the lesson (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+
+#
+# == Database callbacks
+#
+# 1. *cascade* *destruction* for the associated table Like
+# 2. *cascade* *destruction* for the associated table Slide
+# 3. *cascade* *destruction* for the associated table VirtualClassroomLesson
+# 4. *set* *null* *on* *destruction* on the column +parent_id+ of all the lessons copied by the current lesson
+#
 class Lesson < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   extend LessonsMediaElementsShared
@@ -7,7 +74,6 @@ class Lesson < ActiveRecord::Base
   attr_accessible :subject_id, :school_level_id, :title, :description
   attr_reader :is_reportable
   attr_writer :validating_in_form
-  attr_accessor :skip_public_validations, :skip_cover_creation
   
   serialize :metadata, OpenStruct
   
@@ -49,11 +115,18 @@ class Lesson < ActiveRecord::Base
     order('COALESCE(bookmarks.created_at, lessons.updated_at) DESC')
   end
   
-  def initialize_metadata
-    self.metadata.available_video = true
-    self.metadata.available_audio = true
-  end
-  
+  # === Description
+  #
+  # Send a notification (containing the details of modifications) to all the users who have a link of the lesson. This method is called only if the link was created *before* that the lesson was modified. The method also sets +notified+ as +true+.
+  #
+  # === Args
+  #
+  # * *msg*: details of the modifications
+  #
+  # === Returns
+  #
+  # A boolean.
+  #
   def notify_changes(msg)
     Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).each do |bo|
       if msg.blank?
@@ -66,17 +139,45 @@ class Lesson < ActiveRecord::Base
     self.save
   end
   
+  # === Description
+  #
+  # Sets +notified+ as +true+ without sending the notification of modifications (see Lesson#notify_changes).
+  #
+  # === Returns
+  #
+  # A boolean.
+  #
   def dont_notify_changes
     self.notified = true
     self.save
   end
   
+  # === Description
+  #
+  # Checks whether the user needs to notify modifications to other users who have a link of the lesson.
+  #
+  # === Returns
+  #
+  # A boolean.
+  #
   def not_notified?
     return false if self.status.nil?
     !self.notified && Bookmark.where('bookmarkable_type = ? AND bookmarkable_id = ? AND created_at < ?', 'Lesson', self.id, self.updated_at).any?
   end
   
-  def available?(type = nil)
+  # === Description
+  #
+  # Checks whether the lesson is available for editing in the Lesson Editor (if at least one between +metadata+.+available_audio+ and +metadata+.+available_video+ is false, the lesson is not available)
+  #
+  # === Args
+  #
+  # * *type*: if the parameter is inserted explicitly, the methods returns only the value for the specific type; otherwise it returns +available_video+ && +available_audio+.
+  #
+  # === Returns
+  #
+  # A boolean.
+  #
+  def available?(type=nil)
     case type = type.to_s.downcase
     when 'video', 'audio'
       metadata.send :"available_#{type}"
@@ -85,15 +186,40 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  def available!(type, value = true)
+  # === Description
+  #
+  # Sets the value of one of the two metadata (+available_video+ or +available_audio+).
+  #
+  # === Args
+  #
+  # * *type*: used to select which of the two metadata is going to be set
+  # * *value*: +true+ for default.
+  #
+  def available!(type, value=true)
     metadata.send :"available_#{type.to_s.downcase}=", !!value
     update_attribute(:metadata, metadata)
   end
   
+  # === Description
+  #
+  # Used as (unproper) substitute for the attr_reader relative to the attribute +tags+: it extracts the tags directly from the database
+  #
+  # === Returns
+  #
+  # An array of Tag objects.
+  #
   def tags
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'Lesson')
   end
   
+  # === Description
+  #
+  # Used as (unproper) substitute for the attribute writer relative to the attribute +tags+: the attribute +tags+ is filled with a string of words separated by comma. During the validation, +tags+ is converted in another attribute called +inner_tags+: this attribute is an array of objects of type Tag (if the tag doesn't exist yet, the object is new_record) ready to be saved together with their taggings in the +after_save+ validation.
+  #
+  # === Args
+  #
+  # Either an array of strings, or a string of words separated by comma
+  #
   def tags=(tags)
     @tags = 
       case tags
@@ -105,11 +231,31 @@ class Lesson < ActiveRecord::Base
     @tags
   end
   
+  # === Description
+  #
+  # Returns the cover slide of the lesson.
+  #
+  # === Returns
+  #
+  # An object of type Slide, or +nil+ if the lesson is new_record
+  #
   def cover
     return nil if self.new_record?
     Slide.where(:kind => Slide::COVER, :lesson_id => self.id).first
   end
   
+  # === Description
+  #
+  # Checks whether the dashboard of a particular user is empty because he picked all the suggested lessons and not because the database is empty.
+  #
+  # === Args
+  #
+  # * *user_id*: the id of a User
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def self.dashboard_emptied?(an_user_id)
     subject_ids = []
     UsersSubject.where(:user_id => an_user_id).each do |us|
@@ -118,10 +264,30 @@ class Lesson < ActiveRecord::Base
     Bookmark.joins("INNER JOIN lessons ON lessons.id = bookmarks.bookmarkable_id AND bookmarks.bookmarkable_type = 'Lesson'").where('lessons.is_public = ? AND lessons.user_id != ? AND lessons.subject_id IN (?) AND bookmarks.user_id = ?', true, an_user_id, subject_ids, an_user_id).any?
   end
   
+  # === Description
+  #
+  # Substitute for the attr_reader relative to the attribute +status+.
+  #
+  # === Args
+  #
+  # * *with_captions*: if +true+ returns the translated caption of the status (this means that it's used in the front-end), otherwise it returns the status keyword (for default).
+  #
+  # === Returns
+  #
+  # A string, or a keyword representing the status (see Statuses)
+  #
   def status(with_captions=false)
     @status.nil? ? nil : (with_captions ? Lesson.status(@status) : @status)
   end
   
+  # === Description
+  #
+  # This function fills the attributes is_reportable, status, in_vc and linked (the last three being private). If the model has the four of these attributes different by +nil+, it means that the lesson has a status and the application knows which functionalities are available for the user who requested the lesson. If the status is +nil+, it means that the user can't see that lesson.
+  #
+  # === Args
+  #
+  # * *an_user_id*: the id of the user who is asking permission to see the lesson.
+  #
   def set_status(an_user_id)
     return if self.new_record?
     if !self.is_public && !self.copied_not_modified && an_user_id == self.user_id
@@ -145,8 +311,17 @@ class Lesson < ActiveRecord::Base
     end
     @in_vc = self.in_virtual_classroom?(an_user_id)
     @liked = self.liked?(an_user_id)
+    true
   end
   
+  # === Description
+  #
+  # Returns the list of buttons available for the user who wants to see this lesson. If the lesson status hasn't been set yet for that user, or the lesson is not visible for him, it returns an empty array.
+  #
+  # === Returns
+  #
+  # An array of keywords representing buttons (see Buttons)
+  #
   def buttons
     return [] if [@status, @in_vc, @liked, @is_reportable].include?(nil)
     case @status
@@ -165,11 +340,39 @@ class Lesson < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Checks if the lesson has a bookmark for a particular user
+  #
+  # === Args
+  #
+  # * *an_user_id*: the id of the User
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def bookmarked?(an_user_id)
     return false if self.new_record?
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'Lesson', :bookmarkable_id => self.id).any?
   end
   
+  # === Description
+  #
+  # Creates a copy of the lesson for a particular user. First, it checks if that user is allowed to copy the lesson (he must be the owner of the lesson, or alternatively he must have a bookmark for that lesson). Then the method checks if the user hasn't already copied the lesson. Then it copies, in sequence:
+  # 1. the lesson with the cover
+  # 2. the slides (see Slide)
+  # 3. the media elements attached (see MediaElementsSlide)
+  # 4. the tags (see Tagging)
+  #
+  # === Args
+  #
+  # * *an_user_id*: the id of the User who is copying the lesson
+  #
+  # === Returns
+  #
+  # If the process ended correctly, the object of the new lesson,  otherwise +nil+
+  #
   def copy(an_user_id)
     errors.clear
     if self.new_record? || User.where(:id => an_user_id).empty? || (!self.is_public && self.user_id != an_user_id) || (self.is_public && self.user_id != an_user_id && Bookmark.where(:bookmarkable_type => 'Lesson', :bookmarkable_id => self.id, :user_id => an_user_id).empty?)
@@ -240,20 +443,40 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Returns a string of tags separated by comma and space ("tag1, tag2, tag3"), by calling a class method of Tag. This is necessary for the front end, since in the backend tags are managed without spaces and with two additional commas in the beginning and in the end of the string (",tag1,tag2,tag3,")
+  #
+  # === Returns
+  #
+  # A string
+  #
   def visive_tags
     Tagging.visive_tags(self.tags)
   end
   
-  def modified
-    self.copied_not_modified = false
-  end
-  
+  # === Description
+  #
+  # A method that sets all the fields that must be updated at any time the lesson or one of its slides is modified (that is, this method is related to the models Lesson, Slide and MediaElementsSlide).
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def modify
     self.copied_not_modified = false
     self.notified = false
     self.save
   end
   
+  # === Description
+  #
+  # Sets +is_public+ as +true+ for the lesson and for each private MediaElement attached to the lesson through MediaElementsSlide and Slide.
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def publish
     errors.clear
     pub_date = Time.zone.now
@@ -298,6 +521,14 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Sets +is_public+ as +false+, deletes all bookmarks (see Bookmark) and copies in Virtual Classroom (see VirtualClassroomLesson) associated to the present lesson. Also, sends a notification to all the user who lost a bookmark of the lesson.
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def unpublish
     errors.clear
     if self.new_record?
@@ -332,6 +563,14 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Destroys the lesson and sends notifications to the users who had a Bookmark of it (the bookmarks are destroyed by the +before_destroy+ callback).
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def destroy_with_notifications
     errors.clear
     if self.new_record?
@@ -357,6 +596,19 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Adds a slide of a specific type.
+  #
+  # === Args
+  #
+  # * *kind*: the template chosen for the new slide
+  # * *position*: the position in which the new slide must be inserted
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def add_slide(kind, position)
     if self.new_record? || !Slide::KINDS_WITHOUT_COVER.include?(kind)
       return nil
@@ -373,10 +625,30 @@ class Lesson < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Checks if the maximum number of slides has been reached by this lesson (this number is configured in settings.yml)
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def reached_the_maximum_of_slides?
     Slide.where(:lesson_id => self.id).count == SETTINGS['max_number_slides_in_a_lesson']
   end
   
+  # === Description
+  #
+  # Creates a record of VirtualClassroomLesson for this lesson. First it checks whether the record can be created or not (for instance, it is not possible if the user is not owner of the lesson and doesn't have a bookmark for it)
+  #
+  # === Args
+  #
+  # * *an_user_id*: the id of the User who is adding the lesson to his Virtual Classroom
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def add_to_virtual_classroom(an_user_id)
     errors.clear
     if self.new_record?
@@ -401,6 +673,18 @@ class Lesson < ActiveRecord::Base
     true
   end
   
+  # === Description
+  #
+  # Removes the associated record of VirtualClassroomLesson for a particular User, if any
+  #
+  # === Args
+  #
+  # * *an_user_id*: the id of the User
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def remove_from_virtual_classroom(an_user_id)
     errors.clear
     if self.new_record?
@@ -426,11 +710,35 @@ class Lesson < ActiveRecord::Base
     true
   end
   
+  # === Description
+  #
+  # Checks if the lesson has a corresponding VirtualClassroomLesson for a specific USer
+  #
+  # === Args
+  #
+  # * *an_user_id*: the id of the User
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def in_virtual_classroom?(an_user_id)
     return false if self.new_record?
     VirtualClassroomLesson.where(:user_id => an_user_id, :lesson_id => self.id).any?
   end
   
+  # === Description
+  #
+  # Checks if there is a record of Like for a particular User
+  #
+  # === Args
+  #
+  # * *an_user_id*: the id of the User
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def liked?(an_user_id)
     return false if self.new_record?
     Like.where(:user_id => an_user_id, :lesson_id => self.id).any?
@@ -511,7 +819,6 @@ class Lesson < ActiveRecord::Base
   
   def create_or_update_cover
     if @lesson.nil?
-      return true if skip_cover_creation
       slide = Slide.new :title => self.title, :position => 1
       slide.kind = Slide::COVER
       slide.lesson_id = self.id
@@ -524,7 +831,7 @@ class Lesson < ActiveRecord::Base
   end
   
   def validate_public
-    errors.add(:is_public, :cant_be_true_for_new_records) if @lesson.nil? && self.is_public && !self.skip_public_validations
+    errors.add(:is_public, :cant_be_true_for_new_records) if @lesson.nil? && self.is_public
   end
   
   def validate_copied_not_modified_and_public
@@ -549,6 +856,11 @@ class Lesson < ActiveRecord::Base
     l = find l.id
     _d l
     l.destroy
+  end
+  
+  def initialize_metadata
+    self.metadata.available_video = true
+    self.metadata.available_audio = true
   end
   
 end

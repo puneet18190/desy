@@ -481,15 +481,14 @@ these search methods are not optimized and indicized.</p>
 
         <div class="method-description">
           
-          <h2 id="method-c-search_lessons-label-Description">Description</h2>
+          <h3 id="method-c-search_lessons-label-Description">Description</h3>
 
 <p>Search for lessons</p>
 
-<h2 id="method-c-search_lessons-label-Args">Args</h2>
-<dl class="rdoc-list note-list"><dt><code>params</code>
-<dd>
-<p>Url subparams, under the scope of the keyword &#39;search&#39;: the options
-are</p>
+<h3 id="method-c-search_lessons-label-Args">Args</h3>
+<ul><li>
+<p><strong>params</strong>: url subparams, under the scope of the keyword
+&#39;search&#39;: the options are</p>
 <ul><li>
 <p><code>id</code>: if present the methods filters by id</p>
 </li><li>
@@ -520,16 +519,17 @@ from the constant <a href="AdminSearchForm.html#ORDERINGS">ORDERINGS</a></p>
 <p><code>desc</code>: for default the ordering is <code>ASC</code>, if this
 parameter is present it&#39;s turned to <code>DESC</code></p>
 </li></ul>
-</dd></dl>
+</li></ul>
 
-<h2 id="method-c-search_lessons-label-Returns">Returns</h2>
+<h3 id="method-c-search_lessons-label-Returns">Returns</h3>
 
-<p>An array, not paginated yet, of the lessons found</p>
+<p>An array, not paginated yet, of records of type <a
+href="Lesson.html">Lesson</a></p>
           
 
           
           <div class="method-source-code" id="search_lessons-source">
-            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 70</span>
+            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search_lessons</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;lessons.id AS id, title, subject_id, user_id, lessons.created_at AS created_at, lessons.updated_at AS updated_at, token, lessons.description AS description, (SELECT COUNT (*) FROM likes WHERE likes.lesson_id = lessons.id) AS likes_count&#39;</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:user</span>)
@@ -594,15 +594,14 @@ parameter is present it&#39;s turned to <code>DESC</code></p>
 
         <div class="method-description">
           
-          <h2 id="method-c-search_media_elements-label-Description">Description</h2>
+          <h3 id="method-c-search_media_elements-label-Description">Description</h3>
 
 <p>Search for media elements</p>
 
-<h2 id="method-c-search_media_elements-label-Args">Args</h2>
-<dl class="rdoc-list note-list"><dt><code>params</code>
-<dd>
-<p>Url subparams, under the scope of the keyword &#39;search&#39;: the options
-are</p>
+<h3 id="method-c-search_media_elements-label-Args">Args</h3>
+<ul><li>
+<p><strong>params</strong>: url subparams, under the scope of the keyword
+&#39;search&#39;: the options are</p>
 <ul><li>
 <p><code>id</code>: if present the methods filters by id</p>
 </li><li>
@@ -634,16 +633,17 @@ from the constant <a href="AdminSearchForm.html#ORDERINGS">ORDERINGS</a></p>
 <p><code>desc</code>: for default the ordering is <code>ASC</code>, if this
 parameter is present it&#39;s turned to <code>DESC</code></p>
 </li></ul>
-</dd></dl>
+</li></ul>
 
-<h2 id="method-c-search_media_elements-label-Returns">Returns</h2>
+<h3 id="method-c-search_media_elements-label-Returns">Returns</h3>
 
-<p>An array, not paginated yet, of the media elements found</p>
+<p>An array, not paginated yet, of records of type <a
+href="MediaElement.html">MediaElement</a></p>
           
 
           
           <div class="method-source-code" id="search_media_elements-source">
-            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 137</span>
+            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 135</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search_media_elements</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">MediaElement</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:converted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>
@@ -705,17 +705,16 @@ parameter is present it&#39;s turned to <code>DESC</code></p>
 
         <div class="method-description">
           
-          <h2 id="method-c-search_notifications_users-label-Description">Description</h2>
+          <h3 id="method-c-search_notifications_users-label-Description">Description</h3>
 
 <p>Search for users who are going to receive a massive notification: this
 method is used to update asynchronously the form to send a massive
 notification from the administrator</p>
 
-<h2 id="method-c-search_notifications_users-label-Args">Args</h2>
-<dl class="rdoc-list note-list"><dt><code>params</code>
-<dd>
-<p>Url subparams, under the scope of the keyword &#39;search&#39;: the options
-are</p>
+<h3 id="method-c-search_notifications_users-label-Args">Args</h3>
+<ul><li>
+<p><strong>params</strong>: url subparams, under the scope of the keyword
+&#39;search&#39;: the options are</p>
 <ul><li>
 <p><code>id</code>: if present the methods filters by id</p>
 </li><li>
@@ -738,20 +737,22 @@ user (see settings.yml for the possible names of this parameter)</p>
 <p><code>user_ids</code>: list of users added manually to the list of
 recipients</p>
 </li></ul>
-</dd><dt><code>count_only</code>
-<dd>
-<p>If set to true, the method returns only the number of users</p>
-</dd></dl>
+</li><li>
+<p><strong>count_only</strong>: if set to <code>true</code>, the method
+returns only the number of users; if not otherwise specified, it&#39;s set
+to <code>false</code></p>
+</li></ul>
 
-<h2 id="method-c-search_notifications_users-label-Returns">Returns</h2>
+<h3 id="method-c-search_notifications_users-label-Returns">Returns</h3>
 
 <p>Depending on the value of <code>count_only</code>, either the number of
-records found, or a not paginated array of the users found</p>
+records found, or a not paginated array of records of kind <a
+href="User.html">User</a></p>
           
 
           
           <div class="method-source-code" id="search_notifications_users-source">
-            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 308</span>
+            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 302</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search_notifications_users</span>(<span class="ruby-identifier">params</span>, <span class="ruby-identifier">count_only</span>=<span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">scoped</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:school_level_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:school_level_id</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:school_level_id</span>].<span class="ruby-identifier">present?</span>
@@ -825,15 +826,14 @@ records found, or a not paginated array of the users found</p>
 
         <div class="method-description">
           
-          <h2 id="method-c-search_tags-label-Description">Description</h2>
+          <h3 id="method-c-search_tags-label-Description">Description</h3>
 
 <p>Search for tags</p>
 
-<h2 id="method-c-search_tags-label-Args">Args</h2>
-<dl class="rdoc-list note-list"><dt><code>params</code>
-<dd>
-<p>Url subparams, under the scope of the keyword &#39;search&#39;: the options
-are</p>
+<h3 id="method-c-search_tags-label-Args">Args</h3>
+<ul><li>
+<p><strong>params</strong>: url subparams, under the scope of the keyword
+&#39;search&#39;: the options are</p>
 <ul><li>
 <p><code>id</code>: if present the methods filters by id</p>
 </li><li>
@@ -850,16 +850,16 @@ from the constant <a href="AdminSearchForm.html#ORDERINGS">ORDERINGS</a></p>
 <p><code>desc</code>: for default the ordering is <code>ASC</code>, if this
 parameter is present it&#39;s turned to <code>DESC</code></p>
 </li></ul>
-</dd></dl>
+</li></ul>
 
-<h2 id="method-c-search_tags-label-Returns">Returns</h2>
+<h3 id="method-c-search_tags-label-Returns">Returns</h3>
 
-<p>An array, not paginated yet, of the tags found</p>
+<p>An array, not paginated yet, of objects of type <a href="Tag.html">Tag</a></p>
           
 
           
           <div class="method-source-code" id="search_tags-source">
-            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 268</span>
+            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 264</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search_tags</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">select</span>(<span class="ruby-string">&quot;id, word, created_at, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = &#39;MediaElement&#39;) AS media_elements_count, (SELECT COUNT (*) FROM taggings WHERE taggings.tag_id = tags.id AND taggings.taggable_type = &#39;Lesson&#39;) AS lessons_count&quot;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>
@@ -898,15 +898,14 @@ parameter is present it&#39;s turned to <code>DESC</code></p>
 
         <div class="method-description">
           
-          <h2 id="method-c-search_users-label-Description">Description</h2>
+          <h3 id="method-c-search_users-label-Description">Description</h3>
 
 <p>Search for users</p>
 
-<h2 id="method-c-search_users-label-Args">Args</h2>
-<dl class="rdoc-list note-list"><dt><code>params</code>
-<dd>
-<p>Url subparams, under the scope of the keyword &#39;search&#39;: the options
-are</p>
+<h3 id="method-c-search_users-label-Args">Args</h3>
+<ul><li>
+<p><strong>params</strong>: url subparams, under the scope of the keyword
+&#39;search&#39;: the options are</p>
 <ul><li>
 <p><code>id</code>: if present the methods filters by id</p>
 </li><li>
@@ -939,16 +938,17 @@ from the constant <a href="AdminSearchForm.html#ORDERINGS">ORDERINGS</a></p>
 <p><code>desc</code>: for default the ordering is <code>ASC</code>, if this
 parameter is present it&#39;s turned to <code>DESC</code></p>
 </li></ul>
-</dd></dl>
+</li></ul>
 
-<h2 id="method-c-search_users-label-Returns">Returns</h2>
+<h3 id="method-c-search_users-label-Returns">Returns</h3>
 
-<p>An array, not paginated yet, of the users found</p>
+<p>An array, not paginated yet, of records of type <a
+href="User.html">User</a>.</p>
           
 
           
           <div class="method-source-code" id="search_users-source">
-            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 201</span>
+            <pre><span class="ruby-comment"># File app/models/admin_search_form.rb, line 198</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search_users</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">User</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ordering</span>].<span class="ruby-identifier">present?</span>

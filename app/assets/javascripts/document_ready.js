@@ -956,7 +956,6 @@ $(document).ready(function() {
   $('body').on('click', '._load_media_element', function(e) {
     e.preventDefault();
     showLoadMediaElementPopUp();
-    initFileUploads();
   });
   
   $('body').on('change', 'input#new_media_element_input', function() {
@@ -2063,7 +2062,7 @@ $(document).ready(function() {
   
   // NELLA HOMEPAGE APERTURA AUTOMATICA DELLA FINESTRA DI LOGIN SE C'É L'ATTRIBUTO login NELLA PARTE DELLA QUERY DELL'URL
   
-  if(currentPageIs('prelogin', 'home')) {
+  if($('html').hasClass('prelogin-controller home-action')) {
     var parsedLocation = UrlParser.parse(window.location.href);
     if(_.contains(_.keys(parsedLocation.searchObj), 'login') ) {
       $('._show_login_form_container').click();

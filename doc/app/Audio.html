@@ -511,29 +511,25 @@ href="Media/Shared.html">Media::Shared</a>.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-min_duration-label-Description">Description</h2>
+          <h3 id="method-i-min_duration-label-Description">Description</h3>
 
 <p>Returns the lower integer approximation of the minimum between
 <code>ogg_duration</code> and <code>mp3_duration</code>. This is necessary
 to insert in the html players an integer duration in seconds that can be
 used without risks.</p>
 
-<h2 id="method-i-min_duration-label-Args">Args</h2>
-
-<p>No args required</p>
-
-<h2 id="method-i-min_duration-label-Returns">Returns</h2>
+<h3 id="method-i-min_duration-label-Returns">Returns</h3>
 
 <p>An integer.</p>
 
-<h2 id="method-i-min_duration-label-Usage">Usage</h2>
+<h3 id="method-i-min_duration-label-Usage">Usage</h3>
 
 <pre>&lt;div class=&quot;audioPlayer _instance_of_player&quot; data-media-type=&quot;audio&quot; data-initialized=&quot;false&quot; data-duration=&quot;&lt;%= audio.min_duration %&gt;&quot;&gt;</pre>
           
 
           
           <div class="method-source-code" id="min_duration-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 191</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">min_duration</span>
   [<span class="ruby-identifier">mp3_duration</span>, <span class="ruby-identifier">ogg_duration</span>].<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_i</span>).<span class="ruby-identifier">min</span>
 <span class="ruby-keyword">end</span></pre>
@@ -558,22 +554,18 @@ used without risks.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-mp3_duration-label-Description">Description</h2>
+          <h3 id="method-i-mp3_duration-label-Description">Description</h3>
 
 <p>Returns the float duration in seconds of the mp3 track;</p>
 
-<h2 id="method-i-mp3_duration-label-Args">Args</h2>
+<h3 id="method-i-mp3_duration-label-Returns">Returns</h3>
 
-<p>No args required</p>
-
-<h2 id="method-i-mp3_duration-label-Returns">Returns</h2>
-
-<p>A float number.</p>
+<p>A float.</p>
           
 
           
           <div class="method-source-code" id="mp3_duration-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 121</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mp3_duration</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">mp3_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -598,24 +590,21 @@ used without risks.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-mp3_duration-3D-label-Description">Description</h2>
+          <h3 id="method-i-mp3_duration-3D-label-Description">Description</h3>
 
 <p>Sets the float duration in seconds of the mp3 track;</p>
 
-<h2 id="method-i-mp3_duration-3D-label-Args">Args</h2>
-<dl class="rdoc-list note-list"><dt><code>mp3_duration</code>
-<dd>
-<p>The duration to be set</p>
-</dd></dl>
-
-<h2 id="method-i-mp3_duration-3D-label-Returns">Returns</h2>
-
-<p>Nothing</p>
+<h3 id="method-i-mp3_duration-3D-label-Args">Args</h3>
+<ul><li>
+<p><strong><a
+href="Audio.html#method-i-mp3_duration">#mp3_duration</a></strong>: the
+duration to be set</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="mp3_duration-3D-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 154</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 128</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mp3_duration=</span>(<span class="ruby-identifier">mp3_duration</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">mp3_duration</span> = <span class="ruby-identifier">mp3_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -640,19 +629,15 @@ used without risks.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-mp3_url-label-Description">Description</h2>
+          <h3 id="method-i-mp3_url-label-Description">Description</h3>
 
 <p>Returns the url for the audio in format <code>mp3</code></p>
 
-<h2 id="method-i-mp3_url-label-Args">Args</h2>
+<h3 id="method-i-mp3_url-label-Returns">Returns</h3>
 
-<p>No args required</p>
+<p>An url.</p>
 
-<h2 id="method-i-mp3_url-label-Returns">Returns</h2>
-
-<p>The url of the mp3 file attached to this audio</p>
-
-<h2 id="method-i-mp3_url-label-Usage">Usage</h2>
+<h3 id="method-i-mp3_url-label-Usage">Usage</h3>
 
 <pre>&lt;audio&gt;
   &lt;source src=&quot;&lt;%= audio.mp3_url %&gt;&quot; type=&quot;audio/mp3&quot;&gt;
@@ -661,7 +646,7 @@ used without risks.</p>
 
           
           <div class="method-source-code" id="mp3_url-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mp3_url</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:mp3</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
 <span class="ruby-keyword">end</span></pre>
@@ -686,22 +671,18 @@ used without risks.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-ogg_duration-label-Description">Description</h2>
+          <h3 id="method-i-ogg_duration-label-Description">Description</h3>
 
 <p>Returns the float duration in seconds of the ogg track;</p>
 
-<h2 id="method-i-ogg_duration-label-Args">Args</h2>
+<h3 id="method-i-ogg_duration-label-Returns">Returns</h3>
 
-<p>No args required</p>
-
-<h2 id="method-i-ogg_duration-label-Returns">Returns</h2>
-
-<p>A float number.</p>
+<p>A float.</p>
           
 
           
           <div class="method-source-code" id="ogg_duration-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 137</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ogg_duration</span>
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">ogg_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -726,24 +707,21 @@ used without risks.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-ogg_duration-3D-label-Description">Description</h2>
+          <h3 id="method-i-ogg_duration-3D-label-Description">Description</h3>
 
 <p>Sets the float duration in seconds of the ogg track;</p>
 
-<h2 id="method-i-ogg_duration-3D-label-Args">Args</h2>
-<dl class="rdoc-list note-list"><dt><code>ogg_duration</code>
-<dd>
-<p>The duration to be set</p>
-</dd></dl>
-
-<h2 id="method-i-ogg_duration-3D-label-Returns">Returns</h2>
-
-<p>Nothing</p>
+<h3 id="method-i-ogg_duration-3D-label-Args">Args</h3>
+<ul><li>
+<p><strong><a
+href="Audio.html#method-i-ogg_duration">#ogg_duration</a></strong>: the
+duration to be set</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="ogg_duration-3D-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 171</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 140</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ogg_duration=</span>(<span class="ruby-identifier">ogg_duration</span>)
   <span class="ruby-identifier">metadata</span>.<span class="ruby-identifier">ogg_duration</span> = <span class="ruby-identifier">ogg_duration</span>
 <span class="ruby-keyword">end</span></pre>
@@ -768,19 +746,15 @@ used without risks.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-ogg_url-label-Description">Description</h2>
+          <h3 id="method-i-ogg_url-label-Description">Description</h3>
 
 <p>Returns the url for the audio in format <code>ogg</code></p>
 
-<h2 id="method-i-ogg_url-label-Args">Args</h2>
+<h3 id="method-i-ogg_url-label-Returns">Returns</h3>
 
-<p>No args required</p>
+<p>An url.</p>
 
-<h2 id="method-i-ogg_url-label-Returns">Returns</h2>
-
-<p>The url of the ogg file attached to this audio</p>
-
-<h2 id="method-i-ogg_url-label-Usage">Usage</h2>
+<h3 id="method-i-ogg_url-label-Usage">Usage</h3>
 
 <pre>&lt;audio&gt;
   &lt;source src=&quot;&lt;%= audio.ogg_url %&gt;&quot; type=&quot;audio/ogg&quot;&gt;
@@ -789,7 +763,7 @@ used without risks.</p>
 
           
           <div class="method-source-code" id="ogg_url-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ogg_url</span>
   <span class="ruby-identifier">media</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:url</span>, <span class="ruby-value">:ogg</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">converted</span>
 <span class="ruby-keyword">end</span></pre>
@@ -814,27 +788,26 @@ used without risks.</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-placeholder_url-label-Description">Description</h2>
+          <h3 id="method-i-placeholder_url-label-Description">Description</h3>
 
 <p>Returns the url of the placeholder used in case the audio is being
 converted (an animated gif).</p>
 
-<h2 id="method-i-placeholder_url-label-Args">Args</h2>
-<dl class="rdoc-list note-list"><dt><code>type</code>
-<dd>
-<p>The type of placeholder required: it can be</p>
+<h3 id="method-i-placeholder_url-label-Args">Args</h3>
+<ul><li>
+<p><strong>type</strong>: the type of placeholder required: it can be</p>
 <ul><li>
 <p><code>:thumb</code>: used in the expanded media element</p>
 </li><li>
 <p><code>:lesson_viewer</code>: used in the lesson viewer</p>
 </li></ul>
-</dd></dl>
+</li></ul>
 
-<h2 id="method-i-placeholder_url-label-Returns">Returns</h2>
+<h3 id="method-i-placeholder_url-label-Returns">Returns</h3>
 
-<p>The url of the placeholder (a gif).</p>
+<p>An url.</p>
 
-<h2 id="method-i-placeholder_url-label-Usage">Usage</h2>
+<h3 id="method-i-placeholder_url-label-Usage">Usage</h3>
 
 <pre>&lt;% if audio.converted? %&gt;
   &lt;%= render :partial =&gt; &#39;shared/players/audio&#39;, :locals =&gt; {:audio =&gt; audio} %&gt;
@@ -845,7 +818,7 @@ converted (an animated gif).</p>
 
           
           <div class="method-source-code" id="placeholder_url-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 105</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">placeholder_url</span>(<span class="ruby-identifier">type</span>)
   <span class="ruby-node">&quot;/assets/placeholders/audio_#{type}.gif&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -870,30 +843,26 @@ converted (an animated gif).</p>
 
         <div class="method-description">
           
-          <h2 id="method-i-thumb_url-label-Description">Description</h2>
+          <h3 id="method-i-thumb_url-label-Description">Description</h3>
 
 <p>Returns the url of the thumb image used in the section “elements” (a
-musical note on grey bottom).</p>
-
-<h2 id="method-i-thumb_url-label-Args">Args</h2>
-
-<p>No args required</p>
-
-<h2 id="method-i-thumb_url-label-Returns">Returns</h2>
-
-<p>The url of the thumb (an image). If the audio is not converted, returns the
+musical note on grey bottom). If the audio is not converted, returns the
 animated gif from <a
 href="Audio.html#method-i-placeholder_url">#placeholder_url</a> with
-<code>type</code>=<code>thumb</code></p>
+<code>type</code>=<code>thumb</code>.</p>
 
-<h2 id="method-i-thumb_url-label-Usage">Usage</h2>
+<h3 id="method-i-thumb_url-label-Returns">Returns</h3>
+
+<p>An url.</p>
+
+<h3 id="method-i-thumb_url-label-Usage">Usage</h3>
 
 <pre>&lt;%= image_tag audio.thumb_url %&gt;</pre>
           
 
           
           <div class="method-source-code" id="thumb_url-source">
-            <pre><span class="ruby-comment"># File app/models/audio.rb, line 78</span>
+            <pre><span class="ruby-comment"># File app/models/audio.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">thumb_url</span>
   <span class="ruby-identifier">converted</span> <span class="ruby-operator">?</span> <span class="ruby-constant">THUMB_URL</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">placeholder_url</span>(<span class="ruby-value">:thumb</span>)
 <span class="ruby-keyword">end</span></pre>

@@ -6,6 +6,18 @@
         "url": "http://desy.morganspa.com/"
     },
     "files": {
+        "app/assets/javascripts/admin/admin_functions.js": {
+            "name": "app/assets/javascripts/admin/admin_functions.js",
+            "modules": {
+                "Administration": 1
+            },
+            "classes": {},
+            "fors": {
+                "openAndLoadNextTr": 1,
+                "initNotificationsAutocomplete": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/ajax_loader.js": {
             "name": "app/assets/javascripts/ajax_loader.js",
             "modules": {
@@ -17,6 +29,63 @@
                 "unbindLoader": 1,
                 "showLoader": 1,
                 "hideLoader": 1
+            },
+            "namespaces": {}
+        },
+        "app/assets/javascripts/buttons.js": {
+            "name": "app/assets/javascripts/buttons.js",
+            "modules": {
+                "Buttons": 1
+            },
+            "classes": {},
+            "fors": {
+                "addDeleteItemToCurrentUrl": 1,
+                "addLesson": 1,
+                "copyLesson": 1,
+                "destroyLesson": 1,
+                "dislikeLesson": 1,
+                "likeLesson": 1,
+                "previewLesson": 1,
+                "publishLesson": 1,
+                "removeLesson": 1,
+                "unpublishLesson": 1,
+                "addLessonToVirtualClassroom": 1,
+                "removeLessonFromVirtualClassroom": 1,
+                "addMediaElement": 1,
+                "destroyMediaElement": 1,
+                "removeMediaElement": 1
+            },
+            "namespaces": {}
+        },
+        "app/assets/javascripts/dashboard.js": {
+            "name": "app/assets/javascripts/dashboard.js",
+            "modules": {
+                "Dashboard": 1
+            },
+            "classes": {},
+            "fors": {
+                "reloadDashboardPages": 1,
+                "switchToSuggestedMediaElements": 1,
+                "switchToSuggestedLessons": 1,
+                "getHtmlPagination": 1,
+                "reloadMediaElementsDashboardPagination": 1,
+                "reloadLessonsDashboardPagination": 1,
+                "changePageDashboardMediaElements": 1,
+                "changePageDashboardLessons": 1
+            },
+            "namespaces": {}
+        },
+        "app/assets/javascripts/general.js": {
+            "name": "app/assets/javascripts/general.js",
+            "modules": {
+                "General": 1
+            },
+            "classes": {},
+            "fors": {
+                "updateURLParameter": 1,
+                "removeURLParameter": 1,
+                "centerThisInContainer": 1,
+                "centerThis": 1
             },
             "namespaces": {}
         },
@@ -38,6 +107,128 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/lesson_editor.js": {
+            "name": "app/assets/javascripts/lesson_editor.js",
+            "modules": {
+                "LessonEditor": 1
+            },
+            "classes": {},
+            "fors": {
+                "scrollPaneUpdate": 1,
+                "removeGalleryInLessonEditor": 1,
+                "showGalleryInLessonEditor": 1,
+                "showEverythingOutCurrentSlide": 1,
+                "hideEverythingOutCurrentSlide": 1,
+                "showNewSlideChoice": 1,
+                "hideNewSlideChoice": 1,
+                "stopMediaInCurrentSlide": 1,
+                "initializeSortableNavs": 1,
+                "makeDraggable": 1,
+                "submitCurrentSlideForm": 1,
+                "saveCurrentSlide": 1,
+                "loadSlideInLessonEditor": 1,
+                "loadSlideAndAdhiacentInLessonEditor": 1,
+                "slideTo": 1,
+                "initLessonEditorPositions": 1,
+                "tinyMceCallbacks": 1,
+                "tinyMceKeyDownCallbacks": 1,
+                "reInitializeSlidePositionsInLessonEditor": 1,
+                "initTinymce": 1,
+                "slideError": 1,
+                "isHorizontalMask": 1,
+                "resizeWidth": 1,
+                "resizeHeight": 1
+            },
+            "namespaces": {}
+        },
+        "app/assets/javascripts/lesson_viewer.js": {
+            "name": "app/assets/javascripts/lesson_viewer.js",
+            "modules": {
+                "LessonViewer": 1
+            },
+            "classes": {},
+            "fors": {
+                "openPlaylistMenuInLessonViewer": 1,
+                "closePlaylistMenuInLessonViewer": 1,
+                "selectComponentInLessonViewerPlaylistMenu": 1,
+                "getLessonViewerCurrentSlide": 1,
+                "slideToInLessonViewer": 1,
+                "hideArrowsInLessonViewer": 1,
+                "initializeLessonViewer": 1,
+                "stopMediaInLessonViewer": 1,
+                "switchLessonInPlaylistMenuLessonViewer": 1,
+                "slideToInLessonViewerWithLessonSwitch": 1,
+                "goToNextSlideInLessonViewer": 1,
+                "goToPrevSlideInLessonViewer": 1
+            },
+            "namespaces": {}
+        },
+        "app/assets/javascripts/media_element_loader.js": {
+            "name": "app/assets/javascripts/media_element_loader.js",
+            "modules": {
+                "MediaElementLoader": 1
+            },
+            "classes": {},
+            "fors": {
+                "initMediaElementLoader": 1,
+                "uploadDone": 1,
+                "uploadMediaElementLoaderError": 1,
+                "uploadMediaElementLoadeDoneRedirect": 1,
+                "resetMediaElementChangeInfo": 1
+            },
+            "namespaces": {}
+        },
+        "app/assets/javascripts/notifications.js": {
+            "name": "app/assets/javascripts/notifications.js",
+            "modules": {
+                "Notifications": 1
+            },
+            "classes": {},
+            "fors": {
+                "initializeNotifications": 1,
+                "initializeHelp": 1,
+                "hideExpandedNotification": 1,
+                "showNotificationsTooltip": 1,
+                "hideHelpTooltip": 1,
+                "showHelpTooltip": 1,
+                "hideNotificationsButton": 1,
+                "showNotificationsButton": 1,
+                "hideNotificationsFumetto": 1,
+                "showNotificationsFumetto": 1,
+                "hideHelpButton": 1,
+                "showHelpButton": 1
+            },
+            "namespaces": {}
+        },
+        "app/assets/javascripts/tags.js": {
+            "name": "app/assets/javascripts/tags.js",
+            "modules": {
+                "Tags": 1
+            },
+            "classes": {},
+            "fors": {
+                "addTagWithoutSuggestion": 1,
+                "addToTagsValue": 1,
+                "removeFromTagsValue": 1,
+                "getUnivoqueClassForTag": 1,
+                "checkNoTagDuplicates": 1,
+                "createTagSpan": 1,
+                "disableTagsInputTooHigh": 1,
+                "initSearchTagsAutocomplete": 1
+            },
+            "namespaces": {}
+        },
+        "app/assets/javascripts/times.js": {
+            "name": "app/assets/javascripts/times.js",
+            "modules": {
+                "Times": 1
+            },
+            "classes": {},
+            "fors": {
+                "secondsToDateString": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/video_editor.js": {
             "name": "app/assets/javascripts/video_editor.js",
             "modules": {
@@ -49,9 +240,38 @@
                 "closeGenericVideoComponentCutter": 1
             },
             "namespaces": {}
+        },
+        "app/assets/javascripts/virtual_classroom.js": {
+            "name": "app/assets/javascripts/virtual_classroom.js",
+            "modules": {
+                "VirtualClassroom": 1
+            },
+            "classes": {},
+            "fors": {
+                "addEmailToVirtualClassroomSendLessonLinkSelector": 1,
+                "initializeNotAvailableLessonsToLoadQuick": 1
+            },
+            "namespaces": {}
         }
     },
     "modules": {
+        "Administration": {
+            "name": "Administration",
+            "submodules": {},
+            "classes": {
+                "openAndLoadNextTr": 1,
+                "initNotificationsAutocomplete": 1
+            },
+            "fors": {
+                "openAndLoadNextTr": 1,
+                "initNotificationsAutocomplete": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 1,
+            "description": "Administration graphic events and flagging options."
+        },
         "AjaxLoader": {
             "name": "AjaxLoader",
             "submodules": {},
@@ -72,6 +292,99 @@
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 1,
             "description": "Shows a loading image while page is loading, \nit handles ajax calls too."
+        },
+        "Buttons": {
+            "name": "Buttons",
+            "submodules": {},
+            "classes": {
+                "addDeleteItemToCurrentUrl": 1,
+                "addLesson": 1,
+                "copyLesson": 1,
+                "destroyLesson": 1,
+                "dislikeLesson": 1,
+                "likeLesson": 1,
+                "previewLesson": 1,
+                "publishLesson": 1,
+                "removeLesson": 1,
+                "unpublishLesson": 1,
+                "addLessonToVirtualClassroom": 1,
+                "removeLessonFromVirtualClassroom": 1,
+                "addMediaElement": 1,
+                "destroyMediaElement": 1,
+                "removeMediaElement": 1
+            },
+            "fors": {
+                "addDeleteItemToCurrentUrl": 1,
+                "addLesson": 1,
+                "copyLesson": 1,
+                "destroyLesson": 1,
+                "dislikeLesson": 1,
+                "likeLesson": 1,
+                "previewLesson": 1,
+                "publishLesson": 1,
+                "removeLesson": 1,
+                "unpublishLesson": 1,
+                "addLessonToVirtualClassroom": 1,
+                "removeLessonFromVirtualClassroom": 1,
+                "addMediaElement": 1,
+                "destroyMediaElement": 1,
+                "removeMediaElement": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 1,
+            "description": "Lessons and Elements actions triggered via buttons."
+        },
+        "Dashboard": {
+            "name": "Dashboard",
+            "submodules": {},
+            "classes": {
+                "reloadDashboardPages": 1,
+                "switchToSuggestedMediaElements": 1,
+                "switchToSuggestedLessons": 1,
+                "getHtmlPagination": 1,
+                "reloadMediaElementsDashboardPagination": 1,
+                "reloadLessonsDashboardPagination": 1,
+                "changePageDashboardMediaElements": 1,
+                "changePageDashboardLessons": 1
+            },
+            "fors": {
+                "reloadDashboardPages": 1,
+                "switchToSuggestedMediaElements": 1,
+                "switchToSuggestedLessons": 1,
+                "getHtmlPagination": 1,
+                "reloadMediaElementsDashboardPagination": 1,
+                "reloadLessonsDashboardPagination": 1,
+                "changePageDashboardMediaElements": 1,
+                "changePageDashboardLessons": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 1,
+            "description": "Dashboard is the welcome page of DESY where you find shared lessons and elements. \nThis handles elements interaction events."
+        },
+        "General": {
+            "name": "General",
+            "submodules": {},
+            "classes": {
+                "updateURLParameter": 1,
+                "removeURLParameter": 1,
+                "centerThisInContainer": 1,
+                "centerThis": 1
+            },
+            "fors": {
+                "updateURLParameter": 1,
+                "removeURLParameter": 1,
+                "centerThisInContainer": 1,
+                "centerThis": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/general.js",
+            "line": 1,
+            "description": "Generic shared javascript functions"
         },
         "ImageEditor": {
             "name": "ImageEditor",
@@ -102,6 +415,208 @@
             "line": 1,
             "description": "Image editor functions, \ncrop and textarea management."
         },
+        "LessonEditor": {
+            "name": "LessonEditor",
+            "submodules": {},
+            "classes": {
+                "scrollPaneUpdate": 1,
+                "removeGalleryInLessonEditor": 1,
+                "showGalleryInLessonEditor": 1,
+                "showEverythingOutCurrentSlide": 1,
+                "hideEverythingOutCurrentSlide": 1,
+                "showNewSlideChoice": 1,
+                "hideNewSlideChoice": 1,
+                "stopMediaInCurrentSlide": 1,
+                "initializeSortableNavs": 1,
+                "makeDraggable": 1,
+                "submitCurrentSlideForm": 1,
+                "saveCurrentSlide": 1,
+                "loadSlideInLessonEditor": 1,
+                "loadSlideAndAdhiacentInLessonEditor": 1,
+                "slideTo": 1,
+                "initLessonEditorPositions": 1,
+                "tinyMceCallbacks": 1,
+                "tinyMceKeyDownCallbacks": 1,
+                "reInitializeSlidePositionsInLessonEditor": 1,
+                "initTinymce": 1,
+                "slideError": 1,
+                "isHorizontalMask": 1,
+                "resizeWidth": 1,
+                "resizeHeight": 1
+            },
+            "fors": {
+                "scrollPaneUpdate": 1,
+                "removeGalleryInLessonEditor": 1,
+                "showGalleryInLessonEditor": 1,
+                "showEverythingOutCurrentSlide": 1,
+                "hideEverythingOutCurrentSlide": 1,
+                "showNewSlideChoice": 1,
+                "hideNewSlideChoice": 1,
+                "stopMediaInCurrentSlide": 1,
+                "initializeSortableNavs": 1,
+                "makeDraggable": 1,
+                "submitCurrentSlideForm": 1,
+                "saveCurrentSlide": 1,
+                "loadSlideInLessonEditor": 1,
+                "loadSlideAndAdhiacentInLessonEditor": 1,
+                "slideTo": 1,
+                "initLessonEditorPositions": 1,
+                "tinyMceCallbacks": 1,
+                "tinyMceKeyDownCallbacks": 1,
+                "reInitializeSlidePositionsInLessonEditor": 1,
+                "initTinymce": 1,
+                "slideError": 1,
+                "isHorizontalMask": 1,
+                "resizeWidth": 1,
+                "resizeHeight": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 1,
+            "description": "Lesson editor functions, \nit handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too."
+        },
+        "LessonViewer": {
+            "name": "LessonViewer",
+            "submodules": {},
+            "classes": {
+                "openPlaylistMenuInLessonViewer": 1,
+                "closePlaylistMenuInLessonViewer": 1,
+                "selectComponentInLessonViewerPlaylistMenu": 1,
+                "getLessonViewerCurrentSlide": 1,
+                "slideToInLessonViewer": 1,
+                "hideArrowsInLessonViewer": 1,
+                "initializeLessonViewer": 1,
+                "stopMediaInLessonViewer": 1,
+                "switchLessonInPlaylistMenuLessonViewer": 1,
+                "slideToInLessonViewerWithLessonSwitch": 1,
+                "goToNextSlideInLessonViewer": 1,
+                "goToPrevSlideInLessonViewer": 1
+            },
+            "fors": {
+                "openPlaylistMenuInLessonViewer": 1,
+                "closePlaylistMenuInLessonViewer": 1,
+                "selectComponentInLessonViewerPlaylistMenu": 1,
+                "getLessonViewerCurrentSlide": 1,
+                "slideToInLessonViewer": 1,
+                "hideArrowsInLessonViewer": 1,
+                "initializeLessonViewer": 1,
+                "stopMediaInLessonViewer": 1,
+                "switchLessonInPlaylistMenuLessonViewer": 1,
+                "slideToInLessonViewerWithLessonSwitch": 1,
+                "goToNextSlideInLessonViewer": 1,
+                "goToPrevSlideInLessonViewer": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 9,
+            "description": "Lesson viewer, it handles slides switching and playlist menu effects."
+        },
+        "MediaElementLoader": {
+            "name": "MediaElementLoader",
+            "submodules": {},
+            "classes": {
+                "initMediaElementLoader": 1,
+                "uploadDone": 1,
+                "uploadMediaElementLoaderError": 1,
+                "uploadMediaElementLoadeDoneRedirect": 1,
+                "resetMediaElementChangeInfo": 1
+            },
+            "fors": {
+                "initMediaElementLoader": 1,
+                "uploadDone": 1,
+                "uploadMediaElementLoaderError": 1,
+                "uploadMediaElementLoadeDoneRedirect": 1,
+                "resetMediaElementChangeInfo": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 1,
+            "description": "New media element popup handler, form validation errors handling."
+        },
+        "Notifications": {
+            "name": "Notifications",
+            "submodules": {},
+            "classes": {
+                "initializeNotifications": 1,
+                "initializeHelp": 1,
+                "hideExpandedNotification": 1,
+                "showNotificationsTooltip": 1,
+                "hideHelpTooltip": 1,
+                "showHelpTooltip": 1,
+                "hideNotificationsButton": 1,
+                "showNotificationsButton": 1,
+                "hideNotificationsFumetto": 1,
+                "showNotificationsFumetto": 1,
+                "hideHelpButton": 1,
+                "showHelpButton": 1
+            },
+            "fors": {
+                "initializeNotifications": 1,
+                "initializeHelp": 1,
+                "hideExpandedNotification": 1,
+                "showNotificationsTooltip": 1,
+                "hideHelpTooltip": 1,
+                "showHelpTooltip": 1,
+                "hideNotificationsButton": 1,
+                "showNotificationsButton": 1,
+                "hideNotificationsFumetto": 1,
+                "showNotificationsFumetto": 1,
+                "hideHelpButton": 1,
+                "showHelpButton": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 1,
+            "description": "Notification info and help assistant messages handler."
+        },
+        "Tags": {
+            "name": "Tags",
+            "submodules": {},
+            "classes": {
+                "addTagWithoutSuggestion": 1,
+                "addToTagsValue": 1,
+                "removeFromTagsValue": 1,
+                "getUnivoqueClassForTag": 1,
+                "checkNoTagDuplicates": 1,
+                "createTagSpan": 1,
+                "disableTagsInputTooHigh": 1,
+                "initSearchTagsAutocomplete": 1
+            },
+            "fors": {
+                "addTagWithoutSuggestion": 1,
+                "addToTagsValue": 1,
+                "removeFromTagsValue": 1,
+                "getUnivoqueClassForTag": 1,
+                "checkNoTagDuplicates": 1,
+                "createTagSpan": 1,
+                "disableTagsInputTooHigh": 1,
+                "initSearchTagsAutocomplete": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/tags.js",
+            "line": 1,
+            "description": "Tags autocomplete, _add_ and _remove_ from list."
+        },
+        "Times": {
+            "name": "Times",
+            "submodules": {},
+            "classes": {
+                "secondsToDateString": 1
+            },
+            "fors": {
+                "secondsToDateString": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/times.js",
+            "line": 1,
+            "description": "Shows a loading image while page is loading, \nit handles ajax calls too."
+        },
         "VideoEditor": {
             "name": "VideoEditor",
             "submodules": {},
@@ -118,9 +633,48 @@
             "file": "app/assets/javascripts/video_editor.js",
             "line": 1,
             "description": "Provides the base Widget class..."
+        },
+        "VirtualClassroom": {
+            "name": "VirtualClassroom",
+            "submodules": {},
+            "classes": {
+                "addEmailToVirtualClassroomSendLessonLinkSelector": 1,
+                "initializeNotAvailableLessonsToLoadQuick": 1
+            },
+            "fors": {
+                "addEmailToVirtualClassroomSendLessonLinkSelector": 1,
+                "initializeNotAvailableLessonsToLoadQuick": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 1,
+            "description": "It's where users can share their lessons.\nIt handles share lessons link and add to playlist actions."
         }
     },
     "classes": {
+        "openAndLoadNextTr": {
+            "name": "openAndLoadNextTr",
+            "shortname": "openAndLoadNextTr",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Administration",
+            "namespace": ""
+        },
+        "initNotificationsAutocomplete": {
+            "name": "initNotificationsAutocomplete",
+            "shortname": "initNotificationsAutocomplete",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Administration",
+            "namespace": ""
+        },
         "bindLoader": {
             "name": "bindLoader",
             "shortname": "bindLoader",
@@ -163,6 +717,303 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "AjaxLoader",
+            "namespace": ""
+        },
+        "addDeleteItemToCurrentUrl": {
+            "name": "addDeleteItemToCurrentUrl",
+            "shortname": "addDeleteItemToCurrentUrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "addLesson": {
+            "name": "addLesson",
+            "shortname": "addLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "copyLesson": {
+            "name": "copyLesson",
+            "shortname": "copyLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "destroyLesson": {
+            "name": "destroyLesson",
+            "shortname": "destroyLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "dislikeLesson": {
+            "name": "dislikeLesson",
+            "shortname": "dislikeLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "likeLesson": {
+            "name": "likeLesson",
+            "shortname": "likeLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "previewLesson": {
+            "name": "previewLesson",
+            "shortname": "previewLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "publishLesson": {
+            "name": "publishLesson",
+            "shortname": "publishLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "removeLesson": {
+            "name": "removeLesson",
+            "shortname": "removeLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "unpublishLesson": {
+            "name": "unpublishLesson",
+            "shortname": "unpublishLesson",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "addLessonToVirtualClassroom": {
+            "name": "addLessonToVirtualClassroom",
+            "shortname": "addLessonToVirtualClassroom",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "removeLessonFromVirtualClassroom": {
+            "name": "removeLessonFromVirtualClassroom",
+            "shortname": "removeLessonFromVirtualClassroom",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "addMediaElement": {
+            "name": "addMediaElement",
+            "shortname": "addMediaElement",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "destroyMediaElement": {
+            "name": "destroyMediaElement",
+            "shortname": "destroyMediaElement",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "removeMediaElement": {
+            "name": "removeMediaElement",
+            "shortname": "removeMediaElement",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Buttons",
+            "namespace": ""
+        },
+        "reloadDashboardPages": {
+            "name": "reloadDashboardPages",
+            "shortname": "reloadDashboardPages",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "switchToSuggestedMediaElements": {
+            "name": "switchToSuggestedMediaElements",
+            "shortname": "switchToSuggestedMediaElements",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "switchToSuggestedLessons": {
+            "name": "switchToSuggestedLessons",
+            "shortname": "switchToSuggestedLessons",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "getHtmlPagination": {
+            "name": "getHtmlPagination",
+            "shortname": "getHtmlPagination",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "reloadMediaElementsDashboardPagination": {
+            "name": "reloadMediaElementsDashboardPagination",
+            "shortname": "reloadMediaElementsDashboardPagination",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "reloadLessonsDashboardPagination": {
+            "name": "reloadLessonsDashboardPagination",
+            "shortname": "reloadLessonsDashboardPagination",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "changePageDashboardMediaElements": {
+            "name": "changePageDashboardMediaElements",
+            "shortname": "changePageDashboardMediaElements",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "changePageDashboardLessons": {
+            "name": "changePageDashboardLessons",
+            "shortname": "changePageDashboardLessons",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dashboard",
+            "namespace": ""
+        },
+        "updateURLParameter": {
+            "name": "updateURLParameter",
+            "shortname": "updateURLParameter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "General",
+            "namespace": ""
+        },
+        "removeURLParameter": {
+            "name": "removeURLParameter",
+            "shortname": "removeURLParameter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "General",
+            "namespace": ""
+        },
+        "centerThisInContainer": {
+            "name": "centerThisInContainer",
+            "shortname": "centerThisInContainer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "General",
+            "namespace": ""
+        },
+        "centerThis": {
+            "name": "centerThis",
+            "shortname": "centerThis",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "General",
             "namespace": ""
         },
         "enlightTextarea": {
@@ -253,6 +1104,688 @@
             "module": "ImageEditor",
             "namespace": ""
         },
+        "scrollPaneUpdate": {
+            "name": "scrollPaneUpdate",
+            "shortname": "scrollPaneUpdate",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "removeGalleryInLessonEditor": {
+            "name": "removeGalleryInLessonEditor",
+            "shortname": "removeGalleryInLessonEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "showGalleryInLessonEditor": {
+            "name": "showGalleryInLessonEditor",
+            "shortname": "showGalleryInLessonEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "showEverythingOutCurrentSlide": {
+            "name": "showEverythingOutCurrentSlide",
+            "shortname": "showEverythingOutCurrentSlide",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "hideEverythingOutCurrentSlide": {
+            "name": "hideEverythingOutCurrentSlide",
+            "shortname": "hideEverythingOutCurrentSlide",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "showNewSlideChoice": {
+            "name": "showNewSlideChoice",
+            "shortname": "showNewSlideChoice",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "hideNewSlideChoice": {
+            "name": "hideNewSlideChoice",
+            "shortname": "hideNewSlideChoice",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "stopMediaInCurrentSlide": {
+            "name": "stopMediaInCurrentSlide",
+            "shortname": "stopMediaInCurrentSlide",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "initializeSortableNavs": {
+            "name": "initializeSortableNavs",
+            "shortname": "initializeSortableNavs",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "makeDraggable": {
+            "name": "makeDraggable",
+            "shortname": "makeDraggable",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "submitCurrentSlideForm": {
+            "name": "submitCurrentSlideForm",
+            "shortname": "submitCurrentSlideForm",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "saveCurrentSlide": {
+            "name": "saveCurrentSlide",
+            "shortname": "saveCurrentSlide",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "loadSlideInLessonEditor": {
+            "name": "loadSlideInLessonEditor",
+            "shortname": "loadSlideInLessonEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "loadSlideAndAdhiacentInLessonEditor": {
+            "name": "loadSlideAndAdhiacentInLessonEditor",
+            "shortname": "loadSlideAndAdhiacentInLessonEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "slideTo": {
+            "name": "slideTo",
+            "shortname": "slideTo",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "initLessonEditorPositions": {
+            "name": "initLessonEditorPositions",
+            "shortname": "initLessonEditorPositions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "tinyMceCallbacks": {
+            "name": "tinyMceCallbacks",
+            "shortname": "tinyMceCallbacks",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "tinyMceKeyDownCallbacks": {
+            "name": "tinyMceKeyDownCallbacks",
+            "shortname": "tinyMceKeyDownCallbacks",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "reInitializeSlidePositionsInLessonEditor": {
+            "name": "reInitializeSlidePositionsInLessonEditor",
+            "shortname": "reInitializeSlidePositionsInLessonEditor",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "initTinymce": {
+            "name": "initTinymce",
+            "shortname": "initTinymce",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "slideError": {
+            "name": "slideError",
+            "shortname": "slideError",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "isHorizontalMask": {
+            "name": "isHorizontalMask",
+            "shortname": "isHorizontalMask",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "resizeWidth": {
+            "name": "resizeWidth",
+            "shortname": "resizeWidth",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "resizeHeight": {
+            "name": "resizeHeight",
+            "shortname": "resizeHeight",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonEditor",
+            "namespace": ""
+        },
+        "openPlaylistMenuInLessonViewer": {
+            "name": "openPlaylistMenuInLessonViewer",
+            "shortname": "openPlaylistMenuInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "closePlaylistMenuInLessonViewer": {
+            "name": "closePlaylistMenuInLessonViewer",
+            "shortname": "closePlaylistMenuInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "selectComponentInLessonViewerPlaylistMenu": {
+            "name": "selectComponentInLessonViewerPlaylistMenu",
+            "shortname": "selectComponentInLessonViewerPlaylistMenu",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "getLessonViewerCurrentSlide": {
+            "name": "getLessonViewerCurrentSlide",
+            "shortname": "getLessonViewerCurrentSlide",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "slideToInLessonViewer": {
+            "name": "slideToInLessonViewer",
+            "shortname": "slideToInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "hideArrowsInLessonViewer": {
+            "name": "hideArrowsInLessonViewer",
+            "shortname": "hideArrowsInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "initializeLessonViewer": {
+            "name": "initializeLessonViewer",
+            "shortname": "initializeLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "stopMediaInLessonViewer": {
+            "name": "stopMediaInLessonViewer",
+            "shortname": "stopMediaInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "switchLessonInPlaylistMenuLessonViewer": {
+            "name": "switchLessonInPlaylistMenuLessonViewer",
+            "shortname": "switchLessonInPlaylistMenuLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "slideToInLessonViewerWithLessonSwitch": {
+            "name": "slideToInLessonViewerWithLessonSwitch",
+            "shortname": "slideToInLessonViewerWithLessonSwitch",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "goToNextSlideInLessonViewer": {
+            "name": "goToNextSlideInLessonViewer",
+            "shortname": "goToNextSlideInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "goToPrevSlideInLessonViewer": {
+            "name": "goToPrevSlideInLessonViewer",
+            "shortname": "goToPrevSlideInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "initMediaElementLoader": {
+            "name": "initMediaElementLoader",
+            "shortname": "initMediaElementLoader",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MediaElementLoader",
+            "namespace": ""
+        },
+        "uploadDone": {
+            "name": "uploadDone",
+            "shortname": "uploadDone",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MediaElementLoader",
+            "namespace": ""
+        },
+        "uploadMediaElementLoaderError": {
+            "name": "uploadMediaElementLoaderError",
+            "shortname": "uploadMediaElementLoaderError",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MediaElementLoader",
+            "namespace": ""
+        },
+        "uploadMediaElementLoadeDoneRedirect": {
+            "name": "uploadMediaElementLoadeDoneRedirect",
+            "shortname": "uploadMediaElementLoadeDoneRedirect",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MediaElementLoader",
+            "namespace": ""
+        },
+        "resetMediaElementChangeInfo": {
+            "name": "resetMediaElementChangeInfo",
+            "shortname": "resetMediaElementChangeInfo",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MediaElementLoader",
+            "namespace": ""
+        },
+        "initializeNotifications": {
+            "name": "initializeNotifications",
+            "shortname": "initializeNotifications",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Notifications",
+            "namespace": ""
+        },
+        "initializeHelp": {
+            "name": "initializeHelp",
+            "shortname": "initializeHelp",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Notifications",
+            "namespace": ""
+        },
+        "hideExpandedNotification": {
+            "name": "hideExpandedNotification",
+            "shortname": "hideExpandedNotification",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Notifications",
+            "namespace": ""
+        },
+        "showNotificationsTooltip": {
+            "name": "showNotificationsTooltip",
+            "shortname": "showNotificationsTooltip",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Notifications",
+            "namespace": ""
+        },
+        "hideHelpTooltip": {
+            "name": "hideHelpTooltip",
+            "shortname": "hideHelpTooltip",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Notifications",
+            "namespace": ""
+        },
+        "showHelpTooltip": {
+            "name": "showHelpTooltip",
+            "shortname": "showHelpTooltip",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Notifications",
+            "namespace": ""
+        },
+        "hideNotificationsButton": {
+            "name": "hideNotificationsButton",
+            "shortname": "hideNotificationsButton",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Notifications",
+            "namespace": ""
+        },
+        "showNotificationsButton": {
+            "name": "showNotificationsButton",
+            "shortname": "showNotificationsButton",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Notifications",
+            "namespace": ""
+        },
+        "hideNotificationsFumetto": {
+            "name": "hideNotificationsFumetto",
+            "shortname": "hideNotificationsFumetto",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Notifications",
+            "namespace": ""
+        },
+        "showNotificationsFumetto": {
+            "name": "showNotificationsFumetto",
+            "shortname": "showNotificationsFumetto",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Notifications",
+            "namespace": ""
+        },
+        "hideHelpButton": {
+            "name": "hideHelpButton",
+            "shortname": "hideHelpButton",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Notifications",
+            "namespace": ""
+        },
+        "showHelpButton": {
+            "name": "showHelpButton",
+            "shortname": "showHelpButton",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Notifications",
+            "namespace": ""
+        },
+        "addTagWithoutSuggestion": {
+            "name": "addTagWithoutSuggestion",
+            "shortname": "addTagWithoutSuggestion",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "addToTagsValue": {
+            "name": "addToTagsValue",
+            "shortname": "addToTagsValue",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "removeFromTagsValue": {
+            "name": "removeFromTagsValue",
+            "shortname": "removeFromTagsValue",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "getUnivoqueClassForTag": {
+            "name": "getUnivoqueClassForTag",
+            "shortname": "getUnivoqueClassForTag",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "checkNoTagDuplicates": {
+            "name": "checkNoTagDuplicates",
+            "shortname": "checkNoTagDuplicates",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "createTagSpan": {
+            "name": "createTagSpan",
+            "shortname": "createTagSpan",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "disableTagsInputTooHigh": {
+            "name": "disableTagsInputTooHigh",
+            "shortname": "disableTagsInputTooHigh",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "initSearchTagsAutocomplete": {
+            "name": "initSearchTagsAutocomplete",
+            "shortname": "initSearchTagsAutocomplete",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Tags",
+            "namespace": ""
+        },
+        "secondsToDateString": {
+            "name": "secondsToDateString",
+            "shortname": "secondsToDateString",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Times",
+            "namespace": ""
+        },
         "initializeVideoEditor": {
             "name": "initializeVideoEditor",
             "shortname": "initializeVideoEditor",
@@ -274,9 +1807,56 @@
             "extension_for": [],
             "module": "VideoEditor",
             "namespace": ""
+        },
+        "addEmailToVirtualClassroomSendLessonLinkSelector": {
+            "name": "addEmailToVirtualClassroomSendLessonLinkSelector",
+            "shortname": "addEmailToVirtualClassroomSendLessonLinkSelector",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "VirtualClassroom",
+            "namespace": ""
+        },
+        "initializeNotAvailableLessonsToLoadQuick": {
+            "name": "initializeNotAvailableLessonsToLoadQuick",
+            "shortname": "initializeNotAvailableLessonsToLoadQuick",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "VirtualClassroom",
+            "namespace": ""
         }
     },
     "classitems": [
+        {
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 7,
+            "description": "Open a collapsed table row with extra content,\ntipically clicking on previous collapsable table row.",
+            "itemtype": "method",
+            "name": "openAndLoadNextTr",
+            "params": [
+                {
+                    "name": "prevTr",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "openAndLoadNextTr",
+            "module": "Administration"
+        },
+        {
+            "file": "app/assets/javascripts/admin/admin_functions.js",
+            "line": 28,
+            "description": "Initializer for jQueryUI autocomplete on users serch into Admin Notifications.",
+            "itemtype": "method",
+            "name": "initNotificationsAutocomplete",
+            "class": "initNotificationsAutocomplete",
+            "module": "Administration"
+        },
         {
             "file": "app/assets/javascripts/ajax_loader.js",
             "line": 8,
@@ -312,6 +1892,612 @@
             "name": "hideLoader",
             "class": "hideLoader",
             "module": "AjaxLoader"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 7,
+            "description": "Add item removed from a view to the current destination url",
+            "itemtype": "method",
+            "name": "addDeleteItemToCurrentUrl",
+            "return": {
+                "description": "updated url",
+                "type": "String"
+            },
+            "class": "addDeleteItemToCurrentUrl",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 25,
+            "description": "Add lessons from dashboard to my lessons\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "itemtype": "method",
+            "name": "addLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                },
+                {
+                    "name": "current_url",
+                    "description": "url where the lesson is added from",
+                    "type": "String"
+                },
+                {
+                    "name": "reload",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "addLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 65,
+            "description": "Create user own copy of the lesson",
+            "itemtype": "method",
+            "name": "copyLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "copyLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 80,
+            "description": "Destroy lessons lesson\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "itemtype": "method",
+            "name": "destroyLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                },
+                {
+                    "name": "current_url",
+                    "description": "url where the lesson is added from",
+                    "type": "String"
+                }
+            ],
+            "class": "destroyLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 119,
+            "description": "Remove like from a lesson",
+            "itemtype": "method",
+            "name": "dislikeLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "dislikeLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 134,
+            "description": "Add like to a lesson",
+            "itemtype": "method",
+            "name": "likeLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "likeLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 149,
+            "description": "View lesson link",
+            "itemtype": "method",
+            "name": "previewLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "redirect_to",
+                    "description": "link url to come back from lesson viewer",
+                    "type": "String"
+                }
+            ],
+            "class": "previewLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 173,
+            "description": "Make a lesson public\n\nUses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp)\nand [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "itemtype": "method",
+            "name": "publishLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "publishLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 198,
+            "description": "Remove a lesson from yours (unlink).\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "itemtype": "method",
+            "name": "removeLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                },
+                {
+                    "name": "current_url",
+                    "description": "url where the lesson is added from",
+                    "type": "String"
+                },
+                {
+                    "name": "reload",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "removeLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 238,
+            "description": "Make a lesson private\n\nUses [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp)\nand [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "itemtype": "method",
+            "name": "unpublishLesson",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "unpublishLesson",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 263,
+            "description": "Make the lesson available in the virtual classroom",
+            "itemtype": "method",
+            "name": "addLessonToVirtualClassroom",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "addLessonToVirtualClassroom",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 278,
+            "description": "Remove lesson availability in the virtual classroom",
+            "itemtype": "method",
+            "name": "removeLessonFromVirtualClassroom",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson_id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                }
+            ],
+            "class": "removeLessonFromVirtualClassroom",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 293,
+            "description": "Add media element from dashboard to my lessons\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "itemtype": "method",
+            "name": "addMediaElement",
+            "params": [
+                {
+                    "name": "media_element_id",
+                    "description": "media_element id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                },
+                {
+                    "name": "current_url",
+                    "description": "url where the lesson is added from",
+                    "type": "String"
+                },
+                {
+                    "name": "reload",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "addMediaElement",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 333,
+            "description": "Destroy Media Element\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showConfirmPopUp](../classes/showConfirmPopUp.html#method_showConfirmPopUp)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)\nand [closePopUp](../classes/closePopUp.html#method_closePopUp)",
+            "itemtype": "method",
+            "name": "destroyMediaElement",
+            "params": [
+                {
+                    "name": "lessons_id",
+                    "description": "lesson_id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                },
+                {
+                    "name": "current_url",
+                    "description": "url where the lesson is added from",
+                    "type": "String"
+                },
+                {
+                    "name": "used_in_private_lessons",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "destroyMediaElement",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/buttons.js",
+            "line": 381,
+            "description": "Remove a media element from yours (unlink).\n\nUses [addDeleteItemToCurrentUrl](../classes/addDeleteItemToCurrentUrl.html#method_addDeleteItemToCurrentUrl)\nand [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)",
+            "itemtype": "method",
+            "name": "removeMediaElement",
+            "params": [
+                {
+                    "name": "media_element_id",
+                    "description": "media element id",
+                    "type": "Number"
+                },
+                {
+                    "name": "destination",
+                    "description": "destination view",
+                    "type": "String"
+                },
+                {
+                    "name": "current_url",
+                    "description": "url where the lesson is added from",
+                    "type": "String"
+                },
+                {
+                    "name": "reload",
+                    "description": "",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "removeMediaElement",
+            "module": "Buttons"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 8,
+            "description": "Reload Dashboard content on page change, using bottom pagination.",
+            "itemtype": "method",
+            "name": "reloadDashboardPages",
+            "class": "reloadDashboardPages",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 21,
+            "description": "Switch to suggested elements page in dashboard.\n\nUses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)",
+            "itemtype": "method",
+            "name": "switchToSuggestedMediaElements",
+            "class": "switchToSuggestedMediaElements",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 42,
+            "description": "Switch to suggested lessons page in dashboard.\n\nUses: [reloadMediaLessonsDashboardPagination](../classes/reloadMediaLessonsDashboardPagination.html#method_reloadMediaLessonsDashboardPagination)",
+            "itemtype": "method",
+            "name": "switchToSuggestedLessons",
+            "class": "switchToSuggestedLessons",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 63,
+            "description": "Pagination html generator",
+            "itemtype": "method",
+            "name": "getHtmlPagination",
+            "params": [
+                {
+                    "name": "pos",
+                    "description": "current position",
+                    "type": "Number"
+                },
+                {
+                    "name": "pages_amount",
+                    "description": "number of pages",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "pagination html elements",
+                "type": "Object"
+            },
+            "class": "getHtmlPagination",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 101,
+            "description": "Realod pagination html for media elements.\n\nUses: [changePageDashboardMediaElements](../classes/changePageDashboardMediaElements.html#method_changePageDashboardMediaElements)",
+            "itemtype": "method",
+            "name": "reloadMediaElementsDashboardPagination",
+            "params": [
+                {
+                    "name": "pos",
+                    "description": "pagination position",
+                    "type": "Number"
+                },
+                {
+                    "name": "poges_amount",
+                    "description": "pagination pages amount",
+                    "type": "Number"
+                }
+            ],
+            "class": "reloadMediaElementsDashboardPagination",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 134,
+            "description": "Realod pagination html for lessons.\n\nUses: [changePageDashboardLessons](../classes/changePageDashboardLessons.html#method_changePageDashboardLessons)",
+            "itemtype": "method",
+            "name": "reloadLessonsDashboardPagination",
+            "params": [
+                {
+                    "name": "pos",
+                    "description": "pagination position",
+                    "type": "Number"
+                },
+                {
+                    "name": "poges_amount",
+                    "description": "pagination pages amount",
+                    "type": "Number"
+                }
+            ],
+            "class": "reloadLessonsDashboardPagination",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 165,
+            "description": "Change media elements page in dashboard.\n\nUses: [reloadMediaElementsDashboardPagination](../classes/reloadMediaElementsDashboardPagination.html#method_reloadMediaElementsDashboardPagination)",
+            "itemtype": "method",
+            "name": "changePageDashboardMediaElements",
+            "params": [
+                {
+                    "name": "old_pos",
+                    "description": "pagination old position",
+                    "type": "Number"
+                },
+                {
+                    "name": "pos",
+                    "description": "pagination position",
+                    "type": "Number"
+                },
+                {
+                    "name": "poges_amount",
+                    "description": "pagination pages amount",
+                    "type": "Number"
+                }
+            ],
+            "class": "changePageDashboardMediaElements",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/dashboard.js",
+            "line": 184,
+            "description": "Change lessons page in dashboard.\n\nUses: [reloadLessonsDashboardPagination](../classes/reloadLessonsDashboardPagination.html#method_reloadLessonsDashboardPagination)",
+            "itemtype": "method",
+            "name": "changePageDashboardLessons",
+            "params": [
+                {
+                    "name": "old_pos",
+                    "description": "pagination old position",
+                    "type": "Number"
+                },
+                {
+                    "name": "pos",
+                    "description": "pagination position",
+                    "type": "Number"
+                },
+                {
+                    "name": "poges_amount",
+                    "description": "pagination pages amount",
+                    "type": "Number"
+                }
+            ],
+            "class": "changePageDashboardLessons",
+            "module": "Dashboard"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 7,
+            "description": "Add new parameters to an url",
+            "itemtype": "method",
+            "name": "updateURLParameter",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "starting url",
+                    "type": "String"
+                },
+                {
+                    "name": "param",
+                    "description": "new param",
+                    "type": "String"
+                },
+                {
+                    "name": "paramVal",
+                    "description": "new param value",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "updated url",
+                "type": "String"
+            },
+            "class": "updateURLParameter",
+            "module": "General"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 36,
+            "description": "Remove a param from url",
+            "itemtype": "method",
+            "name": "removeURLParameter",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "starting url",
+                    "type": "String"
+                },
+                {
+                    "name": "param",
+                    "description": "param to remove",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "update url",
+                "type": "String"
+            },
+            "class": "removeURLParameter",
+            "module": "General"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 63,
+            "description": "Center a div into a given container",
+            "itemtype": "method",
+            "name": "centerThisInContainer",
+            "params": [
+                {
+                    "name": "div",
+                    "description": "div selector to center, class or id",
+                    "type": "String"
+                },
+                {
+                    "name": "container",
+                    "description": "container selector to center div into, class or id",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n     centerThisInContainer('._saved','#image_wrapper');"
+            ],
+            "class": "centerThisInContainer",
+            "module": "General"
+        },
+        {
+            "file": "app/assets/javascripts/general.js",
+            "line": 81,
+            "description": "Center a div into current window",
+            "itemtype": "method",
+            "name": "centerThis",
+            "params": [
+                {
+                    "name": "div",
+                    "description": "div selector to center, class or id",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n     centerThis(\"._slide_error\");"
+            ],
+            "class": "centerThis",
+            "module": "General"
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
@@ -356,7 +2542,7 @@
                 "type": "Array"
             },
             "example": [
-                " \n   getDragPosition($(#image_editor_text_1));"
+                " \n     `getDragPosition($(#image_editor_text_1));`"
             ],
             "class": "getDragPosition",
             "module": "ImageEditor"
@@ -384,14 +2570,14 @@
                 "type": "Object"
             },
             "example": [
-                " \n   `var coords = getRelativePositionInImageEditor($(#image_editor_container._text_enabled img), event);`\n\n   `var textCount = $('#info_container').data('current-textarea-identifier');`\n\n   `$('#image_editor_container').append(textAreaImageEditorContent(coords, textCount));`"
+                " \n     `var coords = getRelativePositionInImageEditor($(#image_editor_container._text_enabled img), event);`\n     `var textCount = $('#info_container').data('current-textarea-identifier');`\n     `$('#image_editor_container').append(textAreaImageEditorContent(coords, textCount));`"
             ],
             "class": "textAreaImageEditorContent",
             "module": "ImageEditor"
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 321,
+            "line": 319,
             "description": "Get image relative position into editor container",
             "itemtype": "method",
             "name": "getRelativePositionInImageEditor",
@@ -416,7 +2602,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 340,
+            "line": 338,
             "description": "Reset image editor functions, reset image editor to initial state",
             "itemtype": "method",
             "name": "resetImageEditorOperationsChoice",
@@ -425,7 +2611,7 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 354,
+            "line": 352,
             "description": "Reset image editor crop, disable crop state for image",
             "itemtype": "method",
             "name": "resetImageEditorCrop",
@@ -434,12 +2620,955 @@
         },
         {
             "file": "app/assets/javascripts/image_editor.js",
-            "line": 370,
+            "line": 368,
             "description": "Reset image editor textareas, disable text state for image",
             "itemtype": "method",
             "name": "resetImageEditorTexts",
             "class": "resetImageEditorTexts",
             "module": "ImageEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 350,
+            "description": "Update top scrollPane when moving to another slide",
+            "itemtype": "method",
+            "name": "scrollPaneUpdate",
+            "params": [
+                {
+                    "name": "trigger_element",
+                    "description": "element which triggers the scroll, class or id",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n     scrollPaneUpdate('._not_current_slide');"
+            ],
+            "class": "scrollPaneUpdate",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 372,
+            "description": "Hide media gallery for selected type",
+            "itemtype": "method",
+            "name": "removeGalleryInLessonEditor",
+            "params": [
+                {
+                    "name": "sty_type",
+                    "description": "gallery type",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                " \n     `removeGalleryInLessonEditor('audio');`"
+            ],
+            "class": "removeGalleryInLessonEditor",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 387,
+            "description": "Show media gallery for selected type clicking on slide green plus button",
+            "itemtype": "method",
+            "name": "showGalleryInLessonEditor",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "gallery type",
+                    "type": "String"
+                },
+                {
+                    "name": "sty_type",
+                    "description": "gallery type",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                " \n     `showGalleryInLessonEditor('._show_video_gallery_in_lesson_editor','video');`"
+            ],
+            "class": "showGalleryInLessonEditor",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 415,
+            "description": "Restore page elements around current slide after new slide selection",
+            "itemtype": "method",
+            "name": "showEverythingOutCurrentSlide",
+            "class": "showEverythingOutCurrentSlide",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 429,
+            "description": "Hide page elements around current slide on new slide selection",
+            "itemtype": "method",
+            "name": "hideEverythingOutCurrentSlide",
+            "class": "hideEverythingOutCurrentSlide",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 443,
+            "description": "Hide new slide selection",
+            "itemtype": "method",
+            "name": "showNewSlideChoice",
+            "class": "showNewSlideChoice",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 459,
+            "description": "Hide new slide selection",
+            "itemtype": "method",
+            "name": "hideNewSlideChoice",
+            "class": "hideNewSlideChoice",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 473,
+            "description": "Stop video and audio playing into current slide, \nusually only one kind of media is present into current slide",
+            "itemtype": "method",
+            "name": "stopMediaInCurrentSlide",
+            "class": "stopMediaInCurrentSlide",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 486,
+            "description": "Inizialize jQueryUI _sortable_ function on top navigation numbers,\nso that they can be sorted",
+            "itemtype": "method",
+            "name": "initializeSortableNavs",
+            "class": "initializeSortableNavs",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 533,
+            "description": "Inizialize jQueryUI _draggable_ function on slide image containers.",
+            "itemtype": "method",
+            "name": "makeDraggable",
+            "params": [
+                {
+                    "name": "place_id",
+                    "description": "media element id",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n     `makeDraggable('media_element_1_in_slide_43');`"
+            ],
+            "class": "makeDraggable",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 604,
+            "description": "Submit serialized form data for current slide",
+            "itemtype": "method",
+            "name": "submitCurrentSlideForm",
+            "class": "submitCurrentSlideForm",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 620,
+            "description": "Save current slide. It sends tinyMCE editor content to form data to be serialized, \nit handles form placeholders.\n\nUses: [submitCurrentSlideForm](../classes/submitCurrentSlideForm.html#method_submitCurrentSlideForm)",
+            "itemtype": "method",
+            "name": "saveCurrentSlide",
+            "class": "saveCurrentSlide",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 650,
+            "description": "Asynchronous slide loading. \nIt is called when the current slide is not loaded yet.",
+            "itemtype": "method",
+            "name": "loadSlideInLessonEditor",
+            "params": [
+                {
+                    "name": "slide",
+                    "description": "slide object id",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n     `loadSlideInLessonEditor($('#slide_in_lesson_editor_33'));`"
+            ],
+            "class": "loadSlideInLessonEditor",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 669,
+            "description": "Asynchronously loads current slide, previous and following if any of these aren't loaded yet.\n\nUses: [loadSlideInLessonEditor](../classes/loadSlideInLessonEditor.html#method_loadSlideInLessonEditor)",
+            "itemtype": "method",
+            "name": "loadSlideAndAdhiacentInLessonEditor",
+            "params": [
+                {
+                    "name": "slide_id",
+                    "description": "slide id",
+                    "type": "Number"
+                }
+            ],
+            "class": "loadSlideAndAdhiacentInLessonEditor",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 685,
+            "description": "Slide to current slide, update current slide in top navigation.\n\nUses: [loadSlideAndAdhiacentInLessonEditor](../classes/loadSlideAndAdhiacentInLessonEditor.html#method_loadSlideAndAdhiacentInLessonEditor)",
+            "itemtype": "method",
+            "name": "slideTo",
+            "params": [
+                {
+                    "name": "slide_id",
+                    "description": "slide id",
+                    "type": "Number"
+                },
+                {
+                    "name": "callback",
+                    "description": "callback function",
+                    "type": "Object"
+                }
+            ],
+            "class": "slideTo",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 735,
+            "description": "Initialize slides position to center",
+            "itemtype": "method",
+            "name": "initLessonEditorPositions",
+            "class": "initLessonEditorPositions",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 755,
+            "description": "TinyMCE callback to show warning when texearea content exceeds the available space.\nAdd a red border to the textarea\n\nAdd this function on tinyMCE setup.",
+            "itemtype": "method",
+            "name": "tinyMceCallbacks",
+            "params": [
+                {
+                    "name": "inst",
+                    "description": "tinyMCE body instance",
+                    "type": "Object"
+                },
+                {
+                    "name": "tiny_id",
+                    "description": "tinyMCE textarea id",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n     setup: function(ed) {\n       ed.onKeyUp.add(function(ed, e) {\n         tinyMceCallbacks(ed,tiny_id);\n       });\n     }"
+            ],
+            "class": "tinyMceCallbacks",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 786,
+            "description": "TinyMCE keyDown callback to fix list item style.\nIt adds same style of list item text to list numbers or dots.\n\nAdd this function on tinyMCE setup.",
+            "itemtype": "method",
+            "name": "tinyMceKeyDownCallbacks",
+            "params": [
+                {
+                    "name": "inst",
+                    "description": "tinyMCE body instance",
+                    "type": "Object"
+                },
+                {
+                    "name": "tiny_id",
+                    "description": "tinyMCE textarea id",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n     setup: function(ed) {\n       ed.onKeyDown.add(function(ed, e) {\n         tinyMceKeyDownCallbacks(ed,tiny_id);\n       });\n     }"
+            ],
+            "class": "tinyMceKeyDownCallbacks",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 813,
+            "description": "Re-initialize slides position to center after ajax events",
+            "itemtype": "method",
+            "name": "reInitializeSlidePositionsInLessonEditor",
+            "class": "reInitializeSlidePositionsInLessonEditor",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 826,
+            "description": "Initialize tinyMCE editor for a single textarea\n\nUses: [tinyMceKeyDownCallbacks](../classes/tinyMceKeyDownCallbacks.html#method_tinyMceKeyDownCallbacks) \nand [tinyMceCallbacks](../classes/tinyMceCallbacks.html#method_tinyMceCallbacks)",
+            "itemtype": "method",
+            "name": "initTinymce",
+            "params": [
+                {
+                    "name": "tiny_id",
+                    "description": "tinyMCE textarea id",
+                    "type": "Number"
+                }
+            ],
+            "class": "initTinymce",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 876,
+            "description": "Show error message when somethings goes wrong",
+            "itemtype": "method",
+            "name": "slideError",
+            "class": "slideError",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 888,
+            "description": "Check if image ratio is bigger then kind ratio",
+            "itemtype": "method",
+            "name": "isHorizontalMask",
+            "params": [
+                {
+                    "name": "image_width",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "image_height",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "kind",
+                    "description": "type image into slide, acceptes values: cover, image1, image2, image3, image4",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "true if image ratio is bigger then kind ratio",
+                "type": "Boolean"
+            },
+            "class": "isHorizontalMask",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 917,
+            "description": "Sets scaled width to slide images",
+            "itemtype": "method",
+            "name": "resizeWidth",
+            "params": [
+                {
+                    "name": "image_width",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "image_height",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "kind",
+                    "description": "type image into slide, acceptes values: cover, image1, image2, image3, image4",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "scaled width",
+                "type": "Number"
+            },
+            "class": "resizeWidth",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_editor.js",
+            "line": 944,
+            "description": "Sets scaled height to slide images",
+            "itemtype": "method",
+            "name": "resizeHeight",
+            "params": [
+                {
+                    "name": "image_width",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "image_height",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "kind",
+                    "description": "type image into slide, acceptes values: cover, image1, image2, image3, image4",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "scaled height",
+                "type": "Number"
+            },
+            "class": "resizeHeight",
+            "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 76,
+            "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [hideArrowsInLessonViewer](../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)",
+            "itemtype": "method",
+            "name": "openPlaylistMenuInLessonViewer",
+            "class": "openPlaylistMenuInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 91,
+            "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [showArrowsInLessonViewer](../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)",
+            "itemtype": "method",
+            "name": "closePlaylistMenuInLessonViewer",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "to call after effect is complete",
+                    "type": "Object"
+                }
+            ],
+            "class": "closePlaylistMenuInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 109,
+            "description": "Sets selected lesson from playlist menu",
+            "itemtype": "method",
+            "name": "selectComponentInLessonViewerPlaylistMenu",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "selected lesson",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "to call after function is complete",
+                    "type": "Object"
+                }
+            ],
+            "class": "selectComponentInLessonViewerPlaylistMenu",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 200,
+            "description": "Gets the current slide id",
+            "itemtype": "method",
+            "name": "getLessonViewerCurrentSlide",
+            "return": {
+                "description": "current slide id",
+                "type": "Number"
+            },
+            "class": "getLessonViewerCurrentSlide",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 211,
+            "description": "Slide to given slide\n\nUses: [stopMediaInLessonViewer](../classes/stopMediaInLessonViewer.html#method_stopMediaInLessonViewer)\nand [getLessonViewerCurrentSlide](../classes/getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide)\nand [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)",
+            "itemtype": "method",
+            "name": "slideToInLessonViewer",
+            "params": [
+                {
+                    "name": "to",
+                    "description": "slide to slide to",
+                    "type": "Object"
+                }
+            ],
+            "class": "slideToInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 253,
+            "description": "Hide slides navigation arrows in lesson viewer",
+            "itemtype": "method",
+            "name": "hideArrowsInLessonViewer",
+            "class": "hideArrowsInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 263,
+            "description": "Show slides navigation arrows in lesson viewer",
+            "itemtype": "method",
+            "name": "hideArrowsInLessonViewer",
+            "class": "hideArrowsInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 273,
+            "description": "Handle playlist menu on lesson viewer startup\n\nUses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
+            "itemtype": "method",
+            "name": "initializeLessonViewer",
+            "class": "initializeLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 292,
+            "description": "Stop media playling in current slide in lesson viewer",
+            "itemtype": "method",
+            "name": "stopMediaInLessonViewer",
+            "class": "stopMediaInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 304,
+            "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
+            "itemtype": "method",
+            "name": "switchLessonInPlaylistMenuLessonViewer",
+            "params": [
+                {
+                    "name": "lesson_id",
+                    "description": "lesson id to switch to",
+                    "type": "Number"
+                },
+                {
+                    "name": "callback",
+                    "description": "callback after function is complete",
+                    "type": "Object"
+                }
+            ],
+            "class": "switchLessonInPlaylistMenuLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 322,
+            "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [slideToInLessonViewer](../classes/slideToInLessonViewer.html#method_slideToInLessonViewer)\nand [switchLessonInPlaylistMenuLessonViewer](../classes/switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)",
+            "itemtype": "method",
+            "name": "slideToInLessonViewerWithLessonSwitch",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "slide to slide to",
+                    "type": "Object"
+                }
+            ],
+            "class": "slideToInLessonViewerWithLessonSwitch",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 337,
+            "description": "Go to next slide in lesson viewer,\nif last slide it goes to first one.\n\nUses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
+            "itemtype": "method",
+            "name": "goToNextSlideInLessonViewer",
+            "class": "goToNextSlideInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 355,
+            "description": "Go to previous slide in lesson viewer,\nif first slide it goes to last one.\n\nUses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
+            "itemtype": "method",
+            "name": "goToPrevSlideInLessonViewer",
+            "class": "goToPrevSlideInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 7,
+            "description": "Set iframe as target for form submit, added a callback function to control 413 status error.\n\nUses: [uploadDone](../classes/uploadDone.html#method_uploadDone)",
+            "itemtype": "method",
+            "name": "initMediaElementLoader",
+            "class": "initMediaElementLoader",
+            "module": "MediaElementLoader"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 24,
+            "description": "Handle 413 status error, file too large",
+            "itemtype": "method",
+            "name": "uploadDone",
+            "class": "uploadDone",
+            "module": "MediaElementLoader"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 40,
+            "description": "Update form fields with error labels",
+            "itemtype": "method",
+            "name": "uploadMediaElementLoaderError",
+            "params": [
+                {
+                    "name": "errors",
+                    "description": "errors list",
+                    "type": "Object"
+                }
+            ],
+            "class": "uploadMediaElementLoaderError",
+            "module": "MediaElementLoader"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 66,
+            "description": "Reload media elements page after new media element is successfully loaded.",
+            "itemtype": "method",
+            "name": "uploadMediaElementLoadeDoneRedirect",
+            "class": "uploadMediaElementLoadeDoneRedirect",
+            "module": "MediaElementLoader"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 79,
+            "description": "Fill in media element update form with media element values.",
+            "itemtype": "method",
+            "name": "resetMediaElementChangeInfo",
+            "params": [
+                {
+                    "name": "media_element_id",
+                    "description": "media element id",
+                    "type": "Number"
+                }
+            ],
+            "class": "resetMediaElementChangeInfo",
+            "module": "MediaElementLoader"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 7,
+            "description": "Checks if any notification is available and initialize unread notification counter.\nHandles notifications show/hide effects.\n\nUses: [showNotificationsFumetto](../classes/showNotificationsFumetto.html#method_showNotificationsFumetto)\nand [showNotificationsButton](../classes/showNotificationsButton.html#method_showNotificationsButton)\nand [hideHelpTooltip](../classes/hideHelpTooltip.html#method_hideHelpTooltip)\nand [hideHelpButton](../classes/hideHelpButton.html#method_hideHelpButton)\nand [showNotificationsTooltip](../classes/showNotificationsTooltip.html#method_showNotificationsTooltip)\nand [hideNotificationsFumetto](../classes/hideNotificationsFumetto.html#method_hideNotificationsFumetto)\nand [hideNotificationsTooltip](../classes/hideNotificationsTooltip.html#method_hideNotificationsTooltip)\nand [hideNotificationsButton](../classes/hideNotificationsButton.html#method_hideNotificationsButton)\nand [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)\nand [hideExpandedNotification](../classes/hideExpandedNotification.html#method_hideExpandedNotification)",
+            "itemtype": "method",
+            "name": "initializeNotifications",
+            "class": "initializeNotifications",
+            "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 108,
+            "description": "Checks if any help is available and initialize them.\nHandles help show/hide effects.\n\nUses: [hideNotificationsTooltip](../classes/hideNotificationsTooltip.html#method_hideNotificationsTooltip)\nand [hideNotificationsButton](../classes/hideNotificationsButton.html#method_hideNotificationsButton)\nand [hideNotificationsFumetto](../classes/hideNotificationsFumetto.html#method_hideNotificationsFumetto)\nand [showHelpTooltip](../classes/showHelpTooltip.html#method_showHelpTooltip)\nand [showHelpButton](../classes/showHelpButton.html#method_showHelpButton)\nand [hideHelpTooltip](../classes/hideHelpTooltip.html#method_hideHelpTooltip)\nand [hideHelpButton](../classes/hideHelpButton.html#method_hideHelpButton)",
+            "itemtype": "method",
+            "name": "initializeHelp",
+            "class": "initializeHelp",
+            "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 147,
+            "description": "Empty and hide expanded notifications.",
+            "itemtype": "method",
+            "name": "hideExpandedNotification",
+            "class": "hideExpandedNotification",
+            "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 158,
+            "description": "Hide notifications tooltip.\n\nUses: [hideExpandedNotification](../classes/hideExpandedNotification.html#method_hideExpandedNotification)",
+            "itemtype": "method",
+            "name": "hideExpandedNotification",
+            "class": "hideExpandedNotification",
+            "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 171,
+            "description": "Show notifications tooltip.",
+            "itemtype": "method",
+            "name": "showNotificationsTooltip",
+            "class": "showNotificationsTooltip",
+            "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 181,
+            "description": "Hide help tooltip.",
+            "itemtype": "method",
+            "name": "hideHelpTooltip",
+            "class": "hideHelpTooltip",
+            "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 191,
+            "description": "Show help tooltip.",
+            "itemtype": "method",
+            "name": "showHelpTooltip",
+            "class": "showHelpTooltip",
+            "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 201,
+            "description": "Hide notifications button.",
+            "itemtype": "method",
+            "name": "hideNotificationsButton",
+            "class": "hideNotificationsButton",
+            "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 211,
+            "description": "Show notifications button.",
+            "itemtype": "method",
+            "name": "showNotificationsButton",
+            "class": "showNotificationsButton",
+            "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 221,
+            "description": "Hide notifications balloon.",
+            "itemtype": "method",
+            "name": "hideNotificationsFumetto",
+            "class": "hideNotificationsFumetto",
+            "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 231,
+            "description": "Show notifications balloon.",
+            "itemtype": "method",
+            "name": "showNotificationsFumetto",
+            "class": "showNotificationsFumetto",
+            "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 241,
+            "description": "Hide help button.",
+            "itemtype": "method",
+            "name": "hideHelpButton",
+            "class": "hideHelpButton",
+            "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/notifications.js",
+            "line": 251,
+            "description": "Show help button.",
+            "itemtype": "method",
+            "name": "showHelpButton",
+            "class": "showHelpButton",
+            "module": "Notifications"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 247,
+            "description": "Handle adding tag not in the autocomplete data list\n\nUses: [checkNoTagDuplicates](../classes/checkNoTagDuplicates.html#method_checkNoTagDuplicates)\nand [addToTagsValue](../classes/addToTagsValue.html#method_addToTagsValue)\nand [createTagSpan](../classes/createTagSpan.html#method_createTagSpan)\nand [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [getUnivoqueClassForTag](../classes/getUnivoqueClassForTag.html#method_getUnivoqueClassForTag)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)\nand [disableTagsInputTooHigh](../classes/disableTagsInputTooHigh.html#method_disableTagsInputTooHigh)",
+            "itemtype": "method",
+            "name": "addTagWithoutSuggestion",
+            "params": [
+                {
+                    "name": "input",
+                    "description": "input selector for tag, class or id",
+                    "type": "String"
+                },
+                {
+                    "name": "container_selector",
+                    "description": "added tags container selector, class or id",
+                    "type": "String"
+                },
+                {
+                    "name": "tags_value_selector",
+                    "description": "hidden input field for tags value selector",
+                    "type": "String"
+                }
+            ],
+            "class": "addTagWithoutSuggestion",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 291,
+            "description": "Add tag word to hidden field with tags values",
+            "itemtype": "method",
+            "name": "addToTagsValue",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "tag name",
+                    "type": "String"
+                },
+                {
+                    "name": "value_selector",
+                    "description": "hidden input field for tags value selector",
+                    "type": "String"
+                }
+            ],
+            "class": "addToTagsValue",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 309,
+            "description": "Remove tag word to hidden field with tags values",
+            "itemtype": "method",
+            "name": "removeFromTagsValue",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "tag name",
+                    "type": "String"
+                },
+                {
+                    "name": "value_selector",
+                    "description": "hidden input field for tags value selector",
+                    "type": "String"
+                }
+            ],
+            "class": "removeFromTagsValue",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 323,
+            "description": "Generates a name_aware class for a given tag",
+            "itemtype": "method",
+            "name": "getUnivoqueClassForTag",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "tag name",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "i.e. w_a_t_e_r_",
+                "type": "String"
+            },
+            "class": "getUnivoqueClassForTag",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 339,
+            "description": "Checks if a tag word is present in the tags container.",
+            "itemtype": "method",
+            "name": "checkNoTagDuplicates",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "tag name",
+                    "type": "String"
+                },
+                {
+                    "name": "container_selector",
+                    "description": "tags container selector",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "checkNoTagDuplicates",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 358,
+            "description": "Creates a new span element for a new tag.",
+            "itemtype": "method",
+            "name": "createTagSpan",
+            "params": [
+                {
+                    "name": "word",
+                    "description": "tag name",
+                    "type": "String"
+                },
+                {
+                    "name": "new_tag",
+                    "description": "flag true if it's a new tag, false otherwise",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "span element",
+                "type": "Object"
+            },
+            "class": "createTagSpan",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 376,
+            "description": "Disable insert new tag when tags container is full.",
+            "itemtype": "method",
+            "name": "disableTagsInputTooHigh",
+            "params": [
+                {
+                    "name": "container_selector",
+                    "description": "tags container selector, class or id",
+                    "type": "String"
+                },
+                {
+                    "name": "input_selector",
+                    "description": "new tag input selector, class or id",
+                    "type": "String"
+                }
+            ],
+            "class": "disableTagsInputTooHigh",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 390,
+            "description": "Initialize jQueryUI _autocomplete_ for tags in search input\n\nUses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)",
+            "itemtype": "method",
+            "name": "initSearchTagsAutocomplete",
+            "params": [
+                {
+                    "name": "input",
+                    "description": "search by tag input selector, class or id",
+                    "type": "String"
+                }
+            ],
+            "class": "initSearchTagsAutocomplete",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/tags.js",
+            "line": 424,
+            "description": "Initialize jQueryUI _autocomplete_ for tags in lessons and elements form\n\nUses: [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)\nand [checkNoTagDuplicates](../classes/checkNoTagDuplicates.html#method_checkNoTagDuplicates)\nand [addToTagsValue](../classes/addToTagsValue.html#method_addToTagsValue)\nand [createTagSpan](../classes/createTagSpan.html#method_createTagSpan)\nand [disableTagsInputTooHigh](../classes/disableTagsInputTooHigh.html#method_disableTagsInputTooHigh)",
+            "itemtype": "method",
+            "name": "initSearchTagsAutocomplete",
+            "params": [
+                {
+                    "name": "scope",
+                    "description": "tags container scope, class or id",
+                    "type": "String"
+                }
+            ],
+            "class": "initSearchTagsAutocomplete",
+            "module": "Tags"
+        },
+        {
+            "file": "app/assets/javascripts/times.js",
+            "line": 8,
+            "description": "Get seconds amount formatted as datetime",
+            "itemtype": "method",
+            "name": "secondsToDateString",
+            "params": [
+                {
+                    "name": "seconds",
+                    "description": "amount of seconds",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "formatted seconds",
+                "type": "String"
+            },
+            "class": "secondsToDateString",
+            "module": "Times"
         },
         {
             "file": "app/assets/javascripts/video_editor.js",
@@ -480,6 +3609,24 @@
             },
             "class": "closeGenericVideoComponentCutter",
             "module": "VideoEditor"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 8,
+            "description": "Add email to recipients list on email add button (+).",
+            "itemtype": "method",
+            "name": "addEmailToVirtualClassroomSendLessonLinkSelector",
+            "class": "addEmailToVirtualClassroomSendLessonLinkSelector",
+            "module": "VirtualClassroom"
+        },
+        {
+            "file": "app/assets/javascripts/virtual_classroom.js",
+            "line": 22,
+            "description": "JS-TODO",
+            "itemtype": "method",
+            "name": "initializeNotAvailableLessonsToLoadQuick",
+            "class": "initializeNotAvailableLessonsToLoadQuick",
+            "module": "VirtualClassroom"
         }
     ],
     "warnings": []

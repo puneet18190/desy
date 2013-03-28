@@ -1,3 +1,34 @@
+# == Description
+#
+# ActiveRecord class that corresponds to the table +bookmarks+. A bookmark can be associated to either a Lesson or a MediaElement.
+#
+# == Fields
+#
+# * *bookmarkable_id*: id of the item (lesson or media element) to which the bookmark is associated
+# * *bookmarkable_type*: contains the string description of the classes Lesson or MediaElement
+# * *user_id*: id of the user associated to the bookmark
+#
+# == Associations
+#
+# * *user*: User who bookmarked (*belongs_to*)
+# * *bookmarkable*: Lesson or MediaElement bookmarked (polymorphic association) (*belongs_to*)
+#
+# == Validations
+#
+# * *presence* with numericality and existence of associated record for +user_id+ and +bookmarkable_id+
+# * *inclusion* of +bookmarkable_type+ between 'Lesson' and 'MediaElement'
+# * *uniqueness* of the triple [+user_id+, +bookmarkable_type+, +bookmarkable_id+] <b>only if +bookmarkable_type+ is correct</b>
+# * *availability* of the associated item (for lessons it can't be public and it can't belong to the user who bookmarks, for media elements it can't be public)
+# * *modifications* *not* *available* for the three fields, if the record is not new
+#
+# === Callbacks
+#
+# 1. *before_destroy*: destroy (not directly) associated VirtualClassroomLesson, if there are any.
+#
+# == Database callbacks
+#
+# None.
+#
 class Bookmark < ActiveRecord::Base
   
   belongs_to :bookmarkable, :polymorphic => true

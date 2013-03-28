@@ -430,6 +430,45 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>ActiveRecord class that corresponds to the table <code>locations</code>.
+The class uses single table inheritance to be divided into different
+categories: the categories are configured into settings.yml (for each
+category the application creates a submodel)</p>
+
+<h2 id="label-Fields">Fields</h2>
+<ul><li>
+<p><strong>name</strong>: the name of the location</p>
+</li><li>
+<p><strong>sti_type</strong>: category to which the location belongs (for
+example city, region, etc)</p>
+</li><li>
+<p><strong>ancestry</strong>: list of ancestries of the location. If the
+location belongs to the top category, this field is <code>nil</code>; if it
+belongs to the second category from the top, the field is a string
+containing only the id of the parent location; for any other case, the
+field contains a string with the list top-bottom of all the ancestries of
+the location (ex. “1/5/13/18”)</p>
+</li></ul>
+
+<h2 id="label-Associations">Associations</h2>
+
+<p>None</p>
+
+<h2 id="label-Validations">Validations</h2>
+<ul><li>
+<p><strong>presence</strong> and length of <code>name</code> (maximum 255)</p>
+</li></ul>
+
+<h2 id="label-Callbacks">Callbacks</h2>
+
+<p>None</p>
+
+<h2 id="label-Database+callbacks">Database callbacks</h2>
+
+<p>None</p>
+
   </div><!-- description -->
 
   
@@ -448,9 +487,7 @@
       
         <dt id="SUBMODELS">SUBMODELS
         
-        <dd class="description"><p>I sottomodelli di <a href="Location.html">Location</a> sono creati
-dinamicamente prendendo il valore di <a
-href="http://'location_types'">SETTINGS</a></p>
+        <dd class="description">
         
       
       </dl>
@@ -476,12 +513,18 @@ href="http://'location_types'">SETTINGS</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-c-base_label-label-Description">Description</h3>
+
+<p>Returns the label of the lowest category of location</p>
+
+<h3 id="method-c-base_label-label-Returns">Returns</h3>
+
+<p>A string translated with I18n</p>
           
 
           
           <div class="method-source-code" id="base_label-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 50</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">base_label</span>
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;locations.labels&#39;</span>).<span class="ruby-identifier">last</span>
 <span class="ruby-keyword">end</span></pre>
@@ -506,12 +549,26 @@ href="http://'location_types'">SETTINGS</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-c-get_from_chain_params-label-Description">Description</h3>
+
+<p>Given a hash of parameters with the names of the categories as keys, this
+method returns the <a href="Location.html">Location</a> corresponding to
+the last parameter (from parent to son) which is not null</p>
+
+<h3 id="method-c-get_from_chain_params-label-Args">Args</h3>
+<ul><li>
+<p><strong>params</strong>: a hash which has the names of each category as
+keys</p>
+</li></ul>
+
+<h3 id="method-c-get_from_chain_params-label-Returns">Returns</h3>
+
+<p>An object of type <a href="Location.html">Location</a></p>
           
 
           
           <div class="method-source-code" id="get_from_chain_params-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 70</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 170</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_from_chain_params</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">flag</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-identifier">index</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
@@ -547,12 +604,23 @@ href="http://'location_types'">SETTINGS</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-c-label_at-label-Description">Description</h3>
+
+<p>Returns the label of a chosen category</p>
+
+<h3 id="method-c-label_at-label-Args">Args</h3>
+<ul><li>
+<p><strong>index</strong>: the depth of the chosen category</p>
+</li></ul>
+
+<h3 id="method-c-label_at-label-Returns">Returns</h3>
+
+<p>A string translated with I18n</p>
           
 
           
           <div class="method-source-code" id="label_at-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 54</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 126</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">label_at</span>(<span class="ruby-identifier">index</span>)
   <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&#39;locations.labels&#39;</span>)[<span class="ruby-identifier">index</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -570,34 +638,51 @@ href="http://'location_types'">SETTINGS</a></p>
         
         <div class="method-heading">
           <span class="method-name">seed!</span><span
-            class="method-args">(locations = SETTINGS['locations'], parent = nil, depth = 0)</span>
+            class="method-args">(locations=SETTINGS['locations'], parent=nil, depth=0)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          
+          <h3 id="method-c-seed-21-label-Description">Description</h3>
+
+<p>This method creates the list of seeds: at this moment the seeds are picked
+from settings.yml, but it should be possible to change this feature. If the
+input is an array the methods creates a location for each of its values,
+otherwise the method assumes that it&#39;s a Hash: the locations are
+created in order of ancestry.</p>
+
+<h3 id="method-c-seed-21-label-Args">Args</h3>
+<ul><li>
+<p><strong>locations</strong>: an array or a hash of locations</p>
+</li><li>
+<p><strong>parent</strong>: the parent of the location</p>
+</li><li>
+<p><strong>depth</strong>: the depth where the methods starts</p>
+</li></ul>
+
+<h3 id="method-c-seed-21-label-Raises">Raises</h3>
+<ul><li>
+<p>*submodel does no exist*</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="seed-21-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 17</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">seed!</span>(<span class="ruby-identifier">locations</span> = <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;locations&#39;</span>], <span class="ruby-identifier">parent</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">depth</span> = <span class="ruby-value">0</span>)
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">seed!</span>(<span class="ruby-identifier">locations</span>=<span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;locations&#39;</span>], <span class="ruby-identifier">parent</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">depth</span>=<span class="ruby-value">0</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-string">&#39;submodel does not exist&#39;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">submodel</span> = <span class="ruby-constant">SUBMODELS</span>[<span class="ruby-identifier">depth</span>]
-  <span class="ruby-comment"># se è un array creo le locations per ogni valore di esso</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">locations</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">Array</span>
     <span class="ruby-identifier">locations</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">location</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">submodel</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">location</span>, <span class="ruby-identifier">parent</span><span class="ruby-operator">:</span> <span class="ruby-identifier">parent</span>)
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">return</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-comment"># se non è un array assumo che sia un Hash; creo la location padre</span>
-  <span class="ruby-comment"># e ricorro passandogliela ed aumentando la profondità</span>
   <span class="ruby-identifier">locations</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">sublocations</span><span class="ruby-operator">|</span>
     [ <span class="ruby-identifier">submodel</span>.<span class="ruby-identifier">create!</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">parent</span><span class="ruby-operator">:</span> <span class="ruby-identifier">parent</span>), <span class="ruby-identifier">sublocations</span> ]
   <span class="ruby-keyword">end</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">location</span>, <span class="ruby-identifier">sublocations</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">send</span> <span class="ruby-identifier">__method__</span>, <span class="ruby-identifier">sublocations</span>, <span class="ruby-identifier">location</span>, <span class="ruby-identifier">depth</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>
+    <span class="ruby-identifier">send</span> <span class="ruby-identifier">__method__</span>, <span class="ruby-identifier">sublocations</span>, <span class="ruby-identifier">location</span>, <span class="ruby-identifier">depth</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -628,12 +713,19 @@ href="http://'location_types'">SETTINGS</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-ancestry_with_me-label-Description">Description</h3>
+
+<p>Returns the field <code>ancestry</code>, adding to its beginning the id of
+the current location</p>
+
+<h3 id="method-i-ancestry_with_me-label-Returns">Returns</h3>
+
+<p>A string of ids separated by &#39;/&#39;</p>
           
 
           
           <div class="method-source-code" id="ancestry_with_me-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ancestry_with_me</span>
   <span class="ruby-identifier">anc</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestry</span>
   <span class="ruby-identifier">anc</span> = <span class="ruby-node">&quot;#{anc}/&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">anc</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-regexp">/\//</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">anc</span>).<span class="ruby-identifier">nil?</span>
@@ -660,12 +752,19 @@ href="http://'location_types'">SETTINGS</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-get_filled_select-label-Description">Description</h3>
+
+<p>Used in the front end, to fill the list of tags <code>select</code>
+associated to this particular location</p>
+
+<h3 id="method-i-get_filled_select-label-Returns">Returns</h3>
+
+<p>An array of strings</p>
           
 
           
           <div class="method-source-code" id="get_filled_select-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 62</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_filled_select</span>
   <span class="ruby-identifier">resp</span> = []
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ancestors</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">anc</span><span class="ruby-operator">|</span>
@@ -694,12 +793,19 @@ href="http://'location_types'">SETTINGS</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-label-label-Description">Description</h3>
+
+<p>Used in the frontend, to extract the label of the location&#39;s category
+(translated with I18n)</p>
+
+<h3 id="method-i-label-label-Returns">Returns</h3>
+
+<p>A string</p>
           
 
           
           <div class="method-source-code" id="label-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">label</span>
   <span class="ruby-identifier">index</span> = <span class="ruby-value">0</span>
   <span class="ruby-constant">SETTINGS</span>[<span class="ruby-string">&#39;location_types&#39;</span>].<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
@@ -728,12 +834,18 @@ href="http://'location_types'">SETTINGS</a></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-to_s-label-Description">Description</h3>
+
+<p>Shortcut to return the name of the location</p>
+
+<h3 id="method-i-to_s-label-Returns">Returns</h3>
+
+<p>A string</p>
           
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/location.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/models/location.rb, line 138</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
