@@ -25,7 +25,7 @@ module Media
                                input_file: input_file, output_file: output_file, format: format, input_file_info: input_file_info )
             end
             
-            output_options [ acodec, amap, achannels ]
+            output_options [ acodec, amap, achannels, ar ]
           end
   
           private
