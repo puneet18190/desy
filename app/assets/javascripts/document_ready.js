@@ -956,7 +956,6 @@ $(document).ready(function() {
   $('body').on('click', '._load_media_element', function(e) {
     e.preventDefault();
     showLoadMediaElementPopUp();
-    initFileUploads();
   });
   
   $('body').on('change', 'input#new_media_element_input', function() {

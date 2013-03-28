@@ -29,6 +29,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "hideLoader",
         "hideNewSlideChoice",
         "initLessonEditorPositions",
+        "initMediaElementLoader",
         "initNotificationsAutocomplete",
         "initTinymce",
         "initializeLessonViewer",
@@ -57,6 +58,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "resetImageEditorCrop",
         "resetImageEditorOperationsChoice",
         "resetImageEditorTexts",
+        "resetMediaElementChangeInfo",
         "resizeHeight",
         "resizeWidth",
         "saveCurrentSlide",
@@ -82,7 +84,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "tinyMceKeyDownCallbacks",
         "unbindLoader",
         "unpublishLesson",
-        "updateURLParameter"
+        "updateURLParameter",
+        "uploadDone",
+        "uploadMediaElementLoadeDoneRedirect",
+        "uploadMediaElementLoaderError"
     ],
     "modules": [
         "Administration",
@@ -93,6 +98,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "ImageEditor",
         "LessonEditor",
         "LessonViewer",
+        "MediaElementLoader",
         "Times",
         "VideoEditor",
         "VirtualClassroom"
@@ -137,6 +143,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "LessonViewer",
             "name": "LessonViewer",
             "description": "Lesson viewer, it handles slides switching and playlist menu effects."
+        },
+        {
+            "displayName": "MediaElementLoader",
+            "name": "MediaElementLoader",
+            "description": "New media element popup handler, form validation errors handling."
         },
         {
             "displayName": "Times",

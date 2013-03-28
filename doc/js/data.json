@@ -163,6 +163,21 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/media_element_loader.js": {
+            "name": "app/assets/javascripts/media_element_loader.js",
+            "modules": {
+                "MediaElementLoader": 1
+            },
+            "classes": {},
+            "fors": {
+                "initMediaElementLoader": 1,
+                "uploadDone": 1,
+                "uploadMediaElementLoaderError": 1,
+                "uploadMediaElementLoadeDoneRedirect": 1,
+                "resetMediaElementChangeInfo": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/times.js": {
             "name": "app/assets/javascripts/times.js",
             "modules": {
@@ -457,6 +472,29 @@
             "file": "app/assets/javascripts/lesson_viewer.js",
             "line": 9,
             "description": "Lesson viewer, it handles slides switching and playlist menu effects."
+        },
+        "MediaElementLoader": {
+            "name": "MediaElementLoader",
+            "submodules": {},
+            "classes": {
+                "initMediaElementLoader": 1,
+                "uploadDone": 1,
+                "uploadMediaElementLoaderError": 1,
+                "uploadMediaElementLoadeDoneRedirect": 1,
+                "resetMediaElementChangeInfo": 1
+            },
+            "fors": {
+                "initMediaElementLoader": 1,
+                "uploadDone": 1,
+                "uploadMediaElementLoaderError": 1,
+                "uploadMediaElementLoadeDoneRedirect": 1,
+                "resetMediaElementChangeInfo": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 1,
+            "description": "New media element popup handler, form validation errors handling."
         },
         "Times": {
             "name": "Times",
@@ -1354,6 +1392,61 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "LessonViewer",
+            "namespace": ""
+        },
+        "initMediaElementLoader": {
+            "name": "initMediaElementLoader",
+            "shortname": "initMediaElementLoader",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MediaElementLoader",
+            "namespace": ""
+        },
+        "uploadDone": {
+            "name": "uploadDone",
+            "shortname": "uploadDone",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MediaElementLoader",
+            "namespace": ""
+        },
+        "uploadMediaElementLoaderError": {
+            "name": "uploadMediaElementLoaderError",
+            "shortname": "uploadMediaElementLoaderError",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MediaElementLoader",
+            "namespace": ""
+        },
+        "uploadMediaElementLoadeDoneRedirect": {
+            "name": "uploadMediaElementLoadeDoneRedirect",
+            "shortname": "uploadMediaElementLoadeDoneRedirect",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MediaElementLoader",
+            "namespace": ""
+        },
+        "resetMediaElementChangeInfo": {
+            "name": "resetMediaElementChangeInfo",
+            "shortname": "resetMediaElementChangeInfo",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MediaElementLoader",
             "namespace": ""
         },
         "secondsToDateString": {
@@ -2763,6 +2856,65 @@
             "name": "goToPrevSlideInLessonViewer",
             "class": "goToPrevSlideInLessonViewer",
             "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 7,
+            "description": "Set iframe as target for form submit, added a callback function to control 413 status error.\n\nUses: [uploadDone](../classes/uploadDone.html#method_uploadDone)",
+            "itemtype": "method",
+            "name": "initMediaElementLoader",
+            "class": "initMediaElementLoader",
+            "module": "MediaElementLoader"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 24,
+            "description": "Handle 413 status error, file too large",
+            "itemtype": "method",
+            "name": "uploadDone",
+            "class": "uploadDone",
+            "module": "MediaElementLoader"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 40,
+            "description": "Update form fields with error labels",
+            "itemtype": "method",
+            "name": "uploadMediaElementLoaderError",
+            "params": [
+                {
+                    "name": "errors",
+                    "description": "errors list",
+                    "type": "Object"
+                }
+            ],
+            "class": "uploadMediaElementLoaderError",
+            "module": "MediaElementLoader"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 66,
+            "description": "Reload media elements page after new media element is successfully loaded.",
+            "itemtype": "method",
+            "name": "uploadMediaElementLoadeDoneRedirect",
+            "class": "uploadMediaElementLoadeDoneRedirect",
+            "module": "MediaElementLoader"
+        },
+        {
+            "file": "app/assets/javascripts/media_element_loader.js",
+            "line": 79,
+            "description": "Fill in media element update form with media element values.",
+            "itemtype": "method",
+            "name": "resetMediaElementChangeInfo",
+            "params": [
+                {
+                    "name": "media_element_id",
+                    "description": "media element id",
+                    "type": "Number"
+                }
+            ],
+            "class": "resetMediaElementChangeInfo",
+            "module": "MediaElementLoader"
         },
         {
             "file": "app/assets/javascripts/times.js",

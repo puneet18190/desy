@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>reloadLessonsDashboardPagination - DESY</title>
+    <title>app&#x2F;assets&#x2F;javascripts&#x2F;media_element_loader.js - DESY</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -278,195 +278,109 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>reloadLessonsDashboardPagination Class</h1>
-<div class="box meta">
-    
+                        <h1 class="file-heading">File: app&#x2F;assets&#x2F;javascripts&#x2F;media_element_loader.js</h1>
 
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+* New media element popup handler, form validation errors handling.
+* 
+* @module MediaElementLoader
+*&#x2F;
 
-    
+&#x2F;**
+* Set iframe as target for form submit, added a callback function to control 413 status error.
+*
+* Uses: [uploadDone](..&#x2F;classes&#x2F;uploadDone.html#method_uploadDone)
+* 
+* @method initMediaElementLoader
+* @for initMediaElementLoader
+*&#x2F;
+function initMediaElementLoader() {
+  document.getElementById(&#x27;new_media_element&#x27;).onsubmit=function() {
+    $(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+    $(&#x27;.too_large&#x27;).remove();
+    document.getElementById(&#x27;new_media_element&#x27;).target = &#x27;upload_target&#x27;; &#x2F;&#x2F;&#x27;upload_target&#x27; is the name of the iframe
+    document.getElementById(&quot;upload_target&quot;).onload = uploadDone;
+  }
+}
 
-    
-        
-            Module: <a href="../modules/Dashboard.html">Dashboard</a>
-        
-    
+&#x2F;**
+* Handle 413 status error, file too large
+* 
+* @method uploadDone
+* @for uploadDone
+*&#x2F;
+function uploadDone(){
+  var ret = document.getElementById(&quot;upload_target&quot;).contentWindow.document.title;
+  if(ret &amp;&amp; ret.match(&#x2F;413&#x2F;g)){
+    $(&#x27;.barraLoading img&#x27;).hide();
+    $(&#x27;iframe&#x27;).before(&quot;&lt;p class=&#x27;too_large&#x27; style=&#x27;padding: 20px 0 0 40px;&#x27;&gt;&lt;img src=&#x27;&#x2F;assets&#x2F;puntoesclamativo.png&#x27; style=&#x27;margin: 20px 5px 0 20px;&#x27;&gt;&lt;span class=&#x27;lower&#x27; style=&#x27;color:black&#x27;&gt;&quot; + $(&#x27;#load-media-element&#x27;).data(&#x27;media-file-too-large&#x27;) + &quot;&lt;&#x2F;span&gt;&lt;&#x2F;p&gt;&quot;);
+    $(&#x27;#media_element_media_show&#x27;).text($(&#x27;#load-media-element&#x27;).data(&#x27;placeholder-media&#x27;));
+  }
+  return false;
+}
 
-    
-</div>
+&#x2F;**
+* Update form fields with error labels
+* 
+* @method uploadMediaElementLoaderError
+* @for uploadMediaElementLoaderError
+* @param errors {Object} errors list
+*&#x2F;
+function uploadMediaElementLoaderError(errors) {
+  for (var i = 0; i &lt; errors.length; i++) {
+    var error = errors[i];
+    if(error == &#x27;media&#x27;) {
+      $(&#x27;#load-media-element #media_element_media_show&#x27;).addClass(&#x27;form_error&#x27;);
+    } else if(error == &#x27;tags&#x27;) {
+      $(&#x27;#load-media-element ._tags_container&#x27;).addClass(&#x27;form_error&#x27;);
+      $(&#x27;#load-media-element ._tags_container ._placeholder&#x27;).hide();
+    } else {
+      $(&#x27;#load-media-element #&#x27; + error).addClass(&#x27;form_error&#x27;);
+      if($(&#x27;#load-media-element #&#x27; + error + &#x27;_placeholder&#x27;).val() == &#x27;&#x27;) {
+        $(&#x27;#load-media-element #&#x27; + error).val(&#x27;&#x27;);
+      }
+    }
+  }
+  $(&#x27;.barraLoading img&#x27;).hide();
+  $(&#x27;.barraLoading img&#x27;).attr(&#x27;src&#x27;, &#x27;&#x27;);
+}
 
+&#x2F;**
+* Reload media elements page after new media element is successfully loaded.
+* 
+* @method uploadMediaElementLoadeDoneRedirect
+* @for uploadMediaElementLoadeDoneRedirect
+*&#x2F;
+function uploadMediaElementLoadeDoneRedirect() {
+  $(&#x27;.barraLoading&#x27;).css(&#x27;background-color&#x27;, &#x27;#41A62A&#x27;);
+  $(&#x27;.barraLoading img&#x27;).hide();
+  $(&#x27;.barraLoading img&#x27;).attr(&#x27;src&#x27;, &#x27;&#x27;);
+  window.location = &#x27;&#x2F;media_elements&#x27;;
+}
 
-
-<div class="box intro">
-    
-</div>
-
-
-
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-
-        
-            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
-        
-        
-        
-        
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-            
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                        
-                            <li class="index-item method">
-                                <a href="#method_reloadLessonsDashboardPagination">reloadLessonsDashboardPagination</a>
-
-                                
-                                
-                            </li>
-                        
-                    </ul>
-                </div>
-            
-
-            
-
-            
-
-            
-        </div>
-
-        
-            <div id="methods" class="api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-                
-                    <div id="method_reloadLessonsDashboardPagination" class="method item">
-    <h3 class="name"><code>reloadLessonsDashboardPagination</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>pos</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>poges_amount</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;app_assets_javascripts_dashboard.js.html#l134"><code>app&#x2F;assets&#x2F;javascripts&#x2F;dashboard.js:134</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>Realod pagination html for lessons.</p>
-
-<p>Uses: <a href="../classes/changePageDashboardLessons.html#method_changePageDashboardLessons">changePageDashboardLessons</a></p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">pos</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>pagination position</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">poges_amount</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>pagination pages amount</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-
-    
-</div>
-
-                
-            </div>
-        
-
-        
-
-        
-
-        
-    </div>
+&#x2F;**
+* Fill in media element update form with media element values.
+* 
+* @method resetMediaElementChangeInfo
+* @for resetMediaElementChangeInfo
+* @param media_element_id {Number} media element id
+*&#x2F;
+function resetMediaElementChangeInfo(media_element_id) {
+  var container = $(&#x27;#dialog-media-element-&#x27; + media_element_id + &#x27; ._change_info_container&#x27;);
+  container.find(&#x27;#title&#x27;).val(container.data(&#x27;title&#x27;));
+  container.find(&#x27;#description&#x27;).val(container.data(&#x27;description&#x27;));
+  container.find(&#x27;.form_error&#x27;).removeClass(&#x27;form_error&#x27;);
+  container.find(&#x27;._error_messages&#x27;).html(&#x27;&#x27;);
+  container.find(&#x27;._tags_container span&#x27;).remove();
+  container.find(&#x27;._tags_placeholder span&#x27;).each(function() {
+    var copy = $(this)[0].outerHTML;
+    container.find(&#x27;._tags_container&#x27;).prepend(copy);
+  });
+  container.find(&#x27;#tags_value&#x27;).val(container.data(&#x27;tags&#x27;));
+}
+    </pre>
 </div>
 
                     </div>
