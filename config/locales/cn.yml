@@ -2171,7 +2171,8 @@ cn:
       length_description: 280
       # Maximum number of characters allowed in the title of a lesson
       # 1 - models/lesson.rb
-      # 2 - views/lesson_editor/new.html.erb
+      # 2 - models/lesson.rb
+      # 3 - views/lesson_editor/new.html.erb
       length_title: 35
     media_element:
       # Maximum number of characters allowed in the description of an element
@@ -2182,18 +2183,20 @@ cn:
       length_description: 280
       # Maximum number of characters allowed in the title of an element
       # 1 - models/media_element.rb
-      # 2 - views/media_elements/_new_form_popup.html.erb
-      # 3 - views/media_elements/info_form_in_editor/_new.html.erb
-      # 4 - views/admin/media_elements/new.html.erb
+      # 2 - models/media_element.rb
+      # 3 - views/media_elements/_new_form_popup.html.erb
+      # 4 - views/media_elements/info_form_in_editor/_new.html.erb
+      # 5 - views/admin/media_elements/new.html.erb
       length_title: 35
     slide:
       # Maximum number of characters allowed in the title of a slide
       # 1 - models/slide.rb
-      # 2 - views/lesson_editor/slides/_text.html.erb
-      # 3 - views/lesson_editor/slides/_title.html.erb
-      # 4 - views/lesson_editor/slides/_video1.html.erb
-      # 5 - views/lesson_editor/slides/_image1.html.erb
-      # 6 - views/lesson_editor/slides/_audio.html.erb
+      # 2 - models/slide.rb
+      # 3 - views/lesson_editor/slides/_text.html.erb
+      # 4 - views/lesson_editor/slides/_title.html.erb
+      # 5 - views/lesson_editor/slides/_video1.html.erb
+      # 6 - views/lesson_editor/slides/_image1.html.erb
+      # 7 - views/lesson_editor/slides/_audio.html.erb
       length_title: 35
       # Maximum number of characters allowed in the caption of an image inside a slide
       # 1 - models/media_elements_slide.rb

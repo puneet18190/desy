@@ -42,7 +42,7 @@ require 'lessons_media_elements_shared'
 # * *presence* for +title+ and +description+
 # * *presence* of associated element, numericality for +parent_id+ and +parent_id+ must different by +id+, <b>only if different by nil</b>
 # * *inclusion* of +is_public+, +copied_not_modified+, +notified+ in [+true+, +false+]
-# * *length* of +title+ and +description+ (values configured in the I18n translation file)
+# * *length* of +title+ and +description+ (values configured in the I18n translation file; only for title, if the value is greater than 255 it's set to 255)
 # * *uniqueness* of the couple [+parent_id+, +user_id+] <b>if +parent_id+ is not null</b>
 # * *if* *new* *record* +is_public+ must be false
 # * *if* *public* +copied_not_modified+ must be false
@@ -71,6 +71,8 @@ class Lesson < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   extend LessonsMediaElementsShared
   
+  MAX_TITLE_LENGTH = (I18n.t('language_parameters.lesson.length_title') > 255 ? 255 : I18n.t('language_parameters.lesson.length_title'))
+  
   attr_accessible :subject_id, :school_level_id, :title, :description
   attr_reader :is_reportable
   attr_writer :validating_in_form
@@ -95,7 +97,7 @@ class Lesson < ActiveRecord::Base
   validates_numericality_of :user_id, :school_level_id, :subject_id, :only_integer => true, :greater_than => 0
   validates_numericality_of :parent_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   validates_inclusion_of :is_public, :copied_not_modified, :notified, :in => [true, false]
-  validates_length_of :title, :maximum => I18n.t('language_parameters.lesson.length_title')
+  validates_length_of :title, :maximum => MAX_TITLE_LENGTH
   validates_length_of :description, :maximum => I18n.t('language_parameters.lesson.length_description')
   validates_uniqueness_of :parent_id, :scope => :user_id, :if => :present_parent_id
   validate :validate_associations, :validate_public, :validate_copied_not_modified_and_public, :validate_impossible_changes, :validate_tags_length

@@ -19,9 +19,11 @@ class Slide < ActiveRecord::Base
   KINDS_WITHOUT_COVER = [TITLE, TEXT, IMAGE1, IMAGE3, IMAGE2, IMAGE4, VIDEO2, VIDEO1, AUDIO]
   KINDS = KINDS_WITHOUT_COVER + [COVER]
   
+  MAX_TITLE_LENGTH = (I18n.t('language_parameters.slide.length_title') > 255 ? 255 : I18n.t('language_parameters.slide.length_title'))
+  
   validates_presence_of :lesson_id, :position
   validates_numericality_of :lesson_id, :position, :only_integer => true, :greater_than => 0
-  validates_length_of :title, :maximum => I18n.t('language_parameters.slide.length_title'), :allow_nil => true
+  validates_length_of :title, :maximum => MAX_TITLE_LENGTH, :allow_nil => true
   validates_inclusion_of :kind, :in => KINDS
   validates_uniqueness_of :position, :scope => :lesson_id
   validates_uniqueness_of :kind, :scope => :lesson_id, :if => :is_cover

@@ -406,6 +406,55 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>ActiveRecord class that corresponds to the table
+<code>mailing_list_groups</code>.</p>
+
+<h2 id="label-Fields">Fields</h2>
+<ul><li>
+<p><strong>user_id</strong>: the reference to the <a href="User.html">User</a>
+owner of the group</p>
+</li><li>
+<p><strong>name</strong>: the name of the group</p>
+</li></ul>
+
+<h2 id="label-Associations">Associations</h2>
+<ul><li>
+<p><strong>user</strong>: reference to the <a href="User.html">User</a> owner
+of the group (<strong>belongs_to</strong>)</p>
+</li><li>
+<p><strong>addresses</strong>: reference to the associated addresses (see <a
+href="MailingListAddress.html">MailingListAddress</a>)
+(<strong>has_many</strong>)</p>
+</li></ul>
+
+<h2 id="label-Validations">Validations</h2>
+<ul><li>
+<p><strong>presence</strong> for <code>name</code></p>
+</li><li>
+<p><strong>presence</strong> with numericality and existence of associated
+record for <code>user_id</code></p>
+</li><li>
+<p><strong>length</strong> of <code>name</code>, maximum is 255</p>
+</li><li>
+<p><strong>uniqueness</strong> for <code>name</code></p>
+</li><li>
+<p><strong>modifications</strong> <strong>not</strong>
+<strong>available</strong> for <code>user_id</code>, if the record is not
+new</p>
+</li></ul>
+
+<h2 id="label-Callbacks">Callbacks</h2>
+
+<p>None</p>
+
+<h2 id="label-Database+callbacks">Database callbacks</h2>
+<ol><li>
+<p><strong>cascade</strong> <strong>destruction</strong> for the associated
+table <a href="MailingListAddress.html">MailingListAddress</a></p>
+</li></ol>
+
   </div><!-- description -->
 
   

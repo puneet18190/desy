@@ -423,16 +423,27 @@ address</p>
 </li></ul>
 
 <h2 id="label-Associations">Associations</h2>
-
-<p># * <strong>group</strong>: reference to the <a
+<ul><li>
+<p><strong>group</strong>: reference to the <a
 href="MailingListGroup.html">MailingListGroup</a> to which the address
-belongs (<strong>belongs_to</strong>).</p>
+belongs (<strong>belongs_to</strong>)</p>
+</li></ul>
 
 <h2 id="label-Validations">Validations</h2>
 <ul><li>
 <p><strong>presence</strong> for <code>email</code> and <code>heading</code></p>
 </li><li>
+<p><strong>presence</strong> with numericality and existence of associated
+record for <code>group_id</code></p>
+</li><li>
+<p><strong>length</strong> of <code>heading</code> and <code>email</code>,
+maximum is 255</p>
+</li><li>
 <p><strong>correctness</strong> of <code>email</code> as an e-mail address</p>
+</li><li>
+<p><strong>modifications</strong> <strong>not</strong>
+<strong>available</strong> for <code>group_id</code>, if the record is not
+new</p>
 </li></ul>
 
 <h2 id="label-Callbacks">Callbacks</h2>

@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   has_many :virtual_classroom_lessons
   has_many :mailing_list_groups, :dependent => :destroy
   belongs_to :school_level
-  belongs_to :location, class_name: location_association_class
+  belongs_to :location, :class_name => location_association_class
   
   validates_presence_of :email, :name, :surname, :school_level_id, :location_id
   validates_numericality_of :school_level_id, :location_id, only_integer: true, greater_than: 0, allow_blank: true
@@ -47,9 +47,8 @@ class User < ActiveRecord::Base
   validates_length_of :password, PASSWORD_LENGTH_CONSTRAINTS.merge(:on => :create, :unless => proc { |record| record.encrypted_password.present? })
   validates_length_of :password, PASSWORD_LENGTH_CONSTRAINTS.merge(:on => :update, :allow_nil => true, :allow_blank => true)
   validates_inclusion_of :active, :in => [true, false]
-  validate :validate_associations
-  validate :validate_email_not_changed, on: :update
-  validates :email, email_format: { :message => I18n.t(:invalid_email_address, :scope => [:activerecord, :errors, :messages]) }
+  validate :validate_associations, :validate_email
+  validate :validate_email_not_changed, :on => :update
   REGISTRATION_POLICIES.each do |policy|
     validates_acceptance_of policy, on: :create, allow_nil: false
   end
@@ -863,6 +862,28 @@ class User < ActiveRecord::Base
   
   def validate_email_not_changed
     errors.add :email, :changed if changed.include? 'email'
+  end
+  
+  def validate_email
+    return if self.email.blank?
+    flag = false
+    flag = true if !(/ / =~ self.email).nil?
+    x = self.email.split('@')
+    if x.length == 2
+      flag = true if x[0].blank?
+      x = x[1].split('.')
+      if x.length > 1
+        x.each do |comp|
+          flag = true if comp.blank?
+        end
+        flag = true if x.last.length < 2
+      else
+        flag = true
+      end
+    else
+      flag = true
+    end
+    errors.add(:email, :not_a_valid_email) if flag
   end
   
 end

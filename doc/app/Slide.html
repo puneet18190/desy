@@ -494,6 +494,11 @@
         <dd class="description">
         
       
+        <dt id="MAX_TITLE_LENGTH">MAX_TITLE_LENGTH
+        
+        <dd class="description">
+        
+      
         <dt id="TEXT">TEXT
         
         <dd class="description">
@@ -542,7 +547,7 @@
 
           
           <div class="method-source-code" id="accepted_media_element_sti_type-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 51</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">accepted_media_element_sti_type</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
   <span class="ruby-keyword">when</span> <span class="ruby-constant">COVER</span>, <span class="ruby-constant">IMAGE1</span>, <span class="ruby-constant">IMAGE2</span>, <span class="ruby-constant">IMAGE3</span>, <span class="ruby-constant">IMAGE4</span>
@@ -581,7 +586,7 @@
 
           
           <div class="method-source-code" id="allows_text-3F-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">allows_text?</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span> 
   <span class="ruby-keyword">when</span> <span class="ruby-constant">TEXT</span>, <span class="ruby-constant">IMAGE1</span>, <span class="ruby-constant">AUDIO</span>, <span class="ruby-constant">VIDEO1</span> <span class="ruby-keyword">then</span> <span class="ruby-keyword">true</span>
@@ -614,7 +619,7 @@
 
           
           <div class="method-source-code" id="allows_title-3F-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">allows_title?</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">kind</span>
   <span class="ruby-keyword">when</span> <span class="ruby-constant">COVER</span>, <span class="ruby-constant">IMAGE1</span>, <span class="ruby-constant">AUDIO</span>, <span class="ruby-constant">VIDEO1</span>, <span class="ruby-constant">TITLE</span>, <span class="ruby-constant">TEXT</span> <span class="ruby-keyword">then</span> <span class="ruby-keyword">true</span>
@@ -647,7 +652,7 @@
 
           
           <div class="method-source-code" id="audio_at-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 114</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">audio_at</span>(<span class="ruby-identifier">position</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">accepted_media_element_sti_type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">AUDIO_TYPE</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">media_element_at</span> <span class="ruby-identifier">position</span>
@@ -679,7 +684,7 @@
 
           
           <div class="method-source-code" id="change_position-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 157</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 159</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change_position</span>(<span class="ruby-identifier">x</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">Fixnum</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
@@ -734,7 +739,7 @@
 
           
           <div class="method-source-code" id="cover-3F-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cover?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COVER</span>
 <span class="ruby-keyword">end</span></pre>
@@ -764,7 +769,7 @@
 
           
           <div class="method-source-code" id="destroy_with_positions-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 135</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 137</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy_with_positions</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-constant">COVER</span>
@@ -812,7 +817,7 @@
 
           
           <div class="method-source-code" id="following-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 131</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">following</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson_id</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -844,7 +849,7 @@ media_elements, since we need information contained in this table
 
           
           <div class="method-source-code" id="image_at-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 121</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">image_at</span>(<span class="ruby-identifier">position</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">accepted_media_element_sti_type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">IMAGE_TYPE</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">media_element_at</span> <span class="ruby-identifier">position</span>
@@ -876,7 +881,7 @@ media_elements, since we need information contained in this table
 
           
           <div class="method-source-code" id="previous-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 127</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 129</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">previous</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Slide</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:lesson_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lesson_id</span>, <span class="ruby-value">:position</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">position</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)).<span class="ruby-identifier">first</span>
 <span class="ruby-keyword">end</span></pre>
@@ -906,7 +911,7 @@ media_elements, since we need information contained in this table
 
           
           <div class="method-source-code" id="update_with_media_elements-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 64</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_with_media_elements</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">text</span>, <span class="ruby-identifier">media_elements</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-keyword">false</span>
@@ -976,7 +981,7 @@ media_elements, since we need information contained in this table
 
           
           <div class="method-source-code" id="video_at-source">
-            <pre><span class="ruby-comment"># File app/models/slide.rb, line 108</span>
+            <pre><span class="ruby-comment"># File app/models/slide.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">video_at</span>(<span class="ruby-identifier">position</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">accepted_media_element_sti_type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">MediaElement</span><span class="ruby-operator">::</span><span class="ruby-constant">VIDEO_TYPE</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-identifier">media_element_at</span> <span class="ruby-identifier">position</span>

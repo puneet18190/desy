@@ -16,6 +16,7 @@ class MediaElement < ActiveRecord::Base
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
   DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
   MAX_MEDIA_SIZE = 50.megabytes
+  MAX_TITLE_LENGTH = (I18n.t('language_parameters.media_element.length_title') > 255 ? 255 : I18n.t('language_parameters.media_element.length_title'))
   
   serialize :metadata, OpenStruct
   
@@ -35,7 +36,7 @@ class MediaElement < ActiveRecord::Base
   validates_inclusion_of :is_public, :in => [true, false]
   validates_inclusion_of :sti_type, :in => STI_TYPES
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
-  validates_length_of :title, :maximum => I18n.t('language_parameters.media_element.length_title')
+  validates_length_of :title, :maximum => MAX_TITLE_LENGTH
   validates_length_of :description, :maximum => I18n.t('language_parameters.media_element.length_description')
   validates_presence_of :media, unless: proc{ |record| [Video, Audio].include?(record.class) && record.composing }
   validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_tags_length, :validate_size

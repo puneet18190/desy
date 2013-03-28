@@ -16,7 +16,9 @@
 #
 # * *presence* for +email+ and +heading+
 # * *presence* with numericality and existence of associated record for +group_id+
+# * *length* of +heading+ and +email+, maximum is 255
 # * *correctness* of +email+ as an e-mail address
+# * *modifications* *not* *available* for +group_id+, if the record is not new
 #
 # == Callbacks
 #
@@ -34,8 +36,8 @@ class MailingListAddress < ActiveRecord::Base
   
   validates_presence_of :email, :heading, :group_id
   validates_numericality_of :group_id, :greater_than => 0, :only_integer => true
-  validates :email, email_format: { :message => I18n.t(:invalid_email_address, :scope => [:activerecord, :errors, :messages], :default => 'does not appear to be valid') }
-  validate :validate_associations
+  validates_length_of :heading, :email, :maximum => 255
+  validate :validate_associations, :validate_impossible_changes, :validate_email
   
   before_validation :init_validation
   
@@ -48,6 +50,32 @@ class MailingListAddress < ActiveRecord::Base
   
   def validate_associations
     errors.add(:group_id, :doesnt_exist) if @group.nil?
+  end
+  
+  def validate_impossible_changes
+    errors.add(:group_id, :cant_be_changed) if @mailing_list_address && @mailing_list_address.group_id != self.group_id
+  end
+  
+  def validate_email
+    return if self.email.blank?
+    flag = false
+    flag = true if !(/ / =~ self.email).nil?
+    x = self.email.split('@')
+    if x.length == 2
+      flag = true if x[0].blank?
+      x = x[1].split('.')
+      if x.length > 1
+        x.each do |comp|
+          flag = true if comp.blank?
+        end
+        flag = true if x.last.length < 2
+      else
+        flag = true
+      end
+    else
+      flag = true
+    end
+    errors.add(:email, :not_a_valid_email) if flag
   end
   
 end

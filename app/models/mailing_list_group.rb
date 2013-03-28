@@ -16,7 +16,9 @@
 #
 # * *presence* for +name+
 # * *presence* with numericality and existence of associated record for +user_id+
+# * *length* of +name+, maximum is 255
 # * *uniqueness* for +name+
+# * *modifications* *not* *available* for +user_id+, if the record is not new
 #
 # == Callbacks
 #
@@ -24,7 +26,7 @@
 #
 # == Database callbacks
 #
-# TODO qui ne manca una
+# 1. *cascade* *destruction* for the associated table MailingListAddress
 #
 class MailingListGroup < ActiveRecord::Base
   
@@ -34,11 +36,12 @@ class MailingListGroup < ActiveRecord::Base
   has_many :addresses, :class_name => MailingListAddress, :foreign_key => 'group_id', :dependent => :destroy
   
   validates_presence_of :name, :user_id
+  validates_length_of :name, :maximum => 255
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_uniqueness_of :name
   validate :validate_associations
   
-  before_validation :init_validation
+  before_validation :init_validation, :validate_impossible_changes
   
   private
   
@@ -49,6 +52,10 @@ class MailingListGroup < ActiveRecord::Base
   
   def validate_associations
     errors.add(:user_id, :doesnt_exist) if @user.nil?
+  end
+  
+  def validate_impossible_changes
+    errors.add(:user_id, :cant_be_changed) if @mailing_list_group && @mailing_list_group.user_id != self.user_id
   end
   
 end

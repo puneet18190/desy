@@ -17,7 +17,7 @@ class UserTest < ActiveSupport::TestCase
   
   test 'empty_and_defaults' do
     @user = User.new
-    assert_error_size 13, @user
+    assert_error_size 12, @user
   end
   
   test 'attr_accessible' do
@@ -26,46 +26,12 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    @user.name = long_string(256)
-    assert !@user.save, "User erroneously saved - #{@user.inspect}"
-    assert_equal [:email, :name], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
-    assert_equal 1, @user.errors.messages[:name].length
-    assert @user.errors.messages[:email].empty?
-    assert @user.errors.added? :name, :too_long, {:count => 255}
-    @user.name = long_string(255)
-    assert @user.valid?, "User not valid: #{@user.errors.inspect}"
-    @user.surname = long_string(256)
-    assert !@user.save, "User erroneously saved - #{@user.inspect}"
-    assert_equal [:email, :surname], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
-    assert_equal 1, @user.errors.messages[:surname].length
-    assert @user.errors.messages[:email].empty?
-    assert @user.errors.added? :surname, :too_long, {:count => 255}
-    @user.surname = long_string(255)
-    assert @user.valid?, "User not valid: #{@user.errors.inspect}"
-    @user.school_level_id = 'er'
-    assert !@user.save, "User erroneously saved - #{@user.inspect}"
-    assert_equal [:email, :school_level_id], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
-    assert_equal 2, @user.errors.messages[:school_level_id].length
-    assert @user.errors.messages[:email].empty?
-    assert @user.errors.added? :school_level_id, :not_a_number
-    @user.school_level_id = 1
-    assert @user.valid?, "User not valid: #{@user.errors.inspect}"
-    @user.location_id = -2
-    assert !@user.save, "User erroneously saved - #{@user.inspect}"
-    assert_equal [:email, :location_id], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
-    assert_equal 2, @user.errors.messages[:location_id].length, @user.errors.inspect
-    assert @user.errors.messages[:email].empty?
-    assert @user.errors.added? :location_id, :greater_than, {:count => 0}
-    @user.location_id = 1
-    assert @user.valid?, "User not valid: #{@user.errors.inspect}"
-    @user.location_id = 2.8
-    assert !@user.save, "User erroneously saved - #{@user.inspect}"
-    assert_equal [:email, :location_id], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
-    assert_equal 2, @user.errors.messages[:location_id].length, @user.errors.inspect
-    assert @user.errors.messages[:email].empty?
-    assert @user.errors.added? :location_id, :not_an_integer
-    @user.location_id = 1
-    assert @user.valid?, "User not valid: #{@user.errors.inspect}"
+    assert_invalid_email @user
+    assert_invalid @user, :name, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @user, :surname, long_string(256), long_string(255), :too_long, {:count => 255}
+    assert_invalid @user, :school_level_id, 'er', 1, :not_a_number
+    assert_invalid @user, :location_id, -2, 1, :greater_than, {:count => 0}
+    assert_invalid @user, :location_id, 2.8, 1, :not_an_integer
     assert_obj_saved @user
   end
   
@@ -81,30 +47,9 @@ class UserTest < ActiveSupport::TestCase
     l.name = 'Dogville'
     assert_obj_saved l
     new_location_id = l.id
-    @user.location_id = 1900
-    assert !@user.save, "User erroneously saved - #{@user.inspect}"
-    assert_equal [:email, :location_id], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
-    assert_equal 1, @user.errors.messages[:location_id].length
-    assert @user.errors.messages[:email].empty?
-    assert @user.errors.added? :location_id, :doesnt_exist
-    @user.location_id = 1
-    assert @user.valid?, "User not valid: #{@user.errors.inspect}"
-    @user.location_id = new_location_id
-    assert !@user.save, "User erroneously saved - #{@user.inspect}"
-    assert_equal [:email, :location_id], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
-    assert_equal 1, @user.errors.messages[:location_id].length
-    assert @user.errors.messages[:email].empty?
-    assert @user.errors.added? :location_id, :doesnt_exist
-    @user.location_id = 1
-    assert @user.valid?, "User not valid: #{@user.errors.inspect}"
-    @user.school_level_id = 1900
-    assert !@user.save, "User erroneously saved - #{@user.inspect}"
-    assert_equal [:email, :school_level_id], @user.errors.messages.keys.sort, "A field which wasn't supposed to be affected returned error - #{@user.errors.inspect}"
-    assert_equal 1, @user.errors.messages[:school_level_id].length
-    assert @user.errors.messages[:email].empty?
-    assert @user.errors.added? :school_level_id, :doesnt_exist
-    @user.school_level_id = 2
-    assert @user.valid?, "User not valid: #{@user.errors.inspect}"
+    assert_invalid @user, :location_id, 1900, 1, :doesnt_exist
+    assert_invalid @user, :location_id, new_location_id, 1, :doesnt_exist
+    assert_invalid @user, :school_level_id, 1900, 1, :doesnt_exist
     assert_obj_saved @user
   end
   
