@@ -23,7 +23,7 @@ require 'lessons_media_elements_shared'
 # == Associations
 #
 # * *user*: reference to the User who created the lesson (*belongs_to*).
-# * *subject*: Subject associated to the lesson(*belongs_to*).
+# * *subject*: Subject associated to the lesson (*belongs_to*).
 # * *school_level*: SchoolLevel associated to the creator of the lesson and for transitivity to the lesson (*belongs_to*).
 # * *parent*: original lesson from which the lesson was copied (*belongs_to*).
 # * *copies*: lessons copied by this lesson (*has_many*).
