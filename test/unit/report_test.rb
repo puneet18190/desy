@@ -25,7 +25,7 @@ class ReportTest < ActiveSupport::TestCase
   test 'types' do
     assert_invalid @report, :user_id, 'ehi', 1, :not_a_number
     assert_invalid @report, :reportable_id, 5.66, 1, :not_an_integer
-    assert_invalid @report, :user_id, -4, 1, :greater_than
+    assert_invalid @report, :user_id, -4, 1, :greater_than, {:count => 0}
     assert_invalid @report, :reportable_type, 'Lazie', 'Lesson', :inclusion
     assert_obj_saved @report
   end

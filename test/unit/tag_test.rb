@@ -31,6 +31,8 @@ class TagTest < ActiveSupport::TestCase
   end
   
   def setup
+    @min_word = SETTINGS['min_tag_length']
+    @max_word = SETTINGS['max_tag_length']
     begin
       @tag = Tag.new :word => 'passerotto'
     rescue ActiveModel::MassAssignmentSecurity::Error
@@ -48,8 +50,8 @@ class TagTest < ActiveSupport::TestCase
   end
   
   test 'types' do
-    assert_invalid @tag, :word, long_string(26), long_string(25), :too_long
-    assert_invalid @tag, :word, '', 'uu', :too_short
+    assert_invalid @tag, :word, long_string(@max_word), long_string(@max_word), :too_long, {:count => @max_word}
+    assert_invalid @tag, :word, long_string(@min_word), long_string(@min_word), :too_short, {:count => @min_word}
     assert_obj_saved @tag
   end
   

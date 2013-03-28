@@ -30,10 +30,10 @@ class VirtualClassroomLessonTest < ActiveSupport::TestCase
   
   test 'types' do
     assert_invalid @virtual_classroom_lesson, :user_id, 'ty', 2, :not_a_number
-    assert_invalid @virtual_classroom_lesson, :user_id, -1, 2, :greater_than
+    assert_invalid @virtual_classroom_lesson, :user_id, -1, 2, :greater_than, {:count => 0}
     assert_invalid @virtual_classroom_lesson, :lesson_id, 1.5, @lesson.id, :not_an_integer
     assert_invalid @virtual_classroom_lesson, :position, 'iii', nil, :not_a_number
-    assert_invalid @virtual_classroom_lesson, :position, -5, nil, :greater_than
+    assert_invalid @virtual_classroom_lesson, :position, -5, nil, :greater_than, {:count => 0}
     assert_invalid @virtual_classroom_lesson, :position, 1.5, nil, :not_an_integer
     assert_obj_saved @virtual_classroom_lesson
   end

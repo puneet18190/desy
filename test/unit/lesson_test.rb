@@ -4,6 +4,8 @@ require 'test_helper'
 class LessonTest < ActiveSupport::TestCase
   
   def setup
+    @max_title = I18n.t('language_parameters.lesson.length_title')
+    @max_description = I18n.t('language_parameters.lesson.length_description')
     begin
       @lesson = Lesson.new :subject_id => 1, :school_level_id => 2, :title => 'Fernandello mio', :description => 'Voglio divenire uno scienziaaato'
       @lesson.copied_not_modified = false
@@ -88,15 +90,15 @@ class LessonTest < ActiveSupport::TestCase
   
   test 'types' do
     assert_invalid @lesson, :user_id, 'er', 1, :not_a_number
-    assert_invalid @lesson, :school_level_id, 0, 2, :greater_than
+    assert_invalid @lesson, :school_level_id, 0, 2, :greater_than, {:count => 0}
     assert_invalid @lesson, :subject_id, 0.6, 1, :not_an_integer
     assert_invalid @lesson, :parent_id, 'oip', nil, :not_a_number
-    assert_invalid @lesson, :parent_id, -6, nil, :greater_than
+    assert_invalid @lesson, :parent_id, -6, nil, :greater_than, {:count => 0}
     assert_invalid @lesson, :parent_id, 5.5, nil, :not_an_integer
     assert_invalid @lesson, :is_public, nil, false, :inclusion
     assert_invalid @lesson, :copied_not_modified, nil, false, :inclusion
-    assert_invalid @lesson, :title, long_string(36), long_string(35), :too_long
-    assert_invalid @lesson, :description, long_string(281), long_string(280), :too_long
+    assert_invalid @lesson, :title, long_string(@max_title + 1), long_string(@max_title), :too_long, {:count => @max_title}
+    assert_invalid @lesson, :description, long_string(@max_description + 1), long_string(@max_description), :too_long, {:count => @max_description}
     assert_invalid @lesson, :notified, nil, false, :inclusion
     assert_obj_saved @lesson
   end
