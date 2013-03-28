@@ -114,6 +114,8 @@
     
     <li><a href="#method-i-path">#path</a>
     
+    <li><a href="#method-i-paths">#paths</a>
+    
     <li><a href="#method-i-process">#process</a>
     
     <li><a href="#method-i-processed_original_filename">#processed_original_filename</a>
@@ -1069,6 +1071,36 @@
       </div><!-- path-method -->
 
     
+      <div id="method-i-paths" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">paths</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="paths-source">
+            <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 152</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">paths</span>
+  <span class="ruby-constant">Hash</span>[ (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">FORMATS</span> <span class="ruby-operator">+</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">VERSION_FORMATS</span>.<span class="ruby-identifier">keys</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">f</span>, <span class="ruby-identifier">path</span>(<span class="ruby-identifier">f</span>)] } ]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- paths-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- paths-method -->
+
+    
       <div id="method-i-process" class="method-detail ">
         
         <div class="method-heading">
@@ -1282,7 +1314,7 @@
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 152</span>
+            <pre><span class="ruby-comment"># File lib/media/uploader.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   <span class="ruby-constant">Hash</span>[ <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span><span class="ruby-operator">::</span><span class="ruby-constant">FORMATS</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">f</span>, <span class="ruby-identifier">path</span>(<span class="ruby-identifier">f</span>)] } ].<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">filename</span><span class="ruby-operator">:</span> <span class="ruby-identifier">filename_without_extension</span>)
 <span class="ruby-keyword">end</span></pre>

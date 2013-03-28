@@ -1,4 +1,4 @@
-Thu, 28 Mar 2013 15:32:37 +0100
+Thu, 28 Mar 2013 16:46:06 +0100
 doc/README_FOR_APP	Fri, 08 Feb 2013 11:44:15 +0100
 app/controllers/admin/dashboard_controller.rb	Fri, 22 Mar 2013 09:52:00 +0100
 app/controllers/admin/lessons_controller.rb	Fri, 22 Mar 2013 16:43:21 +0100
@@ -40,9 +40,9 @@ app/models/like.rb	Thu, 28 Mar 2013 10:57:39 +0100
 app/models/location.rb	Thu, 28 Mar 2013 11:39:44 +0100
 app/models/mailing_list_address.rb	Thu, 28 Mar 2013 15:17:03 +0100
 app/models/mailing_list_group.rb	Thu, 28 Mar 2013 15:30:37 +0100
-app/models/media_element.rb	Thu, 28 Mar 2013 15:25:02 +0100
-app/models/media_elements_slide.rb	Wed, 20 Mar 2013 16:40:07 +0100
-app/models/notification.rb	Thu, 21 Mar 2013 11:28:01 +0100
+app/models/media_element.rb	Thu, 28 Mar 2013 16:45:53 +0100
+app/models/media_elements_slide.rb	Thu, 28 Mar 2013 16:09:35 +0100
+app/models/notification.rb	Thu, 28 Mar 2013 16:16:48 +0100
 app/models/report.rb	Fri, 22 Mar 2013 16:53:49 +0100
 app/models/school_level.rb	Fri, 22 Mar 2013 10:37:39 +0100
 app/models/slide.rb	Thu, 28 Mar 2013 14:23:05 +0100
@@ -82,7 +82,7 @@ lib/media/audio/editing/cmd/concat.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/audio/editing/cmd/conversion.rb	Thu, 28 Mar 2013 14:27:19 +0100
 lib/media/audio/editing/cmd/crop.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/audio/editing/cmd/sox.rb	Fri, 08 Feb 2013 11:44:15 +0100
-lib/media/audio/editing/composer.rb	Fri, 15 Mar 2013 15:47:21 +0100
+lib/media/audio/editing/composer.rb	Thu, 28 Mar 2013 15:46:21 +0100
 lib/media/audio/editing/composer/job.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/media/audio/editing/concat.rb	Fri, 15 Mar 2013 12:05:42 +0100
 lib/media/audio/editing/conversion.rb	Fri, 15 Mar 2013 09:23:50 +0100
@@ -109,7 +109,7 @@ lib/media/logging.rb	Fri, 15 Mar 2013 15:47:21 +0100
 lib/media/shared.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/media/similar_durations.rb	Thu, 14 Mar 2013 16:47:56 +0100
 lib/media/thread.rb	Thu, 21 Mar 2013 09:54:09 +0100
-lib/media/uploader.rb	Thu, 14 Mar 2013 16:47:56 +0100
+lib/media/uploader.rb	Thu, 28 Mar 2013 15:46:21 +0100
 lib/media/video.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/video/editing.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/video/editing/cmd.rb	Fri, 08 Feb 2013 11:44:15 +0100
@@ -129,7 +129,7 @@ lib/media/video/editing/cmd/replace_audio.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/video/editing/cmd/transition.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/video/editing/cmd/trim_audio_file.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/video/editing/cmd/video_stream_to_file.rb	Fri, 08 Feb 2013 11:44:15 +0100
-lib/media/video/editing/composer.rb	Thu, 28 Mar 2013 13:02:26 +0100
+lib/media/video/editing/composer.rb	Thu, 28 Mar 2013 15:46:21 +0100
 lib/media/video/editing/composer/job.rb	Fri, 08 Feb 2013 11:44:15 +0100
 lib/media/video/editing/concat.rb	Thu, 28 Mar 2013 13:02:26 +0100
 lib/media/video/editing/conversion.rb	Fri, 15 Mar 2013 09:23:50 +0100
