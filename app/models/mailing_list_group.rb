@@ -18,6 +18,7 @@
 # * *presence* with numericality and existence of associated record for +user_id+
 # * *length* of +name+, maximum is 255
 # * *uniqueness* for +name+
+# * *modifications* *not* *available* for +user_id+, if the record is not new
 #
 # == Callbacks
 #
@@ -40,7 +41,7 @@ class MailingListGroup < ActiveRecord::Base
   validates_uniqueness_of :name
   validate :validate_associations
   
-  before_validation :init_validation
+  before_validation :init_validation, :validate_impossible_changes
   
   private
   
@@ -51,6 +52,10 @@ class MailingListGroup < ActiveRecord::Base
   
   def validate_associations
     errors.add(:user_id, :doesnt_exist) if @user.nil?
+  end
+  
+  def validate_impossible_changes
+    errors.add(:user_id, :cant_be_changed) if @mailing_list_group && @mailing_list_group.user_id != self.user_id
   end
   
 end
