@@ -1,6 +1,47 @@
 require 'filename_token'
 require 'lessons_media_elements_shared'
 
+# == Description
+#
+# ActiveRecord class that corresponds to the table +media_elements+; this model has single table inheritance on the field +sti_type+ (see the models Image, Audio and Video).
+#
+# == Fields
+#
+# * *user_id*: reference to the User who created the element
+# * *sti_type*: single table iheritance representing the media type
+# * *media*: attached audio, video or image
+# * *title*: title
+# * *description*: description
+# * *metadata*: can contain different keys, depending on +sti_type+
+#   audio:: bla bla bla
+#           * bla 1
+#           * bla 2
+#   video:: bla bla bla
+#           * bla 1
+#           * bla 2
+#   image:: bla bla bla
+#           * bla 1
+#           * bla 2
+# * *converted*:
+# * *is_public*:
+# * *publication_date*:
+#
+# == Associations
+#
+# dfjsbnskj
+#
+# == Validations
+#
+# dlgkndsglkdsn
+#
+# == Callbacks
+#
+# dgegdgdas
+#
+# == Database callbacks
+#
+# dsfdgdsgd
+#
 class MediaElement < ActiveRecord::Base
   include FilenameToken
   extend LessonsMediaElementsShared
