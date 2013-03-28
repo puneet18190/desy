@@ -70,9 +70,7 @@ module Media
           paddings = paddings mp4_inputs_infos
           final_videos = nil
   
-          in_tmp_dir do
-            final_videos = concat(mp4_inputs_infos, paddings)
-          end
+          in_tmp_dir { final_videos = concat(mp4_inputs_infos, paddings) }
   
           final_videos
         end
@@ -128,28 +126,31 @@ module Media
         #   4. associo il wav ai paddings corrispondenti
         #   5. concateno i wavs aggiungendo i paddings
         def final_wav(mp4_inputs_infos, paddings)
-          wavs_with_paddings = {}.tap do |wavs_with_paddings|
+          wavs_with_paddings = wavs_with_paddings(mp4_inputs_infos, paddings)
+          final_wav = tmp_path FINAL_WAV
+          Audio::Editing::Cmd::Concat.new(wavs_with_paddings, final_wav).run! *logs('2_concat_with_paddings') # 5.
+          final_wav
+        end
+
+        def wavs_with_paddings(mp4_inputs_infos, paddings)
+          Hash[ {}.tap do |unordered_wavs_with_paddings|
             Thread.join *mp4_inputs_infos.select{ |info| info.audio_streams.present? }.each_with_index.map { |video_info, i|
               proc {
                 mp3 = tmp_path(CONCAT_MP3_FORMAT % i)
-    
+          
                 Cmd::AudioStreamToFile.new(video_info.path, mp3).run! *logs("0_audio_stream_to_file_#{i}") # 1.
-    
+          
                 wav = tmp_path(CONCAT_WAV_FORMAT % i)
                 Cmd::Mp3ToWav.new(mp3, wav).run! *logs("1_mp3_to_wav_#{i}") # 2.
                 
                 # aumento l'rpadding nel caso che la traccia video sia sensibilmente più lunga della traccia audio
                 # tenendo in considerazione che l'operazione di encoding aggiunge un rpadding di suo
                 increase_rpadding_depending_on_video_overflow video_info, wav, paddings[i] # 3.
-    
-                wavs_with_paddings[wav] = paddings[i] # 4.
+          
+                unordered_wavs_with_paddings[i] = wav, paddings[i] # 4.
               }
             }
-          end
-  
-          final_wav = tmp_path FINAL_WAV
-          Audio::Editing::Cmd::Concat.new(wavs_with_paddings, final_wav).run! *logs('2_concat_with_paddings') # 5.
-          final_wav
+          end.sort.map{ |_, wavs_with_paddings| wavs_with_paddings } ]
         end
   
         def increase_rpadding_depending_on_video_overflow(video_info, wav, paddings)
@@ -168,15 +169,15 @@ module Media
         #      |-a0--|    |a1-|-a2-|             |-a3-|         TRACCE AUDIO
         #   p0         p1    p2=0         p3             p4       PADDINGS
         #
-        #              a0      a1      a2      a3
-        #    ->   [ [p0,p1], [0,p2], [0,p3], [0,p4] ]            RISULTATO
+        #              a0      a1        a2      a3
+        #    ->   [ [p0,p1], [0,p2=0], [0,p3], [0,p4] ]           RISULTATO
         #
         def paddings(infos)
           paddings, lpadding = [], 0
   
           infos.each do |info|
-            if info.audio_streams.empty?
-              if paddings.empty?
+            if info.audio_streams.blank?
+              if paddings.blank?
                 lpadding         += info.duration
               else
                 paddings.last[1] += info.duration
@@ -187,16 +188,16 @@ module Media
             paddings << [lpadding, 0]
             lpadding = 0
           end
-  
+
           paddings
         end
   
         def mp4_inputs
-          @inputs.map{ |input| input[:mp4] }
+          @mp4_inputs ||= @inputs.map{ |input| input[:mp4] }
         end
   
         def webm_inputs
-          @inputs.map{ |input| input[:webm] }
+          @webm_inputs ||= @inputs.map{ |input| input[:webm] }
         end
   
         def mp4_output
