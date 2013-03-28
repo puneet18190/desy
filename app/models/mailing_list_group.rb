@@ -36,9 +36,9 @@ class MailingListGroup < ActiveRecord::Base
   validates_presence_of :name, :user_id
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_uniqueness_of :name
-  validates :validate_associations
+  validate :validate_associations
   
-  before_validaton :init_validation
+  before_validation :init_validation
   
   private
   

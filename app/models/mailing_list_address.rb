@@ -35,7 +35,7 @@ class MailingListAddress < ActiveRecord::Base
   validates_presence_of :email, :heading, :group_id
   validates_numericality_of :group_id, :greater_than => 0, :only_integer => true
   validates :email, email_format: { :message => I18n.t(:invalid_email_address, :scope => [:activerecord, :errors, :messages], :default => 'does not appear to be valid') }
-  validates :validate_associations
+  validate :validate_associations
   
   before_validation :init_validation
   
