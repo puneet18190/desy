@@ -141,6 +141,28 @@
             },
             "namespaces": {}
         },
+        "app/assets/javascripts/lesson_viewer.js": {
+            "name": "app/assets/javascripts/lesson_viewer.js",
+            "modules": {
+                "LessonViewer": 1
+            },
+            "classes": {},
+            "fors": {
+                "openPlaylistMenuInLessonViewer": 1,
+                "closePlaylistMenuInLessonViewer": 1,
+                "selectComponentInLessonViewerPlaylistMenu": 1,
+                "getLessonViewerCurrentSlide": 1,
+                "slideToInLessonViewer": 1,
+                "hideArrowsInLessonViewer": 1,
+                "initializeLessonViewer": 1,
+                "stopMediaInLessonViewer": 1,
+                "switchLessonInPlaylistMenuLessonViewer": 1,
+                "slideToInLessonViewerWithLessonSwitch": 1,
+                "goToNextSlideInLessonViewer": 1,
+                "goToPrevSlideInLessonViewer": 1
+            },
+            "namespaces": {}
+        },
         "app/assets/javascripts/times.js": {
             "name": "app/assets/javascripts/times.js",
             "modules": {
@@ -398,6 +420,43 @@
             "file": "app/assets/javascripts/lesson_editor.js",
             "line": 1,
             "description": "Lesson editor functions, \nit handles visual effects, CRUD actions on single slides and lessons, it handles tinyMCE editor too."
+        },
+        "LessonViewer": {
+            "name": "LessonViewer",
+            "submodules": {},
+            "classes": {
+                "openPlaylistMenuInLessonViewer": 1,
+                "closePlaylistMenuInLessonViewer": 1,
+                "selectComponentInLessonViewerPlaylistMenu": 1,
+                "getLessonViewerCurrentSlide": 1,
+                "slideToInLessonViewer": 1,
+                "hideArrowsInLessonViewer": 1,
+                "initializeLessonViewer": 1,
+                "stopMediaInLessonViewer": 1,
+                "switchLessonInPlaylistMenuLessonViewer": 1,
+                "slideToInLessonViewerWithLessonSwitch": 1,
+                "goToNextSlideInLessonViewer": 1,
+                "goToPrevSlideInLessonViewer": 1
+            },
+            "fors": {
+                "openPlaylistMenuInLessonViewer": 1,
+                "closePlaylistMenuInLessonViewer": 1,
+                "selectComponentInLessonViewerPlaylistMenu": 1,
+                "getLessonViewerCurrentSlide": 1,
+                "slideToInLessonViewer": 1,
+                "hideArrowsInLessonViewer": 1,
+                "initializeLessonViewer": 1,
+                "stopMediaInLessonViewer": 1,
+                "switchLessonInPlaylistMenuLessonViewer": 1,
+                "slideToInLessonViewerWithLessonSwitch": 1,
+                "goToNextSlideInLessonViewer": 1,
+                "goToPrevSlideInLessonViewer": 1
+            },
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 9,
+            "description": "Lesson viewer, it handles slides switching and playlist menu effects."
         },
         "Times": {
             "name": "Times",
@@ -1163,6 +1222,138 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "LessonEditor",
+            "namespace": ""
+        },
+        "openPlaylistMenuInLessonViewer": {
+            "name": "openPlaylistMenuInLessonViewer",
+            "shortname": "openPlaylistMenuInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "closePlaylistMenuInLessonViewer": {
+            "name": "closePlaylistMenuInLessonViewer",
+            "shortname": "closePlaylistMenuInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "selectComponentInLessonViewerPlaylistMenu": {
+            "name": "selectComponentInLessonViewerPlaylistMenu",
+            "shortname": "selectComponentInLessonViewerPlaylistMenu",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "getLessonViewerCurrentSlide": {
+            "name": "getLessonViewerCurrentSlide",
+            "shortname": "getLessonViewerCurrentSlide",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "slideToInLessonViewer": {
+            "name": "slideToInLessonViewer",
+            "shortname": "slideToInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "hideArrowsInLessonViewer": {
+            "name": "hideArrowsInLessonViewer",
+            "shortname": "hideArrowsInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "initializeLessonViewer": {
+            "name": "initializeLessonViewer",
+            "shortname": "initializeLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "stopMediaInLessonViewer": {
+            "name": "stopMediaInLessonViewer",
+            "shortname": "stopMediaInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "switchLessonInPlaylistMenuLessonViewer": {
+            "name": "switchLessonInPlaylistMenuLessonViewer",
+            "shortname": "switchLessonInPlaylistMenuLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "slideToInLessonViewerWithLessonSwitch": {
+            "name": "slideToInLessonViewerWithLessonSwitch",
+            "shortname": "slideToInLessonViewerWithLessonSwitch",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "goToNextSlideInLessonViewer": {
+            "name": "goToNextSlideInLessonViewer",
+            "shortname": "goToNextSlideInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
+            "namespace": ""
+        },
+        "goToPrevSlideInLessonViewer": {
+            "name": "goToPrevSlideInLessonViewer",
+            "shortname": "goToPrevSlideInLessonViewer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "LessonViewer",
             "namespace": ""
         },
         "secondsToDateString": {
@@ -2026,16 +2217,19 @@
             "params": [
                 {
                     "name": "trigger_element",
-                    "description": "element which triggers the scroll",
-                    "type": "Object"
+                    "description": "element which triggers the scroll, class or id",
+                    "type": "String"
                 }
+            ],
+            "example": [
+                "\n     scrollPaneUpdate('._not_current_slide');"
             ],
             "class": "scrollPaneUpdate",
             "module": "LessonEditor"
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 370,
+            "line": 372,
             "description": "Hide media gallery for selected type",
             "itemtype": "method",
             "name": "removeGalleryInLessonEditor",
@@ -2054,7 +2248,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 385,
+            "line": 387,
             "description": "Show media gallery for selected type clicking on slide green plus button",
             "itemtype": "method",
             "name": "showGalleryInLessonEditor",
@@ -2062,7 +2256,7 @@
                 {
                     "name": "obj",
                     "description": "gallery type",
-                    "type": "Object"
+                    "type": "String"
                 },
                 {
                     "name": "sty_type",
@@ -2078,7 +2272,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 413,
+            "line": 415,
             "description": "Restore page elements around current slide after new slide selection",
             "itemtype": "method",
             "name": "showEverythingOutCurrentSlide",
@@ -2087,7 +2281,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 427,
+            "line": 429,
             "description": "Hide page elements around current slide on new slide selection",
             "itemtype": "method",
             "name": "hideEverythingOutCurrentSlide",
@@ -2096,7 +2290,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 441,
+            "line": 443,
             "description": "Hide new slide selection",
             "itemtype": "method",
             "name": "showNewSlideChoice",
@@ -2105,7 +2299,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 457,
+            "line": 459,
             "description": "Hide new slide selection",
             "itemtype": "method",
             "name": "hideNewSlideChoice",
@@ -2114,7 +2308,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 471,
+            "line": 473,
             "description": "Stop video and audio playing into current slide, \nusually only one kind of media is present into current slide",
             "itemtype": "method",
             "name": "stopMediaInCurrentSlide",
@@ -2123,7 +2317,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 484,
+            "line": 486,
             "description": "Inizialize jQueryUI _sortable_ function on top navigation numbers,\nso that they can be sorted",
             "itemtype": "method",
             "name": "initializeSortableNavs",
@@ -2132,7 +2326,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 531,
+            "line": 533,
             "description": "Inizialize jQueryUI _draggable_ function on slide image containers.",
             "itemtype": "method",
             "name": "makeDraggable",
@@ -2151,7 +2345,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 602,
+            "line": 604,
             "description": "Submit serialized form data for current slide",
             "itemtype": "method",
             "name": "submitCurrentSlideForm",
@@ -2160,7 +2354,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 618,
+            "line": 620,
             "description": "Save current slide. It sends tinyMCE editor content to form data to be serialized, \nit handles form placeholders.\n\nUses: [submitCurrentSlideForm](../classes/submitCurrentSlideForm.html#method_submitCurrentSlideForm)",
             "itemtype": "method",
             "name": "saveCurrentSlide",
@@ -2169,7 +2363,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 648,
+            "line": 650,
             "description": "Asynchronous slide loading. \nIt is called when the current slide is not loaded yet.",
             "itemtype": "method",
             "name": "loadSlideInLessonEditor",
@@ -2188,7 +2382,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 667,
+            "line": 669,
             "description": "Asynchronously loads current slide, previous and following if any of these aren't loaded yet.\n\nUses: [loadSlideInLessonEditor](../classes/loadSlideInLessonEditor.html#method_loadSlideInLessonEditor)",
             "itemtype": "method",
             "name": "loadSlideAndAdhiacentInLessonEditor",
@@ -2204,7 +2398,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 683,
+            "line": 685,
             "description": "Slide to current slide, update current slide in top navigation.\n\nUses: [loadSlideAndAdhiacentInLessonEditor](../classes/loadSlideAndAdhiacentInLessonEditor.html#method_loadSlideAndAdhiacentInLessonEditor)",
             "itemtype": "method",
             "name": "slideTo",
@@ -2225,7 +2419,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 733,
+            "line": 735,
             "description": "Initialize slides position to center",
             "itemtype": "method",
             "name": "initLessonEditorPositions",
@@ -2234,7 +2428,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 753,
+            "line": 755,
             "description": "TinyMCE callback to show warning when texearea content exceeds the available space.\nAdd a red border to the textarea\n\nAdd this function on tinyMCE setup.",
             "itemtype": "method",
             "name": "tinyMceCallbacks",
@@ -2258,7 +2452,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 784,
+            "line": 786,
             "description": "TinyMCE keyDown callback to fix list item style.\nIt adds same style of list item text to list numbers or dots.\n\nAdd this function on tinyMCE setup.",
             "itemtype": "method",
             "name": "tinyMceKeyDownCallbacks",
@@ -2282,7 +2476,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 811,
+            "line": 813,
             "description": "Re-initialize slides position to center after ajax events",
             "itemtype": "method",
             "name": "reInitializeSlidePositionsInLessonEditor",
@@ -2291,7 +2485,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 824,
+            "line": 826,
             "description": "Initialize tinyMCE editor for a single textarea\n\nUses: [tinyMceKeyDownCallbacks](../classes/tinyMceKeyDownCallbacks.html#method_tinyMceKeyDownCallbacks) \nand [tinyMceCallbacks](../classes/tinyMceCallbacks.html#method_tinyMceCallbacks)",
             "itemtype": "method",
             "name": "initTinymce",
@@ -2307,7 +2501,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 874,
+            "line": 876,
             "description": "Show error message when somethings goes wrong",
             "itemtype": "method",
             "name": "slideError",
@@ -2316,7 +2510,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 886,
+            "line": 888,
             "description": "Check if image ratio is bigger then kind ratio",
             "itemtype": "method",
             "name": "isHorizontalMask",
@@ -2346,7 +2540,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 915,
+            "line": 917,
             "description": "Sets scaled width to slide images",
             "itemtype": "method",
             "name": "resizeWidth",
@@ -2376,7 +2570,7 @@
         },
         {
             "file": "app/assets/javascripts/lesson_editor.js",
-            "line": 942,
+            "line": 944,
             "description": "Sets scaled height to slide images",
             "itemtype": "method",
             "name": "resizeHeight",
@@ -2403,6 +2597,172 @@
             },
             "class": "resizeHeight",
             "module": "LessonEditor"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 76,
+            "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [hideArrowsInLessonViewer](../classes/hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)",
+            "itemtype": "method",
+            "name": "openPlaylistMenuInLessonViewer",
+            "class": "openPlaylistMenuInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 91,
+            "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [showArrowsInLessonViewer](../classes/showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)",
+            "itemtype": "method",
+            "name": "closePlaylistMenuInLessonViewer",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "to call after effect is complete",
+                    "type": "Object"
+                }
+            ],
+            "class": "closePlaylistMenuInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 109,
+            "description": "Sets selected lesson from playlist menu",
+            "itemtype": "method",
+            "name": "selectComponentInLessonViewerPlaylistMenu",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "selected lesson",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "to call after function is complete",
+                    "type": "Object"
+                }
+            ],
+            "class": "selectComponentInLessonViewerPlaylistMenu",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 200,
+            "description": "Gets the current slide id",
+            "itemtype": "method",
+            "name": "getLessonViewerCurrentSlide",
+            "return": {
+                "description": "current slide id",
+                "type": "Number"
+            },
+            "class": "getLessonViewerCurrentSlide",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 211,
+            "description": "Slide to given slide\n\nUses: [stopMediaInLessonViewer](../classes/stopMediaInLessonViewer.html#method_stopMediaInLessonViewer)\nand [getLessonViewerCurrentSlide](../classes/getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide)\nand [unbindLoader](../classes/unbindLoader.html#method_unbindLoader)\nand [bindLoader](../classes/bindLoader.html#method_bindLoader)",
+            "itemtype": "method",
+            "name": "slideToInLessonViewer",
+            "params": [
+                {
+                    "name": "to",
+                    "description": "slide to slide to",
+                    "type": "Object"
+                }
+            ],
+            "class": "slideToInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 253,
+            "description": "Hide slides navigation arrows in lesson viewer",
+            "itemtype": "method",
+            "name": "hideArrowsInLessonViewer",
+            "class": "hideArrowsInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 263,
+            "description": "Show slides navigation arrows in lesson viewer",
+            "itemtype": "method",
+            "name": "hideArrowsInLessonViewer",
+            "class": "hideArrowsInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 273,
+            "description": "Handle playlist menu on lesson viewer startup\n\nUses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
+            "itemtype": "method",
+            "name": "initializeLessonViewer",
+            "class": "initializeLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 292,
+            "description": "Stop media playling in current slide in lesson viewer",
+            "itemtype": "method",
+            "name": "stopMediaInLessonViewer",
+            "class": "stopMediaInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 304,
+            "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [selectComponentInLessonViewerPlaylistMenu](../classes/selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)",
+            "itemtype": "method",
+            "name": "switchLessonInPlaylistMenuLessonViewer",
+            "params": [
+                {
+                    "name": "lesson_id",
+                    "description": "lesson id to switch to",
+                    "type": "Number"
+                },
+                {
+                    "name": "callback",
+                    "description": "callback after function is complete",
+                    "type": "Object"
+                }
+            ],
+            "class": "switchLessonInPlaylistMenuLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 322,
+            "description": "Open playlist menu, show lessons conver list and change playlist toggle label\n\nUses: [slideToInLessonViewer](../classes/slideToInLessonViewer.html#method_slideToInLessonViewer)\nand [switchLessonInPlaylistMenuLessonViewer](../classes/switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)",
+            "itemtype": "method",
+            "name": "slideToInLessonViewerWithLessonSwitch",
+            "params": [
+                {
+                    "name": "component",
+                    "description": "slide to slide to",
+                    "type": "Object"
+                }
+            ],
+            "class": "slideToInLessonViewerWithLessonSwitch",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 337,
+            "description": "Go to next slide in lesson viewer,\nif last slide it goes to first one.\n\nUses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
+            "itemtype": "method",
+            "name": "goToNextSlideInLessonViewer",
+            "class": "goToNextSlideInLessonViewer",
+            "module": "LessonViewer"
+        },
+        {
+            "file": "app/assets/javascripts/lesson_viewer.js",
+            "line": 355,
+            "description": "Go to previous slide in lesson viewer,\nif first slide it goes to last one.\n\nUses: [slideToInLessonViewerWithLessonSwitch](../classes/slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)",
+            "itemtype": "method",
+            "name": "goToPrevSlideInLessonViewer",
+            "class": "goToPrevSlideInLessonViewer",
+            "module": "LessonViewer"
         },
         {
             "file": "app/assets/javascripts/times.js",

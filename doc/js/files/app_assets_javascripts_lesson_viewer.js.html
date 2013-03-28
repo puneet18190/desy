@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>app&#x2F;assets&#x2F;javascripts&#x2F;lesson_viewer.js - DESY</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.8.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..&#x2F;assets/css/logo.png" title="DESY"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/addDeleteItemToCurrentUrl.html">addDeleteItemToCurrentUrl</a></li>
+            
+                <li><a href="..&#x2F;classes/addEmailToVirtualClassroomSendLessonLinkSelector.html">addEmailToVirtualClassroomSendLessonLinkSelector</a></li>
+            
+                <li><a href="..&#x2F;classes/addLesson.html">addLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/addLessonToVirtualClassroom.html">addLessonToVirtualClassroom</a></li>
+            
+                <li><a href="..&#x2F;classes/addMediaElement.html">addMediaElement</a></li>
+            
+                <li><a href="..&#x2F;classes/bindLoader.html">bindLoader</a></li>
+            
+                <li><a href="..&#x2F;classes/centerThis.html">centerThis</a></li>
+            
+                <li><a href="..&#x2F;classes/centerThisInContainer.html">centerThisInContainer</a></li>
+            
+                <li><a href="..&#x2F;classes/changePageDashboardLessons.html">changePageDashboardLessons</a></li>
+            
+                <li><a href="..&#x2F;classes/changePageDashboardMediaElements.html">changePageDashboardMediaElements</a></li>
+            
+                <li><a href="..&#x2F;classes/closeGenericVideoComponentCutter.html">closeGenericVideoComponentCutter</a></li>
+            
+                <li><a href="..&#x2F;classes/closePlaylistMenuInLessonViewer.html">closePlaylistMenuInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/copyLesson.html">copyLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/destroyLesson.html">destroyLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/destroyMediaElement.html">destroyMediaElement</a></li>
+            
+                <li><a href="..&#x2F;classes/dislikeLesson.html">dislikeLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/enlightTextarea.html">enlightTextarea</a></li>
+            
+                <li><a href="..&#x2F;classes/getDragPosition.html">getDragPosition</a></li>
+            
+                <li><a href="..&#x2F;classes/getHtmlPagination.html">getHtmlPagination</a></li>
+            
+                <li><a href="..&#x2F;classes/getLessonViewerCurrentSlide.html">getLessonViewerCurrentSlide</a></li>
+            
+                <li><a href="..&#x2F;classes/getRelativePositionInImageEditor.html">getRelativePositionInImageEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/goToNextSlideInLessonViewer.html">goToNextSlideInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/goToPrevSlideInLessonViewer.html">goToPrevSlideInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/hideArrowsInLessonViewer.html">hideArrowsInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/hideEverythingOutCurrentSlide.html">hideEverythingOutCurrentSlide</a></li>
+            
+                <li><a href="..&#x2F;classes/hideLoader.html">hideLoader</a></li>
+            
+                <li><a href="..&#x2F;classes/hideNewSlideChoice.html">hideNewSlideChoice</a></li>
+            
+                <li><a href="..&#x2F;classes/initializeLessonViewer.html">initializeLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/initializeNotAvailableLessonsToLoadQuick.html">initializeNotAvailableLessonsToLoadQuick</a></li>
+            
+                <li><a href="..&#x2F;classes/initializeSortableNavs.html">initializeSortableNavs</a></li>
+            
+                <li><a href="..&#x2F;classes/initializeVideoEditor.html">initializeVideoEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/initLessonEditorPositions.html">initLessonEditorPositions</a></li>
+            
+                <li><a href="..&#x2F;classes/initNotificationsAutocomplete.html">initNotificationsAutocomplete</a></li>
+            
+                <li><a href="..&#x2F;classes/initTinymce.html">initTinymce</a></li>
+            
+                <li><a href="..&#x2F;classes/isHorizontalMask.html">isHorizontalMask</a></li>
+            
+                <li><a href="..&#x2F;classes/likeLesson.html">likeLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/loadSlideAndAdhiacentInLessonEditor.html">loadSlideAndAdhiacentInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/loadSlideInLessonEditor.html">loadSlideInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/makeDraggable.html">makeDraggable</a></li>
+            
+                <li><a href="..&#x2F;classes/offlightTextarea.html">offlightTextarea</a></li>
+            
+                <li><a href="..&#x2F;classes/openAndLoadNextTr.html">openAndLoadNextTr</a></li>
+            
+                <li><a href="..&#x2F;classes/openPlaylistMenuInLessonViewer.html">openPlaylistMenuInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/previewLesson.html">previewLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/publishLesson.html">publishLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/reInitializeSlidePositionsInLessonEditor.html">reInitializeSlidePositionsInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/reloadDashboardPages.html">reloadDashboardPages</a></li>
+            
+                <li><a href="..&#x2F;classes/reloadLessonsDashboardPagination.html">reloadLessonsDashboardPagination</a></li>
+            
+                <li><a href="..&#x2F;classes/reloadMediaElementsDashboardPagination.html">reloadMediaElementsDashboardPagination</a></li>
+            
+                <li><a href="..&#x2F;classes/removeGalleryInLessonEditor.html">removeGalleryInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/removeLesson.html">removeLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/removeLessonFromVirtualClassroom.html">removeLessonFromVirtualClassroom</a></li>
+            
+                <li><a href="..&#x2F;classes/removeMediaElement.html">removeMediaElement</a></li>
+            
+                <li><a href="..&#x2F;classes/removeURLParameter.html">removeURLParameter</a></li>
+            
+                <li><a href="..&#x2F;classes/resetImageEditorCrop.html">resetImageEditorCrop</a></li>
+            
+                <li><a href="..&#x2F;classes/resetImageEditorOperationsChoice.html">resetImageEditorOperationsChoice</a></li>
+            
+                <li><a href="..&#x2F;classes/resetImageEditorTexts.html">resetImageEditorTexts</a></li>
+            
+                <li><a href="..&#x2F;classes/resizeHeight.html">resizeHeight</a></li>
+            
+                <li><a href="..&#x2F;classes/resizeWidth.html">resizeWidth</a></li>
+            
+                <li><a href="..&#x2F;classes/saveCurrentSlide.html">saveCurrentSlide</a></li>
+            
+                <li><a href="..&#x2F;classes/scrollPaneUpdate.html">scrollPaneUpdate</a></li>
+            
+                <li><a href="..&#x2F;classes/secondsToDateString.html">secondsToDateString</a></li>
+            
+                <li><a href="..&#x2F;classes/selectComponentInLessonViewerPlaylistMenu.html">selectComponentInLessonViewerPlaylistMenu</a></li>
+            
+                <li><a href="..&#x2F;classes/showEverythingOutCurrentSlide.html">showEverythingOutCurrentSlide</a></li>
+            
+                <li><a href="..&#x2F;classes/showGalleryInLessonEditor.html">showGalleryInLessonEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/showLoader.html">showLoader</a></li>
+            
+                <li><a href="..&#x2F;classes/showNewSlideChoice.html">showNewSlideChoice</a></li>
+            
+                <li><a href="..&#x2F;classes/slideError.html">slideError</a></li>
+            
+                <li><a href="..&#x2F;classes/slideTo.html">slideTo</a></li>
+            
+                <li><a href="..&#x2F;classes/slideToInLessonViewer.html">slideToInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/slideToInLessonViewerWithLessonSwitch.html">slideToInLessonViewerWithLessonSwitch</a></li>
+            
+                <li><a href="..&#x2F;classes/stopMediaInCurrentSlide.html">stopMediaInCurrentSlide</a></li>
+            
+                <li><a href="..&#x2F;classes/stopMediaInLessonViewer.html">stopMediaInLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/submitCurrentSlideForm.html">submitCurrentSlideForm</a></li>
+            
+                <li><a href="..&#x2F;classes/switchLessonInPlaylistMenuLessonViewer.html">switchLessonInPlaylistMenuLessonViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/switchToSuggestedLessons.html">switchToSuggestedLessons</a></li>
+            
+                <li><a href="..&#x2F;classes/switchToSuggestedMediaElements.html">switchToSuggestedMediaElements</a></li>
+            
+                <li><a href="..&#x2F;classes/textAreaImageEditorContent.html">textAreaImageEditorContent</a></li>
+            
+                <li><a href="..&#x2F;classes/tinyMceCallbacks.html">tinyMceCallbacks</a></li>
+            
+                <li><a href="..&#x2F;classes/tinyMceKeyDownCallbacks.html">tinyMceKeyDownCallbacks</a></li>
+            
+                <li><a href="..&#x2F;classes/unbindLoader.html">unbindLoader</a></li>
+            
+                <li><a href="..&#x2F;classes/unpublishLesson.html">unpublishLesson</a></li>
+            
+                <li><a href="..&#x2F;classes/updateURLParameter.html">updateURLParameter</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/Administration.html">Administration</a></li>
+            
+                <li><a href="..&#x2F;modules/AjaxLoader.html">AjaxLoader</a></li>
+            
+                <li><a href="..&#x2F;modules/Buttons.html">Buttons</a></li>
+            
+                <li><a href="..&#x2F;modules/Dashboard.html">Dashboard</a></li>
+            
+                <li><a href="..&#x2F;modules/General.html">General</a></li>
+            
+                <li><a href="..&#x2F;modules/ImageEditor.html">ImageEditor</a></li>
+            
+                <li><a href="..&#x2F;modules/LessonEditor.html">LessonEditor</a></li>
+            
+                <li><a href="..&#x2F;modules/LessonViewer.html">LessonViewer</a></li>
+            
+                <li><a href="..&#x2F;modules/Times.html">Times</a></li>
+            
+                <li><a href="..&#x2F;modules/VideoEditor.html">VideoEditor</a></li>
+            
+                <li><a href="..&#x2F;modules/VirtualClassroom.html">VirtualClassroom</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: app&#x2F;assets&#x2F;javascripts&#x2F;lesson_viewer.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;*
+  NOTA DI ADRIANO:
+    ci sono tre bug conosciuti e dovuti al malfunzionamento di JScrollPane:
+     (1) quando passo dalla prima slide della terza lezione all&#x27;ultima slide della seconda lezione, lo scroll non segue la selezione della lezione in basso
+     (2) quando passo dall&#x27;ultima slide dell&#x27;ultima lezione alla prima slide della prima lezione, idem
+     (3) se, dopo aver aperto la prima volta il menu delle lezioni, (SOLO LA PRIMA VOLTA), clicco su una delle lezioni entro due secondi, si rompe il menu
+*&#x2F;
+
+&#x2F;**
+* Lesson viewer, it handles slides switching and playlist menu effects.
+* 
+* @module LessonViewer
+*&#x2F;
+$(document).ready(function() {
+  
+  initializeLessonViewer();
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#carousel_container a&#x27;, function() {
+    var me = $(this);
+    if(!me.hasClass(&#x27;esciButton&#x27;) &amp;&amp; !me.hasClass(&#x27;_playlist_menu_item&#x27;) &amp;&amp; !me.hasClass(&#x27;_open_playlist&#x27;) &amp;&amp; !me.hasClass(&#x27;_close_playlist&#x27;)) {
+      closePlaylistMenuInLessonViewer(function() {});
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;._playlist_menu_item&#x27;, function() {
+    var lesson_id = $(this).data(&#x27;lesson-id&#x27;);
+    switchLessonInPlaylistMenuLessonViewer(lesson_id, function() {
+      closePlaylistMenuInLessonViewer(function() {
+        slideToInLessonViewer($(&#x27;._cover_bookmark_for_lesson_viewer_&#x27; + lesson_id));
+      });
+    });
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;a._open_playlist&#x27;, function() {
+    if(!$(this).data(&#x27;loaded&#x27;) &amp;&amp; $(&#x27;._playlist_menu_item&#x27;).length &gt; 3) {
+      $(this).data(&#x27;loaded&#x27;, true);
+      $(&#x27;#playlist_menu&#x27;).jScrollPane({
+        autoReinitialise: true,
+        contentWidth: (($(&#x27;._playlist_menu_item&#x27;).length * 307) - 60)
+      });
+    }
+    stopMediaInLessonViewer();
+    openPlaylistMenuInLessonViewer();
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;a._close_playlist&#x27;, function() {
+    closePlaylistMenuInLessonViewer(function() {});
+  });
+  
+  $(document.documentElement).keyup(function(e) {
+    if(e.keyCode == 37) {
+      goToPrevSlideInLessonViewer();
+    } else if(e.keyCode == 39) {
+      goToNextSlideInLessonViewer();
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#right_scroll&#x27;, function(e) {
+    e.preventDefault();
+    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
+      $(this).addClass(&#x27;disabled&#x27;);
+      goToNextSlideInLessonViewer();
+    }
+  });
+  
+  $(&#x27;body&#x27;).on(&#x27;click&#x27;, &#x27;#left_scroll&#x27;, function(e) {
+    e.preventDefault();
+    if(!$(this).hasClass(&#x27;disabled&#x27;)) {
+      $(this).addClass(&#x27;disabled&#x27;);
+      goToPrevSlideInLessonViewer();
+    }
+  });
+  
+});
+
+&#x2F;**
+* Open playlist menu, show lessons conver list and change playlist toggle label
+*
+* Uses: [hideArrowsInLessonViewer](..&#x2F;classes&#x2F;hideArrowsInLessonViewer.html#method_hideArrowsInLessonViewer)
+* 
+* @method openPlaylistMenuInLessonViewer
+* @for openPlaylistMenuInLessonViewer
+*&#x2F;
+function openPlaylistMenuInLessonViewer() {
+  hideArrowsInLessonViewer();
+  $(&#x27;a._open_playlist span&#x27;).hide();
+  $(&#x27;a._close_playlist span&#x27;).show();
+  $(&#x27;.playlistMenu&#x27;).slideDown(&#x27;slow&#x27;);
+}
+
+&#x2F;**
+* Open playlist menu, show lessons conver list and change playlist toggle label
+*
+* Uses: [showArrowsInLessonViewer](..&#x2F;classes&#x2F;showArrowsInLessonViewer.html#method_showArrowsInLessonViewer)
+* 
+* @method closePlaylistMenuInLessonViewer
+* @for closePlaylistMenuInLessonViewer
+* @param callback {Object} to call after effect is complete
+*&#x2F;
+function closePlaylistMenuInLessonViewer(callback) {
+  $(&#x27;.playlistMenu&#x27;).slideUp(&#x27;slow&#x27;, function() {
+    callback();
+    showArrowsInLessonViewer();
+    $(&#x27;a._open_playlist span&#x27;).show();
+    $(&#x27;a._close_playlist span&#x27;).hide();
+  });
+}
+
+&#x2F;**
+* Sets selected lesson from playlist menu
+*
+* @method selectComponentInLessonViewerPlaylistMenu
+* @for selectComponentInLessonViewerPlaylistMenu
+* @param component {Object} selected lesson
+* @param callback {Object} to call after function is complete
+*&#x2F;
+function selectComponentInLessonViewerPlaylistMenu(component, callback) {
+  $(&#x27;._playlist_menu_item&#x27;).css(&#x27;margin&#x27;, &#x27;2px 60px 2px 0&#x27;).css(&#x27;border&#x27;, 0);
+  $(&#x27;._playlist_menu_item&#x27;).last().css(&#x27;margin-right&#x27;, 0);
+  $(&#x27;._playlist_menu_item._selected&#x27;).removeClass(&#x27;_selected&#x27;);
+  component.addClass(&#x27;_selected&#x27;);
+  var prev = component.prev();
+  var next = component.next();
+  if(prev.length == 0 &amp;&amp; next.length == 0) {
+    component.css(&#x27;margin-top&#x27;, 0);
+    component.css(&#x27;margin-bottom&#x27;, 0);
+    component.css(&#x27;border&#x27;, &#x27;2px solid white&#x27;);
+  } else if(prev.length == 0) {
+    component.css(&#x27;margin-top&#x27;, 0);
+    component.css(&#x27;margin-bottom&#x27;, 0);
+    component.css(&#x27;border&#x27;, &#x27;2px solid white&#x27;);
+    if(next.next().length == 0) {
+      component.css(&#x27;margin-right&#x27;, &#x27;56px&#x27;);
+    } else {
+      component.css(&#x27;margin-right&#x27;, &#x27;58px&#x27;);
+      next.css(&#x27;margin-right&#x27;, &#x27;58px&#x27;);
+    }
+  } else if(next.length == 0) {
+    component.css(&#x27;margin-top&#x27;, 0);
+    component.css(&#x27;margin-bottom&#x27;, 0);
+    component.css(&#x27;border&#x27;, &#x27;2px solid white&#x27;);
+    var prev_prev = prev.prev();
+    if(prev_prev.length == 0) {
+      prev.css(&#x27;margin-right&#x27;, &#x27;56px&#x27;);
+    } else {
+      prev.css(&#x27;margin-right&#x27;, &#x27;58px&#x27;);
+      prev_prev.css(&#x27;margin-right&#x27;, &#x27;58px&#x27;);
+    }
+  } else {
+    component.css(&#x27;margin-top&#x27;, 0);
+    component.css(&#x27;margin-bottom&#x27;, 0);
+    component.css(&#x27;margin-right&#x27;, &#x27;58px&#x27;);
+    component.css(&#x27;border&#x27;, &#x27;2px solid white&#x27;);
+    prev.css(&#x27;margin-right&#x27;, &#x27;58px&#x27;);
+  }
+  if($(&#x27;#playlist_menu&#x27;).data(&#x27;jsp&#x27;) != undefined) {
+    var flag = true;
+    var tot_prev_components = 0;
+    $(&#x27;._playlist_menu_item&#x27;).each(function() {
+      if(flag &amp;&amp; !$(this).hasClass(&#x27;_selected&#x27;)) {
+        tot_prev_components += 1;
+      } else {
+        flag = false;
+      }
+    });
+    if(tot_prev_components &gt; 1) {
+      if(tot_prev_components == $(&#x27;._playlist_menu_item&#x27;).length - 1) {
+        if(callback == undefined) {
+          $(&#x27;#playlist_menu&#x27;).data(&#x27;jsp&#x27;).scrollToPercentX(100);
+        } else {
+          $(&#x27;#playlist_menu&#x27;).jScrollPane().bind(&#x27;panescrollstop&#x27;, function() {
+            callback();
+            $(&#x27;#playlist_menu&#x27;).jScrollPane().unbind(&#x27;panescrollstop&#x27;);
+          });
+          $(&#x27;#playlist_menu&#x27;).data(&#x27;jsp&#x27;).scrollToPercentX(100, true);
+        }
+      } else {
+        if(callback == undefined) {
+          $(&#x27;#playlist_menu&#x27;).data(&#x27;jsp&#x27;).scrollToX(307 * (tot_prev_components - 1));
+        } else {
+          $(&#x27;#playlist_menu&#x27;).jScrollPane().bind(&#x27;panescrollstop&#x27;, function() {
+            callback();
+            $(&#x27;#playlist_menu&#x27;).jScrollPane().unbind(&#x27;panescrollstop&#x27;);
+          });
+          $(&#x27;#playlist_menu&#x27;).data(&#x27;jsp&#x27;).scrollToX(307 * (tot_prev_components - 1), true);
+        }
+      }
+    } else {
+      if(callback != undefined) {
+        callback();
+      }
+    }
+  } else {
+    if(callback != undefined) {
+      callback();
+    }
+  }
+}
+
+&#x2F;**
+* Gets the current slide id
+*
+* @method getLessonViewerCurrentSlide
+* @for getLessonViewerCurrentSlide
+* @return {Number} current slide id
+*&#x2F;
+function getLessonViewerCurrentSlide() {
+  return $(&#x27;#&#x27; + $(&#x27;._lesson_viewer_current_slide&#x27;).attr(&#x27;id&#x27;));
+}
+
+&#x2F;**
+* Slide to given slide
+*
+* Uses: [stopMediaInLessonViewer](..&#x2F;classes&#x2F;stopMediaInLessonViewer.html#method_stopMediaInLessonViewer)
+* and [getLessonViewerCurrentSlide](..&#x2F;classes&#x2F;getLessonViewerCurrentSlide.html#method_getLessonViewerCurrentSlide)
+* and [unbindLoader](..&#x2F;classes&#x2F;unbindLoader.html#method_unbindLoader)
+* and [bindLoader](..&#x2F;classes&#x2F;bindLoader.html#method_bindLoader)
+* 
+* @method slideToInLessonViewer
+* @for slideToInLessonViewer
+* @param to {Object} slide to slide to
+*&#x2F;
+function slideToInLessonViewer(to) {
+  stopMediaInLessonViewer();
+  var from = getLessonViewerCurrentSlide();
+  from.removeClass(&#x27;_lesson_viewer_current_slide&#x27;);
+  to.addClass(&#x27;_lesson_viewer_current_slide&#x27;);
+  from.hide(&#x27;fade&#x27;, {}, 500, function() {
+    to.show();
+    if(!to.data(&#x27;loaded&#x27;)) {
+      $.ajax({
+        type: &#x27;get&#x27;,
+        beforeSend: unbindLoader(),
+        url: &#x27;&#x2F;lessons&#x2F;&#x27; + to.data(&#x27;lesson-id&#x27;) + &#x27;&#x2F;view&#x2F;slides&#x2F;&#x27; + to.data(&#x27;slide-id&#x27;) + &#x27;&#x2F;load?token=&#x27; + to.data(&#x27;lesson-token&#x27;),
+        success: function() {
+          $(&#x27;#left_scroll, #right_scroll&#x27;).removeClass(&#x27;disabled&#x27;);
+          var media = to.find(&#x27;._instance_of_player&#x27;);
+          if(media.length &gt; 0) {
+            media.find(&#x27;._media_player_play&#x27;).click();
+          }
+        }
+      }).always(bindLoader);
+    } else {
+      $(&#x27;#left_scroll, #right_scroll&#x27;).removeClass(&#x27;disabled&#x27;);
+      var media = to.find(&#x27;._instance_of_player&#x27;);
+      if(media.length &gt; 0) {
+        media.find(&#x27;._media_player_play&#x27;).click();
+      }
+    }
+  });
+}
+
+&#x2F;**
+* Hide slides navigation arrows in lesson viewer
+* 
+* @method hideArrowsInLessonViewer
+* @for hideArrowsInLessonViewer
+*&#x2F;
+function hideArrowsInLessonViewer() {
+  $(&#x27;#right_scroll, #left_scroll&#x27;).hide();
+}
+
+&#x2F;**
+* Show slides navigation arrows in lesson viewer
+* 
+* @method hideArrowsInLessonViewer
+* @for hideArrowsInLessonViewer
+*&#x2F;
+function showArrowsInLessonViewer() {
+  $(&#x27;#right_scroll, #left_scroll&#x27;).show();
+}
+
+&#x2F;**
+* Handle playlist menu on lesson viewer startup
+*
+* Uses: [selectComponentInLessonViewerPlaylistMenu](..&#x2F;classes&#x2F;selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
+* 
+* @method initializeLessonViewer
+* @for initializeLessonViewer
+*&#x2F;
+function initializeLessonViewer() {
+  selectComponentInLessonViewerPlaylistMenu($(&#x27;._playlist_menu_item&#x27;).first());
+  if($(&#x27;._playlist_menu_item&#x27;).length &lt;= 3) {
+    $(&#x27;#playlist_menu&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden&#x27;);
+  }
+  $(&#x27;html.lesson-viewer-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) &#x2F; 2 + &#x27;px&#x27;);
+  $(window).resize(function() {
+    $(&#x27;html.lesson-viewer-layout .container&#x27;).css(&#x27;margin-top&#x27;, ($(window).height() - 590) &#x2F; 2 + &#x27;px&#x27;);
+  });
+}
+
+&#x2F;**
+* Stop media playling in current slide in lesson viewer
+* 
+* @method stopMediaInLessonViewer
+* @for stopMediaInLessonViewer
+*&#x2F;
+function stopMediaInLessonViewer() {
+  var current_slide_id = $(&#x27;._lesson_viewer_current_slide&#x27;).attr(&#x27;id&#x27;);
+  stopMedia(&#x27;#&#x27; + current_slide_id + &#x27; audio&#x27;);
+  stopMedia(&#x27;#&#x27; + current_slide_id + &#x27; video&#x27;);
+}
+
+&#x2F;**
+* Open playlist menu, show lessons conver list and change playlist toggle label
+*
+* Uses: [selectComponentInLessonViewerPlaylistMenu](..&#x2F;classes&#x2F;selectComponentInLessonViewerPlaylistMenu.html#method_selectComponentInLessonViewerPlaylistMenu)
+* 
+* @method switchLessonInPlaylistMenuLessonViewer
+* @for switchLessonInPlaylistMenuLessonViewer
+* @param lesson_id {Number} lesson id to switch to
+* @param callback {Object} callback after function is complete
+*&#x2F;
+function switchLessonInPlaylistMenuLessonViewer(lesson_id, callback) {
+  if($(&#x27;._lesson_title_in_playlist&#x27;).data(&#x27;lesson-id&#x27;) != lesson_id) {
+    $(&#x27;._lesson_title_in_playlist&#x27;).hide();
+    $(&#x27;#lesson_viewer_playlist_title_&#x27; + lesson_id).show();
+    selectComponentInLessonViewerPlaylistMenu($(&#x27;#playlist_menu_item_&#x27; + lesson_id), callback);
+  }
+}
+
+&#x2F;**
+* Open playlist menu, show lessons conver list and change playlist toggle label
+*
+* Uses: [slideToInLessonViewer](..&#x2F;classes&#x2F;slideToInLessonViewer.html#method_slideToInLessonViewer)
+* and [switchLessonInPlaylistMenuLessonViewer](..&#x2F;classes&#x2F;switchLessonInPlaylistMenuLessonViewer.html#method_switchLessonInPlaylistMenuLessonViewer)
+* 
+* @method slideToInLessonViewerWithLessonSwitch
+* @for slideToInLessonViewerWithLessonSwitch
+* @param component {Object} slide to slide to
+*&#x2F;
+function slideToInLessonViewerWithLessonSwitch(component) {
+  slideToInLessonViewer(component);
+  switchLessonInPlaylistMenuLessonViewer(component.data(&#x27;lesson-id&#x27;));
+}
+
+&#x2F;**
+* Go to next slide in lesson viewer,
+* if last slide it goes to first one.
+*
+* Uses: [slideToInLessonViewerWithLessonSwitch](..&#x2F;classes&#x2F;slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
+* 
+* @method goToNextSlideInLessonViewer
+* @for goToNextSlideInLessonViewer
+*&#x2F;
+function goToNextSlideInLessonViewer() {
+  var next_slide = getLessonViewerCurrentSlide().next();
+  if(next_slide.length == 0) {
+    slideToInLessonViewerWithLessonSwitch($(&#x27;._slide_in_lesson_viewer&#x27;).first());
+  } else {
+    slideToInLessonViewerWithLessonSwitch(next_slide);
+  }
+}
+
+&#x2F;**
+* Go to previous slide in lesson viewer,
+* if first slide it goes to last one.
+*
+* Uses: [slideToInLessonViewerWithLessonSwitch](..&#x2F;classes&#x2F;slideToInLessonViewerWithLessonSwitch.html#method_slideToInLessonViewerWithLessonSwitch)
+* 
+* @method goToPrevSlideInLessonViewer
+* @for goToPrevSlideInLessonViewer
+*&#x2F;
+function goToPrevSlideInLessonViewer() {
+  var prev_slide = getLessonViewerCurrentSlide().prev();
+  if(prev_slide.length == 0) {
+    slideToInLessonViewerWithLessonSwitch($(&#x27;._slide_in_lesson_viewer&#x27;).last());
+  } else {
+    slideToInLessonViewerWithLessonSwitch(prev_slide);
+  }
+}
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

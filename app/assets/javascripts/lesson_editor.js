@@ -352,7 +352,9 @@ $(document).ready(function() {
 * 
 * @method scrollPaneUpdate
 * @for scrollPaneUpdate
-* @param trigger_element {Object} element which triggers the scroll
+* @param trigger_element {String} element which triggers the scroll, class or id
+* @example
+      scrollPaneUpdate('._not_current_slide');
 */
 function scrollPaneUpdate(trigger_element){
   //TODO Control if moving right or left and when to scroll
@@ -387,7 +389,7 @@ function removeGalleryInLessonEditor(sti_type) {
 * 
 * @method showGalleryInLessonEditor
 * @for showGalleryInLessonEditor
-* @param obj {Object} gallery type
+* @param obj {String} gallery type
 * @param sty_type {String} gallery type
 * @example 
       `showGalleryInLessonEditor('._show_video_gallery_in_lesson_editor','video');`
