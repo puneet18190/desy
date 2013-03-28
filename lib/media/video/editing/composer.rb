@@ -69,6 +69,7 @@ module Media
             video.destroy
             Notification.send_to video.user_id, I18n.t('notifications.video.compose.create.failed', item: video.title, link: ::Video::CACHE_RESTORE_PATH)
           end
+
           raise e
         end
 

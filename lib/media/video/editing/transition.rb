@@ -19,14 +19,15 @@ module Media
         include Logging
         include InTmpDir
   
-        START_FRAME          = 'start_frame.jpg'
-        VIDEO_NO_AUDIO       = 'video_no_audio.mp4'
-        LAST_FRAME_SKIP_STEP = -0.2
-        END_FRAME            = 'end_frame.jpg'
-        TRANSITIONS          = 'transition.jpg'
-        INNER_FRAMES_AMOUNT  = 23
-        TRANSITIONS_FORMAT   = proc{ f = Pathname.new(TRANSITIONS); "#{f.basename(f.extname)}-%d#{f.extname}" }.call
-        FRAME_RATE           = 25
+        START_FRAME         = 'start_frame.jpg'
+        VIDEO_NO_AUDIO      = 'video_no_audio.mp4'
+        LAST_FRAME_STEP     = -0.01
+        LAST_FRAME_SKIP     = LAST_FRAME_STEP.abs*3
+        END_FRAME           = 'end_frame.jpg'
+        TRANSITIONS         = 'transition.jpg'
+        INNER_FRAMES_AMOUNT = 23
+        TRANSITIONS_FORMAT  = ( f = Pathname.new(TRANSITIONS); "#{f.basename(f.extname)}-%d#{f.extname}" ) # "transition-%d.jpg"
+        FRAME_RATE          = 25
   
         def initialize(start_inputs, end_inputs, output_without_extension)
           unless start_inputs.is_a?(Hash)                       and 
@@ -58,15 +59,15 @@ module Media
   
           in_tmp_dir do
             start_frame = tmp_path START_FRAME
-            extract_start_input_frame(start_frame) # 1.
+            extract_start_transition_frame(start_frame) # 1.
   
             end_frame = tmp_path END_FRAME
-            extract_end_input_frame(end_frame) # 2.
+            extract_end_transition_frame(end_frame) # 2.
   
             transitions = tmp_path TRANSITIONS
             Cmd::GenerateTransitionFrames.new(start_frame, end_frame, transitions, INNER_FRAMES_AMOUNT).run! *logs('3_generate_transition_frames') # 3.
   
-            Thread.join *FORMATS.map { |format| proc { transition(format) } } # 4.
+            Thread.join *FORMATS.map{ |format| proc{ transition(format) } } # 4.
           end
   
           outputs
@@ -78,29 +79,30 @@ module Media
           Cmd::Transition.new(tmp_path(TRANSITIONS_FORMAT), output(format), FRAME_RATE, format).run! *logs("4_#{format}")
         end
 
-        def extract_start_input_frame(start_frame)
-          video_no_audio = tmp_path VIDEO_NO_AUDIO
-          Cmd::VideoStreamToFile.new(@start_inputs[:mp4], video_no_audio).run! *logs('0_video_stream_to_file')
-  
-          video_no_audio_duration = Info.new(video_no_audio).duration
-          video_no_audio_duration.step(0, LAST_FRAME_SKIP_STEP) do |seek|
-            Cmd::ExtractFrame.new(@start_inputs[:mp4], start_frame, seek).run! *logs('1_extract_start_input_last_frame')
-            break if File.exists? start_frame
+        def extract_start_transition_frame(output_path)
+          video_duration = Info.new(@start_inputs[:mp4]).duration
+          end_frame_extraction_start_seek(video_duration).step(0, LAST_FRAME_STEP) do |seek|
+            Cmd::ExtractFrame.new(@start_inputs[:mp4], output_path, seek).run! *logs('1_extract_start_transition_frame')
+            break if File.exists? output_path
           end
-  
+
           # se non sono riuscito a tirare fuori il frame non va bene
-          unless File.exists? start_frame
-            raise Error.new('start frame extraction failed', start_input_mp4: @start_inputs[:mp4])
+          unless File.exists? output_path
+            raise Error.new('start transition frame extraction failed', start_input_mp4: @start_inputs[:mp4])
           end
         end
   
-        def extract_end_input_frame(end_frame)
-          Cmd::ExtractFrame.new(@end_inputs[:mp4], end_frame, 0).run! *logs('2_extract_end_input_first_frame') # 2.
+        def extract_end_transition_frame(output_path)
+          Cmd::ExtractFrame.new(@end_inputs[:mp4], output_path, 0).run! *logs('2_extract_end_transition_frame') # 2.
           
           # se non sono riuscito a tirare fuori il frame non va bene
-          unless File.exists? end_frame
-            raise Error.new('end frame extraction failed', end_input_mp4: @end_inputs[:mp4])
+          unless File.exists? output_path
+            raise Error.new('end transition frame extraction failed', end_input_mp4: @end_inputs[:mp4])
           end
+        end
+
+        def end_frame_extraction_start_seek(duration)
+          duration-LAST_FRAME_SKIP
         end
   
         def output(format)

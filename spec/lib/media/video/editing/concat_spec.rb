@@ -284,6 +284,36 @@ module Media
           end
   
         end
+
+        describe '#wavs_with_paddings' do
+          context 'when short inputs are placed after long inputs' do
+
+            def concat(output_dir = nil)
+              @concat ||= (
+                inputs = ['con verted long', 'con verted'].map{ |p| {}.tap{ |inputs| FORMATS.each{ |f| inputs[f] = MESS::SAMPLES_FOLDER.join("#{p}.#{f}").to_s } } }
+                described_class.new(inputs, output_dir)
+              )
+            end
+
+            let(:mp4_inputs_infos) { concat.send(:mp4_inputs).map{ |input| Info.new(input) } }
+            let(:paddings)         { concat.send(:paddings, mp4_inputs_infos) }
+
+            subject { concat.send(:wavs_with_paddings, mp4_inputs_infos, paddings) }
+
+            before do
+              Dir.mktmpdir do |output_dir|
+                concat(output_dir)
+                concat.send(:create_log_folder)
+                concat.send(:in_tmp_dir) { subject }
+              end
+            end
+
+            it 'respects the concatenations order' do
+              subject.keys.map{ |p| File.basename(p) }.should == ["concat0.wav", "concat1.wav"]
+            end
+
+          end
+        end
   
       end
     end
