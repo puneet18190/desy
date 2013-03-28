@@ -1,3 +1,20 @@
+/**
+* Dialogs, model and popup interaction. 
+* Open, close content management.
+* Uses jQueryUI _dialog_
+* 
+* @module Dialogs
+*/
+
+/**
+* Modal for media element editor, asking whether or not restore cached content.
+* Available for audio and video editor only.
+* 
+* @method showRestoreCacheMediaElementEditorPopUp
+* @for showRestoreCacheMediaElementEditorPopUp
+* @param callback_ok {Object} restore callback function
+* @param callback_no {Object} don't restore callback function
+*/
 function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
   var obj = $('#dialog-restore-cache-media-element-editor');
   var caption = $('#popup_captions_container').data('restore-cache-media-element-editor-message');
@@ -36,6 +53,13 @@ function showRestoreCacheMediaElementEditorPopUp(callback_ok, callback_no) {
   }
 }
 
+/**
+* Modal warning on unpublish lesson.
+*
+* @method showLessonNotificationPopUp
+* @for showLessonNotificationPopUp
+* @param lesson_id {Number} lesson id
+*/
 function showLessonNotificationPopUp(lesson_id) {
   var lesson_id_number = lesson_id.split('_');
   lesson_id_number = lesson_id_number[lesson_id_number.length - 1];
@@ -65,6 +89,13 @@ function showLessonNotificationPopUp(lesson_id) {
   }
 }
 
+/**
+* Share lesson link popup in virtual classroom 
+*
+* @method showSendLessonLinkPopUp
+* @for showSendLessonLinkPopUp
+* @param lesson_id {Number} lesson id
+*/
 function showSendLessonLinkPopUp(lesson_id) {
   var obj = $('#dialog-virtual-classroom-send-link');
   $('#dialog-virtual-classroom-send-link form').attr('action', ('/virtual_classroom/' + lesson_id + '/send_link'));
@@ -103,6 +134,16 @@ function showSendLessonLinkPopUp(lesson_id) {
   }
 }
 
+/**
+* Modal with lessons to add to virtual classroom.
+*
+* Uses: [showOkPopUp](../classes/showOkPopUp.html#method_showOkPopUp)
+* and [showErrorPopUp](../classes/showErrorPopUp.html#method_showErrorPopUp)
+*
+* @method showVirtualClassroomQuickSelectPopUp
+* @for showVirtualClassroomQuickSelectPopUp
+* @param content {Object} lessons list partial
+*/
 function showVirtualClassroomQuickSelectPopUp(content) {
   var obj = $('#dialog-virtual-classroom-quick-select');
   obj.html(content);
@@ -136,6 +177,17 @@ function showVirtualClassroomQuickSelectPopUp(content) {
   }
 }
 
+/**
+* Show timed popup that auto close after _n_ seconds.
+* Timeout is handled with data-timeout into `_popup_parameters_container_`
+*
+* Uses: [closePopUp](../classes/closePopUp.html#method_closePopUp)
+*
+* @method showTimedPopUp
+* @for showTimedPopUp
+* @param content {Object} lessons list partial
+* @param id {String} dialog select id 
+*/
 function showTimedPopUp(content, id) {
   var obj = $('#' + id);
   obj.html(content);
@@ -159,18 +211,46 @@ function showTimedPopUp(content, id) {
   }
 }
 
-// FUNCTIONS DIRECTLY USED IN THE APPLICATION
-
+/**
+* Modal with error icon and custom content
+*
+* Uses: [showTimedPopUp](../classes/showTimedPopUp.html#method_showTimedPopUp)
+*
+* @method showErrorPopUp
+* @for showErrorPopUp
+* @param content {Object} modal text content
+*/
 function showErrorPopUp(content) {
   var new_content = '<img src="/assets/unsuccess.png"/><h1>' + content + '</h1>';
   showTimedPopUp(new_content, 'dialog-error');
 }
 
+/**
+* Modal with ok icon and custom content
+*
+* Uses: [showTimedPopUp](../classes/showTimedPopUp.html#method_showTimedPopUp)
+*
+* @method showOkPopUp
+* @for showOkPopUp
+* @param content {Object} modal text content
+*/
 function showOkPopUp(content) {
   var new_content = '<img src="/assets/success.png"/><h1>' + content + '</h1>';
   showTimedPopUp(new_content, 'dialog-ok');
 }
 
+/**
+* Modal for media element update form
+*
+* Uses: [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose)
+* and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)
+* and [resetMediaElementChangeInfo](../classes/resetMediaElementChangeInfo.html#method_resetMediaElementChangeInfo)
+* and [stopMedia](../classes/stopMedia.html#method_stopMedia)
+*
+* @method showMediaElementInfoPopUp
+* @for showMediaElementInfoPopUp
+* @param media_element_id {Number} media element id
+*/
 function showMediaElementInfoPopUp(media_element_id) {
   var obj = $('#dialog-media-element-' + media_element_id);
   if(!$('._media_element_item_id_' + media_element_id).data('preview-loaded')) {
@@ -217,6 +297,12 @@ function showMediaElementInfoPopUp(media_element_id) {
   }
 }
 
+/**
+* Modal for new media element form
+*
+* @method showLoadMediaElementPopUp
+* @for showLoadMediaElementPopUp
+*/
 function showLoadMediaElementPopUp() {
   var obj = $('#load-media-element');
   if(obj.data('dialog')) {
@@ -250,6 +336,18 @@ function showLoadMediaElementPopUp() {
   }
 }
 
+/**
+* Image popup for image gallery
+*
+* Uses: [resizedWidthForImageGallery](../classes/resizedWidthForImageGallery.html#method_resizedWidthForImageGallery)
+* and [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose)
+* and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)
+*
+* @method showImageInGalleryPopUp
+* @for showImageInGalleryPopUp
+* @param image_id {Number} image id
+* @param callback {Object} callback function
+*/
 function showImageInGalleryPopUp(image_id, callback) {
   var obj = $('#dialog-image-gallery-' + image_id);
   var my_width = resizedWidthForImageGallery(obj.find('a').data('width'), obj.find('a').data('height'));
@@ -283,6 +381,18 @@ function showImageInGalleryPopUp(image_id, callback) {
   }
 }
 
+/**
+* Video popup for video gallery
+*
+* Uses: [customOverlayClose](../classes/customOverlayClose.html#method_customOverlayClose)
+* and [initializeMedia](../classes/initializeMedia.html#method_initializeMedia)
+* and [stopMedia](../classes/stopMedia.html#method_stopMedia)
+* and [removeCustomOverlayClose](../classes/removeCustomOverlayClose.html#method_removeCustomOverlayClose)
+*
+* @method showVideoInGalleryPopUp
+* @for showVideoInGalleryPopUp
+* @param video_id {Number} video id
+*/
 function showVideoInGalleryPopUp(video_id) {
   var obj = $('#dialog-video-gallery-' + video_id);
   if(obj.data('dialog')) {
@@ -324,6 +434,18 @@ function showVideoInGalleryPopUp(video_id) {
   }
 }
 
+/**
+* Generic popup for confirmation prompt
+*
+* @method showConfirmPopUp
+* @for showConfirmPopUp
+* @param title {String} popup title
+* @param content {String} popup content
+* @param msg_ok {String} text for ok button
+* @param msg_no {String} text for cancel button
+* @param callback_ok {Object} ok callback function
+* @param callback_no {Object} cancel callback function
+*/
 function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_no) {
   var obj = $('#dialog-confirm');
   content = '<img src="/assets/alert.png"/><h1>' + title + '</h1><p>' + content + '</p>';
@@ -349,6 +471,13 @@ function showConfirmPopUp(title, content, msg_ok, msg_no, callback_ok, callback_
   }
 }
 
+/**
+* Destroy given media element popup
+*
+* @method removeCompletelyMediaElementPopup
+* @for removeCompletelyMediaElementPopup
+* @param media_element_id {Number} media element id
+*/
 function removeCompletelyMediaElementPopup(media_element_id) {
   var obj = $('#dialog-media-element-' + media_element_id);
   if(obj.length == 0) {
@@ -360,15 +489,35 @@ function removeCompletelyMediaElementPopup(media_element_id) {
   obj.remove();
 }
 
+/**
+* Close popup with given id
+*
+* @method closePopUp
+* @for closePopUp
+* @param id {String} popup selector id
+*/
 function closePopUp(id) {
   $('#' + id).dialog('close');
 }
 
+/**
+* Add close popup functionality to widget overlay layer.
+* Triggered on popup blur.
+*
+* @method customOverlayClose
+* @for customOverlayClose
+*/
 function customOverlayClose() {
   $('.ui-widget-overlay').show().css('height', (2 * $(window).height()) + 'px');
   $('.ui-widget-overlay').addClass('_close_on_click_out');
 }
 
+/**
+* Remove close popup functionality to widget overlay layer.
+*
+* @method removeCustomOverlayClose
+* @for removeCustomOverlayClose
+*/
 function removeCustomOverlayClose() {
   $('.ui-widget-overlay').removeClass('_close_on_click_out');
 }
