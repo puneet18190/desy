@@ -523,10 +523,6 @@ class User < ActiveRecord::Base
     resp
   end
   
-  def self.get_emails(term)
-    where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?',"%#{term}%","%#{term}%","%#{term}%").select('name, surname, email AS value')
-  end
-  
   def self.get_full_names(term)
     where('email ILIKE ? OR name ILIKE ? OR surname ILIKE ?',"%#{term}%","%#{term}%","%#{term}%").select("id, name || ' ' || surname AS value")
   end

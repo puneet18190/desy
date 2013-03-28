@@ -64,17 +64,7 @@
 </nav>
 
     
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
     
-    <li><a href="#method-c-get_emails">::get_emails</a>
-    
-  </ul>
-</nav>
-
   </div>
 
   <div id="project-metadata">
@@ -416,6 +406,43 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>ActiveRecord class that corresponds to the table
+<code>mailing_list_addresses</code>.</p>
+
+<h2 id="label-Fields">Fields</h2>
+<ul><li>
+<p><strong>group_id</strong>: the reference to <a
+href="MailingListGroup.html">MailingListGroup</a></p>
+</li><li>
+<p><strong>heading</strong>: the name that the user associates to the e-mail
+address</p>
+</li><li>
+<p><strong>email</strong>: eht email address</p>
+</li></ul>
+
+<h2 id="label-Associations">Associations</h2>
+
+<p># * <strong>group</strong>: reference to the <a
+href="MailingListGroup.html">MailingListGroup</a> to which the address
+belongs (<strong>belongs_to</strong>).</p>
+
+<h2 id="label-Validations">Validations</h2>
+<ul><li>
+<p><strong>presence</strong> for <code>email</code> and <code>heading</code></p>
+</li><li>
+<p><strong>correctness</strong> of <code>email</code> as an e-mail address</p>
+</li></ul>
+
+<h2 id="label-Callbacks">Callbacks</h2>
+
+<p>None</p>
+
+<h2 id="label-Database+callbacks">Database callbacks</h2>
+
+<p>None</p>
+
   </div><!-- description -->
 
   
@@ -432,42 +459,6 @@
 
     <!-- Methods -->
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
-
-    
-      <div id="method-c-get_emails" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_emails</span><span
-            class="method-args">(user_id, term)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="get_emails-source">
-            <pre><span class="ruby-comment"># File app/models/mailing_list_address.rb, line 9</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_emails</span>(<span class="ruby-identifier">user_id</span>, <span class="ruby-identifier">term</span>)
-  <span class="ruby-identifier">joins</span>(<span class="ruby-value">:group</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">mailing_list_groups</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user_id</span> }).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;mailing_list_addresses.email ILIKE ? OR mailing_list_addresses.heading ILIKE ?&#39;</span>,<span class="ruby-node">&quot;%#{term}%&quot;</span>,<span class="ruby-node">&quot;%#{term}%&quot;</span>).<span class="ruby-identifier">select</span>(<span class="ruby-string">&#39;mailing_list_addresses.email AS value&#39;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- get_emails-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- get_emails-method -->
-
-    
-    </section><!-- public-class-method-details -->
-  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->
