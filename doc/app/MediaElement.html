@@ -505,7 +505,7 @@ type</p>
 </li><li>
 <p><strong>metadata</strong>: can contain different keys, depending on
 <code>sti_type</code></p>
-<ol><li>
+<ul><li>
 <p><strong>audio</strong></p>
 <ul><li>
 <p><code>creation_mode</code>: it can be <strong>uploaded</strong> (if the
@@ -534,7 +534,7 @@ created inside the application using other elements)</p>
 </li><li>
 <p><code>webm_duration</code>: the float duration of the webm attached file</p>
 </li></ul>
-</li></ol>
+</li></ul>
 </li><li>
 <p><strong>converted</strong>: always <code>true</code> for <a
 href="Image.html">Image</a>; for <a href="Video.html">Video</a> and <a
@@ -643,7 +643,7 @@ automatically by CarrierWave)</p>
 <h2 id="label-Callbacks">Callbacks</h2>
 <ul><li>
 <p><strong>general</strong> <strong>callbacks</strong>:</p>
-<ol><li>
+<ul><li>
 <p><strong>on</strong> <strong>the</strong> <strong>method</strong>
 <strong>new</strong>, it&#39;s called <a
 href="MediaElement.html#method-c-new_with_sti_type_inferring">::new_with_sti_type_inferring</a>,
@@ -678,11 +678,11 @@ before calling <code>require</code> for the submodels</strong>, because the
 <code>after_save</code> of the uploader (see private validation methods in
 <a href="Media/Shared.html">Media::Shared</a>, and callbacks in <a
 href="Image.html">Image</a>)</p>
-</li></ol>
+</li></ul>
 </li><li>
 <p><strong>callbacks</strong> <strong>only</strong> <strong>for</strong> <a
 href="Image.html">Image</a> type:</p>
-<ol><li>
+<ul><li>
 <p><strong>before_save</strong> sets <code>width</code> and
 <code>height</code> according to the attached image</p>
 </li><li>
@@ -690,11 +690,11 @@ href="Image.html">Image</a> type:</p>
 during the uploading of an <a href="Image.html">Image</a> we don&#39;t have
 to wait for conversion, as happens in <a href="Video.html">Video</a> and <a
 href="Audio.html">Audio</a></p>
-</li></ol>
+</li></ul>
 </li><li>
 <p><strong>callbacks</strong> <strong>only</strong> <strong>for</strong> <a
 href="Audio.html">Audio</a> and <a href="Video.html">Video</a> types:</p>
-<ol><li>
+<ul><li>
 <p><strong>before_create</strong> sets the +creation_mode*
 (<code>uploaded</code> if the element was originally uploaded, or
 <code>composed</code> if it was created inside the application)</p>
@@ -712,14 +712,14 @@ must be deleted)</p>
 </li><li>
 <p><strong>after_destroy</strong> cleans the folder containing the attached
 files (mp4, mp3, webm, ogg)</p>
-</li></ol>
+</li></ul>
 </li></ul>
 
 <h2 id="label-Database+callbacks">Database callbacks</h2>
-<ol><li>
+<ul><li>
 <p><strong>cascade</strong> <strong>destruction</strong> for the associated
 table <a href="MediaElementsSlide.html">MediaElementsSlide</a></p>
-</li></ol>
+</li></ul>
 
 <h2 id="label-Other+details">Other details</h2>
 

@@ -13,17 +13,17 @@ require 'lessons_media_elements_shared'
 # * *title*: title
 # * *description*: description
 # * *metadata*: can contain different keys, depending on +sti_type+
-#   1. *audio*
-#      * +creation_mode+: it can be *uploaded* (if the element was originally uploaded), or *composed* (if it was created inside the application using other elements)
-#      * +mp3_duration+: the float duration of the mp3 attached file
-#      * +ogg_duration+: the float duration of the ogg attached file
-#   2. *image*
-#      * +width+: width of the original image
-#      * +height+: height of the original image
-#   3. *video*
-#      * +creation_mode+: it can be *uploaded* (if the element was originally uploaded), or *composed* (if it was created inside the application using other elements)
-#      * +mp4_duration+: the float duration of the mp4 attached file
-#      * +webm_duration+: the float duration of the webm attached file
+#   * *audio*
+#     * +creation_mode+: it can be *uploaded* (if the element was originally uploaded), or *composed* (if it was created inside the application using other elements)
+#     * +mp3_duration+: the float duration of the mp3 attached file
+#     * +ogg_duration+: the float duration of the ogg attached file
+#   * *image*
+#     * +width+: width of the original image
+#     * +height+: height of the original image
+#   * *video*
+#     * +creation_mode+: it can be *uploaded* (if the element was originally uploaded), or *composed* (if it was created inside the application using other elements)
+#     * +mp4_duration+: the float duration of the mp4 attached file
+#     * +webm_duration+: the float duration of the webm attached file
 # * *converted*: always +true+ for Image; for Video and Audio it is +false+ if the media element is not available
 # * *is_public*: if +true+, the element is contained in the public database of the application
 # * *publication_date*: if +is_public+ is +true+, this is the date in which the element has been published (once it's published it can't be turned back into private)
@@ -57,24 +57,24 @@ require 'lessons_media_elements_shared'
 # == Callbacks
 #
 # * *general* *callbacks*:
-#   1. *on* *the* *method* *new*, it's called MediaElement.new_with_sti_type_inferring, which infers the type of +media+ and defines the correct class among Image, Audio, Video
-#   2. *before_destroy*, if +is_public+ == +true+ the destruction is stopped (<b>this callback is not executed if the attribute destroyable_even_if_public is set as +true+</b>: this is necessary to destroy public elements from the administrator, see Admin::MediaElementsController#destroy)
-#   3. *before_destroy* destroys associated bookmarks (see Bookmark)
-#   4. *before_destroy* destroys associated reports (see Report)
-#   5. *before_destroy* destroys associated taggings (see Tagging)
-#   6. *after_save* updates taggings associated to the media element (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+. Notice that <b>this callback must be declared before calling +require+ for the submodels</b>, because the +after_save+ of tags must be called before the +after_save+ of the uploader (see private validation methods in Media::Shared, and callbacks in Image)
+#   * *on* *the* *method* *new*, it's called MediaElement.new_with_sti_type_inferring, which infers the type of +media+ and defines the correct class among Image, Audio, Video
+#   * *before_destroy*, if +is_public+ == +true+ the destruction is stopped (<b>this callback is not executed if the attribute destroyable_even_if_public is set as +true+</b>: this is necessary to destroy public elements from the administrator, see Admin::MediaElementsController#destroy)
+#   * *before_destroy* destroys associated bookmarks (see Bookmark)
+#   * *before_destroy* destroys associated reports (see Report)
+#   * *before_destroy* destroys associated taggings (see Tagging)
+#   * *after_save* updates taggings associated to the media element (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+. Notice that <b>this callback must be declared before calling +require+ for the submodels</b>, because the +after_save+ of tags must be called before the +after_save+ of the uploader (see private validation methods in Media::Shared, and callbacks in Image)
 # * *callbacks* *only* *for* Image type:
-#   1. *before_save* sets +width+ and +height+ according to the attached image
-#   2. *before_create* sets +converted+ to true, since during the uploading of an Image we don't have to wait for conversion, as happens in Video and Audio
+#   * *before_save* sets +width+ and +height+ according to the attached image
+#   * *before_create* sets +converted+ to true, since during the uploading of an Image we don't have to wait for conversion, as happens in Video and Audio
 # * *callbacks* *only* *for* Audio and Video types:
-#   1. *before_create* sets the +creation_mode* (+uploaded+ if the element was originally uploaded, or +composed+ if it was created inside the application)
-#   2. *after_save* calls +upload_or_copy+ in Media::Shared
-#   3. *before_destroy* stops the destruction if +converted+ == +false+ (<b>this callback doesn't execute if the attribute destroyable_even_if_not_converted in Media::Shared is set to +true+</b>: this is necessary if something goes wrong with the creation of a new media element, in this case the not converted element must be deleted)
-#   4. *after_destroy* cleans the folder containing the attached files (mp4, mp3, webm, ogg)
+#   * *before_create* sets the +creation_mode* (+uploaded+ if the element was originally uploaded, or +composed+ if it was created inside the application)
+#   * *after_save* calls +upload_or_copy+ in Media::Shared
+#   * *before_destroy* stops the destruction if +converted+ == +false+ (<b>this callback doesn't execute if the attribute destroyable_even_if_not_converted in Media::Shared is set to +true+</b>: this is necessary if something goes wrong with the creation of a new media element, in this case the not converted element must be deleted)
+#   * *after_destroy* cleans the folder containing the attached files (mp4, mp3, webm, ogg)
 #
 # == Database callbacks
 #
-# 1. *cascade* *destruction* for the associated table MediaElementsSlide
+# * *cascade* *destruction* for the associated table MediaElementsSlide
 #
 # == Other details
 #
