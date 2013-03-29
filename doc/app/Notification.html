@@ -484,7 +484,7 @@ record for <code>user_id</code></p>
       
         <dt id="SENDING_SLICES_AMOUNT">SENDING_SLICES_AMOUNT
         
-        <dd class="description">
+        <dd class="description"><p>Block of notifications sent for each job</p>
         
       
       </dl>
@@ -510,12 +510,23 @@ record for <code>user_id</code></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-c-send_to-label-Description">Description</h3>
+
+<p>Sends a notification to one or more users</p>
+
+<h3 id="method-c-send_to-label-Args">Args</h3>
+<ul><li>
+<p><strong>user_id_or_user_ids</strong>: if it&#39;s an Integer, it sends the
+notification to a single user, otherwise splits the block of notifications
+and uses thread to send them</p>
+</li><li>
+<p><strong>message</strong>: the content of the notification</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="send_to-source">
-            <pre><span class="ruby-comment"># File app/models/notification.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/models/notification.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">send_to</span>(<span class="ruby-identifier">user_id_or_user_ids</span>, <span class="ruby-identifier">message</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">user_id_or_user_ids</span>
   <span class="ruby-keyword">when</span> <span class="ruby-constant">Array</span>
@@ -556,12 +567,15 @@ record for <code>user_id</code></p>
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-has_been_seen-label-Description">Description</h3>
+
+<p>Sets <code>seen</code> as <code>true</code>. Used in <a
+href="NotificationsController.html#method-i-seen">NotificationsController#seen</a></p>
           
 
           
           <div class="method-source-code" id="has_been_seen-source">
-            <pre><span class="ruby-comment"># File app/models/notification.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/models/notification.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_been_seen</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new_record?</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">seen</span> = <span class="ruby-keyword">true</span>
