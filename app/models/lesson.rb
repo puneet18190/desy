@@ -123,7 +123,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Send a notification (containing the details of modifications) to all the users who have a link of the lesson. This method is called only if the link was created *before* that the lesson was modified. The method also sets +notified+ as +true+.
+  # Send a notification (containing the details of modifications) to all the users who have a link of the lesson. This method is called only if the link was created *before* that the lesson was modified. The method also sets +notified+ as +true+. Used in LessonsController#notify_modification.
   #
   # === Args
   #
@@ -147,7 +147,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Sets +notified+ as +true+ without sending the notification of modifications (see Lesson#notify_changes).
+  # Sets +notified+ as +true+ without sending the notification of modifications (see Lesson#notify_changes). Used in LessonsController#dont_notify_modification.
   #
   # === Returns
   #
@@ -173,7 +173,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Checks whether the lesson is available for editing in the Lesson Editor (if at least one between +metadata+.+available_audio+ and +metadata+.+available_video+ is false, the lesson is not available)
+  # Checks whether the lesson is available for editing in the Lesson Editor (if at least one between +metadata+.+available_audio+ and +metadata+.+available_video+ is false, the lesson is not available). Used in the filters of LessonEditorController.
   #
   # === Args
   #
@@ -369,7 +369,8 @@ class Lesson < ActiveRecord::Base
   # 1. the lesson with the cover
   # 2. the slides (see Slide)
   # 3. the media elements attached (see MediaElementsSlide)
-  # 4. the tags (see Tagging)
+  # 4. the tags (see Tagging).
+  # Used in LessonsController#copy.
   #
   # === Args
   #
@@ -477,7 +478,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Sets +is_public+ as +true+ for the lesson and for each private MediaElement attached to the lesson through MediaElementsSlide and Slide.
+  # Sets +is_public+ as +true+ for the lesson and for each private MediaElement attached to the lesson through MediaElementsSlide and Slide. Used in LessonsController#publish.
   #
   # === Returns
   #
@@ -529,7 +530,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Sets +is_public+ as +false+, deletes all bookmarks (see Bookmark) and copies in Virtual Classroom (see VirtualClassroomLesson) associated to the present lesson. Also, sends a notification to all the user who lost a bookmark of the lesson.
+  # Sets +is_public+ as +false+, deletes all bookmarks (see Bookmark) and copies in Virtual Classroom (see VirtualClassroomLesson) associated to the present lesson. Also, sends a notification to all the user who lost a bookmark of the lesson. Used in LessonsController#unpublish.
   #
   # === Returns
   #
@@ -571,7 +572,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Destroys the lesson and sends notifications to the users who had a Bookmark of it (the bookmarks are destroyed by the +before_destroy+ callback).
+  # Destroys the lesson and sends notifications to the users who had a Bookmark of it (the bookmarks are destroyed by the +before_destroy+ callback). Used in LessonsController#destroy.
   #
   # === Returns
   #
@@ -604,7 +605,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Adds a slide of a specific type.
+  # Adds a slide of a specific type. Used in LessonEditorController#add_slide
   #
   # === Args
   #
@@ -645,7 +646,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Creates a record of VirtualClassroomLesson for this lesson. First it checks whether the record can be created or not (for instance, it is not possible if the user is not owner of the lesson and doesn't have a bookmark for it)
+  # Creates a record of VirtualClassroomLesson for this lesson. First it checks whether the record can be created or not (for instance, it is not possible if the user is not owner of the lesson and doesn't have a bookmark for it). Used in VirtualClassroomController#add_lesson and in VirtualClassroomController#load_lessons.
   #
   # === Args
   #
@@ -681,7 +682,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Removes the associated record of VirtualClassroomLesson for a particular User, if any
+  # Removes the associated record of VirtualClassroomLesson for a particular User, if any. Used in VirtualClassroomController#remove_lesson and in VirtualClassroomController#remove_lesson_from_inside.
   #
   # === Args
   #
