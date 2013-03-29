@@ -31,11 +31,11 @@
 #
 # == Callbacks
 #
-# sdfdsfdsfds
+# 1. *before_destroy* stop the destruction if the slide is of kind 'cover'
 #
 # == Database callbacks
 #
-# sfdfdsfdsf
+# 1. *cascade* *destruction* for the associated table MediaElementsSlide
 #
 class Slide < ActiveRecord::Base
   
@@ -44,19 +44,62 @@ class Slide < ActiveRecord::Base
   has_many :media_elements_slides
   belongs_to :lesson
   
+  # Slide of kind 'audio': it contains
+  # 1. a title
+  # 2. an audio track
+  # 3. a text
   AUDIO = 'audio'
+  
+  # Slide of kind 'cover': it contains
+  # 1. the title of the Lesson
+  # 2. SchoolLevel, User author, Subject
+  # 3. an image
   COVER = 'cover'
+  
+  # Slide of kind 'image1': it contains
+  # 1. a title
+  # 2. an image
+  # 3. a text
   IMAGE1 = 'image1'
+  
+  # Slide of kind 'image2': it contains
+  # 1. two images of medium size
   IMAGE2 = 'image2'
+  
+  # Slide of kind 'image3': it contains
+  # 1. a single image in fullscreen
   IMAGE3 = 'image3'
+  
+  # Slide of kind 'image4': it contains
+  # 1. four images of small size
   IMAGE4 = 'image4'
+  
+  # Slide of kind 'text': it contains
+  # 1. a title
+  # 2. a text
   TEXT = 'text'
+  
+  # Slide of kind 'title': it contains
+  # 1. a big centered title
   TITLE = 'title'
+  
+  # Slide of kind 'video1': it contains
+  # 1. a title
+  # 2. a small video
+  # 3. a text
   VIDEO1 = 'video1'
+  
+  # Slide of kind 'video2': it contains
+  # 1. a video in fullscreen
   VIDEO2 = 'video2'
+  
+  # List of kinds excepting the cover
   KINDS_WITHOUT_COVER = [TITLE, TEXT, IMAGE1, IMAGE3, IMAGE2, IMAGE4, VIDEO2, VIDEO1, AUDIO]
+  
+  # Complete list of kinds
   KINDS = KINDS_WITHOUT_COVER + [COVER]
   
+  # Maximum length of the title
   MAX_TITLE_LENGTH = (I18n.t('language_parameters.slide.length_title') > 255 ? 255 : I18n.t('language_parameters.slide.length_title'))
   
   validates_presence_of :lesson_id, :position
@@ -70,10 +113,26 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  # === Description
+  #
+  # Checks if the slide is of kind 'cover'
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def cover?
     self.kind == COVER
   end
   
+  # === Description
+  #
+  # Checks if the +kind+ of this slide allows a title (used in the validations of this model).
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def allows_title?
     case kind
     when COVER, IMAGE1, AUDIO, VIDEO1, TITLE, TEXT then true
@@ -81,6 +140,14 @@ class Slide < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Checks if the +kind+ of this slide allows a text (used in the validations of this model).
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def allows_text?
     case kind 
     when TEXT, IMAGE1, AUDIO, VIDEO1 then true
@@ -88,6 +155,14 @@ class Slide < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Returns the accepted sti_type for instances of MediaElement contained in this slide through MediaElementsSlide (in which model it's used for validations). If no media element is available, it returns nil.
+  #
+  # === Returns
+  #
+  # A string representing MediaElement sti_types, or nil
+  #
   def accepted_media_element_sti_type
     case kind
     when COVER, IMAGE1, IMAGE2, IMAGE3, IMAGE4
@@ -101,6 +176,10 @@ class Slide < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Method that performs the list of actions related to the update of a slide's content
+  #
   def update_with_media_elements(title, text, media_elements)
     return false if self.new_record?
     resp = false
