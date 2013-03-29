@@ -1,5 +1,10 @@
 {
-    "project": {},
+    "project": {
+        "name": "DESY",
+        "description": "Digital Education SYstem",
+        "version": "1.0.0",
+        "url": "http://desy.morganspa.com/"
+    },
     "files": {
         "app/assets/javascripts/admin/admin_functions.js": {
             "name": "app/assets/javascripts/admin/admin_functions.js",
