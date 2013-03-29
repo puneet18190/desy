@@ -131,7 +131,9 @@ class MediaElement < ActiveRecord::Base
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0
   validates_length_of :title, :maximum => MAX_TITLE_LENGTH
   validates_length_of :description, :maximum => I18n.t('language_parameters.media_element.length_description')
-  validates_presence_of :media, unless: proc{ |record| [Video, Audio].include?(record.class) && record.composing }
+
+  validates_presence_of :media, :unless => proc{ |record| [Video, Audio].include?(record.class) && record.composing }
+
   validate :validate_associations, :validate_publication_date, :validate_impossible_changes, :validate_tags_length, :validate_size
   
   before_validation :init_validation
