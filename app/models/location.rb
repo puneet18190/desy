@@ -157,7 +157,7 @@ class Location < ActiveRecord::Base
   
   # === Description
   #
-  # Given a hash of parameters with the names of the categories as keys, this method returns the Location corresponding to the last parameter (from parent to son) which is not null
+  # Given a hash of parameters with the names of the categories as keys, this method returns the Location corresponding to the last parameter (from parent to son) which is not null. Used in AdminSearchForm.
   #
   # === Args
   #
