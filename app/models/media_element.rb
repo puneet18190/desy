@@ -25,24 +25,50 @@ require 'lessons_media_elements_shared'
 #      * +mp4_duration+: the float duration of the mp4 attached file
 #      * +webm_duration+: the float duration of the webm attached file
 # * *converted*: always +true+ for Image; for Video and Audio it is +false+ if the media element is not available
-# * *is_public*:
-# * *publication_date*:
+# * *is_public*: if +true+, the element is contained in the public database of the application
+# * *publication_date*: if +is_public+ is +true+, this is the date in which the element has been published (once it's published it can't be turned back into private)
 #
 # == Associations
 #
-# dfjsbnskj
+# * *bookmarks*: links created by other users to this element (see Bookmark) (*has_many*)
+# * *media_elements_slides*: all the instances of this element (see MediaElementsSlide) (*has_many*)
+# * *reports*: reports on the element (see Report) (*has_many*)
+# * *taggings*: tags associated to the element (see Tagging, Tag) (*has_many*)
+# * *taggings_tags*: link to the objects of type Tag, through the association +taggings+ (*has_many*)
+# * *user*: the User who created the element (*belongs_to*)
 #
 # == Validations
 #
-# dlgkndsglkdsn
+# * *presence* with numericality > 0 and presence of associated element for +user_id+
+# * *presence* of +title+ and +description+
+# * *inclusion* of +is_public+ in [+true+, +false+]
+# * *inclusion* of +sti_type+ in ['+Audio+', '+Image+', '+Video+'] (these three values correspond to an *enum* defined in postgresql)
+# * *length* of +title+ (maximum configured in the translation file; if the value is greater than 255 it's set to 255)
+# * *length* of +description+ (maximum configured in the translation file)
+# * *presence* of +media+; <b>this validation is skipped if the element is of type Video or Audio, and if the element is being composed</b>: in fact, in this case there is not yet a media to be attached (unlike when the element is uploaded, because when it's uploaded there exists a media file but it's not yet converted)
+# * *if* *the* *element* *is* *public*, +publication_date+ can't be null, whereas if it's private it must be null
+# * *the* *element* *cannot* *be* *public* if new record
+# * *if* *the* *element* *is* *public*, the fields +media+, +title+, +description+, +is_public+, +publication_date+ can't be changed anymore
+# * *if* *the* *element* *is* *private*, the field +user_id+ can't be changed (this field may be changed only if the element is public, because if the user decides to close his profile, the public elements that he created can't be deleted: using User#destroy_with_dependencies they are switched to another owner (the super administrator of the application, see User.admin)
+# TODO TODO mancano :validate_tags_length, :validate_size
 #
 # == Callbacks
 #
 # dgegdgdas
 #
+#   # Questa deve stare prima delle require dei submodels, perché TODO TODO si riferisce a after_save
+# l'after_save delle tags deve venire prima di quella dell'uploader
+#
 # == Database callbacks
 #
 # dsfdgdsgd
+#
+# == Other details
+#
+# It's defined a scope *of* that filters automaticly all the elements of a user:
+#   SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id
+#   AND bookmarks.bookmarkable_type = 'MediaElement' AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL
+#   OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY COALESCE(bookmarks.created_at, media_elements.updated_at) DESC
 #
 class MediaElement < ActiveRecord::Base
   include FilenameToken
@@ -50,11 +76,8 @@ class MediaElement < ActiveRecord::Base
   
   self.inheritance_column = :sti_type
   
-  # Questa deve stare prima delle require dei submodels, perché
-  # l'after_save delle tags deve venire prima di quella dell'uploader
   after_save :update_or_create_tags
   
-  # TODO estrarre da database sti_types
   IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE = %W(Image Audio Video)
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
   DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
@@ -72,7 +95,7 @@ class MediaElement < ActiveRecord::Base
   has_many :media_elements_slides
   has_many :reports, :as => :reportable, :dependent => :destroy
   has_many :taggings, :as => :taggable, :dependent => :destroy
-  has_many :taggings_tags, through: :taggings, source: :tag
+  has_many :taggings_tags, :through => :taggings, :source => :tag
   belongs_to :user
   
   validates_presence_of :user_id, :title, :description
@@ -87,7 +110,6 @@ class MediaElement < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_public
   
-  # SELECT "media_elements".* FROM "media_elements" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = media_elements.id AND bookmarks.bookmarkable_type = 'MediaElement' AND bookmarks.user_id = 1 WHERE (bookmarks.user_id IS NOT NULL OR (media_elements.is_public = false AND media_elements.user_id = 1)) ORDER BY COALESCE(bookmarks.created_at, media_elements.updated_at) DESC
   scope :of, ->(user_or_user_id) do
     user_id = user_or_user_id.instance_of?(User) ? user_or_user_id.id : user_or_user_id
     joins(sanitize_sql ["LEFT JOIN bookmarks ON 

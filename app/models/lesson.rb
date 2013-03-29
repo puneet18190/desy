@@ -22,19 +22,19 @@ require 'lessons_media_elements_shared'
 #
 # == Associations
 #
-# * *user*: reference to the User who created the lesson (*belongs_to*).
-# * *subject*: Subject associated to the lesson (*belongs_to*).
-# * *school_level*: SchoolLevel associated to the creator of the lesson and for transitivity to the lesson (*belongs_to*).
-# * *parent*: original lesson from which the lesson was copied (*belongs_to*).
-# * *copies*: lessons copied by this lesson (*has_many*).
-# * *bookmarks*: links created by other users to this lesson (see Bookmark) (*has_many*).
-# * *likes*: likes on the lesson (see Like) (*has_many*).
-# * *reports*: reports on the lesson (see Report) (*has_many*).
-# * *taggings*: tags associated to the lesson (see Tagging, Tag) (*has_many*).
-# * *slides*: slides composing the lesson (see Slide) (*has_many*).
-# * *media_elements_slides*: list of instances of media elements inside slides of this lesson (see MediaElementsSlide) (through the class Slide) (*has_many*).
-# * *media_elements*: list of media elements attached to slides of this lesson (see MediaElement) (through the class Slide and MediaElementsSlide) (*has_many*).
-# * *virtual_classroom_lessons*: copies of this lesson into the Virtual Classroom of the creator or other users (see VirtualClassroomLesson) (*has_many*).
+# * *user*: reference to the User who created the lesson (*belongs_to*)
+# * *subject*: Subject associated to the lesson (*belongs_to*)
+# * *school_level*: SchoolLevel associated to the creator of the lesson and for transitivity to the lesson (*belongs_to*)
+# * *parent*: original lesson from which the lesson was copied (*belongs_to*)
+# * *copies*: lessons copied by this lesson (*has_many*)
+# * *bookmarks*: links created by other users to this lesson (see Bookmark) (*has_many*)
+# * *likes*: likes on the lesson (see Like) (*has_many*)
+# * *reports*: reports on the lesson (see Report) (*has_many*)
+# * *taggings*: tags associated to the lesson (see Tagging, Tag) (*has_many*)
+# * *slides*: slides composing the lesson (see Slide) (*has_many*)
+# * *media_elements_slides*: list of instances of media elements inside slides of this lesson (see MediaElementsSlide) (through the class Slide) (*has_many*)
+# * *media_elements*: list of media elements attached to slides of this lesson (see MediaElement) (through the class Slide and MediaElementsSlide) (*has_many*)
+# * *virtual_classroom_lessons*: copies of this lesson into the Virtual Classroom of the creator or other users (see VirtualClassroomLesson) (*has_many*)
 #
 # == Validations
 #
@@ -66,6 +66,12 @@ require 'lessons_media_elements_shared'
 # 2. *cascade* *destruction* for the associated table Slide
 # 3. *cascade* *destruction* for the associated table VirtualClassroomLesson
 # 4. *set* *null* *on* *destruction* on the column +parent_id+ of all the lessons copied by the current lesson
+#
+# == Other details
+#
+# It's defined a scope called *of* that filters automaticly all the lessons of a user:
+#   SELECT "lessons".* FROM "lessons" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = lessons.id AND bookmarks.bookmarkable_type = 'Lesson'
+#   AND bookmarks.user_id = 1 ORDER BY COALESCE(bookmarks.created_at, lessons.updated_at) DESC
 #
 class Lesson < ActiveRecord::Base
   include Rails.application.routes.url_helpers
@@ -106,7 +112,6 @@ class Lesson < ActiveRecord::Base
   before_create :initialize_metadata, :create_token
   after_save :create_or_update_cover, :update_or_create_tags
   
-  # SELECT "lessons".* FROM "lessons" LEFT JOIN bookmarks ON bookmarks.bookmarkable_id = lessons.id AND bookmarks.bookmarkable_type = 'Lesson' AND bookmarks.user_id = 1 ORDER BY COALESCE(bookmarks.created_at, lessons.updated_at) DESC
   scope :of, ->(user_or_user_id) do
     user_id = user_or_user_id.instance_of?(User) ? user_or_user_id.id : user_or_user_id
     joins(sanitize_sql ["LEFT JOIN bookmarks ON 
