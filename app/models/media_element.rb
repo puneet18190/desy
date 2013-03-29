@@ -50,14 +50,15 @@ require 'lessons_media_elements_shared'
 # * *the* *element* *cannot* *be* *public* if new record
 # * *if* *the* *element* *is* *public*, the fields +media+, +title+, +description+, +is_public+, +publication_date+ can't be changed anymore
 # * *if* *the* *element* *is* *private*, the field +user_id+ can't be changed (this field may be changed only if the element is public, because if the user decides to close his profile, the public elements that he created can't be deleted: using User#destroy_with_dependencies they are switched to another owner (the super administrator of the application, see User.admin)
-# TODO TODO mancano :validate_tags_length, :validate_size
+# * *minimum* *number* of tags (configurated in settings.yml), <b>only if the attribute validating_in_form is set as +true+</b>
+# * *size* of the file attached to +media+ (configured in settings.yml, in megabytes)
 #
 # == Callbacks
 #
 # dgegdgdas
 #
 #   # Questa deve stare prima delle require dei submodels, perché TODO TODO si riferisce a after_save
-# l'after_save delle tags deve venire prima di quella dell'uploader
+# l'after_save delle tags deve venire prima di quella dell'uploader TODO TODO updates taggings associated to the lesson (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+ TODO ma in questo caso gli attributi non sono nascosti per altre ragioni
 #
 # == Database callbacks
 #
@@ -81,7 +82,7 @@ class MediaElement < ActiveRecord::Base
   IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE = %W(Image Audio Video)
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
   DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
-  MAX_MEDIA_SIZE = 50.megabytes
+  MAX_MEDIA_SIZE = SETTINGS['max_media_size'].megabytes
   MAX_TITLE_LENGTH = (I18n.t('language_parameters.media_element.length_title') > 255 ? 255 : I18n.t('language_parameters.media_element.length_title'))
   
   serialize :metadata, OpenStruct

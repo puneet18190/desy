@@ -114,3 +114,5 @@ user_registration_policies: ['policy_1', 'policy_2']
 # USER PASSWORD CONSTRAINTS
 minimum_password_length: 8
 maximum_password_length:
+# MAXIMUM SIZE OF AN ELEMENT (IN MEGABYTES)
+max_media_size: 50
