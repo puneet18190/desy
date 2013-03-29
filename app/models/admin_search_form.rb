@@ -46,7 +46,7 @@ class AdminSearchForm < Form
   
   # === Description
   #
-  # Search for lessons
+  # Search for lessons: used in Admin::LessonsController
   #
   # === Args
   #
@@ -112,7 +112,7 @@ class AdminSearchForm < Form
   
   # === Description
   #
-  # Search for media elements
+  # Search for media elements: used in Admin::MediaElementsController
   #
   # === Args
   #
@@ -175,7 +175,7 @@ class AdminSearchForm < Form
   
   # === Description
   #
-  # Search for users
+  # Search for users: used in Admin::UsersController
   #
   # === Args
   #
@@ -246,7 +246,7 @@ class AdminSearchForm < Form
   
   # === Description
   #
-  # Search for tags
+  # Search for tags: used in Admin::SettingsController
   #
   # === Args
   #
@@ -281,7 +281,7 @@ class AdminSearchForm < Form
   
   # === Description
   #
-  # Search for users who are going to receive a massive notification: this method is used to update asynchronously the form to send a massive notification from the administrator
+  # Search for users who are going to receive a massive notification: this method is used to update asynchronously the form to send a massive notification from the administrator. Used in Admin::MessagesController
   #
   # === Args
   #

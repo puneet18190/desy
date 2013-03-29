@@ -130,7 +130,7 @@ class Image < MediaElement
   
   # === Description
   #
-  # The image enters in *edit* *mode* for a particular user (who is not necessarily the creator of the image, this is checked in the controller)
+  # The image enters in *edit* *mode* for a particular user (who is not necessarily the creator of the image, this is checked in the controller). Used in ImageEditorController.
   #
   # === Arguments
   #
@@ -147,7 +147,7 @@ class Image < MediaElement
   
   # === Description
   #
-  # The image leaves the *edit* *mode* for a particular user
+  # The image leaves the *edit* *mode* for a particular user. Used in ImageEditorController#edit.
   #
   # === Arguments
   #
@@ -191,7 +191,7 @@ class Image < MediaElement
   
   # === Description
   #
-  # Copies the previous temporary image into the current temporary image.
+  # Copies the previous temporary image into the current temporary image. Used in ImageEditorController#undo.
   #
   # === Returns
   #
@@ -210,7 +210,7 @@ class Image < MediaElement
   
   # === Description
   #
-  # Adds multiple texts in the temporary image.
+  # Adds multiple texts in the temporary image. Used in ImageEditorController#add_text
   #
   # === Arguments
   #
@@ -245,7 +245,7 @@ class Image < MediaElement
   
   # === Description
   #
-  # Crops the temporary image
+  # Crops the temporary image. Used in ImageEditorController#crop
   #
   # === Arguments
   #
