@@ -3,7 +3,7 @@ require 'lessons_media_elements_shared'
 
 # == Description
 #
-# ActiveRecord class that corresponds to the table +media_elements+; this model has single table inheritance on the field +sti_type+ (see the models Image, Audio and Video).
+# ActiveRecord class that corresponds to the table +media_elements+; this model has single table inheritance on the field +sti_type+ (see the models Image, Audio and Video). Audios and videos have shared behaviours, defined in Media::Shared.
 #
 # == Fields
 #
@@ -15,16 +15,16 @@ require 'lessons_media_elements_shared'
 # * *metadata*: can contain different keys, depending on +sti_type+
 #   1. *audio*
 #      * +creation_mode+: it can be *uploaded* (if the element was originally uploaded), or *composed* (if it was created inside the application using other elements)
-#      * +mp3_duration+
-#      * +ogg_duration+
+#      * +mp3_duration+: the float duration of the mp3 attached file
+#      * +ogg_duration+: the float duration of the ogg attached file
 #   2. *image*
-#      * +width+
-#      * +height+
+#      * +width+: width of the original image
+#      * +height+: height of the original image
 #   3. *video*
-#      * +creation_mode+
-#      * +mp4_duration+
-#      * +webm_duration+
-# * *converted*:
+#      * +creation_mode+: it can be *uploaded* (if the element was originally uploaded), or *composed* (if it was created inside the application using other elements)
+#      * +mp4_duration+: the float duration of the mp4 attached file
+#      * +webm_duration+: the float duration of the webm attached file
+# * *converted*: always +true+ for Image; for Video and Audio it is +false+ if the media element is not available
 # * *is_public*:
 # * *publication_date*:
 #
@@ -173,6 +173,10 @@ class MediaElement < ActiveRecord::Base
     self.sti_type == VIDEO_TYPE
   end
   
+  # === Description
+  #
+  # It uses Tagging.visive_tags (see also Lesson#visive_tags)
+  #
   def visive_tags
     Tagging.visive_tags(self.tags)
   end

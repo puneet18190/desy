@@ -447,7 +447,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Returns a string of tags separated by comma and space ("tag1, tag2, tag3"), by calling a class method of Tag. This is necessary for the front end, since in the backend tags are managed without spaces and with two additional commas in the beginning and in the end of the string (",tag1,tag2,tag3,")
+  # Returns a string of tags separated by comma and space ("tag1, tag2, tag3"), by calling a class method of Tag. This is necessary for the front end, since in the backend tags are managed without spaces and with two additional commas in the beginning and in the end of the string (",tag1,tag2,tag3,"). It uses Tagging.visive_tags (see also MediaElement#visive_tags)
   #
   # === Returns
   #
