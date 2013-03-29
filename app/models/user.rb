@@ -1,3 +1,20 @@
+# == Description
+#
+# ActiveRecord class that corresponds to the table +users+.
+#
+# == Fields
+#
+# * *email*: unique identifier for the user, and e-mail address
+# * *name*: name of the user
+# * *surname*: surname of the user
+# * *school_level_id*: reference to the user's SchoolLevel
+# * *encrypted_password*: password, encrypted with SecureRandom
+# * *confirmed*: boolean, +true+ if the user has completed the registration procedure clicking on a link he received by email
+# * *active*: boolean, false if the user is banned
+# * *location_id*: location of the user
+# * *confirmation_token*: token used for confirmation, generated automaticly
+# * *metadata*: TODO, probabilmente cache di video e audio editor
+#
 class User < ActiveRecord::Base
   
   require 'user/authentication'
