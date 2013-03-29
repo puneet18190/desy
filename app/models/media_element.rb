@@ -63,18 +63,18 @@ require 'lessons_media_elements_shared'
 #   4. *before_destroy* destroys associated reports (see Report)
 #   5. *before_destroy* destroys associated taggings (see Tagging)
 #   6. *after_save* updates taggings associated to the media element (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+; unlike the class Lesson, here there is a real attribute tags which is public. Notice that <b>this callback must be declared before calling +require+ for the submodels</b>, because the +after_save+ of tags must be called before the +after_save+ of the uploader (see private validation methods in Media::Shared, and callbacks in Image)
-# * *callbacks* *only* *for* Image:
+# * *callbacks* *only* *for* Image type:
 #   1. *before_save* sets +width+ and +height+ according to the attached image
 #   2. *before_create* sets +converted+ to true, since during the uploading of an Image we don't have to wait for conversion, as happens in Video and Audio
-# * *callbacks* *only* *for* Audio, Video:
+# * *callbacks* *only* *for* Audio and Video types:
 #   1. *before_create* sets the +creation_mode* (+uploaded+ if the element was originally uploaded, or +composed+ if it was created inside the application)
 #   2. *after_save* calls +upload_or_copy+ in Media::Shared
-#   3. *before_destroy* stops the destruction if +converted+ == +false+ (<b>this callback doesn't execute if the attribute destroyable_even_if_not_converted is set to +true+</b>: this is necessary if something goes wrong with the creation of a new media element, in this case the not converted element must be deleted)
+#   3. *before_destroy* stops the destruction if +converted+ == +false+ (<b>this callback doesn't execute if the attribute destroyable_even_if_not_converted in Media::Shared is set to +true+</b>: this is necessary if something goes wrong with the creation of a new media element, in this case the not converted element must be deleted)
 #   4. *after_destroy* cleans the folder containing the attached files (mp4, mp3, webm, ogg)
 #
 # == Database callbacks
 #
-# dsfdgdsgd
+# 1. *cascade* *destruction* for the associated table MediaElementsSlide
 #
 # == Other details
 #
@@ -92,16 +92,30 @@ class MediaElement < ActiveRecord::Base
   after_save :update_or_create_tags
   
   IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE = %W(Image Audio Video)
+  
+  # List of possible values for the field +sti_type+ (they correspond to an enum defined in postgresql)
   STI_TYPES = [IMAGE_TYPE, AUDIO_TYPE, VIDEO_TYPE]
+  
+  # List of available display modes in the section 'elements'
   DISPLAY_MODES = { compact: 'compact', expanded: 'expanded' }
+  
+  # Maximum media size expressed in megabytes
   MAX_MEDIA_SIZE = SETTINGS['max_media_size'].megabytes
+  
+  # Maximum length of the title, configured in the translation file and limited by 255 if it's higher
   MAX_TITLE_LENGTH = (I18n.t('language_parameters.media_element.length_title') > 255 ? 255 : I18n.t('language_parameters.media_element.length_title'))
   
   serialize :metadata, OpenStruct
   
   attr_accessible :title, :description, :media, :publication_date, :tags
-  attr_reader :is_reportable, :info_changeable
+  
+  # True if in the front end the element contains the icon to send a report
+  attr_reader :is_reportable
+  # True if in the front end the element contains the icon to change general information
+  attr_reader :info_changeable
+  # Set to true if it's necessary to validate the number of tags (typically this happens in the public front end)
   attr_writer :validating_in_form
+  # Set to true when it's necessary to destroy public elements (used in the administrator section)
   attr_accessor :destroyable_even_if_public
   
   has_many :bookmarks, :as => :bookmarkable, :dependent => :destroy
