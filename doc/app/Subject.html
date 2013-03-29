@@ -420,6 +420,41 @@
 
   <div id="description" class="description">
     
+<h2 id="label-Description">Description</h2>
+
+<p>ActiveRecord class that corresponds to the table <code>subjects</code>.</p>
+
+<h2 id="label-Fields">Fields</h2>
+<ul><li>
+<p><strong>description</strong>: a word identifying the subject</p>
+</li></ul>
+
+<h2 id="label-Associations">Associations</h2>
+<ul><li>
+<p><strong>users_subjects</strong>: list of instances of this subject
+associated to a <a href="User.html">User</a> through records of <a
+href="UsersSubject.html">UsersSubject</a> (<strong>has_many</strong>)</p>
+</li><li>
+<p><strong>lessons</strong>: list of lessons associated to this subjects (see
+<a href="Lesson.html">Lesson</a>) (<strong>has_many</strong>)</p>
+</li></ul>
+
+<h2 id="label-Validations">Validations</h2>
+<ul><li>
+<p><strong>presence</strong> of <code>description</code></p>
+</li><li>
+<p><strong>length</strong> of <code>description</code> (maximum allowed is
+255)</p>
+</li></ul>
+
+<h2 id="label-Callbacks">Callbacks</h2>
+
+<p>None</p>
+
+<h2 id="label-Database+callbacks">Database callbacks</h2>
+
+<p>None</p>
+
   </div><!-- description -->
 
   
@@ -451,12 +486,17 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-c-chart_colors-label-Description">Description</h3>
+
+<p>Used to generate a graph of the distribution of the subjects among the
+lessons in the application. Used in <a
+href="UsersController.html#method-i-statistics">UsersController#statistics</a>
+and in <a href="Statistics.html">Statistics</a></p>
           
 
           
           <div class="method-source-code" id="chart_colors-source">
-            <pre><span class="ruby-comment"># File app/models/subject.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/models/subject.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">chart_colors</span>
   <span class="ruby-identifier">tot</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">pluck</span>(<span class="ruby-value">:subject_id</span>).<span class="ruby-identifier">uniq</span>).<span class="ruby-identifier">count</span>
   <span class="ruby-identifier">part</span> = (<span class="ruby-value">255</span>.<span class="ruby-identifier">to_f</span><span class="ruby-operator">/</span><span class="ruby-identifier">tot</span>).<span class="ruby-identifier">floor</span>
@@ -493,12 +533,20 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-is_deletable-3F-label-Description">Description</h3>
+
+<p>A subject is deletable if it has no associated lessons or users. Used in
+the administrator (<a
+href="Admin/SettingsController.html#method-i-subjects">Admin::SettingsController#subjects</a>)</p>
+
+<h3 id="method-i-is_deletable-3F-label-Returns">Returns</h3>
+
+<p>A boolean</p>
           
 
           
           <div class="method-source-code" id="is_deletable-3F-source">
-            <pre><span class="ruby-comment"># File app/models/subject.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/models/subject.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_deletable?</span>
   <span class="ruby-constant">UsersSubject</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:subject_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Lesson</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:subject_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">empty?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -523,12 +571,14 @@
 
         <div class="method-description">
           
-          
+          <h3 id="method-i-to_s-label-Description">Description</h3>
+
+<p>Returns the description of the object</p>
           
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/subject.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/models/subject.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   <span class="ruby-identifier">description</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>

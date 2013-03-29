@@ -5,7 +5,7 @@
 # == Fields
 #
 # * *bookmarkable_id*: id of the item (lesson or media element) to which the bookmark is associated
-# * *bookmarkable_type*: contains the string description of the classes Lesson or MediaElement
+# * *bookmarkable_type*: contains the string description of the classes Lesson or MediaElement (the type is an enum defined in postgrsql)
 # * *user_id*: id of the user associated to the bookmark
 #
 # == Associations

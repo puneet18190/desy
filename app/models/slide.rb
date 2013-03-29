@@ -1,3 +1,42 @@
+# == Description
+#
+# ActiveRecord class that corresponds to the table +slides+.
+#
+# == Fields
+#
+# * *lesson_id*: reference to the Lesson the slide belongs to
+# * *title*: title of the slide
+# * *text*: text of the slide if present
+# * *position*: position respect to the other slides in the lesson
+# * *kind*: the kind of the slide (the type is an enum defined in postgrsql, in total there are 10 types)
+#
+# == Associations
+#
+# * *lesson*: reference to the Lesson where the slide is contained (*belongs_to*)
+# * *media_elements_slides*: instances of MediaElement contained in this slide (see MediaElementsSlide) (*has_many*)
+#
+# == Validations
+#
+# * *presence* with numericality greater than zero and presence of associated record, for the field +lesson_id+
+# * *presence* of +position+
+# * *length*  of +title+ (value configured in the I18n translation file: if the value is greater than 255 it's set to 255); it's possible for +title+ to be +nil+
+# * *inclusion* of +kind+ in the list of available kinds
+# * *uniqueness* of the couple [+position+, +lesson_id+]
+# * *uniqueness* of the couple [+kind+, +lesson_id+] <b>only if the slide is of kind +cover+</b>
+# * *modifications* *not* *allowed* for the fields +lesson_id+, +kind+, +title+
+# * *the* *position* of the cover must be 1; on the other side, the position of other kinds of slides can't be 1
+# * *the* *text* must be +nil+ if the kind of slide doesn't contain text
+# * *the* *title* must be +nil+ if the kind of slide doesn't contain title
+# * *the* *maximum* *number* of slides must be the one configured in settings.yml. This validation uses Lesson#reached_the_maximum_of_slides?
+#
+# == Callbacks
+#
+# 1. *before_destroy* stop the destruction if the slide is of kind 'cover'
+#
+# == Database callbacks
+#
+# 1. *cascade* *destruction* for the associated table MediaElementsSlide
+#
 class Slide < ActiveRecord::Base
   
   attr_accessible :position, :title, :text
@@ -5,20 +44,62 @@ class Slide < ActiveRecord::Base
   has_many :media_elements_slides
   belongs_to :lesson
   
-  #TODO estrarre da database slide kinds
+  # Slide of kind 'audio': it contains
+  # 1. a title
+  # 2. an audio track
+  # 3. a text
   AUDIO = 'audio'
+  
+  # Slide of kind 'cover': it contains
+  # 1. the title of the Lesson
+  # 2. SchoolLevel, User author, Subject
+  # 3. an image
   COVER = 'cover'
+  
+  # Slide of kind 'image1': it contains
+  # 1. a title
+  # 2. an image
+  # 3. a text
   IMAGE1 = 'image1'
+  
+  # Slide of kind 'image2': it contains
+  # 1. two images of medium size
   IMAGE2 = 'image2'
+  
+  # Slide of kind 'image3': it contains
+  # 1. a single image in fullscreen
   IMAGE3 = 'image3'
+  
+  # Slide of kind 'image4': it contains
+  # 1. four images of small size
   IMAGE4 = 'image4'
+  
+  # Slide of kind 'text': it contains
+  # 1. a title
+  # 2. a text
   TEXT = 'text'
+  
+  # Slide of kind 'title': it contains
+  # 1. a big centered title
   TITLE = 'title'
+  
+  # Slide of kind 'video1': it contains
+  # 1. a title
+  # 2. a small video
+  # 3. a text
   VIDEO1 = 'video1'
+  
+  # Slide of kind 'video2': it contains
+  # 1. a video in fullscreen
   VIDEO2 = 'video2'
+  
+  # List of kinds excepting the cover
   KINDS_WITHOUT_COVER = [TITLE, TEXT, IMAGE1, IMAGE3, IMAGE2, IMAGE4, VIDEO2, VIDEO1, AUDIO]
+  
+  # Complete list of kinds
   KINDS = KINDS_WITHOUT_COVER + [COVER]
   
+  # Maximum length of the title
   MAX_TITLE_LENGTH = (I18n.t('language_parameters.slide.length_title') > 255 ? 255 : I18n.t('language_parameters.slide.length_title'))
   
   validates_presence_of :lesson_id, :position
@@ -32,10 +113,26 @@ class Slide < ActiveRecord::Base
   before_validation :init_validation
   before_destroy :stop_if_cover
   
+  # === Description
+  #
+  # Checks if the slide is of kind 'cover'
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def cover?
     self.kind == COVER
   end
   
+  # === Description
+  #
+  # Checks if the +kind+ of this slide allows a title (used in the validations of this model).
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def allows_title?
     case kind
     when COVER, IMAGE1, AUDIO, VIDEO1, TITLE, TEXT then true
@@ -43,13 +140,29 @@ class Slide < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Checks if the +kind+ of this slide allows a text (used in the validations of this model).
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def allows_text?
-    case kind 
+    case kind
     when TEXT, IMAGE1, AUDIO, VIDEO1 then true
     else false
     end
   end
   
+  # === Description
+  #
+  # Returns the accepted sti_type for instances of MediaElement contained in this slide through MediaElementsSlide (in which model it's used for validations). If no media element is available, it returns nil.
+  #
+  # === Returns
+  #
+  # A string representing MediaElement sti_types, or nil
+  #
   def accepted_media_element_sti_type
     case kind
     when COVER, IMAGE1, IMAGE2, IMAGE3, IMAGE4
@@ -63,6 +176,32 @@ class Slide < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Method that performs the list of actions related to the update of a slide's content:
+  # * updates title and text
+  # * for each media element in the slide, checks if it's already present: if so, it's updated, otherwise it's created
+  # * if the lesson is public, each private element added is turned into public too
+  # * calls Lesson.modify
+  #
+  # === Args
+  #
+  # * *title*: title (it might be +nil+)
+  # * *text*: text (it might be +nil+)
+  # * *media_elements*: an array of arrays. Each item of this argument represents a media element in the position given by +index+ + 1 in the array. Each small array contains (in order):
+  #   * *media_element_id*: corresponds to the id of the MediaElement associated
+  #   * *alignment*: corresponds to the field +alignment+ of MediaElementsSlide
+  #   * *caption*: corresponds to the field +caption+ of MediaElementsSlide
+  #
+  # === Returns
+  #
+  # A boolean
+  #
+  # === Usage
+  #
+  # See LessonEditorController#save_slide, LessonEditorController#save_slide_and_exit, LessonEditorController#save_slide_and_edit
+  #   slide.update_with_media_elements((params[:title].blank? ? nil : params[:title]), (params[:text].blank? ? nil : params[:text]), media_elements_params)
+  #
   def update_with_media_elements(title, text, media_elements)
     return false if self.new_record?
     resp = false
@@ -107,33 +246,92 @@ class Slide < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Returns the record of Video, obtained through MediaElementsSlide, associated to the given position. If the position is not valid, or there is no video in that position, it returns +nil+
+  #
+  # === Args
+  #
+  # * *position*: the position requested
+  #
+  # === Returns
+  #
+  # Either an object of type Video, or +nil+
+  #
   def video_at(position)
     return nil if self.accepted_media_element_sti_type != MediaElement::VIDEO_TYPE
     x = media_element_at position
     x.nil? ? nil : x.media_element
   end
   
+  # === Description
+  #
+  # Returns the record of Audio, obtained through MediaElementsSlide, associated to the given position. If the position is not valid, or there is no audio in that position, it returns +nil+
+  #
+  # === Args
+  #
+  # * *position*: the position requested
+  #
+  # === Returns
+  #
+  # Either an object of type Audio, or +nil+
+  #
   def audio_at(position)
     return nil if self.accepted_media_element_sti_type != MediaElement::AUDIO_TYPE
     x = media_element_at position
     x.nil? ? nil : x.media_element
   end
   
-  # this returns the record of media_elements_slides, instead of media_elements, since we need information contained in this table (alignment, caption)
+  # === Description
+  #
+  # Returns the MediaElementsSlide, associated to an Image in the given position. If the position is not valid, or there is no image in that position, it returns +nil+. Notice that, unlike Slide#video_at and Slide#audio_at, this method returns an instance of MediaElementsSlide rather than of MediaElement.
+  #
+  # === Args
+  #
+  # * *position*: the position requested
+  #
+  # === Returns
+  #
+  # Either an object of type MediaElementsSlide, or +nil+
+  #
   def image_at(position)
     return nil if self.accepted_media_element_sti_type != MediaElement::IMAGE_TYPE
     x = media_element_at position
     x.nil? ? nil : x
   end
   
+  # === Description
+  #
+  # Returns the previous slide if any
+  #
+  # === Returns
+  #
+  # Either an object of type Slide or +nil+
+  #
   def previous
     self.new_record? ? nil : Slide.where(:lesson_id => self.lesson_id, :position => (self.position - 1)).first
   end
   
+  # === Description
+  #
+  # Returns the following slide if any
+  #
+  # === Returns
+  #
+  # Either an object of type Slide or +nil+
+  #
   def following
     self.new_record? ? nil : Slide.where(:lesson_id => self.lesson_id, :position => (self.position + 1)).first
   end
   
+  # === Description
+  #
+  # Destroys the slide keeping updated the position of the other slides in the same lesson. It's not suggested to use the original method destroy. Used in LessonEditorController#delete_slide
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def destroy_with_positions
     return false if self.new_record?
     return false if self.kind == COVER
@@ -156,6 +354,18 @@ class Slide < ActiveRecord::Base
     resp
   end
   
+  # === Description
+  #
+  # Changes the position of the slide. If the given position is not valid (<= 1, or > number of slides in the lesson) it does nothing. Used in LessonEditorController#change_slide_position
+  #
+  # === Args
+  #
+  # * *position*: the new position of the slide
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def change_position(x)
     return false if self.new_record?
     return false if x.class != Fixnum || x < 1

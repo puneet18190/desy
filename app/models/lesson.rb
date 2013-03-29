@@ -638,7 +638,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Checks if the maximum number of slides has been reached by this lesson (this number is configured in settings.yml)
+  # Checks if the maximum number of slides has been reached by this lesson (this number is configured in settings.yml). Used in the validations of Slide.
   #
   # === Returns
   #
