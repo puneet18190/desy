@@ -47,7 +47,7 @@ class Tagging < ActiveRecord::Base
   
   # === Description
   #
-  # Used as support for Lesson#get_visive_tags and MediaElement#get_visive_tags
+  # Used as support for Lesson#visive_tags and MediaElement#visive_tags
   #
   # === Args
   #
