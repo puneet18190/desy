@@ -7,8 +7,9 @@ require 'media/image/editing/crop'
 # This class inherits from MediaElement, and contains the specific methods needed for media elements of type +image+.
 # 
 class Image < MediaElement
+  
+  # List of accepted extensions for an image
   EXTENSION_WHITE_LIST = ImageUploader::EXTENSION_WHITE_LIST
-  EXTENSIONS_GLOB      = "*.{#{EXTENSION_WHITE_LIST.join(',')}}"
   
   mount_uploader :media, ImageUploader
   
