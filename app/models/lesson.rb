@@ -288,7 +288,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # This function fills the attributes is_reportable, status, in_vc and linked (the last three being private). If the model has the four of these attributes different by +nil+, it means that the lesson has a status and the application knows which functionalities are available for the user who requested the lesson. If the status is +nil+, it means that the user can't see that lesson.
+  # This function fills the attributes is_reportable, status, in_vc and linked (the last three being private). If the model has the four of these attributes different by +nil+, it means that the lesson has a status and the application knows which functionalities are available for the user who requested it. If the status is +nil+, it means that the user can't see this lesson.
   #
   # === Args
   #
@@ -348,7 +348,7 @@ class Lesson < ActiveRecord::Base
   
   # === Description
   #
-  # Checks if the lesson has a bookmark for a particular user
+  # Checks if the lesson has a Bookmark for a particular user
   #
   # === Args
   #

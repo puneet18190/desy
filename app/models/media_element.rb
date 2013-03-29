@@ -62,7 +62,7 @@ require 'lessons_media_elements_shared'
 #   3. *before_destroy* destroys associated bookmarks (see Bookmark)
 #   4. *before_destroy* destroys associated reports (see Report)
 #   5. *before_destroy* destroys associated taggings (see Tagging)
-#   6. *after_save* updates taggings associated to the media element (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+; unlike the class Lesson, here there is a real attribute tags which is public. Notice that <b>this callback must be declared before calling +require+ for the submodels</b>, because the +after_save+ of tags must be called before the +after_save+ of the uploader (see private validation methods in Media::Shared, and callbacks in Image)
+#   6. *after_save* updates taggings associated to the media element (see Tagging). If a Tag doesn't exist yet, it is created too. The tags are stored before the validation in the private attribute +inner_tags+. Notice that <b>this callback must be declared before calling +require+ for the submodels</b>, because the +after_save+ of tags must be called before the +after_save+ of the uploader (see private validation methods in Media::Shared, and callbacks in Image)
 # * *callbacks* *only* *for* Image type:
 #   1. *before_save* sets +width+ and +height+ according to the attached image
 #   2. *before_create* sets +converted+ to true, since during the uploading of an Image we don't have to wait for conversion, as happens in Video and Audio
@@ -257,26 +257,66 @@ class MediaElement < ActiveRecord::Base
     
   end
   
+  # === Description
+  #
+  # Extracts the translation of the +sti_type+ from the translation file
+  #
+  # === Returns
+  #
+  # A string
+  #
   def sti_type_to_s
     I18n.t("sti_types.#{self.sti_type.downcase}")
   end
   
+  # === Description
+  #
+  # Sets +metadata+.+available_video+ or +metadata+.+available_audio+ to +false+ (depending on sti_type). Used after the editing started for this element, see Media::Shared.
+  #
   def disable_lessons_containing_me
     manage_lessons_containing_me(false)
   end
   
+  # === Description
+  #
+  # Sets +metadata+.+available_video+ or +metadata+.+available_audio+ to +true+ (depending on sti_type). Used when the editing for this element is over (either correclty or with errors): see Media::Video::Editing::Composer and Media::Audio::Editing::Composer.
+  #
   def enable_lessons_containing_me
     manage_lessons_containing_me(true)
   end
   
+  # === Description
+  #
+  # Returns +true+ if the element is of type Image
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def image?
     self.sti_type == IMAGE_TYPE
   end
   
+  # === Description
+  #
+  # Returns +true+ if the element is of type Audio
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def audio?
     self.sti_type == AUDIO_TYPE
   end
   
+  # === Description
+  #
+  # Returns +true+ if the element is of type Video
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def video?
     self.sti_type == VIDEO_TYPE
   end
@@ -289,10 +329,26 @@ class MediaElement < ActiveRecord::Base
     Tagging.visive_tags(self.tags)
   end
   
+  # === Description
+  #
+  # Used as (unproper) substitute for the attr_reader relative to the attribute +tags+: it extracts the tags directly from the database
+  #
+  # === Returns
+  #
+  # An array of Tag objects.
+  #
   def tags
     self.new_record? ? '' : Tag.get_friendly_tags(self.id, 'MediaElement')
   end
   
+  # === Description
+  #
+  # Used as (unproper) substitute for the attribute writer relative to the attribute +tags+: the attribute +tags+ is filled with a string of words separated by comma. During the validation, +tags+ is converted in another attribute called +inner_tags+: this attribute is an array of objects of type Tag (if the tag doesn't exist yet, the object is new_record) ready to be saved together with their taggings in the +after_save+ validation.
+  #
+  # === Args
+  #
+  # Either an array of strings, or a string of words separated by comma
+  #
   def tags=(tags)
     @tags = 
       case tags
@@ -304,10 +360,30 @@ class MediaElement < ActiveRecord::Base
     @tags
   end
   
+  # === Description
+  #
+  # Substitute for the attr_reader relative to the attribute +status+.
+  #
+  # === Args
+  #
+  # * *with_captions*: if +true+ returns the translated caption of the status (this means that it's used in the front-end), otherwise it returns the status keyword (for default).
+  #
+  # === Returns
+  #
+  # A string, or a keyword representing the status (see Statuses)
+  #
   def status(with_captions=false)
     @status.nil? ? nil : (with_captions ? MediaElement.status(@status) : @status)
   end
   
+  # === Description
+  #
+  # This function fills the attributes is_reportable, status and info_changeable (the last two being private). If the model has the four of these attributes different by +nil+, it means that the element has a status and the application knows which functionalities are available for the user who requested it. If the status is +nil+, it means that the user can't see this element.
+  #
+  # === Args
+  #
+  # * *an_user_id*: the id of the user who is asking permission to see the element.
+  #
   def set_status(an_user_id)
     return if self.new_record?
     if !self.is_public && an_user_id == self.user_id
@@ -329,6 +405,14 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Returns the list of buttons available for the user who wants to see this element. If the element status hasn't been set yet for that user, or the element is not visible for him, it returns an empty array.
+  #
+  # === Returns
+  #
+  # An array of keywords representing buttons (see Buttons)
+  #
   def buttons
     return [] if [@status, @is_reportable, @info_changeable].include?(nil)
     if @status == Statuses::PRIVATE
@@ -342,11 +426,31 @@ class MediaElement < ActiveRecord::Base
     end
   end
   
+  # === Description
+  #
+  # Checks if the element has a Bookmark for a particular user
+  #
+  # === Args
+  #
+  # * *an_user_id*: the id of the User
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def bookmarked?(an_user_id)
     return false if self.new_record?
     Bookmark.where(:user_id => an_user_id, :bookmarkable_type => 'MediaElement', :bookmarkable_id => self.id).any?
   end
   
+  # === Description
+  #
+  # Substitute for the normal method +destroy+, which additionally adds error messages (necessary for the user experience, used in MediaElementsController#destroy)
+  #
+  # === Returns
+  #
+  # A boolean
+  #
   def check_and_destroy
     errors.clear
     if self.new_record?
